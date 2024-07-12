@@ -1,750 +1,365 @@
-Return-Path: <devicetree+bounces-85192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B0A92F317
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 02:37:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9635792F349
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 03:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6917D1F22BA3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 00:37:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91982B20F3D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 01:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51EA710F9;
-	Fri, 12 Jul 2024 00:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1771C2E;
+	Fri, 12 Jul 2024 01:10:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="FARNnlFW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ST+XM9Ce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02olkn2101.outbound.protection.outlook.com [40.92.43.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889204C96;
-	Fri, 12 Jul 2024 00:37:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.43.101
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720744623; cv=fail; b=oIKmMM4HUboDjKeYMpuWeMuM9gQ6eGKWG2yumsrgTLQTENerkGPiVO0FF4iAuuOZQ05K4eHI3Nke8MY8kKNej2qdoj84O7G4LusXzzzVMOF7JZCPz1lcFGnCpZxiZjuCVIsngOrIy36BSHjEHfqIWFYz1Rh1TyEfAp+r99wwTR4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720744623; c=relaxed/simple;
-	bh=X5nXYnrunX+t5cG4W73Zh/0tRGoC0noEEeiAnX9eIuM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=B3jDc8ZxI/cScUqduCQjAwdnQJ6OTHP4Wf+ZfNzpi/+w/HZx7h10rp32v1mHA2mD/kwo5HcUVkPo35Q9qJc0QCNkjyFzDrjsT+FrFgI/qJ9tZHboGxE6mkx95SATZCcU6dB5j8sQ3bwpTiTf2lVGDMmzcMTVVFpAkAtLEnh7HaQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=FARNnlFW; arc=fail smtp.client-ip=40.92.43.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OTtgir4TMpQJ5XV1q6JxFLf2iChxYqlXhOQFGdAxF0YGThIPha8c6iUJBbSIoyRGjpVKIB7eIfXqeT1LV3KX8a86TSThVeZhbKikFfFpJa/koGftmnbj4kHY1vjuSr8KEZEuS2xlR8S/FgNKWgBw/Pp65gt+g4UPrbhc9HBpiFaAIO7K9G45S762S5fncwSfGvHnsKVZ8MP3NNpFnbyd9Xcx1nIwZY8otfxRu24y+72wk3WbeNNYHqQsRVUL/w6VXXUWjdqYpDaacxY2vP92xjdB/37bV9viQLhtaLr7T52+W5NcviH6ZzVMIwuDp004CGMXn2nGfKGO1DqyLBQ9aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6nzou6e7i5zAW1zg3ezCDrgjkIaNj0GNGPtZrR7QKKM=;
- b=bfOyZHhppD7HZFKtzWJHZsOpfR7kofStM/3TOzEivSmpD+LpXFOXYzTZDxmyDAp4BwPUG594LzipEe8lKPOaM1IKnTiBrvm3Vcpic8H/GJ2S5P2d8uVVOTsyGFRkL1CUPNcp1VPznI4s305ZQkUGNR5G2rGICkO7WBQ8l2CiJCd1FABb5temIRjvfgjYEX4gb/dB/+6aKTaI2qPNw+IrnzcXZFi4RB96OaoX+9bVKESU2L9qdrmpIrSFzk0AEPebfq58a/whVDzDTJ0wyxO6iXv0kDUjP6ZFnxmmDgvB7DSUBZuPJ7J/y+HDc0ZbeOIhdWKQuW/WX5BrNKbZisuLHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6nzou6e7i5zAW1zg3ezCDrgjkIaNj0GNGPtZrR7QKKM=;
- b=FARNnlFW5y6naEucvwYkNJvJ4udT0oS7dIFykCOcuqkWyHwVtKna47ZX86rllU2MVLWGHUqo5RfX+QIlp2H7CANlAhJ1jTp+NFhz4dAy3IpI8Wxg2RPNyNQfZGoPBDqFwXMxdrZrAZo3C/jB19iXuNBlGx1Up2rx6vuVd0K+mZj5HTJnhW2bUqb0IqhmY8pHmtRccI6zngtzuULPBvf0Ra4ODvnogAZJFsPk2dTf97ht6ImIrpHsPESYLxWdb7SGcZGjCVYGPkEIhZifJilEeG653HvF/pm3o2xdbHR610mB7FDXaJMYFi3hjHDnxYnAbvNgabWN/C3589VenG83qw==
-Received: from PH7PR20MB4962.namprd20.prod.outlook.com (2603:10b6:510:1fa::6)
- by MW4PR20MB4453.namprd20.prod.outlook.com (2603:10b6:303:18a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Fri, 12 Jul
- 2024 00:36:56 +0000
-Received: from PH7PR20MB4962.namprd20.prod.outlook.com
- ([fe80::b5de:b82:43d9:4e8c]) by PH7PR20MB4962.namprd20.prod.outlook.com
- ([fe80::b5de:b82:43d9:4e8c%5]) with mapi id 15.20.7762.020; Fri, 12 Jul 2024
- 00:36:55 +0000
-Date: Fri, 12 Jul 2024 08:36:14 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Rob Herring <robh@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Haylen Chu <heylenay@outlook.com>, 
-	Drew Fustini <dfustini@baylibre.com>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: Add pinctrl for Sophgo CV1800
- series SoC.
-Message-ID:
- <PH7PR20MB496255DD1E7F37B5C9027800BBA62@PH7PR20MB4962.namprd20.prod.outlook.com>
-References: <IA1PR20MB49530F0476B98DBB835B344FBBDE2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB49530D9BC6C8011B730433C2BBDE2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20240708162948.GA3356671-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240708162948.GA3356671-robh@kernel.org>
-X-TMN: [yJ1jY/erFCKWq/LRC2gbQiLF4fW6Co3kGH2YvgmP9pM=]
-X-ClientProxiedBy: TYCPR01CA0145.jpnprd01.prod.outlook.com
- (2603:1096:400:2b7::18) To PH7PR20MB4962.namprd20.prod.outlook.com
- (2603:10b6:510:1fa::6)
-X-Microsoft-Original-Message-ID:
- <kbgaoftbspqleqlaeltae52kofabymf3w257pg62sennrxhkdq@u6b2ggj7mebx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F65B10E3;
+	Fri, 12 Jul 2024 01:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720746606; cv=none; b=MXj/gza276DZ/5YVJaWvSaBrSQPsir4YRQVLHFTvMoyULJzDr3SQW/p8To5xJkheyU5BbgjnEwcG4dgKFoYXQzrvqa8rWaJMq7bH6dfckTGZbGeRqtPnKoF6fAwj/gD4IqUlsgTBy/rPyeXULd+NST/ZZz1Ful46B7zDGrjf+PY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720746606; c=relaxed/simple;
+	bh=pbT57k7QB3HrURFKNbnnjOrCHWNpdlLB7IX4cdo349Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=J+tsyWI4owyWXDMn1Rom/zqtFqBuSz2dF32BU6fofCZDwr0FythPl3gz3V3xH4ufPPnv5UIo4QLtoRcSXmp4cer230C2p67oRH/VIj4e6eGf50enshvFv4oaBQZaHTPCyD/2fIH6CjyQmfRAtvydbr5HAeB+zYF1xh27LaPA92Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ST+XM9Ce; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07D7C116B1;
+	Fri, 12 Jul 2024 01:10:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720746605;
+	bh=pbT57k7QB3HrURFKNbnnjOrCHWNpdlLB7IX4cdo349Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ST+XM9Cem5GiFdrAEFwqLg7T7ZfCDV8jJrMm/RoTB63Vh3YdxODXNzYhSx/ok+chE
+	 RRJXstoI1etRNXR0PA6cJf14UqTikoMaTJXB+6C5pyAFx7t66kqU+M4ERxIRS6aXcs
+	 iPH0ApcNqhmrDSO7Yi6rejwLM0MiQXrSc2HBRbp7L4gmWQAxBAa2flkx3OGTmrwx7U
+	 g64mkkgB9c5Fih4oECA8B2v+YnvriA5kYnQHE4mTbhXR7884pYiOHTIIloTdsLf44M
+	 A4CMm3m3F4H3joPigcm/ViL/wzUDmX5pC9c8qJKu/Q+wKzQieOQ9H8rAtkc/ujqwb4
+	 HAM3teTMqmwpQ==
+Date: Thu, 11 Jul 2024 18:10:03 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+ davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+ conor@kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, catalin.marinas@arm.com, will@kernel.org,
+ upstream@airoha.com, angelogioacchino.delregno@collabora.com,
+ benjamin.larsson@genexis.eu, rkannoth@marvell.com, sgoutham@marvell.com,
+ andrew@lunn.ch, arnd@arndb.de, horms@kernel.org
+Subject: Re: [PATCH v7 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <20240711181003.4089a633@kernel.org>
+In-Reply-To: <8ca603f8cea1ad64b703191b4c780bab87cb7dff.1720600905.git.lorenzo@kernel.org>
+References: <cover.1720600905.git.lorenzo@kernel.org>
+	<8ca603f8cea1ad64b703191b4c780bab87cb7dff.1720600905.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR20MB4962:EE_|MW4PR20MB4453:EE_
-X-MS-Office365-Filtering-Correlation-Id: ce83d388-071d-4cc3-1422-08dca20abafa
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|8060799006|461199028|440099028|3412199025|4302099013|1602099012|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	5lbc+7ILKO3Kf0HejZAO/Lx2lWWMb0X9YHQXq4YxH7MBXjGfnvY7CohuQmTqqvCsMGAI5Ni84qb/adWWwHeLrpncls8pAxzFe33odQxOGcElIFYY7gGkeJ/yAIZaDv/4AxkZ2JHqUf8WlhjbC5M7qRAS0D28KNEdRkD4UJtT8JdDTttbX0+xL1KwBsvmthwJR7VS6iXSUbv+gJ94uVFuFE2IB1IuZGg/r388lxtNzgk1d2jtb/HX8eswmkQXro03eoCbXY8wdLCJbYhBeR48h7AUFH7H/6rtQpeug5Wcn0huGdyZcwGhLtAnwJUGlkONHDI6Mn98NUGm1DN+pxRoLEhdxwcn8GGKueckR5rOAWKZOescv4Uzzixa8ctGz+CXISv0UilFMfM1qNATdqXxnW6AGN48nUPCxe9AJjfT0DWRmhRZzrO+NTvJ7nGMJN8LiwZumA+nJ1VaqbyZCl512g6kFR5gVpI5UUfmabK9UTjSw5pqOEY/eGk59FbNYZrW+t2EJ6rhUsdQUsrO6/EwI6eOj6Jo58fUh7AnH3Pe3+rQdwDm7OlfIWxsxNLd84b0ulI/ABfqNebG2/ydEf35nW6uqSswWscuqHMBfsxVUold0TVkqKQUbOOYapbzbvHk8BnrpbxoinXhQ8gPqtoa8kbNuASE/w5/ZK3wsuCrC580M7uKUwtJGu/ng7agtxtb0ZC9eIZn1KVngFiChsvGBDLFkSMgl+W932suctZw9gmQx1T6cFzCgkExLyEGHOVhkhB23yeT8eYRmp7QLRyiFcsM5D1D5NJ1XcOg68vTlZo=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?AUi5ibZYH3slvrsBLIF8Tv5e6T6Cvc3FiQShll2P9YcMhbqaPy1Pf6tM5uC0?=
- =?us-ascii?Q?L4CPBbPhk2eN5pjFk+/HsbNpvvgTssN4kA9zBVFZiqxjdlTy+nNDUDdPkw2+?=
- =?us-ascii?Q?aYnY5YVQ9uQZmxCLLfBBgKQQiX2sHbrwkj0ZxedaACpmJElYcmVsHe5J1D3D?=
- =?us-ascii?Q?g4+FWIMmjbhPSkTkzMs7fF5YTv6B2SUD0BAOiDz+8wb/vaD+kg6HfZeUJw1y?=
- =?us-ascii?Q?rl8pEKA3/g2NwKF03hGTE3JrMQYgc49wHA5/T4JcKXA/s+3pue+t9dMgH190?=
- =?us-ascii?Q?Pmfl3uiPYIR4fjjM/9V1+Ak96a5DRGaeOp/il3nD9W4K+v+l+N/Y78pkTIkZ?=
- =?us-ascii?Q?NdiMIbUiczDWDSR/lmFlcEERk09NNdXX9SB6oTUafrdzZuqByPCuRGwyvkDM?=
- =?us-ascii?Q?+AhzEFptmdG9spdYWiTgMM2HYAYW3xM/wM5LHhvbuWu/amFHunfRSatrdcBr?=
- =?us-ascii?Q?YIcRSFZkNSpFUYFYf0saWRHVSGMUkNR/3G67tC1HmchV9og+VryKDweyyWu5?=
- =?us-ascii?Q?H03mxOJgFGAivPqt0QPf2ndQ2bx1T5Kotf6JIoPq0s4+7fjMrGDj3qJIAS5v?=
- =?us-ascii?Q?xirwIgUYbZoG0U/KHlXEfz8DQYJvV4WiQIvLZIfLh0otAhKkfyVuDAxPc2wF?=
- =?us-ascii?Q?mcYTybueyYW4octKbPfguHe2TV/6GM7gREhgyZUIrhjld2cMZLDVvLl+XuKS?=
- =?us-ascii?Q?gtWrI4bRp8C6MCRPYQHeKO8okuZGW60SapzseSKdOyeZyDoc/81KIiPyEFwJ?=
- =?us-ascii?Q?H0qRsVtCIO0gT753SDe22hzybjWjk0C/ycBQXsc0iG4XafzumZzIzhMUohl/?=
- =?us-ascii?Q?iQtc+mAkJtmqJ52DCx4p+gK+b8/AVe8f1Qbu6/6DSNworIdah6owst3GawLd?=
- =?us-ascii?Q?qGwtUerRDWM0CWsE9B0hubvzze/SE23v88ROvVQBNEi7iCoFaYG+Kr+i/I4H?=
- =?us-ascii?Q?OE0q6tGUo7GjJrCdNcgAg3ORnu2RkZEboCZsN20/iRBB1zdx1km51jV/iGVt?=
- =?us-ascii?Q?F4erHAedJLl1j21H/mc00TxLtMEXDYuyiz1OWmL69RYlTFfdaQlUOP4Zmwj+?=
- =?us-ascii?Q?4hiQZJmsIUSoGOuhKBhXZleHQLZ3FC/0+ayQL8J006CKkn2CDhLfHJrHu1TQ?=
- =?us-ascii?Q?z2PtWDaoteYxy+jh/2VwjsX4gqFst512kog1uB+RSMgW4k7DLCYDdOJ5ezY8?=
- =?us-ascii?Q?l/E3bAla4RFAU7X9yXZOXVlCotoqnM1OUj9gbaPGLYwkulA9AwD70hxkdlE8?=
- =?us-ascii?Q?h3eX6M7/ObY0ENkdkHQ4?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce83d388-071d-4cc3-1422-08dca20abafa
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR20MB4962.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2024 00:36:55.4884
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR20MB4453
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 08, 2024 at 10:29:48AM GMT, Rob Herring wrote:
-> On Thu, Jul 04, 2024 at 01:46:37PM +0800, Inochi Amaoto wrote:
-> > Add pinctrl support for Sophgo CV1800 series SoC.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> > ---
-> >  .../pinctrl/sophgo,cv1800-pinctrl.yaml        | 120 +++++++++++++++++
-> >  include/dt-bindings/pinctrl/pinctrl-cv1800b.h |  63 +++++++++
-> >  include/dt-bindings/pinctrl/pinctrl-cv1812h.h | 127 ++++++++++++++++++
-> >  include/dt-bindings/pinctrl/pinctrl-cv18xx.h  |  19 +++
-> >  include/dt-bindings/pinctrl/pinctrl-sg2000.h  | 127 ++++++++++++++++++
-> >  include/dt-bindings/pinctrl/pinctrl-sg2002.h  |  79 +++++++++++
-> >  6 files changed, 535 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
-> >  create mode 100644 include/dt-bindings/pinctrl/pinctrl-cv1800b.h
-> >  create mode 100644 include/dt-bindings/pinctrl/pinctrl-cv1812h.h
-> >  create mode 100644 include/dt-bindings/pinctrl/pinctrl-cv18xx.h
-> >  create mode 100644 include/dt-bindings/pinctrl/pinctrl-sg2000.h
-> >  create mode 100644 include/dt-bindings/pinctrl/pinctrl-sg2002.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
-> > new file mode 100644
-> > index 000000000000..b7e4084b78d6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/sophgo,cv1800-pinctrl.yaml
-> > @@ -0,0 +1,120 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/sophgo,cv1800-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sophgo CV1800 Pin Controller
-> > +
-> > +maintainers:
-> > +  - Inochi Amaoto <inochiama@outlook.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - sophgo,cv1800b-pinctrl
-> > +      - sophgo,cv1812h-pinctrl
-> > +      - sophgo,sg2000-pinctrl
-> > +      - sophgo,sg2002-pinctrl
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: pinctrl for system domain
-> > +      - description: pinctrl for rtc domain
-> 
-> Based on the example's addresses, this isn't 1 block, but 2 blocks. Is 
-> this really 1 block, 2 instances of the same block, or 2 different 
-> blocks?
-> 
+On Wed, 10 Jul 2024 10:47:41 +0200 Lorenzo Bianconi wrote:
+> Add airoha_eth driver in order to introduce ethernet support for
+> Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
+> en7581-evb networking architecture is composed by airoha_eth as mac
+> controller (cpu port) and a mt7530 dsa based switch.
+> EN7581 mac controller is mainly composed by Frame Engine (FE) and
+> QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
+> functionalities are supported now) while QDMA is used for DMA operation
+> and QOS functionalities between mac layer and the dsa switch (hw QoS is
+> not available yet and it will be added in the future).
+> Currently only hw lan features are available, hw wan will be added with
+> subsequent patches.
 
-It is 2 blocks. According to its document, the pin configuration 
-is cross referenced.
+It seems a bit unusual for DSA to have multiple ports, isn't it?
+Can you explain how this driver differs from normal DSA a little=20
+more in the commit message?
 
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: sys
-> > +      - const: rtc
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +patternProperties:
-> > +  '-cfg$':
-> > +    type: object
-> > +    patternProperties:
-> > +      '-pins$':
-> > +        type: object
-> > +        description: |
-> > +          A pinctrl node should contain at least one subnode representing the
-> 
-> It's the '-cfg' node that 'should contain at least one subnode', not 
-> this node.
-> 
+> +static void airoha_dev_get_stats64(struct net_device *dev,
+> +				   struct rtnl_link_stats64 *storage)
+> +{
+> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
+> +
+> +	mutex_lock(&port->stats.mutex);
 
-Thanks, I will update the description.
+can't take sleeping locks here :( Gotta do periodic updates from=20
+a workqueue or spinlock. there are callers under RCU (annoyingly)
 
-> > +          pinctrl groups available on the machine. Each subnode will list the
-> > +          pins it needs, and how they should be configured, with regard to
-> > +          muxer configuration, bias, input enable/disable, input schmitt
-> > +          trigger enable/disable, slew-rate and drive strength.
-> > +        $ref: /schemas/pinctrl/pincfg-node.yaml
-> > +
-> > +        properties:
-> > +          pinmux:
-> > +            description: |
-> > +              The list of GPIOs and their mux settings that properties in the
-> > +              node apply to. This should be set using the GPIOMUX or GPIOMUX2
-> > +              macro.
-> > +            $ref: /schemas/pinctrl/pinmux-node.yaml#/properties/pinmux
-> > +
-> > +          bias-pull-up:
-> > +            type: boolean
-> > +
-> > +          bias-pull-down:
-> > +            type: boolean
-> > +
-> > +          drive-strength:
-> > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > +            minimum: 0
-> > +            maximum: 7
-> > +
-> > +          input-schmitt:
-> > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > +            minimum: 0
-> > +            maximum: 7
-> > +
-> > +          slew-rate:
-> > +            enum: [ 0, 1 ]
-> > +
-> > +          sophgo,bus-holder:
-> > +            description: enable bus holder
-> > +            type: boolean
-> > +
-> > +        additionalProperties: false
-> > +
-> > +    additionalProperties: false
-> 
-> In the indented cases, put these before properties or patternProperties.
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/pinctrl/pinctrl-cv1800b.h>
-> > +
-> > +    soc {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +
-> > +        pinctrl@3001000 {
-> > +            compatible = "sophgo,cv1800b-pinctrl";
-> > +            reg = <0x03001000 0x1000>,
-> > +                  <0x05027000 0x1000>;
-> > +            reg-names = "sys", "rtc";
-> > +
-> > +            uart0_cfg: uart0-cfg {
-> > +                uart0-pins {
-> > +                    pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-> > +                             <PINMUX(PIN_UART0_RX, 0)>;
-> > +                    bias-pull-up;
-> > +                    drive-strength = <2>;
-> > +                    slew-rate = <0>;
-> > +                };
-> > +            };
-> > +        };
-> > +
-> > +        uart0 {
-> > +            pinctrl-0 = <&uart0_cfg>;
-> > +            pinctrl-names = "default";
-> 
-> Not a complete node. Plus the examples for a provider don't show the 
-> consumer side and vice-versa. So drop the node.
-> 
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/include/dt-bindings/pinctrl/pinctrl-cv1800b.h b/include/dt-bindings/pinctrl/pinctrl-cv1800b.h
-> > new file mode 100644
-> > index 000000000000..0593fc33d470
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/pinctrl-cv1800b.h
-> > @@ -0,0 +1,63 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
-> > + *
-> > + * This file is generated from vendor pinout definition.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_PINCTRL_CV1800B_H
-> > +#define _DT_BINDINGS_PINCTRL_CV1800B_H
-> > +
-> > +#include <dt-bindings/pinctrl/pinctrl-cv18xx.h>
-> > +
-> > +#define PIN_AUD_AOUTR			1
-> > +#define PIN_SD0_CLK			3
-> > +#define PIN_SD0_CMD			4
-> > +#define PIN_SD0_D0			5
-> > +#define PIN_SD0_D1			7
-> > +#define PIN_SD0_D2			8
-> > +#define PIN_SD0_D3			9
-> > +#define PIN_SD0_CD			11
-> > +#define PIN_SD0_PWR_EN			12
-> > +#define PIN_SPK_EN			14
-> > +#define PIN_UART0_TX			15
-> > +#define PIN_UART0_RX			16
-> > +#define PIN_SPINOR_HOLD_X		17
-> > +#define PIN_SPINOR_SCK			18
-> > +#define PIN_SPINOR_MOSI			19
-> > +#define PIN_SPINOR_WP_X			20
-> > +#define PIN_SPINOR_MISO			21
-> > +#define PIN_SPINOR_CS_X			22
-> > +#define PIN_IIC0_SCL			23
-> > +#define PIN_IIC0_SDA			24
-> > +#define PIN_AUX0			25
-> > +#define PIN_PWR_VBAT_DET		30
-> > +#define PIN_PWR_SEQ2			31
-> > +#define PIN_XTAL_XIN			33
-> > +#define PIN_SD1_GPIO0			35
-> > +#define PIN_SD1_GPIO1			36
-> > +#define PIN_SD1_D3			38
-> > +#define PIN_SD1_D2			39
-> > +#define PIN_SD1_D1			40
-> > +#define PIN_SD1_D0			41
-> > +#define PIN_SD1_CMD			42
-> > +#define PIN_SD1_CLK			43
-> > +#define PIN_ADC1			44
-> > +#define PIN_USB_VBUS_DET		45
-> > +#define PIN_ETH_TXP			47
-> > +#define PIN_ETH_TXM			48
-> > +#define PIN_ETH_RXP			49
-> > +#define PIN_ETH_RXM			50
-> > +#define PIN_MIPIRX4N			56
-> > +#define PIN_MIPIRX4P			57
-> > +#define PIN_MIPIRX3N			58
-> > +#define PIN_MIPIRX3P			59
-> > +#define PIN_MIPIRX2N			60
-> > +#define PIN_MIPIRX2P			61
-> > +#define PIN_MIPIRX1N			62
-> > +#define PIN_MIPIRX1P			63
-> > +#define PIN_MIPIRX0N			64
-> > +#define PIN_MIPIRX0P			65
-> > +#define PIN_AUD_AINL_MIC		67
-> > +
-> > +#endif /* _DT_BINDINGS_PINCTRL_CV1800B_H */
-> > diff --git a/include/dt-bindings/pinctrl/pinctrl-cv1812h.h b/include/dt-bindings/pinctrl/pinctrl-cv1812h.h
-> > new file mode 100644
-> > index 000000000000..2908de347919
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/pinctrl-cv1812h.h
-> > @@ -0,0 +1,127 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
-> > + *
-> > + * This file is generated from vendor pinout definition.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_PINCTRL_CV1812H_H
-> > +#define _DT_BINDINGS_PINCTRL_CV1812H_H
-> > +
-> > +#include <dt-bindings/pinctrl/pinctrl-cv18xx.h>
-> > +
-> > +#define PINPOS(row, col)			\
-> > +	((((row) - 'A' + 1) << 8) + ((col) - 1))
-> > +
-> > +#define PIN_MIPI_TXM4			PINPOS('A', 2)
-> > +#define PIN_MIPIRX0N			PINPOS('A', 4)
-> > +#define PIN_MIPIRX3P			PINPOS('A', 6)
-> > +#define PIN_MIPIRX4P			PINPOS('A', 7)
-> > +#define PIN_VIVO_D2			PINPOS('A', 9)
-> > +#define PIN_VIVO_D3			PINPOS('A', 10)
-> > +#define PIN_VIVO_D10			PINPOS('A', 12)
-> > +#define PIN_USB_VBUS_DET		PINPOS('A', 13)
-> > +#define PIN_MIPI_TXP3			PINPOS('B', 1)
-> > +#define PIN_MIPI_TXM3			PINPOS('B', 2)
-> > +#define PIN_MIPI_TXP4			PINPOS('B', 3)
-> > +#define PIN_MIPIRX0P			PINPOS('B', 4)
-> > +#define PIN_MIPIRX1N			PINPOS('B', 5)
-> > +#define PIN_MIPIRX2N			PINPOS('B', 6)
-> > +#define PIN_MIPIRX4N			PINPOS('B', 7)
-> > +#define PIN_MIPIRX5N			PINPOS('B', 8)
-> > +#define PIN_VIVO_D1			PINPOS('B', 9)
-> > +#define PIN_VIVO_D5			PINPOS('B', 10)
-> > +#define PIN_VIVO_D7			PINPOS('B', 11)
-> > +#define PIN_VIVO_D9			PINPOS('B', 12)
-> > +#define PIN_USB_ID			PINPOS('B', 13)
-> > +#define PIN_ETH_RXM			PINPOS('B', 15)
-> > +#define PIN_MIPI_TXP2			PINPOS('C', 1)
-> > +#define PIN_MIPI_TXM2			PINPOS('C', 2)
-> > +#define PIN_CAM_PD0			PINPOS('C', 3)
-> > +#define PIN_CAM_MCLK0			PINPOS('C', 4)
-> > +#define PIN_MIPIRX1P			PINPOS('C', 5)
-> > +#define PIN_MIPIRX2P			PINPOS('C', 6)
-> > +#define PIN_MIPIRX3N			PINPOS('C', 7)
-> > +#define PIN_MIPIRX5P			PINPOS('C', 8)
-> > +#define PIN_VIVO_CLK			PINPOS('C', 9)
-> > +#define PIN_VIVO_D6			PINPOS('C', 10)
-> > +#define PIN_VIVO_D8			PINPOS('C', 11)
-> > +#define PIN_USB_VBUS_EN			PINPOS('C', 12)
-> > +#define PIN_ETH_RXP			PINPOS('C', 14)
-> > +#define PIN_GPIO_RTX			PINPOS('C', 15)
-> > +#define PIN_MIPI_TXP1			PINPOS('D', 1)
-> > +#define PIN_MIPI_TXM1			PINPOS('D', 2)
-> > +#define PIN_CAM_MCLK1			PINPOS('D', 3)
-> > +#define PIN_IIC3_SCL			PINPOS('D', 4)
-> > +#define PIN_VIVO_D4			PINPOS('D', 10)
-> > +#define PIN_ETH_TXM			PINPOS('D', 14)
-> > +#define PIN_ETH_TXP			PINPOS('D', 15)
-> > +#define PIN_MIPI_TXP0			PINPOS('E', 1)
-> > +#define PIN_MIPI_TXM0			PINPOS('E', 2)
-> > +#define PIN_CAM_PD1			PINPOS('E', 4)
-> > +#define PIN_CAM_RST0			PINPOS('E', 5)
-> > +#define PIN_VIVO_D0			PINPOS('E', 10)
-> > +#define PIN_ADC1			PINPOS('E', 13)
-> > +#define PIN_ADC2			PINPOS('E', 14)
-> > +#define PIN_ADC3			PINPOS('E', 15)
-> > +#define PIN_AUD_AOUTL			PINPOS('F', 2)
-> > +#define PIN_IIC3_SDA			PINPOS('F', 4)
-> > +#define PIN_SD1_D2			PINPOS('F', 14)
-> > +#define PIN_AUD_AOUTR			PINPOS('G', 2)
-> > +#define PIN_SD1_D3			PINPOS('G', 13)
-> > +#define PIN_SD1_CLK			PINPOS('G', 14)
-> > +#define PIN_SD1_CMD			PINPOS('G', 15)
-> > +#define PIN_AUD_AINL_MIC		PINPOS('H', 1)
-> > +#define PIN_RSTN			PINPOS('H', 12)
-> > +#define PIN_PWM0_BUCK			PINPOS('H', 13)
-> > +#define PIN_SD1_D1			PINPOS('H', 14)
-> > +#define PIN_SD1_D0			PINPOS('H', 15)
-> > +#define PIN_AUD_AINR_MIC		PINPOS('J', 1)
-> > +#define PIN_IIC2_SCL			PINPOS('J', 13)
-> > +#define PIN_IIC2_SDA			PINPOS('J', 14)
-> > +#define PIN_SD0_CD			PINPOS('K', 2)
-> > +#define PIN_SD0_D1			PINPOS('K', 3)
-> > +#define PIN_UART2_RX			PINPOS('K', 13)
-> > +#define PIN_UART2_CTS			PINPOS('K', 14)
-> > +#define PIN_UART2_TX			PINPOS('K', 15)
-> > +#define PIN_SD0_CLK			PINPOS('L', 1)
-> > +#define PIN_SD0_D0			PINPOS('L', 2)
-> > +#define PIN_SD0_CMD			PINPOS('L', 3)
-> > +#define PIN_CLK32K			PINPOS('L', 14)
-> > +#define PIN_UART2_RTS			PINPOS('L', 15)
-> > +#define PIN_SD0_D3			PINPOS('M', 1)
-> > +#define PIN_SD0_D2			PINPOS('M', 2)
-> > +#define PIN_UART0_RX			PINPOS('M', 4)
-> > +#define PIN_UART0_TX			PINPOS('M', 5)
-> > +#define PIN_JTAG_CPU_TRST		PINPOS('M', 6)
-> > +#define PIN_PWR_ON			PINPOS('M', 11)
-> > +#define PIN_PWR_GPIO2			PINPOS('M', 12)
-> > +#define PIN_PWR_GPIO0			PINPOS('M', 13)
-> > +#define PIN_CLK25M			PINPOS('M', 14)
-> > +#define PIN_SD0_PWR_EN			PINPOS('N', 1)
-> > +#define PIN_SPK_EN			PINPOS('N', 3)
-> > +#define PIN_JTAG_CPU_TCK		PINPOS('N', 4)
-> > +#define PIN_JTAG_CPU_TMS		PINPOS('N', 6)
-> > +#define PIN_PWR_WAKEUP1			PINPOS('N', 11)
-> > +#define PIN_PWR_WAKEUP0			PINPOS('N', 12)
-> > +#define PIN_PWR_GPIO1			PINPOS('N', 13)
-> > +#define PIN_EMMC_DAT3			PINPOS('P', 1)
-> > +#define PIN_EMMC_DAT0			PINPOS('P', 2)
-> > +#define PIN_EMMC_DAT2			PINPOS('P', 3)
-> > +#define PIN_EMMC_RSTN			PINPOS('P', 4)
-> > +#define PIN_AUX0			PINPOS('P', 5)
-> > +#define PIN_IIC0_SDA			PINPOS('P', 6)
-> > +#define PIN_PWR_SEQ3			PINPOS('P', 10)
-> > +#define PIN_PWR_VBAT_DET		PINPOS('P', 11)
-> > +#define PIN_PWR_SEQ1			PINPOS('P', 12)
-> > +#define PIN_PWR_BUTTON1			PINPOS('P', 13)
-> > +#define PIN_EMMC_DAT1			PINPOS('R', 2)
-> > +#define PIN_EMMC_CMD			PINPOS('R', 3)
-> > +#define PIN_EMMC_CLK			PINPOS('R', 4)
-> > +#define PIN_IIC0_SCL			PINPOS('R', 6)
-> > +#define PIN_GPIO_ZQ			PINPOS('R', 10)
-> > +#define PIN_PWR_RSTN			PINPOS('R', 11)
-> > +#define PIN_PWR_SEQ2			PINPOS('R', 12)
-> > +#define PIN_XTAL_XIN			PINPOS('R', 13)
-> > +
-> > +#endif /* _DT_BINDINGS_PINCTRL_CV1812H_H */
-> > diff --git a/include/dt-bindings/pinctrl/pinctrl-cv18xx.h b/include/dt-bindings/pinctrl/pinctrl-cv18xx.h
-> > new file mode 100644
-> > index 000000000000..bc92ad1067ec
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/pinctrl-cv18xx.h
-> > @@ -0,0 +1,19 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * Copyright (C) 2023 Sophgo Ltd.
-> > + *
-> > + * Author: Inochi Amaoto <inochiama@outlook.com>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_PINCTRL_CV18XX_H
-> > +#define _DT_BINDINGS_PINCTRL_CV18XX_H
-> > +
-> > +#define PIN_MUX_INVALD				0xff
-> > +
-> > +#define PINMUX2(pin, mux, mux2)	\
-> > +	(((pin) & 0xffff) | (((mux) & 0xff) << 16) | (((mux2) & 0xff) << 24))
-> > +
-> > +#define PINMUX(pin, mux) \
-> > +	PINMUX2(pin, mux, PIN_MUX_INVALD)
-> > +
-> > +#endif /* _DT_BINDINGS_PINCTRL_CV18XX_H */
-> > diff --git a/include/dt-bindings/pinctrl/pinctrl-sg2000.h b/include/dt-bindings/pinctrl/pinctrl-sg2000.h
-> > new file mode 100644
-> > index 000000000000..4871f9a7c6c1
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/pinctrl-sg2000.h
-> > @@ -0,0 +1,127 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
-> > + *
-> > + * This file is generated from vendor pinout definition.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_PINCTRL_SG2000_H
-> > +#define _DT_BINDINGS_PINCTRL_SG2000_H
-> > +
-> > +#include <dt-bindings/pinctrl/pinctrl-cv18xx.h>
-> > +
-> > +#define PINPOS(row, col)			\
-> > +	((((row) - 'A' + 1) << 8) + ((col) - 1))
-> > +
-> > +#define PIN_MIPI_TXM4			PINPOS('A', 2)
-> > +#define PIN_MIPIRX0N			PINPOS('A', 4)
-> > +#define PIN_MIPIRX3P			PINPOS('A', 6)
-> > +#define PIN_MIPIRX4P			PINPOS('A', 7)
-> > +#define PIN_VIVO_D2			PINPOS('A', 9)
-> > +#define PIN_VIVO_D3			PINPOS('A', 10)
-> > +#define PIN_VIVO_D10			PINPOS('A', 12)
-> > +#define PIN_USB_VBUS_DET		PINPOS('A', 13)
-> > +#define PIN_MIPI_TXP3			PINPOS('B', 1)
-> > +#define PIN_MIPI_TXM3			PINPOS('B', 2)
-> > +#define PIN_MIPI_TXP4			PINPOS('B', 3)
-> > +#define PIN_MIPIRX0P			PINPOS('B', 4)
-> > +#define PIN_MIPIRX1N			PINPOS('B', 5)
-> > +#define PIN_MIPIRX2N			PINPOS('B', 6)
-> > +#define PIN_MIPIRX4N			PINPOS('B', 7)
-> > +#define PIN_MIPIRX5N			PINPOS('B', 8)
-> > +#define PIN_VIVO_D1			PINPOS('B', 9)
-> > +#define PIN_VIVO_D5			PINPOS('B', 10)
-> > +#define PIN_VIVO_D7			PINPOS('B', 11)
-> > +#define PIN_VIVO_D9			PINPOS('B', 12)
-> > +#define PIN_USB_ID			PINPOS('B', 13)
-> > +#define PIN_ETH_RXM			PINPOS('B', 15)
-> > +#define PIN_MIPI_TXP2			PINPOS('C', 1)
-> > +#define PIN_MIPI_TXM2			PINPOS('C', 2)
-> > +#define PIN_CAM_PD0			PINPOS('C', 3)
-> > +#define PIN_CAM_MCLK0			PINPOS('C', 4)
-> > +#define PIN_MIPIRX1P			PINPOS('C', 5)
-> > +#define PIN_MIPIRX2P			PINPOS('C', 6)
-> > +#define PIN_MIPIRX3N			PINPOS('C', 7)
-> > +#define PIN_MIPIRX5P			PINPOS('C', 8)
-> > +#define PIN_VIVO_CLK			PINPOS('C', 9)
-> > +#define PIN_VIVO_D6			PINPOS('C', 10)
-> > +#define PIN_VIVO_D8			PINPOS('C', 11)
-> > +#define PIN_USB_VBUS_EN			PINPOS('C', 12)
-> > +#define PIN_ETH_RXP			PINPOS('C', 14)
-> > +#define PIN_GPIO_RTX			PINPOS('C', 15)
-> > +#define PIN_MIPI_TXP1			PINPOS('D', 1)
-> > +#define PIN_MIPI_TXM1			PINPOS('D', 2)
-> > +#define PIN_CAM_MCLK1			PINPOS('D', 3)
-> > +#define PIN_IIC3_SCL			PINPOS('D', 4)
-> > +#define PIN_VIVO_D4			PINPOS('D', 10)
-> > +#define PIN_ETH_TXM			PINPOS('D', 14)
-> > +#define PIN_ETH_TXP			PINPOS('D', 15)
-> > +#define PIN_MIPI_TXP0			PINPOS('E', 1)
-> > +#define PIN_MIPI_TXM0			PINPOS('E', 2)
-> > +#define PIN_CAM_PD1			PINPOS('E', 4)
-> > +#define PIN_CAM_RST0			PINPOS('E', 5)
-> > +#define PIN_VIVO_D0			PINPOS('E', 10)
-> > +#define PIN_ADC1			PINPOS('E', 13)
-> > +#define PIN_ADC2			PINPOS('E', 14)
-> > +#define PIN_ADC3			PINPOS('E', 15)
-> > +#define PIN_AUD_AOUTL			PINPOS('F', 2)
-> > +#define PIN_IIC3_SDA			PINPOS('F', 4)
-> > +#define PIN_SD1_D2			PINPOS('F', 14)
-> > +#define PIN_AUD_AOUTR			PINPOS('G', 2)
-> > +#define PIN_SD1_D3			PINPOS('G', 13)
-> > +#define PIN_SD1_CLK			PINPOS('G', 14)
-> > +#define PIN_SD1_CMD			PINPOS('G', 15)
-> > +#define PIN_AUD_AINL_MIC		PINPOS('H', 1)
-> > +#define PIN_RSTN			PINPOS('H', 12)
-> > +#define PIN_PWM0_BUCK			PINPOS('H', 13)
-> > +#define PIN_SD1_D1			PINPOS('H', 14)
-> > +#define PIN_SD1_D0			PINPOS('H', 15)
-> > +#define PIN_AUD_AINR_MIC		PINPOS('J', 1)
-> > +#define PIN_IIC2_SCL			PINPOS('J', 13)
-> > +#define PIN_IIC2_SDA			PINPOS('J', 14)
-> > +#define PIN_SD0_CD			PINPOS('K', 2)
-> > +#define PIN_SD0_D1			PINPOS('K', 3)
-> > +#define PIN_UART2_RX			PINPOS('K', 13)
-> > +#define PIN_UART2_CTS			PINPOS('K', 14)
-> > +#define PIN_UART2_TX			PINPOS('K', 15)
-> > +#define PIN_SD0_CLK			PINPOS('L', 1)
-> > +#define PIN_SD0_D0			PINPOS('L', 2)
-> > +#define PIN_SD0_CMD			PINPOS('L', 3)
-> > +#define PIN_CLK32K			PINPOS('L', 14)
-> > +#define PIN_UART2_RTS			PINPOS('L', 15)
-> > +#define PIN_SD0_D3			PINPOS('M', 1)
-> > +#define PIN_SD0_D2			PINPOS('M', 2)
-> > +#define PIN_UART0_RX			PINPOS('M', 4)
-> > +#define PIN_UART0_TX			PINPOS('M', 5)
-> > +#define PIN_JTAG_CPU_TRST		PINPOS('M', 6)
-> > +#define PIN_PWR_ON			PINPOS('M', 11)
-> > +#define PIN_PWR_GPIO2			PINPOS('M', 12)
-> > +#define PIN_PWR_GPIO0			PINPOS('M', 13)
-> > +#define PIN_CLK25M			PINPOS('M', 14)
-> > +#define PIN_SD0_PWR_EN			PINPOS('N', 1)
-> > +#define PIN_SPK_EN			PINPOS('N', 3)
-> > +#define PIN_JTAG_CPU_TCK		PINPOS('N', 4)
-> > +#define PIN_JTAG_CPU_TMS		PINPOS('N', 6)
-> > +#define PIN_PWR_WAKEUP1			PINPOS('N', 11)
-> > +#define PIN_PWR_WAKEUP0			PINPOS('N', 12)
-> > +#define PIN_PWR_GPIO1			PINPOS('N', 13)
-> > +#define PIN_EMMC_DAT3			PINPOS('P', 1)
-> > +#define PIN_EMMC_DAT0			PINPOS('P', 2)
-> > +#define PIN_EMMC_DAT2			PINPOS('P', 3)
-> > +#define PIN_EMMC_RSTN			PINPOS('P', 4)
-> > +#define PIN_AUX0			PINPOS('P', 5)
-> > +#define PIN_IIC0_SDA			PINPOS('P', 6)
-> > +#define PIN_PWR_SEQ3			PINPOS('P', 10)
-> > +#define PIN_PWR_VBAT_DET		PINPOS('P', 11)
-> > +#define PIN_PWR_SEQ1			PINPOS('P', 12)
-> > +#define PIN_PWR_BUTTON1			PINPOS('P', 13)
-> > +#define PIN_EMMC_DAT1			PINPOS('R', 2)
-> > +#define PIN_EMMC_CMD			PINPOS('R', 3)
-> > +#define PIN_EMMC_CLK			PINPOS('R', 4)
-> > +#define PIN_IIC0_SCL			PINPOS('R', 6)
-> > +#define PIN_GPIO_ZQ			PINPOS('R', 10)
-> > +#define PIN_PWR_RSTN			PINPOS('R', 11)
-> > +#define PIN_PWR_SEQ2			PINPOS('R', 12)
-> > +#define PIN_XTAL_XIN			PINPOS('R', 13)
-> > +
-> > +#endif /* _DT_BINDINGS_PINCTRL_SG2000_H */
-> > diff --git a/include/dt-bindings/pinctrl/pinctrl-sg2002.h b/include/dt-bindings/pinctrl/pinctrl-sg2002.h
-> > new file mode 100644
-> > index 000000000000..3c36cfa0a550
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/pinctrl-sg2002.h
-> > @@ -0,0 +1,79 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
-> > + *
-> > + * This file is generated from vendor pinout definition.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_PINCTRL_SG2002_H
-> > +#define _DT_BINDINGS_PINCTRL_SG2002_H
-> > +
-> > +#include <dt-bindings/pinctrl/pinctrl-cv18xx.h>
-> > +
-> > +#define PIN_AUD_AINL_MIC		2
-> > +#define PIN_AUD_AOUTR			4
-> > +#define PIN_SD0_CLK			6
-> > +#define PIN_SD0_CMD			7
-> > +#define PIN_SD0_D0			8
-> > +#define PIN_SD0_D1			10
-> > +#define PIN_SD0_D2			11
-> > +#define PIN_SD0_D3			12
-> > +#define PIN_SD0_CD			14
-> > +#define PIN_SD0_PWR_EN			15
-> > +#define PIN_SPK_EN			17
-> > +#define PIN_UART0_TX			18
-> > +#define PIN_UART0_RX			19
-> > +#define PIN_EMMC_DAT2			20
-> > +#define PIN_EMMC_CLK			21
-> > +#define PIN_EMMC_DAT0			22
-> > +#define PIN_EMMC_DAT3			23
-> > +#define PIN_EMMC_CMD			24
-> > +#define PIN_EMMC_DAT1			25
-> > +#define PIN_JTAG_CPU_TMS		26
-> > +#define PIN_JTAG_CPU_TCK		27
-> > +#define PIN_IIC0_SCL			28
-> > +#define PIN_IIC0_SDA			29
-> > +#define PIN_AUX0			30
-> > +#define PIN_GPIO_ZQ			35
-> > +#define PIN_PWR_VBAT_DET		38
-> > +#define PIN_PWR_RSTN			39
-> > +#define PIN_PWR_SEQ1			40
-> > +#define PIN_PWR_SEQ2			41
-> > +#define PIN_PWR_WAKEUP0			43
-> > +#define PIN_PWR_BUTTON1			44
-> > +#define PIN_XTAL_XIN			45
-> > +#define PIN_PWR_GPIO0			47
-> > +#define PIN_PWR_GPIO1			48
-> > +#define PIN_PWR_GPIO2			49
-> > +#define PIN_SD1_D3			51
-> > +#define PIN_SD1_D2			52
-> > +#define PIN_SD1_D1			53
-> > +#define PIN_SD1_D0			54
-> > +#define PIN_SD1_CMD			55
-> > +#define PIN_SD1_CLK			56
-> > +#define PIN_PWM0_BUCK			58
-> > +#define PIN_ADC1			59
-> > +#define PIN_USB_VBUS_DET		60
-> > +#define PIN_ETH_TXP			62
-> > +#define PIN_ETH_TXM			63
-> > +#define PIN_ETH_RXP			64
-> > +#define PIN_ETH_RXM			65
-> > +#define PIN_GPIO_RTX			67
-> > +#define PIN_MIPIRX4N			72
-> > +#define PIN_MIPIRX4P			73
-> > +#define PIN_MIPIRX3N			74
-> > +#define PIN_MIPIRX3P			75
-> > +#define PIN_MIPIRX2N			76
-> > +#define PIN_MIPIRX2P			77
-> > +#define PIN_MIPIRX1N			78
-> > +#define PIN_MIPIRX1P			79
-> > +#define PIN_MIPIRX0N			80
-> > +#define PIN_MIPIRX0P			81
-> > +#define PIN_MIPI_TXM2			83
-> > +#define PIN_MIPI_TXP2			84
-> > +#define PIN_MIPI_TXM1			85
-> > +#define PIN_MIPI_TXP1			86
-> > +#define PIN_MIPI_TXM0			87
-> > +#define PIN_MIPI_TXP0			88
-> > +
-> > +#endif /* _DT_BINDINGS_PINCTRL_SG2002_H */
-> > --
-> > 2.45.2
-> > 
+> +	airoha_update_hw_stats(port);
+> +	storage->rx_packets =3D port->stats.rx_ok_pkts;
+> +	storage->tx_packets =3D port->stats.tx_ok_pkts;
+> +	storage->rx_bytes =3D port->stats.rx_ok_bytes;
+> +	storage->tx_bytes =3D port->stats.tx_ok_bytes;
+> +	storage->multicast =3D port->stats.rx_multicast;
+> +	storage->rx_errors =3D port->stats.rx_errors;
+> +	storage->rx_dropped =3D port->stats.rx_drops;
+> +	storage->tx_dropped =3D port->stats.tx_drops;
+> +	storage->rx_crc_errors =3D port->stats.rx_crc_error;
+> +	storage->rx_over_errors =3D port->stats.rx_over_errors;
+> +
+> +	mutex_unlock(&port->stats.mutex);
+> +}
+> +
+> +static netdev_tx_t airoha_dev_xmit(struct sk_buff *skb,
+> +				   struct net_device *dev)
+> +{
+> +	struct skb_shared_info *sinfo =3D skb_shinfo(skb);
+> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
+> +	int i, qid =3D skb_get_queue_mapping(skb);
+> +	struct airoha_eth *eth =3D port->eth;
+> +	u32 nr_frags, msg0 =3D 0, msg1;
+> +	u32 len =3D skb_headlen(skb);
+> +	struct netdev_queue *txq;
+> +	struct airoha_queue *q;
+> +	void *data =3D skb->data;
+> +	u16 index;
+> +	u8 fport;
+> +
+> +	if (skb->ip_summed =3D=3D CHECKSUM_PARTIAL)
+> +		msg0 |=3D FIELD_PREP(QDMA_ETH_TXMSG_TCO_MASK, 1) |
+> +			FIELD_PREP(QDMA_ETH_TXMSG_UCO_MASK, 1) |
+> +			FIELD_PREP(QDMA_ETH_TXMSG_ICO_MASK, 1);
+> +
+> +	/* TSO: fill MSS info in tcp checksum field */
+> +	if (skb_is_gso(skb)) {
+> +		if (skb_cow_head(skb, 0))
+> +			goto error;
+> +
+> +		if (sinfo->gso_type & (SKB_GSO_TCPV4 | SKB_GSO_TCPV6)) {
+> +			__be16 csum =3D cpu_to_be16(sinfo->gso_size);
+> +
+> +			tcp_hdr(skb)->check =3D (__force __sum16)csum;
+> +			msg0 |=3D FIELD_PREP(QDMA_ETH_TXMSG_TSO_MASK, 1);
+> +		}
+> +	}
+> +
+> +	fport =3D port->id =3D=3D 4 ? FE_PSE_PORT_GDM4 : port->id;
+> +	msg1 =3D FIELD_PREP(QDMA_ETH_TXMSG_FPORT_MASK, fport) |
+> +	       FIELD_PREP(QDMA_ETH_TXMSG_METER_MASK, 0x7f);
+> +
+> +	if (WARN_ON_ONCE(qid >=3D ARRAY_SIZE(eth->q_tx)))
+> +		qid =3D 0;
+
+Hm, how? Stack should protect against that.
+
+> +	q =3D &eth->q_tx[qid];
+> +	if (WARN_ON_ONCE(!q->ndesc))
+> +		goto error;
+> +
+> +	spin_lock_bh(&q->lock);
+> +
+> +	nr_frags =3D 1 + sinfo->nr_frags;
+> +	if (q->queued + nr_frags > q->ndesc) {
+> +		/* not enough space in the queue */
+> +		spin_unlock_bh(&q->lock);
+> +		return NETDEV_TX_BUSY;
+
+no need to stop the queue?
+
+> +	}
+> +
+> +	index =3D q->head;
+> +	for (i =3D 0; i < nr_frags; i++) {
+> +		struct airoha_qdma_desc *desc =3D &q->desc[index];
+> +		struct airoha_queue_entry *e =3D &q->entry[index];
+> +		skb_frag_t *frag =3D &sinfo->frags[i];
+> +		dma_addr_t addr;
+> +		u32 val;
+> +
+> +		addr =3D dma_map_single(dev->dev.parent, data, len,
+> +				      DMA_TO_DEVICE);
+> +		if (unlikely(dma_mapping_error(dev->dev.parent, addr)))
+> +			goto error_unmap;
+> +
+> +		index =3D (index + 1) % q->ndesc;
+> +
+> +		val =3D FIELD_PREP(QDMA_DESC_LEN_MASK, len);
+> +		if (i < nr_frags - 1)
+> +			val |=3D FIELD_PREP(QDMA_DESC_MORE_MASK, 1);
+> +		WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
+> +		WRITE_ONCE(desc->addr, cpu_to_le32(addr));
+> +		val =3D FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, index);
+> +		WRITE_ONCE(desc->data, cpu_to_le32(val));
+> +		WRITE_ONCE(desc->msg0, cpu_to_le32(msg0));
+> +		WRITE_ONCE(desc->msg1, cpu_to_le32(msg1));
+> +		WRITE_ONCE(desc->msg2, cpu_to_le32(0xffff));
+> +
+> +		e->skb =3D i ? NULL : skb;
+> +		e->dma_addr =3D addr;
+> +		e->dma_len =3D len;
+> +
+> +		airoha_qdma_rmw(eth, REG_TX_CPU_IDX(qid), TX_RING_CPU_IDX_MASK,
+> +				FIELD_PREP(TX_RING_CPU_IDX_MASK, index));
+> +
+> +		data =3D skb_frag_address(frag);
+> +		len =3D skb_frag_size(frag);
+> +	}
+> +
+> +	q->head =3D index;
+> +	q->queued +=3D i;
+> +
+> +	txq =3D netdev_get_tx_queue(dev, qid);
+> +	netdev_tx_sent_queue(txq, skb->len);
+> +	skb_tx_timestamp(skb);
+> +
+> +	if (q->ndesc - q->queued < q->free_thr)
+> +		netif_tx_stop_queue(txq);
+> +
+> +	spin_unlock_bh(&q->lock);
+> +
+> +	return NETDEV_TX_OK;
+> +
+> +error_unmap:
+> +	for (i--; i >=3D 0; i++)
+> +		dma_unmap_single(dev->dev.parent, q->entry[i].dma_addr,
+> +				 q->entry[i].dma_len, DMA_TO_DEVICE);
+> +
+> +	spin_unlock_bh(&q->lock);
+> +error:
+> +	dev_kfree_skb_any(skb);
+> +	dev->stats.tx_dropped++;
+> +
+> +	return NETDEV_TX_OK;
+> +}
+> +
+> +static const char * const airoha_ethtool_stats_name[] =3D {
+> +	"tx_eth_bc_cnt",
+> +	"tx_eth_mc_cnt",
+
+struct ethtool_eth_mac_stats
+
+> +	"tx_eth_lt64_cnt",
+> +	"tx_eth_eq64_cnt",
+> +	"tx_eth_65_127_cnt",
+> +	"tx_eth_128_255_cnt",
+> +	"tx_eth_256_511_cnt",
+> +	"tx_eth_512_1023_cnt",
+> +	"tx_eth_1024_1518_cnt",
+> +	"tx_eth_gt1518_cnt",
+
+struct ethtool_rmon_stats=20
+
+> +	"rx_eth_bc_cnt",
+> +	"rx_eth_frag_cnt",
+> +	"rx_eth_jabber_cnt",
+
+those are also covered.. somewhere..
+
+> +	"rx_eth_fc_drops",
+> +	"rx_eth_rc_drops",
+> +	"rx_eth_lt64_cnt",
+> +	"rx_eth_eq64_cnt",
+> +	"rx_eth_65_127_cnt",
+> +	"rx_eth_128_255_cnt",
+> +	"rx_eth_256_511_cnt",
+> +	"rx_eth_512_1023_cnt",
+> +	"rx_eth_1024_1518_cnt",
+> +	"rx_eth_gt1518_cnt",
+> +};
+> +
+> +static void airoha_ethtool_get_drvinfo(struct net_device *dev,
+> +				       struct ethtool_drvinfo *info)
+> +{
+> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
+> +	struct airoha_eth *eth =3D port->eth;
+> +
+> +	strscpy(info->driver, eth->dev->driver->name, sizeof(info->driver));
+> +	strscpy(info->bus_info, dev_name(eth->dev), sizeof(info->bus_info));
+> +	info->n_stats =3D ARRAY_SIZE(airoha_ethtool_stats_name) +
+> +			page_pool_ethtool_stats_get_count();
+> +}
+> +
+> +static void airoha_ethtool_get_strings(struct net_device *dev, u32 sset,
+> +				       u8 *data)
+> +{
+> +	int i;
+> +
+> +	if (sset !=3D ETH_SS_STATS)
+> +		return;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
+> +		ethtool_puts(&data, airoha_ethtool_stats_name[i]);
+> +
+> +	page_pool_ethtool_stats_get_strings(data);
+> +}
+> +
+> +static int airoha_ethtool_get_sset_count(struct net_device *dev, int sse=
+t)
+> +{
+> +	if (sset !=3D ETH_SS_STATS)
+> +		return -EOPNOTSUPP;
+> +
+> +	return ARRAY_SIZE(airoha_ethtool_stats_name) +
+> +	       page_pool_ethtool_stats_get_count();
+> +}
+> +
+> +static void airoha_ethtool_get_stats(struct net_device *dev,
+> +				     struct ethtool_stats *stats, u64 *data)
+> +{
+> +	int off =3D offsetof(struct airoha_hw_stats, tx_broadcast) / sizeof(u64=
+);
+> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
+> +	u64 *hw_stats =3D (u64 *)&port->stats + off;
+> +	struct page_pool_stats pp_stats =3D {};
+> +	struct airoha_eth *eth =3D port->eth;
+> +	int i;
+> +
+> +	BUILD_BUG_ON(ARRAY_SIZE(airoha_ethtool_stats_name) + off !=3D
+> +		     sizeof(struct airoha_hw_stats) / sizeof(u64));
+> +
+> +	mutex_lock(&port->stats.mutex);
+> +
+> +	airoha_update_hw_stats(port);
+> +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
+> +		*data++ =3D hw_stats[i];
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(eth->q_rx); i++) {
+> +		if (!eth->q_rx[i].ndesc)
+> +			continue;
+> +
+> +		page_pool_get_stats(eth->q_rx[i].page_pool, &pp_stats);
+> +	}
+> +	page_pool_ethtool_stats_get(data, &pp_stats);
+
+We can't use the netlink stats because of the shared DMA / shared
+device? mlxsw had a similar problem recently:
+
+https://lore.kernel.org/all/20240625120807.1165581-1-amcohen@nvidia.com/
+
+Can we list the stats without a netdev or add a new netlink attr
+to describe such devices? BTW setting pp->netdev to an unregistered
+device is probably a bad idea, we should add a WARN_ON() for that
+if we don't have one =F0=9F=98=AE=EF=B8=8F
+
+> +	for_each_child_of_node(pdev->dev.of_node, np) {
+> +		if (!of_device_is_compatible(np, "airoha,eth-mac"))
+> +			continue;
+> +
+> +		if (!of_device_is_available(np))
+> +			continue;
+> +
+> +		err =3D airoha_alloc_gdm_port(eth, np);
+> +		if (err) {
+> +			of_node_put(np);
+> +			goto error;
+> +		}
+> +	}
+> +
+> +	airoha_qdma_start_napi(eth);
+
+Are you sure starting the NAPI after registration is safe?
+Nothing will go wrong if interface gets opened before
+airoha_qdma_start_napi() gets to run?
+
+Also you don't seem to call napi_disable(), NAPI can reschedule itself,
+and netif_napi_del() doesn't wait for quiescence.
 
