@@ -1,104 +1,109 @@
-Return-Path: <devicetree+bounces-85254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8342092F7A5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 11:11:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6AA92F7AD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 11:13:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E2DF2818FA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:11:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9CFC1C22EC5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37BFF143C6B;
-	Fri, 12 Jul 2024 09:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QCjh1Hmy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43833146D7A;
+	Fri, 12 Jul 2024 09:13:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7FB0D528;
-	Fri, 12 Jul 2024 09:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CFDD528;
+	Fri, 12 Jul 2024 09:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720775515; cv=none; b=X2b//2PUONKs4C8hwwa9p41JXvbBNt1R82bGefymF0sj2lwULthACOF+s2aMoD4Ab90yzBZtWRC7eVuhnWXMbvK+3W/6Exuyr8eeru519cF3eZDfMaIJGxyIbyhYDQsocsb2BBCK5+N+2NXtybFzpmOfgqA9BPwRCkZWxO3AIAs=
+	t=1720775617; cv=none; b=p7vrxKWaI7dzPbWQXBRppJfOiTIJfxSf3h5nVXa+ue+k/KmLVCgmXMPFbAOZdxFE1kOmaygLnFqXUaa7gvMZKqTp/GM62EgJwhQkgMJWZWmc00i6f+YGf2EXqxyf9F1tsqHh4bijSC7q790O8aNjVFr5+fS7FlAWiXcUB88Oqfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720775515; c=relaxed/simple;
-	bh=TmkFN1WVJs9VWr+wHupQQV4ONKTklAVdqJpU9x2tESY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=gauwQ15h9rmWpLG6NZmBi3AM9xiJAqa4i+NEnlj7K0O0l9PpCOwa31GocjSWgOjHcIfk5sig1kcXaN3XKzk0h0qYx/bcIMhG9iNh0mJFfcIdG+/0FChc70/DiwYFzXfvIuEylv9sGhtyTaD132xFFGKp5vmTn+2czO9y54cdnNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QCjh1Hmy; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D4C5F40003;
-	Fri, 12 Jul 2024 09:11:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720775505;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kTJ/QMYGYqibGbwy+omuvaF8DMn1UrhL+zcUl7y5twQ=;
-	b=QCjh1Hmy4MtI6Fd6l/XS3sV6EmobdcfqQLEpyuij6BNa0wgk/nk9X6psQ/c0LmPfbPBNtc
-	N57lhgqCCRFRzLMwD9I++p/BvWHYBv7enrFgWlt8e6PCRuzJdyTi2ii4iiZCagvWHHkCBa
-	fZdraX9poaDOg3UvkT3iMc3NpjWDBtFcSOryADvpJJOKTpPI6/oqdSBY7dhlRQ4JWBJKA+
-	Nuvj+BBNJdCsG37mHEuE3dyQI47d7L1JHhygDqf//WNH/uKomenjIKuDvej4qUi925ZF+T
-	2D7uADvoRIpSsvMC18K0CRioXWOpQiz8uoS/UpE4x2VH8h5dvyrI7GfTeso1Ag==
+	s=arc-20240116; t=1720775617; c=relaxed/simple;
+	bh=YPMBT9Ah5xgPaDYSc0W5Pvqk3DmMxE9QvAvShd4xUZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IkjDNYLyG83GvCG5KjfO1q6+zGGsyFclezFqeiY8uJ+iaLeMncAe+9Xi+SHBKIBoT+zPRbV/j/O5qcLO2TxcqXIBciEd/xoiYYtvzQKh2cKHBV8aS5Ug4Z+TFM4jBveqC8iFkTMvZKPPJBEnuN0xumZQsp41OQHHM1xiaHMXz7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Fri, 12 Jul 2024 09:13:23 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+	Jesse Taube <jesse@rivosinc.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Meng Zhang <kevin.z.m@hotmail.com>, Yangyu Chen <cyy@cyyself.name>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Matthias Brugger <matthias.bgg@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>
+Subject: Re: [PATCH v4 00/10] riscv: add initial support for SpacemiT K1
+Message-ID: <20240712091323.GYA2136013.dlan.gentoo>
+References: <20240709-k1-01-basic-dt-v4-0-ae5bb5e56aaf@gentoo.org>
+ <20240711-zeppelin-property-aef2ee5fe999@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 12 Jul 2024 11:11:44 +0200
-From: Kamel BOUHARA <kamel.bouhara@bootlin.com>
-To: Jeff LaBundy <jeff@labundy.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Marco Felsch
- <m.felsch@pengutronix.de>, catalin.popescu@leica-geosystems.com,
- mark.satterthwaite@touchnetix.com, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Gregory Clement
- <gregory.clement@bootlin.com>, bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v16 3/3] Input: Add TouchNetix axiom i2c touchscreen
- driver
-In-Reply-To: <a38609ed1d2a181287f4758e3272c553@bootlin.com>
-References: <20240703142520.207066-1-kamel.bouhara@bootlin.com>
- <20240703142520.207066-4-kamel.bouhara@bootlin.com>
- <ZorqmaYfsGFd4HN0@nixie71> <a38609ed1d2a181287f4758e3272c553@bootlin.com>
-Message-ID: <6a7bfad6adee31a10b93f465d35ee8ae@bootlin.com>
-X-Sender: kamel.bouhara@bootlin.com
-Organization: Bootlin
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: kamel.bouhara@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711-zeppelin-property-aef2ee5fe999@spud>
 
-[...]
+Hi Conor:
 
->>> +/*
->>> + * axiom devices are typically configured to report touches at a 
->>> rate
->>> + * of 100Hz (10ms) for systems that require polling for reports.
->>> + * When reports are polled, it will be expected to occasionally
->>> + * observe the overflow bit being set in the reports.
->>> + * This indicates that reports are not being read fast enough.
->> 
->> This comment is strange; if reports are not read quickly enough at
->> the default rate, why not set the default rate at the slowest for
->> which the overflow bit is not set?
->> 
+On 17:08 Thu 11 Jul     , Conor Dooley wrote:
+> On Tue, Jul 09, 2024 at 03:18:43AM +0000, Yixun Lan wrote:
+> > SpacemiT K1 is an ideal chip for some new extension such as RISC-V Vector
+> > 1.0 and Zicond evaluation now. Add initial support for it to allow more
+> > people to participate in building drivers to mainline for it.
+> > 
+> > This kernel has been tested upon Banana Pi BPI-F3 board on vendor U-Boot
+> > bootflow generated by Armbian SDK[1] and patched OpenSBI[2] to enable
+> > Zicboz, which does not in the vendor dts on its U-Boot. Then successfully
+> > booted to busybox on initrd with this log[3].
+> > 
+> > As previous discussion in patch v1[4], maintainer expect more basic drivers
+> > ready before really merging it, which would be fine. For other follow-up patches, 
+> > that are clk, pinctrl/gpio, reset.. My current goal would target at a headless
+> > system including SD card, emmc, and ethernet.
 > 
-> The rate has been set to the give a good user experience regardless of
-> this overflow bit that isn't even processed here.
+> This stuff is already too late for 6.11 as I already sent my PRs, so
+understood, no worry, let's target 6.12, I will send an updated version
+once next -rc1 tagged.
+
+> there's no immediate rush. Is there any progress made on creating the
+> clock or pinctrl drivers?
+I'm working on pinctrl, probably will send an initial version next week
+(ideally should include gpio/gpio-irq, or at least will push pinctrl part out..)
+
+for clk, I think Haylen is working on this..
 > 
+> Cheers,
+> Conor.
 
-and therefore I might remove the part refering to this overflow bit in 
-the comment.
 
-Regards,
-Kamel
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
