@@ -1,155 +1,316 @@
-Return-Path: <devicetree+bounces-85415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C719992FEC7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D41192FF17
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 19:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 040661C22B28
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:47:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6162B1C22F16
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982E5177998;
-	Fri, 12 Jul 2024 16:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48538176ACF;
+	Fri, 12 Jul 2024 17:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MaQF3wmi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7irPire"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E965177986;
-	Fri, 12 Jul 2024 16:46:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1745C176AC8;
+	Fri, 12 Jul 2024 17:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720802809; cv=none; b=Bklqcrw7Ogj9xBKW1xcC2XBdzPGjc5Gz6ldzjLUs++aNaprQc9Lut+XAE5OXy2FFLZ0RHRpfEj5olKvj+BDkyX3MIZ57CGT8pKIvNXAc+sT1iMRrumg+rS8Sv5RpT5PfTjPrEgBGEmqPctnchXewTn+x7ubrrsTWVdhGuDLgI58=
+	t=1720803779; cv=none; b=RmhzZwx8RB+wyVDXCLkOozR9bV5hi39r6tmBSiYAtSSlXtOf0kIvpLvX4WhvsTjGl9LbsrU4k/+3N3yQ81kuaPBKE85DNCBrNl2fSZx9kg+8X3kBe82yu4Qkcd72QQNdxI2oB9j3/ZsTUUs9ijfmBDydYZHh+hKWm+qRe2il31o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720802809; c=relaxed/simple;
-	bh=CshEcl3u//JHZZ/m/Pc3kIPelU9uFZtB0QMyJ9ZX/PE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o6jDqhDlzZ5xkiDe61vN3ciLdaRHN0iyRtsMbqobm5R+oPYtzRdQXDnKrZxWykzq2VMbiOx3+YhM1+qjNMwZKkVRuVAXDNUOovCMj4LGptJ7sIGM83KgTjR8vV/6+cja+v/Gj9cflpFxG4jtttrxE3Xzp89X7PqKMeQpnFdNwcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MaQF3wmi; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2ca8dfa2cceso1711391a91.2;
-        Fri, 12 Jul 2024 09:46:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720802807; x=1721407607; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PlSTu8e9NEa7x8cqCEciuuE7yj+zz0dZw/tC3iuljOI=;
-        b=MaQF3wmiNZ30ZqR1HqhUbS+ly7ap5f+yg9AFq+FNG4cMqKdS5U4jS/iU/tFfG1U9eB
-         /jdgqOEbirAYxpKGHjQ2iJPnmMOhiTdV7ThBMojs+u9VCWW2ySjnzACVl6X44ncCEOoq
-         EYw0vuiOA6sujZtzjtyMN7LJZ5LaQle0u7eLm2tnq31QO757MZQS/dK6BXtS96phdAfA
-         xxetEXmN0koc3tRhKsBa7eMmwjuIwiIdb9I+sWWE4a3aJw4cfNNvpo4U4WqzdaYhZRCt
-         lcw25juc8/n4plVKPa6g3MiU251Iq04m8FWP5DD+18srzihZ40cNVHkLCXHL9FzGS/xW
-         7hyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720802807; x=1721407607;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PlSTu8e9NEa7x8cqCEciuuE7yj+zz0dZw/tC3iuljOI=;
-        b=hoqi6l+hOHEliWnaGvUw42DlDNQLwOuRXRZkxP7ft/A/pHJYPhul9X5tTuRlgCJQHM
-         3PqpikmR8lV1g7Na+0TbuwRSyw3rMaEKJTpk4C8x1r6DAWoZwTM8fzRg1BEPYpjs+4O4
-         15JoStPZtQ6VpORegBOlelNSIELVkmli6lBIy+LBoJFwunbfF8VQt0YMfW9NIPs9zuE4
-         ZYUkqKskC1G9Jv6rXWklJa5DnACgdOnrygdfvJxoGHgvoMgWC/f9wy/mOJnsuN30SvaT
-         wFnBtv+JodVcQzaOfi9jlY0PeWCGKGqacB1aI40e/YBuvC4w6j3TgzTdQlZg+GlcQEPd
-         LNSA==
-X-Forwarded-Encrypted: i=1; AJvYcCWTvIsLbzJS9k0NIukvtHzubLcfFx3sn7wesbfmylV0rxCrmsJ7TwBWkwY0kdMoE/IBKe2RmasjS9HUNQfWjK9uhJe3uiqthFoYm40VVxHE8YTrdvJ6IMpCbZcoREqmu+sZjvTsQta/JA==
-X-Gm-Message-State: AOJu0Yx9gFNDRxQUn+W/RbAJWZsVOmltYLO/DNhvDhQFV8xBkQOtA8Qr
-	S7MD+3Tspv2zhy5r/djQTAyZitMQ5L3pg4U+Er/Rze8ud6cM+Ow+
-X-Google-Smtp-Source: AGHT+IE3gd839oKFIr0D0QdBOBET0btxNgDgPKYQ9uzxuv19+FxgjT5x6cE0vXTyKc33JJRvBRpF1w==
-X-Received: by 2002:a17:90b:d85:b0:2c9:6b02:15ca with SMTP id 98e67ed59e1d1-2ca35d4b0f0mr9339931a91.39.1720802807357;
-        Fri, 12 Jul 2024 09:46:47 -0700 (PDT)
-Received: from localhost.localdomain ([113.30.217.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cacd65a663sm1765436a91.40.2024.07.12.09.46.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jul 2024 09:46:47 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	s=arc-20240116; t=1720803779; c=relaxed/simple;
+	bh=dlPqmeE8Q4QGZcuhPcklfXhhOofyZPKEXZiy9NXGSEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EKpevkf7PH/NoNk6Yc+16VxjZrBu4xVNQIp7nhTXbJL0n3iVAfll6wRUYL3YEKUf8Z8ltrHhOM6KJ09A3mYwzUHCbdmoFLO776H4qmfFHdy1C1I+h8EUPOQKD5cf7hTNfoLXIjH4tYCUlzo3zQJMYTJ3iG3CHbaVr8syKj8T1WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7irPire; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8008BC32782;
+	Fri, 12 Jul 2024 17:02:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720803778;
+	bh=dlPqmeE8Q4QGZcuhPcklfXhhOofyZPKEXZiy9NXGSEM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L7irPireP2nHd3Z0epS3S4z5qFm76PsDU3wCz8KAdQ0iuO/MUTGWnXYd7D+d6+R/u
+	 9biOqcuyYkTbWTKm3X//HlaURIT0RpLHx8uHHmNjpRkRkQGKjeOgkKAiVxWIwXHieO
+	 isSp2t820qeCcVoiPiewwHcKvEYAjLyDpnopd0fi6gdH7XOr+VBxq6Qrkt9MkKVv/T
+	 HuCHpNLJg1yeaSePu8f9qBzm6gfFIRjPxN95kDnrwlu6vuSsLNYW6n0cirTP+7Xpgf
+	 svhG+7R+m/5O+8m/mKz7BJJ+jNfvSeZb3izMYWiiLjGMfeWDPC0SHTiEZy2bLwdJJN
+	 hAL8+VTe0IYog==
+Date: Fri, 12 Jul 2024 18:02:54 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marius.Cristea@microchip.com
+Cc: jic23@kernel.org, matteomartelli3@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	lars@metafoo.de, linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH-next v3 3/3] arm64: dts: rockchip: Add missing pinctrl for PCIe20x1 node
-Date: Fri, 12 Jul 2024 22:15:51 +0530
-Message-ID: <20240712164554.1763-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240712164554.1763-1-linux.amoon@gmail.com>
-References: <20240712164554.1763-1-linux.amoon@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: add support for pac1921
+Message-ID: <20240712-octopus-coerce-52c52e9cfb41@spud>
+References: <20240704-iio-pac1921-v2-0-0deb95a48409@gmail.com>
+ <20240704-iio-pac1921-v2-2-0deb95a48409@gmail.com>
+ <20240707160442.6bab64c9@jic23-huawei>
+ <668bec2a8b23a_6e037017@njaxe.notmuch>
+ <88a54c736e0c39ead34dbde53c813526484d767d.camel@microchip.com>
+ <668f84e2f3e10_2b423707a@njaxe.notmuch>
+ <ea72561a1ab953d3f2a99272c24cf5124c0c72ec.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nR8aezpUfA6LYt7E"
+Content-Disposition: inline
+In-Reply-To: <ea72561a1ab953d3f2a99272c24cf5124c0c72ec.camel@microchip.com>
 
-Add missing pinctrl settings for PCIe 2.0 x1 clock request and wake
-signals. Each component of PCIe communication have the following control
-signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
-high-speed signals and communicate with other PCIe devices.
-Used by root complex to endpoint depending on the power state.
 
-PERST is referred to as a fundamental reset. PERST should be held low
-until all the power rails in the system and the reference clock are stable.
-A transition from low to high in this signal usually indicates the
-beginning of link initialization.
+--nR8aezpUfA6LYt7E
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-WAKE signal is an active-low signal that is used to return the PCIe
-interface to an active state when in a low-power state.
+On Fri, Jul 12, 2024 at 02:41:51PM +0000, Marius.Cristea@microchip.com wrot=
+e:
+> Hi Matteo,
+>=20
+>=20
+> On Thu, 2024-07-11 at 09:08 +0200, Matteo Martelli wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you
+> > know the content is safe
+> >=20
+> > Hi Marius,
+> >=20
+> > Marius.Cristea@ wrote:
+> > > > I think that the OUT pin might not be used at all in many use
+> > > > cases
+> > > > so I would
+> > > > leave the OUT pin setting as fixed for now and maybe extend it in
+> > > > the
+> > > > future
+> > > > when more use cases arise. I am open to reconsider this though.
+> > > >=20
+> > >=20
+> > > The OUT functionality could be set from the device tree.
+> >=20
+> > I think this should to be controlled during runtime since it's a
+> > configuration
+> > that changes the device operation mode and so also what measurements
+> > are
+> > exposed to the user. An additional DT property could be useful but I
+> > am not
+> > sure it would fit in the DT scope.
+> > Anyway I will leave this for future extensions.
+> >=20
+>=20
+> I think there are 2 different things here. Setting the configuration at
+> startup by hard-coding things at probe time or taken those from device
+> tree (we can add multiple properties here, as long those properties are
+> documented into the dt-binding file) and the user controlled part at
+> runtime.
+> Because there is no standard interface to change the functionality, it
+> will be easy to startup from the device tree and let the user to do
+> some minor adjustments and not hardcode configuration.
+>=20
+>=20
+> > ...
+> > > > > > ---
+> > > > > > =A0.../ABI/testing/sysfs-bus-iio-adc-pac1921=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 |=A0=A0 45 +
+> > > > > > =A0MAINTAINERS=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=
+=A0=A0 7 +
+> > > > > > =A0drivers/iio/adc/Kconfig=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=A0 10 +
+> > > > > > =A0drivers/iio/adc/Makefile=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=A0=A0 1 +
+> > > > > > =A0drivers/iio/adc/pac1921.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 1038
+> > > > > > ++++++++++++++++++++
+> > > > > > =A05 files changed, 1101 insertions(+)
+> > > > > >=20
+> > > > > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-
+> > > > > > pac1921
+> > > > > > b/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1921
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..4a32e2d4207b
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1921
+> > > > > Quite a bit of custom ABI in here.
+> > > > >=20
+> > > > > Rule of thumb is that custom ABI is more or less pointless ABI
+> > > > > for
+> > > > > 99% of users
+> > > > > because standard userspace won't use it.=A0 So keep that in mind
+> > > > > when
+> > > > > defining it.
+> > > > >=20
+> > > > > > @@ -0,0 +1,45 @@
+> > > > > > +What:
+> > > > > > /sys/bus/iio/devices/iio:deviceX/resolution_bits
+> > > > > > +KernelVersion:=A0=A0=A0=A0 6.10
+> > > > > > +Contact:=A0=A0 linux-iio@vger.kernel.org
+> > > > > > +Description:
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ADC measurement resolution. Can=
+ be either 11 bits
+> > > > > > or
+> > > > > > 14 bits
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 (default). The driver sets the =
+same resolution
+> > > > > > for
+> > > > > > both VBUS and
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 VSENSE measurements even if the=
+ hardware could be
+> > > > > > configured to
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 measure VBUS and VSENSE with di=
+fferent
+> > > > > > resolutions.
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 This attribute affects the inte=
+gration time: with
+> > > > > > 14
+> > > > > > bits
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 resolution the integration time=
+ is increased by a
+> > > > > > factor of
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1.9 (the driver considers a fac=
+tor of 2). See
+> > > > > > Table
+> > > > > > 4-5 in
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 device datasheet for details.
+> > > > >=20
+> > > > > Is the integration time ever high enough that it matters?
+> > > > > People tend not to do power measurement 'quickly'.
+> > > > >=20
+> > > > > If we are doing it quickly then you'll probably want to be
+> > > > > providing buffered
+> > > > > support and that does allow you to 'read' the resolution for a
+> > > > > part
+> > > > > where
+> > > > > it changes for some other reason.=A0=A0 I haven't yet understood
+> > > > > this
+> > > > > case.
+> > > >=20
+> > > > I will remove this control and fix the resolution bits to 14
+> > > > (highest
+> > > > value),
+> > > > same as the HW default.
+> > >=20
+> > > The resolution could be set from the device tree. As default it
+> > > could
+> > > be 14 bits like into the hardware. The user could add
+> > > "microchip,low_resolution_voltage" into the device tree in order to
+> > > use
+> > > only 11 bits for voltage samples.
+> >=20
+> > I think this should be controlled during runtime since it does not
+> > depend on
+> > the HW design but more on the user preferences about measurements
+> > precision.
+> > As Jonathan pointed out, since custom ABIs should be avoided when
+> > possible, I
+> > will leave it out from now until it becomes necessary and fix the
+> > resolution to
+> > 14 bits, as the HW default.
+> >=20
+>=20
+> Set the configuration from the device tree, will avoid custom ABI. The
+> device tree could be changed also at runtime.
 
-CLKREQ signal is also an active-low signal and is used to request the
-reference clock.
+Custom ABI in devicetree is not a replacement for custom ABI in userspace.
+If things are fixed by the hardware and non-discoverable, then sure add
+devicetree properties - but if it is things like "the user wants 11-bit
+mode", then that does not sound suitable for a devicetree property at
+all.
+And no, you can't just change the devicetree at runtime like that either
+as far as I understand - that's gonna cause memory leaks etc and I don't
+think can be done from userspace without out-of-tree patches anyway.
 
-Rename node from 'pcie2' to 'pcie20x1' to align with schematic
-nomenclature.
+Cheers,
+Conor.
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+>=20
+> > ...
+> > > > > > +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
+> > > > > > /sys/bus/iio/devices/iio:devices/filters_en
+> > > > > > +KernelVersion:=A0=A0=A0=A0 6.10
+> > > > > > +Contact:=A0=A0 linux-iio@vger.kernel.org
+> > > > > > +Description:
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 Attribute to enable/disable ADC=
+ post filters.
+> > > > > > Enabled
+> > > > > > by
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 default.
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 This attribute affects the inte=
+gration time: with
+> > > > > > filters
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 enabled the integration time is=
+ increased by 50%.
+> > > > > > See
+> > > > > > Table 4-5
+> > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 in device datasheet for details.
+> > > > >=20
+> > > > > Do we have any idea what this filter is? Datasheet seems very
+> > > > > vague
+> > > > > indeed and from
+> > > > > a control point of view that makes this largely useless. How
+> > > > > does
+> > > > > userspace know
+> > > > > whether to turn it on?
+> > > > >=20
+> > > > > We have an existing filter ABI but with so little information
+> > > > > no
+> > > > > way to fit this in.
+> > > > > Gut feeling, leave it on all the time and drop the control
+> > > > > interface.
+> > > >=20
+> > > > I will remove this control and leave it on all the time as the HW
+> > > > default.
+> > > >=20
+> > >=20
+> > > The filters could be enabled from the device tree. As default it
+> > > could
+> > > be disabled.
+> > > As a small detail here this is a post processing digital filter
+> > > that
+> > > could be enabled/disabled inside the PAC module.
+> > >=20
+> >=20
+> > Same reasoning of the resolution_bits parameter applies here. I will
+> > fix the
+> > filters to enabled, as the HW default. If there is any particular
+> > reason to
+> > prefer the filters fixed as disabled I will change that.
+> >=20
+> If the user can change the on/off for the filters it doesn't matter
+> what will be the default behavior. Being a single channel device, the
+> probability for the user to change the filter behavior during runtime
+> is minimal, that was the main reason for letting the user to change the
+> configuration from the device tree and not hardcode it.
+>=20
+> > ...
+> > > Thanks,
+> > > Marius
+> >=20
+> > Thanks,
+> > Matteo
+>=20
+> Thanks,
+> Marius
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index c5ac233264fc..a1e83546f1be 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -326,7 +326,7 @@ &pcie2x1l0 {
- 
- &pcie2x1l2 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pcie2_2_rst>;
-+	pinctrl-0 = <&pcie20x12_pins>;
- 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
- 	status = "okay";
-@@ -363,9 +363,15 @@ hp_detect: hp-detect {
- 		};
- 	};
- 
--	pcie2 {
--		pcie2_2_rst: pcie2-2-rst {
--			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+	pcie20x1 {
-+		pcie20x12_pins: pcie20x12-pins {
-+			rockchip,pins =
-+				/* PCIE20_1_2_CLKREQn_M1_L */
-+				<3 RK_PC7 4 &pcfg_pull_up>,
-+				/* PCIE_PERST_L */
-+				<3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>,
-+				/* PCIE20_1_2_WAKEn_M1_L */
-+				<3 RK_PD0 4 &pcfg_pull_up>;
- 		};
- 	};
- 
--- 
-2.44.0
+--nR8aezpUfA6LYt7E
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpFhvgAKCRB4tDGHoIJi
+0hjUAQDW3W3K3mXk5S0YBMh2tS818oJfGzXzfglKonPqGzk6pAD/QCNS3GlZ3wxK
+9gKlK64XgLXQWOh9KsMoVlHm4zbJhQA=
+=Fi4N
+-----END PGP SIGNATURE-----
+
+--nR8aezpUfA6LYt7E--
 
