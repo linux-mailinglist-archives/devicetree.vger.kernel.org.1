@@ -1,155 +1,120 @@
-Return-Path: <devicetree+bounces-85353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E5692FC55
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:15:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C151B92FC58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46DAD1C21603
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:14:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A3082830CA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B2D17164B;
-	Fri, 12 Jul 2024 14:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E826E16D4FE;
+	Fri, 12 Jul 2024 14:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="pZVEWh9I";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="t+4fH3QW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQAL5MpM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow7-smtp.messagingengine.com (flow7-smtp.messagingengine.com [103.168.172.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9239322318;
-	Fri, 12 Jul 2024 14:14:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE99B12B71;
+	Fri, 12 Jul 2024 14:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720793696; cv=none; b=gOCNtcvlcUYMGXM3jXWBruayU85QloqKAi96ly8Q7cKPnOCIeSWSyLIwFfMtSmFX1KfVIFNa7SwF4qD9RZ72S3Dini0xvi7KBMdltfgHvWZsEtE/jQ/rBQoRKfxP6Mw78XBXp6IidhMMojOSVh9uDUOhl7PHofovgC7alurJEpo=
+	t=1720793757; cv=none; b=I7iAS/odP2GBNKvVfJcuPpQEkQr/LCm33gzQ1QI/dae8a1v9O1mGIa8Aw9LrDgrpDcxp9ug+4wY+LfQ38ErYjSvWMW+rGXhIv8aCqvg+1qL1anqfQUAzLjIkzKnLIY/oI99bKwGZfwD2mIo0iegd6puRTue13h7HOLYLGWokGXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720793696; c=relaxed/simple;
-	bh=BgA2R8gexmF+9ke0asXQJoh/HhRGzQ61Tx/Nl5xODjQ=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=PSNrAXRcT8Q03+1V9MOhEFLQXBwfgT7e45exAuo2jIlDvbBdmxCxg4XWSCCd70dIEtNkrwTHDM2PGfEgRD+qzi6tU9FArxyWQABeB3BxTezAOLBIBocgewbwGK7ibdVFcCgFDLbT8xCe7EZ2MyZl/njf4dz11SNFQdq1c5LjFT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=pZVEWh9I; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=t+4fH3QW; arc=none smtp.client-ip=103.168.172.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailflow.nyi.internal (Postfix) with ESMTP id 8BB2C20093B;
-	Fri, 12 Jul 2024 10:14:53 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Fri, 12 Jul 2024 10:14:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1720793693;
-	 x=1720800893; bh=BftO1T01GSoM+8PN7T8u36RJnUOU1h1HJSVyxCSIoSg=; b=
-	pZVEWh9I9vaFUzPoxT4jjeIXw4w+iLT4gdX8/IgwDmz2wBQMJvic9nkXpWWlbot8
-	23LJZyL4jQ+5fnV3bBqS/zXvFprAoSNNEOhWOn3rEZfaHRlQeJpe3uMDUr3TPsoi
-	/sEgfw40wB1bSxWvvvTqMv1xyJ1QKjRPeXipari7ix3SyB44PgX0JJmDIFiFoSjU
-	H5zurUUlDdUv63dMdGnC5EHvW306VoPoYrNd44RWOowof0x6yKp06qGkDRrWvQOH
-	tq26sKpffn7SgagR+AMtsOZ1DBeNQ4hlGRaLu9ROoWN457zp7yUtWhv22dqOmX7G
-	NTKfxZG3xskq/sKVFx7lBw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1720793693; x=
-	1720800893; bh=BftO1T01GSoM+8PN7T8u36RJnUOU1h1HJSVyxCSIoSg=; b=t
-	+4fH3QW+ZHGR2/aEYsu9wdw8vCyyikX7mmCZ+u/Rv3h+oxA43l55QvbLvK1nWtnB
-	FkzGOWO3N2b0J1Pguaa1A74K3RdX16HWgARrbL3AeqcaprAhulEIFyUwYWwpN1OB
-	CYLGNzIuqyiThSspX0vyR4Tan6IWOa8XnkaLSy3F+kfp1UYJH+Au4Jx+4qEFiTyH
-	jxeUe0XULgXoUEZNNzJqNs3VaVxb9QWPD4mXBSbE+ew4XoiCzLXs+85tUpggxNgd
-	l9JMWdX7sM3eqTwgza/GEoaUyun2IdqEf1XghJu8TXfj5ktWgk8fifV9UJO8bVwe
-	rDwX9Ria2lOJj/11UMSPw==
-X-ME-Sender: <xms:XDqRZugrECnBKUPW6cIbA8bOPTUdNrUQR4BV5O4I-_8vP9W0Tmy2TA>
-    <xme:XDqRZvA9K_Wsxl0ZKU9jzkp7T7uZz1eiTOP2umcHzEYUacgth8Nma1WfXK8w_-T4I
-    o7iPMR5drMQysA2-A4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrfeeigdeilecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
-    jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:XDqRZmFXr23rR1gZgW30f5dQg6MfGpebMOHRppimKy7JdjfwA1PyLQ>
-    <xmx:XDqRZnTGeCz_MYMQwQcFHdReda53d7Et3W5uNIbO7o2uLDMLJ-ubDQ>
-    <xmx:XDqRZrx77Dgnt22QYXjFE0ZjWble_yDqRkuwhoNmbDhfTaPP9xXVoA>
-    <xmx:XDqRZl4zEk5uGGsRhf2n4hcFwCnUwhK_bocHmXukig3hvO84QKxJAQ>
-    <xmx:XTqRZmKWIEikoCW9PIG3CwX-uvy-tWEID1pCFI2viaApfw9xOM1vZDMb>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 3C3BBB6008D; Fri, 12 Jul 2024 10:14:52 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
+	s=arc-20240116; t=1720793757; c=relaxed/simple;
+	bh=ch41kibjRBBxFx9iHDsW9CuCoAzUjhiU43ELAHGZ/mU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IM5qygytkvjsUP++MOg8RW9/qQPTXzZkNkUJrOPwt3y0i3vZ/Y983NhtP6To5i8dvzrChXtw3TVMTQ0z3ciZVzA+x+Xx7ltnASZqESpaF2vrmVz5qujwxdoqG4YiEAuAIfXlrwEj7CYLovJm/7jjRdC2O8VOlsvajicKAt/xNaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQAL5MpM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3241C32782;
+	Fri, 12 Jul 2024 14:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720793757;
+	bh=ch41kibjRBBxFx9iHDsW9CuCoAzUjhiU43ELAHGZ/mU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qQAL5MpMNxeToJCFz2+47nR4IjzfKHkoPikemcBAazqHYXnpQSTMornQcaEkUsZJI
+	 14UnLevgUT/w1k4RXbOcsRMIJKnGlltMjYhhpLX0U7niNzpsdy9Bki77OlJV5ARgax
+	 MTmOu3SCDNqju94lQ4ND7JJkaIEOT7yno56R7GJgS2pareSm8w/m3sWaRVPynI3+EM
+	 MataYf9L49yGTf6D+sgqKL6JYKL28KXNndO457a5vK728mnqYauceBhDq1gSYIe9rF
+	 6bx2K3wqY4XDSpNZu50SHAwhc8qlK+2otsI2upoiwBqjfsk6otwDMzVXn7FyCbzbxN
+	 svhCFavOJvMjg==
+Date: Fri, 12 Jul 2024 15:15:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chen Wang <unicorn_wang@outlook.com>
+Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 0/4] Add board support for Sipeed LicheeRV Nano
+Message-ID: <20240712-bacon-untruth-5230df76fdad@spud>
+References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
+ <MA0P287MB2822C4E2EEFB67F82458C390FEA62@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com>
-In-Reply-To: <20240712151122.67a17a94@bootlin.com>
-References: <20240627091137.370572-1-herve.codina@bootlin.com>
- <20240627091137.370572-7-herve.codina@bootlin.com>
- <20240711152952.GL501857@google.com> <20240711184438.65446cc3@bootlin.com>
- <2024071113-motocross-escalator-e034@gregkh>
- <CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
- <20240712151122.67a17a94@bootlin.com>
-Date: Fri, 12 Jul 2024 16:14:31 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Herve Codina" <herve.codina@bootlin.com>,
- "Rob Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Conor Dooley" <conor@kernel.org>
-Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Lee Jones" <lee@kernel.org>,
- "Andy Shevchenko" <andy.shevchenko@gmail.com>,
- "Simon Horman" <horms@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, UNGLinuxDriver@microchip.com,
- "Saravana Kannan" <saravanak@google.com>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Lars Povlsen" <lars.povlsen@microchip.com>,
- "Steen Hegelund" <Steen.Hegelund@microchip.com>,
- "Daniel Machon" <daniel.machon@microchip.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>,
- "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- Netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- "Allan Nielsen" <allan.nielsen@microchip.com>,
- "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
-Content-Type: text/plain;charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="iogMxGxzPj5XhGQB"
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB2822C4E2EEFB67F82458C390FEA62@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+
+
+--iogMxGxzPj5XhGQB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 12, 2024, at 15:11, Herve Codina wrote:
-> On Thu, 11 Jul 2024 14:33:26 -0600 Rob Herring <robh@kernel.org> wrote:
->> On Thu, Jul 11, 2024 at 1:08=E2=80=AFPM Greg Kroah-Hartman <gregkh@li=
-nuxfoundation.org> wrote:
+On Fri, Jul 12, 2024 at 09:33:46AM +0800, Chen Wang wrote:
+> >   .../interrupt-controller/sifive,plic-1.0.0.yaml    |  1 +
+> >   .../devicetree/bindings/riscv/sophgo.yaml          |  5 ++
+> >   arch/riscv/boot/dts/sophgo/Makefile                |  1 +
+> >   .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 +++++++++++++=
++++++++++
+> >   arch/riscv/boot/dts/sophgo/sg2002.dtsi             | 32 +++++++++++++
+> >   5 files changed, 93 insertions(+)
+>=20
+> How about letting me PR all the four patches in this patchset? Because th=
+ey
+> are all related to sophgo, it would be better to PR them together to avoid
+> confusion.
+> Especially about the change of sifive,plic-1.0.0.yaml, my original
+> understanding was that it should be handled by you.
 
->> > >
->> > > This PCI driver purpose is to instanciate many other drivers usin=
-g a DT
->> > > overlay. I think MFD is the right subsystem. =20
->>=20
->> It is a Multi-function Device, but it doesn't appear to use any of the
->> MFD subsystem. So maybe drivers/soc/? Another dumping ground, but it
->> is a driver for an SoC exposed as a PCI device.
->>=20
->
-> In drivers/soc, drivers/soc/microchip/ could be the right place.
->
-> Conor, are you open to have the PCI LAN966x device driver in
-> drivers/soc/microchip/ ?
+No, stuff like the plic should really be handled by Thomas as he is the
+interrupt controller maintainer, not by me. Usually though, neither the
+timer or interrupt controller maintainers seem to care about these sorts
+of binding patches which is why they ended up going with the dts.
+Ideally the plic patch would go through the tip tree, but I think
+there's unlikely to be sleep lost over a trivial binding change going
+with the dts user.
 
-That sounds like a much worse fit than drivers/mfd: the code
-here does not actually run on the lan966x soc, it instead runs
-on whatever other machine you happen to plug it into as a
-PCI device.
+--iogMxGxzPj5XhGQB
+Content-Type: application/pgp-signature; name="signature.asc"
 
-      Arnd
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpE6lwAKCRB4tDGHoIJi
+0sJKAP9dpbfYKJDSQ60Qo1ABlLHqnJectYBdLgu/6h0FFvPyAwEA5NHbfYT1fqvM
+Mx6qCDcDOXh78ASp8DNIOkfIFfrWfwk=
+=nLo1
+-----END PGP SIGNATURE-----
+
+--iogMxGxzPj5XhGQB--
 
