@@ -1,200 +1,147 @@
-Return-Path: <devicetree+bounces-85368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CA992FCD3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:46:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D71292FCD9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B51AD283E8D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:46:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB6941F2269D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B90171647;
-	Fri, 12 Jul 2024 14:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8CE171647;
+	Fri, 12 Jul 2024 14:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="HgkqwxXH"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="uJIrXEon"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012040.outbound.protection.outlook.com [52.101.66.40])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16C379E1;
-	Fri, 12 Jul 2024 14:46:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720795564; cv=fail; b=eHwDsrhv4SX2Brdm5tshhBiqrW+JcjXRc644Dv4tnOvtYmzBS3sg3JBHlt9n+GuPA9I3qC7o8z1QxPn55pQZ1DkRPv8zGFka857MhkJcA0mFkB0WJsZsfv66OkCl4KZi5mf/HfUNT9Qj3ggluyGxRniXCgJqixVtYk+Q3shKJi0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720795564; c=relaxed/simple;
-	bh=CzbFr+oWw5lYXInfhUftKHD7dToIOL4KV7BclJ1Jx3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=B4XUVrNEdRc/7t3jX/6g8a0TZrCYAzsoRTa5X7ks7rSQLxE4lg9biQT6/P1596HLEnb94Sh9rPcZ6L667wipouXAQgMHDlAKvEiKPR2l6sWT7MacKeMBHkXzq66JuSvQipDWe8JJam6tFwK74kiYL5mBMHoKtXddb1vK6O8W8/U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=fail (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=HgkqwxXH reason="signature verification failed"; arc=fail smtp.client-ip=52.101.66.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HeDojaWcsP6+JwFvspV8ZwvVkANQUsm58gxnuQRPptuMcWy1jx/5mukeuQVSQVl5KLi/NCsuDD6cAJ50s6nIKVruSVEIoEn2Y9HZudoNjYnzGP6DnzogHpDowWo88Z8Y4fq1ZtwkxTlFLoHvagrI4GxwMdxi3ZdMEAiqpsUpK/DmwQ8PIYOgtztjW6QAwhTAPDDMVr326mHPtIfwhV8ZN0CudcC+vhP4aSlt3QA8nNBW74qXhYMPu90v4E/YhZYKGsDYLiWoB+jDcCn/zpDe+pHvonW9sj8UHfpwiOSaZ/C3uCnSdWIxAsuk8a+nCtcWYL+DhoXef6NC2fxv8JjBaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P903uT99vb1AdsPdL0iDgpUzro41rc0Pdyka3oMRrjM=;
- b=mV+Dc9MP3o68gsdBgCcNGFYzs89g5I1yAaQueuF7CP659V2l5/+x7gFkvpkleA1nu93Md1rKfSUIzVCeVqhV1zUsWRfUt0j3U1qyorLYIPReenXRW24dUJXvbTP3A/1JdstufX0SqtWwa33rm94PjQGmZsvbnKdxubCzq/GeywSg9if9JJYPszmBWjfm9wLHN/NKOfd7BL3rWPqfIdx0YY4X0LgTDNvsRkWDOH8yFLmncLpq2LA/7eOD5XZRh4qrHbjZbcHLHO9tvmRLNaom6Z+bIRThe/LVLDKzVSsdfSzZG2D3QOfoRxlqh46EQM/2iTmHwmJZ6zILgXZ+pdAvmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P903uT99vb1AdsPdL0iDgpUzro41rc0Pdyka3oMRrjM=;
- b=HgkqwxXHxiksCmP/5dYnw6G1XEoxnX74/BMjEbi8FOr6mmPz6WDhd3/qa1WU3lYWE/r3Dpo6V1iTScy/0IrWzGVOxHp8+ORU+FKJfiFuIHj+hnxDHyjfv2DUpe8EybkZF7adaJeAWbKVR94LTOMpBh2OiAtn0EDyxKsHGRI5gAg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU4PR04MB10598.eurprd04.prod.outlook.com (2603:10a6:10:580::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.22; Fri, 12 Jul
- 2024 14:45:59 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7762.020; Fri, 12 Jul 2024
- 14:45:59 +0000
-Date: Fri, 12 Jul 2024 10:45:50 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Han Xu <han.xu@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: dma: fsl-mxs-dma: Add compatible
- string "fsl,imx8qxp-dma-apbh"
-Message-ID: <ZpFBnnbxD9VUs1zp@lizhi-Precision-Tower-5810>
-References: <20240520-gpmi_nand-v2-2-e3017e4c9da5@nxp.com>
- <20240527121836.178457-1-miquel.raynal@bootlin.com>
- <20240712163503.69dad6b1@xps-13>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240712163503.69dad6b1@xps-13>
-X-ClientProxiedBy: BYAPR06CA0006.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E6416F856;
+	Fri, 12 Jul 2024 14:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720795715; cv=none; b=XPlXV8/8kuC60AE7mFx7myViUgfAoCDIQdGXKUYqhLFQgu4+ZnD3YsoDRd0fPvyV2xrTF/TBCvKsATlQqBV9PIMbH6W0ebh0UrY1kOoS51ExW/XuInJ70zQIApsPmoppGMQUu9ARXVOd6nOcueJMOMDT62b/H401IC7fD4YT/y4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720795715; c=relaxed/simple;
+	bh=eWw2ywka2/Pc9MmMaHFRVvOvcIDfVZIapE0ULx/9rvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PaHxPDUCJRw6LlzAGKhffQok2V+8QPFAAIgqamTBRbVqQ4uO7W9bkCdYQOldoPDZwdr07ztI53W9P3N+IIAYsao54KOBe2euBWqGBklTpWW+WVNwNsSNBiUxDB0XRXUoeCaGiWxaqfsimQeHV4IDDavSju6xNIuUxo6psMf6sO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uJIrXEon; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-56-63.net.vodafone.it [5.90.56.63])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 25CBC735;
+	Fri, 12 Jul 2024 16:47:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1720795677;
+	bh=eWw2ywka2/Pc9MmMaHFRVvOvcIDfVZIapE0ULx/9rvw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uJIrXEonRPhlMXgr7tAvvO3rzpiHq9Q6OO1uIce7LzBnecZvFZ78LnL8l6JKw89Nk
+	 +7Cx5WVvOQhYtvrGoKKWA6SI+bnHwv3Z6L9oS6vv7dyqU3TSzRz693vapTe0mAIVl2
+	 YflqwCdiuhRnlRX5dJiYc4Bl0kAwYI+PbLbvS0hw=
+Date: Fri, 12 Jul 2024 16:48:28 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Jai Luthra <j-luthra@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>, 
+	Changhuang Liang <changhuang.liang@starfivetech.com>, Jack Zhu <jack.zhu@starfivetech.com>, 
+	Julien Massot <julien.massot@collabora.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 08/13] media: cadence: csi2rx: add get_frame_desc
+ wrapper
+Message-ID: <4bufylsl7jladoygnd5pjnvy2wcacl6x6o7hdy6eilh2phcjxv@275gpkmavpm3>
+References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
+ <20240627-multistream-v2-8-6ae96c54c1c3@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB10598:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10884c1f-06db-4740-bcbb-08dca2815854
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?iso-8859-1?Q?rm92L7XYPWTMenIgY1nH6NgvMh9nzED142qXTOcxvxyt+ZIsZhDMvNeBos?=
- =?iso-8859-1?Q?T0HPtY+pF8BjWm6c9sO/wo1GNKip3emweZjZuMvdTioSa5fHAELrlIQ+K9?=
- =?iso-8859-1?Q?T5KNoOBn5bEARWDyNSJ5Cf9A9JrXmGRP8Sr8OYwlbQ6FQ/iMDN4a6IWGhE?=
- =?iso-8859-1?Q?YtZ4ub4jzgyZ93V+tPkmHrnP+KYx3/j32plu/Gp/iUBfA4qX507nrUlZuR?=
- =?iso-8859-1?Q?Q1EOXhCXhIvQx8/8j+XopxwAAIcy9KwHLnPfRO4hzDhbzPR90vzhkklWeV?=
- =?iso-8859-1?Q?NwQICli6+OYkwYoPR48RgRZZWLZGZPPxMOO+koPBUXfN+JDmdigVxo6M7R?=
- =?iso-8859-1?Q?Q09o9t+uQqOaz0W+nyqi/Jp2rEbQzu/JbGyYEDK22HyEGqLCJZ2BGPIhNh?=
- =?iso-8859-1?Q?LVBiYqt/kkol86F+2JE8bGD5UvTCJRFTDdf9QPBefxESjCldQHpHVsxOS+?=
- =?iso-8859-1?Q?PqfNkCuvm4ITaHyOnP19vNkDBZPDTTpWN007PSS69fEQ5oxsUA1tSli1nz?=
- =?iso-8859-1?Q?0PzYZEDXlZvTEw2QZq9HZoIgAgqrWS/Qcr8SSunOqOER+yOHzMZk3QxsUP?=
- =?iso-8859-1?Q?qMtztpqEV7jFTj89UMKBWe2BQC/K3VSWogWI10kD1W3hU/4IVzi24KNTBU?=
- =?iso-8859-1?Q?YSPyRtQs2/1v+b9P/CFx7os4+SQL6VKAEA8sXA63Mzsxt8M5D25W0JrImv?=
- =?iso-8859-1?Q?lD/hQ0wVGrKFvzUa+6iLpq5zCOGQ/HfK1Gl4Zxw1ToEFsyWPw7znR/RIb9?=
- =?iso-8859-1?Q?OpZvuNN6UZ1jitFoLlobv+opQlAT+Td6UIMjH5qTCMhxRfa9NELr1OFVlQ?=
- =?iso-8859-1?Q?PzigJk0Uk4IggJd9Mds/tcX0LwFqy2DzKJNMhZGzP9M8UijJFmoJV4MbTM?=
- =?iso-8859-1?Q?LHkfCm+Ph4X/ShXgllNfsOGKJSK22Coc2+kkglE2ndbTbsEG6ooZFa8gWK?=
- =?iso-8859-1?Q?je0ejig+jebEuDuAuWMcR35zFLmVbMiXpjFR2kY2lpfAu7X7HrKkiDvGr3?=
- =?iso-8859-1?Q?1zmt0J8az4KKPUxNWYC3w0JIiYdKAo3nQ9N63eY4nQ4vpyrwQxdI3L7DXe?=
- =?iso-8859-1?Q?ov2uqTTB+YDkj2cd29Nlmtd+daC9IuMyITkFaJpm581bDGC660nxt7qPqo?=
- =?iso-8859-1?Q?++Jzv8eMCnH0Su6gSdWtdp9cqUd7pVb5B8WucBpYdUOR/TDuO6P0BTCpNC?=
- =?iso-8859-1?Q?e+Bss9H0ANqjCF1cEfK9/jwt8PXsEz/kjLOO887vyWWHtyv0zJefHgxOrs?=
- =?iso-8859-1?Q?alWtevBYwC191e8b+NpOKd6+i1uyEPQ9d1p1xCjlvdynwIwNgH0CoaRNHL?=
- =?iso-8859-1?Q?4GAxFy5zfPJ9XG3dkmr3d16/xqhWV0qfcprlekiT4NoZlSyYUOGvE2vwLU?=
- =?iso-8859-1?Q?QnmEYcDnMgWL29nu+siQqW31lagnx5VT+Scs+T7PUj+PI8uzEorpg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?sNAjG5vVAafOCmmSPBzy+yfV8rJZYX7PM3gCjzXeCU9W22o1iCLulcCRbI?=
- =?iso-8859-1?Q?g85LFkr7WbK4UX13xAyuoIqaOvLl2WBU+G3Q0ipFP9gqo8XmammZm3s7UM?=
- =?iso-8859-1?Q?FvNGXQAL0/16aM1LRtOEsZfDmC6zBQMZfiBhT231psAOgA/lwEEVrMmCa+?=
- =?iso-8859-1?Q?oYJyCm36AFJUh/XPyzXCRFwnN6YTg5UIPNRwLFXwEsbkoYAOQOIeK3dY73?=
- =?iso-8859-1?Q?yNCZ9P8ah3U+C/XBQHZTHfd3/hQC9XslqUwXoJkTcxFrE7xNt2WKpa8P43?=
- =?iso-8859-1?Q?eYNYYlUa1No3P7XyisTLq8wFtAwPSyVUseKLsJYvYCVSjGaKS6eiNfnCCn?=
- =?iso-8859-1?Q?Fbs88WoEMyxg0x8C9upQs0TcFk3TweZ7KmfKhfHBLSAVR9l3zd6FlZQCEP?=
- =?iso-8859-1?Q?jlugj295p2JwRwTA+iIxp0sYLmCSOz+DsCWKuXyxN1A/W6Xn+587OBcvHE?=
- =?iso-8859-1?Q?IWTduWpJr6SbWlVewfY+6vol9NeySHCZhCPByIe9XC6xdz2z60QD/RqAli?=
- =?iso-8859-1?Q?r4rbS+10KI24OEryfNLwcmH+GQhvyyevzPrNi6qIRp0vYtewXqIEb//Q0I?=
- =?iso-8859-1?Q?O+TmKuuG3uOgvVpR+OZXBHXg0bKfkqJQjyOUqcJpeKW6JEl/gnrZDdA616?=
- =?iso-8859-1?Q?uYoUVRdY/AWx1cR4GwWYznJPssdSPrpGVWvv91fuMpF6bsbp+/pzxiyh2O?=
- =?iso-8859-1?Q?Esvwms1qrwtgZL4m5oJ4ky6kvbTssP52bep0cifLjDEa6PHbD/fFxjRi3s?=
- =?iso-8859-1?Q?kvXnHr7ceKlokiYaTx+l4SI6vcBlhYnfLTMo8GvZKPWRigmDkzevfpMTBO?=
- =?iso-8859-1?Q?NZ37Qm4TUiNUpOL9/Ih0KpkIU7O5/kPAACRXnEq7Ve8zLbhOyB1v1J4z5n?=
- =?iso-8859-1?Q?0z73OmvvtEey00B6KoBwWilJbJzdt85dw19qP0umBJdBZWKMhw8f44DgSX?=
- =?iso-8859-1?Q?dj8KmHjLVfpVFkKXaXc9km5yOnMu0IKk10elhYTte+5UTePGxVSB2svhZP?=
- =?iso-8859-1?Q?phGu6JyGjJ0mauDp1d4CFsulkBaY/bkvWEerv3YFKAZLnhf58rp2mWoEFC?=
- =?iso-8859-1?Q?f32QLsWGaE1EniHVwOayLdRJsjjScdlCWV+EjHYrHC29ZNa6i5NsH1plsM?=
- =?iso-8859-1?Q?v3vvmsdNvtk+ur1kJS3ekcEHpGVni1vJl9eWxOFnYQkEFJ5Pd3MGHwO4wW?=
- =?iso-8859-1?Q?Ars/6p5f+yO3Bf/DqWC7399r68TZDppT0hAir6TvHM/LTRAuhVpc1zSnsj?=
- =?iso-8859-1?Q?FSr+OVYMW4wH4r5/Gv0Rg2diU9MMRD3MiqD589AnPKkrlvXzrJC2MdUad1?=
- =?iso-8859-1?Q?zSYoBwC4tYlrp9o4tjm3fRBA+NGKXzhIMtISmwPd16JSR3Rq6YTLlIp9sZ?=
- =?iso-8859-1?Q?KNx6rnpH71GVQ/jXb59xHPXT2wyYc4P0v30AWxiFRC+jVmCCtsP5u9CIKi?=
- =?iso-8859-1?Q?aS/4/snw7gyeZ7QoKvmtL1umq77KtAosUwOAaz4019fWmjUNdrZ5zhXGur?=
- =?iso-8859-1?Q?8LOJ/npx2gmDemVCiWI1QPS8gOyk2sZC6fR9q4d2N6q90AU9OP9JsF66vT?=
- =?iso-8859-1?Q?SuKxdjeYuf8RXJ+JIuq6m+Kgkop4rwE1jNMOJeVf1HT0r0ZIx4DoTEyTgi?=
- =?iso-8859-1?Q?+XlTPXv/+iW3n4OaqOqVme1BCtpnK09IzP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10884c1f-06db-4740-bcbb-08dca2815854
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2024 14:45:59.7237
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SMeXNah5iGMGIfV380JO496m40rNaCnSH24T7Y77SdWYPOcLSAQVAvEu/2NervidZGXLBI7Fr/QWGaYngGG/PQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10598
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240627-multistream-v2-8-6ae96c54c1c3@ti.com>
 
-On Fri, Jul 12, 2024 at 04:35:03PM +0200, Miquel Raynal wrote:
-> Hi Vinod,
-> 
-> miquel.raynal@bootlin.com wrote on Mon, 27 May 2024 14:18:36 +0200:
-> 
-> > On Mon, 2024-05-20 at 16:09:13 UTC, Frank Li wrote:
-> > > Add compatible string "fsl,imx8qxp-dma-apbh". It requires power-domains
-> > > compared with "fsl,imx28-dma-apbh".
-> > > 
-> > > Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
-> > > it.
-> > > 
-> > > Keep the same restriction about 'power-domains' for other compatible
-> > > strings.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>  
-> > 
-> > Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
-> 
-> I just realize now I picked this up whereas it was not intended to be
-> merged through mtd. I'm fine keeping this patch for the next merge
-> window if I get your explicit agreement otherwise I'll drop it.
+Hi Jai
 
-I think it is fine. Basically this dma is only used for GPMI NAND now.
+On Thu, Jun 27, 2024 at 06:40:03PM GMT, Jai Luthra wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
+>
+> J721E wrapper CSI2RX driver needs to get the frame descriptor from the
+> source to find out info about virtual channel. This driver itself does
+> not touch the routing or virtual channels in any way. So simply pass the
+> descriptor through from the source.
+>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 751eadbe61ef..b6054d62c799 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -135,6 +135,21 @@ static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
+>  	return NULL;
+>  }
+>
+> +static int csi2rx_get_frame_desc_from_source(struct csi2rx_priv *csi2rx,
+> +					     struct v4l2_mbus_frame_desc *fd)
+> +{
+> +	struct media_pad *remote_pad;
+> +
+> +	remote_pad = media_entity_remote_source_pad_unique(&csi2rx->subdev.entity);
+> +	if (!remote_pad) {
+> +		dev_err(csi2rx->dev, "No remote pad found for sink\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	return v4l2_subdev_call(csi2rx->source_subdev, pad, get_frame_desc,
+> +				remote_pad->index, fd);
+> +}
+> +
+>  static inline
+>  struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
+>  {
+> @@ -466,10 +481,19 @@ static int csi2rx_init_state(struct v4l2_subdev *subdev,
+>  	return csi2rx_set_fmt(subdev, state, &format);
+>  }
+>
+> +static int csi2rx_get_frame_desc(struct v4l2_subdev *subdev, unsigned int pad,
+> +				 struct v4l2_mbus_frame_desc *fd)
+> +{
+> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+> +
+> +	return csi2rx_get_frame_desc_from_source(csi2rx, fd);
+> +}
+> +
+>  static const struct v4l2_subdev_pad_ops csi2rx_pad_ops = {
+>  	.enum_mbus_code	= csi2rx_enum_mbus_code,
+>  	.get_fmt	= v4l2_subdev_get_fmt,
+>  	.set_fmt	= csi2rx_set_fmt,
+> +	.get_frame_desc = csi2rx_get_frame_desc,
 
-Frank
+The previous entries are indented with a tab
 
-> 
-> Thanks,
-> Miquèl
+With this fixed
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+  j
+
+>  };
+>
+>  static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
+>
+> --
+> 2.43.0
+>
+>
 
