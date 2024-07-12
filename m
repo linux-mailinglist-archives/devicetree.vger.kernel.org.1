@@ -1,482 +1,115 @@
-Return-Path: <devicetree+bounces-85406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CAF92FE29
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 255B892FE34
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64A7CB236AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:06:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9BC2B2372A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A427417920C;
-	Fri, 12 Jul 2024 16:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF04B178395;
+	Fri, 12 Jul 2024 16:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="P5gvYvvC"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="kw7nw1SW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E40178CF5;
-	Fri, 12 Jul 2024 16:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E17C178389
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 16:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720800286; cv=none; b=o6xDGEZnDCoPG7aZtCG6t8RYiJe9gXhlHDKojyQMN/x3oVuaIvvYdiy1qWooSU3U2tf/oqaFwbmrnOqU2D+JLRX3BRwZ7FeEnQp5uQedx+4HiS7drD+mYQsuWAhBM6t8RUJYBIePlSjVzM69/3mCPCwcCtV2ccTx/UwjDB0NeJU=
+	t=1720800348; cv=none; b=KyX6cc5h2Q+MRi3A/PPF+rnqGh96QI/uk9l+LtySBwvzxkLrd4eAZXgddbe6VP51GjsMk7NuHEyyEipu6nNZlrcOmja1ToxJDEP4lvVCFpKeMQTzNOZ/ZPsSc1oGPbRTkytnL9XplIJT2+lTP1F80u7ntNscKXt20fQb2Ij0mQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720800286; c=relaxed/simple;
-	bh=PiptZgXUtNGlKZY4LerEQvZmOZoOBWQ8JoqI867Zf+A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ui9MYNvJTQ2XEmnEW7xJ31yidANMtursXHwX8xHp8SToLBgHHOhE8fTFitXYXDGHFy2h99mQO4rhJsCQ0MdLu6zxMdAr4DkO1GC3t+d0GSElIh+1vlLSXGYn47kCwNFN/EW4fvZ6rCEXj9yyKWa9nPlp/vQ3OAuBy2K1VtosNeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=P5gvYvvC; arc=none smtp.client-ip=194.87.146.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id A3F524282A;
-	Fri, 12 Jul 2024 21:04:36 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1720800277; bh=PiptZgXUtNGlKZY4LerEQvZmOZoOBWQ8JoqI867Zf+A=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=P5gvYvvCmeTMQ65jNOxnuzXkR6UuZfwFaDMDpqj5t5h/x/XJ8AkYH+/2cpLR6G3YP
-	 oWKZ2hYfjlZWQbo69uMwcu+NHxh4RLj83xy1/+C9FVnwjQbLRvjgEqgIfgQAkkU54D
-	 NP2kpsWajYjEqAh0WgAuJOTo27nhjdeiPfqihYZnYYTYcDTUanuheGjIsmtkc1VzDs
-	 BLKV13PBtiuWF7rzqB9jRTsPZ1gtry6yhxjkcHILi8OEBV27rr1mKBVoWK+i7BM4IE
-	 dVE55BBonqbLdHY/193oACaSne5a6hj4EWpWWJVeIIU2opfX7rL1yU8R2RGVIRClbz
-	 xCjSK3bmA5Y7g==
-From: Nikita Travkin <nikita@trvn.ru>
-Date: Fri, 12 Jul 2024 21:04:08 +0500
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8939-wingtech-wt82918: Add Lenovo
- Vibe K5 devices
+	s=arc-20240116; t=1720800348; c=relaxed/simple;
+	bh=17sio2ZhmsqlAE1DZIk02yifkOUU1ZRs/pDBLf3fjlk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D4j3/hQPlkMRQpvLR3nQWw5H3chZ5GzLA//ENzMB7UE0vIjeZSmbLCI5CgQvPVvE4r37/ySAZWSfDz+7zoKrXHto4qGtO5SJmCG3f4eahaV985vZrBsiuPPai8e9OT02iXlF1IROMP8bvd10pvYihDJgvRmnQrPB/DFHzTmR3sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=kw7nw1SW; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-70af8128081so1813351b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 09:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1720800347; x=1721405147; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tVEDV1iMAAfIFvW/+wvdACc3/PqlD9+6N+4kH9hopjA=;
+        b=kw7nw1SWv+wNQZuswpSv9+HCWqT4Y+ZzsZK9va9CDQjIo+ryT7ldLvkuEPNimo55IS
+         jVTjz+4v0ukbHZk9l05XJlc8RivrsLoDcA9EuYbrbcsNcTVoricEa+r9ayC/9d6FHq8E
+         SJgENqigUJzEyPywpswXb3DViKmyOgGfBfRqSM2y18Kl7afl/9/l5pKz3QekEkGCdnT6
+         ZfD3plmnekbOqJbFiKBWEmCScdDAyQJO60Q4LWLwTMK1z33i88td8ee7hIAF/TM4ckn/
+         bAVyVe5LOFeLnHpCjpHlA+SmWYs0OdemPXaluss/Hr12JDmh4mhGmcnqY9dPlaILW9q7
+         0rVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720800347; x=1721405147;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tVEDV1iMAAfIFvW/+wvdACc3/PqlD9+6N+4kH9hopjA=;
+        b=O7qxu08I63MFoTgUaYjRMcTKWnNC+7KRo3NuIs3haUeSx8bD0fWyyUj/DKLx0gSHIR
+         9bkN6guqfUX5uXmtZmsmcsBzBKDR69tVJFUiMB0iQjSG/S7I7e5NJG67DHxdyw5KHNX7
+         3sAUCKbW67M7FFpHA57AnBHGN79wS9tyLdsiJ252mS7XQ9EkWrvtC4ICWUanjDP3RY4b
+         EYn9sWVxw7Ep259/63L6mg+u5nj4Ace9VNi9CdHGZ44sFR9NmeSdMIzmcEJQ7wUGT4m8
+         hQfIYhWomDYRtwdav4nvCuph/emqcORIXGctZLG+KNb5GJzZg5QZxh0YUaNO4GAMlBNX
+         cCPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6o4ukctm63zvzUt4xIHMc2Td5g4JgjUiaIEFdo2YGt3oUNc7HNKQCG+3ufNeeNFRpo7l7G3kBdOoX0sjKYqY8AT4UOVXkLIz+Nw==
+X-Gm-Message-State: AOJu0Yz+SMNo4Jo5jSFP2Yp+rJYcqG8QYice8CvzHzS8JZZrYEEP+8Tk
+	Ho9pFvfRG8VWi+U6D7Zm/yxhg77nWZfvxJqXWiFij93NPxI5M82btlGD8FO4IGo=
+X-Google-Smtp-Source: AGHT+IGKYJDZpE2qytnY2B2zgOVQ0LmknywmMQBDC+167zUbGSI4bhyIw6ryHaK7vauAHXZnTY8yLA==
+X-Received: by 2002:a05:6a21:99a1:b0:1c2:8e77:a825 with SMTP id adf61e73a8af0-1c29820ed74mr14226594637.3.1720800346753;
+        Fri, 12 Jul 2024 09:05:46 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:c949:fd63:7988:f01f])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6ad55b4sm68571125ad.293.2024.07.12.09.05.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jul 2024 09:05:46 -0700 (PDT)
+Date: Fri, 12 Jul 2024 09:05:44 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/1] riscv: dts: thead: add basic spi node
+Message-ID: <ZpFUWJ9ujDyeGORh@x1>
+References: <20240705093503.215787-1-kanakshilledar@gmail.com>
+ <20240705093503.215787-2-kanakshilledar@gmail.com>
+ <CAGLn_=tT08KUX0J+WURq=EXKDPj=--Wg3qmCjnzGxNeMcz3NOg@mail.gmail.com>
+ <20240712-denote-disprove-ce271b70c78c@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240712-msm89xx-wingtech-init-v1-3-64f4aa1870bd@trvn.ru>
-References: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
-In-Reply-To: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- Nikita Travkin <nikita@trvn.ru>, 
- =?utf-8?q?Adam_S=C5=82abo=C5=84?= <asaillen@protonmail.com>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9801; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=SFPsZwb3MeVbqZSx7MbeH3tOUhr8mT9jh+mOOE4nO8s=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBmkVQQsTZmAeo6u8m0uhm+fQJv53rvo0k16EPlS
- fjyXdQiWsWJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZpFUEAAKCRBDHOzuKBm/
- dbAkEACWotoGUBQwFDfB0Q1oM0N58CQGqZgNIDsH7I7Hs7+dFaw3eqMeDvZyK5vM44v3tEGpFTl
- aye7EVo/e2EJ1tJZurwKJRztC4HX93HsoZqPKvhr9m87GFcjrT5GEgu/lIiLLTfihvozNZUC5hk
- yKtT/y32Qyzu7HTBN2vtb80D+qcX7z6ILR9r1UYrG4fDJpr7FX/0Ipr2WdbHBayX2e9fPFso/Qy
- e04ynYBeCv94XHXRBcWkiIGbqzGDeEtWJhQwAF5esuOMQHHawrfw4f82va7zHuIUwUaICP92yyl
- Aq9Yd5Ge+lj+YsOyqUIJR1sDNcNv1ODAlfDCarbkCyoG7rUcaWdqloti14a+0r3ZiqKLM/oBq07
- hnEeEvdJBL/sTcM1v8TOSbQ+HFvHpBRQJ0SgeqCMa/yJpsv8LhPRYk1uzzGwS0bScGy69VtgJfU
- wCvApdri00fpe01DmvzHfe1XkaF7QakJuK2f6OXRrUd+I8xIIWQlbG5kOt/48uKPNsAyz4Hy5UB
- QUCh4AyD3C9jhANqH/yG9f/MdjKzWfvty0BO1JjqO5uHZoeLLRNvJAr7VDsU5lOgLVUaZiNnavB
- mMud43WsDSrigLoMyxuBymQf8CwK73QC3DZ1477HLaXpQEa5G9iLX/PSIhAH61axYgMKRnDmT59
- 04xPbBBxEu/h3Dg==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240712-denote-disprove-ce271b70c78c@spud>
 
-From: Adam Słaboń <asaillen@protonmail.com>
+On Fri, Jul 12, 2024 at 02:48:46PM +0100, Conor Dooley wrote:
+> On Fri, Jul 12, 2024 at 02:11:18PM +0530, Kanak Shilledar wrote:
+> > Hi,
+> > Any updates on this patch?
+> 
+> It's too late for 6.11, it'll have to wait until 6.12. If Drew has his
+> tree set up already, he can at least queue it.
+> 
+> Cheers,
+> Conor.
 
-This commit introduces multiple hardware variants of Lenovo Vibe K5.
+Yes, I'm in the process of setting up the appropriate branches in my
+tree [1] and then I can send an applied to for-next email. The plan is
+that I will send PR to Arnd starting with the 6.12 merge window.
 
-- A6020a40 (msm8929-wingtech-wt82918hd)
-- A6020a46/A6020l36 (msm8939-wingtech-wt82918)
-- A6020a40 S616 H39 (msm8939-wingtech-wt82918hd)
+Thanks,
+Drew
 
-These devices are added with support for many features, notably:
-
-- Basic features like USB, mmc/sd storage, wifi, buttons, leds;
-- Accelerometer;
-- Touchscreen;
-- Sound and modem.
-
-Note that "HD" variant of K5 is based on msm8929 which is a lower bin
-of msm8939 SoC. A simple dtsi is added for this soc along with the new
-devices.
-
-Unfortunately, despite the heavy similarities, the combination of minor
-differences between variants make them incompatible between each other.
-
-Signed-off-by: Adam Słaboń <asaillen@protonmail.com>
-[Nikita: Minor cleanup, commit message]
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   3 +
- .../boot/dts/qcom/msm8929-wingtech-wt82918hd.dts   |  17 ++
- arch/arm64/boot/dts/qcom/msm8929.dtsi              |   5 +
- .../boot/dts/qcom/msm8939-wingtech-wt82918.dts     |  16 ++
- .../boot/dts/qcom/msm8939-wingtech-wt82918.dtsi    | 254 +++++++++++++++++++++
- .../boot/dts/qcom/msm8939-wingtech-wt82918hd.dts   |  16 ++
- 6 files changed, 311 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index fd4c7c41ddc4..48ec781fa1d8 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -58,10 +58,13 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-new file mode 100644
-index 000000000000..f9a358e852f8
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-wingtech-wt82918.dtsi"
-+#include "msm8929.dtsi"
-+
-+/ {
-+	model = "Lenovo Vibe K5 (HD) (Wingtech WT82918)";
-+	compatible = "wingtech,wt82918hd", "qcom,msm8929";
-+	chassis-type = "handset";
-+};
-+
-+&touchscreen {
-+	touchscreen-size-x = <720>;
-+	touchscreen-size-y = <1280>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8929.dtsi b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-new file mode 100644
-index 000000000000..c3d1d1ace2f6
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-@@ -0,0 +1,5 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+&opp_table {
-+	/delete-node/ opp-550000000;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dts b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dts
-new file mode 100644
-index 000000000000..ebc624db880e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-wingtech-wt82918.dtsi"
-+
-+/ {
-+	model = "Lenovo Vibe K5 (Wingtech WT82918)";
-+	compatible = "wingtech,wt82918", "qcom,msm8939";
-+	chassis-type = "handset";
-+};
-+
-+&touchscreen {
-+	touchscreen-size-x = <1080>;
-+	touchscreen-size-y = <1920>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtsi b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtsi
-new file mode 100644
-index 000000000000..ff45ba8e02b1
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtsi
-@@ -0,0 +1,254 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8939-pm8916.dtsi"
-+#include "msm8916-modem-qdsp6.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-+
-+/ {
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pm8916_pwm 0 100000>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <128>;
-+	};
-+
-+	flash-led-controller {
-+		compatible = "sgmicro,sgm3140";
-+		enable-gpios = <&tlmm 31 GPIO_ACTIVE_HIGH>;
-+		flash-gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_front_flash_default>;
-+		pinctrl-names = "default";
-+
-+		flash_led: led {
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		button-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		pinctrl-0 = <&gpio_leds_default>;
-+		pinctrl-names = "default";
-+
-+		led-0 {
-+			gpios = <&tlmm 69 GPIO_ACTIVE_LOW>;
-+			function = LED_FUNCTION_CHARGING;
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			retain-state-suspended;
-+		};
-+
-+		led-1 {
-+			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			retain-state-suspended;
-+		};
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp_i2c2 {
-+	status = "okay";
-+
-+	accelerometer@68 {
-+		compatible = "invensense,icm20608";
-+		reg = <0x68>;
-+
-+		pinctrl-0 = <&accelerometer_default>;
-+		pinctrl-names = "default";
-+
-+		interrupts-extended = <&tlmm 115 IRQ_TYPE_EDGE_FALLING>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l6>;
-+
-+		mount-matrix = "-1", "0", "0",
-+				"0", "1", "0",
-+				"0", "0", "1";
-+	};
-+};
-+
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen: touchscreen@38 {
-+		/* actually FT5336 */
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x38>;
-+
-+		pinctrl-0 = <&touchscreen_default>;
-+		pinctrl-names = "default";
-+
-+		interrupts-extended = <&tlmm 13 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc-supply = <&pm8916_l17>;
-+		iovcc-supply = <&pm8916_l6>;
-+
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&blsp_uart2 {
-+	status = "okay";
-+};
-+
-+&mpss_mem {
-+	reg = <0x0 0x86800000 0x0 0x5500000>;
-+};
-+
-+&pm8916_pwm {
-+	pinctrl-0 = <&pwm_out>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pm8916_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8916_rpm_regulators {
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default>;
-+	pinctrl-1 = <&sdc2_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	accelerometer_default: accelerometer-default-state {
-+		pins = "gpio115";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	camera_front_flash_default: camera-front-flash-default-state {
-+		pins = "gpio31", "gpio32";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	gpio_leds_default: gpio-leds-default-state {
-+		pins = "gpio36", "gpio69";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	touchscreen_default: touchscreen-default-state {
-+		reset-pins {
-+			pins = "gpio12";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		touchscreen-pins {
-+			pins = "gpio13";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&pm8916_mpps {
-+	pwm_out: mpp4-state {
-+		pins = "mpp4";
-+		function = "digital";
-+		power-source = <PM8916_MPP_VPH>;
-+		output-low;
-+		qcom,dtest = <1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dts b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dts
-new file mode 100644
-index 000000000000..87016b5c44fd
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-wingtech-wt82918.dtsi"
-+
-+/ {
-+	model = "Lenovo Vibe K5 (HD) (Wingtech WT82918)";
-+	compatible = "wingtech,wt82918hdhw39", "qcom,msm8939";
-+	chassis-type = "handset";
-+};
-+
-+&touchscreen {
-+	touchscreen-size-x = <720>;
-+	touchscreen-size-y = <1280>;
-+};
-
--- 
-2.45.2
-
+[1] https://github.com/pdp7/linux
 
