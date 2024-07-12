@@ -1,278 +1,204 @@
-Return-Path: <devicetree+bounces-85313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358C892FA01
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CFB192FA13
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E15DA282CB6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:12:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E751F283CF5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D0416D327;
-	Fri, 12 Jul 2024 12:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C9015EFB6;
+	Fri, 12 Jul 2024 12:20:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D2EECQjX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W6PJ6REs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055D416B3A5
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 12:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD5F148303
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 12:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720786317; cv=none; b=K3kfOWjluhBMVnmdvL9vDb0hJwkpHdS7j6DCp91F9yxSqfwGspthb4txkCrh27rpqDRLI2sISkNc18x9Wq3VJdn91rtxyRANLc4W1/ufNJdZ714Ca/X3JUJeiF9I4B64KkkXeokoTLnPSVaFDNBciHPRZjoB5zyX/dPAGuChEF4=
+	t=1720786807; cv=none; b=H3RPKsnb6mRbsrP3RfNTd8NtX5JH9Tp+yz2qKV87d3Ow013mxL94LQlFsdG/CDfsuOBsz75aGsefscQJe/app/iUncqvgsgxhREtuifRo2vjc+rda01UNrmgLeuVW007KkfjkKvQsnA1PkrH1JyKYD2fLObj/7AVYU9Hf4MVGXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720786317; c=relaxed/simple;
-	bh=peaNIRSDh7na+pItaZXKqhaI1DhMoj12CQLzovOWPhE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f1Fb7uz5Rr9v19Unz1QDdIKxiLDPjKmWHXejoBSdmHAOXM7nLqGQ3w0PAAsANZ2iDim/e9kPZx2pfkccZO4GONlIM9dHHOt1bWC8XDXd3px2QMztFmXu989GLO0NvgT2MZrrGgqJQDK5QoKYoPgGhSJw3lh46TTnaTqsoluTLiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D2EECQjX; arc=none smtp.client-ip=209.85.208.47
+	s=arc-20240116; t=1720786807; c=relaxed/simple;
+	bh=9EPphHnDUG4NA9uzVthgoM502jdfAE9pgOG0c6JM1iM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cD24/BqdbDfcFp7yJL0LMDYI+/JtnfiwxvdJzkjPnT22S6+LE1xtKwrWx4W6ruIYVDDxEb3UHYTaOdCAqGlBId6XWF1siqJEnrrdwqXNEuHcYOtLMzUZuFJb+2U8c792MI3wc4X7HE02ZuRhoDlFVhpEDnbnSCSgBNEt5A/v/0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W6PJ6REs; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57d05e0017aso2604984a12.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 05:11:53 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52ea929ea56so3816100e87.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 05:20:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720786312; x=1721391112; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1h1g9uMI//zZkOsywKROm75LHzYSQkW5aZxXVlXrI/g=;
-        b=D2EECQjXOUGR4wsWScsfeoYIAyPkEbXkRUZ+/iAbFSnJxw/I4R6fKk392Dub94UhPk
-         tQUsl9G0g/qBsQSTgumzBgloFjLugrLGs676dQPkIQaUQ2F1TzGXCXVME6EWdItQ4Gbd
-         Cna4GktojirDz9/LRr7n5/4dHLm58nfQXhljD0iAIcRjLhqfiZkm+4688s/GCb+9CuaD
-         qhY47DUTH8/v3HtGIoG8wjg/bfvA7CFfMsGkinsakAGWqK73syv4o2hlH+XHNucVEb0D
-         McB3vJtzYGpb9vgfhbZCi7HLnSmp+bdAU3BMU8SQ7NblAwTgWVsjcCeQZ4tPWme25nyw
-         pPKw==
+        d=linaro.org; s=google; t=1720786804; x=1721391604; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yAvitaA5/W52S3uPDulQ2iO0iWsi1ypQySbrbzTULVw=;
+        b=W6PJ6REsvEKZzNB3g36OcxZPU5O4+g39M97yA4uzncVYq9RVKB3bWey7bIX+CojWK0
+         +hkR5eHAs0JJkwrD74go1A9n3gveFFEpswqDfVDFa4NV3lNXM0GLKSIhzqZKCCvIj9ic
+         2QM8ueXubRfw/WygX3g0aMNHTHs1vPtLT15aZm5O62T9xMFB9iJgkrtA7pnPlWEHBP+b
+         +TSeu/a8Dpijon9N+3AYcBvkCcKkEhD0v67cqEJH6ZN15U215tiSaNDmw7bI4EpzVDk+
+         EJx1vdEjP1cyhyNwKUm+kjrmUiq0hRAA50Etrcbv21JvJz/MaUqbnZVSM8KzlUTF6ckz
+         wJzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720786312; x=1721391112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1h1g9uMI//zZkOsywKROm75LHzYSQkW5aZxXVlXrI/g=;
-        b=A10MAgiEXzG1975y9uuUsFFZaT0A6v+qqsV4io2lsi9cCMrFn+JDi0/r6UbPU12hat
-         SfLF3b9i49GB2751y4WyqhHsvgrksUB+eRCztk+eaR9gjj1xO3qXKhIjpJMe3Q9xj385
-         rcr7kY/nBcsJqUoa16/K3pxwVYvV0j+RSwkwJ4z3brHa08vML6j2tfbEqPAWfaTpYNLk
-         uYe42TyF0Dh7D+EUwb4rh+3HjFsU4co/vxB/xy4TSO+iOCgfY5UPYnIu33rdzdiVOku8
-         QJLIOMP73AV2UrEGsXRfJ6KHNjPwodKs3rdQi1lphv7FnLWffuimR5A7M+W38f7Dsd+6
-         7wDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWUBTqfcMHRFTbxy5X+dJc7a9d78I0ufS6w6vPe/wtw2bNJjF8AlXWpjfSBA0/B1qMGFWvK0eCpCVi0dAtXm2TSP3gNZDbWDYRu/g==
-X-Gm-Message-State: AOJu0YyqFurSciFhHA3Ne1i7J5IEMPCR8bXQcRGP0dYnHJpczePa+tVM
-	1Md0BbZzrUIValgekr45NkbbkTohDIyyHAhICP3PV1n93ez+9nhcKwSGfKpu+JGokW46RbS0EH2
-	X
-X-Google-Smtp-Source: AGHT+IFlizhopdrciUI5vILUpYCou1a9/j8ia4PSXRPMY/ZkvR4wWaRFwWwG9z9Av85Qbo7akse2wA==
-X-Received: by 2002:a17:906:7c4d:b0:a77:cdaa:88a3 with SMTP id a640c23a62f3a-a780b6b30f8mr691602766b.27.1720786312302;
-        Fri, 12 Jul 2024 05:11:52 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a6e58e0sm339527266b.85.2024.07.12.05.11.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jul 2024 05:11:51 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Marek Vasut <marex@denx.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v3] dt-bindings: incomplete-devices: document devices without bindings
-Date: Fri, 12 Jul 2024 14:11:46 +0200
-Message-ID: <20240712121146.90942-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1720786804; x=1721391604;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yAvitaA5/W52S3uPDulQ2iO0iWsi1ypQySbrbzTULVw=;
+        b=SOpLFrF1oBngstjpwJnraZHCRNdZVA6b4WuqScpAmETiY7xZ9f+t1ZYLIDEKyU3kr8
+         i32C3N7jsVGBd76zcSKD7m835kjgzyz/WULReVEt/8vnYbXz0bUybYq0MObxRkPVzN+f
+         4j3HNhNuBs+T6u+Zxsc96qA/HDlYrPq0uKf93A/tMTWzXFgxtU+huE9j6bAWU77XjLWr
+         0k6WMaIXrY+DXgS5RD0smSvvNaAogT9mViIposnyC6BbiMNPnI6tty44eCXp6H/Ezj6y
+         ttVtLucYm3LjmVUAyTh2l2J6qHJMpk9xQclJt9Ps2dEJgAThq2j7GK2w5AqNOUpWM4ww
+         ptOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVw3QXpKqk7qQ4G50k3DrlxmL5UYv4GIn3gGOiBzJj2FwoPyNPg1uNl723c6eDQ7lO684j/tj6uInCLPwBfoiCAOvgwtZcEaSF7Ig==
+X-Gm-Message-State: AOJu0YwYATkI5yl4IkiQWjc3WCT8MyIBMiwEBq51CR8DhemG3HOUEM7G
+	D37zE3rOYGw2y/RQguOfFWKAM8ZJBOoPknP+TGBiUceeOsIyoDV4YRY3jUbpoTQ=
+X-Google-Smtp-Source: AGHT+IFas4iCmt9N2Qz4LAG1IBm/XWmInsiV/vp1l/Qxp+N/YOxIJ/vzXeahtzs/C2xTzNQoANZgRA==
+X-Received: by 2002:a05:6512:2245:b0:52c:c9e4:3291 with SMTP id 2adb3069b0e04-52eb99d653amr10339784e87.60.1720786803441;
+        Fri, 12 Jul 2024 05:20:03 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a6bcc47sm342739266b.11.2024.07.12.05.20.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jul 2024 05:20:02 -0700 (PDT)
+Message-ID: <767cfb35-ed52-4d51-b1bb-c69ac5b593b4@linaro.org>
+Date: Fri, 12 Jul 2024 14:20:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 4/7] soc: qcom: Utilize qcom scmi vendor protocol for bus
+ dvfs
+To: Sibi Sankar <quic_sibis@quicinc.com>, sudeep.holla@arm.com,
+ cristian.marussi@arm.com, andersson@kernel.org, jassisinghbrar@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_rgottimu@quicinc.com,
+ quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+ Amir Vajid <avajid@quicinc.com>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+ <20240117173458.2312669-5-quic_sibis@quicinc.com>
+ <7e48e51e-e16a-41b9-800d-960c627b8da6@linaro.org>
+ <d24a3372-8ee5-528d-09ac-86c64f0896e5@quicinc.com>
+ <027b9ba8-20b7-4d20-8128-156398f21902@linaro.org>
+ <854f324d-c9dc-affc-6f6f-0219bcbc1e1b@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <854f324d-c9dc-affc-6f6f-0219bcbc1e1b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-There are devices in the wild with non-updatable firmware coming with
-ACPI tables with rejected compatibles, e.g. "ltr,ltrf216a".  Linux
-kernel still supports this device via ACPI PRP0001, however the
-compatible was never accepted to bindings.
+On 1.07.2024 10:44 AM, Sibi Sankar wrote:
+> 
+> 
+> On 6/19/24 01:07, Konrad Dybcio wrote:
+>>
+>>
+>> On 2/12/24 11:33, Sibi Sankar wrote:
+>>
+>> [...]
+>>
+>>
+>>>>
+>>>>> +            monitor->mon_type = (of_property_read_bool(monitor_np, "qcom,compute-mon")) ? 1 : 0;
 
-There are also several early PowerPC or SPARC platforms using
-compatibles for their OpenFirmware, but without in-tree DTS.  Often the
-legacy compatible is not correct in terms of current Devicetree
-specification, e.g. missing vendor prefix.
+BTW: the ternary operator here is unnecessary, but to make it readable,
+please make an enum / #define describing the two, as magic values are
+discouraged
 
-Finally there are also Linux-specific tools and test code with
-compatibles.
+>>>>> +            monitor->ipm_ceil = (of_property_read_bool(monitor_np, "qcom,compute-mon")) ? 0 : 20000000;
 
-Add a schema covering above cases purely to satisfy the DT schema and
-scripts/checkpatch.pl checks for undocumented compatibles.  For
-ltr,ltrf216a this also documents the consensus: compatible is allowed
-only via ACPI PRP0001, but not bindings.
+Given that you check the same condition here, an if-else block may be
+more readable, perhaps some comment like:
 
-Link: https://lore.kernel.org/all/20240705095047.90558-1-marex@denx.de/
-Link: https://lore.kernel.org/lkml/20220731173446.7400bfa8@jic23-huawei/T/#me55be502302d70424a85368c2645c89f860b7b40
-Cc: Marek Vasut <marex@denx.de>
-Cc: Jonathan Cameron <jic23@kernel.org>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ipm_ceil = 0; /* Always keep a vote, no matter the bus traffic */
 
----
+>>>>
+>>>> What does it even mean for a monitor to be a compute mon?
+>>>>
+>>>
+>>> When a monitor is marked compute-mon it means that the table is
+>>> followed religiously irrespective whether the instruction per miss
+>>> count threshold (ipm) is exceeded or not. Equivalent to having
+>>> a cpufreq map -> l3/DDR bw mapping upstream.
 
-Changes in v3:
-1. Incorrect->Legacy
-2. Drop ohci-littledian
-3. Drop unittest
+I.. don't really like that this exists as something that requires OS
+intervention, but since it does, I suppose it takes a couple lines of
+code less than adding OPP entries for each and every PSTATE and NUM_SKUs..
 
-Changes in v2:
-1. Rename to incomplete-devices.yaml
-2. Add many compatibles based on Rob's feedback, rewrite descriptions in
-   the schema.
----
- .../bindings/incomplete-devices.yaml          | 137 ++++++++++++++++++
- 1 file changed, 137 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/incomplete-devices.yaml
+>>
+>> I'm sorta puzzled why the OS would even be required to program this, since
+>> L3/DDR/CPU frequencies are known by various stages of boot and secure firmware
+>> too.
+>>
+>> What happens if we omit this? Is the default configuration identical to this?
+>> Or does it need explicit enabling?
+> 
+> CPUCP isn't expected to know the various ranges supported by the memory
+> buses it can vote on and from a sandboxing perspective one would want to
+> control what CPUCP has access to as well. It also can't arrive at the
+> exact values just from the OPP tables we pass on as well. So it doesn't
+> have any default values to start off with. For all these reasons, they
+> need explicit setting up and without it, the algorithm wouldn't function
+> as expected.
 
-diff --git a/Documentation/devicetree/bindings/incomplete-devices.yaml b/Documentation/devicetree/bindings/incomplete-devices.yaml
-new file mode 100644
-index 000000000000..cfc1d39441b1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/incomplete-devices.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/incomplete-devices.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rejected, Legacy or Incomplete Devices
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+
-+description:
-+  Some devices will not or should not get a proper Devicetree bindings, but
-+  their compatibles are present in Linux drivers for various reasons.
-+
-+  Examples are devices using ACPI PRP0001 with non-updatable firmware/ACPI
-+  tables or old PowerPC platforms without in-tree DTS.
-+
-+  Following list of devices is an incomplete schema with a goal to pass DT schema
-+  checks on undocumented compatibles but also reject any DTS file using such
-+  un-approved compatible.
-+
-+  Usage of any of following compatibles is not allowed in Devicetree sources,
-+  even if they come from immutable firmware.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description:
-+          Rejected compatibles in Devicetree, but used in ACPI-based devices
-+          with non-updatable firmware/ACPI tables (via ACPI PRP0001)
-+        enum:
-+          - broadcom,bcm5241
-+          - ltr,ltrf216a
-+
-+      - description: Legacy compatibles used on Macintosh devices
-+        enum:
-+          - adm1030
-+          - bmac+
-+          - heathrow-media-bay
-+          - keylargo-media-bay
-+          - lm87cimt
-+          - MAC,adm1030
-+          - MAC,ds1775
-+          - max6690
-+          - ohare-media-bay
-+          - ohare-swim3
-+          - smu-sat
-+          - swim3
-+
-+      - description: Legacy compatibles used on other PowerPC devices
-+        enum:
-+          - 1682m-rng
-+          - IBM,lhca
-+          - IBM,lhea
-+          - IBM,lhea-ethernet
-+          - mpc5200b-fec-phy
-+          - mpc5200-serial
-+          - mpc5200-sram
-+          - ohci-be
-+          - ohci-bigendian
-+          - ohci-le
-+
-+      - description: Legacy compatibles used on SPARC devices
-+        enum:
-+          - bq4802
-+          - ds1287
-+          - isa-m5819p
-+          - isa-m5823p
-+          - m5819
-+          - sab82532
-+          - SUNW,bbc-beep
-+          - SUNW,bbc-i2c
-+          - SUNW,CS4231
-+          - SUNW,ebus-pic16f747-env
-+          - SUNW,kt-cwq
-+          - SUNW,kt-mau
-+          - SUNW,n2-cwq
-+          - SUNW,n2-mau
-+          - SUNW,niusl
-+          - SUNW,smbus-beep
-+          - SUNW,sun4v-console
-+          - SUNW,sun4v-pci
-+          - SUNW,vf-cwq
-+          - SUNW,vf-mau
-+
-+      - description: Incomplete and/or legacy compatibles for unknown devices
-+        enum:
-+          - electra-cf
-+          - i2cpcf,8584
-+          - virtio,uml
-+
-+      - description: Linux kernel unit tests and sample code
-+        enum:
-+          - audio-graph-card2-custom-sample
-+          - compat1
-+          - compat2
-+          - compat3
-+          - linux,spi-loopback-test
-+          - mailbox-test
-+          - regulator-virtual-consumer
-+
-+      - description:
-+          Devices on MIPS platform, without any DTS users.  These are
-+          unlikely to get converted to DT schema.
-+        enum:
-+          - mti,ranchu
-+
-+      - description:
-+          Devices on PowerPC platform, without any DTS users.  These are
-+          unlikely to get converted to DT schema.
-+        enum:
-+          - fujitsu,coral
-+          - fujitsu,lime
-+          - fujitsu,MB86276
-+          - fujitsu,MB86277
-+          - fujitsu,MB86293
-+          - fujitsu,MB86294
-+          - fujitsu,mint
-+          - ibm,axon-msic
-+          - ibm,pmemory
-+          - ibm,pmemory-v2
-+          - ibm,power-rng
-+          - ibm,ppc4xx-spi
-+          - ibm,sdram-4xx-ddr2
-+          - ibm,secureboot
-+          - ibm,secureboot-v1
-+          - ibm,secureboot-v2
-+          - ibm,secvar-backend
-+          - sgy,gpio-halt
-+          - wrs,epld-localbus
-+
-+required:
-+  - compatible
-+  - broken-usage-of-incorrect-compatible
-+
-+additionalProperties: false
--- 
-2.43.0
+Ok, I was thinking more of a scenario where XBL/GH would take care of this..
+
+Throwing in my 5 cents, this could perhaps be moved there in future FW
+designs (the earlier in the chain the better, especially to keep kicking
+out gunyah a viable option), as I don't think Linux is the greatest place
+for storing one-shot configuration data, especially for blocks that already
+run their own firmware..
+
+I would imagine this could speed up booting as well, if DRAM was appropriately
+scaled during the boot splash stage (unless it already is either scaled or
+pinned to FMAX)
+
+Konrad
 
 
