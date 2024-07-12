@@ -1,135 +1,162 @@
-Return-Path: <devicetree+bounces-85333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586C392FAEE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:11:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A670492FB1B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:18:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7A81F23187
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:11:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 351C928161B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:17:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DD716F27E;
-	Fri, 12 Jul 2024 13:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFC215F301;
+	Fri, 12 Jul 2024 13:17:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bq2GtCDc"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="x559r/oe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B38A15957E;
-	Fri, 12 Jul 2024 13:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D2F6179AA;
+	Fri, 12 Jul 2024 13:17:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720789897; cv=none; b=rpYBInvux3jtzlY9AbOfVlZjOqnBDbFpJ6NAZaUWhIXCgfMQkKueumffBKaBmo9NT3/lggYFQjy8vwDP5n2ekGA58NKO79NzOzuaCI11GJbF1KDE2bekM5PwRiBQudj9Wf6aU/Ei69ac9e2s4BSM0vKB9vSjg+dPctSosDMtS1k=
+	t=1720790276; cv=none; b=gTeds2HHGHbpvMixttnJHoAo9PXoQ/AIzlQHcSrgL+90y5osLnClrnYAOxIuoulc8g4k05eCm6hmBNzS2tEU90sO0w99qp5D1id/ns65lRcIVmcXDujFp/UywtWdP3Q2DCbI/GA8W+Ykwg0dwUcQyFDdxbJqlhpyoT5crmIRQ6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720789897; c=relaxed/simple;
-	bh=HDosvXuSleQyB8lYY7i6tGGf2MEJMbnXC05n5hsQSt8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WwXOylrJQnvod5nN3tBfRr4gxmExn/GiOqIEByXOUA7fh6h/hCtCIU9WZ2ML+30E/c7lAHKbD/8+dMh+IMdMsr1+11PtJHn7gwlpUkwrfZQlc8+sC6+w62t2kLxG9ytJ4XKNTQfKrgcoJ26Xm42HUc9fzaaqCu8JcjTTipVH1cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bq2GtCDc; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 96204FF811;
-	Fri, 12 Jul 2024 13:11:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720789886;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=StjVOnU5djjXaehWS8TjNnExgQiHvF7T/RHfibeCJL0=;
-	b=bq2GtCDc/yQX7j0iSwRzBaqUG+BHWIGjTD3RSrtHJb0WAoAbTrSv7AzYkV5jZcU5EmCBZJ
-	Np7r9LOxpuWSSr7b6AWb4kTRfbNrGKOI/s8xN3nxlp7TKmLLxKDSlCS40jnjMoEp0HnQVN
-	AOll4fv6Iq8q6S/lQxhqGOuSgb1TIx4p8mmhNjYYBZLaDwBtyTbkUqh8j8abIroK70Se6O
-	l46i48SNnAteGnzfTvYzrwpmCPp1rJDS1vzVFn3L4k9A+nAsKUqHxUvYV8iNMUjXV9h2I3
-	m9z+Irm4BA7+8Dq7XYx5V9+KUiznXlu1/XUoha+QHZfZIhPNRqQ68zwEPp6PRg==
-Date: Fri, 12 Jul 2024 15:11:22 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Conor
- Dooley <conor@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Lee Jones
- <lee@kernel.org>, Andy Shevchenko <andy.shevchenko@gmail.com>, Simon Horman
- <horms@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, UNGLinuxDriver@microchip.com, Saravana Kannan
- <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
- Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
-Message-ID: <20240712151122.67a17a94@bootlin.com>
-In-Reply-To: <CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
-References: <20240627091137.370572-1-herve.codina@bootlin.com>
-	<20240627091137.370572-7-herve.codina@bootlin.com>
-	<20240711152952.GL501857@google.com>
-	<20240711184438.65446cc3@bootlin.com>
-	<2024071113-motocross-escalator-e034@gregkh>
-	<CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
-Followup-To: linux-kernel@vger.kernel.org
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1720790276; c=relaxed/simple;
+	bh=ewGQKC9ANPMxT9I5iskSAjtMvBqKRiomquLrkvI5Avc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jnxrDmNeI2KjcrpQBLrY8HfMHXJT/TtsMKKm+D7m/Acqk0iEu0YdC3xX2lhID/JTnfBjPw6A4QVEMUxurto+rN2CyQMEsIzZPUzXpKZ6Q9oBja8g7vGBX5Nn8ad82MoJl4hFkXjR+j3TAZW2Ojn8zJbZs9CT1aEUUFtWGGAC2yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=x559r/oe; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46C8X9Vj004034;
+	Fri, 12 Jul 2024 15:17:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=GPNNdFG7/0l0CF7aIlpKbg
+	MiRxXwV7FSN15i1F01Eo4=; b=x559r/oengxe8fA9Gxt2xYzs2RTPLZiAxGcCKP
+	i4WTo+O7D9N+Hb+n3MB4DS/JwuQUxl7xz9sslfRzDJi+bXhxse8yv44ubCDiEZhF
+	oG2BW/V0zektHpuMb+rET1zI7rL6+EgvoMWRWrGkSmVk45vSNhcmN2+Ft0NKYwsQ
+	86GzbibjScvDRz/knnwvADVUop6aiu02VTuN4OmDi3WfQwnKTSfipdom3rGG9NEt
+	tKzzFBkxzYfEk2jP9/MD1BuFQZ7lxZk+0JjZKDK6F4V/RXZ/LIEvroNdoXDKTaBN
+	zE3fdvDlpeEKnVyrP0vkBa0kR0mOXGAQ0CJTwqpVGTH4M1sQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 406whg9qj0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jul 2024 15:17:28 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9F5224002D;
+	Fri, 12 Jul 2024 15:17:24 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EA15F20D3F5;
+	Fri, 12 Jul 2024 15:16:26 +0200 (CEST)
+Received: from localhost (10.252.16.177) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 12 Jul
+ 2024 15:16:26 +0200
+From: Yannick Fertre <yannick.fertre@foss.st.com>
+To: Yannick Fertre <yannick.fertre@foss.st.com>,
+        Raphael Gallais-Pou
+	<raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: display: st,stm32-ltdc: Document stm32mp25 compatible
+Date: Fri, 12 Jul 2024 15:16:24 +0200
+Message-ID: <20240712131624.98898-1-yannick.fertre@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-12_09,2024-07-11_01,2024-05-17_01
 
-Hi Rob, Conor,
+Add "st,stm32mp25-ltdc" compatible for SOC MP25. This new SOC introduces
+new clocks (bus, ref & lvds). Bus clock was separated from lcd clock.
+New sources are possible for lcd clock (lvds / ref).
 
-On Thu, 11 Jul 2024 14:33:26 -0600
-Rob Herring <robh@kernel.org> wrote:
+Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+---
+ .../bindings/display/st,stm32-ltdc.yaml       | 29 +++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
-> On Thu, Jul 11, 2024 at 1:08 PM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Thu, Jul 11, 2024 at 06:44:38PM +0200, Herve Codina wrote:  
-> > > Hi Lee,
-> > >
-> > > On Thu, 11 Jul 2024 16:29:52 +0100
-> > > Lee Jones <lee@kernel.org> wrote:
-> > >  
-> > > > On Thu, 27 Jun 2024, Herve Codina wrote:
-> > > >  
-> > > > > Add a PCI driver that handles the LAN966x PCI device using a device-tree
-> > > > > overlay. This overlay is applied to the PCI device DT node and allows to
-> > > > > describe components that are present in the device.
-> > > > >
-> > > > > The memory from the device-tree is remapped to the BAR memory thanks to
-> > > > > "ranges" properties computed at runtime by the PCI core during the PCI
-> > > > > enumeration.
-> > > > >
-> > > > > The PCI device itself acts as an interrupt controller and is used as the
-> > > > > parent of the internal LAN966x interrupt controller to route the
-> > > > > interrupts to the assigned PCI INTx interrupt.  
-> > > >
-> > > > Not entirely sure why this is in MFD.  
-> > >
-> > > This PCI driver purpose is to instanciate many other drivers using a DT
-> > > overlay. I think MFD is the right subsystem.  
-> 
-> It is a Multi-function Device, but it doesn't appear to use any of the
-> MFD subsystem. So maybe drivers/soc/? Another dumping ground, but it
-> is a driver for an SoC exposed as a PCI device.
-> 
-
-In drivers/soc, drivers/soc/microchip/ could be the right place.
-
-Conor, are you open to have the PCI LAN966x device driver in
-drivers/soc/microchip/ ?
-
-Best regards,
-Hervé
+diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+index d6ea4d62a2cf..680669c44b80 100644
+--- a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
++++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+@@ -12,7 +12,9 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: st,stm32-ltdc
++    enum:
++      - st,stm32-ltdc
++      - st,stm32mp25-ltdc
+ 
+   reg:
+     maxItems: 1
+@@ -24,7 +26,9 @@ properties:
+     minItems: 1
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    items:
++      description: Lcd Clock
+ 
+   clock-names:
+     items:
+@@ -42,6 +46,27 @@ properties:
+       - for internal dpi input of the MIPI DSI host controller.
+       Note: These 2 endpoints cannot be activated simultaneously.
+ 
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - st,stm32mp25-ltdc
++    then:
++      properties:
++        clocks:
++          items:
++            - description: bus clock
++            - description: reference clock
++            - description: lvds clock
++        clock-names:
++          items:
++            - const: bus
++            - const: ref
++            - const: lvds
++
+ required:
+   - compatible
+   - reg
+-- 
+2.34.1
 
 
