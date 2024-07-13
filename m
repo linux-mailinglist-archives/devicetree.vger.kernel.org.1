@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-85487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE7F9304D4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 11:58:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF4B9304D5
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 11:58:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14B0C1F21F28
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 09:58:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 475B02831DB
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 09:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0BF4964C;
-	Sat, 13 Jul 2024 09:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9251F4964D;
+	Sat, 13 Jul 2024 09:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfSLf0mL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJR+5kXy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E812E639
-	for <devicetree@vger.kernel.org>; Sat, 13 Jul 2024 09:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C2D72E639
+	for <devicetree@vger.kernel.org>; Sat, 13 Jul 2024 09:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720864692; cv=none; b=m3m2iHYg//SNtm11ebM3YioaZP8TfqKNr94/iRCdSbRvZuxNirDu7VlfdT31uEjnbdrKmWII+bZF3tv1yhTPe1C4i6xy41SUtiQglOBsSbrgo92Id9LdZ0stwoQRrNcQLykBxT8/LLg7+DdudVyJj9ktDUyVDQAhHEV2T1p+f0M=
+	t=1720864709; cv=none; b=cqZQTdkRtAdWNwoTGCcO0yHqqEoWWa4WaN0aPHsXjtwD9jns4dmNW2Ow+FILfDj6YupSwehE9lJi7QTNoRf3l0kJkpa0aWHPOyDHjd1Amoy9K318DZfDRBpH7sNA/3HI31lThZz3SYJDktzDY1LPPkSbPmm6jlYTAbYtyHzLqhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720864692; c=relaxed/simple;
-	bh=QBJpuU9Z/vOS8vmH6tzIhlhvDxiP82Xa0XwqNcv98Pw=;
+	s=arc-20240116; t=1720864709; c=relaxed/simple;
+	bh=8VLOh5pPHhZO3YGGqQX5E93AXjmIQsoDZvhSUD9PBUA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ws6kJvqUgxTZEi1RlhHBb0wEHke2qUX2UHUPX/nMfsLjtxx4u12Dm185upu63/j4Zya/Jsa2IPchFOVETQTPnwPPp6P+J1OIWQf5GpaYMDH3dWNGL6GnsE8aqS53jALKbYS91gYci0MZ6fn/t05lnJFKzgr5W8lCMjfFkBkHww8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfSLf0mL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDAC4C32781;
-	Sat, 13 Jul 2024 09:58:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=X0pmxjgcUoUpFCl8EXQ6a9R8EVqM9uVicb7EmeN/6DhraGlndn6tucxE0x7fE/HcY25lDR7gmc1FcycinwhRD8FahkJHinnFL4yCAaFEGfznqN5TitloUWIjETvbOyFsXhMna20oBwFfzErKBxEF0YqHnqVv9574SZgSuOELUqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJR+5kXy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46367C32781;
+	Sat, 13 Jul 2024 09:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720864691;
-	bh=QBJpuU9Z/vOS8vmH6tzIhlhvDxiP82Xa0XwqNcv98Pw=;
+	s=k20201202; t=1720864709;
+	bh=8VLOh5pPHhZO3YGGqQX5E93AXjmIQsoDZvhSUD9PBUA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UfSLf0mLcndTR4kuY3Xe4I4sxCbMuIi3Gb6DtSejzlK78E9Cx35rwUcZnqw7OnB0I
-	 /dsoGenZ9n31gEhxyUAbSoNWCdw/1ehGHffEg7lsRul6N516pJsl2ZXWkrFpSMFEBq
-	 WwlXFQR3ttvfWyhv3YIHhSzgb7VaPXnUtL3C2fii/NmAI2TSQIwxkxLzG0H6WFC3co
-	 mvPSbZf6FFQRuDv2o+CzqNYNyX22Y9U5Q7JmgOjpHmZ07sovl7jMzJjC+AewuxFf93
-	 3xSNwFd7UeM/Mkn1QLBv817DF8k5rw9iWk7UXDYmLWi9sjkyaZvZSz1XzVTiR+Ol1n
-	 QS59Ek2dDKtDg==
-Message-ID: <ba6a8b24-31d1-4bbf-a04c-b7ae80c54102@kernel.org>
-Date: Sat, 13 Jul 2024 11:58:05 +0200
+	b=qJR+5kXyYgNEQ/j+IsdzHlwkKN9SvskSpoAbLV1mM+kaMaGIEYUOLUlyZso65SaK2
+	 ztC/wKSeRuEVKzgP+L6xsLFTaxubWi3EOBSieDTZD2ubuVgkFK/oVAnsKblL2WBZKj
+	 YoHMsSQCp93jCGv4dxBYJNSEwvapdOUgzHGErpqBBpyMW9b5sUcI+OFDNn9U1MBKXj
+	 UPGylLeVtuxneaM/eJrdgR3t0dlNKjblVH1RdPs2E32mv/4mTfAGRQro/+0o8jms+x
+	 bOUQneeblcsKlZbLbmHZHD849Vx8/ZrpDJjIhph9vH0FU0TND/nzjRFgCgt4LpetSE
+	 jwVEnDIuG8jFw==
+Message-ID: <23aa8e5b-dc25-4a69-80bf-18b67e2447a6@kernel.org>
+Date: Sat, 13 Jul 2024 11:58:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: amlogic: add support for Radxa
- ZERO 2 Pro
-To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: add support for Radxa
+ ROCK Pi E v3.0
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20240712215111.687478-1-naoki@radxa.com>
-Content-Language: en-US
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240712215300.720113-1-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,38 +101,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240712215111.687478-1-naoki@radxa.com>
+In-Reply-To: <20240712215300.720113-1-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/07/2024 23:51, FUKAUMI Naoki wrote:
-> Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
-> Amlogic A311D chip.
+On 12/07/2024 23:52, FUKAUMI Naoki wrote:
+> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+> RK3328 chip.
 > 
-> [1] https://radxa.com/products/zeros/zero2pro
+> [1] https://radxa.com/products/rockpi/pie
 > 
 > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
 
 Best regards,
 Krzysztof
