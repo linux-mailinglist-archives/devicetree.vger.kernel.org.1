@@ -1,152 +1,153 @@
-Return-Path: <devicetree+bounces-85533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9882930657
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 18:21:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0623E930662
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 18:26:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FDA01C20F53
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 16:21:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E6A6B20E8E
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 16:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E944813C3DD;
-	Sat, 13 Jul 2024 16:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0CF13BC0E;
+	Sat, 13 Jul 2024 16:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="indgmcJT"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="v5WNIkJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8FC139D1E
-	for <devicetree@vger.kernel.org>; Sat, 13 Jul 2024 16:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B971BC40;
+	Sat, 13 Jul 2024 16:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720887694; cv=none; b=JK9H1EsGI8PXwuUnMiJ5HTWj64E05Rd8LJWK6k5qaanRJvAKQBh2DJK0CAEICmHPqAfvpegJsHp/QZvIh7rzBGAsxC14ONHPWoiobnRaQu6ywbptHZl6w1YrQkW6q7sj2Qdze0yfzDq4Guo+0CoAOQauU2+L6LSFUa3AFkKhmx0=
+	t=1720887981; cv=none; b=h/B3ylqNaf1dSd0AX3P4MYUJGt7Voxb9v7lqhCqJlxsYhHgN1C4CtEc/nkhdjzUaRLOS5rJ52y8UgMEa8VK1LUQ13XgMhRhDrrLMn2F+X7fLxZzW6vKKyY1jqJXh2IoRgaorcPrAx+j/ZL5v8RWTigJ/4fbMXkqPgJ2moKs1haw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720887694; c=relaxed/simple;
-	bh=RGu5t9fq+Gwj1ue/OlUbeB/Z/w6gGnri4eNigjCFeMM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OJ5t+zUSGv+cFvmsdqK5lsLRalWef+OpxrlUIi15kilqKRY+4ESYivBr+LUOigLiTI65NIuetOnEciQPv3L0g24sjgXURa61XGfTxrhXTzFYV2F14e2K3z9gr95IvlFs87PAd+yMLIAYfGRDqdHdX8V0rofQDo78osNS7dJWx4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=indgmcJT; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ebe40673e8so40985241fa.3
-        for <devicetree@vger.kernel.org>; Sat, 13 Jul 2024 09:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720887691; x=1721492491; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mSMThvRAo9pmovVRN14rKunXMUYZuHRsMvJiDzKtBMU=;
-        b=indgmcJTlVA48sldqql7EmBIpclLhEaFXgP2Iu3wAlT+l689X45W6XjZYkzjSWuTPP
-         ChZsOUfMY/f2JHUzeZ2XdaPNCPdzt9qZzdesrFDUzPEbIfPf3CILXWIlJ5xmqyROhnQv
-         tekMJMU1UdpqwB0pqu41jrXNOdSba7wCDTofaD0S+0tdkBL5v7PN0g7LRrOjZfHTZ9S2
-         aVtaOCLIX/ASXm39T0GcTYWozbFcadp88Nbv7GrJbfo6YTVGwdZW3wX1IEMzFw3upOcZ
-         rtWS6QBkU/LxDfThd844AlbAYX0t3z+WJCw+czdREqWCQc3Bp8Pg8fYSghJCS1aEtBYs
-         UU2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720887691; x=1721492491;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mSMThvRAo9pmovVRN14rKunXMUYZuHRsMvJiDzKtBMU=;
-        b=dS/YA8BjPn4kYTGvbUX/NmjiehfgkzLDk8VNX54X6tvu7qZeYjxoDTpSV8PXcwpyy2
-         XpoCutnjrCysf8Vpbfwd/bivWDikSfohEJR/uW8IkjTuZvplNYRE4crH96G3IHkBSVbw
-         sIoqUqsAJanYmZahmEQd/XYKxUH1lYtvAQCfmMu14x9DnSlv6o9uMyQ5VkQTRvRdaF6o
-         MlgEM4iUhgX7BCGhTngFwpdLwfjUrJE2BrCkMRW27ms+0Zj10dzH0kx92CNclwip16zG
-         nKa9QACOsgTnCAnpVBExHKMrrzzVBtH8+sCmlMqojH0n3VypMQnkSKJPcgXdBFP82gZZ
-         KxtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVcAd0YFZWmYFZyjZY2IF2jyJg6j7wWn//USkkShzkDDeVs/3kYdLO6ucti2RFuUFgTIMUCSjqYwtPP3giPFPcs+GlLBH4OzmZZYg==
-X-Gm-Message-State: AOJu0YwE/T3w46eES6/g4+R26Bqf9Fdq1blwZ3QP/zPph1C4Y/uvuI7o
-	lb5lAbiP9i3LWkPNiFakEge8wdxcLEgXwBHuFCH1r82kwb9J/DhbwBmaJ6LE980=
-X-Google-Smtp-Source: AGHT+IFxjnxFBxILxeAI4QbWroaSsUouY5N4Hn5ddE/vqCHXgfDQegcXUigo9LiyRZiaaNkqHQ2/yg==
-X-Received: by 2002:a2e:9dd0:0:b0:2ee:8dce:2fa0 with SMTP id 38308e7fff4ca-2eeb30fd48cmr93869131fa.25.1720887691330;
-        Sat, 13 Jul 2024 09:21:31 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2eee17ad43dsm2535181fa.42.2024.07.13.09.21.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jul 2024 09:21:30 -0700 (PDT)
-Date: Sat, 13 Jul 2024 19:21:29 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, konrad.dybcio@linaro.org, djakov@kernel.org, 
-	quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] clk: qcom: ipq5332: Use icc-clk for enabling NoC
- related clocks
-Message-ID: <iwdennlw4njxefulw5e2wofu4pylep65el4hiiso6xqmoaq5fb@i4hrltrn2o6z>
-References: <20240711113239.3063546-1-quic_varada@quicinc.com>
- <20240711113239.3063546-4-quic_varada@quicinc.com>
+	s=arc-20240116; t=1720887981; c=relaxed/simple;
+	bh=vfQ/dflkZZGpY/W5ewWzVGCHHv8nCt9jdFUaKwjSyac=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=e7xVpMDPWxYz7w1C6hJjYH+hUwgF3SVCz+rZaHjoZfDhTXkG1hN1+NIrZxSoavdohgW+2b3S4BegFUlLyJgrIMNkzSwhCdq1V0fI0hmNVKPA8bBueFNJcAvJIGA+LftvmXb8VCicem/LK4OCkuo+tYZQifZSE3YwRJGKvViDZBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=v5WNIkJ3; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id CAA08424C3;
+	Sat, 13 Jul 2024 21:26:09 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1720887970; bh=vfQ/dflkZZGpY/W5ewWzVGCHHv8nCt9jdFUaKwjSyac=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=v5WNIkJ3vldFx7oB6SQDMmbZW5y/q7hsaah6i8PeH6MBg51tOcmqlAkW6Z2Elg44G
+	 iWsOtVCin4LqBF8kU0gBmikkW2inWNzIQFceTbwRNiFvyqv66LG1MCMRlUJxL/yzSZ
+	 VLjk2Ia/PohlzLfsqsWpJd+KQCRPG5K0QFl3P0AeaSCrRpSd4H3tX7VjQRnKDf8f3W
+	 /P9zPqiYQ2yQt7lTjJ258OKSIvBLRnGRBmtMVn/YwtMrE84gWxycQYjbImYuBfI8OW
+	 dNNZ/ypiuMEz4M055Gp3s1VTDoPuT2bb/2mNur7UezFHc11sFvZCS1Joe9LmAN/OHV
+	 Kn/xXAErbWJqQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711113239.3063546-4-quic_varada@quicinc.com>
+Date: Sat, 13 Jul 2024 21:26:06 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, =?UTF-8?Q?Adam_S=C5=82abo=C5=84?=
+ <asaillen@protonmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8939-wingtech-wt82918: Add
+ Lenovo Vibe K5 devices
+In-Reply-To: <znzgr6hqbokis7zrouh2zbzvigdl4gnm5ewqoiph5eqdk4qcg6@zlw2b2bzbmgs>
+References: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
+ <20240712-msm89xx-wingtech-init-v1-3-64f4aa1870bd@trvn.ru>
+ <f377a55c-4a74-4555-926d-afb7dd813e00@kernel.org>
+ <28e2dc758c8867693a183d758a9dad6a@trvn.ru>
+ <932efd4bd08a2877ee1e7c7409ff1512@trvn.ru>
+ <znzgr6hqbokis7zrouh2zbzvigdl4gnm5ewqoiph5eqdk4qcg6@zlw2b2bzbmgs>
+Message-ID: <f56e6b1fa9a9d2afe55ada8b2b90275b@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jul 11, 2024 at 05:02:38PM GMT, Varadarajan Narayanan wrote:
-> Use the icc-clk framework to enable few clocks to be able to
-> create paths and use the peripherals connected on those NoCs.
+Dmitry Baryshkov писал(а) 13.07.2024 21:12:
+> On Sat, Jul 13, 2024 at 04:07:13PM GMT, Nikita Travkin wrote:
+>> Nikita Travkin писал(а) 13.07.2024 15:37:
+>> > Krzysztof Kozlowski писал(а) 13.07.2024 15:02:
+>> >> On 12/07/2024 18:04, Nikita Travkin wrote:
+>> >>> From: Adam Słaboń <asaillen@protonmail.com>
+>> >>>
+>> >>> This commit introduces multiple hardware variants of Lenovo Vibe K5.
+>> >>>
+>> >>> - A6020a40 (msm8929-wingtech-wt82918hd)
+>> >>> - A6020a46/A6020l36 (msm8939-wingtech-wt82918)
+>> >>> - A6020a40 S616 H39 (msm8939-wingtech-wt82918hd)
+>> >>>
+>> >>> These devices are added with support for many features, notably:
+>> >>>
+>> >>> - Basic features like USB, mmc/sd storage, wifi, buttons, leds;
+>> >>> - Accelerometer;
+>> >>> - Touchscreen;
+>> >>> - Sound and modem.
+>> >>>
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  drivers/clk/qcom/gcc-ipq5332.c | 36 +++++++++++++++++++++++++++++-----
->  1 file changed, 31 insertions(+), 5 deletions(-)
+>> >>> diff --git a/arch/arm64/boot/dts/qcom/msm8929.dtsi b/arch/arm64/boot/dts/qcom/msm8929.dtsi
+>> >>> new file mode 100644
+>> >>> index 000000000000..c3d1d1ace2f6
+>> >>> --- /dev/null
+>> >>> +++ b/arch/arm64/boot/dts/qcom/msm8929.dtsi
+>> >>> @@ -0,0 +1,5 @@
+>> >>> +// SPDX-License-Identifier: GPL-2.0-only
+>> >>> +
+>> >>> +&opp_table {
+>> >>> +	/delete-node/ opp-550000000;
+>> >>> +};
+>> >>
+>> >> That's a very odd SoC DTSI.
+>> >>
+>> >> SoCs DTSIs are not meant to be included as complementary, but rather as
+>> >> full DTSI.
+>> >>
+>> >> IOW, this is very confusing code and will confuse everyone reading it.
+>> >>
+>> >
+>> > I think Adam wanted to keep the common device dtsi based on msm8939.dtsi to
+>> > simplify things a bit. I was also a bit unsure if I should change how it's
+>> > done but decided to keep it as it was. I will rework the v2 so:
+>> >
+>> > - msm8929.dtsi includes msm8939.dtsi
+>> > - devices .dts include needed soc.dtsi, then include the common.dtsi
+>> > - common.dtsi doesn't include any soc.dtsi
+>> >
+>>
+>> (...) except gah this makes things quite a bit more complicated since the
+>> device makes use of the "generic design" msm8939-pm8916.dtsi and duplicating
+>> that would be quite silly IMO...
+>>
+>> I wonder if we can clarify things without making everything too complicated
+>> by calling that dtsi "msm8929-opp.dtsi" and keeping it as extension for now,
+>> then if we find that msm8929 has more differences - we can unfold and refactor
+>> everything.
+>>
+>> What do you think?
 > 
-> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
-> index f98591148a97..6d7672cae0f7 100644
-> --- a/drivers/clk/qcom/gcc-ipq5332.c
-> +++ b/drivers/clk/qcom/gcc-ipq5332.c
-> @@ -4,12 +4,14 @@
->   */
->  
->  #include <linux/clk-provider.h>
-> +#include <linux/interconnect-provider.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  
->  #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
-> +#include <dt-bindings/interconnect/qcom,ipq5332.h>
->  
->  #include "clk-alpha-pll.h"
->  #include "clk-branch.h"
-> @@ -131,12 +133,14 @@ static struct clk_alpha_pll gpll4_main = {
->  			 * (will be added soon), so the clock framework
->  			 * disables this source. But some of the clocks
->  			 * initialized by boot loaders uses this source. So we
-> -			 * need to keep this clock ON. Add the
-> -			 * CLK_IGNORE_UNUSED flag so the clock will not be
-> -			 * disabled. Once the consumer in kernel is added, we
-> -			 * can get rid of this flag.
-> +			 * need to keep this clock ON.
-> +			 *
-> +			 * After initial bootup, when the ICC framework turns
-> +			 * off unused paths, as part of the icc-clk dependencies
-> +			 * this clock gets disabled resulting in a hang. Marking
-> +			 * it as critical to ensure it is not turned off.
+> What about adding msm8929-pm8916.dtsi, which includes just the right
+> things? This might result in duplication with the existing files, but in
+> the end msm8939-pm8916 and msm8919-pm8916 are also very similar.
 
-Previous comment was pretty clear: there are missing consumers, the flag
-will be removed once they are added. Current comment doesn't make sense.
-What is the reason for the device hang if we have all the consumers in
-place?
+Right, I guess the reason my thought was to avoid it is that msm8929 is
+(seemingly) just a bin of msm8939, compared to i.e. msm8916 which is a
+different soc.
 
->  			 */
-> -			.flags = CLK_IGNORE_UNUSED,
-> +			.flags = CLK_IS_CRITICAL,
->  		},
->  	},
->  };
+But I suppose it's fine to create a new dtsi for it too, will create it
+and change the includes as suggested (soc+pmic dtsi is included by
+device, then common dtsi that itself doesn't include soc dtsi)
 
-
--- 
-With best wishes
-Dmitry
+Thanks!
+Nikita
 
