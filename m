@@ -1,84 +1,78 @@
-Return-Path: <devicetree+bounces-85477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A569393030A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 03:39:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2750C930415
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 08:16:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E7EE2833AD
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 01:39:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB813B22D8C
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 06:16:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A7ADDA9;
-	Sat, 13 Jul 2024 01:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BB01CA94;
+	Sat, 13 Jul 2024 06:16:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OeDXqxkw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NcyTqJn4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C501FFBF6;
-	Sat, 13 Jul 2024 01:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFBA1B960;
+	Sat, 13 Jul 2024 06:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720834742; cv=none; b=HnLw8MxR8G18/vJsfBNyfaVyq6pCmmJwrNkK31XPCNlrU/3reMYWtS3kT5EXLvrXZuklvJa+yVlXwy52cm46IqMFrNeMFbZV1wSnNQPIM+/2Bu7bi2oyjfKVpzFHKobApEJN/YE547yiC2sPNfyHajD8Iy4LPywozGaBtSnjd8I=
+	t=1720851370; cv=none; b=rUGoP5aahfdG3MmdCwOTQ0hKeFXnSTR45qm5dQWLp8sXwLspnewSabFLpwGuTbkxs1JlGbzkuPDXZb4ytsHT7gtljEgd27sxPNGNrdNLlu5BtrrEO6V3qYfqEBeEkeu4L5GX70KnUEZbPbXpLAEvdV9q6Up7aoWq00To1dvpcdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720834742; c=relaxed/simple;
-	bh=WFoMEnzTETrjQMD90rMoI4syPE64SpiNnX2O5Zarsdo=;
+	s=arc-20240116; t=1720851370; c=relaxed/simple;
+	bh=KN85+gFWkF03HdphdQDW1hlUh8APmU7td3URDxBVy48=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jzpP9aHSKMGLJ9kHu4wh55xzShgDvx7kb8/ficcwNk67cXfSfc3WBsX2xX1MIii0aPHlBOV180uV+tDZDspe2mPhm7k4lV/X9OS+cpcDPUx0EIib+lQ18fVU5B7G5r9LZarPHjEvA3GHNRqkBRbfXzACURCIr4tBobOfjsZSah8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OeDXqxkw; arc=none smtp.client-ip=198.175.65.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=hdqJEZCe94Qpp5pqPkFkzROokpHBgvadw4GtGo/hpd/kO8kUkFEc2yzMMDcpuTsbN4f4E+RpzUFcsUUBeImrYViNxkDRpmcgbE55OkZ0pubu5scyq27uI8IMKMaJnXyIzK63hCJmj+SsQrGr2iPo4NoHy8VQ2xTSSVRtBTdTK9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NcyTqJn4; arc=none smtp.client-ip=192.198.163.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720834741; x=1752370741;
+  t=1720851369; x=1752387369;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=WFoMEnzTETrjQMD90rMoI4syPE64SpiNnX2O5Zarsdo=;
-  b=OeDXqxkwlLM18RjQjyY5Qeti/FtH7oVEFXGP3RrYEtcfdrFNzxvLGBSH
-   +10P8gGv23Ylz6Rw09AX+URQ96ZBGeCr8bHdhPbSbbDTnlpWdBUagNlcN
-   0dQ71NZiYM+pE1a0zmcr9eLM2BZsjx9BLcFrs2iHjh57769YZg0iUqtAc
-   Qfh62RAK/NmMKfWpKkPnEtvo9GM1QA4ScegN0Qc8IqvcHFxabzd7MNnEE
-   LbivugS6EZviSC5AGqFpIGxE6OdMrW4UlBlD6LENaZCCfHiUeQAwL8FeX
-   bZCYqtuRRTkAQ0CwPRyAmyzDpnv6aSpxlU8MB3QqDjKHKfwKHQHyUiUdL
-   w==;
-X-CSE-ConnectionGUID: +1wKBfwVSE+aL8x+FsS/Qg==
-X-CSE-MsgGUID: 6QPnX2DLRRyl8Dsoe5Wj1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="18138901"
-X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; 
-   d="scan'208";a="18138901"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 18:39:00 -0700
-X-CSE-ConnectionGUID: QXUKavKzR9iBG3VWeemIKQ==
-X-CSE-MsgGUID: SgItW86wTn6IMnsyYgT4IA==
+  bh=KN85+gFWkF03HdphdQDW1hlUh8APmU7td3URDxBVy48=;
+  b=NcyTqJn4XI8d8/fAPo8cQl9CNbs0wijANkjyAHDgEfU+FABqeY6XaaJt
+   XgXoOqAs+vV8QW0M9Xb+G9gEYJf+oJcQ5opWZuIksSZ9kxys2nRrq8Aly
+   BG4FVt24+ZwkE2US2jne64E/b7bd6piKEiZUS/UpPBguSOiQYnky799yh
+   PdVx9Q3vH8y+ct/iem/WGJN7hDknuxElGnPsMi/Djo5blBFTd+n0ZZsGL
+   X3qFWaYkUP/FoXOOtr4HEkeMie2MULyfYx4h9Ch54uFXh/Mu5GDrNQ8Ik
+   ab58qCr/viKvzuFSA0J7XWTaXDOuqQj327PcGymjNnIhZ9HAdgA3a7Ain
+   A==;
+X-CSE-ConnectionGUID: Pelzu2pBTjyBEJUjrfeEmg==
+X-CSE-MsgGUID: WRJqBmpnSbeE/mkUm6zxFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="12532205"
+X-IronPort-AV: E=Sophos;i="6.09,205,1716274800"; 
+   d="scan'208";a="12532205"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 23:16:08 -0700
+X-CSE-ConnectionGUID: F/bBVadJQ4StEAO2fBoYOA==
+X-CSE-MsgGUID: Sjafa8h+T7GCEgWKURv48Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; 
-   d="scan'208";a="49072484"
+X-IronPort-AV: E=Sophos;i="6.09,205,1716274800"; 
+   d="scan'208";a="53683508"
 Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 12 Jul 2024 18:38:57 -0700
+  by fmviesa004.fm.intel.com with ESMTP; 12 Jul 2024 23:16:06 -0700
 Received: from kbuild by 68891e0c336b with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1sSRix-000bX4-0N;
-	Sat, 13 Jul 2024 01:38:55 +0000
-Date: Sat, 13 Jul 2024 09:38:39 +0800
+	id 1sSW39-000blC-1h;
+	Sat, 13 Jul 2024 06:16:03 +0000
+Date: Sat, 13 Jul 2024 14:15:19 +0800
 From: kernel test robot <lkp@intel.com>
-To: Valentin Caron <valentin.caron@foss.st.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Amelie Delaunay <amelie.delaunay@foss.st.com>,
-	Valentin Caron <valentin.caron@foss.st.com>
-Subject: Re: [PATCH 2/4] rtc: stm32: add pinctrl and pinmux interfaces
-Message-ID: <202407130943.ie6n2Orh-lkp@intel.com>
-References: <20240711140843.3201530-3-valentin.caron@foss.st.com>
+To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	waqar.hameed@axis.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, wangshuaijie@awinic.com,
+	liweilei@awinic.com, kangjiajun@awinic.com
+Subject: Re: [PATCH V3 2/2] Add support for Awinic proximity sensor
+Message-ID: <202407131316.CrET2D2p-lkp@intel.com>
+References: <20240712113200.2468249-3-wangshuaijie@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,40 +81,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240711140843.3201530-3-valentin.caron@foss.st.com>
+In-Reply-To: <20240712113200.2468249-3-wangshuaijie@awinic.com>
 
-Hi Valentin,
+Hi,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on atorgue-stm32/stm32-next robh/for-next linus/master v6.10-rc7 next-20240712]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[auto build test WARNING on 43db1e03c086ed20cc75808d3f45e780ec4ca26e]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Valentin-Caron/dt-bindings-rtc-stm32-describe-pinmux-nodes/20240711-233937
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20240711140843.3201530-3-valentin.caron%40foss.st.com
-patch subject: [PATCH 2/4] rtc: stm32: add pinctrl and pinmux interfaces
-config: i386-buildonly-randconfig-002-20240713 (https://download.01.org/0day-ci/archive/20240713/202407130943.ie6n2Orh-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240713/202407130943.ie6n2Orh-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-iio-Add-YAML-to-Awinic-proximity-sensor/20240712-194024
+base:   43db1e03c086ed20cc75808d3f45e780ec4ca26e
+patch link:    https://lore.kernel.org/r/20240712113200.2468249-3-wangshuaijie%40awinic.com
+patch subject: [PATCH V3 2/2] Add support for Awinic proximity sensor
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20240713/202407131316.CrET2D2p-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240713/202407131316.CrET2D2p-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407130943.ie6n2Orh-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407131316.CrET2D2p-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
->> ld.lld: error: undefined symbol: devm_pinctrl_register_and_init
-   >>> referenced by rtc-stm32.c
-   >>>               drivers/rtc/rtc-stm32.o:(stm32_rtc_probe) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: pinctrl_enable
-   >>> referenced by rtc-stm32.c
-   >>>               drivers/rtc/rtc-stm32.o:(stm32_rtc_probe) in archive vmlinux.a
+   drivers/iio/proximity/aw9610x.c: In function 'aw9610x_datablock_load':
+>> drivers/iio/proximity/aw9610x.c:665:1: warning: the frame size of 1356 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+     665 | }
+         | ^
+
+
+vim +665 drivers/iio/proximity/aw9610x.c
+
+   634	
+   635	static void aw9610x_datablock_load(struct aw_sar *p_sar, const char *buf)
+   636	{
+   637		struct aw9610x *aw9610x = p_sar->priv_data;
+   638		unsigned char addr_bytes = aw9610x->aw_i2c_package.addr_bytes;
+   639		unsigned char data_bytes = aw9610x->aw_i2c_package.data_bytes;
+   640		unsigned char reg_num = aw9610x->aw_i2c_package.reg_num;
+   641		unsigned char reg_data[220] = { 0 };
+   642		unsigned int databuf[220] = { 0 };
+   643		unsigned char temp_buf[2] = { 0 };
+   644		unsigned int i;
+   645	
+   646		for (i = 0; i < data_bytes * reg_num; i++) {
+   647			if (reg_num < attr_buf[1]) {
+   648				temp_buf[0] = buf[attr_buf[0] + (addr_bytes + i) * 5];
+   649				temp_buf[1] =
+   650					buf[attr_buf[0] + (addr_bytes + i) * 5 + 1];
+   651			} else if (reg_num >= attr_buf[1] && reg_num < attr_buf[3]) {
+   652				temp_buf[0] = buf[attr_buf[2] + (addr_bytes + i) * 5];
+   653				temp_buf[1] =
+   654					buf[attr_buf[2] + (addr_bytes + i) * 5 + 1];
+   655			} else if (reg_num >= attr_buf[3] && reg_num < attr_buf[5]) {
+   656				temp_buf[0] = buf[attr_buf[4] + (addr_bytes + i) * 5];
+   657				temp_buf[1] =
+   658					buf[attr_buf[4] + (addr_bytes + i) * 5 + 1];
+   659			}
+   660			sscanf(temp_buf, "%02x", &databuf[i]);
+   661			reg_data[i] = (unsigned char)databuf[i];
+   662		}
+   663		aw9610x->aw_i2c_package.p_reg_data = reg_data;
+   664		aw9610x_awrw_write_seq(p_sar);
+ > 665	}
+   666	
 
 -- 
 0-DAY CI Kernel Test Service
