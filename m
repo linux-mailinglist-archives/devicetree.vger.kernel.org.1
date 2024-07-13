@@ -1,162 +1,114 @@
-Return-Path: <devicetree+bounces-85480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD133930429
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 09:08:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CEC930450
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 09:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F0311F226E3
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 07:08:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CDE31F239C3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 07:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254631BDCF;
-	Sat, 13 Jul 2024 07:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABE945BE3;
+	Sat, 13 Jul 2024 07:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OJiJYT3m"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aTuz9cIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D68218E20;
-	Sat, 13 Jul 2024 07:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8A145008;
+	Sat, 13 Jul 2024 07:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720854512; cv=none; b=tXfuBIFYCWZqsaIEQofXKR0sHhgQMnxmev2aY06GebOqnuIfF/LF76+qq+05RrgA2VHESWpCdwp3dp70ac+BQyqrEOAwgZ76AQQo9io7+0rk24/JVW4p/E9BOBFVXoSQvxUqJAmXwQSowL53gBq9JZdQQLYzlujT9iOBBIip20Y=
+	t=1720856593; cv=none; b=IY+nyr7zM69I88XZThuDlAzSOlf7oKe+bA1S7LwiAx+xGLv+cRt4Ef2//9bph7qDVr7AwYzeVFLEPKSe64RdueLchfNq/6+T0GFtxuSVboQzQumesONF0JMwzQ5IKjD1jRH68/5fbR25Pp5fau6hr+LpTimVmoZX4245D8xAkyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720854512; c=relaxed/simple;
-	bh=/2Wna6IN8RYaNi0ktowJREiLpfrmcnCXNbJbNaPmRuY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r1dKBL0gQmYjopOoqhdRlwm0emjs6D0hjNXi5PYtd0lqeGFQJVMbTo2UPVWHkSs6ahEQH5L5aXUWvchUOjkHBichy16I9EfPhiM1Q68ClOz7f45z8ri2PnnwF33XYpK5zey3wxbKoyL3rQWWegj+cBO0A/qWhBfopv1ZUaOwMC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OJiJYT3m; arc=none smtp.client-ip=209.85.161.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5ce74defe43so109317eaf.2;
-        Sat, 13 Jul 2024 00:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720854509; x=1721459309; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fjlpCsYbCH3cdJRtayFHDpxKbTqwk5kyQNPmsXVKhUc=;
-        b=OJiJYT3mpYsLZn9TlbQLlIiITbT+Oa1Xv4ecnj63YuGzAQFba7zsbvCKRsKthb6a7f
-         LSVBc3B7pBeJgtRa3GIqMM+Oh8t/lybhSP9D4YhiOe/ECVeNZTQ/pMt4TZ33FUsF1xug
-         tQE4GUq/Wl2H4ImNMVmlb62w9eNPcqjV/Ty76nKE3iseE5b3iokcpt9AhdSpySYBhatH
-         xKDGyIqWpYudwT693d70kRUODoIzAGL8QkjyfrprXNHMC/lTjuE8H0E+g1Jz1k7Bd0MZ
-         FUDlCrfQc0cs0JBGAqKeuOpUKYP1BwzYhno76tAHDziz+7eSteEIZNKcg/h4hBXv0h6e
-         kTVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720854509; x=1721459309;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fjlpCsYbCH3cdJRtayFHDpxKbTqwk5kyQNPmsXVKhUc=;
-        b=AxgaEU8J9HRhTW/4h+dj4GTIbU9Bywp+GXDbV6exZyqIXFaPB6ZGuHN6L9zNCw1JTZ
-         U2sS4rnuwblrjrxeFSoINbsNyzI/Fr5Y1N53qDQH1bOYZx0T+IWcH6nZXl7oZXT+AFOI
-         fb8ilC8V7WVwq6u8jV3qDGdBBCB4jqFXFf4LcEnIfdXuDr+SoWvVM2/zdEYdw9002nvy
-         JCGdzt5hXochz8tSr3la65faIHZZC2KyW+GFr4DqwovF0fSNfWlqlgTRXzrHwAk3bYpe
-         KImmUyOjpSbLzbjhxH9TiUOyjii8ilSyWI06wMUi/3B9c42tzxd9cIB/lQFg+ejQfnVQ
-         CXSw==
-X-Forwarded-Encrypted: i=1; AJvYcCX2e5cLJumrhUXAJql2qScFodO8OYn6q+czs25TORhvPu4jPJ/X8hHjbaswIqYttjZ2IEyX3hJqLeI1P3QGxvSuDKrlJDYNyNkNwUyRCnWWPM67J8x3qKnVnVnW/6TkgRVbFMrtuWA3Gw==
-X-Gm-Message-State: AOJu0YxfjwYsVGxz25JgbGtbKU2A/aAcRer72+5DD3suH6nhxJrMwsVT
-	WR8Yn4m0wDuZo//eVTO79NixwPFYChTxhA17iW60D2uefL8KDkSp5icfMS8FMQuo7q7IQ1c+Jhn
-	pD9VuWqrqNQ4PsvARSXcgCzg989I=
-X-Google-Smtp-Source: AGHT+IFWVKyYxz5gy1azAb9yamwL6hAatx9DP1QAZFBlOoFzKR7AUcc67ukMdrKD3FBO1YCxpH6HH13DsqYepYUgQqI=
-X-Received: by 2002:a05:6870:c6a5:b0:258:42bd:d916 with SMTP id
- 586e51a60fabf-25eae7bace2mr12445788fac.14.1720854509337; Sat, 13 Jul 2024
- 00:08:29 -0700 (PDT)
+	s=arc-20240116; t=1720856593; c=relaxed/simple;
+	bh=8APyXt8NaBnkPT00DgequUjKNEazJwOXgsU2Ys9YZ6k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HIGMQUzH+kPbAG/2mQw7SYzldxLbPCfeNJlvG1QtKItFOuFNJqU9vxXnEQXPqer+zri8ILmlp1J+cEwE2eXqzyEWYYWq8XuNwZV+liLq3DbZMNDQFUlT/htlOkGx23WlSNA6siCRsb4cFdSAU/lj7t0L+AGQ6okgU6QXi9r3mJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aTuz9cIq; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720856592; x=1752392592;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8APyXt8NaBnkPT00DgequUjKNEazJwOXgsU2Ys9YZ6k=;
+  b=aTuz9cIqIhlTJBQP/Zj0Sy7xAPXzBY5eVdZ/w1K+q30IsdJy92P7bCSl
+   FZW7Ycj/f29v6hDoIDI91WvGsLooe6s3sfoW78mIY2fORCoG1qo6NMVOX
+   o3Fig8wmkRMk1BgRf8Ru+GWoRi+swRpXCn3F61K8gClrX1iOAw3mAP6Jo
+   vlVMJvL5oNQ+chomA7dtsNGTRp+C3YAPieL2jcNFT1G+GjSDbUhCnEfkT
+   zTFywd8c7ZSFfY31iI1ge/rUoNuZkeW5bfu+UyRvOJ/6e3FALj9D17B9p
+   DNRbdnLYRWV7/oKHXJapW8m60hYgdXhA4/GNOxdAKCSWXyZtGryCD2vPr
+   w==;
+X-CSE-ConnectionGUID: 8oX6MUlkQcKF/XCZfwWYAQ==
+X-CSE-MsgGUID: PInH8TikTJurZjfXJ73UpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="18116161"
+X-IronPort-AV: E=Sophos;i="6.09,205,1716274800"; 
+   d="scan'208";a="18116161"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2024 00:43:11 -0700
+X-CSE-ConnectionGUID: eytwdp1fQzGrOOuZwppMTA==
+X-CSE-MsgGUID: 24RR+7NNR8WSlez/+COfCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,205,1716274800"; 
+   d="scan'208";a="86635688"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 13 Jul 2024 00:43:09 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sSXPO-000bqY-14;
+	Sat, 13 Jul 2024 07:43:06 +0000
+Date: Sat, 13 Jul 2024 15:42:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: humidity: Add support for ENS21x
+Message-ID: <202407131554.tOb1HnRA-lkp@intel.com>
+References: <20240710-ens21x-v3-2-4e3fbcf2a7fb@thegoodpenguin.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240712164554.1763-1-linux.amoon@gmail.com>
-In-Reply-To: <20240712164554.1763-1-linux.amoon@gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 13 Jul 2024 12:38:14 +0530
-Message-ID: <CANAwSgT=eNVEk4qzcpD3wa=vZ=TOuJDM_Cz61SCWOsFK2nRsQA@mail.gmail.com>
-Subject: Re: [PATCH-next v3 1/3] arm64: dts: rockchip: Add missing pinctrl for
- PCIe30x4 node
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240710-ens21x-v3-2-4e3fbcf2a7fb@thegoodpenguin.co.uk>
 
-Hi Jonas,
+Hi Joshua,
 
-On Fri, 12 Jul 2024 at 22:16, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
-> signals. Each component of PCIe communication have the following control
-> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
-> high-speed signals and communicate with other PCIe devices.
-> Used by root complex to endpoint depending on the power state.
->
-> PERST is referred to as a fundamental reset. PERST should be held low
-> until all the power rails in the system and the reference clock are stable.
-> A transition from low to high in this signal usually indicates the
-> beginning of link initialization.
->
-> WAKE signal is an active-low signal that is used to return the PCIe
-> interface to an active state when in a low-power state.
->
-> CLKREQ signal is also an active-low signal and is used to request the
-> reference clock.
->
-> Rename node from 'pcie3' to 'pcie30x4' to align with schematic
-> nomenclature.
->
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> V3: use pinctrl local to board
-> V2: Update the commit messge to describe the changs.
->     use pinctl group as its pre define in pinctrl dtsi
-> ---
->  .../arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 18 ++++++++++++------
->  1 file changed, 12 insertions(+), 6 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index 966bbc582d89..721e87a3a464 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -338,7 +338,7 @@ &pcie30phy {
->
->  &pcie3x4 {
->         pinctrl-names = "default";
-> -       pinctrl-0 = <&pcie3_rst>;
-> +       pinctrl-0 = <&pcie30x4_pins>;
->         reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
->         vpcie3v3-supply = <&vcc3v3_pcie30>;
->         status = "okay";
-> @@ -377,14 +377,20 @@ pcie2_2_rst: pcie2-2-rst {
->                 };
->         };
->
-> -       pcie3 {
-> -               pcie3_rst: pcie3-rst {
-> -                       rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> -               };
-> -
-> +       pcie30x4 {
->                 pcie3_vcc3v3_en: pcie3-vcc3v3-en {
->                         rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
->                 };
-> +
-> +               pcie30x4_pins: pcie30x4-pins {
-> +                       rockchip,pins =
-> +                               /* PCIE30X4_CLKREQn_M1_L */
-> +                               <4 RK_PB4 4 &pcfg_pull_up>,
-                            Should -------------^ replace with
-RK_FUNC_GPIO ? since its a gpio controlled?
-> +                               /* PCIE30X4_PERSTn_M1_L */
-> +                               <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>,
-> +                               /* PCIE30X4_WAKEn_M1_L */
-> +                               <4 RK_PB5 4 &pcfg_pull_down>;
-> +               };
->         };
->
-Thanks
--Anand
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 1ebab783647a9e3bf357002d5c4ff060c8474a0a]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Joshua-Felmeden/dt-bindings-iio-humidity-add-ENS21x-sensor-family/20240711-022826
+base:   1ebab783647a9e3bf357002d5c4ff060c8474a0a
+patch link:    https://lore.kernel.org/r/20240710-ens21x-v3-2-4e3fbcf2a7fb%40thegoodpenguin.co.uk
+patch subject: [PATCH v3 2/2] iio: humidity: Add support for ENS21x
+config: sparc64-randconfig-r053-20240712 (https://download.01.org/0day-ci/archive/20240713/202407131554.tOb1HnRA-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240713/202407131554.tOb1HnRA-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407131554.tOb1HnRA-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   sparc64-linux-ld: drivers/iio/humidity/ens21x.o: in function `ens21x_get_measurement':
+>> ens21x.c:(.text+0x388): undefined reference to `crc7_be'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
