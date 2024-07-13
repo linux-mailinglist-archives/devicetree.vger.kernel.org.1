@@ -1,198 +1,162 @@
-Return-Path: <devicetree+bounces-85479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC0F93041F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 08:49:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD133930429
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 09:08:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF26BB22F19
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 06:48:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F0311F226E3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 07:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096351C2BE;
-	Sat, 13 Jul 2024 06:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254631BDCF;
+	Sat, 13 Jul 2024 07:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzNsA6MZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OJiJYT3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC0718B09;
-	Sat, 13 Jul 2024 06:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D68218E20;
+	Sat, 13 Jul 2024 07:08:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720853335; cv=none; b=LsTtmRNhGZAqNpkwspPWFpylhY22FLYAykjg+c1XhXHEK+Nwt0OxxBZTV3jq53R0NnpvXSe0Gkx/pBbHO1iwUdikpsYGWMCbwGGTo6syRHZaS0IcnvCIO1Ufqz9oXN1E4m3twN6Qw3/3cl/DzecPKipO1Qqhfcy1NUI+PVi0HOA=
+	t=1720854512; cv=none; b=tXfuBIFYCWZqsaIEQofXKR0sHhgQMnxmev2aY06GebOqnuIfF/LF76+qq+05RrgA2VHESWpCdwp3dp70ac+BQyqrEOAwgZ76AQQo9io7+0rk24/JVW4p/E9BOBFVXoSQvxUqJAmXwQSowL53gBq9JZdQQLYzlujT9iOBBIip20Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720853335; c=relaxed/simple;
-	bh=rmngPodD1hpovVDZjrY0POcxROayfR4qJFc2JSoZNHg=;
+	s=arc-20240116; t=1720854512; c=relaxed/simple;
+	bh=/2Wna6IN8RYaNi0ktowJREiLpfrmcnCXNbJbNaPmRuY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cfQ4qv+r7bt999PpmXYr+t0iBC+Kf9CT6TN0p0BGI/OG4ThQfeF5t9CTRzVwIM+IUfqsod9qp75/Hte1meCslCJ3hv7Ptw/7jfF5QywmT9OuWxmW5TIhJdlGLvrwfS2btXGqjTPBoNECXqijxnl6nNwl4ZgoWvP7kH4K3ANP3yU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzNsA6MZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39898C4AF15;
-	Sat, 13 Jul 2024 06:48:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720853335;
-	bh=rmngPodD1hpovVDZjrY0POcxROayfR4qJFc2JSoZNHg=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=jzNsA6MZh4gRJnAtWA224bQbcwcmRlfulT9/C5iGyz/mqns3Mkk7D1loYEBiVfVBJ
-	 F7JkLxOZoK1GketP7VEYlx7GHJyYlyIbHa3lH+H/lWwCEu3dznfMsXna03EptbfAVc
-	 w8LIf99uW9VNjJeqdWpelszhnIc8rPdD5lC5p4p64DR1Dd5jRo3VQNa4S3hAiUM3Xy
-	 3wbULs/3/B6cXzWKlYB9xyCWyZgxmQB+mUrQlq9k7e1E505BxC/tz1d52+9K/lvIg+
-	 QDorsjOJ/gpt/oE4jCp5U35Fn/jC3GK0JqdaL5HE4PL4RJ1TvhDdJkStpktuXMtVK1
-	 ywpW65tEtl4TA==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2eec7e431d9so34354571fa.2;
-        Fri, 12 Jul 2024 23:48:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVToCavhAuhqJIZCiaP3kLpfck+NDyh4U47aHxp5z118WvoFy3Lwi1hm64sv0ZoTddGW+Eqdt+qojW8CNafI+IVUmUb9Gn95JfYFGfKadGJk1mvx6GmayNLJSN7r8ycuRZCjKYgL1BvLBmVmBP2o+K3LVst4ewcCwknMjWJ/Xzev5qKJ15fww==
-X-Gm-Message-State: AOJu0YxOBeFUrxnWJX3u3Bc27zGJFHT5cwrmf60DmwaOcEcp+sff0RpN
-	bpngY1HS3Tc6DquNdQbrMRX5mZowTJEcaiDmqWhMzZD25e1aUPjZ9qeMr0JRfDpgaQNbxMkQQWO
-	DtZMi44k+Y17A/a36Il0yZAHpFD8=
-X-Google-Smtp-Source: AGHT+IH/4Jry0qoasCXWKjUAZkBfuqHL+VReoVc9bEqJlVdcgZjP7WNeITu1eBxpBYc6Ar9/BFXa9+EFkGyjAzlRL4w=
-X-Received: by 2002:a2e:9595:0:b0:2ec:58e8:d7a6 with SMTP id
- 38308e7fff4ca-2eeb30b9b78mr86285991fa.5.1720853333390; Fri, 12 Jul 2024
- 23:48:53 -0700 (PDT)
+	 To:Cc:Content-Type; b=r1dKBL0gQmYjopOoqhdRlwm0emjs6D0hjNXi5PYtd0lqeGFQJVMbTo2UPVWHkSs6ahEQH5L5aXUWvchUOjkHBichy16I9EfPhiM1Q68ClOz7f45z8ri2PnnwF33XYpK5zey3wxbKoyL3rQWWegj+cBO0A/qWhBfopv1ZUaOwMC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OJiJYT3m; arc=none smtp.client-ip=209.85.161.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5ce74defe43so109317eaf.2;
+        Sat, 13 Jul 2024 00:08:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720854509; x=1721459309; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fjlpCsYbCH3cdJRtayFHDpxKbTqwk5kyQNPmsXVKhUc=;
+        b=OJiJYT3mpYsLZn9TlbQLlIiITbT+Oa1Xv4ecnj63YuGzAQFba7zsbvCKRsKthb6a7f
+         LSVBc3B7pBeJgtRa3GIqMM+Oh8t/lybhSP9D4YhiOe/ECVeNZTQ/pMt4TZ33FUsF1xug
+         tQE4GUq/Wl2H4ImNMVmlb62w9eNPcqjV/Ty76nKE3iseE5b3iokcpt9AhdSpySYBhatH
+         xKDGyIqWpYudwT693d70kRUODoIzAGL8QkjyfrprXNHMC/lTjuE8H0E+g1Jz1k7Bd0MZ
+         FUDlCrfQc0cs0JBGAqKeuOpUKYP1BwzYhno76tAHDziz+7eSteEIZNKcg/h4hBXv0h6e
+         kTVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720854509; x=1721459309;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fjlpCsYbCH3cdJRtayFHDpxKbTqwk5kyQNPmsXVKhUc=;
+        b=AxgaEU8J9HRhTW/4h+dj4GTIbU9Bywp+GXDbV6exZyqIXFaPB6ZGuHN6L9zNCw1JTZ
+         U2sS4rnuwblrjrxeFSoINbsNyzI/Fr5Y1N53qDQH1bOYZx0T+IWcH6nZXl7oZXT+AFOI
+         fb8ilC8V7WVwq6u8jV3qDGdBBCB4jqFXFf4LcEnIfdXuDr+SoWvVM2/zdEYdw9002nvy
+         JCGdzt5hXochz8tSr3la65faIHZZC2KyW+GFr4DqwovF0fSNfWlqlgTRXzrHwAk3bYpe
+         KImmUyOjpSbLzbjhxH9TiUOyjii8ilSyWI06wMUi/3B9c42tzxd9cIB/lQFg+ejQfnVQ
+         CXSw==
+X-Forwarded-Encrypted: i=1; AJvYcCX2e5cLJumrhUXAJql2qScFodO8OYn6q+czs25TORhvPu4jPJ/X8hHjbaswIqYttjZ2IEyX3hJqLeI1P3QGxvSuDKrlJDYNyNkNwUyRCnWWPM67J8x3qKnVnVnW/6TkgRVbFMrtuWA3Gw==
+X-Gm-Message-State: AOJu0YxfjwYsVGxz25JgbGtbKU2A/aAcRer72+5DD3suH6nhxJrMwsVT
+	WR8Yn4m0wDuZo//eVTO79NixwPFYChTxhA17iW60D2uefL8KDkSp5icfMS8FMQuo7q7IQ1c+Jhn
+	pD9VuWqrqNQ4PsvARSXcgCzg989I=
+X-Google-Smtp-Source: AGHT+IFWVKyYxz5gy1azAb9yamwL6hAatx9DP1QAZFBlOoFzKR7AUcc67ukMdrKD3FBO1YCxpH6HH13DsqYepYUgQqI=
+X-Received: by 2002:a05:6870:c6a5:b0:258:42bd:d916 with SMTP id
+ 586e51a60fabf-25eae7bace2mr12445788fac.14.1720854509337; Sat, 13 Jul 2024
+ 00:08:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1720830725.git.daniel@makrotopia.org>
-In-Reply-To: <cover.1720830725.git.daniel@makrotopia.org>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Sat, 13 Jul 2024 14:48:39 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64ajgK_4G_ANFgwxQToEzDjuBgbmozb7CLxJyNDo-MkCw@mail.gmail.com>
-Message-ID: <CAGb2v64ajgK_4G_ANFgwxQToEzDjuBgbmozb7CLxJyNDo-MkCw@mail.gmail.com>
-Subject: Re: [PATCH v6 0/3] hwrng: add hwrng support for Rockchip RK3568
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Dragan Simic <dsimic@manjaro.org>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Martin Kaiser <martin@kaiser.cx>, 
-	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+References: <20240712164554.1763-1-linux.amoon@gmail.com>
+In-Reply-To: <20240712164554.1763-1-linux.amoon@gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sat, 13 Jul 2024 12:38:14 +0530
+Message-ID: <CANAwSgT=eNVEk4qzcpD3wa=vZ=TOuJDM_Cz61SCWOsFK2nRsQA@mail.gmail.com>
+Subject: Re: [PATCH-next v3 1/3] arm64: dts: rockchip: Add missing pinctrl for
+ PCIe30x4 node
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Jonas,
 
-On Sat, Jul 13, 2024 at 8:38=E2=80=AFAM Daniel Golle <daniel@makrotopia.org=
-> wrote:
+On Fri, 12 Jul 2024 at 22:16, Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Rockchip SoCs used to have a random number generator as part of their
-> crypto device.
+> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
+> signals. Each component of PCIe communication have the following control
+> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
+> high-speed signals and communicate with other PCIe devices.
+> Used by root complex to endpoint depending on the power state.
 >
-> However newer Rockchip SoCs like the RK3568 have an independent True
-> Random Number Generator device. This patchset adds a driver for it and
-> enables it in the device tree.
+> PERST is referred to as a fundamental reset. PERST should be held low
+> until all the power rails in the system and the reference clock are stable.
+> A transition from low to high in this signal usually indicates the
+> beginning of link initialization.
 >
-
-Have you tested any of the later iterations? For me it stopped working
-at v3. After v3 (including v3), all it spits out is zeros.
-
-> v5 -> v6:
->  * Patch 1: unchanged
+> WAKE signal is an active-low signal that is used to return the PCIe
+> interface to an active state when in a low-power state.
 >
->  * Patch 2: get rid of #ifdef
->    - use if (IS_ENABLED(...)) { ... }instead of #ifdef inside functions
->    - use __maybe_unused for functions previously enclosed by #ifdef'ery
+> CLKREQ signal is also an active-low signal and is used to request the
+> reference clock.
 >
->  * Patch 3: unchanged
+> Rename node from 'pcie3' to 'pcie30x4' to align with schematic
+> nomenclature.
 >
-> v4 -> v5:
->  * Patch 1: always use RK3568 name
->    - use full RK3568 name in patch description
->    - add RK3568 to title in binding
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> V3: use pinctrl local to board
+> V2: Update the commit messge to describe the changs.
+>     use pinctl group as its pre define in pinctrl dtsi
+> ---
+>  .../arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 18 ++++++++++++------
+>  1 file changed, 12 insertions(+), 6 deletions(-)
 >
->  * Patch 2: full name and cosmetics
->    - also always mention RK3568 as there may be other RNG in other
->      (future) Rockchip SoCs
->    - remove debug output on successful probe
->    - use MODULE_AUTHOR several times instead of single comma-separated
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> index 966bbc582d89..721e87a3a464 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -338,7 +338,7 @@ &pcie30phy {
 >
->  * Patch 3: unchanged
+>  &pcie3x4 {
+>         pinctrl-names = "default";
+> -       pinctrl-0 = <&pcie3_rst>;
+> +       pinctrl-0 = <&pcie30x4_pins>;
+>         reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+>         vpcie3v3-supply = <&vcc3v3_pcie30>;
+>         status = "okay";
+> @@ -377,14 +377,20 @@ pcie2_2_rst: pcie2-2-rst {
+>                 };
+>         };
 >
-> v3 -> v4:
->  * Patch 1: minor corrections
->    - fix Rokchip -> Rockchip typo
->    - change commit title as requested
+> -       pcie3 {
+> -               pcie3_rst: pcie3-rst {
+> -                       rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> -               };
+> -
+> +       pcie30x4 {
+>                 pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+>                         rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+>                 };
+> +
+> +               pcie30x4_pins: pcie30x4-pins {
+> +                       rockchip,pins =
+> +                               /* PCIE30X4_CLKREQn_M1_L */
+> +                               <4 RK_PB4 4 &pcfg_pull_up>,
+                            Should -------------^ replace with
+RK_FUNC_GPIO ? since its a gpio controlled?
+> +                               /* PCIE30X4_PERSTn_M1_L */
+> +                               <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>,
+> +                               /* PCIE30X4_WAKEn_M1_L */
+> +                               <4 RK_PB5 4 &pcfg_pull_down>;
+> +               };
+>         };
 >
->  * Patch 2: improved error handling and resource management
->    - Always use writel() instead of writel_relaxed()
->    - Use pm_runtime_resume_and_get
->    - Correctly return error code in rk_rng_read()
->    - Make use of devm_reset_control_array_get_exclusive
->    - Use devm_pm_runtime_enable and there by get rid of rk_rng_remove()
->
->  * Patch 3:
->    - Move node to conform with ordering by address
->
-> v2 -> v3: patch adopted by Daniel Golle
->  * Patch 1: address comments of Krzysztof Kozlowski, add MAINTAINERS
->    - improved description
->    - meaningful clock-names
->    - add entry in MAINTAINERS files
->
->  * Patch 2: numerous code-style improvements
->    - drop misleading rk_rng_write_ctl(), simplify I/O writes
-
-This is probably the culprit. The RNG and RST control registers have
-enable bits in their top 16 bits. Without those set together with the
-actual bit values, the writes to the registers have no effect.
-
-Please check all your writel calls against the TRM and add appropriate
-bitmasks for the upper 16 bits.
-
-
-ChenYu
-
->    - drop unused TRNG_RNG_DOUT_[1-7] macros
->    - handle error handling for pm_runtime_get_sync()
->    - use memcpy_fromio() instead of open coding for-loop
->    - some minor white-spaces fixes
->
->  * Patch 3:
->    - use clock-names as defined in dt-bindings
->
-> v1 -> v2:
->  * Patch 1: fix issues reported by Rob Herring and Krzysztof Kozlowski:
->    - Rename rockchip-rng.yaml into rockchip,rk3568-rng.yaml
->    - Fix binding title and description
->    - Fix compatible property
->    - Rename clocks and add the corresponding descriptions
->    - Drop reset-names
->    - Add a bus definition with #address-cells and #size-cells to the
->      example.
->
->  * Patch 2: fix issue reported by kernel test robot <lkp@intel.com>
->    - Do not read the random registers as big endian, looking at the
->      RK3568 TRM this is actually not needed. This fixes a sparse
->      warning.
->
->  * Patch 3: unchanged
->
-> Aurelien Jarno (3):
->   dt-bindings: rng: Add Rockchip RK3568 TRNG
->   hwrng: add hwrng driver for Rockchip RK3568 SoC
->   arm64: dts: rockchip: add DT entry for RNG to RK356x
->
->  .../bindings/rng/rockchip,rk3568-rng.yaml     |  61 +++++
->  MAINTAINERS                                   |   7 +
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   9 +
->  drivers/char/hw_random/Kconfig                |  14 ++
->  drivers/char/hw_random/Makefile               |   1 +
->  drivers/char/hw_random/rockchip-rng.c         | 220 ++++++++++++++++++
->  6 files changed, 312 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568=
--rng.yaml
->  create mode 100644 drivers/char/hw_random/rockchip-rng.c
->
-> --
-> 2.45.2
->
+Thanks
+-Anand
 
