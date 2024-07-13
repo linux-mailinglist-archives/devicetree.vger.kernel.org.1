@@ -1,62 +1,84 @@
-Return-Path: <devicetree+bounces-85474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BCF9302BD
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 02:38:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A569393030A
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 03:39:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7128E282BEC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 00:38:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E7EE2833AD
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 01:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34EC4C80;
-	Sat, 13 Jul 2024 00:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A7ADDA9;
+	Sat, 13 Jul 2024 01:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OeDXqxkw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44106746E;
-	Sat, 13 Jul 2024 00:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C501FFBF6;
+	Sat, 13 Jul 2024 01:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720831098; cv=none; b=hF7/jufUw/asMXCx39R016sPbXnFPey8wnRf4hJgRrHTD1FkcJ1xNpuzKPxvM0F8FgdxtLrRvwryiSafZusF1UqsReZFpXw5h+aYW1gu64EyUf6A5kK1Pr6+5gE1VcNOGn9cfVhjBPwXRWn70LZWkQo/SM+ETO1MVbZoPvy3LK4=
+	t=1720834742; cv=none; b=HnLw8MxR8G18/vJsfBNyfaVyq6pCmmJwrNkK31XPCNlrU/3reMYWtS3kT5EXLvrXZuklvJa+yVlXwy52cm46IqMFrNeMFbZV1wSnNQPIM+/2Bu7bi2oyjfKVpzFHKobApEJN/YE547yiC2sPNfyHajD8Iy4LPywozGaBtSnjd8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720831098; c=relaxed/simple;
-	bh=4Gq5F+4TLOJHu4iY0ouW3Ff3R7izkcH1X9nC9PlgJEI=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KgW3mS8zTdgCfk5hR+9VFxP/4KAO9T909jM1gzK4v7Ys5E2YAXDrqMF4LD9GGLQRt2Zaxvw5e1muhAMhXkEcx+7Zwd0/ZPbM+LU/z90z4q/kGuCwdmVbY+an54M67Q+5IQkLYrCkUYJ6PHMc2k2W5Rg9t/Bj761t5toXQMRpEr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.97.1)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sSQm5-000000005cq-1S8i;
-	Sat, 13 Jul 2024 00:38:05 +0000
-Date: Sat, 13 Jul 2024 01:38:01 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
+	s=arc-20240116; t=1720834742; c=relaxed/simple;
+	bh=WFoMEnzTETrjQMD90rMoI4syPE64SpiNnX2O5Zarsdo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jzpP9aHSKMGLJ9kHu4wh55xzShgDvx7kb8/ficcwNk67cXfSfc3WBsX2xX1MIii0aPHlBOV180uV+tDZDspe2mPhm7k4lV/X9OS+cpcDPUx0EIib+lQ18fVU5B7G5r9LZarPHjEvA3GHNRqkBRbfXzACURCIr4tBobOfjsZSah8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OeDXqxkw; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720834741; x=1752370741;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WFoMEnzTETrjQMD90rMoI4syPE64SpiNnX2O5Zarsdo=;
+  b=OeDXqxkwlLM18RjQjyY5Qeti/FtH7oVEFXGP3RrYEtcfdrFNzxvLGBSH
+   +10P8gGv23Ylz6Rw09AX+URQ96ZBGeCr8bHdhPbSbbDTnlpWdBUagNlcN
+   0dQ71NZiYM+pE1a0zmcr9eLM2BZsjx9BLcFrs2iHjh57769YZg0iUqtAc
+   Qfh62RAK/NmMKfWpKkPnEtvo9GM1QA4ScegN0Qc8IqvcHFxabzd7MNnEE
+   LbivugS6EZviSC5AGqFpIGxE6OdMrW4UlBlD6LENaZCCfHiUeQAwL8FeX
+   bZCYqtuRRTkAQ0CwPRyAmyzDpnv6aSpxlU8MB3QqDjKHKfwKHQHyUiUdL
+   w==;
+X-CSE-ConnectionGUID: +1wKBfwVSE+aL8x+FsS/Qg==
+X-CSE-MsgGUID: 6QPnX2DLRRyl8Dsoe5Wj1g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="18138901"
+X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; 
+   d="scan'208";a="18138901"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 18:39:00 -0700
+X-CSE-ConnectionGUID: QXUKavKzR9iBG3VWeemIKQ==
+X-CSE-MsgGUID: SgItW86wTn6IMnsyYgT4IA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; 
+   d="scan'208";a="49072484"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 12 Jul 2024 18:38:57 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sSRix-000bX4-0N;
+	Sat, 13 Jul 2024 01:38:55 +0000
+Date: Sat, 13 Jul 2024 09:38:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Valentin Caron <valentin.caron@foss.st.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 3/3] arm64: dts: rockchip: add DT entry for RNG to RK356x
-Message-ID: <26d651a891b8740fd3719f465b72dc7b8cb299dc.1720830725.git.daniel@makrotopia.org>
-References: <cover.1720830725.git.daniel@makrotopia.org>
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH 2/4] rtc: stm32: add pinctrl and pinmux interfaces
+Message-ID: <202407130943.ie6n2Orh-lkp@intel.com>
+References: <20240711140843.3201530-3-valentin.caron@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,38 +87,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1720830725.git.daniel@makrotopia.org>
+In-Reply-To: <20240711140843.3201530-3-valentin.caron@foss.st.com>
 
-From: Aurelien Jarno <aurelien@aurel32.net>
+Hi Valentin,
 
-Enable the just added Rockchip RNG driver for RK356x SoCs.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on atorgue-stm32/stm32-next robh/for-next linus/master v6.10-rc7 next-20240712]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 4690be841a1c..78377e7d1d6d 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -1113,6 +1113,15 @@ sdhci: mmc@fe310000 {
- 		status = "disabled";
- 	};
- 
-+	rng: rng@fe388000 {
-+		compatible = "rockchip,rk3568-rng";
-+		reg = <0x0 0xfe388000 0x0 0x4000>;
-+		clocks = <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
-+		clock-names = "core", "ahb";
-+		resets = <&cru SRST_TRNG_NS>;
-+		reset-names = "reset";
-+	};
-+
- 	i2s0_8ch: i2s@fe400000 {
- 		compatible = "rockchip,rk3568-i2s-tdm";
- 		reg = <0x0 0xfe400000 0x0 0x1000>;
+url:    https://github.com/intel-lab-lkp/linux/commits/Valentin-Caron/dt-bindings-rtc-stm32-describe-pinmux-nodes/20240711-233937
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20240711140843.3201530-3-valentin.caron%40foss.st.com
+patch subject: [PATCH 2/4] rtc: stm32: add pinctrl and pinmux interfaces
+config: i386-buildonly-randconfig-002-20240713 (https://download.01.org/0day-ci/archive/20240713/202407130943.ie6n2Orh-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240713/202407130943.ie6n2Orh-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407130943.ie6n2Orh-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> ld.lld: error: undefined symbol: devm_pinctrl_register_and_init
+   >>> referenced by rtc-stm32.c
+   >>>               drivers/rtc/rtc-stm32.o:(stm32_rtc_probe) in archive vmlinux.a
+--
+>> ld.lld: error: undefined symbol: pinctrl_enable
+   >>> referenced by rtc-stm32.c
+   >>>               drivers/rtc/rtc-stm32.o:(stm32_rtc_probe) in archive vmlinux.a
+
 -- 
-2.45.2
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
