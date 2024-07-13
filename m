@@ -1,118 +1,79 @@
-Return-Path: <devicetree+bounces-85538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35E59306DE
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 20:08:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 675899306F1
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 20:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95A91F22CDC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 18:08:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15A781F22064
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 18:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4172813D251;
-	Sat, 13 Jul 2024 18:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4390713D289;
+	Sat, 13 Jul 2024 18:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Twx7YSeN"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wx/Xo1eG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D8B125B9;
-	Sat, 13 Jul 2024 18:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8449225D6;
+	Sat, 13 Jul 2024 18:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720894129; cv=none; b=U8gVE79ztqSDEbBKaY8EMU6o2D8R+Ch97NYppbhrxdtamk6sosw8ZyBsngNhCu/Wrj1WevixbgiPbBwSVA/NmPZHd4Xl5e+Ssjy4ZIKhIARBiauC2YEizqaAlDWPWPRo1p647Tp0iBuTwjHfySUYXf/E77F0MNbYua4iXCQ11xU=
+	t=1720894886; cv=none; b=gyEABnjbGCZUG+Qk733+MpcSXXEc9RqyBqdFIHwkhiFb2Oz70ugs6s9cdd2RU23NTcNNsTLYJMqqkiICwwkR8HMhWOO98j3bqO+4yY8PkCNsZX3nmHrfGAmzVB+/y5g06Y5/S/1d2wg9tWGfxXhzQ0Thk1hNjBclQB7RcmJqCeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720894129; c=relaxed/simple;
-	bh=2V8gSKhMGv/Q87IrQhksGSaqYxOFKPmaYtWW122A/fE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oGzRrxdVhKbZPuqr5cePzkuWc8OSdeQCowsRueT4Qk+3m+IX77Si5woHf2VwHKXWnr8byMZ0ZVfvYPQmopM/z5M4WKFLTDC5+8Y6wJOMlEAtpRJSfidwJyX4uMrazrm0FRAYUpL9yad8w0QSotWefsYA4BBBuHt4cy4CcOvlx0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Twx7YSeN; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52ea7bdde68so3261212e87.0;
-        Sat, 13 Jul 2024 11:08:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720894126; x=1721498926; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UFjXSyeGXyTpNHpjMY4i7H4qzTk6Okib980a8VGzRiA=;
-        b=Twx7YSeNw1tJCgtwgcEegiFiuKr8EiQj7vpNjps2SBjlPARWzCVPSyBq96+my5XS7P
-         f1UpkmCneYD8CANJY/Ssl+hafmO6e8lT4Ufwb4c7xEb64boOsJ5Uv4QdOYvHrVH4xdOt
-         e2GDpudd/G1dURTmewEgYBRuMiUBauJEBFRP7fs9TC1ijalKdDAsIxz1akU2ZbZOiBEU
-         DC5B5EMYGiydAayPbSo2zzodg/5d5p5bE8TgTmh5I7PUDwxskxrWw4wr9CbHplRGeXD/
-         OxiqjMpgbvTtWVklYQp1giYx4lB0bZyPFjdEpepzrcFE/mQg+FML734qK+bMDw+Uxj/6
-         09ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720894126; x=1721498926;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UFjXSyeGXyTpNHpjMY4i7H4qzTk6Okib980a8VGzRiA=;
-        b=vopvSLkg+naUYEPyOmVvwSPz5qsUJgPfFQXjTvAx2M4kzXgW9PN3MBKqFKOJE0PTs2
-         Puc4f/EXjo3BqufOpaP2NfBGlO9WPyTXaFoXlXqt9nJEjuuV652DqhYya66toMS0gz/l
-         czV1/c5UMcJGQsNmkbPrn0Hj885S8wGAuT4Uvwwhikt0cT/1IGxzyegY+1zrtXlx73KK
-         TERgGAVEj9dXzDF+IheCK5yGve7It+w6kGrlbN+C7hx2r9eIymcbsRzanOAViY3m+fiy
-         flfasr+aMEM0+3RZBJcigscyUAkT2rMnzK4EgTr6uXzHSNm5lmwp1fjiNIm5YmUgjenJ
-         67sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDS09E7rPWBb7FcGxJlSfqvfMDkV7HWk4w0cAIR8VssJdxuAnh2ETHd0J9SUx0Ges6ArD5b0sDcwk2qKF7Q+pkj7oojz0xftPryqc1GYNUk7CACDJrSu0DqtP/tBBu3lRfc6ADI9vBKrjj/GVSW4vp+1zPTjLmk2RNiDr6uZ08vm3CFDXwjZxDtPdl
-X-Gm-Message-State: AOJu0YyA7vBrJFtVxWEr9Aqu2tjzNuPezj4oUKA5qdWCNy4lYZP33lHk
-	caSb8wEhOW+JXxdrR5A2NFtyyao9Uu5CalSAQvQ36e8t+WZzvxZ/j7u0ifc7HLs=
-X-Google-Smtp-Source: AGHT+IGtqFsPbcL8wxovGZ/CvXNiaBwjE8EXI/CkTr1ogDZuz8GEOo6KcfGrwSd1nQVjw71fGUGs6Q==
-X-Received: by 2002:ac2:5102:0:b0:52e:97e1:723b with SMTP id 2adb3069b0e04-52eb9996049mr7468158e87.28.1720894125274;
-        Sat, 13 Jul 2024 11:08:45 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:ab88:3711:c80:e7a7:e025:f1a5:ef78])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-59b255261c5sm1040572a12.43.2024.07.13.11.08.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jul 2024 11:08:44 -0700 (PDT)
-From: David Virag <virag.david003@gmail.com>
-To: 
-Cc: phone-devel@vger.kernel.org,
-	David Virag <virag.david003@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
+	s=arc-20240116; t=1720894886; c=relaxed/simple;
+	bh=vYEdltbR4U8YAbKwXM7W+6clX5ZwwgQUpXml7t5O/Ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UsKEa/rZ2E7V4mwxqNlu28WzTNQKkeyypVM1oUBA0kKTEoauHi7w+gdZK3ItU8mLXqougZqb/sk3bQzQ6Lak7nHQR/BGKg/ZFfekktwx+rnuRsGN47EsiOX9TqkCKknBi1NzscdryvcgdK75c+YMln7FVg6QFZqSP2rgoRjBI2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wx/Xo1eG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=m2NaNmLqT/6EHd9wxh3t3AYqOXhEw0WYZ2q3dGsPebU=; b=wx
+	/Xo1eGx9B8tv18UvDAYIjryXT7JVjG5qrbnXm6Gk+qdvdf6dzAUX7pxnoq9L6jxQMrkU5zUgTdNTi
+	enVeVg6nYwL7Q1hVJnz+zrcdjSkZHArUHcKw+NbV17GFeKPOkJasRxO2MICpZZTlYiZS+DdtaWXXK
+	hpFPD5Xxzl7r8NU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sShMt-002TBM-50; Sat, 13 Jul 2024 20:21:11 +0200
+Date: Sat, 13 Jul 2024 20:21:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	f.fainelli@gmail.com, kory.maincent@bootlin.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: exynos: exynos7885-jackpotlte: Correct RAM amount to 4GB
-Date: Sat, 13 Jul 2024 19:58:32 +0200
-Message-ID: <20240713180607.147942-3-virag.david003@gmail.com>
-X-Mailer: git-send-email 2.45.2
+Subject: Re: [PATCH v12 2/4] net: phy: bcm54811: Add LRE registers definitions
+Message-ID: <0f903235-ebd9-4c1c-b32a-6b79e9a18fa6@lunn.ch>
+References: <20240712150709.3134474-1-kamilh@axis.com>
+ <20240712150709.3134474-3-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240712150709.3134474-3-kamilh@axis.com>
 
-All known jackpotlte variants have 4GB of RAM, let's use it all.
-RAM was set to 3GB from a mistake in the vendor provided DTS file.
+On Fri, Jul 12, 2024 at 05:07:07PM +0200, Kamil Horák (2N) wrote:
+> Add the definitions of LRE registers for Broadcom BCM5481x PHY
+> 
+> Signed-off-by: Kamil Horák (2N) <kamilh@axis.com>
 
-Fixes: 06874015327b ("arm64: dts: exynos: Add initial device tree support for Exynos7885 SoC")
-Signed-off-by: David Virag <virag.david003@gmail.com>
----
- arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-index ed2925b4715f..0d5c26a197d8 100644
---- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-@@ -57,7 +57,7 @@ memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x3da00000>,
- 		      <0x0 0xc0000000 0x40000000>,
--		      <0x8 0x80000000 0x40000000>;
-+		      <0x8 0x80000000 0x80000000>;
- 	};
- 
- 	gpio-keys {
--- 
-2.45.2
-
+    Andrew
 
