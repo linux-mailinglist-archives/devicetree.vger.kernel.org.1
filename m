@@ -1,122 +1,114 @@
-Return-Path: <devicetree+bounces-85523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FDB39305F2
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 16:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D458093060B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 16:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BB401F21C93
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 14:35:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88F0B1F21CAC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 14:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A0013957E;
-	Sat, 13 Jul 2024 14:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D09ED13AA2D;
+	Sat, 13 Jul 2024 14:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Bvgq5RaO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TfZoCWRL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-185.mta1.migadu.com (out-185.mta1.migadu.com [95.215.58.185])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3274963F
-	for <devicetree@vger.kernel.org>; Sat, 13 Jul 2024 14:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7855FDA5;
+	Sat, 13 Jul 2024 14:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720881349; cv=none; b=gqmgV+ow4XExgK0rKrKf77alIane25nKJU1hjpW5c4cFAPYtpN0r0sW1SyBoPUIVdGP0fcdeaOPT90C/rGhHbSfAZtKMgAEtKXlXyL+O3hj9j/jFJbvqeAN8hCvDkqbXLvuz5ekjFxOWEnfHXNeJ2XOkjii5yIpS/r0JeBGvTmo=
+	t=1720882604; cv=none; b=qL0q44la4bkaSDNkFpA1HXo+JizqD2uXQKnb8566voIDbOwwBp9eqSv7z3HewRC1UDCNV1LgjDPtXfgankBQygv3F1FfldsnAIibnmC8QrUZRODX2SkiCpFZxUgK9sHYS0L91U1hoG8wNesJE6vPIqUV0y+vOeB83NdoQTrOjqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720881349; c=relaxed/simple;
-	bh=GDkOuYBmZxlE+4QxxeGmxRMs4f/1khlimHi5ON26yj0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XDhwAQecGlM3JG/1iA6Bfq1pnKs0V3NfZcZT2AvEF7iiUEOC9sgzmpgnX6b3VK/5qQQzrZb4EyxlYjtUDpsE3ZBHsFRWZpSVyTbdSOPKENDkaog78+gv7aSgnG2JU73fhglu/izeS+CXPhJ5ipt0IGA3OYmTdxN/827Z/E9Xk4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=Bvgq5RaO; arc=none smtp.client-ip=95.215.58.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: dsimic@manjaro.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1720881343;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sY3DzHg+dlAc4azoMf3OPo0CkoCBcBYF6R4NMkIUhzU=;
-	b=Bvgq5RaO6jyBwcqSrbgzUC/dLRdIFw93AmaGjcI4QNSUuxgbfH5xCnNYUnkNITiPEdhDIf
-	xtJh4TSGMUENM8tckuXBsd/O9P0NryxqnK+Px6soV51TReV5OzoVxjWIKyjwBVVm/KOzGS
-	p/5pGaLyLx3MZ9R01wvQB3TQLCucfFvDjk8iVzGIn84YfcarG54T8jMF/Ui4sCf7Fq2miV
-	nXGHd1BQqkemXm2dVHr8Z3Ff6u5E+8dgCwAgVkWJae7WmtvuqQSwKUE5Gmo6t4S6xXGIF6
-	MM3tSfyU/5pMUhCo32yH7wKcmD9CMHeEPYrAwGIAnsvm4GGn1NmGoQJi4sWJpw==
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: knaerzche@gmail.com
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: jbx6244@gmail.com
-X-Envelope-To: wens@csie.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Johan Jonker <jbx6244@gmail.com>, Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add sdmmc_ext for RK3328
-Date: Sat, 13 Jul 2024 16:35:34 +0200
-Message-ID: <2735059.JVtD0IzA6d@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <72718d8d02c25993c138567c96340792@manjaro.org>
-References:
- <20240710132830.14710-1-didi.debian@cknow.org>
- <20240710132830.14710-3-didi.debian@cknow.org>
- <72718d8d02c25993c138567c96340792@manjaro.org>
+	s=arc-20240116; t=1720882604; c=relaxed/simple;
+	bh=98Uf/BgNp4xzwikAgzIM1P+vRLZX8/MnC8W/dRNxc10=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OipLFHvomug72Dp747IoWy9910e+arNgx8AQJPcscyiq9fJlpIuQpWcRBjyjRoObWQu250GdWYzOCe4kgbB4ij2zoIdMQVYRluUaFIXywIgg4Vb7qC6/rKd73P3GghW6CA10LWyHTwKNzV52UuYXov8SuH3mqotooJ6px+5UxEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TfZoCWRL; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-58ba3e38027so3149488a12.1;
+        Sat, 13 Jul 2024 07:56:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720882601; x=1721487401; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O+QJ0SsewdKDJPXCT3dbpM5KdZdtJLQpdDMM4UU/jY8=;
+        b=TfZoCWRLyVoKhXWoONoA9DPgSlVwSGNNHBFhrxS3M8FpkazQgLUSgwyx/A7Zg3qswo
+         M2cWAmvNSKaaJHF1jqOL7KhhdQ6Deh3Xpl6wPXbbYFFNepffD4RdVenLyycklytaz/NN
+         J5a+TLuj4JCDfHew36WW+rcSJIb1KwsmXkvVHl85Wg761WFJr0VPfPZa0ZHkS9uXkOUS
+         B6qRrNbZZ8OZoU+5C7XFHcOYqoWIYGk6sTy+e6+4LXAzBavqWHoCKqTPyf0fUttxt5uG
+         LrURdtVTJqelkX5fFPa4pZN/tUmDIfB8Xm2JWM9MdmkO1tyFc1/6TjrgoQBMDbhuHF9o
+         bCjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720882601; x=1721487401;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O+QJ0SsewdKDJPXCT3dbpM5KdZdtJLQpdDMM4UU/jY8=;
+        b=QpfSX+oSWYsIJZVbSiyq+gsM4rLkhk+UgzAD2plzEf7wBLDiW3UiGGS66Dj3NhAIx3
+         z0BoYBi/v6pYqfOtAzwXec+kSwqK5LXt8rht1pweoNMA7G1b1cl7saqmW9lmCrF9DdEG
+         8ZLGsNzKKyWZpYsgFkXxGx8b8CAKJJixCChlD9/Frwk8m6GWGby74E1X3+0l9s2R6Jwi
+         Sby3n7BmzVp2dtutWgmLqbvIq5W1yl8p4OL0aSD92ha/bpJJdQYdP6wtnQCspQy0OF/+
+         hmGDOTC1melKjEqvJhxtaamz9zgixqUiruuLeSZwbSACK8SbM97BUrfnUEgA8XbFtz1z
+         iyZw==
+X-Forwarded-Encrypted: i=1; AJvYcCVWcF1moB3Etnp264v7Wlyhm7a8SG2ql2CKtsuAW9rCVDohQ442vpDdGUemSmMGAqPiRQktsu6BQzx1Bh5qAnQwmZCwp33A4o+WYQYH2Td/9BwivVT3oP0E7toRF2lzqy5wWbePjcYy0A==
+X-Gm-Message-State: AOJu0Ywc1bvaMhfXjFOgVI23SL6yJ/SBmATzRJXZcIXWlf3pm1g42Bty
+	2FQdnZEtr+wEmep+aIZEuKgFWBX/jFUvMdOYfT9eu0xK9sszg9o=
+X-Google-Smtp-Source: AGHT+IEBrxJbGg84mCAvITBimIZyse3/RhpYf/0B/ael0HmzbuRV66syKLkU7uKd0X4UqYujCyLMsg==
+X-Received: by 2002:a50:bb62:0:b0:599:4d6c:d71c with SMTP id 4fb4d7f45d1cf-5994d6cdbffmr2986279a12.40.1720882601102;
+        Sat, 13 Jul 2024 07:56:41 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:4389:8fa7:e8f7:707b? ([2a02:810b:f40:4600:4389:8fa7:e8f7:707b])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b24a76fefsm860047a12.16.2024.07.13.07.56.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Jul 2024 07:56:40 -0700 (PDT)
+Message-ID: <969642dd-fe5f-4dfd-baac-21e75e30a271@gmail.com>
+Date: Sat, 13 Jul 2024 16:56:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2866865.qWf11O12ap";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
-
---nextPart2866865.qWf11O12ap
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Dragan Simic <dsimic@manjaro.org>
-Date: Sat, 13 Jul 2024 16:35:34 +0200
-Message-ID: <2735059.JVtD0IzA6d@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <72718d8d02c25993c138567c96340792@manjaro.org>
-MIME-Version: 1.0
-
-Hi Dragan,
-
-Thanks for the reviews!
-
-On Saturday, 13 July 2024 15:45:12 CEST Dragan Simic wrote:
-> Looking good to me, cross-referencing the RK3328 TRM and the
-> downstream RK3328 SoC dtsi checks out.  Though, it will remain inert
-> in our codebase, because no supported boards use it, but that's fine,
-> we're still improving the correctness of the RK3328 SoC dtsi.
-
-Indeed. But it's hard to argue with technically correct ;-)
-
-Cheers,
-  Diederik
---nextPart2866865.qWf11O12ap
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZpKQtgAKCRDXblvOeH7b
-bs7DAP9IVMN0oMrNBHeLgpMzL1AegDXUwW6vrLjrH2ayh3cqtQD/fHyImAwOALmM
-TIOvYwPAjXuwZtckeR3b/XVwbLJdtgQ=
-=tC+4
------END PGP SIGNATURE-----
-
---nextPart2866865.qWf11O12ap--
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add sdmmc_ext for RK3328
+To: Diederik de Haas <didi.debian@cknow.org>,
+ Dragan Simic <dsimic@manjaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
+ Chen-Yu Tsai <wens@csie.org>
+References: <20240710132830.14710-1-didi.debian@cknow.org>
+ <20240710132830.14710-3-didi.debian@cknow.org>
+ <72718d8d02c25993c138567c96340792@manjaro.org> <2735059.JVtD0IzA6d@bagend>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <2735059.JVtD0IzA6d@bagend>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
+Am 13.07.24 um 16:35 schrieb Diederik de Haas:
+> Hi Dragan,
+>
+> Thanks for the reviews!
+>
+> On Saturday, 13 July 2024 15:45:12 CEST Dragan Simic wrote:
+>> Looking good to me, cross-referencing the RK3328 TRM and the
+>> downstream RK3328 SoC dtsi checks out.  Though, it will remain inert
+>> in our codebase, because no supported boards use it, but that's fine,
+>> we're still improving the correctness of the RK3328 SoC dtsi.
+> Indeed. But it's hard to argue with technically correct ;-)
+FWIW: (upstream supported) ROC-RK3328-PC has sdio wifi connected to this
+controller.
 
+Alex
+
+> Cheers,
+>    Diederik
 
