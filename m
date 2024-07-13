@@ -1,182 +1,149 @@
-Return-Path: <devicetree+bounces-85552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE9EC930808
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 01:26:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D4B930811
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 01:37:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E276281317
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 23:26:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AF5B1F21960
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 23:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3133E14F9D0;
-	Sat, 13 Jul 2024 23:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190CC14F9D0;
+	Sat, 13 Jul 2024 23:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XIfAGHsU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CZVK73jC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9EE313E88B;
-	Sat, 13 Jul 2024 23:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4DC1CFB6;
+	Sat, 13 Jul 2024 23:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720913157; cv=none; b=lDgfdF1zUz7YpkRUjgs62ER50SltoUXgPDbsCmqvQRgbJSkYLpzEGDD8vg8sQtXCNl8fUOAXqnpkZdta+nsia/HCep262AlgwBqGY70W0eXbHMFsglrl893gqczntJkgiaCHkGpvhX5AguCJ1FDrTafqoD8P4UMlTi5kaQWIeno=
+	t=1720913852; cv=none; b=cc6rdIdoL7KuM8UbkT9hbGih+mjWPSs5A05mEfhzYjXllVzgXOGm+jfVmqgK6fOJj+C1cPEkm+f3pjq5kSTVtWd4vQwSqoMMvjfWVCGnyq4hRDIELmeoEeaEBYX2Q8TaVAagcLFhPS5hSHILG7TgrFac+vt8nMOgW9rH4a2gh68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720913157; c=relaxed/simple;
-	bh=PImxgGKyVk7kPOsf77JMkli5keQyd7AsTSM8XarLkFI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GuWkZZ5Mz5wBfOJucIayYxOi3NOR1ThuZJe5iXpYRtUXOqhzbwV0dT76jWRsxZ9BZgT7z0YnPeWzhdWDTNLB/8b0C7qVxpsxJrCwqxEozTgq90/Q7GlDaEQ9+riQ7QZF0KPtmO5fi3nhiIcssnXxF3SGrIJeyuN52c8f8RIntnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XIfAGHsU; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720913155; x=1752449155;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PImxgGKyVk7kPOsf77JMkli5keQyd7AsTSM8XarLkFI=;
-  b=XIfAGHsUlR8Jk2873iNuk3zlEoa4PxNcEnQSQh4fkIOi4s24ha5n3ups
-   YFXTaZlGuP1lj4YljrVJ85Vy2Ih86B30KnmPw3ltnxPJ79EX6xQQtIS+r
-   5n40GoKUIW2Qn4/qFXEpK+3H/JhIg1GY0OPcpz3oOcnhfkyvpFoldjNfQ
-   GOC2WA1+sbXJr3KYR8oZpewbsNJo3emM3Dcyzhg0fqQnl2nxOy4FpAkSb
-   X2yKsjRRmX/ihka0qFF/EHUmLmAzXK/3P+WVN0NRkZFnAUFS49IwB7uwI
-   zDZPvUGay3LtF1EmfxX273Ut9HEcs1Rctiv3ZnNsqMLwijSjd7+SCpui6
-   g==;
-X-CSE-ConnectionGUID: wR5tpD9CR7KadXasfrftuA==
-X-CSE-MsgGUID: RxE7AoNYT0eIOi8K2mLXzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11132"; a="22143508"
-X-IronPort-AV: E=Sophos;i="6.09,207,1716274800"; 
-   d="scan'208";a="22143508"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2024 16:25:54 -0700
-X-CSE-ConnectionGUID: 31244haTR72HJOvqgTZu5A==
-X-CSE-MsgGUID: IWY47mOpS06iLoo7usBlFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,207,1716274800"; 
-   d="scan'208";a="54434821"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 13 Jul 2024 16:25:51 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sSm7g-000cqQ-1k;
-	Sat, 13 Jul 2024 23:25:48 +0000
-Date: Sun, 14 Jul 2024 07:24:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH RESEND v9 2/2] dmaengine: Loongson1: Add Loongson-1 APB
- DMA driver
-Message-ID: <202407140701.jQbPNAYb-lkp@intel.com>
-References: <20240711-loongson1-dma-v9-2-5ce8b5e85a56@gmail.com>
+	s=arc-20240116; t=1720913852; c=relaxed/simple;
+	bh=1MKxAWYwekOaP2fx1r0IX5frF/qFcCGEptjnVO3Gg9s=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=LNeHvNUbh5TVw0/szaZyi1lH8hWbsbXF+qD5mI83VmVIBSwbrunzHAVA7mDuPSESOfI9JNUJSxPNo81g5YkV6YdHtDcjBwGn5Gj1/fzmPWfq+/UTpbWBzgojEa2s2j3vFgx60b3dZgGfcCcVuDwvLq6m98J8Ipcp2HVKy2S9MOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CZVK73jC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 101D6C32781;
+	Sat, 13 Jul 2024 23:37:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720913851;
+	bh=1MKxAWYwekOaP2fx1r0IX5frF/qFcCGEptjnVO3Gg9s=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=CZVK73jCSuzWb30m9mu0yZbd8+rqCqBXF8zwLg36U2uuXLUckq2rh0Fg19VyhdmdM
+	 qGm264HTLM9JjcMrD8M8ZCKVeJFFycPtBnPsQPNoWxdy4SnOxnnOL2fc3hZQhjJFMY
+	 +T8LqZSu9bF5YfNoPEbPmINfW3Ntdo6t09gCmEfCDExxpxxLHKbBiBcpl2hQvA0G/e
+	 1ynZicnLJWjk5Ye8gV+nd/Up/nWY7878TrArmmSr8dtTVJSLayq21TqPt20TL1MzrC
+	 6jPR5JCTjmzE1xhT85vaezu3AcWRch2pvgX6Y6fq8au+mKKziET+bR6MgINxxsZVhK
+	 LpqxOqCBrULTg==
+Date: Sat, 13 Jul 2024 17:37:29 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711-loongson1-dma-v9-2-5ce8b5e85a56@gmail.com>
-
-Hi Keguang,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on d35b2284e966c0bef3e2182a5c5ea02177dd32e4]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang-via-B4-Relay/dt-bindings-dma-Add-Loongson-1-APB-DMA/20240711-191657
-base:   d35b2284e966c0bef3e2182a5c5ea02177dd32e4
-patch link:    https://lore.kernel.org/r/20240711-loongson1-dma-v9-2-5ce8b5e85a56%40gmail.com
-patch subject: [PATCH RESEND v9 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240714/202407140701.jQbPNAYb-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240714/202407140701.jQbPNAYb-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407140701.jQbPNAYb-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/dma/loongson1-apb-dma.c:138:18: warning: format specifies type 'unsigned int' but the argument has type 'dma_addr_t' (aka 'unsigned long long') [-Wformat]
-     137 |         dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
-         |                                                              ~~
-         |                                                              %llx
-     138 |                 dchan->cookie, *hwdesc_phys);
-         |                                ^~~~~~~~~~~~
-   include/linux/dev_printk.h:165:39: note: expanded from macro 'dev_dbg'
-     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                      ~~~     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:274:19: note: expanded from macro 'dynamic_dev_dbg'
-     274 |                            dev, fmt, ##__VA_ARGS__)
-         |                                 ~~~    ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:250:59: note: expanded from macro '_dynamic_func_call'
-     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |                                                                  ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:248:65: note: expanded from macro '_dynamic_func_call_cls'
-     248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-         |                                                                        ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:224:15: note: expanded from macro '__dynamic_func_call_cls'
-     224 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
->> drivers/dma/loongson1-apb-dma.c:338:53: warning: format specifies type 'int' but the argument has type 'size_t' (aka 'unsigned long') [-Wformat]
-     338 |                 "buf_len=%d period_len=%zu flags=0x%lx dir=%s\n", buf_len,
-         |                          ~~                                       ^~~~~~~
-         |                          %zu
-   include/linux/dev_printk.h:165:39: note: expanded from macro 'dev_dbg'
-     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                      ~~~     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:274:19: note: expanded from macro 'dynamic_dev_dbg'
-     274 |                            dev, fmt, ##__VA_ARGS__)
-         |                                 ~~~    ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:250:59: note: expanded from macro '_dynamic_func_call'
-     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |                                                                  ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:248:65: note: expanded from macro '_dynamic_func_call_cls'
-     248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-         |                                                                        ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:224:15: note: expanded from macro '__dynamic_func_call_cls'
-     224 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
-   2 warnings generated.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Drew Fustini <drew@pdp7.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
+ "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ Jisheng Zhang <jszhang@kernel.org>, devicetree@vger.kernel.org, 
+ Eric Dumazet <edumazet@google.com>, 
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+ Paolo Abeni <pabeni@redhat.com>, Jose Abreu <joabreu@synopsys.com>, 
+ Fu Wei <wefu@redhat.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>, 
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+ Jakub Kicinski <kuba@kernel.org>, Conor Dooley <conor@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, Guo Ren <guoren@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240713-thead-dwmac-v1-2-81f04480cd31@tenstorrent.com>
+References: <20240713-thead-dwmac-v1-0-81f04480cd31@tenstorrent.com>
+ <20240713-thead-dwmac-v1-2-81f04480cd31@tenstorrent.com>
+Message-Id: <172091384997.169230.1017177117936828717.robh@kernel.org>
+Subject: Re: [PATCH RFC net-next 2/4] dt-bindings: net: add T-HEAD dwmac
+ support
 
 
-vim +138 drivers/dma/loongson1-apb-dma.c
+On Sat, 13 Jul 2024 15:35:11 -0700, Drew Fustini wrote:
+> From: Jisheng Zhang <jszhang@kernel.org>
+> 
+> Add documentation to describe T-HEAD dwmac.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Link: https://lore.kernel.org/r/20230827091710.1483-3-jszhang@kernel.org
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> [drew: change apb registers from syscon to second reg of gmac node]
+> Signed-off-by: Drew Fustini <drew@pdp7.com>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml        |  1 +
+>  .../devicetree/bindings/net/thead,dwmac.yaml       | 81 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  3 files changed, 83 insertions(+)
+> 
 
-   130	
-   131	static inline int ls1x_dma_start(struct ls1x_dma_chan *chan,
-   132					 dma_addr_t *hwdesc_phys)
-   133	{
-   134		struct dma_chan *dchan = &chan->vchan.chan;
-   135		int val, ret;
-   136	
-   137		dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
- > 138			dchan->cookie, *hwdesc_phys);
-   139	
-   140		val = *hwdesc_phys & DMA_ADDR_MASK;
-   141		val |= DMA_START;
-   142		val |= dchan->chan_id;
-   143		chan_writel(chan, DMA_CTRL, val);
-   144		ret = readl_poll_timeout(chan->reg_base + DMA_CTRL, val,
-   145					 !(val & DMA_START), 0, 3000);
-   146		if (ret)
-   147			dev_err(chan2dev(dchan), "failed to start DMA\n");
-   148	
-   149		return ret;
-   150	}
-   151	
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.yaml: properties:reg: {'minItems': 2, 'maxItems': 2, 'items': [{'description': 'DesignWare GMAC IP core registers'}, {'description': 'GMAC APB registers'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.yaml: properties:reg: 'oneOf' conditional failed, one must be fixed:
+	[{'description': 'DesignWare GMAC IP core registers'}, {'description': 'GMAC APB registers'}] is too long
+	[{'description': 'DesignWare GMAC IP core registers'}, {'description': 'GMAC APB registers'}] is too short
+	False schema does not allow 2
+	1 was expected
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.yaml: properties:reg-names: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 'dwmac'}, {'const': 'apb'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'dwmac'}, {'const': 'apb'}] is too long
+	[{'const': 'dwmac'}, {'const': 'apb'}] is too short
+	False schema does not allow 2
+	1 was expected
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.example.dtb: ethernet@e7070000: snps,pbl: [32] is not of type 'integer'
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.example.dtb: ethernet@e7070000: snps,pbl: [32] is not one of [1, 2, 4, 8, 16, 32]
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.example.dtb: ethernet@e7070000: snps,pbl: [32] is not of type 'integer'
+	from schema $id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.example.dtb: ethernet@e7070000: snps,pbl: [32] is not one of [1, 2, 4, 8, 16, 32]
+	from schema $id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,dwmac.example.dtb: ethernet@e7070000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'interrupt-names', 'interrupts', 'mdio', 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,fixed-burst', 'snps,pbl' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240713-thead-dwmac-v1-2-81f04480cd31@tenstorrent.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
