@@ -1,126 +1,132 @@
-Return-Path: <devicetree+bounces-85503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3450393053E
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 12:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D269193054D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 13:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C12F1C210D7
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 10:47:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A6331C210DC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 11:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66996E614;
-	Sat, 13 Jul 2024 10:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 009D34AEC6;
+	Sat, 13 Jul 2024 11:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="K26DenVp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UzcYypRS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39CF747A53;
-	Sat, 13 Jul 2024 10:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4D745C14;
+	Sat, 13 Jul 2024 11:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720867666; cv=none; b=cNQJEWG93O9ph2MVQBtthuNk4NFv7XIXoL2jZFXQ81MedbOLHL+nas3tQo8h8IQb+C/Sq/wtwX7FxsbJEl5z1d+8Li7LsUzsrdSfKhAO7/HjLn6ebX3KoBjb83W1lWwBq3e9TexdmyoysH7mC/Xe1Pk6mGmnXOLnFeLCu/a35NQ=
+	t=1720868422; cv=none; b=DFRnP9AAmZAvEh2VHhYqXXkBL7jpQJz5AdEsotHv7uSV3e6iKEBOUX5Is7NrXiPAmmSkATZJPhCv0m4hmRRJwXHun83LnanhlDJq7tOGm1RaE87e5vo0wbOfbDeuWEdeeusf9jYguDwlmCRafW71/dDb+177eAUFGoYPgPolprY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720867666; c=relaxed/simple;
-	bh=6Rd/PEeMiqexHiwaSOQ1xuaoeBDAi/qd5v9AWNzziaQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=J2aJwoCrE+zo/QYQn+gzQGLlNCJffuiqGJQfCfV+7NnwXF+NOREAWXxSwDjE0xmEb93Daq2GbfR0KOWglFFSTjMRDBoIRaXZZ1aeJulRuFdAF1M+LDAlCMQ1wNJt/RR5a4uFmZwuuyrUw3ImQ2ePoHxt1erjFkHrvxAl4V/rFcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=K26DenVp; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1720867623; x=1721472423; i=frank-w@public-files.de;
-	bh=6Rd/PEeMiqexHiwaSOQ1xuaoeBDAi/qd5v9AWNzziaQ=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=K26DenVpAOM12XFxLVW2HTOzeEb9UP9Wopq+Zd+I3K0jsuybfB9ZPx5BthXcR6+t
-	 0z8fu6N+k5+zKeHNxNuCh5WpD5trpFLbDRJeVTkhSC/f6nbHTneO4Rcyt3IieKo1z
-	 BJNw60T10sZ1lHtXQkiWUe80Y/4Lem97Sfpf35Ls1u/n8GjZBADVGajbqbFnp+ANm
-	 8dPbmv6WzVaxikP/sf3Bc7pfJQCEaLRN5DkMS/1+QmQ7WaC32cPcnKHNMOapB/HZ2
-	 hrgCjn/PBs/qAaWNAKMQNuF1eJYwJete8TCONf7QfCKx9hn3dv8wi31NJRyl3Q1Tj
-	 IegYx1yF9pvye2oiWA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([217.61.145.51]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MdNY2-1rtWZq38Ma-00iLMZ; Sat, 13
- Jul 2024 12:47:02 +0200
-Date: Sat, 13 Jul 2024 12:47:00 +0200
-From: Frank Wunderlich <frank-w@public-files.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Frank Wunderlich <linux@fw-web.de>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	s=arc-20240116; t=1720868422; c=relaxed/simple;
+	bh=6MwOyZRCjJkxdmlwhPk2vAqrqZ8cTUIQr3o9S8vkzTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=C+HoY6LMzTv2SIltkx/pUa2s35NgFJ7fz+QAQlX3zDloHD6zDMro0l0+n7T9iGgGINY0T3DYg+0dbTWvUapt4qQvTDU6c8W8OQB7dGm86DU8y3eZ/HnvIqAnFTeLilRDWBEHjMyr83a7XYe7mQvMdHxb4ROs/oTLUg+uB9QMX2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UzcYypRS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 880C1C32781;
+	Sat, 13 Jul 2024 11:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720868422;
+	bh=6MwOyZRCjJkxdmlwhPk2vAqrqZ8cTUIQr3o9S8vkzTY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UzcYypRS1WEGzDC889pQIEhzvsfGPfcvplBJise752vDZBLZQaWMulCUxvkhdzEOq
+	 5uaFnEkEfvKqrj2zHcPYnqtzkyy2GrzdnTApothF2r91HJn4EZ4C3I43bQ4V8twPJc
+	 iEDNNt9dmWwUHWwcyG52PF2/EY9Kzp9be/kCb5LDVLJW2i1wfA5R3KOHKaQcN+emVK
+	 AXcH+mDgdNOqX7c+J8SwK4ctHu/IHEbtly22hzpkl6o+fQU1ve+mkTheZ8rakOI8L0
+	 4JGbTQUFbP9hO1/czt2VBxtX5KOiCp9FwlaYYggkG8uqEmzQRUocWaU2wEdV+dbmcc
+	 rY4OqmP50RTog==
+Date: Sat, 13 Jul 2024 12:00:13 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Conor Dooley <conor@kernel.org>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>
-CC: Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-watchdog@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_1/4=5D_dt-bindings=3A_watchdog=3A_me?=
- =?US-ASCII?Q?diatek=2Cmtk-wdt=3A_add_MT7988_syscon_requirement?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <58cba30d-af53-47a6-9258-8b36eab6cbfb@kernel.org>
-References: <20240709101328.102969-1-linux@fw-web.de> <20240709101328.102969-2-linux@fw-web.de> <58cba30d-af53-47a6-9258-8b36eab6cbfb@kernel.org>
-Message-ID: <F5A59950-5D16-4780-A64C-806A6324D467@public-files.de>
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: iio: rename bu27034 file
+Message-ID: <20240713120013.034b4419@jic23-huawei>
+In-Reply-To: <2b66ea94-dd77-4e86-b09b-c00523bdbf75@gmail.com>
+References: <cover.1720176341.git.mazziesaccount@gmail.com>
+	<f83cf0d6f5b0ed391703ea3908ebd65b3f6e5c87.1720176341.git.mazziesaccount@gmail.com>
+	<20240708-eloquent-overdrive-092c7678f913@spud>
+	<2b66ea94-dd77-4e86-b09b-c00523bdbf75@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:dfQVnBpIteXjdR8ttejmmx8V5KDS9dWqIXsSefOdM2sLE/Obzco
- NGDmA4NYZJB7TLC2wDsEaXEpgf6Xsx332EYdG0YfLBz0/8wsNk7+hpg4Itwu2I3DUCcOb0w
- msuBv+/Xb0nDwy+ySkjfwRlAToGV+uz3y5kI4J44Pkay2s66a7DBZI7b1JXLpsZapc5cAW0
- dxdy9GJLKI/j6SjG0lDkg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:7d5/pH8sfOY=;kZxM77vMuE7lzEFRj2it8hMElOb
- XfUwf6PpqfVT6w35/xDyxLXkd35plIy0+Ix3IXfqwLS8q67xbsOjI2UEmx4Q01LoOhF+1d25e
- t1wbbK1QfPNMrMMwDYKayZcNi5nmZqHQjFktyMYC4KhTxI9hRT0DhO4bn5g/tGEqAMFGOcmgY
- Sulc9zWvKtnkX4G5oL/FceF6nm4/joU9GzZo6XqBzClqoq3kkKtrLTtIofPvPBwhYipdn8HB6
- ZtIs9TZwqyByvlSrk/kLn1HJRQyXfoSeYsPA5YsQ4It0wIIpY7MQOC7rsFp/103FEgayRYik2
- h6GKbWQrRv2jaU00V45KtiVVvUXtY4sMQD66tF3C9VrSBVvQzSDSzSVZ0IBzJNfYETB6I1YFC
- 8t60Wu+ms6rM+TF8L1AYT5GyFAwXhZkfjpK4Uqs9ZgEFY5MyQmKRn3DF3u++8mY+9zJ11/ylw
- W9Z01g4C4STe2483/xiUV3FBps2s2cL3pKgH9XKBtMAXGHB+FUgSk2iDPmLHZ53ZbCNzsNcAY
- MP77ljfHtbwC60yPXReUmOxZMHFhb3j1DP5T0ivfrtSKeJ2CMm+QcLG1B2xXk82ed0jb2OtAY
- eqIqhU3gch1KgXPpwVl3ZTNRJF4EGDQrRt9/BGHhyDiVHFDLNdf1wzgqO49zVpdzV7bEo1O79
- 9gqvnb3z8tph1gI2uCwLtPizYyl4gCyeRBzITWzgSkEXXsy18ytGV1uZBf1erunhQXdKePRHB
- EIrompkqsMh3FSLQyfP8eUKENAH5Ju+yhDvbsKgZJiyiDd3yD/hhSK8mdebk+Ji5mz6qaXzWR
- hNM+bQeiUUEaJILs+UEYi5/g==
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Am 13=2E Juli 2024 12:21:46 MESZ schrieb Krzysztof Kozlowski <krzk@kernel=
-=2Eorg>:
->On 09/07/2024 12:13, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> This is needed by u-boot-driver when using OF_UPSTREAM=2E
->
->Thanks for providing context=2E What we miss here still, is the
->description of the hardware and for what this syscon is used=2E Why this
->become system controller and before was not? Or this is just for regmap
->- then it does not work that way=2E=2E=2E You cannot have whatever driver
->poking all around then claim - I have crappy driver poking to every
->driver without implementing proper driver model, so I add syscon to
->bindings=2E
->
->
->
->Best regards,
->Krzysztof
->
+On Tue, 9 Jul 2024 21:33:02 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-The nodes here are linked to the ethernet-node and syscon is only needed t=
-o get the regmap=2E=2E=2Ethe access to it is done by ethernet driver=2E It =
-does work,but maybe not the right way=2E=2E=2E
-regards Frank
+> On 7/8/24 20:05, Conor Dooley wrote:
+> > On Fri, Jul 05, 2024 at 01:54:26PM +0300, Matti Vaittinen wrote:  
+> >> The BU27034NUC was cancelled before it entered mass production. It was
+> >> replaced by a new variant BU27034ANUC (note, added 'A'). The new
+> >> variant gained a few significant changes, like removal of the 3.rd data
+> >> channel and dropping some of the gain settings. This means that, from
+> >> software point of view these ICs are incompatible. Lux calculation based
+> >> on the data from the sensors needs to be done differently, and on the
+> >> BU27034ANUC the channel 3 data is missing. Also, the gain setting
+> >> differencies matter.
+> >>
+> >> The old sensor should not be out there so the compatible was dropped and
+> >> a new compatible was added for the bu27034anuc. Move the yaml file so
+> >> the file name matches the binding and change the $id.
+> >>
+> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >> ---
+> >> Revision history:
+> >> v1 => v2:
+> >> - New patch
+> >> ---
+> >>   .../iio/light/{rohm,bu27034.yaml => rohm,bu27034anuc.yaml}      | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>   rename Documentation/devicetree/bindings/iio/light/{rohm,bu27034.yaml => rohm,bu27034anuc.yaml} (92%)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
+> >> similarity index 92%
+> >> rename from Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+> >> rename to Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
+> >> index 535bd18348ac..fc3d826ed8ba 100644
+> >> --- a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+> >> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
+> >> @@ -1,7 +1,7 @@
+> >>   # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>   %YAML 1.2
+> >>   ---
+> >> -$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
+> >> +$id: http://devicetree.org/schemas/iio/light/rohm,bu27034anuc.yaml#
+> >>   $schema: http://devicetree.org/meta-schemas/core.yaml#  
+> > 
+> > IMO this should be squashed.  
+> 
+> I've no objections to squashing this. The main motivation of having it 
+> as a separate patch was to point out the file rename for reviewers and 
+> ask if it is Ok. Furthermore, if there was a reason not to do the 
+> rename, then this patch could've been just dropped while the rest of the 
+> series could've been applied.
+> 
+> Thanks for the review!
+I squashed into previous patch whilst applying.
+
+Thanks,
+
+Jonathan
+
+> 
+> Yours,
+> 	-- Matti
+> 
+
 
