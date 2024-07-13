@@ -1,211 +1,202 @@
-Return-Path: <devicetree+bounces-85490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11CAF9304DE
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 12:02:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9749304E4
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 12:09:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DF381F22049
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 10:02:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A636B282B33
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 10:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6407C48781;
-	Sat, 13 Jul 2024 10:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6BD4AEDA;
+	Sat, 13 Jul 2024 10:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s8JZp6JA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tvjaBb+I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365443BBF6;
-	Sat, 13 Jul 2024 10:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC03C101E6;
+	Sat, 13 Jul 2024 10:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720864946; cv=none; b=j+6Jq33AcHEgIVUchSv54zzwhc4TZnJgIcnE9w7NkQyBcZGyr0kBjYg7PeCwl2PxDHeCyqL67ERTVXdYnKSZ4oH6Vz/plNeNpwqEHUbDmeMY1x+3pFWygPXTS+0cIBWyUDz02Mb94TQmC+uwnXuBVu5b/zWfy6gaLq3NoFTJTic=
+	t=1720865389; cv=none; b=iSSYM9MjGtyXcV2M01HMkB7ubyxjt9h/xaE+DywjdMFYDt1pbafyIs9oSI19c9dmmRg+qypP7kbLBc/4uCQaEF+Hh8xvP6VUKHdZLwk2SLjSCXCLeZbheH8+36hBuy68YNpkF57NusQlPA2XPipz/8CyUE/P0yRauXvK1AGpovg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720864946; c=relaxed/simple;
-	bh=/tSL1J1BmBhOXuZJmyUJfD8SNa/r5dpwJ99Tl9HRTkY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ARfgvzT1gUrWekxwTop3MNhIWejZt6v+AgQdjJjxaRBLweDjpdVoeq8DwQehpYPgo0IiICUvG58IeHI0ntByvPGzLcUHKk4fe4hHQOeGdVPE0S8Ot2av9FTH2uQOX7ofV+cyXWYJOF9RY0JhER54494ZNczc0AICUbZHdk7sQcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s8JZp6JA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3386C32781;
-	Sat, 13 Jul 2024 10:02:21 +0000 (UTC)
+	s=arc-20240116; t=1720865389; c=relaxed/simple;
+	bh=gWbTzZXIi2BBtYYNsSaJA9ZU5XfKqUUJnGNEK1iNV0g=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kPpn1BFKbTUFVvml5zaabb6RElwbtr+lXNpisUD0NtoLWcWhv7Ha/VeQJy85dhZE5KwtpisvU8OE84tIWTp0rffLue1UG58e43XEmtLwbBzS3s1EqkBa2pPg9sQsPtmTKBve3C23pAzRwq7qstznj9dOBuBYsncWtk6U8d0UuWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tvjaBb+I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80551C32781;
+	Sat, 13 Jul 2024 10:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720864945;
-	bh=/tSL1J1BmBhOXuZJmyUJfD8SNa/r5dpwJ99Tl9HRTkY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s8JZp6JAfL4RUHtQ7wBc5lwf4E/dXFk73ucxSPsrcPHFQMUQt96WLYLcuKVOLhlMU
-	 WjmMvehmxgVtrEuy49jn5tUxqvAHpOVTzylubUMaZZzyoaG1/i1tDP7VW/gvjaFxA1
-	 s7UhAuJTPOdNayD8bIZIwtVbJfHlA/vrbgixID8C2K8Obqt7CP3yg9QcOHDmDtU1oi
-	 RgCes6G6660vnIAweW4adQbvqJDzOb4xPs1dCQNFWO4pzPKuMYBKVV5uLpMIVRt0Zp
-	 pXtqHvnOr6dVwIjOKS5PwIuM/5gRtjb21S8MBfhyb+idjVI0dXReZsUp3OPvZrkhXz
-	 E8vmeJwqaP0mA==
-Message-ID: <f377a55c-4a74-4555-926d-afb7dd813e00@kernel.org>
-Date: Sat, 13 Jul 2024 12:02:19 +0200
+	s=k20201202; t=1720865389;
+	bh=gWbTzZXIi2BBtYYNsSaJA9ZU5XfKqUUJnGNEK1iNV0g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tvjaBb+ISFqW6RyVhjTTqT24ALXL9n2o92eImURh96BTHAeGaX7JK5WOPZOtJVsre
+	 3AN74qlXDpeBTgHLyqiK+e1qDpVYDuwo/pJfHpe8iDt8ogFUhc2tnWAVMo/o16Eq7i
+	 E7Lgrh2QdNOEI1+Bq7C7EB4IxRyWrrEyrE5niJDCAmJYwHP0xoq/Q7gbU5TTGUP/2W
+	 gi2qeogSW3e3Q8D6N8gdC7rTOxlzZ4o3pYMROwMjxejzJltmk4bYGxmgfoFNrtYsip
+	 y+isUMXSmg1hRsMfsA/bKL13xfw5OVMuSCJJvffzDxqJzARbjGzOOnQnrAhwY9rXH7
+	 1z6AqC3otwb8A==
+Date: Sat, 13 Jul 2024 11:09:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matteo Martelli <matteomartelli3@gmail.com>
+Cc: Marius.Cristea@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ lars@metafoo.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: adc: add support for pac1921
+Message-ID: <20240713110939.6b359e7b@jic23-huawei>
+In-Reply-To: <668bed8e65d4f_6e037024@njaxe.notmuch>
+References: <20240703-iio-pac1921-v1-0-54c47d9180b6@gmail.com>
+	<20240703-iio-pac1921-v1-2-54c47d9180b6@gmail.com>
+	<SN6PR11MB3167C48F19120E35862316FA99DE2@SN6PR11MB3167.namprd11.prod.outlook.com>
+	<a67e4c0bf2c3839694b60cb96bbc43170fbb2f36.camel@microchip.com>
+	<668bed8e65d4f_6e037024@njaxe.notmuch>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8939-wingtech-wt82918: Add
- Lenovo Vibe K5 devices
-To: Nikita Travkin <nikita@trvn.ru>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- =?UTF-8?B?QWRhbSBTxYJhYm/FhA==?= <asaillen@protonmail.com>
-References: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
- <20240712-msm89xx-wingtech-init-v1-3-64f4aa1870bd@trvn.ru>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240712-msm89xx-wingtech-init-v1-3-64f4aa1870bd@trvn.ru>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-On 12/07/2024 18:04, Nikita Travkin wrote:
-> From: Adam Słaboń <asaillen@protonmail.com>
-> 
-> This commit introduces multiple hardware variants of Lenovo Vibe K5.
-> 
-> - A6020a40 (msm8929-wingtech-wt82918hd)
-> - A6020a46/A6020l36 (msm8939-wingtech-wt82918)
-> - A6020a40 S616 H39 (msm8939-wingtech-wt82918hd)
-> 
-> These devices are added with support for many features, notably:
-> 
-> - Basic features like USB, mmc/sd storage, wifi, buttons, leds;
-> - Accelerometer;
-> - Touchscreen;
-> - Sound and modem.
-> 
-> Note that "HD" variant of K5 is based on msm8929 which is a lower bin
-> of msm8939 SoC. A simple dtsi is added for this soc along with the new
-> devices.
-> 
-> Unfortunately, despite the heavy similarities, the combination of minor
-> differences between variants make them incompatible between each other.
-> 
-> Signed-off-by: Adam Słaboń <asaillen@protonmail.com>
-> [Nikita: Minor cleanup, commit message]
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   3 +
->  .../boot/dts/qcom/msm8929-wingtech-wt82918hd.dts   |  17 ++
->  arch/arm64/boot/dts/qcom/msm8929.dtsi              |   5 +
->  .../boot/dts/qcom/msm8939-wingtech-wt82918.dts     |  16 ++
->  .../boot/dts/qcom/msm8939-wingtech-wt82918.dtsi    | 254 +++++++++++++++++++++
->  .../boot/dts/qcom/msm8939-wingtech-wt82918hd.dts   |  16 ++
->  6 files changed, 311 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index fd4c7c41ddc4..48ec781fa1d8 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -58,10 +58,13 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918hd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-> new file mode 100644
-> index 000000000000..f9a358e852f8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8939-wingtech-wt82918.dtsi"
-> +#include "msm8929.dtsi"
-> +
-> +/ {
-> +	model = "Lenovo Vibe K5 (HD) (Wingtech WT82918)";
-> +	compatible = "wingtech,wt82918hd", "qcom,msm8929";
-> +	chassis-type = "handset";
-> +};
-> +
-> +&touchscreen {
-> +	touchscreen-size-x = <720>;
-> +	touchscreen-size-y = <1280>;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/msm8929.dtsi b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-> new file mode 100644
-> index 000000000000..c3d1d1ace2f6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-> @@ -0,0 +1,5 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +&opp_table {
-> +	/delete-node/ opp-550000000;
-> +};
+On Mon, 08 Jul 2024 15:45:50 +0200
+Matteo Martelli <matteomartelli3@gmail.com> wrote:
 
-That's a very odd SoC DTSI.
+> Marius.Cristea@ wrote:
+> >=20
+> >=20
+> >   Hi Matteo,
+> >=20
+> >    Thank you very much for helping us adding PAC1921 support. I'm also
+> > developing a similar driver and I could share the code with you to make
+> > the driver better.
+> >=20
+> >    Also I have a few review comments, please, see bellow:
+> >=20
+> > Best regards,
+> > Marius =20
+>=20
+> Hi Marius,
+>=20
+> Thanks for your feedback, this is indeed very helpful, as it would be if =
+you
+> shared your code.
+>=20
+> I addressed some of your comments below in patch v2 thread, replying to
+> Jonathan [1]. If you have more comments about those points please reply o=
+n that
+> thread.
+>=20
+> [1]: https://lore.kernel.org/linux-iio/668bec2a8b23a_6e037017@njaxe.notmu=
+ch
+>=20
+> See also my comments below.
+>=20
+> > On Wed, Jul 03, 2024 at 03:34:34PM +0200, Matteo Martelli wrote:
+> >=20
+> >  =20
+> > > +
+> > > +/* pac1921 regmap configuration */
+> > > +static const struct regmap_range pac1921_regmap_wr_ranges[] =3D {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regmap_reg_range(PAC1921_REG_GA=
+IN_CFG, PAC1921_REG_CONTROL),
+> > > +};
+> > > +static const struct regmap_access_table pac1921_regmap_wr_table =3D {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .yes_ranges =3D pac1921_regmap_=
+wr_ranges,
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .n_yes_ranges =3D ARRAY_SIZE(pa=
+c1921_regmap_wr_ranges),
+> > > +};
+> > > +static const struct regmap_range pac1921_regmap_rd_ranges[] =3D {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regmap_reg_range(PAC1921_REG_GA=
+IN_CFG, PAC1921_REG_CONTROL),
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regmap_reg_range(PAC1921_REG_VB=
+US, PAC1921_REG_VPOWER + 1),
+> > > +};
+> > > +static const struct regmap_access_table pac1921_regmap_rd_table =3D {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .yes_ranges =3D pac1921_regmap_=
+rd_ranges,
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .n_yes_ranges =3D ARRAY_SIZE(pa=
+c1921_regmap_rd_ranges),
+> > > +}; =20
+> > I know that the regmap is the way forward, but the PAC devices are more
+> > efficient if bulk read is done.
+> > =20
+> I think performances depends on the use case, for example if the user is
+> interested in only one type of measurement I don't think reading all regi=
+sters
+> result in a performance gain. Also consider that there are 8 registers of
+> accumulators that are not currently exposed by the driver but that would =
+be read
+> anyway, so I am not sure it would result in a performance gain either. I =
+would
+> leave it as it is right now to keep the implementation simple and maybe e=
+xtend
+> it in the future in case performance gains become obvious and necessary f=
+or most
+> use cases. Also consider that regmap supports bulk reads.
 
-SoCs DTSIs are not meant to be included as complementary, but rather as
-full DTSI.
+Usual trick with this stuff is to apply some heuristics ideally based on
+what is reasonable on a test platform.  If we are going to read x% of regis=
+ters
+then bulk read them all, if it's less than %x do separate reads.
 
-IOW, this is very confusing code and will confuse everyone reading it.
+However, it does add maintenance burden, so there has to be a significant
+advantage. Many userspace apps want all or almost all the data though
+so we often optimise for that at the cost of reading single channels
+(through the buffer interface anyway).
 
+> >
+> > Also when you are reading all values at
+> > the same time, the Voltage, Current and the Power numbers will came
+> > from the same sampling time and they will be correlated to each other.
+> >  =20
+> I think that there is no guarantee that the user would always request two
+> successive raw readings, like Voltage and Current, within the same integr=
+ation
+> period. So for the second reading all registers may be read again and the=
+ two
+> values might not be correlated as well. Also consider that the measuremen=
+ts are
+> kept in the device registers until a new integration is complete, so if t=
+wo
+> registers are read consecutively within the same integration period they =
+would
+> be correlated.
 
-Best regards,
-Krzysztof
+We only usually care about correlation of channels when using the buffered
+interface.  There are a few exceptions such as quaternions where they have
+no meaning as separate values and where we are computing another value from
+the read out of several physical channels (light sensors etc).
 
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 case PAC1921_CHAN_POWER: {
+> > >=20
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Power=
+ scale factor in mW: =20
+> >=20
+> > I think the scale here should be in microWatts. We have (mA)*(mV)
+> >  =20
+> Documentation/ABI/testing/sysfs-bus-iio states it should be in milliwatts:
+>=20
+> What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_raw
+> KernelVersion:	4.5
+> Contact:	linux-iio@vger.kernel.org
+> Description:
+> 		Raw (unscaled no bias removal etc.) power measurement from
+> 		channel Y. The number must always be specified and
+> 		unique to allow association with event codes. Units after
+> 		application of scale and offset are milliwatts.
+
+These units tend to be copied from hwmon.  With hindsight we should just
+have gone with volts / amps and watts but that's history now.
+
+Jonathan
 
