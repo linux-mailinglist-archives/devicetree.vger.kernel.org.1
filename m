@@ -1,132 +1,177 @@
-Return-Path: <devicetree+bounces-85545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC5393072B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 21:35:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F82930755
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 23:11:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59C6DB21856
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 19:35:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8170F28257A
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 21:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F7113C672;
-	Sat, 13 Jul 2024 19:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A99B143C50;
+	Sat, 13 Jul 2024 21:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X7lYDktb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XXhYp/jk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F622E403;
-	Sat, 13 Jul 2024 19:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560D413C838;
+	Sat, 13 Jul 2024 21:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720899350; cv=none; b=cv8nshIJGb0rCpm5cvgGXbVhQmTpq7kCrzRr08Pv2ksWTwehmH3UwMH54KMAJdWSbkKmZzoKK93zEOsv1SCaTamRbFzHPXz2m0LD3XVH2age71pZWTZeZ30hqgQDlxDtRiqw6KfeGLCsOBQC15Nfe1MXArqAmRE9a9vrI2SMHeI=
+	t=1720905112; cv=none; b=UmR6945R3F/XUACgWKgrE6bMOPSFVPsgtyHeu8TRR4vSrVEnyhovrMTVU3lSX3QRHbAub9cgEE3deI1hFQDTCJA3lJfRsV1nAFyDhoFQ0XRvjZAajGNX+gBdEuTiAcsXD5e15fGWZOmAWOAsCBrXrtC7tNSz8W4hJkquIsaXd0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720899350; c=relaxed/simple;
-	bh=JI1tEridxdctNaX89ov4Yc87xBCfYvi+2O/1VIJixwg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XTy9Wz96K49lxx45BjU26/RkwQmkblkU5IcVWo6aoyISrWFNvEjGEFtbO07TkWfc46rNdtjrF/efVahBS26RqV1x9uuj4imyTrgj5MmMGJO6qIhmyJVpIQSDaqvFsm//cxw0gN8sr8/8mD2K7b99U+KT93IyshrcgJySJfvjKOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X7lYDktb; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a77ec5d3b0dso407513866b.0;
-        Sat, 13 Jul 2024 12:35:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720899347; x=1721504147; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JI1tEridxdctNaX89ov4Yc87xBCfYvi+2O/1VIJixwg=;
-        b=X7lYDktbFZ5dADn0mEuzssM3k2k9xt6hFcoSMM/3W6LIv9Jnl9AZNV4u1dEFW5uFbb
-         psNmcKJM4DO6LqsMc5mFnfZ1yqN8/jGVVWCyFASliHLYa6axNsGvQDTwf5+x0/4VSCBz
-         LcVsrHoeoT/F6Iddf8xA2tizjUb2OGlg2DTFfCyFN9XCT0vyd893pT91Y0G2CDgn8xfF
-         abMVEWgeKcDH4Coc8tLm7KziX6lB+Xx2kFzpfZ7hZxh+OIrPhYjoMSvvf0mAuNXCY8s+
-         GXB36RYf1cuLCQfnl9SuuG0xClUU5YKrqf43BLEuJ6lRDfOm76Wj+PJapsPX9OkiSZXR
-         Xakg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720899347; x=1721504147;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JI1tEridxdctNaX89ov4Yc87xBCfYvi+2O/1VIJixwg=;
-        b=PxX3x701tr0BD2OT6cB6cx1WHblct8V5tT1mef9Vcib7IyoDasLXxyHhkDzAfWJUHS
-         j3Z7/qFW+IZZsybJSE9OsuDpDYWUvdiLmP/GCHVtXOBllIAcy/8EEXbLGhtRYgqqBWhy
-         rZk10tssneTXzepi4OQCCWDjXPjNaBJ/iYmK9hwO3ukRn2PU5lfjecVH30eS4/Aowpyv
-         kpbgVarHDrfv3Os99z7AqMX7i7KjPZzJI8+/S9P3Ml2ekxpttu/EoYu7lAQh++igC17v
-         jYwsmoITbWg3EXgXGhxTXTc3BMzCJryyHLSfomfETb0cxeYJLGp7jOtVQoiEkTzl8mBm
-         uzqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXIUBvQRoxXMIuHPTIh00ZxfbIsTSGKk30iU/ETmLNzaFKQJRCXjKkdZCbt3sMI9YEKbn4LinpwlPMq1kEsXxqfKbOU6Cjh1jSu1K2p0w3IP8C0nLqRSrVUuLN4mmOEaQ60+Dkji40+jxtndi98jpFHWvQFOIizk7wfax3EnSxknFDqgIlSIiVbFNLb
-X-Gm-Message-State: AOJu0YxZvYokUeRAI905rAOogN+L7fSJSSgQjv0oGc7Gg7uasZlbBqV+
-	lrHsfYNtJkZ+UWa2QW7GSYfyTGnNAyRf7KZGLzRcuH1cPhCxmtEE
-X-Google-Smtp-Source: AGHT+IHXffw7T8Mk052bMqhDl0uBwFRitClxFfuNYzi+bLxpKaZn5JcYxOlT6tnDVeUZxPhri5bhSQ==
-X-Received: by 2002:a17:906:dfc3:b0:a75:360a:6cb0 with SMTP id a640c23a62f3a-a780b6b3644mr910156766b.29.1720899346894;
-        Sat, 13 Jul 2024 12:35:46 -0700 (PDT)
-Received: from ?IPv6:2a02:ab88:3711:c80:e7a7:e025:f1a5:ef78? ([2a02:ab88:3711:c80:e7a7:e025:f1a5:ef78])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc7f1cfbsm72789066b.107.2024.07.13.12.35.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jul 2024 12:35:46 -0700 (PDT)
-Message-ID: <813e0467c323db2eb3bd6997764fcd33b99f6290.camel@gmail.com>
-Subject: Re: [PATCH] arm64: dts: exynos: exynos7885-jackpotlte: Correct RAM
- amount to 4GB
-From: David Virag <virag.david003@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: phone-devel@vger.kernel.org, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Sam Protsenko
- <semen.protsenko@linaro.org>,  devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Sat, 13 Jul 2024 21:36:20 +0200
-In-Reply-To: <9cac0d59-47cd-423c-bbfb-952981c49b9a@kernel.org>
-References: <20240713180607.147942-3-virag.david003@gmail.com>
-	 <9cac0d59-47cd-423c-bbfb-952981c49b9a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3 
+	s=arc-20240116; t=1720905112; c=relaxed/simple;
+	bh=oaFByJPL12+FUprAqJYDqhzErP7nO44Id9JmB2tyyXM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G0mod2eymE9oxFl+vP8y1Dh2QchxyrF4gTkY6snyEo3UjqDzSPKKhBGY8NopV7bGmOeRCt8qSxbTfE6gPS5J6AQYiKjciPjmoPfBEsMVEl8WBi+gR6N6m91Kjpt/7FUSMl/3JDeQVTHZm1a3c9/0NwSzD8+Hd0vHtpWjtq+s1eA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XXhYp/jk; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720905110; x=1752441110;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oaFByJPL12+FUprAqJYDqhzErP7nO44Id9JmB2tyyXM=;
+  b=XXhYp/jkrAsXdtF8sCK0N9p7kA9P1SeSqH1j7kso9D2ljyViUdR9NMGX
+   8TT/JlSn1XhQQ18EvR/R/Xvss3utZ5eCcaXweji8+2TyLsgy8pwg33jaL
+   ThX1KFHK7Lqf2+CLOX+1t+Jye90HnmGy4tHRLr86KZhyfAaqTw3gFD2zF
+   EYxbCcSa99V9hWB5Myk7Ca45NWa+1huvPxAxrtrwaFrep/OR7eaaR6Cbn
+   qCg6LVI5UA5H/EtbfPLWbVVr1fOxu7DKycB9jzIutXuMoHXeU2dFfqpIX
+   rZSFrZrpj05U+FSA+53TN3Wb78yaMD2MEgLXBWLPtD1xsRr+der+9qGqu
+   w==;
+X-CSE-ConnectionGUID: OxayXOuVQCqghM2G8oXdXQ==
+X-CSE-MsgGUID: dS4b9Sm+T+K7+rteeWXmtg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11132"; a="18456490"
+X-IronPort-AV: E=Sophos;i="6.09,206,1716274800"; 
+   d="scan'208";a="18456490"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2024 14:11:49 -0700
+X-CSE-ConnectionGUID: WzhOHMcnS0euBvTBoE/FTA==
+X-CSE-MsgGUID: rvDBRUFGThm1yHvQDCddyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,206,1716274800"; 
+   d="scan'208";a="54173404"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 13 Jul 2024 14:11:46 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sSk1v-000ckQ-2f;
+	Sat, 13 Jul 2024 21:11:43 +0000
+Date: Sun, 14 Jul 2024 05:11:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-mips@vger.kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH RESEND v9 2/2] dmaengine: Loongson1: Add Loongson-1 APB
+ DMA driver
+Message-ID: <202407140536.iIizeGVy-lkp@intel.com>
+References: <20240711-loongson1-dma-v9-2-5ce8b5e85a56@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711-loongson1-dma-v9-2-5ce8b5e85a56@gmail.com>
 
-On Sat, 2024-07-13 at 20:54 +0200, Krzysztof Kozlowski wrote:
-> On 13/07/2024 19:58, David Virag wrote:
-> > All known jackpotlte variants have 4GB of RAM, let's use it all.
-> > RAM was set to 3GB from a mistake in the vendor provided DTS file.
->=20
-> Hm, vendor DTS rarely has a mistake of missing 1 GB of RAM, so I
-> assume
-> there was some reason behind it. Trusted apps? Some shared memory for
-> other co-processor?
+Hi Keguang,
 
-Honestly I'm not sure, maybe some prototype had 3GB of RAM?
-The stock bootloader does update it to 4GB, but the stock bootloader
-also doesn't even respect the arm64 boot protocol, and doesn't let us
-change the kernel cmdline, so we don't like using it.
+kernel test robot noticed the following build warnings:
 
->=20
-> Anyway, if this works 100% for you, then I am fine with it.
+[auto build test WARNING on d35b2284e966c0bef3e2182a5c5ea02177dd32e4]
 
-Yup, works perfectly!
+url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang-via-B4-Relay/dt-bindings-dma-Add-Loongson-1-APB-DMA/20240711-191657
+base:   d35b2284e966c0bef3e2182a5c5ea02177dd32e4
+patch link:    https://lore.kernel.org/r/20240711-loongson1-dma-v9-2-5ce8b5e85a56%40gmail.com
+patch subject: [PATCH RESEND v9 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240714/202407140536.iIizeGVy-lkp@intel.com/config)
+compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240714/202407140536.iIizeGVy-lkp@intel.com/reproduce)
 
->=20
-> It is too late in the cycle for me to pick it up. I will take it
-> after
-> the merge window.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407140536.iIizeGVy-lkp@intel.com/
 
-That's fine with me.
+All warnings (new ones prefixed by >>):
 
->=20
->=20
->=20
->=20
-> Best regards,
-> Krzysztof
->=20
+   In file included from include/linux/printk.h:598,
+                    from include/asm-generic/bug.h:22,
+                    from arch/x86/include/asm/bug.h:87,
+                    from include/linux/bug.h:5,
+                    from include/linux/fortify-string.h:6,
+                    from include/linux/string.h:374,
+                    from include/linux/scatterlist.h:5,
+                    from include/linux/dmapool.h:14,
+                    from drivers/dma/loongson1-apb-dma.c:8:
+   drivers/dma/loongson1-apb-dma.c: In function 'ls1x_dma_start':
+>> drivers/dma/loongson1-apb-dma.c:137:34: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
+     137 |         dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
+         |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:224:29: note: in definition of macro '__dynamic_func_call_cls'
+     224 |                 func(&id, ##__VA_ARGS__);                       \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:250:9: note: in expansion of macro '_dynamic_func_call_cls'
+     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:273:9: note: in expansion of macro '_dynamic_func_call'
+     273 |         _dynamic_func_call(fmt, __dynamic_dev_dbg,              \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:165:9: note: in expansion of macro 'dynamic_dev_dbg'
+     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:165:30: note: in expansion of macro 'dev_fmt'
+     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                              ^~~~~~~
+   drivers/dma/loongson1-apb-dma.c:137:9: note: in expansion of macro 'dev_dbg'
+     137 |         dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
+         |         ^~~~~~~
+   drivers/dma/loongson1-apb-dma.c:137:63: note: format string is defined here
+     137 |         dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
+         |                                                              ~^
+         |                                                               |
+         |                                                               unsigned int
+         |                                                              %llx
 
-Best regards,
-David
+
+vim +137 drivers/dma/loongson1-apb-dma.c
+
+   130	
+   131	static inline int ls1x_dma_start(struct ls1x_dma_chan *chan,
+   132					 dma_addr_t *hwdesc_phys)
+   133	{
+   134		struct dma_chan *dchan = &chan->vchan.chan;
+   135		int val, ret;
+   136	
+ > 137		dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
+   138			dchan->cookie, *hwdesc_phys);
+   139	
+   140		val = *hwdesc_phys & DMA_ADDR_MASK;
+   141		val |= DMA_START;
+   142		val |= dchan->chan_id;
+   143		chan_writel(chan, DMA_CTRL, val);
+   144		ret = readl_poll_timeout(chan->reg_base + DMA_CTRL, val,
+   145					 !(val & DMA_START), 0, 3000);
+   146		if (ret)
+   147			dev_err(chan2dev(dchan), "failed to start DMA\n");
+   148	
+   149		return ret;
+   150	}
+   151	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
