@@ -1,152 +1,198 @@
-Return-Path: <devicetree+bounces-85478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2750C930415
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 08:16:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC0F93041F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 08:49:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB813B22D8C
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 06:16:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF26BB22F19
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2024 06:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BB01CA94;
-	Sat, 13 Jul 2024 06:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096351C2BE;
+	Sat, 13 Jul 2024 06:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NcyTqJn4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzNsA6MZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFBA1B960;
-	Sat, 13 Jul 2024 06:16:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC0718B09;
+	Sat, 13 Jul 2024 06:48:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720851370; cv=none; b=rUGoP5aahfdG3MmdCwOTQ0hKeFXnSTR45qm5dQWLp8sXwLspnewSabFLpwGuTbkxs1JlGbzkuPDXZb4ytsHT7gtljEgd27sxPNGNrdNLlu5BtrrEO6V3qYfqEBeEkeu4L5GX70KnUEZbPbXpLAEvdV9q6Up7aoWq00To1dvpcdY=
+	t=1720853335; cv=none; b=LsTtmRNhGZAqNpkwspPWFpylhY22FLYAykjg+c1XhXHEK+Nwt0OxxBZTV3jq53R0NnpvXSe0Gkx/pBbHO1iwUdikpsYGWMCbwGGTo6syRHZaS0IcnvCIO1Ufqz9oXN1E4m3twN6Qw3/3cl/DzecPKipO1Qqhfcy1NUI+PVi0HOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720851370; c=relaxed/simple;
-	bh=KN85+gFWkF03HdphdQDW1hlUh8APmU7td3URDxBVy48=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hdqJEZCe94Qpp5pqPkFkzROokpHBgvadw4GtGo/hpd/kO8kUkFEc2yzMMDcpuTsbN4f4E+RpzUFcsUUBeImrYViNxkDRpmcgbE55OkZ0pubu5scyq27uI8IMKMaJnXyIzK63hCJmj+SsQrGr2iPo4NoHy8VQ2xTSSVRtBTdTK9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NcyTqJn4; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720851369; x=1752387369;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KN85+gFWkF03HdphdQDW1hlUh8APmU7td3URDxBVy48=;
-  b=NcyTqJn4XI8d8/fAPo8cQl9CNbs0wijANkjyAHDgEfU+FABqeY6XaaJt
-   XgXoOqAs+vV8QW0M9Xb+G9gEYJf+oJcQ5opWZuIksSZ9kxys2nRrq8Aly
-   BG4FVt24+ZwkE2US2jne64E/b7bd6piKEiZUS/UpPBguSOiQYnky799yh
-   PdVx9Q3vH8y+ct/iem/WGJN7hDknuxElGnPsMi/Djo5blBFTd+n0ZZsGL
-   X3qFWaYkUP/FoXOOtr4HEkeMie2MULyfYx4h9Ch54uFXh/Mu5GDrNQ8Ik
-   ab58qCr/viKvzuFSA0J7XWTaXDOuqQj327PcGymjNnIhZ9HAdgA3a7Ain
-   A==;
-X-CSE-ConnectionGUID: Pelzu2pBTjyBEJUjrfeEmg==
-X-CSE-MsgGUID: WRJqBmpnSbeE/mkUm6zxFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="12532205"
-X-IronPort-AV: E=Sophos;i="6.09,205,1716274800"; 
-   d="scan'208";a="12532205"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 23:16:08 -0700
-X-CSE-ConnectionGUID: F/bBVadJQ4StEAO2fBoYOA==
-X-CSE-MsgGUID: Sjafa8h+T7GCEgWKURv48Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,205,1716274800"; 
-   d="scan'208";a="53683508"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 12 Jul 2024 23:16:06 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sSW39-000blC-1h;
-	Sat, 13 Jul 2024 06:16:03 +0000
-Date: Sat, 13 Jul 2024 14:15:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	waqar.hameed@axis.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, wangshuaijie@awinic.com,
-	liweilei@awinic.com, kangjiajun@awinic.com
-Subject: Re: [PATCH V3 2/2] Add support for Awinic proximity sensor
-Message-ID: <202407131316.CrET2D2p-lkp@intel.com>
-References: <20240712113200.2468249-3-wangshuaijie@awinic.com>
+	s=arc-20240116; t=1720853335; c=relaxed/simple;
+	bh=rmngPodD1hpovVDZjrY0POcxROayfR4qJFc2JSoZNHg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cfQ4qv+r7bt999PpmXYr+t0iBC+Kf9CT6TN0p0BGI/OG4ThQfeF5t9CTRzVwIM+IUfqsod9qp75/Hte1meCslCJ3hv7Ptw/7jfF5QywmT9OuWxmW5TIhJdlGLvrwfS2btXGqjTPBoNECXqijxnl6nNwl4ZgoWvP7kH4K3ANP3yU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzNsA6MZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39898C4AF15;
+	Sat, 13 Jul 2024 06:48:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720853335;
+	bh=rmngPodD1hpovVDZjrY0POcxROayfR4qJFc2JSoZNHg=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=jzNsA6MZh4gRJnAtWA224bQbcwcmRlfulT9/C5iGyz/mqns3Mkk7D1loYEBiVfVBJ
+	 F7JkLxOZoK1GketP7VEYlx7GHJyYlyIbHa3lH+H/lWwCEu3dznfMsXna03EptbfAVc
+	 w8LIf99uW9VNjJeqdWpelszhnIc8rPdD5lC5p4p64DR1Dd5jRo3VQNa4S3hAiUM3Xy
+	 3wbULs/3/B6cXzWKlYB9xyCWyZgxmQB+mUrQlq9k7e1E505BxC/tz1d52+9K/lvIg+
+	 QDorsjOJ/gpt/oE4jCp5U35Fn/jC3GK0JqdaL5HE4PL4RJ1TvhDdJkStpktuXMtVK1
+	 ywpW65tEtl4TA==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2eec7e431d9so34354571fa.2;
+        Fri, 12 Jul 2024 23:48:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVToCavhAuhqJIZCiaP3kLpfck+NDyh4U47aHxp5z118WvoFy3Lwi1hm64sv0ZoTddGW+Eqdt+qojW8CNafI+IVUmUb9Gn95JfYFGfKadGJk1mvx6GmayNLJSN7r8ycuRZCjKYgL1BvLBmVmBP2o+K3LVst4ewcCwknMjWJ/Xzev5qKJ15fww==
+X-Gm-Message-State: AOJu0YxOBeFUrxnWJX3u3Bc27zGJFHT5cwrmf60DmwaOcEcp+sff0RpN
+	bpngY1HS3Tc6DquNdQbrMRX5mZowTJEcaiDmqWhMzZD25e1aUPjZ9qeMr0JRfDpgaQNbxMkQQWO
+	DtZMi44k+Y17A/a36Il0yZAHpFD8=
+X-Google-Smtp-Source: AGHT+IH/4Jry0qoasCXWKjUAZkBfuqHL+VReoVc9bEqJlVdcgZjP7WNeITu1eBxpBYc6Ar9/BFXa9+EFkGyjAzlRL4w=
+X-Received: by 2002:a2e:9595:0:b0:2ec:58e8:d7a6 with SMTP id
+ 38308e7fff4ca-2eeb30b9b78mr86285991fa.5.1720853333390; Fri, 12 Jul 2024
+ 23:48:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240712113200.2468249-3-wangshuaijie@awinic.com>
+References: <cover.1720830725.git.daniel@makrotopia.org>
+In-Reply-To: <cover.1720830725.git.daniel@makrotopia.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sat, 13 Jul 2024 14:48:39 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64ajgK_4G_ANFgwxQToEzDjuBgbmozb7CLxJyNDo-MkCw@mail.gmail.com>
+Message-ID: <CAGb2v64ajgK_4G_ANFgwxQToEzDjuBgbmozb7CLxJyNDo-MkCw@mail.gmail.com>
+Subject: Re: [PATCH v6 0/3] hwrng: add hwrng support for Rockchip RK3568
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Dragan Simic <dsimic@manjaro.org>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Martin Kaiser <martin@kaiser.cx>, 
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-kernel test robot noticed the following build warnings:
+On Sat, Jul 13, 2024 at 8:38=E2=80=AFAM Daniel Golle <daniel@makrotopia.org=
+> wrote:
+>
+> Rockchip SoCs used to have a random number generator as part of their
+> crypto device.
+>
+> However newer Rockchip SoCs like the RK3568 have an independent True
+> Random Number Generator device. This patchset adds a driver for it and
+> enables it in the device tree.
+>
 
-[auto build test WARNING on 43db1e03c086ed20cc75808d3f45e780ec4ca26e]
+Have you tested any of the later iterations? For me it stopped working
+at v3. After v3 (including v3), all it spits out is zeros.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-iio-Add-YAML-to-Awinic-proximity-sensor/20240712-194024
-base:   43db1e03c086ed20cc75808d3f45e780ec4ca26e
-patch link:    https://lore.kernel.org/r/20240712113200.2468249-3-wangshuaijie%40awinic.com
-patch subject: [PATCH V3 2/2] Add support for Awinic proximity sensor
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20240713/202407131316.CrET2D2p-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240713/202407131316.CrET2D2p-lkp@intel.com/reproduce)
+> v5 -> v6:
+>  * Patch 1: unchanged
+>
+>  * Patch 2: get rid of #ifdef
+>    - use if (IS_ENABLED(...)) { ... }instead of #ifdef inside functions
+>    - use __maybe_unused for functions previously enclosed by #ifdef'ery
+>
+>  * Patch 3: unchanged
+>
+> v4 -> v5:
+>  * Patch 1: always use RK3568 name
+>    - use full RK3568 name in patch description
+>    - add RK3568 to title in binding
+>
+>  * Patch 2: full name and cosmetics
+>    - also always mention RK3568 as there may be other RNG in other
+>      (future) Rockchip SoCs
+>    - remove debug output on successful probe
+>    - use MODULE_AUTHOR several times instead of single comma-separated
+>
+>  * Patch 3: unchanged
+>
+> v3 -> v4:
+>  * Patch 1: minor corrections
+>    - fix Rokchip -> Rockchip typo
+>    - change commit title as requested
+>
+>  * Patch 2: improved error handling and resource management
+>    - Always use writel() instead of writel_relaxed()
+>    - Use pm_runtime_resume_and_get
+>    - Correctly return error code in rk_rng_read()
+>    - Make use of devm_reset_control_array_get_exclusive
+>    - Use devm_pm_runtime_enable and there by get rid of rk_rng_remove()
+>
+>  * Patch 3:
+>    - Move node to conform with ordering by address
+>
+> v2 -> v3: patch adopted by Daniel Golle
+>  * Patch 1: address comments of Krzysztof Kozlowski, add MAINTAINERS
+>    - improved description
+>    - meaningful clock-names
+>    - add entry in MAINTAINERS files
+>
+>  * Patch 2: numerous code-style improvements
+>    - drop misleading rk_rng_write_ctl(), simplify I/O writes
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407131316.CrET2D2p-lkp@intel.com/
+This is probably the culprit. The RNG and RST control registers have
+enable bits in their top 16 bits. Without those set together with the
+actual bit values, the writes to the registers have no effect.
 
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/proximity/aw9610x.c: In function 'aw9610x_datablock_load':
->> drivers/iio/proximity/aw9610x.c:665:1: warning: the frame size of 1356 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-     665 | }
-         | ^
+Please check all your writel calls against the TRM and add appropriate
+bitmasks for the upper 16 bits.
 
 
-vim +665 drivers/iio/proximity/aw9610x.c
+ChenYu
 
-   634	
-   635	static void aw9610x_datablock_load(struct aw_sar *p_sar, const char *buf)
-   636	{
-   637		struct aw9610x *aw9610x = p_sar->priv_data;
-   638		unsigned char addr_bytes = aw9610x->aw_i2c_package.addr_bytes;
-   639		unsigned char data_bytes = aw9610x->aw_i2c_package.data_bytes;
-   640		unsigned char reg_num = aw9610x->aw_i2c_package.reg_num;
-   641		unsigned char reg_data[220] = { 0 };
-   642		unsigned int databuf[220] = { 0 };
-   643		unsigned char temp_buf[2] = { 0 };
-   644		unsigned int i;
-   645	
-   646		for (i = 0; i < data_bytes * reg_num; i++) {
-   647			if (reg_num < attr_buf[1]) {
-   648				temp_buf[0] = buf[attr_buf[0] + (addr_bytes + i) * 5];
-   649				temp_buf[1] =
-   650					buf[attr_buf[0] + (addr_bytes + i) * 5 + 1];
-   651			} else if (reg_num >= attr_buf[1] && reg_num < attr_buf[3]) {
-   652				temp_buf[0] = buf[attr_buf[2] + (addr_bytes + i) * 5];
-   653				temp_buf[1] =
-   654					buf[attr_buf[2] + (addr_bytes + i) * 5 + 1];
-   655			} else if (reg_num >= attr_buf[3] && reg_num < attr_buf[5]) {
-   656				temp_buf[0] = buf[attr_buf[4] + (addr_bytes + i) * 5];
-   657				temp_buf[1] =
-   658					buf[attr_buf[4] + (addr_bytes + i) * 5 + 1];
-   659			}
-   660			sscanf(temp_buf, "%02x", &databuf[i]);
-   661			reg_data[i] = (unsigned char)databuf[i];
-   662		}
-   663		aw9610x->aw_i2c_package.p_reg_data = reg_data;
-   664		aw9610x_awrw_write_seq(p_sar);
- > 665	}
-   666	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>    - drop unused TRNG_RNG_DOUT_[1-7] macros
+>    - handle error handling for pm_runtime_get_sync()
+>    - use memcpy_fromio() instead of open coding for-loop
+>    - some minor white-spaces fixes
+>
+>  * Patch 3:
+>    - use clock-names as defined in dt-bindings
+>
+> v1 -> v2:
+>  * Patch 1: fix issues reported by Rob Herring and Krzysztof Kozlowski:
+>    - Rename rockchip-rng.yaml into rockchip,rk3568-rng.yaml
+>    - Fix binding title and description
+>    - Fix compatible property
+>    - Rename clocks and add the corresponding descriptions
+>    - Drop reset-names
+>    - Add a bus definition with #address-cells and #size-cells to the
+>      example.
+>
+>  * Patch 2: fix issue reported by kernel test robot <lkp@intel.com>
+>    - Do not read the random registers as big endian, looking at the
+>      RK3568 TRM this is actually not needed. This fixes a sparse
+>      warning.
+>
+>  * Patch 3: unchanged
+>
+> Aurelien Jarno (3):
+>   dt-bindings: rng: Add Rockchip RK3568 TRNG
+>   hwrng: add hwrng driver for Rockchip RK3568 SoC
+>   arm64: dts: rockchip: add DT entry for RNG to RK356x
+>
+>  .../bindings/rng/rockchip,rk3568-rng.yaml     |  61 +++++
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   9 +
+>  drivers/char/hw_random/Kconfig                |  14 ++
+>  drivers/char/hw_random/Makefile               |   1 +
+>  drivers/char/hw_random/rockchip-rng.c         | 220 ++++++++++++++++++
+>  6 files changed, 312 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568=
+-rng.yaml
+>  create mode 100644 drivers/char/hw_random/rockchip-rng.c
+>
+> --
+> 2.45.2
+>
 
