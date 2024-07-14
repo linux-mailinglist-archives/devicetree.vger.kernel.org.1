@@ -1,214 +1,102 @@
-Return-Path: <devicetree+bounces-85568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F321B9309CA
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 13:43:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AD0E9309D2
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 13:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD87281AC8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 11:43:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2049A1F21587
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 11:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FBD76050;
-	Sun, 14 Jul 2024 11:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E04453376;
+	Sun, 14 Jul 2024 11:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nfZ7auB8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RYP2EXGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87D749659;
-	Sun, 14 Jul 2024 11:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6704F44361;
+	Sun, 14 Jul 2024 11:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720957398; cv=none; b=Hnrrxi2TnUUH4DIxNvZMFXzKpll/76gth0CJGcgbk0qysIvo2QtYWzzmmWHiX4TdWKPsCzT7kk+pb3wVdIalc1k14ps9rkA5ZIrKphbStRBfVRmQd2kwO+k8Mts5qqnlmrng4oN7JMIe9LMSXZhZlmqCzTwAY7oOCsFLLsFlpSc=
+	t=1720958161; cv=none; b=YZSgq56P+K8zrMxNj728LJjBBqJetkgFXPc/h7delgH+xWrKcx641aW9GTLnfYNlRy7dkkZudY2I/Owy5YCLCcU4+YrRRdCjyQwJEOZu/7d6PkCDs/9wPrxqZui6SC3A1YA3x/DjbRp4K50fZwXVNrXKsW7AUYzMMpEm1gVNLBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720957398; c=relaxed/simple;
-	bh=HuwYDUb5SQOgo/cDQX5AI/oFUdtLP4Rc4FBtLd0C2zs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kp635Zdd2HRKXgz2bt2HzHWuFU+UU0vqp4sb3TOOPLKMM0oz1HUWB3wBZprrA4F9NwbUqFk8xygFOsZd1zeKA3lDI2Bz3ibWJTFEOb3D9UkvkrPajVGbus4NeTPZPsN5V03HwgyAdAPU1GjSctS1A1VM1JK9FsNbMwzmyq8+U2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nfZ7auB8; arc=none smtp.client-ip=209.85.221.48
+	s=arc-20240116; t=1720958161; c=relaxed/simple;
+	bh=kBE2d+T50inc3iRRDa+UrIulKWSgYOIzmujTdDnRtHQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=q2VWCZF+ZaNyMqmArqww1gYw7wczSZTfi5Rtgo0R0zMCfnKKbkY01HyO29z3wOn13sDd3JWVM69j8iy/Oa2eCra+8TfkZobyPEZ3wYJGh21IBJW1wNXFiGzVCs2LpuV6tW7yshRnbIO+qrLJBB+7OaKDXMOdqMbrv7s3AA3mVqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RYP2EXGp; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-36805befd01so1062300f8f.2;
-        Sun, 14 Jul 2024 04:43:16 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso35116741fa.3;
+        Sun, 14 Jul 2024 04:55:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720957395; x=1721562195; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=voezqBRIqgR1xMbzJXPZuwUUHTRBRdZ/+JwyhtZNvfc=;
-        b=nfZ7auB8iWwOITJFoU7hhAZqLv9NzZP+oN6qDhUGCKS5cEX6Fb9aordsptq+l9nv8X
-         8Xd/51xcMB6PO3XjxLro2XCbT5BICDLXZo/l0EL1LhqQdXVpVqqgyWOuivb40VjeKeA+
-         aSa9Y5R3HR2ssd2YDhuQ+kYUXLGY7+MFAS9pluu21t1omQz4GFaWoKtVO/JUpKlz0v0c
-         7laY5QUpv4ZJyXppKd3SUqZhuscewm0I6VYmmexm79itmlqeTC+PEgeugBC9Dw2uLCVa
-         op6jIRUv1R+QAiHD0bpcleAml43gXyTZpiDWtwELZPsFj2Ldv6LfI5qVuNN09TurSQpO
-         96lw==
+        d=gmail.com; s=20230601; t=1720958157; x=1721562957; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eVChRf9IHf7yjvnfqhKSBqOA4um7vjTbsZlNcS8UTMk=;
+        b=RYP2EXGphBLyR9ACwTJe3o/aiRC0zXFnj/lJ9pKHTkV4gaWJ+gAdxVi6o+KW43nuUc
+         P8P9IUiOfns8JfdpL9cjXYQT/d/+rctL/KGHOqkfvAOKbLi5kmDGf0MRbe5M7zx2tlcR
+         nBHQzfcT2boTqKScpxM67j0VrXhIaAmN37NrOZlu8EvP1boZ6vSOHGcEuTN1A/anvsCT
+         tBFT8YeIToemDFk2KsPvs/Kbk5MxKM/Y2lT3e3teVoBCbJb3WHRUrKFA9MypTYRchC0L
+         gyLVJikadGDWY3ykfX0L7LiClkmWmwnipb/hveHVPgogdioSIKrfUppxUqN0XO4X7CJK
+         8q+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720957395; x=1721562195;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=voezqBRIqgR1xMbzJXPZuwUUHTRBRdZ/+JwyhtZNvfc=;
-        b=DonLM+EgUrVKJbPASGsApPL/REaeksw7cG3X72sMwLgt/pJfJuOmjO7DNCz2IetZuJ
-         FCK4ulBE5lP6Z0D/8+F5en3EEO0dW6IsI/0L42DrUlyW7wYWuRTOQ9DuxFa+1qbYj5nW
-         OkBsPXYU/R+ezFWnhbSlPpTPTMgpn89W6gMxLETjisNZU6f6Zb+6cRytTAH14WjJnhWx
-         mlywiQ7j52Hg2JHwwGRz7vBRPePNrvJfJludaAZ/uB1W6XeB/VCdQJNen35sZXdXl+kQ
-         GhNhli0mMw+9CLG8WDrurOUs+TKnO2hzbxVbCNWb0sWMX3VAuIwly9xM4gKcHdSOLIPW
-         Jb0A==
-X-Forwarded-Encrypted: i=1; AJvYcCXLSS1OCPj+1zZJcL7OD9dwYHUt4cqk0Nu2CCGvzG6aP5afIn9tLkTx3N2kpIGG+zW38Wo4MJTJOBXME43Qafrf7y2axLDngmsZpVvM87JvsHGckJAYCFQ2eKqfwGs08jlpGz+2NHAbNQ==
-X-Gm-Message-State: AOJu0YzjSYtmAJpAukhEr8cDaDQwp/dLdyQxvEguu8grKgNwBXoeZmm9
-	E/QdzD4egsi0G8BuZra26EG+n8MK8gunAj+GSFEbMp/caoNeViHj
-X-Google-Smtp-Source: AGHT+IHznxvk3jGNuxACzlPePqJZsFU4Gm7h8xaiwzJni80Kfh+rpr363DBOkzF8Q4inWF6XdCSGjw==
-X-Received: by 2002:a05:6000:1814:b0:364:d2b6:4520 with SMTP id ffacd0b85a97d-367ce5df304mr10897937f8f.0.1720957394652;
-        Sun, 14 Jul 2024 04:43:14 -0700 (PDT)
-Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680db0492asm3624096f8f.103.2024.07.14.04.43.14
+        d=1e100.net; s=20230601; t=1720958157; x=1721562957;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eVChRf9IHf7yjvnfqhKSBqOA4um7vjTbsZlNcS8UTMk=;
+        b=HxUGFMXEFAWCCScpJ/QPev6JEUVYKnTowxtVsNVLPMNtX2n7l96al/St+lGXoUU5cX
+         9o5nLcWltN8jtv+dmCjPeiRdg+qKnxPWxMCjrjOVuk2JgjxrZlaXgxRbLgj9yVz0VCfa
+         B/YgtUMMc9rjFWeyRWf0o/+eYiW7zfNhpkCeNKwE9CDuz6KO+5nZAJGa7IwF55tEtqEG
+         AJMbHZ2GgHFKPkStXiTR+0G4jTeh8s8lMJEQ/FG/pxWta9IrmSe5OZXk/tSPDJeeBYJy
+         zLf5d9qKN3u6j0ITjQMLi0XdhBMUnP5VeyDzxwrS+NfSB6P8J6FA1x0ilZBjeTpkXu/i
+         Mcbw==
+X-Forwarded-Encrypted: i=1; AJvYcCVR8M7RWmjBe1Pd9NxHvNWeGqtGIfTGwJl+dXvsUXreKGtV9nOVt4G5+y8fZv24YKlZgPc5wyKojzDWYqnRTkLV8fEFsHdGbhDyCoT+
+X-Gm-Message-State: AOJu0YwuAhBTe8OHJ5+6+8yxLovZTyovAREpCWUy/sHZLA3TP1M5sqyE
+	8ZS3IIK8KpfcEJhioe6M/G0VRLfebff/rBVuo624YN3gnlX43QzN3xatog==
+X-Google-Smtp-Source: AGHT+IHjhf49NvYAnVcHP0VoXvduk5j86Wc+QHnDaGHfzyQ2dVDduu8Pe3En+9+PG1Xpy5EhsuGYOQ==
+X-Received: by 2002:a05:651c:90:b0:2ec:5b89:871 with SMTP id 38308e7fff4ca-2eeb3188df3mr106650161fa.33.1720958155255;
+        Sun, 14 Jul 2024 04:55:55 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5e774c9sm49803105e9.6.2024.07.14.04.55.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jul 2024 04:43:14 -0700 (PDT)
-From: Raphael Gallais-Pou <rgallaispou@gmail.com>
-Date: Sun, 14 Jul 2024 13:42:46 +0200
-Subject: [PATCH v3 2/2] thermal: sti: depend on THERMAL_OF subsystem
+        Sun, 14 Jul 2024 04:55:54 -0700 (PDT)
+Date: Sun, 14 Jul 2024 13:55:52 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Baolin Wang <baolin.wang7@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Spreadtrum SC2731 MFD cleanups
+Message-ID: <cover.1720957783.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240714-thermal-v3-2-88f2489ef7d5@gmail.com>
-References: <20240714-thermal-v3-0-88f2489ef7d5@gmail.com>
-In-Reply-To: <20240714-thermal-v3-0-88f2489ef7d5@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Patrice Chotard <patrice.chotard@foss.st.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Switch to thermal_of_zone to handle thermal-zones. Replace
-thermal_zone_device_register() by devm_thermal_of_zone_register() and
-remove ops st_thermal_get_trip_type, st_thermal_get_trip_temp.
+This series is a preparation for converting the SC27xx PMIC MFD bindings
+to DT schema.
 
-Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
----
-Changes in v3:
-- Fix unmet dependency when building with ARM64 compiler
-  https://lore.kernel.org/lkml/202406270605.qodaWd4n-lkp@intel.com/
-- Remove no more used polling_delay variable detected by kernel robot
-  https://lore.kernel.org/lkml/202406270530.kN5wIswi-lkp@intel.com/
-Changes in v2:
-- Remove unused struct thermal_trip trip
----
- drivers/thermal/st/Kconfig      |  2 ++
- drivers/thermal/st/st_thermal.c | 28 ++++++++++------------------
- 2 files changed, 12 insertions(+), 18 deletions(-)
+Stanislav Jakubek (2):
+  arm64: dts: sprd: sc2731: correct interrupt-cells value to 2
+  arm64: dts: sprd: sc2731: rename fuel gauge node to be generic
 
-diff --git a/drivers/thermal/st/Kconfig b/drivers/thermal/st/Kconfig
-index ecbdf4ef00f4..95a634709a99 100644
---- a/drivers/thermal/st/Kconfig
-+++ b/drivers/thermal/st/Kconfig
-@@ -5,12 +5,14 @@
- 
- config ST_THERMAL
- 	tristate "Thermal sensors on STMicroelectronics STi series of SoCs"
-+	depends on THERMAL_OF
- 	help
- 	  Support for thermal sensors on STMicroelectronics STi series of SoCs.
- 
- config ST_THERMAL_MEMMAP
- 	select ST_THERMAL
- 	tristate "STi series memory mapped access based thermal sensors"
-+	depends on THERMAL_OF
- 
- config STM32_THERMAL
- 	tristate "Thermal framework support on STMicroelectronics STM32 series of SoCs"
-diff --git a/drivers/thermal/st/st_thermal.c b/drivers/thermal/st/st_thermal.c
-index 5f33543a3a54..23597819ce84 100644
---- a/drivers/thermal/st/st_thermal.c
-+++ b/drivers/thermal/st/st_thermal.c
-@@ -12,6 +12,7 @@
- #include <linux/of_device.h>
- 
- #include "st_thermal.h"
-+#include "../thermal_hwmon.h"
- 
- /* The Thermal Framework expects millidegrees */
- #define mcelsius(temp)			((temp) * 1000)
-@@ -135,8 +136,6 @@ static struct thermal_zone_device_ops st_tz_ops = {
- 	.get_temp	= st_thermal_get_temp,
- };
- 
--static struct thermal_trip trip;
--
- int st_thermal_register(struct platform_device *pdev,
- 			const struct of_device_id *st_thermal_of_match)
- {
-@@ -145,7 +144,6 @@ int st_thermal_register(struct platform_device *pdev,
- 	struct device_node *np = dev->of_node;
- 	const struct of_device_id *match;
- 
--	int polling_delay;
- 	int ret;
- 
- 	if (!np) {
-@@ -197,29 +195,22 @@ int st_thermal_register(struct platform_device *pdev,
- 	if (ret)
- 		goto sensor_off;
- 
--	polling_delay = sensor->ops->register_enable_irq ? 0 : 1000;
--
--	trip.temperature = sensor->cdata->crit_temp;
--	trip.type = THERMAL_TRIP_CRITICAL;
--
- 	sensor->thermal_dev =
--		thermal_zone_device_register_with_trips(dev_name(dev), &trip, 1, sensor,
--							&st_tz_ops, NULL, 0, polling_delay);
-+		devm_thermal_of_zone_register(dev, 0, sensor, &st_tz_ops);
- 	if (IS_ERR(sensor->thermal_dev)) {
--		dev_err(dev, "failed to register thermal zone device\n");
-+		dev_err(dev, "failed to register thermal of zone\n");
- 		ret = PTR_ERR(sensor->thermal_dev);
- 		goto sensor_off;
- 	}
--	ret = thermal_zone_device_enable(sensor->thermal_dev);
--	if (ret)
--		goto tzd_unregister;
- 
- 	platform_set_drvdata(pdev, sensor);
- 
--	return 0;
-+	/*
-+	 * devm_thermal_of_zone_register() doesn't enable hwmon by default
-+	 * Enable it here
-+	 */
-+	return devm_thermal_add_hwmon_sysfs(dev, sensor->thermal_dev);
- 
--tzd_unregister:
--	thermal_zone_device_unregister(sensor->thermal_dev);
- sensor_off:
- 	st_thermal_sensor_off(sensor);
- 
-@@ -232,7 +223,8 @@ void st_thermal_unregister(struct platform_device *pdev)
- 	struct st_thermal_sensor *sensor = platform_get_drvdata(pdev);
- 
- 	st_thermal_sensor_off(sensor);
--	thermal_zone_device_unregister(sensor->thermal_dev);
-+	thermal_remove_hwmon_sysfs(sensor->thermal_dev);
-+	devm_thermal_of_zone_unregister(sensor->dev, sensor->thermal_dev);
- }
- EXPORT_SYMBOL_GPL(st_thermal_unregister);
- 
+ arch/arm64/boot/dts/sprd/sc2731.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 -- 
-2.45.2
+2.34.1
 
 
