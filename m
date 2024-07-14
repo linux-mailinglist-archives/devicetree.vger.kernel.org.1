@@ -1,89 +1,81 @@
-Return-Path: <devicetree+bounces-85604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D87930AEB
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 19:20:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D2E930AF9
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 19:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08202B20EA6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 17:20:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79C821C2108B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 17:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FEAF13A894;
-	Sun, 14 Jul 2024 17:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C46D13C69C;
+	Sun, 14 Jul 2024 17:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jcOjqwJb"
+	dkim=pass (1024-bit key) header.d=ansari.sh header.i=@ansari.sh header.b="SOGvgsH9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF9DD27D;
-	Sun, 14 Jul 2024 17:20:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC22D27D
+	for <devicetree@vger.kernel.org>; Sun, 14 Jul 2024 17:35:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720977626; cv=none; b=sRtSBCQHhd9+4JJo+nSqSPYoDsZm+kcLrHc3BwOmG/1BvGejkmXEkz6WCUQ0P6JvYr/KniSZQo7Mnfmt+N7fsyNCQUwkK5j3BYZ1Afju64YNEGe3mJd3bHaxpGnWmx5tPdwHixqCi3b3Glsa9rmhJZ0qzX5xQ/S9PtKJVHJsN54=
+	t=1720978523; cv=none; b=QAoUi9IZJ3tx6jWSSE3LnXLPNEAPBPpVb3NxgsNaW9F5av6lN7RTG4UAMr5a6enUt4O4Ytt0+GWpkgxSIiaCrhaNl5dtGl8xKTbmnd0VUsXjCkqJyb01vA8fUZJP8lVD4aR7eB5c49FJr3H+qPjbXImhFGYD8p/+v52TDxlWB/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720977626; c=relaxed/simple;
-	bh=A5Bcqn8FRqYalb1UZD9jh+58Ex3sAWvAdNFs//hWPBo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mhseH9bDzhrHJOEWfG8aJfAY77h5uajGMi/k239SkqqnKuxwLKghkN4s90fHqqfsRQpcdoDy/e9pfOYIzI8YiOZMVSZOxUWqyV17Wdkl1nu3td/0yHWViXILW8utlQXjnOquRWFcsgqRPioWjSNMl86CarQSGwp/iM918rJyTjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jcOjqwJb; arc=none smtp.client-ip=209.85.166.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-3856b7be480so13006075ab.0;
-        Sun, 14 Jul 2024 10:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720977624; x=1721582424; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OlQJVnEnvYtG6Urx8xlXkjHKNYwq7RXhH4sQHIkE5Zk=;
-        b=jcOjqwJblIMoQGQKMuYmylbC8vfG/J0fPgVCCm1sisnd6/PRxS0BMrXSpPPVIob4Ef
-         tqf3Q6pBL22a1hk5YlqEffuNxRli3QcfFNW8csaoM8q0JhjKPK4UMhVuI/7QP+z3QBGp
-         uol5rQZrtJRh3SsdN0e/aiO9jVfL6/bYGy0mo0S0JnviYu7nOX82G6yhhAdx2jwE1OmA
-         QvN7+GxIQnGIMsWDuiQghjHZpdVZWhONWDM911o/nS6HHdsq+f8usVDHsgxh+dMoZ9Vs
-         SjB/HBZToWOEq4t7VId1bx9aOj9w0/R+blQyhlduFkcxlwKdp9GmWlP9qXRVpxANzbpL
-         IpXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720977624; x=1721582424;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OlQJVnEnvYtG6Urx8xlXkjHKNYwq7RXhH4sQHIkE5Zk=;
-        b=bg5bap8tVPd6bIfp3hhuuTFi/WEDdj2DmVwN0Do1uJoQyX2dImULJdj0coi92GwHvs
-         q6sGfiXOuWEAzydIc/ROaQ52VmUJvGVIuqKxQtn1LVJRlGYEQ0FQzSVlu620ZZglYBV3
-         njq0Qu4qiqEJmxW+XABLUpErQPqilR51mfGY4awpTy5RSjUxBgqpGG0/xTrD9UAANn8L
-         Fxeyd/4i2T4rGdNTxAt5ho55+4PLAPfj2BBY/BLr01H27NftFQiTfZCMMnKw9Gw3/zFO
-         wekW4lzoNnkcURfkswneg2u0oeEGw4HtGqgd4Z6qoPWLKec2nhgHMccdwEHVko9WtDAv
-         iLlg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIFvADAZrTMH+vK0opVQZn1jgx7MEtkyHzcu8Sn41y2Ropq9nTEwOxdLsA9VSxYn1RRky7DF8aYVzBIsD83UHJEMbmin608f5bmlKYSKuWwZl+ROOPuPF0Gn4rd2f3choFbjR1igMR0w==
-X-Gm-Message-State: AOJu0YzYtTbzBPfZ/9eXCsLtGQ4b71tknvXPQLuFO2JcM1ZAZn03D7s8
-	MGLPbpd2Ltcpw/RZDULRLT7/ztanbIflrWSEkZb+IhZ1CakSDKqO
-X-Google-Smtp-Source: AGHT+IF6DTVl/wDe0J/V/t+5rtM8BQuGZZ8qgIqSyMgnG7/Y0BdktL+/90gcxU5w1DRx/MZmfcmztg==
-X-Received: by 2002:a92:c546:0:b0:375:a7ee:dff9 with SMTP id e9e14a558f8ab-38a585825f7mr226453335ab.17.1720977623667;
-        Sun, 14 Jul 2024 10:20:23 -0700 (PDT)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:5d97:4e3d:78d3:be9d])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3900f5280b1sm11357625ab.32.2024.07.14.10.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jul 2024 10:20:23 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
+	s=arc-20240116; t=1720978523; c=relaxed/simple;
+	bh=I/zqBwcxVSu5yg+K1xqT1Pmf9IjAjqyJEuPooErnlYs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=exMpr3jhzljKRZWh1BmHJ4cyAGzyL6/dwsUmie8DKIK73eWnpKJztZFTmXM0bA9YnwVHkPkf4PIw2Sst1ujd19KvHYIKH8J2CYdAlhPEB2MyAEKp1Khg8QGEyF/Nw1dfnFGIaqEG1AWbmtggj3gvBOHbZmKeFD437JueoATZUsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ansari.sh; spf=pass smtp.mailfrom=ansari.sh; dkim=pass (1024-bit key) header.d=ansari.sh header.i=@ansari.sh header.b=SOGvgsH9; arc=none smtp.client-ip=91.218.175.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ansari.sh
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ansari.sh
+X-Envelope-To: linux-arm-msm@vger.kernel.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
+	t=1720978518;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=H28ez38aNdebfEHu3HdpcZQGNIn2Qx6GCD4JHflPKwM=;
+	b=SOGvgsH9d11rF+RVn/SYXqGTztTFsrbz3Iags1Cxizj3mYW1EfUsVU7yV7sKUalqQfbSM9
+	P0FfqstSftCL0xEMskuWJQZ6WjVaRJF+++sQWGQPSdtJhCuGXZE6/phYU0Z5m2/lnkuZTc
+	Z8U0VBAUASbd47Ec1k6wSsyCsTIT4tE=
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-iio@vger.kernel.org
+X-Envelope-To: rayyan@ansari.sh
+X-Envelope-To: andy.shevchenko@gmail.com
+X-Envelope-To: andersson@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: hdegoede@redhat.com
+X-Envelope-To: jic23@kernel.org
+X-Envelope-To: konrad.dybcio@linaro.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: lars@metafoo.de
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: decatf@gmail.com
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: sean@starlabs.systems
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Rayyan Ansari <rayyan@ansari.sh>
+To: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp-beacon-kit: Fix Stereo Audio on WM8962
-Date: Sun, 14 Jul 2024 12:20:17 -0500
-Message-ID: <20240714172017.422811-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	linux-iio@vger.kernel.org
+Cc: Rayyan Ansari <rayyan@ansari.sh>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	linux-kernel@vger.kernel.org,
+	Robert Yang <decatf@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Sean Rhodes <sean@starlabs.systems>
+Subject: [PATCH 0/3] KX022-1020 accel support + inertial sensors on msm8226-microsoft
+Date: Sun, 14 Jul 2024 18:33:02 +0100
+Message-ID: <20240714173431.54332-1-rayyan@ansari.sh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,52 +83,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-The L/R clock needs to be controlled by the SAI3 instead of the
-CODEC to properly achieve stereo sound. Doing this allows removes
-the need for unnecessary clock manipulation to try to get the
-CODEC's clock in sync with the SAI3 clock, since the CODEC can cope
-with a wide variety of clock inputs.
+Hi,
+The following patches:
+- Add support for the Kionix KX022-1020 accelerometer
+- Add the KX022-1020 accelerometer and AK09911 magnetometer to msm8x26
+  Lumia devices
 
-Fixes: 161af16c18f3 ("arm64: dts: imx8mp-beacon-kit: Fix audio_pll2 clock")
-Fixes: 69e2f37a6ddc ("arm64: dts: imx8mp-beacon-kit: Enable WM8962 Audio CODEC")
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Thanks,
+Rayyan
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index 1871c10f5c12..de5b64fa479a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -222,13 +222,12 @@ sound-wm8962 {
- 
- 		simple-audio-card,cpu {
- 			sound-dai = <&sai3>;
-+			frame-master;
-+			bitclock-master;
- 		};
- 
- 		simple-audio-card,codec {
- 			sound-dai = <&wm8962>;
--			clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
--			frame-master;
--			bitclock-master;
- 		};
- 	};
- };
-@@ -544,10 +543,9 @@ &pcie_phy {
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
--	assigned-clocks = <&clk IMX8MP_CLK_SAI3>,
--			  <&clk IMX8MP_AUDIO_PLL2> ;
--	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
--	assigned-clock-rates = <12288000>, <361267200>;
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
- 	fsl,sai-mclk-direction-output;
- 	status = "okay";
- };
+Rayyan Ansari (3):
+  dt-bindings: iio: kionix,kxcjk1013: Document KX022-1020
+  iio: accel: kxcjk-1013: Add support for KX022-1020
+  ARM: dts: qcom: msm8226-microsoft-common: Add inertial sensors
+
+ .../bindings/iio/accel/kionix,kxcjk1013.yaml  |  1 +
+ .../qcom/qcom-msm8226-microsoft-common.dtsi   | 26 +++++++++++++++++++
+ .../qcom-msm8226-microsoft-moneypenny.dts     |  3 +++
+ .../dts/qcom/qcom-msm8926-microsoft-tesla.dts |  3 +++
+ drivers/iio/accel/kxcjk-1013.c                |  8 ++++--
+ 5 files changed, 39 insertions(+), 2 deletions(-)
+
 -- 
-2.43.0
+2.45.2
 
 
