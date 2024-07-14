@@ -1,143 +1,116 @@
-Return-Path: <devicetree+bounces-85560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BC493095D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 10:48:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375B493095E
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 10:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 435ED1C20A25
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 08:48:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C35B31F21651
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 08:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B849729401;
-	Sun, 14 Jul 2024 08:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8E53B1A1;
+	Sun, 14 Jul 2024 08:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="G783+MMD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Z2N9/S45"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="dsYaE+xC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC98C1CABB
-	for <devicetree@vger.kernel.org>; Sun, 14 Jul 2024 08:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FCA1CABB;
+	Sun, 14 Jul 2024 08:51:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720946912; cv=none; b=oW82eAonc9y/Z3rlk5bYJuVDf+/EILATBEDKN4lU+jf8K+CeV93n1fw/+7LIxxqZz6wKsR6dKj1CaiGwzWGhkv8XnKWWt5yUTPtDRpjfqDw0QBryY/FJrRxTxIg2rNjJ6UWf266vD5Vhv78cUDzzJFVYecP65GQvQOVJbuP0c3k=
+	t=1720947101; cv=none; b=b/Ib6DkD1B+37VHlklmewq25mEVcvEWYDGXJO5OwPJkriuKaHIukzQq2UJ+R48/pjWnZTedwdbOUbyZYX9fRox6w+0JS3u7P+6APbKiAnWG5ka3WKkb3VfInS/1bEIUSn0d8t3cvjpouwE76l/anAHIZXF5h2EH9ww8QKcqyCSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720946912; c=relaxed/simple;
-	bh=WTqUODSOxuqYOcK/UVm++azp/N034rVFuT2xF2W3IKM=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=NNdMwKDyA6AzN2sMvl0VOdGzs3m5GqHcIXqE9hTZlkkAEPqFm4NPO7JnGgl9t9ZnwbvvHaYoiNLkzQnKw3GTbjxPRDyZNjQD76cyCtZWyONLsvRTL3rOcP/Ig829DpGcC4hxcaN4w+wfRSQpLi/Ed+OXIbHXoYWMMZnKQY+wEpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=G783+MMD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Z2N9/S45; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id E7097114264C;
-	Sun, 14 Jul 2024 04:48:29 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sun, 14 Jul 2024 04:48:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1720946909; x=
-	1721033309; bh=r6wcnXOeTaMcTRf12KBeh5Qn82oL85PkY45PDXwULFE=; b=G
-	783+MMDplXMI/7Dwm+iWV8MFQ0iz2kBo+kaL/Jy2HaUV3LMFmGbtrQf7QEhjJdO7
-	dhOjjis5odIHb0t5iHDTNpcuBF3JIXxWOvOVibeQnF4ERorAcqHaGT1JAznAOqkz
-	4bo+ZMjuRJv6e9eWINrrhF3QA3NaTL8eNtGLRERYp4Kt3r6hz8K6efQPV9j7poz5
-	efni0Q98npCBiyHWDs0HRtCrtJS3JBrqsiLayO2yASAoISRik8Hz3/i2gMavk3Nj
-	719EvPLkIgE3X5Gi/CBk8TzvkvhO5bagwDMraOwe8wMaxRpvlkGGGWchP2sa+ed/
-	jYFSHgH8n9QwUBMFXQ1Jg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1720946909; x=1721033309; bh=r6wcnXOeTaMcTRf12KBeh5Qn82oL
-	85PkY45PDXwULFE=; b=Z2N9/S45n7ltZAhU4mP1h5BNzVfwvPJ8kyS74U8Wim4t
-	E5ewWcYSyxsbQwNok4DUCMlfAfe7Y/H2jNE1YSIF51KK6eXAgMQWp2SlCUb8pffW
-	gHMoFBML5yE6WNS99kbEHclUCynXLwtO2BicYOSgjHKZ/1nW2ArXIcRmjw0/HXNl
-	UqGk95Jw7/Vt8t5pzo3WPt/TWHLQ4f5+Jp5XX6l9zyCAOPDt3SvJqDDxob3Dk3vs
-	04ye6qXSKybCbrvqfdTK86OfzYUSFbPqMHg7l2gL7L0xQgVs/Wt6sQSVyx59ja1P
-	q/YMVMzZm5GZ/f6QCpLz5yC836JZ4xbe3EMG6PdnVA==
-X-ME-Sender: <xms:3JCTZj87NjR9p1bEzkrOTytOjkDG50SfuusZejyOMCKCJOy5G82vdA>
-    <xme:3JCTZvvvW3x8ORd8pAGmE6PgMmTFlmLP3fH0sun1BT7vggPZAypfitjUnzc8wfSZh
-    vK5buKGpoqmYcLOOw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrgedtgddtkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
-    nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
-    frrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefgteeu
-    veeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehrhigrnhesthgvshhtthhorghsthdrtghomh
-X-ME-Proxy: <xmx:3JCTZhAIhWlkifT1tohIkG_OGIQjSkugkKpaAxmV8btSGFlWuJgxIw>
-    <xmx:3JCTZvc6hgYxgGiMGXfgTbDY0V5EzY8mV5sABKNjoioizT1iAVwlIw>
-    <xmx:3JCTZoPJGCo7hYttvM2prFt3nmcR42FEFXjdKWYwXu_sdvfd8qBakw>
-    <xmx:3JCTZhkbRBFQYEg9VyBotK-DBMWiFtRVGte_us6OaOFlpE6Rrer75Q>
-    <xmx:3ZCTZkkysLdBCmxc8r9byzlAQmGtO7ISVhP7mze-F_TUBZaOJAZFpvdo>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 55F08A60078; Sun, 14 Jul 2024 04:48:28 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
+	s=arc-20240116; t=1720947101; c=relaxed/simple;
+	bh=XPa/vxwPzQ8ZxZMZ+a5zqSQNdIvO48wg1Zr/3EuLdho=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=D4BRYv1B1+oHQHhipwwhgU0ZH7m5yMGpDldYwPX3Y1FiqigAZzOMaEwaNNt9t8YJEpQIBCFXH36FV0deKzdBRIRudQskK87Sp98wxyflXlI7qjbep6dvdlBqUX+/yHdlvEhq4mTViLWED7tp0ZK7mOoj8IcSW8p0Ptqc78HPhfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=dsYaE+xC; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id DB05641A28;
+	Sun, 14 Jul 2024 10:51:30 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 3uDqLGJbe8il; Sun, 14 Jul 2024 10:51:30 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <9a9daf47-0313-49cd-b87d-1e6e94781ab7@app.fastmail.com>
-In-Reply-To: <20240711105256.61d1f00e@donnerap.manchester.arm.com>
-References: <20240710231718.106894-1-macroalpha82@gmail.com>
- <20240710231718.106894-4-macroalpha82@gmail.com>
- <20240711105256.61d1f00e@donnerap.manchester.arm.com>
-Date: Sun, 14 Jul 2024 20:48:08 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Andre Przywara" <andre.przywara@arm.com>,
- "Chris Morgan" <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- "Maxime Ripard" <mripard@kernel.org>, "Samuel Holland" <samuel@sholland.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Chen-Yu Tsai" <wens@csie.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Chris Morgan" <macromorgan@hotmail.com>,
- "Philippe Simons" <simons.philippe@gmail.com>
-Subject: Re: [PATCH V3 3/4] arm64: dts: allwinner: h616: Change RG35XX Series from
- r_rsb to r_i2c
-Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1720947090; bh=XPa/vxwPzQ8ZxZMZ+a5zqSQNdIvO48wg1Zr/3EuLdho=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=dsYaE+xCSezjXVahrI2PJa5MF2vxQhxeBcSaMJUd+HD9XdlbI2nNiqOxJG4AcxCeT
+	 VtNe1Ig9qdIzkjdmAmDG8MaLRnf+XRfJMZvOBTJOxSGzJoEHrLq40/+OPQdKhHuHYx
+	 nFS8rPckv16pSgCZ31YBHV2YdB7n2awkLRQwXwhl5p1N5xN3o+UPWQ8nCBFn15G/u4
+	 EPXtU7scC6j1Cs5GBcZqym3C+eDZyYR+VOzsWnMOQMOoyd1jZsFAC1YezOhMRjbbp/
+	 nqIyk0RT1UhYHgJ9q6XQe8Gj99hzjtY1XlPtd0fIIKPCPKooy4VaCUN0oZ4U39vU4m
+	 LOaZBPPnIu+qw==
+Date: Sun, 14 Jul 2024 08:51:25 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ conor+dt@kernel.org, Conor Dooley <conor@kernel.org>, kauschluss@disroot.org
+Subject: Re: [PATCH 1/3] iio: light: stk3310: relax chipid check warning
+In-Reply-To: <20240713130627.3d03290f@jic23-huawei>
+References: <20240712152417.97726-1-kauschluss@disroot.org>
+ <20240713130627.3d03290f@jic23-huawei>
+Message-ID: <05773f1b836aad0acb5acae35cca54a9@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-
-
-On Thu, 11 Jul 2024, at 9:52 PM, Andre Przywara wrote:
-> On Wed, 10 Jul 2024 18:17:17 -0500
-> Chris Morgan <macroalpha82@gmail.com> wrote:
->
-> Hi,
->
->> From: Chris Morgan <macromorgan@hotmail.com>
+On 2024-07-13 12:06, Jonathan Cameron wrote:
+> On Fri, 12 Jul 2024 20:54:00 +0530
+> Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+> 
+>> In order to allow newer devices which are compatible with existing
+>> sensors, issuing a warning for an unknown chipid indicates that
+>> something has gone wrong with the init process, which isn't ideal.
+>> Swap it with a friendlier info message to get things right.
 >> 
->> Change the Anbernic RG35XX series to use the r_i2c bus for the PMIC
->> instead of the r_rsb bus. This is to keep the device tree consistent
->> as there are at least 3 devices (the RG35XX-SP, RG28XX, and RG40XX-H)
->> that have an external RTC on the r_i2c bus.
->
-> The change itself looks alright, but I would like to see some Tested-by:s
-> from people with those Allwinner Anbernic devices, since the change affects
-> all of them.
->
->> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
->
+>> Suggested-by: Conor Dooley <conor@kernel.org>
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Give the patch series a cover letter next time as it makes it easy for
+> people to comment on whole series together + gives the series a nice
+> name in patchwork etc.
 
-Tested on RG35XX-H and RG35XX-Plus devices, confirmed AXP717 detected and configured using I2C bus by both kernel and u-boot. 
+Sure, I assume I can add one in the next version, right?
 
-Also note this change corrects reboot behaviour on battery-based devices, where the AXP717 is not reset (and so remains in RSB mode) and is unable to be addressed by the u-boot SPL driver (which is I2C-only) on restart. Using I2C for all accesses prevents this behaviour.
+> 
+> Plus this isn't (I think) version 1.  So that should be in the patch naming.
 
-Tested-by: Ryan Walklin <ryan@testtoast.com>
+Sorry, forgot adding v2 to the messages. I'll properly send a v3.
 
-Regards,
-
-Ryan
+> 
+> Actual change looks fine to me.
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+>> ---
+>>  drivers/iio/light/stk3310.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/iio/light/stk3310.c b/drivers/iio/light/stk3310.c
+>> index e3470d6743ef..48a971de6a04 100644
+>> --- a/drivers/iio/light/stk3310.c
+>> +++ b/drivers/iio/light/stk3310.c
+>> @@ -496,7 +496,7 @@ static int stk3310_init(struct iio_dev *indio_dev)
+>>  
+>>  	ret = stk3310_check_chip_id(chipid);
+>>  	if (ret < 0)
+>> -		dev_warn(&client->dev, "unknown chip id: 0x%x\n", chipid);
+>> +		dev_info(&client->dev, "new unknown chip id: 0x%x\n", chipid);
+>>  
+>>  	state = STK3310_STATE_EN_ALS | STK3310_STATE_EN_PS;
+>>  	ret = stk3310_set_state(data, state);
 
