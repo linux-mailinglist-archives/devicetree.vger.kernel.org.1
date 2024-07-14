@@ -1,175 +1,194 @@
-Return-Path: <devicetree+bounces-85608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 021F8930B04
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 19:36:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F34C5930B2B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 20:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 335E21C2120F
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 17:36:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66485B20D41
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 18:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F7C13C9BD;
-	Sun, 14 Jul 2024 17:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF7713AA2A;
+	Sun, 14 Jul 2024 18:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ansari.sh header.i=@ansari.sh header.b="ZodpNyFX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TWR3dPH6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1005F13D276;
-	Sun, 14 Jul 2024 17:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD5A3BB23;
+	Sun, 14 Jul 2024 18:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720978546; cv=none; b=XYIfiJa83o0bJMQL6M7awLcHT2yignROtXPfg/oZXc9FEpxP1RXSYfabJuEdgLh/y9+bMH0JMQGuIekffuLe7ey4vTY46L5c8yzze6OnNRLgiHFeRZAJbRM3f8PMfXMERjp9deEjKmM8BGbDYbzdHUs6pnoBo+oXF8mikcby0U4=
+	t=1720980591; cv=none; b=KkGllMG9yc2sLn4QSrQHpdBGWv9AaLFV/7mr+DkvIG2aKJu2tBkYTQ/4csa1ASu3BB3t04D3Sja9TeKw1i/OIuo0iBozBRLIAX+11zxwBmz/6MLEN/6qrgeinWZ1v+iu6Xc5WetnfSXRKe4jJYB9jTGf5CIOXIxBW9wEs2rXNnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720978546; c=relaxed/simple;
-	bh=VHWS+gj7xMlpAExhwSL6ooThV5hNxibaLYEH8aR1+Ew=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tH2YpxbKR3RN1yx/UgMCGuBbtAGPLXkBYepITiwBrIw9nT5oahEVMrx8omtaX7aQ+7MmaGCM1gfgH9Dbn5I2e9g/0YoURVpui8E4EfYTWjGhM/zVninHFH0rAZGXgbcKQ5KsqkLhodAZbrE5svBaGBoDuyp+qXBKClmj4I7zdPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ansari.sh; spf=pass smtp.mailfrom=ansari.sh; dkim=pass (1024-bit key) header.d=ansari.sh header.i=@ansari.sh header.b=ZodpNyFX; arc=none smtp.client-ip=91.218.175.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ansari.sh
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ansari.sh
-X-Envelope-To: linux-arm-msm@vger.kernel.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-	t=1720978543;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qdqvh6SMJ9Blh4+QG2t86TRm3VSmGkFDoB02sCBdXH8=;
-	b=ZodpNyFXij4EaNyLMZEtyVasB7qgZXDO+xd159NYxFpx/kBfaZ4o7ltxlHOQTCKIIUysT7
-	8xP+Y+UO6ThJ74M/+dF00pgXan6vx2FfX4cJChVXe4V6LN9M3wXwkmRxorNxZoCWgt9hni
-	Hqjf8w4jb+o25j4BvIxTtP+0c5QTkLA=
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-iio@vger.kernel.org
-X-Envelope-To: rayyan@ansari.sh
-X-Envelope-To: andy.shevchenko@gmail.com
-X-Envelope-To: andersson@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: hdegoede@redhat.com
-X-Envelope-To: jic23@kernel.org
-X-Envelope-To: konrad.dybcio@linaro.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: lars@metafoo.de
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: decatf@gmail.com
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: sean@starlabs.systems
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Rayyan Ansari <rayyan@ansari.sh>
-To: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Cc: Rayyan Ansari <rayyan@ansari.sh>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	linux-kernel@vger.kernel.org,
-	Robert Yang <decatf@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Sean Rhodes <sean@starlabs.systems>
-Subject: [PATCH 3/3] ARM: dts: qcom: msm8226-microsoft-common: Add inertial sensors
-Date: Sun, 14 Jul 2024 18:33:05 +0100
-Message-ID: <20240714173431.54332-4-rayyan@ansari.sh>
-In-Reply-To: <20240714173431.54332-1-rayyan@ansari.sh>
-References: <20240714173431.54332-1-rayyan@ansari.sh>
+	s=arc-20240116; t=1720980591; c=relaxed/simple;
+	bh=NG+9SLQB5CUb0d3jWCkQYWSiXW+fCSYfcN1EMvWBUrs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tCZA1sLYMLpmamuOcpuhC6CX9qucCvbI9bcGhqkRLGCM2ANf+6VYLPUnZ0Q9poeEzI98c955lo5YuqRZhc5H2aqYJdKAatA3Z4CSQ7x64nxMvvbIl2Gu4A/tyBdj9PDO+VeePObUaE+NBfn9anQU7UD88R+bBf2NXgo6PsasKkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TWR3dPH6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EF2C4AF0A;
+	Sun, 14 Jul 2024 18:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720980590;
+	bh=NG+9SLQB5CUb0d3jWCkQYWSiXW+fCSYfcN1EMvWBUrs=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=TWR3dPH6oS3VKac35oI/mmSrQusTrgNuyW6cEQIDwl7AEqt4zW0IlfViT8keRsMgl
+	 FOooC1R8aZ2B0iS0/nJyBPGVxmGuIvs4BF7uxmgcNHzguGQGy3cKEg8/3mrujc8jW6
+	 g7Jg68PAA25/GUj09NortgahSMdfxQSIT7sQ2SFPXv5YObRNtsidgkoKRrTJDV7mkR
+	 V9VoiTAKHzA0l7Ozaqhkryn8QrDld9l8Np7s9BlVlTYOP6qDnAJgfCym6slhQ10Bm5
+	 Rnn9i9iARH4ZvKDITGIDmp2QgsuoylpjpPW56qEtRyHioylzHWGE5rgDGE+i0xQHnC
+	 pfAXPU4wla6rg==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2eedeca1c79so17306101fa.3;
+        Sun, 14 Jul 2024 11:09:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVNRgY33QDerwJ3D6x5azo14SyipJurIGpwlQ78PxTZ3QG9n9UYaCa8hh5eL46m2EHQbw04m7lPrQbIi1C16fTtlxP0lA7oBUHCNqJVQtnrz7BYh/VMZsA6rLqpVi6coD3yXegO7eUUPm6vsyVFqtHnS70g/buS5yOeiKdfKJI+1/eWF05LPg==
+X-Gm-Message-State: AOJu0YzjoK+TVXqf1qlyAt1K4xObeNQRK5ot95rpxt5mkarJCqMMFZOP
+	VxcfQDsvjf8ZNad6xilxw1RkmJAcQqHkPV9NpbVq2S35MW5tDAB3ClwNb2gGWy4UsuZZAQIh6Ns
+	0dHgpNlSAJZ6NBLC+14PK7QvJaak=
+X-Google-Smtp-Source: AGHT+IFFXDuC1PwJBXmFQH3s6fgDJs2b42yBRYfHa3/YS6nIv2xJQGOJLd7uR/2otp56ybbamkaqxaVyWlGuM+dGn3o=
+X-Received: by 2002:a2e:b178:0:b0:2ec:5255:b4d9 with SMTP id
+ 38308e7fff4ca-2eeb30b88acmr130110861fa.7.1720980588944; Sun, 14 Jul 2024
+ 11:09:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+References: <cover.1720969799.git.daniel@makrotopia.org>
+In-Reply-To: <cover.1720969799.git.daniel@makrotopia.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Mon, 15 Jul 2024 02:09:34 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66YespcUHnC3hdhogdutVo_wAX32+cqT3sw3UzkwKBxxQ@mail.gmail.com>
+Message-ID: <CAGb2v66YespcUHnC3hdhogdutVo_wAX32+cqT3sw3UzkwKBxxQ@mail.gmail.com>
+Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Dragan Simic <dsimic@manjaro.org>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add nodes for the Asahi Kasei AK09911 magnetometer and the Kionix
-KX022-1020 accelerometer, both of which are connected over i2c2, in the
-common device tree for msm8x26 Lumias.
+On Sun, Jul 14, 2024 at 11:16=E2=80=AFPM Daniel Golle <daniel@makrotopia.or=
+g> wrote:
+>
+> Rockchip SoCs used to have a random number generator as part of their
+> crypto device.
+>
+> However newer Rockchip SoCs like the RK3568 have an independent True
+> Random Number Generator device. This patchset adds a driver for it and
+> enables it in the device tree.
+>
+> Tested on FriendlyARM NanoPi R5C.
+>
+> v6 -> v7:
+>  * Patch 1: unchanged
+>
+>  * Patch 2: bring back rk_rng_write_ctl()
+>    - bring back rk_rng_write_ctl() with improved comment to describe
+>      the hardware.
+>
+>  * Patch 3: unchaned
+>
+> v5 -> v6:
+>  * Patch 1: unchanged
+>
+>  * Patch 2: get rid of #ifdef
+>    - use if (IS_ENABLED(...)) { ... }instead of #ifdef inside functions
+>    - use __maybe_unused for functions previously enclosed by #ifdef'ery
+>
+>  * Patch 3: unchanged
+>
+> v4 -> v5:
+>  * Patch 1: always use RK3568 name
+>    - use full RK3568 name in patch description
+>    - add RK3568 to title in binding
+>
+>  * Patch 2: full name and cosmetics
+>    - also always mention RK3568 as there may be other RNG in other
+>      (future) Rockchip SoCs
+>    - remove debug output on successful probe
+>    - use MODULE_AUTHOR several times instead of single comma-separated
+>
+>  * Patch 3: unchanged
+>
+> v3 -> v4:
+>  * Patch 1: minor corrections
+>    - fix Rokchip -> Rockchip typo
+>    - change commit title as requested
+>
+>  * Patch 2: improved error handling and resource management
+>    - Always use writel() instead of writel_relaxed()
+>    - Use pm_runtime_resume_and_get
+>    - Correctly return error code in rk_rng_read()
+>    - Make use of devm_reset_control_array_get_exclusive
+>    - Use devm_pm_runtime_enable and there by get rid of rk_rng_remove()
+>
+>  * Patch 3:
+>    - Move node to conform with ordering by address
+>
+> v2 -> v3: patch adopted by Daniel Golle
+>  * Patch 1: address comments of Krzysztof Kozlowski, add MAINTAINERS
+>    - improved description
+>    - meaningful clock-names
+>    - add entry in MAINTAINERS files
+>
+>  * Patch 2: numerous code-style improvements
+>    - drop misleading rk_rng_write_ctl(), simplify I/O writes
+>    - drop unused TRNG_RNG_DOUT_[1-7] macros
+>    - handle error handling for pm_runtime_get_sync()
+>    - use memcpy_fromio() instead of open coding for-loop
+>    - some minor white-spaces fixes
+>
+>  * Patch 3:
+>    - use clock-names as defined in dt-bindings
+>
+> v1 -> v2:
+>  * Patch 1: fix issues reported by Rob Herring and Krzysztof Kozlowski:
+>    - Rename rockchip-rng.yaml into rockchip,rk3568-rng.yaml
+>    - Fix binding title and description
+>    - Fix compatible property
+>    - Rename clocks and add the corresponding descriptions
+>    - Drop reset-names
+>    - Add a bus definition with #address-cells and #size-cells to the
+>      example.
+>
+>  * Patch 2: fix issue reported by kernel test robot <lkp@intel.com>
+>    - Do not read the random registers as big endian, looking at the
+>      RK3568 TRM this is actually not needed. This fixes a sparse
+>      warning.
+>
+>  * Patch 3: unchanged
+>
+>
+> Aurelien Jarno (3):
+>   dt-bindings: rng: Add Rockchip RK3568 TRNG
+>   hwrng: add hwrng driver for Rockchip RK3568 SoC
+>   arm64: dts: rockchip: add DT entry for RNG to RK356x
 
-Moneypenny (Lumia 630) does not have a magnetometer, and so the node is
-deleted.
-Tesla's (Lumia 830's) magnetometer is currently unknown.
+Tested-by: Chen-Yu Tsai <wens@csie.org>
 
-Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
----
- .../qcom/qcom-msm8226-microsoft-common.dtsi   | 26 +++++++++++++++++++
- .../qcom-msm8226-microsoft-moneypenny.dts     |  3 +++
- .../dts/qcom/qcom-msm8926-microsoft-tesla.dts |  3 +++
- 3 files changed, 32 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-common.dtsi
-index 8839b23fc693..ca76bf8af75e 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-common.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-common.dtsi
-@@ -84,6 +84,32 @@ smem_region: smem@fa00000 {
- 	};
- };
- 
-+&blsp1_i2c2 {
-+	status = "okay";
-+
-+	magnetometer: magnetometer@c {
-+		compatible = "asahi-kasei,ak09911";
-+		reg = <0x0c>;
-+
-+		vdd-supply = <&pm8226_l15>;
-+		vid-supply = <&pm8226_l6>;
-+	};
-+
-+	accelerometer: accelerometer@1e {
-+		compatible = "kionix,kx022-1020";
-+		reg = <0x1e>;
-+
-+		interrupts-extended = <&tlmm 63 IRQ_TYPE_EDGE_RISING>;
-+
-+		vdd-supply = <&pm8226_l15>;
-+		vddio-supply = <&pm8226_l6>;
-+
-+		mount-matrix = "1",  "0",  "0",
-+			       "0", "-1",  "0",
-+			       "0",  "0",  "1";
-+	};
-+};
-+
- &blsp1_i2c5 {
- 	status = "okay";
- 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-moneypenny.dts b/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-moneypenny.dts
-index 992b7115b5f8..a28a83cb5340 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-moneypenny.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226-microsoft-moneypenny.dts
-@@ -10,6 +10,9 @@
- 
- #include "qcom-msm8226-microsoft-common.dtsi"
- 
-+/* This device has no magnetometer */
-+/delete-node/ &magnetometer;
-+
- / {
- 	model = "Nokia Lumia 630";
- 	compatible = "microsoft,moneypenny", "qcom,msm8226";
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts
-index 53a6d4e85959..55077a5f2e34 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts
-@@ -13,6 +13,9 @@
- /* This device has touchscreen on i2c1 instead */
- /delete-node/ &touchscreen;
- 
-+/* The magnetometer used on this device is currently unknown */
-+/delete-node/ &magnetometer;
-+
- / {
- 	model = "Nokia Lumia 830";
- 	compatible = "microsoft,tesla", "qcom,msm8926", "qcom,msm8226";
--- 
-2.45.2
-
+>  .../bindings/rng/rockchip,rk3568-rng.yaml     |  61 +++++
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   9 +
+>  drivers/char/hw_random/Kconfig                |  14 ++
+>  drivers/char/hw_random/Makefile               |   1 +
+>  drivers/char/hw_random/rockchip-rng.c         | 227 ++++++++++++++++++
+>  6 files changed, 319 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568=
+-rng.yaml
+>  create mode 100644 drivers/char/hw_random/rockchip-rng.c
+>
+> --
+> 2.45.2
 
