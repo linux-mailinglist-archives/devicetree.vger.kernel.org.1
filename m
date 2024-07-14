@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-85587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D136B930A47
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 15:46:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AE10930A54
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 16:15:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1C3F1C20987
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 13:46:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADED12819F9
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 14:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC524D11B;
-	Sun, 14 Jul 2024 13:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F341311A3;
+	Sun, 14 Jul 2024 14:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FGAqJGiF"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="f7UTJj5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF54312E40
-	for <devicetree@vger.kernel.org>; Sun, 14 Jul 2024 13:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85B7563C8
+	for <devicetree@vger.kernel.org>; Sun, 14 Jul 2024 14:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720964788; cv=none; b=Ofbvl3PmGaTu49N4Ml6mA1dgGq2m6hFuKjc3J1fpOy02IJwcYJG60JlJUP1t2wkR5Cl0D1lkvto9mMRWgHqzVs8Se0e2VH4fDnO0nl3ogT2jjtxhrnC3JBwFm7RBt4lWXwYsIwT4ACUGXoY0SDeP2cnIoGCHXU06Q9BAZz8xDIk=
+	t=1720966508; cv=none; b=TKGseVjjmiQtnLQ1grdn/TJtnkrC+sIQSf1ZbAnmgkYcf6Ivj/guiSm4cjHGrW8Hf3OuN0AIyD+S4QFf/zG++Qbqx8g2s4cKNEC4/nLgygzFSQtrA7whTezTh2BzoFrhnLHu0txS/KRJZl8xAfBLOIIx/7numLs2sRmnD/CqFkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720964788; c=relaxed/simple;
-	bh=tRZclaax6e/MHDoRUK0Pc2UvrR9AorgQuTds3t4McLM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=bymAG3erbyhaSOT9n376FTfe6GUSrJxxGLKce/gwVaYIvTQxEkAI1556teHv5Q7zYb0NdRaa0HnWjHbh23hkUdUxXC8LHaM9+oyAf9SEEx7RlAahcu+N2Enu8dOVCujKg0U2KGFXvieVta3KLyLh1eutwdxJnI38aDrm54FDJDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=FGAqJGiF; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1720966508; c=relaxed/simple;
+	bh=RRS6GVDxtMoILI5/rqfdcc1puotFWozr2zfGE0f698I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FbKCL93SgPbaJWU5I5Ex0Cb883ZvIkGBI/9JkuUJzO0BPCIV1QMt3cXcx/ZzjvwKH6GTeOOa22cN7NQKnjiYWt/YflN0HpnU5BxwR2II20jtNFzzJhKbcsWcld0Gp7hIDRC9WH7ciM8imh47bYYQnh2XBQYMoGM8rrSStIJaPJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=f7UTJj5z; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4266fd395eeso23568345e9.3
-        for <devicetree@vger.kernel.org>; Sun, 14 Jul 2024 06:46:26 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4266fd395eeso23651745e9.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Jul 2024 07:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1720964785; x=1721569585; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=tuxon.dev; s=google; t=1720966504; x=1721571304; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XhhF2kOObaWSpTUE3FHoWYSAyXxA8qZtiRUXKka5xPk=;
-        b=FGAqJGiFRIkV1MTO7xrPDj+2GSxiYWiIRNt4kXX1BP/GWoMGIde4SDZHrRyBEm/Bx2
-         BZuyuWtKZuatTYg7nTrCBO3sKpFgFcPD0mnR0BMDVMj/HwdkUR9CiB6tWeIrr+x4ydVy
-         bExnjGgBGVT+6pNOeT1xoPDFmrrnDEgcX6hZPJj4iwlaAhIuo/BpWcRgHyNTjcEQgfrJ
-         T16zNLWEbXgosKNdVSxhi7OKbC8uQtC/6DWmJ1RNNDRUJEDlO+gJV9GG0zNRG+6x0vR1
-         +dLH+1uQpWhIdgeGf3d0hw+niXVgFGzskQiOaNGld55OK6xJyRIR49EZiUCMIsphKBSl
-         6ImA==
+        bh=udP1PLQtk2Czhs83q4mcO0rC91sao+wGhZF6joyhFig=;
+        b=f7UTJj5z158P8rVHv1yZWkMPsy3DKhnKrjHU1GKjxhg2XKwzvzbgXWBI8oDuA9vD/e
+         konZKDTAqbKgweOH7YfTwx+XrqAXnYD5AmsoN06KktySqIyCZVSc1+fvHJRqo4K6oLPr
+         +m5PF4cg3vmv3HekhrabWsV43uVvSnGKCP1/amMHQPP3/HFEoLsYP7SLfzrT6W5pvLm2
+         TdAGYxwyqdxqTwUdxB1AhOazbZq66Z8Ae98gcbkuLNr0RI6MET0fZX2ArtqnVlKjmhYK
+         ha9MrF3b9ER7FCPa3Yuod96gUhDd/GHNmNIG63fQndXmaMMa7vDYHgFU9y5kdsKrm+Jn
+         Wiyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720964785; x=1721569585;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20230601; t=1720966504; x=1721571304;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XhhF2kOObaWSpTUE3FHoWYSAyXxA8qZtiRUXKka5xPk=;
-        b=MPdihDMio8IuORIuQ3hDuDRP0p0ypSiixhyYLrw2CIR96AxYoZb5Ov+tBiP5nOGY1H
-         fygNI9v31uaatePEtj/ylKW5RPCpj9YI2bIyn6GW6DZGsBJaDEq4AuWpyi+bcdx3Y5Sm
-         gWJ0Y17OfhuaCyaet9kOdqpB5n7xVsj5gk16PMknRSqvmT5c9c2TnBGz5rYyiqjalRMb
-         PwQfMrzrp2jbjlTDvTKhrW/czr4OKGudPNAxrdB3PNZx0uFZDPIuEFBAwp8VjGYcoCAU
-         DnN6tMCtt/5Nmx/8SBV4EP2Ps6Qa89TSyN7ia3/prkKQFIiksfdPYD5UxyYj7miFEhIA
-         w6+A==
-X-Forwarded-Encrypted: i=1; AJvYcCW2WlGmoIUyXEVSJgiKTgHQ8iLz9FA4nfb9mZF9N14JQHFx82PxC8S81BohlGwkehIFbTydAncmkzaNL8+iiLYvZIn3OyQAjSfioQ==
-X-Gm-Message-State: AOJu0Yz2npqgaFuJ/dGM2hvh/hx349fLgQeAcyri13EhuxttCJhrQZwx
-	wq885BuJ8izzX4qDMIvff07hJF8xlwkch81ny0ErwwYfgRHrlZIOb28Eu5SwCBs=
-X-Google-Smtp-Source: AGHT+IF00EL0Y03INAlv8YUqpJscKmmaNb+dyxPLgyZMXltbvzpjzs9gZweXVagxn0t14s0u9qa2RA==
-X-Received: by 2002:a05:600c:3042:b0:426:6a5e:73c5 with SMTP id 5b1f17b1804b1-426708f1035mr104521085e9.37.1720964784947;
-        Sun, 14 Jul 2024 06:46:24 -0700 (PDT)
+        bh=udP1PLQtk2Czhs83q4mcO0rC91sao+wGhZF6joyhFig=;
+        b=cUQkUdXSv+zdxM1fjxpn4WsGugrTJr6QU6kjzCfHJWEmRuOpZlaCPsiikmODbU7+my
+         /qAhh83ME9zHLhmYOZyGh0ZgkNOyxXyQ2g/OiEe0Ht3A3k5D+q9Rtc+Gmmlx1aceG0h/
+         2Qlpe1T0jogxcJnSrJHFX3GnWlUjoM9Ssirph7GCLRdoq1xBvJ8P0LZPvC9FxwwCJXr/
+         Ss0d4x/rVaeUK6Jqv4SqHZV6JaVt7h9tZsdNOZdmAT6f8GBRpMNZfriACtqnvsd/UR+s
+         nQufZPYBHO4h9pu3TejaWhfIxSE8/eQtxnvHMFDpljYJqUjokF+chCrgPEi7GGPw2ed4
+         1Ifg==
+X-Forwarded-Encrypted: i=1; AJvYcCXO/WJteMgSpNc+92ps1Xaohv/w6mpe+ULrInNpgu4JXLiGIQr0UNO7Z2yPDfQ3mF5fN9E/aKm6e8XYAPsA9KQEe7GryQDaFJ/hZQ==
+X-Gm-Message-State: AOJu0YzlPLUdpszHASZxTs+eJhWuaM4uJAE41Zmv/CIitVjD3zArkOJF
+	fYZKIebz149pubt2nSzXbwAhD2dYvSoASJFwAJWda+TychhOemec082GKwinxBG7+eHZGctFLyL
+	7
+X-Google-Smtp-Source: AGHT+IFToJK9F48XDGcRh4WrmD7fniaH9sX0XLX/XNgLl8A4WefvrUlMJMJAFTBVeVsBV4qeVNcbhQ==
+X-Received: by 2002:a05:600c:4342:b0:425:5f0e:bb69 with SMTP id 5b1f17b1804b1-426708f0ff6mr115646325e9.38.1720966503840;
+        Sun, 14 Jul 2024 07:15:03 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5ef550asm52187375e9.46.2024.07.14.06.46.23
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5e77493sm53540965e9.7.2024.07.14.07.15.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jul 2024 06:46:24 -0700 (PDT)
-Message-ID: <d36b0e70-f889-4aa2-b7af-b92cbaa573a6@tuxon.dev>
-Date: Sun, 14 Jul 2024 16:46:23 +0300
+        Sun, 14 Jul 2024 07:15:03 -0700 (PDT)
+Message-ID: <9c180330-8f8c-4910-bbb8-323de736c3f6@tuxon.dev>
+Date: Sun, 14 Jul 2024 17:15:00 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,388 +77,665 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 27/27] ARM: dts: microchip: sam9x75_curiosity: add
- sam9x75 curiosity board
+Subject: Re: [PATCH 2/4] drm/bridge: add Microchip DSI controller support for
+ sam9x7 SoC series
 Content-Language: en-US
-To: Varshini Rajendran <varshini.rajendran@microchip.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, mihai.sain@microchip.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
- <20240703102943.196655-1-varshini.rajendran@microchip.com>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux@armlinux.org.uk, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, arnd@arndb.de, Jason@zx2c4.com,
+ palmer@rivosinc.com, mpe@ellerman.id.au, rdunlap@infradead.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Hari.PrasathGE@microchip.com
+References: <20240704084837.168075-1-manikandan.m@microchip.com>
+ <20240704084837.168075-3-manikandan.m@microchip.com>
 From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240703102943.196655-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20240704084837.168075-3-manikandan.m@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Varshini,
 
-On 03.07.2024 13:29, Varshini Rajendran wrote:
-> Add device tree file for sam9x75 curiosity board.
+
+On 04.07.2024 11:48, Manikandan Muralidharan wrote:
+> Add the Microchip's DSI controller wrapper driver that uses
+> the Synopsys DesignWare MIPI DSI host controller bridge.
 > 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
 > ---
-> Changes in v5:
-> - Update commit message to match the directory structure.
-> - Alphanumerically sorted Makefile entries.
-> - Corrected VDDCore minimum voltage.
-> - Enabled the i2s node.
-> - Removed additional blank lines.
-> - Enclosed each entry with separate <>.
-> - Corrected pinctrl names to match Microchip convention.
-> - Enabled slewrate in sdmmc node.
-> - Corrected pinmux mask.
-> - Added phandle to leds for ease of access with upcoming device entries.
-> - Updated gpio pin number for red led.
-> ---
->  arch/arm/boot/dts/microchip/Makefile          |   3 +
->  .../dts/microchip/at91-sam9x75_curiosity.dts  | 312 ++++++++++++++++++
->  2 files changed, 315 insertions(+)
->  create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+>  drivers/gpu/drm/bridge/Kconfig            |   8 +
+>  drivers/gpu/drm/bridge/Makefile           |   1 +
+>  drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c | 544 ++++++++++++++++++++++
+>  3 files changed, 553 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c
 > 
-> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-> index 0c45c8d17468..470fe46433a9 100644
-> --- a/arch/arm/boot/dts/microchip/Makefile
-> +++ b/arch/arm/boot/dts/microchip/Makefile
-> @@ -2,6 +2,7 @@
->  # Enables support for device-tree overlays
->  DTC_FLAGS_at91-sam9x60_curiosity := -@
->  DTC_FLAGS_at91-sam9x60ek := -@
-> +DTC_FLAGS_at91-sam9x75_curiosity := -@
->  DTC_FLAGS_at91-sama5d27_som1_ek := -@
->  DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
->  DTC_FLAGS_at91-sama5d29_curiosity := -@
-> @@ -60,6 +61,8 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
->  dtb-$(CONFIG_SOC_SAM9X60) += \
->  	at91-sam9x60_curiosity.dtb \
->  	at91-sam9x60ek.dtb
-> +dtb-$(CONFIG_SOC_SAM9X7) += \
-> +	at91-sam9x75_curiosity.dtb
->  dtb-$(CONFIG_SOC_SAM_V7) += \
->  	at91-kizbox2-2.dtb \
->  	at91-kizbox3-hs.dtb \
-> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index c621be1a99a8..459ad9768234 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -196,6 +196,14 @@ config DRM_MICROCHIP_LVDS_SERIALIZER
+>  	help
+>  	  Support for Microchip's LVDS serializer.
+>  
+> +config DRM_MICROCHIP_DW_MIPI_DSI
+> +	tristate "Microchip specific extensions for Synopsys DW MIPI DSI"
+> +	depends on DRM_ATMEL_HLCDC
+> +	select DRM_DW_MIPI_DSI
+> +	help
+> +	  This selects support for Microchip's SoC specific extensions
+> +	  for the Synopsys DesignWare dsi driver.
+> +
+>  config DRM_NWL_MIPI_DSI
+>  	tristate "Northwest Logic MIPI DSI Host controller"
+>  	depends on DRM
+> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> index 7df87b582dca..aff5052100b9 100644
+> --- a/drivers/gpu/drm/bridge/Makefile
+> +++ b/drivers/gpu/drm/bridge/Makefile
+> @@ -14,6 +14,7 @@ obj-$(CONFIG_DRM_LONTIUM_LT9611UXC) += lontium-lt9611uxc.o
+>  obj-$(CONFIG_DRM_LVDS_CODEC) += lvds-codec.o
+>  obj-$(CONFIG_DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW) += megachips-stdpxxxx-ge-b850v3-fw.o
+>  obj-$(CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER) += microchip-lvds.o
+> +obj-$(CONFIG_DRM_MICROCHIP_DW_MIPI_DSI) += dw-mipi-dsi-mchp.o
+>  obj-$(CONFIG_DRM_NXP_PTN3460) += nxp-ptn3460.o
+>  obj-$(CONFIG_DRM_PARADE_PS8622) += parade-ps8622.o
+>  obj-$(CONFIG_DRM_PARADE_PS8640) += parade-ps8640.o
+> diff --git a/drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c b/drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c
 > new file mode 100644
-> index 000000000000..4a4f14f13634
+> index 000000000000..d2c4525677ab
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-> @@ -0,0 +1,312 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +++ b/drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c
+> @@ -0,0 +1,544 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
+> + * Copyright (C) 2024 Microchip Technology Inc. and its subsidiaries
 > + *
-> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
+> + * Author: Manikandan Muralidharan <manikandan.m@microchip.com>
 > + *
-> + * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
 > + */
-> +/dts-v1/;
-> +#include "sam9x7.dtsi"
-> +#include <dt-bindings/input/input.h>
 > +
-> +/ {
-> +	model = "Microchip SAM9X75 Curiosity";
-> +	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
+> +#include <drm/bridge/dw_mipi_dsi.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_print.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/of.h>
 > +
-> +	aliases {
-> +		i2c0 = &i2c6;
-> +	};
+> +#define DSI_PLL_REF_CLK			24000000
 > +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
+> +#define DSI_PWR_UP			0x04
+> +#define HOST_RESET			BIT(0)
+> +#define HOST_PWRUP			0
 > +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
+> +#define DSI_PHY_RSTZ			0xa0
+> +#define PHY_SHUTDOWNZ			0
 > +
-> +		button-user {
-> +			label = "USER";
-> +			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_0>;
-> +			wakeup-source;
-> +		};
-> +	};
+> +#define DSI_PHY_TST_CTRL0		0xb4
+> +#define PHY_TESTCLK			BIT(1)
+> +#define PHY_UNTESTCLK			0
+> +#define PHY_TESTCLR			BIT(0)
+> +#define PHY_UNTESTCLR			0
 > +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led_red: led-red {
-> +			label = "red";
-> +			gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
-> +			pinctrl-0 = <&pinctrl_red_led_gpio_default>;
-> +		};
-> +
-> +		led_green: led-green {
-> +			label = "green";
-> +			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-> +			pinctrl-0 = <&pinctrl_green_led_gpio_default>;
-> +		};
-> +
-> +		led_blue: led-blue {
-> +			label = "blue";
-> +			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-> +			pinctrl-0 = <&pinctrl_blue_led_gpio_default>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	memory@20000000 {
-> +		reg = <0x20000000 0x10000000>;
-> +		device_type = "memory";
-> +	};
-> +};
-> +
-> +&classd {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_classd_default>;
-> +	atmel,pwm-type = "diff";
-> +	atmel,non-overlap-time = <10>;
-> +	status = "okay";
-> +};
-> +
-> +&dbgu {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_dbgu_default>;
-> +	status = "okay";
-> +};
-> +
-> +&dma0 {
-> +	status = "okay";
-> +};
-> +
-> +&flx6 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c6 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flx6_default>;
-> +	i2c-analog-filter;
-> +	i2c-digital-filter;
-> +	i2c-digital-filter-width-ns = <35>;
-> +	status = "okay";
-> +
-> +	pmic@5b {
-> +		compatible = "microchip,mcp16502";
-> +		reg = <0x5b>;
-> +
-> +		regulators {
-> +			vdd_3v3: VDD_IO {
-> +				regulator-name = "VDD_IO";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3600000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddioddr: VDD_DDR {
-> +				regulator-name = "VDD_DDR";
-> +				regulator-min-microvolt = <1283000>;
-> +				regulator-max-microvolt = <1450000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddcore: VDD_CORE {
-> +				regulator-name = "VDD_CORE";
-> +				regulator-min-microvolt = <1140000>;
-> +				regulator-max-microvolt = <1210000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddcpu: VDD_OTHER {
-> +				regulator-name = "VDD_OTHER";
-> +				regulator-min-microvolt = <1700000>;
-> +				regulator-max-microvolt = <3600000>;
+> +#define DSI_PHY_TST_CTRL1		0xb8
+> +#define PHY_TESTEN			BIT(16)
+> +#define PHY_UNTESTEN			0
+> +#define PHY_TESTDOUT(n)			(((n) & 0xff) << 8)
+> +#define PHY_TESTDIN(n)			(((n) & 0xff) << 0)
 
-I haven't got any input on question asked in v4 on the regulator values.
-Are the values from this version the right ones? Is this board supporting
-DVFS or the label name is wrong or maybe the min-max range is still wrong?
+These 2 looks like FIELD_PREP() candidates.
 
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-ramp-delay = <3125>;
-> +				regulator-always-on;
 > +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
+> +#define BYPASS_VCO_RANGE		BIT(7)
+> +#define VCO_RANGE_CON_SEL(val)		(((val) & 0x7) << 3)
+
+This, too.
+
+> +#define VCO_IN_CAP_CON_LOW		BIT(1)
 > +
-> +				regulator-state-mem {
-> +					regulator-mode = <4>;
-> +				};
-> +			};
+> +#define CP_CURRENT_0			0x2
+> +#define CP_CURRENT_1			0x4
+> +#define CP_CURRENT_2			0x5
+> +#define CP_CURRENT_3			0x6
+> +#define CP_CURRENT_4			0x7
+> +#define CP_CURRENT_5			0x8
+> +#define CP_CURRENT_6			0xc
+> +#define CP_CURRENT_SEL(val)		((val) & 0xf)
+
+This, too.
+
+> +#define CP_PROGRAM_EN			BIT(7)
 > +
-> +			vldo1: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <3700000>;
-> +				regulator-always-on;
+> +#define LPF_RESISTORS_18KOHM		0x0
+> +#define LPF_RESISTORS_15_6KOHM		0x1
+> +#define LPF_RESISTORS_15KOHM		0x2
+> +#define LPF_RESISTORS_14_4KOHM		0x4
+> +#define LPF_RESISTORS_12_8KOHM		0x8
+> +#define LPF_RESISTORS_11_4KOHM		0x10
+> +#define LPF_RESISTORS_10_5KOHM		0x20
+
+Some of these are unsused.
+
+> +#define LPF_PROGRAM_EN			BIT(6)
+> +#define LPF_RESISTORS_SEL(val)		((val) & 0x3f)
+
+This, too
+
 > +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
+> +#define HSFREQRANGE_SEL(val)		(((val) & 0x3f) << 1)
+
+Unused
+
 > +
-> +			vldo2: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <3700000>;
+> +#define INPUT_DIVIDER(val)		(((val) - 1) & 0x7f)
+> +#define LOW_PROGRAM_EN			0
+> +#define HIGH_PROGRAM_EN			BIT(7)
+> +#define LOOP_DIV_LOW_SEL(val)		(((val) - 1) & 0x1f)
+> +#define LOOP_DIV_HIGH_SEL(val)		((((val) - 1) >> 5) & 0xf)
+> +#define PLL_LOOP_DIV_EN			BIT(5)
+> +#define PLL_INPUT_DIV_EN		BIT(4)
 > +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
+> +#define PLL_BIAS_CUR_SEL_CAP_VCO_CONTROL		0x10
+> +#define PLL_CP_CONTROL_PLL_LOCK_BYPASS			0x11
+> +#define PLL_LPF_AND_CP_CONTROL				0x12
+> +#define PLL_INPUT_DIVIDER_RATIO				0x17
+> +#define PLL_LOOP_DIVIDER_RATIO				0x18
+> +#define PLL_INPUT_AND_LOOP_DIVIDER_RATIOS_CONTROL	0x19
+> +
+> +#define SFR_ISS_CFG			0x240
+> +#define ISS_CFG_DSI_MODE		1
+> +
+> +struct dw_mipi_dsi_mchp_chip_data {
+> +	unsigned int max_data_lanes;
+> +	struct dw_mipi_dsi_phy_ops *phy_ops;
+
+pointer first to avoid padding, if any.
+
 > +};
 > +
-> +&i2s {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2s_default>;
-> +	#sound-dai-cells = <0>;
-> +	status = "okay";
+> +struct dw_mipi_dsi_mchp {
+> +	struct device *dev;
+> +	void __iomem *base;
+> +	struct dw_mipi_dsi_plat_data pdata;
+> +	struct dw_mipi_dsi *dsi;
+> +
+> +	/* needed for PLL config */
+> +	unsigned int lane_mbps;
+> +	u16 input_div;
+> +	u16 feedback_div;
+> +	u32 format;
+> +
+> +	struct clk *pclk;
+> +	struct clk *pllref_clk;
+
+same here.
+
 > +};
 > +
-> +&main_xtal {
-> +	clock-frequency = <24000000>;
+> +struct dphy_pll_parameter_map {
+> +	unsigned int max_mbps;
+> +	u8 hsfreqrange;
+> +	u8 icpctrl;
+> +	u8 lpfctrl;
 > +};
 > +
-> +&pinctrl {
-> +	classd {
-> +		pinctrl_classd_default: classd-default {
-> +			atmel,pins =
-> +				<AT91_PIOA 18 AT91_PERIPH_C AT91_PINCTRL_PULL_UP>,
-> +				<AT91_PIOA 19 AT91_PERIPH_C AT91_PINCTRL_PULL_DOWN>;
-> +		};
-> +	};
-> +
-> +	dbgu {
-> +		pinctrl_dbgu_default: dbgu-default {
-> +			atmel,pins = <AT91_PIOA 26 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
-> +				     <AT91_PIOA 27 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-> +		};
-> +	};
-> +
-> +	flexcom {
-> +		pinctrl_flx6_default: flx6-default {
-> +			atmel,pins =
-> +				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
-> +				<AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		pinctrl_key_gpio_default: key-gpio-default {
-> +			atmel,pins = <AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-> +		};
-> +	};
-> +
-> +	i2s {
-> +		pinctrl_i2s_default: i2s-default {
-> +			atmel,pins =
-> +				<AT91_PIOB 26 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SCK */
-> +				<AT91_PIOB 15 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SWS */
-> +				<AT91_PIOB 16 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SDIN */
-> +				<AT91_PIOB 17 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SDOUT */
-> +				<AT91_PIOB 25 AT91_PERIPH_D AT91_PINCTRL_NONE>;		/* I2SMCK */
-> +		};
-> +	};
-> +
-> +	leds {
-> +		pinctrl_red_led_gpio_default: red-led-gpio-default {
-> +			atmel,pins = <AT91_PIOC 14 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-> +		};
-> +		pinctrl_green_led_gpio_default: green-led-gpio-default {
-> +			atmel,pins = <AT91_PIOC 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-> +		};
-> +		pinctrl_blue_led_gpio_default: blue-led-gpio-default {
-> +			atmel,pins = <AT91_PIOC 20 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-> +		};
-> +	};
-> +
-> +	sdmmc0 {
-> +		pinctrl_sdmmc0_default: sdmmc0-default {
-> +			atmel,pins =
-> +				<AT91_PIOA 2 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,				/* PA2 CK  periph A with pullup */
-> +				<AT91_PIOA 1 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA1 CMD periph A with pullup */
-> +				<AT91_PIOA 0 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA0 DAT0 periph A */
-> +				<AT91_PIOA 3 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA3 DAT1 periph A with pullup */
-> +				<AT91_PIOA 4 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA4 DAT2 periph A with pullup */
-> +				<AT91_PIOA 5 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>;	/* PA5 DAT3 periph A with pullup */
-> +		};
-> +	};
-> +}; /* pinctrl */
-> +
-> +&rtt {
-> +	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
+> +static const struct dphy_pll_parameter_map dppa_map[] = {
+> +	{  89, 0x00, CP_CURRENT_1, LPF_RESISTORS_11_4KOHM },
+> +	{  99, 0x20, CP_CURRENT_1, LPF_RESISTORS_11_4KOHM },
+> +	{ 109, 0x40, CP_CURRENT_1, LPF_RESISTORS_11_4KOHM },
+> +	{ 129, 0x02, CP_CURRENT_5, LPF_RESISTORS_12_8KOHM },
+> +	{ 139, 0x22, CP_CURRENT_5, LPF_RESISTORS_12_8KOHM },
+> +	{ 149, 0x42, CP_CURRENT_5, LPF_RESISTORS_12_8KOHM },
+> +	{ 169, 0x04, CP_CURRENT_6, LPF_RESISTORS_12_8KOHM },
+> +	{ 179, 0x24, CP_CURRENT_6, LPF_RESISTORS_12_8KOHM },
+> +	{ 199, 0x44, CP_CURRENT_6, LPF_RESISTORS_12_8KOHM },
+> +	{ 219, 0x06, CP_CURRENT_6, LPF_RESISTORS_12_8KOHM },
+> +	{ 239, 0x26, CP_CURRENT_6, LPF_RESISTORS_12_8KOHM },
+> +	{ 249, 0x46, CP_CURRENT_6, LPF_RESISTORS_12_8KOHM },
+> +	{ 269, 0x08, CP_CURRENT_0, LPF_RESISTORS_12_8KOHM },
+> +	{ 299, 0x28, CP_CURRENT_0, LPF_RESISTORS_12_8KOHM },
+> +	{ 329, 0x0a, CP_CURRENT_2, LPF_RESISTORS_12_8KOHM },
+> +	{ 359, 0x2a, CP_CURRENT_2, LPF_RESISTORS_12_8KOHM },
+> +	{ 399, 0x4a, CP_CURRENT_2, LPF_RESISTORS_12_8KOHM },
+> +	{ 449, 0x0C, CP_CURRENT_2, LPF_RESISTORS_15_6KOHM },
+> +	{ 499, 0x2c, CP_CURRENT_2, LPF_RESISTORS_15_6KOHM },
+> +	{ 549, 0x0e, CP_CURRENT_3, LPF_RESISTORS_11_4KOHM },
+> +	{ 599, 0x2e, CP_CURRENT_3, LPF_RESISTORS_11_4KOHM },
+> +	{ 649, 0x10, CP_CURRENT_3, LPF_RESISTORS_14_4KOHM },
+> +	{ 699, 0x30, CP_CURRENT_3, LPF_RESISTORS_14_4KOHM },
+> +	{ 749, 0x12, CP_CURRENT_3, LPF_RESISTORS_14_4KOHM },
+> +	{ 799, 0x32, CP_CURRENT_3, LPF_RESISTORS_14_4KOHM },
+> +	{ 849, 0x52, CP_CURRENT_3, LPF_RESISTORS_14_4KOHM },
+> +	{ 899, 0x72, CP_CURRENT_3, LPF_RESISTORS_14_4KOHM },
+> +	{ 949, 0x14, CP_CURRENT_4, LPF_RESISTORS_11_4KOHM },
+> +	{1000, 0x34, CP_CURRENT_4, LPF_RESISTORS_11_4KOHM }
 > +};
 > +
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-> +	cd-gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +	status = "okay";
+> +struct hstt {
+> +	unsigned int maxfreq;
+> +	struct dw_mipi_dsi_dphy_timing timing;
 > +};
 > +
-> +&slow_xtal {
-> +	clock-frequency = <32768>;
+> +#define HSTT(_maxfreq, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)	\
+> +{					\
+> +	.maxfreq = _maxfreq,		\
+> +	.timing = {			\
+> +		.clk_lp2hs = _c_lp2hs,	\
+> +		.clk_hs2lp = _c_hs2lp,	\
+> +		.data_lp2hs = _d_lp2hs,	\
+> +		.data_hs2lp = _d_hs2lp,	\
+> +	}				\
+> +}
+> +
+> +struct hstt hstt_table[] = {
+
+static const
+
+> +	HSTT(90,  32, 20,  26, 13),
+> +	HSTT(100,  35, 23,  28, 14),
+> +	HSTT(110,  32, 22,  26, 13),
+> +	HSTT(130,  31, 20,  27, 13),
+> +	HSTT(140,  33, 22,  26, 14),
+> +	HSTT(150,  33, 21,  26, 14),
+> +	HSTT(170,  32, 20,  27, 13),
+> +	HSTT(180,  36, 23,  30, 15),
+> +	HSTT(200,  40, 22,  33, 15),
+> +	HSTT(220,  40, 22,  33, 15),
+> +	HSTT(240,  44, 24,  36, 16),
+> +	HSTT(250,  48, 24,  38, 17),
+> +	HSTT(270,  48, 24,  38, 17),
+> +	HSTT(300,  50, 27,  41, 18),
+> +	HSTT(330,  56, 28,  45, 18),
+> +	HSTT(360,  59, 28,  48, 19),
+> +	HSTT(400,  61, 30,  50, 20),
+> +	HSTT(450,  67, 31,  55, 21),
+> +	HSTT(500,  73, 31,  59, 22),
+> +	HSTT(550,  79, 36,  63, 24),
+> +	HSTT(600,  83, 37,  68, 25),
+> +	HSTT(650,  90, 38,  73, 27),
+> +	HSTT(700,  95, 40,  77, 28),
+> +	HSTT(750, 102, 40,  84, 28),
+> +	HSTT(800, 106, 42,  87, 30),
+> +	HSTT(850, 113, 44,  93, 31),
+> +	HSTT(900, 118, 47,  98, 32),
+> +	HSTT(950, 124, 47, 102, 34),
+> +	HSTT(1000, 130, 49, 107, 35),
 > +};
 > +
-> +&poweroff {
-> +	debounce-delay-us = <976>;
-> +	status = "okay";
+> +static int max_mbps_to_parameter(unsigned int max_mbps)
+> +{
+> +	int index;
 > +
-> +	input@0 {
-> +		reg = <0>;
-> +	};
+> +	for (index = 0; index < ARRAY_SIZE(dppa_map); index++)
+> +		if (dppa_map[index].max_mbps >= max_mbps)
+> +			return index;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static inline void dsi_write(struct dw_mipi_dsi_mchp *dsi, u32 reg, u32 val)
+
+The name here looks too generic, prefixing it with something like mchp may
+be better to avoid any potential conflict. Valid for the rest of functions
+in this file.
+
+> +{
+> +	writel(val, dsi->base + reg);
+> +}
+> +
+> +static inline u32 dsi_read(struct dw_mipi_dsi_mchp *dsi, u32 reg)
+> +{
+> +	return readl(dsi->base + reg);
+> +}
+> +
+> +static void dw_mipi_dsi_phy_write(struct dw_mipi_dsi_mchp *dsi,
+> +				  u8 test_code,
+> +				  u8 test_data)
+> +{
+> +	/* General DPHY control operation */
+> +
+> +	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_TESTCLK | PHY_UNTESTCLR);
+> +	dsi_write(dsi, DSI_PHY_TST_CTRL1, PHY_TESTEN | PHY_TESTDOUT(1) |
+> +						PHY_TESTDIN(test_code));
+> +	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_UNTESTCLK | PHY_UNTESTCLR);
+> +	dsi_write(dsi, DSI_PHY_TST_CTRL1, PHY_UNTESTEN | PHY_TESTDOUT(0) |
+> +						PHY_TESTDIN(test_data));
+> +	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_TESTCLK | PHY_UNTESTCLR);
+> +	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_UNTESTCLK | PHY_UNTESTCLR);
+> +}
+> +
+> +static int dw_mipi_dsi_mchp_init(void *priv_data)
+> +{
+> +	struct dw_mipi_dsi_mchp *dsi = priv_data;
+> +	int index, vco, ret = 0;
+> +
+> +	/*
+> +	 * Get vco from frequency(lane_mbps)
+> +	 * vco	frequency table
+> +	 * 000 - between   80 and  200 MHz
+> +	 * 001 - between  200 and  300 MHz
+> +	 * 010 - between  300 and  500 MHz
+> +	 * 011 - between  500 and  700 MHz
+> +	 * 100 - between  700 and  900 MHz
+> +	 * 101 - between  900 and 1000 MHz
+> +	 */
+> +	vco = (dsi->lane_mbps < 200) ? 0 : (dsi->lane_mbps + 100) / 200;
+> +
+> +	index = max_mbps_to_parameter(dsi->lane_mbps);
+> +	if (index < 0) {
+> +		dev_err(dsi->dev,
+> +			"failed to get parameter for %dmbps clock\n",
+> +			dsi->lane_mbps);
+> +		return index;
+> +	}
+> +
+> +	/* D-PHY in Shutdown mode */
+> +	dsi_write(dsi, DSI_PHY_RSTZ, PHY_SHUTDOWNZ);
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_BIAS_CUR_SEL_CAP_VCO_CONTROL,
+> +			      BYPASS_VCO_RANGE |
+> +			      VCO_RANGE_CON_SEL(vco) |
+> +			      VCO_IN_CAP_CON_LOW);
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_CP_CONTROL_PLL_LOCK_BYPASS,
+> +			      CP_CURRENT_SEL(dppa_map[index].icpctrl));
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_LPF_AND_CP_CONTROL,
+> +			      CP_PROGRAM_EN | LPF_PROGRAM_EN |
+> +			      LPF_RESISTORS_SEL(dppa_map[index].lpfctrl));
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_INPUT_AND_LOOP_DIVIDER_RATIOS_CONTROL,
+> +			      PLL_LOOP_DIV_EN | PLL_INPUT_DIV_EN);
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_INPUT_DIVIDER_RATIO,
+> +			      INPUT_DIVIDER(dsi->input_div));
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_LOOP_DIVIDER_RATIO,
+> +			      LOOP_DIV_LOW_SEL(dsi->feedback_div) |
+> +			      LOW_PROGRAM_EN);
+> +
+> +	dw_mipi_dsi_phy_write(dsi, PLL_LOOP_DIVIDER_RATIO,
+> +			      LOOP_DIV_HIGH_SEL(dsi->feedback_div) |
+> +			      HIGH_PROGRAM_EN);
+> +
+> +	return ret;
+> +}
+> +
+> +static int dw_mipi_dsi_mchp_get_lane_mbps(void *priv_data,
+> +					  const struct drm_display_mode *mode,
+> +					  unsigned long mode_flags, u32 lanes,
+> +					  u32 format, unsigned int *lane_mbps)
+> +{
+> +	struct dw_mipi_dsi_mchp *dsi = priv_data;
+> +	unsigned long best_freq, fvco_min, fvco_max, fin, fout;
+> +	unsigned long min_delta = ULONG_MAX, delta;
+> +	unsigned int mpclk, target_mbps, desired_mbps;
+> +	unsigned int max_mbps = dppa_map[ARRAY_SIZE(dppa_map) - 1].max_mbps;
+> +	unsigned int bpp, min_prediv, max_prediv;
+> +	unsigned int _fbdiv, best_fbdiv, _prediv, best_prediv;
+> +	u64 freq_factor;
+> +
+> +	dsi->format = format;
+> +	bpp = mipi_dsi_pixel_format_to_bpp(dsi->format);
+> +	if (bpp < 0) {
+> +		dev_err(dsi->dev,
+> +			"failed to get bpp for pixel format %d\n",
+> +			dsi->format);
+> +		return bpp;
+> +	}
+> +
+> +	mpclk = DIV_ROUND_UP(mode->clock, MSEC_PER_SEC);
+> +	if (mpclk) {
+> +		/* take 1/0.8, since mbps must be bigger than bandwidth of RGB */
+> +		desired_mbps = mpclk * (bpp / lanes) * 10 / 8;
+> +		if (desired_mbps < max_mbps) {
+> +			target_mbps = desired_mbps;
+> +		} else {
+> +			dev_err(dsi->dev,
+> +				"DPHY clock frequency is out of range\n");
+> +			return -ERANGE;
+> +		}
+> +	}
+> +
+> +	fin = clk_get_rate(dsi->pllref_clk);
+> +	fout = target_mbps * USEC_PER_SEC;
+> +
+> +	/* constraint: 5Mhz <= Fref / N <= 40MHz */
+> +	min_prediv = DIV_ROUND_UP(fin, 40 * USEC_PER_SEC);
+> +	max_prediv = fin / (5 * USEC_PER_SEC);
+> +
+> +	/* constraint: 80MHz <= Fvco <= 1000Mhz */
+> +	fvco_min = 80 * USEC_PER_SEC;
+> +	fvco_max = 1000 * USEC_PER_SEC;
+> +
+> +	best_freq = 0;
+
+Could be added to the initialization list of for()
+
+> +	for (_prediv = min_prediv; _prediv <= max_prediv; _prediv++) {
+> +		/* Fvco = Fref * M / N */
+> +		freq_factor = (uint64_t)fout * _prediv;
+
+u64?
+
+> +		do_div(freq_factor, fin);
+> +		_fbdiv = freq_factor;
+> +		/*
+> +		 * Due to the use of a "by 2 pre-scaler," the range of the
+> +		 * feedback multiplication value M is limited to even division
+> +		 * numbers, and m must be greater than 6, not bigger than 512.
+> +		 */
+> +		if (_fbdiv < 6 || _fbdiv > 512)
+> +			continue;
+> +
+> +		_fbdiv += _fbdiv % 2;
+> +
+> +		freq_factor = (uint64_t)_fbdiv * fin;
+
+u64?
+
+> +		do_div(freq_factor, _prediv);
+> +		if (freq_factor < fvco_min || freq_factor > fvco_max)
+> +			continue;
+> +
+> +		delta = abs(fout - freq_factor);
+> +		if (delta < min_delta) {
+> +			best_prediv = _prediv;
+> +			best_fbdiv = _fbdiv;
+> +			min_delta = delta;
+> +			best_freq = freq_factor;
+> +		}
+> +	}
+> +
+> +	if (best_freq) {
+> +		dsi->lane_mbps = DIV_ROUND_UP(best_freq, USEC_PER_SEC);
+> +		*lane_mbps = dsi->lane_mbps;
+> +		dsi->input_div = best_prediv;
+> +		dsi->feedback_div = best_fbdiv;
+> +	} else {
+> +		dev_err(dsi->dev, "Can not find best_freq for DPHY\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int dw_mipi_dsi_mchp_get_timing(void *priv_data, unsigned int lane_mbps,
+> +				       struct dw_mipi_dsi_dphy_timing *timing)
+> +{
+> +	int index;
+
+Could be directly declared in the for ()
+
+> +
+> +	for (index = 0; index < ARRAY_SIZE(hstt_table); index++)
+> +		if (lane_mbps < hstt_table[index].maxfreq)
+> +			break;
+> +
+> +	if (index == ARRAY_SIZE(hstt_table))
+> +		index--;
+> +
+> +	*timing = hstt_table[index].timing;
+> +
+> +	return 0;
+> +}
+> +
+> +static void dw_mipi_dsi_mchp_power_on(void *priv_data)
+> +{
+> +	struct dw_mipi_dsi_mchp *dsi = priv_data;
+> +
+> +	/* Enable the DSI wrapper */
+> +	dsi_write(dsi, DSI_PWR_UP, HOST_PWRUP);
+> +}
+> +
+> +static void dw_mipi_dsi_mchp_power_off(void *priv_data)
+> +{
+> +	struct dw_mipi_dsi_mchp *dsi = priv_data;
+> +
+> +	/* Disable the DSI wrapper */
+> +	dsi_write(dsi, DSI_PWR_UP, HOST_RESET);
+> +}
+> +
+> +struct dw_mipi_dsi_phy_ops dw_mipi_dsi_mchp_phy_ops = {
+> +	.init = dw_mipi_dsi_mchp_init,
+> +	.power_on = dw_mipi_dsi_mchp_power_on,
+> +	.power_off = dw_mipi_dsi_mchp_power_off,
+> +	.get_lane_mbps = dw_mipi_dsi_mchp_get_lane_mbps,
+> +	.get_timing = dw_mipi_dsi_mchp_get_timing,
 > +};
 > +
-> +&trng {
-> +	status = "okay";
+> +static int dw_mipi_dsi_mchp_probe(struct platform_device *pdev)
+> +{
+> +	struct dw_mipi_dsi_mchp *dsi;
+> +	struct resource *res;
+> +	struct regmap *sfr;
+> +	const struct dw_mipi_dsi_mchp_chip_data *cdata;
+> +	int ret;
+> +
+> +	dsi = devm_kzalloc(&pdev->dev, sizeof(*dsi), GFP_KERNEL);
+> +	if (!dsi)
+> +		return -ENOMEM;
+> +
+> +	dsi->dev = &pdev->dev;
+> +	cdata = of_device_get_match_data(dsi->dev);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	dsi->base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(dsi->base)) {
+> +		ret = PTR_ERR(dsi->base);
+> +		dev_err(dsi->dev, "Unable to get DSI Base address: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	dsi->pclk = devm_clk_get(&pdev->dev, "pclk");
+> +	if (IS_ERR(dsi->pclk)) {
+> +		ret = PTR_ERR(dsi->pclk);
+> +		dev_err(dsi->dev, "Unable to get pclk: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	dsi->pllref_clk = devm_clk_get(&pdev->dev, "refclk");
+> +	if (IS_ERR(dsi->pllref_clk)) {
+> +		ret = PTR_ERR(dsi->pllref_clk);
+> +		dev_err(dsi->dev, "Unable to get DSI PHY PLL reference clock: %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	clk_set_rate(dsi->pllref_clk, DSI_PLL_REF_CLK);
+> +	if (clk_get_rate(dsi->pllref_clk) != DSI_PLL_REF_CLK) {
+> +		dev_err(dsi->dev, "Failed to set DSI PHY PLL reference clock\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = clk_prepare_enable(dsi->pllref_clk);
+> +	if (ret) {
+> +		dev_err(dsi->dev, "Failed to enable DSI PHY PLL reference clock: %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	sfr = syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "microchip,sfr");
+> +	if (IS_ERR_OR_NULL(sfr)) {
+> +		ret = PTR_ERR(sfr);
+> +		dev_err(dsi->dev, "Failed to get handle on Special Function Register: %d\n",
+> +			ret);
+> +		goto err_dsi_probe;
+> +	}
+> +	/* Select DSI in SFR's ISS Configuration Register */
+> +	ret = regmap_write(sfr, SFR_ISS_CFG, ISS_CFG_DSI_MODE);
+> +	if (ret) {
+> +		dev_err(dsi->dev, "Failed to enable DSI in SFR ISS configuration register: %d\n",
+> +			ret);
+> +		goto err_dsi_probe;
+> +	}
+> +
+> +	dsi->pdata.base = dsi->base;
+> +	dsi->pdata.max_data_lanes = cdata->max_data_lanes;
+> +	dsi->pdata.phy_ops = cdata->phy_ops;
+> +	dsi->pdata.priv_data = dsi;
+> +	platform_set_drvdata(pdev, dsi);
+> +
+> +	/* call synopsis probe */
+> +	dsi->dsi = dw_mipi_dsi_probe(pdev, &dsi->pdata);
+> +	if (IS_ERR(dsi->dsi)) {
+> +		ret = PTR_ERR(dsi->dsi);
+> +		dev_err(dsi->dev, "Failed to initialize mipi dsi host: %d\n", ret);
+> +		goto err_dsi_probe;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_dsi_probe:
+> +	clk_disable_unprepare(dsi->pllref_clk);
+> +
+> +	return ret;
+> +}
+> +
+> +static int dw_mipi_dsi_mchp_remove(struct platform_device *pdev)
+> +{
+> +	struct dw_mipi_dsi_mchp *dsi = platform_get_drvdata(pdev);
+> +
+> +	dw_mipi_dsi_remove(dsi->dsi);
+> +	clk_disable_unprepare(dsi->pllref_clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_mipi_dsi_mchp_chip_data sam9x75_chip_data = {
+> +	.max_data_lanes = 4,
+> +	.phy_ops = &dw_mipi_dsi_mchp_phy_ops,
 > +};
 > +
-> +&watchdog {
-> +	status = "okay";
+> +static const struct of_device_id dw_mipi_dsi_mchp_dt_ids[] = {
+> +	{
+> +	 .compatible	= "microchip,sam9x75-mipi-dsi",
+> +	 .data		= &sam9x75_chip_data,
+> +	},
+> +	{ /* sentinel */ }
 > +};
+> +MODULE_DEVICE_TABLE(of, dw_mipi_dsi_mchp_dt_ids);
+> +
+> +struct platform_driver dw_mipi_dsi_mchp_driver = {
+> +	.probe		= dw_mipi_dsi_mchp_probe,
+> +	.remove		= dw_mipi_dsi_mchp_remove,
+> +	.driver		= {
+> +		.of_match_table = dw_mipi_dsi_mchp_dt_ids,
+> +		.name		= "dw-mipi-dsi-mchp",
+> +	},
+> +};
+> +module_platform_driver(dw_mipi_dsi_mchp_driver);
+> +
+> +MODULE_AUTHOR("Manikandan Muralidharan <manikandan.m@microchip.com>");
+> +MODULE_DESCRIPTION("Microchip DW MIPI DSI controller wrapper driver");
+> +MODULE_LICENSE("GPL");
 
