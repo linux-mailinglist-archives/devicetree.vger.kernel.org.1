@@ -1,359 +1,419 @@
-Return-Path: <devicetree+bounces-85555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C979308C8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 08:17:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A1319308CE
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 08:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D046281F04
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 06:17:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B71B1F216C4
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2024 06:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82546101D5;
-	Sun, 14 Jul 2024 06:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8B810A24;
+	Sun, 14 Jul 2024 06:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EqrnulYy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tiT2LKNu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7728FFBEF;
-	Sun, 14 Jul 2024 06:17:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F263F15491;
+	Sun, 14 Jul 2024 06:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720937865; cv=none; b=Yh0gyPMPXDM418HMahu61m3WWV8/gjL4TzuxEJNm3w9QtZAmh1PRX1fDpcU8cUuQ/x/xX2RE3q/M4KN5gvoYkt36Q+iHh11DgSvWLDR8urNxLG8j/uRCU+FxujC39T3jSuwtdSXyj/0ZktGgvZqjiZLzJLatQIcxrcqMrYcI3YY=
+	t=1720939758; cv=none; b=DDeGFojDd9N6MW22dHbKYSb8MAGgJ97uvIcu53Hlg7/xAIUp2xA1UvAotdcmG/hTHsMMi7qZvFWxeYlHixUGnMlNAXG1GPqquC7na60PyzkAcoJcmv0J+DEkeRPkYwuK+Bxw+8aecACinkUuzatB0u1vX5IO9fZ2ml+Eqwqm04E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720937865; c=relaxed/simple;
-	bh=9xr4AKUdhuZTubcwEoNJMc1pV6Ni+w++1nRH6K0oloM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JsvD2wX3TnsjXFLslU8gwJJ2ANp557SjwZ8irHpDYvwHqEJg9tIkx+9euZM5HJoC04+wIPfYrHbX7OIkYCKp0D5FBn9D5R4EZrXp/vt17H5hOYCHQT4paPf4dvkAKFApaOpvl/EmClDo1r5Gek4XRIYNfCeM+L+Yrd5Y0vlfhYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EqrnulYy; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a77c4309fc8so440764066b.3;
-        Sat, 13 Jul 2024 23:17:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720937862; x=1721542662; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=IQwZPrEnljss/y0TPSFPE6LroWZrMWEy9TSB17vuOF8=;
-        b=EqrnulYyrO7ptLUkxUQ81RG9wcyAhi0u9A7tfbVVjRnJMVXPq9sG88/LtCjOeNhoGw
-         /ov5EC93H37URrEofa9nsVEvWv1nzz6X4ztSf7dfrYOCuGeCY8r3jT2x2tI56I5bHmya
-         cu4zt7+h0hYrbIYOBjYufB7r0h/Ev+gEWmyh41icChDiwEkFBBxZaRYgEZao/6G0paGO
-         3v4BoF3cKH7P4g5WEmacoJcjVokz+vZ7OP5856Zw1dx2QjoAa86gm1f3VlGbSDucT+bu
-         /iYr7fNXBOQImn88WPGJyWm5mJquJqihbmM13BNDJNBiBZ2I8RlPH8sZAVSjcRhh4HMr
-         DTZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720937862; x=1721542662;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IQwZPrEnljss/y0TPSFPE6LroWZrMWEy9TSB17vuOF8=;
-        b=T2ZpCJBP+ax2NM5uVOsX5OSQIYbpPnqeaS0sWbiZStqDTw4ozrr2KbxLwgYr5xhLnK
-         DLWoLK7QECJwo6k8tualAGeKZppqpIz+sJEspU9kECREZelgtZdZupxtTSLPYrqqxVKr
-         hiY9lqH9RUiXEc/1o0G4KnstuAn9iE7vZtM0MEVZJiJLr6a6DWc9JRdqzDgJaAAfNDFG
-         4Eol035YJhg3vo8gsbFG65yzM7pivykhJq/RkxsNP5NlUZG4mOYRLsvq6bmJKE7LsovE
-         BhIQ36kTsRGvUkHB8+YKg4Pc+xrm03TP4E5bhEHq42IF3OcUedMDLDsiYVfRbhYDjuOB
-         kZLw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrXzh7woN/Rdq7zLdWuSuDFt+9Xc5w0zHkcQp44wtyHhxnoxf9Y1P7i8BN9rArdZayv4mb46mmbmBP7XIk6Tbm/8XpULhx82hh44s1/hiHpB1x8lKT1UAJp1nMH7sSb0aAeExbA6Wz8wlBcnGnLugRhSOCFfOczb2IKTKyibxw+umumQ==
-X-Gm-Message-State: AOJu0Yz3ZSAyGCsbzQrouN1eDhseZhDaCIZr9qJ5308WsHShfcppmM9q
-	HBH0K0fMsx3ruO+BseHzsM1fV88KOG5cO0pKZakFvJVtyX4d/JWY
-X-Google-Smtp-Source: AGHT+IGp/uQTDMyRJcxL8K8iVFOlzJqwfAi2kX+AtAkztIgsoD/X8coocSdW8XsdhhErXv9sP86nUw==
-X-Received: by 2002:a17:907:c1e:b0:a77:cdaa:88a9 with SMTP id a640c23a62f3a-a780b68a97cmr1295621366b.6.1720937861642;
-        Sat, 13 Jul 2024 23:17:41 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:359b:e801:d44:32b3:6924:10d1])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc7f1e4dsm101764466b.114.2024.07.13.23.17.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jul 2024 23:17:41 -0700 (PDT)
-Message-ID: <9c34cef044c5b22a189011045fcd8f5b229fee7d.camel@gmail.com>
-Subject: Re: [PATCH 2/2] iio: dac: support the ad8460 Waveform DAC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <Jonathan.Cameron@Huawei.com>, "Tinaco, Mariel" <Mariel.Tinaco@analog.com>,
-  "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- "Hennerich, Michael" <Michael.Hennerich@analog.com>,  Marcelo Schmitt
- <marcelo.schmitt1@gmail.com>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>, Nuno Sa <nuno.sa@analog.com>
-Date: Sun, 14 Jul 2024 08:17:40 +0200
-In-Reply-To: <20240713105719.0f9847c9@jic23-huawei>
-References: <20240510064053.278257-1-Mariel.Tinaco@analog.com>
-	 <20240510064053.278257-3-Mariel.Tinaco@analog.com>
-	 <20240511174405.10d7fce8@jic23-huawei>
-	 <SJ0PR03MB62241801F72B21EEC9CDCCBD91D42@SJ0PR03MB6224.namprd03.prod.outlook.com>
-	 <20240628194546.2f608365@jic23-huawei>
-	 <SJ0PR03MB62246270CC24E70732D0288F91DA2@SJ0PR03MB6224.namprd03.prod.outlook.com>
-	 <20240708170504.00006c9d@Huawei.com>
-	 <ccce603d36fa2fd590b563955bcd2cda085773e5.camel@gmail.com>
-	 <733f4f7b-53b2-46c1-8bf8-5ed357adab30@baylibre.com>
-	 <468b5725d0f191c20ada9524ecb7da8a48d56d97.camel@gmail.com>
-	 <20240713105719.0f9847c9@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+	s=arc-20240116; t=1720939758; c=relaxed/simple;
+	bh=Apvfcd8aa874Xt/g3GS2oO4B5aGVf8TpMy0zInDGXS8=;
+	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=HERfJWKB5Q1gfG8on+3BW477R2wVLPnqglsQJNf4fwBmb8Iuc80dsSVrLBGKQVkevolwAayyUR9yjn8fOR7OhX+eI0ID3JltJI5dawCsnQacekG0ORXWb2ML038BeUYdZEPxkxBxJsTaPyahyV+JDypRIKIM2zHZHdbhyIsGsew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tiT2LKNu; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46E6lRAW024417;
+	Sun, 14 Jul 2024 01:47:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1720939647;
+	bh=gqZD3AlWNrNG3IaqY/F93h4cnT0J0I2HZpA75TQiyzY=;
+	h=From:To:Subject:In-Reply-To:References:Date;
+	b=tiT2LKNuBXwHix7KsUNgsDWtYg90NEJWcYW183vO78NLJ2exqsmYM9q5n0E8tHw4M
+	 BZZbgBc0Di0YpkdkmaRuplu+5rrkRiyfYRF+Yr0vALVlPDq5Gx/hIgA00YuwtGKgTj
+	 VsFFemujuugHTOFEwZLcdgFwnY5iLTclpfs9quYI=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46E6lRft008510
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 14 Jul 2024 01:47:27 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 14
+ Jul 2024 01:47:26 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 14 Jul 2024 01:47:26 -0500
+Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46E6lQYw061884;
+	Sun, 14 Jul 2024 01:47:26 -0500
+From: Kamlesh Gurudasani <kamlesh@ti.com>
+To: Daniel Golle <daniel@makrotopia.org>,
+        Daniel Golle
+	<daniel@makrotopia.org>,
+        Aurelien Jarno <aurelien@aurel32.net>,
+        "Olivia
+ Mackall" <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob
+ Herring <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        Philipp
+ Zabel <p.zabel@pengutronix.de>,
+        "Dragan Simic" <dsimic@manjaro.org>,
+        Uwe
+ =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+        "Sascha Hauer"
+	<s.hauer@pengutronix.de>,
+        "Cristian Ciocaltea"
+	<cristian.ciocaltea@collabora.com>,
+        Martin Kaiser <martin@kaiser.cx>, Ard
+ Biesheuvel <ardb@kernel.org>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 2/3] hwrng: add hwrng driver for Rockchip RK3568 SoC
+In-Reply-To: <b5036408088f2a448b303d6bc6f6f3cc52702dc5.1720830725.git.daniel@makrotopia.org>
+References: <cover.1720830725.git.daniel@makrotopia.org>
+ <b5036408088f2a448b303d6bc6f6f3cc52702dc5.1720830725.git.daniel@makrotopia.org>
+Date: Sun, 14 Jul 2024 12:17:25 +0530
+Message-ID: <87frsc5v2a.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sat, 2024-07-13 at 10:57 +0100, Jonathan Cameron wrote:
-> On Fri, 12 Jul 2024 08:57:00 +0200
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Thu, 2024-07-11 at 16:31 -0500, David Lechner wrote:
-> > > On 7/11/24 4:20 AM, Nuno S=C3=A1 wrote:=C2=A0=20
-> > > > On Mon, 2024-07-08 at 17:05 +0100, Jonathan Cameron wrote:=C2=A0=
-=20
-> > > > > On Mon, 8 Jul 2024 05:17:55 +0000
-> > > > > "Tinaco, Mariel" <Mariel.Tinaco@analog.com> wrote:
-> > > > > =C2=A0=20
-> > > > > > > -----Original Message-----
-> > > > > > > From: Jonathan Cameron <jic23@kernel.org>
-> > > > > > > Sent: Saturday, June 29, 2024 2:46 AM
-> > > > > > > To: Tinaco, Mariel <Mariel.Tinaco@analog.com>
-> > > > > > > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; li=
-nux-
-> > > > > > > kernel@vger.kernel.org; Lars-Peter Clausen <lars@metafoo.de>;=
- Rob
-> > > > > > > Herring
-> > > > > > > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; =
-Conor
-> > > > > > > Dooley
-> > > > > > > <conor+dt@kernel.org>; Liam Girdwood <lgirdwood@gmail.com>; M=
-ark Brown
-> > > > > > > <broonie@kernel.org>; Hennerich, Michael
-> > > > > > > <Michael.Hennerich@analog.com>;
-> > > > > > > Marcelo Schmitt <marcelo.schmitt1@gmail.com>; Dimitri Fedrau
-> > > > > > > <dima.fedrau@gmail.com>; Guenter Roeck <linux@roeck-us.net>
-> > > > > > > Subject: Re: [PATCH 2/2] iio: dac: support the ad8460 Wavefor=
-m DAC
-> > > > > > >=20
-> > > > > > > [External]
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > > > > +};
-> > > > > > > > > > +
-> > > > > > > > > > +static int ad8460_get_powerdown_mode(struct iio_dev *i=
-ndio_dev,
-> > > > > > > > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spe=
-c
-> > > > > > > > > > *chan) {
-> > > > > > > > > > +	return 0;=C2=A0=C2=A0=C2=A0=20
-> > > > > > > > >=20
-> > > > > > > > > Why have the stubs in here?=C2=A0=C2=A0=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > Should I move the stubs to a different place in the code or=
- remove
-> > > > > > > > them altogether since there is only a single powerdown mode
-> > > > > > > > available=C2=A0=C2=A0=C2=A0=20
-> > > > > > > Ah. I'd not really understood what was going on here.=C2=A0 T=
-his is fine as
-> > > > > > > is.
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > > > AD8460_HVDAC_DATA_WORD_HIGH(index),=C2=A0=C2=A0=C2=A0=20
-> > > > > > > > > > +			=C2=A0=C2=A0=C2=A0 ((val >> 8) & 0xFF));=C2=A0=C2=
-=A0=C2=A0=20
-> > > > > > > > >=20
-> > > > > > > > > bulk write? or do these need to be ordered?=C2=A0=C2=A0=
-=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > For this I used bulk read/write this way.
-> > > > > > > >=20
-> > > > > > > > static int ad8460_set_hvdac_word(struct ad8460_state *state=
-,
-> > > > > > > > 				 int index,
-> > > > > > > > 				 int val)
-> > > > > > > > {
-> > > > > > > > 	u8 regvals[AD8460_DATA_BYTE_WORD_LENGTH];=C2=A0=C2=A0=C2=
-=A0=20
-> > > > > > > regmap bulk accesses (when spi anyway) should be provided wit=
-h DMA
-> > > > > > > safe
-> > > > > > > buffers.
-> > > > > > > Easiest way to do that is add one with __aligned(IIO_DMA_MINA=
-LIGN) to
-> > > > > > > the
-> > > > > > > end of the ad8460_state structure.=C2=A0 Possibly you'll need=
- a lock to
-> > > > > > > protect it -
-> > > > > > > I
-> > > > > > > haven't checked.=C2=A0=C2=A0=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > 	regvals[0] =3D val & 0xFF;
-> > > > > > > > 	regvals[1] =3D (val >> 8) & 0xFF;=C2=A0=C2=A0=C2=A0=20
-> > > > > > >=20
-> > > > > > > That is an endian conversion so use appropriate endian functi=
-on to
-> > > > > > > fill it
-> > > > > > > efficiently and document clearly what is going on.
-> > > > > > >=20
-> > > > > > >=20
-> > > > > > > 	put_unaligned_le16()
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > 	return regmap_bulk_write(state->regmap,=C2=A0=C2=A0=C2=A0=
-=20
-> > > > > > > AD8460_HVDAC_DATA_WORD_LOW(index),=C2=A0=C2=A0=C2=A0=20
-> > > > > > > > 				 regvals,=C2=A0=C2=A0=C2=A0=20
-> > > > > > > AD8460_DATA_BYTE_WORD_LENGTH); }=C2=A0=C2=A0=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > =C2=A0=C2=A0=20
-> > > > > > > > > > +}=C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > > > > +	state->regmap =3D devm_regmap_init_spi(spi,
-> > > > > > > > > > &ad8460_regmap_config);
-> > > > > > > > > > +	if (IS_ERR(state->regmap))
-> > > > > > > > > > +		return dev_err_probe(&spi->dev, PTR_ERR(state-=C2=A0=
-=20
-> > > > > > > > > > > regmap),=C2=A0=20
-> > > > > > > > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to initialize
-> > > > > > > > > > regmap");
-> > > > > > > > > > +
-> > > > > > > > > > +	ret =3D devm_iio_dmaengine_buffer_setup_ext(&spi->dev=
-,
-> > > > > > > > > > indio_dev,
-> > > > > > > > > > +"tx",
-> > > > > > > > > > +=C2=A0=C2=A0=C2=A0=20
-> > > > > > > > > IIO_BUFFER_DIRECTION_OUT);
-> > > > > > > > >=20
-> > > > > > > > > Ah. I take back my binding comment. I assume this is mapp=
-ing some
-> > > > > > > > > non standard interface for the parallel data flow?=C2=A0=
-=C2=A0=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > Yes, the HDL side doesn't follow yet the standard IIO backe=
-nd from
-> > > > > > > > which this driver was tested=C2=A0=C2=A0=C2=A0=20
-> > > > > > >=20
-> > > > > > > Hmm. I'd like to see this brought inline with the other iio b=
-ackend
-> > > > > > > drivers if
-> > > > > > > possible.=C2=A0=C2=A0=C2=A0=20
-> > > > > >=20
-> > > > > > Does this mean that we would need to implement an AXI IP core o=
-n the
-> > > > > > FPGA side to be able to test this?=C2=A0=20
-> > > > >=20
-> > > > > Don't think so.=C2=A0 That framework is meant to support any equi=
-valent IP.
-> > > > > So whatever you have should be supportable. Maybe it's somewhat o=
-f a stub
-> > > > > driver though if there isn't anything controllable.
-> > > > >=20
-> > > > > It's Nuno's area of expertise though +CC.
-> > > > > =C2=A0=20
-> > > >=20
-> > > > Hi Jonathan,
-> > > >=20
-> > > > Yeah, I did reply David (IIRC) about the very same question. In the
-> > > > design/HW Mariel
-> > > > is working on the DAC is directly connected to the DMA core which i=
-s handled
-> > > > already
-> > > > by a proper dma controller driver. So in this case I'm really not s=
-eeing the
-> > > > backend
-> > > > need right now (maybe in the future we may have another design for =
-this
-> > > > device that
-> > > > could justify for a backend device but no idea on that).
-> > > >=20
-> > > > As you mention, we could very well do a stub platform driver so we =
-can use
-> > > > the
-> > > > backend framework (like dma-backend or something) that could pretty=
- much be
-> > > > a stub
-> > > > for the DMA controller. But is it worth it though? We'd actually be=
- "lying"
-> > > > in terms
-> > > > of HW description as the DMA is a property of the actual converter.
-> > > >=20
-> > > > - Nuno S=C3=A1
-> > > >=20
-> > > > =C2=A0=20
-> > >=20
-> > > I'm a bit inclined to agree with Jonathan here. I could see someone i=
-n the
-> > > future,
-> > > wanting to, e.g., use DMA + a GPIO controller for the parallel interf=
-ace if
-> > > they
-> > > didn't have an FPGA. So it seems a bit more future-proof to just alwa=
-ys use
-> > > the
-> > > IIO backend framework for the parallel interface.=C2=A0=20
-> >=20
-> > I do agree it's more future but guessing usecases is not something I te=
-nd to
-> > like much (often just results in code that never gets __really__ used).=
- We can
-> > very well take care of it when a usecase pops up and we have an actual =
-device
-> > that can be represented by a backend :).
-> >=20
-> > >=20
-> > > FWIW, I don't think it would be "lying" since the io-backend DT node =
-would be
-> > > representing physical parallel bus between the DMA controller and the=
- ADC
-> > > chip.=C2=A0=20
-> >=20
-> > To me, it's really a stretch having a backend with the only reason (op)=
- of
-> > requesting the DMA channel. I still think you're pushing to much and go=
-ing
-> > around with wording to justify for the DMA property :). The parallel bu=
-s is part
-> > of the DAC and directly connects to the DMA data lines so it really loo=
-ks to me
-> > the dma is a property of the actual DAC.
-> >=20
-> > That said and Mariel can help here, I did not really looked into the de=
-sign
-> > myself and I'm just stating (or what I understood) what Mariel told me.=
- But if
-> > there's some other piece of HW sitting between the DMA and the bus then=
- it would
-> > be easier for me to agree even if we don't have any real control over t=
-hat
-> > device.
-> >=20
-> > > But if DT maintainers are OK with the idea that a DMA channel can be =
-directly
-> > > wired to an external chip, I guess I won't complain. :-)=C2=A0=20
-> >=20
-> > That's the case in here so I don't see why it should be a problem :). I=
-t's the
-> > same with the axi-dac/adc. It's all inside the FPGA but different cores=
-/IPS.
-> >=20
-> > FWIW, I'm ok if we go the backend direction even if I don't fully agree=
- with it
-> > (at least with the understanding I have so far about the design). I def=
-initely
-> > want to see more users of it but I also don't think it should be a rule=
- for any
-> > fairly high speed converter to have a backend associated.
->=20
-> ok. So short term, DT bindings that document the dma-channel
-> and see what the DT maintainers think. Longer term, if things get more
-> complex, that can become optional and a backend added.
->=20
+Daniel Golle <daniel@makrotopia.org> writes:
 
-Ack. Yeah, we'll eventually need an optional get on backends. We do have so=
-me out of
-tree examples where we have converters working together with an external IP=
- (backend
-usecase) or being used in an "independent" mode.
+> This message was sent from outside of Texas Instruments. 
+> Do not click links or open attachments unless you recognize the source of this email and know the content is safe. If you wish
+> to report this message to IT Security, please forward the message as an attachment to phishing@list.ti.com 
+>  
+> From: Aurelien Jarno <aurelien@aurel32.net>
+>
+> Rockchip SoCs used to have a random number generator as part of their
+> crypto device, and support for it has to be added to the corresponding
+> driver. However newer Rockchip SoCs like the RK3568 have an independent
+> True Random Number Generator device. This patch adds a driver for it,
+> greatly inspired from the downstream driver.
+>
+> The TRNG device does not seem to have a signal conditionner and the FIPS
+> 140-2 test returns a lot of failures. They can be reduced by increasing
+> RK_RNG_SAMPLE_CNT, in a tradeoff between quality and speed. This value
+> has been adjusted to get ~90% of successes and the quality value has
+> been set accordingly.
+>
+> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> [daniel@makrotpia.org: code style fixes]
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  MAINTAINERS                           |   1 +
+>  drivers/char/hw_random/Kconfig        |  14 ++
+>  drivers/char/hw_random/Makefile       |   1 +
+>  drivers/char/hw_random/rockchip-rng.c | 220 ++++++++++++++++++++++++++
+>  4 files changed, 236 insertions(+)
+>  create mode 100644 drivers/char/hw_random/rockchip-rng.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7b2b8b1f526c..2745cfe56774 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19698,6 +19698,7 @@ M:	Daniel Golle <daniel@makrotopia.org>
+>  M:	Aurelien Jarno <aurelien@aurel32.net>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> +F:	drivers/char/hw_random/rockchip-rng.c
+>  
+>  ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
+>  M:	Jacob Chen <jacob-chen@iotwrt.com>
+> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+> index 442c40efb200..2b62cd08f91a 100644
+> --- a/drivers/char/hw_random/Kconfig
+> +++ b/drivers/char/hw_random/Kconfig
+> @@ -573,6 +573,20 @@ config HW_RANDOM_JH7110
+>  	  To compile this driver as a module, choose M here.
+>  	  The module will be called jh7110-trng.
+>  
+> +config HW_RANDOM_ROCKCHIP
+> +	tristate "Rockchip True Random Number Generator"
+> +	depends on HW_RANDOM && (ARCH_ROCKCHIP || COMPILE_TEST)
+> +	depends on HAS_IOMEM
+> +	default HW_RANDOM
+> +	help
+> +	  This driver provides kernel-side support for the True Random Number
+> +	  Generator hardware found on some Rockchip SoC like RK3566 or RK3568.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rockchip-rng.
+> +
+> +	  If unsure, say Y.
+> +
+>  endif # HW_RANDOM
+>  
+>  config UML_RANDOM
+> diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
+> index 32549a1186dc..01f012eab440 100644
+> --- a/drivers/char/hw_random/Makefile
+> +++ b/drivers/char/hw_random/Makefile
+> @@ -48,4 +48,5 @@ obj-$(CONFIG_HW_RANDOM_XIPHERA) += xiphera-trng.o
+>  obj-$(CONFIG_HW_RANDOM_ARM_SMCCC_TRNG) += arm_smccc_trng.o
+>  obj-$(CONFIG_HW_RANDOM_CN10K) += cn10k-rng.o
+>  obj-$(CONFIG_HW_RANDOM_POLARFIRE_SOC) += mpfs-rng.o
+> +obj-$(CONFIG_HW_RANDOM_ROCKCHIP) += rockchip-rng.o
+>  obj-$(CONFIG_HW_RANDOM_JH7110) += jh7110-trng.o
+> diff --git a/drivers/char/hw_random/rockchip-rng.c b/drivers/char/hw_random/rockchip-rng.c
+> new file mode 100644
+> index 000000000000..7e45e9880e3a
+> --- /dev/null
+> +++ b/drivers/char/hw_random/rockchip-rng.c
+> @@ -0,0 +1,220 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * rockchip-rng.c True Random Number Generator driver for Rockchip RK3568 SoC
+> + *
+> + * Copyright (c) 2018, Fuzhou Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2022, Aurelien Jarno
+> + * Authors:
+> + *  Lin Jinhan <troy.lin@rock-chips.com>
+> + *  Aurelien Jarno <aurelien@aurel32.net>
+> + */
+> +#include <linux/clk.h>
+> +#include <linux/hw_random.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +#include <linux/slab.h>
+> +
+> +#define RK_RNG_AUTOSUSPEND_DELAY	100
+> +#define RK_RNG_MAX_BYTE			32
+> +#define RK_RNG_POLL_PERIOD_US		100
+> +#define RK_RNG_POLL_TIMEOUT_US		10000
+> +
+> +/*
+> + * TRNG collects osc ring output bit every RK_RNG_SAMPLE_CNT time. The value is
+> + * a tradeoff between speed and quality and has been adjusted to get a quality
+> + * of ~900 (~90% of FIPS 140-2 successes).
+> + */
+> +#define RK_RNG_SAMPLE_CNT		1000
+> +
+> +/* TRNG registers from RK3568 TRM-Part2, section 5.4.1 */
+> +#define TRNG_RST_CTL			0x0004
+> +#define TRNG_RNG_CTL			0x0400
+> +#define TRNG_RNG_CTL_LEN_64_BIT		(0x00 << 4)
+> +#define TRNG_RNG_CTL_LEN_128_BIT	(0x01 << 4)
+> +#define TRNG_RNG_CTL_LEN_192_BIT	(0x02 << 4)
+> +#define TRNG_RNG_CTL_LEN_256_BIT	(0x03 << 4)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_0	(0x00 << 2)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_1	(0x01 << 2)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_2	(0x02 << 2)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_3	(0x03 << 2)
+> +#define TRNG_RNG_CTL_ENABLE		BIT(1)
+> +#define TRNG_RNG_CTL_START		BIT(0)
+> +#define TRNG_RNG_SAMPLE_CNT		0x0404
+> +#define TRNG_RNG_DOUT			0x0410
+> +
+> +struct rk_rng {
+> +	struct hwrng rng;
+> +	void __iomem *base;
+> +	struct reset_control *rst;
+> +	int clk_num;
+> +	struct clk_bulk_data *clk_bulks;
+> +};
+> +
+> +static int rk_rng_init(struct hwrng *rng)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +	int ret;
+> +
+> +	/* start clocks */
+> +	ret = clk_bulk_prepare_enable(rk_rng->clk_num, rk_rng->clk_bulks);
+> +	if (ret < 0) {
+> +		dev_err((struct device *) rk_rng->rng.priv,
+> +			"Failed to enable clks %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* set the sample period */
+> +	writel(RK_RNG_SAMPLE_CNT, rk_rng->base + TRNG_RNG_SAMPLE_CNT);
+> +
+> +	/* set osc ring speed and enable it */
+> +	writel(TRNG_RNG_CTL_LEN_256_BIT |
+> +	       TRNG_RNG_CTL_OSC_RING_SPEED_0 |
+> +	       TRNG_RNG_CTL_ENABLE,
+> +	       rk_rng->base + TRNG_RNG_CTL);
+> +
+> +	return 0;
+> +}
+> +
+> +static void rk_rng_cleanup(struct hwrng *rng)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +
+> +	/* stop TRNG */
+> +	writel(0, rk_rng->base + TRNG_RNG_CTL);
+> +
+> +	/* stop clocks */
+> +	clk_bulk_disable_unprepare(rk_rng->clk_num, rk_rng->clk_bulks);
+> +}
+> +
+> +static int rk_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +	size_t to_read = min_t(size_t, max, RK_RNG_MAX_BYTE);
+> +	u32 reg;
+> +	int ret = 0;
+> +
+> +	ret = pm_runtime_resume_and_get((struct device *) rk_rng->rng.priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Start collecting random data */
+> +	writel(TRNG_RNG_CTL_START, rk_rng->base + TRNG_RNG_CTL);
+> +
+> +	ret = readl_poll_timeout(rk_rng->base + TRNG_RNG_CTL, reg,
+> +				 !(reg & TRNG_RNG_CTL_START),
+> +				 RK_RNG_POLL_PERIOD_US,
+> +				 RK_RNG_POLL_TIMEOUT_US);
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	/* Read random data stored in the registers */
+> +	memcpy_fromio(buf, rk_rng->base + TRNG_RNG_DOUT, to_read);
+> +out:
+> +	pm_runtime_mark_last_busy((struct device *) rk_rng->rng.priv);
+> +	pm_runtime_put_sync_autosuspend((struct device *) rk_rng->rng.priv);
+> +
+> +	return (ret < 0) ? ret : to_read;
+Do we really need to check ret < 0 here?
+readl_poll_timeout returns either 0 or -ve.
 
-- Nuno S=C3=A1
+return ret ? ret : to_read;
+would work as well. we save extra evaluation of (ret<0).
+
+Let me know what you think.
+
+Kamlesh
+
+> +}
+> +
+> +static int rk_rng_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rk_rng *rk_rng;
+> +	int ret;
+> +
+> +	rk_rng = devm_kzalloc(dev, sizeof(*rk_rng), GFP_KERNEL);
+> +	if (!rk_rng)
+> +		return -ENOMEM;
+> +
+> +	rk_rng->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(rk_rng->base))
+> +		return PTR_ERR(rk_rng->base);
+> +
+> +	rk_rng->clk_num = devm_clk_bulk_get_all(dev, &rk_rng->clk_bulks);
+> +	if (rk_rng->clk_num < 0)
+> +		return dev_err_probe(dev, rk_rng->clk_num,
+> +				     "Failed to get clks property\n");
+> +
+> +	rk_rng->rst = devm_reset_control_array_get_exclusive(&pdev->dev);
+> +	if (IS_ERR(rk_rng->rst))
+> +		return dev_err_probe(dev, PTR_ERR(rk_rng->rst),
+> +				     "Failed to get reset property\n");
+> +
+> +	reset_control_assert(rk_rng->rst);
+> +	udelay(2);
+> +	reset_control_deassert(rk_rng->rst);
+> +
+> +	platform_set_drvdata(pdev, rk_rng);
+> +
+> +	rk_rng->rng.name = dev_driver_string(dev);
+> +	if (!IS_ENABLED(CONFIG_PM)) {
+> +		rk_rng->rng.init = rk_rng_init;
+> +		rk_rng->rng.cleanup = rk_rng_cleanup;
+> +	}
+> +	rk_rng->rng.read = rk_rng_read;
+> +	rk_rng->rng.priv = (unsigned long) dev;
+> +	rk_rng->rng.quality = 900;
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, RK_RNG_AUTOSUSPEND_DELAY);
+> +	pm_runtime_use_autosuspend(dev);
+> +	devm_pm_runtime_enable(dev);
+> +
+> +	ret = devm_hwrng_register(dev, &rk_rng->rng);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "Failed to register Rockchip hwrng\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused rk_rng_runtime_suspend(struct device *dev)
+> +{
+> +	struct rk_rng *rk_rng = dev_get_drvdata(dev);
+> +
+> +	rk_rng_cleanup(&rk_rng->rng);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused rk_rng_runtime_resume(struct device *dev)
+> +{
+> +	struct rk_rng *rk_rng = dev_get_drvdata(dev);
+> +
+> +	return rk_rng_init(&rk_rng->rng);
+> +}
+> +
+> +static const struct dev_pm_ops rk_rng_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(rk_rng_runtime_suspend,
+> +				rk_rng_runtime_resume, NULL)
+> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +				pm_runtime_force_resume)
+> +};
+> +
+> +static const struct of_device_id rk_rng_dt_match[] = {
+> +	{ .compatible = "rockchip,rk3568-rng", },
+> +	{ /* sentinel */ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, rk_rng_dt_match);
+> +
+> +static struct platform_driver rk_rng_driver = {
+> +	.driver	= {
+> +		.name	= "rockchip-rng",
+> +		.pm	= &rk_rng_pm_ops,
+> +		.of_match_table = rk_rng_dt_match,
+> +	},
+> +	.probe	= rk_rng_probe,
+> +};
+> +
+> +module_platform_driver(rk_rng_driver);
+> +
+> +MODULE_DESCRIPTION("Rockchip RK3568 True Random Number Generator driver");
+> +MODULE_AUTHOR("Lin Jinhan <troy.lin@rock-chips.com>");
+> +MODULE_AUTHOR("Aurelien Jarno <aurelien@aurel32.net>");
+> +MODULE_AUTHOR("Daniel Golle <daniel@makrotopia.org>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.45.2
 
