@@ -1,176 +1,83 @@
-Return-Path: <devicetree+bounces-85879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBA6931A9B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 21:01:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F813931AA1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 21:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55A7A1F2291C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:01:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA5AB1F22974
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11684D8B9;
-	Mon, 15 Jul 2024 19:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF2EA78C6C;
+	Mon, 15 Jul 2024 19:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PrZ5EbyL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDmd1VLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7F731758;
-	Mon, 15 Jul 2024 19:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FDB762D7;
+	Mon, 15 Jul 2024 19:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721070087; cv=none; b=plWbBTkGgTkLzQMrYYDg62OhEHv1Q9pSMRdeApSWQ8l5GagEphKeG0ApkyaR+ovARwUXz8XZgWbzPERjb4WgJ58PBFhp9TOXqpr1EKrrErjpVrN9aEYwwCaVw5M69Kttj3IKHNiutfM3mhHehINpZlbgrcr6KFTll2A7SN/3EYE=
+	t=1721070634; cv=none; b=Wm2OAeIOc721+gdmoXIlVgqdAP55PW0rYOO29TwMUl0Uc6qMQr3x0+H4gOxj9N+MWVWMaCs8yxkcfAFNTsKLn/Jhlg5jgu2VbqoYq9lUvGDzgrNJGRya0oyfxWwFrbPEDikdXQVSonKEL/0IdUMN7LJxz+ca982BBDFEP24e0bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721070087; c=relaxed/simple;
-	bh=tETW5ujn8JU+sEnKd0lnoT0ncgEvI18HxdTKYPqhOUs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tr6ZV6EqfkPNMv8ckXKfwdA3vwzjl1his5K62J/WG/Xz/+WEv4F35jTIzHkzZO3MYyL5TxFTBnk+V0ZV6DZ8p9TtMBfOy+U5dA7PDf2DWKQKuMcSA3BlVe3IxncbQuW+twFiSaoBJPZiJLhT5dyrOzHgaTBbej8qBEQMJGCLKjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PrZ5EbyL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46FH95m8022751;
-	Mon, 15 Jul 2024 19:01:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ewk0UvoFKLqngqU6GTlx/ZAX
-	oCKVFXYpqGmXbUhtI8g=; b=PrZ5EbyLC1X+VCnG8aHQcNa6mS5UM88+S5t93hNH
-	+5PBq3gzoSgvI30tGgRTztN7BLpmT1nMYM7p+DEwrvPnvDp6vRLpeNIUPkzRCnTS
-	nvmnA7yGlxa1WGHAq0Hzf73YAiHDuEhFAESsG4Yf0R5WlbxArGBEAw+Lsz9QEIjf
-	2PrPtch8jTGIWq7W2yKcQ1+Sb4iFs/g6I10F3jGh4Xc//52SdRpYe/B3ajJmD129
-	zO6bNmZwmSS8xcPIaqxpGun9+q/oW+GAIR6p6Ra76/ctzECP7S5Q2aQUMcjhq9Kr
-	SZ50h0xDyajAAh8wEAuicVDVMlUuUGwFeXSMnHXPNHfTyg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40bjv8n0j2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Jul 2024 19:01:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46FJ1Lsq021917
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Jul 2024 19:01:21 GMT
-Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 15 Jul 2024 12:01:12 -0700
-Date: Tue, 16 Jul 2024 00:31:08 +0530
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: disable GPU on x1e80100 by default
-Message-ID: <20240715190108.vjctytyntxlottgt@hu-akhilpo-hyd.qualcomm.com>
-References: <20240715-x1e8-zap-name-v2-1-a82488e7f7c1@linaro.org>
+	s=arc-20240116; t=1721070634; c=relaxed/simple;
+	bh=i1YPP8GvnIotxIx3buh+wyZmCmdXEPtkuDjQhHiWPl4=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=Z5Uo5auoDw9qjVlqmo9FQ6pLxMmpaZL93kIsk0asQp8SYvGkVNQfBH/rXC9QZkhVmUtF93REuvgkPRGJpag43YrNA4z5BffCHS2mpRKeQAZiKbEnnSjtmWwOH96zFZ5i9IzAgOrXnJQ/LNeaudN9BbfYXmjekTX3agOVJsaAifw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDmd1VLM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D881C4AF0D;
+	Mon, 15 Jul 2024 19:10:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721070634;
+	bh=i1YPP8GvnIotxIx3buh+wyZmCmdXEPtkuDjQhHiWPl4=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=aDmd1VLMC+Z9X3Q5GUqgh57bYNGh/33JFHUQyxiX2ol+2nYPr0XBOgCPVSPQboAy8
+	 PJuC/1NOP0L6lq9hH+HHsJ/qs6Or517HUUOxXzIwNjEJtvhLr5Iwf45QePhwlAe9a1
+	 se3QUDf4SlRWFqJFW2b40ykLpKgGFgOQ6Bujx6aQb4IzwWam9NyTwDoxkt2mQfwEJK
+	 OUBwjV+xz33oMGmU91E0gVLgl8ydTlHC5mYHoW1jfQvK8JW3s5nKmO5WFpcxcQm8Ei
+	 LUYAxEyGoaQabRV4DXKCr/zPxzn9a7ENb499PIqenQfU4MTGT5lsYa31e/+R/R+T47
+	 sLpZF+Judc01w==
+Message-ID: <b6c9ece6ea9a0a476057ced63669017e.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240715-x1e8-zap-name-v2-1-a82488e7f7c1@linaro.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yQKoq1VqebLmexHRWutYue1AkQd2HIs_
-X-Proofpoint-GUID: yQKoq1VqebLmexHRWutYue1AkQd2HIs_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-15_13,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 spamscore=0 malwarescore=0 clxscore=1011 priorityscore=1501
- phishscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0 bulkscore=0
- mlxlogscore=723 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407150148
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240711-th1520-clk-v3-0-6ff17bb318fb@tenstorrent.com>
+References: <20240711-th1520-clk-v3-0-6ff17bb318fb@tenstorrent.com>
+Subject: Re: [PATCH v3 0/7] clk: thead: Add support for TH1520 AP_SUBSYS clock controller
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, Drew Fustini <dfustini@tenstorrent.com>
+To: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>, Drew Fustini <dfustini@tenstorrent.com>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>, Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Yangtao Li <frank.li@vivo.com>
+Date: Mon, 15 Jul 2024 12:10:32 -0700
+User-Agent: alot/0.10
 
-On Mon, Jul 15, 2024 at 09:18:49PM +0300, Dmitry Baryshkov wrote:
-> The GPU on X1E80100 requires ZAP 'shader' file to be useful. Since the
-> file is signed by the OEM keys and might be not available by default,
-> disable the GPU node and drop the firmware name from the x1e80100.dtsi
-> file. Devices not being fused to use OEM keys can specify generic
-> location at `qcom/x1e80100/gen70500_zap.mbn` while enabling the GPU.
-> 
-> The CRD was lucky enough to work with the default settings, so reenable
-> the GPU on that platform and provide correct firmware-name (including
-> the SoC subdir).
-> 
-> Fixes: 721e38301b79 ("arm64: dts: qcom: x1e80100: Add gpu support")
-> Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Changes in v2:
-> - Keep GPU enabled for X1E80100-CRD (Johan)
-> - Link to v1: https://lore.kernel.org/r/20240715-x1e8-zap-name-v1-1-b66df09d0b65@linaro.org
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 8 ++++++++
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi    | 3 ++-
->  2 files changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> index 6152bcd0bc1f..8f4e238f014f 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> @@ -637,6 +637,14 @@ vreg_l3j_0p8: ldo3 {
->  	};
->  };
->  
-> +&gpu {
-> +	satus = "okay";
+Quoting Drew Fustini (2024-07-11 09:56:18)
+> This series adds support for the AP sub-system clock controller in the
+> T-Head TH1520 [1]. Yangtao Li originally submitted this series in May
+> 2023 [2]. Jisheng made additional improvements and then passed on the
+> work in progress to me.
+>=20
+> Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs=
+/TH1520%20System%20User%20Manual.pdf [1]
+> Link: https://lore.kernel.org/all/20230515054402.27633-1-frank.li@vivo.co=
+m/ [2]
+>=20
+> Changes in v3:
+>  - dt-binding patch has been applied to clk-next by Stephen but I'm
+>    keeping it in the series for completeness.
+>  - move dt-bindings include after linux includes in driver
+>  - change rate to u64 in th1520_pll_vco_recalc_rate()
+>  - replace do_div() with normal division operation in both
+>    th1520_pll_vco_recalc_rate() and th1520_pll_postdiv_recalc_rate()
+>  - add static to ccu_mux structs: c910_i0_clk, c910_clk, uart_sclk
 
-s/satus/status
-
-Also, we should add this chunk to x1e80100-qcp.dts too.
-
-> +
-> +	zap-shader {
-> +		firmware-name = "qcom/x1e80100/gen70500_zap.mbn";
-> +	};
-> +};
-> +
->  &i2c0 {
->  	clock-frequency = <400000>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 7bca5fcd7d52..8df90d01eba8 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3155,9 +3155,10 @@ gpu: gpu@3d00000 {
->  			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
->  			interconnect-names = "gfx-mem";
->  
-> +			status = "disabled";
-> +
->  			zap-shader {
->  				memory-region = <&gpu_microcode_mem>;
-> -				firmware-name = "qcom/gen70500_zap.mbn";
-
-In general, why not keep a default zap firmware listed here? Anyway we
-are disabling gpu node here in case of platforms which doesn't upstream
-secure firmwares.
-
--Akhil
-
->  			};
->  
->  			gpu_opp_table: opp-table {
-> 
-> ---
-> base-commit: 3fe121b622825ff8cc995a1e6b026181c48188db
-> change-id: 20240715-x1e8-zap-name-7b3c79234401
-> 
-> Best regards,
-> -- 
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
+This didn't happen, so I just did it myself.
 
