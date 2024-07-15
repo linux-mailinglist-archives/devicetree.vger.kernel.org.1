@@ -1,246 +1,191 @@
-Return-Path: <devicetree+bounces-85934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E901D931D57
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 00:54:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 098EA931D60
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 01:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A406F283D76
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:54:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5124B282CAF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 23:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B228013CFBC;
-	Mon, 15 Jul 2024 22:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1969813E41A;
+	Mon, 15 Jul 2024 23:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="i3FN+2TU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NpO9EvTH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011055.outbound.protection.outlook.com [52.101.70.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBB33BBC2;
-	Mon, 15 Jul 2024 22:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721084052; cv=fail; b=R7ne7/EE/McglXzf/NI0cLqQIrscSwtHrRSGRM4gzRf4AHlzINm2QEGeCrOF3NxyopAP0bZkhuxq2Mol+2Yrl+SMaue16YfZFOUaSDXG8UIh45hptNT+60w5mVVMle0jToxGCCDQnOVsOrpQAOyAEYqfg50gO/dsRgzXQqRBHzg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721084052; c=relaxed/simple;
-	bh=eJGYjyy2+/AAn5LRS7ekD4voF98roh8b+/mecV7Zd04=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=LuPzA6t8fMk5g9IIkHq6ov6WIiqKzG/q7fWlgqLWpPgCr4HdSHygF3uLwFH5WzMWoO6CpY3Ystxr0r6HmA8xOc44C5+gvr2aiGVsV2eFrCmDISa0Eo0V7J5cT1D+0Yky3bAwTUAOMMR/I4xrg2g6oy+eIT8vSO1gLVKfrVH9kVA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=i3FN+2TU; arc=fail smtp.client-ip=52.101.70.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qblMoy+lyLnYCp1I1+rQKEd7M6+ebJxKXDSobc1+6tyR690M3T+y0Ko+6WG1aQz4Q7X9frELa/EVvR3tkrO/J7inAxyS+3jOEnljfFvYeE1h/ZR8tBy++2PEsZJBi6+k0hFYbAcCO9A6olkPn9U5Ly5tpGLSe4327HCeKKc00HnRMF0+T7ZQ/Ybh73hQTCACKK5/P0zoZo/pJJGbQK6/s2lFaGGTJiBQgM6J9XEBsFoOGjFW55wXQeQQMLp+VgNPCqYBcc/eeX9iH5JRhZINlHH0geCydBDbVVR6m8+GMlECvQjqw86uUbIW1P3osr+pkJDtbQWD4swQNd38g2Orcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yPH23LFMgAbUUYmqG73yuG4FV3P9ta+eYzNlAMag3s0=;
- b=es3riojWIuVYgs9VV+9PZ0awZTxk5Ip/OxkqqNXLLWH6rjXAxNuSkcUSOz5HlC1+lek2RIH6cLe+BjGF0Pq2MbrlqsFykQLZ1Hm73rdsVBR/dNLHW4+/xQujM7zD00wgT+2iJL1G7Vno6T95HrIvzHZO+VRR5G5CFRucS3yyRbqZA1EkjmzcgT2reNesScg2saBvIZ1x27qguhAtmSRAsnMIRYL5RqlbFn14CndDwoBtlnqmFKnlfCoeL9189KB/R1IbdbbIY/kvty0zCBYplWXZpHWzYuKAdA+2bpxeWGXJ/NXaVvyjx8kiRYAXuP1sAYGYN1JH6+i44ie+JtnPKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yPH23LFMgAbUUYmqG73yuG4FV3P9ta+eYzNlAMag3s0=;
- b=i3FN+2TUzRIbwLmgzNtETasd4leULHnrSvhs2fRjibkezZ8sLAfTHAbg4IydicYk0qSa4FqmTPwO30XqRXJzfdsi4qKgGImfi57Xi1lcfLzGUQvBg34Zd0ClSnWBmnsYJv5CmEbmHgHyPJ1w8SAYZVNdUaEf72QCeygsv+Nr2T4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB8074.eurprd04.prod.outlook.com (2603:10a6:10:24a::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Mon, 15 Jul
- 2024 22:54:07 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7762.027; Mon, 15 Jul 2024
- 22:54:07 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: krzk@kernel.org
-Cc: Frank.Li@nxp.com,
-	alexandre.belloni@bootlin.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	krzk+dt@kernel.org,
-	linux-i3c@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	miquel.raynal@bootlin.com,
-	robh@kernel.org
-Subject: [PATCH v2 1/1] dt-bindings: i3c: add header for generic I3C flags
-Date: Mon, 15 Jul 2024 18:53:51 -0400
-Message-Id: <20240715225351.3237284-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0096.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::11) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C9913C3E4
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 23:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721084428; cv=none; b=LDuDaQJs3dQDR7Jfzjbm9JAUY/7iB5mcDfmoLkTkodDqaK7eJUw6eFDE+Rp+tq77mfzfldSXZqCLTtA3NdriTpHAq4XtWQFYLSmeNF2JrbRfvNXYOLZG3JSCqMHhgHGBk+05PQrHwMT2Bu+EKoBkZbYsH3BWLkioB8VZY1PnC0E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721084428; c=relaxed/simple;
+	bh=b8rTag0SrLpLjulAdbl1o2anNWP1yfQ/jzPs3pG/BV0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WfC1F+8m9au/LirBQAqWsRMVQ3t5Xx57lGHFWEbIMzfwfXAwrYIvfvv2lG7sDUxI/v0fJvZkF48L/S305pJY34jGdXVdCY+Kz0XFLGbOo2OC+xeMoHJked+7dMLw5/XKCT32q3BZh+WmICW649kNRwgylK2hyMWF63KREUzPzn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NpO9EvTH; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a77b60cafecso580925866b.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 16:00:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721084424; x=1721689224; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=k1gow5zppJqzN+25NcOcRbu7QXGXHf8jI5DLjDA8opQ=;
+        b=NpO9EvTHpFhtooFm9dMsSZ2cuvvTWu9XGxZdrs8c7OG3KD5kAm4O645tB0EYpFbfS+
+         XIlBPP9MAzZfFIazlpSv0Mkup6tODZr68Bak/rkZHJk2LsSWA9BOEprKmVIhEo1yFGAJ
+         EmkVyaerE2ikvJ1cpGfg6Dz3xfRr3GQmuWozHp3FVB2DSncEnFH5wtBzAHHCfTFuv18M
+         zf3mZ56Bbx0T02N6UlbZO0xHEt+7TEBI5sVl530YQIP3LxvPNJcHRuNDNmdKVRSvAKmb
+         rDwy/9sDvFR7kjlDdv2zJqjEOGz4MWEKr0ik3z4O0X+lU/jXSDQtNlgjAqEOHIyXZeQy
+         VXWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721084424; x=1721689224;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k1gow5zppJqzN+25NcOcRbu7QXGXHf8jI5DLjDA8opQ=;
+        b=cIIqGvdIPq03+Exam3AN/uBCBM8UP3BSK9N7iKSzIyWbkB1sZwKdpcn3w91K4ZsNuE
+         6PjytjkYdJZqkezNgaU+LzMRP/4N7DkSKi6nELpd3f2HrXzIHN1nrYdeURDbdJTdjmj7
+         JDjfnlDZwNNIriWCGhFa/+Q9pp5zf5w/DRRLHLtbgd0L+zAAldvJpic5ZlYRWzQnJOWg
+         3O/4WhtpBhOsHPwlCyahIPbICBhLYNzlwR2j3TrDNSKHXMHUY2/9WxGYIE7kijh9NvyA
+         9ZqURhASXTH8dQiByKOT6fU5X/JUCMSRX2jCHX55yyCVWXRYh2xfHDHDwfVr2o0Ol/0G
+         P0yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW12gntAarW//0HKBFv1nO7S7Hi/zuY85t7pZpbL3hFdpDrrsJPE2OrGEyT1q8QKWSLWXoWGiIEUUhIeqdOmad3u7Q2X0k2J5gNEw==
+X-Gm-Message-State: AOJu0YwbWwQADpxxxwmVi0im2ETeHJKa4867aRpNyxrh6MCm139muWI0
+	lNbojMN3TAeN1teSDu8zJ7NSpRxvik56Pwvmt1nc8qlWLj2gFCO/IWfiVvVaENY=
+X-Google-Smtp-Source: AGHT+IG/V4q1z5lcWEefALSNgD02693YZRqaRsgZF0ien3pd9o9z1XJ7SyGL9yQnRcaMgWd7aPFUNw==
+X-Received: by 2002:a17:906:27c8:b0:a77:c7d8:fe16 with SMTP id a640c23a62f3a-a79eaa5b6dbmr22287966b.62.1721084424263;
+        Mon, 15 Jul 2024 16:00:24 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc5d00aasm246528366b.90.2024.07.15.16.00.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jul 2024 16:00:23 -0700 (PDT)
+Message-ID: <08b70537-d23c-414c-a539-d5166e9e27c1@linaro.org>
+Date: Tue, 16 Jul 2024 01:00:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8074:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d13bcd8-e381-47b3-fd2d-08dca5210859
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|366016|7416014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?hJkITxf/DbZfM8POmzhApL6XGiYzItMddHi2iwkJxVbp+yzaOX01iuZQj/Ef?=
- =?us-ascii?Q?8weM0C0/w+6Kye7eeD7oj69WI36Ksc/gd6FZtVyN+hIOMiFxbNKNUSiN7S5g?=
- =?us-ascii?Q?ImpweKBMmflNFicOHNHSMNW2pD7OWmj8NBb4NUBTNGX4B0EVesSuPv6Xmv/i?=
- =?us-ascii?Q?Owk9B7qHuihABcY4leJD2WeumoQW8Q/QawasI8D4E3HS/SLjLa8Q96JmC977?=
- =?us-ascii?Q?IPoRfVCj8kbrQkpkiBKjko5yClvyHAKIPkve/sDHvGXBA3piqjrJHOZH2Ebi?=
- =?us-ascii?Q?h1ce34eXLdQ6wAzhKGOTGZ87fSZGQwMN05jFHbAFqXdtXExSQx4e0UJ3TJM5?=
- =?us-ascii?Q?LWfNlYEj4JgRjsvfgc+GLy2Qi6mHbVU6cwQMy2H3JQRuNEAYJLjw+zlq5stn?=
- =?us-ascii?Q?5rEZCAAb63FeE2gcY4U5RXFtLO/Qd4i5ZXnPQ/kIyf6MidHgN+7OqrkDBj1P?=
- =?us-ascii?Q?uKyopRBvlZCnCAJUnYaKWJIIx8GoAgww3HKFysW4M6+SXJudNuPHimVEc14Q?=
- =?us-ascii?Q?gIChMNNnub4uyNaAhoyCOEBvh5xGGA4UjI7m+ZjEazQy1WMPJe77QOeugBM3?=
- =?us-ascii?Q?7wOvhu1vKVeaCORjDhZ8p8f+zWqj/A4qdZjo8AUBiyoOCcOoOjDFESq8X56G?=
- =?us-ascii?Q?PkRsDbMnn2eq+9ugXwWNx4Qh0iH2ZdDOryRvy1gD088toG6WTrteDjT3++Zp?=
- =?us-ascii?Q?8/ZB4H8JnLizdTNM0n58HreGnCGxAd57YiIB0uo1nDxGL4ZzcZcWvu/zh8J/?=
- =?us-ascii?Q?wE3MlTEiLT9tpa3DqsBMQi6uK99PljN+kTuiuTp/IGst31xeCAFkXZN87aeW?=
- =?us-ascii?Q?keY96p8Y4HBG1Tl4iGTlbdfQ7vzlmP/+MnSBlJZI4yDIJFhkR3sWkZhzYJbi?=
- =?us-ascii?Q?CV86JCLN9EWibIp+hwzWz26cVPJTxSUw9uSmPqlJgT6qDSt9M2cmJFzEIMfF?=
- =?us-ascii?Q?zhN0dZ35vF0K8FNtOSEoyHRHmk+qHwky4YezRMCxPV9PUh04j88an/HuLj32?=
- =?us-ascii?Q?1Jsu1ZLAHPX2WF42B4aokCv020oTGLnHe/cLlLLXoTj7MixBwNVJGTxEpfwg?=
- =?us-ascii?Q?yH/h51YQ+/jlqI/OlAlotlTbEWkXTSh5e1mNZbKRMbh1PkZ17PM3+ULSDsJX?=
- =?us-ascii?Q?8eGdlaSvL1+IDJKmL3PjhqWKWpjgcWL/qxdBrBLVUxsykApWQ8NGGgFB0yao?=
- =?us-ascii?Q?mOdACUT9a9nSA71pg4XnnEsxG7mVfP+VjMyyoxHNKyw0bIXwi2hzoLP+3PAx?=
- =?us-ascii?Q?4teL+XT/aFuXO2zDpqtahMAMsKiKhuuwG5QFeB3EM6x21NXRuUhJ5ngTR79c?=
- =?us-ascii?Q?EN2VmPoKv/Gw24SrXZ7/2R8WlxEE9xQOenQvnyk3DwJJ3tp2WsDpBXywFTSx?=
- =?us-ascii?Q?Kgq/xPCqACG5jHls9snziuUQnOcS27yTfmxZijdj//pvuGxyJw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?OOuAqtQry5xtF/+WLNlYP1trSvSSFs4pU8JTydHKe6MxpWX4wA+haP0Azc6z?=
- =?us-ascii?Q?1luSzQkm2br6tu9LbOaLhW9Hw8VGEBQJcpQJgpyCO29nreUv8psbYxLyI0Ri?=
- =?us-ascii?Q?4Hz5FvRtOeqBp11fiU7PvKxIbavPB0GqYwx8uLvnike8awDmV6EMt8nRguLI?=
- =?us-ascii?Q?wkDZujEP7DBHmGLaOPXRHSa0tniVwUdSc+R5GSPHH/gHPDmY2fHAg96TXnPV?=
- =?us-ascii?Q?yWDJZUGFgM99xf6FPJmCoPMJbTYHV0ozmBmp3mqxDzXzXhL/X2f9Dpf6lxic?=
- =?us-ascii?Q?pCNBHIvrrR0WCIZWj/YLmZUh2KsxfMspCSZqyT1XC6Cbxy9i0eaoXoN4ydmS?=
- =?us-ascii?Q?a7x3JzJvKub2tXPBlBmeKIPL3jm4V7L84oNBxOkBgY+sMp/YMiNz5/yruaB3?=
- =?us-ascii?Q?i9cIip9mDTvRY9+Fm9EtfXGMN0QE5CU1Q3tj1h4N9Mnrp0N7TMwhVePIQzd8?=
- =?us-ascii?Q?hyHkltyjdJh6tyz8tR0BsDqMEsFKStcrjHLlE48Sl+uPBTjanyiEkvpvQ4g5?=
- =?us-ascii?Q?hjYqVdOrtloDjTexLlNI+/q77Zzu9O8UHc9q8jRnPheTQiz+OS52Puq90dVL?=
- =?us-ascii?Q?7YwnmCOnmd2JbiPkpNy1XbTzL5GJkF5zSILdl3Inm6bb50BCnbFZIlar3Lm1?=
- =?us-ascii?Q?ERCK9c8QQqj0DQjx46Dv4EacOIhVXCHhcOSuPX9xDzKxVotNeRbt0PZTKDRJ?=
- =?us-ascii?Q?mL/IJYQ+zLHtbN018g4Yha760tfeoGaORy1o9mA+iQpRFhOoSQ0JJ/pHUmuK?=
- =?us-ascii?Q?sTmuqGUdRYBqodUfdH7stkXaSUimMTgSKrBw64BV5D+DALuamYxla+mWsBYA?=
- =?us-ascii?Q?/pDoXi/0dhJ9g566zLWeaaKlXI8FjQA/2fB3/eBHchJky82JaHAmKiVRydlK?=
- =?us-ascii?Q?VCNX00jrgZ/7RoIAXC/SYvvmhbaPxcE04Xp3BmjtfKBGeLUP8sbJOA/eONEj?=
- =?us-ascii?Q?Hg7UtuoVWPCi7QiEobWc1+k9CpcBE8DsZwPnsMbRjd8uQDFpHNHuDhVAPH4A?=
- =?us-ascii?Q?vvq6T/0E7em+9GEKt6j9xY4CbyLFy32k6KnQOJlusExYGFrmQH1acASvKeIi?=
- =?us-ascii?Q?LSq2XiTp39K38KbrmG2KRQ3ZvNciKv8aZcWeibR9aBDLXLMTsRnlmWNx11PS?=
- =?us-ascii?Q?aYFcSdROP/tgLQSjYG8iz1wzqWj9neqc5FiV+k36QXxV2zmtGZvTd6ZO1jOd?=
- =?us-ascii?Q?+3bkfP+8DuKvScl4158IfDZD+YtcNGBwlaN2F8X28RMywc2bGgUf1q8JQHzV?=
- =?us-ascii?Q?NweEZFe7Y3nw9GgdwWetbBo0fzxxY7K1TwiZUuxienDokUt1guKRD56sESWz?=
- =?us-ascii?Q?3AtvMS+FeReRuoFIjFjHCGifczndXfOYRFdJEK+QQeFZfqnxDN4aW9aDO5pY?=
- =?us-ascii?Q?kxVKoS+gIyT2UC1D9tGVq+D7CeSzSfD+A2oif8M7fDxZDwoyMJnjfpqL9FMs?=
- =?us-ascii?Q?hOjNBnzLwHAw1JGXeFKL6xYiTAf7LarVE6xZQDo+ps4tdmHMYm2xjKSiI8nz?=
- =?us-ascii?Q?c77hj8DhDSkaoClkRINupCFT85gKClYe8yHocNOm/ioN+PmBpZbkEmVQVG+2?=
- =?us-ascii?Q?tGg9zN6gd9CvWdTFYe0Hc9ZGf6C3SjFcAXA8cH1k?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d13bcd8-e381-47b3-fd2d-08dca5210859
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2024 22:54:07.4085
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D7hkr72AZ5ZQj/JClLw8RRtHXOHUo67i10mrGgVBHLIurA7pVEgAgiB14QrUM93y++lDzAGxuKi0irBxRv+43w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8074
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-yoga: add wifi calibration
+ variant
+To: Patrick Wildt <patrick@blueri.se>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Andy Gross <agross@kernel.org>, Steev Klimaszewski <steev@kali.org>,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>
+References: <ZpV6o8JUJWg9lZFE@windev.fritz.box>
+ <ZpV7OeGNIGGpqNC0@windev.fritz.box>
+ <cisap4ctuolfrs6hjqxz45fqtckcy6uhjzma2shcxkso73jvoh@jj7l4bgftoir>
+ <ZpWbUjHna1cE5zHW@mone.local>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <ZpWbUjHna1cE5zHW@mone.local>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Carlos Song <carlos.song@nxp.com>
+On 16.07.2024 12:01 AM, Patrick Wildt wrote:
+> Am Tue, Jul 16, 2024 at 12:51:53AM +0300 schrieb Dmitry Baryshkov:
+>> On Mon, Jul 15, 2024 at 09:40:41PM GMT, Patrick Wildt wrote:
+>>> Describe the bus topology for PCIe domain 4 and add the ath12k
+>>> calibration variant so that the board file (calibration data) can be
+>>> loaded.
+>>>
+>>> Signed-off-by: Patrick Wildt <patrick@blueri.se>
+>>> ---
+>>>  .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts      |  9 +++++++++
+>>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi                 | 10 ++++++++++
+>>>  2 files changed, 19 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+>>> index fbff558f5b07..f569f0fbd1fc 100644
+>>> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+>>> @@ -635,6 +635,15 @@ &pcie4_phy {
+>>>  	status = "okay";
+>>>  };
+>>>  
+>>> +&pcie4_port0 {
+>>> +	wifi@0 {
+>>> +		compatible = "pci17cb,1107";
+>>> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+>>> +
+>>> +		qcom,ath12k-calibration-variant = "LES790";
+>>
+>> It doesn't look like it follows the rest of the calibration variants.
+>>
+>> Something like "Lenovo_Y7x" or "Lenovo_Yoga7x" sounds more logical.
+> 
+> This is what's both in the DSDT
+> 
+>   Device (WLN)
+>   {
+>     [...]
+>     Name (BDFE, "BDF_LES790")
+> 
+> and kvalo's board-2.bin for this machine:
+> 
+>   $ strings board-2.bin | grep LES
+>   bus=pci,vendor=17cb,device=1107,subsystem-vendor=17aa,subsystem-device=e0e9,qmi-chip-id=2,qmi-board-id=255,variant=LES790
+> 
+> I don't think we can hand-pick these strings, they come from whoever
+> decided upon them and fed them into ACPI tables and QC's binaries.
 
-Add header file for generic I3C flags to avoid hard code in dts file.
+Huh, great nod from qca!
+Looks like there's even a bit more hw supported in there..
 
-Signed-off-by: Carlos Song <carlos.song@nxp.com>
-Reviewed-by: Frank Li <frank.li@nxp.com>
-Acked-by: Jason Liu <jason.hui.liu@nxp.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v1 to v2
-- use full path for include header
-- s/MIT/BSD-2-Clause/
----
- Documentation/devicetree/bindings/i3c/i3c.yaml |  5 ++++-
- MAINTAINERS                                    |  1 +
- include/dt-bindings/i3c/i3c.h                  | 16 ++++++++++++++++
- 3 files changed, 21 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/i3c/i3c.h
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-index 113957ebe9f1d..e25fa72fd7857 100644
---- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-+++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-@@ -91,6 +91,7 @@ patternProperties:
-               - const: 0
-               - description: |
-                   Shall encode the I3C LVR (Legacy Virtual Register):
-+                  See include/dt-bindings/i3c/i3c.h
-                     bit[31:8]: unused/ignored
-                     bit[7:5]: I2C device index. Possible values:
-                       * 0: I2C device has a 50 ns spike filter
-@@ -153,6 +154,8 @@ additionalProperties: true
- 
- examples:
-   - |
-+    #include <dt-bindings/i3c/i3c.h>
-+
-     i3c@d040000 {
-         compatible = "cdns,i3c-master";
-         clocks = <&coreclock>, <&i3csysclock>;
-@@ -166,7 +169,7 @@ examples:
-         /* I2C device. */
-         eeprom@57 {
-             compatible = "atmel,24c01";
--            reg = <0x57 0x0 0x10>;
-+            reg = <0x57 0x0 (I2C_FM | I2C_FILTER)>;
-             pagesize = <0x8>;
-         };
- 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3c4fdf74a3f9d..f0ce22e04d467 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10479,6 +10479,7 @@ F:	Documentation/ABI/testing/sysfs-bus-i3c
- F:	Documentation/devicetree/bindings/i3c/
- F:	Documentation/driver-api/i3c
- F:	drivers/i3c/
-+F:	include/dt-bindings/i3c/
- F:	include/linux/i3c/
- 
- IBM Operation Panel Input Driver
-diff --git a/include/dt-bindings/i3c/i3c.h b/include/dt-bindings/i3c/i3c.h
-new file mode 100644
-index 0000000000000..373439218bba6
---- /dev/null
-+++ b/include/dt-bindings/i3c/i3c.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-+/*
-+ * Copyright 2024 NXP
-+ */
-+
-+#ifndef _DT_BINDINGS_I3C_I3C_H
-+#define _DT_BINDINGS_I3C_I3C_H
-+
-+#define I2C_FM      (1 << 4)
-+#define I2C_FM_PLUS (0 << 4)
-+
-+#define I2C_FILTER  (0 << 5)
-+#define I2C_NO_FILTER_HIGH_FREQUENCY    (1 << 5)
-+#define I2C_NO_FILTER_LOW_FREQUENCY     (2 << 5)
-+
-+#endif
--- 
-2.34.1
-
+Konrad
 
