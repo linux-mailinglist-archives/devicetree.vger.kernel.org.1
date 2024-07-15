@@ -1,132 +1,139 @@
-Return-Path: <devicetree+bounces-85788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43494931663
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 16:07:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B600B93166E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 16:12:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 034F02860CF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:07:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF17B1F22349
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAEE18E763;
-	Mon, 15 Jul 2024 14:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7581318E76D;
+	Mon, 15 Jul 2024 14:12:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mHm65XzY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947A5433B3;
-	Mon, 15 Jul 2024 14:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98AD6433B3;
+	Mon, 15 Jul 2024 14:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721052435; cv=none; b=OVt/yg8CUiFaKphkkrzXACQmAc8JPuAJkYOCfe95AgP+zsO5smRVqcOhn4A8NP+fHrArQB9rPhnCQ8tMk/qJnKo/ZsUzaqK4BVfQLFTbgkGfNJS3ku3nhJJbft/Cc7FC1l6CQriJ8dtENEsYUd75HJOI+V3OsGN9ftc1y3GsG2k=
+	t=1721052746; cv=none; b=Vaua0aANZxWhrV0m8HFHdnyKWSsJW+gDXkGvmfkdo032gnCnDTo7Nz0BtxALyIP5cgaXEEufXNuoIlcxzKwsYbk0HSIWmB9jdv3VSoJrgAIYcd8YO3HT2B1za0F+wfCpJI/X7PI06AmDtVhM1JLGv0d3a8iH3P0mtKn02JJbgXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721052435; c=relaxed/simple;
-	bh=kFO6Vf374RyCJl6rEOZ7v7zLwd0bjY4CJE3dt7/EYUs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f8S0Up8Ied28lLBJqNMwGlTwenivICeicVV+b8Tn941R+x22u0E8l/W4WJpL9vDdtmkY072okSIBLgdoqftWpXkpRQkbrNcH1Kz0/9oZfIoZN4ZYBeUaAQiVlDbNR/r8t1q37KCywCWHsTnRawwAEUyY9vsfOggLj8yeHnqIy3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.09,210,1716217200"; 
-   d="scan'208";a="211379544"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 15 Jul 2024 23:07:11 +0900
-Received: from localhost.localdomain (unknown [10.226.92.132])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 19971435D826;
-	Mon, 15 Jul 2024 23:07:07 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH] arm64: dts: renesas: r9a07g0{43,44,54}: Move regulator-vbus device node
-Date: Mon, 15 Jul 2024 15:07:03 +0100
-Message-ID: <20240715140705.334183-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1721052746; c=relaxed/simple;
+	bh=/E6d9NSn3kJQAkuAkw0xDF8+REcuFMzRMVtSfDS4kqU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=brDx4tny35Z+vQw9/Gp5vuyAChRuZo3c1CmQNOKmE41quxWaohTJMhXaeJitKBF8tAc7p0qhH1+ZcD1qVZq8M+kj+mWS0VAcf2mhgHZYGZWJ2L9kajuuRLgzpQj1a5it8fyVhOz05WNW7JYvYyellc4aocBpReMtofWYaXtf3cA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mHm65XzY; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46FECGnW038051;
+	Mon, 15 Jul 2024 09:12:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1721052736;
+	bh=+HAU2E0csD3sG3f5lx5N+K+4dNpKo8af9UxtHFdSupw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=mHm65XzYb5SN/rMfiJuyhog10Lj+/IK4B1a8iFWZ8tpuijr5qQJh0to8jqSC6snLf
+	 P8vbfLddwQPKFtYXH0eVaDysQ/qAzXC1hpkjqCr/VQx7tUJ0CWqTGXUje5EFSQum/E
+	 KFcKL57oDY4loosgMIk/3i5NaEv5w3/F73YvSUIE=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46FECGR8003895
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 15 Jul 2024 09:12:16 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
+ Jul 2024 09:12:16 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 15 Jul 2024 09:12:16 -0500
+Received: from [128.247.75.151] (ula0511493.dhcp.ti.com [128.247.75.151])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46FECGYw003661;
+	Mon, 15 Jul 2024 09:12:16 -0500
+Message-ID: <2a1ccecd-f81f-4de3-a4f8-c056496802b1@ti.com>
+Date: Mon, 15 Jul 2024 09:12:16 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC] arm64: dts: ti: introduce a minimal am642 device tree
+To: Krzysztof Kozlowski <krzk@kernel.org>, Bryan Brattlof <bb@ti.com>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220321155417.13267-1-bb@ti.com>
+ <55e161d1-face-6958-1d86-8a85b82e8485@kernel.org>
+ <766dceb1-222a-401b-95e3-69b7fb331411@ti.com>
+ <e5ded1c1-be7e-4e16-b175-f4bd4a121d3a@kernel.org>
+Content-Language: en-US
+From: Logan Bristol <l-bristol@ti.com>
+In-Reply-To: <e5ded1c1-be7e-4e16-b175-f4bd4a121d3a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Move regulator-vbus device node from common to the usbphy-ctrl device node
-of the individual SoC dtsi's as it embeds the vbus regulator.
+On 7/10/24 01:52, Krzysztof Kozlowski wrote:
+> On 09/07/2024 18:20, Logan Bristol wrote:
+>>
+>> Hi all,
+>>
+>> On 3/22/22 13:14, Krzysztof Kozlowski wrote:
+>>> On 21/03/2022 16:54, Bryan Brattlof wrote:
+>>>> Texas Instrument's am642 is one of many k3 based, low cost, low power,
+>>>> chips designed to work in a wide range of applications spanning an even
+>>>> wider range of industries that TI is actively developing
+>>>>
+>>>> With its pin-mux and peripheral rich designs, these chips will likely
+>>>> have a multitude of custom device trees that range wildly from one
+>>>> another and (hopefully) guarantee an influx of variants into the kernel
+>>>> in the coming years
+>>>>
+>>>> With overlays no longer a thing, I wanted to ask for opinions on how
+>>>> we can best help integrate these dt files as they begin to be developed
+>>>>
+>>>> I also wanted to introduce a skeletonized (nothing but uart) device tree
+>>>> to give others a good starting point while developing their projects.
+>>>
+>>> Real hardware as DTS please. There is no need to add some skeleton for
+>>> specific SoC. What if every SoC goes that way?
+>>>
+>>> Feel free to create re-usable components in DTSI ways, still reflecting
+>>> some hardware parts.
+>>>
+>>
+>> I am working on a project for the AM62 and came across this email thread.
+>>
+>> Following Krzysztof's direction, I am wanting to submit a DTSI to serve
+>> as a minimal configuration for the existing boards based on the AM62
+>> SoC, which are currently defined by bloated DTS files.
+>>
+>> This DTSI file can be consumed by other board DTS files to reduce the
+>> configuration. Krzysztof, could this be merged upstream?
+> 
+> Aren't you writing something contradictory to what I wrote above? I do
+> not see your description matching my earlier guideline.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi       | 4 ++++
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi       | 4 ++++
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi       | 4 ++++
- arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi | 3 ---
- 4 files changed, 12 insertions(+), 3 deletions(-)
+I understand your statement now. Are there any other paths you can
+suggest for a minimal configuration to be accepted?
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index 2eccab9c8962..593c66b27ad1 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -725,6 +725,10 @@ phyrst: usbphy-ctrl@11c40000 {
- 			power-domains = <&cpg>;
- 			#reset-cells = <1>;
- 			status = "disabled";
-+
-+			usb0_vbus_otg: regulator-vbus {
-+				regulator-name = "vbus";
-+			};
- 		};
- 
- 		ohci0: usb@11c50000 {
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index d3838e5820fc..47a671661142 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -1129,6 +1129,10 @@ phyrst: usbphy-ctrl@11c40000 {
- 			power-domains = <&cpg>;
- 			#reset-cells = <1>;
- 			status = "disabled";
-+
-+			usb0_vbus_otg: regulator-vbus {
-+				regulator-name = "vbus";
-+			};
- 		};
- 
- 		ohci0: usb@11c50000 {
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index 1de2e5f0917d..0aace8427be3 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -1137,6 +1137,10 @@ phyrst: usbphy-ctrl@11c40000 {
- 			power-domains = <&cpg>;
- 			#reset-cells = <1>;
- 			status = "disabled";
-+
-+			usb0_vbus_otg: regulator-vbus {
-+				regulator-name = "vbus";
-+			};
- 		};
- 
- 		ohci0: usb@11c50000 {
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index b34855956ae0..63fa5cf1061b 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -131,9 +131,6 @@ &ohci1 {
- 
- &phyrst {
- 	status = "okay";
--	usb0_vbus_otg: regulator-vbus {
--		regulator-name = "vbus";
--	};
- };
- 
- &scif0 {
--- 
-2.43.0
-
+Thanks,
+Logan Bristol
 
