@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-85865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383449319FA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:05:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBCC931A05
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:12:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3AC01F2333F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 18:05:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80D611F225B4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 18:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A773D4D8D1;
-	Mon, 15 Jul 2024 18:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A6C6BFA6;
+	Mon, 15 Jul 2024 18:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CKpW3p5q"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Yn3ea2oq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4481A33987;
-	Mon, 15 Jul 2024 18:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44EE6D1A8;
+	Mon, 15 Jul 2024 18:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721066729; cv=none; b=uGUl1E6RHeYUV1ADKukmdm2q47JGIBGHz3O7pBB8O9QL+Z5688gVuRvdli2nA5WmJ/s7P/6Ciet3vxZBTo6ZO5j0a0dxbI9IWlxIf2K2UQeIw8w7ieDD/uIKBDk6ue1n3YcJvsYCBjephvdzKadAPV+nDc5MRCxUUNpzPMLNpow=
+	t=1721067160; cv=none; b=AfP0nKttgEviKFFL1hsDnBbN2K9YxF8e2L+tt7GZzusafasq1OOkt1WCPGI/1T+T9f9SmMv1EpPIopVF9zBQXp7ODkObNF0fDNp5YEg+gyzQ8uPqf39WZ/SizxLS4Z3Mva79cPv5WOJLZq7a/n3JBbJUQk081HHQo3EGlnfe06I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721066729; c=relaxed/simple;
-	bh=KraVWH9h2oC0iidUG8sGF//wwgQ2nyOKlC7IXhuh50Y=;
+	s=arc-20240116; t=1721067160; c=relaxed/simple;
+	bh=Yo7w8oXTIjmMoShqyIG1ILVWKcwhVfG1aLjWyEfKGaQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bURwPOAo2V2625NSs/+rN78rWaRtN8tt10RoiSpr32v/SLt/MT/dTbXIriILcRPomKirvLAxx971cZxiL9KWs74y0M4mbqrBWqjFnkXQbpkmxfqpXGIxw5BxFRhOPCVZAN0ELtIFZhibuUokMF4SlnUe3+5Z0iPGJWJTS47m424=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=CKpW3p5q; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=ApyMu9bPgP2SS7yE5gJq6fLKMYcJ7QGuRjIl0QEUNiRITMKxG0/OAbxMUQpkAxvonpGSEhhUSMZFrSSzcT/ACbVoaep3N1u/B2D6lHr4FrOgP6elrG3y9kXszt+rA+xd9tb6DxPyzxG33e9MXx5asMIL2JVrklvOLnT+AwiwtwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Yn3ea2oq; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=pqHqXcd4plsh9mCkPXR2+UXnLFjsClDH5v3E0JBOoQE=; b=CKpW3p5q4tsnCI3dVKqNYaso+S
-	mVRZ3Vkg+Kz7cAUwxYVtehoLS2I7YT0yFtxmiTswRrcp7iXBDzqEvxgphA19KEvgLU/gqbs8UKMtr
-	gI+OlZP5Eclswf+dFVRqWFcuy8ZbTGILQ2LP9aUxQ8zpMjeeDW3ZPQEt4NLUetc9WiAU=;
+	bh=yVTBamQZ6bxGogmwiFCMjbqgu4rJ80p0T1Hs3Yq+QIM=; b=Yn3ea2oqbbpM1+eDyq2D+9Nm6v
+	kpUM7RouAPIihF4RauOX1360j8o5L0QfsOhS9+rS0C5PjbF5MFw1iVB5R0m1N2DiUpbdGUd+tk2XW
+	aYYcDu/vL9klXGDXv7L8gn02y2Rqy88oItZF76TmeywuycKpvd8rC2LBdhXo3AqBZA0U=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1sTQ4S-002aUF-RA; Mon, 15 Jul 2024 20:05:08 +0200
-Date: Mon, 15 Jul 2024 20:05:08 +0200
+	id 1sTQBc-002aX2-Ol; Mon, 15 Jul 2024 20:12:32 +0200
+Date: Mon, 15 Jul 2024 20:12:32 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Josua Mayer <josua@solid-run.com>
 Cc: Vinod Koul <vkoul@kernel.org>,
@@ -55,11 +55,11 @@ Cc: Vinod Koul <vkoul@kernel.org>,
 	Yazan Shhady <yazan.shhady@solid-run.com>,
 	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 1/2] phy: mvebu-cp110-utmi: add support for
- armada-380 utmi phys
-Message-ID: <837de973-0a58-4a07-a126-43445bfa7721@lunn.ch>
+Subject: Re: [PATCH RFC 2/2] arm: dts: marvell: armada-38x: add description
+ for usb phys
+Message-ID: <e35e0edf-f99e-4af7-8abc-c8f96b73ddd5@lunn.ch>
 References: <20240715-a38x-utmi-phy-v1-0-d57250f53cf2@solid-run.com>
- <20240715-a38x-utmi-phy-v1-1-d57250f53cf2@solid-run.com>
+ <20240715-a38x-utmi-phy-v1-2-d57250f53cf2@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,61 +68,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240715-a38x-utmi-phy-v1-1-d57250f53cf2@solid-run.com>
+In-Reply-To: <20240715-a38x-utmi-phy-v1-2-d57250f53cf2@solid-run.com>
 
-> @@ -191,8 +196,15 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
->  	struct mvebu_cp110_utmi_port *port = phy_get_drvdata(phy);
->  	struct mvebu_cp110_utmi *utmi = port->priv;
->  	struct device *dev = &phy->dev;
-> +	const void *match;
-> +	enum mvebu_cp110_utmi_type type;
->  	int ret;
->  	u32 reg;
-> +	u32 sel;
-> +
-> +	match = of_device_get_match_data(dev);
-> +	if (match)
-> +		type = (enum mvebu_cp110_utmi_type)(uintptr_t)match;
->  
->  	/* It is necessary to power off UTMI before configuration */
->  	ret = mvebu_cp110_utmi_phy_power_off(phy);
-> @@ -208,16 +220,38 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
->  	 * to UTMI0 or to UTMI1 PHY port, but not to both.
->  	 */
->  	if (port->dr_mode == USB_DR_MODE_PERIPHERAL) {
-> +		switch (type) {
+On Mon, Jul 15, 2024 at 07:47:30PM +0200, Josua Mayer wrote:
+> Armada 38x has 3x USB-2.0 utmi phys. They are almost identical to the 2x
+> utmi phys on armada 8k.
+> 
+> Add descriptions for all 3 phy ports.
+> 
+> Also add a syscon node covering just the usb configuration registers.
+> Armada 8K have a syscon node covering configuration registers for
+> various functions including pinmux, woith dirvers using syscon framework
 
-Just looking at this, i'm surprised there is not a warning about
-type possibly being uninitialled. 
+woith -> with
 
-> @@ -285,6 +320,8 @@ static int mvebu_cp110_utmi_phy_probe(struct platform_device *pdev)
->  	struct mvebu_cp110_utmi *utmi;
->  	struct phy_provider *provider;
->  	struct device_node *child;
-> +	const void *match;
-> +	enum mvebu_cp110_utmi_type type;
->  	u32 usb_devices = 0;
->  
->  	utmi = devm_kzalloc(dev, sizeof(*utmi), GFP_KERNEL);
-> @@ -293,6 +330,10 @@ static int mvebu_cp110_utmi_phy_probe(struct platform_device *pdev)
->  
->  	utmi->dev = dev;
->  
-> +	match = of_device_get_match_data(dev);
-> +	if (match)
-> +		type = (enum mvebu_cp110_utmi_type)(uintptr_t)match;
-> +
->  	/* Get system controller region */
->  	utmi->syscon = syscon_regmap_lookup_by_phandle(dev->of_node,
->  						       "marvell,system-controller");
-> @@ -326,6 +367,18 @@ static int mvebu_cp110_utmi_phy_probe(struct platform_device *pdev)
->  			return -ENOMEM;
->  		}
->  
-> +		/* Get port memory region */
-> +		switch (type) {
+> for register access.
+> 
+> Armada 388 has various drivers directly claiming some of those
+> configuration registers. Hence a similar syscon node would compete for
+> resources with these drivers.
 
-Same here.
+Do these drivers make exclusive use of these registers? Or are
+multiple drivers using the same registers and you need something to
+mediate in order to have atomic access?
 
+In the old days, a register space could be mapped into multiple
+drivers, so long as all the drivers agreed to it. There are probably
+orion5x, kirkwood era mvebu drivers doing this.
+ 
 	Andrew
 
