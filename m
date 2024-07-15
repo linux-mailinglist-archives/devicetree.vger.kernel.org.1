@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-85668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5857B931017
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 10:40:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB3193101B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 10:40:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC4C1C21989
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 08:40:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFB49B216B2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 08:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BCA185E6F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25C8186296;
 	Mon, 15 Jul 2024 08:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljQrMVSu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uv0wkOGE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AC4185E60;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99920186282;
 	Mon, 15 Jul 2024 08:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721032804; cv=none; b=g0BcCqCHaG8P8535ABqeDo8ia5hgQJu8NJelthdVgTOYlYC9/RHfDw5f2rxg6QfUV3mqOzViHryTMsUTY2xw110YNxQoxpAaXTPiWA/N37/BmqAwc0lSurWmWD3qi+x0aN8ykVvZaNT1SbF26Bt3cJG8rMXHaAQlOOzLDbdToPU=
+	t=1721032804; cv=none; b=t/dj4rGlQNkxuZKRt7L6N0emWpQrxTel/xUDVcXXAG864ba3DNPtEOnJ8V0ERh8eGSC5+0J3zbxS4cgxgUKU0UZ5n7ZjF36ww/ObidP++osy6Fpe65wCkQFrowAsMg0rqoT6TYroQG3wVWy5B/eFvZabo8YdUnDKlTcV8IJNsko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1721032804; c=relaxed/simple;
-	bh=4P6bcFjMz2Z81KccelmzzJW3x4QXkAmbT0oSpWl6AJs=;
+	bh=9XRADCykKASXBd5xpAHe0JIYlPfbmXG6/ToHGes8RsE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Px5kbsKS4uZDC215x5NZGzu2bXS99qQ4IAO+Ifx+M0S/7Cbmci2vldiRMLbtP/iBwlZ1K8wLaxVXJqKZiZ93Qc7w83pCdF9g62J5o38QCJFCq/I6sHZMeQI5m9IXJlO7RTMnLBmt7jA6Pz7OMBO+fmHjtBBog6MikG5xKgGR52g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ljQrMVSu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BECE2C4AF19;
+	 In-Reply-To:To:Cc; b=JYpN4lA9itqNYF7OZkzMFlGEspGD/0KF2Trjklzet8DEQynl0rjsaPuunKUv/CTEnw+n0upuw7+2F++lo5DwNeK7rTNTx8A5Q1js5Svf7/lOIPh+QVw369+jeCHjflAHlHgnP+IhyEwegVACuOvNPuh5L1jdmW2VSC8rdGfqCFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uv0wkOGE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EACB0C4DE16;
 	Mon, 15 Jul 2024 08:40:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721032803;
-	bh=4P6bcFjMz2Z81KccelmzzJW3x4QXkAmbT0oSpWl6AJs=;
+	s=k20201202; t=1721032804;
+	bh=9XRADCykKASXBd5xpAHe0JIYlPfbmXG6/ToHGes8RsE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ljQrMVSuMnOlbkKTDtx+Val/d2JWs1bX3R1owqGK3poxk9OJAmCMsXbYzkbWOhnOb
-	 zgToTNPxVy7YIbmJWiiJDDVKRJlEmkk4PiAoxRKDVmLfJs7a61TiCEpRVqz0n6CJ9H
-	 oU3/fV5EZ6REiZXHCxks2cjN1n+4eh5ifwbCmMvo5ZNUtzNGq6ksSEfYndqetj97QK
-	 /YmBU1pT5XavaGGCADf9Si7s7cgWLVyyDt1XH6Rrw9r1qYUfj698CBGgOWjJtaycx1
-	 L0szgIE0Mv7L/73xCMfB2H+pNzgV+fZoX97bPzMX/cLvb+vOJyfa6sMkvlzGcMkVq8
-	 ipiwrqQNNKuoA==
+	b=uv0wkOGEJ7sUKpTSafUkS5yDwXKuht938zNjKWmJKbMhUrcor5ka6lOMiV2crR2K4
+	 TnAYMmgefMI90gmvN5fhBfz0lTfGQ5ogYvUPRQtW5gbpCBiKSnipkT9JvvGnEIh/mf
+	 7J9ExanuoJ0R8Evtzv7lO+5R+ljYyQtnU0EWNmvWROAp84WttBBuX3j9Ll4jgUyUU+
+	 INRlMiSngAnCJUw7RkTaHGSkVoulF8H6wzS5ytuF/gk7ARDTISiVfCZh5TUNVQ9wp/
+	 xXnyhPrSszLcpXfiozH3LKkeKpWNOCmcewotlpO6dx+9IBrJDqu58NPjL1fhEK9g+8
+	 7n7RUhizjhsEg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B696CC3DA50;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEB07C3DA4D;
 	Mon, 15 Jul 2024 08:40:03 +0000 (UTC)
 From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 15 Jul 2024 11:38:20 +0300
-Subject: [PATCH v11 16/38] dt-bindings: net: Add Cirrus EP93xx
+Date: Mon, 15 Jul 2024 11:38:22 +0300
+Subject: [PATCH v11 18/38] dt-bindings: mtd: Add ts7200 nand-controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,25 +55,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240715-ep93xx-v11-16-4e924efda795@maquefel.me>
+Message-Id: <20240715-ep93xx-v11-18-4e924efda795@maquefel.me>
 References: <20240715-ep93xx-v11-0-4e924efda795@maquefel.me>
 In-Reply-To: <20240715-ep93xx-v11-0-4e924efda795@maquefel.me>
-To: "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
  Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1721032799; l=2030;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1721032799; l=1633;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=2EI3oik4KHOxom6rjRW5fPr9iZissgfzSJoa2Vw9jd0=;
- b=i05NcwoUS8bi5oc+5uiGsb54nZME5zijYoJx3mLqg9hD+idgvWpMbJxFFsiM4bUcTSAzfn4OaXPJ
- rl/p5PWNALaW5ia3bC76xbkQKl9tpWlOYzSs9uCqFQQcfWXinRVr
+ bh=7r17/fFhBG5Dh5YlKHGbUghicWp/sbQ+SRw1TNILVrU=;
+ b=1f7TqxagAEcOnV9Y0GsX1+c0L3Cxrj1SA5IscId+56GgZNgZ/hrN0mObprBRCYT56yGBqi5pxK06
+ 9CWNRhQMDNvh5fP6ecH+A0CEYE7ajMGxNg2Z6TEXvXpiVIvLNLwI
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
@@ -83,78 +81,64 @@ Reply-To: nikita.shubin@maquefel.me
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add YAML bindings for ep93xx SoC Ethernet Controller.
+Add YAML bindings for ts7200 NAND Controller.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/net/cirrus,ep9301-eth.yaml | 59 ++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ .../devicetree/bindings/mtd/technologic,nand.yaml  | 45 ++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml b/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml
+diff --git a/Documentation/devicetree/bindings/mtd/technologic,nand.yaml b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
 new file mode 100644
-index 000000000000..ad0915307095
+index 000000000000..f9d87c46094b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/net/cirrus,ep9301-eth.yaml#
++$id: http://devicetree.org/schemas/mtd/technologic,nand.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: EP93xx SoC Ethernet Controller
++title: Technologic Systems NAND controller
 +
 +maintainers:
-+  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
 +allOf:
-+  - $ref: ethernet-controller.yaml#
++  - $ref: nand-controller.yaml
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: cirrus,ep9301-eth
++      - const: technologic,ts7200-nand
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-eth
-+              - cirrus,ep9307-eth
-+              - cirrus,ep9312-eth
-+              - cirrus,ep9315-eth
-+          - const: cirrus,ep9301-eth
++              - technologic,ts7300-nand
++              - technologic,ts7260-nand
++              - technologic,ts7250-nand
++          - const: technologic,ts7200-nand
 +
 +  reg:
-+    items:
-+      - description: The physical base address and size of IO range
-+
-+  interrupts:
-+    items:
-+      - description: Combined signal for various interrupt events
-+
-+  phy-handle: true
-+
-+  mdio:
-+    $ref: mdio.yaml#
-+    unevaluatedProperties: false
-+    description: optional node for embedded MDIO controller
++    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
-+  - phy-handle
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    ethernet@80010000 {
-+        compatible = "cirrus,ep9301-eth";
-+        reg = <0x80010000 0x10000>;
-+        interrupt-parent = <&vic1>;
-+        interrupts = <7>;
-+        phy-handle = <&phy0>;
++    nand-controller@60000000 {
++        compatible = "technologic,ts7200-nand";
++        reg = <0x60000000 0x8000000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        nand@0 {
++           reg = <0>;
++        };
 +    };
 
 -- 
