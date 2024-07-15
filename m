@@ -1,95 +1,143 @@
-Return-Path: <devicetree+bounces-85745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81223931439
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:30:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D79FC93144F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:33:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CC571F21F1B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:30:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7202EB22523
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B028186E30;
-	Mon, 15 Jul 2024 12:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E5A18C32F;
+	Mon, 15 Jul 2024 12:33:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ErlC8vBA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mPM5MfLb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA06323BF;
-	Mon, 15 Jul 2024 12:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C5118C321;
+	Mon, 15 Jul 2024 12:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721046651; cv=none; b=CnIrKtAp2HbAJ57xwcGIAvz5FCzjs487XOIEoKPvk6Q/BSQq652HRIAnIiMYRFDNvu9pNFrC9aURBRHuT/c93P68c+BAzaZRwV7x3TE/5CJ0ZOuLOuo03ycKguMgJQOW0XQ2THhH6CU/SzQrBzTEd8mtjhfgmMgoN6K5n+k24kA=
+	t=1721046795; cv=none; b=g0WPuZlOfBNEm2MdA43Fof9tTL4hpCN18MCjYp61nAd2/4iGaeT1+QZ82+QBhM4twobhULH6zntXF9dxSF29z5N9VO5s0QSyU02xzoRhAjl5AndkJLAFXnTNHqemDjt/7kNYIBJzXGIlyj5o5WGG4RubIw0FazEgK7wunTjbx/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721046651; c=relaxed/simple;
-	bh=g0Nc90YvDz6QNsUQ8nKoL2I1s30tobIMCfl0uzfoaz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IS0OeTuvqHXi3e47+L3zmTztLLWA87YLzqjNsHxDF9rSfvNewGqp3lVEWOXO8OTttHJeoOcq/IP3kpiir9ytpI/1XjwBqZ6Nkftd5F+D8rK+1SdVzs8llZwg1KksNo7JSuci2146Go3gW9mGc+dmpVQKb8v4PQe7ZlvOFxfXXBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ErlC8vBA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D071C32782;
-	Mon, 15 Jul 2024 12:30:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721046650;
-	bh=g0Nc90YvDz6QNsUQ8nKoL2I1s30tobIMCfl0uzfoaz8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ErlC8vBA2Kx33XMxd/d+6pZD+y+Slok4/ZH4KYJYJGgKDdo9iwox68J34MdlGFdO7
-	 ZkpPZRnh0PB2C2Hps1Owh5S3LTA+CHIZ9SdoG1Tinc7zP1Yra8decpvlZMOeVAFCHJ
-	 zCMNitXxJ5IA2YNCqUvOxnNmZ4cBTs4n5otK+gurBgZMDlIkz/bmYECb97nGiax/6u
-	 pSAxYOp/8HEeRLGAzStGTDeh7XrfnUkSITuolY6CwRTSqr0WUMaDKYE6e74mDAmQCY
-	 wYQct/hwPoRs7kbdevcEuOyZir/aFR/R8OJvUgfJtGwhALcz0xWAwBkRSeAIcCb6Lp
-	 /TsAcorzg3a6g==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sTKqu-000000000MK-0avD;
-	Mon, 15 Jul 2024 14:30:48 +0200
-Date: Mon, 15 Jul 2024 14:30:48 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: [PATCH v2 2/4] Revert "drm/panel-edp: Add SDC ATNA45AF01"
-Message-ID: <ZpUWeFYjrkvhUaB7@hovoldconsulting.com>
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-2-31b7f2f658a3@linaro.org>
+	s=arc-20240116; t=1721046795; c=relaxed/simple;
+	bh=a4Ky3/kCfEXL9iHXaYgdvM8RZtt9d+1v96s6+3khfLY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YVhSyHq2QwcLbVLTSTP/OmloK5G3hn9l4OvKWxSQ2Qb5AAqShcORR8nzexxtNPhpjbv9nq2vhTOqpWvjuixD3tYBCz+QGRKdU1vRi4iHpQn45XkJ1as7rHrGxyTRP8j3TuBwNEtg5OX26mh+vJA9OUm/erbez3/9RGZLt4+PDlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mPM5MfLb; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46FCX6B5029220;
+	Mon, 15 Jul 2024 07:33:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1721046786;
+	bh=PuxNX++HBVhZzDVby578GFLb+lupl999iKEMK0VNCwg=;
+	h=From:To:CC:Subject:Date;
+	b=mPM5MfLbaicn8GVatXi3jZyt8c6gkqM+4B26ahsgmY/5ptQUa2p7rhYCgZAfieJUe
+	 Nlh+KDTfNbDPud5SzNC+qHwr/sreU6AuCckD5aKMHkoG3gxD8BcQyGnM3hXBZ0NaNt
+	 eldYYvzhx1plToA4iAgmmpvO14PsYNa9zPSSXems=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46FCX6Z7075919
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 15 Jul 2024 07:33:06 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
+ Jul 2024 07:33:06 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 15 Jul 2024 07:33:06 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46FCX2LX109905;
+	Mon, 15 Jul 2024 07:33:03 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j784s4-main: Enable ACSPCIE output for PCIe1
+Date: Mon, 15 Jul 2024 18:03:01 +0530
+Message-ID: <20240715123301.1184833-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240715-x1e80100-crd-backlight-v2-2-31b7f2f658a3@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Jul 15, 2024 at 02:15:38PM +0200, Stephan Gerhold wrote:
-> This reverts commit 8ebb1fc2e69ab8b89a425e402c7bd85e053b7b01.
-> 
-> The panel should be handled through the samsung-atna33xc20 driver for
-> correct power up timings. Otherwise the backlight does not work correctly.
-> 
-> We have existing users of this panel through the generic "edp-panel"
-> compatible (e.g. the Qualcomm X1E80100 CRD), but the screen works only
-> partially in that configuration: It works after boot but once the screen
-> gets disabled it does not turn on again until after reboot. It behaves the
-> same way with the default "conservative" timings, so we might as well drop
-> the configuration from the panel-edp driver. That way, users with old DTBs
-> will get a warning and can move to the new driver.
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+The PCIe reference clock required by the PCIe Endpoints connected to the
+PCIe connector corresponding to the PCIe1 instance of PCIe on J784S4-EVM
+is driven by the ACSPCIE module. Add the device-tree support for enabling
+the same.
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Tested-by: Johan Hovold <johan+linaro@kernel.org>
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
+
+Hello,
+
+This patch is based on linux-next tagged next-20240715.
+Patch **depends** on the series at:
+https://lore.kernel.org/all/20240715120936.1150314-1-s-vadapalli@ti.com/
+Patch has been tested on J784S4-EVM with the above series applied.
+Logs:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/d825068cfe55bba7a869469c1ef64ddd
+
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+index f170f80f00c1..62a6c7de3af6 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+@@ -7,6 +7,7 @@
+ 
+ #include <dt-bindings/mux/mux.h>
+ #include <dt-bindings/phy/phy.h>
++#include <dt-bindings/phy/phy-cadence.h>
+ #include <dt-bindings/phy/phy-ti.h>
+ 
+ #include "k3-serdes.h"
+@@ -81,6 +82,11 @@ pcie3_ctrl: pcie3-ctrl@407c {
+ 			reg = <0x407c 0x4>;
+ 		};
+ 
++		acspcie0_proxy_ctrl: acspcie0-ctrl@1a090 {
++			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
++			reg = <0x1a090 0x4>;
++		};
++
+ 		serdes_ln_ctrl: mux-controller@4080 {
+ 			compatible = "reg-mux";
+ 			reg = <0x00004080 0x30>;
+@@ -1094,11 +1100,12 @@ pcie1_rc: pcie@2910000 {
+ 		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+ 		device_type = "pci";
+ 		ti,syscon-pcie-ctrl = <&pcie1_ctrl 0x0>;
++		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x1>;
+ 		max-link-speed = <3>;
+ 		num-lanes = <4>;
+ 		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
+-		clocks = <&k3_clks 333 0>;
+-		clock-names = "fck";
++		clocks = <&k3_clks 333 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
++		clock-names = "fck", "pcie_refclk";
+ 		#address-cells = <3>;
+ 		#size-cells = <2>;
+ 		bus-range = <0x0 0xff>;
+-- 
+2.40.1
+
 
