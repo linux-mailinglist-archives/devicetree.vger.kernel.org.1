@@ -1,84 +1,90 @@
-Return-Path: <devicetree+bounces-85892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3FEE931AFD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 21:27:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF74931B18
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 21:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0703FB21AE6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:27:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B96761F22D96
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ACCB13A894;
-	Mon, 15 Jul 2024 19:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1777713A268;
+	Mon, 15 Jul 2024 19:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HtXmA/F6"
+	dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b="cXTiYOxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f226.google.com (mail-lj1-f226.google.com [209.85.208.226])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7457613A3F7;
-	Mon, 15 Jul 2024 19:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3354F132464
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 19:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721071641; cv=none; b=mtQAb4ZnZLQa9L/mgRLY0BAgK/xteZ1UT999y7jbHRgkTEjFAuj61NXxa213cv5bUsm0Io2HaNf5gO8gPPXflThZSiAa6O/EhL9ThkGX4Y6SBGabLFfnQKiUEs7cKJuO9cVU7H+a8g+F8TDrM5cLTo0I8jDAw7LLe8hgNX5xHBI=
+	t=1721072301; cv=none; b=CY7pcndf+kVdBcBC/S42OCkq/T/Ipn7AatWtAJ2teGUYkLz7sYuupznW53n7rV1zFJ2GN7F7OEZpK9dexXp/Dhi3RPkHR8demg8bMc7APOjCxdr4gp1apO/J7ixmXTbxpoDsPv7hqgUwxWkpU0QNecK7PfktLkuNJ6abAKrzcFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721071641; c=relaxed/simple;
-	bh=scvD8E1Th0WQEDOblbw8afBg6ubsAWbPK3/2sSh0+fU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a8U/x1nU5/M8qDzYs6/22xdN1aEpaFy8As+tuaVxgJn720jwj3ArrvpdfLaAQiVyWOet+GHaFKlCU8ocTcKgofDEJhQu6jyNI+A7DeH/zfOCfyOjLs0lsa3+ot1hr08l14Mu0JMI3M/XZ/nefynbCEoXbQYS8Gbmawrc0mEGqEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HtXmA/F6; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1721071639; x=1752607639;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=scvD8E1Th0WQEDOblbw8afBg6ubsAWbPK3/2sSh0+fU=;
-  b=HtXmA/F6/KE2CMFkbPzZNMEa46dmYLgUq3aKvtZwf1D5iCxb8OOQW4TD
-   MEie7xahjkY25LpcCsY25wSBHzebFxGdN1O3oayoHwghBKnXHBLom0DaP
-   LYzCdMOTnfB94l7f7ag1q1IEgK6u+vH0DKF3WVuP8mr8h7yXw04W0gKfJ
-   zyRuC3yt1glqApmAl9Mu2s/ungdkqGTvf1Z1/6UmHyBBX5X4ExadgsNSi
-   ZcklIrIpP8qOcqvB1ex0KFAwvCJOmg/kjzRMMFL9cejujUDYDuLXe6ejn
-   i7qFLs757lVnePUITbRqk3QHG9sRS+tG8czAn0jYMB9S3g3WlpHpqxzvl
-   A==;
-X-CSE-ConnectionGUID: Sxq8eHrwSYO1cWImrQ8CMQ==
-X-CSE-MsgGUID: 9AmPuoaUSrCOCQ0lH6Oekg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18342895"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
-   d="scan'208";a="18342895"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2024 12:27:19 -0700
-X-CSE-ConnectionGUID: 2Tdnb+rbRk+Wk2mkoCoccg==
-X-CSE-MsgGUID: 1KBBHSXLTp670BMn/kdLJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
-   d="scan'208";a="72960660"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 15 Jul 2024 12:27:15 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sTRLt-000eWK-35;
-	Mon, 15 Jul 2024 19:27:13 +0000
-Date: Tue, 16 Jul 2024 03:26:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-kernel@vger.kernel.org,
-	Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Subject: Re: [PATCH RESEND v12 4/6] clk: wpcm450: Add Nuvoton WPCM450
- clock/reset controller driver
-Message-ID: <202407160235.JYThNv91-lkp@intel.com>
-References: <20240708-wpcm-clk-v12-4-1afac539c37d@gmx.net>
+	s=arc-20240116; t=1721072301; c=relaxed/simple;
+	bh=cemq+9OuqeY3+ummp337Mvo5F4mXDIT79m4hgKaBI1Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=tB0c40ICX7vnhUCizgafnYPkPouTB6qsQIX2BJokEis3TBagjgDU1kES9oRueR70Ge4vDN5reQ/atgAG89obhU7mBG7ynpj6yUPQTuf808lgN/F3ZgISbCRit9ee6WcyieRzwImfcVQbldVbRzmgwE/ie2uoFBXNeT7lb2br55U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se; spf=pass smtp.mailfrom=blueri.se; dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b=cXTiYOxj; arc=none smtp.client-ip=209.85.208.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blueri.se
+Received: by mail-lj1-f226.google.com with SMTP id 38308e7fff4ca-2eee083c044so26603171fa.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 12:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=patrick-wildt-de.20230601.gappssmtp.com; s=20230601; t=1721072296; x=1721677096; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NFsCI/nUGMHpQYBhPffSAiv0o4Z8VMEXV4FQksJuyUk=;
+        b=cXTiYOxjsrz5BFWB5pXFPYwf5UusjMzd5o6+Kwrii5SuKh/2njn3BY9/edtzCLuxWn
+         TRzSnXtUIkdwbyAxibs7EOTVlJEVmAxZdOiRsM71pRbF+eNhztMeijNDVSxe2SlziSxX
+         EMAq3G5sVqhGIYC9cXO0/yxR9YQaPtRAZPt/RT5idM5vwS8Qj0Rb4Ztvx4wGIlOxE9Zm
+         A9B8d2QaYZZ3XnEsbt+aYRGczVBra+jhfdbqUbt/osRgy2JofcSWdya490iHGSHts3us
+         lEY5zUnHVMJE+KG82VozYh659abwJ7jmNvY0Jv9S93Ly3RTwKpLBDTkPGEqDFgMdjxm2
+         zBAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721072296; x=1721677096;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NFsCI/nUGMHpQYBhPffSAiv0o4Z8VMEXV4FQksJuyUk=;
+        b=Y6VUojOZPz/lByd2M9yNwacs2a6nqpoo0/EZZBgoC2LHONBIeWBtZnCK+8d0T3Ytc8
+         V7TFxsRCKAFwP+U7hQqzc7xLpLtGzKo7gl1ZXwe6ve7+ytaqgETWJFa/r+ydPh5esjlU
+         R39vaCdBV9crEnb6zSYLPpwThJBlUbVGnTkEsgvauSFV+LWeUtJ64jcIrOq/GrIpLUvt
+         5zY0LP2mMPmu4SmpyxupCH3ZQZtw6ZUsWdZxzlQybGsYIsmSSsBJPXeNJH45a2Vw1UZZ
+         z4e9wgXsrTxcqVeLbfZ5tsvn3iF19LQ23hWat00avEAS8jGmYDVD2H3RTlEBoRhiPQRw
+         QeYg==
+X-Forwarded-Encrypted: i=1; AJvYcCXDoWyaOOw7ZwZAL/XZXZHB1o90505XlNPT7AgPFcgLiskr6KFHKEcsWuDKkd4CsQKr61mLEuqpxkn4Tws5mOUKi/d6bjq5zV53IQ==
+X-Gm-Message-State: AOJu0Yw/NInn+Gp4IpyOLOWFYOZPBQFFYqTDp1CZW6uGh5v0UUGwGMKP
+	a7MYgKyknt4ugVG/tMJ1yHrFJiS+R1h5eHYgfRLHIEX4cNx4wK8rsWkRYNp4m+Xpl3ymd++t079
+	rQv/izq4WVTuvh+QszJAzXQiQYQ2ror5j
+X-Google-Smtp-Source: AGHT+IHjhs7lFn6xanLhyvwaA7PatZ3sOOeEdpx/Nn5lzGlDNwLD/+lV4ElphVBjqkaDIyu0IV9Qs/ersaIQ
+X-Received: by 2002:a2e:91d3:0:b0:2ee:8eb6:ff61 with SMTP id 38308e7fff4ca-2eef4156be4mr722331fa.2.1721072295803;
+        Mon, 15 Jul 2024 12:38:15 -0700 (PDT)
+Received: from windev.fritz.box (p5b0ac4d1.dip0.t-ipconnect.de. [91.10.196.209])
+        by smtp-relay.gmail.com with ESMTPS id 38308e7fff4ca-2eee1936872sm625101fa.64.2024.07.15.12.38.14
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 15 Jul 2024 12:38:15 -0700 (PDT)
+X-Relaying-Domain: blueri.se
+Date: Mon, 15 Jul 2024 21:38:11 +0200
+From: Patrick Wildt <patrick@blueri.se>
+To: Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Steev Klimaszewski <steev@kali.org>, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Patrick Wildt <patrick@blueri.se>
+Subject: [PATCH 0/2] arm64: dts: qcom: x1e80100-yoga: add wifi calibration
+ variant
+Message-ID: <ZpV6o8JUJWg9lZFE@windev.fritz.box>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,57 +93,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240708-wpcm-clk-v12-4-1afac539c37d@gmx.net>
 
-Hi Jonathan,
+This series adds the missing calibration variant devicetree property
+which is needed to load the calibration data and use the ath12k wifi
+on the Lenovo Yoga Slim 7x.
 
-kernel test robot noticed the following build warnings:
+Patrick Wildt (2):
+  dt-bindings: net: wireless: add ath12k pcie bindings
+  arm64: dts: qcom: x1e80100-yoga: add wifi calibration variant
 
-[auto build test WARNING on 4cece764965020c22cff7665b18a012006359095]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Neusch-fer/dt-bindings-clock-Add-Nuvoton-WPCM450-clock-reset-controller/20240708-073926
-base:   4cece764965020c22cff7665b18a012006359095
-patch link:    https://lore.kernel.org/r/20240708-wpcm-clk-v12-4-1afac539c37d%40gmx.net
-patch subject: [PATCH RESEND v12 4/6] clk: wpcm450: Add Nuvoton WPCM450 clock/reset controller driver
-config: arm-randconfig-r064-20240715 (https://download.01.org/0day-ci/archive/20240716/202407160235.JYThNv91-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407160235.JYThNv91-lkp@intel.com/
-
-cocci warnings: (new ones prefixed by >>)
->> drivers/clk/nuvoton/clk-wpcm450.c:55:1-7: WARNING: do_div() does a 64-by-32 division, please consider using div64_ul instead.
-
-vim +55 drivers/clk/nuvoton/clk-wpcm450.c
-
-    36	
-    37	static unsigned long wpcm450_clk_pll_recalc_rate(struct clk_hw *hw,
-    38							 unsigned long parent_rate)
-    39	{
-    40		struct wpcm450_clk_pll *pll = to_wpcm450_clk_pll(hw);
-    41		unsigned long fbdv, indv, otdv;
-    42		u64 rate;
-    43		u32 pllcon;
-    44	
-    45		if (parent_rate == 0)
-    46			return 0;
-    47	
-    48		pllcon = readl_relaxed(pll->pllcon);
-    49	
-    50		indv = FIELD_GET(PLLCON_INDV, pllcon) + 1;
-    51		fbdv = FIELD_GET(PLLCON_FBDV, pllcon) + 1;
-    52		otdv = FIELD_GET(PLLCON_OTDV, pllcon) + 1;
-    53	
-    54		rate = (u64)parent_rate * fbdv;
-  > 55		do_div(rate, indv * otdv);
-    56	
-    57		return rate;
-    58	}
-    59	
+ .../net/wireless/qcom,ath12k-pci.yaml         | 59 +++++++++++++++++++
+ .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  |  9 +++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        | 10 ++++
+ 3 files changed, 78 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-pci.yaml
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.2
+
 
