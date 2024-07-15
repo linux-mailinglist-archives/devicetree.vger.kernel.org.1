@@ -1,145 +1,144 @@
-Return-Path: <devicetree+bounces-85809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2323C931797
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:28:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F2CF9317AD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:33:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1675B22575
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:28:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDBAC28305D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11999186E5A;
-	Mon, 15 Jul 2024 15:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5583318FC92;
+	Mon, 15 Jul 2024 15:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0kBacF9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XoBJtES1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC4A18FDCD;
-	Mon, 15 Jul 2024 15:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2E318FC82;
+	Mon, 15 Jul 2024 15:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721057304; cv=none; b=KWtCr4mp0fSqNksDHMWkeImH+zb3KoggSdSmlKEPGmj4nBnHrs73m6EIH+Fy2ZuwcGqcQqdJGhw13sMjm0biZ5odAk7X42jrsYzA+oVTu7w79297WCpeXCUB8AeKaf5vrBHlL0eR3ZrQzVQujjk6+lphi3dS1Jbw8G2A1Cc1OA0=
+	t=1721057615; cv=none; b=YfV2jQWrueJCTaQMn7AW6GehzxPNMfkhpXriHlfMw6ym/RSiD046OFD3Pz3z1iQp6l615PBgcuV1F/a0zKQeNvQYn2IqcNPxowGxMWb1f1zxE2QLuUCSrT4LwJSI1v5FEDIAjfx2SLyGxlNX46wVB4txtQNdHejcFtiAjVNHUFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721057304; c=relaxed/simple;
-	bh=wMcIDWrmGAfvryRlixL8w6f8KnHDW2Iqu7kAgZM/vXw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UViUZd3+H3bDhxk/ZPPgZl2t7ZVjs0nIVDABmlUlC2HbsVFfKocE671Z71LbjO+6v82MYXtga7cPvKUTNWGDmnsdW2NHfV45CvPKa/wPqoBKMgBqp1NjGZIJnTGiDNyRdrDg/GnQTqENo5fLAxs4JbAJQkN8AK+zeNTff+a8IgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0kBacF9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1927C32782;
-	Mon, 15 Jul 2024 15:28:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721057303;
-	bh=wMcIDWrmGAfvryRlixL8w6f8KnHDW2Iqu7kAgZM/vXw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o0kBacF92LbdiCs93gFwNPY1FfabN+E68VMrZgdO82AA0zEKsj1TLZd4UbDYoezIz
-	 UedRDekGi4ANFCCccOS5CIsByt5S+bYum5Llve43wrRgHD4LcELHl9TyvsjWXH5gqx
-	 QNjhQpwpy3uJUN5j03dstiME0Ou3BFNmEEERIIBgnCmM0z66A08TzL2JPnW0h6MmaQ
-	 aDGkhrggp3TEW3ZfNY8NUxwlieFOklBKDb3hHPpzUmxNN6ux2xf/Mk747654+EO2ey
-	 HqIRw4o4nRRdzP0LCbJ818Aaj31dv3XojbfnhHEId7uDYvZ7aYePb040ggppbN5/z0
-	 ScrqQPZTdJa4A==
-Date: Mon, 15 Jul 2024 16:28:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>,
-	Jeffrey Hugo <quic_jhugo@quicinc.com>
-Subject: Re: [PATCH v6 3/6] drm/msm/hdmi: add "qcom,hdmi-tx-8998" compatible
-Message-ID: <20240715-stable-popsicle-7c6e2fa76644@spud>
-References: <20240715-hdmi-tx-v6-0-d27f029627ad@freebox.fr>
- <20240715-hdmi-tx-v6-3-d27f029627ad@freebox.fr>
- <20240715-trickery-spongy-c9d8e246b4cc@spud>
+	s=arc-20240116; t=1721057615; c=relaxed/simple;
+	bh=42X1XcSiyhr9rYbdrgBDVEy9bPWF4PwzXgU6n/VhVGQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mRKQk83/3A4eXaEKJT6s85/O9ihKyrp4633T2wUvRyWPrq1rKFR3kG7Z4ePMDubKw8eijN//KUUZ2Fsba1f7X0M3/K/BcC6fL6R8+7yu72p7oOXY2GXpKzY3O0DpsH6wffJDgpfuo7X8olt2V2jU+7TPCtcRjbTNjAjjNRGEBao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XoBJtES1; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3679f806223so3278384f8f.0;
+        Mon, 15 Jul 2024 08:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721057612; x=1721662412; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KjxCwRmZxD0NghIAdi0Gj+hYNdC308NqnsUVK+w6DfE=;
+        b=XoBJtES1G3ndQJsaU5pOFW5haOkNcMeZQv9iDZ6d/YQgvwmJ4NxzWWtyCpvdrBze+q
+         XS74D2V08Ogm1S/+MHUIoyk4wR9Ut12uJMHs5xdWv6IC75fHP+r72vIuol3IN8L2mdr1
+         +rfKeZ0OtCZSICrRwghtBEUv7hfOgvHT1cENjs+2CBFturlQr1S/9FGjT7bTg4BLTCpp
+         6Wcazvl7/uWzjRv2RauxwmXA4GzgVKiNoVdWUp7/Opehn1brIQnHUkvpaYWmMiah1csm
+         d7kcQVTqGOZJTw8GiZoae5ukpFrEu//Z3pGX4dDAskx/CXRO+bYihIfNyt7sQn+SKZAJ
+         oGJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721057612; x=1721662412;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KjxCwRmZxD0NghIAdi0Gj+hYNdC308NqnsUVK+w6DfE=;
+        b=pO/bNyGKjDExciNH+phoKxkjABTHkn3v8Sc92yZcmAdPHEwn9gwy1LVEOMN2Yytcny
+         RXQlPC/WqiqljwGGmUubSVNgF9OjmSpRb+9rQu7Yty0rAdj1CYnT2EVY9V45Wg6cYEYJ
+         KPHE/hv6kbsRcnB0jmFuVoHfmbOLq5VgZrbq2dT+TYI/jwhUTxQyGjgHP8DG/T9bnpVN
+         7EbeJ3MQh2xczAQb+CoNCW/NAZn8bQTRLkxuyH1NSFJQxksoCfqlb7906CIbRPheLLzW
+         nDso3cWSoCBENyem3wL9B2NRXBuFEp2X19lzFuejjrgZdYFil14OYtrTDZhe0Rj3JRh1
+         ZZyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZU1Fpqggq4CDbOicxv8j64DKftmBqKjMYdfxcp67EPdp63JXqpoKJMeFZ3NoCSpD6R5uEVllnnNUv2fakfQ7QLOOKwcfu7u59Z6+1vy/ImB86tpTerliOpDwomAed9rsdUSzho/j8mw==
+X-Gm-Message-State: AOJu0Yye2k7sbAlOtD1Hhnt2Zm6wMFn5OYuVl7vvUI9kS8bk+z3b9U6S
+	/i1mbdNPbHbys/JFXlo9K6FpaiIzzHDdQHikAQUzxmqa0ZVk8w+M
+X-Google-Smtp-Source: AGHT+IF8lHceTME+XT0pHLUI+dbiNjpEZB4/QdSQgJ4j5SKkXA1Gy/sqaXaS97dqmAsS4RVL2gwAUw==
+X-Received: by 2002:a5d:4f04:0:b0:367:89b0:f584 with SMTP id ffacd0b85a97d-36823c4ce4dmr227387f8f.11.1721057611736;
+        Mon, 15 Jul 2024 08:33:31 -0700 (PDT)
+Received: from eichest-laptop.lan ([2a02:168:af72:0:564b:c18:f4fc:19ad])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dafbf4bsm6720866f8f.73.2024.07.15.08.33.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jul 2024 08:33:31 -0700 (PDT)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: nick@shmanahar.org,
+	dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	linus.walleij@linaro.org,
+	francesco.dolcini@toradex.com,
+	joao.goncalves@toradex.com
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] Add a property to turn off the max touch controller if not used
+Date: Mon, 15 Jul 2024 17:31:20 +0200
+Message-ID: <20240715153330.91979-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="I/966nsfPxtlNaRp"
-Content-Disposition: inline
-In-Reply-To: <20240715-trickery-spongy-c9d8e246b4cc@spud>
+Content-Transfer-Encoding: 8bit
 
+Our hardware has a shared regulator that powers various peripherals such
+as the display, touch, USB hub, etc. Since the Maxtouch controller
+doesn't currently allow it to be turned off, this regulator has to stay
+on when not used. This increases the overall power consumption. In order
+to turn off the controller when the system does not use it, this series
+adds a device tree property to the Maxtouch driver that allows the
+controller to be turned off completely and ensures that it can resume
+from the power off state.
 
---I/966nsfPxtlNaRp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v5:
 
-On Mon, Jul 15, 2024 at 04:26:12PM +0100, Conor Dooley wrote:
-> On Mon, Jul 15, 2024 at 02:21:16PM +0200, Marc Gonzalez wrote:
-> > Current driver already supports the msm8998 HDMI TX.
-> > We just need to add the compatible string.
->=20
-> Why is this required when the driver change suggests that this device is
-> compatible with the existing 8974?
+- Keep reset pin untouched in mxt_power_off (Dmitry)
+- Generate proper reset signal in mxt_power_on (Dmitry)
+- Drop introduction of mxt_device_register (not necessary)
 
-(I know I reviewed the binding already, just noticing this which
-suggests a fallback would be appropriate, despite the differing clocks
-etc)
+Changes since v4:
 
->=20
-> >=20
-> > Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> > ---
-> >  drivers/gpu/drm/msm/hdmi/hdmi.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi=
-/hdmi.c
-> > index 24abcb7254cc4..0bfee41c2e71a 100644
-> > --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
-> > +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-> > @@ -549,6 +549,7 @@ static void msm_hdmi_dev_remove(struct platform_dev=
-ice *pdev)
-> >  }
-> > =20
-> >  static const struct of_device_id msm_hdmi_dt_match[] =3D {
-> > +	{ .compatible =3D "qcom,hdmi-tx-8998", .data =3D &hdmi_tx_8974_config=
- },
-> >  	{ .compatible =3D "qcom,hdmi-tx-8996", .data =3D &hdmi_tx_8974_config=
- },
-> >  	{ .compatible =3D "qcom,hdmi-tx-8994", .data =3D &hdmi_tx_8974_config=
- },
-> >  	{ .compatible =3D "qcom,hdmi-tx-8084", .data =3D &hdmi_tx_8974_config=
- },
-> >=20
-> > --=20
-> > 2.34.1
-> >=20
+- Load configuration firmware during probe and not after resume (Dmitry)
+- Do some improvements on error handling (Dmitry)
+- Add Reviewed-by tag from Joao
 
+Changes since v3:
 
+- Move the power on part to mxt_start and the power off part to
+  mxt_stop. This allows to turn the touch controller off even when not
+  in use and not only when being suspended (Dmitry)
 
---I/966nsfPxtlNaRp
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since v2:
 
------BEGIN PGP SIGNATURE-----
+- Add Reviewed-by tags from Linus and Krzysztof to the dt-bindings patch
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpVAEAAKCRB4tDGHoIJi
-0sU8AP4jM6fDhuBRN2MOUSxGHypHq+sAMObmuhoxsoBDNdo4awD/V9VWHT01TVJw
-2JaoCyJhPin+XY9G0rHrT0tjTjiN4Ac=
-=4QyH
------END PGP SIGNATURE-----
+Changes since v1:
 
---I/966nsfPxtlNaRp--
+- Rename the property and change the description (Krzysztof, Linus,
+  Dmitry, Conor)
+
+Stefan Eichenberger (3):
+  Input: atmel_mxt_ts - add power off and power on functions
+  dt-bindings: input: atmel,maxtouch: add poweroff-sleep property
+  Input: atmel_mxt_ts - add support for poweroff-sleep
+
+ .../bindings/input/atmel,maxtouch.yaml        |   6 +
+ drivers/input/touchscreen/atmel_mxt_ts.c      | 134 +++++++++++++-----
+ 2 files changed, 108 insertions(+), 32 deletions(-)
+
+-- 
+2.43.0
+
 
