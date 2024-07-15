@@ -1,164 +1,248 @@
-Return-Path: <devicetree+bounces-85906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217FB931B7D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:07:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504EF931B8A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DDEF1C21DA2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:07:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D54FA1F222CF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAEE713A41F;
-	Mon, 15 Jul 2024 20:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C15139CF7;
+	Mon, 15 Jul 2024 20:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cYSBhLaV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J9JEdHoU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D3F282FD
-	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 20:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C422633C5;
+	Mon, 15 Jul 2024 20:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721074023; cv=none; b=kq6kBAR05sdUA7j0/9zvhi1jnJFV2Ob1wNPHn2PDiHVfeIAW9BqXFYjz/DjzWZpSQIscweu2kjbSOzinAiDUx7GPvcmfkX2NUJ+UZdDS6Gyy5mGxsbLShL3YLhUpAOaW4a7fqJ5P+vQ3q9rBh60hNwpT46Tat9OVcW+PuvMSlcE=
+	t=1721074220; cv=none; b=WIfEu3p3cwprVX1bDayWbC7ehF22+YRk7TP8Ltgijs+KW8/JyDiuxRh7IzCYbJYLzC7LV3h/Do/Cgv5Unup9PKrxKtNwJYqA7gmHEp467/KYoAWmUDsmmWeoZdpAOXKtSNiWaBNdgAxSVOH5fJMtzVm4XzVGKIPeDcYNusWdeR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721074023; c=relaxed/simple;
-	bh=mH7ml5XGw2UfHBEbiu0tHBp3fgyAwGNogLpfYZhJvPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pb5U02NG4mMYv5EJWXG2CmTt3JN/JgNVB88aYkJ9GyjPAJojdV/xTugfMiUVKAVxdoekQ+gQQIbiiuzDIpVvFOlKQnXr6wT8lSZH07BjrljbdgzJiH/2JGmTvcRX6+oA3MYF1xBnaTRcD9dhZLG0HhIo4iyF891J34d34noG+XU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cYSBhLaV; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a7979c3ffb1so283005366b.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 13:07:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721074020; x=1721678820; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=e9soHTPXjOtOjNo3NVk4k5D9hNCH3BU8X8ODig3zB3M=;
-        b=cYSBhLaVIt07hepflzqgN1S856+IluhRFdbOudoI7XtRBaUw74zpovtEUYgNY+3I4G
-         hPVHcsfR5+7NfTIIKUCuc5HbRkFH5OgFxKnXkbQKC8wAgMog14GXCXe0nA8ZezGTH67i
-         wooCoYFOPJCOjOiWRYKfTO0RtWsAT9Q0CCnBfXfnhJ4colJfgCLiKRyIfrB5wVfO2OsF
-         qG+ONbn0gjrnddonKTXO6yWc/EmEzxezaIuFcunz5EQdjMjaOHiF7ZwKEj12Ytw5QBc9
-         Xm/opjauHK60hi471uBZJrqCipdGQGP+ASlXQj66HEL73iTzD2oyrM5xkTetnCMwogWy
-         vgmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721074020; x=1721678820;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e9soHTPXjOtOjNo3NVk4k5D9hNCH3BU8X8ODig3zB3M=;
-        b=E2yjohOO2LXW6sAm953OHbkIn27GZL3lAe2RktQGHlrqsm/Q51A1Vxk1Ipue7G0wRo
-         UtK8HizCrYAhTKP2z9HOl81r0E7+q8291CcuLg9yOz084LIcgB/tvBrzOhdm6lVRu+pb
-         zBP1H2zGuPoUkwGR4ShJGEkb7IcnQ22oFPFNmY/2ut/Icm1cQZizQJYZw9yMcY6wsvMg
-         VxNZ18EQDV8J5DfBRrucy10u7HApFKBsFykyymd7p48LhwLo3XyQ8zUAsox90+r1d9Gt
-         D85y433GcIcqpvyzrR3xbpnQAVdBaCEETKkUZ1bE/uQgjWByg9di9IV+yUIuK/QvnaP/
-         Aw4w==
-X-Forwarded-Encrypted: i=1; AJvYcCURN6fjwKd4BpJQU2yPpUTk9ZKRQTAmQGnaVoVQbaVhegJLNLy8+9EvoJtlMN/C/16zEsECLnISs4/cSMWu6Dz2ra79Hr/GmHnyLg==
-X-Gm-Message-State: AOJu0YxUCH4RmRhDypY9o5UJdmmgMQPTrIwXkNSYuoUpXPaI80To50XT
-	K/lAw4o2jmnO73HQAFAfBJllvRme9aRPFf6G7l+oq+GCnxNoMzxhcBPD5Hny+iM=
-X-Google-Smtp-Source: AGHT+IEqbGCM4EjhL+6laJrvI85EF55lREcmibdMwft25Oug0lVasuFnlZetaOmh32YGl4sHrMz5Xw==
-X-Received: by 2002:a50:cd93:0:b0:57c:5d4a:4122 with SMTP id 4fb4d7f45d1cf-59e97ddb9afmr812759a12.9.1721074020215;
-        Mon, 15 Jul 2024 13:07:00 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b268a293csm3754495a12.67.2024.07.15.13.06.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jul 2024 13:06:59 -0700 (PDT)
-Message-ID: <f1f6501c-8562-4f1a-a598-4ab58c7f44e2@linaro.org>
-Date: Mon, 15 Jul 2024 22:06:58 +0200
+	s=arc-20240116; t=1721074220; c=relaxed/simple;
+	bh=xVNu4zWneEsPLdnPvnguNPqROE2/mxFmEYDWFYEt+wc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bwqW+84QOJFWwLGTo5Sc8t/ghqygliIeNDDcuSYebif7LgU1nuwPEIiOiqqgdGN+pVLz4VoFztPtHIt64SoUor/Tad2nbsOwi7C7yvG+6cRzhRCAm/BAe4zSTbcSuhV5E/e/w06VrWOBQ6v8eDpbaxjaRflY6J4AhlpA1QXVpgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J9JEdHoU; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46FK9t4L114559;
+	Mon, 15 Jul 2024 15:09:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1721074195;
+	bh=x/TlRiRVkz1QcFt7ENHJpbmMYNakrvYSD5IjuiQmOmg=;
+	h=From:To:CC:Subject:Date;
+	b=J9JEdHoU7w3cQ9vFq8b0GKiyAS4EM0vokswunGTynK1SGqVnI9MWGaGUoxlg7jkwS
+	 amGbQednQoO8LYpghxNWiMe5tLg/u5yVVsmcr3sUFhF7ZUo5EF1DIQ0XsTVF5D+VrR
+	 +Rs7MtWqy2d5ZTdiPs5baOxXZbvfJiFibCNeCgIw=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46FK9tal073568
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 15 Jul 2024 15:09:55 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
+ Jul 2024 15:09:54 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 15 Jul 2024 15:09:54 -0500
+Received: from localhost (uda0496377.dhcp.ti.com [172.24.227.31])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46FK9raE047153;
+	Mon, 15 Jul 2024 15:09:54 -0500
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Jyri Sarha
+	<jyri.sarha@iki.fi>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List
+	<devicetree@vger.kernel.org>,
+        Linux Kernel List
+	<linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        Alexander
+ Sverdlin <alexander.sverdlin@siemens.com>,
+        Randolph Sapp <rs@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra
+	<j-luthra@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH v2 0/4] drm/tidss: Add OLDI bridge support
+Date: Tue, 16 Jul 2024 01:39:49 +0530
+Message-ID: <20240715200953.1213284-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/14] PCI: qcom: Simulate PCIe hotplug using 'global'
- interrupt
-To: manivannan.sadhasivam@linaro.org,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240715-pci-qcom-hotplug-v1-0-5f3765cc873a@linaro.org>
- <20240715-pci-qcom-hotplug-v1-13-5f3765cc873a@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240715-pci-qcom-hotplug-v1-13-5f3765cc873a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 15.07.2024 7:33 PM, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> Historically, Qcom PCIe RC controllers lack standard hotplug support. So
-> when an endpoint is attached to the SoC, users have to rescan the bus
-> manually to enumerate the device. But this can be avoided by simulating the
-> PCIe hotplug using Qcom specific way.
-> 
-> Qcom PCIe RC controllers are capable of generating the 'global' SPI
-> interrupt to the host CPUs. The device driver can use this event to
-> identify events such as PCIe link specific events, safety events etc...
-> 
-> One such event is the PCIe Link up event generated when an endpoint is
-> detected on the bus and the Link is 'up'. This event can be used to
-> simulate the PCIe hotplug in the Qcom SoCs.
-> 
-> So add support for capturing the PCIe Link up event using the 'global'
-> interrupt in the driver. Once the Link up event is received, the bus
-> underneath the host bridge is scanned to enumerate PCIe endpoint devices,
-> thus simulating hotplug.
-> 
-> All of the Qcom SoCs have only one rootport per controller instance. So
-> only a single 'Link up' event is generated for the PCIe controller.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
+Hello all,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+This patch series add support for the dual OLDI TXes supported in Texas
+Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support
+single-lvds, lvds-clone, and dual-lvds modes. These have now been
+represented through DRM bridges within TI-DSS.
 
-Konrad
+ - Some history and hardware description for this patch series.
+
+This patch series is a complete re-vamp from the previously posted
+series[1] and hence, the version index has been reset to v1. The OLDI
+support from that series was dropped and only the base support for AM62x
+DSS was kept (and eventually merged)[2].
+
+The OLDI display that the tidss driver today supports, could not be
+extended for the newer SoCs. The OLDI display in tidss is modelled after
+the DSS and OLDI hardware in the AM65x SoC. The DSS in AM65x SoC, has
+two video-ports. Both these video-ports (VP) output DPI video signals.
+One of the DPI output (from VP1) from the DSS connects to a singular
+OLDI TX present inside the SoC. There is no other way for the DPI from
+VP1 to be taken out of the SoC. The other DPI output however - the one
+from VP2 - is taken out of the SoC as is. Hence we have an OLDI bus
+output and a DPI bus output from the SoC. Since the VP1 and OLDI are
+tightly coupled, the tidss driver considers them as a single entity.
+That is why, any OLDI sink connects directly to the DSS ports in the
+OF graphs.
+
+The newer SoCs have varying situations.
+
+The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals which
+are taken out of the SoC - similar to the AM65x above. For the VP1,
+there are 2 OLDI TXes. These OLDI TXes can only receive DPI signals from
+VP1, and don't connect to VP2 at all.
+
+The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC
+also has 2 separate DSSes. The 2 OLDI TXes can now be shared between the
+2 VPs of the 2 DSSes.
+
+The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need
+for some major changes for a full feature experience.
+
+1. The OF graph needs to be updated to accurately show the data flow.
+2. The tidss and OLDI drivers now need to support the dual-link and the
+   cloned single-link OLDI video signals.
+3. The drivers also need to support the case where 2 OLDI TXes are
+   connected to 2 different VPs - thereby creating 2 independent streams
+   of single-link OLDI outputs.
+
+Note that the OLDI does not have registers of its own. Its still
+dependent on the parent VP. The VP that provides the DPI video signals
+to the OLDI TXes, also gives the OLDI TXes all the config data. That is
+to say, the hardware doesn't sit on the data bus directly - but does so
+via DSS.
+
+In light of all of these hardware variations, it was decided to have
+a separate OLDI driver (unlike AM65x) but not entirely separate so as to
+be a platform device. The OLDI TXes are now being represented as DRM
+bridges under the tidss.
+
+Also, since the DRM framework only really supports a linear
+encoder-bridge chain, the OLDI driver creates a DRM bridge ONLY for the
+primary OLDI TX in cases of dual-link or cloned single-link OLDI modes.
+That bridge then attaches to the tidss's display core - which consists
+of a CRTC, an Encoder (dummy) and a bridge (dummy). On the other end,
+it attaches to OLDI sinks (panels or other bridges).
+
+Since the OLDI TX have a hardware dependency with the VP, the OLDI
+configuration needs to happen before that VP is enabled for streaming.
+VP stream enable takes place in tidss_crtc_atomic_enable hook. I have
+posted a patch allowing DRM bridges to get pre-enabled before the CRTC
+of that bridge is enabled[0]. Without that patch, some warnings or
+glitches can be seen.
+
+These patches have been tested on AM625 based platforms, SK-AM625 EVM
+with a Microptis dual-lvds panel (SK-LCD1), and Beagleplay with a
+Lincolntech dual-lvds panel (LCD-185T). The patches with complete
+support including the expected devicetree configuration of the OLDI TXes
+can be found in the "next_oldi-v2-tests" branch of my github fork[3].
+
+Thanks,
+Aradhya
+
+
+Change Log:
+V2:
+  - Add all the R-b and A-b tags from Laurent Pinchart, Rob Herring, and
+    Tomi Valkeinen.
+  - Reword the subject for patch 1/4.
+  - Drop the change in schema reference for port@0 in patch 3/4.
+  - Lots of improvements for patch 4/4.
+    * Refactor OLDI selection logic in tidss_oldi_tx_power().
+    * Add "companion_instance" support to identify the OLDI index in
+      dual-link or cloned sinle-link modes.
+    * De-initialize tidss_oldi during tidss removal.
+    * Use dev_err_probe() instead of dev_err().
+    * Drop OLDI(n) macro.
+    * Move OLDI Config register bits to tidss_dispc_regs.h.
+    * Drop oldi bridge atomic_check().
+    * s/%d/%u for all print instances of "oldi_instance".
+    * Move OLDI init after DISPC init in tidss_probe.
+    * Use devm_drm_of_get_bridge() instead of
+      drm_of_find_panel_or_bridge() to find the next bridge and drop all
+      the drm_panel support from tidss_oldi.
+
+[0]: Dependency Patch: 
+("drm/atomic-helper: Re-order bridge chain pre-enable and post-disable")
+https://lore.kernel.org/all/20240622110929.3115714-11-a-bhatia1@ti.com/
+
+[1]: AM62 OLDI Series - v7
+https://lore.kernel.org/all/20230125113529.13952-1-a-bhatia1@ti.com/
+
+[2]: AM62 DSS Series - v9
+https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
+
+[3]: GitHub Fork for OLDI tests
+https://github.com/aradhya07/linux-ab/tree/next_oldi-v2-tests/
+
+Aradhya Bhatia (4):
+  dt-bindings: display: ti,am65x-dss: Re-indent the example
+  dt-bindings: display: ti: Add schema for AM625 OLDI Transmitter
+  dt-bindings: display: ti,am65x-dss: Add OLDI properties for AM625 DSS
+  drm/tidss: Add OLDI bridge support
+
+ .../bindings/display/ti/ti,am625-oldi.yaml    | 153 +++++
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 176 +++++-
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/tidss/Makefile                |   3 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c           |  20 +-
+ drivers/gpu/drm/tidss/tidss_dispc.h           |   4 +
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h      |  14 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |   9 +
+ drivers/gpu/drm/tidss/tidss_drv.h             |   5 +
+ drivers/gpu/drm/tidss/tidss_oldi.c            | 537 ++++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_oldi.h            |  51 ++
+ 11 files changed, 950 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+ create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.h
+
+
+base-commit: 3fe121b622825ff8cc995a1e6b026181c48188db
+-- 
+2.34.1
+
 
