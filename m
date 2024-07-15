@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-85732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C099313BC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:12:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476A69313BD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:12:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D02528152B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01847281E12
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0386618C173;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29AA18C17C;
 	Mon, 15 Jul 2024 12:12:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3+BXvZf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5x5sluz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34EE23BF
-	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 12:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C666D23BF;
+	Mon, 15 Jul 2024 12:12:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721045566; cv=none; b=FXvqQArtOyOHekS/KSBeDdoLdWRVfmjPB2VFEfiZR88feKIJWsk8C9fPFuVN5rQqBIlfb5ubHfSJ1miAWW1gA/YkKiQSYabmu841Ih9C9W/n953Ho5KrVBYEtP7aaJfTqXspAXrDSH+exr47ZECfxJ5Q8aacpehAfClDqwYzmu8=
+	t=1721045567; cv=none; b=eVo337pLHvWT1zJ5j+ueFo2Y9NqjuWZjbPRT9AFbYRg+mHuajgjduErEw913UW8xEpB2mISjbgkAdbammfdMG+0RljPcq2BsOgqCShexgV8TWwG0MAIbBpVTKNSFAdxLnOj2kAPr828alyI0k75nwrKzYNGp/10qls1jviUPLsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721045566; c=relaxed/simple;
-	bh=eSRyMi/rWxbizFibd+EiCGWMUiUN42/Uz6PKhxUBSco=;
+	s=arc-20240116; t=1721045567; c=relaxed/simple;
+	bh=/OnM7ZCRFYAu/jdydn+sRukAdfE1atcPBWpj0LzRqIQ=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=MskXEtvWoJ4vgxnQX+hqWDQnourMMgYi8+PjFrzlqWKq/XQ/C9DE2Ev37lA0QUjNMFuQOIgzVUOFtypxncd7Qwbr5uhWOPP15W+5pUfBFE8C+Wr08EaU6R/39VGLs+iJc30vHgegpIJG32+UfPfFSlxnzFNOKuJiO2iCDUmUPJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3+BXvZf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44BB3C4AF1B;
-	Mon, 15 Jul 2024 12:12:45 +0000 (UTC)
+	 Message-Id:Subject; b=skuZJFiI/6LZXeZx/FO4I+FLyfIOkqoTT8U42PekiaTsisugyNOLTpPM+0UqnbsC4AMOZImjdVR1UQ2ZSo9WADPba3EA2q//QGnsB3jzeywThLc5IecSAvQTROZPcVLp0bcS+x2Uklia1URpmtmIiKUYnBZ30gE/t+EgJDmmcbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5x5sluz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22D40C32782;
+	Mon, 15 Jul 2024 12:12:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721045565;
-	bh=eSRyMi/rWxbizFibd+EiCGWMUiUN42/Uz6PKhxUBSco=;
+	s=k20201202; t=1721045567;
+	bh=/OnM7ZCRFYAu/jdydn+sRukAdfE1atcPBWpj0LzRqIQ=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=S3+BXvZfFWDpHpU111bKMQS+25S2lsBw8d3TJOfdG5wXJVtm4BZyOvzvim87CTDIc
-	 i351FmIfObKVakC/xPVkfh30UOvDxwwNV3gNDTwLA8fHdrZQ7k/ieJDBuFq0myPAdx
-	 LST7g4QWD9x0nexmCBy0slFP/OSgxON3lpYItdysaiVre6p0xpJcVTPc0s6O4Roo51
-	 xOnPlbsVowwANQ2yKMmkwN/WGuOE/7EWai0hrmARC5p7AST/svBhaY+9qjQQCioalY
-	 uymWrd6ZYLPsb8YYp6fruABGDTH3ta5NKaSWK55dzy6qEoC6ax1VDkMocOfkhxc1tv
-	 UmN5IreTEIt6A==
-Date: Mon, 15 Jul 2024 06:12:43 -0600
+	b=G5x5sluzL5X1rJDutcP1VZ0E+9syzWlk2iCVHrCOTaQyAiZ8RJJ6IWy/wRj5h2a6A
+	 AO2bfci4BVcBJIH4xVcU2/zY5Cflk/Ysu599Jx4AhZFwZJUdlu5CvKl+so4fWN7aRX
+	 VQdjNRbFoPooQkhspLCvtc3ekMmUqypSsFiWwY60hoXc+ZkYVkGsXFrterwbLBvNgN
+	 FcAvorT2A5tzZhwaQo9zUTCjXfo6wbsAycI7MfeAphI2dfBEoypmOe3RfQLPdUnXMB
+	 ytMgiy0wNr9Pqampj+ZH4spc5QfOOowNdcynysdr/Zw7EcaSUOwNfKQkdwUUZrln9w
+	 P70z+ADibi+jA==
+Date: Mon, 15 Jul 2024 06:12:45 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,31 +51,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, heiko@sntech.de, 
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20240712215300.720113-1-naoki@radxa.com>
-References: <20240712215300.720113-1-naoki@radxa.com>
-Message-Id: <172104541069.3725239.3048756738341305722.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: add support for
- Radxa ROCK Pi E v3.0
+To: Nikita Travkin <nikita@trvn.ru>
+Cc: Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Anton Bambura <jenneron@postmarketos.org>, 
+ =?utf-8?q?Adam_S=C5=82abo=C5=84?= <asaillen@protonmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
+ ~postmarketos/upstreaming@lists.sr.ht, linux-arm-msm@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
+References: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
+Message-Id: <172104541138.3725354.18402389823221515808.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Introduce msm8916/39 based Lenovo devices
 
 
-On Sat, 13 Jul 2024 06:52:59 +0900, FUKAUMI Naoki wrote:
-> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
-> RK3328 chip.
+On Fri, 12 Jul 2024 21:04:05 +0500, Nikita Travkin wrote:
+> Continuing the work of upstreaming the various msm8916 devices from the
+> backlog, this series introduces few 8916 and 8939 Lenovo/Wingtech
+> devices (where Wingtech is the ODM for these designs).
 > 
-> [1] https://radxa.com/products/rockpi/pie
+> Included devices are:
 > 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> - Lenovo A6000 (Wingtech WT86518)
+> - Lenovo A6010 (Wingtech WT86528)
+> - Lenovo Vibe K5 (Wingtech WT82918)
+> - Lenovo Vibe K5 (HD) (Wingtech WT82918hd)
+> 
+> Note that "HD" variant of K5 is based on msm8929 which is a lower bin
+> of msm8939 SoC. A simple dtsi is added for this soc along with the new
+> devices.
+> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 > ---
-> Changes in v2:
-> - fix typo in commit message
-> - add missing --- in commit message
-> - add new section instead of new item in rockchip.yaml
+> Adam Słaboń (1):
+>       arm64: dts: qcom: msm8939-wingtech-wt82918: Add Lenovo Vibe K5 devices
+> 
+> Anton Bambura (1):
+>       arm64: dts: qcom: msm8916-wingtech-wt865x8: Add Lenovo A6000/A6010
+> 
+> Nikita Travkin (1):
+>       dt-bindings: arm: qcom: Add msm8916/39 based Lenovo devices
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml    |   9 +
+>  arch/arm64/boot/dts/qcom/Makefile                  |   5 +
+>  .../boot/dts/qcom/msm8916-wingtech-wt86518.dts     |  89 ++++++++
+>  .../boot/dts/qcom/msm8916-wingtech-wt86528.dts     | 160 +++++++++++++
+>  .../boot/dts/qcom/msm8916-wingtech-wt865x8.dtsi    | 216 ++++++++++++++++++
+>  .../boot/dts/qcom/msm8929-wingtech-wt82918hd.dts   |  17 ++
+>  arch/arm64/boot/dts/qcom/msm8929.dtsi              |   5 +
+>  .../boot/dts/qcom/msm8939-wingtech-wt82918.dts     |  16 ++
+>  .../boot/dts/qcom/msm8939-wingtech-wt82918.dtsi    | 254 +++++++++++++++++++++
+>  .../boot/dts/qcom/msm8939-wingtech-wt82918hd.dts   |  16 ++
+>  10 files changed, 787 insertions(+)
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> base-commit: 3fe121b622825ff8cc995a1e6b026181c48188db
+> change-id: 20240710-msm89xx-wingtech-init-e07095e2b2ec
+> 
+> Best regards,
+> --
+> Nikita Travkin <nikita@trvn.ru>
+> 
 > 
 
 
@@ -93,13 +128,82 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3328-rock-pi-e-v3.dtb rockchip/rk3328-rock-pi-e.dtb' for 20240712215300.720113-1-naoki@radxa.com:
+New warnings running 'make CHECK_DTBS=y qcom/msm8916-wingtech-wt86518.dtb qcom/msm8916-wingtech-wt86528.dtb qcom/msm8929-wingtech-wt82918hd.dtb qcom/msm8939-wingtech-wt82918.dtb qcom/msm8939-wingtech-wt82918hd.dtb' for 20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru:
 
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: hdmi@ff3c0000: interrupts: [[0, 35, 4], [0, 71, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /phy@ff430000: failed to match any schema with compatible: ['rockchip,rk3328-hdmi-phy']
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
+arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dtb: iommu@1f08000: clocks: [[31, 129], [31, 140], [31, 175]] is too long
+	from schema $id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
+arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dtb: iommu@1f08000: clock-names: ['iface', 'bus', 'tbu'] is too long
+	from schema $id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtb: iommu@1f08000: clocks: [[31, 129], [31, 140], [31, 175]] is too long
+	from schema $id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtb: iommu@1f08000: clock-names: ['iface', 'bus', 'tbu'] is too long
+	from schema $id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
+arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dtb: pmic@0: mpps@a000:mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtb: pmic@0: mpps@a000:mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dtb: iommu@1f08000: clocks: [[31, 129], [31, 140], [31, 175]] is too long
+	from schema $id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dtb: iommu@1f08000: clock-names: ['iface', 'bus', 'tbu'] is too long
+	from schema $id: http://devicetree.org/schemas/iommu/qcom,iommu.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dtb: pmic@0: mpps@a000:mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dtb: mpps@a000: mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-mpp.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtb: mpps@a000: mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-mpp.yaml#
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dtb: mpps@a000: mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-mpp.yaml#
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86518.dtb: pmic@0: mpps@a000:mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: pmic@0: mpps@a000:mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86518.dtb: mpps@a000: mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-mpp.yaml#
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: mpps@a000: mpp4-state: 'oneOf' conditional failed, one must be fixed:
+	'function', 'output-low', 'pins', 'power-source', 'qcom,dtest' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	[1] is not of type 'integer'
+	[1] is not one of [1, 2, 3, 4]
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-mpp.yaml#
+arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dtb: /usb-id: failed to match any schema with compatible: ['linux,extcon-usb-gpio']
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtb: /usb-id: failed to match any schema with compatible: ['linux,extcon-usb-gpio']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86518.dtb: /soc@0/power-manager@b088000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86518.dtb: /soc@0/power-manager@b098000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: /soc@0/power-manager@b088000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86518.dtb: /soc@0/power-manager@b0a8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: /soc@0/power-manager@b098000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dtb: /usb-id: failed to match any schema with compatible: ['linux,extcon-usb-gpio']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86518.dtb: /soc@0/power-manager@b0b8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: /soc@0/power-manager@b0a8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: /soc@0/power-manager@b0b8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
+arch/arm64/boot/dts/qcom/msm8916-wingtech-wt86528.dtb: /usb-id: failed to match any schema with compatible: ['linux,extcon-usb-gpio']
 
 
 
