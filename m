@@ -1,323 +1,415 @@
-Return-Path: <devicetree+bounces-85916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69A1931BDC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:32:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B28931C05
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 202F5B220EA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:32:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB5AD1F20C96
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1DC1442F2;
-	Mon, 15 Jul 2024 20:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C857C2B9CD;
+	Mon, 15 Jul 2024 20:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="f7oHbCkR"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="GkMDkOz9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011011.outbound.protection.outlook.com [52.101.70.11])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2041.outbound.protection.outlook.com [40.107.94.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62CC143C6C;
-	Mon, 15 Jul 2024 20:30:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 886174D8C8;
+	Mon, 15 Jul 2024 20:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.41
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721075430; cv=fail; b=aZb3A107YjxfQj+XsJdvoE4DF3DFQ1Ei1cKEX7VT8+xX+ud4dUh/euRz6Bv3oCNfyfj01eAyr8lWObF9fcwjLXU3UdjoMQgWT8guQyeUpVZ79pzRBMvFdC81cuXzvs4N0sI/rYcryCngTe/7Ko+kb+GIxgxOdxtFpvkjaoY1P44=
+	t=1721075769; cv=fail; b=epEgun4txjr81tlYPn1byEFcsQSl1W0RyIOXcrgXPVG1JJUS7Qi3faMa/MDZFI80Y1v/25EzUbexATzpEIb/v2rUpgsEnCIb9yOVigNEd5rbUQooBA2uQ5D45WnPNCEwyKX2DxFthddOl9MOW3QK0J8tUdpJy7x5Sw6YDAoNYCo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721075430; c=relaxed/simple;
-	bh=Io9k/6Chqe/RxeT+6sunyKqWzcFgWqXaDQgBQg3+vMM=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=GVb/4QP1PHl9Dza6W/vwLQKxoMoXDmpHrLKnN5WpdQMho1zo+sevOXEA3QmNCYgoB9OnvdbvamGyFxc1mlGGYnJzQgbSJRKLcuWfmPhS/3W++LrEBWyV3XvkwaI9FDbYkD4I/Vf61W8MrFoJP/SsCJTofPH40nO/54m1xGUGYlo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=f7oHbCkR; arc=fail smtp.client-ip=52.101.70.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1721075769; c=relaxed/simple;
+	bh=lHRo39cRTmaC11pd5d/5hERFbBy7bddea/O62gDLqew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=B/K2UW29SyVzSRCTiZw/1DN2+w15JaeptH7D9a3CcRCVf0m/VlEeIW74DulazIhq8yexj0xxYNRrvwjcdw44oxjsTC0T1jwBCjiC0y1RV0RIbiFn/KGvj6IaRtN3FE8I6YN7Z7fEhpnZfSeOhm3F3TK0lPavyIbuOFI4/NdxJEc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=GkMDkOz9; arc=fail smtp.client-ip=40.107.94.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=swz8MBfOq6o1lSmvHfl1orzhaOWLweivMWKZc9mn2/CjQzpbpwgAGngV/Mm0ZjE5qAJ+rLkzt5YJkH3QHu/HriTL0drC/Kmc9sA57MOXl1eJj/vxblgL+ORk0sMpy6i02NasPJfnZFLz++DwtK3BaKn+ca1MA61OWd4dp3+jZoZG03ETzPinzchC85LQBkoTLGUjPFGI7fPawBcRMnx0P1mUSSlwR5DvOZ5PS5lKSouFmZ7VDeh+8mvAqLLnpNb1DMS4w6x8zNgP4c5zcR2L72dCYgzixWJI/SD3fdfvmPLMVdyWib6UZFO3+e0IcfrVBFCm13eNFG0zt79QL6EIDg==
+ b=yCrt6TzlDtKl4qUh/a4j+almd6wxuqPuuvwGZ/a91fP3fmRb+0Y1eb2Sqk1aOXZ6bEzf6RLhdLWAg/yaSfNAx8CeXChI6tZAfD39ZD508wnvXECugmBFlslMePF9MnyZ7EUczjYSCuWRLkJJ6//jCHhmoxoCH/luabAKy7h7G9Ob91BXMjM57vyLAaoq89flc8+/LUqQ61EAENVywMy4fpEniuSA3TD+Mr8OvBKpi7GvBOi9CU8UcPGauLpQRXnhk6OBDvZ6eLJmD1+zISio4zCEoo1dIiS8J26wGIR0DtmRcZYj/c/NYHUyOQRrnb/6aHq+RqcMHSjOeCymojzIuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jjq23hHJmyANEWygqMGhoMyEohbY3TN4P17gWnY6onw=;
- b=T5+E0UC73IGv2w+Hs4ClRrnXf4vwgkpRSIgV5cUdud8Y+Q1lBMTitfdw+RDO5X9nRg3do0yKp4IxcIeVi4nRmHqvt6J2ZSDv9luG2Q3ird2cnTgOwTdg78bKHGSYu8S3TGVD0UTmNeEJoPGIHv5RyEHs2ARHBrF2jPv95g4y8vRdMBedeVboUNx5IR2imTv/ydC4jb2qnf5DG9F/X03Ctw4MfpZLrdDecgQVQizzhaw/ma8CL0Z/KDJS483FCRz4YfevrAThU5iy9MElcq+YfsQ0Snrmp0dlsneWoKjMBCbPv4g995G7cjz2Ok0AzVmNjOd/uHeuaS5V3t9igUqKNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=oWkZuMf4xoXWDZBA/GXz3Wg+dT9Xg/5zg41R1HxBYnc=;
+ b=YKkA/Lnb9nTnWeyy/8B/bg+1F+k2R9TqhMIhd/zArHq1KaCW+KBXbB7B2MpbD1C6ATXRSo4oAnwSd1JBBya87Vwa7yJ3y5qo3RzxzPZ68zn8UjgNOrvEz7DTS7ul0KaXtDiv4uuAxug5+bn2krO3V+Qo3BHfBFnrboBrw2WSTQ90fZLWIyLy9HiQnzoxn+TehiAzbS1SldvEcMMwF0ftvilGrU/fx1D8NoAwUgEKXTmCch67pUjeiXGZa6PyBESNU+Gv7si8m9RvYzSSNoN9DTOErS9wg9iA7mCMksTr4/O9GIK58fKR5cwxmUBIqh6a2wp5dJQeyAgUZcqUaB5SOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jjq23hHJmyANEWygqMGhoMyEohbY3TN4P17gWnY6onw=;
- b=f7oHbCkR4SIjbcBiTw42ln5vBr5BePME3nkJT0ptpAp1iOwcCbx0Tg4A3wSeBz703W2mGfDChmmuBHH9181FdFL81kgnyvW/6x4W3t+eqwaIITa9+ppTuiZGSFT6hwSrwFaoU3Z9b8LtBVbW3SPEYQYKbtUhK9WJTIZDime5MVw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB9253.eurprd04.prod.outlook.com (2603:10a6:102:2bd::14) with
+ bh=oWkZuMf4xoXWDZBA/GXz3Wg+dT9Xg/5zg41R1HxBYnc=;
+ b=GkMDkOz9TQfKHg+K2QVTktla6QW0crJ0VQnnyBuRyCx+y/bEMkKoF/oqEKLmM+0BgHV2SNFfj9gGO2jfpqDRXwkIxXdl0SeNGQYVMIE8fHIsDee7EmCGOcl5/vW4F3KDRMKWqQnQ5A6TSryixed2L19bf1HKbJ0PLMv1JndE5KU=
+Received: from CH0PR03CA0374.namprd03.prod.outlook.com (2603:10b6:610:119::34)
+ by DM4PR12MB7768.namprd12.prod.outlook.com (2603:10b6:8:102::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Mon, 15 Jul
- 2024 20:30:24 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7762.027; Mon, 15 Jul 2024
- 20:30:24 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Mon, 15 Jul 2024 16:29:52 -0400
-Subject: [PATCH v2 3/3] pwm: imx27: workaround of the pwm output bug when
- decrease the duty cycle
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240715-pwm-v2-3-ff3eece83cbb@nxp.com>
-References: <20240715-pwm-v2-0-ff3eece83cbb@nxp.com>
-In-Reply-To: <20240715-pwm-v2-0-ff3eece83cbb@nxp.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, pratikmanvar09@gmail.com, 
- francesco@dolcini.it, Frank Li <Frank.Li@nxp.com>, 
- Clark Wang <xiaoning.wang@nxp.com>, Jun Li <jun.li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1721075406; l=5471;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=2Fx4wXwCrUhiTONLxXSADi3uaxoZ+vACq4nDfpp5ot0=;
- b=DkA4Cq/DwLbRv7Lq8zNAJMA/ORNaYhHBbvql7FyI/3BKsWbbeYyq1iGI8D7aHfcDDhUHuTpX0
- Ywb7pJ1+n3VCXJb7qScGhF+KBbbZUi/VLwNrHOR+du2qZSTXgbUXTOJ
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SJ0PR03CA0166.namprd03.prod.outlook.com
- (2603:10b6:a03:338::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Mon, 15 Jul
+ 2024 20:36:00 +0000
+Received: from CH2PEPF000000A0.namprd02.prod.outlook.com
+ (2603:10b6:610:119:cafe::24) by CH0PR03CA0374.outlook.office365.com
+ (2603:10b6:610:119::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28 via Frontend
+ Transport; Mon, 15 Jul 2024 20:36:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CH2PEPF000000A0.mail.protection.outlook.com (10.167.244.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7784.11 via Frontend Transport; Mon, 15 Jul 2024 20:36:00 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 15 Jul
+ 2024 15:35:59 -0500
+Received: from [172.19.71.207] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 15 Jul 2024 15:35:58 -0500
+Message-ID: <f70e8e07-93e0-09bd-1d90-ee5458fb09f3@amd.com>
+Date: Mon, 15 Jul 2024 13:35:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] PCI: Fix crash during pci_dev hot-unplug on pseries
+ KVM guest
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: Amit Machhiwal <amachhiw@linux.ibm.com>, <linux-pci@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linuxppc-dev@lists.ozlabs.org>, <kvm-ppc@vger.kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Rob Herring <robh@kernel.org>, Saravana Kannan
+	<saravanak@google.com>, Vaibhav Jain <vaibhav@linux.ibm.com>, Nicholas Piggin
+	<npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, Vaidyanathan
+ Srinivasan <svaidy@linux.ibm.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>,
+	Lukas Wunner <lukas@wunner.de>
+References: <20240715172351.GA434759@bhelgaas>
+From: Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <20240715172351.GA434759@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Received-SPF: None (SATLEXMB03.amd.com: lizhi.hou@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9253:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e38e6e6-af66-4821-0051-08dca50cf4df
+X-MS-TrafficTypeDiagnostic: CH2PEPF000000A0:EE_|DM4PR12MB7768:EE_
+X-MS-Office365-Filtering-Correlation-Id: ad8d4ffe-8776-4c96-b697-08dca50dbcd2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014;
+	BCL:0;ARA:13230040|1800799024|7416014|36860700013|82310400026|376014;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TUUvWU4vbGpkelZwS284eGg2VnU2VXNDSlJVOUQ5TGFKOGtWNzRlRVY0U1BO?=
- =?utf-8?B?ekVCa0t3OWRwZXQ2R254SUtuRjBFaFJBczl4TkZMdGtxL214QWJaaG82cjM5?=
- =?utf-8?B?L3Z6ZGtWR1V6blZ1N0VFaTVCQUpVZ0lCaUxyM3p4bndTc012SXh4cWxyM0tK?=
- =?utf-8?B?c2NuK0lQQzFDZS80Q3RtdXZHaXF1RkFiUDZRRU11MVQ0M1Zxa2RJaTRDZERY?=
- =?utf-8?B?SVl5UkdQb0FLQndBT1JCZzVXZE9jN3ZmTHl3bldXd0ZIRXVYclptaGVQaXpU?=
- =?utf-8?B?NnEvZGYzblVYUWpHN0J0eWRlYndQM09lWUpOYnBJUkdwVXQ4dlBKVFRubXpY?=
- =?utf-8?B?RDlBbDhaQitrdHBtRWhHQTE0WVlDUEpVMlJNME8rVjRQOEcwK2RVMG9BWDIy?=
- =?utf-8?B?cEZOOEZ5b1JJSFloY0ZjcFJzMjlDbDNjVXJIeGgzVVg3TGhNd1BNSDYyc0JR?=
- =?utf-8?B?b3M5dkZ4dVN5azBHa1ZFK0tBQkJaTThqZGF2VTJDaFBUa0g2TFI5a2lXMFNH?=
- =?utf-8?B?T3AwZmFFQUo1Vk9KUEM1NUZpZzltczdzdytabGNYNk5YNFVtbWsrMytKSTd2?=
- =?utf-8?B?T0UyK0lPOHRWWURkaXFuaHQxemF3YWJGQzRCMDJyUUVRNEhuekcxb01rSE4w?=
- =?utf-8?B?Rkw1QjlsOUFmdnNBTGJmdDB0MXVoUXp0Sys2UzRjR1J1S2dvb1JXR3RuNHZr?=
- =?utf-8?B?ZU5uWnNlREY5aHNla2ZYR00rdkU4QWJQbVZ3WFp4T09BMDl1SDYrUE90SUFy?=
- =?utf-8?B?bTYvMnA5UFp3dlhaZGM1aHphNXVqNmo3ajhrVEwzUGY1cUl1eGoveUxYR1Zl?=
- =?utf-8?B?UkcyQzNyOXlIZGdXU2c5TEhWcUJCemdFYklyMFlycTQ4Qy9pTlVtc0g4VTA3?=
- =?utf-8?B?L3VteDVoODVPc0NETE1iY29xUVBlMTZMMWJRZ3RGdU9hdFVuUnZhL3ZQMUk3?=
- =?utf-8?B?MmNXYVZ2aC9GQU1oK2VJbDRiek9NT3c1aW91Z1V6MVduMGdOeDZMQTdhTkNs?=
- =?utf-8?B?UHU3T1B3cHJRUGpxb25YMmVzaUxCMUxTNnJHakppZno5UFFkb1NoUFdsdGdw?=
- =?utf-8?B?U0IrSFZOWmJzdmZXSCtYNXJsVkhqRW1OU003Y3NYYXZPbFdJTytDMnlPY1Vp?=
- =?utf-8?B?aXFiYmgvTDB2bkZWT3hKam13SlNOVmRqdmNGdmNzK00zeXFsb1RXZjRBR2ow?=
- =?utf-8?B?enBQalNidzlGQWF3aFZPWjAzaGxkbDg1b3FZRktiemMvK2JrZm5FRlM5Nzhq?=
- =?utf-8?B?dUdRQlJYdnR0eEtZSWNFcklVSDZ2YVpUSXNrOEd1ZFYrNldCMFRwOEE3MGhh?=
- =?utf-8?B?ZEZuZitTVSt2THBialM4Nk1ud1pUK0lSOVVKZk16ZHk3aHhYbnJ2bGs4K3d5?=
- =?utf-8?B?OVdESjhIbjh3MGhyWEZXbnRrdVhaMmtyVjNnY3ZDK04yR3J3dkQrcVhxbjg2?=
- =?utf-8?B?MFBpdkNjM0E3MklNWWtJeG94aytKaXcvZ2NlNkZUbHc3Mm1PM05VVWZ5YUpr?=
- =?utf-8?B?WjViVnhXekZVOTVIMVF3TmFteW03K05PK3RsUHNtekY1OFRnRkFRWFRQUXRx?=
- =?utf-8?B?TmtGRjU2OE5wMVZIQ2JiaWZObDJseDB6OHUzRWR5dVZ2ZVVHQ0tzdWFYY012?=
- =?utf-8?B?TE1uWllua0dHNHhwbDB0Z3oyY2ZkUXh0WXptMWhqVnoyWmRDMEMwVnFiYXVm?=
- =?utf-8?B?czFJbUtuU0ZTbFh3dlpPVUl2clJ0cm1aOTdrOXQyNkJGRW9MZXB4S204Zy8v?=
- =?utf-8?B?cUlwZ2hteTBLeUU0eldyNlhTUENZM2x0Mm1iSU5VUmdVUE1KenpLdTJ6QkZq?=
- =?utf-8?Q?3PreaUZ/jxdt3cjeHIolAVVG9fymcC22eg8vw=3D?=
+	=?utf-8?B?ZWNETlo2ZDdiZXZEWWRjUkdTWC9kL0hBK0UvcHlrM2pEZkRVVXdSZGV0QVRH?=
+ =?utf-8?B?M05zVTI0Tnpjb0RYRUJvSktDdjFSRUp2dW1tMWxLQTFNQ0dvT0xCOXRmcDU3?=
+ =?utf-8?B?a2xzd2pRb1NtUzdieVlsMy81T094bWVNd3BTRnRmbFdoS3ZXd0hrK3IxTkhr?=
+ =?utf-8?B?V3ZBbTJtb1UvWldZT2RsVm5zTHhFTU1HczRxOTAzU09BTjlJNTZpL3c5ZVZw?=
+ =?utf-8?B?OWFHWkx1bUorM0kyOGhTNGEraDhIWTkrNWkrVkh3ZjdvSllhdVJuaFprSDA2?=
+ =?utf-8?B?UDlIUFBZeEg5eUt6eWxZcFdGNnpQTU1IakgwOU13T01sQlhKek5TbWJTRjlE?=
+ =?utf-8?B?OTlWMHIvLzJOZzdid2x3NWUrYTR0UFMxcjNFK3IwMXRqNE9TZUorOWJwQzNO?=
+ =?utf-8?B?U2REZkdGL0RuU1VLT2dPMXBLVjFiNnJZTDcyYlBGVFlyeUZ0ak53dGFmcnZP?=
+ =?utf-8?B?TXp4aDdoZkI1bWFmSW85bUUrOS9yQU5NdmlJMC92TUVGSWV1TDd6RmVzZkxT?=
+ =?utf-8?B?ZmlmRmU3QzJNSEd2OVYwUUxCdWQrYnl0Nko2SWhlZmVIV2dTUWlGRldKSlhS?=
+ =?utf-8?B?TmNWUXExU1FHOWhhbDF0bmlpUUt5NWZVdFRYeGhxUURkOXJQRkNGNWxxRzhF?=
+ =?utf-8?B?MjhYd3hyMDlMdlhBSW91OUM3TndVSVErU2xZcHJVSmI1T1ZFMjNXTnBVVnJG?=
+ =?utf-8?B?TVk4ckNOcDROaTV6eHhBNTVsTnZtSm5ydXdTVGl0eFpneUdKbHErSWIxWkEw?=
+ =?utf-8?B?YWlpOFJXbS9iVVllV2RQYXh6UXBOWDMrQ1NkNVQ2WlN0TUJkbWJzRkwyZG01?=
+ =?utf-8?B?a3BJbUhxY3JLaktqUGNjRjNVRnlRdHBTdE1DWjNRRGZiTDZFMi9VK2VCZ290?=
+ =?utf-8?B?NzREcGNWSDlVTmdPT3MzRFhVaG5GK2RKRHJ6Y3gxUVFLWVA5WkxxSTd5NFpm?=
+ =?utf-8?B?dk51KzZPRHM5dG5YdHJHNnBTUi9WSlJqdExUTGFwbStTK0J6UzE5MzJPNkM2?=
+ =?utf-8?B?eDBsK212c1BUOUtxT2NaZnIzWlFWeDhmeCtrQ1F1ZHd6RVlCMjdGbTBIUjlx?=
+ =?utf-8?B?bllaczhodHVSNjNHZERDLzhTUGpja0NWcnI5T2d2M3VoOWpTZUt0OU1oaWdk?=
+ =?utf-8?B?V0RrOGVZa2I1YkIxdDFnNFlxZFVFTlVMdCtlenh2Y2dVMjB5bElOUmVqVkZX?=
+ =?utf-8?B?V2xPUUFmMFlFUWVORzJMcHBja3N3VEljMFc1cU1LeXR4R0hUNVFXeFE3b1l2?=
+ =?utf-8?B?WjkvS0Q0SXZaNUpqcUN0SjQ3RCt5UStkQ3NRSWl4ajlQTlRxNjlrdklLaFpM?=
+ =?utf-8?B?L1o1a1hWa09OWGIycXNhQVdhc0hLSk1tMTBqK2J6RFRIYW53aDIyRTcvN1Nh?=
+ =?utf-8?B?QUY1SWhSUGtWWVgzbmtDaHpzS0JaK0pJbDNjdzF0TmZVVjVHeU0rMkZmRDhk?=
+ =?utf-8?B?MkI1akUxSHNPLzhBRWZPV2lzY0dsM3ZIVXhXbUhYUW9oSnYzRXUrWnVXakpO?=
+ =?utf-8?B?YnJNQ1FIc1JUL21yTWw1RUo4OTlmQnhmVkk5d1FHZlZxOElqNmpIVXZMMXpm?=
+ =?utf-8?B?MGEreCtJSEtzdENlMU1lOUh0Y0wxUnMrcWpvV2hxcHpSNy9obUprdkUzcmo0?=
+ =?utf-8?B?dTJMYnByekxjUjFwZkh6dnhmZ0NrbTVmZHZQdjZncEFydkx0TzN1NS9FTjU1?=
+ =?utf-8?B?emdPVWN0SnhtT1R5N3E1dFNCQ3NVck5pYzNaNXY1L2xaazhWajlWNDI3SHJL?=
+ =?utf-8?B?V3hiVWRVbi9zeWNKS2k3SXhkb1h3R1RLc05pUUlKVFpFNEZzRGxWZkJlZlpz?=
+ =?utf-8?B?NlZ3cHRyeHJQZnV5eXdpZ1YyRmJPZm15YXAxMHgxRzRnUXZZT1Z1NXltcUsy?=
+ =?utf-8?B?RUtleDJ3SjNSS0RleWxZNlk2eUJmbTBrQUNJU29YVmplQlE9PQ==?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z0owOXh1ZHB6bkw4VUFaRjBWNTZsZ09hbjBCVkw2SVJkT2hDYTIxOUkwZkwx?=
- =?utf-8?B?a0YrZlpCL0FLUDczUzBDVVpMN2tGNmFqRzdDQU1IQ2JiOXJKNDg5WWo0UElT?=
- =?utf-8?B?TWlCNFRUYU9raGFEK1A3aHdTb3dOdlVVcms3Q2VxM3pCV1gyTGJ4eUpkK0JS?=
- =?utf-8?B?cUkrU3c0YzQwaWsxSEVzMUp3cTRFZjVFRjIzL2ZVak9UNVVreWtWZzJYUWZh?=
- =?utf-8?B?SndrWjVrMEJxTFpGMWVYanROVzI4RDNlTUVOZlpTL2U5UFlzN3hZN2l6dUoy?=
- =?utf-8?B?TUgvWUgyQ09Gb2RveFo2UCsrMXk3a1JSaXdma0syNHV2aGFSK2ZEdEFoV2Jz?=
- =?utf-8?B?aUJRNjBOWUV5QzJKYnJsUFhSSEtaUVFTTG5pU3BpejlWWnAxVDRkbFFXOVlu?=
- =?utf-8?B?VWtSQTJPYjMwNVJ5TU8rVWFtUnNvdVowUHlmK3FQeWx5SWsxZUxjVWZzRUpx?=
- =?utf-8?B?OUZRcGV1VFQvZklzT2w4bGpMTXo4MjN3VlhQaW5uZC9NMkFkM3Jjd0NUa3hh?=
- =?utf-8?B?NDFpNnhFN3NSb1B5U2JuK1RQc1hnS1drNWN3MVFsMWhhMTUyTDg3eEZydXd2?=
- =?utf-8?B?KzdoZHg1eHVuUXAwckZkV0ZuWVRSL2ZMN0M0YmtXaGJFblZzMFhoc0d3QjlZ?=
- =?utf-8?B?WXRZUWY2dHg5dnEzYldxUkkwUVdURHNuU2RTajNCVC9ReENKRCtMM2dsR1BQ?=
- =?utf-8?B?cURBL3RvSTRHQVEyOEZjM1V4clAxTDlzcFFsN0pQU1NMbmk3NDBsNVpMb1cz?=
- =?utf-8?B?M2EvMWcrSUM4eDd2SkE3YkIvRTE5TEt2ZTVrVml1MGNJYW1ZWVQ0elMyejg1?=
- =?utf-8?B?Qm9UUDN6T0dVK2dFa2JKMVVwU3krd1ZrTlBtTWJCNVJ1Z2NGMGZTMWJ0dGht?=
- =?utf-8?B?a0pjdEFqalE2N3pkRld1MDZsblN2Rk1ISGV1cTBnRmJkS29hWUVpaFdxbjZz?=
- =?utf-8?B?elpBYmNWUXFJdWZWdXYzRmt5QkpjMlZBWDR1enUwUDhRMTN2Z3FmbzlDT0ds?=
- =?utf-8?B?MGRNNUxXMHF3V3YwOU5URjAxZEx4dlFBMlhRbFVUYW9jakI0RUZHbzB6Zmhq?=
- =?utf-8?B?QXM2YVkvSUFUWW1NbnVicXNFWTUwSkxyb0Q3VDdDUUZ5b2t1K2krK3V6ck5K?=
- =?utf-8?B?TXhwbU5pbUxrT0FUY2hQSytoS1M2aFpESitoV0RvVldUSUdmdGRqemdmdnpP?=
- =?utf-8?B?N1ZVNVJ0cUlUY0FwVU1tbWNseTNXTGpNa2JIWHpPRDdPZ0ZBNWszTW9aRWc1?=
- =?utf-8?B?Y1pwMVh1WDVqQ2lDZ3YvS0M5UWt2aDNrbnh5bDA4dmozeHkrWXRadk5VdUhZ?=
- =?utf-8?B?cysrenUvRnNySWVLM3RYZTFnVWZka05oK1FudjQxNjJTckcrZXE3SExSMHdY?=
- =?utf-8?B?L3pIU0JzSUZZSE5KVlRJWCtnNEc2dHhwYlNBS2xWbE1iTnRwZXdIUk5VYU8r?=
- =?utf-8?B?NXpDODdTck9aaFozZ0VSemd2OElNMFJSRXN0a1JsZ2Z2RHNLSkZ3Z0lYQ2d2?=
- =?utf-8?B?WFlyVzBXaDA4QWpFWEIzMnNwOGk3ZmhwTGdDQmZ6R1NodE9ZaXZHQmFOTzFJ?=
- =?utf-8?B?dCt4TlplK0VFMWZ2K1VkeU1LUy9iU015NlRjU0F2YUNIN1ZxOXlXOWpzSWJP?=
- =?utf-8?B?ZElWYzM5bFY3TmdkUVN6QkJLdW1YUWRLb3dHbXNXdEVEbVlFZEpqNXZPVC9X?=
- =?utf-8?B?aDQzUGdEbTVpanl6a1hRdEpTSkJSVWxibFF4YlRqd2wvSXRhblZxYU5MU1po?=
- =?utf-8?B?RW15Vi9jTzF2aWhvSSs2NDJDektNZG5od3U5NnVrZnl3R1N3ZzJPZnl6OE9O?=
- =?utf-8?B?Y0R2bjk5clFuN24vdTZZTGtCRXRUc1lzdzNPeHROUkE0VzRMcW1PSlQrbnh3?=
- =?utf-8?B?R1lHY2YybWtmSGxMTk1rMTZQc2o5eFRmZHlmSDZMUUpNd1lWZUJxdGhJTnZ0?=
- =?utf-8?B?emxLM2o5WjdaZGNBSXpYQW1ncDR4aVM2dTcyM0t1alZHZmI1VlN1ZnBBcmha?=
- =?utf-8?B?UDhHMDIzTHUyZzg2WFJhdGhnZndOdDZjUmdtRGV0dUR2NzVaZHBJRFhabFhp?=
- =?utf-8?B?N2xTUEJlT09EQmZuNWc3K2Q2MlE0Lyt0THVYeXo5SEpjQUxuRnFtbEJCVEZi?=
- =?utf-8?Q?MjnE=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e38e6e6-af66-4821-0051-08dca50cf4df
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2024 20:30:24.7227
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2024 20:36:00.0070
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ph5i0N4E7n7ByiALahESR+KlS6Otes+TLC5jyUrszfPjbKb7liT1ckUe2nYjunndnWkUvIc6kkkY2m/0B9gnCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9253
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad8d4ffe-8776-4c96-b697-08dca50dbcd2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH2PEPF000000A0.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7768
 
-From: Clark Wang <xiaoning.wang@nxp.com>
 
-Implement workaround for ERR051198
-(https://www.nxp.com/docs/en/errata/IMX8MN_0N14Y.pdf)
+On 7/15/24 10:23, Bjorn Helgaas wrote:
+> On Mon, Jul 15, 2024 at 09:20:01AM -0700, Lizhi Hou wrote:
+>> On 7/15/24 01:07, Amit Machhiwal wrote:
+>>> With CONFIG_PCI_DYNAMIC_OF_NODES [1], a hot-plug and hot-unplug sequence
+>>> of a PCI device attached to a PCI-bridge causes following kernel Oops on
+>>> a pseries KVM guest:
+>>>
+>>>    RTAS: event: 2, Type: Hotplug Event (229), Severity: 1
+>>>    Kernel attempted to read user page (10ec00000048) - exploit attempt? (uid: 0)
+>>>    BUG: Unable to handle kernel data access on read at 0x10ec00000048
+>>>    Faulting instruction address: 0xc0000000012d8728
+>>>    Oops: Kernel access of bad area, sig: 11 [#1]
+>>>    LE PAGE_SIZE=64K MMU=Radix SMP NR_CPUS=2048 NUMA pSeries
+>>> <snip>
+>>>    NIP [c0000000012d8728] __of_changeset_entry_invert+0x10/0x1ac
+>>>    LR [c0000000012da7f0] __of_changeset_revert_entries+0x98/0x180
+>>>    Call Trace:
+>>>    [c00000000bcc3970] [c0000000012daa60] of_changeset_revert+0x58/0xd8
+>>>    [c00000000bcc39c0] [c000000000d0ed78] of_pci_remove_node+0x74/0xb0
+>>>    [c00000000bcc39f0] [c000000000cdcfe0] pci_stop_bus_device+0xf4/0x138
+>>>    [c00000000bcc3a30] [c000000000cdd140] pci_stop_and_remove_bus_device_locked+0x34/0x64
+>>>    [c00000000bcc3a60] [c000000000cf3780] remove_store+0xf0/0x108
+>>>    [c00000000bcc3ab0] [c000000000e89e04] dev_attr_store+0x34/0x78
+>>>    [c00000000bcc3ad0] [c0000000007f8dd4] sysfs_kf_write+0x70/0xa4
+>>>    [c00000000bcc3af0] [c0000000007f7248] kernfs_fop_write_iter+0x1d0/0x2e0
+>>>    [c00000000bcc3b40] [c0000000006c9b08] vfs_write+0x27c/0x558
+>>>    [c00000000bcc3bf0] [c0000000006ca168] ksys_write+0x90/0x170
+>>>    [c00000000bcc3c40] [c000000000033248] system_call_exception+0xf8/0x290
+>>>    [c00000000bcc3e50] [c00000000000d05c] system_call_vectored_common+0x15c/0x2ec
+>>> <snip>
+>>>
+>>> A git bisect pointed this regression to be introduced via [1] that added
+>>> a mechanism to create device tree nodes for parent PCI bridges when a
+>>> PCI device is hot-plugged.
+>>>
+>>> The Oops is caused when `pci_stop_dev()` tries to remove a non-existing
+>>> device-tree node associated with the pci_dev that was earlier
+>>> hot-plugged and was attached under a pci-bridge. The PCI dev header
+>>> `dev->hdr_type` being 0, results a conditional check done with
+>>> `pci_is_bridge()` into false. Consequently, a call to
+>>> `of_pci_make_dev_node()` to create a device node is never made. When at
+>>> a later point in time, in the device node removal path, a memcpy is
+>>> attempted in `__of_changeset_entry_invert()`; since the device node was
+>>> never created, results in an Oops due to kernel read access to a bad
+>>> address.
+>>>
+>>> To fix this issue, the patch updates `of_changeset_create_node()` to
+>>> allocate a new node only when the device node doesn't exist and init it
+>>> in case it does already. Also, introduce `of_pci_free_node()` to be
+>>> called to only revert and destroy the changeset device node that was
+>>> created via a call to `of_changeset_create_node()`.
+>>>
+>>> [1] commit 407d1a51921e ("PCI: Create device tree node for bridge")
+>>>
+>>> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
+>>> Reported-by: Kowshik Jois B S <kowsjois@linux.ibm.com>
+>>> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+>>> Signed-off-by: Amit Machhiwal <amachhiw@linux.ibm.com>
+>>> ---
+>>> Changes since v1:
+>>>       * Included Lizhi's suggested changes on V1
+>>>       * Fixed below two warnings from Lizhi's changes and rearranged the cleanup
+>>>         part a bit in `of_pci_make_dev_node`
+>>> 	drivers/pci/of.c:611:6: warning: no previous prototype for ‘of_pci_free_node’ [-Wmissing-prototypes]
+>>> 	  611 | void of_pci_free_node(struct device_node *np)
+>>> 	      |      ^~~~~~~~~~~~~~~~
+>>> 	drivers/pci/of.c: In function ‘of_pci_make_dev_node’:
+>>> 	drivers/pci/of.c:696:1: warning: label ‘out_destroy_cset’ defined but not used [-Wunused-label]
+>>> 	  696 | out_destroy_cset:
+>>> 	      | ^~~~~~~~~~~~~~~~
+>>>       * V1: https://lore.kernel.org/all/20240703141634.2974589-1-amachhiw@linux.ibm.com/
+>>>
+>>>    drivers/of/dynamic.c  | 16 ++++++++++++----
+>>>    drivers/of/unittest.c |  2 +-
+>>>    drivers/pci/bus.c     |  3 +--
+>>>    drivers/pci/of.c      | 39 ++++++++++++++++++++++++++-------------
+>>>    drivers/pci/pci.h     |  2 ++
+>>>    include/linux/of.h    |  1 +
+>>>    6 files changed, 43 insertions(+), 20 deletions(-)
+>>>
+>>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+>>> index dda6092e6d3a..9bba5e82a384 100644
+>>> --- a/drivers/of/dynamic.c
+>>> +++ b/drivers/of/dynamic.c
+>>> @@ -492,21 +492,29 @@ struct device_node *__of_node_dup(const struct device_node *np,
+>>>     * a given changeset.
+>>>     *
+>>>     * @ocs: Pointer to changeset
+>>> + * @np: Pointer to device node. If null, allocate a new node. If not, init an
+>>> + *	existing one.
+>>>     * @parent: Pointer to parent device node
+>>>     * @full_name: Node full name
+>>>     *
+>>>     * Return: Pointer to the created device node or NULL in case of an error.
+>>>     */
+>>>    struct device_node *of_changeset_create_node(struct of_changeset *ocs,
+>>> +					     struct device_node *np,
+>>>    					     struct device_node *parent,
+>>>    					     const char *full_name)
+>>>    {
+>>> -	struct device_node *np;
+>>>    	int ret;
+>>> -	np = __of_node_dup(NULL, full_name);
+>>> -	if (!np)
+>>> -		return NULL;
+>>> +	if (!np) {
+>>> +		np = __of_node_dup(NULL, full_name);
+>>> +		if (!np)
+>>> +			return NULL;
+>>> +	} else {
+>>> +		of_node_set_flag(np, OF_DYNAMIC);
+>>> +		of_node_set_flag(np, OF_DETACHED);
+>>> +	}
+>>> +
+>>>    	np->parent = parent;
+>>>    	ret = of_changeset_attach_node(ocs, np);
+>>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+>>> index 445ad13dab98..b1bcc9ed40a6 100644
+>>> --- a/drivers/of/unittest.c
+>>> +++ b/drivers/of/unittest.c
+>>> @@ -871,7 +871,7 @@ static void __init of_unittest_changeset(void)
+>>>    	unittest(!of_changeset_add_property(&chgset, parent, ppadd), "fail add prop prop-add\n");
+>>>    	unittest(!of_changeset_update_property(&chgset, parent, ppupdate), "fail update prop\n");
+>>>    	unittest(!of_changeset_remove_property(&chgset, parent, ppremove), "fail remove prop\n");
+>>> -	n22 = of_changeset_create_node(&chgset, n2, "n22");
+>>> +	n22 = of_changeset_create_node(&chgset, NULL,  n2, "n22");
+>>>    	unittest(n22, "fail create n22\n");
+>>>    	unittest(!of_changeset_add_prop_string(&chgset, n22, "prop-str", "abcd"),
+>>>    		 "fail add prop prop-str");
+>>> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
+>>> index 826b5016a101..d7ca20cb146a 100644
+>>> --- a/drivers/pci/bus.c
+>>> +++ b/drivers/pci/bus.c
+>>> @@ -342,8 +342,7 @@ void pci_bus_add_device(struct pci_dev *dev)
+>>>    	 */
+>>>    	pcibios_bus_add_device(dev);
+>>>    	pci_fixup_device(pci_fixup_final, dev);
+>>> -	if (pci_is_bridge(dev))
+>>> -		of_pci_make_dev_node(dev);
+>>> +	of_pci_make_dev_node(dev);
+>> Please undo this change. It should only create the device node for bridges
+>> and the pci endpoints listed in quirks for now.
+> IIUC, you want Amit to post a v3 of this patch that omits this
+> specific pci_bus_add_device() change?
 
-PWM output may not function correctly if the FIFO is empty when a new SAR
-value is programmed
+Yes.
 
-Description:
-  When the PWM FIFO is empty, a new value programmed to the PWM Sample
-  register (PWM_PWMSAR) will be directly applied even if the current timer
-  period has not expired. If the new SAMPLE value programmed in the
-  PWM_PWMSAR register is less than the previous value, and the PWM counter
-  register (PWM_PWMCNR) that contains the current COUNT value is greater
-  than the new programmed SAMPLE value, the current period will not flip
-  the level. This may result in an output pulse with a duty cycle of 100%.
+Lizhi
 
-Workaround:
-  Program the current SAMPLE value in the PWM_PWMSAR register before
-  updating the new duty cycle to the SAMPLE value in the PWM_PWMSAR
-  register. This will ensure that the new SAMPLE value is modified during
-  a non-empty FIFO, and can be successfully updated after the period
-  expires.
-
-Write the old SAR value before updating the new duty cycle to SAR. This
-avoids writing the new value into an empty FIFO.
-
-This only resolves the issue when the PWM period is longer than 2us
-(or <500KHz) because write register is not quick enough when PWM period is
-very short.
-
-Fixes: 166091b1894d ("[ARM] MXC: add pwm driver for i.MX SoCs")
-Reviewed-by: Jun Li <jun.li@nxp.com>
-Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v1 to v2
-- address comments in https://lore.kernel.org/linux-pwm/20211221095053.uz4qbnhdqziftymw@pengutronix.de/
-  About disable/enable pwm instead of disable/enable irq:
-  Some pmw periphal may sensitive to period. Disable/enable pwm will
-increase period, althouhg it is okay for most case, such as LED backlight
-or FAN speed. But some device such servo may require strict period.
-
-- address comments in https://lore.kernel.org/linux-pwm/d72d1ae5-0378-4bac-8b77-0bb69f55accd@gmx.net/
-  Using official errata number
-  fix typo 'filp'
-  add {} for else
-
-I supposed fixed all previous issues, let me know if I missed one.
----
- drivers/pwm/pwm-imx27.c | 52 ++++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 51 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pwm/pwm-imx27.c b/drivers/pwm/pwm-imx27.c
-index 253afe94c4776..e12eaaebe3499 100644
---- a/drivers/pwm/pwm-imx27.c
-+++ b/drivers/pwm/pwm-imx27.c
-@@ -27,6 +27,7 @@
- #define MX3_PWMSR			0x04    /* PWM Status Register */
- #define MX3_PWMSAR			0x0C    /* PWM Sample Register */
- #define MX3_PWMPR			0x10    /* PWM Period Register */
-+#define MX3_PWMCNR			0x14    /* PWM Counter Register */
- 
- #define MX3_PWMCR_FWM			GENMASK(27, 26)
- #define MX3_PWMCR_STOPEN		BIT(25)
-@@ -232,8 +233,11 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- {
- 	unsigned long period_cycles, duty_cycles, prescale;
- 	struct pwm_imx27_chip *imx = to_pwm_imx27_chip(chip);
-+	void __iomem *reg_sar = imx->mmio_base + MX3_PWMSAR;
- 	unsigned long long c;
- 	unsigned long long clkrate;
-+	unsigned long flags;
-+	int val;
- 	int ret;
- 	u32 cr;
- 
-@@ -274,7 +278,53 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 		pwm_imx27_sw_reset(chip);
- 	}
- 
--	writel(duty_cycles, imx->mmio_base + MX3_PWMSAR);
-+	/*
-+	 * This is a limited workaround. When the SAR FIFO is empty, the new
-+	 * write value will be directly applied to SAR even the current period
-+	 * is not over.
-+	 *
-+	 * If the new SAR value is less than the old one, and the counter is
-+	 * greater than the new SAR value, the current period will not filp
-+	 * the level. This will result in a pulse with a duty cycle of 100%.
-+	 * So, writing the current value of the SAR to SAR here before updating
-+	 * the new SAR value can avoid this issue.
-+	 *
-+	 * Add a spin lock and turn off the interrupt to ensure that the
-+	 * real-time performance can be guaranteed as much as possible when
-+	 * operating the following operations.
-+	 *
-+	 * 1. Add a threshold of 1.5us. If the time T between the read current
-+	 * count value CNR and the end of the cycle is less than 1.5us, wait
-+	 * for T to be longer than 1.5us before updating the SAR register.
-+	 * This is to avoid the situation that when the first SAR is written,
-+	 * the current cycle just ends and the SAR FIFO that just be written
-+	 * is emptied again.
-+	 *
-+	 * 2. Use __raw_writel() to minimize the interval between two writes to
-+	 * the SAR register to increase the fastest pwm frequency supported.
-+	 *
-+	 * When the PWM period is longer than 2us(or <500KHz), this workaround
-+	 * can solve this problem.
-+	 */
-+	val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
-+	if (duty_cycles < imx->duty_cycle && val < MX3_PWMSR_FIFOAV_2WORDS) {
-+		c = clkrate * 1500;
-+		do_div(c, NSEC_PER_SEC);
-+
-+		local_irq_save(flags);
-+		if (state->period >= 2000)
-+			readl_poll_timeout_atomic(imx->mmio_base + MX3_PWMCNR, val,
-+						  period_cycles - val >= c, 0, 10);
-+
-+		val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
-+		if (!val)
-+			writel_relaxed(imx->duty_cycle, reg_sar);
-+		writel_relaxed(duty_cycles, reg_sar);
-+		local_irq_restore(flags);
-+	} else {
-+		writel_relaxed(duty_cycles, reg_sar);
-+	}
-+
- 	writel(period_cycles, imx->mmio_base + MX3_PWMPR);
- 
- 	/*
-
--- 
-2.34.1
-
+>
+>>>    	pci_create_sysfs_dev_files(dev);
+>>>    	pci_proc_attach_device(dev);
+>>>    	pci_bridge_d3_update(dev);
+>>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>>> index 51e3dd0ea5ab..883bf15211a5 100644
+>>> --- a/drivers/pci/of.c
+>>> +++ b/drivers/pci/of.c
+>>> @@ -608,18 +608,28 @@ int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge)
+>>>    #ifdef CONFIG_PCI_DYNAMIC_OF_NODES
+>>> +void of_pci_free_node(struct device_node *np)
+>>> +{
+>>> +	struct of_changeset *cset;
+>>> +
+>>> +	cset = (struct of_changeset *)(np + 1);
+>>> +
+>>> +	np->data = NULL;
+>>> +	of_changeset_revert(cset);
+>>> +	of_changeset_destroy(cset);
+>>> +	of_node_put(np);
+>>> +}
+>>> +
+>>>    void of_pci_remove_node(struct pci_dev *pdev)
+>>>    {
+>>>    	struct device_node *np;
+>>>    	np = pci_device_to_OF_node(pdev);
+>>> -	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
+>>> +	if (!np || np->data != of_pci_free_node)
+>>>    		return;
+>>>    	pdev->dev.of_node = NULL;
+>>> -	of_changeset_revert(np->data);
+>>> -	of_changeset_destroy(np->data);
+>>> -	of_node_put(np);
+>>> +	of_pci_free_node(np);
+>>>    }
+>>>    void of_pci_make_dev_node(struct pci_dev *pdev)
+>>> @@ -655,14 +665,18 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>>>    	if (!name)
+>>>    		return;
+>>> -	cset = kmalloc(sizeof(*cset), GFP_KERNEL);
+>>> -	if (!cset)
+>>> +	np = kzalloc(sizeof(*np) + sizeof(*cset), GFP_KERNEL);
+>>> +	if (!np)
+>>>    		goto out_free_name;
+>>> +	np->full_name = name;
+>>> +	of_node_init(np);
+>>> +
+>>> +	cset = (struct of_changeset *)(np + 1);
+>>>    	of_changeset_init(cset);
+>>> -	np = of_changeset_create_node(cset, ppnode, name);
+>>> +	np = of_changeset_create_node(cset, np, ppnode, NULL);
+>>>    	if (!np)
+>>> -		goto out_destroy_cset;
+>>> +		goto out_free_node;
+>>>    	ret = of_pci_add_properties(pdev, cset, np);
+>>>    	if (ret)
+>>> @@ -670,19 +684,18 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>>>    	ret = of_changeset_apply(cset);
+>>>    	if (ret)
+>>> -		goto out_free_node;
+>>> +		goto out_destroy_cset;
+>>> -	np->data = cset;
+>>> +	np->data = of_pci_free_node;
+>>>    	pdev->dev.of_node = np;
+>>> -	kfree(name);
+>>>    	return;
+>>> -out_free_node:
+>>> -	of_node_put(np);
+>>>    out_destroy_cset:
+>>>    	of_changeset_destroy(cset);
+>>>    	kfree(cset);
+>>> +out_free_node:
+>>> +	of_node_put(np);
+>>>    out_free_name:
+>>>    	kfree(name);
+>>>    }
+>>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+>>> index fd44565c4756..7b1a455306b8 100644
+>>> --- a/drivers/pci/pci.h
+>>> +++ b/drivers/pci/pci.h
+>>> @@ -702,11 +702,13 @@ struct of_changeset;
+>>>    #ifdef CONFIG_PCI_DYNAMIC_OF_NODES
+>>>    void of_pci_make_dev_node(struct pci_dev *pdev);
+>>> +void of_pci_free_node(struct device_node *np);
+>>>    void of_pci_remove_node(struct pci_dev *pdev);
+>>>    int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
+>>>    			  struct device_node *np);
+>>>    #else
+>>>    static inline void of_pci_make_dev_node(struct pci_dev *pdev) { }
+>>> +static inline void of_pci_free_node(struct device_node *np) { }
+>>>    static inline void of_pci_remove_node(struct pci_dev *pdev) { }
+>>>    #endif
+>>> diff --git a/include/linux/of.h b/include/linux/of.h
+>>> index a0bedd038a05..f774459d0d84 100644
+>>> --- a/include/linux/of.h
+>>> +++ b/include/linux/of.h
+>>> @@ -1631,6 +1631,7 @@ static inline int of_changeset_update_property(struct of_changeset *ocs,
+>>>    }
+>>>    struct device_node *of_changeset_create_node(struct of_changeset *ocs,
+>>> +					     struct device_node *np,
+>>>    					     struct device_node *parent,
+>>>    					     const char *full_name);
+>>>    int of_changeset_add_prop_string(struct of_changeset *ocs,
+>>>
+>>> base-commit: 43db1e03c086ed20cc75808d3f45e780ec4ca26e
 
