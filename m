@@ -1,183 +1,203 @@
-Return-Path: <devicetree+bounces-85777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31F793156D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:11:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7295B931583
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:17:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44F17B24295
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 13:11:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BD2A1C20F39
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 13:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CF218C35A;
-	Mon, 15 Jul 2024 13:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375BE18C34D;
+	Mon, 15 Jul 2024 13:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gByfCWMu"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="eaJJ1A/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010027.outbound.protection.outlook.com [52.101.69.27])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7B418C344
-	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 13:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721049064; cv=none; b=qF8qTpUHco9VBw0vT32ODNfsL6aZNE53OXtPp0SN1gGF9TikROpxtyBVEz4EYTkPfKE63Hc+Y92e44B3OPUAzWh0P7gXU1x93wB1f6m4++T4vLX3RSCsyVk7T781l6wUJtJShswNbl8DtoTOD+v2CwqKXTD+cf4eW7+Dh0V7goE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721049064; c=relaxed/simple;
-	bh=QOmrlh86HNBabKQAYhgfGUKbP84IU6qGzPgWb0wPX64=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WgcIqH1BhOwdjJT7G4BqYbWcYZrVUk6D1wN0vSsxamKhTIcGjPGuQ+n9q0xhgbFjUupUwEP0Ov6R+DFIjU3HVVBofQLSqQHcAmOHLGbNwO7h894BZD0uKEJXOLNGZ/atLEcxtaQ/EJtsuM+2R/s1kWgtAQUyveYCiiI6huLJ31Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gByfCWMu; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4266edee10cso26907165e9.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 06:11:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721049061; x=1721653861; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CccdwCAsE/kNApiEDZLKr3tDI54YdE2r4/ctaUuOXYQ=;
-        b=gByfCWMuLwR6mgICy24frGgBfMsWvmvLjlYw3UNzi4uZx0XktLiSqPRMQzJ8DKtgb3
-         TF78+1bIDXH6Ms/8HcK+rUWG6GwgsqE29SvJvvg6BpAxyZ/YIUP4bCWPRL5oPwCydFSf
-         bKruXNrvsLDfFt0prsmX9lHNNwYLGW8kDsjPUVvOz3m4F/j+3HFMskI8j6GML2FFoUTk
-         yT78ibJkGIUiX97sZOGgxL1eFDoPf7bshYLQzze3xTx3fE3I3PpPbeYlXxoOSpxXOZX2
-         ESdHgGIAfrdGPotEqtIwWL21wg7GMyuqLzj9Ue6kIbWtTOTX0tSJNFvHT9AdqUm/IXJG
-         f7NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721049061; x=1721653861;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CccdwCAsE/kNApiEDZLKr3tDI54YdE2r4/ctaUuOXYQ=;
-        b=EvrfexD42iERHugAfYZL+xFKu4hZ7KxL02IaJEaR2zfEhVzQxNh47Z9a26VK6Swl9x
-         /yyPc43gr+1WJe2ylfbMlcy5xgBJ2cwQiqRN2sDWcQrM91lUQZJGcboRnO5y7JxLV6vO
-         j0bZcy0jKYxTRisGej9QboNAHuR6jzuXKFn2x5It9McY3XFb5PWl2TWGf5ldH2Gy1sDh
-         32CRpfwLkIOg9asEBvpJXmMaxP0sDWTN4Lg6I+ajYH6LGbLpzOhDQB8ar3SZT05lqxGB
-         y0FX0pEVnLeAJ58MOlmW9qQ6evyw6LFS1DPcMSeqIuMZsVGxG61YYmo9Rsf/GV+qo1On
-         TfQw==
-X-Forwarded-Encrypted: i=1; AJvYcCUNHA9e0YqbsS8LvA/NSm4gmrdabVw2tq+E02aIqmjRXtW/09shoORmYLuAXgWm1XAUDihOqIimPhC2/vrYzqPLhgI8O9WpE8fgYg==
-X-Gm-Message-State: AOJu0YxslwIq7W0xJEcdprpOZxJmDcrluA7ogIL0kvFGWvVlHwDuFtze
-	+T5vH3vvDNpetiM83MhXHUhBzUztnCVMeLmRaaF42Ny44Zm+wXTr1bYA447WX+A=
-X-Google-Smtp-Source: AGHT+IHxl518O6ITVCk9V/YPVUHaWCVxMHpCeykVBPqlp1eRMIDm6iZ4oNUH532REJXAAfP1dtKMXw==
-X-Received: by 2002:a05:6000:50b:b0:367:980a:6aa with SMTP id ffacd0b85a97d-367ceaca978mr11732523f8f.54.1721049060962;
-        Mon, 15 Jul 2024 06:11:00 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff1f:b280:82fb:4328:f644:289a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dafbec3sm6389737f8f.85.2024.07.15.06.11.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jul 2024 06:11:00 -0700 (PDT)
-Date: Mon, 15 Jul 2024 15:10:54 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCEA0189F59
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 13:17:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.27
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721049466; cv=fail; b=gy+EIKlfTjRrA4re6lsN6svb9ta8F1ce9xs0hZuqhDtQcrCcI5Zt0Lx9zbzQLHGuqZ4PlVpVafeZr8rp0WGOlrzMxdiTRsmTsib/nRvODNUC3AYd+KWI/7r6TVWOdtZhQIqvkJs0+kBy0nIm99M8RSjcJ4ztB6hhDLZTtBWs7ZM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721049466; c=relaxed/simple;
+	bh=fQJGl/ZiRIXqNlN5JBHTxqP9iRdsz9v+tM7v576RaR0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UbBI+tQWyQoqrO0/xbAQl1eiiG5NsJbAGKFLgj18WZfL11KxB1dnw5ft4WRyywmmUd5kivfI5AgTxyzQijAQIcaqdwN+8dVyE1Zzxdnijd0JeVBUNzycirFNA+sxg4LokrX0wub3BqlHQqToetHXoredfdbc3IAIIiUIKT6HX/U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=eaJJ1A/h; arc=fail smtp.client-ip=52.101.69.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w2uT5rPXUjzQ+lBSm9nHS9LkbSYfvfq5m8d5HiHrK5xHRnLMhXDSkwJvOiLOZnQEjYgex9o2fjcu7H5OIQ1bR+w5qhe1ZhCMOq3RWJ8EwJu+fpMKPlgzrFSZQtANQZ7tsvEiq/AbjTl3FKUu6igBqEpIdS93whSbnPsZ5Zhl+5W6hMaiYDx1t51japn1NSkBWjIxtsytsPx2aKVzgZZLnnaGVt6cpvYK0rNwUBTyxTQoBVT1yGRVWMEZS3jEoVTweaE8u1d+9pQNFJ4iQirdrYtkxgLBCQixL3VZ1FSTnAgA9sNXZKzpbPDkf++r3WkqTX9CbilNtbswr3MBkk1a/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zRhW5sv6S8SgfAF7X/HW1mHaiFd8BTr7wZDpXeneOoA=;
+ b=HHW15lYp2cMDWuGVkxV5XxFjNFcm8rKcOxZl5wBUOfgaaAvohWMi0TF4m1RMykf5V/KqL8A+TD8z3HpiJhwKB7Nn4iNfVb/l5q8EbkQMQb34qHVpqRHfnxjSH816EtjC85IYZPH+cBQEduMmEwevlIxoUneb9KYN+4xWsH30NO7hhPBbqN2Eg8q5ybBNjm/e0mA+ns77lBzPy1zBjc/YLN79q/vRWKXSUF1WHKYKlXfHm431D8s2TtUPtEcx5/4MdiN8Ck7vQYPD0vA+XB3seXohupdC0ToPA1gyAzKwMCcWLDpZjl9Narv1qpnyEJNNoD7opEmpRcb7J6cCyu3XDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zRhW5sv6S8SgfAF7X/HW1mHaiFd8BTr7wZDpXeneOoA=;
+ b=eaJJ1A/hZKHoYnVPeBNg0xP55jnFt01ZN9+eq0OTJkx5H2aT8SYzKv9O/mTqpCdjGm5WKGDn2gXlgvYJ582T+nQ55RR4iZBGdn47aTeSCrCID9euMXsDhlpAPuIl3ecbVAsdhQk2Lt5tLwdHOkl7QwVHOTWOu4fgEcaW4+j6WIo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB9176.eurprd04.prod.outlook.com (2603:10a6:20b:44b::7)
+ by AS8PR04MB9111.eurprd04.prod.outlook.com (2603:10a6:20b:44a::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Mon, 15 Jul
+ 2024 13:17:39 +0000
+Received: from AS8PR04MB9176.eurprd04.prod.outlook.com
+ ([fe80::4fa4:48:95fd:4fb0]) by AS8PR04MB9176.eurprd04.prod.outlook.com
+ ([fe80::4fa4:48:95fd:4fb0%4]) with mapi id 15.20.7762.027; Mon, 15 Jul 2024
+ 13:17:38 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v2 2/4] Revert "drm/panel-edp: Add SDC ATNA45AF01"
-Message-ID: <ZpUf3sUz8zWWHhPI@linaro.org>
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-2-31b7f2f658a3@linaro.org>
- <7daa3c0d-cecf-4f50-be32-ae116b920db0@linaro.org>
- <ZpUcI3KkIa58zC55@linaro.org>
- <d1603248-afe8-4594-9e2e-81ba208dff00@linaro.org>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-imx@nxp.com,
+	Shenwei Wang <shenwei.wang@nxp.com>
+Subject: [PATCH v3] arm64: dts: imx93: update default value for snps,clk-csr
+Date: Mon, 15 Jul 2024 08:17:22 -0500
+Message-Id: <20240715131722.161135-1-shenwei.wang@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0P220CA0014.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::22) To AS8PR04MB9176.eurprd04.prod.outlook.com
+ (2603:10a6:20b:44b::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1603248-afe8-4594-9e2e-81ba208dff00@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB9176:EE_|AS8PR04MB9111:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e518670-c91d-41cc-8dd3-08dca4d07f88
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ytPmn/NrYutt3d+0WlJGomq8dGsL3bkQyIi7E/h9TpdktIDcoYUooLHPm8A+?=
+ =?us-ascii?Q?lsMTnDJgNTiiaQgwtjoFVJM3xIqTvPpEr00sZ1RkA8pkMXKZNqizUM7OSy3K?=
+ =?us-ascii?Q?ULDVnZ7oZtKfPWNvZgBnUWeGro6n48iFfBoeYLQnIQ4zZhaA3lWARiW8AvVp?=
+ =?us-ascii?Q?UsfeGbBtFOitZmPpx3S/N9KKXDK9v6KcG20Hf10IdRpEZ+NQldc7BmR06o/F?=
+ =?us-ascii?Q?bt3CdsXCK8KC4RVXzIRg2cjnQf5iLc8V3DlWZJd7ebAa5ZJw+G7mGCM4EXm1?=
+ =?us-ascii?Q?jnfHuvWj6njARlI4pguu7PM9K8JUMDpfW9YYdJILUMSMUEU+I/D015kdDyqx?=
+ =?us-ascii?Q?/qps97HJ0bVjU3SxaFvyR0rsJZGUH4k5tLDnENrkOhiysSimnUicmFgZVDHk?=
+ =?us-ascii?Q?lx1ozuwM6er3fLh3Is55AMU5TnpBC6QC9JLA7I6wSmAFoO3aQW0savcMF0Tm?=
+ =?us-ascii?Q?Y1UU4pja2gwRsqm0Wgjk6NoU0AkDaSC+M+J0+trNoAMcmUYEAnBGNgN/rKPt?=
+ =?us-ascii?Q?+9lTrykXJgyx29s0Ijm/V3j7YBxYIaY7ABJKkSb4nFZKpIYZkI8Z5Z9w5PsR?=
+ =?us-ascii?Q?DJGD2npiSLtxN+41mOUlGJqkdsYmgt7SWL+qZPBBxpKV9fqbzLn4lpzQnCKg?=
+ =?us-ascii?Q?pwUb+0Uj2t6sOv1OivY1s849Nt7ORntck/qVq+CsLVSmAlhVF7nQIJ7gzGFZ?=
+ =?us-ascii?Q?AN3MU2SdfdfzULpJRhWjEjx5u9BIYLMxEBWGXKp4jjCv0+kKLlfBrkY3uZup?=
+ =?us-ascii?Q?8uPK0fEugAAl9sd8FkboAIazq7zhvxgyn5aMs6r/LDu5/5eo+zziLdQuheGs?=
+ =?us-ascii?Q?hzwD0+r14KATMMsxYOths/R2iDRF6exUYmrYWOpNhVNR56W1iXUQAY3Lvzty?=
+ =?us-ascii?Q?1ytGVgetb316KQoBX9zTWFn7U4WRY/Ps9ddhEBSQ1K4GgCUVIfJEXisMowOD?=
+ =?us-ascii?Q?30rloruAMBeTnTFT675t5Zp3vB8kvSNXQ0s03qR+KGKQLIb+/TFLRY4z2Nt+?=
+ =?us-ascii?Q?jNSwdsa51rXY14OzGG5dpL3myxXZDV1WovZV3BSMarmew5hHhsEAj6IshU4y?=
+ =?us-ascii?Q?E+GP4ONoOxdSRTWbXYPA1qL6vyvDWSzS3HmEzI2WNilmBDlEuBwJ34LZTzEk?=
+ =?us-ascii?Q?EfYUa6z8eTwLA+xHy+79SawCSqgL1sjwAKLKNp5MKL6hTHPlgtFUnHGg63qu?=
+ =?us-ascii?Q?wudOZiXQ0qexxWbfACrapQebR71J5XBzeDcrOwJLBv79GPZz+Xzm5HJVw5td?=
+ =?us-ascii?Q?g/eb0/teqjrvaO+GJOcyJvxr9mOZQVUq9FjbyqcGC6VxMn6DNhWTOKEuMrzx?=
+ =?us-ascii?Q?BiuSqnz5PeKbg8Ndkp7h2n+GggPENN3lT+Z887LG/+PobDmreThRmSmfue9Z?=
+ =?us-ascii?Q?XXwYg3Sat9zLaTjxQcRf+xvuXJ3llEK8QpBax4sSryDLYOXe8Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9176.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?RKd8TxM1Y7XnrUYGZTVUJb8A3ds2KD6KQVw86UWjO004smE2O3YWucK+i9JI?=
+ =?us-ascii?Q?dnjMVtB+SqXFuEnRkjxdRj6eYHrgUbqJI3W7R6zxCrkbGQbXAT98asEhkXos?=
+ =?us-ascii?Q?Jmql+Eu5xjl4RcWeg4T8hmp2yAnQKWgCoHIVcNXqZHTrY4viW4HFFKRnyfh1?=
+ =?us-ascii?Q?QZcdECaWeclKOi2hwpehnjDeaV6P995M/Hk11qWf8lYMzM7JWo+R2EDOk6vh?=
+ =?us-ascii?Q?5NeqEcGKf+IjON2duf9J9GcOkoYnvrVGydknV6xKRaD5EvMoGd9TBmoxv5IS?=
+ =?us-ascii?Q?s9+JC8nBs1hT0gLaarBs1VcyGyF/LYhvfSPN4CEjaIECzLUq4KTDFrLImQKA?=
+ =?us-ascii?Q?gxdKKuPTYtadi/0z37zsgI1Uv9RAuqdPnQ8CPOjwUXoct5QA7vHnGBKXNdu6?=
+ =?us-ascii?Q?j79HgCR5adayvmK7oM4lMSSZWH15wi+bN4rbu9nbF3eebvkK5C/F22faq3Wc?=
+ =?us-ascii?Q?9P42oP7WHXLDBsRwK9HTTYdY1lSzlx6ZQAbgaZxkuJC8ruTgV6lqiGyclBtl?=
+ =?us-ascii?Q?sJR5L+iiOciE6J/j3J3W+5DkoGG7fe3n+Ttlu/QKj02BTec1bsO/71xWc8d1?=
+ =?us-ascii?Q?hCUmiShtHsNMBD2WbYL0hqrc/u2joLq7VQAIGqEuoSa+CcNLCZMMA94+x5N1?=
+ =?us-ascii?Q?rp7CPbn8lQeMx6txh8LhF1uxvk+hSj4mqfwtcnb6dqYIrfr3bC0wLz9thwg+?=
+ =?us-ascii?Q?Z4QfvGNPou0nYYNH2FEEanY3vxOz9o/M9z/52A5J4Dr6/nR6tDov24zyKuro?=
+ =?us-ascii?Q?PEwajzVd1kFpymiaTsGlOVQGff0E39g0LLzpSLgNqvCIWV3MS3/lan87aRZi?=
+ =?us-ascii?Q?bgneaoR8EEBAy8KanZeWmkr7WTgzxMipmP26pnRYfelhNnSZFyVMqB+nt6m2?=
+ =?us-ascii?Q?j79cwiHHLcmdlXr1WYn4t73z4/yg0ZYei+yMla+TZYcSTQTFPsMhu7mUyihY?=
+ =?us-ascii?Q?2ZcCDuu8pabHflA1JmY7QGi2o4tjCFDrL3kRsP2axdd0PAI7zq/IXssJ/Cgt?=
+ =?us-ascii?Q?Z2WiIz5ySm5IoEHfgKzyHpaCzNpAaLVA/F3TE8vrkkfjLZYLRDPj9U4MsJyG?=
+ =?us-ascii?Q?Pxd6cHyumVrM9Q4MNq59ggeNaM/ycBDuI3q2mPgQCh32Flgd9Dmk6LRRQg6r?=
+ =?us-ascii?Q?cva7t0wwM+q/mQ224S3jy5+E8ktZAwS7CvavFs8MrGSgnJ3pKmDxsReN+p2g?=
+ =?us-ascii?Q?aXkkbc7gXJ9STwu8ngubKoWsIUvqL6JvDhQcZDU2hXSuTgRfDkXT8dqzy0H4?=
+ =?us-ascii?Q?IFZpOL2sX5KRfV3BjenqwRzvISi7DBYeo2fiTYJeVF2rQTmUZoBboE4i0M5y?=
+ =?us-ascii?Q?KlzVU7a0sbazEO7Dg914IJ7/AY1RuYE7hg7XDNw5CSeU67gVDvd/BIbhwG0c?=
+ =?us-ascii?Q?o74K6v4mhhLiId2wcDUF8j3cmp42Tgf0uL1yT/yZBiPDbT8gisYFtvP/GDbY?=
+ =?us-ascii?Q?QyLOnO91Nkg8ML98VKNFjuH3lEyBOOKEzAxXWhWFysgvtCmkU4MWIm/rZE8X?=
+ =?us-ascii?Q?vE7G7KXBeZeK+XZACpP6DNXJtuUSV2DAJ4AfYBmKrTIVJuUmW+mJqML9l2eI?=
+ =?us-ascii?Q?BjnOelWSXVCmFtaK33MIIDXo1N2fRsUNhaGyvADS?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e518670-c91d-41cc-8dd3-08dca4d07f88
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9176.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2024 13:17:38.2667
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sRQg9nF80zOQh3Sey3+Znkp4JnDHOkvi7La4PGaU7ft9iMzfK6PnVY9tkEtPjYerlJeF42EhEkqP7opZU+Ycxw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9111
 
-On Mon, Jul 15, 2024 at 03:01:57PM +0200, Neil Armstrong wrote:
-> On 15/07/2024 14:54, Stephan Gerhold wrote:
-> > On Mon, Jul 15, 2024 at 02:42:12PM +0200, Neil Armstrong wrote:
-> > > On 15/07/2024 14:15, Stephan Gerhold wrote:
-> > > > This reverts commit 8ebb1fc2e69ab8b89a425e402c7bd85e053b7b01.
-> > > > 
-> > > > The panel should be handled through the samsung-atna33xc20 driver for
-> > > > correct power up timings. Otherwise the backlight does not work correctly.
-> > > > 
-> > > > We have existing users of this panel through the generic "edp-panel"
-> > > > compatible (e.g. the Qualcomm X1E80100 CRD), but the screen works only
-> > > > partially in that configuration: It works after boot but once the screen
-> > > > gets disabled it does not turn on again until after reboot. It behaves the
-> > > > same way with the default "conservative" timings, so we might as well drop
-> > > > the configuration from the panel-edp driver. That way, users with old DTBs
-> > > > will get a warning and can move to the new driver.
-> > > > 
-> > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> > > > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > > ---
-> > > >    drivers/gpu/drm/panel/panel-edp.c | 2 --
-> > > >    1 file changed, 2 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-> > > > index 3a574a9b46e7..d2d682385e89 100644
-> > > > --- a/drivers/gpu/drm/panel/panel-edp.c
-> > > > +++ b/drivers/gpu/drm/panel/panel-edp.c
-> > > > @@ -1960,8 +1960,6 @@ static const struct edp_panel_entry edp_panels[] = {
-> > > >    	EDP_PANEL_ENTRY('L', 'G', 'D', 0x05af, &delay_200_500_e200_d200, "Unknown"),
-> > > >    	EDP_PANEL_ENTRY('L', 'G', 'D', 0x05f1, &delay_200_500_e200_d200, "Unknown"),
-> > > > -	EDP_PANEL_ENTRY('S', 'D', 'C', 0x416d, &delay_100_500_e200, "ATNA45AF01"),
-> > > > -
-> > > >    	EDP_PANEL_ENTRY('S', 'H', 'P', 0x1511, &delay_200_500_e50, "LQ140M1JW48"),
-> > > >    	EDP_PANEL_ENTRY('S', 'H', 'P', 0x1523, &delay_80_500_e50, "LQ140M1JW46"),
-> > > >    	EDP_PANEL_ENTRY('S', 'H', 'P', 0x153a, &delay_200_500_e50, "LQ140T1JH01"),
-> > > > 
-> > > 
-> > > How will we handle current/old crd DT with new kernels ?
-> > > 
-> > 
-> > I think this is answered in the commit message:
-> > 
-> > > > We have existing users of this panel through the generic "edp-panel"
-> > > > compatible (e.g. the Qualcomm X1E80100 CRD), but the screen works only
-> > > > partially in that configuration: It works after boot but once the screen
-> > > > gets disabled it does not turn on again until after reboot. It behaves the
-> > > > same way with the default "conservative" timings, so we might as well drop
-> > > > the configuration from the panel-edp driver. That way, users with old DTBs
-> > > > will get a warning and can move to the new driver.
-> > 
-> > Basically with the entry removed, the panel-edp driver will fallback to
-> > default "conservative" timings when using old DTBs. There will be a
-> > warning in dmesg, but otherwise the panel will somewhat work just as
-> > before. I think this is a good way to remind users to upgrade.
-> 
-> I consider this as a regression
-> 
+For the i.MX93 SoC, the default clock rate for the IP of STMMAC EQOS is
+312.5 MHz. According to the following mapping table from the i.MX93
+reference manual, this clock rate corresponds to a CSR value of 6.
 
-Personally, I don't think we can regress something that was already
-broken. There is no point in continuing to use the broken state - it is
-rather frustrating if your display goes off for power saving or suspend
-and you cannot get it back on until you reboot.
+ 0000: CSR clock = 60-100 MHz; MDC clock = CSR clock/42
+ 0001: CSR clock = 100-150 MHz; MDC clock = CSR clock/62
+ 0010: CSR clock = 20-35 MHz; MDC clock = CSR clock/16
+ 0011: CSR clock = 35-60 MHz; MDC clock = CSR clock/26
+ 0100: CSR clock = 150-250 MHz; MDC clock = CSR clock/102
+ 0101: CSR clock = 250-300 MHz; MDC clock = CSR clock/124
+ 0110: CSR clock = 300-500 MHz; MDC clock = CSR clock/204
+ 0111: CSR clock = 500-800 MHz; MDC clock = CSR clock/324
 
-> > 
-> > > Same question for patch 3, thie serie introduces a bindings that won't be valid
-> > > if we backport patch 3. I don't think patch should be backported, and this patch
-> > > should be dropped.
-> > 
-> > There would be a dtbs_check warning, yeah. Functionally, it would work
-> > just fine. Is that reason enough to keep display partially broken for
-> > 6.11? We could also apply the minor binding change for 6.11 if needed.
-> 
-> I don't know how to answer this, I'll let the DT maintainer comment this.
-> 
-> The problem is I do not think we can pass the whole patchset as fixes
-> for v6.11, patches 2 & 3 could, patches 1 & 4 definitely can't.
-> 
+Fixes: f2d03ba997cb ("arm64: dts: imx93: reorder device nodes")
+Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+---
+Changes in V3:
+- added the fix tag.
 
-Fair enough, I'm also fine if these patches go just into 6.12. I think
-there are no changes in the patches needed for that, the Fixes tag is
-still appropriate and I intentionally omitted the Cc stable tag.
+Changes in V2:
+- improved the commit comments per Alexander's feedback
 
-Thanks,
-Stephan
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index 4a3f42355cb8..a0993022c102 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -1105,7 +1105,7 @@ eqos: ethernet@428a0000 {
+ 							 <&clk IMX93_CLK_SYS_PLL_PFD0_DIV2>;
+ 				assigned-clock-rates = <100000000>, <250000000>;
+ 				intf_mode = <&wakeupmix_gpr 0x28>;
+-				snps,clk-csr = <0>;
++				snps,clk-csr = <6>;
+ 				nvmem-cells = <&eth_mac2>;
+ 				nvmem-cell-names = "mac-address";
+ 				status = "disabled";
+--
+2.34.1
+
 
