@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-85823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9A993184E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 18:15:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D700E93185B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 18:18:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BCE21C20E24
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 16:15:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A347B21B6B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 16:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A34A17C6A;
-	Mon, 15 Jul 2024 16:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E5A1B813;
+	Mon, 15 Jul 2024 16:18:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WuhPMO91"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESSJwEPL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322A8134D1;
-	Mon, 15 Jul 2024 16:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269E520DD2;
+	Mon, 15 Jul 2024 16:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721060128; cv=none; b=cR+L1Mgx4g7YH2A9c6+z2/X7McYApo79Q/qylKBo6aMI6NnpQ0V7emlzmD73yt3QRCfW3oCydZfM/tXpT6439Hhhk+XuTAMbW5QCaf3p2EAZC8c+qHcX9rVgUkr6RhOUGBP7qMEjhXQmBtoqpYVVE0rXVEL6yz6ZUDl/CNuxGAo=
+	t=1721060296; cv=none; b=XcbVaRnlEpwrxMWzwFwbZXhtoINtv5Dv/iPwxMqY984wm/oTF87gWaETZ2TgkqJXdFeYu0uygKduIyLPNrNsXF6xstudo6R49vCGn1/KesDIW4LceYuNfIx3Z5XEG8cHVZB47PSvul4pqweDkEv/lHaQU6n3QtbZNVLC8xkaPyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721060128; c=relaxed/simple;
-	bh=mLWYv23u+mgS32+SyTYQAadch7hGryWLzzmSpRmxH4w=;
+	s=arc-20240116; t=1721060296; c=relaxed/simple;
+	bh=SlbZJguYwfxug9j7CRmKTzJxXhAX2PYOpYdUXDXVaJY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YCmIPDTd2dw7VixHQJNcjlO3W/Hx9Q/4mqDRDdpD45ARbJznZaXPnQXPLSFrfFuHqAvdMbrpyCyCFSN5RHfx+QG1l5tTUJTZrzSx42kA2D6j3L2ci+uUXcE98S5FfpX5yNNo3/pDcc72LJKilkHi1N1nkvlmvtSHejp+bpAwUyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WuhPMO91; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37A56C32782;
-	Mon, 15 Jul 2024 16:15:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N2FUfeod92WNqIWB2IR5t4DTmwCj59hvdbECYpieLlico3ie2TJyuTzdNP7E7ackt8P8LQC8AviRgBai5lWg+UP0WjVhUzvKfryDQo7dH0vqq8PUisAsp5C+aF0CtIDDwU/OAbdm12ye2hRfmv8DwRUm6XLMa2T3RJDMtajr8U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESSJwEPL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDD39C32782;
+	Mon, 15 Jul 2024 16:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721060127;
-	bh=mLWYv23u+mgS32+SyTYQAadch7hGryWLzzmSpRmxH4w=;
+	s=k20201202; t=1721060295;
+	bh=SlbZJguYwfxug9j7CRmKTzJxXhAX2PYOpYdUXDXVaJY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WuhPMO91ivtWsDW2ZpoB69blhPpQa+W32lkdY4S3fmB1ON5DlP2Nr21z21MR2UE9t
-	 uFEcmVvLgPQyLiriWWGRwTP2oBrtuPRCFTccD9+//wFLrYTiaY1WKjHwWY1f2hXEp1
-	 ASfoQr6JBQr5jp8nPYw74DROeUpHHcI4oXs2RYQ8nrRnlVZe8T2FMlCgFssyT961xn
-	 yI13nUCzhulrAZNdnIqPo92CIMs1j/yv8MpzuiJ/5pfbjzYJDYLVdzpp7/J8ynR/9K
-	 L1q24+5rsuuaPrjzm3nWQVd3ICwC864pLLzC27mtKi5jDACiB5a8h05Gdqf+fR71vL
-	 +LMtLQg4mpM0g==
-Date: Mon, 15 Jul 2024 17:15:23 +0100
+	b=ESSJwEPL7zSZ7KCNS9Fx7UTn1F54PxhZC/Gjc/VfQw6fAQ7lqjpcIFtpC4k9IohQ7
+	 iA/nA18qn03zIUzY6osQZnRPEyPs1a7CJFdajbkkGQPucSeDPIjYwtb26ZPdDnMfvh
+	 lOlkaC4DXYGyLE1lRk2LDzFTs+O6txysmiOzzKf8cGePsf39ZeVSwxc08bv6Rhij40
+	 jl+W0pff2Vz1Ho8iFebV87deda+NroiUvZQMv6y8YECoh3JnY9Z9Qupb2GS5Y/gETc
+	 Ifb2c+O6BwO37BmY6DN5bVUM7xhHiX5xitAjdXhg08/v+OClCoJ+ZX56U22Gv6ZJwF
+	 eJHNlkqbRtXPg==
+Date: Mon, 15 Jul 2024 17:18:10 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Yuntao Dai <d1581209858@live.com>, jassisinghbrar@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	unicorn_wang@outlook.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mailbox: add Sophgo cv18x SoCs
- mailbox
-Message-ID: <20240715-upriver-grumbly-e8f6172f6a72@spud>
-References: <SYBP282MB223825D5903777B937A8A377C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
- <SYBP282MB22382E1C032FDE2D36E6B58DC4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
- <IA1PR20MB49537F9F04E601413EA1C86FBBA12@IA1PR20MB4953.namprd20.prod.outlook.com>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Subject: Re: [PATCH v7 4/6] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+Message-ID: <20240715-numbness-chooser-d1bcb0438ba5@spud>
+References: <20240714133000.5866-1-kimseer.paller@analog.com>
+ <20240714133000.5866-5-kimseer.paller@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,128 +66,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zzXEz8jPPTQgnAU7"
+	protocol="application/pgp-signature"; boundary="YZaKZiRJHLYmUF2t"
 Content-Disposition: inline
-In-Reply-To: <IA1PR20MB49537F9F04E601413EA1C86FBBA12@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <20240714133000.5866-5-kimseer.paller@analog.com>
 
 
---zzXEz8jPPTQgnAU7
+--YZaKZiRJHLYmUF2t
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 15, 2024 at 10:56:38AM +0800, Inochi Amaoto wrote:
-> On Mon, Jul 15, 2024 at 12:36:45AM GMT, Yuntao Dai wrote:
-> > Add devicetree bindings documentation for Sophgo cv18x SoCs mailbox
-> >=20
-> > Signed-off-by: Yuntao Dai <d1581209858@live.com>
-> > ---
-> >  .../mailbox/sophgo,cv1800-mailbox.yaml        | 61 +++++++++++++++++++
-> >  1 file changed, 61 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mailbox/sophgo,cv=
-1800-mailbox.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800-ma=
-ilbox.yaml b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800-mailbo=
-x.yaml
-> > new file mode 100644
-> > index 000000000..05099d819
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800-mailbox.y=
-aml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mailbox/sophgo,cv1800-mailbox.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sophgo cv1800 mailbox controller
-> > +
-> > +maintainers:
-> > +  - Yuntao Dai <d1581209858@live.com>
-> > +
-> > +description:
-> > +  The Sophgo cv18x SoCs mailbox has 8 channels and 8 bytes per channel=
- for
-> > +  different processors. Any processer can write data in a channel, and
-> > +  set co-responding register to raise interrupt to notice another proc=
-essor,
-> > +  and it is allowed to send data to itself.
-> > +  Sophgo cv18x SoCs has 3 processors and numbered as
-> > +  <1> C906L
-> > +  <2> C906B
-> > +  <3> 8051
-> > +
+On Sun, Jul 14, 2024 at 09:29:58PM +0800, Kim Seer Paller wrote:
+> Add documentation for ltc2664.
 >=20
-> Unify the "cv18x" (at least it should be cv18xx) and cv1800 in your bindi=
-ng.
->=20
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - sophgo,cv1800-mailbox
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-names:
-> > +    const: mailbox
->=20
-> I think this is not necessary, there is only one interrupt.
->=20
-> > +
-> > +  "#mbox-cells":
-> > +    const: 2
-> > +    description:
-> > +      The first cell indicates which channel is used, the second cell =
-indicates
-> > +      sending to which processor
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - "#mbox-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    mailbox: mailbox@1900000 {
+> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 
-And while you're fixing the things Inochi pointed out, drop the
-"mailbox:" label, you've got no references to it.
+IIRC I gave you a reviewed-by on v5, was there a particular reason you
+didn't add it?
 
-> > +        compatible =3D "sophgo,cv1800-mailbox";
-> > +        reg =3D <0x01900000 0x1000>;
-> > +        interrupts =3D <101 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names =3D "mailbox";
-> > +        interrupt-parent =3D <&plic>;
->=20
-> Remove "interrupt-parent".
->=20
-> > +        #mbox-cells =3D <2>;
-> > +    };
-> > --=20
-> > 2.17.1
-> >=20
-
---zzXEz8jPPTQgnAU7
+--YZaKZiRJHLYmUF2t
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpVLGwAKCRB4tDGHoIJi
-0ksrAP44CRJfWjmm/fXdRQgnKm3Z9zOczwqC4FTn2T2jQGjO8QD/RdCakhwmab1e
-5Al7Ec3yk7tBgCouJxToC69YlwNW6Qs=
-=eXZT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpVLwgAKCRB4tDGHoIJi
+0nzYAQDKnRL+UdMt1djaNT558PsyTo9/NzlQaGZx66/fMGR3/wEA6YsC+rp1DpD2
+Mbh2mAT3Sc4FptgNIhTIH/4CtTJksgQ=
+=kQRU
 -----END PGP SIGNATURE-----
 
---zzXEz8jPPTQgnAU7--
+--YZaKZiRJHLYmUF2t--
 
