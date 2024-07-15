@@ -1,282 +1,160 @@
-Return-Path: <devicetree+bounces-85697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED58993117B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 11:42:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 283769311C3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 11:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F5721F230BF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 09:42:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8BEE285821
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 09:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C75187323;
-	Mon, 15 Jul 2024 09:42:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D36187329;
+	Mon, 15 Jul 2024 09:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="pMaXP8yh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2090.outbound.protection.outlook.com [40.92.19.90])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CD5186E34;
-	Mon, 15 Jul 2024 09:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721036527; cv=none; b=ZHMS605pV2x0/Nf7MlSRDCWo/AOPTcGgKUveum3hYquJV6uIm3cz+Y6oJqJdqWMS4dOWtV7xiCtPgfiGBEtXxWsY+LR5CI1/Y6j26w2boCmwbWVAw9V9a299+My9IM2tmPMlpTvXlQJfQNMo+x9ZJkbK7koQwEYOsl259ErbjZM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721036527; c=relaxed/simple;
-	bh=x69YZN4FJusk9fPjLL0YXfgkcrUQFERtj1MOuG38mnw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p4hz2ZdTVeRUUqeNsrPUNtFdQCBJXChFVyx+T6sPqYlJ6tRzcQ9sQEg+Am9D/d4tmHE7GnaILaj5/pYjAoysMna5MZ07B1VTzSaBVd4qjisXsq3s20QRrx+BYi3sTd/OEKSrc9hC/JI7v/3xQAFx4uxX00Emk0DhHyQhyUnOVGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-65fc94099a6so15061467b3.1;
-        Mon, 15 Jul 2024 02:42:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721036523; x=1721641323;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BvGxhd74JqVuIEOqRaI+e+PaiFpW8y5+5k+CbweUmMM=;
-        b=Aal/O6p8Y4Dizgs+1NzVGGzwo5YAixMf+WRgIE8mIHPgcxaOvfC3/hPNZN7n5BNxSC
-         wLCswwvtDZN/nM4k2iGRO5Ur4yuCu75QAMIklefdI8s+gTSCPrYHX8EvVVlsOp3/b01w
-         CtjVOQZseSMA24PEjFt5m3I9UbWSPj8/8qdTykOE4BuFFMdFhrddvKDduMd78fu5l6dw
-         1n15xKtGjPAXnK+Z6QPQEIVmZ9BrwXsK+CGP9QBR1U71QTBIz4Mhe5yOOIVMNCGE1m1N
-         +Rf0Ly4vdOT+qm7zdj8FwhdCUW0aBGn2lU6l+zx540/QxGMjO8uUmdnxDXHmt6PUV5yb
-         Rn2w==
-X-Forwarded-Encrypted: i=1; AJvYcCXXKxwXFd4kQKPUixj07bqViqhYzb91nCdsVzfeZgrAQ8xNne+pa2KSHZcmlZl/igl6+xGn/npsFmML6eUZpNu5xvevEo+hJh04zRRPKbNz/1WzRSdbS45JBOrlXCSG2pOQ8NJUegeW+2B1zOwBq7KaBIJFK9l58fd/HwSwJjGc5UfV9jgAMo4/P866mzhunQDlYL0iG/1/he5pwGtmxcHKUAdIdu8g
-X-Gm-Message-State: AOJu0YwqRNgm3sOY8qyTF9L+5YKunHt5iS5UoiBQI3XVgiNIyS+ukxGo
-	Fvsmxp6m1baUJmFq1KnydgvQKIX4DpIwkpPCIIOuMnbtFyiIvNv7e0CUENvH
-X-Google-Smtp-Source: AGHT+IFyKvPJlqMmkikCryE4C7E/9ULLrvatoeDHnVDC15S/DMMPNW6Ki14KH16kihynzouwx+C3KQ==
-X-Received: by 2002:a81:8a82:0:b0:65f:80ed:683e with SMTP id 00721157ae682-65f80ed6975mr66161437b3.2.1721036523143;
-        Mon, 15 Jul 2024 02:42:03 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-65fc492c74csm7186167b3.144.2024.07.15.02.42.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jul 2024 02:42:02 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-65fc94099a6so15061157b3.1;
-        Mon, 15 Jul 2024 02:42:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXPXPAQEVonpbhf9C7exa1w1pJrUZX0GW4NyUPwcsqyy+3bTAPepN8PlYS1+w9bNYh/vSi+J6W5Oewh7lrWqYBgEMzDpiRjgAz5KEvRxgGjgJGdF5VLEwhgWun61HP6EJQpb+csN1rQlTNaJ0bwNfybB+k1VIIXLiIqtzl4QqjRNCezHNbO+Fry5gf6623VuWyiXVGUmOoex0q5nvMaXasLHmf1ux/o
-X-Received: by 2002:a81:b64f:0:b0:63b:b3b8:e834 with SMTP id
- 00721157ae682-658f09d3c58mr212121517b3.32.1721036521357; Mon, 15 Jul 2024
- 02:42:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA92186E5A;
+	Mon, 15 Jul 2024 09:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.90
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721037341; cv=fail; b=BWeDgmJ9JlSbPC4CDR4xyGJWAy4Dfu7u3+icfRJNxnInke92Y9FjvGrvwgDEzcyAtQR2aWZSYxYl56aWPRym/jdrbcrwHFy0cyfC0a3NzBP96EjqMAJV8tZE5CppfWpg4i6Pq4OZTmpZYpqwT5MSawuHYbyCQ4fdw9IZfCS+QIA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721037341; c=relaxed/simple;
+	bh=vjoDJ+ABpY/fdhXG0AhwS67f7qhMAMmd+uuB85YLQmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=eTP3SU+dUkBSkv1nUjMgAx75XC0jNwwC10fhpPvOhPt7b6KqSLwxovFQKGSMMob0Ky4xGvte5CsedYvf0NdCo4woTKTqb/qBfoPZKeiFuXWMVrD8RYy9Z7XIy7RUEY7ZAlk6ly02MghNgLczd3uNKy/Hvm1mhOb5T3oy0ErU4nM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=pMaXP8yh; arc=fail smtp.client-ip=40.92.19.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AytiRvxucew1j3Sd2WuYsb1pEoaQhTAlQ7fymR0hR5pEzGRDqisjpxaToKcdnizznfBMB0uN5fNltxV3yD8E604xNRgD74E+mWhYqsNCT0G/Y2rUWhrCXgktanprjHhLH//DzTmsE6BF+/bjlIccuxevsd8DeTRcq1bSJD6o+ZdB/7IdSL61qOlbWLujxO5VkWJA6PXZxMGVnb5CjBgvh66zP5MFWrqBjzVj7ioCdx/4/TSpIdSJ+RRfrf6GuUtfFzGQcqY3zsWJHMGi805aLqbwAVOx9auSUIVTXb1+QlgI0QfCGLcPBe6ri4rLVg1QvStK/xUA4VMJtOYfDHk9WQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZXbRPM4k910M6CJJrKdZtbupcoj3xxTHZZEkQWBCpS4=;
+ b=V17my1SfEXWG9anP3+RleVG9mrD0AMSdJlfQRVnaPhT/mgftFByf320+QrIJN6V5DCYvo3Rdnn5+D2P6F1OdPiIjiGK8i48GWbyP5MBShY0DiskfCsXGrzh3QF/+0gP9V0tlBPwbRGXGFwoDR1WBcxgWFl8kw+c80KaunC5WRKuRluCzv0JFKwlyYzTqBrL/hOukGD7MQPht01C83OxUWC+aHGIXAlW01DhZ1huLePXPbZRnCzZfBqiw7kRt3VimBmyqRKpS/SclBGDSpvOia3Ie0jurWf0W8Kp0oc43ttQ0D0lAGiDzf4srMHy2dQEjd6++kV0XuTcpjbj9d3cN0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZXbRPM4k910M6CJJrKdZtbupcoj3xxTHZZEkQWBCpS4=;
+ b=pMaXP8yheBGe7K6/xW+vlyAy9d593XUxadopwJ5VfnhxgNp2Gg/N8Vq6ytbdb1fxBNQ2fBY8wszXIw6i+6hykdL105gExqVhKXQF839mEO8cKzP9oQlMIci7snInG4uvs5jIGQA+M32eT9ShwSFmfmxsh5elv3YyYLwyM3XbJNFyDlK/cfk7HUOPWycpTbHk1CMuAQvVGRudPQFc6T3hN3WnMF1Wdcm/+dKthKOU6YRjUEK4pwunkDrs9J4YzmuFTfx0zS3MqJ+8kIUfbzG0VVVWMu39PZE3xKB0f6lyfCEgDmc1MFVEWw7R5zM7sWMufGc3Lfk1ZXY3VCPBPZ8hnQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DM4PR20MB4872.namprd20.prod.outlook.com (2603:10b6:8:a5::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7762.25; Mon, 15 Jul 2024 09:55:38 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7762.027; Mon, 15 Jul 2024
+ 09:55:38 +0000
+Date: Mon, 15 Jul 2024 17:55:28 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pincfg-node: Add "input-schmitt" property
+Message-ID:
+ <IA1PR20MB495302FAFD2003B831342CF4BBA12@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB4953BB6E71CA3216E652E8B8BBA02@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <e74d1c2f-576d-4d97-89d2-5bdabe00fb58@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e74d1c2f-576d-4d97-89d2-5bdabe00fb58@kernel.org>
+X-TMN: [RqD3kWIYmwMfttqBZCn9wLbT/1Kh60jzmSlXLYSvqVo=]
+X-ClientProxiedBy: PS2PR03CA0001.apcprd03.prod.outlook.com
+ (2603:1096:300:5b::13) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <tvtslwvaf4pe3lihta3xbnjan7jn6225ottv7l2sww3lzz6ujw@mmfab3g6nifs>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240627161315.98143-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240627161315.98143-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdVLSpaUtdXFv3VXFc5G61dmRX2C1iW9C+km23g6EgZJOg@mail.gmail.com>
- <CA+V-a8vABF6vg+J7DAGzgnw8612oe6VfJkc5y-krySvnpAnPkQ@mail.gmail.com>
- <CAMuHMdXuyQZ=SFfQa5kvZTwYa0uRXc7khJ-vOYBRE5SCd11rPw@mail.gmail.com>
- <CA+V-a8ui9AKDOZzg_dgPXeGhGE-+rBHU8O1tpdb8w8myo-1p5Q@mail.gmail.com>
- <CAMuHMdVyqBmipMLeYd0nw3kEHwc=RvWJvrD8EYKVt+36E7oS+A@mail.gmail.com> <CA+V-a8u_oMxG8QmmK=_y8z6O_H-22SyCkje-VrQVqHn4H=5oow@mail.gmail.com>
-In-Reply-To: <CA+V-a8u_oMxG8QmmK=_y8z6O_H-22SyCkje-VrQVqHn4H=5oow@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 15 Jul 2024 11:41:49 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX0XRC_gRW6qQEhW09zX+sv_njAznGN0i7UVgsy6gj_yw@mail.gmail.com>
-Message-ID: <CAMuHMdX0XRC_gRW6qQEhW09zX+sv_njAznGN0i7UVgsy6gj_yw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] clk: renesas: Add family-specific clock driver for RZ/V2H(P)
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DM4PR20MB4872:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c9a5490-d101-42b0-5851-08dca4b44767
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799006|19110799003|461199028|3412199025|440099028|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	MAp7/4FOgQcRbtd3wvj8MXbwWF3uAPd32xewQBp2pqptqZHnt0yxgfq2egbAkk3xRC0TNMMHi35TUzly+II2bUr2+etRx3cQIrY2Bq9MAbBytJHL+oIRovYjr8Am/4/Vrxn29cVn5+KC7y/VPMgDP6r1KWuR+WGJy5JL6PWHHo2SifdIGE/9m0MEDBRcDWhzS1fGnUh7vNuqhmtkXIrpENKg+xYJyOU04e410kg6aY6Auc6934GRQYtwYbjea+vrakEvDvyw8Sp2f3YK4PddkI2eTV5h1dCJ5L9vzzn7TVwqswf0/X6DPKAu3YrHpG4AfuppVHLc4wuqqGjMuouWLkx0vs2QSDT0nL1UThlUy/9X7hCHmNrHBqZMPkutwojR0V+N6MxGHaxYTi17xm8Cj0515XjidmgDnp0S1jjIar+SaIJTzSrW/NXYpSKFr/ilg5GIZxbF3OR+voc2SYYGMx55JVjfERhT2X65uDUPIf5u1tm8lJqt/s2UAxKrwUi8YN/xpx0s+4aTn9rCwPuoCuSCJA93ExiowC0lBzFoP+wzwzXkmWcyT13ovUIgkd987e3Y5Ip2rhyCmyKjmA8XfeLf+Wi7TJ1iB66jOnXQ8/L/4oecG6PCIUACYRjw1umcJIf5tWGlXi7en994q7SLsRsfeDen+Eahudsbjkcm3FzC4cPmBz9i29ABU0UiQfbI
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qSSOUu5KWYpbGrnTOtdWEmSuH1ZNKD1rnGSUuzanN8WeBd+G1PoIWObOvUvv?=
+ =?us-ascii?Q?H7wom2oDsfbVeUCbDg5V2IAaPWj4KnWLi+ediOUeFeLhcpsdf6lrxk8hh7I9?=
+ =?us-ascii?Q?xPhXGFJFb3td3FOla/5+JTCtDaxbPp+SafyJypHs+qlxysIHFRcSzs1ZenvL?=
+ =?us-ascii?Q?bIAJ3Ng62uuaMmI3DSGeAxbnJAknAM7b28s3drVdzzXhCcjfx3xycMrh7Bvt?=
+ =?us-ascii?Q?bIHuGYMn+qWRDnTuLy9HQJhtmHiyb1Y4EVf0NtZ5bk3hUqaA3eGIJY62spoB?=
+ =?us-ascii?Q?VAjefrNl10TQ5pR8STB5H63PdbZ0tlL+AFVrgnQ2AEZ9kuBQv8znnj/RgdBy?=
+ =?us-ascii?Q?/oVMYFhlxif6zNGTYF35L9NW8lYSVNx5CnCyBrGl9et2nF1MffJ7rRLw9vkf?=
+ =?us-ascii?Q?HEyJQwM2KxmB4U8Ej+jscK7vHSpO0+Lk9jA7LMD3B6p8xmlroA7wqhSniMCw?=
+ =?us-ascii?Q?cWt7Yt9J+skiyWEftNjSkeDaweLI+rW7fdSIuzJ9/kV9Oe/ZGt71NOnpeiEJ?=
+ =?us-ascii?Q?V5gNnwK8OlCK5Nb86xfzwyqa2b8Rcr6pn8zqfBixuEiIf2kw2a/9Cu9V8nEb?=
+ =?us-ascii?Q?Cwatj4w3AMSU3SmBoFvDOg6GqVuKL5INWtEqx+AZIHvIf1JDTODlwfVLKPh+?=
+ =?us-ascii?Q?4cbDeZ0peVxpNwXh7T7/8RPy8L+IwFquf8zOiaLAhC11oFX7KghFqowdcf2G?=
+ =?us-ascii?Q?XLBeYHZP8cCzbwmqUPPykKnBC1VgvrJTbFMCPES/XXQv/x00CF4Y8zox5Cc1?=
+ =?us-ascii?Q?8svsrvEn3YNQMJO3dkXCd4yor24aToovHQ0n8lWasDRaWc0yFDTXo9UTIYl+?=
+ =?us-ascii?Q?XUSJZ0ox4zYbNAVxnAv5yXS3HxqbR4SFaaORdb3BcwGKWV9P8+RgSNSe8207?=
+ =?us-ascii?Q?WIC+AToMroVv6NFHo80kMu+0iqGaDS6SUishLkgjaaX45nT1ahdC6lcZJSod?=
+ =?us-ascii?Q?fZiRxUUxbs6aZRYXpNtV7fMk1rMlyu4vtbw30ePl0qTHCoVEZ4Qt2rpG7z/7?=
+ =?us-ascii?Q?at5VcvptEn30XFVQ/fuQhistcdmy0JMnnbyk5qolAg5feawsh86MQjrCrtKn?=
+ =?us-ascii?Q?qvveo5PwVfRnlLMY3Ls77OysyBZVe0+cHQN3IQ9aSpG83cg/E3hz6zmy46vE?=
+ =?us-ascii?Q?ZnaTmsSiuLPL4ktzuV/G6KcGH5nPkt51lk+BMVN8sMhVQbnU+BgWnMoMPQ/1?=
+ =?us-ascii?Q?MOY/lL3c0F3LtQfbDdHFw0AJlh6M2Ov+f7URLscmOJk5e0+w7Z03U+5uDxaJ?=
+ =?us-ascii?Q?hEAd2+Xu+PNwgT+UOtes?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c9a5490-d101-42b0-5851-08dca4b44767
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2024 09:55:38.1175
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR20MB4872
 
-Hi Prabhakar,
+On Mon, Jul 15, 2024 at 11:21:25AM GMT, Krzysztof Kozlowski wrote:
+> On 14/07/2024 13:28, Inochi Amaoto wrote:
+> > On Sophgo CV18XX platform, threshold strength of schmitt trigger can
+> > be configured. As this standard property is already supported by the
+> > common pinconf code. Add "input-schmitt" property in pincfg-node.yaml
+> > so that other platforms requiring such feature can make use of this
+> > property.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > ---
+> >  Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> > index d0af21a564b4..e838fcac7f2a 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> > @@ -88,6 +88,10 @@ properties:
+> >      description: disable input on pin (no effect on output, such as
+> >        disabling an input buffer)
+> > 
+> > +  input-schmitt:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: threshold strength for schmitt-trigger
+> 
+> Strength in which units? This should have proper property name suffix.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-On Mon, Jul 15, 2024 at 10:44=E2=80=AFAM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Fri, Jul 12, 2024 at 6:11=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Fri, Jul 12, 2024 at 5:29=E2=80=AFPM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > > On Fri, Jul 12, 2024 at 4:23=E2=80=AFPM Geert Uytterhoeven <geert@lin=
-ux-m68k.org> wrote:
-> > > > On Fri, Jul 12, 2024 at 5:14=E2=80=AFPM Lad, Prabhakar
-> > > > <prabhakar.csengg@gmail.com> wrote:
-> > > > > On Fri, Jul 12, 2024 at 12:59=E2=80=AFPM Geert Uytterhoeven
-> > > > > > On Thu, Jun 27, 2024 at 6:14=E2=80=AFPM Prabhakar <prabhakar.cs=
-engg@gmail.com> wrote:
-> > > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > >
-> > > > > > > Add family-specific clock driver for RZ/V2H(P) SoCs.
-> > > > > > >
-> > > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.ren=
-esas.com>
-> > > > > > > ---
-> > > > > > > v2->v3
-> > > > > > > - Dropped num_hw_resets from struct rzv2h_cpg_priv
-> > > > > > > - Dropped range_check for module clocks
-> > > > > > > - Made mon_index to s8 instead of u8 in struct rzv2h_mod_clk
-> > > > > > > - Added support for critical module clocks with DEF_MOD_CRITI=
-CAL
-> > > > > > > - Added check for mon_index in rzv2h_mod_clock_endisable and
-> > > > > > >   rzv2h_mod_clock_is_enabled()
-> > > >
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/drivers/clk/renesas/rzv2h-cpg.h
-> > > >
-> > > > > > > +/**
-> > > > > > > + * struct rzv2h_reset - Reset definitions
-> > > > > > > + *
-> > > > > > > + * @reset_index: reset register index
-> > > > > > > + * @reset_bit: reset bit
-> > > > > > > + * @mon_index: monitor register index
-> > > > > > > + * @mon_bit: monitor bit
-> > > > > > > + */
-> > > > > > > +struct rzv2h_reset {
-> > > > > > > +       u8 reset_index;
-> > > > > > > +       u8 reset_bit;
-> > > > > > > +       u8 mon_index;
-> > > > > > > +       u8 mon_bit;
-> > > > > > > +};
-> > > > > > > +
-> > > > > > > +#define RST_ID(x, y)   ((((x) * 16)) + (y))
-> > > > > > > +
-> > > > > > > +#define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _mo=
-nbit)      \
-> > > > > > > +       [_id] =3D { \
-> > > > > >
-> > > > > > Indexing by _id means the reset array will be very sparse.  E.g=
-. the
-> > > > > > innocent-looking r9a09g057_resets[] with only a single entry ta=
-kes
-> > > > > > 600 bytes.
-> > > > > >
-> > > > > > If you do need the full array for indexing, please allocate and
-> > > > > > populate it at runtime.
-> > > > > >
-> > > > > OK, I will use the radix tree for resets (is that OK)?
-> > > >
-> > > > You mean XArray? include/linux/radix-tree.h has:
-> > > >
-> > > >     /* Keep unconverted code working */
-> > > >     #define radix_tree_root         xarray
-> > > >     #define radix_tree_node         xa_node
-> > > >
-> > > Yes, I meant the above.
-> > >
-> > > > Given a single xa_node is already 576 bytes, just allocating the fu=
-ll
-> > > > linear reset array at runtime is probably better.
-> > > >
-> > > Agreed, I will create a linear reset array and loop through the array
-> > > based on reset index and reset bit to match with id whenever required=
-.
-> >
-> > With a full allocated linear reset array you do not need to loop,
-> > but you can just index it by the reset ID??
-> >
-> Instead of having a sparse array, to save memory I was thinking
-> something like below:
->
-> /**
->  * struct rzv2h_reset - Reset definitions
->  *
->  * @reset_index: reset register index
->  * @reset_bit: reset bit
->  * @mon_index: monitor register index
->  * @mon_bit: monitor bit
->  */
-> struct rzv2h_reset {
->     u8 reset_index;
->     u8 reset_bit;
->     u8 mon_index;
->     u8 mon_bit;
-> };
->
-> #define DEF_RST_BASE(_resindex, _resbit, _monindex, _monbit)    \
->     { \
->         .reset_index =3D (_resindex), \
->         .reset_bit =3D (_resbit), \
->         .mon_index =3D (_monindex), \
->         .mon_bit =3D (_monbit), \
->     }
->
-> #define DEF_RST(_resindex, _resbit, _monindex, _monbit)    \
->     DEF_RST_BASE(_resindex, _resbit, _monindex, _monbit)
->
->
-> in rzv2h_cpg_probe() (.num_resets =3D ARRAY_SIZE(r9a09g057_resets))
->
->     resets =3D devm_kmalloc_array(dev, info->num_resets, sizeof(struct
-> rzv2h_reset), GFP_KERNEL);
->     if (!resets)
->         return -ENOMEM;
->
->     for (i =3D 0; i < priv->num_resets; i++)
->         memcpy(&resets[i], &info->resets[i], sizeof(struct rzv2h_reset));
-
-You can combine both using devm_kmemdup().
-
-> And have the below xlate function that will convert id into index ie
-> index into rests array.
->
-> static int rzv2h_get_reset_index(struct rzv2h_cpg_priv *priv,
->                  unsigned long id)
-> {
->     u8 reset_index =3D id / 16;
->     u8 reset_bit =3D id % 16;
->     unsigned int i;
->
->     for (i =3D 0; i < priv->num_resets; i++) {
->         if (priv->resets[i].reset_index =3D=3D reset_index &&
->             priv->resets[i].reset_bit =3D=3D reset_bit)
->             return i;
->     }
->
->     return -EINVAL;
-> }
->
-> static int rzv2h_cpg_reset_xlate(struct reset_controller_dev *rcdev,
->                  const struct of_phandle_args *reset_spec)
-> {
->     struct rzv2h_cpg_priv *priv =3D rcdev_to_priv(rcdev);
->     unsigned int id =3D reset_spec->args[0];
->     int index =3D rzv2h_get_reset_index(priv, id);
->
->     if (index < 0) {
->         dev_err(rcdev->dev, "Invalid reset index %u\n", id);
->         return -EINVAL;
->     }
->
->     return index;
-> }
->
->
-> rzv2h_cpg_assert() and rzv2h_cpg_deassert() which will use an id that
-> can directly index into resets[] array.
->
-> Please let me know if this is OK.
-
-That would work, too, at the expense of needing a loop for look-up
-(traditional trade-off between memory and time ;-)
-But look-up is only done once (per device), so that should be fine.
-
-It all depends on how many resets you will end up using...
-Memory allocation also has a granularity, so once you have more
-than a specific number of resets, you better use a sparse array,
-and simple indexing.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+I think it should be mV. Using voltage may leads to decimal.
 
