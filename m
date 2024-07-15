@@ -1,135 +1,109 @@
-Return-Path: <devicetree+bounces-85726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89468931394
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E559313A8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:10:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4386D281137
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:06:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD408280FCD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:10:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD8718A93D;
-	Mon, 15 Jul 2024 12:05:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6925118C32B;
+	Mon, 15 Jul 2024 12:10:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Lhy4SEBL"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SHSH/BLx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3968189F5E;
-	Mon, 15 Jul 2024 12:05:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B435C18C187;
+	Mon, 15 Jul 2024 12:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721045158; cv=none; b=WI1+TGp0gsXFOt5qg411M9tS3hr19dIcW3bdHViXiQK+j24OFINYegMKbuovIGx0hlGT4npxabwoz3vj8KMcZviKDgMXU4Mnw3v9kzcftzAi/1RXvZNPlja8qAIvrvvtwiF4nPEdW961EWpRKSTqaUJiOhd0rbGudyrN27wXFts=
+	t=1721045418; cv=none; b=Q5nS2db7X0GeAUxSUHvgUVsecaR0SgLiHZN2UtPVbZTMCcbr6tluO2vTi7mvrlLN/wM/Pn3l1GGdAm2gaAaDVHoS4quo45VmhA0K7KQjq5c8yHy6QMzNCsmY/0Ub7PIZPj6qhTUEYEflRiG6oLonmAocXjYrYPUr/R7Uwy0SWBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721045158; c=relaxed/simple;
-	bh=ajfiIwgDbyeUkjhHbM8uaKnyLPFSikOKpQ9Fr/QLc9g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GKI3JstuStlmvsb/WbDvoQsjJn886Zx2YhvpJ/PySX825t6HMI16mU1FfgYTwhNwBNFlJX4Jsxu3iOTQuzJRLwekYJnTxTY9+aMhmi3kSGmA7cjHdoEeXztchybnqR2RGOSlntxBoXAQB4O8PrFHZ1xT4OF52tjxIcwvd2EOs6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Lhy4SEBL; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46F7KiGN018841;
-	Mon, 15 Jul 2024 14:05:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	NUrMaVQn6CtWJA/+Bg8Ut5g/xwCeF9VDjIao3Eq05ss=; b=Lhy4SEBL5/E6CsI+
-	MrQvVgdMl+2xsKfsTLsby1FxY+LFEEb6piKHcdC994A/pHnyaB5QbL1S6LEwvfwQ
-	wNNDFnI9cdd1/7FEouV0X9G3WeiW2U8OS7IuE4c2k7MDBSu2qaI4a2dzum2t4xHc
-	aGGxXwlGsrwpGj12LjZ53oc5Ll5eZEVCJIm12qoz5QlfTnpv8oLJnvJf7lCs5J29
-	Kw8Nheua67/UdIUdcFCFl0OV2DTuRgPiGbNiCgqvh/csfznZM1TXOIxENtaAUBv0
-	f9PA2W+S2kyD1jyWccUIIo25Q75IuvyDfUG1F68Rk86ek1VNjgAQokg/CsESMdKx
-	zF1d5A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 40bgfdef4v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Jul 2024 14:05:29 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F349A40044;
-	Mon, 15 Jul 2024 14:05:24 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8132E223F2F;
-	Mon, 15 Jul 2024 14:04:46 +0200 (CEST)
-Received: from [10.48.86.111] (10.48.86.111) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 15 Jul
- 2024 14:04:45 +0200
-Message-ID: <f6485370-b5cc-4774-aac0-6141fcca4c00@foss.st.com>
-Date: Mon, 15 Jul 2024 14:04:38 +0200
+	s=arc-20240116; t=1721045418; c=relaxed/simple;
+	bh=Igv9P5b9xyPs7ch22N3cjMBkjk6low4zX+8qxLLX+b4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=e76TN15+iefGjLVFE/MBl75IZCliHujhPluVhrorEmh01eKF6TrrQNttjKmFrk7FH1f/4qfmuC7NgStpgpdHNNiA6f5ibMVVxiNeh8f28RXzQnO6kDuCVyVaBG2khqVxavX0L6BpkdCC4lHGvVDLjoiZjlr6FguEC525589aRdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SHSH/BLx; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46FC9g5e109144;
+	Mon, 15 Jul 2024 07:09:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1721045382;
+	bh=1cazo7ReNItzF76RUs5P1QS+l8y6IS0p/XVRdyZj368=;
+	h=From:To:CC:Subject:Date;
+	b=SHSH/BLxBSuqEdfH3DsJalseBTtzzsODlv71vWch1UQgswLoZFOMUpoRkFN2JGfgY
+	 000HsQw49SJ5Ej9vwMu/PgEY9XODrz2g7fMVzdsX6dETYd+4VkbnZnUbVTvLHhX1JE
+	 UzkMinQ1rhEg/DssLLnf9//ljvGCODMvSeYpZGpY=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46FC9gkB012672
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 15 Jul 2024 07:09:42 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
+ Jul 2024 07:09:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 15 Jul 2024 07:09:41 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46FC9anV060344;
+	Mon, 15 Jul 2024 07:09:37 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <bhelgaas@google.com>, <vigneshr@ti.com>, <kishon@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH 0/3] Add support for ACSPCIE refclk output on J784S4-EVM
+Date: Mon, 15 Jul 2024 17:39:33 +0530
+Message-ID: <20240715120936.1150314-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: rtc: stm32: describe pinmux nodes
-To: Rob Herring <robh@kernel.org>
-CC: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Valentin Caron
-	<valentin.caron@foss.st.com>
-References: <20240711140843.3201530-1-valentin.caron@foss.st.com>
- <20240711140843.3201530-2-valentin.caron@foss.st.com>
- <20240711225646.GA3270567-robh@kernel.org>
-Content-Language: en-US
-From: Valentin CARON <valentin.caron@foss.st.com>
-In-Reply-To: <20240711225646.GA3270567-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-15_06,2024-07-11_01,2024-05-17_01
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hello,
 
+This series adds support to drive out the reference clock required by
+the PCIe Endpoint device using the ACSPCIE buffer.
 
-On 7/12/24 00:56, Rob Herring wrote:
-> On Thu, Jul 11, 2024 at 04:08:40PM +0200, Valentin Caron wrote:
->> STM32 RTC is capable to handle 3 specific pins of the soc (out1, out2,
->> out2_rmp) and to outputs 2 signals (LSCO, alarm-a).
->>
->> This feature is configured thanks to pinmux nodes and pinctrl framework.
->> This feature is available with compatible st,stm32mp1-rtc and
->> st,stm32mp25-rtc only.
->>
->> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
->> ---
->>   .../devicetree/bindings/rtc/st,stm32-rtc.yaml | 28 +++++++++++++++++++
->>   1 file changed, 28 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
->> index 7a0fab721cf1..09221c2f8a0c 100644
->> --- a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
->> +++ b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
->> @@ -53,6 +53,28 @@ properties:
->>         override default rtc_ck parent clock phandle of the new parent clock of rtc_ck
->>       maxItems: 1
->>   
->> +patternProperties:
->> +  "^rtc-[a-z]*-[0-9]+$":
-> 
-> rtc--123 is valid? "*" should be "+"
-> 
-> Otherwise,
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Series is based on linux-next tagged next-20240715.
 
-Yes, it should be. I will add this in the next version.
+Series has been tested with the following device-tree change:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/8206ea3a89753c309e4c82d825c75dae
+on J784S4-EVM with an NVMe SSD connected to the PCIe connector
+corresponding to the PCIe1 instance of PCIe. Logs:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/d825068cfe55bba7a869469c1ef64ddd
 
-Thanks,
-Valentin
+Regards,
+Siddharth.
+
+Siddharth Vadapalli (3):
+  dt-bindings: mfd: syscon: Add ti,j784s4-acspcie-proxy-ctrl compatible
+  dt-bindings: PCI: ti,j721e-pci-host: Add ACSPCIE proxy control
+    property
+  PCI: j721e: Add support for enabling ACSPCIE PAD IO Buffer output
+
+ .../devicetree/bindings/mfd/syscon.yaml       |  1 +
+ .../bindings/pci/ti,j721e-pci-host.yaml       | 10 ++++++
+ drivers/pci/controller/cadence/pci-j721e.c    | 33 +++++++++++++++++++
+ 3 files changed, 44 insertions(+)
+
+-- 
+2.40.1
+
 
