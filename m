@@ -1,150 +1,391 @@
-Return-Path: <devicetree+bounces-85904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF1BA931B73
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:04:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D45E6931BDE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 22:32:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 067BB1C21846
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:04:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F5771F229E8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 20:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FCE13A896;
-	Mon, 15 Jul 2024 20:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ELyGvhMg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA66144300;
+	Mon, 15 Jul 2024 20:30:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from akranes.kaiser.cx (akranes.kaiser.cx [152.53.16.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87DBD74409
-	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 20:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD7D1442E8;
+	Mon, 15 Jul 2024 20:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=152.53.16.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721073869; cv=none; b=ZtuP7o15E53IRbj58x8Eg2a3UApnMOp+EUTEQlxMxLmOzrwfMhApkDGSNLRmvZrrop4DgguFIUddrODqYZbUptDclz5HinKix2Lj7uauanpEEfmhEV8k8MnP45EihzTyq65ZP5mGlnIPoKn8NwWojBvZOrDYi2N2K7I/CX+7HQE=
+	t=1721075437; cv=none; b=afLJcUUv7B8o8J4gpETmOrajw8/6U1aa+GEgThKKnEf5DFbvlj5gFnyR6c1q4ImN02OJfVnzgnPmSbfqMdGJxLCeMwfCtyQToRA9wPmeePnn5epb94wX6lq4N/6K8WTqvOWsc15f6AunjlL+K0f+kkZ2mptguT59IOChOzgfB20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721073869; c=relaxed/simple;
-	bh=pR2h5ks+m9XFkbEaDwnLfWbyyvcGGaaPkfltYqZhu+4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o+ZKw5bQYUvwj1u6CWErAkiRIfoJQK8poMf7n9qFyBym0xE0elGK0dm/asUAJWlEB4FLOBNiJEQBHFvsL+sUpIYzCJb0BlVbey3djp3ab+/F+hPK/p2eFKZCh0Toz4uBkw4tcjKe1Z0vVeD2Dgl6HCvx2gaFAqoG7pyBThKi1Ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ELyGvhMg; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52ea0f18500so4851942e87.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 13:04:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721073865; x=1721678665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=F4KzL+k7bEj7U3hH6w860LGovRnkChOt26LTuiV0jsY=;
-        b=ELyGvhMgTc8PbDkcUvupH9L+7c/a5y2/5mC/jI8BszbGfodq6PkUvCen8zH9G8vsbF
-         iFTIGEYYEotyaMwcKqaU73wG3NAFs+ZHriTTTdiop9VImVcYZhJ8p5TRf5XSbpXL3Z7R
-         g1fHCmspUZVqWY6CRi2fri5ATcDln3mpze+nenxRFOUv/j1WsTxXmpTGGWFhYo7+sBFU
-         y/iBPShM7ycHOI8S0uUuXhDaP1dSsJVlf0uqvw3Kz0HTbcW7uvrRLcEnx0kCpfbLrHaX
-         1lanGe5NvJGJ2cu7w2R15D4q4FYfJmzNZ3cj9Vasa6Jk34sFmGNI0kIHT7Imn5VUcRMS
-         z4Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721073865; x=1721678665;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F4KzL+k7bEj7U3hH6w860LGovRnkChOt26LTuiV0jsY=;
-        b=GwAPRIgKjRKGxpnpJf7UadqFLKj7G0T/LIYVQ9KUbY13F6d9GbKi+EATJRLsG4Gumq
-         1N0mbKfxf749qF6IoK5WsYFYxN2WjWVR5mk3xjOmq3euz/MfCaLrHyXX7NRdfnXoyi24
-         YdXrs4E7S6c+yfxGnxNUJnmdTmofeTQaT4OLoJsgY9lkUndU1UzLDI21n13Dy8ihILC2
-         HsljZYQmgz4V1LTX4qVCZuzLkI4KzoRmYKnX+KtZujP1iO/5tqCyNdNToMKYt6wSJ+Vy
-         YphqfdrulYCfFirlUdPRMqDN5qe3Becg+TXHj5KDe6iPNolGlpM8aBzxvndsi7kNK91r
-         iReQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWENj4AU12YYxvL/tzdvDsCrnsJpuXGWIVM95fLj21wJkCHP8PLct4CWfjiQTsbyCRtoLf1YdkjdA81l22z1KaLWuwu9GbQdqwLpA==
-X-Gm-Message-State: AOJu0YyZkI6FDEa41hXonvRZpYp6PF/jGvcr89ObZwHxSdUvRfBzz7ZD
-	zyIJB8+XXhF6ijr5vHg3PH7tYOr6oq8QYNDhrCnC+ZaXvStTkXVr39V0eqGOszc=
-X-Google-Smtp-Source: AGHT+IGV8TZiXnHu7cIS/w+lUy537cIY3jdT77DwfUsNlvtMXnwPP647lyoYwLzjXHXvb4ZoHIWz2w==
-X-Received: by 2002:a05:6512:ba8:b0:52e:d0f4:7930 with SMTP id 2adb3069b0e04-52ede1cd2e6mr327905e87.53.1721073864394;
-        Mon, 15 Jul 2024 13:04:24 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc821809sm232964166b.208.2024.07.15.13.04.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jul 2024 13:04:24 -0700 (PDT)
-Message-ID: <48b7fc9a-a10f-4242-bb53-7791ccf9c1bf@linaro.org>
-Date: Mon, 15 Jul 2024 22:04:22 +0200
+	s=arc-20240116; t=1721075437; c=relaxed/simple;
+	bh=SYXTL2ZPOP+qHncxqQvm9el6lTaId8PyESkQbR0BWBY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qTUd45hxE047KS5QE2mU40X3uN5+dGux1I5OEwuz1e+w12utyrQLnCV3BTCHNispcVeGgcyh/P7cyKCgygy5MCFl7ygTu8AD+SLcs8FCXCN2+UuFL+phKW0W8VmIUYg8xfkmTy3zQo1ulwhExig8rkTyPgDT6to+pzdBu9WnEw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kaiser.cx; spf=pass smtp.mailfrom=kaiser.cx; arc=none smtp.client-ip=152.53.16.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kaiser.cx
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaiser.cx
+Received: from martin by akranes.kaiser.cx with local (Exim 4.96)
+	(envelope-from <martin@akranes.kaiser.cx>)
+	id 1sTRfx-000ga8-0f;
+	Mon, 15 Jul 2024 21:47:57 +0200
+Date: Mon, 15 Jul 2024 21:47:57 +0200
+From: Martin Kaiser <martin@kaiser.cx>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Chen-Yu Tsai <wens@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/3] hwrng: add hwrng driver for Rockchip RK3568 SoC
+Message-ID: <ZpV87YMXJaPnHM8H@akranes.kaiser.cx>
+References: <cover.1720969799.git.daniel@makrotopia.org>
+ <f606403145588d28dda14a55ba3afef85720a4dc.1720969799.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/14] arm64: dts: qcom: sa8775p: Add 'linux,pci-domain'
- to PCIe EP controller nodes
-To: manivannan.sadhasivam@linaro.org,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240715-pci-qcom-hotplug-v1-0-5f3765cc873a@linaro.org>
- <20240715-pci-qcom-hotplug-v1-10-5f3765cc873a@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240715-pci-qcom-hotplug-v1-10-5f3765cc873a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f606403145588d28dda14a55ba3afef85720a4dc.1720969799.git.daniel@makrotopia.org>
+Sender: "Martin Kaiser,,," <martin@akranes.kaiser.cx>
 
-On 15.07.2024 7:33 PM, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> 'linux,pci-domain' property provides the PCI domain number for the PCI
-> endpoint controllers in a SoC. If this property is not present, then an
-> unstable (across boots) unique number will be assigned.
-> 
-> Use this property to specify the domain number based on the actual hardware
-> instance of the PCI endpoint controllers in SA8775P SoC.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi,
+
+Thus wrote Daniel Golle (daniel@makrotopia.org):
+
+> From: Aurelien Jarno <aurelien@aurel32.net>
+
+> Rockchip SoCs used to have a random number generator as part of their
+> crypto device, and support for it has to be added to the corresponding
+> driver. However newer Rockchip SoCs like the RK3568 have an independent
+> True Random Number Generator device. This patch adds a driver for it,
+> greatly inspired from the downstream driver.
+
+> The TRNG device does not seem to have a signal conditionner and the FIPS
+> 140-2 test returns a lot of failures. They can be reduced by increasing
+> RK_RNG_SAMPLE_CNT, in a tradeoff between quality and speed. This value
+> has been adjusted to get ~90% of successes and the quality value has
+> been set accordingly.
+
+> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> [daniel@makrotpia.org: code style fixes]
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>  MAINTAINERS                           |   1 +
+>  drivers/char/hw_random/Kconfig        |  14 ++
+>  drivers/char/hw_random/Makefile       |   1 +
+>  drivers/char/hw_random/rockchip-rng.c | 227 ++++++++++++++++++++++++++
+>  4 files changed, 243 insertions(+)
+>  create mode 100644 drivers/char/hw_random/rockchip-rng.c
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7b2b8b1f526c..2745cfe56774 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19698,6 +19698,7 @@ M:	Daniel Golle <daniel@makrotopia.org>
+>  M:	Aurelien Jarno <aurelien@aurel32.net>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> +F:	drivers/char/hw_random/rockchip-rng.c
 
-Konrad
+>  ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
+>  M:	Jacob Chen <jacob-chen@iotwrt.com>
+> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+> index 442c40efb200..2b62cd08f91a 100644
+> --- a/drivers/char/hw_random/Kconfig
+> +++ b/drivers/char/hw_random/Kconfig
+> @@ -573,6 +573,20 @@ config HW_RANDOM_JH7110
+>  	  To compile this driver as a module, choose M here.
+>  	  The module will be called jh7110-trng.
+
+> +config HW_RANDOM_ROCKCHIP
+> +	tristate "Rockchip True Random Number Generator"
+> +	depends on HW_RANDOM && (ARCH_ROCKCHIP || COMPILE_TEST)
+> +	depends on HAS_IOMEM
+> +	default HW_RANDOM
+> +	help
+> +	  This driver provides kernel-side support for the True Random Number
+> +	  Generator hardware found on some Rockchip SoC like RK3566 or RK3568.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rockchip-rng.
+> +
+> +	  If unsure, say Y.
+> +
+>  endif # HW_RANDOM
+
+>  config UML_RANDOM
+> diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
+> index 32549a1186dc..01f012eab440 100644
+> --- a/drivers/char/hw_random/Makefile
+> +++ b/drivers/char/hw_random/Makefile
+> @@ -48,4 +48,5 @@ obj-$(CONFIG_HW_RANDOM_XIPHERA) += xiphera-trng.o
+>  obj-$(CONFIG_HW_RANDOM_ARM_SMCCC_TRNG) += arm_smccc_trng.o
+>  obj-$(CONFIG_HW_RANDOM_CN10K) += cn10k-rng.o
+>  obj-$(CONFIG_HW_RANDOM_POLARFIRE_SOC) += mpfs-rng.o
+> +obj-$(CONFIG_HW_RANDOM_ROCKCHIP) += rockchip-rng.o
+>  obj-$(CONFIG_HW_RANDOM_JH7110) += jh7110-trng.o
+> diff --git a/drivers/char/hw_random/rockchip-rng.c b/drivers/char/hw_random/rockchip-rng.c
+> new file mode 100644
+> index 000000000000..a8ccaf14c2c2
+> --- /dev/null
+> +++ b/drivers/char/hw_random/rockchip-rng.c
+> @@ -0,0 +1,227 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * rockchip-rng.c True Random Number Generator driver for Rockchip RK3568 SoC
+> + *
+> + * Copyright (c) 2018, Fuzhou Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2022, Aurelien Jarno
+> + * Authors:
+> + *  Lin Jinhan <troy.lin@rock-chips.com>
+> + *  Aurelien Jarno <aurelien@aurel32.net>
+> + */
+> +#include <linux/clk.h>
+> +#include <linux/hw_random.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +#include <linux/slab.h>
+> +
+> +#define RK_RNG_AUTOSUSPEND_DELAY	100
+> +#define RK_RNG_MAX_BYTE			32
+> +#define RK_RNG_POLL_PERIOD_US		100
+> +#define RK_RNG_POLL_TIMEOUT_US		10000
+> +
+> +/*
+> + * TRNG collects osc ring output bit every RK_RNG_SAMPLE_CNT time. The value is
+> + * a tradeoff between speed and quality and has been adjusted to get a quality
+> + * of ~900 (~90% of FIPS 140-2 successes).
+> + */
+> +#define RK_RNG_SAMPLE_CNT		1000
+> +
+> +/* TRNG registers from RK3568 TRM-Part2, section 5.4.1 */
+> +#define TRNG_RST_CTL			0x0004
+> +#define TRNG_RNG_CTL			0x0400
+> +#define TRNG_RNG_CTL_LEN_64_BIT		(0x00 << 4)
+> +#define TRNG_RNG_CTL_LEN_128_BIT	(0x01 << 4)
+> +#define TRNG_RNG_CTL_LEN_192_BIT	(0x02 << 4)
+> +#define TRNG_RNG_CTL_LEN_256_BIT	(0x03 << 4)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_0	(0x00 << 2)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_1	(0x01 << 2)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_2	(0x02 << 2)
+> +#define TRNG_RNG_CTL_OSC_RING_SPEED_3	(0x03 << 2)
+> +#define TRNG_RNG_CTL_MASK		GENMASK(15, 0)
+> +#define TRNG_RNG_CTL_ENABLE		BIT(1)
+> +#define TRNG_RNG_CTL_START		BIT(0)
+> +#define TRNG_RNG_SAMPLE_CNT		0x0404
+> +#define TRNG_RNG_DOUT			0x0410
+> +
+> +struct rk_rng {
+> +	struct hwrng rng;
+> +	void __iomem *base;
+> +	struct reset_control *rst;
+
+does it make sense to store rst here? it's used only in the probe function.
+
+> +	int clk_num;
+> +	struct clk_bulk_data *clk_bulks;
+> +};
+> +
+> +/* The mask in the upper 16 bits determines the bits that are updated */
+> +static void rk_rng_write_ctl(struct rk_rng *rng, u32 val, u32 mask)
+> +{
+> +	writel((mask << 16) | val, rng->base + TRNG_RNG_CTL);
+> +}
+> +
+> +static int rk_rng_init(struct hwrng *rng)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +	int ret;
+> +
+> +	/* start clocks */
+> +	ret = clk_bulk_prepare_enable(rk_rng->clk_num, rk_rng->clk_bulks);
+> +	if (ret < 0) {
+> +		dev_err((struct device *) rk_rng->rng.priv,
+> +			"Failed to enable clks %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* set the sample period */
+> +	writel(RK_RNG_SAMPLE_CNT, rk_rng->base + TRNG_RNG_SAMPLE_CNT);
+> +
+> +	/* set osc ring speed and enable it */
+> +	rk_rng_write_ctl(rk_rng, TRNG_RNG_CTL_LEN_256_BIT |
+> +				 TRNG_RNG_CTL_OSC_RING_SPEED_0 |
+> +				 TRNG_RNG_CTL_ENABLE,
+> +			 TRNG_RNG_CTL_MASK);
+> +
+> +	return 0;
+> +}
+> +
+> +static void rk_rng_cleanup(struct hwrng *rng)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +
+> +	/* stop TRNG */
+> +	rk_rng_write_ctl(rk_rng, 0, TRNG_RNG_CTL_MASK);
+> +
+> +	/* stop clocks */
+> +	clk_bulk_disable_unprepare(rk_rng->clk_num, rk_rng->clk_bulks);
+> +}
+> +
+> +static int rk_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +	size_t to_read = min_t(size_t, max, RK_RNG_MAX_BYTE);
+> +	u32 reg;
+> +	int ret = 0;
+
+no need to initialise ret, it's overwritten immediately
+
+> +
+> +	ret = pm_runtime_resume_and_get((struct device *) rk_rng->rng.priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Start collecting random data */
+> +	rk_rng_write_ctl(rk_rng, TRNG_RNG_CTL_START, TRNG_RNG_CTL_START);
+> +
+> +	ret = readl_poll_timeout(rk_rng->base + TRNG_RNG_CTL, reg,
+> +				 !(reg & TRNG_RNG_CTL_START),
+> +				 RK_RNG_POLL_PERIOD_US,
+> +				 RK_RNG_POLL_TIMEOUT_US);
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	/* Read random data stored in the registers */
+> +	memcpy_fromio(buf, rk_rng->base + TRNG_RNG_DOUT, to_read);
+> +out:
+> +	pm_runtime_mark_last_busy((struct device *) rk_rng->rng.priv);
+> +	pm_runtime_put_sync_autosuspend((struct device *) rk_rng->rng.priv);
+> +
+> +	return (ret < 0) ? ret : to_read;
+> +}
+> +
+> +static int rk_rng_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rk_rng *rk_rng;
+> +	int ret;
+> +
+> +	rk_rng = devm_kzalloc(dev, sizeof(*rk_rng), GFP_KERNEL);
+> +	if (!rk_rng)
+> +		return -ENOMEM;
+> +
+> +	rk_rng->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(rk_rng->base))
+> +		return PTR_ERR(rk_rng->base);
+> +
+> +	rk_rng->clk_num = devm_clk_bulk_get_all(dev, &rk_rng->clk_bulks);
+> +	if (rk_rng->clk_num < 0)
+> +		return dev_err_probe(dev, rk_rng->clk_num,
+> +				     "Failed to get clks property\n");
+> +
+> +	rk_rng->rst = devm_reset_control_array_get_exclusive(&pdev->dev);
+> +	if (IS_ERR(rk_rng->rst))
+> +		return dev_err_probe(dev, PTR_ERR(rk_rng->rst),
+> +				     "Failed to get reset property\n");
+> +
+> +	reset_control_assert(rk_rng->rst);
+> +	udelay(2);
+> +	reset_control_deassert(rk_rng->rst);
+> +
+> +	platform_set_drvdata(pdev, rk_rng);
+> +
+> +	rk_rng->rng.name = dev_driver_string(dev);
+> +	if (!IS_ENABLED(CONFIG_PM)) {
+> +		rk_rng->rng.init = rk_rng_init;
+> +		rk_rng->rng.cleanup = rk_rng_cleanup;
+> +	}
+> +	rk_rng->rng.read = rk_rng_read;
+> +	rk_rng->rng.priv = (unsigned long) dev;
+> +	rk_rng->rng.quality = 900;
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, RK_RNG_AUTOSUSPEND_DELAY);
+> +	pm_runtime_use_autosuspend(dev);
+> +	devm_pm_runtime_enable(dev);
+
+could this fail? is it worth checking the return value?
+
+> +
+> +	ret = devm_hwrng_register(dev, &rk_rng->rng);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "Failed to register Rockchip hwrng\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused rk_rng_runtime_suspend(struct device *dev)
+> +{
+> +	struct rk_rng *rk_rng = dev_get_drvdata(dev);
+> +
+> +	rk_rng_cleanup(&rk_rng->rng);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused rk_rng_runtime_resume(struct device *dev)
+> +{
+> +	struct rk_rng *rk_rng = dev_get_drvdata(dev);
+> +
+> +	return rk_rng_init(&rk_rng->rng);
+> +}
+> +
+> +static const struct dev_pm_ops rk_rng_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(rk_rng_runtime_suspend,
+> +				rk_rng_runtime_resume, NULL)
+> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +				pm_runtime_force_resume)
+> +};
+> +
+> +static const struct of_device_id rk_rng_dt_match[] = {
+> +	{ .compatible = "rockchip,rk3568-rng", },
+> +	{ /* sentinel */ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, rk_rng_dt_match);
+> +
+> +static struct platform_driver rk_rng_driver = {
+> +	.driver	= {
+> +		.name	= "rockchip-rng",
+> +		.pm	= &rk_rng_pm_ops,
+> +		.of_match_table = rk_rng_dt_match,
+> +	},
+> +	.probe	= rk_rng_probe,
+> +};
+> +
+> +module_platform_driver(rk_rng_driver);
+> +
+> +MODULE_DESCRIPTION("Rockchip RK3568 True Random Number Generator driver");
+> +MODULE_AUTHOR("Lin Jinhan <troy.lin@rock-chips.com>");
+> +MODULE_AUTHOR("Aurelien Jarno <aurelien@aurel32.net>");
+> +MODULE_AUTHOR("Daniel Golle <daniel@makrotopia.org>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.45.2
 
