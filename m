@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-85682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CDA39310B3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 10:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6FE9310B7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 10:59:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEDED1C21E11
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 08:59:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE31B1C21E0A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 08:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54D9185E60;
-	Mon, 15 Jul 2024 08:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EC4186281;
+	Mon, 15 Jul 2024 08:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T0JOZpOS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M7K882P0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF6018508B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA85185E65;
 	Mon, 15 Jul 2024 08:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721033961; cv=none; b=Ke11r1jjkOoX0irxu1h9qFNj+0zlb1K6l49FUBNIB6txqQjZPWd588PzlG+hlcLCvyBAv5nwN+F5s1B4hFk4OtG+VYGPPkq9UD9LhlfGVrtlnqHiQYaHxd8yChJPqwfSpqLiMuwfq/iSqhwiR60DZW4WhpznHSz3BiXXxNdvhwI=
+	t=1721033961; cv=none; b=bcwoA79WqLoaPHwsn3h8VP6EgazVNaY8jf122wUZbpxYCR4hcU+WN/86u4oRAbTFcPJ4iBt/xf3AU3p0sIpqJ1nlPEPL9slyfNxHc2nmsJ8EsC6YarN8j5mX6LibzesTDAC6VprlFAGlN4NuNd6UkGABZwIWJ8CU0YkfdsJBso0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1721033961; c=relaxed/simple;
-	bh=LDdV5iZmQZqylIgJ/osRTNrvBIzVQCfS1jrSLC+xklo=;
+	bh=/O2nGpJcr16vRLvgrd+SZjmwJdnjJPrOC4NvECf8nUM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jFLNM0xSEBsONPTGaM7oe5lJo4p/YEaj33sm0jV8Evs6g4b5EiUDCoa/XuOueDJtBfUCHzM5Hlm1JqfGcg0yI9157FJM58W8Hr0O0a78HtHjOxQOuk2XqRrNWGK8Driy4fZspPkVnv30re39whSsBskhqWJrzVX9OArVaeBQTVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T0JOZpOS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5D9D6C4AF0F;
+	 In-Reply-To:To:Cc; b=bbcv8oCJGgMOszZEmGCNUPGWC91QhJNgymJln/tSe0DHGDNq+GNqZd+IZg+1NH/uTl5zTQyRmJ/9F02ozEcanitNfGHCgkNg5D0rEd/3JsM1eEs3ApeAj5eHzyd61rAGPJqOSe5el0uc1FD+A1QzEfPrqqoidwTy1yS/wh+Q2sU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M7K882P0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 69E20C4AF11;
 	Mon, 15 Jul 2024 08:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1721033961;
-	bh=LDdV5iZmQZqylIgJ/osRTNrvBIzVQCfS1jrSLC+xklo=;
+	bh=/O2nGpJcr16vRLvgrd+SZjmwJdnjJPrOC4NvECf8nUM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=T0JOZpOS26qka/RgQVUeN73Jeil6A6m+9QScjfmmzkwJR6fmw9xytb6lPYFaCnArm
-	 +G9gZwknY9YQzSDjCB/54aIeK6mMOOHLYe7pTeJyh6FusA9+9oVtYDFy7EdSKjA93e
-	 MTyFA+c+g3rR5He1z+ckW8gF+ejdR9Ecv/jWZ/GgsQqr6VLXu0Zvm5SeY4EHyhnQQ9
-	 erISPYITOGv+JiDdI0mSnKT2acso8OuWd8WMsMoIAydbYk1Cbwz/yxjbLuC+9bRn7C
-	 4XKKP8dxTXpZLkDDM5O6wwXEL+6gjam48CHd8ht4l0VB33B11/ViKuERaSVemF/c04
-	 OGigfY/5T4ryQ==
+	b=M7K882P06PDKXe+45ygDPWh29IXz4bfMKePRHgQV96VoAKoURRRL5g7FFDqRsK0RT
+	 srLZotmoUl87ghOID2fgY2+QRlEOvcBbVZ0Ztu/KCowolQvZGvdD+9SKimthH70BwU
+	 RYXwdeOFtTKUliJ7uS9V3qpktrd+FcbQM4PmZ2Iyz4JkTc4wUKLw46GACUpRBqCh6+
+	 yX10QLeFpP4YINPa2+ztk7pP5oM7NRRdBH7Lna1uv9wR6wN1EgYaMyeE7HgKcaEXUF
+	 nhoFiBtHnJjI0RkMq9DYTwyHKSyQ8ZBFWbc2C6dk6Z2HcFHb15d1Q6I6Ojjuhf4MpY
+	 ynQRBo9KXD44g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D347C3DA5E;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59D4DC3DA59;
 	Mon, 15 Jul 2024 08:59:21 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 15 Jul 2024 16:59:19 +0800
-Subject: [PATCH v2 1/6] dt-bindings: arm: amlogic: meson-gx-ao-secure:
- support more SoCs.
+Date: Mon, 15 Jul 2024 16:59:20 +0800
+Subject: [PATCH v2 2/6] soc: amlogic: meson-gx-socinfo: add new SoCs id
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240715-soc_info-v2-1-3836c8cc27a5@amlogic.com>
+Message-Id: <20240715-soc_info-v2-2-3836c8cc27a5@amlogic.com>
 References: <20240715-soc_info-v2-0-3836c8cc27a5@amlogic.com>
 In-Reply-To: <20240715-soc_info-v2-0-3836c8cc27a5@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -68,11 +67,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1721033959; l=1215;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1721033959; l=1182;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=JnJJMZRxCaqyyKyFb5/FDU56hz+XcWAtbQbfxps+Two=;
- b=R7XvE+qSM+fzrD7PJUeJk4zhQ3FJjbtgdSphOmak7wX7g75WfqKiSV9MZNFg9EFKX5uCRppIm
- k6cKatYUS6PA1DkZHCfZ+EKvWAeQOxUI+MH34a3rvaPlTlfEOMzPjfo
+ bh=zRWWsMnyYjBcl83+I2nHF9NZDOoGs2C4FOAOFivyI1k=;
+ b=smDNFXgxoSeiIF54/TDERqvLgFVop9bAHAJkTpYw3WsTuikbc3zfL7BHtc/ebZfXE/Yej69VT
+ 1fK7rlvbx2XAqApVBpLw7a1nHoxW812k77RvHQ7MjowYUVxKU/4tmCF
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
@@ -82,40 +81,42 @@ Reply-To: xianwei.zhao@amlogic.com
 
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Add dt-binding document for ao-secure of Amlogic SoCs(S4,C3,T7,A4).
+Add new definition for Amlogi SoCs, include S4, C3, T7, A4, A5.
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+ drivers/soc/amlogic/meson-gx-socinfo.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-index 7dff32f373cb..b4f6695a6015 100644
---- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-@@ -25,10 +25,18 @@ select:
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index 8809a948201a..7549f1644e5e 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -41,6 +41,11 @@ static const struct meson_gx_soc_id {
+ 	{ "G12B", 0x29 },
+ 	{ "SM1", 0x2b },
+ 	{ "A1", 0x2c },
++	{ "T7", 0x36 },
++	{ "S4", 0x37 },
++	{ "A5", 0x3c },
++	{ "C3", 0x3d },
++	{ "A4", 0x40 },
+ };
  
- properties:
-   compatible:
--    items:
--      - const: amlogic,meson-gx-ao-secure
--      - const: syscon
--
-+    oneOf:
-+      - items:
-+          - const: amlogic,meson-gx-ao-secure
-+          - const: syscon
-+      - items:
-+          - enum:
-+              - amlogic,a4-ao-secure
-+              - amlogic,c3-ao-secure
-+              - amlogic,s4-ao-secure
-+              - amlogic,t7-ao-secure
-+          - const: amlogic,meson-gx-ao-secure
-+          - const: syscon
-   reg:
-     maxItems: 1
+ static const struct meson_gx_package_id {
+@@ -76,6 +81,11 @@ static const struct meson_gx_package_id {
+ 	{ "S905X3", 0x2b, 0x10, 0x3f },
+ 	{ "S905D3", 0x2b, 0x30, 0x3f },
+ 	{ "A113L", 0x2c, 0x0, 0xf8 },
++	{ "S805X2", 0x37, 0x2, 0xf },
++	{ "C308L", 0x3d, 0x1, 0xf },
++	{ "A311D2", 0x36, 0x1, 0xf },
++	{ "A113X2", 0x3c, 0x1, 0xf },
++	{ "A113L2", 0x40, 0x1, 0xf },
+ };
  
+ static inline unsigned int socinfo_to_major(u32 socinfo)
 
 -- 
 2.37.1
