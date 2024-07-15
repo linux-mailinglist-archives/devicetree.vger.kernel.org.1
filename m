@@ -1,92 +1,137 @@
-Return-Path: <devicetree+bounces-85741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3705E9313F6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:18:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0620931446
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:32:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67CC81C225A2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:18:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A88571F22197
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CBA518A95A;
-	Mon, 15 Jul 2024 12:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YK25P6Dw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBBA18C333;
+	Mon, 15 Jul 2024 12:32:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699E21465B8;
-	Mon, 15 Jul 2024 12:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C694186E30;
+	Mon, 15 Jul 2024 12:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721045864; cv=none; b=YSnU3hhJaA26zzHE7209xa3s4IvA5cZ1hYFfbwecNJNFnPIczs0N1JwAyUbM/SjrHkMtR8DzEaaw08E3xD1dRpl0ml6zrd26978lgF9C6NptkvOOcIQbTQrs7AAVQ2B0blbcw8wjLlWoSNFJDVyjiyqGKF3zEFTPwio2mmSMKkw=
+	t=1721046721; cv=none; b=MEKzXhQe49vLcDDfsHQqOjTz9nLGPLaL08GPehlS6UeEn/hch3J4awVcQnoKrNg4yhNp5meTZbUMIz0yf8lBRx0pDm/RQ7AVyoSJdeKAD9KBmxv4QS0ClVcxaD5GX7tp0vyxeNcg3rmkzHNAvwDxNKtnYtPeetnZFZMvsSbRGbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721045864; c=relaxed/simple;
-	bh=uCJLkcwDXyYOQxbRIMSEE+HcgfmMo2augGT7JD3amXY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hue0QjM/66DsU23OGuDw91PDEBrwWhqPHm/nHN2FY8OF1kMfSd50q0nuyn45gVR0S79Y5q+ZjVc7iVBY4CzhGS2WKhstUh5BquZN+FD/vr71XmXoZ9aLX+vOueG7KhjF7yjcYQbDpvqqnC+XoTv00Po8OJbceOjVJDkhBQGUbL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YK25P6Dw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF5E4C32782;
-	Mon, 15 Jul 2024 12:17:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721045863;
-	bh=uCJLkcwDXyYOQxbRIMSEE+HcgfmMo2augGT7JD3amXY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YK25P6DwQ38slp4Xm5FuFT9bxBatFQVlAPCI+40+ivQ+GocnyGfz9fUkmHVcQzGre
-	 de0KiGh5aZp4hEkSqgZh1m5AepsnXGvNlGni3pdK5ygCVXK3jmud2WBCPb6gtb3Tdk
-	 vyTI1VI7NLeiECHZy4nKKUGBd3Gu2SA2bAwtG5xHfRr/7hrpNfSRCPHDiXVIBl9UpK
-	 bNb0z6HaGbIDVPsyyXS2EDoefB1ES8v7aTYYuoMHx5mkkVZWvvi2yW0SescCmtHj40
-	 0JsS7IW4lIc2nFRXyn5+6EO3SydTaXVCIqvuhRoqox3tXcIBnIdr5SSEibcxE8aTWC
-	 b6yvjya+TJOOw==
-Date: Mon, 15 Jul 2024 06:17:42 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: linux-hwmon@vger.kernel.org, conor+dt@kernel.org, linux@roeck-us.net,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	krzk+dt@kernel.org, ukleinek@kernel.org, devicetree@vger.kernel.org,
-	jdelvare@suse.com
-Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
-Message-ID: <172104586129.3775717.7588578554384809361.robh@kernel.org>
-References: <20240711234614.3104839-1-chris.packham@alliedtelesis.co.nz>
- <20240711234614.3104839-2-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1721046721; c=relaxed/simple;
+	bh=uExxKmaksB2mFMJAkbUpvSbkLK+5TndD1H/wyDnC+28=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NKD2+Db6Bk14oKEEltuaB0CcQ1kxvcXsCeNe3LJPI8R7IULtnBj2mj0d0++8uqUNGPrM0UTHNvH+Ruq+75LYCekVTOR+jYGApENnr7H/Jfn4WFTwIFJ1QUS8peAcfFQ7mlwE2iHuGESPIAUaRTWbPWtuID0ZNYTDzKctHYt4maI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id F0BDF20B8A;
+	Mon, 15 Jul 2024 14:22:13 +0200 (CEST)
+Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id E804B2021F;
+	Mon, 15 Jul 2024 14:22:13 +0200 (CEST)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v6 0/6] HDMI TX support in msm8998
+Date: Mon, 15 Jul 2024 14:21:13 +0200
+Message-Id: <20240715-hdmi-tx-v6-0-d27f029627ad@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711234614.3104839-2-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADkUlWYC/2XOu47CMBCF4VdBrpmVr2NMxXusKHwZExcQ5ERRV
+ ijvjpOGrCiPNN+vebGBaqGBnQ8vVmkqQ+kfbeDxwGLnHzeCktpmkkvNkSN06V5gnIFzohPZlIK
+ PrF0/K+Uyb6Xfa9u59ncYu0p+817GIKTj4IgL0EIhOOMkRNLKBcEdBrzkShT6+SfXtdiVYezr3
+ /bapNbu9xeTgpZMNlPApFDbfWN9Y9I7KNQH6ga1z8KSxhM69wXNDkr7gaZBZUwyUeQQVfwHl2V
+ 5A9LV6LpTAQAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>, 
+ Pierre-Hugues Husson <phhusson@freebox.fr>, 
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, Marc Gonzalez <mgonzalez@freebox.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.13.0
 
+DT bits required for HDMI TX support in qcom APQ8098 (MSM8998 cousin)
 
-On Fri, 12 Jul 2024 11:46:12 +1200, Chris Packham wrote:
-> Add fan child nodes that allow describing the connections for the
-> ADT7475 to the fans it controls. This also allows setting some
-> initial values for the pwm duty cycle and frequency.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v5:
->     - Use nanoseconds for PWM frequency and duty cycle as per existing
->       conventions for PWMs
->     - Set flags to 0 in example to match adi,pwm-active-state setting
->     Changes in v4:
->     - 0 is not a valid frequency value
->     Changes in v3:
->     - Use the pwm provider/consumer bindings
->     Changes in v2:
->     - Document 0 as a valid value (leaves hardware as-is)
-> 
->  .../devicetree/bindings/hwmon/adt7475.yaml    | 35 ++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
-> 
+---
+Changes in v6:
+- Fold HDMI PHY driver submission into this series
+  => [PATCH v2] drm/msm: add msm8998 hdmi phy/pll support
+  => Link to v2: https://lore.kernel.org/all/20240704-hdmi-phy-v2-1-a7f5af202cb5@freebox.fr/
+     - Rebase onto v6.10
+     - Move drivers/gpu/drm/msm/hdmi/hdmi.xml.h to drivers/gpu/drm/msm/registers/display/hdmi.xml
+     - Add copyright attribution
+     - Remove all dead/debug/temporary code
+  => Link to v1: https://lore.kernel.org/all/63337d63-67ef-4499-8a24-5f6e9285c36b@freebox.fr/
+- split HDMI PHY driver patch in 2 parts (PHY & TX)
+- Use same regulator names as msm8996 (Dmitry)
+- Remove printk statements
+- Add Vinod's Ack on patch 1
+- Expand commit message on patch 4 = HDMI PHY driver
+- Link to v5: https://lore.kernel.org/r/20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Changes in v5:
+- Fix property & property-names for TX pinctrl in DTSI (Konrad)
+- NOT CHANGED: clock trees for TX & PHY based on Dmitry & Jeffrey's remarks
+- Link to v4: https://lore.kernel.org/r/20240613-hdmi-tx-v4-0-4af17e468699@freebox.fr
+
+Changes in v4:
+- Collect tags since v3
+- Reword patch 1 subject (Vinod)
+- Link to v3: https://lore.kernel.org/r/20240606-hdmi-tx-v3-0-9d7feb6d3647@freebox.fr
+
+Changes in v3
+- Address Rob's comments on patch 2:
+  - 'maxItems: 5' for clocks in the 8996 if/then schema
+  - match the order of 8996 for the clock-names in common
+
+---
+Arnaud Vrac (2):
+      drm/msm: add msm8998 hdmi phy/pll support
+      arm64: dts: qcom: add HDMI nodes for msm8998
+
+Marc Gonzalez (4):
+      dt-bindings: phy: add qcom,hdmi-phy-8998
+      dt-bindings: display/msm: hdmi: add qcom,hdmi-tx-8998
+      drm/msm/hdmi: add "qcom,hdmi-tx-8998" compatible
+      arm64: dts: qcom: msm8998: add HDMI GPIOs
+
+ .../devicetree/bindings/display/msm/hdmi.yaml      |  28 +-
+ .../devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml |   1 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              | 128 +++-
+ drivers/gpu/drm/msm/Makefile                       |   1 +
+ drivers/gpu/drm/msm/hdmi/hdmi.c                    |   1 +
+ drivers/gpu/drm/msm/hdmi/hdmi.h                    |   8 +
+ drivers/gpu/drm/msm/hdmi/hdmi_phy.c                |   5 +
+ drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c           | 779 +++++++++++++++++++++
+ drivers/gpu/drm/msm/registers/display/hdmi.xml     |  89 +++
+ 9 files changed, 1037 insertions(+), 3 deletions(-)
+---
+base-commit: f832eca10adfb75be6b23d32e0baaf28da034f78
+change-id: 20240606-hdmi-tx-00ee8e7ddbac
+
+Best regards,
+-- 
+Marc Gonzalez <mgonzalez@freebox.fr>
 
 
