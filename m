@@ -1,293 +1,263 @@
-Return-Path: <devicetree+bounces-85676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18C593102B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 10:41:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B54F931087
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 10:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F201B216E8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 08:41:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB431282684
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 08:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F14186E41;
-	Mon, 15 Jul 2024 08:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D047F18734D;
+	Mon, 15 Jul 2024 08:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XAUxTl//"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nK96ecL6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117FC1862B6;
-	Mon, 15 Jul 2024 08:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E98A187344;
+	Mon, 15 Jul 2024 08:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721032805; cv=none; b=HIojMgNME80XR5JUgTL1INPdjVCiGwadh2klkOM1Q1rC2nHpEAU+LgXWyCu7NLsOza4KJiyWbp4CkOSYyWVovix+nsp2Qb6rvO7yuXl1IZ35D/+iYfHrhnaqqidNwHR5nnZQoVDMTAxWrqtLgR/BrRH4CQh6MqbBEYOmpCN3ydQ=
+	t=1721033086; cv=none; b=jyQHVaTjTUw352bT3lGSjI2iGmKblo6ZDZRaC1sGO59NRB8vUaMEqhpY/JbhJsyWgWBSyRkUIBDyS7PaQ6h1COnMOfSOODlYwR4EB28UJC6I52knej1gqqr7PnhVIFLRbqGBXINkiuj+qzijw6bFT7fOgkazLLaCfrYyoMHKv4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721032805; c=relaxed/simple;
-	bh=x7BxdGgJ0U0mHEgMxgDgf2RjNXA78MPl57QnfuroRFQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RRxYS17V/exwUHClk1kxI1FDALDuz9M6y8SMA1qO1JAM5TknX7CKfKnRgZXCgABMH987cZ5CcOtDGyVvls+v8cqzO8pFVpUCWbSijr/pJvz381x2o49kkLa+100MPycxknKCKlfi1lLyuVAIIWe6UdiL6SSayw2mSoriM3gWLjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XAUxTl//; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CB8FAC4AF55;
-	Mon, 15 Jul 2024 08:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721032804;
-	bh=x7BxdGgJ0U0mHEgMxgDgf2RjNXA78MPl57QnfuroRFQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XAUxTl//5CvQQ/oJXNRhL2Zc75FRG+EyMLdJfPgSJYjCQbTS5BbGRLZZL9LgS2UAX
-	 AQD37XcmDJGLJ7e/f1RjOfbycm1MJ2RtDiqt9Hk91nSJHd1rPb2nq9ZvAbh6YF1JUb
-	 3I1iDYo8zwwTS4e0vhmuJ+dE8Wd6uWeJENn8+RlSSGDO4hWehW+4In2kQjvOsxTKIi
-	 8IGzCLVbKTYmCx48D8Z1vX/ZCkU8Lq6Jvjqvw6Oe7kflLcW23u4FkNJJayZcW/swtQ
-	 KL3S+OQg0O3jpkjppEZod+F6eBWt4qHP/yDwRHZPrt+6iQwTdkD6lFEVy2sTneFbfV
-	 yfR1vIef1+I6w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C281FC3DA5B;
-	Mon, 15 Jul 2024 08:40:04 +0000 (UTC)
-From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 15 Jul 2024 11:38:35 +0300
-Subject: [PATCH v11 31/38] ARM: dts: ep93xx: Add EDB9302 DT
+	s=arc-20240116; t=1721033086; c=relaxed/simple;
+	bh=i4yD1gZFJr7CqfdBUlA+o7O+9Bb5ZpvRLIn3wKoeVsw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b/JizV8eaH7JRdNROQWM/8cPAiykDM85kv48bDEcqMrEQp7qzRdAiTUiqdv3xI+vLT/TS0eThCf9FFZOHb83VmZNMNWRp+WBzW4WSN0UAuwowXPjAUXV9m8paL8YbgHdBntJpwSiqtMHVUuBe57cF9GtIE2l+s2MNroPBq/Svbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nK96ecL6; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4f2f39829a9so1399805e0c.2;
+        Mon, 15 Jul 2024 01:44:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721033084; x=1721637884; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hgTjx1S0gPDJQLRjGbMZdaL2/PHzlmKPyNwLkSk+q54=;
+        b=nK96ecL6x9n3wUgV3k3KWiOm73Fib3Z/616idJ+JiollUUDB23WFMr0lJqN1QRfrjK
+         vsTs3CANkSyQ12yiXgQlqxtQW3IN7HEIAzwwzTWCFGl99gt6xd3qwDWJMzIBFcdBULtv
+         8vjmKjw+AmgQLQtS0cjDZIARHRsIIHhyPmiZ18HyevMnU4o1z9/cdAjBtrFPVio4DhZ/
+         qokNQuz/1192Uyz7ISM/hLBGSBBXXsDzmfrWZ7+GfCBOMiewDpjvsYZlDmwWXJBUOjKm
+         0cXBXEKaEeCDUjfu1ZPQ7Tx+GZ6NKJQxk8XWkCXQH+VVs0gZ7ffIFwa4/PqyTgHp9jJZ
+         K0sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721033084; x=1721637884;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hgTjx1S0gPDJQLRjGbMZdaL2/PHzlmKPyNwLkSk+q54=;
+        b=vzwb52cN/ZhDn5c6jpMJFLImzWP631OK7NWJl8NCD6Rd7X3ETgvI4my6JxS6tXZ/Iq
+         AZRNhotnHj/4iQJ0pZuaAPP5zPS1/BUl8PLG2v+dNQpb4s08Vo7csKoDOBIW8q4jjSUf
+         TbCX8Pb9yrAe2CWUQoyg/swUkj+glknC87dmG6b/sq9EzeK88rNwlxVDcESgR7wHLeLV
+         dm5IHWwHx8RyPRPp3ulvFUx/Ss77iEAB9Y6H3wICUBh/6bKTsGOKYDBMvp/2Z3lyAQTT
+         yjDaVzPqtNiIKas6xXjYou7uDyJzQKXYAutQAQru07jx4lx7SXhUieBFfyF8CEj3nDYC
+         hXkA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4Wj69GOa+nYx0LSR2bN64XDP/v+yXZib9q6+4/wGigKHhQJxA8XWHSCK3fhzd/QJt0RwZ9WpI8IlmCzNypWu/n3f76QFr1KYB9qRpPef11WlRIeTJaIlj/DQu+lKj9H+pqJ+xMWiJnmYuX3i2pVmt/sxGHN9009XCL12JS5eUKY3c1FW2Tm6TfXJOw15QkzTn5Xgr2rpb/nkVH8hk2LU7BH1ctp/+
+X-Gm-Message-State: AOJu0YyW7g2I5QjCZeZkK/qzqWNYl0jRuI5Fnto3jxd6gg0q8jKPhQk1
+	xAZ5IwifdJzhbK5MeZvWxwYfatvQduDNPjNL4EGZERbLBDftqH0AtonmOoEkRjlCW96kSASZ/pR
+	zKnzCqKtHtut5QApA6B92xZgBcFmTPJnnDOU=
+X-Google-Smtp-Source: AGHT+IFmi0cLv6M0EbxWLmzPMdPpe7qghgEQdEXkjBOnZqxsiaAxR4k53lGNPsCvNE4L3o6Yad4axhopYwcFpOjPmv0=
+X-Received: by 2002:a05:6122:2981:b0:4f2:ea44:fd14 with SMTP id
+ 71dfb90a1353d-4f33f18e2e5mr22374157e0c.2.1721033083797; Mon, 15 Jul 2024
+ 01:44:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240715-ep93xx-v11-31-4e924efda795@maquefel.me>
-References: <20240715-ep93xx-v11-0-4e924efda795@maquefel.me>
-In-Reply-To: <20240715-ep93xx-v11-0-4e924efda795@maquefel.me>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1721032799; l=4425;
- i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=1fX8TbERg73yR+bhzVLpudoqqqV75gQ9Bv/zyZTclIA=;
- b=VJKCkHYVFhpNK/ss05yuNI7XpmWeK9ad6aHose0NzFLzJLy2JqjpDZAnm9Sk+xedDTl5ifmQlDTV
- TTg0GslPCIgjAP/8lVVjs3285rhLpNyapJ/RyUvmRo3+Crr5L+VM
-X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
- pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
-X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
- with auth_id=65
-X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
-Reply-To: nikita.shubin@maquefel.me
+References: <20240627161315.98143-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240627161315.98143-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdVLSpaUtdXFv3VXFc5G61dmRX2C1iW9C+km23g6EgZJOg@mail.gmail.com>
+ <CA+V-a8vABF6vg+J7DAGzgnw8612oe6VfJkc5y-krySvnpAnPkQ@mail.gmail.com>
+ <CAMuHMdXuyQZ=SFfQa5kvZTwYa0uRXc7khJ-vOYBRE5SCd11rPw@mail.gmail.com>
+ <CA+V-a8ui9AKDOZzg_dgPXeGhGE-+rBHU8O1tpdb8w8myo-1p5Q@mail.gmail.com> <CAMuHMdVyqBmipMLeYd0nw3kEHwc=RvWJvrD8EYKVt+36E7oS+A@mail.gmail.com>
+In-Reply-To: <CAMuHMdVyqBmipMLeYd0nw3kEHwc=RvWJvrD8EYKVt+36E7oS+A@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 15 Jul 2024 09:43:10 +0100
+Message-ID: <CA+V-a8u_oMxG8QmmK=_y8z6O_H-22SyCkje-VrQVqHn4H=5oow@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] clk: renesas: Add family-specific clock driver for RZ/V2H(P)
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Hi Geert,
 
-Add device tree for Cirrus EDB9302.
+On Fri, Jul 12, 2024 at 6:11=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Jul 12, 2024 at 5:29=E2=80=AFPM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> > On Fri, Jul 12, 2024 at 4:23=E2=80=AFPM Geert Uytterhoeven <geert@linux=
+-m68k.org> wrote:
+> > > On Fri, Jul 12, 2024 at 5:14=E2=80=AFPM Lad, Prabhakar
+> > > <prabhakar.csengg@gmail.com> wrote:
+> > > > On Fri, Jul 12, 2024 at 12:59=E2=80=AFPM Geert Uytterhoeven
+> > > > > On Thu, Jun 27, 2024 at 6:14=E2=80=AFPM Prabhakar <prabhakar.csen=
+gg@gmail.com> wrote:
+> > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > >
+> > > > > > Add family-specific clock driver for RZ/V2H(P) SoCs.
+> > > > > >
+> > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renes=
+as.com>
+> > > > > > ---
+> > > > > > v2->v3
+> > > > > > - Dropped num_hw_resets from struct rzv2h_cpg_priv
+> > > > > > - Dropped range_check for module clocks
+> > > > > > - Made mon_index to s8 instead of u8 in struct rzv2h_mod_clk
+> > > > > > - Added support for critical module clocks with DEF_MOD_CRITICA=
+L
+> > > > > > - Added check for mon_index in rzv2h_mod_clock_endisable and
+> > > > > >   rzv2h_mod_clock_is_enabled()
+> > >
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/clk/renesas/rzv2h-cpg.h
+> > >
+> > > > > > +/**
+> > > > > > + * struct rzv2h_reset - Reset definitions
+> > > > > > + *
+> > > > > > + * @reset_index: reset register index
+> > > > > > + * @reset_bit: reset bit
+> > > > > > + * @mon_index: monitor register index
+> > > > > > + * @mon_bit: monitor bit
+> > > > > > + */
+> > > > > > +struct rzv2h_reset {
+> > > > > > +       u8 reset_index;
+> > > > > > +       u8 reset_bit;
+> > > > > > +       u8 mon_index;
+> > > > > > +       u8 mon_bit;
+> > > > > > +};
+> > > > > > +
+> > > > > > +#define RST_ID(x, y)   ((((x) * 16)) + (y))
+> > > > > > +
+> > > > > > +#define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monb=
+it)      \
+> > > > > > +       [_id] =3D { \
+> > > > >
+> > > > > Indexing by _id means the reset array will be very sparse.  E.g. =
+the
+> > > > > innocent-looking r9a09g057_resets[] with only a single entry take=
+s
+> > > > > 600 bytes.
+> > > > >
+> > > > > If you do need the full array for indexing, please allocate and
+> > > > > populate it at runtime.
+> > > > >
+> > > > OK, I will use the radix tree for resets (is that OK)?
+> > >
+> > > You mean XArray? include/linux/radix-tree.h has:
+> > >
+> > >     /* Keep unconverted code working */
+> > >     #define radix_tree_root         xarray
+> > >     #define radix_tree_node         xa_node
+> > >
+> > Yes, I meant the above.
+> >
+> > > Given a single xa_node is already 576 bytes, just allocating the full
+> > > linear reset array at runtime is probably better.
+> > >
+> > Agreed, I will create a linear reset array and loop through the array
+> > based on reset index and reset bit to match with id whenever required.
+>
+> With a full allocated linear reset array you do not need to loop,
+> but you can just index it by the reset ID??
+>
+Instead of having a sparse array, to save memory I was thinking
+something like below:
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
----
- arch/arm/boot/dts/cirrus/Makefile           |   1 +
- arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 181 ++++++++++++++++++++++++++++
- 2 files changed, 182 insertions(+)
+/**
+ * struct rzv2h_reset - Reset definitions
+ *
+ * @reset_index: reset register index
+ * @reset_bit: reset bit
+ * @mon_index: monitor register index
+ * @mon_bit: monitor bit
+ */
+struct rzv2h_reset {
+    u8 reset_index;
+    u8 reset_bit;
+    u8 mon_index;
+    u8 mon_bit;
+};
 
-diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index 211a7e2f2115..e6015983e464 100644
---- a/arch/arm/boot/dts/cirrus/Makefile
-+++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-edb9302.dtb \
- 	ep93xx-bk3.dtb \
- 	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..0bf10086f969
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-@@ -0,0 +1,181 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x0000000 0x800000>,
-+		      <0x1000000 0x800000>,
-+		      <0x4000000 0x800000>,
-+		      <0x5000000 0x800000>;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card2";
-+		label = "EDB93XX";
-+		links = <&i2s_port>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	flash@60000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x60000000 0x1000000>;
-+		bank-width = <2>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&syscon 0 153 1>,
-+		      <&syscon 1 152 1>,
-+		      <&syscon 2 151 1>,
-+		      <&syscon 3 148 1>,
-+		      <&syscon 4 147 1>,
-+		      <&syscon 5 146 1>,
-+		      <&syscon 6 145 1>,
-+		      <&syscon 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&syscon 0 143 1>,
-+		      <&syscon 1 142 1>,
-+		      <&syscon 2 141 1>,
-+		      <&syscon 3 140 1>,
-+		      <&syscon 4 165 1>,
-+		      <&syscon 5 164 1>,
-+		      <&syscon 6 163 1>,
-+		      <&syscon 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&syscon 0 115 1>;
-+};
-+
-+/* edb9302 doesn't have GPIO Port D present */
-+&gpio3 {
-+	status = "disabled";
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&syscon 0 97 2>;
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&syscon 1 170 1>,
-+		      <&syscon 2 169 1>,
-+		      <&syscon 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&syscon 0 87 2>;
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&syscon 2 199 4>;
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	status = "okay";
-+	i2s_port: port {
-+		i2s_ep: endpoint {
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			mclk-fs = <256>;
-+			dai-format = "i2s";
-+			convert-channels = <2>;
-+			convert-sample-format = "s32_le";
-+			remote-endpoint = <&codec_ep>;
-+		};
-+	};
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	dmas = <&dma1 10 2>, <&dma1 10 1>;
-+	dma-names = "rx", "tx";
-+	status = "okay";
-+
-+	cs4271: codec@0 {
-+		compatible = "cirrus,cs4271";
-+		reg = <0>;
-+		#sound-dai-cells = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpio = <&gpio0 1 GPIO_ACTIVE_LOW>;
-+		port {
-+			codec_ep: endpoint {
-+				remote-endpoint = <&i2s_ep>;
-+			};
-+		};
-+	};
-+
-+	at25f1024: eeprom@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		size = <0x20000>;
-+		pagesize = <256>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
+#define DEF_RST_BASE(_resindex, _resbit, _monindex, _monbit)    \
+    { \
+        .reset_index =3D (_resindex), \
+        .reset_bit =3D (_resbit), \
+        .mon_index =3D (_monindex), \
+        .mon_bit =3D (_monbit), \
+    }
 
--- 
-2.43.2
+#define DEF_RST(_resindex, _resbit, _monindex, _monbit)    \
+    DEF_RST_BASE(_resindex, _resbit, _monindex, _monbit)
 
 
+in rzv2h_cpg_probe() (.num_resets =3D ARRAY_SIZE(r9a09g057_resets))
+
+    resets =3D devm_kmalloc_array(dev, info->num_resets, sizeof(struct
+rzv2h_reset), GFP_KERNEL);
+    if (!resets)
+        return -ENOMEM;
+
+    for (i =3D 0; i < priv->num_resets; i++)
+        memcpy(&resets[i], &info->resets[i], sizeof(struct rzv2h_reset));
+
+And have the below xlate function that will convert id into index ie
+index into rests array.
+
+static int rzv2h_get_reset_index(struct rzv2h_cpg_priv *priv,
+                 unsigned long id)
+{
+    u8 reset_index =3D id / 16;
+    u8 reset_bit =3D id % 16;
+    unsigned int i;
+
+    for (i =3D 0; i < priv->num_resets; i++) {
+        if (priv->resets[i].reset_index =3D=3D reset_index &&
+            priv->resets[i].reset_bit =3D=3D reset_bit)
+            return i;
+    }
+
+    return -EINVAL;
+}
+
+static int rzv2h_cpg_reset_xlate(struct reset_controller_dev *rcdev,
+                 const struct of_phandle_args *reset_spec)
+{
+    struct rzv2h_cpg_priv *priv =3D rcdev_to_priv(rcdev);
+    unsigned int id =3D reset_spec->args[0];
+    int index =3D rzv2h_get_reset_index(priv, id);
+
+    if (index < 0) {
+        dev_err(rcdev->dev, "Invalid reset index %u\n", id);
+        return -EINVAL;
+    }
+
+    return index;
+}
+
+
+rzv2h_cpg_assert() and rzv2h_cpg_deassert() which will use an id that
+can directly index into resets[] array.
+
+Please let me know if this is OK.
+
+Cheers,
+Prabhakar
 
