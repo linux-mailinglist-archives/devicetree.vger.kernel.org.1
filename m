@@ -1,134 +1,134 @@
-Return-Path: <devicetree+bounces-85838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEEDC9318BF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 18:47:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 271FB931912
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 881281F227F4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 16:47:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3E40B21429
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A9F25761;
-	Mon, 15 Jul 2024 16:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE5E446AF;
+	Mon, 15 Jul 2024 17:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nChWDdjQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VbeV1cf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89CF5219ED;
-	Mon, 15 Jul 2024 16:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB1D1CAB8;
+	Mon, 15 Jul 2024 17:17:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721062010; cv=none; b=Sng15hTj5z+OFWswOWCo3drc6x0xcBj/Me+MlGszDz/QuyA1aIvDbs8hpmz3KOvVxDyckQ7bYxdGST/9Q+Sbc8QAoitBId42IDLph9kr2JCiuHYdIGs2aOXuJOzZeZDo+U1JiFJvFTb1DQFiuIecb6WwPVjLi6aTi2T3n2/Q3OU=
+	t=1721063863; cv=none; b=KL+t/zQTByrxoaDUY7RU95NSZp4+3JLJ7beBJgzOte5UAe0UZH4uambYwVHLV1vbR/EeQtc0baI0gQpnzYmZuatjvAVv1ZxD5cLXpmJ4FeN96RqOzodnNCt1K9qXoxymrV2hXWakKWnuF9KFke4fgS5NErpFbXAFsX0TiKMNXQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721062010; c=relaxed/simple;
-	bh=yy9gl9pQz3F5fgfnipmdtFV0zJl13QipSJnEg+3xNDo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RapbzH/TZGD2VZ0mMpaotkbtABIM8On0ucSUb5G2aNe0K9pRvU5R2kow++ji/9Qb37cdDUX6L0JIB4zjUEpDLG6je8woz+fBOeGFgoUlaiYNZWgLbowVRDXaLVEK/pmVpHlx1Gpb9pII/WmEBb+r/yEiaCd/hsKKCHZFvp4fEis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nChWDdjQ; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1721063863; c=relaxed/simple;
+	bh=CP6B4FU5BGjNfFAyX0bA+ci8+6cdVqSIN9JoOei1234=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gffu+fYqGhIFbrsBt9fq4On5YtHaSD0nCqX/zJ2nCiAzpwmrTUpRXkbAASXqn1eE9MoDGygHTGOJgp5FXglBaEKtjXdU5jywnTB6bgsuDDvb6gUh14OM0nrCG2ERo4jmm1DKkImXU2YMiIMud1aeAcz7N9DyAnMiYLPDSMFyt9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VbeV1cf9; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52ea33671ffso4588976e87.3;
-        Mon, 15 Jul 2024 09:46:48 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-426717a2d12so27319395e9.0;
+        Mon, 15 Jul 2024 10:17:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721062007; x=1721666807; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wXLPtmmwbw0kH9maBt8kI0QUZhZ3U60BovT7L6yY3xs=;
-        b=nChWDdjQHkPTo0nhrHAyVU9Opg/2lM2TjwWUMFFcoM/ebvpt6gjlXX4ZBGctgxomA9
-         YRYCm+md1R3R9qFvlAJgDwasHyErgrzyPp9k60I9kbHX2D8l5PSBpb8pd1YoZ2yBYrHm
-         R1OmANjV8xOMyccYMuWE9APD6UTTRaI1WB5mkQauQczvljEVZcQ07zWVsmtIYqXgos/L
-         wGUsERH4PhwZXXgUisrmprteXcmIjO82pwHnKER9HVybkis7EFdZZrVuMSjBril+wOVV
-         hm+zhGmsJdh5vVlNXTNlRMFwxmV9aLDae6QGD/Hc+KROqwhb5EHFuQgd7SXghK9gf8BH
-         lacQ==
+        d=gmail.com; s=20230601; t=1721063860; x=1721668660; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MjxPI2IrTb4z07FeQySRDzHxyzHoRNB1TeL6fAKGl10=;
+        b=VbeV1cf9gAavSn8Hw3+D5gStKa9lZRF2NO+fQtfAkQ9DWbj8RmTaMEQXqTLu0Tj2hW
+         RCf+MOLm4rJDHtYjKC0NY0cP7joKsqeueYvtsWOlU5RfofoQ3eivwznmVWTHebZfI/ex
+         A7ngFf0Kryuo9ibPWrwLT160bU27ZiBuiQP92ZFoi19n64+OauSo7Yo/8VkR6Y17UlBz
+         Nt7R+UcYy9trMooeDqdjDsRcR5TxOldSzqRfhUyLHVhHP8M8ZIoqtW5qeXTmFAxSoXtr
+         5MQE/2bjNkuVw5CcTLdev9wireuSwol+50E4dmwncgOd1gfJ8roKZUTFo2eDyIOMAVl8
+         O9ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721062007; x=1721666807;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wXLPtmmwbw0kH9maBt8kI0QUZhZ3U60BovT7L6yY3xs=;
-        b=tsoivWyZejPJd0vyAKimgJ/S48LUYF7Nol5cBQKqn8MiVr4PapdhMRxE5qEb/7g9d0
-         OUY1IZvb677WLidHoAh1/njom1/E/Q4o5gfgYHi4ZAaaa9Jwaqjd4JsJ1yovQruKMBVD
-         WH+ekRhUtxh5wOD4B4tV+A0uou5VeMCYBSCbWxJVjIMoG9KiALuBuRZKErMX2NgeG550
-         kCOgPAnVVdENefQtGbLbx5y8X4EjW05hwo/EmBaGbFrpFmvOXMLTSjomPsvL9GRL6Z5s
-         VK9/FzwclM+hie0Z1jJLPJUaO8J8h0IschecianC2JaohXQ7eBsZS5TrEDgz8bImnFOM
-         xEXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQClTvdbIcdHph9zUvcMPq+/7M54PTH9gZJTRdIHqVxCM7Xo6wRaHcm9UQenwmMOgNzE4KLfBc0aYuQz8y+ffWvF4RdHT65ncykn+B
-X-Gm-Message-State: AOJu0YzRJch9JJ7WLyum59hztxT0FcX0gFL74SNQFtqzwBwFqoIxhhVx
-	2Zj89hCD4Qm45nkb3lhtrmUC1KFO4N6h9Xkd+6udZ8CGZVWEOTuN
-X-Google-Smtp-Source: AGHT+IG72IQ0ziiaJH2CaciU0vlZKlLL8khi4i7uyxWcd0QoI/uPAG9YPE4h/aM4tCxzi/2HTELIUg==
-X-Received: by 2002:a05:6512:e9b:b0:52c:dfa0:dca0 with SMTP id 2adb3069b0e04-52ede1c782amr51714e87.43.1721062006412;
-        Mon, 15 Jul 2024 09:46:46 -0700 (PDT)
-Received: from playground.localdomain ([188.25.209.252])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5e7749esm94316975e9.2.2024.07.15.09.46.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jul 2024 09:46:45 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liu Ying <victor.liu@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: imx8ulp: add AVD-SIM node
-Date: Mon, 15 Jul 2024 12:45:14 -0400
-Message-Id: <20240715164514.8718-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240715164514.8718-1-laurentiumihalcea111@gmail.com>
-References: <20240715164514.8718-1-laurentiumihalcea111@gmail.com>
+        d=1e100.net; s=20230601; t=1721063860; x=1721668660;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MjxPI2IrTb4z07FeQySRDzHxyzHoRNB1TeL6fAKGl10=;
+        b=aJwc8NJQFXjreu4f6FJ+GFSQTPIMOJeX1aT6XmZaue33IBZ8MzZqdp10wYZs0hYg2z
+         3zK3a/Dz6n7TjsvPvuN4T4wD1sCJtf1inTO0YOHhzZXx4iiF1RznddesyG0Tg6nl6roW
+         nWJhV/kPjHImqcHy6SqP9W/FGXcisNhusrvB4bL/nWidTBqBX9t18WyLoMdVD+BaT5Cc
+         RdykACXSWUbQkU1bN3HRsU81WggtCciYwB1gr6VjM4DGu92aa99t8GZ87cTtGKk65A/6
+         7qY9GxbeK3SHaEwJgbsrmglOGyeCFJ9RwYecnk/w9oOvXFsMphV5NDjWaARELPvYdmk3
+         NJig==
+X-Forwarded-Encrypted: i=1; AJvYcCW6MZDB9plyQiRnWZ4XWdRE9ABgrIS9OI6pYMtIkqnPLAU+Zr4Y/rbcDCbdGCdSFb++cmy9d/n7cPCY+UsKtN+1JSV00wxtpMCMdg57Io00rc1wkNIJWyrIgAXv0fJ7O4z0Oa2Dz2D/n/IEpZXO64RYEbS8px87xA46JVC2qOWUmv5qfw==
+X-Gm-Message-State: AOJu0Yy2NjVly1krxyGgfuEzl2Pjycm0XyowfHzU7GMf5fLMxSQL8aD9
+	tzzZ7iPWtSI0NDqYs2Ji+hC1ZJIrOa9fE3hKpcOcbKRg1N1MwM6i
+X-Google-Smtp-Source: AGHT+IFqEW/LLAqwLYOFV74GlOVCXhMKMLkfWBKyKAWoVPNP3SV07U+FqTRK+n4nkLwdD9DzGgf5+Q==
+X-Received: by 2002:a05:600c:4f93:b0:426:5fa7:b495 with SMTP id 5b1f17b1804b1-427b8681f44mr5676885e9.15.1721063860347;
+        Mon, 15 Jul 2024 10:17:40 -0700 (PDT)
+Received: from [10.100.30.87] ([37.110.219.91])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427b6133e73sm23604075e9.48.2024.07.15.10.17.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jul 2024 10:17:40 -0700 (PDT)
+Message-ID: <68a25946-247d-4351-b847-35605220b16f@gmail.com>
+Date: Mon, 15 Jul 2024 18:17:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 9/9] iio: adc: ad7173: Add support for AD411x devices
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240607-ad4111-v7-0-97e3855900a0@analog.com>
+ <20240607-ad4111-v7-9-97e3855900a0@analog.com>
+ <e48b2dee-11d2-4dbc-868d-10870e3c07dd@linaro.org>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <e48b2dee-11d2-4dbc-868d-10870e3c07dd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On 13/07/2024 11:12, Krzysztof Kozlowski wrote:
+> On 07/06/2024 16:53, Dumitru Ceclan via B4 Relay wrote:
+>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>>
+>> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
+>>
+>> The AD411X family encompasses a series of low power, low noise, 24-bit,
+>> sigma-delta analog-to-digital converters that offer a versatile range of
+>> specifications.
+>>
+>> This family of ADCs integrates an analog front end suitable for processing
+>> both fully differential and single-ended, bipolar voltage inputs
+>> addressing a wide array of industrial and instrumentation requirements.
+>>
+>> - All ADCs have inputs with a precision voltage divider with a division
+>>   ratio of 10.
+>> - AD4116 has 5 low level inputs without a voltage divider.
+>> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
+>>   shunt resistor.
+> 
+> Please run scripts/checkpatch.pl and fix reported warnings. Then please
+> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+> Some warnings can be ignored, especially from --strict run, but the code
+> here looks like it needs a fix. Feel free to get in touch if the warning
+> is not clear.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Add node for imx8ulp's AVD-SIM module. This also
-includes its children.
+I do not get any warnings, only checks
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index e32d5afcf4a9..1ffa4da23042 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -614,6 +614,19 @@ per_bridge5: bus@2d800000 {
- 			#size-cells = <1>;
- 			ranges;
- 
-+			avd_sim: syscon@2da50000 {
-+				compatible = "nxp,imx8ulp-avd-sim-reset", "syscon";
-+				reg = <0x2da50000 0x38>;
-+				clocks = <&pcc5 IMX8ULP_CLK_AVD_SIM>;
-+				#reset-cells = <1>;
-+
-+				mux: mux-controller {
-+					compatible = "mmio-mux";
-+					#mux-control-cells = <1>;
-+					mux-reg-masks = <0x8 0x00000200>;
-+				};
-+			};
-+
- 			cgc2: clock-controller@2da60000 {
- 				compatible = "fsl,imx8ulp-cgc2";
- 				reg = <0x2da60000 0x10000>;
--- 
-2.34.1
-
+If you meant the checks:
+- for the alignment check, i would only argue for struct_group(config_props that looks good
+- for unnecessary parentheses the compiler warning appears without the parentheses:
+      warning: suggest parentheses around comparison in operand of ‘!=’ [-Wparentheses]
 
