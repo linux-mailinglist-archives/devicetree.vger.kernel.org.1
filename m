@@ -1,272 +1,1238 @@
-Return-Path: <devicetree+bounces-85862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F609319CC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:48:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7186B9319E4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 19:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1196B1F21C7F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:48:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21378282CFE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8646D1B9;
-	Mon, 15 Jul 2024 17:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596A455896;
+	Mon, 15 Jul 2024 17:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="qx9b7V5k"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="U1nZRdDG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021080.outbound.protection.outlook.com [52.101.70.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E200D5589A;
-	Mon, 15 Jul 2024 17:47:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721065664; cv=fail; b=BhcS1AKYq+DP6uYYQ2JLzQlW9lVgi5zw8HB0ArJ4JgvDTQvkESUf+d27JMRlo4xQfDxnSwH9A8mVj7Fia5bA+gHS1qnvcYcj2zWfAsBZ21IJsCsFXVxZkBM56aYYI0JIhWa1ZXfoFC7v6iziSKh1yLXVcFxnk0c/pEOHQ3khLmo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721065664; c=relaxed/simple;
-	bh=UpRCLWz8GE0bQ0U/cO2JrWfIkUBAC6WVAKHm/0b6DLc=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=MNUu0w062q51CEDFCESDHtFa+fBlr5jE7pqUlQDkZ+xpzLi3cgQ8h9CnN0JyyAZrfz5tmx7nzGlt096FgeqN0DxqIwrGR1u0KB1NyH5DLnB0Bgj2RPWHjQc8AHOVOIXLpWOLwAXTDC/Ckauj0hA5OdUNk7ghyaP6XS/YEh5Re78=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=qx9b7V5k; arc=fail smtp.client-ip=52.101.70.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qRoziaaXzzaT08ZB1EAphlDie9oVjdkDfOI1uY7qv4tmKYyQuFczu5uPhjxsLvPpHk/WIsoRL90/E0gVvM7p8sEJgZD+nXKVakxPbs/2z1ABUA9/GsCTX++NX2kgx/pKPTgcgwydRONpt1BmvU6CVlyDTKYsPnqM6pRnjN5RbIkKqdlhwFDQ3ATFiZOGCcYYBkZGgTJAnU/01roVRPrLMCYWKUt8UmemypzZnHqDgr3vhuzL9D+M0nOBGPeBuT9PAIS55yhtzBsiDq/h9HkOtGtq0Y5cIvAIeHgw7B6QRzxC8F2bGX5MOlyPf//I7ptNt1xQTP64b37Iov6Cx//0Xw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8Oi3RouF20WfVOBahTNcNxtEwDcyD1SPtjLvRWqqGUE=;
- b=UhZoxu7vd7hk4zO9FYQmBkxOnd2aQ9ImE7VvnEFEKb8PdSIsDgM4qlDYyEYn2dvdwL8qM/4PZReSrxsN1WMgBG9s3ix5wDxbf4W1bzuqgxx8TiHTQGSkKB17/k1IZjjFwZehtMi9ulNgEmElj7G/okgVuyb0aDm/S1PkIiP3nW+yd4X3AxiAnG4+eUouL9eaOqdohzX965W5d04vhwZi4Z6qcp/dDYQRhQgk8w5VTjk4ZWWoccr0n/jtQTnoIwujbc8lqVfobUuOUKtxZe1lysDaONKhDYdOYMuXlUyBDS6ATgoxiLjQfnxMJot4SSL7TbfJ1DwqIPyo9D6UbGhVoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C5516E611
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 17:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721066298; cv=none; b=PIC+gFg840GX39way0qUQMzfQeIFn3KfENQ4aYbEgreZevh90f9ynU/Smdu8A3x9gPOaUtNTw/5xHsbsHmvJ7yUcxA7gNh0ixmjpQ9dAIztA+R76+xgKE5JYTpx9oki0gd5hjwLWdAWJlNJFeCYDDmFmRBmNanxTxURhyaowZYI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721066298; c=relaxed/simple;
+	bh=hma33S0us/H5J1KAmhwdo7cjc1XHnhLFL86pri6C2Ao=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=KSQpy3Mun8aWBfUIzvtpOrcSrHc+YXABuoOp/1FtfKuSYIOuACtqnZF6uMkC9erl5pM0x7kaE2zs2uzoMPWAjYhYEBZcDwuYDS+ZAxVUISkxfQMKUotFaohcvRykw6nA+GOR7gc7EDuSKOUJRA6MfQgNC8RtSFyO6w7ofsIBxH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=U1nZRdDG; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42660b8dd27so30827735e9.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 10:58:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8Oi3RouF20WfVOBahTNcNxtEwDcyD1SPtjLvRWqqGUE=;
- b=qx9b7V5kjK4w1lZM2MBhz44XLrA9xwwqhX5GZX/SkaP95HLHSaK2QAxXsV4C8j2YvjODewT1GIT1PKK8qF/TaD/FGXDCDxyJacMDLXIc3+Y6MurDLMpZkyzHjGfiBta2zHuyss6dD0ASi+HyY1wDtj0AnKEy7zX3EfxfgSoNPyk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
- by PA4PR04MB9271.eurprd04.prod.outlook.com (2603:10a6:102:2a6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Mon, 15 Jul
- 2024 17:47:37 +0000
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529]) by AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529%3]) with mapi id 15.20.7762.027; Mon, 15 Jul 2024
- 17:47:37 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Mon, 15 Jul 2024 19:47:30 +0200
-Subject: [PATCH RFC 2/2] arm: dts: marvell: armada-38x: add description for
- usb phys
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240715-a38x-utmi-phy-v1-2-d57250f53cf2@solid-run.com>
-References: <20240715-a38x-utmi-phy-v1-0-d57250f53cf2@solid-run.com>
-In-Reply-To: <20240715-a38x-utmi-phy-v1-0-d57250f53cf2@solid-run.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
- linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: FR0P281CA0092.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a9::13) To AM9PR04MB7586.eurprd04.prod.outlook.com
- (2603:10a6:20b:2d5::17)
+        d=tuxon.dev; s=google; t=1721066292; x=1721671092; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jxE/UCaOWVOw5+At1QVf9Eh9DLjmI+murRCIv8xgIlM=;
+        b=U1nZRdDGaOgyzoxuVrkb3y7P7RGrhn2SIaIDJK4HPZeypbrpWbtBF5KmaxKLotf3Xf
+         bgyyUByRrTn8uQnVrz6XnAm+H1gOqE1RJDHCPTsKorY+nSVxa+GVASp7YpUfikP5iYCd
+         oIGukfnyWnrdhCdk1qxWSmVGzJgh+FXEE7yLlOx2I/nKhjAVckkRCVoQqBifH1Pz0qmX
+         JbzVaZvWu7fwdLiEaaqutNzC3rVH+w3UFMLz6iOtEbG/Gdu70ANRh32jOlx703K2M26/
+         GXFdZOILw6cXotF1YGfG1J391qu2lSotmU4T/bOnyr3mnL1lYdkizXgYN4LEvRJf8bna
+         qQhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721066292; x=1721671092;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jxE/UCaOWVOw5+At1QVf9Eh9DLjmI+murRCIv8xgIlM=;
+        b=OUFuRS3BD++GL1qoky+edpV2+1XANmdY2HHFxPHXx+eWalKNOrZFgQmP+xOLvy2YFb
+         RfHfoMq0QGgIDcPpnLGPSAXaOPGVBaGhx+RuRsp1KxTG83+FqOuFrP6nk0qmbtkG+LuS
+         XUf86lNOWBGiDbDYv6gbioPUxSAfvvC5Ppsxbgh0WowcUqoavyaRGI/5/AGqIFr1DgiO
+         Gr+ZHqR5CwS17braYve7XD6uoi8GiFMTx9f7KdAhW1EwkC4kCzwZY4I+3H7WDOroGrIa
+         jKQqdTV94ANv+mybPBY0fMd07FKf3DuwuYjSb4AiPiReUfaavaNbLSQXHUP2UCPP/pd1
+         Y8rA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFneZPzE9J0qe8K/E6rvF7WBCh2Ubiuj1X+Mnp8cmLcbV6bWG0fnIdmdqfIOkQRPEAqum3OTFLV3KsOO60Rv13QBPCDh5Tf5ONwQ==
+X-Gm-Message-State: AOJu0YyFMZmWF4XPmhF82RW8vT/XKlsorUwWDRIrq/zayl3Y3EE11mzY
+	i99ZADvJPG29XPfnOS071UQP3pIfeApA8GbX3qWV/z0UGb/6bwNLBr7vwLP3tM0=
+X-Google-Smtp-Source: AGHT+IGGhsMo2NnjPGL67EAbM1C5WsEOCLsUe9p5krXf+eW0Ov0v4zXnXvJ37CDgU6IC2tsrjKZXbg==
+X-Received: by 2002:a5d:6dce:0:b0:364:d2b6:4520 with SMTP id ffacd0b85a97d-36823e60497mr367337f8f.0.1721066292165;
+        Mon, 15 Jul 2024 10:58:12 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.171])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dafbf4bsm7038304f8f.73.2024.07.15.10.58.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jul 2024 10:58:11 -0700 (PDT)
+Message-ID: <c14b3c4d-668f-49c5-b521-575b895ed2c9@tuxon.dev>
+Date: Mon, 15 Jul 2024 20:58:10 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|PA4PR04MB9271:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34b326a1-fa00-4479-2047-08dca4f636a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|1800799024|7416014|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TTFGWC8rVGVWeUluT3lOaTZadkw0YjZYWEwzdDlkVTlvMHFuMlY5dzd3aXlJ?=
- =?utf-8?B?ekE5VkRwOFUrQmRybUcvbWtiVys2QjVSSTJtWC9tMFpnWjVmVFlYc2Z2TWlI?=
- =?utf-8?B?SGNxR2t1aWNjZngwTHhrMFJPUkpQcVgzVkNNZWdwMU9uam1YUWVmU2NHT28r?=
- =?utf-8?B?Z2ZMMUJvRE5oeXZJcEZjNGxmNm04OGZYUjBOd1l3Qy9Gdlg2NFZvOUVzSE1D?=
- =?utf-8?B?STBaSTNCK2RvemtmQytnTkVaWmE3dlpnS3VyMkRsbHdOSXhrblUvS3FSVHZE?=
- =?utf-8?B?NVBySUxHbmVVVmJNcjdzQzVRUmRWSUJqeUVjUHNGN28zdnVZOVBsT052cmdV?=
- =?utf-8?B?cEUwNnZKMStNL3ZzYWw0TEJUTTFaMnY4VStJdDE3WHdjdWdiNlBsZ0RBUlAx?=
- =?utf-8?B?YUtMYjhRa29KbUZuQy9sVStkZHlDaS85ODViTWFERTBEb3FIeXVYK3FCRDQ5?=
- =?utf-8?B?WXN5RmZXcHJGMzBwbTBYMms4cVBEaXA5WTh3dm1zMmI1ZEdqSUJGRzRub1cv?=
- =?utf-8?B?cVdnY3lxaERLbm1FandkTytITUoyQ2hNamRBWERKRGdnNjFzc2F2MU5sZk5N?=
- =?utf-8?B?dC9HT3AwanVUeUxKeGwzVGpKSGgvRXV1dzYybDlVNzVBcVZzRzdzYUF3WjNL?=
- =?utf-8?B?M1BwZURUaWZCdm0zdi9rNGhUck0vSVMxV1hZdXd0Smo1dW93L082SG1nNDAz?=
- =?utf-8?B?ZmdUMU9wY004M2ZpNmxNby93bFpYZWt0emhzWk5scjZ0WWVVQjJscjBobW9S?=
- =?utf-8?B?WVczcXQwQ21UUE5iQnlCV3JVT2lOcXBxUmRtV3hpWlJzanBxb2RJSXVQd2dG?=
- =?utf-8?B?ZURlcXhOUkFmWnljSVU3SXArOUd5MmVmQWhBU0VQOFpQT2Y2Wk8xUk91bDAv?=
- =?utf-8?B?UklyaE96UmFudEdpeVpxOStjbTJOL1pGeU9mclRGekRKT25VT3dTTEJWRHlj?=
- =?utf-8?B?ekw5RDNVQ3YzaklCUTVSRGYvOUlsZi9YU0kwdllTRVc2ZFp3NmJaUUJOVmto?=
- =?utf-8?B?MlVybE10OU5MMGpTSkY1eHJDOTQvb3gyRGxKQU92Uko5OWxnbURIWHFlNXk1?=
- =?utf-8?B?QTU3TFhKdmlPclZJOE5yeVdxSlB3UFNYa0lyWUY5dmx0OVp0ZE1BRC80NURZ?=
- =?utf-8?B?dDZNL0FERWp2Vnh4R1c1Y2xKMithWE81emNabUxwQ251VWRJTzA1b2lVWHd5?=
- =?utf-8?B?dkZaOHBqejNkbzZJdDNKNHczc1k4QWxIYzUyaHVVVnZVczZJelRKSnpRa25M?=
- =?utf-8?B?dTJQc2FVbVJCTjcrcFpRc2lUMHJKL01UZ3Nick1lek1PUXowRURLNXRIdjdZ?=
- =?utf-8?B?aHVQOFhDcTRjNlAzNEtwMGxJUmxwcG1tWUo2VzBGVFQxSU16Y0xRdjJlWjJQ?=
- =?utf-8?B?Ly9aSmorU2Z4M2JVRXhyNGs4TXA1MUQwT2NJMWg0UHZaM2k5akJwUnVPTFhj?=
- =?utf-8?B?K1ZvaXJuMlIyb2tXQTBRU3dPdWRlUy9PUUwyenIvSkdKMFdpT1JlZjlJR0h2?=
- =?utf-8?B?a1NlQVFVSzMxQUJ3T0MvTlo1MCtMeEZ6RENSU1lQTG1aTnkzbFVLVWR5anBt?=
- =?utf-8?B?Mmx1Uys5QWplelFUR01PT1g1WmZPaDkwejhBVkN5Y3BlY3d1b2xKOHcyQ0xN?=
- =?utf-8?B?NWdubXJuUXRVYVg1QnRBUytLV3VYNENIUUlXVDVtcmdFd0FEdWVsclJJK1dC?=
- =?utf-8?B?aHZNSFF3dElWT21maFl1blpWNDZaTGRXWVorQlp5cEN5Si9SUUVNeUhaZHF4?=
- =?utf-8?B?ZzR4UldVU3F0cXJRT1hrZjlsMUlvSGk0QjNPcFRlNEFkT0lzVXZRMk55SGMw?=
- =?utf-8?B?R3Y4cjlKZEFRUUlzOENUT1cveHIwL0MrRE5DZ0pVZDRPbXB2VmRIZWd0V2RQ?=
- =?utf-8?B?UGVqVWNWUlRLellQVXZ0QWZBWWdkL3BZYTFFa0tXdWJWQkE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(7416014)(376014)(366016)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OTBYZDk1djlCYzk1ZVN6S0ZXR2lKa21adWpwU0FUeHd3d0tMejRZRjh5dlBW?=
- =?utf-8?B?LytLMW5TNjluUFpxMXkwbHM0OEJJcUZ0WVkvSGRURURIU1dwNXRVRzJxd1d5?=
- =?utf-8?B?QWtlQ201N3NxSjgreEZ3Z3lmNlNSU3BydnhnR0k4TUFXaGxSaDljU1EvbUlB?=
- =?utf-8?B?L1BYVjJGUzg3ODlXck9OQUN0Z21KTkZOYm1sa2g4bEdqRE9TcUhlZUFHK1M3?=
- =?utf-8?B?N3dDM3VoU3JpcWgzN3IwZnRndGwzTDVnMHhOSHZqM2lYUy9sYSs4M2tZeXlQ?=
- =?utf-8?B?c1dXczE1bXFXQjRSNzRFZEZhaVFyMXhnZ3RPSWZadEU3NjE0TFlBemNWYmY3?=
- =?utf-8?B?YlYxU0hxL1dxeUJBMFZBRFMvdmQ5RUNCZlY2U1VTOUwzRGd5UXUrL0N4SU05?=
- =?utf-8?B?NlF2eHoyZFJFT1BQSFlZSkFoaGdLbTNTSTQyZCszcFh0SXhBNWR3VVZGUTdq?=
- =?utf-8?B?VS9BRmRNMERuZGZaUWJXdHlES2VRWldWQTEyemsyTzBydG1ib1F3dGNnYWR0?=
- =?utf-8?B?azg5Zzd0dGlBbi84UFVZSFozSUtXNlU0T2c1eXJXM1NueDVYMk1Kem9xZnZy?=
- =?utf-8?B?OEg3ZUdTUDQrb1RKNDlSTVI3Qlk1akJsbDhScTRQaWc4MXVhZnVkSWVmR1gx?=
- =?utf-8?B?ZGVzSXh3S2RqR1MySmN4OSs1aGRvTXd0ZjBuVWplTEJJQm1WUU5qQ1hpdGQz?=
- =?utf-8?B?SG0zWFZWcW9JZmJidHpLamRZS2l3NmRGVWs3b0hwYjVxRHNJWlFkWXV3dmdU?=
- =?utf-8?B?MlFXNDRHcGFPYVQ4Ukk0MmtBY1NiS0NTbmRtVXJZSW1MaG9UUmo2TFlpMUhy?=
- =?utf-8?B?SmRCL3RRd1B5NUdPRGQ2TXBvWWxzOHBpOVAzaWNkMnQwbkdWY3M2SnVQMTFK?=
- =?utf-8?B?SHpIUG8zTXNBTDhteWltd0VVOGw0ZVNxd1dEUFNCTFJjSnI5aitBZmErcUFa?=
- =?utf-8?B?VG1XNndtQzBOS1ozbjRNbzBITUk5eWNCdXBjbHFFM2Qyc1lrTWJ0LzNQaGU4?=
- =?utf-8?B?U2tiMVBJUkxwMkU2WncvRUNocDFqTk1JR0g3VHFzTEFWaGFPRUJTZ2FkdTBs?=
- =?utf-8?B?RUhDSzZaNzZOTG9RMU4xb1BxSmdqbWVjRVI0U0ZJR0Q5RC9idlFFTTcyeFJG?=
- =?utf-8?B?U1NPelR6QUJsS1JaZnRtbVhndXVCUXc4SVdXNnBIRWVpdGtPR0VQRFVKK1V3?=
- =?utf-8?B?clUvWkM2cHNhWmZCa0d2cnBuSUhhU09EYzFSdkQxUW1NbndabE5CdmdneGN3?=
- =?utf-8?B?b00xZWtpVjN0bjJBUTZYbHB0eTByK3pJVVhrc2hFdTh0Vzg4a3pDYXJLNWZq?=
- =?utf-8?B?MXc0eHBxTUVaUjZweFpZU2RxUkFmR0tDS2psOTNNTytLRjkvN0xkdFphTkow?=
- =?utf-8?B?elF3NndSZXpOM1IzdzFDc3FqQ2xJUTQrWjJtcndUSkg4N2JxajJxUTVoZnpB?=
- =?utf-8?B?ekJWWkhwaitWS2dKQ3UwdEF1c3VaVGs2M0ZVbzdZcjhhNWRHbVZYUWI0MnUx?=
- =?utf-8?B?bVNac3poZFFETDh4aUI1VjN0ZmFEZUNXb1J3Um01anlwSUpvNEk0Q0lpK0ls?=
- =?utf-8?B?SHI0c3JSZjVnY09pY3FVOHRyS0gwRVRWNWlKU0d3eVU2a1hDSmJnb1R6cnZU?=
- =?utf-8?B?TE5KWXNNbTFmSW52OUEzMjRTaFRlUm1mQXFHa0xPSks2SXFZU2RkUkdIN2pN?=
- =?utf-8?B?ZFIwZHRkYWVhTGhFU2YzQmhsUmNQVWl1b1lmeVdWRjYySEgzR0t0VTA5d1Az?=
- =?utf-8?B?Z1JPTHdRczU2a2pLMmUwWGNkamJ1RTFERVJpd1hFSFJMbmJ5MGFid3NzRU9U?=
- =?utf-8?B?YUg5MDNlZDJNYk5BeVJqQ2M3bDBBVGhnRWJhSGdwOTcxdkxRQVh4Q1VNT1U0?=
- =?utf-8?B?NzFSNmNXNURNQWI2YmVmdHc0ekZIQkdOYWkzY2FqQUxxYUtPTUhCbTNqSGtu?=
- =?utf-8?B?em5QMGFLbnRvN1laQVk3RC9Xa0FhU3MzVWFjelBjNEdzbVZQQ2tmd2NIZFVn?=
- =?utf-8?B?WVYxZFR5WHpFM0EwdmJKQk81QWVDTEVLZWJaNUNXNFI5ei9uK3JKZTVkVFZ5?=
- =?utf-8?B?a3dZRzZ2WE0zeHU5d1NBQmdRYU5xOVc0YzYydldMQ0xzdTdpRWpSeU8vTG01?=
- =?utf-8?Q?496KM+weGiovr82rgrOLgsEmT?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34b326a1-fa00-4479-2047-08dca4f636a7
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2024 17:47:36.6862
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: grwpo3JR11XQhsatTzUWOCXewwr7vTSCoFCegJbrfS45s096QQjnHJuckTeNHU3iOT0b6AnDQ3o9Ld83SZXqhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9271
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 25/27] ARM: dts: at91: sam9x7: add device tree for SoC
+Content-Language: en-US
+To: Varshini.Rajendran@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
+ <20240703102923.196556-1-varshini.rajendran@microchip.com>
+ <3b077b02-b98c-4c2c-b16e-8842e2cdf27c@tuxon.dev>
+ <ae365aad-efd0-43ac-bf46-dbd8f67f7dcb@microchip.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <ae365aad-efd0-43ac-bf46-dbd8f67f7dcb@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Armada 38x has 3x USB-2.0 utmi phys. They are almost identical to the 2x
-utmi phys on armada 8k.
 
-Add descriptions for all 3 phy ports.
 
-Also add a syscon node covering just the usb configuration registers.
-Armada 8K have a syscon node covering configuration registers for
-various functions including pinmux, woith dirvers using syscon framework
-for register access.
+On 15.07.2024 13:47, Varshini.Rajendran@microchip.com wrote:
+> Hi Claudiu,
+> 
+> On 14/07/24 7:14 pm, claudiu beznea wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> Hi, Varshini,
+>>
+>> On 03.07.2024 13:29, Varshini Rajendran wrote:
+>>> Add device tree file for SAM9X7 SoC family.
+>>>
+>>> Co-developed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+>>> ---
+>>> Changed in v5:
+>>> - Sorted node properties according dts coding style.
+>>> - Removed space before pwn status.
+>>> - Fixed DT schema warnings related to usart.
+>>> - Aligned <> braces.
+>>> - Changed spaces to tabs.
+>>> - Changed node names to generic names.
+>>> - Corrected the typo in gpbr compatible.
+>>> ---
+>>>   arch/arm/boot/dts/microchip/sam9x7.dtsi | 1226 +++++++++++++++++++++++
+>>>   1 file changed, 1226 insertions(+)
+>>>   create mode 100644 arch/arm/boot/dts/microchip/sam9x7.dtsi
+>>>
+>>> diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+>>> new file mode 100644
+>>> index 000000000000..0e3fb94f40b6
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+>>> @@ -0,0 +1,1226 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * sam9x7.dtsi - Device Tree Include file for Microchip SAM9X7 SoC family
+>>> + *
+>>> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
+>>> + *
+>>> + * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
+>>> + */
+>>> +
+>>> +#include <dt-bindings/clock/at91.h>
+>>> +#include <dt-bindings/dma/at91.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/mfd/at91-usart.h>
+>>> +#include <dt-bindings/mfd/atmel-flexcom.h>
+>>> +#include <dt-bindings/pinctrl/at91.h>
+>>> +
+>>> +/ {
+>>> +     model = "Microchip SAM9X7 SoC";
+>>> +     compatible = "microchip,sam9x7";
+>>> +     #address-cells = <1>;
+>>> +     #size-cells = <1>;
+>>> +     interrupt-parent = <&aic>;
+>>> +
+>>> +     aliases {
+>>> +             serial0 = &dbgu;
+>>> +             gpio0 = &pioA;
+>>> +             gpio1 = &pioB;
+>>> +             gpio2 = &pioC;
+>>> +             gpio3 = &pioD;
+>>> +     };
+>>> +
+>>> +     cpus {
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <0>;
+>>> +
+>>> +             cpu@0 {
+>>> +                     compatible = "arm,arm926ej-s";
+>>> +                     reg = <0>;
+>>> +                     device_type = "cpu";
+>>> +             };
+>>> +     };
+>>> +
+>>> +     clocks {
+>>> +             slow_xtal: clock-slowxtal {
+>>> +                     compatible = "fixed-clock";
+>>> +                     #clock-cells = <0>;
+>>> +             };
+>>> +
+>>> +             main_xtal: clock-mainxtal {
+>>> +                     compatible = "fixed-clock";
+>>> +                     #clock-cells = <0>;
+>>> +             };
+>>> +     };
+>>> +
+>>> +     sram: sram@300000 {
+>>> +             compatible = "mmio-sram";
+>>> +             reg = <0x300000 0x10000>;
+>>> +             ranges = <0 0x300000 0x10000>;
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <1>;
+>>> +     };
+>>> +
+>>> +     ahb {
+>>> +             compatible = "simple-bus";
+>>> +             ranges;
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <1>;
+>>> +
+>>> +             sdmmc0: mmc@80000000 {
+>>> +                     compatible = "microchip,sam9x7-sdhci", "microchip,sam9x60-sdhci";
+>>> +                     reg = <0x80000000 0x300>;
+>>> +                     interrupts = <12 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 12>, <&pmc PMC_TYPE_GCK 12>;
+>>> +                     clock-names = "hclock", "multclk";
+>>> +                     assigned-clocks = <&pmc PMC_TYPE_GCK 12>;
+>>> +                     assigned-clock-rates = <100000000>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             sdmmc1: mmc@90000000 {
+>>> +                     compatible = "microchip,sam9x7-sdhci", "microchip,sam9x60-sdhci";
+>>> +                     reg = <0x90000000 0x300>;
+>>> +                     interrupts = <26 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 26>, <&pmc PMC_TYPE_GCK 26>;
+>>> +                     clock-names = "hclock", "multclk";
+>>> +                     assigned-clocks = <&pmc PMC_TYPE_GCK 26>;
+>>> +                     assigned-clock-rates = <100000000>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +     };
+>>> +
+>>> +     apb {
+>>> +             compatible = "simple-bus";
+>>> +             ranges;
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <1>;
+>>> +
+>>> +             flx4: flexcom@f0000000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf0000000 0x200>;
+>>> +                     ranges = <0x0 0xf0000000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 13>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart4: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 13>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>> According to dts coding style that vendor specific properties goes at the
+>> end. I'll adjust it when applying, no need to resend for this. Valid for
+>> all the uart flexcom nodes.
+> Thanks Claudiu.
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(8))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(9))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     spi4: spi@400 {
+>>> +                             compatible = "microchip,sam9x7-spi", "atmel,at91rm9200-spi";
+>>> +                             reg = <0x400 0x200>;
+>>> +                             interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 13>;
+>>> +                             clock-names = "spi_clk";
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(8))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(9))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c4: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 13>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(8))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(9))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx5: flexcom@f0004000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf0004000 0x200>;
+>>> +                     ranges = <0x0 0xf0004000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart5: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <14 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(10))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(11))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     spi5: spi@400 {
+>>> +                             compatible = "microchip,sam9x7-spi", "atmel,at91rm9200-spi";
+>>> +                             reg = <0x400 0x200>;
+>>> +                             interrupts = <14 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
+>>> +                             clock-names = "spi_clk";
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(10))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(11))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c5: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <14 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(10))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(11))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             dma0: dma-controller@f0008000 {
+>>> +                     compatible = "microchip,sam9x7-dma", "atmel,sama5d4-dma";
+>>> +                     reg = <0xf0008000 0x1000>;
+>>> +                     interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     #dma-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 20>;
+>>> +                     clock-names = "dma_clk";
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             ssc: ssc@f0010000 {
+>>> +                     compatible = "microchip,sam9x7-ssc", "atmel,at91sam9g45-ssc";
+>>> +                     reg = <0xf0010000 0x4000>;
+>>> +                     interrupts = <28 IRQ_TYPE_LEVEL_HIGH 5>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 28>;
+>>> +                     clock-names = "pclk";
+>>> +                     dmas = <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(38))>,
+>>> +                            <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(39))>;
+>>> +                     dma-names = "tx", "rx";
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             i2s: i2s@f001c000 {
+>>> +                     compatible = "microchip,sam9x7-i2smcc", "microchip,sam9x60-i2smcc";
+>>> +                     reg = <0xf001c000 0x100>;
+>>> +                     interrupts = <34 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 34>, <&pmc PMC_TYPE_GCK 34>;
+>>> +                     clock-names = "pclk", "gclk";
+>>> +                     dmas = <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(36))>,
+>>> +                            <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(37))>;
+>>> +                     dma-names = "tx", "rx";
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             flx11: flexcom@f0020000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf0020000 0x200>;
+>>> +                     ranges = <0x0 0xf0020000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 32>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart11: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <32 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 32>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(22))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(23))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c11: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <32 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 32>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(22))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(23))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx12: flexcom@f0024000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf0024000 0x200>;
+>>> +                     ranges = <0x0 0xf0024000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 33>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart12: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <33 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 33>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(24))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(25))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c12: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <33 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 33>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(24))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(25))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             pit64b0: timer@f0028000 {
+>>> +                     compatible = "microchip,sam9x7-pit64b", "microchip,sam9x60-pit64b";
+>>> +                     reg = <0xf0028000 0x100>;
+>>> +                     interrupts = <37 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 37>, <&pmc PMC_TYPE_GCK 37>;
+>>> +                     clock-names = "pclk", "gclk";
+>>> +             };
+>>> +
+>>> +             sha: crypto@f002c000 {
+>>> +                     compatible = "microchip,sam9x7-sha", "atmel,at91sam9g46-sha";
+>>> +                     reg = <0xf002c000 0x100>;
+>>> +                     interrupts = <41 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
+>>> +                     clock-names = "sha_clk";
+>>> +                     dmas = <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(34))>;
+>>> +                     dma-names = "tx";
+>>> +             };
+>>> +
+>>> +             trng: rng@f0030000 {
+>>> +                     compatible = "microchip,sam9x7-trng", "microchip,sam9x60-trng";
+>>> +                     reg = <0xf0030000 0x100>;
+>>> +                     interrupts = <38 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             aes: crypto@f0034000 {
+>>> +                     compatible = "microchip,sam9x7-aes", "atmel,at91sam9g46-aes";
+>>> +                     reg = <0xf0034000 0x100>;
+>>> +                     interrupts = <39 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
+>>> +                     clock-names = "aes_clk";
+>>> +                     dmas = <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(32))>,
+>>> +                            <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(33))>;
+>>> +                     dma-names = "tx", "rx";
+>>> +             };
+>>> +
+>>> +             tdes: crypto@f0038000 {
+>>> +                     compatible = "microchip,sam9x7-tdes", "atmel,at91sam9g46-tdes";
+>>> +                     reg = <0xf0038000 0x100>;
+>>> +                     interrupts = <40 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 40>;
+>>> +                     clock-names = "tdes_clk";
+>>> +                     dmas = <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(31))>,
+>>> +                            <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(30))>;
+>>> +                     dma-names = "tx", "rx";
+>>> +             };
+>>> +
+>>> +             classd: sound@f003c000 {
+>>> +                     compatible = "microchip,sam9x7-classd", "atmel,sama5d2-classd";
+>>> +                     reg = <0xf003c000 0x100>;
+>>> +                     interrupts = <42 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 42>, <&pmc PMC_TYPE_GCK 42>;
+>>> +                     clock-names = "pclk", "gclk";
+>>> +                     dmas = <&dma0
+>>> +                             (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+>>> +                              AT91_XDMAC_DT_PERID(35))>;
+>>> +                     dma-names = "tx";
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             pit64b1: timer@f0040000 {
+>>> +                     compatible = "microchip,sam9x7-pit64b", "microchip,sam9x60-pit64b";
+>>> +                     reg = <0xf0040000 0x100>;
+>>> +                     interrupts = <58 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 58>, <&pmc PMC_TYPE_GCK 58>;
+>>> +                     clock-names = "pclk", "gclk";
+>>> +             };
+>>> +
+>>> +             can0: can@f8000000 {
+>>> +                     compatible = "bosch,m_can";
+>>> +                     reg = <0xf8000000 0x100>, <0x300000 0x7800>;
+>>> +                     reg-names = "m_can", "message_ram";
+>>> +                     interrupts = <29 IRQ_TYPE_LEVEL_HIGH 0>,
+>>> +                                  <68 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     interrupt-names = "int0", "int1";
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 29>, <&pmc PMC_TYPE_GCK 29>;
+>>> +                     clock-names = "hclk", "cclk";
+>>> +                     assigned-clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_GCK 29>;
+>>> +                     assigned-clock-rates = <480000000>, <40000000>;
+>>> +                     assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
+>>> +                     bosch,mram-cfg = <0x3400 0 0 64 0 0 32 32>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             can1: can@f8004000 {
+>>> +                     compatible = "bosch,m_can";
+>>> +                     reg = <0xf8004000 0x100>, <0x300000 0xbc00>;
+>>> +                     reg-names = "m_can", "message_ram";
+>>> +                     interrupts = <30 IRQ_TYPE_LEVEL_HIGH 0>,
+>>> +                                  <69 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     interrupt-names = "int0", "int1";
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 30>, <&pmc PMC_TYPE_GCK 30>;
+>>> +                     clock-names = "hclk", "cclk";
+>>> +                     assigned-clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_GCK 30>;
+>>> +                     assigned-clock-rates = <480000000>, <40000000>;
+>>> +                     assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
+>>> +                     bosch,mram-cfg = <0x7800 0 0 64 0 0 32 32>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             tcb: timer@f8008000 {
+>>> +                     compatible = "microchip,sam9x7-tcb","atmel,sama5d2-tcb", "simple-mfd", "syscon";
+>>> +                     reg = <0xf8008000 0x100>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <0>;
+>>> +                     interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 17>, <&pmc PMC_TYPE_GCK 17>, <&clk32k 0>;
+>>> +                     clock-names = "t0_clk", "gclk", "slow_clk";
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             flx6: flexcom@f8010000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8010000 0x200>;
+>>> +                     ranges = <0x0 0xf8010000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 9>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart6: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <9 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 9>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(12))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(13))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c6: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <9 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 9>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(12))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(13))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx7: flexcom@f8014000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8014000 0x200>;
+>>> +                     ranges = <0x0 0xf8014000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 10>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart7: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <10 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 10>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(14))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(15))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c7: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <10 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 10>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(14))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(15))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx8: flexcom@f8018000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8018000 0x200>;
+>>> +                     ranges = <0x0 0xf8018000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 11>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart8: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <11 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 11>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(16))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(17))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c8: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <11 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 11>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(16))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(17))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx0: flexcom@f801c000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf801c000 0x200>;
+>>> +                     ranges = <0x0 0xf801c000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 5>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart0: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 5>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(0))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(1))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     spi0: spi@400 {
+>>> +                             compatible = "microchip,sam9x7-spi", "atmel,at91rm9200-spi";
+>>> +                             reg = <0x400 0x200>;
+>>> +                             interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 5>;
+>>> +                             clock-names = "spi_clk";
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(0))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(1))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c0: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 5>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(0))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(1))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx1: flexcom@f8020000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8020000 0x200>;
+>>> +                     ranges = <0x0 0xf8020000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 6>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart1: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 6>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(2))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(3))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     spi1: spi@400 {
+>>> +                             compatible = "microchip,sam9x7-spi", "atmel,at91rm9200-spi";
+>>> +                             reg = <0x400 0x200>;
+>>> +                             interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 6>;
+>>> +                             clock-names = "spi_clk";
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(2))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(3))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c1: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 6>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(2))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(3))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx2: flexcom@f8024000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8024000 0x200>;
+>>> +                     ranges = <0x0 0xf8024000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 7>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart2: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 7>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(4))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(5))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     spi2: spi@400 {
+>>> +                             compatible = "microchip,sam9x7-spi", "atmel,at91rm9200-spi";
+>>> +                             reg = <0x400 0x200>;
+>>> +                             interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 7>;
+>>> +                             clock-names = "spi_clk";
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(4))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(5))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c2: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 7>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(4))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(5))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx3: flexcom@f8028000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8028000 0x200>;
+>>> +                     ranges = <0x0 0xf8028000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 8>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart3: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 8>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(6))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(7))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     spi3: spi@400 {
+>>> +                             compatible = "microchip,sam9x7-spi", "atmel,at91rm9200-spi";
+>>> +                             reg = <0x400 0x200>;
+>>> +                             interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 8>;
+>>> +                             clock-names = "spi_clk";
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(6))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(7))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c3: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 8>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(6))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(7))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             gmac: ethernet@f802c000 {
+>>> +                     compatible = "microchip,sam9x7-gem", "microchip,sama7g5-gem";
+>>> +                     reg = <0xf802c000 0x1000>;
+>>> +                     interrupts = <24 IRQ_TYPE_LEVEL_HIGH 3>,        /* Queue 0 */
+>>> +                                  <60 IRQ_TYPE_LEVEL_HIGH 3>,        /* Queue 1 */
+>>> +                                  <61 IRQ_TYPE_LEVEL_HIGH 3>,        /* Queue 2 */
+>>> +                                  <62 IRQ_TYPE_LEVEL_HIGH 3>,        /* Queue 3 */
+>>> +                                  <63 IRQ_TYPE_LEVEL_HIGH 3>,        /* Queue 4 */
+>>> +                                  <64 IRQ_TYPE_LEVEL_HIGH 3>;        /* Queue 5 */
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_GCK 24>, <&pmc PMC_TYPE_GCK 67>;
+>>> +                     clock-names = "hclk", "pclk", "tx_clk", "tsu_clk";
+>>> +                     assigned-clocks = <&pmc PMC_TYPE_GCK 67>;
+>> Is this needed?
+> Sorry I missed to add this line under it. This is needed for the PTP 
+> functionality.
+> 
+> assigned-clock-rates = <266666666>;
+> 
+> I can send another version if you want me to.
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             pwm0: pwm@f8034000 {
+>>> +                     compatible = "microchip,sam9x7-pwm", "microchip,sam9x60-pwm";
+>>> +                     reg = <0xf8034000 0x300>;
+>>> +                     interrupts = <18 IRQ_TYPE_LEVEL_HIGH 4>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 18>;
+>>> +                     #pwm-cells = <3>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             flx9: flexcom@f8040000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8040000 0x200>;
+>>> +                     ranges = <0x0 0xf8040000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 15>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart9: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <15 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 15>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(18))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(19))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c9: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <15 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 15>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(18))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(19))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             flx10: flexcom@f8044000 {
+>>> +                     compatible = "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom";
+>>> +                     reg = <0xf8044000 0x200>;
+>>> +                     ranges = <0x0 0xf8044000 0x800>;
+>>> +                     #address-cells = <1>;
+>>> +                     #size-cells = <1>;
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 16>;
+>>> +                     status = "disabled";
+>>> +
+>>> +                     uart10: serial@200 {
+>>> +                             compatible = "microchip,sam9x7-usart", "atmel,at91sam9260-usart";
+>>> +                             reg = <0x200 0x200>;
+>>> +                             interrupts = <16 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 16>;
+>>> +                             clock-names = "usart";
+>>> +                             atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(20))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(21))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,use-dma-rx;
+>>> +                             atmel,use-dma-tx;
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +
+>>> +                     i2c10: i2c@600 {
+>>> +                             compatible = "microchip,sam9x7-i2c", "microchip,sam9x60-i2c";
+>>> +                             reg = <0x600 0x200>;
+>>> +                             interrupts = <16 IRQ_TYPE_LEVEL_HIGH 7>;
+>>> +                             clocks = <&pmc PMC_TYPE_PERIPHERAL 16>;
+>>> +                             dmas = <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(20))>,
+>>> +                                    <&dma0
+>>> +                                     (AT91_XDMAC_DT_MEM_IF(0) |
+>>> +                                      AT91_XDMAC_DT_PER_IF(1) |
+>>> +                                      AT91_XDMAC_DT_PERID(21))>;
+>>> +                             dma-names = "tx", "rx";
+>>> +                             atmel,fifo-size = <16>;
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +
+>>> +             sfr: sfr@f8050000 {
+>>> +                     compatible = "microchip,sam9x7-sfr", "microchip,sam9x60-sfr", "syscon";
+>>> +                     reg = <0xf8050000 0x100>;
+>>> +             };
+>>> +
+>>> +             matrix: matrix@ffffde00 {
+>>> +                     compatible = "microchip,sam9x7-matrix", "atmel,at91sam9x5-matrix", "syscon";
+>>> +                     reg = <0xffffde00 0x200>;
+>>> +             };
+>>> +
+>>> +             pmecc: ecc-engine@ffffe000 {
+>>> +                     compatible = "microchip,sam9x7-pmecc", "atmel,at91sam9g45-pmecc";
+>>> +                     reg = <0xffffe000 0x300>, <0xffffe600 0x100>;
+>>> +             };
+>>> +
+>>> +             mpddrc: mpddrc@ffffe800 {
+>>> +                     compatible = "microchip,sam9x7-ddramc", "atmel,sama5d3-ddramc";
+>>> +                     reg = <0xffffe800 0x200>;
+>>> +                     clocks = <&pmc PMC_TYPE_SYSTEM 2>, <&pmc PMC_TYPE_CORE PMC_MCK>;
+>>> +                     clock-names = "ddrck", "mpddr";
+>>> +             };
+>>> +
+>>> +             smc: smc@ffffea00 {
+>>> +                     compatible = "microchip,sam9x7-smc", "atmel,at91sam9260-smc", "syscon";
+>>> +                     reg = <0xffffea00 0x100>;
+>>> +             };
+>>> +
+>>> +             aic: interrupt-controller@fffff100 {
+>>> +                     compatible = "microchip,sam9x7-aic", "microchip,sam9x60-aic";
+>>> +                     reg = <0xfffff100 0x100>;
+>>> +                     #interrupt-cells = <3>;
+>>> +                     interrupt-controller;
+>>> +                     atmel,external-irqs = <31>;
+>>> +                     microchip,nr-irqs = <70>;
+>> Ah, this needs to be clarified before applying.
+> Can you discard the property and apply the rest (if this version can be 
+> applied)? 
 
-Armada 388 has various drivers directly claiming some of those
-configuration registers. Hence a similar syscon node would compete for
-resources with these drivers.
+I think it's not booting anyway w/o microchip,nr-irqs. Am I wrong?
 
-This patch-set is marked RFC to figure out a solution. I have some
-ideas:
+> I can resolve the irq number related issue in a separate 
+> series. Maybe fix the compatibles if required.
 
-1. Can syscon have holes, i.e. facilitate consumer drivers accessing
-   certain offsets only?
+I prefer to have the driver ready before applying dts.
 
-2. Declare a tiny syscon (see this patch) covering just the area used by
-   utmi phy driver: This impacts driver access offsets - can those be
-   hard-coded - or is there a mechanism in device-tree?
-   E.g. marvell,system-controller = <&syscon any-poffset-here>?
-
-3. utmi phy driver access just three registers using syscon: all-ports
-   power-up (probably enables clocks), device-mode mux, per-port power-up.
-
-   Assign these registers individually to the phy device-node, and
-   implement access in driver when syscon is not available.
-
-   If this is preferred, which dt property should s[ecify their address?
-   reg, ranges, ...?
-
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm/boot/dts/marvell/armada-38x.dtsi | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-index 446861b6b17b..5cf9449162b1 100644
---- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
-+++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-@@ -392,6 +392,11 @@ comphy5: phy@5 {
- 				};
- 			};
- 
-+			syscon0: system-controller@18400 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x18420 0x30>;
-+			};
-+
- 			coreclk: mvebu-sar@18600 {
- 				compatible = "marvell,armada-380-core-clock";
- 				reg = <0x18600 0x04>;
-@@ -580,6 +585,31 @@ ahci0: sata@a8000 {
- 				status = "disabled";
- 			};
- 
-+			utmi: utmi@c0000 {
-+				compatible = "marvell,armada-380-utmi-phy";
-+				reg = <0xc0000 0x6000>;
-+				ranges = <0x18420>, <0x00018440>, <0x00018444>, <0x00018448>;
-+				marvell,system-controller = <&syscon0>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+
-+				utmi0: usb-phy@0 {
-+					reg = <0>;
-+					#phy-cells = <0>;
-+				};
-+
-+				utmi1: usb-phy@1 {
-+					reg = <1>;
-+					#phy-cells = <0>;
-+				};
-+
-+				utmi2: usb-phy@2 {
-+					reg = <2>;
-+					#phy-cells = <0>;
-+				};
-+			};
-+
- 			bm: bm@c8000 {
- 				compatible = "marvell,armada-380-neta-bm";
- 				reg = <0xc8000 0xac>;
-
--- 
-2.35.3
-
+Thank you,
+Claudiu Beznea
 
