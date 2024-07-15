@@ -1,160 +1,105 @@
-Return-Path: <devicetree+bounces-85766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB75931522
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:57:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776F2931542
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:00:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AE381C213B9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:57:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E7311F22181
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 13:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F7818FDD0;
-	Mon, 15 Jul 2024 12:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hIXtwzIO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53A718D4CC;
+	Mon, 15 Jul 2024 12:59:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A7B18FA2C;
-	Mon, 15 Jul 2024 12:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D95918C341;
+	Mon, 15 Jul 2024 12:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721048132; cv=none; b=APqAk14QXkd6vlGblqZZDKFTcbeH5FZa63YxrBpHJd9uAXtIw7fp1lMbmYpP1qbBQN2Hq3d0n38opiMpWme9dzTTkxgZxnzV/xM/nMi4QYg2tNkd4f7nHpEmuQA7ucsv2PmZVb45tReK/FzeQa2OGhHi4BWsvAo/oy+9XP1U9Ws=
+	t=1721048378; cv=none; b=Fzh/PGSa4BEe/Z9DWDUyLZzNtBSxgdDNLM3ihFoK+wTVAbhJBf+JFtE2d9DrkcY1ORh/sjih1z0Yv8c05YVa2oqbUnl5ZhQBb43Y4iD9P9UmoJhBz0k0xR+OAPvarQ8528Bd2Edt+LnjocVaDltV8bm8TSkVABqiFYAAs+6kq0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721048132; c=relaxed/simple;
-	bh=JPvmuWMb9Cv6qRz3cEGIn/kWuF1SOLW1hi0UXwnEzKQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LZ6Z8B3i8nLuU/tkgTIxZiqFfcRWu/EcPyXV1m1STwcSfjKiTYQoo0PbVytUEjNRbuxD18gQ8pB/vqg9I5levc4BFe0Y2dWSTrbvpAXJIcBr6SYI9k2PG9ISfgvukVlgbJ1xPm30fGwUNT/pq0Pwec3rVOv7o6l6oQM6Hz2r21c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hIXtwzIO; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2eee1384e0aso21675831fa.1;
-        Mon, 15 Jul 2024 05:55:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721048129; x=1721652929; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g142l+1Rp8I4V1ReaaLX7dN3MJPiIMAN9KWL++3gC6o=;
-        b=hIXtwzIOWrDvYitkLe5qMQs1KWxw9g96vgApmLCL3xxcORS3uby5rHn5jzcyCdytO+
-         fVwrXzc7lMOBwJqOIcB3ovPNa+ed3LV0v2pqq6ifamgAit+8tMKLPM4Ggq8lRk3u9xbq
-         8TpjW3AMm2kYsL2KvSLw6OurkvVN9AjyxdZ+/4YZi3LJMrHLtub9yfS6Rw8mFIzO08DJ
-         18cnACU2Ko0kVUbPv9bG1zYuWAdXfSVHjEnZ63EoDPQTL7A82McB86HloUY1MBu5LCoZ
-         3zTainZ7fSkPC42UjY73j/HjTlf4jfAMeYeJIul626roCQ+8R6Y8zt8mZkFSOFcPwmCo
-         0QsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721048129; x=1721652929;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g142l+1Rp8I4V1ReaaLX7dN3MJPiIMAN9KWL++3gC6o=;
-        b=rWo3BeZRi/W+6885Qo9oyKftjGDe+zKRq47MiEsoYHdY75V7AOfVdnuUdOorVC9Gf+
-         nvtq0tfw5EhL/3eB5pD8g/3uy2G9R41WNa1IBmnQ+sCs1KBW7EF4qYXW3nyNuBcYts0z
-         sqH+UEDo1ansl4yeIJRxpvdmPumawdmKsGqCr/JLXcSjHlQOHa/fLYK1IxLZacPOJ6jd
-         HNqXjV3pjbqlzy/FshxDUVzudJrjWcEuUMXK4aVtPOkLqcstHTrn5/EjtUW0Ki2A9SB8
-         4dytpO41CCF7f//u2pki5eMes3r2Ah+2sE4JiEKkL+Txk0aoqD3P1bkBDQZXrnqJ8XDe
-         NOSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXPhcM5ymzLFxxzw7FheR20KQGMSb4p+1OF74O8VmsXaiaL40caHHQxlFN7nvrWUA/Iy5yGoxMPniP6HWNIZFDl3tZRtPuwPQr/7rkXhNXC61/6dmVLCLQAWpJJHCerSa0i/X/FaEMX3O4ju2aFlEvCpwoKPf4YWqLCgsE10cPlfpnTwVGFzPyXcL2/ycrUgi6a0EZwzTwGlTvASnIC8PAckMUQosc=
-X-Gm-Message-State: AOJu0YxchuPRxiasQv+1wt9JwEYGzHiznAa7XadVb2aNRF27rW0FUxlq
-	92B3lreW/gbXCIMoijqq725R4+gcaF4IpOXWDwPbDsgjTg/buPBTeizcrYFp
-X-Google-Smtp-Source: AGHT+IFx8MQcTRzx3JN+U8ZxghUQcdnvTgYnKydFLvaBZKUXf4eaprXj8MMYOE+oITfaurUMxJRBMQ==
-X-Received: by 2002:a05:6512:2247:b0:52c:dec1:4578 with SMTP id 2adb3069b0e04-52eb99d3d82mr11609664e87.60.1721048129043;
-        Mon, 15 Jul 2024 05:55:29 -0700 (PDT)
-Received: from tablet.my.domain (ip-37-248-157-210.multi.internet.cyfrowypolsat.pl. [37.248.157.210])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b26f62165sm3333307a12.87.2024.07.15.05.55.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jul 2024 05:55:28 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Mon, 15 Jul 2024 14:55:11 +0200
-Subject: [PATCH v2 9/9] ARM: dts: samsung: exynos4212-tab3: Add USB
- connector node
+	s=arc-20240116; t=1721048378; c=relaxed/simple;
+	bh=tCAUoz16SFgMtRJJXCi3TzLWuHeXMPwnhI3T1kOUIJQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rpH3daOH9B+Ik8dwKzoXl799EkgbPHc+XsLSDZCsHeHefsnn8/k0gTtgeEiHGL+AlZvI8ZUC169kWABZ3fIkZ/C2YFyFIG/rhgu0TyslMr2gaXgOAP2FsmKO6MQTIyypyigdUXiKwWmDWrylXo48pJCcJploJNElNtygkOttVps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC521DA7;
+	Mon, 15 Jul 2024 06:00:00 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 11C1A3F73F;
+	Mon, 15 Jul 2024 05:59:32 -0700 (PDT)
+Date: Mon, 15 Jul 2024 13:59:30 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>
+Subject: Re: [PATCH v5 1/7] Documentation: firmware-guide: add NXP i.MX95
+ SCMI documentation
+Message-ID: <ZpUdMmvucei9lLPI@bogus>
+References: <20240621-imx95-bbm-misc-v2-v5-0-b85a6bf778cb@nxp.com>
+ <20240621-imx95-bbm-misc-v2-v5-1-b85a6bf778cb@nxp.com>
+ <Zo_bFnjWixZF6seV@pluto>
+ <DB9PR04MB8461684315E753DAFDDBACA788A12@DB9PR04MB8461.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240715-max77693-charger-extcon-v2-9-0838ffbb18c3@gmail.com>
-References: <20240715-max77693-charger-extcon-v2-0-0838ffbb18c3@gmail.com>
-In-Reply-To: <20240715-max77693-charger-extcon-v2-0-0838ffbb18c3@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>, 
- Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>, 
- Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1245;
- i=aweber.kernel@gmail.com; h=from:subject:message-id;
- bh=JPvmuWMb9Cv6qRz3cEGIn/kWuF1SOLW1hi0UXwnEzKQ=;
- b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBmlRwqnFSOEjC8QWSCPslauoOTiO933O3gvdDEc
- e3gOsFdVleJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZpUcKgAKCRCzu/ihE6BR
- aFmxEACYfKH/GNZtUBx1ayE51+WDZH8Lsh7YCHzX0J0u0GIF7sy4e52YDmnH48GfzystWyPPaXX
- 4tChxghI0ZSVFts1vH67Iqd3zBRaDCJkHERejtV5sMP6QIX5hSlqD8pj4OAFPecpgcJG3dT+pLj
- IK330kJ2pKG36NHMRti2HiX1GtLzdG4YL7EakFGVo79x2s0V1dLXYrUz8BGFpeEDT9sHnYVA/0x
- wKkvzRnSWK+aGj0Hj8AQHaC6z3+0J0sJin+VltFKpxLIIFuQtVZJzz9YXH+bpaHPg2oBBf6ixhE
- jReLMZEDFWSyt+bStQBUW6pp3ZB7vTx89JFQh1l9eIzLwufABxHIWWcKBcK1pBPGaWE5T42vLcr
- tfLeyEG9XJiypKn6b9SPCVsEvulMQ4y/zjhOZhiLht7qe3EtHkEEex0SAOKD1IGsR01bVhnOtfJ
- f4ojHCmJMu58yv0PLcKYW9JzCEW4zVp3rePVQngPLpYhCbM+iskfDyhP3z/d0aiBU05GojgWItf
- j6YyJEC0wpDsLiLDZF48LEMBb6sT3LjQtHXcME4t6fJeox3Nw9KPh6Dh9s40VGQxSzETgSd+i17
- dB8Pf1NRrzuZ0lGjYPXjfPTh8Vo2SMTqsGlijr2xWVcWYxXZN0cKKoIix6fRrngVy79JzpYP1FL
- tULnfR+O6VXKZxw==
-X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
- fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DB9PR04MB8461684315E753DAFDDBACA788A12@DB9PR04MB8461.eurprd04.prod.outlook.com>
 
-Add a subnode to the MAX77693 MFD for the MUIC and connect the USB
-connector node to the charger to allow for charger type/OTG cable
-detection.
+On Mon, Jul 15, 2024 at 11:47:56AM +0000, Peng Fan wrote:
+> > Subject: Re: [PATCH v5 1/7] Documentation: firmware-guide: add NXP
+> > i.MX95 SCMI documentation
+> > 
+> > On Fri, Jun 21, 2024 at 03:04:36PM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > Add NXP i.MX95 System Control Management Interface(SCMI)
+> > vendor
+> > > extensions protocol documentation.
+> > >
+> > 
+> > Hi,
+> > 
+> > beside the final location of this file in the tree, and a few nitpicks down
+> > below.
+> 
+> Thanks for reviewing the patches. Except Documentation/firmware-guide,
+> I not have good idea where to put the API doc.
+> 
+> Sudeep,
+>   Do you have any suggestions?
+>
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
- arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Not really. But I am OK to keep it under drivers/firmware/arm_scmi/vendor/docs
+or something similar.
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-index 7905e33234f2..f5ee3640a940 100644
---- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-@@ -151,6 +151,17 @@ charger_reg: CHARGER {
- 				};
- 			};
- 
-+			muic {
-+				compatible = "maxim,max77693-muic";
-+
-+				usb_conn: connector {
-+					compatible = "samsung,usb-connector-11pin",
-+						     "usb-b-connector";
-+					label = "micro-USB";
-+					type = "micro";
-+				};
-+			};
-+
- 			charger {
- 				compatible = "maxim,max77693-charger";
- 				monitored-battery = <&battery>;
-@@ -160,6 +171,8 @@ charger {
- 				maxim,thermal-regulation-celsius = <100>;
- 				maxim,battery-overcurrent-microamp = <3500000>;
- 				maxim,charge-input-threshold-microvolt = <4300000>;
-+
-+				maxim,usb-connector = <&usb_conn>;
- 			};
- 		};
- 	};
-
--- 
-2.45.2
-
+--
+Regards,
+Sudeep
 
