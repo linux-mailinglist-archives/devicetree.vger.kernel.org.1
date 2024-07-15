@@ -1,246 +1,165 @@
-Return-Path: <devicetree+bounces-85638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29696930E62
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 09:00:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1815F930E8A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 09:15:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B94D1C20FD3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 07:00:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BE841C210F8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 07:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D976E13AA3C;
-	Mon, 15 Jul 2024 07:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3850B6A347;
+	Mon, 15 Jul 2024 07:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="Mg0+ZpU+";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Eotl3kMq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nj6A7otA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout5-smtp.messagingengine.com (fout5-smtp.messagingengine.com [103.168.172.148])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97ACA4C9A;
-	Mon, 15 Jul 2024 07:00:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD315221;
+	Mon, 15 Jul 2024 07:15:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721026843; cv=none; b=DqNEQ+7Z1g6aHeu2wc9+Fbg2xtzo6HVcvs9wKBFQuJMT5UbhWwYu3VZW9roTCFOQxMQX8hfiifWbw1+57bYxXgj3qw+sik05CChoMrbUGcJyi5NRk6X3duTGuv1EwDqr/uFEkXB87q3al5hRkTb3Jia7FtZhNacx0DPxvwY2TJw=
+	t=1721027732; cv=none; b=HIXnGqZIgshXn/sHoltutUC/8tbvllEp9ZlmqblDpvA9G32AAWytFY54nBXvN7OYaXakYfiVTKNnLPfS5U5nphhQ8OotKoPewZdUO6FIOIXjkOpvTO6WAOo3FtrMP97T9YZtJS5YECWVRnMhJiLAc5bTWJcDn2RWbQlnq9KRNdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721026843; c=relaxed/simple;
-	bh=l7GZ2gPkO34+k+8ASxE1jMvE5omSYiSss8FhtVBDznk=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=ni+NShZTxncv/5x6+vEdCLLONd3zK5D7fWlz7BLKZ0cAygrGE6Si/pBqbHKkOSSB0kuzf67EjQP3ZfDjpbncpheJbzH7RHskTfhkkLfuHgHomeyfd+0FbYlP5jt+duzABbHMv20hh/VFKrIC+moyVMWgFKhUuDeNtYqh4SMlUcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=Mg0+ZpU+; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Eotl3kMq; arc=none smtp.client-ip=103.168.172.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailfout.nyi.internal (Postfix) with ESMTP id B91E81388DE7;
-	Mon, 15 Jul 2024 03:00:40 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Mon, 15 Jul 2024 03:00:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1721026840;
-	 x=1721113240; bh=ChojkAX+i4Qp70UrJjFUh3pj/D7HmhsPYjxWPA6xENs=; b=
-	Mg0+ZpU+JhwSwrzMx9FTztDKAjagitjtmrxJyoPGlN59gRkV+yj/f+1DtxxvmkO/
-	kOq27EBOeMpf39DxNSg2frDGgUXuIdDk6/QescCj0ye72KIkFgZPHA4wF2PnL9xr
-	tHNWQkaFlETLe5q0hHwGalKgVzOGJDoX10w49ADqPfFoe6UsvGwBIoOs7q6LZGaY
-	2+TbmETr+6Aw5sPt4kAykNEuHPp99F4Vp3PuFhvZMDaatAhzu+ghKTcdwCpbk85W
-	Blv7gfSPVydUj8+HAfes2zFnCi84xjQsisrBfpB5PEQPBs9ZHSXFwdBecT41WQtA
-	nWqhBgH9M4pHePnE8puyvw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1721026840; x=
-	1721113240; bh=ChojkAX+i4Qp70UrJjFUh3pj/D7HmhsPYjxWPA6xENs=; b=E
-	otl3kMqPrINtQXWNeZw2CfTnC9AdnMtYl6bCIppW3TcXsPavLCHPw1UFly6L2uO6
-	pWWl0NHvMTo9w/DWa47qsJ8/AVPPRZeShYgQSKMn3auV02zVbjwJRi+xVF0wopd5
-	X28xtSQIZ4JiYgd2x8qtc4zhyTCgEiOatt4o6pc1Vu7AQoiSzKblEHbQKDK8MgIY
-	ItlppRJk1i+CpxgFvPClblSYgJLoZCNOcYUjNeJXEj3h470LSMYSf6bDLEWapD6v
-	Rm4r8vRv1mdEeXmfJs6WF0NrtyouoHEJjxnXeTHX651tIJ3CFOuZ/kmpbZTyQMBA
-	fryR/Syqhvs6NcJqeVY2Q==
-X-ME-Sender: <xms:F8mUZkLaNU50OWgTDILgxqexhY9psCLRioIa2AWFqL46ZaO-Rm1YCg>
-    <xme:F8mUZkJW02dhT_vjmqUBU8iUJkjUTENwNk_KlWDeFKKF02kbjEDsH8VKCmnuUVFQC
-    sETGXNPC-aJwUZ9KCY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrgedugdduudejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpeekleevffehtdeigfekfefhffdtudffvdeuvedtffet
-    heeuiefhgfetleekleekjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdih
-    rghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:F8mUZktes8w_960q2FNwzkMKFL1y6mywqv5VasrKfroTJ4oxgub0ag>
-    <xmx:F8mUZhb0HYv5Yl_lALCiDiGXILCvmEFaugEELelLNfzeLhUc6EPmUw>
-    <xmx:F8mUZrZ1mHmeGgkOC9iOgLE58IpvOQBOqlT0r1PFbPTjC3EueudPgA>
-    <xmx:F8mUZtA-Wpiuybv0-Syzgfve1pw10VRmqjia_43i8tJtdjn2Qa0OnA>
-    <xmx:GMmUZpClPRiwZC6jS_zN6BQoeZhkjOdiZ30vZrTPqUMVl0Go89xzy1mw>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 6998B36A0074; Mon, 15 Jul 2024 03:00:39 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
+	s=arc-20240116; t=1721027732; c=relaxed/simple;
+	bh=2EMRRHgATOG+8UaGVLwFN/+qZQ6DQZh0fU5FKzhSYOw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sqqDV+6AlQOCa75NMuQk0rn3g3vJSN94f6GtGkbmxpxHBKDkxMFeEC/4/jcq+tN27wTT4Q9RFxMjg4jhltqSm3IMAc9DgM8PP/9WUzyZBOINGcuVeRtudctNGi6wf5b7yeRIvRLzwA6jo7/DVfIgbVC55pGW1VZRRqgjMXpDUxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nj6A7otA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B11B5C4AF0A;
+	Mon, 15 Jul 2024 07:15:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721027731;
+	bh=2EMRRHgATOG+8UaGVLwFN/+qZQ6DQZh0fU5FKzhSYOw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nj6A7otAounG9xDZpTH+k2/KCMdbQ/270EWR2F2CLRlJME91G1PMUmXZiBtOZpy/d
+	 bRZbIOyzQVoFIS+hGOxSyFgzH+IQj0aAYZSJCmKUI/ep2CwXnowsFZxmHT1oeZlOea
+	 3GGwBfV2oev+vxAiydVqOBWUQS1MSSWmwkuE6MDTH47WngyrA8KDM7wO/bjOsJpRTE
+	 6TRdBEKkJyjdqnoPUjKCUdf4JRRT+HIwEI3gJUxjJUY5JMZn8p9UwX3W/7rMqQALiG
+	 gpdKVvWVXZGMNwR3z64Rl5v8Cs56u8gZ6sa9uSQGuC9MTRRCqEHF30dPzjFqYgU0dr
+	 WMn982BDX2lEw==
+Message-ID: <fca65d4a-7e2a-47c8-809d-eac758433eb4@kernel.org>
+Date: Mon, 15 Jul 2024 09:15:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <b1a53515-068a-4f70-87a9-44b77d02d1d5@app.fastmail.com>
-In-Reply-To: 
- <CAAhV-H5Um5HhbmcB1Se=Qeh2OOAeP34BAx+sNtLKge_pePiuiQ@mail.gmail.com>
-References: <20240711-loongson1-dma-v9-0-5ce8b5e85a56@gmail.com>
- <CAAhV-H5OOXguNTvywykyJk3_ydyDiSnpc-kvERRiYggBt441tw@mail.gmail.com>
- <CAJhJPsXC-z+TS=qrXUT=iF_6-b5x-cr9EvcJNrmSL--RV6xVsQ@mail.gmail.com>
- <CAAhV-H5Um5HhbmcB1Se=Qeh2OOAeP34BAx+sNtLKge_pePiuiQ@mail.gmail.com>
-Date: Mon, 15 Jul 2024 15:00:19 +0800
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Huacai Chen" <chenhuacai@kernel.org>,
- "Kelvin Cheung" <keguang.zhang@gmail.com>
-Cc: "Vinod Koul" <vkoul@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, "Conor Dooley" <conor.dooley@microchip.com>
-Subject: Re: [PATCH RESEND v9 0/2] Add support for Loongson1 APB DMA
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: nvmem: sprd-efuse: convert to YAML
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <ZpJvRePtbaiG94Te@standask-GA-A55M-S2HP>
+ <7a419156-d2eb-4810-9281-dc3414320ad1@kernel.org>
+ <ZpOyEWwj/HwQv7n3@standask-GA-A55M-S2HP>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZpOyEWwj/HwQv7n3@standask-GA-A55M-S2HP>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-=E5=9C=A82024=E5=B9=B47=E6=9C=8815=E6=97=A5=E4=B8=83=E6=9C=88 =E4=B8=8B=E5=
-=8D=882:39=EF=BC=8CHuacai Chen=E5=86=99=E9=81=93=EF=BC=9A
-[...]
->
->> You said that you've accepted my suggestion, which means you recognize
->> 'loongson' as the better name for the drivers.
-> No, I don't think so, this is just a compromise to keep consistency.
-
-Folks, can we settle on this topic?
-
-Is this naming really important? As long as people can read actual chip =
-name from
-kernel code & documents, I think both are acceptable.
-
-I suggest let this patch go as is. And if anyone want to unify the namin=
-g, they can
-propose a treewide patch.
-
-Otherwise, we are going nowhere.
-
-Thanks
--  Jiaxun
-
->
->
->
-> Huacai
->
->> Moreover, Loongson1 and Loongson2 belong to different SoC series.
->> To be honest, I can't see why Loongson1 APB DMA should give up this
->> intuitive and comprehensible naming.
->> Thanks for your review!
->> >
->> > Huacai
->> >
->> > On Thu, Jul 11, 2024 at 6:57=E2=80=AFPM Keguang Zhang via B4 Relay
->> > <devnull+keguang.zhang.gmail.com@kernel.org> wrote:
->> > >
->> > > Add the driver and dt-binding document for Loongson1 APB DMA.
->> > >
->> > > ---
->> > > Changes in v9:
->> > > - Fix all the errors and warnings when building with W=3D1 and C=3D1
->> > > - Link to v8: https://lore.kernel.org/r/20240607-loongson1-dma-v8=
--0-f9992d257250@gmail.com
->> > >
->> > > Changes in v8:
->> > > - Change 'interrupts' property to an items list
->> > > - Link to v7: https://lore.kernel.org/r/20240329-loongson1-dma-v7=
--0-37db58608de5@gmail.com
->> > >
->> > > Changes in v7:
->> > > - Change the comptible to 'loongson,ls1*-apbdma' (suggested by Hu=
-acai Chen)
->> > > - Update the title and description part accordingly
->> > > - Rename the file to loongson,ls1b-apbdma.yaml
->> > > - Add a compatible string for LS1A
->> > > - Delete minItems of 'interrupts'
->> > > - Change patterns of 'interrupt-names' to const
->> > > - Rename the file to loongson1-apb-dma.c to keep the consistency
->> > > - Update Kconfig and Makefile accordingly
->> > > - Link to v6: https://lore.kernel.org/r/20240316-loongson1-dma-v6=
--0-90de2c3cc928@gmail.com
->> > >
->> > > Changes in v6:
->> > > - Change the compatible to the fallback
->> > > - Implement .device_prep_dma_cyclic for Loongson1 sound driver,
->> > > - as well as .device_pause and .device_resume.
->> > > - Set the limitation LS1X_DMA_MAX_DESC and put all descriptors
->> > > - into one page to save memory
->> > > - Move dma_pool_zalloc() into ls1x_dma_alloc_desc()
->> > > - Drop dma_slave_config structure
->> > > - Use .remove_new instead of .remove
->> > > - Use KBUILD_MODNAME for the driver name
->> > > - Improve the debug information
->> > > - Some minor fixes
->> > >
->> > > Changes in v5:
->> > > - Add the dt-binding document
->> > > - Add DT support
->> > > - Use DT information instead of platform data
->> > > - Use chan_id of struct dma_chan instead of own id
->> > > - Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
->> > > - Update the author information to my official name
->> > >
->> > > Changes in v4:
->> > > - Use dma_slave_map to find the proper channel.
->> > > - Explicitly call devm_request_irq() and tasklet_kill().
->> > > - Fix namespace issue.
->> > > - Some minor fixes and cleanups.
->> > >
->> > > Changes in v3:
->> > > - Rename ls1x_dma_filter_fn to ls1x_dma_filter.
->> > >
->> > > Changes in v2:
->> > > - Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
->> > > - and rearrange it in alphabetical order in Kconfig and Makefile.
->> > > - Fix comment style.
->> > >
->> > > ---
->> > > Keguang Zhang (2):
->> > >       dt-bindings: dma: Add Loongson-1 APB DMA
->> > >       dmaengine: Loongson1: Add Loongson-1 APB DMA driver
->> > >
->> > >  .../bindings/dma/loongson,ls1b-apbdma.yaml         |  67 +++
->> > >  drivers/dma/Kconfig                                |   9 +
->> > >  drivers/dma/Makefile                               |   1 +
->> > >  drivers/dma/loongson1-apb-dma.c                    | 665 +++++++=
-++++++++++++++
->> > >  4 files changed, 742 insertions(+)
->> > > ---
->> > > base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
->> > > change-id: 20231120-loongson1-dma-163afe5708b9
->> > >
->> > > Best regards,
->> > > --
->> > > Keguang Zhang <keguang.zhang@gmail.com>
->> > >
->> > >
->> > >
+On 14/07/2024 13:10, Stanislav Jakubek wrote:
+> On Sat, Jul 13, 2024 at 08:31:31PM +0200, Krzysztof Kozlowski wrote:
+>> On 13/07/2024 14:12, Stanislav Jakubek wrote:
+> 
+> [snip]
+> 
+>>> +allOf:
+>>> +  - $ref: nvmem.yaml#
+>>> +  - $ref: nvmem-deprecated-cells.yaml#
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: sprd,ums312-efuse
+>>> +    then:
+>>> +      required:
+>>> +        - clocks
+>>> +        - clock-names
+>>> +    else:
+>>> +      properties:
+>>> +        clocks: false
+>>> +        clock-names: false
 >>
+>> Half of the binding is this "if:", so I would say they are not that
+>> similar. I think it would be easier to read them if these were split
+>> into two bindings.
 >>
->>
->> --
 >> Best regards,
+>> Krzysztof
 >>
->> Keguang Zhang
+> 
+> Hi Krzysztof,
+> 
+> pretty much this exact if-then-else is described in the "Writing Devicetree
+> Bindings in json-schema" documentation as a "typical case" for its usage, so
+> I went with that. I think that it's simple enough that it only minimally
+> hampers readability.
 
---=20
-- Jiaxun
+Example schema has a lot of stuff shown, because it is example...
+
+> 
+> I admit that there might be some confusion, since I forgot to include an
+> example for the sprd,ums312-efuse (i.e. with clocks and clock-names).
+> Could I just add this example in V2 and keep it as-is otherwise?
+
+Usually one example per binding is enough, if devices differ by one
+property.
+
+
+Best regards,
+Krzysztof
+
 
