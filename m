@@ -1,159 +1,88 @@
-Return-Path: <devicetree+bounces-85717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E1A9312BF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 13:04:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1431993130A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 13:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31DFF283D78
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 11:04:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9729AB22A7C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 11:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C4C1891C2;
-	Mon, 15 Jul 2024 11:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6FE187868;
+	Mon, 15 Jul 2024 11:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJj0xdYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587C1188CA4;
-	Mon, 15 Jul 2024 11:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CB0446DB;
+	Mon, 15 Jul 2024 11:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721041457; cv=none; b=RJmcoQopW9tQ7KfBPMt5WG4D1dbH99gnJoUXbEje4cp9ul8C1gkKrk4vd9VVqUZqIlstJLGEx8+JOqrkYA0WsCap62LkZVce97Wlub+Hz7D84EoFdZzmd4y6F1ebUW1KzzBgYK3fym/9K5m/WlznP+NznLsQOEiw+acgB1l/Y50=
+	t=1721042770; cv=none; b=e8vpFCIvmOIhZ0c/Ue6o1DG/tNRp7Oq8L1YaNUOGfxvHK2Fs063+KdlKa4wy7kobBlrRhX/C0IKKQ0ILxZrn3RocqYmgDbo/ogFLh5hHijws5mu13K8DKQw1ENODeY2dQ2unzFxlUbONOqllRs9hn2ykXKv4pdUC1HW0pBnADGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721041457; c=relaxed/simple;
-	bh=jQZXPjC9rL31xUb9Is+Qs2L8/C+PL4JdLjc+3vJPBMw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rP1NLoZnlqJSKCTLH+wkb3dsQ86nPD6oFDnIkzk1Org8LPQ/CQgnEwzJ6HMq/TUABZiYpBC/Ndaw+AG6ggVociy9Ah1m+uVeaJJR+cbFd9XLLLs4TbYn3b4Sno89v+f3bbb47DHR9gEJvZ1qIXpPjB0p51WgM1v+ILy3hCBeUsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e860d09.versanet.de ([94.134.13.9] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sTJV4-0006GM-M0; Mon, 15 Jul 2024 13:04:10 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: fix the pcie refclock oscillator on Rock 5 ITX
-Date: Mon, 15 Jul 2024 13:02:51 +0200
-Message-Id: <20240715110251.261844-4-heiko@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240715110251.261844-1-heiko@sntech.de>
-References: <20240715110251.261844-1-heiko@sntech.de>
+	s=arc-20240116; t=1721042770; c=relaxed/simple;
+	bh=QM1uBAPF2108gHk50qZVBd1zgDVHl1QsHEWx7znti1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sn1S4eaH3h2ihaklq0eY0Udu7dfIEenTdUN/kotEbLdyeyS7Vel8hc3AxI0Wi1RqOSLy1WVbJICojTPoqSzMLaBcBk2w86vBhsXrarUnFbMFAhmrVvLERiD8bij1LuTM2qbJ4OnDEfXv2PIeNgEtYgwfn3C1pM5WB7rhV8BgjYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJj0xdYx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13038C32782;
+	Mon, 15 Jul 2024 11:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721042770;
+	bh=QM1uBAPF2108gHk50qZVBd1zgDVHl1QsHEWx7znti1s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OJj0xdYxkgEIT5/4cc53FrhzNHUTX12qA9VdQtGzy3xByuaSz7VS4aEI3Xb7p19EE
+	 tFY1r5EjQvwfkcuTdLFUrmcTFkkXTyCMgh/kJQ9/nbr5a9ICpEOnJloZS4zoaW8uj2
+	 yRXZyJe+1vZJHDJchmKmnqBfZ2UamUGeDLb5rq94lTvSYzH4fv0JfrkU0Q5Co8rCcy
+	 BC0pFfd2VbqW/wm5VWuy07oawklnAogC3n/qtYRCTIrs/Fx4qA9nllzQxvI94DC+5H
+	 dOJDEZXJSEd+hTqDpUz0hIU5n0eAFTOSTZLEX9FIdVdTdpT8ZK+I5S4eTuej+NXQoH
+	 /xQZzJns0fvBQ==
+Date: Mon, 15 Jul 2024 05:26:09 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>, devicetree@vger.kernel.org,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-kernel@vger.kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Baolin Wang <baolin.wang7@gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: sprd-timer: convert to YAML
+Message-ID: <172104276748.3594257.7060683721858153378.robh@kernel.org>
+References: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
 
-The Rock 5 ITX uses two PCIe controllers to drive both a M.2 slot and its
-SATA controller with 2 lanes each. The supply for the refclk oscillator is
-the same that supplies the M.2 slot, but the SATA controller port is
-supplied by a different rail.
 
-This leads to the effect that if the PCIe30x4 controller for the M.2
-probes first, everything works normally. But if the PCIe30x2 controller
-that is connected to the SATA controller probes first, it will hang on
-the first DBI read as nothing will have enabled the refclock before.
+On Wed, 03 Jul 2024 14:02:46 +0200, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC9860 timer bindings to DT schema.
+> 
+> Changes during conversion:
+>   - rename file to match compatible
+>   - add sprd,sc9860-suspend-timer which was previously undocumented
+>   - minor grammar fix in description
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+>  .../bindings/timer/sprd,sc9860-timer.yaml     | 68 +++++++++++++++++++
+>  .../bindings/timer/spreadtrum,sprd-timer.txt  | 20 ------
+>  2 files changed, 68 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
+> 
 
-Fix this by describing the clock generator with its supplies so that
-both controllers can reference it as needed.
-
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 38 ++++++++++++++++++-
- 1 file changed, 36 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index d0b922b8d67e8..37bc53f2796fc 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -72,6 +72,15 @@ hdd-led2 {
- 		};
- 	};
- 
-+	/* Unnamed voltage oscillator: 100MHz,3.3V,3225 */
-+	pcie30_port0_refclk: pcie30_port1_refclk: pcie-voltage-oscillator {
-+		compatible = "voltage-oscillator";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "pcie30_refclk";
-+		vdd-supply = <&vcc3v3_pi6c_05>;
-+	};
-+
- 	fan0: pwm-fan {
- 		compatible = "pwm-fan";
- 		#cooling-cells = <2>;
-@@ -146,13 +155,14 @@ vcc3v3_lan: vcc3v3_lan_phy2: regulator-vcc3v3-lan {
- 		vin-supply = <&vcc_3v3_s3>;
- 	};
- 
--	vcc3v3_mkey: regulator-vcc3v3-mkey {
-+	/* The PCIE30x4_PWREN_H controls two regulators */
-+	vcc3v3_mkey: vcc3v3_pi6c_05: regulator-vcc3v3-pi6c-05 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
- 		gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pcie30x4_pwren_h>;
--		regulator-name = "vcc3v3_mkey";
-+		regulator-name = "vcc3v3_pi6c_05";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		startup-delay-us = <5000>;
-@@ -513,6 +523,18 @@ &pcie30phy {
- 
- /* ASMedia ASM1164 Sata controller */
- &pcie3x2 {
-+	/*
-+	 * The board has a "pcie_refclk" oscillator that needs enabling,
-+	 * so add it to the list of clocks.
-+	 */
-+	clocks = <&cru ACLK_PCIE_2L_MSTR>, <&cru ACLK_PCIE_2L_SLV>,
-+		 <&cru ACLK_PCIE_2L_DBI>, <&cru PCLK_PCIE_2L>,
-+		 <&cru CLK_PCIE_AUX1>, <&cru CLK_PCIE2L_PIPE>,
-+		 <&pcie30_port1_refclk>;
-+	clock-names = "aclk_mst", "aclk_slv",
-+		      "aclk_dbi", "pclk",
-+		      "aux", "pipe",
-+		      "ref";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie30x2_perstn_m1_l>;
- 	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-@@ -522,6 +544,18 @@ &pcie3x2 {
- 
- /* M.2 M.key */
- &pcie3x4 {
-+	/*
-+	 * The board has a "pcie_refclk" oscillator that needs enabling,
-+	 * so add it to the list of clocks.
-+	 */
-+	clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
-+		 <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
-+		 <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>,
-+		 <&pcie30_port0_refclk>;
-+	clock-names = "aclk_mst", "aclk_slv",
-+		      "aclk_dbi", "pclk",
-+		      "aux", "pipe",
-+		      "ref";
- 	num-lanes = <2>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie30x4_perstn_m1_l>;
--- 
-2.39.2
+Applied, thanks!
 
 
