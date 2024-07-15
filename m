@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-85735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 984149313D9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:16:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4B69313DA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CECEB20AEF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:16:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03E231F2208A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 12:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA14F18A952;
-	Mon, 15 Jul 2024 12:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BC018A950;
+	Mon, 15 Jul 2024 12:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wgAYISVh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="udJEA3t/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E304213B295
-	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 12:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE2E1862AC
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 12:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721045768; cv=none; b=Qn/uePNYURw6ssiRzytgKXVjsT5vl9zdn0MwO5pF4G+iAThvsGEqg9TMhYtuUkOiY53zs0BNOrGqC03xvwjwbG8ftjb0PjKX94l8TsMz+elaIBCIuZ7ub5+XS/GMPCjkifcERXQ2cEkVtPeKuwYXwbJrkrHkJwsLgBEnGzNZrVo=
+	t=1721045769; cv=none; b=fSbAdaB+EIi80qdCC+T7ggCvn6bKfLBcJ0U9Ft930LVBnLCeEOCPsgp+Msa5rBEthB4CP6T4uKOPROiZTotukYunhwu1mFNS8BXG9iYyG/hT4zfJ2soCzG8NPXOwvu9LFDxOIuCOhU1C3U+s/fZK8A8Bv1+guLpjDSmQguz8Idc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721045768; c=relaxed/simple;
-	bh=J7WGTQBpJaNKFTWx2R562yv5x7E3DH7etc/yD3RZjww=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iU+4gJg6BuFgG8mwD5kgH6H0NAoNYaauqnsxMVlWi1HdiP30UsZkBm9XKhqsAE+qwAVyQvMfQMyvztXA9o/k5JS6w/JSKWbKTQdqs3kQ6OFzmpO42h/5udzjA2khw5/f6AYxvTeoiV8ff+OmlIN6OfMGsecIZy9gslpSMirZAa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wgAYISVh; arc=none smtp.client-ip=209.85.128.65
+	s=arc-20240116; t=1721045769; c=relaxed/simple;
+	bh=5xxCslBz39cd9KCBn386k+DYETh3rATBhqlskCXMh/4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Qq6HPQMQ0hWW3exScefiy24APlNcueffiZmkV9/IdtbaPAy0lrUEkSwfx1A2QqDfsOgCj/kCwDR+FSZx/h8ZZPrgDW0ZA3bksPf7OVr0SELzaQ0/mCLQ4z8Gp/SA4ke9IMyvMgfO4jRA6Fgnt9BzoPLbTe7UrwDjrSXjSnoSUMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=udJEA3t/; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so32517745e9.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 05:16:06 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-367a183df54so2825645f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 05:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721045765; x=1721650565; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Vr1Igs6Grx1TdlXBKwpA/hLnY4uL3rKsZy+M8J+TL0=;
-        b=wgAYISVhtJwLP0d1jvz7QW3lm4WyTU56qP7PqeGeZGbIC7FqBXm+uUsI7dJkWwbWvm
-         q0xhFa0+vhLwV1OcWtrb0sHBZ3oyHWVedJ8npXhqmgSZ1ER/C5+yI4V7/nunjzdosx8B
-         N3n8PFtjIL9mu1Rom4pGj0sRJEUNW4XnCl7JrehzWKS8WGtlvQphw7UnIyDvy87TQP8/
-         k2Lyi3hcEy1ZJG2KYzpHVhbFvMk8ryBBj9sQ0Ae8Hn7Q8dl45dWWgjPWqPifDAqkpF8o
-         he/5bglctrNSXVW+G6vWh+n1UqcAM19rIzdTEXsHUqOU+PXIrDLlj3fUwxmfTcL2gwDK
-         xmNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721045765; x=1721650565;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1721045766; x=1721650566; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0Vr1Igs6Grx1TdlXBKwpA/hLnY4uL3rKsZy+M8J+TL0=;
-        b=uuLmg3VbI/iPwDf7ldtxtmpzJuMxQQvp+Cwo14aIjA+XcPT4wPk2c2HAAQ/caskMZn
-         NBk5VM4ralNUpKvxxm0mhXry1YNE66nV0tEGTNx11zITc5jTwbT56XYcKzf+9AJ6NbCu
-         8P7inox1gRxg2XQL3BnCOGn8Q4nRzlNVYnJ9EhzNmo7SRNrif/pDmektXm/uuYXVKy69
-         4UbaK/2/AGuwYYxLQZnvgpcNr0M5E7AYLBk5J3oyaBid5mFktwKhuBVO654a/+pBmMIe
-         OLcVgJ9EM+tjA4HCqsZFnTTExxGTEqmQlbLea4Xb1Cdm8lmIbv3SkMB5MvLwGB/kWQB0
-         VdGw==
-X-Forwarded-Encrypted: i=1; AJvYcCXi5o79RM+V/w1QqSYIXKBOMHqysmvcZPRAIcZZrUUwdY3l7Jn8whTdFePoeD1oXDu4sN7zhUVDz/QsyWhPwEQ1VDsmy3fCggDo1Q==
-X-Gm-Message-State: AOJu0YxRcgYteJHSnQ74Y9H505nZtzT73PPRrEwmp2Hq+b550dHZ7YhH
-	WmogSQcdu8qMb4IaUb0NDRvPrmKdMvlXq1oJ2BztZeEFfZA3ih8+St+rVz2mYR8=
-X-Google-Smtp-Source: AGHT+IF1eIglBUYPcY54eeaj425QXF1pkXmSnnMaa3Z7nS7TIbwkFjDf7kr7CW/lZQwMQMB2loSrag==
-X-Received: by 2002:a7b:c052:0:b0:426:5c81:2538 with SMTP id 5b1f17b1804b1-426707cf827mr140078155e9.14.1721045765216;
+        bh=CwYPDTPYAwmjKmZ1/Gf11accW/fLFhZgeFXsYW2+ut4=;
+        b=udJEA3t/couQkVT3Z443Rkb88vX0bp7H5bvfLt7NoCtVzWhv4+4GwoFn9+NkEz5JU7
+         JFtZdz5JtGNb0T6T+4FVYXMmyl1D4EORzAPlH/TxGVupStL/j+to8ngahPhaRI18nVp4
+         Bs5yeq5yUArHjT5vEErVj0TRW6n2cVOmOQ1DFRqmvuXzDICmxNbUdb9L3Dcy3EJLyJDx
+         LjFGmHQ7e+yb2pxzc4j0exUDvDT7w4g6/prxg8zYKPr9PrP9Ro9n3UKb2wGWVVLIPwjC
+         kaT5QNaSDapoK/TZWgnsWu8B9I7AmHLNbOPJCF95ymDofMx8KLjecoknNxIIWsGGWja+
+         J2Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721045766; x=1721650566;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CwYPDTPYAwmjKmZ1/Gf11accW/fLFhZgeFXsYW2+ut4=;
+        b=iZemuvw1EVUZFTvK11C660keKXVM43ztMDeXqzvDdZW62WP8KBiRxc/20n/IDaBfpu
+         TjhXNV/fcFDWob3WUHezge5q13oYR6RDF/QgygcVtdA2DJ2EcHUmydnDu8Mmry+VHEBy
+         UicqeaHj5alNGgBB1pXCzPmUfktxCZX+zSmoEbKATnNP6gs1/zMuc63mAiyIFoO6bqMp
+         LfsuRMmx+QG4rXD2j3nO84MkPGV2oOX1O1poz16FOiUlUhrTy5vemHEMG0VEqaQIFTij
+         grlKMjveRSLz4sK3XA1G7b+gXQnlXyatg6ujtZR7oHytthesdECGpsl35VBLlJrS+7wg
+         vG0A==
+X-Forwarded-Encrypted: i=1; AJvYcCX7gaih6zIAgRkrA+bA4k8gPlZs6hkZy113vOb6zOoZjW98YB0wXL2T6Fl9lLR/yogX2PiGo1TwLLZ2FuFw6cyGZEjWgbQ1osg41g==
+X-Gm-Message-State: AOJu0YxQ0vAKgn+dftdzoOrbE9IbzSfVy718n5WjKnrVOwjxokjv9/C4
+	JxctXuHhL0tlvGLrhk2E4r/GoZ9xRsap5jrfoBi3vPJfOO+nt/odI0l/++1r4fUP2lUx3O0I5xe
+	wXrDahQ==
+X-Google-Smtp-Source: AGHT+IGqx28NbMNvmzLw5J0w/TQ3ZQHmxkK+h/DWdncxb76LIdC5qwbxWV7jVF8Ibsfqau3YeIjlGw==
+X-Received: by 2002:a5d:47c3:0:b0:367:8a3b:2098 with SMTP id ffacd0b85a97d-367cea46076mr15982239f8f.3.1721045765987;
         Mon, 15 Jul 2024 05:16:05 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff1f:b240:886b:1a3a:7569:3d95])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680d9771aasm6369201f8f.0.2024.07.15.05.16.04
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680d9771aasm6369201f8f.0.2024.07.15.05.16.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jul 2024 05:16:04 -0700 (PDT)
+        Mon, 15 Jul 2024 05:16:05 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Subject: [PATCH v2 0/4] drm/panel: atna33xc20: Fix the Samsung ATNA45AF01
- panel
-Date: Mon, 15 Jul 2024 14:15:36 +0200
-Message-Id: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
+Date: Mon, 15 Jul 2024 14:15:37 +0200
+Subject: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
+ Document ATNA45AF01
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,10 +80,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOgSlWYC/4WNQQ6CMBBFr2K6tmZmSlBceQ/DosAUJhJqpoRgC
- He3cgGX7yX//c0kVuFk7qfNKC+SJE4Z6Hwy7eCnnq10mQ0BFXBFsCvyDRDAttrZxrevUfphtqW
- jUDWhciUHk8dv5SDrEX7WmQdJc9TP8bPgz/5NLmjBckMFOURPjh+jTF7jJWpv6n3fvzY3h9C9A
- AAA
+Message-Id: <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org>
+References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
+In-Reply-To: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>
@@ -94,47 +95,43 @@ Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
  Johan Hovold <johan@kernel.org>
 X-Mailer: b4 0.13.0
 
-The backlight of the Samsung ATNA45AF01 panel used in the Qualcomm X1E80100
-CRD does not work correctly with the current display panel configuration
-and drivers: It works after boot, but once the display gets disabled it is
-not possible to get it back on. It turns out that the ATNA45AF01 panel
-needs exactly the same non-standard power sequence as implemented for
-ATNA33XC20 in the panel-samsung-atna33xc20 driver.
+The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
+control over the DP AUX channel. While it works almost correctly with the
+generic "edp-panel" compatible, the backlight needs special handling to
+work correctly. It is similar to the existing ATNA33XC20 panel, just with
+a larger resolution and size.
 
-Move the ATNA45AF01 panel from the generic panel-edp driver to the
-panel-samsung-atna33xc20 driver and fix the panel configuration in the
-x1e80100-crd device tree to make the panel work correctly.
-
-The panel and DT changes can be picked up independently. Since v2 uses the
-existing "samsung,atna33xc20" compatible as fallback, the DT changes work
-even without the driver changes.
+Add a new "samsung,atna45af01" compatible to describe this panel in the DT.
+Use the existing "samsung,atna33xc20" as fallback compatible since existing
+drivers should work as-is, given that resolution and size are discoverable
+through the eDP link.
 
 Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
-Changes in v2:
-- Use fallback compatible to avoid changes in driver (Doug)
-- ... this allows applying the DT change as fix, so add Fixes: tag there
-- Add review tags (except Krzysztof's, since the binding changed quite a bit)
-- Link to v1: https://lore.kernel.org/r/20240710-x1e80100-crd-backlight-v1-0-eb242311a23e@linaro.org
+ .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml     | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
----
-Stephan Gerhold (4):
-      dt-bindings: display: panel: samsung,atna33xc20: Document ATNA45AF01
-      Revert "drm/panel-edp: Add SDC ATNA45AF01"
-      arm64: dts: qcom: x1e80100-crd: Fix backlight
-      arm64: defconfig: Add CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
+index 765ca155c83a..5192c93fbd67 100644
+--- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
++++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
+@@ -14,7 +14,13 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: samsung,atna33xc20
++    oneOf:
++      # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
++      - const: samsung,atna33xc20
++      # Samsung 14.5" WQXGA+ (2880x1800 pixels) eDP AMOLED panel
++      - items:
++          - const: samsung,atna45af01
++          - const: samsung,atna33xc20
+ 
+   enable-gpios: true
+   port: true
 
- .../bindings/display/panel/samsung,atna33xc20.yaml      |  8 +++++++-
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts               | 17 +++++++++++++++--
- arch/arm64/configs/defconfig                            |  1 +
- drivers/gpu/drm/panel/panel-edp.c                       |  2 --
- 4 files changed, 23 insertions(+), 5 deletions(-)
----
-base-commit: 91e3b24eb7d297d9d99030800ed96944b8652eaf
-change-id: 20240710-x1e80100-crd-backlight-632f9bf936ef
-
-Best regards,
 -- 
-Stephan Gerhold <stephan.gerhold@linaro.org>
+2.44.1
 
 
