@@ -1,157 +1,353 @@
-Return-Path: <devicetree+bounces-85805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD6D93174D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:02:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1079793175A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:10:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70404B2106E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:02:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 337CC1C2090C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865E018EFCE;
-	Mon, 15 Jul 2024 15:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A58418F2CE;
+	Mon, 15 Jul 2024 15:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qCk3ovhE"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iNFIgzxG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC4E2AD31
-	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 15:01:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7415818EA98
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 15:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721055714; cv=none; b=iN032/6A8DoRQKJjmuOd4PsCWVguVq+kZSNO9M8jgsX0ygEkBGDYw8QV2ofPMW5m3t5SF3rKs2+Gb8CCYBODv7O4+qcAfFjPZ35T2JswwbnTV/dfDEtXuQhov3ahHmkyb8knGikxRVX7NG2gWjC8Fxnmbz5UOGf4bgOYFRr0aJA=
+	t=1721056204; cv=none; b=rK3KNjWrcb5NVtx+ShlOQD6vr4WDDpRgWw2MGH3DzMWyWVZCOz6TrCcx16yGVcwtHUwJ93B1qIfnH5ilkKG9gfdv1w/sLcgW+ZaRalYRoF/XWKerYO6Q6U4jcuWKE3ZI+srjeiSaB4UIrJxQB7EvmQ1rnHBM15XnOTY5r4EKG1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721055714; c=relaxed/simple;
-	bh=u6KlE4HVa6FasczsbBxFgb/lVCSAg4kHaT9LO+V1mNY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YqNrdcKU9gKkvUtWmByt97icc4DYGRWzepf2n1mYOBemqxehgFDYup8lk0oSf5d3gA7EYFBcAbi8ITSHF3UMAOtKcJSvE3LdLYHnn943vXVI0p8rp8V7p31dQ7etmwx6uHMFGrVGbpuh6fSs7TThrUl/UkW9WT5usO6hakSPe0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qCk3ovhE; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52eafec1e84so5925178e87.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 08:01:52 -0700 (PDT)
+	s=arc-20240116; t=1721056204; c=relaxed/simple;
+	bh=5m04BJF7q2LLRM88fx++maW87RKFuire28yNMM95G6g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a1zgRdXd0gZaCM2cJYXd0YWHy/e/92/1D3vXZvQvT0hqpF+BSY7KR9QNHhLB4WCZ/G5MIcE2Rc2f/agmBzZPN8mDU+AHg7pA8E5f/2usV3WaDE287i+ILevyhQ9XB/ruBlzuHxtD0caoSEVJYEqFC+IU5RDaHHwyxXCuGSweeM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iNFIgzxG; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a77abe5c709so545231166b.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 08:10:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721055711; x=1721660511; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AQV1Q+yibtGP3NmgXG7HhtFloGMHLEY6YaLwPlWGoDA=;
-        b=qCk3ovhEs4a2pvZ+UJzDghOMCVIjEPCG0+sMPImj3gJeZjnCWI9upH+OfYHeI6QZJG
-         BpEjZiVgx0at7aJo9KOoKnvuCyIkF47AUS2lxtLkW+ZZ/OgUk2ao+ViV6y8IFtwleAD+
-         87DpZegBpSQ9BU3aAvbAIbLRVcPBPRM1pDkLoXnK5vZAeZSTMaOPkkvNzZWoBTsp52Xk
-         U0ERieVRZWQdmo7kPnqc2Ef03PnlD/U7P+w5gDTRA282eLJa3DcFwiBIKPG24R82cJxh
-         AYMgiNypDOF6mzbiDwVzstn/gl8VVUCbK+IVJKqEFESKKJjwUNsagKTF7dd/nj4SEBHG
-         WYVg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721056201; x=1721661001; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4f3Cmwjo4+C8tOGQYXqfrgWl9Ct+rBShy7XPPD3iWCc=;
+        b=iNFIgzxGQXjGYDVVwCCL/my180kbvlHZfq+Ja85TE+EadyNgWujWjvY8gen3WltJUu
+         w3jaSv64Esw2d8+bxBnLV3crZdNQsggVoNKLHRmbzvdCjK9c+CiyVUW/cG1MGj1fjvC0
+         LN+/zSDxsdg1rmk68ULBjnNJ5qyjvpru3DRwrAk0rpTtugyOnPzsocn3MUvGNSN8Jzqu
+         uLcPEvIsiJlRwYXzWsSK812fOf2+Nc1VypHP3kvDdjtn7DAOUZkgBIVjOkT2zJTx3xzr
+         9GmCjBllYJyUhNk1K+6YOIHxSO7NhDjb1H/khk40hU9L3q8Q38/TNdb7Jrgks5bnDeCV
+         S9IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721055711; x=1721660511;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AQV1Q+yibtGP3NmgXG7HhtFloGMHLEY6YaLwPlWGoDA=;
-        b=V9hH2L/KFZLV0Mlm28iWEFQ0NsU99H8QblirvhUgIqrj7cLnhxBdAEKW0c1x2YQhnF
-         Ag3RexPY5MsgR1V1be/hvGNOT+aPGAVoPX3uKcwVZtnKAxtIzhMu0pNyTwt1Zq/G92Na
-         R3FKWYo+tzMuA6+lN7sNMWr7fOZbWZZPFjph5cgnVKvmb6UZ8Jg2C+VwQC53whEd1tbV
-         U7jfrfuz6g1kZJqR9yZkrXlYexktoG6VcHKBlGoFtDXrVwt81CX6iri9Hu/w7DaFsc13
-         +NGLi0f4tmPPAOXQTDS4b5yYLO2/ryN9uGOGt1tyY+4tV3wl7S7Wdy2WRlapf39HFJGp
-         HgKA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSU/VV9U9DGZQY2dYU5cME4s/asdjgPxaGe5RgkjdULFxZLpXzzltDgZNJNFjW7iSI2RwwrATAUQ4yWxaGoRxWmeF8XhH1Ei+mzQ==
-X-Gm-Message-State: AOJu0Yw2rIeidtrTQeYc1gJPDFP9saEX7wnsDF32cnErAp3lxezC1vlv
-	cAMwUJygd6fwkfJY6ChGUnxMi1JyBHTq/+EZcnAlAPijMuTgeF1r5kzJhx5DdCQ=
-X-Google-Smtp-Source: AGHT+IEb0I8rR73ywWMIF9sJz1hrFFx6gcrJiETp+BiwqMDi4EiqcyEa5GzbPige/39DaAKdZj/4Rg==
-X-Received: by 2002:ac2:5f67:0:b0:52c:8944:2427 with SMTP id 2adb3069b0e04-52eb99a1440mr9801049e87.31.1721055711034;
-        Mon, 15 Jul 2024 08:01:51 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a8799e7esm80376715e9.18.2024.07.15.08.01.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jul 2024 08:01:50 -0700 (PDT)
-Message-ID: <503c8ba7-585d-4222-8e81-7f4c52f5f513@linaro.org>
-Date: Mon, 15 Jul 2024 16:01:48 +0100
+        d=1e100.net; s=20230601; t=1721056201; x=1721661001;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4f3Cmwjo4+C8tOGQYXqfrgWl9Ct+rBShy7XPPD3iWCc=;
+        b=AeKT8ukF+zPSCPdPP1Wozn+BpzE0dNpvQOXGxqemUP8sgo5mGVU2sBbfM2eyeyz6Kc
+         mKlW30B8djtKFHL6Up6S4tLISL69IvbJ68mr4W/ihUq39/o3Tx/0HIqy4Dzd5mGL19yf
+         3IVKOnZVxFcNqC++U/HdZA2z4FJKBiUhXEtoOGLAAxh4BtojhgA5+u+AuqL9dPGbWsWy
+         uknttTpLuj4A8mYM+oOR6OyiBhpYuVuRWH1BCdnaJEETx/cJEICjqw9PUzYtB87F08LY
+         dn2SeoW36Uic5gw/20b2Roj0LDHfnEidBgKBdHHg24E+jh/356sGl3yXKXXp0p65W/hQ
+         JBEg==
+X-Forwarded-Encrypted: i=1; AJvYcCXWUAB21c09AeNWE0xF7ChF5oTNfOwJVSVJBIGvSB4NqyYO07Z8SvpvA95ZjvyR+sp54+gDyWo261H1QB8hHlDOWnc/pZHor/rbIQ==
+X-Gm-Message-State: AOJu0YyfWagXyWAu8S7VJaDe2vqC4kbXwFzXfsfXjlorD+++bUe7mYlb
+	c1xEyF+XExtFRUozVwWke6GuYuAH3OrtilVItiacem+utDo8x5g6U+9zlA2ViJ4=
+X-Google-Smtp-Source: AGHT+IEeZnfnZS7fhoaDyZlI+KobrOkLDMA4HhdGBKJDuPEj7OK4LoziT5drUXVzHyWTupraoQASsg==
+X-Received: by 2002:a17:906:1786:b0:a6f:51d8:1963 with SMTP id a640c23a62f3a-a79e6a5c54emr3682066b.43.1721056200603;
+        Mon, 15 Jul 2024 08:10:00 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc5a3560sm218287366b.4.2024.07.15.08.09.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jul 2024 08:10:00 -0700 (PDT)
+Date: Mon, 15 Jul 2024 17:09:58 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Farouk Bouabid <farouk.bouabid@cherry.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/6] pwm: add mule pwm-over-i2c driver
+Message-ID: <e7b3bfpvtrvt5g637yy7qxsbvfiylyzrjvwsro4hzp5t6cmeux@eqafx3k7oaks>
+References: <20240529-buzzer_support-v1-0-fd3eb0a24442@cherry.de>
+ <20240529-buzzer_support-v1-2-fd3eb0a24442@cherry.de>
+ <5hd7fndgivgusx76wq6mbvgefngd3tllqsfsk6pppbphchczte@ujagkep4miet>
+ <25d71c19-6e94-477d-8d04-758015ca4b2c@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for
- SM8150
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@codeaurora.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
- <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
- <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
- <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com>
- <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
- <e235f19f-26b5-2cf7-ebb7-36e4dabe9b9b@quicinc.com>
- <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nnnntzeiyupavwi4"
+Content-Disposition: inline
+In-Reply-To: <25d71c19-6e94-477d-8d04-758015ca4b2c@cherry.de>
 
-On 15/07/2024 11:38, Dmitry Baryshkov wrote:
->>> Does it apply to SM8150? For example, on SM8250 RCG2s are not parked.
->>
->> Yes, it applies to SM8150.
-> Should the same logic be applied to other chipsets supported upstream?
-> If this is the case, which chipsets?
 
-If you are representing the "top" GDSC inside of the CCF instead of 
-doing this
+--nnnntzeiyupavwi4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-+	/* Keep the critical clock always-on */
-+	qcom_branch_set_clk_en(regmap, 0xc1e4); /* cam_cc_gdsc_clk */
+Hello Quentin,
 
-then the clock should be parked else you'll find the GDSC doesn't come 
-out of reset.
+On Mon, Jul 15, 2024 at 02:16:15PM +0200, Quentin Schulz wrote:
+> > > --- a/drivers/pwm/Kconfig
+> > > +++ b/drivers/pwm/Kconfig
+> > > @@ -425,6 +425,16 @@ config PWM_MICROCHIP_CORE
+> > >   	  To compile this driver as a module, choose M here: the module
+> > >   	  will be called pwm-microchip-core.
+> > > +config PWM_MULE
+> > > +	tristate "Mule PWM-over-I2C support"
+> > > +	depends on I2C && OF
+> >=20
+> > It would be easy to drop the hard dependency on OF. Please do that.
+> >=20
+>=20
+> Just being curious here, what would be the benefit?
 
-and... as I look at it now we have a logical conflict in 
-drivers/clk/qcom/camcc-sc8280xp.c
+Increasing easy compile coverage.
 
-static struct clk_branch camcc_gdsc_clk = {
-         .halt_reg = 0xc1e4,
-         .halt_check = BRANCH_HALT,
-         .clkr = {
-                 .enable_reg = 0xc1e4,
-                 .enable_mask = BIT(0),
-                 .hw.init = &(struct clk_init_data){
-                         .name = "camcc_gdsc_clk",
-                         .parent_hws = (const struct clk_hw*[]){
-                                 &camcc_xo_clk_src.clkr.hw,
-                         },
-                         .num_parents = 1,
-                         .flags = CLK_SET_RATE_PARENT,
-                         .ops = &clk_branch2_ops,
-                 },
-         },
-};
+> [...]
+>=20
+> > > diff --git a/drivers/pwm/pwm-mule.c b/drivers/pwm/pwm-mule.c
+> > > new file mode 100644
+> > > index 000000000000..e8593a48b16e
+> > > --- /dev/null
+> > > +++ b/drivers/pwm/pwm-mule.c
+> > > @@ -0,0 +1,115 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Mule PWM-over-I2C controller driver
+> > > + *
+> > > + * Copyright (C) 2024 Theobroma Systems Design und Consulting GmbH
+> >=20
+> > Is there a publicly available datasheet? I guess not. (I ask because
+> > adding a link there to such a document would be nice.)
+> >=20
+>=20
+> Unfortunately no. It's also only part of our product line and there's no
+> plan to start selling it standalone or selling the IP.
+>=20
+> > > + */
+> > > +
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/pwm.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +struct mule_pwm {
+> > > +	struct mutex lock;
+> > > +	struct regmap *regmap;
+> > > +};
+> > > +
+> > > +static const struct regmap_config pwm_mule_config =3D {
+> > > +	.reg_bits =3D 8,
+> > > +	.val_bits =3D 8,
+> > > +};
+> > > +
+> > > +#define MULE_PWM_DCY_REG	0x0
+> > > +#define MULE_PWM_FREQ_L_REG	0x1	/* LSB register */
+> > > +#define MULE_PWM_FREQ_H_REG	0x2	/* MSB register */
+> > > +
+> > > +#define NANOSECONDS_TO_HZ(x) (1000000000UL/(x))
+> >=20
+> > Don't introduce such a macro if you only use it once. Having the
+> > division in the function results in code that is easier to read (IMHO).
+> >=20
+> > > +static int pwm_mule_apply(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+> > > +			      const struct pwm_state *state)
+> > > +{
+> > > +	struct mule_pwm *priv =3D pwmchip_get_drvdata(chip);
+> > > +	u8 duty_cycle;
+> > > +	u64 freq;
+> > > +	int ret;
+> > > +
+> > > +	freq =3D NANOSECONDS_TO_HZ(state->period);
+> > > +
+> > > +	if (freq > U16_MAX) /* Frequency is 16-bit wide */ {
+> > > +		dev_err(chip->dev,
+> > > +			"Failed to set frequency: %llu Hz: out of 16-bit range\n", freq);
+> > > +		return -EINVAL;
+> > > +	}
+> >=20
+> > You're supposed to configure the biggest possible period not bigger than
+> > the requested period. So this should be:
+> >=20
+> > 	/*
+> > 	 * The period is configured using a 16 bit wide register holding
+> > 	 * the frequency in Hz.
+> > 	 */
+> > 	unsigned int period =3D min_t(u64, state->period, NSEC_PER_SEC);
+> > 	unsigned int freq =3D DIV_ROUND_UP(NSEC_PER_SEC, period);
+> >=20
+> > 	if (freq > U16_MAX)
+> > 		return -EINVAL;
+> >=20
+> > > +	if (state->enabled)
+> > > +		duty_cycle =3D pwm_get_relative_duty_cycle(state, 100);
+> >=20
+> > This is wrong for two reasons:
+> >=20
+> >   - It uses rounding to the nearest duty_cycle, however you're supposed
+> >     to round down.
+> >   - It uses the requested period instead of the real one.
+> >=20
+>=20
+> I assume you want:
+>=20
+> unsigned int real_period =3D ((u64) NSEC_PER_SEC * 100) / freq;
+>=20
+> which rounds down?
 
-Patch sent.
+Yes. And then to calculate the duty_cycle setting use real_period.
 
-https://lore.kernel.org/linux-arm-msm/20240715-linux-next-24-07-13-sc8280xp-camcc-fixes-v1-1-fadb5d9445c1@linaro.org/T/#u
+> > I wonder why the hardware doesn't use the whole 8 bits here.
+> >=20
+>=20
+> It's even a 16b register that the HW uses. I guess we just went with the
+> most human-friendly API :) I believe it's something we should be able to
+> change in the FW before releasing if this is something that really makes
+> sense. FYI, the register stores the number of clock ticks for the signal =
+to
+> be high, once reached, put it low (or the opposite). So it's necessarily a
+> fraction of the clock frequency. 100% was easy because we know that every
+> clock frequency we support is a multiple of 100 so there's no issue around
+> rounding for example since we definitely do not want to do float maths in
+> MCUs :)
 
-In the round I think we should avoid these horrific hard-coded always-on 
-writes where possible.
+Interesting perspective. I'd still go for using the register completely.
 
-Personally I think parking is better than always-on specifically because 
-you define the clock and "see" it in the clock tree.
+> > > +	else
+> > > +		duty_cycle =3D 0;
+> > > +
+> > > +	mutex_lock(&priv->lock);
+> >=20
+> > If you use the guard helper, you don't need to resort to goto for error
+> > handling.
+> >=20
+>=20
+> I would have liked a link or more precise hint at what this "guard helper"
+> was, but found something myself so here it is for anyone wondering:
+>=20
+> https://lwn.net/Articles/934679/
+>=20
+> Had never heard of that one before, neat!
 
----
-bod
+Right. A conversion example is available at
+https://lore.kernel.org/linux-pwm/2102fe8189bdf1f02ff3785b551a69be27a65af4.=
+1719520143.git.u.kleine-koenig@baylibre.com/
+
+> > > +	ret =3D regmap_bulk_write(priv->regmap, MULE_PWM_FREQ_L_REG, &freq,=
+ 2);
+> > > +	if (ret) {
+> > > +		dev_err(chip->dev,
+> > > +			"Failed to set frequency: %llu Hz: %d\n", freq, ret);
+> > > +		goto out;
+> > > +	}
+> > > +
+> > > +	ret =3D regmap_write(priv->regmap, MULE_PWM_DCY_REG, duty_cycle);
+> > > +	if (ret)
+> > > +		dev_err(chip->dev,
+> > > +			"Failed to set duty cycle: %u: %d\n", duty_cycle, ret);
+> >=20
+> > Please document how the hardware behaves here in a "Limitations" section
+> > as several other drivers do. Questions to answer include: Does it
+> > complete a period when the parameters are updated? Can it happen that a
+> > glitch is emitted while MULE_PWM_FREQ_[LH]_REG is updated but
+> > MULE_PWM_DCY_REG isn't yet? Maybe updating MULE_PWM_FREQ_[LH]_REG isn't
+> > even atomic? "Doesn't support disabling, configures duty_cycle=3D0 when
+> > disabled is requested."
+> >=20
+>=20
+> Updating MULE_PWM_FREQ_[LH]_REG is atomic (L is stored in SRAM until H reg
+> is written, when LH are then written to the hardware IP).
+>=20
+> We use double-buffering (supported by the HW directly) for the period and
+> comparator registers. I believe we still have a possible glitch during a
+> small time-frame in the current version of the FW. Basically, trying to
+> change the period AND duty cycle at the same time, the following could
+> happen:
+>=20
+> - period A + duty-cycle AA
+> - period B + duty-cycle AA
+> - period B + duty-cycle BB
+>=20
+> Depending on what we consider a glitch, the second element in the list co=
+uld
+> be one. Even if we do a multibyte write to the actual HW, I'm not sure if
+> this window can be eliminated.
+
+I'd call that a glitch, yes.
+
+> To give a bit more info on this, there are two possible flavors of the MC=
+U,
+> ATtiny 816 (datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/A=
+Ttiny416-816-DataSheet-DS40001913B.pdf)
+> and STM32F072CB (datasheet: https://www.st.com/content/ccc/resource/techn=
+ical/document/reference_manual/c2/f8/8a/f2/18/e6/43/96/DM00031936.pdf/files=
+/DM00031936.pdf/jcr:content/translations/en.DM00031936.pdf).
+>=20
+> FYI, on ATtiny, we use TCA in single-slope PWM generation mode and PERBUF
+> and CMP2BUF as period and duty-cycle registers. On STM32, we use TIM15 in
+> PWM mode and ARR and CCR1 as period and duty-cycle registers.
+
+Wouldn't it be more natural with these to have duty in a base-2 register
+for duty, in the assumption that your MCUs habe this, too?
+
+> Re-reading both datasheets, and if I understand correctly, we could have
+> glitch-free transitions by controlling the ARPE bit on STM32 and LUPD bit=
+ on
+> ATtiny816.
+>=20
+> @Farouk, please confirm but the above makes sense to me and I guess we co=
+uld
+> implement something in the FW. The question is how to detect if we want to
+> change both the duty-cycle and period at the same time (we could decide to
+> document this as a requirement for the API user though: "changes to
+> MULE_PWM_FREQ_[LH]_REG are only applied when MULE_PWM_DCY_REG is written
+> to").
+>=20
+> > Maybe write all three registers in a bulk write, then you might even be
+> > able to drop the lock.
+> >=20
+>=20
+> The bulk write wouldn't help with the glitch, but it's a good idea for
+> getting rid of the lock.
+>=20
+> > Also please fail silently.
+>=20
+> Would dev_dbg() be fine here or would you rather see them gone entirely?
+
+dev_dbg is silent by default, so that's fine for me.
+
+Best regards
+Uwe
+
+--nnnntzeiyupavwi4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaVO8EACgkQj4D7WH0S
+/k5G8QgAo9i4tMthmPzEzcLp1iYlQD9EhlmLY3NS3iaEndMQdjs6Yn5g/X28jixs
+S5EwD0OzoP2LziqgyOcsMqoQUZgtlZXcx7DyhzERsSPSAiGNUxRqTX4dIp4eqhaI
+a5nL/kAEbSdl6cirkq97TUA6YSTjZlcFjYte9UkaARk6ZbWJpyAEcEg+4pjjs6OZ
+cWrATM34nHeICcRxizIz6CakISP+g7H7fm1sUyoILDOlxS3mjbsrLOm4cbERuoKI
+I+PvVIVwSJJ8ulWXXCeXJc6ilOYTH5NPJTkZG81AZT6PO4vs+6mMQMPX3Y+0d4cZ
+E4TZB++66HrjjDhuL5mlJcammYkJng==
+=wgn2
+-----END PGP SIGNATURE-----
+
+--nnnntzeiyupavwi4--
 
