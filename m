@@ -1,135 +1,157 @@
-Return-Path: <devicetree+bounces-85804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE73931732
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 16:55:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CD6D93174D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 17:02:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F9941C20A87
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 14:55:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70404B2106E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 15:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C5918EFE6;
-	Mon, 15 Jul 2024 14:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865E018EFCE;
+	Mon, 15 Jul 2024 15:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="aeTQOly2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qCk3ovhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A13418EFDA;
-	Mon, 15 Jul 2024 14:55:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC4E2AD31
+	for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 15:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721055322; cv=none; b=XoC9HAYvBzEEyfZDPwnuh/PUdmTyPEANHwMfvdQhFO5aGvUZrXQhxPmDVizJcLRu1wYFVkYb2gFDcyTwHCD3K1cKUACxlWpXdbPeeCyfVoS+FCjHBNPNfscVu7+TP48lEnce/cXtEQhNPRGh2oQbM+wk6PdPPywH2Bqoz/cXhgA=
+	t=1721055714; cv=none; b=iN032/6A8DoRQKJjmuOd4PsCWVguVq+kZSNO9M8jgsX0ygEkBGDYw8QV2ofPMW5m3t5SF3rKs2+Gb8CCYBODv7O4+qcAfFjPZ35T2JswwbnTV/dfDEtXuQhov3ahHmkyb8knGikxRVX7NG2gWjC8Fxnmbz5UOGf4bgOYFRr0aJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721055322; c=relaxed/simple;
-	bh=R6GVR5nbrPK1ArJAmwv4TPVLMOMH4rsaJWjUIBHDlCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KJj7n4a4codUSVCewHZ5fLZ/j6i3Izw3qHMoxZUMUt0soFlk/cG6mbt9VjXBqWBAVHpdFdIUUAa5j8oEW3zerFBNdmRw1fA/XtlKwknd6JyhX80hR74anh3+l3vH8yhHY3nBmFt4rgzApVSL3B745S3GFoMky4ZOoCGQPDgLKDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=aeTQOly2; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id D94131FBDC;
-	Mon, 15 Jul 2024 16:55:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1721055308;
-	bh=pDawVp5+7gMn51Cqr/yBhI3wgxySaQrWuVDy9+iNnbA=; h=From:To:Subject;
-	b=aeTQOly2Z1GJ/aATB0SCPcHrVc3vCd2vPVsd56W25IQIAczovmm7917P45/L184vt
-	 S3z6rTvO0t2cVb8X34mKvcRP40QyJl/Uo8PJ7xSDasm8KxxuXYaLYs8X16x0KWLTBd
-	 SwLjz3pdnsZ+W8Iey0rrKBoIVVv7IiiRAvzUfQQJLOG32LQT76+hSjbbRAybjEG7VU
-	 Dgltqv6GyGZDU9hxp7P08pfn0YYD4NU5OMBVIBpPjT/aB6OyM//lFxICaomBO3Sr1I
-	 uQuHqF0FBH9A0BhkVThU+cBauvTs5rxTGE/sAQ+PKmi4XZOfVKhuiktpxcihAZCpyB
-	 Di4w2/EZflwuQ==
-Date: Mon, 15 Jul 2024 16:55:03 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Logan Bristol <l-bristol@ti.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Krzysztof Kozlowski <krzk@kernel.org>, Bryan Brattlof <bb@ti.com>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC] arm64: dts: ti: introduce a minimal am642 device tree
-Message-ID: <20240715145503.GA32273@francesco-nb>
-References: <20220321155417.13267-1-bb@ti.com>
- <55e161d1-face-6958-1d86-8a85b82e8485@kernel.org>
- <766dceb1-222a-401b-95e3-69b7fb331411@ti.com>
- <20240710073811.GA4855@francesco-nb>
- <458e6141-abed-4301-ae76-c242c903ef61@ti.com>
+	s=arc-20240116; t=1721055714; c=relaxed/simple;
+	bh=u6KlE4HVa6FasczsbBxFgb/lVCSAg4kHaT9LO+V1mNY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YqNrdcKU9gKkvUtWmByt97icc4DYGRWzepf2n1mYOBemqxehgFDYup8lk0oSf5d3gA7EYFBcAbi8ITSHF3UMAOtKcJSvE3LdLYHnn943vXVI0p8rp8V7p31dQ7etmwx6uHMFGrVGbpuh6fSs7TThrUl/UkW9WT5usO6hakSPe0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qCk3ovhE; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52eafec1e84so5925178e87.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2024 08:01:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721055711; x=1721660511; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AQV1Q+yibtGP3NmgXG7HhtFloGMHLEY6YaLwPlWGoDA=;
+        b=qCk3ovhEs4a2pvZ+UJzDghOMCVIjEPCG0+sMPImj3gJeZjnCWI9upH+OfYHeI6QZJG
+         BpEjZiVgx0at7aJo9KOoKnvuCyIkF47AUS2lxtLkW+ZZ/OgUk2ao+ViV6y8IFtwleAD+
+         87DpZegBpSQ9BU3aAvbAIbLRVcPBPRM1pDkLoXnK5vZAeZSTMaOPkkvNzZWoBTsp52Xk
+         U0ERieVRZWQdmo7kPnqc2Ef03PnlD/U7P+w5gDTRA282eLJa3DcFwiBIKPG24R82cJxh
+         AYMgiNypDOF6mzbiDwVzstn/gl8VVUCbK+IVJKqEFESKKJjwUNsagKTF7dd/nj4SEBHG
+         WYVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721055711; x=1721660511;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AQV1Q+yibtGP3NmgXG7HhtFloGMHLEY6YaLwPlWGoDA=;
+        b=V9hH2L/KFZLV0Mlm28iWEFQ0NsU99H8QblirvhUgIqrj7cLnhxBdAEKW0c1x2YQhnF
+         Ag3RexPY5MsgR1V1be/hvGNOT+aPGAVoPX3uKcwVZtnKAxtIzhMu0pNyTwt1Zq/G92Na
+         R3FKWYo+tzMuA6+lN7sNMWr7fOZbWZZPFjph5cgnVKvmb6UZ8Jg2C+VwQC53whEd1tbV
+         U7jfrfuz6g1kZJqR9yZkrXlYexktoG6VcHKBlGoFtDXrVwt81CX6iri9Hu/w7DaFsc13
+         +NGLi0f4tmPPAOXQTDS4b5yYLO2/ryN9uGOGt1tyY+4tV3wl7S7Wdy2WRlapf39HFJGp
+         HgKA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSU/VV9U9DGZQY2dYU5cME4s/asdjgPxaGe5RgkjdULFxZLpXzzltDgZNJNFjW7iSI2RwwrATAUQ4yWxaGoRxWmeF8XhH1Ei+mzQ==
+X-Gm-Message-State: AOJu0Yw2rIeidtrTQeYc1gJPDFP9saEX7wnsDF32cnErAp3lxezC1vlv
+	cAMwUJygd6fwkfJY6ChGUnxMi1JyBHTq/+EZcnAlAPijMuTgeF1r5kzJhx5DdCQ=
+X-Google-Smtp-Source: AGHT+IEb0I8rR73ywWMIF9sJz1hrFFx6gcrJiETp+BiwqMDi4EiqcyEa5GzbPige/39DaAKdZj/4Rg==
+X-Received: by 2002:ac2:5f67:0:b0:52c:8944:2427 with SMTP id 2adb3069b0e04-52eb99a1440mr9801049e87.31.1721055711034;
+        Mon, 15 Jul 2024 08:01:51 -0700 (PDT)
+Received: from [192.168.0.3] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a8799e7esm80376715e9.18.2024.07.15.08.01.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jul 2024 08:01:50 -0700 (PDT)
+Message-ID: <503c8ba7-585d-4222-8e81-7f4c52f5f513@linaro.org>
+Date: Mon, 15 Jul 2024 16:01:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <458e6141-abed-4301-ae76-c242c903ef61@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for
+ SM8150
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@codeaurora.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
+ <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
+ <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
+ <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com>
+ <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
+ <e235f19f-26b5-2cf7-ebb7-36e4dabe9b9b@quicinc.com>
+ <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 15, 2024 at 09:02:38AM -0500, Logan Bristol wrote:
-> 
-> Hello Francesco,
-> 
-> On 7/10/24 02:38, Francesco Dolcini wrote:
-> > Hello Logan
-> > 
-> > On Tue, Jul 09, 2024 at 11:20:24AM -0500, Logan Bristol wrote:
-> >> On 3/22/22 13:14, Krzysztof Kozlowski wrote:
-> >>> On 21/03/2022 16:54, Bryan Brattlof wrote:
-> >>>> Texas Instrument's am642 is one of many k3 based, low cost, low power,
-> >>>> chips designed to work in a wide range of applications spanning an even
-> >>>> wider range of industries that TI is actively developing
-> >>>>
-> >>>> With its pin-mux and peripheral rich designs, these chips will likely
-> >>>> have a multitude of custom device trees that range wildly from one
-> >>>> another and (hopefully) guarantee an influx of variants into the kernel
-> >>>> in the coming years
-> >>>>
-> >>>> With overlays no longer a thing, I wanted to ask for opinions on how
-> >>>> we can best help integrate these dt files as they begin to be developed
-> >>>>
-> >>>> I also wanted to introduce a skeletonized (nothing but uart) device tree
-> >>>> to give others a good starting point while developing their projects.
-> >>>
-> >>> Real hardware as DTS please. There is no need to add some skeleton for
-> >>> specific SoC. What if every SoC goes that way?
-> >>>
-> >>> Feel free to create re-usable components in DTSI ways, still reflecting
-> >>> some hardware parts.
-> >>>
-> >>
-> >> I am working on a project for the AM62 and came across this email thread.
-> >>
-> >> Following Krzysztof's direction, I am wanting to submit a DTSI to serve
-> >> as a minimal configuration for the existing boards based on the AM62
-> >> SoC, which are currently defined by bloated DTS files.
-> >>
-> >> This DTSI file can be consumed by other board DTS files to reduce the
-> >> configuration. Krzysztof, could this be merged upstream?
-> > 
-> > Can you elaborate a little bit what you meant as bloated dts file? Why
-> > would you need different DTSI files compared to the existing one?
-> > Which problem are you trying to solve (make some example, be specific
-> > please).
-> > 
-> > My experience with verdin am62 (k3-am62-verdin*dts*) was pretty smooth,
-> > I was just able to use the SOC dtsi file and use it to define my own
-> > board (and I had the same good experience with other SOC/Vendors).
-> > 
-> 
-> The resulting DTB after compiling AM62 SoC DTSI files initializes a
-> large number of devices.
+On 15/07/2024 11:38, Dmitry Baryshkov wrote:
+>>> Does it apply to SM8150? For example, on SM8250 RCG2s are not parked.
+>>
+>> Yes, it applies to SM8150.
+> Should the same logic be applied to other chipsets supported upstream?
+> If this is the case, which chipsets?
 
-I do not understand the issue. The SOC dtsi enables (or should enable) only
-IP that are self contained within the SOC, everything else is disabled.
+If you are representing the "top" GDSC inside of the CCF instead of 
+doing this
 
-If you need something like that it means you are debugging the silicon,
-am I wrong?
++	/* Keep the critical clock always-on */
++	qcom_branch_set_clk_en(regmap, 0xc1e4); /* cam_cc_gdsc_clk */
 
-Francesco
+then the clock should be parked else you'll find the GDSC doesn't come 
+out of reset.
 
+and... as I look at it now we have a logical conflict in 
+drivers/clk/qcom/camcc-sc8280xp.c
+
+static struct clk_branch camcc_gdsc_clk = {
+         .halt_reg = 0xc1e4,
+         .halt_check = BRANCH_HALT,
+         .clkr = {
+                 .enable_reg = 0xc1e4,
+                 .enable_mask = BIT(0),
+                 .hw.init = &(struct clk_init_data){
+                         .name = "camcc_gdsc_clk",
+                         .parent_hws = (const struct clk_hw*[]){
+                                 &camcc_xo_clk_src.clkr.hw,
+                         },
+                         .num_parents = 1,
+                         .flags = CLK_SET_RATE_PARENT,
+                         .ops = &clk_branch2_ops,
+                 },
+         },
+};
+
+Patch sent.
+
+https://lore.kernel.org/linux-arm-msm/20240715-linux-next-24-07-13-sc8280xp-camcc-fixes-v1-1-fadb5d9445c1@linaro.org/T/#u
+
+In the round I think we should avoid these horrific hard-coded always-on 
+writes where possible.
+
+Personally I think parking is better than always-on specifically because 
+you define the clock and "see" it in the clock tree.
+
+---
+bod
 
