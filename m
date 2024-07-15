@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-85631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC22930D55
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 06:41:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A67930D95
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 07:27:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F78D1F214F5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 04:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89A5E1C20F00
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2024 05:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7551836F0;
-	Mon, 15 Jul 2024 04:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VXTbyfUg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD64B132494;
+	Mon, 15 Jul 2024 05:27:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-sh.amlogic.com (unknown [58.32.228.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8DF1836E5;
-	Mon, 15 Jul 2024 04:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D9D128FA;
+	Mon, 15 Jul 2024 05:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=58.32.228.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721018433; cv=none; b=hzwPzVi7xk1Kwt07YhTL4GIQaqqQ/aZVYAkRpB4ajqaBfIPd90MF6sAOl8vPC5wPpj5Z7H0wVu3IjNIHK1BuONAkJGPlyOzVZxV+eNGSnE/YPuK7fb++rhUajC0o31UuixguhtRmO4AUhLZc/0Djg6gYla/laCmJAgXvnSiZwZI=
+	t=1721021257; cv=none; b=Jo5ISPYwo5WVbq4pWp3Ek/29hXDbYM8aaPKKyWuekQm0EVB7VFNT++q52NF1yaeuMlW0/tvSoSEig6m5dlSiLhF9Qnom+2RaPTsoHpwwSEn7SiOtz1VrqYnR17pofkNZyMnWuGLrcrfZxtQkyLK+i/A0GHImVl4Ywt1MdshdmKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721018433; c=relaxed/simple;
-	bh=dmcHE9ndX1XQrW6dt+HNV+1FYdKq3zZBQZjHINuynL8=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=f5zRbAQrvX2we7JGSMPcee68MJG989h689AZyovzh2fj9i7g+oe1qfyzJ/HPXKBAoinKTgXC0DaVBGU+XwTgjbeu0nXmNNUzF1fS+uDok1h68RyL/L0Ok7OBONkXLPdu05AaXoH1IiJ8GYwLvk2VMd7+A1dKkdQekQre6AU3D3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VXTbyfUg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D73EBC4AF10;
-	Mon, 15 Jul 2024 04:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721018432;
-	bh=dmcHE9ndX1XQrW6dt+HNV+1FYdKq3zZBQZjHINuynL8=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=VXTbyfUgG4R8faRY7I2wOZZqEYVcAyWZ7ANXZ+xn4+nowoEfw2DQLLzjN8IzmDoq1
-	 FP2PsduKzqOyybX84a6kdLvZ5mdfRxwX6vIPjRmz2RaJ5Yf+pnfgDNVbeTtGCm0c52
-	 9YnbANeYnpBX9Aev2/A4a9BoQrmvSF6jNbRZ/wkZ/kdVxhK/BzgWXdOSRXFVar1+xB
-	 R05g03qHn1WNLQS3lXrsIPl6zqkjlrEJUOEEVoDrAC7nc7t/ANUajwfT9+fq190fUI
-	 7zdl5YnU4v4h1mNX0PYdu+h1lWXPD1x6sYkEOQeLiE4yaHytyJKwy7aCaob4EiJ0Zy
-	 z5B5CFukaiBLw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C9E34C43612;
-	Mon, 15 Jul 2024 04:40:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1721021257; c=relaxed/simple;
+	bh=T4C/44EQKVp+bay80tRzwU5QDiRga3PYelPz1dHOG24=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ga5xBjl/5Yp/T0Knm5Oqyq8igsYksVoKlbjehvo2CYGxLz2uiwQJbdPqRU28mVZgJjlZLoT9nloCj0qBt4+aZ91HbUdyiL2c+LF+uRi3qp/xtSzCZ4fwU64m/K/6vuEgQ2SCeiuFMsIu6A+XCNjAUjCr8xHPDBvE8+y9CTli900=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=58.32.228.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.39; Mon, 15 Jul 2024
+ 13:12:19 +0800
+From: zelong dong <zelong.dong@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, Rob Herring
+	<robh@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH v2 0/3] reset: amlogic-a4/a5: add reset driver
+Date: Mon, 15 Jul 2024 13:12:14 +0800
+Message-ID: <20240715051217.5286-1-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.35.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,50 +51,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v12 0/4] net: phy: bcm5481x: add support for BroadR-Reach mode
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <172101843281.2749.5906999097887026804.git-patchwork-notify@kernel.org>
-Date: Mon, 15 Jul 2024 04:40:32 +0000
-References: <20240712150709.3134474-1-kamilh@axis.com>
-In-Reply-To: <20240712150709.3134474-1-kamilh@axis.com>
-To: =?utf-8?b?S2FtaWwgSG9yw6FrICgyTikgPGthbWlsaEBheGlzLmNvbT4=?=@codeaurora.org
-Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- f.fainelli@gmail.com, kory.maincent@bootlin.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain
 
-Hello:
+From: Zelong Dong <zelong.dong@amlogic.com>
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+This patchset adds Reset controller driver support for
+Amlogic A4/A5 SoC. The RESET registers count and offset
+for A4/A5 Soc are same as S4 Soc.
 
-On Fri, 12 Jul 2024 17:07:05 +0200 you wrote:
-> PATCH 1 - Add the 10baseT1BRR_Full link mode
-> 
-> PATCH 2 - Add the definitions of LRE registers, necessary to use
->    BroadR-Reach modes on the BCM5481x PHY
-> 
-> PATCH 3 - Add brr-mode flag to switch between IEEE802.3 and BroadR-Reach
-> 
-> [...]
+Changes since v1:
+- remove 'amlogic,t7-reset'
+- move 'amlogic,c3-reset' to the other enum list
+- move reset node from amlogic-a4-common.dtsi to
+  amlogic-a4.dtsi/amlogic-a5.dtsi
 
-Here is the summary with links:
-  - [v12,1/4] net: phy: bcm54811: New link mode for BroadR-Reach
-    https://git.kernel.org/netdev/net-next/c/2c1583290b08
-  - [v12,2/4] net: phy: bcm54811: Add LRE registers definitions
-    https://git.kernel.org/netdev/net-next/c/ff253875ff3b
-  - [v12,3/4] dt-bindings: ethernet-phy: add optional brr-mode flag
-    https://git.kernel.org/netdev/net-next/c/775631d7845b
-  - [v12,4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach link modes
-    https://git.kernel.org/netdev/net-next/c/03ab6c244bb0
+---
+v1:https://lore.kernel.org/all/20240703061610.37217-1-zelong.dong@amlogic.com/
 
-You are awesome, thank you!
+Zelong Dong (3):
+  dt-bindings: reset: Add compatible and DT bindings for Amlogic A4/A5
+    Reset Controller
+  arm64: dts: amlogic: Add Amlogic A4 reset controller
+  arm64: dts: amlogic: Add Amlogic A5 reset controller
+
+ .../bindings/reset/amlogic,meson-reset.yaml   | 21 ++--
+ .../arm64/boot/dts/amlogic/amlogic-a4-reset.h | 93 ++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi   | 10 ++
+ .../arm64/boot/dts/amlogic/amlogic-a5-reset.h | 95 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi   | 10 ++
+ 5 files changed, 222 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.35.1
 
 
