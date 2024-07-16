@@ -1,68 +1,59 @@
-Return-Path: <devicetree+bounces-86125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C209327B6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:42:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D689327CC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:49:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E57611F23989
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:42:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2B062823A0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B32319ADB9;
-	Tue, 16 Jul 2024 13:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F291619AD85;
+	Tue, 16 Jul 2024 13:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="utfsRQKU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQn2nCh/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1355B197A72;
-	Tue, 16 Jul 2024 13:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3871DFD0;
+	Tue, 16 Jul 2024 13:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721137333; cv=none; b=RaZbkq0VPgBePI8rC8KTqP/i0ggsgaRJJA9eOpvYrpbQHeJTWgTLcIBjyrtlxNDK1Ggn6RMYgTcFGjnMulLojcKdOS6o9QVJvll+b5S6M9MvHOcQRJYsP64G/3ER9GO0mpoTta7wW0Vg0nCzNXK2VDZwRoQxMe0mkEUajECsWik=
+	t=1721137773; cv=none; b=YSxTOpwIDRH4q6fnDyDJn2R1EKXyo1T0tDGMUnMGc4LWYtHcxKHSX8X2thFAHkMEHt3fihG3s805NXG/1WSB20F9pXGsOpydMyGBnSaDbCm3N2JjEypKS2/xBgApPY1LNsbsNZDR83apK/w1DedUw6FOmb8yvSsN4qxwICtyy5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721137333; c=relaxed/simple;
-	bh=eOH48dunNLTsABrLCx37z6olk5dF9XDyjImDI5wsews=;
+	s=arc-20240116; t=1721137773; c=relaxed/simple;
+	bh=ZagyeD+CEK9Z3Hve10RQR+fjhAm6R+NptML0r820+WI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zkf/QAoPwPgpo1ynqqEc+brXqfU9IwV8pXF7ukt7S0IG70X0SCgle/G/h9/uWXlGj96+xY+J2aPaVL0hhwRkTeHwwEecp5Zo4t5qpAX0CBk2x0NwAalkfTEIZp2R59EUUUGUIUBh5lyzE7NX+w3LkCvjGC5IMzrCJF1KQrf+/ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=utfsRQKU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D944C116B1;
-	Tue, 16 Jul 2024 13:42:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mogOXsXPnspoOWQua7Ovql+LSLOVZC41qtU7J+E2kfmNZpicb80Oy5l2kbf4NIas5yqwzOASfW6q369R+Y57frQxPk+GW5M8x7ZxWpjb5kMZx1J6uqMr8PCoi09+V8jVV3IZ2QTZ64WQEjM8+WkClJliQahw/Wr3SKLF5BM99XU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQn2nCh/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0348CC116B1;
+	Tue, 16 Jul 2024 13:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721137332;
-	bh=eOH48dunNLTsABrLCx37z6olk5dF9XDyjImDI5wsews=;
+	s=k20201202; t=1721137773;
+	bh=ZagyeD+CEK9Z3Hve10RQR+fjhAm6R+NptML0r820+WI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=utfsRQKUyppf+MLIJiQNb9329FA+IDvzRZijmX6zElfA+9+MuTbJA4R3NFfj+uSqm
-	 6HKw4cF8rGJFPVMkHfBeKScFCoh67hvHKs7WLIhpT+B4vjm8+e2XymYQz3Yxk/qu5s
-	 e+wtShgILbTmSc5evNSy5BGcwzanUiEh2MdCQRO6vXpj3PSy84eOuvQeDTC3aS1OXJ
-	 aSYE1LXEcc64ihSnKRkzN0vkN8/qPEgKuOmrX9CDtwts8YY97ouKtwW/ZW3S7mPQzY
-	 Y/femgch1Z1Dv5U+5G6AK58mvBIUcN7e7Kn3LtprdUUHA41bkrMmjcWa/xLpAT2Vfj
-	 6yu2jjFD/0qzg==
-Date: Tue, 16 Jul 2024 07:42:10 -0600
+	b=DQn2nCh/CorITB3iIkDQDu6EQsG46Ik9SRkS0pO0FNe3PPT65F68SqGZrwVbB16N2
+	 ROov0kdR2P6oNfhyT7+B7byGa6sRrIQ8MyLcU0a0wDXSseqHCU74QaNTU2fFdgZHA/
+	 8UfzeyoTKdu7eO6w5p8AnkZ0jaa90L+MxFrcr3hR/JOsyNu2KVL4mwE6Gr1/jKk6zY
+	 Psgxerp7VWJUjvLclg01z6yVdPi2iBIsezAjHDhBd4T1DkTSaWfzxn3IR+w0WoigYv
+	 Afzk6K3VTJNkK065+EsjLx8vRE0Z8uYPKcW2oXMgURvDfSP7ypTUu4D2i4o9UKXnB8
+	 Uv7UlLOeA3eyA==
+Date: Tue, 16 Jul 2024 07:49:31 -0600
 From: Rob Herring <robh@kernel.org>
-To: Will Deacon <will@kernel.org>
-Cc: Mayank Rana <quic_mrana@quicinc.com>, lpieralisi@kernel.org,
-	kw@linux.com, bhelgaas@google.com, jingoohan1@gmail.com,
-	manivannan.sadhasivam@linaro.org, cassel@kernel.org,
-	yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
-	u.kleine-koenig@pengutronix.de, dlemoal@kernel.org,
-	amishin@t-argos.ru, thierry.reding@gmail.com, jonathanh@nvidia.com,
-	Frank.Li@nxp.com, ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
-	marek.vasut+renesas@gmail.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
-	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
-	quic_nitegupt@quicinc.com
-Subject: Re: [PATCH V2 7/7] PCI: host-generic: Add dwc PCIe controller based
- MSI controller usage
-Message-ID: <20240716134210.GA3534018-robh@kernel.org>
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-8-git-send-email-quic_mrana@quicinc.com>
- <20240716085811.GA19348@willie-the-truck>
+To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org,
+	linus.walleij@linaro.org, dianders@chromium.org, hsinyi@google.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: elan: Introduce Elan
+ ekth6a12nay
+Message-ID: <20240716134931.GA3574060-robh@kernel.org>
+References: <20240716082851.18173-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240716082851.18173-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,111 +62,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240716085811.GA19348@willie-the-truck>
+In-Reply-To: <20240716082851.18173-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 
-On Tue, Jul 16, 2024 at 09:58:12AM +0100, Will Deacon wrote:
-> On Mon, Jul 15, 2024 at 11:13:35AM -0700, Mayank Rana wrote:
-> > Add usage of Synopsys Designware PCIe controller based MSI controller to
-> > support MSI functionality with ECAM compliant Synopsys Designware PCIe
-> > controller. To use this functionality add device compatible string as
-> > "snps,dw-pcie-ecam-msi".
-> > 
-> > Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
-> > ---
-> >  drivers/pci/controller/pci-host-generic.c | 92 ++++++++++++++++++++++++++++++-
-> >  1 file changed, 91 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/pci/controller/pci-host-generic.c b/drivers/pci/controller/pci-host-generic.c
-> > index c2c027f..457ae44 100644
-> > --- a/drivers/pci/controller/pci-host-generic.c
-> > +++ b/drivers/pci/controller/pci-host-generic.c
-> > @@ -8,13 +8,73 @@
-> >   * Author: Will Deacon <will.deacon@arm.com>
-> >   */
-> >  
-> > -#include <linux/kernel.h>
-> >  #include <linux/init.h>
-> > +#include <linux/kernel.h>
-> >  #include <linux/module.h>
-> > +#include <linux/of_address.h>
-> >  #include <linux/pci-ecam.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/pm_runtime.h>
-> >  
-> > +#include "dwc/pcie-designware-msi.h"
-> > +
-> > +struct dw_ecam_pcie {
-> > +	void __iomem *cfg;
-> > +	struct dw_msi *msi;
-> > +	struct pci_host_bridge *bridge;
-> > +};
-> > +
-> > +static u32 dw_ecam_pcie_readl(void *p_data, u32 reg)
-> > +{
-> > +	struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
-> > +
-> > +	return readl(ecam_pcie->cfg + reg);
-> > +}
-> > +
-> > +static void dw_ecam_pcie_writel(void *p_data, u32 reg, u32 val)
-> > +{
-> > +	struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
-> > +
-> > +	writel(val, ecam_pcie->cfg + reg);
-> > +}
-> > +
-> > +static struct dw_ecam_pcie *dw_pcie_ecam_msi(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct dw_ecam_pcie *ecam_pcie;
-> > +	struct dw_msi_ops *msi_ops;
-> > +	u64 addr;
-> > +
-> > +	ecam_pcie = devm_kzalloc(dev, sizeof(*ecam_pcie), GFP_KERNEL);
-> > +	if (!ecam_pcie)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	if (of_property_read_reg(dev->of_node, 0, &addr, NULL) < 0) {
-
-Using this function on MMIO addresses is wrong. It is an untranslated 
-address.
-
-> > +		dev_err(dev, "Failed to get reg address\n");
-> > +		return ERR_PTR(-ENODEV);
-> > +	}
-> > +
-> > +	ecam_pcie->cfg = devm_ioremap(dev, addr, PAGE_SIZE);
-> > +	if (ecam_pcie->cfg == NULL)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	msi_ops = devm_kzalloc(dev, sizeof(*msi_ops), GFP_KERNEL);
-> > +	if (!msi_ops)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	msi_ops->readl_msi = dw_ecam_pcie_readl;
-> > +	msi_ops->writel_msi = dw_ecam_pcie_writel;
-> > +	msi_ops->pp = ecam_pcie;
-> > +	ecam_pcie->msi = dw_pcie_msi_host_init(pdev, msi_ops, 0);
-> > +	if (IS_ERR(ecam_pcie->msi)) {
-> > +		dev_err(dev, "dw_pcie_msi_host_init() failed\n");
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	dw_pcie_msi_init(ecam_pcie->msi);
-> > +	return ecam_pcie;
-> > +}
+On Tue, Jul 16, 2024 at 04:28:50PM +0800, Zhaoxiong Lv wrote:
+> The Elan ekth6a12nay touch screen chip same as Elan eKTH6915 controller
+> has a reset gpio. The difference is that they have different
+> post_power_delay_ms.
 > 
-> Hmm. This looks like quite a lot of not-very-generic code to be adding
-> to pci-host-generic.c. The file is now, what, 50% designware logic?
+> Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> ---
+> Changes between V3 and V2:
+> -  1.  "ekth6915" isn't a fallback, modify it.
+> v2: https://lore.kernel.org/all/20240715073159.25064-2-lvzhaoxiong@huaqin.corp-partner.google.com/
+> 
+> Changes between V2 and V1:
+> -  1.  Respin the series on top of v6.10.
+> v1: https://lore.kernel.org/all/20240704085555.11204-2-lvzhaoxiong@huaqin.corp-partner.google.com/
+> ---
+>  Documentation/devicetree/bindings/input/elan,ekth6915.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> index a62916d07a08..f683048fd0c4 100644
+> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> @@ -24,6 +24,7 @@ properties:
+>                - elan,ekth5015m
+>            - const: elan,ekth6915
+>        - const: elan,ekth6915
+> +      - const: elan,ekth6a12nay
 
-Agreed.
+Combine the 2 const into an enum.
 
-I would suggest you add ECAM support to the DW/QCom driver reusing some 
-of the common ECAM support code.
+With that,
 
-I suppose another option would be to define a node and driver which is 
-just the DW MSI controller. That might not work given the power domain 
-being added (which is not very generic either).
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
+>  
+>    reg:
+>      const: 0x10
+> -- 
+> 2.17.1
+> 
 
