@@ -1,464 +1,302 @@
-Return-Path: <devicetree+bounces-85979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5AA9320DC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:03:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2489320F3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 047301C211FB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:03:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CC2F1F22DAF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03A71F959;
-	Tue, 16 Jul 2024 07:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WvkNDN9p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6B24206B;
+	Tue, 16 Jul 2024 07:06:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEB6196;
-	Tue, 16 Jul 2024 07:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0D33CF51
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 07:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721113429; cv=none; b=ofalyPClkO0W7l2q2JvxpNH2tjxybtPGZobq6fPADeYG69LZPle6d2O6OCL7r4MpUHMJzObBQzu6WIED1ETSRoac0Rgji8Mzj7ipPFslg9bfQgYaks05o8AcM5qMuX3jbJhG2LkN1agIFXeDyOAVGLjImP3aW10mbSFgYPmHmBs=
+	t=1721113611; cv=none; b=rZ+gSkslGSkVcw/iWt6fQHl473K4Cv00c5wyTEafNS5pGEXqf62PliQlEGHSyxI209pbvx/icps2hqGbuhweNU/RtyHJQgbvjh8z3R0mDDLC8ho8GKaLFtPVEeNIDZggbhDHVa0/6O31ut5GvIoGgx+QL5c+LhEV0jkqQPtD5/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721113429; c=relaxed/simple;
-	bh=kb4BLUFgOrXwORd9OqvI1kr/TaikVBCAK64a4eBA/ws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K3vPnGB6+ZQTQ6OPYSnkuK5M0wVYfNVCV/ygiLD1+o65inP/U0Xk/8KzKM8QYXtBqqT65EDU7rMwNEhtj+Ohuq28XeJmlhbAZZLrL3dbxIxjwfhR8esyVL5/t5bi1OWjzkm9jpv77MMZZqQ6ngpdymh3PE/OK480O6bMz3bC3kI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WvkNDN9p; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1721113428; x=1752649428;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=kb4BLUFgOrXwORd9OqvI1kr/TaikVBCAK64a4eBA/ws=;
-  b=WvkNDN9pzqRrOJparANmigi661+e1OIuIf4AExuYHavjH2LuPUb+mCdG
-   9tWoLo2nTrWAnX7saNnlkMcqMex703MRnG3UO0jw7ILcaIv+9+ovHl3FV
-   YH0Cs6U76oodbKBNRPvR5BjteRnvGgiECxCI22BrSJ87xGeWK890AL0oA
-   JNZLhvYK71tZftItKdC5g68NUXGxG6rtTAx7vnI+T8cC1km/tTN++EWoS
-   WgDhW+u6e3r453hIm6Jzg0ew+il6eBN9B+lqJVQAOMC2fqDiKscJq3CwB
-   JmCNjMdXhCDykAbUbLWiMurYwxaJRqy8O3Nrj1fj/6DHQkrqNnCPZyek2
-   g==;
-X-CSE-ConnectionGUID: NBGOfBwwTUaUqu+qEhs6UQ==
-X-CSE-MsgGUID: MI+LQKNNTEK+CvnWL/aQDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="29206655"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
-   d="scan'208";a="29206655"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2024 00:03:46 -0700
-X-CSE-ConnectionGUID: 39z+WceyQWyviCcHjTEOYA==
-X-CSE-MsgGUID: AcCfRfahTcuxTe1TZvmqpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
-   d="scan'208";a="49787694"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.246.49.253])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2024 00:03:40 -0700
-Message-ID: <935aedd8-0a7a-4e3a-a89d-e1f134ab7fd0@intel.com>
-Date: Tue, 16 Jul 2024 10:03:35 +0300
+	s=arc-20240116; t=1721113611; c=relaxed/simple;
+	bh=vXOwryw8xFilYtSz3kn5Q6Fzz0ZLgIL7zHdOIhDwPk4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ohYkGb42KGerEzqY12u+NJlyo9n6M724bjO+Kgg0qoHkgGiT17VrRk73FYfobnA2LZQ3mnJ7r9bkRhb8QqAeXphX9bC7+zwxTnE44zkLMx+IbMwMWCucaY60IZk4gihT6YSVp186ofceWTuNWfNTInsU2rTy+jLtNvJO34wTPVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sTcGO-0005NF-D9; Tue, 16 Jul 2024 09:06:16 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sTcGN-0004bT-IL; Tue, 16 Jul 2024 09:06:15 +0200
+Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 21FA9304E11;
+	Tue, 16 Jul 2024 07:06:15 +0000 (UTC)
+Date: Tue, 16 Jul 2024 09:06:14 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	haibo.chen@nxp.com, imx@lists.linux.dev, han.xu@nxp.com
+Subject: Re: [PATCH v2 4/4] can: flexcan: add wakeup support for imx95
+Message-ID: <20240716-curious-scorpion-of-glory-8265aa-mkl@pengutronix.de>
+References: <20240715-flexcan-v2-0-2873014c595a@nxp.com>
+ <20240715-flexcan-v2-4-2873014c595a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI
- driver
-To: Shan-Chun Hung <shanchun1218@gmail.com>, ulf.hansson@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, pbrobinson@gmail.com, serghox@gmail.com,
- mcgrof@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- forbidden405@outlook.com, tmaimon77@gmail.com, andy.shevchenko@gmail.com,
- linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240716004527.20378-1-shanchun1218@gmail.com>
- <20240716004527.20378-3-shanchun1218@gmail.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20240716004527.20378-3-shanchun1218@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wmxdadf3ku3zl7ae"
+Content-Disposition: inline
+In-Reply-To: <20240715-flexcan-v2-4-2873014c595a@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 16/07/24 03:45, Shan-Chun Hung wrote:
-> Add the SDHCI driver for the MA35D1 platform. It is based upon the
-> SDHCI interface, but requires some extra initialization.
-> 
-> Signed-off-by: Shan-Chun Hung <shanchun1218@gmail.com>
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+--wmxdadf3ku3zl7ae
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On 15.07.2024 17:27:23, Frank Li wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+>=20
+> iMX95 defines a bit in GPR that sets/unsets the IPG_STOP signal to the
+> FlexCAN module, controlling its entry into STOP mode. Wakeup should work
+> even if FlexCAN is in STOP mode.
+>=20
+> Due to iMX95 architecture design, the A-Core cannot access GPR; only the
+> system manager (SM) can configure GPR. To support the wakeup feature,
+> follow these steps:
+>=20
+> - For suspend:
+>   1) During Linux suspend, when CAN suspends, do nothing for GPR and keep
+>      CAN-related clocks on.
+>   2) In ATF, check whether CAN needs to support wakeup; if yes, send a
+>      request to SM through the SCMI protocol.
+>   3) In SM, configure the GPR and unset IPG_STOP.
+>   4) A-Core suspends.
+>=20
+> - For wakeup and resume:
+>   1) A-Core wakeup event arrives.
+>   2) In SM, deassert IPG_STOP.
+>   3) Linux resumes.
+>=20
+> Add a new fsl_imx95_devtype_data and FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI to
+> reflect this.
+>=20
+> Reviewed-by: Han Xu <han.xu@nxp.com>
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  drivers/mmc/host/Kconfig           |  12 ++
->  drivers/mmc/host/Makefile          |   1 +
->  drivers/mmc/host/sdhci-of-ma35d1.c | 314 +++++++++++++++++++++++++++++
->  3 files changed, 327 insertions(+)
->  create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
-> 
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index bb0d4fb0892a..aa6922ff4210 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -252,6 +252,18 @@ config MMC_SDHCI_OF_SPARX5
-> 
->  	  If unsure, say N.
-> 
-> +config MMC_SDHCI_OF_MA35D1
-> +	tristate "SDHCI OF support for the MA35D1 SDHCI controller"
-> +	depends on ARCH_MA35 || COMPILE_TEST
-> +	depends on MMC_SDHCI_PLTFM
-> +	help
-> +	  This selects the MA35D1 Secure Digital Host Controller Interface.
-> +	  The controller supports SD/MMC/SDIO devices.
-> +
-> +	  If you have a controller with this interface, say Y or M here.
-> +
-> +	  If unsure, say N.
-> +
->  config MMC_SDHCI_CADENCE
->  	tristate "SDHCI support for the Cadence SD/SDIO/eMMC controller"
->  	depends on MMC_SDHCI_PLTFM
-> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-> index f53f86d200ac..3ccffebbe59b 100644
-> --- a/drivers/mmc/host/Makefile
-> +++ b/drivers/mmc/host/Makefile
-> @@ -88,6 +88,7 @@ obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
->  obj-$(CONFIG_MMC_SDHCI_OF_HLWD)		+= sdhci-of-hlwd.o
->  obj-$(CONFIG_MMC_SDHCI_OF_DWCMSHC)	+= sdhci-of-dwcmshc.o
->  obj-$(CONFIG_MMC_SDHCI_OF_SPARX5)	+= sdhci-of-sparx5.o
-> +obj-$(CONFIG_MMC_SDHCI_OF_MA35D1)	+= sdhci-of-ma35d1.o
->  obj-$(CONFIG_MMC_SDHCI_BCM_KONA)	+= sdhci-bcm-kona.o
->  obj-$(CONFIG_MMC_SDHCI_IPROC)		+= sdhci-iproc.o
->  obj-$(CONFIG_MMC_SDHCI_NPCM)		+= sdhci-npcm.o
-> diff --git a/drivers/mmc/host/sdhci-of-ma35d1.c b/drivers/mmc/host/sdhci-of-ma35d1.c
-> new file mode 100644
-> index 000000000000..b84c2927bd4a
-> --- /dev/null
-> +++ b/drivers/mmc/host/sdhci-of-ma35d1.c
-> @@ -0,0 +1,314 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2024 Nuvoton Technology Corp.
-> + *
-> + * Author: Shan-Chun Hung <shanchun1218@gmail.com>
-> + */
-> +
-> +#include <linux/align.h>
-> +#include <linux/array_size.h>
-> +#include <linux/bits.h>
-> +#include <linux/build_bug.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/device.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/err.h>
-> +#include <linux/math.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/minmax.h>
-> +#include <linux/mmc/card.h>
-> +#include <linux/mmc/host.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/pinctrl/consumer.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <linux/sizes.h>
-> +#include <linux/types.h>
-> +
-> +#include "sdhci-pltfm.h"
-> +#include "sdhci.h"
-> +
-> +#define MA35_SYS_MISCFCR0	0x070
-> +#define MA35_SDHCI_MSHCCTL	0x508
-> +#define MA35_SDHCI_MBIUCTL	0x510
-> +
-> +#define MA35_SDHCI_CMD_CONFLICT_CHK	BIT(0)
-> +#define MA35_SDHCI_INCR_MSK		GENMASK(3, 0)
-> +#define MA35_SDHCI_INCR16		BIT(3)
-> +#define MA35_SDHCI_INCR8		BIT(2)
-> +
-> +struct ma35_priv {
-> +	struct reset_control	*rst;
-> +	struct pinctrl		*pinctrl;
-> +	struct pinctrl_state	*pins_uhs;
-> +	struct pinctrl_state	*pins_default;
+>  drivers/net/can/flexcan/flexcan-core.c | 49 ++++++++++++++++++++++++++++=
+++----
+>  drivers/net/can/flexcan/flexcan.h      |  2 ++
+>  2 files changed, 46 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index f6e609c388d55..fe972d5b8fbe0 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -354,6 +354,14 @@ static struct flexcan_devtype_data fsl_imx93_devtype=
+_data =3D {
+>  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
+>  };
+> =20
+> +static const struct flexcan_devtype_data fsl_imx95_devtype_data =3D {
+> +	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
+ |
+> +		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
+> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI |
+> +		FLEXCAN_QUIRK_SUPPORT_FD | FLEXCAN_QUIRK_SUPPORT_ECC |
+> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
+> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
+
+Please keep the flags sorted by their value.
+
 > +};
-> +
-> +struct ma35_restore_data {
-> +	u32	reg;
-> +	u32	width;
-> +};
-> +
-> +static const struct ma35_restore_data restore_data[] = {
-> +	{ SDHCI_CLOCK_CONTROL,		sizeof(u32)},
-> +	{ SDHCI_BLOCK_SIZE,		sizeof(u32)},
-> +	{ SDHCI_INT_ENABLE,		sizeof(u32)},
-> +	{ SDHCI_SIGNAL_ENABLE,		sizeof(u32)},
-> +	{ SDHCI_AUTO_CMD_STATUS,	sizeof(u32)},
-> +	{ SDHCI_HOST_CONTROL,		sizeof(u32)},
-> +	{ SDHCI_TIMEOUT_CONTROL,	sizeof(u8) },
-> +	{ MA35_SDHCI_MSHCCTL,		sizeof(u16)},
-> +	{ MA35_SDHCI_MBIUCTL,		sizeof(u16)},
-> +};
-> +
-> +/*
-> + * If DMA addr spans 128MB boundary, we split the DMA transfer into two
-> + * so that each DMA transfer doesn't exceed the boundary.
-> + */
-> +static void ma35_adma_write_desc(struct sdhci_host *host, void **desc, dma_addr_t addr, int len,
-> +				 unsigned int cmd)
-> +{
-> +	int tmplen, offset;
-> +
-> +	if (likely(!len || (ALIGN(addr, SZ_128M) == ALIGN(addr + len - 1, SZ_128M)))) {
-> +		sdhci_adma_write_desc(host, desc, addr, len, cmd);
-> +		return;
-> +	}
-> +
-> +	offset = addr & (SZ_128M - 1);
-> +	tmplen = SZ_128M - offset;
-> +	sdhci_adma_write_desc(host, desc, addr, tmplen, cmd);
-> +
-> +	addr += tmplen;
-> +	len -= tmplen;
-> +	sdhci_adma_write_desc(host, desc, addr, len, cmd);
-> +}
-> +
-> +static void ma35_set_clock(struct sdhci_host *host, unsigned int clock)
-> +{
-> +	u32 ctl;
-> +
-> +	/*
-> +	 * If the clock frequency exceeds MMC_HIGH_52_MAX_DTR,
-> +	 * disable command conflict check.
+
+Please add a newline here.
+
+>  static const struct flexcan_devtype_data fsl_vf610_devtype_data =3D {
+>  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
+ |
+>  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
+> @@ -548,6 +556,13 @@ static inline int flexcan_enter_stop_mode(struct fle=
+xcan_priv *priv)
+>  	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GP=
+R) {
+>  		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
+>  				   1 << priv->stm.req_bit, 1 << priv->stm.req_bit);
+> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SC=
+MI) {
+> +		/* For the SCMI mode, driver do nothing, ATF will send request to
+> +		 * SM(system manager, M33 core) through SCMI protocol after linux
+> +		 * suspend. Once SM get this request, it will send IPG_STOP signal
+> +		 * to Flex_CAN, let CAN in STOP mode.
+> +		 */
+> +		return 0;
+>  	}
+> =20
+>  	return flexcan_low_power_enter_ack(priv);
+> @@ -559,7 +574,11 @@ static inline int flexcan_exit_stop_mode(struct flex=
+can_priv *priv)
+>  	u32 reg_mcr;
+>  	int ret;
+> =20
+> -	/* remove stop request */
+> +	/* Remove stop request, for FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI,
+> +	 * do nothing here, because ATF already send request to SM before
+> +	 * linux resume. Once SM get this request, it will deassert the
+> +	 * IPG_STOP signal to Flex_CAN.
 > +	 */
-> +	ctl = sdhci_readw(host, MA35_SDHCI_MSHCCTL);
-> +	if (clock > MMC_HIGH_52_MAX_DTR)
-> +		ctl &= ~MA35_SDHCI_CMD_CONFLICT_CHK;
-> +	else
-> +		ctl |= MA35_SDHCI_CMD_CONFLICT_CHK;
-> +	sdhci_writew(host, ctl, MA35_SDHCI_MSHCCTL);
-> +
-> +	sdhci_set_clock(host, clock);
-> +}
-> +
-> +static int ma35_start_signal_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
-> +{
-> +	struct sdhci_host *host = mmc_priv(mmc);
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct ma35_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> +
-> +	switch (ios->signal_voltage) {
-> +	case MMC_SIGNAL_VOLTAGE_180:
-> +		if (!IS_ERR(priv->pinctrl) && !IS_ERR(priv->pins_uhs))
-> +			pinctrl_select_state(priv->pinctrl, priv->pins_uhs);
-> +		break;
-> +	case MMC_SIGNAL_VOLTAGE_330:
-> +		if (!IS_ERR(priv->pinctrl) && !IS_ERR(priv->pins_default))
-> +			pinctrl_select_state(priv->pinctrl, priv->pins_default);
-> +		break;
-> +	default:
-> +		dev_err(mmc_dev(host->mmc), "Unsupported signal voltage!\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return sdhci_start_signal_voltage_switch(mmc, ios);
-> +}
-> +
-> +static void ma35_voltage_switch(struct sdhci_host *host)
-> +{
-> +	/* Wait for 5ms after set 1.8V signal enable bit */
-> +	fsleep(5000);
-> +}
-> +
-> +static int ma35_execute_tuning(struct mmc_host *mmc, u32 opcode)
-> +{
-> +	struct sdhci_host *host = mmc_priv(mmc);
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct ma35_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> +	int idx;
-> +	u32 regs[ARRAY_SIZE(restore_data)] = {};
-> +
-> +	/*
-> +	 * Limitations require a reset of SD/eMMC before tuning and
-> +	 * saving the registers before resetting, then restoring
-> +	 * after the reset.
-> +	 */
-> +	for (idx = 0; idx < ARRAY_SIZE(restore_data); idx++) {
-> +		if (restore_data[idx].width == sizeof(u32))
-> +			regs[idx] = sdhci_readl(host, restore_data[idx].reg);
-> +		else if (restore_data[idx].width == sizeof(u16))
-> +			regs[idx] = sdhci_readw(host, restore_data[idx].reg);
-> +		else if (restore_data[idx].width == sizeof(u8))
-> +			regs[idx] = sdhci_readb(host, restore_data[idx].reg);
-> +	}
-> +
-> +	reset_control_assert(priv->rst);
-> +	reset_control_deassert(priv->rst);
-> +
-> +	for (idx = 0; idx < ARRAY_SIZE(restore_data); idx++) {
-> +		if (restore_data[idx].width == sizeof(u32))
-> +			sdhci_writel(host, regs[idx], restore_data[idx].reg);
-> +		else if (restore_data[idx].width == sizeof(u16))
-> +			sdhci_writew(host, regs[idx], restore_data[idx].reg);
-> +		else if (restore_data[idx].width == sizeof(u8))
-> +			sdhci_writeb(host, regs[idx], restore_data[idx].reg);
-> +	}
-> +
-> +	return sdhci_execute_tuning(mmc, opcode);
-> +}
-> +
-> +static const struct sdhci_ops sdhci_ma35_ops = {
-> +	.set_clock		= ma35_set_clock,
-> +	.set_bus_width		= sdhci_set_bus_width,
-> +	.set_uhs_signaling	= sdhci_set_uhs_signaling,
-> +	.get_max_clock		= sdhci_pltfm_clk_get_max_clock,
-> +	.reset			= sdhci_reset,
-> +	.adma_write_desc	= ma35_adma_write_desc,
-> +	.voltage_switch		= ma35_voltage_switch,
-> +};
-> +
-> +static const struct sdhci_pltfm_data sdhci_ma35_pdata = {
-> +	.ops = &sdhci_ma35_ops,
-> +	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN | SDHCI_QUIRK2_BROKEN_DDR50 |
-> +		   SDHCI_QUIRK2_ACMD23_BROKEN,
-> +};
-> +
-> +static int ma35_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct sdhci_pltfm_host *pltfm_host;
-> +	struct sdhci_host *host;
-> +	struct ma35_priv *priv;
-> +	int err;
-> +	u32 extra, ctl;
-> +
-> +	host = sdhci_pltfm_init(pdev, &sdhci_ma35_pdata, sizeof(struct ma35_priv));
-> +	if (IS_ERR(host))
-> +		return PTR_ERR(host);
-> +
-> +	/* Extra adma table cnt for cross 128M boundary handling. */
-> +	extra = DIV_ROUND_UP_ULL(dma_get_required_mask(dev), SZ_128M);
-> +	extra = min(extra, SDHCI_MAX_SEGS);
-> +
-> +	host->adma_table_cnt += extra;
-> +	pltfm_host = sdhci_priv(host);
-> +	priv = sdhci_pltfm_priv(pltfm_host);
-> +
-> +	pltfm_host->clk = devm_clk_get_optional_enabled(dev, NULL);
-> +	if (IS_ERR(pltfm_host->clk)) {
-> +		err = dev_err_probe(dev, PTR_ERR(pltfm_host->clk), "failed to get clk\n");
-> +		goto err_sdhci;
-> +	}
-> +
-> +	err = mmc_of_parse(host->mmc);
-> +	if (err)
-> +		goto err_sdhci;
-> +
-> +	priv->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(priv->rst)) {
-> +		err = dev_err_probe(dev, PTR_ERR(priv->rst), "failed to get reset control\n");
-> +		goto err_sdhci;
-> +	}
-> +
-> +	sdhci_get_of_property(pdev);
-> +
-> +	priv->pinctrl = devm_pinctrl_get(dev);
-> +	if (!IS_ERR(priv->pinctrl)) {
-> +		priv->pins_default = pinctrl_lookup_state(priv->pinctrl, "default");
-> +		priv->pins_uhs = pinctrl_lookup_state(priv->pinctrl, "state_uhs");
-> +		pinctrl_select_state(priv->pinctrl, priv->pins_default);
-> +	}
-> +
-> +	if (!(host->quirks2 & SDHCI_QUIRK2_NO_1_8_V)) {
-> +		struct regmap	*regmap;
-> +		u32		reg;
-> +
-> +		regmap = syscon_regmap_lookup_by_phandle(dev_of_node(dev), "nuvoton,sys");
-> +		if (!IS_ERR(regmap)) {
-> +			/* Enable SDHCI voltage stable for 1.8V */
-> +			regmap_read(regmap, MA35_SYS_MISCFCR0, &reg);
-> +			reg |= BIT(17);
-> +			regmap_write(regmap, MA35_SYS_MISCFCR0, reg);
+>  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCFW) {
+>  		ret =3D flexcan_stop_mode_enable_scfw(priv, false);
+>  		if (ret < 0)
+> @@ -1987,6 +2006,9 @@ static int flexcan_setup_stop_mode(struct platform_=
+device *pdev)
+>  		ret =3D flexcan_setup_stop_mode_scfw(pdev);
+>  	else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR)
+>  		ret =3D flexcan_setup_stop_mode_gpr(pdev);
+> +	else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI)
+> +		/* ATF will handle all STOP_IPG related work */
+> +		ret =3D 0;
+>  	else
+>  		/* return 0 directly if doesn't support stop mode feature */
+>  		return 0;
+> @@ -2013,6 +2035,7 @@ static const struct of_device_id flexcan_of_match[]=
+ =3D {
+>  	{ .compatible =3D "fsl,imx8qm-flexcan", .data =3D &fsl_imx8qm_devtype_d=
+ata, },
+>  	{ .compatible =3D "fsl,imx8mp-flexcan", .data =3D &fsl_imx8mp_devtype_d=
+ata, },
+>  	{ .compatible =3D "fsl,imx93-flexcan", .data =3D &fsl_imx93_devtype_dat=
+a, },
+> +	{ .compatible =3D "fsl,imx95-flexcan", .data =3D &fsl_imx95_devtype_dat=
+a, },
+>  	{ .compatible =3D "fsl,imx6q-flexcan", .data =3D &fsl_imx6q_devtype_dat=
+a, },
+>  	{ .compatible =3D "fsl,imx28-flexcan", .data =3D &fsl_imx28_devtype_dat=
+a, },
+>  	{ .compatible =3D "fsl,imx53-flexcan", .data =3D &fsl_imx25_devtype_dat=
+a, },
+> @@ -2311,9 +2334,22 @@ static int __maybe_unused flexcan_noirq_suspend(st=
+ruct device *device)
+>  	if (netif_running(dev)) {
+>  		int err;
+> =20
+> -		if (device_may_wakeup(device))
+> +		if (device_may_wakeup(device)) {
+>  			flexcan_enable_wakeup_irq(priv, true);
+> =20
+> +			/* For FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI, it need
+                                                                      needs
+> +			 * ATF to send request to SM through SCMI protocol,
+> +			 * SM will assert the IPG_STOP signal. But all this
+> +			 * works need the CAN clocks keep on.
+> +			 * After the CAN module get the IPG_STOP mode, and
+                                                gets
+> +			 * switch to STOP mode, whether still keep the CAN
+                           switches
+> +			 * clocks on or gate them off depend on the Hardware
+> +			 * design.
+> +			 */
+> +			if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI)
+> +				return 0;
 > +		}
 > +
-> +		host->mmc_host_ops.start_signal_voltage_switch =
-> +					ma35_start_signal_voltage_switch;
-> +	}
-> +
-> +	host->mmc_host_ops.execute_tuning = ma35_execute_tuning;
-> +
-> +	err = sdhci_add_host(host);
-> +	if (err)
-> +		goto err_sdhci;
-> +
-> +	/*
-> +	 * Split data into chunks of 16 or 8 bytes for transmission.
-> +	 * Each chunk transfer is guaranteed to be uninterrupted on the bus.
-> +	 * This likely corresponds to the AHB bus DMA burst size.
-> +	 */
-> +	ctl = sdhci_readw(host, MA35_SDHCI_MBIUCTL);
-> +	ctl &= ~MA35_SDHCI_INCR_MSK;
-> +	ctl |= MA35_SDHCI_INCR16 | MA35_SDHCI_INCR8;
-> +	sdhci_writew(host, ctl, MA35_SDHCI_MBIUCTL);
-> +
-> +	return 0;
-> +
-> +err_sdhci:
-> +	sdhci_pltfm_free(pdev);
-> +	return err;
-> +}
-> +
-> +static void ma35_disable_card_clk(struct sdhci_host *host)
-> +{
-> +	u16 ctrl;
-> +
-> +	ctrl = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-> +	if (ctrl & SDHCI_CLOCK_CARD_EN) {
-> +		ctrl &= ~SDHCI_CLOCK_CARD_EN;
-> +		sdhci_writew(host, ctrl, SDHCI_CLOCK_CONTROL);
-> +	}
-> +}
-> +
-> +static void ma35_remove(struct platform_device *pdev)
-> +{
-> +	struct sdhci_host *host = platform_get_drvdata(pdev);
-> +
-> +	sdhci_remove_host(host, 0);
-> +	ma35_disable_card_clk(host);
-> +	sdhci_pltfm_free(pdev);
-> +}
-> +
-> +static const struct of_device_id sdhci_ma35_dt_ids[] = {
-> +	{ .compatible = "nuvoton,ma35d1-sdhci" },
-> +	{}
-> +};
-> +
-> +static struct platform_driver sdhci_ma35_driver = {
-> +	.driver	= {
-> +		.name	= "sdhci-ma35",
-> +		.of_match_table = sdhci_ma35_dt_ids,
-> +	},
-> +	.probe	= ma35_probe,
-> +	.remove_new = ma35_remove,
-> +};
-> +module_platform_driver(sdhci_ma35_driver);
-> +
-> +MODULE_DESCRIPTION("SDHCI platform driver for Nuvoton MA35");
-> +MODULE_AUTHOR("Shan-Chun Hung <shanchun1218@gmail.com>");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.25.1
-> 
+>  		err =3D pm_runtime_force_suspend(device);
+>  		if (err)
+>  			return err;
+> @@ -2330,9 +2366,12 @@ static int __maybe_unused flexcan_noirq_resume(str=
+uct device *device)
+>  	if (netif_running(dev)) {
+>  		int err;
+> =20
+> -		err =3D pm_runtime_force_resume(device);
+> -		if (err)
+> -			return err;
+> +		if (!(device_may_wakeup(device) &&
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
 
+Where does this come from?
+
+> +		      priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI))=
+ {
+> +			err =3D pm_runtime_force_resume(device);
+> +			if (err)
+> +				return err;
+> +		}
+> =20
+>  		if (device_may_wakeup(device))
+>  			flexcan_enable_wakeup_irq(priv, false);
+> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
+flexcan.h
+> index 025c3417031f4..4933d8c7439e6 100644
+> --- a/drivers/net/can/flexcan/flexcan.h
+> +++ b/drivers/net/can/flexcan/flexcan.h
+> @@ -68,6 +68,8 @@
+>  #define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR BIT(15)
+>  /* Device supports RX via FIFO */
+>  #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
+> +/* Setup stop mode with ATF SCMI protocol to support wakeup */
+> +#define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
+> =20
+>  struct flexcan_devtype_data {
+>  	u32 quirks;		/* quirks needed for different IP cores */
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--wmxdadf3ku3zl7ae
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaWG+QACgkQKDiiPnot
+vG/hgAgAnxXnqQEsWJcE8q1cfm4Zhwb71ljBgIGlUXzUDlWT21EwarfgDf+/IBf8
+xwgpDBaU/CuA9qwuuHXDkKJMIcTdsOhxkQs+jcQ2EKDAF9tLCJbjx9ceJdfHUF2c
+MYECj51MHZ9qyMrxMuxlhN266gDMsD9sIeEGcZmCSy2RTDayan7NLSnXIIJGcTK1
+QQn++HXrKBzTOi53qnyf20K0lCIS/yLQfbsgxigSuHTeS8SlpTYeOl/NBbqnfyLL
+bhMcmSuFWKYGMpTIy9rnZo7aKZEyAK40Jjg6gKx8qFoJS44Ye9lhPDPBoIQRfkQo
+JmhoFgMXnDsQptl0ppxMIbI1WsBIGQ==
+=p1co
+-----END PGP SIGNATURE-----
+
+--wmxdadf3ku3zl7ae--
 
