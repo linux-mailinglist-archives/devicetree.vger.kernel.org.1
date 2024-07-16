@@ -1,126 +1,118 @@
-Return-Path: <devicetree+bounces-86123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082E1932772
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:28:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F9C9327A0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C7C8B212B4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:28:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D03EA2856A1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 139A019AD6B;
-	Tue, 16 Jul 2024 13:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB1019ADAA;
+	Tue, 16 Jul 2024 13:39:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PZQU9Rc1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419B019AD4F;
-	Tue, 16 Jul 2024 13:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DF119AD71
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 13:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721136502; cv=none; b=Berwlq94ARz/IlFu5hsKY856Qn9Y6j5sXqphvg8QlGDxYirkondMF/XXnjYXQTHZ6St0CvvbCZcaf+jgaTLyBN3VMoFtw2hslb8a5O194fmHoJ35wYhb0HcK3dkUODhMtefAwcm3k54n8QjnpWGM9I7HgHQrilG1RXdGTcmuUNo=
+	t=1721137147; cv=none; b=kbJHESzdAS38Oj5HQg2uHx3/vWK/0RhytIi9kCrS5tUzgtI19fANxi3HhxfYH7t/YjvFZxjoFWUxkUtvWVIf1laF6TzCZzmI/waOkpNMfSPUUjpNoj2A5k6IW0x9mMObPJZGa2mn72WGd4uxIdIwAdbz69NolPkaMp62CWsOqGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721136502; c=relaxed/simple;
-	bh=TF815M0MHPBYp/3TtLytnCXOCoWe3Z5Pimkt2dlp1GI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=slmoB5Xqryj9TfVvY/P4D5/9SSFADGBKZW52FUkm/2Jz+KGz6h+r79O9rtHwM6FiZaLTv8sfmw7aYvAOcboqbk52mlg43LKmEDuARbFqbVb+06T9HDFW9qSRWDzI0WJROvQ7uYOtP7w0a+qwFNlvEXQv6sTTs7DzePyhbnS+esM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.97.1)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sTiDR-000000003jW-40cV;
-	Tue, 16 Jul 2024 13:27:38 +0000
-Date: Tue, 16 Jul 2024 14:27:33 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Chen-Yu Tsai <wens@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1721137147; c=relaxed/simple;
+	bh=X7bklE2GsqthkplIQvZDv5rg3XCkY1GEHEuOa1Ws1NY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Yn0hgJ3eyC9RBM6jnPRRitJLvufpd82Y7mariKq5LUsyXMH2u2+3xFw1QKp3QeCXMnVtYSS9eX3bz55JIv9ZFEDKQ/CFsGHJ6TKyQtkLsrjhCi1aOS45N+h+NtITNMFbgRQarB/GPFjxuGxDyJY/RccbKwTRHjaRQ2zG9oruCb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PZQU9Rc1; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42795086628so37370615e9.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 06:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721137144; x=1721741944; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hoRw9TcQOEMBdmZxq6Nd1FUggtL3OxOdKdUjU7Ar674=;
+        b=PZQU9Rc1uamUErcSkYo19qR9o9/Qg+Fl+7O1SBqoh+4cT234bFkHAWfW9/3P9NCfG6
+         CyKIFlw6jJ8JgtrXoNeYdgNzUeu0wclCpvkTi4BpyFy2nk6zJ7pQClwJmah1juz8g2Xf
+         vCVYNQr1tuhi4/5Q+eBwJUAMUoQ3p780kMURErG7+VciGybWg2hfmhi3f02TlbNtL9d2
+         zBUr0hqiWHnNfOpZ6jaoioBy2KBvm8vuCz3bVOk/gx4Mui7mnb6ykjAFK5cvR8+FiusK
+         rUli2JRfz+CfagRELvymZ1cP6MiSRrT5zrTFLNuI32eSduncjaPYK20c1UvKh8C8NACm
+         fJqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721137144; x=1721741944;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hoRw9TcQOEMBdmZxq6Nd1FUggtL3OxOdKdUjU7Ar674=;
+        b=w3mfoTigS+McBzpxsRgl0eADN6/EaLiLVKov47OSWJcZz1SJx39fSDme3YfBY3z2Bo
+         6eLIgWiet+dBn31xvEPPiPgecwB+ujSZXw0RBIXjqnYZTTc/Xlq+aPy0xtW/h0SXP+GX
+         LYbtDc/giojoUsNs/j8Qy2mqbZtCeaJmpH3yVt1kGZUogAX1HoG6KRqHMHj4gAOJgyw0
+         kIJAnkPMs1AmazoCwuvteN2QYiZd9ENxCGt0rDel+gbjoOu88Zo0cHoR4DT5uVSd0XRG
+         7GVg/gXVtTpOICDzleSG6FLnOM4HWEdqiL2S9WHnIPTX2U2nfw+z1U5RgA5qKvtjgTcO
+         e0zA==
+X-Gm-Message-State: AOJu0Yzh2gqiJhYXjEKZRTNyqvrdJq3bU+kK2dzHElBOkyKe5rHKRGd2
+	rvc8ETeNInMBnR3BLp3uLMO7UG3zCZFZ886r49PDF2bGrmtMBFE/vFwOhgwZBR149zda7xyoLoh
+	h
+X-Google-Smtp-Source: AGHT+IGXs0HjAx3DBf4LWEbRloC7TAHjz/hinusld4TqeGA/WwEle1cNhCho1exyWsBz602KmeEFJA==
+X-Received: by 2002:a5d:6143:0:b0:367:9877:750e with SMTP id ffacd0b85a97d-3682609b526mr1426499f8f.25.1721137144212;
+        Tue, 16 Jul 2024 06:39:04 -0700 (PDT)
+Received: from rayyan-pc.broadband ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dabf0e4sm9106564f8f.33.2024.07.16.06.39.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 06:39:03 -0700 (PDT)
+From: Rayyan Ansari <rayyan.ansari@linaro.org>
+To: devicetree@vger.kernel.org
+Cc: Rayyan Ansari <rayyan.ansari@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
-Message-ID: <ZpZ1RSSYaLo45kUI@makrotopia.org>
-References: <cover.1720969799.git.daniel@makrotopia.org>
- <6425788.NZdkxuyfQg@bagend>
+	linux-arm-msm@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: qcom-tsens: Document ipq6018 temperature sensor
+Date: Tue, 16 Jul 2024 14:38:02 +0100
+Message-ID: <20240716133803.82907-1-rayyan.ansari@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tknJYtWE5EdE/uFK"
-Content-Disposition: inline
-In-Reply-To: <6425788.NZdkxuyfQg@bagend>
+Content-Transfer-Encoding: 8bit
 
+Document the ipq6018 temperature sensor, which is used in ipq6018.dtsi
+and is compatible with the ipq8074 temperature sensor.
 
---tknJYtWE5EdE/uFK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
+---
+ Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Hi Diederik,
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index 99d9c526c0b6..d6f333a7bcd1 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -76,6 +76,7 @@ properties:
+       - description: v2 of TSENS with combined interrupt
+         items:
+           - enum:
++              - qcom,ipq6018-tsens
+               - qcom,ipq9574-tsens
+           - const: qcom,ipq8074-tsens
+ 
+-- 
+2.45.2
 
-On Tue, Jul 16, 2024 at 02:34:40PM +0200, Diederik de Haas wrote:
-> [...]
-> rngtest: starting FIPS tests...
-> rngtest: bits received from input: 20000032
-> rngtest: FIPS 140-2 successes: 362
-> rngtest: FIPS 140-2 failures: 638
-> rngtest: FIPS 140-2(2001-10-10) Monobit: 634
-> rngtest: FIPS 140-2(2001-10-10) Poker: 106
-> rngtest: FIPS 140-2(2001-10-10) Runs: 43
-> rngtest: FIPS 140-2(2001-10-10) Long run: 0
-> rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-> rngtest: input channel speed: (min=3D2.638; avg=3D139.351; max=3D9765625.=
-000)Kibits/s
-> rngtest: FIPS tests speed: (min=3D21.169; avg=3D36.158; max=3D68.610)Mibi=
-ts/s
-> rngtest: Program run time: 148109761 microseconds
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> That's almost twice as many failures as successes ...
-
-That's bad news, and apparently different from Aurelien's initial
-testing of the driver.
-
-Can you try if the result is also that bad when using his version of
-the driver:
-
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20221128184718.=
-1963353-3-aurelien@aurel32.net/
-
-If so, we can try to increase RK_RNG_SAMPLE_CNT, and we may need
-different values depending on the SoC...
-
---tknJYtWE5EdE/uFK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABEIAB0WIQQ8WXOkSQLJP/KOu5qX7zeyq+FyywUCZpZ1PgAKCRCX7zeyq+Fy
-y7a0AQCE/4d3YLgHabbloqz9iyKoj0GdIFZwjHK3KL4968XEDQD/ajA3gjz4QmH0
-pQJAwVHNMGK6A9q8yQ6Rq+ZWpqvwmLM=
-=3OSJ
------END PGP SIGNATURE-----
-
---tknJYtWE5EdE/uFK--
 
