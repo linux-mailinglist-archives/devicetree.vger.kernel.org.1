@@ -1,89 +1,133 @@
-Return-Path: <devicetree+bounces-86176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE5F932FE9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 20:26:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E460F932FF0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 20:28:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 277E8282298
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:26:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C54EF1C22488
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E16719EEC4;
-	Tue, 16 Jul 2024 18:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C86D19EEC4;
+	Tue, 16 Jul 2024 18:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nt9Jiin8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bcFWZYdz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5671C6B7;
-	Tue, 16 Jul 2024 18:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F81D1F171;
+	Tue, 16 Jul 2024 18:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721154414; cv=none; b=jHAhiptL84F7QjGMvLL7w2N41fLaH9MLpjLiMj16kNM4v3aSg8rgysvDn1ja3H6R7mI/h6+hzVfYGaDUQLoHofjRJ1zy9b+la13VNMpm7rppxk9QMMC9BZAlDJRQjDt3bMqTiGXRu9tue4l+3lOtnWaCPys0FK+vl/X8rGA1sgI=
+	t=1721154501; cv=none; b=PGox4qiQpvEH2gCbxEtZhk2e04y/2JPFkt+vVTTo5xw7oxUWW2kdtKktdkIUXR3KuEcM/+nIvbOUfEcOekdbpK0S2xZLs+NFwQBpTWYLjTSdqSJ2ZEgAgJbqc2gsu9+WvkggVTTmSL+NBYAzvLARM7/G3fxhpaZ1jE3zpXMpLY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721154414; c=relaxed/simple;
-	bh=tlOGeycUnPqaxZJFZ2oWy0gztTZXn9im8D/9UvMg+FQ=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=rSuEDAmikMcqrlwKfh4ESeT/lECInnIXGjCgTL6RHv4ALwXBYBF95VpK6OqP9z7Gxs7q4Ui2k9fywiu/1D+oxTpZWjPGUOPkDLnCv8C6b67XdYx10ES0jUqezLZsvspVo685kNCjw1Yn7nvAXDXwJ0HOGaxFwQ9vb3p366qR0ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nt9Jiin8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6D4BC116B1;
-	Tue, 16 Jul 2024 18:26:53 +0000 (UTC)
+	s=arc-20240116; t=1721154501; c=relaxed/simple;
+	bh=q81A/r1yKie6CegQ3amLDsb33PUczO4sSnrweyfcLDU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iQY6jj8RwXvamqpudwFpWS/GA19KhPlLNbB3/awPSnwIX8I8KUduI/0c1dVepBV2fsScycLw2PushcjsDFsqjB91LSfc+Mt2CuWUaEy0jpDg5slHYrUoi7EKXfIYk8c0PXzS3JSqv0kxjD1xuVtbzD+qCUxYzgFFVgiyduSt7bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bcFWZYdz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81A5BC116B1;
+	Tue, 16 Jul 2024 18:28:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721154413;
-	bh=tlOGeycUnPqaxZJFZ2oWy0gztTZXn9im8D/9UvMg+FQ=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=nt9Jiin8YBEVHys5vt7DZU9pK5IYWVTSdrWgSxBVJHZT2glpIj0y6NLgZ7Sikm7e0
-	 yZEVOb10fDPEg8H/uUN5at8NJk914PVAEjAtB4ojKpLBP4ZG/TeB19xqmRHCSVXRrL
-	 livzMRIvYjVvDo8VRXCMnKPdZBuUEAEw/jVaUfLnXLqkfhwNREroTRD3ZAm0pdRcg8
-	 RqUe21h1Xs/GebE7Ef8MzKnBlooga1Re0FYTjBBWp+O+avSrwwps5MYZA66fdq0W7E
-	 zHa1JGGWBRb7ePth6GmMYy5AIWgIBwx9rB2IlQI6ewX9T6HQYODMkWu9mjOjc5O/sP
-	 jUhVT0MVE3xQA==
-Message-ID: <4edc5e10f4407c281960dad69d7f463b.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1721154501;
+	bh=q81A/r1yKie6CegQ3amLDsb33PUczO4sSnrweyfcLDU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bcFWZYdzaqXvo2HSFibNf3wi8Y+6KOCrZSn8zPKCdyzxMycGLIF3mgYzjQXZGq0aL
+	 VJJzdg7Y/0XB1KD+CZ8n9BRnAh7enJU2xDAFnXm4lfVd7srfExzyXJai4Jt2oBbGEe
+	 TZdGGmxtiH7ZyKLZOfAYZfv0PzMal7gb0DqTwv46oGCSd6pBOvpNbU3vjQTu1qJuw0
+	 QqZPhBZBOIXsEdTTBQbEvC9HHNMOLSbLaAQMmRGttCsz7mS9ybGdwwfpI3qM8nkIX6
+	 mRyV/0Qh1T6l2WaALBCbYdYKUmQFrqJlvjSv0A+Ug6/X4mPyenmRhPl6CSV3FrHSWw
+	 2Y8C8uhVxlLBg==
+Date: Tue, 16 Jul 2024 20:28:17 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Korsgaard <peter.korsgaard@barco.com>, Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>, 
+	Christopher Cordahi <christophercordahi@nanometrics.ca>
+Subject: Re: [PATCH v3 0/3] i2c: mux: gpio: Add 'settle-time-us' property
+Message-ID: <7t5v2ercockg62r5zwlpi6vjgtcxlmckddzw5zljejjt56uq7b@2sw6eo2urjnd>
+References: <20240617120818.81237-1-bastien.curutchet@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a9ada686e1f1c6f496e423deaf108f1bcfd94d7d.1721123679.git.geert+renesas@glider.be>
-References: <a9ada686e1f1c6f496e423deaf108f1bcfd94d7d.1721123679.git.geert+renesas@glider.be>
-Subject: Re: [PATCH] of/platform: Fix inverted check in of_platform_notify()
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>
-To: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-Date: Tue, 16 Jul 2024 11:26:51 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617120818.81237-1-bastien.curutchet@bootlin.com>
 
-Quoting Geert Uytterhoeven (2024-07-16 02:57:25)
-> The check for of_node_check_flag() was accidentally inverted, causing
-> i2c-demux-pinctrl to fail on the Koelsch development board:
->=20
->     i2c-demux-pinctrl i2c-mux1: failed to setup demux-adapter 0 (-19)
->     i2c-demux-pinctrl i2c-mux2: failed to setup demux-adapter 0 (-19)
->     i2c-demux-pinctrl i2c-mux3: failed to setup demux-adapter 0 (-19)
->     i2c-demux-pinctrl i2c-mux2: Failed to create device link (0x180) with=
- e6ef0000.video
->     i2c-demux-pinctrl i2c-mux2: Failed to create device link (0x180) with=
- e6ef1000.video
->     i2c-demux-pinctrl i2c-mux2: Failed to create device link (0x180) with=
- hdmi-in
->     i2c-demux-pinctrl i2c-mux2: Failed to create device link (0x180) with=
- hdmi-out
->=20
-> and anything relying on I2C connected to these muxes fails, too.
->=20
-> Also, loading the 25LC040 DT overlay on Ebisu using the out-of-tree
-> of-configfs now fails, too.
->=20
-> Fixes: 98290f295fbcf18f ("of/platform: Allow overlays to create platform =
-devices from the root node")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
+Hi Bastien,
 
-Thanks. I'm going to fold this into the patch and resend the series.
+with:
+
+ - commit log fixed (gpio/mux-gpio)
+ - int/u32 changed
+
+applied to i2c/i2c-host
+
+Thanks,
+Andi
+
+On Mon, Jun 17, 2024 at 02:08:15PM GMT, Bastien Curutchet wrote:
+> Hi all,
+> 
+> The i2c-gpio-mux can be used to describe a multiplexer built upon
+> several i2c isolators having an enable pin (such as LTC4310):
+> 
+>  +---------------+                     +------+  +------+
+>  | +-----------+ |                     | dev  |  | dev  |
+>  | | GPIO_EN_A |-|-----------|         +------+  +------+
+>  | +-----------+ |     +-----+---+         |         |
+>  |               |  |--| isol. A |---------+---------+
+>  |     +-----+   |  |  +---------+
+>  | SOC | I2C |---|--|
+>  |     +-----+   |  |  +---------+
+>  |               |  |--| isol. B |------+---------+---------+
+>  | +-----------+ |     +-----+---+      |         |         |
+>  | | GPIO_EN_B |-|-----------|      +------+  +------+  +------+
+>  | +-----------+ |                  | dev  |  | dev  |  | dev  |
+>  +---------------+                  +------+  +------+  +------+
+> 
+> These isolators often need some time between their enable pin's
+> assertion and the first i2c transfer. If the first i2c transfer
+> happens before this enabling time is reached, transfer fails.
+> 
+> There is no available option to configure such a time in the
+> i2c-gpio-mux driver.
+> 
+> Add a optional property in the bindings called 'transition-delay-us'.
+> If present, driver waits for this delay every time a new bus is
+> selected, i.e. before returning from the bus_select() callback.
+> 
+> Changes in v2:
+>  * Rewrite bindings' commit log
+>  * Express the 'transition delay' in us instead of ms
+> 
+> Changes in v3:
+>  * Rename DT property to 'settle-time-us'
+>  * Use fsleep instead of udelay
+> 
+> [v1] : https://lore.kernel.org/all/20240527113908.127893-1-bastien.curutchet@bootlin.com/
+> [v2] : https://lore.kernel.org/all/20240529091739.10808-1-bastien.curutchet@bootlin.com/
+> 
+> Bastien Curutchet (3):
+>   dt-bindings: i2c: gpio: Add 'settle-time-us' property
+>   i2c: mux: gpio: Re-order #include to match alphabetic order
+>   i2c: mux: gpio: Add support for the 'settle-time-us' property
+> 
+>  .../devicetree/bindings/i2c/i2c-mux-gpio.yaml      |  3 +++
+>  drivers/i2c/muxes/i2c-mux-gpio.c                   | 14 ++++++++++----
+>  include/linux/platform_data/i2c-mux-gpio.h         |  2 ++
+>  3 files changed, 15 insertions(+), 4 deletions(-)
+> 
+> -- 
+> 2.45.0
+> 
 
