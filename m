@@ -1,213 +1,185 @@
-Return-Path: <devicetree+bounces-86137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1800B932A48
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:19:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85FE1932B2C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:42:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8660C1F22E5B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:19:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9046B23683
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C6C19DFA3;
-	Tue, 16 Jul 2024 15:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC19319F479;
+	Tue, 16 Jul 2024 15:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZctcsBOp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YnSaJsGD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1742C19DF94;
-	Tue, 16 Jul 2024 15:19:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECB5F9E8;
+	Tue, 16 Jul 2024 15:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721143143; cv=none; b=BcECQXWyvGZlOJ/ExR7sMR84clTrqiF1ZKBCyNzmhVWahu+fTsbWa+WBDSvEM9XjC2CzXMmN2zdkZCbyFE2srykBJEYraTHqjNGa4v5WXVsLFZro+yAEw9R/uWN7528qvRc/+mU4vpKA5r33bxgkKqQu0WSS0kl1e+QcZkr0SEk=
+	t=1721144529; cv=none; b=cO/YZLXQZShHtd+9DM6RrayQOpQVqhuRN17Uyir5hSApScKQ58zmzJgjjwJXEDGHxjkDeXdJ61bLIFaohHb835tDNDglvtuJWrxvhaA8C4AKa2MqLULDHbLxfzSuOs7MCGC4Xa4YzQX4LlT0gwrxsCa5E1Wh0ln66M4ebJKgwbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721143143; c=relaxed/simple;
-	bh=ew0DUC6MaE6u+UzFSNobyhXBsg3O1+ceZPDokVRCnHg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L4pGKpiLGbx4b7meD9D0pSB9bspUUc6sdiaA4e63VqijLpffwvwMCldGzVCrhmvDd4f5FDNgSczxQAY0vXrv+l7s/ElI3vyHIQONA2JnAC76DKg798KF9omqeCp/EHUKTyRL/Qj5Dy83OA6u6HOxiPap4VHmyMc4ME2DcDVzli4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZctcsBOp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A650CC4AF0E;
-	Tue, 16 Jul 2024 15:19:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721143142;
-	bh=ew0DUC6MaE6u+UzFSNobyhXBsg3O1+ceZPDokVRCnHg=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZctcsBOpv9ofocppDrZbIZjm9QjwtfppEiQeQjnUxPVOxxlPdbAAxQUKbrgu1FegS
-	 sF7+igEC7p2D+fg3+EVOSY6SiTGYlDN/44CazelzbxFsm2iULk74LTivVqKUDTjepX
-	 87ulq96XX+LiBGaXb0pC1UE6RX9YuCtaH7Yd/Y9/YkkCiAUq9wME3O8GyvrQ9W2vMr
-	 7DPoPxMQaIyKZL5Y8/j5ozndJfDJGSnV0N/AoA5sPmFoqf6BpNPniyIEx9M/ShFbKH
-	 fOoMusfuDz2aRUiJF5VfhAIMQxcbNYjDxXLfGZaDE+d4AmS1ZYftuRFlQtYx3BMAOv
-	 WMv9Xe5npAZZg==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2eecd2c6432so79900371fa.3;
-        Tue, 16 Jul 2024 08:19:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUdC/xWu81zf4mVLnPVHAb1FvfVZjx9YFFwGrHspFrXTrwmOEajR12SOX78e0AHtz13QVe6mFFhKGSlRE/NSYEPMy+hY/DvqMUIXCXhpcGrpG9UYxfl/lGrgnahsyf30RbpZY73HShawpNroQq0yw6Xq5asOTUJtMN/O9iovOvpzmq66/GAFA==
-X-Gm-Message-State: AOJu0YzBJyPJMVQzYcMqoVXiwVK1t9ZS4onnooNkfSD0M/prD8DyXotm
-	eyaJi5Vq/9b98dgFpGkEljXJ3rwsOOqOBpW3Xeeq7bq+xqYLre0RzkQ7yHuSiK6v4N+KRgYhp5z
-	WrLPuFnPpNIv+C+jZXRRJwTD1qNQ=
-X-Google-Smtp-Source: AGHT+IGgTQNktVxwYAstssWzXF6vbd4odzQf/DxzVb3yYZx/iVdhb5gYCoqcMNPEIUfZAHP/M7KxAYXUu95sg+jO0hM=
-X-Received: by 2002:a2e:b615:0:b0:2ec:6756:e3e7 with SMTP id
- 38308e7fff4ca-2eef41e9ce5mr21397391fa.40.1721143140917; Tue, 16 Jul 2024
- 08:19:00 -0700 (PDT)
+	s=arc-20240116; t=1721144529; c=relaxed/simple;
+	bh=3K3HETqJm/ZpKc+V9IVxrUF1fl+PRjx9X/4MZOmKgiI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xqghypbe1VZteRfUsOX1wjJfc4ZBnTKqucZG7yRzEVBSA5qa3syWofBQEYW8gssEMZQlqD9bs+kIE2awLqMyGR4k6JSvU3/6+sXYlzFp5secNU0+WxvJb7oR+xCVnHqbXGrjVRRBqStT2rIuL4lBJXJunZ+yyD21kEhJOOC+MhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YnSaJsGD; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1721144528; x=1752680528;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3K3HETqJm/ZpKc+V9IVxrUF1fl+PRjx9X/4MZOmKgiI=;
+  b=YnSaJsGDct8n9k5I33VKgPskUIx89iftfDhcZPu141UhNcofXMYq5PJv
+   8FSBPDRrxMzLNFgJc7GUC3ZFf1wPRkixe30boTvLZM92oXJQakG+Wozzc
+   gcbcZcpByRv/X2zqjKOEokBatc9ltuWuBdY0rtjArL4w9pAsLPNPxi8QX
+   SWFHsCYU7Z4dhB/PK2cWLj63HtwYtwkJPeTRHOtmuhXIid9Z6zXkwlAVi
+   RCRZRShE7u6KLMshUobwzN9C4h0enNLnawrBEa/dQYxsI1RR5cwvCtm0k
+   Y9S6KqytgLsaBiHwvC23GsJeiqxekOAUV3aMBE7iuZxoSwi31mouTF/eK
+   Q==;
+X-CSE-ConnectionGUID: MuFkh7rLQcmJ2QxGZz2APg==
+X-CSE-MsgGUID: jpalR6obQwC1MgNyPCcOjg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="29200476"
+X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
+   d="scan'208";a="29200476"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2024 08:42:07 -0700
+X-CSE-ConnectionGUID: RIs+OzhpQTufLz9ioQbl6A==
+X-CSE-MsgGUID: 6ifkXvsmSRiAbDvZ718bpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
+   d="scan'208";a="50136221"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 16 Jul 2024 08:42:04 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sTkJV-000fOs-1x;
+	Tue, 16 Jul 2024 15:42:01 +0000
+Date: Tue, 16 Jul 2024 23:41:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 06/14] PCI: endpoint: Assign PCI domain number for
+ endpoint controllers
+Message-ID: <202407162357.A9pxRKuo-lkp@intel.com>
+References: <20240715-pci-qcom-hotplug-v1-6-5f3765cc873a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1720969799.git.daniel@makrotopia.org> <ZpZ1RSSYaLo45kUI@makrotopia.org>
- <1874451.yxlQQexqVa@bagend> <6779787.ZJYUc1KeCW@bagend>
-In-Reply-To: <6779787.ZJYUc1KeCW@bagend>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 16 Jul 2024 23:18:48 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67zxs03xScN8OfWXR1gf8tddJciXrjw3FQZcL7pR3ocxA@mail.gmail.com>
-Message-ID: <CAGb2v67zxs03xScN8OfWXR1gf8tddJciXrjw3FQZcL7pR3ocxA@mail.gmail.com>
-Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Daniel Golle <daniel@makrotopia.org>, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Ard Biesheuvel <ardb@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
-	devicetree@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>, 
-	Aurelien Jarno <aurelien@aurel32.net>, Heiko Stuebner <heiko@sntech.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240715-pci-qcom-hotplug-v1-6-5f3765cc873a@linaro.org>
 
-On Tue, Jul 16, 2024 at 10:13=E2=80=AFPM Diederik de Haas <didi.debian@ckno=
-w.org> wrote:
->
-> On Tuesday, 16 July 2024 15:59:40 CEST Diederik de Haas wrote:
-> > For shits and giggles, I tried it on my PineTab2 too (also rk3566):
-> >
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > root@pinetab2:~# uname -a
-> > Linux pinetab2 6.10+unreleased-arm64 #1 SMP Debian 6.10-1~cknow (2024-0=
-4-24)
-> > aarch64 GNU/Linux
-> >
-> > root@pinetab2:~# dd if=3D/dev/hwrng bs=3D100000 count=3D1 > /dev/null
-> > 1+0 records in
-> > 1+0 records out
-> > 100000 bytes (100 kB, 98 KiB) copied, 5,69533 s, 17,6 kB/s
-> >
-> > root@plebian-pinetab2:~# cat /dev/hwrng | rngtest -c 1000
-> > rngtest 5
-> > Copyright (c) 2004 by Henrique de Moraes Holschuh
-> > This is free software; see the source for copying conditions.
-> > There is NO warranty; not even for MERCHANTABILITY or
-> > FITNESS FOR A PARTICULAR PURPOSE.
-> >
-> > rngtest: starting FIPS tests...
-> > rngtest: bits received from input: 20000032
-> > rngtest: FIPS 140-2 successes: 730
-> > rngtest: FIPS 140-2 failures: 270
-> > rngtest: FIPS 140-2(2001-10-10) Monobit: 266
-> > rngtest: FIPS 140-2(2001-10-10) Poker: 23
-> > rngtest: FIPS 140-2(2001-10-10) Runs: 9
-> > rngtest: FIPS 140-2(2001-10-10) Long run: 0
-> > rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-> > rngtest: input channel speed: (min=3D2.615; avg=3D137.889;
-> > max=3D9765625.000)Kibits/s rngtest: FIPS tests speed: (min=3D24.643;
-> > avg=3D34.518; max=3D68.364)Mibits/s rngtest: Program run time: 14967433=
-6
-> > microseconds
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >
-> > That's looking quite a lot better ... and I have no idea why.
-> >
-> > The Q64-A is used as headless server and the PineTab2 is not,
-> > but I connected to both over SSH and they were freshly booted
-> > into, thus I haven't actually/normally used the PT2 since boot.
->
-> I did freshly install rng-tools5 package before running the test, so
-> I rebooted again to make sure that wasn't a factor:
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> root@pinetab2:~# cat /dev/hwrng | rngtest -c 1000
-> rngtest 5
-> ...
->
-> rngtest: starting FIPS tests...
-> rngtest: bits received from input: 20000032
-> rngtest: FIPS 140-2 successes: 704
-> rngtest: FIPS 140-2 failures: 296
-> rngtest: FIPS 140-2(2001-10-10) Monobit: 293
-> rngtest: FIPS 140-2(2001-10-10) Poker: 32
-> rngtest: FIPS 140-2(2001-10-10) Runs: 10
-> rngtest: FIPS 140-2(2001-10-10) Long run: 0
-> rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-> rngtest: input channel speed: (min=3D2.612; avg=3D137.833; max=3D9765625.=
-000)Kibits/s
-> rngtest: FIPS tests speed: (min=3D24.391; avg=3D34.416; max=3D68.364)Mibi=
-ts/s
-> rngtest: Program run time: 149736205 microseconds
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
-> So that 704/296 vs 730/270 in the previous run on the PT2.
->
-> In case it helps:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> root@quartz64a:~# grep . /sys/devices/virtual/misc/hw_random/rng_*
-> /sys/devices/virtual/misc/hw_random/rng_available:rockchip-rng
-> /sys/devices/virtual/misc/hw_random/rng_current:rockchip-rng
-> /sys/devices/virtual/misc/hw_random/rng_quality:900
-> /sys/devices/virtual/misc/hw_random/rng_selected:0
->
-> root@pinetab2:~# grep . /sys/devices/virtual/misc/hw_random/rng_*
-> /sys/devices/virtual/misc/hw_random/rng_available:rockchip-rng
-> /sys/devices/virtual/misc/hw_random/rng_current:rockchip-rng
-> /sys/devices/virtual/misc/hw_random/rng_quality:900
-> /sys/devices/virtual/misc/hw_random/rng_selected:0
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Hi Manivannan,
 
-On my Rock 3A:
+kernel test robot noticed the following build errors:
 
-wens@rock-3a:~$ sudo cat /dev/hwrng | rngtest -c 1000
-rngtest 5
-Copyright (c) 2004 by Henrique de Moraes Holschuh
-This is free software; see the source for copying conditions.  There
-is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.
+[auto build test ERROR on 91e3b24eb7d297d9d99030800ed96944b8652eaf]
 
-rngtest: starting FIPS tests...
-rngtest: bits received from input: 20000032
-rngtest: FIPS 140-2 successes: 992
-rngtest: FIPS 140-2 failures: 8
-rngtest: FIPS 140-2(2001-10-10) Monobit: 7
-rngtest: FIPS 140-2(2001-10-10) Poker: 0
-rngtest: FIPS 140-2(2001-10-10) Runs: 0
-rngtest: FIPS 140-2(2001-10-10) Long run: 1
-rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-rngtest: input channel speed: (min=3D2.658; avg=3D140.067; max=3D9765625.00=
-0)Kibits/s
-rngtest: FIPS tests speed: (min=3D26.751; avg=3D34.901; max=3D65.320)Mibits=
-/s
-rngtest: Program run time: 147367594 microseconds
+url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/PCI-qcom-ep-Drop-the-redundant-masking-of-global-IRQ-events/20240716-014703
+base:   91e3b24eb7d297d9d99030800ed96944b8652eaf
+patch link:    https://lore.kernel.org/r/20240715-pci-qcom-hotplug-v1-6-5f3765cc873a%40linaro.org
+patch subject: [PATCH 06/14] PCI: endpoint: Assign PCI domain number for endpoint controllers
+config: i386-randconfig-001-20240716 (https://download.01.org/0day-ci/archive/20240716/202407162357.A9pxRKuo-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240716/202407162357.A9pxRKuo-lkp@intel.com/reproduce)
 
-wens@rock-3a:~$ uname -a
-Linux rock-3a 6.10.0-rc7-next-20240712-12899-g7df602fe7c8b #9 SMP Mon
-Jul 15 00:39:32 CST 2024 aarch64 GNU/Linux
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407162357.A9pxRKuo-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/pci/endpoint/pci-epc-core.c:902:19: error: call to undeclared function 'pci_bus_find_domain_nr'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     902 |         epc->domain_nr = pci_bus_find_domain_nr(NULL, dev);
+         |                          ^
+   1 error generated.
 
 
-ChenYu
+vim +/pci_bus_find_domain_nr +902 drivers/pci/endpoint/pci-epc-core.c
+
+   866	
+   867	/**
+   868	 * __pci_epc_create() - create a new endpoint controller (EPC) device
+   869	 * @dev: device that is creating the new EPC
+   870	 * @ops: function pointers for performing EPC operations
+   871	 * @owner: the owner of the module that creates the EPC device
+   872	 *
+   873	 * Invoke to create a new EPC device and add it to pci_epc class.
+   874	 */
+   875	struct pci_epc *
+   876	__pci_epc_create(struct device *dev, const struct pci_epc_ops *ops,
+   877			 struct module *owner)
+   878	{
+   879		int ret;
+   880		struct pci_epc *epc;
+   881	
+   882		if (WARN_ON(!dev)) {
+   883			ret = -EINVAL;
+   884			goto err_ret;
+   885		}
+   886	
+   887		epc = kzalloc(sizeof(*epc), GFP_KERNEL);
+   888		if (!epc) {
+   889			ret = -ENOMEM;
+   890			goto err_ret;
+   891		}
+   892	
+   893		mutex_init(&epc->lock);
+   894		mutex_init(&epc->list_lock);
+   895		INIT_LIST_HEAD(&epc->pci_epf);
+   896	
+   897		device_initialize(&epc->dev);
+   898		epc->dev.class = &pci_epc_class;
+   899		epc->dev.parent = dev;
+   900		epc->dev.release = pci_epc_release;
+   901		epc->ops = ops;
+ > 902		epc->domain_nr = pci_bus_find_domain_nr(NULL, dev);
+   903	
+   904		ret = dev_set_name(&epc->dev, "%s", dev_name(dev));
+   905		if (ret)
+   906			goto put_dev;
+   907	
+   908		ret = device_add(&epc->dev);
+   909		if (ret)
+   910			goto put_dev;
+   911	
+   912		epc->group = pci_ep_cfs_add_epc_group(dev_name(dev));
+   913	
+   914		return epc;
+   915	
+   916	put_dev:
+   917		put_device(&epc->dev);
+   918	
+   919	err_ret:
+   920		return ERR_PTR(ret);
+   921	}
+   922	EXPORT_SYMBOL_GPL(__pci_epc_create);
+   923	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
