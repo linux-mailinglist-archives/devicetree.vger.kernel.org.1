@@ -1,129 +1,141 @@
-Return-Path: <devicetree+bounces-86165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 463FA932EDD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:08:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E559932EF8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F324B282D82
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:08:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 031C51F22B97
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429E319F486;
-	Tue, 16 Jul 2024 17:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB5E19FA6B;
+	Tue, 16 Jul 2024 17:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b="PT7Kf8VC"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="qc8zIPW0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.flokli.de (mail.flokli.de [116.203.226.116])
+Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA071EA73;
-	Tue, 16 Jul 2024 17:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.226.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA7E1EB2F
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 17:19:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721149730; cv=none; b=gR7OhrnHiLPt9OLZwX4JmMoKEkiC60ZPtmcfhqVbfp4gSb/05CcG0e5n3KU9zkiY/xPoLCImI2Prl8SD3j6p6hapBrjJkHUrtIFxvPrF7+HRpgvZx8cc3dE0BQKoBMSyS+Kfzd48+K45bJXxOFUUCoNf5XoXiYpXD0JCkL427Xg=
+	t=1721150390; cv=none; b=eDsaMM4aAmwmx0upJe5kRvX0XOGPoUIWivG2j+226oof1P0uwD+7/8/DOPmOEmIAbFE3wtarwPwOuNTFIJ+nSYC05L1oepRd1vlq6jlUcf5GTbAWR/0qXOpCilcGu8vaEFBbyllHH30U5kWAH8SgQJW+JqkiAQuVL31h0ljTzLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721149730; c=relaxed/simple;
-	bh=h7kKCNdk43w+QMG4h6pNVZd+omA7jhs93zn09x9ChDI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FkMqbVspS4uFKg7dHZQ+X2zAQSwJkbErY8RCGRp8NNkBG9Jv3E6zyWzQrD3TSIhMsr1HaNxD46tZ1uUCvoubhyL233pLBx7Uo9koC8HmyX0PvxMCeeD0WwJScAqlm2dzB/z9rkRTuRl3q7V16P8RfQb/XKbEcu15v5t7AyPxvAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de; spf=pass smtp.mailfrom=flokli.de; dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b=PT7Kf8VC; arc=none smtp.client-ip=116.203.226.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flokli.de
-Date: Tue, 16 Jul 2024 20:08:37 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flokli.de; s=mail;
-	t=1721149722; bh=ClT5J3qEB3l5vqp4gFIvpy3dUCKPnJBTvHNkjzG2X3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=PT7Kf8VC0+EgdBdvkaoIDp1Hinl4vijD3H8AFIMKKaEeEpPRPlOsKThWLxAxlkRfg
-	 SWNO1OhKf0VJ4zMZ1cxDkzR3fB1riuJFuEIoNR7lSFn58P7VEzi0gQbPcMRAGPciex
-	 3OeGuOVT1CtaCmZYgzz/CR3oGUYBZWQMLxwD1E6c=
-From: Florian Klink <flokli@flokli.de>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: bcm283x: Fix hdmi hpd-gpio pin
-Message-ID: <5pgipwi7ckrjxec7yzqxnvnoggjsnvhb2mtcq5hcwanhp6t5tt@z4s6ouppd2vz>
-References: <20240715230311.685641-1-flokli@flokli.de>
- <f178aa92-d91c-406d-9fea-1021bfb99f55@gmail.com>
- <e3872f3a-9736-4507-bbd3-2ad7698562b4@gmx.net>
+	s=arc-20240116; t=1721150390; c=relaxed/simple;
+	bh=LQtVgMXT1kLs9xuSAb2Dnp0S9QMFr2sEd0jibq58t+M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hodr6A9M5+j0dqi7nq1wC0OHf4LrzAOqc+DULzuDJnOATX3r85T6Jo13b0bKvm9MzgZmya6amGRK+csQR62jH0h4ny6krdicXmzUKq+ogzCBq/3stEsouQ/BtuEGBkaGslZ6jJ2P1ATvdbsj5bqf2h66Txp5rlqDjibLEHdTSi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=qc8zIPW0; arc=none smtp.client-ip=95.215.58.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: wens@kernel.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1721150385;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LQtVgMXT1kLs9xuSAb2Dnp0S9QMFr2sEd0jibq58t+M=;
+	b=qc8zIPW0HWu090g9RF35uDSfiwvOgImM2IhEQPwe4ttIfKmuVhVARSUh+CW3NoFQWb2A+t
+	N7ZhQYxRoUK3P54ZsqKHUcKBRvUDzJyA9kf7GNsk/vrif1Bt6SJ+jJSPXC89ufy8mcxvRv
+	lAsOS4t3za0sjHnk2be5j1wXrPrpP4+UhjJjcQNN9hACBFfRzj2roqKHxC7S8m745JJSCl
+	QTmDpIcOpWBvVC/ljM7CogwHo/wi5a9l1Up23ke9vE05Bo/BzSgyIs7CbORxL2ZxEIDgbC
+	kyo2QL09uMIfaEz4x2Gp9LrtI2XzzX5pZcAQdCeIeOcKCcYlON0+qSZzCE/1HQ==
+X-Envelope-To: daniel@makrotopia.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: herbert@gondor.apana.org.au
+X-Envelope-To: martin@kaiser.cx
+X-Envelope-To: s.hauer@pengutronix.de
+X-Envelope-To: sebastian.reichel@collabora.com
+X-Envelope-To: ardb@kernel.org
+X-Envelope-To: ukleinek@debian.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-crypto@vger.kernel.org
+X-Envelope-To: p.zabel@pengutronix.de
+X-Envelope-To: olivia@selenic.com
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: dsimic@manjaro.org
+X-Envelope-To: aurelien@aurel32.net
+X-Envelope-To: heiko@sntech.de
+X-Envelope-To: didi.debian@cknow.org
+X-Envelope-To: linux.amoon@gmail.com
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Chen-Yu Tsai <wens@kernel.org>, Daniel Golle <daniel@makrotopia.org>
+Cc: linux-rockchip@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ Herbert Xu <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
+ devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+ Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
+ Aurelien Jarno <aurelien@aurel32.net>, Heiko Stuebner <heiko@sntech.de>,
+ Diederik de Haas <didi.debian@cknow.org>, Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
+Date: Tue, 16 Jul 2024 19:19:35 +0200
+Message-ID: <3220752.Q7WYUMVHaa@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <3190961.CRkYR5qTbq@bagend>
+References:
+ <cover.1720969799.git.daniel@makrotopia.org>
+ <CAGb2v67zxs03xScN8OfWXR1gf8tddJciXrjw3FQZcL7pR3ocxA@mail.gmail.com>
+ <3190961.CRkYR5qTbq@bagend>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e3872f3a-9736-4507-bbd3-2ad7698562b4@gmx.net>
+Content-Type: multipart/signed; boundary="nextPart4668013.QbK88pdo3q";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-Hey,
+--nextPart4668013.QbK88pdo3q
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Tue, 16 Jul 2024 19:19:35 +0200
+Message-ID: <3220752.Q7WYUMVHaa@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <3190961.CRkYR5qTbq@bagend>
+MIME-Version: 1.0
 
-fine with the subject change too :-)
+On Tuesday, 16 July 2024 18:53:43 CEST Diederik de Haas wrote:
+> rngtest: FIPS 140-2(2001-10-10) Long run: 0
 
-@Florian: Let me know if you want me to roll all in a v2 or are happy to
-apply that subject change too.
+I don't know if it means something, but I noticed that I have
+``Long run: 0`` with all my poor results,
+while Chen-Yu had ``Long run: 1``.
 
-Cheers,
-flokli
+Different SoC (RK3399), but Anand had ``Long run: 0`` too on their
+very poor result (100% failure):
+https://lore.kernel.org/linux-rockchip/CANAwSgTTzZOwBaR9zjJ5VMpxm5BydtW6rB2S7jg+dnoX8hAoWg@mail.gmail.com/
+--nextPart4668013.QbK88pdo3q
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-On Tue, Jul 16, 2024 at 07:30:32AM GMT, Stefan Wahren wrote:
->Hi,
->
->Am 16.07.24 um 01:19 schrieb Florian Fainelli:
->>+Stefan,
->>
->>On 7/15/24 16:03, Florian Klink wrote:
->>>HDMI_HPD_N_1V8 is connected to GPIO pin 0, not 1.
->>>
->>>This fixes HDMI hotplug/output detection.
->>>
->>>See https://datasheets.raspberrypi.com/cm/cm3-schematics.pdf
->>>
->>>Signed-off-by: Florian Klink <flokli@flokli.de>
->>
->>Assuming Stefan is OK wit the change, I will apply this along with a:
->>
->>Fixes: a54fe8a6cf66 ("ARM: dts: add Raspberry Pi Compute Module 3 and
->>IO board")
->thanks for fixing and i'm fine with this change. The GPIO line names are
->already correct.
->
->Maybe the subject should be more specific:
->
->ARM: dts: bcm2837-rpi-cm3-io3: Fix HDMI hpd-gpio pin
->
->Except of this:
->
->Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
->
->Regards
->>
->>>---
->>>  arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>>diff --git a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>index 72d26d130efa..85f54fa595aa 100644
->>>--- a/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>+++ b/arch/arm/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dts
->>>@@ -77,7 +77,7 @@ &gpio {
->>>  };
->>>    &hdmi {
->>>-    hpd-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
->>>+    hpd-gpios = <&expgpio 0 GPIO_ACTIVE_LOW>;
->>>      power-domains = <&power RPI_POWER_DOMAIN_HDMI>;
->>>      status = "okay";
->>>  };
->>
->
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Florian Klink
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZparpwAKCRDXblvOeH7b
+bghfAP0STaXg+UlSKsk1L6VzJ9BHzyphyFMlfj7FGoFob7nyLgEAh1Yebqje+avX
+NIUvaQhX4nxlMMHIY/hZdtpdZIfbigs=
+=VxyF
+-----END PGP SIGNATURE-----
+
+--nextPart4668013.QbK88pdo3q--
+
+
+
 
