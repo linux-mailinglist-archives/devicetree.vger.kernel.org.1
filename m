@@ -1,172 +1,246 @@
-Return-Path: <devicetree+bounces-85944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A957931EB5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 04:17:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC475931EFB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 04:49:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7986A1F21563
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 02:17:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A372D28127F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 02:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D4863C7;
-	Tue, 16 Jul 2024 02:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07693AD4B;
+	Tue, 16 Jul 2024 02:49:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ruQz1qsv"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="S9Rc+s1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2012.outbound.protection.outlook.com [40.92.20.12])
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2109.outbound.protection.outlook.com [40.107.255.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDC8AD24;
-	Tue, 16 Jul 2024 02:17:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.20.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32226AC0;
+	Tue, 16 Jul 2024 02:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.109
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721096222; cv=fail; b=Zg7B6NekjSRPzF0ki6aSeA+cMRM4q9oIjE8YSXRSO/iH2E/c5MoQvKo13LiddWDu+SI8I48YovMaFti1g8gVOUjln3ZtLVCSX0378edKSXMsFWVm3HHUrlm+hW9Sm6KYS6KkAw0s2MX+6eoTkzUfV6mVQapaAVOVx+GZcTDWuuc=
+	t=1721098153; cv=fail; b=PrM48pKf55WXg0wzc/ej8MyrSxNEXh2PfUuCR6pwBJvsl7no0KlAMOdydPPJ5TignniGaQlSfisKR1mmCk4MCSAWQ0nuRfIYOGQYfhyN6H0ihm8FrAE1XcVV11jNxijMcMvyI4JDXabZir7Z9kauFDvhnzD4BzhJKoVArsHu6Vo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721096222; c=relaxed/simple;
-	bh=zk7RRXnFF4DTEE599YlFYxiJBgrJy96N+Jlyz0i9mJg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=OPv+8JtrJN/Vo1xKB/dYrLIR1jKyoKyyz28uLCbQelgSxg7kMBx6WNZAN1dpS3xPPj9dZL/7+dx3L9+EIsDXYVeeYEEhphxUBg+0USJIOD6WlWSuPhpjHV+WH0ilWJckyAHoMq/op1adfa459Pa6M65V5fquT8oJQgh46Dhqw5k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ruQz1qsv; arc=fail smtp.client-ip=40.92.20.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1721098153; c=relaxed/simple;
+	bh=PKnbUryz4F3khrN50cyYVjq76j6Bo8Fxk3EhxX8TNIM=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=TB6EGytOO3UqesvVbnSOAqEd41L9/KjoxzZxZnTFbULbUvNLtK5NizCeZ4GZ6A8WTv35zzaC2hRl6lWJQ6ZQ6116uCzGjfkPudRNeNYumiQxt0KTW+PrnVDx0r14qPxRYWvny9IkDUTcUSls5nfrbwIUz9mS+dr17DLPAJi0DII=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=S9Rc+s1U; arc=fail smtp.client-ip=40.107.255.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yU83606YpqmL0Lzfj1p389E4EJVUE6db00yMD5XK3bwI803DWBgB9xGtT/Sm2Lu0rhC8BA+qI79rSejdo9Zohstm5Ce82dK4EntlXG02s1D5CwSPiUTWanutnNaroDvXD8Jn8PizkOEi0MVvU/hi7yy9XxwR4dayCUwz4kGNrtgvkCyABKdP0N0xrXnbX+5ZlieOTJGM8yatf1s7VUKRkYKxm1EbdRUgs+q/uYGPX0/l9qlDVP9RA4juUl8DtjUMjex/epq03e/Jh/ZCu9p5Cy+xdYxH3Hk/5ruynuwKOwj9YPh6eJ5vvpeWC48ALWiXS7qvPL7tuMZ93+TmH8DpKQ==
+ b=kjuhLRsUYkmn8A1lcGXcrEUF6C9PdoLNEOwumMqvUx3LMm5Vqt6Rih/CwTrRkjI1IG/tg5WcPAJVPbJlVlxgLMhN/cxYnxhYaTYGV86Lt0cVD6tIm/dxVlyU7tdJHQRtp7kSGJa5qoO7fH75nwzKBV69cfklfyyptDX4EKmUn/oqfRlhOEJkqu9kGwtqztUZylfsPbakGJg0ckVjcHvCnh/pIkf0und/Xd6mZh3lqLIXH1vg9IwcQB/coAQ6ztlTCTvBncFm+9bj9M/ha17fiSOFqcaVMtOhQyReTI5kXVc+HMuOJGJo5n848mstYrNrxW96hJWOtlg7fZXwn59USw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y7lmMj7eWc2SezcTMgvW0xsBrU/KFU3BOtQtEUGWIis=;
- b=tgSiD94Va4LTRUYnQdt4PPQr3OKz93wPFqrLS+QxdCh2CRM9Jb1XqxHhaUdteDQh1RIcPFkrNW2D8uEI0ohVF262kNMCTSyYz3dyTqMX4mvx8GX3Kd5mpyFzvJQ2MvdDE/JtGL1v+b+4fKQmWx/jRKhsmo+YDJ/fEiTWgGDdUPQaz8KtYjhA4Z5SrbBI8CFc/RajgenLtjm/DIFom3npzNl6BH00vV+LgiS4A+t+QnUuK9mM4mlbQzOStiY4uNUfbf2Y696aDzP2ANO226Tfu/WjftL3ZolTiLVNFu63L/hIVD80mK+liZu5zZCeb7sdRL1o4PnXrx/qmyLpTE5z8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ bh=WSHUn+kel9yQkCNnFdbap7rxZk2iHSozM5Xc0xMjpg0=;
+ b=YahCdjwcUZLnIove+xQH9pimH51O9EUPcLV8jYd3BHLHyUgqtP/S/9lFU3ctq7rdDwwhz/t9AhX79Ce02iDumw3EK927Cnrs8TOd45vwklzxz/DcDfDU7hZu3dpDEbR+rkqGgpUblf5Gn/JApJcSZbwIsZMtQCf4hP2iVf1keklglr3bY6VeDhnMjE0g4FW0JCxwJi9LTB613jqppd4dC9myjYjMXW4yLVmSZt2ksn7aO4xtY3ZD9mV6zFRtYCSjb7PXscEuZ8ZJaj+umiSLz5YQlxQLh3NgR62vtUCfdfaprfDuis77LgVp0NUp7MpCrEK14Y+NvWOnAnXksq7dDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y7lmMj7eWc2SezcTMgvW0xsBrU/KFU3BOtQtEUGWIis=;
- b=ruQz1qsvhK8kxMJlWgSO+tt0tdwVjg8BcDlEOAh0TIeSCKtw/arI3F7UebZbIVk6kL28okxf7/b7yJ61jLexN2h+/5cPZr4naSupTDW9AAyayYF0YGRjnQIFlBmjdwRCjlQZNiaX9JGEMJ538ZiGN9YJZY0a2krUjIVw6np9HBQfBsWirQIHe/H6TEQENWek0mz6U7ReXZplhJwNptrtY11NIA4vgmIb+9L5tZMERiOBejq5OBrqY3pjl1Vq0D3qGHT4PC/GJQ3/5VFTh3IJ8gGDyLzb+VTajLuiXZhYfMgXe/nEGzl6F0A2UtyDTB2aH8b2v5hcKcjja2R9RDs3rA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by CY8PR20MB5737.namprd20.prod.outlook.com (2603:10b6:930:84::6) with
+ bh=WSHUn+kel9yQkCNnFdbap7rxZk2iHSozM5Xc0xMjpg0=;
+ b=S9Rc+s1Uf1XJSqRQx7QUuchtX8Q1BzSXhKNsv+jJWq0Lv2KIaTHKDHoXlTOs3S145p3R+RLCB1zHaNrflhftF21dOdY4qcGRPFaM0xBNKpshzYz4J2AzLWNuGRHyjhEKkVROmEuDleAbOVBSSN8paF/F69sF4PHcvOuC90fPAVs/2t/VZ/3crCdRpMCI7/rgpaCeFDsok6h6mGfwxn3QELak/k8GizmsihrkNSbJ7+X32SzLS17JjYjUwYTvSEipiWXggGguiv568bWv+ohrLPhbEI67j2Bumg3f2Bf05hLFCtxgmAfeu9KEg8dxtXuerTfDrZeqMyCcvUS2knp6lg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from JH0PR03MB7468.apcprd03.prod.outlook.com (2603:1096:990:16::12)
+ by JH0PR03MB8333.apcprd03.prod.outlook.com (2603:1096:990:4c::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Tue, 16 Jul
- 2024 02:16:57 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7762.027; Tue, 16 Jul 2024
- 02:16:57 +0000
-Date: Tue, 16 Jul 2024 10:16:47 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pincfg-node: Add "input-schmitt" property
-Message-ID:
- <IA1PR20MB4953747880CD84FCB5453608BBA22@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953BB6E71CA3216E652E8B8BBA02@IA1PR20MB4953.namprd20.prod.outlook.com>
- <e74d1c2f-576d-4d97-89d2-5bdabe00fb58@kernel.org>
- <IA1PR20MB495302FAFD2003B831342CF4BBA12@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20240715-strainer-creamlike-b1ff49b25c1f@spud>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240715-strainer-creamlike-b1ff49b25c1f@spud>
-X-TMN: [IZ9F28rhu5AN4WQT4+5GH6BfaFHS8Lgt4rnvAi5R8YA=]
-X-ClientProxiedBy: PU1PR01CA0029.apcprd01.prod.exchangelabs.com
- (2603:1096:803:16::17) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <lyr3jobkd24q3dzbr2u3lmqocfpk43faducvvw23rpruocwmj4@2dea57yogrzm>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Tue, 16 Jul
+ 2024 02:49:06 +0000
+Received: from JH0PR03MB7468.apcprd03.prod.outlook.com
+ ([fe80::4128:9446:1a0f:11fd]) by JH0PR03MB7468.apcprd03.prod.outlook.com
+ ([fe80::4128:9446:1a0f:11fd%6]) with mapi id 15.20.7741.033; Tue, 16 Jul 2024
+ 02:49:06 +0000
+Message-ID: <6fea3345-93ed-4296-abc8-e52b1bf6b76a@amlogic.com>
+Date: Tue, 16 Jul 2024 10:48:37 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] MAINTAINERS: Add an entry for Amlogic HCI UART
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240705-btaml-v1-0-7f1538f98cef@amlogic.com>
+ <20240705-btaml-v1-4-7f1538f98cef@amlogic.com>
+ <131066c6-5ef6-450e-b85a-b75edf459368@molgen.mpg.de>
+From: Yang Li <yang.li@amlogic.com>
+In-Reply-To: <131066c6-5ef6-450e-b85a-b75edf459368@molgen.mpg.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TYCP286CA0251.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:456::20) To JH0PR03MB7468.apcprd03.prod.outlook.com
+ (2603:1096:990:16::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CY8PR20MB5737:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04f3e55a-dcef-4144-d7ea-08dca53d5e27
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|8060799006|19110799003|3412199025|440099028|1710799026;
+X-MS-TrafficTypeDiagnostic: JH0PR03MB7468:EE_|JH0PR03MB8333:EE_
+X-MS-Office365-Filtering-Correlation-Id: 245586b7-e721-4255-121c-08dca541dc23
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	X6x+mqHkMVPqojaJvXLmeu4FluWHtYhg5itoGUUPfE6hmo9XU4HRwsNxHPqDwUeCF+nvgozbwSNAJvyBMXJ+BXpaFD3l2Y/vv7PyoB+odLws7mrQBUbRekU8MQjqeV4efuV07TwCkTh+0LmqESkvQp81+g9ME2Wurvgd4aiJRjY6K9SR+LRkORXJvyUh6vYn/1xmkrZtPzU1eC5oKEq9D49c1OC/udBUPYPB9HTa2/aGLxT+houX/Zol8ERf1jpmouRR4sWtVrxE3XvCnu41KxiCiXdo72Fggn3ZwK8EwSjxOVwZl1rXFXuTehdEyIkb4KuRibvHiyZbHRIJKVxiG9qPsjWgBh9PDAh4BcU7ZUCoGUNk7vwdVOj9VQunefzNb6jzniLzMneBcp4KCl4XuGpm0VmtoVUqP3sBjVkFM1nqKR4FF6XdDMTwQR7NLGE3lQsO2fGcgj2elYoXO4L3r1adgaf0QHmLuDXEjFcJMMRzyIXJeutWDAELBkvApxD1UHb0VCJjc3xTWTMczACmpRaYw+3eH/4DPWDpwqpxrt7/HqPbBsnhzeC7HLvg0Xg2qp/zrM8Mc/ursilJFcGqgVMJNSMcHb4SEuDOkE3OO+NhTeboDUnHoxOIUeU3q4NEQcE+7xysyE+a9nWa8hVTg2taCzWKW07y9QdSXnRnunO4PRCm2iesRqmUoTpxkOr7
+	=?utf-8?B?UXltWk9hUjdNWkxtOXRrS1FhWFdzUTAxcWFmSXpnWmlaUFFWYTY1M3E3ZEpW?=
+ =?utf-8?B?YWhRUUtnZEpYNUo4bGh0cmxvSURyV3ZUL3piTW04ck9RYktVQU5HNnRGL0ky?=
+ =?utf-8?B?UmFXdlhENUp6NEY0aFRUSjd1QWdhaWo3RlJRN3U1NUFabm0ycVJGQno2S1VV?=
+ =?utf-8?B?SThpMi9ldG53bElKZnFyV29tdEdPVW5VQ2tCY1FaRlVERmliNmhGMUFWWXdw?=
+ =?utf-8?B?bnRKeDRJMk0ySlZwOW93VzVRTkJVbW9WV2plY1FaWWdDREhMNGxNZFdQOWlY?=
+ =?utf-8?B?cXFqV0N2RUxESTJoaGJadzd6T0xlaUhNRDh4YjFqbEE2WldyVTdNR1FkZzdi?=
+ =?utf-8?B?K1Y3WmdBanc4T05hVFEvUGJaQXk1NjhPQXNDVXJwRFZCN0Q4cHhMYlU4VTRy?=
+ =?utf-8?B?RmMvQk9YSE9qbVU0ZU9yRUkrUzFVbzN2b055WE9ONjJ5Nk1ra1pCcXZ0MytU?=
+ =?utf-8?B?UjVnNVp1MGdtdEx6MUJmUEs5SDA3ajNpeXJTL0lsL0JmaEdwMnVJdVl3UlR3?=
+ =?utf-8?B?b0F3WEF4UzZaRUhFTVdicnR4NkprQnNTekIrZ2hmZlpDOCtYdjhZb3lRMjJT?=
+ =?utf-8?B?T0VTcGRqRTdmWnZHNzRWOTBXZEZkTTJjMlNPMEd3U2RkeEVKOWhLT2k2dU9G?=
+ =?utf-8?B?cUhXMDhUTWlmZkZvNzI5aEdvczFWNDJaNXpUcVNCMUxzaldkQm9TNmUxYUZ5?=
+ =?utf-8?B?Q0ZBNElqRGdhZWFiSmU0V0hDRzVsdjZ2c3JhSldZQmltRVZLZmZSK2lvZEtt?=
+ =?utf-8?B?NUwwWi83T042dnJYNWpwclJBUGhpR2lLS1NHWmZHamc0Vnc4Y3djTzZmOHNJ?=
+ =?utf-8?B?eHpmc1pLeXlUYW5Rb3h5clVabnBBQVMrMmZsU1Z3V2oyaVpCUUdxTnd0T3h4?=
+ =?utf-8?B?ZW1zbWlKYmhKMVRxNXh3SndLZG5mbG5nM2dnZlhtUHF3eWZuRjFIbkozQlpL?=
+ =?utf-8?B?RjhZM0lxR3pDeWlSSDNQTjlydm5NVnFRZmQyOGxvUmJ0RVlLaUsvaDRDVHFy?=
+ =?utf-8?B?Wjk5RHZuVFlxRmdzYUptWTNiRGhTNHdmclVjRFoyTktjOXN0N1JNa2REemxD?=
+ =?utf-8?B?VmtlQzVWbUVnSzd4WVpIdEh5dlN5MmY0L0NyMUZRYXR1THJGZWo0QU1rRm0x?=
+ =?utf-8?B?SHZQaWVjWGVTMHI4b0w5U3BQWlpVRDVobi83Si9QbmwrOE1VYzJFb2diZlA4?=
+ =?utf-8?B?UDk2VnhBTThsd1JKQVQ1clpkUWlxYmZia0NiUWxCY0Q4UFlGVVJOQ2xLVDVC?=
+ =?utf-8?B?c3pNOTZGUVdaZjAzQm1zWnNyVENUeTFPdFVHUndFTXl1OXYzVDNud2hlNk1t?=
+ =?utf-8?B?ek1aR1BoWXlydmdwMXdKYUJsNzl5UzUwMGNyZjN0SDdwSVdWRzl3eHU1WmVt?=
+ =?utf-8?B?MGRaeFFLcDhrbVdLTnBOVDBBcnNReEpPL2MvMjhiMHI5eHZJWVdQVVdOd0tp?=
+ =?utf-8?B?T2NqQURrcm1nVnJOT2lQMUo4NCtGK3lTL1RmdExGUGNWd3RDb3BEWkV6R2lw?=
+ =?utf-8?B?ckd0YXhwdXpId25sOUpRMmtoWEtuY1BWZ3dQZXc5ZXJuOEprWENaVE5GaGhp?=
+ =?utf-8?B?d3hSM2k5SGQ1QXVGVFg4bWRnOTlVV2FYTXpMMVNVQkhQOXI5T1hRQlhvTE5J?=
+ =?utf-8?B?cWFZUm13MVJBMFRiT1BwdkxiTGFpTEtXTnVVTU5aTEpHWXBEUVBQQzh4cXRv?=
+ =?utf-8?B?ekRvRFMzdFlYKzY4UEpwbU01NGFSREJrRG5qcXREN2JuempQWm5vdGdqVGh2?=
+ =?utf-8?Q?wC1ZJz16JuXzwuO6PE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JH0PR03MB7468.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ScDdAKWSHJBEtSAAeC1lCi+7HSxgG/BksEiIsSsCQx81aFmO4vvaTVEevjr6?=
- =?us-ascii?Q?Rm/U2ztOACHGeeXU1y+KTWv6A2D3trd8cEUWrkFnROpkh3rnkvrq7Eu+gw6J?=
- =?us-ascii?Q?Z/bSPb7lUJ/SNCKBJtyWHDBPWmpwy9NtCLCrxBg7joIZrg6gW+/dMPZhqODe?=
- =?us-ascii?Q?ZI2s0MEHMSXDxNeFquo39l4mEOK39oMUadbJ3N9El+Oheb3tN7FMOCTp/h6l?=
- =?us-ascii?Q?5vEyItbf6xxF7DzCn2h6tN+/IUXCgRFOBdmtda2wWcmeIUi/6Hy9M0/yDwIQ?=
- =?us-ascii?Q?Ic52lkQ0JKIkwsPyWKnWppaOl0TROf/Lt3TKI+OgBmy5LPHlWhUviIzTCrC0?=
- =?us-ascii?Q?LTJyA3AII4Khh7i+i65kjaIHrO8Ko7tb5gN8FYLKQzF64Qmj3VRhSS4UCkQz?=
- =?us-ascii?Q?YldkFjLh2eJ7a2Tg45PoabaIZVtSLCI9rtKMzNI8EmHa5xxBI0/dUp5WAqUF?=
- =?us-ascii?Q?0ILZzX3FrK8xTqY1yFtTKwGkzjkWpTYk/dXLafr6fj4w8nNDQ6JIMh8j85Sf?=
- =?us-ascii?Q?K40XqJkSxTk4ddGXRBrrmtOIPTvgeP8B1ApxupqlR1qQS2rWhLlVMp86UMBj?=
- =?us-ascii?Q?Mw1LIq+ZH5nnJMl0gT9Ie5r0vR6aIA3Rxt+UOLN0ldv54mIoGdDnaLHX/SvW?=
- =?us-ascii?Q?ZN3ACwlWzG/J19jiC/uiyKSHA2dxdFeGgyciOnPIgaojsCr1f+bgzDRcAdd9?=
- =?us-ascii?Q?+kVYbmycmqcOmrjx1/VGXTpVO7QmFKT0+gIUYlxCBMZ0Y87YFIHJv+eKmzUd?=
- =?us-ascii?Q?8V98avyJv16R/nB/Wz0/IqHreYM3eB+kwZfj6xIngxo2odJTOL8TI6Xrma4Z?=
- =?us-ascii?Q?U5kuPiwsM8BAymuSj8ORhHR2Hp6PRHdVdlwEmr1pWWtkMslJr4iwagZrY9UR?=
- =?us-ascii?Q?QuTXVYRQ3rXxsB6Mp3dU/B1t1gSnApqpKwBi1Eh/d6LC/C9VATnjCCNP4dOr?=
- =?us-ascii?Q?0FM1+siY5lb1R+xI1wAk+5mOmrTvG66m0YOFXpxW+c0vmZDFaiPGvJHwqPii?=
- =?us-ascii?Q?m2kdev7y3Yoae143fpomzY2/1JOpuezuoteFDjOJ4HxlIx5MNaYPAs/0j4yv?=
- =?us-ascii?Q?LMzk4/jz/V3nYCYgI6xMTeLmRAMbrX4+rPyy1ActT+bHJcIESImeOmZUipsM?=
- =?us-ascii?Q?wUIZuRl5CXfQFl/eBuL6j4PdtTy2XZAlYxfTOco+sRY2XCUW4ifLTo1qOpiK?=
- =?us-ascii?Q?l80BSSa4wocLgtS/2nWAOXwZyL8lelEK/cS1qRhFukY7hHkzjBiIbdv7Vssw?=
- =?us-ascii?Q?XBYwp5JOpVAOUAaf0Mi3?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04f3e55a-dcef-4144-d7ea-08dca53d5e27
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+	=?utf-8?B?S2ZNejA4amlJcS9qUVVDR2NrT1d1cmN3RU1wZTJrVXBCNDJMTlBkZDYvNjZR?=
+ =?utf-8?B?SHhRVjFkRlJOWkd5Q1pWdkc2ejAxdVBUeERCVXQ0TExzUVFmMEx2V0hDUkhs?=
+ =?utf-8?B?RUhLODJ0cmwrcVlCVk9IS0l3VDdvMWJpQ2NIb3NwZmpaandMODhsWVZpcDQr?=
+ =?utf-8?B?blgra2x2MXJkZlhENGFHUkdKTUZUUDQ2dE1mcVd6K29BcE9HN0ZaRFhYY01U?=
+ =?utf-8?B?NW1mZldLWjZIdUR1U2RCVk9HdmJVNGlwK0hlc2FnVmk4aHd3NmRCaUcxZW9j?=
+ =?utf-8?B?U0U5ZmxaNjBVY3FTUklQWmxzVCsyNWNLYnRpSFdWMmFITmpLSGpzd2plY0t5?=
+ =?utf-8?B?cHV5dVFLQ0ZCbXlUcElmNzBTdDFqdkJSMWRzVDZEdm5USkZadzhRS0VSSnMy?=
+ =?utf-8?B?ZkZyR1ZSSFo5OERneDFFWlhNemhzUWdCMk52b0JhVktOMzZRYWJNb3dzMWJY?=
+ =?utf-8?B?bEJ0ZkpRUlZWdFplUEo2Q2lsSTZqQzBTZ0hQbXdEN3JkSDN1QjBZQVB0Zzk2?=
+ =?utf-8?B?eFdnTVYxZzFSb3NNUkNkc3ZWZXVVdklackc2MmdDeG5PUzBlcU1vRXlpdG9W?=
+ =?utf-8?B?b2UwaGVPSmdMZ3Y0RElpUVF4Vng5VFEwWk4wN2laNmFUazFEbjR0UFNBVTE5?=
+ =?utf-8?B?RGJUNnNQUzlDR3V3SmE5ckZBQis1cnR1UWtBZGJyc2N4ZFZ4OHJqUlQvQmRE?=
+ =?utf-8?B?Y2hnbkk5d3IveEVSNWdrcDFZOS9jSjBUOHZnVGN2cmhOV2FHYXRjN2FRYXRN?=
+ =?utf-8?B?eVp2Nm44b056STl6YTFndFFZZkhJQkxpbUhKMnR5SFdrN1VGNW5kWkwxMVFC?=
+ =?utf-8?B?TU9EK0Q4aWRBaUVEWldvdjM2QzBxVWRlZW5VRmo3YStCd1NrNWRQQ3hKaVNJ?=
+ =?utf-8?B?eUc2RWNTS3FwYzQ2RXVUUE5IdytwTHpQQ0grOWNsQk9xZVNEb01PcGZTN2g1?=
+ =?utf-8?B?U0JpVXgxVU9zUEFwZEtZeG5aOXdaN0FabHpPY1JvYUZuY2UzMy9qcVdEK1dK?=
+ =?utf-8?B?Rk1NYmZOZVUzLytmdEJMOWtobTRvY2RIV2hzK1pwWHl1Y08vOElnU1l6WDFi?=
+ =?utf-8?B?V0R2TXRwSndUU2dzTGZQQS9waFMreEJDTUxsblgrbzg5LzhPMWhRM0FHWHU5?=
+ =?utf-8?B?cHBhV1RLZVVUVTErNUxKc0RTMmEraXJsMWVMekZobGVmbnM0cWVpMUcvU3Jh?=
+ =?utf-8?B?ZGpxRWRJMElWUTJSNFZlY1NBTUQ5UUVUYmRhamlWVzNWb0ZtZGsxOHAwckla?=
+ =?utf-8?B?RTVJcmFHRUJudlJWOWQ0bUh6cjUxNnZvS1k2bWpwMGxvNmxYNlhFdEdFSm5t?=
+ =?utf-8?B?RXlLWnFOWWhJTXpXanpkQlZPU2VORlFRTzNzVjJCSG42cjRJZk4xc2J5VUly?=
+ =?utf-8?B?VldhenlyS0ZZVjBGcmFMS2pXeVpZMWk5VHVrWXNmWkYrRmdsd2NQeDVucWVC?=
+ =?utf-8?B?endtUmZ1UDFhWkVETjRlK3ErNjVvRmN1U2xDTUY1czduTm5UdDgwdUU3WVE3?=
+ =?utf-8?B?eGdvWHdCdktINjdPYk1JR1F3MWRCQnplcDBwdklwM3VYN0NMbWpUUEFxc2tM?=
+ =?utf-8?B?Mno2MlgwTmQ1VHpqdEV1ZXkvczVsZ2tLbHZTQVJXeStJZmRLNEJrM0wzMkpj?=
+ =?utf-8?B?c2VCckRlZkpSeml3bytsaTM5eGEyeUpYdEw0RFgyTmJ4UmNyWWhjaGdST1RP?=
+ =?utf-8?B?RWZJZEdoTDdvUjUzMkRFU2tPeC9VVnZYM0VZaWJsc1RGSE5CZjRXKzVQNUdP?=
+ =?utf-8?B?SXd3Q0s3TE5NcXBsdXpmUWZmbVpyRnh6N1RSc0ZjZDkxNENWaVBqMlVZbEll?=
+ =?utf-8?B?U0laejdRSUlKMXFkSWNzYStScUpJeXVTNzRGK1VoUmw1d2l4cDdlVEtOQUtZ?=
+ =?utf-8?B?SGpEOHpTK0t0bHU0ZkxXTVVVd1lDaEppNmhkOVRRZEtsZ1h5SWlZTmJhT2lJ?=
+ =?utf-8?B?VTJsZ3RmejgwZlhQcUlrcjBRYWdEMklqdUU0cWpNN2k4cSsyVGt3OFFSd3RP?=
+ =?utf-8?B?V3F4M2ZoUm9tb1hOVnArbVhUMlB1aFFTcHRYMXM0SlY2OWJ5dGpkZXJLbWhP?=
+ =?utf-8?B?Y1g1ZW53WEEwbzdNT3lOblA4cDFzd2Z0dFNVQlNpSlFMK0l0NFBmQ3k5NzdR?=
+ =?utf-8?Q?QUncBZW8EUI00HwYq656LlnMx?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 245586b7-e721-4255-121c-08dca541dc23
+X-MS-Exchange-CrossTenant-AuthSource: JH0PR03MB7468.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2024 02:16:57.3060
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2024 02:49:06.6131
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR20MB5737
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EZlY4QHUXaeyXyoYu0/q+2KDepyVoJWcwfoTohkAWtCp36vX4HMjAFmU6jK7cgAxRy0UWDvJWewa+EqcVGyyYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8333
 
-On Mon, Jul 15, 2024 at 05:19:41PM GMT, Conor Dooley wrote:
-> On Mon, Jul 15, 2024 at 05:55:28PM +0800, Inochi Amaoto wrote:
-> > On Mon, Jul 15, 2024 at 11:21:25AM GMT, Krzysztof Kozlowski wrote:
-> > > On 14/07/2024 13:28, Inochi Amaoto wrote:
-> > > > On Sophgo CV18XX platform, threshold strength of schmitt trigger can
-> > > > be configured. As this standard property is already supported by the
-> > > > common pinconf code. Add "input-schmitt" property in pincfg-node.yaml
-> > > > so that other platforms requiring such feature can make use of this
-> > > > property.
-> > > > 
-> > > > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-> > > > index d0af21a564b4..e838fcac7f2a 100644
-> > > > --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-> > > > +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-> > > > @@ -88,6 +88,10 @@ properties:
-> > > >      description: disable input on pin (no effect on output, such as
-> > > >        disabling an input buffer)
-> > > > 
-> > > > +  input-schmitt:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    description: threshold strength for schmitt-trigger
-> > > 
-> > > Strength in which units? This should have proper property name suffix.
-> > > 
-> > 
-> > I think it should be mV. Using voltage may leads to decimal.
-> 
-> The standard suffix for voltage is "-microvolts", so no issues with
-> decimals :) And with a standard suffix, the $ref can be dropped.
+Dear Paul
 
-Yeah, I have seen the "-microvolts", but I does not think add standard
-suffix is a good idea, as "input-schmitt" is a standard pinconf attribute.
+Thanks for your remind.
 
-The only thing confused me is that the description of PIN_CONFIG_INPUT_SCHMITT 
-in include/linux/pinctrl/pinconf-generic.h says it just uses an custom
-format as argument. So I think it may keep something generic?
+On 2024/7/12 20:34, Paul Menzel wrote:
+>
+> Dear Yang,
+>
+>
+> Thank you for the patch. `git log --oneline` does not contain the/your
+> name, so people would need to look it up. Maybe:
+>
+>     MAINTAINERS: Add Amlogic Bluetooth entry maintained by Yang Li
+>
+> or
+>
+>     MAINTAINERS: Add Amlogic Bluetooth entry (M: Yang Li)
+Well, I got it.
+>
+> Am 05.07.24 um 13:20 schrieb Yang Li via B4 Relay:
+>> From: Yang Li <yang.li@amlogic.com>
+>>
+>> Add Amlogic Bluetooth driver and driver document.
+>
+> Does this match the change of `MAINTAINERS`?
 
+Well,  I initially interpreted the 'driver document' as the device tree 
+(dt) binding file, but this might be a misalignment. Therefore, I will 
+revise it to: 'Add an Amlogic Bluetooth entry in the MAINTAINERS file to 
+clarify the maintainers.'
+
+thanks~
+
+>
+>> Signed-off-by: Yang Li <yang.li@amlogic.com>
+>> ---
+>>   MAINTAINERS | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index cd3277a98cfe..b81089290930 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -1140,6 +1140,14 @@ S:     Supported
+>>   F:  arch/arm64/boot/dts/amd/amd-seattle-xgbe*.dtsi
+>>   F:  drivers/net/ethernet/amd/xgbe/
+>>
+>> +AMLOGIC BLUETOOTH DRIVER
+>> +M:   Yang Li <yang.li@amlogic.com>
+>> +L:   linux-bluetooth@vger.kernel.org
+>> +S:   Maintained
+>> +W:   http://www.amlogic.com
+>> +F: 
+>> Documentation/devicetree/bindings/net/bluetooth/amlogic,w155s2-bt.yaml
+>> +F:   drivers/bluetooth/hci_aml.c
+>> +
+>>   AMLOGIC DDR PMU DRIVER
+>>   M:  Jiucheng Xu <jiucheng.xu@amlogic.com>
+>>   L:  linux-amlogic@lists.infradead.org
+>
+> Acked-by: Paul Menzel <pmenzel@molgen.mpg.de>
+>
+>
+> Kind regards,
+>
+> Paul
 
