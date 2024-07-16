@@ -1,93 +1,121 @@
-Return-Path: <devicetree+bounces-86155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E602D932E49
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:28:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F93F932E71
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:36:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 200801C21FAD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:28:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AF5CB22028
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3275119E7D0;
-	Tue, 16 Jul 2024 16:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D7B19E7D3;
+	Tue, 16 Jul 2024 16:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NzuZwuXD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fx/6aA5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26711DFDE;
-	Tue, 16 Jul 2024 16:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0133C1DFF0;
+	Tue, 16 Jul 2024 16:36:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721147312; cv=none; b=WwHmGWzrQ25mudOESPy/LKZHQUgHi/eQn2KkmP7Y+5roZokVcSQK+uVuKPRxSvO8NcV7MVYoy7Yyq0R3rM+wh+JndNaSTWeEaQh/sW3ztsieA9rMfDwhCVbwsCC06yu1H2YHMbvBXyTaRd5wDi+Gf8LFJCu3Cz+XCkeMJOsLPms=
+	t=1721147799; cv=none; b=Udlz3TPNrnL+HvZTGp1krcTHzYGK4E0FO3aT/9giwK+A9fNkMEbfDDEkLdOl76Qab2x+68/a2MB7zTf2J1fMcLsHfqCiKpK/nhkWc1V58i//IxGuPeRVPlzC47LhwW1Z61Byga8kO2WKkb6BAZAuHxTJAYDbUpqzJKSqE8gKq9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721147312; c=relaxed/simple;
-	bh=RgQT5cQ2M/Pr3td1yEhvTzpnWteXm56CUxfKnuWVZ/k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tkzzLr4X1ekmVnmqITJ09uR6D1WP92gjS4wU0LePf9/dSX/S4hqXtq+1Yxqex/gPjVHpTDJZJxrdEtlRp+nblSwuX+vrGaezoq2dykCed3EHBwbID3TIe0orzsyuZh0xpU7LyXobl0GZBfBaXhSDJ963TFx8/0RW6l7BI9IDnjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NzuZwuXD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 954C1C4AF0B;
-	Tue, 16 Jul 2024 16:28:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721147311;
-	bh=RgQT5cQ2M/Pr3td1yEhvTzpnWteXm56CUxfKnuWVZ/k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NzuZwuXDj3AeYZNmNf4qm53Jmq0NskziRyyu+Xnb3del36Z9mIqs/SzyFjDR9VQ16
-	 wEWe3kh1mfLBBEJXgD3RZo/y2QMMraSJ2/8MtKAL7RVoV8gPsURFuJlJjRPGum9e4e
-	 aIUtynmUYpN3VGujwa0d+8/8phh8g3hXucByb04KlnRyMOUFkoxrkS4A6iihxD2jnJ
-	 xopO8pW6mOqmEX00MUNUh2GA0WR5X4PtkpjeJ+hbpApD8rm+9lJNgh7KYZNMg7EBgb
-	 5PxZv82MbzjxuLIvtjapUmlE8L8Ppx+beWEmomaVOooea1Xdj3JkhojROYkDGeu8Ql
-	 6oDuAOpaAsrbQ==
-Date: Tue, 16 Jul 2024 17:28:27 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rayyan Ansari <rayyan.ansari@linaro.org>
-Cc: devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: magnetometer: bmc150: Document
- mount-matrix
-Message-ID: <20240716-constant-underline-b6ad3e2cb571@spud>
-References: <20240716132512.80337-1-rayyan.ansari@linaro.org>
+	s=arc-20240116; t=1721147799; c=relaxed/simple;
+	bh=N6DkqU9kVd50qY6QOEjJkCKPk7AYB/47AQ27J+e1OYA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=cyiVbpVeNixxA8QHN2p8X1KlhRog3XGWIQ8Ukc1uCiD+7TbVjsmG3khnRa0fauX8shHRwx4Jbg5z2uaOjOy6jd2U1Kafc5o3VKFnJytYvV6tUCZImUPGONEalRIAG5nJ+tG6leQUVuKmC5+QC2gUJCvDhV3i2zECRdEHsbVZ1Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fx/6aA5z; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721147796;
+	bh=N6DkqU9kVd50qY6QOEjJkCKPk7AYB/47AQ27J+e1OYA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=fx/6aA5zuQvaIkk6mkq8PLvb+pTVYcUuGC6mz0mWGB/BkOYANrycEf0eoQzQ1KfyY
+	 zOuUAh3oW1zSdZqlAopHpuMT2m+UZ2V31N8oWRGPi5OiIbYdTg/ftvkiSJ1iOr2n+w
+	 wJbeW233xmEalvqTJXKCy9Vxf+wRuPQF/FyBnqkrA351v07E1AY/WINt06/QiFs0cV
+	 HJvJckQOBSNdRjgO7+hOi8z+DcdSB1dmyP5uRcZInGeWuXoUpQrIZYxQKvKeNMatKQ
+	 LBiiui38EaoD6ZOUVtuzNicrjCITv4QUtG6ONesVIuP7x49EQcFdv4ntr1/VT9qZk5
+	 3L8lpyL3cIAzg==
+Received: from [100.77.12.232] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: obbardc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C502037821D8;
+	Tue, 16 Jul 2024 16:36:35 +0000 (UTC)
+Message-ID: <9f336131235de9f39a02b6bccb4d3d9a8f296bf3.camel@collabora.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: add Firefly CORE PX30
+ JD4
+From: Christopher Obbard <chris.obbard@collabora.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,  linux-kernel@vger.kernel.org, Kever
+ Yang <kever.yang@rock-chips.com>
+Date: Tue, 16 Jul 2024 17:36:35 +0100
+In-Reply-To: <20240716-wrinkly-carving-686b84bc0933@spud>
+References: <20240716-rockchip-px30-firefly-v1-0-60cdad3023a3@collabora.com>
+	 <20240716-rockchip-px30-firefly-v1-1-60cdad3023a3@collabora.com>
+	 <20240716-wrinkly-carving-686b84bc0933@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cAKuj4M+rxN3rVll"
-Content-Disposition: inline
-In-Reply-To: <20240716132512.80337-1-rayyan.ansari@linaro.org>
 
-
---cAKuj4M+rxN3rVll
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 16, 2024 at 02:25:09PM +0100, Rayyan Ansari wrote:
-> Document the mount-matrix property, which is used in device trees such
-> as msm8916-samsung-fortuna-common.dtsi, and supported by the driver.
+On Tue, 2024-07-16 at 17:26 +0100, Conor Dooley wrote:
+> On Tue, Jul 16, 2024 at 04:51:04PM +0100, Christopher Obbard wrote:
+> > The Firefly CORE PX30 JD4 board is a SOM and motherboard bundle from
+> > Firefly. Add devicetree binding documentation for it.
+> >=20
+> > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+> > ---
+> > =C2=A0Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+> > =C2=A01 file changed, 5 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > index e04c213a0dee4..19e06e1253e15 100644
+> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > @@ -148,6 +148,11 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: e=
+ngicam,px30-core
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: r=
+ockchip,px30
+> > =C2=A0
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Firefly Core PX30 JD4
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: firefl=
+y,core-px30-jd4
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: rockch=
+ip,px30
 >=20
-> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
+> Not having individual compatibles for the carrier and som seems odd to,
+> given there's no requirement to use the som with this particular
+> carrier.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks, I will fix that up in V2.
 
---cAKuj4M+rxN3rVll
-Content-Type: application/pgp-signature; name="signature.asc"
+>=20
+> > +
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Firefly Firefly-RK3=
+288
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> >=20
+> > --=20
+> > 2.45.2
+> >=20
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpafqwAKCRB4tDGHoIJi
-0mcWAQCqkJGK1cHztBMlGXWivHsZc7XNeCfTcsBAQCeT5aGvhgD/Zkg9J7Qoao6H
-gKdxHLnwRX+6ob7yCImvu/Xr76wuCgc=
-=U2zY
------END PGP SIGNATURE-----
-
---cAKuj4M+rxN3rVll--
 
