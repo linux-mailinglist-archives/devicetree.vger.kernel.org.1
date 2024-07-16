@@ -1,165 +1,118 @@
-Return-Path: <devicetree+bounces-86134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8AA93299A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:47:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 886149329A9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:49:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6A72283C78
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:47:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8B831C209A7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E3D19B3CC;
-	Tue, 16 Jul 2024 14:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A493D19D08A;
+	Tue, 16 Jul 2024 14:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aRJwY2S8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="efPuzL5W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5335454BD4
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 14:47:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C8C20EB
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 14:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721141266; cv=none; b=faBHAcWbpDIKiSTdsmAHDkBezqLhpqOyOJBeitojnbeDOq0QvcIvNZrVsnd7MPiYhy91wZNtnSXuJxVxOjIura5w5GvCSMFYu2/GNlgxF8xDlp/jzO+3WCGXpij6Xs7Q54RXN+l4GCDUEYNEZ9frVFm2EDAAzEgHBrkcQCG6YM8=
+	t=1721141330; cv=none; b=sVBdf5hMCt67FSKQjylRaAfSO6mAKcKVNgJgOgA1Ph3hnWK4MSPxAzzzIIRJ/Mq7fY/kNyRVB4BkwCgSixextcFolTHLIik3/rOciC9JauamWhN0k1BPDre9Eh8A7E/I8FSB7xb/3Gj4xJQV05XZCsyj60YJQWidIyycbQS00eU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721141266; c=relaxed/simple;
-	bh=OLYU/zcE0HnlwiLapO7NYHmW4tXIDwLirTbJShxq8YY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jqk0xJm2CRNECCVK4alWIs0MGFvhk9LpWYEfG0Bvl1SmDpO1ATEldrS3pNR+As55scujquYnZuNIXIE73zu+qGHfmR7opsCxTfwPv52IHmIbg3EQ6rTuXda85kEIynVbE6FK3ryoAa9sQilv0L4itzvGenx5+/MEozzigJpRH7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aRJwY2S8; arc=none smtp.client-ip=209.85.219.172
+	s=arc-20240116; t=1721141330; c=relaxed/simple;
+	bh=bWuhf1ICw3I2jwagK6LuZPJ5kgY086Z9ZS82Q9meJUA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=toW+yOUjsQF8xb1O7++QlAj8pwaMjd8PlodKSTao7D3vPPOIo/H8SK0/YE14rhidHP2S2bN3IeVghcNjrtGlrIDLEtmeifA8YWJpvDYI4TxH6fUouQUHnJgR/wXSPf30FoC7tXSCsW48zV3RThdB90zyCOHFrFnxQvhi+DUSdrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=efPuzL5W; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e05a4d6e443so3148941276.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 07:47:45 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4266b1f1b21so38613095e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 07:48:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721141264; x=1721746064; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lIUxRhCihkw5AdQD7a+Ru8B7j3Weiy/apMCIZLKG2WQ=;
-        b=aRJwY2S8wfldWFfJLjRRimTIUWyi9//rJ+i22G5mNPF+12UJ0xJniYkLZoSdIyCqPT
-         e3uefvqwqRuKevIs+u/CsTuGhXuuaWjhCMi9+pkbV4gq9Vao7GdVPGYSlqYNpsDyPO2e
-         RtrVyVuklHKw9cX9RinubRh2rpWEWcYP9pCmjMAdRCRNn7CMrivVmeAfGoWqaKpjYhpV
-         Thbnx6W4TjzejlFlJP8s7jXBE0aItCEY9KR8lC58bXdsNCHauMMeG/Jng7Zo7L0/0ynm
-         /1TofQCvFuGWoz3oDbdazCjkEsXxjkVYjWtehfpIEUrFmFz3sSriCLyfu25RgfigswKq
-         L3mQ==
+        d=linaro.org; s=google; t=1721141327; x=1721746127; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8i31+WVNl/nD6EKdwlewPxCt2fUhKOj0/YKykgGnpWo=;
+        b=efPuzL5WHy+Hxe6k+fUFNWh/4Wgi7wHojEOFTVsLLGfZmRkX1reodISk5M3z6AqKgE
+         6zTfrXirEoYK1NvJ+v9QmlVNUGkvn9m0lpNKAikKRguIEZZ4Zq0YLPC23tNZniUlUU40
+         sC1bgszmQXmrUzb4osTXbfOhYPDI2ruA2RQfRvZ6OkIK4G9+qGfhvVUUrSnk1seIBzpu
+         pPItp+VjXt5GoUjXWbtzlrJFRSd1XcVCWbsgwaBi1bWchxuNuKFzICTVSNFTv3ym+h78
+         5iBLYpRdqVjHThTwIOzNKf1mhSS4OKkgeuhmjBNWD2auGw8EWaFaIj8y9oXxswbgCVLf
+         JkVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721141264; x=1721746064;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1721141327; x=1721746127;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lIUxRhCihkw5AdQD7a+Ru8B7j3Weiy/apMCIZLKG2WQ=;
-        b=Ylj5oaGx9PQdLT1mlo+BK02t8q8EzeBg/e7Ib4EYLwwsCqk9v7fnSPoiS+CD6dH5fN
-         WxHtBJ3uN4xVRNXiXbSLHAdG6pAXAb9gd+QOanHKyZwBbuE+KzwWeHPT2g5QAJD/KgZx
-         16Ax3YJAOnxJlWCFvwdi4n8qWNZsruoBNyU1O7UOntriMeuCMArsehFUIm2PP53JQyDe
-         nlrLsAmiMkTOtXEqvFy+7MJXr3vbLCgw7Sbc0RJeQvZ85o44bNPiwQqpcE78WOaHcA0K
-         bMiw2Eu9Z09AvR5fucLNqYSVpQXtTM9455ePrRXnW6FZOAseqz299oHsDV+Q8pyed0FA
-         cdGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUxZC8L3yUdyFV6VjSPTnS0D7cL7+Uwnxz4NBm3A4qwTFBjTqTKhNsP9bU2jQJozaPR+Es9oXPLIfG2wZAxqznwpbKuFVsn+jVE6Q==
-X-Gm-Message-State: AOJu0Ywr5vleJxRhxx9k4VD1viioDyn1ruwSyG0UtpmQBN6taF3TF9Iv
-	MbuYkBQAaBzY+vYKxDQ47J2BbBcKClQoAYRjnpqF3yk7kUkiT/ZG3MIk/zAaO6gd5RaHKkj7yWK
-	3aiYOFg2ijAUfuojM4w2CXnMQ4MQPmZPRqTJraA==
-X-Google-Smtp-Source: AGHT+IGLhLYhs15OnkuXXb6qctXWi3V58YENiqpNiizLQIzP3Jx59u+RYnM0FpRBItbtF/jNMz0BxWRkIf+zUjhYiBI=
-X-Received: by 2002:a05:6902:1543:b0:dff:47c7:ffb8 with SMTP id
- 3f1490d57ef6-e05d56670b9mr2737341276.12.1721141264185; Tue, 16 Jul 2024
- 07:47:44 -0700 (PDT)
+        bh=8i31+WVNl/nD6EKdwlewPxCt2fUhKOj0/YKykgGnpWo=;
+        b=X5tA2mcYvjY/EP9/uupFhENrDU0Q7sR8OjNJDCyxMf3yKDEvjr6Mo89KPb2TpJGXf8
+         /8oxi9NOLiU8il6ltgjm3jEy91H+Ab1iS9rXhuRLwwp5k/J5ckls3pOe9tOsATR1znTD
+         PunNz4sDiK3tMZcs+1k8vOduHgiPy6uLurymaF4YqcX+35CaQmXvmK/zaxb68UDU5zF+
+         RObkqoFdFWUxmwMI3+rWwj+nnrOCFEqnVZJW311jfu2LMH6lUYHiCyc3Hu6U654KVFvw
+         ktV/PCCEtri7NOqA7lu3hFVGGhBdTugKKRPj9kDHI64gxKcKsTXJcaF1KbQXnpJuVw2q
+         EsMA==
+X-Gm-Message-State: AOJu0Yzi9/qj/Aw4phUYD9l6w3+VszBOCmjsMKM0c495LGQzn99NmJ6U
+	oqEbb8UCjgAaVk/sMsKF2uN1K+mDBFydVwgl64C141NfJX/vbNurEEIwdw+W39EDzT4JMBxlKA2
+	N
+X-Google-Smtp-Source: AGHT+IFSyftMP3yVlnEcZDbvmlEYg59teKQ9FJhUnZ0QnL7q3XwsBMSuMJCTplBqZIJLQQ2kqfK6+Q==
+X-Received: by 2002:a05:600c:4e52:b0:426:597c:7d58 with SMTP id 5b1f17b1804b1-427ba72af91mr18038825e9.39.1721141326863;
+        Tue, 16 Jul 2024 07:48:46 -0700 (PDT)
+Received: from rayyan-pc.broadband ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5ef44b4sm131907145e9.42.2024.07.16.07.48.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 07:48:46 -0700 (PDT)
+From: Rayyan Ansari <rayyan.ansari@linaro.org>
+To: devicetree@vger.kernel.org
+Cc: Rayyan Ansari <rayyan.ansari@linaro.org>,
+	Georgi Djakov <djakov@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Odelu Kukatla <quic_okukatla@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: interconnect: qcom,rpmh: correct sm8150 camnoc
+Date: Tue, 16 Jul 2024 15:47:38 +0100
+Message-ID: <20240716144738.109823-1-rayyan.ansari@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
- <20240708-topic-cpr3h-v15-1-5bc8b8936489@linaro.org> <cd1c3450-1905-4d71-bcdd-5f880d743820@kernel.org>
- <94b2842b-6093-4c4d-a099-3e0a3198b753@linaro.org> <d35f5c94-7a86-4eea-bb0a-3f2785a25465@kernel.org>
- <CAPDyKFqhmNqbZ9Xkg0tWHE5LavoNaGMyE3dKmAFtHdS5=x33NA@mail.gmail.com> <d1d7b58c-b605-4adc-b329-f74ea4567982@linaro.org>
-In-Reply-To: <d1d7b58c-b605-4adc-b329-f74ea4567982@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 16 Jul 2024 16:47:08 +0200
-Message-ID: <CAPDyKFoViw3H8hCwLX0W=d8GM=5rai2xL5tnGGpctyqinkNpNw@mail.gmail.com>
-Subject: Re: [PATCH v15 01/10] MAINTAINERS: Include new Qualcomm CPR drivers
- in the file list
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Niklas Cassel <nks@flawful.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Varadarajan Narayanan <quic_varada@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, 16 Jul 2024 at 13:58, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 15.07.2024 1:34 PM, Ulf Hansson wrote:
-> > On Tue, 9 Jul 2024 at 16:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>
-> >> On 09/07/2024 11:49, Konrad Dybcio wrote:
-> >>> On 9.07.2024 11:04 AM, Krzysztof Kozlowski wrote:
-> >>>> On 08/07/2024 14:22, Konrad Dybcio wrote:
-> >>>>> Expand the Qualcomm Core Power Reduction section to include the files
-> >>>>> concerning CPR3+ support.
-> >>>>>
-> >>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>>> ---
-> >>>>>  MAINTAINERS | 5 +++--
-> >>>>>  1 file changed, 3 insertions(+), 2 deletions(-)
-> >>>>>
-> >>>>> diff --git a/MAINTAINERS b/MAINTAINERS
-> >>>>> index dcb37b635f2c..f3e013a52c16 100644
-> >>>>> --- a/MAINTAINERS
-> >>>>> +++ b/MAINTAINERS
-> >>>>> @@ -18687,14 +18687,15 @@ F:        Documentation/accel/qaic/
-> >>>>>  F: drivers/accel/qaic/
-> >>>>>  F: include/uapi/drm/qaic_accel.h
-> >>>>>
-> >>>>> -QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVER
-> >>>>> +QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVERS
-> >>>>>  M: Bjorn Andersson <andersson@kernel.org>
-> >>>>>  M: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>>>  L: linux-pm@vger.kernel.org
-> >>>>>  L: linux-arm-msm@vger.kernel.org
-> >>>>>  S: Maintained
-> >>>>>  F: Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
-> >>>>> -F: drivers/pmdomain/qcom/cpr.c
-> >>>>> +F: Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> >>>>
-> >>>> Maybe combine these two into:
-> >>>> Documentation/devicetree/bindings/power/avs/qcom,cpr*
-> >>>
-> >>> I think avs was proposed to be a subsystem/driver directory at some point
-> >>> and (adaptive voltage source? something like that) and this is the only file
-> >>> in that directory in bindings..
-> >>>
-> >>> Should we continue with this "class" of devices, or should I move qcom,cpr.yaml
-> >>> to soc?
-> >>
-> >> Rather cpr3 should be moved to avs or some other power directory. "soc"
-> >> is fallback, junkyard for things without clear domain.
-> >
-> > In my opinion, I would suggest dropping the
-> > "Documentation/devicetree/bindings/power/avs/" directory. We already
-> > have similar bindings sprinkled across various directories, see below.
-> > One less seems better to me.
-> >
-> > Documentation/devicetree/bindings/arm/*
-> > Documentation/devicetree/bindings/firmware/*
-> > Documentation/devicetree/bindings/power/*
-> > Documentation/devicetree/bindings/soc/*
->
-> So, should it go to bindings/power? Or should we get a new
-> bindings/pmdomain dir?
+The sm8150 camnoc interconnect was mistakenly documented as
+"qcom,sm8150-camnoc-noc", for which there is no reference to in
+drivers or device tree.
 
-No strong opinions from my side. Unless Krzysztof has better
-suggestions, using bindings/power/* works for me.
+Correct this to "qcom,sm8150-camnoc-virt".
 
-Kind regards
-Uffe
+Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
+---
+ Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+index 9318b845ec35..0cb4f7154844 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+@@ -71,7 +71,7 @@ properties:
+       - qcom,sdx65-system-noc
+       - qcom,sm8150-aggre1-noc
+       - qcom,sm8150-aggre2-noc
+-      - qcom,sm8150-camnoc-noc
++      - qcom,sm8150-camnoc-virt
+       - qcom,sm8150-compute-noc
+       - qcom,sm8150-config-noc
+       - qcom,sm8150-dc-noc
+-- 
+2.45.2
+
 
