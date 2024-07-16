@@ -1,319 +1,190 @@
-Return-Path: <devicetree+bounces-86237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360719333CB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 23:45:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0184F9333D7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 23:49:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8DEB1F239F5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 21:45:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA085289F2C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 21:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADAD79952;
-	Tue, 16 Jul 2024 21:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE1079952;
+	Tue, 16 Jul 2024 21:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t4S6JUh0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JRGMiGwj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62691DFF0;
-	Tue, 16 Jul 2024 21:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66878224D2;
+	Tue, 16 Jul 2024 21:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721166310; cv=none; b=MG6ggHAbKpbT4Fb1mgo18Icaeva5NsGFS5JTDjgdGgBtrtWFjVISitoA/09dNTUSTs+Szj4o2Ar5HAJCmEsnhJ3PiccNXUlHs6rOqsayLRqmcPd5Ks/EB8OD8x7PM6B/giqjEHDwbaMABzI6b/lIJgu5/dPqC5plOpgBO/qEFkY=
+	t=1721166552; cv=none; b=aNrm4rTwXStDl5gAFI8YfmoQNAE3Uaa1akW6sojmxwm+zL8jqbGfE9M298kdHDBw0gNX+ojvU6a5Ampid3akKDE2cqY5c0PZcZccVDRREtlWTd0qRGIuYHqXLjJuH+uH3ObLpED4Akasgew096SgJGwFeJD1ah3Wi13eKZrWdlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721166310; c=relaxed/simple;
-	bh=memjuKuVCHvr+Ly26PHUuKBGTRemTOpxIXrue2pWJ7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=N+ItuvpskQfC+gx9fbrDGoW1q8ghq2BM5sqO6fiHffWD9qc8FzRM+J8/Qa8PU8qnTJgDXgQaqBayWofLNhitYxA0q1YJ1yAQ0l0YPR3CcEPG7VXk3QqrsJF6gtOQ19KuncGjYd6iidS6sgxVoU3AezgXXKz1TvaYrk6dvOjyl40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t4S6JUh0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F746C116B1;
-	Tue, 16 Jul 2024 21:45:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721166310;
-	bh=memjuKuVCHvr+Ly26PHUuKBGTRemTOpxIXrue2pWJ7A=;
-	h=Date:From:To:Cc:Subject:From;
-	b=t4S6JUh01xBKgTc0m18QKIRWrgfTOQm7PrvnOcWtJ4/FX+xHTEMoIgCHLKjT0qTVu
-	 ez3fSYjlw8lnYoZgJ2RZ8otgsQDDNMHThu/jwINMdpmeV+cArILV3PUvHXlMP7gzx2
-	 80ZPMtGVpUJA6mnUR/yZcwxaWFbI24+W9YU5X8UDNmxJlnOEtJ8ZKmzx1YKqbs/wvJ
-	 UQLtv6uaNTpXgcsYna+NS7kJBgZ4b8CejbR0oSRiSixYqiejDMiRr+NClx2pzei/1J
-	 5MdNw6jcU/PgLmEyyU72Yhbr0aEY8IEFTsb7+F9YO8rtHzxRIMvYG4nLNI6z/wt2NS
-	 wSMPmxAUbi69A==
-Date: Tue, 16 Jul 2024 15:45:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree updates for v6.11
-Message-ID: <20240716214508.GA436704-robh@kernel.org>
+	s=arc-20240116; t=1721166552; c=relaxed/simple;
+	bh=sfSS4ZwVX3Zw6eGyrEZImYKV1ilehLk8LTaomnOYvus=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GEfUZVQ4YFOHFl3w21I1VXEfUm/wcWAm42uj3tI4ZkXfG4oyqJJ9+bABB/yRNbrQsy6vAeJ0tiuzqdVdNe3MevB3OOnLhjm2+3di0mx9f2TuxTomY/L0PLZ7jphooEy8iSon8IuXjchh8iUUShGxwbxfFfJHBYRdX3hwK/D2Rm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JRGMiGwj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46GHej0Z004324;
+	Tue, 16 Jul 2024 21:47:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gTcJ2zwrT//sBmhanqg4yWW9MCmCe0qiT2k20Ee/UW0=; b=JRGMiGwj9Rwht6fd
+	qcrkHmoQT1QfIzZRceRiCAF9KYWn2yAgnAKNuUoPeGJXhukh5wb7hWZtzAtsjcsY
+	e5ORZaVxa7FDBuYWGSd3ed34qfo9O7gQuiMpgeUUDuI4g9hcxx262r+bWOdk03MG
+	qpfzODKQsyG0N+38H4ACy7Uy9J5/Sp4MGNVPSiLmX0vImyNaXkx9+Q7fesVGfmZc
+	bckCQxSnuezF4J3GoxtD+4ni5oPD7UhIvS3gz/IAkVG6IOTmBGXbE/iBQ3fqa1DE
+	EQLHFkqU7qt7iAXSHgK0sF+PTekpZ3WJX11Rvl58cc6SJjKYi7RT/pILsN4patJs
+	GlxpHw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfp8f24-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jul 2024 21:47:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46GLlwDp006997
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jul 2024 21:47:58 GMT
+Received: from [10.110.79.225] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 16 Jul
+ 2024 14:47:57 -0700
+Message-ID: <4bc75de3-f415-4560-892b-c17326190d2a@quicinc.com>
+Date: Tue, 16 Jul 2024 14:47:56 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 4/7] dt-bindings: PCI: host-generic-pci: Add
+ power-domains related binding
+To: Krzysztof Kozlowski <krzk@kernel.org>, <will@kernel.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <jingoohan1@gmail.com>,
+        <manivannan.sadhasivam@linaro.org>, <cassel@kernel.org>,
+        <yoshihiro.shimoda.uh@renesas.com>, <s-vadapalli@ti.com>,
+        <u.kleine-koenig@pengutronix.de>, <dlemoal@kernel.org>,
+        <amishin@t-argos.ru>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <Frank.Li@nxp.com>,
+        <ilpo.jarvinen@linux.intel.com>, <vidyas@nvidia.com>,
+        <marek.vasut+renesas@gmail.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC: <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
+        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
+        <quic_nitegupt@quicinc.com>
+References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
+ <1721067215-5832-5-git-send-email-quic_mrana@quicinc.com>
+ <bc7ced85-8bba-46d4-be1e-6a436bfd2ee3@kernel.org>
+Content-Language: en-US
+From: Mayank Rana <quic_mrana@quicinc.com>
+In-Reply-To: <bc7ced85-8bba-46d4-be1e-6a436bfd2ee3@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _310y3tXY8XlduREp5T96xyqRkMKygHj
+X-Proofpoint-GUID: _310y3tXY8XlduREp5T96xyqRkMKygHj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-16_01,2024-07-16_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 clxscore=1011 impostorscore=0 priorityscore=1501
+ bulkscore=0 suspectscore=0 adultscore=0 mlxlogscore=999 spamscore=0
+ phishscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407160159
 
-Linus,
+Hi Krzysztof
 
-Please pull DT updates for 6.11. There's one conflict with the kbuild 
-tree. The correct resolution is in linux-next.
+Appreciate your quick review comments.
 
-Rob
+On 7/16/2024 12:25 AM, Krzysztof Kozlowski wrote:
+> On 15/07/2024 20:13, Mayank Rana wrote:
+>> Add "power-domains" usage (optional) related binding to power up ECAM
+>> compliant PCIe root complex.
+>>
+>> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+>> index 3484e0b..9c714fa 100644
+>> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+>> @@ -110,6 +110,12 @@ properties:
+>>     iommu-map-mask: true
+>>     msi-parent: true
+>>   
+>> +  power-domains:
+>> +    maxItems: 1
+>> +    description:
+>> +      A phandle to the node that controls power or/and system resource or interface to firmware
+> 
+> Wrap how Coding Style asks (so 80).
+My bad, I shall fix it into next patchset.
+> I am sorry, but power domains are power domains, not interface to
+> firmware to enable your hardware. Rephrase it to actually describe the
+> hardware.
+Agree with your above first part of comment.
 
+I understood that you are suggesting to describe all steps in terms of 
+what happen with usage of power domain instead of mentioning generic 
+abstraction with proposed solution here. I mentioned generic way as
+power domain is not tied with specific compatible string or platform
+as optional usage with this generic driver.
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+Power domain shall be doing possible below implementation:
+1. controls power -> can be just regulators
+2. system resource -> can be PCIe related all system resource like 
+GDSC/Clock/regulators/gpio
+3. Interface to firmware -> including all system resource handling in 
+addition to PCIe PHY and controller programming to PCIe ECAM RC mode 
+with D0 state.
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+Cover letter is showing high level architecture and usage here although 
+it would be lost. So to document here I can add more information. Below 
+are steps which is being performed:
+1. Handle all system resources (GDSC/CLOCKs/regulators/bus (interconnect 
+voting))
+2. Bring PCIe PHY and Controller out of reset
+3. Program PCIe PHY and controller to get PCIe link up
 
-are available in the Git repository at:
+Power domain interface is also used to perform D3cold based 
+functionality with system suspend case to turn off resources after
+performing PCIe level handshake (i.e. PME turn off and L23 ready).
 
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.11
+I can rework/reword above provided power domain binding information but
+not sure shall I keep it generic information or capture specific above 
+usage with proposed solution. Please let me know what do suggest or 
+prefer here ?
 
-for you to fetch changes up to 76be2f9823b10c07daf814cb6c732eb1456a0b9e:
+> Also, drop all redundant information. It cannot be anything else than
+> phandle to the node...
+ACK
 
-  dt-bindings: timer: sprd-timer: convert to YAML (2024-07-15 05:26:07 -0600)
-
-----------------------------------------------------------------
-Devicetree updates for v6.11:
-
-DT Bindings:
-- Convert and add a bunch of IBM FSI related bindings
-
-- Add a new schema listing legacy compatibles which will (probably)
-  never be documented. This will silence various checks warning about
-  them.
-
-- Add bindings for Sierra Wireless mangOH Green SPI IoT interface, new
-  Arm 2024 Cortex and Neoverse CPUs, QCom sc8180x PDC, QCom SDX75 GPI
-  DMA, imx8mp/imx8qxp fsl,irqsteer, and Renesas RZ/G2UL CRU and CSI-2
-  blocks
-
-- Convert Spreadtrum sprd-timer, FSL cpm_qe, FSL fsl,ls-scfg-msi, FSL
-  q(b)man-*, FSL qoriq-mc, and img,pdc-wdt bindings to DT schema
-
-- Drop obsolete stericsson,abx500.txt
-
-DT core:
-- Update dtc to upstream version v1.7.0-93-g1df7b047fe43
-
-- Add support to run DT validation on DTs with applied overlays
-
-- Add helper for creating boolean properties in dynamic nodes and use
-  that for dynamic PCI nodes
-
-- Clean-up early parsing of '#{address,size}-cells'
-
-----------------------------------------------------------------
-Alexander Stein (1):
-      dt-bindings: interrupt-controller: fsl,irqsteer: Add imx8mp/imx8qxp support
-
-Andre Przywara (1):
-      dt-bindings: arm: cpus: Add new Cortex and Neoverse names
-
-Biju Das (2):
-      media: dt-bindings: renesas,rzg2l-csi2: Document Renesas RZ/G2UL CSI-2 block
-      media: dt-bindings: renesas,rzg2l-cru: Document Renesas RZ/G2UL CRU block
-
-Bjorn Andersson (1):
-      dt-bindings: interrupt-controller: qcom,pdc: Add sc8180x PDC
-
-Dmitry Baryshkov (2):
-      dt-bindings: ufs: qcom,ufs: drop source clock entries
-      kbuild: verify dtoverlay files against schema
-
-Eddie James (10):
-      dt-bindings: fsi: fsi2spi: Document SPI controller child nodes
-      dt-bindings: fsi: Document the IBM SCOM engine
-      dt-bindings: fsi: p9-occ: Convert to json-schema
-      dt-bindings: fsi: Document the IBM SBEFIFO engine
-      dt-bindings: fsi: Document the FSI controller common properties
-      dt-bindings: fsi: ibm,i2cr-fsi-master: Reference common FSI controller
-      dt-bindings: fsi: ast2600-fsi-master: Convert to json-schema
-      dt-bindings: fsi: Document the AST2700 FSI controller
-      dt-bindings: fsi: Document the FSI Hub Controller
-      dt-bindings: i2c: i2c-fsi: Convert to json-schema
-
-Frank Li (5):
-      dt-bindings: misc: fsl,qoriq-mc: convert to yaml format
-      dt-bindings: soc: fsl: Convert q(b)man-* to yaml format
-      dt-bindings: interrupt-controller: convert fsl,ls-scfg-msi to yaml
-      dt-bindings: soc: fsl: cpm_qe: convert to yaml format
-      dt-bindings: soc: fsl: Add fsl,ls1028a-reset for reset syscon node
-
-Geert Uytterhoeven (1):
-      dt-bindings: timer: renesas,tmu: Make interrupt-names required
-
-Herve Codina (5):
-      of: dynamic: Constify parameter in of_changeset_add_prop_string_array()
-      of: unittest: Add tests for changeset properties adding
-      of: dynamic: Introduce of_changeset_add_prop_bool()
-      of: unittest: Add a test case for of_changeset_add_prop_bool()
-      PCI: of_property: Add interrupt-controller property in PCI device nodes
-
-Krzysztof Kozlowski (3):
-      dt-bindings: display: panel: constrain 'reg' in DSI panels (part two)
-      dt-bindings: drop stale Anson Huang from maintainers
-      dt-bindings: incomplete-devices: document devices without bindings
-
-Neil Armstrong (1):
-      dt-bindings: trivial-devices: document the Sierra Wireless mangOH Green SPI IoT interface
-
-Rob Herring (2):
-      of/fdt: Scan the root node properties earlier
-      of/fdt: avoid re-parsing '#{address,size}-cells' in of_fdt_limit_memory
-
-Rob Herring (Arm) (1):
-      scripts/dtc: Update to upstream version v1.7.0-93-g1df7b047fe43
-
-Rohit Agarwal (1):
-      dt-bindings: dma: qcom,gpi: document the SDX75 GPI DMA Engine
-
-Shresth Prasad (1):
-      dt-bindings: watchdog: img,pdc-wdt: Convert to dtschema
-
-Stanislav Jakubek (2):
-      dt-bindings: clock: drop obsolete stericsson,abx500.txt
-      dt-bindings: timer: sprd-timer: convert to YAML
-
- Documentation/devicetree/bindings/arm/cpus.yaml    |   6 +
- .../bindings/arm/freescale/fsl,imx7ulp-sim.yaml    |   4 +-
- .../devicetree/bindings/clock/imx6q-clock.yaml     |   3 +-
- .../devicetree/bindings/clock/imx6sl-clock.yaml    |   3 +-
- .../devicetree/bindings/clock/imx6sll-clock.yaml   |   3 +-
- .../devicetree/bindings/clock/imx6sx-clock.yaml    |   3 +-
- .../devicetree/bindings/clock/imx6ul-clock.yaml    |   3 +-
- .../devicetree/bindings/clock/imx7d-clock.yaml     |   1 -
- .../devicetree/bindings/clock/imx8m-clock.yaml     |   3 +-
- .../bindings/clock/stericsson,abx500.txt           |  20 --
- .../bindings/display/panel/lg,sw43408.yaml         |   4 +-
- .../bindings/display/panel/raydium,rm69380.yaml    |   5 +-
- .../devicetree/bindings/dma/qcom,gpi.yaml          |   1 +
- .../bindings/fsi/aspeed,ast2600-fsi-master.yaml    | 121 +++++++
- .../devicetree/bindings/fsi/fsi-controller.yaml    |  66 ++++
- .../devicetree/bindings/fsi/fsi-master-aspeed.txt  |  36 ---
- .../devicetree/bindings/fsi/ibm,fsi2spi.yaml       |  36 ++-
- .../bindings/fsi/ibm,i2cr-fsi-master.yaml          |   5 +-
- .../bindings/fsi/ibm,p9-fsi-controller.yaml        |  45 +++
- .../devicetree/bindings/fsi/ibm,p9-occ.txt         |  16 -
- .../devicetree/bindings/fsi/ibm,p9-occ.yaml        |  40 +++
- .../devicetree/bindings/fsi/ibm,p9-sbefifo.yaml    |  46 +++
- .../devicetree/bindings/fsi/ibm,p9-scom.yaml       |  37 +++
- .../devicetree/bindings/gpio/fsl-imx-gpio.yaml     |   4 +-
- .../devicetree/bindings/gpio/gpio-mxs.yaml         |   1 -
- Documentation/devicetree/bindings/i2c/i2c-fsi.txt  |  40 ---
- .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml     |   4 +-
- .../devicetree/bindings/i2c/ibm,i2c-fsi.yaml       |  76 +++++
- .../bindings/iio/magnetometer/fsl,mag3110.yaml     |   2 +-
- .../devicetree/bindings/incomplete-devices.yaml    | 137 ++++++++
- .../interrupt-controller/fsl,irqsteer.yaml         |  23 +-
- .../bindings/interrupt-controller/fsl,ls-msi.yaml  |  79 +++++
- .../interrupt-controller/fsl,ls-scfg-msi.txt       |  30 --
- .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
- .../bindings/media/renesas,rzg2l-cru.yaml          |  35 ++-
- .../bindings/media/renesas,rzg2l-csi2.yaml         |   1 +
- .../bindings/memory-controllers/fsl/mmdc.yaml      |   4 +-
- .../devicetree/bindings/misc/fsl,qoriq-mc.txt      | 196 ------------
- .../devicetree/bindings/misc/fsl,qoriq-mc.yaml     | 187 +++++++++++
- .../devicetree/bindings/nvmem/imx-iim.yaml         |   4 +-
- .../devicetree/bindings/nvmem/imx-ocotp.yaml       |   4 +-
- .../devicetree/bindings/nvmem/mxs-ocotp.yaml       |   4 +-
- .../devicetree/bindings/pwm/imx-tpm-pwm.yaml       |   4 +-
- Documentation/devicetree/bindings/pwm/mxs-pwm.yaml |   1 -
- .../devicetree/bindings/soc/fsl/bman-portals.txt   |  56 ----
- Documentation/devicetree/bindings/soc/fsl/bman.txt | 137 --------
- .../bindings/soc/fsl/cpm_qe/fsl,qe-firmware.yaml   |  48 +++
- .../bindings/soc/fsl/cpm_qe/fsl,qe-ic.yaml         |  47 +++
- .../bindings/soc/fsl/cpm_qe/fsl,qe-muram.yaml      |  71 +++++
- .../bindings/soc/fsl/cpm_qe/fsl,qe-si.yaml         |  40 +++
- .../bindings/soc/fsl/cpm_qe/fsl,qe-siram.yaml      |  39 +++
- .../devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml | 148 +++++++++
- .../devicetree/bindings/soc/fsl/cpm_qe/qe.txt      | 178 -----------
- .../bindings/soc/fsl/fsl,bman-portal.yaml          |  52 +++
- .../devicetree/bindings/soc/fsl/fsl,bman.yaml      |  83 +++++
- .../bindings/soc/fsl/fsl,ls1028a-reset.yaml        |  56 ++++
- .../devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml  |  69 ++++
- .../bindings/soc/fsl/fsl,qman-portal.yaml          | 110 +++++++
- .../devicetree/bindings/soc/fsl/fsl,qman.yaml      |  93 ++++++
- .../devicetree/bindings/soc/fsl/qman-portals.txt   | 134 --------
- Documentation/devicetree/bindings/soc/fsl/qman.txt | 187 -----------
- .../devicetree/bindings/spi/spi-fsl-lpspi.yaml     |   4 +-
- .../devicetree/bindings/thermal/imx-thermal.yaml   |   1 -
- .../bindings/thermal/imx8mm-thermal.yaml           |   4 +-
- .../devicetree/bindings/thermal/qoriq-thermal.yaml |   4 +-
- .../devicetree/bindings/timer/renesas,tmu.yaml     |   1 +
- .../bindings/timer/sprd,sc9860-timer.yaml          |  68 ++++
- .../bindings/timer/spreadtrum,sprd-timer.txt       |  20 --
- .../devicetree/bindings/trivial-devices.yaml       |   2 +
- .../devicetree/bindings/ufs/qcom,ufs.yaml          |  12 +-
- .../devicetree/bindings/watchdog/fsl-imx-wdt.yaml  |   4 +-
- .../bindings/watchdog/fsl-imx7ulp-wdt.yaml         |   4 +-
- .../devicetree/bindings/watchdog/img,pdc-wdt.yaml  |  55 ++++
- .../devicetree/bindings/watchdog/imgpdc-wdt.txt    |  19 --
- .../ethernet/freescale/dpaa2/overview.rst          |   2 +-
- MAINTAINERS                                        |   2 +-
- drivers/of/dynamic.c                               |  27 +-
- drivers/of/fdt.c                                   |  30 +-
- drivers/of/unittest.c                              | 166 ++++++++++
- drivers/pci/of_property.c                          |  24 ++
- include/linux/of.h                                 |   5 +-
- scripts/Makefile.lib                               |   9 +-
- scripts/dtc/checks.c                               |  85 ++---
- scripts/dtc/dtc-parser.y                           |   5 +
- scripts/dtc/dtc.c                                  |   9 +-
- scripts/dtc/dtc.h                                  |  12 +-
- scripts/dtc/fdtoverlay.c                           |   6 +-
- scripts/dtc/flattree.c                             |  21 +-
- scripts/dtc/fstree.c                               |   2 +-
- scripts/dtc/libfdt/fdt_overlay.c                   | 349 +++++++++++++++++----
- scripts/dtc/libfdt/fdt_ro.c                        |  37 ++-
- scripts/dtc/libfdt/libfdt.h                        |  67 +++-
- scripts/dtc/livetree.c                             |  56 ++--
- scripts/dtc/srcpos.c                               |  14 +-
- scripts/dtc/treesource.c                           |  26 ++
- scripts/dtc/util.h                                 |   6 +-
- scripts/dtc/version_gen.h                          |   2 +-
- 97 files changed, 2751 insertions(+), 1301 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/stericsson,abx500.txt
- create mode 100644 Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
- create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
- delete mode 100644 Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
- create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-fsi-controller.yaml
- delete mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt
- create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.yaml
- create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-sbefifo.yaml
- create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-scom.yaml
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-fsi.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.yaml
- create mode 100644 Documentation/devicetree/bindings/incomplete-devices.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-msi.yaml
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-scfg-msi.txt
- delete mode 100644 Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
- create mode 100644 Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
- delete mode 100644 Documentation/devicetree/bindings/soc/fsl/bman-portals.txt
- delete mode 100644 Documentation/devicetree/bindings/soc/fsl/bman.txt
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-firmware.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ic.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-muram.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-si.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-siram.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
- delete mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/qe.txt
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,bman-portal.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,bman.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman-portal.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman.yaml
- delete mode 100644 Documentation/devicetree/bindings/soc/fsl/qman-portals.txt
- delete mode 100644 Documentation/devicetree/bindings/soc/fsl/qman.txt
- create mode 100644 Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
- delete mode 100644 Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/img,pdc-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/imgpdc-wdt.txt
+>> +      to enable ECAM compliant PCIe root complex.
+>> +
+> 
+> Anyway, there are no DTS users with such power domain. Look at the
+> binding and its compatibles. Does any of these devices have power
+> domain? No.
+Agree. Work in progress, and based on outcome of that I shall add user 
+of it as part of next patchset.
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
