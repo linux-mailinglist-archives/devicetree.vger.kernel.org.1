@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-86187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C789331F0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 21:30:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83EB6933220
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 21:37:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E41D2281CE8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:30:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 410F3281793
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8E51A257F;
-	Tue, 16 Jul 2024 19:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684A71A01DE;
+	Tue, 16 Jul 2024 19:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DvDStntd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXIyHUNn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C0E1A2576;
-	Tue, 16 Jul 2024 19:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375B02B9B3;
+	Tue, 16 Jul 2024 19:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721158152; cv=none; b=liU8xsFoE2VGqELiaWKthjV/4QfvrBCqlJe6I/7RsyXaTqMJmykIaVAPuWCqRVL1QHn81KRFJqhydRceAN6bhL8klVNobzignqq1oG0l0fbS0OIssKvfP23dolDHLpEArqAzkaKbNP02YlDY2jrS/xmc889n61K8eFFFkt0hJRA=
+	t=1721158525; cv=none; b=FhmvrCM+xUTwzXsrOfI4Gbba97+u9S1LCWwCB7rXM8/Nhk0T4Uu30QjJw3e78ZBwiubg6HGuYl7wQdGjiVQDo9zd34qQvJTn9zXeoG7r5QFD8FIXja/bs2gUAPsruvPx3slXhV4SM9rwuJhk9N82CYSXR6xf4bWMd92NpMpIUrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721158152; c=relaxed/simple;
-	bh=pfgrunSNV08j+nyo/rRomgYpSMwb5GITfLuj5yzXqik=;
+	s=arc-20240116; t=1721158525; c=relaxed/simple;
+	bh=Jj9Z4uSeu2WcwER6qQ74OBjx3l8I+OIYRcL/UaxP95A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mvrb/6OcwmtKW5FBliBVsSQsRHnDPA8S5ISHJCw2Q17TrXiIq0dILhybX5gpUBJJNpVWKbCQYEkyc3rJOCtwR7evET6F7BvdTqHqAFJqt5+5Rm6PH2dcicKuFAALKIAcYOR/QeAx6YrNfTSK75lIJ8euKEDpGaSLxS7HURP1Z+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DvDStntd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15E9BC4AF0D;
-	Tue, 16 Jul 2024 19:29:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fYjozR8JZec05zYF1kwuWI/KvfNmN2sM7Za13txihgN8xSbK3p0vTmp/nSueTQhOmjwe4+M++kfdM4aka8QQ1/t5Cs7KqMa/zWMtDzzygMFhMAANsBN7PhIOjk3n/la2Pb1wVf9ZhoZByR0meVQct4oC97yPmm47Mb2ALGSRaEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXIyHUNn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0904AC4AF0B;
+	Tue, 16 Jul 2024 19:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721158152;
-	bh=pfgrunSNV08j+nyo/rRomgYpSMwb5GITfLuj5yzXqik=;
+	s=k20201202; t=1721158524;
+	bh=Jj9Z4uSeu2WcwER6qQ74OBjx3l8I+OIYRcL/UaxP95A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DvDStntdnncZJlKXYOH70zov5EuS+Wn3vo+xv/kR08NWGpdG8P5VmiayOBMlpz5IE
-	 iRwfNzJAa4bZwAvGYOVHm8ncTRq0y+DZ4SoJpUWltUuVVdromITPgGyoMK9cmfc5Da
-	 ZLqeF7iq6n8oYJj8Kxjj461Ou9NSBqP1N3ee8tu5Akbytyx95IRHFerUXRQAaZ4Ntw
-	 DKdNt/Vv8F9LZCn6XEFtqzasusxWaHsTANsy13DjQhyvxqJszfBvnitWDeja/JazR0
-	 +MiX23iCXZhv5rfi0Sgh7CkTispSyL51ozgmpGtnLNSEdLQObVjgE6Uy7KBFfp3fjL
-	 u1Pd+H/VRprUw==
-Message-ID: <b7457ae3-b8f3-4b16-9a21-090d99a97e48@kernel.org>
-Date: Tue, 16 Jul 2024 21:29:05 +0200
+	b=oXIyHUNnd1dloiZo5BvaDXVAIYgVDxFfV8wb0AyizrXNdFWoJDRin5Ws016AEo3dH
+	 +Dmg8vWOGiatNPl+Jl3/9hNrXpef1BbqPIMN28JLXfUHLdfPq7STe68WYDnhkG8FCj
+	 q0kkwd/Y36EPyjRb9gUKMTGcNRdZC4e9E2UZIWbxp6I0jSS6iIiOgbhSJ6yqruJkd3
+	 Yu7RExlAxuvJa6d68UM7qMnT77mSAK3eQM5ICQyBQhYfoNSFjb8qcDb6PuTkbmGqYB
+	 36fapwoaWmwu8zYvLxH9tXHRLXAfB7oPNqNoYKSSJ7P8u5yyAIRejVo3jq2IREC3Xd
+	 Usui6g4sBXeFg==
+Message-ID: <26aa15cd-bc47-4409-81dd-b21b8cf9ae9b@kernel.org>
+Date: Tue, 16 Jul 2024 21:35:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/11] mfd: renesas-vbattb: Add a MFD driver for the
- Renesas VBATTB IP
-To: Claudiu <claudiu.beznea@tuxon.dev>, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com>
- <20240716103025.1198495-3-claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: interconnect: qcom,rpmh: correct sm8150
+ camnoc
+To: Rayyan Ansari <rayyan.ansari@linaro.org>, devicetree@vger.kernel.org
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Odelu Kukatla <quic_okukatla@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240716144738.109823-1-rayyan.ansari@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,43 +104,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240716103025.1198495-3-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240716144738.109823-1-rayyan.ansari@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/07/2024 12:30, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 16/07/2024 16:47, Rayyan Ansari wrote:
+> The sm8150 camnoc interconnect was mistakenly documented as
+> "qcom,sm8150-camnoc-noc", for which there is no reference to in
+> drivers or device tree.
 > 
-> Renesas VBATTB IP has logic to control the RTC clock, tamper detection
-> and a small 128B memory. Add a MFD driver to do the basic initialization
-> of the VBATTB IP for the inner components to work.
+> Correct this to "qcom,sm8150-camnoc-virt".
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
+> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
 
-
-> +
-> +static struct platform_driver vbattb_driver = {
-> +	.probe = vbattb_probe,
-> +	.remove_new = vbattb_remove,
-> +	.driver = {
-> +		.name = "renesas-vbattb",
-> +		.of_match_table = vbattb_match,
-> +	},
-> +};
-> +module_platform_driver(vbattb_driver);
-> +
-> +MODULE_ALIAS("platform:renesas-vbattb");
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
-
-> +MODULE_AUTHOR("Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>");
-> +MODULE_DESCRIPTION("Renesas VBATTB driver");
-> +MODULE_LICENSE("GPL");
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
