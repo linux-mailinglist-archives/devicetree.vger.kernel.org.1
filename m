@@ -1,162 +1,155 @@
-Return-Path: <devicetree+bounces-86172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC1B932F62
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:51:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FCB5932D8B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:06:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E644C1F2360F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:51:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8CE01F21272
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0E719DFAC;
-	Tue, 16 Jul 2024 17:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2664019B3E3;
+	Tue, 16 Jul 2024 16:06:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="N4CqeFe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B140854BD4
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 17:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6597919AD51;
+	Tue, 16 Jul 2024 16:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721152259; cv=none; b=fevmztT+12ZC8xVhvQofpRrRXbBbP9pz/2rW3JR3adPx+2Z/lu/zfEgTrfkDUVGqcAlh0Iz8GFcJpOtv0NfBJlmQ1b81UtQIACAjsDTWr6W+9K4hkorvQlmlIQZnkyJEUG9c/3EUFsVTAZWoDR5vMIgPLaLSd3dJj+FSbG3e96c=
+	t=1721145995; cv=none; b=obCBbTzdNCZ5hjAVctCrWj6ZL0EatQ3FkjVHt+K4piDit3uLrs6Is+2TASJOZ0PBt2PCkrF8OBXvQrmQcs66+ELFa5sd/m5GNdiMj25RSY17/04zbzK9DkTfvTQLLe67QjuG+C/tlS19kjRDianYdrrH23aabX27Kk/8P5q4mxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721152259; c=relaxed/simple;
-	bh=ic2sbABp4tHp3UGGNyn+mzu/e840S3TaNk0qjVFGVfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=URb1MugNjMttkQj8kEMcCMCvJM2Av0qOf+r9nDFpBKZXv6OkiTKdGtA6x9XwxurnwdIYcgtOoifp3admgUlubid4NlSZ0dgLrYb4XA5znVjcwfaXohOLSq3pD0HJFNuSup8l6OzXr0kQkpdr+KFRtdYNqe5hbKTeg/mAYefLkhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTmJy-0000eT-4W; Tue, 16 Jul 2024 19:50:38 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTmJv-0001tg-EK; Tue, 16 Jul 2024 19:50:35 +0200
-Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 26D7D305380;
-	Tue, 16 Jul 2024 14:45:36 +0000 (UTC)
-Date: Tue, 16 Jul 2024 16:45:33 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	haibo.chen@nxp.com, imx@lists.linux.dev, han.xu@nxp.com
-Subject: Re: [PATCH v2 4/4] can: flexcan: add wakeup support for imx95
-Message-ID: <20240716-chowchow-of-massive-joviality-77e833-mkl@pengutronix.de>
-References: <20240715-flexcan-v2-0-2873014c595a@nxp.com>
- <20240715-flexcan-v2-4-2873014c595a@nxp.com>
- <20240716-curious-scorpion-of-glory-8265aa-mkl@pengutronix.de>
- <ZpaF4Wc70VuV4Cti@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1721145995; c=relaxed/simple;
+	bh=gI21/Txq0/V8Mood/7WNX4+a8nWK19FWuXo1RHgcBlQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=glRjUtpvOTL/dC6h9nHk9f+9AbpKpiloikvLgTxS4HEVefkt0BFjsINtRWuKAxGLsrkp7fFbaK9OTYuePyr0gQOjqALuW7Zz3cSqYMc5zAw8l15gCcF1V3IZJqJ89sU3OWTXnjrJN2748enQDn3Zwgtxa5JhoXK2xXTNtQl6vT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=N4CqeFe8; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721145991;
+	bh=gI21/Txq0/V8Mood/7WNX4+a8nWK19FWuXo1RHgcBlQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N4CqeFe8PNc3O+xfgpqGJQFUDEW+QKrrwmE1npMejRElOw2F71TZo63D/Z4iJ7Caj
+	 qklrx7vdRHrdCwPtgmHeqiEYtDApNOGRZooDnolD1wrfNTnui/d68Q8am6HMse0SDb
+	 J1+TMDsGtPuvLq4LL5fkNV9sZRduAwbYKqjI7GEGecd1FDvOuAL5+p2hMNdzTi0eNb
+	 VxBpM1dipIovxmrsn8NK5nscLTmFHq7r+Ut8eiCN5wt9JbNKx+0IUO4A8xWgAvzvQ/
+	 S9RAQ7XQPJRu7K/GyhgJKhS8axETw3pI5vgDaJl68aEFDxQVUIn+h/om7qBbXKAglg
+	 obIuxqnflsjmA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 18C8237821CD;
+	Tue, 16 Jul 2024 16:06:31 +0000 (UTC)
+Message-ID: <a4fb5ab2-c11c-4761-82c0-76c01bcf65d6@collabora.com>
+Date: Tue, 16 Jul 2024 18:06:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="l2syr324jbfki6hb"
-Content-Disposition: inline
-In-Reply-To: <ZpaF4Wc70VuV4Cti@lizhi-Precision-Tower-5810>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC] arm64: dts: mediatek: mt8195-cherry: Remove
+ keyboard-backlight node
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <linux@weissschuh.net>, Tzung-Bi Shih <tzungbi@kernel.org>,
+ kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240715-cros-backlight-dt-probe-v1-1-0b5afe64c94b@collabora.com>
+ <3dd2dcc9-5fbb-4384-985f-a61e26cc8a5f@collabora.com>
+ <96f91c0a-e693-45db-a664-1c396b14999e@notapiano>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <96f91c0a-e693-45db-a664-1c396b14999e@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Il 16/07/24 14:16, Nícolas F. R. A. Prado ha scritto:
+> On Tue, Jul 16, 2024 at 11:24:44AM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 15/07/24 18:09, Nícolas F. R. A. Prado ha scritto:
+>>> Commit 970c3a6b7aa3 ("mfd: cros_ec: Register keyboard backlight
+>>> subdevice") introduced support for detecting keyboard backlight
+>>> fuctionality through communication with the ChromeOS EC. This means that
+>>> the DT node is no longer used. Remove the unneeded node.
+>>>
+>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>> ---
+>>> Different CrosEC FW versions could potentially not support discovering
+>>> the keyboard backlight functionality, but I've tested both a recent
+>>>
+>>>     tomato_v2.0.23149-099cd3e539 tomato_15699.72.0 2024-01-03
+>>>
+>>> and an old
+>>>
+>>>     tomato_v2.0.10686-234e646fd8 tomato_14268.0.0 2021-10-07
+>>>
+>>> version on mt8195-cherry-tomato and on both relying only on the
+>>> discoverability works. I've tested on both tomato-r2 and tomato-r3. I
+>>> have not tested on dojo, however, as I don't have access to it.
+>>>
+>>
+>> Dojo will work anyway because those machines do share the same base FW... but
+>> anyway, I'm not sure that this is the right thing to do.
+>>
+>> The commit that you mentioned says that it is meant to make that "work on machines
+>> without specific ACPI or OF support for the keyboard backlight", but not that the
+>> intention is to stop using either ACPI nor DT nodes for that.
+> 
+> Yes, because as I understand it not every EC might support this protocol. So
+> that commit just added an additional way to probe the keyboard backlight.
+> 
+> So we don't need to stop using the DT to probe it. But in practice we have
+> already stopped, as long as the EC supports the protocol (which from my testing
+> is always for these platforms), since that is tried first. Meaning the DT node
+> is now useless.
+> 
+> The only point in keeping the DT node would be to use it as a fallback in case
+> the discovery with the EC fails or breaks. But I have never seen a DT node be
+> there just as fallback, so it doesn't feel right to me either.
+> 
+>>
+>> The DT kselftest is relatively young, and I suspect that anyway this is not the
+>> only affected device, so the justification is only barely valid.
+> 
+> I didn't include the failing test as part of the commit message proper as I
+> don't think it should justify this change. I added it just to clarify my
+> motivation. The test showed me that something unexpected was happening. After
+> looking into it I thought that a DT node that is no longer used to probe has no
+> point in staying around, so that's the justification that I added to the commit
+> message.
+> 
+>>
+>> Don't misunderstand me, I'm not saying that I'm not okay with this, but I'd like to
+>> have more opinions about this.
+>>
+>> If we choose to go this way, ideally we should remove this from all of the upstream
+>> Chromebook devicetrees (not only MediaTek, clearly!) so that would require a bit
+>> more effort to test here and there.
+> 
+> Note that the cherry DT is the only DT upstream with the
+> google,cros-kbd-led-backlight compatible. So it's really only tomato and dojo
+> that need to be tested.
+> 
+Perfect. Let's remove it then, possibly with fire ;-)
+Can you please send the patch without the RFC tag?
+
+Also add my R-b, so that I'll remember that I've already checked that patch for
+when I'll be able to pick it.
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
---l2syr324jbfki6hb
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 16.07.2024 10:40:31, Frank Li wrote:
-> > > @@ -2330,9 +2366,12 @@ static int __maybe_unused flexcan_noirq_resume=
-(struct device *device)
-> > >  	if (netif_running(dev)) {
-> > >  		int err;
-> > > =20
-> > > -		err =3D pm_runtime_force_resume(device);
-> > > -		if (err)
-> > > -			return err;
-> > > +		if (!(device_may_wakeup(device) &&
-> >                       ^^^^^^^^^^^^^^^^^^^^^^^^
-> >=20
-> > Where does this come from?
->=20
-> include/linux/pm_wakeup.h
->=20
-> static inline bool device_may_wakeup(struct device *dev)                 =
-                          =20
-> {                                                                        =
-                          =20
->         return dev->power.can_wakeup && !!dev->power.wakeup;             =
-                          =20
-> }
-
-Sorry for the confusion. I wanted to point out, that the original driver
-doesn't have the check to device_may_wakeup(). Why was this added?
-
-> >=20
-> > > +		      priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SC=
-MI)) {
-> > > +			err =3D pm_runtime_force_resume(device);
-> > > +			if (err)
-> > > +				return err;
-> > > +		}
-> > > =20
-> > >  		if (device_may_wakeup(device))
-> > >  			flexcan_enable_wakeup_irq(priv, false);
-> > > diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flex=
-can/flexcan.h
-> > > index 025c3417031f4..4933d8c7439e6 100644
-> > > --- a/drivers/net/can/flexcan/flexcan.h
-> > > +++ b/drivers/net/can/flexcan/flexcan.h
-> > > @@ -68,6 +68,8 @@
-> > >  #define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR BIT(15)
-> > >  /* Device supports RX via FIFO */
-> > >  #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
-> > > +/* Setup stop mode with ATF SCMI protocol to support wakeup */
-> > > +#define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
-> > > =20
-> > >  struct flexcan_devtype_data {
-> > >  	u32 quirks;		/* quirks needed for different IP cores */
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---l2syr324jbfki6hb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaWh4sACgkQKDiiPnot
-vG9pnwf+JoS4BGqt9+eauMHhwkSi1Z1OupbzhlhGwMBtIeQWPmhjM0f0/N0XDNyA
-vFmZZs6HIj9lcXNADBVtKvB92MJFV4UbvGyPSqs4cU8r/cZdPr+I5j0gVHHCmtiq
-RZcPzP+Jm6U6NV4C8Oj6RZxhPVCKKlNfckBW9pcjjhKg4XmEFksYC5J9G4ldofBz
-DHivW/RXq2mcals9q7N2JTkgH6Zmw7wxnOWIUdFItj7Jt1XFDWQSO7ha4UC1ntmK
-FgdCfR0anEHNOucDeLCyXw63FOBro/pD3iQ6xdIBCR/IVnhSIgkAjkIjFV6K5d+G
-nvSKa9wCyX8iqQJuRZNp6HBTEvex/Q==
-=Vri0
------END PGP SIGNATURE-----
-
---l2syr324jbfki6hb--
+Cheers!
 
