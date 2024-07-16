@@ -1,93 +1,146 @@
-Return-Path: <devicetree+bounces-86175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3098932F83
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:54:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60CDD932F7C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE6261C224DD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:54:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E5D2811BE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B4E1A00F3;
-	Tue, 16 Jul 2024 17:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5026A1A01CD;
+	Tue, 16 Jul 2024 17:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BWM6OdOD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYa6DURx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B8F19FA94;
-	Tue, 16 Jul 2024 17:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7FD19FA94;
+	Tue, 16 Jul 2024 17:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721152481; cv=none; b=KfDy1fymICTROi7G8SUY4Gv8eQbg7s2qyM0pREflzFvbRbOwbKO/jZc7lNB9PDWWWqF81N/2hdEwCk2pVYwnpQnZifSbhfYu1AR2SQ6nW8UVR9w7uu/e+lD46xePRVjTrWF8eZ/0t9an2SdrUAxKzv6NJOZB0XH0QN/zh5moJHs=
+	t=1721152368; cv=none; b=J0IYj7uexEYuWzEWu/IGLFx31GXNj91lXX/OntR7d/3JMkwV9Uxr5bKW+qp9+gd+OnKLGeDUSU6XXig6YijocYJTQ1dXp7f6t1qzDivhwuKSTsUehvPrrM6TUng3jj98ER8MDMpLghKySl9HCwgWQPbv2PI8ouTi5GptVLW4AYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721152481; c=relaxed/simple;
-	bh=prgjPxYij3SHyZHpzob8UsPYte+J2xXXXesa79k4KJI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mYg9toVTuqmp4dDehahAlDES8Hr6N7R5Hif1js5fAyHzSKJPmel8DbS9v8yt+B9ze7IyrlgfETNalX/fKawNxA9Nz/43RzWDZVgjRgfRxEaFwZP3NT4G/tPI5VpuWUfvIkfls+lCJpwQnfqEIrdRxVqhufCZuDxOUV/ZanKI1Yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BWM6OdOD; arc=none smtp.client-ip=192.19.144.207
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id D3594C0000E4;
-	Tue, 16 Jul 2024 10:47:29 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com D3594C0000E4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1721152049;
-	bh=prgjPxYij3SHyZHpzob8UsPYte+J2xXXXesa79k4KJI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BWM6OdODQlUfSYOS6Sw8LT+MMM3a7TcFGdn3NHt2X6T9ZJVEz2K/BSvr2p7NWtP2T
-	 dIdevqG9cT9+9U1q+TntRym7i8YSKa1R8D3zufLa5BxAl2S0AmwO1gLHnckFyoXAdp
-	 tzXFxoakoZkUk3Rpra/Gl3m9rPbSEnB+Gu73AsyQ=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 5E6D618041CAC4;
-	Tue, 16 Jul 2024 10:47:27 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Florian Klink <flokli@flokli.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH] ARM: dts: bcm283x: Fix hdmi hpd-gpio pin
-Date: Tue, 16 Jul 2024 10:47:29 -0700
-Message-Id: <20240716174729.197020-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240715230311.685641-1-flokli@flokli.de>
-References: <20240715230311.685641-1-flokli@flokli.de>
+	s=arc-20240116; t=1721152368; c=relaxed/simple;
+	bh=Z/FuuYAY8mVsV8m3Aa8Y4k9HQ2e8WGXLvtIU2a/I7nQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AFDuXsiC299HR+IUTfV2mdFktbQqMJnV9l3USMXEeia8czBcWBK17myv9i6I154yCEd7ZXHClF76fnplM2VTYnRtEXdPQA1nmbB3dSmjs2P4LS5mAZcBfJm08jxphRZhDW1NaAhDR7aXQMDj5WQoNe/LKwm8NQT9d1mPhp+FKb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYa6DURx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7F33C116B1;
+	Tue, 16 Jul 2024 17:52:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721152367;
+	bh=Z/FuuYAY8mVsV8m3Aa8Y4k9HQ2e8WGXLvtIU2a/I7nQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=lYa6DURxuLaei5aJYfNKzPBBCPBzJHTGOENpjPZt3Jjoo7s8Qr5FgjKjvyWc6Wv5U
+	 dwc50D2XyIVBM97iwmFHO3zpo9RCq5eyCQZOXhYRK/BCVCgstud7c4rLrv4W72qwtC
+	 IItz/1y8S/svfxRnfyqoh2rIYd7TVOIhnSW8DuRbg4adFIV4oafvGYCj8Y3DnD+4EZ
+	 1RVSYKNEwlO2qw+N+6ZN+J6PEwDvEkbHVujFsvVqVzzR1+QMRuivH63O3n6BaPt6aI
+	 m1NDT1BeGwXjBJyNcgmpCKQGMET4N2jozyU7fyiJLv3r6WjYoY6PI1VldZSD3cvouA
+	 TezfQkGNfvZqw==
+Date: Tue, 16 Jul 2024 18:52:38 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Ramona Gradinariu
+ <ramona.gradinariu@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Jun Yan <jerrysteve1101@gmail.com>, Mario
+ Limonciello <mario.limonciello@amd.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Alexander Sverdlin
+ <alexander.sverdlin@siemens.com>, Mehdi Djait <mehdi.djait.k@gmail.com>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v5 2/3] iio: accel: add ADXL380 driver
+Message-ID: <20240716185238.72483333@jic23-huawei>
+In-Reply-To: <20240708104114.29894-2-antoniu.miclaus@analog.com>
+References: <20240708104114.29894-1-antoniu.miclaus@analog.com>
+	<20240708104114.29894-2-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+On Mon, 8 Jul 2024 13:40:12 +0300
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-On Tue, 16 Jul 2024 02:03:11 +0300, Florian Klink <flokli@flokli.de> wrote:
-> HDMI_HPD_N_1V8 is connected to GPIO pin 0, not 1.
+> The ADXL380/ADXL382 is a low noise density, low power, 3-axis
+> accelerometer with selectable measurement ranges. The ADXL380 supports
+> the +/-4 g, +/-8 g, and +/-16 g ranges, and the ADXL382 supports
+> +/-15 g, +/-30 g and +/-60 g ranges.
+> The ADXL380/ADXL382 offers industry leading noise, enabling precision
+> applications with minimal calibration. The low noise, and low power
+> ADXL380/ADXL382 enables accurate measurement in an environment with
+> high vibration, heart sounds and audio.
 > 
-> This fixes HDMI hotplug/output detection.
+> In addition to its low power consumption, the ADXL380/ADXL382 has many
+> features to enable true system level performance. These include a
+> built-in micropower temperature sensor, single / double / triple tap
+> detection and a state machine to prevent a false triggering. In
+> addition, the ADXL380/ADXL382 has provisions for external control of
+> the sampling time and/or an external clock.
 > 
-> See https://datasheets.raspberrypi.com/cm/cm3-schematics.pdf
-> 
-> Signed-off-by: Florian Klink <flokli@flokli.de>
-> ---
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
---
-Florian
+One locking (kind of) issue that I'll tidy up.
+
+Applied to the testing branch of iio.git which will become togreg once
+rebased on rc1 when that is available.
+
+In the meantime 0-day will poke at it and see what we missed.
+
+Thanks,
+
+Jonathan
+
+> diff --git a/drivers/iio/accel/adxl380.c b/drivers/iio/accel/adxl380.c
+> new file mode 100644
+> index 000000000000..684778ace345
+> --- /dev/null
+> +++ b/drivers/iio/accel/adxl380.c
+> @@ -0,0 +1,1906 @@
+;
+> +
+> +static int adxl380_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long info)
+> +{
+> +	struct adxl380_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = iio_device_claim_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = adxl380_read_chn(st, chan->address);
+> +		if (ret)
+> +			return ret;
+
+This returns without release direct mode which means deadlock
+if you enable the buffer (that will wait unlike here).
+
+If nothing else comes up I'll make the minimal change of
+moving this down to after the release.
+
+
+> +
+> +		iio_device_release_direct_mode(indio_dev);
+> +
+> +		*val = sign_extend32(ret >> chan->scan_type.shift,
+> +				     chan->scan_type.realbits - 1);
+> +		return IIO_VAL_INT;
+
+
 
