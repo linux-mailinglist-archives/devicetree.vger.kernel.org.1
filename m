@@ -1,211 +1,204 @@
-Return-Path: <devicetree+bounces-86130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389DD93280C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:13:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D2F93296F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6FAB2844CC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:13:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E8EAB226F2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1F419B3E3;
-	Tue, 16 Jul 2024 14:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAE719DF52;
+	Tue, 16 Jul 2024 14:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="BX/nf+C7"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="tzzx+Xar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DDD19B3CC
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 14:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D9CB1B947
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 14:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721139209; cv=none; b=m64irEqtMgySyjYtuTmhZkAZlHxnJOaQmUdHHMe8ubVLvikcb8cplLv5wqrF5JXkt+Wf2TZ2Lwv6VzAHNULyr9iGvMC29OVQ5Q6Q0vb4kvSKv9BCp0m6+OzoUrWI5yiD8bQHnSk5z9gwxIPnagb8WYe6Tk4644OOszGy999sKeI=
+	t=1721140458; cv=none; b=k+Dc9gqjgFNdlD0/GNQ3g259m++DiMohBvyIh49hIginrcOn6ked5rmhrKVAsj953oaXpiea7Y8jthb/7gnowkH+iEDXdv5+e4cfvCm5NVTnh1rG9CA2Q6JxAj1smleiLSkpfNQgvnO7hhMtbzrggkPXly9l8RsgkB1RN4M2Ui0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721139209; c=relaxed/simple;
-	bh=GWxCos4CnUV35zyiSw1OdpfRmSu2QcSfprIz1ty8YHY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LjwNtshiChPHio3afW/bwIBRbFMsBn9FJeqJJGY52ZKfzXDcafjpYfzPFE6LNK5yDdzq0ed+8DEoc1C8qx5D8k0Kd6Aeo8+QSnl8hr4LifuRT2QmUxEy+pq2np78dZPLQgQyvhIdyVUkzT9YU3ncfBnGGK3iE2LQMczON0hDtw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=BX/nf+C7; arc=none smtp.client-ip=95.215.58.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: daniel@makrotopia.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1721139204;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OOwmHCe649Ack/8wyuZb0NPCZh2F1YT3rt4JfPBVRIE=;
-	b=BX/nf+C7bl7baFC2a77Dmx58LPc2Hw8RkBhjVMA5ZE4FcVNQQH9EbQuRD7yFldcBXMFGEr
-	ycmxyrLkmV6oopbF1uxmrjNO+9B/QDc1ub0rF5+ooL4uIkj2u3ErS6A2tdxBo/49+Sat3D
-	8umqn9i5Urh9oA5NDm/TmmInqquFSVNwAgI6Pri3CpHCQiy04+K2Qfuywnlh7rD4LDyBJR
-	JEHeSh/sKlxVqwLqng9EyVq7Pe+QYUkiV2Ft9dvXAvlGlvBDZ9dwYwbUi1sFCJ8b936Sx1
-	LXMNqbowsowb1UHywJ8JlGxhTNVwYaNNoL8feiaoWE+esktGBGe3LT+AGm00AA==
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: herbert@gondor.apana.org.au
-X-Envelope-To: martin@kaiser.cx
-X-Envelope-To: s.hauer@pengutronix.de
-X-Envelope-To: sebastian.reichel@collabora.com
-X-Envelope-To: ardb@kernel.org
-X-Envelope-To: ukleinek@debian.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-crypto@vger.kernel.org
-X-Envelope-To: p.zabel@pengutronix.de
-X-Envelope-To: olivia@selenic.com
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: wens@kernel.org
-X-Envelope-To: dsimic@manjaro.org
-X-Envelope-To: aurelien@aurel32.net
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: didi.debian@cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Daniel Golle <daniel@makrotopia.org>, linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Herbert Xu <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Ard Biesheuvel <ardb@kernel.org>,
- Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-crypto@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
- Olivia Mackall <olivia@selenic.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Dragan Simic <dsimic@manjaro.org>, Aurelien Jarno <aurelien@aurel32.net>,
- Heiko Stuebner <heiko@sntech.de>, Diederik de Haas <didi.debian@cknow.org>
-Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
-Date: Tue, 16 Jul 2024 16:13:10 +0200
-Message-ID: <6779787.ZJYUc1KeCW@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <1874451.yxlQQexqVa@bagend>
-References:
- <cover.1720969799.git.daniel@makrotopia.org>
- <ZpZ1RSSYaLo45kUI@makrotopia.org> <1874451.yxlQQexqVa@bagend>
+	s=arc-20240116; t=1721140458; c=relaxed/simple;
+	bh=780Gj9ipFL7MZVR7yMgxIX1qeCbWfI9+hl3JZKSOJJg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ezjs/UU26DFDIuf0zea9cPPhFtSb30vLvkpg2oJYM6cPRrlw4YKbt5l5r7LHD/Vq0vDVnpdAcBnf2+mQcL1Y81sQQVKcu/KcwlZWoo0wv9x3MO9jhJsIN4YeebrpkpXHIlJeevqvsyrl8i+jjadmsHxIw7BlcR+Zxr3SEmwfUaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=tzzx+Xar; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-427aeebaecdso15089535e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 07:34:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1721140453; x=1721745253; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BAVkx3EkWzVPbDhyx+broZi2jeHwnQ+TpjnD/Y0qoIw=;
+        b=tzzx+XarEuZrUcj+WFl2VlKv7/RQu8BSNJs15F2KzWEq1rzaU1IBZAbKm1h4XzLq1Z
+         6Z0ApTS+yQL8I7bJIzCvmxo6uCorv4vyqcJMJyOrAg0z1fIg7BkKLsC6y7f4+HbOaO+5
+         /qrOfHNkNpc8F/CKf81eLUDQivZvry61t3k/+qbog9Nz2xAR7xWR0qe9Lh7bxZTPTdGn
+         +0rHOt9AcR7tzvYSNd/PKMFlSmAGQVPYGkUScY5+CqGago1QRotC1obHl4ooGZXuKxxr
+         DS8Qoah6+MUBwSJAg45UId1+oORNfqV6bTv+R+6F6Y61LjLEC5aGg5h0y1UI69SNcEpH
+         fLeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721140453; x=1721745253;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BAVkx3EkWzVPbDhyx+broZi2jeHwnQ+TpjnD/Y0qoIw=;
+        b=PxnhksoBH42qHPKRXmZAy4tg2Lp+r480VdyG7H8SHiA7Gi+JOfMxg+gjZdaft2DmV2
+         Wc13PtrJlu27o7b97+A7Y46ISvasJAydEh4TKvE3qadTggmR3CLQxnVAM9gRLqqXbzdY
+         LMsfq0bIpX7u0+HhuPtQdqRezOjtC+QYPfunMTQueLeghhreVkNq2/SgzP9WAkZThqUu
+         RX4MRFGo0gOxIpPOAlX/xooh+8sy/r+eIKeASZSs3CkREZqf/sG6satznJRbIQ+h3aPn
+         LOflr7tp+wl2nziw8b2lW7jnLalxhNneOoDmHlWDJD8lXV9qYKvL/DacrFCPItOJXWwu
+         UYdw==
+X-Forwarded-Encrypted: i=1; AJvYcCVhoHwvg2+pr9p4vnYIbbFChnIMPJ0axZbztZ6/p0lRaCiNmZ3dD23BZuNzgrEHV9z5aXtoNMrS3uYtftYR7SQhIh0PiClqMkUVBQ==
+X-Gm-Message-State: AOJu0YztfXUDa3IUSjdeLMgEWiPKXcS4M+mza3SQaKPw9F5/sQoJ5HAP
+	iZ/oLVtHv0AiDxsfWRAjAByIV8cIAtCT95tCYJRg0f5o5W0A/VyhKiM7K4QOW/0=
+X-Google-Smtp-Source: AGHT+IEbL3+rGfLtHK1BYT56NOm8qHwhQGVKOUnQvEVJuXEUOqXILPQU0WPNo6DwBmoJFxBi5izxOw==
+X-Received: by 2002:adf:e8c6:0:b0:367:96b5:7852 with SMTP id ffacd0b85a97d-36826314363mr1600419f8f.55.1721140453270;
+        Tue, 16 Jul 2024 07:34:13 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680daccb7bsm9198261f8f.55.2024.07.16.07.34.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jul 2024 07:34:13 -0700 (PDT)
+Message-ID: <b6f6c845-6094-44ce-8ad0-ed4f6d353cec@freebox.fr>
+Date: Tue, 16 Jul 2024 16:34:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart15370963.2mxTI6y2F0";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr>
+ <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
+ <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---nextPart15370963.2mxTI6y2F0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Tue, 16 Jul 2024 16:13:10 +0200
-Message-ID: <6779787.ZJYUc1KeCW@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <1874451.yxlQQexqVa@bagend>
-MIME-Version: 1.0
+On 16/07/2024 15:11, Konrad Dybcio wrote:
 
-On Tuesday, 16 July 2024 15:59:40 CEST Diederik de Haas wrote:
-> For shits and giggles, I tried it on my PineTab2 too (also rk3566):
+> On 27.06.2024 5:54 PM, Marc Gonzalez wrote:
+>
+>>  arch/arm64/boot/dts/qcom/msm8998.dtsi | 100 +++++++++++++++++++++++++++++++++-
+>>  1 file changed, 99 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> index ba5e873f0f35f..417c12534823f 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+>> @@ -2785,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
+>>  				 <&mdss_dsi0_phy 0>,
+>>  				 <&mdss_dsi1_phy 1>,
+>>  				 <&mdss_dsi1_phy 0>,
+>> -				 <0>,
+>> +				 <&hdmi_phy 0>,
+>>  				 <0>,
+>>  				 <0>,
+>>  				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
+>> @@ -2890,6 +2890,14 @@ dpu_intf2_out: endpoint {
+>>  							remote-endpoint = <&mdss_dsi1_in>;
+>>  						};
+>>  					};
+>> +
+>> +					port@2 {
+>> +						reg = <2>;
+>> +
+>> +						dpu_intf3_out: endpoint {
+>> +							remote-endpoint = <&hdmi_in>;
+>> +						};
+>> +					};
+>>  				};
+>>  			};
+>>  
+>> @@ -3045,6 +3053,96 @@ mdss_dsi1_phy: phy@c996400 {
+>>  
+>>  				status = "disabled";
+>>  			};
+>> +
+>> +			hdmi: hdmi-tx@c9a0000 {
 > 
-> ===========================================================
-> root@pinetab2:~# uname -a
-> Linux pinetab2 6.10+unreleased-arm64 #1 SMP Debian 6.10-1~cknow (2024-04-24)
-> aarch64 GNU/Linux
+> Please prefix the labels (hdmi: and hdmi_phy:) with mdss_
 > 
-> root@pinetab2:~# dd if=/dev/hwrng bs=100000 count=1 > /dev/null
-> 1+0 records in
-> 1+0 records out
-> 100000 bytes (100 kB, 98 KiB) copied, 5,69533 s, 17,6 kB/s
+> Otherwise, this looks good
 > 
-> root@plebian-pinetab2:~# cat /dev/hwrng | rngtest -c 1000
-> rngtest 5
-> Copyright (c) 2004 by Henrique de Moraes Holschuh
-> This is free software; see the source for copying conditions.
-> There is NO warranty; not even for MERCHANTABILITY or
-> FITNESS FOR A PARTICULAR PURPOSE.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> rngtest: starting FIPS tests...
-> rngtest: bits received from input: 20000032
-> rngtest: FIPS 140-2 successes: 730
-> rngtest: FIPS 140-2 failures: 270
-> rngtest: FIPS 140-2(2001-10-10) Monobit: 266
-> rngtest: FIPS 140-2(2001-10-10) Poker: 23
-> rngtest: FIPS 140-2(2001-10-10) Runs: 9
-> rngtest: FIPS 140-2(2001-10-10) Long run: 0
-> rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-> rngtest: input channel speed: (min=2.615; avg=137.889;
-> max=9765625.000)Kibits/s rngtest: FIPS tests speed: (min=24.643;
-> avg=34.518; max=68.364)Mibits/s rngtest: Program run time: 149674336
-> microseconds
-> ===========================================================
 > 
-> That's looking quite a lot better ... and I have no idea why.
+> One thing I noticed (testing on the 8998 MTP), enabling MDSS (not necessarily
+> HDMI, mdss and mdp is enough) results in SMMU lockups about 30% of the time..
 > 
-> The Q64-A is used as headless server and the PineTab2 is not,
-> but I connected to both over SSH and they were freshly booted
-> into, thus I haven't actually/normally used the PT2 since boot.
+> [    4.911422] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+> [    4.913412] platform c901000.display-controller: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-tx@c9a0000
+> [    4.923353] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+> [    4.927893] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+> [    4.930647] platform c9a0000.hdmi-tx: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/display-controller@c901000
+> [    4.941928] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+> [    4.944438] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+> [    4.952338] msm_hdmi_phy c9a0600.hdmi-phy: supply vddio not found, using dummy regulator
+> [    4.956013] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+> [    4.961055] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+> [    4.967917] msm_hdmi_phy c9a0600.hdmi-phy: supply vcca not found, using dummy regulator
+> [    4.974565] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+> [    4.977628] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+> [    4.984122] Bluetooth: hci0: setting up wcn399x
+> [    4.989670] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
 
-I did freshly install rng-tools5 package before running the test, so
-I rebooted again to make sure that wasn't a factor:
+Interesting. I don't think I've noticed any lock-ups
+across multiple reboots.
 
-===========================================================
-root@pinetab2:~# cat /dev/hwrng | rngtest -c 1000
-rngtest 5
+FWIW, I get similar warnings about "Fixed dependency cycle(s)" on my custom DT.
+
+[    0.055349] platform 1da4000.ufshc: Fixed dependency cycle(s) with /soc@0/phy@1da7000
+[    0.055525] platform 1da4000.ufshc: Fixed dependency cycle(s) with /soc@0/phy@1da7000
+[    0.055584] platform 1da7000.phy: Fixed dependency cycle(s) with /soc@0/ufshc@1da4000
+[    0.060279] platform c8c0000.clock-controller: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-phy@c9a0600
+[    0.060494] platform c900000.display-subsystem: Fixed dependency cycle(s) with /soc@0/clock-controller@c8c0000
+[    0.062432] platform hdmi-out: Fixed dependency cycle(s) with /soc@0/i2c@c1b5000/tdp158@5e
 ...
+[   18.534346] adreno 5000000.gpu: Adding to iommu group 2
+[   18.540215] msm-mdss c900000.display-subsystem: Adding to iommu group 3
+[   18.544695] platform c901000.display-controller: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-tx@c9a0000
+[   18.551239] platform c901000.display-controller: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-tx@c9a0000
+[   18.562685] platform c9a0000.hdmi-tx: Fixed dependency cycle(s) with /soc@0/i2c@c1b5000/tdp158@5e
+[   18.574122] platform c9a0000.hdmi-tx: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/display-controller@c901000
+[   18.617640] platform c9a0000.hdmi-tx: Fixed dependency cycle(s) with /soc@0/i2c@c1b5000/tdp158@5e
+[   18.618885] i2c 2-005e: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-tx@c9a0000
+[   18.627768] tdp158-bridge 2-005e: supply vcc not found, using dummy regulator
+[   18.636853] tdp158-bridge 2-005e: supply vdd not found, using dummy regulator
 
-rngtest: starting FIPS tests...
-rngtest: bits received from input: 20000032
-rngtest: FIPS 140-2 successes: 704
-rngtest: FIPS 140-2 failures: 296
-rngtest: FIPS 140-2(2001-10-10) Monobit: 293
-rngtest: FIPS 140-2(2001-10-10) Poker: 32
-rngtest: FIPS 140-2(2001-10-10) Runs: 10
-rngtest: FIPS 140-2(2001-10-10) Long run: 0
-rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-rngtest: input channel speed: (min=2.612; avg=137.833; max=9765625.000)Kibits/s
-rngtest: FIPS tests speed: (min=24.391; avg=34.416; max=68.364)Mibits/s
-rngtest: Program run time: 149736205 microseconds
-===========================================================
+It looks like some of these warnings were pre-existing,
+but some might have been added by my patches?
 
-So that 704/296 vs 730/270 in the previous run on the PT2.
+Do they need looking into?
+I'm slightly confused.
 
-In case it helps:
-===========================================================
-root@quartz64a:~# grep . /sys/devices/virtual/misc/hw_random/rng_*
-/sys/devices/virtual/misc/hw_random/rng_available:rockchip-rng 
-/sys/devices/virtual/misc/hw_random/rng_current:rockchip-rng
-/sys/devices/virtual/misc/hw_random/rng_quality:900
-/sys/devices/virtual/misc/hw_random/rng_selected:0
-
-root@pinetab2:~# grep . /sys/devices/virtual/misc/hw_random/rng_*
-/sys/devices/virtual/misc/hw_random/rng_available:rockchip-rng 
-/sys/devices/virtual/misc/hw_random/rng_current:rockchip-rng
-/sys/devices/virtual/misc/hw_random/rng_quality:900
-/sys/devices/virtual/misc/hw_random/rng_selected:0
-===========================================================
-
-Cheers,
-  Diederik
---nextPart15370963.2mxTI6y2F0
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZpZ/9gAKCRDXblvOeH7b
-brwYAP9OiJP/6N11UP/cWpJx8l8/sSOgeJKLWw9r5/M98JZJbwD/bZc08/n9+WCw
-/OpBHuZSl5tXabtusXCV+hmock01kAA=
-=Jqvx
------END PGP SIGNATURE-----
-
---nextPart15370963.2mxTI6y2F0--
-
-
+Regards
 
 
