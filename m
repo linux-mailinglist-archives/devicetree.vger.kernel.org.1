@@ -1,108 +1,241 @@
-Return-Path: <devicetree+bounces-86242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670AD933454
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 00:45:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EC7A93349C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 01:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9938C1C220B8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 22:45:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 280A9285B27
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 23:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077F86D1B4;
-	Tue, 16 Jul 2024 22:45:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B101411EB;
+	Tue, 16 Jul 2024 23:37:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWxXG0wO"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="TMVyc/ql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17BE1B812;
-	Tue, 16 Jul 2024 22:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A771F171
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 23:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721169953; cv=none; b=YOUq/5/bwmZ17J3CywgfdoePij364AHFrejGQKI6t21Gg+6ELBvFUZlKva55sOVyRWOl7voszOMI7rxnsxuiYC7OLgrKtPz+3xacDmNToSbmW0ICr2cm2oMn7ZdA3C5GYOnQGmexJhRWd4EARoFfwk3pBCMPGK9faDStnkPRVY4=
+	t=1721173037; cv=none; b=K6EV1efuwz0NxGb6dwa4K+Do8pgOpl/BZGEPRWYRnk7kW5tX219KmGTCXIVFOxz/7d82GIcuhdO1q5+/ZpPTL9GdtaY2iNUACzMVaacl5ZarC4cNMPNTqBt0HX1/AUesRFyAY1Kbgmlu5ytb/fkVFS2ZVVAceFpPhmHbmNJy4SA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721169953; c=relaxed/simple;
-	bh=w276R0jHD8o5myzBdBEzxgmIblQgkaaXfmG48sGgNW8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=eHbgSY9mr1GjA3lO3dyE/rLl88ONvvhVF9Jjcciysk9/JQgrR1jGOj9ivQg/pm7CtsXr0RV9cpS1cWJ5aKF4hjTZTk6NF4eVQWnv51fn8/TpH0MGz3Rhe6C8sMC/scDDmDcIzhvxP/oPuf89K2T5TKHH48eUCqhxsf89bmWIXHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWxXG0wO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26CECC116B1;
-	Tue, 16 Jul 2024 22:45:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721169953;
-	bh=w276R0jHD8o5myzBdBEzxgmIblQgkaaXfmG48sGgNW8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=QWxXG0wOb8j9ivRtn3Gd38fHK50GDlmPJ604zmgSmn2Jw/5RasVl+dNIhkkg9guiW
-	 KWySTN8qdHxBEo82oZ+8e9MRbWFPa+mc43ezSvzK7KG++au98L06BY2BBSN6uy1bs4
-	 XUMuFwHZF0PB/sNab7TkblnQOuWC0DBYPHCgM4yMs6amDZRtSYxQPPhaN+tlkQfcMm
-	 CyyV+XY+Djwx65n2ISep01f+DXgymN/brYCFyFx24iSARIMrRE3/cFEvVNWgJP71Pu
-	 VShBu0+QR9fiSVHe2Z6HYGy2l6HDRnmeE0DXLnf3h8JlwxbroRLi976bsVB5vdOV5d
-	 nR2NwaYZYxCDQ==
-Date: Tue, 16 Jul 2024 16:45:49 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1721173037; c=relaxed/simple;
+	bh=5C66v9bVdMwVxm4iscsavboZdOJGF9gHVrbUAwDTqtQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IZhcupLnMREgvHJS3hRX9wmJzBGrn8nAM/RnwaYcHKjQJcUjl1cNIu1eO+Wr5zZAuhopQ7KXRjZZw+DRN4u8A+LeWnrw18MDKbJpR5UZ9ZeAnTa7jXhSAEHzq7r67gD+ku3aODKqbHmKjVowJqUN1OzXTFXMrA+kKWsXa9O4a8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=TMVyc/ql; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Envelope-To: quic_jesszhan@quicinc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1721173032;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H7mf7OJxEsHyAunC8Cz4xNF222LK4yVJ9agT364lWSU=;
+	b=TMVyc/qlFguB4JmZwqNE5+Gh0YuV5Rnk+iWipvno09SXTHNT+WXA9Z+Bd6ctZCTzKQIMrd
+	0qtgS27R0hTFJfsofdCKd7sRBnlpeGrWpY1AL7+zOOsahNHDFJih73yc8tM60CR32sWvIZ
+	7MHXZnA4O1e0dFcbhrSaXWJx2s2TA9QEn6ZGZo+dYLSFSLF11Goc0ysv8JrF/EwBDotrZc
+	l9FkYOok6jEwGVrxjnrm4eLkLkPtj/FR9YVF12IzARcPm3Aj2RxpljCcA+/Tf58dvPeA/M
+	7CCmYabsoh9xgL1rPapmTkr3XX5D1gpP5mI9sCU3+6TkBnS/Z/xojZR3id2WKg==
+X-Envelope-To: neil.armstrong@linaro.org
+X-Envelope-To: airlied@gmail.com
+X-Envelope-To: daniel@ffwll.ch
+X-Envelope-To: maarten.lankhorst@linux.intel.com
+X-Envelope-To: mripard@kernel.org
+X-Envelope-To: tzimmermann@suse.de
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: dmitry.torokhov@gmail.com
+X-Envelope-To: andersson@kernel.org
+X-Envelope-To: konrad.dybcio@linaro.org
+X-Envelope-To: rydberg@bitmath.org
+X-Envelope-To: dmitry.baryshkov@linaro.org
+X-Envelope-To: dri-devel@lists.freedesktop.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-input@vger.kernel.org
+X-Envelope-To: linux-arm-msm@vger.kernel.org
+X-Envelope-To: ~postmarketos/upstreaming@lists.sr.ht
+Message-ID: <75345386-3679-4314-88d7-8a40827b6562@postmarketos.org>
+Date: Wed, 17 Jul 2024 01:37:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Yazan Shhady <yazan.shhady@solid-run.com>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-phy@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>, 
- devicetree@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>
-In-Reply-To: <20240716-a38x-utmi-phy-v2-1-dae3a9c6ca3e@solid-run.com>
-References: <20240716-a38x-utmi-phy-v2-0-dae3a9c6ca3e@solid-run.com>
- <20240716-a38x-utmi-phy-v2-1-dae3a9c6ca3e@solid-run.com>
-Message-Id: <172116994973.743769.12500781470975159877.robh@kernel.org>
-Subject: Re: [PATCH RFC v2 1/4] dt-bindings: phy: cp110-utmi-phy: add
- compatible string for armada-38x
+Subject: Re: [PATCH v2 4/8] drm: mipi: add mipi_dsi_generic_write_multi_type()
+To: Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240630-oneplus8-v2-0-c4a1f8da74f1@postmarketos.org>
+ <20240630-oneplus8-v2-4-c4a1f8da74f1@postmarketos.org>
+ <606ddebb-c98c-47da-93d7-a387dbb6df22@quicinc.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Caleb Connolly <caleb@postmarketos.org>
+In-Reply-To: <606ddebb-c98c-47da-93d7-a387dbb6df22@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+Hi Jessica,
 
-On Tue, 16 Jul 2024 22:52:37 +0200, Josua Mayer wrote:
-> Armada 38x USB-2.0 PHYs are similar to Armada 8K (CP110) and can be
-> supported by the same driver with small differences.
+On 12/07/2024 23:39, Jessica Zhang wrote:
 > 
-> Add new compatible string for armada-38x variant of utmi phy.
 > 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->  .../bindings/phy/marvell,armada-cp110-utmi-phy.yaml       | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
+> On 6/30/2024 11:36 AM, Caleb Connolly wrote:
+>> Some panels like the Samsung AMB655X use long write commands for all
+>> non-standard messages and do not work when trying to use the appropriate
+>> command type.
+>>
+>> Support these panels by introducing a new helper to send commands of a
+>> specific type, overriding the normal rules.
+>>
+>> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
+>> ---
+>>   drivers/gpu/drm/drm_mipi_dsi.c | 40 
+>> ++++++++++++++++++++++++++++++++++++++++
+>>   include/drm/drm_mipi_dsi.h     | 16 ++++++++++++++++
+>>   2 files changed, 56 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_mipi_dsi.c 
+>> b/drivers/gpu/drm/drm_mipi_dsi.c
+>> index a471c46f5ca6..f2c7f3f23a6e 100644
+>> --- a/drivers/gpu/drm/drm_mipi_dsi.c
+>> +++ b/drivers/gpu/drm/drm_mipi_dsi.c
+>> @@ -819,8 +819,48 @@ void mipi_dsi_generic_write_multi(struct 
+>> mipi_dsi_multi_context *ctx,
+>>       }
+>>   }
+>>   EXPORT_SYMBOL(mipi_dsi_generic_write_multi);
+>> +/**
+>> + * mipi_dsi_generic_write_raw_multi() - transmit data using a generic 
+>> write packet of
+>> + * a specific type
+>> + * @ctx: Context for multiple DSI transactions
+>> + * @type: data type of the packet
+>> + * @payload: buffer containing the payload
+>> + * @size: size of payload buffer
+>> + *
+>> + * This function will automatically choose the right data type 
+>> depending on
+>> + * the payload length.
 > 
+> Hi Caleb,
+> 
+> I'm a bit confused by the wording here. By "automatically", do you mean 
+> the chosen by the macro calling this function?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hmm, nope, looks like i either got this description totally wrong or 
+copied it from somewhere and forgot to change it. I'll fix this in the 
+next revision.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.example.dtb: utmi@580000: reg: [[5767168, 8192]] is too short
-	from schema $id: http://devicetree.org/schemas/phy/marvell,armada-cp110-utmi-phy.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240716-a38x-utmi-phy-v2-1-dae3a9c6ca3e@solid-run.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Kind regards,
+> 
+> Thanks,
+> 
+> Jessica Zhang
+> 
+>> + *
+>> + * Return: The number of bytes transmitted on success or a negative 
+>> error code
+>> + * on failure.
+>> + */
+>> +ssize_t mipi_dsi_generic_write_raw_multi(struct 
+>> mipi_dsi_multi_context *ctx,
+>> +                      u8 type, const void *payload, size_t size)
+>> +{
+>> +    struct mipi_dsi_device *dsi = ctx->dsi;
+>> +    struct mipi_dsi_msg msg = {
+>> +        .channel = dsi->channel,
+>> +        .tx_buf = payload,
+>> +        .tx_len = size,
+>> +        .type = type,
+>> +    };
+>> +    ssize_t ret;
+>> +
+>> +    if (ctx->accum_err)
+>> +        return 0;
+>> +
+>> +    ret = mipi_dsi_device_transfer(dsi, &msg);
+>> +    if (ret < 0) {
+>> +        ctx->accum_err = ret;
+>> +        dev_err(&dsi->dev, "sending generic data %*ph failed: %zd\n",
+>> +            (int)size, payload, ret);
+>> +    }
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL(mipi_dsi_generic_write_raw_multi);
+>> +
+>>   /**
+>>    * mipi_dsi_generic_read() - receive data using a generic read packet
+>>    * @dsi: DSI peripheral device
+>>    * @params: buffer containing the request parameters
+>> diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
+>> index 71d121aeef24..fb23f4e3b94e 100644
+>> --- a/include/drm/drm_mipi_dsi.h
+>> +++ b/include/drm/drm_mipi_dsi.h
+>> @@ -287,8 +287,10 @@ ssize_t mipi_dsi_generic_write(struct 
+>> mipi_dsi_device *dsi, const void *payload,
+>>   int mipi_dsi_generic_write_chatty(struct mipi_dsi_device *dsi,
+>>                     const void *payload, size_t size);
+>>   void mipi_dsi_generic_write_multi(struct mipi_dsi_multi_context *ctx,
+>>                     const void *payload, size_t size);
+>> +ssize_t mipi_dsi_generic_write_raw_multi(struct 
+>> mipi_dsi_multi_context *ctx, u8 type,
+>> +                    const void *payload, size_t size);
+>>   ssize_t mipi_dsi_generic_read(struct mipi_dsi_device *dsi, const 
+>> void *params,
+>>                     size_t num_params, void *data, size_t size);
+>>   #define mipi_dsi_msleep(ctx, delay)    \
+>> @@ -432,8 +434,22 @@ void mipi_dsi_dcs_set_tear_on_multi(struct 
+>> mipi_dsi_multi_context *ctx,
+>>           static const u8 d[] = { cmd, seq };                     \
+>>           mipi_dsi_dcs_write_buffer_multi(ctx, d, ARRAY_SIZE(d)); \
+>>       } while (0)
+>> +/**
+>> + * mipi_dsi_dcs_write_long_multi - transmit a DCS long command with 
+>> payload
+>> + * @ctx: Context for multiple DSI transactions
+>> + * @cmd: Commands
+>> + * @seq: buffer containing data to be transmitted
+>> + */
+>> +#define mipi_dsi_dcs_write_long_multi(ctx, cmd, 
+>> seq...)                    \
+>> +    do {                                                               \
+>> +        static const u8 d[] = { cmd, seq };                        \
+>> +        mipi_dsi_generic_write_raw_multi(ctx,                      \
+>> +                          MIPI_DSI_DCS_LONG_WRITE, \
+>> +                          d, ARRAY_SIZE(d));       \
+>> +    } while (0)
+>> +
+>>   /**
+>>    * struct mipi_dsi_driver - DSI driver
+>>    * @driver: device driver model driver
+>>    * @probe: callback for device binding
+>>
+>> -- 
+>> 2.45.0
+>>
 
