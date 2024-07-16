@@ -1,171 +1,199 @@
-Return-Path: <devicetree+bounces-86035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230AB932346
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 11:46:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23627932358
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 11:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76A58B24A98
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:46:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6A6A1F22792
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58541991D0;
-	Tue, 16 Jul 2024 09:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dcnioQCF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3683E19885D;
+	Tue, 16 Jul 2024 09:49:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A9F17C23D
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 09:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B0715EA6;
+	Tue, 16 Jul 2024 09:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721123123; cv=none; b=eT4t4jWlgce5HGnobQxb5nhLHFdxOKSxinz76qBK5oMqXy8qNFf/ZVvp74/X/0wxdEFc4XyCPt7TW+mPhMrvrCANeitUN6UwPUVfmAIQNq1jPq0ofau6UECqWL0hNxFkcrNR+wCU03aEdK289/en5wfCs/1S/BzYogLT9z2iFwg=
+	t=1721123349; cv=none; b=TDMeeOtQFKGy3K+TWY4R2XtpJkK9x9M/yVEhY269Tv17tm4jRm3XcedpRqeJnf9tN4JKLYbC16PX+etBT7Rrt8pP6z4nzsv0S9cKfeE+8F/0z90/N3CsqaVwM+UGHWJGopDofnkSvPQ2RB00zZWeAzVj9dg55SWRXjKOOLcYz+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721123123; c=relaxed/simple;
-	bh=vq9kQDucZZaaXMppqui404uEJ0q8knUSeXPUQx+QAE4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JU0JvBAu0x53qwBaSHIzT4Jf23F9kQvqvv0g4MZ6vra48Zk9sYMPwy+sBkGTWc3yzIZEWOZzl6bd9MOZywY6H3/VWOyylTH4n7GQGZU06EfznCjnfR1T91sXTEfWlaUwAoawYAuq1icjATuUJDc7eH5kAWZb06QrvEEGBlQu3Rw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dcnioQCF; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eec7e431d9so68244541fa.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 02:45:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721123118; x=1721727918; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5NuFIyWh2EPTvca8mT4rSO45uIeLlFHL1Wx11wqOMQc=;
-        b=dcnioQCF6R/tAAF/Ar8+n4h5AoesVMfEXnKRrtDnD3QKSulHbHVjTHm6yPFYU2YyvO
-         n18nNz1kqGc63qW/+IUASpA4ZzFroLFZKLNQdHShgMbJh+bSfeICRa13NkR2vD11Imqb
-         Wd/5IP+tckBbLOm5NSUtUzR5muaHXGIadnlplFyqgjDO5Ua56J3dqDl+89uKxah5tXk7
-         E9gfRQHfJxRlB4PETbgLXnogtQraqLEdCA309k7gkppuasBvUmmaNKpNz9s85MR93Hfh
-         Ef0HPH1N/w9HAzF2qY7w1lZ02yk9I/LmWu33IawCvVIzzuBRLqk2jlM+lu3yjoSInBPz
-         kNLg==
+	s=arc-20240116; t=1721123349; c=relaxed/simple;
+	bh=8UvQU7I9knuWhkpzd9TO9Fs/k8V16zg/peOwYTNUXUo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QgKtUNrQkAIttaPf4CLx9xeMyBzEp3hDIy+Re/5bhz3wCnaMozLSB9j5z5blrCaVutbkryl6V967eQIYMXPy0n6VwrhzNePIaKVQtZOjz/7wA31OelixlrAq9gAyJB48IFlimke2+RKqUY1Ersnq9Tnmhc9sy4hzgQyNmpWGR7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e057bdc936fso5240665276.1;
+        Tue, 16 Jul 2024 02:49:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721123118; x=1721727918;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1721123345; x=1721728145;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5NuFIyWh2EPTvca8mT4rSO45uIeLlFHL1Wx11wqOMQc=;
-        b=abnbXK6B0z5GOP3tEUkhXbSwyVvaBB2tF6F3uMlsjHDDZPSG++uBlZSyMcWjnYmYvZ
-         nV2buyjSROwA7HfG/k+nH6JIDoujyULoNPrfXm3v4v/1dvvyZogwkTxhunnz+vQjRV1v
-         aV3BM7KxUlHPlkntKI1ZKRPpTEcP2GHQ3aJio2mlK1saANHtwdNdlfFpveHBOr6zTzkt
-         0hjxojyvXRUW+hlhP59y2Z9e0RkIJ+si/R2cZwVDiX2ctm7qv3C+gQg6jLRsQf7o7WEw
-         Phqy6X7u7YpaB0JuCiFu0fkhqcVGiBQDuapn3xmCGLrqM4aldBtXnCbecoDK8MyuMAV6
-         KaLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxLL21H4x2NMqGIAHveMYnaeM1nqUC9pC3AgT/s7/hJN9+4dwGI+Qf/M5SI065hbo6HzwM30VlO998Cvi+Rq6CblH975HT/wObMQ==
-X-Gm-Message-State: AOJu0YyzgP1yewi7rbCGX1o54IWLNnUv+GPk0SJJS2erioLRLqLLO61e
-	aqajxNL0ytO8TbzuLacXD/1uADNXpfHYBlHyiPCL46hEhpTILVvNYcgXjfm0mLs=
-X-Google-Smtp-Source: AGHT+IG7g7z6HLYJ14CcKV617EB+IkO1Ar44iuZCqLPAlbLMxByW1bM90ZwiiGB8c5P7bBsY3CJHfQ==
-X-Received: by 2002:a2e:b04a:0:b0:2ee:4f22:33f9 with SMTP id 38308e7fff4ca-2eef41b0e5bmr10639741fa.24.1721123118097;
-        Tue, 16 Jul 2024 02:45:18 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279f2cc2efsm154408185e9.36.2024.07.16.02.45.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jul 2024 02:45:17 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 16 Jul 2024 11:45:11 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8550-qrd: use the PMU to power up
- bluetooth
+        bh=pRQTvYVjx0Y6w3qpoyzLPKWPbAyGp8ArajcCwsaEB18=;
+        b=vvxaKZ692zESgqP/WvRtkSb4pea3vkbR134MeYOFaxvD1pHKdE5d0n1zBuK1wUFk1d
+         SOEeIyvUfC1l5MdMOA7h4C6jau9yxt0Tw2zpLDMxh8TytP3FHGVvfGQsAdExIvt6dZic
+         9SNHiBjzQc3LdWm8ME2tVL7FeU8/L9fE9gBpmQH0nYlOqBe0TC1/Oslk77CUvO1zHY3E
+         OliidOAORXzeHiHD4HBCy8S7n9h0eefMj8c4CsXTZtQf1tCTuWaSAzLqvrUkOmhidCon
+         aKr8q25hL0eCw4eWjMD+ytKIsoGQBUN/e6pt5nFXzfe+yzFtFOy3t7Ea2tFk5LTRMWqZ
+         pIcg==
+X-Forwarded-Encrypted: i=1; AJvYcCXd7wVgKxW2I36bxri0IaAadBU16HAjtZcV3Exeunj4vPQwkvueCnDZ3q7UgWi7jmp2AY0bYi3m2XU22hHXeKIXd4IAAfSFZETH3kAQ6/jV+7wLNhbenaABxwe5Ha0jVW2+21jaE/v0QspZJTwbuZMRH4TcIOv/WeP+G5KUNHf8Hi++YUjUz8rgBAS43BVTdkIQTAQYXLZGtS0UW2nG173D+UB4sGhH9VqOwoW/O2zcnSNdBrbYf3orO14z2WY04Q==
+X-Gm-Message-State: AOJu0Yz9bUvCziP77YdPGk0nJ6V6DqXRwO2Iihjb3r8cTbsgUm2CKiOM
+	Ol7/BE4uPOYJNi/ONlku8LDGTf9KQMf/mYm1CTKqYwnRRfy+0eefXEWIYgBM
+X-Google-Smtp-Source: AGHT+IHDOwQCXxlWls2E2WxUggo4e7W62NofTFzO/4waHMBDxD1Zf7wxldMc/f+Fl559sgNJpfnelg==
+X-Received: by 2002:a25:84c6:0:b0:dff:4a3:2df4 with SMTP id 3f1490d57ef6-e05d56e718dmr1732478276.31.1721123344902;
+        Tue, 16 Jul 2024 02:49:04 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e05a4695bc9sm1175809276.36.2024.07.16.02.49.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jul 2024 02:49:04 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e057bdc936fso5240607276.1;
+        Tue, 16 Jul 2024 02:49:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXgDyR8h2fuF4Bem3aMKDcoht3tPwUfIDktipVKZT16ilBXlxTqMOBwzJ/pEV6KpHQKrfz21fzGuM9fLLUPt69g2xJpOTkw/chjkTRGOs25MgFH+EL/3R6F0SDV7oTq8IYxBAUi0dim5ICHZy+YXoyFDXMfKTGDdxXVyX5KGw2nXDLVSyQBtZNfovbmdUc4Idw7+lktHg2UcSel+VLB0s5DZTDv6XsJPlStgej5l6zLyBdESnqSGI2agW5PSX+PLw==
+X-Received: by 2002:a0d:de04:0:b0:63b:f8cb:9281 with SMTP id
+ 00721157ae682-663817d8a34mr15909167b3.41.1721123342440; Tue, 16 Jul 2024
+ 02:49:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240716-topic-sm8x50-upstream-use-pmu-to-power-up-bt-v1-2-67b3755edf6a@linaro.org>
-References: <20240716-topic-sm8x50-upstream-use-pmu-to-power-up-bt-v1-0-67b3755edf6a@linaro.org>
-In-Reply-To: <20240716-topic-sm8x50-upstream-use-pmu-to-power-up-bt-v1-0-67b3755edf6a@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1970;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=vq9kQDucZZaaXMppqui404uEJ0q8knUSeXPUQx+QAE4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmlkEqeiPZqFxcVJf435dyTwarvH40M/d2lT188A6R
- ERVSAGCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZpZBKgAKCRB33NvayMhJ0aQ8EA
- Cae9yseauSuv+Sc2sElmVdyGcH5OZLch0jEx6ZE5vTH7ub8TTUJ1YKK8N+WT0xacYyx/4oDp0REcBc
- o86Vn+LUidpvhFNw7XGPex+l711WD/xbSnwMg48TotUz04iuqqb5m/kb9YpjRLGXiQwg9AzcJI9pZO
- H8Rslfbni+wE3cg2f77JjzvGIzJLu4P64+GlG3TdVenFPq90g04tXP0fCp9EQ1y0fIZA/j7oBvkZJr
- Lx7aFY0bFkscjvA8eem/ahlJJhfFX76Qns5I8jZN1dZAhrPidPAbh6VQr8dWtfplfpQoFjcfU20zHp
- teMSNFP7Xa4T0JnDdWj3Yhvh1niidm9o8wX56Yjpi/fb3Cv/cS1+3p70NF5P1W5HfPW7ScwrpXMMCB
- vlMlQHH7jjZHOv/cGG2EFXWQRjwt/w7ODcEXn1XNUX+Rjv8RPvLkXi+VQ94tPe/oXf5Kgxk2/ZUG/p
- mEwNrl7j3g3F6lGzQIxof1QVrV+E/S9CyrWDR0niMCZuoeA6N6xsP69AYy0VRfgTqXpw/W4o43MvAL
- ekr1R24J5NLQ6pKRjZ3Ikmlxrf3Lda+BY9OSnx5QSyWsiu6Mj+HPKH+V7U26+haVxOKZ19X5wTsuSO
- ATfCKtj7vUVg8DdSvzjTKVdIUSqpTM4kYC8OSbgVByz6jhgKtyRY68VWv8Dg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20240710201246.1802189-1-sboyd@kernel.org> <20240710201246.1802189-2-sboyd@kernel.org>
+In-Reply-To: <20240710201246.1802189-2-sboyd@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 16 Jul 2024 11:48:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV56nezM9cj1bVo4+gqi0OPvKjktu7i4Ov9ZKeyNkoiOg@mail.gmail.com>
+Message-ID: <CAMuHMdV56nezM9cj1bVo4+gqi0OPvKjktu7i4Ov9ZKeyNkoiOg@mail.gmail.com>
+Subject: Re: [PATCH v7 1/8] of/platform: Allow overlays to create platform
+ devices from the root node
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, patches@lists.linux.dev, 
+	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
+	devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Ripard <maxime@cerno.tech>, Peter Rosin <peda@axentia.se>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Linux I2C <linux-i2c@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Change the HW model in sm8550-qrd.dts to a one closer to reality - where
-the WLAN and Bluetooth modules of the WCN7850 are powered by the PMU
-inside the package.
+Hi Stephen,
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 26 +++++++++-----------------
- 1 file changed, 9 insertions(+), 17 deletions(-)
+On Wed, Jul 10, 2024 at 10:14=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wr=
+ote:
+> We'd like to apply overlays to the root node in KUnit so we can test
+> platform devices created as children of the root node.
+>
+> On some architectures (powerpc), the root node isn't marked with
+> OF_POPULATED_BUS. If an overlay tries to modify the root node on these
+> platforms it will fail, while on other platforms, such as ARM, it will
+> succeed. This is because the root node is marked with OF_POPULATED_BUS
+> by of_platform_default_populate_init() calling
+> of_platform_default_populate() with NULL as the first argument.
+>
+> Loosen the requirement here so that platform devices can be created for
+> nodes created as children of the root node via DT overlays even if the
+> platform bus wasn't populated for the root node.
+>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Cc: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 774bdfcffec3..6052dd922ec5 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -219,13 +219,10 @@ wcn7850-pmu {
- 		compatible = "qcom,wcn7850-pmu";
- 
- 		pinctrl-names = "default";
--		pinctrl-0 = <&wlan_en>, <&pmk8550_sleep_clk>;
-+		pinctrl-0 = <&wlan_en>, <&bt_default>, <&pmk8550_sleep_clk>;
- 
- 		wlan-enable-gpios = <&tlmm 80 GPIO_ACTIVE_HIGH>;
--		/*
--		 * TODO Add bt-enable-gpios once the Bluetooth driver is
--		 * converted to using the power sequencer.
--		 */
-+		bt-enable-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
- 
- 		vdd-supply = <&vreg_s5g_0p85>;
- 		vddio-supply = <&vreg_l15b_1p8>;
-@@ -1175,20 +1172,15 @@ &uart14 {
- 	bluetooth {
- 		compatible = "qcom,wcn7850-bt";
- 
--		vddio-supply = <&vreg_l15b_1p8>;
--		vddaon-supply = <&vreg_s4e_0p95>;
--		vdddig-supply = <&vreg_s4e_0p95>;
--		vddrfa0p8-supply = <&vreg_s4e_0p95>;
--		vddrfa1p2-supply = <&vreg_s4g_1p25>;
--		vddrfa1p9-supply = <&vreg_s6g_1p86>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
- 
- 		max-speed = <3200000>;
--
--		enable-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
--		swctrl-gpios = <&tlmm 82 GPIO_ACTIVE_HIGH>;
--
--		pinctrl-0 = <&bt_default>;
--		pinctrl-names = "default";
- 	};
- };
- 
+Thanks for your patch, which is now commit 98290f295fbcf18f
+("of/platform: Allow overlays to create platform devices from the
+root node") in clk/clk-next.
 
--- 
-2.34.1
+This causes i2c-demux-pinctrl to fail on the Koelsch development board:
 
+        i2c-demux-pinctrl i2c-mux1: failed to setup demux-adapter 0 (-19)
+        i2c-demux-pinctrl i2c-mux2: failed to setup demux-adapter 0 (-19)
+        i2c-demux-pinctrl i2c-mux3: failed to setup demux-adapter 0 (-19)
+        i2c-demux-pinctrl i2c-mux2: Failed to create device link
+(0x180) with e6ef0000.video
+        i2c-demux-pinctrl i2c-mux2: Failed to create device link
+(0x180) with e6ef1000.video
+        i2c-demux-pinctrl i2c-mux2: Failed to create device link
+(0x180) with hdmi-in
+        i2c-demux-pinctrl i2c-mux2: Failed to create device link
+(0x180) with hdmi-out
+
+and anything relying on I2C connected to these muxes fails, too.
+
+Also, loading the 25LC040 DT overlay[1] on Ebisu using the out-of-tree
+of-configfs now fails, too.
+
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -732,11 +732,14 @@ static int of_platform_notify(struct notifier_block=
+ *nb,
+>         struct of_reconfig_data *rd =3D arg;
+>         struct platform_device *pdev_parent, *pdev;
+>         bool children_left;
+> +       struct device_node *parent;
+>
+>         switch (of_reconfig_get_state_change(action, rd)) {
+>         case OF_RECONFIG_CHANGE_ADD:
+> -               /* verify that the parent is a bus */
+> -               if (!of_node_check_flag(rd->dn->parent, OF_POPULATED_BUS)=
+)
+> +               parent =3D rd->dn->parent;
+> +               /* verify that the parent is a bus (or the root node) */
+> +               if (!of_node_is_root(parent) &&
+
+Parent =3D /soc, so this returns early. Hence of_changeset_apply() [2]
+didn't add the I2C mux bus, causing of_get_i2c_adapter_by_node() [3]
+to fail.
+
+> +                   of_node_check_flag(parent, OF_POPULATED_BUS))
+
+Oh, you inverted the check for of_node_check_flag(); was that
+intentional?  Re-adding the "!" fixes all issues for me.
+
+>                         return NOTIFY_OK;       /* not for us */
+>
+>                 /* already populated? (driver using of_populate manually)=
+ */
+> @@ -749,7 +752,7 @@ static int of_platform_notify(struct notifier_block *=
+nb,
+>                  */
+>                 rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 /* pdev_parent may be NULL when no bus platform device */
+> -               pdev_parent =3D of_find_device_by_node(rd->dn->parent);
+> +               pdev_parent =3D of_find_device_by_node(parent);
+>                 pdev =3D of_platform_device_create(rd->dn, NULL,
+>                                 pdev_parent ? &pdev_parent->dev : NULL);
+>                 platform_device_put(pdev_parent);
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.g=
+it/tree/arch/arm64/boot/dts/renesas/r8a77990-ebisu-cn41-msiof0-25lc040.dtso=
+?h=3Dtopic/renesas-overlays
+[2] https://elixir.bootlin.com/linux/latest/source/drivers/i2c/muxes/i2c-de=
+mux-pinctrl.c#L60
+[3] https://elixir.bootlin.com/linux/latest/source/drivers/i2c/muxes/i2c-de=
+mux-pinctrl.c#L64
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
