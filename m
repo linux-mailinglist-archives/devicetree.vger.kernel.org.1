@@ -1,141 +1,111 @@
-Return-Path: <devicetree+bounces-86166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E559932EF8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:19:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A449932EFD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:22:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 031C51F22B97
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:19:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C073CB22F63
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB5E19FA6B;
-	Tue, 16 Jul 2024 17:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC4B19E7D1;
+	Tue, 16 Jul 2024 17:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="qc8zIPW0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mEg63/zK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA7E1EB2F
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 17:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0076FC19;
+	Tue, 16 Jul 2024 17:22:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721150390; cv=none; b=eDsaMM4aAmwmx0upJe5kRvX0XOGPoUIWivG2j+226oof1P0uwD+7/8/DOPmOEmIAbFE3wtarwPwOuNTFIJ+nSYC05L1oepRd1vlq6jlUcf5GTbAWR/0qXOpCilcGu8vaEFBbyllHH30U5kWAH8SgQJW+JqkiAQuVL31h0ljTzLM=
+	t=1721150543; cv=none; b=AxExqfZ6Kkok2pFP2RIzINEgCf2jcWFQXfytI6F4rC/2Qkl8t5jvjTQEHKWoBJraiGpnYnRE5Nt1TEUl7XcILAlraAAIcUf7ZqUAzR2vSaZ+ASvml9rmMNVdMGrjXvSg6Cm0pGMC1uXITAbKwHMMt5UgZ1k0Ix2+F4epFBdlvPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721150390; c=relaxed/simple;
-	bh=LQtVgMXT1kLs9xuSAb2Dnp0S9QMFr2sEd0jibq58t+M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hodr6A9M5+j0dqi7nq1wC0OHf4LrzAOqc+DULzuDJnOATX3r85T6Jo13b0bKvm9MzgZmya6amGRK+csQR62jH0h4ny6krdicXmzUKq+ogzCBq/3stEsouQ/BtuEGBkaGslZ6jJ2P1ATvdbsj5bqf2h66Txp5rlqDjibLEHdTSi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=qc8zIPW0; arc=none smtp.client-ip=95.215.58.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: wens@kernel.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1721150385;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LQtVgMXT1kLs9xuSAb2Dnp0S9QMFr2sEd0jibq58t+M=;
-	b=qc8zIPW0HWu090g9RF35uDSfiwvOgImM2IhEQPwe4ttIfKmuVhVARSUh+CW3NoFQWb2A+t
-	N7ZhQYxRoUK3P54ZsqKHUcKBRvUDzJyA9kf7GNsk/vrif1Bt6SJ+jJSPXC89ufy8mcxvRv
-	lAsOS4t3za0sjHnk2be5j1wXrPrpP4+UhjJjcQNN9hACBFfRzj2roqKHxC7S8m745JJSCl
-	QTmDpIcOpWBvVC/ljM7CogwHo/wi5a9l1Up23ke9vE05Bo/BzSgyIs7CbORxL2ZxEIDgbC
-	kyo2QL09uMIfaEz4x2Gp9LrtI2XzzX5pZcAQdCeIeOcKCcYlON0+qSZzCE/1HQ==
-X-Envelope-To: daniel@makrotopia.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: herbert@gondor.apana.org.au
-X-Envelope-To: martin@kaiser.cx
-X-Envelope-To: s.hauer@pengutronix.de
-X-Envelope-To: sebastian.reichel@collabora.com
-X-Envelope-To: ardb@kernel.org
-X-Envelope-To: ukleinek@debian.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-crypto@vger.kernel.org
-X-Envelope-To: p.zabel@pengutronix.de
-X-Envelope-To: olivia@selenic.com
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: dsimic@manjaro.org
-X-Envelope-To: aurelien@aurel32.net
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: didi.debian@cknow.org
-X-Envelope-To: linux.amoon@gmail.com
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Chen-Yu Tsai <wens@kernel.org>, Daniel Golle <daniel@makrotopia.org>
-Cc: linux-rockchip@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Herbert Xu <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Ard Biesheuvel <ardb@kernel.org>,
- Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
- devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
- Aurelien Jarno <aurelien@aurel32.net>, Heiko Stuebner <heiko@sntech.de>,
- Diederik de Haas <didi.debian@cknow.org>, Anand Moon <linux.amoon@gmail.com>
-Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
-Date: Tue, 16 Jul 2024 19:19:35 +0200
-Message-ID: <3220752.Q7WYUMVHaa@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <3190961.CRkYR5qTbq@bagend>
-References:
- <cover.1720969799.git.daniel@makrotopia.org>
- <CAGb2v67zxs03xScN8OfWXR1gf8tddJciXrjw3FQZcL7pR3ocxA@mail.gmail.com>
- <3190961.CRkYR5qTbq@bagend>
+	s=arc-20240116; t=1721150543; c=relaxed/simple;
+	bh=BFaNgVBOpWMp4MgWoO+rfbTPXHDvPLmxBQRxoluZ9PU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eZ7PoP80JprVjeSRwOngSo+PoDhYwOmEgoOMZ5dPHtNdZDhq/HiyaVFN4bau6wZnrUIHVK+qxw8W4raq+HNkovtWlaaQ0wWnIeXuGeklgIRgdwNfRJUtfjjrYHm6EivewXa7u0aBZRDcmpIKw0/k0adFjmW6zVa3H6u51UVmIYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mEg63/zK; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3d92d1a5222so3532941b6e.1;
+        Tue, 16 Jul 2024 10:22:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721150541; x=1721755341; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bwfcgG3x9YOu+7xDuN1e5i+SYJNNR7DxvLeQpbNA888=;
+        b=mEg63/zK9zX0451XKq2F1IUpnh4CyF62ejP4D2m9wQwU3eCiyFnOaM7mQ+mbqeF3rw
+         UFCx0KkjC0b9/+mm4+er2fJ7whOfxXmVOsBu7NF5jJs41lXqbYd+8LgBdbrHA7BFS3Zw
+         ug5rk+OjZ4B1wZ5YcAKYJuan/2icbTGIR1c4ne+z/+3R+HlRoW85hrQL1mHlXy3upI1K
+         /BEJZFbbuP+9pLjPzWLLZKbd1wb9NV2/memme5Rzj1CFVLVKxxEQs+nu35V3T+DE2IAj
+         JjJ66omy6k+xEPpXH91JqwkENNYATYfyZUXV1nUe9RaTNQmwCwa/oTSwX6JxXv/d7sLD
+         +Fnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721150541; x=1721755341;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bwfcgG3x9YOu+7xDuN1e5i+SYJNNR7DxvLeQpbNA888=;
+        b=M5xP91aeRggfK2vkQuJXStxbCK9OxzZYdSlaIuHKDvXRuhedb1uwfgkYOrlD8vZ51w
+         4feFubL/vRhyw3B3wNkJWOcNomiCLOd2MPn+UHbMmg24d36kpXR/00a39e/JbFQC24H9
+         9vreqXwDMQrgqp3m8jgrSNsYJXyVlGGchNN3m+XZMstf+ClOs2/VHsMHEmmuc3MV4UvH
+         v4XUnxt/85Ly2JaAGW00xxkaEGqLKlAiRRVV8Hj7gBMgzrR6ru+kdBXXpbdrWjpPjSz0
+         pmbcezk9kQrZqY8ZX7K6qWl+7en8MkEGXG8+BzAEpf8wh6lOGeg1RPwFgACsQwTzItX+
+         58RQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVS8FrfXgw7UTmb+2OJ9jOfM97BVGDkr1kWz4wMmjdFczpNhvkIH8boQwXxYHRwNtW4XAZKijBsoxEBTV1WKz9VdjTvYPQ6DAaS84vJQFBO/qBBckzgzTNTuYdqqg/Gp13HnDXEFdh8NQ==
+X-Gm-Message-State: AOJu0Yx3Vi/ctfrjaU66p66T6wY0q2hDla77dJbyPg0qbkOATWeFwp/T
+	u2Y3znUhRguDh5HYOR0yxkJGmB/mSYwm5sSpkWEe4lK/L8EjtzeC
+X-Google-Smtp-Source: AGHT+IHZY8ss+7sAQRJyyl88FiII7Jt/xGsSMkvWTchHh4EOKU9aZsGVCxy66j0OhmaTKGX9xymjXw==
+X-Received: by 2002:a05:6808:2220:b0:3da:3207:edc3 with SMTP id 5614622812f47-3dac7b5d29bmr3798035b6e.2.1721150540867;
+        Tue, 16 Jul 2024 10:22:20 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id af79cd13be357-7a160c73616sm311662885a.102.2024.07.16.10.22.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jul 2024 10:22:19 -0700 (PDT)
+Message-ID: <6f33ee6b-ac64-4b20-a9a2-dfbcac20813f@gmail.com>
+Date: Tue, 16 Jul 2024 10:22:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4668013.QbK88pdo3q";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: bcm283x: Fix hdmi hpd-gpio pin
+To: Florian Klink <flokli@flokli.de>, Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240715230311.685641-1-flokli@flokli.de>
+ <f178aa92-d91c-406d-9fea-1021bfb99f55@gmail.com>
+ <e3872f3a-9736-4507-bbd3-2ad7698562b4@gmx.net>
+ <5pgipwi7ckrjxec7yzqxnvnoggjsnvhb2mtcq5hcwanhp6t5tt@z4s6ouppd2vz>
+Content-Language: en-US
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <5pgipwi7ckrjxec7yzqxnvnoggjsnvhb2mtcq5hcwanhp6t5tt@z4s6ouppd2vz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---nextPart4668013.QbK88pdo3q
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Tue, 16 Jul 2024 19:19:35 +0200
-Message-ID: <3220752.Q7WYUMVHaa@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <3190961.CRkYR5qTbq@bagend>
-MIME-Version: 1.0
+On 7/16/24 10:08, Florian Klink wrote:
+> Hey,
+> 
+> fine with the subject change too :-)
+> 
+> @Florian: Let me know if you want me to roll all in a v2 or are happy to
+> apply that subject change too.
 
-On Tuesday, 16 July 2024 18:53:43 CEST Diederik de Haas wrote:
-> rngtest: FIPS 140-2(2001-10-10) Long run: 0
-
-I don't know if it means something, but I noticed that I have
-``Long run: 0`` with all my poor results,
-while Chen-Yu had ``Long run: 1``.
-
-Different SoC (RK3399), but Anand had ``Long run: 0`` too on their
-very poor result (100% failure):
-https://lore.kernel.org/linux-rockchip/CANAwSgTTzZOwBaR9zjJ5VMpxm5BydtW6rB2S7jg+dnoX8hAoWg@mail.gmail.com/
---nextPart4668013.QbK88pdo3q
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZparpwAKCRDXblvOeH7b
-bghfAP0STaXg+UlSKsk1L6VzJ9BHzyphyFMlfj7FGoFob7nyLgEAh1Yebqje+avX
-NIUvaQhX4nxlMMHIY/hZdtpdZIfbigs=
-=VxyF
------END PGP SIGNATURE-----
-
---nextPart4668013.QbK88pdo3q--
-
-
+Will fix it up while applying, no need for a v2, thanks!
+-- 
+Florian
 
 
