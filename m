@@ -1,176 +1,165 @@
-Return-Path: <devicetree+bounces-86133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72724932995
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:46:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8AA93299A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:47:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF1421F23923
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:46:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6A72283C78
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A9219D087;
-	Tue, 16 Jul 2024 14:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E3D19B3CC;
+	Tue, 16 Jul 2024 14:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="KrQ+Yfl5";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="hoW7cth5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aRJwY2S8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow6-smtp.messagingengine.com (flow6-smtp.messagingengine.com [103.168.172.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB38919CD0F;
-	Tue, 16 Jul 2024 14:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5335454BD4
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 14:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721141077; cv=none; b=EcOxxVwZX9AdTSN1WzUGnnlFmVL38vZppAOJ/E4oGqdSiEV1J9OqYI426E+WJg2kppVdgd66N42rNv5+ov91xK+ZpA0rAI1gkDkliZyCCF5yTHIF+gJSZjqjAbcQoLogB3yItOayxhXF85+Fammc131IGpMb/MyKNa8DoCQY2Bc=
+	t=1721141266; cv=none; b=faBHAcWbpDIKiSTdsmAHDkBezqLhpqOyOJBeitojnbeDOq0QvcIvNZrVsnd7MPiYhy91wZNtnSXuJxVxOjIura5w5GvCSMFYu2/GNlgxF8xDlp/jzO+3WCGXpij6Xs7Q54RXN+l4GCDUEYNEZ9frVFm2EDAAzEgHBrkcQCG6YM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721141077; c=relaxed/simple;
-	bh=mmtDwPVL52S1ppeyOGcnNXo9IJrhAWZKJS7aQ6gfkYw=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=Tdf32y2mx8S9P7o77QR6OG7AkQAmR7MLbVSWElQQdywZdmW7WNc5yj86OJsc2p9EAfBG7ilRRQyc3PaqkobqgxKclOZqqq0ZZLEB/Qm4FTx1ZO4D93MLurz+qLDx2Pr/dbu/UWn1qxYp1oPPoeBoiXR3A3lzq4FZYZswo5gInsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=KrQ+Yfl5; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=hoW7cth5; arc=none smtp.client-ip=103.168.172.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailflow.nyi.internal (Postfix) with ESMTP id C3416200EC4;
-	Tue, 16 Jul 2024 10:44:34 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Tue, 16 Jul 2024 10:44:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1721141074;
-	 x=1721148274; bh=HdJd8R2v0UjEhqZCfsPDGAEjh3MgAu1qHR6wGuu4iUc=; b=
-	KrQ+Yfl5XPrmhmvBUQ4viYOZ5BU/9t0cJnJKfn8BzZOV7J86Dc27qIzbbyRqmZkN
-	L+RIF+FYOYSlA9jzGLh0YACdteyqUPbTWf9bhfOoBLC0IKbem2Y746umkeJYhKO1
-	USpO3R7/KM1Wn2fyqJ+PdyaVweaCMbG3cg1BWFtXYswGobw0QF1w5cXK1lFrfVCL
-	epgUay9MYSblfwLMYArlaz3dDnUSHBJBEZjVSObVyw1Ia/vi93VsmBqTnsPDPHag
-	X48V1hTibYmOFiSNVL8LG1ruAqTy1hNeTfL87eAwqTxlXqaIHQXOT9vz+ojWX8b5
-	koXReCi+2dgp1vgChQ7PmA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1721141074; x=
-	1721148274; bh=HdJd8R2v0UjEhqZCfsPDGAEjh3MgAu1qHR6wGuu4iUc=; b=h
-	oW7cth5YO/ae5/c6V4w0yozDre/5a5M2vpdkW4jmES5p+r7bMWgWijNxf6QCEgkY
-	+orQ7LceDdtdadru66WV0LDdiGUFhuMR9cwR1xXsuX+qWEUbiqvcib5Fuuc1cdQB
-	wFtLMZYDjgUFrpD16fAfTeDvShFoJn5y/czLAJl7qglL02WVe7DCyjzVztlH4pGF
-	2SA7oPuno3JGV//uaX0SF/7bJmIMI8PScam2x1TXXqZkZ8IUC6IB1BC/o2uUDHjy
-	kg101OgHbfAm2gyi9YYXQkVDtgwxhwDj2X99XzouZvFD2fTyXPMDC3Bwfx68wG7i
-	MpJWTiBA7vxwW04Hy2DRA==
-X-ME-Sender: <xms:UYeWZgOlzLVK6pPrE3NrPY78YiwTPVCb84BmEKwi9A8K1M6Mq7pLGQ>
-    <xme:UYeWZm8QHUVGMAHXRL0vdH6hlTv32lXQFgfUJ-22spbA51y-f533cjst5JMMx9NDD
-    icg581UmNi3x-mHCVc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrgeeggdejlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
-    jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:UYeWZnQR2OnTiBxDMja5WmiWQIWwkoYDv7cvsWUbfM-dGS7Q4W3jIw>
-    <xmx:UYeWZosSgaQfnvpklvQAR7hZgOKSA_p44n9zCcSK7SOyHIkfcW8few>
-    <xmx:UYeWZoeLBeC2WKu0TGio3_kbWuP1suwlEVoxl62TCsHZz7Tei0V9oA>
-    <xmx:UYeWZs1OEpFYJkwzomTzgENZWRrJy_yFywvoeYb9UKks-NVwhwDuPA>
-    <xmx:UoeWZvm5iwGDrgAAEN8i-IU9wGdWRNFAEeonKyUof9iwl06HMnKOPR0k>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id B26ACB6008D; Tue, 16 Jul 2024 10:44:33 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
+	s=arc-20240116; t=1721141266; c=relaxed/simple;
+	bh=OLYU/zcE0HnlwiLapO7NYHmW4tXIDwLirTbJShxq8YY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jqk0xJm2CRNECCVK4alWIs0MGFvhk9LpWYEfG0Bvl1SmDpO1ATEldrS3pNR+As55scujquYnZuNIXIE73zu+qGHfmR7opsCxTfwPv52IHmIbg3EQ6rTuXda85kEIynVbE6FK3ryoAa9sQilv0L4itzvGenx5+/MEozzigJpRH7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aRJwY2S8; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e05a4d6e443so3148941276.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 07:47:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721141264; x=1721746064; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lIUxRhCihkw5AdQD7a+Ru8B7j3Weiy/apMCIZLKG2WQ=;
+        b=aRJwY2S8wfldWFfJLjRRimTIUWyi9//rJ+i22G5mNPF+12UJ0xJniYkLZoSdIyCqPT
+         e3uefvqwqRuKevIs+u/CsTuGhXuuaWjhCMi9+pkbV4gq9Vao7GdVPGYSlqYNpsDyPO2e
+         RtrVyVuklHKw9cX9RinubRh2rpWEWcYP9pCmjMAdRCRNn7CMrivVmeAfGoWqaKpjYhpV
+         Thbnx6W4TjzejlFlJP8s7jXBE0aItCEY9KR8lC58bXdsNCHauMMeG/Jng7Zo7L0/0ynm
+         /1TofQCvFuGWoz3oDbdazCjkEsXxjkVYjWtehfpIEUrFmFz3sSriCLyfu25RgfigswKq
+         L3mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721141264; x=1721746064;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lIUxRhCihkw5AdQD7a+Ru8B7j3Weiy/apMCIZLKG2WQ=;
+        b=Ylj5oaGx9PQdLT1mlo+BK02t8q8EzeBg/e7Ib4EYLwwsCqk9v7fnSPoiS+CD6dH5fN
+         WxHtBJ3uN4xVRNXiXbSLHAdG6pAXAb9gd+QOanHKyZwBbuE+KzwWeHPT2g5QAJD/KgZx
+         16Ax3YJAOnxJlWCFvwdi4n8qWNZsruoBNyU1O7UOntriMeuCMArsehFUIm2PP53JQyDe
+         nlrLsAmiMkTOtXEqvFy+7MJXr3vbLCgw7Sbc0RJeQvZ85o44bNPiwQqpcE78WOaHcA0K
+         bMiw2Eu9Z09AvR5fucLNqYSVpQXtTM9455ePrRXnW6FZOAseqz299oHsDV+Q8pyed0FA
+         cdGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxZC8L3yUdyFV6VjSPTnS0D7cL7+Uwnxz4NBm3A4qwTFBjTqTKhNsP9bU2jQJozaPR+Es9oXPLIfG2wZAxqznwpbKuFVsn+jVE6Q==
+X-Gm-Message-State: AOJu0Ywr5vleJxRhxx9k4VD1viioDyn1ruwSyG0UtpmQBN6taF3TF9Iv
+	MbuYkBQAaBzY+vYKxDQ47J2BbBcKClQoAYRjnpqF3yk7kUkiT/ZG3MIk/zAaO6gd5RaHKkj7yWK
+	3aiYOFg2ijAUfuojM4w2CXnMQ4MQPmZPRqTJraA==
+X-Google-Smtp-Source: AGHT+IGLhLYhs15OnkuXXb6qctXWi3V58YENiqpNiizLQIzP3Jx59u+RYnM0FpRBItbtF/jNMz0BxWRkIf+zUjhYiBI=
+X-Received: by 2002:a05:6902:1543:b0:dff:47c7:ffb8 with SMTP id
+ 3f1490d57ef6-e05d56670b9mr2737341276.12.1721141264185; Tue, 16 Jul 2024
+ 07:47:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <7289bb54-99f2-4630-a437-21997a9e2b1f@app.fastmail.com>
-In-Reply-To: <20240715141229.506bfff7@bootlin.com>
-References: <20240627091137.370572-1-herve.codina@bootlin.com>
- <20240627091137.370572-7-herve.codina@bootlin.com>
- <20240711152952.GL501857@google.com> <20240711184438.65446cc3@bootlin.com>
- <2024071113-motocross-escalator-e034@gregkh>
- <CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
- <20240712151122.67a17a94@bootlin.com>
- <83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com>
- <20240715141229.506bfff7@bootlin.com>
-Date: Tue, 16 Jul 2024 16:44:12 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Herve Codina" <herve.codina@bootlin.com>
-Cc: "Rob Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Conor Dooley" <conor@kernel.org>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Lee Jones" <lee@kernel.org>,
- "Andy Shevchenko" <andy.shevchenko@gmail.com>,
- "Simon Horman" <horms@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, UNGLinuxDriver@microchip.com,
- "Saravana Kannan" <saravanak@google.com>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Lars Povlsen" <lars.povlsen@microchip.com>,
- "Steen Hegelund" <Steen.Hegelund@microchip.com>,
- "Daniel Machon" <daniel.machon@microchip.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>,
- "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- Netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- "Allan Nielsen" <allan.nielsen@microchip.com>,
- "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
+ <20240708-topic-cpr3h-v15-1-5bc8b8936489@linaro.org> <cd1c3450-1905-4d71-bcdd-5f880d743820@kernel.org>
+ <94b2842b-6093-4c4d-a099-3e0a3198b753@linaro.org> <d35f5c94-7a86-4eea-bb0a-3f2785a25465@kernel.org>
+ <CAPDyKFqhmNqbZ9Xkg0tWHE5LavoNaGMyE3dKmAFtHdS5=x33NA@mail.gmail.com> <d1d7b58c-b605-4adc-b329-f74ea4567982@linaro.org>
+In-Reply-To: <d1d7b58c-b605-4adc-b329-f74ea4567982@linaro.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 16 Jul 2024 16:47:08 +0200
+Message-ID: <CAPDyKFoViw3H8hCwLX0W=d8GM=5rai2xL5tnGGpctyqinkNpNw@mail.gmail.com>
+Subject: Re: [PATCH v15 01/10] MAINTAINERS: Include new Qualcomm CPR drivers
+ in the file list
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Niklas Cassel <nks@flawful.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Varadarajan Narayanan <quic_varada@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jul 15, 2024, at 14:12, Herve Codina wrote:
-> Hi Arnd,
+On Tue, 16 Jul 2024 at 13:58, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> On Fri, 12 Jul 2024 16:14:31 +0200
-> "Arnd Bergmann" <arnd@arndb.de> wrote:
+> On 15.07.2024 1:34 PM, Ulf Hansson wrote:
+> > On Tue, 9 Jul 2024 at 16:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>
+> >> On 09/07/2024 11:49, Konrad Dybcio wrote:
+> >>> On 9.07.2024 11:04 AM, Krzysztof Kozlowski wrote:
+> >>>> On 08/07/2024 14:22, Konrad Dybcio wrote:
+> >>>>> Expand the Qualcomm Core Power Reduction section to include the files
+> >>>>> concerning CPR3+ support.
+> >>>>>
+> >>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >>>>> ---
+> >>>>>  MAINTAINERS | 5 +++--
+> >>>>>  1 file changed, 3 insertions(+), 2 deletions(-)
+> >>>>>
+> >>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+> >>>>> index dcb37b635f2c..f3e013a52c16 100644
+> >>>>> --- a/MAINTAINERS
+> >>>>> +++ b/MAINTAINERS
+> >>>>> @@ -18687,14 +18687,15 @@ F:        Documentation/accel/qaic/
+> >>>>>  F: drivers/accel/qaic/
+> >>>>>  F: include/uapi/drm/qaic_accel.h
+> >>>>>
+> >>>>> -QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVER
+> >>>>> +QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVERS
+> >>>>>  M: Bjorn Andersson <andersson@kernel.org>
+> >>>>>  M: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >>>>>  L: linux-pm@vger.kernel.org
+> >>>>>  L: linux-arm-msm@vger.kernel.org
+> >>>>>  S: Maintained
+> >>>>>  F: Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
+> >>>>> -F: drivers/pmdomain/qcom/cpr.c
+> >>>>> +F: Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
+> >>>>
+> >>>> Maybe combine these two into:
+> >>>> Documentation/devicetree/bindings/power/avs/qcom,cpr*
+> >>>
+> >>> I think avs was proposed to be a subsystem/driver directory at some point
+> >>> and (adaptive voltage source? something like that) and this is the only file
+> >>> in that directory in bindings..
+> >>>
+> >>> Should we continue with this "class" of devices, or should I move qcom,cpr.yaml
+> >>> to soc?
+> >>
+> >> Rather cpr3 should be moved to avs or some other power directory. "soc"
+> >> is fallback, junkyard for things without clear domain.
+> >
+> > In my opinion, I would suggest dropping the
+> > "Documentation/devicetree/bindings/power/avs/" directory. We already
+> > have similar bindings sprinkled across various directories, see below.
+> > One less seems better to me.
+> >
+> > Documentation/devicetree/bindings/arm/*
+> > Documentation/devicetree/bindings/firmware/*
+> > Documentation/devicetree/bindings/power/*
+> > Documentation/devicetree/bindings/soc/*
 >
->> On Fri, Jul 12, 2024, at 15:11, Herve Codina wrote:
->> > On Thu, 11 Jul 2024 14:33:26 -0600 Rob Herring <robh@kernel.org> wr=
-ote: =20
->> >> On Thu, Jul 11, 2024 at 1:08=E2=80=AFPM Greg Kroah-Hartman <gregkh=
-@linuxfoundation.org> wrote: =20
->>=20
->> >> > >
->> >> > > This PCI driver purpose is to instanciate many other drivers u=
-sing a DT
->> >> > > overlay. I think MFD is the right subsystem.   =20
->> >>=20
->> >> It is a Multi-function Device, but it doesn't appear to use any of=
- the
->> >> MFD subsystem. So maybe drivers/soc/? Another dumping ground, but =
-it
->> >> is a driver for an SoC exposed as a PCI device.
->> >>  =20
->> >
->> > In drivers/soc, drivers/soc/microchip/ could be the right place.
->> >
->> > Conor, are you open to have the PCI LAN966x device driver in
->> > drivers/soc/microchip/ ? =20
->>=20
->> That sounds like a much worse fit than drivers/mfd: the code
->> here does not actually run on the lan966x soc, it instead runs
->> on whatever other machine you happen to plug it into as a
->> PCI device.
->
-> Maybe drivers/misc ?
+> So, should it go to bindings/power? Or should we get a new
+> bindings/pmdomain dir?
 
-That's probably a little better, and there is already
-drivers/misc/mchp_pci1xxxx in there, which also has some
-aux devices.
+No strong opinions from my side. Unless Krzysztof has better
+suggestions, using bindings/power/* works for me.
 
-Maybe we need a new place and then move both of these
-and some of the similar devices from drivers/mfd to that, but
-we don't really have to pick one now.
-
-   Arnd
+Kind regards
+Uffe
 
