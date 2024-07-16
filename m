@@ -1,149 +1,216 @@
-Return-Path: <devicetree+bounces-85976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8AF89320CA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 08:57:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B52189320D5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:00:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 087681C21501
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 06:57:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0C14B213E8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A101CD32;
-	Tue, 16 Jul 2024 06:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D731CF8B;
+	Tue, 16 Jul 2024 07:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="FTJ79lCA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2135.outbound.protection.outlook.com [40.107.215.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838231CD11
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 06:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721113045; cv=none; b=QfOEaVszthWCJ3eu89XaWe7S8X4a3dowZIxWdlcARNQ2iEXczvkfjJiAjjDNh1q7vjSgJpVxai3XGskvH9VZozsxdmQoUWnQDJLbMPGNh/pA+QLgVLJpr8oI/mlIocV+56imyDdGdrBtLYWozOBE6TZKggk5d5T8FmOAxiGCYF0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721113045; c=relaxed/simple;
-	bh=8qlscJasTrwwPLY1nNciHNwhUNUtFNdBxH9NWwcXmjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rn7KXkCHOD50z5ye53oRbG2ir+rygntVC/Ve9UzVu9i9DtdOt4GBMlIhXiW/pSrD17LlYEfUJCR+pRg+F81P5Im9aeypJNS0hrP662CcsQeSgDkj8g5APfx6LdcrK9mbLPAW+zDR5RG/2bZ0pKm9Q1ejwF/xXtd6oPVwTXH4Rqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTc74-0004f5-9S; Tue, 16 Jul 2024 08:56:38 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTc71-0004NX-ML; Tue, 16 Jul 2024 08:56:35 +0200
-Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 4C5A2304DE4;
-	Tue, 16 Jul 2024 06:56:35 +0000 (UTC)
-Date: Tue, 16 Jul 2024 08:56:34 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	haibo.chen@nxp.com, imx@lists.linux.dev, han.xu@nxp.com, 
-	Chircu-Mare Bogdan-Petru <Bogdan.Chircu@freescale.com>, Dan Nica <dan.nica@nxp.com>, 
-	Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>, Li Yang <leoyang.li@nxp.com>, 
-	Joakim Zhang <qiangqing.zhang@nxp.com>, Leonard Crestez <cdleonard@gmail.com>
-Subject: Re: [PATCH v2 2/4] can: flexcan: Add S32V234 support to FlexCAN
- driver
-Message-ID: <20240716-magnificent-imported-ammonite-06274a-mkl@pengutronix.de>
-References: <20240715-flexcan-v2-0-2873014c595a@nxp.com>
- <20240715-flexcan-v2-2-2873014c595a@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1EC196;
+	Tue, 16 Jul 2024 07:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.135
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721113224; cv=fail; b=ibFr++Gt/Irna9CC0V5goreCT3Psg60OEfnkHO3dxIq/EnSuVb3Cp61w13e7XUd4hJ1Ru1WdlfEqafXCE/nBhqTfTDpJeYvwiuGziKRfCH0txt33TEy7yfNEyWgBClFeaUSo/CAgXmgpg3JmWYAhdfSa7F4+uq7bYX55dYrRR3E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721113224; c=relaxed/simple;
+	bh=RNUEmOaoXHWw0erqTMa4JO0uXQCw3XbwC/mnCOwPink=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=rzQRT8YIc8pzphn067avVJzBP3CrG/AREqe+uLY2z8HTob/YoOwF3LoRnO4qwrL2Wk63QTXv+eulrR8kgng5dmGjMqfa4wF/plUJJCPcyAvLS4T3QWlpQp/fVzkh2x8Kh77Kctd+LFPOsihjn0oH+rdBXqJfzQmPEv2uLLT3ZLE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=FTJ79lCA; arc=fail smtp.client-ip=40.107.215.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H3hOQLFw5xEx9p4HfZsSi2cXHKjZ23BqKOrdMCnRCYDKSXbs9hsikSy2OKOTFTgS3TclCcorikklzl1ho87TD2KXd77/R6v3wrTP6sP5N1svxyEl3aYN0nTHX/U+KXH4qaJnnuA0YkBmugI3AgZ0HuvXQKDU/bA/k99qWji/IfH/sFEfmtYe+eYPo/aI7FqxP9NMrbYTOFRRQsKAbFQ9CMwi1FqxHV6uYG13I6l50zEb32vr0fHiX0R4Yt5DQIo8hLGyohRuWSrWnKAOOQFeYuh7YQyc/tQPsDIg1ceMqbJjyLn1BSw/gdpAaJiZRP68YJCYfLPmk60nNGu/BlKdIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sqHTJV9kSan5nnod1NtAj4qztebsTWujOfIQ3Iojxw0=;
+ b=S95tmcI/hTuw8vuMpZIaSDWS0UMoKrjWSvH0wK/AEf8/BciGakf/q0xw0vpIhYrXxa/sONKnNz/UZjZDB3pT7vkTNx8w3VOVpXRHLDWSrujnQKK6HhmhIh0AKM8zzl3preHrS29PQekzssou117N/HSeHLwL8cQ6C/IMRixpxTNf7GCP62UtfWtXPIQZuLZ9d1hF+76RXZsuoGD+66Hf1jOXvXjGgpwudXWGPoFSoDcQkI0Iq2ysC0gBrvYRd21x/xt/mkSvVWSKR9/LSBg8zJNrTQT7ovCyGKmuuR6XTH5LQ6QetjN5EG2QMQVA2eGGmt0HeBotv7PXYYtfMC1gKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sqHTJV9kSan5nnod1NtAj4qztebsTWujOfIQ3Iojxw0=;
+ b=FTJ79lCAqd/wN32yRZOhSQDJPF0NVLgtIexgK7aPe1pkzIRM4wMU/oYc8oahXt9sRsFo/tYnXd+rvm1N5DJH3EkDtYCYauKdjXi5svRJnSN8tUrO1cvTLJ0Q3rdXOWGRxHKMnjWO1NLwgSorMMs44lg+s7FCyVUcGJ80k+DRv1MZAKWEBRGNGMS4b0/QoeyEFtkppM7ewncXTff1iOZewXuM6Ky4zw2BkP7UBEKQ8hupEH6bcJ4fUcEsgZVcsIquEbzDFQ0ApS9VbfNamkf0bZKLbs9xFC9rPG9Ev36gAYAfnZ44cU+/AYS8QiL0hUza8EJsj3sql1rIjsIEEfHChA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from JH0PR03MB7468.apcprd03.prod.outlook.com (2603:1096:990:16::12)
+ by SEZPR03MB6443.apcprd03.prod.outlook.com (2603:1096:101:4a::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.24; Tue, 16 Jul
+ 2024 07:00:17 +0000
+Received: from JH0PR03MB7468.apcprd03.prod.outlook.com
+ ([fe80::4128:9446:1a0f:11fd]) by JH0PR03MB7468.apcprd03.prod.outlook.com
+ ([fe80::4128:9446:1a0f:11fd%6]) with mapi id 15.20.7741.033; Tue, 16 Jul 2024
+ 07:00:16 +0000
+Message-ID: <db340e82-aba0-4ec6-8ab9-622073c43226@amlogic.com>
+Date: Tue, 16 Jul 2024 14:59:50 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] Add support for Amlogic HCI UART
+To: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240716064346.3538994-1-yang.li@amlogic.com>
+From: Yang Li <yang.li@amlogic.com>
+In-Reply-To: <20240716064346.3538994-1-yang.li@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR04CA0017.apcprd04.prod.outlook.com
+ (2603:1096:4:197::15) To JH0PR03MB7468.apcprd03.prod.outlook.com
+ (2603:1096:990:16::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7czg2i2w4wkjgew7"
-Content-Disposition: inline
-In-Reply-To: <20240715-flexcan-v2-2-2873014c595a@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: JH0PR03MB7468:EE_|SEZPR03MB6443:EE_
+X-MS-Office365-Filtering-Correlation-Id: af9d264e-3d39-442d-6a09-08dca564f20a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S01yQmkvNTY5RXVpaTF2SzFINlNnc3I4c3NoaVU2YjhKclc4K3V1ZG9Ubis3?=
+ =?utf-8?B?UkNha2M1ck42Y0RMQ2hIOVB0eE1aRzVNZ20xdE1nZ1c5SFZZYjgrRDNOVWZO?=
+ =?utf-8?B?WGxzUDFOUmFLdUp3c2NLMnVlNmVVaVZJWG90NElMMStZenJQbEk0bzEvNHNV?=
+ =?utf-8?B?OGppb1lZR2xoVXV4WVNJUUdGM0NnQzNUVng1RHQzdWFEN2ZvdVM5cGl3TDU4?=
+ =?utf-8?B?SHVkRWhDaWo4d0VIKzdncW10bmNCclJMRjM2WFVZazVhZkp2QTVlQldmVm9S?=
+ =?utf-8?B?YkNBZHRHNEs0VUhTRDQ1cjhNRW54L0VHMnE1Nml4NkhKbm02aGg3bjBOYUo3?=
+ =?utf-8?B?eDBqN2YrdzZSdDBhS2M5cDRma3Y3VkMyRlV3MTZJcHdHT1pHdnVHTGIrcmJm?=
+ =?utf-8?B?Z3BVRkY1bFVzK1E2UzRvQzRBakV1eVR2WWlWMm1oNllWVjFNU0JyaUtCQm8z?=
+ =?utf-8?B?K1ZmQVJtK201REZJVGtsZ3oxajJBamtEajRmY3FOclZNcGxjOG5JMnYvQ0k4?=
+ =?utf-8?B?SWpaMUFnZWhtb2FLZXV6WS9vbGF5SDhidnE2UnpGUGxFVDVQQWc2dUtENDBu?=
+ =?utf-8?B?dktsSlh2STB0NTNrTnRoYmdhTm5MSkVxd1Awd1dHdjhxMjlZYWZWSVUzaWNZ?=
+ =?utf-8?B?ZEdITUU2eU56OFJvRjJLcUNBM1dQMzdLOUk3bkJuNEdyZjdBWHowaXB1L0xD?=
+ =?utf-8?B?N1h6YTBmcFQxMlBuZ2U0Q3VEUjJqQlNQWDJFRys1TndQaGRhcjFMMmIxRFYz?=
+ =?utf-8?B?UGtwdERHOUZVWThWOFFxQWhOOUczNjRmdjgxWVdmc0x1RjFtOU1iMkljVlhs?=
+ =?utf-8?B?eCtRb2FidzZLcjRoL2lkMVo2ZTlZbHJ1QWRwY2xpOCtCZ1RiZThTYlp2QXRG?=
+ =?utf-8?B?bVVHVyt5UzlxM05FSnppZDd4eUlGd2VMc2k3OUtVcjlQclJQazlJUHN1VVky?=
+ =?utf-8?B?R00zUU5zUHVwM1FKUWx5T0xDMmFzcHdYemt0a2tHSnZRbHRUZEpBSWRnajVH?=
+ =?utf-8?B?T1E1VnBNem5FZ1NINmF0WVFVYkNXeWI2T0dTZkllMitVVUhVRDhPSXJ1ODJP?=
+ =?utf-8?B?azZzNmozeThLbzlaVVRWa0U5YjFEZGJpKzlKYTVHeFA0dTUvWUk3VTI2K3Z5?=
+ =?utf-8?B?bnBkaHlWUXhjdFovdE5PTXpjcG5NM2QxSWtXbGU2R2JCR2dnaDRmQ09EMVQw?=
+ =?utf-8?B?aTFURTVETnpqTVVITTN2cTdTZnFWRU1yOW5FbURlNTFtN3dMTk0xcm9pMnNr?=
+ =?utf-8?B?WDg0QWtldm1lQk80bnd4UGpoamlaWnlCQWpCUjgxTE0wWlc0eCs4TW1naTZX?=
+ =?utf-8?B?Y0hCWXhuemtSdk9vem5QU2t2RFhHbWdVL0p3REFCKzd2dkNOZnMyN0hNaWUx?=
+ =?utf-8?B?T3ZVQzFyQVFxOEpGUG1rdjJreWVZSUdOWEpQT0Z1MmVkRmFTZTk3M0E3TCt1?=
+ =?utf-8?B?Y2l4WjcweWxWSDlWVm1FbHVnanlYNlZIUkFNNjNxSFFWQzh6dG8yeWlmbHkw?=
+ =?utf-8?B?VW5BbC85NlhiSW1OZDFaUDhZK0xLckJGQXBQSG1sS2Z3VjRzMnNoUExVZzZ0?=
+ =?utf-8?B?VGNnNmg0MS83bzd3MFdBQ3BMNUNlU25HWjV5LzJ4Y20vOUUxVWNMemFHUWxy?=
+ =?utf-8?B?eDNaUmhXWE1GcE9TOHFjeWlDTEFhNEd2RjUrVFhXTktqeE9XMmpSZTFGMmFP?=
+ =?utf-8?B?SkdKY1lneXVrWkp4OWs2ZzJKZy80NE1IMWhKUWo1WHgya3hlQW1oZGNBL2dS?=
+ =?utf-8?Q?eqrh6UDMui/7PydrsY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JH0PR03MB7468.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RnBXeFhBSk5HY2JHUm1hNEl3bnJyZnFDZUNWT2FHLytMMW9hTzdySDhzb2t5?=
+ =?utf-8?B?UXRUYzBCdmtjalJNSlkzc29nRVk3K3loQ3MwNENwdm1jTFlyc0dBVGZJbUZh?=
+ =?utf-8?B?WVY4S3pHKzNZWXBwaTBhZDM3eC9iQkhsU1ExZkUwT20xNFN1WmoxOFVKODBl?=
+ =?utf-8?B?NUd2L2NSVlBWZ3gvN0pXNUNSSGhXMFpXRnN6dUJKaDRvZXRteWVFcEVlTWND?=
+ =?utf-8?B?WktvSGRYRXhWZDJJN0FOb1FxM21ycTNpOG0vWEwxYzMzcEQyazJwaWM2M25s?=
+ =?utf-8?B?SGhmQUtzazFBWnRNSlFDWGdJdzJaVDFIL1c4RW1KclZwMkhaMmw1SzdFUVlC?=
+ =?utf-8?B?OVJkVWtndld1RFZyUW5IYWQ5elVPSHhXSjY2TzJxRVUrRnI4cnpIUWlyc1ZD?=
+ =?utf-8?B?Vklka2JRTVhNeGExVEJjQ1dyN1dtN1Flcy9HYXltK1hLb2FkaUt4Ri9lRDY2?=
+ =?utf-8?B?NzUyYUoxcnRYOWJzZ2lXbnNlZ3QvQjFIZHJwUVp2N0lUV0xZMUc5ekVkQXNu?=
+ =?utf-8?B?bGZyL3N6QWNpZUxESHpHZlpJb3BWU1lTcldYSUJ4c1Arc1JFNGQxWGhobjNz?=
+ =?utf-8?B?UDUyeGltRWg2TkoyOFpDdEVGRXNvMlZMUnR1OStFUnZFV1lmWUpPR05xV3ZZ?=
+ =?utf-8?B?R0YvVEFXeTE5c2hVWk9vRFVoUUJyTWt0YXk2a2FCYmRpQWh1RjZXWXBEalVK?=
+ =?utf-8?B?U0U2NStHanNoQy9VME9kQStIS0lsV21YL01ZeE1KZ3NHeEhOVjV6ME4xR3JQ?=
+ =?utf-8?B?bHAxREQ3WklOaHRpVGYvd3Z1R2ZMN2tvWXE3TnB5OEJqNjBBblNOY0c4M3RR?=
+ =?utf-8?B?R1d4MHEvMnh4SVYybTkwWVU1elNVM1V2cmxCcW9RTStOVVdZWnFiN3R4ZnNY?=
+ =?utf-8?B?QUtQeVlmUjZ1U3M1eDAwcDBNWDNVQWpxU0V5MVFROUJuOWpXV29Gc3FiQmpH?=
+ =?utf-8?B?elZ2UDlsakxLZjlLVkg4bDE4d2FhSHRva2FqTERIVkRRZDRJajBhOUZSU05r?=
+ =?utf-8?B?RlJCVHozQm81OHo4UTNETDZYZlFiN3ZhYTR3bTNQRytuL2s0SjZWa01RR1lz?=
+ =?utf-8?B?L3NhL3FLNGhrbnRCVURmMjNxVFI3Sm1WeGJmdk5UeUNZelBkV0drem9nZkVw?=
+ =?utf-8?B?MWhTRnVhR3ZMNkVHK2lyQXJHVWFCS004NE00dWdHOHl5YXk3eTJNNTh6MGlV?=
+ =?utf-8?B?c1dKeHpzaWxDS2hMVzR1aWtrOXV2dy9Qc0E3QlpKaEpGQUs0V3hJQkhMbE44?=
+ =?utf-8?B?Wkt2WlR5SWpUdG9HVzNjbUJITFNDd2J2YlM0ZXNTbUFGNmNmRWVzYWpoOEpG?=
+ =?utf-8?B?eTI1bUI5bVJGTHJEaVdUR3h5NnI4RjFxVXppYTVhQTg2NlBVY0NPV1ZiZ1hQ?=
+ =?utf-8?B?bFcycXJsb0pPTlZhZytqSWlIaVFXejkyOXpQNEx1M29DKzM3UjVvdWI0a1hB?=
+ =?utf-8?B?MHNrWkJCUEttWjQ3cXpJQ1ZZWEFrcWZhYkZjd0ExK3IzM215eTVSeHJJbDdQ?=
+ =?utf-8?B?eHBESXBIR1FPYU9LRjkyYlJvWlp0N1k4RDZqMC9ucWNiMGFsZkdJUjV6T2FP?=
+ =?utf-8?B?Q1M3RTYwVW1iUkswRnVSRDFSL2s5NjN0bTYvbEFKR1RQL2VLZmR6MSthM09q?=
+ =?utf-8?B?bzQ1Qm1UU3ZnM3dLbnRPZnNBYTM0NDhYSDBIMnNvSThFcEl6eHRwMFlYY2lW?=
+ =?utf-8?B?a0h3Umg3SjBpK3Uybkp3ck1ZMHh3dVVsV3kyOFBodFU2WC9sYUw0L3RWZTlr?=
+ =?utf-8?B?aUFFZzFEdUlnYzhSOXNBa1pXeDhOc0ZZMldVMVVuZEQzUWQzMytPeFNScFpP?=
+ =?utf-8?B?dmZoSmliMTBFdHIyK1pkTWxMcVFuT2JSZkIvdEZzVmdadGthTjBIUzN4QTRQ?=
+ =?utf-8?B?M2ZsSTNlVGZ3WjUxR0RkNWswM2FaVncveHZYVjM0aTdNM2VNYUFEYlFHaUpF?=
+ =?utf-8?B?Q0x5Tkl5cVU3QUYwcGswc0NlandzU29yZWNNdGxnTGVtOVNreEFuTm1QQzZN?=
+ =?utf-8?B?U1N3bTJreVY3YVF3UVlXQXVDSjBGSUtEV0c4K3ZqUTNmK1RVSjFKZjhpZk82?=
+ =?utf-8?B?anBpSFE2dnB4K3BpblIvN1A0YklIbDFwTmY2cGxTKzVNZWF1WFlTYzQ4ajFy?=
+ =?utf-8?Q?AVObjXR0AcC/YLLAKSroVGHtN?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af9d264e-3d39-442d-6a09-08dca564f20a
+X-MS-Exchange-CrossTenant-AuthSource: JH0PR03MB7468.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2024 07:00:16.1118
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Bi+7qp5HBeNxHrgGtTCS/e9d+liicTqie60noq4HJlQuGOqwmj1cdi3rpHvoIVH8pv3ZTaHJRpANDajwBiwI4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6443
 
+Dear all
 
---7czg2i2w4wkjgew7
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I am very sorry for my mistake, please ignore this email.
 
-On 15.07.2024 17:27:21, Frank Li wrote:
-> From: Chircu-Mare Bogdan-Petru <Bogdan.Chircu@freescale.com>
->=20
-> Add flexcan support for S32V234.
->=20
-> Signed-off-by: Chircu-Mare Bogdan-Petru <Bogdan.Chircu@freescale.com>
-> Signed-off-by: Dan Nica <dan.nica@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> Reviewed-by: Li Yang <leoyang.li@nxp.com>
-> Reviewed-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> Reviewed-by: Leonard Crestez <leonard.crestez@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 2024/7/16 14:43, Yang Li wrote:
+> Add support for Amlogic HCI UART, including dt-binding,
+> and Amlogic Bluetooth driver.
+>
+> To: Marcel Holtmann <marcel@holtmann.org>
+> To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+> To: David S. Miller <davem@davemloft.net>
+> To: Eric Dumazet <edumazet@google.com>
+> To: Jakub Kicinski <kuba@kernel.org>
+> To: Paolo Abeni <pabeni@redhat.com>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Catalin Marinas <catalin.marinas@arm.com>
+> To: Will Deacon <will@kernel.org>
+> Cc: linux-bluetooth@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Yang Li <yang.li@amlogic.com>
+>
 > ---
->  drivers/net/can/flexcan/flexcan-core.c | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index 8ea7f2795551b..f6e609c388d55 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -378,6 +378,10 @@ static const struct flexcan_devtype_data fsl_lx2160a=
-_r1_devtype_data =3D {
->  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
->  };
-> =20
-> +static struct flexcan_devtype_data fsl_s32v234_devtype_data =3D {
-> +	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_DISABLE_MECR,
-> +};
-
-- Does the core support CAN-FD?
-- Does the core generate an error interrupt when going from error warning
-  to error passive?
-- Are you sure, you don't need to enable FLEXCAN_QUIRK_ENABLE_EACEN_RRS?
-- You probably want to use the mailboxes instead of the FIFO for the
-  RX-path.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---7czg2i2w4wkjgew7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaWGaAACgkQKDiiPnot
-vG/7sQgAgoy9kUcei84qu1gP/cmLa39WpufEkj5qo0h9LC6ryRNtHYJJVHdpthTt
-SxG5murRrAfL7yeoaG09mOH8ROFWIdoXrVULxUGYF7sumeLW1AQXnatEdzgUgAEn
-4SkwIr8lsFKMAWoV1JB/UPEBhAMaJ1eHrvVEtzXZMacVKlw/uEj6V7K8vfN2nhdh
-uL8P8ERJln6grTXv5ydB+kpSuGw8/xLMYko5qrk29Kek+Fd9FeybZdu9nYf3Ea68
-96EBM6f6E+/T7c16p7NeYZiwkc0id21xbQDLbOYRsOkehUklskz0WrY9fMPFONRP
-+urFyd+I6wA0roHQBfuSy4ibb+JkdA==
-=sBBU
------END PGP SIGNATURE-----
-
---7czg2i2w4wkjgew7--
+> Changes in v2:
+> - Employ a regulator for powering up the Bluetooth chip, bypassing the need for power sequencing.
+> - Utilize the GPIO Consumer API to manipulate the GPIO pins.
+> - Link to v1: https://lore.kernel.org/r/20240705-btaml-v1-0-7f1538f98cef@amlogic.com
+>
+> --- b4-submit-tracking ---
+> {
+>    "series": {
+>      "revision": 2,
+>      "change-id": "20240418-btaml-f9d7b19724ab",
+>      "prefixes": [],
+>      "history": {
+>        "v1": [
+>          "20240705-btaml-v1-0-7f1538f98cef@amlogic.com"
+>        ]
+>      }
+>    }
+> }
 
