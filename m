@@ -1,216 +1,115 @@
-Return-Path: <devicetree+bounces-86120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52801932729
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:11:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F2A932770
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F0E21C218EF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:11:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48892281FAC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34C319AA7A;
-	Tue, 16 Jul 2024 13:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDBB19AD71;
+	Tue, 16 Jul 2024 13:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j6q/bUmK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y0kHqhkH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB2613D8A0
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 13:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B1D19AD58
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 13:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721135488; cv=none; b=IFXqlu/DxeQnAG6R9oDhh7lqvxiicScHlURAjG2D6eBGmJr2JxsgFnC1s+JjsTH0zHMvAL0QvOD2A37cEipLDBhcea/ukG42CsNuSwBWzixbWkp/eV/pnpW87xgVhIFqx1Hbk76Dut5aMf/1Th/CgsXuUoNSCtzoViikg7kp4rw=
+	t=1721136455; cv=none; b=KuUAjZooxoKgZpWgALVq+q2HORERtBXr5z/4lx5U9txTgKE50NtpQqaRiB8jlFmzaawFl8mxFP3BbjXaHNujDJyA/J5HHFN876LorFqLvVxJSB6+aj7LWSskE/YyIxBRgCVxzjofpOgy7yNtfCMOLDvsjCJ5oJuhzaWuhJ4RqhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721135488; c=relaxed/simple;
-	bh=x2ZQ4Vcapgq8sQrDdMw0IyPyawErurU+IXTU4plTUFo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fk55q5/49r5/z3APaFQFuT4NuxElB4jBCCSKFhZSdafZn52RvhUU/Gr/4mOLloGXLqdUEtw5ukAdyym0CN0wTajluM5xQwrh6/lSmI94QjssU8YZkluuZlSWR08NYeiucEgENHhk/nOte/w6hZq3kJbgQqRMyEZ8adL+JQLQZhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j6q/bUmK; arc=none smtp.client-ip=209.85.208.46
+	s=arc-20240116; t=1721136455; c=relaxed/simple;
+	bh=L4q/f/OtWa5M69YBoQW2fcIKupxqZNLZsMK3IgdJdtQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Q734FtXzhkdn9eFPt22SUPMjQpFYUaKqUbvHkVQvxk4/cq1ML83R3FAlDbLs/z/6KZYWqSG48fS5tRKydi6ZZ5yXEGr16XE1xNnHhTYiNGGhXiozNQiWjt+m1vvZ2UtnEFe6gN0+9jCQqmYB6o3rjW7aSixpV+i3nQjBWGdBvH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y0kHqhkH; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-59f9f59b827so463521a12.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 06:11:26 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-427b4c621b9so11770985e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 06:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721135485; x=1721740285; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cFip2GCiEAk8KKDtgvCT7PzwjlN0kRNg5YiSgCIQq4s=;
-        b=j6q/bUmKUmSx+eRUCBt9dCPEvyfCME3VPbEuMtzTqL960Bo+DXfjpOHN675e96BMrM
-         ICXmP8Y6hpInHxoaUsfyR6u2qacttqIz6qWE8RN63ppBx485tXR2wFSdFEKCKv6jOQiG
-         DvdDSHu7DQ14wtqbKw3FS5kJwmMl/mos1/KZx12XqI2tnkLkuIut/XtE1dwrNuoo5zxR
-         NrrPgs3VMah8uBOsFfY0qR+RvzknV0AccsJUfda0nghPRVMH3MPhAdi40XDUNj6xOdS2
-         gU3XB+bJZ+J3hIN1GIR+LRmV81A0zPl8NVCSwMKg9vdXzHY7tJkOS/kWDlAJX5LqGzGv
-         SQ7Q==
+        d=linaro.org; s=google; t=1721136451; x=1721741251; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8nnUYNlwO0k6ZBjwD5Erccb4E+P924xRgxG4C0KqEnM=;
+        b=Y0kHqhkHJN2Ib3B04DpFvaK+tBDfaTUazQrgEW5O0Q338nbodwMT5MyObQeenFtca9
+         HdvTbXsbxCYzC+yVeTmJmFYBprsBFWEwrrI32wfehQe5iiEHz6KND7Hi7zhsr97koO/N
+         FH1Tx6fbdz/vnYQitxM2gGIOW1hefV9EYjJ5oEBVkElMNsPLeY2P1TKu9qyydzHBP7+y
+         T6cFjV6nJWdh8DnQ2mlHLp/cLvwZ2owyvmj5xOQCag9UcPglrUnXAC7jGGagTM6XvgTD
+         HE71gjWuO5tW9q12FHF8HR5zRM+Iovr8/lOoAn5+GrCIg8+5+noi3EgfVKFUB6Qk8FiV
+         a84g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721135485; x=1721740285;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cFip2GCiEAk8KKDtgvCT7PzwjlN0kRNg5YiSgCIQq4s=;
-        b=JSqBwhtAdp3A/jpSmAjK9rKIb3kPiWHOhSmNoO8OthlJs9u2Gzn+AftrC/40HG+5ke
-         nKXzfaM2dXNgz7GQJjuzgoqzU7urAezOZNa4QtxypkqQD4so70EiWpZpj/PIWPzE7T/g
-         8mJVek5B0NRiKIfkKb/kYvHdcqt1r5aknrS8SkA9S7ukriHKhofKX87iFPDCX88t2ekL
-         qXyVvzFc5i7siJdiqo8r8qSKvlN5gaQL/lXL4UVbMM8Legrrj+3rff/5j813IZ81ku/O
-         hUPDIJ8YrapYXxwNi1uE6KAs9Hpe36WAXIsW4HlzYJ6yG6qo/8RuHUvENJjiZcBUFzZG
-         +p4g==
-X-Forwarded-Encrypted: i=1; AJvYcCWN/41exFzGzHeVVDa0H3FWz7TIFroBS+7UbPRrGKKBsbt9+ObaUazDYakEbqMw54L7/wMmBNIBPFp6Tn5Qd4AlqCRCG8itE+pjkg==
-X-Gm-Message-State: AOJu0YyA97VSXB69U6MrbqSaEPSAGGFGIfZJbFz19CSqb/FC5yDpxrYp
-	4X7VKlbDzMXWetcEqirI2+/2h180r4S0fIHB4L5iwvRToYc6V3ng6MlHAnAEPEY=
-X-Google-Smtp-Source: AGHT+IEzWOn6sHS3rp91cUs15jhwAoHUOK22fhmPlPX9enTsj5u+gucMbmfUhnROjS2gaXnYWebsxw==
-X-Received: by 2002:a50:f68e:0:b0:57c:5874:4f74 with SMTP id 4fb4d7f45d1cf-59ef03bb7edmr1264244a12.28.1721135485161;
-        Tue, 16 Jul 2024 06:11:25 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b25528cd4sm4890330a12.57.2024.07.16.06.11.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jul 2024 06:11:24 -0700 (PDT)
-Message-ID: <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
-Date: Tue, 16 Jul 2024 15:11:21 +0200
+        d=1e100.net; s=20230601; t=1721136451; x=1721741251;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8nnUYNlwO0k6ZBjwD5Erccb4E+P924xRgxG4C0KqEnM=;
+        b=Zboh8jhlaii/pVrLBCoZ2kXBe5fIFML5yW8R2hso0TPv7KgyETyxmaTmuVjr4MSyjK
+         6oke4wY19cdvnw7Wrkb33mYxFKDJ4nA5ThzjkQ769UFTSmdTk1ZiygOnZ9msUeDJejvU
+         ZAB+tjAJ8rFlrVf5TExusT/c9oXC4XIc5eZR1f70bMgImFffHkcMm6Ys0UX9XVK776KB
+         y+QZlfJZ8Dp1Wt9PnmqgfUuDT1YzIJUx7aC0Hdi6c0DtwE++qkNgyTxnBpaZABPGcl1u
+         L/5MKUCT02HNOQfTHRzJ3dwjDs2FVvzi2hWiVYEjGsy37x5dnGqdNHNuJX9HgmM+BBcp
+         gPaA==
+X-Gm-Message-State: AOJu0Yz09Qe2E2ewXtcZahntkf/m1ZnALIY3CoVlO/h+y0hCEWSq4RLD
+	Zx/HJT2/AhiEmBlheM5EN0noWxTxJKzmP5CvMrpVLdyvMy5gwNUu9glVb/v8STWBi/Xf+T9Plj3
+	b
+X-Google-Smtp-Source: AGHT+IGhqCHFIX7TkLPtIRTTvgB7kbFHYhFo3zMfT1v/DCloAtgq+4vAX8iGpdJXs9kK8D9hqV8L0Q==
+X-Received: by 2002:a05:600c:5127:b0:426:6099:6eaa with SMTP id 5b1f17b1804b1-427ba6dbd32mr13126415e9.26.1721136451525;
+        Tue, 16 Jul 2024 06:27:31 -0700 (PDT)
+Received: from rayyan-pc.broadband ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279f2cc2efsm163985725e9.36.2024.07.16.06.27.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 06:27:31 -0700 (PDT)
+From: Rayyan Ansari <rayyan.ansari@linaro.org>
+To: devicetree@vger.kernel.org
+Cc: Rayyan Ansari <rayyan.ansari@linaro.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio: magnetometer: bmc150: Document mount-matrix
+Date: Tue, 16 Jul 2024 14:25:09 +0100
+Message-ID: <20240716132512.80337-1-rayyan.ansari@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
-To: Marc Gonzalez <mgonzalez@freebox.fr>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>
-References: <20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr>
- <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27.06.2024 5:54 PM, Marc Gonzalez wrote:
-> From: Arnaud Vrac <avrac@freebox.fr>
-> 
-> Port device nodes from vendor code.
-> 
-> Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->  arch/arm64/boot/dts/qcom/msm8998.dtsi | 100 +++++++++++++++++++++++++++++++++-
->  1 file changed, 99 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index ba5e873f0f35f..417c12534823f 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -2785,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
->  				 <&mdss_dsi0_phy 0>,
->  				 <&mdss_dsi1_phy 1>,
->  				 <&mdss_dsi1_phy 0>,
-> -				 <0>,
-> +				 <&hdmi_phy 0>,
->  				 <0>,
->  				 <0>,
->  				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
-> @@ -2890,6 +2890,14 @@ dpu_intf2_out: endpoint {
->  							remote-endpoint = <&mdss_dsi1_in>;
->  						};
->  					};
-> +
-> +					port@2 {
-> +						reg = <2>;
-> +
-> +						dpu_intf3_out: endpoint {
-> +							remote-endpoint = <&hdmi_in>;
-> +						};
-> +					};
->  				};
->  			};
->  
-> @@ -3045,6 +3053,96 @@ mdss_dsi1_phy: phy@c996400 {
->  
->  				status = "disabled";
->  			};
-> +
-> +			hdmi: hdmi-tx@c9a0000 {
+Document the mount-matrix property, which is used in device trees such
+as msm8916-samsung-fortuna-common.dtsi, and supported by the driver.
 
-Please prefix the labels (hdmi: and hdmi_phy:) with mdss_
+Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
+---
+ .../bindings/iio/magnetometer/bosch,bmc150_magn.yaml           | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Otherwise, this looks good
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-
-One thing I noticed (testing on the 8998 MTP), enabling MDSS (not necessarily
-HDMI, mdss and mdp is enough) results in SMMU lockups about 30% of the time..
-
-[    4.911422] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
-[    4.913412] platform c901000.display-controller: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-tx@c9a0000
-[    4.923353] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
-[    4.927893] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
-[    4.930647] platform c9a0000.hdmi-tx: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/display-controller@c901000
-[    4.941928] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
-[    4.944438] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
-[    4.952338] msm_hdmi_phy c9a0600.hdmi-phy: supply vddio not found, using dummy regulator
-[    4.956013] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
-[    4.961055] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
-[    4.967917] msm_hdmi_phy c9a0600.hdmi-phy: supply vcca not found, using dummy regulator
-[    4.974565] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
-[    4.977628] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
-[    4.984122] Bluetooth: hci0: setting up wcn399x
-[    4.989670] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
-
-
-Konrad
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml b/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
+index 2867ab6bf9b0..a3838ab0c524 100644
+--- a/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
++++ b/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
+@@ -36,6 +36,9 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  mount-matrix:
++    description: an optional 3x3 mounting rotation matrix.
++
+ additionalProperties: false
+ 
+ required:
+-- 
+2.45.2
 
 
