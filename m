@@ -1,272 +1,156 @@
-Return-Path: <devicetree+bounces-86014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEFE19322AB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 11:24:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74009322BE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 11:25:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC19D282452
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:24:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31299B2225A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C1B195B33;
-	Tue, 16 Jul 2024 09:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863D8198E96;
+	Tue, 16 Jul 2024 09:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSP+DQRb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="sH4IwQLV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276E519580A;
-	Tue, 16 Jul 2024 09:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99ED196450;
+	Tue, 16 Jul 2024 09:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721121871; cv=none; b=aIDQmpPQaUxk053EjgZLzaxBifupdcp9m/yniA/puxARhhulfPuGsq+bfY7/yjS0U4WT5oSXzM5zr/EPEMaMNTbfKhCerLleshhuw7futa314ZKJJAmfY736wCOcYyl/oXrUgQQzZOSleSbHvAoNyiDHt+O68C5nTqlTlg5st7U=
+	t=1721121889; cv=none; b=DB+X1rw0lbt+V7U3tBGTqPZlftBjnUp/a+SKlw6poh7mLvlkBONdD5ocF8XBeONuFNvvT6TFXqTNA/zO09crjOVOucOUy4DuA1HQkMy4v57WzrvTNdik9Iv0t8cEWcbA6Vr5UzLMn7r7WqZnB0Be15HnNBYxl8oAzGSDP3B4iHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721121871; c=relaxed/simple;
-	bh=fXZ0Kgqf1pwfNcwvyCamvWWslne7zOiuIhH2bvEJfZ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=erHszj0ZAakGc46KGQN+le0tRYnlj66SUZEkQ+23vGZw7QiV5TNbIbSwxv2eywH8rFCU6o5n52ltRfPRfp2ndv6cLX+tUHXebjeXof9qEj2B9tgNsW0w/El2gOAHDbpPKpHTiCA0iNCuWs2tzEi/IB5yHh0Y7fA4vRKr95/OzLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSP+DQRb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45393C116B1;
-	Tue, 16 Jul 2024 09:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721121870;
-	bh=fXZ0Kgqf1pwfNcwvyCamvWWslne7zOiuIhH2bvEJfZ0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PSP+DQRbMdJdJSRGZsUjjJONS5RZahZ7I99w2s1CiKSDDPI6uxIUvFjtxHud5KnER
-	 3DU2ELT24Wk+XhY/Gp44gr/+RgahP1FkPFo1AnK6snkuW8ruLLnY3nZIf3N43y+bde
-	 TpQfBnqqLsYwu5Zznh2kBblZCKRIE8tPRoFd4FihwBLrsAC3/6SYAQ749G6/pwTRxU
-	 Gh32YqJ7xTbeA13DiPc1CwV1BTXozw6J7WOc6Wh6fq6qR2mA2uDcUggAZWoigNDx9Q
-	 DQ3Zne5kIltdtQUeFDf0ejBnNDUjPHVw8qrfmlE6OkHTg2zWhUUojMjRMFw0iWUTsR
-	 pwIbcUkd5uSgA==
-Date: Tue, 16 Jul 2024 11:24:28 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-Message-ID: <20240716-exuberant-diligent-beagle-c43ffc@houat>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240701-bug-of-great-honeydew-cfb6ef@houat>
- <e7bbbe4e-7deb-46c3-9cce-1922f9b6b3a2@freebox.fr>
- <20240708-ethereal-romantic-piculet-d4ae66@houat>
- <pp3rc5zob3xeghlatw4vnpzplc4yjpjadkea465zmhft55dyl5@3cpoc2zovftv>
- <20240715-shiny-enigmatic-firefly-2a6dec@houat>
- <CAA8EJpoJ0132ZYGCO=8xQt8J4Z9w5jDON1H-VRCemFdyV-9nUw@mail.gmail.com>
+	s=arc-20240116; t=1721121889; c=relaxed/simple;
+	bh=lU7qlL1uamfPHcDf1WFGzX289bQX/TvkrTQF2JrqPsI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BVXUayx/S0dO6/QsUrLTeTlFFaYP8cVfI34AQN1RLFgkYk9aQKDZL+v5bnLoVqfgDy4Weqwls2jMS4GLRhfVFA0OnWjp/pLTf4rEtGxVBk6+LalTxZ2mFpPj8b2SOyK6VQz04ZmSJPmTy4SAK58u0Zb4517gRkvkzekcwNoj1zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=sH4IwQLV; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721121885;
+	bh=lU7qlL1uamfPHcDf1WFGzX289bQX/TvkrTQF2JrqPsI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sH4IwQLVeBbX1amWG+qExoVEP7aknwjCFa/EcaMT8nRzmosJQvV/qf2GQnqK2zeMb
+	 usxrsErHV6CzphYQJNPnkvyma8+NFgjkoLIVJwzFEs903ebzYcm0uySVNrPLx4MBUs
+	 cWGb53yMrW6pZp+THuXGzxhFyMD4QdKGlmSYyXcPaG7JD5vMbModCXlN39YvRgHBb6
+	 6RfHjYbBhlo/NUYuNSfJ2CNgdvceXq5+iHm2ARNWlkMm0x5QPeq8JfV4VtdfvlPfbU
+	 XnTVqhX95hF/DPq10m6bVzs39bpyDKIdXq4zKt9g5Pgd9uPq73vHrnXWecl+KCXz66
+	 lBvvElPtUvRdg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3C6A83780C13;
+	Tue, 16 Jul 2024 09:24:45 +0000 (UTC)
+Message-ID: <3dd2dcc9-5fbb-4384-985f-a61e26cc8a5f@collabora.com>
+Date: Tue, 16 Jul 2024 11:24:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="i7lq7kbgwmmu4grx"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpoJ0132ZYGCO=8xQt8J4Z9w5jDON1H-VRCemFdyV-9nUw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC] arm64: dts: mediatek: mt8195-cherry: Remove
+ keyboard-backlight node
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <linux@weissschuh.net>, Tzung-Bi Shih <tzungbi@kernel.org>,
+ kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240715-cros-backlight-dt-probe-v1-1-0b5afe64c94b@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240715-cros-backlight-dt-probe-v1-1-0b5afe64c94b@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Il 15/07/24 18:09, Nícolas F. R. A. Prado ha scritto:
+> Commit 970c3a6b7aa3 ("mfd: cros_ec: Register keyboard backlight
+> subdevice") introduced support for detecting keyboard backlight
+> fuctionality through communication with the ChromeOS EC. This means that
+> the DT node is no longer used. Remove the unneeded node.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+> Different CrosEC FW versions could potentially not support discovering
+> the keyboard backlight functionality, but I've tested both a recent
+> 
+>    tomato_v2.0.23149-099cd3e539 tomato_15699.72.0 2024-01-03
+> 
+> and an old
+> 
+>    tomato_v2.0.10686-234e646fd8 tomato_14268.0.0 2021-10-07
+> 
+> version on mt8195-cherry-tomato and on both relying only on the
+> discoverability works. I've tested on both tomato-r2 and tomato-r3. I
+> have not tested on dojo, however, as I don't have access to it.
+> 
 
---i7lq7kbgwmmu4grx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Dojo will work anyway because those machines do share the same base FW... but
+anyway, I'm not sure that this is the right thing to do.
 
-Hi,
+The commit that you mentioned says that it is meant to make that "work on machines
+without specific ACPI or OF support for the keyboard backlight", but not that the
+intention is to stop using either ACPI nor DT nodes for that.
 
-On Mon, Jul 15, 2024 at 07:38:34PM GMT, Dmitry Baryshkov wrote:
-> On Mon, 15 Jul 2024 at 17:42, Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > On Mon, Jul 08, 2024 at 11:29:46PM GMT, Dmitry Baryshkov wrote:
-> > > On Mon, Jul 08, 2024 at 04:59:23PM GMT, Maxime Ripard wrote:
-> > > > On Mon, Jul 01, 2024 at 05:36:18PM GMT, Marc Gonzalez wrote:
-> > > > > On 01/07/2024 15:50, Maxime Ripard wrote:
-> > > > >
-> > > > > > On Thu, Jun 27, 2024 at 01:13:03PM GMT, Marc Gonzalez wrote:
-> > > > > >
-> > > > > >> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redr=
-iver.
-> > > > > >> It supports DVI 1.0, HDMI 1.4b and 2.0b.
-> > > > > >> It supports 4 TMDS channels, HPD, and a DDC interface.
-> > > > > >> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-> > > > > >> for power reduction. Several methods of power management are
-> > > > > >> implemented to reduce overall power consumption.
-> > > > > >> It supports fixed receiver EQ gain using I2C or pin strap to
-> > > > > >> compensate for different lengths input cable or board traces.
-> > > > > >>
-> > > > > >> Features
-> > > > > >>
-> > > > > >> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
-> > > > > >> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-> > > > > >> data rate, compatible with HDMI 2.0b electrical parameters
-> > > > > >> - DisplayPort dual-mode standard version 1.1
-> > > > > >> - Programmable fixed receiver equalizer up to 15.5dB
-> > > > > >> - Global or independent high speed lane control, pre-emphasis
-> > > > > >> and transmit swing, and slew rate control
-> > > > > >> - I2C or pin strap programmable
-> > > > > >> - Configurable as a DisplayPort redriver through I2C
-> > > > > >> - Full lane swap on main lanes
-> > > > > >> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
-> > > > > >>
-> > > > > >> https://www.ti.com/lit/ds/symlink/tdp158.pdf
-> > > > > >>
-> > > > > >> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> > > > > >> ---
-> > > > > >>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 +++++=
-+++++++++++++++++
-> > > > > >>  1 file changed, 51 insertions(+)
-> > > > > >>
-> > > > > >> diff --git a/Documentation/devicetree/bindings/display/bridge/=
-ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158=
-=2Eyaml
-> > > > > >> new file mode 100644
-> > > > > >> index 0000000000000..21c8585c3bb2d
-> > > > > >> --- /dev/null
-> > > > > >> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp1=
-58.yaml
-> > > > > >> @@ -0,0 +1,51 @@
-> > > > > >> +# SPDX-License-Identifier: GPL-2.0-only
-> > > > > >> +%YAML 1.2
-> > > > > >> +---
-> > > > > >> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.y=
-aml#
-> > > > > >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > >> +
-> > > > > >> +title: TI TDP158 HDMI to TMDS Redriver
-> > > > > >> +
-> > > > > >> +maintainers:
-> > > > > >> +  - Arnaud Vrac <avrac@freebox.fr>
-> > > > > >> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
-> > > > > >> +
-> > > > > >> +properties:
-> > > > > >> +  compatible:
-> > > > > >> +    const: ti,tdp158
-> > > > > >> +
-> > > > > >> +  reg:
-> > > > > >> +    description: I2C address of the device
-> > > > > >> +
-> > > > > >> +  enable-gpios:
-> > > > > >> +    description: GPIO controlling bridge enable
-> > > > > >> +
-> > > > > >> +  vcc-supply:
-> > > > > >> +    description: Power supply 3.3V
-> > > > > >> +
-> > > > > >> +  vdd-supply:
-> > > > > >> +    description: Power supply 1.1V
-> > > > > >> +
-> > > > > >> +  ports:
-> > > > > >> +    $ref: /schemas/graph.yaml#/properties/ports
-> > > > > >> +
-> > > > > >> +    properties:
-> > > > > >> +      port@0:
-> > > > > >> +        $ref: /schemas/graph.yaml#/properties/port
-> > > > > >> +        description: Bridge input
-> > > > > >> +
-> > > > > >> +      port@1:
-> > > > > >> +        $ref: /schemas/graph.yaml#/properties/port
-> > > > > >> +        description: Bridge output
-> > > > > >> +
-> > > > > >> +    required:
-> > > > > >> +      - port@0
-> > > > > >> +      - port@1
-> > > > > >
-> > > > > > The device supports DVI, HDMI or DP input, with various require=
-ments and
-> > > > > > capabilities depending on the input. Your binding doesn't addre=
-ss that.
-> > > > > >
-> > > > > > Similarly, it can do lane-swapping, so we should probably have a
-> > > > > > property to describe what mapping we want to use.
-> > > > > >
-> > > > > > The i2c register access (and the whole behaviour of the device)=
- is
-> > > > > > constrained on the I2C_EN pin status, and you can't read it fro=
-m the
-> > > > > > device, so it's also something we need to have in the DT.
-> > > > >
-> > > > > We are using the device in its default configuration.
-> > > > > (Power on via OE, then it works as expected)
-> > > >
-> > > > I know, but that doesn't really matter for a binding.
-> > > >
-> > > > > Can we leave any additional properties to be defined by whomever =
-needs
-> > > > > them in the future?
-> > > >
-> > > > If you can guarantee that doing so would be backward compatible, su=
-re.
-> > > > But that means being able to answer those questions with a reasonab=
-le
-> > > > plan.
-> > >
-> > > I think proposed bindings are generic enough to cover other possible
-> > > usecases in future.
-> >
-> > I don't think it is. The current binding is for a I2C device that
-> > shouldn't be accessed through I2C.
-> >
-> > It's working for now because the driver doesn't do any access, so it's
-> > all great, but as soon as we add support for the other case, then we'll
-> > have to add a property that states that while it's an i2c device, it
-> > shouldn't be accessed.
-> >
-> > And adding such a property is a compatibility-breaking change.
->=20
-> Please correct me if I'm wrong. We have following usecases.
->=20
-> 1. I2C_EN pulled low. TI158 is in the pin strap mode, it is not
-> connected to the I2C bus. A0, A1, SDA and SCL pins are used for
-> strapping the settings.
->     board DT file should describe the bridge as a platform device
-> sitting directly under the root node.
+The DT kselftest is relatively young, and I suspect that anyway this is not the
+only affected device, so the justification is only barely valid.
 
-DT maintainers have required that reg is always present in the other
-sub-thread.
+Don't misunderstand me, I'm not saying that I'm not okay with this, but I'd like to
+have more opinions about this.
 
-> 2. I2C_EN pulled high. TI158 is in the I2C mode. It is connected to
-> the I2C bus, A0/A1 pins set the I2C bus address. The device is
-> controlled over the I2C bus
->=20
-> 2.a. The same as 2, but the device is not controlled at all, default
-> settings are fine.
->=20
-> The driver covers usecase 2.a. The bindings allow extending the driver
-> to the usecase 2 (e.g. via optional properties which specify
-> bord-specific settings)
->=20
-> The usecase 1 is a completely separate topic, it requires a different
-> schema file, specifying no i2c address, only voltages supplies and
-> enable-gpios.
+If we choose to go this way, ideally we should remove this from all of the upstream
+Chromebook devicetrees (not only MediaTek, clearly!) so that would require a bit
+more effort to test here and there.
 
-I could have mis-unnderstood, but my understanding was that they were
-running it with I2C_EN tied low.
+Any opinion from anyone?
 
-Of course, that's one of the thing that is completely missing from the
-commit log, so who knows.
+Cheers,
+Angelo
 
-Maxime
-
---i7lq7kbgwmmu4grx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZpY8SwAKCRAnX84Zoj2+
-drtIAX4oy5ccxGuFNdq4snZYFczlTpLNPQWUUIqFlLKR7nzMr8Y5It/g4VYglaX+
-tqBgbqoBfidQiZpmj4Y/CqLHJhBeMyLcBqRhqQcbEvKAyr3KACTK4SGYe9/sR37+
-O4ydWST1wQ==
-=Lonf
------END PGP SIGNATURE-----
-
---i7lq7kbgwmmu4grx--
+> My motivation to remove the node is because the DT kselftest expects DT
+> nodes that can match to a driver to be probed, and with the "breaking"
+> commit, the DT node goes unprobed which results in a failure:
+> 
+>    not ok 225 /soc/spi@1100a000/ec@0/keyboard-backlight
+> 
+> I can also solve this in a different way, by adding this driver to the
+> ignore list of the test. But this solution seemed better as the DT
+> isn't meant to describe devices that can be discovered at run time
+> anyway.
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 4 ----
+>   1 file changed, 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> index fe5400e17b0f..20dfa18c9dda 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -1228,10 +1228,6 @@ cros_ec: ec@0 {
+>   		spi-max-frequency = <3000000>;
+>   		wakeup-source;
+>   
+> -		keyboard-backlight {
+> -			compatible = "google,cros-kbd-led-backlight";
+> -		};
+> -
+>   		i2c_tunnel: i2c-tunnel {
+>   			compatible = "google,cros-ec-i2c-tunnel";
+>   			google,remote-bus = <0>;
+> 
+> ---
+> base-commit: 91e3b24eb7d297d9d99030800ed96944b8652eaf
+> change-id: 20240715-cros-backlight-dt-probe-7754a832ad60
+> 
+> Best regards,
 
