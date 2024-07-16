@@ -1,149 +1,158 @@
-Return-Path: <devicetree+bounces-85940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8544931DF0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 02:05:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9671E931E15
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 02:45:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A1CAB21337
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 00:05:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5598A282CE4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 00:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02117191;
-	Tue, 16 Jul 2024 00:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200901860;
+	Tue, 16 Jul 2024 00:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fIdAhbT+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mc53gINu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE08182;
-	Tue, 16 Jul 2024 00:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A432191;
+	Tue, 16 Jul 2024 00:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721088343; cv=none; b=qvh9Y9kubKequqFRjfIwIyvPK1RAfvh6a9Pfryw6OUVGWlGxndl32IaM43GH1ATf//nflbTdLci+736bpdhD3QCSKnNGBjDWr+PZnZ1tImtp+QTSM1Llk+V1l/NR3rCpxpubKJXK/01T4WAuSXe7xp1aDXIlVIyZ0b1NfoA+7Jg=
+	t=1721090738; cv=none; b=GOlbmSDR/lkDP4GZPgj5EZ5u4f8MYit1+jyUprb974FIWQeqF71wrkD//d3Fn9mtYB5FGKi9X7eQkXeBNDnHVe3lvacaDLQL5/YBIuDPbDJ5o3KiYLoUS5IkL8fksfX29Ui3GGhSGJ8PbwiHZloY4Sy8i2ggEKTFklu94RmDJX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721088343; c=relaxed/simple;
-	bh=C4aKHdI+pMXhQa1VV2fGMqBHzjAK+98g4idgc3puck0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a+gJ61C2R1/+Ay10mSYIGnWkuYjP0EcRC3+PcCR7+kFKOpYwyXrtlaKVTl33mQIOAHaQ91uF2oxhqYLaWdXHTACuqd6NgeB6vrJzSPu3dibGSKVQfXTbm0t2qJmMJtCZg2pSsH5PreJFfoksToOIZnWoHjtVTcdFYrB4Chz/z1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fIdAhbT+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46FH8nhE022489;
-	Tue, 16 Jul 2024 00:04:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	s3COLPyUyljWm+zU/iZd1HAfm7/jelNuscT18zuMsDc=; b=fIdAhbT+/+21xzOW
-	xINy3j+33nK4EIF/CkoBKfScxuulSUDJ+DBvD/FJX/DpVlG1zsGPj7B7qYIdZlAH
-	hCYbzVrBE3dcjs10e79RfnyRoCdrpNFlrCej1rmUCID/MN3Cpt9MlNiAVUnaFQN+
-	4mhbm5nSgCGK38Mcz/gqEQdJ2ITKJeSpMlz+DimL2VbFmu6VyB0kGLUDXepdiS+z
-	mySJqEY+c+oPXAVA5Xih+I/jb5zaWaVeNuRkXyIu9lMLlea8MLa1B3gweGzNN1Ot
-	TQ358tuNtW5q3Q7LvrQ9BNGAK+5aS1tIbsU/pqvp4/R2aAkQHYYVcQMugIUugFeR
-	Sr3/Lw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40bjv8nj30-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jul 2024 00:04:13 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46G04CnA000664
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jul 2024 00:04:12 GMT
-Received: from [10.110.79.225] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 15 Jul
- 2024 17:04:11 -0700
-Message-ID: <32bd8297-761a-4132-b168-800709e0d703@quicinc.com>
-Date: Mon, 15 Jul 2024 17:04:10 -0700
+	s=arc-20240116; t=1721090738; c=relaxed/simple;
+	bh=xmVWODUyxNQoM7cdwnSoUDFS3lg0SBkGXihzRMl/Yeg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=P/stl5KplMmi6dXZXyGmqkV3haai2ekDzhZklIBlPGGPsNUJhKlQ+7yG6LS2LIn1u8RhdC6zD1XqqEriInZhd/zGzrRnvQDYz/Jh2u3XXWr6IjDAY3YjgU+kQo3tDHmuy9bsLI6H7cQBppZRnw2BRASb9X1l5rBGkSJlWc99lXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mc53gINu; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-25e150603a6so2451884fac.3;
+        Mon, 15 Jul 2024 17:45:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721090735; x=1721695535; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LnXr0eXuAv0hZrIz9mCHMK0FQq9j8VZolcsUM4NL5QA=;
+        b=mc53gINuCn000kv6jnW3Ymzvu5Gb7p70ypVEVUlPBB3rWl/prXi8BAWNRdzGLy/Rap
+         EEbIJZQvy3ogfpWXc2J+w9qMeDQbwicbKxePXmdRHHrONQG1i3fpmg3tgUTflhjVs7Jt
+         GtaqvQJ5q1q8m+wzjNu3eAxK0CRk3GNDYK7gVaH29ZqxqrzXA0ZrM7MVgPIlHOUwvujZ
+         zzSvEzYLKH23B6TUFOVVEpj1cz12Cgf3rgnAoSg/mfYe7BEexT67474l4UWxzKrZGv6Z
+         GGA3FDjBMuxfvYaGDGCzk8JyVLjJPR0WJHe9LU3lkPbUQ37OKU5SSGQA/htIig0ecw9K
+         HpTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721090735; x=1721695535;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LnXr0eXuAv0hZrIz9mCHMK0FQq9j8VZolcsUM4NL5QA=;
+        b=mOTMm1Lp/LE+VvgM9vWPEhEX2iiczCYML2iTESg3/i4r4W+jRcGx88Cwj2XxbCGflG
+         YJVsvdm0ioLaKrUHGwBJEnbKkcEsc0/TuEsRqKM2VQ6ru7rzRIXylEAe8VpYDuK7ofT1
+         GEKLl5I6MnVu87oxr6AHec/fAxtfIZs3yEhub4SlSyUqdo/+/1FDF9//kQLc4cV8wfar
+         oDDu14L8N7OG5qQvxNwEOm6l+tb27qTZYA9CDGWF5y8tnGWJo6qYlhU45dGQDkEhs+BG
+         0GdqKWlWnSEMGXvMS0mYUnnWY5j/RHcb1ORa9+t0Pp4ESWuLvS46aLbNWPayfmycJ380
+         fXvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVESk459zjwW8zpEZq3jgJu0Ykx8dPbOlt1TGKNqCGNI5mVH9U5vIKtIu3HNIPv5r7euQFQ2lZ5xAGNJPfr3DN4tu9L1/N3YlZK9oxPQ3zAIGSOqBOMhs3M2AhWdBV09/cDgmwq9rVGuwJZod1Y1mw5Y90cSmVsUxa5DWkqK9IxRzgCXQ==
+X-Gm-Message-State: AOJu0YzneNkT4+iZYLaQmV63L5usbZkZysIkFE/m9UAwq9pSDvTjQXUq
+	XrAxM6U6xJuzcu128qThnLWhERXoDZJEHofC8CUsK8kiNgGn05CVJjILA1DxFQM=
+X-Google-Smtp-Source: AGHT+IHhID7gzwliNwSDimSOwWCZnoturptY/gWrbZpRJF5QjxmXeZcq2t1YrqRjdEUztNfviDcFRA==
+X-Received: by 2002:a05:6870:64ab:b0:25d:f1f6:8a2c with SMTP id 586e51a60fabf-260bdfbed6bmr400179fac.39.1721090735456;
+        Mon, 15 Jul 2024 17:45:35 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7eca758fsm5000949b3a.162.2024.07.15.17.45.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jul 2024 17:45:34 -0700 (PDT)
+From: Shan-Chun Hung <shanchun1218@gmail.com>
+To: ulf.hansson@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	adrian.hunter@intel.com,
+	p.zabel@pengutronix.de,
+	pbrobinson@gmail.com,
+	serghox@gmail.com,
+	mcgrof@kernel.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	forbidden405@outlook.com,
+	tmaimon77@gmail.com,
+	andy.shevchenko@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	Shan-Chun Hung <shanchun1218@gmail.com>
+Subject: [PATCH v5 0/2] Add support for Nuvoton MA35D1 SDHCI
+Date: Tue, 16 Jul 2024 08:45:25 +0800
+Message-Id: <20240716004527.20378-1-shanchun1218@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/7] PCI: dwc: Add pcie-designware-msi driver related
- Kconfig option
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <will@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-        <manivannan.sadhasivam@linaro.org>, <cassel@kernel.org>,
-        <yoshihiro.shimoda.uh@renesas.com>, <s-vadapalli@ti.com>,
-        <u.kleine-koenig@pengutronix.de>, <dlemoal@kernel.org>,
-        <amishin@t-argos.ru>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <Frank.Li@nxp.com>,
-        <ilpo.jarvinen@linux.intel.com>, <vidyas@nvidia.com>,
-        <marek.vasut+renesas@gmail.com>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
-        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
-        <quic_nitegupt@quicinc.com>
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-4-git-send-email-quic_mrana@quicinc.com>
- <c6e0a6db-588b-4838-a134-5ce51b1cebea@lunn.ch>
-Content-Language: en-US
-From: Mayank Rana <quic_mrana@quicinc.com>
-In-Reply-To: <c6e0a6db-588b-4838-a134-5ce51b1cebea@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: rSKTVtABDCg_TXZcrjpZqy72xLeFk4FS
-X-Proofpoint-GUID: rSKTVtABDCg_TXZcrjpZqy72xLeFk4FS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-15_17,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 spamscore=0 malwarescore=0 clxscore=1011 priorityscore=1501
- phishscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0 bulkscore=0
- mlxlogscore=825 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407150187
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew
+This patch adds the SDHCI driver and DT binding documentation
+for the Nuvoton MA35D1 platform.
 
-On 7/15/2024 11:39 AM, Andrew Lunn wrote:
-> On Mon, Jul 15, 2024 at 11:13:31AM -0700, Mayank Rana wrote:
->> PCIe designware MSI driver (pcie-designware-msi.c) shall be used without
->> enabling pcie-designware core drivers (e.g. usage with ECAM driver). Hence
->> add Kconfig option to enable pcie-designware-msi driver as separate module.
->>
->> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
->> ---
->>   drivers/pci/controller/dwc/Kconfig               |  8 ++++++++
->>   drivers/pci/controller/dwc/Makefile              |  3 ++-
->>   drivers/pci/controller/dwc/pcie-designware-msi.h | 14 ++++++++++++++
->>   3 files changed, 24 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->> index 8afacc9..a4c8920 100644
->> --- a/drivers/pci/controller/dwc/Kconfig
->> +++ b/drivers/pci/controller/dwc/Kconfig
->> @@ -6,8 +6,16 @@ menu "DesignWare-based PCIe controllers"
->>   config PCIE_DW
->>   	bool
->>   
->> +config PCIE_DW_MSI
->> +	bool "DWC PCIe based MSI controller"
->> +	depends on PCI_MSI
->> +	help
->> +	  Say Y here to enable DWC PCIe based MSI controller to support
->> +	  MSI functionality.
->> +
-> 
-> Nit picking, but in the commit message you say separate module. But it
-> is a bool, not a tristate, so it cannot be built as a module.
-I don't mean to make this driver as loadable module here. Saying this
-I agree that commit text is saying as separate module. I shall update
-commit text by replacing "separate module" as "separate driver".
+This MA35D1 SDHCI driver has been tested on the MA35D1 SOM board with
+Linux 6.10
 
-> 	Andrew
-> 
-Regards,
-Mayank
+v5:
+  - Update to nuvoton,ma35d1-sdhci.yaml
+    - Fixing the same orders as in the list of properties.
+  - Update ma35d1 sdhci driver
+    - Fixing the error path syntax to err = dev_err_probe().
+
+v4:
+  - Update to nuvoton,ma35d1-sdhci.yaml
+    - Fixing overlooked issues.
+
+v3:
+  - Update ma35d1 sdhci driver
+    - Fixing "Alignment" and "spaces preferred around".
+    - Fixing style for multi-line comments.
+    - Fixing double call to sdhci_pltfm_free().
+
+v2:
+  - Update to nuvoton,ma35d1-sdhci.yaml
+    - Remove some redundant descriptions.
+    - Replace 'minitem' with 'maxitem' in the clock settings.
+    - Make corrections to nuvoton,sys description.
+    - Add sdhci-common.yaml.
+    - Remove '|' except where necessary to be preserved.
+    - Keeping one example is sufficient.
+    - Add regulators in the example.
+  - Update ma35d1 sdhci driver
+    - Refer to 'include what you use' to modify included header files.
+    - Replace the number 8 with sizeof(u8), and similarly for others.
+    - Use "dev" instead of "&pdev->dev".
+    - Use the min() macro to improve the code.
+    - Use dev_err_probe() instead of dev_err().
+    - Implement an error reset check mechanism.
+    - Add devm_add_action_or_reset() to help with sdhci_pltfm_free().
+    - Use devm_reset_control_get_exclusive() instead of devm_reset_control_get().
+
+Shan-Chun Hung (2):
+  dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document MA35D1 SDHCI
+    controller
+  mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI driver
+
+ .../bindings/mmc/nuvoton,ma35d1-sdhci.yaml    |  87 +++++
+ drivers/mmc/host/Kconfig                      |  12 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-ma35d1.c            | 314 ++++++++++++++++++
+ 4 files changed, 414 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
+
+--
+2.25.1
+
 
