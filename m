@@ -1,133 +1,197 @@
-Return-Path: <devicetree+bounces-86182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8266A9331BA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 21:14:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FFAF933095
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 20:44:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B40F01C20AFB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:14:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A5ECB23EA6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4DEE6A8CF;
-	Tue, 16 Jul 2024 19:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415941A38DD;
+	Tue, 16 Jul 2024 18:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="dCxNSu3y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TGXix5eR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE24218059
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 19:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690D01A0720;
+	Tue, 16 Jul 2024 18:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721157260; cv=none; b=UhIZvr235uyBO8+g1oREM77UkzTeXQRtg6NYgZHwc7e7gcIkvQkwVUdxkl6SrDvnCzO/i2vBxKghbVB6/UGMnWPYrxWl1+AomorRqeN3B7pqi+cYhNFqqqHZ2Oo8pTQ5aOSnIc64ILv84D3zzIroi0LJA8/pprpmxfygoS83FkQ=
+	t=1721155097; cv=none; b=mMt2xHxmLaGYYIfkTheJkh9JwPV2lVOZq1FiT6T8W/60iG150Q4by8g3jsuZQHd/nvOEDkCO3ZalbxiVayZKaZ4YdpZpoLND6K+KGI+/KZCo5JgsH5oSM1fhoOVNh3qpObJvBwYSitjS4Y/GZJgSD3GlOPB2mp5EfN4+wm989Ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721157260; c=relaxed/simple;
-	bh=icfERQOgJ5N63Pg1/u73mzpkirXuB08mc0fbLo+H6ns=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zm73rku6MQpdzz+xci7mnLwReu2dJtPYftsYG3b8PkHRQ9gupmCOL8ZpAq89Hw3dk/7UMZkJJsPOBJKoL5GuLMzV7TJ2qKa6BBPmjqgifv7IDDIhIVPJc7EsZeGLjBmwwCKJBXU9FAmo8XsGdGtvnPhTdXu8iFIwJ5JQaQ5OhiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=dCxNSu3y; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id D869588722;
-	Tue, 16 Jul 2024 21:14:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1721157257;
-	bh=frZaD+kkGJcY4pJY44ZcBHh3Cq2V5642TXFVCdO0nvs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dCxNSu3yLkhmZ8AB8wwOSXdwhzwelPs+wGfKiY3FVICgAfTsOk1YavHGnfSoRYguI
-	 TYCUDxYQRmCxIUhVFhPlxPbZGyllCD3jw5q0+ZIHxwTuL65YXSx5m/D1QVZQKLjS4o
-	 YhhMy2ZkXS+V0nylyapntWNsHyTVyi46XvqWZSoYgUCvhq+NFyCxsnh8rZRoUOpxR3
-	 lh9H+e8Zk0m7UpS+pKGAUCPNHDAgqtZSoMDlj3cBVpYNWonzVl12Aydr3vcCIvK9kP
-	 ZEJKDbvnzHuRV6gl7IhNKMHk3bzOw/dCV/oMZhHEN0M2OuhmdEf6jn0oPSSLg7pBpO
-	 qwTDllOTp7oWQ==
-Message-ID: <4e015a11-d8ca-4cc0-9366-2d836122296d@denx.de>
-Date: Tue, 16 Jul 2024 20:29:46 +0200
+	s=arc-20240116; t=1721155097; c=relaxed/simple;
+	bh=bhIWzgmFY3aeKFrE6cUAq/sjmY8KoRONFtyh21jnxEg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HmlKOS+kZT+n6Lg1arHcoSgVlLw4d5qBzib0ubkTo+kkIkiryld8g90pfFzWW95Q9cvX7zKqLbcu/vUwgIdJBiLY+KxLyCRz1Dr41EacyXd2gL+DMQu7bEHJ1OBtiUfxB5FeqcgbOvm+k0xO1CPT2aJ4xpvCEoOBXHaaispoao8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TGXix5eR; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-58b966b41fbso7422424a12.1;
+        Tue, 16 Jul 2024 11:38:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721155093; x=1721759893; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y2QpPFCXFSzwXuk5Smpy2Q+ucAYxfBE33tkpjc80+O0=;
+        b=TGXix5eRY5rtFunR/5pZdaCkHLpvELzo4eAXiudW45ALvOXmHANlSTmuDG4b+LMP86
+         DwggqUvltmbqUxzraPnCnN4WSv5R70HR3tHr/c5bbuViA8SnAwozml49EUh/FNUbkCEH
+         wLSB4MeZqbs9hLcdmySqK05FdIVXtuM0glWnCoK27Xgk+KFan3V/kmtShxhkndFMJleL
+         XHC4r/TxQlc00bDjXHtzbSu66wLvTovvcvcGmBIciYdxa7TLJiEu60qlxOVeSENnYg8C
+         0i6ZChmZcWCp235DGU9+DZTaWTwGVfO34VX5qKd0Ms3uYdCu+6v7FDiPKbPDk8X45gbB
+         vUzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721155093; x=1721759893;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y2QpPFCXFSzwXuk5Smpy2Q+ucAYxfBE33tkpjc80+O0=;
+        b=VU44waH8BLCVYd3dXFMkc5mEqgD9ctOe5bvoOrX1538Qy7yEW3AwEkAgxyNb4wnK3G
+         6N4Waw+QVpeu092U4TwMbi2pf4HOQxBiDH1/7IN3kxniKMY/JFAkM1Qz6AkHEGcetZc2
+         MkgMMs7aU6PKl4ouhXppJ10QHR3vb7uMCWC/4g/hFFiaYnGgBgTtVB57kte2OoYnIHim
+         Vm5dn7WJz6T2KYMndPyKobQZ1Pf5cwqh5i2UeKlvs5st07wyibIOMH6N5pv/FTa5Oq1r
+         96nKTDylfdI/BP13l4Z8zNr5N2ProwwP+Jfs3Nvk6E3lHcPoIE+AoR1Rlv+/xqra0/6r
+         jMUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWg3UFKD+v0hMF2nH91K+/sOrpj5i9N1a+lsPlC4tKEe0Zdpb3QibSg6ojvxZhySu7xH1zpewuPG9FkXN+eQROusq/Fy2b452juAYVpxB1/IR78Vt2/YnuwtJtDJDyb0XfuwE+2AsdrWQ==
+X-Gm-Message-State: AOJu0YzxTTaQ+vGIvaoKtlv3qLU0kkkLLXDAcw2jn0ZTPjkq1ONvkZX4
+	TTu/yyosq17RTMGTHHjnLWRKt+JM3SO410hFwFNQG+Sc74fcJHyFl4w1hit0
+X-Google-Smtp-Source: AGHT+IG0+8sJk4vnch/lSp8v1ukZvC8dyq5Z0AzM0HJxIe8NnKCTXm5Ja4RKUb3uO0OQT4puwhQSeg==
+X-Received: by 2002:a17:906:e05:b0:a6f:27e6:8892 with SMTP id a640c23a62f3a-a79eaa5b6f1mr187899866b.60.1721155093080;
+        Tue, 16 Jul 2024 11:38:13 -0700 (PDT)
+Received: from WBEC325.dom.lan ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc820eb3sm341852366b.207.2024.07.16.11.38.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 11:38:12 -0700 (PDT)
+From: Pawel Dembicki <paweldembicki@gmail.com>
+To: netdev@vger.kernel.org
+Cc: Pawel Dembicki <paweldembicki@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 1/2] net: dsa: vsc73xx: make RGMII delays configurable
+Date: Tue, 16 Jul 2024 20:37:34 +0200
+Message-Id: <20240716183735.1169323-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: tc358867: Document
- default DP preemphasis
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Lucas Stach <l.stach@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
- kernel@dh-electronics.com,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Jonas Karlman <jonas@kwiboo.se>,
- Robert Foss <rfoss@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20240708150130.54484-1-marex@denx.de>
- <172062558439.3107707.14187355988690749078.robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <172062558439.3107707.14187355988690749078.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 
-On 7/10/24 5:33 PM, Rob Herring (Arm) wrote:
-> 
-> On Mon, 08 Jul 2024 17:01:13 +0200, Marek Vasut wrote:
->> Document default DP port preemphasis configurable via new DT property
->> "toshiba,pre-emphasis". This is useful in case the DP link properties
->> are known and starting link training from preemphasis setting of 0 dB
->> is not useful. The preemphasis can be set separately for both DP lanes
->> in range 0=0dB, 1=3.5dB, 2=6dB .
->>
->> This is an endpoint property, not a port property, because the TC9595
->> datasheet does mention that the DP might operate in some sort of split
->> mode, where each DP lane is used to feed one display, so in that case
->> there might be two endpoints.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
->> Cc: Jonas Karlman <jonas@kwiboo.se>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
->> Cc: Lucas Stach <l.stach@pengutronix.de>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: Neil Armstrong <neil.armstrong@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Robert Foss <rfoss@kernel.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: devicetree@vger.kernel.org
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: kernel@dh-electronics.com
->> ---
->> V2: - Fix the type to u8 array
->>      - Fix the enum items to match what they represent
->> V3: - Update commit message, expand on this being an endpoint property
->> V4: - Fix ref: /schemas/graph.yaml#/$defs/port-base and add unevaluatedProperties
->> ---
->>   .../display/bridge/toshiba,tc358767.yaml      | 21 ++++++++++++++++++-
->>   1 file changed, 20 insertions(+), 1 deletion(-)
->>
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This patch switches hardcoded RGMII transmit/receive delay to
+a configurable value. Delay values are taken from the properties of
+the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
 
-If there are no objections, I will apply these two patches to drm-misc 
-soon ?
+The default value is configured to 2.0 ns to maintain backward
+compatibility with existing code.
+
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+ drivers/net/dsa/vitesse-vsc73xx-core.c | 68 ++++++++++++++++++++++++--
+ 1 file changed, 64 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/net/dsa/vitesse-vsc73xx-core.c b/drivers/net/dsa/vitesse-vsc73xx-core.c
+index d9d3e30fd47a..7d3c8176dff7 100644
+--- a/drivers/net/dsa/vitesse-vsc73xx-core.c
++++ b/drivers/net/dsa/vitesse-vsc73xx-core.c
+@@ -684,6 +684,67 @@ vsc73xx_update_vlan_table(struct vsc73xx *vsc, int port, u16 vid, bool set)
+ 	return vsc73xx_write_vlan_table_entry(vsc, vid, portmap);
+ }
+ 
++static void vsc73xx_configure_rgmii_port_delay(struct dsa_switch *ds)
++{
++	/* Keep 2.0 ns delay for backward complatibility */
++	u32 tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS;
++	u32 rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS;
++	struct dsa_port *dp = dsa_to_port(ds, CPU_PORT);
++	struct device_node *port_dn = dp->dn;
++	struct vsc73xx *vsc = ds->priv;
++	u32 delay;
++
++	if (!of_property_read_u32(port_dn, "tx-internal-delay-ps", &delay)) {
++		switch (delay) {
++		case 0:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_NONE;
++			break;
++		case 1400:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_4_NS;
++			break;
++		case 1700:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_7_NS;
++			break;
++		case 2000:
++			break;
++		default:
++			dev_warn(vsc->dev,
++				 "Unsupported RGMII Transmit Clock Delay, set to 2.0 ns\n");
++			break;
++		}
++	} else {
++		dev_info(vsc->dev,
++			 "RGMII Transmit Clock Delay isn't configured, set to 2.0 ns\n");
++	}
++
++	if (!of_property_read_u32(port_dn, "rx-internal-delay-ps", &delay)) {
++		switch (delay) {
++		case 0:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_NONE;
++			break;
++		case 1400:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_1_4_NS;
++			break;
++		case 1700:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_1_7_NS;
++			break;
++		case 2000:
++			break;
++		default:
++			dev_warn(vsc->dev,
++				 "Unsupported RGMII Receive Clock Delay value, set to 2.0 ns\n");
++			break;
++		}
++	} else {
++		dev_info(vsc->dev,
++			 "RGMII Receive Clock Delay isn't configured, set to 2.0 ns\n");
++	}
++
++	/* MII delay, set both GTX and RX delay */
++	vsc73xx_write(vsc, VSC73XX_BLOCK_SYSTEM, 0, VSC73XX_GMIIDELAY,
++		      tx_delay | rx_delay);
++}
++
+ static int vsc73xx_setup(struct dsa_switch *ds)
+ {
+ 	struct vsc73xx *vsc = ds->priv;
+@@ -746,10 +807,9 @@ static int vsc73xx_setup(struct dsa_switch *ds)
+ 			      VSC73XX_MAC_CFG, VSC73XX_MAC_CFG_RESET);
+ 	}
+ 
+-	/* MII delay, set both GTX and RX delay to 2 ns */
+-	vsc73xx_write(vsc, VSC73XX_BLOCK_SYSTEM, 0, VSC73XX_GMIIDELAY,
+-		      VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS |
+-		      VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS);
++	/* Configure RGMII delay */
++	vsc73xx_configure_rgmii_port_delay(ds);
++
+ 	/* Ingess VLAN reception mask (table 145) */
+ 	vsc73xx_write(vsc, VSC73XX_BLOCK_ANALYZER, 0, VSC73XX_VLANMASK,
+ 		      0xff);
+-- 
+2.34.1
+
 
