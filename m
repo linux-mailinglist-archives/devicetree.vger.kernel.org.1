@@ -1,155 +1,133 @@
-Return-Path: <devicetree+bounces-86151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCB5932D8B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:06:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7C3932E36
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8CE01F21272
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:06:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A30331F217B7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2664019B3E3;
-	Tue, 16 Jul 2024 16:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFDE19DF75;
+	Tue, 16 Jul 2024 16:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="N4CqeFe8"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="HQKLbyXE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6597919AD51;
-	Tue, 16 Jul 2024 16:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1F047A5D;
+	Tue, 16 Jul 2024 16:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721145995; cv=none; b=obCBbTzdNCZ5hjAVctCrWj6ZL0EatQ3FkjVHt+K4piDit3uLrs6Is+2TASJOZ0PBt2PCkrF8OBXvQrmQcs66+ELFa5sd/m5GNdiMj25RSY17/04zbzK9DkTfvTQLLe67QjuG+C/tlS19kjRDianYdrrH23aabX27Kk/8P5q4mxM=
+	t=1721146553; cv=none; b=ilLTtH45D/Gm4I+nVCL64pnbaBL70Kd+F4QVwsaNEu4qpAxJCIXPuRA5fXhlUbl8eGFypiHfM00FMLwKp263I0l1O4BgdgVEn0WR2wb/HXCf5Cm7bFzKJJdeyWMh2qaik457iBNpeS17gO3gRtfHJkvdbxcvRQldHbp3Jqt00J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721145995; c=relaxed/simple;
-	bh=gI21/Txq0/V8Mood/7WNX4+a8nWK19FWuXo1RHgcBlQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=glRjUtpvOTL/dC6h9nHk9f+9AbpKpiloikvLgTxS4HEVefkt0BFjsINtRWuKAxGLsrkp7fFbaK9OTYuePyr0gQOjqALuW7Zz3cSqYMc5zAw8l15gCcF1V3IZJqJ89sU3OWTXnjrJN2748enQDn3Zwgtxa5JhoXK2xXTNtQl6vT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=N4CqeFe8; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1721145991;
-	bh=gI21/Txq0/V8Mood/7WNX4+a8nWK19FWuXo1RHgcBlQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N4CqeFe8PNc3O+xfgpqGJQFUDEW+QKrrwmE1npMejRElOw2F71TZo63D/Z4iJ7Caj
-	 qklrx7vdRHrdCwPtgmHeqiEYtDApNOGRZooDnolD1wrfNTnui/d68Q8am6HMse0SDb
-	 J1+TMDsGtPuvLq4LL5fkNV9sZRduAwbYKqjI7GEGecd1FDvOuAL5+p2hMNdzTi0eNb
-	 VxBpM1dipIovxmrsn8NK5nscLTmFHq7r+Ut8eiCN5wt9JbNKx+0IUO4A8xWgAvzvQ/
-	 S9RAQ7XQPJRu7K/GyhgJKhS8axETw3pI5vgDaJl68aEFDxQVUIn+h/om7qBbXKAglg
-	 obIuxqnflsjmA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 18C8237821CD;
-	Tue, 16 Jul 2024 16:06:31 +0000 (UTC)
-Message-ID: <a4fb5ab2-c11c-4761-82c0-76c01bcf65d6@collabora.com>
-Date: Tue, 16 Jul 2024 18:06:30 +0200
+	s=arc-20240116; t=1721146553; c=relaxed/simple;
+	bh=zqcG5WvWEBctvJzdJ28yyNqS+q9rr/LSoec3f94MTcU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=e3Gx5tKtSw+433ecSgOzotmAWIFsPjfPDdxcLUGmNMUd+EPtWqYiVLbcqO4sZJUp/p9yHunHd58lkEro+19KRV7riZ8U713Y7ak3BHdE24+s9D0I6BR2P4uMlbIevgVTE1t9seOriQpiWlANM3JqgBWhaRizHPhbnD7ra3iqqrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=HQKLbyXE; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46GCOBXT011873;
+	Tue, 16 Jul 2024 18:15:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=EXkol/iSNuZDBvekyCRYXN
+	9VZCnXUWDsY7AXfcwYUfY=; b=HQKLbyXE2tGfUMPW/z+4iIRiDuGjGRLRNcraNJ
+	QAFRWvent5ZHO/rg/HApgJdCowWebfv/C8URnUvpwV7WznP95/tf1h2EZCtaCi2v
+	skI+fN0kBCObLmKVY5nI1Msl4HQQCwM7GbhowoJvkZkZUnr52VIldpjOpyjdUtCv
+	QeDVd6T9DBMuMczs1+/sf96kBHqDoIFvjhnO/ripx573GpUWT0eHMsm+QD8H4Eap
+	DohQOM/D4Gi9wJJRMEwgmLRxNYrcI7miPTo9UHzL08vyXN4+mNYk5wdQglhf1/0p
+	Xd6Fy3UKN/5A7EeOj6/NHipWv18C9S6Xnkw/yQIX1nQisMKg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 40bf0gcqd4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jul 2024 18:15:30 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id AD6254002D;
+	Tue, 16 Jul 2024 18:15:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B17E82535CF;
+	Tue, 16 Jul 2024 18:15:00 +0200 (CEST)
+Received: from localhost (10.48.87.204) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 16 Jul
+ 2024 18:15:00 +0200
+From: Gatien Chevallier <gatien.chevallier@foss.st.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Gatien Chevallier
+	<gatien.chevallier@foss.st.com>
+Subject: [PATCH] dt-bindings: access-controllers: add controller configuration property
+Date: Tue, 16 Jul 2024 18:14:27 +0200
+Message-ID: <20240716161427.237825-1-gatien.chevallier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] arm64: dts: mediatek: mt8195-cherry: Remove
- keyboard-backlight node
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <linux@weissschuh.net>, Tzung-Bi Shih <tzungbi@kernel.org>,
- kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240715-cros-backlight-dt-probe-v1-1-0b5afe64c94b@collabora.com>
- <3dd2dcc9-5fbb-4384-985f-a61e26cc8a5f@collabora.com>
- <96f91c0a-e693-45db-a664-1c396b14999e@notapiano>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <96f91c0a-e693-45db-a664-1c396b14999e@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-15_19,2024-07-16_02,2024-05-17_01
 
-Il 16/07/24 14:16, Nícolas F. R. A. Prado ha scritto:
-> On Tue, Jul 16, 2024 at 11:24:44AM +0200, AngeloGioacchino Del Regno wrote:
->> Il 15/07/24 18:09, Nícolas F. R. A. Prado ha scritto:
->>> Commit 970c3a6b7aa3 ("mfd: cros_ec: Register keyboard backlight
->>> subdevice") introduced support for detecting keyboard backlight
->>> fuctionality through communication with the ChromeOS EC. This means that
->>> the DT node is no longer used. Remove the unneeded node.
->>>
->>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>> ---
->>> Different CrosEC FW versions could potentially not support discovering
->>> the keyboard backlight functionality, but I've tested both a recent
->>>
->>>     tomato_v2.0.23149-099cd3e539 tomato_15699.72.0 2024-01-03
->>>
->>> and an old
->>>
->>>     tomato_v2.0.10686-234e646fd8 tomato_14268.0.0 2021-10-07
->>>
->>> version on mt8195-cherry-tomato and on both relying only on the
->>> discoverability works. I've tested on both tomato-r2 and tomato-r3. I
->>> have not tested on dojo, however, as I don't have access to it.
->>>
->>
->> Dojo will work anyway because those machines do share the same base FW... but
->> anyway, I'm not sure that this is the right thing to do.
->>
->> The commit that you mentioned says that it is meant to make that "work on machines
->> without specific ACPI or OF support for the keyboard backlight", but not that the
->> intention is to stop using either ACPI nor DT nodes for that.
-> 
-> Yes, because as I understand it not every EC might support this protocol. So
-> that commit just added an additional way to probe the keyboard backlight.
-> 
-> So we don't need to stop using the DT to probe it. But in practice we have
-> already stopped, as long as the EC supports the protocol (which from my testing
-> is always for these platforms), since that is tried first. Meaning the DT node
-> is now useless.
-> 
-> The only point in keeping the DT node would be to use it as a fallback in case
-> the discovery with the EC fails or breaks. But I have never seen a DT node be
-> there just as fallback, so it doesn't feel right to me either.
-> 
->>
->> The DT kselftest is relatively young, and I suspect that anyway this is not the
->> only affected device, so the justification is only barely valid.
-> 
-> I didn't include the failing test as part of the commit message proper as I
-> don't think it should justify this change. I added it just to clarify my
-> motivation. The test showed me that something unexpected was happening. After
-> looking into it I thought that a DT node that is no longer used to probe has no
-> point in staying around, so that's the justification that I added to the commit
-> message.
-> 
->>
->> Don't misunderstand me, I'm not saying that I'm not okay with this, but I'd like to
->> have more opinions about this.
->>
->> If we choose to go this way, ideally we should remove this from all of the upstream
->> Chromebook devicetrees (not only MediaTek, clearly!) so that would require a bit
->> more effort to test here and there.
-> 
-> Note that the cherry DT is the only DT upstream with the
-> google,cros-kbd-led-backlight compatible. So it's really only tomato and dojo
-> that need to be tested.
-> 
-Perfect. Let's remove it then, possibly with fire ;-)
-Can you please send the patch without the RFC tag?
+Add a pattern property that allows to define several controller
+configuration in the device tree. It allows run-time controller
+reconfiguration for an authorized entity as in OP-TEE OS [1].
 
-Also add my R-b, so that I'll remember that I've already checked that patch for
-when I'll be able to pick it.
+Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Link: https://github.com/OP-TEE/optee_os/pull/6946 [1]
+---
+ .../access-controllers/access-controllers.yaml | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+diff --git a/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml b/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml
+index 99e2865f0e46..88824719bb73 100644
+--- a/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml
++++ b/Documentation/devicetree/bindings/access-controllers/access-controllers.yaml
+@@ -58,6 +58,13 @@ properties:
+       A list of access controller specifiers, as defined by the
+       bindings of the access-controllers provider.
+ 
++patternProperties:
++  ".*(?<=)-access-conf$":
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      Contains a list of inseparable access controller specifiers that forms
++      an access controller configuration.
++
+ additionalProperties: true
+ 
+ examples:
+@@ -81,4 +88,15 @@ examples:
+                                  <&bus_controller 1 3 5>;
+             access-controller-names = "clock", "bus";
+         };
++
++        uart5: serial@60200 {
++          reg = <0x60200 0x400>;
++          clocks = <&clk_serial2>;
++          access-controllers = <&bus_controller 0 0 0>, <&bus_controller 1 0 0>,
++                               <&clock_controller 2 3>;
++          default-access-conf = <&bus_controller 0 10 0>,
++                                <&bus_controller 1 10 0>;
++          shared-access-conf = <&bus_controller 0 256 4>,
++                               <&bus_controller 1 256 4>;
++        };
+     };
+-- 
+2.25.1
 
-
-Cheers!
 
