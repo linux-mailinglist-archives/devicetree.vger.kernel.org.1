@@ -1,98 +1,93 @@
-Return-Path: <devicetree+bounces-86171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B554E932F49
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:46:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3098932F83
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 19:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5DC21C2113C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:46:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE6261C224DD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4DE25740;
-	Tue, 16 Jul 2024 17:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B4E1A00F3;
+	Tue, 16 Jul 2024 17:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="frWSgU0Q"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BWM6OdOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF99EB67F;
-	Tue, 16 Jul 2024 17:45:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B8F19FA94;
+	Tue, 16 Jul 2024 17:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721151959; cv=none; b=IMPEYb3shxtzKjSsWBsBZjKUOUwDCV/w6tZjo+ILLgUX+D58PFkhqvQwpL2AYCJ3Qush3OPXuyavc3PHCpAgWc2I3t4Z37xjWHVH0WuBYmkuMpiovQXA3rDjW5ybSqL1odw9ljoMgozLzfsQ6aimicYw/ZT0zq+zbBzvzoQS6O4=
+	t=1721152481; cv=none; b=KfDy1fymICTROi7G8SUY4Gv8eQbg7s2qyM0pREflzFvbRbOwbKO/jZc7lNB9PDWWWqF81N/2hdEwCk2pVYwnpQnZifSbhfYu1AR2SQ6nW8UVR9w7uu/e+lD46xePRVjTrWF8eZ/0t9an2SdrUAxKzv6NJOZB0XH0QN/zh5moJHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721151959; c=relaxed/simple;
-	bh=YuRAgq7T7DYZ+9bOH4Kh/59c9vBYqNhQMDcTMTwSy7I=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Y+xlvhS+uR7mtLuo+xKpDQuir938ysfxuH8Rcbv1GbXlYyJtlIgS8ks2dWgSOAQ1mJETWP/nF8M68uT98lnmKAXT4TBXeOSplFftrl+g74aIreiRPPnlo275MyaoSHLdE0ZawvlanP0MnfM6mBYhZKVn4OXSlARAdGfE6JPVkHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=frWSgU0Q; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1721152481; c=relaxed/simple;
+	bh=prgjPxYij3SHyZHpzob8UsPYte+J2xXXXesa79k4KJI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=mYg9toVTuqmp4dDehahAlDES8Hr6N7R5Hif1js5fAyHzSKJPmel8DbS9v8yt+B9ze7IyrlgfETNalX/fKawNxA9Nz/43RzWDZVgjRgfRxEaFwZP3NT4G/tPI5VpuWUfvIkfls+lCJpwQnfqEIrdRxVqhufCZuDxOUV/ZanKI1Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BWM6OdOD; arc=none smtp.client-ip=192.19.144.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id D3594C0000E4;
+	Tue, 16 Jul 2024 10:47:29 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com D3594C0000E4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1721152049;
+	bh=prgjPxYij3SHyZHpzob8UsPYte+J2xXXXesa79k4KJI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=BWM6OdODQlUfSYOS6Sw8LT+MMM3a7TcFGdn3NHt2X6T9ZJVEz2K/BSvr2p7NWtP2T
+	 dIdevqG9cT9+9U1q+TntRym7i8YSKa1R8D3zufLa5BxAl2S0AmwO1gLHnckFyoXAdp
+	 tzXFxoakoZkUk3Rpra/Gl3m9rPbSEnB+Gu73AsyQ=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 5E6D618041CAC4;
+	Tue, 16 Jul 2024 10:47:27 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Florian Klink <flokli@flokli.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH] ARM: dts: bcm283x: Fix hdmi hpd-gpio pin
+Date: Tue, 16 Jul 2024 10:47:29 -0700
+Message-Id: <20240716174729.197020-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240715230311.685641-1-flokli@flokli.de>
+References: <20240715230311.685641-1-flokli@flokli.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1721151947;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JhR8ShgNZ4zr20pJvrZSBhHiN5aG2Rwxocrt8rVDf8Q=;
-	b=frWSgU0Qd95vdp7IVtKo2hahyPh0ax6zmYOnpAABSPSToBxVZlIm22kufuYPn4pI4U4Ax5
-	7AAvkancGLjf1Fg3LyYZdGPzrqX9rVBBnOxY5CqVStIarucIfekCUob5l1VKSfm9dQveDC
-	l0kIVoXz9nRWl0YK76gRFVBBfp/uZKgb3hNbihuotaxjgb9jTaQCR5/5XN7CMQc5mxYiVE
-	b6uMTC5SYczHW3K5Tuzq9o/lh7gqgGVl0KPgkvMmjybI5uE0Yqki888sEMEkPdnxLNQ6v2
-	IFdZ1h75d1k3KRMNjn4DnT9ABU3LCgS6qI7IH5+/7YGtBuTS1NzHLthqErY+gg==
-Date: Tue, 16 Jul 2024 19:45:44 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Christopher Obbard <chris.obbard@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Kever Yang
- <kever.yang@rock-chips.com>
-Subject: Re: [PATCH 0/2] Add support for Firefly CORE PX30 JD4
-In-Reply-To: <20240716-rockchip-px30-firefly-v1-0-60cdad3023a3@collabora.com>
-References: <20240716-rockchip-px30-firefly-v1-0-60cdad3023a3@collabora.com>
-Message-ID: <81015d015aae01f2d5fa70262304837e@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
 
-Hello Christopher,
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-On 2024-07-16 17:51, Christopher Obbard wrote:
-> The Firefly CORE PX30 JD4 board is a SOM and motherboard bundle from
-> Firefly containing the Rockchip PX30 SOC. This series adds support for 
-> it.
+On Tue, 16 Jul 2024 02:03:11 +0300, Florian Klink <flokli@flokli.de> wrote:
+> HDMI_HPD_N_1V8 is connected to GPIO pin 0, not 1.
 > 
+> This fixes HDMI hotplug/output detection.
+> 
+> See https://datasheets.raspberrypi.com/cm/cm3-schematics.pdf
+> 
+> Signed-off-by: Florian Klink <flokli@flokli.de>
 > ---
-> Christopher Obbard (2):
->       dt-bindings: arm: rockchip: add Firefly CORE PX30 JD4
->       arm64: dts: rockchip: add Firefly CORE PX30 JD4
-> 
->  .../devicetree/bindings/arm/rockchip.yaml          |   5 +
->  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
->  .../dts/rockchip/px30-firefly-core-px30-jd4.dts    | 562 
-> +++++++++++++++++++++
->  3 files changed, 568 insertions(+)
 
-It would be better to split this into two separate files: a dtsi
-for the SoM, and a dts for the carrier board (which would include
-the new dtsi).  That would reflect the actual hardware better.
-
-> ---
-> base-commit: d67978318827d06f1c0fa4c31343a279e9df6fde
-> change-id: 20240716-rockchip-px30-firefly-59efc93d6784
-> 
-> Best regards,
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
+--
+Florian
 
