@@ -1,474 +1,261 @@
-Return-Path: <devicetree+bounces-85943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22618931E1B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 02:46:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 713E4931EE9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 04:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C895C282C67
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 00:46:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7071B22063
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 02:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723D91876;
-	Tue, 16 Jul 2024 00:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B044C3FF1;
+	Tue, 16 Jul 2024 02:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nVMEqpl7"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="g+wm0+C3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEB4C8E1;
-	Tue, 16 Jul 2024 00:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721090745; cv=none; b=lZld1DdGxptk2malSaLAeQammRvn7GKBc7WzjKNrZ2g8BvimssXax4mb6MBYp14SbAZ6aV5X5Cgzke5n3+sbt5FidGYIhMuH5r7nJ6NSvYhLovpcCdeqttXEwzAt+BPqRVULRzau3PnyabTKdLfKgmEBehxmeECdnOCm0BYgznM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721090745; c=relaxed/simple;
-	bh=pUcLs3xpfx/K/2LMNzZPOjFomPTIc8+7rfzSc/yCi18=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lqvxfVXstohdaHbplRcUcI2cC8SR4jy/ckQMAUoiS4NubbvsUZgWKhScblgXpiidU9kDHkruxyk2Cg6VSbCNPArOyHAhCpDj33557YMWCYT43DeAjQHkok4A4yu3lEN3c0UwlH/DBUH48wmTXTbmDuBbNExL5Mpwd7UB+7/H1jM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nVMEqpl7; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-70b07bdbfbcso4419681b3a.0;
-        Mon, 15 Jul 2024 17:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721090743; x=1721695543; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+4mZUQ8eS/FAlo9DjaBHBQRN8UhyGDfpsVVevt8wfpg=;
-        b=nVMEqpl7rf4845A54PSc1wWnFYWGhq8C1DWjH0ZrP2LpxgLNic2F5CMZMQUKlDIU9m
-         U5skAAWnQ7xvP2VJkOy/taFjnBaV6nPuudluy5ndNDtR/kpjMs0OkCwGo2WBGkMf1AuR
-         gqF+744slbO9pfl9guLed6ptzkjwNoPT2WQsXMx9riUhbFVWYeHWIcpuvAcujZvBNxmC
-         BGxs+wzQSPuddOlm9skgjY8Lg1NiNXQvW2sVT4MzZuPcx5Go4XYxXcpcCP3CZDgsz40c
-         ct3TLYC6/+5MW3DjrLWbGdwQJa1L77Z07axvLYl2mURRUIPm0O5N502ZvzJv7lvknJD7
-         VifA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721090743; x=1721695543;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+4mZUQ8eS/FAlo9DjaBHBQRN8UhyGDfpsVVevt8wfpg=;
-        b=Qn912/jqUVe8Sox5qNkJ+MJsTvHRJzwx8jDkMJR8L2fWxwUI3izGaob4/XKMWBp60S
-         FLmKDbgVr0JzLeM8OQlC5w9gOCaeBDmh5hDGreiBknpdToSBm2oFwG+92V5zmp8+oUsj
-         IuvMwnLOdkuMHiceeN8yIUwWutl2Npw3WkbQoHszEmbVIvFnv4KWdzAuAie4BxP6ZF0x
-         TICERpxKXZKDjML7FAdQibzlZbPMgOXlrWNWaa/hH6qs5ktlyjRVvg4i7qBldgl/7BLJ
-         f+KgUx7NUS8o0laK1eq3eEZfPLECYcT94WUVxL0qc437SuacfSa4PE8+yzamz80ZRLz0
-         h2HA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5YsyWzoem3u2P7dgNboqbiLxT9+aR67DqSRpzG4nQUNEAVRHy9oMK9D2K5Gm89L5lbqFa++F0DicJEMERXYI2EqAzH69F98ctuXa6YNNzpjVknT9IT0JU0hFjco2LTicRKU2dATostD9cQeYlLSORlTQ5khxGFbW6v2RvgLlsWf9ZMg==
-X-Gm-Message-State: AOJu0YzeaqkX15QVt4G7lpg5kvWL6Gg0LKElsf1kwzScrDTcG2TY2Hsb
-	ggBSqySore2F0hM8h+q1n5sOvcUneVOp4qj5Bf1UzAhRgVJt7FyT
-X-Google-Smtp-Source: AGHT+IHh2/yLJp760EaUzUS5bnjIvJ5sWGa6ly7UV29EB+0hd40iQjVq3QgeTdztMIzidfE8yiiGuw==
-X-Received: by 2002:a05:6a20:a10a:b0:1c0:e69f:f23e with SMTP id adf61e73a8af0-1c3f1f99e33mr489588637.9.1721090742743;
-        Mon, 15 Jul 2024 17:45:42 -0700 (PDT)
-Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7eca758fsm5000949b3a.162.2024.07.15.17.45.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jul 2024 17:45:42 -0700 (PDT)
-From: Shan-Chun Hung <shanchun1218@gmail.com>
-To: ulf.hansson@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	adrian.hunter@intel.com,
-	p.zabel@pengutronix.de,
-	pbrobinson@gmail.com,
-	serghox@gmail.com,
-	mcgrof@kernel.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	forbidden405@outlook.com,
-	tmaimon77@gmail.com,
-	andy.shevchenko@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	Shan-Chun Hung <shanchun1218@gmail.com>
-Subject: [PATCH v5 2/2] mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI driver
-Date: Tue, 16 Jul 2024 08:45:27 +0800
-Message-Id: <20240716004527.20378-3-shanchun1218@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240716004527.20378-1-shanchun1218@gmail.com>
-References: <20240716004527.20378-1-shanchun1218@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C206410A03;
+	Tue, 16 Jul 2024 02:32:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721097163; cv=fail; b=euH1RROsFu05NYoucC/aPAYZ4Yc9b8eQV/rsdG9YA/eVwDdiV0O3ooenzKDKaVyKa8scPW6iVrqVB+K3YbXfHyjyE9C3hQjOUnHsUlNYbagY8MHRv+TFZrgaENTN5pgza5YZzlpB2JxK6DSSBAmYpQn0nIlYQSh4PGvqe1Npifc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721097163; c=relaxed/simple;
+	bh=u776RhUBMVMjYy3OwPZYfYpf2RIH6SLNlKBRjHdEcgk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QyejwcSgjmk86hB1msrCB/E2bYB4tkf7xosU+83zWDKh3kOLJPE5kJ2bqYM1j1f6POuZ+3EZ0w8KxtvyIKyrOpiB9prnk4D2+hbEzJJyeYIUmNxAHqz0x/Pl3fq7NxX6zIIvsqsedG+b8dzmzbuCSkBQ31IEsaAZK1XjerhisDs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=g+wm0+C3; arc=fail smtp.client-ip=148.163.139.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46FIFN87026007;
+	Mon, 15 Jul 2024 21:50:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=u776R
+	hUBMVMjYy3OwPZYfYpf2RIH6SLNlKBRjHdEcgk=; b=g+wm0+C3hLGxHJI1Uhpps
+	6M19ivzHed6lwInoLk6sD1kz5yla6LzHl+k8OpYwcextUDvTLJP4Iiw0QfmSO3SK
+	CHKALFXeC5bs509iwhRx0ydQ8SapDf5T2NJe7GGUvi7eLxV3khIZ85VKNgm4LyWj
+	y81EkLbSyP4anW2biKl1nljdtvtoon6n0IJRfJsQ5+oqORbGGoEraZhNx/+RcE7j
+	U++NceGtzNO4Vvss/ih1m+CY2UzTYEPIJDaE591Oq32tc3igVzvJCWbNsy6MFOPt
+	yAno4rQ/VXR4Y8LSLA74PSYB/aZKXqQ6FCuvybPrBR6OGTlyS7Fjrs+vFKAwjR/E
+	g==
+Received: from sj2pr03cu001.outbound.protection.outlook.com (mail-westusazlp17012032.outbound.protection.outlook.com [40.93.1.32])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 40bp74ybe4-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Jul 2024 21:50:28 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=G6vNIPRjGlEyEumg+U705pXNnMm4heK0tX8lfQLzmM+U++yDVoDiB4ja3qlDgWr5mXYiAVDh45fMS0ZL97SNysFNaSmR4DQPjNrtisp7ChoL0Y0g343ubts6DzgCOX2PL9nf0KD9KrlDAEhlMZd9ixB6GeAMdEug8/I8CVh6h7/vxvxV0l+a39Vm5uVrGGtx6LfM3/aleoSKrPGWjFNMvLamMVDVUYtW6vMGYTVQMxN1tWeSNloZGkyApQIS8SrqsT7FwkE/n4yHcYdp8P8H2Hs5r93diXArwTBj3pGqEmEvNy9Ox0+R+0uQpbtfdjWV3VGVegbbRX/k5pJbOifzOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u776RhUBMVMjYy3OwPZYfYpf2RIH6SLNlKBRjHdEcgk=;
+ b=Uy/5uc+Gah3Y1Wr5k5lWDJ4iH6UT8mRks7a0+J+NSNZrPS5JjxoKYQYTVuiSi0PrPHZAKSHRF6BOiluX4C+WNk6mePK49IdcQ2CUF3uRPBk3K44jJy2Z320yRX1sDGUWI/NXSCAKJxorMbJKqjsQMNtTukQbkZ2xYtWf9Oq2smbGcKsHR92zvOB1omev27wdYvHPhO84KLKcoZfha5VwLsBDjEcQ5e50jBaeAF21SQr1TBGm1/mdZvtroTbxRETsaexUBIuRPxN4cNKBCM0VV92WJ2PJjatG3sy6e4FCm61VYMdDSpG02K/x18UNaOzA/5k/Kyh3KBHPsa6tpD5hcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+Received: from PH0PR03MB7141.namprd03.prod.outlook.com (2603:10b6:510:296::20)
+ by CH0PR03MB6001.namprd03.prod.outlook.com (2603:10b6:610:e0::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Tue, 16 Jul
+ 2024 01:50:23 +0000
+Received: from PH0PR03MB7141.namprd03.prod.outlook.com
+ ([fe80::c559:3d31:1af3:b01]) by PH0PR03MB7141.namprd03.prod.outlook.com
+ ([fe80::c559:3d31:1af3:b01%5]) with mapi id 15.20.7762.027; Tue, 16 Jul 2024
+ 01:50:23 +0000
+From: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+To: Conor Dooley <conor@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Jonathan Cameron
+	<jic23@kernel.org>,
+        David Lechner <dlechner@baylibre.com>,
+        Lars-Peter Clausen
+	<lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Dimitri Fedrau <dima.fedrau@gmail.com>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        =?iso-8859-1?Q?Nuno_S=E1?= <noname.nuno@gmail.com>
+Subject: RE: [PATCH v7 4/6] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+Thread-Topic: [PATCH v7 4/6] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+Thread-Index: AQHa1fIKypoGO0+cUUGRLiCsvbmNpLH3+UYAgACfTOA=
+Date: Tue, 16 Jul 2024 01:50:23 +0000
+Message-ID: 
+ <PH0PR03MB7141E98ECA32AF462D3AFF15F9A22@PH0PR03MB7141.namprd03.prod.outlook.com>
+References: <20240714133000.5866-1-kimseer.paller@analog.com>
+ <20240714133000.5866-5-kimseer.paller@analog.com>
+ <20240715-numbness-chooser-d1bcb0438ba5@spud>
+In-Reply-To: <20240715-numbness-chooser-d1bcb0438ba5@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: 
+ =?iso-8859-1?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNca3BhbGxlcj?=
+ =?iso-8859-1?Q?JcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZi?=
+ =?iso-8859-1?Q?ODRiYTI5ZTM1Ylxtc2dzXG1zZy1jMTczZDY5Ni00MzE1LTExZWYtYWFmOC?=
+ =?iso-8859-1?Q?1iN2I2MDBmNjM3NDlcYW1lLXRlc3RcYzE3M2Q2OTgtNDMxNS0xMWVmLWFh?=
+ =?iso-8859-1?Q?ZjgtYjdiNjAwZjYzNzQ5Ym9keS50eHQiIHN6PSIyOTY2IiB0PSIxMzM2NT?=
+ =?iso-8859-1?Q?U2ODIyMTE1NTcxODQiIGg9ImtjWXZUbUdTeTgzQ3ZRR2tpejQxS3c1S3gx?=
+ =?iso-8859-1?Q?VT0iIGlkPSIiIGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk?=
+ =?iso-8859-1?Q?5DZ1VBQUVvQ0FBQkFyMjZFSXRmYUFTbG8rencxUjh1REtXajdQRFZIeTRN?=
+ =?iso-8859-1?Q?REFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFFQUFRQUJBQUFBM0xoU2ZnQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBSjRBQUFCaEFHUUFhUUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QU?=
+ =?iso-8859-1?Q?c4QWFnQmxBR01BZEFCekFGOEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFh?=
+ =?iso-8859-1?Q?UUIwQUdrQWRnQmxBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBZ0FBQUFBQW5nQU?=
+ =?iso-8859-1?Q?FBR0VBWkFCcEFGOEFjd0JsQUdNQWRRQnlBR1VBWHdCd0FISUFid0JxQUdV?=
+ =?iso-8859-1?Q?QVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURFQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFBQUNlQUFBQVlRQmtB?=
+ =?iso-8859-1?Q?R2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dCdkFHb0FaUUJqQUhRQW?=
+ =?iso-8859-1?Q?N3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21ldGE+?=
+x-dg-rorf: true
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR03MB7141:EE_|CH0PR03MB6001:EE_
+x-ms-office365-filtering-correlation-id: b78af592-b6d9-4ddf-9c31-08dca539a880
+x-ld-processed: eaa689b4-8f87-40e0-9c6f-7228de4d754a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?3hlVdKzQcOJypYcBUakQ+58mN+QIhYjQxuvft3NZgxD4fOOAr/HB8KBAZZ?=
+ =?iso-8859-1?Q?NPjvaQD4GH8ifRoISc6QRfOStMHAv+5Hn7J4xwR7/U0/NJJMR8VkFVtS0J?=
+ =?iso-8859-1?Q?Z9+lzJUngKrh5u/e2kB+eJlPY7RaPNRWVRHYLXonoJLLimoujAWsT9zfsb?=
+ =?iso-8859-1?Q?SzH0Zpv9fTIZl5pL8auQn71PotKLZvHsfDnsi/cHj+bWRGUGXzkOGwLltf?=
+ =?iso-8859-1?Q?jSxYxM+llceLiWeZuki+a0iPjTHbDjwd1xDFyHBbikRUxQc36Y76dYb26r?=
+ =?iso-8859-1?Q?UJQbJfLF1EBZDVcGWVQ1C09iAal1Qv8sN2weJwyICuw+SvjAn8/EBdTPcx?=
+ =?iso-8859-1?Q?i74ZBKc3lsQuNfesZjUj/5PdGExvk/ojXPCKIaK7mKMKKe6YxFasAt1xBz?=
+ =?iso-8859-1?Q?Z8KKXykGNpAYTQGSyMZSTUx/PTAFxbwhmHMak8bBzymXnlVx/SttDCdxFh?=
+ =?iso-8859-1?Q?ovk23U4kbBPNvOu/AwFO19a4QspS92h6oAMMU5UV1ze2GhPDnRUuvHwu61?=
+ =?iso-8859-1?Q?pSLvee5U3M5NEwRv/689NCJTzloyrzJa74U0dEgvLgQui+G9S0KWn71bRt?=
+ =?iso-8859-1?Q?Sdd/SCAlpaGsEp0bUrWFMs8XlpOyW78uGuoLvPBQx6CRiHv67TPtGWiPdI?=
+ =?iso-8859-1?Q?4xdQ6mzyl/6rPpLq0t+PO70qsY+I0edbPuiE3rFadiNrx8fRjNhS2LvhU0?=
+ =?iso-8859-1?Q?3SlFcAHiukHUihyzoqLebsW/DYufFmSFty/7T99gFPPoWhZjP4KXJVSNi8?=
+ =?iso-8859-1?Q?zSsBVlKmKHzGDH15YQeb6vh+w/zcMtogYVFlk0hro7cmyJLqXjjfNwK99p?=
+ =?iso-8859-1?Q?mK5SW++Gm7Z5TawavM8MRkJN0GH+ZSZiTwQvMtnZ32Hmoqu4Oqz1P+1Eyl?=
+ =?iso-8859-1?Q?LFWr+Jdut8FxytjJqgXNspoMyl/lBM5gpBVPWoNNxiYgg4FLFLvxpHGK6Z?=
+ =?iso-8859-1?Q?L5+OxeBisDttYK/1lYdhbC1Nbscl0rmx9JOr6cZeICDmnwcpAYIzRAJcRI?=
+ =?iso-8859-1?Q?unF1VWk5gd1vz1tb4nkpiW/zO1pzunNMCTTgWS8WB07KhBPuNMrq8CIehs?=
+ =?iso-8859-1?Q?nxe43ZV4TjjuzzdValnt9RjKIVNBixaV5/k3eIz9mKKi2nwQkABwsTLOl8?=
+ =?iso-8859-1?Q?Mg7FTq+8xKVC1I1YT6tbTZkJJWK2hpbSfXvrY65TfWniMSIpnLA44iepZs?=
+ =?iso-8859-1?Q?WJpaa//5xtyp9SfdxrpjIQ1jBOg0AIwfjci+FE+SDaJkAtOsL0U4yMIwRv?=
+ =?iso-8859-1?Q?s4ffYgTBykUycHmTKZFCskeOn2jnA4jxq4+TvBhU5IVadoqWg/W7NOQPmJ?=
+ =?iso-8859-1?Q?eL+MIn7twRRfCqJVH0yyGXY9CaSmaWVq4u2j5rpVXJpa7DmD6D7fg1dNF6?=
+ =?iso-8859-1?Q?0P1oq5D0H3fOOxJAeMe7ErfOdFIC6wqvsq4K1nvs0n6gVrtC0M9XFYkJh/?=
+ =?iso-8859-1?Q?1AmA8xvcpkt+4OpAQYlYA3qG+1bd0kIcAi7cKQ=3D=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR03MB7141.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?WXmwFHr7BG5Y92d0EyF4rRDC9oarKlQIZs22g8IctXkjAZrdQ2Lzm+Fv1e?=
+ =?iso-8859-1?Q?cqurs5PB9Z2FYp3FAr4UddhEylznWly9ByjIhSP13kWyFuF8kFulEJKD8k?=
+ =?iso-8859-1?Q?TLfG8x7XcAJ1FTcbANkvpt8Uh1RxUuD+AhlQlPUZQKGJODtyCIweOWYvCt?=
+ =?iso-8859-1?Q?0NFChKn1LX8Khl2wCgcUZ70jEF32a10CXRzKSbH3yUKMzPUWsYr+YoioGi?=
+ =?iso-8859-1?Q?g6EsJNKqeKSNpHVfqfidc3/QWVhxuJhmtS+Ub19h2r95bqvkiq5cpUcpfj?=
+ =?iso-8859-1?Q?ZZAwRAUU0VoMRQm45mZ4YrsoPudPln9xpjYCORL6lA2fDY6T3Gqgz4HdV7?=
+ =?iso-8859-1?Q?zztM/2ZqigF+cbCHNOzK6WuO4wMEgXM3Y4GJRI9Q7FsScdDnBMsM/tW5Pt?=
+ =?iso-8859-1?Q?8TIAz7/Z56GOpX7+tP4JFJOi2NJ42i462Yaf8C1u8KPogsOOgoU9EBhd3x?=
+ =?iso-8859-1?Q?hGTTXjrIUweRk1mafzftAgUozg7V7V1Jv8rGqMxmpTj8x7rrfj9nwENvpU?=
+ =?iso-8859-1?Q?eidIKyHA5MJHPmVJkjUDyjQbxFWAgDhARCr+z2tGD43AgQo27mlZ2Vp7+/?=
+ =?iso-8859-1?Q?E8m5An/9LB0CJeJZCnoJDMnJxMhAEUhVqer+xiCnCgJuqmrf3M+kkS86h2?=
+ =?iso-8859-1?Q?cZsKjjjw9yzCpTRCgZSmTr2eBZx+aK59CcePSsZU9/Qjc3wv52J56JDdEe?=
+ =?iso-8859-1?Q?N1kOck0NKwvJ+X/tD05djn+hCz0gIoCxdKMJj1DDoAppei6gJpchOz+0Jr?=
+ =?iso-8859-1?Q?q9razrT34CkfsULZisk3I5AyDerBQP0l0Px/OsJ1Kl8lpdwenVOMXZRs70?=
+ =?iso-8859-1?Q?MAyNk0pc58VCIEJU6hPfIDjLDqzq7H9YLTth/ptUJCAhnZ44wOCusfgaey?=
+ =?iso-8859-1?Q?gmLv0ExxkKuUiOTJ88wBs+swUraGrSd95VuhpAMfZ//Oi+vqA05Vn9Gd8d?=
+ =?iso-8859-1?Q?uKuIByKOJ/pKECduVMU990e5yFeSCPynUzha4Q8k80W4v8hgOf5+vGOKGf?=
+ =?iso-8859-1?Q?j5BxWgszSJpn4EKfQAuthg922JjiqmsRUBUTnibggfL4aP8O7QQXWDK6QK?=
+ =?iso-8859-1?Q?aALMTAUy9yjkRU32+Ii2N5SoPFnKnD8NWKqg7a9ulpYdBcIGjj3tuaaU4K?=
+ =?iso-8859-1?Q?oRa7aMZGEK1l0a3neyg3XcGL7HCJyNuWipys3UrD9swMyx9w1bgHI5aZaM?=
+ =?iso-8859-1?Q?HYpk9wQtY4HXFEiHbOcMr2BPbS8ZoF8HL2WQ57HhaHPW9BX5Mkovbv8EkR?=
+ =?iso-8859-1?Q?saeKQGrc2J1512wEzwTtbbcQBMT2EYszHtA72immSkoRU9szHBhlyYoIf2?=
+ =?iso-8859-1?Q?bsAl3JJ/Y+qWZWWOlu/8fsTButZ8KifNwA2+UY0zmixPYfema1N+50ZN/h?=
+ =?iso-8859-1?Q?/T0OQxv8YCRzEbGNqGjO2fK25dbwYJpPBUpEcK1IfBrnukXt1ARTBp8FH+?=
+ =?iso-8859-1?Q?hBI0lbKbP7oXGRAu6r8IIpQP29QK24s1/Z8t8JKmYv/BinVkDFWOfzMjCM?=
+ =?iso-8859-1?Q?VbXRRnQlVQ/yiYepK4iuamf9Mrnk9TWff4OjONDYkJ7L/E9u09mm2vLAlT?=
+ =?iso-8859-1?Q?EAy8tLGnRQYcGTSBbtTrrIxPmxOAeCpt5wbt9h/jTd6+5MvGVe7M9TuMvB?=
+ =?iso-8859-1?Q?Le7/cO9CtTGxWqJO3DPvcJ8pHyRB34N8sU?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR03MB7141.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b78af592-b6d9-4ddf-9c31-08dca539a880
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2024 01:50:23.8109
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QSUoRnMAUVAwZreo1BoCIziuryqKgj7g74/0uN+StBY3qncS1gtCJzubY8DoBkrftVk6gC3tMIInZ4phr1tqqIn7FwWSm78JcVrmevz8D6M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR03MB6001
+X-Proofpoint-GUID: sVDBzCx3nl-sGJ7BzYnBlZlRy4TaxQjO
+X-Proofpoint-ORIG-GUID: sVDBzCx3nl-sGJ7BzYnBlZlRy4TaxQjO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-15_19,2024-07-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ suspectscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 priorityscore=1501
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 spamscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2407160012
 
-Add the SDHCI driver for the MA35D1 platform. It is based upon the
-SDHCI interface, but requires some extra initialization.
 
-Signed-off-by: Shan-Chun Hung <shanchun1218@gmail.com>
----
- drivers/mmc/host/Kconfig           |  12 ++
- drivers/mmc/host/Makefile          |   1 +
- drivers/mmc/host/sdhci-of-ma35d1.c | 314 +++++++++++++++++++++++++++++
- 3 files changed, 327 insertions(+)
- create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index bb0d4fb0892a..aa6922ff4210 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -252,6 +252,18 @@ config MMC_SDHCI_OF_SPARX5
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Tuesday, July 16, 2024 12:18 AM
+> To: Paller, Kim Seer <KimSeer.Paller@analog.com>
+> Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org;
+> devicetree@vger.kernel.org; Jonathan Cameron <jic23@kernel.org>; David
+> Lechner <dlechner@baylibre.com>; Lars-Peter Clausen <lars@metafoo.de>;
+> Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
+> Dimitri Fedrau <dima.fedrau@gmail.com>; Krzysztof Kozlowski
+> <krzk+dt@kernel.org>; Rob Herring <robh@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Hennerich, Michael
+> <Michael.Hennerich@analog.com>; Nuno S=E1 <noname.nuno@gmail.com>
+> Subject: Re: [PATCH v7 4/6] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+>=20
+> [External]
+>=20
+> On Sun, Jul 14, 2024 at 09:29:58PM +0800, Kim Seer Paller wrote:
+> > Add documentation for ltc2664.
+> >
+> > Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> > Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+>=20
+> IIRC I gave you a reviewed-by on v5, was there a particular reason you di=
+dn't
+> add it?
 
- 	  If unsure, say N.
+I made changes to the 'output-range-microvolt' logic in v6, which I thought
+might require a new review. If your 'Reviewed-by' tag still applies, please=
+ let me know.
 
-+config MMC_SDHCI_OF_MA35D1
-+	tristate "SDHCI OF support for the MA35D1 SDHCI controller"
-+	depends on ARCH_MA35 || COMPILE_TEST
-+	depends on MMC_SDHCI_PLTFM
-+	help
-+	  This selects the MA35D1 Secure Digital Host Controller Interface.
-+	  The controller supports SD/MMC/SDIO devices.
-+
-+	  If you have a controller with this interface, say Y or M here.
-+
-+	  If unsure, say N.
-+
- config MMC_SDHCI_CADENCE
- 	tristate "SDHCI support for the Cadence SD/SDIO/eMMC controller"
- 	depends on MMC_SDHCI_PLTFM
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index f53f86d200ac..3ccffebbe59b 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -88,6 +88,7 @@ obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
- obj-$(CONFIG_MMC_SDHCI_OF_HLWD)		+= sdhci-of-hlwd.o
- obj-$(CONFIG_MMC_SDHCI_OF_DWCMSHC)	+= sdhci-of-dwcmshc.o
- obj-$(CONFIG_MMC_SDHCI_OF_SPARX5)	+= sdhci-of-sparx5.o
-+obj-$(CONFIG_MMC_SDHCI_OF_MA35D1)	+= sdhci-of-ma35d1.o
- obj-$(CONFIG_MMC_SDHCI_BCM_KONA)	+= sdhci-bcm-kona.o
- obj-$(CONFIG_MMC_SDHCI_IPROC)		+= sdhci-iproc.o
- obj-$(CONFIG_MMC_SDHCI_NPCM)		+= sdhci-npcm.o
-diff --git a/drivers/mmc/host/sdhci-of-ma35d1.c b/drivers/mmc/host/sdhci-of-ma35d1.c
-new file mode 100644
-index 000000000000..b84c2927bd4a
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-of-ma35d1.c
-@@ -0,0 +1,314 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2024 Nuvoton Technology Corp.
-+ *
-+ * Author: Shan-Chun Hung <shanchun1218@gmail.com>
-+ */
-+
-+#include <linux/align.h>
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
-+#include <linux/build_bug.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/dev_printk.h>
-+#include <linux/device.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/err.h>
-+#include <linux/math.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/minmax.h>
-+#include <linux/mmc/card.h>
-+#include <linux/mmc/host.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pinctrl/consumer.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <linux/sizes.h>
-+#include <linux/types.h>
-+
-+#include "sdhci-pltfm.h"
-+#include "sdhci.h"
-+
-+#define MA35_SYS_MISCFCR0	0x070
-+#define MA35_SDHCI_MSHCCTL	0x508
-+#define MA35_SDHCI_MBIUCTL	0x510
-+
-+#define MA35_SDHCI_CMD_CONFLICT_CHK	BIT(0)
-+#define MA35_SDHCI_INCR_MSK		GENMASK(3, 0)
-+#define MA35_SDHCI_INCR16		BIT(3)
-+#define MA35_SDHCI_INCR8		BIT(2)
-+
-+struct ma35_priv {
-+	struct reset_control	*rst;
-+	struct pinctrl		*pinctrl;
-+	struct pinctrl_state	*pins_uhs;
-+	struct pinctrl_state	*pins_default;
-+};
-+
-+struct ma35_restore_data {
-+	u32	reg;
-+	u32	width;
-+};
-+
-+static const struct ma35_restore_data restore_data[] = {
-+	{ SDHCI_CLOCK_CONTROL,		sizeof(u32)},
-+	{ SDHCI_BLOCK_SIZE,		sizeof(u32)},
-+	{ SDHCI_INT_ENABLE,		sizeof(u32)},
-+	{ SDHCI_SIGNAL_ENABLE,		sizeof(u32)},
-+	{ SDHCI_AUTO_CMD_STATUS,	sizeof(u32)},
-+	{ SDHCI_HOST_CONTROL,		sizeof(u32)},
-+	{ SDHCI_TIMEOUT_CONTROL,	sizeof(u8) },
-+	{ MA35_SDHCI_MSHCCTL,		sizeof(u16)},
-+	{ MA35_SDHCI_MBIUCTL,		sizeof(u16)},
-+};
-+
-+/*
-+ * If DMA addr spans 128MB boundary, we split the DMA transfer into two
-+ * so that each DMA transfer doesn't exceed the boundary.
-+ */
-+static void ma35_adma_write_desc(struct sdhci_host *host, void **desc, dma_addr_t addr, int len,
-+				 unsigned int cmd)
-+{
-+	int tmplen, offset;
-+
-+	if (likely(!len || (ALIGN(addr, SZ_128M) == ALIGN(addr + len - 1, SZ_128M)))) {
-+		sdhci_adma_write_desc(host, desc, addr, len, cmd);
-+		return;
-+	}
-+
-+	offset = addr & (SZ_128M - 1);
-+	tmplen = SZ_128M - offset;
-+	sdhci_adma_write_desc(host, desc, addr, tmplen, cmd);
-+
-+	addr += tmplen;
-+	len -= tmplen;
-+	sdhci_adma_write_desc(host, desc, addr, len, cmd);
-+}
-+
-+static void ma35_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	u32 ctl;
-+
-+	/*
-+	 * If the clock frequency exceeds MMC_HIGH_52_MAX_DTR,
-+	 * disable command conflict check.
-+	 */
-+	ctl = sdhci_readw(host, MA35_SDHCI_MSHCCTL);
-+	if (clock > MMC_HIGH_52_MAX_DTR)
-+		ctl &= ~MA35_SDHCI_CMD_CONFLICT_CHK;
-+	else
-+		ctl |= MA35_SDHCI_CMD_CONFLICT_CHK;
-+	sdhci_writew(host, ctl, MA35_SDHCI_MSHCCTL);
-+
-+	sdhci_set_clock(host, clock);
-+}
-+
-+static int ma35_start_signal_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct ma35_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+
-+	switch (ios->signal_voltage) {
-+	case MMC_SIGNAL_VOLTAGE_180:
-+		if (!IS_ERR(priv->pinctrl) && !IS_ERR(priv->pins_uhs))
-+			pinctrl_select_state(priv->pinctrl, priv->pins_uhs);
-+		break;
-+	case MMC_SIGNAL_VOLTAGE_330:
-+		if (!IS_ERR(priv->pinctrl) && !IS_ERR(priv->pins_default))
-+			pinctrl_select_state(priv->pinctrl, priv->pins_default);
-+		break;
-+	default:
-+		dev_err(mmc_dev(host->mmc), "Unsupported signal voltage!\n");
-+		return -EINVAL;
-+	}
-+
-+	return sdhci_start_signal_voltage_switch(mmc, ios);
-+}
-+
-+static void ma35_voltage_switch(struct sdhci_host *host)
-+{
-+	/* Wait for 5ms after set 1.8V signal enable bit */
-+	fsleep(5000);
-+}
-+
-+static int ma35_execute_tuning(struct mmc_host *mmc, u32 opcode)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct ma35_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	int idx;
-+	u32 regs[ARRAY_SIZE(restore_data)] = {};
-+
-+	/*
-+	 * Limitations require a reset of SD/eMMC before tuning and
-+	 * saving the registers before resetting, then restoring
-+	 * after the reset.
-+	 */
-+	for (idx = 0; idx < ARRAY_SIZE(restore_data); idx++) {
-+		if (restore_data[idx].width == sizeof(u32))
-+			regs[idx] = sdhci_readl(host, restore_data[idx].reg);
-+		else if (restore_data[idx].width == sizeof(u16))
-+			regs[idx] = sdhci_readw(host, restore_data[idx].reg);
-+		else if (restore_data[idx].width == sizeof(u8))
-+			regs[idx] = sdhci_readb(host, restore_data[idx].reg);
-+	}
-+
-+	reset_control_assert(priv->rst);
-+	reset_control_deassert(priv->rst);
-+
-+	for (idx = 0; idx < ARRAY_SIZE(restore_data); idx++) {
-+		if (restore_data[idx].width == sizeof(u32))
-+			sdhci_writel(host, regs[idx], restore_data[idx].reg);
-+		else if (restore_data[idx].width == sizeof(u16))
-+			sdhci_writew(host, regs[idx], restore_data[idx].reg);
-+		else if (restore_data[idx].width == sizeof(u8))
-+			sdhci_writeb(host, regs[idx], restore_data[idx].reg);
-+	}
-+
-+	return sdhci_execute_tuning(mmc, opcode);
-+}
-+
-+static const struct sdhci_ops sdhci_ma35_ops = {
-+	.set_clock		= ma35_set_clock,
-+	.set_bus_width		= sdhci_set_bus_width,
-+	.set_uhs_signaling	= sdhci_set_uhs_signaling,
-+	.get_max_clock		= sdhci_pltfm_clk_get_max_clock,
-+	.reset			= sdhci_reset,
-+	.adma_write_desc	= ma35_adma_write_desc,
-+	.voltage_switch		= ma35_voltage_switch,
-+};
-+
-+static const struct sdhci_pltfm_data sdhci_ma35_pdata = {
-+	.ops = &sdhci_ma35_ops,
-+	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-+	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN | SDHCI_QUIRK2_BROKEN_DDR50 |
-+		   SDHCI_QUIRK2_ACMD23_BROKEN,
-+};
-+
-+static int ma35_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct sdhci_host *host;
-+	struct ma35_priv *priv;
-+	int err;
-+	u32 extra, ctl;
-+
-+	host = sdhci_pltfm_init(pdev, &sdhci_ma35_pdata, sizeof(struct ma35_priv));
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	/* Extra adma table cnt for cross 128M boundary handling. */
-+	extra = DIV_ROUND_UP_ULL(dma_get_required_mask(dev), SZ_128M);
-+	extra = min(extra, SDHCI_MAX_SEGS);
-+
-+	host->adma_table_cnt += extra;
-+	pltfm_host = sdhci_priv(host);
-+	priv = sdhci_pltfm_priv(pltfm_host);
-+
-+	pltfm_host->clk = devm_clk_get_optional_enabled(dev, NULL);
-+	if (IS_ERR(pltfm_host->clk)) {
-+		err = dev_err_probe(dev, PTR_ERR(pltfm_host->clk), "failed to get clk\n");
-+		goto err_sdhci;
-+	}
-+
-+	err = mmc_of_parse(host->mmc);
-+	if (err)
-+		goto err_sdhci;
-+
-+	priv->rst = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(priv->rst)) {
-+		err = dev_err_probe(dev, PTR_ERR(priv->rst), "failed to get reset control\n");
-+		goto err_sdhci;
-+	}
-+
-+	sdhci_get_of_property(pdev);
-+
-+	priv->pinctrl = devm_pinctrl_get(dev);
-+	if (!IS_ERR(priv->pinctrl)) {
-+		priv->pins_default = pinctrl_lookup_state(priv->pinctrl, "default");
-+		priv->pins_uhs = pinctrl_lookup_state(priv->pinctrl, "state_uhs");
-+		pinctrl_select_state(priv->pinctrl, priv->pins_default);
-+	}
-+
-+	if (!(host->quirks2 & SDHCI_QUIRK2_NO_1_8_V)) {
-+		struct regmap	*regmap;
-+		u32		reg;
-+
-+		regmap = syscon_regmap_lookup_by_phandle(dev_of_node(dev), "nuvoton,sys");
-+		if (!IS_ERR(regmap)) {
-+			/* Enable SDHCI voltage stable for 1.8V */
-+			regmap_read(regmap, MA35_SYS_MISCFCR0, &reg);
-+			reg |= BIT(17);
-+			regmap_write(regmap, MA35_SYS_MISCFCR0, reg);
-+		}
-+
-+		host->mmc_host_ops.start_signal_voltage_switch =
-+					ma35_start_signal_voltage_switch;
-+	}
-+
-+	host->mmc_host_ops.execute_tuning = ma35_execute_tuning;
-+
-+	err = sdhci_add_host(host);
-+	if (err)
-+		goto err_sdhci;
-+
-+	/*
-+	 * Split data into chunks of 16 or 8 bytes for transmission.
-+	 * Each chunk transfer is guaranteed to be uninterrupted on the bus.
-+	 * This likely corresponds to the AHB bus DMA burst size.
-+	 */
-+	ctl = sdhci_readw(host, MA35_SDHCI_MBIUCTL);
-+	ctl &= ~MA35_SDHCI_INCR_MSK;
-+	ctl |= MA35_SDHCI_INCR16 | MA35_SDHCI_INCR8;
-+	sdhci_writew(host, ctl, MA35_SDHCI_MBIUCTL);
-+
-+	return 0;
-+
-+err_sdhci:
-+	sdhci_pltfm_free(pdev);
-+	return err;
-+}
-+
-+static void ma35_disable_card_clk(struct sdhci_host *host)
-+{
-+	u16 ctrl;
-+
-+	ctrl = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	if (ctrl & SDHCI_CLOCK_CARD_EN) {
-+		ctrl &= ~SDHCI_CLOCK_CARD_EN;
-+		sdhci_writew(host, ctrl, SDHCI_CLOCK_CONTROL);
-+	}
-+}
-+
-+static void ma35_remove(struct platform_device *pdev)
-+{
-+	struct sdhci_host *host = platform_get_drvdata(pdev);
-+
-+	sdhci_remove_host(host, 0);
-+	ma35_disable_card_clk(host);
-+	sdhci_pltfm_free(pdev);
-+}
-+
-+static const struct of_device_id sdhci_ma35_dt_ids[] = {
-+	{ .compatible = "nuvoton,ma35d1-sdhci" },
-+	{}
-+};
-+
-+static struct platform_driver sdhci_ma35_driver = {
-+	.driver	= {
-+		.name	= "sdhci-ma35",
-+		.of_match_table = sdhci_ma35_dt_ids,
-+	},
-+	.probe	= ma35_probe,
-+	.remove_new = ma35_remove,
-+};
-+module_platform_driver(sdhci_ma35_driver);
-+
-+MODULE_DESCRIPTION("SDHCI platform driver for Nuvoton MA35");
-+MODULE_AUTHOR("Shan-Chun Hung <shanchun1218@gmail.com>");
-+MODULE_LICENSE("GPL");
---
-2.25.1
-
+Thanks,
+Kim
 
