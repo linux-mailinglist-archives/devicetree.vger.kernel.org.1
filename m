@@ -1,128 +1,274 @@
-Return-Path: <devicetree+bounces-86068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0184B932475
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 12:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D99D932486
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:00:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24FA91C209FE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 10:55:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0FCF1C223C4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 11:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B38198E9F;
-	Tue, 16 Jul 2024 10:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31B91991A3;
+	Tue, 16 Jul 2024 10:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EKANo6Sm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gVxtAbYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B437713D630;
-	Tue, 16 Jul 2024 10:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F79513D630
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 10:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721127274; cv=none; b=LlzGbFbYarlk7KHWi1J9WTYRxSwYWYEkFxpYCJvgpTHMe/yOGhuIPEPklbzgLHeZciStHNQEJW1g3ucS5hN+xxY21A/B3wZAkR5trTgT8G07zyme2Wyg9HZYc65TKD3MVKVWyYcL990V/CF1/h5yMCsz/JmX49c3I4O3SsRRWqE=
+	t=1721127599; cv=none; b=eDjWgWvyANN27rjgnTKR2gqIeRtW/iRcCGgck86FANqoccQD3RRFeEI5AzipdllXGncL9dZ8tc5ZsRnN0J2MRd2tgaPQkZcPyCPtiRVaIao/ifHmde81gKkjxU1EqIC4u4VwDqZIB6PS1ReG9tl2i/ChUi0u8jxijlFxCCveeLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721127274; c=relaxed/simple;
-	bh=6gdpDGE1/LIdEVfgCRKL8aaj9UTnYSsTvPqQ935Y1Lg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GqAf51GufF+V8ooGSNYkdjAbB9apn0oppRM4TaAPJIlyBrC1K1DW4C2zsplmKnIyHxPJkaOgbPl5fObctW4L5eb3P//j1zhoQD9iLgJnDkJzywUwacyEYBSt619GdsDwt1TLr7YNl5BI28NlcMOQCA0ypKBw2qXp/OvOEI7MZJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EKANo6Sm; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1721127271; x=1752663271;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=6gdpDGE1/LIdEVfgCRKL8aaj9UTnYSsTvPqQ935Y1Lg=;
-  b=EKANo6SmQvF4JHk35ZJAW0nR6/b11Z1UrkpuxpBSta5rck0/fRstzygv
-   oslhihr2bJ+GxIxaLrob0nMV1RYJqNmHsq+XgDzPVJoBa0cQiQULPHPFt
-   q5Lo0B84XVRnvn4oPpH2OcDOxxJDB9ILY26CW6d+uAYZ6WDamU2qFaGrO
-   I6xWejV8hgG/bl9GobC8GdYWnEk/hzbMQkPm5/umn0o5FEjqH+0HlXTlw
-   TsZEf9UkDVLIGJus4Id+m5ViR872nC42CLxlMebhIXYi5Feih5UrLQ19Y
-   SIJX+84mpXwb5lxYdxTObiF7/yCjSgTA0Y1EkMZ36vIjYmcv9mtQ8lseE
-   w==;
-X-CSE-ConnectionGUID: /vnhTfboQ6C0iy9Ax+QmOQ==
-X-CSE-MsgGUID: SCamelLoSPSu/5eVa//GXg==
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; 
-   d="scan'208";a="196700543"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Jul 2024 03:54:30 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Jul 2024 03:54:26 -0700
-Received: from wendy.microchip.com (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 16 Jul 2024 03:54:24 -0700
-From: Conor Dooley <conor.dooley@microchip.com>
-To: <linux-riscv@lists.infradead.org>
-CC: <conor@kernel.org>, <conor.dooley@microchip.com>, Emil Renner Berthing
-	<kernel@esmil.dk>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, "Palmer
- Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, William Qiu
-	<william.qiu@starfivetech.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v1] riscv: dts: starfive: remove non-existant spi device from jh7110-common.dtsi
-Date: Tue, 16 Jul 2024 11:54:00 +0100
-Message-ID: <20240716-majesty-antler-d9bedc7fd0af@wendy>
-X-Mailer: git-send-email 2.43.2
+	s=arc-20240116; t=1721127599; c=relaxed/simple;
+	bh=2Xbui5IUyg5tb8VxTM+MedBqiuXg6kjyATX7ytaJ32w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WD2mBFbO2g9TZEgwJKkteU1I/5QvxDSICbzz/XzHm3QIFNB+yB1lNEelGZioEV3aIn3zAvCtHPMBLsaTlCb6e4vMI97N3ytIT5I26WaDqeunbrT7bKRzAdfcjq2jj2mS3L5u9QD6wiQVaFG5l+tZYSfE4lJdvmCjsW9CGuTLUGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gVxtAbYx; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e02c4983bfaso5550893276.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 03:59:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721127595; x=1721732395; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SCpp5TdLu9kk6eRwCAo7oBPRTqvgECiNvL6BaGoRicI=;
+        b=gVxtAbYx/YIC3h1CkWqVGvnQII/9SfRNXUtP7Lc9SwpU4+Skr+lesOyRDzNPcgz4i+
+         0CRLtmI6R5fvFL8C/kErnUWmwjzNGN0Armg1/T70fCs+PBos89mw7ZhxdpHn2I4jvCqr
+         v8vSSe6dyNWNWItys8GalmJeWDHQbtfpatE54/q6yy+vToCqc8usGflYw9NfspuQKu2t
+         un2BriQI4G6M6Nlkvq+t4WhsHeT6V4Oxa71tovCRbczF/zuePePaYWJhCyD44RDYJZqD
+         OqFAJwmEpnsgVhvOQ40+PLzardHzMtEetEBPY8XmkeityAIHXenKS3BbeuALT25SPJCS
+         aTRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721127595; x=1721732395;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SCpp5TdLu9kk6eRwCAo7oBPRTqvgECiNvL6BaGoRicI=;
+        b=QGKop5HVVijjhc0qEtw1/gHabkEGL8DqgROJFMASJhA03efpCXFy669JWgghW3dzJQ
+         1pUhFJvv+IegZvEaQF2sVaVa5usKxLGaa6Xh6fupob+R2Hj0qFU7cBKOnGgZS0l7k42f
+         h7fiGO1JBS9tde2+E3yRD6jAhXGeg5VVr7L+/h6CSGjT5YuiyhLyjnExBKTvaN8rDHhi
+         PhKw9dQJYGhHkCLCGJCd/ROY93gWws0gZ+Ik037+cawJdwqmWcxL3AkDhp83b12Ccyip
+         5Y9xUKGt0EHfrJE9Oo3WaWepzK8Jn3UOm4PNpncYAucJXb/zOksVdjBhj9X5WCztv+Td
+         yOsw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZaJl9dqZmgiEHbllSNT7r+5KmhbKemj5ZPUoXjZmnwv/5+c86GHYa3L46o9TWmAHGn3ecbyki0XdpavQcekc0VZBeQxYBTmuT4Q==
+X-Gm-Message-State: AOJu0YwjLqTbCXo5SCVEZcr54duMe5vbMUMFnWRcBAN3sZLxr+mj8cZ+
+	mPLWKhQJyA/EM7I/lzvLT8SNuDpa2romocI7QpfkVj0pWkOsHIbnDueHaVHzw7wUvZ+FJXPUu7T
+	8D8VdsPQzRJypxJYzP1EoVogIx6gWMeQ0axOJYQ==
+X-Google-Smtp-Source: AGHT+IEAYszVmONd9WFRIl8XLspjDCopUYw6S6qPqmgIeZkQQTGphg+e0dz0ezSFN7crgqieY6cxct7ubknDXA63tu0=
+X-Received: by 2002:a81:77c5:0:b0:643:aef1:fb9d with SMTP id
+ 00721157ae682-6637f0c9bd5mr20216307b3.4.1721127595205; Tue, 16 Jul 2024
+ 03:59:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1639; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=6gdpDGE1/LIdEVfgCRKL8aaj9UTnYSsTvPqQ935Y1Lg=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGnTAj1CfUt+8dRlTvH4E1GlMZ3FW7LF8/WMJzvr5TyqQvdE c6/pKGVhEONgkBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwEQe7mH4X6n61TNXbu/6kHdG9nPKrh pWvtOOfPztX2HFvPX/XQ9qRjAyrIj1lV3frCa3KfVnyovg1cn7mPdcDL9QfNKy2DN7b74JAwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr> <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
+ <20240701-bug-of-great-honeydew-cfb6ef@houat> <e7bbbe4e-7deb-46c3-9cce-1922f9b6b3a2@freebox.fr>
+ <20240708-ethereal-romantic-piculet-d4ae66@houat> <pp3rc5zob3xeghlatw4vnpzplc4yjpjadkea465zmhft55dyl5@3cpoc2zovftv>
+ <20240715-shiny-enigmatic-firefly-2a6dec@houat> <CAA8EJpoJ0132ZYGCO=8xQt8J4Z9w5jDON1H-VRCemFdyV-9nUw@mail.gmail.com>
+ <20240716-exuberant-diligent-beagle-c43ffc@houat>
+In-Reply-To: <20240716-exuberant-diligent-beagle-c43ffc@houat>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 16 Jul 2024 13:59:43 +0300
+Message-ID: <CAA8EJppwWN8vBPv0cE0Fmt5rtP60RS4qgB5n6_CfuaQdLLpGDw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
+Content-Type: text/plain; charset="UTF-8"
 
-There is no rohm,dh2228fv on any of supported JH7110 boards - in fact
-the dh2228fv almost certainly does not exist as it is not a valid Rohm
-part number. Likely a typo by Maxime when adding the device originally,
-and should have been bh2228fv, but these boards do not have a bh2228fv
-either! Remove it from jh7110-common.dtsi - pretending to have a device
-so that the spidev driver will be bound by Linux is not acceptable.
+On Tue, 16 Jul 2024 at 12:24, Maxime Ripard <mripard@kernel.org> wrote:
+>
+> Hi,
+>
+> On Mon, Jul 15, 2024 at 07:38:34PM GMT, Dmitry Baryshkov wrote:
+> > On Mon, 15 Jul 2024 at 17:42, Maxime Ripard <mripard@kernel.org> wrote:
+> > >
+> > > On Mon, Jul 08, 2024 at 11:29:46PM GMT, Dmitry Baryshkov wrote:
+> > > > On Mon, Jul 08, 2024 at 04:59:23PM GMT, Maxime Ripard wrote:
+> > > > > On Mon, Jul 01, 2024 at 05:36:18PM GMT, Marc Gonzalez wrote:
+> > > > > > On 01/07/2024 15:50, Maxime Ripard wrote:
+> > > > > >
+> > > > > > > On Thu, Jun 27, 2024 at 01:13:03PM GMT, Marc Gonzalez wrote:
+> > > > > > >
+> > > > > > >> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
+> > > > > > >> It supports DVI 1.0, HDMI 1.4b and 2.0b.
+> > > > > > >> It supports 4 TMDS channels, HPD, and a DDC interface.
+> > > > > > >> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
+> > > > > > >> for power reduction. Several methods of power management are
+> > > > > > >> implemented to reduce overall power consumption.
+> > > > > > >> It supports fixed receiver EQ gain using I2C or pin strap to
+> > > > > > >> compensate for different lengths input cable or board traces.
+> > > > > > >>
+> > > > > > >> Features
+> > > > > > >>
+> > > > > > >> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
+> > > > > > >> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
+> > > > > > >> data rate, compatible with HDMI 2.0b electrical parameters
+> > > > > > >> - DisplayPort dual-mode standard version 1.1
+> > > > > > >> - Programmable fixed receiver equalizer up to 15.5dB
+> > > > > > >> - Global or independent high speed lane control, pre-emphasis
+> > > > > > >> and transmit swing, and slew rate control
+> > > > > > >> - I2C or pin strap programmable
+> > > > > > >> - Configurable as a DisplayPort redriver through I2C
+> > > > > > >> - Full lane swap on main lanes
+> > > > > > >> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
+> > > > > > >>
+> > > > > > >> https://www.ti.com/lit/ds/symlink/tdp158.pdf
+> > > > > > >>
+> > > > > > >> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> > > > > > >> ---
+> > > > > > >>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
+> > > > > > >>  1 file changed, 51 insertions(+)
+> > > > > > >>
+> > > > > > >> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> > > > > > >> new file mode 100644
+> > > > > > >> index 0000000000000..21c8585c3bb2d
+> > > > > > >> --- /dev/null
+> > > > > > >> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> > > > > > >> @@ -0,0 +1,51 @@
+> > > > > > >> +# SPDX-License-Identifier: GPL-2.0-only
+> > > > > > >> +%YAML 1.2
+> > > > > > >> +---
+> > > > > > >> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
+> > > > > > >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > >> +
+> > > > > > >> +title: TI TDP158 HDMI to TMDS Redriver
+> > > > > > >> +
+> > > > > > >> +maintainers:
+> > > > > > >> +  - Arnaud Vrac <avrac@freebox.fr>
+> > > > > > >> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
+> > > > > > >> +
+> > > > > > >> +properties:
+> > > > > > >> +  compatible:
+> > > > > > >> +    const: ti,tdp158
+> > > > > > >> +
+> > > > > > >> +  reg:
+> > > > > > >> +    description: I2C address of the device
+> > > > > > >> +
+> > > > > > >> +  enable-gpios:
+> > > > > > >> +    description: GPIO controlling bridge enable
+> > > > > > >> +
+> > > > > > >> +  vcc-supply:
+> > > > > > >> +    description: Power supply 3.3V
+> > > > > > >> +
+> > > > > > >> +  vdd-supply:
+> > > > > > >> +    description: Power supply 1.1V
+> > > > > > >> +
+> > > > > > >> +  ports:
+> > > > > > >> +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > > >> +
+> > > > > > >> +    properties:
+> > > > > > >> +      port@0:
+> > > > > > >> +        $ref: /schemas/graph.yaml#/properties/port
+> > > > > > >> +        description: Bridge input
+> > > > > > >> +
+> > > > > > >> +      port@1:
+> > > > > > >> +        $ref: /schemas/graph.yaml#/properties/port
+> > > > > > >> +        description: Bridge output
+> > > > > > >> +
+> > > > > > >> +    required:
+> > > > > > >> +      - port@0
+> > > > > > >> +      - port@1
+> > > > > > >
+> > > > > > > The device supports DVI, HDMI or DP input, with various requirements and
+> > > > > > > capabilities depending on the input. Your binding doesn't address that.
+> > > > > > >
+> > > > > > > Similarly, it can do lane-swapping, so we should probably have a
+> > > > > > > property to describe what mapping we want to use.
+> > > > > > >
+> > > > > > > The i2c register access (and the whole behaviour of the device) is
+> > > > > > > constrained on the I2C_EN pin status, and you can't read it from the
+> > > > > > > device, so it's also something we need to have in the DT.
+> > > > > >
+> > > > > > We are using the device in its default configuration.
+> > > > > > (Power on via OE, then it works as expected)
+> > > > >
+> > > > > I know, but that doesn't really matter for a binding.
+> > > > >
+> > > > > > Can we leave any additional properties to be defined by whomever needs
+> > > > > > them in the future?
+> > > > >
+> > > > > If you can guarantee that doing so would be backward compatible, sure.
+> > > > > But that means being able to answer those questions with a reasonable
+> > > > > plan.
+> > > >
+> > > > I think proposed bindings are generic enough to cover other possible
+> > > > usecases in future.
+> > >
+> > > I don't think it is. The current binding is for a I2C device that
+> > > shouldn't be accessed through I2C.
+> > >
+> > > It's working for now because the driver doesn't do any access, so it's
+> > > all great, but as soon as we add support for the other case, then we'll
+> > > have to add a property that states that while it's an i2c device, it
+> > > shouldn't be accessed.
+> > >
+> > > And adding such a property is a compatibility-breaking change.
+> >
+> > Please correct me if I'm wrong. We have following usecases.
+> >
+> > 1. I2C_EN pulled low. TI158 is in the pin strap mode, it is not
+> > connected to the I2C bus. A0, A1, SDA and SCL pins are used for
+> > strapping the settings.
+> >     board DT file should describe the bridge as a platform device
+> > sitting directly under the root node.
+>
+> DT maintainers have required that reg is always present in the other
+> sub-thread.
 
-Fixes: 74fb20c8f05d ("riscv: dts: starfive: Add spi node and pins configuration")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: Emil Renner Berthing <kernel@esmil.dk>
-CC: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Paul Walmsley <paul.walmsley@sifive.com>
-CC: Palmer Dabbelt <palmer@dabbelt.com>
-CC: Albert Ou <aou@eecs.berkeley.edu>
-CC: William Qiu <william.qiu@starfivetech.com>
-CC: linux-riscv@lists.infradead.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
+If I2C_EN is pulled low, there is no reg, as there is no i2c bus
+whatsoever. I2C pins are repurposed as pin straps, An pins are
+repurposed as pin straps.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index 8ff6ea64f048..395436ec0f97 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -346,12 +346,6 @@ &spi0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi0_pins>;
- 	status = "okay";
--
--	spi_dev0: spi@0 {
--		compatible = "rohm,dh2228fv";
--		reg = <0>;
--		spi-max-frequency = <10000000>;
--	};
- };
- 
- &sysgpio {
+I think DT maintainers wanted reg for the 2.a. case - in other words
+the bridge is present on the I2C bus, but it is not being programmed.
+
+>
+> > 2. I2C_EN pulled high. TI158 is in the I2C mode. It is connected to
+> > the I2C bus, A0/A1 pins set the I2C bus address. The device is
+> > controlled over the I2C bus
+> >
+> > 2.a. The same as 2, but the device is not controlled at all, default
+> > settings are fine.
+> >
+> > The driver covers usecase 2.a. The bindings allow extending the driver
+> > to the usecase 2 (e.g. via optional properties which specify
+> > bord-specific settings)
+> >
+> > The usecase 1 is a completely separate topic, it requires a different
+> > schema file, specifying no i2c address, only voltages supplies and
+> > enable-gpios.
+>
+> I could have mis-unnderstood, but my understanding was that they were
+> running it with I2C_EN tied low.
+
+That was my initial assumption, but I think Arnoud pointed out that
+the bridge is connected to I2C, just not controlled as defaults are
+sane.
+
+> Of course, that's one of the thing that is completely missing from the
+> commit log, so who knows.
+
+Or from the cover letter :-(
+
 -- 
-2.43.2
-
+With best wishes
+Dmitry
 
