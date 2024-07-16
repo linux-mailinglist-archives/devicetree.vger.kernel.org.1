@@ -1,181 +1,238 @@
-Return-Path: <devicetree+bounces-86240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B71F933436
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 00:28:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D929793343F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 00:33:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CA9A1C22732
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 22:28:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58A271F213CE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 22:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D791411EB;
-	Tue, 16 Jul 2024 22:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484685588B;
+	Tue, 16 Jul 2024 22:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hce1rIEZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h60ICgEO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C13613D262;
-	Tue, 16 Jul 2024 22:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC59414A84;
+	Tue, 16 Jul 2024 22:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721168888; cv=none; b=ajIVOJwFWDVTqlz4L0HBxz9dKq+upz6B4zteSgYqoOpc0T4ZH/XaGMQ4k7JAXGpIe3jAXzaPQRw7HDymw0D0MQL6uh6yDaKeCdxGYR42XjfFQJM1jjbOUJ8P18zmRKySvOGcPYRoEtg7Vdv1jw9qqeQn8dUivwmlq12ySTiyPCw=
+	t=1721169178; cv=none; b=jbNMVtihGcBJNTgoIRafORdCSIit8p7Hj2/wyHJ7qXFmXJm7hmJfkRy34EbZJtMvhIfDcABgrWHGKfFGfn5TArTAGCmr3vlm1CdjBmTsN7+u1YbWMQjJ4kmIvBcMSeJSSJRQmPgdQG6dy60TwEvwCUwVZFXOZCqM5VLFDHRuVKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721168888; c=relaxed/simple;
-	bh=NfPZkGC+r85TH2hak7B3uZ5xb2lxTRsz0Snd8QaZPZA=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=Qr/b1DfmA5errGWbnrYXEMM54AoCZQiQBF0jEFetK3lLGIMU1xvAdWhXOR73yY/CXJMq8sW2KJ8efwBILdA9+xz/UcLL8PvEf2OAvCRiyPycJH7WIWOy5GbIZj9Vo7zYmS1kuezi4iHdGNryZm+yGyzbaHGBDTNuJ8y/HPkXtVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hce1rIEZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7C32C116B1;
-	Tue, 16 Jul 2024 22:28:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721168887;
-	bh=NfPZkGC+r85TH2hak7B3uZ5xb2lxTRsz0Snd8QaZPZA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=Hce1rIEZ0Thyin4pnSSKLVdjqAvQt5o4Bi8Wljh+Q4reiza4WyXEcCRTWY+Z3l6iF
-	 yziZSPyhD3Y05kE8JY+eHXFL3qoH4h8/TUFDFWa+BkQe5w41h3WMkO7R5Ji55Hd4gn
-	 D1eXAIgPvKD4LltPe4u+48sJnfTki9tQqM1Pe3U/e5KEHLp++QOpzlpzm0RNg1p2cI
-	 X21mE4Px7LjIdWjLAkbqg97IMG4ri907ymCqjEjQLG60JAj94NbqyiWJ98r3kGhV9U
-	 v0L0F7+GfRqT5g+WKvPkjPxgtq+egE6G/63jwYwCFbhHOKJSKYrYYkWiRWRlVHB9ZZ
-	 0YT9Jt4a4HwEA==
-Message-ID: <2abcd440664067d95b1ac0e765ad55a3.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1721169178; c=relaxed/simple;
+	bh=swN4b8h/nUCt1/Y9VEpzo86+GBAcZvPlBbmGEW9zFmE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LDw+mi0M/68Q3nD8EaNoixlC5XmkDM0AxcwRAJQBc+RMjky3vSZZKBRag549d4FZzZhGaNSac2uFb8EpevPq15G9oIVWlPs6U2QFtmqBU4L2zakopYPMsjhCaWSr0BrrNhmsMh2uZSaiOtHuvQtpnjbKL2emGoHPg0WBwFluMLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h60ICgEO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46GHfCDx027100;
+	Tue, 16 Jul 2024 22:32:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Fnc1xSvidRFu1TLeGL7QIE/pL8GjNa1WqTpw1MPW/FY=; b=h60ICgEON6IvXO4E
+	D3JMU2OByZQfUcABjqiNIjwj94iOnlRv4BMblc4ywhRLmpBCo20uVu0Euym/OuQ6
+	qc4UEDwDC41O3MogFvci3+X4xM/SoXTkeOG7WEDHi33YYpmy41czp1dJXACCQQjp
+	UP1BwQ7s9aPys0caStWPCS3WQxr37IhD87/43GBUQlLh51jXfAr2aPtpVAh1ykpO
+	K7lPBimUJSGAqmiDjTRowtAtaJrs4ehvAB3ho6s2/wEtnWsUiHOGT7Ehp+HZ4epp
+	/V8ehJ2acJdKcRX0sQ5PJeR0ZlXNmtHegSeT7cT52aqT9C66Hpgh+tj5l6cPcYAm
+	mN1/hQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfs0h3w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jul 2024 22:32:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46GMW1dO003111
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jul 2024 22:32:01 GMT
+Received: from [10.110.79.225] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 16 Jul
+ 2024 15:32:00 -0700
+Message-ID: <9b6eac04-f377-4afa-8712-ab916f831bba@quicinc.com>
+Date: Tue, 16 Jul 2024 15:32:00 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240716103025.1198495-4-claudiu.beznea.uj@bp.renesas.com>
-References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com> <20240716103025.1198495-4-claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 03/11] clk: renesas: clk-vbattb: Add VBATTB clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, claudiu.beznea@tuxon.dev, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>, alexandre.belloni@bootlin.com, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, lee@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
-Date: Tue, 16 Jul 2024 15:28:05 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 7/7] PCI: host-generic: Add dwc PCIe controller based
+ MSI controller usage
+To: Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <jingoohan1@gmail.com>, <manivannan.sadhasivam@linaro.org>,
+        <cassel@kernel.org>, <yoshihiro.shimoda.uh@renesas.com>,
+        <s-vadapalli@ti.com>, <u.kleine-koenig@pengutronix.de>,
+        <dlemoal@kernel.org>, <amishin@t-argos.ru>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <Frank.Li@nxp.com>,
+        <ilpo.jarvinen@linux.intel.com>, <vidyas@nvidia.com>,
+        <marek.vasut+renesas@gmail.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
+        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
+        <quic_nitegupt@quicinc.com>
+References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
+ <1721067215-5832-8-git-send-email-quic_mrana@quicinc.com>
+ <20240716085811.GA19348@willie-the-truck>
+ <20240716134210.GA3534018-robh@kernel.org>
+Content-Language: en-US
+From: Mayank Rana <quic_mrana@quicinc.com>
+In-Reply-To: <20240716134210.GA3534018-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: I532TsYz3juuFxUZv1OBIcUZqTfWKCax
+X-Proofpoint-GUID: I532TsYz3juuFxUZv1OBIcUZqTfWKCax
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-16_02,2024-07-16_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=999
+ impostorscore=0 mlxscore=0 phishscore=0 suspectscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407160165
 
-Quoting Claudiu (2024-07-16 03:30:17)
-> diff --git a/drivers/clk/renesas/clk-vbattb.c b/drivers/clk/renesas/clk-v=
-battb.c
-> new file mode 100644
-> index 000000000000..8effe141fc0b
-> --- /dev/null
-> +++ b/drivers/clk/renesas/clk-vbattb.c
-> @@ -0,0 +1,212 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * VBATTB clock driver
-> + *
-> + * Copyright (C) 2024 Renesas Electronics Corp.
-> + */
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/clk.h>
+Hi Will and Rob
 
-Prefer clk providers to not be clk consumers.
+Thank you for your quick review comments.
 
-> +#include <linux/clk-provider.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
+On 7/16/2024 6:42 AM, Rob Herring wrote:
+> On Tue, Jul 16, 2024 at 09:58:12AM +0100, Will Deacon wrote:
+>> On Mon, Jul 15, 2024 at 11:13:35AM -0700, Mayank Rana wrote:
+>>> Add usage of Synopsys Designware PCIe controller based MSI controller to
+>>> support MSI functionality with ECAM compliant Synopsys Designware PCIe
+>>> controller. To use this functionality add device compatible string as
+>>> "snps,dw-pcie-ecam-msi".
+>>>
+>>> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
+>>> ---
+>>>   drivers/pci/controller/pci-host-generic.c | 92 ++++++++++++++++++++++++++++++-
+>>>   1 file changed, 91 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/pci/controller/pci-host-generic.c b/drivers/pci/controller/pci-host-generic.c
+>>> index c2c027f..457ae44 100644
+>>> --- a/drivers/pci/controller/pci-host-generic.c
+>>> +++ b/drivers/pci/controller/pci-host-generic.c
+>>> @@ -8,13 +8,73 @@
+>>>    * Author: Will Deacon <will.deacon@arm.com>
+>>>    */
+>>>   
+>>> -#include <linux/kernel.h>
+>>>   #include <linux/init.h>
+>>> +#include <linux/kernel.h>
+>>>   #include <linux/module.h>
+>>> +#include <linux/of_address.h>
+>>>   #include <linux/pci-ecam.h>
+>>>   #include <linux/platform_device.h>
+>>>   #include <linux/pm_runtime.h>
+>>>   
+>>> +#include "dwc/pcie-designware-msi.h"
+>>> +
+>>> +struct dw_ecam_pcie {
+>>> +	void __iomem *cfg;
+>>> +	struct dw_msi *msi;
+>>> +	struct pci_host_bridge *bridge;
+>>> +};
+>>> +
+>>> +static u32 dw_ecam_pcie_readl(void *p_data, u32 reg)
+>>> +{
+>>> +	struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
+>>> +
+>>> +	return readl(ecam_pcie->cfg + reg);
+>>> +}
+>>> +
+>>> +static void dw_ecam_pcie_writel(void *p_data, u32 reg, u32 val)
+>>> +{
+>>> +	struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
+>>> +
+>>> +	writel(val, ecam_pcie->cfg + reg);
+>>> +}
+>>> +
+>>> +static struct dw_ecam_pcie *dw_pcie_ecam_msi(struct platform_device *pdev)
+>>> +{
+>>> +	struct device *dev = &pdev->dev;
+>>> +	struct dw_ecam_pcie *ecam_pcie;
+>>> +	struct dw_msi_ops *msi_ops;
+>>> +	u64 addr;
+>>> +
+>>> +	ecam_pcie = devm_kzalloc(dev, sizeof(*ecam_pcie), GFP_KERNEL);
+>>> +	if (!ecam_pcie)
+>>> +		return ERR_PTR(-ENOMEM);
+>>> +
+>>> +	if (of_property_read_reg(dev->of_node, 0, &addr, NULL) < 0) {
+> 
+> Using this function on MMIO addresses is wrong. It is an untranslated
+> address.
+ok. do you prefer me to use of_address_to_resource() instead here ?
 
-Is of_platform.h used?
+>>> +		dev_err(dev, "Failed to get reg address\n");
+>>> +		return ERR_PTR(-ENODEV);
+>>> +	}
+>>> +
+>>> +	ecam_pcie->cfg = devm_ioremap(dev, addr, PAGE_SIZE);
+>>> +	if (ecam_pcie->cfg == NULL)
+>>> +		return ERR_PTR(-ENOMEM);
+>>> +
+>>> +	msi_ops = devm_kzalloc(dev, sizeof(*msi_ops), GFP_KERNEL);
+>>> +	if (!msi_ops)
+>>> +		return ERR_PTR(-ENOMEM);
+>>> +
+>>> +	msi_ops->readl_msi = dw_ecam_pcie_readl;
+>>> +	msi_ops->writel_msi = dw_ecam_pcie_writel;
+>>> +	msi_ops->pp = ecam_pcie;
+>>> +	ecam_pcie->msi = dw_pcie_msi_host_init(pdev, msi_ops, 0);
+>>> +	if (IS_ERR(ecam_pcie->msi)) {
+>>> +		dev_err(dev, "dw_pcie_msi_host_init() failed\n");
+>>> +		return ERR_PTR(-EINVAL);
+>>> +	}
+>>> +
+>>> +	dw_pcie_msi_init(ecam_pcie->msi);
+>>> +	return ecam_pcie;
+>>> +}
+>>
+>> Hmm. This looks like quite a lot of not-very-generic code to be adding
+>> to pci-host-generic.c. The file is now, what, 50% designware logic?
+> 
+> Agreed.
+> 
+> I would suggest you add ECAM support to the DW/QCom driver reusing some
+> of the common ECAM support code.
+I can try although there is very limited reusage of code with 
+pcie-qcom.c and pcie-designware-host.c except reusing MSI functionality. 
+That would make more new OPs within pcie-designware-host.c and 
+pcie-qcom.c just to perform few operation. As now MSI functionality is 
+available outside pcie core designware driver (although those changes 
+are under review), will you be ok to allow separate Qualcomm PCIe ECAM 
+driver as previously submitted RFC as 
+https://lore.kernel.org/all/d10199df-5fb3-407b-b404-a0a4d067341f@quicinc.com/T/ 
 
-Include mod_devicetable.h for of_device_id.
 
-> +#include <linux/platform_device.h>
-> +
-> +#define VBATTB_BKSCCR                  0x0
-> +#define VBATTB_BKSCCR_SOSEL            BIT(6)
-> +#define VBATTB_SOSCCR2                 0x8
-> +#define VBATTB_SOSCCR2_SOSTP2          BIT(0)
-[..]
-> +
-> +static int vbattb_clk_probe(struct platform_device *pdev)
-> +{
-> +       struct device_node *np =3D pdev->dev.of_node;
-> +       struct clk_parent_data parent_data =3D {};
-> +       struct device *dev =3D &pdev->dev;
-> +       struct clk_init_data init =3D {};
-> +       struct vbattb_clk *vbclk;
-> +       u32 load_capacitance;
-> +       struct clk_hw *hw;
-> +       int ret, bypass;
-> +
-> +       vbclk =3D devm_kzalloc(dev, sizeof(*vbclk), GFP_KERNEL);
-> +       if (!vbclk)
-> +               return -ENOMEM;
-> +
-> +       vbclk->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(vbclk->base))
-> +               return PTR_ERR(vbclk->base);
-> +
-> +       bypass =3D vbattb_clk_need_bypass(dev);
+I can modify above ECAM driver to call into PCIe designware module based 
+MSI ops as doing here and that would allow reusing of MSI functionality 
+at same time allowing separate driver for handling firmware VM based 
+implementation.
 
-This is a tri-state bool :(
+> 
+> I suppose another option would be to define a node and driver which is
+> just the DW MSI controller. That might not work given the power domain
+> being added (which is not very generic either).
+yes, I did consider this approach, and haven't used this due to concern 
+as you mentioned, and also that ask for modifying devicetree usage for 
+existing user of PCIe Designware controller based MSI controller.
 
-> +       if (bypass < 0) {
-> +               return bypass;
-> +       } else if (bypass) {
-> +               parent_data.fw_name =3D "clkin";
-> +               bypass =3D VBATTB_BKSCCR_SOSEL;
-
-And now it is a mask value.
-
-> +       } else {
-> +               parent_data.fw_name =3D "xin";
-> +       }
-> +
-> +       ret =3D of_property_read_u32(np, "renesas,vbattb-load-nanofarads"=
-, &load_capacitance);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret =3D vbattb_clk_validate_load_capacitance(vbclk, load_capacita=
-nce);
-> +       if (ret)
-> +               return ret;
-> +
-> +       vbattb_clk_update_bits(vbclk->base, VBATTB_BKSCCR, VBATTB_BKSCCR_=
-SOSEL, bypass);
-
-Please don't overload 'bypass'. Use two variables or a conditional.
-
-I also wonder if this is really a mux, and either assigned-clock-parents
-should be used, or the clk_ops should have an init routine that looks at
-which parent is present by determining the index and then use that to
-set the mux. The framework can take care of failing to set the other
-parent when it isn't present.
-
-> +
-> +       spin_lock_init(&vbclk->lock);
-> +
-> +       init.name =3D "vbattclk";
-> +       init.ops =3D &vbattb_clk_ops;
-> +       init.parent_data =3D &parent_data;
-> +       init.num_parents =3D 1;
-> +       init.flags =3D 0;
-> +
-> +       vbclk->hw.init =3D &init;
-> +       hw =3D &vbclk->hw;
-> +
-> +       ret =3D devm_clk_hw_register(dev, hw);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return of_clk_add_hw_provider(np, of_clk_hw_simple_get, hw);
-> +}
-> +
-> +static const struct of_device_id vbattb_clk_match[] =3D {
-> +       { .compatible =3D "renesas,r9a08g045-vbattb-clk" },
-> +       { /* sentinel */ }
-> +};
-
-Any MODULE_DEVICE_TABLE?
+Regards,
+Mayank
 
