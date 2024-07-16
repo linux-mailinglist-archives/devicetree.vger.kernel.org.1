@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-86104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A407893263C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:08:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73FE5932641
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6016528556E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 12:08:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96A1F1C22951
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 12:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35B519A2A5;
-	Tue, 16 Jul 2024 12:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE9C19A28C;
+	Tue, 16 Jul 2024 12:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QX9aOG3Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="koNq9oN+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C38919923D
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 12:08:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E761CA9F
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 12:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721131696; cv=none; b=m5NWXYgc+WBapY8RrMHZutqQqFaZEPq8+qlu99R6pX4vgI/gezTvy3tl1bURLaThgzhmPLvXEXpMJfR9iwqwvJ7g++d2I5Dm4pmDX39gRd59QTtvHHHor4/3Gz0P+p5zii6dtpbk/bkvwrv8caRRPGS2yMhflDXzM8RgQGwCEbU=
+	t=1721131794; cv=none; b=dJeuGqMgpBhPCK9FMyoS0uaGVW3dUmPhz7kzbMPcQznHUWU+FVXdiDqAEWrAAYBGlNWU/umHau9e7RTE8d2M/WxFewf1NvO1tVOxrOB0cZeSYZEHMFw/qoI9bQ7DlqQPsSPSE7tVusNmh0stdbtnz2CWAtGUEdu9gicMG3uGiUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721131696; c=relaxed/simple;
-	bh=s8Z+O228tQfuaHZEb7/g7rFvMfOHNdZjoYcdjOkXy5c=;
+	s=arc-20240116; t=1721131794; c=relaxed/simple;
+	bh=BNL9xfmru+xlaynuTe3brre09ZofiAu+ZGUkIKuel9c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n0S+oHdZ/jiBoXc7rpdAYwW3wjPURr/GW415QiHiE57L0LdIKyX1Ql9NYCnCCtv9aR0eDfmQ0bzucohOGu+sdJx8nI22kI4L9JehD9nqAgFvEXzeJhxSctCn8mljzVBelByt8vxpdG0s7zJWWiOv2fRvGh/e8QHUR3jmLM1LWAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QX9aOG3Y; arc=none smtp.client-ip=209.85.167.49
+	 In-Reply-To:Content-Type; b=GVmVt91J7rtwEnxhDIIwkNZh2z7iNX9GxGVbn7bbNp+9+mpFjCPhUhlIRz0Mv0sSArEKdYyBd66mM+StCA7X73XkikN5aWhbfdS+0m0TMQhmRwMxQA/ItEuu+PmgESQZ15Ax9QNgPryop7W2GO6J6/Ba0um1htTE4IJdvNymtK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=koNq9oN+; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52e976208f8so5813818e87.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 05:08:14 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52e9c6b5a62so5631197e87.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 05:09:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721131692; x=1721736492; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721131791; x=1721736591; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0SXkZ4YpK51gh8gONG1NqfFw+DKuGOBbEHG4lIyiX9Q=;
-        b=QX9aOG3Y7sqykny3oCvqfXI6i1EnOmznz7N9m13VOARFVjtkixGHM0d1pLAzaHfAj0
-         bBpM+1Wowkol65QfN1QOs8KRzz9JHl7dFun66JVQzHrnlgzfesKRpqWuy1IfhmS89LfA
-         OpHYnYIQzoXUMSriHLq430rMo0PtC/vpBvFM5+9wjCuHOmiODf3obPOu30n0zCd32TjK
-         +StmUxGHS839qyDFtKOij9tKO69oDu/nXW5wWlQvhOG2dlqWbiHQ05ld0UyFdNQkSCa/
-         GY4BG8e5uHeOVDJnlYchRsm/UrQ6BM1cXPiUNoZVjGVhpvTZfD4Gpl+GdADk6uSwLqm8
-         /moA==
+        bh=XJwiace0C0RrXaVWU9MXxXzi/aJ9SZxUn71Vk4+fUAc=;
+        b=koNq9oN+i+rV2Sq/Wi2RNN8PVI/xggjv9mCnGyQsFEakBVOEIDO/FVcmy4AEBpIqLj
+         pQ9KiETovi9MEOiiBmRMdGyk+ivasnWyHvFhCeKkai13k3EUpIh7i5wkznz1PBmP3eW9
+         GC7OkHt8LqciX5Mp1mG2CX3sXwoUez5mHpdh6dkD/aHUaETeqEK+pU3GDT1Dzp8qylCV
+         6WyAmEO93/Sxrq/AIz7Evti4XCM/T0MTR+Wvj1P25j67h89Kjw5GCFs4UuZ4CTzbcZHi
+         UA/N+LXZyiioyxGdY9BuWW++NOzm1NttD1o0Wv92ac/VS8/TLER2hpwt8biibdDl07+Q
+         dVyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721131692; x=1721736492;
+        d=1e100.net; s=20230601; t=1721131791; x=1721736591;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0SXkZ4YpK51gh8gONG1NqfFw+DKuGOBbEHG4lIyiX9Q=;
-        b=d+LJmt7tKYRDmEWVjoDLjPw0vx/zyuUfoT5lhoGufaw4J8wXLZKwPkPyt3PAXJp3dK
-         6Ogy6QOsVpQ93V4AqYn8arZPpmhJfyYPIyzAbRyPvbudAxLsFjU5wOf9E4ckmYKpWT/p
-         iREFCJQGsS9eqRTf1XnODIjTXlcyByxy/9TpNWroKz2xt7R7ou1mU+WKCwzxGxZhy0NX
-         pXXzitSYa0I0HEAwuZrarSK4GgHo3pofen9TlEBacqu4okGZT11eNXXbaG5I6xPKydi+
-         PGw272kMJkoixVysOeEwOl3ZA3BWfRYMDqTttPfE/iC3BLek5hVvkDH+Bp0hLJwGEyDL
-         MttA==
-X-Forwarded-Encrypted: i=1; AJvYcCUX8OCL/TrZ1YSUC9IutLiMjJc/+RUp9J4AGe/OFk1kzyjTV5CQXMyP8lc8KuPkuVzfmv8HPdO/ZtTXYYA4fNcO+VtKmdN/IY5TRA==
-X-Gm-Message-State: AOJu0Yx+l9M7YwgI5fv2d/bTSuN9F+0YN6li/AgNsknjI/AQJBx3T4+0
-	Ce3TwdIKmfewvaTNM2FbQQBM7fxc9UuoQlPerM1w8Oqg16kyUfyfn8kDK9YZ0hI=
-X-Google-Smtp-Source: AGHT+IH5REozD0sKY25JTdt+cqqYFEBBtuk9VWnluPRMXvd07WRma7Ct7iYZZsYn3FzKkA0ePEgDRQ==
-X-Received: by 2002:a05:6512:1392:b0:52c:90b6:170f with SMTP id 2adb3069b0e04-52edf01926bmr1474002e87.29.1721131692061;
-        Tue, 16 Jul 2024 05:08:12 -0700 (PDT)
+        bh=XJwiace0C0RrXaVWU9MXxXzi/aJ9SZxUn71Vk4+fUAc=;
+        b=SAn7LWJVk6QjfbOJyZ4pXEwvDYAtF8pb5Ard99yPMjEb/W0f6CMXGfPfyf4xp+n4gQ
+         /jXCSUtDC3ALvi8vhI6eRjSesATCCZduYAMzpYyUIsJNAWQkp5QDXHyuAnU/RgY2Jddf
+         1mSD4fNcMNzytvujkJcxsumZMUSmWsd+tRVS/D236fdatfjcoZrj4k6km7W3LEY3WeJp
+         TXK9b8tNdR3HJ4N4nH90UxCa3FfrV9G/srp2vaMnUFaVjJoZijvHYHNV1Qk86dSUVsmv
+         j7BoaklrK/bCwuyE1uXEPfY0AUGsTUuOg9kOG4YSN2EV9O4YqjbSm2iQObQDUWflNR5r
+         txRA==
+X-Forwarded-Encrypted: i=1; AJvYcCV69YpFXy1bNXBfV5/qDPlrfNhpZdsLyNcX7cB33REjKpGkqnghtPRMuNWFFAAiGTP0Uhbc6tlnm+Y6TZ+CZDH6T3M15MNgn0PBiw==
+X-Gm-Message-State: AOJu0YwCc5XLC0HHitIh9QgN/C+PtShbTF5qD398O44r5ZyKx1i/KVSv
+	YgjrdH+w6iYmIh/btmYkjX9+mwPMKdPTWUnMym3FYD/RPlMVx4r91RxcmEMwvGva4F5KWwdW0AR
+	s
+X-Google-Smtp-Source: AGHT+IG7C1TNMx7NHCUMXnw1EqOzzElmA0hmzDn0ZdPsWYCJ5cp/cC80KMfLd3HFmNCQdoUmzHUZqg==
+X-Received: by 2002:a05:6512:b24:b0:52b:8ef7:bf1f with SMTP id 2adb3069b0e04-52edef1ee77mr1157682e87.17.1721131790554;
+        Tue, 16 Jul 2024 05:09:50 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc821809sm301800666b.208.2024.07.16.05.08.09
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc5a359asm311005166b.19.2024.07.16.05.09.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jul 2024 05:08:11 -0700 (PDT)
-Message-ID: <6f696bf2-0694-4f5a-b71d-e5f0ac33ac25@linaro.org>
-Date: Tue, 16 Jul 2024 14:08:09 +0200
+        Tue, 16 Jul 2024 05:09:49 -0700 (PDT)
+Message-ID: <12be3f5a-5bc6-40cc-a7af-7f098a7be04e@linaro.org>
+Date: Tue, 16 Jul 2024 14:09:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +78,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: Update sleep_clk frequency to
- 32000 on SA8775P
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: Add support for multimedia clock
+ controllers
+To: Krzysztof Kozlowski <krzk@kernel.org>, Taniya Das
+ <quic_tdas@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  quic_imrashai@quicinc.com, quic_jkona@quicinc.com
 References: <20240715-sa8775p-mm-v3-v1-0-badaf35ed670@quicinc.com>
- <20240715-sa8775p-mm-v3-v1-8-badaf35ed670@quicinc.com>
+ <20240715-sa8775p-mm-v3-v1-7-badaf35ed670@quicinc.com>
+ <d40d540c-a3b9-449d-8f34-cb2972ddc2ef@kernel.org>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -126,19 +129,47 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240715-sa8775p-mm-v3-v1-8-badaf35ed670@quicinc.com>
+In-Reply-To: <d40d540c-a3b9-449d-8f34-cb2972ddc2ef@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15.07.2024 10:23 AM, Taniya Das wrote:
-> The HW supported sleep_clk frequency on SA8775P is 32000, hence
-> update the sleep_clk frequency with the correct value on SA8775P.
+On 16.07.2024 9:45 AM, Krzysztof Kozlowski wrote:
+> On 15/07/2024 10:23, Taniya Das wrote:
+>> Add support for video, camera, display0 and display1 clock
+>> controllers on SA8775P platform.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 56 +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 56 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> index 23f1b2e5e624..8fd68a8aa916 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> @@ -2911,6 +2911,47 @@ llcc: system-cache-controller@9200000 {
+>>  			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
+>>  		};
+>>  
+>> +		videocc: clock-controller@abf0000 {
+>> +			compatible = "qcom,sa8775p-videocc";
+>> +			reg = <0x0 0x0abf0000 0x0 0x10000>;
+>> +			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
+>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&rpmhcc RPMH_CXO_CLK_A>,
+>> +				 <&sleep_clk>;
+>> +			power-domains = <&rpmhpd SA8775P_MMCX>;
 > 
-> Fixes: 603f96d4c9d0 ("arm64: dts: qcom: add initial support for qcom sa8775p-ride")
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
+> Not sure if these are correct. I had impression the clocks are going
+> away from sa8775p?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Right, the patches look mostly good, but are still going to be on hold
+until the 8775 situation is cleared out.. We recently had the gigantic
+patchset [1] that shifted things around, and seemingly there was rather
+little closure on that, so we're waiting for the dust to settle and
+people to agree on things..
 
 Konrad
+
+[1] https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
 
