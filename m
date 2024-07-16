@@ -1,302 +1,160 @@
-Return-Path: <devicetree+bounces-85980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2489320F3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:07:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BCA932123
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:25:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CC2F1F22DAF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:07:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18AADB21619
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6B24206B;
-	Tue, 16 Jul 2024 07:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1C622F08;
+	Tue, 16 Jul 2024 07:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uR7Ufq5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0D33CF51
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 07:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28AE22619;
+	Tue, 16 Jul 2024 07:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721113611; cv=none; b=rZ+gSkslGSkVcw/iWt6fQHl473K4Cv00c5wyTEafNS5pGEXqf62PliQlEGHSyxI209pbvx/icps2hqGbuhweNU/RtyHJQgbvjh8z3R0mDDLC8ho8GKaLFtPVEeNIDZggbhDHVa0/6O31ut5GvIoGgx+QL5c+LhEV0jkqQPtD5/g=
+	t=1721114717; cv=none; b=o+kjbbVjKZv2lgrMcV2HyJ5Bt8lPm2j/ovF6G3J2fGyfoNvgiAgqjuo/WmVt/Fi1zoiWUg2MZKyKIgw0Ra72VMcPfjjGr7pQgHy1AZ+yYWpTjdNa0t7iyR/L+V9daW0jVff1yUnQSDXvb7LLQjDKWx4jxK31ulqDMQh5cjLCK7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721113611; c=relaxed/simple;
-	bh=vXOwryw8xFilYtSz3kn5Q6Fzz0ZLgIL7zHdOIhDwPk4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ohYkGb42KGerEzqY12u+NJlyo9n6M724bjO+Kgg0qoHkgGiT17VrRk73FYfobnA2LZQ3mnJ7r9bkRhb8QqAeXphX9bC7+zwxTnE44zkLMx+IbMwMWCucaY60IZk4gihT6YSVp186ofceWTuNWfNTInsU2rTy+jLtNvJO34wTPVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTcGO-0005NF-D9; Tue, 16 Jul 2024 09:06:16 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTcGN-0004bT-IL; Tue, 16 Jul 2024 09:06:15 +0200
-Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 21FA9304E11;
-	Tue, 16 Jul 2024 07:06:15 +0000 (UTC)
-Date: Tue, 16 Jul 2024 09:06:14 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	haibo.chen@nxp.com, imx@lists.linux.dev, han.xu@nxp.com
-Subject: Re: [PATCH v2 4/4] can: flexcan: add wakeup support for imx95
-Message-ID: <20240716-curious-scorpion-of-glory-8265aa-mkl@pengutronix.de>
-References: <20240715-flexcan-v2-0-2873014c595a@nxp.com>
- <20240715-flexcan-v2-4-2873014c595a@nxp.com>
+	s=arc-20240116; t=1721114717; c=relaxed/simple;
+	bh=r3mGYS735n6Kpf+W0MDkb4qzQlTavr+UClBdemaX3/c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E7dRKY9LjuINwmkvQmNM+cm4Iuxe87gD06AxpRVrOSk5bEwwraKBJAT0I4iCD03Iw4BKA1G+Lg1GXOwn9D/v77jO9ruSBw59nA0v52QsZtNzbq01R+ziwzjzrDnMDcWO9crp0FUsDMVXNu2PdpmsCQV3hR/0790BgjOdK9QR0TA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uR7Ufq5z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B55C4AF09;
+	Tue, 16 Jul 2024 07:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721114717;
+	bh=r3mGYS735n6Kpf+W0MDkb4qzQlTavr+UClBdemaX3/c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uR7Ufq5zEz0ldfumh9hV1O2Sf+WCqcqVY0iJ/1Dk+GKzLZvS1dfwst6hEYlJlj4Oc
+	 dCbVIfr7dNZPR1Th7kfHJdheq4XcGq4Ddr1MJKCqgWyzEFFarQ89WXgr14lYCSZozC
+	 0ddKd/Fu2vXtP3y3wFprjCkqwuU5jwGxH9svCSSFUREb1rtmvT+7lrPFriyZsVcSXz
+	 BB6nvrLKJsbPTKuh2OUXEvN1W1BtEkiSqzQj8B92BGAqBkwQkt+ht/porzS++obDZe
+	 aoLD+RTqafQrZuoiLWYoKp33l9qKj+yfvVwpgPCPY9UW2bsIVdOHl68AMsg5s+JFcK
+	 v3/pGsnTiGWcQ==
+Message-ID: <bc7ced85-8bba-46d4-be1e-6a436bfd2ee3@kernel.org>
+Date: Tue, 16 Jul 2024 09:25:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wmxdadf3ku3zl7ae"
-Content-Disposition: inline
-In-Reply-To: <20240715-flexcan-v2-4-2873014c595a@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 4/7] dt-bindings: PCI: host-generic-pci: Add
+ power-domains related binding
+To: Mayank Rana <quic_mrana@quicinc.com>, will@kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ jingoohan1@gmail.com, manivannan.sadhasivam@linaro.org, cassel@kernel.org,
+ yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
+ u.kleine-koenig@pengutronix.de, dlemoal@kernel.org, amishin@t-argos.ru,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, Frank.Li@nxp.com,
+ ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
+ marek.vasut+renesas@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+Cc: quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
+ quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+ quic_nitegupt@quicinc.com
+References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
+ <1721067215-5832-5-git-send-email-quic_mrana@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <1721067215-5832-5-git-send-email-quic_mrana@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
---wmxdadf3ku3zl7ae
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 15.07.2024 17:27:23, Frank Li wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
->=20
-> iMX95 defines a bit in GPR that sets/unsets the IPG_STOP signal to the
-> FlexCAN module, controlling its entry into STOP mode. Wakeup should work
-> even if FlexCAN is in STOP mode.
->=20
-> Due to iMX95 architecture design, the A-Core cannot access GPR; only the
-> system manager (SM) can configure GPR. To support the wakeup feature,
-> follow these steps:
->=20
-> - For suspend:
->   1) During Linux suspend, when CAN suspends, do nothing for GPR and keep
->      CAN-related clocks on.
->   2) In ATF, check whether CAN needs to support wakeup; if yes, send a
->      request to SM through the SCMI protocol.
->   3) In SM, configure the GPR and unset IPG_STOP.
->   4) A-Core suspends.
->=20
-> - For wakeup and resume:
->   1) A-Core wakeup event arrives.
->   2) In SM, deassert IPG_STOP.
->   3) Linux resumes.
->=20
-> Add a new fsl_imx95_devtype_data and FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI to
-> reflect this.
->=20
-> Reviewed-by: Han Xu <han.xu@nxp.com>
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 15/07/2024 20:13, Mayank Rana wrote:
+> Add "power-domains" usage (optional) related binding to power up ECAM
+> compliant PCIe root complex.
+> 
+> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
 > ---
->  drivers/net/can/flexcan/flexcan-core.c | 49 ++++++++++++++++++++++++++++=
-++----
->  drivers/net/can/flexcan/flexcan.h      |  2 ++
->  2 files changed, 46 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index f6e609c388d55..fe972d5b8fbe0 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -354,6 +354,14 @@ static struct flexcan_devtype_data fsl_imx93_devtype=
-_data =3D {
->  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
->  };
-> =20
-> +static const struct flexcan_devtype_data fsl_imx95_devtype_data =3D {
-> +	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
-> +		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
-> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI |
-> +		FLEXCAN_QUIRK_SUPPORT_FD | FLEXCAN_QUIRK_SUPPORT_ECC |
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
+>  Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> index 3484e0b..9c714fa 100644
+> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> @@ -110,6 +110,12 @@ properties:
+>    iommu-map-mask: true
+>    msi-parent: true
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +    description:
+> +      A phandle to the node that controls power or/and system resource or interface to firmware
 
-Please keep the flags sorted by their value.
+Wrap how Coding Style asks (so 80).
 
-> +};
+I am sorry, but power domains are power domains, not interface to
+firmware to enable your hardware. Rephrase it to actually describe the
+hardware.
 
-Please add a newline here.
+Also, drop all redundant information. It cannot be anything else than
+phandle to the node...
 
->  static const struct flexcan_devtype_data fsl_vf610_devtype_data =3D {
->  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
->  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
-> @@ -548,6 +556,13 @@ static inline int flexcan_enter_stop_mode(struct fle=
-xcan_priv *priv)
->  	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GP=
-R) {
->  		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
->  				   1 << priv->stm.req_bit, 1 << priv->stm.req_bit);
-> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SC=
-MI) {
-> +		/* For the SCMI mode, driver do nothing, ATF will send request to
-> +		 * SM(system manager, M33 core) through SCMI protocol after linux
-> +		 * suspend. Once SM get this request, it will send IPG_STOP signal
-> +		 * to Flex_CAN, let CAN in STOP mode.
-> +		 */
-> +		return 0;
->  	}
-> =20
->  	return flexcan_low_power_enter_ack(priv);
-> @@ -559,7 +574,11 @@ static inline int flexcan_exit_stop_mode(struct flex=
-can_priv *priv)
->  	u32 reg_mcr;
->  	int ret;
-> =20
-> -	/* remove stop request */
-> +	/* Remove stop request, for FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI,
-> +	 * do nothing here, because ATF already send request to SM before
-> +	 * linux resume. Once SM get this request, it will deassert the
-> +	 * IPG_STOP signal to Flex_CAN.
-> +	 */
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCFW) {
->  		ret =3D flexcan_stop_mode_enable_scfw(priv, false);
->  		if (ret < 0)
-> @@ -1987,6 +2006,9 @@ static int flexcan_setup_stop_mode(struct platform_=
-device *pdev)
->  		ret =3D flexcan_setup_stop_mode_scfw(pdev);
->  	else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR)
->  		ret =3D flexcan_setup_stop_mode_gpr(pdev);
-> +	else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI)
-> +		/* ATF will handle all STOP_IPG related work */
-> +		ret =3D 0;
->  	else
->  		/* return 0 directly if doesn't support stop mode feature */
->  		return 0;
-> @@ -2013,6 +2035,7 @@ static const struct of_device_id flexcan_of_match[]=
- =3D {
->  	{ .compatible =3D "fsl,imx8qm-flexcan", .data =3D &fsl_imx8qm_devtype_d=
-ata, },
->  	{ .compatible =3D "fsl,imx8mp-flexcan", .data =3D &fsl_imx8mp_devtype_d=
-ata, },
->  	{ .compatible =3D "fsl,imx93-flexcan", .data =3D &fsl_imx93_devtype_dat=
-a, },
-> +	{ .compatible =3D "fsl,imx95-flexcan", .data =3D &fsl_imx95_devtype_dat=
-a, },
->  	{ .compatible =3D "fsl,imx6q-flexcan", .data =3D &fsl_imx6q_devtype_dat=
-a, },
->  	{ .compatible =3D "fsl,imx28-flexcan", .data =3D &fsl_imx28_devtype_dat=
-a, },
->  	{ .compatible =3D "fsl,imx53-flexcan", .data =3D &fsl_imx25_devtype_dat=
-a, },
-> @@ -2311,9 +2334,22 @@ static int __maybe_unused flexcan_noirq_suspend(st=
-ruct device *device)
->  	if (netif_running(dev)) {
->  		int err;
-> =20
-> -		if (device_may_wakeup(device))
-> +		if (device_may_wakeup(device)) {
->  			flexcan_enable_wakeup_irq(priv, true);
-> =20
-> +			/* For FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI, it need
-                                                                      needs
-> +			 * ATF to send request to SM through SCMI protocol,
-> +			 * SM will assert the IPG_STOP signal. But all this
-> +			 * works need the CAN clocks keep on.
-> +			 * After the CAN module get the IPG_STOP mode, and
-                                                gets
-> +			 * switch to STOP mode, whether still keep the CAN
-                           switches
-> +			 * clocks on or gate them off depend on the Hardware
-> +			 * design.
-> +			 */
-> +			if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI)
-> +				return 0;
-> +		}
+> +      to enable ECAM compliant PCIe root complex.
 > +
->  		err =3D pm_runtime_force_suspend(device);
->  		if (err)
->  			return err;
-> @@ -2330,9 +2366,12 @@ static int __maybe_unused flexcan_noirq_resume(str=
-uct device *device)
->  	if (netif_running(dev)) {
->  		int err;
-> =20
-> -		err =3D pm_runtime_force_resume(device);
-> -		if (err)
-> -			return err;
-> +		if (!(device_may_wakeup(device) &&
-                      ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Where does this come from?
+Anyway, there are no DTS users with such power domain. Look at the
+binding and its compatibles. Does any of these devices have power
+domain? No.
 
-> +		      priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI))=
- {
-> +			err =3D pm_runtime_force_resume(device);
-> +			if (err)
-> +				return err;
-> +		}
-> =20
->  		if (device_may_wakeup(device))
->  			flexcan_enable_wakeup_irq(priv, false);
-> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
-flexcan.h
-> index 025c3417031f4..4933d8c7439e6 100644
-> --- a/drivers/net/can/flexcan/flexcan.h
-> +++ b/drivers/net/can/flexcan/flexcan.h
-> @@ -68,6 +68,8 @@
->  #define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR BIT(15)
->  /* Device supports RX via FIFO */
->  #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
-> +/* Setup stop mode with ATF SCMI protocol to support wakeup */
-> +#define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
-> =20
->  struct flexcan_devtype_data {
->  	u32 quirks;		/* quirks needed for different IP cores */
->=20
-> --=20
-> 2.34.1
->=20
->=20
+Best regards,
+Krzysztof
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---wmxdadf3ku3zl7ae
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaWG+QACgkQKDiiPnot
-vG/hgAgAnxXnqQEsWJcE8q1cfm4Zhwb71ljBgIGlUXzUDlWT21EwarfgDf+/IBf8
-xwgpDBaU/CuA9qwuuHXDkKJMIcTdsOhxkQs+jcQ2EKDAF9tLCJbjx9ceJdfHUF2c
-MYECj51MHZ9qyMrxMuxlhN266gDMsD9sIeEGcZmCSy2RTDayan7NLSnXIIJGcTK1
-QQn++HXrKBzTOi53qnyf20K0lCIS/yLQfbsgxigSuHTeS8SlpTYeOl/NBbqnfyLL
-bhMcmSuFWKYGMpTIy9rnZo7aKZEyAK40Jjg6gKx8qFoJS44Ye9lhPDPBoIQRfkQo
-JmhoFgMXnDsQptl0ppxMIbI1WsBIGQ==
-=p1co
------END PGP SIGNATURE-----
-
---wmxdadf3ku3zl7ae--
 
