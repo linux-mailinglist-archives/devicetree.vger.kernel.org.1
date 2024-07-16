@@ -1,151 +1,216 @@
-Return-Path: <devicetree+bounces-86121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 716B0932737
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:12:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52801932729
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:11:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28F98280AC4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:12:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F0E21C218EF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 13:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C70319AD56;
-	Tue, 16 Jul 2024 13:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34C319AA7A;
+	Tue, 16 Jul 2024 13:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="WBVwwIMD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="FvlrSBVZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j6q/bUmK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh5-smtp.messagingengine.com (fhigh5-smtp.messagingengine.com [103.168.172.156])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D4B1448ED;
-	Tue, 16 Jul 2024 13:12:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB2613D8A0
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 13:11:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721135572; cv=none; b=ow8YNo8rSP5Jmo/r3qpwEDW3sBt9DT87I8g6UQ3pee0JTz4ZM5I5RlTGTEnLPofPYn4u0bWtGY9iRa3sJEQBaDD7o+aZ0FdItfKyMKVYrl8aO9Ze2RL/UWEeazywg/NlKTagcZq32NpCxU8ansXKVOsX/0n4zW5MNWarrDz+Swc=
+	t=1721135488; cv=none; b=IFXqlu/DxeQnAG6R9oDhh7lqvxiicScHlURAjG2D6eBGmJr2JxsgFnC1s+JjsTH0zHMvAL0QvOD2A37cEipLDBhcea/ukG42CsNuSwBWzixbWkp/eV/pnpW87xgVhIFqx1Hbk76Dut5aMf/1Th/CgsXuUoNSCtzoViikg7kp4rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721135572; c=relaxed/simple;
-	bh=0pbFXYblsR3UKbqkbGTRgs8/Y3F6rLYSgnaif3v3QMM=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=l8bxk1AUky3Ti0QeZB+2YuT4AGxjvj6lVDVJxxUVcdgMB+g4VyDULxF16kyUZBoFrVN7hVBR64S8YvYDya650WLwp/54Dnv/hm1bLm2DxYUa6HjRfdwnSTnC2zeZf9VykwRjGadIe82kKlara/D1Wl0NGkOUeXVr0k4DfOKk9lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=WBVwwIMD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=FvlrSBVZ; arc=none smtp.client-ip=103.168.172.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id BF6001148052;
-	Tue, 16 Jul 2024 09:12:49 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Tue, 16 Jul 2024 09:12:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1721135569;
-	 x=1721221969; bh=0pbFXYblsR3UKbqkbGTRgs8/Y3F6rLYSgnaif3v3QMM=; b=
-	WBVwwIMD8tfmGCPF0098lIEiTE+lQYK4hC0bV/URb6+ohG5p+AQ1eI4nY6BMPLKr
-	ckk0uSHS+yLi44MBR1sCmmxGVqzhee59pJKePiHQ0wqo/3W1bjbFkqWulCPX4IfU
-	AacUYIvfVmcQ2e376BxGYhkPTQ0wJw8hFJk4YyEqh00pH3sCVKoZEW4u9TTpqMCx
-	gb4dgsUKDS9HAkHcvALJRjilyodm+P6WdcGSM+AsU4qGDc3aLcEvt8ubLOdRMQCr
-	I3gOJhc+uIdWE3pfPCFmo9RPR+e1K7evdgxf0gJJBqtultJid0nw8KnIyJVzaSvH
-	pdsLiR8sYWnm6/6IyTxGVw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1721135569; x=
-	1721221969; bh=0pbFXYblsR3UKbqkbGTRgs8/Y3F6rLYSgnaif3v3QMM=; b=F
-	vlrSBVZIGhGDXGNDw5PI7qM4IJ15Ynh5BGogtppzPYkp6plzboubmx7niHEOQq6l
-	jBcvzxCjQIbLIyDqwqBhYJB1+Y1tnrh6WYfaFVhoba3XnbDui8IPD0puOmz5etNt
-	kF5BiMNmZ0EHrMIZziygj7fVaX71wlu39QrBZngFXhG9xvV5+mcO3+uuxb5kNi7r
-	fPV+l0D0djsjum52q2rk906yQxJawKw1DGUqPLNCx6fKSXli2ThF/3+PYmWvqxrM
-	QRvWEPVC/4I2Bqw/pa7EiXoJM9W1d3vukQiDTKD5RPVRI26qmzx4Qv7PkYxophvl
-	VkvH5rz2PLO/Y9tQrktlA==
-X-ME-Sender: <xms:0HGWZo4snpg3QYahBK24C7MCseiNHexn5Ke8SWQVcHfF3XErDenqng>
-    <xme:0HGWZp6oPpbtTJX2PjsCUJI_-DCSh7ZRbKIyTOJ54I9gijXEXjN6g-uMopQDGDjvw
-    HaxJKNpyVcgDg4LUG4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrgeeggdeitdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedflfhi
-    rgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-    eqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefhjeeu
-    geevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
-    hilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:0HGWZncXNLHTnkXFVkCGAToKSPvwpH8A4nU_Ko6pdvGXwCFcq1hxCg>
-    <xmx:0HGWZtJT2lhgG2fAGM9c5cw4mJL8IzJSXi7vvao2H2jTO0LFIq0hfw>
-    <xmx:0HGWZsIgIJoPOkNzsM0-JHB2rXHRkT6dSibQIiXEoI32devFnUnpDg>
-    <xmx:0HGWZuza2mzzUmnbay7_yAwVsKHTwoGUq7f4vO3ytYI3TJLIodpFog>
-    <xmx:0XGWZqyAzUqnw-VT3wXadzDIeKiTs-UHlYFdLVZRBG9WMkW6eKOIOD5L>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 7B5F736A0075; Tue, 16 Jul 2024 09:12:48 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
+	s=arc-20240116; t=1721135488; c=relaxed/simple;
+	bh=x2ZQ4Vcapgq8sQrDdMw0IyPyawErurU+IXTU4plTUFo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fk55q5/49r5/z3APaFQFuT4NuxElB4jBCCSKFhZSdafZn52RvhUU/Gr/4mOLloGXLqdUEtw5ukAdyym0CN0wTajluM5xQwrh6/lSmI94QjssU8YZkluuZlSWR08NYeiucEgENHhk/nOte/w6hZq3kJbgQqRMyEZ8adL+JQLQZhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j6q/bUmK; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-59f9f59b827so463521a12.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 06:11:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721135485; x=1721740285; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=cFip2GCiEAk8KKDtgvCT7PzwjlN0kRNg5YiSgCIQq4s=;
+        b=j6q/bUmKUmSx+eRUCBt9dCPEvyfCME3VPbEuMtzTqL960Bo+DXfjpOHN675e96BMrM
+         ICXmP8Y6hpInHxoaUsfyR6u2qacttqIz6qWE8RN63ppBx485tXR2wFSdFEKCKv6jOQiG
+         DvdDSHu7DQ14wtqbKw3FS5kJwmMl/mos1/KZx12XqI2tnkLkuIut/XtE1dwrNuoo5zxR
+         NrrPgs3VMah8uBOsFfY0qR+RvzknV0AccsJUfda0nghPRVMH3MPhAdi40XDUNj6xOdS2
+         gU3XB+bJZ+J3hIN1GIR+LRmV81A0zPl8NVCSwMKg9vdXzHY7tJkOS/kWDlAJX5LqGzGv
+         SQ7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721135485; x=1721740285;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cFip2GCiEAk8KKDtgvCT7PzwjlN0kRNg5YiSgCIQq4s=;
+        b=JSqBwhtAdp3A/jpSmAjK9rKIb3kPiWHOhSmNoO8OthlJs9u2Gzn+AftrC/40HG+5ke
+         nKXzfaM2dXNgz7GQJjuzgoqzU7urAezOZNa4QtxypkqQD4so70EiWpZpj/PIWPzE7T/g
+         8mJVek5B0NRiKIfkKb/kYvHdcqt1r5aknrS8SkA9S7ukriHKhofKX87iFPDCX88t2ekL
+         qXyVvzFc5i7siJdiqo8r8qSKvlN5gaQL/lXL4UVbMM8Legrrj+3rff/5j813IZ81ku/O
+         hUPDIJ8YrapYXxwNi1uE6KAs9Hpe36WAXIsW4HlzYJ6yG6qo/8RuHUvENJjiZcBUFzZG
+         +p4g==
+X-Forwarded-Encrypted: i=1; AJvYcCWN/41exFzGzHeVVDa0H3FWz7TIFroBS+7UbPRrGKKBsbt9+ObaUazDYakEbqMw54L7/wMmBNIBPFp6Tn5Qd4AlqCRCG8itE+pjkg==
+X-Gm-Message-State: AOJu0YyA97VSXB69U6MrbqSaEPSAGGFGIfZJbFz19CSqb/FC5yDpxrYp
+	4X7VKlbDzMXWetcEqirI2+/2h180r4S0fIHB4L5iwvRToYc6V3ng6MlHAnAEPEY=
+X-Google-Smtp-Source: AGHT+IEzWOn6sHS3rp91cUs15jhwAoHUOK22fhmPlPX9enTsj5u+gucMbmfUhnROjS2gaXnYWebsxw==
+X-Received: by 2002:a50:f68e:0:b0:57c:5874:4f74 with SMTP id 4fb4d7f45d1cf-59ef03bb7edmr1264244a12.28.1721135485161;
+        Tue, 16 Jul 2024 06:11:25 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b25528cd4sm4890330a12.57.2024.07.16.06.11.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jul 2024 06:11:24 -0700 (PDT)
+Message-ID: <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
+Date: Tue, 16 Jul 2024 15:11:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <54d9edd5-377e-4d9a-956f-8f2ba49d4295@app.fastmail.com>
-In-Reply-To: 
- <CAAhV-H5cDiwAWBgXx8fBohZMocfup3rbe-XjDjEzsLAUB+1BUQ@mail.gmail.com>
-References: <20240711-loongson1-dma-v9-0-5ce8b5e85a56@gmail.com>
- <CAAhV-H5OOXguNTvywykyJk3_ydyDiSnpc-kvERRiYggBt441tw@mail.gmail.com>
- <CAJhJPsXC-z+TS=qrXUT=iF_6-b5x-cr9EvcJNrmSL--RV6xVsQ@mail.gmail.com>
- <CAAhV-H5Um5HhbmcB1Se=Qeh2OOAeP34BAx+sNtLKge_pePiuiQ@mail.gmail.com>
- <b1a53515-068a-4f70-87a9-44b77d02d1d5@app.fastmail.com>
- <CAAhV-H5cDiwAWBgXx8fBohZMocfup3rbe-XjDjEzsLAUB+1BUQ@mail.gmail.com>
-Date: Tue, 16 Jul 2024 21:10:07 +0800
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Huacai Chen" <chenhuacai@kernel.org>
-Cc: "Kelvin Cheung" <keguang.zhang@gmail.com>,
- "Vinod Koul" <vkoul@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, "Conor Dooley" <conor.dooley@microchip.com>
-Subject: Re: [PATCH RESEND v9 0/2] Add support for Loongson1 APB DMA
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
+To: Marc Gonzalez <mgonzalez@freebox.fr>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr>
+ <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 27.06.2024 5:54 PM, Marc Gonzalez wrote:
+> From: Arnaud Vrac <avrac@freebox.fr>
+> 
+> Port device nodes from vendor code.
+> 
+> Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi | 100 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 99 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index ba5e873f0f35f..417c12534823f 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -2785,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
+>  				 <&mdss_dsi0_phy 0>,
+>  				 <&mdss_dsi1_phy 1>,
+>  				 <&mdss_dsi1_phy 0>,
+> -				 <0>,
+> +				 <&hdmi_phy 0>,
+>  				 <0>,
+>  				 <0>,
+>  				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
+> @@ -2890,6 +2890,14 @@ dpu_intf2_out: endpoint {
+>  							remote-endpoint = <&mdss_dsi1_in>;
+>  						};
+>  					};
+> +
+> +					port@2 {
+> +						reg = <2>;
+> +
+> +						dpu_intf3_out: endpoint {
+> +							remote-endpoint = <&hdmi_in>;
+> +						};
+> +					};
+>  				};
+>  			};
+>  
+> @@ -3045,6 +3053,96 @@ mdss_dsi1_phy: phy@c996400 {
+>  
+>  				status = "disabled";
+>  			};
+> +
+> +			hdmi: hdmi-tx@c9a0000 {
+
+Please prefix the labels (hdmi: and hdmi_phy:) with mdss_
+
+Otherwise, this looks good
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
+One thing I noticed (testing on the 8998 MTP), enabling MDSS (not necessarily
+HDMI, mdss and mdp is enough) results in SMMU lockups about 30% of the time..
 
-=E5=9C=A82024=E5=B9=B47=E6=9C=8816=E6=97=A5=E4=B8=83=E6=9C=88 =E4=B8=8B=E5=
-=8D=885:40=EF=BC=8CHuacai Chen=E5=86=99=E9=81=93=EF=BC=9A
-> On Mon, Jul 15, 2024 at 3:00=E2=80=AFPM Jiaxun Yang <jiaxun.yang@flygo=
-at.com> wrote:
->>
->>
->>
->> =E5=9C=A82024=E5=B9=B47=E6=9C=8815=E6=97=A5=E4=B8=83=E6=9C=88 =E4=B8=8B=
-=E5=8D=882:39=EF=BC=8CHuacai Chen=E5=86=99=E9=81=93=EF=BC=9A
->> [...]
->> >
->> >> You said that you've accepted my suggestion, which means you recog=
-nize
->> >> 'loongson' as the better name for the drivers.
->> > No, I don't think so, this is just a compromise to keep consistency.
->>
->> Folks, can we settle on this topic?
->>
->> Is this naming really important? As long as people can read actual ch=
-ip name from
->> kernel code & documents, I think both are acceptable.
->>
->> I suggest let this patch go as is. And if anyone want to unify the na=
-ming, they can
->> propose a treewide patch.
-> Renaming still breaks config files.
+[    4.911422] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+[    4.913412] platform c901000.display-controller: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/hdmi-tx@c9a0000
+[    4.923353] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+[    4.927893] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+[    4.930647] platform c9a0000.hdmi-tx: Fixed dependency cycle(s) with /soc@0/display-subsystem@c900000/display-controller@c901000
+[    4.941928] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+[    4.944438] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+[    4.952338] msm_hdmi_phy c9a0600.hdmi-phy: supply vddio not found, using dummy regulator
+[    4.956013] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+[    4.961055] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+[    4.967917] msm_hdmi_phy c9a0600.hdmi-phy: supply vcca not found, using dummy regulator
+[    4.974565] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+[    4.977628] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+[    4.984122] Bluetooth: hci0: setting up wcn399x
+[    4.989670] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
 
-This is trival with treewide sed :-)
 
-Thanks
-- Jiaxun
+Konrad
 
---=20
-- Jiaxun
 
