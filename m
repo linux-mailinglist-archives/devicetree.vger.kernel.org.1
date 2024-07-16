@@ -1,105 +1,304 @@
-Return-Path: <devicetree+bounces-86162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B21F3932EA4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:50:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 738CA932EB2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:54:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D34B2813C7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:50:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E45691F22C40
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC90B19EEB1;
-	Tue, 16 Jul 2024 16:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4501019F468;
+	Tue, 16 Jul 2024 16:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aJ7Bu25y"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="pHTARJ15"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D8B1DFD1
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 16:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D7261E528
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 16:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721148619; cv=none; b=iqmlwNS1h92d7GJXcE0oGHdL3emTJhB9kbCvKssj8vMxW7PzryaktYr4LntpNWUa2maTgVSEwIN5H17Dt4k0iCLBO5/46zONVahDnh+YtSxr2DZYCL2woKbqLKjWTRcJRJ6jO33GR615154VQtaq0xO9yBgr7jMTZ1FIjrTMVmg=
+	t=1721148842; cv=none; b=m/FQ9danutDMpMHZCkwokfoLSoCj449R9908kcnqRocMKAvFULpUzMkyRpWzCXrHGqUq6Fq4AttrsCgdri1rtBUy2/K85xwFidNs5q4FcwLqmhAAs3pnqscNYB7TSBaKh9hxKWBfWgbsgEOQ5LX+tok47+azi1f6v6sinQ2Zf2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721148619; c=relaxed/simple;
-	bh=n0cRdUVeuF+TPdkHtAJ4MrKQwsxnoyftuba7ho6uPoI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SREOxc7zAwXJvkD5hyH7S54DRI8FzIUi4AY5nAxcnbVzBvUtjrNPej21A1F05crXytN3J0upT7YeG6Bhyh9JyV/4EbYmxGKNc7Rh9kjwbYUcReDHCxrp7kl/8bEZ4X6fZPPL4cDyvRXx5BTYT9wqgJ8kxQtEYSBMomdBbeE418c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aJ7Bu25y; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2eee083c044so38180881fa.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 09:50:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721148616; x=1721753416; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CutzVZbBuYdC//uAM2GMb6dlE9xUeemCkZXQmoieiZ4=;
-        b=aJ7Bu25ydYMLDDnQ6mlFbjYFtDkUxHaHq75sn0yfh84JMMYOE6MKwOHDSMPa1lhPjL
-         sU40m8vHvUEIwHgDwbGJpRVhDHv/yxiIOpdQ09rzoR+1sAJnrS/5oGrpBCPgoqm0Pd9l
-         TE82ISbfmCZH1p4wbJvQTYD1qmqJqcKzw2Kw+6f+GQg4oV1Kez7MtcKJTmfWrvC6EF3k
-         85BIyB127AMa1UCuM/kvMnF/e3HHf4L2SplJZKWsqWqttvAsylcaWIJsIitbgXJMPA4H
-         xTW2CN80Xb8AeD5mDjnExyEG/uTv2jEP+YyPa8VVCHtnHMdb3bMi7V+uMiNOM6c3rfCG
-         7vqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721148616; x=1721753416;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CutzVZbBuYdC//uAM2GMb6dlE9xUeemCkZXQmoieiZ4=;
-        b=D1BUBx7AXbN0SizO4O+ZbuVd48SpD+mTArtVMVBhlUyee+CW5uq9rORZ+aTEfdDxX9
-         zQjQKfKnbyGnnMz4SEKVxpgTJdin/IHTMAmwg2TZ2swJwJsJfSbeOZPAoFVl0bUoJrTA
-         FReO0bc7/3MLfsQ05Y5ZO2V9DipteiAfvaeOODcVeIZQXKTbJgeinFjXP98q/SbUoGwa
-         kQlUfDPt6Im0Bs/R+4o29Fb42R/bRO/I8fl8ssQyUZDL84mQPiMqN/idP80k+Y1ihkpM
-         UBZ2wiCp9d/G1jLbY33WCYm+uAdjjA1lBypImxj96OgBpMcE5lBow+f0GpKuhhyJDDMk
-         Q3wA==
-X-Forwarded-Encrypted: i=1; AJvYcCUd6an+iVJqZztRBpzv9Lm6U8xF8SIdJG42m6j01jpsXzMTEXPCVxIts5BEWagmcVEoxzg4fj46pl4l7ZPVKt+Ed3OlZ8WvFKHZIw==
-X-Gm-Message-State: AOJu0YxCRxlnVEirQmQPkfbnONz/uzaudn0EP8s/0ayCNAwiMYDGmUnE
-	ttgk1ssdLKreCplX/3tZbomNTUUbDwlt16Snl9hxyRQe4eh3eErz0jPTdLvsh0s=
-X-Google-Smtp-Source: AGHT+IFNzQ6RluIrtq+29sTh2FoWPSICVDmNlgUVgLB+IhIvuT8dnx/WROGPT1B/1b2kj+htKCGLUg==
-X-Received: by 2002:a2e:b911:0:b0:2ee:8d04:7689 with SMTP id 38308e7fff4ca-2eef416e131mr19983111fa.20.1721148616368;
-        Tue, 16 Jul 2024 09:50:16 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2eee1914abesm12155871fa.84.2024.07.16.09.50.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jul 2024 09:50:15 -0700 (PDT)
-Date: Tue, 16 Jul 2024 19:50:14 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rayyan Ansari <rayyan.ansari@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8939-samsung-a7: rename pwm node to
- conform to dtschema
-Message-ID: <vcqlsi5d4eeejlh6ihfodkvsw46vxg3av65lhczqacwqljlj2g@4folnrsvxrg6>
-References: <20240716135339.87192-1-rayyan.ansari@linaro.org>
+	s=arc-20240116; t=1721148842; c=relaxed/simple;
+	bh=ydyeU6YgMma1RTJeP9OvOi5vFDqe9FDKQY6qcxrZbAQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lEMrro77q0INlIfigKzxfZKpR5gp+HnoeHW917a2c5LLvaOmjFKhEzbsdA6M9fQ90pPzLbZjk1yN9NTqF9Z+eJsWhulGu5ZsdS/27crDFzUhV7maht7+2jqFSMHjgMLCaeWdzBlvNgXuvG1fpNy+LHvUOKp+83lt4fsuOfidZuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=pHTARJ15; arc=none smtp.client-ip=95.215.58.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: wens@kernel.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1721148837;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d5LfLDYrWV6XH9tEvbhTXtMaCXvO/AkDTGH8eTmG5CE=;
+	b=pHTARJ15xwSNqRWCeZQd7XDD2A2vZA29ETHmtQEbZJs+Zvai1AYpNLVCg65TeByf72wW5B
+	CxhR2mojaz2EnEDjK3A0YOe9kOY6Qml7laRrvtcdz5VQqBYbJIXnxW5Ap7K8WlPft3iT2A
+	2vJIeVxBvXBGv0rPD5bXsouRFxtWoDAnAE0mmyQn+O1S/7iOvfbd+kLToNSTuVU4uf1V5c
+	XepkscePTKVriX4zM54iOOrBV67CFSb8W590Q3NYK1i5yAkS0pEvXSlohtLW6yvP6GDrvw
+	g2OLmgzkQtMxrKRk42/BMA+Jw9UZ2IKW+xA0mDsPhe0s5t8cvIAYq1qk8rO3dQ==
+X-Envelope-To: daniel@makrotopia.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: herbert@gondor.apana.org.au
+X-Envelope-To: martin@kaiser.cx
+X-Envelope-To: s.hauer@pengutronix.de
+X-Envelope-To: sebastian.reichel@collabora.com
+X-Envelope-To: ardb@kernel.org
+X-Envelope-To: ukleinek@debian.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-crypto@vger.kernel.org
+X-Envelope-To: p.zabel@pengutronix.de
+X-Envelope-To: olivia@selenic.com
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: dsimic@manjaro.org
+X-Envelope-To: aurelien@aurel32.net
+X-Envelope-To: heiko@sntech.de
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: wens@kernel.org
+Cc: Daniel Golle <daniel@makrotopia.org>, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ Herbert Xu <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
+ devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+ Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
+ Aurelien Jarno <aurelien@aurel32.net>, Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
+Date: Tue, 16 Jul 2024 18:53:43 +0200
+Message-ID: <3190961.CRkYR5qTbq@bagend>
+Organization: Connecting Knowledge
+In-Reply-To:
+ <CAGb2v67zxs03xScN8OfWXR1gf8tddJciXrjw3FQZcL7pR3ocxA@mail.gmail.com>
+References:
+ <cover.1720969799.git.daniel@makrotopia.org> <6779787.ZJYUc1KeCW@bagend>
+ <CAGb2v67zxs03xScN8OfWXR1gf8tddJciXrjw3FQZcL7pR3ocxA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240716135339.87192-1-rayyan.ansari@linaro.org>
+Content-Type: multipart/signed; boundary="nextPart2094959.0xhRiLIBVh";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Jul 16, 2024 at 02:53:38PM GMT, Rayyan Ansari wrote:
-> Rename the pwm node from "pwm-vibrator" to "pwm" to conform to the dt schema.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+--nextPart2094959.0xhRiLIBVh
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+To: wens@kernel.org
+Date: Tue, 16 Jul 2024 18:53:43 +0200
+Message-ID: <3190961.CRkYR5qTbq@bagend>
+Organization: Connecting Knowledge
+MIME-Version: 1.0
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Tuesday, 16 July 2024 17:18:48 CEST Chen-Yu Tsai wrote:
+> On Jul 16, 2024 at 10:13=E2=80=AFPM Diederik de Haas <didi.debian@cknow.o=
+rg> wrote:
+> > On Tuesday, 16 July 2024 15:59:40 CEST Diederik de Haas wrote:
+> > > For shits and giggles, I tried it on my PineTab2 too (also rk3566):
+> > >=20
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > root@pinetab2:~# uname -a
+> > > Linux pinetab2 6.10+unreleased-arm64 #1 SMP Debian 6.10-1~cknow
+> > > (2024-04-24) aarch64 GNU/Linux
+> > >=20
+> > > root@pinetab2:~# dd if=3D/dev/hwrng bs=3D100000 count=3D1 > /dev/null
+> > > 1+0 records in
+> > > 1+0 records out
+> > > 100000 bytes (100 kB, 98 KiB) copied, 5,69533 s, 17,6 kB/s
+> > >=20
+> > > root@plebian-pinetab2:~# cat /dev/hwrng | rngtest -c 1000
+> > > rngtest 5
+> > > Copyright (c) 2004 by Henrique de Moraes Holschuh
+> > > This is free software; see the source for copying conditions.
+> > > There is NO warranty; not even for MERCHANTABILITY or
+> > > FITNESS FOR A PARTICULAR PURPOSE.
+> > >=20
+> > > rngtest: starting FIPS tests...
+> > > rngtest: bits received from input: 20000032
+> > > rngtest: FIPS 140-2 successes: 730
+> > > rngtest: FIPS 140-2 failures: 270
+> > > rngtest: FIPS 140-2(2001-10-10) Monobit: 266
+> > > rngtest: FIPS 140-2(2001-10-10) Poker: 23
+> > > rngtest: FIPS 140-2(2001-10-10) Runs: 9
+> > > rngtest: FIPS 140-2(2001-10-10) Long run: 0
+> > > rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+> > > rngtest: input channel speed: (min=3D2.615; avg=3D137.889;
+> > > max=3D9765625.000)Kibits/s rngtest: FIPS tests speed: (min=3D24.643;
+> > > avg=3D34.518; max=3D68.364)Mibits/s rngtest: Program run time: 149674=
+336
+> > > microseconds
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > >=20
+> > > That's looking quite a lot better ... and I have no idea why.
+> > >=20
+> > > The Q64-A is used as headless server and the PineTab2 is not,
+> > > but I connected to both over SSH and they were freshly booted
+> > > into, thus I haven't actually/normally used the PT2 since boot.
+> >=20
+> > I did freshly install rng-tools5 package before running the test, so
+> > I rebooted again to make sure that wasn't a factor:
+> >=20
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > root@pinetab2:~# cat /dev/hwrng | rngtest -c 1000
+> > rngtest 5
+> > ...
+> >=20
+> > rngtest: starting FIPS tests...
+> > rngtest: bits received from input: 20000032
+> > rngtest: FIPS 140-2 successes: 704
+> > rngtest: FIPS 140-2 failures: 296
+> > rngtest: FIPS 140-2(2001-10-10) Monobit: 293
+> > rngtest: FIPS 140-2(2001-10-10) Poker: 32
+> > rngtest: FIPS 140-2(2001-10-10) Runs: 10
+> > rngtest: FIPS 140-2(2001-10-10) Long run: 0
+> > rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+> > rngtest: input channel speed: (min=3D2.612; avg=3D137.833;
+> > max=3D9765625.000)Kibits/s rngtest: FIPS tests speed: (min=3D24.391;
+> > avg=3D34.416; max=3D68.364)Mibits/s rngtest: Program run time: 149736205
+> > microseconds
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >=20
+> > So that 704/296 vs 730/270 in the previous run on the PT2.
+> >=20
+> > In case it helps:
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > root@quartz64a:~# grep . /sys/devices/virtual/misc/hw_random/rng_*
+> > /sys/devices/virtual/misc/hw_random/rng_available:rockchip-rng
+> > /sys/devices/virtual/misc/hw_random/rng_current:rockchip-rng
+> > /sys/devices/virtual/misc/hw_random/rng_quality:900
+> > /sys/devices/virtual/misc/hw_random/rng_selected:0
+> >=20
+> > root@pinetab2:~# grep . /sys/devices/virtual/misc/hw_random/rng_*
+> > /sys/devices/virtual/misc/hw_random/rng_available:rockchip-rng
+> > /sys/devices/virtual/misc/hw_random/rng_current:rockchip-rng
+> > /sys/devices/virtual/misc/hw_random/rng_quality:900
+> > /sys/devices/virtual/misc/hw_random/rng_selected:0
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=20
+> On my Rock 3A:
+>=20
+> wens@rock-3a:~$ sudo cat /dev/hwrng | rngtest -c 1000
+> rngtest 5
+> Copyright (c) 2004 by Henrique de Moraes Holschuh
+> This is free software; see the source for copying conditions.  There
+> is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+> PARTICULAR PURPOSE.
+>=20
+> rngtest: starting FIPS tests...
+> rngtest: bits received from input: 20000032
+> rngtest: FIPS 140-2 successes: 992
+> rngtest: FIPS 140-2 failures: 8
+> rngtest: FIPS 140-2(2001-10-10) Monobit: 7
+> rngtest: FIPS 140-2(2001-10-10) Poker: 0
+> rngtest: FIPS 140-2(2001-10-10) Runs: 0
+> rngtest: FIPS 140-2(2001-10-10) Long run: 1
+> rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+> rngtest: input channel speed: (min=3D2.658; avg=3D140.067;
+> max=3D9765625.000)Kibits/s rngtest: FIPS tests speed: (min=3D26.751;
+> avg=3D34.901; max=3D65.320)Mibits/s rngtest: Program run time: 147367594
+> microseconds
+>=20
+> wens@rock-3a:~$ uname -a
+> Linux rock-3a 6.10.0-rc7-next-20240712-12899-g7df602fe7c8b #9 SMP Mon
+> Jul 15 00:39:32 CST 2024 aarch64 GNU/Linux
+
+I wondered if ``dd if=3D/dev/hwrng bs=3D100000 count=3D1 > /dev/null`` befo=
+re
+the actual test run made a difference.
+Tried it on my Quartz64 Model A: no
+
+Then I tried it on my Quartz64 Model B:
+
+root@quartz64b:~# cat /dev/hwrng | rngtest -c 1000
+rngtest 5
+=2E..
+rngtest: starting FIPS tests...
+rngtest: bits received from input: 20000032
+rngtest: FIPS 140-2 successes: 120
+rngtest: FIPS 140-2 failures: 880
+rngtest: FIPS 140-2(2001-10-10) Monobit: 879
+rngtest: FIPS 140-2(2001-10-10) Poker: 332
+rngtest: FIPS 140-2(2001-10-10) Runs: 91
+rngtest: FIPS 140-2(2001-10-10) Long run: 0
+rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+rngtest: input channel speed: (min=3D2.615; avg=3D138.117; max=3D9765625.00=
+0)Kibits/s
+rngtest: FIPS tests speed: (min=3D20.777; avg=3D34.535; max=3D68.857)Mibits=
+/s
+rngtest: Program run time: 149461754 microseconds
+
+root@quartz64b:~# dd if=3D/dev/hwrng bs=3D100000 count=3D1 > /dev/null
+1+0 records in
+1+0 records out
+100000 bytes (100 kB, 98 KiB) copied, 5.71466 s, 17.5 kB/s
+
+root@quartz64b:~# cat /dev/hwrng | rngtest -c 1000
+rngtest 5
+=2E..
+rngtest: starting FIPS tests...
+rngtest: bits received from input: 20000032
+rngtest: FIPS 140-2 successes: 104
+rngtest: FIPS 140-2 failures: 896
+rngtest: FIPS 140-2(2001-10-10) Monobit: 892
+rngtest: FIPS 140-2(2001-10-10) Poker: 335
+rngtest: FIPS 140-2(2001-10-10) Runs: 79
+rngtest: FIPS 140-2(2001-10-10) Long run: 0
+rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+rngtest: input channel speed: (min=3D2.613; avg=3D138.098; max=3D9765625.00=
+0)Kibits/s
+rngtest: FIPS tests speed: (min=3D20.465; avg=3D34.587; max=3D69.107)Mibits=
+/s
+rngtest: Program run time: 149475187 microseconds
+
+root@quartz64b:~# uname -a
+Linux quartz64b 6.10+unreleased-arm64 #1 SMP Debian 6.10-1~cknow (2024-04-2=
+4) aarch64 GNU/Linux
+
+:-O
+--nextPart2094959.0xhRiLIBVh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZpallwAKCRDXblvOeH7b
+bmjPAQD6logzWaUtnOETe12wBYy+NoJgFGha1R1zEDTfdu4D1AEA81gYEi/v6W0p
+YUlq9l6j6PPA90JPuehY8gWuammC3wE=
+=s6Oo
+-----END PGP SIGNATURE-----
+
+--nextPart2094959.0xhRiLIBVh--
 
 
--- 
-With best wishes
-Dmitry
+
 
