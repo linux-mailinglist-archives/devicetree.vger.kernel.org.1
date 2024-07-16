@@ -1,175 +1,116 @@
-Return-Path: <devicetree+bounces-86105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FE5932641
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C66932649
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 14:11:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96A1F1C22951
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 12:09:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8A7D1C2226C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 12:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE9C19A28C;
-	Tue, 16 Jul 2024 12:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A954519A28C;
+	Tue, 16 Jul 2024 12:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="koNq9oN+"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="LwUOpVOP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E761CA9F
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 12:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DB7198857
+	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 12:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721131794; cv=none; b=dJeuGqMgpBhPCK9FMyoS0uaGVW3dUmPhz7kzbMPcQznHUWU+FVXdiDqAEWrAAYBGlNWU/umHau9e7RTE8d2M/WxFewf1NvO1tVOxrOB0cZeSYZEHMFw/qoI9bQ7DlqQPsSPSE7tVusNmh0stdbtnz2CWAtGUEdu9gicMG3uGiUI=
+	t=1721131884; cv=none; b=UYMNMu2sap8VB91jwagZglts/B0g88t+K0jwQsh2D9PKbw7OSofgaPtI/Xv/ASn0+rAfaxaaf2atX7TV0D/gv7vgkWiG4vcOyM8DBLttnOlUTU2JmAEUtSy7GOCOKCW+tEAk9u2GgU2tveDEgyAkXvX7OPepRkjDpehVQ8TKMro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721131794; c=relaxed/simple;
-	bh=BNL9xfmru+xlaynuTe3brre09ZofiAu+ZGUkIKuel9c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GVmVt91J7rtwEnxhDIIwkNZh2z7iNX9GxGVbn7bbNp+9+mpFjCPhUhlIRz0Mv0sSArEKdYyBd66mM+StCA7X73XkikN5aWhbfdS+0m0TMQhmRwMxQA/ItEuu+PmgESQZ15Ax9QNgPryop7W2GO6J6/Ba0um1htTE4IJdvNymtK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=koNq9oN+; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52e9c6b5a62so5631197e87.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 05:09:52 -0700 (PDT)
+	s=arc-20240116; t=1721131884; c=relaxed/simple;
+	bh=OuYaRw/e2BUIpKew36qzLtdkzG3lgHXSgQcxBzEFdLg=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=eqXP3F2J2j/kw3aLcV1wtiMYwOtAkucW4YbseFQc2yWCPfnwXFk8z10N9AmOY+dPyZlPKuHcB4/oUxCXruLdGHIzc+jYpkZK1i0g2wPRSLkLVChpQB26purSrsbXrRjwjEaf/FBzRHrBXvXqMAvfhd8ip9KJUNzEXdU9G4MxU9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=LwUOpVOP; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-70b0e9ee7bcso4102493b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 05:11:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721131791; x=1721736591; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=XJwiace0C0RrXaVWU9MXxXzi/aJ9SZxUn71Vk4+fUAc=;
-        b=koNq9oN+i+rV2Sq/Wi2RNN8PVI/xggjv9mCnGyQsFEakBVOEIDO/FVcmy4AEBpIqLj
-         pQ9KiETovi9MEOiiBmRMdGyk+ivasnWyHvFhCeKkai13k3EUpIh7i5wkznz1PBmP3eW9
-         GC7OkHt8LqciX5Mp1mG2CX3sXwoUez5mHpdh6dkD/aHUaETeqEK+pU3GDT1Dzp8qylCV
-         6WyAmEO93/Sxrq/AIz7Evti4XCM/T0MTR+Wvj1P25j67h89Kjw5GCFs4UuZ4CTzbcZHi
-         UA/N+LXZyiioyxGdY9BuWW++NOzm1NttD1o0Wv92ac/VS8/TLER2hpwt8biibdDl07+Q
-         dVyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721131791; x=1721736591;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1721131882; x=1721736682; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XJwiace0C0RrXaVWU9MXxXzi/aJ9SZxUn71Vk4+fUAc=;
-        b=SAn7LWJVk6QjfbOJyZ4pXEwvDYAtF8pb5Ard99yPMjEb/W0f6CMXGfPfyf4xp+n4gQ
-         /jXCSUtDC3ALvi8vhI6eRjSesATCCZduYAMzpYyUIsJNAWQkp5QDXHyuAnU/RgY2Jddf
-         1mSD4fNcMNzytvujkJcxsumZMUSmWsd+tRVS/D236fdatfjcoZrj4k6km7W3LEY3WeJp
-         TXK9b8tNdR3HJ4N4nH90UxCa3FfrV9G/srp2vaMnUFaVjJoZijvHYHNV1Qk86dSUVsmv
-         j7BoaklrK/bCwuyE1uXEPfY0AUGsTUuOg9kOG4YSN2EV9O4YqjbSm2iQObQDUWflNR5r
-         txRA==
-X-Forwarded-Encrypted: i=1; AJvYcCV69YpFXy1bNXBfV5/qDPlrfNhpZdsLyNcX7cB33REjKpGkqnghtPRMuNWFFAAiGTP0Uhbc6tlnm+Y6TZ+CZDH6T3M15MNgn0PBiw==
-X-Gm-Message-State: AOJu0YwCc5XLC0HHitIh9QgN/C+PtShbTF5qD398O44r5ZyKx1i/KVSv
-	YgjrdH+w6iYmIh/btmYkjX9+mwPMKdPTWUnMym3FYD/RPlMVx4r91RxcmEMwvGva4F5KWwdW0AR
-	s
-X-Google-Smtp-Source: AGHT+IG7C1TNMx7NHCUMXnw1EqOzzElmA0hmzDn0ZdPsWYCJ5cp/cC80KMfLd3HFmNCQdoUmzHUZqg==
-X-Received: by 2002:a05:6512:b24:b0:52b:8ef7:bf1f with SMTP id 2adb3069b0e04-52edef1ee77mr1157682e87.17.1721131790554;
-        Tue, 16 Jul 2024 05:09:50 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc5a359asm311005166b.19.2024.07.16.05.09.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jul 2024 05:09:49 -0700 (PDT)
-Message-ID: <12be3f5a-5bc6-40cc-a7af-7f098a7be04e@linaro.org>
-Date: Tue, 16 Jul 2024 14:09:47 +0200
+        bh=vWy3QUylzw0ayHlV7QU3L87cEvQwTf+7VJ7LitrTlLg=;
+        b=LwUOpVOPb63fiZO7vd9hXAGIMgmM/2XTHofhJaPFbGEp2yKLEa2A+35j55LzyL0QXf
+         NgZ9O+xJ2hkQIPgo9Ay3Sg9SNJ+aK9JqMQjFuBP9EUgaCp9NJLB5KfBgyFAjbk8+NGyI
+         8t8yF+URBwOr1Pocqy/zMZMG0NRnytRPaPP/Q/TfQqkofjsJVL0m0ZKzF+LpDkJ3Ywrk
+         1dsHRNxvEDPL2vZUC5p6VMnmY2VWuLNJhahALCsk/Ele/TiY4KA8ZqObZpPwqpXhZ6Kg
+         6JLYoH2L1d320oNEsL0B3elABEAfW+NQpDjMlAQw5lW8zzxjy+kcZs8SY3wvDPsAQG8t
+         HrPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721131882; x=1721736682;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vWy3QUylzw0ayHlV7QU3L87cEvQwTf+7VJ7LitrTlLg=;
+        b=hW284gbN/zkec3Gd/zjCUsX2/0V74/sQxUB6MF9OtYoqrg5eqkXuj5UgZhXjGILpfc
+         Qyi5ifxYk2mRJlSlzhUaRZ8+tc4S9/ZQaMDRCTaN0ZsBoHPTCkkBqsZF4BX7FQTY/Jdp
+         oUY4Tn8Bhm5Y4JVw5CqApQ6idtsccv/Yjig97cmH8EIKbsZ9GWzGSlqObxSRvZ9TQEmL
+         tYSQ/GHKrvJcw/QTvUOAA+nsJrm++cTTRm63p2wcOAH/4kEK6rvv9A8szOjb4mo7r6wK
+         v01E3k7PKu3OktqhI6sG7AjpxwQpe0EJHCLNUeTanPZnip1LVTbUHs71SLG1tzXlYUqh
+         cOvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUB3zD3NgDxc9SQ9/uyvkeBcAzSbvwVhpQeTQapOFE5ytztx2NnMwWFZiUrjplnwfYrs7OaCqsKTscgbjHX50nn4gMM5n2PckqwFA==
+X-Gm-Message-State: AOJu0YyPHzF5V7z4Wkf58qbqXVDDsKB2rutDwrMAWJNZ8AGsqxmgIEYY
+	Sq1TqzycoxiWvQvXB4/lhW2qtdB5LVo948njwl344polleLPGM5l+CYFjWe/zRI=
+X-Google-Smtp-Source: AGHT+IF3q060DbGSBRTI8U3NNaLmQh66o0p//PgKITkDQ8npkjIZNbEwzf5dS0d5vcSWygTQX79NKQ==
+X-Received: by 2002:a05:6a00:4b42:b0:706:6248:949 with SMTP id d2e1a72fcca58-70c1fbe181emr2435528b3a.17.1721131882394;
+        Tue, 16 Jul 2024 05:11:22 -0700 (PDT)
+Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7eccc48bsm6114065b3a.203.2024.07.16.05.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 05:11:21 -0700 (PDT)
+From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+To: neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	airlied@gmail.com,
+	mripard@kernel.org,
+	dianders@chromium.org,
+	hsinyi@google.com,
+	awarnecke002@hotmail.com,
+	quic_jesszhan@quicinc.com,
+	dmitry.baryshkov@linaro.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Subject: [PATCH v2 0/2] Modify the method of obtaining porch parameters
+Date: Tue, 16 Jul 2024 20:11:10 +0800
+Message-Id: <20240716121112.14435-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: Add support for multimedia clock
- controllers
-To: Krzysztof Kozlowski <krzk@kernel.org>, Taniya Das
- <quic_tdas@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_imrashai@quicinc.com, quic_jkona@quicinc.com
-References: <20240715-sa8775p-mm-v3-v1-0-badaf35ed670@quicinc.com>
- <20240715-sa8775p-mm-v3-v1-7-badaf35ed670@quicinc.com>
- <d40d540c-a3b9-449d-8f34-cb2972ddc2ef@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <d40d540c-a3b9-449d-8f34-cb2972ddc2ef@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 16.07.2024 9:45 AM, Krzysztof Kozlowski wrote:
-> On 15/07/2024 10:23, Taniya Das wrote:
->> Add support for video, camera, display0 and display1 clock
->> controllers on SA8775P platform.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 56 +++++++++++++++++++++++++++++++++++
->>  1 file changed, 56 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 23f1b2e5e624..8fd68a8aa916 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -2911,6 +2911,47 @@ llcc: system-cache-controller@9200000 {
->>  			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
->>  		};
->>  
->> +		videocc: clock-controller@abf0000 {
->> +			compatible = "qcom,sa8775p-videocc";
->> +			reg = <0x0 0x0abf0000 0x0 0x10000>;
->> +			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
->> +				 <&rpmhcc RPMH_CXO_CLK>,
->> +				 <&rpmhcc RPMH_CXO_CLK_A>,
->> +				 <&sleep_clk>;
->> +			power-domains = <&rpmhpd SA8775P_MMCX>;
-> 
-> Not sure if these are correct. I had impression the clocks are going
-> away from sa8775p?
+The current driver can only obtain the porch parameters
+of boe-th101mb31ig002. Modify it to obtain the porch
+parameters of the panel currently being used.
 
-Right, the patches look mostly good, but are still going to be on hold
-until the 8775 situation is cleared out.. We recently had the gigantic
-patchset [1] that shifted things around, and seemingly there was rather
-little closure on that, so we're waiting for the dust to settle and
-people to agree on things..
+Also switch to the drm_connector_helper_get_modes_fixed() function 
+to get the porch parameters.
 
-Konrad
+Changes between V2 and V1:
+- PATCH 1/2: No changes.
+- PATCH 2/2: Switch to the drm_connector_helper_get_modes_fixed().
+- Link to v1: https://lore.kernel.org/all/20240715031845.6687-1-lvzhaoxiong@huaqin.corp-partner.google.com/
 
-[1] https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+Zhaoxiong Lv (2):
+  drm/panel: boe-th101mb31ig002 : Fix the way to get porch parameters
+  drm/panel: boe-th101mb31ig002 : using
+    drm_connector_helper_get_modes_fixed()
+
+ .../drm/panel/panel-boe-th101mb31ig002-28a.c  | 29 ++-----------------
+ 1 file changed, 3 insertions(+), 26 deletions(-)
+
+-- 
+2.17.1
+
 
