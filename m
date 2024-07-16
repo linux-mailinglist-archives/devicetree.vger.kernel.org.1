@@ -1,165 +1,167 @@
-Return-Path: <devicetree+bounces-86008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317AE93224A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 10:56:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718CA932254
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 10:58:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E301B2825B2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 08:56:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0285AB20757
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 08:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DCC1953A1;
-	Tue, 16 Jul 2024 08:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A72195385;
+	Tue, 16 Jul 2024 08:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kuZaKThF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sYaCedXe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C46919538C
-	for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 08:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E0841A8E;
+	Tue, 16 Jul 2024 08:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721120205; cv=none; b=dtw+6noVOlRF8M9H5lt3ztdaReal7YVEZT7Mu6QvorniL9vFi+hBWdba2DilAg4CLEue9gqysITdZj+zBa7/h2uKglcdfA7E2etYTyYq3R9qHM1zi2rR84AizZR/wp73A5zscZ7b6O1KPlkZU0Ja9gJHVaAUQwGUiiyzLEQTv/8=
+	t=1721120300; cv=none; b=Abz0S/fv8MCscoZexT+fGo1d9x22CLEG4SLqiEsWeodv1eenqYvqM2zdFi7aFtFnrjYkXAzWZ1/pfQO4c2wBI3K7mUyKTuq7RL7f7QAmaZz263DJILC7aIsSEqujxUWwF5DON+9qryjSfZYq5MX7hz8Ki4+v+SxSQ5y3kNXqFYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721120205; c=relaxed/simple;
-	bh=S7vuiD846vmR+8eV4UTJqMrlNZgfXQtbzarlx52QRw4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jiQVZ7zwFIJzwaxMdGotM+sMU6+6sRT3hk86G2sIArtbGPAiq0PZH7C+Frl+L8CZ+wP/lE0C0AKWGmkqOhrFBWWbaSwnMf7u60pZezOswBUG9vy0+aMi/u5UbBYUNGmKHMgtelMNd5+tnGHCl2hNrGho1zuD531MzsfgRiKRf/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kuZaKThF; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eee1384e0aso32410321fa.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 01:56:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1721120201; x=1721725001; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rXprlyHr46bmF7ruMUWhQiYhStrhQKFzfO5a5WBJEkU=;
-        b=kuZaKThFBExsQc5tLw9LcqZ5gkzKvn7q6W2p/p0DDt189czK1nxNX2/Nj5ffBg31tT
-         Y9dnHpTPwauRYauNb0v0KrH+MA0D10ke2l+LbOtKzteyh16Y93MQz8NS0tt/FJj52igr
-         +1D0wQKJHLw1JIviGq//lmpfuchhLltzdbRQk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721120201; x=1721725001;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rXprlyHr46bmF7ruMUWhQiYhStrhQKFzfO5a5WBJEkU=;
-        b=H8PfBMA/f68dxEDnOUvqkUTfdsDwxHLg6zmvEwGSGrbkKmENuRMHT1Tbg5xVRVYkDa
-         vAh+0G9FBwanP6Sn1VuzneN5ZP8oKwOM2jpmmOsBVJkseNnR63MNs1TJmQBxsu5Y92iV
-         3Im0xVE6Y6M3MWRzNiYE/AQMrdAX/iEpkcHeLcuIFRw+YEUGDp82zfDkWgkkGsIdH+rw
-         tNKyAJhiM1DM6i7SYtKvppMv/cIvblLx0sFMGa1zEeKlChFP5splB96v27GJ4VbU7C2t
-         KC33o/kINhYKGWFkmHXwaqxET4BW89+FttJIT5RNGc9V/FggpICtLRLogM7YDIKlO7tc
-         uM4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWzltTRHPmijAP8HyPgmZNa0CYdjFOi6ACfHURqP5H6EaJWfHNagdAyJY3i/JS488SGSs+kyBl+WMcK2LeSz7npBT9gFF27mxP6TQ==
-X-Gm-Message-State: AOJu0YwSHyFEmPsXkQrvidH92hApmC3J3F5+wFp7S3MlD2pA1M+LGUc2
-	2Inre8edGKGFLVHXwFBvfg28gT/t+JVYL/5cXac1Ka87Ra3xEXfXzDZYjPEZx65uPXFx0Jvf+hc
-	LfmbYQ5mgoLWr0JvU2fXxoD93DUhjPgQJsnY8167EzQ0nNlI=
-X-Google-Smtp-Source: AGHT+IFOZD4OsAPa2Bctjcjq/xHuvKjPdnaXt584JGD+IHrW84XXJpnxyXAfVMsVyPA31dCb/ZrU6JiMiZw+X7LhjfY=
-X-Received: by 2002:a2e:9e97:0:b0:2ec:500c:b2e1 with SMTP id
- 38308e7fff4ca-2eef415bc24mr9244161fa.5.1721120201390; Tue, 16 Jul 2024
- 01:56:41 -0700 (PDT)
+	s=arc-20240116; t=1721120300; c=relaxed/simple;
+	bh=j0EqPXGuG0quxNlrfhnIBzFiLmPDYm3mbVK7absS/vE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=na1hpIlMhSOXbeMRaZuAhOMRHdPpJxfCnFiHdWZuc+7G6xgpNsZCeHQJ8lnjnvlx84b7P4RujxOanopGKGtAveRQNORVHBJRevBO6KfkvF0jFRa5oWhotuGYbVOlFNtmeAr4kiaDnw0gOpfjqZgoOpNhMheuim2xGTh0orBqU7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sYaCedXe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8136CC116B1;
+	Tue, 16 Jul 2024 08:58:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721120300;
+	bh=j0EqPXGuG0quxNlrfhnIBzFiLmPDYm3mbVK7absS/vE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sYaCedXe89NSHfvs6/uFxg5inoi6tDWSof8byXQ44WD/VT+Un5E7E2Z2ga0jyKEBR
+	 HV5e+u4qTmk+xrrsxE1iaG3/4fRV5htwO0slIPXP4TFobSMJAvMsOm8jEa9cjH4ZoG
+	 ICZKqOZRZBvtZue0h1ANxQG8RojmiIFUaJ0Ppn6Is097DHtavZtU4U2fmPnpvNMQEw
+	 0KZb6OjvH4/6a9C1v6hxJ6e+L5ahVblxqElAv/fgarRH09Nw28Z4KVbRZz8XMXZe4l
+	 V37ADzPSgfdKIvo7Ouy/1ChP3plGbRoow5HNJCS2tOJnfoJEgtykR1gGHZgj61xCNS
+	 33/A1aoT1L40g==
+Date: Tue, 16 Jul 2024 09:58:12 +0100
+From: Will Deacon <will@kernel.org>
+To: Mayank Rana <quic_mrana@quicinc.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, jingoohan1@gmail.com,
+	manivannan.sadhasivam@linaro.org, cassel@kernel.org,
+	yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
+	u.kleine-koenig@pengutronix.de, dlemoal@kernel.org,
+	amishin@t-argos.ru, thierry.reding@gmail.com, jonathanh@nvidia.com,
+	Frank.Li@nxp.com, ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
+	marek.vasut+renesas@gmail.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
+	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+	quic_nitegupt@quicinc.com
+Subject: Re: [PATCH V2 7/7] PCI: host-generic: Add dwc PCIe controller based
+ MSI controller usage
+Message-ID: <20240716085811.GA19348@willie-the-truck>
+References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
+ <1721067215-5832-8-git-send-email-quic_mrana@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715-cros-backlight-dt-probe-v1-1-0b5afe64c94b@collabora.com>
-In-Reply-To: <20240715-cros-backlight-dt-probe-v1-1-0b5afe64c94b@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 16 Jul 2024 16:56:30 +0800
-Message-ID: <CAGXv+5F=sRPi7sQrxyzM7t5gbZYzOE1oymxeJEvmkCtPT6QHTQ@mail.gmail.com>
-Subject: Re: [PATCH RFC] arm64: dts: mediatek: mt8195-cherry: Remove
- keyboard-backlight node
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
-	Tzung-Bi Shih <tzungbi@kernel.org>, kernel@collabora.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1721067215-5832-8-git-send-email-quic_mrana@quicinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Tue, Jul 16, 2024 at 12:13=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> Commit 970c3a6b7aa3 ("mfd: cros_ec: Register keyboard backlight
-> subdevice") introduced support for detecting keyboard backlight
-> fuctionality through communication with the ChromeOS EC. This means that
-> the DT node is no longer used. Remove the unneeded node.
->
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+On Mon, Jul 15, 2024 at 11:13:35AM -0700, Mayank Rana wrote:
+> Add usage of Synopsys Designware PCIe controller based MSI controller to
+> support MSI functionality with ECAM compliant Synopsys Designware PCIe
+> controller. To use this functionality add device compatible string as
+> "snps,dw-pcie-ecam-msi".
+> 
+> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
 > ---
-> Different CrosEC FW versions could potentially not support discovering
-> the keyboard backlight functionality, but I've tested both a recent
->
->   tomato_v2.0.23149-099cd3e539 tomato_15699.72.0 2024-01-03
->
-> and an old
->
->   tomato_v2.0.10686-234e646fd8 tomato_14268.0.0 2021-10-07
->
-> version on mt8195-cherry-tomato and on both relying only on the
-> discoverability works. I've tested on both tomato-r2 and tomato-r3. I
-> have not tested on dojo, however, as I don't have access to it.
+>  drivers/pci/controller/pci-host-generic.c | 92 ++++++++++++++++++++++++++++++-
+>  1 file changed, 91 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pci-host-generic.c b/drivers/pci/controller/pci-host-generic.c
+> index c2c027f..457ae44 100644
+> --- a/drivers/pci/controller/pci-host-generic.c
+> +++ b/drivers/pci/controller/pci-host-generic.c
+> @@ -8,13 +8,73 @@
+>   * Author: Will Deacon <will.deacon@arm.com>
+>   */
+>  
+> -#include <linux/kernel.h>
+>  #include <linux/init.h>
+> +#include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/of_address.h>
+>  #include <linux/pci-ecam.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  
+> +#include "dwc/pcie-designware-msi.h"
+> +
+> +struct dw_ecam_pcie {
+> +	void __iomem *cfg;
+> +	struct dw_msi *msi;
+> +	struct pci_host_bridge *bridge;
+> +};
+> +
+> +static u32 dw_ecam_pcie_readl(void *p_data, u32 reg)
+> +{
+> +	struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
+> +
+> +	return readl(ecam_pcie->cfg + reg);
+> +}
+> +
+> +static void dw_ecam_pcie_writel(void *p_data, u32 reg, u32 val)
+> +{
+> +	struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
+> +
+> +	writel(val, ecam_pcie->cfg + reg);
+> +}
+> +
+> +static struct dw_ecam_pcie *dw_pcie_ecam_msi(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct dw_ecam_pcie *ecam_pcie;
+> +	struct dw_msi_ops *msi_ops;
+> +	u64 addr;
+> +
+> +	ecam_pcie = devm_kzalloc(dev, sizeof(*ecam_pcie), GFP_KERNEL);
+> +	if (!ecam_pcie)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	if (of_property_read_reg(dev->of_node, 0, &addr, NULL) < 0) {
+> +		dev_err(dev, "Failed to get reg address\n");
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	ecam_pcie->cfg = devm_ioremap(dev, addr, PAGE_SIZE);
+> +	if (ecam_pcie->cfg == NULL)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	msi_ops = devm_kzalloc(dev, sizeof(*msi_ops), GFP_KERNEL);
+> +	if (!msi_ops)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	msi_ops->readl_msi = dw_ecam_pcie_readl;
+> +	msi_ops->writel_msi = dw_ecam_pcie_writel;
+> +	msi_ops->pp = ecam_pcie;
+> +	ecam_pcie->msi = dw_pcie_msi_host_init(pdev, msi_ops, 0);
+> +	if (IS_ERR(ecam_pcie->msi)) {
+> +		dev_err(dev, "dw_pcie_msi_host_init() failed\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	dw_pcie_msi_init(ecam_pcie->msi);
+> +	return ecam_pcie;
+> +}
 
-I grabbed one from our warehouse and this works as explained. So,
+Hmm. This looks like quite a lot of not-very-generic code to be adding
+to pci-host-generic.c. The file is now, what, 50% designware logic?
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-
-Note that there's actually one SKU family for Dojo that doesn't have
-the keyboard backlight, which I haven't tested yet. It also needs
-a new device tree to describe the slightly different keyboard layout.
-
-> My motivation to remove the node is because the DT kselftest expects DT
-> nodes that can match to a driver to be probed, and with the "breaking"
-> commit, the DT node goes unprobed which results in a failure:
->
->   not ok 225 /soc/spi@1100a000/ec@0/keyboard-backlight
->
-> I can also solve this in a different way, by adding this driver to the
-> ignore list of the test. But this solution seemed better as the DT
-> isn't meant to describe devices that can be discovered at run time
-> anyway.
-
-I think this makes sense.
-
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
-> ---
->  arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 4 ----
->  1 file changed, 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
-/boot/dts/mediatek/mt8195-cherry.dtsi
-> index fe5400e17b0f..20dfa18c9dda 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -1228,10 +1228,6 @@ cros_ec: ec@0 {
->                 spi-max-frequency =3D <3000000>;
->                 wakeup-source;
->
-> -               keyboard-backlight {
-> -                       compatible =3D "google,cros-kbd-led-backlight";
-> -               };
-> -
->                 i2c_tunnel: i2c-tunnel {
->                         compatible =3D "google,cros-ec-i2c-tunnel";
->                         google,remote-bus =3D <0>;
->
-> ---
-> base-commit: 91e3b24eb7d297d9d99030800ed96944b8652eaf
-> change-id: 20240715-cros-backlight-dt-probe-7754a832ad60
->
-> Best regards,
-> --
-> N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
->
->
+Will
 
