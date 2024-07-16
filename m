@@ -1,144 +1,99 @@
-Return-Path: <devicetree+bounces-86149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E02932CDF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 17:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D407932D66
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 18:04:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A58E1C221FB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 15:59:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD0E91C21FD0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 16:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06ABA19FA94;
-	Tue, 16 Jul 2024 15:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A4419B3EE;
+	Tue, 16 Jul 2024 16:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f5WUxMue"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XC/09R/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888BE19FA99;
-	Tue, 16 Jul 2024 15:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E71E1DDCE;
+	Tue, 16 Jul 2024 16:04:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721145513; cv=none; b=h4dmr00aE326tCaqP8D3k8hu7sqE0QudcixCXPv1xG/3Ky5ohn/bqbuGfFEKzcQQQGYlLk1HlSO1iDyohXM7VEKdYdFFu0pQ1gtTpr5QS2zdI8pch5CZ90yeHMKaWOZtkqe3yGLnw+HXBx7RIf1o8JDCFPEPnf2bUfmRy/eeJyg=
+	t=1721145894; cv=none; b=UL/k4YjxA5D+l1KJ+04VXxMgEwShz1549y0uT3KZDZhUXD5F557MFmCZOB6r9r6+mKDiK1lA1b7HGXg2nIGS7rAvYHclko2tbKJNT+N01FZa22H1AMpymQHymmntuTddbYzQSJWGCL0HmDdawTtISoqpI7Ql6QYpUVOguJRIsRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721145513; c=relaxed/simple;
-	bh=NDRLYyT8pN/HFDs6K/Dfs1m0KHkA5QT/h/5XhCFwghE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZmqWHx4vv+wKebDsPnFU0RSRvZUxFtHSLNNScHzz/kuOj3yHN2NU5XUKM9m7P2sqYI5bftC2ro3DPmt/z6MDguLPSEUvE3tkTgd4rbLs4z40ygxZ/ANPnZImPXfEQPf6rM8RHii5wzr9Zm9KHtpicyKof08smRjs1yjg3s6xmlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=f5WUxMue; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BEAA81C0006;
-	Tue, 16 Jul 2024 15:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1721145503;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/6fyfU7hh9xia4CKde5/FfdqWurIEu+oueFw1Yyue2o=;
-	b=f5WUxMuemYRLVJeAA6sWlmzDtzBkqz+hbBTE5MQ0kHlOXdG6MUR0c8BtaEs+EqnSCI3Ila
-	oWQ7hQ1r4xxK56Gmh+RY5r0HAgbmte0NZFR2vK51PpC9WmuJ/qjiPYGOT91n7b/wmAvwQp
-	AARSmzwvBd3AaTQqEiU4c/eNwjxx6JXYEtgDlRT+bI0GkZgmiM4QPzIB8k+kFbXNo+dtNP
-	1SjaHNhg6AUvxBYJq9luF1KHnqww9r9kj2tCfM9rbGp0vB4vRmq7N1rQF1xSSxdUBp7MZU
-	CCweZyaBh2wC4Xd+/EE6L01nAU2Rf5ke/xhu79Ld/dvkiLfpjzSnInlHCk2qjg==
-Date: Tue, 16 Jul 2024 17:58:18 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: "Arnd Bergmann" <arnd@arndb.de>
-Cc: "Rob Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Conor Dooley" <conor@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Lee Jones" <lee@kernel.org>, "Andy
- Shevchenko" <andy.shevchenko@gmail.com>, "Simon Horman" <horms@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, UNGLinuxDriver@microchip.com,
- "Saravana Kannan" <saravanak@google.com>, "Bjorn Helgaas"
- <bhelgaas@google.com>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Lars
- Povlsen" <lars.povlsen@microchip.com>, "Steen Hegelund"
- <Steen.Hegelund@microchip.com>, "Daniel Machon"
- <daniel.machon@microchip.com>, "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Horatiu Vultur"
- <horatiu.vultur@microchip.com>, "Andrew Lunn" <andrew@lunn.ch>,
- devicetree@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "Allan
- Nielsen" <allan.nielsen@microchip.com>, "Luca Ceresoli"
- <luca.ceresoli@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
-Message-ID: <20240716175818.2ef948d9@bootlin.com>
-In-Reply-To: <7289bb54-99f2-4630-a437-21997a9e2b1f@app.fastmail.com>
-References: <20240627091137.370572-1-herve.codina@bootlin.com>
-	<20240627091137.370572-7-herve.codina@bootlin.com>
-	<20240711152952.GL501857@google.com>
-	<20240711184438.65446cc3@bootlin.com>
-	<2024071113-motocross-escalator-e034@gregkh>
-	<CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
-	<20240712151122.67a17a94@bootlin.com>
-	<83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com>
-	<20240715141229.506bfff7@bootlin.com>
-	<7289bb54-99f2-4630-a437-21997a9e2b1f@app.fastmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1721145894; c=relaxed/simple;
+	bh=7bdeBRk2eXQxVNqE62jOD4bNViPSgDbpp6IsB4XA/sI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=caxn8FoyI34MXKa3cD6araizPkW34h3mIUnz3avOBrgEOf1XAKw7rmVqr5jQ5k0Wv6Styqdl76Y2Q/siAbSqtr5De8cYktfOEmaRrCPEhUOBs/MWAK8xgtZmxjYPi1yAwXLfDdiWwV81XD2USxC6xk8dhPbgA3jQjnv5tf5NUm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XC/09R/Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9098C116B1;
+	Tue, 16 Jul 2024 16:04:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721145894;
+	bh=7bdeBRk2eXQxVNqE62jOD4bNViPSgDbpp6IsB4XA/sI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XC/09R/Y6r9goUkhLNzEdOCM7A8ckw1j4j5nvljL16ILcXSU+YgH3pumBdl671Vm+
+	 +D34YCZlvA3JpUcYEYR6lJlPUSiE96JoorlY3HDiVibwigPoIY94WkVfY8Kzz8Y0cf
+	 W1n2M7q+2qboPIQoc7klHgfhO62E/qM2d2JqYn/Vdy3jQGbRax/VMGiM1BZbx1vKUH
+	 8Nbo5xGjaWUT82PtSD6JtTXaRaz5HZzpy28LG1OmDGFNxh2XGCF5uoCUoRG8SsLpoc
+	 veP+7Drs5XCPbORsFjJO6Ah9PwH5MgUvh1qoTyzZIfFLZty+fzemMw1DB2gm7YXEDk
+	 3Osgxv8thO9jQ==
+Date: Tue, 16 Jul 2024 17:04:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pratikmanvar09@gmail.com, francesco@dolcini.it
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: imx: Add optional clock '32k'
+Message-ID: <20240716-corporal-worry-15183ca9ea68@spud>
+References: <20240715-pwm-v2-0-ff3eece83cbb@nxp.com>
+ <20240715-pwm-v2-1-ff3eece83cbb@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fRibbrrJ4CaRBetE"
+Content-Disposition: inline
+In-Reply-To: <20240715-pwm-v2-1-ff3eece83cbb@nxp.com>
 
-On Tue, 16 Jul 2024 16:44:12 +0200
-"Arnd Bergmann" <arnd@arndb.de> wrote:
 
-> On Mon, Jul 15, 2024, at 14:12, Herve Codina wrote:
-> > Hi Arnd,
-> >
-> > On Fri, 12 Jul 2024 16:14:31 +0200
-> > "Arnd Bergmann" <arnd@arndb.de> wrote:
-> >  
-> >> On Fri, Jul 12, 2024, at 15:11, Herve Codina wrote:  
-> >> > On Thu, 11 Jul 2024 14:33:26 -0600 Rob Herring <robh@kernel.org> wrote:    
-> >> >> On Thu, Jul 11, 2024 at 1:08 PM Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:    
-> >>   
-> >> >> > >
-> >> >> > > This PCI driver purpose is to instanciate many other drivers using a DT
-> >> >> > > overlay. I think MFD is the right subsystem.      
-> >> >> 
-> >> >> It is a Multi-function Device, but it doesn't appear to use any of the
-> >> >> MFD subsystem. So maybe drivers/soc/? Another dumping ground, but it
-> >> >> is a driver for an SoC exposed as a PCI device.
-> >> >>     
-> >> >
-> >> > In drivers/soc, drivers/soc/microchip/ could be the right place.
-> >> >
-> >> > Conor, are you open to have the PCI LAN966x device driver in
-> >> > drivers/soc/microchip/ ?    
-> >> 
-> >> That sounds like a much worse fit than drivers/mfd: the code
-> >> here does not actually run on the lan966x soc, it instead runs
-> >> on whatever other machine you happen to plug it into as a
-> >> PCI device.  
-> >
-> > Maybe drivers/misc ?  
-> 
-> That's probably a little better, and there is already
-> drivers/misc/mchp_pci1xxxx in there, which also has some
-> aux devices.
-> 
-> Maybe we need a new place and then move both of these
-> and some of the similar devices from drivers/mfd to that, but
-> we don't really have to pick one now.
-> 
+--fRibbrrJ4CaRBetE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In the next iteration, I plan to move the lan966x pci driver in
-drivers/misc/
+On Mon, Jul 15, 2024 at 04:29:50PM -0400, Frank Li wrote:
+> The pwm in imx8qxp mipi subsystem require one extra '32k' clock. So
+> increase maxItems for clock and clock-names.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Not sure that it needs to be in a subdir.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Best regards
-Hervé
+--fRibbrrJ4CaRBetE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpaaIAAKCRB4tDGHoIJi
+0ja3AQC57LpLdwDup3Cn5u7VwR4VXDEFrlgTSi5VVFGw+ctrgQEA1Yu0luAj3nJu
+Hbszo+7oLDmuM6hm8gKxB/zULvBtzAQ=
+=Oabq
+-----END PGP SIGNATURE-----
+
+--fRibbrrJ4CaRBetE--
 
