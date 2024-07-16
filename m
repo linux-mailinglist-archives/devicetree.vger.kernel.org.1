@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-85982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BEE93212D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:28:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8150293213E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 09:32:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20C0D1C20B88
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:28:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3E67B21DB6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2024 07:32:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4392725624;
-	Tue, 16 Jul 2024 07:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE3825624;
+	Tue, 16 Jul 2024 07:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QypRgdP9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VAmPB5Ih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18ABC4C7B;
-	Tue, 16 Jul 2024 07:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95961F934;
+	Tue, 16 Jul 2024 07:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721114915; cv=none; b=GR1rKnKB5eyrfDKepRe237aZ1EweFq+5PIFdDBVaKCgl+XWgqQ1bNq7Ee3oTHjPmPXSRitR686aDlTy0C0eSs+da0LQFyq1GBiaDg7O7xdJY9WEuaphMYXjSo/3fGFsv+4OR/xwMNSrXZFq3dyd2/jk53zvswaK4a2cWCYLIoBo=
+	t=1721115122; cv=none; b=kNoY4UO+Ssis3gPjAWEsGtlkH+jRfTEKWbZYerO6CNAPkdKXR2XcUTOdnmrsFyWEbH8zISxm4/1gsMJCZwoWnx2DeJRYVN0CxSh/ax/6ou0yPtxUF77EdNdx1wTCpWHjEacY/B54vFlXDG8g7AWfclxDDwNCvs9eIE5r6WWIyZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721114915; c=relaxed/simple;
-	bh=c8gKwuCOk0BMePqrAmzJ+naO6NCHrALTjEZjLHRx63w=;
+	s=arc-20240116; t=1721115122; c=relaxed/simple;
+	bh=VXnbYi7kQvcqZf/oDyfvoTJ5K7E4jBtVfexeovJ13Ic=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OhrczpTcLYM7726ts7cQhun6F7S40T8Sp9kzSjdKamMtZhLCECrydwlPdaaqAEPu0clRIAaxxKLKit8wabY7lcYYwdWLKlJATxVw9U3VyFYx554DeGEkms69TaVNLoL5vwLFldR0UWbU05VCgq8cLQvYOiqMaS8p854XCdd5TG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QypRgdP9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 571F4C116B1;
-	Tue, 16 Jul 2024 07:28:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RbMaLhs6dfv92pqvIulkOfhbeD8o+Sm4uIwu5Juj8UaswyH9jrxsePnqztyCt6Rm+R+1ebQUe5tCHDmUXoy3C2Zzouj1iby9G8b1rUfqgKKnK0eu/l3dHse5Kbt/Uvi+aZFU5Y+87YrCNBQgm7nMfz8veWkkp10NmsXTtsSeInQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VAmPB5Ih; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A30BC116B1;
+	Tue, 16 Jul 2024 07:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721114914;
-	bh=c8gKwuCOk0BMePqrAmzJ+naO6NCHrALTjEZjLHRx63w=;
+	s=k20201202; t=1721115122;
+	bh=VXnbYi7kQvcqZf/oDyfvoTJ5K7E4jBtVfexeovJ13Ic=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QypRgdP93HikE8gYcxiniC0B9ttTo4MRomj/N2VgOQlPTlw2jUjPvHBzoFkS1eb+W
-	 pR2K59Hx7msXMNLofqRuIyShXS4CTs5m/SkvnxlqPzMkXuv5DDy0L9/HBnHEbTtlTp
-	 +Fdlr0GKtV4As8fYL3PApOVqC1JrOyPtZ+S0COJDBOq0ZKdQPLiJXubxyTnUWl6XWa
-	 H3PSnQZyEnwj4h4o43jKsM4/89gYmO+MAQEVSkiVXWCMARmr1z0SPRG9Z4pVAz1D3z
-	 EAupEF/jIG+/WpiV5SwcQ+JNvZn54bBuAqV8Y3+DjiYmR19VuIshaOecI9uNT0OFbP
-	 IXb6E0i1hEy1A==
-Message-ID: <5f029f16-2030-4e86-929b-0b2832958912@kernel.org>
-Date: Tue, 16 Jul 2024 09:28:22 +0200
+	b=VAmPB5IhYe55cCRijuOQyjVT8aDWoda45SMq5bU6fvZX2iH6ht6/ig8DOGN5XmI5b
+	 wd/FgMhuDKz3X/Ts+3v36gh1rXtMNKRIjhJRQvirkG2i6RNqLM1neqyZjIO5AKam1F
+	 WqtZiY3uoQlfeRFH6E1K8PcHnjVISlkrSCRgxGdtPG+/rrBQQPglLmCHXbORkxaT2j
+	 7KfYtjWLHAoHQXI+6/EgDOnHCdi4KCJsVlstFnUiEHQ15ZHqdNEhAi5RvHtZ5D7M89
+	 RKZ30e7nTPTmbFD6oD0h+x/ovm95dSl0R/0MiIk19MGUBpdIbDJgwCHpJRBQc+pHUU
+	 Amh9wFVfOwKTw==
+Message-ID: <ee6532bd-cf66-408d-bf8a-c38330f1f42d@kernel.org>
+Date: Tue, 16 Jul 2024 09:31:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V226/7] dt-bindings: PCI: host-generic-pci: Add
- snps,dw-pcie-ecam-msi binding
-To: Mayank Rana <quic_mrana@quicinc.com>, will@kernel.org,
- lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
- jingoohan1@gmail.com, manivannan.sadhasivam@linaro.org, cassel@kernel.org,
- yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
- u.kleine-koenig@pengutronix.de, dlemoal@kernel.org, amishin@t-argos.ru,
- thierry.reding@gmail.com, jonathanh@nvidia.com, Frank.Li@nxp.com,
- ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
- marek.vasut+renesas@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
- quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
- quic_nitegupt@quicinc.com
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-7-git-send-email-quic_mrana@quicinc.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: reset: add schema for imx8ulp SIM
+ reset
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Liu Ying <victor.liu@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240715164514.8718-1-laurentiumihalcea111@gmail.com>
+ <20240715164514.8718-2-laurentiumihalcea111@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,74 +106,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1721067215-5832-7-git-send-email-quic_mrana@quicinc.com>
+In-Reply-To: <20240715164514.8718-2-laurentiumihalcea111@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/07/2024 20:13, Mayank Rana wrote:
-> To support MSI functionality using Synopsys DesignWare PCIe controller
-> based MSI controller with ECAM driver, add "snps,dw-pcie-ecam-msi
-> compatible binding which uses provided SPIs to support MSI functionality.
-
-To support MSI, you add MSI support... That's a tautology. Describe
-hardware instead.
-
+On 15/07/2024 18:45, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > 
-> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
-> ---
->  .../devicetree/bindings/pci/host-generic-pci.yaml  | 57 ++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
+> Add schema for imx8ulp's SIM reset controller.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> index 9c714fa..9e860d5 100644
-> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> @@ -81,6 +81,12 @@ properties:
->                - marvell,armada8k-pcie-ecam
->                - socionext,synquacer-pcie-ecam
->            - const: snps,dw-pcie-ecam
-> +      - description: |
-> +         Firmware is configuring Synopsys DesignWare PCIe controller in RC mode with
-> +         ECAM compatible fashion. To use MSI controller of Synopsys DesignWare PCIe
-> +         controller for MSI functionality, this compatible is used.
-> +        items:
-> +          - const: snps,dw-pcie-ecam-msi
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-MSI is already present in the binding, isn't it? Anyway, aren't you
-forgetting specific compatible? Please open your internal (quite
-comprehensive) guideline on bindings and DTS.
+...
 
-
->        - description:
->            CAM or ECAM compliant PCI host controllers without any quirks
->          enum:
-> @@ -116,6 +122,20 @@ properties:
->        A phandle to the node that controls power or/and system resource or interface to firmware
->        to enable ECAM compliant PCIe root complex.
->  
-> +  interrupts:
-> +    description:
-> +      DWC PCIe Root Port/Complex specific MSI interrupt/IRQs.
-> +    minItems: 1
-> +    maxItems: 8
+> +  clocks:
+> +    maxItems: 1
 > +
-> +  interrupt-names:
-> +    description:
-> +      MSI interrupt names
-> +    minItems: 1
-> +    maxItems: 8
-> +    items:
-> +        pattern: '^msi[0-9]+$'
-
-Why the same devices have variable numbers?
-
+> +  '#reset-cells':
+> +    const: 1
 > +
->  required:
->    - compatible
->    - reg
-> @@ -146,11 +166,22 @@ allOf:
->          reg:
->            maxItems: 1
+> +  mux-controller:
+> +    $ref: /schemas/mux/reg-mux.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#reset-cells'
+> +  - mux-controller
+> +  - clocks
+
+List here should have the same order as list of properties.
 
 
 Best regards,
