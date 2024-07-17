@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-86455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3BB934239
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 20:25:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6992793424D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 20:30:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BCE31C21113
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:25:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 131F91F2272E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:30:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6191836D7;
-	Wed, 17 Jul 2024 18:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA7618410A;
+	Wed, 17 Jul 2024 18:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIqOSzqm"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cB08LptQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE461836C4;
-	Wed, 17 Jul 2024 18:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB79718308C;
+	Wed, 17 Jul 2024 18:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721240693; cv=none; b=Ztxl+yVvo/knW4+i9t6fqQR7Rkp4dEhKM+RM2F7HTRBfhmOQzIemqSl1QwDTNo4FF66eHJ4JCCCenP/t9URWuNgFgSHJh+vV6XQwnRby5a9biG9MGUK8CH+gk0wOLnxPQxAxKpQi3cWJJgreoflcJqY+EbLEvIS8LlPbuh04E3g=
+	t=1721241012; cv=none; b=u3cpXRQxID5s6i0FX2YPgCNjE6idSg8wCFSjgP3NahaG7xgeIwQtsjXRJEyAVb23mKVxtdAc88hvTit7ox6Lp7zyXP/dwlVLobRMYo4Qz2TpIgTiYSKkUuES4WmGT0QX9gBHiTE4aTV1ZU3tiUh+6lncKouYLCyBAxux4PzUyBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721240693; c=relaxed/simple;
-	bh=C++kSOLhIP5PSq6tF2bjAs5Xhpug33YPSaVFZ8do+YU=;
+	s=arc-20240116; t=1721241012; c=relaxed/simple;
+	bh=kkxQ7HDQIBOgCghWNEpPvkhCFxintxaexdFHp3ES4eY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JJELVKY4kwgg/DeZm92+/s73PUX8kcfejyF1qZJoeyD1I6hYkgu2FHIyFtWbjZ0t7VM6j2TB2wpyotgX2PyUK/w3x5Bz3KmgJ3EXJj9DAjjSU34GphgtgItbFLzk7cCCaeUr2V3/Yo87BlDyM/2ZiyCDfvSm/t4RLzGb2Yzqw1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIqOSzqm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6429EC4AF0B;
-	Wed, 17 Jul 2024 18:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721240692;
-	bh=C++kSOLhIP5PSq6tF2bjAs5Xhpug33YPSaVFZ8do+YU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hIqOSzqmR44B1nzxPCPJH2o6GTxE2nt2Hhe9ArYOEprmgc8xLjQAmduIF9Bs6Vdew
-	 EUnltYNEoe7YcYxEGpDsK8jwk6A9LBGIp69e3oGFwox9uG8tS7BX2tOhpc2oK/qRU1
-	 aGIJaQG5x1UA3E3heOVTQ7diXTF5eS4mVIXluetMD8a34yUe6t6BN+AbptVTBUKBq2
-	 zkdEZmSiYnUDy4vBmofSpsz9l1vuYAptvR7N1jLZ4rZGKpGPFj1ReJOo3LnT2FigrR
-	 Mlz4in3o8Lv6qZyXaOc/Fmg4PCWgRwIk7zo4UNx/xwZVoiHTN/V6K1Qkjt9y/OtrWP
-	 VAL7rD1O6AC4Q==
-Date: Wed, 17 Jul 2024 20:24:46 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: tj@kernel.org, dlemoal@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	festevam@gmail.com, linux-ide@vger.kernel.org,
-	stable@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, kernel@pengutronix.de
-Subject: Re: [PATCH v3 2/4] ata: ahci_imx: Clean up code by using i.MX8Q HSIO
- PHY driver
-Message-ID: <ZpgMbvuSpgGoISN1@ryzen.lan>
-References: <1721099895-26098-1-git-send-email-hongxing.zhu@nxp.com>
- <1721099895-26098-3-git-send-email-hongxing.zhu@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bT9ehE3zqTLQ8OrGWvikTxsZ14CXWJNK2uzzV8VbeiNiBkr7K7TeBOQLDYDbTwvzaSikScm746m6dYvi6DZTigkfK8nc/fROwrMjXVgNB7/cAZMeQAiaPwtDYyQsc5Sax1qg8TXuz5izPfqKrKiFpg81S5cuCvPAOHIFS/MJdjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cB08LptQ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=vyvpoyFR7feJO8PWlN6/naOB1Ri9E4IGyTVFrGgGsFc=; b=cB08LptQXHk682+unCwuzeszXL
+	CslVP2oFXj7StRYdbdtKLAcfx6EzJR4avnbJMJ7dDjzuGHZdPVIyZs4Mgh9W2OCApVkSyPWl4FCp/
+	Y3pyV1xjNf78dg8pokCT/45umktGqU+J2Oiwp0dbKDILiHR43ZYFqdDIPunlAin1oyZ0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sU9Pd-002jG8-2l; Wed, 17 Jul 2024 20:30:01 +0200
+Date: Wed, 17 Jul 2024 20:30:01 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Pawel Dembicki <paweldembicki@gmail.com>
+Cc: netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/2] net: dsa: vsc73xx: make RGMII delays
+ configurable
+Message-ID: <97827b19-a747-4f4d-99e7-8c2bec3d5f0a@lunn.ch>
+References: <20240716183735.1169323-1-paweldembicki@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,90 +67,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1721099895-26098-3-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20240716183735.1169323-1-paweldembicki@gmail.com>
 
-On Tue, Jul 16, 2024 at 11:18:13AM +0800, Richard Zhu wrote:
-> Clean up code by using PHY interface.
+On Tue, Jul 16, 2024 at 08:37:34PM +0200, Pawel Dembicki wrote:
+> This patch switches hardcoded RGMII transmit/receive delay to
+> a configurable value. Delay values are taken from the properties of
+> the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> The default value is configured to 2.0 ns to maintain backward
+> compatibility with existing code.
+> 
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 > ---
->  drivers/ata/ahci_imx.c | 396 ++++++++++-------------------------------
->  1 file changed, 98 insertions(+), 298 deletions(-)
+>  drivers/net/dsa/vitesse-vsc73xx-core.c | 68 ++++++++++++++++++++++++--
+>  1 file changed, 64 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
-> index cb768f66f0a70..e94c0fdea2260 100644
-> --- a/drivers/ata/ahci_imx.c
-> +++ b/drivers/ata/ahci_imx.c
-> @@ -986,65 +827,22 @@ static const struct scsi_host_template ahci_platform_sht = {
+> diff --git a/drivers/net/dsa/vitesse-vsc73xx-core.c b/drivers/net/dsa/vitesse-vsc73xx-core.c
+> index d9d3e30fd47a..7d3c8176dff7 100644
+> --- a/drivers/net/dsa/vitesse-vsc73xx-core.c
+> +++ b/drivers/net/dsa/vitesse-vsc73xx-core.c
+> @@ -684,6 +684,67 @@ vsc73xx_update_vlan_table(struct vsc73xx *vsc, int port, u16 vid, bool set)
+>  	return vsc73xx_write_vlan_table_entry(vsc, vid, portmap);
+>  }
 >  
->  static int imx8_sata_probe(struct device *dev, struct imx_ahci_priv *imxpriv)
->  {
-> -	struct resource *phy_res;
-> -	struct platform_device *pdev = imxpriv->ahci_pdev;
-> -	struct device_node *np = dev->of_node;
-> -
-> -	if (of_property_read_u32(np, "fsl,phy-imp", &imxpriv->imped_ratio))
-> -		imxpriv->imped_ratio = IMX8QM_SATA_PHY_IMPED_RATIO_85OHM;
-> -	phy_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "phy");
-> -	if (phy_res) {
-> -		imxpriv->phy_base = devm_ioremap(dev, phy_res->start,
-> -					resource_size(phy_res));
-> -		if (!imxpriv->phy_base) {
-> -			dev_err(dev, "error with ioremap\n");
-> -			return -ENOMEM;
-> -		}
-> -	} else {
-> -		dev_err(dev, "missing *phy* reg region.\n");
-> -		return -ENOMEM;
-> -	}
-> -	imxpriv->gpr =
-> -		 syscon_regmap_lookup_by_phandle(np, "hsio");
-> -	if (IS_ERR(imxpriv->gpr)) {
-> -		dev_err(dev, "unable to find gpr registers\n");
-> -		return PTR_ERR(imxpriv->gpr);
-> -	}
-> -
-> -	imxpriv->epcs_tx_clk = devm_clk_get(dev, "epcs_tx");
-> -	if (IS_ERR(imxpriv->epcs_tx_clk)) {
-> -		dev_err(dev, "can't get epcs_tx_clk clock.\n");
-> -		return PTR_ERR(imxpriv->epcs_tx_clk);
-> -	}
-> -	imxpriv->epcs_rx_clk = devm_clk_get(dev, "epcs_rx");
-> -	if (IS_ERR(imxpriv->epcs_rx_clk)) {
-> -		dev_err(dev, "can't get epcs_rx_clk clock.\n");
-> -		return PTR_ERR(imxpriv->epcs_rx_clk);
-> -	}
-> -	imxpriv->phy_pclk0 = devm_clk_get(dev, "phy_pclk0");
-> -	if (IS_ERR(imxpriv->phy_pclk0)) {
-> -		dev_err(dev, "can't get phy_pclk0 clock.\n");
-> -		return PTR_ERR(imxpriv->phy_pclk0);
-> -	}
-> -	imxpriv->phy_pclk1 = devm_clk_get(dev, "phy_pclk1");
-> -	if (IS_ERR(imxpriv->phy_pclk1)) {
-> -		dev_err(dev, "can't get phy_pclk1 clock.\n");
-> -		return PTR_ERR(imxpriv->phy_pclk1);
-> -	}
-> -	imxpriv->phy_apbclk = devm_clk_get(dev, "phy_apbclk");
-> -	if (IS_ERR(imxpriv->phy_apbclk)) {
-> -		dev_err(dev, "can't get phy_apbclk clock.\n");
-> -		return PTR_ERR(imxpriv->phy_apbclk);
-> -	}
-> -
-> -	/* Fetch GPIO, then enable the external OSC */
-> -	imxpriv->clkreq_gpiod = devm_gpiod_get_optional(dev, "clkreq",
-> -				GPIOD_OUT_LOW | GPIOD_FLAGS_BIT_NONEXCLUSIVE);
-> -	if (IS_ERR(imxpriv->clkreq_gpiod))
-> -		return PTR_ERR(imxpriv->clkreq_gpiod);
-> -	if (imxpriv->clkreq_gpiod)
-> -		gpiod_set_consumer_name(imxpriv->clkreq_gpiod, "SATA CLKREQ");
-> -
-> +	if (!(dev->bus_dma_limit))
-> +		dev->bus_dma_limit = DMA_BIT_MASK(32);
+> +static void vsc73xx_configure_rgmii_port_delay(struct dsa_switch *ds)
+> +{
+> +	/* Keep 2.0 ns delay for backward complatibility */
+> +	u32 tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS;
+> +	u32 rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS;
+> +	struct dsa_port *dp = dsa_to_port(ds, CPU_PORT);
+> +	struct device_node *port_dn = dp->dn;
+> +	struct vsc73xx *vsc = ds->priv;
+> +	u32 delay;
+> +
+> +	if (!of_property_read_u32(port_dn, "tx-internal-delay-ps", &delay)) {
+> +		switch (delay) {
+> +		case 0:
+> +			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_NONE;
+> +			break;
+> +		case 1400:
+> +			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_4_NS;
+> +			break;
+> +		case 1700:
+> +			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_7_NS;
+> +			break;
+> +		case 2000:
+> +			break;
+> +		default:
+> +			dev_warn(vsc->dev,
+> +				 "Unsupported RGMII Transmit Clock Delay, set to 2.0 ns\n");
 
-These two lines look like a unrelated change, should be in a separate commit
-with a proper commit message.
+I would suggest you make this dev_err() and return -EINVAL. The DT has
+a real error in it which should be fixed.
 
+> +			break;
+> +		}
+> +	} else {
+> +		dev_info(vsc->dev,
+> +			 "RGMII Transmit Clock Delay isn't configured, set to 2.0 ns\n");
 
-Kind regards,
-Niklas
+This is for backwards compatibility. Do we need to spam the log? I
+would say dev_dbg().
+
+Same for RX please.
+
+	Andrew
 
