@@ -1,124 +1,152 @@
-Return-Path: <devicetree+bounces-86412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC22933FE1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:46:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC4F934016
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:59:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 724351F2438A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:46:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD50B1F228D7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6761E87C;
-	Wed, 17 Jul 2024 15:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 877C91802A3;
+	Wed, 17 Jul 2024 15:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e7xsKrXD"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="EH1lBSBg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5161DFE8
-	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 15:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D932374C2;
+	Wed, 17 Jul 2024 15:59:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721231159; cv=none; b=ptNpdSuMT1Zt31LARl9d/wsjD3e/+wClOkO4I7KnCqSZ/uI6vJ68QYvAqjabgl3HbZLLAuYeCHCBQS7W2Ma2RPo4jwrcLRoZ/a6nIj5pbIo2BbNZfdOIgMc54zaK4TWHjNI1hYfh01ZV+SaTxA2K5XJZ+QDAu1SMDvPi0ATbBME=
+	t=1721231945; cv=none; b=cj5j/qejpHcusZMoU2C+LG4H2tj1Pogu6nYaGHN/IxoT1FjsR+Z0HR9y3TmOGecQ87pzJcvG/LwgyA70snJHzlYar9Pj93okax2MfPAX77B+NZgCN2EbQO7p3EnwYhRM8EugwZefKPYTY1p9a2NG6OiwzX6GcF4qnYw3Rw/VRvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721231159; c=relaxed/simple;
-	bh=WU97PRvcw1eCZAzclkACUNm7StQBMAO7YMKsIIIFmvY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=mjK8KbFoZvE0JdDKNMfWLaNJAdjKAgMgnXV8P5NZXRy847o8ZRu0EImeFUSxYfVMOUnNC2jTMv0FGiHx8o0ivp9qFMLmWPT2y9x+9Ey+22k5BkkPfZASR7uCv3+mAL9Jz4hlQ8FQSzuSo5WvRShlEI66jdqex5MLgOZ20bOpuMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e7xsKrXD; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-367b0cc6c65so4272027f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 08:45:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721231156; x=1721835956; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eiEOaR61kkdbq7vgFCTihZFmUQNkXULWvAld/7S3/Ks=;
-        b=e7xsKrXDvEija/eqKgwU6m2unzSjD1y+65rXzrf18uVw8exVBaQ7Apr0QRKp8MhT0v
-         cA9XwtUYbNqpL9qbV90+7BHjeBCJrRSQ7pxn52/2iojJ+kjcKUxp48J8aRxzVg8coz2o
-         bdZ1huD+LO6TZFJKfkii88p9Yq4P4dXgZJAW+wBKFhAnZFqzj1K2m2SkxdNd27yxEHmp
-         ZTB8SOH35z3YIwCax1WNBhudgL5/KcpvrenMttuOkGJhIi/Lg5KTCgG6mxl8F4kdR1Dj
-         mgYM3k2yiEUdk3ZRMP92Kfg0ylnfjAzGZ2zpWq8mzaz89tddd6TulqytsBCf4xtcgIc9
-         CYEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721231156; x=1721835956;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eiEOaR61kkdbq7vgFCTihZFmUQNkXULWvAld/7S3/Ks=;
-        b=DbfbkPA7uZNaNPUFq7IAG9LTfjkPsqUwGlx20WqXzVcpF3UrrI/okiy9wn1tHVNQbB
-         yydE/GygDL9H0UEdAraDmmirlu7UM6M6T9PJwO7m993jygIdCN2VE1GTUV2pP3+9ZOEX
-         LY6+LA82IB5tevgNokQj9qw2342dIAJNMRQ55kIHbwUkJyEzrdFaqUX+GYnY0yXJYr9g
-         2caLEk15ilyf6LsC3H1wchZN9RNnjJ3NXo2brqNxNcID+IB3pDqTi+6w0KfKxYhD672x
-         y6yRpyBPBz9m7uZqkgt0WGhdepy30xAbFXYRrFK09uOVIuqW6Qs9+NjvFZgTtidYDoF0
-         IcQA==
-X-Gm-Message-State: AOJu0Yy5l9z8Of6TuN3JryXzelDNC2lBQQu+vJ5hAG/UEt5c+oKDekS/
-	T/6eSh+RnALLK6P2Pvncv3khowvyVQKTnRxPpX6uHKnUovOrek1yJ1Qc8vJLgCI=
-X-Google-Smtp-Source: AGHT+IFDX6trSWMwNc9ZLwe51D1SqBXvpQm9yC8pL4HhfVT3XAQTnv269XbWOLdNNNAKfTxT+SEvmg==
-X-Received: by 2002:adf:9d91:0:b0:367:94a7:12cb with SMTP id ffacd0b85a97d-3683171fea1mr1486166f8f.43.1721231156022;
-        Wed, 17 Jul 2024 08:45:56 -0700 (PDT)
-Received: from localhost ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dab3d37sm12127636f8f.14.2024.07.17.08.45.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 08:45:55 -0700 (PDT)
+	s=arc-20240116; t=1721231945; c=relaxed/simple;
+	bh=fGk1j3Cz1xeirYpJ5JSjgioZYbeESwFu3JdqzQ/1WZA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=WIAO9CArLc8uLrhx/YJP0/jC+L6o/0WWW4uVPz36Jb3K8A4BnjqPK7eGRGZMlBGQJAi/rfgZRZ1QXgDG7eXRQlANe8Pg4jkghJLpiFKDvioBf7UzluP8iugwc2IqOBpmjECRyAkWhnAEh29MFY9Xan5PrKrMA5wLcukhGu31nrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=EH1lBSBg; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 709F64129C;
+	Wed, 17 Jul 2024 17:58:53 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id v8Cy-O1lgd83; Wed, 17 Jul 2024 17:58:50 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 17 Jul 2024 16:45:55 +0100
-Message-Id: <D2RXISKUMBWA.ZQDKI0F03EI0@linaro.org>
-To: "Andrew Lunn" <andrew@lunn.ch>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>, "David S.
- Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Timur Tabi" <timur@kernel.org>,
- <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: qcom,emac: convert to dtschema
-From: "Rayyan Ansari" <rayyan.ansari@linaro.org>
-X-Mailer: aerc 0.17.0-0-g6ea74eb30457
-References: <20240717090931.13563-1-rayyan.ansari@linaro.org>
- <cecaa6c3-adeb-489f-a9d2-0f43d089dd1d@lunn.ch>
-In-Reply-To: <cecaa6c3-adeb-489f-a9d2-0f43d089dd1d@lunn.ch>
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1721231930; bh=fGk1j3Cz1xeirYpJ5JSjgioZYbeESwFu3JdqzQ/1WZA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=EH1lBSBg1OY0DhqdRIqWluNS+3v7pXHDKPTwz3hZqZzer7JYhTzuEd8yOgyLRgIgL
+	 9v0C7612gEV4l4JNjgRHElv9ptQOKOtqrwAUi8ZYUht8g3wKNvqNnKwdHTFena/5vw
+	 aiynR4OPPlh5h38c4eFSojNDb45Yx3ovU8Jj4XmJYjUvheIs9QOnTN/ShPBTLWfy3L
+	 qqdh9E/SKIP/5NQ0y0R6ARR4gsxAApRdmeIJiQ9z5dlhZIOqywU6LVeoI8dxjoe1MW
+	 4ZhmqBXP0z8wIzjlouzYFlaykRG0C/f2THmHZbYAJqgWcAVb/X3g20zlbzIuRKa2P9
+	 OLhlJZTzlC1sQ==
+Date: Wed, 17 Jul 2024 15:58:50 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ conor+dt@kernel.org, kauschluss@disroot.org
+Subject: Re: [PATCH 3/3] dt-bindings: iio: light: stk33xx: add compatible for
+ stk3013
+In-Reply-To: <20240716174328.15c250a9@jic23-huawei>
+References: <20240712152417.97726-1-kauschluss@disroot.org>
+ <20240712152417.97726-3-kauschluss@disroot.org>
+ <20240713130620.79d47130@jic23-huawei>
+ <be34b0b571ddc33351e9eb123410a210@disroot.org>
+ <20240716174328.15c250a9@jic23-huawei>
+Message-ID: <2554b98ddbe3098fa974b651f555a791@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed Jul 17, 2024 at 4:20 PM BST, Andrew Lunn wrote:
-> On Wed, Jul 17, 2024 at 10:09:27AM +0100, Rayyan Ansari wrote:
-> > Convert the bindings for the Qualcomm EMAC Ethernet Controller from the
-> > old text format to yaml.
-> >=20
-> > Also move the phy node of the controller to be within an mdio block so
-> > we can use mdio.yaml.
->
-> Does the MAC driver already support this?
->
-> When i look at the emacs-phy.c there is
->
-> 	struct device_node *np =3D pdev->dev.of_node;
->
->                 ret =3D of_mdiobus_register(mii_bus, np);
->
-> I don't see anything looking for the mdio node in the tree.
->
-> 	Andrew
+On 2024-07-16 16:43, Jonathan Cameron wrote:
+> On Mon, 15 Jul 2024 20:02:57 +0000
+> Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+> 
+>> On 2024-07-13 12:06, Jonathan Cameron wrote:
+>> > On Fri, 12 Jul 2024 20:54:02 +0530
+>> > Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+>> >   
+>> >> Add the compatible string of stk3013 to the existing list.  
+>> > 
+>> > Should include how this differs from existing devices such that it doesn't
+>> > make sense to use a fallback compatible.  
+>> 
+>> STK3013 is a proximity sensor by Sensortek, bearing chipid of 0x31. Despite
+>> being marketed as a proximity sensor, it also appears to have ambient
+>> light sensing capabilities.
+>> 
+>> Add the compatible string of stk3013 to the existing list, as a part not
+>> compatible with other devices.
+> 
+> That would be fine, but I'm not seeing any driver code changes, so when
+> you say not compatible, in what way? If it's register changes in features
+> we don't support yet or something like that, just add some examples.
+> 
+> A different whoami register value isn't sufficient as after the fix
+> you have as patch 1 that will only result in a message print.
 
-Hi Andrew,
+I understand that a whoami is not enough to justify not having a fallback
+compatible. That's why I mentioned it's the most "convincing" argument I
+could come up with, which is admittedly, isn't enough.
 
-Yes, from my understanding an mdio node is not explicitly needed as it
-just uses "phy-handle".
+And there really isn't anything feature-wise which sets STK3013 apart from
+other devices. All register addresses and functions are fully compatible
+with the current driver.
 
-However, I think it makes more sense to place the phy within an mdio
-node instead of directly under the controller node. This is based off
-of 5ecd39d1bc4b ("dt-bindings: net: convert emac_rockchip.txt to YAML"),
-in which the same decision was made ("Add mdio sub node"), also during a
-text -> yaml conversion.
+> 
+> Obviously doesn't help much for this addition as you are adding the
+> bypass of the whoami and the new ID in the same series, but we want
+> to set a precedence for future devices to use fallback compatibles
+> now that path works.
 
+I'll add stk3310 as a fallback compatible and change the commit message
+appropriately. Conor did mention it in the last revision, but I totally
+missed that. Apologies.
+
+Ending the description with something along the lines of:
+
+The part is fully compatible with the existing implementation of the
+device driver. Add the compatible string of stk3013 to the existing list,
+with a fallback of stk3310.
+
+...would be alright?
+
+> 
+> Jonathan
+> 
+>> 
+>> I hope this is good enough. I couldn't find anything more convincing.
+>> 
+>> >   
+>> >> 
+>> >> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> >> ---
+>> >>  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 1 +
+>> >>  1 file changed, 1 insertion(+)
+>> >> 
+>> >> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+>> >> index f6e22dc9814a..6003da66a7e6 100644
+>> >> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+>> >> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+>> >> @@ -19,6 +19,7 @@ allOf:
+>> >>  properties:
+>> >>    compatible:
+>> >>      enum:
+>> >> +      - sensortek,stk3013
+>> >>        - sensortek,stk3310
+>> >>        - sensortek,stk3311
+>> >>        - sensortek,stk3335
 
