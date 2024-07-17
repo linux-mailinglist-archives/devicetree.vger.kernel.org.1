@@ -1,157 +1,270 @@
-Return-Path: <devicetree+bounces-86278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE909337B8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:21:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE30193381B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A1EBB20E16
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 07:21:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE0EDB21E61
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 07:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D411802E;
-	Wed, 17 Jul 2024 07:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07FB41B948;
+	Wed, 17 Jul 2024 07:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="AIBaoPGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84EBB64C
-	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 07:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2251BF37
+	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 07:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721200893; cv=none; b=VH+nhadQEQtt2v9k2zHAdhLWu3fXDFn8FtE1sNQfjVsgfTtwsMAFU0YUa37XJD4lQvr8b75lgRRrRvQIEuT6tf6Rhe+/ENyhB4UfJ1sqNQz20qouAC6sGgttZXOoyXT+YXtKQc1jA6abgFXPMwV51S/zwFRrHyeOJjkzg6pxPEw=
+	t=1721201867; cv=none; b=btVVdceva1caVeJ0GgNvrZo7CqlVKHAZ0QNRgjVnIr6AhWrG6Mv9jAHQCJiYfgfUNITcN1yrN8X4LaEIQQqCpLzSYx7AOeFkShiJ93nxWQXNC8D+J/WlEfyLiY5kOmJGbnDOcSOlJ64BUn8bE4YaggFUrM51mHb9rIuqx2Agepw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721200893; c=relaxed/simple;
-	bh=7dyhTQjy+22B7GIQfMe+2jE4/DTU5dL5I/JauqWJc+Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o/sBgr+JX4AyvL2UxDa5CbUWaAJg3EdaacPjYGHNbDc9xf2BQacnFYRN7i/QpIPmQDKyyHq1iFmSKAUPeBsn/T5YHA+VEO4STjFoJX8tD8OJaGkuopZnAckqBetm45kdI3ImrVzCPX7H3gnHCYhweepoZh/kd1VJckogrunUiuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTyyQ-0006wr-Ga; Wed, 17 Jul 2024 09:21:14 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sTyyO-000A17-Cx; Wed, 17 Jul 2024 09:21:12 +0200
-Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 524B830595B;
-	Wed, 17 Jul 2024 07:20:46 +0000 (UTC)
-Date: Wed, 17 Jul 2024 09:20:45 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Bough Chen <haibo.chen@nxp.com>
-Cc: Frank Li <frank.li@nxp.com>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, Han Xu <han.xu@nxp.com>
-Subject: Re: RE: [PATCH v2 4/4] can: flexcan: add wakeup support for imx95
-Message-ID: <20240717-porpoise-of-imminent-inspiration-ef2fc6-mkl@pengutronix.de>
-References: <20240715-flexcan-v2-0-2873014c595a@nxp.com>
- <20240715-flexcan-v2-4-2873014c595a@nxp.com>
- <20240716-curious-scorpion-of-glory-8265aa-mkl@pengutronix.de>
- <ZpaF4Wc70VuV4Cti@lizhi-Precision-Tower-5810>
- <20240716-chowchow-of-massive-joviality-77e833-mkl@pengutronix.de>
- <DU0PR04MB9496C653249E66016A43F97790A32@DU0PR04MB9496.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1721201867; c=relaxed/simple;
+	bh=ofiUS+uOsnjhuIaRefgaMe9r3ZaNznbQtZELpuQTjVs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FueVB/nELt9WGn22Bg/91vQK/blW6/f6u96KGXk9nxkVNoqb9xtNY2P59F6RrlvJdBvM6XNedHSwf1rHT8AY79XlLuRL4ddVGZP9EP0B6HNjxEWRo0zn0xR9a1D5IFnTCixiLRAR4lRsiTrEHEkdrdBEPfWurzA6VTmyNS1BSRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=AIBaoPGe; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ee9b098bd5so88161301fa.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 00:37:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1721201863; x=1721806663; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gfi0wbFlhXsEa5q0QzjbWGJUIMSELq3SCGvUCwT4j9c=;
+        b=AIBaoPGeH/uKzNjCKykwG1g1LixWb4q/Q2hcEryTEmD7SEvjZrOgBHqqTZ5pWK6DXF
+         DfGYuvpgNc4GA4H+Aib8A9n4NpMexhDBSDzCQcQaeTDlWUZjsYH8Wvg/a5OjywCvQ+Jb
+         8hZfuiSKL1QaWKaGfShTvaXRd62jC2GIKSMaBwKIjJmPrSUtuzYhAco25nEhfvIWxdd4
+         6vufqqgadMLOAXQl5lpGEzyLXuPgmI9BbA4cIVV63y8A+yFkrndc19zK4LkP3vfyrdX1
+         qc4/i8XLt3U2VM0fvKhphQM+JYXUC2ZqsR/FNY7tYOV5a0sLTrx8x4pkyPAKPDU67mpF
+         8w3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721201863; x=1721806663;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gfi0wbFlhXsEa5q0QzjbWGJUIMSELq3SCGvUCwT4j9c=;
+        b=vam+IRtUU61PT2XqIlemDuF+2fFJK4NTenhtaeYIsl6gfyYkEJWqBOuNZ5mrXPC5C3
+         0+GD2grILGs1LaZifHDS+adAYvgZFY7w997GWIUh+TPwQ9WA+UZmzMt4ySImDEqryfNb
+         h1zLRpC5MA/Mkn1beYH/k8rJVh12ex+PNHCScTAhWjawCLshFzbjFTCCd1UBLagpxujk
+         yTsidhsfK+DyA8oVHeST6AX20HpY7ZEjNPaDDzC1nNjeNt6MouG6Gd4ImoS7U7C1cyta
+         tqx6JEvDYionvt+a+Z8SKCCYmzs9P6erhFNA28WnDcvMIWTC3uz5X5OkJyw5LXj0/0Ei
+         ZjRg==
+X-Gm-Message-State: AOJu0YwWWnN7SBy0E01umaL8JfWLHdcs0qmouSKLM5TOv9KK59Qbml0l
+	47+Mg9cwYcqpBtw6WIiAdNjp6rwd/YSWQlgjvMGHvzJmU2sZ+dFnHMHciAuXGDI=
+X-Google-Smtp-Source: AGHT+IH6DPWOFWGyrbuD3FoepHwzwFHt5aU7f9hN5MQgW4BxazZpRw+PU5n5TYh9enHix4deAENBmA==
+X-Received: by 2002:a05:6512:3f01:b0:52c:e3c7:941e with SMTP id 2adb3069b0e04-52ee5411942mr669554e87.47.1721201862870;
+        Wed, 17 Jul 2024 00:37:42 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5edb478sm160478315e9.33.2024.07.17.00.37.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jul 2024 00:37:42 -0700 (PDT)
+Message-ID: <42216215-4db1-4015-878f-25a7770d44c2@tuxon.dev>
+Date: Wed, 17 Jul 2024 10:37:40 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lyoxbz5qrcbtajuw"
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9496C653249E66016A43F97790A32@DU0PR04MB9496.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/11] mfd: renesas-vbattb: Add a MFD driver for the
+ Renesas VBATTB IP
+Content-Language: en-US
+To: Biju Das <biju.das.jz@bp.renesas.com>, "lee@kernel.org" <lee@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240716103025.1198495-3-claudiu.beznea.uj@bp.renesas.com>
+ <TY3PR01MB11346ABDBA306410646D3861A86A22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <TY3PR01MB11346ABDBA306410646D3861A86A22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi, Biju,
 
---lyoxbz5qrcbtajuw
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16.07.2024 14:00, Biju Das wrote:
+> Hi Claudiu,
+> 
+> Thanks for the patch.
+> 
+> 
+>> -----Original Message-----
+>> From: Claudiu <claudiu.beznea@tuxon.dev>
+>> Sent: Tuesday, July 16, 2024 11:30 AM
+>> Subject: [PATCH v2 02/11] mfd: renesas-vbattb: Add a MFD driver for the Renesas VBATTB IP
+>>
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Renesas VBATTB IP has logic to control the RTC clock, tamper detection and a small 128B memory. Add a
+>> MFD driver to do the basic initialization of the VBATTB IP for the inner components to work.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>
+>> Changes in v2:
+>> - none; this driver is new
+>>
+>>  drivers/mfd/Kconfig          |  8 ++++
+>>  drivers/mfd/Makefile         |  1 +
+>>  drivers/mfd/renesas-vbattb.c | 78 ++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 87 insertions(+)
+>>  create mode 100644 drivers/mfd/renesas-vbattb.c
+>>
+>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig index bc8be2e593b6..df93e8b05065 100644
+>> --- a/drivers/mfd/Kconfig
+>> +++ b/drivers/mfd/Kconfig
+>> @@ -1383,6 +1383,14 @@ config MFD_SC27XX_PMIC
+>>  	  This driver provides common support for accessing the SC27xx PMICs,
+>>  	  and it also adds the irq_chip parts for handling the PMIC chip events.
+>>
+>> +config MFD_RENESAS_VBATTB
+>> +	tristate "Renesas VBATTB driver"
+>> +	depends on (ARCH_RZG2L && OF) || COMPILE_TEST
+>> +	select MFD_CORE
+> 
+> There is no MFD calls??  What is the purpose of selecting MFD_CORE??
 
-On 17.07.2024 02:03:35, Bough Chen wrote:
-> > On 16.07.2024 10:40:31, Frank Li wrote:
-> > > > > @@ -2330,9 +2366,12 @@ static int __maybe_unused
-> > flexcan_noirq_resume(struct device *device)
-> > > > >  	if (netif_running(dev)) {
-> > > > >  		int err;
-> > > > >
-> > > > > -		err =3D pm_runtime_force_resume(device);
-> > > > > -		if (err)
-> > > > > -			return err;
-> > > > > +		if (!(device_may_wakeup(device) &&
-> > > >                       ^^^^^^^^^^^^^^^^^^^^^^^^
-> > > >
-> > > > Where does this come from?
-> > >
-> > > include/linux/pm_wakeup.h
-> > >
-> > > static inline bool device_may_wakeup(struct device *dev)
-> > > {
-> > >         return dev->power.can_wakeup && !!dev->power.wakeup;
-> > > }
-> >=20
-> > Sorry for the confusion. I wanted to point out, that the original drive=
-r doesn't
-> > have the check to device_may_wakeup(). Why was this added?
->=20
-> Here add this to make sure for CAN with flag
-> FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI and really used as wakeup source,
-> do not need to call pm_runtime_force_resume(), keep it align with what
-> we do in flexcan_noirq_suspend.
+I missed to remove it from here.
 
-> As the comment in flexcan_noirq_suspend, CAN with flag
-> FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI, when used as wakeup source, need
-> to keep CAN clock on when system suspend, let ATF part logic works,
-> detail steps please refer to this patch commit log. Whether gate off
-> the CAN clock or not depends on the Hardware design. So for this case,
-> in flexcan_noirq_suspend, directly return0, do not call the
-> pm_runtime_force_suspend(), then in flexcan_noirq_resume(), use the
-> same logic to skip the pm_runtime_force_resume().
+> 
+>> +	help
+>> +	  Select this option to enable Renesas RZ/G3S VBATTB driver which
+>> +	  provides support for the RTC clock, tamper detector and 128B SRAM.
+>> +
+>>  config RZ_MTU3
+>>  	tristate "Renesas RZ/G2L MTU3a core driver"
+>>  	depends on (ARCH_RZG2L && OF) || COMPILE_TEST diff --git a/drivers/mfd/Makefile
+>> b/drivers/mfd/Makefile index 02b651cd7535..cd2f27492df2 100644
+>> --- a/drivers/mfd/Makefile
+>> +++ b/drivers/mfd/Makefile
+>> @@ -186,6 +186,7 @@ pcf50633-objs			:= pcf50633-core.o pcf50633-irq.o
+>>  obj-$(CONFIG_MFD_PCF50633)	+= pcf50633.o
+>>  obj-$(CONFIG_PCF50633_ADC)	+= pcf50633-adc.o
+>>  obj-$(CONFIG_PCF50633_GPIO)	+= pcf50633-gpio.o
+>> +obj-$(CONFIG_MFD_RENESAS_VBATTB)	+= renesas-vbattb.o
+>>  obj-$(CONFIG_RZ_MTU3)		+= rz-mtu3.o
+>>  obj-$(CONFIG_ABX500_CORE)	+= abx500-core.o
+>>  obj-$(CONFIG_MFD_DB8500_PRCMU)	+= db8500-prcmu.o
+>> diff --git a/drivers/mfd/renesas-vbattb.c b/drivers/mfd/renesas-vbattb.c new file mode 100644 index
+>> 000000000000..5d71565b8cbf
+>> --- /dev/null
+>> +++ b/drivers/mfd/renesas-vbattb.c
+>> @@ -0,0 +1,78 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * VBATTB driver
+>> + *
+>> + * Copyright (C) 2024 Renesas Electronics Corp.
+>> + */
+>> +
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/reset.h>
+>> +
+>> +static int vbattb_probe(struct platform_device *pdev) {
+>> +	struct device *dev = &pdev->dev;
+>> +	struct reset_control *rstc;
+>> +	int ret;
+>> +
+>> +	rstc = devm_reset_control_array_get_exclusive(dev);
+>> +	if (IS_ERR(rstc))
+>> +		return PTR_ERR(rstc);
+>> +
+>> +	ret = devm_pm_runtime_enable(dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = pm_runtime_resume_and_get(dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = reset_control_deassert(rstc);
+>> +	if (ret)
+>> +		goto rpm_put;
+>> +
+>> +	platform_set_drvdata(pdev, rstc);
+>> +
+>> +	ret = devm_of_platform_populate(dev);
+>> +	if (ret)
+>> +		goto reset_assert;
+>> +
+>> +	return 0;
+>> +
+>> +reset_assert:
+>> +	reset_control_assert(rstc);
+>> +rpm_put:
+>> +	pm_runtime_put(dev);
+>> +	return ret;
+>> +}
+>> +
+>> +static void vbattb_remove(struct platform_device *pdev) {
+>> +	struct reset_control *rstc = platform_get_drvdata(pdev);
+>> +
+>> +	reset_control_assert(rstc);
+>> +	pm_runtime_put(&pdev->dev);
+>> +}
+>> +
+>> +static const struct of_device_id vbattb_match[] = {
+>> +	{ .compatible = "renesas,r9a08g045-vbattb" },
+>> +	{ /* sentinel */ },
+> 
+> Drop comma.
+> 
+>> +};
+>> +MODULE_DEVICE_TABLE(of, vbattb_match);
+>> +
+>> +static struct platform_driver vbattb_driver = {
+>> +	.probe = vbattb_probe,
+>> +	.remove_new = vbattb_remove,
+> 
+> Maybe remove canbe replaced with devm_add_action_or_reset()
+> That simplifies probe() aswell??
 
-Please change the control flow, so that flexcan_noirq_suspend() and
-flexcan_noirq_resume() look symmetrical.
+This approach needs a new structure to keep references to the rstc and dev,
+to be able to handle reset and runtime PM in action function. I wanted to
+avoid adding a new structure.
 
-regards,
-Marc
+Thank you for your review,
+Claudiu Beznea
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---lyoxbz5qrcbtajuw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaXcMoACgkQKDiiPnot
-vG+oPQf/YPWUrvcT++JZ07FcseBQUWKsH7dE6a2zvUJix3NiJbujU/7ZWRis8Bhl
-CGbvtpAmEkpcNuKWucYwTYt2eB8y4d0h3qCHeSi1B6Jsg+SGccThY+3/WxfCmwUu
-pMcw4nfvza024LNjyeZLBtys3O81K/GIg3iJ2NULzgQNeKfM8oalPvoEhrMVHEVn
-J+GyKB4zCaZAGfbndeG7OBQleiFSTQ4oi7OEq8rr8lsnjcCfPYDKDfLZQIpFZtqa
-VRiFq7hTayk/qYyVsZhRf8089C4wsp6zhLDoe9Dweu/J8sQ03klMIOUvpKuRD5jC
-FbL9ybQfk28QbWIANcLZnko0sBa6RA==
-=3SL7
------END PGP SIGNATURE-----
-
---lyoxbz5qrcbtajuw--
+> 
+>> +	.driver = {
+>> +		.name = "renesas-vbattb",
+>> +		.of_match_table = vbattb_match,
+>> +	},
+>> +};
+>> +module_platform_driver(vbattb_driver);
+>> +
+>> +MODULE_ALIAS("platform:renesas-vbattb");
+>> +MODULE_AUTHOR("Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>");
+>> +MODULE_DESCRIPTION("Renesas VBATTB driver"); MODULE_LICENSE("GPL");
+>> --
+>> 2.39.2
+>>
+> 
 
