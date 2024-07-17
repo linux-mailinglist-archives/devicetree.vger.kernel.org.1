@@ -1,92 +1,90 @@
-Return-Path: <devicetree+bounces-86469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DF09343D6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 23:27:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5EE59343DD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 23:28:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 965221C2169F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 21:26:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CD29286709
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 21:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD3918EA65;
-	Wed, 17 Jul 2024 21:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F09185E75;
+	Wed, 17 Jul 2024 21:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bW6eKiP5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gb3LDR6y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00055186E48;
-	Wed, 17 Jul 2024 21:26:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1471DFC7;
+	Wed, 17 Jul 2024 21:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721251567; cv=none; b=EC7uuDsUWGQ+jMfyCXl3HII4UCiQFRu5Kxow0MVCW2abxRmpOSxKqHYRsg1TzQPZqpxfPnwBAcEbc2ZK6s/BAfPl7EUZiHFajrlZXQdY0O0mOYLP6dP5LYm7/Pqo95JgX27NZKmWVwWmvJ1gf59Rir76S/NgxUqJMZs5XsLhZEY=
+	t=1721251704; cv=none; b=aNUWUl8AjTLJX37T2ibOjOZL+Hu0Gtf5aL9Bsn2xiej3UB2eCdKni5CY+QSHE6nWgI50dOJaVk7MEdSWvvPvSOdAgUWrAEWr3vxtj6MIBzup/PdVHHuqiwVtSMQnH8fP5aAyigEL45J+IJecJLvW/xut3x+GmjpkabG89grD/RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721251567; c=relaxed/simple;
-	bh=OYZ4Lp+LsKfB963iUHxM1nUX0jbGE/poJifLj3btfQE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nG+sAPithfurUHNTfjHzwAatuP2kXUsMAakf5gsGHVowyuS7tzX9w7eNWMDJjHEC5BxTM/KEIUlD74vkya4Noisc8SrekO18yuPV7cQZ7WnvrJu4mGE9M00XoGqrydekL8dNHoBeeMy34lbWAME47pWKfqh761MRxTc9/8NRTbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bW6eKiP5; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1721251704; c=relaxed/simple;
+	bh=2RcPcpv7SvYe/yZx3nBaPDHt9iQeKnim4PDIKuMXdX4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PZRyQQ1QdEKZi502xfND25hXPQrWCmqL7dSSUyptT4ZnUoO/c6T8gpK6iTfJMuNrDKrbihxxJd37MZSoiOLZ5cVP9oFBnjPhdt7PicdsayejYmY8rDExashw9ErR6zllEA6yLNs4r1GPn4Q4GbGWMnMRAMrssF8vxnaBPCCOqRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gb3LDR6y; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-427b4c621b9so867645e9.1;
-        Wed, 17 Jul 2024 14:26:05 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5a015a79e80so64411a12.2;
+        Wed, 17 Jul 2024 14:28:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721251564; x=1721856364; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HjTTLNALQlo0+Bax0fTOpezWlVszgVp9jzrNq2e7X+M=;
-        b=bW6eKiP5S+7NNsyBu5VQhtwI2qIEfHO+q8ldaUYY35VqV2huooipx58YXc0+1vSxH5
-         4ePvbqellPGdUhAnwSotXq/abC5p5oCj/y1/MC5xSuTB/0NnsSwXgcuO+J9ZxURfpZxg
-         estj4FrakZy52JVUwJZdU38fXubQrl89PA+OZe32jeHbz6JSKbGmTh8ObHA0Pbr6+N/0
-         YvFT8dIUNHeoCuawrSW5uHaSdMxXO7Qa1rwD4/YATugHQPvDEH5SBSFfzA/T+AvMbI18
-         JxM4hgjyMZDvQt1qtlDvxzwYUEGiJA6zXom49d223uQDhkSVBkO+Vh/u1qeymSPtRsOR
-         XyWQ==
+        d=gmail.com; s=20230601; t=1721251697; x=1721856497; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yjs0IVdjyDT9iqnwd766psZzpHPEtfCwRohPJnJKSJo=;
+        b=Gb3LDR6yq+Yrh175b9WXAAEOlH5TR7a3Ltw+0a8Jdu/O1qe0YVxCxQ/xLAVYHmHFjj
+         7tcUaf0UHHzvK7gpsj3+qhSiuESxLw53jOBVPcpMfrUsh09YWfuFKuqe7QpFZOjncxGk
+         3OmGNOygFSBMekY87Si8v/gHEjhE4mporFMa7Ty9CkOyvV7y27PLgBtXmg/lmW352nRc
+         Mx7Q2O6zozK04pS9siXsZQLgDA1RpkJmY9VMDMz/rXjFHnNPrgLimBFMnBm3X6p0K2B2
+         +9XpccyG0pf/cjoVXZ+BsUMl/R5DRLlsPYNesV3wnA6kSzwmWTHKkHdzOQbTrf75vIkN
+         gVAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721251564; x=1721856364;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HjTTLNALQlo0+Bax0fTOpezWlVszgVp9jzrNq2e7X+M=;
-        b=otIz2r+hDsVGhrFxwD9xXlngOcutIidK0m87CA/4qo0XgFqp85b3ETSsdn/uAoJwQK
-         xyAlSN2odOOW2f0Xy+vdkp8yGytEAlhLa6Ga38qDcd4gEwrOVUhOO8AJjNXZad7YvLl6
-         XhSb2bq9Iz7RrgU5DG36+SOlVdSqe4acVxuJ3KWptGTtlNuV7wmJfk4akHLkJbhVlruJ
-         L5idJJr/3IDl4PFQnsn+LbbKel8pUxKDuPhATM2l2AJRVjP1pkJ0qIis9x+/PM/zVJfN
-         J3aMZ4UpSnutAWCC+2hXR5iyYyHGX7DT0vc+bF60R1ljqSTI0YvpMtM/twJGyA4vN40s
-         wTxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW74Perpjhg6HcwZmyHRiu6r7V7Plpkq62VRb+LsgWAPRnYawR0a3ytUg/o2FT+kAJ7IMtFG6P+hDW6dgaWgmHI1IYPcUGV30FeLIWsAZx5qrR/IzEdDVIWzhiJAUALVs59Q6aV6gdw7dhL0CfKf0KklTIeS4Sqp5D/a1wcX0WbnOcG+g==
-X-Gm-Message-State: AOJu0YyeZeG8xyYX3SxRwnHeEgfH2dLrjrskCezvhw3mmxxiyG7WxM5w
-	QZcn2yQg/8lPWR/AZdtLviybj7zwzeVNnPEg79CChr9lP+RLNguV
-X-Google-Smtp-Source: AGHT+IHQVgh0uOb82kEziBzXJYj5fYIPt6ZSjzoHJBgc1tRu2d6lV/BbXSIrNGNIMO/2jiUKn2UJgg==
-X-Received: by 2002:a05:600c:4e90:b0:426:6617:ae4a with SMTP id 5b1f17b1804b1-427c2cbd731mr19414705e9.22.1721251564274;
-        Wed, 17 Jul 2024 14:26:04 -0700 (PDT)
-Received: from spiri.. ([86.124.123.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427c77b030bsm10532735e9.17.2024.07.17.14.26.02
+        d=1e100.net; s=20230601; t=1721251697; x=1721856497;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yjs0IVdjyDT9iqnwd766psZzpHPEtfCwRohPJnJKSJo=;
+        b=rkuucmjguK7y1cK4FXm/R3K+AdmSXuDwn/TElzY0t8k4dDAxDWwkQan60+x4izInBl
+         UQbGS2DoVfUJPzKU/ZfVX0DOv+bI0P1Y4CAjwqgGG4SWNy5XSXTuK96Uq8mQFV9vwGis
+         m+PxcUJwybf1v67E+ehDo9p/oAOFEpabFQUIwPWXkxRbJBgmqqfT4yVXuYEP97rPes5j
+         k/kUwYG+WN1tdgpXbf9OLlKddRkobeLnMeQgtRz4K5JRm+AuzpjsXrFWbgp8MFr/Bsx4
+         mJOiwEw9pSvEGXKD+fMikWCw67VXVt+B4zSI3BZxwXZlYwPeVKPVoiNYSjtEHxzEoCMY
+         pZdA==
+X-Forwarded-Encrypted: i=1; AJvYcCWuL6yykmASI2wXFtMHKjKusVqhUsgdR5fdU4+xu4Aw6xsoGAoU2sKAuvcmVd6lmBLnJczFoSnJR5kG0G6yBlsweOA85U60b0lhP5FoYV2l6V0pfhpFVEwBQ/9zNY6snJLrMnG3QfcM+A==
+X-Gm-Message-State: AOJu0Yz63x/jvlblo8a5DIqQcGeRq9loHTkQeQqMGwQIMCuV1obYBycp
+	9DHB9rop6PbDOwOskW4kYgV5+xt27U8iR8wplnzT+lZ81a3SzXo+WBGPgliX
+X-Google-Smtp-Source: AGHT+IH+rHLLyjv3frBZs6vGgQE2WEWaswyvjslddLOJk73obLB4gOmnyiZ7G1/ntexebva0w5Fttw==
+X-Received: by 2002:a05:6402:2108:b0:58c:7c01:2763 with SMTP id 4fb4d7f45d1cf-5a05d2e006amr2813558a12.33.1721251697326;
+        Wed, 17 Jul 2024 14:28:17 -0700 (PDT)
+Received: from WBEC325.dom.lan ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b24a76f02sm7529198a12.2.2024.07.17.14.28.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jul 2024 14:26:03 -0700 (PDT)
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
-To: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
+        Wed, 17 Jul 2024 14:28:16 -0700 (PDT)
+From: Pawel Dembicki <paweldembicki@gmail.com>
+To: netdev@vger.kernel.org
+Cc: Pawel Dembicki <paweldembicki@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v7 4/4] iio: adc: ad7192: Add clock provider
-Date: Thu, 18 Jul 2024 00:25:35 +0300
-Message-Id: <20240717212535.8348-5-alisa.roman@analog.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v2 1/2] net: dsa: vsc73xx: make RGMII delays configurable
+Date: Wed, 17 Jul 2024 23:27:31 +0200
+Message-Id: <20240717212732.1775267-1-paweldembicki@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240717212535.8348-1-alisa.roman@analog.com>
-References: <20240717212535.8348-1-alisa.roman@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,139 +93,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Internal clock of AD719X devices can be made available on MCLK2 pin. Add
-clock provider to support this functionality when clock cells property
-is present.
+This patch switches hardcoded RGMII transmit/receive delay to
+a configurable value. Delay values are taken from the properties of
+the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
 
-Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+The default value is configured to 2.0 ns to maintain backward
+compatibility with existing code.
+
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+
 ---
- drivers/iio/adc/ad7192.c | 92 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 92 insertions(+)
+v2:
+  - return -EINVAL when value is wrong
+  - info about default value are silenced
+---
+ drivers/net/dsa/vitesse-vsc73xx-core.c | 70 ++++++++++++++++++++++++--
+ 1 file changed, 66 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-index 042319f0c641..3f803b1eefcc 100644
---- a/drivers/iio/adc/ad7192.c
-+++ b/drivers/iio/adc/ad7192.c
-@@ -8,6 +8,7 @@
- #include <linux/interrupt.h>
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/device.h>
- #include <linux/kernel.h>
- #include <linux/slab.h>
-@@ -201,6 +202,7 @@ struct ad7192_chip_info {
- struct ad7192_state {
- 	const struct ad7192_chip_info	*chip_info;
- 	struct clk			*mclk;
-+	struct clk_hw			int_clk_hw;
- 	u16				int_vref_mv;
- 	u32				aincom_mv;
- 	u32				fclk;
-@@ -406,6 +408,91 @@ static const char *const ad7192_clock_names[] = {
- 	"mclk"
- };
+diff --git a/drivers/net/dsa/vitesse-vsc73xx-core.c b/drivers/net/dsa/vitesse-vsc73xx-core.c
+index d9d3e30fd47a..07b704a1557e 100644
+--- a/drivers/net/dsa/vitesse-vsc73xx-core.c
++++ b/drivers/net/dsa/vitesse-vsc73xx-core.c
+@@ -684,6 +684,67 @@ vsc73xx_update_vlan_table(struct vsc73xx *vsc, int port, u16 vid, bool set)
+ 	return vsc73xx_write_vlan_table_entry(vsc, vid, portmap);
+ }
  
-+static struct ad7192_state *clk_hw_to_ad7192(struct clk_hw *hw)
++static int vsc73xx_configure_rgmii_port_delay(struct dsa_switch *ds)
 +{
-+	return container_of(hw, struct ad7192_state, int_clk_hw);
++	/* Keep 2.0 ns delay for backward complatibility */
++	u32 tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS;
++	u32 rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS;
++	struct dsa_port *dp = dsa_to_port(ds, CPU_PORT);
++	struct device_node *port_dn = dp->dn;
++	struct vsc73xx *vsc = ds->priv;
++	u32 delay;
++
++	if (!of_property_read_u32(port_dn, "tx-internal-delay-ps", &delay)) {
++		switch (delay) {
++		case 0:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_NONE;
++			break;
++		case 1400:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_4_NS;
++			break;
++		case 1700:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_7_NS;
++			break;
++		case 2000:
++			break;
++		default:
++			dev_err(vsc->dev,
++				"Unsupported RGMII Transmit Clock Delay\n");
++			return -EINVAL;
++		}
++	} else {
++		dev_dbg(vsc->dev,
++			"RGMII Transmit Clock Delay isn't configured, set to 2.0 ns\n");
++	}
++
++	if (!of_property_read_u32(port_dn, "rx-internal-delay-ps", &delay)) {
++		switch (delay) {
++		case 0:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_NONE;
++			break;
++		case 1400:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_1_4_NS;
++			break;
++		case 1700:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_1_7_NS;
++			break;
++		case 2000:
++			break;
++		default:
++			dev_err(vsc->dev,
++				"Unsupported RGMII Receive Clock Delay value\n");
++			return -EINVAL;
++		}
++	} else {
++		dev_dbg(vsc->dev,
++			"RGMII Receive Clock Delay isn't configured, set to 2.0 ns\n");
++	}
++
++	/* MII delay, set both GTX and RX delay */
++	return vsc73xx_write(vsc, VSC73XX_BLOCK_SYSTEM, 0, VSC73XX_GMIIDELAY,
++			     tx_delay | rx_delay);
 +}
 +
-+static unsigned long ad7192_clk_recalc_rate(struct clk_hw *hw,
-+					    unsigned long parent_rate)
-+{
-+	return AD7192_INT_FREQ_MHZ;
-+}
-+
-+static int ad7192_clk_output_is_enabled(struct clk_hw *hw)
-+{
-+	struct ad7192_state *st = clk_hw_to_ad7192(hw);
-+
-+	return st->clock_sel == AD7192_CLK_INT_CO;
-+}
-+
-+static int ad7192_clk_prepare(struct clk_hw *hw)
-+{
-+	struct ad7192_state *st = clk_hw_to_ad7192(hw);
-+	int ret;
-+
-+	st->mode &= ~AD7192_MODE_CLKSRC_MASK;
-+	st->mode |= AD7192_CLK_INT_CO;
-+
-+	ret = ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-+	if (ret)
-+		return ret;
-+
-+	st->clock_sel = AD7192_CLK_INT_CO;
-+
-+	return 0;
-+}
-+
-+static void ad7192_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct ad7192_state *st = clk_hw_to_ad7192(hw);
-+	int ret;
-+
-+	st->mode &= ~AD7192_MODE_CLKSRC_MASK;
-+	st->mode |= AD7192_CLK_INT;
-+
-+	ret = ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-+	if (ret)
-+		return;
-+
-+	st->clock_sel = AD7192_CLK_INT;
-+}
-+
-+static const struct clk_ops ad7192_int_clk_ops = {
-+	.recalc_rate = ad7192_clk_recalc_rate,
-+	.is_enabled = ad7192_clk_output_is_enabled,
-+	.prepare = ad7192_clk_prepare,
-+	.unprepare = ad7192_clk_unprepare,
-+};
-+
-+static int ad7192_register_clk_provider(struct ad7192_state *st)
-+{
-+	struct device *dev = &st->sd.spi->dev;
-+	struct clk_init_data init = {};
-+	int ret;
-+
-+	if (!device_property_present(dev, "#clock-cells"))
-+		return 0;
-+
-+	if (!IS_ENABLED(CONFIG_COMMON_CLK))
-+		return 0;
-+
-+	init.name = devm_kasprintf(dev, GFP_KERNEL, "%s-clk",
-+				   fwnode_get_name(dev_fwnode(dev)));
-+	if (!init.name)
-+		return -ENOMEM;
-+
-+	init.ops = &ad7192_int_clk_ops;
-+
-+	st->int_clk_hw.init = &init;
-+	ret = devm_clk_hw_register(dev, &st->int_clk_hw);
-+	if (ret)
-+		return ret;
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+					   &st->int_clk_hw);
-+}
-+
- static int ad7192_clock_setup(struct ad7192_state *st)
+ static int vsc73xx_setup(struct dsa_switch *ds)
  {
- 	struct device *dev = &st->sd.spi->dev;
-@@ -446,6 +533,11 @@ static int ad7192_clock_setup(struct ad7192_state *st)
- 	if (ret < 0) {
- 		st->clock_sel = AD7192_CLK_INT;
- 		st->fclk = AD7192_INT_FREQ_MHZ;
-+
-+		ret = ad7192_register_clk_provider(st);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to register clock provider\n");
- 		return 0;
+ 	struct vsc73xx *vsc = ds->priv;
+@@ -746,10 +807,11 @@ static int vsc73xx_setup(struct dsa_switch *ds)
+ 			      VSC73XX_MAC_CFG, VSC73XX_MAC_CFG_RESET);
  	}
  
+-	/* MII delay, set both GTX and RX delay to 2 ns */
+-	vsc73xx_write(vsc, VSC73XX_BLOCK_SYSTEM, 0, VSC73XX_GMIIDELAY,
+-		      VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS |
+-		      VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS);
++	/* Configure RGMII delay */
++	ret = vsc73xx_configure_rgmii_port_delay(ds);
++	if (ret)
++		return ret;
++
+ 	/* Ingess VLAN reception mask (table 145) */
+ 	vsc73xx_write(vsc, VSC73XX_BLOCK_ANALYZER, 0, VSC73XX_VLANMASK,
+ 		      0xff);
 -- 
 2.34.1
 
