@@ -1,85 +1,123 @@
-Return-Path: <devicetree+bounces-86457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6542B934252
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 20:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 836F49342A0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 21:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91F481C209D5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:33:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53F91C20F61
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 19:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0091822EA;
-	Wed, 17 Jul 2024 18:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D9719470;
+	Wed, 17 Jul 2024 19:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4AiQuo6z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ieGoyf8z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671D61F94D;
-	Wed, 17 Jul 2024 18:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F353D17545;
+	Wed, 17 Jul 2024 19:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721241205; cv=none; b=GortY2vJl6oCxYQvjlc3Y7geWf7YzETTpCidN/Mx9+7onq0VQ1wSOMc7sNm14TPq63vZ9T22Dvu1/tMUPhyhb99r+NEOC53hQAMRhch7YvQOHYBdYBEdyFqpDayqVlTb0kvVDn1dddhlKZv7SNPNe6VhFZwgNbIZBIqmFcwB5do=
+	t=1721245065; cv=none; b=TTjwFx7uP9Nqy/DQm7TLte+Md4Qmz0OAtUooVxjsUxron+RP9LyhSmH/cZnEf/jAZ42LiQcaM/KRC+sLK1yKCxEb4ltsbnDpnCD9Os/R51abzL5Jubhv02DyyKpR7JWuXsUxOg9h7160vA954XacjelQDzXX6AtXkp4HvE6E990=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721241205; c=relaxed/simple;
-	bh=wNFfyU3fmlSuNSEHV++kDx3lWB1kKqgz5eu+4+sd+kk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vBQTZixK3q3O4rbZxoiKx67WwJUoS36v1je0xJiqHuV1N+yyvfoE/7YDWN5WVPCBq5PJzRmi0/rSX88mG5CBaJVaJiYmwE1lcC3BH9eKKkxDP/dINFkZhPZoRai3im2oUFUs2bn/MYtS/CG041xdSp9DsM8KomH94onl190UYP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4AiQuo6z; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=yAQJjnfS8FUtmLtJ14bUmjvpA37muUFgKZUF7wK1P+M=; b=4AiQuo6zk1xveRfzmp74hue0LN
-	gqJE06JdaXqEiqU6hPiAE9HbAO9mQeoHMcLERnfcBc0o/FECSuSFrHeI7Yj+SXFuivrbDIVrfRI2U
-	IdI5XaGGMNIsAKB7rQlmwyKG+nIhyh1Tbyx+ghJvRmeXMvknlKQxk1y2WS+zynAazDhI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sU9Sl-002jHQ-M7; Wed, 17 Jul 2024 20:33:15 +0200
-Date: Wed, 17 Jul 2024 20:33:15 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Pawel Dembicki <paweldembicki@gmail.com>
-Cc: netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] dt-bindings: net: dsa: vsc73xx: add
- {rx,tx}-internal-delay-ps
-Message-ID: <215e89ce-f06b-41ae-b0bf-f3d6a22a502d@lunn.ch>
-References: <20240716183735.1169323-1-paweldembicki@gmail.com>
- <20240716183735.1169323-2-paweldembicki@gmail.com>
+	s=arc-20240116; t=1721245065; c=relaxed/simple;
+	bh=bFfUTmZhh7hT6/EMtWiTrjq3FhelUtCweU6Wgq5/2N0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XfZRM19x0zQUkxVk8GqsrY++r8r2F+a86BWQ49RWBcCXh3UJ+rBruaExLGneqx+kghbATcunx3MPvDOi0G03X2SW7+9AfDiTJlpDhgMSKGfGz6yOWWspZjsN3pV9FVD4ZZf6gNfVMUhNafaVEhhYJXj8T3o6dTjKjYXL8V3I1iE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ieGoyf8z; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52ea5765e75so35634e87.0;
+        Wed, 17 Jul 2024 12:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721245062; x=1721849862; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gymw2PmOFIJa5I8yFcx4dcvDPlj8mVxnCXcmhBxCSLE=;
+        b=ieGoyf8zqzGOJhIXQHoZ/vb8f6Mw4DEmJAiu4x2/z9mX0OZ0JF8JXdtl499rMHfwx4
+         5qMlGpwDntXd2/5+3aCTD6cqALbcTj1T14qWzsXFG5N4C4Mye0nZGk/pw88hqF5RHyWV
+         03BVjVNe3ylLxUvyv2c7Bt8TFaCv/mNELC7x4cqWIR0s2DOACDet5skj1TfT8XD7gDcC
+         0iS7PdTON3+vwBZkE95fLks8Ef5Z9aVr0U4iGTjedxD7e6y5jWYzAEHb3bA5IYuCvTqR
+         DaRG0GfpGHHnUNd1XarmZIoRg4sjUatj8w/2NyDSpXMYkyBxUSbDk1tQHla3ADWKojnt
+         qx/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721245062; x=1721849862;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gymw2PmOFIJa5I8yFcx4dcvDPlj8mVxnCXcmhBxCSLE=;
+        b=LH3ypSBdj3Qk0OzGx8/9MqoKMFIzpjeKeoejle3TMJrLBKsJJhcWYRCbYqgoIM9BCB
+         ejpbScMlfigki8CNC+ouWz+koiSUt2dX0hJSSG+ml0AKbJUtk17lS/VRD68jQvAzFWM5
+         AVXRSFeIgUIXjacXXMuHO1kr/39FhYJK5rlZ2l8XH0kWdewLptFcHTynYUCqRY5imI+L
+         wJfa6y3zC0bgw9zLlZve4L8agAkC5R1RCpI5t0WWDJCC3utJb/MAFMz4ycGfoc0OXy3y
+         Ks6KyrThE8ZU8JJLf43LlYwVqVHt4d/86Mip6YP6fFhmncAeP/NHdqXIlE7ynhrDRN4B
+         oxDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWnb/x63Phfzpi2EQigrGJ7Z8kM6bbp1lLckZGwg4iUlTwddHnjR/9WuOpND2kHKbfmZ0b/54Tko64UC99KfTtk7Zel6Y/a
+X-Gm-Message-State: AOJu0YwNO7o7UKXJ83D7U1lHvqzjc/hG+XiVLEwtY0bONWNmZ0kca8MM
+	apVytzr93vOj0AAPFi8dn7PztH3AZZ6wL3mXAiLDFVj2PAKbk9327r2m7gVt
+X-Google-Smtp-Source: AGHT+IHs8ZDbHsu5GJojIFasvFZklAwqLUt9s98QP+obn+/jKs9p6qSriQe+6nruo/5UfQ5u433b9g==
+X-Received: by 2002:a05:6512:2207:b0:52c:e00c:d3a9 with SMTP id 2adb3069b0e04-52ee539c212mr1958996e87.1.1721245061868;
+        Wed, 17 Jul 2024 12:37:41 -0700 (PDT)
+Received: from lapsy144.cern.ch ([2001:1458:204:1::101:a6a])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59f7464d40asm3080535a12.68.2024.07.17.12.37.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jul 2024 12:37:41 -0700 (PDT)
+From: vtpieter@gmail.com
+To: devicetree@vger.kernel.org,
+	woojung.huh@microchip.com,
+	UNGLinuxDriver@microchip.com,
+	netdev@vger.kernel.org
+Cc: o.rempel@pengutronix.de,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Subject: [PATCH 0/4] net: dsa: microchip: ksz8795: add Wake on LAN support
+Date: Wed, 17 Jul 2024 21:37:21 +0200
+Message-ID: <20240717193725.469192-1-vtpieter@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240716183735.1169323-2-paweldembicki@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-> +$defs:
-> +  internal-delay-ps:
-> +    description:
-> +      Disable tunable delay lines using 0 ps, or enable them and select
-> +      the phase between 1400 ps and 2000 ps in increments of 300 ps.
-> +    enum:
-> +      [0, 1400, 1700, 2000]
+From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
 
-It would be nice to document what the default is if the property is
-missing.
+Add WoL support for KSZ8795 family of switches. This code was tested
+with a KSZ8794 chip.
 
-	Andrew
+Strongly based on existing KSZ9477 code but there's too many
+differences, such as the indirect register access, to generalize this
+code to ksz_common. Some registers names have been changed to increase
+standardization between those code bases.
+
+In addition to the device-tree addition and the actual code, there's
+two more patches to correct the erratum workaround application using
+the now available indirect register read and a minor correction of
+existing KSZ9477 function comments.
+
+Pieter Van Trappen (4):
+  dt-bindings: net: dsa: microchip: add microchip,pme-active-high flag
+  net: dsa: microchip: ksz8795: add Wake on LAN support
+  net: dsa: microchip: check erratum workaround through indirect
+    register read
+  net: dsa: microchip: ksz9477: correct description of WoL functions
+
+ .../bindings/net/dsa/microchip,ksz.yaml       |   5 +
+ drivers/net/dsa/microchip/ksz8.h              |   5 +
+ drivers/net/dsa/microchip/ksz8795.c           | 230 +++++++++++++++++-
+ drivers/net/dsa/microchip/ksz8795_reg.h       |  17 +-
+ drivers/net/dsa/microchip/ksz9477.c           |   8 +-
+ drivers/net/dsa/microchip/ksz_common.c        |   5 +
+ drivers/net/dsa/microchip/ksz_common.h        |   1 +
+ 7 files changed, 258 insertions(+), 13 deletions(-)
+
+
+base-commit: 51835949dda3783d4639cfa74ce13a3c9829de00
+-- 
+2.43.0
+
 
