@@ -1,136 +1,100 @@
-Return-Path: <devicetree+bounces-86381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4A3933DDB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B624E933DE1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAC591C229A8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:43:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E73181C22C6A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8777D180A6A;
-	Wed, 17 Jul 2024 13:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9814180A7E;
+	Wed, 17 Jul 2024 13:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="s2WEjZpK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NM9lXpcc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA0113AF2;
-	Wed, 17 Jul 2024 13:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD72180A78;
+	Wed, 17 Jul 2024 13:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721223798; cv=none; b=YuYnrQnHeNLpte4+m+Dodt8pwIwXQ/8FHLTn79bLsml5fG/+QQysBAPC3ZbafQWgs5bv9AbysHvzhj76jLgIFdWRlCwIiY6mOTSk8zc6H1bvRCWWQKzQ/ec+rlGUySu+55ZlgOQnHQs1RQkFrz+24PGWzrX3ZKGem0ooLT492Us=
+	t=1721223868; cv=none; b=kcQAPSsragsPfAPLi9OcnSsmSDAxgQa3EFNckjNdPeXUOT3nDZUrnDhj3hqxUZnb7bnbVMq1Nf8ge3epgWilIP3kysVUlnPK9Ljx2K8HxVaeHmK6JGrgNA6Dlog4d0SheTDsktcrky4rsXrwRIUsKt4vanSAmYzn9qBACuQTSGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721223798; c=relaxed/simple;
-	bh=XsjKcz7wJDMS9Op0lhw4ugrW9oIsyEt2rhrcKG9Ughc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p4KuB18WF78OUr+W2Jd9W5AeuOBUT5h5cE2bfX9IQK4s2Fw6POkvfJAFReGtw9/KYPx8IJGMjoCDSKnO+wSPqZq1z1rrsXYbu5Cz1Mhq5sc/0FOZUO/Z7ELZsCA9tTaoslYAIPbR9T10TLOwmJfDTm5o/voRYzI07OrPJGj+/9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=s2WEjZpK; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1721223795;
-	bh=XsjKcz7wJDMS9Op0lhw4ugrW9oIsyEt2rhrcKG9Ughc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s2WEjZpKxVj3VSYPwqNLEjn0TVGfUKwUf1Vlos1NKJftWd1xo0ziwwFYTjZwz8c6P
-	 py5vi7V/pO3fnPdMue9/A3KfPb0XHvHIF/1XiyzfoB6D7EAVfByBWER1lB3OTKHnhS
-	 Aq5T3ln8TCg0N64d8/mIjUKaw+Gr98xOe/+w/3xo8ci/z8vFSukSnyEcHlORMXY6Kj
-	 KK8tW7UCKSL5f0gVuK2gzUHyn4dnY5xNsGUAk+gj0TurFe7Fcc5PhiWbRWtP/mIs9s
-	 Kn0WLUtMlsKZmwPsRYqgMfwEhnnioASeQEbB6SoUKHok+Mz+H/nyHsSJAh5dGPf4ao
-	 BLiDWutrW38bQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 31A3837805D6;
-	Wed, 17 Jul 2024 13:43:14 +0000 (UTC)
-Message-ID: <d90ef170-6c4c-4db2-9757-8e3f1cf46ec7@collabora.com>
-Date: Wed, 17 Jul 2024 15:43:13 +0200
+	s=arc-20240116; t=1721223868; c=relaxed/simple;
+	bh=ZmYF+kWS2T+Ax92kIFV+NE/CUEzq4tNa5S6GSB/hNCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nadkRyhNlzaYuuvWEd1ENlUU9UjPvV1zYkGy5JbpcLnI4f0iN22hxocGk9NctoRWEzdIHM7ipcp1zOG7pYu6VudV+coxNWYLuf0pyi523SHpPWC6B0sS4Up5GxFNaWWlL6mEf3sMNW2st2PeRKT55tG5l1omYL5sbGPuIR+ult0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NM9lXpcc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39943C32782;
+	Wed, 17 Jul 2024 13:44:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721223868;
+	bh=ZmYF+kWS2T+Ax92kIFV+NE/CUEzq4tNa5S6GSB/hNCc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NM9lXpcc0TD7zrscnSGIiWEE2e3qIAkwtBUYlJ8sA4o/67jBUq8WoYOFiR6IPqc2R
+	 JqvRHg7YLTxTUYrFRXdHoYWrZ60LjaVrhJoYgA67sveYvmnw/btn1PM3y3lrCRaR3c
+	 IBex4Gqtw51KITCiVFaY8aEbpMRF2RCPBKVs8doKU68+ObN9pWDPRZdTN2cM9i/wo5
+	 DpxpP3Nh8UWJv4je5OSvV94w5Dw2HHrrAZ5PYjnhi6NBCnw3nQXxHmT67P2PHLfJS7
+	 O20Hw7WAsKNGoRSiieo5kscsM9/T35gOTDZHT+Ja74mGJsDnGskNnckZcmTY4VsSC7
+	 z8UtkiPe0N1jA==
+Date: Wed, 17 Jul 2024 14:44:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Support Opensource <support.opensource@diasemi.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org,
+	Pavel Machek <pavel@denx.de>
+Subject: Re: [PATCH] dt-bindings: watchdog: dlg,da9062-watchdog: Drop blank
+ space
+Message-ID: <20240717-gulf-buddhist-10c9c61268c1@spud>
+References: <20240717115649.131914-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] media: mediatek: Add support MT8188 AIE
-To: 20220614094956 created <yelian.wang@mediatek.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com, yaya.chang@mediatek.com,
- teddy.chen@mediatek.com, hidenorik@chromium.org
-References: <20240717125426.32660-1-yelian.wang@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240717125426.32660-1-yelian.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="W2bQipisghSZ3IyA"
+Content-Disposition: inline
+In-Reply-To: <20240717115649.131914-1-biju.das.jz@bp.renesas.com>
 
-Il 17/07/24 14:41, 20220614094956 created ha scritto:
-> From: Yelian Wang <yelian.wang@mediatek.com>
-> 
-> *** BLURB HERE ***
-> 
-> This patch series add YAML DT binding and V4L2 sub-device driver
-> for mediatek MT8188 AIE. AIE is the ISP unit in the SoC，it's used
-> to detect faces on an image stored in dram. Mainly used for the
-> camera's Face Detection function of MT8188.
-> 
 
-Leaving the fact that this driver is *far* from being upstream quality, there's
-something missing that is essential for reviewers to even try to help you here.
+--W2bQipisghSZ3IyA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-What does this hardware do, in depth?
+On Wed, Jul 17, 2024 at 12:56:47PM +0100, Biju Das wrote:
+> Drop unnecessary blank space from binding documentation.
+>=20
+> Reported-by: Pavel Machek <pavel@denx.de>
+> Closes: https://lore.kernel.org/all/ZpemkYsK6zQgGCF2@duo.ucw.cz/
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-I get it, it's giving out "face detection" functionality, okay, but what are we
-supposed to feed to it? An image? A stream? Encoded? Decoded? Size limitations?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-What is it supposed to output?
-An image? A stream? Polygons? With or without text?
+--W2bQipisghSZ3IyA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-....too many questions, and I'm afraid that this should not even be a V4L2 driver,
-or a generous part of it should not, anyway... maybe.
+-----BEGIN PGP SIGNATURE-----
 
-With such a huge driver, you should at least provide an extensive overview of what
-you are trying to implement and how the user(/kernel)-facing part is supposed to
-work.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpfKtwAKCRB4tDGHoIJi
+0tZoAP47Xwn+mBU20z4vpBdIdr4O9EG64n4/jf12dj0dnGRnEgEA1kGYUxSJRkx/
+btfw6oLDl9ns7zFVajxw+gyioxvvsg0=
+=CWh6
+-----END PGP SIGNATURE-----
 
-Regards,
-Angelo
-
-> This series is based on linux-next, tag: next-20240716
-> 
-> Yelian Wang (3):
->    media: dt-bindings: add MT8188 AIE
->    uapi: linux: add MT8188 AIE
->    media: mediatek: add MT8188 AIE driver
-> 
->   .../bindings/media/mediatek-aie.yaml          |   99 +
->   drivers/media/platform/mediatek/Kconfig       |    1 +
->   drivers/media/platform/mediatek/Makefile      |    1 +
->   drivers/media/platform/mediatek/aie/Kconfig   |   13 +
->   drivers/media/platform/mediatek/aie/Makefile  |    5 +
->   drivers/media/platform/mediatek/aie/mtk_aie.h | 1012 +++++
->   .../media/platform/mediatek/aie/mtk_aie_53.c  | 2031 +++++++++
->   .../media/platform/mediatek/aie/mtk_aie_drv.c | 3613 +++++++++++++++++
->   include/uapi/linux/mtk_aie_v4l2_controls.h    |  130 +
->   include/uapi/linux/videodev2.h                |    6 +
->   10 files changed, 6911 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/mediatek-aie.yaml
->   create mode 100644 drivers/media/platform/mediatek/aie/Kconfig
->   create mode 100644 drivers/media/platform/mediatek/aie/Makefile
->   create mode 100644 drivers/media/platform/mediatek/aie/mtk_aie.h
->   create mode 100644 drivers/media/platform/mediatek/aie/mtk_aie_53.c
->   create mode 100644 drivers/media/platform/mediatek/aie/mtk_aie_drv.c
->   create mode 100644 include/uapi/linux/mtk_aie_v4l2_controls.h
-> 
-
+--W2bQipisghSZ3IyA--
 
