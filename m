@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-86379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A1B933D91
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:24:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08293933D9F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:30:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38898B210AC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:24:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CCDE1C2252A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFD71802B2;
-	Wed, 17 Jul 2024 13:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F1E17F4F2;
+	Wed, 17 Jul 2024 13:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OF9re99w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyxaDqzQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB0517F378;
-	Wed, 17 Jul 2024 13:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC63566A;
+	Wed, 17 Jul 2024 13:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721222673; cv=none; b=LY0C8gxvy5URTKIbkVqYKkmGM2E2LmSwJs5HgVEZUZpScTl+2T9mTpRYBTXOqJzHWvgNhbXAr+46+zL1fS+Y9V8IjiPPcPzASvGZbLpdNXB3HVenwUFeWFz8kRdhAjORMjeE9tjipzIAb0huRzpO1HkLA0+Gg8MKIxrw4SK5KQM=
+	t=1721223047; cv=none; b=MKj8NYQEXRCqjbz50Ifa+It8lAYJbpR8XaNmsTdOtn8ZxqtdWEa+0JBjvAXIzy5BNxACZk6qaZfz8dOcYckte9vKHjHTlpFKo27whr2a78fVD6rPbxQ/iWnSe6w/8ewz60uapeh2JxxJ9tUAGXq2IGsN/t0D9v+HzGLx6V2Q54U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721222673; c=relaxed/simple;
-	bh=awsX018WuUujQeOEm3Z0hqNPdmA1KngMJ8aTaMF/BtM=;
+	s=arc-20240116; t=1721223047; c=relaxed/simple;
+	bh=EjnGtehLHIKPE9q1cLN8XdIbtNHm5pvem+IG50mZpqA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JL+IU0YE14vRBS3/8KNWuu7Mw5RpsxpXpAWBAOSegXuJ+eickGCsRa/gdp8+aXnQ5FM34rd+YC7bT4CDtlXI2kBjHJbWI2dY3EhB/L2LtmnEZs6S6gCN+ADiMNv/GnFCfyDwqquuztfHv1t4QPY2uUTZjn2ajMjw6+SpOGTV/W4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OF9re99w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36526C32782;
-	Wed, 17 Jul 2024 13:24:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IPX0l0tsQsQbXFKHMiVVvmljhqnY+WJCjxQ18Ep/xejdcQ1vNjM84vAVbZRiRn9zU84w25NmAJ8+HG5Jk2chAJZnmvycsPgMS4YrfetBQiqafS/3yCItA0MunJlL2+jcZDcdCQYW59UlkWreBo/fO8hc0n0T4fG9WW9bYxU2ziA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyxaDqzQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A0CC32782;
+	Wed, 17 Jul 2024 13:30:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721222673;
-	bh=awsX018WuUujQeOEm3Z0hqNPdmA1KngMJ8aTaMF/BtM=;
+	s=k20201202; t=1721223047;
+	bh=EjnGtehLHIKPE9q1cLN8XdIbtNHm5pvem+IG50mZpqA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OF9re99wLZ2KerKG4UXyvFtS7OE4z9whOMuD5/HXof5iCI+9vZxcy1Mf7VoGHkdM0
-	 wvvdJwIbKvc5HQl8tNsLv4+YCDbj4opTbMZt+yzp5SluBZBq3ye1kNSnAJqoC4eebb
-	 A5aX0n753lRxqFCy6nhmpTug9vo1cNOlsdDXwjzCDbnTyl0A4N3IzYPyYUp5Wr5HuF
-	 iQSeP8mAt7B1rIJuHPt6eedXWF/llyS8/EofJhH6cgx4pj2qnt7JhPGlvvI2X6DDtm
-	 7bajqZY/efq29hrXrHWvQVBhwh9XjMpWLVQg6xHrmjk+L17EeeeVCEqE9y4GFxWjKr
-	 XCJnuwEq/rhNQ==
-Message-ID: <3be44176-07b5-4bac-81a9-b1bb4f0b1a1e@kernel.org>
-Date: Wed, 17 Jul 2024 15:24:25 +0200
+	b=MyxaDqzQe01C+DLKfhrub218xtvehXwEJ/jjaDw1rOck7qXJ2xCdqL34iZtz4+zgS
+	 0zSvUClqP3k0OWal6okIcuQH5BBAy6PQLuCo9n/NxSYTfF7ZdHJ8/84hvLatGO2eQF
+	 ysUPgnFY70DY/J7bVIqSLjxYmXw1rxwHWvlUkXvvSVzNze1qdU8Fm96lpN1qYFOxUp
+	 9tjuaKqj21iI5pNlScumyJLJFw0da61JqXNqVAPD1Cumm534QHLoexXTXFXcRghVQT
+	 XWpVAEst3AYYmzQrIpmgCT4EpRJbqLDudYw/M5fCSHlhAwaWY/ZrZuNlkxM/ZXNI1r
+	 Z1BQRrIoCMeFw==
+Message-ID: <8e260164-cce2-4153-9f9c-0330c76408ef@kernel.org>
+Date: Wed, 17 Jul 2024 15:30:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] media: dt-bindings: add MT8188 AIE
-To: 20220614094956 created <yelian.wang@mediatek.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com, yaya.chang@mediatek.com,
- teddy.chen@mediatek.com, hidenorik@chromium.org
-References: <20240717125426.32660-1-yelian.wang@mediatek.com>
- <20240717125426.32660-2-yelian.wang@mediatek.com>
+Subject: Re: [PATCH v4 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
+ add 7712 SoC
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
+ bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20240716213131.6036-1-james.quinlan@broadcom.com>
+ <20240716213131.6036-2-james.quinlan@broadcom.com>
+ <d20be2d3-4fdd-48ca-b73e-80e8157bd5b2@kernel.org>
+ <CA+-6iNwvShkUwgQ5iTqa53gX1RtOMcDACPOJtqKm6zWCXN6Rtg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,45 +118,117 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240717125426.32660-2-yelian.wang@mediatek.com>
+In-Reply-To: <CA+-6iNwvShkUwgQ5iTqa53gX1RtOMcDACPOJtqKm6zWCXN6Rtg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/07/2024 14:41, 20220614094956 created wrote:
-> From: Yelian Wang <yelian.wang@mediatek.com>
+On 17/07/2024 15:20, Jim Quinlan wrote:
+> On Wed, Jul 17, 2024 at 2:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 16/07/2024 23:31, Jim Quinlan wrote:
+>>> o Change order of the compatible strings to be alphabetical
+>>>
+>>> o Describe resets/reset-names before using them in rules
+>>>
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my or other reviewer's previous comments were not fully
+>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>> just forgot to apply it. Please go back to the previous discussion and
+>> either implement all requested changes or keep discussing them.
+>>
+>> Thank you.
+>> </form letter>
 > 
-> Add YAML device tree binding for MT8188 AIE.
-> 
-> Signed-off-by: Yelian Wang <yelian.wang@mediatek.com>
-> ---
->  .../bindings/media/mediatek-aie.yaml          | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek-aie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-aie.yaml b/Documentation/devicetree/bindings/media/mediatek-aie.yaml
-> new file mode 100644
-> index 000000000000..300aef43e02b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek-aie.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek-aie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: The AIE Unit of MediaTek Camera System
-> +
-> +maintainers:
-> +  - Yelian Wang <yelian.wang@mediatek.com>
-> +
-> +description:
-> +  MediaTek AIE is the ISP unit in MediaTek SoC.
-> +
+> I'm sorry Krzysztof, but AFAICT I paid attention to all of your comments and
+> tried to answer them as best as I could.  Please do not resort to a
+> form letter; if
+> you think I missed something(s) please oblige me and say what it is rather than
+> having  me search for something that you know and I do not.
 
-BTW, most likely you miss here ports, although with such poor hardware
-description as above, it's tricky to guess what this is and what it does.
+I do not see your response at all to my comments on patch #2.
+
+> 
+>>
+>>> o Add minItems/maxItems where needed.
+>>>
+>>> o Change maintainer: Nicolas has not been active for a while.  It also
+>>>   makes sense for a Broadcom employee to be the maintainer as many of the
+>>>   details are privy to Broadcom.
+>>>
+>>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+>>> ---
+>>>  .../bindings/pci/brcm,stb-pcie.yaml           | 26 ++++++++++++++-----
+>>>  1 file changed, 19 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+>>> index 11f8ea33240c..692f7ed7c98e 100644
+>>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+>>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>  title: Brcmstb PCIe Host Controller
+>>>
+>>>  maintainers:
+>>> -  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>>> +  - Jim Quinlan <james.quinlan@broadcom.com>
+>>>
+>>>  properties:
+>>>    compatible:
+>>> @@ -16,11 +16,11 @@ properties:
+>>>            - brcm,bcm2711-pcie # The Raspberry Pi 4
+>>>            - brcm,bcm4908-pcie
+>>>            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
+>>> -          - brcm,bcm7278-pcie # Broadcom 7278 Arm
+>>>            - brcm,bcm7216-pcie # Broadcom 7216 Arm
+>>> -          - brcm,bcm7445-pcie # Broadcom 7445 Arm
+>>> +          - brcm,bcm7278-pcie # Broadcom 7278 Arm
+>>>            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
+>>>            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
+>>> +          - brcm,bcm7445-pcie # Broadcom 7445 Arm
+>>>
+>>>    reg:
+>>>      maxItems: 1
+>>> @@ -95,6 +95,18 @@ properties:
+>>>        minItems: 1
+>>>        maxItems: 3
+>>>
+>>> +  resets:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - description: reset for external PCIe PERST# signal # perst
+>>> +      - description: reset for phy reset calibration       # rescal
+>>> +
+>>> +  reset-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: perst
+>>> +      - const: rescal
+>>
+>> There are no devices with two resets. Anyway, this does not match one of
+>> your variants which have first element as rescal.
+> 
+> The 4908 chip exclusively uses the "perst" reset, and the  7216 chip
+> exclusively uses the "rescal" reset.   The rest of the chips use zero
+> resets.   All together, there are two resets.
+
+This is not enum, but a list. What you do mean overall two resets? You
+have a chip which is both 4908 and 7216 at the same time? How is this
+possible?
+
+> 
+> You are the one that wanted me to first list all resets at the top,
+> and refer to them by the conditional rules.
+
+No, I wanted widest constraints at the top.
+
+My comment at v2 was already saying this:
+
+"This does not match what you have in conditional, so just keep min and
+max Items here."
+
+and you have numerous examples in the code for this.
 
 Best regards,
 Krzysztof
