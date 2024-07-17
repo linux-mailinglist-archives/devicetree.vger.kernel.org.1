@@ -1,428 +1,207 @@
-Return-Path: <devicetree+bounces-86260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79EB293366A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 07:33:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B3C93368B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 08:01:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94A231C20D64
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 05:33:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1322B23000
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 06:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6763D304;
-	Wed, 17 Jul 2024 05:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFD61173F;
+	Wed, 17 Jul 2024 06:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="pGRVq0tF"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="RMSrfWGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SINPR02CU002.outbound.protection.outlook.com (mail-southeastasiaazolkn19012059.outbound.protection.outlook.com [52.103.65.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431907494;
-	Wed, 17 Jul 2024 05:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.65.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721194377; cv=fail; b=YuoiVu3nGJn4H+onNfHzdzqp557pEHUwlUvNpn92NsxqaSSxPS6CBRtpI5suUfALu1nx51Io+8cSbz9Pfb/p3WP+19xkBX39wwKlg/nsCvpMjYqI8sxNuPc1s0D3FH0rDuchvAzgpfkfv3c6w3X83/J093+ej1nJ6ahOqfv1Pec=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721194377; c=relaxed/simple;
-	bh=iMgynuDK6lZIAbzwKFrkLPA/4dQD0Z0dId8Z8P+XcoI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=n3J25UfwnlpSQtP1m1/9NoLUoJYbRhPh/bCB1eDQayi9meDqHdJpSEWqi83pxUAPY6z1rFZ6zZdZGouRwsvbOOC0XzrLc1AFXgfZQ0KI7AVFKbAEQiZkKJxzWZhaggcJBuGsMrjwSAfZXVv/lXpI7CRSLF8YimiQNYLFi5Vf/ic=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=pGRVq0tF; arc=fail smtp.client-ip=52.103.65.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MpkQgZhaJVLkL9twGN56kMNpwfHAuDwKKJV3yVNL08sS/L5DqODnV0e3YhgynrJsvO0ZTgTWJYyzdCCWeosCwqvh3a8BKyZjOFAbFzsUV9Lc+CWfo7KalLkrOpD8DL8LwHu0yggzO++jx0+2M/cz80aohpiAYouOcQajL2yKV/Xhx9akB19ysO8t0+EjWmH5/wIIP/tlEgQu2/x8Hethj4nb3Nba347ZxpMEBIUiXc3YbJMeDw+CH0LA4mRtLH+KOcq8phdOnWuOwhcxVa2y5xvRCowoSn0Y0cHKnHSMk3DhpY9aUYRz+OcFFC/42mQs4s/bYEhBKTQP0DFt+G8JRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4RxWkJZTcKURDbO+N8vL7ANyVn44DujFEi5Bee/8m8A=;
- b=G+lpaUdIN4hLkvCQCwzSpBHQLTpZZE5siWY2EHfcyUw6CwA6Tu3d2wvRBNmOIDpu+3yyGQxpVuxvfpAHBJ2eJcu+dFJvtRBJDNU0KHwPZLRBjGdZm08MZcsYoPV6SppXgywPKFXPH3irlUtRvb7A1nW9QCkRe4Xem6iF8jhbBW68DoDJWn9SvQbQ5Fk8KOCJqNID90cw2Fvv2rRGuoSZ/ISscFue/R4n4rYQs7hhfUB+w7zOkLJRZ2amFdxVxqFP430UMtKet+EiaBcBrgD5Dbqdgk//NAWiEpfpm+CTXHzBP0tEQ7ioQfem8SJ5v5JErW+prvV6qdkyPCayfhwKCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4RxWkJZTcKURDbO+N8vL7ANyVn44DujFEi5Bee/8m8A=;
- b=pGRVq0tFapwob0T1o+M5d3PbzFJ2K93pxP7C3wcVvLW3aF+RDc0yKRpf8tqWTsfzINVzaOzZpqYHpye8ydSKWAVw8TKgb17Eci/7qsM9dYBygaFRghqhr5FqYIKf3DlWAirjaF+Cw/18RaxFB3SzMrpnYfXoEfcuZB/xVTL7i0FaeMR8kKNUocZQUy/SNqoUIjnV+kiICoobENbcCvlP5/FwVRnute4Ypo+ZfztvlgaC5UNth5BRAet0PtDb/Uio0Q8WSxqInn4G+oQjSCeh4yQT6VK0fpMcA8LR+Qrrv8vfx88HRcyj9nrrQKAmLkbRs8uETL3cHAbvmBGANWQXGw==
-Received: from SEYPR01MB4221.apcprd01.prod.exchangelabs.com
- (2603:1096:101:56::12) by TYZPR01MB4847.apcprd01.prod.exchangelabs.com
- (2603:1096:400:285::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Wed, 17 Jul
- 2024 05:32:48 +0000
-Received: from SEYPR01MB4221.apcprd01.prod.exchangelabs.com
- ([fe80::b674:8f70:6e29:3756]) by SEYPR01MB4221.apcprd01.prod.exchangelabs.com
- ([fe80::b674:8f70:6e29:3756%5]) with mapi id 15.20.7762.027; Wed, 17 Jul 2024
- 05:32:48 +0000
-Date: Wed, 17 Jul 2024 05:32:41 +0000
-From: Haylen Chu <heylenay@outlook.com>
-To: Chen Wang <unicorn_wang@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061611712
+	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 06:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721196099; cv=none; b=l3ymzpQ0dSqDWnjS6/M0mr5HGjE3a/2egOPBtqxBtCQEoF/QeGFgPbRfwFeE5yVRt1LZl2awk0Te8VvHFtv2jHSWoQDHS160ZmwjH/Clq9UKnYVnnA+Rn0KkERNkUv+44CIYuHShzkCu68LN0mPJ74TM4g2DDOHogh3dk2dDxK4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721196099; c=relaxed/simple;
+	bh=ggCA6FExsWNy9ux8ROSvJ6hLW/Bn0fTX6rd24x8KzmE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=hmyt866qH2KMavKvcbkMVvPwUZN/AII8NhjF4DSjVrbkSp4EnZinAX8x/mp4CY9pbLzj37AS1oOxTIzqQsUWukWrz5KKCQSDRh9i87qHZbytO8Kw3EmA16/IoPWH+5eGou1kUccj8qJ83xAzHkAojenHdIr2frv7Ee/G/L/xa7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=RMSrfWGq; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52e9f863c46so7050667e87.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2024 23:01:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1721196094; x=1721800894; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pl3L0FVYFNGhFKHk1JJU6PwaolSCChVISQJkZ5aIzzI=;
+        b=RMSrfWGq3xe/GEMfVemP25KJFYRVqb2TaeIHhxMSZMlWv/xHsjImNbJ11mw0Um8KL/
+         1Ny1rxHhzyIu3lbDLkyTSV8l0d1yyDcThNJZjdFysQFR3IyD/4ZPhc1y8BaGwV27sMw4
+         uvR4gVDUP4xXbAV/cXFdJEXvey8Daxv7Nm2XTU2AAUTAWJn1Cf5lGeoDsPA8x8HYpiE0
+         fhg/DqbDVaxbqVKst/LWrRNlxaE9j3DvmuxKhghRwY/bVFdF3HBi4CkguE5x13AyMKDu
+         0emrXph/nyP8Mxmj8z1xVpdqMUbmIbxs7qXpmjyCoY7T+3nMu2h8MEPnXLJ3OM9VDBNk
+         89HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721196094; x=1721800894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pl3L0FVYFNGhFKHk1JJU6PwaolSCChVISQJkZ5aIzzI=;
+        b=q+o+NeMCijUWiTFvA3Pdhmhvjie49+BYJgdGjX2s0LRacnRA9ibIPTmYyfgnenmM/O
+         tQXX75zpZGeJGLqoPeIZ9MK0t8wUKkus5j6y1S7Pu3pqOG2X2ozuew4132f5vo2JU0Wo
+         P1rQb6HpPHMGmrBCvGA34I97UZJbXAq8R99W2H8Dojfx2OLgulGfZMpXRAQISWz/2JUd
+         3IwH6wdbM4xQn734dZj1cwh5x4JbIso2bgP2cfhNodRV05bCglR7nSsVqB7Os5rqHran
+         cSt86+TIh3oU8szoSmQ+GXVxLYcGQYHu5up2lpBbjioK7cBuybkYPO9ltC8VktgSZwuo
+         pxqA==
+X-Forwarded-Encrypted: i=1; AJvYcCULff/LYcRF9UoBm3vDkL5bS9SSW8MhEVoP0B6bwMVh1VstLzdCz5rLZ4F0TOKlk0za6z/9U8uiAtsnWANqtKhfaGVrHR8RB2vzyw==
+X-Gm-Message-State: AOJu0YwCTFKa01Ez5kHGC1PtUamF+h4DNWo86gsy2nD54PQVuX2hSrsQ
+	tjcTmb5OdznH10DLRNdPwUKATTWlxJg1FkZYdZqb5Aapq3pNbV1Ig4n4W6+6nq0=
+X-Google-Smtp-Source: AGHT+IGTWlMHonD8VGH1O7WD0Yggp5hmzzpiSRuP4gthch3y8dFycbjmh4esQgOV2+4OGbeLMAp6Ag==
+X-Received: by 2002:a05:6512:b82:b0:52e:bdd4:610b with SMTP id 2adb3069b0e04-52ee53a573fmr514590e87.4.1721196093903;
+        Tue, 16 Jul 2024 23:01:33 -0700 (PDT)
+Received: from alex-rivos.home (amontpellier-656-1-456-62.w92-145.abo.wanadoo.fr. [92.145.124.62])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279f23a000sm193895315e9.5.2024.07.16.23.01.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 23:01:33 -0700 (PDT)
+From: Alexandre Ghiti <alexghiti@rivosinc.com>
+To: Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] thermal: cv180x: Add cv180x thermal driver support
-Message-ID:
- <SEYPR01MB4221CB9833191B3177523A07D7A32@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
-References: <SEYPR01MB422158B2766DA03728AD90CBD7A22@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
- <SEYPR01MB42215C6F248AF99499F6A050D7A22@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
- <MA0P287MB2822B966D31B16B6C4853C8CFEA22@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MA0P287MB2822B966D31B16B6C4853C8CFEA22@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-X-TMN: [dC1L4SaGo5rJjqocmeG01RS0IUASHVyq]
-X-ClientProxiedBy: SI2P153CA0018.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::9)
- To SEYPR01MB4221.apcprd01.prod.exchangelabs.com (2603:1096:101:56::12)
-X-Microsoft-Original-Message-ID: <ZpdXechiDP0I0DUw@ketchup>
+	Ved Shanbhogue <ved@rivosinc.com>,
+	Matt Evans <mev@rivosinc.com>,
+	yunhui cui <cuiyunhui@bytedance.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Alexandre Ghiti <alexghiti@rivosinc.com>
+Subject: [PATCH v4 0/4] Svvptc extension to remove preventive sfence.vma
+Date: Wed, 17 Jul 2024 08:01:21 +0200
+Message-Id: <20240717060125.139416-1-alexghiti@rivosinc.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEYPR01MB4221:EE_|TYZPR01MB4847:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d0cfeb3-10ea-473c-8f4f-08dca621e474
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|19110799003|8060799006|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	fbQr/OxUZhimmEBZgjuUN2uEu817uC4Th4UR8yUySv5x8A2DO9y3/O/IygxFkWxr4H8+JuWqcZ+PXTmM5KtgEZr3h8fEbL60jCEuZQaSgPl7w/KKY4rIECK2vPJp3QvZteuTsvFAlP5v70TIl/DdMX8jiGXKr1O59hNCDdfjkPbK2Ao5etPf0ND/YGgc9iJovUWE9bBQMNEP/AVOtxuNnR46bewwRZFNKXo8acc+0q66u3dKbnCRJuQErEzGyhG5pPBvNgxAv+eA8VayREtW2pr83Hkm5V/PPoAFmfUCay5/LViRNPKQd18gaKCsJLZsvJGqZYG6wyyy6VLkfEVrWHfDyXPkMVPGx4XOCwBUR5P/8xNrPCMpO4vU5FBNsMKWmdkT4LF1Y7Dpcxg012s41O38GiS3Y42XAORnf10RAWxR++dmGu4OO9blSCrBQetlCeMPMEEYYlaZqhVzCcB/ZjOLyd+rEN0Pc4HLFzlW+b7a9ssC497ULq+mu6cktbq5IuAbhG//2lzREKrgvGjo32KL8q2DJmQDsHX4VV74IfJvd+Z/ehlOdK9sxfnTPf+mWSzlMXkhrkx/RBBRPU0Qcxuc7N/Q0AEF9sXaL7pAsevtIHTykjoVzgQsz63XC+BTQViCgcDtSVnYBcwRN+1Tig==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?pCESIDOil2kdnc4yroopfnSWYaU5mZFeFQXszZI/fAh6hQ2NEyZIQHH8MRro?=
- =?us-ascii?Q?5eieYkKSyxF86P0nUfM/GMBqRpubi7GEDPpn4wR4HSTrz91a74fgWVsBN67l?=
- =?us-ascii?Q?EifsqDbuynOBxj7uO5MMuY6FG8eOC/RZa2tbzFvLIV8ChTdBrVsV8expfTjo?=
- =?us-ascii?Q?qrosIFmn7rebxvsNthp9VZQv9TL11Bd0yTfNH5qQ8DQNP9VYAV66RHD4LegY?=
- =?us-ascii?Q?BA0Bw2aJrY73D/KlWglQ13qvcc84zw+sQMm3qMWsdqY3ZjC3AGVU2ar/3qch?=
- =?us-ascii?Q?DWgtqUUQ/cwZqxp+xmQq2WnO+0vG0nxaFTYTS47/eJJIf4Y8O4cEuF1C1Zmr?=
- =?us-ascii?Q?W4VltaXbmFFP9j1FkmANfy+N7XZNLiQ8E/MjvQR9ELNEA7mM6RxcheCotRTK?=
- =?us-ascii?Q?XtiRGUYHQeI/ZiyUtyp1AB4d0K0V30T8yv91zhfQYRoKlTtwdP5bvNm1DD/H?=
- =?us-ascii?Q?C1rM6K4LOjnmZI3ayasSv+2XQtv5IOJuYutAQnupt8U6CHoG2k9uhXKzyIMC?=
- =?us-ascii?Q?hGrO9Hpt7NWpgAKNHUtf2ngRTvAy+gLnCJoRHtTlfn7ElinQjJTYABzVBw9P?=
- =?us-ascii?Q?jeY/AABdX6mpDnATOiWe37t76kJsF4meQnFV2BjPfUgGM+ZwYD87xNrupDW3?=
- =?us-ascii?Q?F4D1T/oFgfNi86XLJW0LZ3lHHyEFB7HnctVwUI+FXEh3DMvNx40rgTmDKQbw?=
- =?us-ascii?Q?+Vd0ILsj7I0Y5s4v3DqOF3O3e8TgXnxDU9lQTXzW/GntR7K8SY/LXouQJC8h?=
- =?us-ascii?Q?reYTxrabtlmKS7WLL+ir3b24bzk5KROVWtp1utpVEKDelkbrz/TLh00t8Jcl?=
- =?us-ascii?Q?AXViNUm+NxAbp7vvwzn36o5SiSbuQ0FWEpQaa30vZl6vqhHrm2TzR1o0sd1S?=
- =?us-ascii?Q?N9tfZlqmqQ2rCj02LATt5Vjbm5Z71FzSVGRDZZ1H+Kr0xpPZwu2HR82Pn/dh?=
- =?us-ascii?Q?2TvcZP5yOYQhPOE5U3WUfusEW+gkYA/HwqAf+LPJ2fJVoO1AZX0PWRKNgEdP?=
- =?us-ascii?Q?C+C5MVAxneRLj2/oeaNynxOqlMWdUlBObxmtrvRbZZlaq6+qW2mNMXu4EemY?=
- =?us-ascii?Q?554KazKWDOxSzEdvkXUJV8iQc0HOlHh33kQ+YSd/xUDTDp6hhUpplXFu6weR?=
- =?us-ascii?Q?BYRVG64GtAl5Yoa22FdgdjtKfgQPXZWgQAmNi7rQZ5qbQ6Os79hCRFGDqhv7?=
- =?us-ascii?Q?p843EBMidSzEujQVRC4CCaPOzFJcTPDi1xEEhvn3PxO6HSnjzl8BsKwInHM?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d0cfeb3-10ea-473c-8f4f-08dca621e474
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR01MB4221.apcprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 05:32:48.0329
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR01MB4847
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 16, 2024 at 08:48:13PM +0800, Chen Wang wrote:
-> 
-> On 2024/7/16 17:42, Haylen Chu wrote:
-> > Add support for cv180x SoCs integrated thermal sensors.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@outlook.com>
-> > ---
-> >   drivers/thermal/Kconfig          |   6 +
-> >   drivers/thermal/Makefile         |   1 +
-> >   drivers/thermal/cv180x_thermal.c | 241 +++++++++++++++++++++++++++++++
-> >   3 files changed, 248 insertions(+)
-> >   create mode 100644 drivers/thermal/cv180x_thermal.c
-> cv18xx_thermal.c ? See my comments in patch 1. When you deicide it, update
-> this for all patches.
+In RISC-V, after a new mapping is established, a sfence.vma needs to be
+emitted for different reasons:
 
-I would use unified "cv1800" in next revision.
+- if the uarch caches invalid entries, we need to invalidate it otherwise
+  we would trap on this invalid entry,
+- if the uarch does not cache invalid entries, a reordered access could fail
+  to see the new mapping and then trap (sfence.vma acts as a fence).
 
-Best regards,
-Haylen
+We can actually avoid emitting those (mostly) useless and costly sfence.vma
+by handling the traps instead:
 
+- for new kernel mappings: only vmalloc mappings need to be taken care of,
+  other new mapping are rare and already emit the required sfence.vma if
+  needed.
+  That must be achieved very early in the exception path as explained in
+  patch 3, and this also fixes our fragile way of dealing with vmalloc faults.
 
-> > diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> > index 204ed89a3ec9..f53c973a361d 100644
-> > --- a/drivers/thermal/Kconfig
-> > +++ b/drivers/thermal/Kconfig
-> > @@ -514,4 +514,10 @@ config LOONGSON2_THERMAL
-> >   	  is higher than the high temperature threshold or lower than the low
-> >   	  temperature threshold, the interrupt will occur.
-> > +config CV180X_THERMAL
-> Same question above, CV18XX_THERMAL?
-> > +	tristate "Temperature sensor driver for Sophgo CV180X"
-> > +	help
-> > +	  If you say yes here you get support for thermal sensor integrated in
-> > +	  Sophgo CV180X SoCs.
-> > +
-> >   endif
-> > diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> > index 5cdf7d68687f..5b59bde8a579 100644
-> > --- a/drivers/thermal/Makefile
-> > +++ b/drivers/thermal/Makefile
-> > @@ -65,3 +65,4 @@ obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
-> >   obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
-> >   obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
-> >   obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
-> > +obj-$(CONFIG_CV180X_THERMAL)	+= cv180x_thermal.o
-> > diff --git a/drivers/thermal/cv180x_thermal.c b/drivers/thermal/cv180x_thermal.c
-> > new file mode 100644
-> > index 000000000000..8b726c0ad848
-> > --- /dev/null
-> > +++ b/drivers/thermal/cv180x_thermal.c
-> > @@ -0,0 +1,241 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2021 Sophgo Inc.
-> > + * Copyright (C) 2024 Haylen Chu <heylenay@outlook.com>
-> > + */
-> > +
-> > +#include <linux/bits.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/thermal.h>
-> > +
-> > +#define TEMPSEN_VERSION					0x0
-> > +#define TEMPSEN_CTRL					0x4
-> > +#define  TEMPSEN_CTRL_EN				BIT(0)
-> > +#define  TEMPSEN_CTRL_SEL_MASK				GENMASK(7, 4)
-> > +#define  TEMPSEN_CTRL_SEL_OFFSET			4
-> > +#define TEMPSEN_STATUS					0x8
-> > +#define TEMPSEN_SET					0xc
-> > +#define  TEMPSEN_SET_CHOPSEL_MASK			GENMASK(5, 4)
-> > +#define  TEMPSEN_SET_CHOPSEL_OFFSET			4
-> > +#define  TEMPSEN_SET_CHOPSEL_128T			0
-> > +#define  TEMPSEN_SET_CHOPSEL_256T			1
-> > +#define  TEMPSEN_SET_CHOPSEL_512T			2
-> > +#define  TEMPSEN_SET_CHOPSEL_1024T			3
-> > +#define  TEMPSEN_SET_ACCSEL_MASK			GENMASK(7, 6)
-> > +#define  TEMPSEN_SET_ACCSEL_OFFSET			6
-> > +#define  TEMPSEN_SET_ACCSEL_512T			0
-> > +#define  TEMPSEN_SET_ACCSEL_1024T			1
-> > +#define  TEMPSEN_SET_ACCSEL_2048T			2
-> > +#define  TEMPSEN_SET_ACCSEL_4096T			3
-> > +#define  TEMPSEN_SET_CYC_CLKDIV_MASK			GENMASK(15, 8)
-> > +#define  TEMPSEN_SET_CYC_CLKDIV_OFFSET			8
-> > +#define TEMPSEN_INTR_EN					0x10
-> > +#define TEMPSEN_INTR_CLR				0x14
-> > +#define TEMPSEN_INTR_STA				0x18
-> > +#define TEMPSEN_INTR_RAW				0x1c
-> > +#define TEMPSEN_RESULT(n)				(0x20 + (n) * 4)
-> > +#define  TEMPSEN_RESULT_RESULT_MASK			GENMASK(12, 0)
-> > +#define  TEMPSEN_RESULT_MAX_RESULT_MASK			GENMASK(28, 16)
-> > +#define  TEMPSEN_RESULT_CLR_MAX_RESULT			BIT(31)
-> > +#define TEMPSEN_AUTO_PERIOD				0x64
-> > +#define  TEMPSEN_AUTO_PERIOD_AUTO_CYCLE_MASK		GENMASK(23, 0)
-> > +#define  TEMPSEN_AUTO_PERIOD_AUTO_CYCLE_OFFSET		0
-> > +
-> > +struct cv180x_thermal_zone {
-> > +	struct device *dev;
-> > +	void __iomem *base;
-> > +	struct clk *clk_tempsen;
-> > +	u32 sample_cycle;
-> > +};
-> > +
-> > +static void cv180x_thermal_init(struct cv180x_thermal_zone *ctz)
-> > +{
-> > +	void __iomem *base = ctz->base;
-> > +	u32 regval;
-> > +
-> > +	writel(readl(base + TEMPSEN_INTR_RAW), base + TEMPSEN_INTR_CLR);
-> > +	writel(TEMPSEN_RESULT_CLR_MAX_RESULT, base + TEMPSEN_RESULT(0));
-> > +
-> > +	regval = readl(base + TEMPSEN_SET);
-> > +	regval &= ~TEMPSEN_SET_CHOPSEL_MASK;
-> > +	regval &= ~TEMPSEN_SET_ACCSEL_MASK;
-> > +	regval &= ~TEMPSEN_SET_CYC_CLKDIV_MASK;
-> > +	regval |= TEMPSEN_SET_CHOPSEL_1024T << TEMPSEN_SET_CHOPSEL_OFFSET;
-> > +	regval |= TEMPSEN_SET_ACCSEL_2048T << TEMPSEN_SET_ACCSEL_OFFSET;
-> > +	regval |= 0x31 << TEMPSEN_SET_CYC_CLKDIV_OFFSET;
-> > +	writel(regval, base + TEMPSEN_SET);
-> > +
-> > +	regval = readl(base + TEMPSEN_AUTO_PERIOD);
-> > +	regval &= ~TEMPSEN_AUTO_PERIOD_AUTO_CYCLE_MASK;
-> > +	regval |= ctz->sample_cycle << TEMPSEN_AUTO_PERIOD_AUTO_CYCLE_OFFSET;
-> > +	writel(regval, base + TEMPSEN_AUTO_PERIOD);
-> > +
-> > +	regval = readl(base + TEMPSEN_CTRL);
-> > +	regval &= ~TEMPSEN_CTRL_SEL_MASK;
-> > +	regval |= 1 << TEMPSEN_CTRL_SEL_OFFSET;
-> > +	regval |= TEMPSEN_CTRL_EN;
-> > +	writel(regval, base + TEMPSEN_CTRL);
-> > +}
-> > +
-> > +static void cv180x_thermal_deinit(struct cv180x_thermal_zone *ct)
-> > +{
-> > +	void __iomem *base = ct->base;
-> > +	u32 regval;
-> > +
-> > +	regval = readl(base + TEMPSEN_CTRL);
-> > +	regval &= ~(TEMPSEN_CTRL_SEL_MASK | TEMPSEN_CTRL_EN);
-> > +	writel(regval, base + TEMPSEN_CTRL);
-> > +
-> > +	writel(readl(base + TEMPSEN_INTR_RAW), base + TEMPSEN_INTR_CLR);
-> > +}
-> > +
-> > +/*
-> > + *	Raw register value to temperature (mC) formula:
-> > + *
-> > + *		       read_val * 1000 * 716
-> > + *	Temperature = ----------------------- - 273000
-> > + *				divider
-> > + *
-> > + *	where divider should be ticks number of accumulation period,
-> > + *	e.g. 2048 for TEMPSEN_CTRL_ACCSEL_2048T
-> > + */
-> > +static int cv180x_calc_temp(struct cv180x_thermal_zone *ctz, u32 result)
-> > +{
-> > +	return (result * 1000) * 716 / 2048 - 273000;
-> > +}
-> > +
-> > +static int cv180x_get_temp(struct thermal_zone_device *tdev, int *temperature)
-> > +{
-> > +	struct cv180x_thermal_zone *ctz = thermal_zone_device_priv(tdev);
-> > +	void __iomem *base = ctz->base;
-> > +	u32 result;
-> > +
-> > +	result = readl(base + TEMPSEN_RESULT(0)) & TEMPSEN_RESULT_RESULT_MASK;
-> > +	*temperature = cv180x_calc_temp(ctz, result);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct thermal_zone_device_ops cv180x_thermal_ops = {
-> > +	.get_temp = cv180x_get_temp,
-> > +};
-> > +
-> > +static const struct of_device_id cv180x_thermal_of_match[] = {
-> > +	{ .compatible = "sophgo,cv1800-thermal" },
-> > +	{},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, cv180x_thermal_of_match);
-> > +
-> > +static int
-> > +cv180x_parse_dt(struct cv180x_thermal_zone *ctz)
-> > +{
-> > +	struct device_node *np = ctz->dev->of_node;
-> > +	u32 tmp;
-> > +
-> > +	if (of_property_read_u32(np, "sample-rate-hz", &tmp)) {
-> > +		ctz->sample_cycle = 1000000;
-> > +	} else {
-> > +		/* sample cycle should be at least 524us */
-> > +		if (tmp > 1000000 / 524) {
-> > +			dev_err(ctz->dev, "invalid sample rate %d\n", tmp);
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		ctz->sample_cycle = 1000000 / tmp;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int cv180x_thermal_probe(struct platform_device *pdev)
-> > +{
-> > +	struct cv180x_thermal_zone *ctz;
-> > +	struct thermal_zone_device *tz;
-> > +	struct resource *res;
-> > +	int ret;
-> > +
-> > +	ctz = devm_kzalloc(&pdev->dev, sizeof(*ctz), GFP_KERNEL);
-> > +	if (!ctz)
-> > +		return -ENOMEM;
-> > +
-> > +	ctz->dev = &pdev->dev;
-> > +
-> > +	ret = cv180x_parse_dt(ctz);
-> > +	if (ret)
-> > +		return dev_err_probe(&pdev->dev, ret, "failed to parse dt\n");
-> > +
-> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +	ctz->base = devm_ioremap_resource(&pdev->dev, res);
-> > +	if (IS_ERR(ctz->base))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(ctz->base),
-> > +				     "failed to map tempsen registers\n");
-> > +
-> > +	ctz->clk_tempsen = devm_clk_get_enabled(&pdev->dev, NULL);
-> > +	if (IS_ERR(ctz->clk_tempsen))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(ctz->clk_tempsen),
-> > +				     "failed to get clk_tempsen\n");
-> > +
-> > +	cv180x_thermal_init(ctz);
-> > +
-> > +	tz = devm_thermal_of_zone_register(&pdev->dev, 0, ctz,
-> > +					   &cv180x_thermal_ops);
-> > +	if (IS_ERR(tz))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(tz),
-> > +				     "failed to register thermal zone\n");
-> > +
-> > +	platform_set_drvdata(pdev, ctz);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int cv180x_thermal_remove(struct platform_device *pdev)
-> > +{
-> > +	struct cv180x_thermal_zone *ctz = platform_get_drvdata(pdev);
-> > +
-> > +	cv180x_thermal_deinit(ctz);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused cv180x_thermal_suspend(struct device *dev)
-> > +{
-> > +	struct cv180x_thermal_zone *ctz = dev_get_drvdata(dev);
-> > +
-> > +	cv180x_thermal_deinit(ctz);
-> > +	clk_disable_unprepare(ctz->clk_tempsen);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused cv180x_thermal_resume(struct device *dev)
-> > +{
-> > +	struct cv180x_thermal_zone *ctz = dev_get_drvdata(dev);
-> > +
-> > +	clk_prepare_enable(ctz->clk_tempsen);
-> > +	cv180x_thermal_init(ctz);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static SIMPLE_DEV_PM_OPS(cv180x_thermal_pm_ops,
-> > +			 cv180x_thermal_suspend, cv180x_thermal_resume);
-> > +
-> > +static struct platform_driver cv180x_thermal_driver = {
-> > +	.probe = cv180x_thermal_probe,
-> > +	.remove = cv180x_thermal_remove,
-> > +	.driver = {
-> > +		.name = "cv180x-thermal",
-> > +		.pm = &cv180x_thermal_pm_ops,
-> > +		.of_match_table = cv180x_thermal_of_match,
-> > +	},
-> > +};
-> > +
-> > +module_platform_driver(cv180x_thermal_driver);
-> > +
-> > +MODULE_DESCRIPTION("Sophgo CV180x thermal driver");
-> > +MODULE_AUTHOR("Haylen Chu <heylenay@outlook.com>");
-> > +MODULE_LICENSE("GPL");
+- for new user mappings: Svvptc makes update_mmu_cache() a no-op but we can
+  take some gratuitous page faults (which are very unlikely though).
+
+Patch 1 and 2 introduce Svvptc extension probing.
+
+On our uarch that does not cache invalid entries and a 6.5 kernel, the
+gains are measurable:
+
+* Kernel boot:                  6%
+* ltp - mmapstress01:           8%
+* lmbench - lat_pagefault:      20%
+* lmbench - lat_mmap:           5%
+
+Here are the corresponding numbers of sfence.vma emitted:
+
+* Ubuntu boot to login:
+Before: ~630k sfence.vma
+After:  ~200k sfence.vma
+
+* ltp - mmapstress01
+Before: ~45k
+After:  ~6.3k
+
+* lmbench - lat_pagefault
+Before: ~665k
+After:   832 (!)
+
+* lmbench - lat_mmap
+Before: ~546k
+After:   718 (!)
+
+Thanks to Ved and Matt Evans for triggering the discussion that led to
+this patchset!
+
+Any feedback, test or relevant benchmark are welcome 🙂
+
+v3: https://lore.kernel.org/linux-riscv/20240702085034.48395-1-alexghiti@rivosinc.com/
+v2: https://lore.kernel.org/linux-riscv/20240131155929.169961-1-alexghiti@rivosinc.com/
+v1: https://lore.kernel.org/linux-riscv/20231207150348.82096-1-alexghiti@rivosinc.com/
+
+Changes in v4:
+- Fix rv32 (Anup)
+- Fix amoswap.w using amoswap.d (Anup)
+- Save only needed registers (Yunhui)
+- Fix build issue on llvm by adding a ; after a label (kernel test robot)
+
+Changes in v3:
+- Rebase on top of 6.10
+- Remove the comment about xRET acting as a fence which is not part of
+  the ratified specification
+- Add #sfence.vma to the cover letter (Andrea)
+- Remove the RFC as svvptc was ratified the 28th of June 2024
+
+Changes in v2:
+- Rebase on top of 6.8-rc1
+- Remove patch with runtime detection of tlb caching and debugfs patch
+- Add patch that probes Svvptc
+- Add patch that defines the new Svvptc dt-binding
+- Leave the behaviour as-is for uarchs that cache invalid TLB entries since
+  I don't have any good perf numbers
+- Address comments from Christoph on v1
+- Fix a race condition in new_vmalloc update:
+
+       ld      a2, 0(a0) <= this could load something which is != -1
+       not     a1, a1    <= here or in the instruction after, flush_cache_vmap()
+                            could make the whole bitmap to 1
+       and     a1, a2, a1
+       sd      a1, 0(a0) <= here we would clear bits that should not be cleared!
+
+   Instead, replace the whole sequence with:
+       amoxor.w        a0, a1, (a0)
+
+Alexandre Ghiti (4):
+  riscv: Add ISA extension parsing for Svvptc
+  dt-bindings: riscv: Add Svvptc ISA extension description
+  riscv: Stop emitting preventive sfence.vma for new vmalloc mappings
+  riscv: Stop emitting preventive sfence.vma for new userspace mappings
+    with Svvptc
+
+ .../devicetree/bindings/riscv/extensions.yaml |  7 ++
+ arch/riscv/include/asm/cacheflush.h           | 18 +++-
+ arch/riscv/include/asm/hwcap.h                |  1 +
+ arch/riscv/include/asm/pgtable.h              | 16 +++-
+ arch/riscv/include/asm/thread_info.h          |  7 ++
+ arch/riscv/kernel/asm-offsets.c               |  7 ++
+ arch/riscv/kernel/cpufeature.c                |  1 +
+ arch/riscv/kernel/entry.S                     | 87 +++++++++++++++++++
+ arch/riscv/mm/init.c                          |  2 +
+ arch/riscv/mm/pgtable.c                       | 13 +++
+ 10 files changed, 157 insertions(+), 2 deletions(-)
+
+-- 
+2.39.2
+
 
