@@ -1,161 +1,114 @@
-Return-Path: <devicetree+bounces-86331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F0D933A70
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 11:55:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87388933A87
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:00:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0051D1C20F05
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:55:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDCF9B21DF5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1C017E8FA;
-	Wed, 17 Jul 2024 09:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0AF17E8F0;
+	Wed, 17 Jul 2024 09:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W19yectT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5FDNrGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7DBB433B9
-	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 09:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D1519A;
+	Wed, 17 Jul 2024 09:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721210150; cv=none; b=Dclz8kt2j0xN4cGBpTOT9iZaV0+qrL8H9UniXPGzLtePXPObOzDOUalQU0oHN3kGk6UUpz7/pE7UOEJ2MOlhXFTdxTgDwHVBA6OV8/hMh0mA0iNvSuuBaXxr5aeVn0zdHWd3mLjJ+22aYzXYZfXWlXtNcwUpWFowHbIkWEc0QtQ=
+	t=1721210397; cv=none; b=QyIZrG5IQkZmW6V9e02Su7F8/Z9xogPyxW8K8bWSQeEO5wSG1XjWrU6ceTzJ8TzLUrl86odBSf8IQsWls28P8K09A5yelGuJ5F6kakXBRqtn6YnUYuDx4/W/P4jllb5BpEu/7RUjF1PmCXv0tKj6Q4dtuvozAPEVE6YAXoH+1qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721210150; c=relaxed/simple;
-	bh=MsE5USsEUzrVEC0H28mgkaWE9mtLXPXc3XM4BWbEujc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=VCdHJ+024vJ3M5Cw8p7bZPEmKDMRZO8Lj2WZzNh4maOeVz8+Elh9kYwNPZ++v79EAyCuxljYYfZJVJL+jxbWhA3s/8EnL1mSE4cQHBbf5iKglIYENDNKtDtA/7NxiIWXBvbPf/wEQvtWLRCxoIkqsTA2sTWVGTg9Obo+Fr8me/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W19yectT; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a77c0b42a8fso106321266b.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 02:55:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721210147; x=1721814947; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ugeVC4a5UpUteA18Qd2GhF4A2udsE2n5lW2mAeTI93U=;
-        b=W19yectTav0qhVuHMmaweyEhxO++6QreiwNLmZUj9d+63A4e4VjQ0/+QEThWRilMlH
-         EJGPiDDKPHxrodRNeIWui+aV8Zr+H5+vtQW94z+ev5EnNZm9uaIZJ7hah0lTVoLN//2t
-         xWL1iPRaQKBcYYGRevhAgUQ+Vu04H3/yBXn/Q869Z8kycN1Rw9omKj8dPa5xv3YGoFeb
-         q8ZYIesc0wZr99WduFCWpGANNGIjKjmPC+cpLxcrVrHD55y0wr7rP2r1bfnCTae5kzri
-         zsQ5nXJ96BFS1i3ghYGCv4Y2c9auVEoxQE5qQbFWLXSfKCBmwx8FUuM0Unt654iPfcLM
-         UuOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721210147; x=1721814947;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ugeVC4a5UpUteA18Qd2GhF4A2udsE2n5lW2mAeTI93U=;
-        b=nosi0KcgTsEMNPj6jygiUSDCUozcsMDafDlancGOJF/2+Y5o6GB/FgUN6zYG9svr0j
-         0lEd+wp83heOSWMQuUekivjTk0ZXYtKjn2edYdC26oTGvSkwptvBE+dtcmthVUCtu8Lu
-         Hz9uurM9zij56u/abwO41rN1UmEebSjVsApZRjkh7FX8lBZgRKXKdycxsPhGDQwndaFR
-         3vL+dqNMF/Xs3zwRUJEm8gYLhpjl8rsXLegEWc9CEWevvGsqesnS9JmoiJ43aDuFHv8v
-         dp+TQnR8jvh9rPh1LtJrcVvb9+9YCKa/uexb+ZNtK1aogW3mMFlr+Yxmb1rtnK18jRlO
-         I1dw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOxWzp8gKVngOAK9moASYfZk1qtwIpao4M91TVf5U1eBjDkC7WKRKlDMRSDJOeT2OuLmMQC4lMWpD1/buqtrdBzCmiIRhrvemUgQ==
-X-Gm-Message-State: AOJu0YxQaOryMkjf4e1ACQlytmVpDYU3pVJhC9f6iH+qrZEtUTmNiNJu
-	OSQoLGEJFSkRT+5Mznk+z/hksgaRpVeu9ZiMkDY1v/SwBKrWPzC5rr/4dVlARcOBOw3u7FI4omH
-	+
-X-Google-Smtp-Source: AGHT+IEmEelbTOo4Jz+vKhus8YOAOT7QdgPB21SgONssyHq/Fcqc3mI3R8AuiHgwgUboB5JdMssx7Q==
-X-Received: by 2002:a17:906:bc93:b0:a6f:996f:23ea with SMTP id a640c23a62f3a-a7a0062bd7amr123237766b.15.1721210147030;
-        Wed, 17 Jul 2024 02:55:47 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc5d2040sm427014066b.84.2024.07.17.02.55.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 02:55:46 -0700 (PDT)
-Message-ID: <442956f4-ca5b-4ff8-bc02-bcad4dce50e9@linaro.org>
-Date: Wed, 17 Jul 2024 11:55:44 +0200
+	s=arc-20240116; t=1721210397; c=relaxed/simple;
+	bh=he8VWgNCU7bzrhPOnD5ILCidOl9wz74EGBi7h5aUUVI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e3k+7aq9dMJluiIDEoIPLYdwMXxvJhOyMSGkqhcP2OI4HGghUuuOSXQy7EbYZ3eUs2SXSWXOTkV6t+oJWbpkW4AenhQyAoZDQFPkIHRiHqf1awvkVRD4cxR1ysEbDVpa4xoOkt0x7cs+cCv2I2DLV9csH3vp7GtmGR8VWKRSxpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5FDNrGJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE52BC32782;
+	Wed, 17 Jul 2024 09:59:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721210396;
+	bh=he8VWgNCU7bzrhPOnD5ILCidOl9wz74EGBi7h5aUUVI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=j5FDNrGJFkKFbMFZzndQ7w/ViOHm42OKGAGKool9+monXimfoeWgrN3er6T8Glbzj
+	 l1rQlIzYd8GJR5yk+16H71qR4YJQQnyCsJjGofH65XyOLop8zwEUKBQElA9HafpXU8
+	 8xDwWpQDDVoGdNGT2mj6AEFIvU6Ot1EF5WKd2+fmJ9EfYNR3MQPCHQtPa5o6fxVI0g
+	 2xRgEx6oqukNNYe16Sh4zQK3T/dN/MWjDltqExW5jqphfZlHP60C+jWJLxFt+dIvjZ
+	 MiFbYSPoeGSyn2kzWXtdYe3Ya1FwJFe3N3BtT7YVrrZZjIAoTXKrPj1yoC0q9Is+FH
+	 q9+2qOWCZK21A==
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-spi@vger.kernel.org
+Subject: [PATCH v1 0/3] Fix incorrect bh2228fv compatible
+Date: Wed, 17 Jul 2024 10:59:47 +0100
+Message-ID: <20240717-impotence-zippy-254b86593069@spud>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: ipq5332: Fix interrupt trigger
- type for usb
-To: Varadarajan Narayanan <quic_varada@quicinc.com>,
- gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, quic_wcheng@quicinc.com,
- quic_kriskura@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240717094848.3536239-1-quic_varada@quicinc.com>
- <20240717094848.3536239-2-quic_varada@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240717094848.3536239-2-quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1332; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=fLnuQZh3UkLE29exKILxLN0rP8lhx9J0NWCTV9wmm0c=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGnTpwnnzXIS7z3tlKa0j69Ne/Um6fBbYaxigXlnZV5v+ R0XZxTbUcrCIMbBICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIksSmVk+GLqtmGBbOX1Fb3l D2xDKy12fdJb1GftGKI4qWDKpQme/YwMO7ee5PA5/njHXH3f9rV5SUs+fp307new7Hr/HUyHO1j O8QIA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On 17.07.2024 11:48 AM, Varadarajan Narayanan wrote:
-> Trigger type is incorrectly specified as IRQ_TYPE_EDGE_BOTH
-> instead of IRQ_TYPE_LEVEL_HIGH. This trigger type is not
-> supported for SPIs and results in probe failure with -EINVAL.
-> 
-> Fixes: 927173bf8a0e ("arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332")
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index f58fd70be826..56304f996dbf 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -322,8 +322,8 @@ usb: usb@8af8800 {
->  			reg = <0x08af8800 0x400>;
->  
->  			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 53 IRQ_TYPE_EDGE_BOTH>,
-> -				     <GIC_SPI 52 IRQ_TYPE_EDGE_BOTH>;
-> +				     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Maxime made a typo when adding this device to the kernel all the way
+back in 2012, fix the spelling mistake.
 
-Probably worth asking, is there a MPM/PDC on this platform?
+Really this device should not be in trivial-devices.yaml, but I'm
+leaving the creation of a dedicated binding for when I get my hands on a
+device :smiling_imp:
 
-Konrad	
+Cheers,
+Conor.
+
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Shawn Guo <shawnguo@kernel.org>
+CC: Sascha Hauer <s.hauer@pengutronix.de>
+CC: Pengutronix Kernel Team <kernel@pengutronix.de>
+CC: Fabio Estevam <festevam@gmail.com>
+CC: Mark Brown <broonie@kernel.org>
+CC: Maxime Ripard <mripard@kernel.org> (blamed_fixes:1/1=100%)
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: imx@lists.linux.dev
+CC: linux-arm-kernel@lists.infradead.org
+CC: linux-spi@vger.kernel.org
+
+Conor Dooley (3):
+  dt-bindings: trivial-devices: fix Rohm BH2228FV compatible string
+  spi: spidev: add correct compatible for Rohm BH2228FV
+  ARM: dts: nxp: correct DAC compatible on Crystalfontz's CFA10049
+
+ Documentation/devicetree/bindings/trivial-devices.yaml | 4 +++-
+ arch/arm/boot/dts/nxp/mxs/imx28-cfa10049.dts           | 2 +-
+ drivers/spi/spidev.c                                   | 1 +
+ 3 files changed, 5 insertions(+), 2 deletions(-)
+
+-- 
+2.43.0
+
 
