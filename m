@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-86367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9DA933CD4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:09:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D8B933CDA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:10:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE984B23507
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:08:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDEE81F22CE6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ECF917FAA4;
-	Wed, 17 Jul 2024 12:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE4317F51E;
+	Wed, 17 Jul 2024 12:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/8sW3ek"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XCdjPSVc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F80717F500;
-	Wed, 17 Jul 2024 12:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031DA17F4FD;
+	Wed, 17 Jul 2024 12:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721218135; cv=none; b=TARWxLeyTilzReVwPsIj9+N7q5ywsV+eD1sa7bWSV44egF39Zd3Mhcv7mjtjUJpzR5abAvPy3pbctZsuTe+9l8qTf0mkKCu9m6qobtUWkmMO9Ky+qkpee0O55pCuUOQkmYqVF1gW7PUlBlG/e/GscomuUF890s+qagbOXgWGn9w=
+	t=1721218241; cv=none; b=XQRyk8d51vAAFjeeZTlRJW1ZL2o4TQIKMuNvA855BozF0Ih8jo6eeOL6FvkcexqGsEd41UK+6FeqYob1e7u8R/ev5txQGpuzwjKFSKSo1FL7iCakjCxTxmMNecC6TEUM2TOf/X9PxjuyJrful8cWk6+NvzWqCw+9bOY8gzyLekY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721218135; c=relaxed/simple;
-	bh=HoEjgZWwhfVkt761KZ8qBN2ajCYxeA6MlEaJAQbZJw4=;
+	s=arc-20240116; t=1721218241; c=relaxed/simple;
+	bh=NakRtaR8l4oC/yKMRTCX/JEsXfOYCsrtXoCCwLBdx0M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FWetoogViV5GutqklcNcIB7jV9VboZ8OUBdYKNUWJpzdmXxS5QhK4jchqoZk73MDeCpkwWYWZD2rVTsWENMWJxJzeM1N9h1mJgeu1LwHk83Zq2OmLM8ZD0SFLKLG0KZarfsfKDOt9BuUn/njPeLv4SzXGUeViPP6XuYiStRBEk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/8sW3ek; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AED3C32782;
-	Wed, 17 Jul 2024 12:08:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Mt9Gr/fGnQv4m4wzYlyugid+qI00TQXQy8W8JiufL2huEGOs0WG9V5tMrCdoXZkeR1G87teEI7fk+ot9BvJPfjFS8xyWq8VZ7vYbREeBjGVHWFBryr9JfiRDjJRQmcxtLWS8eQ/G5K0m06NyOr0ftaa2QyoIhP8upocbKCoO4Ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XCdjPSVc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA82C32782;
+	Wed, 17 Jul 2024 12:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721218135;
-	bh=HoEjgZWwhfVkt761KZ8qBN2ajCYxeA6MlEaJAQbZJw4=;
+	s=k20201202; t=1721218240;
+	bh=NakRtaR8l4oC/yKMRTCX/JEsXfOYCsrtXoCCwLBdx0M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k/8sW3ekasskfMDdNiDZpjjwXvXdcRDkzydOLvVl8Dt7yQ1d223TYOUuPwOnBLE08
-	 Rl8XpOPvfOZQgqSyyPMJHAQKhR1ozmnuPzcJFqYoDMDtzWVMeEupUiBqLIGPW2grmh
-	 3TuNvdPwmlmKKN3Wcokfn+BXltTQV2bs28vDN4kwXaIm3de1Ax931r1Z6Mzd/uLmTV
-	 FJODT+VenEDHEPU+AW4I/9Gg3FkLSKbGZN/GKk0xUZkLbqUeBQrH5Kb8us9ECu2mRm
-	 Tdw7i8NyOWzF3eQHmY747uwML3DD6G0ltDHoz01lUtqLuTogwUXxa+rdfhlCiesgcX
-	 XJ3X7EAb/ivTQ==
-Message-ID: <1caa0c9a-1de7-41db-be2b-557b49f4a248@kernel.org>
-Date: Wed, 17 Jul 2024 14:08:48 +0200
+	b=XCdjPSVc5iz2pIoQD8FXRZUE1qChfZ7eWRccSUu6ahjGLTD0DvL+a+EooNnB9cgnG
+	 oqQa+WJqOeX7I9J4Rh94D9J10Td8LKEj7SQlPp3QcvGRGghy8hyrM3ui8U8E6Z6ctX
+	 D8HDAij8coUOwoQ5HWd0I5xf8ABj4hhfl68TsdyeTH1FnN6dbuHpnr6IVUuGWxdOaw
+	 7y50KBg5vfBeGhroMG8MV3mOHDqAWMSxllUFoQ+4lNKtYbcs/3UTLyx9Ku5B2sBilt
+	 KFLYFD4UAsLGHFyQSD2HsRgECu02rSbqueipmFEggcYJM4r68z+fT87r6B04V0OT2z
+	 3QE+bo1tvhapQ==
+Message-ID: <8eeaaffe-6c18-4449-a272-ca34a88fc731@kernel.org>
+Date: Wed, 17 Jul 2024 14:10:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: PCI: ti,j721e-pci-host: Add ACSPCIE
- proxy control property
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, lee@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, vigneshr@ti.com,
- kishon@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com
-References: <20240715120936.1150314-1-s-vadapalli@ti.com>
- <20240715120936.1150314-3-s-vadapalli@ti.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240717071012.114786-1-animeshagarwal28@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,25 +103,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240715120936.1150314-3-s-vadapalli@ti.com>
+In-Reply-To: <20240717071012.114786-1-animeshagarwal28@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/07/2024 14:09, Siddharth Vadapalli wrote:
-> Add the "ti,syscon-acspcie-proxy-ctrl" device-tree property which is
-> used to obtain a reference to the ACSPCIE Proxy Control register along
-> with the details of the PAD IO Buffer output enable bits.
+On 17/07/2024 09:10, Animesh Agarwal wrote:
+> Convert the PCM512x and TAS575x audio CODECs/amplifiers bindings to DT
+> schema format. Add missing sound-dai-cells property.
 > 
-> The ACSPCIE Proxy Control register is used to drive the reference clock
-> for the PCIe Endpoint device via the PAD IO Buffers of the ACSPCIE module.
-> The ACSPCIE module can be used as an alternative to either an on-board
-> clock generator or an external clock generator for providing the reference
-> clock to the PCIe Endpoint device.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 > ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - AVDD-supply
+> +  - DVDD-supply
+> +  - CPVDD-supply
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ti,tas5754
+> +          - ti,tas5756
+> +
+> +then:
+> +  properties:
+> +    pll-in:
+
+Please define properties in top-level properties list, not in
+conditional. You can narrow the constraints per variant in conditional.
+
+
+> +      description: GPIO pin used to connect the pll using <1> through <3>. The
+> +        device will be configured for clock input on the given pll-in pin.
+> +      $ref: /schemas/types.yaml#/definitions/uint32
+> +      minimum: 1
+> +      maximum: 3
+
 
 Best regards,
 Krzysztof
