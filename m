@@ -1,123 +1,200 @@
-Return-Path: <devicetree+bounces-86351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65961933B23
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:30:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F1C933B54
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:44:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 028B11F21C17
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 10:30:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 270B41F212BC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 10:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB24D3BB47;
-	Wed, 17 Jul 2024 10:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ubbvLOPG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793C217E90A;
+	Wed, 17 Jul 2024 10:44:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA43D51A;
-	Wed, 17 Jul 2024 10:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57587374C2;
+	Wed, 17 Jul 2024 10:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721212231; cv=none; b=ffnP0VvFlGDlAB62RqEEi59r+K2jsO0SGyi3Z0jloaAXaZ34nF7lMpLzm7iRxFk1rQBHd2M+fddLzQRVuWIxYDI6SvAMqh1YIiklHuA5tCxaeUt0KZEdd60XmLFZuH5u19aaZ2d5NqhOhFJqyTukdmU107qDpgciGa/P6pSyC5I=
+	t=1721213070; cv=none; b=VvycXjcNb1xO6C5LArYlShAs3xU7l3u1xczq07f1BpxLv679WdOPq0ZSmqkO+Z3RoSiiLQH4e5N2LellLFaiCHk/qB4iHmY2vEe9xf1QsHl3ii02wzuxMVkkxn+/aR7GYhDchevh6nHp2RozBYLyGBe4qgymSbyPWjTRQBINks8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721212231; c=relaxed/simple;
-	bh=LFVlWkkfDNXzDvPISyDHa6fOoP3tP7Jg8jrWmbYgR24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eO9AdgbVwqSlDroSzqIqDTktkrFnS06WLZukGzVEvHXq6GidoX14VMYOeJPRZmUHfRE/wOcj6G6cqHwajP2oUG/lSostG6IlJJ+KBz/OZ9dz99Bim5t27aXUgLqcTfto9MkSDvT8wczqAxRO04JjL63XQI9pzp2q2/8PdccWH1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ubbvLOPG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B219C32782;
-	Wed, 17 Jul 2024 10:30:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721212230;
-	bh=LFVlWkkfDNXzDvPISyDHa6fOoP3tP7Jg8jrWmbYgR24=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ubbvLOPGjgRq5nlUtz63HXnB3fbrNPOq27v9Qx5tYeVrjIZ8EIquVh14ChLtbFP8o
-	 NzhgkVp/KIIl8p8mpL5HL/NCOKVHGDQSWdwdlsxF8S/U5A92bG+C8dDmDjPTDnldro
-	 xLuSsFA2aVvgbvTf8ZrXqmgf1vYBFQzr1QGAmJfr9me5adL8gCpF/MPXF9mq/lebEl
-	 ZOoDDVpfPbufZ4qEKgXhyEAo8nrlDZH9Wjuc+DlujArpfWgSbLT9EYSsR0g6c3lMNp
-	 jxSZt2c5Bt76b1OCjJ7/m+XB1Tzj+qGw391Dt1C0nEVndCYC6k9jRp8a3gB1jz7r/A
-	 GnmcGkGOolSrA==
-Message-ID: <e66edd37-183f-4873-8167-8cb7c2f77c10@kernel.org>
-Date: Wed, 17 Jul 2024 12:30:24 +0200
+	s=arc-20240116; t=1721213070; c=relaxed/simple;
+	bh=ihWm/diQMKXpd3btQliC3n+mMuTecFBg60ksAzUtocY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YJ9ARkmIMZ1DfEbWWQ83J2r4ieQh3vJF6ClRKky2ryxxRHzjan2NGnLzAadRdB+A0UEJ7TJbyW9dCOix4sYotUfXKFWVBNtiT82+TzBvXddSc9v1dCM4fnxgn6KTGGm51iCqUdokyl4SUNrfwsXWVJYzPB/Lv6xt16kMVgiQJQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sU28r-000000007mC-3VdG;
+	Wed, 17 Jul 2024 10:44:13 +0000
+Date: Wed, 17 Jul 2024 11:44:06 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: wens@kernel.org, linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Martin Kaiser <martin@kaiser.cx>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+	devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Olivia Mackall <olivia@selenic.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
+Message-ID: <ZpegdlebtJ11qUbh@makrotopia.org>
+References: <cover.1720969799.git.daniel@makrotopia.org>
+ <ZpcrdwZBNFu-YlZt@makrotopia.org>
+ <CAGb2v65Mm5s96asU7iaAC_sJnUk=Yuh+zMJJBbmSgETWrPLoFA@mail.gmail.com>
+ <2451882.5D0I8gZW9r@bagend>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: qcom: {a,i}pq8064: correct clock-names in
- sata node
-To: Rayyan Ansari <rayyan.ansari@linaro.org>, linux-arm-msm@vger.kernel.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240717094914.17931-2-rayyan.ansari@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240717094914.17931-2-rayyan.ansari@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2451882.5D0I8gZW9r@bagend>
 
-On 17/07/2024 11:49, Rayyan Ansari wrote:
-> Correct the clock-names in the AHCI SATA controller node to adhere to
-> the bindings.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
+On Wed, Jul 17, 2024 at 10:22:18AM +0200, Diederik de Haas wrote:
+> On Wednesday, 17 July 2024 04:58:51 CEST Chen-Yu Tsai wrote:
+> > On Wed, Jul 17, 2024 at 10:25=E2=80=AFAM Daniel Golle <daniel@makrotopi=
+a.org> wrote:
+> > > On Tue, Jul 16, 2024 at 07:19:35PM +0200, Diederik de Haas wrote:
+> > > > On Tuesday, 16 July 2024 18:53:43 CEST Diederik de Haas wrote:
+> > > > > rngtest: FIPS 140-2(2001-10-10) Long run: 0
+> > > >=20
+> > > > I don't know if it means something, but I noticed that I have
+> > > > ``Long run: 0`` with all my poor results,
+> > > > while Chen-Yu had ``Long run: 1``.
+> > > >=20
+> > > > Different SoC (RK3399), but Anand had ``Long run: 0`` too on their
+> > > > very poor result (100% failure):
+> > > > https://lore.kernel.org/linux-rockchip/CANAwSgTTzZOwBaR9zjJ5VMpxm5B=
+ydtW6
+> > > > rB2S7jg+dnoX8hAoWg@mail.gmail.com/>=20
+> > > The conclusions I draw from that rather ugly situation are:
+> > >  - The hwrng should not be enabled by default, but it should by done
+> > > =20
+> > >    for each board on which it is known to work well.
+> > > =20
+> > >  - RK_RNG_SAMPLE_CNT as well as the assumed rng quality should be
+> > > =20
+> > >    defined in DT for each board:
+> > >    * introduce new 'rochchip,rng-sample-count' property
+> > >    * read 'quality' property already used for timeriomem_rng
+> > >=20
+> > > I will prepare a follow-up patch taking those conclusions into accoun=
+t.
+> > >=20
+> > > Just for completeness, here my test result on the NanoPi R5C:
+> > > root@OpenWrt:~# cat /dev/hwrng | rngtest -c 1000
+> > > rngtest 6.15
+> > > Copyright (c) 2004 by Henrique de Moraes Holschuh
+> > > This is free software; see the source for copying conditions.  There =
+is NO
+> > > warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+> > > PURPOSE.
+> > >=20
+> > > rngtest: starting FIPS tests...
+> > > rngtest: bits received from input: 20000032
+> > > rngtest: FIPS 140-2 successes: 875
+> > > rngtest: FIPS 140-2 failures: 125
+> > > rngtest: FIPS 140-2(2001-10-10) Monobit: 123
+> > > rngtest: FIPS 140-2(2001-10-10) Poker: 5
+> > > rngtest: FIPS 140-2(2001-10-10) Runs: 4
+> > > rngtest: FIPS 140-2(2001-10-10) Long run: 0
+> > > rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+> > > rngtest: input channel speed: (min=3D85.171; avg=3D141.102;
+> > > max=3D4882812.500)Kibits/s rngtest: FIPS tests speed: (min=3D17.809;
+> > > avg=3D19.494; max=3D60.169)Mibits/s rngtest: Program run time: 139628=
+605
+> > > microseconds
+> >=20
+> > I doubt this is per-board. The RNG is inside the SoC, so it could be a =
+chip
+> > quality thing.=20
+>=20
+> I agree with ChenYu (and others) that this is isn't a per-board level thi=
+ng.
+> I'd even go further: 's/I doubt/It can't be that/' (for the same reason=
+=20
+> though; this is inside the SoC).
 
+There are quite a lot of options regarding the implementation of an in-SoC
+RNG. Many of them rely on external components, such as a resistor or simply
+a pin left floating. Others may be influenced by the power delivery setup.
+Or rely on "thermal noise generated from inherently random quantum mechanic=
+al
+properties of silicon" (Intel).
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I don't know which design Rockchip chose, but just because the RNG is
+inside the SoC I wouldn't exclude the option that the quality it
+delivers may depend also on external components on the board, or even
+the dielectric properties of the board material itself, or (in case of
+bad designs) environmental circumstances such as the amount of
+electromagnetic noise around, and that then again depends on relative
+humidity, exposure to sunlight, ... The latter would be really bad, of
+course, because then we would have some kind of hidden sensor rather
+than a RNG, but nothing is too stupid to not show up when engineers of
+proprietary technologies are left alone.
 
-Best regards,
-Krzysztof
+So imho only empirical data can tell.
+
+>=20
+> Before I saw these latest emails, I was going to suggest:
+> 1. Enable it only on RK3568 for now. I would be fine if this would be acc=
+epted=20
+> by the maintainer
+>=20
+> 2. Ask that you make a special version (for me) where I could play with t=
+he=20
+> params without having to compile a new kernel for each variant (it genera=
+lly=20
+> takes me more then 24h on my Q64-A). Either through kernel module propert=
+ies=20
+> or properties defined in the DeviceTree is fine with me.
+
++1 Will do.
+
+>=20
+> 3. Based on the results make  a choice to not enable it on rk3566 at all =
+or=20
+> (indeed) introduce DT properties to configure it differently per SoC.
+>=20
+> 4. Hope/Ask for more test results
+>=20
+> > On the RK3399 we also saw wildly varying results.
+>=20
+> On my Rock64('s) (RK3328) it doesn't work at all:
+>=20
+> ```
+> root@cs21:~# cat /dev/hwrng | rngtest -c 1000
+> rngtest 5
+> ...
+> rngtest: starting FIPS tests...
+> cat: /dev/hwrng: No such device
+> rngtest: entropy source drained
+> ```
+>=20
+> Cheers,
+>   Diederik
+
 
 
