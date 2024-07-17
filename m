@@ -1,131 +1,284 @@
-Return-Path: <devicetree+bounces-86276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A334A93377C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 08:59:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C6C93379B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DD441F23406
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 06:59:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2831D2840F3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 07:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D87182AE;
-	Wed, 17 Jul 2024 06:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF1218EAB;
+	Wed, 17 Jul 2024 07:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nC26tcJD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ldKfg3wN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F67A17C66;
-	Wed, 17 Jul 2024 06:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58CE14267;
+	Wed, 17 Jul 2024 07:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721199588; cv=none; b=uDGGWiB650xjL5OgY/coboOyDN0EH9t5FdFmae/W/XcacRu9zXwX9KvElKwcqGDDs5WhRaopifLNrawOEs8BL7UW2Evd9cwBuhlq4/c6AjD4Kn9yJ9ByuawKl+S9z0L8+CBn97Ko3ndA2ooccUjKzj0ptMboFVO1E+XqTMqsEFc=
+	t=1721200235; cv=none; b=KOpiUiAgAUTRwNLXDpAgre9eEE/lKEA2jNn3KRQY+Yrl7ToXtVECRb+u7HBexSMWrAPFNq3Wf+m0+iyCqpT4Nn+jkgMD5rlojPycwzgbpqqRZDS2FD9UrwiXoVAfMywEodm2PVShx8RLjh6pynViTZr9CM1/7fohFboSGGjLxKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721199588; c=relaxed/simple;
-	bh=GtOgORRYMWszJwNCSDlGW+roFQ9+QPNsaZ082A7wGJY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lpqa6VjIcPxE99BK/Yz18JV9LCURVa7tm8x9ByOb00O3oBCpJTitjzs/xQJqGiwND8jmveik20nJS+sC/vtnFhz3j/wT505feozmceP5Q0c0iVwoAuD1q+MgSI90SwRaAQRFjfkWYrd08icPKcbbLj7VMJmX/ac7JExhVtf0PTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nC26tcJD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A5D2C32782;
-	Wed, 17 Jul 2024 06:59:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721199588;
-	bh=GtOgORRYMWszJwNCSDlGW+roFQ9+QPNsaZ082A7wGJY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nC26tcJD67QaLU4sOxSBwZQ8PjR17Bdzl4rdOKAQbgBLqSlzIQFXQa6Gzv3wVSut0
-	 TXLJmKLQaObCKTHrutjDD18ONxonj1eY5/i540hhI8QhslDUA/DWotccwaWTaKBTKG
-	 ckL9xfPDVF2wB0yFYGi0l9wF06rfxOuWnJrgUeUgZnS1vKTyrrDHqNrOJruWl4+Pxp
-	 6UjMKGxqJAK+lxVhVDN8EpFRN9okw7XABcutgHT1yaTagtYjks4Xhl2DwOuj0BdliB
-	 ZPLV2fz9m3ZuqQQBFx5WZIJcdpPcVWJdqxQ6U1RV7VHWw4/Kh0v6A7N/fdYVTNjnpQ
-	 4J5jiWKlrbN6A==
-Message-ID: <1f9227a8-7c96-41ad-aaba-d6cf4435631d@kernel.org>
-Date: Wed, 17 Jul 2024 08:59:37 +0200
+	s=arc-20240116; t=1721200235; c=relaxed/simple;
+	bh=pbB84E+DJFZ7Rqz4bRF7r+sShLSkf9DDLjHCtgiQTlQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gUywVupsCK0cCln3QIxo3r3j//hnIc3bgZr/gNm8ca6PJzwxp8yoi22E1EPtrsPcsUV0hgi+AcqGKPZ2ibUn3lgkbJsA8kWWSY6MYx/Gu/IE54zqQaGc3DB2LN3USlOMPto90XLwBsxxrzlUJybfu8aHAloVrGle+OqZPW/s+IY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ldKfg3wN; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3c9cc681e4fso3554042b6e.0;
+        Wed, 17 Jul 2024 00:10:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721200233; x=1721805033; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LzFXhN/4zexpSGV6jXmNmwyuYw2EujDfcH8DxGXktmk=;
+        b=ldKfg3wN63owKo/iyntPxxflZ/gNfgLcvPocK4EhquJX21Bcw5ziX97OS2uyiGHJEO
+         L0NFFVK92iLpCFBJx3vTxSmLaGnpkznwW8H9j4rY14EO94fj2y0qlDPbclwH9rJn3qpI
+         QbDEYZoXL2Rm1ArG5X2ko4pdIXXfcq9rmV11zAfgI2ENXG8dGoKrl7EqmxBZUAS7t2Na
+         M6lQZMBR5oYIl7ZMgEKSV7sLZT/dg6XhpU33STtFk99LWUSr75QNZeC2sdYSmoNyamll
+         7wq7OTPEogdNDFNK7c0fFYdeS/vqMtee9sJRwgACKUsKdcdc92MT2rdjayo7LQ0Lpewc
+         t5KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721200233; x=1721805033;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LzFXhN/4zexpSGV6jXmNmwyuYw2EujDfcH8DxGXktmk=;
+        b=l8ZfuV8QwaBTR/FlnDHEauIcmXLXxXIhQ4bRCbib80g7XGBKg4rvR+yUa1TgCtiw3V
+         RgV70+y8/iZzWZRARMY/QS9CE9SWwXuGypg0pELtNFlcf/XIuUsvbsrgUa54N1BFZXJ1
+         dI1GgPHCTxGRDTiAdX+SOD1q7UVqcNHTVm+1Di5IiBzKmxD9VHXwmH1ZEqAp3Oe6HAoC
+         2vL7F3J5ypNfUvPhnQxwioxvjw0ZXtnEjh2NoFQrgh87j+GBG//SwvVSOSJjxup3cLp+
+         mI6RG2Y8AEbqkcEhTD4AfpTd9RmKG9lfIs9Y5CEopr7yJsFt/nuEssW/3Ty2sFKofkIA
+         AhvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJPkubyE7A4X6/rPm7ru5TyxKpq23nSZjIIIaTqT1OfQjYobCeuMw6e0YSQGPFWermMDUznVcFW8sTX/U0tgdtUXed1Y2lKOtsMWY+taSUSZUyWDjrhWag4g8byf2GjYVT4fyj87OVRttJo5YnsaPZBsC0mqM12/X16qb3CxNBJmvmwYa4
+X-Gm-Message-State: AOJu0YyhP97hpxHYVqlGG3qQ0CJyeJLizr/PgbgbDzdM32DpLagWoVYT
+	o16BEaqpHLjzeAZ8+jeDDLVhrQwgAQmIgLXInlTBoDrKR/rx2qPE
+X-Google-Smtp-Source: AGHT+IHYHLNiQMYFfPuy8h3AbJt+F+ROLpfldNCC0RiWPWi7h5zs8pqh7AbWsxlPdKaSWx4l2J3quA==
+X-Received: by 2002:a05:6871:5228:b0:259:cdf1:b8af with SMTP id 586e51a60fabf-260d9504d67mr653256fac.46.1721200232596;
+        Wed, 17 Jul 2024 00:10:32 -0700 (PDT)
+Received: from fedora.. ([2409:40f4:a8:bf06:b8b7:aa61:3ed2:c8f4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7eb9c856sm7520236b3a.4.2024.07.17.00.10.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jul 2024 00:10:32 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
+Date: Wed, 17 Jul 2024 12:40:08 +0530
+Message-ID: <20240717071012.114786-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] mfd: add adp5585 gpio and pwm support
-To: Frank Li <Frank.Li@nxp.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Haibo Chen <haibo.chen@nxp.com>,
- Jun Li <jun.li@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
- Jindong Yue <jindong.yue@nxp.com>
-References: <20240716-adi-v1-0-79c0122986e7@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240716-adi-v1-0-79c0122986e7@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/07/2024 21:28, Frank Li wrote:
-> adp5585 is totally difference adp5588, which in
-> drivers/input/keyboard/adp5588-keys.c.
-> 
-> So create new driver for it.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Convert the PCM512x and TAS575x audio CODECs/amplifiers bindings to DT
+schema format. Add missing sound-dai-cells property.
 
-There is ongoing work (v4 if I recall) for adp5585, so please rebase on
-that. Existing patches do not look abandoned.
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+---
+ .../devicetree/bindings/sound/pcm512x.txt     |  53 ---------
+ .../devicetree/bindings/sound/ti,pcm512x.yaml | 112 ++++++++++++++++++
+ 2 files changed, 112 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/pcm512x.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm512x.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/pcm512x.txt b/Documentation/devicetree/bindings/sound/pcm512x.txt
+deleted file mode 100644
+index 47878a6df608..000000000000
+--- a/Documentation/devicetree/bindings/sound/pcm512x.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-PCM512x and TAS575x audio CODECs/amplifiers
+-
+-These devices support both I2C and SPI (configured with pin strapping
+-on the board). The TAS575x devices only support I2C.
+-
+-Required properties:
+-
+-  - compatible : One of "ti,pcm5121", "ti,pcm5122", "ti,pcm5141",
+-                 "ti,pcm5142", "ti,pcm5242", "ti,tas5754" or "ti,tas5756"
+-
+-  - reg : the I2C address of the device for I2C, the chip select
+-          number for SPI.
+-
+-  - AVDD-supply, DVDD-supply, and CPVDD-supply : power supplies for the
+-    device, as covered in bindings/regulator/regulator.txt
+-
+-Optional properties:
+-
+-  - clocks : A clock specifier for the clock connected as SCLK.  If this
+-    is absent the device will be configured to clock from BCLK.  If pll-in
+-    and pll-out are specified in addition to a clock, the device is
+-    configured to accept clock input on a specified gpio pin.
+-
+-  - pll-in, pll-out : gpio pins used to connect the pll using <1>
+-    through <6>.  The device will be configured for clock input on the
+-    given pll-in pin and PLL output on the given pll-out pin.  An
+-    external connection from the pll-out pin to the SCLK pin is assumed.
+-    Caution: the TAS-desvices only support gpios 1,2 and 3
+-
+-Examples:
+-
+-	pcm5122: pcm5122@4c {
+-		compatible = "ti,pcm5122";
+-		reg = <0x4c>;
+-
+-		AVDD-supply = <&reg_3v3_analog>;
+-		DVDD-supply = <&reg_1v8>;
+-		CPVDD-supply = <&reg_3v3>;
+-	};
+-
+-
+-	pcm5142: pcm5142@4c {
+-		compatible = "ti,pcm5142";
+-		reg = <0x4c>;
+-
+-		AVDD-supply = <&reg_3v3_analog>;
+-		DVDD-supply = <&reg_1v8>;
+-		CPVDD-supply = <&reg_3v3>;
+-
+-		clocks = <&sck>;
+-		pll-in = <3>;
+-		pll-out = <6>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/ti,pcm512x.yaml b/Documentation/devicetree/bindings/sound/ti,pcm512x.yaml
+new file mode 100644
+index 000000000000..a8635477d23e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,pcm512x.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,pcm512x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PCM512x and TAS575x audio CODECs/amplifiers
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,pcm5121
++      - ti,pcm5122
++      - ti,pcm5141
++      - ti,pcm5142
++      - ti,pcm5242
++      - ti,tas5754
++      - ti,tas5756
++
++  reg:
++    maxItems: 1
++
++  AVDD-supply: true
++
++  DVDD-supply: true
++
++  CPVDD-supply: true
++
++  clocks:
++    maxItems: 1
++    description: A clock specifier for the clock connected as SCLK. If this is
++      absent the device will be configured to clock from BCLK. If pll-in and
++      pll-out are specified in addition to a clock, the device is configured to
++      accept clock input on a specified gpio pin.
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - AVDD-supply
++  - DVDD-supply
++  - CPVDD-supply
++
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - ti,tas5754
++          - ti,tas5756
++
++then:
++  properties:
++    pll-in:
++      description: GPIO pin used to connect the pll using <1> through <3>. The
++        device will be configured for clock input on the given pll-in pin.
++      $ref: /schemas/types.yaml#/definitions/uint32
++      minimum: 1
++      maximum: 3
++
++    pll-out:
++      description: GPIO pin used to connect the pll using <1> through <3>. The
++        device will be configured for PLL output on the given pll-out pin.  An
++        external connection from the pll-out pin to the SCLK pin is assumed.
++      $ref: /schemas/types.yaml#/definitions/uint32
++      minimum: 1
++      maximum: 3
++
++else:
++  properties:
++    pll-in:
++      description: GPIO pin used to connect the pll using <1> through <6>. The
++      device will be configured for clock input on the given pll-in pin.
++      $ref: /schemas/types.yaml#/definitions/uint32
++      minimum: 1
++      maximum: 6
++
++    pll-out:
++      description: GPIO pin used to connect the pll using <1> through <6>. The
++        device will be configured for PLL output on the given pll-out pin.  An
++        external connection from the pll-out pin to the SCLK pin is assumed.
++      $ref: /schemas/types.yaml#/definitions/uint32
++      minimum: 1
++      maximum: 6
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@4c {
++            compatible = "ti,pcm5142";
++            reg = <0x4c>;
++            AVDD-supply = <&reg_3v3_analog>;
++            DVDD-supply = <&reg_1v8>;
++            CPVDD-supply = <&reg_3v3>;
++            #sound-dai-cells = <0>;
++            clocks = <&sck>;
++            pll-in = <3>;
++            pll-out = <6>;
++        };
++    };
+-- 
+2.45.2
 
 
