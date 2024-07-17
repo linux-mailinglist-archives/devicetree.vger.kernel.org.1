@@ -1,256 +1,169 @@
-Return-Path: <devicetree+bounces-86423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBC99340E5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 19:02:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 587E99340ED
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 19:03:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 788141C2119A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:02:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B9531C22EE7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE205181BBD;
-	Wed, 17 Jul 2024 17:02:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644A7182A5C;
+	Wed, 17 Jul 2024 17:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b="E9wF/+J7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p5hHJG6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AUS01-ME3-obe.outbound.protection.outlook.com (mail-me3aus01olkn2187.outbound.protection.outlook.com [40.92.63.187])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36621CA9F;
-	Wed, 17 Jul 2024 17:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.63.187
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721235743; cv=fail; b=iudQ+bVLXhX+bSv6C+ZOBQ36OjzdPv4LXcO3zQf+2OV46cKPKiR5tLZ6y4YFreme3kF++VAXf2xl5/iK8wB8gJ4mV0cjRKdirKcvN/bgE1qSZdSKqEbbF32VPkPjZ04MY8CwpyXhmw+1gBp6X7lmYbDyYPxMYICiYfPBVAF80TQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721235743; c=relaxed/simple;
-	bh=pTBHW9EKU/jpCkog/LDGYvJOzxxVA7Q64gD2OX9bJSw=;
-	h=Date:From:Subject:To:Cc:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Zc/CpZ+vPMJvK3o8NTNIL/j0RSsV2olJrxjVr6nOG+werS4gbOatCmsKAa4ZouuzLshmi2MHBC+FmVbhJu20bjpZvJOD9TEPSYDfhAJWb4mxRE73WRwOgrv1PZ4S2Hpk+gcu0cuJCsyVnfBUsrLxpabRYYV1AN06sJoQJB88bTg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com; spf=pass smtp.mailfrom=live.com; dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b=E9wF/+J7; arc=fail smtp.client-ip=40.92.63.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=live.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rGzCI8mBh7BC9CAFszuXNvadq6h748gwrvN+RwakPblKfgRXJDkQfX7GNLjDoT4rPvGQa5vAmFlqGs7yKcUubht0XoGx2QFkXzqo0ZB2uKfwNmLVOc9/LfRbCDK839VSpTgEPdpUXLuBNZRB6Zvg/ZodU+hSM9rOsKZnKjkGG9eTbELSLSfDpjsMzlqnKGJu6rvtaDFud9jzFstZ4RJ/a2Gm1f+1pCJl1zBREfQC86xobhlAXG0jqoq3HM/skOlDzpjUPnA16hRfowc0D85UtHXZLdSEpyWXhZ/xjRwfG3aw0NQg3aL/ugZ5Zx4OtQa+FhVEw6l+fqrLPTok/R5KIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Mns46nkxLR3i9bpdSEQAuztw1GXcVh55vIiXsyJz4E=;
- b=EH184N0Ab8ii0h2KUP4Uuf8wjn5l/l7fJOd2marQF/g5UhPNqgJ9+7rn+6+PzltCgKKw5dj2ksp+voxZEjJxqlgctX50CWElhhBgb6JXYf/QhF4XncQs6pFfm6WhZnKDDk1WEN2ODRnc1ToCHowsDi3efGNzGu+HD/fZrdl6Aj+KnmCrT5b4H0LWSC6DDts1fNutjKxDbul1Q4MH6Ma4NGrAIXd4w+XSvZklbiILUbUgiIxeJ0XYxAjipdN8MtLnOimJv+9jsp1YGbN2cqsjN/FWwh0AQ2XzJnCtnqHv8+YsTNcm+F/FE2mIIJxW1nD3Oneh5YNpaKDZxeINcmjE0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Mns46nkxLR3i9bpdSEQAuztw1GXcVh55vIiXsyJz4E=;
- b=E9wF/+J7Nvb92QOpMHCzEn6DL81bCVKdMc4wUjyfLNpUv+DU0wBc7MWXGnzS1785wCmqIyPHB5hA6Lxqrqd7IU3jAo+R4iVhu4HbdINRrdaWo1ty3l3UuBrA9P2Wu/1VTiyoh0vuHviFjnWAlZEyOhp4R1YeHwXh7foB0RYblECmacMSsMkpc4UCK7gWihSpoAB0YpskHZm8lwZMjzV40D+pwNHkd+oSimldH3itKy1/ed26ruX67LxdWzILR8xhTi7iXMgK8dfqkuGWXUQioquiI6ML7HEA+PH/3sWVDiASENIst1cjVx6dghQmr0rv3ucMzD/7bTOgme7xoaPkig==
-Received: from SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:9b::8) by
- SYYP282MB1341.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:76::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7784.18; Wed, 17 Jul 2024 17:02:16 +0000
-Received: from SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
- ([fe80::ac24:7d2b:92fe:20c3]) by SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
- ([fe80::ac24:7d2b:92fe:20c3%4]) with mapi id 15.20.7784.016; Wed, 17 Jul 2024
- 17:02:16 +0000
-Date: Thu, 18 Jul 2024 01:02:01 +0800
-From: Yuntao Dai <d1581209858@live.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mailbox: add Sophgo cv18x SoCs
- mailbox
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, unicorn_wang@outlook.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Message-ID:
- <SYBP282MB22380B670D61592C914133BCC4A32@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
-In-Reply-To:
- <IA1PR20MB49537F9F04E601413EA1C86FBBA12@IA1PR20MB4953.namprd20.prod.outlook.c
-	om>
-References:
- <SYBP282MB223825D5903777B937A8A377C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
-	<SYBP282MB22382E1C032FDE2D36E6B58DC4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
-	<IA1PR20MB49537F9F04E601413EA1C86FBBA12@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: geary/0.12.4
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-TMN: [cVgamVFsnrpypNSbR8FVLl9TtTIjfW8joPZwGvDjJmo=]
-X-ClientProxiedBy: SI2PR06CA0004.apcprd06.prod.outlook.com
- (2603:1096:4:186::20) To SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:9b::8)
-X-Microsoft-Original-Message-ID: <1721235721.4845.0@smtp-mail.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343CA180A99;
+	Wed, 17 Jul 2024 17:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721235795; cv=none; b=oqUJYbRA5PTfCgrMLdEHaOua4NCzljVKfZHu4KbFJ+C0w8uYCbdEXWZb/1xv+UFQt7QjXhnn1O5W0+Y13DsByZ0464JQRYnAJ3XAtohK6/+0L/h61qE/ntbW2cTK26q/Wl4zf/ZiU/vYv+uZQ5BMLOBzVDlo91VlyTnTJLG8dyg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721235795; c=relaxed/simple;
+	bh=Gl1Lq4eAwwgbdu9A+/5F0Vm/X1cX0EaWkeT2ZW+e1L4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pXctMXH8+CLhVK/JamLeVqetwCZbo5KVEgRQp7bpwVnxTKToNVz4aT4eA2fvymO442E3n8Bwp96MWyYzup0jm+JXhJPikpBOu4AehuMhtdw1U1jCyEXdfmRC5ierkA9MGr+OvqZmjkxEyiw2sGhTeg5iFcOuNyy4VN4IjxaTltg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p5hHJG6k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C3E10C2BD10;
+	Wed, 17 Jul 2024 17:03:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721235794;
+	bh=Gl1Lq4eAwwgbdu9A+/5F0Vm/X1cX0EaWkeT2ZW+e1L4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=p5hHJG6kstysulXiP+AbGmjFa1RB0rZjwGlixSl2uZpO61I9xThSksxnIv6daPBjo
+	 RMsV/iJ8jZzll6LfrSEic8PKJ3ew3BKgDmMk4qUWsBdsQDgXbJ9AV4muVsCNOyGZnv
+	 tbBd6k64VzQgmq1ObPvfL9tj//7AqXra3+UplaQHpODvdIsRJrO8gzsYe8W3rVL/Z4
+	 7Kgj73wzxgzIIm4GsbRq5sF65yILDXcSWWEnZ3qlU8YCSoE+C7qnbgE2SVoohehX8x
+	 EunYhZ57lONq7CCzK4amn5Unk2eo/JjUO3tn0xvKjvkKQY38e/LCRUR+2wytV4Z959
+	 KDBGl3qxoMsaA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ACBE5C3DA60;
+	Wed, 17 Jul 2024 17:03:14 +0000 (UTC)
+From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>
+Subject: [PATCH v2 00/13] PCI: qcom: Simulate PCIe hotplug using 'global'
+ interrupt
+Date: Wed, 17 Jul 2024 22:33:05 +0530
+Message-Id: <20240717-pci-qcom-hotplug-v2-0-71d304b817f8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SYBP282MB2238:EE_|SYYP282MB1341:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3deafbec-35b7-4afe-d323-08dca682341a
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|8060799006|461199028|4302099013|3412199025|440099028|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	U52jYy2gS+3cCFJKh3pNHdoqfAFEagiAkEdaipBp7PvrOXoTI15wYn7ladQqS6zs87xHlQL/FreBWC+evVmx9WRUEYmb1m4c6AUyDfC0gPJ0pft4sFtut/5oUr1SHkweF2g6VYLop+4rtyOUyllHU9U6p6+/8CBCTTirJ8N/BzECi7KA/3+N3JbpoFF9XQxrGaxc5BlSxRoniIB7SciDWQOan5TDeR9wbRdEMwPwUHEqZbntchVBt6HYhu5bedDw1NECEj0FSgSLUZZU2Ioy56n245t8/fHoZjTvQjxEK+MGIx27mg00gAyfVIoLnxV1bFbZjlqAjatvvWyhy+El2SL1A837RwFU7yNyZA5uEPVWGYJOwXLA1dJkQi0gN13fo9wmHuQDTh5SEJde2kz9PUxe5T1TTpSWGDDrIEDlysg7FOwbaGKSVHAIgWvehYw4XOq1sKHiOpmRNkaLxYN6W0ZHKis1xeDeVRne3yTVH09BVecOB9gFg36NEhztC+J172O4vWPy0sfov3VHYr2mV/MEqptJgnHs8q7nAvLtL1k6zzhjs5Y3VG0lfAI6X03dhKgIEoiUpUyg0iLQJXNFYJ0kqGwqY2BLr/bdAqhruGyaQff7c25D9M1NaWx0aPeDJDh/l3Tz9gJReScAs/P8KvZTpje11xA5ikUEyd4hr+br1veEPLAdB4sFe1LJYp8Z1DCJfYtr2RLA6DrzTqZpztK1+7NFnTZo2wSHRmlJj0IQ99ghfSCZo5hFxH9r/fZcAG0d+VF+P1vBTo1ZJj4khg==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Z9jqo7sM0XcWTftmjvDX8sQ6i7LirTkr4pfHLJuXEAdCiLMfoGeZ64t9XgmX?=
- =?us-ascii?Q?8D0n4UI/DN0RdiOFDXKJJgsHpnMe7LjTJNyORsNM12J0GzYHiG8u5PNNrfWy?=
- =?us-ascii?Q?/EvU9abuoQ0sQJI4l5QdmXD7EoC8csOLuE1nk1p2Csole3P3EUMbbXMtwWo2?=
- =?us-ascii?Q?R5NREnhB47MFTb4knMTFUWbwPw2n6LFPFsNh401PjJ3h+ni6KCbrDaYQth7O?=
- =?us-ascii?Q?Biwwwwn4r0Je0jRE8QIm/9znzSJ/zcABZkK8ugm9yhmrUqpaEOdifTpiH1PN?=
- =?us-ascii?Q?PS7hWOxdkufXUoTk2NTk4iGNHdl4DAQD68wf7Gl0EYfuSaN/m5MoHe+c1od+?=
- =?us-ascii?Q?JOnkAgTNj9efxoUwaUVXtM3JWfQ4/crJ/zTPYxG5LbdWm181zzEl+3IObUQ/?=
- =?us-ascii?Q?IB6hIdD2NK1j23zrrHxXXCLONWOEFepuq/oV8rjo91ADuav5LIrV6IVGzopX?=
- =?us-ascii?Q?1DIt/bx1OdyLab+5Cci48c+OLrulY1mBUdLw0ELTgyPE/Jr3nr9UrpJqSaSh?=
- =?us-ascii?Q?B3cvCiivvuJLvZ2hUP5ofwgNdyoLPdDEzYE7+z7xnlw9E0kvbUpPAptL/qbH?=
- =?us-ascii?Q?soZErBDROH9fMFf7Mqsu16QDOFhoQZ9uQRHpIh+uirLBMnwqm4EieN12mkCs?=
- =?us-ascii?Q?ttW9IkLt29iINct0jZbLe5QgEfTNqHaZqd9qBoFxzQENOHJdgl8EYUN+4Qla?=
- =?us-ascii?Q?G4V+YE11EiQxlfA68kaNhe2/JhdsHeMRSb1BixyL9EdABvlZPbweS+Ova4k3?=
- =?us-ascii?Q?lHZ1wivwPkYg9wDjSJB4mH6PtaWdyOLo1UMtIw/7XNxnonYsiylFcKMyBbjv?=
- =?us-ascii?Q?VAE/z4cCFQVbck8s5PirnxfQ8GbjepGDG3flb+BR1GDxyw75+f/56h0OZC4E?=
- =?us-ascii?Q?7AU4narhAoTVGcvj8OIemLwyU/Ugvdh4RI3eqM3s5sklrHBMQdMpFULqyh1P?=
- =?us-ascii?Q?DU1RtvMwrVpZCllk9mXnB4iP6deT/422jyQawlJdbtQeVdMXHLHcpfQBg5sR?=
- =?us-ascii?Q?g8IH9iJBUkomC1C8UpkIGxchE/CDXkzJEdcY938pygNXAAcCEJrAG+iwCAVv?=
- =?us-ascii?Q?hmuyNkCjaBjuq26LrSx4RvcqGCHT2K7RyheKijbSuHZ3FwUEtqpv668QxnwG?=
- =?us-ascii?Q?fNrwgow0EFqQESofwMdwESllpO8E9O1Y9AHFe7KS0zU3y7kcMX0F5DXeCQad?=
- =?us-ascii?Q?hG3t5Utn+wv2Be2UBBgNOmtLnN9e1QDzMUw3xLRBCSxjxWtS5TbCpkiqPEg?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-7719-20-msonline-outlook-722bc.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3deafbec-35b7-4afe-d323-08dca682341a
-X-MS-Exchange-CrossTenant-AuthSource: SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 17:02:14.6816
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SYYP282MB1341
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEn5l2YC/32NQQ6CMBBFr0Jm7RjaWlFX3sOwqNNSJsEWWyQaw
+ t2tHMDle8l/f4HsErsMl2qB5GbOHEMBuauAehO8Q7aFQdbyUDdC40iMT4oP7OM0Di+Pd7JOkFD
+ 2LDooszG5jt9b8tYW7jlPMX22h1n87J/YLLBG3anmqIlOjTLXgYNJcR+Th3Zd1y/tpdaKsQAAA
+ A==
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3577;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=Gl1Lq4eAwwgbdu9A+/5F0Vm/X1cX0EaWkeT2ZW+e1L4=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBml/lMWZqx1/Pu5k8yOvC0cHLJvHvnFyhXkKdAr
+ CC/3RTnQY6JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZpf5TAAKCRBVnxHm/pHO
+ 9aBjB/oDBwWK+E0JQrCLxm+aj51YYDYhHG2it2pHg3tdqnaQrrAWumg8aclJ2rg1sXfJ1t9SCL8
+ eqcpg+C6apu+yd/8uS8TwyJ8e3KnC0/EJs23u4BKYHOxm451J/rY2LLmHxCU63Ey9fKuqHzvoh4
+ IuoA1FIENtU1IkgLpq2HBsfVIiXSB6mSmcTY59vczYa1GTTZ6MNfSmn3+q9DX1wSj3pnmdvvB2n
+ Ud60Upb7Jnai9DwtOEZOFqRNbasvIbcml+NjPSVUNuoX6aMCnm9str2Ur9ETFG6QxY/EK0gWXyq
+ 4TLhnqxOXNOI20qM46EzD0QwngLpZG6HEpyF68YzGhGoKaRS
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Endpoint-Received: by B4 Relay for
+ manivannan.sadhasivam@linaro.org/default with auth_id=185
+X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reply-To: manivannan.sadhasivam@linaro.org
 
+Hi,
 
+This series adds support to simulate PCIe hotplug using the Qcom specific
+'global' IRQ. Historically, Qcom PCIe RC controllers lack standard hotplug
+support. So when an endpoint is attached to the SoC, users have to rescan the
+bus manually to enumerate the device. But this can be avoided by simulating the
+PCIe hotplug using Qcom specific way.
 
-On Mon, Jul 15, 2024 at 10:56 AM, Inochi Amaoto <inochiama@outlook.com> 
-wrote:
-> On Mon, Jul 15, 2024 at 12:36:45AM GMT, Yuntao Dai wrote:
->>  Add devicetree bindings documentation for Sophgo cv18x SoCs mailbox
->> 
->>  Signed-off-by: Yuntao Dai <d1581209858@live.com>
->>  ---
->>   .../mailbox/sophgo,cv1800-mailbox.yaml        | 61 
->> +++++++++++++++++++
->>   1 file changed, 61 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/mailbox/sophgo,cv1800-mailbox.yaml
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800-mailbox.yaml 
->> b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800-mailbox.yaml
->>  new file mode 100644
->>  index 000000000..05099d819
->>  --- /dev/null
->>  +++ 
->> b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800-mailbox.yaml
->>  @@ -0,0 +1,61 @@
->>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id: 
->> http://devicetree.org/schemas/mailbox/sophgo,cv1800-mailbox.yaml#
->>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>  +
->>  +title: Sophgo cv1800 mailbox controller
->>  +
->>  +maintainers:
->>  +  - Yuntao Dai <d1581209858@live.com>
->>  +
->>  +description:
->>  +  The Sophgo cv18x SoCs mailbox has 8 channels and 8 bytes per 
->> channel for
->>  +  different processors. Any processer can write data in a channel, 
->> and
->>  +  set co-responding register to raise interrupt to notice another 
->> processor,
->>  +  and it is allowed to send data to itself.
->>  +  Sophgo cv18x SoCs has 3 processors and numbered as
->>  +  <1> C906L
->>  +  <2> C906B
->>  +  <3> 8051
->>  +
-> 
-> Unify the "cv18x" (at least it should be cv18xx) and cv1800 in your 
-> binding.
-> 
+Qcom PCIe RC controllers are capable of generating the 'global' SPI interrupt
+to the host CPUs. The device driver can use this event to identify events such
+as PCIe link specific events, safety events etc...
 
-sg200x SoCs and cv18xx SoCs share the same mailbox IP, so I use 
-'cv18xx' in descriptions,
-while cv1800 having these three cores, sg200x and cv1812 have one more 
-Arm core. I use
-'cv1800-mailbox' in compatible because this driver only tested on 
-cv1800. What do you think
-is more appropriate to do?
+One such event is the PCIe Link up event generated when an endpoint is detected
+on the bus and the Link is 'up'. This event can be used to simulate the PCIe
+hotplug in the Qcom SoCs.
 
-I want to support the sg200x after vendor provides an example that can 
-enable linux on the
-Arm core. However, I haven't found a way to do this yet. Maybe I can do 
-this in next patch,
-update bindings, driver implemtation and add another compatible string 
-for sg200x?
+So add support for capturing the PCIe Link up event using the 'global' interrupt
+in the driver. Once the Link up event is received, the bus underneath the host
+bridge is scanned to enumerate PCIe endpoint devices, thus simulating hotplug.
 
->>  +properties:
->>  +  compatible:
->>  +    enum:
->>  +      - sophgo,cv1800-mailbox
->>  +
->>  +  reg:
->>  +    maxItems: 1
->>  +
->>  +  interrupts:
->>  +    maxItems: 1
->>  +
->>  +  interrupt-names:
->>  +    const: mailbox
-> 
-> I think this is not necessary, there is only one interrupt.
-> 
+This series also has some cleanups to the Qcom PCIe EP controller driver for
+interrupt handling.
 
-I will fix it
+Testing
+=======
 
->>  +
->>  +  "#mbox-cells":
->>  +    const: 2
->>  +    description:
->>  +      The first cell indicates which channel is used, the second 
->> cell indicates
->>  +      sending to which processor
->>  +
->>  +required:
->>  +  - compatible
->>  +  - reg
->>  +  - interrupts
->>  +  - "#mbox-cells"
->>  +
->>  +additionalProperties: false
->>  +
->>  +examples:
->>  +  - |
->>  +    #include <dt-bindings/interrupt-controller/irq.h>
->>  +
->>  +    mailbox: mailbox@1900000 {
->>  +        compatible = "sophgo,cv1800-mailbox";
->>  +        reg = <0x01900000 0x1000>;
->>  +        interrupts = <101 IRQ_TYPE_LEVEL_HIGH>;
->>  +        interrupt-names = "mailbox";
->>  +        interrupt-parent = <&plic>;
-> 
-> Remove "interrupt-parent".
+This series is tested on Qcom SM8450 based development board that has 2 SoCs
+connected over PCIe.
 
-I will fix it
+- Mani
 
-> 
->>  +        #mbox-cells = <2>;
->>  +    };
->>  --
->>  2.17.1
->> 
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+Changes in v2:
+- Added CONFIG_PCI_DOMAINS_GENERIC guard for domain_nr
+- Switched to dev_WARN_ONCE() for unhandled interrupts
+- Squashed the 'linux,pci-domain' bindings patches into one
+- Link to v1: https://lore.kernel.org/r/20240715-pci-qcom-hotplug-v1-0-5f3765cc873a@linaro.org
+
+---
+Manivannan Sadhasivam (13):
+      PCI: qcom-ep: Drop the redundant masking of global IRQ events
+      PCI: qcom-ep: Reword the error message for receiving unknown global IRQ event
+      dt-bindings: PCI: pci-ep: Update Maintainers
+      dt-bindings: PCI: pci-ep: Document 'linux,pci-domain' property
+      PCI: endpoint: Assign PCI domain number for endpoint controllers
+      PCI: qcom-ep: Modify 'global_irq' and 'perst_irq' IRQ device names
+      ARM: dts: qcom: sdx55: Add 'linux,pci-domain' to PCIe EP controller node
+      ARM: dts: qcom: sdx65: Add 'linux,pci-domain' to PCIe EP controller node
+      arm64: dts: qcom: sa8775p: Add 'linux,pci-domain' to PCIe EP controller nodes
+      dt-bindings: PCI: qcom: Add 'global' interrupt
+      dt-bindings: PCI: qcom,pcie-sm8450: Add 'global' interrupt
+      PCI: qcom: Simulate PCIe hotplug using 'global' interrupt
+      arm64: dts: qcom: sm8450: Add 'global' interrupt to the PCIe RC node
+
+ Documentation/devicetree/bindings/pci/pci-ep.yaml  | 14 +++++-
+ .../devicetree/bindings/pci/qcom,pcie-common.yaml  |  4 +-
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml      |  1 +
+ .../devicetree/bindings/pci/qcom,pcie-sm8450.yaml  | 10 ++--
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi             |  1 +
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi             |  1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              |  2 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 12 +++--
+ drivers/pci/controller/dwc/pcie-qcom-ep.c          | 21 +++++++--
+ drivers/pci/controller/dwc/pcie-qcom.c             | 55 +++++++++++++++++++++-
+ drivers/pci/endpoint/pci-epc-core.c                | 10 ++++
+ include/linux/pci-epc.h                            |  2 +
+ 12 files changed, 116 insertions(+), 17 deletions(-)
+---
+base-commit: 91e3b24eb7d297d9d99030800ed96944b8652eaf
+change-id: 20240715-pci-qcom-hotplug-bcde1c13d91f
+
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
 
 
