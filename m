@@ -1,182 +1,97 @@
-Return-Path: <devicetree+bounces-86471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60EA49343E5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 23:29:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC1A934404
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 23:36:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF23D1F22719
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 21:29:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD3FC1C21A84
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 21:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121F5188CD8;
-	Wed, 17 Jul 2024 21:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777A4185E60;
+	Wed, 17 Jul 2024 21:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4cFos4V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PJUzvAH/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC69185E60;
-	Wed, 17 Jul 2024 21:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D657C4688;
+	Wed, 17 Jul 2024 21:36:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721251743; cv=none; b=KTPbW7p13X6wTSpOaChLSh/fcNaHytyIMfs2dl3LjUVFz7yvF77MaOlcKelGHOT1LkuChRM2rWxVt/ugUr1GIrfzMb7NdU57GtuhKKr1VYURWSwHuzGMiQfpjUoaJZlXpsXnoWh8Oxz/SYIjBbAGCgSR3+pIVa6h0A6zD/g3QFc=
+	t=1721252190; cv=none; b=tslzKC09W8qwktBuM7yYNzG0LyrtupK5NXKW6k0XsChIc+Q0G5CskD7Snqyy0vmS07sD32NwwjidzxTp/oK00qRb1bUEMUh8P1S0PdmJp1jJgSxwDv+ETCkrcvaBhRUMKXNU3sN+l10iQC8AoDfTYzONlmZ1+Vrns60vDOPqhWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721251743; c=relaxed/simple;
-	bh=tZdbzZAllKFHS+uGPe7keBWufqKl9nQ0WYp7kK5MWzM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VHO1HYX3TEhNQnRqKqWn+r/prSR4qriATk/x3vWh3nIzoPAdFadmGtlRixIAxBXNMjM+Q3naWAJ2T5rfRmVEyLujbKlhZqn1HI8WodfmKZgn/STcs6ziGk+puYOB/Vr6neU0TRVytSS9aypbqicXAWLw83qJ2QnGq0wD4qBBbSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4cFos4V; arc=none smtp.client-ip=209.85.208.173
+	s=arc-20240116; t=1721252190; c=relaxed/simple;
+	bh=6nQ1cNwZsUWdVdIzNLMx9HvD8PcLR/VrrWA/4HYZEYk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=GkrNePwp54Bvw7KOxkJ3RNC36MHX1NvPANGSf8lhc+vvGVUfYhBMJwlzh906uv7YYaL7SwORszUbUNZLK4MDIKlq02zX3lFGZaT5a/lJuyTwGjSXW2jD+61MxMRnJ37IgXKJ0cI0v3BS4I9uMPaINb70sxJesFobiOVeGR1cFfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PJUzvAH/; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2eee1384e0aso2221651fa.1;
-        Wed, 17 Jul 2024 14:29:00 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-427b4c621b9so920355e9.1;
+        Wed, 17 Jul 2024 14:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721251739; x=1721856539; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fc29YR0MLavAb8gDvKJJKOxIauGbyGNvRrfyjZ4hmXI=;
-        b=Y4cFos4V1OEf7p47eztrqcAXeC3WcXk+ffCbyae5slIkDH09ynuadCvH89cyLmnU1h
-         YWHYyjFWB8dNC4peUATnQmv9HPeiAlIqqSZNWv7vuVRP748TYn0Gr8cOe025xQ8ScvGj
-         98hJqc5M6/rMh/rPtw+bZQgOIgcgLK6qIW84bXBkZNMp+2SMUUrdmt+PgGY8I/WDkBo9
-         xxueJQ6x0+4AzF1IFb7ElCPuFN+wbI3852BaK4jhHgQN4YH+JwESalLrY61OH1uxxhNc
-         xWBoaK/b689qHaHoz2ZXZdW6gW0JamcRAJTz2IYFNxjz5CDoO27jRfvryWRW/3+IAedR
-         hMqw==
+        d=gmail.com; s=20230601; t=1721252187; x=1721856987; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6nQ1cNwZsUWdVdIzNLMx9HvD8PcLR/VrrWA/4HYZEYk=;
+        b=PJUzvAH/DcznKQGMI69WUCurhBEbZeJueXzCDzAmsEqn+fxx4ExFwmWSV/XPk2xJ/G
+         uZSJ0jiqHYHXJJAQARKWpJ2mQPogNBDRQr4q+94Gt2ZUhfrjQ04nLx7dteQ1wDpDp4C0
+         zgw6dSSiTyTbSu857/JuM0M4gkp1CJkdj2LM5XZmi+h7AuXTL3E7h9jNVCdav5WWeLM7
+         pSLNiQ7Ayh+GjOF827VTGVRH2qG7CN+TtOo5VFzYtRA2dskRmuMyKnqQsar+PMgfvEXA
+         rPrV61xyYrPd3Z0+88TbDTNQh55sFEuzzYUWN1l5xqusi7s5U8HFkqHUCvvlDmFgMZIY
+         mKww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721251739; x=1721856539;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fc29YR0MLavAb8gDvKJJKOxIauGbyGNvRrfyjZ4hmXI=;
-        b=HqDsjbhetw5q/yBSu+N57pwbpOkFHsAEiLFcB0WWyC+Tc7cJ/sqANsNSKJ8WqMwCpo
-         I9yOYQZy2eDyhr5HZB0Rs1QNIQTuh70CFcuGw3dmH209/xelS6N9QLxjyXDknUyMR0tE
-         70VzIeFjWGP05XzdWLzOAODf5ZAXdhjYb7ETbNsT1hRcjpaiwiPKxDI+329zY3x4w9bV
-         fKDL746JTvE1Qnb0A1JZim0c8c532CmJS8IkyWYVWPisVrcLTPvga5pzowCbv4y0HJBH
-         /6liT/z84vH76tAMo6r+7r5aPxPiowwC6VNCzR15mdF4lpOhC7UB1990lKOnrjAA4UYD
-         nFaA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+YJh1vfqOTXbEIukx2JyrdL5JKgg/GSDZn71Sx1SrSw56mH3JSOcqWWh/ds7+guiIVabVw0fzVK+OyLHJL9yaOv8naSl6vb2Za2Ps4z488u2xSu9uscTQn87fZb85GAvL/9cBk28obw==
-X-Gm-Message-State: AOJu0YwC9/0yZfdGkAW2gmeofN2U8kGwj76fR2BPH4u89iTtZw3t/Sw1
-	vHLcHjPivcBbPf5H8RWoAwFi6ujLXPN+bFvGMdHDZvLs5hdoBuLf2L3qWJPe
-X-Google-Smtp-Source: AGHT+IEWeL4oJBrjTRu/BEp4+ibBQJr6iOFZvDrpOaq/euB6dt6YEBehpmxyuVTdEK3rW4H8dBU3UA==
-X-Received: by 2002:a2e:9dc3:0:b0:2ee:8db7:47b7 with SMTP id 38308e7fff4ca-2ef05c990admr3884601fa.26.1721251738708;
-        Wed, 17 Jul 2024 14:28:58 -0700 (PDT)
-Received: from WBEC325.dom.lan ([185.188.71.122])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b24a76f02sm7529198a12.2.2024.07.17.14.28.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jul 2024 14:28:58 -0700 (PDT)
-From: Pawel Dembicki <paweldembicki@gmail.com>
-To: netdev@vger.kernel.org
-Cc: Pawel Dembicki <paweldembicki@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v2 2/2] dt-bindings: net: dsa: vsc73xx: add {rx,tx}-internal-delay-ps
-Date: Wed, 17 Jul 2024 23:27:33 +0200
-Message-Id: <20240717212732.1775267-2-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240717212732.1775267-1-paweldembicki@gmail.com>
-References: <20240717212732.1775267-1-paweldembicki@gmail.com>
+        d=1e100.net; s=20230601; t=1721252187; x=1721856987;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6nQ1cNwZsUWdVdIzNLMx9HvD8PcLR/VrrWA/4HYZEYk=;
+        b=ViT69ZK2eZb9tNxcRaXZY0IvK/MXw2m5bWTrR177xAXoEtrtd8O8RV25rvgLb5qnAB
+         YBAB3Rc2hFFlofyXJnye9EWLn6vENXeVvkzv1pFKgt/zZthxF0j73yqEusKYAFrM3xaF
+         yArf2EpOF1f+98xBlbNHOa46lUi1hBv1XKLIcOHBbPQqfwv1nl1qYnyhhcRlK/evJGJ0
+         QzgsE/3OIN7ZPsZcWg1dI2fqjyu0UrchsVUSTAbdsA3PlStB3JvgCdiOQZKJRYDVcHHi
+         zpnT7NUt/OD5+cafulmU8KkkxoSkRMu5KS6hcbmJbO0xEk0veljRswHcCGL9ORrNNmqp
+         BTAA==
+X-Forwarded-Encrypted: i=1; AJvYcCUryce2s+DuF2CpeS56Xd+5HbNNvCnGFx9EZTu9JfLoKU43vWOwtY+WTn5tNo9UseLx4eyGkMck/juVDvZrb9FCIru5XF5/UgexQYlQegt4MJHLQKLLV3qXPOGx17pxhCKpVGjjL6jnA+g6rb0AKFreu8MAUAs4IuojKK3g9rB/V8+KIw==
+X-Gm-Message-State: AOJu0YwN+OA2y8NMQGY4yBIGU2QOMziZNYExAJ+XaOzI/49uI1ebyRrg
+	EUN2sYvEDqBtZcXIMfJppf55kQCjwhi2cIrwIjTc8uXSsbRrsXBh
+X-Google-Smtp-Source: AGHT+IFu2j+EI7GNZzkEvhjxMxSqj6CxnoSfkyt5uDS+NYKlKsmFFZHxzwhiF9Utib4aIbnvJmEgeQ==
+X-Received: by 2002:adf:fa03:0:b0:367:963b:ab81 with SMTP id ffacd0b85a97d-3683175d0b8mr2030393f8f.46.1721252187105;
+        Wed, 17 Jul 2024 14:36:27 -0700 (PDT)
+Received: from [192.168.175.190] ([5.14.159.17])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dab3cbbsm12556663f8f.17.2024.07.17.14.36.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jul 2024 14:36:26 -0700 (PDT)
+Message-ID: <f124064c-b9cf-4460-b4c2-f918b591a31f@gmail.com>
+Date: Thu, 18 Jul 2024 00:36:23 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/4] iio: adc: adc7192: Improvements
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+To: Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Michael Hennerich <michael.hennerich@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
+ <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexandru Ardelean <aardelean@baylibre.com>
+References: <20240717212535.8348-1-alisa.roman@analog.com>
+Content-Language: en-US
+In-Reply-To: <20240717212535.8348-1-alisa.roman@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add a schema validator to vitesse,vsc73xx.yaml for MAC-level RGMII delays
-in the CPU port. Additionally, valid values for VSC73XX were defined,
-and a common definition for the RX and TX valid range was created.
-
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
-
----
-v2:
-  - added info about default value when the rx/tx delay property
-    is missing
----
- .../bindings/net/dsa/vitesse,vsc73xx.yaml     | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-index b99d7a694b70..7022a6afde5c 100644
---- a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-@@ -52,6 +52,25 @@ properties:
- allOf:
-   - $ref: dsa.yaml#/$defs/ethernet-ports
- 
-+patternProperties:
-+  "^(ethernet-)?ports$":
-+    additionalProperties: true
-+    patternProperties:
-+      "^(ethernet-)?port@6$":
-+        allOf:
-+          - if:
-+              properties:
-+                phy-mode:
-+                  contains:
-+                    enum:
-+                      - rgmii
-+            then:
-+              properties:
-+                rx-internal-delay-ps:
-+                  $ref: "#/$defs/internal-delay-ps"
-+                tx-internal-delay-ps:
-+                  $ref: "#/$defs/internal-delay-ps"
-+
- # This checks if reg is a chipselect so the device is on an SPI
- # bus, the if-clause will fail if reg is a tuple such as for a
- # platform device.
-@@ -67,6 +86,16 @@ required:
-   - compatible
-   - reg
- 
-+$defs:
-+  internal-delay-ps:
-+    description:
-+      Disable tunable delay lines using 0 ps, or enable them and select
-+      the phase between 1400 ps and 2000 ps in increments of 300 ps.
-+      When the property is missing, the delay value is set to 2000 ps
-+      by default.
-+    enum:
-+      [0, 1400, 1700, 2000]
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -108,6 +137,8 @@ examples:
-             reg = <6>;
-             ethernet = <&gmac1>;
-             phy-mode = "rgmii";
-+            rx-internal-delay-ps = <0>;
-+            tx-internal-delay-ps = <0>;
-             fixed-link {
-               speed = <1000>;
-               full-duplex;
-@@ -150,6 +181,8 @@ examples:
-           ethernet-port@6 {
-             reg = <6>;
-             ethernet = <&enet0>;
-+            rx-internal-delay-ps = <0>;
-+            tx-internal-delay-ps = <0>;
-             phy-mode = "rgmii";
-             fixed-link {
-               speed = <1000>;
--- 
-2.34.1
+cc: Alexandru Ardelean <aardelean@baylibre.com>
 
 
