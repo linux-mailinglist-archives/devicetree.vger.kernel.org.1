@@ -1,144 +1,128 @@
-Return-Path: <devicetree+bounces-86348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39591933AF6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:12:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CEA933B0D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:18:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63D361F21754
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 10:12:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA9E81C21744
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 10:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B6414A61B;
-	Wed, 17 Jul 2024 10:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uvLs/If5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8E1335A7;
+	Wed, 17 Jul 2024 10:18:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A10A5FBBA
-	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 10:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF17114A61B;
+	Wed, 17 Jul 2024 10:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721211139; cv=none; b=Q/979VWT/XTM7yd5c1NP35wEFRQMYquP+5qp+Rh9fJpeHstFWhBHLKKjqYAqvpBmWivsT5pq+9/B99E13VB1XOhCg76CmJlCMDAsy4cXKYo+K4zS0JqWY/SxI6tsti7rr2RgO6mL9wK1kgfy94Xfr8P6vLODo4rimiiaotriG2M=
+	t=1721211508; cv=none; b=HS47QLg86CBaUe1VtPUdYi6ApdxAXWIrqPjOOud0Rkwh14X5eY1N+UsOJOBzt8/aV0uQA3PPHfSTXmfW7fg/nL6csYvotpqKiSIl6JMR9V5n0sGkjFQCDyKNsCccww/dD4+DKuWxywGFk7BKo/EnNKDJS3DSU3o6TnszU7RRpV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721211139; c=relaxed/simple;
-	bh=+zhFi1Don8ii4Gugp268OJkuD4CFngXRF46lzJVIwV0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OWCokXup00Hs1A+3tEYMGEaWCJ2dHQFn3gMUCLb+IiPt2+RxtnoqqBd9X9i8/lVb9I4/tt3jKbTx86iySJWYCN14rcmgMIFxYRx0vpweretaWbRbfvAiyiL00tuf25jsXp1Z21OLQuFHUeTXax48cahE45rzHdqKC9CekZ5vf+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uvLs/If5; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-58b0dddab63so9807712a12.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 03:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721211135; x=1721815935; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=eGm3FeokUWIOIUtopwWGWZKooK3DZEJFATyKucI6ucU=;
-        b=uvLs/If5S6yxzFZdWKHHZ5dpFr0LoYgJru9K8c5dRNcfCCcFBrHyHflURAyBFwZEEs
-         xe2hciZS4MJkTF4Fuhb4dyeLrcvFanUAxxlSBtXS/DR/WyZ/d+Q7yJTE/WoH/5iMV1mA
-         BGhT4W4qlqJZiQrHSUhge4XPKtKlHm6P9sYCLHhYAVv4+IoyrjSNrC8rQXd4bdMfanWR
-         CVgmyaITlSrDaQJXlMqF5o5shacSD0i5z4cfjRrZjIcwHxR6ye+7UDg8ak26BR8CAda1
-         H0aOfcmwBimOIM6MArpvyptz1TJoJZZkLe0i+u6UoH5bAKrfD4vSr3ULgu2nT0hHF0OQ
-         YNMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721211135; x=1721815935;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eGm3FeokUWIOIUtopwWGWZKooK3DZEJFATyKucI6ucU=;
-        b=oUg+gz7tRHfmwnudrdn0AfgW1S5dcEGHQK4ZqqBP3lqF6zFhi3z9sJxYCQ6p+kvsrO
-         YUqtA9zG2Ud1hROxei1Tsow2rGuirBCB4NPi3UFknT3f95IoO8OXGJm7qN/8nWqJVZxX
-         W021oRa+iMgeKsok2ZtoxPvJl2924xoxVXdeOKBZF8RTMkordKjoaYF9MFUYfvS6ONFM
-         acz6rY0zPHuT0ciCUbWbTnjHl4hhVVd0vr+fK+YKK6r+/cekTrouvl7rVOqSaITJysmG
-         +sJSDOilh4kQY+k04XPpg0p8BCjPEnoI0o+s5tmWZJW88od5e8hOznkWZt5QaxV+17r4
-         UvSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgP4uzqnVHGxqlp6DhRHqavdVG9dwVYByOpcT8JgfHIB849twYXqvFEfE9K6uVVoiPW6B8trHxS3rrx+/P5zN2BTeNUW+1/8K+yg==
-X-Gm-Message-State: AOJu0YyTAD1q7Xa6FX58lH//zT+7uiOKH6+ALK9Xd6hM5zkHTk2njiI5
-	hw240DAo46uWY8dni2CBmAun2RgD1ThXdvvkYrluaxBpr3am7eCytDDEKtrtqas=
-X-Google-Smtp-Source: AGHT+IHsryZu9IU2sHmq+IUn6qeZc6VMYpoTOyefskGIYKTHzTAYOg3LrD0Gk7D+bbzPb6EYf7v/WQ==
-X-Received: by 2002:a05:6402:5205:b0:58c:ea9e:2194 with SMTP id 4fb4d7f45d1cf-5a05d0f02c8mr1126575a12.32.1721211135170;
-        Wed, 17 Jul 2024 03:12:15 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59b26f61fbfsm6622510a12.81.2024.07.17.03.12.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 03:12:14 -0700 (PDT)
-Message-ID: <e47883df-7464-4194-bc6c-7399dcea7466@linaro.org>
-Date: Wed, 17 Jul 2024 12:12:12 +0200
+	s=arc-20240116; t=1721211508; c=relaxed/simple;
+	bh=UXQ+/dLLvHe5K0edkzLL8yMcOsAqy8P4gh1aXFyY9PE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KBABHUQmIJYBRrAS7RLVilhUSTc/iQltR63JtKgz894d7BJD2yUZAQPzhJuHTgOLMbqDEjTrXxpUpS1U/z9vJEgoZ++vYkpZkmJ2Oyz6Qhj0WryHOrx4mPAMm72p8dUEC1CNPJYWG9AdhnmZrSxTZhc1HICEyd7GOVed/YKj7uQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e860d09.versanet.de ([94.134.13.9] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sU1je-0006py-5K; Wed, 17 Jul 2024 12:18:10 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+ Otavio Salvador <otavio@ossystems.com.br>
+Cc: conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+ Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ imx@lists.linux.dev, loongarch@lists.linux.dev
+Subject:
+ Re: [PATCH v1 2/4] ARM: dts: rockchip: remove unlikly-to-exist DAC from
+ elgin-r1
+Date: Wed, 17 Jul 2024 12:18:08 +0200
+Message-ID: <3870188.FjKLVJYuhi@diego>
+In-Reply-To: <20240717-parrot-malt-83cc04bf6b36@spud>
+References:
+ <20240717-anvil-ashy-544e80a1317c@spud>
+ <20240717-parrot-malt-83cc04bf6b36@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] clk: qcom: fold dispcc-sm8650 info dispcc-sm8550
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240717-dispcc-sm8550-fixes-v2-0-5c4a3128c40b@linaro.org>
- <20240717-dispcc-sm8550-fixes-v2-6-5c4a3128c40b@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240717-dispcc-sm8550-fixes-v2-6-5c4a3128c40b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 17.07.2024 12:04 PM, Dmitry Baryshkov wrote:
-> There is a very minor difference between display clock controller
-> drivers for SM8550 and SM8650 platforms. Fold the second one into the
-> first one to reduce kernel footprint. The bindings for these two
-> hardware blocks are fully compatible.
+adding Otavio,
+
+Am Mittwoch, 17. Juli 2024, 11:37:54 CEST schrieb Conor Dooley:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> The Rohm dh2228fv (really the bh2228fv, the compatible in the kernel has
+> a typo) does not support frequencies above 10 MHz, nor per the
+> datasheet appear to use either CPOL or CPHA. I suspect that this
+> devicetree is abusing the compatible in order to bind the spidev driver
+> in Linux. Pretending to have devices on a board for this purpose is not
+> acceptable, so remove it.
+
+Reasoning is sound, so I'll pick this up after the merge window.
+
+
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
+> I could not find any documentation for this board online, and it does
+> not blatantly say that the device is a "spidev" like other [ab]users, so
+> it is possible there's actually a DAC here - but I doubt it is a
+> bh2228fv given the other incompatibilities.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Otavio, as the original submitter of the Elgin R1 [0], do you happen
+to know what type of device this is? Especially as there really do not
+seem to be any schematics around for that board.
 
-Konrad
+
+Heiko
+
+
+
+[0] https://patchwork.kernel.org/project/linux-rockchip/patch/20190104014023.17973-4-otavio@ossystems.com.br/
+
+> ---
+>  arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts | 8 --------
+>  1 file changed, 8 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts b/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
+> index 2d9994379eb2..9df1cef406c5 100644
+> --- a/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
+> +++ b/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
+> @@ -167,14 +167,6 @@ &spi {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&spim1_clk &spim1_cs0 &spim1_tx &spim1_rx>;
+>  	status = "okay";
+> -
+> -	dh2228fv: dac@0 {
+> -		compatible = "rohm,dh2228fv";
+> -		reg = <0>;
+> -		spi-max-frequency = <24000000>;
+> -		spi-cpha;
+> -		spi-cpol;
+> -	};
+>  };
+>  
+>  &u2phy {
+> 
+
+
+
+
 
