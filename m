@@ -1,284 +1,157 @@
-Return-Path: <devicetree+bounces-86277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C6C93379B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:10:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABE909337B8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:21:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2831D2840F3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 07:10:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A1EBB20E16
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 07:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF1218EAB;
-	Wed, 17 Jul 2024 07:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ldKfg3wN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D411802E;
+	Wed, 17 Jul 2024 07:21:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58CE14267;
-	Wed, 17 Jul 2024 07:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84EBB64C
+	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 07:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721200235; cv=none; b=KOpiUiAgAUTRwNLXDpAgre9eEE/lKEA2jNn3KRQY+Yrl7ToXtVECRb+u7HBexSMWrAPFNq3Wf+m0+iyCqpT4Nn+jkgMD5rlojPycwzgbpqqRZDS2FD9UrwiXoVAfMywEodm2PVShx8RLjh6pynViTZr9CM1/7fohFboSGGjLxKw=
+	t=1721200893; cv=none; b=VH+nhadQEQtt2v9k2zHAdhLWu3fXDFn8FtE1sNQfjVsgfTtwsMAFU0YUa37XJD4lQvr8b75lgRRrRvQIEuT6tf6Rhe+/ENyhB4UfJ1sqNQz20qouAC6sGgttZXOoyXT+YXtKQc1jA6abgFXPMwV51S/zwFRrHyeOJjkzg6pxPEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721200235; c=relaxed/simple;
-	bh=pbB84E+DJFZ7Rqz4bRF7r+sShLSkf9DDLjHCtgiQTlQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gUywVupsCK0cCln3QIxo3r3j//hnIc3bgZr/gNm8ca6PJzwxp8yoi22E1EPtrsPcsUV0hgi+AcqGKPZ2ibUn3lgkbJsA8kWWSY6MYx/Gu/IE54zqQaGc3DB2LN3USlOMPto90XLwBsxxrzlUJybfu8aHAloVrGle+OqZPW/s+IY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ldKfg3wN; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3c9cc681e4fso3554042b6e.0;
-        Wed, 17 Jul 2024 00:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721200233; x=1721805033; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LzFXhN/4zexpSGV6jXmNmwyuYw2EujDfcH8DxGXktmk=;
-        b=ldKfg3wN63owKo/iyntPxxflZ/gNfgLcvPocK4EhquJX21Bcw5ziX97OS2uyiGHJEO
-         L0NFFVK92iLpCFBJx3vTxSmLaGnpkznwW8H9j4rY14EO94fj2y0qlDPbclwH9rJn3qpI
-         QbDEYZoXL2Rm1ArG5X2ko4pdIXXfcq9rmV11zAfgI2ENXG8dGoKrl7EqmxBZUAS7t2Na
-         M6lQZMBR5oYIl7ZMgEKSV7sLZT/dg6XhpU33STtFk99LWUSr75QNZeC2sdYSmoNyamll
-         7wq7OTPEogdNDFNK7c0fFYdeS/vqMtee9sJRwgACKUsKdcdc92MT2rdjayo7LQ0Lpewc
-         t5KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721200233; x=1721805033;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LzFXhN/4zexpSGV6jXmNmwyuYw2EujDfcH8DxGXktmk=;
-        b=l8ZfuV8QwaBTR/FlnDHEauIcmXLXxXIhQ4bRCbib80g7XGBKg4rvR+yUa1TgCtiw3V
-         RgV70+y8/iZzWZRARMY/QS9CE9SWwXuGypg0pELtNFlcf/XIuUsvbsrgUa54N1BFZXJ1
-         dI1GgPHCTxGRDTiAdX+SOD1q7UVqcNHTVm+1Di5IiBzKmxD9VHXwmH1ZEqAp3Oe6HAoC
-         2vL7F3J5ypNfUvPhnQxwioxvjw0ZXtnEjh2NoFQrgh87j+GBG//SwvVSOSJjxup3cLp+
-         mI6RG2Y8AEbqkcEhTD4AfpTd9RmKG9lfIs9Y5CEopr7yJsFt/nuEssW/3Ty2sFKofkIA
-         AhvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJPkubyE7A4X6/rPm7ru5TyxKpq23nSZjIIIaTqT1OfQjYobCeuMw6e0YSQGPFWermMDUznVcFW8sTX/U0tgdtUXed1Y2lKOtsMWY+taSUSZUyWDjrhWag4g8byf2GjYVT4fyj87OVRttJo5YnsaPZBsC0mqM12/X16qb3CxNBJmvmwYa4
-X-Gm-Message-State: AOJu0YyhP97hpxHYVqlGG3qQ0CJyeJLizr/PgbgbDzdM32DpLagWoVYT
-	o16BEaqpHLjzeAZ8+jeDDLVhrQwgAQmIgLXInlTBoDrKR/rx2qPE
-X-Google-Smtp-Source: AGHT+IHYHLNiQMYFfPuy8h3AbJt+F+ROLpfldNCC0RiWPWi7h5zs8pqh7AbWsxlPdKaSWx4l2J3quA==
-X-Received: by 2002:a05:6871:5228:b0:259:cdf1:b8af with SMTP id 586e51a60fabf-260d9504d67mr653256fac.46.1721200232596;
-        Wed, 17 Jul 2024 00:10:32 -0700 (PDT)
-Received: from fedora.. ([2409:40f4:a8:bf06:b8b7:aa61:3ed2:c8f4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7eb9c856sm7520236b3a.4.2024.07.17.00.10.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jul 2024 00:10:32 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
-Date: Wed, 17 Jul 2024 12:40:08 +0530
-Message-ID: <20240717071012.114786-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1721200893; c=relaxed/simple;
+	bh=7dyhTQjy+22B7GIQfMe+2jE4/DTU5dL5I/JauqWJc+Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o/sBgr+JX4AyvL2UxDa5CbUWaAJg3EdaacPjYGHNbDc9xf2BQacnFYRN7i/QpIPmQDKyyHq1iFmSKAUPeBsn/T5YHA+VEO4STjFoJX8tD8OJaGkuopZnAckqBetm45kdI3ImrVzCPX7H3gnHCYhweepoZh/kd1VJckogrunUiuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sTyyQ-0006wr-Ga; Wed, 17 Jul 2024 09:21:14 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sTyyO-000A17-Cx; Wed, 17 Jul 2024 09:21:12 +0200
+Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 524B830595B;
+	Wed, 17 Jul 2024 07:20:46 +0000 (UTC)
+Date: Wed, 17 Jul 2024 09:20:45 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Bough Chen <haibo.chen@nxp.com>
+Cc: Frank Li <frank.li@nxp.com>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, Han Xu <han.xu@nxp.com>
+Subject: Re: RE: [PATCH v2 4/4] can: flexcan: add wakeup support for imx95
+Message-ID: <20240717-porpoise-of-imminent-inspiration-ef2fc6-mkl@pengutronix.de>
+References: <20240715-flexcan-v2-0-2873014c595a@nxp.com>
+ <20240715-flexcan-v2-4-2873014c595a@nxp.com>
+ <20240716-curious-scorpion-of-glory-8265aa-mkl@pengutronix.de>
+ <ZpaF4Wc70VuV4Cti@lizhi-Precision-Tower-5810>
+ <20240716-chowchow-of-massive-joviality-77e833-mkl@pengutronix.de>
+ <DU0PR04MB9496C653249E66016A43F97790A32@DU0PR04MB9496.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lyoxbz5qrcbtajuw"
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB9496C653249E66016A43F97790A32@DU0PR04MB9496.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Convert the PCM512x and TAS575x audio CODECs/amplifiers bindings to DT
-schema format. Add missing sound-dai-cells property.
 
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
----
- .../devicetree/bindings/sound/pcm512x.txt     |  53 ---------
- .../devicetree/bindings/sound/ti,pcm512x.yaml | 112 ++++++++++++++++++
- 2 files changed, 112 insertions(+), 53 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/pcm512x.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm512x.yaml
+--lyoxbz5qrcbtajuw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/sound/pcm512x.txt b/Documentation/devicetree/bindings/sound/pcm512x.txt
-deleted file mode 100644
-index 47878a6df608..000000000000
---- a/Documentation/devicetree/bindings/sound/pcm512x.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--PCM512x and TAS575x audio CODECs/amplifiers
--
--These devices support both I2C and SPI (configured with pin strapping
--on the board). The TAS575x devices only support I2C.
--
--Required properties:
--
--  - compatible : One of "ti,pcm5121", "ti,pcm5122", "ti,pcm5141",
--                 "ti,pcm5142", "ti,pcm5242", "ti,tas5754" or "ti,tas5756"
--
--  - reg : the I2C address of the device for I2C, the chip select
--          number for SPI.
--
--  - AVDD-supply, DVDD-supply, and CPVDD-supply : power supplies for the
--    device, as covered in bindings/regulator/regulator.txt
--
--Optional properties:
--
--  - clocks : A clock specifier for the clock connected as SCLK.  If this
--    is absent the device will be configured to clock from BCLK.  If pll-in
--    and pll-out are specified in addition to a clock, the device is
--    configured to accept clock input on a specified gpio pin.
--
--  - pll-in, pll-out : gpio pins used to connect the pll using <1>
--    through <6>.  The device will be configured for clock input on the
--    given pll-in pin and PLL output on the given pll-out pin.  An
--    external connection from the pll-out pin to the SCLK pin is assumed.
--    Caution: the TAS-desvices only support gpios 1,2 and 3
--
--Examples:
--
--	pcm5122: pcm5122@4c {
--		compatible = "ti,pcm5122";
--		reg = <0x4c>;
--
--		AVDD-supply = <&reg_3v3_analog>;
--		DVDD-supply = <&reg_1v8>;
--		CPVDD-supply = <&reg_3v3>;
--	};
--
--
--	pcm5142: pcm5142@4c {
--		compatible = "ti,pcm5142";
--		reg = <0x4c>;
--
--		AVDD-supply = <&reg_3v3_analog>;
--		DVDD-supply = <&reg_1v8>;
--		CPVDD-supply = <&reg_3v3>;
--
--		clocks = <&sck>;
--		pll-in = <3>;
--		pll-out = <6>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm512x.yaml b/Documentation/devicetree/bindings/sound/ti,pcm512x.yaml
-new file mode 100644
-index 000000000000..a8635477d23e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm512x.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm512x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: PCM512x and TAS575x audio CODECs/amplifiers
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,pcm5121
-+      - ti,pcm5122
-+      - ti,pcm5141
-+      - ti,pcm5142
-+      - ti,pcm5242
-+      - ti,tas5754
-+      - ti,tas5756
-+
-+  reg:
-+    maxItems: 1
-+
-+  AVDD-supply: true
-+
-+  DVDD-supply: true
-+
-+  CPVDD-supply: true
-+
-+  clocks:
-+    maxItems: 1
-+    description: A clock specifier for the clock connected as SCLK. If this is
-+      absent the device will be configured to clock from BCLK. If pll-in and
-+      pll-out are specified in addition to a clock, the device is configured to
-+      accept clock input on a specified gpio pin.
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - AVDD-supply
-+  - DVDD-supply
-+  - CPVDD-supply
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ti,tas5754
-+          - ti,tas5756
-+
-+then:
-+  properties:
-+    pll-in:
-+      description: GPIO pin used to connect the pll using <1> through <3>. The
-+        device will be configured for clock input on the given pll-in pin.
-+      $ref: /schemas/types.yaml#/definitions/uint32
-+      minimum: 1
-+      maximum: 3
-+
-+    pll-out:
-+      description: GPIO pin used to connect the pll using <1> through <3>. The
-+        device will be configured for PLL output on the given pll-out pin.  An
-+        external connection from the pll-out pin to the SCLK pin is assumed.
-+      $ref: /schemas/types.yaml#/definitions/uint32
-+      minimum: 1
-+      maximum: 3
-+
-+else:
-+  properties:
-+    pll-in:
-+      description: GPIO pin used to connect the pll using <1> through <6>. The
-+      device will be configured for clock input on the given pll-in pin.
-+      $ref: /schemas/types.yaml#/definitions/uint32
-+      minimum: 1
-+      maximum: 6
-+
-+    pll-out:
-+      description: GPIO pin used to connect the pll using <1> through <6>. The
-+        device will be configured for PLL output on the given pll-out pin.  An
-+        external connection from the pll-out pin to the SCLK pin is assumed.
-+      $ref: /schemas/types.yaml#/definitions/uint32
-+      minimum: 1
-+      maximum: 6
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@4c {
-+            compatible = "ti,pcm5142";
-+            reg = <0x4c>;
-+            AVDD-supply = <&reg_3v3_analog>;
-+            DVDD-supply = <&reg_1v8>;
-+            CPVDD-supply = <&reg_3v3>;
-+            #sound-dai-cells = <0>;
-+            clocks = <&sck>;
-+            pll-in = <3>;
-+            pll-out = <6>;
-+        };
-+    };
--- 
-2.45.2
+On 17.07.2024 02:03:35, Bough Chen wrote:
+> > On 16.07.2024 10:40:31, Frank Li wrote:
+> > > > > @@ -2330,9 +2366,12 @@ static int __maybe_unused
+> > flexcan_noirq_resume(struct device *device)
+> > > > >  	if (netif_running(dev)) {
+> > > > >  		int err;
+> > > > >
+> > > > > -		err =3D pm_runtime_force_resume(device);
+> > > > > -		if (err)
+> > > > > -			return err;
+> > > > > +		if (!(device_may_wakeup(device) &&
+> > > >                       ^^^^^^^^^^^^^^^^^^^^^^^^
+> > > >
+> > > > Where does this come from?
+> > >
+> > > include/linux/pm_wakeup.h
+> > >
+> > > static inline bool device_may_wakeup(struct device *dev)
+> > > {
+> > >         return dev->power.can_wakeup && !!dev->power.wakeup;
+> > > }
+> >=20
+> > Sorry for the confusion. I wanted to point out, that the original drive=
+r doesn't
+> > have the check to device_may_wakeup(). Why was this added?
+>=20
+> Here add this to make sure for CAN with flag
+> FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI and really used as wakeup source,
+> do not need to call pm_runtime_force_resume(), keep it align with what
+> we do in flexcan_noirq_suspend.
 
+> As the comment in flexcan_noirq_suspend, CAN with flag
+> FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI, when used as wakeup source, need
+> to keep CAN clock on when system suspend, let ATF part logic works,
+> detail steps please refer to this patch commit log. Whether gate off
+> the CAN clock or not depends on the Hardware design. So for this case,
+> in flexcan_noirq_suspend, directly return0, do not call the
+> pm_runtime_force_suspend(), then in flexcan_noirq_resume(), use the
+> same logic to skip the pm_runtime_force_resume().
+
+Please change the control flow, so that flexcan_noirq_suspend() and
+flexcan_noirq_resume() look symmetrical.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--lyoxbz5qrcbtajuw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaXcMoACgkQKDiiPnot
+vG+oPQf/YPWUrvcT++JZ07FcseBQUWKsH7dE6a2zvUJix3NiJbujU/7ZWRis8Bhl
+CGbvtpAmEkpcNuKWucYwTYt2eB8y4d0h3qCHeSi1B6Jsg+SGccThY+3/WxfCmwUu
+pMcw4nfvza024LNjyeZLBtys3O81K/GIg3iJ2NULzgQNeKfM8oalPvoEhrMVHEVn
+J+GyKB4zCaZAGfbndeG7OBQleiFSTQ4oi7OEq8rr8lsnjcCfPYDKDfLZQIpFZtqa
+VRiFq7hTayk/qYyVsZhRf8089C4wsp6zhLDoe9Dweu/J8sQ03klMIOUvpKuRD5jC
+FbL9ybQfk28QbWIANcLZnko0sBa6RA==
+=3SL7
+-----END PGP SIGNATURE-----
+
+--lyoxbz5qrcbtajuw--
 
