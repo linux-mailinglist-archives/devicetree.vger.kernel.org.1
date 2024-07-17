@@ -1,226 +1,183 @@
-Return-Path: <devicetree+bounces-86386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48753933E03
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5B3933E44
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:20:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABA43B21F03
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:55:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6FE2B2104E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79652180A6F;
-	Wed, 17 Jul 2024 13:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EF71802CA;
+	Wed, 17 Jul 2024 14:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oHPuvcCt"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="R9BkCuK+";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="qy7CO/Wf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9609D1802DA
-	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 13:55:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB38F2D61B;
+	Wed, 17 Jul 2024 14:20:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721224543; cv=none; b=K+u6LHtZOLl7fkpvR5yTBuK5REYLXm7eoLRJhgtTTPSD5sT5TeXCirmLJ8YyCGhmhMZ0q0bdRqVmknW2jptNJbZaKdxD6EiddVZENl7WCIc3LO7w41+Nk7QC/K66MJFqDfDvfmBU6qvddmot/gVW7fn3/XMHYKhrZo6sPCrp+o4=
+	t=1721226027; cv=none; b=kUONse85Stt/2WcX6TdKYadFSrjYNVGgWUpLvz7w6WsY7PYRzEgIHrhN8n4Gu5Nl/9VvYwWFqyCg7NeLjv5GsQsRM5oGq96K/ZL3n/QGP8niKiOGJb+Q2IFab3oMkbudyrLH4Ec7++PIjdesX2FRUKZaynViCU0aE0tEHimadp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721224543; c=relaxed/simple;
-	bh=+gjrXwaLbg5dyM9XbloxcRlPhV5n8Y3acUiDKTctzWo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YH1Z1GWmSIEntusc1ihtVDUQIN+Ko7dL8AHBFt6UBFzVQwmbdDkyHTPDn5C7HYNhXH3FZV1zyaglgxqtD0C2YqND7DObBjae2M+5VlM9CqyvTJX+KvUsP/vaF3hp/+Aw+ltpARH2iDQQrHGO8xc8PxjZqKk1ZFrOV5oB0N7uiGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oHPuvcCt; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4272738eb9eso51327475e9.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 06:55:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721224540; x=1721829340; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y83H8RmAx7QVV9p+l8NUc1S/UNvUCiNXkhTxZU2ZpRc=;
-        b=oHPuvcCtvwEla13wL8dP7/hWMLoL7Ugk7pe5X/b8VOA4Kew0Ok5fplEew4W7Y4sAey
-         04REuvZBoIhngqowTlnR8zrbxaKud/oulKpDBaSUuhbmMeF7qq8Q+/44nD5686rPdpbY
-         dr//9TIdayy0hQV5RpmMUTgDJPAm8KwhbMuIcxujXZ82I+Xy8TRVMyHpybE0QSl32rr/
-         y/sg1y3kTy5NTSsyHzA6dA4d5Gy6ZKYqOEkxunvdSG21JQWl4AQ4rhoDUbFFsBI7TuOp
-         Gr6drk+Yz8JoPWHCga/Rzitel3MhZUIFsdpilJWF3rrlTKitPdHfxRtJHK9I2Rc7DBIU
-         bx0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721224540; x=1721829340;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y83H8RmAx7QVV9p+l8NUc1S/UNvUCiNXkhTxZU2ZpRc=;
-        b=m30XU8TPc+Ei2g5FivV39XUsv6T8U9gXT2jINx79cWgmaj5M03d0Lvrj1+wFXeNu01
-         hisQ4yzrLV7WiFX7kq4ogilpDoTF9NKiFxHs1ogzRpnBGgBYtaT0gr4lPMVInN4p5nH4
-         rxG0JEzIO277m4nuxdrbJUeVSJa7jCH4ex8WuV2qp6vMJeovTQxwPp91dv2dfpO7IBMH
-         0NN1f/DBVSgi2kT9Q1VLkchXNYIo0ZAA/GxthVg5LGH4c7bSKK1LLVmbHBlurz4JgMN8
-         F+u6/TUHnEAbnZuCE9uWYJCCCTZ3wnTloGc8wkzDnnsIlw5x4mXotRjAW/tNCiQxPWU0
-         Q1Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCXli7Y/wNq3VMlxuxFgzwIqKH3U/a2XrOWjlAd3XI7kcEEUhvOCRYHCnPq8JM+XnVrM9LWyNPZ30H4X6+etqPlaINeDGFnoP3LAYw==
-X-Gm-Message-State: AOJu0Yxu5mxvvzXP1HNNl3uMRKPm5tuXLeGnv17zTcL3w+M6D1PtsRsK
-	SRHuvf2/lTX8VJ5mp1eBAPelnp4i+KjiyBBXH9CPINjPLqP8uSOnm3AafHUFn5U=
-X-Google-Smtp-Source: AGHT+IEOn6Lwjz9UGc6Bd48U+gnMDgs3sLUKiAjRWOATS2nwM6Fo4EkCFno7qAwuBenAB7Azyt3kyQ==
-X-Received: by 2002:a05:600c:19c7:b0:426:61f6:2e38 with SMTP id 5b1f17b1804b1-427c2d0fc43mr12890225e9.35.1721224539936;
-        Wed, 17 Jul 2024 06:55:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427a5edb449sm172590745e9.35.2024.07.17.06.55.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 06:55:39 -0700 (PDT)
-Message-ID: <38be7954-5274-4c30-ab99-c076cfc5c563@linaro.org>
-Date: Wed, 17 Jul 2024 15:55:37 +0200
+	s=arc-20240116; t=1721226027; c=relaxed/simple;
+	bh=5nbCBW4oJ/ogJooKQCfqvSA1sAQdk3JiwN9/HrQmGuI=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=I6SZMQHxBC5p1Eooh8Pac5q9Cn5EqNKqBdDRK8KTd3dJu5C3fjz3yENxH8vhsk1k459GxFYtHhM/rYj05ww5h95OsixvCyDT5dztQFVoViA07/PeE01ZDw9cRdDPt5hd27soliEh5q8UyNhTtk0CBsRGXrmxwsGYts15p3KNuZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=R9BkCuK+; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=qy7CO/Wf; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id D7749114010F;
+	Wed, 17 Jul 2024 10:20:23 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute4.internal (MEProxy); Wed, 17 Jul 2024 10:20:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1721226023;
+	 x=1721312423; bh=5nbCBW4oJ/ogJooKQCfqvSA1sAQdk3JiwN9/HrQmGuI=; b=
+	R9BkCuK+4L4Yhj3OD+PedvswLbb/7Zkt+bFvvGNfk723OwEUliYLbrfqEyM3fDV9
+	N0W8+7CR4kwY7tv4VRh8FT5km9NZQ8LNGnSmj0PTUyv0yBsnTAN82OIsks7gtmZl
+	cebaAVLHeeDZ8TAv+13S4HrbVelLCKN3OD5OHui4I2xJzpqhu+rlKUrORDvoHJKB
+	hSUspxBvJAEidKIZpCCBgJOywHJqR145nO17Mt2GUIyTN69KY+WMDnFM0AMUHIMO
+	IPXuWxsV/ziPkG8lUWrI8nHywgLKXu103xICKh0jiBmVIkQRkarZ6UWx+BnbcmY2
+	4U2bflb/aiLUhig/vwWcTQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1721226023; x=
+	1721312423; bh=5nbCBW4oJ/ogJooKQCfqvSA1sAQdk3JiwN9/HrQmGuI=; b=q
+	y7CO/WfBsjp4/g8CZYUK+FXGkHu7vtx3keyVj1U+OF9ykGcNjrzDmGnpqQ5SDUvD
+	6jsm6Qhi2WxM0NoVO9SPsuOi1MDfV7Oq6GQNvHj7zOGb4lERi+SKffqObY7w+GEc
+	j6NiWyer6h6nYIhoEwLgVXoIQePRYC53jgggoIB/7vm2S/J0553KyygiTN51Ieft
+	dByOBG+nG5jCTvdJ6ZCJaYFVsoCrZEvJYJIAvmP67PKbn7FcBgvxYT5LSQv8uHUT
+	VkP4b+bwOUC8Dai2HltIZMmbUjsMoKnhn4o+pB6C01T2D5rxnmY73rEYOcC7QBZa
+	OTNz3UW8yOGQmN2bl106g==
+X-ME-Sender: <xms:JtOXZvGoX87VSPXAZB-G1U7qMIFXP3yiPHdlFgTrybljkWFf__-5Ig>
+    <xme:JtOXZsWQpdR0VcAhv3aq7_Ie3W1PzAI1xCzHQ0wGYUTpGBawRlizV1i4Sj4mjUuHY
+    N6jGODhy7Y5e2tR4_8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrgeeigdejudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedflfhi
+    rgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+    eqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefhjeeu
+    geevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
+    hilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:JtOXZhL6i40ovn7u1_v48LVlJCc1R8m3r1TdQ4IyscPC42xGn2PUDA>
+    <xmx:JtOXZtERwXDoFpjbCdvvfxcYUjTpo-UrL4IBco6jvJxyKwE4wqfuzw>
+    <xmx:JtOXZlUgJl-dfCMOEb244sBAj3Ko4f7PMlmQTwbdx87IfXIT77VOyg>
+    <xmx:JtOXZoO-iskq-pt_8s7U4VaYhavCWIwA6ifKthfHLOZ7fFXiKIrX5Q>
+    <xmx:J9OXZgN4qfO0mRFpyA0wkax7bM-iybfVAFsadqQAxknCeSs0EUj6Z-DK>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 8E52E36A0074; Wed, 17 Jul 2024 10:20:22 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo
- SG2042 support
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Chen Wang <unicornxw@gmail.com>, adrian.hunter@intel.com,
- aou@eecs.berkeley.edu, conor+dt@kernel.org, guoren@kernel.org,
- inochiama@outlook.com, jszhang@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
- tingzhu.wang@sophgo.com
-References: <cover.1718697954.git.unicorn_wang@outlook.com>
- <dcc060c3ada7a56eda02b586c16c47f0a0905c61.1718697954.git.unicorn_wang@outlook.com>
- <6e5ad808-f4ee-45c3-a1cc-009f2f1010b9@linaro.org>
- <MA0P287MB2822C4FB66C0CD31BED2E3B8FEA32@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <MA0P287MB2822C4FB66C0CD31BED2E3B8FEA32@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Message-Id: <84d2591b-4336-453f-bcb2-a7c47df0574c@app.fastmail.com>
+In-Reply-To: 
+ <CAAhV-H6aaAu=0eyEp8am8A+SSj53+CGp7DrCYCxkNZScBd74BQ@mail.gmail.com>
+References: <20240711-loongson1-dma-v9-0-5ce8b5e85a56@gmail.com>
+ <CAAhV-H5OOXguNTvywykyJk3_ydyDiSnpc-kvERRiYggBt441tw@mail.gmail.com>
+ <CAJhJPsXC-z+TS=qrXUT=iF_6-b5x-cr9EvcJNrmSL--RV6xVsQ@mail.gmail.com>
+ <CAAhV-H5Um5HhbmcB1Se=Qeh2OOAeP34BAx+sNtLKge_pePiuiQ@mail.gmail.com>
+ <b1a53515-068a-4f70-87a9-44b77d02d1d5@app.fastmail.com>
+ <CAAhV-H5cDiwAWBgXx8fBohZMocfup3rbe-XjDjEzsLAUB+1BUQ@mail.gmail.com>
+ <54d9edd5-377e-4d9a-956f-8f2ba49d4295@app.fastmail.com>
+ <CAAhV-H6aaAu=0eyEp8am8A+SSj53+CGp7DrCYCxkNZScBd74BQ@mail.gmail.com>
+Date: Wed, 17 Jul 2024 22:20:01 +0800
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Huacai Chen" <chenhuacai@kernel.org>
+Cc: "Kelvin Cheung" <keguang.zhang@gmail.com>,
+ "Vinod Koul" <vkoul@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "Conor Dooley" <conor.dooley@microchip.com>
+Subject: Re: [PATCH RESEND v9 0/2] Add support for Loongson1 APB DMA
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 17/07/2024 10:01, Chen Wang wrote:
-> 
-> On 2024/6/18 17:39, Krzysztof Kozlowski wrote:
->> On 18/06/2024 10:38, Chen Wang wrote:
->>> From: Chen Wang <unicorn_wang@outlook.com>
->>>
->>> SG2042 use Synopsys dwcnshc IP for SD/eMMC controllers.
->>>
->>> SG2042 defines 3 clocks for SD/eMMC controllers.
->>> - AXI_EMMC/AXI_SD for aclk/hclk(Bus interface clocks in DWC_mshc)
->>>    and blck(Core Base Clock in DWC_mshc), these 3 clocks share one
->>>    source, so reuse existing "core".
->>> - 100K_EMMC/100K_SD for cqetmclk(Timer clocks in DWC_mshc), so reuse
->>>    existing "timer" which was added for rockchip specified.
->>> - EMMC_100M/SD_100M for cclk(Card clocks in DWC_mshc), add new "card".
->>>
->>> Adding example for sg2042.
->>>
->>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
->>> ---
->>>   .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 69 +++++++++++++------
->>>   1 file changed, 49 insertions(+), 20 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
->>> index 4d3031d9965f..b53f20733f79 100644
->>> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
->>> @@ -21,6 +21,7 @@ properties:
->>>         - snps,dwcmshc-sdhci
->>>         - sophgo,cv1800b-dwcmshc
->>>         - sophgo,sg2002-dwcmshc
->>> +      - sophgo,sg2042-dwcmshc
->>>         - thead,th1520-dwcmshc
->>>   
->>>     reg:
->>> @@ -29,25 +30,6 @@ properties:
->>>     interrupts:
->>>       maxItems: 1
->>>   
->>> -  clocks:
->> Widest constraints stay here.
+
+
+=E5=9C=A82024=E5=B9=B47=E6=9C=8817=E6=97=A5=E4=B8=83=E6=9C=88 =E4=B8=8B=E5=
+=8D=889:06=EF=BC=8CHuacai Chen=E5=86=99=E9=81=93=EF=BC=9A
+> On Tue, Jul 16, 2024 at 9:12=E2=80=AFPM Jiaxun Yang <jiaxun.yang@flygo=
+at.com> wrote:
 >>
->>> -    minItems: 1
->>> -    items:
->>> -      - description: core clock
->>> -      - description: bus clock for optional
->>> -      - description: axi clock for rockchip specified
->>> -      - description: block clock for rockchip specified
->>> -      - description: timer clock for rockchip specified
->>> -
->>> -
->>> -  clock-names:
->>> -    minItems: 1
->> Widest constraints stay here.
-> 
-> hi, Krzysztof,
-> 
-> Please ask you a question about this widest constraints, I write 
-> bindings as below:
-> 
-> ```yaml
-> 
-> properties:
-> 
-> ......
-> 
->    clocks:
->      minItems: 1
-> 
->    clock-names:
->      minItems: 1
+>>
+>>
+>> =E5=9C=A82024=E5=B9=B47=E6=9C=8816=E6=97=A5=E4=B8=83=E6=9C=88 =E4=B8=8B=
+=E5=8D=885:40=EF=BC=8CHuacai Chen=E5=86=99=E9=81=93=EF=BC=9A
+>> > On Mon, Jul 15, 2024 at 3:00=E2=80=AFPM Jiaxun Yang <jiaxun.yang@fl=
+ygoat.com> wrote:
+>> >>
+>> >>
+>> >>
+>> >> =E5=9C=A82024=E5=B9=B47=E6=9C=8815=E6=97=A5=E4=B8=83=E6=9C=88 =E4=B8=
+=8B=E5=8D=882:39=EF=BC=8CHuacai Chen=E5=86=99=E9=81=93=EF=BC=9A
+>> >> [...]
+>> >> >
+>> >> >> You said that you've accepted my suggestion, which means you re=
+cognize
+>> >> >> 'loongson' as the better name for the drivers.
+>> >> > No, I don't think so, this is just a compromise to keep consiste=
+ncy.
+>> >>
+>> >> Folks, can we settle on this topic?
+>> >>
+>> >> Is this naming really important? As long as people can read actual=
+ chip name from
+>> >> kernel code & documents, I think both are acceptable.
+>> >>
+>> >> I suggest let this patch go as is. And if anyone want to unify the=
+ naming, they can
+>> >> propose a treewide patch.
+>> > Renaming still breaks config files.
+>>
+>> This is trival with treewide sed :-)
+> Please read the commit message of b8d3349803ba34afda429e87a837fd95a ca=
+refully.
 
-So 1000 clocks is correct? You can always look at helpful examples from
-my slides... or another example:
+We don't have 114 defconfigs don't we?
 
-https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
+Those symbols are not frequently specified by down stream users either.
 
-Best regards,
-Krzysztof
+I think Keguang had tried his best on resolving all reasonable comments.
 
+Naming is a matter of preference after all, I think we should give Kegua=
+ng some respect
+here.
+
+Thanks
+- Jiaxun
+
+>
+> Huacai
+>
+>>
+>> Thanks
+>> - Jiaxun
+>>
+>> --
+>> - Jiaxun
+
+--=20
+- Jiaxun
 
