@@ -1,153 +1,124 @@
-Return-Path: <devicetree+bounces-86368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D8B933CDA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:10:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15319933D2C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDEE81F22CE6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:10:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE5C1B227FA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE4317F51E;
-	Wed, 17 Jul 2024 12:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A584E18003B;
+	Wed, 17 Jul 2024 12:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XCdjPSVc"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="QEZmVU0i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031DA17F4FD;
-	Wed, 17 Jul 2024 12:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A6317FAC6;
+	Wed, 17 Jul 2024 12:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721218241; cv=none; b=XQRyk8d51vAAFjeeZTlRJW1ZL2o4TQIKMuNvA855BozF0Ih8jo6eeOL6FvkcexqGsEd41UK+6FeqYob1e7u8R/ev5txQGpuzwjKFSKSo1FL7iCakjCxTxmMNecC6TEUM2TOf/X9PxjuyJrful8cWk6+NvzWqCw+9bOY8gzyLekY=
+	t=1721220883; cv=none; b=lrrKHkmZrU6UArVkbbPBplKNlb3kXApSYgjLcdmddsTfYjOVURrjskkDN/eWLfT6Lkx0pe/7zZl4e7YVJDNEfTOh+hN9+CDozaiF8T/0q9oFqE9IAsEN1lKkpDkPJiYkTZSHdav5GJZPPTpFq7TODVYLPHX+LWjj6KJmc52SvHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721218241; c=relaxed/simple;
-	bh=NakRtaR8l4oC/yKMRTCX/JEsXfOYCsrtXoCCwLBdx0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mt9Gr/fGnQv4m4wzYlyugid+qI00TQXQy8W8JiufL2huEGOs0WG9V5tMrCdoXZkeR1G87teEI7fk+ot9BvJPfjFS8xyWq8VZ7vYbREeBjGVHWFBryr9JfiRDjJRQmcxtLWS8eQ/G5K0m06NyOr0ftaa2QyoIhP8upocbKCoO4Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XCdjPSVc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA82C32782;
-	Wed, 17 Jul 2024 12:10:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721218240;
-	bh=NakRtaR8l4oC/yKMRTCX/JEsXfOYCsrtXoCCwLBdx0M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XCdjPSVc5iz2pIoQD8FXRZUE1qChfZ7eWRccSUu6ahjGLTD0DvL+a+EooNnB9cgnG
-	 oqQa+WJqOeX7I9J4Rh94D9J10Td8LKEj7SQlPp3QcvGRGghy8hyrM3ui8U8E6Z6ctX
-	 D8HDAij8coUOwoQ5HWd0I5xf8ABj4hhfl68TsdyeTH1FnN6dbuHpnr6IVUuGWxdOaw
-	 7y50KBg5vfBeGhroMG8MV3mOHDqAWMSxllUFoQ+4lNKtYbcs/3UTLyx9Ku5B2sBilt
-	 KFLYFD4UAsLGHFyQSD2HsRgECu02rSbqueipmFEggcYJM4r68z+fT87r6B04V0OT2z
-	 3QE+bo1tvhapQ==
-Message-ID: <8eeaaffe-6c18-4449-a272-ca34a88fc731@kernel.org>
-Date: Wed, 17 Jul 2024 14:10:34 +0200
+	s=arc-20240116; t=1721220883; c=relaxed/simple;
+	bh=RL2VK9r9CFKKfbpLuivz0zW8yjhuK4aybkS2mX8AhK8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZepL6fRC10ylzq5Z8qE0SO4Kkcz0nG4U0vhoeOph5VOVsjvMrgS4vqjMUCbzW9gB/HZXYnacqbvE9oABWRl6iAn7ngQ/5jCZh1ZN4ia26PRTCQ04VmqrZkjx5WEMyMjjftY8t9DA9rT7/5yf8kPKAmJFt/yMw7LL0jtlRDu5BQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=QEZmVU0i; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b3b10598443b11ef87684b57767b52b1-20240717
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Rv5h5Afg1dhXQ63cMre+wMIfyIsc5/TOkQPTstUpFJ0=;
+	b=QEZmVU0iVaX6xJ05zvcBQRqy89zvJmyHiH0qhgtNgTVPjj5Uq1YFaX9FVkxd1dRUWlilZXzE0ECCxXnMQA0dj8eGnxrxltc4Kh8wEsF235Vr4TtBzNGrxDUtsoQAurvKN22UBQL1kp46Qz8YneKeShtVzt3ciHzVsInLiXNkWXY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.40,REQID:8e69f4b1-94f8-46a6-a1de-0309d1e190b3,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:ba885a6,CLOUDID:82aa74d5-0d68-4615-a20f-01d7bd41f0bb,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: b3b10598443b11ef87684b57767b52b1-20240717
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+	(envelope-from <yelian.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 188371037; Wed, 17 Jul 2024 20:54:28 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 17 Jul 2024 05:54:30 -0700
+Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 17 Jul 2024 20:54:29 +0800
+From: 20220614094956 created <yelian.wang@mediatek.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Yelian Wang
+	<yelian.wang@mediatek.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<yaya.chang@mediatek.com>, <teddy.chen@mediatek.com>,
+	<hidenorik@chromium.org>
+Subject: [PATCH 0/3] media: mediatek: Add support MT8188 AIE
+Date: Wed, 17 Jul 2024 20:41:54 +0800
+Message-ID: <20240717125426.32660-1-yelian.wang@mediatek.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240717071012.114786-1-animeshagarwal28@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240717071012.114786-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-MTK: N
 
-On 17/07/2024 09:10, Animesh Agarwal wrote:
-> Convert the PCM512x and TAS575x audio CODECs/amplifiers bindings to DT
-> schema format. Add missing sound-dai-cells property.
-> 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
+From: Yelian Wang <yelian.wang@mediatek.com>
 
+*** BLURB HERE ***
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - AVDD-supply
-> +  - DVDD-supply
-> +  - CPVDD-supply
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - ti,tas5754
-> +          - ti,tas5756
-> +
-> +then:
-> +  properties:
-> +    pll-in:
+This patch series add YAML DT binding and V4L2 sub-device driver 
+for mediatek MT8188 AIE. AIE is the ISP unit in the SoC，it's used
+to detect faces on an image stored in dram. Mainly used for the 
+camera's Face Detection function of MT8188.
 
-Please define properties in top-level properties list, not in
-conditional. You can narrow the constraints per variant in conditional.
+This series is based on linux-next, tag: next-20240716
 
+Yelian Wang (3):
+  media: dt-bindings: add MT8188 AIE
+  uapi: linux: add MT8188 AIE
+  media: mediatek: add MT8188 AIE driver
 
-> +      description: GPIO pin used to connect the pll using <1> through <3>. The
-> +        device will be configured for clock input on the given pll-in pin.
-> +      $ref: /schemas/types.yaml#/definitions/uint32
-> +      minimum: 1
-> +      maximum: 3
+ .../bindings/media/mediatek-aie.yaml          |   99 +
+ drivers/media/platform/mediatek/Kconfig       |    1 +
+ drivers/media/platform/mediatek/Makefile      |    1 +
+ drivers/media/platform/mediatek/aie/Kconfig   |   13 +
+ drivers/media/platform/mediatek/aie/Makefile  |    5 +
+ drivers/media/platform/mediatek/aie/mtk_aie.h | 1012 +++++
+ .../media/platform/mediatek/aie/mtk_aie_53.c  | 2031 +++++++++
+ .../media/platform/mediatek/aie/mtk_aie_drv.c | 3613 +++++++++++++++++
+ include/uapi/linux/mtk_aie_v4l2_controls.h    |  130 +
+ include/uapi/linux/videodev2.h                |    6 +
+ 10 files changed, 6911 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-aie.yaml
+ create mode 100644 drivers/media/platform/mediatek/aie/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/aie/Makefile
+ create mode 100644 drivers/media/platform/mediatek/aie/mtk_aie.h
+ create mode 100644 drivers/media/platform/mediatek/aie/mtk_aie_53.c
+ create mode 100644 drivers/media/platform/mediatek/aie/mtk_aie_drv.c
+ create mode 100644 include/uapi/linux/mtk_aie_v4l2_controls.h
 
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
 
