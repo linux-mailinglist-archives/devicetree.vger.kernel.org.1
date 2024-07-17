@@ -1,122 +1,171 @@
-Return-Path: <devicetree+bounces-86406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B4B933F76
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E56933FA1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:28:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92BCA1F24216
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:21:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6397C1F24788
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 15:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B32181315;
-	Wed, 17 Jul 2024 15:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF20C181B94;
+	Wed, 17 Jul 2024 15:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a8krhNIU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vyo6K0ku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7980917F362;
-	Wed, 17 Jul 2024 15:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FF1ED8;
+	Wed, 17 Jul 2024 15:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721229689; cv=none; b=BmrL80dYTiL9cMY6hCYyVcRHwKBvsTHAkN7hOnrI2xq85NNNOthknywVwy5ajMA0DzB/lQxRdfJ1FQy9Ef0/egSuIQGgImUezbbQ8EEHhHS1xG/JR+ADX7fdMONhsegsI7CAPSJz/W6m1wUmCNDxTsGGKCtYzigmH+j2zjL1nOc=
+	t=1721230084; cv=none; b=YzL/kGfjAE+JKpcRgiPsxiq9cdhfhULSdKds2JPJFGA1d1KMRUELYrHhIUOnGbrxNou77HLPFctWxC+chWV3SbzwMgdXw1E3e9NjMPDz+1CYAPCa90ri/g0Ff0CgQphlgzE3jUuGxmVwi/iRMG3/S9zkFXKuzvFjW8kn4p6Gp8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721229689; c=relaxed/simple;
-	bh=8pZfcWCakdHu8MkK0CVtlVvl62AboLC4XwuWrzQboOQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uLzRXZn9IJELA6+hIkPPMU03oLZ2VKIFv0ZJp1bGE+0j57+trwHlNPGWfcYuwRffedLHvUJ6iFOX9YGWAUEEkYy8OzBsCLvkRAH0ssfSBGJE/Jlo3urR2VByC7KroXAvt/qNP8tsVGUwQwxlH2dn1Qwohxa1nbkA2F2L9/aKaRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a8krhNIU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3DC7C2BD10;
-	Wed, 17 Jul 2024 15:21:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721229689;
-	bh=8pZfcWCakdHu8MkK0CVtlVvl62AboLC4XwuWrzQboOQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a8krhNIULa+YMK4XgOJN+RKhndS2O7WlQHnzkuOz9T7igQlqYERqgz2IdKtiYGoBq
-	 6FgXbCCTvnzi/8Zzt2zi4rF/37FrpAKcTynWm2K9ImU45sDVbZrLTBE9VncOQoEdoO
-	 1oMg43Q4FU/Ya2+x/LeGWvnHfQyqVaS/xvKwehoEN3EvlOS3WbntI2WDsUDuqLAx6a
-	 pyEJ9s2AxrkBXpDjOCG8rGQOx5EbCUV5uistg6QffGoEN3pTIJlThF1qftKxgXUxlm
-	 zilU05yt1/IKAeOqLG/P5VWRvha1XfZokLJLiiSB/zWTdgIm4XFK6VWRqCSUoXAIKm
-	 1gUsIYHS9l/fA==
-Message-ID: <de3cebfb-c26b-4453-b49a-97319cd64f39@kernel.org>
-Date: Wed, 17 Jul 2024 17:21:21 +0200
+	s=arc-20240116; t=1721230084; c=relaxed/simple;
+	bh=ENnMXkbUlVBZRnVOFr0OihBlKzM9U1/92RLACOT17mY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JgtVwhLLPna43Kx04Dhi3eKG5yd1kdMXZeQo21n3e96mOo09ekLpCzbRU3HhGFeizZDHNlASgMZH/MROrC6hdYUu3rxl9o4da/Gq1qRle/7L6mq1QUtHlDXmtMdxwI26TZ+9Ba2UnHWuh2dFF2B0QznwTmNHRdy1YjLanr8kwvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vyo6K0ku; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-58be2b8b6b2so8319009a12.3;
+        Wed, 17 Jul 2024 08:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721230081; x=1721834881; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xVtP0KXuTgh+5kyCFPusMyNTsCSk4gTUE1Cpbo7vu1U=;
+        b=Vyo6K0kurxClmCxMYOP4lW1GehNtU0MkG4Dhj94hPOIPSgunJEweHan7w5av2QyHii
+         nvYkrzodR4lzKqlzQ+XucQqxu1RE1WPnybcjZZxOjJajyFLEoZJ7RQixcFk5umZafN3i
+         noydXGcF2KBhWU4b3PbXx+4/+LGO3SzE0aVS0dgK6rJ5vE70YZtzPnM2fNKhOoD6Gdv0
+         WoZt8iTTkBRcLTOxZUUNr8frRPf+OHJgIs9nQGSdbdVnvdZz7/vEYtdwqFMgLpLdqYWn
+         Etz2FSY5e4a5IRb5wYhZw56VbBKfVPgYRcFyFHWHcUtH60Bib/VVWNr0BOm7QqBTiDYi
+         33qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721230081; x=1721834881;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xVtP0KXuTgh+5kyCFPusMyNTsCSk4gTUE1Cpbo7vu1U=;
+        b=YL14VRNFPfKujfoZv85F635nV953MO2ACUz7LMIUsZ9twZ6fJ3V1z1qr10t1L+SWdG
+         GYm2SjolyOD2dRr0ldP0wzl+8WSDlznzfNfwSWB4JlGB3h2yn6a7xqrjSWM4oFcsYvfv
+         DZTiBVC5Pn2fmO2nTpGkFA6R7iR9uCK+7NuvRmXg/MvKLBfxRVWICxHeNCLm7d/tM9Xb
+         Ky6yPVV0sF9gazUWXQiZ4IfFCRXN+EubymX+9TTQ2OOfDtkNntwkVKLZgmxlTcvKyy9D
+         lazBVQ52ntYwTOXv3zzgquk9y7BxRt6LzBWjbbs6GSCy9uJKOcLQRQwqDF/XvEn4VBWy
+         gRmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhV5ZSboAg9sKhned/t5Q+xs/DGocFFfz6HgNs6b+6o9cs31xMJ4P/d5aiRZU49whXtm8MVDnIzkb+0YatfUsKYM/+SxT4WMdk/zJdyT36v41wzu6f/iCPtMQZ2pN6tojHdH5oT8gRMA==
+X-Gm-Message-State: AOJu0YzyUXY50chH1Ndmi0dnmVfH+V4IfnDAXIwCzXBoBuoVwN6ZTc5u
+	myDnKG9/GB7YFzSrj6FMMXPxIFP9iCvSupDZXBRhsXw0iSByO38C
+X-Google-Smtp-Source: AGHT+IFwfFQ95cvDCDN5pYyxFv5Q1bEn4v+zbiEvHQgGqiSS/4N8ycjawmA3dKgiqdg5b74cqs3cFw==
+X-Received: by 2002:a17:906:b246:b0:a77:cf9d:f497 with SMTP id a640c23a62f3a-a7a0119eb9fmr140957866b.40.1721230081069;
+        Wed, 17 Jul 2024 08:28:01 -0700 (PDT)
+Received: from tablet.my.domain (ip-5-172-234-79.multi.internet.cyfrowypolsat.pl. [5.172.234.79])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc7ff780sm456378766b.169.2024.07.17.08.27.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jul 2024 08:28:00 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v2 0/2] ARM: dts: bcm-mobile: Split out nodes used by both
+ BCM21664 and BCM23550
+Date: Wed, 17 Jul 2024 17:27:53 +0200
+Message-Id: <20240717-bcm21664-common-v2-0-e9bd6cf435e4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240717134729.51661-1-animeshagarwal28@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240717134729.51661-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPnil2YC/x3MQQqAIBBA0avErBNsmCy6SrQwm2oWaihEIN09a
+ fkW/xfInIQzTE2BxLdkiaEC2wbcacPBSrZqQI2kexzV6jx2xpBy0fsYVEfa0GjIkh2gVlfiXZ7
+ /OC/v+wEntgpTYQAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2683;
+ i=aweber.kernel@gmail.com; h=from:subject:message-id;
+ bh=ENnMXkbUlVBZRnVOFr0OihBlKzM9U1/92RLACOT17mY=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBml+L9nRkhdZ52Oc8XtVksn7+fE26E5vnwucRKF
+ sBWfOcQH0eJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZpfi/QAKCRCzu/ihE6BR
+ aJZ8D/9yKJi3vEJvutaph+OzaK/Cyu0qNtNSF9Y9rnr8/XdDse1aF+6AeNplr92nepXt9MVEbPT
+ s/X/Kmaf02V29K0rRbPjF35gDkxO9JRNqeIjYFyTHNCSGSBGiV7mg9ZkO6lWZmudSPGIowFyTOK
+ +3N8AxyYPrKFCLnIppy/3D+o4EfW96NoSsmR9hEcOrPWCmdUocR0kWvVkaOtSkTjvLXDdkQBoMz
+ j38uRs4l5FqrdTk4rwENIBs6CnS6uY6AZJLMFbdg32Pb0NEjB7KUlo4Ry84pEmJrfUND+vsT27Z
+ tegreNjy4gcS0zwwiLafRZxswwm2NR17TALU/jRt44s1RwPqntiOw8f6Cz83dKEEi1LcPV/QJa+
+ HBZI2bLaCnFJNdwxnaT6JxEKowtOZgozFa32/gag3J2NinvcdClyJBze634uJYFKFPOzw9Rrl/E
+ YatK9MbtixOKTdLzqH7KUPHNaBa+J5DzxojlpQQiwTbPtzjHshwi22wJQdJ+dTwZv8ZEHt8h8ru
+ GPJ3aZtBpe37QGUVz/aZkKX+5qIRiwhDQ282DNDF3iaEFVtitX5GYWIsj2ngN8duMLjxF8hZVDF
+ 3u1eR67XSPDvvjTT/GL6Rzbrua4jSHV80k5aiIYlW0OSKjtimVP2s+EU6QXg1Mwu5Z0Y6UrWZgA
+ PdC9e51liT8DXmg==
+X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
+ fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-On 17/07/2024 15:47, Animesh Agarwal wrote:
-> Convert the PCM512x and TAS575x audio CODECs/amplifiers bindings to DT
-> schema format. Add missing sound-dai-cells property.
-> 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+The BCM21664 and BCM23550 are nearly identical to each other in terms
+of register layout. This was verified against a downstream kernel[1] -
+Broadcom's kernel has "RDB" directories which includes headers with
+the full register maps for the included hardware. Running:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+  diff --recursive arch/arm/mach-{hawaii,java}/include/mach/rdb
+
+reveals that the differences are minuscule - some things related to
+ISP and H264 decoding. Most of the other differences are related to
+the different CPUs in the two chipsets - the BCM21664 has 2x Cortex-A9
+cores, and the BCM23550 has 4x Cortex-A7 cores.
+
+In mainline, most drivers are also re-used between the two.
+
+To make development for both platforms easier, split out the common
+nodes into a separate DTSI, bcm21664-common.dtsi. This only leaves
+the device-specific nodes - so, CPU and related things - in the SoC-
+specific DTSIs (bcm21664.dtsi and bcm23550.dtsi).
+
+The new DTSI is based off the bcm23550.dtsi, with its split into
+busses. Since it's pretty much 99% identical, I kept the licensing
+of the original file (BSD 3-clause). The license for the bcm21664.dtsi
+file remains GPL 2.0 as it originally was.
+
+make CHECK_DTBS=y on bcm21664-garnet.dtb and bcm23550-sparrow.dtb
+seem to pass fine for me (thanks to Stanislav Jakubek for converting
+the bindings to YAML format!). It's worth noting though that some
+bcm23550 compatibles now go unused, since the bcm21664-common.dtsi
+file uses bcm21664 compatibles.
+
+[1] https://github.com/knuxdroid/android_kernel_samsung_baffinlite
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v2:
+ - Renamed bcm21664-common.dtsi to bcm2166x-common.dtsi
+ - Dropped model/compatible from SoC DTSIs
+ - Moved apps bus peripherals in SoC DTSIs under "&apps"
+ - Re-added SoC-specific compatibles into SoC DTSIs
+ - Fixed warning regarding address in GIC node name
+ - Link to v1: https://lore.kernel.org/lkml/20240605-bcm21664-common-v1-0-6386e9141eb6@gmail.com/
+
+---
+Artur Weber (2):
+      ARM: dts: broadcom: bcm21664: Move chosen node into Garnet DTS
+      ARM: dts: bcm-mobile: Split out nodes used by both BCM21664 and BCM23550
+
+ arch/arm/boot/dts/broadcom/bcm21664-garnet.dts     |   4 +
+ arch/arm/boot/dts/broadcom/bcm21664.dtsi           | 342 ++-----------------
+ .../{bcm23550.dtsi => bcm2166x-common.dtsi}        | 111 +------
+ arch/arm/boot/dts/broadcom/bcm23550.dtsi           | 370 ++-------------------
+ 4 files changed, 77 insertions(+), 750 deletions(-)
+---
+base-commit: a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
+change-id: 20240528-bcm21664-common-14064864a4a7
 
 Best regards,
-Krzysztof
+-- 
+Artur Weber <aweber.kernel@gmail.com>
 
 
