@@ -1,205 +1,316 @@
-Return-Path: <devicetree+bounces-86441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273B393415F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 19:22:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A953793419E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 19:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2CC32826AA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:22:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 312E91F211C3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 17:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52C5181CEF;
-	Wed, 17 Jul 2024 17:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450231822D8;
+	Wed, 17 Jul 2024 17:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WtIDneud"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="TiY5hmtV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1061C1E526;
-	Wed, 17 Jul 2024 17:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5D1181333
+	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 17:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721236920; cv=none; b=Cu9KzS7UseEAKKJR8d9/6lYxDKdV9rw4wgDsLNk6oLVwp5L6OoXHwDpUrPLQ/VHZqG6g/JQRr7VLy/746aD8ZFBVQCoo/jz6KtCAryRCbRRdkXkde9pxw2AfJyF+jdzJ1lpEixYS0mkJSvQV9tBcQ9XRIJdYg0xq3hjnUZsiE1E=
+	t=1721238353; cv=none; b=sKOVkLU2kHbDUvnP114MCcEmAvaAbqrUUnIQ/oaYlEG1bnz92+xGux+hh6BxMsXbxi6zbmYTbBYT2K3r7fz24lpKWfBhjw9ugiFWJM4hTZ3PzLQTi0N2ggE6eXGnI9qUBOMaf+gjIyvdz0W93xjetL+vbsSx4H9y2xFES3MR3fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721236920; c=relaxed/simple;
-	bh=LOYQAzR1IpKOS+7iQOeSt2ATXbLm8RbC4jyBi9KUDjs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=k7I8BI4v7ayLTnE1wxPEmrty+b8RR08zuLLg93gwbU5UZHZCWwdXD3j2u6DwLBwgj6MQw607oLqnPJ8+kheIUrTN5VxtLReeUGSpBeMIhU5IEXRITZV8g3fXndgP9zulNkCm4G0uaxFSFtl7qeOvcz3XW+DuKdymznYOAOjOdOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WtIDneud; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46HEIUHm024108;
-	Wed, 17 Jul 2024 17:21:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yyZCnApx7c/s4H/Xp0aWJIpHXD9TiJf88CC8LmS+rqQ=; b=WtIDneudaBOSuBKu
-	SoZAt4fGEHsMZOrYvxDohMoV/aFZ5IcHWA9vHbrKICofobyq5l6223Rji3dec7k+
-	P25dhOFGo5XovhLeem5Iilv+EpRgW1HBOsC36HKk7UhL8A43B63izWDI/2hoAOUR
-	zZmg57+np/JZVOZeXromU7DGZ6P2lOc/GIPWDpWT5MfeEc6WY1Zejx9w3si88JXL
-	z+8vqeixafd3pqVh6My4MrL2wDaeoFAZb6vY6ILZG0zTIrBqihjm/CrZ9HAgFElt
-	+MqYvZ1opHQ3KmujEZC9B1oYnkv/LurtHlBuIDqTtSZF4sL3GKjM9j+14IlazI28
-	PQ0xwg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfnk9je-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jul 2024 17:21:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46HHKx90002795
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jul 2024 17:20:59 GMT
-Received: from [10.110.77.168] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Jul
- 2024 10:20:57 -0700
-Message-ID: <f06ab1ee-6078-4d89-b236-e11be4d28fc5@quicinc.com>
-Date: Wed, 17 Jul 2024 10:20:57 -0700
+	s=arc-20240116; t=1721238353; c=relaxed/simple;
+	bh=qVOtgN3biWOtfNurNf+QmVnobFNWyWPBXC99ZSmAVGQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MdyU4KOiiMcwgEBmNVugYP5hrQmmBfDudxkIuuS+scxPAGZzj/yAprne1VwJHyVRboXI0S1VP4K+Gw8pVdW73oT4AQ78tvs/OFcQ7qYsY8y9xy7z/nyNznCirrLByVSpLlyR/tp9dLRT96N/KbXMtusMoW3d8FPCq/84h213doA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=TiY5hmtV; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7a05c755477so441059485a.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 10:45:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1721238350; x=1721843150; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=seXxsCSqZ1IIQjdd9IfjwJmRtG3N1+ye5XN0dpMVip0=;
+        b=TiY5hmtVfuH1Qwt0Zl0dLXLkr1SdXi0wfyQ2jwaOO+N6OMaSIKxlx3RmjTkDO2BvyW
+         X1V69DNv0ePWPlw/Fgk0gRy4iBH3CKGaYrwDQ5HbuJOKDaeLd5Ia0hP2e4NHUTnDavLU
+         kBQylyeRdmXvnTV3vqcrxpLYXI+RG1gSpDlWD1u5XSz34Fp3CUACxwgYvG5nka764QiB
+         k5FJ6toctkG0+CMZtTVeJB0zn6x726AbDMMGJc+/G8+kogVVP1Ljpbo6p2ZzHcywdOBX
+         0T4KgWgFc413gvLmNhedK7hYjTOD4+u/sYSksUcajudzYh96j/kq0EWXGgpv9mp0zFyo
+         wG8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721238350; x=1721843150;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=seXxsCSqZ1IIQjdd9IfjwJmRtG3N1+ye5XN0dpMVip0=;
+        b=lp6ok60XF1nO8KMfFg5KB4m7TMWGeJivmPUnoeKKDAe3Tfoxcx3HhI1KkPCtj+IVBD
+         0lslsDAEacViKJcAFycLTK41ojlr6imDh+zo4u0yYMFzcT/Mh4PQvhOHc0J4GXyTIl26
+         HodDUitkXYWJHKMJ528IR/nYoiq8FrNYVu/uKF3IwltmjoL9GPvBgII4+0IQZQGHv4z1
+         Nl2yIPFzVEESqfz9dYaO4wdTqV8aonzx5v4e/IVKO0a+1J6uNxX7ICTLNxFAnCuhspHv
+         JhlcEZ6nWt5O/5AwY8Hk/KRAIvNN5Kmm5kpBoSnozS+6PLgF/9kIeS6S4HTUuvmmwsze
+         Whtw==
+X-Forwarded-Encrypted: i=1; AJvYcCXAwk6058WbeFqcCIRyV2FlMsW6SiwmduCZnXQgEwajtVSIKEx+UNSXY2tOlFvLCcs1GAPSqrwWosFV0hlV8C40ZpmUUvKSe0EuFA==
+X-Gm-Message-State: AOJu0YyIx3mrBVPufLytHeaXvrHJ6NcdbGYE9ZlinIZnbPnNrBMxvVp7
+	DKZZiUGL0mRgT4KYLV8rZVNuxVh5Wt+XHAPmiZGaXWrnqwHQi7BNC/9S07G+9sc=
+X-Google-Smtp-Source: AGHT+IGRzjrrrap39c6rFcYyw1Z304UzYxNJx0o3uFhb26Tik13H2C9C0YQVoq66D9+tFMO9UviHig==
+X-Received: by 2002:a05:620a:3906:b0:79e:fed9:7937 with SMTP id af79cd13be357-7a18749a578mr308361785a.43.1721238350461;
+        Wed, 17 Jul 2024 10:45:50 -0700 (PDT)
+Received: from nicolas-tpx395.lan ([2606:6d00:15:6720::7a9])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a160c63880sm429667485a.72.2024.07.17.10.45.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jul 2024 10:45:50 -0700 (PDT)
+Message-ID: <5b612cf7ae348d0cb52e837abe81702b58eef969.camel@ndufresne.ca>
+Subject: Re: [PATCH 2/3] uapi: linux: add MT8188 AIE
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: 20220614094956 created <yelian.wang@mediatek.com>, Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	 <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	 <angelogioacchino.delregno@collabora.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, yaya.chang@mediatek.com,
+  teddy.chen@mediatek.com, hidenorik@chromium.org
+Date: Wed, 17 Jul 2024 13:45:49 -0400
+In-Reply-To: <20240717125426.32660-3-yelian.wang@mediatek.com>
+References: <20240717125426.32660-1-yelian.wang@mediatek.com>
+	 <20240717125426.32660-3-yelian.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V226/7] dt-bindings: PCI: host-generic-pci: Add
- snps,dw-pcie-ecam-msi binding
-To: Krzysztof Kozlowski <krzk@kernel.org>, <will@kernel.org>,
-        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-        <manivannan.sadhasivam@linaro.org>, <cassel@kernel.org>,
-        <yoshihiro.shimoda.uh@renesas.com>, <s-vadapalli@ti.com>,
-        <u.kleine-koenig@pengutronix.de>, <dlemoal@kernel.org>,
-        <amishin@t-argos.ru>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <Frank.Li@nxp.com>,
-        <ilpo.jarvinen@linux.intel.com>, <vidyas@nvidia.com>,
-        <marek.vasut+renesas@gmail.com>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC: <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
-        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
-        <quic_nitegupt@quicinc.com>
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-7-git-send-email-quic_mrana@quicinc.com>
- <5f029f16-2030-4e86-929b-0b2832958912@kernel.org>
- <083e1e6f-714d-4a3e-a864-59e06bba0559@quicinc.com>
- <3221423a-d5b3-47e3-8b98-623d9b26363d@kernel.org>
-Content-Language: en-US
-From: Mayank Rana <quic_mrana@quicinc.com>
-In-Reply-To: <3221423a-d5b3-47e3-8b98-623d9b26363d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SpZnw0sEu7O2R8AO4E9rLesDazYkmITV
-X-Proofpoint-ORIG-GUID: SpZnw0sEu7O2R8AO4E9rLesDazYkmITV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-17_13,2024-07-17_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 suspectscore=0
- priorityscore=1501 clxscore=1015 spamscore=0 mlxscore=0 phishscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2407170132
 
-Hi Krzysztof
+Hi,
 
-On 7/16/2024 11:47 PM, Krzysztof Kozlowski wrote:
-> On 17/07/2024 00:09, Mayank Rana wrote:
->> Hi Krzysztof
->>
->> On 7/16/2024 12:28 AM, Krzysztof Kozlowski wrote:
->>> On 15/07/2024 20:13, Mayank Rana wrote:
->>>> To support MSI functionality using Synopsys DesignWare PCIe controller
->>>> based MSI controller with ECAM driver, add "snps,dw-pcie-ecam-msi
->>>> compatible binding which uses provided SPIs to support MSI functionality.
->>>
->>> To support MSI, you add MSI support... That's a tautology. Describe
->>> hardware instead.
->> Ok. let me repharse it to provide more useful information.
->>>>
->>>> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
->>>> ---
->>>>    .../devicetree/bindings/pci/host-generic-pci.yaml  | 57 ++++++++++++++++++++++
->>>>    1 file changed, 57 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>>> index 9c714fa..9e860d5 100644
->>>> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>>> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>>> @@ -81,6 +81,12 @@ properties:
->>>>                  - marvell,armada8k-pcie-ecam
->>>>                  - socionext,synquacer-pcie-ecam
->>>>              - const: snps,dw-pcie-ecam
->>>> +      - description: |
->>>> +         Firmware is configuring Synopsys DesignWare PCIe controller in RC mode with
->>>> +         ECAM compatible fashion. To use MSI controller of Synopsys DesignWare PCIe
->>>> +         controller for MSI functionality, this compatible is used.
->>>> +        items:
->>>> +          - const: snps,dw-pcie-ecam-msi
->>>
->>> MSI is already present in the binding, isn't it?
->> It is mentioning as msi-parent usage which could be different MSI
->> controller (GIC or vendor specific one) not related to designware PCIe
->> controller based MSI controller.
->>
->>> Anyway, aren't you
->>> forgetting specific compatible? Please open your internal (quite
->>> comprehensive) guideline on bindings and DTS.
->> Here I am trying to define Designware based PCIe ECAM controller
->> supporting MSIcontroller based device. Hence I am not mentioning vendor
->> specific compatible usage
->> and keeping generic compatible binding for such device.
-> 
-> I know what you try, yet it feels simply wrong. Read your guideline.
-> Are you sure you work on Designware core itself, not on one used in
-> Qualcomm? I would expect people from Designware to design Designware
-> cores and people from Qualcomm only to design licensed cores.
-Ok. let me not make generic comment here. I refereed how it is done with 
-other
-snps based IP usage for example USB, and would follow same.
->>>
->>>>          - description:
->>>>              CAM or ECAM compliant PCI host controllers without any quirks
->>>>            enum:
->>>> @@ -116,6 +122,20 @@ properties:
->>>>          A phandle to the node that controls power or/and system resource or interface to firmware
->>>>          to enable ECAM compliant PCIe root complex.
->>>>    
->>>> +  interrupts:
->>>> +    description:
->>>> +      DWC PCIe Root Port/Complex specific MSI interrupt/IRQs.
->>>> +    minItems: 1
->>>> +    maxItems: 8
->>>> +
->>>> +  interrupt-names:
->>>> +    description:
->>>> +      MSI interrupt names
->>>> +    minItems: 1
->>>> +    maxItems: 8
->>>> +    items:
->>>> +        pattern: '^msi[0-9]+$'
->>>
->>> Why the same devices have variable numbers?
->> Max supported MSI with designware PCIe controller is 8 Only, and it
->> depends if those all are
->> used or some of used on specific vendor based device. Hence I have kept
->> it here variable names. Although here it should be [0 - 7] instead of
->> [0 - 9].
-> 
-> Wait, you just said there is no specific vendor device.
-> 
-> Sorry, bring some sanity to this
-I understood that you are having concern about generic vs platform 
-specific usage here in binding document. I would try avoid mixing those, 
-and will try to do just platform specific usage. Thanks for having 
-patience with me, and helping me to here.
+Le mercredi 17 juillet 2024 =C3=A0 20:41 +0800, 20220614094956 created a =
+=C3=A9crit=C2=A0:
+> From: Yelian Wang <yelian.wang@mediatek.com>
+>=20
+> Add AIE control related definitions
 
-Regards,
-Mayank
+I'm not yet providing a review at this stage since this patch will need mor=
+e
+work. When adding new CIDs, you should make sure these are truly specific t=
+o
+your hardware before opting for vendor controls IDs. You commit message sho=
+uld
+detail your reasoning toward is non-generic choice. V4L2 CID are by nature
+generic for userspace and we strongly prefer if re-usable CID gets defined.=
+ This
+allow making less userspace code that runs on more hardware.
+
+Face detection isn't a new thing, it has never been exposed in Linux Media,=
+ but
+you'll find that it existed and is document on Samsung Exynos 4 platforms
+notably.
+
+The second aspect is documentation. When writing documentation for your dri=
+ver
+controls, consider that the user have no background about your platform. Pr=
+ovide
+all the necessary information to use you userspace API (uAPI), and expand a=
+t
+least once any acronym that you are using. When introduce binary metadata
+format, ensure that you document how to parse this format in userspace.
+
+Finally, if the CID are not selft explanatory, an dedicated documentation i=
+s
+needed. You'll find this for CODECs (way more complex) but also for archite=
+cture
+specific features like older IMX Media Controller.
+
+A final note, it could be nice to fix you email client, its printing
+"20220614094956 created" instead of "Yelian Wang".
+
+regards,
+Nicolas
+
+>=20
+> Signed-off-by: Yelian Wang <yelian.wang@mediatek.com>
+> ---
+>  include/uapi/linux/mtk_aie_v4l2_controls.h | 130 +++++++++++++++++++++
+>  include/uapi/linux/videodev2.h             |   6 +
+>  2 files changed, 136 insertions(+)
+>  create mode 100644 include/uapi/linux/mtk_aie_v4l2_controls.h
+>=20
+> diff --git a/include/uapi/linux/mtk_aie_v4l2_controls.h b/include/uapi/li=
+nux/mtk_aie_v4l2_controls.h
+> new file mode 100644
+> index 000000000000..f4be180c8ddf
+> --- /dev/null
+> +++ b/include/uapi/linux/mtk_aie_v4l2_controls.h
+> @@ -0,0 +1,130 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +/*
+> + * AIE Controls Header
+> + *
+> + * Copyright (c) 2020 MediaTek Inc.
+> + * Author: Fish Wu <fish.wu@mediatek.com>
+> + */
+> +
+> +#ifndef __MTK_AIE_V4L2_CONTROLS_H__
+> +#define __MTK_AIE_V4L2_CONTROLS_H__
+> +
+> +#include <linux/types.h>
+> +
+> +/*
+> + * The base for the mediatek FD driver controls.
+> + * We reserve 16 controls for this driver.
+> + */
+> +#define V4L2_CID_USER_MTK_FD_BASE (V4L2_CID_USER_BASE + 0x1fd0)
+> +
+> +#define V4L2_CID_MTK_AIE_INIT (V4L2_CID_USER_MTK_FD_BASE + 1)
+> +#define V4L2_CID_MTK_AIE_PARAM (V4L2_CID_USER_MTK_FD_BASE + 2)
+> +
+> +#define V4L2_FLD_MAX_FRAME 15
+> +
+> +/**
+> + * struct v4l2_ctrl_aie_init - aie init parameters.
+> + *
+> + * @max_img_width: maximum width of the source image.
+> + * @max_img_height: maximum height of the source image.
+> + * @pyramid_width: maximum width of the base pyramid.
+> + * @pyramid_height: maximum height of the base pyramid.
+> + * @feature_threshold: feature threshold for hareware.
+> + */
+> +struct v4l2_ctrl_aie_init {
+> +	__u32 max_img_width;
+> +	__u32 max_img_height;
+> +	__u32 pyramid_width;
+> +	__u32 pyramid_height;
+> +	__s32 feature_threshold;
+> +};
+> +
+> +/**
+> + * struct v4l2_aie_roi - aie roi parameters.
+> + *
+> + * @x1: x1 of the roi coordinate.
+> + * @y1: y1 of the roi coordinate.
+> + * @x2: x2 of the roi coordinate.
+> + * @y2: y2 of the roi coordinate.
+> + */
+> +struct v4l2_aie_roi {
+> +	__u32 x1;
+> +	__u32 y1;
+> +	__u32 x2;
+> +	__u32 y2;
+> +};
+> +
+> +/**
+> + * struct v4l2_aie_padding - aie padding parameters.
+> + *
+> + * @left: the size of padding left.
+> + * @right: the size of padding right.
+> + * @down: the size of padding below.
+> + * @up: the size of padding above.
+> + */
+> +struct v4l2_aie_padding {
+> +	__u32 left;
+> +	__u32 right;
+> +	__u32 down;
+> +	__u32 up;
+> +};
+> +
+> +/**
+> + * struct v4l2_fld_crop_rip_rop - aie fld parameters.
+> + *
+> + * @fld_in_crop_x1: x1 of the crop coordinate.
+> + * @fld_in_crop_y1: y1 of the crop coordinate.
+> + * @fld_in_crop_x2: x2 of the crop coordinate.
+> + * @fld_in_crop_y2: y2 of the crop coordinate.
+> + * @fld_in_rip: fld in rip.
+> + * @fld_in_rop: fld in rop.
+> + */
+> +struct v4l2_fld_crop_rip_rop {
+> +	__u32 fld_in_crop_x1;
+> +	__u32 fld_in_crop_y1;
+> +	__u32 fld_in_crop_x2;
+> +	__u32 fld_in_crop_y2;
+> +	__u32 fld_in_rip;
+> +	__u32 fld_in_rop;
+> +};
+> +
+> +/**
+> + * struct v4l2_fld_crop_rip_rop - aie fld parameters.
+> + *
+> + * @fd_mode: select a mode for current fd.
+> + * @src_img_fmt: source image format.
+> + * @src_img_width: the width of the source image.
+> + * @src_img_height: the height of the source image.
+> + * @src_img_stride: the stride of the source image.
+> + * @pyramid_base_width: the width of the base pyramid.
+> + * @pyramid_base_height: the width of the base pyramid.
+> + * @number_of_pyramid: number of pyramid.
+> + * @rotate_degree: the rotate degree of the image.
+> + * @en_roi: enable roi.
+> + * @src_roi: roi params.
+> + * @en_padding: enable padding.
+> + * @src_padding: padding params.
+> + * @freq_level: frequency level.
+> + * @fld_face_num: the number of faces in fld.
+> + * @fld_input: fld input params.
+> + */
+> +struct v4l2_ctrl_aie_param {
+> +	__u32 fd_mode;
+> +	__u32 src_img_fmt;
+> +	__u32 src_img_width;
+> +	__u32 src_img_height;
+> +	__u32 src_img_stride;
+> +	__u32 pyramid_base_width;
+> +	__u32 pyramid_base_height;
+> +	__u32 number_of_pyramid;
+> +	__u32 rotate_degree;
+> +	__s32 en_roi;
+> +	struct v4l2_aie_roi src_roi;
+> +	__s32 en_padding;
+> +	struct v4l2_aie_padding src_padding;
+> +	__u32 freq_level;
+> +	__u32 fld_face_num;
+> +	struct v4l2_fld_crop_rip_rop fld_input[V4L2_FLD_MAX_FRAME];
+> +};
+> +
+> +#endif /* __MTK_AIE_V4L2_CONTROLS_H__ */
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev=
+2.h
+> index 4e91362da6da..a5d54b683b7d 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -858,6 +858,9 @@ struct v4l2_pix_format {
+>  /* Vendor specific - used for RaspberryPi PiSP */
+>  #define V4L2_META_FMT_RPI_BE_CFG	v4l2_fourcc('R', 'P', 'B', 'C') /* PiSP=
+ BE configuration */
+> =20
+> +/* Vendor-specific definition: used for the MediaTek camera subsystem's =
+face detection results */
+> +#define V4L2_META_FMT_MTFD_RESULT v4l2_fourcc('M', 'T', 'f', 'd')
+> +
+>  #ifdef __KERNEL__
+>  /*
+>   * Line-based metadata formats. Remember to update v4l_fill_fmtdesc() wh=
+en
+> @@ -1953,6 +1956,9 @@ enum v4l2_ctrl_type {
+>  	V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY =3D 0x281,
+>  	V4L2_CTRL_TYPE_AV1_FRAME	    =3D 0x282,
+>  	V4L2_CTRL_TYPE_AV1_FILM_GRAIN	    =3D 0x283,
+> +
+> +	V4L2_CTRL_TYPE_AIE_INIT		=3D 0x0290,
+> +	V4L2_CTRL_TYPE_AIE_PARAM	=3D 0x0291,
+>  };
+> =20
+>  /*  Used in the VIDIOC_QUERYCTRL ioctl for querying controls */
+
 
