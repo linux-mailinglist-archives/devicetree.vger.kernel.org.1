@@ -1,130 +1,126 @@
-Return-Path: <devicetree+bounces-86415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF53934069
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:28:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9BD9340A4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:39:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C50283497
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:28:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44FEC1C21924
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:39:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F01181BBA;
-	Wed, 17 Jul 2024 16:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0EE181BB6;
+	Wed, 17 Jul 2024 16:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CC5bSFjQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O04iYQcH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EED5B05E;
-	Wed, 17 Jul 2024 16:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEA66FB9;
+	Wed, 17 Jul 2024 16:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721233726; cv=none; b=rthlfNk9YKrGb4IIuqOax2l9q49wXfr6E7Al/Bdk+yG7OuV3DG+2nIH5ArwSsd9+pSMuvyRzJ7pkQdsn2utWIuNhNFP5hF9zT+RDihtUd5NzPGrn1XQGmon0/vdhVbMGEBH0JBSBvjVxRFMeB4BcLUMUPETo7JG5ai0yWoDXyD8=
+	t=1721234370; cv=none; b=JJBcD96LjK9bh55vc0ZUL84MB+v+iIlTuIuox6XLKvZRUWL/xVokfQOETX68CYZzj2JyeQloAnd4h+b6r2J8bhuRodQNLFmMi/XgoU9kqeS+zj8r76ZzQqYaW7CKd7VAh1w+zW+8RD4ukWwFYHnNrOxb1ca/Ayiqe6g8OVpBedE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721233726; c=relaxed/simple;
-	bh=kyPhzTGtGDNL9biDJoif92+wviaphqfQaaifLhJuCiY=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=lbLLrB4jUrFRR8N+Fo9Wxm48NVbs8yTGlmDMZ7JhnPwk34SYVnw8eBE4I/enAaCKRAzPpwTsUPjRTDUlwxsTttEjGp3QYCOit1m0V9aeNINwqOkTb7m5wP08dLyQnaDBPCJMx1ChxXzQdA8S+p2gLu93x7UtRAxyXvnHI94TV7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CC5bSFjQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B6FCC4AF0D;
-	Wed, 17 Jul 2024 16:28:46 +0000 (UTC)
+	s=arc-20240116; t=1721234370; c=relaxed/simple;
+	bh=YH/ejPCzozWh3/5AWbT/wAkKuaoN0u4W+macH1mMRsc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LRoOIiO6txLqDFzdwmaNOPSsIRw5MC2SnOu8ByZ+2Pp93jfuzj+ni/vhHGjnt9c/NMYlZ2VnJfMfQC1fLBR/TLJMT/jHVRvmp2qc9X6kWjQcDPqIYs+UDKFD6RTQaGr6NC1XFEapdz7MnfUTp46zi0FxzkRmCl60Zt8IQpwjULQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O04iYQcH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B36AC2BD10;
+	Wed, 17 Jul 2024 16:39:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721233726;
-	bh=kyPhzTGtGDNL9biDJoif92+wviaphqfQaaifLhJuCiY=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=CC5bSFjQbhTweghK6PGptJBHlyIoAbxCjQY5ac5vlvR1ObQmyOcQiwWUdUgYvqywU
-	 V/8f2Ja6GHOfXdg1ZzIRad/NjjmCSUhLzF0YzjhewJ+JKfkWBtOAYbYpPclb5NyqFM
-	 2MvDpRRRrtT/de4e5Y6ctIjkH9PshhUO00M3GdBoa3Kmtmop/C1cc/rhULx7YxnULA
-	 7j4+bhjh7U8IbTGR+mEw2z96y5IzPXgnu6fvPs/BSL42412pUW6kl5UvMSEvHsYJix
-	 Rx0yF7Jn12WJO73oPBzdkEAdc1JwdcBLOWsi+lJXvq3c6ZcLbLvtw+ELBdmUJL9ye6
-	 PnucQAoEiEyXw==
-Date: Wed, 17 Jul 2024 10:28:43 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1721234369;
+	bh=YH/ejPCzozWh3/5AWbT/wAkKuaoN0u4W+macH1mMRsc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O04iYQcHPl5FL6N8sUdE+q+FxTnXMHv1ATmczRdlil8B/W2PQm7sAL1AIzB5XEOAO
+	 P0kqoQmjdD/m5QpdXW1fpweEZ3LiWrlPkyeXlDDR6oHczma/MVRYvHHYjlqsW3pl4z
+	 X/BhkhsxdHoGYaquZ78lyq6hQo0jcufT9NWzuhtxg2KmqwiRIUwHJHK6E8zFGp+aWO
+	 v327eLhiEMDNCP/ZVe5LFr9/YAI67NjFUmK4OFsxwdCAtP0lWx7/ka5ahwtlWUvgKd
+	 tmq7jt7E7euAtjvs7lx5+WcXrCAHl4x8uZbOWzxDZNZOWL78eSdYgyvexuG3H4jBYp
+	 8mRPh0OnODKSA==
+Date: Wed, 17 Jul 2024 17:39:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Otavio Salvador <otavio.salvador@ossystems.com.br>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	linux-kernel@vger.kernel.org,
+	Otavio Salvador <otavio@ossystems.com.br>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, imx@lists.linux.dev,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 2/4] ARM: dts: rockchip: remove unlikly-to-exist DAC
+ from elgin-r1
+Message-ID: <20240717-gracious-canning-6ff715cd1b1f@spud>
+References: <20240717-anvil-ashy-544e80a1317c@spud>
+ <20240717-parrot-malt-83cc04bf6b36@spud>
+ <3870188.FjKLVJYuhi@diego>
+ <CAP9ODKrpKDY91AFDYj7s++kU+=CSLw=F9mXyLZ621Mqq-8S6bw@mail.gmail.com>
+ <CAOMZO5C7JknQaftquRWDetLs4W0CHMvs5PiJWBLyo0G1oo4rCA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Rayyan Ansari <rayyan.ansari@linaro.org>
-Cc: "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>, 
- netdev@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- devicetree@vger.kernel.org, Timur Tabi <timur@kernel.org>
-In-Reply-To: <20240717090931.13563-1-rayyan.ansari@linaro.org>
-References: <20240717090931.13563-1-rayyan.ansari@linaro.org>
-Message-Id: <172123372353.179030.4294895894656071334.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: qcom,emac: convert to dtschema
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="OWGW13PXE3KVG+an"
+Content-Disposition: inline
+In-Reply-To: <CAOMZO5C7JknQaftquRWDetLs4W0CHMvs5PiJWBLyo0G1oo4rCA@mail.gmail.com>
 
 
-On Wed, 17 Jul 2024 10:09:27 +0100, Rayyan Ansari wrote:
-> Convert the bindings for the Qualcomm EMAC Ethernet Controller from the
-> old text format to yaml.
-> 
-> Also move the phy node of the controller to be within an mdio block so
-> we can use mdio.yaml.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
-> ---
->  .../devicetree/bindings/net/qcom,emac.yaml    |  98 ++++++++++++++++
->  .../devicetree/bindings/net/qcom-emac.txt     | 111 ------------------
->  2 files changed, 98 insertions(+), 111 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/qcom,emac.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/qcom-emac.txt
-> 
+--OWGW13PXE3KVG+an
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Wed, Jul 17, 2024 at 12:34:03PM -0300, Fabio Estevam wrote:
+> On Wed, Jul 17, 2024 at 11:38=E2=80=AFAM Otavio Salvador
+> <otavio.salvador@ossystems.com.br> wrote:
+>=20
+> > @Fabio Estevam can you check this patch?
+>=20
+> Correct, the rv1108-elgin-r1.dts board does not contain the DAC.
+>=20
+> There is an LCD controlled via spidev though.
+>=20
+> Conor,
+>=20
+> If spidev is needed, what is the recommended way to describe it in the
+> devicetree?
 
-yamllint warnings/errors:
+Describe the device you actually have in a binding, and add that
+compatible to the spidev driver. In this case, given there's a
+particular LCD there, that'll work. There's nothing wrong with using
+spidev, it's just lying about what hardware that is there that's
+problematic.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,emac.example.dtb: ethernet@feb20000: compatible: 'oneOf' conditional failed, one must be fixed:
-	'qcom,fsm9900-emac' does not match '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1e)[0-9]+(pro)?-.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1e)[0-9]+.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac' does not match '^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1e)[0-9]+.*$'
-	'qcom,fsm9900-emac' is not one of ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,gpucc-sdm630', 'qcom,gpucc-sdm660', 'qcom,lcc-apq8064', 'qcom,lcc-ipq8064', 'qcom,lcc-mdm9615', 'qcom,lcc-msm8960', 'qcom,lpass-cpu-apq8016', 'qcom,usb-ss-ipq4019-phy', 'qcom,usb-hs-ipq4019-phy', 'qcom,vqmmc-ipq4019-regulator']
-	'qcom,fsm9900-emac' is not one of ['qcom,ipq806x-gmac', 'qcom,ipq806x-nand', 'qcom,ipq806x-sata-phy', 'qcom,ipq806x-usb-phy-ss', 'qcom,ipq806x-usb-phy-hs']
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,emac.example.dtb: ethernet@feb38000: compatible: 'oneOf' conditional failed, one must be fixed:
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1e)[0-9]+(pro)?-.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1e)[0-9]+.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,fsm9900-emac-sgmii' does not match '^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1e)[0-9]+.*$'
-	'qcom,fsm9900-emac-sgmii' is not one of ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,gpucc-sdm630', 'qcom,gpucc-sdm660', 'qcom,lcc-apq8064', 'qcom,lcc-ipq8064', 'qcom,lcc-mdm9615', 'qcom,lcc-msm8960', 'qcom,lpass-cpu-apq8016', 'qcom,usb-ss-ipq4019-phy', 'qcom,usb-hs-ipq4019-phy', 'qcom,vqmmc-ipq4019-regulator']
-	'qcom,fsm9900-emac-sgmii' is not one of ['qcom,ipq806x-gmac', 'qcom,ipq806x-nand', 'qcom,ipq806x-sata-phy', 'qcom,ipq806x-usb-phy-ss', 'qcom,ipq806x-usb-phy-hs']
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
+Otherwise, when it is an open connector where you can put anything, it's
+a wee bit messier... A connector binding is required then, something
+like the WIP mikrobus stuff that the beagle lads are working on. That's
+far from ready, at least on the devicetree side of things, though so
+you need to apply an overlay in your bootloader in that case.
 
-doc reference errors (make refcheckdocs):
+--OWGW13PXE3KVG+an
+Content-Type: application/pgp-signature; name="signature.asc"
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240717090931.13563-1-rayyan.ansari@linaro.org
+-----BEGIN PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpfzuwAKCRB4tDGHoIJi
+0iuDAPwPEHiBf+CrFLYviCQhgaXSwg21qh0Iy2VX/LcKcPGr+QD+JGr9aUClwsTX
+KBS41ljoVPgMP9F/i3+On6b1MOR7iw0=
+=uuYV
+-----END PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--OWGW13PXE3KVG+an--
 
