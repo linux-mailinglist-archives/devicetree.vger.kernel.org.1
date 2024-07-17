@@ -1,189 +1,258 @@
-Return-Path: <devicetree+bounces-86401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B375933EAA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05FDD933EBF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:43:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC4211F21395
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:36:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFA6C1F24E62
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DA218132E;
-	Wed, 17 Jul 2024 14:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D448E181B8D;
+	Wed, 17 Jul 2024 14:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="VGuKegzJ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="TEJC5mgE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010054.outbound.protection.outlook.com [52.101.69.54])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB8D18131A;
-	Wed, 17 Jul 2024 14:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721226993; cv=fail; b=qxP0A2F5Ow1HGbUuAnsRUVBqH1/xyH3r+crdWdBGK2k+B0D0iCTt7BNwk1IuAT+erv5uvTUol3b2Sw0uhM3wykh5ehCWCra/qhDhtlJuv2thWbc2Bmz/LJg5qAVTMjyAO/GpQtMW0JXFzW0R8eLL6gcgzDRht+66Zx2iwI6UPw0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721226993; c=relaxed/simple;
-	bh=DeMgzgJKbWBq+5wvwmGQhn7Tc90PhnecIKMO4BR5wYM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=NKMjGZyrjby9brWEYnh4DFAqzyjDulUoQGou3VyUUpbaa8didDiEYKv7C8XdDX7/SOtZ508VNmIW1Xzl5GDUG1TmNp04/t99aEPnIBoLnonBzjzvELoa2tlORrPGRJ1UIeEU3pdfw63A3JPuR6kPgnv4VUv1o1Y9RnA/g0JyFcg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=VGuKegzJ; arc=fail smtp.client-ip=52.101.69.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oQ3Kp3+nl+xxIhbS7FPA/J4BhhnIJtGotofTDzBI3m+cZLwEQiFII1DSbHcCCzb7i9kE5LevIiIQRlzWj6V4GdCghLqx54vkZPrSF3pHLI5VaSLvDwyu10HjoCfJHGBT1rJIZvEwPRAnpbhwpqHWuyAoFw69pI/Mu+vh7D/+ZI44QxjKVZ50orrv64kvxyJiNxMEi5KzlwUd9PVc90y13N/jy93euvbhCK3y5KXUiuKlTyZcw+PUu3VYw31Pbt5SoxgE7GRxwBOM11hPtZDdnER4JCXYqB/+mhL53lWN/RBbocL8CYm5faCHMvGSnGvITtZ8kfMiay8oCk7sm7SHlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IzqcGDOBU1qFL5x7IGD21OaOMY8PQiypW1m+JzGbqsg=;
- b=tam3w5mFso/9rcbxZORy5zQNSrkexS3C7oSnw3tUMxc78pFBMBO2SrSQ8juKExl740CMcPAYyQtUDxJqxn24VZv4wgOJtfan80aMPMsf3Hdny4e0BUaGMTMvyrwi/g3PDh6zUrQWaXGJDe59xm3hGV0cYOGnXpIGH4QCdPA3k3dEfJzLNw7YvyIaLEP+jnIc9VmCDxDqnQ2EDuJHajZPntdyC0nGIxjG3SP+f2q6BtdG5DRSwRY9hU+R9Lj3ebTjQow2WQnu68PTUwG0deuVwcmdYlZPQk9WhGxwZ8kCnOcApLu8a5pAo7E4GRKJgCZIHJJzcnLfF67GXuP64j7pvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IzqcGDOBU1qFL5x7IGD21OaOMY8PQiypW1m+JzGbqsg=;
- b=VGuKegzJLtp9SNunT4Nk/mglPjSyuyaExDXakTs9AGySaKpimdUBxMx3vq+IESODWVD2AT6KXBvQCvRslBaUawYGqsxo0+8lFtJKVjW3IwiGtaVSi66UDrNyAYc3NBIekn5PH6n4SMYVpf22So9lZ4urC+jcnhcBew3sSPzI7Ug=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM7PR04MB7015.eurprd04.prod.outlook.com (2603:10a6:20b:117::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.16; Wed, 17 Jul
- 2024 14:36:28 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7762.027; Wed, 17 Jul 2024
- 14:36:28 +0000
-Date: Wed, 17 Jul 2024 10:36:20 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8-ss-dma: Fix adc0 closing brace
- location
-Message-ID: <ZpfW5FzJ31QRwKex@lizhi-Precision-Tower-5810>
-References: <20240717135027.4116101-1-alexander.stein@ew.tq-group.com>
- <20240717135027.4116101-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240717135027.4116101-2-alexander.stein@ew.tq-group.com>
-X-ClientProxiedBy: BY5PR13CA0021.namprd13.prod.outlook.com
- (2603:10b6:a03:180::34) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34A018132F
+	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 14:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721227377; cv=none; b=F/mRj6v/CyDTEjlBUCeNTOVLJ+vcgJnjvTGxDkmtqwjCiaVa4IyTimaingswLJrUZRwXHWURz+Is1fP3NroavW4Tveb8ing0unly7FCzy4upmT4jL+t4U5UKIPAZq4ny/j0JLiyqMOYP5PqaCe8l/A2ezwmjj3+GXZPJzpKsKRk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721227377; c=relaxed/simple;
+	bh=zUVIvHCsTCCXlgAEsrezINakY7JgduDyy2tKWsIjEJc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rdoEnqgnz3XWWI4QWVSR1Qj8hK5YNBK3UwhAfzwuc3Zp6O81wpRLzOwvQwTyzX8nexFGTcHHZ2Mj4pGh9CygkXbM69M6O1xSJ1VHlgasYpZ94RXkEY647Z846hmJjfAUKrU3fZu4bMZhXkZnsCR9VhVloiyshUCKsm3R8SEXjV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=TEJC5mgE; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1721227374;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=M2vL8rRc69gotddfUAFMWYk4nVzDmp9tj4adCdBDziU=;
+	b=TEJC5mgEqqLu+j5SkvTipJT3CBFqO6gWUNsYjXWc1qS5Jju1GXl9Kp3enqyRCML9siWLCM
+	3tlfqdFwQONyuuPuC+PT2rcmqBF86/tquI2PeGpCTG61OcSUrcGDaqcRULov4+YKvDkOyp
+	WyCZ5Nw5Rgk180NYLALDBdlgSgQH+S8=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-35-qVuVVoPmNs62dJSF2nE2IA-1; Wed, 17 Jul 2024 10:42:53 -0400
+X-MC-Unique: qVuVVoPmNs62dJSF2nE2IA-1
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-a77c6ea022fso127096666b.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 07:42:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721227372; x=1721832172;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=M2vL8rRc69gotddfUAFMWYk4nVzDmp9tj4adCdBDziU=;
+        b=SOVJPbuUeHW7FrW4iHGYHH09O2rGa6x6K/NONneBu9YQ64s20XqDXCpGNkxeFc0dmT
+         5LvqcL3T6ue0lAa0g/6I3gTdedElLQMMniGQ3UyE2YHGaZIARGaxFacTY2FKzWTvbwlO
+         Jiq60UeTVgxA3iGL03egw+cmtICsv2K3q/I1YdKmUnmMQUMpfyIwRkr8UmcGp1erP0LI
+         taZpsXih8bbspRMCSKeV8QrG+qZJbfAbuq9PxBECWqdeqz9onSK+msWL6fJBd1jnpk1b
+         BERzJMONXqTZNq6b5qqxCayHfHksEajsTiPDKHxSqHuIrhPiKlvoNXU9Aa2ULMGALFoU
+         wADw==
+X-Forwarded-Encrypted: i=1; AJvYcCXlW4felDW2tkYf04rRl+wlgZyCSnOcKMrEWMHBe+wL+M9FpaRlWzfHpekUPlg3xRQxdXh/pGQG4HmmD/X6CTeU49MShVeeoO/o7g==
+X-Gm-Message-State: AOJu0YzVqXhfJ+hptrWh3Dyshw/LsGyCKwkXP9HjEdgSeiuxVmaCh3L7
+	jC72yRhp0QkWWLmwkjplgeUawQJvtk4tRV81mYIghGjiJey4+QHeelyNfXPeyMlMmHmutKVKein
+	uP//5k3fyyu0WVU0VZlP43PTbQKOm8Pzaqk3aVB1bX6RppGvKDqjRw957rBw=
+X-Received: by 2002:a17:906:1c0f:b0:a6f:46f1:5434 with SMTP id a640c23a62f3a-a79eda04168mr521685466b.6.1721227372351;
+        Wed, 17 Jul 2024 07:42:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEi6DrDSqxxObcD+4KvqZEIVIf6XCAhrJ0LWIBdtNZjezxwhMU5bcwwGQ0tRJ1krbBOftaEqw==
+X-Received: by 2002:a17:906:1c0f:b0:a6f:46f1:5434 with SMTP id a640c23a62f3a-a79eda04168mr521682366b.6.1721227371866;
+        Wed, 17 Jul 2024 07:42:51 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c714:c00:b08b:a871:ce99:dfde? (p200300cbc7140c00b08ba871ce99dfde.dip0.t-ipconnect.de. [2003:cb:c714:c00:b08b:a871:ce99:dfde])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc5d2018sm453924466b.85.2024.07.17.07.42.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jul 2024 07:42:51 -0700 (PDT)
+Message-ID: <220da8ed-337a-4b1e-badf-2bff1d36e6c3@redhat.com>
+Date: Wed, 17 Jul 2024 16:42:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM7PR04MB7015:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a414adc-34cd-48d2-43da-08dca66dd7ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gQiEPHRpkVFls6WyIg+xIikc8ga9vaXPQkT/DxXBtUazalsJ0fGrX2OtysSY?=
- =?us-ascii?Q?L/KrZ8w/tmTphcnYWArACH03nDc/TxoZHCOc2gNaczenX0SqdBf8ykrBaQ1E?=
- =?us-ascii?Q?3Cp8tkc2vzf8P87BZSMhhKLfasCE6/dy1WflowTBtfgGR4se93XpSQv9WZC+?=
- =?us-ascii?Q?pyii4qLG28xsCrDojJ+Bfe7HzBDj/iVeKFKwf31Ks3chJozerHDrwM7UlTZR?=
- =?us-ascii?Q?Ap2hlKUW3/9o/ANYEvHxAb0nLjfXqrAVK8/EOdNG4bUBi4dDHxngjEDAR97U?=
- =?us-ascii?Q?cftUFZnoPdISxnUOiUS2xPXN6Iw72WmbVjk2iWaEYsP3bI/QKETZkv6OZQML?=
- =?us-ascii?Q?8DH92mEy7MRV+ylGNTQtkO6RBPmgWeX6x+5Shm2Wp4MGpbQwX3fHwrBLJTK3?=
- =?us-ascii?Q?KZ9Tw9fGC5vQ+uxckHLMmposJdqdaz0uS1R2wwAS9WTfMTo9KSl3lDUhgBM5?=
- =?us-ascii?Q?0XIk9O/dryCJrvlhCupgEJgf3fPON+XLBUcX3tFPV/ipfl4Bu0HrMYkvOG+r?=
- =?us-ascii?Q?DBNyo69L1LWeyv4PRNOULX8/plqjiEJQl+7giPbGIkG5tWx4KVZ6PLLHre+V?=
- =?us-ascii?Q?p+/hffptwXdEnbYwtfIEf+SJiPNOypD046VngO6sAZVFNfkyYOAHiJkufLZR?=
- =?us-ascii?Q?jf5WQe61Jy2OUyvWwNqftU/oWRLZdKLMS6x1dzKrQrAY9y4zv/RYacM/GGOw?=
- =?us-ascii?Q?YqHV5qS57y7OgG3JbBNQX7gvSPR8Uj/4rRSnHn4xnHdCjWG2nGEsunUNgrDx?=
- =?us-ascii?Q?n5X+OxZ9PNnU1ZegOMxbMamhJIGx7AXe0xPec6YLZ3zFJFjN/YLIR7wQsywE?=
- =?us-ascii?Q?GtGwTDwjDYWrS5ScJN4Njrf+iwY3BOGr8oyF5WnXzJpjYSrWWVPxLBjNYi0T?=
- =?us-ascii?Q?N4gfnW0JW8DXICWEOIH6EaiwZ6DKcRcHHZa5AP3SwwBx+TL8OymPMHiTrmRC?=
- =?us-ascii?Q?U1pr27SjILFEF/3a30FJGjZP8IECdFt/puNniwE2LbBXwwY/Xc0tf39AHckX?=
- =?us-ascii?Q?piC6loc9O9PBlPU9rDVRqK+t9Cqwq1AvdJh4PV0buZxMLHjHrogOEL6dpZ/u?=
- =?us-ascii?Q?jGUKIHpK7xM+oE9YleYMZ8CZEKgdqtk9QT1s/Ztmeeu4vK+ekqkEvwyHoITj?=
- =?us-ascii?Q?aeWDYMkJaopNckI9jHYO9b03dwcdRu1dhKi67FuNGn5xsI4W49dC3bjlb1n/?=
- =?us-ascii?Q?kg88AqnOHsG7L2f9ZyqA3zNoBKPdeZZVL4GgCdiRp+u2c6TnZuHpFlgL8wMn?=
- =?us-ascii?Q?58vMFbkZO0IHcpvaSaUf8FM72kVTsfbokrSAYSrmm12kIMj5d1GOiD0L+fGW?=
- =?us-ascii?Q?lMfLEOp5vt5y2AcwZLExTQdKudDbz/4GuRsTvwmz7EwMA1z4qTzPRpppSJlQ?=
- =?us-ascii?Q?HV8Po8QRo9kyLra3xACdGhoUT+pMYQsSgiX4FqzG3USz8oZUWw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?K4p8aLFi9Z2D6bA8TzzRlrtcbmRmAPngZRIWp62GNzzfSPdYC9xnz6HQPvzA?=
- =?us-ascii?Q?4Y3bjkotPqlpO58Nt3FqEZei7t232eg66lQrtZY9QMaGjbjGr0mHfWSUIpRu?=
- =?us-ascii?Q?FhevZZw4DoRAftlwVfgo9R2XATun2CZsPAojiTJQkhfeNkf0XlM8rR5krtNY?=
- =?us-ascii?Q?+Rl7LEHd49JAT2xppgIDvkZjNiAFTE5MdTcfWfk91GmYNNgMGiUmJgkUtEQ6?=
- =?us-ascii?Q?dF1+9RaB6FnmuH02QSDxzsOrZk9jJmr+Npyobfi+UJlb7Sj/OdQkNi82mV1u?=
- =?us-ascii?Q?U2HqD0fdvZUo5zafneAxMIivBjMKNim7p3tFoSDu3PnulKmtqpCjkJglAwKq?=
- =?us-ascii?Q?x/gJ5eRxy4nz+JSdy3nPHAzL4eXIlEJIhP9H9+WGtqJvr5rVt9gs+IvEH/Ad?=
- =?us-ascii?Q?zLJqnnEt1tsaqGJiS6ZbjTXn21EP2hqvIWA2I7h+giXx3rFVHpnNXoNsryhi?=
- =?us-ascii?Q?3Pf9Krv42H2kzTHBrgrpY5G6+UqAls3nxYZCmXvBW+A9rLZY3cUg9tmWXIEV?=
- =?us-ascii?Q?SVOPHkn8U4GihlIR9tUmX39BUAm81RpcAF7yu+Hj2HD01e8z9QFoeXHEQTGe?=
- =?us-ascii?Q?puWevlCF+2hSPQjnSh3EeANT9+Ro4hDXNsT4HgB7Bt6c+GMaqLrbRIJHy1kT?=
- =?us-ascii?Q?0tvXleW1MKRiBKNJP3CkI69MR7pm2UDvDw2naEZ1Nshku5S6J9+SjPX3LioT?=
- =?us-ascii?Q?c/FlUG/eEK8aHHYW4bm9JyBl9S2HpFnDHfjZ6m0dgkb4IgAthUINhudsJ8IF?=
- =?us-ascii?Q?2bzsLNIzCy6YJLDsr0dcTNSwUH3aczT2r/K3BGiVcZSug6Pj2He6cZn59Thg?=
- =?us-ascii?Q?1oUfEETuv0UaE2aQzWfhP6Mq5djms8ZDhseMc7Fc9LvHeCHAJJV9ooDqaw59?=
- =?us-ascii?Q?N39yAeUcXCSnzW/5AAFLRAwU41WjxiSCFkaT47ICJQh2YjsezzQFnIJYu915?=
- =?us-ascii?Q?f9r5oT39kwKb77YjMYtitrNiBB1FeE4mxYyJPRNsfbHmA+axq8BeFcXiwPU2?=
- =?us-ascii?Q?zaFKike9IIZERn2tbWn/qkk4kE8DpVZu/fT8KqqGnyDQYS6JIlhWELMEbRWb?=
- =?us-ascii?Q?yZvVZDODqRjOr5UDJmR7lAfuuBpYC07+sI39qJXWkBOiS9jkxSIOW+tLiW9a?=
- =?us-ascii?Q?T3XqirjFMKfBHfR3+Vck9V6GYk7yoMwMKqmAHLGdfsjAOEdbO/AjADOatSN+?=
- =?us-ascii?Q?NdsXpcREGPG/ngR+o4rHHgbcxtFYV/YyktMVfewl7bz8a4Lg+VHLEfVGINJO?=
- =?us-ascii?Q?JplMnlFmL7fdLhX3S4aox7NTHpoKUcUDA1sUMti74wLDSjb3IRoBHWJbeqB9?=
- =?us-ascii?Q?Ak/zO3VtRQgOOyhbVoQPLAEY8c8+TZbh5NNGsRa7sMve+R+jZcchc5LNBuF4?=
- =?us-ascii?Q?UjkmlIDCGj5pWvJChNM9jRVN+NiAK0nDLMAqSK/aCrKIh77Kb/lZI8oO4FmQ?=
- =?us-ascii?Q?Meepa45aMlOWUTPqvA1TLsdofVzCuJP9QlNy3al8pdc6iw4H7TGjpCcc3HHC?=
- =?us-ascii?Q?Jg0kVy77Ygu04AoR7UJKSaexR2qKGtS9t9+dbozDWRb3SLQE+yYcO3ajJTXA?=
- =?us-ascii?Q?odCExI4zmE6YyiCqbl0P1dSO7sBiIOu9IE+unLKu?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a414adc-34cd-48d2-43da-08dca66dd7ef
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 14:36:28.5141
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nQYd34Zq/ohzLmscjTdBSqN+v421UkM/N4w58qCTW86lmQVLJTxe+2rcpFYWCHGNluRW7gXjG9zFqfIC/S9AlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7015
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/17] arch, mm: pull out allocation of NODE_DATA to
+ generic code
+To: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org
+Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
+ Andreas Larsson <andreas@gaisler.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>,
+ Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>,
+ Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-cxl@vger.kernel.org, nvdimm@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org, linux-mm@kvack.org,
+ x86@kernel.org
+References: <20240716111346.3676969-1-rppt@kernel.org>
+ <20240716111346.3676969-6-rppt@kernel.org>
+From: David Hildenbrand <david@redhat.com>
+Content-Language: en-US
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ WNyWQQ==
+Organization: Red Hat
+In-Reply-To: <20240716111346.3676969-6-rppt@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jul 17, 2024 at 03:50:26PM +0200, Alexander Stein wrote:
-> Align the closing brace to opening line.
+On 16.07.24 13:13, Mike Rapoport wrote:
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 > 
-> Fixes: 1db044b25d2e ("arm64: dts: imx8dxl: add adc0 support")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
+> Architectures that support NUMA duplicate the code that allocates
+> NODE_DATA on the node-local memory with slight variations in reporting
+> of the addresses where the memory was allocated.
+> 
+> Use x86 version as the basis for the generic alloc_node_data() function
+> and call this function in architecture specific numa initialization.
+> 
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 > ---
->  arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> index 3f521441faf7e..1ee9496c988c5 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> @@ -370,7 +370,7 @@ adc0: adc@5a880000 {
->  		assigned-clock-rates = <24000000>;
->  		power-domains = <&pd IMX_SC_R_ADC_0>;
->  		status = "disabled";
-> -	 };
-> +	};
->  
->  	adc1: adc@5a890000 {
->  		compatible = "nxp,imx8qxp-adc";
-> -- 
-> 2.34.1
-> 
+
+[...]
+
+> diff --git a/arch/mips/loongson64/numa.c b/arch/mips/loongson64/numa.c
+> index 9208eaadf690..909f6cec3a26 100644
+> --- a/arch/mips/loongson64/numa.c
+> +++ b/arch/mips/loongson64/numa.c
+> @@ -81,12 +81,8 @@ static void __init init_topology_matrix(void)
+>   
+>   static void __init node_mem_init(unsigned int node)
+>   {
+> -	struct pglist_data *nd;
+>   	unsigned long node_addrspace_offset;
+>   	unsigned long start_pfn, end_pfn;
+> -	unsigned long nd_pa;
+> -	int tnid;
+> -	const size_t nd_size = roundup(sizeof(pg_data_t), SMP_CACHE_BYTES);
+
+One interesting change is that we now always round up to full pages on 
+architectures where we previously rounded up to SMP_CACHE_BYTES.
+
+I assume we don't really expect a significant growth in memory 
+consumption that we care about, especially because most systems with 
+many nodes also have  quite some memory around.
+
+
+> -/* Allocate NODE_DATA for a node on the local memory */
+> -static void __init alloc_node_data(int nid)
+> -{
+> -	const size_t nd_size = roundup(sizeof(pg_data_t), PAGE_SIZE);
+> -	u64 nd_pa;
+> -	void *nd;
+> -	int tnid;
+> -
+> -	/*
+> -	 * Allocate node data.  Try node-local memory and then any node.
+> -	 * Never allocate in DMA zone.
+> -	 */
+> -	nd_pa = memblock_phys_alloc_try_nid(nd_size, SMP_CACHE_BYTES, nid);
+> -	if (!nd_pa) {
+> -		pr_err("Cannot find %zu bytes in any node (initial node: %d)\n",
+> -		       nd_size, nid);
+> -		return;
+> -	}
+> -	nd = __va(nd_pa);
+> -
+> -	/* report and initialize */
+> -	printk(KERN_INFO "NODE_DATA(%d) allocated [mem %#010Lx-%#010Lx]\n", nid,
+> -	       nd_pa, nd_pa + nd_size - 1);
+> -	tnid = early_pfn_to_nid(nd_pa >> PAGE_SHIFT);
+> -	if (tnid != nid)
+> -		printk(KERN_INFO "    NODE_DATA(%d) on node %d\n", nid, tnid);
+> -
+> -	node_data[nid] = nd;
+> -	memset(NODE_DATA(nid), 0, sizeof(pg_data_t));
+> -
+> -	node_set_online(nid);
+> -}
+> -
+>   /**
+>    * numa_cleanup_meminfo - Cleanup a numa_meminfo
+>    * @mi: numa_meminfo to clean up
+> @@ -571,6 +538,7 @@ static int __init numa_register_memblks(struct numa_meminfo *mi)
+>   			continue;
+>   
+>   		alloc_node_data(nid);
+> +		node_set_online(nid);
+>   	}
+
+I can spot that we only remove a single node_set_online() call from x86.
+
+What about all the other architectures? Will there be any change in 
+behavior for them? Or do we simply set the nodes online later once more?
+
+-- 
+Cheers,
+
+David / dhildenb
+
 
