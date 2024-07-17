@@ -1,133 +1,106 @@
-Return-Path: <devicetree+bounces-86462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7539342A8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 21:38:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F3C9342E2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 22:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9DF21C21762
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 19:38:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC17FB21AD2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 20:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA11D1836D0;
-	Wed, 17 Jul 2024 19:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6D3181CEE;
+	Wed, 17 Jul 2024 20:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K2kCctvN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HZsLq11Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C07318412D;
-	Wed, 17 Jul 2024 19:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834A51CF90;
+	Wed, 17 Jul 2024 20:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721245079; cv=none; b=hMWZYbMhnEmlkW05kdscIVA2SIsnWQgVM/a/gTdUhDdXyoTFtDV/+gucS1tjFMqAb9PonSdYugykj2zyBOufR9IkT/P+vgbwhlRWvQDfbfpauVnP5Rk7bGfFLZUgoKX2Won6lTQ8CIw23RoZbOWMN07ac1/4TXJmKk108b0EZI0=
+	t=1721246555; cv=none; b=WURubKe/1xygIO4C4fv0unbOeZ4I5b3rg+23OxFKAsVdb7zAsPZ+RC1pYAEqxXR3QfZ8CpKxuraL4DFnaqs5Pxv4QJ62tdsOKzjTfMxM4s2yjHoKyS1Vok+Gvi5E66adJMUGchmIQOUf5sesOlNZD/iOU7qTvT7jwOJ+6GIimqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721245079; c=relaxed/simple;
-	bh=yz0EKOsTz7mrobhF9M6zIhqCKDK6j40HP66tkUPF65I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BaMQMh6MgFk++RYlX+mA2t6bFtNyVaOwCuG33AXs6aJ0sSzV2yOb8Obhw4U85PlEvmp6A41mRkXbMDI1VJMFwOwEA8FXqRHENBoHM9p/f6Xe47+J8FbUt/+J0biTHxFQDoUtB6H0zNyZpf/L1MdUPYfrqAimvpJ9R9ZvY9N1SRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K2kCctvN; arc=none smtp.client-ip=209.85.167.42
+	s=arc-20240116; t=1721246555; c=relaxed/simple;
+	bh=IKZ60C2VE228hnXPBngEx2ONPoazuy9XS+om018+pRE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h0x4SyMzkGXZ734x32Refdb44mWB7JChDLh8Ppybx0GyAdmrgUSR8331jN3VMADNyki3+colGGNKcvtC9etpAERtAVHnJ9u66xR/NwYLODV7WKaUXzXR0HnSokESTF5B6nX8nYXc0QsRiGPY+4B99J+DOJEqZ33JOfmzDF9tyRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HZsLq11Z; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52ea5765e75so35967e87.0;
-        Wed, 17 Jul 2024 12:37:57 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a77c9c5d68bso2463466b.2;
+        Wed, 17 Jul 2024 13:02:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721245076; x=1721849876; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=juG5Mh/paW+cHKYcZvK56fxFqxRK7RpmIx5RQO4lGUU=;
-        b=K2kCctvNsBcge5irXXagq7BmS4dCYmXx/+DOLt+puBNTMExAiMjXJfSmqRszUhqhpt
-         6MK7nypfkIhyW679bL7UMtOyAN5eK6j2l+Ch1r4cY/tA0DB3mmp+ra6rBWergpwcgbgz
-         TF7pIJFY0h2XdtTK9O2co55VKtGPhPyWNaiSM6YqxxqqmiNptfU/fJeyBoHhjyllEUHz
-         rmpO7/Hm0DELEfJFgZlIRKikRczV0C0V53Cu42Uv9nfwq6b2ZGLym9JDDOJR4jImFbNT
-         ye3qA6Os4H6Sl6z1hQLqKLqdLINeReZlo70fqAorR7CSTFc9WWp7+Luncw14c3TcZRKs
-         muaQ==
+        d=gmail.com; s=20230601; t=1721246552; x=1721851352; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l3VwJWSOS22OLw1Rd95XcEdcYfDTK1SmF5DPuo6J8kI=;
+        b=HZsLq11ZQmlJfNGhh5ywnzyPPHKbxq+mtKao9DB+A1NQF4pV3iuxD2SBFitUcP7D/P
+         6zFRAvtnAbf80fL6L+Eax+1XF5Xwt8tOpvP5J+nWAuubfleC3kGDnIdFN//izGhG/FLC
+         9shSndzkibNM/a1xpw0+KVm4lgdxmmfppXZML8fYhuz9Yi8qWbBat6KLyci++3+v1pp1
+         ppSSIyTsI86XHivSqlJWzNAIgfDfLJJrXQfBCOqjQDsSiWIt9ar1g9JAvXiINAh/vR4e
+         UEDOBERIap22C7BGV8D4dzPr2wiTm5Fy87xckhkZLsnauv+ZBy4FQeKULpSOzwBTbmWx
+         HRpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721245076; x=1721849876;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=juG5Mh/paW+cHKYcZvK56fxFqxRK7RpmIx5RQO4lGUU=;
-        b=VoQMh88mubFeW4MSvgQKYDSKkuUJESTvE1NaLef5IgrCRECPWWRggy2qQC7LBFK8wk
-         xJhDV95dNMEvABQLb1K+HoeYohf2flh+gioQXK08qGVgUg2o1E+LkAFnxzdlksm8Tk7z
-         8TkPUcsbNOAh3dUkId4u4htUDVmmagSsnMakMjTTPQHIP5UsC5SMKNtk9fFm/WvcsG/3
-         oF/+w0L9/7DRY1LMMd0LaoBi7e+f19aSEUOEnqPRII0fAWhgBqsD1IoVH9DQgz+23sfs
-         gaup7iYP0fIuUA9LWm6iOaQcT2n3sf6mwq7CnzXOJFAuYgjmtBcZfSzlAl1SjXD5DnL+
-         g2eg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHTq+uBVFXf4BmqMXPwXZEhbYAXs1NkVn1j87QbijG1iDDHzIgMWu0tTu/4sHggXvyZ02ZXIn62NEdpp8Y0T4yhYmsgTWh
-X-Gm-Message-State: AOJu0Yw+psj59lTQWU2euLjwx5ul/2iEDld437fezLEJPP34B+LGbtPO
-	zaG9A2aAjW80FOtwnwhNu5X3XTvXf0cYudQIOzWaA3KNglZCq7aO0HHva383
-X-Google-Smtp-Source: AGHT+IHRuRxsah0gtgVX8+GeS1TA+YAkloirHXNwSXR4YvFjrGekWuSoPsZ/Fzbv7FAvhXl91IEVkA==
-X-Received: by 2002:a05:6512:1306:b0:52c:82fa:ef7b with SMTP id 2adb3069b0e04-52ee54112a3mr1839554e87.44.1721245076405;
-        Wed, 17 Jul 2024 12:37:56 -0700 (PDT)
-Received: from lapsy144.cern.ch ([2001:1458:204:1::101:a6a])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-59f7464d40asm3080535a12.68.2024.07.17.12.37.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jul 2024 12:37:56 -0700 (PDT)
-From: vtpieter@gmail.com
-To: devicetree@vger.kernel.org,
-	woojung.huh@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	netdev@vger.kernel.org
-Cc: o.rempel@pengutronix.de,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Subject: [PATCH 4/4] net: dsa: microchip: ksz9477: correct description of WoL functions
-Date: Wed, 17 Jul 2024 21:37:25 +0200
-Message-ID: <20240717193725.469192-5-vtpieter@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240717193725.469192-4-vtpieter@gmail.com>
-References: <20240717193725.469192-1-vtpieter@gmail.com>
- <20240717193725.469192-2-vtpieter@gmail.com>
- <20240717193725.469192-3-vtpieter@gmail.com>
- <20240717193725.469192-4-vtpieter@gmail.com>
+        d=1e100.net; s=20230601; t=1721246552; x=1721851352;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l3VwJWSOS22OLw1Rd95XcEdcYfDTK1SmF5DPuo6J8kI=;
+        b=OnQ3xuNSASifsA0LYFkY/oaDlqKiSX8PLClQxAAgmvCPT1w9betjdM3R7MZwZz57u8
+         CyA9MI3ORmXBJIZINFEuwFiQqBHesDSjUIJBkt4yYly5kB6s9UX5BSRYq2/E4IMCcPeW
+         +oV/JhjiMmHs7Re6b+vY4xL1sEk92L6iCYAYkTQ7mcU0tbq7zAWOSN2JCFtN6CTVHm/p
+         XeRuNQ3/QM6cyHIU7h2JZzkzjwW5F1terGGZOx+AWtcCfKiD6L6/95rLP5ejkTT0SpBg
+         Glo0JFam5ppIOY7Bttrq/2AY+FLeHsjuyyCgeqi5TX1IFfT5YuaNkhj/WQeZQEp+HIuW
+         Eiow==
+X-Forwarded-Encrypted: i=1; AJvYcCWMDFthQXP4LfQVZoMTfxqj5ED2PEHw6cT0KH4kxFQsON4dcdW37ET5aNghNA+MTjJA557LlxLAyR1zM4W/xDw8IOUDbq0r4kM7FWas/90TrQgL57PI/34LQVYPLc2s3wdgffZsi27fhA==
+X-Gm-Message-State: AOJu0YzWHsaCDTxWxhKYj6SmgWnoV55E/RktDE3diUkOs2gwRSHR3nf2
+	I39qJ+qlGtnl2Lc4ggNSSWz1QLnEJDfH4zgugu8PAM2jShEp4gr5
+X-Google-Smtp-Source: AGHT+IGUxr7sog/F/OdrZRM8MY0OeurMFSB1lRz0s4H55+eJy+SVONsy8cQSsORza+1w87I8ieOqmQ==
+X-Received: by 2002:a17:906:5f8b:b0:a77:f2c5:84a9 with SMTP id a640c23a62f3a-a7a0114a5d1mr167150566b.18.1721246551584;
+        Wed, 17 Jul 2024 13:02:31 -0700 (PDT)
+Received: from [192.168.50.244] (83.25.184.148.ipv4.supernova.orange.pl. [83.25.184.148])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc7ff6aesm474959466b.153.2024.07.17.13.02.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jul 2024 13:02:31 -0700 (PDT)
+Message-ID: <1296ff07-61bd-438e-bae8-568485866119@gmail.com>
+Date: Wed, 17 Jul 2024 22:02:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] ARM: dts: bcm-mobile: Split out nodes used by both
+ BCM21664 and BCM23550
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
+Cc: Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>,
+ ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240717-bcm21664-common-v2-0-e9bd6cf435e4@gmail.com>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <20240717-bcm21664-common-v2-0-e9bd6cf435e4@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+On 17.07.2024 17:27, Artur Weber wrote:
+> To make development for both platforms easier, split out the common
+> nodes into a separate DTSI, bcm21664-common.dtsi. 
 
-Correct KSZ9477 WoL function description, found when evaluating it for
-usage at KSZ8795 family of switches.
+My bad, forgot to update the cover letter; the common DTSI is called
+bcm2166x-common.dtsi now.
 
-Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
----
- drivers/net/dsa/microchip/ksz9477.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
-index 425e20daf1e9..1344b60ee2c3 100644
---- a/drivers/net/dsa/microchip/ksz9477.c
-+++ b/drivers/net/dsa/microchip/ksz9477.c
-@@ -95,9 +95,9 @@ static int ksz9477_handle_wake_reason(struct ksz_device *dev, int port)
-  * @port: The port number.
-  * @wol: Pointer to ethtool Wake-on-LAN settings structure.
-  *
-- * This function checks the PME Pin Control Register to see if  PME Pin Output
-- * Enable is set, indicating PME is enabled. If enabled, it sets the supported
-- * and active WoL flags.
-+ * This function checks the PME 'wakeup-source' property from the
-+ * device tree. If enabled, it sets the supported and active WoL
-+ * flags.
-  */
- void ksz9477_get_wol(struct ksz_device *dev, int port,
- 		     struct ethtool_wolinfo *wol)
-@@ -135,7 +135,7 @@ void ksz9477_get_wol(struct ksz_device *dev, int port,
-  *
-  * This function configures Wake-on-LAN (WoL) settings for a specified port.
-  * It validates the provided WoL options, checks if PME is enabled via the
-- * switch's PME Pin Control Register, clears any previous wake reasons,
-+ * switch's device tree property, clears any previous wake reasons,
-  * and sets the Magic Packet flag in the port's PME control register if
-  * specified.
-  *
--- 
-2.43.0
-
+Best regards
+Artur
 
