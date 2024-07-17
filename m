@@ -1,133 +1,136 @@
-Return-Path: <devicetree+bounces-86324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A6A933A2B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 11:40:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69504933A4A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 11:49:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7685283D1A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:40:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25E7828393D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 09:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AF8524C4;
-	Wed, 17 Jul 2024 09:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53EAC17F367;
+	Wed, 17 Jul 2024 09:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ15Gko1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HGIijW84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9FF4F88C;
-	Wed, 17 Jul 2024 09:39:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1A817E8F9;
+	Wed, 17 Jul 2024 09:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721209176; cv=none; b=LjoPfKMKUuKgkGx0pOX3+SBo4n7KX44wN7X4SJ8iynv18qTG35pmjoFyF+SosK3R7I3pCu/rXuak9Sygyfmnlz+PsGJXHifImsUfOsIkAMGALA3guny4/VEPNF8F+Rr+59qhjCMjCgRVB/XMR1zHYh6UdHqrN69Tu9uPEujXebE=
+	t=1721209768; cv=none; b=ZDEbcUAPSDNcIAAywWgT1nYUdKhFBghJ0xgD/wqP8FgmgKkg/ahhH3AaOzUi6uN510idzSSpKbzYIYBZ/eHkvuJes+Ieoz6eSXt0fiiRLWTLTlN8LjeRr0aEBAG/CiOi40lmWPW2+e77wzDbFeODx8uKCJzpj3q4/Fc/4mse4MA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721209176; c=relaxed/simple;
-	bh=d9O95bzVbKkcxfhQls1Vk/glISShfsvYzhZ9V8sNQB8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e5H2HjfFhOspfpc3d7GFI9W2VYM9LwNNhTFeSqvaBhfGaQaJ9KGRWl6YwiNzgZsagdV26V+LUhmsLIBeH1GU5f1Tl0q+cOy8dTPSRL+xISnJsVCnWHLo/O8cPPqduvMn4ZQ4uJfPGCFTJ51ldIPsJl4xQQwFQz6IAah5g5jz6dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQ15Gko1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A3A0C4AF09;
-	Wed, 17 Jul 2024 09:39:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721209176;
-	bh=d9O95bzVbKkcxfhQls1Vk/glISShfsvYzhZ9V8sNQB8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eQ15Gko1TkOhgvEGXhGzyZPsHH2m+yS7gglLBzqTgOOG1f+1i046JIb4kjh0qIumv
-	 cc5iz+XAC2+ItnnKwPYxmsoyB0bpYe6oy9nByWYdUXFN9bofNq0XwfrCn0a7uU/x4f
-	 lkTO3vdJGjwLRRvaPx1ZIz/ho2Z/gkOzW0dt8Hxk+XxazVAPRNDZkQTgLVio/8Na/E
-	 kY0GH+t5qJZyl59A182MxH6yFoOJlK5owy3RvvHBi3gU9P1BG1h3IkE1mEd1JXHOxZ
-	 OeUAaPir6grNhqkqWPs/pW8T46JcbONy9EPh296Y0FEqE86mnTRk3TKSCt37dDWGGU
-	 PlrtdQ9m5L2+Q==
-Message-ID: <6ff32295-f614-458b-9174-f86fa86f3764@kernel.org>
-Date: Wed, 17 Jul 2024 11:39:29 +0200
+	s=arc-20240116; t=1721209768; c=relaxed/simple;
+	bh=26CUJ3fTo1PVxcLPtvOiRCqkB2bx1YYQ/UoSpcFrCNg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oYtnY6bcAmDaqJf7md+6G+l5+T8uWEUGrL1BGrqj6yKNexcwdK5v3GVQf/oIK5RNCW83WK4nX0q/dRcQVzGvhTLPDJapgfpzhmw+gKkAabsPx8Ie/jki7dS8+3N5O38Urf3xuJa6cWDsNL1zcPz0LH1HWSx04TR22Pdhqj+QUL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HGIijW84; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46H79vco029055;
+	Wed, 17 Jul 2024 09:49:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=5E9h2/RoTdgVUBIiWmCHLa
+	lzQuAZA0+NEPCzWP40ZBE=; b=HGIijW84kKA5XcRZYA3adU9htYYBu95d/NtyX8
+	Qd5JEA0XRCDV08sr5CCA4jd6wdG5EUqaR3ZnDBimQSAZt6h1SuS/brQfdW0NFNCV
+	4FmMMBhFEP6TUd7aQzamKJET1dD586NqGgZrarEZK7+h76Htjbicn4yPC0yA6zK/
+	tq5gYXcWS1w4yETgmSv4cM3GA0HGzYob58nUIw2lCe9SWze7bKLdz8+kpocgYVfy
+	4KqNyIZ3cCV0JKU2hpxS6Ba1Zrl13HE+wzRXU2/x0nAEKgZtYf0k7Gi0T/M363Fi
+	fplLJKCsPVIQhYJcmX7HuC6udQ+CbIpGbQiy+/BsIxL0h1lg==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwj1hwcc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Jul 2024 09:49:10 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46H9nAvw005358
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Jul 2024 09:49:10 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 17 Jul 2024 02:49:06 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <quic_wcheng@quicinc.com>,
+        <quic_kriskura@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v2 1/2] dt-bindings: usb: qcom,dwc3: Update ipq5332 interrupt info
+Date: Wed, 17 Jul 2024 15:18:47 +0530
+Message-ID: <20240717094848.3536239-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/4] ARM: dts: socfpga: remove non-existent DAC from
- CycloneV devkit
-To: Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- imx@lists.linux.dev, loongarch@lists.linux.dev
-References: <20240717-anvil-ashy-544e80a1317c@spud>
- <20240717-partake-antivirus-3347e415fb7d@spud>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240717-partake-antivirus-3347e415fb7d@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pZ7zxeHShegCEf0BTIljOtaSWOGPivB6
+X-Proofpoint-ORIG-GUID: pZ7zxeHShegCEf0BTIljOtaSWOGPivB6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-17_06,2024-07-16_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=815 phishscore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 impostorscore=0 clxscore=1015 priorityscore=1501 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2407170075
 
-On 17/07/2024 11:37, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> There is no Rohm DAC on the CycloneV devkit according to the online
-> documentation for it that I could find, and it definitely does not have
-> a dh2228fv as this device does not actually exist! Remove the DAC node
-> from the devicetree as it is not acceptable to pretend to have a device
-> on a board in order to bind the spidev driver in Linux.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+IPQ5332 has only three interrupts. Update the constraints
+to fix the following dt_binding_check errors.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
 
-Best regards,
-Krzysztof
+Fixes: 53c6d854be4e ("dt-bindings: usb: dwc3: Clean up hs_phy_irq in binding")
+Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+---
+v2: Fix patch version numbering. Incorrectly marked the first version as v0
+    Add interrupts and interrupt-names for ipq5332 instead of clubbing it with
+    qcom,x1e80100-dwc3
+---
+ Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+index 6c5f962bbcf9..5e5cc2175526 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+@@ -235,6 +235,13 @@ allOf:
+             - const: core
+             - const: sleep
+             - const: mock_utmi
++        interrupts:
++          maxItems: 3
++        interrupt-names:
++          items:
++            - const: pwr_event
++            - const: dp_hs_phy_irq
++            - const: dm_hs_phy_irq
+ 
+   - if:
+       properties:
+@@ -442,7 +449,6 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - qcom,ipq5332-dwc3
+               - qcom,x1e80100-dwc3
+     then:
+       properties:
+-- 
+2.34.1
 
 
