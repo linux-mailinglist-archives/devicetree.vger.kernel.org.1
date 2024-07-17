@@ -1,154 +1,165 @@
-Return-Path: <devicetree+bounces-86355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B27B933BDC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:09:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CB2933C83
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 13:50:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 409991F2436E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 11:09:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C60E2281B22
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 11:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DDE17F39D;
-	Wed, 17 Jul 2024 11:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4426E17F512;
+	Wed, 17 Jul 2024 11:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L2X6NBvo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ji5GO0IC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658AC433AB;
-	Wed, 17 Jul 2024 11:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E46626CB
+	for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 11:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721214564; cv=none; b=lsTbtTm2STQ9X+OHP86D/sBp8PYRejbebQvaz65YRmDvoCtGPE6elDqa4YrsopwCmt7QdL05Do4J/YixGwH6KMPjzXAHjMGoTpxAlYcH5nG2cG5JL+xC6Je3i1f/0KrEXlv6aPH4BEOpEhN8K8gTdTwKm2poMUuqPKsMudxqz6o=
+	t=1721216993; cv=none; b=UFKqFdjSOuGSsZrsqOoamV7q4gNvt8b1ijBcvvuWqywYktTfR/hAFCMwMzJERpnK6/Zcqf0EBL4LZ+qbkkBh5FbdGUAPmuiy4UUXI6KbeVNgjiQ5nXrQEFbM/X2XOVE9MZwoOZIPbPj5t06hIYdb6NPbTzkdVwn3N3uA0qqQaks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721214564; c=relaxed/simple;
-	bh=FSbWIXHB9Zk0Ie4hV6sZMAyhTwetU0kPZD4So7/XoSs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OJDoF6TWhpFZYjXvp89o26a/pLeYM2bIVUsD2n8IdITDBi1ymJzclQC7mRzUp0r8LQoYkcBkjRQXSk8Ipc9xMf9d8HbNazDK0vuvjCHGGETaCaFR/vuAuAAFCTa43bDRTaV6uAQU4x89fFQEucfJ3V2Y/qsQP31DBjmHxFtWpkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L2X6NBvo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46H70t7H031984;
-	Wed, 17 Jul 2024 11:08:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4EVCHZ5xE0SMUtc/klFWgbFGZ8Pt1Q6yw5r9zCzdFC8=; b=L2X6NBvom4EPFIaD
-	agzvK2eGfihO6cgSy/uq7gO0O4D5shVh6OeIejrK6ZDXv4gZRQ5rlEmtvEutwGOo
-	NbFRQ8N0ZNQ+/lvDvjO4DV6s4TvyXUEhHLH8ro/MOuitnxVgFUY7QgTed+CGh6w1
-	OAVy01HNrkvySoBInvDbd8AugJTi8ZO83z0y03fps/YmB4G8b9PARiJ8gCTr7If6
-	Z4yMtfVXX54pMGaqyvGf8G6XMgEI/RUHrdzsIZX+SxWhv6qMUdtAROzWqq77sbBt
-	6lzANCtbkAktoGlvDQVM3efsuNdJV94dXLD2r39KvnudgpDZ+OP4+fV0xsAJH+0v
-	e8+40Q==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfs242f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jul 2024 11:08:54 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46HB8rHK031983
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jul 2024 11:08:53 GMT
-Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 17 Jul
- 2024 04:08:46 -0700
-Message-ID: <b6aefcee-808c-77cd-7632-52ab21a14a54@quicinc.com>
-Date: Wed, 17 Jul 2024 16:38:43 +0530
+	s=arc-20240116; t=1721216993; c=relaxed/simple;
+	bh=dijBvA8h/mlP/b+fvArsYP+PU32DDSBuOiQSn/Tbt4c=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ki53+M1oA72LZZTYsN7kIsmiiqav0YaQ4W8P9NviNhxJ8McfmSm0/Fp3kw2qBNzuU+f7jEQRhiPm8fKwxoWbQWMafGJ4fav14BL2dmKBLO2PfLZgAGT9d2//xdgZ00Ei+fj/4cApO3rLVLr6x3lCXPlGhWqGG8sbwOyIUKhQFMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ji5GO0IC; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-367963ea053so5415022f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 04:49:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721216989; x=1721821789; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w7CH0wJPE8C8VJb/gooS5KDoMKf7Vw1Vu0ciAJ2zlEg=;
+        b=ji5GO0ICVJNMHnyxxlJ7M5VdaSADD92lrSs39huxqZbNzi4Y/RMvMeId1oXokZ7ggA
+         MgjPWP4T3/d7Q3QOb9+7FESRIuojA3K98c6dtRNqf6IRnOUG0DlLUlex7mPtzSZmRI/A
+         xiMjQeTvWCaMUZbYJTsAmmhBJxr7yNFHwSijx9SDzUovcDbBmkOyEsgtwcE1Bzl0Yajh
+         VU//+rZ/ks+OfrZFxvgpBYwQA3SKxKWR3HvrvAYzxd/Qj3W/J+Xp9WFJ4KjP6JxgR+Tj
+         kWKMXAQA94DAzdD02YybPjF9AeIQGE5n25mvuTQ2xWL3kceHD7MYGuHFnjKdO7NLjphM
+         2MXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721216989; x=1721821789;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=w7CH0wJPE8C8VJb/gooS5KDoMKf7Vw1Vu0ciAJ2zlEg=;
+        b=AZN2iBVK96ySzpysmeloVlujheD55T2KZDlrzNbCC1safPCsV9sokakjxL7dCSVB8+
+         cMi1uSQWAJWi3otADCo1SiUac1K7xBn+WbF0eITYaUd4zJ9PwN0/+XwoPU9LkSRAjUOm
+         4yluVxToynxeJT6lGPfoRUUp5Di5F7IhyrPSGvXwmzuTNjbQVEwLqY1KRn9wszn1sIN3
+         28RwClo8C7eEXdYjfetma6D9etYQR7zx2S+Gqea7+w8nnUy7p4aU4/Ac23mHsTHYjyfP
+         f9B1bFll4iQeJU2/ncFuKvIeGygrJGlUaw78xsRzwWKkYXZ7OCa2SAEIa9NxBH/w0vWe
+         ieSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVL0rsVfubECi+8VSkmDQJOJZA7WDH+7O1APyewzUJFYFYS8SNsc4oAF3QmxK1XikjKw2YU2k2+3dG5IHeueu95wDc1RwlYNKpbpA==
+X-Gm-Message-State: AOJu0Yx5b8mni8C6qZxPIH9GnvJicp82gaN0HcufBZQ0OMDIjslQXnkg
+	foWOF6hjoO9WyevjfUfX3KA5GuY+ixK0EJ3VXlMpux5XkTtsymHQd2rCTo+AF08=
+X-Google-Smtp-Source: AGHT+IGKb1tKho0NosZx3IwinDD1gQWRFtfkFatWsFodE/ye30ACn8akaZbOBaV+w2cWepVpfMowrw==
+X-Received: by 2002:adf:e591:0:b0:367:99fc:238a with SMTP id ffacd0b85a97d-36831650cedmr1325248f8f.32.1721216988693;
+        Wed, 17 Jul 2024 04:49:48 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:c5b9:9b90:b1c4:1a1d? ([2a01:e0a:982:cbb0:c5b9:9b90:b1c4:1a1d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3680dabf0e4sm11490435f8f.33.2024.07.17.04.49.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jul 2024 04:49:48 -0700 (PDT)
+Message-ID: <be058ef9-2ea5-4bcf-8b74-c73d95e13198@linaro.org>
+Date: Wed, 17 Jul 2024 13:49:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for
- SM8150
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
- <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
- <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
- <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com>
- <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
- <f4072105-e0e2-46c8-82ed-92105b43a345@linaro.org>
- <6124f9e9-3fdf-29b1-128f-c58f5ebe1424@quicinc.com>
- <7fcc309e-f1c9-4693-a2d1-76df85021dff@linaro.org>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <7fcc309e-f1c9-4693-a2d1-76df85021dff@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Td_8iWVgCZSbdibr1qBp4yCOfwUBrQld
-X-Proofpoint-GUID: Td_8iWVgCZSbdibr1qBp4yCOfwUBrQld
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-17_06,2024-07-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0
- suspectscore=0 phishscore=0 spamscore=0 mlxlogscore=999 mlxscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407170086
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/7] clk: qcom: dispcc-sm8550: fix several supposed
+ typos
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240717-dispcc-sm8550-fixes-v2-0-5c4a3128c40b@linaro.org>
+ <20240717-dispcc-sm8550-fixes-v2-1-5c4a3128c40b@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240717-dispcc-sm8550-fixes-v2-1-5c4a3128c40b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On 7/17/2024 4:23 PM, Bryan O'Donoghue wrote:
-> On 15/07/2024 11:36, Satya Priya Kakitapalli (Temp) wrote:
->> This clock is PoR ON clock and expected to be always enabled from HW 
->> perspective, we are just re-ensuring it is ON from probe. Modelling 
->> this clock is unnecessary, and we have been following this approach 
->> for  gdsc clock in all the recent chipsets, like for example sm8550 
->> camcc.
->
-> Having a difficult time following the logic
->
-> - Re-enabling an already enabled always-on clock is necessary
-
-
-There is no hard requirement to enable it again , but to be on safe side 
-incase bootloaders disabled this clock, we are enabling it again in probe.
-
-
-> - Modelling the always-on clock in the CCF to park it at XO is
->   unnecessary
->
-
-Modelling the clock will cause the CCF to disable the clock in late 
-init. I have tested on SM8150 by modelling the gdsc clock now and I see 
-it is getting disabled in late init.
-
-
-Parking the parent clock(rcg) at XO, doesn't ensure the branch clock to 
-be ON. If CCF disables the clock it gets disabled.
-
-
-> I think that's a pretty vague argument to be honest.
->
+On 17/07/2024 12:04, Dmitry Baryshkov wrote:
+> Fix seveal odd-looking places in SM8550's dispcc driver:
+> 
+> - duplicate entries in disp_cc_parent_map_4 and disp_cc_parent_map_5
+> - using &disp_cc_mdss_dptx0_link_div_clk_src as a source for
+>    disp_cc_mdss_dptx1_usb_router_link_intf_clk
+> 
+> The SM8650 driver has been used as a reference.
+> 
+> Fixes: 90114ca11476 ("clk: qcom: add SM8550 DISPCC driver")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> bod
+>   drivers/clk/qcom/dispcc-sm8550.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/dispcc-sm8550.c b/drivers/clk/qcom/dispcc-sm8550.c
+> index 31ae46f180a5..954b0f6fcea2 100644
+> --- a/drivers/clk/qcom/dispcc-sm8550.c
+> +++ b/drivers/clk/qcom/dispcc-sm8550.c
+> @@ -196,7 +196,7 @@ static const struct clk_parent_data disp_cc_parent_data_3[] = {
+>   static const struct parent_map disp_cc_parent_map_4[] = {
+>   	{ P_BI_TCXO, 0 },
+>   	{ P_DP0_PHY_PLL_LINK_CLK, 1 },
+> -	{ P_DP1_PHY_PLL_VCO_DIV_CLK, 2 },
+> +	{ P_DP0_PHY_PLL_VCO_DIV_CLK, 2 },
+>   	{ P_DP3_PHY_PLL_VCO_DIV_CLK, 3 },
+>   	{ P_DP1_PHY_PLL_VCO_DIV_CLK, 4 },
+>   	{ P_DP2_PHY_PLL_VCO_DIV_CLK, 6 },
+> @@ -213,7 +213,7 @@ static const struct clk_parent_data disp_cc_parent_data_4[] = {
+>   
+>   static const struct parent_map disp_cc_parent_map_5[] = {
+>   	{ P_BI_TCXO, 0 },
+> -	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 4 },
+> +	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 2 },
+>   	{ P_DSI1_PHY_PLL_OUT_BYTECLK, 4 },
+>   };
+>   
+> 
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
