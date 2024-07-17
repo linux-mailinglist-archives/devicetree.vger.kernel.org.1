@@ -1,209 +1,108 @@
-Return-Path: <devicetree+bounces-86417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4BA9340A7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:40:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1839340B6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:46:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C7C3B22C1F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:40:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 630751F21554
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:46:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3F2181CE9;
-	Wed, 17 Jul 2024 16:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F65181CE9;
+	Wed, 17 Jul 2024 16:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLENMP01"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LFXVMvdX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF99181BA0;
-	Wed, 17 Jul 2024 16:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8681E4B0;
+	Wed, 17 Jul 2024 16:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721234402; cv=none; b=fHowlME1NGYggzIOT6BCC6bd4p4xaZIFUKuF80hQft9j9qcZkuRe3D8b7cnacbzG+Sa+39zj4W1SZHZssEf5EDFMhXogpGgGcvHDNu0d5VSJS8RPnQ3VXFHLv5mG+7DEZXTCoJ5o03LsCnySZVE0Isi8XcJeiKOFFOkNhzwdDL8=
+	t=1721234776; cv=none; b=aWEsZja+exM57oP3CGRvB4NuHUELPdi1qgPXaDFeUuD9LDPu7BsxoEgv2xZiFkMW2dnqTjDxzLrQlUUH0LsJGi821+LhVfiBcGsk2I1z9XUx9UkM5sbj33oyVzrKkU3HX8nfVCpr8Y8AIKmXKP3M6wRorRuS2at/sjStjalDYWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721234402; c=relaxed/simple;
-	bh=qC8+pVATdmmyhMdVyxpGh1+kxEQNetfbxGBQB2c/ZNk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fqEpjlzgGk6VHPfqV/39dKU5lMv+Bs7Tc80uV9BwceJDaetnSSaZZQaLLeNnJZviUuJ4Jr4LCFC+yoMpGBAadDX/Z+ACdrtHFj/ESXFl/0AOxh3iv4q5pOakZN5FLuLgFDBFs42us25kkU9QOzrxYAmwoyvG4mx/VGVQbZgR6MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLENMP01; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D14C9C2BD10;
-	Wed, 17 Jul 2024 16:40:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721234402;
-	bh=qC8+pVATdmmyhMdVyxpGh1+kxEQNetfbxGBQB2c/ZNk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZLENMP013HWtHghbcxzvHT5rHEM0c0yxS2Zdet8UxCJKiVmJpD4aaWm8PZ1Y/Obmd
-	 sOR4bBC2xWxIML/BS/pmq07Rik6VFPUZldrUXJ+lK12FRqeXd0jdJVc3HpMvFSLWWZ
-	 881PaJlscn9rH0KEFYcTd8PkMTEEUHvY2lmn7ky7Aho1FoYfH9B40pgtpyiJKSdKrc
-	 YZomQ0EoPFgC+GZOkssHiTtjZo83Ce6OepjaxfmAubsYDb+LHSfg/3TBzXwoAU5Hsg
-	 E7iMYAU4SEwcuB+VlONQ/yL6hEWlzQmgDX7OlYDyVzaJVkspNU3kNVSpAuFh7aa2pU
-	 8AK/nqQzFyngA==
-Date: Wed, 17 Jul 2024 10:39:59 -0600
-From: Rob Herring <robh@kernel.org>
-To: Rayyan Ansari <rayyan.ansari@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Timur Tabi <timur@kernel.org>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: qcom,emac: convert to dtschema
-Message-ID: <20240717163959.GA182655-robh@kernel.org>
-References: <20240717090931.13563-1-rayyan.ansari@linaro.org>
+	s=arc-20240116; t=1721234776; c=relaxed/simple;
+	bh=2S0ab5SdmVZu6CHXw0oDlN+TBmAuaYsarb+i1qS+Q+I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YbgIy8xJSic0IJNYQicmyZbZPD4NnhmNx3++flzbHGQbKC9UvM/g34FNTlK0SW0txqmuirhkUQbklukGJetxMtnpklDUmbCQdkOVzzdEH+G2L8cC7uxuFLdYqtE7CgEFtKpGNjmqR+OTb383DaJxki5GZdq9fh3aFy4aey9qDx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LFXVMvdX; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ee9bca8675so11214381fa.3;
+        Wed, 17 Jul 2024 09:46:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721234773; x=1721839573; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2S0ab5SdmVZu6CHXw0oDlN+TBmAuaYsarb+i1qS+Q+I=;
+        b=LFXVMvdXZ9az8v+HdDH7pcprQIEMnFBR1LKVxZk2C/p436uaXenFiVw/vxx5mDxdlU
+         BPKwdbM6qd6SN2Yb3zHciHSC2Xr9y/nqDsAfISdJuuPxWZhpxPhpIwH83Lq8irneSPo0
+         OKz9zv8Edi2nvGHVR7lBjm+Tbaxrqnfckjmml5+IKqUM2fR1ZK7eG8yvV5V830kwNiEM
+         iu9tBwmu5keIUAYrC/TREGPSLVQ3Pw1wFr/AtX484nKNbezy1OrUdxDaDy6ZiZs1wqDG
+         dmAzBL3jwiqKJV/VeaK+krMJDzZ3xHr9dV5RTgSos/SiT5y8sqVBXSiHwagT7XMO+Qa7
+         hWMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721234773; x=1721839573;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2S0ab5SdmVZu6CHXw0oDlN+TBmAuaYsarb+i1qS+Q+I=;
+        b=CbxwQfDv67GPeLV3eptcA8pXvdo9IeiFalYh7eUzB2iB3elIjOyns/ryxlRCz97und
+         rvXUvhigfqHGE3RmBaJ6f3sk6DayjobMmPBz+D+sN7b9Z6qfCRmmallmt49+njeD7YhN
+         SH5+Nf8vE9QyrBbxJaG/A+KOap/KwbddcTvCtEWOJpSmNuecS1Hdyxs4rQsp/aK+hDcj
+         B7tdq5Tv0Z+HdWC3hYsn/OGSuqkiiWMtnCtBxwzdCM35WKAx+qRU8N7PgsNV36n6PfNo
+         eBLE0R+AswpRCrPzbYtggDPSNX7UOZtMOXHjzOgmetOnm+gYI3TMP/fctJFKoLm7ExC7
+         rCfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWh2HbOq5hZ3rAPv6bW6AbiFVz0gT4BBRFT8xyY0VVgdnhtSHkGlwTDZ0MAny7Bo1R2gS8PDIQVTcA+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOFEoYo739t/hcG1PCR3GDRSa8C5oQIU0UOQAUhAunyJPN01Ij
+	mkxqBmXJe6+fdn+TbnUFAhN6KHz5gvNtNVI29WtveT14bQWWkqHFGmPpYmGoEkkMuD1J2Wdd9FO
+	uYlX2XYsFFlXQ2kFjwry4U45Yn2w=
+X-Google-Smtp-Source: AGHT+IHoe46620+UsVuITlGPh3/c/KNcEkZ5F6Uq8F7R6XszLx9r5KYDXHcT2MQwJr48RLgG03dD62MwkhoqroWKBWc=
+X-Received: by 2002:a2e:6e15:0:b0:2ec:4399:9bfc with SMTP id
+ 38308e7fff4ca-2ef05997667mr23791fa.0.1721234772478; Wed, 17 Jul 2024 09:46:12
+ -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240717090931.13563-1-rayyan.ansari@linaro.org>
+References: <20240717-anvil-ashy-544e80a1317c@spud> <20240717-parrot-malt-83cc04bf6b36@spud>
+In-Reply-To: <20240717-parrot-malt-83cc04bf6b36@spud>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 17 Jul 2024 13:46:00 -0300
+Message-ID: <CAOMZO5DuwjQxMG4dT-_HcLjA_4U-+B2kR8FW1580RFiHcxo6OQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] ARM: dts: rockchip: remove unlikly-to-exist DAC
+ from elgin-r1
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	imx@lists.linux.dev, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 17, 2024 at 10:09:27AM +0100, Rayyan Ansari wrote:
-> Convert the bindings for the Qualcomm EMAC Ethernet Controller from the
-> old text format to yaml.
-> 
-> Also move the phy node of the controller to be within an mdio block so
-> we can use mdio.yaml.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
-> ---
->  .../devicetree/bindings/net/qcom,emac.yaml    |  98 ++++++++++++++++
->  .../devicetree/bindings/net/qcom-emac.txt     | 111 ------------------
->  2 files changed, 98 insertions(+), 111 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/qcom,emac.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/qcom-emac.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,emac.yaml b/Documentation/devicetree/bindings/net/qcom,emac.yaml
-> new file mode 100644
-> index 000000000000..cef65130578f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qcom,emac.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +---
-> +$id: http://devicetree.org/schemas/net/qcom,emac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm EMAC Gigabit Ethernet Controller
-> +
-> +maintainers:
-> +  - Timur Tabi <timur@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: qcom,fsm9900-emac
-> +      - enum:
-> +          - qcom,fsm9900-emac-sgmii
-> +          - qcom,qdf2432-emac-sgmii
+On Wed, Jul 17, 2024 at 6:38=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> The Rohm dh2228fv (really the bh2228fv, the compatible in the kernel has
+> a typo) does not support frequencies above 10 MHz, nor per the
+> datasheet appear to use either CPOL or CPHA. I suspect that this
+> devicetree is abusing the compatible in order to bind the spidev driver
+> in Linux. Pretending to have devices on a board for this purpose is not
+> acceptable, so remove it.
 
-You just need a single enum for all 3 compatibles.
- 
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
+In the Subject: s/unlikly/unlikely
 
-Need to define what each entry is and perhaps constraints on when it 1 
-vs. 2 entries.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      const: qcom,fsm9900-emac
-> +then:
-> +  allOf:
-> +    - $ref: ethernet-controller.yaml#
-
-This goes at the top level and the 'if' schema should be under the 
-'allOf'.
-
-> +  properties:
-> +    clocks:
-> +      minItems: 7
-> +      maxItems: 7
-> +
-> +    clock-names:
-> +      items:
-> +        - const: axi_clk
-> +        - const: cfg_ahb_clk
-> +        - const: high_speed_clk
-> +        - const: mdio_clk
-> +        - const: tx_clk
-> +        - const: rx_clk
-> +        - const: sys_clk
-
-Define these at the top level and then exclude them in the if schema.
-
-> +
-> +    internal-phy:
-> +      maxItems: 1
-
-This needs a type ref.
-
-> +
-> +    mdio:
-> +      $ref: mdio.yaml#
-> +      unevaluatedProperties: false
-> +
-> +  required:
-> +    - clocks
-> +    - clock-names
-> +    - internal-phy
-> +    - phy-handle
-> +    - mdio
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    emac0: ethernet@feb20000 {
-
-Drop unused labels.
-
-> +        compatible = "qcom,fsm9900-emac";
-> +        reg = <0xfeb20000 0x10000>,
-> +              <0xfeb36000 0x1000>;
-> +        interrupts = <76>;
-> +
-> +        clocks = <&gcc 0>, <&gcc 1>, <&gcc 3>, <&gcc 4>, <&gcc 5>,
-> +                 <&gcc 6>, <&gcc 7>;
-> +        clock-names = "axi_clk", "cfg_ahb_clk", "high_speed_clk",
-> +                      "mdio_clk", "tx_clk", "rx_clk", "sys_clk";
-> +
-> +        internal-phy = <&emac_sgmii>;
-> +        phy-handle = <&phy0>;
-> +
-> +        mdio {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            phy0: ethernet-phy@0 {
-> +                reg = <0>;
-> +            };
-> +        };
-> +    };
-> +
-> +    emac_sgmii: ethernet@feb38000 {
-
-This should be a separate entry. (You need '- |' above it.)
-
-> +        compatible = "qcom,fsm9900-emac-sgmii";
-> +        reg = <0xfeb38000 0x1000>;
-> +        interrupts = <80>;
-> +    };
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
