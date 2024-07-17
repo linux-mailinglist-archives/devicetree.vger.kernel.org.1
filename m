@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-86365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2EE933CC0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:04:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 642D5933CCE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 14:08:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 403F31F2478A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:04:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2355E282FA9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 12:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45FC117F500;
-	Wed, 17 Jul 2024 12:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2525517F51C;
+	Wed, 17 Jul 2024 12:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dp3yB7X4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IpvdwEs1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D156433B9;
-	Wed, 17 Jul 2024 12:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5A017F4FD;
+	Wed, 17 Jul 2024 12:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721217872; cv=none; b=nalHz5hjVawOyt49me2nO2ym4+rnG5ZdIZ+1v3EwQ3RLV/oRAaj+Bz8JCa7LAjID1ix3O2kBq18NEH5kJR3N8/n+Hl02mjkR2gJ6VFZXJ+pzXBiFdRL2HnPmc8N0+jaiZXS4yvvEBYtrxzbejR7KsO6yOwBYTsc/4ZXA/68ufJs=
+	t=1721218106; cv=none; b=YsoQKxrns2K1GM+3WI9EmksQ9YnBGFhylSajKU0OePrvmJDZkh+gAf/t/Ui9f83T4saZWM+hht08Hfp22U8uWWsw5gb/EWScHJj9FIFAdmOJXDIpD3z4azDn09Xu3FW/NJXDj5G8z1/7HeG26hZUQSjtynK6CQnxdGFkRxumMZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721217872; c=relaxed/simple;
-	bh=vk+H0hoJn4+tPP4KZNA7bIkiuq7tilGJ770kNIjL/4w=;
+	s=arc-20240116; t=1721218106; c=relaxed/simple;
+	bh=9is3kWQq7byWjLnfjgZmgqt2HbsdE+iWQlwOhO1Kq68=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dv0Bsu8my+wCrMMUz4QWwbUorC7KAdheP639AfD4z09aAjfUO2asGGlEbwRzLVuceZVu4EVwjklPVvlAMCfLvMrLFCCZKttnVzS03U7Vnm/phgpIdNNKkan8jlTl+0WQRxvOIQJy8F7L36dGd0gnv2E9zgOt+Q2s0j+EfSoi+1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dp3yB7X4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 886B2C32782;
-	Wed, 17 Jul 2024 12:04:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XcStqpKc29p9Kg76Q1/VeHMvfiOVv9RjCotwxdxLi6oZiBf+PZIhqxXhpD+Za2gX5qOpN121QWYzMdWE6ksurssvrFWzRao2ajBCe1AN4OR7GEUULgUwdEbjdJcx0woplSFIU9IgCQv1Z9oryiXvRs4p+ncPcLnFbSChJzAFjkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IpvdwEs1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88703C32782;
+	Wed, 17 Jul 2024 12:08:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721217871;
-	bh=vk+H0hoJn4+tPP4KZNA7bIkiuq7tilGJ770kNIjL/4w=;
+	s=k20201202; t=1721218105;
+	bh=9is3kWQq7byWjLnfjgZmgqt2HbsdE+iWQlwOhO1Kq68=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dp3yB7X4t6SAkC7Xh9CwPf04BTt0oPlN4946g4aM9KN0sUx2W1EtrEVRQv/58vWES
-	 imCKU0w3w7QWMah9x+n0g03QJdh9F38kkmsRZ2RcCWSaxTet+wQZ8FAKiO71ofOkQB
-	 piGxApnMgSfnazAFpVPaksjigUeFKymvN63Etb+4GCwZkQ3ra1VlPBV3vYdz5fcCX1
-	 tq3FTOQ/buVO1mpmoM8lUx1n3bX5HRUkaKChRpq682NiAn3NaxdF5TMwRDHCvxyaLt
-	 J5SZElSCT2moWUbEy9z/3U8IWW/cOWaEqPT8sVCOALYUKwHtC4cJJO5rR4bPLnXNy9
-	 gvEwrW2Fbhtag==
-Message-ID: <44ce546d-c043-44ad-9e2c-eaf052e5531b@kernel.org>
-Date: Wed, 17 Jul 2024 14:04:24 +0200
+	b=IpvdwEs1o8Al8oPwIoFftr3t6x0JYNv7xcA1146nClLvyxB49gAafsgRdnAQTcpOh
+	 GJsIX5gF0rB14m/5ZoD+kYlfqW/uUx88VxLI5mV2eTcG/IiPQLDK64h4P5FI3cbWPq
+	 /HDGkn6eatNjlHaWAB7Oix/E1of8n+GMhuJ3+Fo5cCJ0Q7n3/1rc+ZJaSY35QIcdM4
+	 JADWNDdG3oxiQ9aifKnT8GEvOWKOvGj25wy+WcicPVnfVAsMK9NFaaWTBMgicLki6H
+	 EI7wFntk1h1DsKnMDRs2t6Oq+PH9AQPa73d886IYrl/Ps51E2Vvrac75uN4fGgox2k
+	 byiYLdF2ZrY8A==
+Message-ID: <04d94188-5e30-4cab-b534-e97c0b2a61f3@kernel.org>
+Date: Wed, 17 Jul 2024 14:08:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 2/4] arm: dts: marvell: armada-38x: add description
- for usb phys
-To: Josua Mayer <josua@solid-run.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20240716-a38x-utmi-phy-v2-0-dae3a9c6ca3e@solid-run.com>
- <20240716-a38x-utmi-phy-v2-2-dae3a9c6ca3e@solid-run.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: syscon: Add
+ ti,j784s4-acspcie-proxy-ctrl compatible
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, lee@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, vigneshr@ti.com,
+ kishon@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com
+References: <20240715120936.1150314-1-s-vadapalli@ti.com>
+ <20240715120936.1150314-2-s-vadapalli@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,35 +105,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240716-a38x-utmi-phy-v2-2-dae3a9c6ca3e@solid-run.com>
+In-Reply-To: <20240715120936.1150314-2-s-vadapalli@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/07/2024 22:52, Josua Mayer wrote:
-> Armada 38x has 3x USB-2.0 utmi phys. They are almost identical to the 2x
-> utmi phys on armada 8k.
+On 15/07/2024 14:09, Siddharth Vadapalli wrote:
+> The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J784S4
+> SoC are used to drive the reference clock to the PCIe Endpoint device via
+> the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+> obtain the regmap for the ACSPCIE_CTRL register within the System
+> Controller device-tree node in order to enable the PAD IO Buffers.
 > 
-> Add descriptions for all 3 phy ports.
-> 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->  arch/arm/boot/dts/marvell/armada-38x.dtsi | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> index 446861b6b17b..701a1c0c19ad 100644
-> --- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> @@ -392,6 +392,11 @@ comphy5: phy@5 {
->  				};
->  			};
->  
-> +			syscon0: system-controller@18400 {
-> +				compatible = "syscon", "simple-mfd";
+> The Technical Reference Manual for J784S4 SoC with details of the
+> ASCPCIE_CTRL registers is available at:
+> https://www.ti.com/lit/zip/spruj52
 
-That's not a valid pair. They cannot be alone.
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
