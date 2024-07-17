@@ -1,108 +1,114 @@
-Return-Path: <devicetree+bounces-86418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1839340B6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:46:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5547D9340BA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:47:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 630751F21554
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:46:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10DDF28180C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 16:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F65181CE9;
-	Wed, 17 Jul 2024 16:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1896B181D02;
+	Wed, 17 Jul 2024 16:47:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LFXVMvdX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kFu+FVTF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8681E4B0;
-	Wed, 17 Jul 2024 16:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B80917E8FA;
+	Wed, 17 Jul 2024 16:47:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721234776; cv=none; b=aWEsZja+exM57oP3CGRvB4NuHUELPdi1qgPXaDFeUuD9LDPu7BsxoEgv2xZiFkMW2dnqTjDxzLrQlUUH0LsJGi821+LhVfiBcGsk2I1z9XUx9UkM5sbj33oyVzrKkU3HX8nfVCpr8Y8AIKmXKP3M6wRorRuS2at/sjStjalDYWc=
+	t=1721234835; cv=none; b=CgT185jos0Mz8bvie2Ec648oRu5EXbjUnovuiv3M3CgvC8pdxU4WsG+48g061HAsNg3MYUuwxEAEVwxCU1TyxIVYoXlsULQ61KX5Y0v0xwiGU8IYhVHzyFNgy8pxN/aeRxCqAXsXYWcMsk/KQqbfUxpPrsxnUyAppkPggdihpnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721234776; c=relaxed/simple;
-	bh=2S0ab5SdmVZu6CHXw0oDlN+TBmAuaYsarb+i1qS+Q+I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YbgIy8xJSic0IJNYQicmyZbZPD4NnhmNx3++flzbHGQbKC9UvM/g34FNTlK0SW0txqmuirhkUQbklukGJetxMtnpklDUmbCQdkOVzzdEH+G2L8cC7uxuFLdYqtE7CgEFtKpGNjmqR+OTb383DaJxki5GZdq9fh3aFy4aey9qDx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LFXVMvdX; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ee9bca8675so11214381fa.3;
-        Wed, 17 Jul 2024 09:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721234773; x=1721839573; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2S0ab5SdmVZu6CHXw0oDlN+TBmAuaYsarb+i1qS+Q+I=;
-        b=LFXVMvdXZ9az8v+HdDH7pcprQIEMnFBR1LKVxZk2C/p436uaXenFiVw/vxx5mDxdlU
-         BPKwdbM6qd6SN2Yb3zHciHSC2Xr9y/nqDsAfISdJuuPxWZhpxPhpIwH83Lq8irneSPo0
-         OKz9zv8Edi2nvGHVR7lBjm+Tbaxrqnfckjmml5+IKqUM2fR1ZK7eG8yvV5V830kwNiEM
-         iu9tBwmu5keIUAYrC/TREGPSLVQ3Pw1wFr/AtX484nKNbezy1OrUdxDaDy6ZiZs1wqDG
-         dmAzBL3jwiqKJV/VeaK+krMJDzZ3xHr9dV5RTgSos/SiT5y8sqVBXSiHwagT7XMO+Qa7
-         hWMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721234773; x=1721839573;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2S0ab5SdmVZu6CHXw0oDlN+TBmAuaYsarb+i1qS+Q+I=;
-        b=CbxwQfDv67GPeLV3eptcA8pXvdo9IeiFalYh7eUzB2iB3elIjOyns/ryxlRCz97und
-         rvXUvhigfqHGE3RmBaJ6f3sk6DayjobMmPBz+D+sN7b9Z6qfCRmmallmt49+njeD7YhN
-         SH5+Nf8vE9QyrBbxJaG/A+KOap/KwbddcTvCtEWOJpSmNuecS1Hdyxs4rQsp/aK+hDcj
-         B7tdq5Tv0Z+HdWC3hYsn/OGSuqkiiWMtnCtBxwzdCM35WKAx+qRU8N7PgsNV36n6PfNo
-         eBLE0R+AswpRCrPzbYtggDPSNX7UOZtMOXHjzOgmetOnm+gYI3TMP/fctJFKoLm7ExC7
-         rCfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWh2HbOq5hZ3rAPv6bW6AbiFVz0gT4BBRFT8xyY0VVgdnhtSHkGlwTDZ0MAny7Bo1R2gS8PDIQVTcA+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOFEoYo739t/hcG1PCR3GDRSa8C5oQIU0UOQAUhAunyJPN01Ij
-	mkxqBmXJe6+fdn+TbnUFAhN6KHz5gvNtNVI29WtveT14bQWWkqHFGmPpYmGoEkkMuD1J2Wdd9FO
-	uYlX2XYsFFlXQ2kFjwry4U45Yn2w=
-X-Google-Smtp-Source: AGHT+IHoe46620+UsVuITlGPh3/c/KNcEkZ5F6Uq8F7R6XszLx9r5KYDXHcT2MQwJr48RLgG03dD62MwkhoqroWKBWc=
-X-Received: by 2002:a2e:6e15:0:b0:2ec:4399:9bfc with SMTP id
- 38308e7fff4ca-2ef05997667mr23791fa.0.1721234772478; Wed, 17 Jul 2024 09:46:12
- -0700 (PDT)
+	s=arc-20240116; t=1721234835; c=relaxed/simple;
+	bh=7/VlwMrzZKcazhdqh/NYPmp8rydn7Fr3YpN/2btgZpk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=omlhvMwvNmqlXMKFmLmXGEcBbXocNNpis5zB37GOx2AbrpZr8GUXQVlBOJ15Ahzo1BzHgfVDMk4Xemo3HeTnyL9P9zLNk5UoZTuIsUYLgfaMDqOqMP1GCJz2JYIphXzHtDtekwfV/DaNY6PdcAhNEpD2HgZOj1U5XrSMOvCBZWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kFu+FVTF; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721234828;
+	bh=7/VlwMrzZKcazhdqh/NYPmp8rydn7Fr3YpN/2btgZpk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=kFu+FVTFofSadoVStjEIi4dKZvSejWuYgtv+izA/T4vLz5G/SEjzZUFGs1cTxMw7K
+	 Isyrx94TZuPnEAwHVfkEj/WXUlLYxoLBFh2SFu+9XVtmN1CLImPrYLAwuJ4FK9/ChR
+	 2IZ5tyTeGwcbOox89fTaAtWw8dkbBgiIlenK78TmnsiSW4C0d2TNaAMrkr05U5sNCx
+	 8sEuHRaE+sQYBUbMLMdSRBNNljJr07aYnsIKv5HpNEgH7C/43pCpjVfZAaLVhMekBv
+	 SL0fhknv2dbfdsOigHk5uiMqD/m50PYthWQLKR7iZdXT50IaBvfJjCBXMXiULjKG0u
+	 wo+K3ZhLb62cw==
+Received: from [127.0.1.1] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: obbardc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5BB143780B50;
+	Wed, 17 Jul 2024 16:47:08 +0000 (UTC)
+From: Christopher Obbard <chris.obbard@collabora.com>
+Subject: [PATCH v2 0/3] Add support for Firefly Core-PX30-JD4 SoM &
+ baseboard
+Date: Wed, 17 Jul 2024 17:46:58 +0100
+Message-Id: <20240717-rockchip-px30-firefly-v2-0-06541a5a5946@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240717-anvil-ashy-544e80a1317c@spud> <20240717-parrot-malt-83cc04bf6b36@spud>
-In-Reply-To: <20240717-parrot-malt-83cc04bf6b36@spud>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 17 Jul 2024 13:46:00 -0300
-Message-ID: <CAOMZO5DuwjQxMG4dT-_HcLjA_4U-+B2kR8FW1580RFiHcxo6OQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] ARM: dts: rockchip: remove unlikly-to-exist DAC
- from elgin-r1
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	imx@lists.linux.dev, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIL1l2YC/4WNQQ6CMBBFr0Jm7ZjSIggr72FY1GkrE5GS1jQQw
+ t2tXMDle8l/f4NoA9sIXbFBsIkj+ymDPBVAg56eFtlkBilkJZqyxuDpRQPPOC9KoONg3bjipbW
+ OWmXq5lpB3s5Z83J0733mgePHh/W4SeXP/iumEgXWgow2Skil1Y38OOqHD/pM/g39vu9fKN20V
+ 74AAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Kever Yang <kever.yang@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>, 
+ Collabora Kernel Mailing List <kernel@collabora.com>, 
+ Christopher Obbard <chris.obbard@collabora.com>
+X-Mailer: b4 0.13.0
 
-On Wed, Jul 17, 2024 at 6:38=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> The Rohm dh2228fv (really the bh2228fv, the compatible in the kernel has
-> a typo) does not support frequencies above 10 MHz, nor per the
-> datasheet appear to use either CPOL or CPHA. I suspect that this
-> devicetree is abusing the compatible in order to bind the spidev driver
-> in Linux. Pretending to have devices on a board for this purpose is not
-> acceptable, so remove it.
+This adds support for the PX30-based Core-PX30-JD4 system-on-module from
+Firefly and includes support for the SoM in combination with the
+Firefly MB-JD4-PX30 baseboard.
 
-In the Subject: s/unlikly/unlikely
+---
+Changes in v2:
+- Split into two separate files: dtsi for the SoM and dts for the carrier.
+- Change devicetree compatible to match SoM/carrier split.
+- Change device names to better match vendor's name.
+- Properly model baseboard & SoM regulators.
+- Properly model baseboard recovery key.
+- Remove DSI panel (& related nodes) since "sitronix,st7703" compatible
+  is undocumented & hardware is unavailable.
+- Remove unused audio-related nodes.
+- Remove unused UART nodes.
+- Remove unused PMIC pinctrl nodes.
+- Add node for baseboard LEDs.
+- Link to v1: https://lore.kernel.org/r/20240716-rockchip-px30-firefly-v1-0-60cdad3023a3@collabora.com
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+---
+Christopher Obbard (3):
+      dt-bindings: arm: rockchip: Add Firefly Core-PX30-JD4 with baseboard
+      arm64: dts: rockchip: add Firefly Core-PX30-JD4 SoM
+      arm64: dts: rockchip: add Firefly JD4 baseboard with Core-PX30-JD4 SoM
+
+ .../devicetree/bindings/arm/rockchip.yaml          |   6 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ .../boot/dts/rockchip/px30-firefly-jd4-core.dtsi   | 322 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/px30-firefly-jd4.dts  | 178 ++++++++++++
+ 4 files changed, 507 insertions(+)
+---
+base-commit: 51835949dda3783d4639cfa74ce13a3c9829de00
+change-id: 20240716-rockchip-px30-firefly-59efc93d6784
+
+Best regards,
+-- 
+Christopher Obbard <chris.obbard@collabora.com>
+
 
