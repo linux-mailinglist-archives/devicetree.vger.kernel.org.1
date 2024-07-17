@@ -1,129 +1,152 @@
-Return-Path: <devicetree+bounces-86454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BA2934231
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 20:20:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3BB934239
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 20:25:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC6651F21972
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:20:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BCE31C21113
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 18:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34BD1822E9;
-	Wed, 17 Jul 2024 18:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6191836D7;
+	Wed, 17 Jul 2024 18:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lRJ1uDXn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIqOSzqm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1AA12E75;
-	Wed, 17 Jul 2024 18:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE461836C4;
+	Wed, 17 Jul 2024 18:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721240399; cv=none; b=er1oHqyTzq3zVjVKB9o/JX+aUX95h0VK8MELLQs2g7CoVPdXDdC5TMTbj03PtL61+rHJIdtHUf5pFBV4wQ7xUUZ580CLL1jBvWIuN5GtPmgEBrlkSjK3j/yWBXssr6QBXZLIzDladEGU+o4PDZVC8BYxMVamuIfwb27OGVl+t68=
+	t=1721240693; cv=none; b=Ztxl+yVvo/knW4+i9t6fqQR7Rkp4dEhKM+RM2F7HTRBfhmOQzIemqSl1QwDTNo4FF66eHJ4JCCCenP/t9URWuNgFgSHJh+vV6XQwnRby5a9biG9MGUK8CH+gk0wOLnxPQxAxKpQi3cWJJgreoflcJqY+EbLEvIS8LlPbuh04E3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721240399; c=relaxed/simple;
-	bh=8icS3I5fyutbM346XBkOUW3AxYb3LWPuaYdcM7QeK5s=;
+	s=arc-20240116; t=1721240693; c=relaxed/simple;
+	bh=C++kSOLhIP5PSq6tF2bjAs5Xhpug33YPSaVFZ8do+YU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SmOTj9ZPDWNUD+B3FqKggMUdUjdICq64hetUJxnGthx25KbMqTWAimSIR/lBRoXOgZwp7T6D0D24uaJ2sx6VJ1GDaJ9Oc90OpPAWpKmGVQvtJ2sEHdScfpCi5hiBSqHBdUdFX5hJzoxJ5mRWWPEpp2XVqthJxIEyp8teFZ7GK60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lRJ1uDXn; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=wZm6SNFUjdixQ8MFhwCOTFsWlwrJ2qo19PWx5tk7Qzs=; b=lR
-	J1uDXnY/gXzVm5H6rPK31AMEifEF9kNgBrRazajQJrliANeNtDEVlS6Zht2oMO9gfi6pYTk3X85ke
-	xv8lh0ocHxvPiAS66fIvxlGJgB85mL53FYPAAXqn9wt+7y+j1gD2EV8XhPONhBKG7lN4L7L2Sx6YF
-	HDkfRDuOZsLxqxs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sU9Fk-002jAB-Ec; Wed, 17 Jul 2024 20:19:48 +0200
-Date: Wed, 17 Jul 2024 20:19:48 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rayyan Ansari <rayyan.ansari@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Timur Tabi <timur@kernel.org>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: qcom,emac: convert to dtschema
-Message-ID: <a6a0c244-f8da-4736-bb63-429a508d6993@lunn.ch>
-References: <20240717090931.13563-1-rayyan.ansari@linaro.org>
- <cecaa6c3-adeb-489f-a9d2-0f43d089dd1d@lunn.ch>
- <D2RXISKUMBWA.ZQDKI0F03EI0@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JJELVKY4kwgg/DeZm92+/s73PUX8kcfejyF1qZJoeyD1I6hYkgu2FHIyFtWbjZ0t7VM6j2TB2wpyotgX2PyUK/w3x5Bz3KmgJ3EXJj9DAjjSU34GphgtgItbFLzk7cCCaeUr2V3/Yo87BlDyM/2ZiyCDfvSm/t4RLzGb2Yzqw1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIqOSzqm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6429EC4AF0B;
+	Wed, 17 Jul 2024 18:24:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721240692;
+	bh=C++kSOLhIP5PSq6tF2bjAs5Xhpug33YPSaVFZ8do+YU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hIqOSzqmR44B1nzxPCPJH2o6GTxE2nt2Hhe9ArYOEprmgc8xLjQAmduIF9Bs6Vdew
+	 EUnltYNEoe7YcYxEGpDsK8jwk6A9LBGIp69e3oGFwox9uG8tS7BX2tOhpc2oK/qRU1
+	 aGIJaQG5x1UA3E3heOVTQ7diXTF5eS4mVIXluetMD8a34yUe6t6BN+AbptVTBUKBq2
+	 zkdEZmSiYnUDy4vBmofSpsz9l1vuYAptvR7N1jLZ4rZGKpGPFj1ReJOo3LnT2FigrR
+	 Mlz4in3o8Lv6qZyXaOc/Fmg4PCWgRwIk7zo4UNx/xwZVoiHTN/V6K1Qkjt9y/OtrWP
+	 VAL7rD1O6AC4Q==
+Date: Wed, 17 Jul 2024 20:24:46 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: tj@kernel.org, dlemoal@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	festevam@gmail.com, linux-ide@vger.kernel.org,
+	stable@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, kernel@pengutronix.de
+Subject: Re: [PATCH v3 2/4] ata: ahci_imx: Clean up code by using i.MX8Q HSIO
+ PHY driver
+Message-ID: <ZpgMbvuSpgGoISN1@ryzen.lan>
+References: <1721099895-26098-1-git-send-email-hongxing.zhu@nxp.com>
+ <1721099895-26098-3-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D2RXISKUMBWA.ZQDKI0F03EI0@linaro.org>
+In-Reply-To: <1721099895-26098-3-git-send-email-hongxing.zhu@nxp.com>
 
-On Wed, Jul 17, 2024 at 04:45:55PM +0100, Rayyan Ansari wrote:
-> On Wed Jul 17, 2024 at 4:20 PM BST, Andrew Lunn wrote:
-> > On Wed, Jul 17, 2024 at 10:09:27AM +0100, Rayyan Ansari wrote:
-> > > Convert the bindings for the Qualcomm EMAC Ethernet Controller from the
-> > > old text format to yaml.
-> > > 
-> > > Also move the phy node of the controller to be within an mdio block so
-> > > we can use mdio.yaml.
-> >
-> > Does the MAC driver already support this?
-> >
-> > When i look at the emacs-phy.c there is
-> >
-> > 	struct device_node *np = pdev->dev.of_node;
-> >
-> >                 ret = of_mdiobus_register(mii_bus, np);
-> >
-> > I don't see anything looking for the mdio node in the tree.
-> >
-> > 	Andrew
+On Tue, Jul 16, 2024 at 11:18:13AM +0800, Richard Zhu wrote:
+> Clean up code by using PHY interface.
 > 
-> Hi Andrew,
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  drivers/ata/ahci_imx.c | 396 ++++++++++-------------------------------
+>  1 file changed, 98 insertions(+), 298 deletions(-)
 > 
-> Yes, from my understanding an mdio node is not explicitly needed as it
-> just uses "phy-handle".
-> 
-> However, I think it makes more sense to place the phy within an mdio
-> node instead of directly under the controller node. This is based off
-> of 5ecd39d1bc4b ("dt-bindings: net: convert emac_rockchip.txt to YAML"),
-> in which the same decision was made ("Add mdio sub node"), also during a
-> text -> yaml conversion.
- 
-Using an MDIO node is preferred, and is the modern way of doing
-it. Placing the PHY directly in the MAC node is valid, but it is the
-old way of doing it.
+> diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
+> index cb768f66f0a70..e94c0fdea2260 100644
+> --- a/drivers/ata/ahci_imx.c
+> +++ b/drivers/ata/ahci_imx.c
+> @@ -986,65 +827,22 @@ static const struct scsi_host_template ahci_platform_sht = {
+>  
+>  static int imx8_sata_probe(struct device *dev, struct imx_ahci_priv *imxpriv)
+>  {
+> -	struct resource *phy_res;
+> -	struct platform_device *pdev = imxpriv->ahci_pdev;
+> -	struct device_node *np = dev->of_node;
+> -
+> -	if (of_property_read_u32(np, "fsl,phy-imp", &imxpriv->imped_ratio))
+> -		imxpriv->imped_ratio = IMX8QM_SATA_PHY_IMPED_RATIO_85OHM;
+> -	phy_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "phy");
+> -	if (phy_res) {
+> -		imxpriv->phy_base = devm_ioremap(dev, phy_res->start,
+> -					resource_size(phy_res));
+> -		if (!imxpriv->phy_base) {
+> -			dev_err(dev, "error with ioremap\n");
+> -			return -ENOMEM;
+> -		}
+> -	} else {
+> -		dev_err(dev, "missing *phy* reg region.\n");
+> -		return -ENOMEM;
+> -	}
+> -	imxpriv->gpr =
+> -		 syscon_regmap_lookup_by_phandle(np, "hsio");
+> -	if (IS_ERR(imxpriv->gpr)) {
+> -		dev_err(dev, "unable to find gpr registers\n");
+> -		return PTR_ERR(imxpriv->gpr);
+> -	}
+> -
+> -	imxpriv->epcs_tx_clk = devm_clk_get(dev, "epcs_tx");
+> -	if (IS_ERR(imxpriv->epcs_tx_clk)) {
+> -		dev_err(dev, "can't get epcs_tx_clk clock.\n");
+> -		return PTR_ERR(imxpriv->epcs_tx_clk);
+> -	}
+> -	imxpriv->epcs_rx_clk = devm_clk_get(dev, "epcs_rx");
+> -	if (IS_ERR(imxpriv->epcs_rx_clk)) {
+> -		dev_err(dev, "can't get epcs_rx_clk clock.\n");
+> -		return PTR_ERR(imxpriv->epcs_rx_clk);
+> -	}
+> -	imxpriv->phy_pclk0 = devm_clk_get(dev, "phy_pclk0");
+> -	if (IS_ERR(imxpriv->phy_pclk0)) {
+> -		dev_err(dev, "can't get phy_pclk0 clock.\n");
+> -		return PTR_ERR(imxpriv->phy_pclk0);
+> -	}
+> -	imxpriv->phy_pclk1 = devm_clk_get(dev, "phy_pclk1");
+> -	if (IS_ERR(imxpriv->phy_pclk1)) {
+> -		dev_err(dev, "can't get phy_pclk1 clock.\n");
+> -		return PTR_ERR(imxpriv->phy_pclk1);
+> -	}
+> -	imxpriv->phy_apbclk = devm_clk_get(dev, "phy_apbclk");
+> -	if (IS_ERR(imxpriv->phy_apbclk)) {
+> -		dev_err(dev, "can't get phy_apbclk clock.\n");
+> -		return PTR_ERR(imxpriv->phy_apbclk);
+> -	}
+> -
+> -	/* Fetch GPIO, then enable the external OSC */
+> -	imxpriv->clkreq_gpiod = devm_gpiod_get_optional(dev, "clkreq",
+> -				GPIOD_OUT_LOW | GPIOD_FLAGS_BIT_NONEXCLUSIVE);
+> -	if (IS_ERR(imxpriv->clkreq_gpiod))
+> -		return PTR_ERR(imxpriv->clkreq_gpiod);
+> -	if (imxpriv->clkreq_gpiod)
+> -		gpiod_set_consumer_name(imxpriv->clkreq_gpiod, "SATA CLKREQ");
+> -
+> +	if (!(dev->bus_dma_limit))
+> +		dev->bus_dma_limit = DMA_BIT_MASK(32);
 
-It is up to the driver to decide where it looks for the PHY nodes when
-it registers the MDIO bus. The np in of_mdiobus_register(mii_bus, np);
-points to the MAC node. So when you move the PHYs into the new MDIO
-node, they will not be found when the MDIO bus is probed.
+These two lines look like a unrelated change, should be in a separate commit
+with a proper commit message.
 
-Take a look at:
 
-commit 2c60c4c008d4b05b9b65bf88f784556208029333
-Author: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Date:   Mon Mar 25 16:34:51 2024 +0100
-
-    ravb: Add support for an optional MDIO mode
-
-as an example where support for such an MDIO node was added to a
-driver.
-
-    Andrew
-
----
-pw-bot: cr
+Kind regards,
+Niklas
 
