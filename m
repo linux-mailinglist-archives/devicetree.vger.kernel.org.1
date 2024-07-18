@@ -1,215 +1,427 @@
-Return-Path: <devicetree+bounces-86600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFDDB934EEC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:11:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862C8934F14
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:25:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D76BB20FE3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:11:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43E2A2829B5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F2913FD72;
-	Thu, 18 Jul 2024 14:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E74140378;
+	Thu, 18 Jul 2024 14:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KA8jpdDd"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="va9FdLWy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87EE84DF5;
-	Thu, 18 Jul 2024 14:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43025143722;
+	Thu, 18 Jul 2024 14:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721311894; cv=none; b=nKiumujLb4U8HrX39+5VSVGrhVP4PVRkvn7iO+n6gDbPJwOpP8N/+FPdw+uQV231MjRLEDOFp3hi2m5MdXHXQ5otxl61Vu+iJ241atMFtEPU6cxv36N9w+DRLPcwqG8PSqugQehTsqW9lHBPuLxCtCjF/pvqJWPi1UrzV313u3s=
+	t=1721312699; cv=none; b=h5CEzcmaZ02ccLXXfKfQj4XXJ2OazzVfViz4aAd+1H2Ql72AHZaLV/NglCzIVuCYXFX64vVz9iZpyvhgaRcAQUsdNng1cpuAuAO9a/KrlFFbndUjPhh9nk9QewOQyjg76JTXswDuXZdFzHLLqtTphCPrGT+POteO3emTXEJI7F0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721311894; c=relaxed/simple;
-	bh=2YZH8d86zhNoAXZsmN7Jy0uH6vk5sSR4tnolhTxPdZ0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=de23nyOLMYJuajeRfCFGl/Kv8PmoBMWVfq17YP/BALlE4lA3xRywcJZ2vc0h6D+MFEHevsWIKwTWanW0HRSScFEHdm9YWrGvFLMTkVaYB0+xs6ys/lggdAbpUIq5HFTSV7eVSof+8SMsYHrkyysSgNCeECpUzguS2Xj2KVbhdIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KA8jpdDd; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-368440b073bso512963f8f.0;
-        Thu, 18 Jul 2024 07:11:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721311890; x=1721916690; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gcgToNk8qcN02adscfnW/Yi93yP0U71w2F/FskS6Zwc=;
-        b=KA8jpdDdMWsEehi3tXpBfnW+IQdzlqRCbTS5uYuKo+4Id+YH5ywSZFU5hkMA73GJSR
-         gtXBADm+89kueQsyCiD771o85Xm/cea6GFapb3gccuvT6sjpVXY1zzIkXnxkM2ChbZH9
-         46M9PNALUlHoBxL9seFxXj+IWcg3nJwD1vUg9TNdkrSoohW9afW+x39dATGB2sCJVC4D
-         CIlDpwX91xnrb8WWr1W2VoabQgeliFslUD/HoWhIhDsOYqcKwnxHRcgUdDi4JQ+690iy
-         YV1GYShI88eAMeun9ZtO0UY2yMC8I4j8LzlphiR9RcTPnEjmpLOLN9/3wByyPfb34Qoj
-         dOAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721311890; x=1721916690;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gcgToNk8qcN02adscfnW/Yi93yP0U71w2F/FskS6Zwc=;
-        b=pOtyk1lHfpxLYLw/tGjU4xzc+eXlLrvB6RmO70lyNtfyDC5XxiWfMa/FfFi3BKJZKI
-         syCMK3g9ulB8QCC2a68UPN7s8d+qQgReZFLsbMcoOSjHBd89FqdEw68wWrnnBmPj9L4p
-         zwJ1hQgrwLdm7a88/n9/WVLWypgffC3UFzZ+xGKYDQDZXw0o4mfm6pg1LXLJ73yVHWWq
-         LEm2rotNTQr+1/J6Y5eelh94ZbZdjMnITqS6NaLzVFLDTQo6Z+aZF3y7lqDKkAfuwLJr
-         7GU/zD8Co3R3kPTN9Ht3vtKblLqeH8S40eSuaKjD3+XpxekZ+6e93HDisCmS3G0DpkTH
-         2vrA==
-X-Forwarded-Encrypted: i=1; AJvYcCXmIqp7QKX5ysLj7JoYvNCsMdiu5o65XtHGQebHlXK/DOxxiA1/rM7LC+vRtFuGaHI/HbqC81EXOG7WgWF7RWiMCoB6UoIoiASVpkckiWunVrpu6Te6z30ZQMxFAvr/5l5pxEts7SSd5WGp4xNDMM9mVFxWnqRgta70svhsVksmSY8FAg==
-X-Gm-Message-State: AOJu0YxrZ/k2r9r85kb47CqsnBEKuj2b8SC9yO0CwUJ0cKrn2W+dgtYI
-	JPQcsUQz42eA3bzCNT5y5CfPUaSVU8rn2HOzE1iKrkx2eUZYI9Pg
-X-Google-Smtp-Source: AGHT+IG71+3aw2Jq5mJojFBWIZygGTLzj0MfAIrm7rByhpxnpNdP3dntB8pf7/cEMDYT/68KL+i7yw==
-X-Received: by 2002:a5d:6449:0:b0:363:776:821b with SMTP id ffacd0b85a97d-3684b0c42e4mr2153591f8f.0.1721311889901;
-        Thu, 18 Jul 2024 07:11:29 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:359b:e801:d44:32b3:6924:10d1])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d2b1e314sm15669765e9.26.2024.07.18.07.11.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Jul 2024 07:11:29 -0700 (PDT)
-Message-ID: <5cf5e7d388813fca604b7fc5bdb3bb7296255217.camel@gmail.com>
-Subject: Re: [PATCH v7 4/4] iio: adc: ad7192: Add clock provider
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>, Alisa-Dariana Roman
- <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Michael Hennerich <michael.hennerich@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
- <jic23@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Date: Thu, 18 Jul 2024 16:11:29 +0200
-In-Reply-To: <20240717212535.8348-5-alisa.roman@analog.com>
-References: <20240717212535.8348-1-alisa.roman@analog.com>
-	 <20240717212535.8348-5-alisa.roman@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+	s=arc-20240116; t=1721312699; c=relaxed/simple;
+	bh=MSKGfaHsewcvILK/DdM10rTyE2vA4Z9K0N51xaBmFl8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=TjecICM7Z8KYFWgILumYnajGng2ctaBUcrBkA5fnbcjYM3VjLzGm/yEtnjBTVjWJIuHqZ7THwetwLtG1jhsFgR+ZR2k/7Q96Qac5lB/Ds9nyzT5SxX9lrjJcoR2l4aQS1uM+RHzB80fHOKr5yZDA/uuIyo/9WwrTBzhVdZBlBhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=va9FdLWy; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1721312694;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2eC3ad2chrRumhikKII0IVOxsBhIbuKFLRWSINDp+eg=;
+	b=va9FdLWykODKiC/zXf9a3n61KeJHE8DxHmiTQEeK1H0XDr1KFm/S8Ok5qEs8Aje+t1vDiZ
+	8nyPfFi3o3XBh/TIR+sbcPLjy/n18tzXwY+uOyfUNe6LdHZhHP7wh9kY7nqi+0mwV1Ds0i
+	Bv+H1m9iJVI+MuO3huWTFkMxrR4E2XBJa4HCV5pRbO6d5yf5Iiyt0Rd6OE+y/s6DlDWdt3
+	qCDX8cHp5XJh74dFXf0hRGaqLuLeipNuH4vK1AVTqj4PmLiHH1VwboO8vWFLOd90a6IO4Z
+	AG89cuMqsMsg50TBTQTJCjVVF8C1mTLtI32ZnZ00qRDtw8c4a9zhjoasbR3W7A==
+Date: Thu, 18 Jul 2024 16:24:53 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: clocks: add binding for
+ voltage-controlled-oscillators
+In-Reply-To: <3522360.som1txNFv6@diego>
+References: <20240715110251.261844-1-heiko@sntech.de>
+ <30200583.43St1lv6Oq@diego> <1d0e65a0e7797727815ff1b735e881da@manjaro.org>
+ <3522360.som1txNFv6@diego>
+Message-ID: <d1a2d3a8f5b402beca6ad35993a59e9c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Thu, 2024-07-18 at 00:25 +0300, Alisa-Dariana Roman wrote:
-> Internal clock of AD719X devices can be made available on MCLK2 pin. Add
-> clock provider to support this functionality when clock cells property
-> is present.
->=20
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
+Hello Heiko,
 
-minor thing below you may consider if a re-spin is needed...
+On 2024-07-18 15:50, Heiko Stübner wrote:
+> Am Donnerstag, 18. Juli 2024, 15:00:57 CEST schrieb Dragan Simic:
+>> On 2024-07-18 13:30, Heiko Stübner wrote:
+>> > Am Donnerstag, 18. Juli 2024, 12:53:07 CEST schrieb Dragan Simic:
+>> >> On 2024-07-18 11:25, Heiko Stübner wrote:
+>> >> > Am Dienstag, 16. Juli 2024, 18:15:08 CEST schrieb Conor Dooley:
+>> >> >> On Mon, Jul 15, 2024 at 01:02:49PM +0200, Heiko Stuebner wrote:
+>> >> >> > In contrast to fixed clocks that are described as ungateable, boards
+>> >> >> > sometimes use additional oscillators for things like PCIe reference
+>> >> >> > clocks, that need actual supplies to get enabled and enable-gpios to be
+>> >> >> > toggled for them to work.
+>> >> >> >
+>> >> >> > This adds a binding for such oscillators that are not configurable
+>> >> >> > themself, but need to handle supplies for them to work.
+>> >> >> >
+>> >> >> > In schematics they often can be seen as
+>> >> >> >
+>> >> >> >          ----------------
+>> >> >> > Enable - | 100MHz,3.3V, | - VDD
+>> >> >> >          |    3225      |
+>> >> >> >    GND - |              | - OUT
+>> >> >> >          ----------------
+>> >> >> >
+>> >> >> > or similar. The enable pin might be separate but can also just be tied
+>> >> >> > to the vdd supply, hence it is optional in the binding.
+>> >> >> >
+>> >> >> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+>> >> >> > ---
+>> >> >> >  .../bindings/clock/voltage-oscillator.yaml    | 49 +++++++++++++++++++
+>> >> >> >  1 file changed, 49 insertions(+)
+>> >> >> >  create mode 100644 Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
+>> >> >> >
+>> >> >> > diff --git a/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml b/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
+>> >> >> > new file mode 100644
+>> >> >> > index 0000000000000..8bff6b0fd582e
+>> >> >> > --- /dev/null
+>> >> >> > +++ b/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
+>> >> >> > @@ -0,0 +1,49 @@
+>> >> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> >> >> > +%YAML 1.2
+>> >> >> > +---
+>> >> >> > +$id: http://devicetree.org/schemas/clock/voltage-oscillator.yaml#
+>> >> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> >> >> > +
+>> >> >> > +title: Voltage controlled oscillator
+>> >> >>
+>> >> >> Voltage controlled oscillator? Really? That sounds far too similar to
+>> >> >> a
+>> >> >> VCO to me, and the input voltage here (according to the description at
+>> >> >> least) does not affect the frequency of oscillation.
+>> >> >
+>> >> > That naming was suggested by Stephen in v1 [0] .
+>> >> >
+>> >> > Of course the schematics for the board I have only describe it as
+>> >> > "100MHz,3.3V,3225" , thumbing through some mouser parts matching that
+>> >> > only mentions "supply voltage" in their datasheets but not a dependency
+>> >> > between rate and voltage.
+>> >> >
+>> >> > [0]
+>> >> > https://lore.kernel.org/linux-arm-kernel/b3c450a94bcb4ad0bc5b3c7ee8712cb8.sboyd@kernel.org/
+>> >> >
+>> >> >> Why the dedicated binding, rather than adding a supply and enable-gpio
+>> >> >> to the existing "fixed-clock" binding? I suspect that a large portion
+>> >> >> of
+>> >> >> "fixed-clock"s actually require a supply that is (effectively)
+>> >> >> always-on.
+>> >> >
+>> >> > I guess there are three aspects:
+>> >> > - I do remember discussions in the past about not extending generic
+>> >> >   bindings with device-specific stuff. I think generic power-sequences
+>> >> >   were the topic back then, though that might have changed over time?
+>> >> > - There are places that describe "fixed-clock" as
+>> >> >   "basic fixed-rate clock that cannot gate" [1]
+>> >> > - Stephen also suggested a separate binding [2]
+>> >> >
+>> >> > With the fixed-clock being sort of the root for everything else on most
+>> >> > systems, I opted to leave it alone. I guess if the consenus really is
+>> >> > that
+>> >> > this should go there, I can move it, but discussion in v1
+>> >> >
+>> >> > Interestingly the fixed clock had a gpios property 10 years ago [3] :-)
+>> >> > .
+>> >> >
+>> >> > [1]
+>> >> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-fixed-rate.c#n18
+>> >> > [2]
+>> >> > https://lore.kernel.org/linux-arm-kernel/68f6dc44a8202fd83792e58aea137632.sboyd@kernel.org/
+>> >> > [3]
+>> >> > https://lore.kernel.org/linux-kernel//20140515064420.9521.47383@quantum/T/#t
+>> >>
+>> >> After finally going through the v1 discussion [4] in detail,
+>> >> here are my further thoughts:
+>> >>
+>> >> - I agree with dropping the Diodes stuff, [5] because I see
+>> >>    no need for that at this point;  though, am I missing
+>> >>    something, where are they actually used?
+>> >
+>> > On the Rock5 ITX that 100MHz clock comes the one single oscillator
+>> > thing.
+>> >
+>> > The Diodes parts are not root sources for their clocks but instead sort
+>> > PLLs or something, though their manual describes them as
+>> > "clock generator supporting PCI Express and Ethernet requirements" [8]
+>> >
+>> > So they generate the 100MHz (frequency actually is
+>> > selected by input pins of the chip) from a separate 25MHz source clock.
+>> >
+>> > One example are the Theobroma/Cherry embedded boards changed in v1
+>> > where
+>> > they currently are described via existing generic things (no
+>> > schematics).
+>> >
+>> > Another user is the rk3568-rock3b for example, where the diodes part
+>> > is enabled by the same rail as the port itself, so in contrast to the
+>> > Rock 5 ITX, it works "by accident" on the rock 3b [9]
+>> 
+>> Ah, I see now, thanks for the clarification.  The way Diodes PI6C557
+>> is used on the ROCK 3B, together with its 25 MHz "passive" crystal,
+>> is pretty much the same as the way Aurasemi AU5426 is used on the
+>> ROCK 5 ITX, together with its 100 MHz "active" clock generator.  All
+>> that from the software standpoint, of course.
+>> 
+>> To explain it further, the PI6C577 and the AU5426 are the components
+>> that actually generate the clocks for the PCIe interfaces.  Thus,
+>> technically we should describe two components per board in their DTs:
+>> 
+>> - ROCK 5 ITX:
+>>      - 100 MHz clock generator (which goes to the AU5426),
+>>        i.e. the "100MHz,3.3V,3225"
+>>      - clock buffer that fans the 100 MHz clock out to the
+>>        PCIe interfaces, i.e. the Aurasemi AU5426
+>> 
+>> - ROCK 3B:
+>>      - 25 MHz "passive" crystal (which goes to the PI6C557)
+>>      - clock generator that uses the 25 MHz crystal to generate
+>>        100 MHz and fan it out to the PCIe interfaces, i.e. the
+>>        Diodes PI6C557
+>> 
+>> (The "passive" 25 MHz crystal is very similar to the main 24 MHz
+>> crystal used by the SoC, also known as xin24m.)
+>> 
+>> However, simplifying and abstracting the things out a bit should
+>> be fine, to end up with the following:
+>> 
+>> - ROCK 5 ITX:
+>>      - "black box" that generates fixed 100 MHz clocks for the
+>>         PCIe interfaces, which can be gated
+>> 
+>> - ROCK 3B:
+>>      - "black box" that generates fixed 100 MHz clocks for the
+>>         PCIe interfaces, which can be gated
+>> 
+>> ... and that's our, hopefully, gated-clock. :)
+> 
+> I don't think we want too many black-boxes. Devicetree's purpose is to
+> describe the hardware as best as possible, the OS can make of it what 
+> it
+> wants afterwards ;-) .
+> 
+> That was also Stephen's point in v1 when he wanted to distinguish
+> between the input-less oscillator and the Diodes things that needs an
+> input clock.
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+I can agree with that for sure, but in that case, we'd need much
+more than just one "black box" per board dtb, namely, and by reusing
+and expanding a bit one of the earlier lists:
 
-> =C2=A0drivers/iio/adc/ad7192.c | 92 +++++++++++++++++++++++++++++++++++++=
-+++
-> =C2=A01 file changed, 92 insertions(+)
->=20
-> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-> index 042319f0c641..3f803b1eefcc 100644
-> --- a/drivers/iio/adc/ad7192.c
-> +++ b/drivers/iio/adc/ad7192.c
-> @@ -8,6 +8,7 @@
-> =C2=A0#include <linux/interrupt.h>
-> =C2=A0#include <linux/bitfield.h>
-> =C2=A0#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> =C2=A0#include <linux/device.h>
-> =C2=A0#include <linux/kernel.h>
-> =C2=A0#include <linux/slab.h>
-> @@ -201,6 +202,7 @@ struct ad7192_chip_info {
-> =C2=A0struct ad7192_state {
-> =C2=A0	const struct ad7192_chip_info	*chip_info;
-> =C2=A0	struct clk			*mclk;
-> +	struct clk_hw			int_clk_hw;
-> =C2=A0	u16				int_vref_mv;
-> =C2=A0	u32				aincom_mv;
-> =C2=A0	u32				fclk;
-> @@ -406,6 +408,91 @@ static const char *const ad7192_clock_names[] =3D {
-> =C2=A0	"mclk"
-> =C2=A0};
-> =C2=A0
-> +static struct ad7192_state *clk_hw_to_ad7192(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct ad7192_state, int_clk_hw);
-> +}
-> +
-> +static unsigned long ad7192_clk_recalc_rate(struct clk_hw *hw,
-> +					=C2=A0=C2=A0=C2=A0 unsigned long parent_rate)
-> +{
-> +	return AD7192_INT_FREQ_MHZ;
-> +}
-> +
-> +static int ad7192_clk_output_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
-> +
-> +	return st->clock_sel =3D=3D AD7192_CLK_INT_CO;
-> +}
-> +
-> +static int ad7192_clk_prepare(struct clk_hw *hw)
-> +{
-> +	struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
-> +	int ret;
-> +
-> +	st->mode &=3D ~AD7192_MODE_CLKSRC_MASK;
-> +	st->mode |=3D AD7192_CLK_INT_CO;
-> +
-> +	ret =3D ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->clock_sel =3D AD7192_CLK_INT_CO;
-> +
-> +	return 0;
-> +}
-> +
-> +static void ad7192_clk_unprepare(struct clk_hw *hw)
-> +{
-> +	struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
-> +	int ret;
-> +
-> +	st->mode &=3D ~AD7192_MODE_CLKSRC_MASK;
-> +	st->mode |=3D AD7192_CLK_INT;
-> +
-> +	ret =3D ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-> +	if (ret)
-> +		return;
-> +
-> +	st->clock_sel =3D AD7192_CLK_INT;
-> +}
-> +
-> +static const struct clk_ops ad7192_int_clk_ops =3D {
-> +	.recalc_rate =3D ad7192_clk_recalc_rate,
-> +	.is_enabled =3D ad7192_clk_output_is_enabled,
-> +	.prepare =3D ad7192_clk_prepare,
-> +	.unprepare =3D ad7192_clk_unprepare,
-> +};
-> +
-> +static int ad7192_register_clk_provider(struct ad7192_state *st)
-> +{
-> +	struct device *dev =3D &st->sd.spi->dev;
-> +	struct clk_init_data init =3D {};
-> +	int ret;
-> +
-> +	if (!device_property_present(dev, "#clock-cells"))
-> +		return 0;
-> +
-> +	if (!IS_ENABLED(CONFIG_COMMON_CLK))
-> +		return 0;
->=20
+- ROCK 5 ITX:
+      - gated-clock
+        (100 MHz clock generator (which goes to the AU5426),
+        i.e. the "100MHz,3.3V,3225")
+        - clock-fanout
+          (clock buffer that fans the 100 MHz clock out to the
+          PCIe interfaces, i.e. the Aurasemi AU5426)
 
-nit: This could be the first test to do. No point in calling
-device_property_present() if CONFIG_COMMON_CLK is disabled. FWIW, the compi=
-ler should
-be smart enough to sort things out but it would still be better (for readab=
-ility) to
-have this first.
+- ROCK 3B:
+      - fixed-clock
+        (25 MHz "passive" crystal (which goes to the PI6C557))
+        - clock-fanout
+          (clock generator that uses the 25 MHz crystal to generate
+          100 MHz and fan it out to the PCIe interfaces, i.e. the
+          Diodes PI6C557)
 
-- Nuno S=C3=A1
+Actually, I'd be happy to see such a precise hardware definition
+in these (and some other) board dts files. :)
 
+>> > The interesting part of the Diodes ICs is that they actually allow
+>> > configuration of the generated frequency via their S0 + S1 pins,
+>> > though they might be statically set in the board layout without
+>> > being user configurable. (Rock3b does it this way for example)
+>> 
+>> The Aurasemi AU5426 also has a few tricks up its sleeve. :)  For
+>> example, it can also use a "passive" crystal instead of using an
+>> external clock generator, i.e. it can be configured to work in
+>> the same "big picture" layout as the PI6C577.
+>> 
+>> >> - I agree that "enable-gpios" and "vdd-supply" should be
+>> >>    required in the binding, [5] because that's the basis for
+>> >>    something to be actually represented this way
+>> >
+>> > I would only require the vdd supply though.
+>> >
+>> > On the Rock 5 ITX, the chip does have an enable-gpio input, but that is
+>> > tied directly to the voltage rail and is not user controllable.
+>> 
+>> Isn't that voltage rail (VCC3V3_PI6C_05, provided by the U90099
+>> regulator,
+>> which is an RT9193) actually enabled by GPIO1_A4_d (see pages 14 and 
+>> 35
+>> in the ROCK 5 ITX schematic and follow PCIE30x_PWREN_H)?
+>> 
+>> Unless I'm missing something, that's the source of all troubles, 
+>> because
+>> we basically also need to enable PCIE30x_PWREN_H when only the other 
+>> M.2
+>> slot is in use, or when it's enumerated first.  Thus, we need
+>> enable-gpios
+>> to be able to enable the VCC3V3_PI6C_05 independently.
+> 
+> And you correctly described the problem I faced and that got me on that
+> journey (sata-pcie-controller probing before M.2 attached controller).
+> 
+> PCIE30x4_PWREN_H actually drives two separate regulators though,
+> U90098 and U90099 .
+> 
+> U90098 creates VCC3V3_MKEY which is the supply for the main M.2 slot
+> U90099 creates VCC3V3_PI6C_05 which is the oscillator and Au5426 supply
+> 
+> PCIE30x4_PWREN_H definitly belongs to a regulator node in the 
+> devicetree
+> that then either the M.2 slot or the oscillator can enable first.
 
+Exactly, PCIE30x4_PWREN_H basically plays a double role, so it needs
+to be enabled idenpendently in each of its roles, for the observed
+problem to be resolved.
+
+>> >> - I agree that it should be better not to touch fixed-clock
+>> >>    at this point, simply because it's used in very many places,
+>> >>    and because in this case we need more than it requires (see
+>> >>    the bullet point above)
+>> >>
+>> >> - As I wrote already, [6] I highly disagree with this being
+>> >>    called voltage-controlled oscillator (VCO), [7] simply
+>> >>    because it isn't a VCO, but a clock that can be gated;
+>> >>    though, looking forward to what the last bullet point
+>> >>    asks to be clarified further
+>> >>
+>> >> - I still think that gated-clock is the best choice for the
+>> >>    name, because it uses "clock" that's used throughout the
+>> >>    entire codebase, and uses "gated" to reflect the nature
+>> >>    of the clock generator
+>> >
+>> > "gated-oscillator" perhaps?
+>> 
+>> But what's the output of an oscillator, which we actually care about?
+>> It's nothing more but a clock. :)
+>> 
+>> > This would make it more explicit that we're talking about a root
+>> > for clock signals. "gated-clock" can be anything, in the middle
+>> > of a clock tree. Having a very generic name, also invites misuse.
+>> 
+>> I can't escape wondering why doesn't "fixed-clock", which is also
+>> a very generic name, invite abuse?
+> 
+> I guess it does - see the misuse in the rk3588 tiger and jaguar boards.
+> But it is sort of grandfathered I guess. It is still from a time more 
+> than
+> 12 years ago, when architectures (like sunxi) tried to model their 
+> clock-
+> controllers via individual interconnected dt-nodes.
+
+Perhaps, but again, "clock" became the universally used term
+throughout the entire codebase.
+
+>> Speaking about the root of clock signals, the above-mentioned xin24m,
+>> which is represented in DTs as a fixed-clock, is the root of pretty
+>> much everything.  Also, it technically isn't a clock, it's a crystal.
+>> That's another example of the above-mentioned abstraction, in which
+>> we care about the way sotware sees it, which is a clock.
+> 
+> At this point I think we should dt-people weigh in more on which
+> direction to take ;-) .
+> 
+> Because as a lot of dt-binding review in the past mentioned, the
+> "software-perspective" doesn't matter for the binding.
+
+Looking forward to hearing more opinions. :)
+
+>> >> - Maybe we could actually use fixed-gated-clock as the name,
+>> >>    which would make more sense from the stanpoint of possibly
+>> >>    merging it into fixed-clock at some point, but I'd like
+>> >>    to hear first what's actually going on with the Diodes
+>> >>    stuff that was deleted in v2, which I already asked about
+>> >>    in the first bullet point
+>> >>
+>> >> [4]
+>> >> https://lore.kernel.org/linux-rockchip/20240709123121.1452394-1-heiko@sntech.de/T/#u
+>> >> [5]
+>> >> https://lore.kernel.org/linux-rockchip/2e5852b9e94b9a8d0261ce7ad79f4329.sboyd@kernel.org/
+>> >> [6]
+>> >> https://lore.kernel.org/linux-rockchip/ec84dc37e2c421ee6d31294e08392d57@manjaro.org/
+>> >> [7]
+>> >> https://lore.kernel.org/linux-rockchip/b3c450a94bcb4ad0bc5b3c7ee8712cb8.sboyd@kernel.org/
+>> >
+>> > [8] https://www.diodes.com/assets/Datasheets/PI6C557-03.pdf
+>> > [9] https://dl.radxa.com/rock3/docs/hw/3b/Radxa_ROCK_3B_V1.51_SCH.pdf
+>> >     page 31, bottom left of the page
+>> >
+>> >
+>> >> >> > +
+>> >> >> > +maintainers:
+>> >> >> > +  - Heiko Stuebner <heiko@sntech.de>
+>> >> >> > +
+>> >> >> > +properties:
+>> >> >> > +  compatible:
+>> >> >> > +    const: voltage-oscillator
+>> >> >> > +
+>> >> >> > +  "#clock-cells":
+>> >> >> > +    const: 0
+>> >> >> > +
+>> >> >> > +  clock-frequency: true
+>> >> >> > +
+>> >> >> > +  clock-output-names:
+>> >> >> > +    maxItems: 1
+>> >> >> > +
+>> >> >> > +  enable-gpios:
+>> >> >> > +    description:
+>> >> >> > +      Contains a single GPIO specifier for the GPIO that enables and disables
+>> >> >> > +      the oscillator.
+>> >> >> > +    maxItems: 1
+>> >> >> > +
+>> >> >> > +  vdd-supply:
+>> >> >> > +    description: handle of the regulator that provides the supply voltage
+>> >> >> > +
+>> >> >> > +required:
+>> >> >> > +  - compatible
+>> >> >> > +  - "#clock-cells"
+>> >> >> > +  - clock-frequency
+>> >> >> > +  - vdd-supply
+>> >> >> > +
+>> >> >> > +additionalProperties: false
+>> >> >> > +
+>> >> >> > +examples:
+>> >> >> > +  - |
+>> >> >> > +    voltage-oscillator {
+>> >> >> > +      compatible = "voltage-oscillator";
+>> >> >> > +      #clock-cells = <0>;
+>> >> >> > +      clock-frequency = <1000000000>;
+>> >> >> > +      vdd-supply = <&reg_vdd>;
+>> >> >> > +    };
+>> >> >> > +...
 
