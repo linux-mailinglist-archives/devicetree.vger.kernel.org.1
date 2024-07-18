@@ -1,146 +1,146 @@
-Return-Path: <devicetree+bounces-86660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA869370BB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 00:36:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C48239370FC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 01:09:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D39602826FA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 22:36:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EB761F22174
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 23:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7F1146019;
-	Thu, 18 Jul 2024 22:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A818B14532A;
+	Thu, 18 Jul 2024 23:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wG+smpkL"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jqP0T6or"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com [209.85.160.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1FB145A0A
-	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 22:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA3877F2C
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 23:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721342177; cv=none; b=PfIdFgwMEgW1GW2ik5Q9q1OSttfWwpwCs+yPI7eUVSqGQrAW+vnDjtmnsCRA+sffg/6IX+iw1acTLuA4S5xHqL4F2rG/utpZyJlFbbS8nImSylH/nTFHwD/2+ULgNzKTFlPrkA2LTAf/kh17DyfvPIcDZQgRktJ2R4cUyoxVPSI=
+	t=1721344182; cv=none; b=OQPNnFIBwiWQO36skj+wzuM00gTYWavAcPRsA14h3obI4nFxVxTVhd6QahG60X0P6qw7HMSVtR2d4so66um2GT8shduRwOSy8IODR3DxkEQRtQ6i+qW697DhMMwqoCQ+/sD/yNPX+m606Xq883qJNZ6wyCAG/DGcvt9SrQf28nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721342177; c=relaxed/simple;
-	bh=kZpRT5dYzNCoiJuGGlU53Km8rTgRF3YX07uU72ozLiw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nkApCytW8kLUlUA2lnQ0jgk6czE2FrVOyPhi7845HuAl+Z9Ps6rieO1wHh4JnSFSNtIdRGqJnuy5U4w0jeFL+Ts4xDbPb2Uyo2c7eyUiDbbLKRjSKOOWj/BsV1ag76H90VUj4m8E4I1D298XlN8F2sD5f/V4J5IMFCRoHwKfooM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wG+smpkL; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52e9a920e73so1038563e87.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 15:36:15 -0700 (PDT)
+	s=arc-20240116; t=1721344182; c=relaxed/simple;
+	bh=a2MiU9q1dpoV76yfckJyiSZ5U4LdU8MkAa9iwJ7ocM0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ohyDvC7obuzFjDktMm15bKdAutdZ7ZWPBigAggvUBsKYjP++35HJn6jgtzDIRxtb5QD9L7VnUFrhfP+9C4KcbCGMZmfx0A8Y2Qm09GHmZPHbPE6gfrASPitsUFeL0yg4c99H4rlGGgDJSNzxilqiUqYhUClrzqFyCg5uF+duGHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jqP0T6or; arc=none smtp.client-ip=209.85.160.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qt1-f194.google.com with SMTP id d75a77b69052e-447f0d20592so4816791cf.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 16:09:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721342173; x=1721946973; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=FgUOD+mkX9M13phdvi/0/4J0LT+n4qFD9yiMYmn0Hm8=;
-        b=wG+smpkLE899xWomqtpd1vMxswEiV3h/DWmiyTkcl+YPuoBTUVVUY7NHQX0yOHnMNr
-         1ugClcceJ5slkz0SL57guhsqAAeVzGOrFB6x2LDjFkZvdD/YUe4Xl2wfrRI3q7hAYcCF
-         9GSRSlYAfzhPVNk2RE4TpvBGcKoCdIBnyBjlnIAGguCLLy1750bvcx27yyHJq5fEQ1qr
-         FJBAEN48v925CZgwJJP9O7BhVEpKyb8xaz9y9/ZW3ZDWvZTJQRpNcROAdtb7YFWb9Z+S
-         7pT2VBWSFR+CDyQTOwVqeWJ9ho3PRbjqsyCIzHJv6XeXPr2s38JMEfi/CgSu3MO5EA5c
-         Vmsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721342173; x=1721946973;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1721344180; x=1721948980; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FgUOD+mkX9M13phdvi/0/4J0LT+n4qFD9yiMYmn0Hm8=;
-        b=qnCD7AWWFBUcgd/Y1a/TM0y7Pf3kQMd3FWJiYVI3bdz70vI39C6KZFI4MET6ycHRNe
-         xwM01GjJQiNCnidYfyRFccbddNYPVF9h1oq6Z4k65HtNoicKZ9NN+y+DiPGsT3GjILm+
-         51Bl2h8YukeQ1ya439Il0AdRMcvrMsfgm0ZttyjbpQ6xJB7PtinGIoMPtnUUYyyQW2uf
-         RI/ljYBgohBf6zF880E1CCvAknE5BICfRtIRQC3E5pD44TeFRqGf4XL24MFtiEoK51no
-         nusKsCPmPAEEnBS74u3QQ+MSCsmzr5IHX1JeAsPbQ+ohvpeGruNXB31eboU73xVtPmhD
-         ocwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9SV62qMIfuVuZ33hLfZ4XLFkf2RPxDEHW9ic2TNIVZmvKIp6ibHsr37jysyVaUbR3g2utf5nYllritqT2AVlq4b9+3CiCeh64dw==
-X-Gm-Message-State: AOJu0YxxeY2kCHcSCZEdovmbagSNHaCZ6BfXc2I0A9cMCiNLMjniBRbC
-	zhAZtrfaJoQ9Zzg1q4qeChTrnvzu6tXjqi9sX3m3uO2d6eg1Xie5EmCqu0fLzYo=
-X-Google-Smtp-Source: AGHT+IFCe8gu5OpEkQ3T0sn6pr7BaMQvODrWJt+x4GEemFhaUUCxmskdWU6iYE6Qhr4L2sG/7NZtzA==
-X-Received: by 2002:a05:6512:3f16:b0:52c:d750:bd19 with SMTP id 2adb3069b0e04-52ee53ad97dmr4758748e87.8.1721342173128;
-        Thu, 18 Jul 2024 15:36:13 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a33a82ce6sm10569366b.36.2024.07.18.15.36.11
+        bh=yWUpRwE/EDS0n+s4NT6R/Wf+x8/oxyYVaNKMw8i5CCg=;
+        b=jqP0T6orlJW0kUCGlhs9A421eopOR+JTRe6RJJs/lJQ0etLVJw2dcLTBB1+crMRA3c
+         SRI7Pxo/kdwv1p//uxtyunXRYckzhzynVy41Ze4Gbufv0oxWN7uXyLbsnBzQjKW7IxQx
+         TFb/y4N9jKcWJm4qakYddbql/XuZiZKU+ycQg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721344180; x=1721948980;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yWUpRwE/EDS0n+s4NT6R/Wf+x8/oxyYVaNKMw8i5CCg=;
+        b=AZsa6fYI3HTjtK3UDTY31WrvJ9cMoujVTZ2Wl+waqCeuccRG5Znp/DJDqwIbAtvJPH
+         w8VgSBn3dsf8N0jRpNeVqw7E+wNNVLI/M1HQNgb6iZqPrxCMf2LbeKOP0xJ4DdFqX8Ct
+         VVe7yuvBozjPZPs/rYsdrtaMsnYd3jGIXx9hDQjlN3sHlzoWKONtf9p78udSAkZ7V36M
+         cHQj1JgohqATR2lwNTjvRjDJx+0fF/e6kNHZjjCmP03CqOrgug3EcE2GiV6KkQtWSVCB
+         6+qdLd5V1i4WDUd6FFV9fkXy3HiXvQxFOftHjWQKaoqNb1ieP8ZrWUypgOG3DRXzmgst
+         Q/Dw==
+X-Forwarded-Encrypted: i=1; AJvYcCXrT2MwDdd3gIc0AUN6AkZ9mqg9vWOG4yryBcvwauL6Et4VsiwVLjYe3s702MMUSPdvwx79Fb4zvH335EVsIvgOdlMNPpyTn9qnxw==
+X-Gm-Message-State: AOJu0YzJTJfuKfNyzPq8j44Q7jt8XXcDY/TpgfcE34lpqHwbLG1/QpOg
+	AkhMlBtEJqg0zeiQxb4cSwSHsX7fq4/lZ5f6tq4nX3RASeTIm3xHkAv/et5K0aahQM4NpQdvlVD
+	Rug==
+X-Google-Smtp-Source: AGHT+IEmMUgA6bbQhqOKngZdbdz/ZM6SiqTcbWYnL/arofNgG+GC34HAfT32BNaDcYyk+bwPXezqwA==
+X-Received: by 2002:ad4:4ea3:0:b0:6b7:a378:b57 with SMTP id 6a1803df08f44-6b7a3780e23mr30071286d6.59.1721344180010;
+        Thu, 18 Jul 2024 16:09:40 -0700 (PDT)
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com. [209.85.160.177])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b7ac7de052sm819096d6.42.2024.07.18.16.09.39
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jul 2024 15:36:12 -0700 (PDT)
-Message-ID: <3fc1bccb-39df-46c8-80ea-75c7019c7da9@linaro.org>
-Date: Fri, 19 Jul 2024 00:36:10 +0200
+        Thu, 18 Jul 2024 16:09:39 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-447df43324fso65821cf.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 16:09:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVSbMw0MYJiL9V6Xq1OmtKcisb/x5lsaAPt3iK1GMaUiAXKT29s0vFEH/QzAaZDRqAU2zNbMr3Yv9DlzJeRXBNyAF/IYiENnNS+cA==
+X-Received: by 2002:a05:622a:5509:b0:447:e8a5:fb27 with SMTP id
+ d75a77b69052e-44f9c86fd18mr443831cf.25.1721344179138; Thu, 18 Jul 2024
+ 16:09:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-yoga: Update panel
- bindings
-To: Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org
-Cc: Doug Anderson <dianders@chromium.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>, Rob Clark <robdclark@chromium.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240718184434.6307-1-robdclark@gmail.com>
- <20240718184434.6307-3-robdclark@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240718184434.6307-3-robdclark@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240718184434.6307-1-robdclark@gmail.com> <fnoc5jhpu5gwkfufm4cyyn4cjhh6dtw2if3jukk7t3tyvdwesv@pmr4j3vfgpjt>
+In-Reply-To: <fnoc5jhpu5gwkfufm4cyyn4cjhh6dtw2if3jukk7t3tyvdwesv@pmr4j3vfgpjt>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 18 Jul 2024 16:09:27 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VURWwyLB-VZEpB3JNt-ODyxWtXZnV33GA7JkP5AGgN-A@mail.gmail.com>
+Message-ID: <CAD=FV=VURWwyLB-VZEpB3JNt-ODyxWtXZnV33GA7JkP5AGgN-A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: samsung,atna45dc02:
+ Document ATNA45DC02
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org, 
+	Abel Vesa <abel.vesa@linaro.org>, Rob Clark <robdclark@chromium.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18.07.2024 8:44 PM, Rob Clark wrote:
-> From: Rob Clark <robdclark@chromium.org>
-> 
-> Use the correct panel compatible, and wire up enable-gpio.  It is wired
-> up in the same way as the x1e80100-crd.
-> 
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> ---
+Hi,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Thu, Jul 18, 2024 at 2:36=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Thu, Jul 18, 2024 at 11:44:32AM GMT, Rob Clark wrote:
+> > From: Rob Clark <robdclark@chromium.org>
+> >
+> > The Samsung ATNA45DC02 panel is an AMOLED eDP panel, similar to the
+> > existing ATNA45AF01 and ATNA33XC20 panel but with a higher resolution.
+> >
+> > Signed-off-by: Rob Clark <robdclark@chromium.org>
+> > ---
+> >  .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml   | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/samsung,at=
+na33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atn=
+a33xc20.yaml
+> > index d668e8d0d296..284a4ee79bbf 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc2=
+0.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc2=
+0.yaml
+> > @@ -19,6 +19,8 @@ properties:
+> >        - samsung,atna33xc20
+> >        # Samsung 14.5" WQXGA+ (2880x1800 pixels) eDP AMOLED panel
+> >        - samsung,atna45af01
+> > +      # Samsung 14.5" 3K (2944x1840 pixels) eDP AMOLED panel
+> > +      - samsung,atna45dc02
 
-Konrad
+Please follow what we decided in Stephan Gerhold's case and use a
+fallback compatible. In other words: your patch seems to be based on
+his v1 and not his v2.
+
+> This makes me wonder if we should define a cover compatible like
+> samsung,amoled-edp-panel.
+
+I will bow to the wisdom of the DT folks, but my understanding is that
+we shouldn't do that. The fallback compatible can just be the
+compatible of the first panel that we supported that used the same
+interface.
+
+-Doug
 
