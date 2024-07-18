@@ -1,207 +1,157 @@
-Return-Path: <devicetree+bounces-86578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7561F934CB8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 13:43:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169E7934CC7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 13:51:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1976C282177
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:43:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A357FB22834
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA8413A26B;
-	Thu, 18 Jul 2024 11:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9731113A25F;
+	Thu, 18 Jul 2024 11:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAfW+tvC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zevrOBOT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC37F12D745;
-	Thu, 18 Jul 2024 11:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50BBA59164
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 11:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721303010; cv=none; b=btG/0pLfi8+hvKpEC9IAWO0MSdf+/L/P5NLTlLoyEQKwoUzQEPH7cpwtSNNtst2OXpubjKiMX6xFJRJeR8ldE2m/6s2oLyBeeR35QCbg00tfnGyJCa7D1QWflcrNiuldC1P8qz9Hmz238B9N3KM0aTgRTTqZ0mlapa7VXGwDUC8=
+	t=1721303463; cv=none; b=nd5garLJXfMU2ZelxX2/TGRdwxgg0wVYtUN1N5588the2weMkxR7/msQ5dUQ8HKSaVdM665sa26+Yw2cFLi6JDC+jGCIYOSE9cqj8s9l5OGdIflT0gojveFo/O2087q1UcTobrR6d1kcpq45U7j/a339zVPYdl9IUwhXP8bkz88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721303010; c=relaxed/simple;
-	bh=jN0/QurY8fbFswlF/Vv0nFoI4mAtvJrRlJFEDkk6bX8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FrdMxOx5sxy/4j3KTsWh/sirLQipqF7Rg2U/0uBFK3EYK5YajZfctG78kbpChHIN4NhByMrptetQ4bOp2AqcDUfsrnIZGLIBvGi1z2YOCtZrejoCrkukafA/lq3q1mA3DvPP96FIawaRlKab8MG3P5npmfScYhP7tnxpSEKjO98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAfW+tvC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C3B0C116B1;
-	Thu, 18 Jul 2024 11:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721303010;
-	bh=jN0/QurY8fbFswlF/Vv0nFoI4mAtvJrRlJFEDkk6bX8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lAfW+tvCfa3JP+FrxJXhWYJj/LTTmufGlc6D6HSYzib5Il/kih4AgRVfhUMz65rad
-	 v5Mz2kaF6e1fOguxqjaHtAoUMMc4A6iqfgkJ/gsxMXkCzTCdyWxlKzdR5hIX7Lc3z9
-	 +Lp1U3SMCAKpQhf4DgvVUKo2uEqDTLvUjn0bQUsWroTAyEukwzUrbspqbzlC6VVxxw
-	 BrxrlXmR97/9iSjZFrNi1cQxtWErFg382ewK4NgmkaXApoFSjNsQ27aKY5S1RsZ/nu
-	 kcu2QkjfHjwduBVkCJQVof2MiXKw9XJVo8PeY0BnMvTBVsHg7JgU6eIEm65YWO8HTp
-	 GTxpPkTQL8GJw==
-Message-ID: <0bfeee6a-a425-4892-a062-5ef91db305a3@kernel.org>
-Date: Thu, 18 Jul 2024 13:43:21 +0200
+	s=arc-20240116; t=1721303463; c=relaxed/simple;
+	bh=vD3tfVsWGs13fLKirLM+QMolfsmQJwO7QPEf2sxf1ks=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z3OMFr6t1A2K0MPJ0wJblClv5GF+f3mLZcbhrfJUkv6IrG1PGg8+80RQMsAr/yudfYmh8nrxqRfWTPe5GowMNR9/Ey/ddt/bmUE/oORLA5KPjm4h1Yos5EAzWyR9pCHOPO7XYspYQUP4AeRric9blwo4Ntu9rYGYKVwWLkYxyJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zevrOBOT; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a77e5929033so78298966b.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 04:51:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721303460; x=1721908260; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vD3tfVsWGs13fLKirLM+QMolfsmQJwO7QPEf2sxf1ks=;
+        b=zevrOBOTfQssDP8/bbpgUa7VXzjUA4xtdvNvDjTAgv/DXuA1vgzp5ttbWK1A8W0Bk+
+         Vc1zI+OlqZ5lDw5A0ruRlYDnb/xSyY5ae1o1+h/WlULR+RdbJdMrY346jCljROlRt/Bu
+         jevaQnKIIUkDqeUx9xwQ1etZFJvCx8+a1K/Y8WMidGDggRB12KTkOOwe738THxJKb/sd
+         py2mjEe8r+/3p5EuM2sK3ZpCOoj7kmDsWxc+40uH9pnsuVnmt4WQQZP6K55UhasZlWcY
+         OlZTF+D3RBez9TIg18vPZjlApp9YVhrygrly2Xvo4mrxrAQTlxIAZEmtkZVaqgy5C6W/
+         66cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721303460; x=1721908260;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vD3tfVsWGs13fLKirLM+QMolfsmQJwO7QPEf2sxf1ks=;
+        b=ojhAgovtK7WxFTBwp6pPlww5sJp7UlDxjdMjPmwSwydVdII3vJhLZQrSSfJFFsiEwH
+         TjlI5f1Xs+Q/Xw1t8Lz/JZ59XJtIey5WFF5xLAYvvLL6JlQylWXN6dQ+Ss11nJaOarfT
+         z0GhA7QkgxeRV+VL3FhjApY63IyMkeLaRALWBlymJZmnqSCr2qmvrH7eUqwf0YyuS22o
+         MwBBr/pHzwK4eHjnXK4jHtS+twXNN5gmhf2K8s+cC50qzLEQ42CmrTxYjVmvJXZdqkUN
+         dvGR3Hhk6zpqwVPap0cBezJAs7fqF/vI7E1oubOGo6K2psw/5nsTEYYe5SdBQ3gUc2hU
+         YC/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU7S2POq4PZb89OZq3h3OL0eko2Yuo8HwOJmASUIVoO3tQGEHLdP6KGE/lxSy6bpPrEWRJKjsbI0FQtYphDR9g/kzLCXns13seSXw==
+X-Gm-Message-State: AOJu0Yy4Hd89K9imNUsoXXLVZ38xXXM0pdCzyEdaeQ8w1LrVWn7fsEdN
+	iY0YDY1EGYzdCxilgsDvA4sMbzC75GxhvRF6g+bv5slXtatV92yRk+0jUa/WC/k=
+X-Google-Smtp-Source: AGHT+IFwXIStMSuamLLszfwue44fiFsyS5r1vkhJKc/V6fjTvStINXv3htkE7bc+brSBhJS1PmJGBQ==
+X-Received: by 2002:a17:906:e0d5:b0:a77:c26c:a56f with SMTP id a640c23a62f3a-a7a01130925mr304316966b.3.1721303459640;
+        Thu, 18 Jul 2024 04:50:59 -0700 (PDT)
+Received: from localhost ([193.197.128.38])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a79bc820d2fsm546971466b.200.2024.07.18.04.50.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jul 2024 04:50:59 -0700 (PDT)
+Date: Thu, 18 Jul 2024 13:50:57 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Farouk Bouabid <farouk.bouabid@cherry.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/6] pwm: add mule pwm-over-i2c driver
+Message-ID: <fgpb3aswlk25kkziiwe62cjk5ajwx6xy6xvyfzlx35uc7quzwh@cov5otcowkgv>
+References: <20240529-buzzer_support-v1-0-fd3eb0a24442@cherry.de>
+ <20240529-buzzer_support-v1-2-fd3eb0a24442@cherry.de>
+ <5hd7fndgivgusx76wq6mbvgefngd3tllqsfsk6pppbphchczte@ujagkep4miet>
+ <25d71c19-6e94-477d-8d04-758015ca4b2c@cherry.de>
+ <e7b3bfpvtrvt5g637yy7qxsbvfiylyzrjvwsro4hzp5t6cmeux@eqafx3k7oaks>
+ <33d93798-459b-4d33-ac59-623a68ea48cf@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] Bluetooth: hci_uart: Add support for Amlogic HCI
- UART
-To: yang.li@amlogic.com, Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Ye He <ye.he@amlogic.com>
-References: <20240718-btaml-v2-0-1392b2e21183@amlogic.com>
- <20240718-btaml-v2-2-1392b2e21183@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240718-btaml-v2-2-1392b2e21183@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 18/07/2024 09:42, Yang Li via B4 Relay wrote:
-> From: Yang Li <yang.li@amlogic.com>
-> 
-> This patch introduces support for Amlogic Bluetooth controller over
-> UART. In order to send the final firmware at full speed. It is a pretty
-> straight forward H4 driver with exception of actually having it's own
-> setup address configuration.
-> 
-
-...
-
-> +static int aml_parse_dt(struct aml_serdev *amldev)
-> +{
-> +	struct device *pdev = amldev->dev;
-> +
-> +	amldev->bt_en_gpio = devm_gpiod_get(pdev, "bt-enable",
-> +					GPIOD_OUT_LOW);
-> +	if (IS_ERR(amldev->bt_en_gpio)) {
-> +		dev_err(pdev, "Failed to acquire bt-enable gpios");
-> +		return PTR_ERR(amldev->bt_en_gpio);
-> +	}
-> +
-> +	if (device_property_read_string(pdev, "firmware-name",
-> +					&amldev->firmware_name)) {
-> +		dev_err(pdev, "Failed to acquire firmware path");
-> +		return -ENODEV;
-> +	}
-> +
-> +	amldev->bt_supply = devm_regulator_get(pdev, "bt");
-> +	if (IS_ERR(amldev->bt_supply)) {
-> +		dev_err(pdev, "Failed to acquire regulator");
-> +		return PTR_ERR(amldev->bt_supply);
-> +	}
-> +
-> +	amldev->lpo_clk = devm_clk_get(pdev, NULL);
-> +	if (IS_ERR(amldev->lpo_clk)) {
-> +		dev_err(pdev, "Failed to acquire clock source");
-> +		return PTR_ERR(amldev->lpo_clk);
-> +	}
-> +
-> +	/* get rf config parameter */
-> +	if (device_property_read_u32(pdev, "antenna-number",
-> +				&amldev->ant_number)) {
-> +		dev_info(pdev, "No antenna-number, using default value");
-> +		amldev->ant_number = 1;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int aml_power_on(struct aml_serdev *amldev)
-> +{
-> +	int err;
-> +
-> +	if (!IS_ERR(amldev->bt_supply)) {
-
-How is IS_ERR possible?
-
-> +		err = regulator_enable(amldev->bt_supply);
-> +		if (err) {
-> +			dev_err(amldev->dev, "Failed to enable regulator: (%d)", err);
-> +			return err;
-> +		}
-> +	}
-> +
-> +	if (!IS_ERR(amldev->lpo_clk)) {
-
-How is IS_ERR possible?
-
-> +		err = clk_prepare_enable(amldev->lpo_clk);
-> +		if (err) {
-> +			dev_err(amldev->dev, "Failed to enable lpo clock: (%d)", err);
-> +			return err;
-> +		}
-> +	}
-> +
-> +	if (!IS_ERR(amldev->bt_en_gpio))
-
-How is IS_ERR possible?
-
-> +		gpiod_set_value_cansleep(amldev->bt_en_gpio, 1);
-> +
-> +	/* wait 100ms for bluetooth controller power on  */
-> +	msleep(100);
-> +	return 0;
-> +}
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ddsoalw7wih372qx"
+Content-Disposition: inline
+In-Reply-To: <33d93798-459b-4d33-ac59-623a68ea48cf@cherry.de>
 
 
-Best regards,
-Krzysztof
+--ddsoalw7wih372qx
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hello Quentin,
+
+On Wed, Jul 17, 2024 at 10:48:52AM +0200, Quentin Schulz wrote:
+> On 7/15/24 5:09 PM, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Jul 15, 2024 at 02:16:15PM +0200, Quentin Schulz wrote:
+> > > To give a bit more info on this, there are two possible flavors of th=
+e MCU,
+> > > ATtiny 816 (datasheet: https://ww1.microchip.com/downloads/en/DeviceD=
+oc/ATtiny416-816-DataSheet-DS40001913B.pdf)
+> > > and STM32F072CB (datasheet: https://www.st.com/content/ccc/resource/t=
+echnical/document/reference_manual/c2/f8/8a/f2/18/e6/43/96/DM00031936.pdf/f=
+iles/DM00031936.pdf/jcr:content/translations/en.DM00031936.pdf).
+> > >=20
+> > > FYI, on ATtiny, we use TCA in single-slope PWM generation mode and PE=
+RBUF
+> > > and CMP2BUF as period and duty-cycle registers. On STM32, we use TIM1=
+5 in
+> > > PWM mode and ARR and CCR1 as period and duty-cycle registers.
+> >=20
+> > Wouldn't it be more natural with these to have duty in a base-2 register
+> > for duty, in the assumption that your MCUs habe this, too?
+>=20
+> Not sure to understand what you meant by base-2 register here? I am guess=
+ing
+> you rather wanted to suggest a different unit/representation of the duty
+> cycle in the register in the FW API?
+
+For humans 100 as maximal value for a register is natural, but hardware
+usually uses binary representation ("base-2") for values and usually a
+register (or bit field) is used completely. That is, valid values range
+beween 0 and 2^n (or 2^n - 1) for some n.
+
+Note this discussion isn't really relevant to the driver. Just me
+wondering about the hardware design. So if you don't want to follow up,
+that's fine for me.
+
+Best regards
+Uwe
+
+--ddsoalw7wih372qx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaZAYsACgkQj4D7WH0S
+/k4txQgAm2WzqXl0JXzy98Aebusbt2VhAwr2jKTv4YxBaue6sXmXUxAWnguTQCxy
+nLoe42a8AStJHRpj8fo1gZe2/2cBr+/0gr6+/VnMvSl4mcMeU6Djur4GTUrMLq52
+q73wDi1ujB/D3EqSiBv9lDQazE3HE27hiEIl3DtftfHURQcXW6Lcv34Px2opdkK5
+6hwJdNw9orw6h15+QblnBv4SCDNgzf8F3qPR9YNZneGIBkkLPInBSEeRYuGZpOX6
+FdAcYHdocdWg7b80RVgEWiDsupOOhEM/UWvxypLeA3/5GnZokkuEli0w8DaYBvl4
+E59r+LLHZgfIgeWdZhBw31y8J0G83w==
+=3jTY
+-----END PGP SIGNATURE-----
+
+--ddsoalw7wih372qx--
 
