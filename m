@@ -1,148 +1,134 @@
-Return-Path: <devicetree+bounces-86476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C93B934517
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 01:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACDFD934559
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 02:21:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7FA31F21E50
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2024 23:43:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 415491F2241F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 00:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92349548EE;
-	Wed, 17 Jul 2024 23:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B9F197;
+	Thu, 18 Jul 2024 00:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZxRf+ku"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cEx7Qrvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FA948CCD;
-	Wed, 17 Jul 2024 23:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E8910FA
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 00:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721259801; cv=none; b=QidCxD26tq7FkcxyXPShDRBBpMX3QcaC18+teAbxRaKsQKlgUg/aQKTzrZt+J7IM6jImZckRNdSEDPqpkV47ruo+M9dypgkwCcJBCOlPtwvoU56nIsrKC858Pxknml6yuj61pCACKE6PqUMnLgb+Y8tDQY5B2IfFYTLl9vsReHc=
+	t=1721262089; cv=none; b=fhUtBESoTq9k01DCVnYIODRnNJjd4RkNJjCqqBhLb4oakrNFvkFUD7/Bo060qXSaFFsH61eU2THnXUwJEYgur78zA99mxU8NRWjs/h9FZGbmGfjJ1foI3KN2PykwoBiCFyPAoIoj2m42F2n2eyYOBY6PCa2pwLlh/V3zidu3u/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721259801; c=relaxed/simple;
-	bh=0SzqE6acgChptScakbVHZAGE65kPCaxYYa36nc5MtF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Iu7T/CbVIMRQhESD5GcCXqTLf9vSI/mD2Ng5kR37guxFnsLniEK+Q677mD3nb0pju9ERd1uRCCdkr/su45PVtbVi6yhf43wyn2kQc/XZP5VxhR/leGCdIl24/ECcmfNdg1qRswLhRZrZ60nhAirv009WS6AY9TiI+pTChCA29ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZxRf+ku; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B61C2BD10;
-	Wed, 17 Jul 2024 23:43:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721259800;
-	bh=0SzqE6acgChptScakbVHZAGE65kPCaxYYa36nc5MtF0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mZxRf+ku72/5+0Ss1CsbzU8f5+EnZcYo6kPyRsA/FGKPCLlWx1rTjlXcSORXsYDEU
-	 P/PUC94hPfK56AdsaJjpjrDaO4ZivMqyMadaOWjNJ8TzAIUO03AOT+br3Ouey1SmYm
-	 Pcvpz+lB1qA9sg2x/kS/Wa+cowo16YAiaXdrSxBL463HjEMsUETerp4GeLdnOjvh2x
-	 ensqj+AlNzia/H0EuHrW4/2xe/U4ZaS3zO97TIY5oS0fI4WsyjX09dYND8NhlXM6iA
-	 7hP3gXlCGsqiG7IA3nSkgLECVluZ26aci+26ic9oEu8byJUkfVDNxEZGj8IedDzp6n
-	 alTWHeegfaaNg==
-Message-ID: <daf86dec-9c35-49a5-ab81-ee667074f503@kernel.org>
-Date: Thu, 18 Jul 2024 08:43:16 +0900
+	s=arc-20240116; t=1721262089; c=relaxed/simple;
+	bh=qfZaM8VI9ijVSJOyXMtAz+GFmiwxmMVRmm55/KX47Cw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MLzyD/tfkFdbEeM0UYeiUDi84IYXj2fG6MSFyH1e1Ub1Rf6Ve/SeqLXLYDBSM7R9NJ4v/x+tok0G+0Ht+H5nTam4fS5SZOJdVIXVtYKPO3kd+6T+i7pxEGivL/wBnme4CuQjd3JFDp51oFUt07af5xKvgcErmXIT39no8jDB4Y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=cEx7Qrvh; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ad86f3cc34so1576666d6.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 17:21:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1721262084; x=1721866884; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qfZaM8VI9ijVSJOyXMtAz+GFmiwxmMVRmm55/KX47Cw=;
+        b=cEx7Qrvh7A9UcogLFB1sr2kaSwUKz4vhRKoSLZtTj0YZBEF2rXkD0T4/BdemFQpzn6
+         6WGqapL94VD2irpl4l5ziunqxFovAFSht/ZjVCU+y5jHQNq4tJqS3mtidr1WXi7nvoJL
+         wBsxtTEMVvN063yDnq4o85JGsQb1hY7xMF8DI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721262084; x=1721866884;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qfZaM8VI9ijVSJOyXMtAz+GFmiwxmMVRmm55/KX47Cw=;
+        b=nogsk/OA5SQOUijja70+TOpNucotX8C4+5p09MD3BT2h+bvxTf865iBCLeF86PBFWd
+         WVwxLUFidmoo1ICyTDm2JKRJ+BjwO3CQ4FzVZ6F3NvZaYK766woifnsJZ8KnnCADuvbe
+         vnIXY+t1jBoZg7D5koE8PFgjgvfLVQUyTUvUv3CG//gilgpeEofWGcxzGTYjCLBdSiKk
+         it2Hh2WPp3CI+Noa8bxITPHmfmbVZlPgwgZkFtv6Losw/IQaUbgTG/IuA3wBeHim0z3k
+         VI/ySpsCdwIUtqIr7LQYgHQsusZfHpU5njREk/qieHNsk7vtTOQyku+O4SBqXraBjwaj
+         6e5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVEqZ2QcayQ3xqzqpEdQDpYQoSnYWNwYuBNDBistOTQZU4qQetcfCN6+oW+2ws/3DHUpdLDDq0amUO3MwXmMtSi9neFQP1FkQX2mQ==
+X-Gm-Message-State: AOJu0Yy+HRNq1tGbcRoNdTKnqNzRwHzojt/Zn4bId8YfpUdU+mGUbaR9
+	vJdcd8k47izIVXQBreKeHEJI9ZSMrKDBFhJU1+R8eTSqXBW1QZLjl+JF+UOPBSgMv9h21WpfHhw
+	=
+X-Google-Smtp-Source: AGHT+IHpmMkvCQADXx5G7G1GEVTqJiMKEVfbJtk9vTV1TvJiHfigEgke52OFtBv7gZtv77kFwL27Cg==
+X-Received: by 2002:a05:6214:628:b0:6b5:e403:43ee with SMTP id 6a1803df08f44-6b79c929295mr12203836d6.50.1721262084534;
+        Wed, 17 Jul 2024 17:21:24 -0700 (PDT)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b79c5230casm3360346d6.68.2024.07.17.17.21.23
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jul 2024 17:21:23 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-44a8b140a1bso145371cf.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 17:21:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWUUKUOyXlnCMMoOlgJ41NkEy4o5JuZA1PDmSEIl+slSUfib73xP8Uk8TFx9ec1G+yCeWNk6P0kL5DBCr197I7RNbNVNpGVr+N1Jg==
+X-Received: by 2002:a05:622a:a70c:b0:447:e3e3:77c1 with SMTP id
+ d75a77b69052e-44f92572a39mr538891cf.29.1721262082740; Wed, 17 Jul 2024
+ 17:21:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] ata: ahci_imx: Enlarge RX water mark for i.MX8QM
- SATA
-To: Niklas Cassel <cassel@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>
-Cc: tj@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
- linux-ide@vger.kernel.org, stable@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- kernel@pengutronix.de
-References: <1721099895-26098-1-git-send-email-hongxing.zhu@nxp.com>
- <1721099895-26098-4-git-send-email-hongxing.zhu@nxp.com>
- <ZpgKxwziGXqNYLfc@ryzen.lan>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <ZpgKxwziGXqNYLfc@ryzen.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
+ <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org> <20240715-scorn-canning-a7f23b9e2039@spud>
+In-Reply-To: <20240715-scorn-canning-a7f23b9e2039@spud>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 17 Jul 2024 17:21:11 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
+Message-ID: <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
+ Document ATNA45AF01
+To: Conor Dooley <conor@kernel.org>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/18/24 3:17 AM, Niklas Cassel wrote:
-> Hello Richard,
-> 
-> On Tue, Jul 16, 2024 at 11:18:14AM +0800, Richard Zhu wrote:
->> The RXWM(RxWaterMark) sets the minimum number of free location within
->> the RX FIFO before the watermark is exceeded which in turn will cause
->> the Transport Layer to instruct the Link Layer to transmit HOLDS to
->> the transmitting end.
->>
->> Based on the default RXWM value 0x20, RX FIFO overflow might be
->> observed on i.MX8QM MEK board, when some Gen3 SATA disks are used.
->>
->> The FIFO overflow will result in CRC error, internal error and protocol
->> error, then the SATA link is not stable anymore.
->>
->> To fix this issue, enlarge RX water mark setting from 0x20 to 0x29.
->>
->> Fixes: 027fa4dee935 ("ahci: imx: add the imx8qm ahci sata support")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
->> ---
-> 
-> Looking at the title of this patch:
-> "ahci_imx: Enlarge RX water mark for i.MX8QM SATA"
-> 
-> This suggests that this fix is only needed for i.MX8QM.
-> 
-> Support for i.MX8QM was added to the device tree binding in patch 1/4 in
-> this series.
-> 
-> Doing a git grep in linux-next gives the following result:
-> 
-> $ git grep fsl,imx8qm-ahci linux-next/master
-> linux-next/master:drivers/ata/ahci_imx.c:       { .compatible = "fsl,imx8qm-ahci", .data = (void *)AHCI_IMX8QM },
-> 
-> 
-> This is interesting for two reasons:
-> 1) drivers/ata/ahci_imx.c already has support for this compatible string,
-> even though this compatible string does not exist in any DT binding
-> (in linux-next).
-> 
-> 2) There is not a single in-tree device tree (DTS) that uses this compatible
-> string ....and we do not care about out of tree device trees.
-> 
-> 
-> Considering 2) I do NOT think that we should have
-> Cc: stable@vger.kernel.org on this... we shouldn't just backport random driver
-> fixes is there are no in-tree users of this compatible string.
-> 
-> So I suggest that:
-> -Drop the CC: stable.
-> -I actually think that it is better that you drop the Fixes tag too, because if
-> you keep it, the stable bots will automatically select this for backporting,
-> and then we will need to reply and say that this should not be backported, so
-> better to avoid adding the Fixes tag in the first place.
-> (Since there are no users of this compatible string, there is nothing that is
-> broken, so there is nothing to fix.)
-> 
-> 
-> Damien, when applying this patch, I suggest that we apply it to for-6.12
-> together with the rest of the series (instead of applying it to
-> for-6.11-fixes).
+Conor (and/or) Krzysztof and Rob,
 
-It was me who asked for the Fixes and Cc-stable tags, but I had not checked
-that the compatible is not being used in any DT. So good catch.
-I will apply everything to for-6.12.
+On Mon, Jul 15, 2024 at 8:31=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Mon, Jul 15, 2024 at 02:15:37PM +0200, Stephan Gerhold wrote:
+> > The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
+> > control over the DP AUX channel. While it works almost correctly with t=
+he
+> > generic "edp-panel" compatible, the backlight needs special handling to
+> > work correctly. It is similar to the existing ATNA33XC20 panel, just wi=
+th
+> > a larger resolution and size.
+> >
+> > Add a new "samsung,atna45af01" compatible to describe this panel in the=
+ DT.
+> > Use the existing "samsung,atna33xc20" as fallback compatible since exis=
+ting
+> > drivers should work as-is, given that resolution and size are discovera=
+ble
+> > through the eDP link.
+> >
+> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> 
-> 
-> Kind regards,
-> Niklas
+Can you comment on whether you would consider this bindings a "Fix"
+since it's a dependency for later patches in this series (which are
+"Fix"es) to pass dtbs_check? See:
 
--- 
-Damien Le Moal
-Western Digital Research
+https://lore.kernel.org/r/4bca316a-2334-425b-87a6-e1bb241d26b5@linaro.org
 
+-Doug
 
