@@ -1,194 +1,220 @@
-Return-Path: <devicetree+bounces-86565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9017934BA5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 12:27:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C93934BAB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 12:29:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C349B22FE6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 10:27:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F3E4286558
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 10:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61EEE12E1E9;
-	Thu, 18 Jul 2024 10:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6067C8286D;
+	Thu, 18 Jul 2024 10:29:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Gi9hXxRv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OFtsf01i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011032.outbound.protection.outlook.com [52.101.70.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7216578286;
-	Thu, 18 Jul 2024 10:26:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721298419; cv=fail; b=YyT2hKgEafWxnW6eX3x7xj02Rhb1+2mURHddbbp3euHmtsCTL2SdSAzVEw2nLShNkGlozQDZ3qeX1iqMMmpavh8D/g7snwh/U89u1FtfQdmSIAPD1RKAxKSNCCDW1tCK3+piDINWHy+JkcwpYTcw8G3+2eq4e+PvvQ6pwJ7cIPA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721298419; c=relaxed/simple;
-	bh=8Ld5FafnPtn1hShEoi/qv5b4pWRK9HA+U+irZy1BvPM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Focj0JeGC/oe0GohFOcR08eH0fmCuvr0T/kFCnU9P8f56S2lXzqBj2IRQSk5lA1pOz2lX82VERgrnlzUlan9kRfTzYBwyZFssHxm5dDFfTuyl9lp4R91sARdvp9c1eeSUStkzPJPXSkE1HCtHFVgdPOzviw86T0CJfu2g5bE/40=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Gi9hXxRv; arc=fail smtp.client-ip=52.101.70.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FJm/qd78oblXtB0IVY9P2nl1gmqTZd7cnepnru4yhVFuKeYplh9wHjQ3ZE849C06hTKVsXlGIYHLxLmFIXpVeVGFYzCiswUlPkNITdDB/4WDkl4oaQYEpnmm8j2fpKzTrThg/VTUK77ALibe0PD7KAb1uOJZATYjbKz5ekogn3ul+bpIwea52VkZt69yYFoicpYmw2i3AVrh8ISonLRCGMk+itAV3ZsHbWl3J1FA44jNpX4dKlrSqUUdMVw1yG6iZKhUcG1PfG/ZFm8w71GgTRhUE899v7fWlLQLLaeh0bd1Tu35AGFIksZ3QIIyvp1RPBAM76HEd7/3HEycK1QV8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T8iiBZqWWOCgkBeIfi/qDwAyWhISq6BAWOpP+6iS0cI=;
- b=vdaJIySrjqmRLjjZ7qQY2kAB/sfv6qXvP+bBqE7Wnr1kulMEQMit2ZPJPpI7YG00I08ydSNoTlesMnQPXVIhlKFLs9rLPU4zBO7zfq9kt/cwDXNRwC2E9aSvHPosCSR7o+GxgAKfKKJQuJk+XpIbn8BrO9kgZLx9GoqIiIqvuRva/jGdNZUbwflQ/5KMbgVCaZ1uftvKvw4/vuPzNqanQTu4GDD/KlnkWOdxZHGox4vYihffxvLefJ5kaOd7RCOafL6y2dXTCxBCXLiskP1BFtxCS6CEO0ISWYc71eOGvZPKXWrFLed3WV8dNjo/9SIJuUrovV4e43K+k1NjgE+XAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T8iiBZqWWOCgkBeIfi/qDwAyWhISq6BAWOpP+6iS0cI=;
- b=Gi9hXxRv0uzyaXcUtJMOFrGDAkhriiD3QM/3v+NpzYfpNHX+kMzSp45XOsSTOj1FW6FwY3IOcxJ0SSVGpYQsDCrvMh5GSobeMKFMR9V+6BoE6Rqjy9PNbYH5A5T0bv1AijVbQhJgSbF80VSWKha3elq7T8yI0ywG5zJDMQqRmPk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by PAWPR04MB9886.eurprd04.prod.outlook.com (2603:10a6:102:37f::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.18; Thu, 18 Jul
- 2024 10:26:54 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.7784.016; Thu, 18 Jul 2024
- 10:26:54 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	gregkh@linuxfoundation.org,
-	peter.chen@kernel.org,
-	herve.codina@bootlin.com
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org,
-	jun.li@nxp.com
-Subject: [PATCH 6/6] ARM: dts: imx7ulp: add "nxp,sim" property for usbphy1
-Date: Thu, 18 Jul 2024 18:26:37 +0800
-Message-Id: <20240718102637.3964232-6-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240718102637.3964232-1-xu.yang_2@nxp.com>
-References: <20240718102637.3964232-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0014.apcprd02.prod.outlook.com
- (2603:1096:4:194::19) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BFC012C470
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 10:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721298587; cv=none; b=ISL9PNAm2hWW6LsYK1Z+y1fEYYQqqjB/RXTxzkB5kc9/zVkXK53n8QB+mh81ew4mrzdnQ3CuO5L0PzEjKgpjzY2ZcG9a9CkcH9584yfComXp80yWFS90J4hz8w/eOqGcw6jUV2jynFtZDpwpSP6+JTeKxuFfyIgRnt9p1oGwCi0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721298587; c=relaxed/simple;
+	bh=3Qyk3nLyLDIHrxPcP2TVz5Xq7b5aJdgiNMZExcslJDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hc39zvodkYJNligx8dPi/3nt/4wx6+0w8SsdPnUmhUT5zSQZBGoXOQ+tnSnSP9ryqT1GYefc/0oboPrpus43JsXVlH3tyuQciNUmsDK6znJmx91Lv1vxZP9TszqBEskuOOnFlc+gokRp6mkO5PXKY00A35Je8AjKwMpp+6hfAwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OFtsf01i; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-261007969dcso9052fac.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 03:29:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721298585; x=1721903385; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Qn595tj+8ziMn0/QIYoTkBU+IARmrWlkcsfgecQj10Y=;
+        b=OFtsf01icfZ0OGFJL4tHDxXooNhlpx2q6FBXzNRliE/tcdziWs9NqzF6mrMD7k5sSK
+         93ak/qihLNJ1qvSU8uB3H4N0oO+0LzkPf0tOZXWG9W1BWkOEc04gOvr72gji8t8T1P/L
+         91FFi3fVmji0vcbUUfIDhWoQAlh9Jx6pR86PQPas+J4EchFP36cL9U8CRz/ZqBvHfXsl
+         SFG7nJb5L/U5GC7jQuH7dW2TSxrjfn4YAGnsZAxi9JeYpAxnswbc+Fl28THlAA2i6iO6
+         XM+TLtr/TYxFAmpl39E1QvXzxSeUhkihqgHlvJ8PE2b3cHOfAhJgBf1oMLLF4jno/k6e
+         02tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721298585; x=1721903385;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qn595tj+8ziMn0/QIYoTkBU+IARmrWlkcsfgecQj10Y=;
+        b=pFIhYJrpmI8TIgnRpiD8OJQ93f19NptpwCHljYKvuwvFBbF5iWpHQkB0sFfSD2Y1H7
+         7/J7x94uV9aLhxPXgR3p29K3jav92K+XZyni6yKlPfeYbL8CCvlmiyZyVKRf/ZHTcV0t
+         9rzJcE0q6peSAPpgnsLRlYzZ59oUm8zfPfTbnMgx/qdJOYACyQ/rBjYPLPmPItKtWJK4
+         OOQejgc/Buy906SF731ED/G1g6jJ6ojlVQtxWKELhtTvIA4OexdZ3OaJRONvxJ/HUGNM
+         pPdCxya8HF6q4fp70LV9a9ChUssBCmLT0gV5EfI1GcFRF4e3UkF7pN7afc45X+Hi6wgo
+         z5Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCVW/7FSz4BHy77xBu/LNZPYXlu9n46BUmEPkSq7duDuPbGM3OmdTRXzoHhSRiHMjJYTykiYzPEwB7ABFOIJNzYhrUmSWzmwA/T9yg==
+X-Gm-Message-State: AOJu0YymOgM4AXJ8l9pJw+G6nKSf5VjkL8Vny3ycpitmHqTpSaGSWMxt
+	Kc33hEcwCWNys8mpbNEiGMRB0vU/TrdRhj8Uutj4UI8vx9rc9ODVjE3CjXvzxg==
+X-Google-Smtp-Source: AGHT+IEqtMgjvMxkbWmWOdXGGWp0Zjuz/CWNaJsNsiv+FSoHC2NTjU/GPw8xwFN3knQ+HKmaZvHkxw==
+X-Received: by 2002:a05:6871:149:b0:25e:12b9:be40 with SMTP id 586e51a60fabf-260d9221b48mr3740633fac.25.1721298584639;
+        Thu, 18 Jul 2024 03:29:44 -0700 (PDT)
+Received: from thinkpad ([220.158.156.207])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7ec7ed56sm9640357b3a.125.2024.07.18.03.29.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jul 2024 03:29:44 -0700 (PDT)
+Date: Thu, 18 Jul 2024 15:59:38 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Mayank Rana <quic_mrana@quicinc.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 12/13] PCI: qcom: Simulate PCIe hotplug using 'global'
+ interrupt
+Message-ID: <20240718102938.GA8877@thinkpad>
+References: <20240717-pci-qcom-hotplug-v2-0-71d304b817f8@linaro.org>
+ <20240717-pci-qcom-hotplug-v2-12-71d304b817f8@linaro.org>
+ <02b94a07-fcd6-4a48-bead-530b81c8a27e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|PAWPR04MB9886:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8b60586-7649-456e-a99d-08dca71424f4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|1800799024|7416014|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?SlM4CJRpU4LQPM8T3/ywtDPETXdcT8HLBeqYlSN487jCeEKsWEwkvGK6r52S?=
- =?us-ascii?Q?fFaieD8RM6iLccsZz53Z31b6JALd7AbGnZ2vOU7hQNeoyiIVt4aW4wgVKk4Q?=
- =?us-ascii?Q?l5wJRmW9aW3FOBHphuiikd7Q4kZQQBb6OfPdXCav2we09yJUwHt25FfbAKot?=
- =?us-ascii?Q?o+9l8H1NrzhG8ptopyRdK/kT2bWUTmOjirwmEzEEZskhLwpQF0RdTjKozKlr?=
- =?us-ascii?Q?B/ww1aRVRWRfDL0u0S154/lgcL9nUqZ1CEPJyHOTkQKnYd+EKuS759xmv5g7?=
- =?us-ascii?Q?FRQQE3tTpSz7iMfecuQZeZ5mUhsHtZ3kcUsD5IGJbHj/J5OQw4oRVmoDrnkx?=
- =?us-ascii?Q?RtXpw23SVABb9bVQ+jvHwgFWSbOLtqoiHDHr7W9lKbg363xSkgXGcu6zjBRN?=
- =?us-ascii?Q?sbXxa+6jdP4IatpjA6xkRnK5CBmVER/4qo1iuYPyfTqQg2ywY1ncpJi67hGX?=
- =?us-ascii?Q?5ATtP5Wxf1k/TrKEFhkd+Xd+wBXIVw3XhnMKqbDugaMjXqFTrBHmMhWG8CdU?=
- =?us-ascii?Q?+/4Q7WbxNSg2v1E92aSYt+rvrbjmhetQ2+ZmcXDGzO2WuZYuJo0wRpMRg08N?=
- =?us-ascii?Q?5uDBwhtxZbnFYmHQXmHWPeAr+bpmtXZGoTTJZJH9Uf6t4qHsT103or36lXoN?=
- =?us-ascii?Q?cldf956CH2y/Y+FR1diGhMUdYDPmKO7ouHT8HWmbAQl0sJLTTSWRderSVhp5?=
- =?us-ascii?Q?OqN7GS8ILCaye8cawugd7ti6H47bu896zXoNa3Udy2I7Xb9RnxVBlB5qURpY?=
- =?us-ascii?Q?HS0pkhoa2XynXRHd1e3hrvoDUQcJrHB2l5g/21JG5IxONeUXYXLFXzpnctk4?=
- =?us-ascii?Q?SifZpxX70hsdrHR2w1g6q5tiKzPPvU+VI0NHgpQ4mfvp87VbDTUhMqIDTur4?=
- =?us-ascii?Q?X2SYviqXBOb4gtFtzAd/mnC4S2d16MwYd5gCinaOzxs3xVnAu9tv7uuF8Kig?=
- =?us-ascii?Q?rMOmG+BdoK1wn4fXU4D77Zl1mIl8Mh827ghEWbHZoxNNjDp9tkydmy7C82sx?=
- =?us-ascii?Q?jLJfK/s/DxUvgFehJjs0PRzcgx+Y9dbF+JYADiKP49m/QMM7lKHQOQKI+jLs?=
- =?us-ascii?Q?1BP0Kv7g9NnZ/epEAUSmvEg20brfwV4WZmXiO1C2Fuq6HI6YLS+YkLksX47x?=
- =?us-ascii?Q?2XvTQloyPVIxM9MjP0g7FH9XnB3G1Ptd0JlE6znBRqKh8U4mnq5PhiN5kE+w?=
- =?us-ascii?Q?dF9WRWt6uqfXmke80UOxwIqdQ+uxj4b3rvM9KHMRtIfm4pSjuVhzZhXxhNbe?=
- =?us-ascii?Q?d6mdIfNPBJIChUl15TLrxiKvinyMANSJmuRHQuB94I6xfcYl0+wd5ND/7FFz?=
- =?us-ascii?Q?YPW8lHkVWfCnONnYYVGSoRHGogrNQdFTJi1UahLJC3ly/He6802nmgyokUHR?=
- =?us-ascii?Q?bqnAzYL54FOx9IXdFFN5QJxxZ47f5aARyr4iDh1RB0V8b+SS3nD8EpcoAl/f?=
- =?us-ascii?Q?BNDoetUYlCk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(1800799024)(7416014)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?5JUe401T+4P3O9s+9eKUwLz6RfORbyGwYGjCT/EMJb2ncUx88wuTfFBUqpe9?=
- =?us-ascii?Q?PrS2Fvc3WFnOeYXiaj1pQQO2h5b4C5aiyC8sS/9Jmzc8UalFbB4+Pfl9ou5p?=
- =?us-ascii?Q?8GPSTBGJwapAMnrPpoUQaWZxm08XFcYfarEtvQGUeXnYnXxMYyM7o9oY5gvU?=
- =?us-ascii?Q?2KtcniP5t9nrqQlKgyvgcAue/JERmU4EVFmN5v3OlgZURng5fOo0LTPxdNHz?=
- =?us-ascii?Q?0m5MTycf2+8edNMUDB1HYa3Pxlcecd+KtfqyHMatWO261Q8BfXIjdhE7hrwM?=
- =?us-ascii?Q?KvJ6kxuyeB9wG/HTJkjI/QEQKIQ8ZMJXQyHKHDwG/8ti4uOwLqPQDRNwz2UC?=
- =?us-ascii?Q?4I7U/V/bysJnlAieqm3ADPneN6CQbd9N7s2hlQXaD+lzLmXRZ7heglqNZKPD?=
- =?us-ascii?Q?MwOkKNENTCXknRgJekUFMYnYcsy/qsyEj0sCLBCjvbCRSq3tDhcKfah23rW1?=
- =?us-ascii?Q?FoMq0NNX7Pj47kEvzxdcGyjZ6bcSRY3w5qSpIPKm3LJqxon0/cmyxPiMLDtI?=
- =?us-ascii?Q?f8hUY+gjVKHpc/qcnzvbFnnRSXG8BL5tuIlQB5U0hr+hKKDsW+avTXlVUiSo?=
- =?us-ascii?Q?jG7oQxTCzkO1UjV0VcuXd0yWzh4c7eG/KIymoDB7/LxiMfRNuOOg3fdV0eJb?=
- =?us-ascii?Q?/4fRtNVqQ2OU2IBY5Riu/HvlPG0LnGnUGDo0Qqrv+l1KelU/WnbUXhMY84hC?=
- =?us-ascii?Q?rUS4iV6EuIb37j0HfIwGa5zX9fo+EqcwY30f9SMaSKp7FfmpcpZuqA1U7+CK?=
- =?us-ascii?Q?P+zN1r5ShFyijUDYXoWzzeugFOrjSCmLB7EG3YoZcARNnSi5WTPR47JtZvLn?=
- =?us-ascii?Q?EON/02V4gn9t083BSVbBBslsm/1356luTS44gigRdIPwEWfvNmc+5pbihLVs?=
- =?us-ascii?Q?R1AK/nZrwyp3rpnA1a4VBaMJykaQ+KnSN8DE86al8BddAtefBVBX7W2TyVUd?=
- =?us-ascii?Q?HApB7X3WSPbfksjELTIUgLoYTzblcy2XQfGLZentWfLd81cAleu7pDXEz7i3?=
- =?us-ascii?Q?WxwuG93L79JBLPscNmEUL+QEj2zizsX7PIBKVDf6ggCeXExvf1r2pSadyotb?=
- =?us-ascii?Q?qU8SYt69jKd706Oy2zR0r8sDRV/ZgxedCkzVHCYCcYkBFPDbPPo2Je1ov+09?=
- =?us-ascii?Q?3s4G8FUIDaVzoOf/oZote1PZ8EWe2ayRMjJCM+M9f//dafv84vn+FQtgltkr?=
- =?us-ascii?Q?88nNY+fn7vFwqpTKn2cwcLnrNhosIuNBlDaPwV6FZ9/AVC9/sZhPnjYDrIom?=
- =?us-ascii?Q?3Ewf9GltB0wxhXv/kyX9jbi2Sdiw3VvU6C/C0X2Cejuwxyc6ADeMU+DlvzT8?=
- =?us-ascii?Q?0387jZfdEGjh6113vuzBJkU7e6w4TIUH6t8KP/Mny78sTH+BV80KDjWqM6zr?=
- =?us-ascii?Q?sl91jGNcHdiMj7OPFskilqaXtQw6HvZNDRBygZW0XhlzRMOyMh6lNR6zDsT5?=
- =?us-ascii?Q?VVBVPTrt5F5lRkioMfg0c6gN6o636P9z1i4uhPhFeIDIuMiC7+9q/DH+vfeI?=
- =?us-ascii?Q?UOYgoTaqXyiDTZ/v970flevff6a0soWMLBmY6o3Ac5DauanmsTYQE2BHbsvh?=
- =?us-ascii?Q?32ULWc0HmK6xvzYBC11klu8bZMtu/UAGfQJ/VXlr?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8b60586-7649-456e-a99d-08dca71424f4
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 10:26:54.5856
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1IWXopR1sSktG3yBPkXuM6Az/CXzGIxVwZq913E2vflN1FumWg/Ed2ARosZzUJ7LP8TLJszW21iv8eQk0cMN3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9886
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <02b94a07-fcd6-4a48-bead-530b81c8a27e@quicinc.com>
 
-i.MX7ULP need properly set System Integration Module(SIM) module to make
-usb wakeup work well. This will add a "nxp,sim" property for usbphy1.
+On Wed, Jul 17, 2024 at 03:57:11PM -0700, Mayank Rana wrote:
+> Hi Mani
+> 
+> I don't think we can suggest that usage of link up event with Global IRQ as
+> simulate PCIe hotplug. hotplug is referring to allow handling of both
+> add or remove of endpoint device whereas here you are using global IRQ as
+> last step to rescan bus if endpoint is power up later after link training is
+> initiated.
+> 
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Why not? Well it is not entirely the standard 'hotplug' and that's why I
+referred it as 'simulating hotplug'.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-index ac338320ac1d..b093f2a447ae 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-@@ -214,6 +214,7 @@ usbphy1: usb-phy@40350000 {
- 			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&pcc2 IMX7ULP_CLK_USB_PHY>;
- 			#phy-cells = <0>;
-+			nxp,sim = <&sim>;
- 		};
- 
- 		usdhc0: mmc@40370000 {
+The point of having this feature is to avoid the hassle of rescanning the bus
+manually when the devices are connected to this bus post boot.
+
+> Will this work if you remove endpoint device and add it back again ?
+> 
+
+No, not currently. But we could add that logic using LINK_DOWN event. Though,
+when the device comes back again, it will not get enumerated successfully due to
+a bug in the link training part (which I plan to address later). But this
+issue is irrespective of this hotplug simulation.
+
+> Regards,
+> Mayank
+> On 7/17/2024 10:03 AM, Manivannan Sadhasivam via B4 Relay wrote:
+> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > 
+> > Historically, Qcom PCIe RC controllers lack standard hotplug support. So
+> > when an endpoint is attached to the SoC, users have to rescan the bus
+> > manually to enumerate the device. But this can be avoided by simulating the
+> > PCIe hotplug using Qcom specific way.
+> > 
+> > Qcom PCIe RC controllers are capable of generating the 'global' SPI
+> > interrupt to the host CPUs. The device driver can use this event to
+> > identify events such as PCIe link specific events, safety events etc...
+> > 
+> > One such event is the PCIe Link up event generated when an endpoint is
+> > detected on the bus and the Link is 'up'. This event can be used to
+> > simulate the PCIe hotplug in the Qcom SoCs.
+> > 
+> > So add support for capturing the PCIe Link up event using the 'global'
+> > interrupt in the driver. Once the Link up event is received, the bus
+> > underneath the host bridge is scanned to enumerate PCIe endpoint devices,
+> > thus simulating hotplug.
+> > 
+> > All of the Qcom SoCs have only one rootport per controller instance. So
+> > only a single 'Link up' event is generated for the PCIe controller.
+> > 
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >   drivers/pci/controller/dwc/pcie-qcom.c | 55 +++++++++++++++++++++++++++++++++-
+> >   1 file changed, 54 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > index 0180edf3310e..a1d678fe7fa5 100644
+> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > @@ -50,6 +50,9 @@
+> >   #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+> >   #define PARF_Q2A_FLUSH				0x1ac
+> >   #define PARF_LTSSM				0x1b0
+> > +#define PARF_INT_ALL_STATUS			0x224
+> > +#define PARF_INT_ALL_CLEAR			0x228
+> > +#define PARF_INT_ALL_MASK			0x22c
+> >   #define PARF_SID_OFFSET				0x234
+> >   #define PARF_BDF_TRANSLATE_CFG			0x24c
+> >   #define PARF_SLV_ADDR_SPACE_SIZE		0x358
+> > @@ -121,6 +124,9 @@
+> >   /* PARF_LTSSM register fields */
+> >   #define LTSSM_EN				BIT(8)
+> > +/* PARF_INT_ALL_{STATUS/CLEAR/MASK} register fields */
+> > +#define PARF_INT_ALL_LINK_UP			BIT(13)
+> > +
+> >   /* PARF_NO_SNOOP_OVERIDE register fields */
+> >   #define WR_NO_SNOOP_OVERIDE_EN			BIT(1)
+> >   #define RD_NO_SNOOP_OVERIDE_EN			BIT(3)
+> > @@ -1488,6 +1494,29 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
+> >   				    qcom_pcie_link_transition_count);
+> >   }
+> > +static irqreturn_t qcom_pcie_global_irq_thread(int irq, void *data)
+> > +{
+> > +	struct qcom_pcie *pcie = data;
+> > +	struct dw_pcie_rp *pp = &pcie->pci->pp;
+> > +	struct device *dev = pcie->pci->dev;
+> > +	u32 status = readl_relaxed(pcie->parf + PARF_INT_ALL_STATUS);
+> > +
+> > +	writel_relaxed(status, pcie->parf + PARF_INT_ALL_CLEAR);
+> > +
+> > +	if (FIELD_GET(PARF_INT_ALL_LINK_UP, status)) {
+> > +		dev_dbg(dev, "Received Link up event. Starting enumeration!\n");
+> > +		/* Rescan the bus to enumerate endpoint devices */
+> > +		pci_lock_rescan_remove();
+> > +		pci_rescan_bus(pp->bridge->bus);
+> > +		pci_unlock_rescan_remove();
+> How do you handle case where endpoint is already enumerated, and seeing link
+> up event in parallel or later ? will it go ahead to rescan bus again here ?
+> 
+
+If the endpoint is already enumerated, there will be no Link up event. Unless
+the controller reinitializes the bus (which is the current behavior).
+
+If the endpoint is already powered on during controller probe, then it will be
+enumerated during dw_pcie_host_init() and since we register the IRQ handler
+afterwards, there will be no Link up in that case.
+
+This feature is only applicable for endpoints that comes up post boot.
+
+> Also can you consider doing this outside hardirq context ?
+> 
+
+This is already running in threaded irq context (bottom half), wouldn't that
+be enough?
+
+- Mani
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
