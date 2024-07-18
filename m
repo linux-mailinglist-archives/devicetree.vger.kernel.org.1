@@ -1,134 +1,217 @@
-Return-Path: <devicetree+bounces-86477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACDFD934559
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 02:21:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE65493456B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 02:39:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 415491F2241F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 00:21:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D10CB1C210F6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 00:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B9F197;
-	Thu, 18 Jul 2024 00:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F083F639;
+	Thu, 18 Jul 2024 00:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cEx7Qrvh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r2KwpPmU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E8910FA
-	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 00:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9911FA3;
+	Thu, 18 Jul 2024 00:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721262089; cv=none; b=fhUtBESoTq9k01DCVnYIODRnNJjd4RkNJjCqqBhLb4oakrNFvkFUD7/Bo060qXSaFFsH61eU2THnXUwJEYgur78zA99mxU8NRWjs/h9FZGbmGfjJ1foI3KN2PykwoBiCFyPAoIoj2m42F2n2eyYOBY6PCa2pwLlh/V3zidu3u/c=
+	t=1721263157; cv=none; b=qiFzmaLcVd4bD9p4ZLkvupI7sPj4x24didiLhhcehAw77+HkABe/CLVD+I/leOjblgGslWXw5XYFKKRl/hd+s/N+OBDL41E4BIHZSEBDb0rvpC/Dh0EN1OFSsd5Jk50iz7GbzHCRH0OaORdKDheB9W3uVda70ibHyIU+18QKzuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721262089; c=relaxed/simple;
-	bh=qfZaM8VI9ijVSJOyXMtAz+GFmiwxmMVRmm55/KX47Cw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MLzyD/tfkFdbEeM0UYeiUDi84IYXj2fG6MSFyH1e1Ub1Rf6Ve/SeqLXLYDBSM7R9NJ4v/x+tok0G+0Ht+H5nTam4fS5SZOJdVIXVtYKPO3kd+6T+i7pxEGivL/wBnme4CuQjd3JFDp51oFUt07af5xKvgcErmXIT39no8jDB4Y0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=cEx7Qrvh; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ad86f3cc34so1576666d6.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 17:21:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1721262084; x=1721866884; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qfZaM8VI9ijVSJOyXMtAz+GFmiwxmMVRmm55/KX47Cw=;
-        b=cEx7Qrvh7A9UcogLFB1sr2kaSwUKz4vhRKoSLZtTj0YZBEF2rXkD0T4/BdemFQpzn6
-         6WGqapL94VD2irpl4l5ziunqxFovAFSht/ZjVCU+y5jHQNq4tJqS3mtidr1WXi7nvoJL
-         wBsxtTEMVvN063yDnq4o85JGsQb1hY7xMF8DI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721262084; x=1721866884;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qfZaM8VI9ijVSJOyXMtAz+GFmiwxmMVRmm55/KX47Cw=;
-        b=nogsk/OA5SQOUijja70+TOpNucotX8C4+5p09MD3BT2h+bvxTf865iBCLeF86PBFWd
-         WVwxLUFidmoo1ICyTDm2JKRJ+BjwO3CQ4FzVZ6F3NvZaYK766woifnsJZ8KnnCADuvbe
-         vnIXY+t1jBoZg7D5koE8PFgjgvfLVQUyTUvUv3CG//gilgpeEofWGcxzGTYjCLBdSiKk
-         it2Hh2WPp3CI+Noa8bxITPHmfmbVZlPgwgZkFtv6Losw/IQaUbgTG/IuA3wBeHim0z3k
-         VI/ySpsCdwIUtqIr7LQYgHQsusZfHpU5njREk/qieHNsk7vtTOQyku+O4SBqXraBjwaj
-         6e5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVEqZ2QcayQ3xqzqpEdQDpYQoSnYWNwYuBNDBistOTQZU4qQetcfCN6+oW+2ws/3DHUpdLDDq0amUO3MwXmMtSi9neFQP1FkQX2mQ==
-X-Gm-Message-State: AOJu0Yy+HRNq1tGbcRoNdTKnqNzRwHzojt/Zn4bId8YfpUdU+mGUbaR9
-	vJdcd8k47izIVXQBreKeHEJI9ZSMrKDBFhJU1+R8eTSqXBW1QZLjl+JF+UOPBSgMv9h21WpfHhw
-	=
-X-Google-Smtp-Source: AGHT+IHpmMkvCQADXx5G7G1GEVTqJiMKEVfbJtk9vTV1TvJiHfigEgke52OFtBv7gZtv77kFwL27Cg==
-X-Received: by 2002:a05:6214:628:b0:6b5:e403:43ee with SMTP id 6a1803df08f44-6b79c929295mr12203836d6.50.1721262084534;
-        Wed, 17 Jul 2024 17:21:24 -0700 (PDT)
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b79c5230casm3360346d6.68.2024.07.17.17.21.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 17:21:23 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-44a8b140a1bso145371cf.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2024 17:21:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWUUKUOyXlnCMMoOlgJ41NkEy4o5JuZA1PDmSEIl+slSUfib73xP8Uk8TFx9ec1G+yCeWNk6P0kL5DBCr197I7RNbNVNpGVr+N1Jg==
-X-Received: by 2002:a05:622a:a70c:b0:447:e3e3:77c1 with SMTP id
- d75a77b69052e-44f92572a39mr538891cf.29.1721262082740; Wed, 17 Jul 2024
- 17:21:22 -0700 (PDT)
+	s=arc-20240116; t=1721263157; c=relaxed/simple;
+	bh=q0p1lGORvpOF1Z0/NFbmLqzuOehoaT6QsYiDkqPI4AU=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=WJ1TE1aECMe1SRgLFC8heuEcSo/ztld8YSHzNZN2oEBhnjjBymt+fCBRdHjPVJy1zjns9yrDITbNkcRZjSgDLBLtfl8VZqU/kiGLkuOCacOn5aWCVVtr9gTUk1lrrX7OjF5D7xnTrtfIwNAFbX7d36MxX/9DxFbF9TqxPQC4WkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r2KwpPmU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B2DFC4AF0B;
+	Thu, 18 Jul 2024 00:39:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721263157;
+	bh=q0p1lGORvpOF1Z0/NFbmLqzuOehoaT6QsYiDkqPI4AU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=r2KwpPmU+W7hAxnlAdOuiRgYgE7yxb6DdPs/gm35QxQogv+05JHUph0GiF/Qw18KJ
+	 yC6nnzjXCf2/ANay177iI2v2cjYdhg05ZZht3uQZ5t+sUJPoM02marz/hKjtwhPF+Q
+	 JquCBIf+WWJfVbmmFry1WI5KkUFRpoIIc0x39TfiqHm/EPcRuRU/HIr/LAcpZIxQSx
+	 CShfdZY1d/2N6jae0YgdsE3iwUJWAmN/tstqV0l7VJlFoLZCv59ZdAbYetIfgotDxF
+	 7/pVXL9wBN11m71YDowNNMoqqeG2BTxJ3k2R96gv0iILYeuDxb8Vqh5rKLk8R0l8tK
+	 I5sl9upWK2o8Q==
+Message-ID: <4cacf090dc56c3ffd15bccd960065769.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org> <20240715-scorn-canning-a7f23b9e2039@spud>
-In-Reply-To: <20240715-scorn-canning-a7f23b9e2039@spud>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 17 Jul 2024 17:21:11 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
-Message-ID: <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA45AF01
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e3103f07-ce8a-4c34-af5c-bb271c7ec99a@tuxon.dev>
+References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com> <20240716103025.1198495-4-claudiu.beznea.uj@bp.renesas.com> <2abcd440664067d95b1ac0e765ad55a3.sboyd@kernel.org> <e3103f07-ce8a-4c34-af5c-bb271c7ec99a@tuxon.dev>
+Subject: Re: [PATCH v2 03/11] clk: renesas: clk-vbattb: Add VBATTB clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+To: alexandre.belloni@bootlin.com, claudiu beznea <claudiu.beznea@tuxon.dev>, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, lee@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
+Date: Wed, 17 Jul 2024 17:39:15 -0700
+User-Agent: alot/0.10
 
-Conor (and/or) Krzysztof and Rob,
+Quoting claudiu beznea (2024-07-17 01:31:20)
+> Hi, Stephen,
+>=20
+> On 17.07.2024 01:28, Stephen Boyd wrote:
+> > Quoting Claudiu (2024-07-16 03:30:17)
+> >> diff --git a/drivers/clk/renesas/clk-vbattb.c b/drivers/clk/renesas/cl=
+k-vbattb.c
+> >> new file mode 100644
+> >> index 000000000000..8effe141fc0b
+> >> --- /dev/null
+> >> +++ b/drivers/clk/renesas/clk-vbattb.c
+> >> @@ -0,0 +1,212 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * VBATTB clock driver
+> >> + *
+> >> + * Copyright (C) 2024 Renesas Electronics Corp.
+> >> + */
+> >> +
+> >> +#include <linux/cleanup.h>
+> >> +#include <linux/clk.h>
+> >=20
+> > Prefer clk providers to not be clk consumers.
+>=20
+> I added it here to be able to use devm_clk_get_optional() as it was
+> proposed to me in v1 to avoid adding a new binding for bypass and detect =
+if
+> it's needed by checking the input clock name.
+>=20
 
-On Mon, Jul 15, 2024 at 8:31=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Mon, Jul 15, 2024 at 02:15:37PM +0200, Stephan Gerhold wrote:
-> > The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
-> > control over the DP AUX channel. While it works almost correctly with t=
+Understood.
+
+>=20
+> >=20
+> > I also wonder if this is really a mux,=20
+>=20
+> It's a way to determine what type of clock (crystal oscillator or device
+> clock) is connected to RTXIN/RTXOUT pins of the module
+> (the module block diagram at [1]) based on the clock name. Depending on t=
 he
-> > generic "edp-panel" compatible, the backlight needs special handling to
-> > work correctly. It is similar to the existing ATNA33XC20 panel, just wi=
-th
-> > a larger resolution and size.
-> >
-> > Add a new "samsung,atna45af01" compatible to describe this panel in the=
- DT.
-> > Use the existing "samsung,atna33xc20" as fallback compatible since exis=
-ting
-> > drivers should work as-is, given that resolution and size are discovera=
-ble
-> > through the eDP link.
-> >
-> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> type of the clock connected to RTXIN/RTXOUT we need to select the XC or
+> XBYP as input for the mux at [1].
+>=20
+> [1] https://gcdnb.pbrd.co/images/QYsCvhfQlX6n.png
 
-Can you comment on whether you would consider this bindings a "Fix"
-since it's a dependency for later patches in this series (which are
-"Fix"es) to pass dtbs_check? See:
+That diagram shows a mux block, so at least something in there is a mux.
+From what I can tell the binding uses clock-names to describe the mux.
+What I'd like to avoid is using clk_get() to determine how to configure
+the mux. That's because clk_get() is a clk consumer API, and because we
+want clk providers to be able to register clks without making sure that
+the entire parent chain has been registered first. Eventually, we'd like
+clk_get() to probe defer if the clk is an orphan. Having clk providers
+use clk_get() breaks that pretty quickly.
 
-https://lore.kernel.org/r/4bca316a-2334-425b-87a6-e1bb241d26b5@linaro.org
+>=20
+>=20
+> > and either assigned-clock-parents should be used,=20
+> > or the clk_ops should have an init routine that looks at
+> > which parent is present by determining the index and then use that to
+> > set the mux. The framework can take care of failing to set the other
+> > parent when it isn't present.
+>=20
+>=20
+> On the board, at any moment, it will be only one clock as input to the
+> VBATTB clock (either crystal oscillator or a clock device). If I'm getting
+> you correctly, this will involve describing both clocks in some scenarios.
+>=20
+> E.g. if want to use crystal osc, I can use this DT description:
+>=20
+> vbattclk: clock-controller@1c {
+>         compatible =3D "renesas,r9a08g045-vbattb-clk";
+>         reg =3D <0 0x1c 0 0x10>;
+>         clocks =3D <&vbattb_xtal>;
+>         clock-names =3D "xin";
+>         #clock-cells =3D <0>;
+>         status =3D "disabled";
+> };
+>=20
+> vbattb_xtal: vbattb-xtal {
+>         compatible =3D "fixed-clock";
+>         #clock-cells =3D <0>;
+>         clock-frequency =3D <32768>;
+> };
+>=20
+> If external clock device is to be used, I should describe a fake clock to=
+o:
+>=20
+> vbattclk: clock-controller@1c {
+>         compatible =3D "renesas,r9a08g045-vbattb-clk";
+>         reg =3D <0 0x1c 0 0x10>;
+>         clocks =3D <&vbattb_xtal>, <&ext_clk>;
 
--Doug
+Is vbattb_xtal the fake clk? If so, I'd expect this to be
+
+	clocks =3D <0>, <&ext_clk>;
+
+so that we don't have a useless clk node.
+
+>         clock-names =3D "xin", "clkin";
+>         #clock-cells =3D <0>;
+>         status =3D "disabled";
+> };
+>=20
+> vbattb_xtal: vbattb-xtal {
+>         compatible =3D "fixed-clock";
+>         #clock-cells =3D <0>;
+>         clock-frequency =3D <0>;
+> };
+>=20
+> ext_clk: ext-clk {
+>         compatible =3D "fixed-clock";
+>         #clock-cells =3D <0>;
+>         clock-frequency =3D <32768>;
+> };
+>=20
+> Is this what you are suggesting?
+>=20
+
+Sort of. Ignoring the problem with the subnode for the clk driver, I
+don't really like having clock-names that don't match the hardware pin
+names. From the diagram you provided, it looks like clock-names should
+be "bclk" and "rtxin" for the bus clock and the rtxin signal. Then the
+clock-cells should be "1" instead of "0", and the mux should be one of
+those provided clks and "xc" and "xbyp" should be the other two. If that
+was done, then assigned-clocks could be used to assign the parent of the
+mux.
+
+#define VBATTBCLK          0
+#define VBATTB_XBYP        1
+#define VBATTB_XC          2
+
+    vbattb: vbattb@1005c000 {
+        compatible =3D "renesas,r9a08g045-vbattb";
+        reg =3D <0x1005c000 0x1000>;
+        ranges =3D <0 0 0x1005c000 0 0x1000>;
+        interrupts =3D <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+        interrupt-names =3D "tampdi";
+        clocks =3D <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&ext_clk>;
+        clock-names =3D "bclk", "rtxin";
+        power-domains =3D <&cpg>;
+        resets =3D <&cpg R9A08G045_VBAT_BRESETN>;
+        #clock-cells =3D <1>;
+        assigned-clocks =3D <&vbattb VBATTBCLK>;
+	assigned-clock-parents =3D <&vbattb VBATTB_XBYP>;
+        renesas,vbattb-load-nanofarads =3D <12500>;
+    };
+
+One last thing that I don't really understand is why this needs to be a
+clk provider. In the diagram, the RTC is also part of vbattb, so it
+looks odd to have this node be a clk provider with #clock-cells at all.
+Is it the case that if the rtxin pin is connected, you mux that over,
+and if the pin is disconnected you mux over the internal oscillator? I'm
+really wondering why a clk provider is implemented at all. Why not just
+hit the registers directly from the RTC driver depending on a
+devm_clk_get_optional() call?
 
