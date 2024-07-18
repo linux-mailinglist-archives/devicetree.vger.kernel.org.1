@@ -1,79 +1,85 @@
-Return-Path: <devicetree+bounces-86479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273B09345BF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 03:27:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2D99345D9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 03:36:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C474F1F23E68
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 01:27:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11F7F1F23836
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 01:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211F8620;
-	Thu, 18 Jul 2024 01:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02326110A;
+	Thu, 18 Jul 2024 01:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eygm8kRU"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Qg+4a0Dr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED04038DCD;
-	Thu, 18 Jul 2024 01:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD3D382;
+	Thu, 18 Jul 2024 01:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721266034; cv=none; b=MUYXZ7ar96WMFLQ93eNCS7ns1VOtdxQGPuaE0rf7ol6AVBCsJIEEmLruEZIQqKR78MUjSPK+rUZTHsNV4H739SO58/ojRoQB+w9tSKctrC2FBmiF2Bu4GmAKALwjQuWCLPtKc6brECMsuzZ0U0vpv9I+7bkQ4UKgOw0u74An2mM=
+	t=1721266555; cv=none; b=h2zQdt3t2TFW4TqyIp7N70wnY0Y5K80pUFExr7nxghN69MFayVEqDGbToFNf5VAf90Gg1hKXQkjy9tuS1ie1kwqzN+BKrd6Ja1u8def7KNMR7IvvvcolsOPt5hdvmi3cd3wlQZ/Qzzy8e0hJ/4dVuJKLP1lkGE1zE4ez1PoeYbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721266034; c=relaxed/simple;
-	bh=tW//LgP7k/CQCYgUqtUvLcwfgiieu2vgF7lTtZ7Tdvg=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=TQHIFxbpPl8EieXc4QCB7Q7D1qim5DX+bundoB2YF5JJJogdapdGz8rwCnP2whjJZrD0bfotofECryDPjeeNt0hsfMH/BFwZSWPnbKtvV5Fv4oJdZe2Virpe5805xlRPJBFFoJj1fQ+/l4SRcTaUvd6o7cJ4xw7t7RmFlTnXetY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eygm8kRU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C93FDC2BD10;
-	Thu, 18 Jul 2024 01:27:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721266033;
-	bh=tW//LgP7k/CQCYgUqtUvLcwfgiieu2vgF7lTtZ7Tdvg=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=eygm8kRUE2lYL5RKu857YmTHeMhrBypDUU4SDy/CCrs4FPZpk7tpxompOckKTphBY
-	 EpIdk2ltpE2s3Obp0AVVQRh85UY1ItkzVFL2mXIGSoqbSsVSYjpaomVGjSMQ4jg5Zp
-	 n/3BGAUDWCyAipoy56QnQ2juATtDMuEbiaZ9i0iiWS3jX+hXqkGgHNXTHfGPHreHkw
-	 yGGuCEOgAnA6TkCOl7gGfkuZif5w3TfuWuACQi6yD9ad5tgWmkKvEkQSNTEoJtqSFZ
-	 bSEsn8d6vI1N7W8/zzllQR2bg4z8QgvXcBNh8Li4JbkBVqn2Shwlmlyi3HacHzy2bp
-	 uOIAtpd/5mquw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C1D19C4332D;
-	Thu, 18 Jul 2024 01:27:13 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v6.11
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20240716214508.GA436704-robh@kernel.org>
-References: <20240716214508.GA436704-robh@kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20240716214508.GA436704-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.11
-X-PR-Tracked-Commit-Id: 76be2f9823b10c07daf814cb6c732eb1456a0b9e
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 0ffb8a4c96e55ecf0e572aec1a0220af3da84e22
-Message-Id: <172126603378.24030.8575909622586038028.pr-tracker-bot@kernel.org>
-Date: Thu, 18 Jul 2024 01:27:13 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=arc-20240116; t=1721266555; c=relaxed/simple;
+	bh=Na4L6/2toi2mazrcZwJ6NDf6ZOw1qpCQQrZtAM8bAOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I61icOI5Cn0ejiSWiklpHEvuDftyMt7ci1knKlSeBNRhCLS/Cq0LsfIFBe2XKD2TYel6MsvU6UPUmjiIrAHwhvWnLgV/5nz99xFvKkWDANgbH97R5F7KDSR+y92kdSsEyaocjGzXZUrmAWY/pHuX9TR6XoR0gTO1eowGFP8RaRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Qg+4a0Dr; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=RLpti1NwU+b0zEc0uHrSUhFZqx8j/aSv23e/pp00Cfk=; b=Qg+4a0DrImLKD46yhubjM6gOGL
+	0aip5KQreHe2GIC+ayU2N0DJXtQP2M623e0JGq/tLnARkYtTpf/jvTzj22uWJ18SYzd8e7bPGQ4C1
+	mD6DBkbilAilTc7DUO9X57leUk7BZUyJmMWxRwHb8q5qRP1iZkh0cMajIhvQu0QP2YrY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sUG3a-002kUY-FD; Thu, 18 Jul 2024 03:35:42 +0200
+Date: Thu, 18 Jul 2024 03:35:42 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Pawel Dembicki <paweldembicki@gmail.com>
+Cc: netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] net: dsa: vsc73xx: make RGMII delays
+ configurable
+Message-ID: <66ae24b7-37c2-41c9-a0c1-aaa2925ba40f@lunn.ch>
+References: <20240717212732.1775267-1-paweldembicki@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240717212732.1775267-1-paweldembicki@gmail.com>
 
-The pull request you sent on Tue, 16 Jul 2024 15:45:08 -0600:
+On Wed, Jul 17, 2024 at 11:27:31PM +0200, Pawel Dembicki wrote:
+> This patch switches hardcoded RGMII transmit/receive delay to
+> a configurable value. Delay values are taken from the properties of
+> the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
+> 
+> The default value is configured to 2.0 ns to maintain backward
+> compatibility with existing code.
+> 
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.11
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/0ffb8a4c96e55ecf0e572aec1a0220af3da84e22
-
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+    Andrew
 
