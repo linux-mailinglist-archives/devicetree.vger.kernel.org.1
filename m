@@ -1,190 +1,362 @@
-Return-Path: <devicetree+bounces-86624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69341935036
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 17:54:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD31935044
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 17:57:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97D10B22111
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 15:54:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AE011C20D39
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 15:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 654EB1448D7;
-	Thu, 18 Jul 2024 15:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BCD144D09;
+	Thu, 18 Jul 2024 15:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iJCh00NQ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Uj8Hvw2B";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="E69SeGTh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5uFBpiLV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EJT+bzOi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C714D8B7;
-	Thu, 18 Jul 2024 15:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD29746E
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 15:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721318067; cv=none; b=uSIOTgT869LMJRhT5M2hrmJMNud17XKh0zCuMj6HDI3l1KcTrCfT9ySY38Pz7TV9Ljt8oUxDoEhUf6R/Zg7qnAZSCf+g5sZFAhSFCPSV/Le8S7N8wvUSA3DjkL30Q8TuVD0CL6jf0ureNWAqW1r/zjlM1k0wX4dS96FeXLvVU+s=
+	t=1721318260; cv=none; b=EAo/FDBn7292hhBKV/cXLkEl+L8QsXyhCG35Kb+aBERiPI9tQJGUIME4Z8eFewkUhSHTW9Wj3zv3ilvVZYm0gzAnv9Wu45MFP4HRcTDSkzbtcZ8MPAiHttfMqxTmIjaO9VBJOjDDBrIRmkekeUm2ezYu7RR5ku+WueWgoeCd2dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721318067; c=relaxed/simple;
-	bh=+GyF6wF45Mva/16xGi0bZK4e1fiwil2bPTQjhXLOiuA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mdnDxpZdnMmKFTTUZO2AH/Ik7k5OjnD8C+2IAoEgvEPZAYMFpEjmweyI2FOyiBCrdbSCfIbw0UYi9sijbVFxoEteLJ70LXaR8JrShg/3kh+hBZtJ1uXw9DfOHES8zbwJs7wJscg4jFcnFuwVQckGUm3qR06H5mvnvCJmfQwbFGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=iJCh00NQ; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Uj8Hvw2B; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=E69SeGTh; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=5uFBpiLV; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id C07061FBFB;
-	Thu, 18 Jul 2024 15:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1721318064; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Hw0JL5HeNP2tQP8OBPZN6qivjdHQ01R9UaXvGFT6Pl0=;
-	b=iJCh00NQGkmfEwGvfwMzpKue/TWOiYXwjn+GMJToXjItCBVOcl1OUyr0AIC9gEEJVW9b61
-	XW2XYvIONDxZHC8aKWSjEieRE618ITkMd9P0j5l6NPKBVr4L5GyBavXRRX81306M1lEafW
-	DK9iHSCx63rRqfwMGsyIZg72gupWvW8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1721318064;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Hw0JL5HeNP2tQP8OBPZN6qivjdHQ01R9UaXvGFT6Pl0=;
-	b=Uj8Hvw2B+SS4PYs54olzZcUTitI6gR7jaxSDzGJzjhOBbZCwnjhgnFWb7JYv/KX01ocBnG
-	fioRhtpAU7HrPTAw==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=E69SeGTh;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=5uFBpiLV
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1721318063; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Hw0JL5HeNP2tQP8OBPZN6qivjdHQ01R9UaXvGFT6Pl0=;
-	b=E69SeGThIYDdtfZ76g0+pC+Lfs1snFpP9Zy33ITQEk1+E3+wxGdJNazTURqB0/GEcCykwh
-	M+KGhULAeFNJgiI5xKMWQmhOl5rYCzg/ZFXvI2VQ1P4DfuOqHZIftd5+aIC3GDs2Ubx0BU
-	Gh3M4kj9XQMcW28ShyHxCO45KOwzLSI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1721318063;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Hw0JL5HeNP2tQP8OBPZN6qivjdHQ01R9UaXvGFT6Pl0=;
-	b=5uFBpiLVBmYySZIclc9Wuxvf6b4xhF9lMS4vb6s37vgtXQ2NZmqMjoZF9EKUkBRe3tcgN0
-	PRzbVTkeR+Fk8GCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CC9681379D;
-	Thu, 18 Jul 2024 15:54:22 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id jw2UL646mWYFNAAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Thu, 18 Jul 2024 15:54:22 +0000
-Message-ID: <3fa9cdef-b242-43ef-bf53-33fb3f294039@suse.de>
-Date: Thu, 18 Jul 2024 18:54:18 +0300
+	s=arc-20240116; t=1721318260; c=relaxed/simple;
+	bh=sl2oiMooUMCsWoNkqPbfasyYma43SDKzi9XVVqT4ees=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f7Z7wFhQRXXdgVWU2+Igtp8DzG7NrmMLra8eCC/79gGdD0/AWquJK2Fjfn+DXeiShrQgInEliTR6n3WmXhuGOGi5eF06QVBNm8H730AYP7gl9Tyd9O3okU367AMn7fLpVjjL4fYas4FqizhsDoHP3TUNW8AEYoUDIMGx7bhzsCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EJT+bzOi; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1fc49c0aaffso9874335ad.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 08:57:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721318258; x=1721923058; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ofpb1acQLPPapQsKk29WrwkJyQ4QlooroHX/LncNk8=;
+        b=EJT+bzOiWP70WKN3gC4bPeLk02n5vAYhwC5mbaW53hq5/cU1QgeZw4/aRPUKDBXpOF
+         zC4jByOKr2n1FM9zhxO0r7DfStQHBlAW/V5HKWpHdtWtZJU5Rx6iDWpmH83Hpfyelsci
+         HzrZ7TNcaKJCOAqHkrHMEgJhpGmnmJI5fN8lOHYa29gqyq0HW7J3VpFO1dstjnrHS3zB
+         2vzPf2p4lUAGQlou9R2uQ/G7SkDaPZ0dYkxTzMzGK6IsH5mhfN3mLG9PiQN0FmOiej0I
+         CvyxJtpq2/cqpj/P6Y8Z9EtCEXnCGIUy4QRTVWGW4OYx8TlZbEsCRtphZ+0ggybggNS+
+         fmew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721318258; x=1721923058;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7ofpb1acQLPPapQsKk29WrwkJyQ4QlooroHX/LncNk8=;
+        b=YzLWYIu85efXnNEgYfGQ046hEg9nsJBMayeVyaFo9YahToHVPLAoZBEOOsGqGmj6Y8
+         79BB1Xt92Eb4XEQSjPZdWocOuUptoM/guTQW6vSeC36TwGWK5fW8GfxigTwHl0I9HRRe
+         vlc0rrzkETR5Cd8UkBkmaemOAguvq1qylJLqn3rbgY1qL2bV866GFIfxa2ePksP1GA8w
+         t1NI3tMxZyMqTkbFRGdRdX8yenaLSUlZnG4fUHG8A6xFC9Vpuw6cGQxPXODLfqnsLpfe
+         gWno3BfKYNWXqCvmYktdAqFE0YnKc5FfyYgvVQ4NSfWf6RUfX9tsxvwaQf6lWUEOAh2U
+         U8cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXm0jJx4UhjLgaIvCoo8DYuZIvgR86Vdvj/YDW7MyNyQf1AMN9LJuQVO9oSmQXZCyF2NIxWeCMGGeAyYpsGcBmHHeqhSnnYJTsuTA==
+X-Gm-Message-State: AOJu0Yx/7e5kdsQuNmQOh45a51jopqScDUvA5kjbqR121SFB9CepcFLQ
+	YcHq40hQ3lEPNcKhE5FoQGZhdpnGi6FRo/jAuXxl/0oAkM8q9MJuFlw2qAgNSRWQvy79z3FuOIw
+	mNqYD+MEG3qNz7qGctQVZNvqj2BWl9TJ33/ObC9LqpqUtdYorAsM=
+X-Google-Smtp-Source: AGHT+IGbdfGXPO7hQ91Vsor93o1jCzZy+QtCw+WCkF/HJmGy/VuDHRrY6xUrccW6dwxFPcKAOkKuD45Jqge2sKBipkU=
+X-Received: by 2002:a17:90a:514f:b0:2c9:7e9d:8424 with SMTP id
+ 98e67ed59e1d1-2cb52931aa8mr4312618a91.30.1721318257799; Thu, 18 Jul 2024
+ 08:57:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] irqchip: Add Broadcom bcm2712 MSI-X interrupt
- controller
-To: Thomas Gleixner <tglx@linutronix.de>,
- Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20240626104544.14233-1-svarbanov@suse.de>
- <20240626104544.14233-4-svarbanov@suse.de> <87ikxu1t5e.ffs@tglx>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <87ikxu1t5e.ffs@tglx>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-3.00 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:dkim]
-X-Spam-Flag: NO
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -3.00
-X-Spam-Level: 
-X-Rspamd-Queue-Id: C07061FBFB
+References: <20240626060724.28862-1-quic_jinlmao@quicinc.com> <20240626060724.28862-3-quic_jinlmao@quicinc.com>
+In-Reply-To: <20240626060724.28862-3-quic_jinlmao@quicinc.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Thu, 18 Jul 2024 16:57:26 +0100
+Message-ID: <CAJ9a7Vi8yE9mEbP3pPoE4xXxgomiqz6N_vz35PmFEH2tYcv=xw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] coresight: Add support to get preferred id for
+ system trace sources
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, coresight@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Tingwei Zhang <quic_tingweiz@quicinc.com>, Yuanfang Zhang <quic_yuanfang@quicinc.com>, 
+	Tao Zhang <quic_taozha@quicinc.com>, songchai <quic_songchai@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Thomas,
+Hi,
 
-Thank you for the comments!
+On Wed, 26 Jun 2024 at 07:07, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
+>
+> Dynamic trace id was introduced in coresight subsystem, so trace id is
+> allocated dynamically. However, some hardware ATB source has static trace
+> id and it cannot be changed via software programming. For such source,
+> it can call coresight_get_source_traceid to get the fixed trace id from
+> device node and pass id to coresight_trace_id_get_system_id to reserve
+> the id.
+>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>  .../hwtracing/coresight/coresight-platform.c  | 25 +++++++++++++
+>  drivers/hwtracing/coresight/coresight-stm.c   |  2 +-
+>  drivers/hwtracing/coresight/coresight-tpda.c  |  2 +-
+>  .../hwtracing/coresight/coresight-trace-id.c  | 35 ++++++++++++-------
+>  .../hwtracing/coresight/coresight-trace-id.h  | 11 +++++-
+>  include/linux/coresight.h                     |  1 +
+>  6 files changed, 61 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
+> index 9d550f5697fa..df169f3f367e 100644
+> --- a/drivers/hwtracing/coresight/coresight-platform.c
+> +++ b/drivers/hwtracing/coresight/coresight-platform.c
+> @@ -183,6 +183,17 @@ static int of_coresight_get_cpu(struct device *dev)
+>         return cpu;
+>  }
+>
+> +/*
+> + * of_coresight_get_trace_id: Get the atid of a source device.
+> + *
+> + * Returns 0 on success.
+> + */
+> +static int of_coresight_get_trace_id(struct device *dev, u32 *id)
 
-On 6/27/24 15:12, Thomas Gleixner wrote:
-> Stanimir!
-> 
-> On Wed, Jun 26 2024 at 13:45, Stanimir Varbanov wrote:
->> Add an interrupt controller driver for MSI-X Interrupt Peripheral (MIP)
->> hardware block found in bcm2712. The interrupt controller is used to
->> handle MSI-X interrupts from peripherials behind PCIe endpoints like
->> RP1 south bridge found in RPi5.
->>
->> There are two MIPs on bcm2712, the first has 64 consecutive SPIs
->> assigned to 64 output vectors, and the second has 17 SPIs, but only
->> 8 of them are consecutive starting at the 8th output vector.
-> 
-> This is going to conflict with:
-> 
->   https://lore.kernel.org/all/20240623142137.448898081@linutronix.de/
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-arm-v4-1
-> 
-> Can you please have a look and rework it to the new per device MSI
-> domain concept?
+name this "of_coresight_get_static_trace_id"
 
-When do you expect this will be merged?
+> +{
+> +
+> +       return of_property_read_u32(dev->of_node, "arm,trace-id", id);
 
-~Stan
+should be "arm,static-trace-id" for consistency.
+
+> +}
+> +
+>  /*
+>   * of_coresight_parse_endpoint : Parse the given output endpoint @ep
+>   * and fill the connection information in @pdata->out_conns
+> @@ -315,6 +326,11 @@ static inline int of_coresight_get_cpu(struct device *dev)
+>  {
+>         return -ENODEV;
+>  }
+> +
+> +static inline int of_coresight_get_trace_id(struct device *dev, u32 *id)
+> +{
+> +       return -ENODEV;
+> +}
+>  #endif
+>
+>  #ifdef CONFIG_ACPI
+> @@ -794,6 +810,15 @@ int coresight_get_cpu(struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(coresight_get_cpu);
+>
+> +int coresight_get_source_traceid(struct device *dev, u32 *id)
+
+This should be coresight_get_static_traceid.
+
+> +{
+> +       if (!is_of_node(dev->fwnode))
+> +               return -EINVAL;
+> +
+> +       return of_coresight_get_trace_id(dev, id);
+> +}
+> +EXPORT_SYMBOL_GPL(coresight_get_source_traceid);
+> +
+>  struct coresight_platform_data *
+>  coresight_get_platform_data(struct device *dev)
+>  {
+> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/hwtracing/coresight/coresight-stm.c
+> index e1c62820dfda..34fab2ce9a76 100644
+> --- a/drivers/hwtracing/coresight/coresight-stm.c
+> +++ b/drivers/hwtracing/coresight/coresight-stm.c
+> @@ -901,7 +901,7 @@ static int __stm_probe(struct device *dev, struct resource *res)
+>                 goto stm_unregister;
+>         }
+>
+> -       trace_id = coresight_trace_id_get_system_id();
+> +       trace_id = coresight_trace_id_get_system_id(TRACE_ID_ANY);
+
+implement a coresight_trace_id_get_static_system_id() function and
+drop this change
+
+>         if (trace_id < 0) {
+>                 ret = trace_id;
+>                 goto cs_unregister;
+> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
+> index 7739bc7adc44..46161cadb9e5 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+> @@ -251,7 +251,7 @@ static int tpda_init_default_data(struct tpda_drvdata *drvdata)
+>          * same trace-id. When TPDA does packetization, different
+>          * port will have unique channel number for decoding.
+>          */
+> -       atid = coresight_trace_id_get_system_id();
+> +       atid = coresight_trace_id_get_system_id(TRACE_ID_ANY);
+
+and here
+
+>         if (atid < 0)
+>                 return atid;
+>
+> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.c b/drivers/hwtracing/coresight/coresight-trace-id.c
+> index af5b4ef59cea..59194f60362c 100644
+> --- a/drivers/hwtracing/coresight/coresight-trace-id.c
+> +++ b/drivers/hwtracing/coresight/coresight-trace-id.c
+> @@ -75,21 +75,26 @@ static int coresight_trace_id_find_odd_id(struct coresight_trace_id_map *id_map)
+>   * Allocate new ID and set in use
+>   *
+>   * if @preferred_id is a valid id then try to use that value if available.
+> - * if @preferred_id is not valid and @prefer_odd_id is true, try for odd id.
+> + * if TRACE_ID_WANT_PREFERRED is set, @preferred_id must be free, otherwise return
+> + * error -EINVAL.
+> + * if @preferred_id is not valid and TRACE_ID_WANT_ODD is true, try for odd id.
+>   *
+>   * Otherwise allocate next available ID.
+>   */
+>  static int coresight_trace_id_alloc_new_id(struct coresight_trace_id_map *id_map,
+> -                                          int preferred_id, bool prefer_odd_id)
+> +                          int preferred_id, unsigned int flags)
+>  {
+>         int id = 0;
+>
+>         /* for backwards compatibility, cpu IDs may use preferred value */
+> -       if (IS_VALID_CS_TRACE_ID(preferred_id) &&
+> -           !test_bit(preferred_id, id_map->used_ids)) {
+> -               id = preferred_id;
+> -               goto trace_id_allocated;
+> -       } else if (prefer_odd_id) {
+> +       if (IS_VALID_CS_TRACE_ID(preferred_id)) {
+> +               if (!test_bit(preferred_id, id_map->used_ids)) {
+> +                       id = preferred_id;
+> +                       goto trace_id_allocated;
+> +               } else if (WARN((flags & TRACE_ID_WANT_PREFERRED), "Trace ID %d is used.\n",
+> +                                       preferred_id))
+> +                       return -EINVAL;
+> +       } else if (flags & TRACE_ID_WANT_ODD) {
+>         /* may use odd ids to avoid preferred legacy cpu IDs */
+>                 id = coresight_trace_id_find_odd_id(id_map);
+>                 if (id)
+> @@ -175,7 +180,7 @@ static int coresight_trace_id_map_get_cpu_id(int cpu, struct coresight_trace_id_
+>          */
+>         id = coresight_trace_id_alloc_new_id(id_map,
+>                                              CORESIGHT_LEGACY_CPU_TRACE_ID(cpu),
+> -                                            false);
+> +                                            TRACE_ID_ANY);
+>         if (!IS_VALID_CS_TRACE_ID(id))
+>                 goto get_cpu_id_out_unlock;
+>
+> @@ -222,14 +227,20 @@ static void coresight_trace_id_map_put_cpu_id(int cpu, struct coresight_trace_id
+>         DUMP_ID_MAP(id_map);
+>  }
+>
+> -static int coresight_trace_id_map_get_system_id(struct coresight_trace_id_map *id_map)
+> +static int coresight_trace_id_map_get_system_id(struct coresight_trace_id_map *id_map,
+> +                               int preferred_id)
+
+Add a trace_id flags parameter here and call in with flags already set
+
+>  {
+>         unsigned long flags;
+>         int id;
+> +       unsigned int traceid_flags = 0;
+>
+>         spin_lock_irqsave(&id_map_lock, flags);
+> +
+>         /* prefer odd IDs for system components to avoid legacy CPU IDS */
+> -       id = coresight_trace_id_alloc_new_id(id_map, 0, true);
+> +       traceid_flags = TRACE_ID_WANT_ODD;
+> +       traceid_flags |= preferred_id > 0 ? TRACE_ID_WANT_PREFERRED : 0;
+> +
+
+move the flags calculations to the calling functions
+
+> +       id = coresight_trace_id_alloc_new_id(id_map, preferred_id, traceid_flags);
+>         spin_unlock_irqrestore(&id_map_lock, flags);
+>
+>         DUMP_ID(id);
+> @@ -269,9 +280,9 @@ int coresight_trace_id_read_cpu_id(int cpu)
+>  }
+>  EXPORT_SYMBOL_GPL(coresight_trace_id_read_cpu_id);
+>
+> -int coresight_trace_id_get_system_id(void)
+> +int coresight_trace_id_get_system_id(int id)
+>  {
+> -       return coresight_trace_id_map_get_system_id(&id_map_default);
+
+drop the change to this function header and the call becomes
+trace_id_map_get_system_id(&id_map_default, 0, TRACE_ID_PREFER_ODD)
+
+> +       return coresight_trace_id_map_get_system_id(&id_map_default, id);
+>  }
+>  EXPORT_SYMBOL_GPL(coresight_trace_id_get_system_id);
+>
+
+Add in a  coresight_trace_id_get_system_static_id(int trace_id) API
+function and call
+trace_id_map_get_system_id(&id_map_default, trace_id, TRACE_ID_REQ_STATIC)
+
+> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.h b/drivers/hwtracing/coresight/coresight-trace-id.h
+> index 3797777d367e..a236cf87c169 100644
+> --- a/drivers/hwtracing/coresight/coresight-trace-id.h
+> +++ b/drivers/hwtracing/coresight/coresight-trace-id.h
+> @@ -61,6 +61,12 @@ struct coresight_trace_id_map {
+>         DECLARE_BITMAP(pend_rel_ids, CORESIGHT_TRACE_IDS_MAX);
+>  };
+>
+> +enum trace_id_flags {
+> +       TRACE_ID_ANY = 0x0,
+> +       TRACE_ID_WANT_ODD = 0x1,
+TRACE_ID_PREFER_ODD
+
+> +       TRACE_ID_WANT_PREFERRED = 0x2,
+
+TRACE_ID_REQ_STATIC
+
+> +};
+
+These flags can move to the coresight-trace-id.c file.
+
+>  /* Allocate and release IDs for a single default trace ID map */
+>
+>  /**
+> @@ -118,9 +124,12 @@ int coresight_trace_id_read_cpu_id(int cpu);
+>   *
+>   * Used to allocate IDs for system trace sources such as STM.
+>   *
+> + * @id: Preferred id value. If id is TRACE_ID_ANY, get a free id from id map.
+> + * If id is greater than TRACE_ID_ANY, get a preferred id.
+> + *
+>   * return: Trace ID or -EINVAL if allocation is impossible.
+>   */
+> -int coresight_trace_id_get_system_id(void);
+> +int coresight_trace_id_get_system_id(int id);
+>
+>  /**
+>   * Release an allocated system trace ID.
+> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+> index f09ace92176e..0599303be326 100644
+> --- a/include/linux/coresight.h
+> +++ b/include/linux/coresight.h
+> @@ -643,6 +643,7 @@ void coresight_relaxed_write64(struct coresight_device *csdev,
+>  void coresight_write64(struct coresight_device *csdev, u64 val, u32 offset);
+>
+>  extern int coresight_get_cpu(struct device *dev);
+> +extern int coresight_get_source_traceid(struct device *dev, u32 *id);
+>
+>  struct coresight_platform_data *coresight_get_platform_data(struct device *dev);
+>  struct coresight_connection *
+> --
+> 2.41.0
+>
+
+Regards
+
+Mike
+
+-- 
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
