@@ -1,180 +1,161 @@
-Return-Path: <devicetree+bounces-86606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F441934F50
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:46:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B31934F5C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:48:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 330E41C212CE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:46:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7377E1F21A67
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122362AF18;
-	Thu, 18 Jul 2024 14:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7F413D62E;
+	Thu, 18 Jul 2024 14:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="iW1RlZB6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ChxK4r2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612157828B
-	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 14:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4DB2AF18;
+	Thu, 18 Jul 2024 14:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721313979; cv=none; b=QB4gHhVrUzmCLiWzAaFuD4fyGrxSn+loHZRG8xDuOITzAQOQ8OLw2LV8TGR8NxjvyyzaMcACB6uYrRa1VRIOA+YKI5C1Q9/ps3W+9PQFvXewlaS+h5+cC2++gM9cnNVzzpSib1Eq9zfueMYXlRy7+fr9nxoqq9dF+qIviReYDxc=
+	t=1721314082; cv=none; b=Fmcb2LjAf0I6xML1xZX96eX4zmD8Mfn69XBv2hZZxLZp85kNI+amDnCtK/JdX4ZAzCwu9HeFw1DSGUaf9ScI+2DiPaUfuT3cFNWktqD7s+ApUdnc3x2a/vpCCyDKgXG+loqDtG1TLdqrfTSBWRdbT0SeWEAtlu7+pbtxBV+X5kw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721313979; c=relaxed/simple;
-	bh=ItEYfyU78HUDQ4/9fhXGu8NLyqmW1vdphw7TfYOCTU0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lCvN5Sfh/thWf0JLpb/UjWYVAKOzr2q86waSgBSQ0db8V5jbyRd+lk1QgyO1frjyEZ2fhFyX65Bx/B448vp7p45wV7MwthK4vs3oQj10WDxEc/G4jRdycIXHNvxg0g2UE6iQjIUByCNSbany5X6T+CLSKO+CU/eV9m2n92/hBEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=iW1RlZB6; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-79f16c85da0so26489785a.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 07:46:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1721313975; x=1721918775; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ItEYfyU78HUDQ4/9fhXGu8NLyqmW1vdphw7TfYOCTU0=;
-        b=iW1RlZB6E4R8CHisAXCGIyocGXZTD5+1CGoYmrPO3VK7m/rBBrys3L/BXKKR1k4Biy
-         rj35ewsWUUKoAKCwEVE8nA+/7XkbU+wVuqNXbsXTjoiWXAN/GJrMbiI6CAXb9WboUub/
-         Oh2bzwObOA4xRcwMA9Nr0zGdihUGAAJFfZzfQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721313975; x=1721918775;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ItEYfyU78HUDQ4/9fhXGu8NLyqmW1vdphw7TfYOCTU0=;
-        b=aufKIvjpVNaQWiev+PZxdXG3jW3ziAoMoY1wAva+kcHZhTir4et1fopNTSkjuFRorq
-         ceXwq6aJcveqAPlbLmM2kJfsLWX/WD9hrWWapNany9U38YW/y1yByUCVBFVjQkj9XCFn
-         Gg4aunfOTe8nGvPe98vaNkzy5mzm8jLLm3pPXWBkTZtFKirmdoW3SyS4dHV16VVTPkov
-         6i3yTzMzxUNi80hGajpbJYmetWbY9/QtHOqEMCq1gkmveRcMeIeCgX8CBv47KqIdzkh4
-         Xq4jcYvd/qiVIY/kwy31TBLtYmZDY3XW6klBFXWrbBHBxRJLq7kaAtBGduSxpBR5Bmgt
-         Zw4A==
-X-Forwarded-Encrypted: i=1; AJvYcCXI3BiZFDiONvbHAcayVYrZillqn29slQcBuc/hdPOl9uV/vEJrC8D0Ooe+QP5Z01u0hdE+JvTGSimnZ/cTIWPxdlC/HQbkXwdppg==
-X-Gm-Message-State: AOJu0Ywvvi/k7riNcG70sY2guEqfpcmSAOFISEFs1hZZnMF7V4PVXIco
-	UH7tQFBWNQJtp3CT+rbrpyMcjDZoesF48R3+kKTLTHqqXRh/OuPsZW7mOyDKOiLf+Ku6Hi2bnfI
-	=
-X-Google-Smtp-Source: AGHT+IE+jR4cbbQPUX1EKLv1utJZG66LY30o/0HPMMP6vpfydjr154ZKKCBu/An7ZQrq1huUjbgL/Q==
-X-Received: by 2002:a05:620a:290e:b0:79f:15ca:b78e with SMTP id af79cd13be357-7a1938c37c6mr142832685a.10.1721313975136;
-        Thu, 18 Jul 2024 07:46:15 -0700 (PDT)
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a1938bd9e1sm31692385a.24.2024.07.18.07.46.14
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jul 2024 07:46:14 -0700 (PDT)
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-44e534a1fbeso105691cf.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 07:46:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVTon03UsHiPRjxShPZ4kYU0IGoXxPugM3V24l3PHkO0eSZ0kKZx3eo8rgJptFdVbPm9ab70Rv8q1fGgMILZWfrgA3ghFwK2vactQ==
-X-Received: by 2002:ac8:6d08:0:b0:447:e792:c797 with SMTP id
- d75a77b69052e-44f96af537emr962911cf.29.1721313973898; Thu, 18 Jul 2024
- 07:46:13 -0700 (PDT)
+	s=arc-20240116; t=1721314082; c=relaxed/simple;
+	bh=oktHw+Aidz4Fg60CXE1tH/jufeVVrplYn4ZfHl/Bp2I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DeuEXxjHh0SG19LaWvrvdoofHPgpBPI3MjTx3LcbQMqXaHnCxM5+4mjZ+P4JnFrZ+xJVLXZGvVjamUBMlraeRrPfQkrM0q+hs12Hc+pA128UDRopowkIM0uD1kuEh6v2+9FqC6i/dvTDKgokT7FMvGwYISUppGFL9+Q5Y9JqrS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ChxK4r2t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B5AC116B1;
+	Thu, 18 Jul 2024 14:47:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721314082;
+	bh=oktHw+Aidz4Fg60CXE1tH/jufeVVrplYn4ZfHl/Bp2I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ChxK4r2tQY8L2nUM30qQ19IcAaPhBbwD21ypizYRC/3oQiy3COcD9b4A6XTz23w6K
+	 BL9VAj0rm5NQ4n8VqikFggWOyRtoP5m0g8LANkUttEuKita0QdwBNcY4Zwlvifu+qd
+	 wNzFG5kxWaYKhzed9c6mL04FYXEzM25fnSgQS1FfaX3AOfKv56ofTzq36VIRjTPiZv
+	 bIHGtp4BwGWnuSTn9FtHIBxsNpxafK2lNsS35ouZwFw4diZMEsjq8gtFiLAciJfhMX
+	 anrz0OrH5GSiv+P/+EPBUkrRgRaH2ZwKFgPhYoO6ubhJwadEf8xIFgIvRQ/v1sEHKO
+	 2ut89S9uJrG/A==
+Date: Thu, 18 Jul 2024 15:47:57 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Bough Chen <haibo.chen@nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"'devicetree@vger.kernel.org'" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	Aisheng Dong <aisheng.dong@nxp.com>, Frank Li <frank.li@nxp.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>
+Subject: Re: Question about gpio-hog
+Message-ID: <20240718-smudge-splashy-6e8addc80c02@spud>
+References: <DU0PR04MB949657D9575090C71714D2A090AC2@DU0PR04MB9496.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org>
- <20240715-scorn-canning-a7f23b9e2039@spud> <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
- <e017259b-bc62-4b57-9276-b834237225e1@kernel.org>
-In-Reply-To: <e017259b-bc62-4b57-9276-b834237225e1@kernel.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 18 Jul 2024 07:45:57 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VY5Ug3TfUo1RctiVQrHUjuod15HA8BxAyWdd_0bK8_Dw@mail.gmail.com>
-Message-ID: <CAD=FV=VY5Ug3TfUo1RctiVQrHUjuod15HA8BxAyWdd_0bK8_Dw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA45AF01
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xhRrOPu2DSsdfLUQ"
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB949657D9575090C71714D2A090AC2@DU0PR04MB9496.eurprd04.prod.outlook.com>
+
+
+--xhRrOPu2DSsdfLUQ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Thu, Jul 18, 2024 at 03:40:49AM +0000, Bough Chen wrote:
+> Hi All,
+>=20
+> I have a question of =E2=80=98gpio-hog=E2=80=99, the property gpio-hog se=
+ems to be used in GPIO node rather than in users device node, so we can=E2=
+=80=99t use the device-link feature.
+> (sorry for resend, I use text/plain messages this time)
+>=20
+> e.g.
+>=20
+> pcal6524: gpio@22 {=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=E2=80=A6
+> =E3=80=80=E3=80=80=E3=80=80/* usdhc3 and QSPI share the same pin, here se=
+lect SD3 pins */
+> =E3=80=80=E3=80=80=E3=80=80usdhc3-qspi-sel-hog {
+> =E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80gpio-hog;
+> =E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80gpios =3D <16 GPIO_=
+ACTIVE_HIGH>;
+> =E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80output-high;
+> =E3=80=80=E3=80=80=E3=80=80};
+> =E3=80=80=E3=80=80=E3=80=80=E2=80=A6
+> };
+>=20
+> &usdhc3 {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=E2=80=A6
+> }
+>=20
+> The board share the pins of usdhc3 and QSPI, a MUX use one GPIO pad from =
+one I2C GPIO expander to control the selection.
+> So before usdhc3 probe, need to make sure the gpio-hog is configed. Which=
+ means usdhc3 need to depend on usdhc3-qspi-sel-hog.
+>=20
+> To achieve that, I can add a fake GPIO properties like below:
+> &usdhc3{
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=E2=80=A6
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0hog-gpio =3D <&pcal6524 16 GPIO_ACTIVE_HIGH=
+>;
+> }
+>=20
+> Usdhc driver do not handle the hog-gpio, just use this fake hog-gpio to l=
+et the usdhc3 depends on pcal6524 IO expander. Make sure when usdhc driver =
+probe, already select the usdhc3 pads on board.
+>=20
+> But this will trigger the DT check warning if related device binding has =
+=E2=80=9C=E2=80=9CadditionalProperties: false=E2=80=9D =C2=A0or=C2=A0 =E2=
+=80=9CunevaluatedProperties: false=E2=80=9D.
+>=20
+> Can this be acceptable? Any thoughts for this case? I think this might be=
+ common user case for gpio-hog.
 
-On Wed, Jul 17, 2024 at 11:19=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 18/07/2024 02:21, Doug Anderson wrote:
-> > Conor (and/or) Krzysztof and Rob,
-> >
-> > On Mon, Jul 15, 2024 at 8:31=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> >>
-> >> On Mon, Jul 15, 2024 at 02:15:37PM +0200, Stephan Gerhold wrote:
-> >>> The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backligh=
-t
-> >>> control over the DP AUX channel. While it works almost correctly with=
- the
-> >>> generic "edp-panel" compatible, the backlight needs special handling =
-to
-> >>> work correctly. It is similar to the existing ATNA33XC20 panel, just =
-with
-> >>> a larger resolution and size.
-> >>>
-> >>> Add a new "samsung,atna45af01" compatible to describe this panel in t=
-he DT.
-> >>> Use the existing "samsung,atna33xc20" as fallback compatible since ex=
-isting
-> >>> drivers should work as-is, given that resolution and size are discove=
-rable
-> >>> through the eDP link.
-> >>>
-> >>> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> >>
-> >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Can you comment on whether you would consider this bindings a "Fix"
-> > since it's a dependency for later patches in this series (which are
-> > "Fix"es) to pass dtbs_check? See:
-> >
-> > https://lore.kernel.org/r/4bca316a-2334-425b-87a6-e1bb241d26b5@linaro.o=
-rg
->
-> The patch itself is not a fix, for sure, but it might be a dependency of
-> a fix (which you wrote above), thus could be pulled to stable as a
-> dependency.
->
-> I do not care about dtbs_check warnings in stable kernels, mostly
-> because dtbs_check warnings depend heavily on dtschema and dtschema
-> follows mainline kernel. Basically if you had warnings-free v6.8 but try
-> to run dtbs_check now with latest dtschema, your results will differ.
->
-> At some point in the future, I could imagine "no new dtbs_check warnings
-> in stable kernels" requirement or at least preference, but so far I
-> don't think there is any benefit.
+I've got no idea what this device you're talking about is - but it seems
+to me like the "hog-gpio" property is what you should be doing (although
+probably called something like "enable-gpios" instead.
+What you would do is send a patch for the dt-binding for this device,
+adding a property, in which case the *Properties: false will stop
+warning.
 
-In this case it's not about whether it makes it to the stable kernel
-but about which main kernel it goes through.
+>=20
+>=20
+> Best Regards
+> Bough Chen
+>=20
+>=20
+> Best Regards
+> Bough Chen
+>=20
+> Mobile:=20
 
-If we land the bindings in drm-misc-next right now then it'll be a
-long time before it makes it into Linus's tree because of the way that
-drm-misc-next merges. It will make it to Linus's tree at 6.12. You can
-see the drm-misc merging strategy at:
+btw, you might want to remove your phone number from the footer when
+sending to public mailing lists.
 
-https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
+Cheers,
+Conor.
 
-If we land the dts change (a fix) through the Qualcomm tree as a fix
-then it should target 6.11.
+--xhRrOPu2DSsdfLUQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This means that the 6.11 tree will have a dtbs_check error because it
-has the dts change (a fix) but not the bindings change (not a fix).
+-----BEGIN PGP SIGNATURE-----
 
-One way to resolve this would be to treat this bindings as a "fix" and
-land it through "drm-misc-fixes". That would make the bindings and
-device tree change meet up in Linux 6.11.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpkrHQAKCRB4tDGHoIJi
+0hekAP9r7PWSfFQIRahe8TkyZ4HTdLFkCvqPOe7LVyTSjG0w6wD8DChrPvHVwTo9
+plHrQGtk0DugZGI5NgcWH+KRGS7XsQ0=
+=OOlq
+-----END PGP SIGNATURE-----
 
-Did I get that all correct?
-
--Doug
+--xhRrOPu2DSsdfLUQ--
 
