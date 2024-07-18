@@ -1,293 +1,254 @@
-Return-Path: <devicetree+bounces-86604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFC56934F3B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:41:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57617934F43
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69DA9281DB1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:41:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B10D1C20ED7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:42:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFB214372D;
-	Thu, 18 Jul 2024 14:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57601419BA;
+	Thu, 18 Jul 2024 14:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="HgVax8GW"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="A9APUqgo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013006.outbound.protection.outlook.com [52.101.67.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C7A71422BC
-	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 14:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721313671; cv=none; b=tqU6cd5L6+Yskfv4eB9a1kwsLXm0riQrHJ3b8w9iOrwcUdJY5w+6s528rYf6GhATIXKZW9KiBH5BMnP6n+JM0k101VD2BRAKbEoyjjce+NOCvHLWnPB9DOrA0dBz2bxL6l8RSsWMVurY/cWrMOjMeNxBgpWNWc0OGMSKdeHwzkQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721313671; c=relaxed/simple;
-	bh=8iksS6ZFnv53ZcAghL65KYmsNJMU8ft6S6eoiAhZaOk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mnuCkVFr0c/lZ1eAN1AiBW+XveLFP2gmuTSFY6r7dqkKm8rR8+WDjEv8xZ86lV2tieTStfXES1bRsYjI2Gk5oarpxS5/lL6iN5UUt/yk2QHXC3gUafL5k6jJBmOWo/siYRlPlv8TnxeBE1ObxLVADUVrd1OetOj5OtT1Jj2kV5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=HgVax8GW; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-367b8a60b60so575069f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 07:41:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1721313666; x=1721918466; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=d5zeQJ5Ow3UH0+RdZ7WJRjKIJGbUGTjL+v0QPQ6ApNI=;
-        b=HgVax8GWSB4R1kltVA/DXD5F3bYvs9nzcMo1TE75KXYE4mZNQsa7M4YXog31whlRoO
-         wNpaLOwqMIHbGcmstQU2Lwzp/khKUTLoQrZlz8tz7F1FjAaRghMZcuraCYbOHfDMPcXF
-         1vGgXDVJu6f+/Xp8nynyuzd6GYuaMZCE+flQ9LqUTKTh/KeuSM4Ym5BJ3qoDeukfrlIq
-         0XEzsmF2M/5Mp978T+woQvLKlkhiv3Vlnck+HETRVLcZKjLKhFJapu2Dd4UjxbW8vurn
-         OiRCcDf+Ch0B8yRglLobsL7MeCFPGSb8WyqQkVctOeRGzW540/rf0v/d/cFFWXIM5ArV
-         FyMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721313666; x=1721918466;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d5zeQJ5Ow3UH0+RdZ7WJRjKIJGbUGTjL+v0QPQ6ApNI=;
-        b=dF6PIm7lLAu9npYTU73TILby4+CJCtN/a4jcZv8aZq0pTtUbNqEsRM4r9I5SCuuoMC
-         q7MsNHucK120CzICVzrIWk2tq1ak6FpF2BZEfDP4o5yyOOrfGJG5F1Q4OtNncHN6sh2S
-         sT7EzwgQScGnojleA4eBgnNpc8EBCj6K9Ljq76pWhRLtTOJ/lIhhKHUZOfkH7nTL8fU+
-         BA8/Mom2ces3nBwB3q8lIy9XRGQeTaTvot/K81A+pySoX1fyyNJaj9XMFCOqFd3L+8Sn
-         qPyO4kYny2Q9RDdwHYTK3GHl32xrYgAEP/EQRJzKR5k3rDjTAHILTU4RD6oqfEBL1IzM
-         x5XQ==
-X-Gm-Message-State: AOJu0YwH4yXiU39zPTDTTOyk4XN+V5cM7ziPQBMxa6dJWaGVfcnkI31R
-	ZrKuo7blM8gwm/FHCmhFWubpTLW91ITg3BsMoWSTKGVpQmUAswgZaEr0ujK14fs=
-X-Google-Smtp-Source: AGHT+IHLLY7FV8d3TW5DeDftcP9CR4qKgZexsCdXD1McSEmqtB8zHI2JozSns5pNcAAnLe1mJiEB7g==
-X-Received: by 2002:a5d:59a2:0:b0:367:9073:3496 with SMTP id ffacd0b85a97d-3683160e527mr4242349f8f.29.1721313666237;
-        Thu, 18 Jul 2024 07:41:06 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3685043637fsm1903132f8f.66.2024.07.18.07.41.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jul 2024 07:41:05 -0700 (PDT)
-Message-ID: <fd8078cb-fe1c-4aef-9e83-be2baa529720@tuxon.dev>
-Date: Thu, 18 Jul 2024 17:41:03 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5F712C7FB;
+	Thu, 18 Jul 2024 14:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721313768; cv=fail; b=KveBSRWGNiBnAMt519hhICpJAhQHhTyUzmHFCB3y9SOMCoWUKWwMf2eoAAm17OGXZOIGUc9GxiWbJXO7KaHoUT0Upo6FUF6CDAL70SYPclhYOa9NZZB5uaMymDCzZ1aI83/TaKc4Ssaolg5AYS2Dlrcg0YUBlmZEbxBNm6qj6KM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721313768; c=relaxed/simple;
+	bh=94DtSeZs565FASw8QLrtMs5wInBf4MqGBAsIcyZCuK8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=gepUT7Iafj1tkmXsdU/3vUpB54HqkduowH/Bkhp/YmTsDEL8TOWgJmDBfzXQYJfqIax/zmfbIKXwPBZFMkU1ea2U8MtyEe4XBIzgOnC6+IgqONcYUDGX75Cbnhb6cwDwelDx3iDw6/ZYc2l9abFmeCBRBoJPnLYJNonlWw7dqQg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=A9APUqgo; arc=fail smtp.client-ip=52.101.67.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AWGjQ/iJW9S/7YynNayvfx0iytS4yxEG6ZAk/d4H8Y95YsRxNrU3wIwpSe8/wKOUNhMEoboUAJuGHxfFAFLgqqiIJTs0CsijDEyBcrBLJA2gmJZd/T58mCr8rjnTnhNZTZGZ9G9CkcMomKQRZE5MqsvVyyk0gFAjkBUSkjLE1VCC4o2IiTPV52PLPBwYek/qzRsZEZytuJvpqAFlKvFWV7A036ehsex9zcVtUGylLQ+XxsXAA2qJOOOMylbqdnur/Hh61UN4UOWNmoQhlHyA7ZvpewAkTdt0rQrVJAVHofPihojcMOLn9E/eDWrCLuVxV00PzrIqkMjTMtgnmrITcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UQNhrdSritfQdhFxutcUeszBY+I9TebduyoKo5S8sak=;
+ b=oR68lyowRHl9Cfpg5Z+AQKZ5QEx5p0akOrGTde+G4WZxWlJKeIEhPGHWahpGRUzugS7VZyXEICHy0hDcDgM8bYw/E60GgpzjqrMFFknBukNJ5M0vMbep+ufwE64TPOP9LDwYvKSEXDRZyeU0J/Ip3Fs9fUsRqyPoaBaj7r951OK9xp2umX7LvEtN+egj70ekMGX/MkXDwH4Ugs1wH99Q6zhavRJMlCojREiXLdpWEFZboqspFxeUWv8LED2KoaAtZVM37quWIlegtPqCufq/2rSd98zomGfi9KnlN6jZBiy9Ih2jdEfJSMBngiQ03xJM6LvqypHhavIDh0X7LJgP3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UQNhrdSritfQdhFxutcUeszBY+I9TebduyoKo5S8sak=;
+ b=A9APUqgoeVg5QE3Jo4Re+oJBjylWYVTtnfKUHjdh7gOad/2E8G90H3Lam8YKt66SRG26FgnNgf16FtZcW4Z174cKS/G+bKLvK+sg662lZvEb9p0KJwEDKB5EoVphFugBl8yKjitsqw4etGhkgzBm58lfL6PU5CMFHRtLJugq6sg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM0PR04MB6852.eurprd04.prod.outlook.com (2603:10a6:208:18c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.18; Thu, 18 Jul
+ 2024 14:42:43 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7784.017; Thu, 18 Jul 2024
+ 14:42:42 +0000
+Date: Thu, 18 Jul 2024 10:42:33 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	gregkh@linuxfoundation.org, peter.chen@kernel.org,
+	herve.codina@bootlin.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+	jun.li@nxp.com
+Subject: Re: [PATCH 1/6] usb: phy: mxs: Using regulator phy-3p0
+Message-ID: <Zpkp2URtnfSdm0EL@lizhi-Precision-Tower-5810>
+References: <20240718102637.3964232-1-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240718102637.3964232-1-xu.yang_2@nxp.com>
+X-ClientProxiedBy: BYAPR02CA0058.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-Subject: Re: [PATCH v2 03/11] clk: renesas: clk-vbattb: Add VBATTB clock
- driver
-To: Stephen Boyd <sboyd@kernel.org>, alexandre.belloni@bootlin.com,
- conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org,
- lee@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com,
- p.zabel@pengutronix.de, robh@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com>
- <20240716103025.1198495-4-claudiu.beznea.uj@bp.renesas.com>
- <2abcd440664067d95b1ac0e765ad55a3.sboyd@kernel.org>
- <e3103f07-ce8a-4c34-af5c-bb271c7ec99a@tuxon.dev>
- <4cacf090dc56c3ffd15bccd960065769.sboyd@kernel.org>
-Content-Language: en-US
-In-Reply-To: <4cacf090dc56c3ffd15bccd960065769.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB6852:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f22709c-607d-43cb-cfdb-08dca737e161
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|52116014|366016|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?v/7TAGrhwmd4U9/6p1X8R7GUguvQFXoVRTWLdFwzLyM+SS24lLEVXAFmAi/N?=
+ =?us-ascii?Q?zgzAK/l7vmKpcsqIhExnLTLEPgILh1fqWG2HNExXCvYMnti/waWn6vV8Mgsg?=
+ =?us-ascii?Q?okRtYtYbFQE2kHhsEB1fVPVWKQ87QTCP3s8inQu8NbytlgWe9pY4803hogC2?=
+ =?us-ascii?Q?IPgjeqlvhr5fJKDCY2AqfRVdCcPc3zq47jk7DDKJgHz7VaY2ByIoFcqBk/Ao?=
+ =?us-ascii?Q?BAoGKYPFH2XN0GR/bVRwZg8I5jkB9P21Xd33IB7oL4NPnlmloNjDY453oOdN?=
+ =?us-ascii?Q?lSROF1WHSM0ISvtduAD9F7LvCo7aSdJJhXDFGX3gU9OSPqOoj4YDELKCnYb1?=
+ =?us-ascii?Q?ry+wDxaO8/Jk2BaYs9fu/eRsLjVoCFX0WXx6k63ggtfks51+CCyXfRm9OLx5?=
+ =?us-ascii?Q?/KHbO+lyBcld/TAalJgmlvt+/b3h/pl1aDEbwT2ujEnGyrk3uDOKJxt7xgQp?=
+ =?us-ascii?Q?BcysbLXwy8+pwUEPKNTkG7/S26vX52qwMhFcO4iLxWRemZvAbLMIT+E4apo/?=
+ =?us-ascii?Q?OD1/DmEbsKYlrq85crfm9Mdeiq5TO9XjZa1e+LIh6vWvA1JcpPtYHXuY0t0b?=
+ =?us-ascii?Q?f21LfbL6SaOsPku8z/X01Txwwo1N/AhtRK0FgjTLEJFbvJKCprsVCZuK30l4?=
+ =?us-ascii?Q?rGarBALB0XBeHWnPqTpobcymKjX68CLfaUi6nvtvdKA3bIEq3XckiJFAclee?=
+ =?us-ascii?Q?r97enryABwTcaG8TfQHFgORcVE/JaiSmMzAdwxz0u95RuhY7sAEiXJjPoTKc?=
+ =?us-ascii?Q?+rN3r7qsG136SQWDG6IiJbg+RKYPDUAUVFue7oBtBI/GpW5kmlMHlY1aswXV?=
+ =?us-ascii?Q?UranitlSkqOJVL4YXa4DV+uMt7tYNK+wmZSPP7ieLvgfJuQGUwtNsh7Il+wT?=
+ =?us-ascii?Q?W+zz+i2uXJ2U29pLt4/l8gy/jfOdnllHB21mORpo7sKEQ9ZBCMfTCKo4h3LI?=
+ =?us-ascii?Q?LYsndJBZ53oPS4JgFjmchQoPP/fsGnqdEkXpbEqq5uIhzNIrvTW1odnodvPb?=
+ =?us-ascii?Q?qeeto5ZxE4ZNAedC3lJBXdF2peGHi2UX6cEzp5cdR98kS2xaoW+cMn8F9Z8t?=
+ =?us-ascii?Q?LjTl+//63uzzl9YwUhdpUvDCx3D0yrHWnnCw/E+8hKUMHLepUg4Bn293HD/J?=
+ =?us-ascii?Q?TR22z4GvEk5efKNndQBE8sTt6V8NGJMIO9JitfydQh6yfEkTptHfOMluY/7n?=
+ =?us-ascii?Q?B79CP/QysmDxlnLzB3UijDMxmFiiNiGZ3pu3Ftehk04fJDne3EJOZxD6tUeL?=
+ =?us-ascii?Q?SUnApDmUbJ+3ysGkkzbA5bNQZUXhP7CrbPwHzwK3sgJFaUqx2gAz3N+hNH28?=
+ =?us-ascii?Q?V0Gfl2TKoK3N71s0QE9BRVGzGFwXUHQooyQmwJu2oUxM0t/OA6UO96Dq2gp4?=
+ =?us-ascii?Q?+P5sCiF9O90iu5v+qV5/SIArqQoDoKRg1UyB/+SdaAqQUIs9HQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(52116014)(366016)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4jKtxrJprSvO3z60PWh8TDoFFtU2w7bAI+4/j0AT2XsrAzWiOsHc5gOhbiN9?=
+ =?us-ascii?Q?no6zvKFrJyWDWojN1etl4g7TKH5Zv3F4GxAXZN3otuDfVRPLqqXf33JycskY?=
+ =?us-ascii?Q?pMLkZWOTN/d4YHSsD7MXyR/AYxVsAaT2ZOU8c6cN5yGIYcGd5gN4G6o6PIV2?=
+ =?us-ascii?Q?8rQM6TcJGrvrFJtmn9O0u+WmqViJKudOzAt3cW7rQBIjk0VydyBodidl8CQx?=
+ =?us-ascii?Q?MJoDuakMOEBkl4zR+Tc7HXY6ICAIOAKZ8FY654wYIAMGQLb73CgxOFd7mZdt?=
+ =?us-ascii?Q?yrc9KjveqQJYXXEPX7jdH+RLOw1WXfzmDd6jzf+EidV6htPx/M66utHYiv9x?=
+ =?us-ascii?Q?qmDMkyJ1b8bZWb/Gfl6gvibzXPtK6Z9xANaXuZ+N4QbiyxnyHBLiKvkLSW5t?=
+ =?us-ascii?Q?7udKTtW7qpbRZjfkQxCb257MxXvFOfI+PWjRz72hmMoL06/qWRJkgUgBIGJx?=
+ =?us-ascii?Q?zRNobC5oGEgjUbuVIujpIdTwCaPqLbj82z6GAf8Kz8GzDYPWyTppyAiqTj8I?=
+ =?us-ascii?Q?IC/9gY4jPSQ6+iI3zGkCD35YJ8JMEI/V34FV+Nu3h3RF5FuRH86kncl/iBu8?=
+ =?us-ascii?Q?FMy3FzG9ko8QMBKLFaBtNH2uLvqLLds1uuS4oYnSze7IRCgDU6P8/A0cT3Hk?=
+ =?us-ascii?Q?ClV1UlvsQzCkFElcCTt5fK8HLPRf1VqBNqTaS1plnIS+7QrOgLdWgWjX82Mc?=
+ =?us-ascii?Q?hwiKe74qvyRcIINWdWfVk4Nbp+CzzKz+1X1awDfIQ9K6j8jJ2abasW1555uE?=
+ =?us-ascii?Q?2MBM3wjDRYNlPTnhnNi7aYCAKfFBXWScbQpvuhzQC/3visEJZ8yBu1N12HSj?=
+ =?us-ascii?Q?It8FhL/cgtWtRbLfrQIUe80k9JSPLsC2zK1qtduAJkjxYQkl768LCTGp8SEb?=
+ =?us-ascii?Q?KuFe+R/TbWEPt8XqLW4WquM/fYOJcKWD9v5YR1WJzQS9d2AvOnBt9/Oe794c?=
+ =?us-ascii?Q?FBUqGr/+uvYj/y4NlX8qZbolMDsL6yStRtmNQstG14vXYXmUBoMHkcGwipBT?=
+ =?us-ascii?Q?BkuXWH/qRZ4y6Z3Tkzhyd+E3ODvjkjWppFlzguPrjxc34DJMacdIuDhtEfuu?=
+ =?us-ascii?Q?2oTIobS4iPqdUupOuZl/KzblXDuHuJLcP2JRAAyVU8NVu6nrabL6ZJ7PTJx8?=
+ =?us-ascii?Q?a4vxvloxF+DDz3rhZ6w8PStqI1bCgP4wP1OgfqZb51sr3DjnXOowgqHwP/ed?=
+ =?us-ascii?Q?LtolexF20ZQtRFs+I/9ybA/i1V/3sqx5L1ix3z6MCfrF2HdNyF/nSO0d+ngg?=
+ =?us-ascii?Q?rDe/onhwezT+HEtgg6ZiTPx6vybJUsesxbpTttr3F5SWIGkRwAj0pn+n66PR?=
+ =?us-ascii?Q?dFG7adomiUbAK32JJLEqgfrMrtq/fUKxIlDNLxMGLC2W4QcNoBR0IaLqu8mu?=
+ =?us-ascii?Q?fvhQr/HPfVQimVNdVY8LJVcDYScN99UVdguEZYzt26loSb8EZ8PiJsx9l9d/?=
+ =?us-ascii?Q?V9W0ti1dUeK13dtZAuO/+R4tzDVomAkQAlf7vndsD2C/OnsgDM97yI9bq04B?=
+ =?us-ascii?Q?N+1tvFUa5VCfY0ngyTT7dsSp1ABK9FhXo7fjpykBYGBL76wyYxFW466Rptd1?=
+ =?us-ascii?Q?eKnSdC93Mcrj6kpOy2c=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f22709c-607d-43cb-cfdb-08dca737e161
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 14:42:42.7349
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ySqU3rZeOLP2OD2U+4mDTQh3Rs0wwpqMKSmVeB9qn6CHkNqdMoVz2jPPm/A5ii/hVIYSVxkudzZys6mKnI2s+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6852
 
+On Thu, Jul 18, 2024 at 06:26:32PM +0800, Xu Yang wrote:
+> It is one of PHY's power, and we need to enable it to keep signal
+> quality good, and pass eye diagram test.
 
+"Enable regulator 'phy-3p0' to pass eye diagram test since it improve signal
+qualilty."
 
-On 18.07.2024 03:39, Stephen Boyd wrote:
-> Quoting claudiu beznea (2024-07-17 01:31:20)
->> Hi, Stephen,
->>
->> On 17.07.2024 01:28, Stephen Boyd wrote:
->>> Quoting Claudiu (2024-07-16 03:30:17)
->>>> diff --git a/drivers/clk/renesas/clk-vbattb.c b/drivers/clk/renesas/clk-vbattb.c
->>>> new file mode 100644
->>>> index 000000000000..8effe141fc0b
->>>> --- /dev/null
->>>> +++ b/drivers/clk/renesas/clk-vbattb.c
->>>> @@ -0,0 +1,212 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * VBATTB clock driver
->>>> + *
->>>> + * Copyright (C) 2024 Renesas Electronics Corp.
->>>> + */
->>>> +
->>>> +#include <linux/cleanup.h>
->>>> +#include <linux/clk.h>
->>>
->>> Prefer clk providers to not be clk consumers.
->>
->> I added it here to be able to use devm_clk_get_optional() as it was
->> proposed to me in v1 to avoid adding a new binding for bypass and detect if
->> it's needed by checking the input clock name.
->>
-> 
-> Understood.
-> 
->>
->>>
->>> I also wonder if this is really a mux, 
->>
->> It's a way to determine what type of clock (crystal oscillator or device
->> clock) is connected to RTXIN/RTXOUT pins of the module
->> (the module block diagram at [1]) based on the clock name. Depending on the
->> type of the clock connected to RTXIN/RTXOUT we need to select the XC or
->> XBYP as input for the mux at [1].
->>
->> [1] https://gcdnb.pbrd.co/images/QYsCvhfQlX6n.png
-> 
-> That diagram shows a mux block, so at least something in there is a mux.
-> From what I can tell the binding uses clock-names to describe the mux.
-> What I'd like to avoid is using clk_get() to determine how to configure
-> the mux. That's because clk_get() is a clk consumer API, and because we
-> want clk providers to be able to register clks without making sure that
-> the entire parent chain has been registered first. Eventually, we'd like
-> clk_get() to probe defer if the clk is an orphan. Having clk providers
-> use clk_get() breaks that pretty quickly.
-> 
->>
->>
->>> and either assigned-clock-parents should be used, 
->>> or the clk_ops should have an init routine that looks at
->>> which parent is present by determining the index and then use that to
->>> set the mux. The framework can take care of failing to set the other
->>> parent when it isn't present.
->>
->>
->> On the board, at any moment, it will be only one clock as input to the
->> VBATTB clock (either crystal oscillator or a clock device). If I'm getting
->> you correctly, this will involve describing both clocks in some scenarios.
->>
->> E.g. if want to use crystal osc, I can use this DT description:
->>
->> vbattclk: clock-controller@1c {
->>         compatible = "renesas,r9a08g045-vbattb-clk";
->>         reg = <0 0x1c 0 0x10>;
->>         clocks = <&vbattb_xtal>;
->>         clock-names = "xin";
->>         #clock-cells = <0>;
->>         status = "disabled";
->> };
->>
->> vbattb_xtal: vbattb-xtal {
->>         compatible = "fixed-clock";
->>         #clock-cells = <0>;
->>         clock-frequency = <32768>;
->> };
->>
->> If external clock device is to be used, I should describe a fake clock too:
->>
->> vbattclk: clock-controller@1c {
->>         compatible = "renesas,r9a08g045-vbattb-clk";
->>         reg = <0 0x1c 0 0x10>;
->>         clocks = <&vbattb_xtal>, <&ext_clk>;
-> 
-> Is vbattb_xtal the fake clk? If so, I'd expect this to be
-> 
-> 	clocks = <0>, <&ext_clk>;
-> 
-> so that we don't have a useless clk node.
-> 
->>         clock-names = "xin", "clkin";
->>         #clock-cells = <0>;
->>         status = "disabled";
->> };
->>
->> vbattb_xtal: vbattb-xtal {
->>         compatible = "fixed-clock";
->>         #clock-cells = <0>;
->>         clock-frequency = <0>;
->> };
->>
->> ext_clk: ext-clk {
->>         compatible = "fixed-clock";
->>         #clock-cells = <0>;
->>         clock-frequency = <32768>;
->> };
->>
->> Is this what you are suggesting?
->>
-> 
-> Sort of. Ignoring the problem with the subnode for the clk driver, I
-> don't really like having clock-names that don't match the hardware pin
-> names. From the diagram you provided, it looks like clock-names should
-> be "bclk" and "rtxin" for the bus clock and the rtxin signal. Then the
-> clock-cells should be "1" instead of "0", and the mux should be one of
-> those provided clks and "xc" and "xbyp" should be the other two. If that
-> was done, then assigned-clocks could be used to assign the parent of the
-> mux.
-> 
-> #define VBATTBCLK          0
-> #define VBATTB_XBYP        1
-> #define VBATTB_XC          2
-> 
->     vbattb: vbattb@1005c000 {
->         compatible = "renesas,r9a08g045-vbattb";
->         reg = <0x1005c000 0x1000>;
->         ranges = <0 0 0x1005c000 0 0x1000>;
->         interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->         interrupt-names = "tampdi";
->         clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&ext_clk>;
->         clock-names = "bclk", "rtxin";
->         power-domains = <&cpg>;
->         resets = <&cpg R9A08G045_VBAT_BRESETN>;
->         #clock-cells = <1>;
->         assigned-clocks = <&vbattb VBATTBCLK>;
-> 	assigned-clock-parents = <&vbattb VBATTB_XBYP>;
->         renesas,vbattb-load-nanofarads = <12500>;
->     };
-
-I think I got it now. Thank you for the detailed explanation.
+My question is why it just improve signal quality instead of make it work.
+It should not work if no power supply. 
 
 > 
-> One last thing that I don't really understand is why this needs to be a
-> clk provider. In the diagram, the RTC is also part of vbattb, so it
-> looks odd to have this node be a clk provider with #clock-cells at all.
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> ---
+>  drivers/usb/phy/phy-mxs-usb.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
+> index 920a32cd094d..42fcc8ad9492 100644
+> --- a/drivers/usb/phy/phy-mxs-usb.c
+> +++ b/drivers/usb/phy/phy-mxs-usb.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/regmap.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/iopoll.h>
+> +#include <linux/regulator/consumer.h>
+>  
+>  #define DRIVER_NAME "mxs_phy"
+>  
+> @@ -204,6 +205,7 @@ struct mxs_phy {
+>  	int port_id;
+>  	u32 tx_reg_set;
+>  	u32 tx_reg_mask;
+> +	struct regulator *phy_3p0;
+>  };
+>  
+>  static inline bool is_imx6q_phy(struct mxs_phy *mxs_phy)
+> @@ -288,6 +290,16 @@ static int mxs_phy_hw_init(struct mxs_phy *mxs_phy)
+>  	if (ret)
+>  		goto disable_pll;
+>  
+> +	if (mxs_phy->phy_3p0) {
+> +		ret = regulator_enable(mxs_phy->phy_3p0);
+> +		if (ret) {
+> +			dev_err(mxs_phy->phy.dev,
+> +				"Failed to enable 3p0 regulator, ret=%d\n",
+> +				ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	/* Power up the PHY */
+>  	writel(0, base + HW_USBPHY_PWD);
+>  
+> @@ -448,6 +460,9 @@ static void mxs_phy_shutdown(struct usb_phy *phy)
+>  	if (is_imx7ulp_phy(mxs_phy))
+>  		mxs_phy_pll_enable(phy->io_priv, false);
+>  
+> +	if (mxs_phy->phy_3p0)
+> +		regulator_disable(mxs_phy->phy_3p0);
+> +
+>  	clk_disable_unprepare(mxs_phy->clk);
+>  }
+>  
+> @@ -789,6 +804,21 @@ static int mxs_phy_probe(struct platform_device *pdev)
+>  	mxs_phy->clk = clk;
+>  	mxs_phy->data = of_device_get_match_data(&pdev->dev);
+>  
+> +	mxs_phy->phy_3p0 = devm_regulator_get(&pdev->dev, "phy-3p0");
 
-I did it like this because the RTC is a different IP mapped at it's own
-address and considering the other VBATTB functionalities (tamper, SRAM)
-might be implemented at some point.
+Does binding doc update?
 
-I also failed to notice that RTC might not work w/o bclk being enabled
-(thanks for pointing it).
+> +	if (PTR_ERR(mxs_phy->phy_3p0) == -EPROBE_DEFER) {
+> +		return -EPROBE_DEFER;
+> +	} else if (PTR_ERR(mxs_phy->phy_3p0) == -ENODEV) {
+> +		/* not exist */
+> +		mxs_phy->phy_3p0 = NULL;
+> +	} else if (IS_ERR(mxs_phy->phy_3p0)) {
+> +		dev_err(&pdev->dev, "Getting regulator error: %ld\n",
+> +			PTR_ERR(mxs_phy->phy_3p0));
+> +		return PTR_ERR(mxs_phy->phy_3p0);
+> +	}
 
-I saw that diagram more like describing the always-on power domain
-(PD_VBATTB) where the VBATTB logic and RTC resides. That power domain is
-backed by battery. From HW manual [1]: "PD_VBATT domain is the area where
-the RTC/backup register is located, works on battery power when the power
-of PD_VCC and PD_ISOVCC domain are turned off."
+just need call dev_err_probe()
 
-[1]
-https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzg3s-general-purpose-microprocessors-single-core-arm-cortex-a55-11-ghz-cpu-and-dual-core-cortex-m33-250
-
-> Is it the case that if the rtxin pin is connected, you mux that over,
-> and if the pin is disconnected you mux over the internal oscillator? 
-
-From the description here at [2] I'm getting that the "32-KHz clock
-oscillator" block is used when crystal oscillator is connected to RTXIN,
-RTXOUT pins and it is skipped if external clock device is connected.
-
-[2] https://i2.paste.pics/RFKJ0.png?rand=Xq8w1RLDvZ
-
-> I'm
-> really wondering why a clk provider is implemented at all. Why not just
-> hit the registers directly from the RTC driver depending on a
-> devm_clk_get_optional() call?
-
-I did it like this because the RTC is a different IP mapped at it's own
-address with it's own interrupts, clock, power domain and considering that
-the other VBATTB functionalities (tamper, SRAM) might be used at some point
-in future. At the same time I failed to noticed the VBATTB clock might be
-needed for RTC.
-
-Do you consider better to just take a regmap to VBATTB from RTC driver and
-set the VBATTB from RTC driver itself?
-
-Thank you,
-Claudiu Beznea
+> +
+> +	if (mxs_phy->phy_3p0)
+> +		regulator_set_voltage(mxs_phy->phy_3p0, 3200000, 3200000);
+> +
+>  	platform_set_drvdata(pdev, mxs_phy);
+>  
+>  	device_set_wakeup_capable(&pdev->dev, true);
+> -- 
+> 2.34.1
+> 
 
