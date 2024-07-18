@@ -1,109 +1,118 @@
-Return-Path: <devicetree+bounces-86629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD359350A8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 18:25:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8689350D4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 18:45:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C2001C20F2F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:25:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF62282778
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5E4144D23;
-	Thu, 18 Jul 2024 16:25:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOSlvqrz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B10145343;
+	Thu, 18 Jul 2024 16:45:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE1A2F877;
-	Thu, 18 Jul 2024 16:25:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE48714372D;
+	Thu, 18 Jul 2024 16:45:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721319940; cv=none; b=B3uXs6jbzXhS1SDZV/0a291VyBufHEBo4SfARAjx1JN1EP/3d7EVZsmvul4csgsh7xoqPQ/CFOgJ04SbyOIW+fs/SM8gtbY3A44LMDYC37jBChOokhBixXh9DFSOaJHzzaEYqzpnia0CoW5rOg8bb78hLB5lgRkVLZvHs1zAyd8=
+	t=1721321110; cv=none; b=sz2vBcYmPqGDVMNj+gUU7xEmE2iCEeXU0PfArjS76A5GooyBD1bzbTFmQc6qRXiu8r6TzKLz9dCC9qApiPzv4F1r6KqaYsc2ZukkP6uUUnQ3rvd3TjlSm+aeK2Ssgtngw+KYmIcTgWeg5JgafThkiO+gcJVaihimz7HCdy6HJh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721319940; c=relaxed/simple;
-	bh=eAYqluCiv6LpOeEE/Gjs6FAht/2LLqsRLhVkGs8Q4rY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TgiZ7FrQo/KIIM9hWcLz5P3NcFy7mh1Ofr8cn5Z27krI/1UNHf4TxkLWS5m/QQpZBs529VB/akP9tIdT+Y1sQvfQJ6tycRltXajSSQ0RunqUh59OtX7/165OXNPPos5ah1jZJDfxbgxsajPOFOG5zfg3Ah75sfjuY0CXWtq/jno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pOSlvqrz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CA19C4AF10;
-	Thu, 18 Jul 2024 16:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721319940;
-	bh=eAYqluCiv6LpOeEE/Gjs6FAht/2LLqsRLhVkGs8Q4rY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=pOSlvqrzQfLn/3M4AcllF/jMT74KnCxbxNX0McsxiQkH+D0bn71LMZa991bKhAIqL
-	 J4JeMJNvtyOORdryJNbeekoMVk+42FhYu6x/Ert8GJhDQdXircn1h9VKOucAfz+j6R
-	 EuA6135fS31k9/qJxcRybtlIlr5bc0QUAEnmNvHr+yU0zSln8zS2tHnw8oFvFoqVyz
-	 /eqtDStijsgIlKLmYlzC2Rbh1JyQqasP3O456sMskPfPE/rdKNwdoNknNkWRKYHNH5
-	 hJu4xLSberQs8/AxJt/1txFloTcLwvKePFfQ35oc5O36ISTdZ4L2U/DVfh7rUvNpjE
-	 WlKdKozfyK1GQ==
-From: Mark Brown <broonie@kernel.org>
-To: linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
-In-Reply-To: <20240717-impotence-zippy-254b86593069@spud>
-References: <20240717-impotence-zippy-254b86593069@spud>
-Subject: Re: (subset) [PATCH v1 0/3] Fix incorrect bh2228fv compatible
-Message-Id: <172131993701.119619.18261000113153693411.b4-ty@kernel.org>
-Date: Thu, 18 Jul 2024 17:25:37 +0100
+	s=arc-20240116; t=1721321110; c=relaxed/simple;
+	bh=ho4kXrb83dG7s2zTkRmierlLx/1L8Hdnc7xDarwrA6Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rzM2HLH+sKV/X2esjVgIO/pk6uOqFfuXJL6gLLxW2fGBsrIP6+KTfAXP+0YB22KxrupqK4FloIP+JnzmJ6jc3SL/BFz2O2V/nOZ4Ly1wMIO8R6Tkgxr0oTdkOsPHtQnlKtsd9VeHj1Q2lm1LTm5Rh0EB2HGhIWUMtCvJmQcyZSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C9676FF808;
+	Thu, 18 Jul 2024 16:45:00 +0000 (UTC)
+Message-ID: <6908e437-bf1c-4fae-bb34-b5c30dae97ff@ghiti.fr>
+Date: Thu, 18 Jul 2024 18:45:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+Content-Language: en-US
+To: Yong-Xuan Wang <yongxuan.wang@sifive.com>, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+ kvm@vger.kernel.org
+Cc: greentime.hu@sifive.com, vincent.chen@sifive.com,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ devicetree@vger.kernel.org
+References: <20240712083850.4242-1-yongxuan.wang@sifive.com>
+ <20240712083850.4242-3-yongxuan.wang@sifive.com>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20240712083850.4242-3-yongxuan.wang@sifive.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-d4707
+X-GND-Sasl: alex@ghiti.fr
 
-On Wed, 17 Jul 2024 10:59:47 +0100, Conor Dooley wrote:
-> Maxime made a typo when adding this device to the kernel all the way
-> back in 2012, fix the spelling mistake.
-> 
-> Really this device should not be in trivial-devices.yaml, but I'm
-> leaving the creation of a dedicated binding for when I get my hands on a
-> device :smiling_imp:
-> 
-> [...]
+On 12/07/2024 10:38, Yong-Xuan Wang wrote:
+> Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
+> property.
+>
+> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+> ---
+>   .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> index 468c646247aa..e91a6f4ede38 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -153,6 +153,34 @@ properties:
+>               ratified at commit 3f9ed34 ("Add ability to manually trigger
+>               workflow. (#2)") of riscv-time-compare.
+>   
+> +        - const: svade
+> +          description: |
+> +            The standard Svade supervisor-level extension for SW-managed PTE A/D
+> +            bit updates as ratified in the 20240213 version of the privileged
+> +            ISA specification.
+> +
+> +            Both Svade and Svadu extensions control the hardware behavior when
+> +            the PTE A/D bits need to be set. The default behavior for the four
+> +            possible combinations of these extensions in the device tree are:
+> +            1) Neither Svade nor Svadu present in DT => It is technically
+> +               unknown whether the platform uses Svade or Svadu. Supervisor
+> +               software should be prepared to handle either hardware updating
+> +               of the PTE A/D bits or page faults when they need updated.
+> +            2) Only Svade present in DT => Supervisor must assume Svade to be
+> +               always enabled.
+> +            3) Only Svadu present in DT => Supervisor must assume Svadu to be
+> +               always enabled.
+> +            4) Both Svade and Svadu present in DT => Supervisor must assume
+> +               Svadu turned-off at boot time. To use Svadu, supervisor must
+> +               explicitly enable it using the SBI FWFT extension.
+> +
+> +        - const: svadu
+> +          description: |
+> +            The standard Svadu supervisor-level extension for hardware updating
+> +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
+> +            #25 from ved-rivos/ratified") of riscv-svadu. Please refer to Svade
+> +            dt-binding description for more details.
+> +
+>           - const: svinval
+>             description:
+>               The standard Svinval supervisor-level extension for fine-grained
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/3] dt-bindings: trivial-devices: fix Rohm BH2228FV compatible string
-      commit: 5170dae5591036dba7daa519ea3126169300e275
-[2/3] spi: spidev: add correct compatible for Rohm BH2228FV
-      commit: fc28d1c1fe3b3e2fbc50834c8f73dda72f6af9fc
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
 
 Thanks,
-Mark
+
+Alex
 
 
