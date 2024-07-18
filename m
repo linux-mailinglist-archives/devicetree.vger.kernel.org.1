@@ -1,127 +1,192 @@
-Return-Path: <devicetree+bounces-86556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C97934AA1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:01:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A83934AD6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:25:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E775E1F2716A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 09:01:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FE291C21B67
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 09:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F270480C13;
-	Thu, 18 Jul 2024 09:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Gx/hG498"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B619D8172A;
+	Thu, 18 Jul 2024 09:25:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC51442052
-	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 09:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B7A28DD1;
+	Thu, 18 Jul 2024 09:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721293286; cv=none; b=p6U/+qFwSqML0WDFUAXzk98e4/DxrDwGAY3wrQa1GJnez3uJVlKoKK1bAaD0QrWhdnMviQpBXzNciNQzxO4MLaqF3rFltACzgEf+oVOot+T8OjQw5VmnOBfT1cum1drifnURc0oe6R3tWuZNVt+p3rvo4iJ2lRcg0gNSwVkU8P8=
+	t=1721294744; cv=none; b=px6y1VsNcdLv1dEI5WhC23hMc3z0Ag3WqljUd7a9EiqGguVe/gQgXAZdGcdYIfqUACsvIqZYAlJUGtyfc5DOv8QXHZX7cSCr6p7+6nUPyBYH8Kl2oZW7WAmnrIbvYgJYfMt5vkj4BxE3TtkOcLgHV92hRZyOEU5oKu+mEyc5vzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721293286; c=relaxed/simple;
-	bh=sABxMmNsYg19B+G5KtmKl+azR4q/y8D4JhhSOKAiMOk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CAuWT+1iNbUe6V3dwCdQKGqaGTnidKr4m73mkxRTedVSnkDUPHAgRI87QFvEssuSP3YXJnhwFqxDnSeB0aBzfl2KHiD3mR1J/DglKUAyysWbQChk6d4A6hqrz1JvR7rG3cncq6s5z/5qylKrVvazPofZfDPEgYqfl3Q6wLDa554=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Gx/hG498; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1721293283;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yie/yOPeCOEZe4pgd0jO5B9KM3jk6U/SxwutSwJGrIQ=;
-	b=Gx/hG498ZUmtvf1hwz5HGsZ7I3rRHS0pnuKSiiK7hkcPsDcgegkX5CMTDCBWNO5LGBU+ab
-	afI0mPvjgDCZjoaG3KAfCGS0MShfjc7iKC+SdExp08G++yZitzC8R91yuzTZWXOrzk2M3A
-	KRV9dff6EYaRMFAq4Ai2KgHKOpLNzBQ=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-656-u6zsssOqOEKJvGAQPuZvyQ-1; Thu, 18 Jul 2024 05:01:21 -0400
-X-MC-Unique: u6zsssOqOEKJvGAQPuZvyQ-1
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-4266a5c50fcso150065e9.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 02:01:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721293280; x=1721898080;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yie/yOPeCOEZe4pgd0jO5B9KM3jk6U/SxwutSwJGrIQ=;
-        b=Iy+G1X0CeSoavd7DR3Bn34Z+m6e2xne0Gsku4vFuoFwE7aF/UZYv7jhY0ITSh2iLAR
-         8faEhpn98iisfAENWGuO1jc9pSzw8db8ICQwn5ZO5qaNCCJvRP4MwKixxNukTaDiM/HA
-         QTRCUtmz/wlejCmeRqq9ciyE4OT+txIYGysgIwyY2jDKWKc+E32yuvjUGrtS5dvjNv4a
-         7eaHpjz6yk2qFP+jg7rdBbxhagmq/5QMP1syq9UJHsYGlaKXhv3aWgHJnHM5JNq4auBE
-         j6IBmjhssDse3T6p1L8reRUp5hQagjzGqgjDbKE18KD1QIzcgt6MNdzRfkW9kICbSfV8
-         l0lA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQ5E1M+RqY4jxaD9odf24JAzQeBA0qCuUsKL4X33Tnhp4jvGQf8eXW2L4AG9BgPDquT+cs9jCD6ARzhP30QnKfk//QiGT8YGzbaA==
-X-Gm-Message-State: AOJu0YyJkLDjJgZe8YOnZuEPO73W/d83DYt85P0ioKubGW6ZcI8VI+Bf
-	QRf/iZqkcw6TyOgCXWpba1JuV23XjnYj42U6JH1IQJadMCxhrLxqoqQTXIJMZwtBkAveLGgAkaX
-	+2ASoFe69+4VMn2iXDYtKEz83BSJwCdIWzdgdYwCLMawnyGfwUzXpnWP0hoc=
-X-Received: by 2002:a05:6000:1fae:b0:367:9cf7:6df8 with SMTP id ffacd0b85a97d-368315efe80mr1934495f8f.2.1721293279845;
-        Thu, 18 Jul 2024 02:01:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGtYI/GyodVGbyEP/KFt3fmdILyEQ4jaMdMonokpSjhlCn0kFlCEsFld7xD18stFs9oM5OONw==
-X-Received: by 2002:a05:6000:1fae:b0:367:9cf7:6df8 with SMTP id ffacd0b85a97d-368315efe80mr1934479f8f.2.1721293279378;
-        Thu, 18 Jul 2024 02:01:19 -0700 (PDT)
-Received: from ?IPV6:2a0d:3341:b08b:7710:c7b:f018:3ba3:eb24? ([2a0d:3341:b08b:7710:c7b:f018:3ba3:eb24])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3684e96033dsm1184069f8f.23.2024.07.18.02.01.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jul 2024 02:01:18 -0700 (PDT)
-Message-ID: <a1428b73-4f4c-4733-9f23-57e4346e4765@redhat.com>
-Date: Thu, 18 Jul 2024 11:01:17 +0200
+	s=arc-20240116; t=1721294744; c=relaxed/simple;
+	bh=sBpRG87XTr+lD5LPwEAV/IC2h5JXbj8qV0PXvNTPR9c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=J4FrZv3S9V7YRtAoUFLUWzqTumi7D36avutDKbZEpLaTv31MZRo18MyzLnQF2B4mKySzhBUNyCNhiOh94AkSNNSl3eMLEuLO+3i4MOa1sSZtF7lg+r05V6cH+sYSyaeedYG17mQEQuTEcuxc5ioDvCE0uB08lVruEykENMHJ0u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e860d09.versanet.de ([94.134.13.9] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sUNOD-0003Jt-IN; Thu, 18 Jul 2024 11:25:29 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject:
+ Re: [PATCH v2 1/3] dt-bindings: clocks: add binding for
+ voltage-controlled-oscillators
+Date: Thu, 18 Jul 2024 11:25:28 +0200
+Message-ID: <3178118.zE8UqtGg2D@diego>
+In-Reply-To: <20240716-deceiving-saucy-851fb2303c1f@spud>
+References:
+ <20240715110251.261844-1-heiko@sntech.de>
+ <20240715110251.261844-2-heiko@sntech.de>
+ <20240716-deceiving-saucy-851fb2303c1f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 1/2] net: dsa: vsc73xx: make RGMII delays
- configurable
-To: Pawel Dembicki <paweldembicki@gmail.com>, netdev@vger.kernel.org
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240717212732.1775267-1-paweldembicki@gmail.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20240717212732.1775267-1-paweldembicki@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 7/17/24 23:27, Pawel Dembicki wrote:
-> This patch switches hardcoded RGMII transmit/receive delay to
-> a configurable value. Delay values are taken from the properties of
-> the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
+Hi Conor,
+
+Am Dienstag, 16. Juli 2024, 18:15:08 CEST schrieb Conor Dooley:
+> On Mon, Jul 15, 2024 at 01:02:49PM +0200, Heiko Stuebner wrote:
+> > In contrast to fixed clocks that are described as ungateable, boards
+> > sometimes use additional oscillators for things like PCIe reference
+> > clocks, that need actual supplies to get enabled and enable-gpios to be
+> > toggled for them to work.
+> > 
+> > This adds a binding for such oscillators that are not configurable
+> > themself, but need to handle supplies for them to work.
+> > 
+> > In schematics they often can be seen as
+> > 
+> >          ----------------
+> > Enable - | 100MHz,3.3V, | - VDD
+> >          |    3225      |
+> >    GND - |              | - OUT
+> >          ----------------
+> > 
+> > or similar. The enable pin might be separate but can also just be tied
+> > to the vdd supply, hence it is optional in the binding.
+> > 
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  .../bindings/clock/voltage-oscillator.yaml    | 49 +++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml b/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
+> > new file mode 100644
+> > index 0000000000000..8bff6b0fd582e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/voltage-oscillator.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Voltage controlled oscillator
 > 
-> The default value is configured to 2.0 ns to maintain backward
-> compatibility with existing code.
+> Voltage controlled oscillator? Really? That sounds far too similar to a
+> VCO to me, and the input voltage here (according to the description at
+> least) does not affect the frequency of oscillation.
+
+That naming was suggested by Stephen in v1 [0] .
+
+Of course the schematics for the board I have only describe it as
+"100MHz,3.3V,3225" , thumbing through some mouser parts matching that
+only mentions "supply voltage" in their datasheets but not a dependency
+between rate and voltage.
+
+[0] https://lore.kernel.org/linux-arm-kernel/b3c450a94bcb4ad0bc5b3c7ee8712cb8.sboyd@kernel.org/
+
+> Why the dedicated binding, rather than adding a supply and enable-gpio
+> to the existing "fixed-clock" binding? I suspect that a large portion of
+> "fixed-clock"s actually require a supply that is (effectively)
+> always-on.
+
+I guess there are three aspects:
+- I do remember discussions in the past about not extending generic
+  bindings with device-specific stuff. I think generic power-sequences
+  were the topic back then, though that might have changed over time?
+- There are places that describe "fixed-clock" as
+  "basic fixed-rate clock that cannot gate" [1]
+- Stephen also suggested a separate binding [2]
+
+With the fixed-clock being sort of the root for everything else on most
+systems, I opted to leave it alone. I guess if the consenus really is that
+this should go there, I can move it, but discussion in v1 
+
+Interestingly the fixed clock had a gpios property 10 years ago [3] :-) .
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/clk-fixed-rate.c#n18
+[2] https://lore.kernel.org/linux-arm-kernel/68f6dc44a8202fd83792e58aea137632.sboyd@kernel.org/
+[3] https://lore.kernel.org/linux-kernel//20140515064420.9521.47383@quantum/T/#t
+
+
+Heiko
+
+
+> > +
+> > +maintainers:
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: voltage-oscillator
+> > +
+> > +  "#clock-cells":
+> > +    const: 0
+> > +
+> > +  clock-frequency: true
+> > +
+> > +  clock-output-names:
+> > +    maxItems: 1
+> > +
+> > +  enable-gpios:
+> > +    description:
+> > +      Contains a single GPIO specifier for the GPIO that enables and disables
+> > +      the oscillator.
+> > +    maxItems: 1
+> > +
+> > +  vdd-supply:
+> > +    description: handle of the regulator that provides the supply voltage
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#clock-cells"
+> > +  - clock-frequency
+> > +  - vdd-supply
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    voltage-oscillator {
+> > +      compatible = "voltage-oscillator";
+> > +      #clock-cells = <0>;
+> > +      clock-frequency = <1000000000>;
+> > +      vdd-supply = <&reg_vdd>;
+> > +    };
+> > +...
 > 
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 
-## Form letter - net-next-closed
 
-The merge window for v6.11 and therefore net-next is closed for new
-drivers, features, code refactoring and optimizations. We are currently
-accepting bug fixes only.
 
-Please repost when net-next reopens after July 29th.
-
-RFC patches sent for review only are obviously welcome at any time.
-
-See:
-https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
--- 
-pw-bot: defer
 
 
