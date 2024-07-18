@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-86497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41A993471D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 06:20:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F9B7934728
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 06:33:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E59DB1C212DF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 04:20:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18E511F224A9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 04:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57033B784;
-	Thu, 18 Jul 2024 04:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360A1381D4;
+	Thu, 18 Jul 2024 04:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="OCODp+DE"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ibWb1zOp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B72D1E520;
-	Thu, 18 Jul 2024 04:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88687186A;
+	Thu, 18 Jul 2024 04:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721276436; cv=none; b=l7rmjQD9Wa8dwnHt0dxE43PU4KGMnqrCQ3dn5Uf+L6StH7uwHsSFAdVP9TXC3OtDR5bTulhomloh1M8ZB+sDspIlTbJ5RcMjK7kvSJGwDYDsGjolFdPuy2sncH61INT1cZB9ta3QrEob7R28x2swzzfk/nULjL38ONjIHpWdijI=
+	t=1721277188; cv=none; b=T4sH7UzK24ALvM2KwnTF7TNon5CptP7zzvTYDVeeQn6wJfWEBWiyEem+YKgFTJY6rYTvdMCGRX46UWiGe9Tdr6k+du9KeTCE/CC6uSGbSArH41fDPHsDrNBnsiKdSr36UlQBzBnxlHFrNGPatxurVoGBeWye+NC+f3mun5fujWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721276436; c=relaxed/simple;
-	bh=y7s7HtOs/RagBLkoEqIoxs7z0oD8QGP3f29oNhxjEuI=;
+	s=arc-20240116; t=1721277188; c=relaxed/simple;
+	bh=eXiWsyvo3xbFtmzFjNHUvzmDy5KuNooROFO1O+ua8/U=;
 	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Bznwv9CFzlrXCl3m9t4yhaGdbvd+9J+LymBa0NGQx2c8m8CYLPTTbC5mjDKV4AoYXm4XyQFklJDN6bEWavnBLewX5+6vg9wQnZdZ31bpppOpJBis26kJvdBIvVisfyzzi6wRALS4OgrAbsi6cn9sRFS5LjfWW18m5bno7petGGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=OCODp+DE; arc=none smtp.client-ip=116.203.91.91
+	 Message-ID:Content-Type; b=mtazceVTpTeJgcbYvJFJpl4XTywrdqznEtxov0m56118dPAy70QcCJin7Oh+NEBLZ/dhku9F4uwwJq85NQQRyZsJlRxP1dl55cguGQMoPqOxVbqAaYv8I3fkn5AmIkqcpYdlOkdHK8XZyfQPL6XYMu6e9NHNy72BG0vKEE0cG8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ibWb1zOp; arc=none smtp.client-ip=116.203.91.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
@@ -38,35 +38,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1721276423;
+	t=1721277184;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=CD7dNLN6zqi6YcYtZcfrfWnkDlKeK6NkwYpMRxN/J/U=;
-	b=OCODp+DEr140wZQqm5OccISLNFJY2LIydXCsOWwb+jJYkMgG4/uJpvoJLdoHB/Xbn9XXPI
-	ZJtiYH8B173JQEEacV7rd3WzMCpbAikkA6F1vJATASxpV/zCyu2nic68gSMU9MRKSJODzT
-	29CDEER82Z0y/eqWd5JBDDaMxskov7gR3FozoPosBqmE9V8I6uWTjY3yg8TCOK4GpY913I
-	H45G8orfLJhsxW7UHH5UlW0BeEoLKYHTYQaRPK7y6mSSwXVGEcKtXw82cfCZlxZcNLb9M1
-	1+dmsD0HcCGwN4C3FwKPQSDmgLh+rMNnXwgY+VfigzgPhUwJyofjJ3SiLcqjaw==
-Date: Thu, 18 Jul 2024 06:20:21 +0200
+	bh=LtwV/4WIDbK+8ZAf8F7AmoboBuDaoArPtGFAuXsacys=;
+	b=ibWb1zOpKy9ZI5nXD1vhDusuMQ4PARctoV12KdFb8hR5WPuN4uPLFz2wfzrkCVgseE9FkK
+	wxr+n+jy7ImDib+jkJ8dY+BQykkD0OnOwX9DtGuHtRTx7izrooNAWEnBz1UeIoA3xfaRH8
+	KCt0YoqpQQRYN8eaeB6fFRn9V8h4I1ighz62TmxdZZz7d9gG92XNJEVEzvAtUfxVUy3kbJ
+	D6guebULiUMWkVarXc7WtMrYBEIWU9+QJznprFnkTcxPJF+zYIZ1Ugk/TB+RK1m0cgNNGE
+	EDM+9AbT8tgs2nyQ5Q0J1QSCPrSqeO9bwgk8b4ZZP9sJNvKrs+aFhh83pW8QgA==
+Date: Thu, 18 Jul 2024 06:33:04 +0200
 From: Dragan Simic <dsimic@manjaro.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko
- Stuebner <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- imx@lists.linux.dev, loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 2/4] ARM: dts: rockchip: remove unlikly-to-exist DAC
- from elgin-r1
-In-Reply-To: <20240717-parrot-malt-83cc04bf6b36@spud>
-References: <20240717-anvil-ashy-544e80a1317c@spud>
- <20240717-parrot-malt-83cc04bf6b36@spud>
-Message-ID: <9a492f785e0851a828e0864c33204920@manjaro.org>
+To: Christopher Obbard <chris.obbard@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Kever Yang
+ <kever.yang@rock-chips.com>, Collabora Kernel Mailing List
+ <kernel@collabora.com>
+Subject: Re: [PATCH v2 0/3] Add support for Firefly Core-PX30-JD4 SoM &
+ baseboard
+In-Reply-To: <20240717-rockchip-px30-firefly-v2-0-06541a5a5946@collabora.com>
+References: <20240717-rockchip-px30-firefly-v2-0-06541a5a5946@collabora.com>
+Message-ID: <38d7b7e9ab71bf1b0817e666f4233b9e@manjaro.org>
 X-Sender: dsimic@manjaro.org
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -74,52 +70,60 @@ Content-Transfer-Encoding: 7bit
 Authentication-Results: ORIGINATING;
 	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Conor,
+Hello Christopher,
 
-On 2024-07-17 11:37, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 2024-07-17 18:46, Christopher Obbard wrote:
+> This adds support for the PX30-based Core-PX30-JD4 system-on-module 
+> from
+> Firefly and includes support for the SoM in combination with the
+> Firefly MB-JD4-PX30 baseboard.
 > 
-> The Rohm dh2228fv (really the bh2228fv, the compatible in the kernel 
-> has
-> a typo) does not support frequencies above 10 MHz, nor per the
-> datasheet appear to use either CPOL or CPHA. I suspect that this
-> devicetree is abusing the compatible in order to bind the spidev driver
-> in Linux. Pretending to have devices on a board for this purpose is not
-> acceptable, so remove it.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes in v2:
+> - Split into two separate files: dtsi for the SoM and dts for the 
+> carrier.
+> - Change devicetree compatible to match SoM/carrier split.
+> - Change device names to better match vendor's name.
+> - Properly model baseboard & SoM regulators.
+> - Properly model baseboard recovery key.
+> - Remove DSI panel (& related nodes) since "sitronix,st7703" compatible
+>   is undocumented & hardware is unavailable.
+> - Remove unused audio-related nodes.
+> - Remove unused UART nodes.
+> - Remove unused PMIC pinctrl nodes.
+> - Add node for baseboard LEDs.
+> - Link to v1:
+> https://lore.kernel.org/r/20240716-rockchip-px30-firefly-v1-0-60cdad3023a3@collabora.com
 
-There's a small typo in the patch subject:
-s/unlikly/unlikely/
+Thanks for the v2.
 
 > ---
-> I could not find any documentation for this board online, and it does
-> not blatantly say that the device is a "spidev" like other [ab]users, 
-> so
-> it is possible there's actually a DAC here - but I doubt it is a
-> bh2228fv given the other incompatibilities.
+> Christopher Obbard (3):
+>       dt-bindings: arm: rockchip: Add Firefly Core-PX30-JD4 with 
+> baseboard
+>       arm64: dts: rockchip: add Firefly Core-PX30-JD4 SoM
+>       arm64: dts: rockchip: add Firefly JD4 baseboard with 
+> Core-PX30-JD4 SoM
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml          |   6 +
+>  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+>  .../boot/dts/rockchip/px30-firefly-jd4-core.dtsi   | 322 
+> +++++++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/px30-firefly-jd4.dts  | 178 ++++++++++++
+>  4 files changed, 507 insertions(+)
+
+It would be better to name the new dts(i) files like this:
+
+- px30-firefly-jd4-core.dtsi
+- px30-firefly-jd4-core-mb.dts
+
+This would follow the <SoC>-<brand>-<SoM>-<carrier>.dts pattern, which
+is somewhat common and sorts nicely in directory listings when there's
+more than one carrier board for the same SoM.
+
 > ---
->  arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts | 8 --------
->  1 file changed, 8 deletions(-)
+> base-commit: 51835949dda3783d4639cfa74ce13a3c9829de00
+> change-id: 20240716-rockchip-px30-firefly-59efc93d6784
 > 
-> diff --git a/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-> b/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-> index 2d9994379eb2..9df1cef406c5 100644
-> --- a/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-> +++ b/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-> @@ -167,14 +167,6 @@ &spi {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&spim1_clk &spim1_cs0 &spim1_tx &spim1_rx>;
->  	status = "okay";
-> -
-> -	dh2228fv: dac@0 {
-> -		compatible = "rohm,dh2228fv";
-> -		reg = <0>;
-> -		spi-max-frequency = <24000000>;
-> -		spi-cpha;
-> -		spi-cpol;
-> -	};
->  };
-> 
->  &u2phy {
+> Best regards,
 
