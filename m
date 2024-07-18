@@ -1,284 +1,122 @@
-Return-Path: <devicetree+bounces-86552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB21934A19
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 10:41:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAAF3934A28
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 10:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27A41F24317
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 08:41:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95A7E281E9D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 08:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5749980028;
-	Thu, 18 Jul 2024 08:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9887D07E;
+	Thu, 18 Jul 2024 08:43:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Sn7mPMug"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="XTBAEQjI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E5F7D3FB;
-	Thu, 18 Jul 2024 08:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704AE3B784;
+	Thu, 18 Jul 2024 08:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721292050; cv=none; b=TD0JGTEm2ry/6iFXPO8pM8WmQzl+hGHfWa0HFWds10j3T/ksoRPUUSgL2j5U1zMyMfEGmfKYttrpzdwXVxDQuWTDXOtt1fLSKzg+TmcRsbj+ueIsYcHbg5Y2qzs9but/QzCi0p+ePw9vJuTLLI5DKSWSfH7DqdOFaYHMKSSZUus=
+	t=1721292236; cv=none; b=VAf0tF8xgtgIildSWlU7lOKLcD/MOPInIgLsYsmewxFKZ3foX129c8KrIAXR249ggC0Bn5FPxmyHyy0fLrodmCPGW0g44z0T8fTVvwaeBYmNFh7HoF0axmdDFmwyeimv05VzpjWtMaxbpvVyoo5ZapDVCL5QMC4aJ84Tx0geK6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721292050; c=relaxed/simple;
-	bh=FE+llVdixIGVgAVfM0CVTfAtDvpu6Y0k1yVja8RG0a0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VgnuUdcGxCUv0dyVo6XY4wPOEnpSEn/t+Rt9j5mIKrqAPLUQynOyeg9z05oiVsEaqakrvau3qfO63TgaxIpKpBurHZR8wwowbqT7lteysZkyhsW/7DyYYuA3RhEldI7TXtvOguJ0VnsyJfkWAAvRJRqtjnoHfPhqo2DmDpLVpxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Sn7mPMug; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1721292047;
-	bh=FE+llVdixIGVgAVfM0CVTfAtDvpu6Y0k1yVja8RG0a0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Sn7mPMugaRByKx4adM7+CVo+xMKSBG1wT8yR75Fj49MuwLlHVFiRyFcDuE7j3/iBM
-	 sPbI8M2UQsKnemfju60XulG7BLPfvo53iTGCM6xpJENw89DGqt1uTRXfnfvWhFH7K1
-	 nBr3HhNMYSmZw/Eu3/PsWBbEBBsTNo7GMvGQrcSQcbtu8bKbxbhMibugZaGfWOy9bZ
-	 JzpU3efnkN+QPbWY2dVKpVWkShwQOZ719nyPnI1mB8577hCO3wXvwN1dzp9YprDx8O
-	 PYsVkbsZ12AyS6Gff6mjq81PruDUwZySnPGwNCzKzGJG0gi2oz7ZpIq7YYVElRzDG4
-	 C3cfgqlhNQhAA==
-Received: from [127.0.1.1] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: obbardc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5C13037821D8;
-	Thu, 18 Jul 2024 08:40:46 +0000 (UTC)
-From: Christopher Obbard <chris.obbard@collabora.com>
-Date: Thu, 18 Jul 2024 09:40:26 +0100
-Subject: [PATCH v3 3/3] arm64: dts: rockchip: add Firefly JD4 baseboard
- with Core-PX30-JD4 SoM
+	s=arc-20240116; t=1721292236; c=relaxed/simple;
+	bh=t59HvvioUnAYN4TRwpXWrIUMqAPeRW5LGIJ3kW8HqgQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=XV3leLR4U5qFHDXyqNxldJ9bSbbAppF9zpSqtvY5FJTDi1SCgJQAxRHRqiH8Dby9XFEyErDpoMtYGqJ8fW8ZytQBSUfn4frhGzPmL6WZfeEjkVJ2AeNM/HCIUO+FV/gf0f+3ZnxB+WfN3/EiZPnK3J+a4ZvclKhEE0TLqafrSh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=XTBAEQjI; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240718-rockchip-px30-firefly-v3-3-3835cdd22eae@collabora.com>
-References: <20240718-rockchip-px30-firefly-v3-0-3835cdd22eae@collabora.com>
-In-Reply-To: <20240718-rockchip-px30-firefly-v3-0-3835cdd22eae@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Kever Yang <kever.yang@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>, 
- Collabora Kernel Mailing List <kernel@collabora.com>, 
- Christopher Obbard <chris.obbard@collabora.com>
-X-Mailer: b4 0.13.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1721292231;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kKk8adyi9jKYJ3vFAHnVWE13YqvAw47sg8mkzonVaMk=;
+	b=XTBAEQjIAr/Sm2A4jEnG0EecGJsQtbpQ71+5D9saa21Z31AlZzAuCCJB2UV93jw/+uf09E
+	lDPD9O//Y2wtfeIcL7hsxVWsTxU2ZzvfK7ZbSH8u80DZvCnk7+lGC6VUb5tolqXY08I/AZ
+	2Bqjlc0+wt6+pNVWN9rWx4LLHRjvd1gA/wbcoFfAwKoUxeKgkLU1d4Ti3Iyekvwslzkz1/
+	6D+44dufeuQDm6SbfFpestveehQS/w9ROgX63HRgrec1bbQLe4/+wo9UMhBaJRPYldAOHJ
+	o9t65FddTbvPbu9rItji07hs6ooM5kbuOrUBkPbCYURzvo+WWhU09JQk+Qc3Kg==
+Date: Thu, 18 Jul 2024 10:43:50 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Christopher Obbard <chris.obbard@collabora.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Kever Yang
+ <kever.yang@rock-chips.com>, Collabora Kernel Mailing List
+ <kernel@collabora.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: rockchip: Add Firefly
+ Core-PX30-JD4 with baseboard
+In-Reply-To: <20240718-lapped-suffocate-0216bad82c68@wendy>
+References: <20240717-rockchip-px30-firefly-v2-0-06541a5a5946@collabora.com>
+ <20240717-rockchip-px30-firefly-v2-1-06541a5a5946@collabora.com>
+ <0c804e9a0227904b16bfb779f2009af1@manjaro.org>
+ <e34f1a0a81de24437be7f582c719d3f128d44b51.camel@collabora.com>
+ <20240718-lapped-suffocate-0216bad82c68@wendy>
+Message-ID: <6ed3e6c6b74ddba1bca1a719dfdf3ac4@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-The Firefly MB-PX30-JD4 is a baseboard for the Core-PX30-JD4 SoM.
+On 2024-07-18 10:34, Conor Dooley wrote:
+> On Thu, Jul 18, 2024 at 09:31:45AM +0100, Christopher Obbard wrote:
+>> Thanks for the review.
+>> 
+>> On Thu, 2024-07-18 at 06:36 +0200, Dragan Simic wrote:
+>> > Hello Christopher,
+>> >
+>> > On 2024-07-17 18:46, Christopher Obbard wrote:
+>> > > Add binding for the Firefly Core-PX30-JD4 SoM when used in conjunction
+>> > > with the MB-JD4-RK3328 & PX30 baseboard.
+>> > >
+>> > > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+>> > > ---
+>> > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
+>> > >  1 file changed, 6 insertions(+)
+>> > >
+>> > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > index 1ef09fbfdfaf5..33ca8028bc151 100644
+>> > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> > > @@ -148,6 +148,12 @@ properties:
+>> > >            - const: engicam,px30-core
+>> > >            - const: rockchip,px30
+>> > >
+>> > > +      - description: Firefly Core-PX30-JD4 with MB-JD4-PX30 baseboard
+>> > > +        items:
+>> > > +          - const: firefly,px30-mb-jd4
+>> > > +          - const: firefly,px30-core-jd4
+>> >
+>> > Similarly to how I suggested the new dts(i) files to be named, [1]
+>> > the model names should be named like this:
+>> >
+>> >            - const: firefly,px30-jd4-core
+>> >            - const: firefly,px30-jd4-core-mb
+>> 
+>> I suppose the order should be the other way around to match other 
+>> entries, e.g
+>> firefly,px30-jd4-core-mb first?
+> 
+> Yes. Mainboard first, then som, then soc.
 
-Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
----
- arch/arm64/boot/dts/rockchip/Makefile              |   1 +
- .../boot/dts/rockchip/px30-firefly-jd4-core-mb.dts | 179 +++++++++++++++++++++
- 2 files changed, 180 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index fda1b980eb4bc..4861987457a42 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2-of10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-edimm2.2.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-firefly-jd4-core-mb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core-mb.dts b/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core-mb.dts
-new file mode 100644
-index 0000000000000..e109988f4e6be
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core-mb.dts
-@@ -0,0 +1,179 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include "px30-firefly-jd4-core.dtsi"
-+
-+/ {
-+	model = "Firefly Core-PX30-JD4 on MB-JD4-PX30 baseboard";
-+	compatible = "firefly,px30-jd4-core-mb", "firefly,px30-jd4-core",
-+		   "rockchip,px30";
-+
-+	aliases {
-+		ethernet0 = &gmac;
-+		mmc0 = &sdmmc;
-+		mmc1 = &sdio;
-+		mmc2 = &emmc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	dc_12v: dc-12v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dc_12v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 2>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1500000>;
-+		poll-interval = <100>;
-+
-+		button-recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <18000>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&blue_led>, <&green_led>;
-+
-+		blue-led {
-+			color = <LED_COLOR_ID_BLUE>;
-+			default-state = "on";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_HIGH>;
-+			label = "px30-mb-jd4:blue:work";
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		green-led {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "on";
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio1 RK_PB4 GPIO_ACTIVE_HIGH>;
-+			label = "px30-mb-jd4:blue:diy";
-+			linux,default-trigger = "default-on";
-+		};
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+
-+		/*
-+		 * On the module itself this is one of these (depending
-+		 * on the actual card populated):
-+		 * - SDIO_RESET_L_WL_REG_ON
-+		 * - PDN (power down when low)
-+		 */
-+		reset-gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>; /* GPIO3_A4 */
-+	};
-+
-+	vcc5v0_baseboard: vcc5v0-baseboard-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_baseboard";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+};
-+
-+&gmac {
-+	clock_in_out = "output";
-+	phy-supply = <&vcc_rmii>;
-+	snps,reset-gpio = <&gpio2 13 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 50000 50000>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	leds {
-+		blue_led: blue-led {
-+			rockchip,pins = <1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		green_led: green-led {
-+			rockchip,pins = <1 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins =
-+				<0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	card-detect-delay = <800>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_sd>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&sdio {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	keep-power-in-suspend;
-+	non-removable;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-+
-+&u2phy {
-+	status = "okay";
-+
-+	u2phy_host: host-port {
-+		status = "okay";
-+	};
-+
-+	u2phy_otg: otg-port {
-+		status = "okay";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m1_xfer>;
-+	status = "okay";
-+};
-+
-+&usb20_otg {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-
--- 
-2.45.2
-
+Ah yes, sorry, I somehow managed to get the order wrong.  Basically,
+it goes from more specific to less specific.
 
