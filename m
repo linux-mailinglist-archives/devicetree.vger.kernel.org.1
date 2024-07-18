@@ -1,38 +1,63 @@
-Return-Path: <devicetree+bounces-86630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB8689350D4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 18:45:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB7E935128
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 19:17:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF62282778
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 16:45:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A188283CE9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 17:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B10145343;
-	Thu, 18 Jul 2024 16:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7240D144D2D;
+	Thu, 18 Jul 2024 17:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Eh3K2Bzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE48714372D;
-	Thu, 18 Jul 2024 16:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9140B143892;
+	Thu, 18 Jul 2024 17:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721321110; cv=none; b=sz2vBcYmPqGDVMNj+gUU7xEmE2iCEeXU0PfArjS76A5GooyBD1bzbTFmQc6qRXiu8r6TzKLz9dCC9qApiPzv4F1r6KqaYsc2ZukkP6uUUnQ3rvd3TjlSm+aeK2Ssgtngw+KYmIcTgWeg5JgafThkiO+gcJVaihimz7HCdy6HJh4=
+	t=1721323024; cv=none; b=PO8sGqhyyMos9vVI05n8u3iMoWKMWRMOWR9qijcovjHRBQlO/21C7zD8RNrM6PU3PLi4CDf3Z+rureVLSO7RJZXGeLwGJmKR+WfM2Xf1yNLqrCJf6+MQC0PHa4SpxJIEfkD3CVuGE7EQ7gNIAMIQtbdrASafoyIOPlu05aK9Wpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721321110; c=relaxed/simple;
-	bh=ho4kXrb83dG7s2zTkRmierlLx/1L8Hdnc7xDarwrA6Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rzM2HLH+sKV/X2esjVgIO/pk6uOqFfuXJL6gLLxW2fGBsrIP6+KTfAXP+0YB22KxrupqK4FloIP+JnzmJ6jc3SL/BFz2O2V/nOZ4Ly1wMIO8R6Tkgxr0oTdkOsPHtQnlKtsd9VeHj1Q2lm1LTm5Rh0EB2HGhIWUMtCvJmQcyZSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C9676FF808;
-	Thu, 18 Jul 2024 16:45:00 +0000 (UTC)
-Message-ID: <6908e437-bf1c-4fae-bb34-b5c30dae97ff@ghiti.fr>
-Date: Thu, 18 Jul 2024 18:45:00 +0200
+	s=arc-20240116; t=1721323024; c=relaxed/simple;
+	bh=s56HzSY+L94RmyRrNVmtG55johXwCDWucKIAMmGgx+w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lxMQFmDQsWIVd6HstGFCIae4K6oeN9jum9ORaFASpPMLPFwaxyXxNvyYpgrOsQSpYKW6TCO4S3VJBbSjBTLcuZwIg4HpCtLaYubuaEHsncsIx2JQCRJvTEDK8vyDu2fxNBSCjc2NZHfcqBK4Zm1fVVpuuM7zRVlhTydDJfKsA/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Eh3K2Bzd; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46IFAnXe013666;
+	Thu, 18 Jul 2024 17:16:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hVkuSgr+QVm0hogbZSkHmsumX/eIVh8SPD1NHT5nqws=; b=Eh3K2BzdarwvIpFS
+	liI1PaupV3fw0wklkgrmMeWRZGxlLQcycg/61SIjdkXa9Vw2ZAecNbL1uH4T0buG
+	+OwzVYzx1gpZRhyNcdIvYc+1mqueuDbQRwXX70oOZD6J0o9xnkeXdvK0Pbs9mpg+
+	M5ZQx7LdMkW6EnpCdNxitB7OD6E58PqCNiKl4j+jlex8VTegaaflPd4X9KawOUIj
+	M+AFWuZjLZZGCHF8lVMHU88oP9QhbazrvDQEZg2/Xye+p4TC+bG9z4/VxG9iHP5b
+	oldsMoKKIr7g+nIzsRtPpPs2bVSaGupP+mmpqGKx3sBDHSRKna/NoLzia9C5/Nt4
+	cHoZTA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfwe1aw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jul 2024 17:16:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46IHFxDT002507
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jul 2024 17:15:59 GMT
+Received: from [10.110.7.185] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 18 Jul
+ 2024 10:15:58 -0700
+Message-ID: <8c3e77b6-0d23-42ef-a7db-52635bd5070a@quicinc.com>
+Date: Thu, 18 Jul 2024 10:15:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,79 +65,175 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+Subject: Re: [PATCH v2 12/13] PCI: qcom: Simulate PCIe hotplug using 'global'
+ interrupt
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring
+	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay
+ Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad
+ Dybcio <konrad.dybcio@linaro.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240717-pci-qcom-hotplug-v2-0-71d304b817f8@linaro.org>
+ <20240717-pci-qcom-hotplug-v2-12-71d304b817f8@linaro.org>
+ <02b94a07-fcd6-4a48-bead-530b81c8a27e@quicinc.com>
+ <20240718102938.GA8877@thinkpad>
 Content-Language: en-US
-To: Yong-Xuan Wang <yongxuan.wang@sifive.com>, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
- kvm@vger.kernel.org
-Cc: greentime.hu@sifive.com, vincent.chen@sifive.com,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- devicetree@vger.kernel.org
-References: <20240712083850.4242-1-yongxuan.wang@sifive.com>
- <20240712083850.4242-3-yongxuan.wang@sifive.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20240712083850.4242-3-yongxuan.wang@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Mayank Rana <quic_mrana@quicinc.com>
+In-Reply-To: <20240718102938.GA8877@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: alex@ghiti.fr
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: rEdeG7HL2j_iEoFYxTGkwCmLWyBtTx_Q
+X-Proofpoint-ORIG-GUID: rEdeG7HL2j_iEoFYxTGkwCmLWyBtTx_Q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-18_12,2024-07-18_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxscore=0 mlxlogscore=999 impostorscore=0 priorityscore=1501 bulkscore=0
+ spamscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2407180113
 
-On 12/07/2024 10:38, Yong-Xuan Wang wrote:
-> Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
-> property.
+Hi Mani
+
+On 7/18/2024 3:29 AM, Manivannan Sadhasivam wrote:
+> On Wed, Jul 17, 2024 at 03:57:11PM -0700, Mayank Rana wrote:
+>> Hi Mani
+>>
+>> I don't think we can suggest that usage of link up event with Global IRQ as
+>> simulate PCIe hotplug. hotplug is referring to allow handling of both
+>> add or remove of endpoint device whereas here you are using global IRQ as
+>> last step to rescan bus if endpoint is power up later after link training is
+>> initiated.
+>>
+> 
+> Why not? Well it is not entirely the standard 'hotplug' and that's why I
+> referred it as 'simulating hotplug'.
+Because it is misleading here by saying simulate hotplug. You can 
+mention as use link up event
+to rescan bus instead of using simulate PCIe hotplug here.
+
+> The point of having this feature is to avoid the hassle of rescanning the bus
+> manually when the devices are connected to this bus post boot.
+> 
+>> Will this work if you remove endpoint device and add it back again ?
+>>
+> 
+> No, not currently. But we could add that logic using LINK_DOWN event. Though,
+> when the device comes back again, it will not get enumerated successfully due to
+> a bug in the link training part (which I plan to address later). But this
+> issue is irrespective of this hotplug simulation.
+ok. Although LINK DOWN event not necessary suggests that endpoint has been
+removed but it also suggests that link has gone into bad state, and it 
+is being detected and notified as link down event.
+>> Regards,
+>> Mayank
+>> On 7/17/2024 10:03 AM, Manivannan Sadhasivam via B4 Relay wrote:
+>>> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>>
+>>> Historically, Qcom PCIe RC controllers lack standard hotplug support. So
+>>> when an endpoint is attached to the SoC, users have to rescan the bus
+>>> manually to enumerate the device. But this can be avoided by simulating the
+>>> PCIe hotplug using Qcom specific way.
+>>>
+>>> Qcom PCIe RC controllers are capable of generating the 'global' SPI
+>>> interrupt to the host CPUs. The device driver can use this event to
+>>> identify events such as PCIe link specific events, safety events etc...
+>>>
+>>> One such event is the PCIe Link up event generated when an endpoint is
+>>> detected on the bus and the Link is 'up'. This event can be used to
+>>> simulate the PCIe hotplug in the Qcom SoCs.
+>>>
+>>> So add support for capturing the PCIe Link up event using the 'global'
+>>> interrupt in the driver. Once the Link up event is received, the bus
+>>> underneath the host bridge is scanned to enumerate PCIe endpoint devices,
+>>> thus simulating hotplug.
+>>>
+>>> All of the Qcom SoCs have only one rootport per controller instance. So
+>>> only a single 'Link up' event is generated for the PCIe controller.
+>>>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>> ---
+>>>    drivers/pci/controller/dwc/pcie-qcom.c | 55 +++++++++++++++++++++++++++++++++-
+>>>    1 file changed, 54 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>>> index 0180edf3310e..a1d678fe7fa5 100644
+>>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>>> @@ -50,6 +50,9 @@
+>>>    #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+>>>    #define PARF_Q2A_FLUSH				0x1ac
+>>>    #define PARF_LTSSM				0x1b0
+>>> +#define PARF_INT_ALL_STATUS			0x224
+>>> +#define PARF_INT_ALL_CLEAR			0x228
+>>> +#define PARF_INT_ALL_MASK			0x22c
+>>>    #define PARF_SID_OFFSET				0x234
+>>>    #define PARF_BDF_TRANSLATE_CFG			0x24c
+>>>    #define PARF_SLV_ADDR_SPACE_SIZE		0x358
+>>> @@ -121,6 +124,9 @@
+>>>    /* PARF_LTSSM register fields */
+>>>    #define LTSSM_EN				BIT(8)
+>>> +/* PARF_INT_ALL_{STATUS/CLEAR/MASK} register fields */
+>>> +#define PARF_INT_ALL_LINK_UP			BIT(13)
+>>> +
+>>>    /* PARF_NO_SNOOP_OVERIDE register fields */
+>>>    #define WR_NO_SNOOP_OVERIDE_EN			BIT(1)
+>>>    #define RD_NO_SNOOP_OVERIDE_EN			BIT(3)
+>>> @@ -1488,6 +1494,29 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
+>>>    				    qcom_pcie_link_transition_count);
+>>>    }
+>>> +static irqreturn_t qcom_pcie_global_irq_thread(int irq, void *data)
+>>> +{
+>>> +	struct qcom_pcie *pcie = data;
+>>> +	struct dw_pcie_rp *pp = &pcie->pci->pp;
+>>> +	struct device *dev = pcie->pci->dev;
+>>> +	u32 status = readl_relaxed(pcie->parf + PARF_INT_ALL_STATUS);
+>>> +
+>>> +	writel_relaxed(status, pcie->parf + PARF_INT_ALL_CLEAR);
+>>> +
+>>> +	if (FIELD_GET(PARF_INT_ALL_LINK_UP, status)) {
+>>> +		dev_dbg(dev, "Received Link up event. Starting enumeration!\n");
+>>> +		/* Rescan the bus to enumerate endpoint devices */
+>>> +		pci_lock_rescan_remove();
+>>> +		pci_rescan_bus(pp->bridge->bus);
+>>> +		pci_unlock_rescan_remove();
+>> How do you handle case where endpoint is already enumerated, and seeing link
+>> up event in parallel or later ? will it go ahead to rescan bus again here ?
+>>
+> 
+> If the endpoint is already enumerated, there will be no Link up event. Unless
+> the controller reinitializes the bus (which is the current behavior).
+> 
+> If the endpoint is already powered on during controller probe, then it will be
+> enumerated during dw_pcie_host_init() and since we register the IRQ handler
+> afterwards, there will be no Link up in that case.
+> 
+> This feature is only applicable for endpoints that comes up post boot.
+ok. thanks for above information. I feel capturing this information in 
+commit text
+would be helpful.
+>> Also can you consider doing this outside hardirq context ?
+>>
 >
-> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> ---
->   .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
->   1 file changed, 28 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> index 468c646247aa..e91a6f4ede38 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -153,6 +153,34 @@ properties:
->               ratified at commit 3f9ed34 ("Add ability to manually trigger
->               workflow. (#2)") of riscv-time-compare.
->   
-> +        - const: svade
-> +          description: |
-> +            The standard Svade supervisor-level extension for SW-managed PTE A/D
-> +            bit updates as ratified in the 20240213 version of the privileged
-> +            ISA specification.
-> +
-> +            Both Svade and Svadu extensions control the hardware behavior when
-> +            the PTE A/D bits need to be set. The default behavior for the four
-> +            possible combinations of these extensions in the device tree are:
-> +            1) Neither Svade nor Svadu present in DT => It is technically
-> +               unknown whether the platform uses Svade or Svadu. Supervisor
-> +               software should be prepared to handle either hardware updating
-> +               of the PTE A/D bits or page faults when they need updated.
-> +            2) Only Svade present in DT => Supervisor must assume Svade to be
-> +               always enabled.
-> +            3) Only Svadu present in DT => Supervisor must assume Svadu to be
-> +               always enabled.
-> +            4) Both Svade and Svadu present in DT => Supervisor must assume
-> +               Svadu turned-off at boot time. To use Svadu, supervisor must
-> +               explicitly enable it using the SBI FWFT extension.
-> +
-> +        - const: svadu
-> +          description: |
-> +            The standard Svadu supervisor-level extension for hardware updating
-> +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
-> +            #25 from ved-rivos/ratified") of riscv-svadu. Please refer to Svade
-> +            dt-binding description for more details.
-> +
->           - const: svinval
->             description:
->               The standard Svinval supervisor-level extension for fine-grained
-
-
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
-
+> This is already running in threaded irq context (bottom half), wouldn't that
+> be enough?
+Done.
+> - Mani
+> 
+Regards,
+Mayank
 
