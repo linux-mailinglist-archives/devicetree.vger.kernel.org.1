@@ -1,108 +1,127 @@
-Return-Path: <devicetree+bounces-86555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7E7934A67
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 10:51:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C97934AA1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:01:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22C221F27C1C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 08:51:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E775E1F2716A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 09:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A678380638;
-	Thu, 18 Jul 2024 08:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F270480C13;
+	Thu, 18 Jul 2024 09:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NLMbc8N1"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Gx/hG498"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC138061C;
-	Thu, 18 Jul 2024 08:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC51442052
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 09:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721292550; cv=none; b=ouIe5xDZ0yswvT00dZDkeqLXdquXjCfTBi/U0m8DjrSh/kLjRVV4mHnx0gshqOxzELkJZTCAgKMTexdi6J1zxjQd2bYx8L7TrHX6pdiJp0C+RbmNAsJ6AOd6iAmG1vFGHTplKN5Gtbk72OO5u0Jsnty3amdXA9C/7OXB/2zvg+M=
+	t=1721293286; cv=none; b=p6U/+qFwSqML0WDFUAXzk98e4/DxrDwGAY3wrQa1GJnez3uJVlKoKK1bAaD0QrWhdnMviQpBXzNciNQzxO4MLaqF3rFltACzgEf+oVOot+T8OjQw5VmnOBfT1cum1drifnURc0oe6R3tWuZNVt+p3rvo4iJ2lRcg0gNSwVkU8P8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721292550; c=relaxed/simple;
-	bh=r1BrVyCSetRxR0OtEvnBHXoqroPyPZAvYUkmZTCmXvw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=PYl8owKeGsoprlk3++rq0HGyTgGdVqEgmeBQJZl/xH0K6luU/osVaNGrFPxs6MZb+R5C5W7EDlv62Cukr5JzihVr2hSD1h+JqzC6gNRpBxhXXtNhONyKvdU3piiatAClPtEiyg5q/ZcWRBWvUIeRiu2QS+PliLZtWG7M+o4iVZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NLMbc8N1; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1721293286; c=relaxed/simple;
+	bh=sABxMmNsYg19B+G5KtmKl+azR4q/y8D4JhhSOKAiMOk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CAuWT+1iNbUe6V3dwCdQKGqaGTnidKr4m73mkxRTedVSnkDUPHAgRI87QFvEssuSP3YXJnhwFqxDnSeB0aBzfl2KHiD3mR1J/DglKUAyysWbQChk6d4A6hqrz1JvR7rG3cncq6s5z/5qylKrVvazPofZfDPEgYqfl3Q6wLDa554=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Gx/hG498; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1721293283;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yie/yOPeCOEZe4pgd0jO5B9KM3jk6U/SxwutSwJGrIQ=;
+	b=Gx/hG498ZUmtvf1hwz5HGsZ7I3rRHS0pnuKSiiK7hkcPsDcgegkX5CMTDCBWNO5LGBU+ab
+	afI0mPvjgDCZjoaG3KAfCGS0MShfjc7iKC+SdExp08G++yZitzC8R91yuzTZWXOrzk2M3A
+	KRV9dff6EYaRMFAq4Ai2KgHKOpLNzBQ=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-656-u6zsssOqOEKJvGAQPuZvyQ-1; Thu, 18 Jul 2024 05:01:21 -0400
+X-MC-Unique: u6zsssOqOEKJvGAQPuZvyQ-1
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-4266a5c50fcso150065e9.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 02:01:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721293280; x=1721898080;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yie/yOPeCOEZe4pgd0jO5B9KM3jk6U/SxwutSwJGrIQ=;
+        b=Iy+G1X0CeSoavd7DR3Bn34Z+m6e2xne0Gsku4vFuoFwE7aF/UZYv7jhY0ITSh2iLAR
+         8faEhpn98iisfAENWGuO1jc9pSzw8db8ICQwn5ZO5qaNCCJvRP4MwKixxNukTaDiM/HA
+         QTRCUtmz/wlejCmeRqq9ciyE4OT+txIYGysgIwyY2jDKWKc+E32yuvjUGrtS5dvjNv4a
+         7eaHpjz6yk2qFP+jg7rdBbxhagmq/5QMP1syq9UJHsYGlaKXhv3aWgHJnHM5JNq4auBE
+         j6IBmjhssDse3T6p1L8reRUp5hQagjzGqgjDbKE18KD1QIzcgt6MNdzRfkW9kICbSfV8
+         l0lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ5E1M+RqY4jxaD9odf24JAzQeBA0qCuUsKL4X33Tnhp4jvGQf8eXW2L4AG9BgPDquT+cs9jCD6ARzhP30QnKfk//QiGT8YGzbaA==
+X-Gm-Message-State: AOJu0YyJkLDjJgZe8YOnZuEPO73W/d83DYt85P0ioKubGW6ZcI8VI+Bf
+	QRf/iZqkcw6TyOgCXWpba1JuV23XjnYj42U6JH1IQJadMCxhrLxqoqQTXIJMZwtBkAveLGgAkaX
+	+2ASoFe69+4VMn2iXDYtKEz83BSJwCdIWzdgdYwCLMawnyGfwUzXpnWP0hoc=
+X-Received: by 2002:a05:6000:1fae:b0:367:9cf7:6df8 with SMTP id ffacd0b85a97d-368315efe80mr1934495f8f.2.1721293279845;
+        Thu, 18 Jul 2024 02:01:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGtYI/GyodVGbyEP/KFt3fmdILyEQ4jaMdMonokpSjhlCn0kFlCEsFld7xD18stFs9oM5OONw==
+X-Received: by 2002:a05:6000:1fae:b0:367:9cf7:6df8 with SMTP id ffacd0b85a97d-368315efe80mr1934479f8f.2.1721293279378;
+        Thu, 18 Jul 2024 02:01:19 -0700 (PDT)
+Received: from ?IPV6:2a0d:3341:b08b:7710:c7b:f018:3ba3:eb24? ([2a0d:3341:b08b:7710:c7b:f018:3ba3:eb24])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3684e96033dsm1184069f8f.23.2024.07.18.02.01.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jul 2024 02:01:18 -0700 (PDT)
+Message-ID: <a1428b73-4f4c-4733-9f23-57e4346e4765@redhat.com>
+Date: Thu, 18 Jul 2024 11:01:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1721292546;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SALkvY/QibAL7upDWk5lu22M6tm/3Rix8LvRtINb1hk=;
-	b=NLMbc8N1+pWcWgTzBjFB/1Goj8gSX2Quy7kTbfHEY/UMDlew7MRKpgnAox9NnyMuCX6bBJ
-	CuJdLX5YBHgJzuqBmep+pLztFl/x1GSBArIEvGUZTSpUrT9bxFBAwdlU00bZZ0C34mC+Ad
-	/dczLmf4anWWmLPN7qmM0rVuEjBajwnZFO5re7J5g1xD188j5cD3/XTpszjRxpFO8zUpgw
-	jWttxSEYbZG3eDkfI45SyVdeOa0pq/KP9rYgjXPd7Q766EWlyOXaQYExU0phXL8A2D7njH
-	24iJnetp80fk4csdZcJUpbBWB8W4zNkvJKAj8U3mk3tJe10x5DRADQDyCRheLQ==
-Date: Thu, 18 Jul 2024 10:49:05 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Christopher Obbard <chris.obbard@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, Kever Yang
- <kever.yang@rock-chips.com>, Collabora Kernel Mailing List
- <kernel@collabora.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Firefly
- Core-PX30-JD4 on baseboard
-In-Reply-To: <20240718-rockchip-px30-firefly-v3-1-3835cdd22eae@collabora.com>
-References: <20240718-rockchip-px30-firefly-v3-0-3835cdd22eae@collabora.com>
- <20240718-rockchip-px30-firefly-v3-1-3835cdd22eae@collabora.com>
-Message-ID: <742974effd418ca210c435b0effc99b9@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 1/2] net: dsa: vsc73xx: make RGMII delays
+ configurable
+To: Pawel Dembicki <paweldembicki@gmail.com>, netdev@vger.kernel.org
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240717212732.1775267-1-paweldembicki@gmail.com>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20240717212732.1775267-1-paweldembicki@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Christopher,
-
-Thanks for the v2.
-
-On 2024-07-18 10:40, Christopher Obbard wrote:
-> Add binding for the Firefly Core-PX30-JD4 SoM when used in conjunction
-> with the MB-JD4-PX30 baseboard.
+On 7/17/24 23:27, Pawel Dembicki wrote:
+> This patch switches hardcoded RGMII transmit/receive delay to
+> a configurable value. Delay values are taken from the properties of
+> the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
 > 
-> Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> The default value is configured to 2.0 ns to maintain backward
+> compatibility with existing code.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 1ef09fbfdfaf5..2ad835f4068e2 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -148,6 +148,12 @@ properties:
->            - const: engicam,px30-core
->            - const: rockchip,px30
-> 
-> +      - description: Firefly Core-PX30-JD4 on MB-JD4-PX30 baseboard
-> +        items:
-> +          - const: firefly,px30-jd4-core-mb
-> +          - const: firefly,px30-jd4-core
-> +          - const: rockchip,px30
-> +
->        - description: Firefly Firefly-RK3288
->          items:
->            - enum:
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+
+## Form letter - net-next-closed
+
+The merge window for v6.11 and therefore net-next is closed for new
+drivers, features, code refactoring and optimizations. We are currently
+accepting bug fixes only.
+
+Please repost when net-next reopens after July 29th.
+
+RFC patches sent for review only are obviously welcome at any time.
+
+See:
+https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
+-- 
+pw-bot: defer
+
 
