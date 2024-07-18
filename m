@@ -1,291 +1,261 @@
-Return-Path: <devicetree+bounces-86586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F354F934D64
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:47:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3F2934D88
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 14:55:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 205A91C20E1E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 12:47:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB221284757
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 12:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9CEE13AA26;
-	Thu, 18 Jul 2024 12:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4C613C699;
+	Thu, 18 Jul 2024 12:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t3+1vL0f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ID6MJffX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADE01E53A;
-	Thu, 18 Jul 2024 12:47:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA7B1E53A
+	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 12:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721306854; cv=none; b=efchys1unTHo1NhRzPfpZQzDJBnlJWduY4V9LN/I1CpnbRPu/sFut1V+HMuQkYd4zBrQ7PDpZZUXFnnddy+vII85seR2z59r0leKaMGgXkoqXoLWDfx5w2bFm7d/2e3pzmaCL4dSkmyeMgrjtEKqZr/MHFOJmsGB8LWae4dkStY=
+	t=1721307353; cv=none; b=lwLyDJVFTVQU1P1xjMug/U+VmDBamelPNPjduMOwP1xpcm711df2UJI9m/tZWwSaKwm3dNlYiKTFAhBHFED+bDq35o+XeGv04s+1wjCGDpXaWUd2GG+k2WSOD6Vj+eGDVwLF3m1jpgNCWSEH/AHF4Kj0CWI/wuYlYOecTE447/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721306854; c=relaxed/simple;
-	bh=u/gMUo9YD51LZG8Itl0gBpfMLa22w0wIfbFseL996ZM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=jTcWPGaGFV+mkgJCySe0BUjIpEMXUkJ4Xb4X5+E9xLSKsQgdJm5aWgFjcG5nU7N2B7z9uSlujwqMjjGgkmwbPC4hjDZxKTkh27k3SLenV3dQCRtH15im3s6NoR3DQmcgY+th9hHFAelWwOl+DS1Bz7lyQDYgSOFctbI8gj8eUoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t3+1vL0f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4AFBC116B1;
-	Thu, 18 Jul 2024 12:47:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721306854;
-	bh=u/gMUo9YD51LZG8Itl0gBpfMLa22w0wIfbFseL996ZM=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=t3+1vL0fluWG7AqrGpj1gB1SbRtfRbyVifsRKQTcjTV4/vj3P6pOoZbWwIV9jmK5k
-	 QV+L/fNdCJGwbeBkvBVpoX5X0q+QMEF8c359fPwipvpiPoUjxtsqZrDbaSW8C4OFHh
-	 PggbhMNliegWcJhL2BSapPc3KEl4THca6Cgr+pGbNIxS17kbdCH5sZXa05fbrzReIv
-	 h+qPDnHX1tgmd8diqXZgzDNoyGxdpnOtK3+ZPVg25iwzZ+fCT3yzUUN3yn27cqgQ1f
-	 twT81neUZAoz3Q7GWxTzDL+ZGpl/kQl8UNR9kRqNoTGhC1QnJMrBG6RAgatB2/zk/J
-	 an5t7q8yaHC/w==
-Message-ID: <5aec49af-0a24-464b-b24c-cb23c7b1ae95@kernel.org>
-Date: Thu, 18 Jul 2024 14:47:27 +0200
+	s=arc-20240116; t=1721307353; c=relaxed/simple;
+	bh=RnVetTAVDMEoHnOYOH2EwKbF0YWG+vmkuwKPkbdBV8k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aFojSew1AeiuY59GtVk+0EwGYvPWV8g4O7hHdWEieg7frGQRRdHdaIDdqs2enOiATwU/+mfh/O4W4EMZczZwGgADbfQ1ixjOjP/W7g8hhwQsyNevDwsNQbcc2X2dDG593Nqdq85J5cHOMf6Nvkr92n5pb9ksLKoAjRnbFcO+V8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ID6MJffX; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-70af8062039so537623b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 05:55:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721307351; x=1721912151; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jMMhDZFtOwO3HXFWjJERUf9qK8F/67AIIwwDMX0/jC0=;
+        b=ID6MJffXKTEGALIqAi2PU+TB59D21nyjgpdg/0UL4TodaEU9TvcISi+mAN7mggWo0N
+         DMo0+6Tav8Keh1knApEKCalOzufQOeXpdhqsGvutBX1JgyHjL87nHDD0LYbXrtpNIZ2V
+         +bC7pksYf6Nc4+SW8/F81CEQ5TGhzmr55NyETHp+sXlAJx/OQOhPAOa3oTzUxLnJ6Y8y
+         nsgoD0qlD34/MNuSgX1RbBcmJMDP4KfyKwv24DdK1uXByEMa2O8WGr8rwJJpUZzvKJMg
+         +tsLcNhWNrscaVPjiyCZg+E2dlRt+tqKlPYRGChNuQ8sT3QzWmwivcjqUc6F2JU2m4Ws
+         0e4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721307351; x=1721912151;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jMMhDZFtOwO3HXFWjJERUf9qK8F/67AIIwwDMX0/jC0=;
+        b=hGIHdlIqsQ0JIgBntgLQzzErwO0BaH4jbHTopn2Ux8XGjvuvloFQ+Yz7cgZsYQWvtb
+         2uluj42HyunN7u3R/zPqo+0lp2KvX/vvaxhYT+uFRqaYZxdUPyzs+jxsRdeqpnaF133G
+         REHmt6ldUQEXj3ZJ1LOo/zn2YqqaZz7YtcOE+tutRu+sLNhS35YNox7LjbVW8+oFb7EE
+         hQ/1HykXae5zDXu58JrXESCa/Ud9EA+d4EpIstcqfNbZvG45u2dzPEucXTBuqBj+vB9V
+         lsCt8NzbIrQNJk3l4YLiXC1xARqx4WfMiZ0S2qs3z1BYDykKr+2eOuLEKG2ceynL8400
+         TAjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUcAj7Atwbp67TBR+m/1l1WPG8keYChqgQ0ZPQ7Ek5sHyarzP4ORaWPdDJQ4X+98dJ2Z3ZvHiWi3AAPMPdEMAa7I25J0RdUKhn6NA==
+X-Gm-Message-State: AOJu0YxSHQPl8NioW0+vTHLfNY/cjO/nfgJ4Otn4qBWU6FoarWys1Dco
+	Rh1jS3KYt3kgGQkV4/GY5vXmSanlR2MmRcVc1yCiKXkjx8q6+aeKnkSjwnaUeBE=
+X-Google-Smtp-Source: AGHT+IG56Qh0nAqJFtYuky5nJyMY1i46EkTO8ZbrlZ8beqkkK6RxYzkS0Fq4cnVTmRmyVBRa0QG6iw==
+X-Received: by 2002:a05:6a00:889:b0:705:9ddb:db6b with SMTP id d2e1a72fcca58-70ce4fa4a3bmr5538762b3a.13.1721307351008;
+        Thu, 18 Jul 2024 05:55:51 -0700 (PDT)
+Received: from x-wing.lan ([106.51.164.34])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b7eb9c856sm10009718b3a.4.2024.07.18.05.55.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jul 2024 05:55:50 -0700 (PDT)
+From: Amit Pundir <amit.pundir@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+	dt <devicetree@vger.kernel.org>,
+	lkml <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: qcom: sm8550-hdk: add the Wifi node
+Date: Thu, 18 Jul 2024 18:25:45 +0530
+Message-ID: <20240718125545.2238857-1-amit.pundir@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drivers: Bosch SMI240 IMU Driver
-To: Jianping.Shen@de.bosch.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dima.fedrau@gmail.com, marcelo.schmitt1@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Christian.Lorenz3@de.bosch.com,
- Ulrike.Frauendorf@de.bosch.com, Kai.Dolde@de.bosch.com
-References: <20240718122449.7607-1-Jianping.Shen@de.bosch.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240718122449.7607-1-Jianping.Shen@de.bosch.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/07/2024 14:24, Jianping.Shen@de.bosch.com wrote:
-> From: "Shen Jianping (ME-SE/EAD2)" <she2rt@LR-C-0008DVM.rt.de.bosch.com>
-> 
-> Add Bosch SMI240 IMU IIO Driver to iio-for-6.10b
+Describe the ath12k WLAN on-board the WCN7850 module present on the
+board.
 
-What is "iio-for-6.10b"? How is it relevant to git history? This is
-supposed to say something about the driver and hardware.
+Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+---
+v2: Changes suggested by Neil
 
-> 
-> Signed-off-by: Shen Jianping (ME-SE/EAD2) <she2rt@LR-C-0008DVM.rt.de.bosch.com>
-> ---
->  .../bindings/iio/imu/bosch,smi240.yaml        |  45 +
->  drivers/iio/imu/Kconfig                       |   2 +
->  drivers/iio/imu/Makefile                      |   1 +
->  drivers/iio/imu/smi240/Kconfig                |  30 +
->  drivers/iio/imu/smi240/Makefile               |   8 +
->  drivers/iio/imu/smi240/smi240.h               |  31 +
->  drivers/iio/imu/smi240/smi240_core.c          | 814 ++++++++++++++++++
->  drivers/iio/imu/smi240/smi240_spi.c           | 153 ++++
->  8 files changed, 1084 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
->  create mode 100644 drivers/iio/imu/smi240/Kconfig
->  create mode 100644 drivers/iio/imu/smi240/Makefile
->  create mode 100644 drivers/iio/imu/smi240/smi240.h
->  create mode 100644 drivers/iio/imu/smi240/smi240_core.c
->  create mode 100644 drivers/iio/imu/smi240/smi240_spi.c
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
-> new file mode 100644
-> index 00000000000..972819cacff
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/imu/bosch,smi240.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: BOSCH SMI240
+v1: Kanged verbatim from 490812872449 ("arm64: dts: qcom: sm8550-qrd: add the Wifi node").
+Link: https://lore.kernel.org/lkml/20240702091655.278974-1-amit.pundir@linaro.org/T/#u
 
-Also: BOSCH or Bosch?
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 113 +++++++++++++++++++++---
+ 1 file changed, 101 insertions(+), 12 deletions(-)
 
-> +
-> +maintainers:
-> +  - unknown
-> +
-> +description: |
-> +  Inertial Measurement Unit with Accelerometer, Gyroscope 
-> +  https://www.bosch-semiconductors.com/mems-sensors/highly-automated-driving/smi240/
-> +
-> +properties:
-> +  compatible:
-> +    const: BOSCH,SMI240
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - spi-max-frequency
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    // Example
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        smi240@0 {
-> +            compatible = "BOSCH,SMI240";
-> +            spi-max-frequency = <10000000>;
-> +            reg = <0>;
-> +        };
-> +    };
-> diff --git a/drivers/iio/imu/Kconfig b/drivers/iio/imu/Kconfig
-> index 52a155ff325..2c348ad686a 100644
-> --- a/drivers/iio/imu/Kconfig
-> +++ b/drivers/iio/imu/Kconfig
-> @@ -96,6 +96,8 @@ config KMX61
->  
->  source "drivers/iio/imu/inv_icm42600/Kconfig"
->  source "drivers/iio/imu/inv_mpu6050/Kconfig"
-> +source "/home/she2rt/dev/smi240-linux-driver-iio/drivers/iio/imu/smi240/Kconfig"
-
-Yeah... this won't work, obviously.
-
-> +source "drivers/iio/imu/smi240/Kconfig"
->  source "drivers/iio/imu/st_lsm6dsx/Kconfig"
->  source "drivers/iio/imu/st_lsm9ds0/Kconfig"
->  
-> diff --git a/drivers/iio/imu/Makefile b/drivers/iio/imu/Makefile
-> index 7e2d7d5c3b7..b6f162ae4ed 100644
-> --- a/drivers/iio/imu/Makefile
-> +++ b/drivers/iio/imu/Makefile
-> @@ -27,5 +27,6 @@ obj-y += inv_mpu6050/
->  
->  obj-$(CONFIG_KMX61) += kmx61.o
->  
-> +obj-y += smi240/
->  obj-y += st_lsm6dsx/
->  obj-y += st_lsm9ds0/
-> diff --git a/drivers/iio/imu/smi240/Kconfig b/drivers/iio/imu/smi240/Kconfig
-> new file mode 100644
-> index 00000000000..7114c941cc3
-> --- /dev/null
-> +++ b/drivers/iio/imu/smi240/Kconfig
-> @@ -0,0 +1,30 @@
-
-Missing SPDX
-
-> +config SMI240
-> +	tristate "Bosch Sensor SMI240 Inertial Measurement Unit"
-> +	depends on SPI_MASTER
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
-> +	help
-> +	  Build driver
-> +	  for Bosch
-> +	  SMI240 6-axis IMU
-> +	  sensor.
-
-Ooh my... what's this style?
-
-Read coding style for Kconfig.
-
-
-> +
-> +config SMI240_MAX_BUFFER_LEN
-
-Drop, dead code.
-
-> +	depends on SMI240
-> +	int "configue read buffer size"
-> +	default "1024"
-> +	help
-> +	  1024 bytes are big
-> +	  enough for most cases.
-> +	  Do not change this value
-> +	  if not sure.
-> +
-> +config SMI240_UNIT_TEST
-
-Drop, dead code.
-
-> +	tristate "Unit Test for SMI240"
-> +	depends on KUNIT=y
-> +	help
-> +	  Build Unit Test
-> +	  for Bosch
-> +	  SMI240 6-axis
-> +	  IMU sensor.
-> +
-> diff --git a/drivers/iio/imu/smi240/Makefile b/drivers/iio/imu/smi240/Makefile
-> new file mode 100644
-> index 00000000000..394eaecf5f3
-> --- /dev/null
-> +++ b/drivers/iio/imu/smi240/Makefile
-> @@ -0,0 +1,8 @@
-> +#
-> +# Makefile for Bosch SMI240
-
-Drop. It cannot be anything else. Do not say that "x" is a "x".
-
-You miss SPDX on the other hand.
-
-> +#
-> +
-> +obj-$(CONFIG_SMI240) += smi240.o
-> +smi240-objs := smi240_core.o
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+index 12d60a0ee095..0fc55334e26c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+@@ -279,6 +279,65 @@ platform {
+ 			};
+ 		};
+ 	};
++
++	wcn7850-pmu {
++		compatible = "qcom,wcn7850-pmu";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&wlan_en>, <&bt_default>, <&pmk8550_sleep_clk>;
++
++		wlan-enable-gpios = <&tlmm 80 GPIO_ACTIVE_HIGH>;
++		bt-enable-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
++
++		vdd-supply = <&vreg_s5g_0p85>;
++		vddio-supply = <&vreg_l15b_1p8>;
++		vddaon-supply = <&vreg_s2g_0p85>;
++		vdddig-supply = <&vreg_s4e_0p95>;
++		vddrfa1p2-supply = <&vreg_s4g_1p25>;
++		vddrfa1p8-supply = <&vreg_s6g_1p86>;
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p8: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p8";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++		};
++	};
+ };
+ 
+ &apps_rsc {
+@@ -954,6 +1013,23 @@ &pcie0 {
+ 	status = "okay";
+ };
+ 
++&pcieport0 {
++	wifi@0 {
++		compatible = "pci17cb,1107";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++	};
++};
++
+ &pcie0_phy {
+ 	vdda-phy-supply = <&vreg_l1e_0p88>;
+ 	vdda-pll-supply = <&vreg_l3e_1p2>;
+@@ -1046,6 +1122,17 @@ &pon_resin {
+ 	status = "okay";
+ };
+ 
++&pmk8550_gpios {
++	pmk8550_sleep_clk: sleep-clk-state {
++		pins = "gpio3";
++		function = "func1";
++		input-disable;
++		output-enable;
++		bias-disable;
++		power-source = <0>;
++	};
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -1206,6 +1293,13 @@ wcd_default: wcd-reset-n-active-state {
+ 		bias-disable;
+ 		output-low;
+ 	};
++
++	wlan_en: wlan-en-state {
++		pins = "gpio80";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-down;
++	};
+ };
+ 
+ &uart7 {
+@@ -1218,20 +1312,15 @@ &uart14 {
+ 	bluetooth {
+ 		compatible = "qcom,wcn7850-bt";
+ 
+-		vddio-supply = <&vreg_l15b_1p8>;
+-		vddaon-supply = <&vreg_s4e_0p95>;
+-		vdddig-supply = <&vreg_s4e_0p95>;
+-		vddrfa0p8-supply = <&vreg_s4e_0p95>;
+-		vddrfa1p2-supply = <&vreg_s4g_1p25>;
+-		vddrfa1p9-supply = <&vreg_s6g_1p86>;
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
+ 
+ 		max-speed = <3200000>;
+-
+-		enable-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+-		swctrl-gpios = <&tlmm 82 GPIO_ACTIVE_HIGH>;
+-
+-		pinctrl-0 = <&bt_default>;
+-		pinctrl-names = "default";
+ 	};
+ };
+ 
+-- 
+2.43.0
 
 
