@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-86513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9AE29347D9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 08:11:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E869347EF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 08:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DE8D28314D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 06:11:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 531341C21754
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 06:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0C14D9FE;
-	Thu, 18 Jul 2024 06:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D20282EE;
+	Thu, 18 Jul 2024 06:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RdWnqiaf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lNPryReU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3E43399B;
-	Thu, 18 Jul 2024 06:11:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9276D1B4;
+	Thu, 18 Jul 2024 06:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721283073; cv=none; b=UvxoBfHzF0sRFlhOUBBSwjiFmWaOlX9C3Yl9tA2fzCbaQ5ulWsXEgFcvqzUzLe4IPA2QfxBaVUaGuRP3/16qT5Q3LQAmK70hUtLVsHMwHR2VstRW1+wq0sPfMiLB3X3U8OJCRf1xc+ETwshGkYEPCgzn/Ub4BwBBtHf+mDZAdro=
+	t=1721283550; cv=none; b=QwydJd0gcs1xOPE/qo2SIRWxEx5CTYwOstfYGYUp9TOM4Fuvbui4bBvLbbPKNMbJVJ80zgDXYznNTpZ5ZmbKE6isLFiofnonstgE1jSOT6yyjfPxOdYLrQGycf+hEoECu0wL6ddWG7kn6IkdA1Jx51e0JvlXhJKfyV+Kc14w2yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721283073; c=relaxed/simple;
-	bh=lPQfrdq/lIGRBHNUwdTVpsUIEjjH88QiHK6gcEuFllc=;
+	s=arc-20240116; t=1721283550; c=relaxed/simple;
+	bh=TTHXDISLWM4G5/ABRq+uF9kx4rxKG5ZyaIr3GrXMmOI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cdhZ69nB2UKOqIcgPb3pATP6Jauaf366p3KAIERlMayWPcDcnrwMFkE1+i3JUlPky6N4aYSl86TMWv4SjQBhRgVS7+cHya5kam7wbs+m8cJ78wuHCcyDFF9jERmu90fJTtiAuiD5lWyNzhh+udUw9bMWkgs826d1L6ZNQtgG9g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdWnqiaf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABA13C116B1;
-	Thu, 18 Jul 2024 06:11:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EbZg8ZFurWdz358FqoAoyIRSribho3oM1WoXmZDSxbpPyMYiI5XnLhqCCThgYbrLCSJcTL1fTftVhv0mjh7CRX1toKYxzxeFqB3foQFQH7m2MmedSINIn3qfLfCZYCKh07L/J7VJkBr2oyOfHy1+7SCK0gUyVf5ioqp7zeqi8PE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lNPryReU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F62C116B1;
+	Thu, 18 Jul 2024 06:19:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721283072;
-	bh=lPQfrdq/lIGRBHNUwdTVpsUIEjjH88QiHK6gcEuFllc=;
+	s=k20201202; t=1721283549;
+	bh=TTHXDISLWM4G5/ABRq+uF9kx4rxKG5ZyaIr3GrXMmOI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RdWnqiaf1AQ57BlMVWXWc6VG7Cg154KzJXQKy7qx+Ro8ugFcn7fOc4XYLeTCHj+g2
-	 z2TfiNnm8nfAZc1ND38cVWv2piTRx2V8eGHAKGEL1budoPZnW/Jw4abVwI9y2apxyv
-	 nE66AfqQR0BSVX3SzL+fJt2cAR/ZnBYUHDtbu1YF4RwQYeQwEsLlBOuieBlJf6cJfv
-	 a/55+x1V4cGWdwg6pAUB6ajZ/LS9wMl8P0a3MVSvaZJe7wna+ZZcsRWw+d3gTmAyLI
-	 BTuk1HyA+Ppwc/5gDLNP2G+ntLsESweGjCSEKYl4jv3GJkcvhGstBsvn8E5+89+jHR
-	 jS1TGeD43Excw==
-Message-ID: <3c6bae57-9fad-4643-ad18-e964bca17b45@kernel.org>
-Date: Thu, 18 Jul 2024 08:11:07 +0200
+	b=lNPryReUhYV/UiPX3jQcG2E2w3CeY0tDaH+aIvuJGO9w8x05FslO8B6Ln4PX2r+1/
+	 5SnycoRn/HFg6w43rxSIPjsn/LHkCVvGkNF+GUJjgDLFYGB70ZpUwHt3hiH6WEsL3T
+	 m4sTl3bI64+bkqxS3JPYPxQQvEwkJvgr8+ASLmEq8qxlEYyXp2BobWZeoENTDEusCJ
+	 pfdJIaBiptu2Bbv8Kq38UERmQ9J/iDwMBxdfzmWe55szEcpcRnHEZeZ6UjbUHZk42I
+	 hYgXQVuouAe0g7dloGUiOkEfHgp/IXsCt9hRrOWmjqsAZFxqTYUCyerq0pA+B/mWY8
+	 EOYOtBEXoWA0A==
+Message-ID: <e017259b-bc62-4b57-9276-b834237225e1@kernel.org>
+Date: Thu, 18 Jul 2024 08:19:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] firmware: arm_scmi: set mailbox timeout value from
- device tree
-To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
- "cristian.marussi@arm.com" <cristian.marussi@arm.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20240709140957.3171255-1-peng.fan@oss.nxp.com>
- <20240709140957.3171255-2-peng.fan@oss.nxp.com>
- <PAXPR04MB84594F4271F68D9072BA0C0D88AC2@PAXPR04MB8459.eurprd04.prod.outlook.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
+ Document ATNA45AF01
+To: Doug Anderson <dianders@chromium.org>, Conor Dooley <conor@kernel.org>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
+ <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org>
+ <20240715-scorn-canning-a7f23b9e2039@spud>
+ <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -110,21 +112,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <PAXPR04MB84594F4271F68D9072BA0C0D88AC2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+In-Reply-To: <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/07/2024 04:24, Peng Fan wrote:
-> Hi Cristian,
+On 18/07/2024 02:21, Doug Anderson wrote:
+> Conor (and/or) Krzysztof and Rob,
 > 
->> Subject: [PATCH V3 2/2] firmware: arm_scmi: set mailbox timeout
->> value from device tree
+> On Mon, Jul 15, 2024 at 8:31 AM Conor Dooley <conor@kernel.org> wrote:
+>>
+>> On Mon, Jul 15, 2024 at 02:15:37PM +0200, Stephan Gerhold wrote:
+>>> The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
+>>> control over the DP AUX channel. While it works almost correctly with the
+>>> generic "edp-panel" compatible, the backlight needs special handling to
+>>> work correctly. It is similar to the existing ATNA33XC20 panel, just with
+>>> a larger resolution and size.
+>>>
+>>> Add a new "samsung,atna45af01" compatible to describe this panel in the DT.
+>>> Use the existing "samsung,atna33xc20" as fallback compatible since existing
+>>> drivers should work as-is, given that resolution and size are discoverable
+>>> through the eDP link.
+>>>
+>>> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+>>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> The binding has got R-b from Rob, will you pick this patch in your next
-> Patchset?
+> Can you comment on whether you would consider this bindings a "Fix"
+> since it's a dependency for later patches in this series (which are
+> "Fix"es) to pass dtbs_check? See:
+> 
+> https://lore.kernel.org/r/4bca316a-2334-425b-87a6-e1bb241d26b5@linaro.org
 
-Please don't ping during the merge window. Is this a fix? Why shall it
-be picked up during merge window?
+The patch itself is not a fix, for sure, but it might be a dependency of
+a fix (which you wrote above), thus could be pulled to stable as a
+dependency.
+
+I do not care about dtbs_check warnings in stable kernels, mostly
+because dtbs_check warnings depend heavily on dtschema and dtschema
+follows mainline kernel. Basically if you had warnings-free v6.8 but try
+to run dtbs_check now with latest dtschema, your results will differ.
+
+At some point in the future, I could imagine "no new dtbs_check warnings
+in stable kernels" requirement or at least preference, but so far I
+don't think there is any benefit.
 
 Best regards,
 Krzysztof
