@@ -1,111 +1,276 @@
-Return-Path: <devicetree+bounces-86488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C58F934661
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 04:25:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A9D93466F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 04:36:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06BD31F226E6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 02:25:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2BB1C21280
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 02:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB24E2E419;
-	Thu, 18 Jul 2024 02:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CB224B4A;
+	Thu, 18 Jul 2024 02:36:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="6cSfuiec"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QkIiwdjR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16FF315C9;
-	Thu, 18 Jul 2024 02:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548EB1C36;
+	Thu, 18 Jul 2024 02:36:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721269480; cv=none; b=M9RYdm0outSI/6gUqUmMcu9w/f4Arqw19kUQQJyzzaH8BRSKjXn4FCuCwJTpMRgR+Bp8BEgjV5ELX/KcKyejdEp5SmOf/kTcMs2rkeF63pYSmNY4xaiZCLmyOM1Ak6onzY7PlwhTJwHGEPidkl7VaeCjsvuI68cdM7Zxq0demNk=
+	t=1721270173; cv=none; b=nHnLgqnzHqYtNOIinymTtVT4gAGQwtX9wGBuyvOSw+v6vfA/E7MCCCylVtFtFdnd854GnffDvWzBXAFCew8pG47zyWTzWQeTriIP/KXIQ1Ln/uIrNVv3P8SuerH3BGpGvKcNrk5OcVME6LQjgN+g1iBSIxdbPd5ADGjBLrcYQZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721269480; c=relaxed/simple;
-	bh=acUxYiwvNbR5WEmoBtEcy5LUMGpl1V6pDAJlxr5ua6w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jwa3/UB3W51ksgBNaZf6znAiDGIEtFhsCFIWVb/ur9hL33iUa6o4AvNmGr4w+leVmJoDm8N4bqMZlQtoT2CyH9kyRy/Npffg1aiTrD3u3dxN6iXT/+2MunPRlZoeG/DNpqhmfAQvaLJh5ZIOTqlHnDcHd3FE9MR8KMOOrFmC/EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=6cSfuiec; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=0vk8fef/oz3YdgiNmk3ULxUwdiIR7F4J+UJ0/Uf9pnE=; b=6cSfuiecrWilzJ7nH+o56SBaUG
-	EjBLFPLBBgOrA0R3/xATbgXZ4YzIabz5PHDHgfhGZ7nxC8FtRgi8lv+KC2uqrhpK0NjssR/S9sbp2
-	fuOvfGGFvTMpotywVvGjtU6oyDSq3OFOy2NGoQ5MBuJgde2MjeWcPxab9uDHTQ28zlPw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sUGos-002kdR-G6; Thu, 18 Jul 2024 04:24:34 +0200
-Date: Thu, 18 Jul 2024 04:24:34 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: vtpieter@gmail.com
-Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-	o.rempel@pengutronix.de,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Subject: Re: [PATCH 3/4] net: dsa: microchip: check erratum workaround
- through indirect register read
-Message-ID: <e6285fd7-91fd-411c-bea9-ddcb62b90550@lunn.ch>
-References: <20240717193725.469192-1-vtpieter@gmail.com>
- <20240717193725.469192-2-vtpieter@gmail.com>
- <20240717193725.469192-3-vtpieter@gmail.com>
- <20240717193725.469192-4-vtpieter@gmail.com>
+	s=arc-20240116; t=1721270173; c=relaxed/simple;
+	bh=jYfile6BLXuxxZvJl2IOKY8q/TSvEzeBYd92ETBg8aY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mqzLswN7ELmzPN8vFZnsq1w1ER0cR9p3o/tLuYYOtMX5qJdCzwb1DADcVZZafLQMB63ARto87TRA/RYXF0IrC1Nv1h4kbBAaAot1dCDDI+dtSZwC/I+nt1qsPiSiW3YTU/NVvbMoB7mqvl2fGa8UscvGJ+mD/XMOAVLuBsWiYco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QkIiwdjR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46HFvS9M000402;
+	Thu, 18 Jul 2024 02:36:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QrP0Gik79TXsMbZN+JGEdn/d8A0wV6R3kEAmU0q/c50=; b=QkIiwdjR7hw+IzhJ
+	+TLwW6kVRBUTWPk5l/MaIsYeT7+AXmx7WKRTkwOZVQK+9uZ/EuZS2qyRqMAnMjlQ
+	tlwRUyRCayrck5giE+peir0cm6nb59qRyDEFsnlr6LlMcGv3/QJlphRHA5hqaX85
+	EV+a8Khi55L/hFBzZfz7MNh/5nKHYfhWeGOK0k0ad4R7ctfcrU9a8oJi7ricycd5
+	tHbZIVQ3ALf4Ut8fmrd1jYYShArPeDZYrk1XT9PMiD/4tN5beNHr/JrwB8ZjTggD
+	ELDDCmvBmuFigdBDH0+llkqqi25VbxDyXfCEGyaCfxUaTWKn7BRD3nRq8cVBMST1
+	StywLQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40dwfs44j3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jul 2024 02:35:59 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46I2ZwZ1011125
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jul 2024 02:35:58 GMT
+Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 17 Jul 2024 19:35:52 -0700
+Date: Thu, 18 Jul 2024 10:35:48 +0800
+From: JieGan <quic_jiegan@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Mike Leach <mike.leach@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        "Tao
+ Zhang" <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Song
+ Chai" <quic_songchai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: arm: Add binding document for
+ Coresight Control Unit device.
+Message-ID: <Zph/hEnRtIVZpzb5@jiegan-gv.ap.qualcomm.com>
+References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
+ <20240705090049.1656986-3-quic_jiegan@quicinc.com>
+ <5f7cf9e4-cf1c-41d1-8985-3bcf1d943f08@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20240717193725.469192-4-vtpieter@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5f7cf9e4-cf1c-41d1-8985-3bcf1d943f08@linaro.org>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0fWlt211FNuZbRp-wiurgVmgibZIZkaL
+X-Proofpoint-GUID: 0fWlt211FNuZbRp-wiurgVmgibZIZkaL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-17_19,2024-07-17_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 phishscore=0 spamscore=0 mlxlogscore=999 mlxscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407180016
 
-On Wed, Jul 17, 2024 at 09:37:24PM +0200, vtpieter@gmail.com wrote:
-> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+On Fri, Jul 05, 2024 at 11:07:22AM +0200, Krzysztof Kozlowski wrote:
+> On 05/07/2024 11:00, Jie Gan wrote:
+> > Add binding document for Coresight Control Unit device.
 > 
-> Check the erratum workaround application which ensures in addition
-> that indirect register write and read work as expected.
+> <form letter>
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC (and consider --no-git-fallback argument). It might
+> happen, that command when run on an older kernel, gives you outdated
+> entries. Therefore please be sure you base your patches on recent Linux
+> kernel.
 > 
-> Commit b7fb7729c94f ("net: dsa: microchip: fix register write order in
-> ksz8_ind_write8()") would have been found faster like this.
+> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+> people, so fix your workflow. Tools might also fail if you work on some
+> ancient tree (don't, instead use mainline) or work on fork of kernel
+> (don't, instead use mainline). Just use b4 and everything should be
+> fine, although remember about `b4 prep --auto-to-cc` if you added new
+> patches to the patchset.
+> </form letter>
 > 
-> Also fix the register naming as in the datasheet.
+> Or stop developing on some old tree. It's some sort of weird pattern in
+> entire Qualcomm Coresight - everything developed on old kernels.
+> 
+> You must work on latest mainline or maintainer or linux-next tree, not
+> some old Qualcomm tree. Your v5.15, v5.19, v6.4 or v6.8 or whatever you
+> have there: BIG NOPE.
+> 
+> > 
+> > Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> > ---
+> 
+> Subject: it never ends with full stop.
+> 
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
+> >  .../bindings/arm/qcom,coresight-ccu.yaml      | 87 +++++++++++++++++++
+> >  1 file changed, 87 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+> > new file mode 100644
+> > index 000000000000..9bb8ced393a7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+> > @@ -0,0 +1,87 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/qcom,coresight-ccu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: CoreSight Control Unit
+> > +
+> > +maintainers:
+> > +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> > +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> > +  - Jie Gan <quic_jiegan@quicinc.com>
+> > +
+> > +description:
+> > +  The Coresight Control unit controls various Coresight behaviors.
+> > +  Used to enable/disable ETR’s data filter function based on trace ID.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,coresight-ccu
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: apb_pclk
+> 
+> Drop _pclk
+Hi, Suzuki,
+As Krzysztof proposed, we have to change the clock name from apb_pclk to apb.
+According to the new clock name, I updated the inline function coresight_get_enable_apb_pclk
+to vote the clock with the new name.
 
-We are in the merge window at the moment, so net-next is closed at the
-moment. Please repost in two weeks.
+Is that ok with the change? Or any other suggestions?
+
+static inline struct clk *coresight_get_enable_apb_pclk(struct device *dev)
+{
+        struct clk *pclk;
+        int ret;
+
+        pclk = clk_get(dev, "apb_pclk");
+        if (IS_ERR(pclk)) {
+                pclk = clk_get(dev, "apb");    //added line
+                if (IS_ERR(pclk))
+                        return NULL;
+        }
+
+        ret = clk_prepare_enable(pclk);
+        if (ret) {
+                clk_put(pclk);
+                return ERR_PTR(ret);
+        }
+        return pclk;
+}
 
 > 
-> @@ -1974,6 +1974,7 @@ static int ksz8_handle_global_errata(struct dsa_switch *ds)
->  {
->  	struct ksz_device *dev = ds->priv;
->  	int ret = 0;
-> +	u8 data = 0xff;
+> > +
+> > +  reg-names:
+> 
+> Please follow DTS coding style about order of properties.
+> 
+> > +    items:
+> > +      - const: ccu-base
+> > +
+> > +  in-ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    unevaluatedProperties:
+> 
+> This was never tested and it cannot reliably work.
+> 
+> Sorry, this is waste of our time.
+> 
+> 
+> > +      patternProperties:
+> > +        '^port(@[0-7])?$':
+> > +          description: Input connections from CoreSight Trace bus
+> > +          $ref: /schemas/graph.yaml#/properties/port
+> > +
+> > +          properties:
+> > +            qcom,ccu-atid-offset:
+> > +              description:
+> > +                Offset to the Coresight Control Unit component's ATID register
+> > +                that is used by specific TMC ETR. The ATID register can be programed based
+> > +                on the trace id to filter out specific trace data which gets into ETR buffer.
+> > +              $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - in-ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    syscon@1001000 {
+> 
+> That's not a syscon.
+> 
+> > +        compatible = "qcom,coresight-ccu";
+> > +        reg = <0x1001000 0x1000>;
+> > +        reg-names = "ccu-base";
+> > +
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Reverse Christmas tree please.
-
->  
->  	/* KSZ87xx Errata DS80000687C.
->  	 * Module 2: Link drops with some EEE link partners.
-> @@ -1981,8 +1982,13 @@ static int ksz8_handle_global_errata(struct dsa_switch *ds)
->  	 *   KSZ879x/KSZ877x/KSZ876x and some EEE link partners may result in
->  	 *   the link dropping.
->  	 */
-> -	if (dev->info->ksz87xx_eee_link_erratum)
-> -		ret = ksz8_ind_write8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_HI, 0);
-> +	if (dev->info->ksz87xx_eee_link_erratum) {
-> +		ret = ksz8_ind_write8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_LO, 0);
-> +		if (!ret)
-> +			ret = ksz8_ind_read8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_LO, &data);
-> +		if (!ret && data)
-> +			dev_err(dev->dev, "failed to disable EEE next page exchange (erratum)\n");
-
-If data is not 0, should it be considered fatal? Maybe return -EIO ?
-
-	Andrew
+Thanks,
+Jie
 
