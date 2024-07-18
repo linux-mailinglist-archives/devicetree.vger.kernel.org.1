@@ -1,300 +1,223 @@
-Return-Path: <devicetree+bounces-86576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C464D934C95
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 13:31:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C4A934CAC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 13:41:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 482CC1F210EF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:31:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0214C1C21291
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 11:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1AFA136671;
-	Thu, 18 Jul 2024 11:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C794613A250;
+	Thu, 18 Jul 2024 11:41:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MwMexBtI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93875639;
-	Thu, 18 Jul 2024 11:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B8412D745;
+	Thu, 18 Jul 2024 11:41:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721302267; cv=none; b=GJaFnQZ/sXLEMpk/m79eqIcsRdL+2az1ZZB4n3yhxV+U77Ksuj36jvhRpizKdHLFB6za2pdrhNIOI5PdbT2wFKrKfaTOuMk5zQhNp208X/yXl5pSg1pXQ6dFPOTp9jGhxCgLdIQ/NjBLcRu2fAO2XDz9xE9gma5X3Al477fe3po=
+	t=1721302867; cv=none; b=oRArKdbMp31YxLrff2tP13csTRIoGW3im8yBnhq3QzyBcb4ROZH69ho56etPzrYtaqVz9yTupcZVXFRBvmEZj6XR/8f3gZy9ky+zPeoaR7f+p9K6DdXn9AZFQ4EiJkxctORvzrDHRV3EI5DyGmY6swsKu2YO156OUDZh/CEfoKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721302267; c=relaxed/simple;
-	bh=+VCRrBTFKNdz5EkxjA9kfRiSj/jzGVTeICKcDIP6uFU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=q7jxHHM4qcRvxRP5+uoeVlYpbZzH//ldeYt6xdfhGJOgxXjAqgUV0VO5lsKesdrN4hurDNQ4GueT9dJ0Dm1ncuxhkDhi3GinImUSEDmNawhyw4gu4iZ1CZvWdONWnz4J0DiFCSAkB1lDsRQcJrl/GsnEsjMq/AmIVN4cdvu56mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e860d09.versanet.de ([94.134.13.9] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sUPLe-0004Fb-Er; Thu, 18 Jul 2024 13:30:58 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-Subject:
- Re: [PATCH v2 1/3] dt-bindings: clocks: add binding for
- voltage-controlled-oscillators
-Date: Thu, 18 Jul 2024 13:30:57 +0200
-Message-ID: <30200583.43St1lv6Oq@diego>
-In-Reply-To: <c60c8c462c6df23c1f1625bce5516525@manjaro.org>
-References:
- <20240715110251.261844-1-heiko@sntech.de> <3178118.zE8UqtGg2D@diego>
- <c60c8c462c6df23c1f1625bce5516525@manjaro.org>
+	s=arc-20240116; t=1721302867; c=relaxed/simple;
+	bh=DLfE2xWxXuAKnjor6litn0ZHyZYgkG1Fn2AU+O3HdPY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ePBQkmuqZvYbC/VMs0fRLm31xBouD0leu00PSdsPz+lfYTnzN7TziZjeW/h/vugUr/SPpQRTqd4heYcQHmKKBfqn3SP8HIcmzYhlGAXciQUrmzbrIdqEG6+iBn6fcQRfzfWMmXUDeoHnRn7Ef/yOd0GxbgktawzA1S4ipgfZeyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MwMexBtI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E425DC116B1;
+	Thu, 18 Jul 2024 11:41:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721302867;
+	bh=DLfE2xWxXuAKnjor6litn0ZHyZYgkG1Fn2AU+O3HdPY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MwMexBtI4sSqlgF86D9iVOE+SvzC9XrPo3oAFgSUuu37Wagh9ba6YjNElyhuxgwaA
+	 DZewPR00gKFOWaCAq0/Ak54Lt58q+Ix4de1GSYTfo5E+cmGL/oNInRPF6TcVZslpBJ
+	 TeXh9vR/xW5zKkg279eclHMYR8x1qkjkjbnBTZ8+qrXK+R6LTKKexFy0m3VJNBUjI+
+	 fH44jCxYGuvnixlZrxwThK9BV6hiRE8K1/i3IIev/zAnW0URAriJlSdxUP9efWmay7
+	 cw7UBW+Ux6ju5k0/7yg7IQbVHH/6A992BCuKeYX0/U7wQ80i/+gBEhmV35EY4JTDZ3
+	 L8faX8rUqwBGA==
+Message-ID: <18f1301f-6d93-4645-b6d9-e4ccd103ff5d@kernel.org>
+Date: Thu, 18 Jul 2024 13:40:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: bluetooth: Add support for
+ Amlogic Bluetooth
+To: yang.li@amlogic.com, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240718-btaml-v2-0-1392b2e21183@amlogic.com>
+ <20240718-btaml-v2-1-1392b2e21183@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240718-btaml-v2-1-1392b2e21183@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Dragan,
+On 18/07/2024 09:42, Yang Li via B4 Relay wrote:
+> From: Yang Li <yang.li@amlogic.com>
+> 
+> Add binding document for Amlogic Bluetooth chipsets attached over UART.
+> 
+> Signed-off-by: Yang Li <yang.li@amlogic.com>
+> ---
+>  .../bindings/net/bluetooth/amlogic,w155s2-bt.yaml  | 66 ++++++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/amlogic,w155s2-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/amlogic,w155s2-bt.yaml
+> new file mode 100644
+> index 000000000000..2e433d5692ff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/amlogic,w155s2-bt.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/bluetooth/amlogic,w155s2-bt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Bluetooth chips
+> +
+> +description:
+> +  This binding describes UART-attached Amlogic bluetooth chips.
 
-Am Donnerstag, 18. Juli 2024, 12:53:07 CEST schrieb Dragan Simic:
-> On 2024-07-18 11:25, Heiko St=FCbner wrote:
-> > Am Dienstag, 16. Juli 2024, 18:15:08 CEST schrieb Conor Dooley:
-> >> On Mon, Jul 15, 2024 at 01:02:49PM +0200, Heiko Stuebner wrote:
-> >> > In contrast to fixed clocks that are described as ungateable, boards
-> >> > sometimes use additional oscillators for things like PCIe reference
-> >> > clocks, that need actual supplies to get enabled and enable-gpios to=
- be
-> >> > toggled for them to work.
-> >> >
-> >> > This adds a binding for such oscillators that are not configurable
-> >> > themself, but need to handle supplies for them to work.
-> >> >
-> >> > In schematics they often can be seen as
-> >> >
-> >> >          ----------------
-> >> > Enable - | 100MHz,3.3V, | - VDD
-> >> >          |    3225      |
-> >> >    GND - |              | - OUT
-> >> >          ----------------
-> >> >
-> >> > or similar. The enable pin might be separate but can also just be ti=
-ed
-> >> > to the vdd supply, hence it is optional in the binding.
-> >> >
-> >> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> >> > ---
-> >> >  .../bindings/clock/voltage-oscillator.yaml    | 49 ++++++++++++++++=
-+++
-> >> >  1 file changed, 49 insertions(+)
-> >> >  create mode 100644 Documentation/devicetree/bindings/clock/voltage-=
-oscillator.yaml
-> >> >
-> >> > diff --git a/Documentation/devicetree/bindings/clock/voltage-oscilla=
-tor.yaml b/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
-> >> > new file mode 100644
-> >> > index 0000000000000..8bff6b0fd582e
-> >> > --- /dev/null
-> >> > +++ b/Documentation/devicetree/bindings/clock/voltage-oscillator.yaml
-> >> > @@ -0,0 +1,49 @@
-> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> > +%YAML 1.2
-> >> > +---
-> >> > +$id: http://devicetree.org/schemas/clock/voltage-oscillator.yaml#
-> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> > +
-> >> > +title: Voltage controlled oscillator
-> >>=20
-> >> Voltage controlled oscillator? Really? That sounds far too similar to=
-=20
-> >> a
-> >> VCO to me, and the input voltage here (according to the description at
-> >> least) does not affect the frequency of oscillation.
-> >=20
-> > That naming was suggested by Stephen in v1 [0] .
-> >=20
-> > Of course the schematics for the board I have only describe it as
-> > "100MHz,3.3V,3225" , thumbing through some mouser parts matching that
-> > only mentions "supply voltage" in their datasheets but not a dependency
-> > between rate and voltage.
-> >=20
-> > [0]=20
-> > https://lore.kernel.org/linux-arm-kernel/b3c450a94bcb4ad0bc5b3c7ee8712c=
-b8.sboyd@kernel.org/
-> >=20
-> >> Why the dedicated binding, rather than adding a supply and enable-gpio
-> >> to the existing "fixed-clock" binding? I suspect that a large portion=
-=20
-> >> of
-> >> "fixed-clock"s actually require a supply that is (effectively)
-> >> always-on.
-> >=20
-> > I guess there are three aspects:
-> > - I do remember discussions in the past about not extending generic
-> >   bindings with device-specific stuff. I think generic power-sequences
-> >   were the topic back then, though that might have changed over time?
-> > - There are places that describe "fixed-clock" as
-> >   "basic fixed-rate clock that cannot gate" [1]
-> > - Stephen also suggested a separate binding [2]
-> >=20
-> > With the fixed-clock being sort of the root for everything else on most
-> > systems, I opted to leave it alone. I guess if the consenus really is=20
-> > that
-> > this should go there, I can move it, but discussion in v1
-> >=20
-> > Interestingly the fixed clock had a gpios property 10 years ago [3] :-)=
-=20
-> > .
-> >=20
-> > [1]=20
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/drivers/clk/clk-fixed-rate.c#n18
-> > [2]=20
-> > https://lore.kernel.org/linux-arm-kernel/68f6dc44a8202fd83792e58aea1376=
-32.sboyd@kernel.org/
-> > [3]=20
-> > https://lore.kernel.org/linux-kernel//20140515064420.9521.47383@quantum=
-/T/#t
->=20
-> After finally going through the v1 discussion [4] in detail,
-> here are my further thoughts:
->=20
-> - I agree with dropping the Diodes stuff, [5] because I see
->    no need for that at this point;  though, am I missing
->    something, where are they actually used?
+<form letter>
+This is a friendly reminder during the review process.
 
-On the Rock5 ITX that 100MHz clock comes the one single oscillator thing.
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-The Diodes parts are not root sources for their clocks but instead sort
-PLLs or something, though their manual describes them as
-"clock generator supporting PCI Express and Ethernet requirements" [8]
-
-So they generate the 100MHz (frequency actually is
-selected by input pins of the chip) from a separate 25MHz source clock.
-
-One example are the Theobroma/Cherry embedded boards changed in v1 where
-they currently are described via existing generic things (no schematics).
-
-Another user is the rk3568-rock3b for example, where the diodes part
-is enabled by the same rail as the port itself, so in contrast to the
-Rock 5 ITX, it works "by accident" on the rock 3b [9]
+Thank you.
+</form letter>
 
 
-The interesting part of the Diodes ICs is that they actually allow
-configuration of the generated frequency via their S0 + S1 pins,
-though they might be statically set in the board layout without
-being user configurable. (Rock3b does it this way for example)
+> +
+> +maintainers:
+> +  - Yang Li <yang.li@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: amlogic,w155s2-bt
+> +      - items:
+> +          - enum:
+> +              - amlogic,w265s1-bt
+> +              - amlogic,w265p1-bt
+> +              - amlogic,w265s2-bt
+> +          - const: amlogic,w155s2-bt
+> +
+> +  bt-enable-gpios:
 
+enable-gpios
 
-> - I agree that "enable-gpios" and "vdd-supply" should be
->    required in the binding, [5] because that's the basis for
->    something to be actually represented this way
+> +    maxItems: 1
+> +    description: gpio specifier used to enable BT
 
-I would only require the vdd supply though.
+Drop, redundant.
 
-On the Rock 5 ITX, the chip does have an enable-gpio input, but that is
-tied directly to the voltage rail and is not user controllable.
+> +
+> +  bt-supply:
 
-
-> - I agree that it should be better not to touch fixed-clock
->    at this point, simply because it's used in very many places,
->    and because in this case we need more than it requires (see
->    the bullet point above)
->=20
-> - As I wrote already, [6] I highly disagree with this being
->    called voltage-controlled oscillator (VCO), [7] simply
->    because it isn't a VCO, but a clock that can be gated;
->    though, looking forward to what the last bullet point
->    asks to be clarified further
->=20
-> - I still think that gated-clock is the best choice for the
->    name, because it uses "clock" that's used throughout the
->    entire codebase, and uses "gated" to reflect the nature
->    of the clock generator
-
-"gated-oscillator" perhaps?=20
-
-This would make it more explicit that we're talking about a root
-for clock signals. "gated-clock" can be anything, in the middle
-of a clock tree. Having a very generic name, also invites misuse.
-
-
-> - Maybe we could actually use fixed-gated-clock as the name,
->    which would make more sense from the stanpoint of possibly
->    merging it into fixed-clock at some point, but I'd like
->    to hear first what's actually going on with the Diodes
->    stuff that was deleted in v2, which I already asked about
->    in the first bullet point
->=20
-> [4]=20
-> https://lore.kernel.org/linux-rockchip/20240709123121.1452394-1-heiko@snt=
-ech.de/T/#u
-> [5]=20
-> https://lore.kernel.org/linux-rockchip/2e5852b9e94b9a8d0261ce7ad79f4329.s=
-boyd@kernel.org/
-> [6]=20
-> https://lore.kernel.org/linux-rockchip/ec84dc37e2c421ee6d31294e08392d57@m=
-anjaro.org/
-> [7]=20
-> https://lore.kernel.org/linux-rockchip/b3c450a94bcb4ad0bc5b3c7ee8712cb8.s=
-boyd@kernel.org/
-
-[8] https://www.diodes.com/assets/Datasheets/PI6C557-03.pdf
-[9] https://dl.radxa.com/rock3/docs/hw/3b/Radxa_ROCK_3B_V1.51_SCH.pdf
-    page 31, bottom left of the page
-
-
-> >> > +
-> >> > +maintainers:
-> >> > +  - Heiko Stuebner <heiko@sntech.de>
-> >> > +
-> >> > +properties:
-> >> > +  compatible:
-> >> > +    const: voltage-oscillator
-> >> > +
-> >> > +  "#clock-cells":
-> >> > +    const: 0
-> >> > +
-> >> > +  clock-frequency: true
-> >> > +
-> >> > +  clock-output-names:
-> >> > +    maxItems: 1
-> >> > +
-> >> > +  enable-gpios:
-> >> > +    description:
-> >> > +      Contains a single GPIO specifier for the GPIO that enables an=
-d disables
-> >> > +      the oscillator.
-> >> > +    maxItems: 1
-> >> > +
-> >> > +  vdd-supply:
-> >> > +    description: handle of the regulator that provides the supply v=
-oltage
-> >> > +
-> >> > +required:
-> >> > +  - compatible
-> >> > +  - "#clock-cells"
-> >> > +  - clock-frequency
-> >> > +  - vdd-supply
-> >> > +
-> >> > +additionalProperties: false
-> >> > +
-> >> > +examples:
-> >> > +  - |
-> >> > +    voltage-oscillator {
-> >> > +      compatible =3D "voltage-oscillator";
-> >> > +      #clock-cells =3D <0>;
-> >> > +      clock-frequency =3D <1000000000>;
-> >> > +      vdd-supply =3D <&reg_vdd>;
-> >> > +    };
-> >> > +...
->=20
+It's called "bt" in schematics or datasheet? Feels unusual. Please list
+all the pins if you claim that's a real name.
 
 
 
+> +    description: bluetooth chip 3.3V supply regulator handle
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: clock provided to the controller (32.768KHz)
+> +
+> +  antenna-number:
+> +    default: 1
+> +    description: device supports up to two antennas
+
+Keep it consistent - either descriptions are the last property or
+somewhere else. Usually the last.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+And what does it mean? What happens if BT uses antenna number 2, not 1?
+What is connected to the other antenna? It really feels useless to say
+which antenna is connected to hardware.
+
+> +
+> +  firmware-name:
+> +    description: specify the path of firmware bin to load
+
+Missing maxItems
+
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+
+That's redundant, drop.
+
+> +
+
+
+Best regards,
+Krzysztof
 
 
