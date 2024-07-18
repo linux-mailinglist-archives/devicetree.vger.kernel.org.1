@@ -1,138 +1,179 @@
-Return-Path: <devicetree+bounces-86656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DF7F937037
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 23:46:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E3E93707D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 00:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F8871C21E27
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 21:46:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2095A28265C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2024 22:02:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685C7145B23;
-	Thu, 18 Jul 2024 21:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAC3B145348;
+	Thu, 18 Jul 2024 22:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="U+I4x50K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jciSS3Dw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450CE143C54
-	for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 21:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC33D143891;
+	Thu, 18 Jul 2024 22:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721339184; cv=none; b=H3QsJqfni2Qr0W2LRkXhr2NmRj3U1JKWas6dstSx6/JgUZyj48sMpQuVyjnOOZE5ZTlteKOFnxqOxMUUX3eBAH+L5u2llbX/wbK3u6BaSyQNjEuwTR4eiGk7Sl5r1wdOr6RO9Dr3DsxNq6eJD5FVdlhXOc11uMEIyyz3j2zTf4E=
+	t=1721340150; cv=none; b=Z7lyo/QIeT7EgLr/bzN38YtZBECAatKOyI7ZPcMgCZenPn4JlZIq9agiWmuT4CujC10JjCrRGBoL3c1y62yN9yngu5yPSKFE/sRwQsblZO4d0d5PwitB1IIbVHUtJhGU6wpGY260Gd7Aa0dbbdcDjA7tTT4mqoyH0gbXUKOWeT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721339184; c=relaxed/simple;
-	bh=QIe/2kbFHCA11Q9TL7mLMduOjYNsGQd/Tv+tn4jIdAA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o88TpfJ6TvzOhFTXNB2cGN8DzahoTPDnS8VI3acMYtcIHf9Eh/t5+NkZcRZu2+35gQjtp1Toy7DPW9F45VzmopSvoQiI1i7VzJUqhbZIe3QN6mozUxPOQo7jdzZt+wDa3kaMroCAt6TQwT12t609b7pehCygmb8JhZX7bA64dv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=U+I4x50K; arc=none smtp.client-ip=209.85.166.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-807687b6652so58428239f.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 14:46:22 -0700 (PDT)
+	s=arc-20240116; t=1721340150; c=relaxed/simple;
+	bh=mJorrD2tnuyN7ngnHQjsdGPkLJyryGhiaujRYaKwy2g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cNrv7xVHziiZjcSveM8W/6ke8WoYckkBgVOuCkKrOQycI/RQqA7cC8axxEwUGYVdZcLU5DYg0k745Og2wJ2joora8NWYwDMBNLCmHNrgPaO/E/JYilQVh48wx0yax6XWMwBs2mqTfFG/A8V7cAxELGpzlDTQDMQjaaxQ+6o2Cnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jciSS3Dw; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-427b4c621b9so6006695e9.1;
+        Thu, 18 Jul 2024 15:02:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1721339181; x=1721943981; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b/3KVXgmf69sNo7YCAFBU75fVyP3kLvsv8BGm2iEjzc=;
-        b=U+I4x50KPl4X8RHNN5WKXgaZlEHjW1XglGeBCiLPeDrA3B+KPiBhvahd+FDuWPjb3+
-         87XEXsm4pfnSHwtps3MIP+TEfZCsdspc+yTjRy2CuGXrEoam95Al6g0CygaBSnC7ExCA
-         RyHihQX9Zo7+MvnRzEr8pj4uCXjohr23/SwVBcsrkRfsRX2fqDkhdWkK11O/eSelP+eL
-         /d3uDT3c4Ryb2bL0kMYavtCuYoMYn2E5sOc6EGM3M2zuFmF625pNWCLDfHfN8m1dypcR
-         YCbJlYmcrqMljxJYDSm/J4J+WSao69397c5/M406TScUTHCJTPHsBmberRIPN7VbEQzd
-         3+aA==
+        d=gmail.com; s=20230601; t=1721340147; x=1721944947; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UitsaCex0rhKIBN25ncNSW34VIXCM0DAlM4U4CaOTtU=;
+        b=jciSS3DwJ9Cnc8O9W3ktdD2pYZsFAnc1PrEq+IgzTy5XuMVt9TONxO7ZUisZ80zPgZ
+         Rnt1LBthbOZHQ2EjqEYfi/YbbKpR9nfOYw19TkoVgZXf4dR+WXPivxcmEHwFCoGnfwX8
+         eC6qf4sJ2ROlHzkTJOliUzx/FwbNb2/lawOVdpkVZJofSt3R2ub9oFwTIJD7HkP/a/X7
+         AF0iZ+cAJ3tPSOisRi1ENpxHDJ8F2GpjMefOj4e1Gi0Z6D8jN4XukCbFzTjg6Uk2kFxP
+         0u9ARmxQqNDHGJuznBnk2LyF+IjxYMvvxbodRcishNN4V8FlMh+yWr8N2PLY9SVVRCZU
+         c8mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721339181; x=1721943981;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b/3KVXgmf69sNo7YCAFBU75fVyP3kLvsv8BGm2iEjzc=;
-        b=rQJD4yQpoxNEv3f3D7EKvtORtNhvWlT/csZnurKgb2/2SUJNfU4Tjin8r+3XwC24XJ
-         TDc0O+9nH7W6NuU9W6tfcI/L68Zj0S6VGP7FJ61jA7JB3jDsT/gyJ0lYBlBNdtpiJ0k4
-         NG+JFLZdANmoUEizg2+E+GnYbuU7siwb3VLSxf815m9n0qaJOyZBuAxZisImnyeBcII/
-         4czgVnM1h7KPLu+kNPoNNVneVXW6WpTdfvpK86JO5YZcDD8hLU7Mi6FAZL9HmaM5tejr
-         EXz9mgXMaMP1uQZUvfVwmOKy1GtiADLuGV+jwzO0e3nTclQpGuhXH+FXnexN0eGbnrd1
-         4oPg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzcMZW1zLEN9tUmx+q9W6EX09wOlcMLKUSfoVskdUZ18TTBqNGGr4uEUuL6pVltOxVGxrHU1IyKNc9RNU9I4opL6aKXNKzTgc3NA==
-X-Gm-Message-State: AOJu0YwFVjEnBipu3oDNLCTWH8OmB/SINyF/P+dtBXlCeIbJW0qc4pIu
-	loyFVujY7WDPoLhfDXYsFGjXn09JdynKifmlUDFockc/W/quh8hlisvrWdJpZS4=
-X-Google-Smtp-Source: AGHT+IFfmYe/UsMSfgkCsdMUFOYZdCp937Ia8bMlaDCUPuHT0PtpOJmSb9jac6FVvVir80F2WXRXbQ==
-X-Received: by 2002:a05:6602:26c7:b0:806:7f5a:1fb7 with SMTP id ca18e2360f4ac-81710605dacmr801576939f.5.1721339181354;
-        Thu, 18 Jul 2024 14:46:21 -0700 (PDT)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4c2342f164esm35433173.69.2024.07.18.14.46.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jul 2024 14:46:20 -0700 (PDT)
-Message-ID: <8b402e92-d874-4b30-9108-f521bd20d36c@sifive.com>
-Date: Thu, 18 Jul 2024 16:46:17 -0500
+        d=1e100.net; s=20230601; t=1721340147; x=1721944947;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UitsaCex0rhKIBN25ncNSW34VIXCM0DAlM4U4CaOTtU=;
+        b=YILDa3djLTGe2bfwBz74Jfy0w8sdKST/fdtgMBZNPmtPqUeUhBJgY3CbS+Ze1vPrAF
+         IRyptOMicD4aK+lFDtCd+GKDZ2Tczp+UsR2T7bYKWO1HJqYElwUiMwuOdUtNyn5jPQHa
+         zafK+joPDJbit7Q4TSBinn+mykkdr2v5eGYe1eCfZmCM/har1nuAtVGwq56TdtEci/HC
+         NNPvH+Bk0ioII/1nhyOk9nZqHYqLYPS3kjxKu4GrRsjZBw3vUeYTdk9DMxkvpjnrcFPh
+         85AA3QhFNWRwx0Ob0RhIEo0YE+aweiuiIZbvpGmlRmfBvpULf9xal6NgxjuZyGJrF/UA
+         6RZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVDrlO7iuJsSTHXRRErZfVtuS/a/EUGtpI9GzTPtC+rYPgr2J/fQzfwtvuU4wnU8TwKEK55qXpTVa0ZJKpMtL5HJVqK11k+nvInIpaxj4MxUVURZPAvej7D8PKdKRk/U8d6WhfzFPYXzsN4CTGYR3jM/OAiNDPwXPfBp6osssI2Tb6txg==
+X-Gm-Message-State: AOJu0YzGHF1g+9fZRPKZm2IdGSysbm/p5ZsBDvJBa9LtQ5ouephYNMlg
+	yKqqGFybPVNkO36wzQTF2iN8K7nqSTCc9wshsdmc9B7L/f/VzuW7
+X-Google-Smtp-Source: AGHT+IHhRQpjIqehS6RkFcjaxgF9L+d7kAwxV2D46PfGVsMhKByv0SHLBGn5drvJhiejRoCZ3FjSPA==
+X-Received: by 2002:a5d:4cc4:0:b0:367:f054:7aba with SMTP id ffacd0b85a97d-3683175ce54mr4102591f8f.41.1721340146741;
+        Thu, 18 Jul 2024 15:02:26 -0700 (PDT)
+Received: from localhost.localdomain ([2a10:d582:37c5:0:2ab4:ee:97a:e67f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d6936d62sm2739765e9.42.2024.07.18.15.02.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jul 2024 15:02:26 -0700 (PDT)
+From: Mudit Sharma <muditsharma.info@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	robh@kernel.org
+Cc: Mudit Sharma <muditsharma.info@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	mazziesaccount@gmail.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v8 1/2] dt-bindings: iio: light: ROHM BH1745
+Date: Thu, 18 Jul 2024 23:02:05 +0100
+Message-ID: <20240718220208.331942-1-muditsharma.info@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/17] mm: move numa_distance and related code from x86 to
- numa_memblks
-To: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- Andreas Larsson <andreas@gaisler.com>,
- Andrew Morton <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>,
- Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Dan Williams <dan.j.williams@intel.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- David Hildenbrand <david@redhat.com>, "David S. Miller"
- <davem@davemloft.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>,
- Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
- loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-cxl@vger.kernel.org, nvdimm@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org, linux-mm@kvack.org,
- x86@kernel.org
-References: <20240716111346.3676969-1-rppt@kernel.org>
- <20240716111346.3676969-14-rppt@kernel.org>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20240716111346.3676969-14-rppt@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2024-07-16 6:13 AM, Mike Rapoport wrote:
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> 
-> Move code dealing with numa_distance array from arch/x86 to
-> mm/numa_memblks.c
-> 
-> This code will be later reused by arch_numa.
-> 
-> No functional changes.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> ---
->  arch/x86/mm/numa.c                   | 101 ---------------------------
->  arch/x86/mm/numa_internal.h          |   2 -
->  include/linux/numa_memblks.h         |   4 ++
->  {arch/x86/mm => mm}/numa_emulation.c |   0
->  mm/numa_memblks.c                    | 101 +++++++++++++++++++++++++++
->  5 files changed, 105 insertions(+), 103 deletions(-)
->  rename {arch/x86/mm => mm}/numa_emulation.c (100%)
+Add ROHM BH1745 - 4 channel I2C colour sensor's dt-bindings.
 
-The numa_emulation.c rename looks like it should be part of the next commit, not
-this one.
+Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+v7->v8:
+- no change
+v6->v7:
+- no change
+v5->v6:
+- no change
+v4->v5:
+- add power supply info
+v3->v4:
+- no changes
+v2->v3:
+- move 'additionalproperties' after 'required' block
+- remove block style indicator '|' from description
+v1->v2:
+- fix yaml issue: make `maintainers` a list
+
+ .../bindings/iio/light/rohm,bh1745.yaml       | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
+new file mode 100644
+index 000000000000..44896795c67e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/rohm,bh1745.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ROHM BH1745 colour sensor
++
++maintainers:
++  - Mudit Sharma <muditsharma.info@gmail.com>
++
++description:
++  BH1745 is an I2C colour sensor with red, green, blue and clear
++  channels. It has a programmable active low interrupt pin.
++  Interrupt occurs when the signal from the selected interrupt
++  source channel crosses set interrupt threshold high/low level.
++
++properties:
++  compatible:
++    const: rohm,bh1745
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        colour-sensor@38 {
++            compatible = "rohm,bh1745";
++            reg = <0x38>;
++            interrupt-parent = <&gpio>;
++            interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
++            vdd-supply = <&vdd>;
++        };
++    };
++
++...
+-- 
+2.43.0
 
 
