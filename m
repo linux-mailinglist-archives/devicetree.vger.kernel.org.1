@@ -1,238 +1,241 @@
-Return-Path: <devicetree+bounces-86808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC4893788B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:34:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 197249378B2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:47:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F7051F22305
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:34:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EE821F222A3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:47:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C86312BE91;
-	Fri, 19 Jul 2024 13:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA1D13AA31;
+	Fri, 19 Jul 2024 13:46:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BE71E489;
-	Fri, 19 Jul 2024 13:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1DF24211
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 13:46:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721396036; cv=none; b=WS8gSMtt4N9taxJNKdSjzsv7zYv9OaBGvW8K2biUjzOYuFLDcdxnpAMqPGix4xPVCbMV7Dsa5D6yg5VI/oJqU8U1VFVDty+UbgEKJqLNXiX11fM+GoBB6bNF6RnVPtFDz54lCPR7vwXsta3mm0cyrg7mulGnHCavzaAQdWQ//Yc=
+	t=1721396814; cv=none; b=C/AXGXBhrTe7/I6i3idbCApw2uGqp1eOsOdnOkxhmxt66ggsSWRm0h86N7RtzrBoALVH55q+Vyza0GhXTwqgO5k/bubO8CmgM6b7ahbJsvRMK7fx4HiPGkGg0D7wOMdNKO5q8X9LyX79BEqsQv0Xiy18vF6pjH9RXiGM9ij7qUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721396036; c=relaxed/simple;
-	bh=QcL5agAg50dx73nvzJdxQZPBrGmrIB51uy787OOzoi4=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WEtztCKep4jZOFziTHPqVObxw1G+a/639mENYrg4XbPZT3wYhcAhlxLOD1aNFx9TRADjPYLAxsjUJG/AA2Iqx3cZAiZ66rIBI7ei2jeoe+4vW1J1jWWhpv217F1Mk9cs4oYdJpMSYJvoTCnJ5Sxd/Dqo8CNRpjgCTJKEwom15Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WQVw90sR6z6JBj4;
-	Fri, 19 Jul 2024 21:32:25 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 4D842140A87;
-	Fri, 19 Jul 2024 21:33:49 +0800 (CST)
-Received: from localhost (10.122.19.247) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 19 Jul
- 2024 14:33:48 +0100
-Date: Fri, 19 Jul 2024 14:33:47 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens
-	<hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar
-	<mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul Adrian
- Glaubitz" <glaubitz@physik.fu-berlin.de>, Michael Ellerman
-	<mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linux-mips@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<sparclinux@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
-	<linux-cxl@vger.kernel.org>, <nvdimm@lists.linux.dev>,
-	<devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH 00/17] mm: introduce numa_memblks
-Message-ID: <20240719143347.000077d9@huawei.com>
-In-Reply-To: <20240716111346.3676969-1-rppt@kernel.org>
-References: <20240716111346.3676969-1-rppt@kernel.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; x86_64-w64-mingw32)
+	s=arc-20240116; t=1721396814; c=relaxed/simple;
+	bh=fOFY67I+3iOtgqYFZ/fQXxWcNS6x/HjDq33a75TjmLI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g4hQdj/BjR8I/QJ3mqqt+NKI81Mb4ti0PUPHlbPt+EZu64vxcjC59dMNV5cWcSOQujx4kP9hCb4BnPzmIlIkRrzAn+XMmK3C4/t1URZQqLan71YQWa6SgtyQ7WvUeFocmPt1593kjMEuKnIvPVsLmnHH3NDrwvrZlYUwDr/mZv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sUnwZ-00056A-5e; Fri, 19 Jul 2024 15:46:43 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sUnwY-000hAP-8g; Fri, 19 Jul 2024 15:46:42 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sUnwY-005wFu-0X;
+	Fri, 19 Jul 2024 15:46:42 +0200
+Date: Fri, 19 Jul 2024 15:46:42 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: vtpieter@gmail.com
+Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
+	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Subject: Re: [PATCH 2/4] net: dsa: microchip: ksz8795: add Wake on LAN support
+Message-ID: <ZppuQo9sGdYJWgBQ@pengutronix.de>
+References: <20240717193725.469192-1-vtpieter@gmail.com>
+ <20240717193725.469192-2-vtpieter@gmail.com>
+ <20240717193725.469192-3-vtpieter@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240717193725.469192-3-vtpieter@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, 16 Jul 2024 14:13:29 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+Hi Pieter,
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
->=20
-> Hi,
->=20
-> Following the discussion about handling of CXL fixed memory windows on
-> arm64 [1] I decided to bite the bullet and move numa_memblks from x86 to
-> the generic code so they will be available on arm64/riscv and maybe on
-> loongarch sometime later.
->=20
-> While it could be possible to use memblock to describe CXL memory windows,
-> it currently lacks notion of unpopulated memory ranges and numa_memblks
-> does implement this.
->=20
-> Another reason to make numa_memblks generic is that both arch_numa (arm64
-> and riscv) and loongarch use trimmed copy of x86 code although there is no
-> fundamental reason why the same code cannot be used on all these platform=
-s.
-> Having numa_memblks in mm/ will make it's interaction with ACPI and FDT
-> more consistent and I believe will reduce maintenance burden.
->=20
-> And with generic numa_memblks it is (almost) straightforward to enable NU=
-MA
-> emulation on arm64 and riscv.
->=20
-> The first 5 commits in this series are cleanups that are not strictly
-> related to numa_memblks.
->=20
-> Commits 6-11 slightly reorder code in x86 to allow extracting numa_memblks
-> and NUMA emulation to the generic code.
->=20
-> Commits 12-14 actually move the code from arch/x86/ to mm/ and commit 15
-> does some aftermath cleanups.
->=20
-> Commit 16 switches arch_numa to numa_memblks.
->=20
-> Commit 17 enables usage of phys_to_target_node() and
-> memory_add_physaddr_to_nid() with numa_memblks.
+If I see it correctly, the only difference between KSZ9477 and KSZ8795
+code is the register access. Even bit offsets are identical. I do not
+think indirect register access is good justification for duplication
+this amount of code.
 
-Hi Mike,
+On Wed, Jul 17, 2024 at 09:37:23PM +0200, vtpieter@gmail.com wrote:
+>  
+> +static int ksz8_ind_read8(struct ksz_device *dev, u8 table, u16 addr, u8 *val)
 
-I've lightly tested with emulated CXL + Generic Ports and Generic
-Initiators as well as more normal cpus and memory via qemu on arm64 and it's
-looking good.
+Will be good to add comment for this function.
 
-=46rom my earlier series, patch 4 is probably still needed to avoid
-presenting nodes with nothing in them at boot (but not if we hotplug
-memory then remove it again in which case they disappear)
-https://lore.kernel.org/all/20240529171236.32002-5-Jonathan.Cameron@huawei.=
-com/
-However that was broken/inconsistent before your rework so I can send that
-patch separately.=20
+....
+> +/**
+> + * ksz8_handle_wake_reason - Handle wake reason on a specified port.
+> + * @dev: The device structure.
+> + * @port: The port number.
+> + *
+> + * This function reads the PME (Power Management Event) status register of a
+> + * specified port to determine the wake reason. If there is no wake event, it
+> + * returns early. Otherwise, it logs the wake reason which could be due to a
+> + * "Magic Packet", "Link Up", or "Energy Detect" event. The PME status register
+> + * is then cleared to acknowledge the handling of the wake event; followed by
+> + * clearing the global Interrupt Status Register.
+> + *
+> + * Return: 0 on success, or an error code on failure.
+> + */
+> +static int ksz8_handle_wake_reason(struct ksz_device *dev, int port)
+> +{
+> +	u8 pme_status;
+> +	int ret;
+> +
+> +	ret = ksz8_ind_read8(dev, TABLE_PME_PORT(port), REG_IND_PORT_PME_STATUS, &pme_status);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!pme_status)
+> +		return 0;
+> +
+> +	dev_dbg(dev->dev, "Wake event on port %d due to:%s%s%s\n", port,
+> +		pme_status & PME_WOL_MAGICPKT ? " \"Magic Packet\"" : "",
+> +		pme_status & PME_WOL_LINKUP ? " \"Link Up\"" : "",
+> +		pme_status & PME_WOL_ENERGY ? " \"Energy detect\"" : "");
+> +
+> +	ret = ksz8_ind_write8(dev, TABLE_PME_PORT(port), REG_IND_PORT_PME_STATUS, pme_status);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ksz_read8(dev, REG_INT_STATUS, &pme_status);
 
-Thanks for getting this sorted!  I should get time to do more extensive
-testing and review in next week or so.
+Recycling a variable with use case specific name, make the code more
+confusing. Use "var" far all or "int_status" for this case.
 
-Jonathan
+> +	return ksz_write8(dev, REG_INT_STATUS, pme_status && INT_PME);
 
->=20
-> [1] https://lore.kernel.org/all/20240529171236.32002-1-Jonathan.Cameron@h=
-uawei.com/
->=20
-> Mike Rapoport (Microsoft) (17):
->   mm: move kernel/numa.c to mm/
->   MIPS: sgi-ip27: make NODE_DATA() the same as on all other
->     architectures
->   MIPS: loongson64: rename __node_data to node_data
->   arch, mm: move definition of node_data to generic code
->   arch, mm: pull out allocation of NODE_DATA to generic code
->   x86/numa: simplify numa_distance allocation
->   x86/numa: move FAKE_NODE_* defines to numa_emu
->   x86/numa_emu: simplify allocation of phys_dist
->   x86/numa_emu: split __apicid_to_node update to a helper function
->   x86/numa_emu: use a helper function to get MAX_DMA32_PFN
->   x86/numa: numa_{add,remove}_cpu: make cpu parameter unsigned
->   mm: introduce numa_memblks
->   mm: move numa_distance and related code from x86 to numa_memblks
->   mm: introduce numa_emulation
->   mm: make numa_memblks more self-contained
->   arch_numa: switch over to numa_memblks
->   mm: make range-to-target_node lookup facility a part of numa_memblks
->=20
->  arch/arm64/include/asm/Kbuild                 |   1 +
->  arch/arm64/include/asm/mmzone.h               |  13 -
->  arch/arm64/include/asm/topology.h             |   1 +
->  arch/loongarch/include/asm/Kbuild             |   1 +
->  arch/loongarch/include/asm/mmzone.h           |  16 -
->  arch/loongarch/include/asm/topology.h         |   1 +
->  arch/loongarch/kernel/numa.c                  |  21 -
->  arch/mips/include/asm/mach-ip27/mmzone.h      |   1 -
->  .../mips/include/asm/mach-loongson64/mmzone.h |   4 -
->  arch/mips/loongson64/numa.c                   |  20 +-
->  arch/mips/sgi-ip27/ip27-memory.c              |   2 +-
->  arch/powerpc/include/asm/mmzone.h             |   6 -
->  arch/powerpc/mm/numa.c                        |  26 +-
->  arch/riscv/include/asm/Kbuild                 |   1 +
->  arch/riscv/include/asm/mmzone.h               |  13 -
->  arch/riscv/include/asm/topology.h             |   4 +
->  arch/s390/include/asm/Kbuild                  |   1 +
->  arch/s390/include/asm/mmzone.h                |  17 -
->  arch/s390/kernel/numa.c                       |   3 -
->  arch/sh/include/asm/mmzone.h                  |   3 -
->  arch/sh/mm/init.c                             |   7 +-
->  arch/sh/mm/numa.c                             |   3 -
->  arch/sparc/include/asm/mmzone.h               |   4 -
->  arch/sparc/mm/init_64.c                       |  11 +-
->  arch/x86/Kconfig                              |   9 +-
->  arch/x86/include/asm/Kbuild                   |   1 +
->  arch/x86/include/asm/mmzone.h                 |   6 -
->  arch/x86/include/asm/mmzone_32.h              |  17 -
->  arch/x86/include/asm/mmzone_64.h              |  18 -
->  arch/x86/include/asm/numa.h                   |  24 +-
->  arch/x86/include/asm/sparsemem.h              |   9 -
->  arch/x86/mm/Makefile                          |   1 -
->  arch/x86/mm/amdtopology.c                     |   1 +
->  arch/x86/mm/numa.c                            | 618 +-----------------
->  arch/x86/mm/numa_internal.h                   |  24 -
->  drivers/acpi/numa/srat.c                      |   1 +
->  drivers/base/Kconfig                          |   1 +
->  drivers/base/arch_numa.c                      | 223 ++-----
->  drivers/cxl/Kconfig                           |   2 +-
->  drivers/dax/Kconfig                           |   2 +-
->  drivers/of/of_numa.c                          |   1 +
->  include/asm-generic/mmzone.h                  |   5 +
->  include/asm-generic/numa.h                    |   6 +-
->  include/linux/numa.h                          |   5 +
->  include/linux/numa_memblks.h                  |  58 ++
->  kernel/Makefile                               |   1 -
->  kernel/numa.c                                 |  26 -
->  mm/Kconfig                                    |  11 +
->  mm/Makefile                                   |   3 +
->  mm/numa.c                                     |  57 ++
->  {arch/x86/mm =3D> mm}/numa_emulation.c          |  42 +-
->  mm/numa_memblks.c                             | 565 ++++++++++++++++
->  52 files changed, 847 insertions(+), 1070 deletions(-)
->  delete mode 100644 arch/arm64/include/asm/mmzone.h
->  delete mode 100644 arch/loongarch/include/asm/mmzone.h
->  delete mode 100644 arch/riscv/include/asm/mmzone.h
->  delete mode 100644 arch/s390/include/asm/mmzone.h
->  delete mode 100644 arch/x86/include/asm/mmzone.h
->  delete mode 100644 arch/x86/include/asm/mmzone_32.h
->  delete mode 100644 arch/x86/include/asm/mmzone_64.h
->  create mode 100644 include/asm-generic/mmzone.h
->  create mode 100644 include/linux/numa_memblks.h
->  delete mode 100644 kernel/numa.c
->  create mode 100644 mm/numa.c
->  rename {arch/x86/mm =3D> mm}/numa_emulation.c (94%)
->  create mode 100644 mm/numa_memblks.c
->=20
->=20
-> base-commit: 22a40d14b572deb80c0648557f4bd502d7e83826
+"pme_status && INT_PME" will write BIT(0) instead of BIT(4) which should
+be written in this case - So, it should be "pme_status & INT_PME".
 
+Instead of ksz_read8(dev, REG_INT_STATUS + ksz_write8, you can use one
+ksz_rmw8()
+
+> +}
+> +
+> +/**
+> + * ksz8_get_wol - Get Wake-on-LAN settings for a specified port.
+> + * @dev: The device structure.
+> + * @port: The port number.
+> + * @wol: Pointer to ethtool Wake-on-LAN settings structure.
+> + *
+> + * This function checks the PME 'wakeup-source' property from the
+> + * device tree. If enabled, it sets the supported and active WoL
+> + * flags.
+
+This is a bit confusing - this function do not checks devicetree properly.
+It only checks if the wakeup_source flag is set. In current code state, it is
+set from devicetree properly.
+
+> + */
+> +void ksz8_get_wol(struct ksz_device *dev, int port,
+> +		  struct ethtool_wolinfo *wol)
+> +{
+> +	u8 pme_ctrl;
+> +	int ret;
+> +
+> +	if (!dev->wakeup_source)
+> +		return;
+> +
+> +	wol->supported = WAKE_PHY;
+> +
+> +	/* Check if the current MAC address on this port can be set
+> +	 * as global for WAKE_MAGIC support. The result may vary
+> +	 * dynamically based on other ports configurations.
+> +	 */
+> +	if (ksz_is_port_mac_global_usable(dev->ds, port))
+> +		wol->supported |= WAKE_MAGIC;
+> +
+> +	ret = ksz8_ind_read8(dev, TABLE_PME_PORT(port), REG_IND_PORT_PME_CTRL, &pme_ctrl);
+> +	if (ret)
+> +		return;
+> +
+> +	if (pme_ctrl & PME_WOL_MAGICPKT)
+> +		wol->wolopts |= WAKE_MAGIC;
+> +	if (pme_ctrl & (PME_WOL_LINKUP | PME_WOL_ENERGY))
+> +		wol->wolopts |= WAKE_PHY;
+> +}
+> +
+> +/**
+> + * ksz8_set_wol - Set Wake-on-LAN settings for a specified port.
+> + * @dev: The device structure.
+> + * @port: The port number.
+> + * @wol: Pointer to ethtool Wake-on-LAN settings structure.
+> + *
+> + * This function configures Wake-on-LAN (WoL) settings for a specified port.
+> + * It validates the provided WoL options, checks if PME is enabled via the
+> + * switch's device tree property, clears any previous wake reasons,
+
+Same here, the "device tree" related part of comment can bit rot with
+time.
+
+> + * and sets the Magic Packet flag in the port's PME control register if
+> + * specified.
+> + *
+> + * Return: 0 on success, or other error codes on failure.
+> + */
+> +int ksz8_set_wol(struct ksz_device *dev, int port,
+> +/**
+> + * ksz9477_wol_pre_shutdown - Prepares the switch device for shutdown while
+
+s/ksz9477_wol_pre_shutdown/ksz8_wol_pre_shutdown
+
+> + *                            considering Wake-on-LAN (WoL) settings.
+> + * @dev: The switch device structure.
+> + * @wol_enabled: Pointer to a boolean which will be set to true if WoL is
+> + *               enabled on any port.
+> + *
+> + * This function prepares the switch device for a safe shutdown while taking
+> + * into account the Wake-on-LAN (WoL) settings on the user ports. It updates
+> + * the wol_enabled flag accordingly to reflect whether WoL is active on any
+> + * port. It also sets the PME output pin enable with the polarity specified
+> + * through the device-tree.
+> + */
+> +void ksz8_wol_pre_shutdown(struct ksz_device *dev, bool *wol_enabled)
+> +{
+
+> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
+> index b074b4bb0629..61403898c1f4 100644
+> --- a/drivers/net/dsa/microchip/ksz_common.c
+> +++ b/drivers/net/dsa/microchip/ksz_common.c
+> @@ -307,6 +307,9 @@ static const struct ksz_dev_ops ksz8_dev_ops = {
+>  	.init = ksz8_switch_init,
+>  	.exit = ksz8_switch_exit,
+>  	.change_mtu = ksz8_change_mtu,
+> +	.get_wol = ksz8_get_wol,
+> +	.set_wol = ksz8_set_wol,
+> +	.wol_pre_shutdown = ksz8_wol_pre_shutdown,
+
+This part will break on KSZ8830 variants. There is no WoL support.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
