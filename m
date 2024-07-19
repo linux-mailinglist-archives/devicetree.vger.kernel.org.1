@@ -1,105 +1,125 @@
-Return-Path: <devicetree+bounces-86858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59367937BCA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6472937BD4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAD7A282364
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 17:49:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99CBD282899
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 17:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF70146A99;
-	Fri, 19 Jul 2024 17:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82643146D51;
+	Fri, 19 Jul 2024 17:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="e8uTrJkg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF5B86131;
-	Fri, 19 Jul 2024 17:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E093B145FFB
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 17:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721411339; cv=none; b=EeCC4ZREj+lL+npEsfcOSbwtipvEghyP91ybuf9zJ5xHWmU9DxfkU4hRedZdMhbKI/tbAVBYguweyWqcmsQ5cCHlebOAADxqQLH9ambmZInhaVbSIqifoHyn8vvCuOUxr1IS8phXYX4cRTsEOf4H9g7iohh1aDALCVih8HARQIg=
+	t=1721411363; cv=none; b=DN1Ql+t9K2DJ5SUeXvnOuX/32mLDBL7CP6HBeMJ7B5YlAlwzcYdVW317kFNluCavWX2B37bMivNMnHmO/WgWfjlshesBc+oQkbuNyzrloGrQ99995bjr8DE72XarMPZqjWS6+tEHCsgxsf1s/C3+10jam5nB96AmDSz9gjIjiy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721411339; c=relaxed/simple;
-	bh=xp7mBQwcZ1HjECIkbMVEdPP9q1EAkE75LMQcoqDB0b8=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mehd68mcNhK88AN1bco3dCmlopoilNk++otrxSV3F+o5YYtCkoPkc7B8a3LpkPtxp41Ivn09f46y+4u/TvBLw1+DSpkRroSkMnjLUT02J8sFPIyN5Txb/5BRtub95TxASg54sgsx3FUAwX/lkLnjvY6JvqW01fKjcdQ8IRag4ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WQcZJ1Dcbz6J9fr;
-	Sat, 20 Jul 2024 01:47:20 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id CF8E5140A79;
-	Sat, 20 Jul 2024 01:48:44 +0800 (CST)
-Received: from localhost (10.48.157.16) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 19 Jul
- 2024 18:48:43 +0100
-Date: Fri, 19 Jul 2024 18:48:42 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens
-	<hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar
-	<mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul Adrian
- Glaubitz" <glaubitz@physik.fu-berlin.de>, Michael Ellerman
-	<mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linux-mips@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<sparclinux@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
-	<linux-cxl@vger.kernel.org>, <nvdimm@lists.linux.dev>,
-	<devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH 13/17] mm: move numa_distance and related code from x86
- to numa_memblks
-Message-ID: <20240719184842.000030bc@Huawei.com>
-In-Reply-To: <20240716111346.3676969-14-rppt@kernel.org>
-References: <20240716111346.3676969-1-rppt@kernel.org>
-	<20240716111346.3676969-14-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1721411363; c=relaxed/simple;
+	bh=NMnrCKod1zrNGwQ1DRNctFN0wjuyxtr733FEv/gsD5g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LqGenvNP15aoavl0Lp0s+3ZwuMsz3B8qm7mhDxbw4kyxZZ7INhvtAmwid4rqKNA8DGvRyf1W3WOl8gsIRCoMGl1UZtFZPs9z7rHE2+0fbQeP7wIGWllhLX7cwFh4aajPY2bGBgyNjy7fXndxnWDIV5nlcvzUOrqCj4ukSZAmW+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=e8uTrJkg; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e03a17a50a9so2455205276.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 10:49:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1721411360; x=1722016160; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nfgwwc2r3y6LJY2+fBZz5scVHiOZDENMtfcc2xc+/L0=;
+        b=e8uTrJkgttKNzgZTrhmADRgsf7uZNZJTx1srmHDsB6VUpTw9HPFya1wX1N1DHc6EwG
+         mANBpRmdLMtbpltl1hRtKMJcZnBkOW3leqrWlenzzahWGTsLCdwG/aRZLLQ8Ycx+Y6zZ
+         bq1PY8YIoPrZ9zaPhK1tX3oE2BzZNt4wh6A9Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721411360; x=1722016160;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Nfgwwc2r3y6LJY2+fBZz5scVHiOZDENMtfcc2xc+/L0=;
+        b=WMV/hxrWYDhFE1ZxOtFo50usqH0Xa0e8xkCgcphyVlv6ZoQGsVasRn+WlRC2JAyaOh
+         6vgV4nE4Kb/xmMnD5ucWhoOFSvlzZO3+oFpE8O2WyhiuImyoogxTWDYwEZ9D1xFvGb6t
+         tf95VUdo1IO7PaRlwWCP749C4lYmhS3m8+baDZDdcTgeEdo5pLU0s7btKts28UwhnIR3
+         JeFKPhF7tPh4yPAI+kOA18snu4dovh7nOV8KPF1cemuPJS0tD87P9NXikj6Fgxa8uHjK
+         MWifZOwbPwme1BzFhM3wtiKrJhQEL7BYmwdh6wE59lQ3PtkMbIlMjUuwL2kFgUAPUrcx
+         ZcuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUo+KQ3om6sbUfMiRw1OIJlO2pky589tkm4NK54q0YwPQ4o3h2o18ndImQeQUc9YK+ddon7Pz09Vo2BOQNxN+BYuE95KXwHw8oYBw==
+X-Gm-Message-State: AOJu0YzPLzXgZ7F261IBhJ7ORaje6dQKKfrBe9iRM8XiLmLrivOIPWQ/
+	uFC+nE9eYKAIH8fHRZMAiO/7qNO5DjNhp6+4nj2gYH+V0RaIEI+JXGVFcab+iDJW0nFNPFOLpRE
+	=
+X-Google-Smtp-Source: AGHT+IHWLVbJypRGeqG6GnxhYM4nkIUEwV4K2uozoE7RcHiuz5xexKjvaAfRWaMLA/nHb/nOXc4iUg==
+X-Received: by 2002:a05:6902:2847:b0:e06:6e0c:5f3 with SMTP id 3f1490d57ef6-e087029e902mr419769276.32.1721411360444;
+        Fri, 19 Jul 2024 10:49:20 -0700 (PDT)
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com. [209.85.160.172])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b7ac7d9757sm10478696d6.31.2024.07.19.10.49.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Jul 2024 10:49:19 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-447df43324fso326051cf.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 10:49:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWjSKM9B+Nnh+4q5MWJkFmYwALtwZPkR2tLCzTeF+I8ApmxWKes6K/x1kP38fg6BsLvOBXYn++26pQu1B5yQEGkub/hG0poDU4DBA==
+X-Received: by 2002:a05:622a:5509:b0:447:e8a5:fb27 with SMTP id
+ d75a77b69052e-44f9c86fd18mr2794581cf.25.1721411359169; Fri, 19 Jul 2024
+ 10:49:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+References: <20240716121112.14435-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240716121112.14435-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240716121112.14435-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 19 Jul 2024 10:49:03 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W1_m0dDXM8+Gbfcv92H8_h1wgh8u13iE03nYOT-tOtYA@mail.gmail.com>
+Message-ID: <CAD=FV=W1_m0dDXM8+Gbfcv92H8_h1wgh8u13iE03nYOT-tOtYA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] drm/panel: boe-th101mb31ig002 : Fix the way to get
+ porch parameters
+To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, airlied@gmail.com, 
+	mripard@kernel.org, hsinyi@google.com, awarnecke002@hotmail.com, 
+	quic_jesszhan@quicinc.com, dmitry.baryshkov@linaro.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 16 Jul 2024 14:13:42 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+Hi,
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> 
-> Move code dealing with numa_distance array from arch/x86 to
-> mm/numa_memblks.c
+On Tue, Jul 16, 2024 at 5:11=E2=80=AFAM Zhaoxiong Lv
+<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
+>
+> The current driver can only obtain the porch parameters
+> of boe-th101mb31ig002. Modify it to obtain the porch
+> parameters of the panel currently being used.
+>
+> Fixes: 24179ff9a2e4524 ("drm/panel: boe-th101mb31ig002 : Make it compatib=
+le with other panel.")
+> Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> ---
+> Changes between V2 and V1:
+> -  1. No changes, Modify the commit information format.
+> v1: https://lore.kernel.org/all/20240715031845.6687-2-lvzhaoxiong@huaqin.=
+corp-partner.google.com/
+> ---
+>  drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c | 9 ++++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
 
-It's not really numa memblock related. Is this the best place
-to put it?
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-> 
-> This code will be later reused by arch_numa.
-> 
-> No functional changes.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-
+I assume we'd want to see a re-post of this series with patch #2
+comments addressed before landing? What do others think?
 
