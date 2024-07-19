@@ -1,126 +1,153 @@
-Return-Path: <devicetree+bounces-86720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7CC5937452
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:20:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8333D93746E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:36:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72381B22346
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 07:20:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A84571C20D82
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 07:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837B14F8BB;
-	Fri, 19 Jul 2024 07:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043AF53363;
+	Fri, 19 Jul 2024 07:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CKwA7xE7"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iSOPtPQn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE39A446CF
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 07:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70B52CA6;
+	Fri, 19 Jul 2024 07:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721373648; cv=none; b=YmNJAgGdafCja704w79rxKSK625/Hkv2us+UgTOB8+5JyX24ntpz+sAVoE8EhIgo/fXue+53RV/q1iOj4m6wYWeO0VJwegtAfpuzRiSrmQQM84htYe2ajVclBj/HnpPSaN9u9yhvW1YYbC8/0h+ZfZkaW5YNNB2lWNITmcmQT2Y=
+	t=1721374604; cv=none; b=NLJmnUmKG+QbFDUS6PQF5LlrwtyLqaemTGQYbeMxqCrCTW8gRAotkLRUOuEbZPSejuPam59lEIWEvfVa4gYXFJUdVi3aWRw/HGT55dTFJHW5bx9E1s39/Z8bi9LgApuJGuIPTGdKQz3Q4PZT/1AcB/WEZFHhAaJ8rUz8KJ/QOh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721373648; c=relaxed/simple;
-	bh=snCOMfSAIZ7BN7SEbXap79VN++oHgdcE3AI+lBWfejI=;
+	s=arc-20240116; t=1721374604; c=relaxed/simple;
+	bh=aC9MkwUDJk7T/TtXgzd8e6HDNqDjDkQL+GKqceDP1Ho=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=At863lWLCrh7a1UqRd1n2cXI+BcGurMPTwYdwDecwzxtu0ORo5t27Iv31o61087EbXsRVwpm6qJHFO+LfzTOyL1ICUrjlOGMPAKutYLunemHsDU+c5734ZKY7boqcSa2B23MhpkzEDaMA5PoAyvAr7BGAhAGpWILxO6lC+GPaxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CKwA7xE7; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-59f9f59b827so787692a12.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 00:20:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721373644; x=1721978444; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=snCOMfSAIZ7BN7SEbXap79VN++oHgdcE3AI+lBWfejI=;
-        b=CKwA7xE7/Ff/gcwjddW+QvFZ38IRkEJiatecI+IzqMYs0f3/b7sLIxH6TWvuEiX0mS
-         Ytr5+0OM8CEW6WOBz/oUyU6nFm/i3cR/MtiFmj/TQQvmUPHgdusADDIzJKMbuDHd6Ute
-         XRdNosgpmvYeVqyZM2g+67KjHukPvy6EU/wGlYoo8JNaXIEsZkBhAs7FVq7LYmx0akTx
-         2e50+c/MMSIjeAm47Babd1Qzw3Sr94aBqfF0XZkipI/U1iGT8PIO6E+vbw1nTY1FN6j+
-         723YvUPeyPseHkUQZ5SIdTki+czF5jkeLfg0CozCs3CcbTUgze78iSFN9mtWHAXRHso3
-         90cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721373644; x=1721978444;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=snCOMfSAIZ7BN7SEbXap79VN++oHgdcE3AI+lBWfejI=;
-        b=qES3iqsuLWm4PIKHfrNXMISY/gCsOMEcqXVSIBK/WtBXIcUvknnOCk9q8w3/zyx2lu
-         gx5WAoC0llEZwRC8zpGkgX/r9nTMdZhi/EFAMEd/xjpGBfdsKUndNznwsXUVTBR4bl7x
-         4hWuIE0BAhQLYTZlNohgyG3uRz8eYrs8hcNd5ogfIODl+UgjNl/Usc1833ZnWEsOLHoL
-         E7p+2D4YQT2tpoufMXs1GWV6Xf2Ozz/f6eAq9aUEDcPczUJO7HQK4vbzAOVyBhnjdB51
-         hLibt/9RKbd0GET0unEP0BX76nkbBlAK1NtKxHiReAxKR1/4X4c7UsMLny1+1ECmLYmf
-         bDFg==
-X-Forwarded-Encrypted: i=1; AJvYcCX97qwanhHLm9tKy8YnihyHST/ehLzRQ2pia7knFuxsQkMS5M3FHzI85IjN/OxzUcAd5HQYUSmzSJ6Ejqwibd7PD4vUbUXKlQ7jUQ==
-X-Gm-Message-State: AOJu0YxrUpyG9ED1E7Sssqui/qqZUtLgbVEK2B4ueLwwG76tw7L3rZEB
-	ekdTDnyYOR3816qiTeFzEhkAxAkmgTDsBCzk6ZJjhF8ek/BfcWxMShWG6A1B/60=
-X-Google-Smtp-Source: AGHT+IHSnMJiPqKXQFc7TqXz25zzG8NVyoXNnDQ32Bkv6V9d4Cr9qVr7e/wI2y2FwvE11QdoZJJXTA==
-X-Received: by 2002:a50:d682:0:b0:57d:46f4:7df5 with SMTP id 4fb4d7f45d1cf-5a05bfaa613mr3897320a12.23.1721373644032;
-        Fri, 19 Jul 2024 00:20:44 -0700 (PDT)
-Received: from localhost (p50915eb1.dip0.t-ipconnect.de. [80.145.94.177])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c7d30a0sm669323a12.83.2024.07.19.00.20.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 00:20:43 -0700 (PDT)
-Date: Fri, 19 Jul 2024 09:20:42 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: George Stark <gnstark@salutedevices.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	neil.armstrong@linaro.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	martin.blumenstingl@googlemail.com, jbrunet@baylibre.com, khilman@baylibre.com, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, kernel@salutedevices.com, hkallweit1@gmail.com
-Subject: Re: [PATCH v4 0/3] pwm: meson: add pwm support for A1
-Message-ID: <bp3hbxl6zs6lwomfdj6edhq35pde3gr5i2qizgdf2varke2eai@weeodo6gacd7>
-References: <20240710234116.2370655-1-gnstark@salutedevices.com>
- <52e2e211-a0b7-47b1-a451-34c304028097@salutedevices.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=r1o/Wz5rPH5CijvWJqPSs8RKapv7Xd1IksU/9IPV/CkFcSpVPxz48Kk0zEJlhASGsHn3zwOclfmZFZ96nJDpfwSaCfTmZeVe4ebYMdChPYDzjms15jWqb78j3t6NxLJHJsCGVMMtU+JVGrUgHQ2RDt0x4S2RodqS9UFuZtgrZjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iSOPtPQn; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3CF85471;
+	Fri, 19 Jul 2024 09:36:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721374561;
+	bh=aC9MkwUDJk7T/TtXgzd8e6HDNqDjDkQL+GKqceDP1Ho=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iSOPtPQnAN2dN+dPrtvML40dvEnFrkSH/9buEzj8weB6O99NTguiVaDRAWzJKgbkl
+	 /6qAPZZwbTGIeh8HhLQAcZbm47LQcoPXdY80ICPwbzH1whRI2dWu/PbvGXoyJUzpuG
+	 3Ol5HkEZnWBSQ1bhVwVYc+2l1CIK2rbIWGbs1nSQ=
+Date: Fri, 19 Jul 2024 10:36:25 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Haibo Chen <haibo.chen@nxp.com>
+Subject: Re: [PATCH v4 2/4] mfd: adp5585: Add Analog Devices ADP5585 core
+ support
+Message-ID: <20240719073625.GA12656@pendragon.ideasonboard.com>
+References: <20240608141633.2562-1-laurent.pinchart@ideasonboard.com>
+ <20240608141633.2562-3-laurent.pinchart@ideasonboard.com>
+ <Zpcu3+6Ar/zR78Ma@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="a4mrqcrkf7uvtgvq"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <52e2e211-a0b7-47b1-a451-34c304028097@salutedevices.com>
+In-Reply-To: <Zpcu3+6Ar/zR78Ma@lizhi-Precision-Tower-5810>
 
+Hi Frank,
 
---a4mrqcrkf7uvtgvq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Tue, Jul 16, 2024 at 10:39:27PM -0400, Frank Li wrote:
+> On Sat, Jun 08, 2024 at 05:16:31PM +0300, Laurent Pinchart wrote:
+> > From: Haibo Chen <haibo.chen@nxp.com>
+> > 
+> > The ADP5585 is a 10/11 input/output port expander with a built in keypad
+> > matrix decoder, programmable logic, reset generator, and PWM generator.
+> > This driver supports the chip by modelling it as an MFD device, with two
+> > child devices for the GPIO and PWM functions.
+> > 
+> > The driver is derived from an initial implementation from NXP, available
+> > in commit 8059835bee19 ("MLK-25917-1 mfd: adp5585: add ADI adp5585 core
+> > support") in their BSP kernel tree. It has been extensively rewritten.
+> > 
+> > Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Laurent:
+> 	Just saw you already sent out adp5585 patches. Do you plan to
+> continue work on this? If you are busy, I can help follow up this.
 
-Hello George,
+I just came back from vacation and have a large backlog. Please feel
+free to take my v4, rebase it, address any review comments, and send a
+v5 if you would like to help merging the driver faster. Please CC me on
+the patch submission.
 
-On Thu, Jul 18, 2024 at 04:09:04PM +0300, George Stark wrote:
-> Excuse me, should I fix/improve anything on this series?
+> > ---
+> > Changes since v2:
+> > 
+> > - Add missing and remove extraneous headers
+> > - Use i2c_get_match_data()
+> > - Drop unneeded parentheses
+> > - Use GENMASK()
+> > - Drop of_match_ptr()
+> > - Allow compilation on !OF with COMPILE_TEST
+> > - Replace ADP5585_MAN_ID() macro with ADP5585_MAN_ID_MASK
+> > - Drop unneeded macro
+> > 
+> > Changes since v1:
+> > 
+> > - Add comment to explain BANK and BIT macros
+> > - Drop compatible strings from cells
+> > - White space fixes
+> > - Fix comparison to NULL
+> > 
+> > Changes compared to the NXP original version:
+> > 
+> > - Add MAINTAINERS entry
+> > - Fix compatible strings for child devices
+> > - Fix header guards
+> > - Use lowercase hex constants
+> > - White space fixes
+> > - Use module_i2c_driver()
+> > - Switch to regmap
+> > - Drop I2C device ID table
+> > - Drop ADP5585_REG_MASK
+> > - Support R5 GPIO pin
+> > - Drop dev field from adp5585_dev structure
+> > - Check device ID at probe time
+> > - Fix register field names
+> > - Update copyright
+> > - Update license to GPL-2.0-only
+> > - Implement suspend/resume
+> > ---
+> >  MAINTAINERS                 |   2 +
+> >  drivers/mfd/Kconfig         |  12 +++
+> >  drivers/mfd/Makefile        |   1 +
+> >  drivers/mfd/adp5585.c       | 199 ++++++++++++++++++++++++++++++++++++
+> >  include/linux/mfd/adp5585.h | 126 +++++++++++++++++++++++
+> >  5 files changed, 340 insertions(+)
+> >  create mode 100644 drivers/mfd/adp5585.c
+> >  create mode 100644 include/linux/mfd/adp5585.h
 
-The known issue with this series is just that it's one of several patch
-series that I didn't come around to review yet. I tackle them one at a
-time, usually in a FIFO order as listed on
-https://patchwork.ozlabs.org/project/linux-pwm/list/ .
+[snip]
 
-Best regards
-Uwe
+-- 
+Regards,
 
---a4mrqcrkf7uvtgvq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaaE8cACgkQj4D7WH0S
-/k6nDgf8D5F2Na4nH6HLwiqFon8plnLTpbHNktSH8KoKVdGii8LxI9VwSaFm625x
-7TRIUvuD6Ss2nW8Wyy5XN+Jj7GjFT4l2A6YOTtbPYqpnAKryKUPmu5QPFLE/UrH6
-HqoABIBLJsFFFFLHN8DSJm6EwHOLyfqmhtYt3ReQLYvu9flXIht4E+JCUnZSrxRM
-dw1WSK1yJBMhDcnIMcFZ48C+ymj4t3bzImEt8mjoExdlFC/sUzsZr2853Dme9QJk
-Gqi3tjsgTHFBMq1CpjXdJNBTnQaqRECKVvrEntWW66s8ocdF4Q5Ib3M8TeOY2WLg
-EpCoY/o9x4O2xTSQ0Y0C7kRbNln1rw==
-=tWvy
------END PGP SIGNATURE-----
-
---a4mrqcrkf7uvtgvq--
+Laurent Pinchart
 
