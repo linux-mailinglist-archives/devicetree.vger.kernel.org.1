@@ -1,131 +1,125 @@
-Return-Path: <devicetree+bounces-86766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E672A93770C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:13:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2461793771A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:22:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5F54283014
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:13:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEC861F225D4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:22:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2D484D13;
-	Fri, 19 Jul 2024 11:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E87684D2C;
+	Fri, 19 Jul 2024 11:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GiqsKjAI"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="QTTQpw/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A681A1C32;
-	Fri, 19 Jul 2024 11:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB68284E14;
+	Fri, 19 Jul 2024 11:22:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721387591; cv=none; b=Ux1sS3cJ2Xq2pVa2xizH0tVuQukbcOpifYIYIJLiejcJNVL3SZeXmlR0lYPiLB1qhlUBnL3F1B6hALc+79SDyLQDi8Fq00mR2cWrEJ+tCLMIgTY0iBjXtAdjb9XlG7abJUJPtSv2f2X/JzRp7Nqw8SjPwcOWXgEyQogAi8rRps8=
+	t=1721388149; cv=none; b=fy8hyO2pj/CtIKEvQB22Y/ev0NSS1qBHrlbtS9zbC71JT4FIuQIg/kd/CN+a0eTkjSBhv3fakIsA2xZxlCem0cbBMzB2iuR5HjQr4x+r6ovhXcAQGRx6hMhVf6uATpDuPb2geSZ0LgFiXIq91fLVS9toP8Ek3+TDHj10TO/HScE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721387591; c=relaxed/simple;
-	bh=yGv+d05VUcp+940D6ofZXpayRyz+ydVQ8XrF9QmhIlY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bfX5ICdlaf4rjiv9FrIOhKFshekMCyb9Ut5t31I2LSr+4Limctm2Lextp5EPmT1LOW+osUsMaLMFPK5vLyHcUWLEz0Ll1ab+0d6ZqapqOytV3dghDeRy2Kfx9Dus8kX6bNgw7OjyVmBUUlkZpm2mndCbtbAf/RX+gwA3tVgSyBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GiqsKjAI; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-75b77be7611so211518a12.3;
-        Fri, 19 Jul 2024 04:13:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721387589; x=1721992389; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cI2OyaGeJoZ3jwOXtrp/t3st7XUlc9wAYXqVZ5e8wn8=;
-        b=GiqsKjAI1FdQBhmSLeBOWugJRYwNboErl3o2wfPzXw/NP9F9gxm7S8Z5SxLMd0Sgio
-         zfaetHLTbuTHMHoXdHap84bXkuhiowcXQy+DdZ/dDPFWdRjL6EAcTKFiz1hW6/BaET7b
-         QmsMozO+Jem4VnN2uJLRXk6f7HLZPGK/13mZCNOrLX3UDMF/FTxUmptPBXEDB4djwGuF
-         noYIzaBf8p8DVnXp0Bx4sCNpoVH5VUjIFKrOffbGSeylGWGif/wyFrtXA8Bf6qaOxLdA
-         wjVp7josJCF/MOWhCYOOKEge+B4jeDM7uCl6p/KQRfRR7rGVHk+NK/Jb6nR/i/Ci07wG
-         RDIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721387589; x=1721992389;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cI2OyaGeJoZ3jwOXtrp/t3st7XUlc9wAYXqVZ5e8wn8=;
-        b=eNv4Gu+LCQFBEwz5ZjA4onpneBs5zT/OXrCyTREj6dtEdJjPdUtHLcpx272j19T/IG
-         ps7TLNtMVE4jecRGrmnfMBi4fcE3AhWuJrE0meg/rBC22q11OtdYhm2aa0h72vnC0zJj
-         HAGgxbbmwYuisFmGiFHru9Yr43Q29nTmiNTv/Lki/EwtofO6dqa1lvZJvcqIv0DRitt4
-         QQW1qb+2SChpldHoNC6BlLxgT//LY/ik0wLQF61f7+6Mcp6JGpxmxSO8ecGj77YQB5lm
-         REV2fCnN1BvmWkd9ZFKzoqB2uOtg6BGKmhUOm/sVPnxAbKrhr+2BIb3drICQicPFlBYd
-         d/6w==
-X-Forwarded-Encrypted: i=1; AJvYcCVm9Hp15IIMJwZ8Ks3y5+0ZoZuGPD/btIiidY4ZmQPvgSOvwW2y2AM0LEEcHpFOVQHAh0n9AikxSUDagiH5xalij4UzaweAbKevdA==
-X-Gm-Message-State: AOJu0Yyf0zNcjEWtZ0hyM5tr3OwbnYoXw/qni87cfRontps1RDMm2jiW
-	pVJqNDampig7ddOLcTRXIAiza4Ux6RT+18iF8R1Rzj6VxMbFcG7+ESyW9w==
-X-Google-Smtp-Source: AGHT+IG2JJJPxabdVPZ6T2TEjoovVVyfOK99NYS1AWCRX8RPjnc05mWwK92iQlMuHULD6A7++2/Vkg==
-X-Received: by 2002:a05:6a20:e609:b0:1c1:5772:3bf3 with SMTP id adf61e73a8af0-1c417f5662bmr1447427637.0.1721387588787;
-        Fri, 19 Jul 2024 04:13:08 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:bc92:63f4:6f0e:1985])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cb76a619e8sm2303031a91.0.2024.07.19.04.13.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 04:13:08 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: linux-spi@vger.kernel.org,
-	otavio.salvador@ossystems.com.br,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 3/3] ARM: dts: rockchip: rv1108-elgin-r1: Do not describe unexisting DAC device
-Date: Fri, 19 Jul 2024 08:12:10 -0300
-Message-Id: <20240719111210.1287783-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240719111210.1287783-1-festevam@gmail.com>
-References: <20240719111210.1287783-1-festevam@gmail.com>
+	s=arc-20240116; t=1721388149; c=relaxed/simple;
+	bh=gCBf+KZT1rBru5MYqeke41rALdRkuIZfrNphkR+xKtg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=B9HZ6clHdmR+oWwlNljU4QcdkUDAhhpIQ/cNBodcDz+tWibri7MK5hAzJlgX/GCG/wtkvOn//Zt6y+y4Xw7brbNLRURCrdyHzP6GYgJTm2Sg1bduuHc2QXMXTS/lLouHDUk28jDfDNDn/a6ikp7TBRODpCiz0+3L9GWLBY2GCXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=QTTQpw/g; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 259E7100004;
+	Fri, 19 Jul 2024 14:22:21 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 259E7100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1721388141;
+	bh=llE/44dMTNKnUSBmsfPJUwp9Lmbr3Wo7lWfPjeUVyzU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=QTTQpw/go/CMBjRenn7SNcC23QGqsmSYiuUPI8srwMrN8+2P0zG2EUB5hJxOGbrmV
+	 7KhTiw486GV1jubtq7EO5aQ7HFhWLRoVppGn6NiQqQA2t7eCcOnJcNyvReNjQBmq90
+	 3TUqsbL9mRLWXECK0eQFw6tIwLi64vLdEQ/hhCs2wjG3g9L7xgeSWSyiVN6djx6nhP
+	 2j/exCVIRf5SK+TjMxg+Z0qKjFNYUid0Vlvx+gsCZC/2Pxqfez75R7RzWX+4NNbVMB
+	 nC903xNilBhW6Rn08tnib6G93bKjl4FLhS5T5yThA0SMJR8VghD3lucHdpkExQ1QAn
+	 ZWcYzscBCgnEA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 19 Jul 2024 14:22:20 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 19 Jul 2024 14:22:20 +0300
+Message-ID: <dbb4be50-4793-40ab-b362-6c9a6dd87324@salutedevices.com>
+Date: Fri, 19 Jul 2024 14:22:20 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/3] pwm: meson: add pwm support for A1
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <linux-pwm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <martin.blumenstingl@googlemail.com>,
+	<jbrunet@baylibre.com>, <khilman@baylibre.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>,
+	<hkallweit1@gmail.com>
+References: <20240710234116.2370655-1-gnstark@salutedevices.com>
+ <52e2e211-a0b7-47b1-a451-34c304028097@salutedevices.com>
+ <bp3hbxl6zs6lwomfdj6edhq35pde3gr5i2qizgdf2varke2eai@weeodo6gacd7>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <bp3hbxl6zs6lwomfdj6edhq35pde3gr5i2qizgdf2varke2eai@weeodo6gacd7>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186588 [Jul 18 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_arrow_text}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/07/18 08:50:00
+X-KSMG-LinksScanning: Clean, bases: 2024/07/18 08:50:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/18 08:29:00 #26061289
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-There is no DAC connected to the SPI bus of the Elgin RV1108 R1 board.
 
-There is a JG10309-01 LCD controlled via SPI though.
 
-Properly describe it by adding the "elgin,jg10309-01" compatible
-string.
+On 7/19/24 10:20, Uwe Kleine-König wrote:
+> Hello George,
+> 
+> On Thu, Jul 18, 2024 at 04:09:04PM +0300, George Stark wrote:
+>> Excuse me, should I fix/improve anything on this series?
+> 
+> The known issue with this series is just that it's one of several patch
+> series that I didn't come around to review yet. I tackle them one at a
+> time, usually in a FIFO order as listed on
+> https://patchwork.ozlabs.org/project/linux-pwm/list/ .
+> 
+> Best regards
+> Uwe
 
-Reported-by: Conor Dooley <conor.dooley@microchip.com>
-Closes: https://lore.kernel.org/linux-arm-kernel/20240717-parrot-malt-83cc04bf6b36@spud/
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
-Changes since v1:
-- Use a more specific compatible string. (Conor)
+Hello Uwe
 
- arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Ok, no problem. Thanks for letting me know.
 
-diff --git a/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts b/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-index 2d9994379eb2..971bb617e845 100644
---- a/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-+++ b/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dts
-@@ -168,8 +168,8 @@ &spi {
- 	pinctrl-0 = <&spim1_clk &spim1_cs0 &spim1_tx &spim1_rx>;
- 	status = "okay";
- 
--	dh2228fv: dac@0 {
--		compatible = "rohm,dh2228fv";
-+	display: display@0 {
-+		compatible = "elgin,jg10309-01";
- 		reg = <0>;
- 		spi-max-frequency = <24000000>;
- 		spi-cpha;
 -- 
-2.34.1
-
+Best regards
+George
 
