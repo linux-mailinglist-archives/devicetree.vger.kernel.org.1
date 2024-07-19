@@ -1,99 +1,191 @@
-Return-Path: <devicetree+bounces-86815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F4393793E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC662937940
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD43282DBE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:38:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772F3282A07
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6810181211;
-	Fri, 19 Jul 2024 14:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I0WJdU42"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495EF1F949;
+	Fri, 19 Jul 2024 14:39:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC7CBA20;
-	Fri, 19 Jul 2024 14:38:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83C3C2D6;
+	Fri, 19 Jul 2024 14:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721399918; cv=none; b=mW1nWd7tBcz2NYtg4bLYS0cwNNhc5Y5Cp+RJ2i08BjlIDMbgbOhVh73oGmk5/nZUrIE7ArRraEJxEHZsE0qOdwza5xX3JqA8VfffX3mBVxKsGm0ddS7OcvMuU1v+bnSkDm1EzNY1M1XvzXoCpeWc2eUZd938mtvzBYZS2uq1DLw=
+	t=1721399940; cv=none; b=sqp4/0Krl8vwmWTIp6QKtL/SAyfo25kLIr4Y0lbUshfsgbELEEdOvORh1scCnNj3UHbDilVuuihtXLbRdBxH+G+BHGsW3HL19h0NSq7s6pESAmtsEEoeJgSejVEDggS6Ib4lkWerMb4WnE+L7PT+aGp8XjbX4HEF0+078QqsyLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721399918; c=relaxed/simple;
-	bh=TNzI3O0yy78NOoIK5RtxjRq6sE5XlidG4AdXuNXlltc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MNrgMxF3qQ98QCJHDYMdm58pym8HAkkgvsfCIc8Dfmw4b+MX9CYwFbef0rsmRO9xwk4G8owYGTrSm1NOuoaAftZPSY+enjNMPVEATmwp+OPgrDw1aWfAB3SwzeEnMRFA3/7Vg1+Y32Yg/7P2dFDzxnfiPcJq4I1NW89vaYjUmOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I0WJdU42; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ee871fd456so2580361fa.0;
-        Fri, 19 Jul 2024 07:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721399915; x=1722004715; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TNzI3O0yy78NOoIK5RtxjRq6sE5XlidG4AdXuNXlltc=;
-        b=I0WJdU42DvvdNuabzqrQ/28aiSLMlCAbRx2LRY5eaOgPS0lBN7gVLJ6SMGLF3fw1R2
-         sjjOw5X06B2QQuM4ZQu65y7q0rddXjWQ7xOkug7lNHsM9f1Xn+x9+eMuPOSJZ6N13Oej
-         peF5rfBJEVbXbs51CF2UKPIIUc9phEPbFc/F4KFpV40L1Vkp9G9m3BEEmYT7nzNt7/Yx
-         cJsTRuKNO8fYztUR3la/Qe1EYTktPIMfKon6t02+/84qIRLb1f3McgKUQMkIcZkI4FfG
-         Ml+u56MULKXXIUVYJu8ktZd7XAHnL8NwMZH5z52Flk2mFndVRT5a/tSKI6PSyd9Ns530
-         EdBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721399915; x=1722004715;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TNzI3O0yy78NOoIK5RtxjRq6sE5XlidG4AdXuNXlltc=;
-        b=QwDCZpHFmCahldr2JLsZXSvAjj/o0vCIuhcPAN7H9WH0eHjNu7bxr9jx2+Ys2Rk1yo
-         KLIs45oJRjV9p1raISaqtt9IeNkocTm3Te+WXOOrCsuXtmMksTu0pOIFp10MKmwiUzlN
-         tVnnwxhqjRj5bvQyft4DuloQnzNz4uOoKG39bWIq0HJCR+3s0yMqv/c/CGEShTsv55dU
-         1DGa8GPmZA+92a5lf8KZxkqf464vAWgKCw9w03xMO12RmDq1YLkwARNuHrdhKVLdzXFn
-         5pfixMTOsOImnmaJUGQf5h5FYDE+O6305fRpJ9j+0aTfncLyoW/NGKANaGaLYYVIw2Fk
-         jDdw==
-X-Forwarded-Encrypted: i=1; AJvYcCVzvOZZVogoX82JaccMGch1pm7QwmFdX+B56mTkFuM5yOIU1Nt8BBfmYJNd5KlzKaiyJ94DXqO7X2PunxGFbvkO1JJ1SuClTKSAXqTftPQwMgLqdtDbc376S7F3ksEyPjNVJ8x3pw==
-X-Gm-Message-State: AOJu0YyPPrJ6YDoP3OV2+/tIi5LbLbMbkcVSvU6P47BuvSEeY768rilu
-	diFfZQ9PsSFdmClSjKwnMqd4PtCB1sxQAVqI1ZXxjH0IG3bz8mSaY5g2d57K46HsLFZbphICC86
-	CGsaRZolL6MxkaS2gBxTnEixmoerlDw==
-X-Google-Smtp-Source: AGHT+IGvLhXzUqfZi5Ac96zTSjml5Dmj0OwFZ6wRoJNzXFT+GVVoAbqLZFju7YhZ5YvNj6s4GjbB34ciYuEaiwgbWl4=
-X-Received: by 2002:a05:651c:a0d:b0:2ee:fac0:2af9 with SMTP id
- 38308e7fff4ca-2ef0d67ddbemr13284261fa.6.1721399914440; Fri, 19 Jul 2024
- 07:38:34 -0700 (PDT)
+	s=arc-20240116; t=1721399940; c=relaxed/simple;
+	bh=MthLwAZw/K/pHDsypzwnpxxVpjnrL/t3lpnlDB9Cp0s=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mOAi+7thFhKnKaktgyzcse1NQeHqjm6hDQ8FzbruE/hG3pderNui9BF0sgLil2BSsAy6CWqk35kfL9ypenfiTbhqhwdn/3gsNA9qdSJPlgoY6FKEKUJ/vi07eDJAiUjrrEncJMBqF1PCRQ6vv/hNhVMHAAhn9tRujzFwPmbIGSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WQXMF48rrz6JBjL;
+	Fri, 19 Jul 2024 22:37:29 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id D6E9D140684;
+	Fri, 19 Jul 2024 22:38:53 +0800 (CST)
+Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 19 Jul
+ 2024 15:38:53 +0100
+Date: Fri, 19 Jul 2024 15:38:52 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: David Hildenbrand <david@redhat.com>
+CC: Mike Rapoport <rppt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	"Alexander Gordeev" <agordeev@linux.ibm.com>, Andreas Larsson
+	<andreas@gaisler.com>, Andrew Morton <akpm@linux-foundation.org>, Arnd
+ Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>, Catalin Marinas
+	<catalin.marinas@arm.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Dan Williams <dan.j.williams@intel.com>, Dave Hansen
+	<dave.hansen@linux.intel.com>, "David S. Miller" <davem@davemloft.net>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens
+	<hca@linux.ibm.com>, "Huacai Chen" <chenhuacai@kernel.org>, Ingo Molnar
+	<mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, John Paul Adrian
+ Glaubitz <glaubitz@physik.fu-berlin.de>, Michael Ellerman
+	<mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
+	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
+	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<loongarch@lists.linux.dev>, <linux-mips@vger.kernel.org>,
+	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
+	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
+	<sparclinux@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-cxl@vger.kernel.org>, <nvdimm@lists.linux.dev>,
+	<devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+	<linux-mm@kvack.org>, <x86@kernel.org>
+Subject: Re: [PATCH 02/17] MIPS: sgi-ip27: make NODE_DATA() the same as on
+ all other architectures
+Message-ID: <20240719153852.00003f44@Huawei.com>
+In-Reply-To: <e57eca18-b66d-4b5d-9e73-8ab22f6bc747@redhat.com>
+References: <20240716111346.3676969-1-rppt@kernel.org>
+	<20240716111346.3676969-3-rppt@kernel.org>
+	<e57eca18-b66d-4b5d-9e73-8ab22f6bc747@redhat.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240718200540.955370-1-festevam@gmail.com> <20240719-clunky-skintight-7dde4efd7cb7@spud>
-In-Reply-To: <20240719-clunky-skintight-7dde4efd7cb7@spud>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 19 Jul 2024 11:38:23 -0300
-Message-ID: <CAOMZO5BDh4RZr7n5J8HKXnfhVVPK76Rfp2Q55d4N=7ToAkoS2g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: trivial-devices: Document elgin,spi-lcd
-To: Conor Dooley <conor@kernel.org>
-Cc: broonie@kernel.org, linux-spi@vger.kernel.org, 
-	otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-Hi Conor,
+On Wed, 17 Jul 2024 16:32:59 +0200
+David Hildenbrand <david@redhat.com> wrote:
 
-On Fri, Jul 19, 2024 at 5:42=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
+> On 16.07.24 13:13, Mike Rapoport wrote:
+> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+> > 
+> > sgi-ip27 is the only system that defines NODE_DATA() differently than
+> > the rest of NUMA machines.
+> > 
+> > Add node_data array of struct pglist pointers that will point to
+> > __node_data[node]->pglist and redefine NODE_DATA() to use node_data
+> > array.
+> > 
+> > This will allow pulling declaration of node_data to the generic mm code
+> > in the next commit.
+> > 
+> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > ---
+> >   arch/mips/include/asm/mach-ip27/mmzone.h | 5 ++++-
+> >   arch/mips/sgi-ip27/ip27-memory.c         | 5 ++++-
+> >   2 files changed, 8 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/mips/include/asm/mach-ip27/mmzone.h b/arch/mips/include/asm/mach-ip27/mmzone.h
+> > index 08c36e50a860..629c3f290203 100644
+> > --- a/arch/mips/include/asm/mach-ip27/mmzone.h
+> > +++ b/arch/mips/include/asm/mach-ip27/mmzone.h
+> > @@ -22,7 +22,10 @@ struct node_data {
+> >   
+> >   extern struct node_data *__node_data[];
+> >   
+> > -#define NODE_DATA(n)		(&__node_data[(n)]->pglist)
+> >   #define hub_data(n)		(&__node_data[(n)]->hub)
+> >   
+> > +extern struct pglist_data *node_data[];
+> > +
+> > +#define NODE_DATA(nid)		(node_data[nid])
+> > +
+> >   #endif /* _ASM_MACH_MMZONE_H */
+> > diff --git a/arch/mips/sgi-ip27/ip27-memory.c b/arch/mips/sgi-ip27/ip27-memory.c
+> > index b8ca94cfb4fe..c30ef6958b97 100644
+> > --- a/arch/mips/sgi-ip27/ip27-memory.c
+> > +++ b/arch/mips/sgi-ip27/ip27-memory.c
+> > @@ -34,8 +34,10 @@
+> >   #define SLOT_PFNSHIFT		(SLOT_SHIFT - PAGE_SHIFT)
+> >   #define PFN_NASIDSHFT		(NASID_SHFT - PAGE_SHIFT)
+> >   
+> > -struct node_data *__node_data[MAX_NUMNODES];
+> > +struct pglist_data *node_data[MAX_NUMNODES];
+> > +EXPORT_SYMBOL(node_data);
+> >   
+> > +struct node_data *__node_data[MAX_NUMNODES];
+> >   EXPORT_SYMBOL(__node_data);
+> >   
+> >   static u64 gen_region_mask(void)
+> > @@ -361,6 +363,7 @@ static void __init node_mem_init(nasid_t node)
+> >   	 */
+> >   	__node_data[node] = __va(slot_freepfn << PAGE_SHIFT);
+> >   	memset(__node_data[node], 0, PAGE_SIZE);
+> > +	node_data[node] = &__node_data[node]->pglist;
+> >   
+> >   	NODE_DATA(node)->node_start_pfn = start_pfn;
+> >   	NODE_DATA(node)->node_spanned_pages = end_pfn - start_pfn;  
+> 
+> I was assuming we could get rid of __node_data->pglist.
+> 
+> But now I am confused where that is actually set.
 
-> As mentioned on the dts patch, this needs to be far more specific. Are
-> there no markings etc on the panel?
+It looks nasty... Cast in arch_refresh_nodedata() takes
+incoming pg_data_t * and casts it to the local version of
+struct node_data * which I think is this one
 
-I submitted v2 with a more specific compatible string containing the
-markings on the panel.
+struct node_data {
+	struct pglist_data pglist; (which is pg_data_t pglist)
+	struct hub_data hub;
+};
 
-Thanks
+https://elixir.bootlin.com/linux/v6.10/source/arch/mips/sgi-ip27/ip27-memory.c#L432
+
+Now that pg_data_t is allocated by 
+arch_alloc_nodedata() which might be fine (though types could be handled in a more
+readable fashion via some container_of() magic.
+https://elixir.bootlin.com/linux/v6.10/source/arch/mips/sgi-ip27/ip27-memory.c#L427
+
+However that call is:
+pg_data_t * __init arch_alloc_nodedata(int nid)
+{
+	return memblock_alloc(sizeof(pg_data_t), SMP_CACHE_BYTES);
+}
+
+So doesn't seem to allocate enough space to me as should be sizeof(struct node_data)
+
+Worth cleaning up whilst here?  Proper handling of types would definitely
+help.
+
+Jonathan
+
+
+> 
+> Anyhow
+> 
+> Reviewed-by: David Hildenbrand <david@redhat.com>
+> 
+
 
