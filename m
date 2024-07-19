@@ -1,230 +1,208 @@
-Return-Path: <devicetree+bounces-86759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B2A937640
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:59:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A44937675
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:08:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C6201C21BCA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:59:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F23D0B224B4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 10:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8915C8405D;
-	Fri, 19 Jul 2024 09:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EA179949;
+	Fri, 19 Jul 2024 10:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LPnkPzaz"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="EiL/u94o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010041.outbound.protection.outlook.com [52.101.69.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA09F824AF
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 09:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721383164; cv=none; b=bsKHhl+Fgjffq404V8+Vmqoba70RbLWZEx4aCAUBn//c4d+eMM1lvySkaja+l5WnU1xyNzlx2HB8ZM1tIyuLfUQzYnjNfq6t/hyp4Cu3X8bpQ+D1fRwg1UEB9v7uwj8xd+zZAjOeIG7jLfVoERa1Ovb2i/L0pyYqlVL0D0WaI3k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721383164; c=relaxed/simple;
-	bh=V6mqUysaqIx5mgYSvOHoHHHI6CiKNq3o2BCQQ9QDSI0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=tOvM9oOBXEEZ9Fk+CMSHc4dN0I0RJBa5Mg7t4+3BwCqpuWHTaBanr4AmINBu5FMqy2od6ApdYbxJ9wrXT/Nj57fb0v0QuAYesYCr7PLxjykKa+ijZ76p/yFEtgX/YqISrqWPUR+zoJo+Ht2XJ4oPfsmR4Ah3TuP05tzZPW8aWEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LPnkPzaz; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4266fd395eeso10406615e9.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 02:59:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721383161; x=1721987961; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jvh8/xfKA+zRdY4hgtgtHozql8ySrob5VmWjr6iNG6U=;
-        b=LPnkPzaz3D29dnKyaPsFAzsz5ki9uy7yaU9nFI2MuwnX+xB2kV0HEQZE23fMDoMcJW
-         /ui07XxirXFiX38kUBIjLrMZwiEPs1hIjLQnilUlptr+a8GptXxd306sXB2l9l4eEW7Z
-         qrTJ15Z5NyfW0T+6NZyfmn0lp/19hYyv9EhQ3Vu5DWyPs9sv6LwYd7w0vXV/dUG7bxTD
-         O2pIwW3mJ0oCwsAvFDUq89G4Nk/JGnd2vpMsrWJKVNaBL/nYnljdZd/AeYm17gkwtH26
-         oNqN5wbKh5Kz6aeQ5aorMDwzzPjjmxpV3CVeYtONCGX97m+vAzcl08UEYxj/vLfL1i4o
-         Cqcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721383161; x=1721987961;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=jvh8/xfKA+zRdY4hgtgtHozql8ySrob5VmWjr6iNG6U=;
-        b=gQrFKh59szR7r2YQWoOI9eCY4qvJbBIZ+1ya5yaZgsE8aFdPsZlVQ2B+r7dTBqsI1O
-         jDyzYZ06kdqJJ/qhkEN/YvNO4WX3BHMkTz6+brOYHOo6uxQJEIWi5oDcyVrSpqMIHsp5
-         4+YzrerPkw2ZfvzxBMaZcmOxqFmrDzRlhS5kytG9jC2WG0dT/6oT+uD92DlrPmSZDgEk
-         m/brxWfKbYyzb9SM451o+ZAjG9V5mUhe7zbUr4p//zfzD9VnhcTiTT+OUQuMmjZ+sJJe
-         t0TUHAy2XhNwc6vfzvWjU7nsMci5MnDxAlKGCvsUGz0+zAVFMlVpEg5twe1G+va1+rWj
-         XdbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyPr3xp/wAW1KDwItGvABAJoCdtxJInwUIZMKY89rs7KuBhfDmegCoOk98a19zcIM0NIZt9BY7siXd2y1rIeMl43F4IDc2PlrCFQ==
-X-Gm-Message-State: AOJu0YxNn+rGGQSJvmZH6KK5mh1HoWZzuvYseE7IL5Gw6lVfO+vhQXvC
-	eCwE3LnQCpPWximO3I/9uVas6KMYJKX8Dtv0LmZ3iaxpPjzHPEyuYjML1Rnwvkk=
-X-Google-Smtp-Source: AGHT+IHnpCzPkbxshMVv1KoN+fnybhzCMURpeMHEhZNW1ByqOggLul2Q6EJT/ENFi9hVU6uxNALleg==
-X-Received: by 2002:a05:600c:5123:b0:427:98b4:624b with SMTP id 5b1f17b1804b1-427c50de722mr48983265e9.24.1721383160970;
-        Fri, 19 Jul 2024 02:59:20 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ec82:adbe:8be7:588d? ([2a01:e0a:982:cbb0:ec82:adbe:8be7:588d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3687869447dsm1151425f8f.53.2024.07.19.02.59.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jul 2024 02:59:20 -0700 (PDT)
-Message-ID: <56ee10ee-55ec-4943-a57e-f88ff2f54318@linaro.org>
-Date: Fri, 19 Jul 2024 11:59:20 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890A441C85;
+	Fri, 19 Jul 2024 10:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721383699; cv=fail; b=DZggaAJZITPqRxo405+dY7QXi7rof+yKSExV4ZjgkqhpFVKwBrkQjRC6vq5nkfvKBxdeY0wb5QNS1Fy/ZVm7/B6I/FBVGVIUrqWiI/CJjHURqMVHByw84/WtSSVZ5VYEA66mUxoqLOxgMeISfoUqjXDim0PJLhsKNnjduCJFp8k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721383699; c=relaxed/simple;
+	bh=tbpwndwnr9SQeUREXx8obvFOnR1yusx0tcoMYJ9fIsc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=TF75q7nIVqflxHjF5Hwp/VY4dhUiOgmFx1hD+VcGrcCQmVq3eT6vG3EH+sqiedbtDoAyFCvXrpg/79mKUwjB8zPRLKQqPMVqW4VarAdlflcfI3MwXk/t/S684lHWiY0x08XkKHClBBZbS+qNMFs97dfOpZlefk8QKTl33jbe0co=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=EiL/u94o; arc=fail smtp.client-ip=52.101.69.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dy8EsYwJah0HJIczFA2f7NPSflMhED45v1FVN6qCmoZK2JrV1uzhrDdsBM1kL/zRrRe1jtas1jkyEWC91otxWc32/ujoiP/fxMY1xddad97r3q4jGonNs+ZlH7NvJ+WTrbg2TjMJ0GvMiKdsIyq/z7T/Rn3cDbPQEAA/c9+jITbuUpFw3RtWYTEMaAO6uvgkDlV6oz3xOvsf1b9yEwV/fndyzpjvDa/vwOs+jYibMb8zKrT2Vz6tCl4EEhv9MFCk68aeLbTy+lKwbdp8Z3kHAkK6yKUd6CRk5oRGEgqtGoNEXUIWpS/iYhqjYZY9/FHan3SUDavZQVSFZSOIkOTuuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g9CKsrge4e4sTzyBng9brfxcccHDiARAUmrN28H40PQ=;
+ b=UTwvqALrI7IGoBtNELdT8UfPN7ha0N2DUU6pv0qq1+70SBH3XBUF7nDPHnI7O9Xbxn0ZbC8zfCkH36eDOLp8qJxmeLyFSTdMyovbvxM4msL1iATzAffF7bMeoCOBMGq70Qd99X/xFsaXHwK8uMse/lUzqKH2gciN19UaDs4DxqOwb/8hirkO3u/mApgwECnLB8AsGaPL/Y+7+8LYaQgBy+5ssq3srazZJsSjbx4z7bfH//fMeGEqsGSq4x/Bd75W0Q7yrA2u2Uch8GfaKxKkh1Ij2NyKwvaM3PvZKW9ot8RZYFrt6515MJ1VFgqaIRK8/0OEBP5kVfz9fuInzMuZUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g9CKsrge4e4sTzyBng9brfxcccHDiARAUmrN28H40PQ=;
+ b=EiL/u94oG7/0Ye9zbPaKNQWVIjJejqF8dGRkYniWBhqry8jhDP4vHQe703xB+B91N7RGsbUotTHyA5d7Z7c2W0Vg8gY6YJzGq5KkVM9QTsNaigvTfdzDpDX8h+rM5asVREH6u38SybFbgYU9Wb+6NgNA7XyxkRNXvSEhRombldU=
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by AS8PR04MB9142.eurprd04.prod.outlook.com (2603:10a6:20b:449::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Fri, 19 Jul
+ 2024 10:08:13 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827%3]) with mapi id 15.20.7784.017; Fri, 19 Jul 2024
+ 10:08:13 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Jonathan Corbet <corbet@lwn.net>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v5 2/5] dt-bindings: arm: fsl: add imx-se-fw
+ binding doc
+Thread-Topic: [EXT] Re: [PATCH v5 2/5] dt-bindings: arm: fsl: add imx-se-fw
+ binding doc
+Thread-Index: AQHa1CP/sfbwKvfpdE6YN2bMfeC3aLHzY3MAgAPbVACABLir0IAB4UkQ
+Date: Fri, 19 Jul 2024 10:08:13 +0000
+Message-ID:
+ <AM9PR04MB8604317B3F4EABEDA1299D1595AD2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+References: <20240712-imx-se-if-v5-0-66a79903a872@nxp.com>
+ <20240712-imx-se-if-v5-2-66a79903a872@nxp.com>
+ <20240712180358.GA1286437-robh@kernel.org>
+ <AM9PR04MB8604BA0B01612B38D9282CF795A12@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <AM9PR04MB8604A204F35B79DC299D6C5D95AC2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+In-Reply-To:
+ <AM9PR04MB8604A204F35B79DC299D6C5D95AC2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|AS8PR04MB9142:EE_
+x-ms-office365-filtering-correlation-id: 50b3e55c-aced-42ba-0135-08dca7dab378
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?zuiZL/QphGaFE5X4P4sndbQfutxy2GsVz/qNRgeQuYLfVxIzikIZ1qVuO1Ac?=
+ =?us-ascii?Q?VaRv/24UQ3KDJe8E0vuVEyaZQJ4pVkyMSwaIRcFsKoMLu5TFy2OcjjoUWUKJ?=
+ =?us-ascii?Q?TRxXUmwEbTshmMHWdtIX0IpD3hEVMmzrVc/+OYLkepzDxImILycqtaCFJ4jX?=
+ =?us-ascii?Q?N39ayW9RepaH16FclzLm4o6R2Tbg4pefIi3OXBZmUkF1orCXLw2XSY1h0zsc?=
+ =?us-ascii?Q?oPa5BcB/TCzAYLxriVKVDtJ3pbtOsB6FvvWsIHVlG7eR+LrfOZmtq/k0vonF?=
+ =?us-ascii?Q?9xzLsM6K+WX5n8oAX+DLrLCKMZ357jmiUpQOjsA1fNvG++IweG/kCeCnPhUh?=
+ =?us-ascii?Q?i8F64sO0F8UqDFl71SZ0BidWlK4a+yeuMLMCUmT04AB66O/2DDCxB0oeFnT/?=
+ =?us-ascii?Q?3svKJP1gY5RNjg/vvB9LkzsC55k3yp5jG+hRFr+GFiu/ggfrg83aH8l69PWb?=
+ =?us-ascii?Q?AYqT9qtZO0n8+LQ6wY/OxOWktK51B33fGeiTOQOWYahDPlNuejwjoi7PjNuc?=
+ =?us-ascii?Q?ERiBg3aV+xxbxkGL7HuY6kENckLwRvRIzDo0La2hw8ggEywkZY13d2R0Pg0E?=
+ =?us-ascii?Q?RGsjgwWBvwSHSrIKgn+XeCbHYjrZopENZFE0p4yc30p6HvYAF9NAMiX4XzMP?=
+ =?us-ascii?Q?JpuBe44M8esX6jmyLgP2lsV2AIjhzp+F2l2ph63ZApblyakT5Zb/uDoq41v4?=
+ =?us-ascii?Q?/nnBFck6hKQaJ1O99Poi8Dofap3h9FhCMLVVxrGK6Xou4l3RT6gSMjOr9XkF?=
+ =?us-ascii?Q?zZw3U+ZsAwo3F0MKf39jE09IMmVwNCkA1ckRFR3IVMZgoOOGQIrMHxh50OqX?=
+ =?us-ascii?Q?Tw6e2Olc5rTCoNhZzrTg+YkiE0MNpTX8MW6ztmIY6j1Zr8UEr/MGdqnS5csW?=
+ =?us-ascii?Q?RxFQPyTdoRBkgQpemI9BuCHJHDl8AXqlhN4Uqp0fJnAWMBb2GCOV/GMgTvzp?=
+ =?us-ascii?Q?HQPhaEg7mm7qdkdX3FuQaYrxuTW5M6To/cZh5J4j1KxVxi1P7LKSMOhJYqfv?=
+ =?us-ascii?Q?RyHo3XFMuvfIho20IG5PKrCBjjaFVHChSQjzuWusF503vA8j7WSKLNj95Hwi?=
+ =?us-ascii?Q?ejpz7X5/S/+ZLOG/pT/G9OavAdwnNPLMm1iytYHcqZcrNYYhnHkbWvCNiqWp?=
+ =?us-ascii?Q?NUc7wCKT4Z57KhAan5eKnyXxhSDD3cQ2UBgmWAg+wNfGrmH5yyThTgahfOQU?=
+ =?us-ascii?Q?+NkwQQD1mqa4TnXfAvszNVM42+clXJrVdccSkQIYU3yy2Mu0lryiEyLKAQNC?=
+ =?us-ascii?Q?WLaj2mx7l7Vj+D3hXZVem7SJLB5duSmkqorIAVoRHZHBxwmex17zjcr7C/hU?=
+ =?us-ascii?Q?Tw/R48km6W9EKm5cIF4ivpgH8Ev2HjtDKQuCL45yug5+B4s+/uhDf87fE5iO?=
+ =?us-ascii?Q?pTuOaQfVmGk/WRiOtYWQDYF/uiBhXr8ejnbU9pSC+JsA3MyP5A=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?f5886hHaK8EktL7wMbw8LyEdN/SRJVJReZ/NFip4Ww53qCMEXNqoGVdqxunJ?=
+ =?us-ascii?Q?jK3RZ+ecOTh+zdeusTzLfKyzK/qGoTGSsVjjn8K1so2INF+qrtmMrLU4l21o?=
+ =?us-ascii?Q?VPDuZEawxa5BvUQNSbD97vJTcabsT+2zHecvkWOqEGxw2w94YF0BhfzjlFWS?=
+ =?us-ascii?Q?gFLLxKpygqoC0JLIJsr/c/rcSnjNLKcRf+q85PGMQcLV0jBOF3ejaJCOwBY1?=
+ =?us-ascii?Q?4S2sknfNcefPbI+KQnc598jbGhHdJvYqwI9deno4A/EmSwA+nOPDrAB5yVRN?=
+ =?us-ascii?Q?jbjz2GeuyAN/OY20LGnH63+z8M3oBi5UIuBFhCdhHpy0dCSh+GScd2u6troD?=
+ =?us-ascii?Q?+K82p6EqRdMCEM0FlrDVOy+cyPSBknguYycsUT6xvnFG6TyOLfgaaZvFN8r8?=
+ =?us-ascii?Q?lRLmArKomyhxeOagc5EOt8eaguJz7drF8BnwV5790UDEOJugcakBesBhNq+2?=
+ =?us-ascii?Q?ra9dClFoI7Qta03YVnsv7TdQB16f35ADyfc2aAHmnMScueRVu72tFFOrS1c7?=
+ =?us-ascii?Q?t16c4eAQ2RcK0MfXopFOIxeUxijKFw2rIVy3iihc9GIbXRqLNhSGJLOemY5g?=
+ =?us-ascii?Q?gYkN9Q50miPGaBnfZrqOqBAw4dsWZbbL+88r72D6T1yknzhL0Co0WYlAuyFf?=
+ =?us-ascii?Q?xfKsotq3Ndzm/m9528Q+/CBZRE9fVtpRz0tsV0qTYMiqbI/08uYIlieJtBHc?=
+ =?us-ascii?Q?rv+/vEX9E6LwmvemGOXWshH1MQQkt82rsRh1mSFJEsAfyZ6kTHPwvskFVghm?=
+ =?us-ascii?Q?Y/3F2uOdFc45FxYHAndARk9YwXY2t+aflS6iG6GxeSTy0hfk43uFzgT1S1ux?=
+ =?us-ascii?Q?SpBv7RJj1GnAcfHWRHFBk3Tcx38F0oKpxXeh60MGzXi5DAqa2+fWzuQPw2+u?=
+ =?us-ascii?Q?ki5UsYx5aCPiQfoeywz6Mzg2yLjSrUulvf40ESoq7YxeOdKhFoJSzN7/aQ4J?=
+ =?us-ascii?Q?1r0KmCThz99OSFM2mVg5O+4gvmAreyvFh4x0/88ZjWcNsUC5EvrG6h6L1ZEB?=
+ =?us-ascii?Q?LkNfHkpDFjCxTckpzEmsLP8N4IOJ93vAgFZHU1AUcuspp7hju9U1iwhBHZiA?=
+ =?us-ascii?Q?aKnby33iwj/INlNA1qvyNdNMhC9snr+QSC9EveDiXiNCNOrG1GmU4HBHpo0+?=
+ =?us-ascii?Q?eg6+Z34+kro3PNuG2M2BDcutO0IsklYkBIliMRi0TMRDvPakbnBgSMvLyQ3u?=
+ =?us-ascii?Q?DIX7Bfg25gjPpuBh5Prk7eiBUYhCcvwXVKZ1WHOS47C9pyOs3QLJBlEl7H3r?=
+ =?us-ascii?Q?KJRZUdP5DVQZUosaYIh+T14uVcqFwWOxJGPt1EN+PxfLj/chun4URioAHBE6?=
+ =?us-ascii?Q?Gy99hmuKoAQ92/6cUgv3I9zjZsUay6B4h1tGAb4igWQxuYTxcKSNOD3oa3Lk?=
+ =?us-ascii?Q?tex25z4tqwBZopKjdLnQSEwFd7Ox6bTvK/NaAPeh4VFXVhxE50ndblhnHAeJ?=
+ =?us-ascii?Q?kEqN2Z07jb2L3nbXrAqXqb5twc6NYaT7R/e8FQ1cX0zE+qzAsYfl/+ZoVJKP?=
+ =?us-ascii?Q?WTUenOy+JLEMdeD6+M2hIP1A38/CQcfzaCdYL/PTUe6jsU9PTX1dAStVdtc5?=
+ =?us-ascii?Q?hZWKlkYPOrBjQRxXgRG06NQGnfXyL6HgEtfv2aUH?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] clk: meson: axg-audio: add sm1 earcrx clocks
-To: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20240719093934.3985139-1-jbrunet@baylibre.com>
- <20240719093934.3985139-4-jbrunet@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240719093934.3985139-4-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50b3e55c-aced-42ba-0135-08dca7dab378
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2024 10:08:13.5072
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: r3+oKIShGt0PTwZtQMTwcm6AKm1Kyec0JG12WZhsQBKd6MiJj2PDLVMNekNe2OOBcTZd9ZJ60DSky3TClY04Jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9142
 
-On 19/07/2024 11:39, Jerome Brunet wrote:
-> Add CMDC, DMAC and peripheral clocks for the eARC RX device found on the
-> sm1 SoC family
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->   drivers/clk/meson/axg-audio.c | 32 +++++++++++++++++++++++++++++++-
->   drivers/clk/meson/axg-audio.h |  2 ++
->   2 files changed, 33 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-> index 2426f3dbb7a2..06dc1e1f45e5 100644
-> --- a/drivers/clk/meson/axg-audio.c
-> +++ b/drivers/clk/meson/axg-audio.c
-> @@ -753,6 +753,9 @@ static struct clk_regmap toddr_d =
->   	AUD_PCLK_GATE(toddr_d, AUDIO_CLK_GATE_EN1, 1);
->   static struct clk_regmap loopback_b =
->   	AUD_PCLK_GATE(loopback_b, AUDIO_CLK_GATE_EN1, 2);
-> +static struct clk_regmap earcrx =
-> +	AUD_PCLK_GATE(earcrx, AUDIO_CLK_GATE_EN1, 6);
-> +
->   
->   static struct clk_regmap sm1_mst_a_mclk_sel =
->   	AUD_MST_MCLK_MUX(mst_a_mclk, AUDIO_SM1_MCLK_A_CTRL);
-> @@ -766,6 +769,10 @@ static struct clk_regmap sm1_mst_e_mclk_sel =
->   	AUD_MST_MCLK_MUX(mst_e_mclk, AUDIO_SM1_MCLK_E_CTRL);
->   static struct clk_regmap sm1_mst_f_mclk_sel =
->   	AUD_MST_MCLK_MUX(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
-> +static struct clk_regmap sm1_earcrx_cmdc_clk_sel =
-> +	AUD_MST_MCLK_MUX(earcrx_cmdc_clk, AUDIO_EARCRX_CMDC_CLK_CTRL);
-> +static struct clk_regmap sm1_earcrx_dmac_clk_sel =
-> +	AUD_MST_MCLK_MUX(earcrx_dmac_clk, AUDIO_EARCRX_DMAC_CLK_CTRL);
->   
->   static struct clk_regmap sm1_mst_a_mclk_div =
->   	AUD_MST_MCLK_DIV(mst_a_mclk, AUDIO_SM1_MCLK_A_CTRL);
-> @@ -779,6 +786,11 @@ static struct clk_regmap sm1_mst_e_mclk_div =
->   	AUD_MST_MCLK_DIV(mst_e_mclk, AUDIO_SM1_MCLK_E_CTRL);
->   static struct clk_regmap sm1_mst_f_mclk_div =
->   	AUD_MST_MCLK_DIV(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
-> +static struct clk_regmap sm1_earcrx_cmdc_clk_div =
-> +	AUD_MST_MCLK_DIV(earcrx_cmdc_clk, AUDIO_EARCRX_CMDC_CLK_CTRL);
-> +static struct clk_regmap sm1_earcrx_dmac_clk_div =
-> +	AUD_MST_MCLK_DIV(earcrx_dmac_clk, AUDIO_EARCRX_DMAC_CLK_CTRL);
-> +
->   
->   static struct clk_regmap sm1_mst_a_mclk =
->   	AUD_MST_MCLK_GATE(mst_a_mclk, AUDIO_SM1_MCLK_A_CTRL);
-> @@ -792,6 +804,10 @@ static struct clk_regmap sm1_mst_e_mclk =
->   	AUD_MST_MCLK_GATE(mst_e_mclk, AUDIO_SM1_MCLK_E_CTRL);
->   static struct clk_regmap sm1_mst_f_mclk =
->   	AUD_MST_MCLK_GATE(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
-> +static struct clk_regmap sm1_earcrx_cmdc_clk =
-> +	AUD_MST_MCLK_GATE(earcrx_cmdc_clk, AUDIO_EARCRX_CMDC_CLK_CTRL);
-> +static struct clk_regmap sm1_earcrx_dmac_clk =
-> +	AUD_MST_MCLK_GATE(earcrx_dmac_clk, AUDIO_EARCRX_DMAC_CLK_CTRL);
->   
->   static struct clk_regmap sm1_tdm_mclk_pad_0 = AUD_TDM_PAD_CTRL(
->   	tdm_mclk_pad_0, AUDIO_SM1_MST_PAD_CTRL0, 0, mclk_pad_ctrl_parent_data);
-> @@ -1232,6 +1248,13 @@ static struct clk_hw *sm1_audio_hw_clks[] = {
->   	[AUD_CLKID_SYSCLK_A_EN]		= &sm1_sysclk_a_en.hw,
->   	[AUD_CLKID_SYSCLK_B_DIV]	= &sm1_sysclk_b_div.hw,
->   	[AUD_CLKID_SYSCLK_B_EN]		= &sm1_sysclk_b_en.hw,
-> +	[AUD_CLKID_EARCRX]		= &earcrx.hw,
-> +	[AUD_CLKID_EARCRX_CMDC_SEL]	= &sm1_earcrx_cmdc_clk_sel.hw,
-> +	[AUD_CLKID_EARCRX_CMDC_DIV]	= &sm1_earcrx_cmdc_clk_div.hw,
-> +	[AUD_CLKID_EARCRX_CMDC]		= &sm1_earcrx_cmdc_clk.hw,
-> +	[AUD_CLKID_EARCRX_DMAC_SEL]	= &sm1_earcrx_dmac_clk_sel.hw,
-> +	[AUD_CLKID_EARCRX_DMAC_DIV]	= &sm1_earcrx_dmac_clk_div.hw,
-> +	[AUD_CLKID_EARCRX_DMAC]		= &sm1_earcrx_dmac_clk.hw,
->   };
->   
->   
-> @@ -1646,6 +1669,13 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
->   	&sm1_sysclk_a_en,
->   	&sm1_sysclk_b_div,
->   	&sm1_sysclk_b_en,
-> +	&earcrx,
-> +	&sm1_earcrx_cmdc_clk_sel,
-> +	&sm1_earcrx_cmdc_clk_div,
-> +	&sm1_earcrx_cmdc_clk,
-> +	&sm1_earcrx_dmac_clk_sel,
-> +	&sm1_earcrx_dmac_clk_div,
-> +	&sm1_earcrx_dmac_clk,
->   };
->   
->   struct axg_audio_reset_data {
-> @@ -1853,7 +1883,7 @@ static const struct audioclk_data sm1_audioclk_data = {
->   	},
->   	.reset_offset = AUDIO_SM1_SW_RESET0,
->   	.reset_num = 39,
-> -	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
-> +	.max_register = AUDIO_EARCRX_DMAC_CLK_CTRL,
->   };
->   
->   static const struct of_device_id clkc_match_table[] = {
-> diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
-> index 01a3da19933e..9e7765b630c9 100644
-> --- a/drivers/clk/meson/axg-audio.h
-> +++ b/drivers/clk/meson/axg-audio.h
-> @@ -64,5 +64,7 @@
->   #define AUDIO_SM1_SW_RESET1	0x02C
->   #define AUDIO_CLK81_CTRL	0x030
->   #define AUDIO_CLK81_EN		0x034
-> +#define AUDIO_EARCRX_CMDC_CLK_CTRL	0x0D0
-> +#define AUDIO_EARCRX_DMAC_CLK_CTRL	0x0D4
->   
->   #endif /*__AXG_AUDIO_CLKC_H */
+Hi Conor,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > > +properties:
+> > > > +  $nodename:
+> > > > +    pattern: "firmware@[0-9a-f]+$"
+
+As part of removing the reg property, it is required to remove the variable=
+ node name as well.
+
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    firmware {
+Since node name "firmware" is a very generic name and broad reference.=20
+It is a request to revisit the last suggestion to replace it with any one o=
+f the below close suggestions:
+
+- se (Stands for secure enclave, already mentioned in the description).
+- senclave (like sram: secure-ram)
+- senclave-firmware
+- se-fw
+
+Kindly suggest.
+
+Thanks.
+
+> > > > +      compatible =3D "fsl,imx95-se";
+> > > > +      mboxes =3D <&ele_mu0 0 0>, <&ele_mu0 1 0>;
+> > > > +      mbox-names =3D "tx", "rx";
+> > > > +    };
+> > > > +...
+> > > >
+> > > > --
+> > > > 2.34.1
+> > > >
 
