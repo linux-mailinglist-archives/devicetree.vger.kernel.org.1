@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-86754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE8D937606
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:45:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85EEE93760A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:46:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75D52B232AB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:45:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 155EC1F22E0C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7780B824BC;
-	Fri, 19 Jul 2024 09:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D67A84A3E;
+	Fri, 19 Jul 2024 09:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="NCuJuHvK"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="LH7qPLeJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C255C12B94
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 09:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD51183CBA
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 09:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721382335; cv=none; b=AH9NeSF+FbWN4sXVLukWrIwbWAwyb4I+P8BLpYnyQqzacxCCYVPkzVVyGeDpXiJeOeBwTzdITMkwsq2TIvwCCk1WpFE+KXKN+dbc8ERBAD5fjwtq26iKnnFBSTdve7h3wRrqZcYbj1LkicOpZ2mXm6UU8UxQgad281itYWSJuYg=
+	t=1721382341; cv=none; b=K83tfNAPt/A6llpXXG6B0QxmWWh9p2x9qpnNKWIpEx8i2ECgwgOL4PIImWPfAwtHjw+8piJGW90VyPgcvFWcMXzJYLVUZzkKeg8cNiCP1sUMqi0eP+BkD/nE5Ww/f7hLgZf+9GEgBODMXQMD/N6Ga2lXnEgyIwTA4Ii+caM4z1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721382335; c=relaxed/simple;
-	bh=wvQcdEWQ3/kLHsxtgCGRA9jYHsgJ/xrav2Xn7haRcMU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qsNvFgPwHIRgzvkFSW3uvzbBpBlmye4d+j9I4WrAs3BDIe6QYBO1wRqNrYGxwG4BKw5NNkPlnmwIajTf/Bqw+UTl4+AD/ZalcpfE79jVfqfmmbIYAVgIFSTimZcOHHxwmbeTZp5FdCMDJ4FtA4V0SelpJEOFXBZjE4uUxhUw/A8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=NCuJuHvK; arc=none smtp.client-ip=209.85.214.177
+	s=arc-20240116; t=1721382341; c=relaxed/simple;
+	bh=ShGVMtgc0hDJDLEQjlIXd5oij4dB7J9Ckvvpo/zXXW0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=pnHMm5HzIcrxzXMJwVR+oBS2UMSgxQQTxU3VOXDKGHSpTH6IuS/SZpNB1Gzs3sMxeUPBxWjg+uTJ48KRa8uThMMiD2a5RSQe65KPNTnFubwhFsE7EylaJZdmOVEd8UPveB2az8SaiAhpkiZg9d0senOpkcYVi9isZX24aPQYv2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=LH7qPLeJ; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1fc5a93ce94so1841795ad.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 02:45:32 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1fb3460b416so2100365ad.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 02:45:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1721382332; x=1721987132; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DTIjdju0ng5SZUR/ZVbr+pjq8z5bsP/PxolugfMqbFg=;
-        b=NCuJuHvKq9YHT3W6tARyzFYG7j7joVlBvGUbhlkYbRpaISOVCJJpTmPv0Imma1QWeP
-         vPtN9bbkKUbYA4O/qt+zmYKIyxewfrfW/R8vOuTdoD56zLi2YfGGRejdpknpM/ygZhem
-         sM00TefJ3xEW4+bQAnwLl1ZciTsHh6qM/eOC4fPP1vqqRWb043oZVgBO4dL3p31btvlD
-         NA6O0SdqijSlpJjbamSi/fOJmSLpmGB3z+Kk99Hkw/4SI7c+QIhsU0oJEzay5LPa0Q5S
-         EqjgDFrvp1SrGcyHoLMHj71PZW82TOogC4NQ03tUNVUAd4KjWsRzyHOJhyBOTbomTo0P
-         eElQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721382332; x=1721987132;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1721382338; x=1721987138; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DTIjdju0ng5SZUR/ZVbr+pjq8z5bsP/PxolugfMqbFg=;
-        b=MM19DlR0+knP0e1LL3Mas8sxn/iE7RVlZWnUgqcU1rSB/ZVJcRPf8jMDfQbsfvuX9M
-         XchIQGXC4o8V+McKU6zvgmiQR/q+QiR/p30+wg+Rc8ObiDVN6BVo6ppAfq7zFaMO+hJU
-         lSD+SgWV4cGOitsv5yVMvY5uW/tOLoQ/JxgAHufnlskiOGCUBFpF4nbkPuuDEzSNeZdp
-         9NFnBtO0fu8jx7Yn5fsMWwQ39fCZumwkwXUf30mznC28DiAlvzpyKx/dAEr7A6iuj82R
-         0Eve1LadWshyBz6qMLVMVyqmmatHXX+Dz/lnEVugFAK7P3iF0ZpSQsx0SZtU85e+nkpX
-         OhkA==
-X-Forwarded-Encrypted: i=1; AJvYcCXQELuk0ucAkXgASS4vjWj0F6pW+GFkO8oLypAIYIbGxCfnHE4kA0NSyNuh3NLFWYCGSJh68wRikNCpzJvpPNfG0pwI3f+7zd4pjQ==
-X-Gm-Message-State: AOJu0YxSWhU94UTgvIowop8CLxK//2ToJcsu+1ySYRy1sas0I8054JJj
-	rBQfvJVma/04gqqcM6jV/JkTg4Z/8I+v/i+DXSERXRwQ1yA4Gk8P8zWr105VMA==
-X-Google-Smtp-Source: AGHT+IEVyJea5xxoF0+wpJnzDjtXmvoUTHSZX9gEcY2eBSEdaXs1ZKnuf11e4P64seyMGkI+54GAPA==
-X-Received: by 2002:a17:902:e74e:b0:1f3:10e8:1e0 with SMTP id d9443c01a7336-1fd5ec5b9b6mr14469455ad.2.1721382331995;
-        Fri, 19 Jul 2024 02:45:31 -0700 (PDT)
+        bh=G+46O4rQZG+afw+seJ1aSaqWCwYwoT6C2GKWC2dXu30=;
+        b=LH7qPLeJ5oDjNXdzUNCD6HY2pWYfMfQIwFCkawOgYztd8FgiOlJGhQN2hVhARRCJFR
+         2Duo+8oyw9NxxC/nLwIAkodsU+lyy3SY10652JDtvmFfkgZf/GwXU7a9B150iHLCKp9u
+         936QCxutx8BTszNyShZvic65rVws85BhqfXxBqqwCC1ElAgZOqb5AYno4NH7nK5oy1G4
+         sch3R1WyQx8CByyJFIkx6JR3qRNRTMw2mNpmfTYbDEjQCuYPrBGbqbp/haNo242iGXa8
+         iv6Tho/aaHX8qXoBDG0K7MRXnn8XgUSkUYPxCS1jNBV/82r0Eu8OCww8KWHGXzqc473O
+         DxIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721382338; x=1721987138;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G+46O4rQZG+afw+seJ1aSaqWCwYwoT6C2GKWC2dXu30=;
+        b=gcms+4EzqeMagEsFE0IHR3OpGdKnNmAFZE+iYvLTgdU0xDVCk4GQzdatnTzUcB/vYz
+         8voupzTb+oZjjMBV5ON+8dn5EBWrGJyv91qyMWAi3JtRR/oFN6NivE9Gez8DQK0yMn/O
+         oceuuqqbRVtDJERk+oWMQ6ym9+4leQBEqyr0UujssMlhjUcOq2rCUbD88uAc+of/yLFW
+         DJb3FQ14cRL6Y5bnqZzoEjXAQpySagkMIWB/uCGi6rFxwo3erMY4hqh83rFe7elxcN5c
+         QSaVjw3ypEKiKenuhMAiupRGxLfYZQNMMxg4OTcPSMWVn5faUeOOpKr99TngpflkF5Cs
+         v1Ag==
+X-Forwarded-Encrypted: i=1; AJvYcCWKR3lcJqnS+BjdW+4CNawCcro6VWBctZwFA1b9H7fh5SIRwulxlrlqNDToxtjSuOnh5vqhuZogHeSe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0QD6FzCkDSmsI63ZPM1MVe1M/bF2wEQKfjga2Pwj+cWB2bURE
+	AcOh7DOxkbeenwyq+KSCI0pIkseXbQkh5beXVDmVtjRwLQctd7Tk0vCQIc/vsQ==
+X-Google-Smtp-Source: AGHT+IGTvpfyGkQSzcGiWO9xJsSuPVeVkrZ5bQM0dG5A4we5XMAn0a2gFht26kLa5ZsN/Jp0o9awzQ==
+X-Received: by 2002:a17:902:b195:b0:1fc:5b41:bb1b with SMTP id d9443c01a7336-1fd5ec8ab33mr13929205ad.4.1721382338043;
+        Fri, 19 Jul 2024 02:45:38 -0700 (PDT)
 Received: from [127.0.0.1] ([2401:4900:8899:6437:d031:b9ec:7ff1:6aa1])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f28f67esm819025ad.96.2024.07.19.02.45.26
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f28f67esm819025ad.96.2024.07.19.02.45.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 02:45:31 -0700 (PDT)
+        Fri, 19 Jul 2024 02:45:37 -0700 (PDT)
 From: Ayush Singh <ayush@beagleboard.org>
-Subject: [PATCH 0/3] Add Firmware Upload support for beagleplay cc1352
-Date: Fri, 19 Jul 2024 15:15:09 +0530
-Message-Id: <20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org>
+Date: Fri, 19 Jul 2024 15:15:10 +0530
+Subject: [PATCH 1/3] dt-bindings: net: ti,cc1352p7: Add boot-gpio
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,9 +78,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKU1mmYC/x3MSwqAIBRG4a3EHSfYG9pKRJj+2YUoUXoR7T1p+
- A3OeSjAMwK1yUMeBwfe1ogsTUjParUQbKIpl3kpm6wSI5Rd4BZ1D9M57M56ZSDKArXWGKUpDMX
- WeUx8/d+uf98PcDP+bGcAAAA=
+Message-Id: <20240719-beagleplay_fw_upgrade-v1-1-8664d4513252@beagleboard.org>
+References: <20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org>
+In-Reply-To: <20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org>
 To: jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
@@ -92,61 +93,60 @@ Cc: greybus-dev@lists.linaro.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, Ayush Singh <ayush@beagleboard.org>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1752; i=ayush@beagleboard.org;
- h=from:subject:message-id; bh=wvQcdEWQ3/kLHsxtgCGRA9jYHsgJ/xrav2Xn7haRcMU=;
- b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBmmjW1PzBconUuwkgIXGlPw5RQUNQ8xbEm8UvkG
- 6vloBiAU6CJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZpo1tQAKCRAFzvXHieVa
- dCbpD/9aS52VevnNnvYRJQyq7QU3ADVpxmVpEeUX0SJrQSzSqlAch4f6iGxAxvwIWQOGfdDYMev
- 7Kv6067Fj0544qQ+4t9iLZWeVxlYk7iZ/gisW9y+ZqF+sdywHAkWqXaC9lmJGu+WOn3FbG0kxJ7
- oXdyLbG8dSUpceaPFgd3b43qoBx1v/BBRCM+CWGMsw7DoooGlChFT7Fbn3rc0B8fPOiv7wViorG
- p+Tgxu9k/tFdSZ3hOagYhnB5hXNzdjfN5siI1XWSKNbV/6tjT3nhpvez7qFouoJChkdSDfSecSl
- JPcdNuwuWwcXNI45FthqCWrN/Txmxi0ym0dylq4b/vilWjcMV8iuXBrayPksG9oHjdNb5PnXvlE
- soQx7bJMsnFWm9bBX2VYkkHPvLmuMb99OxgrrUnG7IY2jEB4qhAzRP9urvGcBquduTsHrHKZ+A5
- Q5s6eNy0iRJwsZyp+zrLtD2wloyh8eEtHYq4v1f4FK1Hy0lHZTb+sffErg2EixdSk2zvLukrqbo
- EyiSBvxpRLef2fG88rg+ZaSVYiXNjiHB2VhzHt2RMfZ2aNZ9qi+KmqpiIQmSI+Svqh0y9D/3wIF
- UPYuppPh5mZmvDy0evdrAFReqQAlyLwDM9Rxp3x5UZHoFWpw7k/l+P89kGCPhKtrqk6Rr9juzW+
- 9JY/V43A9FwOH+Q==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1167; i=ayush@beagleboard.org;
+ h=from:subject:message-id; bh=ShGVMtgc0hDJDLEQjlIXd5oij4dB7J9Ckvvpo/zXXW0=;
+ b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBmmjW1FCj3t80L4AIBRXHK9xB7rRLJ+43vNde2f
+ nHTW8A6u9uJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZpo1tQAKCRAFzvXHieVa
+ dOQKD/97OqRvHiNgAtedUcGy81V44GNPmt+MwamaNqBs/ESpSxZaZCBUmXU4Ikq6jWKM50k3gPs
+ noxPI8ZwpgwqTW7CHvQu+FwuugPwOVub4cAskF4MXDPP76puggUF0gL9/aXCPvEK+sXyuNbeLJL
+ 6hmdiavzI1oqVENYVkxIBsbLxA96T9Dtsj39CMz8spOurWjl0IGziLRfXd8k1Dj9JfqCTwJHiNM
+ x0FPeS+QYjzsoTVgrdowKLtqqevOvpCrMF3Shj1OvmMcC3qtA1/2UgIC1LZ+SDqh5JtkWZfvAE+
+ 0IeEPi+N4r5fIzon+OKlQOiHBrzTMp42V0T0+5IkV1DSPOL0oNS6tTqdWFsDs+iJYvi2y9wHidT
+ W1jl8/kw9OkiiGlZBlUgCXw23HfXhaNzkzozWAAFEvJagEQbeYSSxyoKNnJfmGLIV3MKcMXnaRd
+ RJAfOS3aJ1liKybxkDjWyGIQWXxpfDTxwgOLWS6rCzmJmY+5FHyGeRaM5wHlaeNSeDisOjD9Vyj
+ Z+jwPRSmqHGM165PaH8qRilV0E1hv+fqYbIw+82m/ETIwS4kovzktB6Sr/6r46tj9WmNwSSqZP3
+ DGuLmkFSVdV26vPHrjce3pwcXqWtayCdAT4pbydSURatbZzt84eX6Fr5koTF0g8ZNLqGBH4RES9
+ Ot0J23ppRG8qbcw==
 X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
  fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
 
-Adds support for beagleplay cc1352 co-processor firmware upgrade using
-kernel Firmware Upload API. Uses ROM based bootloader present in
-cc13x2x7 and cc26x2x7 platforms for flashing over UART. 
+boot-gpio (along with reset-gpio) is used to enable bootloader backdoor
+for flashing new firmware.
 
-Communication with the bootloader can be moved out of gb-beagleplay
-driver if required, but I am keeping it here since there are no
-immediate plans to use the on-board cc1352p7 for anything other than
-greybus (BeagleConnect Technology). Additionally, there do not seem to
-any other devices using cc1352p7 or it's cousins as a co-processor.
-
-Boot and Reset GPIOs are used to enable cc1352p7 bootloader backdoor for
-flashing. Flashing is skipped in case we are trying to flash the same
-image as the one that is currently present. This is determined by CRC32
-calculation of the supplied firmware and Flash data.
-
-We also do a CRC32 check after flashing to ensure that the firmware was
-flashed properly.
-
-Link: https://www.ti.com/lit/ug/swcu192/swcu192.pdf Ti CC1352p7 Tecnical Specification
+The pin and pin level to enabel bootloader backdoor is configed using
+the following CCFG variables in cc1352p7:
+- SET_CCFG_BL_CONFIG_BL_PIN_NO
+- SET_CCFG_BL_CONFIG_BL_LEVEL
 
 Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 ---
-Ayush Singh (3):
-      dt-bindings: net: ti,cc1352p7: Add boot-gpio
-      arm64: dts: ti: k3-am625-beagleplay: Add boot-gpios to cc1352p7
-      greybus: gb-beagleplay: Add firmware upload API
+ Documentation/devicetree/bindings/net/ti,cc1352p7.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- .../devicetree/bindings/net/ti,cc1352p7.yaml       |   4 +
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts     |   3 +-
- drivers/greybus/Kconfig                            |   1 +
- drivers/greybus/gb-beagleplay.c                    | 625 ++++++++++++++++++++-
- 4 files changed, 620 insertions(+), 13 deletions(-)
----
-base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
-change-id: 20240715-beagleplay_fw_upgrade-43e6cceb0d3d
+diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+index 3dde10de4630..a3511bb59b05 100644
+--- a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
++++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+@@ -29,6 +29,9 @@ properties:
+   reset-gpios:
+     maxItems: 1
+ 
++  boot-gpios:
++    maxItems: 1
++
+   vdds-supply: true
+ 
+ required:
+@@ -46,6 +49,7 @@ examples:
+         clocks = <&sclk_hf 0>, <&sclk_lf 25>;
+         clock-names = "sclk_hf", "sclk_lf";
+         reset-gpios = <&pio 35 GPIO_ACTIVE_LOW>;
++        boot-gpios = <&pio 36 GPIO_ACTIVE_LOW>;
+         vdds-supply = <&vdds>;
+       };
+     };
 
-Best regards,
 -- 
-Ayush Singh <ayush@beagleboard.org>
+2.45.2
 
 
