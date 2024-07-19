@@ -1,208 +1,284 @@
-Return-Path: <devicetree+bounces-86760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A44937675
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:08:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C8D937679
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:09:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F23D0B224B4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 10:08:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DA72285E38
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 10:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EA179949;
-	Fri, 19 Jul 2024 10:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5C8B83CA1;
+	Fri, 19 Jul 2024 10:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="EiL/u94o"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="C5qv2iqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010041.outbound.protection.outlook.com [52.101.69.41])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890A441C85;
-	Fri, 19 Jul 2024 10:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721383699; cv=fail; b=DZggaAJZITPqRxo405+dY7QXi7rof+yKSExV4ZjgkqhpFVKwBrkQjRC6vq5nkfvKBxdeY0wb5QNS1Fy/ZVm7/B6I/FBVGVIUrqWiI/CJjHURqMVHByw84/WtSSVZ5VYEA66mUxoqLOxgMeISfoUqjXDim0PJLhsKNnjduCJFp8k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721383699; c=relaxed/simple;
-	bh=tbpwndwnr9SQeUREXx8obvFOnR1yusx0tcoMYJ9fIsc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=TF75q7nIVqflxHjF5Hwp/VY4dhUiOgmFx1hD+VcGrcCQmVq3eT6vG3EH+sqiedbtDoAyFCvXrpg/79mKUwjB8zPRLKQqPMVqW4VarAdlflcfI3MwXk/t/S684lHWiY0x08XkKHClBBZbS+qNMFs97dfOpZlefk8QKTl33jbe0co=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=EiL/u94o; arc=fail smtp.client-ip=52.101.69.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dy8EsYwJah0HJIczFA2f7NPSflMhED45v1FVN6qCmoZK2JrV1uzhrDdsBM1kL/zRrRe1jtas1jkyEWC91otxWc32/ujoiP/fxMY1xddad97r3q4jGonNs+ZlH7NvJ+WTrbg2TjMJ0GvMiKdsIyq/z7T/Rn3cDbPQEAA/c9+jITbuUpFw3RtWYTEMaAO6uvgkDlV6oz3xOvsf1b9yEwV/fndyzpjvDa/vwOs+jYibMb8zKrT2Vz6tCl4EEhv9MFCk68aeLbTy+lKwbdp8Z3kHAkK6yKUd6CRk5oRGEgqtGoNEXUIWpS/iYhqjYZY9/FHan3SUDavZQVSFZSOIkOTuuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g9CKsrge4e4sTzyBng9brfxcccHDiARAUmrN28H40PQ=;
- b=UTwvqALrI7IGoBtNELdT8UfPN7ha0N2DUU6pv0qq1+70SBH3XBUF7nDPHnI7O9Xbxn0ZbC8zfCkH36eDOLp8qJxmeLyFSTdMyovbvxM4msL1iATzAffF7bMeoCOBMGq70Qd99X/xFsaXHwK8uMse/lUzqKH2gciN19UaDs4DxqOwb/8hirkO3u/mApgwECnLB8AsGaPL/Y+7+8LYaQgBy+5ssq3srazZJsSjbx4z7bfH//fMeGEqsGSq4x/Bd75W0Q7yrA2u2Uch8GfaKxKkh1Ij2NyKwvaM3PvZKW9ot8RZYFrt6515MJ1VFgqaIRK8/0OEBP5kVfz9fuInzMuZUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g9CKsrge4e4sTzyBng9brfxcccHDiARAUmrN28H40PQ=;
- b=EiL/u94oG7/0Ye9zbPaKNQWVIjJejqF8dGRkYniWBhqry8jhDP4vHQe703xB+B91N7RGsbUotTHyA5d7Z7c2W0Vg8gY6YJzGq5KkVM9QTsNaigvTfdzDpDX8h+rM5asVREH6u38SybFbgYU9Wb+6NgNA7XyxkRNXvSEhRombldU=
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
- by AS8PR04MB9142.eurprd04.prod.outlook.com (2603:10a6:20b:449::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Fri, 19 Jul
- 2024 10:08:13 +0000
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827%3]) with mapi id 15.20.7784.017; Fri, 19 Jul 2024
- 10:08:13 +0000
-From: Pankaj Gupta <pankaj.gupta@nxp.com>
-To: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Jonathan Corbet <corbet@lwn.net>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH v5 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Thread-Topic: [EXT] Re: [PATCH v5 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Thread-Index: AQHa1CP/sfbwKvfpdE6YN2bMfeC3aLHzY3MAgAPbVACABLir0IAB4UkQ
-Date: Fri, 19 Jul 2024 10:08:13 +0000
-Message-ID:
- <AM9PR04MB8604317B3F4EABEDA1299D1595AD2@AM9PR04MB8604.eurprd04.prod.outlook.com>
-References: <20240712-imx-se-if-v5-0-66a79903a872@nxp.com>
- <20240712-imx-se-if-v5-2-66a79903a872@nxp.com>
- <20240712180358.GA1286437-robh@kernel.org>
- <AM9PR04MB8604BA0B01612B38D9282CF795A12@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <AM9PR04MB8604A204F35B79DC299D6C5D95AC2@AM9PR04MB8604.eurprd04.prod.outlook.com>
-In-Reply-To:
- <AM9PR04MB8604A204F35B79DC299D6C5D95AC2@AM9PR04MB8604.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|AS8PR04MB9142:EE_
-x-ms-office365-filtering-correlation-id: 50b3e55c-aced-42ba-0135-08dca7dab378
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?zuiZL/QphGaFE5X4P4sndbQfutxy2GsVz/qNRgeQuYLfVxIzikIZ1qVuO1Ac?=
- =?us-ascii?Q?VaRv/24UQ3KDJe8E0vuVEyaZQJ4pVkyMSwaIRcFsKoMLu5TFy2OcjjoUWUKJ?=
- =?us-ascii?Q?TRxXUmwEbTshmMHWdtIX0IpD3hEVMmzrVc/+OYLkepzDxImILycqtaCFJ4jX?=
- =?us-ascii?Q?N39ayW9RepaH16FclzLm4o6R2Tbg4pefIi3OXBZmUkF1orCXLw2XSY1h0zsc?=
- =?us-ascii?Q?oPa5BcB/TCzAYLxriVKVDtJ3pbtOsB6FvvWsIHVlG7eR+LrfOZmtq/k0vonF?=
- =?us-ascii?Q?9xzLsM6K+WX5n8oAX+DLrLCKMZ357jmiUpQOjsA1fNvG++IweG/kCeCnPhUh?=
- =?us-ascii?Q?i8F64sO0F8UqDFl71SZ0BidWlK4a+yeuMLMCUmT04AB66O/2DDCxB0oeFnT/?=
- =?us-ascii?Q?3svKJP1gY5RNjg/vvB9LkzsC55k3yp5jG+hRFr+GFiu/ggfrg83aH8l69PWb?=
- =?us-ascii?Q?AYqT9qtZO0n8+LQ6wY/OxOWktK51B33fGeiTOQOWYahDPlNuejwjoi7PjNuc?=
- =?us-ascii?Q?ERiBg3aV+xxbxkGL7HuY6kENckLwRvRIzDo0La2hw8ggEywkZY13d2R0Pg0E?=
- =?us-ascii?Q?RGsjgwWBvwSHSrIKgn+XeCbHYjrZopENZFE0p4yc30p6HvYAF9NAMiX4XzMP?=
- =?us-ascii?Q?JpuBe44M8esX6jmyLgP2lsV2AIjhzp+F2l2ph63ZApblyakT5Zb/uDoq41v4?=
- =?us-ascii?Q?/nnBFck6hKQaJ1O99Poi8Dofap3h9FhCMLVVxrGK6Xou4l3RT6gSMjOr9XkF?=
- =?us-ascii?Q?zZw3U+ZsAwo3F0MKf39jE09IMmVwNCkA1ckRFR3IVMZgoOOGQIrMHxh50OqX?=
- =?us-ascii?Q?Tw6e2Olc5rTCoNhZzrTg+YkiE0MNpTX8MW6ztmIY6j1Zr8UEr/MGdqnS5csW?=
- =?us-ascii?Q?RxFQPyTdoRBkgQpemI9BuCHJHDl8AXqlhN4Uqp0fJnAWMBb2GCOV/GMgTvzp?=
- =?us-ascii?Q?HQPhaEg7mm7qdkdX3FuQaYrxuTW5M6To/cZh5J4j1KxVxi1P7LKSMOhJYqfv?=
- =?us-ascii?Q?RyHo3XFMuvfIho20IG5PKrCBjjaFVHChSQjzuWusF503vA8j7WSKLNj95Hwi?=
- =?us-ascii?Q?ejpz7X5/S/+ZLOG/pT/G9OavAdwnNPLMm1iytYHcqZcrNYYhnHkbWvCNiqWp?=
- =?us-ascii?Q?NUc7wCKT4Z57KhAan5eKnyXxhSDD3cQ2UBgmWAg+wNfGrmH5yyThTgahfOQU?=
- =?us-ascii?Q?+NkwQQD1mqa4TnXfAvszNVM42+clXJrVdccSkQIYU3yy2Mu0lryiEyLKAQNC?=
- =?us-ascii?Q?WLaj2mx7l7Vj+D3hXZVem7SJLB5duSmkqorIAVoRHZHBxwmex17zjcr7C/hU?=
- =?us-ascii?Q?Tw/R48km6W9EKm5cIF4ivpgH8Ev2HjtDKQuCL45yug5+B4s+/uhDf87fE5iO?=
- =?us-ascii?Q?pTuOaQfVmGk/WRiOtYWQDYF/uiBhXr8ejnbU9pSC+JsA3MyP5A=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?f5886hHaK8EktL7wMbw8LyEdN/SRJVJReZ/NFip4Ww53qCMEXNqoGVdqxunJ?=
- =?us-ascii?Q?jK3RZ+ecOTh+zdeusTzLfKyzK/qGoTGSsVjjn8K1so2INF+qrtmMrLU4l21o?=
- =?us-ascii?Q?VPDuZEawxa5BvUQNSbD97vJTcabsT+2zHecvkWOqEGxw2w94YF0BhfzjlFWS?=
- =?us-ascii?Q?gFLLxKpygqoC0JLIJsr/c/rcSnjNLKcRf+q85PGMQcLV0jBOF3ejaJCOwBY1?=
- =?us-ascii?Q?4S2sknfNcefPbI+KQnc598jbGhHdJvYqwI9deno4A/EmSwA+nOPDrAB5yVRN?=
- =?us-ascii?Q?jbjz2GeuyAN/OY20LGnH63+z8M3oBi5UIuBFhCdhHpy0dCSh+GScd2u6troD?=
- =?us-ascii?Q?+K82p6EqRdMCEM0FlrDVOy+cyPSBknguYycsUT6xvnFG6TyOLfgaaZvFN8r8?=
- =?us-ascii?Q?lRLmArKomyhxeOagc5EOt8eaguJz7drF8BnwV5790UDEOJugcakBesBhNq+2?=
- =?us-ascii?Q?ra9dClFoI7Qta03YVnsv7TdQB16f35ADyfc2aAHmnMScueRVu72tFFOrS1c7?=
- =?us-ascii?Q?t16c4eAQ2RcK0MfXopFOIxeUxijKFw2rIVy3iihc9GIbXRqLNhSGJLOemY5g?=
- =?us-ascii?Q?gYkN9Q50miPGaBnfZrqOqBAw4dsWZbbL+88r72D6T1yknzhL0Co0WYlAuyFf?=
- =?us-ascii?Q?xfKsotq3Ndzm/m9528Q+/CBZRE9fVtpRz0tsV0qTYMiqbI/08uYIlieJtBHc?=
- =?us-ascii?Q?rv+/vEX9E6LwmvemGOXWshH1MQQkt82rsRh1mSFJEsAfyZ6kTHPwvskFVghm?=
- =?us-ascii?Q?Y/3F2uOdFc45FxYHAndARk9YwXY2t+aflS6iG6GxeSTy0hfk43uFzgT1S1ux?=
- =?us-ascii?Q?SpBv7RJj1GnAcfHWRHFBk3Tcx38F0oKpxXeh60MGzXi5DAqa2+fWzuQPw2+u?=
- =?us-ascii?Q?ki5UsYx5aCPiQfoeywz6Mzg2yLjSrUulvf40ESoq7YxeOdKhFoJSzN7/aQ4J?=
- =?us-ascii?Q?1r0KmCThz99OSFM2mVg5O+4gvmAreyvFh4x0/88ZjWcNsUC5EvrG6h6L1ZEB?=
- =?us-ascii?Q?LkNfHkpDFjCxTckpzEmsLP8N4IOJ93vAgFZHU1AUcuspp7hju9U1iwhBHZiA?=
- =?us-ascii?Q?aKnby33iwj/INlNA1qvyNdNMhC9snr+QSC9EveDiXiNCNOrG1GmU4HBHpo0+?=
- =?us-ascii?Q?eg6+Z34+kro3PNuG2M2BDcutO0IsklYkBIliMRi0TMRDvPakbnBgSMvLyQ3u?=
- =?us-ascii?Q?DIX7Bfg25gjPpuBh5Prk7eiBUYhCcvwXVKZ1WHOS47C9pyOs3QLJBlEl7H3r?=
- =?us-ascii?Q?KJRZUdP5DVQZUosaYIh+T14uVcqFwWOxJGPt1EN+PxfLj/chun4URioAHBE6?=
- =?us-ascii?Q?Gy99hmuKoAQ92/6cUgv3I9zjZsUay6B4h1tGAb4igWQxuYTxcKSNOD3oa3Lk?=
- =?us-ascii?Q?tex25z4tqwBZopKjdLnQSEwFd7Ox6bTvK/NaAPeh4VFXVhxE50ndblhnHAeJ?=
- =?us-ascii?Q?kEqN2Z07jb2L3nbXrAqXqb5twc6NYaT7R/e8FQ1cX0zE+qzAsYfl/+ZoVJKP?=
- =?us-ascii?Q?WTUenOy+JLEMdeD6+M2hIP1A38/CQcfzaCdYL/PTUe6jsU9PTX1dAStVdtc5?=
- =?us-ascii?Q?hZWKlkYPOrBjQRxXgRG06NQGnfXyL6HgEtfv2aUH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE8457CBC;
+	Fri, 19 Jul 2024 10:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721383761; cv=none; b=k6YaeKa6FDTF9Y0BHT3tKL+h4syG4H8vsXvVeiO46HjMVvnY1fN8DfKzu9RcAaSLEeiJRlcT610zFNevGAr1ycnHusWTAO5Of/ZdA7X9iauNaz3JaQtd2bXrSkTmMXYZkO8mYeQBjx/Scg/R5ZYhgmeBNMGcfeb+3L8/9N31UwE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721383761; c=relaxed/simple;
+	bh=lzudtVWmw9NQO7kuU0aulUsDtvr0+fppS+NObr+6Epk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RDmTYu0ybjCix+6EtZ52UIFPnLPOMl6LXWrauW2yaj6lzV4MTtD0ClRfRRmlBC2vZ5PiSukyNbWD3WM+dXGJziiY74dBZHhLNMDvzW/6x2d27OAxFmnmFdy3YmLQYwz5vFq1O1xYcMahJj6P21lP3iHdIHjDwuk0Vjoz+zPZkXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=C5qv2iqv; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-157-149-128.elisa-laajakaista.fi [91.157.149.128])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E796C471;
+	Fri, 19 Jul 2024 12:08:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721383718;
+	bh=lzudtVWmw9NQO7kuU0aulUsDtvr0+fppS+NObr+6Epk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=C5qv2iqvFvhc20FIRWf++E5bFsHtl6Ozc97LRSyv7IvlD1qMyDAf47U7EPELLP4FJ
+	 6rwTFufyytZ//Glyu5RJXUeBQJoPFQnnkkr3wtUkaSZhSg8t3tQ3E1vIgate9d9B+d
+	 liLAjcQDucfe619OvVMmQ3hrz2G4KGUnElp9fzdA=
+Message-ID: <fd0c4091-923d-4ef3-b440-5032b5d38851@ideasonboard.com>
+Date: Fri, 19 Jul 2024 13:09:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50b3e55c-aced-42ba-0135-08dca7dab378
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2024 10:08:13.5072
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: r3+oKIShGt0PTwZtQMTwcm6AKm1Kyec0JG12WZhsQBKd6MiJj2PDLVMNekNe2OOBcTZd9ZJ60DSky3TClY04Jw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9142
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/13] media: ti: j721e-csi2rx: add multistream support
+To: Jai Luthra <j-luthra@ti.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Changhuang Liang <changhuang.liang@starfivetech.com>,
+ Jack Zhu <jack.zhu@starfivetech.com>,
+ Julien Massot <julien.massot@collabora.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Vaishnav Achath
+ <vaishnav.a@ti.com>, Maxime Ripard <mripard@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
+ <20240627-multistream-v2-12-6ae96c54c1c3@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240627-multistream-v2-12-6ae96c54c1c3@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Conor,
+On 27/06/2024 16:10, Jai Luthra wrote:
+> Each CSI2 stream can be multiplexed into 4 independent streams, each
+> identified by its virtual channel number. To capture this multiplexed
+> stream, the application needs to tell the driver how it wants to route
+> the data. It needs to specify which context should process which stream.
+> This is done via the new routing APIs.
+> 
+> Add ioctls to accept routing information from the application and save
+> that in the driver. This can be used when starting streaming on a
+> context to determine which route and consequently which virtual channel
+> it should process.
+> 
+> Support the new enable_stream()/disable_stream() APIs in the subdev
+> instead of s_stream() hook. We wait for the userspace to start capturing
+> on all video nodes that have active routes, and once all video nodes are
+> STREAMON, we request the source to enable_stream() for all the sink
+> streams.
+> 
+> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>   .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 231 +++++++++++++++++----
+>   1 file changed, 185 insertions(+), 46 deletions(-)
+> 
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index c0916ca1a6f8..84b972c251e8 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -124,6 +124,7 @@ struct ti_csi2rx_dev {
+>   	struct v4l2_subdev		*source;
+>   	struct v4l2_subdev		subdev;
+>   	struct ti_csi2rx_ctx		ctx[TI_CSI2RX_MAX_CTX];
+> +	u64				streams_mask; /* Enabled sink streams */
+>   	/* Buffer to drain stale data from PSI-L endpoint */
+>   	struct {
+>   		void			*vaddr;
+> @@ -535,10 +536,6 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
+>   
+>   	fmt = find_format_by_fourcc(ctx->v_fmt.fmt.pix.pixelformat);
+>   
+> -	/* De-assert the pixel interface reset. */
+> -	reg = SHIM_CNTL_PIX_RST;
+> -	writel(reg, csi->shim + SHIM_CNTL);
+> -
+>   	reg = SHIM_DMACNTX_EN;
+>   	reg |= FIELD_PREP(SHIM_DMACNTX_FMT, fmt->csi_dt);
+>   
+> @@ -881,8 +878,12 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>   	struct ti_csi2rx_dev *csi = ctx->csi;
+>   	struct ti_csi2rx_dma *dma = &ctx->dma;
+>   	struct ti_csi2rx_buffer *buf;
+> +	struct v4l2_subdev_krouting *routing;
+> +	struct v4l2_subdev_route *route = NULL;
+> +	struct media_pad *remote_pad;
+>   	unsigned long flags;
+> -	int ret = 0;
+> +	int ret = 0, i;
+> +	struct v4l2_subdev_state *state;
+>   
+>   	spin_lock_irqsave(&dma->lock, flags);
+>   	if (list_empty(&dma->queue))
+> @@ -895,6 +896,40 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>   	if (ret)
+>   		goto err;
+>   
+> +	remote_pad = media_entity_remote_source_pad_unique(ctx->pad.entity);
+> +	if (!remote_pad) {
+> +		ret = -ENODEV;
+> +		goto err;
+> +	}
+> +
+> +	state = v4l2_subdev_lock_and_get_active_state(&csi->subdev);
+> +
+> +	routing = &state->routing;
+> +
+> +	/* Find the stream to process. */
+> +	for (i = 0; i < routing->num_routes; i++) {
 
-> > > > +properties:
-> > > > +  $nodename:
-> > > > +    pattern: "firmware@[0-9a-f]+$"
+for_each_active_route()
 
-As part of removing the reg property, it is required to remove the variable=
- node name as well.
+> +		struct v4l2_subdev_route *r = &routing->routes[i];
+> +
+> +		if (!(r->flags & V4L2_SUBDEV_ROUTE_FL_ACTIVE))
+> +			continue;
+> +
+> +		if (r->source_pad != remote_pad->index)
+> +			continue;
+> +
+> +		route = r;
+> +		break;
+> +	}
+> +
+> +	if (!route) {
+> +		ret = -ENODEV;
+> +		v4l2_subdev_unlock_state(state);
+> +		goto err;
+> +	}
+> +
+> +	ctx->stream = route->sink_stream;
+> +
+> +	v4l2_subdev_unlock_state(state);
+> +
+>   	ret = ti_csi2rx_get_vc(ctx);
+>   	if (ret == -ENOIOCTLCMD)
+>   		ctx->vc = 0;
+> @@ -921,7 +956,10 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>   	dma->state = TI_CSI2RX_DMA_ACTIVE;
+>   	spin_unlock_irqrestore(&dma->lock, flags);
+>   
+> -	ret = v4l2_subdev_call(&csi->subdev, video, s_stream, 1);
+> +	/* Start stream 0, we don't allow multiple streams on the source pad */
+> +	ret = v4l2_subdev_enable_streams(&csi->subdev,
+> +					 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
+> +					 BIT(0));
+>   	if (ret)
+>   		goto err_dma;
+>   
+> @@ -944,12 +982,16 @@ static void ti_csi2rx_stop_streaming(struct vb2_queue *vq)
+>   	struct ti_csi2rx_dev *csi = ctx->csi;
+>   	int ret;
+>   
+> -	video_device_pipeline_stop(&ctx->vdev);
+> -
+> +	/* assert pixel reset to prevent stale data */
+>   	writel(0, csi->shim + SHIM_CNTL);
+> +
+> +	video_device_pipeline_stop(&ctx->vdev);
+>   	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+>   
+> -	ret = v4l2_subdev_call(&csi->subdev, video, s_stream, 0);
+> +	ret = v4l2_subdev_disable_streams(&csi->subdev,
+> +					  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
+> +					  BIT(0));
+> +
+>   	if (ret)
+>   		dev_err(csi->dev, "Failed to stop subdev stream\n");
+>   
+> @@ -995,8 +1037,8 @@ static int ti_csi2rx_sd_set_fmt(struct v4l2_subdev *sd,
+>   	}
+>   	*fmt = format->format;
+>   
+> -	fmt = v4l2_subdev_state_get_format(state, TI_CSI2RX_PAD_FIRST_SOURCE,
+> -					   format->stream);
+> +	fmt = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
+> +							   format->stream);
+>   	if (!fmt) {
+>   		ret = -EINVAL;
+>   		goto out;
+> @@ -1007,72 +1049,169 @@ static int ti_csi2rx_sd_set_fmt(struct v4l2_subdev *sd,
+>   	return ret;
+>   }
+>   
+> +static int _ti_csi2rx_sd_set_routing(struct v4l2_subdev *sd,
+> +				     struct v4l2_subdev_state *state,
+> +				     struct v4l2_subdev_krouting *routing)
+> +{
+> +	int ret;
+> +
+> +	const struct v4l2_mbus_framefmt format = {
 
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    firmware {
-Since node name "firmware" is a very generic name and broad reference.=20
-It is a request to revisit the last suggestion to replace it with any one o=
-f the below close suggestions:
+static const
 
-- se (Stands for secure enclave, already mentioned in the description).
-- senclave (like sram: secure-ram)
-- senclave-firmware
-- se-fw
+  Tomi
 
-Kindly suggest.
-
-Thanks.
-
-> > > > +      compatible =3D "fsl,imx95-se";
-> > > > +      mboxes =3D <&ele_mu0 0 0>, <&ele_mu0 1 0>;
-> > > > +      mbox-names =3D "tx", "rx";
-> > > > +    };
-> > > > +...
-> > > >
-> > > > --
-> > > > 2.34.1
-> > > >
 
