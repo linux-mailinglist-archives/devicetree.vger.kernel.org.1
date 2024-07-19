@@ -1,314 +1,163 @@
-Return-Path: <devicetree+bounces-86847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D5B937AE1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 18:23:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D077937AF6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 18:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06EB91C22887
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:23:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4EFC1F212F8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D593146D6F;
-	Fri, 19 Jul 2024 16:22:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="WR28BtXI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="XaBU3Ga2";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="WR28BtXI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="XaBU3Ga2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7EB145FF4;
+	Fri, 19 Jul 2024 16:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508FB146D6E;
-	Fri, 19 Jul 2024 16:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95077145A19;
+	Fri, 19 Jul 2024 16:28:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721406149; cv=none; b=e2oqMHXErB6vCprIUND0XB5D9jmgx1NLxmj++hfFC2JtkQtrNfoOv5u2RbkIEk4Dv9OtyJGb6EJqoQSXTgg2mLTSSSveVAS5NTgi/nX/HTzWUA0ddQ5U8Fhx9uinP9HDEOYFbmYMjYFJIyk8So+89Vn1cjb4CjDMn0AwIwcpekI=
+	t=1721406537; cv=none; b=U+i9bXFZk+qPCd3Iz2s0pIOE0VyhNvqXLR/07nNP/sFoGw4ZPNDEqqhRtZEHGDEcbHadRVEMfi47ORmj668dSgGMewRHa6VEn3lYlRU/Ce8iaq2itIKF4ORRf8pjAg+e65+M5JQrV/kSDCsT6pPmlcjKRK81PqCkYi86SCFV7+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721406149; c=relaxed/simple;
-	bh=C7TE/E7B0+CtxRe0AdNtSZinEtvs2Z+Qm9XvLJnGdjs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nHH+elqonPaACjoMImLDwgg1TCwY3xp21lTjSvp3Fo07m/u1Jvg8TOHYyWzWURhevbnaVX0r+wRvx0uI5x2uaVpHA/rkZqzt/g2EOw2/+LRDJwuo8VtVZ/o8rveX0oJRT/0L9mPgK6YsxF2QCmGIHriZYlosA4n+IyJSnavcliU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=WR28BtXI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=XaBU3Ga2; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=WR28BtXI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=XaBU3Ga2; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 560ED21198;
-	Fri, 19 Jul 2024 16:22:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1721406144; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A6bn1mAfzyBLUI6FeMOTT+noQDl0b3nyAwBkCg0rofg=;
-	b=WR28BtXI6JYmVZDBOW6szdTcRnRxG34cIWtLD/WwtcuoE61TinL0nNZiLAUxhQfGpnS/S+
-	5ZyL5/HIyNm9/d6RhLtg5hVXtSXspFzRQ8S4S7/KSf/CQRVeDfS/z2zlqXkwe/8KAkqWVA
-	Os6u5F1pO2ZN2/j+rQqEQabp/EKCn94=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1721406144;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A6bn1mAfzyBLUI6FeMOTT+noQDl0b3nyAwBkCg0rofg=;
-	b=XaBU3Ga27YwuE3MgOQHtzSgnGI2MJe1ggp/U6QxZ2ZxZhn2L6DgEn89+Q8ghL1soji9CVF
-	ZOLYYKTUiNmbk9Cg==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=WR28BtXI;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=XaBU3Ga2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1721406144; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A6bn1mAfzyBLUI6FeMOTT+noQDl0b3nyAwBkCg0rofg=;
-	b=WR28BtXI6JYmVZDBOW6szdTcRnRxG34cIWtLD/WwtcuoE61TinL0nNZiLAUxhQfGpnS/S+
-	5ZyL5/HIyNm9/d6RhLtg5hVXtSXspFzRQ8S4S7/KSf/CQRVeDfS/z2zlqXkwe/8KAkqWVA
-	Os6u5F1pO2ZN2/j+rQqEQabp/EKCn94=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1721406144;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A6bn1mAfzyBLUI6FeMOTT+noQDl0b3nyAwBkCg0rofg=;
-	b=XaBU3Ga27YwuE3MgOQHtzSgnGI2MJe1ggp/U6QxZ2ZxZhn2L6DgEn89+Q8ghL1soji9CVF
-	ZOLYYKTUiNmbk9Cg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5766413808;
-	Fri, 19 Jul 2024 16:22:23 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id +aFTEr+Smma7FQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Fri, 19 Jul 2024 16:22:23 +0000
-Message-ID: <82472066-56a5-4f4f-8034-cf3a7afc206e@suse.de>
-Date: Fri, 19 Jul 2024 19:22:22 +0300
+	s=arc-20240116; t=1721406537; c=relaxed/simple;
+	bh=N1pdKNBGQDY1wRXXdSL7Pu0XSWIwV9tnznh+gOEKyG8=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uPcq5XOae/QSfvQsausuJ3JlZKal0ZA+thVyxIBBr/gzS4M7nN+GfpfBikIDhhplyT0KxK3pPv4le7DmsyGzcA/Sht90K0/pTw80TYAOYZc7baeRnS8TGWVejWuVNcLi/4iFPjE0uUaIgKKByBnIOctlmO7Ds624OVoOmW7f8QI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WQZn61R1mz6K7Fc;
+	Sat, 20 Jul 2024 00:26:34 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 9E616140517;
+	Sat, 20 Jul 2024 00:28:51 +0800 (CST)
+Received: from localhost (10.48.157.16) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 19 Jul
+ 2024 17:28:50 +0100
+Date: Fri, 19 Jul 2024 17:28:49 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Mike Rapoport <rppt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
+	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
+ Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
+ Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
+ Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
+	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens
+	<hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar
+	<mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul Adrian
+ Glaubitz" <glaubitz@physik.fu-berlin.de>, Michael Ellerman
+	<mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, "Thomas
+ Bogendoerfer" <tsbogend@alpha.franken.de>, Thomas Gleixner
+	<tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon
+	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<loongarch@lists.linux.dev>, <linux-mips@vger.kernel.org>,
+	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
+	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
+	<sparclinux@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-cxl@vger.kernel.org>, <nvdimm@lists.linux.dev>,
+	<devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+	<linux-mm@kvack.org>, <x86@kernel.org>
+Subject: Re: [PATCH 06/17] x86/numa: simplify numa_distance allocation
+Message-ID: <20240719172849.000019a0@Huawei.com>
+In-Reply-To: <20240716111346.3676969-7-rppt@kernel.org>
+References: <20240716111346.3676969-1-rppt@kernel.org>
+	<20240716111346.3676969-7-rppt@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: interrupt-controller: Add bcm2712 MSI-X
- DT bindings
-To: Rob Herring <robh@kernel.org>, Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Thomas Gleixner
- <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20240626104544.14233-1-svarbanov@suse.de>
- <20240626104544.14233-2-svarbanov@suse.de>
- <20240628220521.GA274493-robh@kernel.org>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20240628220521.GA274493-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [0.20 / 50.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DWL_DNSWL_LOW(-1.00)[suse.de:dkim];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
-	RCVD_TLS_ALL(0.00)[];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:dkim,suse.de:email]
-X-Spam-Level: 
-X-Rspamd-Queue-Id: 560ED21198
-X-Spam-Score: 0.20
-X-Spam-Flag: NO
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Bar: /
+X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-Hi Rob,
+On Tue, 16 Jul 2024 14:13:35 +0300
+Mike Rapoport <rppt@kernel.org> wrote:
 
-Thank you for the comments!
-
-On 6/29/24 01:05, Rob Herring wrote:
-> On Wed, Jun 26, 2024 at 01:45:38PM +0300, Stanimir Varbanov wrote:
->> Adds DT bindings for bcm2712 MSI-X interrupt peripheral controller.
->>
->> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->> ---
->>  .../brcm,bcm2712-msix.yaml                    | 74 +++++++++++++++++++
->>  1 file changed, 74 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->> new file mode 100644
->> index 000000000000..ca610e4467d9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->> @@ -0,0 +1,74 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm2712-msix.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom bcm2712 MSI-X Interrupt Peripheral support
->> +
->> +maintainers:
->> +  - Stanimir Varbanov <svarbanov@suse.de>
->> +
->> +description: >
->> +  This interrupt controller is used to provide intterupt vectors to the
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 > 
-> typo
+> Allocation of numa_distance uses memblock_phys_alloc_range() to limit
+> allocation to be below the last mapped page.
+> 
+> But NUMA initializaition runs after the direct map is populated and
 
-Will fix it.
+initialization (one too many 'i's)
+
+> there is also code in setup_arch() that adjusts memblock limit to
+> reflect how much memory is already mapped in the direct map.
+> 
+> Simplify the allocation of numa_distance and use plain memblock_alloc().
+> This makes the code clearer and ensures that when numa_distance is not
+> allocated it is always NULL.
+Doesn't this break the comment in numa_set_distance() kernel-doc?
+"
+ * If such table cannot be allocated, a warning is printed and further
+ * calls are ignored until the distance table is reset with
+ * numa_reset_distance().
+"
+
+Superficially that looks to be to avoid repeatedly hitting the
+singleton bit at the top of numa_set_distance() as SRAT or similar
+parsing occurs.
 
 > 
->> +  generic interrupt controller (GIC) on bcm2712. It will be used as
->> +  external MSI-X controller for PCIe root complex.
->> +
->> +allOf:
->> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - "brcm,bcm2712-mip-intc"
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> ---
+>  arch/x86/mm/numa.c | 12 +++---------
+>  1 file changed, 3 insertions(+), 9 deletions(-)
 > 
-> Don't need quotes. Nor 'items'. And enum can be 'const' 
+> diff --git a/arch/x86/mm/numa.c b/arch/x86/mm/numa.c
+> index 5e1dde26674b..ab2d4ecef786 100644
+> --- a/arch/x86/mm/numa.c
+> +++ b/arch/x86/mm/numa.c
+> @@ -319,8 +319,7 @@ void __init numa_reset_distance(void)
+>  {
+>  	size_t size = numa_distance_cnt * numa_distance_cnt * sizeof(numa_distance[0]);
+>  
+> -	/* numa_distance could be 1LU marking allocation failure, test cnt */
+> -	if (numa_distance_cnt)
+> +	if (numa_distance)
+>  		memblock_free(numa_distance, size);
+>  	numa_distance_cnt = 0;
+>  	numa_distance = NULL;	/* enable table creation */
+> @@ -331,7 +330,6 @@ static int __init numa_alloc_distance(void)
+>  	nodemask_t nodes_parsed;
+>  	size_t size;
+>  	int i, j, cnt = 0;
+> -	u64 phys;
+>  
+>  	/* size the new table and allocate it */
+>  	nodes_parsed = numa_nodes_parsed;
+> @@ -342,16 +340,12 @@ static int __init numa_alloc_distance(void)
+>  	cnt++;
+>  	size = cnt * cnt * sizeof(numa_distance[0]);
+>  
+> -	phys = memblock_phys_alloc_range(size, PAGE_SIZE, 0,
+> -					 PFN_PHYS(max_pfn_mapped));
+> -	if (!phys) {
+> +	numa_distance = memblock_alloc(size, PAGE_SIZE);
+> +	if (!numa_distance) {
+>  		pr_warn("Warning: can't allocate distance table!\n");
+> -		/* don't retry until explicitly reset */
+> -		numa_distance = (void *)1LU;
+>  		return -ENOMEM;
+>  	}
+>  
+> -	numa_distance = __va(phys);
+>  	numa_distance_cnt = cnt;
+>  
+>  	/* fill with the default distances */
 
-OK.
-
-> 
->> +  reg:
->> +    maxItems: 1
->> +    description: >
->> +      Specifies the base physical address and size of the registers
-> 
-> drop. That's *every* reg property.
-
-OK.
-
-> 
->> +
->> +  interrupt-controller: true
->> +
->> +  "#interrupt-cells":
->> +    const: 2
->> +
->> +  msi-controller: true
-> 
-> Add #msi-cells. The default is 0, but that's legacy.
-
-OK.
-
-> 
->> +
->> +  brcm,msi-base-spi:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: The SGI number that MSIs start.
->> +
->> +  brcm,msi-num-spis:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: The number of SGIs for MSIs.
->> +
->> +  brcm,msi-offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: Shift the allocated MSIs up by N.
-> 
-> If only we had a property that every MSI controller seems to need. Go 
-> check msi-controller.yaml...
-
-This exists because the second instance of MIP MSI-X
-interrupt-controller (mip1) has some limitations.
-
-Snippet from donwstream dtsi:
-
-	brcm,msi-base-spi = <247>;
-	/* Actually 20 total, but the others are
-	 * both sparse and non-consecutive
-	 */
-	brcm,msi-num-spis = <8>;
-	brcm,msi-offset = <8>;
-	brcm,msi-pci-addr = <0xff 0xffffe000>;
-
-I don't know how to model this except private property.
-
-> 
->> +
->> +  brcm,msi-pci-addr:
->> +    $ref: /schemas/types.yaml#/definitions/uint64
->> +    description: MSI-X message address.
-> 
-> Why don't other platforms need something like this?
-
-This is a destination address for MSI mem writes from PCIe endpoint
-devices, i.e. msi_msg.address filled when composing msi_msg
-(irq_chip::irq_compose_msi_msg).
-
-~Stan
-
-> 
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupt-controller
->> +  - "#interrupt-cells"
->> +  - msi-controller
->> +
->> +examples:
->> +  - |
->> +    msi-controller@130000 {
->> +      compatible = "brcm,bcm2712-mip-intc";
->> +      reg = <0x00130000 0xc0>;
->> +      msi-controller;
->> +      interrupt-controller;
->> +      #interrupt-cells = <2>;
->> +      brcm,msi-base-spi = <128>;
->> +      brcm,msi-num-spis = <64>;
->> +      brcm,msi-offset = <0>;
->> +      brcm,msi-pci-addr = <0xff 0xfffff000>;
->> +    };
->> -- 
->> 2.43.0
->>
 
