@@ -1,224 +1,239 @@
-Return-Path: <devicetree+bounces-86762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A8393768E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:18:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BFC19376A8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:30:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66FCB1F21279
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 10:18:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 949AD1F21419
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 10:30:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600AB43AD7;
-	Fri, 19 Jul 2024 10:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7CA82D72;
+	Fri, 19 Jul 2024 10:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="a5UIowur"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OkI9hakE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0458286A8;
-	Fri, 19 Jul 2024 10:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CAB2C147;
+	Fri, 19 Jul 2024 10:30:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721384286; cv=none; b=AWJ/lqQHA+KHc6t+n68qLVwIt5JVm+BpLaOFEzlui+Bw5kEdEGOfXI7kFZjjzsVYWoqJqo+GbSP8PWL7c6mSPj2158bf/cHc0MrKVVUlAAGWmBD8v5ll7t4cjdWdVxH+ZzHJ4Sa7/IoQDUldEy/EsQO0IA7MQLt9LljfNYpVdYI=
+	t=1721385019; cv=none; b=rQ3yvvdldeeIK39Y9o/koBuOKttJLo7qI2aco1R43Xfx/OtXV7y5qElSJ8COXHw/g8zcWZdyYBlt82AW7P/6q+9bf9hcWaicIywumLJWfYDzvuGVEPuQepX1t6Dv+mHhUWBGInk2w95TtASAixfQpaFpEkwuNliYgNyQtfKk6KM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721384286; c=relaxed/simple;
-	bh=eabJF5WelVgo8hI+NNSeLgeLcjze6smG4FIDgMwhCyQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q897hOh3JWwQATid6wUnHwRRAHFkBb7wVRdyS26W2onYyGrXYnmp0aWyD62XMRJVHUouMZM4uWpsMwGxO0QssnUSeqT3Zub8Q4Ct3qd5Gvegul7zEvNg7vhIzw5hpKhT81k6tPrYZDb+4ZCLqalX2RQ+Jr/iiDAV2HWGMZVBMtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=a5UIowur; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-157-149-128.elisa-laajakaista.fi [91.157.149.128])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5169D471;
-	Fri, 19 Jul 2024 12:17:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1721384238;
-	bh=eabJF5WelVgo8hI+NNSeLgeLcjze6smG4FIDgMwhCyQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a5UIowurNn6CsBtJF2ZEUDH+ZF+2fusWpUKbw6qi8mBuwezdddCEJ7uh4mCBnHWym
-	 wD06USnloXFJzjnVODm416z1C5LsC65rCzqWtPrX0kurJaNyRBLzRty8RHkxaKk4Ge
-	 Fd9rAWLDz1iTINPj9Ly2fpX7gnFt6A46yo2Jh2Dc=
-Message-ID: <93ac27de-6ef3-4d4b-bc6e-707e3c12b4c2@ideasonboard.com>
-Date: Fri, 19 Jul 2024 13:17:53 +0300
+	s=arc-20240116; t=1721385019; c=relaxed/simple;
+	bh=zcZ4FUjtd/uK/wIKU3tT6XdyWXhjaZl2+pXREkHusXs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hJKKeVFjZQB5atJjc7ljMBTHtu/JyxAcZ9qBtpfl2kPJ5YJdlQ5E3jzGK4ReyRlgdUTVrs31gBu4QqKd7gQvYtaUQu9p3DAm27mPOB6HwSnA5A4T8oS2gTAEZ595FY/W3U7PQ8z2KaUBy8xkaQQUJJYCL7UG4DFADf4srO2Lh/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OkI9hakE; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1721385017; x=1752921017;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zcZ4FUjtd/uK/wIKU3tT6XdyWXhjaZl2+pXREkHusXs=;
+  b=OkI9hakEhPoMFq8khfeGLXNMl1TfTUIY3IzNT2A3VWsaq+itMf5HKV2u
+   qAO43iGzPvjeba7gTCWkn/xqmj8LU+xM9lt7F9/uSqz7CqWlI+bpJDWLi
+   cgLSmJMhKzIRjxtNZLOcU8FGImmxRxTE6gYzlHLgz7YOrupUyWADIK1iX
+   rZrricZPNP43F0S2qX70B6+sMWgO8Qr+3sTkiLvXbh15VQxLvWl6yo4B3
+   1fH638s91bShYGPSATPK5FpyX3w5xcSj0QKMjZsMs+OsOPXaj5Yr+2mQo
+   JJmrK1fCMZ/ziTe4dqPuWykVSqfmAEIGNisUkGIK2mVWty/2/xoIUBcSn
+   A==;
+X-CSE-ConnectionGUID: WqXT+YXdSayhDfVoHu+6ag==
+X-CSE-MsgGUID: pmNaJI3CRQGqs+PsbFylIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="19105348"
+X-IronPort-AV: E=Sophos;i="6.09,220,1716274800"; 
+   d="scan'208";a="19105348"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2024 03:30:16 -0700
+X-CSE-ConnectionGUID: vrnIEeZZTQmTQ2T02mnZUQ==
+X-CSE-MsgGUID: IPp855SZSeaH472NiBQFeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,220,1716274800"; 
+   d="scan'208";a="55591817"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 19 Jul 2024 03:30:13 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sUksN-000i3Q-1E;
+	Fri, 19 Jul 2024 10:30:11 +0000
+Date: Fri, 19 Jul 2024 18:29:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Valentin Caron <valentin.caron@foss.st.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH v2 3/4] rtc: stm32: add Low Speed Clock Output (LSCO)
+ support
+Message-ID: <202407191830.8bh5dJ09-lkp@intel.com>
+References: <20240717074835.2210411-4-valentin.caron@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/13] media: ti: j721e-csi2rx: Submit all available
- buffers
-To: Jai Luthra <j-luthra@ti.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Vaishnav Achath
- <vaishnav.a@ti.com>, Maxime Ripard <mripard@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
- Changhuang Liang <changhuang.liang@starfivetech.com>,
- Jack Zhu <jack.zhu@starfivetech.com>,
- Julien Massot <julien.massot@collabora.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
- <20240627-multistream-v2-13-6ae96c54c1c3@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20240627-multistream-v2-13-6ae96c54c1c3@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240717074835.2210411-4-valentin.caron@foss.st.com>
 
-On 27/06/2024 16:10, Jai Luthra wrote:
-> We already make sure to submit all available buffers to DMA in each DMA
-> completion callback.
-> 
-> Move that logic in a separate function, and use it during stream start
-> as well, as most application queue all their buffers before stream on.
-> 
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
->   .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 43 ++++++++++++----------
->   1 file changed, 24 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index 84b972c251e8..a258477b9084 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -637,6 +637,27 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
->   	return ret;
->   }
->   
-> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx)
-> +{
-> +	struct ti_csi2rx_dma *dma = &ctx->dma;
-> +	struct ti_csi2rx_buffer *buf;
-> +	int ret = 0;
-> +
-> +	/* If there are more buffers to process then start their transfer. */
-> +	while (!list_empty(&dma->queue)) {
-> +		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
-> +		ret = ti_csi2rx_start_dma(ctx, buf);
-> +		if (ret) {
-> +			dev_err(ctx->csi->dev,
-> +				"Failed to queue the next buffer for DMA\n");
-> +			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-> +			break;
-> +		}
-> +		list_move_tail(&buf->list, &dma->submitted);
-> +	}
-> +	return ret;
-> +}
-> +
->   static void ti_csi2rx_dma_callback(void *param)
->   {
->   	struct ti_csi2rx_buffer *buf = param;
-> @@ -657,18 +678,7 @@ static void ti_csi2rx_dma_callback(void *param)
->   	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
->   	list_del(&buf->list);
->   
-> -	/* If there are more buffers to process then start their transfer. */
-> -	while (!list_empty(&dma->queue)) {
-> -		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
-> -
-> -		if (ti_csi2rx_start_dma(ctx, buf)) {
-> -			dev_err(ctx->csi->dev,
-> -				"Failed to queue the next buffer for DMA\n");
-> -			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-> -		} else {
-> -			list_move_tail(&buf->list, &dma->submitted);
-> -		}
-> -	}
-> +	ti_csi2rx_dma_submit_pending(ctx);
->   
->   	if (list_empty(&dma->submitted))
->   		dma->state = TI_CSI2RX_DMA_IDLE;
-> @@ -877,7 +887,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->   	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
->   	struct ti_csi2rx_dev *csi = ctx->csi;
->   	struct ti_csi2rx_dma *dma = &ctx->dma;
-> -	struct ti_csi2rx_buffer *buf;
->   	struct v4l2_subdev_krouting *routing;
->   	struct v4l2_subdev_route *route = NULL;
->   	struct media_pad *remote_pad;
-> @@ -943,16 +952,13 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->   	ctx->sequence = 0;
->   
->   	spin_lock_irqsave(&dma->lock, flags);
-> -	buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
->   
-> -	ret = ti_csi2rx_start_dma(ctx, buf);
-> +	ret = ti_csi2rx_dma_submit_pending(ctx);
->   	if (ret) {
-> -		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
->   		spin_unlock_irqrestore(&dma->lock, flags);
-> -		goto err_pipeline;
-> +		goto err_dma;
->   	}
->   
-> -	list_move_tail(&buf->list, &dma->submitted);
->   	dma->state = TI_CSI2RX_DMA_ACTIVE;
->   	spin_unlock_irqrestore(&dma->lock, flags);
->   
-> @@ -967,7 +973,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->   
->   err_dma:
->   	ti_csi2rx_stop_dma(ctx);
-> -err_pipeline:
->   	video_device_pipeline_stop(&ctx->vdev);
->   	writel(0, csi->shim + SHIM_CNTL);
->   	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-> 
+Hi Valentin,
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+kernel test robot noticed the following build errors:
 
-  Tomi
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on next-20240719]
+[cannot apply to atorgue-stm32/stm32-next robh/for-next linus/master v6.10]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Valentin-Caron/dt-bindings-rtc-stm32-describe-pinmux-nodes/20240717-193541
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20240717074835.2210411-4-valentin.caron%40foss.st.com
+patch subject: [PATCH v2 3/4] rtc: stm32: add Low Speed Clock Output (LSCO) support
+config: um-randconfig-r063-20240718 (https://download.01.org/0day-ci/archive/20240719/202407191830.8bh5dJ09-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad154281230d83ee551e12d5be48bb956ef47ed3)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240719/202407191830.8bh5dJ09-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407191830.8bh5dJ09-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/backlight/platform_lcd.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_accel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_DAC1064.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_Ti3026.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/macmodes.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/kyro/kyrofb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/goldfishfb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6765-audio.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-mm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-img.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-vdec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-aud.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6797-img.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6797-vdec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6797-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-apmixedsys.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-bdp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-mfg.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-vdec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7622-eth.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7622-aud.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7988-apmixed.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7988-topckgen.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7988-infracfg.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-apmixedsys.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-cam.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-img.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-ipu0.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-ipu_conn.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-mm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-vdec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-apmixedsys.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-topckgen.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-infra_ao.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-imp_iic_wrap.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-mdp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-mfg.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-mm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-apmixedsys.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-topckgen.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-peri_ao.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-infra_ao.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-imp_iic_wrap.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-vdo0.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-vdo1.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-aud.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-cam.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-img.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-imp_iic_wrap.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-ipe.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-mdp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-msdc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-scp_adsp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-cam.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-ccu.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-mfg.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-venc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-vpp0.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-vpp1.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365-apu.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sophgo/clk-sophgo-cv1800.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/reset/hisilicon/hi6220_reset.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/8250_base.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/8250_pxa.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/owl-uart.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/n_hdlc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/goldfish.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/panel/panel-auo-a030jtn01.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-sccb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/cxl/cxl_mem.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/spi/spi-omap2-mcspi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/spmi/hisi-spmi-controller.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/uio/uio_aec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/uio/uio_netx.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/yenta_socket.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/i2c/busses/i2c-ccgx-ucsi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/i2c/busses/i2c-qup.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/dvb-frontends/au8522_decoder.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/dvb-frontends/mb86a16.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/v4l2-core/v4l2-async.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/v4l2-core/v4l2-fwnode.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/watchdog/menz69_wdt.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/host/tmio_mmc_core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/host/renesas_sdhi_core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/core/mmc_core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/core/sdio_uart.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/crypto/xilinx/zynqmp-aes-gcm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/nvmem/nvmem-apple-efuses.o
+ERROR: modpost: "devm_pinctrl_register_and_init" [drivers/rtc/rtc-stm32.ko] undefined!
+ERROR: modpost: "pinctrl_enable" [drivers/rtc/rtc-stm32.ko] undefined!
+ERROR: modpost: "pinconf_generic_dt_node_to_map" [drivers/rtc/rtc-stm32.ko] undefined!
+>> ERROR: modpost: "pinctrl_dev_get_drvdata" [drivers/rtc/rtc-stm32.ko] undefined!
+ERROR: modpost: "pinconf_generic_dt_free_map" [drivers/rtc/rtc-stm32.ko] undefined!
+WARNING: modpost: EXPORT symbol "csum_partial" [vmlinux] version generation failed, symbol will not be versioned.
+Is "csum_partial" prototyped in <asm/asm-prototypes.h>?
+WARNING: modpost: EXPORT symbol "csum_partial_copy_generic" [vmlinux] version generation failed, symbol will not be versioned.
+Is "csum_partial_copy_generic" prototyped in <asm/asm-prototypes.h>?
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GENERIC_PINCONF
+   Depends on [n]: PINCTRL [=n]
+   Selected by [m]:
+   - RTC_DRV_STM32 [=m] && RTC_CLASS [=y] && (ARCH_STM32 || COMPILE_TEST [=y])
+   WARNING: unmet direct dependencies detected for PINMUX
+   Depends on [n]: PINCTRL [=n]
+   Selected by [m]:
+   - RTC_DRV_STM32 [=m] && RTC_CLASS [=y] && (ARCH_STM32 || COMPILE_TEST [=y])
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
