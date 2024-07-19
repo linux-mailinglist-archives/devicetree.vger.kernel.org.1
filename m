@@ -1,112 +1,94 @@
-Return-Path: <devicetree+bounces-86777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB169377B1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:22:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 170C79377D1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:36:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4728BB21CB6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:22:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47F791C211AE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 12:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDFC1353FE;
-	Fri, 19 Jul 2024 12:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D387C135A65;
+	Fri, 19 Jul 2024 12:36:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9C512D76F;
-	Fri, 19 Jul 2024 12:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992C483A07
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 12:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721391737; cv=none; b=GzNBWs3myR/+f1kg7nPmF6sjJcFCkfjt7dyQROM9gO7/c5zvGhCFaHgWfn3Z7bpusRPrprtGfDYgaP4PMNoCVIqrDz/At5UhNT2zkJ1FPUv4gDx3ZU0Ff6Lq2PV5Jq3kXFYjC478KaSy8/y5RnCAMeUZpQCDLdU56jjtx++l2xQ=
+	t=1721392605; cv=none; b=Q8BTgha7JfS/T672MU4LbrJK1AJc872lWR6MS8MgwjXA/UK/YwZKBvDiRJMGyUA1vfMBKbeqswhpB0j+8IztrKLjd2h/P8ljDd5YJgqKK0z44OC7Pm+hBnnRa/kYTYa/E5getcjmjqxoRvkTG3XGiB5UauThfDEvRqYIB8QWK80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721391737; c=relaxed/simple;
-	bh=IXxokw4qYtSnbyMY4T9bSgXF/QqjkCxAt8uxZe28KNw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uh7dPVqTmJ50y25Zs9OUFLnzlgayjILr2DIy/NC8I3BBJevliJYvnl7X7YpQG4h+9avDBN76hs9SasV+Wv+C1c6Mbp7wRdnm2FCSyyztAcS8UkG2GN/dR/HsdkLkLr4Bv9wBRegd9gXMe+w0UzmrVi029rFAx1i5EykeL+TMfIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-From: Yixun Lan <dlan@gentoo.org>
-Date: Fri, 19 Jul 2024 12:21:40 +0000
-Subject: [PATCH 2/2] riscv: dts: spacemit: add pinctrl property to uart0 in
- BPI-F3
+	s=arc-20240116; t=1721392605; c=relaxed/simple;
+	bh=gJdDsG9/STKFrARu+Wrt2AgKwlQ2PQo6a5lAw/BzZkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sa26Jmb6AlIwhP4+7mCAAxptOANCkkSXWYxn5Tt0giaUNvaGQL3J3PLC1BqgINtazWXHebyYL+2m4oHazPxOfyzUPM3KDaN3Gln+HJdw2I5PsTqfki77bS6UO8Lz0uznp7+0ArBY7Vidwn5WOgmnMNJ6rk8kdnlBJ5mSXF9TX8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sUmqh-0001Pl-GT; Fri, 19 Jul 2024 14:36:35 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sUmqg-000gST-I4; Fri, 19 Jul 2024 14:36:34 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sUmqg-005vTo-1U;
+	Fri, 19 Jul 2024 14:36:34 +0200
+Date: Fri, 19 Jul 2024 14:36:34 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: vtpieter@gmail.com
+Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
+	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: microchip: add
+ microchip,pme-active-high flag
+Message-ID: <Zppd0nVebcX_nKkR@pengutronix.de>
+References: <20240717193725.469192-1-vtpieter@gmail.com>
+ <20240717193725.469192-2-vtpieter@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240719-02-k1-pinctrl-v1-2-239ac5b77dd6@gentoo.org>
-References: <20240719-02-k1-pinctrl-v1-0-239ac5b77dd6@gentoo.org>
-In-Reply-To: <20240719-02-k1-pinctrl-v1-0-239ac5b77dd6@gentoo.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: Yangyu Chen <cyy@cyyself.name>, Jesse Taube <jesse@rivosinc.com>, 
- Jisheng Zhang <jszhang@kernel.org>, Inochi Amaoto <inochiama@outlook.com>, 
- Icenowy Zheng <uwu@icenowy.me>, Meng Zhang <zhangmeng.kevin@spacemit.com>, 
- Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=902; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=IXxokw4qYtSnbyMY4T9bSgXF/QqjkCxAt8uxZe28KNw=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBmmlpej2yFgvx2t9dDUL4fj4bTcGGRW54F661BW
- iYGaFVAryOJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZppaXl8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277Wc8EACTVYI3H7nEd7I878
- oMvouenk+DQntt5kSUV55ZJr1FcbatebzNuZnoXJCvJRny2dJ8F1DyOoj4jDQbNmUpicwjWXITU
- Wr4voaVOOsc5q0vq/6/nIn+uAMwXuD5J/q6ENtuvGchL8eyrgeZbwpsAWHeaNgxVnsQ2IbnrAue
- cZebSkNDdK+axEcvrlcTe0U+6SQ9oPbr2qzohH2l7o0GUSkF/JvB20Hq4XaV/SYVdWCQt2QIA/D
- V6/GVSEclM8NSRkQ2kQGz5YEqmRP+IQ2J7p0/5ZL+lZ2KZDliOMqrHGg8m1sTv66zJfitR46XVW
- /1SR00/0NlwE0Ce4EQ5mFlar/WtQaxBHt4OWU+sCyA+PGQg6KF1I5SytGUxr8Rf7S5BZA7EOyq+
- F9aKzvOQ2JxwGDcf1XviV+HHvdJ08oT9IegJpE2a9Q6QDOr6/1TsVvS/5u3VEAfQ0UO18PHoN+R
- nbVj/nOiZyydUHa2fzWyzOgannnlWkVwyrCk/BdwpzGMgYGEPfDhzDurH2HzPBUaQXvJ2/YO+hv
- 8nXRfYdCTSGwgRaqaqSHIlaFtyhA8saFy9yZ9/w9P2AmLygW16jYz5HJH90z1S2y7bTL6GD3KrQ
- 8z3xkISD0581I9i91lVzGebRbtRodWm7GdQfHAvZtSjUltSiG1qXXEydUfYe1vGl8+AQ==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240717193725.469192-2-vtpieter@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Before pinctrl driver implemented, the uart0 controller reply on
-bootloader for setting correct pin mux and the configurations.
+On Wed, Jul 17, 2024 at 09:37:22PM +0200, vtpieter@gmail.com wrote:
+> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> 
+> Add microchip,pme-active-high property to set the PME (Power
+> Management Event) pin polarity for Wake on Lan interrupts.
+> 
+> Note that the polarity is active-low by default.
+> 
+> Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
 
-Now, let's add pinctrl property to uart0 of Bananapi-F3 board as
-the pinctrl driver enabled.
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 023274189b492..2361269a62217 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -4,6 +4,7 @@
-  */
- 
- #include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
- 
- / {
- 	model = "Banana Pi BPI-F3";
-@@ -15,5 +16,7 @@ chosen {
- };
- 
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_2_pins>;
- 	status = "okay";
- };
+Thank you!
 
 -- 
-2.45.2
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
