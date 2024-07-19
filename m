@@ -1,192 +1,125 @@
-Return-Path: <devicetree+bounces-86665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0B19371CE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 03:08:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1279371EE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 03:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19851282378
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 01:08:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94D19B21671
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 01:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72C5EBE;
-	Fri, 19 Jul 2024 01:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F7517C9;
+	Fri, 19 Jul 2024 01:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sdCtC4eS"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="MX9B/i7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68A41362;
-	Fri, 19 Jul 2024 01:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F892913
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 01:19:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721351318; cv=none; b=XVRSSWYP8tdfo4fOAOugpl4YzgnMLhEuuYun29qskGtZpus03UxBH494aVVtvquAWaQq0owC86A29qJYTpMqCuF+hk+bsXV3yfquWcF07dVPzP7U5AQAqOZU2SNumrtUfvnD9QT+PGH+Y3pJtMOZdFKPMHDMh3KS+jCTFLFnA9g=
+	t=1721351946; cv=none; b=IFVwlJvJMA/PQXvEV6xyir+U+xndm2G1mQL7bVX8VUdhIvtMdc6j3TIXU2Tw8i3/DuE4XZ0JfPWh7BGm8X0No3aifJisibzulZFffKaBmCFp+Kc4ORMyllZ0gJBTm1mViXP9T/9y2eE0EX2jNH3jpry2RFpli67vmO+/n+AitH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721351318; c=relaxed/simple;
-	bh=laS8KpgNXmOqI9x98Dwxup3xExT3T+m9nrqsUudLSkM=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=tYB0rIcWM2XWDUsdisX+tGlIdMIlpiQdv9essyuF4AdyXC/UrDEL5eKjNn8e2H1z7F8msyOt+sMZaEkLDvO8lVvQ+E2HFOhpT10Of/5ODEvWnGRWpB5y3n5xM7jTZyXtHxre8Qk1tz5iQ7V6TZw1mxvRstmWYosIy/3UpGxcTwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sdCtC4eS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49016C4AF0A;
-	Fri, 19 Jul 2024 01:08:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721351318;
-	bh=laS8KpgNXmOqI9x98Dwxup3xExT3T+m9nrqsUudLSkM=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=sdCtC4eSieRC9x78sjYCL0fnKGAAWqdI91XAtQUnF1kM1oGRqoIilMk7dkjiI3MWE
-	 9FafSd2Ha/z7nDvcjtcYtMMee3E1H/oNyFMA5aQ3om6f/2yb4C08UG5kEejNym0CCc
-	 GfLAskHC8xD9H5t0VTpNSapSFavTlmtPauXLBsvwSNlnY+K0xjCNyLklERZyjGb8wT
-	 p21WQe32xyS4PR0ec0RPf8RaoL1nLJXkwrFNYjns7MrXp51Wc7NFlhIbGCclA8pagM
-	 uB5ZxxCJ018QcKgfV0xgMWggjoM97NtKcbEMu36esUlRfAs//FW0SGpA+2jevyYEF5
-	 y0IPM+BoanGJw==
-Message-ID: <ad8037bca3a99de58c4ef251d3288c15.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1721351946; c=relaxed/simple;
+	bh=j5tLGDY9gGcd5udPLL80op5rVUZUjouE/1JD3eGh7rQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pWCmdSXnEwQAZZCnEx/ozo9CUNtLeQP3h/T21IOH6i8rG+RKTgAL+nDCfgV0oLEWxD3KNlaJ0pkuT9VXf2Cx0sj6AwmQIdtXi0GAAcQ19hcKuD8aMvBV22UK22ziLuBc+0N+5q/QGNrQjqzEQ0jsplCDyaErhmbCaWCuIoA3SRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=MX9B/i7B; arc=none smtp.client-ip=209.85.166.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-8076ef91d8eso53079139f.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 18:19:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1721351944; x=1721956744; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kitCVRPpRWuruusdc0xZBytLiueygrYSLQr8urocHpw=;
+        b=MX9B/i7BWGtQWRGJ8adnZKH0yaObZVMgaixJ4r/lTGv/559R/2Y3LoqCrMLgfpOuWa
+         ErTlvDM6KTiPwkdML11/iQIqVPmznWwmNJF00d9vjEDIimnD6hPTilhnLe2vxnHkYh3h
+         zZYuODibXVYHl3oxeWXdZc9UnEr7tHpRCxTZRmz8efh4ZyeJJ2pHPFUAsNP89JsBXeFU
+         7vRm9Vbe4ro3WKdI18YHLMfSLbrXrm0aHk+LjFi0gGK8Ty0kfl3H5A+vIga40W1jOuaG
+         BjsLeeFJ+/y06PZYPDY/Ol9Bu6tMW4PNypgrjn2Ko8uFkcxUbYZ9nXF/W868amHwd2JB
+         O/Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721351944; x=1721956744;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kitCVRPpRWuruusdc0xZBytLiueygrYSLQr8urocHpw=;
+        b=m21STW6apzBtQM82TqxQX14AujxQIwmAS13aOxxUKv7jvGuQz1duHouqzf9bduxwE/
+         iIoOkkf/rNXzU+hGsck1kjwihWT9UDP2jhAT6rQyqbz3pkniJf7VoPC09Jr5/A+/pUHO
+         +HigFy/26cLeCIU6eiaHUOjhtLcuy6aPwteKNqYa0lNgZuhMM9EGcR79buILdhqkir7M
+         Q+9pA01wxA68DxQuYV7bXB2hPeqsKQISwfelv0lqmHgjSqb1U6q14cBxtV4Y7NGmUtbH
+         7dEQlgc32gdV9MIcQn4F/FOtVBH2zfmkYlSsoC5lBEduhB6D6/ktoyE5cHnyVfiGJ0e0
+         15FA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQfSkRAVMTqr7lyOJpP3bzDm/JAb755HkLDNrqcStNervuFVVe2VpIq/eBk578JmghlV6Vh5sVmr+k1Qi9vrj2lKUKZIUP6UAHAw==
+X-Gm-Message-State: AOJu0YwWF1JdYCSeq/qytM2O+zZ2SPZQ2G5FYmPt5w9jx9klYky5Fig0
+	kAZTupvl99dWY4srxPTo0ozTTsxws8SkfWxmckebHkGEg9TJ6M2jaZOPZanZHak=
+X-Google-Smtp-Source: AGHT+IGfm/S/FHPE7LA6XdxIKq5BMcfnNylk0g5mtJMSuhuINcBoNq6L3E2sbbLECTpJVZZr2PHwmA==
+X-Received: by 2002:a05:6602:6212:b0:807:1908:b095 with SMTP id ca18e2360f4ac-81712003641mr780048939f.13.1721351943793;
+        Thu, 18 Jul 2024 18:19:03 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4c234405dd7sm107960173.176.2024.07.18.18.19.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jul 2024 18:19:03 -0700 (PDT)
+Message-ID: <3a7996d6-1137-44b8-b35d-d9c56bd98277@sifive.com>
+Date: Thu, 18 Jul 2024 20:19:01 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <fd8078cb-fe1c-4aef-9e83-be2baa529720@tuxon.dev>
-References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com> <20240716103025.1198495-4-claudiu.beznea.uj@bp.renesas.com> <2abcd440664067d95b1ac0e765ad55a3.sboyd@kernel.org> <e3103f07-ce8a-4c34-af5c-bb271c7ec99a@tuxon.dev> <4cacf090dc56c3ffd15bccd960065769.sboyd@kernel.org> <fd8078cb-fe1c-4aef-9e83-be2baa529720@tuxon.dev>
-Subject: Re: [PATCH v2 03/11] clk: renesas: clk-vbattb: Add VBATTB clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-To: alexandre.belloni@bootlin.com, claudiu beznea <claudiu.beznea@tuxon.dev>, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, lee@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
-Date: Thu, 18 Jul 2024 18:08:36 -0700
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] riscv: dts: add mailbox for Sophgo cv18x SoCs
+To: Yuntao Dai <d1581209858@live.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, jassisinghbrar@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com,
+ inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu
+References: <SYBP282MB223825D5903777B937A8A377C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+ <SYBP282MB2238CE3A016F21B632E61219C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <SYBP282MB2238CE3A016F21B632E61219C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting claudiu beznea (2024-07-18 07:41:03)
->=20
->=20
-> On 18.07.2024 03:39, Stephen Boyd wrote:
-> >=20
-> > Sort of. Ignoring the problem with the subnode for the clk driver, I
-> > don't really like having clock-names that don't match the hardware pin
-> > names. From the diagram you provided, it looks like clock-names should
-> > be "bclk" and "rtxin" for the bus clock and the rtxin signal. Then the
-> > clock-cells should be "1" instead of "0", and the mux should be one of
-> > those provided clks and "xc" and "xbyp" should be the other two. If that
-> > was done, then assigned-clocks could be used to assign the parent of the
-> > mux.
-> >=20
-> > #define VBATTBCLK          0
-> > #define VBATTB_XBYP        1
-> > #define VBATTB_XC          2
-> >=20
-> >     vbattb: vbattb@1005c000 {
-> >         compatible =3D "renesas,r9a08g045-vbattb";
-> >         reg =3D <0x1005c000 0x1000>;
-> >         ranges =3D <0 0 0x1005c000 0 0x1000>;
-> >         interrupts =3D <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> >         interrupt-names =3D "tampdi";
-> >         clocks =3D <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&ext_clk>;
-> >         clock-names =3D "bclk", "rtxin";
-> >         power-domains =3D <&cpg>;
-> >         resets =3D <&cpg R9A08G045_VBAT_BRESETN>;
-> >         #clock-cells =3D <1>;
-> >         assigned-clocks =3D <&vbattb VBATTBCLK>;
-> >       assigned-clock-parents =3D <&vbattb VBATTB_XBYP>;
-> >         renesas,vbattb-load-nanofarads =3D <12500>;
-> >     };
->=20
-> I think I got it now. Thank you for the detailed explanation.
->=20
-> >=20
-> > One last thing that I don't really understand is why this needs to be a
-> > clk provider. In the diagram, the RTC is also part of vbattb, so it
-> > looks odd to have this node be a clk provider with #clock-cells at all.
->=20
-> I did it like this because the RTC is a different IP mapped at it's own
-> address and considering the other VBATTB functionalities (tamper, SRAM)
-> might be implemented at some point.
->=20
-> I also failed to notice that RTC might not work w/o bclk being enabled
-> (thanks for pointing it).
+On 2024-07-14 11:36 AM, Yuntao Dai wrote:
+> Add mailbox node for Sophgo cv18x SoCs
+> 
+> Signed-off-by: Yuntao Dai <d1581209858@live.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> index 891932ae4..1c7035737 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> @@ -310,5 +310,14 @@
+>  			reg = <0x74000000 0x10000>;
+>  			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
+>  		};
+> +
+> +		mailbox: mailbox@1900000 {
 
->=20
-> I saw that diagram more like describing the always-on power domain
-> (PD_VBATTB) where the VBATTB logic and RTC resides. That power domain is
-> backed by battery. From HW manual [1]: "PD_VBATT domain is the area where
-> the RTC/backup register is located, works on battery power when the power
-> of PD_VCC and PD_ISOVCC domain are turned off."
+Please keep nodes sorted by unit address.
 
-Ah ok, so PD_VBATTB is like a power domain/wrapper and not an IP block
-mapped on the bus at the same address as the RTC that it wraps. That
-changes things a bit.
+> +			compatible = "sophgo,cv1800-mailbox";
+> +			reg = <0x01900000 0x1000>;
+> +			interrupts = <101 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "mailbox";
+> +			interrupt-parent = <&plic>;
+> +			#mbox-cells = <2>;
+> +		};
+>  	};
+>  };
 
->=20
-> [1]
-> https://www.renesas.com/us/en/products/microcontrollers-microprocessors/r=
-z-mpus/rzg3s-general-purpose-microprocessors-single-core-arm-cortex-a55-11-=
-ghz-cpu-and-dual-core-cortex-m33-250
->=20
-> > Is it the case that if the rtxin pin is connected, you mux that over,
-> > and if the pin is disconnected you mux over the internal oscillator?=20
->=20
-> From the description here at [2] I'm getting that the "32-KHz clock
-> oscillator" block is used when crystal oscillator is connected to RTXIN,
-> RTXOUT pins and it is skipped if external clock device is connected.
->=20
-> [2] https://i2.paste.pics/RFKJ0.png?rand=3DXq8w1RLDvZ
-
-It looks like in both cases something is connected to the pins. XC is to
-use an external crystal connected to both pins and XBYP is to use a
-single clk. Given that, perhaps naming the clk "rtx" is simplest and
-then using assigned-clock-parents is most direct because there's only
-really one "logical" clk input for this device. That means the XC and
-XBYP clks have the same parent, "rtx", and the XC clk is a gateable
-fixed rate clk while the XBYP clk is a fixed factor clk that does
-nothing besides pass on the rate of the "rtx" clk.
-
->=20
-> > I'm
-> > really wondering why a clk provider is implemented at all. Why not just
-> > hit the registers directly from the RTC driver depending on a
-> > devm_clk_get_optional() call?
->=20
-> I did it like this because the RTC is a different IP mapped at it's own
-> address with it's own interrupts, clock, power domain and considering that
-> the other VBATTB functionalities (tamper, SRAM) might be used at some poi=
-nt
-> in future. At the same time I failed to noticed the VBATTB clock might be
-> needed for RTC.
-
-The docs say VBATT in some places. Not sure if you want to rename it to
-vbatt and drop the extra b which probably stands for "backup"?
-
->=20
-> Do you consider better to just take a regmap to VBATTB from RTC driver and
-> set the VBATTB from RTC driver itself?
-
-No, don't do that. The only change from the above DT node is that the
-assigned-clocks and assigned-clock-parents property should be moved to
-the RTC node.
-
-
-     vbattb: vbattb@1005c000 {
-         compatible =3D "renesas,r9a08g045-vbattb";
-         reg =3D <0x1005c000 0x1000>;
-         ranges =3D <0 0 0x1005c000 0 0x1000>;
-         interrupts =3D <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-         interrupt-names =3D "tampdi";
-         clocks =3D <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&ext_clk>;
-         clock-names =3D "bclk", "rtx";
-         power-domains =3D <&cpg>;
-         resets =3D <&cpg R9A08G045_VBAT_BRESETN>;
-         #clock-cells =3D <1>;
-         renesas,vbattb-load-nanofarads =3D <12500>;
-     };
-
-     rtc@1004ec00 {
-         compatible =3D "renesas,r9a08g045-rtc";
-         reg =3D <0x1004ec00 0x400>;
-         clocks =3D <&vbattb VBATTBCLK>;
-         assigned-clocks =3D <&vbattb VBATTBCLK>;
-         assigned-clock-parents =3D <&vbattb VBATTB_XBYP>; // Or VBATTB_XC =
-if external crystal connected
-     };
 
