@@ -1,216 +1,108 @@
-Return-Path: <devicetree+bounces-86854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03138937B6F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:07:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34E43937BAF
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:39:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 755C61F22867
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 17:07:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D77ED1F22873
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 17:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD081465B1;
-	Fri, 19 Jul 2024 17:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F08146A73;
+	Fri, 19 Jul 2024 17:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IuMfD/oS"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="VamGCtuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1F31448EE
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 17:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E351B13BC12;
+	Fri, 19 Jul 2024 17:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721408869; cv=none; b=ho5UPxjHYPz5b4mL1c6p6pi6Y+waBKhHn8y+yxtSrFkXKw3ghAAto1ilTRHBEJUazXuoR96lg8RYgrWAQhAkpHztksSonSESzQLqq2KLMu4TYW0c5Vp3KFnhD6Z7lCwuqJNZEvf2CjCfCiIJFAzF+RVd7jOD6A36mqRr7ls4m4Q=
+	t=1721410776; cv=none; b=bZ7n0bx2BZlDS+P6romUh4HhxnVVtJWWSXgQS3mym2/tj0s39yTCsS79nyyrU9XT2p1vmlE2pXuAFiuUMA0vMdfOU8s/o8eUcT2niKYLipqpWIxSNUBel2a9w3+bO46eU87rNT3nZ6DBl13RIR6WUVvmiKHEddT3u38VKeBXRjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721408869; c=relaxed/simple;
-	bh=aWJBW7qSepD09tUcrnlrHVc592+V670R8bG1ncdQIrM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=glOE47BVLWKxNScSHdYEl14wftBLsCn4s9iPdaOIbfpS5u0EbJxEglrXtplYZ8L4VajbfYyb8BsHyhcmGwNBT2fmu3KtzmRYR3r/n2kJou7TiA7Z4aZoWHJuhoWLvNboJVqQXz8TJdznXbejJgFb9TMiESPi3yzZrbEdz24UiNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IuMfD/oS; arc=none smtp.client-ip=209.85.219.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6b7a0ef0e75so11207636d6.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 10:07:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1721408864; x=1722013664; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aWJBW7qSepD09tUcrnlrHVc592+V670R8bG1ncdQIrM=;
-        b=IuMfD/oSX+ZZTNrShSJvhHrtFKQSOa8lTtiMU/71YMnAlmVq0bXtmAN70k4BJSaRhQ
-         5lT81Od350D98U1kpxinFsPhRJYmvtHvr3zEC0hEBSLTZmORyFfQPiurDTN9zktsWtH2
-         gWmsMY4RwAxDJtbrud6UfZvfZs4qElM4bVi3c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721408864; x=1722013664;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aWJBW7qSepD09tUcrnlrHVc592+V670R8bG1ncdQIrM=;
-        b=wmrzkAe0yd3MPq8DpQYdTBI4+WkFhwqKCmQRCT1CSihwirAI4kdanMMXkYF4HiTnLs
-         a7XI4ENVqKTgCHQVQTgBFawh8A4rNWmPqrvdIytsWVy4CMZNRz7Pf/JBK4GwbHXm0fPh
-         maxj5QeTJCdKMQ+ZYeqtfxXBEEPfiX5NV1qg/27eAM011qv9Rq+trCxqa2nuf+cVXUZ9
-         sCm4BLXUfbKHgPTzeltbjno3ZALamiaYDKAIXGm7yLuEr55YT8nfAzI8JmbQ7iQDnNj6
-         9jERBfIpP2Y28RK7XeiAg58pcXxRhrvR9vOWQTbZz6BhoGnaRUpiOxcYjIR8sp9wLRtc
-         CG9A==
-X-Forwarded-Encrypted: i=1; AJvYcCVD9/cIdTeh/lMVAj80w0TZCUrEPD3KMGDmXX0HUT+J56hiTfRAUVyc4yD9Dc+Wetvva8gOSTVWAJptMeQUHZiRiQRTohK+jGstjg==
-X-Gm-Message-State: AOJu0Yxp8VgsgNnGxFfwoIxeLu91m4lRqrU/w/mCUm3LS1Vg8NDazPju
-	e2qI22UgTpt8RmEAQLY/vgJZfxYSKh0+uGT1ILhmfs0MzZpoW6eFui7CMP7QP5jqvZNPeolmbpo
-	=
-X-Google-Smtp-Source: AGHT+IEDiS2i7yEegLxiu59KjujLW06N0rXn5GsFBMvsAbKJjKS2E09U20EYg1pNZ81RWvjIM1GIUw==
-X-Received: by 2002:a05:6214:1cc8:b0:6b5:e3b7:46f5 with SMTP id 6a1803df08f44-6b78ca624c7mr113441536d6.20.1721408864152;
-        Fri, 19 Jul 2024 10:07:44 -0700 (PDT)
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com. [209.85.160.175])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b7b29a0364sm7060186d6.119.2024.07.19.10.07.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jul 2024 10:07:42 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-447df43324fso310391cf.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 10:07:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW6iqxxPrwbe5nHKgzvHP2aHrmYRnShWUsjprM/HxEIfzlAJZEEMt+fphMJ7awYLY7LaXeh3yK2n8jSg1AVSzmAGAv4gi4HLJvxyQ==
-X-Received: by 2002:a05:622a:191d:b0:447:e0e1:2a7b with SMTP id
- d75a77b69052e-44f9c83d5d8mr2695131cf.23.1721408861491; Fri, 19 Jul 2024
- 10:07:41 -0700 (PDT)
+	s=arc-20240116; t=1721410776; c=relaxed/simple;
+	bh=BTUAbqeygS4hB1nVNFGG+GYh6KfJxL5LqC6sD/btiNU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fj84QxWhhrDLd/0LfBKRfqc0C6iyaCSb8/pd/9riKkkbQcy3ZPjHjefvy5Eh000OXuh0C3TBrKsDQ0UoYAEqEXUeJFc7kn3YbiRcWgpzycDipxNGdc4IqVwxKL1cdjzmEUUJHKclvGiGfLAAe8igvAL/G1xRWaTdFJuSzoKxSqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=VamGCtuX; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1721410773; x=1752946773;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=BTUAbqeygS4hB1nVNFGG+GYh6KfJxL5LqC6sD/btiNU=;
+  b=VamGCtuXoWPyGGcpa16C8YZzsKDLm4UyMr5ZrxcYvjuoZPYr+b1bopZS
+   PUDn8GlQcQy4StwV+kvn2DsmKkdVRqxtUWdTZ+kKVE/uHDSP5Q2Cju5Ld
+   7ujcpeyKvCOVEJB6Dkz68GKmAbSlE8yrePC34v2I23CofYkAOf4N5G0js
+   oC+Jkdv3Q1H6Pzcd1zYnt5K99xMQSgNyq75YlmSLaIROY9PwkvmoMzmiK
+   BWklbCs6lqJrzCgUlJzeQrhddbuuOhrcH3muwGsYNexRMa3F8Hm1op8oa
+   a3wtZUyBhLopazA0LFD6vgBNiRhZQqlRYe32mUeh6KL3rmL6TvavRtIE9
+   A==;
+X-CSE-ConnectionGUID: 4uEQqijeSImp7ZJVH2TiPg==
+X-CSE-MsgGUID: am7mA3YCSnChKZ7881QKOA==
+X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; 
+   d="scan'208";a="196870142"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jul 2024 10:39:26 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 19 Jul 2024 10:39:03 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Fri, 19 Jul 2024 10:39:01 -0700
+From: <marius.cristea@microchip.com>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>
+CC: <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <marius.cristea@microchip.com>
+Subject: [PATCH v1 0/2] adding support for Microchip PAC194X Power Monitor
+Date: Fri, 19 Jul 2024 20:38:53 +0300
+Message-ID: <20240719173855.53261-1-marius.cristea@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org>
- <20240715-scorn-canning-a7f23b9e2039@spud> <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
- <e017259b-bc62-4b57-9276-b834237225e1@kernel.org> <CAD=FV=VY5Ug3TfUo1RctiVQrHUjuod15HA8BxAyWdd_0bK8_Dw@mail.gmail.com>
- <20240718-frightful-naturist-a049ea7c0548@spud> <CAD=FV=VaGXMf6Srix6v=Me35BUN4B6ZHwebycka4Dbavqa5Vbw@mail.gmail.com>
-In-Reply-To: <CAD=FV=VaGXMf6Srix6v=Me35BUN4B6ZHwebycka4Dbavqa5Vbw@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 19 Jul 2024 10:07:29 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WyDF8LkPeHXTgsyDA74n+AjuHPQ1896ECDE17aYB9rtg@mail.gmail.com>
-Message-ID: <CAD=FV=WyDF8LkPeHXTgsyDA74n+AjuHPQ1896ECDE17aYB9rtg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA45AF01
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi,
+From: Marius Cristea <marius.cristea@microchip.com>
 
-On Thu, Jul 18, 2024 at 7:59=E2=80=AFAM Doug Anderson <dianders@chromium.or=
-g> wrote:
->
-> Hi,
->
-> On Thu, Jul 18, 2024 at 7:56=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Thu, Jul 18, 2024 at 07:45:57AM -0700, Doug Anderson wrote:
-> > > Hi,
-> > >
-> > > On Wed, Jul 17, 2024 at 11:19=E2=80=AFPM Krzysztof Kozlowski <krzk@ke=
-rnel.org> wrote:
-> > > >
-> > > > On 18/07/2024 02:21, Doug Anderson wrote:
-> > > > > Conor (and/or) Krzysztof and Rob,
-> > > > >
-> > > > > On Mon, Jul 15, 2024 at 8:31=E2=80=AFAM Conor Dooley <conor@kerne=
-l.org> wrote:
-> > > > >>
-> > > > >> On Mon, Jul 15, 2024 at 02:15:37PM +0200, Stephan Gerhold wrote:
-> > > > >>> The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has ba=
-cklight
-> > > > >>> control over the DP AUX channel. While it works almost correctl=
-y with the
-> > > > >>> generic "edp-panel" compatible, the backlight needs special han=
-dling to
-> > > > >>> work correctly. It is similar to the existing ATNA33XC20 panel,=
- just with
-> > > > >>> a larger resolution and size.
-> > > > >>>
-> > > > >>> Add a new "samsung,atna45af01" compatible to describe this pane=
-l in the DT.
-> > > > >>> Use the existing "samsung,atna33xc20" as fallback compatible si=
-nce existing
-> > > > >>> drivers should work as-is, given that resolution and size are d=
-iscoverable
-> > > > >>> through the eDP link.
-> > > > >>>
-> > > > >>> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > > >>
-> > > > >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > >
-> > > > > Can you comment on whether you would consider this bindings a "Fi=
-x"
-> > > > > since it's a dependency for later patches in this series (which a=
-re
-> > > > > "Fix"es) to pass dtbs_check? See:
-> > > > >
-> > > > > https://lore.kernel.org/r/4bca316a-2334-425b-87a6-e1bb241d26b5@li=
-naro.org
-> > > >
-> > > > The patch itself is not a fix, for sure, but it might be a dependen=
-cy of
-> > > > a fix (which you wrote above), thus could be pulled to stable as a
-> > > > dependency.
-> > > >
-> > > > I do not care about dtbs_check warnings in stable kernels, mostly
-> > > > because dtbs_check warnings depend heavily on dtschema and dtschema
-> > > > follows mainline kernel. Basically if you had warnings-free v6.8 bu=
-t try
-> > > > to run dtbs_check now with latest dtschema, your results will diffe=
-r.
-> > > >
-> > > > At some point in the future, I could imagine "no new dtbs_check war=
-nings
-> > > > in stable kernels" requirement or at least preference, but so far I
-> > > > don't think there is any benefit.
-> > >
-> > > In this case it's not about whether it makes it to the stable kernel
-> > > but about which main kernel it goes through.
-> > >
-> > > If we land the bindings in drm-misc-next right now then it'll be a
-> > > long time before it makes it into Linus's tree because of the way tha=
-t
-> > > drm-misc-next merges. It will make it to Linus's tree at 6.12. You ca=
-n
-> > > see the drm-misc merging strategy at:
-> > >
-> > > https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
-> > >
-> > > If we land the dts change (a fix) through the Qualcomm tree as a fix
-> > > then it should target 6.11.
-> > >
-> > > This means that the 6.11 tree will have a dtbs_check error because it
-> > > has the dts change (a fix) but not the bindings change (not a fix).
-> > >
-> > > One way to resolve this would be to treat this bindings as a "fix" an=
-d
-> > > land it through "drm-misc-fixes". That would make the bindings and
-> > > device tree change meet up in Linux 6.11.
-> > >
-> > > Did I get that all correct?
-> >
-> > Is not not fairly established that a dependency for a fix can go onto a
-> > fixes branch even if it is not a fix in and of itself?
->
-> That would certainly be my take on it, but DT folks confirmation was
-> requested by Neil in:
->
-> https://lore.kernel.org/all/4bca316a-2334-425b-87a6-e1bb241d26b5@linaro.o=
-rg/
+Adding support for Microchip PAC194X and PAC195X series of Power Monitor with
+Accumulator chip family. This driver covers the following part numbers:
+ - PAC1941, PAC1941_2, PAC1942, PAC1942_2, PAC1943, PAC1944
+ - PAC1951, PAC1951_2, PAC1952, PAC1952_2, PAC1953, PAC1954
 
-FWIW, I'd rather not let this stagnate too long. I'm fairly confident
-in my assertion that this should go into drm-misc-fixes. I'll give it
-until Monday and then I'm just going to land this bindings change in
-drm-misc-fixes. Shout soon if you feel strongly that I shouldn't do
-this. If someone wants to flame me after the fact then so be it.
 
--Doug
+Differences related to previous patch:
+v1:
+- first version committed to review
+
+Marius Cristea (2):
+  dt-bindings: iio: adc: adding support for PAC194X
+  iio: adc: adding support for PAC194X
+
+ .../ABI/testing/sysfs-bus-iio-adc-pac1944     |    9 +
+ .../bindings/iio/adc/microchip,pac1944.yaml   |  168 +
+ MAINTAINERS                                   |    7 +
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/pac1944.c                     | 3528 +++++++++++++++++
+ 6 files changed, 3726 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
+ create mode 100644 drivers/iio/adc/pac1944.c
+
+-- 
+2.43.0
+
 
