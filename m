@@ -1,59 +1,71 @@
-Return-Path: <devicetree+bounces-86809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197249378B2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:47:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BF69378BA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EE821F222A3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:47:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5038EB2101E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA1D13AA31;
-	Fri, 19 Jul 2024 13:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D33313E028;
+	Fri, 19 Jul 2024 13:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="t7IUVOMz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1DF24211
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 13:46:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85A183A19;
+	Fri, 19 Jul 2024 13:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721396814; cv=none; b=C/AXGXBhrTe7/I6i3idbCApw2uGqp1eOsOdnOkxhmxt66ggsSWRm0h86N7RtzrBoALVH55q+Vyza0GhXTwqgO5k/bubO8CmgM6b7ahbJsvRMK7fx4HiPGkGg0D7wOMdNKO5q8X9LyX79BEqsQv0Xiy18vF6pjH9RXiGM9ij7qUE=
+	t=1721397047; cv=none; b=MXFxePBe9PHx5n/0L2yN9pk15I1o4rm0Ntb64/pwC9i6QwTCwWHhwOpdGXZIr8c9jXhK6XzOygl8H+IH7XUDVVdNWI4qmLhDOQoqjyVxRvWpYvdSiSAHQ5WTlKO0VwZ0biypNu5V+dsUS4Dd7vGUwLlVgbGGT2ckVNpmBAoK0gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721396814; c=relaxed/simple;
-	bh=fOFY67I+3iOtgqYFZ/fQXxWcNS6x/HjDq33a75TjmLI=;
+	s=arc-20240116; t=1721397047; c=relaxed/simple;
+	bh=bB62eNn1Si6jo67dIW4Oct7GDuuKGuL0OJSsuqAUq38=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g4hQdj/BjR8I/QJ3mqqt+NKI81Mb4ti0PUPHlbPt+EZu64vxcjC59dMNV5cWcSOQujx4kP9hCb4BnPzmIlIkRrzAn+XMmK3C4/t1URZQqLan71YQWa6SgtyQ7WvUeFocmPt1593kjMEuKnIvPVsLmnHH3NDrwvrZlYUwDr/mZv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sUnwZ-00056A-5e; Fri, 19 Jul 2024 15:46:43 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sUnwY-000hAP-8g; Fri, 19 Jul 2024 15:46:42 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sUnwY-005wFu-0X;
-	Fri, 19 Jul 2024 15:46:42 +0200
-Date: Fri, 19 Jul 2024 15:46:42 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: vtpieter@gmail.com
-Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Subject: Re: [PATCH 2/4] net: dsa: microchip: ksz8795: add Wake on LAN support
-Message-ID: <ZppuQo9sGdYJWgBQ@pengutronix.de>
-References: <20240717193725.469192-1-vtpieter@gmail.com>
- <20240717193725.469192-2-vtpieter@gmail.com>
- <20240717193725.469192-3-vtpieter@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kg+OQtl3PCZypohwaDVOgebOdGc3MOHe0Bp7p50Wy4kLlnbMf2X3175Cw8Rl6/BTNq9F3b6KjfzTZ/OdZ0cZqpvXqKrr5bZkwsdzn5EUFHf5mSdUgFcH1QPRtyPZkXIMzC1secV1ZnCfKrf00ORi3xwP6vZg2i8ayYzsK+VaBas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=t7IUVOMz; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6173473E;
+	Fri, 19 Jul 2024 15:50:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721397001;
+	bh=bB62eNn1Si6jo67dIW4Oct7GDuuKGuL0OJSsuqAUq38=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t7IUVOMzcZ0mwQUpW0UjfwzeHG6iQldkK0cOyH0hi2vHuT49faWsHBl6s8cmXjgJO
+	 aUw9sve33iuqUB2kJH6FOwab8gpGWshlPGrKtGlcuzsq00NZGxRhlJBybXeLtQVsr7
+	 ZSpXsUZfVzcqBfNfkRHDhg4tO0yZHQS0ZuWUhWAE=
+Date: Fri, 19 Jul 2024 16:50:25 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Frank Li <Frank.li@nxp.com>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Clark Wang <xiaoning.wang@nxp.com>, Haibo Chen <haibo.chen@nxp.com>,
+	Jindong Yue <jindong.yue@nxp.com>
+Subject: Re: [PATCH 4/6] pwm: adp5585: add adp5585 PWM support
+Message-ID: <20240719135025.GA637@pendragon.ideasonboard.com>
+References: <20240716-adi-v1-0-79c0122986e7@nxp.com>
+ <20240716-adi-v1-4-79c0122986e7@nxp.com>
+ <u7xii4lfvjk6gbpmq7qtqckoznddiyno7xsaa74ufuxwdob532@wxuawwiwjpgm>
+ <ZpfVNHQQaJvdnB+B@lizhi-Precision-Tower-5810>
+ <CAOMZO5CGqMXmcUg=J0OOtsq4ZpnVD7GnpxzEQQQ1Cq_dR45Hwg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,180 +74,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240717193725.469192-3-vtpieter@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5CGqMXmcUg=J0OOtsq4ZpnVD7GnpxzEQQQ1Cq_dR45Hwg@mail.gmail.com>
 
-Hi Pieter,
+On Wed, Jul 17, 2024 at 12:35:29PM -0300, Fabio Estevam wrote:
+> On Wed, Jul 17, 2024 at 11:29 AM Frank Li <Frank.li@nxp.com> wrote:
+> 
+> > Thank you for you review. I just found someone already submit similar patch
+> >
+> > https://lore.kernel.org/linux-gpio/20240608141633.2562-5-laurent.pinchart@ideasonboard.com/
+> >
+> > Let's wait for laurent. If he is busy, I can rework base on the above one.
+> 
+> Adding Laurent.
 
-If I see it correctly, the only difference between KSZ9477 and KSZ8795
-code is the register access. Even bit offsets are identical. I do not
-think indirect register access is good justification for duplication
-this amount of code.
+Thanks Fabio.
 
-On Wed, Jul 17, 2024 at 09:37:23PM +0200, vtpieter@gmail.com wrote:
->  
-> +static int ksz8_ind_read8(struct ksz_device *dev, u8 table, u16 addr, u8 *val)
+I had a quick look at this series, and I think mine is better as it
+supports more features and more chip variants.
 
-Will be good to add comment for this function.
-
-....
-> +/**
-> + * ksz8_handle_wake_reason - Handle wake reason on a specified port.
-> + * @dev: The device structure.
-> + * @port: The port number.
-> + *
-> + * This function reads the PME (Power Management Event) status register of a
-> + * specified port to determine the wake reason. If there is no wake event, it
-> + * returns early. Otherwise, it logs the wake reason which could be due to a
-> + * "Magic Packet", "Link Up", or "Energy Detect" event. The PME status register
-> + * is then cleared to acknowledge the handling of the wake event; followed by
-> + * clearing the global Interrupt Status Register.
-> + *
-> + * Return: 0 on success, or an error code on failure.
-> + */
-> +static int ksz8_handle_wake_reason(struct ksz_device *dev, int port)
-> +{
-> +	u8 pme_status;
-> +	int ret;
-> +
-> +	ret = ksz8_ind_read8(dev, TABLE_PME_PORT(port), REG_IND_PORT_PME_STATUS, &pme_status);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!pme_status)
-> +		return 0;
-> +
-> +	dev_dbg(dev->dev, "Wake event on port %d due to:%s%s%s\n", port,
-> +		pme_status & PME_WOL_MAGICPKT ? " \"Magic Packet\"" : "",
-> +		pme_status & PME_WOL_LINKUP ? " \"Link Up\"" : "",
-> +		pme_status & PME_WOL_ENERGY ? " \"Energy detect\"" : "");
-> +
-> +	ret = ksz8_ind_write8(dev, TABLE_PME_PORT(port), REG_IND_PORT_PME_STATUS, pme_status);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ksz_read8(dev, REG_INT_STATUS, &pme_status);
-
-Recycling a variable with use case specific name, make the code more
-confusing. Use "var" far all or "int_status" for this case.
-
-> +	return ksz_write8(dev, REG_INT_STATUS, pme_status && INT_PME);
-
-"pme_status && INT_PME" will write BIT(0) instead of BIT(4) which should
-be written in this case - So, it should be "pme_status & INT_PME".
-
-Instead of ksz_read8(dev, REG_INT_STATUS + ksz_write8, you can use one
-ksz_rmw8()
-
-> +}
-> +
-> +/**
-> + * ksz8_get_wol - Get Wake-on-LAN settings for a specified port.
-> + * @dev: The device structure.
-> + * @port: The port number.
-> + * @wol: Pointer to ethtool Wake-on-LAN settings structure.
-> + *
-> + * This function checks the PME 'wakeup-source' property from the
-> + * device tree. If enabled, it sets the supported and active WoL
-> + * flags.
-
-This is a bit confusing - this function do not checks devicetree properly.
-It only checks if the wakeup_source flag is set. In current code state, it is
-set from devicetree properly.
-
-> + */
-> +void ksz8_get_wol(struct ksz_device *dev, int port,
-> +		  struct ethtool_wolinfo *wol)
-> +{
-> +	u8 pme_ctrl;
-> +	int ret;
-> +
-> +	if (!dev->wakeup_source)
-> +		return;
-> +
-> +	wol->supported = WAKE_PHY;
-> +
-> +	/* Check if the current MAC address on this port can be set
-> +	 * as global for WAKE_MAGIC support. The result may vary
-> +	 * dynamically based on other ports configurations.
-> +	 */
-> +	if (ksz_is_port_mac_global_usable(dev->ds, port))
-> +		wol->supported |= WAKE_MAGIC;
-> +
-> +	ret = ksz8_ind_read8(dev, TABLE_PME_PORT(port), REG_IND_PORT_PME_CTRL, &pme_ctrl);
-> +	if (ret)
-> +		return;
-> +
-> +	if (pme_ctrl & PME_WOL_MAGICPKT)
-> +		wol->wolopts |= WAKE_MAGIC;
-> +	if (pme_ctrl & (PME_WOL_LINKUP | PME_WOL_ENERGY))
-> +		wol->wolopts |= WAKE_PHY;
-> +}
-> +
-> +/**
-> + * ksz8_set_wol - Set Wake-on-LAN settings for a specified port.
-> + * @dev: The device structure.
-> + * @port: The port number.
-> + * @wol: Pointer to ethtool Wake-on-LAN settings structure.
-> + *
-> + * This function configures Wake-on-LAN (WoL) settings for a specified port.
-> + * It validates the provided WoL options, checks if PME is enabled via the
-> + * switch's device tree property, clears any previous wake reasons,
-
-Same here, the "device tree" related part of comment can bit rot with
-time.
-
-> + * and sets the Magic Packet flag in the port's PME control register if
-> + * specified.
-> + *
-> + * Return: 0 on success, or other error codes on failure.
-> + */
-> +int ksz8_set_wol(struct ksz_device *dev, int port,
-> +/**
-> + * ksz9477_wol_pre_shutdown - Prepares the switch device for shutdown while
-
-s/ksz9477_wol_pre_shutdown/ksz8_wol_pre_shutdown
-
-> + *                            considering Wake-on-LAN (WoL) settings.
-> + * @dev: The switch device structure.
-> + * @wol_enabled: Pointer to a boolean which will be set to true if WoL is
-> + *               enabled on any port.
-> + *
-> + * This function prepares the switch device for a safe shutdown while taking
-> + * into account the Wake-on-LAN (WoL) settings on the user ports. It updates
-> + * the wol_enabled flag accordingly to reflect whether WoL is active on any
-> + * port. It also sets the PME output pin enable with the polarity specified
-> + * through the device-tree.
-> + */
-> +void ksz8_wol_pre_shutdown(struct ksz_device *dev, bool *wol_enabled)
-> +{
-
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-> index b074b4bb0629..61403898c1f4 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.c
-> +++ b/drivers/net/dsa/microchip/ksz_common.c
-> @@ -307,6 +307,9 @@ static const struct ksz_dev_ops ksz8_dev_ops = {
->  	.init = ksz8_switch_init,
->  	.exit = ksz8_switch_exit,
->  	.change_mtu = ksz8_change_mtu,
-> +	.get_wol = ksz8_get_wol,
-> +	.set_wol = ksz8_set_wol,
-> +	.wol_pre_shutdown = ksz8_wol_pre_shutdown,
-
-This part will break on KSZ8830 variants. There is no WoL support.
-
-Regards,
-Oleksij
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Regards,
+
+Laurent Pinchart
 
