@@ -1,151 +1,225 @@
-Return-Path: <devicetree+bounces-86821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11614937990
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 17:08:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8200193799A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 17:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 429701C21634
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:08:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C31C1F22F34
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97A91459E0;
-	Fri, 19 Jul 2024 15:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C86145A05;
+	Fri, 19 Jul 2024 15:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yq1WWAyq"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PYz8FSmT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE46014535B;
-	Fri, 19 Jul 2024 15:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC3F145A1C
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 15:07:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721401625; cv=none; b=hJ+M0jxtUElmqgnNCnzO6PZuVMVSEBLyts52n35bufNdXuCgTWMk7iJlPIalJ29ITwEBRjITZRJz7QUfK4i6cpl8C3vIBl8pDOHl+Wy2ms8aqcMLlHDNH3zSGFrlHzCG88WuAkePhbiLgrTCoSz+Na9j8ASj/jnRJaOKV5eoRss=
+	t=1721401666; cv=none; b=WluZANUNFLVeCl7kCjORlUqUTBwnn3P9VFhW4qaX2b+8WDjkxO2JLpXCXjklxbSas5wYWB8H/Bu24DHG5HlC/N+IyuRUxnJ7VUTcgNkvYt8ZT66OPabC0ZuMZ2nzuiz6pNc/BbCUsQNLSzae1GP+lJa3iDaesJtNVztKC4kX9a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721401625; c=relaxed/simple;
-	bh=0kZ1M+m/Vu8kSpyCAxR0eczQ1iZK8eRhY3vk9xdexi4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sQxSVlSbilVio5yAgqfUYBVa+dqyRudsP9DX1a+4GkQF0abREwQ9wGpua2K6hOH+qcerxQnDZtzihIF1YeoAUqjZaND5JQtHwiYIn3fmr5jhT0Ef2Hfgat6IjvuVzQEmmeIYDGT8UK+VAajbJkBoCenHjsscA3Aznp0WwJDm3OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yq1WWAyq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C21C4AF0A;
-	Fri, 19 Jul 2024 15:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721401625;
-	bh=0kZ1M+m/Vu8kSpyCAxR0eczQ1iZK8eRhY3vk9xdexi4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yq1WWAyqtpfEiNfWpa2zFl6NlIDZu9EoJzNOKd8zCw7lp/yHNLi5Ean7UWplNt0Y9
-	 04L1RRoydh/BpjSfTKk7t41XgkZunfZh8sFXZPL+Y1xjNvIGi4Fomps8a3AlyrnqCs
-	 sfjisGLWU5JR2ugwoBoIYbCVeOopMY9cq8i4owCp+oE0xS+3EO4yMWFrAW4Ar3X/KK
-	 kDcQS/BW+YiAIShNpI0ftDFdvcuC5UsZvCWfRyjXxqin47jbPQLarKaW+Z9QQaXNUh
-	 RCV9pC0HpU/yyiF9ecFN5A5DVn6qie4XIu+4qhAUp7ESMO6gwKF+wSbzsAsApcHjKE
-	 M+8j298OiespA==
-Date: Fri, 19 Jul 2024 16:07:00 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	a-govindraju@ti.com, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-Message-ID: <20240719-ahead-kiwi-995e52bf3e74@spud>
-References: <20240718210322.37492-1-ilordash02@gmail.com>
- <20240718210322.37492-2-ilordash02@gmail.com>
+	s=arc-20240116; t=1721401666; c=relaxed/simple;
+	bh=x74t0FO6EnAFkdZO0g+pbMZIBzD6UwTLnWZfNaslDZ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NfgwPIrqWswP7AjRZV6MWLXNAMOWgM5kR5eQCpXLKuxeLKKcRDqeCMM0DVZJdoh3akIFAxLiXXqSufCWmwvzVJhkIpA/sk4nKp59kpkL7JN3RSkxvP+I6kLrIdCdSwv5q2v7jwLIajyj8QvJgHXn6GuzZgiLOPT5AQcib9YXYF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PYz8FSmT; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1721401663;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=+Hqez4+gddnelY4DOtO/pf2QUbb3lrjCJ7TtxZBjoRk=;
+	b=PYz8FSmThfuYcVFWO/6n8QFkv5O30Cq+LXevgRbSK9HisE3TOza7zR6kXB27sbcSm9aAJ2
+	+86uepRKSIiCc1PdXI+2tokfcsMj7aDPzjVztNEBtOeL9QlZcXHdOrN2u+ODTCu3sfqXDM
+	lUMvk5UILQ+sBNB7uNzfJTaOvke29BU=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-303-J8waB8nxOBe2x8ycMVcWwQ-1; Fri, 19 Jul 2024 11:07:40 -0400
+X-MC-Unique: J8waB8nxOBe2x8ycMVcWwQ-1
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-3686658856fso756019f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 08:07:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721401659; x=1722006459;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+Hqez4+gddnelY4DOtO/pf2QUbb3lrjCJ7TtxZBjoRk=;
+        b=vUOX9VjaZgbRfIBmD9/AhDVUQfLTasWDw7LDGyXiwQ0goas/Ahk+6mQaOMyAoNcZxs
+         aIrLx+soKpQgvfb/o03WspbwfEXgWYEZ0s+qV8yqwg2nLkn0pXBlpn+zFqRaeWMHY5YE
+         9agdbAnMW9qoAGJ5W+YLId8gfH3/4Jzc0u0+aiVQ6xeMO6kmRDRFfE00bzYvfcs4di3v
+         iF7cDSWnEqTGA2KHsISVfKwqtBP9snutCtMJ4qyncdan9A5MYXE/Yj41/iAaAjdKyd17
+         64LFP477Vy+jez8PfsGB2K8erGo66zVWwe1trm/u/J7QQfRgYF0WmKP1GXgQvJDnVRcW
+         do7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV027vooBA103r+yFUhv3VFbkM8mavpw0vW/JVxgnhin+ueFWIBSLMgK6oZLfqPC+ahy6JJZgTe6Jnstpxt1AVHZSfv90mmvSLiew==
+X-Gm-Message-State: AOJu0YzNTM/qyNnzTgA67v4IYIMC5lXlCDvrkRtCcvZjZhOU/FJgjEju
+	u/+WeYMZb8Pxo09zQAq3Koy0pxl6M53mVGT6N0ucpThGz/hWJH3zmz+0Ke4OAMxhuPnfd4ugXpj
+	iYniBsMnWTWp415Ue0ogMZPQbgNw78UPd2XeNVKZXonl0zH2lpTgdz/qe1ts=
+X-Received: by 2002:adf:f6c8:0:b0:367:96b9:760a with SMTP id ffacd0b85a97d-3683171fa20mr5351642f8f.41.1721401658858;
+        Fri, 19 Jul 2024 08:07:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH3kf0+DVAX3s8AIoi07dbvv+TNfmFDQl0q2xJMZuXjXyMFfWvqwQOQgw4uRzUtRYfwr43y2A==
+X-Received: by 2002:adf:f6c8:0:b0:367:96b9:760a with SMTP id ffacd0b85a97d-3683171fa20mr5351603f8f.41.1721401658315;
+        Fri, 19 Jul 2024 08:07:38 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c705:1000:c4af:a24f:b8ba:8bbc? (p200300cbc7051000c4afa24fb8ba8bbc.dip0.t-ipconnect.de. [2003:cb:c705:1000:c4af:a24f:b8ba:8bbc])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-368785c58e7sm1876063f8f.0.2024.07.19.08.07.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Jul 2024 08:07:37 -0700 (PDT)
+Message-ID: <96850252-a49f-4d78-a94b-a9a25e3f2bd5@redhat.com>
+Date: Fri, 19 Jul 2024 17:07:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OacaTNnqMJzRi7N4"
-Content-Disposition: inline
-In-Reply-To: <20240718210322.37492-2-ilordash02@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/17] arch, mm: pull out allocation of NODE_DATA to
+ generic code
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Gordeev <agordeev@linux.ibm.com>,
+ Andreas Larsson <andreas@gaisler.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>,
+ Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>,
+ Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-cxl@vger.kernel.org, nvdimm@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org, linux-mm@kvack.org,
+ x86@kernel.org
+References: <20240716111346.3676969-1-rppt@kernel.org>
+ <20240716111346.3676969-6-rppt@kernel.org>
+ <220da8ed-337a-4b1e-badf-2bff1d36e6c3@redhat.com>
+ <Zpi-HAb7EBxrZBtK@kernel.org>
+From: David Hildenbrand <david@redhat.com>
+Content-Language: en-US
+Autocrypt: addr=david@redhat.com; keydata=
+ xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
+ dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
+ QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
+ XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
+ Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
+ PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
+ WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
+ UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
+ jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
+ B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
+ ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZgEEwEIAEICGwMGCwkIBwMCBhUIAgkKCwQW
+ AgMBAh4BAheAAhkBFiEEG9nKrXNcTDpGDfzKTd4Q9wD/g1oFAl8Ox4kFCRKpKXgACgkQTd4Q
+ 9wD/g1oHcA//a6Tj7SBNjFNM1iNhWUo1lxAja0lpSodSnB2g4FCZ4R61SBR4l/psBL73xktp
+ rDHrx4aSpwkRP6Epu6mLvhlfjmkRG4OynJ5HG1gfv7RJJfnUdUM1z5kdS8JBrOhMJS2c/gPf
+ wv1TGRq2XdMPnfY2o0CxRqpcLkx4vBODvJGl2mQyJF/gPepdDfcT8/PY9BJ7FL6Hrq1gnAo4
+ 3Iv9qV0JiT2wmZciNyYQhmA1V6dyTRiQ4YAc31zOo2IM+xisPzeSHgw3ONY/XhYvfZ9r7W1l
+ pNQdc2G+o4Di9NPFHQQhDw3YTRR1opJaTlRDzxYxzU6ZnUUBghxt9cwUWTpfCktkMZiPSDGd
+ KgQBjnweV2jw9UOTxjb4LXqDjmSNkjDdQUOU69jGMUXgihvo4zhYcMX8F5gWdRtMR7DzW/YE
+ BgVcyxNkMIXoY1aYj6npHYiNQesQlqjU6azjbH70/SXKM5tNRplgW8TNprMDuntdvV9wNkFs
+ 9TyM02V5aWxFfI42+aivc4KEw69SE9KXwC7FSf5wXzuTot97N9Phj/Z3+jx443jo2NR34XgF
+ 89cct7wJMjOF7bBefo0fPPZQuIma0Zym71cP61OP/i11ahNye6HGKfxGCOcs5wW9kRQEk8P9
+ M/k2wt3mt/fCQnuP/mWutNPt95w9wSsUyATLmtNrwccz63XOwU0EVcufkQEQAOfX3n0g0fZz
+ Bgm/S2zF/kxQKCEKP8ID+Vz8sy2GpDvveBq4H2Y34XWsT1zLJdvqPI4af4ZSMxuerWjXbVWb
+ T6d4odQIG0fKx4F8NccDqbgHeZRNajXeeJ3R7gAzvWvQNLz4piHrO/B4tf8svmRBL0ZB5P5A
+ 2uhdwLU3NZuK22zpNn4is87BPWF8HhY0L5fafgDMOqnf4guJVJPYNPhUFzXUbPqOKOkL8ojk
+ CXxkOFHAbjstSK5Ca3fKquY3rdX3DNo+EL7FvAiw1mUtS+5GeYE+RMnDCsVFm/C7kY8c2d0G
+ NWkB9pJM5+mnIoFNxy7YBcldYATVeOHoY4LyaUWNnAvFYWp08dHWfZo9WCiJMuTfgtH9tc75
+ 7QanMVdPt6fDK8UUXIBLQ2TWr/sQKE9xtFuEmoQGlE1l6bGaDnnMLcYu+Asp3kDT0w4zYGsx
+ 5r6XQVRH4+5N6eHZiaeYtFOujp5n+pjBaQK7wUUjDilPQ5QMzIuCL4YjVoylWiBNknvQWBXS
+ lQCWmavOT9sttGQXdPCC5ynI+1ymZC1ORZKANLnRAb0NH/UCzcsstw2TAkFnMEbo9Zu9w7Kv
+ AxBQXWeXhJI9XQssfrf4Gusdqx8nPEpfOqCtbbwJMATbHyqLt7/oz/5deGuwxgb65pWIzufa
+ N7eop7uh+6bezi+rugUI+w6DABEBAAHCwXwEGAEIACYCGwwWIQQb2cqtc1xMOkYN/MpN3hD3
+ AP+DWgUCXw7HsgUJEqkpoQAKCRBN3hD3AP+DWrrpD/4qS3dyVRxDcDHIlmguXjC1Q5tZTwNB
+ boaBTPHSy/Nksu0eY7x6HfQJ3xajVH32Ms6t1trDQmPx2iP5+7iDsb7OKAb5eOS8h+BEBDeq
+ 3ecsQDv0fFJOA9ag5O3LLNk+3x3q7e0uo06XMaY7UHS341ozXUUI7wC7iKfoUTv03iO9El5f
+ XpNMx/YrIMduZ2+nd9Di7o5+KIwlb2mAB9sTNHdMrXesX8eBL6T9b+MZJk+mZuPxKNVfEQMQ
+ a5SxUEADIPQTPNvBewdeI80yeOCrN+Zzwy/Mrx9EPeu59Y5vSJOx/z6OUImD/GhX7Xvkt3kq
+ Er5KTrJz3++B6SH9pum9PuoE/k+nntJkNMmQpR4MCBaV/J9gIOPGodDKnjdng+mXliF3Ptu6
+ 3oxc2RCyGzTlxyMwuc2U5Q7KtUNTdDe8T0uE+9b8BLMVQDDfJjqY0VVqSUwImzTDLX9S4g/8
+ kC4HRcclk8hpyhY2jKGluZO0awwTIMgVEzmTyBphDg/Gx7dZU1Xf8HFuE+UZ5UDHDTnwgv7E
+ th6RC9+WrhDNspZ9fJjKWRbveQgUFCpe1sa77LAw+XFrKmBHXp9ZVIe90RMe2tRL06BGiRZr
+ jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
+ WNyWQQ==
+Organization: Red Hat
+In-Reply-To: <Zpi-HAb7EBxrZBtK@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+>>> -	 * Allocate node data.  Try node-local memory and then any node.
+>>> -	 * Never allocate in DMA zone.
+>>> -	 */
+>>> -	nd_pa = memblock_phys_alloc_try_nid(nd_size, SMP_CACHE_BYTES, nid);
+>>> -	if (!nd_pa) {
+>>> -		pr_err("Cannot find %zu bytes in any node (initial node: %d)\n",
+>>> -		       nd_size, nid);
+>>> -		return;
+>>> -	}
+>>> -	nd = __va(nd_pa);
+>>> -
+>>> -	/* report and initialize */
+>>> -	printk(KERN_INFO "NODE_DATA(%d) allocated [mem %#010Lx-%#010Lx]\n", nid,
+>>> -	       nd_pa, nd_pa + nd_size - 1);
+>>> -	tnid = early_pfn_to_nid(nd_pa >> PAGE_SHIFT);
+>>> -	if (tnid != nid)
+>>> -		printk(KERN_INFO "    NODE_DATA(%d) on node %d\n", nid, tnid);
+>>> -
+>>> -	node_data[nid] = nd;
+>>> -	memset(NODE_DATA(nid), 0, sizeof(pg_data_t));
+>>> -
+>>> -	node_set_online(nid);
+>>> -}
+>>> -
+>>>    /**
+>>>     * numa_cleanup_meminfo - Cleanup a numa_meminfo
+>>>     * @mi: numa_meminfo to clean up
+>>> @@ -571,6 +538,7 @@ static int __init numa_register_memblks(struct numa_meminfo *mi)
+>>>    			continue;
+>>>    		alloc_node_data(nid);
+>>> +		node_set_online(nid);
+>>>    	}
+>>
+>> I can spot that we only remove a single node_set_online() call from x86.
+>>
+>> What about all the other architectures? Will there be any change in behavior
+>> for them? Or do we simply set the nodes online later once more?
+> 
+> On x86 node_set_online() was a part of alloc_node_data() and I moved it
+> outside so it's called right after alloc_node_data(). On other
+> architectures the allocation didn't include that call, so there should be
+> no difference there.
 
---OacaTNnqMJzRi7N4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+But won't their arch code try setting the nodes online at a later stage?
 
-On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
-> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> It is pin-compatible with TI TCAN1042.
->=20
-> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> ---
->  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b=
-/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> index 79dad3e89aa6..03de361849d2 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> @@ -18,6 +18,7 @@ properties:
->        - nxp,tjr1443
->        - ti,tcan1042
->        - ti,tcan1043
-> +      - microchip,ata6561
+And I think, some architectures only set nodes online conditionally
+(see most other node_set_online() calls).
 
-Given that your driver patch has
-| diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-tran=
-sceiver.c
-| index ee4ce4249698..dbcd99213ba1 100644
-| --- a/drivers/phy/phy-can-transceiver.c
-| +++ b/drivers/phy/phy-can-transceiver.c
-| @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiver_phy_i=
-ds[] =3D {
-|                 .compatible =3D "nxp,tjr1443",
-|                 .data =3D &tcan1043_drvdata
-|         },
-| +       {
-| +               .compatible =3D "microchip,ata6561",
-| +               .data =3D &tcan1042_drvdata
-| +       },
-|         { }
-|  };
+Sorry if I'm confused here, but with now unconditional node_set_online(), won't
+we change the behavior of other architectures?
 
-the driver patch is actually not needed at all, and you just need to
-allow ti,tcan1042 as fallback compatible in the binding, so something
-like:
-
-  compatible:
-    oneOf:
-      - enum:
-          - nxp,tjr1443
-          - ti,tcan1042
-          - ti,tcan1043
-      - items:
-          - const: microchip,ata6561
-          - const: ti,tcan1042
-=20
-   '#phy-cells':
-     const: 0
-
+-- 
 Cheers,
-Conor.
 
-> =20
->    '#phy-cells':
->      const: 0
-> --=20
-> 2.34.1
->=20
->=20
+David / dhildenb
 
---OacaTNnqMJzRi7N4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpqBFAAKCRB4tDGHoIJi
-0u25APwJ3s2fz/iSUlVs8nhu7y4M/qp5donngZ/W2xoG6RZFFAEAilk2WvgKvymW
-xAUkue9tqFIm/xv1Avcb+vTE1mqUcQQ=
-=yHPo
------END PGP SIGNATURE-----
-
---OacaTNnqMJzRi7N4--
 
