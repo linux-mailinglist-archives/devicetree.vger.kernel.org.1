@@ -1,205 +1,152 @@
-Return-Path: <devicetree+bounces-86753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FE829375FB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE8D937606
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 11:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49D3BB22EC8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:43:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75D52B232AB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A3013B7BE;
-	Fri, 19 Jul 2024 09:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7780B824BC;
+	Fri, 19 Jul 2024 09:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gnS73A56"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="NCuJuHvK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CF012E1F1
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 09:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C255C12B94
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 09:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721381991; cv=none; b=JiGGk6KSHbeEuA17gkvnecuctgCEFSTfut/5mopVYbiDQoeuGdmH/TfuEmo7rPYcNTche8gPpOHcuqMG/MR5/cZ8wZ0g5jHReorKNRdUzfp1FMbDd2BpjnTls9w8+lshI6Nl6B3pR9AmCATflx6dIUJghlcst45oSCegI/snzlU=
+	t=1721382335; cv=none; b=AH9NeSF+FbWN4sXVLukWrIwbWAwyb4I+P8BLpYnyQqzacxCCYVPkzVVyGeDpXiJeOeBwTzdITMkwsq2TIvwCCk1WpFE+KXKN+dbc8ERBAD5fjwtq26iKnnFBSTdve7h3wRrqZcYbj1LkicOpZ2mXm6UU8UxQgad281itYWSJuYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721381991; c=relaxed/simple;
-	bh=PBjruZtx9EOHUxkdlD0klsOvpdGmBCht+2QX12HHm3E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cqkvTN8JZ1GEPZ2tNc3HQKYVJrx/Vecf4egGt7zfIhlB0R8fql/pCJfD+UqE9eftyOPi+COEw8/jNqIrPqwzTt9qYdjYhgK4+5+bDd2vw3Oqrw0TimN4Q+JYP5aVuk68Eyy0Dn2U3tCQ4MVcgmF9eQu0A2KN4x2yZejrJpuwORw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gnS73A56; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so11591155e9.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 02:39:49 -0700 (PDT)
+	s=arc-20240116; t=1721382335; c=relaxed/simple;
+	bh=wvQcdEWQ3/kLHsxtgCGRA9jYHsgJ/xrav2Xn7haRcMU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qsNvFgPwHIRgzvkFSW3uvzbBpBlmye4d+j9I4WrAs3BDIe6QYBO1wRqNrYGxwG4BKw5NNkPlnmwIajTf/Bqw+UTl4+AD/ZalcpfE79jVfqfmmbIYAVgIFSTimZcOHHxwmbeTZp5FdCMDJ4FtA4V0SelpJEOFXBZjE4uUxhUw/A8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=NCuJuHvK; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1fc5a93ce94so1841795ad.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 02:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721381988; x=1721986788; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eMpk3y2xmBZCQPaJCy/EfgttwiP6OCjkgxpc1ntR5zI=;
-        b=gnS73A56f0LWkJffdeE8DuTLb4/O6PiFaDGntt3GIkmRZLsUVFGL8Elrgdlm/IAau6
-         +B90XzrMIwi+0vK7HHHobxTtpK3lGhESGviDVnwonYUeAS6EYLW2Eur+/rXUk05dYrcS
-         0w3es+rpDw34fjKVvv+ic9pzwYtI4bnBftLnGAfmGLuo+IJGRF0RByJ3CA0Q7Ts4DfBS
-         3tqfvObVfgBKBhLV3+L1QIKMiq7gvHnh/Dre5lbpcVgus+p7kjZFLmRoxYVEOSYwnjEx
-         Ne/ffjTjHlUDiN+Xlg7I4kSfl1VnRNN4lMJwtJj6wNkPsSoztZjMtwd8PiQQeh3+48mE
-         DY4Q==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1721382332; x=1721987132; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DTIjdju0ng5SZUR/ZVbr+pjq8z5bsP/PxolugfMqbFg=;
+        b=NCuJuHvKq9YHT3W6tARyzFYG7j7joVlBvGUbhlkYbRpaISOVCJJpTmPv0Imma1QWeP
+         vPtN9bbkKUbYA4O/qt+zmYKIyxewfrfW/R8vOuTdoD56zLi2YfGGRejdpknpM/ygZhem
+         sM00TefJ3xEW4+bQAnwLl1ZciTsHh6qM/eOC4fPP1vqqRWb043oZVgBO4dL3p31btvlD
+         NA6O0SdqijSlpJjbamSi/fOJmSLpmGB3z+Kk99Hkw/4SI7c+QIhsU0oJEzay5LPa0Q5S
+         EqjgDFrvp1SrGcyHoLMHj71PZW82TOogC4NQ03tUNVUAd4KjWsRzyHOJhyBOTbomTo0P
+         eElQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721381988; x=1721986788;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eMpk3y2xmBZCQPaJCy/EfgttwiP6OCjkgxpc1ntR5zI=;
-        b=dtXIEkB+rJ+Yqkci1dWjdHI7a19t3eQ7h4efQ5ZGBtNvnLc8wOcFrDc/JMIrlNZ9Cf
-         iyDpsk5HCEAgDDftpJHMFbgdFQKfopelOgmeJkuxv3GPOQVcREy/o5YOTF0xD8ietFnT
-         iShi5Y82gUsb/t/56zyX/8o9jh1q+Gq9f7U+iBC+AfQSQk79Dlpuro8sLHoRdPBNapcQ
-         2OtzggQEigxj/3B2PPTF54GpRq0WsVw3W4KQxfjdcGV3+Z66G0ym8IAoA39qwEy0hdyp
-         pU0BjlVsYWUXmC3czEYc1DNOJtEVT73KE257oRm1MR03HV+OWd633X2ALOKFu3gA8FKT
-         vuow==
-X-Forwarded-Encrypted: i=1; AJvYcCXM9Yfo3yOIJvdQMa4tJTSKIpQkQ0Lewh32DsWcFZaHBr6/hE/pO2WjCokVunFJK17lF+SwUMtKcWpdi1DWz4Wb0LDMOCm5bHm24A==
-X-Gm-Message-State: AOJu0YxPy0hlIpRB9VYLMhIbbFmHMkGyjdx+QnP143K0fO71+YgjDWMw
-	as7lhjItGEgHhfPv0RLt1i8XsDTBFz2U7qLethkz1Km0acSrJnWjHpbvEMUP2S8=
-X-Google-Smtp-Source: AGHT+IHkI5bQ3THfbu9n+W7E481AfDPpqx7RjnI9aZPldPP6vcT4yhD2GCn82GpZhRHfUSF7NbJPvA==
-X-Received: by 2002:a05:600c:4f96:b0:426:6fd2:e14b with SMTP id 5b1f17b1804b1-427c2cb87a5mr62481585e9.11.1721381988244;
-        Fri, 19 Jul 2024 02:39:48 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:5ac4:5655:4dfe:ce97])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3687868bc91sm1100956f8f.45.2024.07.19.02.39.47
+        d=1e100.net; s=20230601; t=1721382332; x=1721987132;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DTIjdju0ng5SZUR/ZVbr+pjq8z5bsP/PxolugfMqbFg=;
+        b=MM19DlR0+knP0e1LL3Mas8sxn/iE7RVlZWnUgqcU1rSB/ZVJcRPf8jMDfQbsfvuX9M
+         XchIQGXC4o8V+McKU6zvgmiQR/q+QiR/p30+wg+Rc8ObiDVN6BVo6ppAfq7zFaMO+hJU
+         lSD+SgWV4cGOitsv5yVMvY5uW/tOLoQ/JxgAHufnlskiOGCUBFpF4nbkPuuDEzSNeZdp
+         9NFnBtO0fu8jx7Yn5fsMWwQ39fCZumwkwXUf30mznC28DiAlvzpyKx/dAEr7A6iuj82R
+         0Eve1LadWshyBz6qMLVMVyqmmatHXX+Dz/lnEVugFAK7P3iF0ZpSQsx0SZtU85e+nkpX
+         OhkA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQELuk0ucAkXgASS4vjWj0F6pW+GFkO8oLypAIYIbGxCfnHE4kA0NSyNuh3NLFWYCGSJh68wRikNCpzJvpPNfG0pwI3f+7zd4pjQ==
+X-Gm-Message-State: AOJu0YxSWhU94UTgvIowop8CLxK//2ToJcsu+1ySYRy1sas0I8054JJj
+	rBQfvJVma/04gqqcM6jV/JkTg4Z/8I+v/i+DXSERXRwQ1yA4Gk8P8zWr105VMA==
+X-Google-Smtp-Source: AGHT+IEVyJea5xxoF0+wpJnzDjtXmvoUTHSZX9gEcY2eBSEdaXs1ZKnuf11e4P64seyMGkI+54GAPA==
+X-Received: by 2002:a17:902:e74e:b0:1f3:10e8:1e0 with SMTP id d9443c01a7336-1fd5ec5b9b6mr14469455ad.2.1721382331995;
+        Fri, 19 Jul 2024 02:45:31 -0700 (PDT)
+Received: from [127.0.0.1] ([2401:4900:8899:6437:d031:b9ec:7ff1:6aa1])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f28f67esm819025ad.96.2024.07.19.02.45.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 02:39:47 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH 3/3] clk: meson: axg-audio: add sm1 earcrx clocks
-Date: Fri, 19 Jul 2024 11:39:32 +0200
-Message-ID: <20240719093934.3985139-4-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240719093934.3985139-1-jbrunet@baylibre.com>
-References: <20240719093934.3985139-1-jbrunet@baylibre.com>
+        Fri, 19 Jul 2024 02:45:31 -0700 (PDT)
+From: Ayush Singh <ayush@beagleboard.org>
+Subject: [PATCH 0/3] Add Firmware Upload support for beagleplay cc1352
+Date: Fri, 19 Jul 2024 15:15:09 +0530
+Message-Id: <20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKU1mmYC/x3MSwqAIBRG4a3EHSfYG9pKRJj+2YUoUXoR7T1p+
+ A3OeSjAMwK1yUMeBwfe1ogsTUjParUQbKIpl3kpm6wSI5Rd4BZ1D9M57M56ZSDKArXWGKUpDMX
+ WeUx8/d+uf98PcDP+bGcAAAA=
+To: jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: greybus-dev@lists.linaro.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Ayush Singh <ayush@beagleboard.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1752; i=ayush@beagleboard.org;
+ h=from:subject:message-id; bh=wvQcdEWQ3/kLHsxtgCGRA9jYHsgJ/xrav2Xn7haRcMU=;
+ b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBmmjW1PzBconUuwkgIXGlPw5RQUNQ8xbEm8UvkG
+ 6vloBiAU6CJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZpo1tQAKCRAFzvXHieVa
+ dCbpD/9aS52VevnNnvYRJQyq7QU3ADVpxmVpEeUX0SJrQSzSqlAch4f6iGxAxvwIWQOGfdDYMev
+ 7Kv6067Fj0544qQ+4t9iLZWeVxlYk7iZ/gisW9y+ZqF+sdywHAkWqXaC9lmJGu+WOn3FbG0kxJ7
+ oXdyLbG8dSUpceaPFgd3b43qoBx1v/BBRCM+CWGMsw7DoooGlChFT7Fbn3rc0B8fPOiv7wViorG
+ p+Tgxu9k/tFdSZ3hOagYhnB5hXNzdjfN5siI1XWSKNbV/6tjT3nhpvez7qFouoJChkdSDfSecSl
+ JPcdNuwuWwcXNI45FthqCWrN/Txmxi0ym0dylq4b/vilWjcMV8iuXBrayPksG9oHjdNb5PnXvlE
+ soQx7bJMsnFWm9bBX2VYkkHPvLmuMb99OxgrrUnG7IY2jEB4qhAzRP9urvGcBquduTsHrHKZ+A5
+ Q5s6eNy0iRJwsZyp+zrLtD2wloyh8eEtHYq4v1f4FK1Hy0lHZTb+sffErg2EixdSk2zvLukrqbo
+ EyiSBvxpRLef2fG88rg+ZaSVYiXNjiHB2VhzHt2RMfZ2aNZ9qi+KmqpiIQmSI+Svqh0y9D/3wIF
+ UPYuppPh5mZmvDy0evdrAFReqQAlyLwDM9Rxp3x5UZHoFWpw7k/l+P89kGCPhKtrqk6Rr9juzW+
+ 9JY/V43A9FwOH+Q==
+X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
+ fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
 
-Add CMDC, DMAC and peripheral clocks for the eARC RX device found on the
-sm1 SoC family
+Adds support for beagleplay cc1352 co-processor firmware upgrade using
+kernel Firmware Upload API. Uses ROM based bootloader present in
+cc13x2x7 and cc26x2x7 platforms for flashing over UART. 
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Communication with the bootloader can be moved out of gb-beagleplay
+driver if required, but I am keeping it here since there are no
+immediate plans to use the on-board cc1352p7 for anything other than
+greybus (BeagleConnect Technology). Additionally, there do not seem to
+any other devices using cc1352p7 or it's cousins as a co-processor.
+
+Boot and Reset GPIOs are used to enable cc1352p7 bootloader backdoor for
+flashing. Flashing is skipped in case we are trying to flash the same
+image as the one that is currently present. This is determined by CRC32
+calculation of the supplied firmware and Flash data.
+
+We also do a CRC32 check after flashing to ensure that the firmware was
+flashed properly.
+
+Link: https://www.ti.com/lit/ug/swcu192/swcu192.pdf Ti CC1352p7 Tecnical Specification
+
+Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 ---
- drivers/clk/meson/axg-audio.c | 32 +++++++++++++++++++++++++++++++-
- drivers/clk/meson/axg-audio.h |  2 ++
- 2 files changed, 33 insertions(+), 1 deletion(-)
+Ayush Singh (3):
+      dt-bindings: net: ti,cc1352p7: Add boot-gpio
+      arm64: dts: ti: k3-am625-beagleplay: Add boot-gpios to cc1352p7
+      greybus: gb-beagleplay: Add firmware upload API
 
-diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 2426f3dbb7a2..06dc1e1f45e5 100644
---- a/drivers/clk/meson/axg-audio.c
-+++ b/drivers/clk/meson/axg-audio.c
-@@ -753,6 +753,9 @@ static struct clk_regmap toddr_d =
- 	AUD_PCLK_GATE(toddr_d, AUDIO_CLK_GATE_EN1, 1);
- static struct clk_regmap loopback_b =
- 	AUD_PCLK_GATE(loopback_b, AUDIO_CLK_GATE_EN1, 2);
-+static struct clk_regmap earcrx =
-+	AUD_PCLK_GATE(earcrx, AUDIO_CLK_GATE_EN1, 6);
-+
- 
- static struct clk_regmap sm1_mst_a_mclk_sel =
- 	AUD_MST_MCLK_MUX(mst_a_mclk, AUDIO_SM1_MCLK_A_CTRL);
-@@ -766,6 +769,10 @@ static struct clk_regmap sm1_mst_e_mclk_sel =
- 	AUD_MST_MCLK_MUX(mst_e_mclk, AUDIO_SM1_MCLK_E_CTRL);
- static struct clk_regmap sm1_mst_f_mclk_sel =
- 	AUD_MST_MCLK_MUX(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
-+static struct clk_regmap sm1_earcrx_cmdc_clk_sel =
-+	AUD_MST_MCLK_MUX(earcrx_cmdc_clk, AUDIO_EARCRX_CMDC_CLK_CTRL);
-+static struct clk_regmap sm1_earcrx_dmac_clk_sel =
-+	AUD_MST_MCLK_MUX(earcrx_dmac_clk, AUDIO_EARCRX_DMAC_CLK_CTRL);
- 
- static struct clk_regmap sm1_mst_a_mclk_div =
- 	AUD_MST_MCLK_DIV(mst_a_mclk, AUDIO_SM1_MCLK_A_CTRL);
-@@ -779,6 +786,11 @@ static struct clk_regmap sm1_mst_e_mclk_div =
- 	AUD_MST_MCLK_DIV(mst_e_mclk, AUDIO_SM1_MCLK_E_CTRL);
- static struct clk_regmap sm1_mst_f_mclk_div =
- 	AUD_MST_MCLK_DIV(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
-+static struct clk_regmap sm1_earcrx_cmdc_clk_div =
-+	AUD_MST_MCLK_DIV(earcrx_cmdc_clk, AUDIO_EARCRX_CMDC_CLK_CTRL);
-+static struct clk_regmap sm1_earcrx_dmac_clk_div =
-+	AUD_MST_MCLK_DIV(earcrx_dmac_clk, AUDIO_EARCRX_DMAC_CLK_CTRL);
-+
- 
- static struct clk_regmap sm1_mst_a_mclk =
- 	AUD_MST_MCLK_GATE(mst_a_mclk, AUDIO_SM1_MCLK_A_CTRL);
-@@ -792,6 +804,10 @@ static struct clk_regmap sm1_mst_e_mclk =
- 	AUD_MST_MCLK_GATE(mst_e_mclk, AUDIO_SM1_MCLK_E_CTRL);
- static struct clk_regmap sm1_mst_f_mclk =
- 	AUD_MST_MCLK_GATE(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
-+static struct clk_regmap sm1_earcrx_cmdc_clk =
-+	AUD_MST_MCLK_GATE(earcrx_cmdc_clk, AUDIO_EARCRX_CMDC_CLK_CTRL);
-+static struct clk_regmap sm1_earcrx_dmac_clk =
-+	AUD_MST_MCLK_GATE(earcrx_dmac_clk, AUDIO_EARCRX_DMAC_CLK_CTRL);
- 
- static struct clk_regmap sm1_tdm_mclk_pad_0 = AUD_TDM_PAD_CTRL(
- 	tdm_mclk_pad_0, AUDIO_SM1_MST_PAD_CTRL0, 0, mclk_pad_ctrl_parent_data);
-@@ -1232,6 +1248,13 @@ static struct clk_hw *sm1_audio_hw_clks[] = {
- 	[AUD_CLKID_SYSCLK_A_EN]		= &sm1_sysclk_a_en.hw,
- 	[AUD_CLKID_SYSCLK_B_DIV]	= &sm1_sysclk_b_div.hw,
- 	[AUD_CLKID_SYSCLK_B_EN]		= &sm1_sysclk_b_en.hw,
-+	[AUD_CLKID_EARCRX]		= &earcrx.hw,
-+	[AUD_CLKID_EARCRX_CMDC_SEL]	= &sm1_earcrx_cmdc_clk_sel.hw,
-+	[AUD_CLKID_EARCRX_CMDC_DIV]	= &sm1_earcrx_cmdc_clk_div.hw,
-+	[AUD_CLKID_EARCRX_CMDC]		= &sm1_earcrx_cmdc_clk.hw,
-+	[AUD_CLKID_EARCRX_DMAC_SEL]	= &sm1_earcrx_dmac_clk_sel.hw,
-+	[AUD_CLKID_EARCRX_DMAC_DIV]	= &sm1_earcrx_dmac_clk_div.hw,
-+	[AUD_CLKID_EARCRX_DMAC]		= &sm1_earcrx_dmac_clk.hw,
- };
- 
- 
-@@ -1646,6 +1669,13 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
- 	&sm1_sysclk_a_en,
- 	&sm1_sysclk_b_div,
- 	&sm1_sysclk_b_en,
-+	&earcrx,
-+	&sm1_earcrx_cmdc_clk_sel,
-+	&sm1_earcrx_cmdc_clk_div,
-+	&sm1_earcrx_cmdc_clk,
-+	&sm1_earcrx_dmac_clk_sel,
-+	&sm1_earcrx_dmac_clk_div,
-+	&sm1_earcrx_dmac_clk,
- };
- 
- struct axg_audio_reset_data {
-@@ -1853,7 +1883,7 @@ static const struct audioclk_data sm1_audioclk_data = {
- 	},
- 	.reset_offset = AUDIO_SM1_SW_RESET0,
- 	.reset_num = 39,
--	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
-+	.max_register = AUDIO_EARCRX_DMAC_CLK_CTRL,
- };
- 
- static const struct of_device_id clkc_match_table[] = {
-diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
-index 01a3da19933e..9e7765b630c9 100644
---- a/drivers/clk/meson/axg-audio.h
-+++ b/drivers/clk/meson/axg-audio.h
-@@ -64,5 +64,7 @@
- #define AUDIO_SM1_SW_RESET1	0x02C
- #define AUDIO_CLK81_CTRL	0x030
- #define AUDIO_CLK81_EN		0x034
-+#define AUDIO_EARCRX_CMDC_CLK_CTRL	0x0D0
-+#define AUDIO_EARCRX_DMAC_CLK_CTRL	0x0D4
- 
- #endif /*__AXG_AUDIO_CLKC_H */
+ .../devicetree/bindings/net/ti,cc1352p7.yaml       |   4 +
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts     |   3 +-
+ drivers/greybus/Kconfig                            |   1 +
+ drivers/greybus/gb-beagleplay.c                    | 625 ++++++++++++++++++++-
+ 4 files changed, 620 insertions(+), 13 deletions(-)
+---
+base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
+change-id: 20240715-beagleplay_fw_upgrade-43e6cceb0d3d
+
+Best regards,
 -- 
-2.43.0
+Ayush Singh <ayush@beagleboard.org>
 
 
