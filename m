@@ -1,143 +1,415 @@
-Return-Path: <devicetree+bounces-86877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0CAE937CBC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 20:53:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E5E937CD9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 21:05:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DE2C1C20E0D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 18:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47A8F281ADA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC111487C6;
-	Fri, 19 Jul 2024 18:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E40B14830C;
+	Fri, 19 Jul 2024 19:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UqiHl+bL"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="UvSPgJGj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from msa.smtpout.orange.fr (smtp-79.smtpout.orange.fr [80.12.242.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08351148316;
-	Fri, 19 Jul 2024 18:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D58C1482F0;
+	Fri, 19 Jul 2024 19:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.79
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721415185; cv=none; b=aUBJJD01rJqGNIsRnsrhXH9opnCfaAGzTG2ocajCYfeaYCyVDnzWZ5gcZeqeR17GX7Tm/l6LFDexV/9juDnWtbyrrdb6hJZ/B/lJSX7f7gYRBh19UuqOZsy5PKIMGO574mGXHSj3nu9BTFtPaB3nYgZmuv9TS0inzTWNf55+FM4=
+	t=1721415952; cv=none; b=MuMoR2dtmIudh5aj7m4WqUf6no0+b3Rt4mHnzZGsPmrO9ZvDe0dWPyxVFhScsfN9z4Kl7jbWOB09/w8BTNcFyIDi/9ERtYDFJtr0esUWavQk2uKjBlBeUWtXcfR8TMzAPakicDGV5ZzNDDkOTggAu5dVCkYUZBzDFM1qkng0CTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721415185; c=relaxed/simple;
-	bh=sA2Te0wySkcv9R67I+V+nrhPN+SJSYf6KzI4u6YKWMc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pSWnt8c1psxrBKMe2Hi/QeMDZwEWGd0e1MwNj5O1EZ1r8Q+CmZi3WQdEZIm3GeFnIcAlba4xkIFzkMzKABEgfHnHQ/ZusaTBHtVmtN7xuF/84eFERUq3qEE1b8bVCjFT/+EVPO3fH0K034RHZ3DNStJVe1V1AEKCHuVoWGc0PMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UqiHl+bL; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1fc66fc35f2so14269685ad.0;
-        Fri, 19 Jul 2024 11:53:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721415183; x=1722019983; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tJXJPAJ6qeai6g7MHlvto65MwlAA7XvrgpR3SSHoifM=;
-        b=UqiHl+bLNBbx1oXVtx3l1ogpL1HQfPzFS3tTuaLZntWlglddV8CASOGxqOFXVNX1sg
-         K5UdMKck9Ct1xcn9E/KMgjlytf5PWsAwdMa4S7alXpTzReRWsffuxo4MINh6Utr3p/T1
-         i/At5IIkSDifnhFywHmgxottXB3Gu/0hYtDugvdKiM2wE3qLG7rZqKsMMWeh6V1l55AX
-         TYSB5vhLrTDxjc+N3Qe+tkuwXeQwWFRu3VbFGNK3kmSsoFaQiCH8LV2nRpaSU4bT4v3T
-         z7fyWxgmmbr8t7uXRsUesmOPPV4fyhqh/fInkaXd1zxvuQqIXY7aHXR4M8cuPuQW9CHs
-         5Ybg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721415183; x=1722019983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tJXJPAJ6qeai6g7MHlvto65MwlAA7XvrgpR3SSHoifM=;
-        b=UTVda26xclpyLa23VTGTB0K2l3qFXGxoJ4evbS/5KjcmiZVxTXwcsgr/If9TkZd0HK
-         tuVB7N2PGCZ8LbnoYhuZUoyaXO4Abp6qJIdyMz5lhHnmKylfcLTAa30Bf0bCfig8u8U7
-         JfGhLS1OiqYdBsX1wl/mav6JDLN5W96KJQzR3iWHtGlkq+PRRhnQjxFernlsU9BfUziS
-         M0wtEGmbeUieZld2MgjeinSrukm5GqLzGjFUuD8yY3UAG1rF+oSXavEEGS2nHVoP+zVG
-         nVuHzAQ5TnD5PapHgYW7lUKJAOusBguSzAK97+6E6denNUPAVl9NzLDwgVAY9y4qNqXG
-         GCZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXqdoa0v/zoLLVwn0tZtTJAPwKvtQQSejSwc/oOjirDwONUmpwSEoV1eBHRojRqxNwb/G7g8+dswJBGYaMipWTgyU4d5BQq5iiT798dmExWUA5Q7ziRJupljWzmJz73DSwWJycY8i9luA==
-X-Gm-Message-State: AOJu0Yw7bq5VYtk/DJlNP72bK6O0B07Uu0GG/z0Ba5WLDRr1iUPPpwFj
-	9mvqRx4FJKHEpAbL2YCsIw0Nhn6O6ktW5E9byhI46g8pL3rCtxI9X/WaHg==
-X-Google-Smtp-Source: AGHT+IGVarVLbfPkNwMnpHQvy8AxhW+eRxt1CZVPGxTIrFpjhflM9x36Mcrv04X8vdb8+1KLyhcKUQ==
-X-Received: by 2002:a17:902:eb90:b0:1fb:129e:69fc with SMTP id d9443c01a7336-1fc5b5b84c5mr83286585ad.16.1721415182608;
-        Fri, 19 Jul 2024 11:53:02 -0700 (PDT)
-Received: from localhost ([2a00:79e1:2e00:1301:3279:d3cd:5dde:c799])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f48875esm7921215ad.287.2024.07.19.11.53.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jul 2024 11:53:02 -0700 (PDT)
-From: Rob Clark <robdclark@gmail.com>
-To: linux-arm-msm@vger.kernel.org
-Cc: Doug Anderson <dianders@chromium.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Rob Clark <robdclark@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 2/2] arm64: dts: qcom: x1e80100-yoga: Update panel bindings
-Date: Fri, 19 Jul 2024 11:52:50 -0700
-Message-ID: <20240719185250.4877-2-robdclark@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240719185250.4877-1-robdclark@gmail.com>
-References: <20240719185250.4877-1-robdclark@gmail.com>
+	s=arc-20240116; t=1721415952; c=relaxed/simple;
+	bh=p8HikwIIeukiOO2T7xEfP9pyjX35CUE030xEUIVNVdc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QrqYCKiMbtZA6VuNvmZNzcFAeyQ9CFGZQc5WaFytXXHWrJGKy5hc7AUzefnU9Sc+BXUlmgT0ma4Qd52hB7M25KTE1RofEOV1j7GtFSVolYfeCXf/lmhhAQyGIPFx8P8NnmFAWnlJ/jc42HWJilFWuxOAyF/QYWlCKRBx+R9nk5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=UvSPgJGj; arc=none smtp.client-ip=80.12.242.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id Usu0sMnHb6NRTUsu0sbMuM; Fri, 19 Jul 2024 21:04:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1721415869;
+	bh=bmqhLid6vk3HCiDiwtRF2597OrEf17EQmbVOpAkwA5w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=UvSPgJGjL2LoMwoC6xk4IPuYzZ91rxoOYZdbyRdO5VeXyW1VQhqZfas77e8eFZV3x
+	 NsG8Sf23aXVYvkvrOiEy/VO5S7CkHRj9GWHoqsGdxmasZmWKiOpq6q8zWTdsywzlTr
+	 m/zhULgphWgE4R2ta0v5Cn29C4nVAgrZTLawqkuxWnjTpfmQCyeyDhmEtZ+iXUuoHB
+	 TTIryiw8U+L9P6dkPIQIT4O8xmwStJQuY95Tlbs4ymqMeRVUZIusC046RtQCrV6jeO
+	 WzBsVgquuhfPvA0giu5IZvKCcn9qrGSpzI3ZDBV54jhsXavUAxMwI01KukBKR7sglf
+	 RMf193+Eqmo2g==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 19 Jul 2024 21:04:29 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <7312b1f8-6314-49df-9ccf-092f4ae84027@wanadoo.fr>
+Date: Fri, 19 Jul 2024 21:04:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] iio: adc: adding support for PAC194X
+To: marius.cristea@microchip.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org
+References: <20240719173855.53261-1-marius.cristea@microchip.com>
+ <20240719173855.53261-3-marius.cristea@microchip.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240719173855.53261-3-marius.cristea@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Rob Clark <robdclark@chromium.org>
+Le 19/07/2024 à 19:38, 
+marius.cristea-UWL1GkI3JZL3oGB3hsPCZA@public.gmane.org a écrit :
+> From: Marius Cristea <marius.cristea-UWL1GkI3JZL3oGB3hsPCZA@public.gmane.org>
+> 
+> This is the iio driver for Microchip PAC194X and PAC195X
+> series of Power Monitors with Accumulator.
+> 
+> Signed-off-by: Marius Cristea <marius.cristea-UWL1GkI3JZL3oGB3hsPCZA@public.gmane.org>
+> ---
+>   .../ABI/testing/sysfs-bus-iio-adc-pac1944     |    9 +
+>   MAINTAINERS                                   |    7 +
+>   drivers/iio/adc/Kconfig                       |   13 +
+>   drivers/iio/adc/Makefile                      |    1 +
+>   drivers/iio/adc/pac1944.c                     | 3528 +++++++++++++++++
+>   5 files changed, 3558 insertions(+)
+>   create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
+>   create mode 100644 drivers/iio/adc/pac1944.c
+> 
 
-Use the correct panel compatible, and wire up enable-gpio.  It is wired
-up in the same way as the x1e80100-crd.
+Hi,
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+below a few comments and nitpicks.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index f569f0fbd1fc..28a6ea5a24fd 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -592,9 +592,13 @@ &mdss_dp3 {
- 
- 	aux-bus {
- 		panel {
--			compatible = "edp-panel";
-+			compatible = "samsung,atna45dc02", "samsung,atna33xc20";
-+			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
- 			power-supply = <&vreg_edp_3p3>;
- 
-+			pinctrl-0 = <&edp_bl_en>;
-+			pinctrl-names = "default";
-+
- 			port {
- 				edp_panel_in: endpoint {
- 					remote-endpoint = <&mdss_dp3_out>;
-@@ -663,6 +667,13 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pmc8380_3_gpios {
-+	edp_bl_en: edp-bl-en-state {
-+		pins = "gpio4";
-+		function = "normal";
-+	};
-+};
-+
- &qupv3_0 {
- 	status = "okay";
- };
--- 
-2.45.2
+   - You could slightly improve style by removing extra spaces in 
+several places where you have <SPACE><SPACE>= or =<SPACE><SPACE>.
+
+   - pac1944_oc_limit_nsamples_store(),
+     pac1944_uc_limit_nsamples_store(),
+     pac1944_op_limit_nsamples_store(),
+     pac1944_ov_limit_nsamples_store(),
+     pac1944_uv_limit_nsamples_store()
+     look really similar and could be defined with a macro with 3 
+parameters to save some LoC
+
+    - same for pac1944_slow_alert_store() and 
+pac1944_gpio_alert_store(), if it makes sense for just 2 functions
+
+   - the same could be done for some show functions
+
+   - (unlikely(check_add_overflow()): unlikely is not needed, I think 
+that it is already handled that way (see __must_check_overflow())
+
+...
+> +static int pac1944_send_refresh(struct pac1944_chip_info *info,
+> +				u8 refresh_cmd, u32 wait_time)
+> +{
+> +	struct i2c_client *client = info->client;
+> +	int ret;
+> +
+> +	/* Writing a REFRESH or a REFRESH_V command */
+> +	ret = i2c_smbus_write_byte(client, refresh_cmd);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s - cannot send Refresh cmd (0x%02X) to PAC1944\n",
+> +			__func__, refresh_cmd);
+> +		return ret;
+> +	}
+> +
+> +	/* Register data retrieval timestamp */
+> +	info->chip_reg_data.jiffies_tstamp = jiffies;
+> +	/* Wait till the data is available */
+> +	usleep_range(wait_time, wait_time + 100);
+> +
+> +	return ret;
+
+Nitpick : return 0;
+
+> +}
+
+...
+
+> +static int pac1944_retrieve_data(struct pac1944_chip_info *info, u32 wait_time)
+> +{
+> +	int ret;
+
+Missing newline
+
+> +	/*
+> +	 * Check if the minimal elapsed time has passed and if so,
+> +	 * re-read the chip, otherwise the cached info is just fine
+> +	 */
+> +	if (time_after(jiffies, info->chip_reg_data.jiffies_tstamp +
+> +		       msecs_to_jiffies(PAC1944_MIN_POLLING_TIME_MS))) {
+> +		/*
+> +		 * We need to re-read the chip values
+> +		 * call the pac1944_reg_snapshot
+> +		 */
+> +		ret = pac1944_reg_snapshot(info, true,
+> +					   PAC1944_REFRESH_REG_ADDR,
+> +					   wait_time);
+> +		/*
+> +		 * Re-schedule the work for the read registers timeout
+> +		 * (to prevent chip regs saturation)
+> +		 */
+> +		cancel_delayed_work_sync(&info->work_chip_rfsh);
+> +		schedule_delayed_work(&info->work_chip_rfsh,
+> +				      msecs_to_jiffies(PAC1944_MAX_RFSH_LIMIT_MS));
+> +	}
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static ssize_t pac1944_in_voltage_acc_raw_show(struct device *dev,
+> +					       struct device_attribute *attr,
+> +					       char *buf)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct pac1944_chip_info *info = iio_priv(indio_dev);
+> +	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
+> +	int ret;
+> +	s64 acc_voltage;
+> +	u32 samples_count;
+> +	u64 tmp_u64;
+> +
+> +	ret = pac1944_retrieve_data(info, PAC1944_MIN_UPDATE_WAIT_TIME_US);
+> +	if (ret < 0)
+> +		return 0;
+> +
+> +	acc_voltage = info->chip_reg_data.acc_val[this_attr->address];
+> +	samples_count = info->chip_reg_data.total_samples_nr[this_attr->address];
+> +
+> +	tmp_u64 = div_u64(abs(acc_voltage), samples_count);
+> +
+> +	if (unlikely(is_negative(acc_voltage)))
+
+unlikely() does not seem really needed here. It does not look like a hot 
+path.
+
+> +		return sysfs_emit(buf, "-%lld\n", tmp_u64);
+> +	else
+> +		return sysfs_emit(buf, "%lld\n", tmp_u64);
+> +}
+
+...
+
+> +static int pac1944_read_thresh(struct iio_dev *indio_dev,
+> +			       const struct iio_chan_spec *chan, enum iio_event_type type,
+> +			       enum iio_event_direction dir, enum iio_event_info info,
+> +			       int *val, int *val2)
+> +{
+> +	struct pac1944_chip_info *chip_info = iio_priv(indio_dev);
+> +	int idx;
+> +
+> +	/* into the datasheet channels are noted from 1 to 4 */
+> +	idx = chan->channel - 1;
+> +
+> +	switch (chan->type) {
+
+Should it be protected by chip_info->lock, as done in 
+pac1944_read_event_config()?
+
+
+> +	case IIO_VOLTAGE:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			*val = chip_info->overvoltage[idx];
+> +			return IIO_VAL_INT;
+> +		case IIO_EV_DIR_FALLING:
+> +			*val = chip_info->undervoltage[idx];
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CURRENT:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			*val = chip_info->overcurrent[idx];
+> +			return IIO_VAL_INT;
+> +		case IIO_EV_DIR_FALLING:
+> +			*val = chip_info->undercurrent[idx];
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_POWER:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			*val = chip_info->overpower[idx];
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int pac1944_write_thresh(struct iio_dev *indio_dev,
+> +				const struct iio_chan_spec *chan, enum iio_event_type type,
+> +				enum iio_event_direction dir, enum iio_event_info info,
+> +				int val, int val2)
+> +{
+> +	struct pac1944_chip_info *chip_info = iio_priv(indio_dev);
+> +	int idx, ret;
+> +
+> +	/* into the datasheet channels are noted from 1 to 4 */
+> +	idx = chan->channel - 1;
+> +
+
+Why are scoped_guard() in each cases?
+Could'nt it be done as ni pac1944_read_event_config()?
+
+> +	switch (chan->type) {
+> +	case IIO_VOLTAGE:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			scoped_guard(mutex, &chip_info->lock) {
+> +				ret = pac1944_update_alert_16b(&indio_dev->dev,
+> +							       PAC1944_OV_LIMIT_REG_ADDR + idx,
+> +							       (int)(PAC1944_CH01UV_MASK >> idx),
+> +							       val);
+> +				if (!ret)
+> +					chip_info->overvoltage[idx] = val;
+> +			}
+> +			return ret;
+
+...
+
+> +static int pac1944_write_event_config(struct iio_dev *indio_dev,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir,
+> +				      int state)
+> +{
+> +	struct pac1944_chip_info *info = iio_priv(indio_dev);
+> +	struct i2c_client *client = info->client;
+> +	int idx, val, mask, ret;
+> +	bool update = false;
+> +	u8 tmp[PAC1944_ALERT_ENABLE_REG_LEN];
+> +
+> +	/* into the datasheet channels are noted from 1 to 4 */
+> +	idx = chan->channel - 1;
+> +
+> +	guard(mutex)(&info->lock);
+
+This could maybe be moved after the switch(), if this makes sense?
+
+> +
+> +	switch (chan->type) {
+> +	case IIO_VOLTAGE:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+
+...
+
+> +static int pac1944_prep_iio_channels(struct pac1944_chip_info *info,
+> +				     struct iio_dev *indio_dev)
+> +{
+> +	struct device *dev = &info->client->dev;
+> +	struct iio_chan_spec *ch_sp;
+> +	int channel_size, attribute_count;
+> +	int cnt;
+> +	void *dyn_ch_struct, *tmp_data;
+> +
+> +	/* Finding out dynamically how many IIO channels we need */
+> +	attribute_count = 0;
+> +	channel_size = 0;
+> +	for (cnt = 0; cnt < info->phys_channels; cnt++) {
+> +		if (!info->active_channels[cnt])
+> +			continue;
+> +
+> +		/* add the size of the properties of one chip physical channel */
+> +		channel_size += sizeof(pac1944_single_channel);
+> +		/* count how many enabled channels we have */
+> +		attribute_count += ARRAY_SIZE(pac1944_single_channel);
+> +		dev_info(dev, ":%s: Channel %d active\n", __func__, cnt + 1);
+> +	}
+> +
+> +	dyn_ch_struct = devm_kzalloc(dev, channel_size, GFP_KERNEL);
+> +	if (!dyn_ch_struct)
+> +		return -EINVAL;
+
+-ENOMEM?
+
+> +
+> +	tmp_data = dyn_ch_struct;
+> +	/* Populate the dynamic channels and make all the adjustments */
+> +	for (cnt = 0; cnt < info->phys_channels; cnt++) {
+> +		if (!info->active_channels[cnt])
+> +			continue;
+
+...
+
+> +static int pac1944_probe(struct i2c_client *client)
+> +{
+> +	struct pac1944_chip_info *info;
+> +	struct iio_dev *indio_dev;
+> +	const struct pac1944_features *chip;
+> +	bool match = false;
+> +	int cnt, ret;
+> +	struct device *dev = &client->dev;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*info));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	info = iio_priv(indio_dev);
+> +	info->client = client;
+> +
+> +	ret = pac1944_chip_identify(info);
+> +	if (ret < 0) {
+> +		/*
+> +		 * If failed to identify the hardware based on internal
+> +		 * registers,try using fallback compatible in device tree to
+
+Nitpick: space missing after the comma.
+
+> +		 * deal with some newer part number.
+> +		 */
+> +		chip = i2c_get_match_data(client);
+> +		if (!chip)
+> +			return -EINVAL;
+> +
+> +		info->chip_variant = chip->prod_id;
+> +		info->phys_channels = chip->phys_channels;
+> +		indio_dev->name = chip->name;
+> +	} else {
+
+...
+
+> +	ret = pac1944_reg_snapshot(info, true, false,
+> +				   PAC1944_MIN_UPDATE_WAIT_TIME_US);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = devm_iio_device_register(&client->dev, indio_dev);
+> +
+
+Nitpick: needeless new line
+
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret,
+> +				     "Can't register IIO device\n");
+> +
+> +	return 0;
+> +}
+
+CJ
+
+...
 
 
