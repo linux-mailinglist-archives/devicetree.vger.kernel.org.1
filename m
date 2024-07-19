@@ -1,131 +1,129 @@
-Return-Path: <devicetree+bounces-86899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0E49937D95
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 23:59:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D85B2937DBE
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 00:10:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6D2F1C212FB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 21:59:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8715F1F21B77
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 22:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6236F148FE5;
-	Fri, 19 Jul 2024 21:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A940C14884F;
+	Fri, 19 Jul 2024 22:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YHy2AhIe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCefEhJx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30D434AEF2;
-	Fri, 19 Jul 2024 21:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C4ED148832;
+	Fri, 19 Jul 2024 22:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721426393; cv=none; b=X/yUmWp9huRYzA3KMbW4121nsJElLuej7ckUQFcSwx/8SdLEPbbtvdR9xHdkpMjlyGvj3uuhD3wHXxf1+h9WgohNNPk2T8W9mcCaAo9Wpy3gjtX41dP9EZ6w3aPwiUawF5HtE7HLdq2hP5IHoZ70t0f5DJ+OQdIK0DfR85oKLvg=
+	t=1721427027; cv=none; b=qKxxRldtJ6S2uvx3PkVqXTKfzjjqBfbCZtzd1VmUYs6jKeMid7N20ZZ6tjk73m87Lqmv/jhsxY49iAWWqrtFJav46U6PO+XseYJ5bE7kdXz8aSySpzvG/5s6UkSjtyBD1U2xT1fVBcobBpvulE1nRue434ZwHUqWsv22x+0NhBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721426393; c=relaxed/simple;
-	bh=042WQKRj4OmnLPX3zC90dFEG5O4KeJ7wH4dUKSkiFTk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ODzYLAEAWyw9Ffq8UEPIbWgGHhlcRoTl4dvRQAZP20adir+zmFPoiTs7fitY2GFxy9UcxdFzvwHVmyafLhxpO7tGUJ/Iq/QtgloqJ88RysJGknE7rsz/6cZT3mnkaBvdJmJ+y5MFV5pkyJvE3hr1dGv86SJ11Nn/xS0dASfNHAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YHy2AhIe; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1721426392; x=1752962392;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=042WQKRj4OmnLPX3zC90dFEG5O4KeJ7wH4dUKSkiFTk=;
-  b=YHy2AhIeFGfNw5+pikdocamdMlOQS1/o4iZhgonVdDIW6O/JcICN8Vx7
-   fBXKEdIkS23/wtdTc4U+I98c703KBWO6s7Ql3g71K661Ik6lxp9P4MQGC
-   WjzWku0x4EMEvR853cJxowit+4cO9HEC8g+b8cdZLWOqUK0A17GPEjhmk
-   h0DLCcs/6HcnB/gFjXS3h840Wjmd2AxKHW4n/nkCOvAqev55JU1JOtjGk
-   oC3wbtEE/GtuHoPfw3BobPSfBpCn098Xiasr+Cp8ey7gPNp/r1bewfBcU
-   eZTaWbe2QxpClU490fGcepZJvbOWCVX0XU9JRS8Wrq2vUo0kKKU1+gJPr
-   A==;
-X-CSE-ConnectionGUID: BTlbtSnkSQGZf2wJtK96Cw==
-X-CSE-MsgGUID: Fm1bYPjwQymYokPeGZ/sKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11138"; a="19020346"
-X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; 
-   d="scan'208";a="19020346"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2024 14:59:51 -0700
-X-CSE-ConnectionGUID: F/bzdlzZSkiTe4ND6zZ2ug==
-X-CSE-MsgGUID: TQzoEX+vSLusdXlSLjtmOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; 
-   d="scan'208";a="56091844"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 19 Jul 2024 14:59:47 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sUvdh-000icc-0k;
-	Fri, 19 Jul 2024 21:59:45 +0000
-Date: Sat, 20 Jul 2024 05:59:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Valentin Caron <valentin.caron@foss.st.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Amelie Delaunay <amelie.delaunay@foss.st.com>,
-	Valentin Caron <valentin.caron@foss.st.com>
-Subject: Re: [PATCH v2 2/4] rtc: stm32: add pinctrl and pinmux interfaces
-Message-ID: <202407200400.NnW2fJ0q-lkp@intel.com>
-References: <20240717074835.2210411-3-valentin.caron@foss.st.com>
+	s=arc-20240116; t=1721427027; c=relaxed/simple;
+	bh=V0c7nQInZQHViP4y2EWyTjZ7257Z/OpHVNmbSCyY7ZY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ep6D2Fh/Uop9YwfUQNDbrWIlLOBdbf/wjF8SXnBLFQujvNL/NAHvZgpcq/sYEHQjWR/71gMyJleSW4FEZ9spCKgsTEmbFqhRJ75CTGP8fICHkBYNSqzgKnK3X/cbQRnIbDSDUNtbmhfFN4zNmHZrLO7a9Dw336NRKpVfNsvUtnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCefEhJx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 971E3C32782;
+	Fri, 19 Jul 2024 22:10:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721427027;
+	bh=V0c7nQInZQHViP4y2EWyTjZ7257Z/OpHVNmbSCyY7ZY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=ZCefEhJxD0kJDQF5aFMBqtXgHQF4iEAJ4Q/a4iQMbM9zpxDeZ82frT8KnDMfOuBD/
+	 SLj8mUvaW4Mi0+vR7N4k/ogzdRkfpgGMy7D7MSadkG5tbin2bGmh3bT7+ZvAi3f8gW
+	 S090FuPqtelLDtxuycYBSSa97nF9akGChXYyAX5wC/zhvYvFpQuwXxAqjxnpQkEPgV
+	 rkXd/2P43VWn+/3GcfXHhP9l/UUZaojZbrB0QyX1b82s9jkONpc5ercshIM+3uqUz5
+	 snTa2//H9sHznlbEjrPODobZwxTSlb5s8LNGP7hct7cOwJYQqin5ZKKWBcchGFfndO
+	 OfdLGACRqzP+w==
+Date: Fri, 19 Jul 2024 16:10:23 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240717074835.2210411-3-valentin.caron@foss.st.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: kernel@collabora.com, mchehab@kernel.org, conor+dt@kernel.org, 
+ linux-media@vger.kernel.org, nelson.costa@synopsys.com, 
+ linux-arm-kernel@lists.infradead.org, heiko@sntech.de, 
+ mturquette@baylibre.com, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, 
+ linux-rockchip@lists.infradead.org, shawn.wen@rock-chips.com, 
+ sboyd@kernel.org, Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, 
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org, 
+ devicetree@vger.kernel.org, nicolas.dufresne@collabora.com
+In-Reply-To: <20240719124032.26852-3-shreeya.patel@collabora.com>
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <20240719124032.26852-3-shreeya.patel@collabora.com>
+Message-Id: <172142702137.153951.8294803513682327237.robh@kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: media: Document bindings for HDMI
+ RX Controller
 
-Hi Valentin,
 
-kernel test robot noticed the following build warnings:
+On Fri, 19 Jul 2024 18:10:30 +0530, Shreeya Patel wrote:
+> Document bindings for the Synopsys DesignWare HDMI RX Controller.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> ---
+> 
+> Changes in v4 :-
+>   - No change
+> 
+> Changes in v3 :-
+>   - Rename hdmirx_cma to hdmi_receiver_cma
+>   - Add a Reviewed-by tag
+> 
+> Changes in v2 :-
+>   - Add a description for the hardware
+>   - Rename resets, vo1 grf and HPD properties
+>   - Add a proper description for grf and vo1-grf phandles
+>   - Rename the HDMI Input node name to hdmi-receiver
+>   - Improve the subject line
+>   - Include gpio header file in example to fix dt_binding_check failure
+> 
+>  .../bindings/media/snps,dw-hdmi-rx.yaml       | 132 ++++++++++++++++++
+>  1 file changed, 132 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> 
 
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on atorgue-stm32/stm32-next robh/for-next linus/master v6.10 next-20240719]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+My bot found errors running 'make dt_binding_check' on your patch:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Valentin-Caron/dt-bindings-rtc-stm32-describe-pinmux-nodes/20240717-193541
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20240717074835.2210411-3-valentin.caron%40foss.st.com
-patch subject: [PATCH v2 2/4] rtc: stm32: add pinctrl and pinmux interfaces
-config: alpha-kismet-CONFIG_GENERIC_PINCONF-CONFIG_RTC_DRV_STM32-0-0 (https://download.01.org/0day-ci/archive/20240720/202407200400.NnW2fJ0q-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20240720/202407200400.NnW2fJ0q-lkp@intel.com/reproduce)
+yamllint warnings/errors:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407200400.NnW2fJ0q-lkp@intel.com/
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.example.dts:53.38-39 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for GENERIC_PINCONF when selected by RTC_DRV_STM32
-   WARNING: unmet direct dependencies detected for GENERIC_PINCONF
-     Depends on [n]: PINCTRL [=n]
-     Selected by [y]:
-     - RTC_DRV_STM32 [=y] && RTC_CLASS [=y] && (ARCH_STM32 || COMPILE_TEST [=y])
-   
-   WARNING: unmet direct dependencies detected for PINMUX
-     Depends on [n]: PINCTRL [=n]
-     Selected by [y]:
-     - RTC_DRV_STM32 [=y] && RTC_CLASS [=y] && (ARCH_STM32 || COMPILE_TEST [=y])
+doc reference errors (make refcheckdocs):
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240719124032.26852-3-shreeya.patel@collabora.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
