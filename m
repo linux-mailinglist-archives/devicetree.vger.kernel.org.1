@@ -1,181 +1,177 @@
-Return-Path: <devicetree+bounces-86715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FC6937421
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 08:59:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D54937428
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 09:01:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B43331C21612
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 06:59:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E565B1C21587
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 07:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9734D8A1;
-	Fri, 19 Jul 2024 06:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B931745003;
+	Fri, 19 Jul 2024 07:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="bg0pG5ms"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qFYWZSma"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520F31362
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 06:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEDD1799B
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 07:01:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721372353; cv=none; b=IhQYjIqzS7zEl2nVp+NweDKXOpLDEyB91c98k/PvC9AFgg/9G8eztPPgm7le+zUJ/yIy7E8v6QVlULOZABhyrLPOuYM3mobCJInevcOPFMEiJNBSad5g7gZQ/tcKGxNxoAKJLaWhRglz+hs/k7Ja4t0Vvw276lOK6L7uFVyoMUM=
+	t=1721372513; cv=none; b=SuSMVXTZ89rlDiHrqJ1FzOWtk7aHm0cdfVeG0Cib7yEecoiXFfmukccQwmNESyHJg21WGKKvdGl/P7A2K2JavB0bAdZKTy6XOwB8Eh36DwPfq5XMEmTV5fnnJPGSFc8u4YBOUNorYcimwHWrZL6VWRzg8JP5DMCCsGpG6hAzPOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721372353; c=relaxed/simple;
-	bh=TjI2uSaMbuSUIz0tRhWklSuLq91xEZst2t4mS5dEQSY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y3DA2r1Vc/tg8GvQlTi8c1VhynbT9bt+ofAd3RqJUWDtUzPiMNOlkgWzkqxlnrjzWp6hK+dTO5qXah08cXja/0mMMuoLF6ZKkCh/8Q3h/+8IVGDYFyJAWwTAgGDnxBT3aPQaIE4YG/zPOOn3kbK7XuUXdxbcAsaQXjltcP5h5Io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=bg0pG5ms; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3d9dd7e5f6eso853590b6e.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 23:59:11 -0700 (PDT)
+	s=arc-20240116; t=1721372513; c=relaxed/simple;
+	bh=7cefyBQNG0cgw4OpfJkL/lbSpDq46bnSvjHNsSe+3Lc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ITCGgceAt9/n2yIAiDWHvRoYgxN8X7K0mC48kUH/x8jgHoAfmfTx7ekQeziExPjZlOjStrfpsEf/OtBbJUKZQwz6tGIIWkpO2SAxNMoQpPmiL0J2cExb4ccuo1WhQGZYVzR99SDMHUX+LLCLk7SIbW6H8yHuOxy3mhnfZT05Q8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qFYWZSma; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-70af8062039so452777b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 00:01:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1721372350; x=1721977150; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Weu/42V7gECXMih3fbVRqu0U+HL7dgFNDXvO7croHQU=;
-        b=bg0pG5msWt4EASmUrJ9Oi8+KlvPvlnO16G7rYtsZ/dtkK5zqlAHex1ZMIB9Wb/Erat
-         1bsMndyvd9kFBwIossBLqFJVTa0DSsD8aaAPcGG6Ok/SKKX0UIRdqIjqNxqMTFr/WPAD
-         1LFhFpTzCwEbaZudmI+DAIy/hNpnnOm68OKjs0RKoupiklkOfFboFMnnYpVSHIr1gmRN
-         x5KgD03MQLuTpwIeEUmLgik4eIamhg3D/mSYUlKwDNzpN4KG5HSkv2YYT710X1iMKOta
-         rHuCcZU+V6hLdcuJut25F+BKjFbM3tmVxZk6Y/pQfZ2eM+pD9pycpj1ggIaDT4dBIKXa
-         V23Q==
+        d=linaro.org; s=google; t=1721372511; x=1721977311; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fariBq/69Nk7cAbON0jqbcifAGonbb1z1O3eQL8eKBc=;
+        b=qFYWZSmamq4TfVr2tRTPi7r0IdDFMbPtT6px3D2e72eMlP2KI4URDKU6ZTQRuTW7xz
+         lgeimpBAn42/YrAba7qxaeBVsoruA+MF6Dm5E5U8+M08RGnLYHF7BIWkSDj2Lmh3ASUv
+         jOv0IqGeeKGHPbsXqUD5F6TAjQCtXLUAWMPekyQ8GSZy5j7hcWps+sR/ogk/PrgW+ave
+         8yMKXn8UORd+bRcGxQas8kE4S6YaB75Xby6ghyKEyq8XZ1TnmW29ls3BLcov6FtY21i1
+         msir1vWoGdjahI1R7iJwyS8zr0+H2ZCfnnzNXplBDjrfNunhFknk1NIePB/ScF6VH9r6
+         oFww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721372350; x=1721977150;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Weu/42V7gECXMih3fbVRqu0U+HL7dgFNDXvO7croHQU=;
-        b=Ypzm5MD3qQhJQ1ToJ90PV6FYrHBvvf07XVhrlmptjJUUIhaoIEwcuEep0NirMoSF7w
-         VN/O3Q0BQcwOYuPJQkUQNYwc28x6nZI0ufaZTg6QUm/XYkDc2a7HBMJjccSptYkmg2Q4
-         5k8HwA+rw8/eJqrvBE58qWhfwakJNJ3sR/1KLjyPMt3qYdbHlYjp2DF9A8EDiDe6U+Hm
-         bp2Wfpguwo4UvPEydK0thfQ3InYebjdo6DoZi0K8zNGcd7sewbIAV9SjbyuJy5avUoFa
-         O9fWO4PPhSPnL4G7s5eV6GwskJ0OOkrTAbMCnJ9CvSmvhZfIUCmE1t0506l+XNr3u+/T
-         v3nA==
-X-Forwarded-Encrypted: i=1; AJvYcCUI9bn5kWrRE/j4vZlchcJ42Iq3rfkwCQlBPcQBAk+YsrToR3sklc3e9PEwx/omsjGEbqCajJIHpLxtHKJFqWVms+c7duBUdeExZQ==
-X-Gm-Message-State: AOJu0YzhW8wC6ytQCTOMH7Iz6WEbxb2N7+1cti1T20eZVadj892Au/52
-	gp0bX/UsUwjflHC9i/62u+Wnuh/pwc80ynalF+8/Iwr4PdNZ/7P5UNDkTW2LcLPLgvX5UpafvGI
-	WnUeR9clIKFrfestKkqeflBiLhyL7eavfs6evDA==
-X-Google-Smtp-Source: AGHT+IG9ze+TAPgWUR4nBh2DXYtPskGwtSbGl8cv6Jg7P0RUvU2chBzq3BE4fSR2DgpzMlQ7F8+KPBWwQXlhETkveQ4=
-X-Received: by 2002:a05:6808:13c7:b0:3d5:5e18:cf32 with SMTP id
- 5614622812f47-3dad1f999a9mr8556178b6e.48.1721372350441; Thu, 18 Jul 2024
- 23:59:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721372511; x=1721977311;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fariBq/69Nk7cAbON0jqbcifAGonbb1z1O3eQL8eKBc=;
+        b=co66WUg1O8gsLOK5/0wAyUE8GEuwRAvj5Gj3iKCC6xDYY61CZm0TWzJVgctSb38+Uu
+         yJnqMR9TPzlarRYLQYgLXjopZl2lRu2xsym1WwPYQXw6vYReTNCcH1J61BjqyqQeXHUu
+         n7LXNBq1dGtg+4OmJWBjpxehzYbDGaQbWAnlhyMBJX0qTyiIYMMQkRAuGLIivrw+pkgi
+         b/HPDtD4sjwNRH741hc/5yQlhiLa4cnEQsqz9WcKwCiLWWnGr4cWDr+2bMpsenDeUVxx
+         9a5uCvdP8V8rX9wmTt7S8Sfc1jtFrXJaT+iTukkGWuOp8g+My9KSl93TMyX+GQiPuNUr
+         N+QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlt+mL9ZzgJMVgfDTrVnbPJLCOnE8XLpx8H4rsuLQAHSDkI/z8QYkI7MEzLxHzxng4adtF9272jIdYVNVZjCdscqOCzpw83zWWxw==
+X-Gm-Message-State: AOJu0YyNqpjdLZ9b0GDIjraBIIk+nDITSyFjfYbS4nt8QTCUyYcHAT3+
+	7FanodmJjOTLJibDPNSawu/NELlhAOMPCdNBbR1vEeOsXj0Cqf5hBvCZTw0PxA==
+X-Google-Smtp-Source: AGHT+IEIST7TtOc5AVPxTk2KIx0XN4DalL2EhlIPzC7kXwFVS4vPT7BN83DHIYVpGWEFNADRomXzFA==
+X-Received: by 2002:a05:6a00:2315:b0:706:726b:ae60 with SMTP id d2e1a72fcca58-70cfc90d328mr2138923b3a.17.1721372511260;
+        Fri, 19 Jul 2024 00:01:51 -0700 (PDT)
+Received: from thinkpad ([120.60.142.236])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70cff490e04sm609630b3a.10.2024.07.19.00.01.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jul 2024 00:01:50 -0700 (PDT)
+Date: Fri, 19 Jul 2024 12:31:39 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Rayyan Ansari <rayyan.ansari@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: qcom,pcie-sc7280: specify eight
+ interrupts
+Message-ID: <20240719070139.GA83855@thinkpad>
+References: <20240718-sc7280-pcie-interrupts-v1-1-2047afa3b5b7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240712083850.4242-1-yongxuan.wang@sifive.com>
- <20240712083850.4242-3-yongxuan.wang@sifive.com> <727b966a-a8c4-4021-acf6-3c031ccd843a@sifive.com>
-In-Reply-To: <727b966a-a8c4-4021-acf6-3c031ccd843a@sifive.com>
-From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-Date: Fri, 19 Jul 2024 14:58:59 +0800
-Message-ID: <CAMWQL2g-peSYJQaxeJtyOzGdEmDQ6cnkRBdFQvLr2NQA1+mv2g@mail.gmail.com>
-Subject: Re: [PATCH v7 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Conor Dooley <conor@kernel.org>, greentime.hu@sifive.com, vincent.chen@sifive.com, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240718-sc7280-pcie-interrupts-v1-1-2047afa3b5b7@linaro.org>
 
-Hi Samuel,
+On Thu, Jul 18, 2024 at 04:20:34PM +0100, Rayyan Ansari wrote:
+> In the previous commit to this binding,
+> 
+> commit 756485bfbb85 ("dt-bindings: PCI: qcom,pcie-sc7280: Move SC7280 to dedicated schema")
+> 
+> the binding was changed to specify one interrupt, as the device tree at
+> that moment in time did not describe the hardware fully.
+> 
+> The device tree for sc7280 now specifies eight interrupts, due to
+> 
+> commit b8ba66b40da3 ("arm64: dts: qcom: sc7280: Add additional MSI interrupts")
+> 
+> As a result, change the bindings to reflect this.
+> 
+> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
 
-On Fri, Jul 19, 2024 at 7:38=E2=80=AFAM Samuel Holland
-<samuel.holland@sifive.com> wrote:
->
-> On 2024-07-12 3:38 AM, Yong-Xuan Wang wrote:
-> > Add entries for the Svade and Svadu extensions to the riscv,isa-extensi=
-ons
-> > property.
-> >
-> > Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> > ---
-> >  .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
-Documentation/devicetree/bindings/riscv/extensions.yaml
-> > index 468c646247aa..e91a6f4ede38 100644
-> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > @@ -153,6 +153,34 @@ properties:
-> >              ratified at commit 3f9ed34 ("Add ability to manually trigg=
-er
-> >              workflow. (#2)") of riscv-time-compare.
-> >
-> > +        - const: svade
-> > +          description: |
-> > +            The standard Svade supervisor-level extension for SW-manag=
-ed PTE A/D
-> > +            bit updates as ratified in the 20240213 version of the pri=
-vileged
-> > +            ISA specification.
-> > +
-> > +            Both Svade and Svadu extensions control the hardware behav=
-ior when
-> > +            the PTE A/D bits need to be set. The default behavior for =
-the four
-> > +            possible combinations of these extensions in the device tr=
-ee are:
-> > +            1) Neither Svade nor Svadu present in DT =3D> It is techni=
-cally
-> > +               unknown whether the platform uses Svade or Svadu. Super=
-visor
-> > +               software should be prepared to handle either hardware u=
-pdating
-> > +               of the PTE A/D bits or page faults when they need updat=
-ed.
-> > +            2) Only Svade present in DT =3D> Supervisor must assume Sv=
-ade to be
-> > +               always enabled.
-> > +            3) Only Svadu present in DT =3D> Supervisor must assume Sv=
-adu to be
-> > +               always enabled.
-> > +            4) Both Svade and Svadu present in DT =3D> Supervisor must=
- assume
-> > +               Svadu turned-off at boot time. To use Svadu, supervisor=
- must
-> > +               explicitly enable it using the SBI FWFT extension.
-> > +
-> > +        - const: svadu
-> > +          description: |
-> > +            The standard Svadu supervisor-level extension for hardware=
- updating
-> > +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull=
- request
-> > +            #25 from ved-rivos/ratified") of riscv-svadu. Please refer=
- to Svade
->
-> Should we be referencing the archived riscv-svadu repository now that Sva=
-du has
-> been merged to the main privileged ISA manual? Either way:
->
-> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
->
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Yes, this commit is from the archived riscv-svadu repo. Or should I update =
-it to
-"commit c1abccf ("Merge pull request  #25 from ved-rivos/ratified") of
-riscvarchive/riscv-svadu."?
+- Mani
 
-Regards,
-Yong-Xuan
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  | 24 ++++++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
+> index 634da24ec3ed..5cf1f9165301 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
+> @@ -53,11 +53,19 @@ properties:
+>        - const: aggre1 # Aggre NoC PCIe1 AXI clock
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 8
+> +    maxItems: 8
+>  
+>    interrupt-names:
+>      items:
+> -      - const: msi
+> +      - const: msi0
+> +      - const: msi1
+> +      - const: msi2
+> +      - const: msi3
+> +      - const: msi4
+> +      - const: msi5
+> +      - const: msi6
+> +      - const: msi7
+>  
+>    resets:
+>      maxItems: 1
+> @@ -137,8 +145,16 @@ examples:
+>  
+>              dma-coherent;
+>  
+> -            interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+> -            interrupt-names = "msi";
+> +            interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "msi0", "msi1", "msi2", "msi3",
+> +                              "msi4", "msi5", "msi6", "msi7";
+>              #interrupt-cells = <1>;
+>              interrupt-map-mask = <0 0 0 0x7>;
+>              interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>,
+> 
+> ---
+> base-commit: 73399b58e5e5a1b28a04baf42e321cfcfc663c2f
+> change-id: 20240718-sc7280-pcie-interrupts-6d34650d9bb2
+> 
+> Best regards,
+> -- 
+> Rayyan Ansari <rayyan.ansari@linaro.org>
+> 
 
-> > +            dt-binding description for more details.
-> > +
-> >          - const: svinval
-> >            description:
-> >              The standard Svinval supervisor-level extension for fine-g=
-rained
->
+-- 
+மணிவண்ணன் சதாசிவம்
 
