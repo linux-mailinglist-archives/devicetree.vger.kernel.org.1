@@ -1,191 +1,97 @@
-Return-Path: <devicetree+bounces-86816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC662937940
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:39:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB27937956
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772F3282A07
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:39:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 464B21F235BE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495EF1F949;
-	Fri, 19 Jul 2024 14:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6771E126F02;
+	Fri, 19 Jul 2024 14:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f5OjzuZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83C3C2D6;
-	Fri, 19 Jul 2024 14:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4782F34;
+	Fri, 19 Jul 2024 14:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721399940; cv=none; b=sqp4/0Krl8vwmWTIp6QKtL/SAyfo25kLIr4Y0lbUshfsgbELEEdOvORh1scCnNj3UHbDilVuuihtXLbRdBxH+G+BHGsW3HL19h0NSq7s6pESAmtsEEoeJgSejVEDggS6Ib4lkWerMb4WnE+L7PT+aGp8XjbX4HEF0+078QqsyLQ=
+	t=1721400329; cv=none; b=kZKaH9zLqwISuCM0y9OrWTEeO3u5oYTHcLmA86byf/46+18TUMvMQ5+s8BT3H61QRsFb8nUifpujDLF755lvgeAj0lG0Oo50X3TsJX00cqEDHFSXYtrcSyHyPfaMpFMCqc4Ng93coYVzcm7Y58INCdCmKFkkyH5qHUI2D0UAaJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721399940; c=relaxed/simple;
-	bh=MthLwAZw/K/pHDsypzwnpxxVpjnrL/t3lpnlDB9Cp0s=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mOAi+7thFhKnKaktgyzcse1NQeHqjm6hDQ8FzbruE/hG3pderNui9BF0sgLil2BSsAy6CWqk35kfL9ypenfiTbhqhwdn/3gsNA9qdSJPlgoY6FKEKUJ/vi07eDJAiUjrrEncJMBqF1PCRQ6vv/hNhVMHAAhn9tRujzFwPmbIGSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WQXMF48rrz6JBjL;
-	Fri, 19 Jul 2024 22:37:29 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id D6E9D140684;
-	Fri, 19 Jul 2024 22:38:53 +0800 (CST)
-Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 19 Jul
- 2024 15:38:53 +0100
-Date: Fri, 19 Jul 2024 15:38:52 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: David Hildenbrand <david@redhat.com>
-CC: Mike Rapoport <rppt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	"Alexander Gordeev" <agordeev@linux.ibm.com>, Andreas Larsson
-	<andreas@gaisler.com>, Andrew Morton <akpm@linux-foundation.org>, Arnd
- Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>, Catalin Marinas
-	<catalin.marinas@arm.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Dan Williams <dan.j.williams@intel.com>, Dave Hansen
-	<dave.hansen@linux.intel.com>, "David S. Miller" <davem@davemloft.net>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens
-	<hca@linux.ibm.com>, "Huacai Chen" <chenhuacai@kernel.org>, Ingo Molnar
-	<mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, John Paul Adrian
- Glaubitz <glaubitz@physik.fu-berlin.de>, Michael Ellerman
-	<mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linux-mips@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<sparclinux@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
-	<linux-cxl@vger.kernel.org>, <nvdimm@lists.linux.dev>,
-	<devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH 02/17] MIPS: sgi-ip27: make NODE_DATA() the same as on
- all other architectures
-Message-ID: <20240719153852.00003f44@Huawei.com>
-In-Reply-To: <e57eca18-b66d-4b5d-9e73-8ab22f6bc747@redhat.com>
-References: <20240716111346.3676969-1-rppt@kernel.org>
-	<20240716111346.3676969-3-rppt@kernel.org>
-	<e57eca18-b66d-4b5d-9e73-8ab22f6bc747@redhat.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1721400329; c=relaxed/simple;
+	bh=3gN8i0ecGflwS/gqmHmOVCtp5ecQSGdmhme4N9RR6K8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hcwhkdwgooEbjDY8fYX/b4jWqnYWgVN4NHRHRJ93o1P9sNvfwxGzMkziVgD2GbgyWNWvdwx9oxHsjSKjH4icxUDirPg+tV1z9wRdufNgAcqJpoD7sgIdz1VRjRav7GNMn7H5DugGmlkoyPUCN+fIMAGbT3+m0/7N+RdvtArHm4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f5OjzuZj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8306C32782;
+	Fri, 19 Jul 2024 14:45:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721400328;
+	bh=3gN8i0ecGflwS/gqmHmOVCtp5ecQSGdmhme4N9RR6K8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f5OjzuZjL/LrHoV5JhEBE26Dra5YTxS0+XxZ0fdCR46CcQ77b8j+LEIZCdhAyO0iY
+	 d/AY9eyLWHN5QaNJcGoojQRECZy/MsBweEEic82LHGL/XwHDWrl5NQ6AUHycvM21go
+	 WXy+B93qSuMh+IOlQrrcyp5P0d8KKMkCejltjGs2ULfHB4sn8kpPDx2UQakhlOd8Vi
+	 BTfr5B9LayCbz+RAasQCXrUwDLHe+modrvtjJGllG8SIAG+yuLQ0DkEZkDctY/fXEa
+	 EqEPDGOLRjuiTsOv/XkC1PzR3sqvpGrcwWp9HfmlbsvdTmCJsHohk/+rjMhvqX90Tk
+	 NtmxZtm/rt2+A==
+Date: Fri, 19 Jul 2024 15:45:24 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
+	otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: Document
+ elgin,jg10309-01
+Message-ID: <20240719-unquote-query-a76fd9487bf9@spud>
+References: <20240719111210.1287783-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-
-On Wed, 17 Jul 2024 16:32:59 +0200
-David Hildenbrand <david@redhat.com> wrote:
-
-> On 16.07.24 13:13, Mike Rapoport wrote:
-> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> > 
-> > sgi-ip27 is the only system that defines NODE_DATA() differently than
-> > the rest of NUMA machines.
-> > 
-> > Add node_data array of struct pglist pointers that will point to
-> > __node_data[node]->pglist and redefine NODE_DATA() to use node_data
-> > array.
-> > 
-> > This will allow pulling declaration of node_data to the generic mm code
-> > in the next commit.
-> > 
-> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > ---
-> >   arch/mips/include/asm/mach-ip27/mmzone.h | 5 ++++-
-> >   arch/mips/sgi-ip27/ip27-memory.c         | 5 ++++-
-> >   2 files changed, 8 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/mips/include/asm/mach-ip27/mmzone.h b/arch/mips/include/asm/mach-ip27/mmzone.h
-> > index 08c36e50a860..629c3f290203 100644
-> > --- a/arch/mips/include/asm/mach-ip27/mmzone.h
-> > +++ b/arch/mips/include/asm/mach-ip27/mmzone.h
-> > @@ -22,7 +22,10 @@ struct node_data {
-> >   
-> >   extern struct node_data *__node_data[];
-> >   
-> > -#define NODE_DATA(n)		(&__node_data[(n)]->pglist)
-> >   #define hub_data(n)		(&__node_data[(n)]->hub)
-> >   
-> > +extern struct pglist_data *node_data[];
-> > +
-> > +#define NODE_DATA(nid)		(node_data[nid])
-> > +
-> >   #endif /* _ASM_MACH_MMZONE_H */
-> > diff --git a/arch/mips/sgi-ip27/ip27-memory.c b/arch/mips/sgi-ip27/ip27-memory.c
-> > index b8ca94cfb4fe..c30ef6958b97 100644
-> > --- a/arch/mips/sgi-ip27/ip27-memory.c
-> > +++ b/arch/mips/sgi-ip27/ip27-memory.c
-> > @@ -34,8 +34,10 @@
-> >   #define SLOT_PFNSHIFT		(SLOT_SHIFT - PAGE_SHIFT)
-> >   #define PFN_NASIDSHFT		(NASID_SHFT - PAGE_SHIFT)
-> >   
-> > -struct node_data *__node_data[MAX_NUMNODES];
-> > +struct pglist_data *node_data[MAX_NUMNODES];
-> > +EXPORT_SYMBOL(node_data);
-> >   
-> > +struct node_data *__node_data[MAX_NUMNODES];
-> >   EXPORT_SYMBOL(__node_data);
-> >   
-> >   static u64 gen_region_mask(void)
-> > @@ -361,6 +363,7 @@ static void __init node_mem_init(nasid_t node)
-> >   	 */
-> >   	__node_data[node] = __va(slot_freepfn << PAGE_SHIFT);
-> >   	memset(__node_data[node], 0, PAGE_SIZE);
-> > +	node_data[node] = &__node_data[node]->pglist;
-> >   
-> >   	NODE_DATA(node)->node_start_pfn = start_pfn;
-> >   	NODE_DATA(node)->node_spanned_pages = end_pfn - start_pfn;  
-> 
-> I was assuming we could get rid of __node_data->pglist.
-> 
-> But now I am confused where that is actually set.
-
-It looks nasty... Cast in arch_refresh_nodedata() takes
-incoming pg_data_t * and casts it to the local version of
-struct node_data * which I think is this one
-
-struct node_data {
-	struct pglist_data pglist; (which is pg_data_t pglist)
-	struct hub_data hub;
-};
-
-https://elixir.bootlin.com/linux/v6.10/source/arch/mips/sgi-ip27/ip27-memory.c#L432
-
-Now that pg_data_t is allocated by 
-arch_alloc_nodedata() which might be fine (though types could be handled in a more
-readable fashion via some container_of() magic.
-https://elixir.bootlin.com/linux/v6.10/source/arch/mips/sgi-ip27/ip27-memory.c#L427
-
-However that call is:
-pg_data_t * __init arch_alloc_nodedata(int nid)
-{
-	return memblock_alloc(sizeof(pg_data_t), SMP_CACHE_BYTES);
-}
-
-So doesn't seem to allocate enough space to me as should be sizeof(struct node_data)
-
-Worth cleaning up whilst here?  Proper handling of types would definitely
-help.
-
-Jonathan
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="AUkpv7o3G8AkpulG"
+Content-Disposition: inline
+In-Reply-To: <20240719111210.1287783-1-festevam@gmail.com>
 
 
-> 
-> Anyhow
-> 
-> Reviewed-by: David Hildenbrand <david@redhat.com>
-> 
+--AUkpv7o3G8AkpulG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Jul 19, 2024 at 08:12:08AM -0300, Fabio Estevam wrote:
+> The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
+> The marking on the LCD is JG10309-01.
+>=20
+> Add an entry for the "elgin,jg10309-01" compatible string.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+
+Please send cover letter for patch series. The whole lot seems fine,
+although ideally this wouldn't be in trivial devices - but I think the
+series is an improvement on lying about what's on the board ;)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--AUkpv7o3G8AkpulG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpp8BAAKCRB4tDGHoIJi
+0i1dAQDtneQJQmGw29RK1t8zyZ/wMrb58UQaE4NonzLXl7gWwwD+IsGmw+ysJGoR
+6Ua28t63G2bEnUp0p78+2CmvcLEmOQg=
+=+lbN
+-----END PGP SIGNATURE-----
+
+--AUkpv7o3G8AkpulG--
 
