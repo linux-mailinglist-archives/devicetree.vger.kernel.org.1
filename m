@@ -1,171 +1,161 @@
-Return-Path: <devicetree+bounces-86874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5D7937CA9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 20:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E345937CB1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 20:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7A621F21CF7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 18:43:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2ADF1F21887
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 18:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA64C147C87;
-	Fri, 19 Jul 2024 18:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DBEC1482ED;
+	Fri, 19 Jul 2024 18:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNv7GQhK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="duoWER4E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5D21474BF
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 18:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160C32746B
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 18:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721414607; cv=none; b=b+9UGMAJRsYmLbbfVlcXAfdvI8GbBeIMKq9nmOLEEMQC65BCWo1urmN+1zQxfC3wI2lkOrgd04E4Ci1xI4LWJ7BJeGdZnONPVR8taJ7QCJaOaa2bSG7MOXOiIsAL16XwcIqwY9+3A7I69xR9XFQOsmBp3LwZarFHguPYBr235B8=
+	t=1721414907; cv=none; b=NRSbStb/IAqOx1ihByXvSPJxPZ3CmUYbfcSmVoC622Zri0lB7n6bbxuIOKbfg4bELGYJSob2BmmqsF6T10SjvIX3N4CNm3I7tb7a17RPrPdwuZrN86rOVbb1ERJbpq/ZuvvGyJz7oWQJmzjF289lpSVItmdAhes7ovTrbzU8rJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721414607; c=relaxed/simple;
-	bh=CYMl87FnC2DqqsWP7yz8mDF2Xwf1xrp6UoGa8vC0Fuw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=stoP+Zg5Mz4BCrkis75MRAVQwJiZDhD4r7zk0y4Ce0QJaQYEHqKUNRqNQV5iqXssgH7WFI1AoSrel75Px9cXsXucC9HOmPVzBGGO1NlEluh9CkcmG4pQiVbt7SfYene3LttP15FC/cWxwwDPVdws1VQQ5NhTPDn4GhfgUraYAAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lNv7GQhK; arc=none smtp.client-ip=209.85.208.46
+	s=arc-20240116; t=1721414907; c=relaxed/simple;
+	bh=KSP3qFQimIB/KWgpWhEu0lTlpGLv27AIGOdpzPyZz9Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=LcOeqt8lgwvKmh5jndEl+FhVXpUStXq1GuCqSK+P3Uv2GxfFSQFzI5EB5i73HazRHd5aju8nmICsgneQRNsAepcJN/nEZgSstHdF2AYNqKX9LlyIiVLFTzJR2FHALYgMmiNN25GYHzJMMRDJPsDuhawbTKt6GwBFM99RtIEo1Cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=duoWER4E; arc=none smtp.client-ip=209.85.167.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-59f9f59b827so1534646a12.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 11:43:24 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3d93147ac6bso1248477b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 11:48:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721414603; x=1722019403; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZgNmjtGL2b2esLF+28NxWBN1BPfunnVl4SwWqJGZu0=;
-        b=lNv7GQhKNFpJUV9bW4aq6gl+ZrGxeYKL9rOLMbTlx7eDDaGpcoJr2WxQZgmuYrzaJ+
-         UzQFFoLpBTmoFDyQajghq/6fnfE+mpXSMN+00C8B6eXUssCYpPpRabTvS7nFS47JV2yC
-         JNW9ztUNDifCIYQmg+MAEwYN/7fHCborTd3OvIctTAWiPPajQmPT5Dfbe4+LnNvF8D7L
-         g1j0RhGowW82GJaDWdNYf/cQdlzCCq4eo73NQFUObzG/ecdRPV41KD01210ZqxSW45BN
-         HFOuByzNOTkitwZsr96DUB3YMGPt5LmNL51LjUUMxam9x5IS38P1BSFuFtTuTaw7W+v4
-         QiuA==
+        d=linaro.org; s=google; t=1721414904; x=1722019704; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ukG7Uje2tjlYAEnwiivgrAC4JGlADujKudhRv8xZLpk=;
+        b=duoWER4ETLyOtzvtx3pESFee5UbZGzZdZ4QNrp8o8xPVJ010+G3kbX96zMFLVBfCKD
+         xPlo9rfLmvlrhv2GoHc+HM9vYiwdWeGQbgQFXwudCThREFbmOvODa9n/3J3+CZUk6GYM
+         80yWo/Xclr2mqRGOcmC6/18yBNBXArzpd5UpRlzI8CGjh0Vj9dzeZyC8r7tqIBXXVMF7
+         yRtIGVBF21ZByypqjLGaUlKLKa5XLOYqBb0/g6lLsUqP1P37gCzXQliA21HwPQfnGZxy
+         L1fsNTbc8Y9Rh7gaswpvOEqAWmtoF7hW4bS0qpMF9ZXZ4jIFd2II6Q9fn5pEVc00Ap4T
+         3oQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721414603; x=1722019403;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3ZgNmjtGL2b2esLF+28NxWBN1BPfunnVl4SwWqJGZu0=;
-        b=I2AuVhYlM9C/yGUVDQlWKYQzHoDczCYsJUTGjJYoih3vm+M5XjxLsd5+lozG4pV+dk
-         mRKIy2JRphH5nqDAef4ANX77ZnDPREs+6gH+AVlYvlXSQ4YiMZtMBryVVNCRPhuqBFSr
-         n5bdW3EH4MLx5DD4TabED331pVyRCgN9uSMpi4LBrq+ib+x9R/d1e5mpayvebIBHkoW7
-         jqQZucKFuuNwGBlCjSY4rLMSBBoBGFvWgAtatKfiMi4elnWNHUjfgesRj5gB+T9xoBu9
-         VmTXh4nXt7cnUvLENkuXHNRXRpD1zxgnhPqePWvpyja3eNfOg4qGwkt0qC+l5mLLXAsD
-         rAZg==
-X-Forwarded-Encrypted: i=1; AJvYcCXl9FwX/RqGNpayxhfnxagF86ULan8NILNa+v6FQTpnHyyHc5XxPKBPwzan7CLHPZhkjts1TmuW+SbNnpkjA09z4dOen9n+jmGpfg==
-X-Gm-Message-State: AOJu0YzH87DsrKY+00liGPJ8s3oBY1Ss16inecFKYpnoX6/w9u342bjc
-	Vuv8/T/rOR6QVfx74mGoH+BgkCk7OgBBvUmlio1x1yQni4gHO1y/8TihWyrdVHU=
-X-Google-Smtp-Source: AGHT+IGrHW5ZSf5dMGqPGEi+cUfCrEDMekLJoIIcSB2gs8YynAL5RwJM/GRV87QnZJxSdHrT0gONbw==
-X-Received: by 2002:a50:935b:0:b0:5a1:e7e6:ce37 with SMTP id 4fb4d7f45d1cf-5a1e7e6cee3mr3185969a12.26.1721414603232;
-        Fri, 19 Jul 2024 11:43:23 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c2f8befsm1551183a12.71.2024.07.19.11.43.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jul 2024 11:43:22 -0700 (PDT)
-Message-ID: <7a347c65-8aa4-4cb3-8b50-3cb301ee17f7@linaro.org>
-Date: Fri, 19 Jul 2024 20:43:20 +0200
+        d=1e100.net; s=20230601; t=1721414904; x=1722019704;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ukG7Uje2tjlYAEnwiivgrAC4JGlADujKudhRv8xZLpk=;
+        b=NBAlKEfiu54plYqwN5XVDartZ+ZTMmb/0trYIjNuxA21C0PmkhKGXGme0H+DyVhmRH
+         T2+WrIdLCxLAk0qfxzqgGqXFRa5O4CLIi1HUIwiA4FCMF+Y7ol6Kdj42B6mAJdneN1+N
+         jdFruzHze7RqCHK+mn4DBgQncUZ913Gs+ZO49+N74CwbGTLWB+lux6SxO9FCjoLFh9g/
+         L+TWCIib5+n9BQzij3Rg56tIQw+i9j36f78OB3GIuugBexSABLjr3TXsJZ57X1M4ThHZ
+         nuI3tLBge0KEmaXzowuD/hPqD18Y0LBY183VkmepbHTqotYdUc2dQmpnzW72D9A7v2dT
+         sl4g==
+X-Forwarded-Encrypted: i=1; AJvYcCU2JgCc45MGbbdD3/kdGQpZ/hwIIczA4r92devfNbQ3OHYe6GAiTxnR1ji7J8aTyEKweWB4/yyZK6lIhuBIKXw6MQODYbObcehaTA==
+X-Gm-Message-State: AOJu0YxEgoa2Vt0tf42EwgrJNqsJkvOBBOEFkVep47IswfKUqdKfiYIK
+	HYo+cJCwHpKENZSFI+fcK7F0EB5Q+VuQaRDicZj0ukCkZUgYt0NXZCj43fAhdSo=
+X-Google-Smtp-Source: AGHT+IFUGjfozpT7NMN/T1JZs9styGTo80iaJ/5feWyL+K6jzfZXUSsuGczjQ3mCsZm/CiHApe701Q==
+X-Received: by 2002:a05:6808:1b20:b0:3d2:1fdd:286f with SMTP id 5614622812f47-3dad1f7c310mr8527058b6e.49.1721414904156;
+        Fri, 19 Jul 2024 11:48:24 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:4528:a9e:1eaf:80c5])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3dae09cf1ffsm386578b6e.36.2024.07.19.11.48.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jul 2024 11:48:23 -0700 (PDT)
+Date: Fri, 19 Jul 2024 13:48:21 -0500
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Sunyeal Hong <sunyeal.hong@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Sunyeal Hong <sunyeal.hong@samsung.com>
+Subject: Re: [PATCH v2 3/4] clk: samsung: clk-pll: Add support for pll_531x
+Message-ID: <a82340ab-a1db-4089-a804-acf9882782f4@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: x1e80100-crd: enable SDX65 modem
-To: Johan Hovold <johan+linaro@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
- Abel Vesa <abel.vesa@linaro.org>, Rajendra Nayak <quic_rjendra@quicinc.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240719131722.8343-1-johan+linaro@kernel.org>
- <20240719131722.8343-8-johan+linaro@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240719131722.8343-8-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240707231331.3433340-4-sunyeal.hong@samsung.com>
 
-On 19.07.2024 3:17 PM, Johan Hovold wrote:
-> Enable PCIe5 and the SDX65 modem.
-> 
-> Note that the modem may need to be flashed with firmware before use.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 65 +++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> index 72d9feec907b..e7bc283a0da9 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> @@ -301,6 +301,22 @@ vreg_nvme: regulator-nvme {
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&nvme_reg_en>;
->  	};
-> +
-> +	vreg_wwan: regulator-wwan {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "SDX_VPH_PWR";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 221 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wwan_sw_en>;
+Hi Sunyeal,
 
-property-n
-property-names
+kernel test robot noticed the following build warnings:
 
-here and below, please
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+url:    https://github.com/intel-lab-lkp/linux/commits/Sunyeal-Hong/dt-bindings-clock-add-Exynos-Auto-v920-SoC-CMU-bindings/20240708-072150
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240707231331.3433340-4-sunyeal.hong%40samsung.com
+patch subject: [PATCH v2 3/4] clk: samsung: clk-pll: Add support for pll_531x
+config: arc-randconfig-r071-20240719 (https://download.01.org/0day-ci/archive/20240720/202407200028.5AADGhmj-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 13.2.0
 
-Konrad
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202407200028.5AADGhmj-lkp@intel.com/
+
+smatch warnings:
+drivers/clk/samsung/clk-pll.c:1292 samsung_pll531x_recalc_rate() warn: mask and shift to zero: expr='fdiv >> 31'
+
+vim +1292 drivers/clk/samsung/clk-pll.c
+
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1277  static unsigned long samsung_pll531x_recalc_rate(struct clk_hw *hw,
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1278  						 unsigned long parent_rate)
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1279  {
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1280  	struct samsung_clk_pll *pll = to_clk_pll(hw);
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1281  	u32 mdiv, pdiv, sdiv, pll_con0, pll_con8;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1282  	s32 fdiv;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1283  	u64 fout = parent_rate;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1284  
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1285  	pll_con0 = readl_relaxed(pll->con_reg);
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1286  	pll_con8 = readl_relaxed(pll->con_reg + 20);
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1287  	mdiv = (pll_con0 >> PLL531X_MDIV_SHIFT) & PLL531X_MDIV_MASK;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1288  	pdiv = (pll_con0 >> PLL531X_PDIV_SHIFT) & PLL531X_PDIV_MASK;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1289  	sdiv = (pll_con0 >> PLL531X_SDIV_SHIFT) & PLL531X_SDIV_MASK;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1290  	fdiv = (s32)(pll_con8 & PLL531X_FDIV_MASK);
+
+PLL531X_FDIV_MASK is 0xffff.  Was this supposed to be a cast to s16
+instead of s32?  Why is fdiv signed?  Shifting negative values is
+undefined in C.
+
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1291  
+5c788df7a25de7 Sunyeal Hong 2024-07-08 @1292  	if (fdiv >> 31)
+
+It's really unclear what's happening here.  If I had to guess, I'd say
+that this was testing to see if fdiv was negative.
+
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1293  		mdiv--;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1294  
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1295  	fout *= ((u64)mdiv << 24) + (fdiv >> 8);
+                                                                             ^^^^^^^^^
+More shifting.
+
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1296  	do_div(fout, (pdiv << sdiv));
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1297  	fout >>= 24;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1298  
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1299  	return (unsigned long)fout;
+5c788df7a25de7 Sunyeal Hong 2024-07-08  1300  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
