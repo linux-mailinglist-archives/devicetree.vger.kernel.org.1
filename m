@@ -1,239 +1,509 @@
-Return-Path: <devicetree+bounces-86673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54306937308
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 06:43:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2AC93730D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 06:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA19C1F21B29
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 04:43:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1E691C20BD3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 04:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735242AD05;
-	Fri, 19 Jul 2024 04:43:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5B722075;
+	Fri, 19 Jul 2024 04:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C4UGrH8f"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="T36cmlLr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011021.outbound.protection.outlook.com [52.101.70.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38154DDB2;
-	Fri, 19 Jul 2024 04:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721364192; cv=none; b=DRzmZ7p3GqCqaUXCUEpejyE6538fsbLUrxoaHK05FXmQsOoJ+KFaE+4XowyS2rCmdK+SYizBBMED+67u3i82UA1vx84wzj1k3hiesjtiMlb4JUeltVS9QqmBQPMb/Zp+S7EYbE4p20I+PpjCqNPEPKVAp9x9r+nXt1SLPEBp7rY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721364192; c=relaxed/simple;
-	bh=jZI+/VIxxS0wT5Bwv6KgoCwo5BwT0zoMeOcEanJWAy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gYHKnMOZmymet8+eGfl+pyNWKV1Sa/LtRhfROSdLQMf8o5C2r5ZSYTHswvRDtB71iGKCyUKbJakec7814NxESk6XQ6JEMRefHjk2PTg+RQdFP6N/+8LOLmsmYtAuIwYj+Nuhv9BixdJk6uWsklwda0cQoQ9gAeCGpylYWUv8Knk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C4UGrH8f; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1721364190; x=1752900190;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jZI+/VIxxS0wT5Bwv6KgoCwo5BwT0zoMeOcEanJWAy8=;
-  b=C4UGrH8fI98xcQ34WLplmV5guE0XXyYZdNh35GQU83lMMMsPXKrirZSn
-   IkmvIFe4/TbCPb4RFgvdpzN8gWusDItOohmSTTMwlVaW+uEWP41/CGile
-   7JpkpL7v2ViZKABb8eJ2dr77jSn5x2pbQMvzDdzo4FI2Y4fqOEQeOIIkT
-   IBcwg7MZ/J86cr6L4SnAcuVgyC9pAke+3hqhO5LkGN33PN3+lPrY8cNEt
-   TtECDXwZswhzqyQKSgbXeGjgOXn+wq0hdW7vKOiHb5Ny9QLWRG8OU8Sja
-   ajgQhmH3UXKBMjFgHcIt37ucBe8jNMKHysLB+m3HqYSznrh+sCKOl8/Dh
-   A==;
-X-CSE-ConnectionGUID: cvZ8iO72QNafItqdsjInwg==
-X-CSE-MsgGUID: liopX4/OQZuV2eZH0ITU1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="29544141"
-X-IronPort-AV: E=Sophos;i="6.09,219,1716274800"; 
-   d="scan'208";a="29544141"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2024 21:43:08 -0700
-X-CSE-ConnectionGUID: MTMt9FegT8+/hd/wmCd2Mg==
-X-CSE-MsgGUID: zzoQZ0onT2Ci9XQcXVLW3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,219,1716274800"; 
-   d="scan'208";a="81628235"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 18 Jul 2024 21:43:05 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sUfSR-000hrS-0v;
-	Fri, 19 Jul 2024 04:43:03 +0000
-Date: Fri, 19 Jul 2024 12:42:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Valentin Caron <valentin.caron@foss.st.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Amelie Delaunay <amelie.delaunay@foss.st.com>,
-	Valentin Caron <valentin.caron@foss.st.com>
-Subject: Re: [PATCH v2 2/4] rtc: stm32: add pinctrl and pinmux interfaces
-Message-ID: <202407191258.1oitwwMV-lkp@intel.com>
-References: <20240717074835.2210411-3-valentin.caron@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4E71B86F8;
+	Fri, 19 Jul 2024 04:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.21
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721364560; cv=fail; b=YyI8rLUdJMGBQ9uHOO/17DlRtkBR5dpZN4Cwwt9JJpw0mzTjDqaThCpYMme2q6RlLymQKJReBd0rhQKjMEm54Sqj5LLCWGxDNlFoMx4HR/dMlYLGhMY8g6qEhTck4xYXROS3wJKcbmdppt1pajdJRPKOlhc9gCke4eyCjDCaoZ8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721364560; c=relaxed/simple;
+	bh=PEvtlvtfcIvDGAKayeT28wY6QVobQoFimIi+3+keIjU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=cgWFFH6SCy8THypOVRZJFbh/QZn5pHPbSsaSaTKzOz0SnI2X7im4jCeLSvJkeULDXAEt1EJjtXLjGSxg2v8SREWQ6CrQQ4sxSP9pDm7CFWxaehqjYL7/7fgqy4sresTIdA+V33Ud68BpR5QOhdf+q2vd2ZfwuhlqoLRWFUvU4s0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=T36cmlLr; arc=fail smtp.client-ip=52.101.70.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KVr5we6E8Ht5iIUN8fTTH1Gw6bhLfdWJyh/qDrr69tkEZGVs1OngR2pCUXqGqFQEkh9vH9NZ+o/nkaAkNxRE507y6lTc8HEZaHwixaBzZ6L/rwWO7AnbexWotRDubQipKTfSY5q/qa7sKV2vjbqd81HgkWuSET21it2CXiaekpJa3mMQSCQ0l24zPP9JufrBnAraruG3Zhr3qAQ+3JAwsuLaLJzg7Kv6GfAk+DWCivVYYM/eDyurCGn1M/+CSxs+gY36s3BxykuIS7+6w7FNrrL/jjnrBHrMDCyMaYJ+0ZFLTS28x+SsFcLKxjcC+1Wpf064VtfsejuGOSECXiuwHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U8uoieJ6ywALqwXkjB/E6gEpOC7kgn75+FlKysKmnZY=;
+ b=Edj1BcZfMdlNPdRs+gVOUAp92EIL9pyHwTdwwQ0FxTAiISn02qjcmPg8d9rp9da02azT1QlW+tcb75i6w0VLW8LTu6FwYa4jlkemVy07hoyjeSdqDoIJbPuHvm6xxx4P4rhrowVj3vYKz53FEZRxU+OL8AbMrdEbJFjgb60IyYn6wEAu6nL6Yyf/oGXLqiC0EpYJG3W65DY+6l/Svu/H1dl/zHf3zJp0v0H3qC7ulk/0rmj00pdg95keiEoh7z9e/2pmuyZQpnTbXluFUZP1HxMD2XSh0kYdMRWhZXrj66NIct7btjAzwagn3pSG/YduWnA3s1KnuHyzJquYsnFpag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U8uoieJ6ywALqwXkjB/E6gEpOC7kgn75+FlKysKmnZY=;
+ b=T36cmlLrqWivD1yDtTSE/Lr+6Ho4w1P2vLnKww307ARojkGkn62MekDjIogzl5QpAkac25QQsqTV/FKY7MdTkJ222enIEB1YJLIxpD3Z4N7krnEMsIvyaQBDv/LFvIu38RQSJBZQcCBhVxdpkxQlEynPiC6i0Ub4+VxJ3HK95qY=
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by GV1PR04MB10330.eurprd04.prod.outlook.com (2603:10a6:150:1cf::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Fri, 19 Jul
+ 2024 04:49:14 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827%3]) with mapi id 15.20.7784.017; Fri, 19 Jul 2024
+ 04:49:14 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+CC: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio
+ Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>
+Subject: RE: [EXT] Re: [PATCH v3 4/5] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Thread-Topic: [EXT] Re: [PATCH v3 4/5] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Thread-Index: AQHawIiZBQsZ0s8620ykCNsfnd2JyLHNMuWAgAm9QpCACrVJgIAWBn9wgAYAwyA=
+Date: Fri, 19 Jul 2024 04:49:13 +0000
+Message-ID:
+ <AM9PR04MB860407B8EEB86B3E7DD1E12695AD2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+References: <20240617-imx-se-if-v3-0-a7d28dea5c4a@nxp.com>
+ <20240617-imx-se-if-v3-4-a7d28dea5c4a@nxp.com>
+ <ZnFF_Z48qzpNvPtj@pengutronix.de>
+ <AM9PR04MB860446165A0826362E7AF58195D32@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <ZoJtC-fgyVWQO57C@pengutronix.de>
+ <AM9PR04MB86044449C38D1EDBF308491695A12@AM9PR04MB8604.eurprd04.prod.outlook.com>
+In-Reply-To:
+ <AM9PR04MB86044449C38D1EDBF308491695A12@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|GV1PR04MB10330:EE_
+x-ms-office365-filtering-correlation-id: b2d7903a-5502-4b7e-5326-08dca7ae237f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?P0TA46aGgRW7mbv2iavMqc2WDKqB+czyzBu9T3wXImlX4n9FUyKops6fYk5p?=
+ =?us-ascii?Q?uJIwgXz2d2xrsxUJv4s74dcqKpNOt0c34lY0zAP+7FFWodEUm6pDK8LP/kJz?=
+ =?us-ascii?Q?J9+fBLUZmrWlwVBho7gNxv/1+pI7u1C+oMDzYhc/s0OO2Sc6uSLJKcuFe0HD?=
+ =?us-ascii?Q?8URDPqknZvNkNUOGkjfkja5VBTZYwioIRsQilixnIF02RqRFxkROZWSIuBxb?=
+ =?us-ascii?Q?7VE3zEYTaup7GtHF7bY19UPale08mdYczCTyParZi6yRrykgizf5avWi8vuA?=
+ =?us-ascii?Q?OEuC3/jD90+6fcXFDDd+Zbkx01vlwxT/d6mRdvL4IYHnk/NVrzRiqpc0QetJ?=
+ =?us-ascii?Q?9uoroV3mB03rgHuW3fgbIrmiT+mylSLgBRVFfCab16/RK+Mmn9fv26vm0wAz?=
+ =?us-ascii?Q?8rjUrJhz3Czv8H+4Ax5CC/d1bFVUS1Vo+hJHlHnq2WRsNkEbqrCbP7Fhv9R2?=
+ =?us-ascii?Q?shL+Oh79G3czTn44wXY3aBMm01zdrR3sJQfHuaCfmcVyQfF3XzJkQI00Tk8S?=
+ =?us-ascii?Q?cZ2ORzMrMI9v/R90j9x888xSl9MgH/dGt62Em9djUo+03y2/lBpig4/4278S?=
+ =?us-ascii?Q?2wbh4GRWiMvW5AbNrIwz0HhcrwUZNr54r3rp7Fm1FAcQ6bpGq2KrzcSivsnr?=
+ =?us-ascii?Q?vl/KiXfY07k6z0ZiHDyDHhNmp0MPoCMmH3Lj1iiHBuiPrc2QSjkokCcJSuB8?=
+ =?us-ascii?Q?bpxY/iBkIxqrB5aFivfx4lCFj250vsMS27t0mzDi0XuhVQ1XBPI//VqWbPBp?=
+ =?us-ascii?Q?PeHoSkvR0fIuwNV8TjHUA/0yQBXMYPE1eMgAe4mor9knQJ9NrUXnyqLqujGV?=
+ =?us-ascii?Q?CrjAqEriE9+d0d/8O+rP+Kzfhx4MjGe1oqgvcRqGta1RamZZaw9+hT+R5/gg?=
+ =?us-ascii?Q?WxPR8if4GUnfEZDIWAD6uMzS1wuw1bNJmm96vRuV4JldplNigmTNyor+CWij?=
+ =?us-ascii?Q?2BO3VmfkRUL3HZ5XUIpKpyaU/DjmPw6r6UIoPs6tt1P6WKQDtAz9sIh0K9u5?=
+ =?us-ascii?Q?NqebupI7at2Emouwir4m/8lrFk/K05k//R0eW0+S8tbG3Wr4cH/SNQ938klG?=
+ =?us-ascii?Q?8xex4yxYbUAgHDE6cELUgYC+WJq5pml+6Nbe3kVwbgZuAht8K3n8YLceN9rr?=
+ =?us-ascii?Q?HfVCgss8xY4pxB8D9kce+EUaXXzXQkycEL/TjhptW/xFVtcDK/SHcJZJRLxY?=
+ =?us-ascii?Q?Ih/D5CVsJlEoNc4WjHqMYMiCwnyYDq5ZJaLdk3cAa5IeZiHVvHgd2XPezwoa?=
+ =?us-ascii?Q?G4VG9ty3b0tHZE0rCUeVw/03jElWAbdySVlHD8oItbDOdKhOLDqPDFtNyuCR?=
+ =?us-ascii?Q?5Wk6NfXWg2TnLTYvT+u9okwfjCcbU09oYY8qmkI198UPdelxQ12MjZHe4HRP?=
+ =?us-ascii?Q?wwZzAHcPeraIhtsIXnlf+krzBWXgRpVhg/RiJE7i/yNJRZTHuA=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?pcZo98bB03Spqhe/Sn3LYAgvwei2L6RUj4RPT2NxQpHggDH3Mz6J2arQz+82?=
+ =?us-ascii?Q?2Rcz0Mwolt1EhriV3lf+HOgqhc3bChha8gScGu0CLXEuhy6Gn5j1+UMTuWO3?=
+ =?us-ascii?Q?+mJYa/3311Eip4DwUidXq6bCepyj3vYxKSt4ygbrLz0dAEm7FK9XIHZLlefR?=
+ =?us-ascii?Q?aJFyb53ByVdFT31+HkkgANidcBxEKgAZb9A9nfXBHEkWv95QsdXbQ/yGJ9ib?=
+ =?us-ascii?Q?G37ItlMLIFCuQ2LRkaAZfdMsmnr3Nrdyimb1SJqFGM5FH8J3MePugTHZqX/t?=
+ =?us-ascii?Q?WgJMvxnfl/zAkA84gq8lUhaKXL7epUaV93e/Y2VVC24awO/wsQTp8cqjS97y?=
+ =?us-ascii?Q?hEHZt7pPrKOKka/lgwgi80aGm8Kek/524Lq01e7ag/jen1aChiRnmAuCjXw5?=
+ =?us-ascii?Q?FOJpDSWx6JKqq/8SGQqIHho4JpS542UXm0UdE2ATHhU5ah8PNuW1s1gXIgcU?=
+ =?us-ascii?Q?GzVAskUOAv6zHMc7OJd1jqfSeFWdfQ/O16hZMOoC7L4Nwd/omi6fJL6rZkxh?=
+ =?us-ascii?Q?4aJP5fMKkBMrXl1TakjPtMNiMOd3d9jy75KuOtIJoYelPVqNZLRmXaiPjT+7?=
+ =?us-ascii?Q?MsK5kudx+yKAtC0x2U4iM9JY/Un8MBujkHtHQLlXketjh181a2Fga2oIcC9x?=
+ =?us-ascii?Q?cp+bMuOZMIi4iyTwmfRIhpiYuTosgzRqTxak6iAc199YoyyfxXT7oESAC+lD?=
+ =?us-ascii?Q?u0bgMHcZfYPlyNqdsGZDt1+d4DzszksV+nZkjjplSIEmESKH9bdESQ+PudSN?=
+ =?us-ascii?Q?BZmOslOlMekvh1vPAV34hYZoxpI8P/QnZhWtQ0pg7tWDvr7h5y4n5dACv5za?=
+ =?us-ascii?Q?FFd5hBSvdMvJoRjl3IxopAcpH1hDIr8EXehMLZvTD8es5SBTVwRK0WEn2ED5?=
+ =?us-ascii?Q?IlGHhSb4jGqp8H82dtp95RV60DG/kzQE7MPXOS5jEakHW2fGfqkb2/AmBs2P?=
+ =?us-ascii?Q?bt/IwYkUNcB0qX021QZvL3bIuVoY5IT6dFLhyhQYv1dFVGuFaT7FL+dghFe+?=
+ =?us-ascii?Q?MRwfu+doeJWo6V6hMOibAqU++BGmzhzMqMBGsSO50Sk68T9ysYWxZ0ts7GrY?=
+ =?us-ascii?Q?lBSGh6vzoutcNQgTrlCk24xQzDO/YkJFXXcY999CYzvx/slDblvSQcyzPgVw?=
+ =?us-ascii?Q?0jiz78vgXNOYjW7l7dhI0QB/qpMxSPj90jAuCp4PGmn2/n9xIv3o6supQHEQ?=
+ =?us-ascii?Q?KBFebnDLghja8oNWDoz705UPh8f+TlneWmxa3ac7m/T60J7zAbT56ptdemTh?=
+ =?us-ascii?Q?Oq6FkjdBO1fLeR/d6pwe1KcjdB1OZ585+lCqFeTKx+XrAyMMUln2ddDl0MnA?=
+ =?us-ascii?Q?G995QjwqcEW9qtV4k+TjumfWmpBNIKLubnV3mFNTHEJM1laBCboNrnqE+NDA?=
+ =?us-ascii?Q?IdENR5dpI3ut+3FLYmDztLgaowceODXVJMwfD1bhckH3mCEkX1mubZAzHtR1?=
+ =?us-ascii?Q?ypbqGpzeydI2vNX6Y0lQDcy0z+87cM1jnNpR7+egZQTpJP7aO0PjHQoKWiCu?=
+ =?us-ascii?Q?DT1nlH5dZsjFKnNtnM4rd8EMo+o9jLZBgDModZ1QH/5bRx8R+y52Z8mTTdux?=
+ =?us-ascii?Q?9i1d1HbcFKjY1OxCpTH3qrBtyjgCiKtNZ3exTaVT?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240717074835.2210411-3-valentin.caron@foss.st.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2d7903a-5502-4b7e-5326-08dca7ae237f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2024 04:49:14.0951
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GNqz9SkzZfqBuLplXFi2P80hFjj/ebBu+68ZYtUpJDnGMRv5RbbCjaYQlnNiIP3cFCWLLQDeCo3GoxLSFkcgJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10330
 
-Hi Valentin,
 
-kernel test robot noticed the following build errors:
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on atorgue-stm32/stm32-next robh/for-next linus/master v6.10 next-20240718]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> -----Original Message-----
+> From: Pankaj Gupta
+> Sent: Monday, July 15, 2024 2:49 PM
+> To: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>;
+> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Pengutronix
+> Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; devicetree@vger.kernel.org=
+;
+> imx@lists.linux.dev; linux-kernel@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-doc@vger.kernel.org
+> Subject: RE: [EXT] Re: [PATCH v3 4/5] firmware: imx: add driver for NXP
+> EdgeLock Enclave
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Sascha Hauer <s.hauer@pengutronix.de>
+> > Sent: Monday, July 1, 2024 2:17 PM
+> > To: Pankaj Gupta <pankaj.gupta@nxp.com>
+> > Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>;
+> > Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> > <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Pengutronix
+> > Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > <festevam@gmail.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+> > Kozlowski <krzysztof.kozlowski+dt@linaro.org>;
+> > devicetree@vger.kernel.org; imx@lists.linux.dev;
+> > linux-kernel@vger.kernel.org; linux-arm- kernel@lists.infradead.org;
+> > linux-doc@vger.kernel.org
+> > Subject: Re: [EXT] Re: [PATCH v3 4/5] firmware: imx: add driver for
+> > NXP EdgeLock Enclave
+> >
+> > Caution: This is an external email. Please take care when clicking
+> > links or opening attachments. When in doubt, report the message using
+> > the 'Report this email' button
+> >
+> >
+> > On Mon, Jul 01, 2024 at 07:45:20AM +0000, Pankaj Gupta wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > Sent: Tuesday, June 18, 2024 2:02 PM
+> > > > To: Pankaj Gupta <pankaj.gupta@nxp.com>
+> > > > Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring
+> > > > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor
+> > > > Dooley <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>;
+> > > > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > > > <festevam@gmail.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+> > > > Kozlowski <krzysztof.kozlowski+dt@linaro.org>;
+> > > > devicetree@vger.kernel.org; imx@lists.linux.dev;
+> > > > linux-kernel@vger.kernel.org; linux-arm-
+> > > > kernel@lists.infradead.org; linux-doc@vger.kernel.org
+> > > > Subject: [EXT] Re: [PATCH v3 4/5] firmware: imx: add driver for
+> > > > NXP EdgeLock Enclave
+> > > >
+> > > > Caution: This is an external email. Please take care when clicking
+> > > > links or opening attachments. When in doubt, report the message
+> > > > using the 'Report this email' button
+> > > >
+> > > >
+> > > > Hi Pankaj,
+> > > >
+> > > > Here's some review feedback. I think it'll take some more rounds
+> > > > to get this into shape.
+> > > >
+> > > > On Mon, Jun 17, 2024 at 12:59:42PM +0530, Pankaj Gupta wrote:
+> > > > > NXP hardware IP(s) for secure-enclaves like Edgelock
+> > > > > Enclave(ELE), are embedded in the SoC to support the features
+> > > > > like HSM, SHE & V2X, using message based communication interface.
+> > > > >
+> > > > > The secure enclave FW communicates on a dedicated messaging
+> > > > > unit(MU) based interface(s) with application core, where kernel
+> > > > > is
+> > running.
+> > > > > It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
+> > > > >
+> > > > > This patch adds the driver for communication interface to
+> > > > > secure-enclave, for exchanging messages with NXP secure enclave
+> > > > > HW
+> > > > > IP(s) like EdgeLock Enclave (ELE) from Kernel-space, used by
+> > > > > kernel management layers like
+> > > > > - DM-Crypt.
+> > > > >
+> > > > > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> > > > > ---
+> > > > >  drivers/firmware/imx/Kconfig        |  12 +
+> > > > >  drivers/firmware/imx/Makefile       |   2 +
+> > > > >  drivers/firmware/imx/ele_base_msg.c | 284 +++++++++++++++++++
+> > > > > drivers/firmware/imx/ele_base_msg.h |  90 ++++++
+> > > > >  drivers/firmware/imx/ele_common.c   | 233 ++++++++++++++++
+> > > > >  drivers/firmware/imx/ele_common.h   |  45 +++
+> > > > >  drivers/firmware/imx/se_ctrl.c      | 536
+> > > > ++++++++++++++++++++++++++++++++++++
+> > > > >  drivers/firmware/imx/se_ctrl.h      |  99 +++++++
+> > > > >  include/linux/firmware/imx/se_api.h |  14 +
+> > > > >  9 files changed, 1315 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/firmware/imx/Kconfig
+> > > > > b/drivers/firmware/imx/Kconfig index 183613f82a11..56bdca9bd917
+> > > > > 100644
+> > > > > --- a/drivers/firmware/imx/Kconfig
+> > > > > +++ b/drivers/firmware/imx/Kconfig
+> > > > > @@ -22,3 +22,15 @@ config IMX_SCU
+> > > > >
+> > > > >         This driver manages the IPC interface between host CPU an=
+d the
+> > > > >         SCU firmware running on M4.
+> > > > > +
+> > > > > +config IMX_SEC_ENCLAVE
+> > > > > +     tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave
+> > > > > +Firmware
+> > > > driver."
+> > > > > +     depends on IMX_MBOX && ARCH_MXC && ARM64
+> > > > > +     default m if ARCH_MXC
+> > > > > +
+> > > > > +     help
+> > > > > +       It is possible to use APIs exposed by the iMX Secure
+> > > > > + Enclave HW IP
+> > > > called:
+> > > > > +          - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
+> > > > > +          like base, HSM, V2X & SHE using the SAB protocol via
+> > > > > + the shared
+> > > > Messaging
+> > > > > +          Unit. This driver exposes these interfaces via a set o=
+f file
+> descriptors
+> > > > > +          allowing to configure shared memory, send and receive
+> messages.
+> > > > > diff --git a/drivers/firmware/imx/Makefile
+> > > > > b/drivers/firmware/imx/Makefile index 8f9f04a513a8..aa9033e0e9e3
+> > > > > 100644
+> > > > > --- a/drivers/firmware/imx/Makefile
+> > > > > +++ b/drivers/firmware/imx/Makefile
+> > > > > @@ -1,3 +1,5 @@
+> > > > >  # SPDX-License-Identifier: GPL-2.0
+> > > > >  obj-$(CONFIG_IMX_DSP)                +=3D imx-dsp.o
+> > > > >  obj-$(CONFIG_IMX_SCU)                +=3D imx-scu.o misc.o imx-s=
+cu-irq.o
+> rm.o
+> > > > imx-scu-soc.o
+> > > > > +sec_enclave-objs             =3D se_ctrl.o ele_common.o ele_base=
+_msg.o
+> > > > > +obj-${CONFIG_IMX_SEC_ENCLAVE}        +=3D sec_enclave.o
+> > > > > diff --git a/drivers/firmware/imx/ele_base_msg.c
+> > > > > b/drivers/firmware/imx/ele_base_msg.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..5bfd9c7e3f7e
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/firmware/imx/ele_base_msg.c
+> > > > > @@ -0,0 +1,284 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > > +/*
+> > > > > + * Copyright 2024 NXP
+> > > > > + */
+> > > > > +
+> > > > > +#include <linux/types.h>
+> > > > > +#include <linux/completion.h>
+> > > > > +#include <linux/dma-mapping.h>
+> > > > > +
+> > > > > +#include "ele_base_msg.h"
+> > > > > +#include "ele_common.h"
+> > > > > +
+> > > > > +int ele_get_info(struct device *dev, struct ele_dev_info
+> > > > > +*s_info) {
+> > > >
+> > > > I think all currently exported functions should take a struct
+> > > > se_if_priv
+> > > > * as context pointer.
+> > > > I can't find any place in which any of these functions is called
+> > > > differently than with priv->dev.
+> > >
+> > > All the API(s) that construct a message to be exchanged over the
+> > > device-interface to FW,
+> > > - will be the exported symbols in the next patch-set, to be used by
+> > > other
+> > Linux kernel modules like: NVMEM driver, linux crypto framework,
+> > security/keys etc.
+> > > - These other Linux layers have to choose from multiple similar
+> > > devices per
+> > secure-enclave.
+> > >
+> > > Kindly Consider these API(s), to be the EXPORT SYMBOLS, in later
+> > > patches,
+> > when used outside of this driver.
+> >
+> > In that case you could still add a function which translates a struct
+> > device * into a struct se_if_priv *.
+> >
+> > > >
+> > > > > +     struct se_if_priv *priv =3D dev_get_drvdata(dev);
+> >
+> > This function should also include some sanity checks. It's not good
+> > that an exported function takes some struct device *, blindly assumes
+> > that it is of type se_if_priv, and if not just crashes the Kernel.
+>=20
+> Will add a wrapper function over "struct se_if_priv *priv =3D
+> dev_get_drvdata(dev);", to add some safety checks.
+> Will fix this in V6.
+>=20
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Valentin-Caron/dt-bindings-rtc-stm32-describe-pinmux-nodes/20240717-193541
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20240717074835.2210411-3-valentin.caron%40foss.st.com
-patch subject: [PATCH v2 2/4] rtc: stm32: add pinctrl and pinmux interfaces
-config: um-randconfig-r063-20240718 (https://download.01.org/0day-ci/archive/20240719/202407191258.1oitwwMV-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad154281230d83ee551e12d5be48bb956ef47ed3)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240719/202407191258.1oitwwMV-lkp@intel.com/reproduce)
+Will add for NULL check for priv data, as a sanity check.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407191258.1oitwwMV-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/irqchip/irq-ts4800.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/irqchip/irq-meson-gpio.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpio/gpio-mc33880.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/backlight/platform_lcd.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_accel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_DAC1064.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_Ti3026.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/macmodes.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/kyro/kyrofb.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/goldfishfb.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6765-audio.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-mm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-img.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-vdec.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6779-aud.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6797-img.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6797-vdec.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt6797-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-apmixedsys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-bdp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-mfg.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-vdec.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt2712-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7622-eth.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7622-aud.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7988-apmixed.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7988-topckgen.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt7988-infracfg.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-apmixedsys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-cam.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-img.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-ipu0.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-ipu_conn.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-mm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-vdec.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8183-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-apmixedsys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-topckgen.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-infra_ao.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-imp_iic_wrap.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-mdp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-mfg.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-mm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8186-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-apmixedsys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-topckgen.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-peri_ao.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-infra_ao.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-imp_iic_wrap.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-vdo0.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8188-vdo1.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-aud.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-cam.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-img.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-imp_iic_wrap.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-ipe.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-mdp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-msdc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-scp_adsp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8192-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-cam.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-mfg.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-vpp0.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8195-vpp1.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365-apu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sophgo/clk-sophgo-cv1800.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/reset/hisilicon/hi6220_reset.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/8250_base.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/8250_pxa.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/owl-uart.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/n_hdlc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/goldfish.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/panel/panel-auo-a030jtn01.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-sccb.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/cxl/cxl_mem.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/spi/spi-omap2-mcspi.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/spmi/hisi-spmi-controller.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/uio/uio_aec.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/uio/uio_netx.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/yenta_socket.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/i2c/busses/i2c-ccgx-ucsi.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/i2c/busses/i2c-qup.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/dvb-frontends/au8522_decoder.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/dvb-frontends/mb86a16.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/v4l2-core/v4l2-async.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/v4l2-core/v4l2-fwnode.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/watchdog/menz69_wdt.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/host/tmio_mmc_core.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/host/renesas_sdhi_core.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/core/mmc_core.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/core/sdio_uart.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/crypto/xilinx/zynqmp-aes-gcm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/nvmem/nvmem-apple-efuses.o
->> ERROR: modpost: "devm_pinctrl_register_and_init" [drivers/rtc/rtc-stm32.ko] undefined!
->> ERROR: modpost: "pinctrl_enable" [drivers/rtc/rtc-stm32.ko] undefined!
-ERROR: modpost: "pinconf_generic_dt_node_to_map" [drivers/rtc/rtc-stm32.ko] undefined!
-ERROR: modpost: "pinconf_generic_dt_free_map" [drivers/rtc/rtc-stm32.ko] undefined!
-WARNING: modpost: EXPORT symbol "csum_partial" [vmlinux] version generation failed, symbol will not be versioned.
-Is "csum_partial" prototyped in <asm/asm-prototypes.h>?
-WARNING: modpost: EXPORT symbol "csum_partial_copy_generic" [vmlinux] version generation failed, symbol will not be versioned.
-Is "csum_partial_copy_generic" prototyped in <asm/asm-prototypes.h>?
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GENERIC_PINCONF
-   Depends on [n]: PINCTRL [=n]
-   Selected by [m]:
-   - RTC_DRV_STM32 [=m] && RTC_CLASS [=y] && (ARCH_STM32 || COMPILE_TEST [=y])
-   WARNING: unmet direct dependencies detected for PINMUX
-   Depends on [n]: PINCTRL [=n]
-   Selected by [m]:
-   - RTC_DRV_STM32 [=m] && RTC_CLASS [=y] && (ARCH_STM32 || COMPILE_TEST [=y])
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> >
+> > > > > +static int imx_fetch_se_soc_info(struct se_if_priv *priv,
+> > > > > +                              const struct
+> > > > > +imx_se_node_info_list
+> > > > > +*info_list) {
+> > > > > +     const struct imx_se_node_info *info;
+> > > > > +     struct soc_device_attribute *attr;
+> > > > > +     struct soc_device *sdev;
+> > > > > +     u64 serial_num;
+> > > > > +     u16 soc_rev;
+> > > > > +     int err =3D 0;
+> > > > > +
+> > > > > +     info =3D priv->info;
+> > > > > +
+> > > > > +     /* This function should be called once.
+> > > > > +      * Check if the soc_rev is zero to continue.
+> > > > > +      */
+> > > > > +     if (priv->soc_rev)
+> > > > > +             return err;
+> > > >
+> > > > Just return 0 here. It takes one step less to understand what this =
+is about.
+> > > Replacing "err" with "ret", in better understanding.
+> >
+> > What I meant that you should return the constant '0' here instead of
+> > the content of a variable. It safes a reader from looking up the value
+> > of the variable which means it's one step less for the brain to underst=
+and the
+> code.
+> >
+> > > > > +
+> > > > > +     if (info->se_fetch_soc_info) {
+> > > > > +             err =3D info->se_fetch_soc_info(priv->dev, &soc_rev=
+,
+> &serial_num);
+> > > > > +             if (err < 0) {
+> > > > > +                     dev_err(priv->dev, "Failed to fetch SoC Inf=
+o.");
+> > > > > +                     return err;
+> > > > > +             }
+> > > > > +     } else {
+> > > > > +             dev_err(priv->dev, "Failed to fetch SoC revision.")=
+;
+> > > > > +             if (info->soc_register)
+> > > > > +                     dev_err(priv->dev, "Failed to do SoC regist=
+ration.");
+> > > > > +             err =3D -EINVAL;
+> > > > > +             return err;
+> > > > > +     }
+> > > >
+> > > > i.MX93 doesn't have a info->se_fetch_soc_info. Does this mean it
+> > > > doesn't work on this SoC?
+> > > >
+> > > Yes.
+> >
+> > Will you fix this?
+> For i.MX93, SoC registration is not done through this driver.
+> This is implemented as this only. Nothing to be fixed.
+>=20
+> >
+> > > > > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > > > > +     if (!priv) {
+> > > > > +             ret =3D -ENOMEM;
+> > > > > +             goto exit;
+> > > > > +     }
+> > > > > +
+> > > > > +     dev_set_drvdata(dev, priv);
+> > > > > +
+> > > > > +     /* Mailbox client configuration */
+> > > > > +     priv->se_mb_cl.dev              =3D dev;
+> > > > > +     priv->se_mb_cl.tx_block         =3D false;
+> > > > > +     priv->se_mb_cl.knows_txdone     =3D true;
+> > > > > +     priv->se_mb_cl.rx_callback      =3D se_if_rx_callback;
+> > > > > +
+> > > > > +     ret =3D se_if_request_channel(dev, &priv->tx_chan,
+> > > > > +                     &priv->se_mb_cl, info->mbox_tx_name);
+> > > > > +     if (ret)
+> > > > > +             goto exit;
+> > > > > +
+> > > > > +     ret =3D se_if_request_channel(dev, &priv->rx_chan,
+> > > > > +                     &priv->se_mb_cl, info->mbox_rx_name);
+> > > > > +     if (ret)
+> > > > > +             goto exit;
+> > > > > +
+> > > > > +     priv->dev =3D dev;
+> > > > > +     priv->info =3D info;
+> > > > > +
+> > > > > +     mutex_init(&priv->se_if_lock);
+> > > > > +     mutex_init(&priv->se_if_cmd_lock);
+> > > > > +
+> > > > > +     priv->cmd_receiver_dev =3D NULL;
+> > > > > +     priv->waiting_rsp_dev =3D NULL;
+> > > >
+> > > > These are NULL already.
+> > > For code readability, it is good to know when and with what value it
+> > > is
+> > initialized.
+> > > It will help review the 'if' condition based on these structure
+> > > member
+> > variable.
+> > > Will covert this information into comments.
+> >
+> > We already know they are NULL because you used kzalloc to allocate the
+> > struct. No need to comment that.
+> >
+> > Sascha
+> >
+> > --
+> > Pengutronix e.K.                           |                           =
+  |
+> > Steuerwalder Str. 21                       |
+> >
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.
+> >
+> pengutronix.de%2F&data=3D05%7C02%7Cpankaj.gupta%40nxp.com%7Cc8b7
+> >
+> b605e99744ccf94e08dc99aa66f0%7C686ea1d3bc2b4c6fa92cd99c5c30163
+> >
+> 5%7C0%7C0%7C638554204358183687%7CUnknown%7CTWFpbGZsb3d8e
+> >
+> yJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3
+> >
+> D%7C0%7C%7C%7C&sdata=3DNl8R%2FcwuT69VVUxe00AichgoSEEJexZ0TfhjfuI
+> > BqoY%3D&reserved=3D0  |
+> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0  =
+  |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-555=
+5 |
 
