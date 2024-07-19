@@ -1,372 +1,187 @@
-Return-Path: <devicetree+bounces-86669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8A693720B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 03:35:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0651D937254
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 04:09:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A345128253D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 01:35:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B05FE281DB3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 02:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88327184D;
-	Fri, 19 Jul 2024 01:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E227B433D6;
+	Fri, 19 Jul 2024 02:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="jlwdv+Uw"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="XPIt38QY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2098.outbound.protection.outlook.com [40.107.215.98])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5043EEBE
-	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 01:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721352932; cv=none; b=RXRj11auTWnREmweXhuco/K5594SLS+csgrwSIyXX289uV4qSB4oVPzluDCP5cqiFuSdOm6m5XSQJnIvXbr8sxrHoq014bCQOEN69f4N4YyuVV557Xsiwiy3EpT6mEja4DLzZUy63zI2lXDwo/dIGoOQ5N3JYm7aup2MwgTYfF8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721352932; c=relaxed/simple;
-	bh=fELDUAVQHel/sgfcP29N6Q/BqwgmS2g7A9lUs/rmQLY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PfZRTItRW8M8uENl+n7G7A54+y5B+LW8W4MMLUx0CTddKGdAK+grQ9Q6JVbF+mNoxvoKavYEmEQ9iLEbvTy0yl3nBI1dUdnvqbeMIiVLC59luNtrALHKpkDd6BElFCdChmuxW8FUMEj485bbFgo4zCvdcWf5RHaoeX0CoanDbmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=jlwdv+Uw; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-8076ebb7ba1so53817339f.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2024 18:35:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1721352929; x=1721957729; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kCKSxmpGpgIaFLiWGefaq2tuapYPzU27sKjs+BRgK0I=;
-        b=jlwdv+Uwr9yyBUMzSPP8FRXqufNcOEYyxRIAHYlUyTJwznorMnmmD/TkuIwavvIQky
-         1wSP7SrFV7MoByHDbKRCIPfwtPjllmcjQnwsqM3ckswXOl2d6w7eq+ZMDeesI/vnG4qU
-         pTYmnMPbz8J4gxbuwiayqYqIh1krijr4nhirQdicEmorEijl8oVNg9unRNuEw307fQoi
-         4iM+hscG5gSEL0YL/BOs2RLSHE5uXccFc8BsVERbRZ2O0iSfqGaStOWU3559c4ltDEg4
-         aG8oO1TzOe9akKa0hZB9+RRkdAgl82IZ43XBMid0uXfPYeycGQoSVUJYmxABkmUi0qKe
-         IdCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721352929; x=1721957729;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kCKSxmpGpgIaFLiWGefaq2tuapYPzU27sKjs+BRgK0I=;
-        b=XdRVt0+5qZGb2afvGv2ULN/G5WB0BU/YCmsUS9hA9UAN+WGcAIpMN31FaxmGrJmj07
-         dh7GSgvzeO4F1PWfLlYTgRkPN+W4D8uGdlCY3oYt7tFUlxCh7/lQx3YexWEWmhQcN9SC
-         Cjx/d6kL+WEI54m0S0DLoZzkb7HuC6oK26qnrNxLad2oPnfhr7kvFaRugrJYAUhAjnYy
-         Euc/NHNsH0gjZ0F5vA2DIED5GICHO7kEKQydvbzomQRJf/SDkIVFPiYCQY+5/tIxEwCd
-         GAcAUZHzRDmy99ae03Ro9OffM/HYhvlEYHDy/EFzufBCrttSNgNMNLvKwbOHICfzHcHL
-         NOTw==
-X-Forwarded-Encrypted: i=1; AJvYcCU57BWKr9tyUYYSjDXn8/Kd5fuT0RzlzzdKljlVkN+v/+cHT2hCC8cf5noOmlLIpl2l8n8caHcVNYSx7HmhvoDa17YS+4ik+/jAaA==
-X-Gm-Message-State: AOJu0YzwXzwRLGMcBYzVAtuMJoqAeGKuT2mYp1eePxYggP2Hg5MKxcoy
-	OjnI/LFNHp7SQPiskrTkIetdmOPoBgVBATavI68RUuGqBQ6zD0ez8mFSzPZnavs=
-X-Google-Smtp-Source: AGHT+IETQFuHKrO4/S58tyD5OTrRmmOWT93LlD/6BpqMiB9K7t92N18nv7O5GBBuy0MITzv7YIG4RA==
-X-Received: by 2002:a05:6602:14c8:b0:806:560:92b5 with SMTP id ca18e2360f4ac-81710bd4048mr846335739f.11.1721352929336;
-        Thu, 18 Jul 2024 18:35:29 -0700 (PDT)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-819adeeec61sm15485539f.47.2024.07.18.18.35.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jul 2024 18:35:28 -0700 (PDT)
-Message-ID: <dca205a1-46cc-4712-bdb1-15517e63e824@sifive.com>
-Date: Thu, 18 Jul 2024 20:35:27 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2BA36126;
+	Fri, 19 Jul 2024 02:08:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721354890; cv=fail; b=kuWzwjP7XP5HNnXsqn0Z0E8IMcHWjbtfoEnWEDLp2eUJNIHY3UOhklnAABDDVqXrHeVHAF/TT029nqhG4IvzoH0lBm+MHv54SycXt15mVJrRm7eJQhSn4A31+uGHgBTLi2JtNZfDhsLcECuhkt8nDSyy3kbJp+t15LKm5i7bkPc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721354890; c=relaxed/simple;
+	bh=onagGHDqldXDZCyX5mrrQLT8kmpuAMPKiazHHYrUAYQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZSD/WMLSJFqHlKHXOswf4QS3nXL1gR0Mb66s9smNtFau9mxliMSqjns5dwdIhSoD1Ju2RpVB3luFEVtdGUaZ/QzIOuCVJE9tbePvf7ScEm93iqlVvbiV3kb4peH8i0N660hh5+5AfLnwrstqW20L4oN1ic/xxLyBCVzuwfPrXcE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=XPIt38QY; arc=fail smtp.client-ip=40.107.215.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ob6BswHoZ/5mJmJMBPl0yiDDe5hTX9EoOKl+FoydcNHfSBrb1x4dqkdhv//fED27C9RSENXcZa0EcgHJsCcwT0v3Ljf0Js8ItzQKhgnqRLU8QWqluqd5PoJDHz3pJEQkxZlc5prd9Xzg2spHem3UNA1Vg6fppKlxtGdj+RrNIhzXmVW1ZS9XTMFLhdWzAIGT8a7h5u9tkIMfsr1/HplsGd+BOSdakFW+eDzkWWzG0VzE/CU15yq7AnS4z7jhoQXZlyDR03qvkr7SK1+e8bFYbi2arnhx7z5vQGMwJL6VUY5spJZHIeLvdoA+gGCakBSmQEd/ofYl3TBklfdHcY4JRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Dj8cdGyeayehZEnN+kmCQ8Bvc4ZhMDDnLPPhPj5K1RU=;
+ b=EYtFqj4YiEo/h8nO5Ic9RFP1nLHCKAZI7IClPUVrgQaeWB14WYOPc9rdaAx25PcYb/zRDuKthA5P+k/2Vnjy9ekg+VtPO1NkabCgpyg+wOD0t4dbSwadJpjuIGnc8naf0CmR6lWMF8J4oj0Z7CE+6eWbv2t/+s4PJE6T/2tf9iJMoqqOx9ykf0AzDc4X7+Shj+ZrwT9iyWXzvKfI9VjT1refPZnTaAnAoQo/37JAKJMFNqqF91sj6x+TRjy1+7JBrICioa0C3lKm4Uk1e48DmbTaGOXojdVPxCzsHyYELBqBP56HIkZ8Qua3HXHFrZPn/K76sIxArMFwdCXyQBFvxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Dj8cdGyeayehZEnN+kmCQ8Bvc4ZhMDDnLPPhPj5K1RU=;
+ b=XPIt38QYWgMrOMuLsIE8CUkVKK+DUvGQtTiQKG6oa2dwZccDXavMd8sDduJ6Wqb9fFyHR15yLOuydCgH63QpZfQ7FhV/X5yDDdvvPnpoFX74hiTBB75sy/U8Uba/BfGfK6hN9354aTFsRBROT/JXrCo7ApVYAmd5uiPMlH81rDY0VTa1lNZoXAATFkwNtht+y88FhEDDhNhONve5pEhv6RheoDOFXiu51g8MoGm4OLP9ID0N3VVAZpjM52AZ0ZHNtiI0YgvAMMm51otI0NIGHJvvLBDJkhEQy6Hd7ruAG3tBRMQuGv3hmCgsIRGTiSi/qsiD987fq9Ggq2rY+FFKiw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SEYPR03MB6434.apcprd03.prod.outlook.com (2603:1096:101:3e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Fri, 19 Jul
+ 2024 02:08:02 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.7784.016; Fri, 19 Jul 2024
+ 02:08:02 +0000
+Message-ID: <2511abaa-f2fc-43d7-aed7-77cd3481cce2@amlogic.com>
+Date: Fri, 19 Jul 2024 10:07:56 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: arm: amlogic: meson-gx-ao-secure:
+ support more SoCs.
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240715-soc_info-v2-0-3836c8cc27a5@amlogic.com>
+ <20240715-soc_info-v2-1-3836c8cc27a5@amlogic.com>
+ <20240715-override-blustery-e6763fddf3c4@spud>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20240715-override-blustery-e6763fddf3c4@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR01CA0128.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:40::32) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] mailbox: sophgo: add mailbox driver for cv18x SoCs
-To: Yuntao Dai <d1581209858@live.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, jassisinghbrar@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com,
- inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu
-References: <SYBP282MB223825D5903777B937A8A377C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
- <SYBP282MB2238F93565D20F0A5F3EEB6BC4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <SYBP282MB2238F93565D20F0A5F3EEB6BC4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB6434:EE_
+X-MS-Office365-Filtering-Correlation-Id: ccfe1d23-1642-4b78-aa9c-08dca7979e97
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bTJyOVdZMHZ4VHoweE5hZllDY3BIcDdoQm9UMklMcGNTWmlPbFp6ampYU0tI?=
+ =?utf-8?B?L0dQOWlRazJ5T2NaankxVmxoa091QmpTYk1jd0QxYW8rVzF1bzI2dWVsME9w?=
+ =?utf-8?B?dW9hb2dyZGpXcmE1N2lvMWN2RTFVVU5oL1RtTVpXL0lOVEpDUjBVQUpQajc1?=
+ =?utf-8?B?cERuSGZ5YnZTdUtSL0k4QXdUWjRLNll6QW9RK0k5N29SYTVLWUxkR1IzaXBF?=
+ =?utf-8?B?bEU5RHA3Y3kwWGtCdGkyRWQ4ZlZpTHk2RmFBWGUyQXFRK3VRQlZ2WWdUcjk1?=
+ =?utf-8?B?VFc3czJFaE9aL0FqU2o2UnVVdFErM0o3M2VuemsxWThtd0dBdmY5Y1FnU1Bl?=
+ =?utf-8?B?ZDEvVU9MUFJMVmc4Sm84RkdNY2xlU0wwQjA5WnJrZmhVRDJ0eWhMT3JzeUNk?=
+ =?utf-8?B?S2VWRUVMVkZIdmdjRXd6VlZVc0VDa1VGUWZESGcrMlFKRDR0WWdWOUN6MWdy?=
+ =?utf-8?B?TmNvQjZJUyttNHY1TDlaRWFzVlJFU3pEYTlOK1p4elVHb3ZwSGNxMEVwaWxh?=
+ =?utf-8?B?U0pCdDVMU3VuQWpkQWt1bGtFdERxZmdGaDM4d1lFY2poL1ZCZ1ViNDdsbGdC?=
+ =?utf-8?B?WXJHREM0SGZZdytFNzNZUC9IclRGSThnZGJwVW5Tdk1TT0JJMjgvVTl4YjNN?=
+ =?utf-8?B?RXROdGlRZkZsM1BMeWhDQTUzaGREMVp6enlscmJRV254N1MvZHRWdUhidUtk?=
+ =?utf-8?B?MVJsL1ZiaFlia1R6S1BFM2F2a0dvd2hSTy9WVkF4T3FrYTQrTGtKdzBJd3h3?=
+ =?utf-8?B?LytpTytFaFNUbGorTzQ4cm1xVzE0T21vUE9KdUFjT0paWEVxSzFOa1RlaGl2?=
+ =?utf-8?B?eC9rZUxhTDVZZmNWYllyVVgvbzhQbjlJZlFVNUxjbjlsdHNDa3hJMVFSNGh2?=
+ =?utf-8?B?WUhyZ1dKWWFQc3FJTkVrU1AwUzVVL2Y3SU9SOGx3Zm90azdzMWdxTGYyam5K?=
+ =?utf-8?B?a0sxRHlMcTVGWFA0RndWMUNGNVlBem1LV01jRUNxbDNsTGxab3pyWFAwV3U1?=
+ =?utf-8?B?cFpVMGttWVJDY2JIVHIxT2JvNitIdnN0MEl3VVRmY0o2M3BObEJNemtWaFRh?=
+ =?utf-8?B?L3FIbXdIcGJmVFhmaVZtc2cza1lQUmo2blhYRDJZZWZyQTJZUUM4cE9rckNP?=
+ =?utf-8?B?UHY0NkVpOThKTDd6L2tSRlEyL1AwV3RUOWliUkFSeUV1SEZQRDlNc3l6V1V5?=
+ =?utf-8?B?RTdoaVRHM2tpMWMwRTczVml1V0JkTE03MHFSc0Z5Ry9oak00RTZrdmN2SXpP?=
+ =?utf-8?B?eE5jbEZGVHBYUHBWd1RKRjVoNVUvdU9iN0FJRXo4RjgyOTJEZmlpVTc3T3ow?=
+ =?utf-8?B?eUtCdnVBOC9RR1BaS0pCcXpmTmVOczdKUW1PSzRsN2NLK3lUbVU1QlpOazFu?=
+ =?utf-8?B?WUxqTFJIR3BvcXM2L2RhcE1pYmZDR29TczJPcGs0SFYxbVd0aGhybHlndFRB?=
+ =?utf-8?B?SDQ2SXM5TmpUUDc5K3hLcm9CNVBiTnhBcVc1NmUrbnh0ZFZJSlpWMFVMSmpD?=
+ =?utf-8?B?ajFYeDc5cCtMa3FZS0pxUFM2NlRCamRLSlIvQ0RqYjVrYzlKUVMzZHhqNEk4?=
+ =?utf-8?B?MnhxMU1uWFpFZndCeFkybU9FVXJReG0rMFhYaldhVi9sYzlRV0ZQYkNsMXpi?=
+ =?utf-8?B?RFZlVzZ2UVNobFhwdkk5Nlp5OGhUblhjNUEyMSs4Qis4S0k1Y1IveE5OZ3NS?=
+ =?utf-8?B?THNMVmtJZS9lYkoyMGlIOGRQYVI2My9JWHJnUk1qeVJLY1hFbDNTZGJROTMy?=
+ =?utf-8?B?RmN1T1pKU2pjRGpjaHcySEdPczQvOTgrNFZBczBkcCt0MUxVajB1N3dNSitH?=
+ =?utf-8?B?akxiNGhmWktPYS9zVWRTQT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?T29DcUlXL1hodmJPaWVkWjMxYTFYN2FtZkFyNFQzMFU5Mk8vOXVtREY0dFhw?=
+ =?utf-8?B?SEw3RnUvRkIwckN2dlEzV2pNclFMaHM1bUlBN08zY3VBaW56dHBNcnZKL2Nx?=
+ =?utf-8?B?RldneGJwYkV0YUs4YjEwVktsQUlRQkpIQytKQnkyV1NkOWVobGFlWjdEU1Zv?=
+ =?utf-8?B?V3lLWm5WbTFmRnpNWWxGZXBnUXZRYStWdU1JNzgveWhxU05KTjd3Vm5SSkUw?=
+ =?utf-8?B?SlhpUUZsWjhyd3ZVczQ5cy9kcGU3Z0xnN0Uyd3RNbXBUZE5zZmRoclV2dXAr?=
+ =?utf-8?B?RUQyY1ljN083dUl4YWZVYTcycklaVDI2NkRnQjRTeG00QXE3bGdPLzJRbU4y?=
+ =?utf-8?B?WWUrUHdaZUtrM2ZqWGdvT09zc2FvOVZzd2RSclB5cEZRdU1seXdYQWsrQ0Fs?=
+ =?utf-8?B?eld2VjVyRk5Bd0hDaHljczFQM1RTb1dnWDF5ZGRMMnFCUXJROUpGc29rL2Vo?=
+ =?utf-8?B?MjRsY2dzazdyek5pS1plY2Q4a1Q1S1V5YlV2bzN3K3FYcnlOcmtpUFdsaUhE?=
+ =?utf-8?B?NXF4YVhKc2w5L09kOTBid0xZWUhtL3lMaFlpRkplbWIzZ0o0YXB1aE9zYzVp?=
+ =?utf-8?B?YlBNaFpwNmNhTGZYSGhwcDVoR2x0MGtycHNnZjMxQlVETHhCZjNsTGUzYXRR?=
+ =?utf-8?B?bjRFZzgrcjR0ODJoSHlZay9BK0l0SlBZekF1dEhJWm1xVkR1Zk1ra05Fb3Ix?=
+ =?utf-8?B?WjJONXc3bm9nS0RaMFl4bmRtdDJIbE1Kc1Erb0h0RnpIVGVndHJXcHJkMXQ5?=
+ =?utf-8?B?SFVqU3RBQ2ZTZ2hsV1I3RFcrV1k5SWNFUGhYUjMvUWFmT0NoS21xeHdlbUt4?=
+ =?utf-8?B?dE5vZkltSTY5KzRmNnVxMmlKRGU5blZFdHpHNFJQZXdMeExabkpwTExEcGs3?=
+ =?utf-8?B?SXJqbENqcUQwMG1zTjNUR3RrenRvUUkzbDhRakVVVTRDNnZhdHhJMnN5cHA0?=
+ =?utf-8?B?azluaTFtRzVsZDBVU0pjZTYrb1U4OXk5RUtxS3NzWnkwVzk4UWR0N3dtVUFp?=
+ =?utf-8?B?V2JRdDI4ZWRxRllyWW5CVXgzQnhCcUgvdXpqSFFuRnFGSnc2WDQxWlJZS3Bi?=
+ =?utf-8?B?YXpJN2FUaTNFSWVrQ0R3eHQ2OGNRdGxDNExLV1FlYUhCZmo0SFJqUGkxc2ZJ?=
+ =?utf-8?B?K1N2YkE0R0NyL0ZvTHIrMTZBMGxzT3RPUy9FSjhPOE9adzA1ZVZCOGpHSVRt?=
+ =?utf-8?B?RFFxMmZBZ2w0blFsTkJqTkhOVEtlQnFHUXRqQjNKRFllMTBRdG1tN21EbG1X?=
+ =?utf-8?B?U20yb2gwNDI2WEZvWlIvV1cxbkpKV1ljdjgwYnJmUE44S3dnaGYxTElWTHZR?=
+ =?utf-8?B?MFRvdC9GWTdPYzlBdmZzU25PYnRTa3RHQVlMZkk3VkhNcVZJd0pVTnJISTgr?=
+ =?utf-8?B?RFcvNHh3OFJ6RG9LVzNKNC9FalRBTjVpSk5sSjc3RnlXZUg4bWNuNHZmaFEz?=
+ =?utf-8?B?N3hFVzE2SmlsSE1TYkRIWlN1SjFkNWdZenNrV2EzR1FvUWdqSUtEdlIrNW02?=
+ =?utf-8?B?Y2RXMmh5clpoeEpnMlJQbnFTKy9PNGlWUkhzbWJBQXM2VUh2VUVlc3BxSWQv?=
+ =?utf-8?B?blJOcCs2NWhlQjJCUnRUVzFnZDgxeHZMQ2hsYno1dWJJb0dkOCt1ZHBwMVVW?=
+ =?utf-8?B?YnJqbEl6OEo2S0IzemtPWVR0U1Jacm9Sc29zMzNTekYyUWVpM1haSld4aElo?=
+ =?utf-8?B?M1hnUnBjRThZcVluZWsrenVkM0t6Z2pONzNxY3BsSjhPcXlPYzBxb2dBRGg1?=
+ =?utf-8?B?OUhOcHZ5aDE2RzRnTFU2dkZlU3RhZjh6Q0NUV05UZFlXdzc1L09WbXBRYXlq?=
+ =?utf-8?B?Y1VtWkRNN2lTVk9RNXhaNFd2MUxrVG94YXFQbnpZbGxIUzdXVWJ2bU0vVW41?=
+ =?utf-8?B?TzRsS1pVOE5MSSsrTG9aMDRadS9Nb3c5dmFLSVd3ZGxxbm16UXlINmZGZU1W?=
+ =?utf-8?B?bksxS0g4MWVPWXFTU1NnMFM2T0VQbG9SV1BtVDdmSXZKWFRlZmZIUjd2UWti?=
+ =?utf-8?B?V0xIMWxRTUl2K0xZb2h1b1lIR215TDZUSTlGVzIyWHo2T0lFRnlmUlRFVmJz?=
+ =?utf-8?B?alBobFQ5LzBicm9ONnBjNlBwZStNRWlMZDljU0lmRURIbHRiZGhncWRNc3lG?=
+ =?utf-8?B?TDI1RS94VU82SlhjRkVzdkRKdzRNZVFWVE5OY245VEM3cFdmK0FTYWpybFBY?=
+ =?utf-8?B?QUE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ccfe1d23-1642-4b78-aa9c-08dca7979e97
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2024 02:08:02.4521
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +2J4BUG5wiK6TJMxTPXQaeg/MRo96tIdh9TrYvfcSoZnx+cOXS7c5ltiG6/4WfqOJlTIJVCWkEsDsVzoTYcZ/rmSIgnb6C8cEqg6Fr0jj/4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6434
 
-On 2024-07-14 11:36 AM, Yuntao Dai wrote:
-> Add mailbox controller driver for cv18x SoCs, tested on mailbox-test
-> client.
-> 
-> Signed-off-by: Yuntao Dai <d1581209858@live.com>
-> ---
->  drivers/mailbox/Kconfig          |  11 ++
->  drivers/mailbox/Makefile         |   2 +
->  drivers/mailbox/cv1800-mailbox.c | 203 +++++++++++++++++++++++++++++++
->  3 files changed, 216 insertions(+)
->  create mode 100644 drivers/mailbox/cv1800-mailbox.c
-> 
-> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-> index 3b8842c4a..db856ec7e 100644
-> --- a/drivers/mailbox/Kconfig
-> +++ b/drivers/mailbox/Kconfig
-> @@ -286,4 +286,15 @@ config QCOM_IPCC
->  	  acts as an interrupt controller for receiving interrupts from clients.
->  	  Say Y here if you want to build this driver.
->  
-> +config CV1800_MBOX
-> +	tristate "cv1800 mailbox"
-> +	depends on OF
+Hi Conor,
+     Thanks for your reply. I will fix it to "Add compatible for....." 
+in next version.
 
-This dependency is not necessary once the probe function is fixed (see below).
-
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	help
-> +	  Mailbox driver implementation for Sophgo cv180x SoCs. This driver
-> +	  can be used to send message between different processors in SoC. Any
-> +	  processer can write data in a channel, and set co-responding register
-> +	  to raise interrupt to notice another processor, and it is allowed to
-> +	  send data to itself.
-> +
->  endif
-> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-> index 5cf2f54de..2c6db8c5c 100644
-> --- a/drivers/mailbox/Makefile
-> +++ b/drivers/mailbox/Makefile
-> @@ -62,3 +62,5 @@ obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
->  obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
->  
->  obj-$(CONFIG_QCOM_IPCC)		+= qcom-ipcc.o
-> +
-> +obj-$(CONFIG_CV1800_MBOX)	+= cv1800-mailbox.o
-> \ No newline at end of file
-
-Please add the missing newline.
-
-> diff --git a/drivers/mailbox/cv1800-mailbox.c b/drivers/mailbox/cv1800-mailbox.c
-> new file mode 100644
-> index 000000000..a3b214b4d
-> --- /dev/null
-> +++ b/drivers/mailbox/cv1800-mailbox.c
-> @@ -0,0 +1,203 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/kfifo.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/mailbox_client.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#define RECV_CPU 2
-> +
-> +#define MAILBOX_MAX_CHAN 0x0008
-> +#define MAILBOX_DONE_OFFSET 0x0002
-> +#define MAILBOX_CONTEXT_SIZE 0x0040
-> +#define MAILBOX_CONTEXT_OFFSET 0x0400
-> +
-> +#define MBOX_EN_REG(cpu) (cpu << 2)
-> +#define MBOX_DONE_REG(cpu) ((cpu << 2) + MAILBOX_DONE_OFFSET)
-> +
-> +#define MBOX_SET_CLR_REG(cpu) (0x10 + (cpu << 4))
-> +#define MBOX_SET_INT_REG(cpu) (0x18 + (cpu << 4))
-> +
-> +#define MBOX_SET_REG 0x60
-> +
-> +/**
-> + * cv1800 mailbox channel private data
-> + * @idx: index of channel
-> + * @cpu: send to which processor
-> + */
-> +struct cv1800_mbox_chan_priv {
-> +	int idx;
-> +	int cpu;
-> +};
-> +
-> +struct cv1800_mbox {
-> +	struct mbox_controller mbox;
-> +	struct cv1800_mbox_chan_priv priv[MAILBOX_MAX_CHAN];
-> +	struct mbox_chan chans[MAILBOX_MAX_CHAN];
-> +	u64 __iomem *content[MAILBOX_MAX_CHAN];
-> +	void __iomem *mbox_base;
-> +	int recvid;
-> +};
-> +
-> +static irqreturn_t cv1800_mbox_isr(int irq, void *dev_id)
-> +{
-> +	struct cv1800_mbox *mbox = (struct cv1800_mbox *)dev_id;
-> +	size_t i;
-> +
-> +	for (i = 0; i < MAILBOX_MAX_CHAN; i++) {
-> +		if (mbox->content[i] && mbox->chans[i].cl) {
-> +			mbox_chan_received_data(&mbox->chans[i],
-> +						mbox->content[i]);
-> +			mbox->content[i] = NULL;
-> +			return IRQ_HANDLED;
-
-Are you sure you only want to handle one channel per interrupt? Should this be
-"ret = IRQ_HANDLED;" or similar instead of early return? The same applies to
-cv1800_mbox_irq().
-
-> +		}
-> +	}
-> +	return IRQ_NONE;
-> +}
-> +
-> +static irqreturn_t cv1800_mbox_irq(int irq, void *dev_id)
-> +{
-> +	struct cv1800_mbox *mbox = (struct cv1800_mbox *)dev_id;
-> +	u64 __iomem *addr;
-> +	u8 set, valid;
-> +	size_t i;
-> +
-> +	set = readb(mbox->mbox_base + MBOX_SET_INT_REG(RECV_CPU));
-> +
-> +	if (!set)
-> +		return IRQ_NONE;
-> +
-> +	for (i = 0; i < MAILBOX_MAX_CHAN; i++) {
-> +		valid = set & (1 << i);
-> +		addr = (u64 *)(mbox->mbox_base + MAILBOX_CONTEXT_OFFSET) + i;
-> +		if (valid) {
-> +			mbox->content[i] = addr;
-> +			writeb(valid,
-> +			       mbox->mbox_base + MBOX_SET_CLR_REG(RECV_CPU));
-> +			writeb(~valid, mbox->mbox_base + MBOX_EN_REG(RECV_CPU));
-> +			return IRQ_WAKE_THREAD;
-> +		}
-> +	}
-> +
-> +	return IRQ_NONE;
-> +}
-> +
-> +static int cv1800_mbox_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +	struct cv1800_mbox_chan_priv *priv =
-> +		(struct cv1800_mbox_chan_priv *)chan->con_priv;
-> +	struct cv1800_mbox *mbox = dev_get_drvdata(chan->mbox->dev);
-> +	u64 __iomem *addr;
-> +	u8 en, valid;
-> +
-> +	int idx = priv->idx;
-> +	int cpu = priv->cpu;
-> +
-> +	addr = (u64 *)(mbox->mbox_base + MAILBOX_CONTEXT_OFFSET) + idx;
-> +	memcpy_toio(addr, data, 8);
-> +
-> +	valid = 1 << idx;
-> +	writeb(valid, mbox->mbox_base + MBOX_SET_CLR_REG(cpu));
-> +	en = readb(mbox->mbox_base + MBOX_EN_REG(cpu));
-> +	writeb(en | valid, mbox->mbox_base + MBOX_EN_REG(cpu));
-> +	writeb(valid, mbox->mbox_base + MBOX_SET_REG);
-> +
-> +	return 0;
-> +}
-> +
-> +static bool cv1800_last_tx_done(struct mbox_chan *chan)
-> +{
-> +	return true;
-
-Shouldn't this check MBOX_EN_REG(priv->cpu) or similar to check that the
-receiver has read the message?
-
-> +}
-> +
-> +static const struct mbox_chan_ops cv1800_mbox_chan_ops = {
-> +	.send_data = cv1800_mbox_send_data,
-> +	.last_tx_done = cv1800_last_tx_done,
-> +};
-> +
-> +static struct mbox_chan *cv1800_mbox_xlate(struct mbox_controller *mbox,
-> +					   const struct of_phandle_args *spec)
-> +{
-> +	struct cv1800_mbox_chan_priv *priv;
-> +
-> +	int idx = spec->args[0];
-> +	int cpu = spec->args[1];
-> +
-> +	if (idx >= mbox->num_chans)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	priv = mbox->chans[idx].con_priv;
-> +	priv->cpu = cpu;
-> +
-> +	return &mbox->chans[idx];
-> +}
-> +
-> +static const struct of_device_id cv1800_mbox_of_match[] = {
-> +	{ .compatible = "sophgo,cv1800-mailbox", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, cv1800_mbox_of_match);
-> +
-> +static int cv1800_mbox_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct cv1800_mbox *mb;
-> +	int irq, idx, err;
-> +
-> +	if (!dev->of_node)
-> +		return -ENODEV;
-
-No need for this check.
-
-> +
-> +	mb = devm_kzalloc(dev, sizeof(*mb), GFP_KERNEL);
-> +	if (!mb)
-> +		return -ENOMEM;
-> +
-> +	mb->mbox_base = devm_of_iomap(dev, dev->of_node, 0, NULL);
-
-Please use devm_platform_ioremap_resource() here, which abstracts away the OF node.
-
-> +	if (IS_ERR(mb->mbox_base))
-> +		return dev_err_probe(dev, PTR_ERR(mb->mbox_base),
-> +				     "Failed to map resource\n");
-> +
-> +	mb->mbox.dev = dev;
-> +	mb->mbox.chans = mb->chans;
-> +	mb->mbox.txdone_poll = true;
-> +	mb->mbox.ops = &cv1800_mbox_chan_ops;
-> +	mb->mbox.num_chans = MAILBOX_MAX_CHAN;
-> +	mb->mbox.of_xlate = cv1800_mbox_xlate;
-> +
-> +	irq = platform_get_irq_byname(pdev, "mailbox");
-> +	err = devm_request_threaded_irq(dev, irq, cv1800_mbox_irq,
-> +					cv1800_mbox_isr, IRQF_ONESHOT,
-> +					dev_name(&pdev->dev), mb);
-> +	if (err < 0)
-> +		return dev_err_probe(dev, err, "Failed to register irq\n");
-> +
-> +	for (idx = 0; idx < MAILBOX_MAX_CHAN; idx++) {
-> +		mb->priv[idx].idx = idx;
-> +		mb->mbox.chans[idx].con_priv = &mb->priv[idx];
-> +	}
-> +
-> +	err = devm_mbox_controller_register(dev, &mb->mbox);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to register mailbox\n");
-> +
-> +	platform_set_drvdata(pdev, mb);
-
-cv1800_mbox_send_data() could be called even inside
-devm_mbox_controller_register(), so this needs to be moved up.
-
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver cv1800_mbox_driver = {
-> +	.driver = {
-> +		.name = "cv1800-mbox",
-> +		.of_match_table = cv1800_mbox_of_match,
-> +	},
-> +	.probe	= cv1800_mbox_probe,
-> +};
-> +
-> +module_platform_driver(cv1800_mbox_driver);
-> +
-> +MODULE_DESCRIPTION("cv1800 mailbox driver");
-> +MODULE_LICENSE("GPL");
-
+On 2024/7/16 00:10, Conor Dooley wrote:
+> [ EXTERNAL EMAIL ]
 
