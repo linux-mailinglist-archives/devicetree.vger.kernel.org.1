@@ -1,224 +1,197 @@
-Return-Path: <devicetree+bounces-86880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C47C4937CF2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 21:26:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F9E0937D0D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 21:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4468B1F219CF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:26:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B4421C2137B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 19:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E3314831D;
-	Fri, 19 Jul 2024 19:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C231487D8;
+	Fri, 19 Jul 2024 19:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fdjp/qpa"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="1qLf8wa8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F1C148316;
-	Fri, 19 Jul 2024 19:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8801482F6
+	for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 19:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721417210; cv=none; b=sg9klwW9EnxsOe16uMHDjMMYxGA/1po/o1qs6NPsusy5fVFnhtyzHctJwgz+EwaeV1xChRh4feB7+dZeZXb3Yi5klvUPFWt9AI2Z0brNtAJewlJPXtNW6+dkbB5yZBTj2KmgJvLoCfEaBAykZ7h3o2QaXe1EWov4zPx2bY6WV3g=
+	t=1721419027; cv=none; b=MFaudo7LshVeXZhd/hdOciIk//+bH6uADb8DlWe6vybosziEyyp6kSrM8q0fBYp+o3wF/N1MR75IWThrJTIGNovzdyZq8c7EqPn4PtlfLNfqZbQmHFLnR3CzWF+F0vAl6NF2haEpbRF3Y1KgEDnU4fD9VjeUf9oq5BPP19Q3vpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721417210; c=relaxed/simple;
-	bh=GXID7sUUJz5rZS31UruWZvQ5m2atDnWZSGvi6Hj6dI0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Etx6LrqxVxoJozXpWOOuehaU/Zih3+X2ZyFVVgYY2XskCewg/gBl2kYLZHOfP3jNo6lnHZha/onV5qsezjXqaNRm0nsP1K+RkDuXcGOF3Jf2Ez5+iUlcEWeRkMhsLgg7WDuc8khOcjjf7d+u/SlDNmgdy+o6XLIqXHrsMHAs3lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fdjp/qpa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63A42C32782;
-	Fri, 19 Jul 2024 19:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721417209;
-	bh=GXID7sUUJz5rZS31UruWZvQ5m2atDnWZSGvi6Hj6dI0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fdjp/qpa9dofertM7AsvUjrc701tNHXdXsMFDwE9mNOsxbAN13Q12T+LxFVeTFZTV
-	 Qbq6P4Zs41ZrIFVwVSnzws0QCaqF5VFjKQ4DJcfIJIq3WC7RtDiDlDg2MN4v6YpeD4
-	 +GlbeKlvthIPV+WNorij4ShEN/mH5ijRt1T2arwLVKa16TyojThOOX8x2xZlhMXecd
-	 dX03BLBPut1V9QVmzEdvto3Uyvbye03VJkRHihzuKTNmaHXA7aWkPqr90PtDvthWTX
-	 23qWlxa9l+5PtxZbGJ7CFXcd6eIIKKqwJQfM/WEj2ksvuUdycJuaBrfvD8Xoehzl0d
-	 GUjnYP0Pf6rSw==
-Date: Fri, 19 Jul 2024 20:26:44 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-	Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA45AF01
-Message-ID: <20240719-abnormal-repulsive-fdefb72bdbe3@spud>
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-1-31b7f2f658a3@linaro.org>
- <20240715-scorn-canning-a7f23b9e2039@spud>
- <CAD=FV=U-nOMu-JDQ3T=ZRJ-rZ0BTtyzFVfnzbtCJdbRzAq3YMg@mail.gmail.com>
- <e017259b-bc62-4b57-9276-b834237225e1@kernel.org>
- <CAD=FV=VY5Ug3TfUo1RctiVQrHUjuod15HA8BxAyWdd_0bK8_Dw@mail.gmail.com>
- <20240718-frightful-naturist-a049ea7c0548@spud>
- <CAD=FV=VaGXMf6Srix6v=Me35BUN4B6ZHwebycka4Dbavqa5Vbw@mail.gmail.com>
- <CAD=FV=WyDF8LkPeHXTgsyDA74n+AjuHPQ1896ECDE17aYB9rtg@mail.gmail.com>
+	s=arc-20240116; t=1721419027; c=relaxed/simple;
+	bh=KkB0LKiiP3HMvRIhfAm3yM0pM8vg+pJ5iOZIl++tVg4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qnXuovkw7wm1blMGXVX+RaM4YzUAb2eIdfT06Up43lg9losIblqI9GA+6wR3vSWcDrz6uy8RpYzCIl/6kFEOzktA1kviLmlQzaI9QGB1Zz0u0Js5k8LLzxFGQg3lz1dlnqwImEuCMaxnpuDF8ACB3zY7ntI104PsDHLxX0TBzGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=1qLf8wa8; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a77e7420697so265844866b.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2024 12:57:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1721419024; x=1722023824; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=71CBKJ5o7I4cy2JXrEI11tVDU0uyHgYLiRo2v5Mi+QE=;
+        b=1qLf8wa8SqVB9/cKN37XVE0lWIlpHdAyBP8a7mRRLI3pAqYmQ7RJOvkDJxnXoBHiXy
+         xaVwN7ZOMyr625FAYcU+YRtcqy+fYx5xmXOv+pybljXyieZcwF02E8PPHV6wmjSx+WUw
+         B1WgnuD1EY+mffSkgngJB/ekltneBOFddYU/eWRoyG9gDi1WYtNt5CGjzLb9U/gN4TYq
+         NsA7ymp1ikPnReY23mOKqrlC2R3xv9Idg/5e6g5aVJzs17kEXYqnKEPTcoZiWZDdSC63
+         pHfU1OButbMpStpd9IclcR0/rap54Wyz56CBwbrsF7J1r/BAg3nyDgX7sJWQj7TI++Zg
+         bJ7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721419024; x=1722023824;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=71CBKJ5o7I4cy2JXrEI11tVDU0uyHgYLiRo2v5Mi+QE=;
+        b=lxwDAMQfZ0xLIac3S7XQdmNjeWym56RcKRratynkNWMjxt3sgP4xI8+Aogwa1p4DP6
+         a5oPkEPKLkLBhbWIlqT/sLm/Th3z5enEVaHtxvH5kjqidRmLHh3orYejkmQ/kSUuEYTf
+         /c2j6rTzWTA+Y+6zqv28tYkiDNeHVJg0cNYWxXO2kw032opNtbPE0lf1QoXtQiGFpwgM
+         O5XJHFtuw/d1fFK9l74dUEOk0Xm6EFGbaQ7QBOSUn+xaLt2NlZFOebhdhiHOsl0WEC8n
+         cm410qetwkYsddj6GOElBJF49b8hk2puKXAN36pRdlg3fh4mqbawALqluihJ+XB3COBC
+         E6Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCW46baZuZwu+4WDpUn4MOkMKb/d6qvmN5GDb93X61RIh7fH5ntp7yYyBZ9ZZ4F2MDE9gLTXTMQheRkimieRCDetAn47z65mGnsrNQ==
+X-Gm-Message-State: AOJu0YxkPHhi/ucwGmkl42ILOlyo5IKp/M2ecZsR+eXFP7Zb6h127IXs
+	0RDDgSgdr3Fl2uJaU4d21k1FS8xoxNkH0dmj/b2knuD2NJ/hvYfk2yBeN2jHj9WRW3evk8V00HF
+	JnDUFaj9DgPziIM+9szWIWlG7NgVff4O9lVpo3A==
+X-Google-Smtp-Source: AGHT+IGMKZ7Id6PZ9k5+krjiDl6iseri2cr1uDlMZ6EwfH9XwMKTFPCtWo++b63LltYV6CLMBQXdC/iIw073Dt+So4w=
+X-Received: by 2002:a17:906:fa1a:b0:a6f:b58f:ae3c with SMTP id
+ a640c23a62f3a-a7a0116c6acmr543296366b.26.1721419024408; Fri, 19 Jul 2024
+ 12:57:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="etBnI+HPKfHkVQk5"
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=WyDF8LkPeHXTgsyDA74n+AjuHPQ1896ECDE17aYB9rtg@mail.gmail.com>
-
-
---etBnI+HPKfHkVQk5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20240717180727.4180475-1-jesse@rivosinc.com> <20240717180727.4180475-4-jesse@rivosinc.com>
+In-Reply-To: <20240717180727.4180475-4-jesse@rivosinc.com>
+From: Evan Green <evan@rivosinc.com>
+Date: Fri, 19 Jul 2024 12:56:28 -0700
+Message-ID: <CALs-Hst+Wb4MNoN6y+pOF92+MLenGZqhcZUmZW+rW76DTECduA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] RISC-V: Check scalar unaligned access on all CPUs
+To: Jesse Taube <jesse@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Andrew Jones <ajones@ventanamicro.com>, Charlie Jenkins <charlie@rivosinc.com>, 
+	Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>, 
+	Eric Biggers <ebiggers@google.com>, Greentime Hu <greentime.hu@sifive.com>, 
+	=?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@rivosinc.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin <costa.shul@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Baoquan He <bhe@redhat.com>, 
+	Anup Patel <apatel@ventanamicro.com>, Zong Li <zong.li@sifive.com>, 
+	Sami Tolvanen <samitolvanen@google.com>, Ben Dooks <ben.dooks@codethink.co.uk>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	Erick Archer <erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 19, 2024 at 10:07:29AM -0700, Doug Anderson wrote:
-> Hi,
->=20
-> On Thu, Jul 18, 2024 at 7:59=E2=80=AFAM Doug Anderson <dianders@chromium.=
-org> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, Jul 18, 2024 at 7:56=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Thu, Jul 18, 2024 at 07:45:57AM -0700, Doug Anderson wrote:
-> > > > Hi,
-> > > >
-> > > > On Wed, Jul 17, 2024 at 11:19=E2=80=AFPM Krzysztof Kozlowski <krzk@=
-kernel.org> wrote:
-> > > > >
-> > > > > On 18/07/2024 02:21, Doug Anderson wrote:
-> > > > > > Conor (and/or) Krzysztof and Rob,
-> > > > > >
-> > > > > > On Mon, Jul 15, 2024 at 8:31=E2=80=AFAM Conor Dooley <conor@ker=
-nel.org> wrote:
-> > > > > >>
-> > > > > >> On Mon, Jul 15, 2024 at 02:15:37PM +0200, Stephan Gerhold wrot=
-e:
-> > > > > >>> The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has =
-backlight
-> > > > > >>> control over the DP AUX channel. While it works almost correc=
-tly with the
-> > > > > >>> generic "edp-panel" compatible, the backlight needs special h=
-andling to
-> > > > > >>> work correctly. It is similar to the existing ATNA33XC20 pane=
-l, just with
-> > > > > >>> a larger resolution and size.
-> > > > > >>>
-> > > > > >>> Add a new "samsung,atna45af01" compatible to describe this pa=
-nel in the DT.
-> > > > > >>> Use the existing "samsung,atna33xc20" as fallback compatible =
-since existing
-> > > > > >>> drivers should work as-is, given that resolution and size are=
- discoverable
-> > > > > >>> through the eDP link.
-> > > > > >>>
-> > > > > >>> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > > > >>
-> > > > > >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > >
-> > > > > > Can you comment on whether you would consider this bindings a "=
-Fix"
-> > > > > > since it's a dependency for later patches in this series (which=
- are
-> > > > > > "Fix"es) to pass dtbs_check? See:
-> > > > > >
-> > > > > > https://lore.kernel.org/r/4bca316a-2334-425b-87a6-e1bb241d26b5@=
-linaro.org
-> > > > >
-> > > > > The patch itself is not a fix, for sure, but it might be a depend=
-ency of
-> > > > > a fix (which you wrote above), thus could be pulled to stable as a
-> > > > > dependency.
-> > > > >
-> > > > > I do not care about dtbs_check warnings in stable kernels, mostly
-> > > > > because dtbs_check warnings depend heavily on dtschema and dtsche=
-ma
-> > > > > follows mainline kernel. Basically if you had warnings-free v6.8 =
-but try
-> > > > > to run dtbs_check now with latest dtschema, your results will dif=
-fer.
-> > > > >
-> > > > > At some point in the future, I could imagine "no new dtbs_check w=
-arnings
-> > > > > in stable kernels" requirement or at least preference, but so far=
- I
-> > > > > don't think there is any benefit.
-> > > >
-> > > > In this case it's not about whether it makes it to the stable kernel
-> > > > but about which main kernel it goes through.
-> > > >
-> > > > If we land the bindings in drm-misc-next right now then it'll be a
-> > > > long time before it makes it into Linus's tree because of the way t=
-hat
-> > > > drm-misc-next merges. It will make it to Linus's tree at 6.12. You =
-can
-> > > > see the drm-misc merging strategy at:
-> > > >
-> > > > https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
-> > > >
-> > > > If we land the dts change (a fix) through the Qualcomm tree as a fix
-> > > > then it should target 6.11.
-> > > >
-> > > > This means that the 6.11 tree will have a dtbs_check error because =
-it
-> > > > has the dts change (a fix) but not the bindings change (not a fix).
-> > > >
-> > > > One way to resolve this would be to treat this bindings as a "fix" =
-and
-> > > > land it through "drm-misc-fixes". That would make the bindings and
-> > > > device tree change meet up in Linux 6.11.
-> > > >
-> > > > Did I get that all correct?
-> > >
-> > > Is not not fairly established that a dependency for a fix can go onto=
- a
-> > > fixes branch even if it is not a fix in and of itself?
-> >
-> > That would certainly be my take on it, but DT folks confirmation was
-> > requested by Neil in:
-> >
-> > https://lore.kernel.org/all/4bca316a-2334-425b-87a6-e1bb241d26b5@linaro=
-=2Eorg/
->=20
-> FWIW, I'd rather not let this stagnate too long.
+On Wed, Jul 17, 2024 at 11:07=E2=80=AFAM Jesse Taube <jesse@rivosinc.com> w=
+rote:
+>
+> Originally, the check_unaligned_access_emulated_all_cpus function
+> only checked the boot hart. This fixes the function to check all
+> harts.
+>
+> Fixes: 71c54b3d169d ("riscv: report misaligned accesses emulation to hwpr=
+obe")
+> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
 
-I dunno if you were waiting for me (or Krzk/Rob) to reply, but I didn't
-cos I figured I'd already pretty much said there was nothing wrong with
-the prereq being on -fixes too.
-
-> I'm fairly confident
-> in my assertion that this should go into drm-misc-fixes. I'll give it
-> until Monday and then I'm just going to land this bindings change in
-> drm-misc-fixes. Shout soon if you feel strongly that I shouldn't do
-> this. If someone wants to flame me after the fact then so be it.
+Reviewed-by: Evan Green <evan@rivosinc.com>
 
 
---etBnI+HPKfHkVQk5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpq99AAKCRB4tDGHoIJi
-0l0OAQDgDeKH7xkylyak8cTIADfNinnQbAx11DwQn+bi/deCCQEA0wO9wfmFIs+C
-NcBqzAwjH7/KD1GefPSzjhaFBOMX9w4=
-=DvMW
------END PGP SIGNATURE-----
-
---etBnI+HPKfHkVQk5--
+> Cc: stable@vger.kernel.org
+> ---
+> V1 -> V2:
+>  - New patch
+> V2 -> V3:
+>  - Split patch
+> V3 -> V4:
+>  - Re-add check for a system where a heterogeneous
+>     CPU is hotplugged into a previously homogenous
+>     system.
+> V4 -> V5:
+>  - Change work_struct *unused to work_struct *work __always_unused
+> ---
+>  arch/riscv/kernel/traps_misaligned.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/arch/riscv/kernel/traps_misaligned.c b/arch/riscv/kernel/tra=
+ps_misaligned.c
+> index b62d5a2f4541..9a1e94383d6d 100644
+> --- a/arch/riscv/kernel/traps_misaligned.c
+> +++ b/arch/riscv/kernel/traps_misaligned.c
+> @@ -526,11 +526,11 @@ int handle_misaligned_store(struct pt_regs *regs)
+>         return 0;
+>  }
+>
+> -static bool check_unaligned_access_emulated(int cpu)
+> +static void check_unaligned_access_emulated(struct work_struct *work __a=
+lways_unused)
+>  {
+> +       int cpu =3D smp_processor_id();
+>         long *mas_ptr =3D per_cpu_ptr(&misaligned_access_speed, cpu);
+>         unsigned long tmp_var, tmp_val;
+> -       bool misaligned_emu_detected;
+>
+>         *mas_ptr =3D RISCV_HWPROBE_MISALIGNED_UNKNOWN;
+>
+> @@ -538,19 +538,16 @@ static bool check_unaligned_access_emulated(int cpu=
+)
+>                 "       "REG_L" %[tmp], 1(%[ptr])\n"
+>                 : [tmp] "=3Dr" (tmp_val) : [ptr] "r" (&tmp_var) : "memory=
+");
+>
+> -       misaligned_emu_detected =3D (*mas_ptr =3D=3D RISCV_HWPROBE_MISALI=
+GNED_EMULATED);
+>         /*
+>          * If unaligned_ctl is already set, this means that we detected t=
+hat all
+>          * CPUS uses emulated misaligned access at boot time. If that cha=
+nged
+>          * when hotplugging the new cpu, this is something we don't handl=
+e.
+>          */
+> -       if (unlikely(unaligned_ctl && !misaligned_emu_detected)) {
+> +       if (unlikely(unaligned_ctl && (*mas_ptr !=3D RISCV_HWPROBE_MISALI=
+GNED_EMULATED))) {
+>                 pr_crit("CPU misaligned accesses non homogeneous (expecte=
+d all emulated)\n");
+>                 while (true)
+>                         cpu_relax();
+>         }
+> -
+> -       return misaligned_emu_detected;
+>  }
+>
+>  bool check_unaligned_access_emulated_all_cpus(void)
+> @@ -562,8 +559,11 @@ bool check_unaligned_access_emulated_all_cpus(void)
+>          * accesses emulated since tasks requesting such control can run =
+on any
+>          * CPU.
+>          */
+> +       schedule_on_each_cpu(check_unaligned_access_emulated);
+> +
+>         for_each_online_cpu(cpu)
+> -               if (!check_unaligned_access_emulated(cpu))
+> +               if (per_cpu(misaligned_access_speed, cpu)
+> +                   !=3D RISCV_HWPROBE_MISALIGNED_EMULATED)
+>                         return false;
+>
+>         unaligned_ctl =3D true;
+> --
+> 2.45.2
+>
 
