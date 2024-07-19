@@ -1,100 +1,108 @@
-Return-Path: <devicetree+bounces-86813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E629378CB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 15:55:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8999378E7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:07:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D0AC1F2275F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 13:55:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7201C2134E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F684145359;
-	Fri, 19 Jul 2024 13:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4EB13F431;
+	Fri, 19 Jul 2024 14:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VxC4Lmim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4365613D501;
-	Fri, 19 Jul 2024 13:55:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709211442FB;
+	Fri, 19 Jul 2024 14:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721397338; cv=none; b=gqU8PhVEW5t0kUCQ7C+FJgMiOuFVOPr0xiHyA4SXM3vXcPVil+EomItuWQjfToN3Yv52i8tooyuY5CZ5c9uu0FJ1LAELiNKOk9/C9BsKjVdptoT1A8GXv0JYzG1BtKjJPaH42ViB+3sT7HlW5tjfzOwExvfxoD/wF4+UgKoJ+aw=
+	t=1721398050; cv=none; b=tKgtKHymM54/bnH8fU0gq2n8bxzStzyLhtVIXrQUdJZocCiyAneStSXiM55/XGqbqFZk7k07a3a+Xv+k0LBFdlbFUQ5cbt2NTsZdO6QjgKFQ0CNL8okHewG7VGBwdBFkZhyl49ef6n1mPtealMtzuzyuB8YHFL93aIwaqJbrI1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721397338; c=relaxed/simple;
-	bh=ZIiXo2w77qn44BvYh54hr81RAANN7X1cK2LMz7jEDZ0=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P5h8IbasZTyXiTvLabiaWQbfnfvZ5nORI//sD26X358YJxDjgzWgVg72AbDzO26/X+y/N7Fo3nmZKiyqwMWdALU8V2imJcCCDOM9P48D8h9Cm+xr0aw+Y/RWj4Zx6tScqQwAPkZ27tZCqgOaosOkDWgmE1ZEHGLgEHao1NJaB8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WQWNB0hNYz6K93S;
-	Fri, 19 Jul 2024 21:53:14 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 5FB5E140A08;
-	Fri, 19 Jul 2024 21:55:31 +0800 (CST)
-Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 19 Jul
- 2024 14:55:30 +0100
-Date: Fri, 19 Jul 2024 14:55:29 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens
-	<hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar
-	<mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul Adrian
- Glaubitz" <glaubitz@physik.fu-berlin.de>, Michael Ellerman
-	<mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linux-mips@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<sparclinux@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
-	<linux-cxl@vger.kernel.org>, <nvdimm@lists.linux.dev>,
-	<devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH 01/17] mm: move kernel/numa.c to mm/
-Message-ID: <20240719145529.00007542@Huawei.com>
-In-Reply-To: <20240716111346.3676969-2-rppt@kernel.org>
-References: <20240716111346.3676969-1-rppt@kernel.org>
-	<20240716111346.3676969-2-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1721398050; c=relaxed/simple;
+	bh=20zvaO11FrsyesRbtYuAMn98AAwtMwMZY+T2BXR0fPc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pThY70Z9W/iU78+JdWyBFDqx95BAFWuMTAnsqU0sS4utcJJxjLIa9xxasK6gfiD62BOE9KfWtEok7svk9THuG3AEU/L3y8sy9zY5WGyyIgIeePjG4oA9AQeGCSv2ZkvT53HACzeTuHutgSlTlS5T6pmTj0P+50MdQgpV7Q7Vn/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VxC4Lmim; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 558F8471;
+	Fri, 19 Jul 2024 16:06:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721398007;
+	bh=20zvaO11FrsyesRbtYuAMn98AAwtMwMZY+T2BXR0fPc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VxC4Lmim/3zV35bA9lJhqOlZXUxGxUNN37T3T8eL040PZajKVEGaFWYg7QJX3vYc8
+	 TbY664n9PNaNs2SpgRe5W2CY7gSYm7VxHmjEZ+lW1IRC4Lv6zvL2SMZaY8d92HR5SH
+	 KK7qaclJr374JAxm/fmcjlZWbX4GFVgvs3rhR+10=
+Date: Fri, 19 Jul 2024 17:07:11 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Clark Wang <xiaoning.wang@nxp.com>, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4 4/4] pwm: adp5585: Add Analog Devices ADP5585 support
+Message-ID: <20240719140711.GC637@pendragon.ideasonboard.com>
+References: <20240608141633.2562-1-laurent.pinchart@ideasonboard.com>
+ <20240608141633.2562-5-laurent.pinchart@ideasonboard.com>
+ <ZmcWi08u6-u4MyKu@surfacebook.localdomain>
+ <20240610152833.GW18479@pendragon.ideasonboard.com>
+ <CAHp75VfcTHty-Vzcc+B4iMk33qS_AafvU10Qn3AQftrfQRBebw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VfcTHty-Vzcc+B4iMk33qS_AafvU10Qn3AQftrfQRBebw@mail.gmail.com>
 
-On Tue, 16 Jul 2024 14:13:30 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+Hi Andy,
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+(CC'ing Mark)
+
+On Mon, Jun 10, 2024 at 07:31:11PM +0300, Andy Shevchenko wrote:
+> On Mon, Jun 10, 2024 at 6:28 PM Laurent Pinchart wrote:
+> > On Mon, Jun 10, 2024 at 06:06:51PM +0300, Andy Shevchenko wrote:
+> > > Sat, Jun 08, 2024 at 05:16:33PM +0300, Laurent Pinchart kirjoitti:
 > 
-> The stub functions in kernel/numa.c belong to mm/ rather than to kernel/
+> ...
 > 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > Andy, we're reaching a level of nitpicking and yakshaving that even I
+> > can't deal with. I will have to simply ignore the comments I disagree
+> > with.
+> 
+> Do you think using bulk APIs is nit-picking?
 
-Makes sense + all arch specific implementations are in arch/*/mm not
-arch/*/kernel so this makes it more consistent with that.
+In this case I do. If we were dealing with more 16-bit registers in this
+driver I would agree with you. This being said, I'd like to get this
+driver merged, and I'll burn some of the mental energy I've recovered
+thanks to the last two weeks of holidays and submit a v5 using the bulk
+API. It's getting mentally exhausting though.
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Overall, I think it would be nice to improve support for variable-length
+register maps, in a similar way as done in include/media/v4l2-cci.h.
+This driver, as well as many other drivers, could really benefit from
+it. Mark, do you have an opinion, is v4l2-cci something that we could
+fold in regmap itself ?
 
+-- 
+Regards,
+
+Laurent Pinchart
 
