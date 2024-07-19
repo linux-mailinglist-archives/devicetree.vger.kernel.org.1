@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-86819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFEE2937967
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:56:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8943F93796F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 16:59:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58D7B1F21A50
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:56:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0849B21D8D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2024 14:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D45143745;
-	Fri, 19 Jul 2024 14:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B5B143C5C;
+	Fri, 19 Jul 2024 14:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k0jemaZP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hqcu5kTg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173CE63D5;
-	Fri, 19 Jul 2024 14:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F24113D63B;
+	Fri, 19 Jul 2024 14:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721400984; cv=none; b=UXBE6ctvQWpG2y1zi+/c7/0FEP1B6dZypZh6a4A5GEdtJ6B3KsVINOdZcKEdN+G1jiSru1abk8f2EF02/Znbz/TTUUUgjIivHbyC5v+nJMtq5e2liEe5DM6NRwNbkaIerZfuJC1F94WjGQc6xMFuueG19/zTIInhikAi9FR9wAI=
+	t=1721401173; cv=none; b=qvrkxhf3C9gi6MV1qKc8qRjvDVeIsbljuHCwIe4v46e+a+SNsCDFNp2CI2Zx9lRox9q5+S1cBMelYx+52/MV1JOGmFQNfmcgVkedXxzH4KJZFORoaPSO1wpPkpJZW+rksZygUSO4ZJXgAK7CHFG+4eiWeqhwZ7XoetfskgMK+3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721400984; c=relaxed/simple;
-	bh=O4VyP2W3zOx8GnJ6GGdeDrEQ0pQ9+VnTxkj3ZXK45K4=;
+	s=arc-20240116; t=1721401173; c=relaxed/simple;
+	bh=riKWNj9ymyyL39s71PP994WyzSU+759xl9rDSHnUAF8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fo4dBJ26jXZ2ySB2+B30cN8Il7/VG+MQrOwzJyqlLluHLDg6AfP4HogIAk+73vMq9gQv567YKDaLfG2iuqEe69zMafFoB9YxQ1KRBtgGJE1Sh8D2ocszoYtuGPrFD9dvmDW0xFFBQc9Nqo6aJLvhRjhfXO/03iU03s7h1KVyt3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k0jemaZP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3C00C32782;
-	Fri, 19 Jul 2024 14:56:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uv4QKm/JChaHT/KZPx3YBBcUaiv/q+XcfeayD9zXJ1j6ct4BtfUQRQsSVjd+5ikXf10oOKeUmsHc/SOD6WuoS1RlyMAgQIXQcfP8Yo35g86XIULsFx2qG9o/FyyctbBSU9TjmF2Cq/UenQcjBMbVE1B8sdqcqJQKxS4T6z212L8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hqcu5kTg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3AEFC32782;
+	Fri, 19 Jul 2024 14:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721400983;
-	bh=O4VyP2W3zOx8GnJ6GGdeDrEQ0pQ9+VnTxkj3ZXK45K4=;
+	s=k20201202; t=1721401172;
+	bh=riKWNj9ymyyL39s71PP994WyzSU+759xl9rDSHnUAF8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k0jemaZP5wjp3mEEiFLCCM/9U+enircAvC6L6HVtSrOSoCYvQ7i1QDvnv54UiqHVj
-	 0uxEoXD0X+wYz7X5xkspXENPNSS6C3c3yVnQ8e2i9I02dFsrEa1y9WuvhhecbWTHuA
-	 hdC8geb0kUyiPaBTTa5BCLwr0uwBWvmUZ+F+7LvZN86X2l5r2KmNRzKx2P5fggiHbU
-	 Fz7f2Q6NJLuRM4aZ3IfqNfvxhSGOeJHX/hv/Je0smz8xbuhcCFRqGq6dWBYEc3Z2/N
-	 0HKQgPPOOOOFcJwNYvCa0c3qn3jqwQyEs9qdKorRzvJxY1F2WyuyTyc9Vc9vL3Ta4Q
-	 7S5hGiyasdHiQ==
-Date: Fri, 19 Jul 2024 15:56:19 +0100
+	b=Hqcu5kTgtqSNGXwpr+rLf04U8saJ0oT+7KTOqaK5tIjgB49z7iYXDKoh002v28T47
+	 KHyA5ZaXNQsi2hio+QNnXJ8uwE6iQppaC9K+BWrJQhHPfQnyGq3KC3s5pkiMo8dRiE
+	 RFplIazgJJqcuOewPcVf8x7dtkusX1kR6fsneJl3lRbSyTyzXgXvxrWZamOk6hqoNk
+	 m1wTGrmoVGkd27pfCG1MUL9lGyTfUwcjb9LqCSzpWsAwp9D2nt5HgS/QvlaLEebiBa
+	 6NOf4oUk6/EdVNVJ7XcCGHbqilRXLwYCwdm4i7yUI/13ZUPJGF+/wV9tnCX/OlNNDe
+	 lkl4tuS9RJjTQ==
+Date: Fri, 19 Jul 2024 15:59:26 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: axg-audio: add earcrx clock ids
-Message-ID: <20240719-whenever-wanting-bf631afa4663@spud>
-References: <20240719093934.3985139-1-jbrunet@baylibre.com>
- <20240719093934.3985139-2-jbrunet@baylibre.com>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: adrian.hunter@intel.com, aou@eecs.berkeley.edu, conor+dt@kernel.org,
+	guoren@kernel.org, inochiama@outlook.com, jszhang@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com, tingzhu.wang@sophgo.com,
+	Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH v5 6/8] dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo
+ SG2042 support
+Message-ID: <20240719-catnip-pushup-81d3e104de7b@spud>
+References: <cover.1721377374.git.unicorn_wang@outlook.com>
+ <55bc60606bc9b2558eeddb00fd8b659d3fcd69ff.1721377374.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,33 +65,162 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tN+3GRhTz2+PxInK"
+	protocol="application/pgp-signature"; boundary="mebK71Pev/WbD3jG"
 Content-Disposition: inline
-In-Reply-To: <20240719093934.3985139-2-jbrunet@baylibre.com>
+In-Reply-To: <55bc60606bc9b2558eeddb00fd8b659d3fcd69ff.1721377374.git.unicorn_wang@outlook.com>
 
 
---tN+3GRhTz2+PxInK
+--mebK71Pev/WbD3jG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 19, 2024 at 11:39:30AM +0200, Jerome Brunet wrote:
-> Add clock IDs for the eARC Rx device found on sm1 SoCs
+On Fri, Jul 19, 2024 at 04:46:50PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 >=20
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> SG2042 use Synopsys dwcnshc IP for SD/eMMC controllers.
+>=20
+> SG2042 defines 3 clocks for SD/eMMC controllers.
+> - EMMC_100M/SD_100M for cclk(Card clocks in DWC_mshc), so reuse
+>   existing "core".
+> - AXI_EMMC/AXI_SD for aclk/hclk(Bus interface clocks in DWC_mshc)
+>   and blck(Core Base Clock in DWC_mshc), these 3 clocks share one
+>   source, so reuse existing "bus".
+> - 100K_EMMC/100K_SD for cqetmclk(Timer clocks in DWC_mshc), so reuse
+>   existing "timer" which was added for rockchip specified.
+>=20
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 60 +++++++++++++------
+>  1 file changed, 43 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yam=
+l b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> index 4d3031d9965f..80d50178d2e3 100644
+> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> @@ -10,9 +10,6 @@ maintainers:
+>    - Ulf Hansson <ulf.hansson@linaro.org>
+>    - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+> =20
+> -allOf:
+> -  - $ref: mmc-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -21,6 +18,7 @@ properties:
+>        - snps,dwcmshc-sdhci
+>        - sophgo,cv1800b-dwcmshc
+>        - sophgo,sg2002-dwcmshc
+> +      - sophgo,sg2042-dwcmshc
+>        - thead,th1520-dwcmshc
+> =20
+>    reg:
+> @@ -31,22 +29,11 @@ properties:
+> =20
+>    clocks:
+>      minItems: 1
+> -    items:
+> -      - description: core clock
+> -      - description: bus clock for optional
+> -      - description: axi clock for rockchip specified
+> -      - description: block clock for rockchip specified
+> -      - description: timer clock for rockchip specified
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Does anyone know what "for rockchip specified" means? Is meant to be "for
+rockchip specifically"? If it is, should probably be actually
+constrained! Patch itself seems fine though and I don't think it's your
+responsibility to fix that, so
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---tN+3GRhTz2+PxInK
+Cheers,
+Conor.
+
+> -
+> +    maxItems: 5
+> =20
+>    clock-names:
+>      minItems: 1
+> -    items:
+> -      - const: core
+> -      - const: bus
+> -      - const: axi
+> -      - const: block
+> -      - const: timer
+> +    maxItems: 5
+> =20
+>    resets:
+>      maxItems: 5
+> @@ -63,7 +50,6 @@ properties:
+>      description: Specify the number of delay for tx sampling.
+>      $ref: /schemas/types.yaml#/definitions/uint8
+> =20
+> -
+>  required:
+>    - compatible
+>    - reg
+> @@ -71,6 +57,46 @@ required:
+>    - clocks
+>    - clock-names
+> =20
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: sophgo,sg2042-dwcmshc
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: core clock
+> +            - description: bus clock
+> +            - description: timer clock
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +            - const: bus
+> +            - const: timer
+> +    else:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
+> +          items:
+> +            - description: core clock
+> +            - description: bus clock for optional
+> +            - description: axi clock for rockchip specified
+> +            - description: block clock for rockchip specified
+> +            - description: timer clock for rockchip specified
+> +        clock-names:
+> +          minItems: 1
+> +          items:
+> +            - const: core
+> +            - const: bus
+> +            - const: axi
+> +            - const: block
+> +            - const: timer
+> +
+>  unevaluatedProperties: false
+> =20
+>  examples:
+> --=20
+> 2.34.1
+>=20
+
+--mebK71Pev/WbD3jG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpp+kwAKCRB4tDGHoIJi
-0j8WAPwOPdUj59+e34f5LjrClNS9PlsaIwClbL5o8IH1WiCsmgEA6vxkUeYWF2D5
-7qSl94g+GTRwcPCJr3bhHsSBE0J5zwY=
-=lfNB
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZpp/TgAKCRB4tDGHoIJi
+0qRSAQCcxNgXXQFBflYmeBWap/fYoOK6l9k5GvMV4TcSeNbazAEAt9rJueFEhCG0
+M64Ytc4yOLvPk7XxHj6Mt7x1DATCXg8=
+=+Shv
 -----END PGP SIGNATURE-----
 
---tN+3GRhTz2+PxInK--
+--mebK71Pev/WbD3jG--
 
