@@ -1,258 +1,153 @@
-Return-Path: <devicetree+bounces-86968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2450D93823E
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 19:10:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF6793826B
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 20:23:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A57BF1F212AD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 17:10:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCA0FB210BA
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 18:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA0F1474BA;
-	Sat, 20 Jul 2024 17:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7D8145B00;
+	Sat, 20 Jul 2024 18:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UjHdkeVx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZZYVO6mr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F43372;
-	Sat, 20 Jul 2024 17:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606313D66;
+	Sat, 20 Jul 2024 18:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721495407; cv=none; b=OYSKCZMh9q0FYgWgjq3YH4CJ6eIpstQ1QQ4ocNTc+EAHoTdo8MkLwUP4SoPS4tNXicDznYnvrsd3ZPvVwdW8rCJf7KS6iKrJv4Ca/lavuiG9Jat4zSmAi0IJDWwyC6L/UoG6lpffHuzDat2IMq3BgF1mQKVT1+iFARCtFyOIVqA=
+	t=1721499796; cv=none; b=Od2pXY9JrS4NsHSF8JxUpoonyDf0FGjzceMBqNML123jLfJ8uTvAqycHwIK5sUpe9pMcGuPXStIJBF7dulEH6Qrk87HRe+AeT4vMUuVu4PTYdqGOasXKZWTvP19Rm5hO8j0Msoie43xhtIJrmmrqESmSKpekMLvqcvV+L8tNXRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721495407; c=relaxed/simple;
-	bh=CFrSdp9lLtd/lPFcuRMQ+Pi/13dsyBIxk8CF5fsmOMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=INaDKWNR9x/rJZe9K9Cu/VAZBrU0nc6dYmaSjU/q4+dDeoiaHkVr0AQDyTjzdkWd3xO0q3YYn0+4Npb+oyhlj3Caw7np5h/HDOOZQffydE3TzVF/8wsUmISPX/9G9Ww0iSLDhu/vfyNa7n2NrpNJcq1E+y31T2tFzLEvR1Fqv3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UjHdkeVx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BD97C2BD10;
-	Sat, 20 Jul 2024 17:10:03 +0000 (UTC)
+	s=arc-20240116; t=1721499796; c=relaxed/simple;
+	bh=GGD7e1WPDlKXCrtZ5zhf0FpwK1+55QyJ/frvI+THLkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ecded8N4/4eIkUQIR0F/WTOV53evWWRCfB3rzKjMrbKJXsTxZ66X1mS/3HwmHRZb2EHevFd/+JwLhHvXIiFQSTql0V3iVwPrEqYZgMJsuTe5JGkqEgCZnknw9VnRxY+/FUuJXHvE0jAbQab/FzSBYYCZ2tKkBAkCaSF4Awriag0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZZYVO6mr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FE98C2BD10;
+	Sat, 20 Jul 2024 18:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721495406;
-	bh=CFrSdp9lLtd/lPFcuRMQ+Pi/13dsyBIxk8CF5fsmOMY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=UjHdkeVxqI4N0kn16tmORzpNwma5jfApL7TT+YUEHZyydwpCYrAhhP8W9/H0zVF/+
-	 7uzSmPb3RLmdhGZ5G+PIFiEYA7ylhATQTUQoM46NSgD6BgGtTETKFDtHvzn5TY+q7p
-	 Tz4u4hB8vgUOTjvhlJuT12Bg4TkuzsfVfqJCMxkWBLajUyVDu9yP61Aa64TybT1GeF
-	 wThq2Z9tZ7bf4PbfRsdLtSfPJ+vo/DEzMbgWK2q0mbeM2J5+9GD8oudHFlpfR0DeZ0
-	 lRJn+gy5avfWQeBdABBBV+9r+J37A87v8ZdndqpKcDvzSjwe+iu6XlN7Rq3uimwDMW
-	 ZokR7ttRGMN/w==
-Date: Sat, 20 Jul 2024 18:09:59 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: <marius.cristea@microchip.com>
-Cc: <lars@metafoo.de>, <robh+dt@kernel.org>,
- <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: adding support for
- PAC194X
-Message-ID: <20240720180959.23540945@jic23-huawei>
-In-Reply-To: <20240719173855.53261-2-marius.cristea@microchip.com>
-References: <20240719173855.53261-1-marius.cristea@microchip.com>
-	<20240719173855.53261-2-marius.cristea@microchip.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=k20201202; t=1721499795;
+	bh=GGD7e1WPDlKXCrtZ5zhf0FpwK1+55QyJ/frvI+THLkA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZZYVO6mrSUpPMavfPhY/ZBIZM/HE7dSxINWhEQkbg+mTpfjsGM38b20kZszA1SLJJ
+	 96OCnKRujwHWeXJtjzMUHOo2LfOF0WyxCvQtSHGI2Fsh2sU+cKHwkIABifVpbnkrv1
+	 RT5FVURlgoDiclNQTNuFtfMgeYD11ezxaJ1/G1mD2OufOp++zWIEpI2UQC8eWQnrdt
+	 jIcNT9Vy8/UGX5v0eqFyrDA6rzJDJSlGxJ0glPnMju4bOkrAASXLgHJQZRN+7rHrxO
+	 6sRv/XXSwaW5D6RnrqQAHIEMg+QhSqiNcxvHE7SZDbDvRBcJ+GTgR61Qc+l+pi4p+w
+	 g084DiCEF7xGA==
+Message-ID: <a88faea2-662c-4c19-96b5-bfa423cd826c@kernel.org>
+Date: Sat, 20 Jul 2024 20:23:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 2/4] arm: dts: marvell: armada-38x: add description
+ for usb phys
+To: Josua Mayer <josua@solid-run.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20240716-a38x-utmi-phy-v2-0-dae3a9c6ca3e@solid-run.com>
+ <20240716-a38x-utmi-phy-v2-2-dae3a9c6ca3e@solid-run.com>
+ <44ce546d-c043-44ad-9e2c-eaf052e5531b@kernel.org>
+ <2a7936ef-3a50-49df-b6a9-337b38d33c57@solid-run.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <2a7936ef-3a50-49df-b6a9-337b38d33c57@solid-run.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Fri, 19 Jul 2024 20:38:54 +0300
-<marius.cristea@microchip.com> wrote:
+On 20/07/2024 15:19, Josua Mayer wrote:
+> Am 17.07.24 um 14:04 schrieb Krzysztof Kozlowski:
+>> On 16/07/2024 22:52, Josua Mayer wrote:
+>>> Armada 38x has 3x USB-2.0 utmi phys. They are almost identical to the 2x
+>>> utmi phys on armada 8k.
+>>>
+>>> Add descriptions for all 3 phy ports.
+>>>
+>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
+>>> ---
+>>>  arch/arm/boot/dts/marvell/armada-38x.dtsi | 29 +++++++++++++++++++++++++++++
+>>>  1 file changed, 29 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dts/marvell/armada-38x.dtsi
+>>> index 446861b6b17b..701a1c0c19ad 100644
+>>> --- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
+>>> +++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
+>>> @@ -392,6 +392,11 @@ comphy5: phy@5 {
+>>>  				};
+>>>  			};
+>>>  
+>>> +			syscon0: system-controller@18400 {
+>>> +				compatible = "syscon", "simple-mfd";
+>> That's not a valid pair. They cannot be alone.
+> Curious! I have seen it in armada-cp11x.dtsi.
 
-> From: Marius Cristea <marius.cristea@microchip.com>
-> 
-> This is the device tree schema for iio driver for
-> Microchip PAC194X and PAC195X series of Power Monitors with Accumulator.
-Hi Marius
+Old code, I don't think anyone is working on armada and other Marvell
+chips, so by copying old code you will copy bugs or wrong designs. I can
+only suggest to work on recent platform where such oddities are fixed...
 
-Good to add a tiny bit either here or in below description for why
-there are so many part numbers.
-
-Looks like mixture of number of channels and high vs low side monitors.
-And the big number is about voltage range?
-
-Other comments inline.
-
-Thanks,
-Jonathan
-
-> 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
->  .../bindings/iio/adc/microchip,pac1944.yaml   | 168 ++++++++++++++++++
->  1 file changed, 168 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
-> new file mode 100644
-> index 000000000000..e997a4d536e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
-> @@ -0,0 +1,168 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1944.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PAC1944 and PAC1954 Power Monitors with Accumulator
-> +
-> +maintainers:
-> +  - Marius Cristea <marius.cristea@microchip.com>
-> +
-> +description: |
-> +  This device is part of the Microchip family of Power Monitors with Accumulator.
-> +  The datasheet for PAC1941_1, PAC1941_1, PAC1942_1, PAC1942_2, PAC1943_1 and PAC1944_1 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC194X-Family-Data-Sheet-DS20006543.pdf
-> +  The datasheet for PAC1951_1, PAC1951_1, PAC1952_1, PAC1952_2, PAC1953_1 and PAC1954_1 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC195X-Family-Data-Sheet-DS20006539.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pac1941_1
-> +      - microchip,pac1941_2
-> +      - microchip,pac1942_1
-> +      - microchip,pac1942_2
-> +      - microchip,pac1943_1
-> +      - microchip,pac1944_1
-> +      - microchip,pac1951_1
-> +      - microchip,pac1951_2
-> +      - microchip,pac1952_1
-> +      - microchip,pac1952_2
-> +      - microchip,pac1953_1
-> +      - microchip,pac1954_1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  interrupts:
-> +    maxItems: 2
-Need names as annoyingly people often wire just the second one
-(I've never understood why!)
-
-> +
-> +  slow-io-gpios:
-> +    description:
-> +      A GPIO used to trigger a change is sampling rate (lowering the chip power
-> +      consumption). If configured in SLOW mode, if this pin is forced high,
-> +      sampling rate is forced to eight samples/second. When it is forced low,
-> +      the sampling rate is 1024 samples/second unless a different sample rate
-> +      has been programmed.
-> +
-> +  microchip,gpio:
-> +    type: boolean
-> +    description:
-> +      In default mode, this pin is a GPIO input pin. It can be
-> +      configured to be an output pin, as well as the ALERT2
-> +      function. This pin is an open-drain configuration and
-> +      needs a pull-up resistor to VDD.
-
-This one is a bit odd.
-Can we do that configuration based on whether anyone requests it
-or if it is wired as alert2?
-
-So I don't think we should need this binding, but we may need
-the stuff to provide a gpio.
-
-
-Also, oddly short wrap.
-
-
-
-> +
-> +patternProperties:
-> +  "^channel@[1-4]+$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    description:
-> +      Represents the external channels which are connected to the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 1
-> +          maximum: 4
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description:
-> +          Value in micro Ohms of the shunt resistor connected between
-> +          the SENSE+ and SENSE- inputs, across which the current is measured.
-> +          Value is needed to compute the scaling of the measured current.
-> +
-> +      microchip,vbus-mode:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The VBUS could be configured into the following full scale range (FSR)
-Key with these range things is to make it clear why they are a wiring thing
-rather than something userspace should control.  Perhaps you can add
-some detail on that here?
-
-> +            <0>  -  VBUS has unipolar +32V to 0V FSR (default)
-> +            <1>  -  VBUS has bipolar +32V to -32V FSR
-> +            <2>  -  VBUS has bipolar +16V to -16V FSR
-> +        maximum: 2
-> +
-> +      microchip,vsense-mode:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The VSENSE could be configured into the following full scale range (FSR)
-> +            <0>  -  VSENSE has unipolar +100 mV to 0V FSR (default)
-> +            <1>  -  VSENSE has bipolar +100 mV to -100 mV FSR
-> +            <2>  -  VSENSE has bipolar +50 mV to -50 mV FSR
-> +        maximum: 2
-> +
-> +      microchip,accumulation-mode:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-Why is this a hardware thing? Is it specific to particular wiring?
-Not sure this one belong in DT.
-
-> +        description:
-> +          The Hardware Accumulator could be configured to accumulate
-> +          VPOWER, VSENSE or VBUS
-> +            <0>  -  Accumulator accumulates VPOWER (default)
-> +            <1>  -  Accumulator accumulates VSENSE
-Add some info on what this is for (charge measurement)
-Thankfully there is a nice section on why you'd want to do this in the datasheet
-as only the power option made sense to me.
-There is a nice statement that you might do this as an extreme form
-of oversampling as well.
-
-> +            <2>  -  Accumulator accumulates VBUS
-
-
-> +        maximum: 2
-> +
-> +    required:
-> +      - reg
-> +      - shunt-resistor-micro-ohms
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-Basic power supplies should always be here as chips tend not to run without
-power.  Note that doesn't mean a dts needs to actually list them if they are always
-on as the regulator framework will provide stubs etc.
-
-Jonathan
-
+Best regards,
+Krzysztof
 
 
