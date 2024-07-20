@@ -1,48 +1,76 @@
-Return-Path: <devicetree+bounces-86975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F36938281
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 20:30:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57502938284
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 20:37:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0234F283B6D
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 18:30:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C6A8B211B9
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 18:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 151581422DF;
-	Sat, 20 Jul 2024 18:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD1714882D;
+	Sat, 20 Jul 2024 18:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I29YE8YR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZWUXVxqe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04DB1B86E6;
-	Sat, 20 Jul 2024 18:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A08C147C8B
+	for <devicetree@vger.kernel.org>; Sat, 20 Jul 2024 18:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721500242; cv=none; b=bLDxEmbEcVpbRRH2Q9Sg2PpucK4jpFHKwhLKmoI9zzkfjc24YDuvycVkM+Jertu6aaWvrgDWguWjbycqDaNXCc8WJQqdOu+/8UhPfbWa/DPMBK7Jwlyfe3MsF04SF+Z8+iXYWvCG31bJJ3UOlzz46kVa3w0Tp8/MquBT5SO4qyY=
+	t=1721500620; cv=none; b=FE95Y/Su1jnm429sEu7FR93CpJPwhH8kyGlZ+6Z382zffX9KTPzAaAJHzYbzGa9YULa3wnx2X9tMs7hQCZ5MHZMEOj1P7H9TjBorHMI7/uCzAaDtUtl2USr1jUjad5btw7HzMmY354jcH9ZoEx6IIpbhvvgLUXZu9Ul/NXCbN3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721500242; c=relaxed/simple;
-	bh=N0thndlb9Rc77vx54WY3aUNoYfyGWgbYGRzNclFlqZY=;
+	s=arc-20240116; t=1721500620; c=relaxed/simple;
+	bh=ZKIO3SiHI2aNH3Zza1cA0din4KBtqIg9eGSV4QXGOz8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Edai0Ecgst/hhcqy+MjNQbdM3IVe8OW31NG0TD8Cu6m/pLSJ8y0LUI8OLZvtI54xLkn0Z0vHxAEW/SPl0xfo5s4EuJT+J4RCcgT0Cts4PDsa/NwJUfICXL/+wLE8/yX1wFFP/YK3apZGaZBtgmtyNdslKea4Eg3YG5IunnnVfNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I29YE8YR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D5FC2BD10;
-	Sat, 20 Jul 2024 18:30:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721500241;
-	bh=N0thndlb9Rc77vx54WY3aUNoYfyGWgbYGRzNclFlqZY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I29YE8YRAm9zGA5TQZHMSFZqt87/BaRjiJ+i7d4OAdPq6jWdlYrJ7Y3T0AOF5zDYO
-	 DL65OGlJGpcB1DPYlkJ/jYHK4ZpG44oHXw9Gq0Nz0A/tNCaqTMrxMmQq6Js+G4szKu
-	 +9B9VOahOP/LvDjE77Wf/I6SB3DeYW/jUAb/yf94goaN+vyyD6mWwyZSq62GtVTvEo
-	 TZZ9TYR5kYC9ax0FCLh7KnZYrQXWaHb/264z7jxn1Xkd+4Gt9kwjfdC41qi4bsYgdd
-	 Z/W1aataRLkCS70MgIOZ30Vnw5FWkAhhZeDABHZs3yF+ihy3Y5Fjx8M7s5Ejvqm7w6
-	 ZcS293U3O7tNw==
-Message-ID: <24aee2d7-927b-4ea0-bb34-e8f63d8e7856@kernel.org>
-Date: Sat, 20 Jul 2024 20:30:29 +0200
+	 In-Reply-To:Content-Type; b=XU0oT9BXrHJtF/onWi5FKR0K7s/laUQNtI81lKd8IRR0nVshNZFl/2th4TLWcTYeXRWv1oLEvayPkggYc+kSZgY1sSJFHScPO6DpR3gOfHuSWnQ+ycChwmjSlYSjzTTytriP/y+VBQTiA3xdvkFsVHEYtdMyXFK+mqimy4zYaQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZWUXVxqe; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a77e7a6cfa7so305978566b.1
+        for <devicetree@vger.kernel.org>; Sat, 20 Jul 2024 11:36:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721500616; x=1722105416; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qCQtjnXMEUWUTc8hV0IMhc17eAOdlOv66Z2aD9mwVx4=;
+        b=ZWUXVxqeASzVpvIT2Hm8pqO+Gb4PkOpPyZaDVYoDjUXLGjWcQvF3vZGaGyuQwtSnTb
+         b5XW7FJ8TpYkjYQNg4kSv9MT+Fz/v8IlJh3uBlsOSFAYm6PctX2rCxPYWMUkP5SU+Ad3
+         LkLtH6B87xLRXLcsWAkynS/H243pElTEQRJkZCcu4OGSn6lC3i8F8OG6G7haUSoD7XpA
+         usbXXQRniKQphSfmxbw3zAgGnIpxGmzAAhXdfxozpaTNevaon+rNpn/5A24qRIAhoM/d
+         Ea1MBFLhEp9Xdo38udPe0QUXhqtfbUv/Cck0GMcOICwEDs8jmSaDLbjnSDXrIE8pNQVE
+         XDqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721500616; x=1722105416;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qCQtjnXMEUWUTc8hV0IMhc17eAOdlOv66Z2aD9mwVx4=;
+        b=oy3PDcnLoRMrfsbdizKhD3IfkKfvff58TgRNevtqw1ldabmadVgTjEtXtd1eDss+7t
+         Zb3YNtMY2tOZgXtsq75L6n73lbhhfcvGDwf+5cfgC+j3yBBoJUHPKoukCKHRM0NuKFax
+         j6dgiIcRlvBUC64+OGdWOvdOQSG1RWxCIYBxyDjqtSJ1yFSq9kh+aVWX3b97JzUo+/Il
+         ljyL898PDvwV7QOhizcEHl7dgyCy5P5/u739oFIlapNCZyJd2FcR4wQgfmnR61Q1UDsi
+         ESGDvIZn4D/NrWlhEyH7AKstNhrtnFxuK5XX06YhS3ZD+OTVXLS/EQyTSfE9HKomUDL/
+         Yw4g==
+X-Forwarded-Encrypted: i=1; AJvYcCXBRZoLeupFFsTOb6Gi9STmA3NrCikMOGhaZTEYk0cThIEPSqYGd2cgoDgEFsCEsJsMQ9FOxRZFu8mV4H1JhW1kjNgP804GCXjgJg==
+X-Gm-Message-State: AOJu0YwHD6fibXnsdGELkkYqGhc2/vlJoqeGeB2VDEI8gkHZ47aPKKEj
+	pTRL62+QeEMr5gydLr53H4VCUMAyMhqhZgH3T/8+TcGhwdBFWjY3k+GQgsh1JHDL2aLK3JsJQ5A
+	S/Rs=
+X-Google-Smtp-Source: AGHT+IH83frn1+Gb5cJqtdw5n3MblQU0FABo7yKn6o/OfQE7BVKdzMI8tONJ45eAfTFsSd8mW6gN9A==
+X-Received: by 2002:a17:906:578c:b0:a77:b784:dea6 with SMTP id a640c23a62f3a-a7a0111779bmr611047466b.10.1721500616186;
+        Sat, 20 Jul 2024 11:36:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a3c7bdc03sm193620766b.54.2024.07.20.11.36.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 20 Jul 2024 11:36:55 -0700 (PDT)
+Message-ID: <eb6ef54c-ab7d-4c15-9109-5da9f8678efd@linaro.org>
+Date: Sat, 20 Jul 2024 20:36:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +78,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V226/7] dt-bindings: PCI: host-generic-pci: Add
- snps,dw-pcie-ecam-msi binding
-To: Mayank Rana <quic_mrana@quicinc.com>, will@kernel.org,
- lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com,
- jingoohan1@gmail.com, manivannan.sadhasivam@linaro.org, cassel@kernel.org,
- yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
- u.kleine-koenig@pengutronix.de, dlemoal@kernel.org, amishin@t-argos.ru,
- thierry.reding@gmail.com, jonathanh@nvidia.com, Frank.Li@nxp.com,
- ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
- marek.vasut+renesas@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
- quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
- quic_nitegupt@quicinc.com
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-7-git-send-email-quic_mrana@quicinc.com>
- <5f029f16-2030-4e86-929b-0b2832958912@kernel.org>
- <083e1e6f-714d-4a3e-a864-59e06bba0559@quicinc.com>
- <3221423a-d5b3-47e3-8b98-623d9b26363d@kernel.org>
- <f06ab1ee-6078-4d89-b236-e11be4d28fc5@quicinc.com>
- <609c2420-4bf9-4d1b-b998-2dea825139b2@kernel.org>
- <1a6f5cdf-9256-4d8d-b8c7-92bd6e7d3813@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: adding support for PAC194X
+To: marius.cristea@microchip.com, jic23@kernel.org, lars@metafoo.de,
+ robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240719173855.53261-1-marius.cristea@microchip.com>
+ <20240719173855.53261-2-marius.cristea@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -85,151 +98,224 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <1a6f5cdf-9256-4d8d-b8c7-92bd6e7d3813@quicinc.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240719173855.53261-2-marius.cristea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/07/2024 01:19, Mayank Rana wrote:
-> Hi Krzysztof
+On 19/07/2024 19:38, marius.cristea@microchip.com wrote:
+> From: Marius Cristea <marius.cristea@microchip.com>
 > 
-> On 7/17/2024 11:05 PM, Krzysztof Kozlowski wrote:
->> On 17/07/2024 19:20, Mayank Rana wrote:
->>> Hi Krzysztof
->>>
->>> On 7/16/2024 11:47 PM, Krzysztof Kozlowski wrote:
->>>> On 17/07/2024 00:09, Mayank Rana wrote:
->>>>> Hi Krzysztof
->>>>>
->>>>> On 7/16/2024 12:28 AM, Krzysztof Kozlowski wrote:
->>>>>> On 15/07/2024 20:13, Mayank Rana wrote:
->>>>>>> To support MSI functionality using Synopsys DesignWare PCIe controller
->>>>>>> based MSI controller with ECAM driver, add "snps,dw-pcie-ecam-msi
->>>>>>> compatible binding which uses provided SPIs to support MSI functionality.
->>>>>>
->>>>>> To support MSI, you add MSI support... That's a tautology. Describe
->>>>>> hardware instead.
->>>>> Ok. let me repharse it to provide more useful information.
->>>>>>>
->>>>>>> Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
->>>>>>> ---
->>>>>>>     .../devicetree/bindings/pci/host-generic-pci.yaml  | 57 ++++++++++++++++++++++
->>>>>>>     1 file changed, 57 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>>>>>> index 9c714fa..9e860d5 100644
->>>>>>> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>>>>>> @@ -81,6 +81,12 @@ properties:
->>>>>>>                   - marvell,armada8k-pcie-ecam
->>>>>>>                   - socionext,synquacer-pcie-ecam
->>>>>>>               - const: snps,dw-pcie-ecam
->>>>>>> +      - description: |
->>>>>>> +         Firmware is configuring Synopsys DesignWare PCIe controller in RC mode with
->>>>>>> +         ECAM compatible fashion. To use MSI controller of Synopsys DesignWare PCIe
->>>>>>> +         controller for MSI functionality, this compatible is used.
->>>>>>> +        items:
->>>>>>> +          - const: snps,dw-pcie-ecam-msi
->>>>>>
->>>>>> MSI is already present in the binding, isn't it?
->>>>> It is mentioning as msi-parent usage which could be different MSI
->>>>> controller (GIC or vendor specific one) not related to designware PCIe
->>>>> controller based MSI controller.
->>>>>
->>>>>> Anyway, aren't you
->>>>>> forgetting specific compatible? Please open your internal (quite
->>>>>> comprehensive) guideline on bindings and DTS.
->>>>> Here I am trying to define Designware based PCIe ECAM controller
->>>>> supporting MSIcontroller based device. Hence I am not mentioning vendor
->>>>> specific compatible usage
->>>>> and keeping generic compatible binding for such device.
->>>>
->>>> I know what you try, yet it feels simply wrong. Read your guideline.
->>>> Are you sure you work on Designware core itself, not on one used in
->>>> Qualcomm? I would expect people from Designware to design Designware
->>>> cores and people from Qualcomm only to design licensed cores.
->>> Ok. let me not make generic comment here. I refereed how it is done with
->>> other
->>> snps based IP usage for example USB, and would follow same.
->>
->> Well, it is not. If you read their bindings or any reviews related to
->> such cores, you would see that single Designware compatible is always
->> never appropriate. Such cores always have customization per user.
->>
->> You can also look at the binding you are changing. Do you see Designware
->> alone? No.
-> I found reference in this binding as below:
->   79         items:
->   80           - enum:
->   81               - marvell,armada8k-pcie-ecam
->   82               - socionext,synquacer-pcie-ecam
->   83           - const: snps,dw-pcie-ecam
+> This is the device tree schema for iio driver for
+> Microchip PAC194X and PAC195X series of Power Monitors with Accumulator.
 > 
-> And as you mentioned in previous emails about how to add such usage, I 
-> ACKed it but let me put reason why I tried to add differently to start 
-> with it.
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+> ---
+>  .../bindings/iio/adc/microchip,pac1944.yaml   | 168 ++++++++++++++++++
+>  1 file changed, 168 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
 > 
-> This specific driver under-discussion is really not vendor specific 
-> driver. It can work with any PCIe controller which is already configured 
-> in ECAM mode by firmware (i.e. PCIe controller from SNPS or any other 
-> vendor). There are few quirks only added to get specific vendor based 
-> SOC configuration for SNPS PCIe controller by different SOC vendors.
-> 
->   90       - description:
->   91           CAM or ECAM compliant PCI host controllers without any quirks
->   92         enum:
->   93           - pci-host-cam-generic
->   94           - pci-host-ecam-generic
-> 
-> Above enum based usage works for SA8775P platform which is having SNPS 
-> PCIe controller which doesn't need any quirks, and firmware is able to 
-> configure PCIe controller into ECAM mode. Here I tried adding PCIe SNPS 
-> controller based MSI support as SA8775P doesn't support LPI/ITS for MSI. 
-> I need to differentiate it hence added generic enum as MSI controller is 
-> part of SNPS PCIe controller, and not separate MSI IP here. Although how 
-> many MSI can be supported it depends on how many SPIs are available/used 
-> with MSI controller depend on particular SOC. Hence put as 
-> snps,dw-pcie-ecam-msi as usage and variable number of MSI. hopefully I 
-> am able to convey why this driver binding modified differently.
+> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
+> new file mode 100644
+> index 000000000000..e997a4d536e9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
+> @@ -0,0 +1,168 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1944.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PAC1944 and PAC1954 Power Monitors with Accumulator
+> +
+> +maintainers:
+> +  - Marius Cristea <marius.cristea@microchip.com>
+> +
+> +description: |
+> +  This device is part of the Microchip family of Power Monitors with Accumulator.
+> +  The datasheet for PAC1941_1, PAC1941_1, PAC1942_1, PAC1942_2, PAC1943_1 and PAC1944_1 can be found here:
 
-Your binding already defines some specifics for specific device, but you
-still claim all of them are identical.
+Wrap it according to Linux coding style, so at 80.
 
-Sorry, I am confused. Read carefully writing bindings, consult internal
-guideline (go/upstream - it is really detailed!) and then come with a
-solution.
+> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC194X-Family-Data-Sheet-DS20006543.pdf
+> +  The datasheet for PAC1951_1, PAC1951_1, PAC1952_1, PAC1952_2, PAC1953_1 and PAC1954_1 can be found here:
+> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC195X-Family-Data-Sheet-DS20006539.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,pac1941_1
+
+Underscores are not allowed.
+
+What does _1 and _2 mean?
+
+> +      - microchip,pac1941_2
+> +      - microchip,pac1942_1
+> +      - microchip,pac1942_2
+> +      - microchip,pac1943_1
+> +      - microchip,pac1944_1
+> +      - microchip,pac1951_1
+> +      - microchip,pac1951_2
+> +      - microchip,pac1952_1
+> +      - microchip,pac1952_2
+> +      - microchip,pac1953_1
+> +      - microchip,pac1954_1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  interrupts:
+> +    maxItems: 2
+
+You need to list and describe the items.
+
+> +
+> +  slow-io-gpios:
+
+Missing maxItems
+
+> +    description:
+> +      A GPIO used to trigger a change is sampling rate (lowering the chip power
+> +      consumption). If configured in SLOW mode, if this pin is forced high,
+> +      sampling rate is forced to eight samples/second. When it is forced low,
+> +      the sampling rate is 1024 samples/second unless a different sample rate
+> +      has been programmed.
+> +
+> +  microchip,gpio:
+> +    type: boolean
+> +    description:
+> +      In default mode, this pin is a GPIO input pin. It can be
+
+Which pin?
+
+> +      configured to be an output pin, as well as the ALERT2
+
+output is also GPIO, so maybe you meant some interrupts? But then you
+have interrupts property for that...
+
+> +      function. This pin is an open-drain configuration and
+> +      needs a pull-up resistor to VDD.
+> +
+> +patternProperties:
+> +  "^channel@[1-4]+$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    description:
+> +      Represents the external channels which are connected to the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        items:
+> +          minimum: 1
+> +          maximum: 4
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description:
+> +          Value in micro Ohms of the shunt resistor connected between
+> +          the SENSE+ and SENSE- inputs, across which the current is measured.
+> +          Value is needed to compute the scaling of the measured current.
+> +
+> +      microchip,vbus-mode:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The VBUS could be configured into the following full scale range (FSR)
+> +            <0>  -  VBUS has unipolar +32V to 0V FSR (default)
+> +            <1>  -  VBUS has bipolar +32V to -32V FSR
+> +            <2>  -  VBUS has bipolar +16V to -16V FSR
+> +        maximum: 2
+> +
+> +      microchip,vsense-mode:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The VSENSE could be configured into the following full scale range (FSR)
+> +            <0>  -  VSENSE has unipolar +100 mV to 0V FSR (default)
+> +            <1>  -  VSENSE has bipolar +100 mV to -100 mV FSR
+> +            <2>  -  VSENSE has bipolar +50 mV to -50 mV FSR
+> +        maximum: 2
+> +
+> +      microchip,accumulation-mode:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The Hardware Accumulator could be configured to accumulate
+> +          VPOWER, VSENSE or VBUS
+> +            <0>  -  Accumulator accumulates VPOWER (default)
+> +            <1>  -  Accumulator accumulates VSENSE
+> +            <2>  -  Accumulator accumulates VBUS
+> +        maximum: 2
+> +
+> +    required:
+> +      - reg
+> +      - shunt-resistor-micro-ohms
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        power-monitor@10 {
+> +            compatible = "microchip,pac1954_1";
+> +            reg = <0x10>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            status = "okay";
+
+Drop
+
+
 
 Best regards,
 Krzysztof
