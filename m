@@ -1,243 +1,296 @@
-Return-Path: <devicetree+bounces-86914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DACB1938085
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 11:48:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5445893809B
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:09:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A9701F21054
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 09:48:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 713181C20DB1
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 10:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717104CE09;
-	Sat, 20 Jul 2024 09:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABE67CF39;
+	Sat, 20 Jul 2024 10:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HqpdbsPZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ida+jPX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0AF29A2;
-	Sat, 20 Jul 2024 09:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C4A29A2;
+	Sat, 20 Jul 2024 10:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721468899; cv=none; b=E6W+VzOvcDgtXXud6PlasKu1BB0u8pWcX4ZaA+NR6VrdpVc8D7GYpnN0ekkYYbqfCfZeqwWUQTKvXub/5muOy+FzjnQ9xLOk/GgFzB2LppiJtlu0Jqw84Zh8Pp7+eJv1n5x1bq8SiVj22MLDwjwSeUhOecpcjpIvX6Y21li0UbY=
+	t=1721470154; cv=none; b=JDDNtqGG2XB0hBITRzP0N6oN0RdzSXyFN7LwhvGbNNkkH56E5Hd6FANjsUwPM6J29dApGIgbbypwIqFTJ40hhqbTouuSl89bXHpJLRdX74ZSBPbh16J5m+b7P4d5+CBbKvU77qQhQtRPvctkIZ8FgVgwvPBqhnjPTVDDUzrJyqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721468899; c=relaxed/simple;
-	bh=4IKGPDVuFgKuZVzXlHbzBkSmBTT6vlW1VYxodSF1Ewg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L2NtWITqaZ8K61YxzTFjqjQoZ2eeCQbSiywDa/A25l4aTSwp/2OjzN3zHwYavcPCzJ0qKO4Ng6kw3KCv/+m3uQeV3Z9WJ/c1n0gMYHYx0iB0eLtW/+puk7Gqp+jXh8kLs10br2SsAAVPhpL8Wv/TUDNmu/kvpU19un4tPhNfNCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HqpdbsPZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9C5C2BD10;
-	Sat, 20 Jul 2024 09:48:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721468898;
-	bh=4IKGPDVuFgKuZVzXlHbzBkSmBTT6vlW1VYxodSF1Ewg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HqpdbsPZdEN7Ru8PbvORVTYX/XbkUSJarMsG8mNokq6BouS0kCf7XQvfr8KsRRVRz
-	 yzBo6W9Ep43AmDWnawKfc12tBDSWlF7z7fd24DjD7Kx2ae84EaRfZbi536CZ9pdvwm
-	 rZATTzqHM4JiNueGfv8JpN1yTLKWiqG9mP/j38sXUJbNjMtB3WjOUU1voTfdGcqEzo
-	 9xZdC+wlspEz/KsEI0rHpcp9tAniq5sCYSRRVKdy+ED4UXQruMC+c38JSiZi99RbCY
-	 ns1mvlWZV5qSK88FkJ3X16PtE1x/6wkZxAMrCEKuOmIv9qBXq6UPnXmD6UJVxiD9z0
-	 8xsK6Ir+/az8A==
-Date: Sat, 20 Jul 2024 10:48:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matteo Martelli <matteomartelli3@gmail.com>
-Cc: Marius.Cristea@microchip.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, lars@metafoo.de,
- linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
- Jonathan.Cameron@Huawei.com, conor+dt@kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: add support for pac1921
-Message-ID: <20240720104812.5d59e91a@jic23-huawei>
-In-Reply-To: <6697d3b0d33f6_1fc333707f@njaxe.notmuch>
-References: <20240704-iio-pac1921-v2-0-0deb95a48409@gmail.com>
-	<20240704-iio-pac1921-v2-2-0deb95a48409@gmail.com>
-	<20240707160442.6bab64c9@jic23-huawei>
-	<668bec2a8b23a_6e037017@njaxe.notmuch>
-	<20240708173439.000070b4@Huawei.com>
-	<668cf2f3ece62_1f6ba37012@njaxe.notmuch>
-	<20240713112153.3576fc2a@jic23-huawei>
-	<66963b764ac3c_706370bd@njaxe.notmuch>
-	<483de34b3a74a2981fac89a8232e3ef2448f57ef.camel@microchip.com>
-	<20240716180004.606006d0@jic23-huawei>
-	<6697d3b0d33f6_1fc333707f@njaxe.notmuch>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1721470154; c=relaxed/simple;
+	bh=qkzTRSoui91UTwraDoNj/kZN0RD7tb8SwvicWbh8QeQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EOvxP91GHD/aV0329jVqA6vm+6qoEZ/SFzoQI6FR5garIrUOqpXT20kuaWOXPizcI0LBk46tAxL0hXCz7ybzWjNbFkeHvMqbaYxACWsNyIk7HsumsmgiEnGhsXEYH+RVVq/3/nUrvKV1ZJJjbMKgzLCGP7e4LM/zGFhGlchtdKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ida+jPX5; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3d9dbbaa731so1416858b6e.3;
+        Sat, 20 Jul 2024 03:09:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721470151; x=1722074951; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bW5+wJPul1XSgUhvOdeAPOioFRHQZTQPxe+x1R0qvME=;
+        b=Ida+jPX5td55+7+WeQC3Jch374JIlV7wDX9yhy32SYUTC64vqIASxu0Qk8YMYKWioQ
+         wjQkXMX5+KaWIH4BVxAKRhGPvjhSMXHuU+GuT0cRRTG92B8tPJY4ftvroFgWsYyDwBpw
+         7s5wR3AAi4GhsaD+eQOlNUv/GpjS+5COOsZ4yHjeJCPfMS5wezkidqqbn9rjdjVr2S1f
+         t1Ze5b5FlbMi1S7ynLlkjpb6Wt0nJ1JEYzOT3t5YgttB4hsw8UjglQWWG64zvHkKmWpw
+         rzOiHX/ceSlSxXSe1MMsUBnGMJpoKi8pZ/ddLA5BmbR1dHCg78RihlE94OKI6Vo/PNyR
+         xo0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721470151; x=1722074951;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bW5+wJPul1XSgUhvOdeAPOioFRHQZTQPxe+x1R0qvME=;
+        b=pjotwt89Tc0ecPGYIovdIbSnmpiMj0Z+9H902sXB0XB5sYgz6gayiXvBk+IMXKceHP
+         2y8HMRHyueH8ZKB2M0uWf02mpHlVXhr2ment3FbBoW/o6h/nbdy74n4kcKfeQk9hy2ti
+         FA6s0FBHOAB/cFt5cVJMfEa0t7zRqh1DDz+NlX8iZya7JVsY7bBODbuvJOfPv9ExmuYF
+         pzSmzckY8BQqQWFObxD/GO66J1yaaRIgBe8g/w/s1tjQ/1be7x4pBZL2HOVnO9xt6eNQ
+         +HFGzHY9j+GnvRLDMWx9K/pkf41MOerkh1lgBu4ew7vpiWUeuhwCFtkAGkZtMSJDR3ZK
+         71Og==
+X-Forwarded-Encrypted: i=1; AJvYcCXv4eGiHNwOGkduiXDuHudYE5hSafXY2YD2RYKcC5WQowKidtuvYEkpnO4oO5I/PSzVSHOeIhtYxvHmZL9e4T0hLoYamryFDKPG4f0MzXuo0DNO1w93lqSI0qfKPZupKRF8pzn1Hcd/qQlSM/ZB15XT65Y4to0hPVneUcsgfpU+sE0pvvNn
+X-Gm-Message-State: AOJu0YzOZhbiGRvFgJYvQsv5jRhHgysz67aHQNJl0RwyB5qKe79I5YYH
+	tu/b0unJkrPxq14vk6HPgeeyGFxpWmC/vger52J/LGjPA2Kr4aOA
+X-Google-Smtp-Source: AGHT+IFm7DfKM8u1iF0Y/SvTZ2QTe3xVLLmUxTj2IgklWCPIwAENmQwjKKNDmaBLExgtf6EO0tBFPw==
+X-Received: by 2002:a05:6871:b12:b0:263:3b45:b7dd with SMTP id 586e51a60fabf-2638df809ffmr715555fac.1.1721470151335;
+        Sat, 20 Jul 2024 03:09:11 -0700 (PDT)
+Received: from localhost.localdomain ([115.240.194.54])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70cff491070sm2396724b3a.24.2024.07.20.03.09.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Jul 2024 03:09:10 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: fsl,imx-audio-es8328: Convert to dtschema
+Date: Sat, 20 Jul 2024 15:38:40 +0530
+Message-ID: <20240720100848.203546-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, 17 Jul 2024 16:22:40 +0200
-Matteo Martelli <matteomartelli3@gmail.com> wrote:
+Convert the Freescale i.MX audio complex with ES8328 codec bindings to
+DT schema format.
 
-> Jonathan Cameron wrote:
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+---
+ .../bindings/sound/fsl,imx-audio-es8328.yaml  | 111 ++++++++++++++++++
+ .../bindings/sound/imx-audio-es8328.txt       |  60 ----------
+ 2 files changed, 111 insertions(+), 60 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-es8328.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/imx-audio-es8328.txt
 
-Oddly I thought I'd replied to this already but my email client says not...
-I guess maybe I have a stray draft on another computer. Anyhow, let's
-try again!
+diff --git a/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8328.yaml b/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8328.yaml
+new file mode 100644
+index 000000000000..5a023c2d73f5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8328.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/fsl,imx-audio-es8328.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX audio complex with ES8328 codec
++
++maintainers:
++  - Shawn Guo <shawnguo@kernel.org>
++  - Sascha Hauer <s.hauer@pengutronix.de>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: fsl,imx-audio-es8328
++
++  model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: The user-visible name of this sound complex
++
++  ssi-controller:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the i.MX SSI controller
++
++  jack-gpio:
++    description: Optional GPIO for headphone jack
++    maxItems: 1
++
++  audio-amp-supply:
++    description: Power regulator for speaker amps
++
++  audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle to the ES8328 audio codec
++
++  audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      A list of the connections between audio components. Each entry
++      is a pair of strings, the first being the connection's sink, the second
++      being the connection's source. Valid names could be power supplies,
++      ES8328 pins, and the jacks on the board:
++
++      Power supplies:
++        * audio-amp
++
++      ES8328 pins:
++        * LOUT1
++        * LOUT2
++        * ROUT1
++        * ROUT2
++        * LINPUT1
++        * LINPUT2
++        * RINPUT1
++        * RINPUT2
++        * Mic PGA
++
++      Board connectors:
++        * Headphone
++        * Speaker
++        * Mic Jack
++
++  mux-int-port:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The internal port of the i.MX audio muxer (AUDMUX)
++    enum: [1, 2, 7]
++    default: 1
++
++  mux-ext-port:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The external port of the i.MX audio muxer (AUDMIX)
++    enum: [3, 4, 5, 6]
++    default: 3
++
++required:
++  - compatible
++  - model
++  - ssi-controller
++  - jack-gpio
++  - audio-amp-supply
++  - audio-codec
++  - audio-routing
++  - mux-int-port
++  - mux-ext-port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "fsl,imx-audio-es8328";
++        model = "imx-audio-es8328";
++        ssi-controller = <&ssi1>;
++        audio-codec = <&codec>;
++        jack-gpio = <&gpio5 15 0>;
++        audio-amp-supply = <&reg_audio_amp>;
++        audio-routing =
++            "Speaker", "LOUT2",
++            "Speaker", "ROUT2",
++            "Speaker", "audio-amp",
++            "Headphone", "ROUT1",
++            "Headphone", "LOUT1",
++            "LINPUT1", "Mic Jack",
++            "RINPUT1", "Mic Jack",
++            "Mic Jack", "Mic Bias";
++        mux-int-port = <1>;
++        mux-ext-port = <3>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/imx-audio-es8328.txt b/Documentation/devicetree/bindings/sound/imx-audio-es8328.txt
+deleted file mode 100644
+index 07b68ab206fb..000000000000
+--- a/Documentation/devicetree/bindings/sound/imx-audio-es8328.txt
++++ /dev/null
+@@ -1,60 +0,0 @@
+-Freescale i.MX audio complex with ES8328 codec
+-
+-Required properties:
+-- compatible       : "fsl,imx-audio-es8328"
+-- model            : The user-visible name of this sound complex
+-- ssi-controller   : The phandle of the i.MX SSI controller
+-- jack-gpio        : Optional GPIO for headphone jack
+-- audio-amp-supply : Power regulator for speaker amps
+-- audio-codec      : The phandle of the ES8328 audio codec
+-- audio-routing    : A list of the connections between audio components.
+-                     Each entry is a pair of strings, the first being the
+-		     connection's sink, the second being the connection's
+-		     source. Valid names could be power supplies, ES8328
+-		     pins, and the jacks on the board:
+-
+-			Power supplies:
+-			   * audio-amp
+-
+-			ES8328 pins:
+-			   * LOUT1
+-			   * LOUT2
+-			   * ROUT1
+-			   * ROUT2
+-			   * LINPUT1
+-			   * LINPUT2
+-			   * RINPUT1
+-			   * RINPUT2
+-			   * Mic PGA
+-
+-			Board connectors:
+-			   * Headphone
+-			   * Speaker
+-			   * Mic Jack
+-- mux-int-port     : The internal port of the i.MX audio muxer (AUDMUX)
+-- mux-ext-port     : The external port of the i.MX audio muxer (AUDMIX)
+-
+-Note: The AUDMUX port numbering should start at 1, which is consistent with
+-hardware manual.
+-
+-Example:
+-
+-sound {
+-	compatible = "fsl,imx-audio-es8328";
+-	model = "imx-audio-es8328";
+-	ssi-controller = <&ssi1>;
+-	audio-codec = <&codec>;
+-	jack-gpio = <&gpio5 15 0>;
+-	audio-amp-supply = <&reg_audio_amp>;
+-	audio-routing =
+-		"Speaker", "LOUT2",
+-		"Speaker", "ROUT2",
+-		"Speaker", "audio-amp",
+-		"Headphone", "ROUT1",
+-		"Headphone", "LOUT1",
+-		"LINPUT1", "Mic Jack",
+-		"RINPUT1", "Mic Jack",
+-		"Mic Jack", "Mic Bias";
+-	mux-int-port = <1>;
+-	mux-ext-port = <3>;
+-};
+-- 
+2.45.2
 
-> > > >=20
-> > > > * If for instance the generalized ABI unit is going to be Ohms,
-> > > > should I still
-> > > > remove the entry from the pac1934 even though it would not be fully
-> > > > compliant
-> > > > with the generalized ABI?
-> > > >=20
-> > > > * To cover the current exposed attributes, the "What" fields would
-> > > > look like:
-> > > > from max9611:
-> > > > What:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /sys/.../iio:=
-deviceX/in_current_shunt_resistor
-> > > > What:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /sys/.../iio:=
-deviceX/in_power_shunt_resistor
-> > > > from ina2xx:
-> > > > What:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /sys/.../iio:=
-deviceX/in_shunt_resistor
-> > > > from pac1934:
-> > > > What:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /sys/.../iio:=
-deviceX/in_shunt_resistorY =20
-> >=20
-> > This one is a bit odd in that it describes it if it were a measurable
-> > channel in of itself but we probably couldn't figure out a better way
-> > to scope it to a specific channel.
-> >  =20
-> > > > Does this look correct? I think that for the first two drivers the
-> > > > shunt_resistor can be considered as a channel info property, shared
-> > > > by type for
-> > > > max9611 case and shared by direction for ina2xx case (maybe better =
-to
-> > > > remove
-> > > > "in_" from the What field if the type is not specified?). =20
-> >=20
-> > Keep it consistent.  It's valid to provide the in_ and in general
-> > over restrict channel attributes, even if not strictly necessary.
-> >  =20
-> > > > What seems odd to me is the pac1934 case, since it doesn't fit in t=
-he
-> > > > format
-> > > > <type>[Y_]shunt_resistor referred in many other attributes (where I
-> > > > assume
-> > > > <type> is actually [dir_][type_]?).
-> > > > Doesn't it look like pac1934 is exposing additional input channels,
-> > > > that are
-> > > > also writeable? Maybe such case would more clear if the shunt
-> > > > resistor would be
-> > > > an info property of specific channels? For example:
-> > > > in_currentY_shunt_resistor,
-> > > > in_powerY_shunt_resistor and in_engergyY_shunt_resitor. =20
-> >  =20
-> > > >    =20
-> > >=20
-> > > I don't think it will be a good idea to duplicate the same information
-> > > into multiple attributes like: in_currentY_shunt_resistor,
-> > > in_powerY_shunt_resistor and in_engergyY_shunt_resitor.
-> > >=20
-> > > The pac1934 device could be viewed like 4 devices that have only one
-> > > measurement hardware. Changing the shunt for a hardware channel will
-> > > impact multiple software measurements for that particular channel. =20
-> > Yup. You've  =20
->=20
-> Sorry Jonathan, is there anything missing in this sentence? Looks like
-> unintentionally truncated: You've ...
-
-Bad editing of my reply!. Ignore that.
-
->=20
-> > >=20
-> > > For example "sampling_frequency" is only one property per device and
-> > > not one property per channel. =20
-> >=20
-> > Not necessarily.  If it varies per channel it is
-> > in_voltageX_sampling_frequency etc
-> > That is rare, but we have specific text to cover it in the ABI docs.
-> >=20
-> > What:		/sys/bus/iio/devices/iio:deviceX/in_voltageX_sampling_frequency
-> > What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_sampling_frequency
-> > What:		/sys/bus/iio/devices/iio:deviceX/in_currentZ_sampling_frequency
-> > KernelVersion:	5.20
-> > Contact:	linux-iio@vger.kernel.org
-> > Description:
-> > 		Some devices have separate controls of sampling frequency for
-> > 		individual channels. If multiple channels are enabled in a scan,
-> > 		then the sampling_frequency of the scan may be computed from the
-> > 		per channel sampling frequencies.
-> >  =20
-> > >=20
-> > > Also I'm not felling comfortable to remove the [dir_] from the name,
-> > > because this value is dependent of the hardware and we can't have a
-> > > "available" properties for it. =20
-> > Removing the dir is unnecessary.  Just leave that in place.
-> > Note we can't change existing ABI of drivers for this sort of thing
-> > that wasn't standardized (as we can't argue they break ABI) so
-> > they are stuck as they stand.
-> >=20
-> > Unfortunately the most consistent path is probably to treat it as a
-> > normal attribute, even if that generates a bunch of silly duplication
-> > if there is more than one shunt_resistance.
-> > I agree it's ugly but it's not the only case of this sort of duplicatio=
-n.
-> > It happens for that sampling_frequency case in a few corners were there=
- is
-> > on channel that is sampled different from all the others.
-> >=20
-> > So I think
-> > in_powerY_shut_resistor and in_energyY_shunt_resistor is
-> > most consistent with existing 'standard' ABI.
-> >=20
-> > This is one where I didn't do a great job in review unfortunately
-> > so the one with the index on the end got through.
-> >=20
-> > I'm not hugely worried about this mess though as runtime shunt resistor
-> > calibration is not that common.  If people want good measurements they
-> > tend to build their circuit with good components / PCB tracks etc.
-> >  =20
->=20
-> From your comments I get that in_shunt_resistorY should be added in the
-> generalized ABI (as in the example above) since it is already used and ca=
-n't be
-> changed. Is this correct?
-No. for the one that isn't compliant with our generalization, just leave
-it where it is in a per device doc.
-
->=20
-> I am still not sure whether in_currentY_shunt_resistor,
-> in_powerY_shunt_resistor and in_energyY_shunt_resistor, should be added o=
-r not
-> until a new driver using it comes through.
-
-Ah. I wasn't paying attention to what was needed here. If you don't need th=
-em
-then no need to define them.
-
->=20
-> Regarding pac1921, would it be more clear to expose a single in_shunt_res=
-istor
-> (keeping [dir_] for consistency as you suggested) as it is for ina2xx or
-> in_current_shunt_resistor plus in_power_shunt_resistor as it is for max96=
-11? I
-> agree that just exposing it once would be more clear for the user, so I w=
-ould
-> go for the first case but maybe I am missing something.
-It's an interesting question.  Is it obvious enough that the shut resistor
-affects both current and power measurements?
-
-I think it is and in general shunt resistor tuning is fairly uncommon
-thing so just in_current_shunt_resistor sounds fine to me.
-
-Jonathan
-
->=20
-> >=20
-> > Thanks,
-> >=20
-> > Jonathan
-> >  =20
->=20
-> Thanks,
-> Matteo
 
