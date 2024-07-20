@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-86943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC73D93815D
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 14:45:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9769938165
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 15:10:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19A521C20CDC
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:45:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 759321F21972
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 13:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BA41A28B;
-	Sat, 20 Jul 2024 12:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD9882D89;
+	Sat, 20 Jul 2024 13:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W1sPbiia"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OZMwn6sT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB21653;
-	Sat, 20 Jul 2024 12:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151DD28EB;
+	Sat, 20 Jul 2024 13:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721479526; cv=none; b=Xau4qtZtZp8ZEqNxz1MjqTjBEQ2IvRBKI5NbO5dJrKr6ZElczkndBNzsMhoDLPJeXTy/UkGdwHl1pcQghRzKzYJ+6OX8+K6xfow9/k6pJj5yZBGwvoRIvkKdXSOceV/DGcbZPD1yieXamLsh0IhrkKs86N4oX+9N7MvTeGxY2c4=
+	t=1721481032; cv=none; b=cDBHLRgZ4YIREXqCa+zXcuA8Of7wMfdzsZy24F6uiWu/MHfB3Ph0z2d55wVMrDImHagSL00hd+ENpqPIzfYKelvsPR2WzrXXFuSC7WhYu6InLnSJSOnL00OCKS9bj0CyExmReKns3v4qIwIbFtGtvMOvbS51Cd+AS9O6in86ep4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721479526; c=relaxed/simple;
-	bh=fOYT0ZSqCfEyo3AFmiH7R7zRioxaEZCje5xbQVslR3c=;
+	s=arc-20240116; t=1721481032; c=relaxed/simple;
+	bh=w3g4rGKp1i6RnV37sD1l0NUQVyU9HXKxlieDmNs59Qc=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tGQO9LRVej0apsL/h/kEb+0pyedDOo8y8ynt14VC+/k+tfMhovUqroJpAiytbQEiwGcnyGPAuIMCmuiJXb+2mYurjgCxlo9cRdpQqopzQ3fGO0edn6KVRdr4ZyWBFBBPe984hEJdOQHCXBbOSG1Gs4P3stn42r0YkOdVagxn/Pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W1sPbiia; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F1EC2BD10;
-	Sat, 20 Jul 2024 12:45:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=BuUrPfmxi7lHqybVtnE2ynMFGzrIzy87C+2QeApSMEwnt+AzDgCdDfHaMoGKbABEwfxvg0Wlt4rgTaIpWP3Zh10hMSMGkaczqyJFOg6Qx5CSvmIA5Ikaq0wYWBrOQmRpCha6f4JEZlCkCtTgkV7/l/gXD9792Kb+44jxHH7xJrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OZMwn6sT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99CEBC2BD10;
+	Sat, 20 Jul 2024 13:10:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721479524;
-	bh=fOYT0ZSqCfEyo3AFmiH7R7zRioxaEZCje5xbQVslR3c=;
+	s=k20201202; t=1721481031;
+	bh=w3g4rGKp1i6RnV37sD1l0NUQVyU9HXKxlieDmNs59Qc=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=W1sPbiiaKXevbLetJ9MCKQgD5MHOzf4Dj+sXEfUio+Vjk4Kgn/SdRbYfvFLEVsAjz
-	 s/9gqR1M8HnSonKPYS2BNZKGLRB6mJ6/cGF/U4HQxlgEnhPpsc1hGw2kOunRPGh5tJ
-	 N4XmRvWpxHnH7eZJfkQpY5/C/aBiu2TwzgczcrTw+epX/os9FzrphATnEOEmy1wFL/
-	 4sKK869lHLnpSrIdIaN/N//cHLxW4VulNu/eV1UTxJ5zFgXdVy1QIJvN0Dscg9ZEEF
-	 GjVA0DG6Oa41P+6xrv1rS1ExMCeFjk9ar5pAkS2VXqmjOvAGixuXHV7zz0yDvjjbtZ
-	 L36vbuovufHHw==
-Date: Sat, 20 Jul 2024 13:45:18 +0100
+	b=OZMwn6sTsC3l2EL/wWuO5y/NN3qMtblLg8IfWRwd/s2BWQuWqDJ8CrtEfRDb0YOcE
+	 XjbYJr5UDkdo2GGrr+aYx4SrzYJw4qvsNd+blYA+VcsDdHYp46GTsA4CsEwP+VLlEj
+	 g1u8X40YQtVmi10bh+M+HENk6syTFs4VWrUMx93psUybM6/yrXdTD1fvyz7W9GcpaU
+	 DsN8NWTWpH2Rnid+kSINARtUPTm3wecHcq/ykOAjklCRID7RhdqXiZVw20dx1JxA61
+	 uKZM73JvTdzexyZRZb3rqof5ChK1eZ2DX/s7YMtX34Plq8aaLlzX3HkuoGVqve/lvP
+	 LdIhJQH25I9gg==
+Date: Sat, 20 Jul 2024 14:10:21 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: iio: light: stk33xx: add compatible
- for stk3013
-Message-ID: <20240720134518.61b940e1@jic23-huawei>
-In-Reply-To: <2554b98ddbe3098fa974b651f555a791@disroot.org>
-References: <20240712152417.97726-1-kauschluss@disroot.org>
-	<20240712152417.97726-3-kauschluss@disroot.org>
-	<20240713130620.79d47130@jic23-huawei>
-	<be34b0b571ddc33351e9eb123410a210@disroot.org>
-	<20240716174328.15c250a9@jic23-huawei>
-	<2554b98ddbe3098fa974b651f555a791@disroot.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <broonie@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+ <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+ <conor+dt@kernel.org>, <nuno.sa@analog.com>, <dlechner@baylibre.com>,
+ <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-spi@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 0/7] Add support for AD4000 series of ADCs
+Message-ID: <20240720141021.23ba6a40@jic23-huawei>
+In-Reply-To: <cover.1720810545.git.marcelo.schmitt@analog.com>
+References: <cover.1720810545.git.marcelo.schmitt@analog.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,91 +65,29 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Wed, 17 Jul 2024 15:58:50 +0000
-Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+On Fri, 12 Jul 2024 16:20:00 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
 
-> On 2024-07-16 16:43, Jonathan Cameron wrote:
-> > On Mon, 15 Jul 2024 20:02:57 +0000
-> > Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
-> >   
-> >> On 2024-07-13 12:06, Jonathan Cameron wrote:  
-> >> > On Fri, 12 Jul 2024 20:54:02 +0530
-> >> > Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
-> >> >     
-> >> >> Add the compatible string of stk3013 to the existing list.    
-> >> > 
-> >> > Should include how this differs from existing devices such that it doesn't
-> >> > make sense to use a fallback compatible.    
-> >> 
-> >> STK3013 is a proximity sensor by Sensortek, bearing chipid of 0x31. Despite
-> >> being marketed as a proximity sensor, it also appears to have ambient
-> >> light sensing capabilities.
-> >> 
-> >> Add the compatible string of stk3013 to the existing list, as a part not
-> >> compatible with other devices.  
-> > 
-> > That would be fine, but I'm not seeing any driver code changes, so when
-> > you say not compatible, in what way? If it's register changes in features
-> > we don't support yet or something like that, just add some examples.
-> > 
-> > A different whoami register value isn't sufficient as after the fix
-> > you have as patch 1 that will only result in a message print.  
+> This patch series extends the SPI bitbang, gpio, and spi-engine controllers to
+> support configurable MOSI line idle states.
+> It then introduces the ad4000 driver which uses the MOSI idle configuration to
+> provide improved support for the AD4000 series of ADCs.
+> Documentation is added describing the new extension to the SPI protocol.
+> The currently supported wiring modes for AD4000 devices were documented under
+> IIO documentation directory.
 > 
-> I understand that a whoami is not enough to justify not having a fallback
-> compatible. That's why I mentioned it's the most "convincing" argument I
-> could come up with, which is admittedly, isn't enough.
-> 
-> And there really isn't anything feature-wise which sets STK3013 apart from
-> other devices. All register addresses and functions are fully compatible
-> with the current driver.
-> 
-> > 
-> > Obviously doesn't help much for this addition as you are adding the
-> > bypass of the whoami and the new ID in the same series, but we want
-> > to set a precedence for future devices to use fallback compatibles
-> > now that path works.  
-> 
-> I'll add stk3310 as a fallback compatible and change the commit message
-> appropriately. Conor did mention it in the last revision, but I totally
-> missed that. Apologies.
-> 
-> Ending the description with something along the lines of:
-> 
-> The part is fully compatible with the existing implementation of the
-> device driver. Add the compatible string of stk3013 to the existing list,
-> with a fallback of stk3310.
-> 
-> ...would be alright?
+Hi Marcelo,
 
-Yes. Looks good.
+All looks good to me. 
+So at this point, as long as Mark is happy with the SPI changes, I think we are
+waiting for Mark to pick the SPI parts and tag that so I can merge
+that into the IIO tree with the driver.  I assume Mark won't
+do that until after rc1.  All the dependencies are upstream already but mid
+merge window isn't a good point to use as a base for anything!
+
+Give this a poke after rc2 or so if you don't see progress.
+
+Thanks,
 
 Jonathan
-
-> 
-> > 
-> > Jonathan
-> >   
-> >> 
-> >> I hope this is good enough. I couldn't find anything more convincing.
-> >>   
-> >> >     
-> >> >> 
-> >> >> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> >> >> ---
-> >> >>  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 1 +
-> >> >>  1 file changed, 1 insertion(+)
-> >> >> 
-> >> >> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> >> >> index f6e22dc9814a..6003da66a7e6 100644
-> >> >> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> >> >> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> >> >> @@ -19,6 +19,7 @@ allOf:
-> >> >>  properties:
-> >> >>    compatible:
-> >> >>      enum:
-> >> >> +      - sensortek,stk3013
-> >> >>        - sensortek,stk3310
-> >> >>        - sensortek,stk3311
-> >> >>        - sensortek,stk3335  
-
 
