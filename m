@@ -1,253 +1,92 @@
-Return-Path: <devicetree+bounces-86930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DD1938105
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 13:37:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C33293811C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 14:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFCB41C20EA2
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 11:37:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57DE4281CE4
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D3185C5E;
-	Sat, 20 Jul 2024 11:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F78E83CCB;
+	Sat, 20 Jul 2024 12:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AsFkeznT"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="P/K+5vIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6620C82D89;
-	Sat, 20 Jul 2024 11:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A212D29AB;
+	Sat, 20 Jul 2024 12:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721475458; cv=none; b=rfikNM1IKw5xCx64aJeJFKxaAvg+0MmO4JQ8fVAK9GxOpYOap3AxrU0pRNfcnhqloQc5Pb58sQqhyIZOgbgR7WfSgtcQDHJ90vcFpMuBbJFjUoUiU6qQkItokI2+ycMQPs81dgKmMpaZXU/JgS+xWJtWGRRYjbCKwakCwKhPJ48=
+	t=1721476899; cv=none; b=X0nIHtbAC5+sMzHwvwWdDaPFEWuLR3xCE9k1rv1aHFYLJ0zPu2pu1an3H433OdSMCqYNMdEYbCLVB5A636Utxs/yV6XXRFnu0A0VIlG+ULPvOkNmMk3DttQXZJLgjQqhf7VMd8JulqawMAPQT0sdM8jWaiYUCcm77QE4atwBD/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721475458; c=relaxed/simple;
-	bh=0tC5v58C4pUQOeduwxqmWIjSHqqmAsJVFVb5d1LTaOs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XBFZ28ebr31UkTMrkjwIZ4dYMHLiHYsGbvCYV9zw3UXnWvSaH/YDKp2XOR/hn2xc3Twi2WZTxNNSDIc47KJ5yEG2kjynkOA6lSs6Hdp6avLLS2aIuGBMChH6XR8Ygq9QYqdBu4juJ07ydyN1l3EU3m4drU66TxMNt8kurRmi3RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AsFkeznT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CC96C2BD10;
-	Sat, 20 Jul 2024 11:37:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721475457;
-	bh=0tC5v58C4pUQOeduwxqmWIjSHqqmAsJVFVb5d1LTaOs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AsFkeznT9yPN/juIlb1shY+q3LREk8EiZwqYTe/ldTcB40LHjz9eDDGOLAQ6G+9Zd
-	 4FElSVPGeiP7RkM3HiiEQjvXHdxBXhQfxUWm3OV6U8ldiYvPrYfDiAI2Vg2T4C7b05
-	 8Gf1aqDmOBh6xzZDOa7ENsXgiaDEX/kR2h2Hs4kn0PAKm7U34WhGew5LD3c3EbJ/6n
-	 1fT+OTlK7BzIZmkZb7pUM5L8YOfy/jJm0OlddVNQ+vicRJu6D903NLSdjP2f2ro79h
-	 nvK+fFUm8C4FwQL73hwxgroasp9KbAAk71TT4yzDqrSEZvWXz1YNdJn/K765K+fl3O
-	 GeuzpiTJpe3DQ==
-Date: Sat, 20 Jul 2024 12:37:27 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
- ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
- biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
- semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 09/10] iio: pressure: bmp280: Add data ready trigger
- support
-Message-ID: <20240720123727.7598111b@jic23-huawei>
-In-Reply-To: <20240711211558.106327-10-vassilisamir@gmail.com>
-References: <20240711211558.106327-1-vassilisamir@gmail.com>
-	<20240711211558.106327-10-vassilisamir@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1721476899; c=relaxed/simple;
+	bh=Iw9y2d0xFri5phiwup3bpzFl+d63hYPOdu494DRNOJo=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=kDoHGT37N/TykF64U+xutn+gJdP/AkjmEm8Ro1OmeIjM3Cj7kjpNMPlW9M2q0bKtEbpUvbUTteaI6cDMyMYBDZzSONDtk8TYo7JIKZNPWEtus9ihKNXc+v3+89Nu8/C6SRRcUJB2ffFwLfUKoZxvV6vzei+k0hz/7oZlHO3X6V8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=P/K+5vIq; arc=none smtp.client-ip=185.70.43.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1721476889; x=1721736089;
+	bh=Ulfjm2ICHJErTUPJBS83uOvGY0WbQepmua4xjo1vleg=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=P/K+5vIqWwOzwwXwYwUwwfOlMOiNBFuPbFh0hf3siSpEIDisqge6OL3MN8VYb59MF
+	 xBJBOrgZcERyXR/ADlf0peUTCMpiwwddp43xNjdBF3aO6ArRck6Mc0wF3VSIVRSB7I
+	 pELJx1eTuhySTpEwWdAtYLPXy9nf9wRStSS0GkSVc2IrGx8KMM2brHVrUjK/I3nykh
+	 RoCSMEw5Of10ylu2485xEXyWbLVobbYQf49K6oikP4HPUDOX/fIJa+qGK7fhVb7NVP
+	 9I+1uRcu4b/LpD9QhUt5rqTmJSpCBfmZQs8WVgUY7m0qhynrGF7EDBtVi1E9VfOmJ4
+	 C7vlKwSQ66GzQ==
+Date: Sat, 20 Jul 2024 12:01:23 +0000
+To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
+From: Harry Austen <hpausten@protonmail.com>
+Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
+Subject: [PATCH 0/7] clk: clocking-wizard: add user clock monitor support
+Message-ID: <20240720120048.36758-1-hpausten@protonmail.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: eb94335087a5eda15217fc444c8fe79811588381
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 11 Jul 2024 23:15:57 +0200
-Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+Improve utilised clk/notifier APIs, making use of device managed versions
+of functions, make dynamic reconfiguration support optional (because it is
+in hardware) and add support for the clock monitor functionailty added in
+version 6.0 of the Xilinx clocking wizard IP core.
 
-> The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
-> a trigger for when there are data ready in the sensor for pick up.
-> 
-> This use case is used along with NORMAL_MODE in the sensor, which allows
-> the sensor to do consecutive measurements depending on the ODR rate value.
-> 
-> The trigger pin can be configured to be open-drain or push-pull and either
-> rising or falling edge.
-> 
-> No support is added yet for interrupts for FIFO, WATERMARK and out of range
-> values.
-> 
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+The combined addition of all of these patches allows, for example, to use
+the clocking wizard solely for its user clock monitoring logic, keeping
+dynamic reconfiguration support disabled.
 
-A few minor things inline.
+This is currently untested on hardware, so any help testing this would be
+much appreciated!
 
-It might be worth thinking a bit about future fifo support as that can
-get a little messy in a driver that already supports a dataready trigger.
-We end up with no trigger being set meaning use the fifo.  Sometimes
-it makes more sense to not support triggers at all.
+Harry Austen (7):
+  clk: clocking-wizard: simplify probe/remove with devres helpers
+  clk: clocking-wizard: use newer clk_hw API
+  clk: clocking-wizard: move clock registration to separate function
+  dt-bindings: clock: xilinx: add description of user monitor interrupt
+  clk: clocking-wizard: add user clock monitor support
+  dt-bindings: clock: xilinx: describe whether dynamic reconfig is
+    enabled
+  clk: clocking-wizard: move dynamic reconfig setup behind flag
 
-What you have here is fine though as we have a bunch of drivers
-that grew dataready trigger support before adding fifos later
-particularly as often it's a 'new chip' that brings the fifo
-support but maintains backwards compatibility if you don't use it.
+ .../bindings/clock/xlnx,clocking-wizard.yaml  |  29 +-
+ drivers/clk/xilinx/Kconfig                    |   1 +
+ drivers/clk/xilinx/clk-xlnx-clock-wizard.c    | 346 +++++++++---------
+ 3 files changed, 212 insertions(+), 164 deletions(-)
 
-> +
-> +static int bmp380_trigger_probe(struct iio_dev *indio_dev)
-> +{
-> +	struct bmp280_data *data = iio_priv(indio_dev);
-> +	struct fwnode_handle *fwnode;
-> +	int ret, irq, irq_type;
-> +	struct irq_data *desc;
-> +
-> +	fwnode = dev_fwnode(data->dev);
-> +	if (!fwnode)
-> +		return -ENODEV;
-> +
-> +	irq = fwnode_irq_get_byname(fwnode, "DRDY");
-> +	if (!irq) {
-> +		dev_err(data->dev, "No DRDY interrupt found\n");
-> +		return -ENODEV;
-As below. return dev_err_probe() for anything that is only
-called from probe()
+--=20
+2.45.2
 
-> +	}
-> +
-> +	desc = irq_get_irq_data(irq);
-> +	if (!desc)
-> +		return -EINVAL;
-> +
-> +	irq_type = irqd_get_trigger_type(desc);
-> +	switch (irq_type) {
-> +	case IRQF_TRIGGER_RISING:
-> +		data->trig_active_high = true;
-> +		break;
-> +	case IRQF_TRIGGER_FALLING:
-> +		data->trig_active_high = false;
-> +		break;
-> +	default:
-> +		dev_err(data->dev, "Invalid interrupt type specified\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	data->trig_open_drain = fwnode_property_read_bool(fwnode,
-> +							  "int-open-drain");
-> +
-> +	ret = bmp380_int_config(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	data->trig = devm_iio_trigger_alloc(data->dev, "%s-dev%d",
-> +					    indio_dev->name,
-> +					    iio_device_id(indio_dev));
-> +	if (!data->trig)
-> +		return -ENOMEM;
-> +
-> +	data->trig->ops = &bmp380_trigger_ops;
-> +	iio_trigger_set_drvdata(data->trig, data);
-> +
-> +	ret = devm_request_irq(data->dev, irq,
-> +			       &iio_trigger_generic_data_rdy_poll,
-> +			       IRQF_ONESHOT, indio_dev->name, data->trig);
-> +	if (ret) {
-> +		dev_err(data->dev, "request irq failed\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_iio_trigger_register(data->dev, data->trig);
-> +	if (ret) {
-> +		dev_err(data->dev, "iio trigger register failed\n");
-> +		return ret;
-> +	}
-> +
-> +	indio_dev->trig = iio_trigger_get(data->trig);
-> +
-> +	return 0;
-> +}
-> +
-> +
-One blank line only.
-
->  static irqreturn_t bmp380_trigger_handler(int irq, void *p)
-
-
-> +
-> +static int bmp580_trigger_probe(struct iio_dev *indio_dev)
-> +{
-> +	struct bmp280_data *data = iio_priv(indio_dev);
-> +	struct fwnode_handle *fwnode;
-> +	int ret, irq, irq_type;
-> +	struct irq_data *desc;
-> +
-> +	fwnode = dev_fwnode(data->dev);
-> +	if (!fwnode)
-> +		return -ENODEV;
-> +
-> +	irq = fwnode_irq_get_byname(fwnode, "DRDY");
-> +	if (!irq) {
-> +		dev_err(data->dev, "No DRDY interrupt found\n");
-
-As this only gets called from probe(), use return dev_err_probe() throughout.
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	desc = irq_get_irq_data(irq);
-> +	if (!desc)
-> +		return -EINVAL;
-> +
-> +	irq_type = irqd_get_trigger_type(desc);
-> +	switch (irq_type) {
-> +	case IRQF_TRIGGER_RISING:
-> +		data->trig_active_high = true;
-> +		break;
-> +	case IRQF_TRIGGER_FALLING:
-> +		data->trig_active_high = false;
-> +		break;
-> +	default:
-> +		dev_err(data->dev, "Invalid interrupt type specified\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	data->trig_open_drain = fwnode_property_read_bool(fwnode,
-> +							  "int-open-drain");
-> +
-> +	ret = bmp580_int_config(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	data->trig = devm_iio_trigger_alloc(data->dev, "%s-dev%d",
-> +					    indio_dev->name,
-> +					    iio_device_id(indio_dev));
-> +	if (!data->trig)
-> +		return -ENOMEM;
-> +
-> +	data->trig->ops = &bmp580_trigger_ops;
-> +	iio_trigger_set_drvdata(data->trig, data);
-> +
-> +	ret = devm_request_irq(data->dev, irq,
-> +			       &iio_trigger_generic_data_rdy_poll,
-> +			       IRQF_ONESHOT, indio_dev->name, data->trig);
-> +	if (ret) {
-> +		dev_err(data->dev, "request irq failed\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_iio_trigger_register(data->dev, data->trig);
-> +	if (ret) {
-> +		dev_err(data->dev, "iio trigger register failed\n");
-> +		return ret;
-> +	}
-> +
-> +	indio_dev->trig = iio_trigger_get(data->trig);
-> +
-> +	return 0;
-> +}
->
->  
 
 
