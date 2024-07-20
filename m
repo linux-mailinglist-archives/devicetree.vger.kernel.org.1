@@ -1,198 +1,179 @@
-Return-Path: <devicetree+bounces-86937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA06D93812F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 14:02:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16B49938136
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 14:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDB871C212C5
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:02:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95A70B20FA3
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175A212FF63;
-	Sat, 20 Jul 2024 12:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98DE012CDAE;
+	Sat, 20 Jul 2024 12:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="MqlN8s8z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zrgu0SuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 819A012E1CD
-	for <devicetree@vger.kernel.org>; Sat, 20 Jul 2024 12:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443DE8003F;
+	Sat, 20 Jul 2024 12:12:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721476932; cv=none; b=tVplaGU38kGcSnhc3LJeG2/WXAeIGn6Pi6GdGa0K5GF51H4Hh4dMMOfsuJj3AK2eJmAO2Kq0HwXHIDwaZnb0Tb16c2VQH4wLm8RpCN4E1atiqO176tuLzH1rVw71rJ89MFVfS0XFUF5HeAEQGGA6sGaVA9OvztiUmFO5SYprrf8=
+	t=1721477558; cv=none; b=rxj8lMCSevGVp9z+b08shslDxfep3FcjExRq6zgU65mU0C6LVvYOmc3R6yeJAySvtu4VLY0ZXbvJneweI+6gJYg5/yDX3afnIjwmAkEuNzOnCuiGPMyxwU+RmLRbuvJ43UOxV0VpyfgdCG75iC/NhwkViWwvdn27PR2p/yC/rIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721476932; c=relaxed/simple;
-	bh=Ws4IVpy523pqF5J7VdsVTx/0uNjG4GIOrUTuGNPVRoo=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YXTdZkk3SB3nDy3OXQ3qMfEWShEyRuby6SjfQfh9rXMypD5MEJ/Ywfju804zy38JPYjjc5h4NOdN5Gwqm6R/qVJTBIFW4Xt5cgcnVXDzuV34s1gbFCuoIAY2OVBvBzpMaHkJ94a1QeooSJ8tlwzzTW4G7Q0yMqL3jWrLDVbH8jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=MqlN8s8z; arc=none smtp.client-ip=185.70.43.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1721476928; x=1721736128;
-	bh=/AxMqXWFPwoh5NZG4M7LLzEizR7UlModDwusasq5CQ0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=MqlN8s8zAZV40ZxGcDLWi/BAa5SdYTAdLc+NDcwsVX21YNl2MzuK+gmmjhbGDz5q+
-	 CDCDFAd/tan8mAzSsz5GDqlYvwruSS/Nq9gKo0dgE7ll71/XaoVB89fHWFNhFVnFVm
-	 8keS5+xKrSXZ2mffvQ0zg8Im8+UwvaoLJPg3FogiS2SiNPq1SdgjoNcYzMfUsi8lYk
-	 o83AWyTvY6mCwadyJBmdouocBB5nsztxtLG4jbpHMe32C05ZjvvpqMIcGViuUIpU7v
-	 R3wxxZy+vYqp/n+yuk+fNDEpZbhL3JLDFaJTDHfcBvtvyKieDmWTqndyshGkb5O7O5
-	 i8l1vpcvcuuyg==
-Date: Sat, 20 Jul 2024 12:02:04 +0000
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-From: Harry Austen <hpausten@protonmail.com>
-Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
-Subject: [PATCH 7/7] clk: clocking-wizard: move dynamic reconfig setup behind flag
-Message-ID: <20240720120048.36758-8-hpausten@protonmail.com>
-In-Reply-To: <20240720120048.36758-1-hpausten@protonmail.com>
-References: <20240720120048.36758-1-hpausten@protonmail.com>
-Feedback-ID: 53116287:user:proton
-X-Pm-Message-ID: 244be5160229920dc0c841865215c9e04b17831b
+	s=arc-20240116; t=1721477558; c=relaxed/simple;
+	bh=fwbjiZOl2jVEvkjLoIR5P7+CK/Chy3OdwVeEOh6ZuS0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QLlUk3N/RWkq2xMjUbGujV9sW2CIyf52VBV9GpGo38rsDo0NO7p6EwG03AlvYOAk0cuqV3tCkgODRf2wQhm0q/b6i5gtSp3z7AAxGOG4bbK5BD1vyrT03090P5venu1fA/u4wczMOSsCtTROnnKskbhZwXQdVQ1F+m/+nJvHt4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zrgu0SuB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09110C2BD10;
+	Sat, 20 Jul 2024 12:12:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721477557;
+	bh=fwbjiZOl2jVEvkjLoIR5P7+CK/Chy3OdwVeEOh6ZuS0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zrgu0SuBbpILpJBm8U5PR8XGe87tRutuy1WzG7Fmsz4VozP42z8IfYuFPMEiCO6ez
+	 djid8auGU5SdaEK5v5L5Kcs3yzuWYeCcZtOzcSL3vqkCL7k8A8lfqmCMd/yVXhjtF8
+	 VHhSwiU64gORZkNkAHRI6mECdB/Pr9e9NEqnu9OJaFfY/A4K+TFaCMAZSDIPmjuJXD
+	 m9fyDujPC45QYgAsPUjQDHQ+rAx5rEVo8xTvK67ZSw30TE3zGPomSDzPciI4/ZXvh5
+	 fjlXjrfuFyfqzBaLPEL/6dkuLr5m5vWTRuYPQWlUZ6Y2t6qDf8GDx6tPL5wdYxPr4T
+	 RVe/6SLZl02bQ==
+Date: Sat, 20 Jul 2024 15:09:28 +0300
+From: Mike Rapoport <rppt@kernel.org>
+To: Zi Yan <ziy@nvidia.com>
+Cc: linux-kernel@vger.kernel.org,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Andreas Larsson <andreas@gaisler.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Hildenbrand <david@redhat.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Heiko Carstens <hca@linux.ibm.com>,
+	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
+	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
+	nvdimm@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH 14/17] mm: introduce numa_emulation
+Message-ID: <Zpuo-BWxvdbun5z7@kernel.org>
+References: <20240716111346.3676969-1-rppt@kernel.org>
+ <20240716111346.3676969-15-rppt@kernel.org>
+ <CCB95DEB-6B72-4175-A379-7E60D89114A6@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CCB95DEB-6B72-4175-A379-7E60D89114A6@nvidia.com>
 
-Xilinx clocking wizard IP core's dynamic reconfiguration support is
-optionally enabled at build time. Use the new boolean devicetree
-property to indicate whether the hardware supports this feature or not.
+On Fri, Jul 19, 2024 at 12:03:11PM -0400, Zi Yan wrote:
+> On 16 Jul 2024, at 7:13, Mike Rapoport wrote:
+> 
+> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+> >
+> > Move numa_emulation codfrom arch/x86 to mm/numa_emulation.c
+> >
+> > This code will be later reused by arch_numa.
+> >
+> > No functional changes.
+> >
+> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > ---
+> >  arch/x86/Kconfig             |  8 --------
+> >  arch/x86/include/asm/numa.h  | 12 ------------
+> >  arch/x86/mm/Makefile         |  1 -
+> >  arch/x86/mm/numa_internal.h  | 11 -----------
+> >  include/linux/numa_memblks.h | 17 +++++++++++++++++
+> >  mm/Kconfig                   |  8 ++++++++
+> >  mm/Makefile                  |  1 +
+> >  mm/numa_emulation.c          |  4 +---
+> >  8 files changed, 27 insertions(+), 35 deletions(-)
+> 
+> After this code move, the document of numa=fake= should be moved from
+> Documentation/arch/x86/x86_64/boot-options.rst to
+> Documentation/admin-guide/kernel-parameters.txt
+> too.
 
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
----
- drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 87 +++++++++++-----------
- 1 file changed, 45 insertions(+), 42 deletions(-)
-
-diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilin=
-x/clk-xlnx-clock-wizard.c
-index 2d419e8ad4419..8efe5246c8c0d 100644
---- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-@@ -1185,20 +1185,6 @@ static int clk_wzrd_probe(struct platform_device *pd=
-ev)
- =09if (IS_ERR(clk_wzrd->base))
- =09=09return PTR_ERR(clk_wzrd->base);
-=20
--=09ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->speed_g=
-rade);
--=09if (!ret) {
--=09=09if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
--=09=09=09dev_warn(&pdev->dev, "invalid speed grade '%d'\n",
--=09=09=09=09 clk_wzrd->speed_grade);
--=09=09=09clk_wzrd->speed_grade =3D 0;
--=09=09}
--=09}
--
--=09clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
--=09if (IS_ERR(clk_wzrd->clk_in1))
--=09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
--=09=09=09=09     "clk_in1 not found\n");
--
- =09clk_wzrd->axi_clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
- =09if (IS_ERR(clk_wzrd->axi_clk))
- =09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->axi_clk),
-@@ -1220,40 +1206,57 @@ static int clk_wzrd_probe(struct platform_device *p=
-dev)
- =09=09}
- =09}
-=20
--=09ret =3D of_property_read_u32(np, "xlnx,nr-outputs", &nr_outputs);
--=09if (ret || nr_outputs > WZRD_NUM_OUTPUTS)
--=09=09return -EINVAL;
--
--=09clk_wzrd->clk_data =3D devm_kzalloc(&pdev->dev, struct_size(clk_wzrd->c=
-lk_data, hws,
--=09=09=09=09=09  nr_outputs), GFP_KERNEL);
--=09if (!clk_wzrd->clk_data)
--=09=09return -ENOMEM;
-+=09if (of_property_read_bool(np, "xlnx,dynamic-reconfig")) {
-+=09=09ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->spee=
-d_grade);
-+=09=09if (!ret) {
-+=09=09=09if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
-+=09=09=09=09dev_warn(&pdev->dev, "invalid speed grade '%d'\n",
-+=09=09=09=09=09 clk_wzrd->speed_grade);
-+=09=09=09=09clk_wzrd->speed_grade =3D 0;
-+=09=09=09}
-+=09=09}
-=20
--=09ret =3D clk_wzrd_register_output_clocks(&pdev->dev, nr_outputs);
--=09if (ret)
--=09=09return ret;
-+=09=09clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
-+=09=09if (IS_ERR(clk_wzrd->clk_in1))
-+=09=09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
-+=09=09=09=09=09     "clk_in1 not found\n");
-=20
--=09clk_wzrd->clk_data->num =3D nr_outputs;
--=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_get, =
-clk_wzrd->clk_data);
--=09if (ret) {
--=09=09dev_err(&pdev->dev, "unable to register clock provider\n");
--=09=09return ret;
--=09}
-+=09=09ret =3D of_property_read_u32(np, "xlnx,nr-outputs", &nr_outputs);
-+=09=09if (ret || nr_outputs > WZRD_NUM_OUTPUTS)
-+=09=09=09return -EINVAL;
-=20
--=09if (clk_wzrd->speed_grade) {
--=09=09clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
-+=09=09clk_wzrd->clk_data =3D devm_kzalloc(&pdev->dev, struct_size(clk_wzrd=
-->clk_data, hws,
-+=09=09=09=09=09=09  nr_outputs), GFP_KERNEL);
-+=09=09if (!clk_wzrd->clk_data)
-+=09=09=09return -ENOMEM;
-=20
--=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
--=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09ret =3D clk_wzrd_register_output_clocks(&pdev->dev, nr_outputs);
- =09=09if (ret)
--=09=09=09dev_warn(&pdev->dev,
--=09=09=09=09 "unable to register clock notifier\n");
-+=09=09=09return ret;
-+
-+=09=09clk_wzrd->clk_data->num =3D nr_outputs;
-+=09=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_ge=
-t,
-+=09=09=09=09=09=09  clk_wzrd->clk_data);
-+=09=09if (ret) {
-+=09=09=09dev_err(&pdev->dev, "unable to register clock provider\n");
-+=09=09=09return ret;
-+=09=09}
-=20
--=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
--=09=09=09=09=09=09 &clk_wzrd->nb);
--=09=09if (ret)
--=09=09=09dev_warn(&pdev->dev,
--=09=09=09=09 "unable to register clock notifier\n");
-+=09=09if (clk_wzrd->speed_grade) {
-+=09=09=09clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
-+
-+=09=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
-+=09=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09=09if (ret)
-+=09=09=09=09dev_warn(&pdev->dev,
-+=09=09=09=09=09 "unable to register clock notifier\n");
-+
-+=09=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
-+=09=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09=09if (ret)
-+=09=09=09=09dev_warn(&pdev->dev,
-+=09=09=09=09=09 "unable to register clock notifier\n");
-+=09=09}
- =09}
-=20
- =09return 0;
---=20
-2.45.2
+I'll add this as a separate commit.
+ 
+> Something like:
+> 
+> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> index bc55fb55cd26..ce3659289b5e 100644
+> --- a/Documentation/admin-guide/kernel-parameters.txt
+> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> @@ -4158,6 +4158,18 @@
+>                         Disable NUMA, Only set up a single NUMA node
+>                         spanning all memory.
+> 
+> +       numa=fake=<size>[MG]
+> +                       If given as a memory unit, fills all system RAM with nodes of
+> +                       size interleaved over physical nodes.
+> +
+> +       numa=fake=<N>
+> +                       If given as an integer, fills all system RAM with N fake nodes
+> +                       interleaved over physical nodes.
+> +
+> +       numa=fake=<N>U
+> +                       If given as an integer followed by 'U', it will divide each
+> +                       physical node into N emulated nodes.
+> +
+>         numa_balancing= [KNL,ARM64,PPC,RISCV,S390,X86] Enable or disable automatic
+>                         NUMA balancing.
+>                         Allowed values are enable and disable
+> diff --git a/Documentation/arch/x86/x86_64/boot-options.rst b/Documentation/arch/x86/x86_64/boot-options.rst
+> index 137432d34109..98d4805f0823 100644
+> --- a/Documentation/arch/x86/x86_64/boot-options.rst
+> +++ b/Documentation/arch/x86/x86_64/boot-options.rst
+> @@ -170,18 +170,6 @@ NUMA
+>      Don't parse the HMAT table for NUMA setup, or soft-reserved memory
+>      partitioning.
+> 
+> -  numa=fake=<size>[MG]
+> -    If given as a memory unit, fills all system RAM with nodes of
+> -    size interleaved over physical nodes.
+> -
+> -  numa=fake=<N>
+> -    If given as an integer, fills all system RAM with N fake nodes
+> -    interleaved over physical nodes.
+> -
+> -  numa=fake=<N>U
+> -    If given as an integer followed by 'U', it will divide each
+> -    physical node into N emulated nodes.
+> -
+>  ACPI
+>  ====
+> 
+> Best Regards,
+> Yan, Zi
 
 
+
+-- 
+Sincerely yours,
+Mike.
 
