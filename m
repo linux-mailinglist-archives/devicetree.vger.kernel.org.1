@@ -1,167 +1,188 @@
-Return-Path: <devicetree+bounces-86909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0E5937FB5
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 09:31:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54348938010
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 11:02:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED2511C21139
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 07:31:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCEF41F21987
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 09:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DC1101E4;
-	Sat, 20 Jul 2024 07:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4AC29CFE;
+	Sat, 20 Jul 2024 09:02:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="LSUf8rpe";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ho/8Cdye"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pswl2GI4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC0CDF60;
-	Sat, 20 Jul 2024 07:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8158E8830;
+	Sat, 20 Jul 2024 09:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721460671; cv=none; b=ZH/oaK8n2FGsTVdOLpzt3p0Y4EPyM+Zgxnd2dcOgN9wuMSPqeoWk66iubRHbXhCAyaasnHuIUsppUn2T36ceeenTNt07xUpcaNWnB7r7azV/H6yoUFQiW0yqPOm3I62MtJ2sefr+bZYubMqn/Ex7YUjst8lURjAfnuNq/wVVBOA=
+	t=1721466172; cv=none; b=U/ShDG+H51tNxuZ/kXbwBHT7+C3D+EHSnO6QVDCJekCNgY0zyZcrTcJMWhYfeQBTS7SFAyFMEVEuxquvyu1tcbKTThLVO8lsXmgVF+PE3W2WNk1+JWbVCzn05smwQ1w+hAD36pDYJiVEqjuanAHd3LnWczwLYRpq9nDEn9UedR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721460671; c=relaxed/simple;
-	bh=eIv0y7+3oBIw7z9EWqT2JhkyAb3y5kxe+B1Y4QrHcAI=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=DHFfOGRB+ceGgiURCT/SmwUGYviF530fTqJrbPfi8Xeh30YBGASorLxvrxc59YJsiNhYIO3nglOxLll+DT0yzY/8UtSHrJzFxd0OwTplN842U8l8u8T6MR4Owr+ba511ABYqR9pH94xwhflBIclsV2yoFNRdkz6GPDQ6VZBRRQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=LSUf8rpe; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ho/8Cdye; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 63DD71140338;
-	Sat, 20 Jul 2024 03:31:06 -0400 (EDT)
-Received: from wimap26 ([10.202.2.86])
-  by compute1.internal (MEProxy); Sat, 20 Jul 2024 03:31:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1721460666;
-	 x=1721547066; bh=nFprbjbzfK3PCUnhXYMQrjytRzneuqNBK6Wvnc9m4TQ=; b=
-	LSUf8rpexnDThcuaJ1C6Q4/osWletTYa6Q5PajlcA7KZ7saPbb5JHak6DrqIRxRo
-	DkmzZS3lwXX/GB3z8zjO2y6w4sCJMzhx8qTGCNRqrssyd3erwIeW8AhGlICI5d8p
-	qsMxtmIOBYy0cb8TYPZ4r8OMWKLzwds23gvYsRMMochGG3pJHyj/Vs+DkYIWPmv+
-	Cq8xUYV9ZliTuD/A7GrkdkDmoH2OWgx9EI9yl1Glb10dXT9QiUfDEh6ia8nUgzoS
-	SuxpuZW1bZGFxjuiebEuf/XWEO1mTUTw2C14alaIIM1t/KrVl5vW2XQOKcT4cfEp
-	p9xYzUsS6RqyGcNl809Qvg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1721460666; x=
-	1721547066; bh=nFprbjbzfK3PCUnhXYMQrjytRzneuqNBK6Wvnc9m4TQ=; b=H
-	o/8CdyebdSxfutXtvsYE6HUP7KzoAw+I7c8BWBXdJRZbi5bnYx+E6wuAY5fAV2Dc
-	pyJSoYb8Q1FknJRSNkOi2DYs2GLoqfOdzGo+CRsqWHOMz2M90xCgbSLrbn/nF3WX
-	6nYEAitdaAK3r9qEmJTVPc1Llw3jqYvg7lTx103qUDKAGTw28g/qwYxb8FwkOpVF
-	16p03zbI2dXLZ2T9VrSqmPoMNbTS2Ksfn+JQbxnvrouf9loyQHHGBcuJWMBuO7YP
-	HestUaKFX8+cTFFpGZ44gWSRymjJie+oLXNABKfUPWqy9lHUNDsI4eWR2toIBqsk
-	jelzalXxn4d07jar1+guA==
-X-ME-Sender: <xms:uWebZsKRD-MBZ4GQDlz7Tbj5jsefWjmw4UmNZpJGefdHdw_1wL_1tQ>
-    <xme:uWebZsJ3Y40-TOL0R0Aj5Bp92KRNtsRcLH2Iw63no7HOcS5_o3ZmAL6-utU6E_dXv
-    o5qvw4JV9zG5szTlyU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrhedvgdduvdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpeekleevffehtdeigfekfefhffdtudffvdeuvedtffet
-    heeuiefhgfetleekleekjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdih
-    rghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:umebZsuhKisa3V4RQwIu8xZESIlpdW_kjhM_i1giBgft5r7yXzyqww>
-    <xmx:umebZpaxiiSmzomhZaTR1naSdXEHOdns3Kc2xmuFc3VJRue79_O6bw>
-    <xmx:umebZjYlJjGcFnogOYO8VBvm6IiDRuLbHl1yu2ga0-YGbdgquUhNSg>
-    <xmx:umebZlD4WtW8Ao-E6iMDOYDBiWquCG973QqGQVh55PhQhxsjAHBFHA>
-    <xmx:umebZhOTwfIWwqiTVd4aBYW58PvnEZw5CVCdWATjutXSuySVNKuz5J7b>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id DC23D19C0069; Sat, 20 Jul 2024 03:31:05 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
+	s=arc-20240116; t=1721466172; c=relaxed/simple;
+	bh=nEYZaYwiAAQBLiIIm/uuWESTEfm20+ytFKWXjQA0y9Y=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WndEZ/gVGcRIengjGtlfHOqCAc1jtLZOGCg9jCxcgfXeJyvBCmzyrexJwOsQzji8OxU64SZ3j80MKxGD6VnG5N+eH3lbmtbG31bpLWXQz6nw+nIdcFiP3dIs7qrY0AOXbKn2WXuRMpG0W4juWrXb44kjm7MdI7ys5N28jWX9yNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pswl2GI4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46K8eqt6003233;
+	Sat, 20 Jul 2024 09:02:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=JgbLO+BrfezU7OI5SgmnXSg/
+	fDyYu091fFqsRcz5Nzg=; b=pswl2GI4CzF3IqW6WarEW9V+xmeY28Nwnk85s68r
+	CGib3G7C+iGBRUZF1dgW49fPx6+hYRap/DgmjDFoHo4oc8tdDGDvBDx7awWv3ne9
+	Y8NkEuI3SSuy0eldFnl0MH6o2gTsa26LycfeBYCUWn2BQ3pYUv0UTh5t+LRkeeHL
+	Mip0eMYXRGNiDfAnsmop31HmOERgkHwjQtNBhWl6CHWVwn3sRoXknu2OigqQLSXT
+	9bXnwuJEcPF4L4uAb22489D64apSwrdcYdLNmiKRB02Dq47FlduUIygJMeS7b7QS
+	Ik+z9QNPtR0vBgvP4J+YHHUnANH3mr26JaEqgp8s7vMXnw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40g6djr7gb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Jul 2024 09:02:39 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46K92cI4026188
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Jul 2024 09:02:38 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sat, 20 Jul 2024 02:02:33 -0700
+Date: Sat, 20 Jul 2024 14:32:29 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <konrad.dybcio@linaro.org>,
+        <djakov@kernel.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v2 3/4] clk: qcom: ipq5332: Use icc-clk for enabling NoC
+ related clocks
+Message-ID: <Zpt9Jb0aIg96yKN3@hu-varada-blr.qualcomm.com>
+References: <20240711113239.3063546-1-quic_varada@quicinc.com>
+ <20240711113239.3063546-4-quic_varada@quicinc.com>
+ <iwdennlw4njxefulw5e2wofu4pylep65el4hiiso6xqmoaq5fb@i4hrltrn2o6z>
+ <ZpjxobF6LZMMN8A9@hu-varada-blr.qualcomm.com>
+ <CAA8EJpqHrgi-AvfxGxwph0MEs0=ALV_7XWoUcSgGTG3vVj62FA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <58e26927-cfda-4414-a037-7d0057184bf5@app.fastmail.com>
-In-Reply-To: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
-References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
-Date: Sat, 20 Jul 2024 15:30:44 +0800
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: "Serge Semin" <fancer.lancer@gmail.com>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] MIPS: cm: Probe GCR address from devicetree
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpqHrgi-AvfxGxwph0MEs0=ALV_7XWoUcSgGTG3vVj62FA@mail.gmail.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ndjB3nHq9whzaOwYBUYPtg0OXYz9j96a
+X-Proofpoint-ORIG-GUID: ndjB3nHq9whzaOwYBUYPtg0OXYz9j96a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-20_06,2024-07-18_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 suspectscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
+ malwarescore=0 spamscore=0 adultscore=0 bulkscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407200065
 
-
-
-=E5=9C=A82024=E5=B9=B46=E6=9C=8812=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
-=8D=886:08=EF=BC=8CJiaxun Yang=E5=86=99=E9=81=93=EF=BC=9A
-> Hi all,
+On Thu, Jul 18, 2024 at 01:47:32PM +0300, Dmitry Baryshkov wrote:
+> On Thu, 18 Jul 2024 at 13:42, Varadarajan Narayanan
+> <quic_varada@quicinc.com> wrote:
+> >
+> > On Sat, Jul 13, 2024 at 07:21:29PM +0300, Dmitry Baryshkov wrote:
+> > > On Thu, Jul 11, 2024 at 05:02:38PM GMT, Varadarajan Narayanan wrote:
+> > > > Use the icc-clk framework to enable few clocks to be able to
+> > > > create paths and use the peripherals connected on those NoCs.
+> > > >
+> > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > > ---
+> > > >  drivers/clk/qcom/gcc-ipq5332.c | 36 +++++++++++++++++++++++++++++-----
+> > > >  1 file changed, 31 insertions(+), 5 deletions(-)
+> > > >
+> > > > diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
+> > > > index f98591148a97..6d7672cae0f7 100644
+> > > > --- a/drivers/clk/qcom/gcc-ipq5332.c
+> > > > +++ b/drivers/clk/qcom/gcc-ipq5332.c
+> > > > @@ -4,12 +4,14 @@
+> > > >   */
+> > > >
+> > > >  #include <linux/clk-provider.h>
+> > > > +#include <linux/interconnect-provider.h>
+> > > >  #include <linux/mod_devicetable.h>
+> > > >  #include <linux/module.h>
+> > > >  #include <linux/platform_device.h>
+> > > >  #include <linux/regmap.h>
+> > > >
+> > > >  #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
+> > > > +#include <dt-bindings/interconnect/qcom,ipq5332.h>
+> > > >
+> > > >  #include "clk-alpha-pll.h"
+> > > >  #include "clk-branch.h"
+> > > > @@ -131,12 +133,14 @@ static struct clk_alpha_pll gpll4_main = {
+> > > >                      * (will be added soon), so the clock framework
+> > > >                      * disables this source. But some of the clocks
+> > > >                      * initialized by boot loaders uses this source. So we
+> > > > -                    * need to keep this clock ON. Add the
+> > > > -                    * CLK_IGNORE_UNUSED flag so the clock will not be
+> > > > -                    * disabled. Once the consumer in kernel is added, we
+> > > > -                    * can get rid of this flag.
+> > > > +                    * need to keep this clock ON.
+> > > > +                    *
+> > > > +                    * After initial bootup, when the ICC framework turns
+> > > > +                    * off unused paths, as part of the icc-clk dependencies
+> > > > +                    * this clock gets disabled resulting in a hang. Marking
+> > > > +                    * it as critical to ensure it is not turned off.
+> > >
+> > > Previous comment was pretty clear: there are missing consumers, the flag
+> > > will be removed once they are added. Current comment doesn't make sense.
+> > > What is the reason for the device hang if we have all the consumers in
+> > > place?
+> >
+> > Earlier, since there were no consumers for this clock, it got
+> > disabled via clk_disable_unused() and CLK_IGNORE_UNUSED helped
+> > prevent that.
+> >
+> > Now, since this clk is getting used indirectly via icc-clk
+> > framework, it doesn't qualify for being disabled by
+> > clk_disable_unused(). However, when icc_sync_state is called, if
+> > it sees there are no consumers for a path and that path gets
+> > disabled, the relevant clocks get disabled and eventually this
+> > clock also gets disabled. To avoid this have changed 'flags' from
+> > CLK_IGNORE_UNUSED -> CLK_IS_CRITICAL.
 >
-> This series enabled mips-cm code to probe GCR address from devicetree.
->
-> This feature has been implemented in MIPS's out-of-tree kernel for
-> a while, and MIPS's u-boot fork on boston will generate required
-> "mti,mips-cm" node as well.
->
-> Please review.
-> Thanks
+> You don't seem to be answering my question: "What is the reason for
+> the device hang if we have all the consumers in place?"
+> Could you please answer it rather than describing the CCF / icc-clk behaviour?
 
+Sorry if I hadn't expressed myself clearly. All the consumers are
+not there in place yet.
 
-Ping on this?
+> Are there any actual consumers for GPLL4 at this point? If not, why do
+> you want to keep it running? Usually all PLLs are shut down when there
+> are no consumers and then restarted when required. This is the
+> expected and correct behaviour.
 
+There are consumers for GPLL4, but they are getting disabled by
+clk_disable_unused (this is expected). There seems to be some
+consumer that got enabled in boot loader itself but not accounted
+in Linux because of which we are relying on CLK_IGNORE_UNUSED.
+
+If missing consumer(s) is identified, we can do away with this
+flag. Till that is done, was hoping CLK_IS_CRITICAL could help.
 
 Thanks
+Varada
 
->
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
-> Changes in v2:
-> - Fix probe order on malta (Serge)
-> - dt binding improvements (Conor)
-> - Build warning fix
-> - Link to v1:=20
-> https://lore.kernel.org/r/20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.=
-com
->
-> ---
-> Jiaxun Yang (6):
->       MIPS: generic: Do __dt_setup_arch in prom_init
->       MIPS: malta: Move SMP initialisation to device_tree_init
->       MIPS: cm: Prefix probe functions with __init
->       MIPS: Move mips_cm_probe after prom_init
->       dt-bindings: mips: Document mti,mips-cm
->       MIPS: cm: Probe GCR address from DeviceTree
->
->  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++
->  arch/mips/generic/init.c                           |  9 ++-
->  arch/mips/include/asm/mips-cm.h                    |  4 +-
->  arch/mips/kernel/mips-cm.c                         | 69 +++++++++++++=
-+++++----
->  arch/mips/kernel/setup.c                           |  2 +-
->  arch/mips/mti-malta/malta-init.c                   |  8 ++-
->  6 files changed, 111 insertions(+), 19 deletions(-)
-> ---
-> base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
-> change-id: 20240506-cm_probe-0c667c8b63bf
->
-> Best regards,
-> --=20
-> Jiaxun Yang <jiaxun.yang@flygoat.com>
-
---=20
-- Jiaxun
 
