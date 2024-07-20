@@ -1,137 +1,254 @@
-Return-Path: <devicetree+bounces-86918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1949380A9
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:27:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F9B9380D3
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 12:51:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 573A21F21955
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 10:27:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1C03281CDB
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 10:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780B87404F;
-	Sat, 20 Jul 2024 10:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661F981211;
+	Sat, 20 Jul 2024 10:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OSOw1h0I"
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="CuQhzWg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7303D6D;
-	Sat, 20 Jul 2024 10:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0912030B;
+	Sat, 20 Jul 2024 10:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721471236; cv=none; b=KeEj6LBdcBUji8tOWwDGC+HnpcoLwETSPGyhLuPdqYqRP55ZaAfGYqtSw+eoIR38Ve69zYFI5gdBjORrU/dQYRLJSnc06sruVKMQUmmnPzeyzx9xfKmSIcxwEs1AEwp+WdFNEYleTIoRAlmwgTG8vrAK7N3C6nLbuebrcGuLG44=
+	t=1721472707; cv=none; b=E7EGf/nzfG4s5i9DEKhKjgdwO3OONe8x5h8it2UBLp2OOytjkA5Fr0vSQFE51Zb4tdiHsiQiDbcVgZFstQiTfajP0ElVNSQn9v126Ma/h5SvLnNjhZES/cVXd4KjNfu+haWie9lHuPCHpmSxKRx3YPT3yigkYZZa1A9O6hBPgxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721471236; c=relaxed/simple;
-	bh=dVNVV+LbgZSpehO8np8DsTOCzJGiWq4UJOrsJg2zgCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7UJT3+YJHRBadBmJcGbxPtXBzDYKUZD0uSg9G+yQ4XUkqpsn9zZu5yFW/vnDdSefb+djQqsjadkrbfV5ZgFajA4TQQL+fouN3xDawy2Pd0kOPpRPgAfbr8noqq73LliFmJ+ZU2v31f0l4GrEFrivnGcL246VKshFSIr0YA1f18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OSOw1h0I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F39A7C2BD10;
-	Sat, 20 Jul 2024 10:27:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721471235;
-	bh=dVNVV+LbgZSpehO8np8DsTOCzJGiWq4UJOrsJg2zgCA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OSOw1h0Ig/Sxo42NZVxgWqDg7PApDQPKQu7IqHtWulHzO5DZIoZUQKCkyr/Imoxko
-	 Lntuo9YYc0lQcsGc+PRntWL+4q6xGqYrJQGqSwrQ2zZ1CtZ6MvlYyVAEJlaBtunrNO
-	 F2DuSLx1QB9fjEK101QysRMhcJp+/gGJQsWj4+tgA87UM1Qqi7MiDFaIy33Yfgv/7x
-	 VV0gk0bbejGKCDskyj6Yq3aWY4qrq3jL+EZ+nUCUWS3c3DH2vL/WRIeqbcd+hCBosA
-	 QTOgUg+IY8NEEcUIVy6GfU3iS+hehOwAyUj7zAH7+pI+6MP+NYXBi6cf1MEyU9Ri4P
-	 as0dGwXRHcDEg==
-Date: Sat, 20 Jul 2024 13:24:06 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
-	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	nvdimm@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arch@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH 05/17] arch, mm: pull out allocation of NODE_DATA to
- generic code
-Message-ID: <ZpuQRgmrp-4deiur@kernel.org>
-References: <20240716111346.3676969-1-rppt@kernel.org>
- <20240716111346.3676969-6-rppt@kernel.org>
- <220da8ed-337a-4b1e-badf-2bff1d36e6c3@redhat.com>
+	s=arc-20240116; t=1721472707; c=relaxed/simple;
+	bh=bjMYb4foP2Gd3ezZyUdM3Qw1b32Bs1ieql7ODvDwN+Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ro6CCnCRVBZ+rU82Dll63HR3TmnNYQixZV0fAB9ZIGgYyukxQAySmTGQPS+Dwvkk1bye8IsxLi8piQLSG/4Ge9hL2dnzcR+4h9R+8jg/dTgJbZ7Dv7Oj6odmufWoUvrDjagDmbWRkptBNFZcUto6ewiMZWh630IWDKJDqSRA2cA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=CuQhzWg7; arc=none smtp.client-ip=178.154.239.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
+Received: from mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net [IPv6:2a02:6b8:c11:1115:0:640:1385:0])
+	by forward501b.mail.yandex.net (Yandex) with ESMTPS id 0529D610BD;
+	Sat, 20 Jul 2024 13:44:10 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 4iIPWxEGkGk0-FfI6ubyd;
+	Sat, 20 Jul 2024 13:44:08 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1721472249; bh=d+h+UU22HqHfMDmo3Xu6T6q9MntFpOpEsMe8DGuLIhI=;
+	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+	b=CuQhzWg7vpYy3l6oKNnNot63qdinAXTBN5weZju2M1Yax4M3Rlw9jz8zku/qyggQh
+	 1AIjT8NdTxfUxtbmiUhaMnAxIxJ18nNcTsfuZqsCtfyS5Nk3FBS0mQeO6yJeJg9lj9
+	 Zsz4IPUhYHrlsog45VQq/iiPrfNkNLuNa7X7b4x4=
+Authentication-Results: mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.com
+Message-ID: <c926b73e-9ee7-4c4f-9c06-761929425468@yandex.com>
+Date: Sat, 20 Jul 2024 12:44:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <220da8ed-337a-4b1e-badf-2bff1d36e6c3@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] dt-bindings: media: Document bindings for HDMI RX
+ Controller
+To: Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <20240719124032.26852-3-shreeya.patel@collabora.com>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@yandex.com>
+In-Reply-To: <20240719124032.26852-3-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jul 17, 2024 at 04:42:48PM +0200, David Hildenbrand wrote:
-> On 16.07.24 13:13, Mike Rapoport wrote:
-> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> > 
-> > Architectures that support NUMA duplicate the code that allocates
-> > NODE_DATA on the node-local memory with slight variations in reporting
-> > of the addresses where the memory was allocated.
-> > 
-> > Use x86 version as the basis for the generic alloc_node_data() function
-> > and call this function in architecture specific numa initialization.
-> > 
-> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > ---
-> 
-> [...]
-> 
-> > diff --git a/arch/mips/loongson64/numa.c b/arch/mips/loongson64/numa.c
-> > index 9208eaadf690..909f6cec3a26 100644
-> > --- a/arch/mips/loongson64/numa.c
-> > +++ b/arch/mips/loongson64/numa.c
-> > @@ -81,12 +81,8 @@ static void __init init_topology_matrix(void)
-> >   static void __init node_mem_init(unsigned int node)
-> >   {
-> > -	struct pglist_data *nd;
-> >   	unsigned long node_addrspace_offset;
-> >   	unsigned long start_pfn, end_pfn;
-> > -	unsigned long nd_pa;
-> > -	int tnid;
-> > -	const size_t nd_size = roundup(sizeof(pg_data_t), SMP_CACHE_BYTES);
-> 
-> One interesting change is that we now always round up to full pages on
-> architectures where we previously rounded up to SMP_CACHE_BYTES.
 
-I did some git archaeology and it seems that round up to full pages on x86
-backdates to bootmem era when allocation granularity was PAGE_SIZE anyway.
-I'm going to change that to SMP_CACHE_BYTES in v2.
- 
-> I assume we don't really expect a significant growth in memory consumption
-> that we care about, especially because most systems with many nodes also
-> have  quite some memory around.
 
--- 
-Sincerely yours,
-Mike.
+On 7/19/24 14:40, Shreeya Patel wrote:
+> Document bindings for the Synopsys DesignWare HDMI RX Controller.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> ---
+> 
+> Changes in v4 :-
+>   - No change
+> 
+> Changes in v3 :-
+>   - Rename hdmirx_cma to hdmi_receiver_cma
+>   - Add a Reviewed-by tag
+> 
+> Changes in v2 :-
+>   - Add a description for the hardware
+>   - Rename resets, vo1 grf and HPD properties
+>   - Add a proper description for grf and vo1-grf phandles
+>   - Rename the HDMI Input node name to hdmi-receiver
+>   - Improve the subject line
+>   - Include gpio header file in example to fix dt_binding_check failure
+> 
+>  .../bindings/media/snps,dw-hdmi-rx.yaml       | 132 ++++++++++++++++++
+>  1 file changed, 132 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> new file mode 100644
+> index 000000000000..96ae1e2d2816
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> @@ -0,0 +1,132 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Device Tree bindings for Synopsys DesignWare HDMI RX Controller
+> +
+> +---
+> +$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare HDMI RX Controller
+> +
+> +maintainers:
+> +  - Shreeya Patel <shreeya.patel@collabora.com>
+> +
+> +description:
+> +  Synopsys DesignWare HDMI Input Controller preset on RK3588 SoCs
+> +  allowing devices to receive and decode high-resolution video streams
+> +  from external sources like media players, cameras, laptops, etc.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: rockchip,rk3588-hdmirx-ctrler
+
+> +      - const: snps,dw-hdmi-rx
+
+1: Compatible strings must be SoC orientated.
+2: In Linux there's no priority in which string will probed first. 
+What's the point of having a fallback string when there's no common code, but instead only the first string is used?
+
++static const struct of_device_id hdmirx_id[] = {
++	{ .compatible = "rockchip,rk3588-hdmirx-ctrler" },
++	{ },
++};
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: cec
+> +      - const: hdmi
+> +      - const: dma
+> +
+> +  clocks:
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: audio
+> +      - const: cr_para
+> +      - const: pclk
+> +      - const: ref
+> +      - const: hclk_s_hdmirx
+> +      - const: hclk_vo1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 4
+> +
+> +  reset-names:
+> +    items:
+> +      - const: axi
+> +      - const: apb
+> +      - const: ref
+> +      - const: biu
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  hpd-gpios:
+> +    description: GPIO specifier for HPD.
+> +    maxItems: 1
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the general register file
+> +      containing HDMIRX PHY status bits.
+> +
+> +  rockchip,vo1-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the Video Output GRF register
+> +      to enable EDID transfer through SDAIN and SCLIN.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - resets
+> +  - pinctrl-0
+> +  - hpd-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/rk3588-power.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +    hdmi_receiver: hdmi-receiver@fdee0000 {
+> +      compatible = "rockchip,rk3588-hdmirx-ctrler", "snps,dw-hdmi-rx";
+> +      reg = <0xfdee0000 0x6000>;
+> +      interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                   <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                   <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH 0>;
+> +      interrupt-names = "cec", "hdmi", "dma";
+> +      clocks = <&cru ACLK_HDMIRX>,
+> +               <&cru CLK_HDMIRX_AUD>,
+> +               <&cru CLK_CR_PARA>,
+> +               <&cru PCLK_HDMIRX>,
+> +               <&cru CLK_HDMIRX_REF>,
+> +               <&cru PCLK_S_HDMIRX>,
+> +               <&cru HCLK_VO1>;
+> +      clock-names = "aclk",
+> +                    "audio",
+> +                    "cr_para",
+> +                    "pclk",
+> +                    "ref",
+> +                    "hclk_s_hdmirx",
+> +                    "hclk_vo1";
+> +      power-domains = <&power RK3588_PD_VO1>;
+> +      resets = <&cru SRST_A_HDMIRX>, <&cru SRST_P_HDMIRX>,
+> +               <&cru SRST_HDMIRX_REF>, <&cru SRST_A_HDMIRX_BIU>;
+> +      reset-names = "axi", "apb", "ref", "biu";
+> +      memory-region = <&hdmi_receiver_cma>;
+> +      pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_5v_detection>;
+> +      pinctrl-names = "default";
+> +      hpd-gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
+> +    };
 
