@@ -1,109 +1,167 @@
-Return-Path: <devicetree+bounces-86908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34DE7937F5A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 08:58:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB0E5937FB5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 09:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33BB41C2112C
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 06:58:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED2511C21139
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 07:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5214614F7A;
-	Sat, 20 Jul 2024 06:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DC1101E4;
+	Sat, 20 Jul 2024 07:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="GlS3pVWe"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="LSUf8rpe";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ho/8Cdye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BEC912E61;
-	Sat, 20 Jul 2024 06:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC0CDF60;
+	Sat, 20 Jul 2024 07:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721458694; cv=none; b=CgK3zLaXOi3m6OPAUoPPrguaXllCDIO4j0sVW54XMeTREpQjpwYr4K5ref5VIPDNrQFAEp2ak86uS5jjOHxRIwNq8d2F+22383xobjFyyO2I6rXl3NqaHTVrRN9kXh+pQRCwmQ2gBP0IzEEm4kz3VWGaDcdcXqGJlzWdDhXvL5Q=
+	t=1721460671; cv=none; b=ZH/oaK8n2FGsTVdOLpzt3p0Y4EPyM+Zgxnd2dcOgN9wuMSPqeoWk66iubRHbXhCAyaasnHuIUsppUn2T36ceeenTNt07xUpcaNWnB7r7azV/H6yoUFQiW0yqPOm3I62MtJ2sefr+bZYubMqn/Ex7YUjst8lURjAfnuNq/wVVBOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721458694; c=relaxed/simple;
-	bh=M5L6dWDAc1ou/EhVWLIU6nU2qw5ijq61Yo/lqnsud80=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=MJayc/KjitXwkqY18Zxee1mp4y1f7uT2oJtp5GPKKD2vSkhbOUOPywKOnIDbMy/iYw3ZLdQU6Sdlqrz3iJUKrTuhz9R9DKvR5dI+SCkEUa4Vehq7gA4SEgdrlcaZkzpF2SUBuNuE4OzaZt/HU8rdU5Icg31EHecm3dWoqr1F8P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=GlS3pVWe; arc=none smtp.client-ip=194.87.146.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 8016C401C4;
-	Sat, 20 Jul 2024 11:57:59 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1721458680; bh=M5L6dWDAc1ou/EhVWLIU6nU2qw5ijq61Yo/lqnsud80=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=GlS3pVWedP+ZRBjFW6aR/R6nayB6owCO3ITEjaNzTuyK+BMu5OUL8X1KcbKoS+3KO
-	 fbiULf8HGAHrT8lAtvcwanWuf7YQcS9jp4GfVIRlcfzrl1wWPvQ4//KffnarmPtR8H
-	 gOcCISUwAFhKoxL7J4BSAxJiaVWMDoX+/IxesaPT8jibYmJqxABEev+saM3n2KKv1C
-	 kt0FieLInXflBF/UxntpkR+XDodPxD5ioHc98u/C2JnWqOzXCf+QWRh0F7eA8H91cn
-	 CEHtFD/DW7hoqaI2HkVVXTAUDBaUnxgpqDxlsoJCpEdJP+6rCZkFFeqyb3Ww52ip6O
-	 boh40a6kCxVtw==
+	s=arc-20240116; t=1721460671; c=relaxed/simple;
+	bh=eIv0y7+3oBIw7z9EWqT2JhkyAb3y5kxe+B1Y4QrHcAI=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=DHFfOGRB+ceGgiURCT/SmwUGYviF530fTqJrbPfi8Xeh30YBGASorLxvrxc59YJsiNhYIO3nglOxLll+DT0yzY/8UtSHrJzFxd0OwTplN842U8l8u8T6MR4Owr+ba511ABYqR9pH94xwhflBIclsV2yoFNRdkz6GPDQ6VZBRRQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=LSUf8rpe; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ho/8Cdye; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 63DD71140338;
+	Sat, 20 Jul 2024 03:31:06 -0400 (EDT)
+Received: from wimap26 ([10.202.2.86])
+  by compute1.internal (MEProxy); Sat, 20 Jul 2024 03:31:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1721460666;
+	 x=1721547066; bh=nFprbjbzfK3PCUnhXYMQrjytRzneuqNBK6Wvnc9m4TQ=; b=
+	LSUf8rpexnDThcuaJ1C6Q4/osWletTYa6Q5PajlcA7KZ7saPbb5JHak6DrqIRxRo
+	DkmzZS3lwXX/GB3z8zjO2y6w4sCJMzhx8qTGCNRqrssyd3erwIeW8AhGlICI5d8p
+	qsMxtmIOBYy0cb8TYPZ4r8OMWKLzwds23gvYsRMMochGG3pJHyj/Vs+DkYIWPmv+
+	Cq8xUYV9ZliTuD/A7GrkdkDmoH2OWgx9EI9yl1Glb10dXT9QiUfDEh6ia8nUgzoS
+	SuxpuZW1bZGFxjuiebEuf/XWEO1mTUTw2C14alaIIM1t/KrVl5vW2XQOKcT4cfEp
+	p9xYzUsS6RqyGcNl809Qvg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1721460666; x=
+	1721547066; bh=nFprbjbzfK3PCUnhXYMQrjytRzneuqNBK6Wvnc9m4TQ=; b=H
+	o/8CdyebdSxfutXtvsYE6HUP7KzoAw+I7c8BWBXdJRZbi5bnYx+E6wuAY5fAV2Dc
+	pyJSoYb8Q1FknJRSNkOi2DYs2GLoqfOdzGo+CRsqWHOMz2M90xCgbSLrbn/nF3WX
+	6nYEAitdaAK3r9qEmJTVPc1Llw3jqYvg7lTx103qUDKAGTw28g/qwYxb8FwkOpVF
+	16p03zbI2dXLZ2T9VrSqmPoMNbTS2Ksfn+JQbxnvrouf9loyQHHGBcuJWMBuO7YP
+	HestUaKFX8+cTFFpGZ44gWSRymjJie+oLXNABKfUPWqy9lHUNDsI4eWR2toIBqsk
+	jelzalXxn4d07jar1+guA==
+X-ME-Sender: <xms:uWebZsKRD-MBZ4GQDlz7Tbj5jsefWjmw4UmNZpJGefdHdw_1wL_1tQ>
+    <xme:uWebZsJ3Y40-TOL0R0Aj5Bp92KRNtsRcLH2Iw63no7HOcS5_o3ZmAL6-utU6E_dXv
+    o5qvw4JV9zG5szTlyU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrhedvgdduvdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpeekleevffehtdeigfekfefhffdtudffvdeuvedtffet
+    heeuiefhgfetleekleekjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdih
+    rghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:umebZsuhKisa3V4RQwIu8xZESIlpdW_kjhM_i1giBgft5r7yXzyqww>
+    <xmx:umebZpaxiiSmzomhZaTR1naSdXEHOdns3Kc2xmuFc3VJRue79_O6bw>
+    <xmx:umebZjYlJjGcFnogOYO8VBvm6IiDRuLbHl1yu2ga0-YGbdgquUhNSg>
+    <xmx:umebZlD4WtW8Ao-E6iMDOYDBiWquCG973QqGQVh55PhQhxsjAHBFHA>
+    <xmx:umebZhOTwfIWwqiTVd4aBYW58PvnEZw5CVCdWATjutXSuySVNKuz5J7b>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id DC23D19C0069; Sat, 20 Jul 2024 03:31:05 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-568-g843fbadbe-fm-20240701.003-g843fbadb
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 20 Jul 2024 11:57:44 +0500
-From: Nikita Travkin <nikita@trvn.ru>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Srba <Michael.Srba@seznam.cz>, Linus Walleij
- <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] input: zinitix: Add touchkey support
-In-Reply-To: <ZpsE8mQpahxBQRE-@google.com>
-References: <20240717-zinitix-tkey-v5-0-52ea4cd4bd50@trvn.ru>
- <20240717-zinitix-tkey-v5-2-52ea4cd4bd50@trvn.ru>
- <ZpsE8mQpahxBQRE-@google.com>
-Message-ID: <b0b86f2f6f315d791e7e0391142720b9@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Message-Id: <58e26927-cfda-4414-a037-7d0057184bf5@app.fastmail.com>
+In-Reply-To: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
+References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
+Date: Sat, 20 Jul 2024 15:30:44 +0800
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+Cc: "Serge Semin" <fancer.lancer@gmail.com>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] MIPS: cm: Probe GCR address from devicetree
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Dmitry Torokhov писал(а) 20.07.2024 05:29:
-> On Wed, Jul 17, 2024 at 06:55:34PM +0500, Nikita Travkin wrote:
->> Zinitix touch controllers can use some of the sense lines for virtual
->> keys (like those found on many phones). Add support for those keys.
->>
->> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> 
-> Applied, thank you. However:
-> 
->> -->
->> +	if (le16_to_cpu(touch_event.status) & BIT_ICON_EVENT) {
->> +		error = zinitix_read_data(bt541->client, ZINITIX_ICON_STATUS_REG,
->> +					  &icon_events, sizeof(icon_events));
->> +		if (error) {
->> +			dev_err(&client->dev, "Failed to read icon events\n");
->> +			goto out;
->> +		}
-> 
-> I wonder, would it make sense (and be more efficient) to issue a single
-> read of size sizeof(struct touch_event) + sizeof(icon_events) and the
-> parse the data based on touch_event.status?
 
-Maybe, but I would be really hesitant to such a change: Original driver
-also makes a dedicated read for the "icon" data and per my understanding,
-those "register reads" may also not be really "register" based but rather
-kind of "command" based, where controller will start streaming the data
-based on the request for the specific "register". In this case i'd prefer
-to not accidentally confuse the touch firmware by over-reading the data,
-if its somehow firmware-version-defined.
 
-Thanks for giving it a look and picking this up!
-Nikita
+=E5=9C=A82024=E5=B9=B46=E6=9C=8812=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
+=8D=886:08=EF=BC=8CJiaxun Yang=E5=86=99=E9=81=93=EF=BC=9A
+> Hi all,
+>
+> This series enabled mips-cm code to probe GCR address from devicetree.
+>
+> This feature has been implemented in MIPS's out-of-tree kernel for
+> a while, and MIPS's u-boot fork on boston will generate required
+> "mti,mips-cm" node as well.
+>
+> Please review.
+> Thanks
 
-> 
-> Thanks.
+
+Ping on this?
+
+
+Thanks
+
+>
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> ---
+> Changes in v2:
+> - Fix probe order on malta (Serge)
+> - dt binding improvements (Conor)
+> - Build warning fix
+> - Link to v1:=20
+> https://lore.kernel.org/r/20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.=
+com
+>
+> ---
+> Jiaxun Yang (6):
+>       MIPS: generic: Do __dt_setup_arch in prom_init
+>       MIPS: malta: Move SMP initialisation to device_tree_init
+>       MIPS: cm: Prefix probe functions with __init
+>       MIPS: Move mips_cm_probe after prom_init
+>       dt-bindings: mips: Document mti,mips-cm
+>       MIPS: cm: Probe GCR address from DeviceTree
+>
+>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++
+>  arch/mips/generic/init.c                           |  9 ++-
+>  arch/mips/include/asm/mips-cm.h                    |  4 +-
+>  arch/mips/kernel/mips-cm.c                         | 69 +++++++++++++=
++++++----
+>  arch/mips/kernel/setup.c                           |  2 +-
+>  arch/mips/mti-malta/malta-init.c                   |  8 ++-
+>  6 files changed, 111 insertions(+), 19 deletions(-)
+> ---
+> base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
+> change-id: 20240506-cm_probe-0c667c8b63bf
+>
+> Best regards,
+> --=20
+> Jiaxun Yang <jiaxun.yang@flygoat.com>
+
+--=20
+- Jiaxun
 
