@@ -1,137 +1,95 @@
-Return-Path: <devicetree+bounces-86979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA0C9382C4
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 22:01:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC3E89382D2
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 22:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BF62B213EE
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 20:01:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48EC528173A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2024 20:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF07D148FFC;
-	Sat, 20 Jul 2024 20:01:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="cSLgwC4g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD08148832;
+	Sat, 20 Jul 2024 20:58:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B74914884F;
-	Sat, 20 Jul 2024 20:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E23912C53D;
+	Sat, 20 Jul 2024 20:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721505666; cv=none; b=SzupY9qOldBuog6bdV5Ur63OYxR5rBa/eedJ/QHpP8FVTShcDo5BjcShVdkK20uaeTFvIDofuvybVQoXAX2NmcxSk/quIempgvjyBvBjgIkGjtHiX+hNP3N/Hty92MYTAV9Shs9Bp2Q9tk3thtuHF2V+yKaTG4yK+Wog7qcsmXk=
+	t=1721509084; cv=none; b=stb54oj1zin55oHLUZ/RFxyRj8IVOnOc7F0M0yziy/jGoH1yU+NdAaUy2IDULg9oC+qjgPcn5U9AwrqgdetLBSVFN+I3w617W6w2xE9v2BlvusqxpjSe0uSUuPQLdP/GjSR3WshRIpX7xmPjOnUDO9PXDQjb+SeBG1ZNCb0H5UY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721505666; c=relaxed/simple;
-	bh=sFZEn+q5HsOAqJ+tlX3m4UQ/xNniXeOzc8CG0pK6edE=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dtPdbBmUM+8kURHpaP0jQJgT1HzOa4jBWUiA/XdaHWxhaVfChLDbnq8F+YPgXDExByLD6eFDOCKqxmC6lXVBGM2IUmKPQMzZSYblcQfYXWObqKGtR0fg+4LJ6cPadwqbiQ8JIUha1rI0nXk5ZSnEujdyw6WdpPRE+aMNdAJrpLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=cSLgwC4g; arc=none smtp.client-ip=185.70.43.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1721505662; x=1721764862;
-	bh=YmbnTSVayuh9xCsUezkE054ocy3nyuaaKWSdB0kEoFs=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=cSLgwC4gi+se0y0KCM3doAGXdpLJm29ewhKn7tK5tF13FZ+lS6iZHV5s2UHeFAZqs
-	 DfY3lYfKwdv9EBDObG+fhkXqnKbnyud1DGjoCHndxXssZs4F7YZfjysa3j2VH47nCF
-	 rpSE86hm36nOTYbntG2O3/EQ7+kmjORq7d8TJFEX9Fa1kgY0w/Yquh7MkmJXsk1R+1
-	 CYyNobRn2Dof6+Q4NUbkGPm55oMxCnepHjTqj94BNQ2LgmuMIsYCsNGBzWL1QSuElT
-	 VSK0NUllbF+r1FOYd5rG/1jNE4mXWGeyjLGt+E33mGJ27veDL+D1Gsm9D8/m9PnDDI
-	 33gO+aJWHxZyg==
-Date: Sat, 20 Jul 2024 20:00:45 +0000
-To: Rob Herring <robh@kernel.org>
-From: Harry Austen <hpausten@protonmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/7] dt-bindings: clock: xilinx: add description of user monitor interrupt
-Message-ID: <D2UMTF78IDUQ.IWXPEKIF0MAU@protonmail.com>
-In-Reply-To: <20240720143708.GA239850-robh@kernel.org>
-References: <20240720120048.36758-1-hpausten@protonmail.com> <20240720120048.36758-5-hpausten@protonmail.com> <20240720143708.GA239850-robh@kernel.org>
-Feedback-ID: 53116287:user:proton
-X-Pm-Message-ID: aef34513ce9d61c0df9f689adb1cde03b2dc7ae1
+	s=arc-20240116; t=1721509084; c=relaxed/simple;
+	bh=VZ5MeoNk9IkJ0VOIjaZuN+/zcboTsoiAjIO5pQRW+VU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=u0WqUADA5J2XRzxigPE+SB5G2Pknugo1BEAcrwBcg+JTa/xpAvCN+ph2goN6WGo7D8rO5QxuB0e89dRii0EZYuVMAjyqSMMTo5hv36BqjA5bmgHo9+nfH1gd3+KPulLksWUjDjsh2xOFn6teD8Mx+ucDEL47i4zhWKMYZky5fUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e860cd3.versanet.de ([94.134.12.211] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sVH9D-0005tv-2L; Sat, 20 Jul 2024 22:57:43 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: dlemoal@kernel.org,
+	cassel@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	sebastian.reichel@collabora.com,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	u.kleine-koenig@baylibre.com
+Subject: [PATCH] dt-bindings: ata: rockchip-dwc-ahci: add missing power-domains
+Date: Sat, 20 Jul 2024 22:57:05 +0200
+Message-Id: <20240720205705.776384-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sat Jul 20, 2024 at 3:37 PM BST, Rob Herring wrote:
-> On Sat, Jul 20, 2024 at 12:01:48PM +0000, Harry Austen wrote:
-> > This Xilinx clocking wizard IP core outputs this interrupt signal to
-> > indicate when one of the four optional user clock inputs is either
-> > stopped, overruns, underruns or glitches.
-> >
-> > This functionality was only added from version 6.0 onwards, so restrict
-> > it to particular compatible strings.
-> >
-> > Signed-off-by: Harry Austen <hpausten@protonmail.com>
-> > ---
-> >  .../bindings/clock/xlnx,clocking-wizard.yaml  | 22 ++++++++++++++++++-
-> >  1 file changed, 21 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wiza=
-rd.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > index 9d5324dc1027a..4609bb56b06b5 100644
-> > --- a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > @@ -62,17 +62,37 @@ required:
-> >    - xlnx,speed-grade
-> >    - xlnx,nr-outputs
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - xlnx,clocking-wizard-v6.0
-> > +            - xlnx,versal-clk-wizard
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          items:
-> > +            - description: user clock monitor interrupt
-> > +
-> > +        interrupt-names:
-> > +          items:
-> > +            - const: monitor
->
-> Properties need to be defined at the top-level (outside the if/then
-> schema), then restricted here.
+The Rockchip variant of the dwc-ahci controller does have and need power-
+domains to work, though the binding does not mention them, making dtccheck
+quite unhappy:
 
-Makes sense. Will do in v2.
+  DTC_CHK arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dtb
+/home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dtb: sata@fc800000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+        from schema $id: http://devicetree.org/schemas/ata/rockchip,dwc-ahci.yaml#
 
-Thanks for the review!
+Fix that by adding the missing power-domain property to the binding.
 
->
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> >      clock-controller@b0000000  {
-> > -        compatible =3D "xlnx,clocking-wizard";
-> > +        compatible =3D "xlnx,clocking-wizard-v6.0";
-> >          reg =3D <0xb0000000 0x10000>;
-> >          #clock-cells =3D <1>;
-> >          xlnx,speed-grade =3D <1>;
-> >          xlnx,nr-outputs =3D <6>;
-> >          clock-names =3D "clk_in1", "s_axi_aclk";
-> >          clocks =3D <&clkc 15>, <&clkc 15>;
-> > +        interrupts-extended =3D <&intc 52 IRQ_TYPE_EDGE_RISING>;
-> > +        interrupt-names =3D "monitor";
-> >      };
-> >  ...
-> > --
-> > 2.45.2
-> >
-> >
+Fixes: 85b0e13b19c2 ("dt-bindings: ata: dwc-ahci: add Rockchip RK3588")
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml
+index b5e5767d86988..13eaa8d9a16e5 100644
+--- a/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml
++++ b/Documentation/devicetree/bindings/ata/rockchip,dwc-ahci.yaml
+@@ -35,6 +35,9 @@ properties:
+   ports-implemented:
+     const: 1
+ 
++  power-domains:
++    maxItems: 1
++
+   sata-port@0:
+     $ref: /schemas/ata/snps,dwc-ahci-common.yaml#/$defs/dwc-ahci-port
+ 
+-- 
+2.39.2
 
 
