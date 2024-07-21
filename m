@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-87021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979E09384BC
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 15:35:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB30E9384C2
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 15:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA2171C2097B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 13:35:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D26C1F212BD
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 13:37:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760E4166309;
-	Sun, 21 Jul 2024 13:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852BF161916;
+	Sun, 21 Jul 2024 13:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C1fNyB/N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mJwBmgNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE26166302;
-	Sun, 21 Jul 2024 13:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4104216132B;
+	Sun, 21 Jul 2024 13:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721568920; cv=none; b=EOhd0uOyuSNyXHn5ducuO5WUawXCbHSlOg/Gi7BI2uj1XnljABeKDEUUt2VLT3JN8T6lGw+DU2ONfHK5mfFqT5hYaTDvvDR5vhecqWdPRDbgCeAI+dEMkAvs1pb+RFafFTrGMsgR6SVAzwytO17URsfF0P86pMoV6npgsp/6o9o=
+	t=1721569028; cv=none; b=li43eO4MRZv5dEekfs5H4TJksTywPuCh0s5U3ttTjQzDF62TFBc5NQnQE3Ftz7QwiGQbtTSvwEBsmcHBVz+N/07r7PQhPSuLs6YUV6u3D9cZ0QY8MpCkyn6KUPKe3vP7dg4ourMkG7YHqJCW1Z6rL0YJXbPzlERbR2w6gJ0i6Eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721568920; c=relaxed/simple;
-	bh=tGX2yKYZTIt3Q0s/YAylIxLVx4C+iRJs8AHqvQGziNY=;
+	s=arc-20240116; t=1721569028; c=relaxed/simple;
+	bh=WbM+yH7jBU/gy7hkBVSNdb8VjTuK9EahNaYjK7vso+w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FvmDzQtfCZ1XD1mkirAwecCL7cZq/miTeYRTVcSBKwfyswPCb6bVm3QVm7fgILBYdRx6nS0fk2RH+qUzbFGlefXsBG0AXP0XjqTOuV4x+a1+lCyGq0wrhGcZVG2Y+SeNNjDQonnyRTHKLL4FIHFbL0dHtKPcWDoa5tSZYKzUz2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C1fNyB/N; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4266ed6c691so22225465e9.3;
-        Sun, 21 Jul 2024 06:35:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721568917; x=1722173717; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tGX2yKYZTIt3Q0s/YAylIxLVx4C+iRJs8AHqvQGziNY=;
-        b=C1fNyB/NK9ZmQsA95C5bC+yvcx4j018IntY7vS7prETMNoNk3kXyAt3W49h6W/xswW
-         vs3GjaLe5ZPMRJ01YZ4slfrQTMslcqv2aHAWus1/fSJtenDerMtkFNZsdIMMkfSGAuCJ
-         Tuj6TywvOQ60qaRy5hxRx7a5LCcBYLzBGVioZLESwg3aQ1KoGqzJJVZy29VnMHcdDxWW
-         E1VetEGbbW4Xldg139XtyX+sLWiDx40oZgbJahj7KCOQpK+CWq4NsrW+sEBOS2adNuE3
-         fcIL5+UNQk9lElg+UABXVZU3inccEhYyZ49v/yJr3fVi1Z7y8QPO5rig56u8vRHJNSql
-         b3TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721568917; x=1722173717;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tGX2yKYZTIt3Q0s/YAylIxLVx4C+iRJs8AHqvQGziNY=;
-        b=EefBArOXWZPT4A0bUlRdmYGQynQanT3F7RrlOjV23Y0OYeMg/Mmg/zO5NussstpZ/H
-         T4gSFlJrYCgRSKajIoL7++2lRc9J7yE4URk6qFsB/ZZE+wGr7EHDSnfmDZHut48YNGhe
-         +xRRvk6jak0LR6qS/HUzncBG3ZaatBS1i5SQbxDNmHHe4qJI5xs9+DTbLebPTEgM2aRo
-         tsDH8QGCwpPhmk+OhwjPwJGOVm2B+rT/Rem1pQp/7Q8aSEQ0mu+GIUdumaUoRQqu26Qs
-         B1+l502ojX0DfIT4Shdtzlx/5Kkvuy8gihS3gZaaBBPi/4Ez+Wxbua3GKEs2W1UCBabq
-         xkYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmlSSit8FO7zgyUrsyp5XNHkLXjEwPypBDRGp04H7ePkoSz9eabOdoXXotOtW1XnfQhflegHliOs/k42MkjfvZBrTy/dYZHxYeG/O51hFEUxJxJ/1iH71PQbpqVW9hggt1PzP9i2zXrSca4rG2+ajAHLEQGe8Y500BfKxd0ef6i4woow==
-X-Gm-Message-State: AOJu0YxGbMvSMm2MIA/pMAj/QOXFxiot3UZfqJ4/Tjfu/Ftce/ew2GHv
-	fkX92QfMl1DU49q1QdRtR+2WTnO/OR01c+g1e0h2MZT6GlftgWEW
-X-Google-Smtp-Source: AGHT+IEcn84Cq+Gii4W3vduMEPECvPWBWA0iK6LpwbsePcodSCViWjBHOrRvWfwO2/rBchjlyKEZyg==
-X-Received: by 2002:a05:600c:cc6:b0:426:6f48:2dad with SMTP id 5b1f17b1804b1-427daa67d53mr29230125e9.35.1721568916747;
-        Sun, 21 Jul 2024 06:35:16 -0700 (PDT)
-Received: from [172.27.139.187] (c7.campus.utcluj.ro. [193.226.6.226])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3687868ac48sm5992440f8f.29.2024.07.21.06.35.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jul 2024 06:35:16 -0700 (PDT)
-Message-ID: <8b616aec-06ce-462c-9161-1c05adcd1069@gmail.com>
-Date: Sun, 21 Jul 2024 16:35:14 +0300
+	 In-Reply-To:Content-Type; b=b7HmY4ZTs5uvXOIv87NrDiQ09Z8fCrp/k9ueKBIHeVmYaq4PL8ck1A+ipyQFjuVzw3FSsOI/6rxyaW3Aayf7GjQkhwbE4WBlo5TeQAoEtIGcB6h19lhZdGnta6QLO+nbFS2eFXJg4XKgVsjV7Md9Ms46NXqwIOEaWhlJXY5qex4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mJwBmgNc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48EA5C116B1;
+	Sun, 21 Jul 2024 13:37:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721569027;
+	bh=WbM+yH7jBU/gy7hkBVSNdb8VjTuK9EahNaYjK7vso+w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mJwBmgNc8A+A6X6qseLbk5OI51mNkH8b4vO/LPh0ZNp/u199TIXoaCK8uzAi9oQdi
+	 qocDh5wciNtIRT+H2Mf2UZfS/8VDxnAKl3Uiwx1PP5arjZh9dS2ojDjylroZF0WU8o
+	 oTWCt/ddugRBsam4tpqCCCzZHZKzyFqtwYUfI52cpJxUzKplgP5+78KnDs6ps4WzOV
+	 h8nQpVx21VwkgxdpfTN/C2RyIp3B5o299JKptddSMBZwacbXHRPTtmq1EEMvuuEsTP
+	 RqadBfVxJWc5r0vi0nkIUd4e3vunDATbXtjYVJTDHI3dUklxp/DS9iNUbxjiYHFJ7L
+	 q8VnetqaUmlkg==
+Message-ID: <dee6e871-daa3-4886-be57-e4d4b3fa198d@kernel.org>
+Date: Sun, 21 Jul 2024 15:36:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,31 +50,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/4] dt-bindings: iio: adc: ad7192: Add clock provider
-To: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Michael Hennerich <michael.hennerich@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20240717212535.8348-1-alisa.roman@analog.com>
- <20240717212535.8348-4-alisa.roman@analog.com>
- <20240718-revisable-penpal-bc06ff6366ab@spud>
- <20240720144257.200b4511@jic23-huawei>
+Subject: Re: [PATCH v6 1/7] dt-bindings: firmware: add i.MX95 SCMI Extension
+ protocol
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Peng Fan <peng.fan@nxp.com>, arm-scmi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
+References: <20240718-imx95-bbm-misc-v2-v6-0-18f008e16e9d@nxp.com>
+ <20240718-imx95-bbm-misc-v2-v6-1-18f008e16e9d@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-In-Reply-To: <20240720144257.200b4511@jic23-huawei>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240718-imx95-bbm-misc-v2-v6-1-18f008e16e9d@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Thank you for suggesting and taking care of the tweaks!
+On 18/07/2024 09:41, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add i.MX SCMI Extension protocols bindings for:
+> - Battery Backed Module(BBM) Protocol
+>   This contains persistent storage (GPR), an RTC, and the ON/OFF button.
+>   The protocol can also provide access to similar functions implemented via
+>   external board components.
+> - MISC Protocol.
+>   This includes controls that are misc settings/actions that must be exposed
+>   from the SM to agents. They are device specific and are usually define to
+>   access bit fields in various mix block control modules, IOMUX_GPR, and
+>   other GPR/CSR owned by the SM.
+> 
+> Reviewed-by: "Rob Herring (Arm)" <robh@kernel.org>
 
-I just wanted to point out that some little stray changes found their way into this commit:
+Why quotes? Which tools did you use?
 
-https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=testing&id=42991c882f7f264ff8533c289edd015bbc0bc5a7
-
-Kind regards,
-Alisa-Dariana Roman.
+Best regards,
+Krzysztof
 
 
