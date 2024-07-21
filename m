@@ -1,236 +1,768 @@
-Return-Path: <devicetree+bounces-87050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553CE93868A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 00:48:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7BF9386A8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 01:27:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C26AB20A5B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 22:48:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D963E1C2083A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 23:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127E1101C5;
-	Sun, 21 Jul 2024 22:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F78711713;
+	Sun, 21 Jul 2024 23:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="hrOB9nRP"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cRTDw6vC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52168168B1
-	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 22:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADE210A3E;
+	Sun, 21 Jul 2024 23:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721602079; cv=none; b=cDn1+a2bxoNYJQ4nFLw3290WcKhLxQPwnNQl1AOEhcW2rSUlsjhw/E5meDS2hFEe/2h+VwTLUUntRAnnbBa+JAeD2NI+DvbMHNmWNHEvVkYLtG0pKdWTkcY7CcVnWIzFYkfVULOI0/xAo/Si1+aHAWCJi6nLeoYZjsuFstt4oE0=
+	t=1721604451; cv=none; b=DOiaTue6E+2D3s9HJ5vOS0zUQ1f97WXxAo9M5D0XGeVDgoWr/TN16Nb593BMXfFOnpDwfhvxyQiq5hr9Wu/XkmwC9uujwb7KgokdABAIlCTR7ASUHOYk4iglgLu+nm/njxy1UyUEtdH+gBdIuOKtZhV+QuxnYleYRCU1+ClXiEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721602079; c=relaxed/simple;
-	bh=DliTPczJmew9Tk+hDTUTx/VTPgaBCakYc5YIQufR5sw=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZWS6PJ6im8S3F6GDEoHp7LGcTyGEUKxHJ9tK6qY3oEgAyUpMU8c6o+4mYiJcDslyt2VKrZkYUszXi4zgEEJPbK/MaVVUW7J8/SeJfKVvcI++tjY9cnBBQ47TEjS/9vY6E+6xuPB9Pd3GvOoZwKXqZt7WaOpi1x4PattAMjYVIBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=hrOB9nRP; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 528383F2A0
-	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 22:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1721602074;
-	bh=KO8tpQ9TxHjBPKSfhTTh06gsoP5zva/hPb58dTpZI7Q=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=hrOB9nRPrBbkxem5qJG6pJUmqCAbxvwCOoLclRe9q8oi54Evg8GwLklT1YneJGQx2
-	 H0TLCrHJS3ciaRRYlGJALjcOW3WAc+itVxkU6cCQyqS1C7cXExYrlu4Pg1kXlWNosJ
-	 PNlGuPCQBy7WPhMn+TRUgAQkM1PvLH/q96wrhZuwclHxzGlmr9OWbOepWjoUfquCh0
-	 6qHjE/LNVhD2nCA9xzTdPUtpHb8H/KIS0W2TtkF/KAEvxbuzmMnuPq94UKCw8AR0Fn
-	 jwfm7QWl5RCLeFmiI2UeA/tzzNX6avw8zCXVZZDZH8/n41MC0KTvOh5L9oDi81OclO
-	 U5/E7u/GpHutg==
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-79f1d37915dso627161185a.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 15:47:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721602073; x=1722206873;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KO8tpQ9TxHjBPKSfhTTh06gsoP5zva/hPb58dTpZI7Q=;
-        b=TIaYfmPIgbCikKPPkvK8N8knJL6iUagXjkClOUplCp+OmRPQS4Xwj3OPEvN3jI2hZ9
-         cs2CLYlZEyMUr51oK9QjuKOdQoxzfGPwELb3wWHe62S4iI3Eh7r/BFwmNy5pj59dGJnE
-         1gT4Y/roGOgasIZKBkAebQ+LJOVD/VLv3uSzucqEGUgcZqoxYZdMxaib7ATJQcksdB+4
-         NVpDjsoxSW0D8SG9yEMPjmoo6IANz8O/6x4mW5XHGZ/NNVg99GlU57sTM4UzHAsp8ioU
-         dRgYR6ocuzVSTQyUua9L5Oq5vCth5zxIEOGXiQkS8m4wfwczxnkooQBfycRj2mwh2nsp
-         cluw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVYSWP6MSpyJZBhXr73u+W72OP6Ty9wlGI6nkq4MzUpIShCJmQAh/VzQrug9SRpoPwQK80dyEI/WZLJsEQbQKGjRHCLSHs5/6lLw==
-X-Gm-Message-State: AOJu0Yyis5be+juNU8K16dzFuDKqxpGNLMT6OA9X/dg7MBG2LNHSFJn9
-	/VCxL2M0AK5thFrsnxvKBNnqY7YFnUpjnikdm4mFIqCbeeVvL3MY5M9G3kd+61I5RN+vkvrMQAO
-	84TqN39Q4qkQcSrCuxEYzrYWION07ainH3728Am+LBVkWpEDq+eo6iufYodSh/S4pSGi7ZU+cRg
-	JpnK/WUf28K8Mgr9ME9/h95ZapP02yo8O+CFxfIIAHf3I0NHUV8Q==
-X-Received: by 2002:a05:620a:28ce:b0:79e:ff18:a510 with SMTP id af79cd13be357-7a1a18c7253mr1121276585a.2.1721602073208;
-        Sun, 21 Jul 2024 15:47:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEOPlLEtwtiEezjI4b0t9l3MvPIrUfLti48u+sapT3VI9Hw0/LGbiEv4A6CGCoCTi6t0+NceO6NQ3UvomsMYkM=
-X-Received: by 2002:a05:620a:28ce:b0:79e:ff18:a510 with SMTP id
- af79cd13be357-7a1a18c7253mr1121273685a.2.1721602072728; Sun, 21 Jul 2024
- 15:47:52 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 21 Jul 2024 18:47:52 -0400
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240618-i2c-th1520-v3-3-3042590a16b1@bootlin.com>
-References: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com> <20240618-i2c-th1520-v3-3-3042590a16b1@bootlin.com>
+	s=arc-20240116; t=1721604451; c=relaxed/simple;
+	bh=7MnhThcO1dPPUwL+UOhQgNGfkSVMfXfbNnjSjQSEZoY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R0Gwfl6ABJqwQuPcLWKXd8KLHqo9Yjl1m7Ptm5II6l5+rluxtlFVl9OD9vxw24OPIms5yfUER/0GNVHu4P2qyf5WSi4cefstg1U+C245er5wCTo6RUGRE0vIf7+WIXHOLE9rpkdoAZKE11XjmaEMhpuiywFYQHVS3sHOEzKrsUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=cRTDw6vC; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6A46545B;
+	Mon, 22 Jul 2024 01:26:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721604404;
+	bh=7MnhThcO1dPPUwL+UOhQgNGfkSVMfXfbNnjSjQSEZoY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cRTDw6vCiByF3vxOGjId/HiiJo0OqBaZUe7MyQebDaKPgOUg9Bg/R8WKAvUoex1Af
+	 bkPuPp9Fct1eT/2sAFBV6Ftl8ubuZR7g3bzNe8dlG7jE+kfsyMRxQk3qth4JcZ/DLT
+	 HF6KxX3xa6QD8ogF3PH13UBuu8wQ/hA3s04P4tSc=
+Date: Mon, 22 Jul 2024 02:27:07 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v5 10/16] media: platform: Add mali-c55 3a stats devnode
+Message-ID: <20240721232707.GJ23783@pendragon.ideasonboard.com>
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-11-dan.scally@ideasonboard.com>
+ <20240616211946.GD7378@pendragon.ideasonboard.com>
+ <655c2e5e-c56a-45d1-ab51-498ef9c26a19@ideasonboard.com>
+ <20240629150415.GI30900@pendragon.ideasonboard.com>
+ <8554a3aa-59c3-4ad8-8443-7ad38794afd7@ideasonboard.com>
+ <4c9d9677-c68c-44da-8c11-27ae27ae6b88@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Sun, 21 Jul 2024 18:47:52 -0400
-Message-ID: <CAJM55Z9W7SYDCSeZy_NEQJBryGX5v+R8-xNxOzftivbGxA1TSg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] riscv: dts: thead: Enable I2C on the BeagleV-Ahead
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Drew Fustini <dfustini@tenstorrent.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Conor Dooley <conor@kernel.org>, 
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	=?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4c9d9677-c68c-44da-8c11-27ae27ae6b88@ideasonboard.com>
 
-Thomas Bonnefille wrote:
-> This commit enables the I2C0 controller of the TH1520, together with
-> the FT24C32A EEPROM that is connected to it.
-> In addition, this commit also enables the I2C controllers I2C2, I2C4
-> and I2C5 as they are all three exposed on headers (P9 19 and 20 for I2C2,
-> P9 17 and 18 for I2C5 and MikroBus 7 and 5 for I2C4).
-> It also defined the required pinctrl nodes.
->
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 84 ++++++++++++++++++++++
->  1 file changed, 84 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> index 57a2578123eb..b5c4f1811955 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> @@ -122,6 +122,19 @@ led-pins {
->  };
->
->  &padctrl0_apsys {
-> +	i2c2_pins: i2c2-0 {
-> +		i2c-pins {
-> +			pins = "I2C2_SDA",
-> +			       "I2C2_SCL";
-> +			function = "i2c";
-> +			bias-pull-up = <48000>;
+Hi Dan,
 
-nit: This and below can just be written
+On Tue, Jul 02, 2024 at 08:00:27AM +0100, Daniel Scally wrote:
+> On 01/07/2024 16:12, Dan Scally wrote:
+> > On 29/06/2024 16:04, Laurent Pinchart wrote:
+> >> On Thu, Jun 20, 2024 at 04:10:01PM +0100, Daniel Scally wrote:
+> >>> On 16/06/2024 22:19, Laurent Pinchart wrote:
+> >>>> On Wed, May 29, 2024 at 04:28:52PM +0100, Daniel Scally wrote:
+> >>>>> Add a new code file to govern the 3a statistics capture node.
+> >>>>>
+> >>>>> Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
+> >>>>> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> >>>>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> >>>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> >>>>> ---
+> >>>>> Changes in v5:
+> >>>>>
+> >>>>>     - New patch
+> >>>>>
+> >>>>>    drivers/media/platform/arm/mali-c55/Makefile  |   3 +-
+> >>>>>    .../platform/arm/mali-c55/mali-c55-common.h   |  28 ++
+> >>>>>    .../platform/arm/mali-c55/mali-c55-core.c     |  15 +
+> >>>>>    .../platform/arm/mali-c55/mali-c55-isp.c      |   1 +
+> >>>>>    .../arm/mali-c55/mali-c55-registers.h         |   3 +
+> >>>>>    .../platform/arm/mali-c55/mali-c55-stats.c    | 350 ++++++++++++++++++
+> >>>>>    6 files changed, 399 insertions(+), 1 deletion(-)
+> >>>>>    create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-stats.c
+> >>>>>
+> >>>>> diff --git a/drivers/media/platform/arm/mali-c55/Makefile 
+> >>>>> b/drivers/media/platform/arm/mali-c55/Makefile
+> >>>>> index 77dcb2fbf0f4..cd5a64bf0c62 100644
+> >>>>> --- a/drivers/media/platform/arm/mali-c55/Makefile
+> >>>>> +++ b/drivers/media/platform/arm/mali-c55/Makefile
+> >>>>> @@ -4,6 +4,7 @@ mali-c55-y := mali-c55-capture.o \
+> >>>>>              mali-c55-core.o \
+> >>>>>              mali-c55-isp.o \
+> >>>>>              mali-c55-tpg.o \
+> >>>>> -          mali-c55-resizer.o
+> >>>>> +          mali-c55-resizer.o \
+> >>>>> +          mali-c55-stats.o
+> >>>>>       obj-$(CONFIG_VIDEO_MALI_C55) += mali-c55.o
+> >>>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-common.h 
+> >>>>> b/drivers/media/platform/arm/mali-c55/mali-c55-common.h
+> >>>>> index 2d0c4d152beb..44119e04009b 100644
+> >>>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-common.h
+> >>>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-common.h
+> >>>>> @@ -79,6 +79,7 @@ enum mali_c55_isp_pads {
+> >>>>>        MALI_C55_ISP_PAD_SINK_VIDEO,
+> >>>>>        MALI_C55_ISP_PAD_SOURCE,
+> >>>>>        MALI_C55_ISP_PAD_SOURCE_BYPASS,
+> >>>>> +    MALI_C55_ISP_PAD_SOURCE_3A,
+> >>>> Functions and structures are named with a "stats" suffix, let's call
+> >>>> this MALI_C55_ISP_PAD_SOURCE_STATS.
+> >>>>
+> >>>>>        MALI_C55_ISP_NUM_PADS,
+> >>>>>    };
+> >>>>>    @@ -194,6 +195,28 @@ struct mali_c55_cap_dev {
+> >>>>>        bool streaming;
+> >>>>>    };
+> >>>>>    +struct mali_c55_stats_buf {
+> >>>>> +    struct vb2_v4l2_buffer vb;
+> >>>>> +    spinlock_t lock;
+> >>>> All locks require a comment to document what they protect. Same below.
+> >>>>
+> >>>>> +    unsigned int segments_remaining;
+> >>>>> +    struct list_head queue;
+> >>>>> +    bool failed;
+> >>>>> +};
+> >>>>> +
+> >>>>> +struct mali_c55_stats {
+> >>>>> +    struct mali_c55 *mali_c55;
+> >>>>> +    struct video_device vdev;
+> >>>>> +    struct dma_chan *channel;
+> >>>>> +    struct vb2_queue queue;
+> >>>>> +    struct media_pad pad;
+> >>>>> +    struct mutex lock;
+> >>>>> +
+> >>>>> +    struct {
+> >>>>> +        spinlock_t lock;
+> >>>>> +        struct list_head queue;
+> >>>>> +    } buffers;
+> >>>>> +};
+> >>>>> +
+> >>>>>    enum mali_c55_config_spaces {
+> >>>>>        MALI_C55_CONFIG_PING,
+> >>>>>        MALI_C55_CONFIG_PONG,
+> >>>>> @@ -224,6 +247,7 @@ struct mali_c55 {
+> >>>>>        struct mali_c55_isp isp;
+> >>>>>        struct mali_c55_resizer resizers[MALI_C55_NUM_RZRS];
+> >>>>>        struct mali_c55_cap_dev cap_devs[MALI_C55_NUM_CAP_DEVS];
+> >>>>> +    struct mali_c55_stats stats;
+> >>>>>           struct list_head contexts;
+> >>>>>        enum mali_c55_config_spaces next_config;
+> >>>>> @@ -245,6 +269,8 @@ int mali_c55_register_resizers(struct mali_c55 *mali_c55);
+> >>>>>    void mali_c55_unregister_resizers(struct mali_c55 *mali_c55);
+> >>>>>    int mali_c55_register_capture_devs(struct mali_c55 *mali_c55);
+> >>>>>    void mali_c55_unregister_capture_devs(struct mali_c55 *mali_c55);
+> >>>>> +int mali_c55_register_stats(struct mali_c55 *mali_c55);
+> >>>>> +void mali_c55_unregister_stats(struct mali_c55 *mali_c55);
+> >>>>>    struct mali_c55_ctx *mali_c55_get_active_context(struct mali_c55 *mali_c55);
+> >>>>>    void mali_c55_set_plane_done(struct mali_c55_cap_dev *cap_dev,
+> >>>>>                     enum mali_c55_planes plane);
+> >>>>> @@ -262,5 +288,7 @@ mali_c55_isp_fmt_next(const struct mali_c55_isp_fmt *fmt);
+> >>>>>    bool mali_c55_isp_is_format_supported(unsigned int mbus_code);
+> >>>>>    #define for_each_mali_isp_fmt(fmt)\
+> >>>>>        for ((fmt) = NULL; ((fmt) = mali_c55_isp_fmt_next((fmt)));)
+> >>>>> +void mali_c55_stats_fill_buffer(struct mali_c55 *mali_c55,
+> >>>>> +                enum mali_c55_config_spaces cfg_space);
+> >>>>>       #endif /* _MALI_C55_COMMON_H */
+> >>>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-core.c 
+> >>>>> b/drivers/media/platform/arm/mali-c55/mali-c55-core.c
+> >>>>> index 50caf5ee7474..9ea70010876c 100644
+> >>>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-core.c
+> >>>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-core.c
+> >>>>> @@ -337,6 +337,16 @@ static int mali_c55_create_links(struct mali_c55 *mali_c55)
+> >>>>>            }
+> >>>>>        }
+> >>>>>    +    ret = media_create_pad_link(&mali_c55->isp.sd.entity,
+> >>>>> +            MALI_C55_ISP_PAD_SOURCE_3A,
+> >>>>> +            &mali_c55->stats.vdev.entity, 0,
+> >>>>> +            MEDIA_LNK_FL_ENABLED | MEDIA_LNK_FL_IMMUTABLE);
+> >>>>> +    if (ret) {
+> >>>>> +        dev_err(mali_c55->dev,
+> >>>>> +            "failed to link ISP and 3a stats node\n");
+> >>>> s/3a stats/stats/
+> >>>>
+> >>>>> +        goto err_remove_links;
+> >>>>> +    }
+> >>>>> +
+> >>>>>        return 0;
+> >>>>>       err_remove_links:
+> >>>>> @@ -350,6 +360,7 @@ static void mali_c55_unregister_entities(struct mali_c55 *mali_c55)
+> >>>>>        mali_c55_unregister_isp(mali_c55);
+> >>>>>        mali_c55_unregister_resizers(mali_c55);
+> >>>>>        mali_c55_unregister_capture_devs(mali_c55);
+> >>>>> +    mali_c55_unregister_stats(mali_c55);
+> >>>>>    }
+> >>>>>       static int mali_c55_register_entities(struct mali_c55 *mali_c55)
+> >>>>> @@ -372,6 +383,10 @@ static int mali_c55_register_entities(struct mali_c55 *mali_c55)
+> >>>>>        if (ret)
+> >>>>>            goto err_unregister_entities;
+> >>>>>    +    ret = mali_c55_register_stats(mali_c55);
+> >>>>> +    if (ret)
+> >>>>> +        goto err_unregister_entities;
+> >>>>> +
+> >>>>>        ret = mali_c55_create_links(mali_c55);
+> >>>>>        if (ret)
+> >>>>>            goto err_unregister_entities;
+> >>>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-isp.c 
+> >>>>> b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+> >>>>> index ea8b7b866e7a..94876fba3353 100644
+> >>>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+> >>>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+> >>>>> @@ -564,6 +564,7 @@ int mali_c55_register_isp(struct mali_c55 *mali_c55)
+> >>>>>        isp->pads[MALI_C55_ISP_PAD_SINK_VIDEO].flags = MEDIA_PAD_FL_SINK;
+> >>>>>        isp->pads[MALI_C55_ISP_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
+> >>>>>        isp->pads[MALI_C55_ISP_PAD_SOURCE_BYPASS].flags = MEDIA_PAD_FL_SOURCE;
+> >>>>> +    isp->pads[MALI_C55_ISP_PAD_SOURCE_3A].flags = MEDIA_PAD_FL_SOURCE;
+> >>>>>           ret = media_entity_pads_init(&sd->entity, MALI_C55_ISP_NUM_PADS,
+> >>>>>                         isp->pads);
+> >>>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-registers.h 
+> >>>>> b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+> >>>>> index cb27abde2aa5..eb3719245ec3 100644
+> >>>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+> >>>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+> >>>>> @@ -68,6 +68,9 @@
+> >>>>>    #define MALI_C55_VC_START(v)                ((v) & 0xffff)
+> >>>>>    #define MALI_C55_VC_SIZE(v)                (((v) & 0xffff) << 16)
+> >>>>>    +#define MALI_C55_REG_1024BIN_HIST            0x054a8
+> >>>>> +#define MALI_C55_1024BIN_HIST_SIZE            4096
+> >>>>> +
+> >>>>>    /* Ping/Pong Configuration Space */
+> >>>>>    #define MALI_C55_REG_BASE_ADDR                0x18e88
+> >>>>>    #define MALI_C55_REG_BYPASS_0                0x18eac
+> >>>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-stats.c 
+> >>>>> b/drivers/media/platform/arm/mali-c55/mali-c55-stats.c
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..aa40480ed814
+> >>>>> --- /dev/null
+> >>>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-stats.c
+> >>>>> @@ -0,0 +1,350 @@
+> >>>>> +// SPDX-License-Identifier: GPL-2.0
+> >>>>> +/*
+> >>>>> + * ARM Mali-C55 ISP Driver - 3A Statistics capture device
+> >>>>> + *
+> >>>>> + * Copyright (C) 2023 Ideas on Board Oy
+> >>>>> + */
+> >>>>> +
+> >>>>> +#include <linux/dmaengine.h>
+> >>>>> +#include <linux/media/arm/mali-c55-config.h>
+> >>>>> +#include <linux/spinlock.h>
+> >>>> You're missing some headers here, for
+> >>>>
+> >>>> container_of()
+> >>>> dev_err()
+> >>>> list_*()
+> >>>> mutex_init()
+> >>>> strscpy()
+> >>>> strscpy()
+> >>>>
+> >>>>> +
+> >>>>> +#include <media/media-entity.h>
+> >>>>> +#include <media/v4l2-dev.h>
+> >>>>> +#include <media/v4l2-event.h>
+> >>>>> +#include <media/v4l2-fh.h>
+> >>>>> +#include <media/v4l2-ioctl.h>
+> >>>>> +#include <media/videobuf2-core.h>
+> >>>>> +#include <media/videobuf2-dma-contig.h>
+> >>>>> +
+> >>>>> +#include "mali-c55-common.h"
+> >>>>> +#include "mali-c55-registers.h"
+> >>>>> +
+> >>>>> +static unsigned int metering_space_addrs[] = {
+> >>>> const
+> >>>>
+> >>>>> +    [MALI_C55_CONFIG_PING] = 0x095AC,
+> >>>>> +    [MALI_C55_CONFIG_PONG] = 0x2156C,
+> >>>> Lower-case hex constants.
+> >>>>
+> >>>>> +};
+> >>>>> +
+> >>>>> +static int mali_c55_stats_enum_fmt_meta_cap(struct file *file, void *fh,
+> >>>>> +                        struct v4l2_fmtdesc *f)
+> >>>>> +{
+> >>>>> +    if (f->index || f->type != V4L2_BUF_TYPE_META_CAPTURE)
+> >>>>> +        return -EINVAL;
+> >>>>> +
+> >>>>> +    f->pixelformat = V4L2_META_FMT_MALI_C55_3A_STATS;
+> >>>> The format could be called V4L2_META_FMT_MALI_C55_STATS. While most
+> >>>> statistics are related to one of the 3A algorithms, I think it would be
+> >>>> better to name this generically. It's name bikeshedding only of course.
+> >>>>
+> >>>>> +
+> >>>>> +    return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static int mali_c55_stats_g_fmt_meta_cap(struct file *file, void *fh,
+> >>>>> +                     struct v4l2_format *f)
+> >>>>> +{
+> >>>>> +    static const struct v4l2_meta_format mfmt = {
+> >>>>> +        .dataformat = V4L2_META_FMT_MALI_C55_3A_STATS,
+> >>>>> +        .buffersize = sizeof(struct mali_c55_stats_buffer)
+> >>>>> +    };
+> >>>>> +
+> >>>>> +    if (f->type != V4L2_BUF_TYPE_META_CAPTURE)
+> >>>>> +        return -EINVAL;
+> >>>>> +
+> >>>>> +    f->fmt.meta = mfmt;
+> >>>>> +
+> >>>>> +    return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static int mali_c55_stats_querycap(struct file *file,
+> >>>>> +                   void *priv, struct v4l2_capability *cap)
+> >>>>> +{
+> >>>>> +    strscpy(cap->driver, MALI_C55_DRIVER_NAME, sizeof(cap->driver));
+> >>>>> +    strscpy(cap->card, "ARM Mali-C55 ISP", sizeof(cap->card));
+> >>>>> +
+> >>>>> +    return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static const struct v4l2_ioctl_ops mali_c55_stats_v4l2_ioctl_ops = {
+> >>>>> +    .vidioc_reqbufs = vb2_ioctl_reqbufs,
+> >>>>> +    .vidioc_querybuf = vb2_ioctl_querybuf,
+> >>>>> +    .vidioc_create_bufs = vb2_ioctl_create_bufs,
+> >>>>> +    .vidioc_qbuf = vb2_ioctl_qbuf,
+> >>>>> +    .vidioc_expbuf = vb2_ioctl_expbuf,
+> >>>>> +    .vidioc_dqbuf = vb2_ioctl_dqbuf,
+> >>>>> +    .vidioc_prepare_buf = vb2_ioctl_prepare_buf,
+> >>>>> +    .vidioc_streamon = vb2_ioctl_streamon,
+> >>>>> +    .vidioc_streamoff = vb2_ioctl_streamoff,
+> >>>>> +    .vidioc_enum_fmt_meta_cap = mali_c55_stats_enum_fmt_meta_cap,
+> >>>>> +    .vidioc_g_fmt_meta_cap = mali_c55_stats_g_fmt_meta_cap,
+> >>>>> +    .vidioc_s_fmt_meta_cap = mali_c55_stats_g_fmt_meta_cap,
+> >>>>> +    .vidioc_try_fmt_meta_cap = mali_c55_stats_g_fmt_meta_cap,
+> >>>>> +    .vidioc_querycap = mali_c55_stats_querycap,
+> >>>>> +    .vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
+> >>>>> +    .vidioc_unsubscribe_event = v4l2_event_unsubscribe,
+> >>>>> +};
+> >>>>> +
+> >>>>> +static const struct v4l2_file_operations mali_c55_stats_v4l2_fops = {
+> >>>>> +    .owner = THIS_MODULE,
+> >>>>> +    .unlocked_ioctl = video_ioctl2,
+> >>>>> +    .open = v4l2_fh_open,
+> >>>>> +    .release = vb2_fop_release,
+> >>>>> +    .poll = vb2_fop_poll,
+> >>>>> +    .mmap = vb2_fop_mmap,
+> >>>>> +};
+> >>>>> +
+> >>>>> +static int
+> >>>>> +mali_c55_stats_queue_setup(struct vb2_queue *q, unsigned int *num_buffers,
+> >>>>> +               unsigned int *num_planes, unsigned int sizes[],
+> >>>>> +               struct device *alloc_devs[])
+> >>>>> +{
+> >>>>> +    struct mali_c55_stats *stats = vb2_get_drv_priv(q);
+> >>>>> +
+> >>>>> +    if (*num_planes && *num_planes > 1)
+> >>>>> +        return -EINVAL;
+> >>>>> +
+> >>>>> +    if (sizes[0] && sizes[0] != sizeof(struct mali_c55_stats_buffer))
+> >>>>> +        return -EINVAL;
+> >>>>> +
+> >>>>> +    *num_planes = 1;
+> >>>>> +    sizes[0] = sizeof(struct mali_c55_stats_buffer);
+> >>>>> +
+> >>>>> +    if (stats->channel)
+> >>>>> +        alloc_devs[0] = stats->channel->device->dev;
+> >>>>> +
+> >>>>> +    return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static void mali_c55_stats_buf_queue(struct vb2_buffer *vb)
+> >>>>> +{
+> >>>>> +    struct mali_c55_stats *stats = vb2_get_drv_priv(vb->vb2_queue);
+> >>>>> +    struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
+> >>>>> +    struct mali_c55_stats_buf *buf = container_of(vbuf,
+> >>>>> +                        struct mali_c55_stats_buf, vb);
+> >>>>> +
+> >>>>> +    vb2_set_plane_payload(vb, 0, sizeof(struct mali_c55_stats_buffer));
+> >>>>> +    buf->segments_remaining = 2;
+> >>>>> +    buf->failed = false;
+> >>>>> +
+> >>>>> +    spin_lock(&stats->buffers.lock);
+> >>>>
+> >>>> Isn't the DMA completion handler run from IRQ context ? If so you'll
+> >>>> need to use spin_lock_irq() here and in the other function that are
+> >>>> not called with interrupts disabled.
+> >>>
+> >>> They're run in the bottom half of the interrupt handler; I'm under the
+> >>> impression that that means the interrupts aren't disabled, and it's
+> >>> safe to do...is that mistaken?
+> >>
+> >> I'm talking about the DMA completion handler, called by the DMA engine
+> >> subsystem, not the IRQs of the C55 itself.
+> >
+> > Ah! I follow you now sorry. Hm, that's an interesting thought...I think for the PL330 the answer 
+> > is no; the interrupt handler wakes a thread that runs the callbacks for any DMA transfers that are 
+> > completed...I don't know that that's a design rule we can rely on though so possibly it's better 
+> > to be safe. Is there a disadvantage to using spin_lock_irq() outside of IRQ context?
 
-bias-pull-up;
+spin_lock_irq() isn't meant for IRQ contexts. spin_lock_irq() means
+"disable IRQs on this CPU and acquire the spinlock". spin_unlock_irq()
+means "release the spinlock and enable IRQs on this CPU".
 
-> +			drive-strength = <7>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
->  	uart0_pins: uart0-0 {
->  		tx-pins {
->  			pins = "UART0_TXD";
-> @@ -145,8 +158,79 @@ rx-pins {
->  	};
->  };
->
-> +&padctrl1_apsys {
-> +	i2c0_pins: i2c0-0 {
-> +		i2c-pins {
-> +			pins = "I2C0_SDA",
-> +			       "I2C0_SCL";
-> +			function = "i2c";
-> +			bias-pull-up = <48000>;
-> +			drive-strength = <7>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
-> +	i2c4_pins: i2c4-0 {
-> +		i2c-pins {
-> +			pins = "GPIO0_19", /* I2C4_SDA */
-> +			       "GPIO0_18"; /* I2C4_SCL */
-> +			function = "i2c";
-> +			bias-pull-up = <48000>;
-> +			drive-strength = <7>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
-> +	i2c5_pins: i2c5-0 {
-> +		i2c-pins {
-> +			pins = "QSPI1_D0_MOSI", /* I2C5_SDA */
-> +			       "QSPI1_CSN0";    /* I2C5_SCL */
-> +			function = "i2c";
-> +			bias-pull-up = <48000>;
-> +			drive-strength = <7>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +};
-> +
->  &uart0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart0_pins>;
->  	status = "okay";
->  };
-> +
-> +&i2c0 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_pins>;
-> +	status = "okay";
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c32";
-> +		reg = <0x50>;
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c2_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c4_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c5 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c5_pins>;
-> +	status = "okay";
-> +};
+IRQs are not reentrant in Linux (RT support changes this a bit, but
+API-wise the following explanation still holds), the kernel disables
+interrupts on the local CPU before running an interrupt handler. This
+means that, if the CPU has acquired a spinlock, and an interrupt occurs
+on the same CPU, with the interrupt handler trying to acquire the same
+spinlock, the kernel will deadlock as control will never be returned to
+the context that holds the lock.
 
-These nodes are still not sorted alphabetically.
+For this reason, when a spinlock can be acquired from an interrupt
+handler, the *other* (non-IRQ) contexts need to call spin_lock_irq() to
+disable interrupts on the local CPU before acquiring the lock.
+spin_unlock_irq() will release the lock and reenable interrupts,
+allowing the interrupt handler to proceed.
 
->
-> --
-> 2.45.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+While spin_lock_irq() can technically be called from both IRQ and
+non-IRQ context (as disabling interrupts if they're already disabled is
+a no-op), calling spin_unlock_irq() from interrupt context means that
+IRQs will be reenabled while the IRQ handler is still running. That will
+lead to disaster sooner or later, so it's important that the interrupt
+handler uses spin_lock() and spin_unlock().
+
+In cases where the same code can be called from both IRQ context and
+non-IRQ context, you should use spin_lock_irqsave() and
+spin_unlock_irqrestore(). The former will save the IRQ state and disable
+IRQs, while the latter will restore the IRQ state. Using
+spin_lock_irqsave() and spin_lock_irqrestore() unconditionally is the
+safest option as you don't have to think about contexts. The downside is
+a small overhead due to the IRQ state save/restore.
+
+The summary is that you can use the _irq{save,restore} variants
+everywhere, but if you want to optimize the code, you need to
+
+- Use spin_lock() and spin_unlock() in contexts where interrupts are
+  disabled (IRQ handlers, or code sections that are covered by another
+  spinlock already)
+
+- Use spin_lock() and spin_unlock() in contexts where interrupts are
+  enabled *if* the same lock can never be acquired *on the same CPU*
+  from an IRQ-disabled context
+
+- Use spin_lock_irq() and spin_unlock_irq() in contexts where interrupts
+  are enabled *if* the same lock can be acquired *on the same CPU* from an
+  IRQ-disabled context
+
+- Use spin_lock_irqsave() and spin_unlock_irqrestore() in contexts where
+  you can't guarantee the IRQ state (such as helper functions that can
+  be called from different contexts)
+
+> Actually I think from [1] that the answer is they're not run from interrupt context, the page says 
+> "Note that callbacks will always be invoked from the DMA engine's tasklet, never from interrupt 
+> context".
+
+I'll leave as an exercise for the reader to determine if that context is
+interruptible or not :-) You'll also need to check if the caller is
+allowed to hold a spinlock while calling the callback.
+
+> [1] Documentation/driver-api/dmaengine/client.rst
+> 
+> >>>>> + list_add_tail(&buf->queue, &stats->buffers.queue);
+> >>>>> +    spin_unlock(&stats->buffers.lock);
+> >>>>> +}
+> >>>>> +
+> >>>>> +static void mali_c55_stats_stop_streaming(struct vb2_queue *q)
+> >>>>> +{
+> >>>>> +    struct mali_c55_stats *stats = vb2_get_drv_priv(q);
+> >>>>> +    struct mali_c55_stats_buf *buf, *tmp;
+> >>>>> +
+> >>>>> +    spin_lock(&stats->buffers.lock);
+> >>>>> +
+> >>>>> +    list_for_each_entry_safe(buf, tmp, &stats->buffers.queue, queue) {
+> >>>>> +        list_del(&buf->queue);
+> >>>>> +        vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    spin_unlock(&stats->buffers.lock);
+> >>>>> +}
+> >>>>> +
+> >>>>> +static const struct vb2_ops mali_c55_stats_vb2_ops = {
+> >>>>> +    .queue_setup = mali_c55_stats_queue_setup,
+> >>>>> +    .buf_queue = mali_c55_stats_buf_queue,
+> >>>>> +    .wait_prepare = vb2_ops_wait_prepare,
+> >>>>> +    .wait_finish = vb2_ops_wait_finish,
+> >>>>> +    .stop_streaming = mali_c55_stats_stop_streaming,
+> >>>>> +};
+> >>>>> +
+> >>>>> +static void
+> >>>>> +mali_c55_stats_metering_complete(void *param,
+> >>>>> +                 const struct dmaengine_result *result)
+> >>>>> +{
+> >>>>> +    struct mali_c55_stats_buf *buf = param;
+> >>>>> +
+> >>>>> +    spin_lock(&buf->lock);
+> >>>> I wonder if this is needed. Can the DMA engine call the completion
+> >>>> handlers of two sequential DMA transfers in parallel ?
+> >>> The DMA engine that's on the system we have can't...I wasn't sure
+> >>> whether that was generically true.
+> >> I think it is, but please double-check.
+> >>
+> >>>>> +
+> >>>>> +    if (buf->failed)
+> >>>>> +        goto out_unlock;
+> >>>>> +
+> >>>>> +    buf->vb.vb2_buf.timestamp = ktime_get_boottime_ns();
+> >>>>> +
+> >>>>> +    if (result->result != DMA_TRANS_NOERROR) {
+> >>>>> +        buf->failed = true;
+> >>>>> +        vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
+> >>>> This will possibly return the buffer to userspace after the first DMA
+> >>>> transfer. Userspace could then requeue the buffer to the kernel before
+> >>>> the completion of the second DMA transfer. That will cause trouble. I
+> >>>> think you should instead do something like
+> >>>>
+> >>>>     spin_lock(&buf->lock);
+> >>>>
+> >>>>     if (result->result != DMA_TRANS_NOERROR)
+> >>>>         buf->failed = true;
+> >>>>
+> >>>>     if (!--buf->segments_remaining) {
+> >>>>         buf->vb.vb2_buf.timestamp = ktime_get_boottime_ns();
+> >>>>         vb2_buffer_done(&buf->vb.vb2_buf, buf->failed ?
+> >>>>                 VB2_BUF_STATE_ERROR : VB2_BUF_STATE_DONE);
+> >>>>     }
+> >>>>
+> >>>>     spin_unlock(&buf->lock);
+> >>>>
+> >>>> The
+> >>>>
+> >>>>     buf->vb.vb2_buf.timestamp = ktime_get_boottime_ns();
+> >>>>
+> >>>> line could also be moved to mali_c55_stats_fill_buffer(), which would
+> >>>> make sure the timestamp is filled in case of DMA submission failures.
+> >>> Okedokey
+> >>>
+> >>>>> +        goto out_unlock;
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    if (!--buf->segments_remaining)
+> >>>>> +        vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+> >>>>> +
+> >>>>> +out_unlock:
+> >>>>> +    spin_unlock(&buf->lock);
+> >>>>> +}
+> >>>>> +
+> >>>>> +static int mali_c55_stats_dma_xfer(struct mali_c55_stats *stats, dma_addr_t src,
+> >>>>> +                   dma_addr_t dst,
+> >>>>> +                   struct mali_c55_stats_buf *buf,
+> >>>>> +                   size_t length,
+> >>>>> +                   void (*callback)(void *, const struct dmaengine_result *result))
+> >>>> The same callback is used for both invocations of this function, you can
+> >>>> drop the parameter and hardcode it below.
+> >>> Yeah, not even sure now why I had a parameter.
+> >>>
+> >>>>> +{
+> >>>>> +    struct dma_async_tx_descriptor *tx;
+> >>>>> +    dma_cookie_t cookie;
+> >>>>> +
+> >>>>> +    tx = dmaengine_prep_dma_memcpy(stats->channel, dst, src, length, 0);
+> >>>>> +    if (!tx) {
+> >>>>> +        dev_err(stats->mali_c55->dev, "failed to prep stats DMA\n");
+> >>>>> +        return -EIO;
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    tx->callback_result = callback;
+> >>>>> +    tx->callback_param = buf;
+> >>>>> +
+> >>>>> +    cookie = dmaengine_submit(tx);
+> >>>>> +    if (dma_submit_error(cookie)) {
+> >>>>> +        dev_err(stats->mali_c55->dev, "failed to submit stats DMA\n");
+> >>>>> +        return -EIO;
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    dma_async_issue_pending(stats->channel);
+> >>>>> +    return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +void mali_c55_stats_fill_buffer(struct mali_c55 *mali_c55,
+> >>>>> +                enum mali_c55_config_spaces cfg_space)
+> >>>>> +{
+> >>>>> +    struct mali_c55_ctx *ctx = mali_c55_get_active_context(mali_c55);
+> >>>>> +    struct mali_c55_stats *stats = &mali_c55->stats;
+> >>>>> +    struct mali_c55_stats_buf *buf = NULL;
+> >>>>> +    dma_addr_t src, dst;
+> >>>>> +    int ret;
+> >>>>> +
+> >>>>> +    spin_lock(&stats->buffers.lock);
+> >>>>> +    if (!list_empty(&stats->buffers.queue)) {
+> >>>>> +        buf = list_first_entry(&stats->buffers.queue,
+> >>>>> +                       struct mali_c55_stats_buf, queue);
+> >>>>> +        list_del(&buf->queue);
+> >>>>> +    }
+> >>>>> +    spin_unlock(&stats->buffers.lock);
+> >>>>> +
+> >>>>> +    if (!buf)
+> >>>>> +        return;
+> >>>>> +
+> >>>>> +    buf->vb.sequence = mali_c55->isp.frame_sequence;
+> >>>>> +
+> >>>>> +    /*
+> >>>>> +     * There are infact two noncontiguous sections of the ISP's
+> >>>> s/infact/in fact/
+> >>>>
+> >>>>> +     * memory space that hold statistics for 3a algorithms to use. A
+> >>>> s/use. A/use: a/
+> >>>>
+> >>>>> +     * section in each config space and a global section holding
+> >>>>> +     * histograms which is double buffered and so holds data for the
+> >>>>> +     * last frame. We need to read both.
+> >>>>> +     */
+> >>>>> +    src = ctx->base + MALI_C55_REG_1024BIN_HIST;
+> >>>>> +    dst = vb2_dma_contig_plane_dma_addr(&buf->vb.vb2_buf, 0);
+> >>>>> +
+> >>>>> +    ret = mali_c55_stats_dma_xfer(stats, src, dst, buf,
+> >>>>> +                      MALI_C55_1024BIN_HIST_SIZE,
+> >>>>> +                      mali_c55_stats_metering_complete);
+> >>>>> +    if (ret)
+> >>>>> +        goto err_fail_buffer;
+> >>>>> +
+> >>>>> +    src = ctx->base + metering_space_addrs[cfg_space];
+> >>>>> +    dst += MALI_C55_1024BIN_HIST_SIZE;
+> >>>>> +
+> >>>>> +    ret = mali_c55_stats_dma_xfer(
+> >>>>> +        stats, src, dst, buf,
+> >>>>> +        sizeof(struct mali_c55_stats_buffer) - MALI_C55_1024BIN_HIST_SIZE,
+> >>>>> +        mali_c55_stats_metering_complete);
+> >>>>> +    if (ret) {
+> >>>>> +        dmaengine_terminate_sync(stats->channel);
+> >>>>> +        goto err_fail_buffer;
+> >>>>> +    }
+> >>>> I think you will need to terminate DMA transfers at stream off time.
+> >>>>
+> >>>>> +
+> >>>>> +    return;
+> >>>>> +
+> >>>>> +err_fail_buffer:
+> >>>>> +    vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
+> >>>>> +}
+> >>>>> +
+> >>>>> +void mali_c55_unregister_stats(struct mali_c55 *mali_c55)
+> >>>>> +{
+> >>>>> +    struct mali_c55_stats *stats = &mali_c55->stats;
+> >>>>> +
+> >>>>> +    if (!video_is_registered(&stats->vdev))
+> >>>>> +        return;
+> >>>>> +
+> >>>>> +    vb2_video_unregister_device(&stats->vdev);
+> >>>>> +    media_entity_cleanup(&stats->vdev.entity);
+> >>>>> +    dma_release_channel(stats->channel);
+> >>>>> +    mutex_destroy(&stats->lock);
+> >>>>> +}
+> >>>>> +
+> >>>>> +int mali_c55_register_stats(struct mali_c55 *mali_c55)
+> >>>>> +{
+> >>>>> +    struct mali_c55_stats *stats = &mali_c55->stats;
+> >>>>> +    struct video_device *vdev = &stats->vdev;
+> >>>>> +    struct vb2_queue *vb2q = &stats->queue;
+> >>>>> +    dma_cap_mask_t mask;
+> >>>>> +    int ret;
+> >>>>> +
+> >>>>> +    mutex_init(&stats->lock);
+> >>>>> +    INIT_LIST_HEAD(&stats->buffers.queue);
+> >>>>> +
+> >>>>> +    dma_cap_zero(mask);
+> >>>>> +    dma_cap_set(DMA_MEMCPY, mask);
+> >>>>> +
+> >>>>> +    stats->channel = dma_request_channel(mask, 0, NULL);
+> >>>> Do we need a CPU fallback in case no DMA is available ?
+> >>> Yes, actually.
+> >>>
+> >>>> I'm still very curious to know how long it takes to perform the DMA
+> >>>> transfer, compared to copying the data with the CPU, and especially
+> >>>> compared to the frame duration.
+> >>> On my list of things to test and report :)
+> >> Looking forward to it :-)
+> >>
+> >>>>> +    if (!stats->channel) {
+> >>>>> +        ret = -ENODEV;
+> >>>>> +        goto err_destroy_mutex;
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    stats->pad.flags = MEDIA_PAD_FL_SINK;
+> >>>>> +    ret = media_entity_pads_init(&stats->vdev.entity, 1, &stats->pad);
+> >>>>> +    if (ret)
+> >>>>> +        goto err_release_dma_channel;
+> >>>>> +
+> >>>>> +    vb2q->type = V4L2_BUF_TYPE_META_CAPTURE;
+> >>>>> +    vb2q->io_modes = VB2_MMAP | VB2_DMABUF;
+> >>>>> +    vb2q->drv_priv = stats;
+> >>>>> +    vb2q->mem_ops = &vb2_dma_contig_memops;
+> >>>>> +    vb2q->ops = &mali_c55_stats_vb2_ops;
+> >>>>> +    vb2q->buf_struct_size = sizeof(struct mali_c55_stats_buf);
+> >>>>> +    vb2q->min_queued_buffers = 1;
+> >>>>> +    vb2q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+> >>>>> +    vb2q->lock = &stats->lock;
+> >>>>> +    vb2q->dev = mali_c55->dev;
+> >>>> That's not the right device. The device that performs the DMA operation
+> >>>> is the DMA engine, and that's what you need to pass to vb2. Otherwise
+> >>>> the DMA address returned by vb2_dma_contig_plane_dma_addr() will be
+> >>>> mapped to the ISP device, not the DMA engine. In practice, if neither
+> >>>> are behind an IOMMU, things will likely work, but when that's not the
+> >>>> case, run into problems.
+> >>>>
+> >>>>> +
+> >>>>> +    ret = vb2_queue_init(vb2q);
+> >>>>> +    if (ret) {
+> >>>>> +        dev_err(mali_c55->dev, "stats vb2 queue init failed\n");
+> >>>>> +        goto err_cleanup_entity;
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    strscpy(stats->vdev.name, "mali-c55 3a stats", sizeof(stats->vdev.name));
+> >>>> s/3a //
+> >>>>
+> >>>>> +    vdev->release = video_device_release_empty;
+> >>>> That's never right. You should refcount the data structures to ensure
+> >>>> proper lifetime management.
+> >>>>
+> >>>>> +    vdev->fops = &mali_c55_stats_v4l2_fops;
+> >>>>> +    vdev->ioctl_ops = &mali_c55_stats_v4l2_ioctl_ops;
+> >>>>> +    vdev->lock = &stats->lock;
+> >>>>> +    vdev->v4l2_dev = &mali_c55->v4l2_dev;
+> >>>>> +    vdev->queue = &stats->queue;
+> >>>>> +    vdev->device_caps = V4L2_CAP_META_CAPTURE | V4L2_CAP_STREAMING;
+> >>>>> +    vdev->vfl_dir = VFL_DIR_RX;
+> >>>>> +    video_set_drvdata(vdev, stats);
+> >>>>> +
+> >>>>> +    ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
+> >>>>> +    if (ret) {
+> >>>>> +        dev_err(mali_c55->dev,
+> >>>>> +            "failed to register stats video device\n");
+> >>>>> +        goto err_release_vb2q;
+> >>>>> +    }
+> >>>>> +
+> >>>>> +    stats->mali_c55 = mali_c55;
+> >>>>> +
+> >>>>> +    return 0;
+> >>>>> +
+> >>>>> +err_release_vb2q:
+> >>>>> +    vb2_queue_release(vb2q);
+> >>>>> +err_cleanup_entity:
+> >>>>> +    media_entity_cleanup(&stats->vdev.entity);
+> >>>>> +err_release_dma_channel:
+> >>>>> +    dma_release_channel(stats->channel);
+> >>>>> +err_destroy_mutex:
+> >>>>> +    mutex_destroy(&stats->lock);
+> >>>>> +
+> >>>>> +    return ret;
+> >>>>> +}
+
+-- 
+Regards,
+
+Laurent Pinchart
 
