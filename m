@@ -1,177 +1,116 @@
-Return-Path: <devicetree+bounces-87007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A14938440
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 11:58:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6187B938446
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 12:16:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1021AB20D22
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 09:58:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6006E1C209FD
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 10:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81792D53F;
-	Sun, 21 Jul 2024 09:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AC9156C4D;
+	Sun, 21 Jul 2024 10:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CAtUt366"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Nr+QFmvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCABD512;
-	Sun, 21 Jul 2024 09:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1C515667B;
+	Sun, 21 Jul 2024 10:16:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721555892; cv=none; b=nrIbO1F/q8Ue0jduunOtFk6NJblunrv/0ceC6jUVhdj18G1k0AghJPE1bXQRdonBYjswqSlWnvmYI8t4V1jrqnpvfC8xNJuoBzBrsjtMUE20VbJLVLyiSpHMKXKTr66BZNQ+1+Cwcdm1oblUSmarD6ZaCF8ZZh8WATsrhviK6EM=
+	t=1721556965; cv=none; b=nZ0zvURfBk6tAZ0DXkdQrUrfCqw2utaUFAvVt/EH7graffhv/wCVN2NKpzhhXX9tztqaoLtnLnRcvsfLIfBf5fCRzckALxaUWz+FZ8dGVS5JnTxTN6mOydcG5kF2XDSvNqK6u2oM1734YaQV2o1lUDfpTSlsDA3c6BGrLM4kFFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721555892; c=relaxed/simple;
-	bh=g10bqf5W4a2qVhz2e4z2Qko1iUpMJXrxY40AjrRiXpE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gWOEYSepHk+nc+u9QFA+VlLLUsyNlMILAgLtaKckYFtmT27Z+EDV+7ldlX4Lct9wV/6TbGMUFzTFiIflPvThrSY+6AgefoHF94hDxeKqhoE7/bfENCh3sPD8u6kpeGzXRzqi9dzD77y45mpsm/IFi/WNMipAWvl2Irk6b4CDOg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CAtUt366; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D32F5C116B1;
-	Sun, 21 Jul 2024 09:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721555891;
-	bh=g10bqf5W4a2qVhz2e4z2Qko1iUpMJXrxY40AjrRiXpE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CAtUt3668Bdq0IzVcbhCDJf5uVO4MKEgTIhsTCwTsOK3Tag9ltNOSjH6foiiFKUwm
-	 zGK0+9U+I9Qq6irD1+F+7AwmrMtx9eV4bofH0r3d4vigv4diKNnNqW7h8pGE0rzqgJ
-	 wuKVhijZqMTt7zNcCqYdct4kYLlLjo7MCd3N4KmhJ0Z7x6UrcXEsVV8jkBD6tqOMXM
-	 jSFdQkgJLDh//My0e9xpTnICrB7Moo0cdbOM7fB+qYmamfDXPyqRf6fmoZG/jvXiib
-	 x2T2RE/B7vlrgV+C42H0HdaKxyoQBd4mKKkDqitIVyvYeJ/tzjKHtAw5StxUaeKbWB
-	 bjrNWvdMSBepg==
-Message-ID: <4f87f1f7-b7e9-4836-bcc0-7b564765abb0@kernel.org>
-Date: Sun, 21 Jul 2024 11:58:05 +0200
+	s=arc-20240116; t=1721556965; c=relaxed/simple;
+	bh=nlwMgdDh72Yy3m0/MxrsPqPbdxmP17LFKy0FuK0GHY8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VS74VOibt0wB5yrvw2qQm8yr1ktyoV2w7e/CT7KfVPqS6PGnlPjmpmPnGbTxGYtQkkRfmzaWLRiivrlYDE6eGURI9/S3Myj27ZzlHhR59d445ENsriN386H/YQxqVzBP0MWVayi359jHpuGMykKDiJb1+Vv19h/0v9BoYu4Vb4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Nr+QFmvn; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 53FF041A6C;
+	Sun, 21 Jul 2024 12:15:54 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1mgW2OmlWPGU; Sun, 21 Jul 2024 12:15:53 +0200 (CEST)
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1721556953; bh=nlwMgdDh72Yy3m0/MxrsPqPbdxmP17LFKy0FuK0GHY8=;
+	h=From:Subject:Date:To:Cc;
+	b=Nr+QFmvnI65K1NfdN6Bj4WEBdkhVPnTFJhKA2dFwIcd4eg4LDogKCcyJ3jyvYYYsj
+	 YKhmYcTjglit245dIV5CRh/3CZSgcIH+TwHDgvADqEd0nHJxWV4Pe4LMjAwue85vK8
+	 sN1nWLzMUiMFWSSLu00caghNWMDDfELcZn+3TpvjqdX7nPgdEZ3bZxtdygg2IS/pFC
+	 Tb4Ok1hGdHrLrLdwRqdTFc/YIRCt9T2O5RMnw7BR6btcyHkn3IcqJe+tGPQAeMRdSz
+	 B2hGzIaSU2S2zgh1yn22AFOBb+TYPgjI0+jFKluxd4JgM0RKK4MLFbQHGKpA7EEzEp
+	 lInPWF9WO2Mpg==
+Subject: [PATCH v3 0/3] iio: light: stk3310: stk3013 support
+Date: Sun, 21 Jul 2024 15:44:28 +0530
+Message-Id: <20240721-stk3310-v3-0-98fcb6f551a1@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: Add Analog Devices ADP5585
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
- Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
- Frank Li <Frank.li@nxp.com>
-References: <20240719203946.22909-1-laurent.pinchart@ideasonboard.com>
- <20240719203946.22909-2-laurent.pinchart@ideasonboard.com>
- <f962a71c-6be7-4ad2-9753-e1f9ab7a38a0@kernel.org>
- <20240721094520.GA5732@pendragon.ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240721094520.GA5732@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAITfnGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDc0MT3eKSbGNjQwNdM1OLNLM0Y5NEc0sLJaDqgqLUtMwKsEnRsbW1AA0
+ mNypZAAAA
+To: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
 
-On 21/07/2024 11:45, Laurent Pinchart wrote:
-> Hi Krzysztof,
-> 
-> On Sun, Jul 21, 2024 at 11:23:12AM +0200, Krzysztof Kozlowski wrote:
->> On 19/07/2024 22:39, Laurent Pinchart wrote:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  vdd-supply: true
->>> +
->>> +  gpio-controller: true
->>> +
->>> +  '#gpio-cells':
->>> +    const: 2
->>> +
->>> +  gpio-reserved-ranges: true
->>> +
->>> +  "#pwm-cells":
->>> +    const: 3
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - gpio-controller
->>> +  - "#gpio-cells"
->>> +  - "#pwm-cells"
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: adi,adp5585-01
->>> +    then:
->>> +      properties:
->>> +        gpio-reserved-ranges: false
->>> +    else:
->>> +      properties:
->>> +        gpio-reserved-ranges:
->>> +          items:
->>> +            - const: 5
->>> +            - const: 1
->>
->> Why reserved ranges are fixed? If they pins are *always* not accessible,
->> then these are not GPIOs. This really looks incorrect.
-> 
-> It's model-dependent. The ADP5585 has 11 pins that can be used as GPIOs.
-> They are named GPIO 1 to GPIO 11 in the datasheet. The -01 variant uses
-> the pin associated with GPIO 6 for a different purpose, so GPIO 6 is not
-> usable. That maps to index 5 as GPIO numbers in DT bindings are 0-based.
-> I've decided to handle that as a reserved GPIO range to keep the GPIO 7
-> to GPIO 11 indices the same across all ADP5585 variants.
+STK3013 is a part manufactured by Sensortek which is marketed as a [1]
+"Proximity Sensor". This part is available in several consumer mobile
+devices, including, but not limited to, Samsung Galaxy J7 Prime and
+Samsung Galaxy A2 Core.
 
-Ah, I missed the fact that gpio-reserved-ranges are not required, so
-some of variants can just skip it. It's fine.
+The existing ambient light sensor seemed suitable for this chip, and on
+enabling the driver, it was discovered that these "Proximity Sensors" had
+ambient light sensing capabilities as well.
+
+The downstream kernel driver shipped with this phone by Samsung [2] exposes
+a sysfs interface for proximity sensing, but leaves out the light sensing
+features, hence there's no such functionality in userspace.
+
+The following patch series aims to add support for STK3013 as an
+ambient light/proximity sensor.
+
+[1] https://www.sensortek.com.tw/index.php/en/products/optical-sensor/
+[2] https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870/blob/master/drivers/sensors/stk3013.c
+
+Changes in v3:
+- added a cover letter to the patch series
+- added stk3310 as a fallback compatible
+
+v2: https://lore.kernel.org/linux-iio/20240712152417.97726-1-kauschluss@disroot.org/
+Changes in v2:
+- added a commit to relax unknown chipid warning
+- missed "v2" in patches
+
+v1: https://lore.kernel.org/linux-iio/20240625165122.231182-1-kauschluss@disroot.org/
+
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Kaustabh Chakraborty (3):
+      iio: light: stk3310: relax chipid check warning
+      iio: light: stk3310: add support for stk3013
+      dt-bindings: iio: light: stk33xx: add compatible for stk3013
+
+ Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 13 +++++++++----
+ drivers/iio/light/stk3310.c                              |  7 ++++++-
+ 2 files changed, 15 insertions(+), 5 deletions(-)
+---
+base-commit: 62c97045b8f720c2eac807a5f38e26c9ed512371
+change-id: 20240714-stk3310-658f6f34a798
 
 Best regards,
-Krzysztof
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
