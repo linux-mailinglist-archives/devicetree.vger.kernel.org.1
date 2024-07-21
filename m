@@ -1,98 +1,116 @@
-Return-Path: <devicetree+bounces-87015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA27938477
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 13:41:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C520B938490
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 14:07:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E944281542
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 11:41:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1865F1F214DE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 12:07:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372F75FB9C;
-	Sun, 21 Jul 2024 11:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4BB15FA7C;
+	Sun, 21 Jul 2024 12:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DWN1tpZp"
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="N0g7IAhM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B616D2BB13;
-	Sun, 21 Jul 2024 11:40:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F11726AFF;
+	Sun, 21 Jul 2024 12:07:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721562061; cv=none; b=qt9iT4rwg6XAmXSV+aSiYvkFuX+Ea85MYtM4IxW2LSIJWpYRefTOLNeb/HB+hCaaahzvzJoLp0FvguLvzBjrhdb68g33+9h64fET0fK2k1+5m7VLffuCl/4OxBDWh+IMWXPw6MY3LW6Z8Fo9Q0wqwtvZP2umUUUfhQEfZ71INkc=
+	t=1721563652; cv=none; b=j680sO4kUIjaYNXOm+dhrYISyHahgosqwsfRTHCsRyqByJad4gLX/g+LMo3hUO4yV2L2kFIBbj3ykRgFkr/OY5BrJGnpbiSfwx8Sgm/9J550WWJXFjNWDax0tZdYCjXBjoaSCsrJvGhVDFB2FBrI33nHADEM0CSJ3UwFttW7I90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721562061; c=relaxed/simple;
-	bh=Q+EyK5KSVXoDYojQseP6uaAw9ms6O/Cd9wFUQCgWJuA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LorEiQ/j94cWAAc3LyNiSoYZKcoN5w3M3jidL1mTzJtWbakpYZNFnvIwlIG0Arq+oONJpDh8ww7P0JantxpxxRHPSV12h7JXb+BxZ38ITLUx0DP9V+iSASRkbPDCPP2/QeAdCcG9juOj86FQSca4Ffr8oQl3lt4OI5UQ+NRJp2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DWN1tpZp; arc=none smtp.client-ip=209.85.160.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-2610623f445so1520018fac.1;
-        Sun, 21 Jul 2024 04:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721562059; x=1722166859; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q+EyK5KSVXoDYojQseP6uaAw9ms6O/Cd9wFUQCgWJuA=;
-        b=DWN1tpZpIK7gc31YiVARCXG1ZFnab5aiBkoUiYbzf2LiOb8imw1cmAnA9odnC/PgM3
-         +7QAPXVlb/sr62Z6jOEnKjxn0Kav/l2e2WljEiamkZhGkFZMCep5Q+QXhFF6TKnYeN2S
-         ym7q2DUdR7dxL2QYQAbxcF+I7yCWTq0wbNMryCV6/RioWJsGw2qrWe5hCPE3h9cnmpXj
-         Ja5ido3TWI1LWwYZYv5K//BMfvfOaxlB9QOh0S54vv1kkTTZI1fOzwCZnScALVOSRiXV
-         fZXxkC6hI3vL0+Gb9gq91Y6S+NRo67SUvsBClE1eHlSffi5Fx6r/ub63pjwEtHX/kW/1
-         8B2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721562059; x=1722166859;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q+EyK5KSVXoDYojQseP6uaAw9ms6O/Cd9wFUQCgWJuA=;
-        b=tM/crO/6LOVSHkNLTZvDvYey7a+rUY0wwAybppTz3NXTia2591uQj5WhHriWJA7EVD
-         s32mZz4x2h9pfmQxeWvejy0+PRX+W122bcms1uKUFfVtr2DlS/ZgPQF492rrgOMW2tUH
-         ND7C1guplS4VXk0c7h4IlGrXp8evq0gfLq40NTyAMFsh4Js0FEN7R4z1Wp9aCpaH32hO
-         niW6aKbDM/tV0Du0GixDSg42rCeqUYj/TdL8jY7cuqKY5LaD9zReOi/9Lhl55C3WSXq4
-         Pdz6YuitiG05uPUaJx9wZN3tSAUxUOSPe3e9R92am08Zf8lr5gVia+ME0rdJlI5YsFT/
-         g+EQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUMB7oxkXq79sDj22CvotcuqvnB936HDyT5LmJjcoV5hKEuWfh5wwETIpRzgUCTyBz6xQPD972ary0Q6pKLZCrQMTM31lXJ5eyCwJ/bHFqNMDS8SYBtITvNhT1O5dxLcs6PYAXb3CegsdwuS21WqIukg/ZwOrpo6OFK/LxtUtKWc2Rk5Ccl
-X-Gm-Message-State: AOJu0Yy81wrr4DInFjuls+bBO22xvDerekskCNnjiNtRnCeTsBeWYtj5
-	RV1ly75VX9MadDVReE9OH1kCOmYS1FX3Ofn004nKJlpYJuc8D07iZ/Eh6zyiTXSm+AOpqAdWMqD
-	wPI2zqtOBk+KIRTjJTgCcziG5nU0=
-X-Google-Smtp-Source: AGHT+IHTBah8cNq3NdWznUVOIfFXR+nEtBvDOnHrlzv0ICb1QiXJ2G+KHa+o03Qbt8HTjzossc9zMGclNbnKTjzzTMw=
-X-Received: by 2002:a05:6870:970f:b0:261:1600:b1eb with SMTP id
- 586e51a60fabf-261214eac1emr4705877fac.31.1721562058704; Sun, 21 Jul 2024
- 04:40:58 -0700 (PDT)
+	s=arc-20240116; t=1721563652; c=relaxed/simple;
+	bh=qlb6WjlAnEKcXc092oqfM8G67zC7IPvZt+7Tiv3Ck9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IfCU9DdlV5h73bkv3wMcTVZUCpx2gZObxUKMNdUfMZ/XoeD1qWT+pPIwhJEgb+yFb9LJJDZxxo1x4L+V/7NC3ehU2e2g/a4IlUzLK/CF7a2yXquTS7k3xwzcQh53PP1zUvijzkJh2H5OeL417EgCTJwr+9/6xH34Xxdou14W+kU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b=N0g7IAhM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 090C7C116B1;
+	Sun, 21 Jul 2024 12:07:29 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+	dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="N0g7IAhM"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
+	t=1721563647;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9wfLvY3ya2nrHr45pIZikIDrp87iOyHgJfRiGxlFpQg=;
+	b=N0g7IAhMr2y4iqU3m3NWTxzJME/+JeNsyoW0Nmoh9tOd+WcJsf/u13VVA3QbVVg1CHYPBT
+	tthBNmpSyuXXxLJHbYiVlr7CdBXSlL7WgKvoyWKkHG6NnC3ef5ooE3BKlA0wkaVYIUZ3hv
+	NxgAd7PsXLYbYGCILizvOq/YIT4IWKs=
+Received: 
+	by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 663834c5 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
+	Sun, 21 Jul 2024 12:07:27 +0000 (UTC)
+Date: Sun, 21 Jul 2024 14:07:23 +0200
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Martin Kaiser <martin@kaiser.cx>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/3] arm64: dts: rockchip: add DT entry for RNG to
+ RK356x
+Message-ID: <Zpz5-2q-C0oQBqoa@zx2c4.com>
+References: <cover.1721522430.git.daniel@makrotopia.org>
+ <c28cb9ad04062b6da66d9cac8adefa0edc0046ea.1721522430.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240720100848.203546-1-animeshagarwal28@gmail.com> <ac09aec1-0c42-4f8a-b4cb-64eb67018d15@kernel.org>
-In-Reply-To: <ac09aec1-0c42-4f8a-b4cb-64eb67018d15@kernel.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Sun, 21 Jul 2024 17:10:47 +0530
-Message-ID: <CAE3Oz81jhzAiwJXPiE4rQjD8TzBghugvA9sWV+Tb_kz9CdQyiQ@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl,imx-audio-es8328: Convert to dtschema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c28cb9ad04062b6da66d9cac8adefa0edc0046ea.1721522430.git.daniel@makrotopia.org>
 
-On Sun, Jul 21, 2024 at 3:03=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> That's not a DAI but audio card / complex. Drop.
+On Sun, Jul 21, 2024 at 01:48:38AM +0100, Daniel Golle wrote:
+> From: Aurelien Jarno <aurelien@aurel32.net>
+> 
+> Enable the just added Rockchip RNG driver for RK356x SoCs.
+> 
+> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  7 +++++++
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+>  2 files changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> index f1be76a54ceb..b9c6b2dc87fa 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -257,6 +257,13 @@ power-domain@RK3568_PD_PIPE {
+>  	};
+>  };
+>  
+> +&rng {
+> +	rockchip,sample-count = <1000>;
+> +	quality = <900>;
 
-A reference to sound-card-common.yaml is required instead, if I'm not wrong=
-?
+As I already wrote you for v7, quality is out of 1024, not 1000, so this
+won't hit 90% as you intend.
+
+But also, I think putting this in the DT is a mistake. Other drivers
+don't generally do this, and if the hardware is actually the same piece
+to piece (it is...), then there's not per-manufactured unit tweaking
+needed. So keep this in the actual driver C like other drivers.
+
+Jason
 
