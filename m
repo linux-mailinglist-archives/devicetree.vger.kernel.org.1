@@ -1,84 +1,88 @@
-Return-Path: <devicetree+bounces-87039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85052938585
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 18:40:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4826D938601
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 21:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B46C1F21201
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 16:40:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07240281054
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 19:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC9616849C;
-	Sun, 21 Jul 2024 16:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CE716A931;
+	Sun, 21 Jul 2024 19:51:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HotPeicl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i4gW2CGO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 197E0166314
-	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 16:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FA1168489;
+	Sun, 21 Jul 2024 19:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721580031; cv=none; b=EJN3vBfSjnAqjaEbGYfg3LJ9F6ity2QZ+qZF2o1BElYIMnTHK2ok5h/qAh9mVy0SknyGk3N0PCEGnC+5hEs1VRMCl0MehqsSQg9TWSC+itMhmaJGiYnEmqkaWUuChO6lQCVwF+JX1U4rNW6KnxNyUDNHTNW2/502eFDOPGMTF4E=
+	t=1721591506; cv=none; b=CRoMMAYcEdDIlnUi3+RkbmcnQQ+EN4WxGDSAs64E56jCL1xWKSKkmPEY7XeILzE2380J0/xEWE1boNA8KFDvR5BiE6jT0BUTuWYrv2fY061fCU+a1kX/d7q8B2lEBT2CSh5PwxcQy/5Ba+3AdLoxPPsaAjg/Rrh8vNCycBNLd9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721580031; c=relaxed/simple;
-	bh=KHNYWd9qjw8w/6UQTauE2UXQTmDVc+cFnIzoPmIObxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KvPxYJgun8/8nFy++vrX9M/Pwqfsq55kiQoCYhHOY5+iN3W2cKLkUobsUiHRZQc+VjoP47SRj7aoxIYuSXnib0sY5tb8IJQ07w0UwG4KCdHx+rUeaX9dblZecvexeDPr2ooAn17uBiDasbyWvMk2sPUIDYbmV5iiXD3xdXpcOrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HotPeicl; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-427cede1e86so24155405e9.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 09:40:29 -0700 (PDT)
+	s=arc-20240116; t=1721591506; c=relaxed/simple;
+	bh=ojnD7l7U4WXhnJ21gEjURp81rgMITCfE9m6Uir1OCRo=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hPD5BmIhehh1NY+pJKP/34V2PowUwrmtdswBaBBQ8n5mu6dAht2L14qdKdjUh26RW3E2iNHt/4CTxiA1N+7LxjgukOYzRV6E7xwN4fdZFzEaH8grRHKYpqcQiedQIuTwRez4ZwOa6w6PlQrMvDDEPAar0jQj8QY7wdYW5sPMnfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i4gW2CGO; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5a3b866ebc9so1756450a12.3;
+        Sun, 21 Jul 2024 12:51:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721580028; x=1722184828; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1721591503; x=1722196303; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1neO0vY5BJtU2+Ta5W/SGMilSHd9JuLX8aCooapqSxY=;
-        b=HotPeicl4WaV6w7oOkqL358qSjXvULKFm7GohCknVJJgz3pPkhbvXcDouiXWAUsMBZ
-         3rWUgrWhpL6G9hsrIF3kVd78OW2+bDh/441o/wmT02qtluAzixQKMtVyu7VwOStpQSLZ
-         kjcvD1Rpn767fOvQDxVhtpbEGc5OxxdkgnaXGhfqdN556zuUSO22jYOTXKqTTjCNwB+D
-         G3XXZMvGU9WaeMkieH2vcnpGaGPrd2zJkC0qc8Om4kDYSXypaKE7HaCTrzXUvovAgS5P
-         PCQJtjflx1ZSiqpJ110plD1YiuGVa/akLiHJPDn4sqJS2xzqp28iKA/yOvVbeHOXyoFx
-         JAwQ==
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OXhJvxTh+FJgkdIwlUcd/DX9E13ffHM6KEgpQ3vYsc4=;
+        b=i4gW2CGOlQLSW4YbeRqaHZGECsat6WKbhtIH21w0aiZdjV29AKJlMOHvKdLzuOZu5C
+         M/RyMo+lBAgt/dN5rAa03gH0/Xa/5VEKuZdrCfCCB3kRLfWVe3jSLJ5FJTRuwjD2sD3x
+         BGZgb3YqKtl9FVlB019v2AbsUl5ajoR71jasJED9vkgSJN7QzpQHwrzwnNqB5z0sIuU+
+         n/FGnudDdNjENU0V14hX5ROijiVtAERAuGZjU+OslLCppocdHGCNi37oq3XU0KE36+9b
+         VYrQbXo/TrSvBNH4lwkDrXJYGcAVbsRhQD+cjzffYNwEz54/JRgL9roQOk+rU44iDvBC
+         JcYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721580028; x=1722184828;
+        d=1e100.net; s=20230601; t=1721591503; x=1722196303;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1neO0vY5BJtU2+Ta5W/SGMilSHd9JuLX8aCooapqSxY=;
-        b=UhB0vAeU4RSNaT6q03ZW425y6JldVlSfC8g5zJ+BHzoLxGWPMmvaKrg5V5SumXATQC
-         BmgiubU8mJkFuuLzP1tJl7gxGf6HF3hD+CH4CFHM8Chi2T/2BT3EJCVuwDoCnO6uqYtc
-         DA18hUcxFCS2mYuCe0FvU3UXkMng6pW2I0VsrAnPbHuW1Ff5NgA6ClJcv1vlYfgfAssg
-         JU8W1SZA7r8vkzoTEPdWizXTc+WvPB0xksStfO7RawKxWgGaFQ2z7djVnyQHlR+KvMoQ
-         NzMteJObABAe0Gps5wIblgwA6c5hJZ09irvyvEvsDxjBY2JVdp2aXY6CTlgEcW6gs59n
-         JZdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsywiLigjCAF4AsgjfyTgXgYqTVFAJiXOtRdymUyH4JJe4Uzb2wBMPbRvREFs3kkylKSQ653MfQGRuNFgt3uaDzwJuFzxMqS4cQg==
-X-Gm-Message-State: AOJu0YyVcErkfXuCWl9lBueZ5sglm2lTa7vLDYn9vFFutoPDDu6z+0lF
-	H+aqQKPdmTUSQeaDZz3GJ/j258AaN+INJ006rtIZ7Eip9e/p5UAraI1YOEOUOls=
-X-Google-Smtp-Source: AGHT+IFZHeWRrnvcP2zTS8aAtfNhxgGwHp3XmT2plebZCwdxD/aMAWQ9jlU7uPiBQVq8Eru08s5Bhw==
-X-Received: by 2002:adf:a181:0:b0:362:7c2e:e9f7 with SMTP id ffacd0b85a97d-369bae48cacmr2516314f8f.32.1721580028502;
-        Sun, 21 Jul 2024 09:40:28 -0700 (PDT)
-Received: from linaro.org ([82.79.124.209])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-368785c58e7sm6398846f8f.0.2024.07.21.09.40.27
+        bh=OXhJvxTh+FJgkdIwlUcd/DX9E13ffHM6KEgpQ3vYsc4=;
+        b=GQ+4t2YxQ45YwOPWGE6RFGQlsgFC0mzT5XlFhNp1IgzaJNP84oVYBWerjeyGqnvDc4
+         U9SlszOlNLvMjfX7tusGwlY3A/k63WyQQfvTEC6SwogdIDkYYHUcmnwhuOAqYl0T9yod
+         ullCrURbTrTXJ4sP9wnVMYoPPjSHfGHXcLLDoB6Ieu5JebSjn7kKl5bVbLEKvXUw50a7
+         UZN/fk4m6paaFt5X01Vj7uTuC3OR9QNbNaZzUyUB3xTWu95tIUI4fS8LZXaKbpap6gYX
+         tdwvgEfX76QsF/+wIlU/eOUM7BiO9a55q32611NtDmeBi7hX7zj2xjKDW78MH2fXfloe
+         dXRg==
+X-Forwarded-Encrypted: i=1; AJvYcCXIEggjbNpI0x7Thuw34BmtsQnqZ6ZSWxHTtUTJ3vHxUMi9Pwa2zJ+6nQN4YhMkw+2f9FEpsxhQ7sYUty1Q3zRCIw4a6nNcVlwzrYD5mSoHwWNHFFCNmYdkk3t5qJGwqvWuZRlbgnFl7c4T0YmR7r85RjD2vAjOmGtuEDsHxSAzi5ejwQ==
+X-Gm-Message-State: AOJu0YzymlAf+q51Hzc+iDM2C27Cpj+Axptxi18k7JBkfeLTMs5VCCl+
+	cpOxyEXVVQujmtNuZ3YXoNiGdUl0aep2q3J5IzxtKfX2sVcjFf26
+X-Google-Smtp-Source: AGHT+IHBeqZ9eTSz0bR9gAKqLV6LP7oKJq2WEwJizcoWMFJtTzi9WLC2fIcSpqdgq0NvFVRH+UkYIA==
+X-Received: by 2002:a05:6402:528c:b0:5a2:1693:1a2e with SMTP id 4fb4d7f45d1cf-5a479871105mr3211157a12.18.1721591503002;
+        Sun, 21 Jul 2024 12:51:43 -0700 (PDT)
+Received: from vamoiridPC ([2a04:ee41:82:7577:bc21:fb27:f4e6:6867])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c2f8645sm4909057a12.72.2024.07.21.12.51.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jul 2024 09:40:28 -0700 (PDT)
-Date: Sun, 21 Jul 2024 19:40:26 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 2/3] firmware: qcom: scm: Allow QSEECOM on ThinkPad T14s
-Message-ID: <Zp05+twrssUFUv+u@linaro.org>
-References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
- <20240719-topic-t14s_upstream-v1-2-d7d97fdebb28@linaro.org>
+        Sun, 21 Jul 2024 12:51:42 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
+Date: Sun, 21 Jul 2024 21:51:40 +0200
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 01/10] iio: pressure: bmp280: Fix regmap for BMP280
+ device
+Message-ID: <20240721195140.GA325365@vamoiridPC>
+References: <20240711211558.106327-1-vassilisamir@gmail.com>
+ <20240711211558.106327-2-vassilisamir@gmail.com>
+ <20240720120429.46aea886@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,33 +91,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240719-topic-t14s_upstream-v1-2-d7d97fdebb28@linaro.org>
+In-Reply-To: <20240720120429.46aea886@jic23-huawei>
 
-On 24-07-19 22:16:37, Konrad Dybcio wrote:
-> Add the aforementioned machine to the list to get e.g. efivars up.
+On Sat, Jul 20, 2024 at 12:04:29PM +0100, Jonathan Cameron wrote:
+> On Thu, 11 Jul 2024 23:15:49 +0200
+> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Up to now, the BMP280 device is using the regmap of the BME280 which
+> > has registers that exist only in the BME280 device.
+> > 
+> > Fixes: 14e8015f8569 ("iio: pressure: bmp280: split driver in logical parts")
+> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> This fix is for an ancient issue (2016) so I'm not going to rush it in
+> but will mark it for stable inclusion.  Advantage of taking this through
+> the main tree is we can move faster with the rest of the series.
+> So applied to the testing branch of iio.git which will be rebase on rc1
+> when available and become togreg for this cycle.
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+> 
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Hi Jonathan,
 
-> ---
->  drivers/firmware/qcom/qcom_scm.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index 00c379a3cceb..e60bef68401c 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -1724,6 +1724,7 @@ EXPORT_SYMBOL_GPL(qcom_scm_qseecom_app_send);
->   */
->  static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
->  	{ .compatible = "lenovo,flex-5g" },
-> +	{ .compatible = "lenovo,thinkpad-t14s" },
->  	{ .compatible = "lenovo,thinkpad-x13s", },
->  	{ .compatible = "qcom,sc8180x-primus" },
->  	{ .compatible = "qcom,x1e80100-crd" },
-> 
-> -- 
-> 2.45.2
-> 
+No problem at all! Yes indeed it's an old fix and I am in no rush at all
+so th simpler the better :)
+
+Cheers,
+Vasilis
 
