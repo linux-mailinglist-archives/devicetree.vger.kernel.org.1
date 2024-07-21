@@ -1,145 +1,236 @@
-Return-Path: <devicetree+bounces-87049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC056938670
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 00:12:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 553CE93868A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 00:48:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83C8F1F21341
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 22:12:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C26AB20A5B
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 22:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B8516A94F;
-	Sun, 21 Jul 2024 22:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127E1101C5;
+	Sun, 21 Jul 2024 22:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hdYLXnef"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="hrOB9nRP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A418816631C;
-	Sun, 21 Jul 2024 22:12:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52168168B1
+	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 22:47:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721599959; cv=none; b=ZIQYXH/tsM2JI5Q/KhnTzNOlyD199/et8moam3zK7PNmGXQAUW9M8Yz9qgikXoaeYMdMRy4TD2xDEkcYOvaxmQMPJCmsObVcFYrbrcBeBGB3IgMNwLSEKFJFkQCnsjP4fqQtrZf2/8R1a5BCnVZ/xABS//f2wAdJB5FhYgmBoug=
+	t=1721602079; cv=none; b=cDn1+a2bxoNYJQ4nFLw3290WcKhLxQPwnNQl1AOEhcW2rSUlsjhw/E5meDS2hFEe/2h+VwTLUUntRAnnbBa+JAeD2NI+DvbMHNmWNHEvVkYLtG0pKdWTkcY7CcVnWIzFYkfVULOI0/xAo/Si1+aHAWCJi6nLeoYZjsuFstt4oE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721599959; c=relaxed/simple;
-	bh=ssAet6NaoCRi4CGu4pJFZtNUATo7K8hRrWiV02XYERs=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NY0pR28zW3xEL1EIBjBUsPYyDDgOx4elGbUxxshE3LGRw7dLDbYDEMAvIQsqWl/27W2VMkL4RUuSevo0DnmJPgzZik+N910O0L7jS1Fl/vhSvuNoKVKEvpMCdQndkCc124EnnAYkmi36Y239NpptkHeMw5VU5391S4TCMlyDyuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hdYLXnef; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a77ec5d3b0dso340758166b.0;
-        Sun, 21 Jul 2024 15:12:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721599956; x=1722204756; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q2riOrPqtFijzbUtT4zXARC/Opr4gkzsVUj5TAbyWo0=;
-        b=hdYLXnefz1glQkXV6DpcfGjKsxB0dV+LhEHCcjjh3pE/nWsLHnNYPsp+8JLT9Egjb5
-         mcGr8drfWIm2TZnJl+z36mWyhvK/uKUKydNR1STRE7QnAImTeGLyfY7MWYzk9K2IaRwU
-         bnqMgKSEuGIpi0WNq0vw4YriLRsmtEniVAdji4L+V6TumNaFGref5swHejQ45e9W+/Qn
-         oPauTod/6eS+O196/zMYrBDVesXxrdABn3/hGGjyC6GQTwsm1WSXUsW/YY+IpWr6FUtp
-         AvWilI9ocVxWcK8ejDq8hN9xmxuQIM5CoQje1ceUBRQYujjDTR/j/hxf6f9gnCDfKiud
-         /sgA==
+	s=arc-20240116; t=1721602079; c=relaxed/simple;
+	bh=DliTPczJmew9Tk+hDTUTx/VTPgaBCakYc5YIQufR5sw=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZWS6PJ6im8S3F6GDEoHp7LGcTyGEUKxHJ9tK6qY3oEgAyUpMU8c6o+4mYiJcDslyt2VKrZkYUszXi4zgEEJPbK/MaVVUW7J8/SeJfKVvcI++tjY9cnBBQ47TEjS/9vY6E+6xuPB9Pd3GvOoZwKXqZt7WaOpi1x4PattAMjYVIBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=hrOB9nRP; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 528383F2A0
+	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 22:47:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1721602074;
+	bh=KO8tpQ9TxHjBPKSfhTTh06gsoP5zva/hPb58dTpZI7Q=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=hrOB9nRPrBbkxem5qJG6pJUmqCAbxvwCOoLclRe9q8oi54Evg8GwLklT1YneJGQx2
+	 H0TLCrHJS3ciaRRYlGJALjcOW3WAc+itVxkU6cCQyqS1C7cXExYrlu4Pg1kXlWNosJ
+	 PNlGuPCQBy7WPhMn+TRUgAQkM1PvLH/q96wrhZuwclHxzGlmr9OWbOepWjoUfquCh0
+	 6qHjE/LNVhD2nCA9xzTdPUtpHb8H/KIS0W2TtkF/KAEvxbuzmMnuPq94UKCw8AR0Fn
+	 jwfm7QWl5RCLeFmiI2UeA/tzzNX6avw8zCXVZZDZH8/n41MC0KTvOh5L9oDi81OclO
+	 U5/E7u/GpHutg==
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-79f1d37915dso627161185a.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 15:47:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721599956; x=1722204756;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q2riOrPqtFijzbUtT4zXARC/Opr4gkzsVUj5TAbyWo0=;
-        b=wtkfNnkz/KXMcfdttAKHjElkvWi7evY8oQIv+XkPR8Mnr4l4rFj7SE6+hBhpJlbdcw
-         0Y61GcKLwLSJEQBlt00/UREsIsxbHOrV3JCN5xiRDCTg99wypGRKKGq8EpxrReiSN6Ch
-         LlqCdERo1qzO0zuuqqp2h9mw+LWBhyBJVUn5pZeJB3riOwKBfsIaCT41o9rebBeJe9gl
-         U+GQ+g0qqdmDvWKuSqakjFLzyBlTyinDdU353eVg4/74dVrqutSiGlsLYpfPIVG0kEz3
-         bl2/YMq2+Vzh5Ow1bkV36KReJJdzeo9MLgKHQE9GDz6Vj9amg6oh1IfAZwlCqxP+cQ4Y
-         lGAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWaBi/rPS7kv4xSVgn/IAXOsEbEHMLhj1kSDjlMANfWAo4DX7kFyk3DUksQGGpfO7FdphhYPnBkFBtBxqSAI63p/fCO/a2pvmjZVY/9sGW3AL3lWltId9eHX7BylKq03vO3F7tcVq3/lej1ZnYbZv5MwfFcSH3S/mdqsYxa21X+8VQwng==
-X-Gm-Message-State: AOJu0Yy89kqZVfdD/uyR0wr9ZIvS7AtjLY0VMsJllwikYSPQX081C07u
-	PDvk4cv6HSJPmDhvWzGCgN+EVkXKPPvuroJ9GBkoCxKUayc62qpO
-X-Google-Smtp-Source: AGHT+IHwPCau+jDbxP80Haz8vP1uglMf208ox9B7dYrZvhQm9QMaTBRwIv8/UBXu2xFD3w91DO48cQ==
-X-Received: by 2002:a17:907:944b:b0:a77:cc90:7734 with SMTP id a640c23a62f3a-a7a4c0f440dmr318883666b.42.1721599955669;
-        Sun, 21 Jul 2024 15:12:35 -0700 (PDT)
-Received: from vamoiridPC ([2a04:ee41:82:7577:bc21:fb27:f4e6:6867])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a3c7be6f8sm339079366b.76.2024.07.21.15.12.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jul 2024 15:12:35 -0700 (PDT)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
-Date: Mon, 22 Jul 2024 00:12:33 +0200
-To: Rob Herring <robh@kernel.org>
-Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
-	lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 08/10] dt-bindings: iio: pressure: bmp085: Add
- interrupts for BMP3xx and BMP5xx devices
-Message-ID: <20240721221233.GE325365@vamoiridPC>
-References: <20240711211558.106327-1-vassilisamir@gmail.com>
- <20240711211558.106327-9-vassilisamir@gmail.com>
- <20240712124805.GA461461-robh@kernel.org>
+        d=1e100.net; s=20230601; t=1721602073; x=1722206873;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KO8tpQ9TxHjBPKSfhTTh06gsoP5zva/hPb58dTpZI7Q=;
+        b=TIaYfmPIgbCikKPPkvK8N8knJL6iUagXjkClOUplCp+OmRPQS4Xwj3OPEvN3jI2hZ9
+         cs2CLYlZEyMUr51oK9QjuKOdQoxzfGPwELb3wWHe62S4iI3Eh7r/BFwmNy5pj59dGJnE
+         1gT4Y/roGOgasIZKBkAebQ+LJOVD/VLv3uSzucqEGUgcZqoxYZdMxaib7ATJQcksdB+4
+         NVpDjsoxSW0D8SG9yEMPjmoo6IANz8O/6x4mW5XHGZ/NNVg99GlU57sTM4UzHAsp8ioU
+         dRgYR6ocuzVSTQyUua9L5Oq5vCth5zxIEOGXiQkS8m4wfwczxnkooQBfycRj2mwh2nsp
+         cluw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVYSWP6MSpyJZBhXr73u+W72OP6Ty9wlGI6nkq4MzUpIShCJmQAh/VzQrug9SRpoPwQK80dyEI/WZLJsEQbQKGjRHCLSHs5/6lLw==
+X-Gm-Message-State: AOJu0Yyis5be+juNU8K16dzFuDKqxpGNLMT6OA9X/dg7MBG2LNHSFJn9
+	/VCxL2M0AK5thFrsnxvKBNnqY7YFnUpjnikdm4mFIqCbeeVvL3MY5M9G3kd+61I5RN+vkvrMQAO
+	84TqN39Q4qkQcSrCuxEYzrYWION07ainH3728Am+LBVkWpEDq+eo6iufYodSh/S4pSGi7ZU+cRg
+	JpnK/WUf28K8Mgr9ME9/h95ZapP02yo8O+CFxfIIAHf3I0NHUV8Q==
+X-Received: by 2002:a05:620a:28ce:b0:79e:ff18:a510 with SMTP id af79cd13be357-7a1a18c7253mr1121276585a.2.1721602073208;
+        Sun, 21 Jul 2024 15:47:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEOPlLEtwtiEezjI4b0t9l3MvPIrUfLti48u+sapT3VI9Hw0/LGbiEv4A6CGCoCTi6t0+NceO6NQ3UvomsMYkM=
+X-Received: by 2002:a05:620a:28ce:b0:79e:ff18:a510 with SMTP id
+ af79cd13be357-7a1a18c7253mr1121273685a.2.1721602072728; Sun, 21 Jul 2024
+ 15:47:52 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Sun, 21 Jul 2024 18:47:52 -0400
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20240618-i2c-th1520-v3-3-3042590a16b1@bootlin.com>
+References: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com> <20240618-i2c-th1520-v3-3-3042590a16b1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240712124805.GA461461-robh@kernel.org>
+Mime-Version: 1.0
+Date: Sun, 21 Jul 2024 18:47:52 -0400
+Message-ID: <CAJM55Z9W7SYDCSeZy_NEQJBryGX5v+R8-xNxOzftivbGxA1TSg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] riscv: dts: thead: Enable I2C on the BeagleV-Ahead
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Drew Fustini <dfustini@tenstorrent.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Conor Dooley <conor@kernel.org>, 
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	=?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Jul 12, 2024 at 06:48:05AM -0600, Rob Herring wrote:
-> On Thu, Jul 11, 2024 at 11:15:56PM +0200, Vasileios Amoiridis wrote:
-> > Add interrupt options for BMP3xx and BMP5xx devices as well.
-> > 
-> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> > ---
-> >  .../devicetree/bindings/iio/pressure/bmp085.yaml    | 13 ++++++++++++-
-> >  1 file changed, 12 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > index 6fda887ee9d4..f06f119963bc 100644
-> > --- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > @@ -48,9 +48,20 @@ properties:
-> >  
-> >    interrupts:
-> >      description:
-> > -      interrupt mapping for IRQ (BMP085 only)
-> > +      interrupt mapping for IRQ. Supported in BMP085, BMP3xx, BMP5xx
-> >      maxItems: 1
-> >  
-> > +  interrupt-names:
-> > +    maxItems: 1
-> > +    items:
-> > +      enum:
-> > +        - DRDY
-> > +
-> > +  int-open-drain:
-> 
-> Use the existing 'drive-open-drain' property.
-> 
+Thomas Bonnefille wrote:
+> This commit enables the I2C0 controller of the TH1520, together with
+> the FT24C32A EEPROM that is connected to it.
+> In addition, this commit also enables the I2C controllers I2C2, I2C4
+> and I2C5 as they are all three exposed on headers (P9 19 and 20 for I2C2,
+> P9 17 and 18 for I2C5 and MikroBus 7 and 5 for I2C4).
+> It also defined the required pinctrl nodes.
+>
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 84 ++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> index 57a2578123eb..b5c4f1811955 100644
+> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> @@ -122,6 +122,19 @@ led-pins {
+>  };
+>
+>  &padctrl0_apsys {
+> +	i2c2_pins: i2c2-0 {
+> +		i2c-pins {
+> +			pins = "I2C2_SDA",
+> +			       "I2C2_SCL";
+> +			function = "i2c";
+> +			bias-pull-up = <48000>;
 
-Hi Rob,
+nit: This and below can just be written
 
-Thanks for the feedback. I will also use the tools from your automated reply.
+bias-pull-up;
 
-Cheers,
-Vasilis
+> +			drive-strength = <7>;
+> +			input-enable;
+> +			input-schmitt-enable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+>  	uart0_pins: uart0-0 {
+>  		tx-pins {
+>  			pins = "UART0_TXD";
+> @@ -145,8 +158,79 @@ rx-pins {
+>  	};
+>  };
+>
+> +&padctrl1_apsys {
+> +	i2c0_pins: i2c0-0 {
+> +		i2c-pins {
+> +			pins = "I2C0_SDA",
+> +			       "I2C0_SCL";
+> +			function = "i2c";
+> +			bias-pull-up = <48000>;
+> +			drive-strength = <7>;
+> +			input-enable;
+> +			input-schmitt-enable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+> +	i2c4_pins: i2c4-0 {
+> +		i2c-pins {
+> +			pins = "GPIO0_19", /* I2C4_SDA */
+> +			       "GPIO0_18"; /* I2C4_SCL */
+> +			function = "i2c";
+> +			bias-pull-up = <48000>;
+> +			drive-strength = <7>;
+> +			input-enable;
+> +			input-schmitt-enable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+> +	i2c5_pins: i2c5-0 {
+> +		i2c-pins {
+> +			pins = "QSPI1_D0_MOSI", /* I2C5_SDA */
+> +			       "QSPI1_CSN0";    /* I2C5_SCL */
+> +			function = "i2c";
+> +			bias-pull-up = <48000>;
+> +			drive-strength = <7>;
+> +			input-enable;
+> +			input-schmitt-enable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +};
+> +
+>  &uart0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart0_pins>;
+>  	status = "okay";
+>  };
+> +
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_pins>;
+> +	status = "okay";
+> +
+> +	eeprom@50 {
+> +		compatible = "atmel,24c32";
+> +		reg = <0x50>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c2_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c4_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c5_pins>;
+> +	status = "okay";
+> +};
 
-> > +    desription:
-> > +      set if the interrupt pin should be configured as open drain.
-> > +      If not set, defaults to push-pull configuration.
-> > +
-> >  required:
-> >    - compatible
-> >    - vddd-supply
-> > -- 
-> > 2.25.1
-> > 
+These nodes are still not sorted alphabetically.
+
+>
+> --
+> 2.45.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
