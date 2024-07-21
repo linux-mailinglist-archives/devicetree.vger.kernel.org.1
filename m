@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-87012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4402593844F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 12:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA75938453
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 12:22:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C41F31F21324
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 10:21:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B6341F21362
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 10:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0796715FA6A;
-	Sun, 21 Jul 2024 10:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44E315FA73;
+	Sun, 21 Jul 2024 10:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rh22XvQV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="smbFETaz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC860DDCD;
-	Sun, 21 Jul 2024 10:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97CD7158214;
+	Sun, 21 Jul 2024 10:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721557300; cv=none; b=mGbWRc43WWAsuEbVJSq6IBQBlZMAhqAEFsSL1AvO7fIaNjl6OPAxI2HEojYKM8X/8YYkbnbVFxHMzaRDR337yTTCUdOxYnzF0j1fGFTGx80sT+2F6p2btCk2P6FRLWma59r0D9Ahm0iLM0tPFev6M3GRht2WtWNmgvlL/T79ZT8=
+	t=1721557356; cv=none; b=tRPAgQtrKx4noQMc0DJ4K0M9P9+YC3RzkaRPrHOuuI/MAi2t9e6LG4AbVBdWfM0WPs3HCBi4YHOV6MvlR3o4kZBNRrXLLK41xlxqAnXprw3Nzxu7DwlBDmjtdDo/Ni24PIdRix85LnNXTQdn7pyZSA1W5yNrm2XXhwgkL+9hV+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721557300; c=relaxed/simple;
-	bh=KBXXCnUpUtcygB6a0Pnw1aaY3svHtQ88JIxnRrXztdM=;
+	s=arc-20240116; t=1721557356; c=relaxed/simple;
+	bh=x+PMCdonV63eI27ubbFi1OpvYoHk1muqaKseq1eqnC0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ezXXaLT+6n3ivSBLpcOHRkushQT1QGb/yMg2j8hpgtQy21V41hTJzIqLfu2v9kQJ9jfVW6+droaOAUb1+KmnK5oiDkANpuFLB6IpyPSe7A65EJY4lhqul/7hz9mLer0Sb1azDpGJEgmMV/I1QWbKE+BKcQ4QFQMtm2AaFhMHVN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rh22XvQV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF959C4AF0D;
-	Sun, 21 Jul 2024 10:21:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rJ4MClt6pLglyYR6c9S5Kk7Hge9c11lPyvvW9DX0IxpZAXvMPvzi39OqLBtWMNsv5fnP6X4Y9QXsaM1naRxmtu1xMwHtGYGyOFo4kc2Fs2rnEs+VfmnuLK2pmWJiFBrB8UoWtOyc8/unLFLW9XP9UHLXmaWt8PVZTzJtxysqk/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=smbFETaz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48211C4AF0E;
+	Sun, 21 Jul 2024 10:22:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721557300;
-	bh=KBXXCnUpUtcygB6a0Pnw1aaY3svHtQ88JIxnRrXztdM=;
+	s=k20201202; t=1721557356;
+	bh=x+PMCdonV63eI27ubbFi1OpvYoHk1muqaKseq1eqnC0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rh22XvQVmZIBhQZwI0+9Bv7P8115Wfbx7K31OnvwTIputx8zqYg+osdeyjFMECz8W
-	 Z1D7zx5sow1mxScsDi3uIM4XC8xukQu0DPIjJc4A9LEwq6axPJ/u/X8y6pVE1lSE5h
-	 HehfjYR9K+kNcE2a2SAD+lECDipMbHjYKYQlvofjNJ72PmQ3jtIBmbg9QQ8lbYw41R
-	 YiMGEgwoMNAODUsoynGSXL46jlehR2Su9U/iVPmyRn1tdRH4Z0+zg+LUrw719mqMg7
-	 SdJrv8kqlnODM9oFNoPg/UmDVD7npWgfDJnfh1LsvAFEiRzkrFqycd/wPQWHONFfgq
-	 Dr+cxddxZFYAg==
-Message-ID: <988784e7-ffeb-4e87-a18a-64fd5cb17776@kernel.org>
-Date: Sun, 21 Jul 2024 12:21:33 +0200
+	b=smbFETazcrcZi1lNCUxjZvPnv6eyRJXCJ4o2vZKHq/bPO/jS7ZuFAuFaeZRXERF7a
+	 XvhiuQThKdCS9bV2OJRemEKdaqTZBuhj6KU1nWDy9/aqja+DuJo31AozHK7koaOIV2
+	 hZujU3hyCeEhr5xsoyEFalxormDO4aEMnbSZFz3NW8jJxenLFkMrFYt2xisj5HMkjE
+	 zj5gwGdANgoRH4iXfO6BqO0mcx8TW9Mq8Ts2QMhTeR9UETbQfgvTfFhl/+rxFJTKS7
+	 UxvKtujoPdFqNRnGNjJQ2DogNJfJAG2JBxqYqEhRiuig4YTtuS+5Ru/KQj5HUphSR0
+	 4Xxkbeeg8SXPQ==
+Message-ID: <45a8f8b2-e1c0-4fc2-9c94-023b733bf47e@kernel.org>
+Date: Sun, 21 Jul 2024 12:22:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: ata: rockchip-dwc-ahci: add missing
- power-domains
-To: Heiko Stuebner <heiko@sntech.de>, dlemoal@kernel.org, cassel@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- sebastian.reichel@collabora.com, linux-ide@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- u.kleine-koenig@baylibre.com
-References: <20240720205705.776384-1-heiko@sntech.de>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add Lenovo ThinkPad T14s Gen
+ 6
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
+ <20240719-topic-t14s_upstream-v1-1-d7d97fdebb28@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,22 +106,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240720205705.776384-1-heiko@sntech.de>
+In-Reply-To: <20240719-topic-t14s_upstream-v1-1-d7d97fdebb28@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/07/2024 22:57, Heiko Stuebner wrote:
-> The Rockchip variant of the dwc-ahci controller does have and need power-
-> domains to work, though the binding does not mention them, making dtccheck
-> quite unhappy:
+On 19/07/2024 22:16, Konrad Dybcio wrote:
+> Document the X1E78100-based ThinkPad.
 > 
->   DTC_CHK arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dtb
-> /home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dtb: sata@fc800000: Unevaluated properties are not allowed ('power-domains' was unexpected)
->         from schema $id: http://devicetree.org/schemas/ata/rockchip,dwc-ahci.yaml#
-> 
-> Fix that by adding the missing power-domain property to the binding.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
