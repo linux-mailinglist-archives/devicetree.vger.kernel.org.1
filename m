@@ -1,385 +1,147 @@
-Return-Path: <devicetree+bounces-87036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C21B93856B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 18:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05FFE938579
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 18:27:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F5241F211B6
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 16:02:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C1481F21209
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 16:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70F516B39A;
-	Sun, 21 Jul 2024 16:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C7F168499;
+	Sun, 21 Jul 2024 16:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="KHAxgd0N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vl9eFEDL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF92416A957;
-	Sun, 21 Jul 2024 16:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585BF944E
+	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 16:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721577677; cv=none; b=NeetTky/JjiyFxPccQa/95qt+JkOFrhUenTUtgv+4PiW9a6WZKunDVXy+ZdEJOip/rm6nKh8vdI1+sA/DB1XgSmAHiCW4kS0yKFJajAIZHQKjb7kzkz9pBZef9XjGqb7jwGK3IsfDgLT0IcNE0JjfTVCfe4UT1TvbGKYqeGE7uQ=
+	t=1721579255; cv=none; b=W0yHyKzDKWvY18P1EosbCfEiInCeuhqYZZfYGLyEpmoy4fRB0EtrQHKclVs4g/1ZlStpGuynteEGdTpCHfelH/LtVo+EnCSTVm+H5E7cY+JJ+/7Dj8WBwXrVSBcf3SU2y226ICFFFRNpmwGLpilMnZXsjJgX8wBPqQZyf783j6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721577677; c=relaxed/simple;
-	bh=iDhOO4X9y3eSBO9TaT9Yo0NX3EpU4bC0T1x93SfbK9Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RyWJZ9k2lpV3bYRUK9K5/dLDqX9BntH8lg5qSpo8owJ4TO6dymGx1K8lTMyWeZmnp4Iw+eE2BR2mUiYFW49Jo4/bRsmyCdBr13L+iNJFnauooZDqvDRUfPCDTmKGJaUnopOfkSVHs8I9nqaCzGWGbBlY2jwcY/p1aoidX/mhk5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=KHAxgd0N; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4EFC4226;
-	Sun, 21 Jul 2024 18:00:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1721577632;
-	bh=iDhOO4X9y3eSBO9TaT9Yo0NX3EpU4bC0T1x93SfbK9Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KHAxgd0NP1y0k+NeYh2JioElolTu+whiKixc5cltWRVPWgzNLRQAIUuyXMCJAym66
-	 DbG6lPYD8KHsK41yGa3whB+Gbra3M2J1jYK7lZYhR1JMlwAU0Ej0ze9qgqo+m5ryX0
-	 NQHtdu5lURnL38n79aEK8Eek+PZl87FP8zqRr8yo=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+	s=arc-20240116; t=1721579255; c=relaxed/simple;
+	bh=P+7CjZPdLR4mLuLE5UB9w3uVyAalwaQ2HLGx/4gOxG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ucKCpDFMMfflTMn8w7QlSQGf5vj+q/ryr30X8ZVfgtEo04wOdXj9jr0m7pXfjsdIUmHRp45e+EOr9MUqqqwgPhoZS8WT0NpA+GzpkSUdAuv6uF5T4lg3MoeT31wJXNMgMoyx7BmYN0M29xkdC8e31zF7h566LVl3I7HsJdO8nUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vl9eFEDL; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-367990aaef3so1670342f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 09:27:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721579252; x=1722184052; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nKcJ4KYW4wXVfoSKqiMkmDlwhFJlq1lDLVQoBAvTYmU=;
+        b=Vl9eFEDLQM6DCnebD6+IdT0JkjKrj6VITtaO5xKs80YyPujhDixHFw465ptTt1lMKp
+         /hg/PldfuprrnAnDgH1yHeBxbNwXY0en3z5xxRSmUH9afydFaGzu7ab+VUoe1oRcrG0C
+         nQumsp1WDeXhJw9NN7284IO7KjPrSmIIINRx2dxMwR+Vvmol77LmbhAAbEL35LYhhkq5
+         xHOLF7ocGpmmWV406R+fxJ8vt+REWha8Wmy++M9M2zkFQPJYWs5QizZYcL7Iiq7AkEfP
+         JXBJ5kL7qIu2BQO1+1Sf+jiBQoB9RYHJoejNgJma4hdsOblaPdK5J00gpiAKaFLnw++1
+         mblg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721579252; x=1722184052;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nKcJ4KYW4wXVfoSKqiMkmDlwhFJlq1lDLVQoBAvTYmU=;
+        b=u2fVdqxMZGmo7JQlggessN36cWn8y9cNNbl9pSUqQjSK0KpKvUgaWz83wSqkt3E9ZV
+         d1bQKSN9PMoqgR87FHaJitG9fnNMnNdRNAv98cIZh7ziF1ZYgxxNJlKVR/pvqQb7JgIW
+         7dZc33HvS1GTi2MAEWikVseW4D2a8r8emEP7tBRHWJ0Lo7dfR7UH3cbbsohkTw0Q/XGS
+         NF31GzH6gl2Z2vgdSBvg4wqT+jUGaKpWJhF498IUxt0kJUgcypM1ejHk//AWwRH6MnDx
+         sjOPVFkTx1CQHvtFlI+qab4eAxEZpCiWwOWUwtenDEbC1dK9UKGlWI8zfwTpOTsAz608
+         hUow==
+X-Forwarded-Encrypted: i=1; AJvYcCVqDYf19oHT427eHu5HI+R78urEQBatiQ1Hn5yG/XO1+oa9SMJkJ6HCrUoYLSstpe4JCtuD/ygFsJ338dNgMBDRHEL81xUfcjPh5A==
+X-Gm-Message-State: AOJu0YwH5ADVPWoTTdsQRuUx9KcN8dwxMvCYZpEw2gYkvuNPwec6baX0
+	lK/Q5mLTWS4wIjblxzk38O+hrEyZxK5hUUK5UAMYW5IWSeR6uGyMYJTL4I/Pj6s=
+X-Google-Smtp-Source: AGHT+IEsO3Y1qTWskCsQShqN7vS04iBPOTsEwG41iTFXyoCITuBrAzLI1WAFLsk20IDrTB9bTKDdYQ==
+X-Received: by 2002:adf:fa03:0:b0:368:5d2:179 with SMTP id ffacd0b85a97d-36831755ea0mr8056826f8f.56.1721579251517;
+        Sun, 21 Jul 2024 09:27:31 -0700 (PDT)
+Received: from linaro.org ([82.79.124.209])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d2a947fasm123149335e9.43.2024.07.21.09.27.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Jul 2024 09:27:31 -0700 (PDT)
+Date: Sun, 21 Jul 2024 19:27:29 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Rob Clark <robdclark@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, Doug Anderson <dianders@chromium.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Rob Clark <robdclark@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Frank Li <Frank.li@nxp.com>
-Subject: [PATCH v6 4/4] pwm: adp5585: Add Analog Devices ADP5585 support
-Date: Sun, 21 Jul 2024 19:00:49 +0300
-Message-ID: <20240721160049.20470-5-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240721160049.20470-1-laurent.pinchart@ideasonboard.com>
-References: <20240721160049.20470-1-laurent.pinchart@ideasonboard.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: x1e80100-yoga: Update panel
+ bindings
+Message-ID: <Zp028V1KzO/bWFdd@linaro.org>
+References: <20240719185250.4877-1-robdclark@gmail.com>
+ <20240719185250.4877-2-robdclark@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240719185250.4877-2-robdclark@gmail.com>
 
-From: Clark Wang <xiaoning.wang@nxp.com>
+On 24-07-19 11:52:50, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
+> 
+> Use the correct panel compatible, and wire up enable-gpio.  It is wired
+> up in the same way as the x1e80100-crd.
+> 
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
 
-The ADP5585 is a 10/11 input/output port expander with a built in keypad
-matrix decoder, programmable logic, reset generator, and PWM generator.
-This driver supports the PWM function using the platform device
-registered by the core MFD driver.
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-The driver is derived from an initial implementation from NXP, available
-in commit 113113742208 ("MLK-25922-1 pwm: adp5585: add adp5585 PWM
-support") in their BSP kernel tree. It has been extensively rewritten.
-
-Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes since v5:
-
-- Use regmap_clear_bits() and regmap_set_bits()
-- Move ADP5585_OSC_EN bit handling to .apply()
-- Drop comma after sentinel
-
-Changes since v4:
-
-- Use the regmap bulk API
-
-Changes since v2:
-
-- Add missing headers
-- Sort headers
-
-Changes since v1:
-
-- Drop mutex
-- Restore R3 pinconfig to known value
-- Simplify error check in pwm_adp5585_request()
-- Don't fake PWM_POLARITY_INVERSED
-- Fix rounding of period and duty cycle
-- Drop OF match table
-- Drop empty .remove() handler
-- Allocate pwm_chip dynamically
-- Document limitations
-- Add platform ID table
-- Set struct device of_node manually
-- Merge child DT node into parent node
-
-Changes compared to the NXP original version
-
-- Add MAINTAINERS entry
-- Drop pwm_ops.owner
-- Fix compilation
-- Add prefix to compatible string
-- Switch to regmap
-- Use devm_pwmchip_add()
-- Cleanup header includes
-- White space fixes
-- Drop ADP5585_REG_MASK
-- Fix register field names
-- Use mutex scope guards
-- Clear OSC_EN when freeing PWM
-- Reorder functions
-- Clear PWM_IN_AND and PWM_MODE bits
-- Support inverted polarity
-- Clean up on/off computations
-- Fix duty cycle computation in .get_state()
-- Destroy mutex on remove
-- Update copyright
-- Update license to GPL-2.0-only
----
- MAINTAINERS               |   1 +
- drivers/pwm/Kconfig       |   7 ++
- drivers/pwm/Makefile      |   1 +
- drivers/pwm/pwm-adp5585.c | 183 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 192 insertions(+)
- create mode 100644 drivers/pwm/pwm-adp5585.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b748af2acf9f..a2087f6647e8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -534,6 +534,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/*/adi,adp5585*.yaml
- F:	drivers/gpio/gpio-adp5585.c
- F:	drivers/mfd/adp5585.c
-+F:	drivers/pwm/pwm-adp5585.c
- F:	include/linux/mfd/adp5585.h
- 
- ADP5588 QWERTY KEYPAD AND IO EXPANDER DRIVER (ADP5588/ADP5587)
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 1dd7921194f5..b778ecee3e9b 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -47,6 +47,13 @@ config PWM_AB8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-ab8500.
- 
-+config PWM_ADP5585
-+	tristate "ADP5585 PWM support"
-+	depends on MFD_ADP5585
-+	help
-+	  This option enables support for the PWM function found in the Analog
-+	  Devices ADP5585.
-+
- config PWM_APPLE
- 	tristate "Apple SoC PWM support"
- 	depends on ARCH_APPLE || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 90913519f11a..f24d518d20f2 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
-+obj-$(CONFIG_PWM_ADP5585)	+= pwm-adp5585.o
- obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
-diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
-new file mode 100644
-index 000000000000..c2d2b65cd807
---- /dev/null
-+++ b/drivers/pwm/pwm-adp5585.c
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Analog Devices ADP5585 PWM driver
-+ *
-+ * Copyright 2022 NXP
-+ * Copyright 2024 Ideas on Board Oy
-+ *
-+ * Limitations:
-+ * - The .apply() operation executes atomically, but may not wait for the
-+ *   period to complete (this is not documented and would need to be tested).
-+ * - Disabling the PWM drives the output pin to a low level immediately.
-+ * - The hardware can only generate normal polarity output.
-+ */
-+
-+#include <asm/byteorder.h>
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/math64.h>
-+#include <linux/mfd/adp5585.h>
-+#include <linux/minmax.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+#include <linux/time.h>
-+#include <linux/types.h>
-+
-+#define ADP5585_PWM_CHAN_NUM		1
-+
-+#define ADP5585_PWM_OSC_FREQ_HZ		1000000U
-+#define ADP5585_PWM_MIN_PERIOD_NS	(2ULL * NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ)
-+#define ADP5585_PWM_MAX_PERIOD_NS	(2ULL * 0xffff * NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ)
-+
-+static int pwm_adp5585_request(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct regmap *regmap = pwmchip_get_drvdata(chip);
-+
-+	return regmap_update_bits(regmap, ADP5585_PIN_CONFIG_C,
-+				  ADP5585_R3_EXTEND_CFG_MASK,
-+				  ADP5585_R3_EXTEND_CFG_PWM_OUT);
-+}
-+
-+static void pwm_adp5585_free(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct regmap *regmap = pwmchip_get_drvdata(chip);
-+
-+	regmap_update_bits(regmap, ADP5585_PIN_CONFIG_C,
-+			   ADP5585_R3_EXTEND_CFG_MASK,
-+			   ADP5585_R3_EXTEND_CFG_GPIO4);
-+}
-+
-+static int pwm_adp5585_apply(struct pwm_chip *chip,
-+			     struct pwm_device *pwm,
-+			     const struct pwm_state *state)
-+{
-+	struct regmap *regmap = pwmchip_get_drvdata(chip);
-+	u64 period, duty_cycle;
-+	u32 on, off;
-+	__le16 val;
-+	int ret;
-+
-+	if (!state->enabled) {
-+		regmap_clear_bits(regmap, ADP5585_GENERAL_CFG, ADP5585_OSC_EN);
-+		regmap_clear_bits(regmap, ADP5585_PWM_CFG, ADP5585_PWM_EN);
-+		return 0;
-+	}
-+
-+	if (state->polarity != PWM_POLARITY_NORMAL)
-+		return -EINVAL;
-+
-+	if (state->period < ADP5585_PWM_MIN_PERIOD_NS)
-+		return -EINVAL;
-+
-+	period = min(state->period, ADP5585_PWM_MAX_PERIOD_NS);
-+	duty_cycle = min(state->duty_cycle, period);
-+
-+	/*
-+	 * Compute the on and off time. As the internal oscillator frequency is
-+	 * 1MHz, the calculation can be simplified without loss of precision.
-+	 */
-+	on = div_u64(duty_cycle, NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
-+	off = div_u64(period, NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ) - on;
-+
-+	val = cpu_to_le16(off);
-+	ret = regmap_bulk_write(regmap, ADP5585_PWM_OFFT_LOW, &val, 2);
-+	if (ret)
-+		return ret;
-+
-+	val = cpu_to_le16(on);
-+	ret = regmap_bulk_write(regmap, ADP5585_PWM_ONT_LOW, &val, 2);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable PWM in continuous mode and no external AND'ing. */
-+	ret = regmap_update_bits(regmap, ADP5585_PWM_CFG,
-+				 ADP5585_PWM_IN_AND | ADP5585_PWM_MODE |
-+				 ADP5585_PWM_EN, ADP5585_PWM_EN);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_set_bits(regmap, ADP5585_PWM_CFG, ADP5585_PWM_EN);
-+}
-+
-+static int pwm_adp5585_get_state(struct pwm_chip *chip,
-+				 struct pwm_device *pwm,
-+				 struct pwm_state *state)
-+{
-+	struct regmap *regmap = pwmchip_get_drvdata(chip);
-+	unsigned int on, off;
-+	unsigned int val;
-+	__le16 on_off;
-+	int ret;
-+
-+	ret = regmap_bulk_read(regmap, ADP5585_PWM_OFFT_LOW, &on_off, 2);
-+	if (ret)
-+		return ret;
-+	off = le16_to_cpu(on_off);
-+
-+	ret = regmap_bulk_read(regmap, ADP5585_PWM_ONT_LOW, &on_off, 2);
-+	if (ret)
-+		return ret;
-+	on = le16_to_cpu(on_off);
-+
-+	state->duty_cycle = on * (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
-+	state->period = (on + off) * (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
-+
-+	state->polarity = PWM_POLARITY_NORMAL;
-+
-+	regmap_read(regmap, ADP5585_PWM_CFG, &val);
-+	state->enabled = !!(val & ADP5585_PWM_EN);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops adp5585_pwm_ops = {
-+	.request = pwm_adp5585_request,
-+	.free = pwm_adp5585_free,
-+	.apply = pwm_adp5585_apply,
-+	.get_state = pwm_adp5585_get_state,
-+};
-+
-+static int adp5585_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct adp5585_dev *adp5585 = dev_get_drvdata(dev->parent);
-+	struct pwm_chip *chip;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(dev, ADP5585_PWM_CHAN_NUM, 0);
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	device_set_of_node_from_dev(dev, dev->parent);
-+
-+	pwmchip_set_drvdata(chip, adp5585->regmap);
-+	chip->ops = &adp5585_pwm_ops;
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static const struct platform_device_id adp5585_pwm_id_table[] = {
-+	{ "adp5585-pwm" },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(platform, adp5585_pwm_id_table);
-+
-+static struct platform_driver adp5585_pwm_driver = {
-+	.driver	= {
-+		.name = "adp5585-pwm",
-+	},
-+	.probe = adp5585_pwm_probe,
-+	.id_table = adp5585_pwm_id_table,
-+};
-+module_platform_driver(adp5585_pwm_driver);
-+
-+MODULE_AUTHOR("Xiaoning Wang <xiaoning.wang@nxp.com>");
-+MODULE_DESCRIPTION("ADP5585 PWM Driver");
-+MODULE_LICENSE("GPL");
--- 
-Regards,
-
-Laurent Pinchart
-
+> ---
+>  .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> index f569f0fbd1fc..28a6ea5a24fd 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> @@ -592,9 +592,13 @@ &mdss_dp3 {
+>  
+>  	aux-bus {
+>  		panel {
+> -			compatible = "edp-panel";
+> +			compatible = "samsung,atna45dc02", "samsung,atna33xc20";
+> +			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+>  			power-supply = <&vreg_edp_3p3>;
+>  
+> +			pinctrl-0 = <&edp_bl_en>;
+> +			pinctrl-names = "default";
+> +
+>  			port {
+>  				edp_panel_in: endpoint {
+>  					remote-endpoint = <&mdss_dp3_out>;
+> @@ -663,6 +667,13 @@ &pcie6a_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pmc8380_3_gpios {
+> +	edp_bl_en: edp-bl-en-state {
+> +		pins = "gpio4";
+> +		function = "normal";
+> +	};
+> +};
+> +
+>  &qupv3_0 {
+>  	status = "okay";
+>  };
+> -- 
+> 2.45.2
+> 
 
