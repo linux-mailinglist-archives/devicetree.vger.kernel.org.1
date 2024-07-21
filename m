@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-87003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8339C93842E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 11:23:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C674938437
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 11:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35E45281351
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 09:23:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDE332812EF
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 09:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA970C8C7;
-	Sun, 21 Jul 2024 09:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07506C8C7;
+	Sun, 21 Jul 2024 09:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jEB+wv9q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pe+LLKZ0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7641C440C;
-	Sun, 21 Jul 2024 09:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1932C2C8;
+	Sun, 21 Jul 2024 09:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721553800; cv=none; b=U2WlruMqb6b1PGGWOOCxjIW30Y8QWEBk8Jm3FOzVBBy235XbZqlP/4DpxzzXMlWoC2puWsJyhSFaBE+df3ewdrnpnDrBv6PQ44ombiJctOLB+Ve7z3oevc4DXCSxDIWY4+8uPk1F5RfaOSEuNEjzDEg10kXOKlk9oob3u84G4vk=
+	t=1721554280; cv=none; b=lWlEQT+MopeieQVZcK02Cb9xrl9YqL2Bpx9MsAM+2JT3ZSVpb21dPpJottFcsIP9WQCKtXdRBtWQUsEo6/lBooZJgh+JjgvJlID4Wts5t9JNslTUbjybt6WzgYiZWqnBWn6W6AiAll9gS/t3UEDYJP5jbBYtclCk5OUcPcm31iA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721553800; c=relaxed/simple;
-	bh=eQPrAKfHki9GUQpcy3CID1wSwZtDcapXmQlsQbBOiXY=;
+	s=arc-20240116; t=1721554280; c=relaxed/simple;
+	bh=/PmgbeCC1miQO2Z6wIYp1XoBA7ytgIEWOFMFofA5oP8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ViqG6JBJeq4MNbvYCjGpmLnKdwXhNY6+YAjLBJEHNTuW5eJUGk3WTY+6oYqzhGeKGp1gMlCi6kfqz0gevP5XhqPMKX+1w8g6sB/gSNKTUSLohM3lUCPSZ/ta8lamQJedInRhNtTkezwWcqZS2xXqVpC/XX6N3hJy9U2YYuTpAVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jEB+wv9q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 307A8C116B1;
-	Sun, 21 Jul 2024 09:23:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=boggKn8wWOh4jPtU5q+LQRPZgou73v3f5HdEC5cyGf/UPbcNNLt/AObNThhSFOY1sIx7dS/tGEIUyNeJVWBOi/QIrusJ50be7icFMksklmR0ZnmwUmqP3Q1AxKix/vcJnAE9/u/LfbQfurUztGGiIscrxBpTB0EYwfD1vC0ppKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pe+LLKZ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF2ABC116B1;
+	Sun, 21 Jul 2024 09:31:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721553800;
-	bh=eQPrAKfHki9GUQpcy3CID1wSwZtDcapXmQlsQbBOiXY=;
+	s=k20201202; t=1721554280;
+	bh=/PmgbeCC1miQO2Z6wIYp1XoBA7ytgIEWOFMFofA5oP8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jEB+wv9qH56H3DHG2itDcyyvVXskxMni1JzT/KQZ4mj3d6KzoHgRkLA2PvNqtbLf2
-	 HmFkv0+yh9OTLAvgAfKUvXTB+ByWWh2fZ+HKgusXz4YIsIoY73TKcOA+UaMtIk9eKz
-	 Bjn8Kz0gx9Eh5cn2QlxfInPPQFT8ZktUQrldQqLKpmUsvnRVyI9c1WN3I9ZFZhi1BX
-	 ZxXs3E/M7OM6ZlFeeaHwsyasm/ebXn1dNR3y+HlM6ENRfY5mM8aOTv/iZYm8jRbAwZ
-	 ZSpdQsOp19QM+HndiqvRfXjo5GMG5dVGZeHX/nIeC0Kb5u7Q3Fzdmnxb/SvuqxdGhf
-	 wuul8dXk5J/9A==
-Message-ID: <f962a71c-6be7-4ad2-9753-e1f9ab7a38a0@kernel.org>
-Date: Sun, 21 Jul 2024 11:23:12 +0200
+	b=pe+LLKZ0cPrXyAJeUy/MABKFGvNHRM1d6LlnA9RiESSzyBrJcmxeEiWFhmsiNpyLn
+	 ROTp9KkJB/aOax2EVhEvwOUEX5LuV7qnMVEFYTqvKGoEF+lpy0LqzzKrnGObQsrmwe
+	 g5xPgd5phMhWb03B3cNSKYiz2fNIEdcOdoM6SmMlNA6oWqZhO+cMPizChA0TZRXlz0
+	 7OxWYnKpqpvGRlwBJExifz7fVqHUaQJUfoP4HF4b+9hxr5EMp336hb7rYGy7NWr766
+	 Knu7j7PxbHK/yeWNde2ICuthO04IDyF9YWcBSdmukhOnTYq65+exX+30XfvMqZ5uRF
+	 agqPJcKqfbDTg==
+Message-ID: <d48d261f-c428-4b96-9a88-725e29f6648f@kernel.org>
+Date: Sun, 21 Jul 2024 11:31:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: Add Analog Devices ADP5585
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
- Frank Li <Frank.li@nxp.com>
-References: <20240719203946.22909-1-laurent.pinchart@ideasonboard.com>
- <20240719203946.22909-2-laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH RFC v3 3/6] dt-bindings: phy: cp110-utmi-phy: add
+ compatible string for armada-38x
+To: Josua Mayer <josua@solid-run.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Konstantin Porotchkin <kostap@marvell.com>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
+ <20240720-a38x-utmi-phy-v3-3-4c16f9abdbdc@solid-run.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,56 +109,104 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240719203946.22909-2-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20240720-a38x-utmi-phy-v3-3-4c16f9abdbdc@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/07/2024 22:39, Laurent Pinchart wrote:
-> +    maxItems: 1
+On 20/07/2024 16:19, Josua Mayer wrote:
+> Armada 38x USB-2.0 PHYs are similar to Armada 8K (CP110) and can be
+> supported by the same driver with small differences.
+> 
+> Add new compatible string for armada-38x variant of utmi phy.
+> Then add descriptions and names for two additional register definitions
+> that may be specified instead of a syscon phandle.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>  .../phy/marvell,armada-cp110-utmi-phy.yaml         | 34 ++++++++++++++++++----
+>  1 file changed, 29 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml b/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
+> index 9ce7b4c6d208..246e48d51755 100644
+> --- a/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
+> @@ -23,12 +23,36 @@ description:
+>    UTMI PHY1  --------\
+>                        1.H----- USB HOST1
+>  
+> +  On Armada 380 there is an additional USB-2.0-only controller,
+> +  and an additional UTMI PHY respectively.
+> +  The USB device controller can only be connected to a single UTMI PHY port,
+> +  either UTMI PHY0 or UTMI PHY2.
 > +
-> +  interrupts:
-> +    maxItems: 1
 > +
-> +  vdd-supply: true
 > +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-reserved-ranges: true
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - "#pwm-cells"
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: adi,adp5585-01
-> +    then:
-> +      properties:
-> +        gpio-reserved-ranges: false
-> +    else:
-> +      properties:
-> +        gpio-reserved-ranges:
-> +          items:
-> +            - const: 5
-> +            - const: 1
 
-Why reserved ranges are fixed? If they pins are *always* not accessible,
-then these are not GPIOs. This really looks incorrect.
+One blank line is enough.
 
-Anyway, testing reports failures which *must* be addressed, one way or
-another.
+>  properties:
+>    compatible:
+> -    const: marvell,cp110-utmi-phy
+> +    enum:
+> +      - marvell,a38x-utmi-phy
+> +      - marvell,cp110-utmi-phy
+>  
+>    reg:
+> -    maxItems: 1
+> +    anyOf:
+
+That's oneOf.
+
+> +      - items:
+> +          - description: UTMI registers
+> +      - items:
+> +          - description: UTMI registers
+> +          - description: USB config register
+> +          - description: UTMI config registers
+> +
+> +  reg-names:
+> +    anyOf:
+
+oneOf
+
+> +      - items:
+> +          - const: utmi
+> +      - items:
+> +          - const: utmi
+> +          - const: usb-cfg
+> +          - const: utmi-cfg
+>  
+>    "#address-cells":
+>      const: 1
+> @@ -38,13 +62,14 @@ properties:
+>  
+>    marvell,system-controller:
+>      description:
+> -      Phandle to the system controller node
+> +      Phandle to the system controller node.
+> +      Optional when usb-cfg and utmi-cfg regs are given.
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>  
+>  # Required child nodes:
+>  
+>  patternProperties:
+> -  "^usb-phy@[0|1]$":
+> +  "^usb-phy@[0|1|2]$":
+
+[0-2]
+
+>      type: object
+>      description:
+>        Each UTMI PHY port must be represented as a sub-node.
+> @@ -68,7 +93,6 @@ required:
+>    - reg
+>    - "#address-cells"
+>    - "#size-cells"
+> -  - marvell,system-controller
+
+you miss here allOf:if:then: narrowing and marvell,system-controller per
+each variant.
+
 
 
 Best regards,
