@@ -1,199 +1,128 @@
-Return-Path: <devicetree+bounces-86997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5E49383FF
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 10:23:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C5793840D
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 10:51:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E00731F2139B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 08:23:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FD58281509
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 08:51:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94ED945A;
-	Sun, 21 Jul 2024 08:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="um8VK0R8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C563A946C;
+	Sun, 21 Jul 2024 08:51:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1D38F40
-	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 08:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D86E8F40;
+	Sun, 21 Jul 2024 08:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721550227; cv=none; b=WyTnMXKyVyx7Nf0/ufESdP0p/yVPqHY7XQLG7vIIdE+qqjYqU3XSUosqKIMvBINse/XoI4MCp28puMfAHYylRPAvRFn8/VgthgOPIA4XibV5fEve0avfBIi2tbhsIKVE99CfOn4wwRKvTHQQMvrwcrIU62Ri+SDjN6FcdfzQ05g=
+	t=1721551911; cv=none; b=PcBk/uoHCsquocPjgjRguAVNXcXi16UUmvC+Ok6AHxgML0os9Eh/6Np2DifQhiER6tA007YriSQi56m+r4/bbXzOD6sAt/FOJuDxiPYHW4hlTwQ9uoIfUd14xfari4npq/pZPF0xeUmwCNdnWS3wHM7Cc3ZPeg380ai3Nw9dLag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721550227; c=relaxed/simple;
-	bh=o+DJ6waEVY3RvqLvdv4FT/TEOumYoApMdITMhfQ0u5E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k+sSUZaYBAVC+0dnwqBvJXCsXhI5f0RpIBYcts/A6BAszez6KoamV1xuwxGVClX74LTlqnDu96YicqacQbSxGemLJocgRBlEfs8OK2Sqjp4Fuy63mDopd7ngPcBXTY20y5yegTXBzM0BbAOVSiJkB2+PA8EALVgTDxMK5oBGdh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=um8VK0R8; arc=none smtp.client-ip=209.85.210.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-7037a208ff5so1926308a34.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 01:23:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721550225; x=1722155025; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CZWtiPJtZ43++/gnJNwx4X2rQpR8wl/UQidt0ugSAnI=;
-        b=um8VK0R8vjmCNBmwtybO8WfJrd2ZuqGgbJGSh8JtDHGVFvRve8TVSGvQw9DorT/Fkk
-         KqZltPp4HNH/L0VspSy5CsjCmUp+i+9sF9DsB/GdMFy69U6kfJnHWWgpmbFyIBJ6JE5/
-         HOr03oRZZ0HS3Dk9U6nHhyEZmTtSuswHMkey5ttDY9TbNO3ek0Ss0jAyaklwSttnR7GU
-         AYdIfjTUVvbPk6VFY1Uf/XNJS+fwmbq/qENyz6BGaxljvZEsdrcayGx+M9L6kbBe8OBq
-         rA2MoalDRKXOSa7BwWHfHMvMHUL5zE0qHjL5My5dVT/r3w81sKQRoRW7NZcGW8U0FZl1
-         LwuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721550225; x=1722155025;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CZWtiPJtZ43++/gnJNwx4X2rQpR8wl/UQidt0ugSAnI=;
-        b=SFNMObztUJjfhYR29v53O7pUIp9OHwlfbHRi+VmMZQ05mBXLW6JTU7BOv19/BpnQOV
-         bG2Mim1lDxXvifOHF0e34tLgoC5fS/HaFLSizcX7VXIpgYqWSRor1oM6pOIlkjEIkAGs
-         nMe5b0lUYXKo7YtY5yn9f0eJLV36F/W0WiKSl6LY7BSoOw6JLTMmn6ZPZQzdUBATi/m6
-         aj29Hfwdix74kTeh6YShnZBqp27ZsrDZ6/EphJxtj77wrFs+FYHIXqwLYD+XmyF7ZCDi
-         RmFtIuwmgGVyUBFHd8tDoWnLpJl8Zd2jBBx9wl8ZW64VUE1dm2KX9nd0JkTDt7aZ+y8/
-         1//g==
-X-Forwarded-Encrypted: i=1; AJvYcCWNqC8+Lj6tSeyqndKS7Mk7hxG1FD4yYIF80oxrZE1So1KvQUW2AA94LXt/eYd4W7fhfLKvkzUwKnEXVcXDCnEqLx56LtBc3nRxHw==
-X-Gm-Message-State: AOJu0YziYGLq9tQTtbT9mwKGuVn6kT55KvNWzbwMAyH09ORUZTWNYc3w
-	W8Zqxk/E7ydmwgSQUs2CSGwULG3UOZhFl7+BVwn9C9VqJ3o+SRVngt4/yJuh/w==
-X-Google-Smtp-Source: AGHT+IFfjJ8Cc595RCoBIrmV7WXBKOr6HnF25bvKEhlw/SDpWj45/smT1TJlSOniO5oPcyQREg2Jnw==
-X-Received: by 2002:a05:6830:3986:b0:704:4808:1d7a with SMTP id 46e09a7af769-708fdb22d04mr6996262a34.13.1721550225266;
-        Sun, 21 Jul 2024 01:23:45 -0700 (PDT)
-Received: from thinkpad ([120.56.206.118])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70cff59e188sm3520618b3a.157.2024.07.21.01.23.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jul 2024 01:23:44 -0700 (PDT)
-Date: Sun, 21 Jul 2024 13:53:36 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 10/10] PCI: imx6: Add i.MX8Q PCIe root complex (RC)
- support
-Message-ID: <20240721082336.GG1908@thinkpad>
-References: <20240708-pci2_upstream-v7-0-ac00b8174f89@nxp.com>
- <20240708-pci2_upstream-v7-10-ac00b8174f89@nxp.com>
+	s=arc-20240116; t=1721551911; c=relaxed/simple;
+	bh=kQhRqHmogArtkloNT3wk5zUR73sZRcf90mXm2/alFGA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pGD1Xiyh37NGZ3NQw0Qr4DIcIFvNPyrpFfc7JUHIGB9vZRHfooDNL09vS8tUGy/J82tHZDp+sYVUSbvd3ArFKs8pRdzwAX+/O8a+17VPhyrczX/kLaRCZOBKYNrZvNAFjnuE0lU1j3nr60aHGVrTTh0WnMcwncXOj+cLzNqZlHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9180C116B1;
+	Sun, 21 Jul 2024 08:51:46 +0000 (UTC)
+Message-ID: <b8f1c80f-0e5f-41fc-bc20-0807db6c31d5@xs4all.nl>
+Date: Sun, 21 Jul 2024 10:51:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240708-pci2_upstream-v7-10-ac00b8174f89@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] media: platform: synopsys: Add support for hdmi
+ input driver
+To: Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <20240719124032.26852-5-shreeya.patel@collabora.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20240719124032.26852-5-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 08, 2024 at 01:08:14PM -0400, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
+On 19/07/2024 14:40, Shreeya Patel wrote:
+> Add initial support for the Synopsys DesignWare HDMI RX
+> Controller Driver used by Rockchip RK3588. The driver
+> supports:
+>  - HDMI 1.4b and 2.0 modes (HDMI 4k@60Hz)
+>  - RGB888, YUV422, YUV444 and YCC420 pixel formats
+>  - CEC
+>  - EDID configuration
 > 
-> Implement i.MX8Q (i.MX8QM, i.MX8QXP, and i.MX8DXL) PCIe RC support. While
-> the controller resembles that of iMX8MP, the PHY differs significantly.
-> Notably, there's a distinction between PCI bus addresses and CPU addresses.
-> 
-> Introduce IMX_PCIE_FLAG_CPU_ADDR_FIXUP in drvdata::flags to indicate driver
-> need the cpu_addr_fixup() callback to facilitate CPU address to PCI bus
-> address conversion according to "ranges" property.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> The hardware also has Audio and HDCP capabilities, but these are
+> not yet supported by the driver.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+FYI: if you want to add HDCP support, then please contact me. I have code
+available for that (i.e. the public API part), although it is out of date.
 
-One comment below.
+But if you want to enable HDCP in this driver, then I would be very happy
+to clean it up and post patches for that. It is something we (i.e. Cisco)
+have been using for several years now in out-of-tree drivers.
 
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index c72c7a0b0e02d..4e029d1c284e8 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -66,6 +66,7 @@ enum imx_pcie_variants {
->  	IMX8MQ,
->  	IMX8MM,
->  	IMX8MP,
-> +	IMX8Q,
->  	IMX95,
->  	IMX8MQ_EP,
->  	IMX8MM_EP,
-> @@ -81,6 +82,7 @@ enum imx_pcie_variants {
->  #define IMX_PCIE_FLAG_HAS_PHY_RESET		BIT(5)
->  #define IMX_PCIE_FLAG_HAS_SERDES		BIT(6)
->  #define IMX_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
-> +#define IMX_PCIE_FLAG_CPU_ADDR_FIXUP		BIT(8)
->  
->  #define imx_check_flag(pci, val)     (pci->drvdata->flags & val)
->  
-> @@ -1015,6 +1017,22 @@ static void imx_pcie_host_exit(struct dw_pcie_rp *pp)
->  		regulator_disable(imx_pcie->vpcie);
->  }
->  
-> +static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
-> +{
-> +	struct imx_pcie *imx_pcie = to_imx_pcie(pcie);
-> +	struct dw_pcie_rp *pp = &pcie->pp;
-> +	struct resource_entry *entry;
-> +	unsigned int offset;
-> +
-> +	if (!(imx_pcie->drvdata->flags & IMX_PCIE_FLAG_CPU_ADDR_FIXUP))
-> +		return cpu_addr;
-> +
-> +	entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> +	offset = entry->offset;
-> +
-> +	return (cpu_addr - offset);
-> +}
-> +
->  static const struct dw_pcie_host_ops imx_pcie_host_ops = {
->  	.init = imx_pcie_host_init,
->  	.deinit = imx_pcie_host_exit,
-> @@ -1023,6 +1041,7 @@ static const struct dw_pcie_host_ops imx_pcie_host_ops = {
->  static const struct dw_pcie_ops dw_pcie_ops = {
->  	.start_link = imx_pcie_start_link,
->  	.stop_link = imx_pcie_stop_link,
-> +	.cpu_addr_fixup = imx_pcie_cpu_addr_fixup,
->  };
->  
->  static void imx_pcie_ep_init(struct dw_pcie_ep *ep)
-> @@ -1452,6 +1471,13 @@ static int imx_pcie_probe(struct platform_device *pdev)
->  		if (ret < 0)
->  			return ret;
->  
-> +		if (imx_check_flag(imx_pcie, IMX_PCIE_FLAG_CPU_ADDR_FIXUP)) {
-> +			if (!resource_list_first_type(&pci->pp.bridge->windows, IORESOURCE_MEM)) {
-> +				dw_pcie_host_deinit(&pci->pp);
-> +				return dev_err_probe(dev, -ENODEV, "DTS Miss PCI memory range");
-> +			}
+I will try to review this patch in the next few days.
 
-Is this check really necessary? Can the driver work if there is no MEM region
-defined in DT (irrespective of the flag)?
+Regards,
 
-I can understand your intentions, but this check seems pointless to me.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+	Hans
 
