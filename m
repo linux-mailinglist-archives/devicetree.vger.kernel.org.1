@@ -1,191 +1,264 @@
-Return-Path: <devicetree+bounces-87043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAFF93859A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 19:09:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0C2938583
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 18:40:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E721F281225
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 17:09:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B2361F2127A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2024 16:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9382F169AC5;
-	Sun, 21 Jul 2024 17:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3F616849A;
+	Sun, 21 Jul 2024 16:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBspY1c0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CgWbvpfr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41D3168498;
-	Sun, 21 Jul 2024 17:09:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD551649CC
+	for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 16:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721581767; cv=none; b=MfqtCGuTM+tyQDRDWVOoLheLbSjFa21XWwt3vgpuNUm+qmVJGdIOUMJiMliCXITkciEQsT7i7K8YQaUdFIpmv0BoL5xK+YL5uAE82JSMU0v/hpXof0EKDD7ylJeH+BtuXlECL0UqCWHuycn2CNvZIjje3vTJbzMptXK3+SQiYlM=
+	t=1721580010; cv=none; b=b62+o2be4OCWpmmFowBusoAL63zQQLS/w+4o8loJ+VnSQfZM82NmDNVkY8ODYzqelZwa32cPuVj0gjNEsGN/pm7rgxBKizp8rd/7htYrPI3+xjRBK/Iy7m/knvN2c6uGRR7T/jbMgSwyJjPhaqic67nCdI1mpRpSYTXDvekFb78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721581767; c=relaxed/simple;
-	bh=2um/GU8leukLyHCK06Z2T9a+Z9uUER35bwjofaOfLq0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BvMEGCVTDazQ9ILbO5U/K4Ya26YGUvqE3st8Q3tRgR8sD1p6eTbj7H+AJEA7GLx01/Sdb/cDMJpz+q6TztS8y3N0anCYDLmDW//eKrB7MrPY39SrObyNWrcQDPFMhVsmIcJqpV0Xlm9cJvaAFGSwOI1KCMkOZwG1kshvP1bLetE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBspY1c0; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-807007b8dd1so145110839f.2;
-        Sun, 21 Jul 2024 10:09:25 -0700 (PDT)
+	s=arc-20240116; t=1721580010; c=relaxed/simple;
+	bh=5GBs3sS6GffttYb1SH6OSACa7GZ+aq5K6lp0mClKlYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cuYWwimtC0zyFovQp+ShBmuKnP2CnJ+ysp/8U5qtaqwJdDEFhE2o7A4O9fc8gkcyTAP9YabetI0fqLa04iQXPlC4gWuSOMA7+kDnkyMXQluhCR28zR9yPQRY4SXjllcsxEGYqCir8G3tjPVHS4cTPtBF1p7nFkn6i6o/y2m160Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CgWbvpfr; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-367e50f71bbso1867247f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 09:40:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721581765; x=1722186565; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TJbtHFQcNPBsqXeFfU2FjoOsfer626zKkq+lXutNICI=;
-        b=HBspY1c0LXij68jTV93VyaIfIyMpENfFWRudFmQWlHTcien7goCD4O0C9vFzf0k0Jj
-         bHNlcIilOKN8PNEikXDUKdCYvGZDSBKo2HqTZag5p0rHDIXPkZRQ2Shb/Ld+MOgtgkqG
-         Vdu8PZErE6B42BuHKLekLH5SP7wKQHGtTCwtwWdvTVG+lDy1bOr2qbkrlW8CinBGM548
-         /p8ZqPcacvFcevSIE7jDoOjmEyO0urIfA1gduD1QK6C4gd0wdpvEJr0Wwf+laWZehqNn
-         iIoELiLY1DQmOX9k5uFj+mvPzkKfrnBQe28TThPkcjzSuCWZzMVQ84jTtF4iE7KK8wAJ
-         AiyA==
+        d=linaro.org; s=google; t=1721580007; x=1722184807; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dt8rut9OoDlVFuaG7w8NWKSMFr7P+aJevTWLxUH5VX8=;
+        b=CgWbvpfrMOY0o1T3xQIa3PVfxofHcxVMUOu2275LeZi+76cCo6Qh/YJs32wIoVkdxO
+         L2PsSlwpJHzNA+9yAxvAysN23ePBpRn2HF6Q7QZx/URXRkZ5ofCZx3FlpATW855ehyNE
+         NwCRZFabI5N/J3vUgLV/PpnMnQN/cnBDMDNwHY4+PC/u0GZhttVvJspjFP+9lig0VohU
+         sBDoGi/+phNtEkofjICnEg69XhjiUuxOJVJ0nRbJaJEOZJ9B6ly6FcUo5TrYRb0zw6Ol
+         7YgcHFgZ+P4wJ6xAfg65j2rJHMs1BA2qelUdv7nxDmTzuYy1OWQ0gh5oFcjDJAYJVtMT
+         MTAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721581765; x=1722186565;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TJbtHFQcNPBsqXeFfU2FjoOsfer626zKkq+lXutNICI=;
-        b=GneRPCMsKNmgbUA4LSChk7GBDQKwbn0x2SLDgvPd+TRPddzXhOAfkp9VyjmGzD0k+O
-         chufpKR4F4VKbUM7hmpQzR/HNBHyDDzMrQTSJdq4ga326+i9k5Wi2ALArLcAMoYINE3S
-         0TSHqrTVjTmElzdgDs9cX4DdRNbkmNHO+02Cr6WhkiwB3EfjGmnvxALL8xJvS6zs8hda
-         cdfgQ3rwKo0eK2aKfVnGs+b41w90LRCyS7xntlu7cRBD3RpEsrUkuLq760fzpwAvQc9x
-         WAs3KKqkZmnMDvkL+XBvY1/qMm3+pNi3SM9MQrE9BzzDkQdetHS6IbX6tyScF8eqigpe
-         JRYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXATLBd3NS88LzRCPWuU73VrBQp3p1HD6QBBaZ6otffxkRVIalvmIEyQUlxFMwGzqN80XUxRY2ck9vf8SmPQ8ovXoxGWpAquy0hXCPbfD7XMHuUIzrJ3SkJIi8noFH/RkzXAvBeuj/VdV82A1M=
-X-Gm-Message-State: AOJu0Yzqtr5+AM2vkQedyzZsFj8BrvBxH3dE3UDqGA0U39FVNZpGBKDP
-	whX4Tuh7NO9OlvMW4O0TDybSjNF/EU9yu1GaF7rzefbIqbyaNWkz
-X-Google-Smtp-Source: AGHT+IHTUuDmrSkpDNTCs+DM7fkQIf/sYoD1C3wpPlVfiRwZYjxYuCgZLbQbZW5lfAz3EpEk6s1CMw==
-X-Received: by 2002:a05:6602:6422:b0:806:31ee:13b with SMTP id ca18e2360f4ac-81aa538d525mr787891739f.4.1721581765062;
-        Sun, 21 Jul 2024 10:09:25 -0700 (PDT)
-Received: from kousik.local ([2405:201:c006:312d:f66f:2b12:abd:60ff])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70d285943e3sm417810b3a.213.2024.07.21.10.09.20
+        d=1e100.net; s=20230601; t=1721580007; x=1722184807;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dt8rut9OoDlVFuaG7w8NWKSMFr7P+aJevTWLxUH5VX8=;
+        b=s8lasDraoOwVqZoAlp+g9/SWPZoSXaDPURAOd4DH7hTqsjo+O4ruwn8CZtF6LnxdFu
+         bm9tDWfOTrloa2jCanJOue+rk7YvTrLIDktj2T4uroDNJPM4i2n+Xxf0KpdoIG32zYRe
+         Q2LUiOS3OS0cTQ+zCxScu884zgjOzqSsWROTW5jyqu5G46eas+N2BDG/qx0I7OLUsw0n
+         qYmmm0b8hw9Ff/JaBKCq49TuVwePGVE1o878DZMHgBxWRi+3XHxAHK/P3AO1IrW8CEZ7
+         gqarBIs+rARq/ea1Xyov5y6BjW3Nmo7DH9FRIWS7rxgYdSuZ++Tz1lWH2GMwuuVt42w9
+         Z86A==
+X-Forwarded-Encrypted: i=1; AJvYcCUhpxNgNyVDtmSyjRgjQDd93jjrLErSLE27ZEmJkNGBPp7jdBqgE61FUuz645jquLZyNZZrRQIsZb4R8ihoS8I/8h9VOC9QZx8fqw==
+X-Gm-Message-State: AOJu0Yzwu7tpg144L/KE9G6Wp1fuxQqJG66NnSrDc9BuOJ3I0LyE01ZP
+	tV/cdOLxNJPeRMOEPXjR14BL+v7d35QTflizbmiKy/kJwbOcL6zJISr8bMcH1G4=
+X-Google-Smtp-Source: AGHT+IFtPWfr7OsTINMHDSjbMnUGeIDJIlJTbz6Wnqqsq1eR5dWUmlV4w7BEk6oGYCE1FbS8+uBP6A==
+X-Received: by 2002:a5d:498e:0:b0:368:6678:f792 with SMTP id ffacd0b85a97d-369bae6ff45mr2040076f8f.39.1721580006891;
+        Sun, 21 Jul 2024 09:40:06 -0700 (PDT)
+Received: from linaro.org ([82.79.124.209])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-368787cedabsm6313292f8f.84.2024.07.21.09.40.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jul 2024 10:09:24 -0700 (PDT)
-From: Kousik Sanagavarapu <five231003@gmail.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+        Sun, 21 Jul 2024 09:40:06 -0700 (PDT)
+Date: Sun, 21 Jul 2024 19:40:04 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Nishanth Menon <nm@ti.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-watchdog@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Kousik Sanagavarapu <five231003@gmail.com>
-Subject: [RFC PATCH 3/3] ARM: dts: davinci, keystone: correct watchdog nodenames
-Date: Sun, 21 Jul 2024 21:58:36 +0530
-Message-ID: <20240721170840.15569-4-five231003@gmail.com>
-X-Mailer: git-send-email 2.45.2.827.g557ae147e6.dirty
-In-Reply-To: <20240721170840.15569-1-five231003@gmail.com>
-References: <20240721170840.15569-1-five231003@gmail.com>
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add X1E78100 ThinkPad T14s Gen 6
+Message-ID: <Zp055OR+OzSgiHhX@linaro.org>
+References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
+ <20240719-topic-t14s_upstream-v1-3-d7d97fdebb28@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240719-topic-t14s_upstream-v1-3-d7d97fdebb28@linaro.org>
 
-Using "wdt" instead of "watchdog" for watchdog timer nodes doesn't allow
-for validation with the corresponding dtschema and gives errors
+On 24-07-19 22:16:38, Konrad Dybcio wrote:
+> Add support for the aforementioned laptop. That includes:
+> 
+> - input methods, incl. lid switch (keyboard needs the pdc
+>   wakeup-parent removal hack..)
+> - NVMe, WiFi
+> - USB-C ports
+> - GPU, display
+> - DSPs
+> 
+> Notably, the USB-A ports on the side are depenedent on the USB
+> multiport controller making it upstream.
+> 
+> At least one of the eDP panels used (non-touchscreen) identifies as
+> BOE 0x0b66.
+> 
+> See below for the hardware description from the OEM.
+> 
+> Link: https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/lenovo-thinkpad-t14s-gen-6-(14-inch-snapdragon)/len101t0099
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-	$ make CHECK_DTBS=y DT_SCHEMA_FILES=ti,davinci-wdt.yaml \
-		ti/keystone/keystone-k2g-ice.dtb
+Few comments below. Otherwise, LGTM.
 
-	DTC_CHK arch/arm/boot/dts/ti/keystone/keystone-k2g-ice.dtb
-	arch/arm/boot/dts/ti/keystone/keystone-k2g-ice.dtb:
-	wdt@02250000: $nodename:0: 'wdt@02250000' does not match
-	'^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
-	from schema $id:
-	http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-Therefore change "wdt@" to "watchdog@".
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 792 +++++++++++++++++++++
+>  2 files changed, 793 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 0e5c810304fb..734a05e04c4a 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -261,6 +261,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e78100-lenovo-thinkpad-t14s.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
 
-While at it, remove "ti,davinci-wdt" compatible from the keystone dts
-code.
+So what happens for SKUs of this model wil have x1e80100 ?
 
-Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
----
-Question: Should "wdt@" be changed everywhere in the dts code or is it
-only a requirement of validation against dtschema?
+Maybe we should stick to x1e80100 ?
 
-Also, I'm not sure about removing "ti,davinci-wdt" from the keystone dts
-code.  I'm thinking it is only there so that the driver code can get
-information from keystone nodes too, because it seems that there is no
-code for ti,keystone-wdt.
+> new file mode 100644
+> index 000000000000..b12953267505
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> @@ -0,0 +1,792 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2024, Linaro Limited
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/gpio-keys.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +
+> +#include "x1e80100.dtsi"
+> +#include "x1e80100-pmics.dtsi"
+> +
+> +/ {
+> +	model = "Lenovo ThinkPad T14s Gen 6";
+> +	compatible = "lenovo,thinkpad-t14s", "qcom,x1e78100", "qcom,x1e80100";
+> +
+> +	aliases {
+> +		serial0 = &uart21;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
 
-So question,
+[...]
 
-- Is WDT Controller driver for keystone not written yet?
+> +
+> +	vreg_edp_3p3: regulator-edp-3p3 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_EDP_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 70 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&edp_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-always-on;
 
-Or
+Drop this.
 
-- Does the WDT Controller driver for keystone have the same
-  functionality as one on davinci - hence leading us to simply do
+> +		regulator-boot-on;
+> +	};
+> +
 
-	.compatible = "ti,keystone-wdt"
+[...]
 
-  ?
+> +
+> +&tlmm {
+> +	gpio-reserved-ranges = <34 2>, /* Unused */
+> +			       <44 4>, /* SPI (TPM) */
+> +			       <72 2>, /* Secure EC I2C connection (?) */
+> +			       <238 1>; /* UFS Reset */
+> +
+> +	tpad_default: tpad-default-state {
+> +		pins = "gpio3";
+> +		function = "gpio";
+> +		bias-pull-up;
+> +	};
+> +
+> +	nvme_reg_en: nvme-reg-en-state {
+> +		pins = "gpio18";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	ts0_default: ts0-default-state {
+> +		reset-n-pins {
+> +			pins = "gpio48";
+> +			function = "gpio";
+> +			output-high;
+> +			drive-strength = <16>;
+> +		};
+> +
+> +		int-n-pins {
+> +			pins = "gpio51";
+> +			function = "gpio";
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	kybd_default: kybd-default-state {
+> +		pins = "gpio67";
+> +		function = "gpio";
+> +		bias-disable;
+> +	};
+> +
+> +	edp_reg_en: edp-reg-en-state {
+> +		pins = "gpio70";
+> +		function = "gpio";
+> +		drive-strength = <16>;
+> +		bias-pull-up;
 
- arch/arm/boot/dts/ti/davinci/da850.dtsi         | 2 +-
- arch/arm/boot/dts/ti/keystone/keystone-k2g.dtsi | 4 ++--
- arch/arm/boot/dts/ti/keystone/keystone.dtsi     | 4 ++--
- 3 files changed, 5 insertions(+), 5 deletions(-)
+bias-disable, maybe ?
 
-diff --git a/arch/arm/boot/dts/ti/davinci/da850.dtsi b/arch/arm/boot/dts/ti/davinci/da850.dtsi
-index 1d3fb5397ce3..89055ab87256 100644
---- a/arch/arm/boot/dts/ti/davinci/da850.dtsi
-+++ b/arch/arm/boot/dts/ti/davinci/da850.dtsi
-@@ -525,7 +525,7 @@ clocksource: timer@20000 {
- 			interrupt-names = "tint12", "tint34";
- 			clocks = <&pll0_auxclk>;
- 		};
--		wdt: wdt@21000 {
-+		wdt: watchdog@21000 {
- 			compatible = "ti,davinci-wdt";
- 			reg = <0x21000 0x1000>;
- 			clocks = <&pll0_auxclk>;
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2g.dtsi b/arch/arm/boot/dts/ti/keystone/keystone-k2g.dtsi
-index dafe485dfe19..884402a5fe4a 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone-k2g.dtsi
-+++ b/arch/arm/boot/dts/ti/keystone/keystone-k2g.dtsi
-@@ -610,8 +610,8 @@ spi3: spi@21806000 {
- 			clocks = <&k2g_clks 0x0013 0>;
- 		};
- 
--		wdt: wdt@02250000 {
--			compatible = "ti,keystone-wdt", "ti,davinci-wdt";
-+		wdt: watchdog@02250000 {
-+			compatible = "ti,keystone-wdt";
- 			reg = <0x02250000 0x80>;
- 			power-domains = <&k2g_pds 0x22>;
- 			clocks = <&k2g_clks 0x22 0>;
-diff --git a/arch/arm/boot/dts/ti/keystone/keystone.dtsi b/arch/arm/boot/dts/ti/keystone/keystone.dtsi
-index ff16428860a9..f697f27edcfc 100644
---- a/arch/arm/boot/dts/ti/keystone/keystone.dtsi
-+++ b/arch/arm/boot/dts/ti/keystone/keystone.dtsi
-@@ -225,8 +225,8 @@ usb0: usb@2690000 {
- 			};
- 		};
- 
--		wdt: wdt@22f0080 {
--			compatible = "ti,keystone-wdt","ti,davinci-wdt";
-+		wdt: watchdog@22f0080 {
-+			compatible = "ti,keystone-wdt";
- 			reg = <0x022f0080 0x80>;
- 			clocks = <&clkwdtimer0>;
- 		};
--- 
-2.45.2.827.g557ae147e6.dirty
+> +	};
+> +
+> +	hall_int_n_default: hall-int-n-state {
+> +		pins = "gpio92";
+> +		function = "gpio";
+> +		bias-disable;
+> +	};
+> +
 
+[...]
+
+> 
+> -- 
+> 2.45.2
+> 
 
