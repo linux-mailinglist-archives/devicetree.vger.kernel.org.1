@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-87221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13EEB938CDF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 12:02:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25816938CE4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 12:02:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 909981F27F19
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:02:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D50AB2886A5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F14216D4FE;
-	Mon, 22 Jul 2024 09:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A66516D9C0;
+	Mon, 22 Jul 2024 09:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="boBsxW7c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a1FTGnJ7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4762116C87F;
-	Mon, 22 Jul 2024 09:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2427F16C852;
+	Mon, 22 Jul 2024 09:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721642152; cv=none; b=U+eg0XaVLMYdRP+Q1lbCGQ2t8YV6RilAqZL1xC/jqp5mC8jp7QjwGCaj9k63TFFs1YmdzZz2Jq8J4bFJTizkkwIVOG4Z+bC02AyUaoRVCloqf8KjDgepSxv3My1apMjhqsVPQqF7FOf1ITqItF+2TyhWwkn95d3kxMT99gPsEUY=
+	t=1721642178; cv=none; b=TzxI+ZuvRMQ0YpZsWcHVr3zrybVpunBHsFKV4gS73xSg3zyDvbs+9ZVuQnWNnnvs1pTyIWvPje+Lje819KdVA0tUdoT8gINaLgZP9I+17peO++twC3R24VrQ5YYuXICrlFzv5c02LCuUhlD6J+sh1f2MdCoelgcYtouz26n+zIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721642152; c=relaxed/simple;
-	bh=VUm/4nzd6L1YqI6HmvdGtLsE3cjX9nZgcwI7HiNqX2k=;
+	s=arc-20240116; t=1721642178; c=relaxed/simple;
+	bh=GKHj9BvD+9lJ8g1YtS746wq1CTpdT5QhfUV2G3P5MRw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qQbyKgZ0SiZAZvqXFsm6IBdQlT2TKXySu+XlYQZEBo1rlgoD2+SXLqL1x09Yx9ozGPtd+8l/MVR1TKh+uphWTPTAI7dvGqdFysOBQpl/5+eswz0ARWPDclnEcESSLiTWMFX8yhCsX9koZDpYbpMGpdtkZ3vZfkeVUVTzFauAzUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=boBsxW7c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CB48C116B1;
-	Mon, 22 Jul 2024 09:55:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kMUojtFEUdn4SDUO271XQPNn5NEFmWe2jjslgCmJf8QGHzUw8ytfuF6HHm7/0Dk+tVc4JincHh0u42+lApIqH0E1hRhmNjufK9NMqieuYPA/Qta+xms3qBjF6m0UVphbSjJPhJmfa9jEZ6ZOY1l7zak8dispwazpqyiToqEX8aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a1FTGnJ7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35912C116B1;
+	Mon, 22 Jul 2024 09:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721642152;
-	bh=VUm/4nzd6L1YqI6HmvdGtLsE3cjX9nZgcwI7HiNqX2k=;
+	s=k20201202; t=1721642177;
+	bh=GKHj9BvD+9lJ8g1YtS746wq1CTpdT5QhfUV2G3P5MRw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=boBsxW7cy1hfdxARNhpwh9hGRic+NMDxFeYNS5NwX5hsl+918W5qcNNzGcTnrlras
-	 /yz9NN+w4O2Q8Mi8UCzkl8vp8T7ZcG0ZKjRtdz7NWG0Ps4pk2s9MR6bcnkwP9ZhWd7
-	 Hi80JsaApULq/8Sf+xTMX7uJhuEbeX63uadGjiO6DLvrbD2WTDnkBiCkwLNv3efUt5
-	 mAVEEiBnk8gnxrrbAKdkIvcpqNdteEGg556KbQkkPLBTGuq7t+4oFSYkCOBv3vNAua
-	 m9g1b+1lO2YO8PX5ApNS7Bm71o9goX2+seV7ZtctAXXebEjSZ4B5bweAxIID6LMH2U
-	 kcH0p9b1vdq4g==
-Message-ID: <d93f93fa-bbc8-4b89-9abc-767486bc443c@kernel.org>
-Date: Mon, 22 Jul 2024 11:55:46 +0200
+	b=a1FTGnJ7S6g+XoijtR0Tej9mBoppYppm5AJ5GUMfYU+l4Gna+jlorX1L0J66FhXxU
+	 ONDWFVlIZVL5Zc+Vyle4Ft+50tOLrzvZKQzAmCMgsYcJbujLBN+5TlZm9xup4Rvuay
+	 YQNXqulhK+a5bHFwMv/iLbwzhZpta4uRGYoPGZQSUAb31JImnlkKIRZwgpZJD5PPj8
+	 og7KCl+1Uvgza+pnuMdH4XNWEvgK8mkh0yflp/jCKwbeYfK70RC5pKvPFUmqLZSMM5
+	 GWKHbwWWNeMzEG4VEdBJigeihvHD+fXD+vPknciqb0+wLniyuhRlpzas0CXwltJFWC
+	 pNcRQhCj0VRDg==
+Message-ID: <e4f7caeb-6118-4c85-867f-064308c082ca@kernel.org>
+Date: Mon, 22 Jul 2024 11:56:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 36/37] kvx: dts: DeviceTree for qemu emulated
- Coolidge SoC
+Subject: Re: [RFC PATCH v3 37/37] Add Kalray Inc. to the list of
+ vendor-prefixes.yaml
 To: ysionneau@kalrayinc.com, linux-kernel@vger.kernel.org,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: Jonathan Borne <jborne@kalrayinc.com>,
  Julian Vetter <jvetter@kalrayinc.com>, devicetree@vger.kernel.org
 References: <20240722094226.21602-1-ysionneau@kalrayinc.com>
- <20240722094226.21602-37-ysionneau@kalrayinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20240722094226.21602-38-ysionneau@kalrayinc.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,210 +104,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240722094226.21602-37-ysionneau@kalrayinc.com>
+In-Reply-To: <20240722094226.21602-38-ysionneau@kalrayinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22/07/2024 11:41, ysionneau@kalrayinc.com wrote:
-> From: Yann Sionneau <ysionneau@kalrayinc.com>
+> From: Julian Vetter <jvetter@kalrayinc.com>
 > 
-> Add device tree for QEMU that emulates a Coolidge V1 SoC.
-> 
+
+Missing commit msg.
+
+> Signed-off-by: Julian Vetter <jvetter@kalrayinc.com>
 > Signed-off-by: Yann Sionneau <ysionneau@kalrayinc.com>
 > ---
 > 
 > Notes:
 > 
 > V2 -> V3: New patch
-> ---
->  arch/kvx/boot/dts/Makefile          |   1 +
->  arch/kvx/boot/dts/coolidge-qemu.dts | 444 ++++++++++++++++++++++++++++
->  2 files changed, 445 insertions(+)
->  create mode 100644 arch/kvx/boot/dts/Makefile
->  create mode 100644 arch/kvx/boot/dts/coolidge-qemu.dts
-> 
-> diff --git a/arch/kvx/boot/dts/Makefile b/arch/kvx/boot/dts/Makefile
-> new file mode 100644
-> index 0000000000000..cd27ceb7a6cce
-> --- /dev/null
-> +++ b/arch/kvx/boot/dts/Makefile
-> @@ -0,0 +1 @@
-> +dtb-y += coolidge-qemu.dtb
-> diff --git a/arch/kvx/boot/dts/coolidge-qemu.dts b/arch/kvx/boot/dts/coolidge-qemu.dts
-> new file mode 100644
-> index 0000000000000..1d5af0d2e687d
-> --- /dev/null
-> +++ b/arch/kvx/boot/dts/coolidge-qemu.dts
-> @@ -0,0 +1,444 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/dts-v1/;
-> +/*
-> + * Copyright (C) 2024, Kalray Inc.
-> + */
-> +
-> +/ {
-> +	model = "Kalray Coolidge processor (QEMU)";
-> +	compatible = "kalray,coolidge-qemu";
-> +	#address-cells = <0x02>;
 
-That's not a hex, so just <2>
+Bindings come before users.
 
-> +	#size-cells = <0x02>;
-> +
-> +	chosen {
-> +		stdout-path = "/axi/serial@20210000";
-
-No, use phandle/label.
-
-> +	};
-> +
-> +	memory@100000000 {
-> +		phandle = <0x40>;
-> +		reg = <0x01 0x00 0x00 0x8000000>;
-> +		device_type = "memory";
-> +	};
-> +
-> +	axi {
-> +		compatible = "simple-bus";
-> +		#address-cells = <0x02>;
-
-Same problem.
-
-
-> +		#size-cells = <0x02>;
-> +		ranges;
-> +
-> +		virtio-mmio@30003c00 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +			compatible = "virtio,mmio";
-> +			reg = <0x00 0x30003c00 0x00 0x200>;
-> +			interrupt-parent = <&itgen0>;
-> +			interrupts = <0x9e 0x04>;
-> +		};
-> +
-> +		virtio-mmio@30003e00 {
-> +			compatible = "virtio,mmio";
-> +			reg = <0x00 0x30003e00 0x00 0x200>;
-> +			interrupt-parent = <&itgen0>;
-> +			interrupts = <0x9f 0x04>;
-> +		};
-> +
-> +		itgen0: itgen_soc_periph0@27000000 {
-
-Please follow DTS coding style.
-
-> +			compatible = "kalray,coolidge-itgen";
-> +			reg = <0x00 0x27000000 0x00 0x1104>;
-> +			msi-parent = <&apic_mailbox>;
-> +			#interrupt-cells = <0x02>;
-> +			interrupt-controller;
-> +		};
-> +
-> +		serial@20210000 {
-> +			reg-shift = <0x02>;
-> +			reg-io-width = <0x04>;
-
-Sorry, but width and shift are rarely hex values. Make your code
-readable. Adhere to existing coding style.
-
-
-> +			clocks = <&ref_clk>;
-> +			interrupts = <0x29 0x04>;
-> +			interrupt-parent = <&itgen0>;
-> +			reg = <0x00 0x20210000 0x00 0x100>;
-> +			compatible = "snps,dw-apb-uart";
-
-Follow DTS coding style - order the properties correctly.
-
-
-> +		};
-> +
-> +		serial@20211000 {
-> +			reg-shift = <0x02>;
-> +			reg-io-width = <0x04>;
-> +			phandle = <0x3c>;
-> +			clocks = <&ref_clk>;
-> +			interrupts = <0x2a 0x04>;
-> +			interrupt-parent = <&itgen0>;
-> +			reg = <0x00 0x20211000 0x00 0x100>;
-> +			compatible = "snps,dw-apb-uart";
-> +		};
-> +
-> +		serial@20212000 {
-> +			reg-shift = <0x02>;
-> +			reg-io-width = <0x04>;
-> +			phandle = <0x3b>;
-> +			clocks = <&ref_clk>;
-> +			interrupts = <0x2b 0x04>;
-> +			interrupt-parent = <&itgen0>;
-> +			reg = <0x00 0x20212000 0x00 0x100>;
-> +			compatible = "snps,dw-apb-uart";
-> +		};
-> +
-> +		serial@20213000 {
-> +			reg-shift = <0x02>;
-> +			reg-io-width = <0x04>;
-> +			phandle = <0x3a>;
-> +			clocks = <&ref_clk>;
-> +			interrupts = <0x2c 0x04>;
-> +			interrupt-parent = <&itgen0>;
-> +			reg = <0x00 0x20213000 0x00 0x100>;
-> +			compatible = "snps,dw-apb-uart";
-> +		};
-> +
-> +		serial@20214000 {
-> +			reg-shift = <0x02>;
-> +			reg-io-width = <0x04>;
-> +			phandle = <0x39>;
-> +			clocks = <&ref_clk>;
-> +			interrupts = <0x2d 0x04>;
-> +			interrupt-parent = <&itgen0>;
-> +			reg = <0x00 0x20214000 0x00 0x100>;
-> +			compatible = "snps,dw-apb-uart";
-> +		};
-> +
-> +		serial@20215000 {
-> +			reg-shift = <0x02>;
-> +			reg-io-width = <0x04>;
-> +			phandle = <0x38>;
-> +			clocks = <&ref_clk>;
-> +			interrupts = <0x2e 0x04>;
-> +			interrupt-parent = <&itgen0>;
-> +			reg = <0x00 0x20215000 0x00 0x100>;
-> +			compatible = "snps,dw-apb-uart";
-> +		};
-> +	};
-> +
-> +	memory@0 {
-
-Why memory is in multiple places?
-
-> +		device_type = "memory";
-> +		reg = <0x00 0x00 0x00 0x400000>;
-> +	};
-> +
-> +	apic_mailbox: apic_mailbox@a00000 {
-
-Why this is outside of SoC? Where is the SoC anyway?
-
-> +		compatible = "kalray,coolidge-apic-mailbox";
-
-Your compatibles are confusing. What is the soc name? In other binding
-you entirely omitted coolidge. See writing bindings (or any other recent
-DTS which passed review) - it has rationale behind it.
-
-> +		reg = <0x00 0xa00000 0x00 0xea00>;
-> +		#interrupt-cells = <0x00>;
-> +		#address-cells = <0>;
-
-And this is not <0x0>? It's like random coding style.
-
-I stopped reviewing here. Rest of the DTS does not look better.
 
 Best regards,
 Krzysztof
