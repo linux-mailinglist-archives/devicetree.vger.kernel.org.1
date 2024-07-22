@@ -1,250 +1,184 @@
-Return-Path: <devicetree+bounces-87150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF58938AD2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:11:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33305938ADB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:11:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E11E1F217E2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:11:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8A721F218DB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE36160873;
-	Mon, 22 Jul 2024 08:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0667016089A;
+	Mon, 22 Jul 2024 08:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pmvGwQdU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bx2qprec"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA88D199C2;
-	Mon, 22 Jul 2024 08:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85C217C6C;
+	Mon, 22 Jul 2024 08:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721635881; cv=none; b=ccvud8nYshYxWjrQikDyy23/R3uuY2tsvMhPCp3c1ijWq58JCvFodzKiUYaf7yBY+OhnrqPRBjExd0FcwqfCxIudGw1q6o/GNohQqV3st86PpR2dWWp/89ewQQzp5NPThaeOIZU1CxjK0TOaPmiDWgPOOyLSEELwOymbE6LHu0Y=
+	t=1721635912; cv=none; b=aRe5VzYT1vlU06gluFI4s8hVCBi6eXnbFxPYVYZYkuEnEEn7nmC01ylUsgp/I4eAganfw/HASATBQzd5YrvL6UWVOaqy/44GVnFP+Px2FRiMnikc9VGXPemmr6uDe2CA4KhysWlOylsI/RvbCLkf7ULGIgdnSJJi1HKEwI5OUvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721635881; c=relaxed/simple;
-	bh=KbHb2ML+/qNtqrROpXFQuCOgzyU9WkoEjmRDGSn9Buc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lytYPElcsaEAhjoWR/hyoAtzlK0nlvcdMhRARmkGDpXX4RvMrChAfrgBzUo8w1c0WmbZjeSWTSmw4j8XH3KvQab3j9++bt3uQGN/TMAfSlqCAq23GA8/aEPXiEc9LJMBw0+q5Iq3jGxmGGnG5H7bV4zW+VU1YML9u+upzIl8o3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pmvGwQdU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3697C32782;
-	Mon, 22 Jul 2024 08:11:07 +0000 (UTC)
+	s=arc-20240116; t=1721635912; c=relaxed/simple;
+	bh=Hb+V5JTLbzwcjLm97otp2p06IEtCdCtoouMcxi5d8tg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uB8NXsIITG+W1mwVxm9NZvo2TmFCuWqBQ0t3K9TgPH7hd+s6a7e+05ZNrF7rYb55dARWI7GVucP26/HnJ3yNhDkpuFvkMgSKsaBmwfeqzVl0BcFbGPBaJ5F9yEmEf/f6YSTHbEtky1D90YDpU/TVu0D72qzEq9OE1AL8PRTIzZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bx2qprec; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46BD6C116B1;
+	Mon, 22 Jul 2024 08:11:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721635881;
-	bh=KbHb2ML+/qNtqrROpXFQuCOgzyU9WkoEjmRDGSn9Buc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pmvGwQdUNlDOWhEh5LDwssibR/KEz7Zmmpd8mKQJ30oNCDnjOOYBrxm5QxDheiGpM
-	 v2fA6aKX+vgggaKwCAygIbGfh8J+i/6ypRPQfXQm/pPLVwBpHQQ0ePGi/iWCBNnGNs
-	 K6/E4TEMVX41pv99/WxiNTZpZsJ7u7AUQO0/nnACqOE2r61ablwa38hrfn24gKR7af
-	 4ZwCTnQ0nxsiA1qRrmHJI/3vt9VXGn+Doo9wPFkpJ1m8ADDfzpc1fqTbeg7JemtZZV
-	 hWVZyVEHXLgElOCdvOBrZYp1YKgEEly5/oGP5VPwn2hJw/yrNojdPai/kIldbMKfjo
-	 Li75LtSqlZlhA==
-Date: Mon, 22 Jul 2024 11:08:11 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: linux-kernel@vger.kernel.org,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Hildenbrand <david@redhat.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
-	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	nvdimm@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arch@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH 00/17] mm: introduce numa_memblks
-Message-ID: <Zp4Ta31U6amqIbI1@kernel.org>
-References: <20240716111346.3676969-1-rppt@kernel.org>
- <20240719143347.000077d9@huawei.com>
+	s=k20201202; t=1721635912;
+	bh=Hb+V5JTLbzwcjLm97otp2p06IEtCdCtoouMcxi5d8tg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bx2qprecs/1WVbqMxrG4w7ohsUf4gUjgDYsnR4Go1DkdSufizj3a6XvXt7UmbKLeI
+	 MNcLWPscmo58BUD1nAER5htxls6TyE4MJ7NA4Q2T3HRE7swfevAf/kiK1XeBp30p/j
+	 ck7oMLbSgbNywLNpzG4b5t5kcbsBUS78XZucWOydx8VCyKVLFT3guihGO/iE5ET7Cl
+	 ijgor6P2VPJWyRT9yhSQo0MVHRAS+vaSE/ZXcNLa55VAQw0WwZh4XBS7fsshnN4HqC
+	 SmUSFptTeA3WbZPKE1HhPHQungrlwQJwMEX7aDp7wZeCoGIY9x3LD1vzSrRpYVAri1
+	 Vuz+SN5irwu0g==
+Message-ID: <90413248-8849-4533-93c9-3a976aad0295@kernel.org>
+Date: Mon, 22 Jul 2024 10:11:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240719143347.000077d9@huawei.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: timer: ti,davinci-timer: convert to
+ dtschema
+To: Kousik Sanagavarapu <five231003@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Nishanth Menon <nm@ti.com>,
+ Santosh Shilimkar <ssantosh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240721170840.15569-1-five231003@gmail.com>
+ <20240721170840.15569-2-five231003@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240721170840.15569-2-five231003@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 19, 2024 at 02:33:47PM +0100, Jonathan Cameron wrote:
-> On Tue, 16 Jul 2024 14:13:29 +0300
-> Mike Rapoport <rppt@kernel.org> wrote:
-> 
-> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> > 
-> > Hi,
-> > 
-> > Following the discussion about handling of CXL fixed memory windows on
-> > arm64 [1] I decided to bite the bullet and move numa_memblks from x86 to
-> > the generic code so they will be available on arm64/riscv and maybe on
-> > loongarch sometime later.
-> > 
-> > While it could be possible to use memblock to describe CXL memory windows,
-> > it currently lacks notion of unpopulated memory ranges and numa_memblks
-> > does implement this.
-> > 
-> > Another reason to make numa_memblks generic is that both arch_numa (arm64
-> > and riscv) and loongarch use trimmed copy of x86 code although there is no
-> > fundamental reason why the same code cannot be used on all these platforms.
-> > Having numa_memblks in mm/ will make it's interaction with ACPI and FDT
-> > more consistent and I believe will reduce maintenance burden.
-> > 
-> > And with generic numa_memblks it is (almost) straightforward to enable NUMA
-> > emulation on arm64 and riscv.
-> > 
-> > The first 5 commits in this series are cleanups that are not strictly
-> > related to numa_memblks.
-> > 
-> > Commits 6-11 slightly reorder code in x86 to allow extracting numa_memblks
-> > and NUMA emulation to the generic code.
-> > 
-> > Commits 12-14 actually move the code from arch/x86/ to mm/ and commit 15
-> > does some aftermath cleanups.
-> > 
-> > Commit 16 switches arch_numa to numa_memblks.
-> > 
-> > Commit 17 enables usage of phys_to_target_node() and
-> > memory_add_physaddr_to_nid() with numa_memblks.
-> 
-> Hi Mike,
-> 
-> I've lightly tested with emulated CXL + Generic Ports and Generic
-> Initiators as well as more normal cpus and memory via qemu on arm64 and it's
-> looking good.
-> 
-> From my earlier series, patch 4 is probably still needed to avoid
-> presenting nodes with nothing in them at boot (but not if we hotplug
-> memory then remove it again in which case they disappear)
-> https://lore.kernel.org/all/20240529171236.32002-5-Jonathan.Cameron@huawei.com/
-> However that was broken/inconsistent before your rework so I can send that
-> patch separately. 
-
-I'd appreciate it :)
- 
-> Thanks for getting this sorted!  I should get time to do more extensive
-> testing and review in next week or so.
-
-Thanks, you may want to wait for v2, I'm planning to send it this week.
- 
-> Jonathan
-> 
-> > 
-> > [1] https://lore.kernel.org/all/20240529171236.32002-1-Jonathan.Cameron@huawei.com/
-> > 
-> > Mike Rapoport (Microsoft) (17):
-> >   mm: move kernel/numa.c to mm/
-> >   MIPS: sgi-ip27: make NODE_DATA() the same as on all other
-> >     architectures
-> >   MIPS: loongson64: rename __node_data to node_data
-> >   arch, mm: move definition of node_data to generic code
-> >   arch, mm: pull out allocation of NODE_DATA to generic code
-> >   x86/numa: simplify numa_distance allocation
-> >   x86/numa: move FAKE_NODE_* defines to numa_emu
-> >   x86/numa_emu: simplify allocation of phys_dist
-> >   x86/numa_emu: split __apicid_to_node update to a helper function
-> >   x86/numa_emu: use a helper function to get MAX_DMA32_PFN
-> >   x86/numa: numa_{add,remove}_cpu: make cpu parameter unsigned
-> >   mm: introduce numa_memblks
-> >   mm: move numa_distance and related code from x86 to numa_memblks
-> >   mm: introduce numa_emulation
-> >   mm: make numa_memblks more self-contained
-> >   arch_numa: switch over to numa_memblks
-> >   mm: make range-to-target_node lookup facility a part of numa_memblks
-> > 
-> >  arch/arm64/include/asm/Kbuild                 |   1 +
-> >  arch/arm64/include/asm/mmzone.h               |  13 -
-> >  arch/arm64/include/asm/topology.h             |   1 +
-> >  arch/loongarch/include/asm/Kbuild             |   1 +
-> >  arch/loongarch/include/asm/mmzone.h           |  16 -
-> >  arch/loongarch/include/asm/topology.h         |   1 +
-> >  arch/loongarch/kernel/numa.c                  |  21 -
-> >  arch/mips/include/asm/mach-ip27/mmzone.h      |   1 -
-> >  .../mips/include/asm/mach-loongson64/mmzone.h |   4 -
-> >  arch/mips/loongson64/numa.c                   |  20 +-
-> >  arch/mips/sgi-ip27/ip27-memory.c              |   2 +-
-> >  arch/powerpc/include/asm/mmzone.h             |   6 -
-> >  arch/powerpc/mm/numa.c                        |  26 +-
-> >  arch/riscv/include/asm/Kbuild                 |   1 +
-> >  arch/riscv/include/asm/mmzone.h               |  13 -
-> >  arch/riscv/include/asm/topology.h             |   4 +
-> >  arch/s390/include/asm/Kbuild                  |   1 +
-> >  arch/s390/include/asm/mmzone.h                |  17 -
-> >  arch/s390/kernel/numa.c                       |   3 -
-> >  arch/sh/include/asm/mmzone.h                  |   3 -
-> >  arch/sh/mm/init.c                             |   7 +-
-> >  arch/sh/mm/numa.c                             |   3 -
-> >  arch/sparc/include/asm/mmzone.h               |   4 -
-> >  arch/sparc/mm/init_64.c                       |  11 +-
-> >  arch/x86/Kconfig                              |   9 +-
-> >  arch/x86/include/asm/Kbuild                   |   1 +
-> >  arch/x86/include/asm/mmzone.h                 |   6 -
-> >  arch/x86/include/asm/mmzone_32.h              |  17 -
-> >  arch/x86/include/asm/mmzone_64.h              |  18 -
-> >  arch/x86/include/asm/numa.h                   |  24 +-
-> >  arch/x86/include/asm/sparsemem.h              |   9 -
-> >  arch/x86/mm/Makefile                          |   1 -
-> >  arch/x86/mm/amdtopology.c                     |   1 +
-> >  arch/x86/mm/numa.c                            | 618 +-----------------
-> >  arch/x86/mm/numa_internal.h                   |  24 -
-> >  drivers/acpi/numa/srat.c                      |   1 +
-> >  drivers/base/Kconfig                          |   1 +
-> >  drivers/base/arch_numa.c                      | 223 ++-----
-> >  drivers/cxl/Kconfig                           |   2 +-
-> >  drivers/dax/Kconfig                           |   2 +-
-> >  drivers/of/of_numa.c                          |   1 +
-> >  include/asm-generic/mmzone.h                  |   5 +
-> >  include/asm-generic/numa.h                    |   6 +-
-> >  include/linux/numa.h                          |   5 +
-> >  include/linux/numa_memblks.h                  |  58 ++
-> >  kernel/Makefile                               |   1 -
-> >  kernel/numa.c                                 |  26 -
-> >  mm/Kconfig                                    |  11 +
-> >  mm/Makefile                                   |   3 +
-> >  mm/numa.c                                     |  57 ++
-> >  {arch/x86/mm => mm}/numa_emulation.c          |  42 +-
-> >  mm/numa_memblks.c                             | 565 ++++++++++++++++
-> >  52 files changed, 847 insertions(+), 1070 deletions(-)
-> >  delete mode 100644 arch/arm64/include/asm/mmzone.h
-> >  delete mode 100644 arch/loongarch/include/asm/mmzone.h
-> >  delete mode 100644 arch/riscv/include/asm/mmzone.h
-> >  delete mode 100644 arch/s390/include/asm/mmzone.h
-> >  delete mode 100644 arch/x86/include/asm/mmzone.h
-> >  delete mode 100644 arch/x86/include/asm/mmzone_32.h
-> >  delete mode 100644 arch/x86/include/asm/mmzone_64.h
-> >  create mode 100644 include/asm-generic/mmzone.h
-> >  create mode 100644 include/linux/numa_memblks.h
-> >  delete mode 100644 kernel/numa.c
-> >  create mode 100644 mm/numa.c
-> >  rename {arch/x86/mm => mm}/numa_emulation.c (94%)
-> >  create mode 100644 mm/numa_memblks.c
-> > 
-> > 
-> > base-commit: 22a40d14b572deb80c0648557f4bd502d7e83826
+On 21/07/2024 18:28, Kousik Sanagavarapu wrote:
+> Convert txt binding of TI's DaVinci timer to dtschema to allow for
+> validation.
 > 
 
--- 
-Sincerely yours,
-Mike.
+
+> diff --git a/Documentation/devicetree/bindings/timer/ti,davinci-timer.yaml b/Documentation/devicetree/bindings/timer/ti,davinci-timer.yaml
+> new file mode 100644
+> index 000000000000..615ceb8f30af
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/ti,davinci-timer.yaml
+
+Use compatible as filename.
+
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/ti,davinci-timer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI DaVinci Timer
+> +
+> +maintainers:
+> +  - Kousik Sanagavarapu <five231003@gmail.com>
+> +
+> +description: |
+> +
+
+Drop blank line
+
+> +  This is a 64-bit timer found on TI's DaVinci architecture devices. The timer
+> +  can be configured as a general-purpose 64-bit timer, dual general-purpose
+> +  32-bit timers. When configured as dual 32-bit timers, each half can operate
+> +  in conjunction (chain mode) or independently (unchained mode) of each other.
+> +
+> +  The timer is a free running up-counter and can generate interrupts when the
+> +  counter reaches preset counter values.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,da830-timer
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 2
+
+Missing maxItems
+
+> +
+> +  interrupt-names:
+> +    minItems: 2
+> +    items:
+> +      - const: tint12
+> +      - const: tint34
+> +      - const: cmpint0
+> +      - const: cmpint1
+> +      - const: cmpint2
+> +      - const: cmpint3
+> +      - const: cmpint4
+> +      - const: cmpint5
+> +      - const: cmpint6
+> +      - const: cmpint7
+
+Best regards,
+Krzysztof
+
 
