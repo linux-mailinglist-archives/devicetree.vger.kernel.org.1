@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-87337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3436A9392F3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 19:05:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2AF7939300
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 19:14:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65DA21C214A8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:05:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F58EB219C4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EED16E894;
-	Mon, 22 Jul 2024 17:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A8416EB58;
+	Mon, 22 Jul 2024 17:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bp0MY6Xz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pStLs1D6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B14A16D312;
-	Mon, 22 Jul 2024 17:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2E8C2FD;
+	Mon, 22 Jul 2024 17:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721667905; cv=none; b=ILXTkaWv5qDAmY6IUa0GKGnS7yn/kFz31cTaQqzqUJ943Ij8/FNHzX8mqxCM3eQOgDf5qkpyqFW9CAINFVDGNrij03UrgZpvkRCFcz2gX8pCgaCru2RCzibW53yFtYZXfk3k4VkwK8NH4VfDcBovOUC6q13u7RybWjVdnT9ap+k=
+	t=1721668444; cv=none; b=uN+PFFa3HweYEsdWoQfPVG6j2S5q7TiXb04B0DkNMp5Z/zRpS1Op1TmT5LOyM9wcxPcaGNbEVsC6bGH4TqoDfkuAlAlAkvqip75mTPfQ88Dezwb7nOq3tExagOyJBry4Sjy/Y2pa6BcFB2Lnn/dUVdQDVcMGfw/W7pHg9ckOrwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721667905; c=relaxed/simple;
-	bh=j8n8Jqt0qFOtbSwm/hNbavTr8cougfs0ozqvm3fu8lc=;
+	s=arc-20240116; t=1721668444; c=relaxed/simple;
+	bh=nqDbSeOEjrZww2bjW5Y5ACpg5VESlrarvu6Mf3utbgM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TM/VBoGytcuiV/CPe0LajRot1VouRjdRL5xqQNcOmZ0v7XFLpdVrMeabZM6bfgqK1poEkhMRc5lJ0N8Ck726hYjuc/yJJnYXMRqxCTaxYiqKascOS51n7o+UQ0JuD750/6q6CzrmwveihC5L1tv55Q3wrWibXWai1Jki11SudI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bp0MY6Xz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9A5DC116B1;
-	Mon, 22 Jul 2024 17:05:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IhnAySxiKN3xDfivQyo+db9P3OZ5ZpGnisW1EmDKjeZhQuNgRcQxHe+s/pl8jue2XF+UF/2Ts99vw6lS9bkgZdXoy4tUg+3gR2gIX7ltE5ewVknDIIThrLnsokGWI75kqQX4YG9BH7NHKEvZ9vdI+FywPal4XXYhgNR/dRv8VTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pStLs1D6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1E6C116B1;
+	Mon, 22 Jul 2024 17:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721667904;
-	bh=j8n8Jqt0qFOtbSwm/hNbavTr8cougfs0ozqvm3fu8lc=;
+	s=k20201202; t=1721668442;
+	bh=nqDbSeOEjrZww2bjW5Y5ACpg5VESlrarvu6Mf3utbgM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bp0MY6Xz0hrjbUv4XVnl0d/gCIoXDum7ldPkvros/xcRHrv4XoxXtVFrzPacS2Yx1
-	 r3KaUSBaNS4hGU5xNY0nBWv3LRXbkmkpO7C0AItgVO/mJe9o1xkyLPVonCGWsadSIj
-	 kUBq0QcBGIPpPcoC8h+KsqQHt0oduwvtPeuQyfmzm3f1juY7CmRefS5Mk6apydptVh
-	 MeKwL5hnT2o9gFa+284K+R3NYAIaecxFupQk8jjkDCFFM0DZTTDx1PFLSqtBRG9S9O
-	 uprakCEoLxwa8258CYKnR674OxDZCKb14o91FGSEtM49ikC90PyVmdRbqbgwR+t3NS
-	 rTea9PfW6UIDQ==
-Date: Mon, 22 Jul 2024 18:05:01 +0100
+	b=pStLs1D6atjirFbXkduIYobr0Ct/Sgjn0QoIpO1lee7/CbPaKgr9SafXtwvsS9rR+
+	 grD7yprXFyTh5Pj3ebz5U/dM9p2xvPwKIDWbpv8esG5k9yH0wnfOvqn9Yxx7H7h1ib
+	 acowwQN2rN5REX8JwQ0h4fAc9QfmWwSZTiBjA4I9FoGjBTcEv4bmu8GQXguEetAvg9
+	 eCujm5Jd7f7HG7WrGi03Bfb3JEElL6IQIG4qZd4tucw5HYeUcn42N7BN/4DrrqMwd4
+	 dbxA8RexnKPUsuDvsz2ccQfDgq2FbpN1Y97Ixv7HlgRn3IhbVgDMNS4TvIuR2pNAZ2
+	 3jY/05/z+kRIA==
+Date: Mon, 22 Jul 2024 18:13:58 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] dt-bindings: iio: light: stk33xx: add compatible
- for stk3013
-Message-ID: <20240722-affection-abstract-57fb331782e3@spud>
-References: <20240721-stk3310-v3-0-98fcb6f551a1@disroot.org>
- <20240721-stk3310-v3-3-98fcb6f551a1@disroot.org>
+To: Harry Austen <hpausten@protonmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 6/7] dt-bindings: clock: xilinx: describe whether dynamic
+ reconfig is enabled
+Message-ID: <20240722-removal-grandma-92cfe99b8a88@spud>
+References: <20240720120048.36758-1-hpausten@protonmail.com>
+ <20240720120048.36758-7-hpausten@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,82 +64,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gUB/I20dU10rvQFg"
+	protocol="application/pgp-signature"; boundary="dcnYdkiBJnjYH+Dp"
 Content-Disposition: inline
-In-Reply-To: <20240721-stk3310-v3-3-98fcb6f551a1@disroot.org>
+In-Reply-To: <20240720120048.36758-7-hpausten@protonmail.com>
 
 
---gUB/I20dU10rvQFg
+--dcnYdkiBJnjYH+Dp
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jul 21, 2024 at 03:44:31PM +0530, Kaustabh Chakraborty wrote:
-> STK3013 is a proximity sensor by Sensortek, bearing chipid of 0x31. Despi=
-te
-> being marketed as a proximity sensor, it also appears to have ambient
-> light sensing capabilities.
+On Sat, Jul 20, 2024 at 12:01:58PM +0000, Harry Austen wrote:
+> Xilinx clocking wizard IP core's dynamic reconfiguration support is
+> optionally enabled at build time. Add a devicetree boolean property to
+> describe whether the hardware supports this feature or not.
 >=20
-> The part is fully compatible with the existing implementation of the
-> device driver. Add the compatible string of stk3013 to the existing
-> list, with a fallback of stk3310.
->=20
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Signed-off-by: Harry Austen <hpausten@protonmail.com>
 > ---
->  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 13 +++++++++-=
----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+>  .../devicetree/bindings/clock/xlnx,clocking-wizard.yaml    | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/D=
-ocumentation/devicetree/bindings/iio/light/stk33xx.yaml
-> index f6e22dc9814a..d5f6b622c8da 100644
-> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> @@ -18,10 +18,15 @@ allOf:
+> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard=
+=2Eyaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> index 4609bb56b06b5..890aeebf6f375 100644
+> --- a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> @@ -40,6 +40,12 @@ properties:
+>        - const: s_axi_aclk
 > =20
->  properties:
->    compatible:
-> -    enum:
-> -      - sensortek,stk3310
-> -      - sensortek,stk3311
-> -      - sensortek,stk3335
-> +    oneOf:
-> +      - enum:
-> +        - sensortek,stk3310
-> +        - sensortek,stk3311
-> +        - sensortek,stk3335
-> +      - items:
-> +        - enum:
-> +          - sensortek,stk3013
-> +        - const: sensortek,stk3310
 > =20
+> +  xlnx,dynamic-reconfig:
+> +    type: boolean
 
-=2E/Documentation/devicetree/bindings/iio/light/stk33xx.yaml:23:9: [warning=
-] wrong indentation: expected 10 but found 8 (indentation)
-=2E/Documentation/devicetree/bindings/iio/light/stk33xx.yaml:27:9: [warning=
-] wrong indentation: expected 10 but found 8 (indentation)
-=2E/Documentation/devicetree/bindings/iio/light/stk33xx.yaml:28:11: [warnin=
-g] wrong indentation: expected 12 but found 10 (indentation)
+The type here should be "flag" not boolean, boolean can be set to
+"false" and what you're likely doing is just checking for the property
+being present. "flag" doesn't allow false.
 
-=46rom dt_binding_check, please fix.
-
->    reg:
->      maxItems: 1
->=20
+> +    description:
+> +      Indicate whether the core has been configured with support for dyn=
+amic
+> +      runtime reconfguration of the clocking primitive MMCM/PLL.
+> +
+>    xlnx,speed-grade:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [1, 2, 3]
+> @@ -88,6 +94,7 @@ examples:
+>          compatible =3D "xlnx,clocking-wizard-v6.0";
+>          reg =3D <0xb0000000 0x10000>;
+>          #clock-cells =3D <1>;
+> +        xlnx,dynamic-reconfig;
+>          xlnx,speed-grade =3D <1>;
+>          xlnx,nr-outputs =3D <6>;
+>          clock-names =3D "clk_in1", "s_axi_aclk";
 > --=20
 > 2.45.2
 >=20
+>=20
 
---gUB/I20dU10rvQFg
+--dcnYdkiBJnjYH+Dp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6RPQAKCRB4tDGHoIJi
-0hGyAP0Yjy4k3EiRFrSECTSRI/KRAlzCegxC4Fb00ftvLlTJqAEAuJP1AtuA7Y7d
-oybNBqFV/wbCqMEQRbcTa/kwvxId7gw=
-=IwyL
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6TVQAKCRB4tDGHoIJi
+0hdmAQCqOMXx2CK3Q8yzIIBHMuERHAWGGfcI5gzwiytnYyIP9wEA7lTXK19quiSI
+Lk3aVqOddEgJEmbgqX2t6/H6W4duVw4=
+=2Kf6
 -----END PGP SIGNATURE-----
 
---gUB/I20dU10rvQFg--
+--dcnYdkiBJnjYH+Dp--
 
