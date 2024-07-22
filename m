@@ -1,196 +1,126 @@
-Return-Path: <devicetree+bounces-87145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CB1938A77
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7D5938A6F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:53:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63B5F1C20F9B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:54:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3474F1C20FB5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA931607AF;
-	Mon, 22 Jul 2024 07:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF991607A1;
+	Mon, 22 Jul 2024 07:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oG5YJpR0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FEjjZxBJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5B1381BA;
-	Mon, 22 Jul 2024 07:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2166B381BA;
+	Mon, 22 Jul 2024 07:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721634874; cv=none; b=PWx5w94DjJ+OmYsFyKGi1Dhc/1F2mnsmv03FhZB6bd9bVY8OhZmm5KU+WOPJVEo/xAYcVTkHDeoqKyn5VwlwLBH7KFZq61JIp5/9EPBVELQ3gG/QMQ57ZwTa/R2BPaUo/Dow6zRYoVzqqkIr0iM2gSRq8NB0WyQSbKM2oKK2GS8=
+	t=1721634806; cv=none; b=YmuXBeWvLhF2QXHTQCILogMaSuPurRpBSnNY1fEcptqJ2uVa0LEhGOClGX54kiLectYUx78q/haAJn8jqQvWZ6CHzDGC0SmalGlGvUN1rdFxC+UFse1GnM9NwHnbAlZT/hxixYF7h8dMwvllaao0R7fF3RBC4XqiY5qQsN2tS7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721634874; c=relaxed/simple;
-	bh=OYRHdXxfKMdclKQlgCt5VIPfcSGA+/ROfi++yX8letM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S5OrWN4lxF8Ys2G+6UO9msJS3gWDmTSgfIkoB2arYHaDMAglXnhb6azaF89O1LtyaRRY46tIkQ8borFUmkThGiK75jVsRS7jJaK0oQ4QKuBj0SLP6wYFME0mxCyt7aUvUWg4lbJEth5PJyi/nKRa3HxF9keA1njAYXWajVOE4vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oG5YJpR0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EDAAC116B1;
-	Mon, 22 Jul 2024 07:54:21 +0000 (UTC)
+	s=arc-20240116; t=1721634806; c=relaxed/simple;
+	bh=kUn9nFEOr2iq3hY7ICcDWptl8xXfbYZnb4qhiBByKns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hSubJ4w9hdvFASBPldh4Wao1Km32aZW0IlgJB2AF0QAEKCrs1l+8vrsUWJmQUJfIrXcamyFzSHadJ96+wVpMHunANA2z1shb/6pRwrKzlW1zbjd2IAtZM2iKcVfu9pz+6qfXPZSUJV/y7AxAnfZ0k7c+9xY7rPWWUoK2TDKVGhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FEjjZxBJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B8E7C116B1;
+	Mon, 22 Jul 2024 07:53:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721634874;
-	bh=OYRHdXxfKMdclKQlgCt5VIPfcSGA+/ROfi++yX8letM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oG5YJpR0vvG3aK5NTi3fHWDP8/wPCXQEHPpVI03jXrmGjAqE/3ek11pgDez93GupD
-	 MYY5cht8NtUour0LZG0EOmrqfl/+OGAQSwhfArqnV9dkDfvXzt+BYN0GoRqQLdf0w8
-	 YDUR98pajEJ8JNfue+NyDcAaZ9Iwtukzez1OaHeCmGruaLhg9UE9Wgr4pPcIvv5uiw
-	 dIFU4pKtQYikq/zjd4jZhqdwQH73y8o8PB2Iwv4e6pw08hibJoHxG/W9t5i5ZVahkj
-	 dZ6r/bQd4gp9OtjoJH+9/yH+xOhOU700mNl2aycElgfDFiCdhzErMhj4jiW1C3Hzxx
-	 qgTOP+LBC9IQQ==
-Date: Mon, 22 Jul 2024 10:51:25 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: linux-kernel@vger.kernel.org,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Hildenbrand <david@redhat.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
-	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	nvdimm@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arch@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH 06/17] x86/numa: simplify numa_distance allocation
-Message-ID: <Zp4PfVZKAg3djFOu@kernel.org>
-References: <20240716111346.3676969-1-rppt@kernel.org>
- <20240716111346.3676969-7-rppt@kernel.org>
- <20240719172849.000019a0@Huawei.com>
+	s=k20201202; t=1721634805;
+	bh=kUn9nFEOr2iq3hY7ICcDWptl8xXfbYZnb4qhiBByKns=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FEjjZxBJjguPhRvKfb4aYvein3eXH7A2czb+nli12nXC1IdtWnbWqKvDtn6dE2ydd
+	 podxdqn1Qz08Yx7wkqq6x0nohDZThL4KGocFUmK6dE+OvV0gDZxBzYULbuyAyZ7jTa
+	 P4JxzeHB2pk0TxNGYzqc8CSWa2vn1rhdkqm6bsgTabCR421aLB5vQFsAag+f5dXm4V
+	 E6tK2XImq6ZcD0Hg34/8uTLYe/lawXfN7tsZfgpoH45zonyIZcuLzzVabr+Emfkh1T
+	 BGyI6KLRThr8lSc9IR6EuC5ff7FQrNyXzYT5qgmz3puzrSjosnf2RH7bUIc+XFIaBs
+	 b3peUhxYXJi9w==
+Message-ID: <7517b8c1-b46f-498f-bffe-dcecb0914305@kernel.org>
+Date: Mon, 22 Jul 2024 09:53:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240719172849.000019a0@Huawei.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] ASoC: dt-bindings: midas-audio: Add separate
+ compatible for tab3 audio
+To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240716-midas-audio-tab3-v1-0-a53ea075af5a@gmail.com>
+ <20240716-midas-audio-tab3-v1-2-a53ea075af5a@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240716-midas-audio-tab3-v1-2-a53ea075af5a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 19, 2024 at 05:28:49PM +0100, Jonathan Cameron wrote:
-> On Tue, 16 Jul 2024 14:13:35 +0300
-> Mike Rapoport <rppt@kernel.org> wrote:
+On 16/07/2024 21:36, Artur Weber wrote:
+> Unlike the Midas, the Galaxy Tab 3 8.0 does not have a main/sub mic
+> bias regulator, but it does have a separate headset mic bias regulator.
 > 
-> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> > 
-> > Allocation of numa_distance uses memblock_phys_alloc_range() to limit
-> > allocation to be below the last mapped page.
-> > 
-> > But NUMA initializaition runs after the direct map is populated and
+> Add a new compatible for the Tab 3's audio and declare required
+> regulators separately based on the provided compatible.
 > 
-> initialization (one too many 'i's)
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-Thanks.
- 
-> > there is also code in setup_arch() that adjusts memblock limit to
-> > reflect how much memory is already mapped in the direct map.
-> > 
-> > Simplify the allocation of numa_distance and use plain memblock_alloc().
-> > This makes the code clearer and ensures that when numa_distance is not
-> > allocated it is always NULL.
-> Doesn't this break the comment in numa_set_distance() kernel-doc?
-> "
->  * If such table cannot be allocated, a warning is printed and further
->  * calls are ignored until the distance table is reset with
->  * numa_reset_distance().
-> "
-> 
-> Superficially that looks to be to avoid repeatedly hitting the
-> singleton bit at the top of numa_set_distance() as SRAT or similar
-> parsing occurs.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I believe it's there to avoid allocation of numa_distance in the middle of
-distance parsing (SLIT or DT numa-distance-map).
+Best regards,
+Krzysztof
 
-If the allocation fails for the first element in the table, the
-numa_distance and numa_distance_cnt remain zero and node_distance() falls
-back to
-
-	return from == to ? LOCAL_DISTANCE : REMOTE_DISTANCE;
-
-It's different from arch_numa that always tries to allocate MAX_NUMNODES *
-MAX_NUMNODES for numa_distance and treats the allocation failure as a
-failure to initialize NUMA.
-
-I like the general approach x86 uses more, i.e. in case distance parsing
-fails in some way NUMA is still initialized with probably suboptimal
-distances between nodes.
-
-I'm going to restore that "singleton" behavior for now and will look into
-making this all less cumbersome later.
- 
-> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > ---
-> >  arch/x86/mm/numa.c | 12 +++---------
-> >  1 file changed, 3 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/arch/x86/mm/numa.c b/arch/x86/mm/numa.c
-> > index 5e1dde26674b..ab2d4ecef786 100644
-> > --- a/arch/x86/mm/numa.c
-> > +++ b/arch/x86/mm/numa.c
-> > @@ -319,8 +319,7 @@ void __init numa_reset_distance(void)
-> >  {
-> >  	size_t size = numa_distance_cnt * numa_distance_cnt * sizeof(numa_distance[0]);
-> >  
-> > -	/* numa_distance could be 1LU marking allocation failure, test cnt */
-> > -	if (numa_distance_cnt)
-> > +	if (numa_distance)
-> >  		memblock_free(numa_distance, size);
-> >  	numa_distance_cnt = 0;
-> >  	numa_distance = NULL;	/* enable table creation */
-> > @@ -331,7 +330,6 @@ static int __init numa_alloc_distance(void)
-> >  	nodemask_t nodes_parsed;
-> >  	size_t size;
-> >  	int i, j, cnt = 0;
-> > -	u64 phys;
-> >  
-> >  	/* size the new table and allocate it */
-> >  	nodes_parsed = numa_nodes_parsed;
-> > @@ -342,16 +340,12 @@ static int __init numa_alloc_distance(void)
-> >  	cnt++;
-> >  	size = cnt * cnt * sizeof(numa_distance[0]);
-> >  
-> > -	phys = memblock_phys_alloc_range(size, PAGE_SIZE, 0,
-> > -					 PFN_PHYS(max_pfn_mapped));
-> > -	if (!phys) {
-> > +	numa_distance = memblock_alloc(size, PAGE_SIZE);
-> > +	if (!numa_distance) {
-> >  		pr_warn("Warning: can't allocate distance table!\n");
-> > -		/* don't retry until explicitly reset */
-> > -		numa_distance = (void *)1LU;
-> >  		return -ENOMEM;
-> >  	}
-> >  
-> > -	numa_distance = __va(phys);
-> >  	numa_distance_cnt = cnt;
-> >  
-> >  	/* fill with the default distances */
-> 
-> 
-
--- 
-Sincerely yours,
-Mike.
 
