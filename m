@@ -1,185 +1,146 @@
-Return-Path: <devicetree+bounces-87188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57994938C48
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 11:45:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50B8938C9B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 11:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1263F281ED7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:45:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E714B2300B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF8316D9DE;
-	Mon, 22 Jul 2024 09:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 161E216D4F0;
+	Mon, 22 Jul 2024 09:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGO5LSEm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O1sfOHlf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441EE16D9C1;
-	Mon, 22 Jul 2024 09:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E109D16C85D;
+	Mon, 22 Jul 2024 09:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721641426; cv=none; b=dFUXONTYoS+LGFrvOEPCiyIuMBFdytKFyc2mlXORx3myYdzrkQ+fr8+YJ6dc3RNkzpesD2b3vPtB6qZ6kffhYN+B+knvkAdTCWLq5IpO5L1QZ8AGbEwk71YPxNlFvMN1PiwCkR//km7zJzz4ve4YHDkn0Fk9B7E4VREsxqokiF0=
+	t=1721641661; cv=none; b=JdaA5By9E6aPLSNi1RB6gzzSsfgiUGytU86/KhYjHALXipEPgXd3KWuCowk46J/hOe5d2hqVHORO7kQwQIvn1mXPFZtRNVnzLQqY+sfYDUa2O/IuUzwD1hHIltLvpC4f3kDLQcEykJ4GO1f8D4uGyqouhlDHr9yr3rxyvYroHE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721641426; c=relaxed/simple;
-	bh=fIjlu9xUUfZ1E4uHJtjwBsMhk2muIRSxZWPDwYXP9JQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YplXvT7DUF62ZlDS3xYhyBeoe5xsP/OJkvBmwp8G9PITLFWukAG1eDIcZN44yf6kHpm1+NCLTzxQd5BstO8boqbKL6rIUcR4Y+tHkxDeDq1aan8DrwUA6JNj/1mSwkSz1Zxbe1XWWP2KOEGJILD3ZbtLPOoEFSiGJXChPl4Nkyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EGO5LSEm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3DCBC4AF61;
-	Mon, 22 Jul 2024 09:43:45 +0000 (UTC)
+	s=arc-20240116; t=1721641661; c=relaxed/simple;
+	bh=I2y2TqqnrK2D63KA4CkLHjw9bH1MgbFNe/Y7Io7sqq4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UuYHdKARkSnyJYtvz8JTm08QtcFnw50sNVU5O9hkYYE14DZtdCjSvvgl+8O2KqUK/fiE0Ludgeopm2pqc+piX5Y2c981Lo5eIeBuJ2QCtiostUklEcUfxGn+KywDLaiff49VzRx73qzbtnXiqrbTXvw8d+jTy1KBZjS66MUpdoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O1sfOHlf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 605B3C116B1;
+	Mon, 22 Jul 2024 09:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721641425;
-	bh=fIjlu9xUUfZ1E4uHJtjwBsMhk2muIRSxZWPDwYXP9JQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EGO5LSEmo9iIfiz/TT9aZh2F0p9G2NCWfGpOoN8hBD8nAkE+ZiyGvzBxextS83H5W
-	 cK2TP7ZwYT7/YvPZtz1iYHMl3/o4Ioco+g46KVVfItXD3rVYMH0pyLw6uW4a5uyKG8
-	 eUd0FJXvhELmPYoFKw/AMpEoaAnLWXmZacb7psahBOfm7wydjD+aBLuq7yTX6RCpAg
-	 BB2pkV2bdyKgHPx94iBNADxJHqT5gi4HuK1lbEaGT3lDyXhwYSVwVJv12bYVs4WW96
-	 zBqqNExopwv+bkPiUlMkO34LjH2aSqXq6cnAOI2N78SayHZJA9em0fgIbzWL2qCtya
-	 5DEzYNAxhCDxw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1sVpa4-000000006uV-40fQ;
-	Mon, 22 Jul 2024 11:43:44 +0200
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 8/8] arm64: dts: qcom: x1e80100-crd: enable SDX65 modem
-Date: Mon, 22 Jul 2024 11:42:49 +0200
-Message-ID: <20240722094249.26471-9-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240722094249.26471-1-johan+linaro@kernel.org>
-References: <20240722094249.26471-1-johan+linaro@kernel.org>
+	s=k20201202; t=1721641660;
+	bh=I2y2TqqnrK2D63KA4CkLHjw9bH1MgbFNe/Y7Io7sqq4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=O1sfOHlfdDh7zr+ncBzeQ6JidrT3n7iKMSYtn+DVlRAjaDS+A0F9GM6rsoSpkG1n1
+	 FkHISMlPG53uglJJJ9wj4Dx2xuB/+qQBp85dhSVowQQa3Y0tHOG7hyqUH2tdI3m8A9
+	 oLM4SSkCnN1qTf8BT1cuNmccizfk73OhMsQH2RwiCS8Fg0l9TI9louVr8VOXHniFA6
+	 bjj9uNyjmELhBxaPd+CWDi/VoYlIUFKfzR6QSKvpUjuogcp0tht/nkD/VnsDIC6jij
+	 qqAY0avhrNZ0ISq3tnWxU8K4cmzkDNAsgzxPnocOH6bEaRVg7fgHPcSOJWQeCY1/lj
+	 57EDPt8sLCiqw==
+Message-ID: <2f95cda2-c061-4b0e-9f7a-3dc48421281c@kernel.org>
+Date: Mon, 22 Jul 2024 11:47:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v3 02/37] dt-bindings: soc: kvx: Add binding for
+ kalray,coolidge-pwr-ctrl
+To: ysionneau@kalrayinc.com, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Borne <jborne@kalrayinc.com>,
+ Julian Vetter <jvetter@kalrayinc.com>
+Cc: devicetree@vger.kernel.org
+References: <20240722094226.21602-1-ysionneau@kalrayinc.com>
+ <20240722094226.21602-3-ysionneau@kalrayinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240722094226.21602-3-ysionneau@kalrayinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable PCIe5 and the SDX65 modem.
+On 22/07/2024 11:41, ysionneau@kalrayinc.com wrote:
+> From: Yann Sionneau <ysionneau@kalrayinc.com>
+> 
+> Add binding for Kalray Coolidge SoC cluster power controller.
+> 
+> Signed-off-by: Yann Sionneau <ysionneau@kalrayinc.com>
+> ---
+> 
+> Notes:
+> 
+> V2 -> V3: New patch
+> ---
+>  .../soc/kvx/kalray,coolidge-pwr-ctrl.yaml     | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml b/Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml
+> new file mode 100644
+> index 0000000000000..e0363a080ac11
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/kalray/kalray,coolidge-pwr-ctrl.yaml#
 
-Note that the modem may need to be flashed with firmware before use.
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 65 +++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index caae0c3d8c7a..767118831551 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -301,6 +301,22 @@ vreg_nvme: regulator-nvme {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nvme_reg_en>;
- 	};
-+
-+	vreg_wwan: regulator-wwan {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "SDX_VPH_PWR";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 221 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&wwan_sw_en>;
-+		pinctrl-names = "default";
-+
-+		regulator-boot-on;
-+	};
- };
- 
- &apps_rsc {
-@@ -800,6 +816,25 @@ &pcie4_phy {
- 	status = "okay";
- };
- 
-+&pcie5 {
-+	perst-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-+
-+	vddpe-3v3-supply = <&vreg_wwan>;
-+
-+	pinctrl-0 = <&pcie5_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie5_phy {
-+	vdda-phy-supply = <&vreg_l3i_0p8>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
- &pcie6a {
- 	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-@@ -1004,6 +1039,29 @@ wake-n-pins {
- 		};
- 	};
- 
-+	pcie5_default: pcie5-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio150";
-+			function = "pcie5_clk";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio149";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio151";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	pcie6a_default: pcie6a-default-state {
- 		clkreq-n-pins {
- 			pins = "gpio153";
-@@ -1055,6 +1113,13 @@ wcd_default: wcd-reset-n-active-state {
- 		bias-disable;
- 		output-low;
- 	};
-+
-+	wwan_sw_en: wwan-sw-en-state {
-+		pins = "gpio221";
-+		function = "gpio";
-+		drive-strength = <4>;
-+		bias-disable;
-+	};
- };
- 
- &uart21 {
--- 
-2.44.2
+Best regards,
+Krzysztof
 
 
