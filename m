@@ -1,151 +1,127 @@
-Return-Path: <devicetree+bounces-87365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B3E93949A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:07:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A36AF9394BB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:26:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05748281AD9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:07:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA482B21378
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90D11CA84;
-	Mon, 22 Jul 2024 20:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqh7P3D+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F91224EA;
+	Mon, 22 Jul 2024 20:26:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D86717BD5;
-	Mon, 22 Jul 2024 20:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA4217C8D;
+	Mon, 22 Jul 2024 20:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721678844; cv=none; b=sXjUIBcn07y3joz3rdhiAbAoA1HZbnSoU8QQNOTJWSWXQMN6bhI/QQk58qwPR9OTw5F42tQeINEMztxkUS2MUXAxmY/B43dvVxr1gG9Fk7bBIcER1G59ZVKwau0fvvK459xSrvtFiCM1nBitZJ41NgstC8bSO6pT2mcsscWHKjY=
+	t=1721680010; cv=none; b=hvDhWGug/sN40rLxL8SPBcYP2nLnnVapK8ImRjUNS/lSxg6imowOAIKDsrf9wlxsoqGiL+SS24k5Gh4JT3mBL3L1HUOzskBKCLMfsp9kq/GBnbryOLXdYNPJkdV/R0ULPEWczRWGdqFk2gkhk1phZp5XxVLcxNtIl8EaMmSh3Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721678844; c=relaxed/simple;
-	bh=kraaCRPRs6itOqlil/PUf/b33ue4X1ut9QGclpKorW0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YKCT5CkYqvIXsVFnGvppcdKnzvzfIYomLC5TwMVQswr7gU9yFMpHKSZrKFKoWfzYSjpjr7J3YreWs4RoOWUJrYmXSSH0Oxz0d612+hEdp91tiCgCw9HB884NjIJ7NN8rVj5FPxCCtqivcWBMGA3iA5vrTZjgy5trYPY7/Dmrui8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqh7P3D+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB932C116B1;
-	Mon, 22 Jul 2024 20:07:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721678844;
-	bh=kraaCRPRs6itOqlil/PUf/b33ue4X1ut9QGclpKorW0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gqh7P3D+sM193fxeGY6bEuMudt4D75N7f6tpTppaFk8oqYPoVF+6iAE/2kmGVUat3
-	 nxoLmy7e+003BbPO0tU62+AzK0pfU3LrHyibmgH4ScgORB1hhAgRN0DsEe38o/K5Va
-	 QtjCyeH1slEQVt/ckCl6yoY3v7IijfyMoN4zO2qWR2iSclUSUBOmRCBj3rR5YvpK84
-	 cdnnF0gh0HElWcmqK5YWtN7cb0w7sVRvvRrQoJyR3PrDhei5nN9r8cH3l8HraXM6lq
-	 MSRlgg3perOeet6Wj8hcqcSrXkigWoiQ/DpPWONqUn4jeRDbFe8TEIzKRZFEzj5Dm6
-	 YzUwhFnH+/saQ==
-Date: Mon, 22 Jul 2024 21:07:16 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matteo Martelli <matteomartelli3@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marius Cristea <marius.cristea@microchip.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] iio: ABI: generalize shunt_resistor attribute
-Message-ID: <20240722210716.09ca4223@jic23-huawei>
-In-Reply-To: <20240722-iio-pac1921-v3-2-05dc9916cb33@gmail.com>
-References: <20240722-iio-pac1921-v3-0-05dc9916cb33@gmail.com>
-	<20240722-iio-pac1921-v3-2-05dc9916cb33@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1721680010; c=relaxed/simple;
+	bh=PDhWG48FfeZ9Iz4GyMw7dlBvGX6UW/gxvZDmFODusXQ=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=Di4iQz+uHggiHGTHpiuhuVL/3og96A4ADc+L+sR2FyhiNGLUD2n0Czym+5aCY1QPJNmsYiRY5FL8fZnKXU003a6tql608MzR3ieumuImWt1VcySjFXkKNgzFDg6uwIGFqBYyOv6e9eCrea2tgrG7dm741+TXr7/ns+gCJI6x3Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
+	by madrid.collaboradmins.com (Postfix) with ESMTP id A2DE53780692;
+	Mon, 22 Jul 2024 20:26:45 +0000 (UTC)
+From: "Shreeya Patel" <shreeya.patel@collabora.com>
+In-Reply-To: <20240722193946.1246372-1-hoff.benjamin.k@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+X-Forward: 127.0.0.1
+References: <20240719124032.26852-1-shreeya.patel@collabora.com> <20240722193946.1246372-1-hoff.benjamin.k@gmail.com>
+Date: Mon, 22 Jul 2024 21:26:45 +0100
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl, hverkuil@xs4all.nl, jose.abreu@synopsys.com, kernel@collabora.com, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, mchehab@kernel.org, mturquette@baylibre.com, nelson.costa@synopsys.com, nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, robh@kernel.org, sboyd@kernel.org, shawn.wen@rock-chips.com
+To: hoff.benjamin.k@gmail.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Message-ID: <354380-669ec080-1-27ae20c0@20216750>
+Subject: =?utf-8?q?Re=3A?= [PATCH v4 4/4] =?utf-8?q?media=3A?=
+ =?utf-8?q?_platform=3A?==?utf-8?q?_synopsys=3A?= Add support for hdmi input 
+ driver
+User-Agent: SOGoMail 5.10.0
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 22 Jul 2024 12:03:19 +0200
-Matteo Martelli <matteomartelli3@gmail.com> wrote:
+On Tuesday, July 23, 2024 01:09 IST, hoff.benjamin.k@gmail.com wrote:
 
-> Move ABI documentation for custom shunt resistor attributes into the
-> generic iio documentation file. Exception for pac1934: leave it
-> untouched since it does not comply with common iio ABI generalization.
-> 
-> Signed-off-by: Matteo Martelli <matteomartelli3@gmail.com>
-This stands on it's own even if the driver needs a minor tweak or two yet.
-Hence in the interests of not having to remember I've read it before,
-I've queued this patch up;
+Hi Benjamin,
 
+> > Add initial support for the Synopsys DesignWare HDMI RX
+> > Controller Driver used by Rockchip RK3588. The driver
+> > supports:
+> >  - HDMI 1.4b and 2.0 modes (HDMI 4k@60Hz)
+> >  - RGB888, YUV422, YUV444 and YCC420 pixel formats
+> >  - CEC
+> >  - EDID configuration
+> >
+> > The hardware also has Audio and HDCP capabilities, but these are
+> > not yet supported by the driver.
+> >
+> > Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > Tested-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > Co-developed-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> > Signed-off-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> > Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> > ---
+> >
+...
+> > +
+> > +static const struct of=5Fdevice=5Fid hdmirx=5Fid[] =3D {
+> > +	{ .compatible =3D "rockchip,rk3588-hdmirx-ctrler" },
+> > +	{ },
+> > +};
+> > +MODULE=5FDEVICE=5FTABLE(of, hdmirx=5Fid);
+> >
+> >
+> According to the platform=5Fdriver struct, they like the `remove=5Fne=
+w` over remove.=20
+> When I was compiling for Armbian, I was getting a type mismatch that =
+prevented compililng
+>=20
+> See here: https://github.com/torvalds/linux/blob/933069701c1b507825b5=
+14317d4edd5d3fd9d417/include/linux/platform=5Fdevice.h#L236
+>=20
 
-Applied to the testing branch of iio.git. That will be rebased on rc1 once
-available and pushed out as togreg for linux-next to pick it up.
+This patch series is based on linux-next and there seems to be some rec=
+ent changes
+related to .remove and .remove=5Fnew. New drivers are supposed to use .=
+remove()
 
-Thanks,
+See the reason here :-
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tre=
+e/include/linux/platform=5Fdevice.h?h=3Dnext-20240722#n239
 
-Jonathan
+If you apply the patches on top of linux-next then there shouldn't be a=
+ny
+compilation error.
 
-> ---
->  Documentation/ABI/testing/sysfs-bus-iio             |  8 ++++++++
->  Documentation/ABI/testing/sysfs-bus-iio-adc-max9611 | 17 -----------------
->  Documentation/ABI/testing/sysfs-bus-iio-ina2xx-adc  |  9 ---------
->  3 files changed, 8 insertions(+), 26 deletions(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> index 7cee78ad4108..935d67fd1a43 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> @@ -2289,3 +2289,11 @@ KernelVersion:	6.7
->  Contact:	linux-iio@vger.kernel.org
->  Description:
->  		List of available timeout value for tap gesture confirmation.
-> +
-> +What:		/sys/.../iio:deviceX/in_shunt_resistor
-> +What:		/sys/.../iio:deviceX/in_current_shunt_resistor
-> +What:		/sys/.../iio:deviceX/in_power_shunt_resistor
-> +KernelVersion:	6.10
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		The value of current sense resistor in Ohms.
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-max9611 b/Documentation/ABI/testing/sysfs-bus-iio-adc-max9611
-> deleted file mode 100644
-> index 6d2d2b094941..000000000000
-> --- a/Documentation/ABI/testing/sysfs-bus-iio-adc-max9611
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -What:		/sys/bus/iio/devices/iio:deviceX/in_power_shunt_resistor
-> -Date:		March 2017
-> -KernelVersion:	4.12
-> -Contact:	linux-iio@vger.kernel.org
-> -Description: 	The value of the shunt resistor used to compute power drain on
-> -                common input voltage pin (RS+). In Ohms.
-> -
-> -What:		/sys/bus/iio/devices/iio:deviceX/in_current_shunt_resistor
-> -Date:		March 2017
-> -KernelVersion:	4.12
-> -Contact:	linux-iio@vger.kernel.org
-> -Description: 	The value of the shunt resistor used to compute current flowing
-> -                between RS+ and RS- voltage sense inputs. In Ohms.
-> -
-> -These attributes describe a single physical component, exposed as two distinct
-> -attributes as it is used to calculate two different values: power load and
-> -current flowing between RS+ and RS- inputs.
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-ina2xx-adc b/Documentation/ABI/testing/sysfs-bus-iio-ina2xx-adc
-> index 8916f7ec6507..8dbca113112d 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio-ina2xx-adc
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-ina2xx-adc
-> @@ -13,12 +13,3 @@ Description:
->  		available for reading data. However, samples can be occasionally skipped
->  		or repeated, depending on the beat between the capture and conversion
->  		rates.
-> -
-> -What:		/sys/bus/iio/devices/iio:deviceX/in_shunt_resistor
-> -Date:		December 2015
-> -KernelVersion:	4.4
-> -Contact:	linux-iio@vger.kernel.org
-> -Description:
-> -		The value of the shunt resistor may be known only at runtime fom an
-> -		eeprom content read by a client application. This attribute allows to
-> -		set its value in ohms.
-> 
+> >
+> > +
+> > +static struct platform=5Fdriver hdmirx=5Fdriver =3D {
+> > +	.probe =3D hdmirx=5Fprobe,
+> > +	.remove =3D hdmirx=5Fremove,
+> > +	.driver =3D {
+> > +		.name =3D "snps=5Fhdmirx",
+> > +		.of=5Fmatch=5Ftable =3D hdmirx=5Fid,
+> > +		.pm =3D &snps=5Fhdmirx=5Fpm=5Fops,
+> > +	}
+> > +};
+> > +module=5Fplatform=5Fdriver(hdmirx=5Fdriver);
+> > +
+> > +MODULE=5FDESCRIPTION("Rockchip HDMI Receiver Driver");
+> > +MODULE=5FAUTHOR("Dingxian Wen <shawn.wen@rock-chips.com>");
+> > +MODULE=5FAUTHOR("Shreeya Patel <shreeya.patel@collabora.com>");
+> > +MODULE=5FLICENSE("GPL");
 
 
