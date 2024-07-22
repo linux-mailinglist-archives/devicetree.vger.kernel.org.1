@@ -1,162 +1,156 @@
-Return-Path: <devicetree+bounces-87153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0920938AE7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:15:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9393C938B1D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C02B281A26
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:15:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45CD12817E0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD33157A41;
-	Mon, 22 Jul 2024 08:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416A0166308;
+	Mon, 22 Jul 2024 08:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzn8ZJ8c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZMVgYA/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6035464A;
-	Mon, 22 Jul 2024 08:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696F7161313
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 08:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721636111; cv=none; b=LHaWZ3vMvJcYXalP09u7P1zIzamlo3dNR85ZaG4R+2hX1BAsFr4RzEJAGEDHHRbVfeQ1DFmZGK43X19OL+IqKIpcS2JSMB+rKuKWqsRH3OmbHSD6v+yPxL5z2qy0ZTWPz3LBNl+FtnRez3+p6wG0xmB6nLWSQe2r5EUIPWkcneY=
+	t=1721636679; cv=none; b=fSiXRriywv5elseBdh1JmuKbXtCpBRjLgkJXRskORKE2RURS0QKZEqwVDp36s3zLWVHYC6DQSsacfdKk1CDyXaEIA1W/YRI2/j03Dzd1HcaHmaFYy2MxVwnvohnXOsYs5CVCL36sRlHQ46whsRyPBXHdvrxgaMnCDbLiOTAWa3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721636111; c=relaxed/simple;
-	bh=0oGpUqOBsSf4I4Pw/8lsymXSnXjQMTGGP33mr2C9pas=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p7vdEqAYor2zJvC7YTkYfX43LwZqowLYdt5zhlsUAJfGWXhZpEYr9FuZhAKwNEa01X/UhLd2Mtwgw3zrCoyVCU6+gPjSacF2FIecnNW8g6CCKpQAZXrqyPJQaieOLc345FLWG2Dqk5m1N11PczFwMRk50EzfwdtDgvsIfN6aojA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fzn8ZJ8c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B07BC116B1;
-	Mon, 22 Jul 2024 08:15:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721636111;
-	bh=0oGpUqOBsSf4I4Pw/8lsymXSnXjQMTGGP33mr2C9pas=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fzn8ZJ8cp3Zk82f3I2BNhhX9nARwMlxLqulmGtN1oKxM40LXbPT+K4c0loQzD9z71
-	 5pqKv4VTnmiSFGbziwuLAfC82WPLQNGA8QBbp0SQbn9GGI7HXTkcbtASAsYf/pwwDB
-	 5VYhAE0jTCkxyETKAjeN+hy/3Oe/Gtq4jYpcH1h5udXCr6xbAiWG30cKl7DskTeXij
-	 O1ZLislpim2QOatQFticCmor+y1gZCDKYP6bg+ycxiwwnJaWH0YddhQ2zyWEHi3/G3
-	 2B/mXmic2HWCiojOe8/EpGBEZBXeK0TETE9n617J/Tt7PmUW5+n7R2WRgPM5XbO3Jd
-	 EyIzyX1wUBtrw==
-Message-ID: <629a925c-24ef-4a44-832f-a06a60c266a7@kernel.org>
-Date: Mon, 22 Jul 2024 10:15:03 +0200
+	s=arc-20240116; t=1721636679; c=relaxed/simple;
+	bh=dOl0YE5EVmUekTPh1z3GkHps3RoYLWAbv+veTel0xyQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RtShr4ou+uxY7bsfwYinu1JUcptpU7A9J0mmQe4GGeuPhtlADBdaA60HfERIEkH3tWiFHyXy4coy05ikW6OsDPT/GPlR0F70vPHc2cxsT2holEsQzQO3F1ieiaI6rKTYMBh+VnwRTurV63qm6ssaSkE6QVX/Dt4zAFcwHi48lwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZMVgYA/S; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52f01afa11cso1461966e87.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 01:24:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721636675; x=1722241475; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZgzE/IxCJWBRiP2I7PFm4ei8b0N+E/ct1yB02Kh58Sw=;
+        b=ZMVgYA/SKaQC5f2j9DZjl3cx19EfHbzZoFFI2Dgf89FGpjjssAdU0d9jLpGo8X5EwI
+         0D0hJpljANaOdVTKKpWxS7VY6NAFDjFGC3cYvu3NsHHag5Lc6V3xoeeRH6TZMxN/1J2j
+         3XyqnoBObhm+T5X9G4rDZf4fLsbACtWP+aUaN1to13U/wfMx/eoiUGyHQjBHQT19z25o
+         vXQHLD3tXrnGrOxhlC2uvGv3SEUgJiluoUT56KGQGxgHjRPx9y1ZShmDLpuNXbw7xc5x
+         EtjUEBOsZUanuusKaJIORj8nBzHtFlcWR2YMROUs+ivLpCodFkpgry/akJ8XcPJMyuU2
+         3rDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721636675; x=1722241475;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZgzE/IxCJWBRiP2I7PFm4ei8b0N+E/ct1yB02Kh58Sw=;
+        b=Nrt2w5mSQ0GNoEd8K3nBeNGf/KI4CwXGpFIXq7Juf2Zlrr9M/GQx8ylu5VvLOJ9rpT
+         E4uV2vUDgwyLu/4CwDMAJgrKVwWiWba9XLD7WZLNhKpVIF2oP2WC3M8dcJTCyvQsRAl5
+         0JhkZUOe2XZ6Z2dKKOZlwvsAZGhVZuelpoYB+RT9Zl7+PtsfmgZA0MVKyP+VJyv83Frn
+         QkmREjVZGtOeSw2xe2qJ4jcAuRH6WBUv/jUVpKCI+HCIwmsD6jKCk3uWLN1M9b+mF1RZ
+         2/ADwAI0I3cybYHCCwstdWy9zShsElntyLA/x1uyY9pQUgj2lNqV+tXzEVhayuKg5HTe
+         FjdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9E0BBW8XyytU4+sXTAN9zLXQvt0fafIUCNo+EKJCQTOkda2A7Ns/gARpxAqyjYfndClziRlLnNjFwbFC+djUBgPynh4treylgkg==
+X-Gm-Message-State: AOJu0YyxEbN7ICHpCDPquu2KB4CsV5NEdJpbQ75ZHaarPRkeG7N95g2b
+	4tFUBbtCyrJ67jHt3KGTaZOe2218XXMTVpi8hltttpg/pO8wos/6CfeFMs4+/8Q=
+X-Google-Smtp-Source: AGHT+IFrF/v3D/EbEYt4Vwr1M6wYuXzOKRe+7Qed7iAdA18QZ/SGcjYDjEKN1Yi8ZAK82iRriZoPWw==
+X-Received: by 2002:a05:6512:a86:b0:52c:b008:3db8 with SMTP id 2adb3069b0e04-52efb77a765mr3360812e87.38.1721636675345;
+        Mon, 22 Jul 2024 01:24:35 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ef5571de0sm1114612e87.202.2024.07.22.01.24.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jul 2024 01:24:34 -0700 (PDT)
+Date: Mon, 22 Jul 2024 11:24:33 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, konrad.dybcio@linaro.org, djakov@kernel.org, 
+	quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] clk: qcom: ipq5332: Register
+ gcc_qdss_tsctr_clk_src
+Message-ID: <bgu4ii2lumk2afgendf2hrcj57gavqd7k3essblcqnhue2auy3@bkmfy4zjv3xs>
+References: <20240722055539.2594434-1-quic_varada@quicinc.com>
+ <20240722055539.2594434-4-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/3] dt-bindings: watchdog: ti,davinci-wdt: convert to
- dtschema
-To: Kousik Sanagavarapu <five231003@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Nishanth Menon <nm@ti.com>,
- Santosh Shilimkar <ssantosh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240721170840.15569-1-five231003@gmail.com>
- <20240721170840.15569-3-five231003@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240721170840.15569-3-five231003@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240722055539.2594434-4-quic_varada@quicinc.com>
 
-On 21/07/2024 18:28, Kousik Sanagavarapu wrote:
-> diff --git a/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-> new file mode 100644
-> index 000000000000..1829c407147d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+On Mon, Jul 22, 2024 at 11:25:37AM GMT, Varadarajan Narayanan wrote:
+> gcc_qdss_tsctr_clk_src (enabled in the boot loaders and dependent
+> on gpll4_main) was not registered as one of the ipq5332 clocks.
+> Hence clk_disable_unused() disabled 'gpll4_main' assuming there
+> were no consumers for 'gpll4_main' resulting in system freeze or
+> reboots.
+> 
+> After registering gcc_qdss_tsctr_clk_src, CLK_IGNORE_UNUSED can
+> be removed from gpll4_main.
 
-Use fallback as filename, so ti,keystone-wdt.yaml
+Commented below.
 
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI DaVinci/Keystone Watchdog Timer Controller
-> +
-> +maintainers:
-> +  - Kousik Sanagavarapu <five231003@gmail.com>
-> +
-> +description: |
-> +  TI's Watchdog Timer Controller for DaVinci and Keystone Processors.
-> +
-> +  Datasheets
-> +
-> +    Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-> +    Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,davinci-wdt
-> +      - ti,keystone-wdt
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 
-This does not match the original binding and commit msg did not explain
-why such change is necessary.
+Fixes?
 
-This also does not match DTS.
+> ---
+>  drivers/clk/qcom/gcc-ipq5332.c | 12 +-----------
+>  1 file changed, 1 insertion(+), 11 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
+> index f98591148a97..237b6a766179 100644
+> --- a/drivers/clk/qcom/gcc-ipq5332.c
+> +++ b/drivers/clk/qcom/gcc-ipq5332.c
+> @@ -126,17 +126,6 @@ static struct clk_alpha_pll gpll4_main = {
+>  			.parent_data = &gcc_parent_data_xo,
+>  			.num_parents = 1,
+>  			.ops = &clk_alpha_pll_stromer_ops,
+> -			/*
+> -			 * There are no consumers for this GPLL in kernel yet,
+> -			 * (will be added soon), so the clock framework
+> -			 * disables this source. But some of the clocks
+> -			 * initialized by boot loaders uses this source. So we
+> -			 * need to keep this clock ON. Add the
+> -			 * CLK_IGNORE_UNUSED flag so the clock will not be
+> -			 * disabled. Once the consumer in kernel is added, we
+> -			 * can get rid of this flag.
+> -			 */
+> -			.flags = CLK_IGNORE_UNUSED,
 
+You can't drop it in this patch, since GPLL4 still can get disabled if
+GCC_QDSS_TSCTR_CLK_SRC gets disabled. This chunk should go to the next
+patch (or you should reorder the patches).
 
-Best regards,
-Krzysztof
+>  		},
+>  	},
+>  };
+> @@ -3388,6 +3377,7 @@ static struct clk_regmap *gcc_ipq5332_clocks[] = {
+>  	[GCC_QDSS_DAP_DIV_CLK_SRC] = &gcc_qdss_dap_div_clk_src.clkr,
+>  	[GCC_QDSS_ETR_USB_CLK] = &gcc_qdss_etr_usb_clk.clkr,
+>  	[GCC_QDSS_EUD_AT_CLK] = &gcc_qdss_eud_at_clk.clkr,
+> +	[GCC_QDSS_TSCTR_CLK_SRC] = &gcc_qdss_tsctr_clk_src.clkr,
+>  	[GCC_QPIC_AHB_CLK] = &gcc_qpic_ahb_clk.clkr,
+>  	[GCC_QPIC_CLK] = &gcc_qpic_clk.clkr,
+>  	[GCC_QPIC_IO_MACRO_CLK] = &gcc_qpic_io_macro_clk.clkr,
+> -- 
+> 2.34.1
+> 
 
+-- 
+With best wishes
+Dmitry
 
