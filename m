@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-87161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E4E938B4C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:35:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A4A938B4F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C88751F21A4F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:35:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39DE0281158
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C05381667CD;
-	Mon, 22 Jul 2024 08:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C7C1662EF;
+	Mon, 22 Jul 2024 08:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CXqbKitv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y5yKiBMk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAEA0163A97
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 08:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE8E125BA
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 08:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721637342; cv=none; b=h9wpATHoDxkzZjXuRbX/edUI2QwzmIXOLZbNCnmrvUQDtSNr6ObaaKFfs1gI8XrdtDEVbuYX03Akh9gdLmtpB7o9ZEsma9mcDDrOsm63ycfLnL1/RpZBqDVPMGCxjCuJmFb8vKkYXVJc1zbN2rzDF8qJXLrLj3qt6/IUDgmiXW0=
+	t=1721637423; cv=none; b=g8+Ya/spaC6VnX7ZQT4WFpwA5HET3wlh4Mkr89nIH17LLYfjmMJIP8IhtAEVu2Ep32vevyyNf3ktsRF9mp0ILIyu1ZhcjdfUkiJuJgSgNOXhGLmcS4GDsjX+gOctOnFdAvSFsx1ZSRdiyUvdC9PnP151Hf4HOU5cuVTGrX7E2ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721637342; c=relaxed/simple;
-	bh=U7Eznn4L+ov25iSdpx1HiOLl16tIkq7P1rLsGayDoAM=;
+	s=arc-20240116; t=1721637423; c=relaxed/simple;
+	bh=uFac+wso6To65ZH90CLL7kbKcuNjoBFWUVBgjyExYGc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jFD+b7Cn0GuCG6/yTnMutz5scXMzfxLY8ty/6Jf6BgVfX6941H6S02P3rY4UpSIdYIXJZ9Ij6Pxrsc09Tq76jm7Gds5hHa8OBBql7Urj8/ZLjGpGSNAqCZEItcVNGIkgZAHHZdK9xcf2VR/6ti1sslOV2ICdu26xc+nMUc41R8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CXqbKitv; arc=none smtp.client-ip=209.85.167.42
+	 In-Reply-To:Content-Type; b=SUzshQH+b/pNGAvNwB/Ves5dnhNrE9JU7ZT/O32uG+CwzxxZL63a44Gj6pEWF9c4zOTnfvuRU6Hj1rc5P8G2pbHaxYJWo3eyFdVXOokfAYa7dHZ3VDwpvnukD/h10TBDn0/Vpm7eErZf1ZD2MPLwrma0q7AsC+UVyYMpo4NrA2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y5yKiBMk; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52efd08e6d9so1972222e87.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 01:35:39 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52f04b3cb33so1001319e87.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 01:37:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721637338; x=1722242138; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721637420; x=1722242220; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cWHKylAsBhQdum7PEydgBYOZJmVi93mkje+AFT6B2K8=;
-        b=CXqbKitvEVLzkLso1i/9UcR9t4eKHrkVSqNwHL2fQRAKWH6n1u1GiVuUGtGCDlH6xz
-         3KI2G5fSsS325Bq89FAcm+oxbb62kFOhIcPBOBTpX3xuqmuVh8KX+jfkzPHPcj+TjrQ1
-         7f9pqoUpcfaKLra6+koYE2rE7ISo9LWtlrDGqGdv7sq4pK12GOsNC0ZUQhJ2Ped2PTwC
-         ufMhrJP/n5vCpIwf54CF6SdaCVHwKR2Crq3+MQExi/W4Z+qysZZbjoDOJ2i1dx04sA8N
-         QNIxzHzsfO8y6hbXAtQh+NoXb2qnvI9V/+z1dKkl7x87vVWEhxVltIAHLrIUPnNK0Qwx
-         bYYA==
+        bh=V+xJBcHz+rjfObl0ev5RVTTsckaNdPF4U6pdLyHZvdk=;
+        b=Y5yKiBMkS2d+irhj7aA1PWIGsezX92xeYm9fL3zpue3tbAFC1ViiufJ+K2mmkawRUF
+         XNNoaTfDbGV4QeASAHahcQNlYxR1539ddigHqz20nAR04XxoUvjI5uWPUK0v93acCp/A
+         HvPnb5YDv/tVG6QoL7SgMQVJmrOzNJMVjNkYL/dAtHvhh863f/UBUrLaRm+oF7FgAsoL
+         wqJHie7czhoFttUD/wusFVLnTo+e/z7XA1VRr8OBILOi2Qyw3Q7hHuNgykgXVPSesSPR
+         Q79w+SYCQCWYcfQSkoOPA5wGkBwSRfyFCfJy/7PzTukq2XE80S5HaVARic4X/NrW59/2
+         kHdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721637338; x=1722242138;
+        d=1e100.net; s=20230601; t=1721637420; x=1722242220;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cWHKylAsBhQdum7PEydgBYOZJmVi93mkje+AFT6B2K8=;
-        b=xUTZxZggJkrdf5MzaULp0QUagc2B/v4sH//3GU9pKgMRex/IsG4+OGhvbRVy9GW7ag
-         AMeWKEbtaKr1gZl8fYDCDie7xKFOVia49mAzuD0DIwd/lHLVy5R3f3u1CYQTudB3JqVV
-         u+hjAWPE3LloU3bbEmLzLU/JThzijl74nlzVRCF5DDbPzb/MsTvnomAWpdbgfkLzfCpp
-         HxsryP/hTBtl4O/f0leAYIPDuT+INd8SDpriBQklygM/D43y89ydjLH5NRkH/du2xfqB
-         b9tzEC3xk1IRFe/f4IgEjnLJcxOYeMtCPyuLaEo/NuDrykF59Pm8y/6eFseerwIwI6Tq
-         B6UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWK1G8fbERW1kUTIrTCTY5RwFHz6xbvCGReca4ny95HUwemYuxmTQlJc60Kv6LOWlEnMHjiBFzUQg864Oa+s5gUY5hfQjZvOBE4fg==
-X-Gm-Message-State: AOJu0YwU+/upSVW23rN3tm8um2y6/CVZd/X1uZkokcxlB/rTwF726i+r
-	drEzVFl37t3y5kj6f99jdZuwY7KC/oG7MUay31OCm3kpSOFSwRXUqVNyDA8WQcQ=
-X-Google-Smtp-Source: AGHT+IHjevizuibJDz5E5VdEkI5v5scWCUWFEx47E6z9+6Rl01COJBoI+jzaAXjPoRVvS1rMHPbfkg==
-X-Received: by 2002:a05:6512:ad0:b0:52c:def6:7c97 with SMTP id 2adb3069b0e04-52efb885765mr3305700e87.45.1721637337693;
-        Mon, 22 Jul 2024 01:35:37 -0700 (PDT)
+        bh=V+xJBcHz+rjfObl0ev5RVTTsckaNdPF4U6pdLyHZvdk=;
+        b=szjztiPNbyVCyjcN+h0jA4ZrM4PDm7skgzuY8QXhbq2iRLikhZvuWa7PPPMLOmRhbC
+         fylZtUaiNlm2FejwJmXKdQZ5z9ofkWlp+Wq+67NhY5SxDDF/i8e3I2ytDGwMWXpujSSe
+         lQOiMFDUEcJQSLU7WmHUeozkjW6nXbRPN+rQlz//OHEt64A8Uy6+Zg4IQEdJ3o94715a
+         Kvwz8lL40/ND+xIi7ZKmCP70pYyCmmDvK6X/34md6Kgk3RmwDhiBQiLD03THkXvgFD1v
+         ixHMw9sQfE0x2nu/6qSESgP9+rnfDtClBDRxCuBbJl5IgydRZG16GSk9OcQoKDUXrhSC
+         dxbA==
+X-Forwarded-Encrypted: i=1; AJvYcCX2vY9bKghnGju+sUm0zySak+yRvquW0eTIbM2SZrMCezV/nfDMF4paiqooIWB8wB+J/AeSxRVwha2LTSip8UfnJp1aZ7efLW/B4Q==
+X-Gm-Message-State: AOJu0Yy8JT0ZYTvlPgEncMDWyfxxhWAReTWlhFg+RqOtPY8prc0YWGNl
+	IbGNGWy+izZIKbBkhJTpSA5Ll9OvW9+cg+RmK3O2uSuQbnyKvFEHIweprM1wM9Q=
+X-Google-Smtp-Source: AGHT+IFmpfscK1WTOjVZQjQTnxUQohuWKxfi8uGHdDrZ5voFPoXifd8LRy668C8w4ZhTUsGdbxUWRQ==
+X-Received: by 2002:a05:6512:3e14:b0:52c:83c7:936a with SMTP id 2adb3069b0e04-52efb7ae40amr5379483e87.42.1721637419559;
+        Mon, 22 Jul 2024 01:36:59 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30aaa253fsm5757883a12.23.2024.07.22.01.35.36
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a3c94fc2esm388531666b.210.2024.07.22.01.36.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jul 2024 01:35:37 -0700 (PDT)
-Message-ID: <a4b19a3f-c3d2-4d49-8595-fc4df208aef6@linaro.org>
-Date: Mon, 22 Jul 2024 10:35:34 +0200
+        Mon, 22 Jul 2024 01:36:59 -0700 (PDT)
+Message-ID: <29c10415-4b59-4aff-bfef-8cfaf090e361@linaro.org>
+Date: Mon, 22 Jul 2024 10:36:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/12] arm64: dts: qcom: sm6115-pro1x: Add PCA9534 IO
- Expander
+Subject: Re: [PATCH 03/12] arm64: dts: qcom: sm6115-pro1x: Add Goodix
+ Touchscreen
 To: Dang Huynh <danct12@riseup.net>, Bjorn Andersson <andersson@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
@@ -86,7 +86,7 @@ Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240722-qx1050-feature-expansion-v1-0-c4d486435b96@riseup.net>
- <20240722-qx1050-feature-expansion-v1-2-c4d486435b96@riseup.net>
+ <20240722-qx1050-feature-expansion-v1-3-c4d486435b96@riseup.net>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -124,19 +124,69 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240722-qx1050-feature-expansion-v1-2-c4d486435b96@riseup.net>
+In-Reply-To: <20240722-qx1050-feature-expansion-v1-3-c4d486435b96@riseup.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22.07.2024 9:10 AM, Dang Huynh wrote:
-> F(x)tec Pro1X comes with PCA9534 IO Expander, it is used for enabling
-> touch screen VDD/VDDIO and keyboard's caps lock LED.
+> The Fxtec Pro1X touchscreen uses Goodix GT9286 chip.
 > 
 > Signed-off-by: Dang Huynh <danct12@riseup.net>
 > ---
+>  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 49 +++++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
+> index 43b4bee72dd8..d91d31646b29 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
+> @@ -62,6 +62,20 @@ key-volume-up {
+>  			wakeup-source;
+>  		};
+>  	};
+> +
+> +	ts_vdd_supply: ts-vdd-supply {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ts_vdd_supply";
+> +		gpio = <&pca9534 3 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	ts_vddio_supply: ts-vddio-supply {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ts_vddio_supply";
+> +		gpio = <&pca9534 2 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
 
+I suppose you don't know the voltages for these?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>  };
+>  
+>  &dispcc {
+> @@ -86,6 +100,27 @@ pca9534: gpio@21 {
+>  	};
+>  };
+>  
+> +&i2c2 {
+> +	status = "okay";
+> +	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
+> +	clock-frequency = <100000>;
+> +
+> +	touchscreen@14 {
+> +		compatible = "goodix,gt9286";
+> +		reg = <0x14>;
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ts_int_n>, <&ts_rst_n>;
+
+reverse order, shift these down below supplies
+
+> +
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <80 IRQ_TYPE_LEVEL_LOW>;
+
+interrupts-extended
 
 Konrad
 
