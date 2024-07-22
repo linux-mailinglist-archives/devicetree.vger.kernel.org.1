@@ -1,263 +1,162 @@
-Return-Path: <devicetree+bounces-87419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A9219396A2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:38:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 568CE9396A7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:41:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD99A1F22358
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:38:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 052BB28240B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC913F9FC;
-	Mon, 22 Jul 2024 22:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF04446A2;
+	Mon, 22 Jul 2024 22:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFICJtNi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HUuJIiOa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411EBD512;
-	Mon, 22 Jul 2024 22:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD503C099
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 22:40:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721687904; cv=none; b=FXNUFxSQxTlqoLUMxNV4bG0nJ92AoKjEWSWNOWpCoGmPhgZ+YFI7dM/P8Mx+iixzm62UaPKAwA8ot4mk2a5hwa2Zv6IEawUH/IaqU/zP3FE/1vfyYJC6nKSSzO5HwQ35lOLuj8qF/Ou9jhn7Ou+XNuHQ+iojOiqKPiedd5PfxnE=
+	t=1721688059; cv=none; b=pnD/YNksPUBf1XAkbF6oJj+9rT24xdfZxFmQTrDAC1/QnPtWpdv3p/35VnsLoGIkgmVMn6mTMcMsYIRMp8w6elXlmVSIRfdHA2ukBtKda9N0Q5RPUVVK1DNw3v3Q4H8NOwcdjkEHhrtwUfzH8gljamhcYhVRkauSaHwVEnzAQBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721687904; c=relaxed/simple;
-	bh=M/zsupZtOVoOtw7sD2RiHJfeIhVHyAa2UsCMK9eHAX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N1Th7ONvhRQ+Zrnqz/63DWzQ4p7rPi3KyAdgdIT75FG729EyCJJCX2lbksIV1U9AiqbAE+qjJM1Tjl4QPJ4aNLn4uPJyqz0NETMr8zUqPiwzE0jHifxKTHUyAFwm982tObbc4ovJ+u1MqS5zdmVx+3qw793rQ3Mntf3LkhVbsbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFICJtNi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA16C116B1;
-	Mon, 22 Jul 2024 22:38:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721687903;
-	bh=M/zsupZtOVoOtw7sD2RiHJfeIhVHyAa2UsCMK9eHAX8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EFICJtNi1fLEb0f+8fdbIXpBUEKT1ABXvzBrCXDomr7V3Ed31KCf0VGDPJVBxeJ2s
-	 PnKhXh8WD7ZQ9W8Rlz7UCWM6covqugGrB/2xqkBdFF2BmONHYb1mIvCj2bxnqHZUMM
-	 2NQA+fc9nS9RK2hbSDkVulOQD0NxNfic2Ybr9V1CmIcceRisMmcbJNuQoMEIGe+E2T
-	 b3f59Tl6hxFj/s0r+wcqbpsI2r4ZyWn8+g/iff1BYtzVIJuxkT/Cf+mBezAdi0s9SO
-	 nnO1LvVqdAYKx9h7HYKmZy+mUg5FQSf7fOIQch7kIdWtuFLYsH5BynSAXZkRVTmniL
-	 9+5JMECBNeKTg==
-Date: Mon, 22 Jul 2024 16:38:14 -0600
-From: Rob Herring <robh@kernel.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org,
-	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org,
-	francesco@dolcini.it, frank.li@nxp.com
-Subject: Re: [PATCH v2 01/16] dt-bindings: display: imx: Add some i.MX8qxp
- Display Controller processing units
-Message-ID: <20240722223814.GA183822-robh@kernel.org>
-References: <20240712093243.2108456-1-victor.liu@nxp.com>
- <20240712093243.2108456-2-victor.liu@nxp.com>
+	s=arc-20240116; t=1721688059; c=relaxed/simple;
+	bh=A1MImBG/4Ub+ppby1NQzwy/xf7BWO0DiFRQK5BMDX+s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nEqY7qJuC2lsqfrEtuhSujhf5ICUmP/vvlbRwSWCHhUwhaBWWdjvseR0FI07kkug48sRok9Qx+Irbe6t1D8EV2tQ3ClHwZMJl0Fqb7CzVG3gM/wZ0YivGDKKK2TiggpOdiMyXGUlBaAL0NuLX1tqYU/cUN2t1PYSEq3sZaQA/Dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HUuJIiOa; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5a156557026so4127768a12.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 15:40:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721688056; x=1722292856; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EuoOr57iHp541JD4Orw5V6aBtbRpDgRacOrKbR1yC0c=;
+        b=HUuJIiOaYHYG3PpnB7pcHCjrrxDsD99AS0epKqdg79SsyHX+bWpJjALjsIPerNLe23
+         RLBTxu7Y6TtgV1ri0gbzIZVV40UqvTW2iM5Zin3SZOXV1eJW9qC7Jck2CDboPCfJ3aRd
+         O3j1yMb2w9tMno+/rhwbP+X1u1UGKnpy9nPt3U+WCH7s3K2+LQZOx4wmq+ibrfg23fjo
+         YFNpEWsj7JAfK+m/7GimIfWoWDlZgE8NaJvqCzl/gX7bqoysfD5JSmtsv/xvmUj8QohB
+         FvypmgqVGXze53opYHXH/GCpULwXUJNtxrf+jnSHrKGfl2lPwGkgoKSEvE52rsgthelZ
+         SHrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721688056; x=1722292856;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EuoOr57iHp541JD4Orw5V6aBtbRpDgRacOrKbR1yC0c=;
+        b=jLfdGdXCt76qhkAip8vCkZ6mTfEvQ3nJysYgx4Dkci9BD+Z5EFECIR7CtOfr++rMHS
+         JYi0WnIHFtkdsxyc8JT96rIiMsXTjUDtoN4US/C9QvwQKp8ZoGCdn/EheI2NSN05KaCJ
+         zvC3VxYoCABWcxZJdgQDNW7sPQbtKGVjmtMrMzkDyG9axVPdKEWfg+5yal7KTvO6HvJW
+         x4iVsZ9zCLFna1X3qhBF90N3IYVB+HcBViPUdYFK2tUyCxJg9oXR+MygR1Yj88ktUBqe
+         mW91IB1sDpLADpcfHuZ0lbuFaQJkM5gGW1y+qWwW0Dqy02+8Bn0pAAPAkiGH0Ka+OwEB
+         afgA==
+X-Forwarded-Encrypted: i=1; AJvYcCXKb0PJ+BtnoFRsABumC1OktIl3PHCP98FIqdWZYKff6q5G0cErrTQluR10hMrCdjRERAWOYAKtFpM1yQ8PpDzpj6qw3WmaETezEA==
+X-Gm-Message-State: AOJu0YxGRdaBaLdvbiD305Dach4V8t7FWWgwoyv7vC1Clti92k/l3eOQ
+	1E2sFFdkJ62LQCXViImXac/ubsTW2pLYZ0hKzXbR+aRkpJpI0OLz/xZ0VUAcxLs=
+X-Google-Smtp-Source: AGHT+IFzH4mDO2rn5Zy0cjrwVfpZfObxV+v52eMF+lzWJEi/O9VsboOHq/F4i8djLtqqhu2/Jvu3Vg==
+X-Received: by 2002:a17:907:7d88:b0:a77:cdaa:88aa with SMTP id a640c23a62f3a-a7a4bfb988dmr587883466b.4.1721688055448;
+        Mon, 22 Jul 2024 15:40:55 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a3c94d241sm468225666b.190.2024.07.22.15.40.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jul 2024 15:40:55 -0700 (PDT)
+Message-ID: <d73036be-e357-4e4e-b12e-334a5f5cfc49@linaro.org>
+Date: Tue, 23 Jul 2024 00:40:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240712093243.2108456-2-victor.liu@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add Lenovo ThinkPad T14s Gen
+ 6
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
+ <20240719-topic-t14s_upstream-v1-1-d7d97fdebb28@linaro.org>
+ <20240722212434.GA112051-robh@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240722212434.GA112051-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 12, 2024 at 05:32:28PM +0800, Liu Ying wrote:
-> Freescale i.MX8qxp Display Controller is implemented as construction set of
-> building blocks with unified concept and standardized interfaces.
+On 22.07.2024 11:24 PM, Rob Herring wrote:
+> On Fri, Jul 19, 2024 at 10:16:36PM +0200, Konrad Dybcio wrote:
+>> Document the X1E78100-based ThinkPad.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> index f08e13b61172..8af56b602de3 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> @@ -1038,6 +1038,12 @@ properties:
+>>                - qcom,sm8650-qrd
+>>            - const: qcom,sm8650
+>>  
+>> +      - items:
+>> +          - enum:
+>> +              - lenovo,thinkpad-t14s
+>> +          - const: qcom,x1e78100
+>> +          - const: qcom,x1e80100
 > 
-> Document some processing units to support two display outputs.
-> 
-> ConstFrame, ExtDst, FetchLayer, FetchWarp and LayerBlend processing units
-> are in pixel engine.  FrameGen and TCon processing units are in display
-> engine.
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v2:
-> * Drop fsl,dc-*-id DT properties. (Krzysztof)
-> * Add port property to fsl,imx8qxp-dc-tcon.yaml. (Krzysztof)
-> * Fix register range sizes in examples.
-> 
->  .../imx/fsl,imx8qxp-dc-constframe.yaml        |  44 ++++++
->  .../display/imx/fsl,imx8qxp-dc-extdst.yaml    |  72 ++++++++++
->  .../imx/fsl,imx8qxp-dc-fetchlayer.yaml        |  30 +++++
->  .../imx/fsl,imx8qxp-dc-fetchunit-common.yaml  | 125 ++++++++++++++++++
->  .../display/imx/fsl,imx8qxp-dc-fetchwarp.yaml |  30 +++++
->  .../display/imx/fsl,imx8qxp-dc-framegen.yaml  |  64 +++++++++
->  .../imx/fsl,imx8qxp-dc-layerblend.yaml        |  39 ++++++
->  .../display/imx/fsl,imx8qxp-dc-tcon.yaml      |  45 +++++++
->  8 files changed, 449 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-constframe.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-extdst.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchlayer.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchunit-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchwarp.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-framegen.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-layerblend.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-tcon.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-constframe.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-constframe.yaml
-> new file mode 100644
-> index 000000000000..94f678563608
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-constframe.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dc-constframe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8qxp Display Controller Constant Frame
-> +
-> +description: |
-> +  The Constant Frame unit is used instead of a Fetch unit where generation of
-> +  constant color frames only is sufficient. This is the case for the background
-> +  planes of content and safety streams in a Display Controller.
-> +
-> +  The color can be setup to any RGBA value.
-> +
-> +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8qxp-dc-constframe
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: pec
-> +      - const: cfg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    constframe@56180960 {
-> +        compatible = "fsl,imx8qxp-dc-constframe";
-> +        reg = <0x56180960 0xc>, <0x56184400 0x20>;
-> +        reg-names = "pec", "cfg";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-extdst.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-extdst.yaml
-> new file mode 100644
-> index 000000000000..dfc2d4f94f8e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-extdst.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dc-extdst.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8qxp Display Controller External Destination Interface
-> +
-> +description: |
-> +  The External Destination unit is the interface between the internal pixel
-> +  processing pipeline of the Pixel Engine, which is 30-bit RGB plus 8-bit Alpha,
-> +  and a Display Engine.
-> +
-> +  It comprises the following built-in Gamma apply function.
-> +
-> +  +------X-----------------------+
-> +  |      |          ExtDst Unit  |
-> +  |      V                       |
-> +  |  +-------+                   |
-> +  |  | Gamma |                   |
-> +  |  +-------+                   |
-> +  |      |                       |
-> +  |      V                       +
-> +  +------X-----------------------+
-> +
-> +  The output format is 24-bit RGB plus 1-bit Alpha. Conversion from 10 to 8
-> +  bits is done by LSBit truncation.  Alpha output bit is 1 for input 255, 0
-> +  otherwise.
-> +
-> +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8qxp-dc-extdst
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: pec
-> +      - const: cfg
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: shdload
-> +      - const: framecomplete
-> +      - const: seqcomplete
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    extdst@56180980 {
-> +        compatible = "fsl,imx8qxp-dc-extdst";
-> +        reg = <0x56180980 0x1c>, <0x56184800 0x28>;
-> +        reg-names = "pec", "cfg";
-> +        interrupt-parent = <&dc0_intc>;
-> +        interrupts = <3>, <4>, <5>;
-> +        interrupt-names = "shdload", "framecomplete", "seqcomplete";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchlayer.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchlayer.yaml
-> new file mode 100644
-> index 000000000000..804a3ea7419f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchlayer.yaml
-> @@ -0,0 +1,30 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dc-fetchlayer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8qxp Display Controller Fetchlayer
-> +
-> +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +
-> +allOf:
-> +  - $ref: fsl,imx8qxp-dc-fetchunit-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8qxp-dc-fetchlayer
+> Why 2 chip compatibles? Please explain in the commit msg.
 
-As the fetch units only differ by compatible, combine them and the 
-common schema into 1 schema doc.
+Just like other entries in this yaml, the one in the middle is a
+fuse variant of the latter one. I'll mention this.
 
-Rob
+Konrad
 
