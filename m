@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-87350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31039393B5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:42:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F2AB9393B9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:42:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5A8F1C2170E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:42:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E397282302
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74B6172784;
-	Mon, 22 Jul 2024 18:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667F2172BDA;
+	Mon, 22 Jul 2024 18:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GD7ke6BJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bp0CrouD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BDE117277F;
-	Mon, 22 Jul 2024 18:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDD9172BD1;
+	Mon, 22 Jul 2024 18:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721673702; cv=none; b=rrdjdGhNaAM5Qr94KVRhd0/D7m2qjN5eUyYgLhqfQrDaAXOAX5cPkXD9LEV7GnBJa9zBhr62QQ0lCScCF8k5LHcZ7zNApH7repQdDu4vwAcYy7gFaAJKO0LsORYY8AOKHftNidrYbbsSvgQHySRFMWSEYu9FKpiAh3aydkO7PXc=
+	t=1721673706; cv=none; b=G0TkvAUDHSn5poWJRJjObLgepGr9vJYNHfZa6ddEQb1M4zpw/hmIXofuC55TOB4p0aQrEYG+DSEMUAPvAt92BZXwPMt5XV5iVfedx06EJ7Dws+9HHmHPfXirzop0UfajNrvBh7i0ZqOtQJJWqMpN2x2EwUedgCWulHY3nvyfvuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721673702; c=relaxed/simple;
-	bh=vxkBtcXPflRKx6JflN6P2jLEpplVf/tdl4WD1koeSng=;
+	s=arc-20240116; t=1721673706; c=relaxed/simple;
+	bh=itmwri9pB8iYLM1WV6O/hF7Nn5gJN5v0SqaL03cJnX0=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=jk81nDASK7hdQTJQJAheGlcT4u8PY10RCuQ2iEeclHnlao0Pjqw0GNFYpbVld3qZZt0bLNdQONqQ0X4mTzsXtVcuzq9b+UeuWdoZ5QLGMhczE80lGP0Eobw1UAbcGQ++tqhCBH5OgIsunRJ1xg+lQUpDzgqkIUyJvoz6HjD1K1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GD7ke6BJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD729C116B1;
-	Mon, 22 Jul 2024 18:41:41 +0000 (UTC)
+	 Message-Id:Subject; b=Pgksbwf1EjIfMx7jbegBa8bEghHz5ZEWexgj0Ao+Rcbp2r+dl1iSOYN707QA9QwZYxyJZDlFDQyulEivCBYQ+OZpFVLk/1A9pqnKwF5xqOQG5npOO1FntM7BA4QDdGq67XTYxnObXFXl3nz8QbZ8b73iycIpocGD/ikDwkOV+P0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bp0CrouD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3C12C4AF0D;
+	Mon, 22 Jul 2024 18:41:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721673702;
-	bh=vxkBtcXPflRKx6JflN6P2jLEpplVf/tdl4WD1koeSng=;
+	s=k20201202; t=1721673706;
+	bh=itmwri9pB8iYLM1WV6O/hF7Nn5gJN5v0SqaL03cJnX0=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=GD7ke6BJQ4NvY7j0sAZzg9/fN3sV6Tl43el4L6r5vFEcCkUPDydR7ShWtX7lexWLz
-	 f0MToOwe3KWy7eZyfqfhLIQYYe8qtT8//yUHzKsceEFdJeMAAnjYqaH48jdlh4YTcM
-	 xbndyQOrDs2HXYz7Uu2wlLK6VO+mLwJPp7BdqekeXgAwAML/Ytal+rzFjMOF8ml56m
-	 wl6vXa1rlmmLZJhVXzwNP79nNCku3Nh6jCzqIChbFPb7AT3zApNRWRzrLMMD/zYASO
-	 v3ynHY9xD5JUoi0LXFpoI1SpFoj+8paYTyUAsVnp+X93F+H8ef3d2AHov8HwvAsj95
-	 R/bmwzI7YZXtw==
-Date: Mon, 22 Jul 2024 12:41:38 -0600
+	b=Bp0CrouDEKWs4tFfjbFTAe3LbSDxnMSqUs2nnWDZ84CwqekBpISwzngrpl8zlotVM
+	 F1R0BHHaYNV8eR0HQ9+zPCXJTK0cCdmWHulqFxv6sWem++wV+JzzFX+67oAOkcre3M
+	 IouurdA8Wv6/lPOpblzDQKOCkx8auQEFVH0UjkORV0AXmK7MLWxAz7H/zcAl6XkuFt
+	 sbRbN+hvW/D7pNtJ5KvnPeuzTygpAfdGK8d0y2SbqtDh9wMACxM470kGwAZcmjXv6m
+	 tkr0rOXZctcJnmIuPHwNt5riXriJV6Wam6D+bmwSZw19SY2gXalrSFdmge6bLr3wFO
+	 GbP7L41X2cUgg==
+Date: Mon, 22 Jul 2024 12:41:42 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -52,24 +52,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: ysionneau@kalrayinc.com
-Cc: Jonathan Borne <jborne@kalrayinc.com>, 
+Cc: Julian Vetter <jvetter@kalrayinc.com>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Julian Vetter <jvetter@kalrayinc.com>, 
- Michael Turquette <mturquette@baylibre.com>
-In-Reply-To: <20240722094226.21602-9-ysionneau@kalrayinc.com>
+ Jonathan Borne <jborne@kalrayinc.com>, linux-kernel@vger.kernel.org
+In-Reply-To: <20240722094226.21602-11-ysionneau@kalrayinc.com>
 References: <20240722094226.21602-1-ysionneau@kalrayinc.com>
- <20240722094226.21602-9-ysionneau@kalrayinc.com>
-Message-Id: <172167366276.4638.3235725980067495299.robh@kernel.org>
-Subject: Re: [RFC PATCH v3 08/37] dt-bindings: Add binding for
- kalray,coolidge-dsu-clock
+ <20240722094226.21602-11-ysionneau@kalrayinc.com>
+Message-Id: <172167367141.4771.1037260997382401873.robh@kernel.org>
+Subject: Re: [RFC PATCH v3 10/37] dt-bindings: kalray: Add CPU bindings for
+ Kalray kvx
 
 
-On Mon, 22 Jul 2024 11:41:19 +0200, ysionneau@kalrayinc.com wrote:
+On Mon, 22 Jul 2024 11:41:21 +0200, ysionneau@kalrayinc.com wrote:
 > From: Yann Sionneau <ysionneau@kalrayinc.com>
 > 
-> Add binding for Kalray Coolidge DSU (Debug System Unit) clock.
+> Add Kalray kvx CPU bindings.
 > 
 > Signed-off-by: Yann Sionneau <ysionneau@kalrayinc.com>
 > ---
@@ -78,9 +76,9 @@ On Mon, 22 Jul 2024 11:41:19 +0200, ysionneau@kalrayinc.com wrote:
 > 
 > V2 -> V3: New patch
 > ---
->  .../clock/kalray,coolidge-dsu-clock.yaml      | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/kalray,coolidge-dsu-clock.yaml
+>  .../devicetree/bindings/kalray/cpus.yaml      | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/kalray/cpus.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -88,12 +86,14 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/kalray,coolidge-dsu-clock.example.dtb: dsu_clock@a44180: reg: [[0, 10764672], [0, 8]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/kalray,coolidge-dsu-clock.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/kalray/cpus.example.dtb: cpu@0: compatible: ['kalray,kv3-1-pe'] is too short
+	from schema $id: http://devicetree.org/schemas/kalray/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/kalray/cpus.example.dtb: cpu@1: compatible: ['kalray,kv3-1-pe'] is too short
+	from schema $id: http://devicetree.org/schemas/kalray/cpus.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240722094226.21602-9-ysionneau@kalrayinc.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240722094226.21602-11-ysionneau@kalrayinc.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
