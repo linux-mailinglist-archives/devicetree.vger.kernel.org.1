@@ -1,501 +1,495 @@
-Return-Path: <devicetree+bounces-87335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C309392E0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:59:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4FF9392ED
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 19:02:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACAA31F2221A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:59:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F404528185B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FB716F291;
-	Mon, 22 Jul 2024 16:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635D716DC2F;
+	Mon, 22 Jul 2024 17:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="NR6GOOaa"
+	dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b="Gs2Ek7yQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AUS01-SY4-obe.outbound.protection.outlook.com (mail-sy4aus01olkn2149.outbound.protection.outlook.com [40.92.62.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3EEC16F0D8
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 16:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721667534; cv=none; b=joRa7X58C4rBaJijKhfuZG/MjFnzfAMaiHqErmsSX0PmtqJYpdwgtCb7p24yjPjyweA2f5PK02Hgoyx5blJc6s6ptcnU74vZheW7SewOW7Yeqiv78Eu80ZDYjPTqeEW619f8g2mPn/vCaAj2eYU1HSxmxq8Jw+DShRnOZezoPjA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721667534; c=relaxed/simple;
-	bh=mqWrU3scnTZMpLJqnWzO2uIY68DKBT3JCJ/LsOnwo4I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=phI7yk75fGILps33QAplYW3lYPzIfB0+BoSS2LtY61OveNYr8sekACHScpe7cBBpiCGyL/SSQeKlBZgSddZxphUR+MCL/TGLzYbvQpq3mDSU3tqfafpPCnZ2GGsCKXiF5J3ZkPtXhnR9b5ZdqGcif7au4DDcFcnWTrCb82maz3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=NR6GOOaa; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so39253915e9.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 09:58:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1721667531; x=1722272331; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sVT0gOf+NtOjihQ2nIWu7Ft9BgKRkrwt18aNIThkUj8=;
-        b=NR6GOOaa7lbA3BJPtCJU2QSyjWN3Wd3h3lFg8z2zsd+VhtvzhoTGCCFbXfEv8Gfd++
-         F/DlZkLwNOSbEO2oXvBV6TJ8j/05u4k30oyfiXSPWFqF710n1YOMGYPYTyS7c826oSWf
-         5mYvXimkr70UIQhif38op2n24zjn9ijQgAdnAJ0gxqmjCOSlvQN+V0wAuFNupKrPx2/B
-         TSG9UEoojda5SGVDvWL8TjyqGSipyHLLr2LNFVgFzcmJ54ROq2aooiEdqZSgoeutWL5E
-         1TQc13eC2p2+0oA+rPpBWG2cn1yAN9OIpDwatddvM0TD3g7VGk5AotsNSlweYCXB7HcF
-         Rblg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721667531; x=1722272331;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sVT0gOf+NtOjihQ2nIWu7Ft9BgKRkrwt18aNIThkUj8=;
-        b=DmtYbDp/qWrYHaYJZlSXATWIhFQwOTk2fgRHGxvflYb8qUCS8jaHu1/sIy9GCtRchP
-         YvaTys4sVeuTNqaXRAyr+xP2s4Rh/GhXtR/7a5hJCfoxocaH21TwacjDVqxCieLnGKgk
-         zEId1bSPSMtn54NI+6Wdfvwt64UqOS/Q7FcYuTr4COIbYVGXncmDD0vVW2W6xeyPw1QA
-         tg6+VF9nUDQ2MpsE2Yhtcr5jDN0bMJ886qVRvxVR8/gFWsdnLw1dtIIewSoD4iZxpyGm
-         0bcpjPUPPti7O1ILlrkcWqBiL0a9lpgDsM1PnJX0IK6dZpenfQy4dlBMHB0hDPFDpxIF
-         jzrA==
-X-Forwarded-Encrypted: i=1; AJvYcCWn8YidsfxjPSy0IlnT7dPe+rkhpSgligYqmEVeo/arDBela0YVJ/7U39bA9l3Rx1Ecp29OxGYAr6OPyT2Gpi043Ax/EWfz54MzbA==
-X-Gm-Message-State: AOJu0YwrQ0jP3m2SJfgDBWMSulr8GrgDW/t6iHGszdpc3el4BRxaO417
-	HJSYxlUQF/sbAFfGj1C8dW/4DILNwaQLSLtI60UWENcUCNs7r3NgbQkc/rG36jD+JLQ4M9k+rN7
-	5
-X-Google-Smtp-Source: AGHT+IEf5Z2BHiSbz5jeExeu1x4AURd20Z5mAdPYMuYoH526y4oOlikjVZuGNfO3Hmhe1sfyzkDnxA==
-X-Received: by 2002:a05:600c:45ce:b0:426:5520:b835 with SMTP id 5b1f17b1804b1-427dc515ce5mr61802035e9.5.1721667530878;
-        Mon, 22 Jul 2024 09:58:50 -0700 (PDT)
-Received: from carbon.local (aztw-29-b2-v4wan-166913-cust1764.vm26.cable.virginm.net. [82.37.38.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d2a8e436sm161660055e9.33.2024.07.22.09.58.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jul 2024 09:58:50 -0700 (PDT)
-From: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
-Date: Mon, 22 Jul 2024 17:58:43 +0100
-Subject: [PATCH v5 2/2] iio: humidity: Add support for ENS210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCBB5C2FD;
+	Mon, 22 Jul 2024 17:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.62.149
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721667744; cv=fail; b=ZUcFiwMF4Dpa/2ECU04UldklxEEldZlvHMY4TCzzFOGdoshiJK1cQCJ57xqfnKtCCSXm0/hkwBzE6RjMgu6hvS7KLzBdmlA0c3z9vWhXsofp9KxR+Oxw3e5RIKrIaT8d+rLK0CS3A5vNDH1LKHC0DinN2EJRwQQce8rWWweoFoo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721667744; c=relaxed/simple;
+	bh=dR8A4q/RCCQNlUppFHQCn8bEhgepE248TXSo4r/t+a8=;
+	h=Date:From:Subject:To:Cc:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AWlFTaRCZiD6tE9f+JlKqGE17gLOUjIMrvzfXiG0QiHspY3h8iXDXLmpr99zTnGgil1rZF5VbcAuPNVQHQtCqLeqYRdYW6Ourxb+HewwIqE91TY7odb1nS+I+kizpMR9HTQw1yRbbSs/VhCkji4X+KdPRSCUciz0ZamvYuM+JPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com; spf=pass smtp.mailfrom=live.com; dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b=Gs2Ek7yQ; arc=fail smtp.client-ip=40.92.62.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=live.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TlPO5DiTqF6Mz1xEAkcanudgd8KJ55gYCZABAVWW+NaEVibogxA80df8Pj9Yt1FqTYlvkyi7DWQqVQvfHoxQKm0FaVh7RR9jVm4lOkC4hLNW6IYSA77LkSjnIEFbHLGUIu63CL01ff0Nq5JQ9C9IX+ExI+1JQQMgRob8xXHS+pN5iv39Zqm/nNDI2XBHjtaUlNUNj/HUQi/IxWV4dZfDFHDKy1FZiluQ4TB4TPX1zhIMVBd+ROpRq5zfHTytJeD4/exWprlRPfXvrtfgAAgJYXzzeGIdYr2PJ3R3bXwfO75lHPcT/Ny9rWnrtdBjXktDo9cdQWQlOG64D7is5FP12Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DfKecSETS/b4wU9X5FKuOCAUxuXCmRfP6fvc/zYkvTw=;
+ b=dEyASA1CyiRLh6LgZpqRi6jYVtDs/z/KXRiBWQYRR1ldPBxkgwaCl8EnbIKmJn1WyzwkS8xBv3nrrD2iRVdKJCDVODCk+BC7mAOKiWxcIt6OU7nUCRFVj1e+fWYjOzFqdUG3mdi2oyP71OCYVwE4ESM31+gjK6Yn/Fqr3AB7CahzqKCnvxBGeKZciPxm283TtfyKyqPKklRM4awlGo5eGDmpsk6MnzCw+Qgh7E7WyrXiLbmYV3666dHmF6TMXHa8XW2OaAZAvud038QtTyArU7jUsNrlMgQguAwLTb9pGX9HsomA0LL3MP6r+WVYTut+fqynY7ZD8PdTihFBKslJAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DfKecSETS/b4wU9X5FKuOCAUxuXCmRfP6fvc/zYkvTw=;
+ b=Gs2Ek7yQ848zkzph9E3mNGMNteJ3iH1rtTe0OcrdFpp7sxf9Dss+sDERSQ2gnAT/Ggx6nxBfJtOa2A0mzJLnqIhZDjkIOfw3KL3QR+pKgbX5dmHM8rt2Agszhtxu2HMQqUsbfPKBWJmiWwtzZShMYQF6YDhYZo5SnLOvjlCFxDNF5FVyJ5ZhmCS9vmdQccekRCI9o7AeeTrEK0ZNjFq3zb71TZwT8LU35UR5TYS8R/kNvQoY5Pw4F4gN1/kOPvITilmNTkQIE97wBD1MI2TYcHTdlXQ81mM+swaXXK/acJFWYaPdOz4UvcUzAncSsRUEmFfS03X4jMPm9uUGZSXx+g==
+Received: from SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:9b::8) by
+ SY7P282MB5248.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:2a9::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7762.33; Mon, 22 Jul 2024 17:02:15 +0000
+Received: from SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
+ ([fe80::ac24:7d2b:92fe:20c3]) by SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
+ ([fe80::ac24:7d2b:92fe:20c3%4]) with mapi id 15.20.7784.017; Mon, 22 Jul 2024
+ 17:02:15 +0000
+Date: Tue, 23 Jul 2024 01:02:04 +0800
+From: Yuntao Dai <d1581209858@live.com>
+Subject: Re: [PATCH v2 3/3] mailbox: sophgo: add mailbox driver for cv18x SoCs
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "unicorn_wang@outlook.com"
+	<unicorn_wang@outlook.com>, "inochiama@outlook.com" <inochiama@outlook.com>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>
+Message-ID:
+ <SYBP282MB22386A7684FB826F157C67E5C4A82@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+In-Reply-To: <dca205a1-46cc-4712-bdb1-15517e63e824@sifive.com>
+References:
+ <SYBP282MB223825D5903777B937A8A377C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+	<SYBP282MB2238F93565D20F0A5F3EEB6BC4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+	<dca205a1-46cc-4712-bdb1-15517e63e824@sifive.com>
+X-Mailer: geary/0.12.4
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-TMN: [pDOOL9/nnm8H5xyr+FqLwCzp8UzGIcwZ]
+X-ClientProxiedBy: OSBPR01CA0115.jpnprd01.prod.outlook.com
+ (2603:1096:604:71::31) To SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
+ (2603:10c6:10:9b::8)
+X-Microsoft-Original-Message-ID: <1721667724.5328.0@smtp-mail.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240722-ens21x-v5-2-cda88dce100e@thegoodpenguin.co.uk>
-References: <20240722-ens21x-v5-0-cda88dce100e@thegoodpenguin.co.uk>
-In-Reply-To: <20240722-ens21x-v5-0-cda88dce100e@thegoodpenguin.co.uk>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1721667526; l=11346;
- i=jfelmeden@thegoodpenguin.co.uk; s=20240709; h=from:subject:message-id;
- bh=mqWrU3scnTZMpLJqnWzO2uIY68DKBT3JCJ/LsOnwo4I=;
- b=9fhgYhZk5srgHHdYqPmpe7lBZ2LTul4ndyXcuaXDrR1YULycf6e/X5jb7+5nP3DhQxqNDGlhy
- iVLtk6rMw+QCwfLsIC7WneO24mQ8HsuOp8wTPCMWW+3HNgDWwN0rIiI
-X-Developer-Key: i=jfelmeden@thegoodpenguin.co.uk; a=ed25519;
- pk=tePkZ5iJ3ejQ2O3vjhsj7GrLYcyJN1o1sMT3IEXvKo0=
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SYBP282MB2238:EE_|SY7P282MB5248:EE_
+X-MS-Office365-Filtering-Correlation-Id: 787cf440-bd4f-45e7-47d6-08dcaa7009b4
+X-MS-Exchange-SLBlob-MailProps:
+	znQPCv1HvwV1Kpn5lySAyQJsGKcMyMICraVN9ygnqUoPv91HF28w6S7wvzqARd1rO0Q1Y0a+7Y9wSUatx2qnRPXdkyNTNDQUFbN2nDddvn1kilOHS6IDAn1ZL/GNxNSM/7XjCz5mWD4SqpSJN/yKkOF2i1q4EjISZnlVketfJbISSYf7JXZTDw/ATZz5RPlpQ4Bh5D+Qfh8h+bZeyFiD5yCyB/mcjRJepDm2/R6qfiTanqAUtDpq/jcQV3mEFxOjxmH8P0C6ZtRVdWyZz0omdqgEh6ARKUo2OXmNBEh9wj2OtPvwc2PlHoWA9fLRCbXjNB9DXrjNgPsaN67Xtfj34dmoGx3vOR0aje9YKHHX3vNHk0MC3UTNmwAppQRd+RwTpMvd7d7km4fh6FYZvSGxVTqpqmnAEObtlkDmNQasXaL/DpgRdOBdtluRHtKRGZV8vqelkDcflHS6GiUfgKyJcWRRWqROAmmXs4uWMZ/CdmCOfzJDBrRP3OBtcXsYGMXzSWWdfhe6mzIs/vPuhTfcsQlXdRbrSihMFS6ZLbRsSFdUMB/K4nGdYmUA4i4N3a9mmr+3fJGhucjIKIirqlpA4+VVnOSeOnM705NjdNnjMk89PchCN5cNceCpTkpA/mJdKSa8VQtKghu+Z0eXkfzbhtq6vpAa+WA0EyZ2vfKdq3cSHwOGfW2SONEgFD0mHAQ5wIXgfjxSTU0rPywTzG73psPZsJU8U7vXyhmmiLjG0P672uk5HprazPpy6MaQeIe1rAAQ4WNIEjw=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799003|8060799006|461199028|440099028|4302099013|3412199025|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	dFKgs93EoixoOP0Wm0mUnDF6toSA9CH6hOYYq6PXiDi2fOQSrzoqK+2RfCVo7fOEMVTOxXyXnV3BeFj7PfYA4W3gCwUJDCkhALpUsVy/QFm4q6zOm4Y9NxtbDBFHlM7zX7XmCSbzaHyCeonyVAVNps3RYHvZYdHJEpEM/nf9gUg769rQaGtJsvqg4N5Nb/5gb8zraj3A7B/cpc0ASG3yLN+4kWCgaJY2EbZBvmh7RcaXx1sR4Lss/wILg+Y0aR+q08BJpKnf3Vi9wiaQYs7wx7/AtS3aYbzrGsy1c1vOIDL9CLN+Z8WuNmU4RKvdXiTe6D0TqJFlx+6iWMi8hubc5UNP4cSs3fVxKFLmDodXCnv+EQtQ0xFB117vZnI/oFy4O+7jwwKtmTKWR28yC7opGJlWLX2JMKFi7eCcpW8HX2d0qjZ06aX1sjGpr0MbTA3sTdrYGurrRL2mnU8jQorisu/e5xV3Y+Elfy8MNokr6Ubz/eDP/zKQxr1Qj/fVxQZluhY9DD6y6pdLQ5RSCd+nMv3gDLVxNVUgSDmCO6O6Mw7xFPHXANytZN7BE3tet2YE9y7HcTK9j2XBZOqtbmi1O/kKd9IgIGTlVS/K7Z6jz1O1MkCwoj4s0HNN2tssF1Dxo4g08QB1pYu703btY8Ym65qgQn/MZncET8evdgXGGyP2W14WYRS6nKhXpWk0NfVJpk7YhOGCOLxfCi//hHJYF6KC+7yKtON2U/WftulJMXuYlYzECmG3IqPIF0eL6MF/sqP/aMOPTA3AzG28NEg+SA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?sMa+9cQ+ByRjLAFWETCk5sEWNOs8M47lFtqmA2rlMAafvIbfMdMLKYiW5XLk?=
+ =?us-ascii?Q?8TUvGVyR2JYGEH4bRjeMe9JELojI4REgH5YsggstDp2nDf38mBCpFN9VgjlD?=
+ =?us-ascii?Q?gz0SqLih5M5Rh2t25cEeOT3lBoh7QpV+Jbwpbyw2rqs0/oqIAF4CDN+ZlEaJ?=
+ =?us-ascii?Q?5XK36fCYLKqYZhzuAoFi0EZCA+87mU697QkemG0quNt3lXVbDKBSGfCnrsZq?=
+ =?us-ascii?Q?7CK7AlHzUO4uzlN6RMaENr+MvPgVzDAo7mzhSOn5C4lojBJPe0qDiUPLPnkG?=
+ =?us-ascii?Q?D+J14t1Wp6xpAjvl8LMFSmdKgb/wZvtO4XCt7SNLBwqZG2m0UfJOTkK5AbA3?=
+ =?us-ascii?Q?l+wg08IpKQfWxq3td/r1nJk/NB/vRHTfbuk/N8nUt4GjwFviah0eLB0lcvMv?=
+ =?us-ascii?Q?dQeTtLSNTUInmERnjHzHh8isftWsisjDU24HQ5vtRRXhLKYvSSIaydiMqCrQ?=
+ =?us-ascii?Q?lw7ATZfnrAt1Nq+62BlQg1jkMXmiF+jncvqyqy+UgrLkiAyvjy4ybLrCKMtK?=
+ =?us-ascii?Q?gfGn/MNKa5eOPVneguOykUoIF/f+O3aiTNWDGv4IJ3NqX2G7+tX3UHQ3a9dw?=
+ =?us-ascii?Q?GCb6BQk4nRagHGjmUgeAwJNS/ibCCUHxoReH9e2FXSu6oNImAvHAsvUOuYq0?=
+ =?us-ascii?Q?uhNED0igAo3+VVVq5qISbcxQcAXfbhE1a23zfrlyIMMy/nOFyfDz2hB3NPlv?=
+ =?us-ascii?Q?YRBpEeOwrC8ZkFCfXnivxcMb4YFWSo28ZixSsdplOSfGsJi8lujfXGVu+0i4?=
+ =?us-ascii?Q?ebGYb57vE9v2TBT/1ivBzqjiVHWVnmjS+hCl23kwSpQ4KrTuZ45OKORLBqQj?=
+ =?us-ascii?Q?njrh3S7MLZdwje8kqVSzqK+453AApFtAu9TdxM6Lv1JavWgLGmFf8UHseD14?=
+ =?us-ascii?Q?qXktCl1P2bojzwugs4d1GTYFZSAWcWXJyZEqZXHVt+xG1qOllO3vfO9qLY1Q?=
+ =?us-ascii?Q?VtIHBgri5W6O4eZxyFFu/PaXvSoOcaqm8ReSxe7XPQiFbsXVWIUjvFdKlYgy?=
+ =?us-ascii?Q?emlUGUC9BEeJ5tNEMSaZr5+aBr69NmWKjAHKTync37dqJDymwJfBle5bukAI?=
+ =?us-ascii?Q?w8HmNQVpUixDLVOp6GUDeLo4QhGbPyNj8WOFBvNm1wTR28HVRo0gcPMV2JIy?=
+ =?us-ascii?Q?HsL5KDS+x6p6E3ZfrhnxPsBlYXIQKfPfFB43S+RbUR4O8xaC9ruiozKUha+h?=
+ =?us-ascii?Q?FJZGiH0Lpzl3UTOyEu+X55t6iktZEZjVeZFqOa4Xy/6x+oAiwbO+ER220YE?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-7719-20-msonline-outlook-722bc.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 787cf440-bd4f-45e7-47d6-08dcaa7009b4
+X-MS-Exchange-CrossTenant-AuthSource: SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2024 17:02:15.7902
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY7P282MB5248
 
-Add support for ENS210/ENS210A/ENS211/ENS212/ENS213A/ENS215.
 
-The ENS21x is a family of temperature and relative humidity sensors with
-accuracies tailored to the needs of specific applications.
+>  From: Samuel Holland <samuel.holland@sifive.com>
+>  Sent: Friday, July 19, 2024 09:35
+>  To: Yuntao Dai <d1581209858@live.com>
+>  Cc: linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; 
+> devicetree@vger.kernel.org <devicetree@vger.kernel.org>; 
+> linux-riscv@lists.infradead.org <linux-riscv@lists.infradead.org>; 
+> jassisinghbrar@gmail.com <jassisinghbrar@gmail.com>; robh@kernel.org 
+> <robh@kernel.org>; krzk+dt@kernel.org <krzk+dt@kernel.org>; 
+> conor+dt@kernel.org <conor+dt@kernel.org>; unicorn_wang@outlook.com 
+> <unicorn_wang@outlook.com>; inochiama@outlook.com 
+> <inochiama@outlook.com>; paul.walmsley@sifive.com 
+> <paul.walmsley@sifive.com>; palmer@dabbelt.com <palmer@dabbelt.com>; 
+> aou@eecs.berkeley.edu <aou@eecs.berkeley.edu>
+>  Subject: Re: [PATCH v2 3/3] mailbox: sophgo: add mailbox driver for 
+> cv18x SoCs
+> 
+>  On 2024-07-14 11:36 AM, Yuntao Dai wrote:
+>  > Add mailbox controller driver for cv18x SoCs, tested on 
+> mailbox-test
+>  > client.
+>  >
+>  > Signed-off-by: Yuntao Dai <d1581209858@live.com>
+>  > ---
+>  >  drivers/mailbox/Kconfig          |  11 ++
+>  >  drivers/mailbox/Makefile         |   2 +
+>  >  drivers/mailbox/cv1800-mailbox.c | 203 
+> +++++++++++++++++++++++++++++++
+>  >  3 files changed, 216 insertions(+)
+>  >  create mode 100644 drivers/mailbox/cv1800-mailbox.c
+>  >
+>  > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+>  > index 3b8842c4a..db856ec7e 100644
+>  > --- a/drivers/mailbox/Kconfig
+>  > +++ b/drivers/mailbox/Kconfig
+>  > @@ -286,4 +286,15 @@ config QCOM_IPCC
+>  >          acts as an interrupt controller for receiving interrupts 
+> from clients.
+>  >          Say Y here if you want to build this driver.
+>  >
+>  > +config CV1800_MBOX
+>  > +     tristate "cv1800 mailbox"
+>  > +     depends on OF
+> 
+>  This dependency is not necessary once the probe function is fixed 
+> (see below).
+> 
 
-Signed-off-by: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
----
- drivers/iio/humidity/Kconfig  |  11 ++
- drivers/iio/humidity/Makefile |   1 +
- drivers/iio/humidity/ens210.c | 344 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 356 insertions(+)
+I will fix it.
 
-diff --git a/drivers/iio/humidity/Kconfig b/drivers/iio/humidity/Kconfig
-index b15b7a3b66d5..54f11f000b6f 100644
---- a/drivers/iio/humidity/Kconfig
-+++ b/drivers/iio/humidity/Kconfig
-@@ -25,6 +25,17 @@ config DHT11
- 	  Other sensors should work as well as long as they speak the
- 	  same protocol.
- 
-+config ENS210
-+	tristate "ENS210 temperature and humidity sensor"
-+	depends on I2C
-+	select CRC7
-+	help
-+	  Say yes here to get support for the ScioSense ENS210 family of
-+	  humidity and temperature sensors.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called ens210.
-+
- config HDC100X
- 	tristate "TI HDC100x relative humidity and temperature sensor"
- 	depends on I2C
-diff --git a/drivers/iio/humidity/Makefile b/drivers/iio/humidity/Makefile
-index 5fbeef299f61..34b3dc749466 100644
---- a/drivers/iio/humidity/Makefile
-+++ b/drivers/iio/humidity/Makefile
-@@ -5,6 +5,7 @@
- 
- obj-$(CONFIG_AM2315) += am2315.o
- obj-$(CONFIG_DHT11) += dht11.o
-+obj-$(CONFIG_ENS210) += ens210.o
- obj-$(CONFIG_HDC100X) += hdc100x.o
- obj-$(CONFIG_HDC2010) += hdc2010.o
- obj-$(CONFIG_HDC3020) += hdc3020.o
-diff --git a/drivers/iio/humidity/ens210.c b/drivers/iio/humidity/ens210.c
-new file mode 100644
-index 000000000000..9fe60a9eeef0
---- /dev/null
-+++ b/drivers/iio/humidity/ens210.c
-@@ -0,0 +1,344 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * ens210.c - Support for ScioSense ens210 temperature & humidity sensor family
-+ *
-+ * (7-bit I2C slave address 0x43 ENS210)
-+ * (7-bit I2C slave address 0x43 ENS210A)
-+ * (7-bit I2C slave address 0x44 ENS211)
-+ * (7-bit I2C slave address 0x45 ENS212)
-+ * (7-bit I2C slave address 0x46 ENS213A)
-+ * (7-bit I2C slave address 0x47 ENS215)
-+ *
-+ * Datasheet:
-+ *  https://www.sciosense.com/wp-content/uploads/2024/04/ENS21x-Datasheet.pdf
-+ *  https://www.sciosense.com/wp-content/uploads/2023/12/ENS210-Datasheet.pdf
-+ */
-+
-+#include <linux/crc7.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/types.h>
-+
-+#include <asm/unaligned.h>
-+
-+/* register definitions */
-+#define ENS210_REG_PART_ID		0x00
-+#define ENS210_REG_DIE_REV		0x02
-+#define ENS210_REG_UID			0x04
-+#define ENS210_REG_SYS_CTRL		0x10
-+#define ENS210_REG_SYS_STAT		0x11
-+#define ENS210_REG_SENS_RUN		0x21
-+#define ENS210_REG_SENS_START		0x22
-+#define ENS210_REG_SENS_STOP		0x23
-+#define ENS210_REG_SENS_STAT		0x24
-+#define ENS210_REG_T_VAL		0x30
-+#define ENS210_REG_H_VAL		0x33
-+
-+/* value definitions */
-+#define ENS210_SENS_START_T_START		BIT(0)
-+#define ENS210_SENS_START_H_START		BIT(1)
-+
-+#define ENS210_SENS_STAT_T_ACTIVE		BIT(0)
-+#define ENS210_SENS_STAT_H_ACTIVE		BIT(1)
-+
-+#define ENS210_SYS_CTRL_LOW_POWER_ENABLE	BIT(0)
-+#define ENS210_SYS_CTRL_SYS_RESET		BIT(7)
-+
-+#define ENS210_SYS_STAT_SYS_ACTIVE		BIT(0)
-+
-+enum ens210_partnumber {
-+	ENS210	= 0x0210,
-+	ENS210A	= 0xa210,
-+	ENS211	= 0x0211,
-+	ENS212	= 0x0212,
-+	ENS213A	= 0xa213,
-+	ENS215	= 0x0215,
-+};
-+
-+/**
-+ * struct ens210_chip_info - Humidity/Temperature chip specific information
-+ * @name:		name of device
-+ * @part_id:		chip identifier
-+ * @conv_time_msec:	time for conversion calculation in m/s
-+ */
-+struct ens210_chip_info {
-+	const char *name;
-+	enum ens210_partnumber part_id;
-+	unsigned int conv_time_msec;
-+};
-+
-+/**
-+ * struct ens210_data - Humidity/Temperature sensor device structure
-+ * @client:	i2c client
-+ * @chip_info:	chip specific information
-+ * @lock:	lock protecting the i2c conversion
-+ */
-+struct ens210_data {
-+	struct i2c_client *client;
-+	const struct ens210_chip_info *chip_info;
-+	struct mutex lock;
-+};
-+
-+/* calculate 17-bit crc7 */
-+static u8 ens210_crc7(u32 val)
-+{
-+	unsigned int val_be = (val & 0x1ffff) >> 0x8;
-+
-+	return crc7_be(0xde, (u8 *)&val_be, 3) >> 1;
-+}
-+
-+static int ens210_get_measurement(struct iio_dev *indio_dev, bool temp, int *val)
-+{
-+	struct ens210_data *data = iio_priv(indio_dev);
-+	struct device *dev = &data->client->dev;
-+	u32 regval;
-+	u8 regval_le[3];
-+	int ret;
-+
-+	/* assert read */
-+	ret = i2c_smbus_write_byte_data(data->client, ENS210_REG_SENS_START,
-+				  temp ? ENS210_SENS_START_T_START :
-+					 ENS210_SENS_START_H_START);
-+	if (ret)
-+		return ret;
-+
-+	/* wait for conversion to be ready */
-+	msleep(data->chip_info->conv_time_msec);
-+
-+	ret = i2c_smbus_read_byte_data(data->client,
-+				       ENS210_REG_SENS_STAT);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* perform read */
-+	ret = i2c_smbus_read_i2c_block_data(
-+		data->client, temp ? ENS210_REG_T_VAL : ENS210_REG_H_VAL, 3,
-+		(u8 *)&regval_le);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to read register");
-+		return -EIO;
-+	} else if (ret != 3) {
-+		dev_err(dev, "expected 3 bytes, received %d\n", ret);
-+		return -EIO;
-+	}
-+
-+	regval = get_unaligned_le24(regval_le);
-+	if (ens210_crc7(regval) != ((regval >> 17) & 0x7f)) {
-+		/* crc fail */
-+		dev_err(dev, "ens invalid crc\n");
-+		return -EIO;
-+	}
-+
-+	if (!((regval >> 16) & 0x1)) {
-+		dev_err(dev, "ens data is not valid");
-+		return -EIO;
-+	}
-+
-+	*val = regval & 0xffff;
-+	return IIO_VAL_INT;
-+}
-+
-+static int ens210_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *channel, int *val,
-+			   int *val2, long mask)
-+{
-+	struct ens210_data *data = iio_priv(indio_dev);
-+	int ret = -EINVAL;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		scoped_guard(mutex, &data->lock) {
-+			ret = ens210_get_measurement(indio_dev,
-+				channel->type == IIO_TEMP, val);
-+			if (ret)
-+				return ret;
-+			return IIO_VAL_INT;
-+		}
-+		return ret;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (channel->type == IIO_TEMP) {
-+			*val = 15;
-+			*val2 = 625000;
-+		} else {
-+			*val = 1;
-+			*val2 = 953125;
-+		}
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_OFFSET:
-+		if (channel->type == IIO_TEMP) {
-+			*val = -17481;
-+			*val2 = 600000;
-+			ret = IIO_VAL_INT_PLUS_MICRO;
-+			break;
-+		}
-+		*val = 0;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+	unreachable();
-+}
-+
-+static const struct iio_chan_spec ens210_channels[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+	},
-+	{
-+		.type = IIO_HUMIDITYRELATIVE,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+	}
-+};
-+
-+static const struct iio_info ens210_info = {
-+	.read_raw = ens210_read_raw,
-+};
-+
-+static int ens210_probe(struct i2c_client *client)
-+{
-+	struct ens210_data *data;
-+	struct iio_dev *indio_dev;
-+	uint16_t part_id;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter,
-+			I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
-+			I2C_FUNC_SMBUS_WRITE_BYTE |
-+			I2C_FUNC_SMBUS_READ_I2C_BLOCK)) {
-+		return dev_err_probe(&client->dev, -EOPNOTSUPP,
-+			"adapter does not support some i2c transactions\n");
-+	}
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+	mutex_init(&data->lock);
-+	data->chip_info = i2c_get_match_data(client);
-+
-+	ret = devm_regulator_get_enable(&client->dev, "vdd");
-+	if (ret)
-+		return ret;
-+
-+	/* reset device */
-+	ret = i2c_smbus_write_byte_data(client, ENS210_REG_SYS_CTRL,
-+					ENS210_SYS_CTRL_SYS_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/* wait for device to become active */
-+	usleep_range(4000, 5000);
-+
-+	/* disable low power mode */
-+	ret = i2c_smbus_write_byte_data(client, ENS210_REG_SYS_CTRL, 0x00);
-+	if (ret)
-+		return ret;
-+
-+	/* wait for device to finish */
-+	usleep_range(4000, 5000);
-+
-+	/* get part_id */
-+	part_id = i2c_smbus_read_word_data(client, ENS210_REG_PART_ID);
-+
-+	if (part_id != data->chip_info->part_id) {
-+		dev_info(&client->dev,
-+			"Part ID does not match (0x%04x != 0x%04x)\n", part_id,
-+			data->chip_info->part_id);
-+	}
-+
-+	/* reenable low power */
-+	ret = i2c_smbus_write_byte_data(client, ENS210_REG_SYS_CTRL,
-+					ENS210_SYS_CTRL_LOW_POWER_ENABLE);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = data->chip_info->name;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = ens210_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(ens210_channels);
-+	indio_dev->info = &ens210_info;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct ens210_chip_info ens210_chip_info_data = {
-+	.name = "ens210",
-+	.part_id = ENS210,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct ens210_chip_info ens210a_chip_info_data = {
-+	.name = "ens210a",
-+	.part_id = ENS210A,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct ens210_chip_info ens211_chip_info_data = {
-+	.name = "ens211",
-+	.part_id = ENS211,
-+	.conv_time_msec = 32,
-+};
-+
-+static const struct ens210_chip_info ens212_chip_info_data = {
-+	.name = "ens212",
-+	.part_id = ENS212,
-+	.conv_time_msec = 32,
-+};
-+
-+static const struct ens210_chip_info ens213a_chip_info_data = {
-+	.name = "ens213a",
-+	.part_id = ENS213A,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct ens210_chip_info ens215_chip_info_data = {
-+	.name = "ens215",
-+	.part_id = ENS215,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct of_device_id ens210_of_match[] = {
-+	{ .compatible = "sciosense,ens210", .data = &ens210_chip_info_data},
-+	{ .compatible = "sciosense,ens210a", .data = &ens210a_chip_info_data },
-+	{ .compatible = "sciosense,ens211", .data = &ens211_chip_info_data},
-+	{ .compatible = "sciosense,ens212", .data = &ens212_chip_info_data},
-+	{ .compatible = "sciosense,ens213a", .data = &ens213a_chip_info_data },
-+	{ .compatible = "sciosense,ens215", .data = &ens215_chip_info_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ens210_of_match);
-+
-+static const struct i2c_device_id ens210_id_table[] = {
-+	{ "ens210", (kernel_ulong_t)&ens210_chip_info_data },
-+	{ "ens210a", (kernel_ulong_t)&ens210a_chip_info_data },
-+	{ "ens211", (kernel_ulong_t)&ens211_chip_info_data },
-+	{ "ens212", (kernel_ulong_t)&ens212_chip_info_data },
-+	{ "ens213a", (kernel_ulong_t)&ens213a_chip_info_data },
-+	{ "ens215", (kernel_ulong_t)&ens215_chip_info_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, ens210_id_table);
-+
-+static struct i2c_driver ens210_driver = {
-+	.probe = ens210_probe,
-+	.id_table = ens210_id_table,
-+	.driver = {
-+		.name = "ens210",
-+		.of_match_table = ens210_of_match,
-+	},
-+};
-+
-+module_i2c_driver(ens210_driver);
-+
-+MODULE_DESCRIPTION("ScioSense ENS210 temperature and humidity sensor driver");
-+MODULE_AUTHOR("Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>");
-+MODULE_LICENSE("GPL");
+>  > +     depends on ARCH_SOPHGO || COMPILE_TEST
+>  > +     help
+>  > +       Mailbox driver implementation for Sophgo cv180x SoCs. This 
+> driver
+>  > +       can be used to send message between different processors 
+> in SoC. Any
+>  > +       processer can write data in a channel, and set 
+> co-responding register
+>  > +       to raise interrupt to notice another processor, and it is 
+> allowed to
+>  > +       send data to itself.
+>  > +
+>  >  endif
+>  > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+>  > index 5cf2f54de..2c6db8c5c 100644
+>  > --- a/drivers/mailbox/Makefile
+>  > +++ b/drivers/mailbox/Makefile
+>  > @@ -62,3 +62,5 @@ obj-$(CONFIG_SUN6I_MSGBOX)  += sun6i-msgbox.o
+>  >  obj-$(CONFIG_SPRD_MBOX)              += sprd-mailbox.o
+>  >
+>  >  obj-$(CONFIG_QCOM_IPCC)              += qcom-ipcc.o
+>  > +
+>  > +obj-$(CONFIG_CV1800_MBOX)    += cv1800-mailbox.o
+>  > \ No newline at end of file
+> 
+>  Please add the missing newline.
+> 
+> 
 
--- 
-2.39.2
+I will fix it
+
+>  > diff --git a/drivers/mailbox/cv1800-mailbox.c 
+> b/drivers/mailbox/cv1800-mailbox.c
+>  > new file mode 100644
+>  > index 000000000..a3b214b4d
+>  > --- /dev/null
+>  > +++ b/drivers/mailbox/cv1800-mailbox.c
+>  > @@ -0,0 +1,203 @@
+>  > +// SPDX-License-Identifier: GPL-2.0-or-later
+>  > +
+>  > +#include <linux/device.h>
+>  > +#include <linux/err.h>
+>  > +#include <linux/interrupt.h>
+>  > +#include <linux/io.h>
+>  > +#include <linux/kfifo.h>
+>  > +#include <linux/mailbox_controller.h>
+>  > +#include <linux/mailbox_client.h>
+>  > +#include <linux/module.h>
+>  > +#include <linux/platform_device.h>
+>  > +#include <linux/slab.h>
+>  > +
+>  > +#define RECV_CPU 2
+>  > +
+>  > +#define MAILBOX_MAX_CHAN 0x0008
+>  > +#define MAILBOX_DONE_OFFSET 0x0002
+>  > +#define MAILBOX_CONTEXT_SIZE 0x0040
+>  > +#define MAILBOX_CONTEXT_OFFSET 0x0400
+>  > +
+>  > +#define MBOX_EN_REG(cpu) (cpu << 2)
+>  > +#define MBOX_DONE_REG(cpu) ((cpu << 2) + MAILBOX_DONE_OFFSET)
+>  > +
+>  > +#define MBOX_SET_CLR_REG(cpu) (0x10 + (cpu << 4))
+>  > +#define MBOX_SET_INT_REG(cpu) (0x18 + (cpu << 4))
+>  > +
+>  > +#define MBOX_SET_REG 0x60
+>  > +
+>  > +/**
+>  > + * cv1800 mailbox channel private data
+>  > + * @idx: index of channel
+>  > + * @cpu: send to which processor
+>  > + */
+>  > +struct cv1800_mbox_chan_priv {
+>  > +     int idx;
+>  > +     int cpu;
+>  > +};
+>  > +
+>  > +struct cv1800_mbox {
+>  > +     struct mbox_controller mbox;
+>  > +     struct cv1800_mbox_chan_priv priv[MAILBOX_MAX_CHAN];
+>  > +     struct mbox_chan chans[MAILBOX_MAX_CHAN];
+>  > +     u64 __iomem *content[MAILBOX_MAX_CHAN];
+>  > +     void __iomem *mbox_base;
+>  > +     int recvid;
+>  > +};
+>  > +
+>  > +static irqreturn_t cv1800_mbox_isr(int irq, void *dev_id)
+>  > +{
+>  > +     struct cv1800_mbox *mbox = (struct cv1800_mbox *)dev_id;
+>  > +     size_t i;
+>  > +
+>  > +     for (i = 0; i < MAILBOX_MAX_CHAN; i++) {
+>  > +             if (mbox->content[i] && mbox->chans[i].cl) {
+>  > +                     mbox_chan_received_data(&mbox->chans[i],
+>  > +                                             mbox->content[i]);
+>  > +                     mbox->content[i] = NULL;
+>  > +                     return IRQ_HANDLED;
+> 
+>  Are you sure you only want to handle one channel per interrupt? 
+> Should this be
+>  "ret = IRQ_HANDLED;" or similar instead of early return? The same 
+> applies to
+>  cv1800_mbox_irq().
+> 
+> 
+
+I believe this approach can simplify the implementation. I utilize 
+IRQ_ONESHOT to
+prevent interrupt racing, thereby avoiding the need for locking 
+mbox->content in
+this scenario. And I see rockchip mailbox did the same thing.
+
+
+>  > +             }
+>  > +     }
+>  > +     return IRQ_NONE;
+>  > +}
+>  > +
+>  > +static irqreturn_t cv1800_mbox_irq(int irq, void *dev_id)
+>  > +{
+>  > +     struct cv1800_mbox *mbox = (struct cv1800_mbox *)dev_id;
+>  > +     u64 __iomem *addr;
+>  > +     u8 set, valid;
+>  > +     size_t i;
+>  > +
+>  > +     set = readb(mbox->mbox_base + MBOX_SET_INT_REG(RECV_CPU));
+>  > +
+>  > +     if (!set)
+>  > +             return IRQ_NONE;
+>  > +
+>  > +     for (i = 0; i < MAILBOX_MAX_CHAN; i++) {
+>  > +             valid = set & (1 << i);
+>  > +             addr = (u64 *)(mbox->mbox_base + 
+> MAILBOX_CONTEXT_OFFSET) + i;
+>  > +             if (valid) {
+>  > +                     mbox->content[i] = addr;
+>  > +                     writeb(valid,
+>  > +                            mbox->mbox_base + 
+> MBOX_SET_CLR_REG(RECV_CPU));
+>  > +                     writeb(~valid, mbox->mbox_base + 
+> MBOX_EN_REG(RECV_CPU));
+>  > +                     return IRQ_WAKE_THREAD;
+>  > +             }
+>  > +     }
+>  > +
+>  > +     return IRQ_NONE;
+>  > +}
+>  > +
+>  > +static int cv1800_mbox_send_data(struct mbox_chan *chan, void 
+> *data)
+>  > +{
+>  > +     struct cv1800_mbox_chan_priv *priv =
+>  > +             (struct cv1800_mbox_chan_priv *)chan->con_priv;
+>  > +     struct cv1800_mbox *mbox = dev_get_drvdata(chan->mbox->dev);
+>  > +     u64 __iomem *addr;
+>  > +     u8 en, valid;
+>  > +
+>  > +     int idx = priv->idx;
+>  > +     int cpu = priv->cpu;
+>  > +
+>  > +     addr = (u64 *)(mbox->mbox_base + MAILBOX_CONTEXT_OFFSET) + 
+> idx;
+>  > +     memcpy_toio(addr, data, 8);
+>  > +
+>  > +     valid = 1 << idx;
+>  > +     writeb(valid, mbox->mbox_base + MBOX_SET_CLR_REG(cpu));
+>  > +     en = readb(mbox->mbox_base + MBOX_EN_REG(cpu));
+>  > +     writeb(en | valid, mbox->mbox_base + MBOX_EN_REG(cpu));
+>  > +     writeb(valid, mbox->mbox_base + MBOX_SET_REG);
+>  > +
+>  > +     return 0;
+>  > +}
+>  > +
+>  > +static bool cv1800_last_tx_done(struct mbox_chan *chan)
+>  > +{
+>  > +     return true;
+> 
+>  Shouldn't this check MBOX_EN_REG(priv->cpu) or similar to check that 
+> the
+>  receiver has read the message?
+> 
+
+Yes, I think check MBOX_EN_REG(priv->cpu) is a good way to ensure 
+content
+has been writen into hardware. And I think driver should only send the
+message and upper layer is responsible for ack and things like that.
+
+There is a vendor implementation of linux mailbox and RTOS mailbox:
+https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/linux_5.10/drivers/soc/cvitek/rtos_cmdqu/rtos_cmdqu.c
+https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/freertos/cvitek/task/comm/src/riscv64/comm_main.c
+
+These implementations define a protocol structure for communication 
+between
+linux and RTOS, the linux mailbox controller just need to provide API 
+for
+client and do not consider the content of msg.
+
+
+>  > +}
+>  > +
+>  > +static const struct mbox_chan_ops cv1800_mbox_chan_ops = {
+>  > +     .send_data = cv1800_mbox_send_data,
+>  > +     .last_tx_done = cv1800_last_tx_done,
+>  > +};
+>  > +
+>  > +static struct mbox_chan *cv1800_mbox_xlate(struct mbox_controller 
+> *mbox,
+>  > +                                        const struct 
+> of_phandle_args *spec)
+>  > +{
+>  > +     struct cv1800_mbox_chan_priv *priv;
+>  > +
+>  > +     int idx = spec->args[0];
+>  > +     int cpu = spec->args[1];
+>  > +
+>  > +     if (idx >= mbox->num_chans)
+>  > +             return ERR_PTR(-EINVAL);
+>  > +
+>  > +     priv = mbox->chans[idx].con_priv;
+>  > +     priv->cpu = cpu;
+>  > +
+>  > +     return &mbox->chans[idx];
+>  > +}
+>  > +
+>  > +static const struct of_device_id cv1800_mbox_of_match[] = {
+>  > +     { .compatible = "sophgo,cv1800-mailbox", },
+>  > +     {},
+>  > +};
+>  > +MODULE_DEVICE_TABLE(of, cv1800_mbox_of_match);
+>  > +
+>  > +static int cv1800_mbox_probe(struct platform_device *pdev)
+>  > +{
+>  > +     struct device *dev = &pdev->dev;
+>  > +     struct cv1800_mbox *mb;
+>  > +     int irq, idx, err;
+>  > +
+>  > +     if (!dev->of_node)
+>  > +             return -ENODEV;
+> 
+>  No need for this check.
+
+I will fix it
+
+> 
+>  > +
+>  > +     mb = devm_kzalloc(dev, sizeof(*mb), GFP_KERNEL);
+>  > +     if (!mb)
+>  > +             return -ENOMEM;
+>  > +
+>  > +     mb->mbox_base = devm_of_iomap(dev, dev->of_node, 0, NULL);
+> 
+>  Please use devm_platform_ioremap_resource() here, which abstracts 
+> away the OF node.
+
+I will fix it
+
+> 
+>  > +     if (IS_ERR(mb->mbox_base))
+>  > +             return dev_err_probe(dev, PTR_ERR(mb->mbox_base),
+>  > +                                  "Failed to map resource\n");
+>  > +
+>  > +     mb->mbox.dev = dev;
+>  > +     mb->mbox.chans = mb->chans;
+>  > +     mb->mbox.txdone_poll = true;
+>  > +     mb->mbox.ops = &cv1800_mbox_chan_ops;
+>  > +     mb->mbox.num_chans = MAILBOX_MAX_CHAN;
+>  > +     mb->mbox.of_xlate = cv1800_mbox_xlate;
+>  > +
+>  > +     irq = platform_get_irq_byname(pdev, "mailbox");
+>  > +     err = devm_request_threaded_irq(dev, irq, cv1800_mbox_irq,
+>  > +                                     cv1800_mbox_isr, 
+> IRQF_ONESHOT,
+>  > +                                     dev_name(&pdev->dev), mb);
+>  > +     if (err < 0)
+>  > +             return dev_err_probe(dev, err, "Failed to register 
+> irq\n");
+>  > +
+>  > +     for (idx = 0; idx < MAILBOX_MAX_CHAN; idx++) {
+>  > +             mb->priv[idx].idx = idx;
+>  > +             mb->mbox.chans[idx].con_priv = &mb->priv[idx];
+>  > +     }
+>  > +
+>  > +     err = devm_mbox_controller_register(dev, &mb->mbox);
+>  > +     if (err)
+>  > +             return dev_err_probe(dev, err, "Failed to register 
+> mailbox\n");
+>  > +
+>  > +     platform_set_drvdata(pdev, mb);
+> 
+>  cv1800_mbox_send_data() could be called even inside
+>  devm_mbox_controller_register(), so this needs to be moved up.
+
+I will fix it
+
+> 
+>  > +     return 0;
+>  > +}
+>  > +
+>  > +static struct platform_driver cv1800_mbox_driver = {
+>  > +     .driver = {
+>  > +             .name = "cv1800-mbox",
+>  > +             .of_match_table = cv1800_mbox_of_match,
+>  > +     },
+>  > +     .probe  = cv1800_mbox_probe,
+>  > +};
+>  > +
+>  > +module_platform_driver(cv1800_mbox_driver);
+>  > +
+>  > +MODULE_DESCRIPTION("cv1800 mailbox driver");
+>  > +MODULE_LICENSE("GPL");
+> 
 
 
