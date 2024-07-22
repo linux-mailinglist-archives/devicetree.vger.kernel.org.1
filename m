@@ -1,218 +1,582 @@
-Return-Path: <devicetree+bounces-87168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58FF938B70
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:43:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B68938B99
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:56:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 503551F21AA1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:43:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B5E41C2125F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:56:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF0E1667CD;
-	Mon, 22 Jul 2024 08:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73716168488;
+	Mon, 22 Jul 2024 08:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eWTeTs4p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JDSzP3Mr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484A535280
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 08:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C79161311;
+	Mon, 22 Jul 2024 08:56:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721637784; cv=none; b=RTrqXK/krI6G7wmA7nKWx4cAqSsr2/wugGzmvEpKbLjTYgyWVNgEpCBkUFjiqFvMbm1dcCO4YuiTWN/7Q6gMhdN2Nsgkzjbx4KFgE18eoV9G23kQxszsonpsHxyhejFIMJS/9OByVCPRUUvGMa5ymUvSsZdkrSupq8cBOGgQWgg=
+	t=1721638595; cv=none; b=NwkxdP1FrRzbrg+xiBJJGc+R4xayEJ8PTAjVEHfZQbXL9secT9vuKrmZ4Aj8BxB9h6RNgXAE7UXT8EWXFCSVdSVv29Wnd/iwKIDr3VBXDNV1BQNVYu3DovKXXKm3q7+bs1HOKegsvE8ENRMe+dGbJBnclcA6gdvCXDDOnYT3C+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721637784; c=relaxed/simple;
-	bh=mZ2ZAr8/8AQLW0UxQVEkzfi7S7q+mzom0U/sJs8IMfw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oV7QCv1lxGdJm67IRn5dkSEGR5PtK/vTkgMbxMvfLCKO2cpdg1jGVUOhoW9vwL6u21ggg0bHPDH7soRfSYPcUOXd8oi2TG+rihEnsaB4qFSrdkRrcr0tNxXrROBgHGv4kO3I7v1hN9f9xgquIUbRVduHG17wGyyzNa/L0hUL1TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eWTeTs4p; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ef2ed59200so10284911fa.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 01:43:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721637780; x=1722242580; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HyUaXhZy7w+rjNltMSOBdyRI/n7iZnDzkC1zUe6T1R0=;
-        b=eWTeTs4p77OGpuv+PtiXi0hJXDDkfc4Z5/gDeXdlbNcxUB98pcz4FqBb3OPt63TXFU
-         Vb9oWITVFAeA2CGeTSxXFDSjv2rBpjdHGQF9ps+JUXBIB2C3BgKZxDBPOQUK2Wl4vWGt
-         byI1J6vXh/j+L73LQuUAJt3rmpt86Tzr5iLQxS0RChOwU6AvCsKljE3raVyPcG7zw3Hv
-         ugqi/98dmhVKe/HhcbYoZKUiFlsJesfvb7UtxRyoK6PCKoChTkWVN2q3u8EumrLnzPc3
-         yirqG1KtkfgxYchjOGpLqxhclQaMIkZEKV6LXC1DfylaNXA5+GZCBmcu4fXitVuoyltE
-         ARRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721637780; x=1722242580;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HyUaXhZy7w+rjNltMSOBdyRI/n7iZnDzkC1zUe6T1R0=;
-        b=Caug6xAgwQ7L8JCSgUYFBV+kElc68lkVF0t7DC1zLETw6wSHsZqVjL5cp+RKGAe7tx
-         OW4LIIPycPOddmJ1cqdVA23iNERvu41bA3kbWXQLoTT/d+nunVVDsghNrWAAFLdjP/cV
-         u8un1c8cUpGBFGzVxAj7hCqyJrppz+jjdO55Hpw41CHrDX1r1hpwgTtne+SoCe/T1gDh
-         EfGLqtK7HxrMSpQ1ZHt+1B0iiH5H6OVLSf8ioUy5exmke3YNlAwhsBH0KVMyLeJlTa5V
-         xcyiMB27faaQGUdZ55xB6qIYNg5Mv1hCbjlJTB/PKhMf9CyV8F2+ZgLbNft5ZZDiEwgu
-         /i3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXZsSo2+m7nYPL5gyhg6s0EPA8mEa5i2mQNjgjD5tTSaG8suBkzAXNVOtgkrKkYbVSHoDwCcDjxU2+tRfGKfRR9IiozhJwSwIha7w==
-X-Gm-Message-State: AOJu0YyCvdBu0kR+uBB4m53LcvFNmsVhJLptIPydMqMceiuRzBuT/cY2
-	rUSW4gOozN/mdng1mPno1/krM74B0AncsyzYKDyiaKr+GL1p4lUfddeodJBhSQ8=
-X-Google-Smtp-Source: AGHT+IHnnQrBpEx4mKKZT6curmy2n5diSz0Y+cPDCOViZgapxBUutKjBWnf/d6QMEX7xqF6BduPUgQ==
-X-Received: by 2002:a05:651c:2224:b0:2ef:26dc:efb3 with SMTP id 38308e7fff4ca-2ef26dcf107mr38663731fa.2.1721637780134;
-        Mon, 22 Jul 2024 01:43:00 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a745917f82sm1989940a12.85.2024.07.22.01.42.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jul 2024 01:42:59 -0700 (PDT)
-Message-ID: <824edc08-f67f-4b2f-b4aa-da5df69b9df4@linaro.org>
-Date: Mon, 22 Jul 2024 10:42:57 +0200
+	s=arc-20240116; t=1721638595; c=relaxed/simple;
+	bh=shFT81nQkpho2gEM61pQFjSGgXKLXjgohIazuB8WOgg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U3C8SWjKYIsN6+b5ll+rRTDgKOzSvaNpg+ZOCw3LP5GkpyJ23FinQCO9yaB3BMrTcYL1S3p/RVtkP9g5NAmwsChsJ0EMGOiaAjVBfFfIuA+souD0QZk0LLHDCqxWJ8NfNPGcvPgn5Wf0GxmmDOL321C1Z0uNMk5KftDGL/dV5Sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JDSzP3Mr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02712C116B1;
+	Mon, 22 Jul 2024 08:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721638594;
+	bh=shFT81nQkpho2gEM61pQFjSGgXKLXjgohIazuB8WOgg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JDSzP3Mr3m+VDb59nHcOLHLHN8z4gjRpafIlntuj8MDrhi3eP1jer9EDh1SQ87kzk
+	 unHh0dA0LkWOFkp71hQR/b5G9ixFvuU7Mu8B7beQBq2pKNpu8sFeR/JQZpS9uqJJS3
+	 WSxFTgfhEt3CRwKLrzgLJ0WOJ9/gX0wTxJGSRlABRHe0TILQ/udNCjXdBtJ4oek4dC
+	 daxhRiHNtms9P/tRPJzxAxuIv+kujWV8IKtvvDkj48qmfVLanPQ0VQJh0Gk8QZIvQQ
+	 awp4DfFpkvaoLHDvrx2ueRLM+xQXJrj0kRi9EtUrheiXnviYnDR0VRrG8A5SFFECFt
+	 onBRVZ3qoF9yg==
+Date: Mon, 22 Jul 2024 09:56:29 +0100
+From: Lee Jones <lee@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Frank Li <Frank.li@nxp.com>
+Subject: Re: [PATCH v6 2/4] mfd: adp5585: Add Analog Devices ADP5585 core
+ support
+Message-ID: <20240722085629.GX501857@google.com>
+References: <20240721160049.20470-1-laurent.pinchart@ideasonboard.com>
+ <20240721160049.20470-3-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add X1E78100 ThinkPad T14s Gen 6
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
- <20240719-topic-t14s_upstream-v1-3-d7d97fdebb28@linaro.org>
- <Zp055OR+OzSgiHhX@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <Zp055OR+OzSgiHhX@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240721160049.20470-3-laurent.pinchart@ideasonboard.com>
 
-On 21.07.2024 6:40 PM, Abel Vesa wrote:
-> On 24-07-19 22:16:38, Konrad Dybcio wrote:
->> Add support for the aforementioned laptop. That includes:
->>
->> - input methods, incl. lid switch (keyboard needs the pdc
->>   wakeup-parent removal hack..)
->> - NVMe, WiFi
->> - USB-C ports
->> - GPU, display
->> - DSPs
->>
->> Notably, the USB-A ports on the side are depenedent on the USB
->> multiport controller making it upstream.
->>
->> At least one of the eDP panels used (non-touchscreen) identifies as
->> BOE 0x0b66.
->>
->> See below for the hardware description from the OEM.
->>
->> Link: https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/lenovo-thinkpad-t14s-gen-6-(14-inch-snapdragon)/len101t0099
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Sun, 21 Jul 2024, Laurent Pinchart wrote:
+
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Few comments below. Otherwise, LGTM.
+> The ADP5585 is a 10/11 input/output port expander with a built in keypad
+> matrix decoder, programmable logic, reset generator, and PWM generator.
+> This driver supports the chip by modelling it as an MFD device, with two
+> child devices for the GPIO and PWM functions.
 > 
-> Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+> The driver is derived from an initial implementation from NXP, available
+> in commit 8059835bee19 ("MLK-25917-1 mfd: adp5585: add ADI adp5585 core
+> support") in their BSP kernel tree. It has been extensively rewritten.
 > 
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->>  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 792 +++++++++++++++++++++
->>  2 files changed, 793 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 0e5c810304fb..734a05e04c4a 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -261,6 +261,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e78100-lenovo-thinkpad-t14s.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v4:
 > 
-> So what happens for SKUs of this model wil have x1e80100 ?
+> - One more GENMASK() usage
+> - Include err.h
 > 
-> Maybe we should stick to x1e80100 ?
-
-This one only ships with 78100
-
-[...]
-
->> +	vreg_edp_3p3: regulator-edp-3p3 {
->> +		compatible = "regulator-fixed";
->> +
->> +		regulator-name = "VREG_EDP_3P3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +
->> +		gpio = <&tlmm 70 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +
->> +		pinctrl-0 = <&edp_reg_en>;
->> +		pinctrl-names = "default";
->> +
->> +		regulator-always-on;
+> Changes since v2:
 > 
-> Drop this.
-
-Oops!
-
-[...]
-
->> +
->> +	edp_reg_en: edp-reg-en-state {
->> +		pins = "gpio70";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-pull-up;
+> - Add missing and remove extraneous headers
+> - Use i2c_get_match_data()
+> - Drop unneeded parentheses
+> - Use GENMASK()
+> - Drop of_match_ptr()
+> - Allow compilation on !OF with COMPILE_TEST
+> - Replace ADP5585_MAN_ID() macro with ADP5585_MAN_ID_MASK
+> - Drop unneeded macro
 > 
-> bias-disable, maybe ?
+> Changes since v1:
+> 
+> - Add comment to explain BANK and BIT macros
+> - Drop compatible strings from cells
+> - White space fixes
+> - Fix comparison to NULL
+> 
+> Changes compared to the NXP original version:
+> 
+> - Add MAINTAINERS entry
+> - Fix compatible strings for child devices
+> - Fix header guards
+> - Use lowercase hex constants
+> - White space fixes
+> - Use module_i2c_driver()
+> - Switch to regmap
+> - Drop I2C device ID table
+> - Drop ADP5585_REG_MASK
+> - Support R5 GPIO pin
+> - Drop dev field from adp5585_dev structure
+> - Check device ID at probe time
+> - Fix register field names
+> - Update copyright
+> - Update license to GPL-2.0-only
+> - Implement suspend/resume
+> ---
+>  MAINTAINERS                 |   2 +
+>  drivers/mfd/Kconfig         |  12 +++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/adp5585.c       | 200 ++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/adp5585.h | 126 +++++++++++++++++++++++
+>  5 files changed, 341 insertions(+)
+>  create mode 100644 drivers/mfd/adp5585.c
+>  create mode 100644 include/linux/mfd/adp5585.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4fe8bd8752a5..ebb1a1833bbc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -532,6 +532,8 @@ L:	linux-gpio@vger.kernel.org
+>  L:	linux-pwm@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/*/adi,adp5585*.yaml
+> +F:	drivers/mfd/adp5585.c
+> +F:	include/linux/mfd/adp5585.h
+>  
+>  ADP5588 QWERTY KEYPAD AND IO EXPANDER DRIVER (ADP5588/ADP5587)
+>  M:	Michael Hennerich <michael.hennerich@analog.com>
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 266b4f54af60..05e8e1f0b602 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -20,6 +20,18 @@ config MFD_CS5535
+>  	  This is the core driver for CS5535/CS5536 MFD functions.  This is
+>  	  necessary for using the board's GPIO and MFGPT functionality.
+>  
+> +config MFD_ADP5585
+> +	tristate "Analog Devices ADP5585 MFD driver"
 
-Yeah, probably
+It's not an MFD driver (whatever one of those is), is a Keypad Decoder
+and I/O Expander.
 
-Konrad
+> +	select MFD_CORE
+> +	select REGMAP_I2C
+> +	depends on I2C
+> +	depends on OF || COMPILE_TEST
+> +	help
+> +	  Say yes here to add support for the Analog Devices ADP5585 GPIO
+> +	  expander, PWM and keypad controller. This includes the I2C driver and
+> +	  the core APIs _only_, you have to select individual components like
+> +	  the GPIO and PWM functions under the corresponding menus.
+> +
+>  config MFD_ALTERA_A10SR
+>  	bool "Altera Arria10 DevKit System Resource chip"
+>  	depends on ARCH_INTEL_SOCFPGA && SPI_MASTER=y && OF
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index c66f07edcd0e..37f36a019a68 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -188,6 +188,7 @@ obj-$(CONFIG_MFD_DB8500_PRCMU)	+= db8500-prcmu.o
+>  obj-$(CONFIG_AB8500_CORE)	+= ab8500-core.o ab8500-sysctrl.o
+>  obj-$(CONFIG_MFD_TIMBERDALE)    += timberdale.o
+>  obj-$(CONFIG_PMIC_ADP5520)	+= adp5520.o
+> +obj-$(CONFIG_MFD_ADP5585)	+= adp5585.o
+>  obj-$(CONFIG_MFD_KEMPLD)	+= kempld-core.o
+>  obj-$(CONFIG_MFD_INTEL_QUARK_I2C_GPIO)	+= intel_quark_i2c_gpio.o
+>  obj-$(CONFIG_LPC_SCH)		+= lpc_sch.o
+> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> new file mode 100644
+> index 000000000000..5dc3e47a0533
+> --- /dev/null
+> +++ b/drivers/mfd/adp5585.c
+> @@ -0,0 +1,200 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Analog Devices ADP5585 I/O expander, PWM controller and keypad controller
+> + *
+> + * Copyright 2022 NXP
+> + * Copyright 2024 Ideas on Board Oy
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mfd/adp5585.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
+> +
+> +static const struct mfd_cell adp5585_devs[] = {
+> +	{ .name = "adp5585-gpio", },
+> +	{ .name = "adp5585-pwm", },
+> +};
+> +
+> +static const struct regmap_range adp5585_volatile_ranges[] = {
+> +	regmap_reg_range(ADP5585_ID, ADP5585_GPI_STATUS_B),
+> +};
+> +
+> +static const struct regmap_access_table adp5585_volatile_regs = {
+> +	.yes_ranges = adp5585_volatile_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(adp5585_volatile_ranges),
+> +};
+> +
+> +static const u8 adp5585_regmap_defaults_00[ADP5585_MAX_REG + 1] = {
+> +	/* 0x00 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x08 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x10 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x18 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x20 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x28 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x30 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
+> +};
+> +
+> +static const u8 adp5585_regmap_defaults_02[ADP5585_MAX_REG + 1] = {
+> +	/* 0x00 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x08 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x10 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc3,
+> +	/* 0x18 */ 0x03, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x20 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x28 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x30 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
+> +};
+> +
+> +static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
+> +	/* 0x00 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x08 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x10 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x55,
+> +	/* 0x18 */ 0x05, 0x55, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x20 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x28 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x30 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
+> +};
 
+This 'patches', 'default's whatever you want to call them are horrid!
+
+> +enum adp5585_regmap_type {
+> +	ADP5585_REGMAP_00,
+> +	ADP5585_REGMAP_02,
+> +	ADP5585_REGMAP_04,
+> +};
+
+What is a type 00, 02 and 04?
+
+> +static const struct regmap_config adp5585_regmap_configs[] = {
+> +	[ADP5585_REGMAP_00] = {
+> +		.reg_bits = 8,
+> +		.val_bits = 8,
+> +		.max_register = ADP5585_MAX_REG,
+> +		.volatile_table = &adp5585_volatile_regs,
+> +		.cache_type = REGCACHE_MAPLE,
+> +		.reg_defaults_raw = adp5585_regmap_defaults_00,
+> +		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
+> +	},
+> +	[ADP5585_REGMAP_02] = {
+> +		.reg_bits = 8,
+> +		.val_bits = 8,
+> +		.max_register = ADP5585_MAX_REG,
+> +		.volatile_table = &adp5585_volatile_regs,
+> +		.cache_type = REGCACHE_MAPLE,
+> +		.reg_defaults_raw = adp5585_regmap_defaults_02,
+> +		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
+> +	},
+> +	[ADP5585_REGMAP_04] = {
+> +		.reg_bits = 8,
+> +		.val_bits = 8,
+> +		.max_register = ADP5585_MAX_REG,
+> +		.volatile_table = &adp5585_volatile_regs,
+> +		.cache_type = REGCACHE_MAPLE,
+> +		.reg_defaults_raw = adp5585_regmap_defaults_04,
+> +		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
+> +	},
+> +};
+> +
+> +static int adp5585_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	const struct regmap_config *regmap_config;
+> +	struct adp5585_dev *adp5585;
+> +	unsigned int id;
+> +	int ret;
+> +
+> +	adp5585 = devm_kzalloc(&i2c->dev, sizeof(struct adp5585_dev),
+
+sizeof(*adp5585)
+
+> +			       GFP_KERNEL);
+
+No need to line-wrap here - user 100 chars to improve readability.
+
+> +	if (!adp5585)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(i2c, adp5585);
+> +
+> +	regmap_config = i2c_get_match_data(i2c);
+> +	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
+
+Is regmap_config guaranteed to be !NULL?
+
+How would devm_regmap_init_i2c() handle that if it were?
+
+> +	if (IS_ERR(adp5585->regmap))
+> +		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+> +				     "Failed to initialize register map\n");
+> +
+> +	/* Verify the device ID. */
+
+Probably superfluous.
+
+> +	ret = regmap_read(adp5585->regmap, ADP5585_ID, &id);
+> +	if (ret)
+> +		return dev_err_probe(&i2c->dev, ret,
+> +				     "Failed to read device ID\n");
+> +
+> +	if ((id & ADP5585_MAN_ID_MASK) != ADP5585_MAN_ID_VALUE)
+> +		return dev_err_probe(&i2c->dev, -ENODEV,
+> +				     "Invalid device ID 0x%02x\n", id);
+> +
+> +	dev_dbg(&i2c->dev, "device ID 0x%02x\n", id);
+
+How often to you think this well be useful post-dev?
+
+I'd wager, never.
+
+> +
+> +	/* Add MFD devices. */
+
+Definitely superfluous.
+
+> +	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
+> +				   adp5585_devs, ARRAY_SIZE(adp5585_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		return dev_err_probe(&i2c->dev, ret,
+> +				     "Failed to add MFD devices\n");
+
+s/MFD/child/
+
+Or
+
+s/MFD /sub-/
+
+> +	return 0;
+> +}
+> +
+> +static int adp5585_suspend(struct device *dev)
+> +{
+> +	struct adp5585_dev *adp5585 = dev_get_drvdata(dev);
+> +
+> +	regcache_cache_only(adp5585->regmap, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static int adp5585_resume(struct device *dev)
+> +{
+> +	struct adp5585_dev *adp5585 = dev_get_drvdata(dev);
+> +
+> +	regcache_cache_only(adp5585->regmap, false);
+> +	regcache_mark_dirty(adp5585->regmap);
+> +
+> +	return regcache_sync(adp5585->regmap);
+> +}
+> +
+> +static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
+> +
+> +static const struct of_device_id adp5585_of_match[] = {
+> +	{
+> +		.compatible = "adi,adp5585-00",
+> +		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> +	}, {
+> +		.compatible = "adi,adp5585-01",
+> +		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> +	}, {
+> +		.compatible = "adi,adp5585-02",
+> +		.data = &adp5585_regmap_configs[ADP5585_REGMAP_02],
+> +	}, {
+> +		.compatible = "adi,adp5585-03",
+> +		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> +	}, {
+> +		.compatible = "adi,adp5585-04",
+> +		.data = &adp5585_regmap_configs[ADP5585_REGMAP_04],
+> +	}, {
+
+	{	.compatible = "adi,adp5585-05"	},  /* Whoops, did I just dereference a NULL poiner? */
+
+> +	{ /* sentinel */ }
+
+Comment sounds cool, but is it necessary?
+
+> +};
+> +MODULE_DEVICE_TABLE(of, adp5585_of_match);
+> +
+> +static struct i2c_driver adp5585_i2c_driver = {
+> +	.driver = {
+> +		.name = "adp5585",
+> +		.of_match_table = adp5585_of_match,
+> +		.pm = pm_sleep_ptr(&adp5585_pm),
+> +	},
+> +	.probe = adp5585_i2c_probe,
+> +};
+> +module_i2c_driver(adp5585_i2c_driver);
+> +
+> +MODULE_DESCRIPTION("ADP5585 core driver");
+> +MODULE_AUTHOR("Haibo Chen <haibo.chen@nxp.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
+> new file mode 100644
+> index 000000000000..25025b381c63
+> --- /dev/null
+> +++ b/include/linux/mfd/adp5585.h
+> @@ -0,0 +1,126 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Analog Devices ADP5585 I/O expander, PWM controller and keypad controller
+> + *
+> + * Copyright 2022 NXP
+> + * Copyright 2024 Ideas on Board Oy
+> + */
+> +
+> +#ifndef __LINUX_MFD_ADP5585_H_
+
+You can probably drop the LINUX_ part.
+
+> +#define __LINUX_MFD_ADP5585_H_
+> +
+> +#include <linux/bits.h>
+> +
+> +#define ADP5585_ID			0x00
+> +#define		ADP5585_MAN_ID_VALUE		0x20
+> +#define		ADP5585_MAN_ID_MASK		GENMASK(7, 4)
+> +#define ADP5585_INT_STATUS		0x01
+> +#define ADP5585_STATUS			0x02
+> +#define ADP5585_FIFO_1			0x03
+> +#define ADP5585_FIFO_2			0x04
+> +#define ADP5585_FIFO_3			0x05
+> +#define ADP5585_FIFO_4			0x06
+> +#define ADP5585_FIFO_5			0x07
+> +#define ADP5585_FIFO_6			0x08
+> +#define ADP5585_FIFO_7			0x09
+> +#define ADP5585_FIFO_8			0x0a
+> +#define ADP5585_FIFO_9			0x0b
+> +#define ADP5585_FIFO_10			0x0c
+> +#define ADP5585_FIFO_11			0x0d
+> +#define ADP5585_FIFO_12			0x0e
+> +#define ADP5585_FIFO_13			0x0f
+> +#define ADP5585_FIFO_14			0x10
+> +#define ADP5585_FIFO_15			0x11
+> +#define ADP5585_FIFO_16			0x12
+> +#define ADP5585_GPI_INT_STAT_A		0x13
+> +#define ADP5585_GPI_INT_STAT_B		0x14
+> +#define ADP5585_GPI_STATUS_A		0x15
+> +#define ADP5585_GPI_STATUS_B		0x16
+> +#define ADP5585_RPULL_CONFIG_A		0x17
+> +#define ADP5585_RPULL_CONFIG_B		0x18
+> +#define ADP5585_RPULL_CONFIG_C		0x19
+> +#define ADP5585_RPULL_CONFIG_D		0x1a
+> +#define		ADP5585_Rx_PULL_CFG_PU_300K	0
+
+Assuming these are bits - 2 spaces is usually enough.
+
+> +#define		ADP5585_Rx_PULL_CFG_PD_300K	1
+> +#define		ADP5585_Rx_PULL_CFG_PU_100K	2
+> +#define		ADP5585_Rx_PULL_CFG_DISABLE	3
+> +#define		ADP5585_Rx_PULL_CFG_MASK	3
+> +#define ADP5585_GPI_INT_LEVEL_A		0x1b
+> +#define ADP5585_GPI_INT_LEVEL_B		0x1c
+> +#define ADP5585_GPI_EVENT_EN_A		0x1d
+> +#define ADP5585_GPI_EVENT_EN_B		0x1e
+> +#define ADP5585_GPI_INTERRUPT_EN_A	0x1f
+> +#define ADP5585_GPI_INTERRUPT_EN_B	0x20
+> +#define ADP5585_DEBOUNCE_DIS_A		0x21
+> +#define ADP5585_DEBOUNCE_DIS_B		0x22
+> +#define ADP5585_GPO_DATA_OUT_A		0x23
+> +#define ADP5585_GPO_DATA_OUT_B		0x24
+> +#define ADP5585_GPO_OUT_MODE_A		0x25
+> +#define ADP5585_GPO_OUT_MODE_B		0x26
+> +#define ADP5585_GPIO_DIRECTION_A	0x27
+> +#define ADP5585_GPIO_DIRECTION_B	0x28
+> +#define ADP5585_RESET1_EVENT_A		0x29
+> +#define ADP5585_RESET1_EVENT_B		0x2a
+> +#define ADP5585_RESET1_EVENT_C		0x2b
+> +#define ADP5585_RESET2_EVENT_A		0x2c
+> +#define ADP5585_RESET2_EVENT_B		0x2d
+> +#define ADP5585_RESET_CFG		0x2e
+> +#define ADP5585_PWM_OFFT_LOW		0x2f
+> +#define ADP5585_PWM_OFFT_HIGH		0x30
+> +#define ADP5585_PWM_ONT_LOW		0x31
+> +#define ADP5585_PWM_ONT_HIGH		0x32
+> +#define ADP5585_PWM_CFG			0x33
+> +#define		ADP5585_PWM_IN_AND		BIT(2)
+> +#define		ADP5585_PWM_MODE		BIT(1)
+> +#define		ADP5585_PWM_EN			BIT(0)
+> +#define ADP5585_LOGIC_CFG		0x34
+> +#define ADP5585_LOGIC_FF_CFG		0x35
+> +#define ADP5585_LOGIC_INT_EVENT_EN	0x36
+> +#define ADP5585_POLL_PTIME_CFG		0x37
+> +#define ADP5585_PIN_CONFIG_A		0x38
+> +#define ADP5585_PIN_CONFIG_B		0x39
+> +#define ADP5585_PIN_CONFIG_C		0x3a
+> +#define		ADP5585_PULL_SELECT		BIT(7)
+> +#define		ADP5585_C4_EXTEND_CFG_GPIO11	(0U << 6)
+> +#define		ADP5585_C4_EXTEND_CFG_RESET2	(1U << 6)
+> +#define		ADP5585_C4_EXTEND_CFG_MASK	GENMASK(6, 6)
+> +#define		ADP5585_R4_EXTEND_CFG_GPIO5	(0U << 5)
+> +#define		ADP5585_R4_EXTEND_CFG_RESET1	(1U << 5)
+> +#define		ADP5585_R4_EXTEND_CFG_MASK	GENMASK(5, 5)
+> +#define		ADP5585_R3_EXTEND_CFG_GPIO4	(0U << 2)
+> +#define		ADP5585_R3_EXTEND_CFG_LC	(1U << 2)
+> +#define		ADP5585_R3_EXTEND_CFG_PWM_OUT	(2U << 2)
+> +#define		ADP5585_R3_EXTEND_CFG_MASK	GENMASK(3, 2)
+> +#define		ADP5585_R0_EXTEND_CFG_GPIO1	(0U << 0)
+> +#define		ADP5585_R0_EXTEND_CFG_LY	(1U << 0)
+> +#define		ADP5585_R0_EXTEND_CFG_MASK	GENMASK(0, 0)
+> +#define ADP5585_GENERAL_CFG		0x3b
+> +#define		ADP5585_OSC_EN			BIT(7)
+> +#define		ADP5585_OSC_FREQ_50KHZ		(0U << 5)
+> +#define		ADP5585_OSC_FREQ_100KHZ		(1U << 5)
+> +#define		ADP5585_OSC_FREQ_200KHZ		(2U << 5)
+> +#define		ADP5585_OSC_FREQ_500KHZ		(3U << 5)
+> +#define		ADP5585_OSC_FREQ_MASK		GENMASK(6, 5)
+> +#define		ADP5585_INT_CFG			BIT(1)
+> +#define		ADP5585_RST_CFG			BIT(0)
+> +#define ADP5585_INT_EN			0x3c
+> +
+> +#define ADP5585_MAX_REG			ADP5585_INT_EN
+> +
+> +/*
+> + * Bank 0 covers pins "GPIO 1/R0" to "GPIO 6/R5", numbered 0 to 5 by the
+> + * driver, and bank 1 covers pins "GPIO 7/C0" to "GPIO 11/C4", numbered 6 to
+> + * 10. Some variants of the ADP5585 don't support "GPIO 6/R5". As the driver
+> + * uses identical GPIO numbering for all variants to avoid confusion, GPIO 5 is
+> + * marked as reserved in the device tree for variants that don't support it.
+> + */
+> +#define ADP5585_BANK(n)			((n) >= 6 ? 1 : 0)
+> +#define ADP5585_BIT(n)			((n) >= 6 ? BIT((n) - 6) : BIT(n))
+> +
+> +struct regmap;
+> +
+> +struct adp5585_dev {
+> +	struct regmap *regmap;
+> +};
+> +
+> +#endif
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
+
+-- 
+Lee Jones [李琼斯]
 
