@@ -1,217 +1,183 @@
-Return-Path: <devicetree+bounces-87067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FCA93876E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 03:59:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AC293877C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 04:14:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4142D1F2109E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 01:59:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D767B1F2112C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 02:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9148BEA;
-	Mon, 22 Jul 2024 01:59:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B964410A0C;
+	Mon, 22 Jul 2024 02:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="WdO3yJPa"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="T3po7Ka4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011013.outbound.protection.outlook.com [52.101.70.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3C8611E;
-	Mon, 22 Jul 2024 01:59:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721613544; cv=fail; b=qhb7wwZfwmGttgiePw80LZfJFaiwnQq9ZOmWvqkMW9vsv6DXuQrof2UsS4gnWzx5YMSLW66FtWgcWwdKJHmdTwdmA2GdfdflVzmrGIrvt1QGOT98ffHfNpT5v+8BVe0KkHcDqDqO6zmzyhGhSfrOdVLnC9+6iomp1uDAMSU9fx0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721613544; c=relaxed/simple;
-	bh=e5LGzF8Ols7tDSfBkGA+qdXZf5C1mQNxceiea9P2Css=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=J1fFRlQKJmJYYcCbSawzPv1qkft+EZk2/F/P6/GtDIOHoyj43iHsK/fCTye1RDgvcJ+9nv0KGaXFUgatP+D/Pf81hmHLYS5wq4bb4uzG3uDPZ0bJJZdCaccnYx6ibJoImSlTOJHgtjBoBLco+klrBNefZnA4X6YX2zA9Nxj6NC0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=WdO3yJPa; arc=fail smtp.client-ip=52.101.70.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BZYIN1Eh/LrGmPjVD8wOSRu1oyX7L0/e8Sil4fhIV+73IeuYnWyQLdUf+0xDRWX7LZcyYyWwjcB87Dt2eiwP8/IznK/IC+DA/b5LX+svEG3mi7zzIptUQIrfgCxLPvL/dUA0paL4mNADEQ8j0W5kD7UrbGMaOabHivXnTzX22RcVrHhJV8DuQ61BchTxI7/30jKT18jWgbamGDlpomV2DNeIdwc0d2GNw+XUinpRFhwIUUeLjKaWoHFMbkOUZXDBXUPwABhETY2iTxMODZqYII9mvIeAf57h4DfL2asUvRbxhpbHVMdKS6D96vJCEQl14TlAl0hUqA2cvu+6TivPOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e5LGzF8Ols7tDSfBkGA+qdXZf5C1mQNxceiea9P2Css=;
- b=iRqBoWpBbDccXqyseu2CzsKOqLKH/m4a93vEGnJcQWqGtbsftOmt9vGxqKxwdHLZgGyrC5LDsMH2GBaN1KHUUOTyIarMz6hSMVjCJ2E7jRISOGKKnp/R8uDRBGcngBTFX3TkToCZLHyyyh1p50ZIt7LOT31jxm5d+aNJ2Tz3TIUyTrRQ21QAd5V0PpvG/AwGDmk/KXGuWM6355I7+LR8ZUomW0BMCSlQkeXvzu1qumj9wEmUkCgnmqWRhMqCLDEQSol1OyNaSBLi8Qahwnsnzz/9Cvph481SOV+dOY9PveVdDS2neDPy/ZOXqt2nBZrGGdhqp/eeuUiUMKsh5DsuuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e5LGzF8Ols7tDSfBkGA+qdXZf5C1mQNxceiea9P2Css=;
- b=WdO3yJPasycfD6uTvZRY19RJrC98yuOh99YsmVX+9seK69W0YI/9V6cQM4vIAt0z59DCfdQR9OjUoHmh61r2Be6XQ3W7W3SGTjRWmtEL4phJ86cgFrahTBggLQzgw/rbHNGse/dD0FWWeaelVVrdnHZr3Qcm9zcI3Bkg7+agqt4=
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by VI2PR04MB10716.eurprd04.prod.outlook.com (2603:10a6:800:270::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Mon, 22 Jul
- 2024 01:58:58 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.7762.032; Mon, 22 Jul 2024
- 01:58:58 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: "mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
-	<sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
-	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>, "abelvesa@kernel.org"
-	<abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>
-CC: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 4/4] arm64: dts: imx95: Add NETCMIX block control
- support
-Thread-Topic: [PATCH v2 4/4] arm64: dts: imx95: Add NETCMIX block control
- support
-Thread-Index: AQHa0qchSzfgU8nz7USVNt0vdVW+g7ICDq7A
-Date: Mon, 22 Jul 2024 01:58:58 +0000
-Message-ID:
- <PAXPR04MB85101CDD4328223C6E2A81E188A82@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <20240710084345.2016687-1-wei.fang@nxp.com>
- <20240710084345.2016687-5-wei.fang@nxp.com>
-In-Reply-To: <20240710084345.2016687-5-wei.fang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|VI2PR04MB10716:EE_
-x-ms-office365-filtering-correlation-id: 6df75374-387b-435b-d444-08dca9f1d9c3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?gb2312?B?djI3NENmMFJGbVlXRFEyYnhXQjl5UG11WVU2V0kyNUVCZ0hqUmt0UWNxejQ0?=
- =?gb2312?B?K3N3U0xHeC9oUmxrdVN1UFI4L2o0ODNqT0tueWo2WFljVUVPQkoyUkxvSUN0?=
- =?gb2312?B?L20xTzRIWlVwSXBxcFo1bERpQ2ViNzRnQnVVaS9Ocm9GL0thcHFnREJJS2hG?=
- =?gb2312?B?QmRmZzFpKytCbkwrRitoRnZjRElJYTNQeE5GdW0yZ2RPN0g1dWRweWEvR3lT?=
- =?gb2312?B?Z3hvREN1OGlRdy81Mmlzcm9tWExTYjQ3VlZ1SEVrdVBsN2F4K2tocmdmdWdK?=
- =?gb2312?B?Tmo0c1NVdWZNNUhEbS82VWdXdzZtYk40NTBldjZra0R5dC9ndWpCRXlxTXkr?=
- =?gb2312?B?UENwWTlqMnMyZ1BjTVZkOWFMVnVpbnFuRmNnOFA3VkgrcGk2ZG50RFBJcnZU?=
- =?gb2312?B?VkhHeVNVek1CQnFLVXV0aXdnaGFmd25hMjVNOGlEYzZZUDNZcDZQdDNWQUND?=
- =?gb2312?B?dDR3anJvS2tVZGViQjhabTJIdVRMUnRVVmhBdEprSmo3WDcxSTRHcVY3SS9s?=
- =?gb2312?B?YUFNWjFOcjVvTEk1THVUWjJvT1VoRnJNRkhOdXBxbmEyTUhZQk0rRTN4UzZR?=
- =?gb2312?B?anZwMURjdWFnZ2toeHlhTW54dTNZL3hBRGpBalhsdmx2TFdxWW9qRUJmc3Y5?=
- =?gb2312?B?K3RJRjJaNXBsRlVvNkFsRTd6SXhlN2RVZ0RNZS9tZFIyTTVVenZBVjZRMVN3?=
- =?gb2312?B?SUdPUHovMjhQQWdOYUdlZWxGVk9pbnYvSm1FRmZYUFpDVnVYMUFLRjNBdStj?=
- =?gb2312?B?NXVFVEsvM0h5SXZWMVBUemxEZGFBeDlZUStPNDhKQkRRdWN0eGZTTFFKM3Q5?=
- =?gb2312?B?Qktsc3puK0xqbHM4dS9HbVQ2OER5M2RiS2ZjWkNFak1RcmQ2VmxBVWhVeUJr?=
- =?gb2312?B?bnBJVllTc1dKcy9sRG9QUkErSTBna2o4WGlkV1k5ZitEaG5mM0QvTjFlNlpZ?=
- =?gb2312?B?VVkvY0RSNFZMYVlvRi85bU8wd0VqNTkxREtFdnlwZmxIN01RbHFCRUw1QXJU?=
- =?gb2312?B?UzdQd3dZMEM5UkloVkQ1WjUwSk43b1pXY0kvMHdYVURCNTgxdEIyVG9ucllN?=
- =?gb2312?B?U1NOMmxFb3J2MWgxTjl4QW1TSWdUTlZHZUdyb3BhNUkzOUZNQ3RQeWpBWUpq?=
- =?gb2312?B?RWM3V2NxRkFCb1FQV09zdXNma2VkTXR5ODBIRk45NGJwSy9YQm5Oam9DYnVn?=
- =?gb2312?B?Z0hyVWZ2bGlHTE9JRXFMM2c3WlVlaE0yL2ZwVXc2c2EzK2xqN05CMzBVclJM?=
- =?gb2312?B?N0FsZldJamRRYlRvMU1zakVwbGVrRlpBSzlFTnIzMXlBQUdkY2JCQTNkbWlN?=
- =?gb2312?B?WERyeXVuQmErRWZUM3NVUVB0eUpKSmxRMTZsbENKdzhDQVhEM045cGRJdW9u?=
- =?gb2312?B?VFNmWmZVSlBCRDBqOUFLbCtLQVNzN1FOdEsyWlgrL01qM0FXMlZyWGFDVHdk?=
- =?gb2312?B?Vnl0Z0xhbDIza1VaWTArN0g0MVJFZ2dVVWxlTWdWUTM2aE1DOERjeDJZVDJt?=
- =?gb2312?B?MmZJWEY2YXE3NjduNzBDcGMwVWhOc3hIWnFXQUJJZjRjbmdoMjJ2dE1POVA5?=
- =?gb2312?B?NUN1RUtld2V6MHBNVDNaQzZtOWM0WDdObWFxR2JyRFcyS0tNQ2xZaEJtNEtZ?=
- =?gb2312?B?N2VmbEoyUnZJTmxQK3BtczR3Z0pnWExUbmdIV2drZHlxaFBzTFhXay81Z1Vx?=
- =?gb2312?B?MnN6cXl5S2d4VDlHMXQvUnBKb0l2QWlwbEkrQkI3N2hiTUE0VGdidlY1OWdw?=
- =?gb2312?B?R2pNRlZobklXS3N3SkVzbVdHYk5zb3JYcjhJNjlZM1BJd3R0VGFPeFJhbXRE?=
- =?gb2312?B?b0dLNUREV3V2OUdmeEFRVXRvL2V1YTlVanNyREVYWW1xTWFDd3VaY3h4Q1Bo?=
- =?gb2312?B?T1RaTXFZQ2tuQ3ZraytIVUVFWXF3MUN4eWhTdWRXSEM4L3c9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?amhmNnBnd0szZ2xuYnZCTEIvamhqUGlFaVF4TllaWEIzMHNIemdFRmwzUmJS?=
- =?gb2312?B?MU1HeUp3SExNd2psVEhBVERyMlloR2w3Snh2L1N2MUs5NHZKMU9TcThPaHpp?=
- =?gb2312?B?ZE56b0x3V1FUZDQyQ0lJSWFOWmdETHM5Ky9yUVVNRHpvVGRtTVBjS29EZEFP?=
- =?gb2312?B?MysvcEFRU2lsWko5TUFMT2dKOWVoYTBEc0RaaHZMY21sUnVvY2lKRjViMWp2?=
- =?gb2312?B?NzRVVWJ1YUtidlFJcEdQT0FjVzZmNDQ3dVcwUnhQbFlxd3RDbE80UFZpbkRx?=
- =?gb2312?B?UWxScU4xQnFNblk2VHh0RURpcHNZamhMZXRRVXUySElaQXNVVzlTSytPUTRU?=
- =?gb2312?B?UGE3cTV3QStYUTQ0cGxmVUU4WHFkcmg2TTcxZlo4dm94TGJPNi9NRnl0OVpI?=
- =?gb2312?B?K1ZiaVpoeEg4UVNBM2NtNUgyaFZ2bkNrN0tpNnQ2aTBHVy9QdHoxYk0xNFNx?=
- =?gb2312?B?eUVLTituM1ZaVkJaV29rVWVtMzF2OTFPLzQ1UUNYTDJMMWdCRmF3NjN0QUVP?=
- =?gb2312?B?Y0RKbERHVzdlZG5Ob1lFdkYrUTJQcUhiTFlmZDB1cmhJRjViMks3eHVlZ0hD?=
- =?gb2312?B?RkZLVWk4a0d6aVErVnAwOExRV1gyQktTQ2RGa01lekVNcWFJZTlGdFJHNUpi?=
- =?gb2312?B?ZWlTSVd2ZEEzZkhTb1lQWjN5ckJiUXE3SGNOK0R4WHdYVDJ2bEIydUJmYUhv?=
- =?gb2312?B?MEVkVGkvdFJINHlYQm9Zc3Y4SnhFOVUvSzV5MCtMK1JudlBTZFRtQVdtSmRW?=
- =?gb2312?B?TUZDYnBLMktNUXpYODJ3d25tbzVJRE5OeVpHL0FqRGNibVlhQUFqOTZkSjNO?=
- =?gb2312?B?akEzRitVanFSU3FSZmpYRW4vaExwN2IzeGZXdlNyUWc2ZW1SRDFNTjcvYzBI?=
- =?gb2312?B?MXlpdmtKZ2FqMlNVZ0tJL290ODZsSDZSSnRnM2x6U0tsSGdObGtFQzlxa0ZY?=
- =?gb2312?B?aU52MFRTdW1aUXR4QWRRSWFraElEODR5b1VBMWJVcjJad25FUThzMFl2RDha?=
- =?gb2312?B?amVJZHJOMzVkVHVvZHB3Yjl5UEE0M3A3all2MSt1UHFtYWhPTGdkTWJ1MUN2?=
- =?gb2312?B?djl3M3ozQ01qZGRTS2ZCUmJRNEplbVEzcTZWK0lzdjZiQWtzRk1KNCtqRFFh?=
- =?gb2312?B?aEdDclBiYjZQQ1pYNnZPYkk3Y2dwUWg0VmR6Ykw1OTJIZzhTaVlTbzN0anZV?=
- =?gb2312?B?V2l3Q2tNcnVxd1hRRHdsUjVSZ3Fsa0I2UzExSUUvOGZMa09TWDVnVC9UeERS?=
- =?gb2312?B?RFFHM08xQjZOYndBTDc3NUE0QUxCRDJKaEZEZGN1Yyt6b3prMmd6MFJwR0pK?=
- =?gb2312?B?VUVMMzdxMUtDcDdvZU84WEtUdFVpUTVqYmdMN3hmdUcxOUQyUVJkZGpGei9E?=
- =?gb2312?B?TEhHelYrODJuSnluUEJVWko1aExRTzkvemVmdnQrTE5VV2FNWEgxM21sNER5?=
- =?gb2312?B?bkR3NlRucE81dDZubWpIQ082YmpLbi9Hb0ppZkRqTUdrOVJSSTFaQWFIMVc2?=
- =?gb2312?B?UzlZU254YjhYa0h6SjhTQ2l6N1ZyYkhmS0J2NXU3c0UyYTVZQWlaUDRGZWlH?=
- =?gb2312?B?UXMzbEgzK2RNVFFCcFd3MVVQMmhDM3hQSC8xd0V0RmdEQktHQ3pGQXFZd2dO?=
- =?gb2312?B?UkllQ3JuMXA5NDFpb2F3L1NVSitQcEx2dUNwdFZMVkVhOWVZcXB6RmdqSzA5?=
- =?gb2312?B?ZERwS0hCWDBZODFKeDQ4TTY5OGRIY29yT3lTKzlZUkNmYllHdW1jNjN0bmtQ?=
- =?gb2312?B?aHJ0eFkwalBlTlNYaFcwUEdmekRRdnBKZHJwRHgxTjF2YjMwUWJQY2xRSzYr?=
- =?gb2312?B?Zmd5TnBaMXhsaVdVMUtKSXpNWEJOYng5eWFNK0JVYmVuS2lpWDlnR0tZSkQ3?=
- =?gb2312?B?VDZ5RThMQTRXL3ZINE5hNEVKTWFFbkQ4ZW9YcCt3REhsbThJd1Rpdmo5bHNq?=
- =?gb2312?B?NzZXRDhtcmlrQVd0Z3FlN2x5eDF6VGI5azVGbXdlY3JFTXpIc0Uya3JOWFcz?=
- =?gb2312?B?ME5GUVE3NnQ5Q3hMTXowd2YvQm5vQUdxckYwZlloL0F6dmJNc0RpcVJYRHZ2?=
- =?gb2312?B?VFVlSHBDSUk1dXVJZElqTjRmZ0pJRkNEQnFnRWQ5b3c2K2pOajJPdlZ3V1JK?=
- =?gb2312?Q?W71s=3D?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1422CA64
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 02:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721614465; cv=none; b=k1sT/DxFekbnc0gwTmFIuYfM9R3m10j+ZG5WdRCUwQ2pu1A7RCn7cpFxcy3vqhj2TNqgntlRBC7bGmY0s8lvJ7co3DswVfx0oKBrPuidyuipbm/z+VPI5VQBGplXeNfRro4awC8CGDW0/XyKa1RuwfSA48+gxW7DXiV9d1xuqpU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721614465; c=relaxed/simple;
+	bh=AJiaG+8x6Qhj7Wc27cG9Bf54PaCAqk9PdZsLZCJ5YBI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JIOmdQEPV6skAU6JyMAEtLHZagb3NqesOl6sQOtQQhTp5C1C4UFy7Oaj3Tor5PmKYE0o+PSGOKRUzpdrvrVKQXFbWKZwt+zmNSjNLuDsH6cTj1cb+pcnLLcFdpJQHAfr4ex+kondMbYUfXm2xylCO+eU5QA0SyQJMell39A9QXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=T3po7Ka4; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-250ca14422aso2085216fac.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 19:14:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1721614462; x=1722219262; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kl/5HdiGOfFOfo04ZJqI2kOtj4nNd83dcFbNpwK/70I=;
+        b=T3po7Ka4FkuG9TASaQl7cSeDfd107oKKu8ed8bpaeAqDuDaIrkcs1APMqclS/AZRss
+         tCm6mrCIHLf4sWIw5mYAINM63oSbbo6wshaK22uigiY/ClLyVMhC8oSQJz4671zTQT68
+         eDJCAfNCqyJbY0FXvLkGnyA8/XaDur5lS8UV/TTD7pu6OObld3DoLTqWIFHuCzM84fg8
+         BYm0LBRnjzycpEfq29uGlYxZl9eQZCiSOLWHnIRJHY0qlfArj6zw7p4tYXEKobYKxn2T
+         qkH8g4oX9RkZrHqhMakaFkeqV3UTwLdhHJO2NWpQNJLb23VKpCC6/oO0YpzIdvy+WJOx
+         NnZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721614462; x=1722219262;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Kl/5HdiGOfFOfo04ZJqI2kOtj4nNd83dcFbNpwK/70I=;
+        b=kArQq2TEE/rWduDIE1jXsyN8peaVwmp6Pp2IuhD1jAcw8Dqx6kWAxwYRgGhgqohdfV
+         fNk8cy67hxr6BP5Vqv3uBGhIg0sUYCtFO4CiQnkUeSdd+kWEZmk+8Dwb9cRfoKuUrCdR
+         rx3qcmcOVQDbvgybeQNO1GIJ8nzxWdOkJYvoCw8i6jAZun/QS48HKmyd9mQDP4Bbjoe7
+         BohPoHP/FlysGNG6rl12cbVYpGpsC9ctTzyK/iMEXhP0TvEEu3+Jv/KikT8rlUs9NlOr
+         ZeOBRBf7/50sAJANmqv44JXUFao2e3CHAaB3KYB9JSKkFc2kQpWfMbsx1pnmIEditq30
+         hkAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUfoEKD9zhj52VEtQnRFmfF6E9G0LuynJWVL2mJDEqYbcRjoo+qGSTXwbLBqMlDhKJ5WtT9Vw2WKbnQDscsMxrbH5VpfTsr/J17Iw==
+X-Gm-Message-State: AOJu0Yw0bqw/sXVywy3+BK4oFOVRxtNEN9nYFoIoEzHn0e5tZD5WH5dn
+	OzSw+ZpSATRz6xQG1O8dF4lLq/iNZ4jUm62H6Skqr56EIlQxJDm+mYUBf+bGkg/2OQt+GHL52eZ
+	nlPFv2GSvIsaUEEKXtg/3THB0xJ2zKU0gopiXVw==
+X-Google-Smtp-Source: AGHT+IHnB9IHVe+JUhN7+3oCZIPRki3xbro2mIHQOGvKQ+6goU1pu1Q9XgV6wLqCAmGxdb7cSYKKnOMLQd5vLv7Sn5A=
+X-Received: by 2002:a05:6871:b28:b0:261:10b7:8c48 with SMTP id
+ 586e51a60fabf-2638df8951dmr5202348fac.27.1721614461869; Sun, 21 Jul 2024
+ 19:14:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6df75374-387b-435b-d444-08dca9f1d9c3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2024 01:58:58.5376
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DIwiwaQS/NHIgAyOfKO+zGCOZyk2ojrLFW76cbSKwp0ShCgpYVnBfdbLELk53zjKO7o/dnJrSNzCGz05tPQPXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10716
+References: <20240712083850.4242-1-yongxuan.wang@sifive.com>
+ <20240712083850.4242-3-yongxuan.wang@sifive.com> <727b966a-a8c4-4021-acf6-3c031ccd843a@sifive.com>
+ <CAMWQL2g-peSYJQaxeJtyOzGdEmDQ6cnkRBdFQvLr2NQA1+mv2g@mail.gmail.com> <20240719-flatten-elixir-d4476977ab95@spud>
+In-Reply-To: <20240719-flatten-elixir-d4476977ab95@spud>
+From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+Date: Mon, 22 Jul 2024 10:14:11 +0800
+Message-ID: <CAMWQL2iWsxLJZZ3H59csJ376Hdtq+ZKjD92BtM9zhdXm+fh2=A@mail.gmail.com>
+Subject: Re: [PATCH v7 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+To: Conor Dooley <conor@kernel.org>
+Cc: Samuel Holland <samuel.holland@sifive.com>, greentime.hu@sifive.com, 
+	vincent.chen@sifive.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBXZWkgRmFuZw0KPiBTZW50OiAy
-MDI0xOo31MIxMMjVIDE2OjU3DQo+IFRvOiBtdHVycXVldHRlQGJheWxpYnJlLmNvbTsgc2JveWRA
-a2VybmVsLm9yZzsgcm9iaEBrZXJuZWwub3JnOw0KPiBjb25vcitkdEBrZXJuZWwub3JnOyBzaGF3
-bmd1b0BrZXJuZWwub3JnOyBzLmhhdWVyQHBlbmd1dHJvbml4LmRlOw0KPiBmZXN0ZXZhbUBnbWFp
-bC5jb207IGFiZWx2ZXNhQGtlcm5lbC5vcmc7IFBlbmcgRmFuIDxwZW5nLmZhbkBueHAuY29tPg0K
-PiBDYzogbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5v
-cmc7DQo+IGlteEBsaXN0cy5saW51eC5kZXY7IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFk
-ZWFkLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBbUEFU
-Q0ggdjIgNC80XSBhcm02NDogZHRzOiBpbXg5NTogQWRkIE5FVENNSVggYmxvY2sgY29udHJvbA0K
-PiBzdXBwb3J0DQo+IA0KPiBBZGQgTkVUQ01JWCBibG9jayBjb250cm9sIHN1cHBvcnQuDQo+IA0K
-PiBTaWduZWQtb2ZmLWJ5OiBXZWkgRmFuZyA8d2VpLmZhbmdAbnhwLmNvbT4NCj4gLS0tDQo+IFYy
-Og0KPiBubyBjaGFuZ2VzLg0KPiAtLS0NCj4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxl
-L2lteDk1LmR0c2kgfCAxMiArKysrKysrKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMiBpbnNl
-cnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2Nh
-bGUvaW14OTUuZHRzaQ0KPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDk1LmR0
-c2kNCj4gaW5kZXggMWJiZjlhMDQ2OGY2Li42ZTg2YWE5OGI0MzEgMTAwNjQ0DQo+IC0tLSBhL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDk1LmR0c2kNCj4gKysrIGIvYXJjaC9hcm02
-NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OTUuZHRzaQ0KPiBAQCAtMTE4OCw1ICsxMTg4LDE3IEBA
-IHBjaWUxX2VwOiBwY2llLWVwQDRjMzgwMDAwIHsNCj4gIAkJCXBvd2VyLWRvbWFpbnMgPSA8JnNj
-bWlfZGV2cGQgSU1YOTVfUERfSFNJT19UT1A+Ow0KPiAgCQkJc3RhdHVzID0gImRpc2FibGVkIjsN
-Cj4gIAkJfTsNCj4gKw0KPiArCQluZXRjbWl4X2Jsa19jdHJsOiBzeXNjb25ANGM4MTAwMDAgew0K
-PiArCQkJY29tcGF0aWJsZSA9ICJueHAsaW14OTUtbmV0Y21peC1ibGstY3RybCIsICJzeXNjb24i
-Ow0KPiArCQkJcmVnID0gPDB4MCAweDRjODEwMDAwIDB4MCAweDEwMDAwPjsNCj4gKwkJCSNjbG9j
-ay1jZWxscyA9IDwxPjsNCj4gKwkJCWNsb2NrcyA9IDwmc2NtaV9jbGsgSU1YOTVfQ0xLX0JVU05F
-VENNSVg+Ow0KPiArCQkJYXNzaWduZWQtY2xvY2tzID0gPCZzY21pX2NsayBJTVg5NV9DTEtfQlVT
-TkVUQ01JWD47DQo+ICsJCQlhc3NpZ25lZC1jbG9jay1wYXJlbnRzID0gPCZzY21pX2Nsaw0KPiBJ
-TVg5NV9DTEtfU1lTUExMMV9QRkQxX0RJVjI+Ow0KPiArCQkJYXNzaWduZWQtY2xvY2stcmF0ZXMg
-PSA8MTMzMzMzMzMzPjsNCj4gKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnNjbWlfZGV2cGQgSU1YOTVf
-UERfTkVUQz47DQo+ICsJCQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiArCQl9Ow0KPiAgCX07DQo+
-ICB9Ow0KPiAtLQ0KPiAyLjM0LjENCg0KS2luZGx5IHBpbmcuLi4NCg==
+Hi Conor,
+
+On Fri, Jul 19, 2024 at 9:17=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Fri, Jul 19, 2024 at 02:58:59PM +0800, Yong-Xuan Wang wrote:
+> > Hi Samuel,
+> >
+> > On Fri, Jul 19, 2024 at 7:38=E2=80=AFAM Samuel Holland
+> > <samuel.holland@sifive.com> wrote:
+> > >
+> > > On 2024-07-12 3:38 AM, Yong-Xuan Wang wrote:
+> > > > Add entries for the Svade and Svadu extensions to the riscv,isa-ext=
+ensions
+> > > > property.
+> > > >
+> > > > Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+> > > > ---
+> > > >  .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++=
+++++
+> > > >  1 file changed, 28 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yam=
+l b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > index 468c646247aa..e91a6f4ede38 100644
+> > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > @@ -153,6 +153,34 @@ properties:
+> > > >              ratified at commit 3f9ed34 ("Add ability to manually t=
+rigger
+> > > >              workflow. (#2)") of riscv-time-compare.
+> > > >
+> > > > +        - const: svade
+> > > > +          description: |
+> > > > +            The standard Svade supervisor-level extension for SW-m=
+anaged PTE A/D
+> > > > +            bit updates as ratified in the 20240213 version of the=
+ privileged
+> > > > +            ISA specification.
+> > > > +
+> > > > +            Both Svade and Svadu extensions control the hardware b=
+ehavior when
+> > > > +            the PTE A/D bits need to be set. The default behavior =
+for the four
+> > > > +            possible combinations of these extensions in the devic=
+e tree are:
+> > > > +            1) Neither Svade nor Svadu present in DT =3D> It is te=
+chnically
+> > > > +               unknown whether the platform uses Svade or Svadu. S=
+upervisor
+> > > > +               software should be prepared to handle either hardwa=
+re updating
+> > > > +               of the PTE A/D bits or page faults when they need u=
+pdated.
+> > > > +            2) Only Svade present in DT =3D> Supervisor must assum=
+e Svade to be
+> > > > +               always enabled.
+> > > > +            3) Only Svadu present in DT =3D> Supervisor must assum=
+e Svadu to be
+> > > > +               always enabled.
+> > > > +            4) Both Svade and Svadu present in DT =3D> Supervisor =
+must assume
+> > > > +               Svadu turned-off at boot time. To use Svadu, superv=
+isor must
+> > > > +               explicitly enable it using the SBI FWFT extension.
+> > > > +
+> > > > +        - const: svadu
+> > > > +          description: |
+> > > > +            The standard Svadu supervisor-level extension for hard=
+ware updating
+> > > > +            of PTE A/D bits as ratified at commit c1abccf ("Merge =
+pull request
+> > > > +            #25 from ved-rivos/ratified") of riscv-svadu. Please r=
+efer to Svade
+> > >
+> > > Should we be referencing the archived riscv-svadu repository now that=
+ Svadu has
+> > > been merged to the main privileged ISA manual? Either way:
+> > >
+> > > Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> > >
+> >
+> > Yes, this commit is from the archived riscv-svadu repo. Or should I upd=
+ate it to
+> > "commit c1abccf ("Merge pull request  #25 from ved-rivos/ratified") of
+> > riscvarchive/riscv-svadu."?
+>
+> I think Samuel was saying that we should use the commit where it was
+> merged into riscv-isa-manual instead.
+
+Got it. I will update the description in the next version. Thank you!
 
