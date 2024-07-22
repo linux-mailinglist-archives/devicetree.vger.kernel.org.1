@@ -1,126 +1,203 @@
-Return-Path: <devicetree+bounces-87332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A379392BD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:51:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C5A9392DA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 224F728269C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:51:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 394E2B21D14
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1F716E89E;
-	Mon, 22 Jul 2024 16:51:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48AE916EC13;
+	Mon, 22 Jul 2024 16:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RF13hYxO"
+	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="vNC9pcRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EF6C2FD;
-	Mon, 22 Jul 2024 16:51:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B10916EB58
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 16:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721667104; cv=none; b=GK+w7lTvnItFumB/Awu7dvR0BRNCKpE/DX5Yt5Y4DmoP6qfa6c9ZGv5fAw7pKCmdGR0hYNuBUvwgALaVstf7Aky3+7yczlq30xe2E1CNIhsLEOtphTWyd9uL0vYmZBWAySXqf3pcNkQux/X5nfiIqpqCYGqyq3umc+1jyl1NO/k=
+	t=1721667531; cv=none; b=U8W5wZM0rMhc/nhdqiRDHeC/ad0FZl0OKHioOTVxprJo0dtJYJ2WiHNJQKHt7OIKAObz6xETz320jhj8FW7Dvxu3PcERO9iTY3QMsc3XPNi67zCl7pi7CtSRG5ySO48qPalyUJaVCLiTdi2CwXPe7KqZNs18tInJNB0ZvKr17JY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721667104; c=relaxed/simple;
-	bh=JWfbQMZVlMkgBoxkVUfOEex3UFL5SXV6npk5rwEQY5Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BmAOg+BjWAssoSFCLXM4/cWw34HJoyVccYl4uctLsMROp2BK5AZPoZ0HjVOWy893Vbh5x4Gk7PX/HmqjQTnHyKLgt9pBbxFj0qU+XGhKYyJJE3WdcG+QjAQOVOujK0IWg/ElMmj+EhsqM5k/QcCAT+D+ajFwyMHSMwAFaICVPyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RF13hYxO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30007C116B1;
-	Mon, 22 Jul 2024 16:51:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721667103;
-	bh=JWfbQMZVlMkgBoxkVUfOEex3UFL5SXV6npk5rwEQY5Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RF13hYxOY22CChFt0RirGNMtTsHDyPBzPcVkUbHWS5dIuL3prCfcuYyUpPgu6TFms
-	 s30N8GzM7XmEyvBHJ8Ex2q9+/NbsnFoK6AYyMKg9g0Tpxf/xenQxTDVoH2K4QMgvoj
-	 c0nenUYZ9kC/4sgjjDQf8pucbJeq+XXw6ilM1vmdTSjd+hWt5iG4HTlRjKdlEdyisU
-	 XikVZMN5YrSNnNC9U3AIoQgnc3B2PMBuqo/lRyEEqIUndsQ8j05OmH0/9eZED6q+xZ
-	 G8s4kP9cNAXPTPCyXA2Is1C/Mkw7hxo9emWh3PLM6W7H4HRWqN3rB+3YH3j2DrirXD
-	 7qXP6RceUZRAg==
-Date: Mon, 22 Jul 2024 17:51:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-Cc: Samuel Holland <samuel.holland@sifive.com>, greentime.hu@sifive.com,
-	vincent.chen@sifive.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Message-ID: <20240722-seizing-mardi-5237466fcf83@spud>
-References: <20240712083850.4242-1-yongxuan.wang@sifive.com>
- <20240712083850.4242-3-yongxuan.wang@sifive.com>
- <727b966a-a8c4-4021-acf6-3c031ccd843a@sifive.com>
- <CAMWQL2g-peSYJQaxeJtyOzGdEmDQ6cnkRBdFQvLr2NQA1+mv2g@mail.gmail.com>
- <20240719-flatten-elixir-d4476977ab95@spud>
- <CAMWQL2iWsxLJZZ3H59csJ376Hdtq+ZKjD92BtM9zhdXm+fh2=A@mail.gmail.com>
+	s=arc-20240116; t=1721667531; c=relaxed/simple;
+	bh=Pldh2YdPCKMdFnEm7uPWxH/lJC04PWUmObLzIB+oSSk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n9VA0j17PXGd1ARhN3Hbc/6tKi2iZadCN0iPY0jRdLWa+tlCO46FI3lbEvSLKTN5D3/zTb7AX13ap3QK4Bh+EPnFDbQHQ16yuYKAEYH535k/KIAXSGokZrjjAketDYvFIBRyqVudB9RRppzoxmj1Av3rgsiNE8etARnwHfDesMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=vNC9pcRZ; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3683178b226so2248027f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 09:58:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1721667527; x=1722272327; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O589wWZR55n5iDgMuaErQulUGRAF2YuirgEGQVRDm0Q=;
+        b=vNC9pcRZLNJ2ImD/coAYya3LdgKYiVRQFdSw17pwnn12s/po7JQwywc2IGkdhu3+0V
+         4mmmZjpUfux/uCDWHqnwWI3mpwq01qWXNl3idtZy/d0lOVw6BOjgAMVg58jTq5GcuAkC
+         Qflr5AMMSocTy7J0r4RgTUdwYo7PtZwV8epB7/1aqG24L3WPRP98pkvL32QbmWrnbhTw
+         l2t/6leZg+XSyq/u8vAoVYMvHSy2iwkEI3/stYb6HDZRmwcPpXEDm5SUfEbEIt995o7I
+         WM2J63wU3Xzc8p2O1xIFSmGR3LyjYyTK9VAehmaLtEV8iPJBIsFLamdQnY2gsVX1y12+
+         /bdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721667527; x=1722272327;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O589wWZR55n5iDgMuaErQulUGRAF2YuirgEGQVRDm0Q=;
+        b=qy1mpBiA6MffBsAna3fvIJNXJMpzgj/STbpeOhGbbKicDSRQy+4JT3UVg5gmo8Bxwe
+         Mtbe658GOV7yBWVcuJj1xR+HU4wKtqiRpNBVik30NcW0SbaLi12fssuna/iwWJDJwPNx
+         M6wK1J7eBmKkLGwC7MoayBxOb6sApQjfAQDbEtuTeE3H+7Hbf3hfdtvNhU5k+mWmsxYD
+         19UexNj/gSlVUBE9Tc+bjzfYi3sC2ckmIHu3dSHkIlkgT0FgeAZc1+cHCHGAHeHQbs7h
+         //q7VnpzAAbtKJdV0Jb76Ruc3FkWLsDCrg47TUQ0Tpao7CuCf/xbbh6cUizQBCdqqN9D
+         4FZg==
+X-Forwarded-Encrypted: i=1; AJvYcCXee3OIIcgyU7IjGPrjXwNjDL2EychAJ9bFuhoGBqk0c7ZCr/UWDPd8xYguOriUaz3W0IoqlcLn/VBi4CAwH3GC4dRQWzndAlkIew==
+X-Gm-Message-State: AOJu0YyHkoE39sHrqrdAJlPtntkiS9oypcRjjUDunPRMR+Ok585kFfqS
+	1z47RGExiisr5+eHv71BAJw4ppZkNdEXDcdnaOw8TuOosRGc9Cgl8rmkf+NX8uaz/XbQrIFOAzY
+	i
+X-Google-Smtp-Source: AGHT+IHvTR6/vP+CYDv+pp0DtVn86BFTMZTdXQj9wfd4sR3FPkhSCyMZLrvX/pjME3Fn+++eT/MxkQ==
+X-Received: by 2002:a5d:64ea:0:b0:368:4634:c419 with SMTP id ffacd0b85a97d-369bb2df0acmr5769512f8f.58.1721667527448;
+        Mon, 22 Jul 2024 09:58:47 -0700 (PDT)
+Received: from carbon.local (aztw-29-b2-v4wan-166913-cust1764.vm26.cable.virginm.net. [82.37.38.229])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d2a8e436sm161660055e9.33.2024.07.22.09.58.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jul 2024 09:58:47 -0700 (PDT)
+From: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
+Subject: [PATCH v5 0/2] iio: humidity: Add support for ENS210 sensor family
+Date: Mon, 22 Jul 2024 17:58:41 +0100
+Message-Id: <20240722-ens21x-v5-0-cda88dce100e@thegoodpenguin.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="i7lBaJiME8pvvbi7"
-Content-Disposition: inline
-In-Reply-To: <CAMWQL2iWsxLJZZ3H59csJ376Hdtq+ZKjD92BtM9zhdXm+fh2=A@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMGPnmYC/33PQW7DIBAF0KtYrEs0HojtZNV7VFlgMmBUBRLAK
+ FHku5faatVF2xX66OvNzJMlio4SOzZPFqm45IKvYf/SMD0pb4m7c80MASX0cODkE7Z3PhjcCzh
+ 09SVWy9dIxt1X6O205Ui3uXp5+2SjSsR1uFxcPjY52EiWfTYnl3KIj3WDgmt1G9bC17CCHLgSv
+ UaEdhhBv+aJbAjnK3k7O7/TYTe/r1oRvwuiCpKEGbVB1ZvxH0H+FL4PLrIKHUhJcqirdOoPYVm
+ WD8TFwHtVAQAA
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1721667526; l=3875;
+ i=jfelmeden@thegoodpenguin.co.uk; s=20240709; h=from:subject:message-id;
+ bh=Pldh2YdPCKMdFnEm7uPWxH/lJC04PWUmObLzIB+oSSk=;
+ b=CaJKDR7ykV+WSp8EcHlob8zKsaDEyhNuMSX5ZLjc8cmp0uo4Y55ZYg/JGlfVne7gsWOxA5Vdo
+ C7Taf10Ex3MC027k1WpSUywy8Qqg1vaaHmuODnaBjKQeinyDNPI4vFe
+X-Developer-Key: i=jfelmeden@thegoodpenguin.co.uk; a=ed25519;
+ pk=tePkZ5iJ3ejQ2O3vjhsj7GrLYcyJN1o1sMT3IEXvKo0=
 
+This patch series adds support for the
+ENS210/ENS210A/ENS211/ENS212/ENS213A/ENS215 temperature and humidity
+sensors.
 
---i7lBaJiME8pvvbi7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patch 1 adds the required device tree bindings.
 
-On Mon, Jul 22, 2024 at 10:14:11AM +0800, Yong-Xuan Wang wrote:
+Patch 2 adds the driver, providing the probe and read functions.
 
-> > > > > +        - const: svadu
-> > > > > +          description: |
-> > > > > +            The standard Svadu supervisor-level extension for ha=
-rdware updating
-> > > > > +            of PTE A/D bits as ratified at commit c1abccf ("Merg=
-e pull request
-> > > > > +            #25 from ved-rivos/ratified") of riscv-svadu. Please=
- refer to Svade
-> > > >
-> > > > Should we be referencing the archived riscv-svadu repository now th=
-at Svadu has
-> > > > been merged to the main privileged ISA manual? Either way:
-> > > >
-> > > > Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-> > > >
-> > >
-> > > Yes, this commit is from the archived riscv-svadu repo. Or should I u=
-pdate it to
-> > > "commit c1abccf ("Merge pull request  #25 from ved-rivos/ratified") of
-> > > riscvarchive/riscv-svadu."?
-> >
-> > I think Samuel was saying that we should use the commit where it was
-> > merged into riscv-isa-manual instead.
->=20
-> Got it. I will update the description in the next version. Thank you!
+Signed-off-by: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
+---
+changelog v4->v5:
+- ens210.c: Updated ens210_data description to reflect values
+- ens210.c: Updated dev_err to always use i2c device
+- ens210.c: Check T_VALID before returning data
+- ens210.c: Fix short linewrap on certain lines
+- ens210.c: Added unreachable instead of unreachable return
+- ens210.c: Fix sparse warnings
+- ens210.c: Remove unneeded i2c_device_id
+- ens210.c: Remove unneeded i2c_setclientdata()
+- ens210.c: Simply return 'dev_err_probe()' instead of raw error code
+- ens210.c: Fix dev_info print type
 
-There's no need (IMO) to send a new version for this alone - but if you
-have to send another version for some other reason then do it.
+- Link to v4: https://lore.kernel.org/r/20240719-ens21x-v4-0-6044e48a376a@thegoodpenguin.co.uk
+---
+changelog v3->v4:
+- rename ens21x.c -> ens210.c
+- rename sciosense,ens21x.yaml -> sciosense,ens210.yaml
+- General: Changed wildcard ens21x to ens210 to avoid wildcards
+- Kconfig: added crc7 as a dependency
+- Kconfig: remove extra blank lines
+- ens210.c: Moved constants to inline
+- ens210.c: Created ens210 chip info to handle chip specific conversion
+- ens210.c: Added documentation for mutex
+- ens210.c: Fixed sparse complaints from kernel bot
+- ens210.c: Changed htonl to cpu_to_be32
+- ens210.c: Renamed dev_data -> ens210_data
+- ens210.c: changed of_match to i2c
+- ens210.c: Added return check for i2c write
+- ens210.c: Removed switch for conversion check, use chip_info instead
+- ens210.c: Removed unnecessary retry loop
+- ens210.c: Convert read to u8[3] type
+- ens210.c: Ensure 'correct' path is inline, use early returns to break
+    for errors
+- ens210.c: Changed mutex to scoped_guard
+- ens210.c: Changed part id mismatch to dev_info from dev_err and removed
+    return
+- ens210.c: Moved name from id->name to chip_info
+- ens210.c: Changed data field to be chip_info rather than enum
+- ens210.c: Formatting fixes (consistent spacing, extra line break at end
+    removed)
 
-Cheers,
-Conor.
+- Link to v3: https://lore.kernel.org/r/20240710-ens21x-v3-0-4e3fbcf2a7fb@thegoodpenguin.co.uk
+---
+changelog v2->v3:
+sciosense,ens21x.yaml: Update yaml to match dt_binding_check
 
---i7lBaJiME8pvvbi7
-Content-Type: application/pgp-signature; name="signature.asc"
+- Link to V1: https://lore.kernel.org/all/20240709-ens21x-v1-2-678521433cdd@thegoodpenguin.co.uk/
+- Link to v2: https://lore.kernel.org/r/20240710-ens21x-v2-0-a37c22018b0c@thegoodpenguin.co.uk
 
------BEGIN PGP SIGNATURE-----
+Many thanks for the feedback on the driver.
+---
+changelog v1->v2:
+sciosense,ens21x.yaml: Add supply to documentation
+sciosense,ens21x.yaml: Add fallback to compatible strings
+ens21x.c: Move i2c_device_id next to of_device_id
+ens21x.c: Use i2c_of_match_device() instead of of_match_device()
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6OGgAKCRB4tDGHoIJi
-0md/AQCHwo+QPDHARtNDHNRq3twdF2e88mQDAlkAKW3vTkQzFQEAsTDuPgrPBZsr
-zb5qyXjkbHHdxOvbc4DuItNy5t9OPA0=
-=lVI/
------END PGP SIGNATURE-----
+Many thanks for taking the time to review my patch.
 
---i7lBaJiME8pvvbi7--
+Thanks,
+Josh
+
+To: Jonathan Cameron <jic23@kernel.org>
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+---
+
+---
+Joshua Felmeden (2):
+      dt-bindings: iio: humidity: add ENS210 sensor family
+      iio: humidity: Add support for ENS210
+
+ .../bindings/iio/humidity/sciosense,ens210.yaml    |  55 ++++
+ drivers/iio/humidity/Kconfig                       |  11 +
+ drivers/iio/humidity/Makefile                      |   1 +
+ drivers/iio/humidity/ens210.c                      | 344 +++++++++++++++++++++
+ 4 files changed, 411 insertions(+)
+---
+base-commit: 1ebab783647a9e3bf357002d5c4ff060c8474a0a
+change-id: 20240709-ens21x-8f2530968f2e
+
+Best regards,
+-- 
+Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
+
 
