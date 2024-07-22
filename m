@@ -1,193 +1,263 @@
-Return-Path: <devicetree+bounces-87305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150BA93919C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:18:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 202259391AE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4FB5281271
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:18:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74AB3B20926
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7385416DED9;
-	Mon, 22 Jul 2024 15:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BC016E886;
+	Mon, 22 Jul 2024 15:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V1S0BT/t"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="E8h+Vy88"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4475316DEC3;
-	Mon, 22 Jul 2024 15:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259CF16E86E;
+	Mon, 22 Jul 2024 15:21:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721661481; cv=none; b=RtMV7yqtgGItqg/WNSTpD1umYiUFTL2OIq/K8avuvkuGOFxYGJm2DrqKfhP1KjOIy591gXCWT4C7kbHvCmThKfXNi6c2af5ZwCyGTtOM/w+KthsFyQK/13oVcshAI3IUVjBHyHcZDmCJLElOnS6vV9UK2I0lG8X5UgBnFu8MENU=
+	t=1721661698; cv=none; b=hgQGqc4UQALGmRnOd+MIiDH+PCqRGBcm86q1cM6iruSxMEs6F4vs5783MmFvSM0Lf11ZsUF7bG6Zunq0vW4DUl73AQyDaUjbJDJqehkmaF6lCPFzItVstrMb5UEv0KhSdWvZff/fGFHqfujnUvEFlQy1qRj9+7BEPczAi/mJYKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721661481; c=relaxed/simple;
-	bh=e9Dnl+IUhEs+/M2CLtvFfu9EkQP4rlIJDzlw8s/gINE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FLDYUaIwyNnTNyfzKfoSPWkwCYGKT8VLhm2SgjnGT36exe56tKWcLgaxBxPMnpupVFYWP1id87w2nGl7CctmPziX155zxsolwf6ucTb0foTqKir2oiTkkwmS1XE7oaGbuFAHJdDzfgboGRot0nBKA1NrPEzuD5K9E0pRjdsZFTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V1S0BT/t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE622C116B1;
-	Mon, 22 Jul 2024 15:17:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721661480;
-	bh=e9Dnl+IUhEs+/M2CLtvFfu9EkQP4rlIJDzlw8s/gINE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V1S0BT/thoR7gl3mK6fqWKlWvhvlFcqNlizOmaspuN2S4Wkg2wjy7MuwzDI3HQq9l
-	 JBOarwb4K/aQrguD2KdNwPh+N8MK2P2Q8Yvdp1s/S2sMrP/6GVXrR4N2TL3ObenY4F
-	 2Lf+RTuUggf35ldmUx3cfU6vyBcXjxmEjK1eRpQr9F1lrNp9Z9v/8SgPBbr/EPYiC7
-	 Y/j7g6fqqjg6xtTG+Cg1qGaxPJwY9dDIh0lDCnHV5E5TdjLsJ1DhUMhWjnQDGCp5QW
-	 mQUzgWrzkkjG/VSzmqtSQmxcG67SVC2CqFL0DeRXHcyW9H1k1K5eLwhZnFyzkGFZAb
-	 SMyPNvq+s7yuw==
-Message-ID: <14f53dce-e26e-4af3-9275-f2aef4e03c98@kernel.org>
-Date: Mon, 22 Jul 2024 17:17:53 +0200
+	s=arc-20240116; t=1721661698; c=relaxed/simple;
+	bh=qmA/UB5BoDVUD8LihBkIsL5bMzIrgMopZxIAWpKq7V8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSQlaAKXfFxxINp+xeQ1B7iWHvz9gbM+tuYkBiwJcjM5rz5pWF8lgnRnHoSaAOalGSmq6Imw/3IUdkL9G4Qua8JmYw7XvEEZ9H6jqVQuZfVnkcxuVkghE/O+ESlFMIRNlHgxhy8oPm+5wt/fQ+JcFhGeHax62vzxDXtTRLsWxLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=E8h+Vy88; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E703E2B3;
+	Mon, 22 Jul 2024 17:20:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721661654;
+	bh=qmA/UB5BoDVUD8LihBkIsL5bMzIrgMopZxIAWpKq7V8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E8h+Vy882C2QOKuWVW4/padY0ED+52F77F/l/CMdnjgUqf2Vw3d4GgxDeNujZdGYB
+	 uu9Jq+7xDLAZNJojPJ9GAsGdwlNt8vYDG2EWHV4ICNukv0JJGQGZBSCJfVv2uIfyt5
+	 s5hbH1HXFh0713wnz+mcIb4z1R0G2Iv0ChG5dneI=
+Date: Mon, 22 Jul 2024 18:21:17 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc: Hans Verkuil <hverkuil@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v11 1/6] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Message-ID: <20240722152117.GO13497@pendragon.ideasonboard.com>
+References: <20240709000848.1108788-1-yuji2.ishikawa@toshiba.co.jp>
+ <20240709000848.1108788-2-yuji2.ishikawa@toshiba.co.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v3 3/6] dt-bindings: phy: cp110-utmi-phy: add
- compatible string for armada-38x
-To: Josua Mayer <josua@solid-run.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Konstantin Porotchkin <kostap@marvell.com>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
- <20240720-a38x-utmi-phy-v3-3-4c16f9abdbdc@solid-run.com>
- <d48d261f-c428-4b96-9a88-725e29f6648f@kernel.org>
- <14090e3b-e627-4342-91b0-d6d0b769b736@solid-run.com>
- <55671e6b-abb3-4773-9f55-41920a3ff8f4@solid-run.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <55671e6b-abb3-4773-9f55-41920a3ff8f4@solid-run.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240709000848.1108788-2-yuji2.ishikawa@toshiba.co.jp>
 
-On 22/07/2024 17:14, Josua Mayer wrote:
+Hello Ishikawa-san,
+
+Thank you for the patch.
+
+On Tue, Jul 09, 2024 at 09:08:43AM +0900, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
+> the Video Input Interface found in Toshiba Visconti SoCs.
 > 
-> Am 22.07.24 um 17:05 schrieb Josua Mayer:
->> Am 21.07.24 um 11:31 schrieb Krzysztof Kozlowski:
->>> On 20/07/2024 16:19, Josua Mayer wrote:
->>>> Armada 38x USB-2.0 PHYs are similar to Armada 8K (CP110) and can be
->>>> supported by the same driver with small differences.
->>>>
->>>> Add new compatible string for armada-38x variant of utmi phy.
->>>> Then add descriptions and names for two additional register definitions
->>>> that may be specified instead of a syscon phandle.
->>>>
->>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
->>>> ---
->>>>  .../phy/marvell,armada-cp110-utmi-phy.yaml         | 34 ++++++++++++++++++----
->>>>  1 file changed, 29 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml b/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
->>>> index 9ce7b4c6d208..246e48d51755 100644
->>>> --- a/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
->>>> +++ b/Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
-> cut
->>>> @@ -68,7 +93,6 @@ required:
->>>>    - reg
->>>>    - "#address-cells"
->>>>    - "#size-cells"
->>>> -  - marvell,system-controller
->>> you miss here allOf:if:then: narrowing and marvell,system-controller per
->>> each variant.
-> I am struggling a bit with the options.
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changelog v2:
+> - no change
 > 
-> First attempt says: if not both usb-cfg and utmi-cfg reg-names are specified,
-> then marvell,system-controller is required.
+> Changelog v3:
+> - no change
 > 
-> allOf:
->   - required:
-
-That's not part of allOf.
-
->       - compatible
->       - reg
->       - "#address-cells"
->       - "#size-cells"
->   - if:
->       not:
->         properties:
->           reg-names:
->             allOf:
->               - contains:
->                   const: usb-cfg
->               - contains:
->                   const: utmi-cfg
->     then:
->       required:
->         - marvell,system-controller
+> Changelog v4:
+> - fix style problems at the v3 patch
+> - remove "index" member
+> - update example
 > 
-> This works okay for any combinations of reg-names.
-
-??? I expected this to be per variant.
-
+> Changelog v5:
+> - no change
 > 
-> However when device-tree is missing reg-names all together,
-> marvell,system-controller is not marked required.
+> Changelog v6:
+> - add register definition of BUS-IF and MPU
 > 
-> Would it be acceptable to make reg-names required?
+> Changelog v7:
+> - remove trailing "bindings" from commit header message
+> - remove trailing "Device Tree Bindings" from title
+> - fix text wrapping of description
+> - change compatible to visconti5-viif
+> - explicitly define allowed properties for port::endpoint
+> 
+> Changelog v8:
+> - Suggestion from Krzysztof Kozlowski
+>   - rename bindings description file
+>   - use block style array instead of inline style
+>   - remove clock-lane (as it is fixed at position 0)
+>   - update sample node's name
+>   - use lowercase hex for literals
+> - Suggestion from Laurent Pinchart
+>   - update description message port::description
+>   - remove port::endpoint::bus-type as it is fixed to <4>
+>   - remove port::endpoint::clock-lanes from example
+>   - add port::endpoint::data-lanes to required parameters list
+>   - fix sequence of data-lanes: <1 2 3 4> because current driver does not support data reordering
+>   - update port::endpoint::data-lanes::description
+>   - remove redundant type definition for port::endpoint::data-lanes
+> 
+> Changelog v9:
+> - place "required" after "properties"
+> - dictionary ordering of properties
+> 
+> Changelog v10:
+> - no change
+> 
+> Changelog v11:
+> - no change
+> 
+>  .../media/toshiba,visconti5-viif.yaml         | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+> new file mode 100644
+> index 0000000000..97e8bda427
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/toshiba,visconti5-viif.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Toshiba Visconti5 SoC Video Input Interface
+> +
+> +maintainers:
+> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> +
+> +description: |-
+> +  Toshiba Visconti5 SoC Video Input Interface (VIIF) receives MIPI CSI2 video
+> +  stream, processes the stream with image signal processors (L1ISP, L2ISP),
+> +  then stores pictures to main memory.
+> +
+> +properties:
+> +  compatible:
+> +    const: toshiba,visconti5-viif
+> +
+> +  reg:
+> +    items:
+> +      - description: Registers for capture control
+> +      - description: Registers for CSI2 receiver control
+> +      - description: Registers for bus interface unit control
+> +      - description: Registers for Memory Protection Unit
 
-I don't understand what you want to achieve.
+Is this part of the VIIF, or some sort of more standalone IOMMU ? In the
+latter case, should it be handled by a separate driver ?
 
-Best regards,
-Krzysztof
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Sync Interrupt
+> +      - description: Status (Error) Interrupt
+> +      - description: CSI2 Receiver Interrupt
+> +      - description: L1ISP Interrupt
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description: CSI-2 input port, with a single endpoint connected to the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: video-interfaces.yaml#
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            description: VIIF supports 1, 2, 3 or 4 data lanes
+> +            minItems: 1
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +              - const: 3
+> +              - const: 4
+> +
+> +          clock-noncontinuous: true
+> +          link-frequencies: true
+> +          remote-endpoint: true
+> +
+> +        required:
+> +          - clock-noncontinuous
 
+Does the hardware support the non-continuous clock mode only, or is it
+configurable ? This is a boolean property, so if both mode are
+supported, the property should not be required.
+
+> +          - data-lanes
+> +          - link-frequencies
+> +          - remote-endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        video@1c000000 {
+> +            compatible = "toshiba,visconti5-viif";
+> +            reg = <0 0x1c000000 0 0x6000>,
+> +                  <0 0x1c008000 0 0x400>,
+> +                  <0 0x1c00e000 0 0x1000>,
+> +                  <0 0x2417a000 0 0x1000>;
+> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +            port {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in0: endpoint {
+> +                    clock-noncontinuous;
+> +                    data-lanes = <1 2>;
+> +                    link-frequencies = /bits/ 64 <456000000>;
+> +                    remote-endpoint = <&imx219_out0>;
+> +                };
+> +            };
+> +        };
+> +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
 
