@@ -1,263 +1,125 @@
-Return-Path: <devicetree+bounces-87306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202259391AE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:22:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1359391C2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74AB3B20926
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:21:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15A2D1F21C6B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BC016E886;
-	Mon, 22 Jul 2024 15:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72DE16E863;
+	Mon, 22 Jul 2024 15:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="E8h+Vy88"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SagOMCU9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259CF16E86E;
-	Mon, 22 Jul 2024 15:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1401316CD07;
+	Mon, 22 Jul 2024 15:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721661698; cv=none; b=hgQGqc4UQALGmRnOd+MIiDH+PCqRGBcm86q1cM6iruSxMEs6F4vs5783MmFvSM0Lf11ZsUF7bG6Zunq0vW4DUl73AQyDaUjbJDJqehkmaF6lCPFzItVstrMb5UEv0KhSdWvZff/fGFHqfujnUvEFlQy1qRj9+7BEPczAi/mJYKU=
+	t=1721662051; cv=none; b=g8+urmkdMddpxkBGKQujYeGbE9vWAL7P4/wrMqA/RGXbQfwUG6YglgIWK/84Gw+GIf44ske2sJhfhHvF1SSRaC6XlLIibcIArZg2J//1R5yc4jrjzLnQxFDZ01MJaUnp6jhuPKygGDfQqdwNGyLGl+z6B2PvK4ebjOGZQXlVpSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721661698; c=relaxed/simple;
-	bh=qmA/UB5BoDVUD8LihBkIsL5bMzIrgMopZxIAWpKq7V8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sSQlaAKXfFxxINp+xeQ1B7iWHvz9gbM+tuYkBiwJcjM5rz5pWF8lgnRnHoSaAOalGSmq6Imw/3IUdkL9G4Qua8JmYw7XvEEZ9H6jqVQuZfVnkcxuVkghE/O+ESlFMIRNlHgxhy8oPm+5wt/fQ+JcFhGeHax62vzxDXtTRLsWxLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=E8h+Vy88; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E703E2B3;
-	Mon, 22 Jul 2024 17:20:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1721661654;
-	bh=qmA/UB5BoDVUD8LihBkIsL5bMzIrgMopZxIAWpKq7V8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E8h+Vy882C2QOKuWVW4/padY0ED+52F77F/l/CMdnjgUqf2Vw3d4GgxDeNujZdGYB
-	 uu9Jq+7xDLAZNJojPJ9GAsGdwlNt8vYDG2EWHV4ICNukv0JJGQGZBSCJfVv2uIfyt5
-	 s5hbH1HXFh0713wnz+mcIb4z1R0G2Iv0ChG5dneI=
-Date: Mon, 22 Jul 2024 18:21:17 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: Hans Verkuil <hverkuil@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v11 1/6] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface
-Message-ID: <20240722152117.GO13497@pendragon.ideasonboard.com>
-References: <20240709000848.1108788-1-yuji2.ishikawa@toshiba.co.jp>
- <20240709000848.1108788-2-yuji2.ishikawa@toshiba.co.jp>
+	s=arc-20240116; t=1721662051; c=relaxed/simple;
+	bh=8F8AqL8+uz10xZlIRw115rqKTtHgjwv0e3CayfgJVno=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=DrJoOZjCyb06lDGNXC2fHrlC6vf6NYiFIlg+zCiZRp8y/l6Qqvp43J6THJ35RkBQ45Grf6zHZlljHcOQW4du9yUWe4/UxKR/BaD7dJRpDbO013TTSm4f+cCxnJXw5PzwKAbBKaiyUvYYPe+ttGptQlijJb+U3kvhtQgX8tie2dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SagOMCU9; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721662048;
+	bh=8F8AqL8+uz10xZlIRw115rqKTtHgjwv0e3CayfgJVno=;
+	h=From:Date:Subject:To:Cc:From;
+	b=SagOMCU94ZPPnQfyFh6zFI2khT9EEF4MUcPcSRe7pwncodoAfwvPKlKTBi9yQAADO
+	 phRE4ogpZoaWIS67EqGkT5cXNku33U0qSNmZfGImbPZbAML4kIHwJNdYiJv/JjGnEU
+	 tGsAIWVB3mTWMDkEVKAWimvOy9fu90EcHuysvsK7KbThlDu/1ukBj90l1635Ml1Mm3
+	 vIu/obugyqQ+s5XoBPIKDEfYK1kY1Wdvat6819IOoa+Eh+tPSVcsJQ7FMhrHq+69Uw
+	 5UAvItx7YQNxYN8QhkLjEeThmVHg1IpF9Rrkp45cRHzr9QcHUEDELUHVZzB2XYMjTa
+	 6w/ESdtIwWcxA==
+Received: from [192.168.1.217] (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0CFC137800DE;
+	Mon, 22 Jul 2024 15:27:25 +0000 (UTC)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Date: Mon, 22 Jul 2024 11:26:55 -0400
+Subject: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1
+ controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240709000848.1108788-2-yuji2.ishikawa@toshiba.co.jp>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAD56nmYC/x3MTQqAIBBA4avErBvIQeznKtHCbKyhKFGKILp70
+ vJ7i/dA4iicoCseiHxJkmPPUGUBbrH7zChTNlBFuqqJ8EwjKkUthniMjMEJum1FLzeyb4w2Xht
+ rHeRBiJzzP++H9/0Af+1nAWwAAAA=
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.14.0
 
-Hello Ishikawa-san,
+Currently if the xhci1 controller happens to probe before the pcie1
+controller then it fails with the following errors:
 
-Thank you for the patch.
+xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+xhci-mtk 11290000.usb: can't setup: -110
+xhci-mtk: probe of 11290000.usb failed with error -110
 
-On Tue, Jul 09, 2024 at 09:08:43AM +0900, Yuji Ishikawa wrote:
-> Adds the Device Tree binding documentation that allows to describe
-> the Video Input Interface found in Toshiba Visconti SoCs.
-> 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Changelog v2:
-> - no change
-> 
-> Changelog v3:
-> - no change
-> 
-> Changelog v4:
-> - fix style problems at the v3 patch
-> - remove "index" member
-> - update example
-> 
-> Changelog v5:
-> - no change
-> 
-> Changelog v6:
-> - add register definition of BUS-IF and MPU
-> 
-> Changelog v7:
-> - remove trailing "bindings" from commit header message
-> - remove trailing "Device Tree Bindings" from title
-> - fix text wrapping of description
-> - change compatible to visconti5-viif
-> - explicitly define allowed properties for port::endpoint
-> 
-> Changelog v8:
-> - Suggestion from Krzysztof Kozlowski
->   - rename bindings description file
->   - use block style array instead of inline style
->   - remove clock-lane (as it is fixed at position 0)
->   - update sample node's name
->   - use lowercase hex for literals
-> - Suggestion from Laurent Pinchart
->   - update description message port::description
->   - remove port::endpoint::bus-type as it is fixed to <4>
->   - remove port::endpoint::clock-lanes from example
->   - add port::endpoint::data-lanes to required parameters list
->   - fix sequence of data-lanes: <1 2 3 4> because current driver does not support data reordering
->   - update port::endpoint::data-lanes::description
->   - remove redundant type definition for port::endpoint::data-lanes
-> 
-> Changelog v9:
-> - place "required" after "properties"
-> - dictionary ordering of properties
-> 
-> Changelog v10:
-> - no change
-> 
-> Changelog v11:
-> - no change
-> 
->  .../media/toshiba,visconti5-viif.yaml         | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
-> new file mode 100644
-> index 0000000000..97e8bda427
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/toshiba,visconti5-viif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba Visconti5 SoC Video Input Interface
-> +
-> +maintainers:
-> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +
-> +description: |-
-> +  Toshiba Visconti5 SoC Video Input Interface (VIIF) receives MIPI CSI2 video
-> +  stream, processes the stream with image signal processors (L1ISP, L2ISP),
-> +  then stores pictures to main memory.
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,visconti5-viif
-> +
-> +  reg:
-> +    items:
-> +      - description: Registers for capture control
-> +      - description: Registers for CSI2 receiver control
-> +      - description: Registers for bus interface unit control
-> +      - description: Registers for Memory Protection Unit
+The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
+clock, although exactly why this pcie clock is needed for the usb
+controller is still unknown. Add the clock to the xhci1 controller so it
+always probes successfully and use a placeholder clock name for it.
 
-Is this part of the VIIF, or some sort of more standalone IOMMU ? In the
-latter case, should it be handled by a separate driver ?
+Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
+Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Sync Interrupt
-> +      - description: Status (Error) Interrupt
-> +      - description: CSI2 Receiver Interrupt
-> +      - description: L1ISP Interrupt
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    unevaluatedProperties: false
-> +    description: CSI-2 input port, with a single endpoint connected to the CSI-2 transmitter.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: video-interfaces.yaml#
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            description: VIIF supports 1, 2, 3 or 4 data lanes
-> +            minItems: 1
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +              - const: 4
-> +
-> +          clock-noncontinuous: true
-> +          link-frequencies: true
-> +          remote-endpoint: true
-> +
-> +        required:
-> +          - clock-noncontinuous
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 2ee45752583c..cc5169871f1c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
+ 				 <&topckgen CLK_TOP_SSUSB_P1_REF>,
+ 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
+ 				 <&clk26m>,
+-				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
++				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
++				 /*
++				  * This clock is required due to a hardware
++				  * bug. The 'frmcnt_ck' clock name is used as a
++				  * placeholder.
++				  */
++				 <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>;
+ 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
+-				      "xhci_ck";
++				      "xhci_ck", "frmcnt_ck";
+ 			mediatek,syscon-wakeup = <&pericfg 0x400 104>;
+ 			wakeup-source;
+ 			status = "disabled";
 
-Does the hardware support the non-continuous clock mode only, or is it
-configurable ? This is a boolean property, so if both mode are
-supported, the property should not be required.
+---
+base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
+change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f46aac
 
-> +          - data-lanes
-> +          - link-frequencies
-> +          - remote-endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        video@1c000000 {
-> +            compatible = "toshiba,visconti5-viif";
-> +            reg = <0 0x1c000000 0 0x6000>,
-> +                  <0 0x1c008000 0 0x400>,
-> +                  <0 0x1c00e000 0 0x1000>,
-> +                  <0 0x2417a000 0 0x1000>;
-> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +            port {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                csi_in0: endpoint {
-> +                    clock-noncontinuous;
-> +                    data-lanes = <1 2>;
-> +                    link-frequencies = /bits/ 64 <456000000>;
-> +                    remote-endpoint = <&imx219_out0>;
-> +                };
-> +            };
-> +        };
-> +    };
-
+Best regards,
 -- 
-Regards,
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Laurent Pinchart
 
