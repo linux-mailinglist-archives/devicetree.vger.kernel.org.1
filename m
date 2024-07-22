@@ -1,229 +1,156 @@
-Return-Path: <devicetree+bounces-87353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DCDF9393D2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:47:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F609393F7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 21:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BE391F21061
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:47:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 798BCB2175C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 19:04:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B60016F90C;
-	Mon, 22 Jul 2024 18:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ADAC16EC12;
+	Mon, 22 Jul 2024 19:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ogialzVN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kPUhrxC8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D80016D9D7
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 18:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBDC81805E
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 19:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721674053; cv=none; b=CZqM31MybQPGQZM+o0Ea2ZoMvcwLh+GUMBLg56h00Z+CqZltTms6Cg/+qESTSp5fI8H6pthxH9AQQ4xYDAFQJhC0AT8cmFWJASI5qV1U1qcpoiPKIhLeiqBKOk9of7vWvsQ7CyPMN0tjkCa6+bs1/OD9LPBaoF4cPcEFds68ONU=
+	t=1721675041; cv=none; b=t4IOEqFpDXlhspCJUM2LDlB4IMTd2n1MrHetDaYoxtZIqwAxbh9z7/y6hySbaGGeb0vhElqFtUR1n5TFb78FawCGUb6eyfYP7sbSpgPTwqu2DLNArI/A/lJTFAyJOWDlnl1XrvMGOEQTKo7ck7C93QxgcTK2zcTWrnYPutuC7Nw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721674053; c=relaxed/simple;
-	bh=asA28J//MR/tZw5E77Yd89aREdVKDUWw1npsUkxp9pc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p1gnR6rElavdki66C1hZ5YwCUudU4zHD9WZ2fCLYzf63JrBx4kCmU1pac4cEo/YIGJhju2F8VxKvar5F5ZVLZofy7hy1eK2XdtAaSmpJeeeSjO2Gx35SZw6xnhOyZwXnNVCL2ygep7yaDS4xTu7Q3ZHdMOt7+Us1D1Cy9riEOqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=ogialzVN; arc=none smtp.client-ip=209.85.166.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-8152f0c63c1so180747539f.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 11:47:32 -0700 (PDT)
+	s=arc-20240116; t=1721675041; c=relaxed/simple;
+	bh=ZuCr8Q3MXq7FKFxOumVO8h9QuyBPSWk2YAWb6LR+p3Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ui2hr/y20FyB8wM36bPNGXg0KAPpXscmWrZAQhZkiuzK2kVpVtLLT/En1QI1zG0jutNRkUWjTNYtk72R2uF3vtvzBJIRUAyn1hdnSNgv6rFhfyhNF/8vAg1BQv7B+beSpzRmqln4pT8BHqNgGrM0cRSbJGVOmEKjzDVVSrv9Ewc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kPUhrxC8; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-65faa0614dbso47773367b3.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 12:03:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1721674051; x=1722278851; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OzTRfDaexdJXU/NKu+dqGzHLJmOKAxsba4iUWApjtBs=;
-        b=ogialzVNR6iKRPGZpusW/yYSZ8rOLkIEhAeG4vlJySRgYIT62Q7rMfuI/9/XGXJQ1Z
-         2TBlR2odsrfqMJhxOi4B0+lH0NYjjQuO/ykAZLJXvRH1wooDCsjjQISBJEvzXgDgbUcx
-         VWLFJ+BPI4voMyrliBzfPiGs7fgQciODdBFl4Ai+awG8xfzjejnQgVjWnzradQAr6Nbo
-         ev2mMm1PeA1lc71KcurutiosCp4ze1Yw7qFqPdHrPUdAl+RMwEsINkyie6HHHcb+UuRz
-         OCUy6gbrll0F4Mlbj1SKkTFl5vykvtkXAIDTv8OnFvd2xVdPZdJSHt39BTT41EWyZYgM
-         tw7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721674051; x=1722278851;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1721675038; x=1722279838; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OzTRfDaexdJXU/NKu+dqGzHLJmOKAxsba4iUWApjtBs=;
-        b=HA0X8CY9t8Qd5OvTSMNC2h5V08MdYO7zKnTVeYMGLCOXdM2lfCVxfJ0wyP4x15wIii
-         4y0BZTEsl2j4RERgXVk/LqrfTKwFYvp2DNC7oj+TO3ktAkuk1quy4rdOwwYTeS72SBdz
-         8STEO5nzoFSZ2qaqnuMkLE34E+uVMLBLdv82gmdQ+3HLREgEJ4+8/+xXx06LlXmQXapJ
-         lABVFU6rvkRvf8KIpnJ0/2QVO1CdJtPtVPXaC1vLYWc7bKqXqM5wWurkXgF4+RoCanJ0
-         Zk+G/ZJU2o3ydmUBpCI/AaeKhE/eD6Pyp7HnH5TpoxlDgvN90E/BP4KWWexuw1qo/j9I
-         WpIA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+apk9FS0gfYb1ZoEcS3nU5FPUJtHdGBpJk8UQHJUpoKLDAlveHv2HdvOCmd0Palzkj0gmmdkW0mPDBgL+9BTFv+rzoiW/6JFyUQ==
-X-Gm-Message-State: AOJu0Yy3xg6FTrHnrgRmFwWIp9gztQfU+rU2zZEjBCNDDcPtKez27Wl8
-	NxQJ4rkxjAl7uH91AyC58YbTKf4Z7e7QIH43CQHGUMA+aK5JGHk2h1KXNy5mAVM=
-X-Google-Smtp-Source: AGHT+IFOuPIoea3HTs+tbRyLXH40CUhD1wo+gozLPHK8gHW5C0xpq+X2GQXcdlWAxPs41NzeH0m9PA==
-X-Received: by 2002:a05:6602:48d:b0:804:2b28:75db with SMTP id ca18e2360f4ac-81ea3b3a2cfmr103988639f.10.1721674051211;
-        Mon, 22 Jul 2024 11:47:31 -0700 (PDT)
-Received: from localhost ([140.82.166.162])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-819abb08682sm258753339f.1.2024.07.22.11.47.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jul 2024 11:47:30 -0700 (PDT)
-Date: Mon, 22 Jul 2024 13:47:29 -0500
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Samuel Holland <samuel.holland@sifive.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
-	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>, 
-	Jessica Clarke <jrtc27@jrtc27.com>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v5 12/13] selftests: riscv: Fix vector tests
-Message-ID: <20240722-0940cd64c0d8bb03f2427022@orel>
-References: <20240719-xtheadvector-v5-0-4b485fc7d55f@rivosinc.com>
- <20240719-xtheadvector-v5-12-4b485fc7d55f@rivosinc.com>
+        bh=/aLyzQjs5NsslSdkV31IgEOcyf1Zm6WnIlOUy4KlEfU=;
+        b=kPUhrxC8xyaF3BDUKcpVMnk2VRmTGpT821t17waaW6alcXTbrOJHPFo0dS4+yXc+EK
+         TTXmS5vQrZVTX13UcMRsicJ4OxFunlpf8JzDQBkzYMcTOhF7ZED4dwrku4IHA9mq3QCN
+         6Bb4DzQl5Ly8WmMjGc1UFojn7V26Mo0WBLWlRNrhs8tyImvCu91933/qQfXLVfH4BiUy
+         PSfqv/BY80igoKBG7+L3vDZxAM9SgTlJUSYIJcJrVBQE9XzsLxWarET5IsdX4Hkw25Rh
+         8pOXnvxyLYl0Ej/iwoH7FteMkgQOemdhf5rICcOsOIPXWdV8A1T03H+T1GTNAgjAiUoA
+         Wnug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721675038; x=1722279838;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/aLyzQjs5NsslSdkV31IgEOcyf1Zm6WnIlOUy4KlEfU=;
+        b=VLyKnLQZwizt7BHsoojRprUS7J7atHEl/BQno8CBK6jd/bPNfc7lx9k4pwtNFvGF/+
+         tz6xyCYNx9pKpLfIQe8kNkpz9+oQdVImUz86gqPfS22vPr9I48Lh9OITP45WzujDp4Nm
+         frQcOAuFg+br5+sIQhlFVl4o59YL+73z5mtHkigqlWYTyxWVfzlOlyp+eYRsldu6KERV
+         pHCH1DEUxyL+D+osdKZUw8jAvdsprovBY1fZDbzke1JArj/c4ZANroMXgrVtdJDhseys
+         06e1xp1s90XAg8YsLbvDfsIY4OvukDlhJQNgU5DCa+qlkq5cTPuUe+fpNj9ydcWDdU0N
+         5NSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX8INIfUFzCo4i9VXehsZcEmtXnwaW3NuAygcDIWAX7IzifNw2ON3yno5xN91IBqtzcJnG5rN3YjKVVYnCYikK/mYgWTKR7l0IVbg==
+X-Gm-Message-State: AOJu0YyPO7HyyfDzqy918aW70mWgdwEAWWcatst4dsq0+rKIZJTyAOk0
+	75H70CycubrL9L5uEkuA+3qmk03ZqNqRuGC4bzf7RScJxXTu7UzP8eS6xoGMtePMXvlOER89T6w
+	sNUq56js1OxQxSPtUSbecuqKj3BzHsVELf+2UzA==
+X-Google-Smtp-Source: AGHT+IGHHSAltb/w1lzf5cIkIkQspIiU9P8A/vUbkhLHt8k+PzD8zXZ+mZuEGvyPGNY8yUTQbEDWGpCcg1+oltHu7YU=
+X-Received: by 2002:a05:690c:5717:b0:615:1ad2:1102 with SMTP id
+ 00721157ae682-66a688a5612mr79225097b3.11.1721675037800; Mon, 22 Jul 2024
+ 12:03:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240719-xtheadvector-v5-12-4b485fc7d55f@rivosinc.com>
+References: <CGME20240719120945eucas1p16058905c95c92840679831ae3383a67a@eucas1p1.samsung.com>
+ <20240719120853.1924771-1-m.majewski2@samsung.com> <20240719120853.1924771-3-m.majewski2@samsung.com>
+In-Reply-To: <20240719120853.1924771-3-m.majewski2@samsung.com>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Mon, 22 Jul 2024 14:03:46 -0500
+Message-ID: <CAPLW+4kP25-LWArZGxQ2yy-pc1RDCVng+5Z667cCbb+h_V6A8Q@mail.gmail.com>
+Subject: Re: [PATCH 2/6] drivers/thermal/exynos: use tmu_temp_mask consistently
+To: Mateusz Majewski <m.majewski2@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 19, 2024 at 09:19:07AM GMT, Charlie Jenkins wrote:
-> Overhaul the riscv vector tests to use kselftest_harness to help the
-> test cases correctly report the results and decouple the individual test
-> cases from each other. With this refactoring, only run the test cases is
-> vector is reported and properly report the test case as skipped
-> otherwise. The v_initval_nolibc test was previously not checking if
-> vector was supported and used a function (malloc) which invalidates
-> the state of the vector registers.
-> 
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+On Fri, Jul 19, 2024 at 7:10=E2=80=AFAM Mateusz Majewski
+<m.majewski2@samsung.com> wrote:
+>
+> Some of the usages in sanitize_temp_error were missed, probably because
+> the boards being used never actually exceeded 255 in their trimming
+> information. This is needed for Exynos 850 support, which uses 9-bit
+> temperature codes.
+>
+
+That looks like an actual fix to me, so maybe also add the
+corresponding "Fixes:" tag here?
+
+> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
 > ---
->  tools/testing/selftests/riscv/abi/ptrace           | Bin 0 -> 759368 bytes
->  tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
->  tools/testing/selftests/riscv/vector/Makefile      |  17 +-
->  .../selftests/riscv/vector/v_exec_initval_nolibc.c |  84 +++++++
->  tools/testing/selftests/riscv/vector/v_helpers.c   |  56 +++++
->  tools/testing/selftests/riscv/vector/v_helpers.h   |   5 +
->  tools/testing/selftests/riscv/vector/v_initval.c   |  16 ++
->  .../selftests/riscv/vector/v_initval_nolibc.c      |  68 ------
->  .../testing/selftests/riscv/vector/vstate_prctl.c  | 266 ++++++++++++---------
->  9 files changed, 324 insertions(+), 191 deletions(-)
-> 
-> diff --git a/tools/testing/selftests/riscv/abi/ptrace b/tools/testing/selftests/riscv/abi/ptrace
-> new file mode 100755
-> index 000000000000..2b03e77b4dcf
-> Binary files /dev/null and b/tools/testing/selftests/riscv/abi/ptrace differ
-> diff --git a/tools/testing/selftests/riscv/vector/.gitignore b/tools/testing/selftests/riscv/vector/.gitignore
-> index 9ae7964491d5..7d9c87cd0649 100644
-> --- a/tools/testing/selftests/riscv/vector/.gitignore
-> +++ b/tools/testing/selftests/riscv/vector/.gitignore
-> @@ -1,3 +1,4 @@
->  vstate_exec_nolibc
->  vstate_prctl
-> -v_initval_nolibc
-> +v_initval
-> +v_exec_initval_nolibc
-> diff --git a/tools/testing/selftests/riscv/vector/Makefile b/tools/testing/selftests/riscv/vector/Makefile
-> index bfff0ff4f3be..995746359477 100644
-> --- a/tools/testing/selftests/riscv/vector/Makefile
-> +++ b/tools/testing/selftests/riscv/vector/Makefile
-> @@ -2,18 +2,27 @@
->  # Copyright (C) 2021 ARM Limited
->  # Originally tools/testing/arm64/abi/Makefile
->  
-> -TEST_GEN_PROGS := vstate_prctl v_initval_nolibc
-> -TEST_GEN_PROGS_EXTENDED := vstate_exec_nolibc
-> +TEST_GEN_PROGS := v_initval vstate_prctl
-> +TEST_GEN_PROGS_EXTENDED := vstate_exec_nolibc v_exec_initval_nolibc sys_hwprobe.o v_helpers.o
->  
->  include ../../lib.mk
->  
-> -$(OUTPUT)/vstate_prctl: vstate_prctl.c ../hwprobe/sys_hwprobe.S
-> +$(OUTPUT)/sys_hwprobe.o: ../hwprobe/sys_hwprobe.S
-> +	$(CC) -static -c -o$@ $(CFLAGS) $^
-> +
-> +$(OUTPUT)/v_helpers.o: v_helpers.c
-> +	$(CC) -static -c -o$@ $(CFLAGS) $^
-> +
-> +$(OUTPUT)/vstate_prctl: vstate_prctl.c $(OUTPUT)/sys_hwprobe.o $(OUTPUT)/v_helpers.o
->  	$(CC) -static -o$@ $(CFLAGS) $(LDFLAGS) $^
->  
->  $(OUTPUT)/vstate_exec_nolibc: vstate_exec_nolibc.c
->  	$(CC) -nostdlib -static -include ../../../../include/nolibc/nolibc.h \
->  		-Wall $(CFLAGS) $(LDFLAGS) $^ -o $@ -lgcc
->  
-> -$(OUTPUT)/v_initval_nolibc: v_initval_nolibc.c
-> +$(OUTPUT)/v_initval: v_initval.c $(OUTPUT)/sys_hwprobe.o $(OUTPUT)/v_helpers.o
-> +	$(CC) -static -o$@ $(CFLAGS) $(LDFLAGS) $^
-> +
-> +$(OUTPUT)/v_exec_initval_nolibc: v_exec_initval_nolibc.c
->  	$(CC) -nostdlib -static -include ../../../../include/nolibc/nolibc.h \
->  		-Wall $(CFLAGS) $(LDFLAGS) $^ -o $@ -lgcc
-> diff --git a/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c b/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-> new file mode 100644
-> index 000000000000..74b13806baf0
-> --- /dev/null
-> +++ b/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-> @@ -0,0 +1,84 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Get values of vector registers as soon as the program starts to test if
-> + * is properly cleaning the values before starting a new program. Vector
-> + * registers are caller saved, so no function calls may happen before reading
-> + * the values. To further ensure consistency, this file is compiled without
-> + * libc and without auto-vectorization.
-> + *
-> + * To be "clean" all values must be either all ones or all zeroes.
-> + */
-> +
-> +#define __stringify_1(x...)	#x
-> +#define __stringify(x...)	__stringify_1(x)
-> +
-> +int main(int argc, char **argv)
-> +{
-> +	char prev_value = 0, value;
-> +	unsigned long vl;
-> +	int first = 1;
-> +
-> +	asm volatile (
-> +		".option push\n\t"
-> +		".option arch, +v\n\t"
-> +		"vsetvli	%[vl], x0, e8, m1, ta, ma\n\t"
-> +		".option pop\n\t"
-> +		: [vl] "=r" (vl)
-> +	);
-> +
-> +#define CHECK_VECTOR_REGISTER(register) ({					\
-> +	for (int i = 0; i < vl; i++) {						\
-> +		asm volatile (							\
-> +			".option push\n\t"					\
-> +			".option arch, +v\n\t"					\
-> +			"vmv.x.s %0, " __stringify(register) "\n\t"		\
-> +			"vsrl.vi " __stringify(register) ", " __stringify(register) ", 8\n\t" \
-> +			".option pop\n\t"					\
-> +			: "=r" (value));					\
-> +		if (first) {							\
-> +			first = 0;						\
-> +		} else if (value != prev_value || !(value == 0x00 || value == 0xff)) { \
-> +			printf("Register " __stringify(register) " values not clean! value: %u\n", value);	\
-> +			exit(-1);						\
+>  drivers/thermal/samsung/exynos_tmu.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/thermal/samsung/exynos_tmu.c b/drivers/thermal/samsu=
+ng/exynos_tmu.c
+> index 9b7ca93a72f1..61606a9b9a00 100644
+> --- a/drivers/thermal/samsung/exynos_tmu.c
+> +++ b/drivers/thermal/samsung/exynos_tmu.c
+> @@ -237,17 +237,17 @@ static void sanitize_temp_error(struct exynos_tmu_d=
+ata *data, u32 trim_info)
+>
+>         data->temp_error1 =3D trim_info & tmu_temp_mask;
+>         data->temp_error2 =3D ((trim_info >> EXYNOS_TRIMINFO_85_SHIFT) &
 
-I think we should ensure all tests in tools/testing/selftests/riscv/ use
-TAP output, exiting with ksft_finished(), or at least exit with 0 for
-success. For example, vstate_exec_nolibc exits with 2 for success since
-it exits with the return value of prctl(PR_RISCV_V_GET_CONTROL). And
-vstate_prctl.c exits with several different negative values, which means
-it'll exit with several different values around 255. To figure what went
-wrong, one will have to convert those exit codes to the original negative
-values in order to look them up. Having these types of inconsistent exit
-values complicates QA.
+EXYNOS_TRIMINFO_85_SHIFT=3D8 in the driver. Is that value actually
+correct in case of Exynos850? I just checked the TRM and it says the
+layout for TRIMINFO0 register is as follows:
 
-Thanks,
-drew
+  - RSVD: Bit [31:24]
+  - CALIB_SEL: Bit [23]
+  - T_BUF_VREF_SEL: Bit [22:18]
+  - TRIMINFO_85_P0: Bit [17:9]
+  - TRIMINFO_25_P0: Bit [8:0]
+
+So maybe that shift value should be 9 instead of 8 for Exynos850? Not
+sure about other platforms though, this might be also the case for
+Exynos7 SoCs too (SOC_ARCH_EXYNOS7 in the driver).
+
+> -                               EXYNOS_TMU_TEMP_MASK);
+> +                               tmu_temp_mask);
+>
+>         if (!data->temp_error1 ||
+>             (data->min_efuse_value > data->temp_error1) ||
+>             (data->temp_error1 > data->max_efuse_value))
+> -               data->temp_error1 =3D data->efuse_value & EXYNOS_TMU_TEMP=
+_MASK;
+> +               data->temp_error1 =3D data->efuse_value & tmu_temp_mask;
+>
+>         if (!data->temp_error2)
+>                 data->temp_error2 =3D
+>                         (data->efuse_value >> EXYNOS_TRIMINFO_85_SHIFT) &
+> -                       EXYNOS_TMU_TEMP_MASK;
+> +                       tmu_temp_mask;
+>  }
+>
+>  static int exynos_tmu_initialize(struct platform_device *pdev)
+> --
+> 2.45.1
+>
+>
 
