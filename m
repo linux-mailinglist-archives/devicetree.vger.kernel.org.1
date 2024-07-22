@@ -1,256 +1,132 @@
-Return-Path: <devicetree+bounces-87266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1B8938ECA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 14:04:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56005938EE1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 14:11:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D73F5281811
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 12:04:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2429B21060
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 12:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD6716D4FE;
-	Mon, 22 Jul 2024 12:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4114E16D4CD;
+	Mon, 22 Jul 2024 12:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Rni74CVy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5D916D4D0
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 12:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8F116CD3B;
+	Mon, 22 Jul 2024 12:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721649851; cv=none; b=WYYgEYuxrXYQraYjrEkJZs+XNgCvqzdD0qn1M8t59u9aV8KZoL36QqHoqG74i3ej8B0Yc8pjb2uVgx4pH9fQ9HoHlzB8zEmbdWV6dmxljeoqw6IfPYuLl8FDlqt0I+FxoT20v0U54wwqOnJN5PXPEzB8nv1dk9u3JZkZmPHTBeU=
+	t=1721650282; cv=none; b=sRM3FtgGFItRJcrz2xcYGouVW1dwnxALE9k0AHuqsZWh2rqEYrsJqpXSsc8O1rZoQo+GYkOLLqKffYdUWKVRYJP7XS3ug1r/9NWbSEfslsNrxFADIksA8ZigNI3nQlh2lVSdLA4A3glpfqS4OB1q94BbLY/wJWhfFx+GNAEYCJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721649851; c=relaxed/simple;
-	bh=qWy9RXASZTPs6u+xH3wHysH2cA1hSPDfQUjvLKSWxbc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ITCdLClH3lnAHyWJNUsLRyHsnyhukAQJPxSTrAhkeylr6unf3lMBw3qefIXBbl3bHhK5APk+0xCCP7DS1jcEAPUrwtZeVmxTcL47ixIEjKvNGH1Nl0bdjOGzPW1kOYndHLRdahNrGqPZ4LWNhJXhPUoypMMVn4bxQnNxJEYN638=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:173b:9414:53f5:de4c])
-	by andre.telenet-ops.be with bizsmtp
-	id qc452C00B1wvoRx01c45Lh; Mon, 22 Jul 2024 14:04:06 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sVrla-002zES-HX;
-	Mon, 22 Jul 2024 14:04:05 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sVrls-00210E-Vl;
-	Mon, 22 Jul 2024 14:04:05 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Support Opensource <support.opensource@diasemi.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: linux-sound@vger.kernel.org,
+	s=arc-20240116; t=1721650282; c=relaxed/simple;
+	bh=6JjbiKt2EElXXn2fNVQlEfWX5/tSPM44Ms3XEhpuj8M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XcvmADDXXwXfgT9wSZDfaeiD1vW3BC/41UxoIylcLNc1zCWtGq4p43D+fopi7UzuB19mHLDG+bOr7GaPCwu8rM9Rv317YWgTnArjJxUdiP1g9Xj2YDRo8s+VSm5HZkx6Gy7ySxpQMkdbRi06FlDGm6KAYIX5TV95OQZNjNWfmLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Rni74CVy; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 96F6045B;
+	Mon, 22 Jul 2024 14:10:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721650236;
+	bh=6JjbiKt2EElXXn2fNVQlEfWX5/tSPM44Ms3XEhpuj8M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Rni74CVyXlkmVgMETNF+exKeTdfWksbyXBjEdToaRRX1iU0r58+V5tA/r8gu66Nuj
+	 eOXN/tTxs6bR9cGYs/ETyxpVzyr9lhgdr+y/WQqcAIuarpnB93VSAsZzc2GTWI3JKu
+	 s8IQRhZeaiXsQC3LcZUApFtKCZBqIR/mtUM1lo2k=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: sound: dlg,da7213: Convert to json-schema
-Date: Mon, 22 Jul 2024 14:04:00 +0200
-Message-Id: <7645c9024a1762d281f4067504bc32a7a3d27caa.1721649741.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	linux-gpio@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	Frank Li <Frank.li@nxp.com>
+Subject: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller support
+Date: Mon, 22 Jul 2024 15:10:56 +0300
+Message-ID: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.44.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Convert the Dialog Semiconductor DA7212/DA7213 Audio Codec Device Tree
-binding documentation to json-schema.
+Hello,
 
-Add missing properties.
+This patch series introduces support for the Analog Devices ADP5585, a
+GPIO expander, PWM and keyboard controller. It models the chip as an MFD
+device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
+for the GPIO (3/4) and PWM (4/4) functions.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/sound/da7213.txt      |  45 --------
- .../devicetree/bindings/sound/dlg,da7213.yaml | 103 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 3 files changed, 104 insertions(+), 45 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/da7213.txt
- create mode 100644 Documentation/devicetree/bindings/sound/dlg,da7213.yaml
+Support for the keypad controller is left out, as I have no means to
+test it at the moment. The chip also includes a tiny reset controller,
+as well as a 3-bit input programmable logic block, which I haven't tried
+to support (and also have no means to test).
 
-diff --git a/Documentation/devicetree/bindings/sound/da7213.txt b/Documentation/devicetree/bindings/sound/da7213.txt
-deleted file mode 100644
-index 94584c96c4ae2237..0000000000000000
---- a/Documentation/devicetree/bindings/sound/da7213.txt
-+++ /dev/null
-@@ -1,45 +0,0 @@
--Dialog Semiconductor DA7212/DA7213 Audio Codec bindings
--
--======
--
--Required properties:
--- compatible : Should be "dlg,da7212" or "dlg,da7213"
--- reg: Specifies the I2C slave address
--
--Optional properties:
--- clocks : phandle and clock specifier for codec MCLK.
--- clock-names : Clock name string for 'clocks' attribute, should be "mclk".
--
--- dlg,micbias1-lvl : Voltage (mV) for Mic Bias 1
--	[<1600>, <2200>, <2500>, <3000>]
--- dlg,micbias2-lvl : Voltage (mV) for Mic Bias 2
--	[<1600>, <2200>, <2500>, <3000>]
--- dlg,dmic-data-sel : DMIC channel select based on clock edge.
--	["lrise_rfall", "lfall_rrise"]
--- dlg,dmic-samplephase : When to sample audio from DMIC.
--	["on_clkedge", "between_clkedge"]
--- dlg,dmic-clkrate : DMIC clock frequency (Hz).
--	[<1500000>, <3000000>]
--
-- - VDDA-supply : Regulator phandle for Analogue power supply
-- - VDDMIC-supply : Regulator phandle for Mic Bias
-- - VDDIO-supply : Regulator phandle for I/O power supply
--
--======
--
--Example:
--
--	codec_i2c: da7213@1a {
--		compatible = "dlg,da7213";
-- 		reg = <0x1a>;
--
-- 		clocks = <&clks 201>;
--		clock-names = "mclk";
--
--		dlg,micbias1-lvl = <2500>;
--		dlg,micbias2-lvl = <2500>;
--
--		dlg,dmic-data-sel = "lrise_rfall";
--		dlg,dmic-samplephase = "between_clkedge";
--		dlg,dmic-clkrate = <3000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/dlg,da7213.yaml b/Documentation/devicetree/bindings/sound/dlg,da7213.yaml
-new file mode 100644
-index 0000000000000000..c2dede1e82ffa4d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/dlg,da7213.yaml
-@@ -0,0 +1,103 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/dlg,da7213.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Dialog Semiconductor DA7212/DA7213 Audio Codec
-+
-+maintainers:
-+  - Support Opensource <support.opensource@diasemi.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - dlg,da7212
-+      - dlg,da7213
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: mclk
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  dlg,micbias1-lvl:
-+    description: Voltage (mV) for Mic Bias 1
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1600, 2200, 2500, 3000 ]
-+
-+  dlg,micbias2-lvl:
-+    description: Voltage (mV) for Mic Bias 2
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1600, 2200, 2500, 3000 ]
-+
-+  dlg,dmic-data-sel:
-+    description: DMIC channel select based on clock edge
-+    enum: [ lrise_rfall, lfall_rrise ]
-+
-+  dlg,dmic-samplephase:
-+    description: When to sample audio from DMIC
-+    enum: [ on_clkedge, between_clkedge ]
-+
-+  dlg,dmic-clkrate:
-+    description: DMIC clock frequency (Hz)
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1500000, 3000000 ]
-+
-+  VDDA-supply:
-+    description: Analogue power supply
-+
-+  VDDIO-supply:
-+    description: I/O power supply
-+
-+  VDDMIC-supply:
-+    description: Mic Bias
-+
-+  VDDSP-supply:
-+    description: Speaker supply
-+
-+  ports:
-+    $ref: audio-graph-port.yaml#/definitions/ports
-+
-+  port:
-+    $ref: audio-graph-port.yaml#
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        codec@1a {
-+            compatible = "dlg,da7213";
-+            reg = <0x1a>;
-+
-+            clocks = <&clks 201>;
-+            clock-names = "mclk";
-+
-+            #sound-dai-cells = <0>;
-+
-+            dlg,micbias1-lvl = <2500>;
-+            dlg,micbias2-lvl = <2500>;
-+
-+            dlg,dmic-data-sel = "lrise_rfall";
-+            dlg,dmic-samplephase = "between_clkedge";
-+            dlg,dmic-clkrate = <3000000>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a577e41bd90cb1ac..990aced7e7a57e1f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6458,6 +6458,7 @@ F:	Documentation/devicetree/bindings/regulator/da92*.txt
- F:	Documentation/devicetree/bindings/regulator/dlg,da9*.yaml
- F:	Documentation/devicetree/bindings/regulator/dlg,slg51000.yaml
- F:	Documentation/devicetree/bindings/sound/da[79]*.txt
-+F:	Documentation/devicetree/bindings/sound/dlg,da7213.yaml
- F:	Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
- F:	Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
- F:	Documentation/hwmon/da90??.rst
+The driver is based on an initial version from the NXP BSP kernel, then
+extensively and nearly completely rewritten, with added DT bindings. I
+have nonetheless retained original authorship. Clark, Haibo, if you
+would prefer not being credited and/or listed as authors, please let me
+know.
+
+Compared to v6, this version addresses small review comments. I believe
+it is ready to go, as the PWM and GPIO drivers have been acked by the
+respective subsystem maintainers, and I have addressed Lee's comments on
+the MFD side. Lee, if there's no more issue, could you apply this to
+your tree for v6.12 ?
+
+Clark Wang (1):
+  pwm: adp5585: Add Analog Devices ADP5585 support
+
+Haibo Chen (2):
+  mfd: adp5585: Add Analog Devices ADP5585 core support
+  gpio: adp5585: Add Analog Devices ADP5585 support
+
+Laurent Pinchart (1):
+  dt-bindings: mfd: Add Analog Devices ADP5585
+
+ .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
+ .../devicetree/bindings/trivial-devices.yaml  |   4 -
+ MAINTAINERS                                   |  11 +
+ drivers/gpio/Kconfig                          |   7 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
+ drivers/pwm/Kconfig                           |   7 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
+ include/linux/mfd/adp5585.h                   | 126 ++++++++++
+ 13 files changed, 876 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+ create mode 100644 drivers/gpio/gpio-adp5585.c
+ create mode 100644 drivers/mfd/adp5585.c
+ create mode 100644 drivers/pwm/pwm-adp5585.c
+ create mode 100644 include/linux/mfd/adp5585.h
+
+
+base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
 -- 
-2.34.1
+Regards,
+
+Laurent Pinchart
 
 
