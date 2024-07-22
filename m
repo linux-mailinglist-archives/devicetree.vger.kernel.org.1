@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-87344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EFC9393A6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:41:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B74F39393A8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:41:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03F6F1C21030
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:41:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 724C028141C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:41:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC13816FF41;
-	Mon, 22 Jul 2024 18:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F35170836;
+	Mon, 22 Jul 2024 18:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XSIrTFtJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npuMCOOr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DE2770E6;
-	Mon, 22 Jul 2024 18:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAF1770E6;
+	Mon, 22 Jul 2024 18:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721673677; cv=none; b=OXyfnLhDG8ox9Nucj9QnxJl5KYWZ+U8lezGGj0p0ZPt5YDW3I72PYrKQOC/8zGlrODcM+kf3vzPgI0jiLc9+PEWYs8wB/SI9tMjgq01Hfe+724p2DZeNDRMo1WuGbtWP6ubKl5stsDyCLjhmiuVkNS4ppRB9ZX/EvFfarz8H0NA=
+	t=1721673681; cv=none; b=YPqt71DtHevK+exNrBWG0k8j0jg+lz9lyNumrTljrUGiYe1DuE2sEEngovMEokFepkCnlUQeDzsYsscQVafQmVvzgExrTRa+td1lU/pD7octPXXk2hAWEVhOUOaCrD64Gmd+TbaFMiq00ULg8DweEAmmWoBKfVfSgo+ryUwjjWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721673677; c=relaxed/simple;
-	bh=qLIVYR96ExysYvsl5Si59HEtTM9cbLKt7Te6/71ZiOc=;
+	s=arc-20240116; t=1721673681; c=relaxed/simple;
+	bh=pjVpDue3MFwWNWnMBUNHk2Q/wswn4BTAbLMZ9AEkuUc=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ekwlfdnXHDAD4FnN34x9SUsFYtPFICagkomCFVazaG4E2iZ+4dZm6Ct47xPT4rqxDSCDcldlbbTwECNqG/kKtvjiXHpZS9WuQu3muKUA7wGMIYKOOXpTdVYditn1DtFpwkMTobGBCDr6WaGtaqboPnzDaOoJaByp7RWfXyEe+BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XSIrTFtJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F1DFC116B1;
-	Mon, 22 Jul 2024 18:41:16 +0000 (UTC)
+	 Message-Id:Subject; b=NkfP/IjBUHce3RviUhravHdVih8NTkmbuq4pca9LJNurgzd8g7TSE0woB79Rk7Glu9YYwG/nZnSYdecuSpUNtK79tq2+Gjxuf/+uozPUppTW0Y29ErivxfWbbsQhGlw0nQ38q8wHEdq3JHvn56pZlKftyta/FE4c01uUZQcxIJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npuMCOOr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E10C116B1;
+	Mon, 22 Jul 2024 18:41:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721673677;
-	bh=qLIVYR96ExysYvsl5Si59HEtTM9cbLKt7Te6/71ZiOc=;
+	s=k20201202; t=1721673681;
+	bh=pjVpDue3MFwWNWnMBUNHk2Q/wswn4BTAbLMZ9AEkuUc=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=XSIrTFtJkLz+lK84qNOyYNQFM7fLxqUv6qzkkn8930YexgYCORBevyyAc+SfbD9oG
-	 /UvfT9R11EHPfO82JlHRRj3W1UQTZR0gYF6NMFXYscjw5hQWI3qjmLyPZQJ7HfkW8h
-	 m00/2MXYIgLZ5b6BCrOOvx5tW5zhZO7YxaTlcBoKUhegLitHy4kk62taCkzXeWq4CG
-	 hWZBCVe6OqVJmBWs6KJuT91wytNGNKnlgMtleMee858IQjzJDE+ed//MEVEm7r6BXx
-	 /dV2sqBGH+/SRD/LbxCg9Ac+2Nx7zRlOA2v0Iwcnn5PbcfvKe8wxo4rSev4+qCN45p
-	 gZN1vEDw3IftA==
-Date: Mon, 22 Jul 2024 12:41:11 -0600
+	b=npuMCOOrmNSziA9LbQ8Syf4zi3i4oTX300wYJjk6cRfsNYPnGoMS6R5XmtI8KdBmR
+	 RpZhzrOlyiY3DNo0h5RhoczpKwIZviPrsQWIZDjZsreMOYzfqWl9b3oz4AHVtvaN1Q
+	 WLbb/OlCZRHW+ACVXKyX6k26NHsz+Dd+JTzUIq8fsl53aAyzNxlbsZVUL4BG9mPgB7
+	 GXCLxCLKLKWx3h11v8FIS+6m5MArGOYkps2grGmCbmWsafsVq+0u/xabHmIMvRX5SO
+	 vX+xvuYQqL9B0Ole7l+IPwcBj9enKBf/S1HzpFSm2xa+NAUbXbH0vpxfyLajbWW4Kq
+	 BCGiCJhATEaWQ==
+Date: Mon, 22 Jul 2024 12:41:17 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,44 +51,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
- linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
-In-Reply-To: <20240721-stk3310-v3-3-98fcb6f551a1@disroot.org>
-References: <20240721-stk3310-v3-0-98fcb6f551a1@disroot.org>
- <20240721-stk3310-v3-3-98fcb6f551a1@disroot.org>
-Message-Id: <172167362863.4010.2852066025016124644.robh@kernel.org>
-Subject: Re: [PATCH v3 3/3] dt-bindings: iio: light: stk33xx: add
- compatible for stk3013
+To: ysionneau@kalrayinc.com
+Cc: Jonathan Borne <jborne@kalrayinc.com>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Julian Vetter <jvetter@kalrayinc.com>, 
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20240722094226.21602-3-ysionneau@kalrayinc.com>
+References: <20240722094226.21602-1-ysionneau@kalrayinc.com>
+ <20240722094226.21602-3-ysionneau@kalrayinc.com>
+Message-Id: <172167363239.4080.15874423880359295295.robh@kernel.org>
+Subject: Re: [RFC PATCH v3 02/37] dt-bindings: soc: kvx: Add binding for
+ kalray,coolidge-pwr-ctrl
 
 
-On Sun, 21 Jul 2024 15:44:31 +0530, Kaustabh Chakraborty wrote:
-> STK3013 is a proximity sensor by Sensortek, bearing chipid of 0x31. Despite
-> being marketed as a proximity sensor, it also appears to have ambient
-> light sensing capabilities.
+On Mon, 22 Jul 2024 11:41:13 +0200, ysionneau@kalrayinc.com wrote:
+> From: Yann Sionneau <ysionneau@kalrayinc.com>
 > 
-> The part is fully compatible with the existing implementation of the
-> device driver. Add the compatible string of stk3013 to the existing
-> list, with a fallback of stk3310.
+> Add binding for Kalray Coolidge SoC cluster power controller.
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Signed-off-by: Yann Sionneau <ysionneau@kalrayinc.com>
 > ---
->  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+> 
+> Notes:
+> 
+> V2 -> V3: New patch
+> ---
+>  .../soc/kvx/kalray,coolidge-pwr-ctrl.yaml     | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/light/stk33xx.yaml:23:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/light/stk33xx.yaml:27:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/light/stk33xx.yaml:28:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
 
 dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/kalray/kalray,coolidge-pwr-ctrl.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/kvx/kalray,coolidge-pwr-ctrl.example.dtb: pwr-ctrl@a40000: reg: [[0, 10747904], [0, 16728]] is too long
+	from schema $id: http://devicetree.org/schemas/kalray/kalray,coolidge-pwr-ctrl.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240721-stk3310-v3-3-98fcb6f551a1@disroot.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240722094226.21602-3-ysionneau@kalrayinc.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
