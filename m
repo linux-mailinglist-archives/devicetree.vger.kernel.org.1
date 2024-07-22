@@ -1,110 +1,134 @@
-Return-Path: <devicetree+bounces-87407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4BF939658
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F25393965A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:15:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 574F2B21563
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:15:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BECA5B21639
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4FA545C14;
-	Mon, 22 Jul 2024 22:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B534879B;
+	Mon, 22 Jul 2024 22:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kY6UxrE/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eS2GWIka"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F82745025;
-	Mon, 22 Jul 2024 22:15:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072F647F6C;
+	Mon, 22 Jul 2024 22:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721686502; cv=none; b=FTsUC7tHQHVM8qht6uuj904DwCufxs15StuJmvJz/5pYMkCd71n4Y0F+bVDjiI+mDV09C/9GKNlsTRfTXdsGZdQaWt/3OWqr9qb3hKdICmxcGAdxx1re5SBNwILBvvkL4Gh9BV4BgLDQtHabVNroX7e41BhgftOmiUcsxbO/X2A=
+	t=1721686503; cv=none; b=UO/Kvgjq6rv2jC5sYRSiy/Ly8AmMNMhQcaP97PQRJKg3HxSrEgm7cNLMxU52Rt8suaMX5advFwrEiHv1dUin8WeS1a8e4Y7elAFV72vc7r6aDCiubWko3cK4vGZsIFXL21VBW93R7Q2cDMHd4gXFCZQCPoijfLyxPVQDbGF5aTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721686502; c=relaxed/simple;
-	bh=znh1QIGYmvB/aC53MfJ9UM9CuX6s2b/DNV/U1E4VOJI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M+T7jLzv3Ktd7U7w7T6XtCvGK0BlXqNvKjQMFP9OwIwBrH6eBvOPASt/GkyDzi2NkT7RuZzq2+fYudm1hmWXi33It2PAa2V27uOsw6jK30a9rha9P3NMaPyTWUQHc1SxjdtmKJsB71q6uropKl1wP2AjsXZa8QN24OvZH5nBHCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kY6UxrE/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DBCEC4CD;
-	Tue, 23 Jul 2024 00:14:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1721686458;
-	bh=znh1QIGYmvB/aC53MfJ9UM9CuX6s2b/DNV/U1E4VOJI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kY6UxrE/Sn9bj107+EB/JQth3kIm97JlyUAcNDkKQHHyVJtmyFON6SDE4Obh9rP+h
-	 Jql68JmhrOzBVM4gRedi4R8iKXG6A5AC22Gcx1K0Qmrdw/seuNet8w6WFasKKCf7+d
-	 zyR38olf/gHrkKeOGiYND+5LZHFrTYC6v2nQbVhc=
-Date: Tue, 23 Jul 2024 01:14:41 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v6 05/18] media: v4l2-common: Add RAW14 format info
-Message-ID: <20240722221441.GB32300@pendragon.ideasonboard.com>
-References: <20240709132906.3198927-1-dan.scally@ideasonboard.com>
- <20240709132906.3198927-6-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1721686503; c=relaxed/simple;
+	bh=pltdNSZmHoCVSI5Sk1ELA9qb2K8O00alOaa1v/EU7+o=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=LbxiX3PQs/hQ7bjOQWik23w0ehhMjF46a/TNJeIZPdZiC5Xdsd+RGnnC93EQ0HB0AKg0FBvwRZ7QMkckK2yrKiWFlEDrevz7aXXChd3LBcThcwjZW2CXK7eZWxoZ+3mm6Ts2yGAqlC6yA4N6sfzAni5c5J5pQlOoDobNwE0Gaf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eS2GWIka; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49F13C4AF0B;
+	Mon, 22 Jul 2024 22:15:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721686502;
+	bh=pltdNSZmHoCVSI5Sk1ELA9qb2K8O00alOaa1v/EU7+o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=eS2GWIka5vU0Qn0pNkYc7lr5QHaxi1ZWuMgxqgY5Sy5iieoVqXwg/SZKOwF6SNNWz
+	 /nZqJLDtjl4qoCXLrSVokX6tIh/e4WWyH/pBYDoXornJ6VtdYgSfkr3eCIeF5AT4ek
+	 gw29mSYhAL4xycRBGfptWkJnlsUXf4B1UrtC2CFI2aTdnlJUBpO5obZS6aQVKLOt3p
+	 OzrBfqlwqiuJje8zwiW+cMn+fZWTw7ycPn8EIQTXdvEY2xgBIe2ZAnp1gMPszE6CCt
+	 b8+Bc90pK8zjMT3w6VrrewVLH+gSXymmwR3UlMskHFoyqhlDINDg3SAzd9Zfmw70ox
+	 mmX4bTwSiIPIQ==
+Date: Mon, 22 Jul 2024 17:15:00 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Thippeswamy Havalige <thippesw@amd.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, thippeswamy.havalige@amd.com,
+	linux-arm-kernel@lists.infradead.org, michal.simek@amd.com
+Subject: Re: [PATCH v2 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port driver
+Message-ID: <20240722221500.GA739438@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240709132906.3198927-6-dan.scally@ideasonboard.com>
+In-Reply-To: <20240722062558.1578744-3-thippesw@amd.com>
 
-Hi Dan,
-
-Thank you for the patch.
-
-On Tue, Jul 09, 2024 at 02:28:53PM +0100, Daniel Scally wrote:
-> Add entries to v4l2_format_info describing the 14-bit bayer
-> formats so that they can be used in drivers.
+On Mon, Jul 22, 2024 at 11:55:58AM +0530, Thippeswamy Havalige wrote:
+> Add support for Xilinx QDMA Soft IP core as Root Port.
 > 
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> The versal prime devices support QDMA soft IP module in
+> programmable logic.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Capitalize brand names.
 
-> ---
-> Changes in v6:
-> 
-> 	- New patch
-> 
->  drivers/media/v4l2-core/v4l2-common.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-core/v4l2-common.c
-> index c5d5704af5ee..fe33221e6c02 100644
-> --- a/drivers/media/v4l2-core/v4l2-common.c
-> +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -331,6 +331,10 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
->  		{ .format = V4L2_PIX_FMT_SGBRG12,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_SGRBG12,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_SRGGB12,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
-> +		{ .format = V4L2_PIX_FMT_SBGGR14,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
-> +		{ .format = V4L2_PIX_FMT_SGBRG14,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
-> +		{ .format = V4L2_PIX_FMT_SGRBG14,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
-> +		{ .format = V4L2_PIX_FMT_SRGGB14,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_SBGGR16,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_SGBRG16,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
->  		{ .format = V4L2_PIX_FMT_SGRBG16,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .bpp_div = { 1, 1, 1, 1 }, .hdiv = 1, .vdiv = 1 },
-> -- 
-> 2.34.1
-> 
+> The integrated QDMA Soft IP block has integrated bridge function that
+> can act as PCIe Root Port.
 
--- 
-Regards,
+Rewrap to fill 75 columns.
 
-Laurent Pinchart
+> +#define QDMA_BRIDGE_BASE_OFF		0xCD8
+
+Other #defines in this file user lower-case hex; please match them.
+
+>  static inline u32 pcie_read(struct pl_dma_pcie *port, u32 reg)
+>  {
+> -	return readl(port->reg_base + reg);
+> +	if (port->variant->version == XDMA)
+> +		return readl(port->reg_base + reg);
+> +	else
+> +		return readl(port->reg_base + reg + QDMA_BRIDGE_BASE_OFF);
+>  }
+>  
+>  static inline void pcie_write(struct pl_dma_pcie *port, u32 val, u32 reg)
+>  {
+> -	writel(val, port->reg_base + reg);
+> +	if (port->variant->version == XDMA)
+> +		writel(val, port->reg_base + reg);
+> +	else
+> +		writel(val, port->reg_base + reg + QDMA_BRIDGE_BASE_OFF);
+>  }
+>  
+>  static inline bool xilinx_pl_dma_pcie_link_up(struct pl_dma_pcie *port)
+> @@ -173,7 +198,10 @@ static void __iomem *xilinx_pl_dma_pcie_map_bus(struct pci_bus *bus,
+>  	if (!xilinx_pl_dma_pcie_valid_device(bus, devfn))
+>  		return NULL;
+>  
+> -	return port->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+> +	if (port->variant->version == XDMA)
+> +		return port->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+> +	else
+> +		return port->cfg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+
+If you rework the variant tests above to use
+"if (port->variant->version == QDMA)" instead, they will match the one
+below, and you won't need to touch the existing code at all, e.g.,
+
+  + if (port->variant->version == QDMA)
+  +   return port->cfg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+
+    return port->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+
+>  }
+>  
+>  /* PCIe operations */
+> @@ -731,6 +759,15 @@ static int xilinx_pl_dma_pcie_parse_dt(struct pl_dma_pcie *port,
+>  
+>  	port->reg_base = port->cfg->win;
+>  
+> +	if (port->variant->version == QDMA) {
+> +		port->cfg_base = port->cfg->win;
+> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "breg");
+> +		port->reg_base = devm_ioremap_resource(dev, res);
+> +		if (IS_ERR(port->reg_base))
+> +			return PTR_ERR(port->reg_base);
+> +		port->phys_reg_base = res->start;
+> +	}
 
