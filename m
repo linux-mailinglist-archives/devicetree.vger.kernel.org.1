@@ -1,78 +1,85 @@
-Return-Path: <devicetree+bounces-87252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620BF938DF6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 13:14:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75604938E09
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 13:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 941921C21391
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 11:14:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82324B213B8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 11:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10C916CD06;
-	Mon, 22 Jul 2024 11:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B62DB16CD03;
+	Mon, 22 Jul 2024 11:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MnezjYde"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="X6fYLEjP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D5A3A8F7;
-	Mon, 22 Jul 2024 11:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B301416C69D;
+	Mon, 22 Jul 2024 11:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721646845; cv=none; b=tSF1FCrWIk5AD/Tc4eI0xnrtuvB+nVnTrzBPQ6qXqN0dIx3OMUlmm0XSurQOoNohLg5x0ff7ghYSw2O2nWpREMfQxj9l1eT/PrPqPtVTBMBahcGR222re3NgYcnhleL4dU6OAQKa0OdZaTnEGUHaj3PI6NumENmO3araH0O0Jus=
+	t=1721647651; cv=none; b=mX+5eO0ZGnWlSUmmwySUHHdHjriLsMSZRZ7K7T1mDgSQGDT5XGKl3rMDU5+XINo9L0l2GPFqgCT+yXGP31JtRdo7l4rUqrVBubLF433bO3pFjdGNvlSu1sfaIkf7Usn4R0qBM0UNvIlu9Yn50BDUYnvNsKD8RJpuNtcM90dS2w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721646845; c=relaxed/simple;
-	bh=k2V9BZKvCGMHXeloQCdzZXYrnoWQegTQUZhBJJkTTXs=;
+	s=arc-20240116; t=1721647651; c=relaxed/simple;
+	bh=oSFS6BKeTNkRmRISdy2XuP1ZlR2B9rYB5jttdbfekFU=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IF/gvvq7EFmTos3EJT+RBvYgNjvojdRJNKcGYVL9W7AYHWxBanKrpY6yRE9y4kO4l21UvUIhZev9DuSnzsIUmzMr2OqOmo434X3M9VxyoMHA4Ml8nrKJndA0WI8fCn4uM3t2STmhtwyk6+5vifbbF+Dg8yst8DD9SRocCDuELi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MnezjYde; arc=none smtp.client-ip=68.232.154.123
+	 Content-Type:Content-Disposition:In-Reply-To; b=SDX9cU19/sHTDqNHhZPWsLOXY3Mj9bvx8EstONm6K/EVtB3tFBpmGFk2EmRemElE3RDnygS1HiGMIR5hFVniohFq0XfLn3N7GQ1BVHMC8YYIEtqqJEV11U9mc2MpfpPJ6+3xAhh991ICMTFvNrsZ4cdN7riidL2leH4WwKXCRTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=X6fYLEjP; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1721646843; x=1753182843;
+  t=1721647649; x=1753183649;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=k2V9BZKvCGMHXeloQCdzZXYrnoWQegTQUZhBJJkTTXs=;
-  b=MnezjYde7JOBPjtPHIPqv1E6cfP9GHg3w6zX81ZU1bbNHbJKUEgECOYy
-   kVyvvojQ4eO9K97kqbARdaFqD6aNjUzGK/PoHG+UemCpr490fIrDSPkg5
-   DuIiklMrJX005oss/tbg49cL1Kutelaqna9xMQwvn9pnlV3+U74AdjcIf
-   tk5TJmQ/ivzvFmP+gENu2vSsl/ANaS+8l7qv4Nly5CBpfQfq1zPIYAvRc
-   uiPbxICkjwMvDzLeBKSVTuk7Ua1xalXrWOmp6xNJFq82FJvFu1EPmM/1E
-   Ropd2z/FEkGsT+R3xtmbJv8LZv0l4ndZgAlFAK37RJKuws34cZVImfcr/
-   A==;
-X-CSE-ConnectionGUID: 61IbvXjYQIyRYEoGtyM+mQ==
-X-CSE-MsgGUID: hcc9W0ZYR2e6MfolmIGg3g==
+  bh=oSFS6BKeTNkRmRISdy2XuP1ZlR2B9rYB5jttdbfekFU=;
+  b=X6fYLEjPi7HFq8ioKRIjgIu275Uv5j/l5iTW9icJqrebRlxihGpk5QZc
+   IPVIbjKCB8W+DWRFdi19q6DXEz22B1PyXab13f4mJDZ++aw9+c/NqJ8yo
+   /XmNGNGGcM/p1la+KfMCPsJsgjlUqCveT3bjImgR6b3VCNmQT8q3NgchQ
+   MMUDPQ4sXrd/HIZKny315k5wz8N5BRVXpXAkYgyxlyjFheENBC+DW4O+F
+   FucGMfGJrTDb/Vo4Ec/ar0D3IRQMLYnuNphvy/ousvb8bHbr/LtzjZqoj
+   iPP62I/gwVNVDV9fheJk+ThgZ+0iZEO56fWjCAfbobNOpmZXJiMUAAGTt
+   g==;
+X-CSE-ConnectionGUID: RvxkDqJwSEWy6LC+mcvpxQ==
+X-CSE-MsgGUID: Y8qXXYTXTpeNozkUlNItGg==
 X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; 
-   d="asc'?scan'208";a="30167700"
+   d="asc'?scan'208";a="32268731"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Jul 2024 04:12:54 -0700
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Jul 2024 04:27:28 -0700
 Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Jul 2024 04:12:46 -0700
+ 15.1.2507.35; Mon, 22 Jul 2024 04:27:22 -0700
 Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 22 Jul 2024 04:12:45 -0700
-Date: Mon, 22 Jul 2024 12:12:21 +0100
+ Transport; Mon, 22 Jul 2024 04:27:19 -0700
+Date: Mon, 22 Jul 2024 12:26:55 +0100
 From: Conor Dooley <conor.dooley@microchip.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <ysionneau@kalrayinc.com>, <linux-kernel@vger.kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Borne <jborne@kalrayinc.com>, Julian Vetter
-	<jvetter@kalrayinc.com>, <devicetree@vger.kernel.org>
-Subject: Re: [RFC PATCH v3 36/37] kvx: dts: DeviceTree for qemu emulated
- Coolidge SoC
-Message-ID: <20240722-cuddly-valiant-ba6153953190@wendy>
-References: <20240722094226.21602-1-ysionneau@kalrayinc.com>
- <20240722094226.21602-37-ysionneau@kalrayinc.com>
- <d93f93fa-bbc8-4b89-9abc-767486bc443c@kernel.org>
+To: Ayush Singh <ayush@beagleboard.org>
+CC: Conor Dooley <conor@kernel.org>, <jkridner@beagleboard.org>,
+	<robertcnelson@beagleboard.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon
+	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
+	<kristo@kernel.org>, Johan Hovold <johan@kernel.org>, Alex Elder
+	<elder@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	<greybus-dev@lists.linaro.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/3] dt-bindings: net: ti,cc1352p7: Add boot-gpio
+Message-ID: <20240722-system-judge-bf59954dd79d@wendy>
+References: <20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org>
+ <20240719-beagleplay_fw_upgrade-v1-1-8664d4513252@beagleboard.org>
+ <20240719-scuttle-strongbox-e573441c45e6@spud>
+ <5a865811-a6c0-47ad-b8a0-265bb31d4124@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,38 +87,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XuLz4nGzZl9P9olv"
+	protocol="application/pgp-signature"; boundary="nRMCmbeuxHenOfMm"
 Content-Disposition: inline
-In-Reply-To: <d93f93fa-bbc8-4b89-9abc-767486bc443c@kernel.org>
+In-Reply-To: <5a865811-a6c0-47ad-b8a0-265bb31d4124@beagleboard.org>
 
---XuLz4nGzZl9P9olv
+--nRMCmbeuxHenOfMm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 22, 2024 at 11:55:46AM +0200, Krzysztof Kozlowski wrote:
-> On 22/07/2024 11:41, ysionneau@kalrayinc.com wrote:
-> > From: Yann Sionneau <ysionneau@kalrayinc.com>
-> >=20
-> > Add device tree for QEMU that emulates a Coolidge V1 SoC.
+On Mon, Jul 22, 2024 at 04:15:41PM +0530, Ayush Singh wrote:
+>=20
+> On 7/19/24 20:25, Conor Dooley wrote:
+> > On Fri, Jul 19, 2024 at 03:15:10PM +0530, Ayush Singh wrote:
+> > > boot-gpio (along with reset-gpio) is used to enable bootloader backdo=
+or
+> > > for flashing new firmware.
+> > >=20
+> > > The pin and pin level to enabel bootloader backdoor is configed using
+> > > the following CCFG variables in cc1352p7:
+> > > - SET_CCFG_BL_CONFIG_BL_PIN_NO
+> > > - SET_CCFG_BL_CONFIG_BL_LEVEL
+> > >=20
+> > > Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+> > > ---
+> > >   Documentation/devicetree/bindings/net/ti,cc1352p7.yaml | 4 ++++
+> > >   1 file changed, 4 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b=
+/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> > > index 3dde10de4630..a3511bb59b05 100644
+> > > --- a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> > > @@ -29,6 +29,9 @@ properties:
+> > >     reset-gpios:
+> > >       maxItems: 1
+> > > +  boot-gpios:
+> > > +    maxItems: 1
+> > I think this needs a description that explains what this is actually
+> > for, and "boot-gpios" is not really an accurate name for what it is used
+> > for IMO.
+>=20
+> I was using the name `boot-gpios` since cc1352-flasher uses the name
+> boot-line. Anyway, would `bsl-gpios` be better?
 
-> > +	model =3D "Kalray Coolidge processor (QEMU)";
-> > +	compatible =3D "kalray,coolidge-qemu";
+I dunno, I think that "bsl" is worse.
 
-I'm not sure that this should even be in the kernel. Why isn't QEMU able
-to generate a devicetree for this emulated platform, like it can on
-other architectures?
+> Or for more descriptive
+> names, I guess it can be `bootloader-config-gpios` or
 
---XuLz4nGzZl9P9olv
+> `bootloader-backdoor-gpios`.
+
+This is the most descriptive and therefore, IMO, best.
+
+--nRMCmbeuxHenOfMm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp4+lQAKCRB4tDGHoIJi
-0jDXAP9yD+J9QOu8PzMbtxgo62LiceIpCHdlvPI91zBaqb9tuAD8DtvMRhSJySFG
-2neRFeuiK4wY+omh60eiQjE7v+ou2wo=
-=6AzY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp5B/wAKCRB4tDGHoIJi
+0oboAP4k9VbBxBuzy2qiVbT0/yJkAqBPbUXsQ7j6d1Y+IT5B8wEA+Bku/MTCCpAd
+L0DDz0l+Vc3aeJsXDqqAnKbeSXHiWgY=
+=N3aj
 -----END PGP SIGNATURE-----
 
---XuLz4nGzZl9P9olv--
+--nRMCmbeuxHenOfMm--
 
