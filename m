@@ -1,95 +1,202 @@
-Return-Path: <devicetree+bounces-87072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D5E9387A2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 05:14:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1032F9387BA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 05:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 800C92814F0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 03:14:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79A121F216A3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 03:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB8A12B63;
-	Mon, 22 Jul 2024 03:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122E4134B6;
+	Mon, 22 Jul 2024 03:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="SN2mZNkP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j3l+vZsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-124.freemail.mail.aliyun.com (out30-124.freemail.mail.aliyun.com [115.124.30.124])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD388F54;
-	Mon, 22 Jul 2024 03:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2AB14A90;
+	Mon, 22 Jul 2024 03:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721618050; cv=none; b=mTd6b/5WL1+njkzVNdr1EqiZNrgeUu8bs8jW2qQfpdCx2sUTqYzEmjwDV156qQPyzVHLIVAlev0EK37SEczT3BPjDhFjMtO6hNdt9OqVm6pJwDNl9+HSH4a/R/CMm0jsvLDSfAmoS7k5ycFlarLhX7MhYUrDEovY96htplfJc68=
+	t=1721619365; cv=none; b=aU+khf0IcBUH6vyTGKIT/FeFvEMDJj6ktmmZ3KxfOFSSnapTdJLJzwOb1FysTXiPhLcg5ean136PKaTuTdlGZwUBSV149NsNu4BYFg2ziX5+8otEg4KXfJEkvgxgoe0VD2RK1ezj7u0nU5NrdKCroUmCkuBKuaJ0XYBSwHGpr6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721618050; c=relaxed/simple;
-	bh=uWJg+Ba6JgW+IqSJbryw5SeG2J1lfqdjgAD3ulfVbHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HESQA3cHxV0Y3uJb/vZ0kPLEkPYssMrgKct6eVei/YE9Hwdb2fl9qg0lqvhflvgfvTEmqMiW6cAlorMtgC/udTsJG+N7zf5/8Li7Do7zCUGf0ITRvO9lzllECv+0Xe7V+PKF+UTB9Qgy6i2GMCJK9ZP4tTXvJF3BPK43JKIyIDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=SN2mZNkP; arc=none smtp.client-ip=115.124.30.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1721618044; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=vvJ86MdlmCmjVRCGh33sMSMQJMbaqK+m69weMIl6ecc=;
-	b=SN2mZNkPitgt4kwC783v6L0JOvCaHj1gO2FRJlcHVbBUS6jTs0r9a01KATT4B1xRyf75cKhLdqLFzhHiSKpAMRrjhnFXkinEooHtmkQXfRxi3Se3/IqrMSNhs6I7xd8t3pyYnT9CzFv3ubQdJZFEIAVHyMlG4uVYxpr694t1bgg=
-X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R361e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037067109;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=10;SR=0;TI=SMTPD_---0WAyLppw_1721618043;
-Received: from 30.97.56.74(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WAyLppw_1721618043)
-          by smtp.aliyun-inc.com;
-          Mon, 22 Jul 2024 11:14:04 +0800
-Message-ID: <68b1509f-97f4-4a2c-9b50-c9f1eca5e638@linux.alibaba.com>
-Date: Mon, 22 Jul 2024 11:14:03 +0800
+	s=arc-20240116; t=1721619365; c=relaxed/simple;
+	bh=PwFT7B1VJB/UXjjpWDCkDoQ6sX7XM3WUzIPOQ+mIUNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TUnbhpQvBEvvHndHLy7PGaMRjyLU34NraJqjc/uIrEaXVbk+K1c3bl234G0QsjkqRnMbctgacBlI80WlVSSr7m1a5UEj7mIpteFwlOnbo9b/OKAEo9Pzp3GuqOdwxqbDT6ud0vnMaI+jZTuMM1pGfUXC6b0g5GJK0cvK2iPd/Ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j3l+vZsf; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1721619364; x=1753155364;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PwFT7B1VJB/UXjjpWDCkDoQ6sX7XM3WUzIPOQ+mIUNQ=;
+  b=j3l+vZsfsp1gmgtJ+lY7VwH78P1NZ2M3NO0RUem4e0e8B6/yZcdrsxpG
+   0bjznLkk8Yl0hANQjd0u7X6wx1EStvdkt8zTfT2kofTgEHUkzNgWe78rs
+   Jz1bx/XMKNgiYTdL9EXnOFj9iuFXGz6Aybhd+tGayoP/UumrpXPZeLz8P
+   lxUeaQeQ3Z448gYgrP6HNrVecCWDnH/rPkjt8UhzHRfs5FeUNGyyfA9ev
+   I6I75KlW+q6BS2t6vTUQMqgMF/6GgL4qk4GIJD/sVqPSgc/+XAvGDcRTq
+   tx8taBiruir16KdPPyT+EKElV46SOGXa8N+jFM58vYw8SMWwtLFoUpgea
+   w==;
+X-CSE-ConnectionGUID: 9fSXWEdnRU+N0QoaYAYTfw==
+X-CSE-MsgGUID: omcauA4ySYGkoMbA144Q6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="30554900"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; 
+   d="scan'208";a="30554900"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2024 20:36:03 -0700
+X-CSE-ConnectionGUID: 2gtp3AbRQmGUQ2ZIJi9ldQ==
+X-CSE-MsgGUID: tkEtpGauSueOyIL1HE3XIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; 
+   d="scan'208";a="51460628"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 21 Jul 2024 20:35:59 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sVjq8-000kqK-3A;
+	Mon, 22 Jul 2024 03:35:56 +0000
+Date: Mon, 22 Jul 2024 11:35:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
+	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ukleinek@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v6 3/3] hwmon: (adt7475) Add support for configuring
+ initial PWM state
+Message-ID: <202407221153.LJjYD5i7-lkp@intel.com>
+References: <20240722005825.1800403-4-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: sprd: sc2731: rename fuel gauge node to
- be generic
-To: Stanislav Jakubek <stano.jakubek@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <cover.1720957783.git.stano.jakubek@gmail.com>
- <246c0c7763a432d4bebcb0e99b90dcf4cded333d.1720957783.git.stano.jakubek@gmail.com>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <246c0c7763a432d4bebcb0e99b90dcf4cded333d.1720957783.git.stano.jakubek@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240722005825.1800403-4-chris.packham@alliedtelesis.co.nz>
+
+Hi Chris,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.10 next-20240719]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/dt-bindings-hwmon-Add-adt7475-fan-pwm-properties/20240722-091004
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20240722005825.1800403-4-chris.packham%40alliedtelesis.co.nz
+patch subject: [PATCH v6 3/3] hwmon: (adt7475) Add support for configuring initial PWM state
+config: arm-randconfig-002-20240722 (https://download.01.org/0day-ci/archive/20240722/202407221153.LJjYD5i7-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad154281230d83ee551e12d5be48bb956ef47ed3)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240722/202407221153.LJjYD5i7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407221153.LJjYD5i7-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/hwmon/adt7475.c:15:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2253:
+   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/hwmon/adt7475.c:1683:2: warning: comparison of distinct pointer types ('typeof ((freq_hz)) *' (aka 'unsigned long *') and 'uint64_t *' (aka 'unsigned long long *')) [-Wcompare-distinct-pointer-types]
+    1683 |         do_div(freq_hz, args[1]);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/div64.h:222:28: note: expanded from macro 'do_div'
+     222 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
+         |                ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~
+>> drivers/hwmon/adt7475.c:1683:2: error: incompatible pointer types passing 'unsigned long *' to parameter of type 'uint64_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
+    1683 |         do_div(freq_hz, args[1]);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/div64.h:238:22: note: expanded from macro 'do_div'
+     238 |                 __rem = __div64_32(&(n), __base);       \
+         |                                    ^~~~
+   arch/arm/include/asm/div64.h:24:45: note: passing argument to parameter 'n' here
+      24 | static inline uint32_t __div64_32(uint64_t *n, uint32_t base)
+         |                                             ^
+>> drivers/hwmon/adt7475.c:1685:2: warning: comparison of distinct pointer types ('typeof ((duty)) *' (aka 'unsigned long *') and 'uint64_t *' (aka 'unsigned long long *')) [-Wcompare-distinct-pointer-types]
+    1685 |         do_div(duty, args[1]);
+         |         ^~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/div64.h:222:28: note: expanded from macro 'do_div'
+     222 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
+         |                ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~
+   drivers/hwmon/adt7475.c:1685:2: error: incompatible pointer types passing 'unsigned long *' to parameter of type 'uint64_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
+    1685 |         do_div(duty, args[1]);
+         |         ^~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/div64.h:238:22: note: expanded from macro 'do_div'
+     238 |                 __rem = __div64_32(&(n), __base);       \
+         |                                    ^~~~
+   arch/arm/include/asm/div64.h:24:45: note: passing argument to parameter 'n' here
+      24 | static inline uint32_t __div64_32(uint64_t *n, uint32_t base)
+         |                                             ^
+>> drivers/hwmon/adt7475.c:1683:2: warning: shift count >= width of type [-Wshift-count-overflow]
+    1683 |         do_div(freq_hz, args[1]);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/div64.h:234:25: note: expanded from macro 'do_div'
+     234 |         } else if (likely(((n) >> 32) == 0)) {          \
+         |                                ^  ~~
+   include/linux/compiler.h:76:40: note: expanded from macro 'likely'
+      76 | # define likely(x)      __builtin_expect(!!(x), 1)
+         |                                             ^
+   drivers/hwmon/adt7475.c:1685:2: warning: shift count >= width of type [-Wshift-count-overflow]
+    1685 |         do_div(duty, args[1]);
+         |         ^~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/div64.h:234:25: note: expanded from macro 'do_div'
+     234 |         } else if (likely(((n) >> 32) == 0)) {          \
+         |                                ^  ~~
+   include/linux/compiler.h:76:40: note: expanded from macro 'likely'
+      76 | # define likely(x)      __builtin_expect(!!(x), 1)
+         |                                             ^
+   5 warnings and 2 errors generated.
 
 
+vim +1683 drivers/hwmon/adt7475.c
 
-On 2024/7/14 19:57, Stanislav Jakubek wrote:
-> According to DT spec, node names should be generic. Rename the
-> sprd,sc2731-fgu node to a more generic "fuel-gauge".
-> 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+  1673	
+  1674	static int _adt7475_pwm_properties_parse_args(u32 args[4], struct adt7475_pwm_config *cfg)
+  1675	{
+  1676		unsigned long freq_hz;
+  1677		unsigned long duty;
+  1678	
+  1679		if (args[1] == 0)
+  1680			return -EINVAL;
+  1681	
+  1682		freq_hz = 1000000000UL;
+> 1683		do_div(freq_hz, args[1]);
+  1684		duty = 255 * args[3];
+> 1685		do_div(duty, args[1]);
+  1686	
+  1687		cfg->index = args[0];
+  1688		cfg->freq = find_closest(freq_hz, pwmfreq_table, ARRAY_SIZE(pwmfreq_table));
+  1689		cfg->flags = args[2];
+  1690		cfg->duty = clamp_val(duty, 0, 0xFF);
+  1691	
+  1692		return 0;
+  1693	}
+  1694	
 
-LGTM. Thanks.
-Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
-
-> ---
->   arch/arm64/boot/dts/sprd/sc2731.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/sprd/sc2731.dtsi b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> index 7e55b2b31c84..48b681768f6e 100644
-> --- a/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> +++ b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-> @@ -95,7 +95,7 @@ pmic_adc: adc@480 {
->   			nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
->   		};
->   
-> -		fgu@a00 {
-> +		fuel-gauge@a00 {
->   			compatible = "sprd,sc2731-fgu";
->   			reg = <0xa00>;
->   			bat-detect-gpio = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
