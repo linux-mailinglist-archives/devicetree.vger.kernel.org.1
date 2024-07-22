@@ -1,76 +1,55 @@
-Return-Path: <devicetree+bounces-87116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FCF9938967
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 08:58:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2309389A8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:11:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23577B226C2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 06:58:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9937F1C20F26
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEADE73465;
-	Mon, 22 Jul 2024 06:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E7112B73;
+	Mon, 22 Jul 2024 07:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yJ5dKDYi"
+	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="dNyJ235n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F6F7EEE7
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 06:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE05D53F;
+	Mon, 22 Jul 2024 07:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721631255; cv=none; b=XFvVTOU/VJyrVOJApmLAcc8NNCkvJb9q3GMADCllO8qLEzC+kpMzV00FbDTJWrXfWO1EkZZES4KlC85y5AC8HM/S9m9dlMymjmqHJDT9UEBoo+DMGoRVRuJWmXSPPEH6bfinALpRDHvKS81Bmyib56bfXO/kYLPD6nX6ftMELZc=
+	t=1721632266; cv=none; b=o8Uz/pfOxEFwnl9m8mqCqj9WhxJ8jZj5MK/MaChAf0miWNwHbCxCoNVjzbkGbCUtZSPLTNUlXA6hW+SqXsJnRGxWayqGF9x4HoyXUkgYQl/Rn3oqOXcJaHOVxrCKZ512lc6+QUT2e34cJfZcX3TE2MlNI0HkbafgXUn+eOnttEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721631255; c=relaxed/simple;
-	bh=qUIeCtFecA8nmqn0H3dpPJSUWwNz+5gepp/PnumnSJE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tOklusDe/KyaHPfh9n9sORE84WpLOcYnqzXhtVsWjMtHVWieNJTok/W4yOWEmkS51ScrUFFRtm3vNbCK5alF0TFy9+JPmhNZIukIP2Tns8EZpz+tij9LHw+PSXoVN3msfZD5LRwh1XbXvhlRKt04fzCSwIi10eBhnaG2nPA8XD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yJ5dKDYi; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5a3458bf7cfso2737064a12.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2024 23:54:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721631252; x=1722236052; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dqkMPJOSzbja9rCDv1W+aq1XxPAw4w/o+YYYBlTqJb0=;
-        b=yJ5dKDYiIitvDlIearS+K1B26h6i0OeqpGs9pfQx8UBIMHkMa/JrTakYBziuakYGtj
-         Zo3uscKgTHfUm1TnAF2lg2za5YeMHkfkA/jt58HEKj0EhZ0PmkRKW6PNN1eZz3+6Zicq
-         DVA7rLm6KAdhVYrr+p0slHRhjmFKo1d7F7rXdict0TiC/Uc0QDBu8iTokj4GJJ/PJ1Vr
-         WPSEpq6QRKAWb7f9r12k3hov6DAPn7wOVAukxxluJ19J3ku0dHdKZ6P/qgdBwYYQMXf4
-         7gSfngzRC1GuqGW6sfXO+xjK5NeK6x3M1NWIvkdMWfUUfBxlVOfUoBhBk76jwR08KRYt
-         NH4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721631252; x=1722236052;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dqkMPJOSzbja9rCDv1W+aq1XxPAw4w/o+YYYBlTqJb0=;
-        b=JO713DeqRADvM6lIQ/hZkDJDCqEFQ2TRZ/lCYJ6AbkVMAVx93gaJIpvOdQhp3hF/KO
-         1QrY3HHcUCkpHGD+rGW5wg+Rt2OAZsCCleiPkV0Dqh9GNx7iiWZDiXTsO6DjWYwcc9r+
-         eUGAzn+uSr2HZwCM7Njkss1i+AY6cbYWKFs12IVE0Indftyi0uNpARh4N8C2/HPO71Ke
-         m6aQkx2kOShOyP3e5g7yB2Ck6L2brmF1HULrDYFgr2z8ysoz67QpVuWVQGfMSKcZE+Mx
-         xdzOV3XW7JehEG7NaIj5RW1ITPqQgleB0v27FfzHxOckPZ6DhxvSgupn2Dyne56lIUHR
-         QutQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfXFiDZ0bUER2ys5WUM3ca+7j7Pg1sJZkGnL15qWDyNQVtFC9rP0fVAsCvVyvFhr0OqtV641c7Mk6BithB1E3k9eOU45uvaS9etw==
-X-Gm-Message-State: AOJu0Yx1aQK/QCaqN1NsAyuuUemLSrnmM1M4b9B71Rv4Hp4XTTn8YxVd
-	6J49Mw5Gvvqb2fyZY+naUP384LTTwjWQfR8llJ/9HZQDNBmuCDgikBM9KuEojKA=
-X-Google-Smtp-Source: AGHT+IHEChH+y+Y9XHfXiJcOJtbcMIXSn76WcXLtLzJTBXBNmK3LPl3PbBmPLI53uuEd/e8+kC1KLw==
-X-Received: by 2002:a05:6402:3482:b0:5a0:f8a2:9cf4 with SMTP id 4fb4d7f45d1cf-5a47bc87334mr3553300a12.25.1721631252131;
-        Sun, 21 Jul 2024 23:54:12 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5a69c1f56a0sm1982126a12.64.2024.07.21.23.54.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jul 2024 23:54:11 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Mon, 22 Jul 2024 08:53:45 +0200
-Subject: [PATCH v7 16/16] arm64: dts: mediatek: add audio support for
- mt8365-evk
+	s=arc-20240116; t=1721632266; c=relaxed/simple;
+	bh=Nty9qEmvFD3zjctxi60UX8L3t/rMXaATRXBcG6VkeGg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CygV4XI1imI/XcfBbYuxkE5Ybh9lM4mjoND9McO3/cTnZYcV57vtNGbWzrMspun6kixYpAlP51vISR5h/y5HmxNDqe4snzGLZ7x7eHNMx4FF2l7CeTwxPAMwiuYJwws/cl+y0gOh4NPGyuSus0/tVVilRLi8WTqvGblf0o1WUQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=dNyJ235n; arc=none smtp.client-ip=198.252.153.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx1.riseup.net (Postfix) with ESMTPS id 4WSBJl2k94zDqX8;
+	Mon, 22 Jul 2024 07:11:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+	t=1721632263; bh=Nty9qEmvFD3zjctxi60UX8L3t/rMXaATRXBcG6VkeGg=;
+	h=From:Subject:Date:To:Cc:From;
+	b=dNyJ235n4dCKzF2LPgswFnlNAVlgQ1lW8VYI+49l2l2m++vzdxEFBdm4Q+hYBtsfm
+	 /KcsUJ1e0wKboVQY07x1i/mdJpnZh43C+qlTVpnupM5Bz7OEufePV441rgryCInzsj
+	 esojVTDeeIZVxy9en0Nmeeki3JzvQ80OLTx0VbVE=
+X-Riseup-User-ID: 10048D71B9D1C5C1D8B2623470FC11309BFDDC133F94D03C7F3E159DE8C04C92
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4WSBJT1wFWzJrYb;
+	Mon, 22 Jul 2024 07:10:49 +0000 (UTC)
+From: Dang Huynh <danct12@riseup.net>
+Subject: [PATCH 00/12] F(x)tec Pro1X feature expansion
+Date: Mon, 22 Jul 2024 14:10:10 +0700
+Message-Id: <20240722-qx1050-feature-expansion-v1-0-c4d486435b96@riseup.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,171 +57,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240226-audio-i350-v7-16-6518d953a141@baylibre.com>
-References: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
-In-Reply-To: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3691; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=qUIeCtFecA8nmqn0H3dpPJSUWwNz+5gepp/PnumnSJE=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmngHxbH6X4/4QzRgM+QgRXmm3F99YLaY9HWnsQS4a
- /UFBkXmJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZp4B8QAKCRArRkmdfjHURaajD/
- 9qc9SiPZ6f/ido8YKEvVNpxPUjppH67+Y/FT8IyHS4jCG8xQaHbhoIxbK4aao5qYB8VbDyENZ/xeVd
- DaO53tHrc5jaZ4Ys93ylidN7ahgJIAjCE43g/loQSWFuydofSJxoGmj5xHeNoiR25S+6cZO0TzY2F1
- r6dplliF/3H7/PNZJ9yOJpDQKNvVW2doY5alyuS3jKbZjg27V+3WW6jyK1aqCoP4FGP87YcW+46hLN
- U028Og4XEpIwKe+Y+ttGlGr+ytMWKnP+kuEeHrfJlf7H8DooPHvdnTlrW2AUCDy8FN1frDm1F/1xL6
- 1RxeAUEA4orOsS5z3MULiDbAhFiZvHJWk7lu+SnAaC3aRwrzEf1QFe5Me5C2e5eSQeVFSsa7g8X+//
- Y+NWAtVvzuEzwOU88v9c9GVJmhlqSPm6FmoYgqcYohaR3/KlSSNN9ETgMdDJhRUCRW3Vcf33Dp7cLT
- wedVj/reYhgnxQNix2dYCEUo9Caf1fSDDPe5BzxjkgtVb2PP4fQi6KcWfQiUi7BvAWTi3CUSJY/8i/
- 3D9XCIgtpbk/5ayjOEvsnfblaPiWfYj3tc4C1rpvto9zueYprgjJMHFY3wYikBKE8TJyw8YRabNU8J
- ogwDyFATJ2Ehk9X2o5nhFKXc0ZrGGvLgWKo9eiIrLW9iHQlqKWi2lnhz2MCw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANIFnmYC/x3MQQqDMBBG4avIrB2IQ9XiVcTF0P5pZ5NqohIQ7
+ 27q8i2+d1BCNCQaqoMidkv2CyWauqLXV8MHbO/SJE4erhfhJTeudeyh6xbByLOGP+LedyrdU7x
+ AqfA5wlu+1+N0nhdLXk0YagAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>
 
-Add the sound node which is linked to the MT8365 SoC AFE and
-the MT6357 audio codec.
+This patch series expand F(x)tec Pro1X (QX1050) device tree to support
+various components of the device.
 
-Update the file header.
+Most notably:
++ SD Card slot
++ Touchscreen
++ MDSS, DRM display panel
++ WLAN (ATH10K)
++ Hall sensor and camera button
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+This patch series has been tested on Buildroot Linux with TQFTPSERV and
+RMTFS present in userspace.
+
+Signed-off-by: Dang Huynh <danct12@riseup.net>
 ---
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 86 +++++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+Dang Huynh (12):
+      arm64: dts: qcom: sm6115-pro1x: Add Hall Switch and Camera Button
+      arm64: dts: qcom: sm6115-pro1x: Add PCA9534 IO Expander
+      arm64: dts: qcom: sm6115-pro1x: Add Goodix Touchscreen
+      arm64: dts: qcom: sm6115-pro1x: Add Caps Lock LED
+      arm64: dts: qcom: sm6115-pro1x: Enable SD card slot
+      arm64: dts: qcom: sm6115-pro1x: Enable MDSS and GPU
+      arm64: dts: qcom: sm6115-pro1x: Hook up USB3 SS
+      arm64: dts: qcom: sm6115-pro1x: Update copyright year
+      arm64: dts: qcom: sm6115-pro1x: Add PMI632 Type-C property
+      arm64: dts: qcom: sm6115-pro1x: Enable RGB LED
+      arm64: dts: qcom: sm6115-pro1x: Enable remoteprocs
+      arm64: dts: qcom: sm6115-pro1x: Enable ATH10K WLAN
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 50cbaefa1a99..6288bcbef241 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -4,6 +4,7 @@
-  * Authors:
-  * Fabien Parent <fparent@baylibre.com>
-  * Bernhard Rosenkränzer <bero@baylibre.com>
-+ * Alexandre Mergnat <amergnat@baylibre.com>
-  */
- 
- /dts-v1/;
-@@ -86,6 +87,28 @@ optee_reserved: optee@43200000 {
- 			reg = <0 0x43200000 0 0x00c00000>;
- 		};
- 	};
-+
-+	sound: sound {
-+		compatible = "mediatek,mt8365-mt6357";
-+		pinctrl-names = "default",
-+				"dmic",
-+				"miso_off",
-+				"miso_on",
-+				"mosi_off",
-+				"mosi_on";
-+		pinctrl-0 = <&aud_default_pins>;
-+		pinctrl-1 = <&aud_dmic_pins>;
-+		pinctrl-2 = <&aud_miso_off_pins>;
-+		pinctrl-3 = <&aud_miso_on_pins>;
-+		pinctrl-4 = <&aud_mosi_off_pins>;
-+		pinctrl-5 = <&aud_mosi_on_pins>;
-+		mediatek,platform = <&afe>;
-+	};
-+};
-+
-+&afe {
-+	mediatek,dmic-mode = <1>;
-+	status = "okay";
- };
- 
- &cpu0 {
-@@ -178,9 +201,72 @@ &mt6357_pmic {
- 	interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
- 	interrupt-controller;
- 	#interrupt-cells = <2>;
-+	mediatek,micbias0-microvolt = <1900000>;
-+	mediatek,micbias1-microvolt = <1700000>;
- };
- 
- &pio {
-+	aud_default_pins: audiodefault-pins {
-+		clk-dat-pins {
-+			pinmux = <MT8365_PIN_72_CMDAT4__FUNC_I2S3_BCK>,
-+				 <MT8365_PIN_73_CMDAT5__FUNC_I2S3_LRCK>,
-+				 <MT8365_PIN_74_CMDAT6__FUNC_I2S3_MCK>,
-+				 <MT8365_PIN_75_CMDAT7__FUNC_I2S3_DO>;
-+		};
-+	};
-+
-+	aud_dmic_pins: audiodmic-pins {
-+		clk-dat-pins {
-+			pinmux = <MT8365_PIN_117_DMIC0_CLK__FUNC_DMIC0_CLK>,
-+				 <MT8365_PIN_118_DMIC0_DAT0__FUNC_DMIC0_DAT0>,
-+				 <MT8365_PIN_119_DMIC0_DAT1__FUNC_DMIC0_DAT1>;
-+		};
-+	};
-+
-+	aud_miso_off_pins: misooff-pins {
-+		clk-dat-pins {
-+			pinmux = <MT8365_PIN_53_AUD_CLK_MISO__FUNC_GPIO53>,
-+				 <MT8365_PIN_54_AUD_SYNC_MISO__FUNC_GPIO54>,
-+				 <MT8365_PIN_55_AUD_DAT_MISO0__FUNC_GPIO55>,
-+				 <MT8365_PIN_56_AUD_DAT_MISO1__FUNC_GPIO56>;
-+			input-enable;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+		};
-+	};
-+
-+	aud_miso_on_pins: misoon-pins {
-+		clk-dat-pins {
-+			pinmux = <MT8365_PIN_53_AUD_CLK_MISO__FUNC_AUD_CLK_MISO>,
-+				 <MT8365_PIN_54_AUD_SYNC_MISO__FUNC_AUD_SYNC_MISO>,
-+				 <MT8365_PIN_55_AUD_DAT_MISO0__FUNC_AUD_DAT_MISO0>,
-+				 <MT8365_PIN_56_AUD_DAT_MISO1__FUNC_AUD_DAT_MISO1>;
-+			drive-strength = <6>;
-+		};
-+	};
-+
-+	aud_mosi_off_pins: mosioff-pins {
-+		clk-dat-pins {
-+			pinmux = <MT8365_PIN_49_AUD_CLK_MOSI__FUNC_GPIO49>,
-+				 <MT8365_PIN_50_AUD_SYNC_MOSI__FUNC_GPIO50>,
-+				 <MT8365_PIN_51_AUD_DAT_MOSI0__FUNC_GPIO51>,
-+				 <MT8365_PIN_52_AUD_DAT_MOSI1__FUNC_GPIO52>;
-+			input-enable;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+		};
-+	};
-+
-+	aud_mosi_on_pins: mosion-pins {
-+		clk-dat-pins {
-+			pinmux = <MT8365_PIN_49_AUD_CLK_MOSI__FUNC_AUD_CLK_MOSI>,
-+				 <MT8365_PIN_50_AUD_SYNC_MOSI__FUNC_AUD_SYNC_MOSI>,
-+				 <MT8365_PIN_51_AUD_DAT_MOSI0__FUNC_AUD_DAT_MOSI0>,
-+				 <MT8365_PIN_52_AUD_DAT_MOSI1__FUNC_AUD_DAT_MOSI1>;
-+			drive-strength = <6>;
-+		};
-+	};
-+
- 	ethernet_pins: ethernet-pins {
- 		phy_reset_pins {
- 			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
+ arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 316 +++++++++++++++++++++++-
+ 1 file changed, 306 insertions(+), 10 deletions(-)
+---
+base-commit: 41c196e567fb1ea97f68a2ffb7faab451cd90854
+change-id: 20240722-qx1050-feature-expansion-7f6a2682f2ea
 
+Best regards,
 -- 
-2.25.1
+Dang Huynh <danct12@riseup.net>
 
 
