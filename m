@@ -1,62 +1,69 @@
-Return-Path: <devicetree+bounces-87338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2AF7939300
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 19:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B21BA939305
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 19:14:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F58EB219C4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:14:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4355AB21A55
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A8416EB58;
-	Mon, 22 Jul 2024 17:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7ECF16EB6E;
+	Mon, 22 Jul 2024 17:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pStLs1D6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dgbBZhd5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2E8C2FD;
-	Mon, 22 Jul 2024 17:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A997CC2FD;
+	Mon, 22 Jul 2024 17:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721668444; cv=none; b=uN+PFFa3HweYEsdWoQfPVG6j2S5q7TiXb04B0DkNMp5Z/zRpS1Op1TmT5LOyM9wcxPcaGNbEVsC6bGH4TqoDfkuAlAlAkvqip75mTPfQ88Dezwb7nOq3tExagOyJBry4Sjy/Y2pa6BcFB2Lnn/dUVdQDVcMGfw/W7pHg9ckOrwU=
+	t=1721668480; cv=none; b=HMnrGAhGDwwHCLiSTXunfh/rrubUYX2EyxdrHHwXNPGnGR713eWvSCkzVmR/NagcCdFoGNPsth5xU24Zp5nU+iTP8qEWLmn8Ygs1f5SgXMKIs8HiGFU00ggLSZYUEopVEiJFBOvnrnCJgnh0yUritKOkuOhcpTBtdynMSIHC7pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721668444; c=relaxed/simple;
-	bh=nqDbSeOEjrZww2bjW5Y5ACpg5VESlrarvu6Mf3utbgM=;
+	s=arc-20240116; t=1721668480; c=relaxed/simple;
+	bh=akTvuO46cCs5mng8qNq8cLuPcf4oeMXDs7GmScD1zpc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IhnAySxiKN3xDfivQyo+db9P3OZ5ZpGnisW1EmDKjeZhQuNgRcQxHe+s/pl8jue2XF+UF/2Ts99vw6lS9bkgZdXoy4tUg+3gR2gIX7ltE5ewVknDIIThrLnsokGWI75kqQX4YG9BH7NHKEvZ9vdI+FywPal4XXYhgNR/dRv8VTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pStLs1D6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1E6C116B1;
-	Mon, 22 Jul 2024 17:14:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ky5blbwaACmQXh6R7oLOVud4i6bvS70EmhioyE+M0aH4B1fzYYfPCavtFI9VFG3KeryRN7SrckhX+K26g2rwkG6L63JMQndmcpfOVNfFOBcxWe5xdCEGyuv38A8rF4mYP6V8lI0EBJ25XGvnZ0f/fr79Szf05GR+463N1JpP4eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dgbBZhd5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C060C4AF0B;
+	Mon, 22 Jul 2024 17:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721668442;
-	bh=nqDbSeOEjrZww2bjW5Y5ACpg5VESlrarvu6Mf3utbgM=;
+	s=k20201202; t=1721668480;
+	bh=akTvuO46cCs5mng8qNq8cLuPcf4oeMXDs7GmScD1zpc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pStLs1D6atjirFbXkduIYobr0Ct/Sgjn0QoIpO1lee7/CbPaKgr9SafXtwvsS9rR+
-	 grD7yprXFyTh5Pj3ebz5U/dM9p2xvPwKIDWbpv8esG5k9yH0wnfOvqn9Yxx7H7h1ib
-	 acowwQN2rN5REX8JwQ0h4fAc9QfmWwSZTiBjA4I9FoGjBTcEv4bmu8GQXguEetAvg9
-	 eCujm5Jd7f7HG7WrGi03Bfb3JEElL6IQIG4qZd4tucw5HYeUcn42N7BN/4DrrqMwd4
-	 dbxA8RexnKPUsuDvsz2ccQfDgq2FbpN1Y97Ixv7HlgRn3IhbVgDMNS4TvIuR2pNAZ2
-	 3jY/05/z+kRIA==
-Date: Mon, 22 Jul 2024 18:13:58 +0100
+	b=dgbBZhd5s+hFDMQDtHa9Uz3cOzWpBADGBOOAzUrhL2Q5tGxxbNZ59nAv2lypIcPaT
+	 Pr+hvfbczFPN1ARUXvlzXVG0ctTKHm2FoRh0AAzfn+Lb7+U24Tl/0K+SX1t2aODxKO
+	 VTEIGHWEFfRskfcjz4meItLcT3J63zhsiTZG+IsTbX0t0TvTgbDo0LwYxnuhcoXFUL
+	 0AVf7+eD7qDw3B8Dfi+CnqtMju7V6Sbra0/AprI5MXJuAprM+DmHQl8FBpylkNZgOn
+	 OEWJ1jyqAfJoGEBFvfsuWIoY3U33aeQqZd8IGfmYhrP00qnybs7mg/80nAQocgh9Qf
+	 FQYgdrF+hO86g==
+Date: Mon, 22 Jul 2024 18:14:34 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Harry Austen <hpausten@protonmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Rob Clark <robdclark@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, Doug Anderson <dianders@chromium.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Rob Clark <robdclark@chromium.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/7] dt-bindings: clock: xilinx: describe whether dynamic
- reconfig is enabled
-Message-ID: <20240722-removal-grandma-92cfe99b8a88@spud>
-References: <20240720120048.36758-1-hpausten@protonmail.com>
- <20240720120048.36758-7-hpausten@protonmail.com>
+	"open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: samsung,atna45dc02:
+ Document ATNA45DC02
+Message-ID: <20240722-motion-foil-104f604d5a13@spud>
+References: <20240719185250.4877-1-robdclark@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,73 +71,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dcnYdkiBJnjYH+Dp"
+	protocol="application/pgp-signature"; boundary="V9vvniDQvV/Z8ccx"
 Content-Disposition: inline
-In-Reply-To: <20240720120048.36758-7-hpausten@protonmail.com>
+In-Reply-To: <20240719185250.4877-1-robdclark@gmail.com>
 
 
---dcnYdkiBJnjYH+Dp
+--V9vvniDQvV/Z8ccx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jul 20, 2024 at 12:01:58PM +0000, Harry Austen wrote:
-> Xilinx clocking wizard IP core's dynamic reconfiguration support is
-> optionally enabled at build time. Add a devicetree boolean property to
-> describe whether the hardware supports this feature or not.
+On Fri, Jul 19, 2024 at 11:52:49AM -0700, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
 >=20
-> Signed-off-by: Harry Austen <hpausten@protonmail.com>
-> ---
->  .../devicetree/bindings/clock/xlnx,clocking-wizard.yaml    | 7 +++++++
->  1 file changed, 7 insertions(+)
+> The Samsung ATNA45DC02 panel is an AMOLED eDP panel, similar to the
+> existing ATNA45AF01 and ATNA33XC20 panel but with a higher resolution.
 >=20
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard=
-=2Eyaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> index 4609bb56b06b5..890aeebf6f375 100644
-> --- a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> @@ -40,6 +40,12 @@ properties:
->        - const: s_axi_aclk
-> =20
-> =20
-> +  xlnx,dynamic-reconfig:
-> +    type: boolean
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
 
-The type here should be "flag" not boolean, boolean can be set to
-"false" and what you're likely doing is just checking for the property
-being present. "flag" doesn't allow false.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +    description:
-> +      Indicate whether the core has been configured with support for dyn=
-amic
-> +      runtime reconfguration of the clocking primitive MMCM/PLL.
-> +
->    xlnx,speed-grade:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [1, 2, 3]
-> @@ -88,6 +94,7 @@ examples:
->          compatible =3D "xlnx,clocking-wizard-v6.0";
->          reg =3D <0xb0000000 0x10000>;
->          #clock-cells =3D <1>;
-> +        xlnx,dynamic-reconfig;
->          xlnx,speed-grade =3D <1>;
->          xlnx,nr-outputs =3D <6>;
->          clock-names =3D "clk_in1", "s_axi_aclk";
-> --=20
-> 2.45.2
->=20
->=20
-
---dcnYdkiBJnjYH+Dp
+--V9vvniDQvV/Z8ccx
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6TVQAKCRB4tDGHoIJi
-0hdmAQCqOMXx2CK3Q8yzIIBHMuERHAWGGfcI5gzwiytnYyIP9wEA7lTXK19quiSI
-Lk3aVqOddEgJEmbgqX2t6/H6W4duVw4=
-=2Kf6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6TegAKCRB4tDGHoIJi
+0vYIAP4mmnr4qyQqtWinmU8siSdHz0nK52o7wfkFFgc6QFMghwD+O1DPMyvHEdwD
+3I4veSnBJYQsCErvbjw7xzcQkiB79w8=
+=fR/H
 -----END PGP SIGNATURE-----
 
---dcnYdkiBJnjYH+Dp--
+--V9vvniDQvV/Z8ccx--
 
