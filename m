@@ -1,125 +1,249 @@
-Return-Path: <devicetree+bounces-87300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127AE93917B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:12:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F540939185
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CAE0B215EA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:12:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52F171C2169F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C5116DEB2;
-	Mon, 22 Jul 2024 15:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2CB16DEA8;
+	Mon, 22 Jul 2024 15:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="XbtFr2hW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S9FWagLh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9966416DC1D;
-	Mon, 22 Jul 2024 15:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E021428F1;
+	Mon, 22 Jul 2024 15:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721661143; cv=none; b=R4ujx6fGBFozOOZ6+Kq0rgONkGjIMSGGBIK6U0XEOCH3sNzPFsi2LDZW1+kZmvq/yfqJvKXZ8vHG79yqb4lBtMgjMpaQH0vwdoUtdN38Anm4qbkufGyZZjM96S1mhzL1n0/lS7wvEcnHvbwRYDC75/VRICCqRCdXr8yUak6FU98=
+	t=1721661252; cv=none; b=uK6Zp6j8itUwSKRmMUM39uB0gaOb8GwClYd6EgNLcSoDhqEBGYCYO4pqcO0NedM4gnWksNAB3RP0t1rrrsjNpfheftrP8MbY6e3mSuGFitSHrGHVV7LlBDp+NsoOctuX17pzFuG66l2zxMGGPW/+y9F5DSceoKmWp9ag11K9JCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721661143; c=relaxed/simple;
-	bh=m7n4dc4xNreoq3nEBkSTgwTBcQJMJsdmiJXdjfrTUD8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AFEsTjYNGhIh/rTy1seirBZ3ZkG7PWOSfLtlWtPEeL3drg+mPYF1/wAkx6W/FwQ+o7j4HPYXHpu7rtKHKR1SUxqOryQIPz+NupBZ9IFfgROcttZUlUfMpBaCVzY9IrtwYyDUJAuDSaQVzAuYqXAARi5IssiwccCwYGtH2/huKYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=XbtFr2hW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A98922B3;
-	Mon, 22 Jul 2024 17:11:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1721661098;
-	bh=m7n4dc4xNreoq3nEBkSTgwTBcQJMJsdmiJXdjfrTUD8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XbtFr2hWGL3ygzmRE8p1NsWYKJNn42DBfeWKpdztd+Qe+MJ9RFwbKv/TTTEfReDw9
-	 P9jC7KamR+hbLJx//sWqkDW4adoJrOwdpbc8tWy45UoRpD5sll0aXqvTc8T2TsQwt/
-	 OSDkiFVmEPB/gI5sKR8OhAbrlksVV9lyqcI54PTk=
-Date: Mon, 22 Jul 2024 18:12:02 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: Hans Verkuil <hverkuil@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 2/6] media: videodev2.h: add visconti viif meta
- buffer format
-Message-ID: <20240722151202.GB31490@pendragon.ideasonboard.com>
-References: <20240709000848.1108788-1-yuji2.ishikawa@toshiba.co.jp>
- <20240709000848.1108788-3-yuji2.ishikawa@toshiba.co.jp>
- <20240722151035.GA31490@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1721661252; c=relaxed/simple;
+	bh=nBplABP7eOfFn5jv0FYWlCypm74Gue3s6LT4wXx/6ik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E5yKAWm26iOXcUB7tBHugH23dgP1gTIlRHCiQtKdj2k1jkryVbdOxFIopPh5QSmwqASV3jy5/svF+iePwgPwrun2PgYR2/af0C67hmswH/pgO1d5ZeuOOZID+rU71jiY9MucN6IsMpdsJPfSXY8Tn2cj/5Dlo3VfCy68snqiwcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S9FWagLh; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721661248;
+	bh=nBplABP7eOfFn5jv0FYWlCypm74Gue3s6LT4wXx/6ik=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=S9FWagLhiDAxT9N8sm2LrgsV3ZNAMV0yT/44qgAfDzT1a4BARQNDFAApfWjRvpB+R
+	 1SQbNAAMKYRdA2Vi9ItSS9sHZnjZqgpi+UWQEP+vxYakdG8YxS18ohqDmxIlSSWz/R
+	 jniWJsw54o5bYB/v8zOvfB3+g8SGDHevjKO1TrEwk3LsAjO3o5GE9wvMdPuf1Je5Vg
+	 +JtJ3LNl5w1mVOcJFTcvfVe0J1VOLx8LlBndZgsEYdY/K4ul4N1IO2mT+vrrBTVraI
+	 DJm1Y0AdbExB9nxU3DJy/w4sZNEg8rdZdUqqiwex04PS2PO2jcOxAZIpcLlUJGhGkD
+	 +Qi1voRcO52Fg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D5B09378001E;
+	Mon, 22 Jul 2024 15:14:07 +0000 (UTC)
+Message-ID: <89f6381b-8572-4d58-a8a9-0a3596efc627@collabora.com>
+Date: Mon, 22 Jul 2024 17:14:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240722151035.GA31490@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: mediatek: mt7988: add labels for different
+ nodes
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+ Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240709081614.19993-1-linux@fw-web.de>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240709081614.19993-1-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 22, 2024 at 06:10:37PM +0300, Laurent Pinchart wrote:
-> Hi Ishikawa-san,
+Il 09/07/24 10:16, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Thank you for the patch.
+> Current devicetree-nodes missing a label which allows to add aproperties
+> or phandles to them, so add them.
 > 
-> On Tue, Jul 09, 2024 at 09:08:44AM +0900, Yuji Ishikawa wrote:
-> > Adds the Toshiba Visconti VIIF specific metadata format
-> > 
-> > - V4L2_META_FMT_VISCONTI_VIIF_PARAMS for ISP parameters
-> > - V4L2_META_FMT_VISCONTI_VIIF_STATS for ISP statistics
-> > 
-> > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Fixes: 660c230bf302 ("arm64: dts: mediatek: mt7988: add I2C controllers")
+> Fixes: 09ff2216a035 ("arm64: dts: mediatek: mt7988: add PWM controller")
+> Fixes: 09346afaba0a ("arm64: dts: mediatek: mt7988: add XHCI controllers")
+> Fixes: b616b403cbff ("arm64: dts: mediatek: mt7988: add clock controllers")
+> Fixes: 6c1d134a103f ("arm64: dts: mediatek: Add initial MT7988A and BPI-R4")
+
+You're just only adding node labels, what does this actually fix?!?
+
+Besides, I could tell you to remove the Fixes tags, but then, there's still nothing
+using those node labels - so there's nothing justifying this addition, at all.
+
+I guess that you want to use those (bar the cpu[0-3] labels, which you're adding
+because... uhh.. why?) from some board DT... so please just do that: send a commit
+adding your board DT and adding the required node label(s) here as a consequence.
+
+Cheers,
+Angelo
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 32 +++++++++++------------
+>   1 file changed, 16 insertions(+), 16 deletions(-)
 > 
-> This patch looks fine. Assuming the corresponding documentation patch is
-> fine too,
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> index aa728331e876..9ced005b1595 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> @@ -14,28 +14,28 @@ cpus {
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+>   
+> -		cpu@0 {
+> +		cpu0: cpu@0 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x0>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+>   		};
+>   
+> -		cpu@1 {
+> +		cpu1: cpu@1 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x1>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+>   		};
+>   
+> -		cpu@2 {
+> +		cpu2: cpu@2 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x2>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+>   		};
+>   
+> -		cpu@3 {
+> +		cpu3: cpu@3 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x3>;
+>   			device_type = "cpu";
+> @@ -43,7 +43,7 @@ cpu@3 {
+>   		};
+>   	};
+>   
+> -	oscillator-40m {
+> +	system_clk: oscillator-40m {
+>   		compatible = "fixed-clock";
+>   		clock-frequency = <40000000>;
+>   		#clock-cells = <0>;
+> @@ -86,7 +86,7 @@ infracfg: clock-controller@10001000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		clock-controller@1001b000 {
+> +		topckgen: clock-controller@1001b000 {
+>   			compatible = "mediatek,mt7988-topckgen", "syscon";
+>   			reg = <0 0x1001b000 0 0x1000>;
+>   			#clock-cells = <1>;
+> @@ -99,13 +99,13 @@ watchdog: watchdog@1001c000 {
+>   			#reset-cells = <1>;
+>   		};
+>   
+> -		clock-controller@1001e000 {
+> +		apmixedsys: clock-controller@1001e000 {
+>   			compatible = "mediatek,mt7988-apmixedsys";
+>   			reg = <0 0x1001e000 0 0x1000>;
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		pwm@10048000 {
+> +		pwm: pwm@10048000 {
+>   			compatible = "mediatek,mt7988-pwm";
+>   			reg = <0 0x10048000 0 0x1000>;
+>   			clocks = <&infracfg CLK_INFRA_66M_PWM_BCK>,
+> @@ -124,7 +124,7 @@ pwm@10048000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c@11003000 {
+> +		i2c0: i2c@11003000 {
+>   			compatible = "mediatek,mt7981-i2c";
+>   			reg = <0 0x11003000 0 0x1000>,
+>   			      <0 0x10217080 0 0x80>;
+> @@ -137,7 +137,7 @@ i2c@11003000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c@11004000 {
+> +		i2c1: i2c@11004000 {
+>   			compatible = "mediatek,mt7981-i2c";
+>   			reg = <0 0x11004000 0 0x1000>,
+>   			      <0 0x10217100 0 0x80>;
+> @@ -150,7 +150,7 @@ i2c@11004000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c@11005000 {
+> +		i2c2: i2c@11005000 {
+>   			compatible = "mediatek,mt7981-i2c";
+>   			reg = <0 0x11005000 0 0x1000>,
+>   			      <0 0x10217180 0 0x80>;
+> @@ -163,7 +163,7 @@ i2c@11005000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		usb@11190000 {
+> +		ssusb0: usb@11190000 {
+>   			compatible = "mediatek,mt7988-xhci", "mediatek,mtk-xhci";
+>   			reg = <0 0x11190000 0 0x2e00>,
+>   			      <0 0x11193e00 0 0x0100>;
+> @@ -177,7 +177,7 @@ usb@11190000 {
+>   			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+>   		};
+>   
+> -		usb@11200000 {
+> +		ssusb1: usb@11200000 {
+>   			compatible = "mediatek,mt7988-xhci", "mediatek,mtk-xhci";
+>   			reg = <0 0x11200000 0 0x2e00>,
+>   			      <0 0x11203e00 0 0x0100>;
+> @@ -191,21 +191,21 @@ usb@11200000 {
+>   			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+>   		};
+>   
+> -		clock-controller@11f40000 {
+> +		xfi_pll: clock-controller@11f40000 {
+>   			compatible = "mediatek,mt7988-xfi-pll";
+>   			reg = <0 0x11f40000 0 0x1000>;
+>   			resets = <&watchdog 16>;
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		clock-controller@15000000 {
+> +		ethsys: clock-controller@15000000 {
+>   			compatible = "mediatek,mt7988-ethsys", "syscon";
+>   			reg = <0 0x15000000 0 0x1000>;
+>   			#clock-cells = <1>;
+>   			#reset-cells = <1>;
+>   		};
+>   
+> -		clock-controller@15031000 {
+> +		ethwarp: clock-controller@15031000 {
+>   			compatible = "mediatek,mt7988-ethwarp";
+>   			reg = <0 0x15031000 0 0x1000>;
+>   			#clock-cells = <1>;
 
-Actually I spoke a bit too fast, you need to update
-drivers/media/v4l2-core/v4l2-ioctl.c with the two new formats. See
-commit 8f6c2202222fa for an example.
 
-> > ---
-> > Changelog v10:
-> > - add entry for V4L2_META_FMT_VISCONTI_VIIF_PARAMS
-> > - add entry for V4L2_META_FMT_VISCONTI_VIIF_STATS
-> > 
-> > Changelog v11:
-> > - no change
-> > 
-> >  include/uapi/linux/videodev2.h | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> > index 4e91362da6..562038f144 100644
-> > --- a/include/uapi/linux/videodev2.h
-> > +++ b/include/uapi/linux/videodev2.h
-> > @@ -858,6 +858,10 @@ struct v4l2_pix_format {
-> >  /* Vendor specific - used for RaspberryPi PiSP */
-> >  #define V4L2_META_FMT_RPI_BE_CFG	v4l2_fourcc('R', 'P', 'B', 'C') /* PiSP BE configuration */
-> >  
-> > +/* Vendor specific - used for Visconti VIIF sub-system */
-> > +#define V4L2_META_FMT_VISCONTI_VIIF_PARAMS	v4l2_fourcc('V', 'I', 'F', 'P') /* ISP Params */
-> > +#define V4L2_META_FMT_VISCONTI_VIIF_STATS	v4l2_fourcc('V', 'I', 'F', 'S') /* ISP Stats */
-> > +
-> >  #ifdef __KERNEL__
-> >  /*
-> >   * Line-based metadata formats. Remember to update v4l_fill_fmtdesc() when
-
--- 
-Regards,
-
-Laurent Pinchart
 
