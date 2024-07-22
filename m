@@ -1,153 +1,216 @@
-Return-Path: <devicetree+bounces-87142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE06938A52
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:45:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB614938A6A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:51:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 271FE1F217D9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A8C61C20F8A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:51:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3565C14F12F;
-	Mon, 22 Jul 2024 07:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E251607BA;
+	Mon, 22 Jul 2024 07:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TMF+IQLT"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LNhPfXYs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0206B14D2B7;
-	Mon, 22 Jul 2024 07:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABD41607B7
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 07:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721634320; cv=none; b=NANsJnpK1dGUi9dSdmgNYQSly8C2LHfHn87HUQVjhdzCyIeQaJCElhtAYLNaT72ast62zpNjvXwaoGDMir2W/qWDp6zvmFAFPTv/LclxyfsprPItiNuyMzGzUPfWlsUrXQ+3eyOEitniVAgdPePIkuwav4C1rVWb1eXi8Pu/Bqc=
+	t=1721634671; cv=none; b=nssekYdBIgksT1yKhngTWa35coJ2Invr6vKTwRSifrMvhzVX7KnZsF0DfRfrJK8f1QDgXos1vYoLp1IyAtz2qUDhm/NxmwETDvTAX9Up/CvwzSfGBkj2ms3Fxd8Ttsb3SsKMxcK4Gb2ZU5vipR4eAPbc6LBY3HTUL1iftcQr0bI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721634320; c=relaxed/simple;
-	bh=+MaJBgjNtkARNpfQULTFjsybhHCcQiUPkH4lCQ3ICrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V0s2JLnENX0ABfjQo0w5FZ6zLneMXfykO50sfNKf0uM9zoUJVUyJ0eYvhWdhShjqyszgOYFi3b4M1i/7rbXRXI7o2sYWRacT1ICjjgnUXfaSrBxgTcd9tBWSGtqraYNF1jFq8OUKQkoWL5fgQHDTCD3MUSmjiCEAf9ENVrx23/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TMF+IQLT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6301C116B1;
-	Mon, 22 Jul 2024 07:45:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721634319;
-	bh=+MaJBgjNtkARNpfQULTFjsybhHCcQiUPkH4lCQ3ICrc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TMF+IQLTfIOn1GM/iKUWiDlYdlwjQus76rNAFKeGl3C6ZgudWeVxFThu3ulTlkWOF
-	 K6Ad4YZzCvttCJTkzNwIGlTOuXaHYkNtOhllocd+qirET9kMz/fo1JKKgc3c8K0w5r
-	 hEcgkwH9eaYxOHc5yOHZccd4OHUpJAyZLxpR6qZHtgOpsL53UuLBKyEfyEwX+Lo9Cn
-	 TekuTvOebkI2EEHQCXKhPhPvnnBIMQOjrIVI67FlTaaW6Ha9BNm7/6O/iDZJIC8Gee
-	 G+8oxIkm7Mkj515FhXVY6+HYTcDOUSNop0BR5VslQMrOdFDiPQeMCpeLCroyj4XdvI
-	 6A7EcuziLw68Q==
-Message-ID: <bdb3a8fd-2f49-4b97-bedd-4d65ee2a1d79@kernel.org>
-Date: Mon, 22 Jul 2024 09:45:13 +0200
+	s=arc-20240116; t=1721634671; c=relaxed/simple;
+	bh=EnH0hjCJsqenVdJIOwLmnk1ZdSWDskungvUxR29H0VE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DIHdgfY8c5J/6um5I8vzq3Gt0r+3g1JayumL31Mmy6kMAMzMLBiLJ9b8Eb55EO4x8C7bymIC/x+OrT9AzSO2y9q3NknaPJSv2MOJGzGpbNAe1bebnUjgtLS24kBttYYc5bH5BvgCIXZYCUjlbMAHe+VQTjVoQYfV/xTcnKtdIlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LNhPfXYs; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso3244516a12.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 00:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721634666; x=1722239466; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EnH0hjCJsqenVdJIOwLmnk1ZdSWDskungvUxR29H0VE=;
+        b=LNhPfXYsPOE2ObCRfUAb+CieFs0aVzwk5AX74GbnwvnvEZu0msTsRuDeJyq4fqPojr
+         2F561P6tlczhQjxUGFrfiMsAik9JravoAP1mhhbDOozG1vxP+c5YvFuKJVDseth3ODTe
+         jZbVhJ2Hw1JAyn/iisNmJU70mhshmI9qD8kXoHHTSLDrZQUN/5OsLeBNmobZFqdm0LPM
+         iY2uvZLs42Xj80/z4PGpVN2DALDKguHpwswWsBj2ZLKwhcJCI4O+uGzt78TO4xzPVW++
+         Amu3vRJO0Y1+v6PBcdvv9hBa0+KF/QWALD2yxcmWprN77uUI2yVvC9agm/UKyjE4v/gD
+         sM5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721634666; x=1722239466;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EnH0hjCJsqenVdJIOwLmnk1ZdSWDskungvUxR29H0VE=;
+        b=FbBU9046hThoC84n1bqeVk5WSsw8jmiZHFbXUYYTe1/KPmrL9Ft++i0JYc0VrGPVFC
+         J2w+/ytfpoG6n+g5kaytVbbICF5JJI4BaW1BLEBHcAYrPCflRXr2mrM9bDsak0x+6gt7
+         mcmgfTBiqvPczY2em7XYVZLgixpm11SvAOPcS6OQbTTCcsarELzZADN++ZLtFvx90Jat
+         WTfPzxuZ1Nhz7rABZU1in3iknjOrRcqEbxB/6o3sWQIDR53CW/LuIc9MVqeONBIHG5al
+         ZMwkX+21VWuwWd2AEoxwF12c/PZ04HmyucOOS6RPifMZsMxTpF4iSvGyDFkf2w0Hm9Pg
+         BPgw==
+X-Forwarded-Encrypted: i=1; AJvYcCWeBTl6qdk86Vw4IdZ5hHRTR+1+LBjz23jCrVttx5TpTk5iCHptuPDCfwIPc/KNlw99Vtvf9NqC1tejbn7JA1C9dPA3R48/45/3UQ==
+X-Gm-Message-State: AOJu0Yxpvn1T5PjCP9pUROnK3kCofrhjOyQ9e9MFG/elD8FCfh1KtTAZ
+	RbCY2HC+r0n9qHlRIFNkgvGwIxY82oOMNqRAgMAyv1BKLEae296KHazSOGQKbfQ=
+X-Google-Smtp-Source: AGHT+IERPpuu0WjjXUrxYUbuy6duds0kLH+r0sY8euaPygoIAdU5GkvLdgJpcNxtsiPzvG1YmGPTUA==
+X-Received: by 2002:a50:9b4a:0:b0:5a4:12ea:333f with SMTP id 4fb4d7f45d1cf-5a47ba979acmr3556532a12.37.1721634666398;
+        Mon, 22 Jul 2024 00:51:06 -0700 (PDT)
+Received: from localhost (p50915eb1.dip0.t-ipconnect.de. [80.145.94.177])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c2f8808sm5651235a12.78.2024.07.22.00.51.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jul 2024 00:51:05 -0700 (PDT)
+Date: Mon, 22 Jul 2024 09:51:04 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: Guenter Roeck <linux@roeck-us.net>, jdelvare@suse.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] hwmon: (adt7475) Add support for configuring
+ initial PWM state
+Message-ID: <5fnaskzlfybxiddwhm3fdm774ispvuxdmv4jb4wj5sts2btkf2@gmcfdzx3qvjy>
+References: <20240722005825.1800403-1-chris.packham@alliedtelesis.co.nz>
+ <20240722005825.1800403-4-chris.packham@alliedtelesis.co.nz>
+ <15f4c51c-3f7d-4e93-9c3a-71ac1d626463@roeck-us.net>
+ <c261c74f-6829-4888-9836-6f27ba87dc25@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] ASoC: dt-bindings: midas-audio: Declare required
- properties for GPIO jack det
-To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-sound@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20240716-midas-audio-tab3-v1-0-a53ea075af5a@gmail.com>
- <20240716-midas-audio-tab3-v1-1-a53ea075af5a@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240716-midas-audio-tab3-v1-1-a53ea075af5a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 16/07/2024 21:36, Artur Weber wrote:
-> GPIO jack detection requires an IIO channel and the detection threshold
-> to work. Explicitly declare the requirement in DT schema.
-> 
-> Fixes: 0a590ecc672a ("ASoC: dt-bindings: samsung,midas-audio: Add GPIO-based headset jack detection")
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
->  .../bindings/sound/samsung,midas-audio.yaml        | 29 +++++++++++++++++++---
->  1 file changed, 26 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
-> index 69ddfd4afdcd..e7af3c09de38 100644
-> --- a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
-> +++ b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
-> @@ -9,9 +9,6 @@ title: Samsung Midas audio complex with WM1811 codec
->  maintainers:
->    - Sylwester Nawrocki <s.nawrocki@samsung.com>
->  
-> -allOf:
-> -  - $ref: sound-card-common.yaml#
-> -
->  properties:
->    compatible:
->      const: samsung,midas-audio
-> @@ -102,6 +99,32 @@ required:
->    - mic-bias-supply
->    - submic-bias-supply
->  
-> +allOf:
-> +  - $ref: sound-card-common.yaml#
-> +
-> +  - if:
-> +      oneOf:
-
-This won't work if you have both detect and key gpios. I think you want
-anyOf here.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="r4x3fdstgdwascyl"
+Content-Disposition: inline
+In-Reply-To: <c261c74f-6829-4888-9836-6f27ba87dc25@alliedtelesis.co.nz>
 
 
-Best regards,
-Krzysztof
+--r4x3fdstgdwascyl
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jul 22, 2024 at 04:09:46PM +1200, Chris Packham wrote:
+>=20
+> On 22/07/24 15:53, Guenter Roeck wrote:
+> > On 7/21/24 17:58, Chris Packham wrote:
+> > > By default the PWM duty cycle in hardware is 100%. On some systems th=
+is
+> > > can cause unwanted fan noise. Add the ability to specify the fan
+> > > connections and initial state of the PWMs via device properties.
+> > >=20
+> > > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> > > ---
+> > >=20
+> > > Notes:
+> > > =A0=A0=A0=A0 Changes in v6:
+> > > =A0=A0=A0=A0 - Use do_div() instead of plain /
+> > > =A0=A0=A0=A0 - Use a helper function to avoid repetition between the =
+of and
+> > > non-of
+> > > =A0=A0=A0=A0=A0=A0 code paths.
+> > > =A0=A0=A0=A0 Changes in v5:
+> > > =A0=A0=A0=A0 - Deal with PWM frequency and duty cycle being specified=
+ in
+> > > nanoseconds
+> > > =A0=A0=A0=A0 Changes in v4:
+> > > =A0=A0=A0=A0 - Support DT and ACPI fwnodes
+> > > =A0=A0=A0=A0 - Put PWM into manual mode
+> > > =A0=A0=A0=A0 Changes in v3:
+> > > =A0=A0=A0=A0 - Use the pwm provider/consumer bindings
+> > > =A0=A0=A0=A0 Changes in v2:
+> > > =A0=A0=A0=A0 - Use correct device property string for frequency
+> > > =A0=A0=A0=A0 - Allow -EINVAL and only warn on error
+> > > =A0=A0=A0=A0 - Use a frequency of 0 to indicate that the hardware sho=
+uld be
+> > > left as-is
+> > >=20
+> > > =A0 drivers/hwmon/adt7475.c | 130 +++++++++++++++++++++++++++++++++++=
++++++
+> > > =A0 1 file changed, 130 insertions(+)
+> > >=20
+> > > diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
+> > > index 4224ffb30483..fc5605d34f36 100644
+> > > --- a/drivers/hwmon/adt7475.c
+> > > +++ b/drivers/hwmon/adt7475.c
+> > > @@ -21,6 +21,8 @@
+> > > =A0 #include <linux/of.h>
+> > > =A0 #include <linux/util_macros.h>
+> > > =A0 +#include <dt-bindings/pwm/pwm.h>
+> > > +
+> > > =A0 /* Indexes for the sysfs hooks */
+> > > =A0 =A0 #define INPUT=A0=A0=A0=A0=A0=A0=A0 0
+> > > @@ -1662,6 +1664,130 @@ static int adt7475_set_pwm_polarity(struct
+> > > i2c_client *client)
+> > > =A0=A0=A0=A0=A0 return 0;
+> > > =A0 }
+> > > =A0 +struct adt7475_pwm_config {
+> > > +=A0=A0=A0 int index;
+> > > +=A0=A0=A0 int freq;
+> > > +=A0=A0=A0 int flags;
+> > > +=A0=A0=A0 int duty;
+> > > +};
+> > > +
+> > > +static int _adt7475_pwm_properties_parse_args(u32 args[4], struct
+> > > adt7475_pwm_config *cfg)
+> > > +{
+> > > +=A0=A0=A0 unsigned long freq_hz;
+> > > +=A0=A0=A0 unsigned long duty;
+> > > +
+> > > +=A0=A0=A0 if (args[1] =3D=3D 0)
+> > > +=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;
+> > > +
+> > > +=A0=A0=A0 freq_hz =3D 1000000000UL;
+> > > +=A0=A0=A0 do_div(freq_hz, args[1]);
+> > > +=A0=A0=A0 duty =3D 255 * args[3];
+> > > +=A0=A0=A0 do_div(duty, args[1]);
+> > > +
+> >=20
+> > Gues I am a bit at loss here, just as 0-day. Why use do_div ? It is only
+> > needed
+> > for 64-bit divide operations.
+>=20
+> Mainly because of Uwe's comment on v5. I think I've avoided the original =
+u64
+> issue now that I'm converting fwnode_reference_args::args to a u32 array.
+
+My comment was only about the build bot finding a division where the gcc
+stub was missing with is an indication that do_div should be used.=20
+
+Usually for PWMs perdiod and duty_cycle are u64, but here it's only
+about values from the dtb, so they are u32 and a plain / should be fine.
+
+> can probably get away with plain division, although 255 * args[3] / args[=
+1]
+> might overflow in theory but shouldn't in practice.
+
+I don't like possible overflows, but I don't care enough for hwmon
+drivers to object. Still a check for args[3] <=3D 0x1010101 would be easy
+enough.
+
+Best regards
+Uwe
+
+--r4x3fdstgdwascyl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaeD2YACgkQj4D7WH0S
+/k5n5AgAoiOFkhm/1XqNRpW8sFdlsQuirycWjHtM7CNcf9FXDizyShxG1sMeFYq4
+hgfzlOKpzvMGZlrORtwH2cgZpK9baBzm2Z0jjRETdkHg9cFKhXzAlFWClNEnekwC
+dHuQOeE/0a6CNVb2b2kIps+9AVHutvTqLf4BUxuUieWCmiMA33bJp/j11ieYvW80
+9b/vXu5p8zgBACGJt8Jaz0DgKAbTuF/xorEUP+w5CKGS401cjkTQvD0pzCYFk0U8
+HJ/tGE8GaT7xUkuWECmydZ3psWxTwkXJZ2AKtzUqstBREJiDRO9j9ywST8IBgZeD
+glPw1K3wbIWgsueafREfGF/LF6f6+w==
+=/pvZ
+-----END PGP SIGNATURE-----
+
+--r4x3fdstgdwascyl--
 
