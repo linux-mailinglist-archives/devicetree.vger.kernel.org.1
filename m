@@ -1,267 +1,648 @@
-Return-Path: <devicetree+bounces-87403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC47293963F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:08:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823F793964D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A27D1F219A7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:08:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7C44B21577
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 22:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE06745025;
-	Mon, 22 Jul 2024 22:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F734437A;
+	Mon, 22 Jul 2024 22:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="lgJMC4De"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="j+TcV+7k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F683C488
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 22:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6653BBE2;
+	Mon, 22 Jul 2024 22:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721686107; cv=none; b=tfPTw8aLswcWn4onctW7PQhRlZ/wCW7bJK2HW9W1Ad5vPzblrF4me+SvIplMZ2UfuJZeeK82fOl9hs68cHA7kIcqzwU1+qyO31CQNAoLzdY1rfM6x/dxjuAs0NyCJK67HdgwKlb88xYZQOQWQwHV96qQxOGZ+VfYfaajrCJIqnY=
+	t=1721686424; cv=none; b=SzyFGqXr1RJve8ywn00IZy8/5nFIy6h8A2683JO8RUu6LCYt2IJ4CxgJdFLASBsK5DHPpaTuVm38v9HSKuAjIZzWv51dpnNdfhD108aphbxMmjzGNIg4IVwqJbsfVDb7+l/yon4HgjtwW1BRbnMLUWYlAGQsrS7OuZwgR/1rCKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721686107; c=relaxed/simple;
-	bh=5jXJcvZnIJmi0Gtk92mhNC9bTi+aOWLjUB7i5x1e8JE=;
+	s=arc-20240116; t=1721686424; c=relaxed/simple;
+	bh=BCB1DBuxTO4UnS31F0xngMS6oEAnPnicTe6hsy58WJc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RzAEL3qzmmN3V3z2p1iFkyE7M3HjPTb39uWynAoIizWwRZW8Df2rfdXZ+BNENz96l470EnIfFt8oD/m9HR581W0Td5viSWV/PMQajH/3aC8L7dcUKm6TQZEF+Hgv++bGKSNjBkUMCwdR8kjWXPnPsC0KFiUPXweHhrKl09h84gM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=lgJMC4De; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6b97097f7fdso12367166d6.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 15:08:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1721686104; x=1722290904; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LWkf3HH1tp0DsKyJLpS4yaHfwlf3QF0BPJJ770sq1hg=;
-        b=lgJMC4DeH/Mwv2gqImoh3/DeZ9iXcEgzcViopf+UmeFPsSF20lzaoqE9tAy8cfb366
-         b8B/eLHJDX2hjqpOeZBqnphI6qWzdFvOqFLONmou5AuMJujt4LaEMUXJ4kRbYtXtz+0M
-         CDrC+Q6s7mbIbmADThcFqBqA0h2jtew6Rxrm5LdznFclub8bURl45FXols5VTeC8jHFO
-         HzJ/k7Mj7VgnLbRIkR3v4BuU0MdQUGJ5NIb1YhCNFVNplalq/J9fM/ZXhW9iH//NzF1b
-         /GyHf3qjIDCla+TJtTFcrY0es6VaCcrWAmmGLNniTM/YOvjX7aRM376psLHWP3R5D/wn
-         rs2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721686104; x=1722290904;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LWkf3HH1tp0DsKyJLpS4yaHfwlf3QF0BPJJ770sq1hg=;
-        b=ZP//Yd6sdKKiQ2FbF3uH+g6pHUA5edFPyuYzele0E8sNd43VCDAq+Mdwi748waSKsT
-         TVWlCv83WpLN0PiayC+ePRAlaHWptaPgZ09Ow1lmGN3sVWdlF1gdpAiLGvaskxe7rlq3
-         v3KjSCXIwjguG+UG+hFblRjDMvrBSPbgad0xi3JIc2z+e3aH8oq/lDdjHCAiLK0G1huS
-         0GEN/DHoJkHEPSgy1hyyfVP7mRWlOee0+xWa0ZbKhDBWNtjghf7L851w/7AzASdOcGnS
-         npSDDGwKuROTyFUpAw1qTVHrgKCaiw9Uyuok1UL4hqbwz3kJe3yMsRvwi0+oXnAMU8Rp
-         I4CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+Q8/F9QEL1CVi1GNlLm/yrrxwOx968AVvTNz9MeKPRH3GYDm+9QvpkYxvVfjvJRK3/0XSSEXD1Rg883R/gGlgoRCCw+1ph5LmkQ==
-X-Gm-Message-State: AOJu0YwPQxdEof5+Gsz/9EUTJz7HhygZvjFH9+CEpn98SSZSrTlr/M47
-	Ypd/55TxWnXwOq7XPHXCGaDobCrHLMlkn+5deO2rKT6Ti0DoPokT+IzK0kBaBNU=
-X-Google-Smtp-Source: AGHT+IGHLCwp0hGqtqL1q8f5M6PmDSweCC+kXH8yPvsoAi0ErhWstRGT1kYEy1C5OxbQyy+l7RVM0w==
-X-Received: by 2002:a05:6214:767:b0:6b5:4865:948e with SMTP id 6a1803df08f44-6b95a3a2195mr93587836d6.32.1721686103802;
-        Mon, 22 Jul 2024 15:08:23 -0700 (PDT)
-Received: from localhost ([140.82.166.162])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-44f9cd040easm37577341cf.30.2024.07.22.15.08.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jul 2024 15:08:23 -0700 (PDT)
-Date: Mon, 22 Jul 2024 17:08:22 -0500
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Samuel Holland <samuel.holland@sifive.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
-	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>, 
-	Jessica Clarke <jrtc27@jrtc27.com>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v5 12/13] selftests: riscv: Fix vector tests
-Message-ID: <20240722-86a2b1fa474d71c4dbc557c7@orel>
-References: <20240719-xtheadvector-v5-0-4b485fc7d55f@rivosinc.com>
- <20240719-xtheadvector-v5-12-4b485fc7d55f@rivosinc.com>
- <20240722-0940cd64c0d8bb03f2427022@orel>
- <Zp7LxAWkDQMQhVLq@ghost>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KgMup8AJdw8lNc+8BkB26ea1W0L/GK8h+MSx+4UJ40hKWxlcJIw7Qsm95ppldKeXezbvhrYsITUtuY9cb911peGrv+F7DhNDMsSf/M1a6otuzs3Llop67u/4poeuF8ADUM2YhCs+2DA+K5oJlpSMLna+uKwvn86xV9w4TbTSdJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=j+TcV+7k; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1575A4CD;
+	Tue, 23 Jul 2024 00:12:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1721686379;
+	bh=BCB1DBuxTO4UnS31F0xngMS6oEAnPnicTe6hsy58WJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j+TcV+7krQJlqN/CvesW0piYpPwUK8xSpGrNE/5D+F0qfoSnT4VhziWcH2rOPytwE
+	 QxtdoT2nH/84RphgOsjtmQAwLhahtdga3bPCRCRDeM/6DElJQ11BymTl4SijVlvIBu
+	 Kg1Q0zm3/z0ONjd236f2j0MM5LC5V2OywZmh5c7I=
+Date: Tue, 23 Jul 2024 01:13:22 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v6 03/18] media: uapi: Add 20-bit bayer formats
+Message-ID: <20240722221322.GA32300@pendragon.ideasonboard.com>
+References: <20240709132906.3198927-1-dan.scally@ideasonboard.com>
+ <20240709132906.3198927-4-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Zp7LxAWkDQMQhVLq@ghost>
+In-Reply-To: <20240709132906.3198927-4-dan.scally@ideasonboard.com>
 
-On Mon, Jul 22, 2024 at 02:14:44PM GMT, Charlie Jenkins wrote:
-> On Mon, Jul 22, 2024 at 01:47:29PM -0500, Andrew Jones wrote:
-> > On Fri, Jul 19, 2024 at 09:19:07AM GMT, Charlie Jenkins wrote:
-> > > Overhaul the riscv vector tests to use kselftest_harness to help the
-> > > test cases correctly report the results and decouple the individual test
-> > > cases from each other. With this refactoring, only run the test cases is
-> > > vector is reported and properly report the test case as skipped
-> > > otherwise. The v_initval_nolibc test was previously not checking if
-> > > vector was supported and used a function (malloc) which invalidates
-> > > the state of the vector registers.
-> > > 
-> > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > > ---
-> > >  tools/testing/selftests/riscv/abi/ptrace           | Bin 0 -> 759368 bytes
-> > >  tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
-> > >  tools/testing/selftests/riscv/vector/Makefile      |  17 +-
-> > >  .../selftests/riscv/vector/v_exec_initval_nolibc.c |  84 +++++++
-> > >  tools/testing/selftests/riscv/vector/v_helpers.c   |  56 +++++
-> > >  tools/testing/selftests/riscv/vector/v_helpers.h   |   5 +
-> > >  tools/testing/selftests/riscv/vector/v_initval.c   |  16 ++
-> > >  .../selftests/riscv/vector/v_initval_nolibc.c      |  68 ------
-> > >  .../testing/selftests/riscv/vector/vstate_prctl.c  | 266 ++++++++++++---------
-> > >  9 files changed, 324 insertions(+), 191 deletions(-)
-> > > 
-> > > diff --git a/tools/testing/selftests/riscv/abi/ptrace b/tools/testing/selftests/riscv/abi/ptrace
-> > > new file mode 100755
-> > > index 000000000000..2b03e77b4dcf
-> > > Binary files /dev/null and b/tools/testing/selftests/riscv/abi/ptrace differ
-> > > diff --git a/tools/testing/selftests/riscv/vector/.gitignore b/tools/testing/selftests/riscv/vector/.gitignore
-> > > index 9ae7964491d5..7d9c87cd0649 100644
-> > > --- a/tools/testing/selftests/riscv/vector/.gitignore
-> > > +++ b/tools/testing/selftests/riscv/vector/.gitignore
-> > > @@ -1,3 +1,4 @@
-> > >  vstate_exec_nolibc
-> > >  vstate_prctl
-> > > -v_initval_nolibc
-> > > +v_initval
-> > > +v_exec_initval_nolibc
-> > > diff --git a/tools/testing/selftests/riscv/vector/Makefile b/tools/testing/selftests/riscv/vector/Makefile
-> > > index bfff0ff4f3be..995746359477 100644
-> > > --- a/tools/testing/selftests/riscv/vector/Makefile
-> > > +++ b/tools/testing/selftests/riscv/vector/Makefile
-> > > @@ -2,18 +2,27 @@
-> > >  # Copyright (C) 2021 ARM Limited
-> > >  # Originally tools/testing/arm64/abi/Makefile
-> > >  
-> > > -TEST_GEN_PROGS := vstate_prctl v_initval_nolibc
-> > > -TEST_GEN_PROGS_EXTENDED := vstate_exec_nolibc
-> > > +TEST_GEN_PROGS := v_initval vstate_prctl
-> > > +TEST_GEN_PROGS_EXTENDED := vstate_exec_nolibc v_exec_initval_nolibc sys_hwprobe.o v_helpers.o
-> > >  
-> > >  include ../../lib.mk
-> > >  
-> > > -$(OUTPUT)/vstate_prctl: vstate_prctl.c ../hwprobe/sys_hwprobe.S
-> > > +$(OUTPUT)/sys_hwprobe.o: ../hwprobe/sys_hwprobe.S
-> > > +	$(CC) -static -c -o$@ $(CFLAGS) $^
-> > > +
-> > > +$(OUTPUT)/v_helpers.o: v_helpers.c
-> > > +	$(CC) -static -c -o$@ $(CFLAGS) $^
-> > > +
-> > > +$(OUTPUT)/vstate_prctl: vstate_prctl.c $(OUTPUT)/sys_hwprobe.o $(OUTPUT)/v_helpers.o
-> > >  	$(CC) -static -o$@ $(CFLAGS) $(LDFLAGS) $^
-> > >  
-> > >  $(OUTPUT)/vstate_exec_nolibc: vstate_exec_nolibc.c
-> > >  	$(CC) -nostdlib -static -include ../../../../include/nolibc/nolibc.h \
-> > >  		-Wall $(CFLAGS) $(LDFLAGS) $^ -o $@ -lgcc
-> > >  
-> > > -$(OUTPUT)/v_initval_nolibc: v_initval_nolibc.c
-> > > +$(OUTPUT)/v_initval: v_initval.c $(OUTPUT)/sys_hwprobe.o $(OUTPUT)/v_helpers.o
-> > > +	$(CC) -static -o$@ $(CFLAGS) $(LDFLAGS) $^
-> > > +
-> > > +$(OUTPUT)/v_exec_initval_nolibc: v_exec_initval_nolibc.c
-> > >  	$(CC) -nostdlib -static -include ../../../../include/nolibc/nolibc.h \
-> > >  		-Wall $(CFLAGS) $(LDFLAGS) $^ -o $@ -lgcc
-> > > diff --git a/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c b/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-> > > new file mode 100644
-> > > index 000000000000..74b13806baf0
-> > > --- /dev/null
-> > > +++ b/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-> > > @@ -0,0 +1,84 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Get values of vector registers as soon as the program starts to test if
-> > > + * is properly cleaning the values before starting a new program. Vector
-> > > + * registers are caller saved, so no function calls may happen before reading
-> > > + * the values. To further ensure consistency, this file is compiled without
-> > > + * libc and without auto-vectorization.
-> > > + *
-> > > + * To be "clean" all values must be either all ones or all zeroes.
-> > > + */
-> > > +
-> > > +#define __stringify_1(x...)	#x
-> > > +#define __stringify(x...)	__stringify_1(x)
-> > > +
-> > > +int main(int argc, char **argv)
-> > > +{
-> > > +	char prev_value = 0, value;
-> > > +	unsigned long vl;
-> > > +	int first = 1;
-> > > +
-> > > +	asm volatile (
-> > > +		".option push\n\t"
-> > > +		".option arch, +v\n\t"
-> > > +		"vsetvli	%[vl], x0, e8, m1, ta, ma\n\t"
-> > > +		".option pop\n\t"
-> > > +		: [vl] "=r" (vl)
-> > > +	);
-> > > +
-> > > +#define CHECK_VECTOR_REGISTER(register) ({					\
-> > > +	for (int i = 0; i < vl; i++) {						\
-> > > +		asm volatile (							\
-> > > +			".option push\n\t"					\
-> > > +			".option arch, +v\n\t"					\
-> > > +			"vmv.x.s %0, " __stringify(register) "\n\t"		\
-> > > +			"vsrl.vi " __stringify(register) ", " __stringify(register) ", 8\n\t" \
-> > > +			".option pop\n\t"					\
-> > > +			: "=r" (value));					\
-> > > +		if (first) {							\
-> > > +			first = 0;						\
-> > > +		} else if (value != prev_value || !(value == 0x00 || value == 0xff)) { \
-> > > +			printf("Register " __stringify(register) " values not clean! value: %u\n", value);	\
-> > > +			exit(-1);						\
-> > 
-> > I think we should ensure all tests in tools/testing/selftests/riscv/ use
-> > TAP output, exiting with ksft_finished(), or at least exit with 0 for
-> > success. For example, vstate_exec_nolibc exits with 2 for success since
-> > it exits with the return value of prctl(PR_RISCV_V_GET_CONTROL). And
-> > vstate_prctl.c exits with several different negative values, which means
-> > it'll exit with several different values around 255. To figure what went
-> > wrong, one will have to convert those exit codes to the original negative
-> > values in order to look them up. Having these types of inconsistent exit
-> > values complicates QA.
-> > 
-> > Thanks,
-> > drew
-> 
-> I do not follow. I am using the kselftest_harness
-> (tools/testing/selftests/kselftest_harness.h) that does output using the
-> TAP format. vstate_exec_nolibc is not a test in itself but is a helper.
+Hi Dan,
 
-Ah, this was my misunderstanding, as I'm used to all files with main()
-being independent tests and I only grepped exit codes. I'll have to look
-to see how this all fits together.
+Thank you for the patch.
 
-> The Makefile for the vector tests describes this as:
+On Tue, Jul 09, 2024 at 02:28:51PM +0100, Daniel Scally wrote:
+> The Mali-C55 requires input data be in 20-bit format, MSB aligned.
+> Add some new media bus format macros to represent that input format.
 > 
-> TEST_GEN_PROGS := v_initval vstate_prctl
-> 
-> If you run the riscv collection of tests with:
-> 
-> $ ./run_kselftest.sh --collection riscv
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 
-I'll look later, but I hope those tests can also be run standalone and
-still get TAP output.
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Thanks,
-drew
+> ---
+> Changes in v6:
+> 
+> 	- Fixed the table formatting
+> 
+> Changes in v5:
+> 
+> 	- New patch
+> 
+>  .../media/v4l/subdev-formats.rst              | 252 +++++++++++++++++-
+>  include/uapi/linux/media-bus-format.h         |   6 +-
+>  2 files changed, 255 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/subdev-formats.rst b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> index 5dbf8c9b18fb..ff328eb485e8 100644
+> --- a/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> +++ b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> @@ -2664,7 +2664,7 @@ organization is given as an example for the first pixel only.
+>      \tiny
+>      \setlength{\tabcolsep}{2pt}
+>  
+> -.. tabularcolumns:: |p{6.0cm}|p{0.7cm}|p{0.3cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
+> +.. tabularcolumns:: |p{6.0cm}|p{0.7cm}|p{0.3cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
+>  
+>  .. _v4l2-mbus-pixelcode-bayer:
+>  
+> @@ -2677,10 +2677,14 @@ organization is given as an example for the first pixel only.
+>      * - Identifier
+>        - Code
+>        -
+> -      - :cspan:`15` Data organization
+> +      - :cspan:`19` Data organization
+>      * -
+>        -
+>        - Bit
+> +      - 19
+> +      - 18
+> +      - 17
+> +      - 16
+>        - 15
+>        - 14
+>        - 13
+> @@ -2710,6 +2714,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`7`
+>        - b\ :sub:`6`
+>        - b\ :sub:`5`
+> @@ -2731,6 +2739,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`7`
+>        - g\ :sub:`6`
+>        - g\ :sub:`5`
+> @@ -2752,6 +2764,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`7`
+>        - g\ :sub:`6`
+>        - g\ :sub:`5`
+> @@ -2773,6 +2789,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - r\ :sub:`7`
+>        - r\ :sub:`6`
+>        - r\ :sub:`5`
+> @@ -2794,6 +2814,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`7`
+>        - b\ :sub:`6`
+>        - b\ :sub:`5`
+> @@ -2815,6 +2839,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`7`
+>        - g\ :sub:`6`
+>        - g\ :sub:`5`
+> @@ -2836,6 +2864,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`7`
+>        - g\ :sub:`6`
+>        - g\ :sub:`5`
+> @@ -2857,6 +2889,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - r\ :sub:`7`
+>        - r\ :sub:`6`
+>        - r\ :sub:`5`
+> @@ -2878,6 +2914,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`7`
+>        - b\ :sub:`6`
+>        - b\ :sub:`5`
+> @@ -2899,6 +2939,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`7`
+>        - g\ :sub:`6`
+>        - g\ :sub:`5`
+> @@ -2920,6 +2964,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`7`
+>        - g\ :sub:`6`
+>        - g\ :sub:`5`
+> @@ -2941,6 +2989,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - r\ :sub:`7`
+>        - r\ :sub:`6`
+>        - r\ :sub:`5`
+> @@ -2962,6 +3014,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - 0
+>        - 0
+>        - 0
+> @@ -2981,6 +3037,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`7`
+>        - b\ :sub:`6`
+>        - b\ :sub:`5`
+> @@ -3002,6 +3062,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`7`
+>        - b\ :sub:`6`
+>        - b\ :sub:`5`
+> @@ -3021,6 +3085,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - 0
+>        - 0
+>        - 0
+> @@ -3042,6 +3110,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`9`
+>        - b\ :sub:`8`
+>        - b\ :sub:`7`
+> @@ -3061,6 +3133,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`1`
+>        - b\ :sub:`0`
+>        - 0
+> @@ -3082,6 +3158,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`1`
+>        - b\ :sub:`0`
+>        - 0
+> @@ -3101,6 +3181,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`9`
+>        - b\ :sub:`8`
+>        - b\ :sub:`7`
+> @@ -3120,6 +3204,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`9`
+>        - b\ :sub:`8`
+>        - b\ :sub:`7`
+> @@ -3141,6 +3229,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`9`
+>        - g\ :sub:`8`
+>        - g\ :sub:`7`
+> @@ -3162,6 +3254,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`9`
+>        - g\ :sub:`8`
+>        - g\ :sub:`7`
+> @@ -3183,6 +3279,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - r\ :sub:`9`
+>        - r\ :sub:`8`
+>        - r\ :sub:`7`
+> @@ -3202,6 +3302,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`11`
+>        - b\ :sub:`10`
+>        - b\ :sub:`9`
+> @@ -3223,6 +3327,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`11`
+>        - g\ :sub:`10`
+>        - g\ :sub:`9`
+> @@ -3244,6 +3352,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`11`
+>        - g\ :sub:`10`
+>        - g\ :sub:`9`
+> @@ -3265,6 +3377,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - r\ :sub:`11`
+>        - r\ :sub:`10`
+>        - r\ :sub:`9`
+> @@ -3284,6 +3400,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`13`
+>        - b\ :sub:`12`
+>        - b\ :sub:`11`
+> @@ -3305,6 +3425,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`13`
+>        - g\ :sub:`12`
+>        - g\ :sub:`11`
+> @@ -3326,6 +3450,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`13`
+>        - g\ :sub:`12`
+>        - g\ :sub:`11`
+> @@ -3347,6 +3475,10 @@ organization is given as an example for the first pixel only.
+>        -
+>        -
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - r\ :sub:`13`
+>        - r\ :sub:`12`
+>        - r\ :sub:`11`
+> @@ -3366,6 +3498,10 @@ organization is given as an example for the first pixel only.
+>        - MEDIA_BUS_FMT_SBGGR16_1X16
+>        - 0x301d
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - b\ :sub:`15`
+>        - b\ :sub:`14`
+>        - b\ :sub:`13`
+> @@ -3387,6 +3523,10 @@ organization is given as an example for the first pixel only.
+>        - MEDIA_BUS_FMT_SGBRG16_1X16
+>        - 0x301e
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`15`
+>        - g\ :sub:`14`
+>        - g\ :sub:`13`
+> @@ -3408,6 +3548,10 @@ organization is given as an example for the first pixel only.
+>        - MEDIA_BUS_FMT_SGRBG16_1X16
+>        - 0x301f
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+>        - g\ :sub:`15`
+>        - g\ :sub:`14`
+>        - g\ :sub:`13`
+> @@ -3429,6 +3573,110 @@ organization is given as an example for the first pixel only.
+>        - MEDIA_BUS_FMT_SRGGB16_1X16
+>        - 0x3020
+>        -
+> +      -
+> +      -
+> +      -
+> +      -
+> +      - r\ :sub:`15`
+> +      - r\ :sub:`14`
+> +      - r\ :sub:`13`
+> +      - r\ :sub:`12`
+> +      - r\ :sub:`11`
+> +      - r\ :sub:`10`
+> +      - r\ :sub:`9`
+> +      - r\ :sub:`8`
+> +      - r\ :sub:`7`
+> +      - r\ :sub:`6`
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +    * .. _MEDIA-BUS-FMT-SBGGR20-1X20:
+> +
+> +      - MEDIA_BUS_FMT_SBGGR20_1X20
+> +      - 0x3021
+> +      -
+> +      - b\ :sub:`19`
+> +      - b\ :sub:`18`
+> +      - b\ :sub:`17`
+> +      - b\ :sub:`16`
+> +      - b\ :sub:`15`
+> +      - b\ :sub:`14`
+> +      - b\ :sub:`13`
+> +      - b\ :sub:`12`
+> +      - b\ :sub:`11`
+> +      - b\ :sub:`10`
+> +      - b\ :sub:`9`
+> +      - b\ :sub:`8`
+> +      - b\ :sub:`7`
+> +      - b\ :sub:`6`
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +    * .. _MEDIA-BUS-FMT-SGBRG20-1X20:
+> +
+> +      - MEDIA_BUS_FMT_SGBRG20_1X20
+> +      - 0x3022
+> +      -
+> +      - g\ :sub:`19`
+> +      - g\ :sub:`18`
+> +      - g\ :sub:`17`
+> +      - g\ :sub:`16`
+> +      - g\ :sub:`15`
+> +      - g\ :sub:`14`
+> +      - g\ :sub:`13`
+> +      - g\ :sub:`12`
+> +      - g\ :sub:`11`
+> +      - g\ :sub:`10`
+> +      - g\ :sub:`9`
+> +      - g\ :sub:`8`
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +    * .. _MEDIA-BUS-FMT-SGRBG20-1X20:
+> +
+> +      - MEDIA_BUS_FMT_SGRBG20_1X20
+> +      - 0x3023
+> +      -
+> +      - g\ :sub:`19`
+> +      - g\ :sub:`18`
+> +      - g\ :sub:`17`
+> +      - g\ :sub:`16`
+> +      - g\ :sub:`15`
+> +      - g\ :sub:`14`
+> +      - g\ :sub:`13`
+> +      - g\ :sub:`12`
+> +      - g\ :sub:`11`
+> +      - g\ :sub:`10`
+> +      - g\ :sub:`9`
+> +      - g\ :sub:`8`
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +    * .. _MEDIA-BUS-FMT-SRGGB20-1X20:
+> +
+> +      - MEDIA_BUS_FMT_SRGGB20_1X20
+> +      - 0x3024
+> +      -
+> +      - r\ :sub:`19`
+> +      - r\ :sub:`18`
+> +      - r\ :sub:`17`
+> +      - r\ :sub:`16`
+>        - r\ :sub:`15`
+>        - r\ :sub:`14`
+>        - r\ :sub:`13`
+> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
+> index 49be328d9a3b..b6acf8c8e383 100644
+> --- a/include/uapi/linux/media-bus-format.h
+> +++ b/include/uapi/linux/media-bus-format.h
+> @@ -122,7 +122,7 @@
+>  #define MEDIA_BUS_FMT_YUV16_1X48		0x202a
+>  #define MEDIA_BUS_FMT_UYYVYY16_0_5X48		0x202b
+>  
+> -/* Bayer - next is	0x3021 */
+> +/* Bayer - next is	0x3025 */
+>  #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
+>  #define MEDIA_BUS_FMT_SGBRG8_1X8		0x3013
+>  #define MEDIA_BUS_FMT_SGRBG8_1X8		0x3002
+> @@ -155,6 +155,10 @@
+>  #define MEDIA_BUS_FMT_SGBRG16_1X16		0x301e
+>  #define MEDIA_BUS_FMT_SGRBG16_1X16		0x301f
+>  #define MEDIA_BUS_FMT_SRGGB16_1X16		0x3020
+> +#define MEDIA_BUS_FMT_SBGGR20_1X20		0x3021
+> +#define MEDIA_BUS_FMT_SGBRG20_1X20		0x3022
+> +#define MEDIA_BUS_FMT_SGRBG20_1X20		0x3023
+> +#define MEDIA_BUS_FMT_SRGGB20_1X20		0x3024
+>  
+>  /* JPEG compressed formats - next is	0x4002 */
+>  #define MEDIA_BUS_FMT_JPEG_1X8			0x4001
 
-> 
-> You will see that the only vector test cases are v_initval and
-> vstate_prctl, which both output as expected in TAP format.
-> 
-> I do see that I messed up the return type of the is_vector_supported()
-> function, I had meant to change that to a bool from an int since
-> RISCV_HWPROBE_EXT_ZVE32X is greater than 32 bits. I will send a new
-> version.
-> 
-> - Charlie
-> 
+-- 
+Regards,
+
+Laurent Pinchart
 
