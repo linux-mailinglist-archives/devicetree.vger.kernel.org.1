@@ -1,265 +1,159 @@
-Return-Path: <devicetree+bounces-87282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409D4939031
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:53:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CA7939047
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAAE3281C17
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 13:53:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 706371F21C53
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 14:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D0716DC00;
-	Mon, 22 Jul 2024 13:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B9C16CD1F;
+	Mon, 22 Jul 2024 14:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EKhelIAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6607816D9BA;
-	Mon, 22 Jul 2024 13:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA858F5E;
+	Mon, 22 Jul 2024 14:03:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721656387; cv=none; b=QEmnxMMzZEdc46gPZKX/d1I0sDsZFHKwb7exMLV73yJP9ZF7WgRl24sZ1+D395K96Im5fnPRFMLRKC/UR/DGH4r7zq/+A3xOR/LhEHl+KmXz/vL3qGNJvbu8E6V/XypoQJQoCPiq16Mw7OszdsutzOZZIYKc6xv/iGBjjwrfc+M=
+	t=1721656987; cv=none; b=TObr26riQUF4nnAQ55XOZwPj/mW+kiqf6F4SylHu1yRzdqeN3W4sPBHlrA/6A2sUO1Tk8WveQe94Pm7gjgnezzK7J2KjEDurZILxu9NfsypTb8lmxVR0NUz2n6OPuMUyrvfg1p2C0RMIzvIs9dXXJrYmZvME+9RnBalz+NejG3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721656387; c=relaxed/simple;
-	bh=AbDvZ72xd2iAiDvkGlFhknAmLdGYCkcPuPuNKN8J0Hw=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=rYk08T7u2ACSSjMNEgG32AXt7q0XLSTCnPLkdauct+9qJWbFNum5+SnSMOlxUrejdkEt8xIo+4Hlut6Lr+v3BZY1n+MErIS+Ucob1YSZ7XD6nHP+XBW4FZQBIkLaKCLDt5MwrHPTGRof0+6LqpZXipdb02GgGFuZQEfg13qpn6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
-	by madrid.collaboradmins.com (Postfix) with ESMTP id A9CC537811CD;
-	Mon, 22 Jul 2024 13:53:01 +0000 (UTC)
-From: "Shreeya Patel" <shreeya.patel@collabora.com>
-In-Reply-To: <c926b73e-9ee7-4c4f-9c06-761929425468@yandex.com>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20240719124032.26852-1-shreeya.patel@collabora.com>
- <20240719124032.26852-3-shreeya.patel@collabora.com> <c926b73e-9ee7-4c4f-9c06-761929425468@yandex.com>
-Date: Mon, 22 Jul 2024 14:53:01 +0100
-Cc: heiko@sntech.de, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com, shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, kernel@collabora.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, "Dmitry Osipenko" <dmitry.osipenko@collabora.com>
-To: "Johan Jonker" <jbx6244@yandex.com>
+	s=arc-20240116; t=1721656987; c=relaxed/simple;
+	bh=ynwZ4t58tKSgmVQqyFTQtFETjRIxYDGf7mo1oxOOCAk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s66N7bBKDJUKEo140Hp3EDHJyaWE48Sjn3PWx0SCNIYXLRdhb6JrgvXdQFGhw/MeUUsYVTzvIoMfcynMlNnMIzPOqOkHRO6Ai0KiK1HjJu4PgaUJM9UtdlZPJHb+uGy+6f7f4uZbZkmbaevpcUXa0JhPau8DQQTKfgDG67arrJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EKhelIAJ; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1fd66cddd4dso25214895ad.2;
+        Mon, 22 Jul 2024 07:03:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721656985; x=1722261785; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mtHNdbyEsPDzz18RGuCJiRbWlFGvSqg44axaeswU7vE=;
+        b=EKhelIAJaxwSYkqNXwfDAWanfkunjSvZZrrfBiHxPb2il5m/+PO3d/3qSnrUTR9nKN
+         wmwrAuX8rF6jWNtvNPIkwe60aTzmC1fV8bfCNYupO6QSsUxYKRxi5EOlpA131gfzEjh3
+         R4LeyG7VW3YsKSZKTGf7l/freRl/6nU2F6K0NEPexjLVy/BhiHXiqEdFilMg80v6xETe
+         f0uVlgA+JYqmR07AkioKxViLL3rgFWjXzhLpbTS21Sre87qBhtpetjwoKzJ6dkdUw/3h
+         x/erFXnUVNuco6bx6sM1LftJsbw9jI1M3c4W+2IPHOQhK9q47cF98JoUdrptCDIbzDfm
+         MVgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721656985; x=1722261785;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mtHNdbyEsPDzz18RGuCJiRbWlFGvSqg44axaeswU7vE=;
+        b=YxX+o7uAJIvxFp5QBuG7DCNW1chOW/jaozc7K1z+egnqcI8QXZasNdCh2tcfYMWCmM
+         BkA/6m5PguANrsQS9UncyQzPUtqhNDgVxb6gjnTHHGGvJDH7ASr0OV5Zw2zTsjZ0dzls
+         g60kwef0scNE+Ob5xLLixSpRBMBQ7fFgrUia7MnXqsx8hwnA56yFXoHaUkbeYzrPEOs4
+         JTMkohgZlzIyRgDa8ONcN/OkshWuJ4YsDdqSbbeVkCq7G0S6asTcV4cXF5YMns//f2cg
+         8KJTKoHiX9KC25lD7CrTj4UJJmdUhbLzQuJP5wp6piWtxr93T+MtGkJanm0mMRhjQPdQ
+         uTmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVW4PuTg9TnGrQg5iAPhkRift0aGDEfcjpQoc06x3ulmkdVeFmQFmj6N2KNwzGvYtbvXpasNwHYvSxxB2ini2EnHhjbvE3NX9CnS2g82Mf9n8Gnp9T5K5hVw9Zy9HWCFq+sDF5fo/sej7c+7swgNM/l+ikKdgscdqlsIORyKuWT7VefQryGJ4e1
+X-Gm-Message-State: AOJu0YzRN3MQ00aE+uR0fILBnkxHqGqYc/FWAxBRGOz2P6aqbdkFMwXH
+	BanKQbCuUfis5MO/bRtd+3fs6r7DWhDbhJHatKRhjpf+FZ7c/Dqc
+X-Google-Smtp-Source: AGHT+IGFt3jkG6S7Vi8FeT6dkF7VryXqlry4aVmBf5zMYAhOQLHSE0E5fAr5qap1gGLWd1gskjd4EQ==
+X-Received: by 2002:a17:90b:789:b0:2c9:69d2:67a8 with SMTP id 98e67ed59e1d1-2cd16037674mr6660232a91.9.1721656985062;
+        Mon, 22 Jul 2024 07:03:05 -0700 (PDT)
+Received: from five231003 ([2405:201:c006:312d:8653:831a:b06f:a502])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cb772c23a8sm8322709a91.1.2024.07.22.07.02.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jul 2024 07:03:04 -0700 (PDT)
+Date: Mon, 22 Jul 2024 19:32:57 +0530
+From: Kousik Sanagavarapu <five231003@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Nishanth Menon <nm@ti.com>,
+	Santosh Shilimkar <ssantosh@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 2/3] dt-bindings: watchdog: ti,davinci-wdt: convert
+ to dtschema
+Message-ID: <Zp5mkcDca6jRvOnf@five231003>
+References: <20240721170840.15569-1-five231003@gmail.com>
+ <20240721170840.15569-3-five231003@gmail.com>
+ <629a925c-24ef-4a44-832f-a06a60c266a7@kernel.org>
+ <Zp5asqhipQHEoviM@five231003>
+ <2d8ceef8-9d5e-42a9-af2e-f9292728a3bf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3328a8-669e6400-1-609f7800@94177214>
-Subject: =?utf-8?q?Re=3A?= [PATCH v4 2/4] =?utf-8?q?dt-bindings=3A?=
- =?utf-8?q?_media=3A?= Document bindings for HDMI RX Controller
-User-Agent: SOGoMail 5.10.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2d8ceef8-9d5e-42a9-af2e-f9292728a3bf@kernel.org>
 
-On Saturday, July 20, 2024 16:14 IST, Johan Jonker <jbx6244@yandex.com>=
- wrote:
+On Mon, Jul 22, 2024 at 03:50:15PM +0200, Krzysztof Kozlowski wrote:
+> On 22/07/2024 15:12, Kousik Sanagavarapu wrote:
+> > On Mon, Jul 22, 2024 at 10:15:03AM +0200, Krzysztof Kozlowski wrote:
+> >> On 21/07/2024 18:28, Kousik Sanagavarapu wrote:
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    enum:
+> >>> +      - ti,davinci-wdt
+> >>> +      - ti,keystone-wdt
+> >>
+> >> This does not match the original binding and commit msg did not explain
+> >> why such change is necessary.
+> > 
+> > I don't understand.  Do you mean both the compatibles are always
+> > compulsory?  Meaning
+> > 
+> > 	compatible:
+> > 	  items:
+> > 	    - const: ti,davinci-wdt
+> > 	    - const: ti,keystone-wdt
+> 
+> Yes, this is what old binding said.
 
-Hi Johan,
+That was what I thought initially too, but the example in the old
+binding says otherwise and also the DTS from ti/davinci/da850.dtsi
+says
 
->=20
->=20
-> On 7/19/24 14:40, Shreeya Patel wrote:
-> > Document bindings for the Synopsys DesignWare HDMI RX Controller.
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> > Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-> > ---
-> >=20
-> > Changes in v4 :-
-> >   - No change
-> >=20
-> > Changes in v3 :-
-> >   - Rename hdmirx=5Fcma to hdmi=5Freceiver=5Fcma
-> >   - Add a Reviewed-by tag
-> >=20
-> > Changes in v2 :-
-> >   - Add a description for the hardware
-> >   - Rename resets, vo1 grf and HPD properties
-> >   - Add a proper description for grf and vo1-grf phandles
-> >   - Rename the HDMI Input node name to hdmi-receiver
-> >   - Improve the subject line
-> >   - Include gpio header file in example to fix dt=5Fbinding=5Fcheck=
- failure
-> >=20
-> >  .../bindings/media/snps,dw-hdmi-rx.yaml       | 132 ++++++++++++++=
-++++
-> >  1 file changed, 132 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/snps,dw=
--hdmi-rx.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-r=
-x.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> > new file mode 100644
-> > index 000000000000..96ae1e2d2816
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> > @@ -0,0 +1,132 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Device Tree bindings for Synopsys DesignWare HDMI RX Controller
-> > +
-> > +---
-> > +$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Synopsys DesignWare HDMI RX Controller
-> > +
-> > +maintainers:
-> > +  - Shreeya Patel <shreeya.patel@collabora.com>
-> > +
-> > +description:
-> > +  Synopsys DesignWare HDMI Input Controller preset on RK3588 SoCs
-> > +  allowing devices to receive and decode high-resolution video str=
-eams
-> > +  from external sources like media players, cameras, laptops, etc.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: rockchip,rk3588-hdmirx-ctrler
->=20
-> > +      - const: snps,dw-hdmi-rx
->=20
-> 1: Compatible strings must be SoC orientated.
-> 2: In Linux there's no priority in which string will probed first.=20
-> What's the point of having a fallback string when there's no common c=
-ode, but instead only the first string is used?
->=20
-> +static const struct of=5Fdevice=5Fid hdmirx=5Fid[] =3D {
-> +	{ .compatible =3D "rockchip,rk3588-hdmirx-ctrler" },
-> +	{ },
-> +};
->=20
+	wdt: watchdog@21000 {
+		compatible = "ti,davinci-wdt";
+		reg = <0x21000 0x1000>;
+		clocks = <&pll0_auxclk>;
+		status = "disabled";
+	};
 
-We believe the HDMIRX driver can be used for the Synopsys IP on other S=
-oCs
-in the future, which is why we have added snps,dw-hdmi-rx as the fallba=
-ck compatible.
-Currently, we have tested the driver only on the RK3588 Rock5B, so we a=
-re using the
-rockchip,rk3588-hdmirx-ctrler compatible in the driver instead of the f=
-allback one.
+Or am I seeing it the wrong way?
 
+> > 
+> > It is enum because I intended it to align with the subsequent patch
+> > which changes DTS.
+> > 
+> >> This also does not match DTS.
+> > 
+> > Yes.  I've asked about changing the DTS in the subsequent patch.
+> > 
+> 
+> Changing the DTS cannot be the reason to affect users and DTS... It's
+> tautology. You change DTS because you intent to change DTS?
 
-Thanks,
-Shreeya Patel
+Not exactly.  I thought that the DTS was wrong when it said
 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 3
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: cec
-> > +      - const: hdmi
-> > +      - const: dma
-> > +
-> > +  clocks:
-> > +    maxItems: 7
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aclk
-> > +      - const: audio
-> > +      - const: cr=5Fpara
-> > +      - const: pclk
-> > +      - const: ref
-> > +      - const: hclk=5Fs=5Fhdmirx
-> > +      - const: hclk=5Fvo1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 4
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: axi
-> > +      - const: apb
-> > +      - const: ref
-> > +      - const: biu
-> > +
-> > +  memory-region:
-> > +    maxItems: 1
-> > +
-> > +  hpd-gpios:
-> > +    description: GPIO specifier for HPD.
-> > +    maxItems: 1
-> > +
-> > +  rockchip,grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      The phandle of the syscon node for the general register file
-> > +      containing HDMIRX PHY status bits.
-> > +
-> > +  rockchip,vo1-grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      The phandle of the syscon node for the Video Output GRF regi=
-ster
-> > +      to enable EDID transfer through SDAIN and SCLIN.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - power-domains
-> > +  - resets
-> > +  - pinctrl-0
-> > +  - hpd-gpios
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/power/rk3588-power.h>
-> > +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> > +    hdmi=5Freceiver: hdmi-receiver@fdee0000 {
-> > +      compatible =3D "rockchip,rk3588-hdmirx-ctrler", "snps,dw-hdm=
-i-rx";
-> > +      reg =3D <0xfdee0000 0x6000>;
-> > +      interrupts =3D <GIC=5FSPI 177 IRQ=5FTYPE=5FLEVEL=5FHIGH 0>,
-> > +                   <GIC=5FSPI 436 IRQ=5FTYPE=5FLEVEL=5FHIGH 0>,
-> > +                   <GIC=5FSPI 179 IRQ=5FTYPE=5FLEVEL=5FHIGH 0>;
-> > +      interrupt-names =3D "cec", "hdmi", "dma";
-> > +      clocks =3D <&cru ACLK=5FHDMIRX>,
-> > +               <&cru CLK=5FHDMIRX=5FAUD>,
-> > +               <&cru CLK=5FCR=5FPARA>,
-> > +               <&cru PCLK=5FHDMIRX>,
-> > +               <&cru CLK=5FHDMIRX=5FREF>,
-> > +               <&cru PCLK=5FS=5FHDMIRX>,
-> > +               <&cru HCLK=5FVO1>;
-> > +      clock-names =3D "aclk",
-> > +                    "audio",
-> > +                    "cr=5Fpara",
-> > +                    "pclk",
-> > +                    "ref",
-> > +                    "hclk=5Fs=5Fhdmirx",
-> > +                    "hclk=5Fvo1";
-> > +      power-domains =3D <&power RK3588=5FPD=5FVO1>;
-> > +      resets =3D <&cru SRST=5FA=5FHDMIRX>, <&cru SRST=5FP=5FHDMIRX=
->,
-> > +               <&cru SRST=5FHDMIRX=5FREF>, <&cru SRST=5FA=5FHDMIRX=
-=5FBIU>;
-> > +      reset-names =3D "axi", "apb", "ref", "biu";
-> > +      memory-region =3D <&hdmi=5Freceiver=5Fcma>;
-> > +      pinctrl-0 =3D <&hdmim1=5Frx=5Fcec &hdmim1=5Frx=5Fhpdin &hdmi=
-m1=5Frx=5Fscl &hdmim1=5Frx=5Fsda &hdmirx=5F5v=5Fdetection>;
-> > +      pinctrl-names =3D "default";
-> > +      hpd-gpios =3D <&gpio1 22 GPIO=5FACTIVE=5FLOW>;
-> > +    };
+	compatible = "ti,keystone-wdt", "ti,davinci-wdt";
 
+while it should have been
+
+	compatible = "ti,keystone-wdt";
+
+I was not sure about this though and hence marked both the patches as
+RFC, in case I was interpretting them the wrong way.
+
+Thanks
 
