@@ -1,105 +1,198 @@
-Return-Path: <devicetree+bounces-87428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295CB9396D4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 01:09:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D77D9396E2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 01:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39651F2236D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 23:09:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9683280D65
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 23:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91CE487B3;
-	Mon, 22 Jul 2024 23:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5137481B1;
+	Mon, 22 Jul 2024 23:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C3il9FYo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z2V5gxTu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D313770D;
-	Mon, 22 Jul 2024 23:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233E74655D
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 23:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721689782; cv=none; b=fT25Q6+fMsRsP6b5S4hDqWfVVVi4H5z06r4YVSFaNsBu3EQlJgDvmOHq2F1IV9jTN0+RpUTDMT/p45Cnt/njmp4lxxW2rQkb3HEEU2JK/xEQsYnm6yLpDy7zc1RFA5YkA3zx3yNsfqXcRTaqHrHt8FcfNpMusAUJ5c9joM3LRLw=
+	t=1721690575; cv=none; b=bUp0tL6Tfw1/Z2IOUtEHonVLgfHuL8mJEEbpct3tlvHEvoJUjLO1UF4OsH5gopLv7YUkZZpnM7eEw1fYdX5S1oVSD97EUR/Ofbrr738SnOXLEiaPRUGgtLX6yexppmU8f3BwH7eoWaT20wVnfqJd/Ycs1nad4Q3ejLjAtlgavLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721689782; c=relaxed/simple;
-	bh=NGlE/zK3V8uU4SAbTwuzZ3cIuKp+b5xQHGxqVgK0RKE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ABGYY5mOsuegyc7+hi2/6Jm5thaL9GsRCU94n1ksGzDcr3Br2rxzXi22RDrsovMo+aAq5qAxYB6U2/FHAR4niCqt5/gFAG3R8s3gCC6pbkkfUEjq49tAMHbRwkMz1rs7firtCZ0kBNTK7a8pdNLRkrudH14yX5lFO6YR4rdUpHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C3il9FYo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 339C4C116B1;
-	Mon, 22 Jul 2024 23:09:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721689782;
-	bh=NGlE/zK3V8uU4SAbTwuzZ3cIuKp+b5xQHGxqVgK0RKE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C3il9FYo6wStywXVPl8yU57lWzdCYNYl4/jUfDVPP3/tWLAESEHiwAlOtnRbvmcRm
-	 nagASD7zR+VkU8RDuvFUMUkIfG2dYhkEbyuUqYbImi/Ec9B12Cp415sWUnSm95Q214
-	 ol1FtEwWHwTsNXsAwzJSryPP9/pEdsva0p+H4XAdCq0rcl3dmy6IJHMHiZrN6LHj5e
-	 2JelYGpV4iJwiGGsmo/KvrtkPYjym/YkVFUjzlySGeYyRekvUtg3AW+Bv945Vh/nJE
-	 LHGBNnwZRxhGzH5Hg0i/tghY8hjJSm0zlKpIhXgigd8/gDZUy3s+KiwZw7UmYdt1VN
-	 iB8EdYy9z6rtA==
-Date: Mon, 22 Jul 2024 17:09:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org,
-	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org,
-	francesco@dolcini.it, frank.li@nxp.com
-Subject: Re: [DO NOT MERGE PATCH v2 11/16] dt-bindings: phy:
- mixel,mipi-dsi-phy: Allow assigned-clock* properties
-Message-ID: <20240722230934.GA233475-robh@kernel.org>
-References: <20240712093243.2108456-1-victor.liu@nxp.com>
- <20240712093243.2108456-12-victor.liu@nxp.com>
+	s=arc-20240116; t=1721690575; c=relaxed/simple;
+	bh=TcYljSFqXl7Jb0OT4IPat1dqAzX2nxQAVUCDYwbWnBg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K16CjeTm9VPxGRmHhyTRjKlLyyd9NMw1iqqEz+Vae+641bUwEstWtfVr4ncFF9387VVOqB8kXc5hfYP1Kl9GN65hS/H+JJwJHL51TgPeUyao66Nbbx0xDmA5e3QZM/5oGaGcNxERJ7NaAB/w4Hvaih5MCRNydH9GhOWJMcnT3Yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z2V5gxTu; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5a156557029so4062739a12.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 16:22:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721690572; x=1722295372; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=t+jM/IsbWS9TXRuDvqwtVn1m5MDOFVE7HjSSz5AGLpI=;
+        b=z2V5gxTuuTOT4r96jDHrhFQF2YhSGUNLFP+NohZFjkNC4SUrQRdPIv4S7sxllYY5Lc
+         jCn9eUnRpuKM+9dUiBWEpjOmQIGgg8S0Aqq5m1yreIBpQq7fF1oeLlsj23SLdBHt7mSm
+         Q3LPrzIP2D4pyKqEqAAuiZHJ7m2iSEf8wpwEHi9B22noGXsmyUxQ/FuiXorMiSLyjvGz
+         CgGA6xnLA6nlBtOCE4wEM6s9aipf9hP8EhVCOsKRdOoUkSUXSvCp1vF3+/DQKDEg8PfJ
+         bPcYtK9tO73joJKTfVuC4XEGY9PtDVftGL9TLf8la96AAeyMphPuQBrbVklWeESUE0kT
+         poww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721690572; x=1722295372;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t+jM/IsbWS9TXRuDvqwtVn1m5MDOFVE7HjSSz5AGLpI=;
+        b=R9ysSCzC7yxhI0V+IovRezCL8C9pShNuTl4FM1Frgr1Wju7iatAdpXb1/B+SyfuVkb
+         T+RJpXnpYH5AbftdYuyukob8+BxHM76UcnfAn4MQSGh2E585ja4tAPZjGfH+Cq7ihwwV
+         8HnSCINqqT+09uGFP808q7XHvHBy8upcXRWUuYVhaLEjoROUZWzJyxhaCnrxKnUVuku+
+         F0qMJ93Y8eVwcyxiXTi9qdknqk4q0e74OWay9MXlK7EJw09n47hUX0iDAEqadn9HIYvW
+         Xepv9orswHrmBLGRRu/9sGWCxKDSBfYeL48dfjmhKPVqu9wQOI7bImSI3wJY9wMJxljI
+         x2EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1tuP6D1dAE7Fq4dkOVjCkTI3ontmaTEWR3AK7JgzEXFe3QDPm8cwXyc86L5+tOIb2et7BraF9Fr61pvDh9heEaMnJ5rxiD87Xog==
+X-Gm-Message-State: AOJu0YzAcs3GruZiZJuCddvSaL1X20m9i93M89tMxDEdUAKQKHc6ByB+
+	F/eiufJjQDR2u55g45VIhdsEk1f4KCthJaySRZftB86tCgv2L2aVuWrPW8LDyW05J1tHy1GP0nQ
+	M
+X-Google-Smtp-Source: AGHT+IEx40B/5YwLpgdHxe49fMK0wig0HiOlBXtGXt+jBQAnrdyUWKm92AyHTbaCB9A57zFddPvPXw==
+X-Received: by 2002:a05:6402:42c3:b0:5a0:f7ca:5e97 with SMTP id 4fb4d7f45d1cf-5a478f67488mr6168374a12.12.1721690572137;
+        Mon, 22 Jul 2024 16:22:52 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a77d8be58csm2735784a12.4.2024.07.22.16.22.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jul 2024 16:22:51 -0700 (PDT)
+Message-ID: <cac3d7ba-2a62-479d-94c2-c6dc4d7a5ba2@linaro.org>
+Date: Tue, 23 Jul 2024 01:22:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240712093243.2108456-12-victor.liu@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: msm8998-lenovo-miix-630: enable
+ touchscreen
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jeffrey Hugo <quic_jhugo@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240722-miix630-support-v1-0-a6483cfe8674@linaro.org>
+ <20240722-miix630-support-v1-1-a6483cfe8674@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240722-miix630-support-v1-1-a6483cfe8674@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 12, 2024 at 05:32:38PM +0800, Liu Ying wrote:
-> assigned-clock* properties can be used by default now, so allow them.
+On 22.07.2024 1:57 PM, Dmitry Baryshkov wrote:
+> There is no point in keeping touchscreen disabled, enable corresponding
+> i2c-hid device.
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> 04F3:2608 Touchscreen as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input1
+> 04F3:2608 as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input2
+> 04F3:2608 as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input3
+> 04F3:2608 Stylus as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input4
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> v2:
-> * New patch as needed by MIPI/LVDS subsystems device tree.
-
-Seems like this could go on its own, but if you don't want it merged 
-then I don't need to review it.
+>  .../boot/dts/qcom/msm8998-lenovo-miix-630.dts      | 28 ++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 > 
->  .../devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml          | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
-> index 3c28ec50f097..286a4fcc977d 100644
-> --- a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
-> @@ -72,11 +72,6 @@ allOf:
->            contains:
->              const: fsl,imx8qxp-mipi-dphy
->      then:
-> -      properties:
-> -        assigned-clocks: false
-> -        assigned-clock-parents: false
-> -        assigned-clock-rates: false
-> -
->        required:
->          - fsl,syscon
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> index a105143bee4a..118c55f5bcfd 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> @@ -11,6 +11,24 @@ / {
+>  	chassis-type = "convertible";
+>  };
 >  
-> -- 
-> 2.34.1
-> 
+> +&blsp1_i2c5 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	tsc1: hid@10 {
+weird (and unused label)
+
+very non-specific node name too
+
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x10>;
+> +		hid-descr-addr = <0x1>;
+> +
+> +		interrupts-extended = <&tlmm 125 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		pinctrl-0 = <&i2c5_hid_active>;
+> +		pinctrl-names = "default";
+> +
+> +		wakeup-source;
+
+double tap to wake? tap to wake?
+
+> +	};
+> +};
+> +
+>  &blsp1_i2c6 {
+>  	status = "okay";
+>  
+> @@ -35,3 +53,13 @@ &remoteproc_mss {
+>  &sdhc2 {
+>  	cd-gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
+>  };
+> +
+> +&tlmm {
+> +	i2c5_hid_active: i2c5-hid-active-state {
+> +		pins = "gpio125";
+> +		function = "gpio";
+> +
+> +		bias-pull-up;
+> +		drive-strength = <2>;
+
+Since there are no other pin definitions, you can do better and not
+copy the old rotten style ;)
+
+Konrad
 
