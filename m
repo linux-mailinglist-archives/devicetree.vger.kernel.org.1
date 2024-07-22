@@ -1,181 +1,120 @@
-Return-Path: <devicetree+bounces-87175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA1D6938BE9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 11:19:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B44D938BFD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 11:24:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CCB02829C5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:19:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB5351F217E9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CDB16849F;
-	Mon, 22 Jul 2024 09:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC2F1684A7;
+	Mon, 22 Jul 2024 09:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RWe5q6ZI"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="E76QfAfh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8581014B945
-	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 09:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76BA61607B4
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 09:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721639977; cv=none; b=Tpx0RTWkID160eofyRxUlpTLO/us3kOwPauSsC3IM3Zxc4wPngWSjPmYhbsFliJMovVJOJvWTfB99JHaTPAjSaHmK6+37hcp5qoB+O/ftg2KUTodHtEf9ar2co5CMZNho40tEj75JCSbjecIHxEwwlEsCcq1HOi/DSmwWqsk4f0=
+	t=1721640284; cv=none; b=nIZ3fUX0fS8kImsI3G9fyRS89mqMIpWlb4kwT6tnYBz9NkQonot/On0pWQ+znmgnhN/VIR3gujwNr6n8cdVlJ7fbMwNDr9SugQ6ucKoxvdQKZPCjSv8s5Ijxf5XCwUrvOIPf/mcn0CWGpoyDL8gz1edO+GEDGaYs1CvyMuYoBiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721639977; c=relaxed/simple;
-	bh=KQQc/V15kavtbOUQ/Osta3RjY3Ph1hkx8TGV7hYTR/M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FmAjCBPenn114HVLnkJ8h0sml83Y8yoND4fPUPxnnQVzx8qfcUkkqLehDOagbd58ffbgOVI4zW/nRFQBszn4wX/tfOgETZkVBONxoAJPpNtapv3dAiraWzqT68uFlqN1H6VLXWKvKSkgiRIK+LXbuYtnny+vn78uDODY7WfzWwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RWe5q6ZI; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-426636ef8c9so28252635e9.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 02:19:35 -0700 (PDT)
+	s=arc-20240116; t=1721640284; c=relaxed/simple;
+	bh=c4VO7E8slmAUwu7CrskMROEb37MSLfQX0amVK8s9KKE=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=CV4R2pOPoRBiwxSjvTnp6fL0XGhOD9t31ysNpe9GUYexdxsVTJbVJSG/ncq3FSENqWk+PeScR47ms8MgUNS2cacMLr8NReOsmZ1yzJIJOVzkE8DcvLTOzWOSTz7IeDyVTy3qOPhYPD0K6WH4tm3DKGMRCw3HFhMmgi3FcBHCX8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=E76QfAfh; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1fc66fc35f2so25701845ad.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 02:24:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721639974; x=1722244774; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qZ2JcOv+3Hc90KpP1CpZ1KrnwMmaJ4lKBejoYuZUegM=;
-        b=RWe5q6ZIK53kK5b2HAe6Tp3CPHydv9txy60KHWVY9oCnUyWehXCq49Q96IEj06xX88
-         o69jQoeInqBA5fVYUDp5BQrIh3RkJlpOHHEsBKnc2qc584x3KgbECL5aXyYJvZ2gKDb5
-         oUdofJNDcVXiiTHX/VS5Vj8kEzojNIvzp3T1+PMW95m73njO/HXFCAPUx2Jdacy/FeXL
-         nGharNquRB7r8Q+0qbFtigwwo6pKfCk5+BxvRYMvDQuZIbnUF3HCmrUANqoWlw/NEqPI
-         bGIWehGgp9KXDpzrBlEU888byWT9TKdGD1EKs+4sWZDi8QbArt+weZOMKxsKWMyU0d+g
-         iOTg==
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1721640283; x=1722245083; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VumjMZEwUWBgDMHY2K8ArTMwJEHcLMaWA0OatEGrAqY=;
+        b=E76QfAfhpYaVpWAOOCAYSD3J/05eiclIGrQgSUzIcd7rYbY0MwIJ52ReYqdTb6vlbi
+         OuHu0hSo9Ui6eKO8QVUKLvAMWrfm11pvMP+0eNdwBSBwqLHHm3f1AHMg/wFRmHMOpXF7
+         vc4GbkYFyoTamldK0ja7+GEtZopGkV2npqgYj1ZSGS+09TriR9xZti83APCwynykr8X0
+         3VKTClN/DQxh6+2jZfLjSHm3taRpVUQ9Zl+tAPMpkqQddk1a3vmxT81opVvRWr0xwgai
+         64a7jKGND/IeFg4L60F+8ZHJBbtKF2E7eFarRm1wWN7iMYGHNH5sKRAaNYwgY7kpYKLH
+         fjnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721639974; x=1722244774;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qZ2JcOv+3Hc90KpP1CpZ1KrnwMmaJ4lKBejoYuZUegM=;
-        b=QxYBCJS9YkpcQTmss28cmBX47+a90Gj2ktVx2FGtFp4muEvE7baHuTOIx7CNz9PFU5
-         0r4LoTivJex9zJKjSN79bWcSwF/lNs52NI3d5JUJJs6MifNgxVO3L2PZVmE5tZhKDL2+
-         k5e4O+RFI4yMsLfcJSTS3I9VJiqcsHtLd1fyjAZZ1Invfa625akBtpZzG3L8a8y6PpU3
-         BQc4m6m4OsXxnPxFmRI1nnzx/MFYbIpSWxrtZkzDKX3amN6RiN68rVY30q1p2bs8zQvn
-         5HeYkyHXe67pAH6xnlokqcTpEOMCEdWmQ8QnsR2Vfvdn/yd8x3ogdD9epa2jCjezOjxk
-         uUpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVSRRkb53M1xA/2+Z4spNS07ZogR8mU0Eyl4PkEbWuuwFA48c9/uzAvrMOsWu5WjCMA4xinaDKR4sllvfGvJK1gEJcIQp4YY8i5g==
-X-Gm-Message-State: AOJu0Ywji+d9NnJzUijJGAG5aa9bFllybc0XVnR1Do4iEOcU4ee3NICl
-	3MmI/JQ6UzsJ5LhHCu594ujavIbR1dp1UiSLxM9dtLDiOlmnlD1CZiv6uEc55qg=
-X-Google-Smtp-Source: AGHT+IHa+K5jBglXHDgmcZFBnP1SIoX2b7FKGiKfJStkxLJdYfpgwBo9c3BHLhAPziJ3ctD0bMqGFw==
-X-Received: by 2002:a05:600c:83c8:b0:427:abf6:f0e6 with SMTP id 5b1f17b1804b1-427dc51f966mr44096065e9.9.1721639973877;
-        Mon, 22 Jul 2024 02:19:33 -0700 (PDT)
-Received: from [192.168.1.191] ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d68fa493sm120765705e9.10.2024.07.22.02.19.33
+        d=1e100.net; s=20230601; t=1721640283; x=1722245083;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VumjMZEwUWBgDMHY2K8ArTMwJEHcLMaWA0OatEGrAqY=;
+        b=i884bJrIElvjHrB39xuXpIDzqKh2FzMQbtRPGUPfBydKxhv5Gagx0ZhCOljNTo5kD4
+         M4imtpH7Ob0NlAfcQ9UpjiPm6Mrs8HpXT40bZULd/Go5o6qlpknHdB3Pz1+tHQd6I4oD
+         k+j0PjyoDsYKFr3V4pzigly7m5thpxMgYO8bea8gjEMcEmEcVE7TzJRZMmmEc8ERVWWB
+         jZ0n1Enk32l/XHQm+vPg8C7VRhap5sZZ+8k11t+B4N1QGvI8Dii0OeviWzdzblJSkoI5
+         B6xIhTy3xyVu4Qh5r8A1lY/LdelGwFeDJ15hexS99PxYEomN93sHE3IzIRxhjNJv3Age
+         UQkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUHVNhm8Qkb2NprU3OMZWXtXuauK8ZervXNgc8kiu8l0SYdYuHbFze8xfhas0qp/zTg0O2ZZgvJ9hHlNtecTTky4bBKpRtEutUDuQ==
+X-Gm-Message-State: AOJu0Yzw7jxR9YeZa/g8opxvIF+D1Nuj6sKuHHyozbFg8B/OA6bwEvz8
+	SH63pEOg9tc3rqP0w/JtJQhuCPFjYNeQcSF9zUyGp8U9GtzMLkGBh1a7H1oi94g=
+X-Google-Smtp-Source: AGHT+IGJ+uvD9+yLKvevm6ajJFqdrqJc1OpiqXZiUgLLrUs/hmPSnu+ZQsCsNmS7e+iL5Byj4jAfaw==
+X-Received: by 2002:a17:903:234a:b0:1fd:7432:16c8 with SMTP id d9443c01a7336-1fd743219a7mr120075385ad.10.1721640282674;
+        Mon, 22 Jul 2024 02:24:42 -0700 (PDT)
+Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70d26efe61dsm1639901b3a.149.2024.07.22.02.24.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jul 2024 02:19:33 -0700 (PDT)
-From: Rayyan Ansari <rayyan.ansari@linaro.org>
-Date: Mon, 22 Jul 2024 10:18:50 +0100
-Subject: [PATCH v2] dt-bindings: PCI: qcom,pcie-sc7280: specify eight
- interrupts
+        Mon, 22 Jul 2024 02:24:42 -0700 (PDT)
+From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	sam@ravnborg.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	dianders@chromium.org,
+	hsinyi@google.com,
+	awarnecke002@hotmail.com,
+	dmitry.baryshkov@linaro.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 0/2] Modify the method of obtaining porch parameters
+Date: Mon, 22 Jul 2024 17:24:26 +0800
+Message-Id: <20240722092428.24499-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240722-sc7280-pcie-interrupts-v2-1-a5414d3dbc64@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAPkjnmYC/4WNQQ6DIBREr2L+ujSAKNZV79G4AET9SQPkY00b4
- 91LvUCXbybzZofsCX2GvtqB/IYZYyggLxW4xYTZMxwLg+RScS06lp2WHWfJYanC6oleac2sHWv
- VNny8WSuhjBP5Cd+n+DEUXjCvkT7nzyZ+6V/lJphgkittJlPbxur7E4OheI00w3AcxxfbzXTHv
- QAAAA==
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Rayyan Ansari <rayyan.ansari@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2856;
- i=rayyan.ansari@linaro.org; h=from:subject:message-id;
- bh=KQQc/V15kavtbOUQ/Osta3RjY3Ph1hkx8TGV7hYTR/M=;
- b=owGbwMvMwCXmtuJiX/SRuS2Mp9WSGNLmqSjovdnZZn1q57FDmVsMzZIfBHbP8z+858uij9ZHb
- mRP0v8yo6OUhUGMi0FWTJHlcNOXNa+3Owld2V51CmYOKxPIEAYuTgGYyLPPjAzN3260xPi0339m
- ycVSMFvrVRK/5n35Ra+qNqkxJSc+LlFiZJjKpTxnxq3wZcuCXEp4TS/oOk/wqb7EdyRy8WZBMdd
- lszkA
-X-Developer-Key: i=rayyan.ansari@linaro.org; a=openpgp;
- fpr=C382F4ACEBB74212D4B77ACA46A8D18E5BC49D84
 
-In the previous commit to this binding,
-commit 756485bfbb85 ("dt-bindings: PCI: qcom,pcie-sc7280: Move SC7280 to dedicated schema"),
-the binding was changed to specify one interrupt, as the device tree at
-that moment in time did not describe the hardware fully.
+The current driver can only obtain the porch parameters
+of boe-th101mb31ig002. Modify it to obtain the porch
+parameters of the panel currently being used.
 
-The device tree for sc7280 now specifies eight interrupts, due to
-commit b8ba66b40da3 ("arm64: dts: qcom: sc7280: Add additional MSI interrupts").
+Also switch to the drm_connector_helper_get_modes_fixed() function 
+to get the porch parameters.
 
-As a result, change the bindings to reflect this.
+Changes between V3 and V2:
+- PATCH 1/2: No changes.
+- PATCH 2/2: Keep bpc settings and drm_connector_set_panel_orientation() function.
+- Link to v2: https://lore.kernel.org/all/20240716121112.14435-1-lvzhaoxiong@huaqin.corp-partner.google.com/
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
----
-Changes in v2:
-- Fixed formatting of commit message, added r-b tags
-- Link to v1: https://lore.kernel.org/r/20240718-sc7280-pcie-interrupts-v1-1-2047afa3b5b7@linaro.org
----
- .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  | 24 ++++++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+Changes between V2 and V1:
+- PATCH 1/2: No changes.
+- PATCH 2/2: Switch to the drm_connector_helper_get_modes_fixed().
+- Link to v1: https://lore.kernel.org/all/20240715031845.6687-1-lvzhaoxiong@huaqin.corp-partner.google.com/
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
-index 634da24ec3ed..5cf1f9165301 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
-@@ -53,11 +53,19 @@ properties:
-       - const: aggre1 # Aggre NoC PCIe1 AXI clock
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 8
-+    maxItems: 8
- 
-   interrupt-names:
-     items:
--      - const: msi
-+      - const: msi0
-+      - const: msi1
-+      - const: msi2
-+      - const: msi3
-+      - const: msi4
-+      - const: msi5
-+      - const: msi6
-+      - const: msi7
- 
-   resets:
-     maxItems: 1
-@@ -137,8 +145,16 @@ examples:
- 
-             dma-coherent;
- 
--            interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
--            interrupt-names = "msi";
-+            interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "msi0", "msi1", "msi2", "msi3",
-+                              "msi4", "msi5", "msi6", "msi7";
-             #interrupt-cells = <1>;
-             interrupt-map-mask = <0 0 0 0x7>;
-             interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>,
+Zhaoxiong Lv (2):
+  drm/panel: boe-th101mb31ig002 : Fix the way to get porch parameters
+  drm/panel: boe-th101mb31ig002 : using
+    drm_connector_helper_get_modes_fixed()
 
----
-base-commit: 73399b58e5e5a1b28a04baf42e321cfcfc663c2f
-change-id: 20240718-sc7280-pcie-interrupts-6d34650d9bb2
+ .../drm/panel/panel-boe-th101mb31ig002-28a.c  | 20 +++----------------
+ 1 file changed, 3 insertions(+), 17 deletions(-)
 
-Best regards,
 -- 
-Rayyan Ansari <rayyan.ansari@linaro.org>
+2.17.1
 
 
