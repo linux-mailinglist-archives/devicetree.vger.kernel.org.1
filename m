@@ -1,76 +1,48 @@
-Return-Path: <devicetree+bounces-87085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469CA938840
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E131938875
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:49:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9AB11F2139F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 05:27:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF1021F212B6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 05:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D630417991;
-	Mon, 22 Jul 2024 05:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B7617591;
+	Mon, 22 Jul 2024 05:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WUK+wcL4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cnOUMEHX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFAE7FD;
-	Mon, 22 Jul 2024 05:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAF317580;
+	Mon, 22 Jul 2024 05:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721626060; cv=none; b=oZ/OwI1UcvTDUZk9h2H4fP0e4S/FMjKUJQIrHPAOk+UdSJYwkyFehLZM87plgzxItMYGuH7k4iVd+ptayORlr5ejYWUWeAsvUjS6pbE3XehbpoCYZ9PQoiyySePEr8Jzj4RfDJ7rAkbOM+Ep8zWmZTEclVfVpCvpiw5T1Y46cHY=
+	t=1721627342; cv=none; b=sV6FjpD94fOEmvqBltHsRn8mYLEASVDTA3zjrTIOGb0NeK3+P7N1BanLIW2DxR40fAg7K3ZMyda5ROJP5NGWlY1VAGvUQRqj/BSzOo5vBCJS5emKn2RBdpm9bxnonRs8DqSpP6umbWIIIQjGFk2Gc8SEAf33DDOqHrmnY9qyLiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721626060; c=relaxed/simple;
-	bh=7vJcR43eUVDiDCdfZqzYNfsvCvmYIyH7r6GoLbCvvDk=;
+	s=arc-20240116; t=1721627342; c=relaxed/simple;
+	bh=XzEok5NcFCLF0H8YZyRLoUBL2fVIZ6Kor2YGKH0dzu4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KILkW3nkYGHTFHf7vqcuXEd29wZAN7PFJM1M+ISWtxE6KUcElg4rhXN8clcNvn3D3jrdTB6exprMOHD4ky3U60ikANskFWJmuXUmTs1n+sP7l9mpiZEtlfLsdpbnTgfe343Yui+UtVmaHj/59EA1IUC/M9diuCdifuMukwDRJh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WUK+wcL4; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7a03ada9660so647566a12.3;
-        Sun, 21 Jul 2024 22:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721626058; x=1722230858; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=jYhNlL0TW9Cy2/nk3DCvoidRHhuMUgDy0eNQxmk0POU=;
-        b=WUK+wcL4TcyhjDNe1i9SHM3RQs04yCjj8RzrwIa1YRefI3KJxWPGdAv6gn/EwAgw+N
-         RWEvKm8kzjSLXcp0MaUVOtZGUCnVBuX9H63StpYB4+6wHqgbF7hHrnKOChRBWzg9C+mo
-         vy1U4d+quK/vIiIv2AjpR8d5GWMe2z5VZ+YC93fws8n2oub01G7UicYukAVjhKaBrjp2
-         z4Aa0WrdKQBbHvGXJX5iafXjjfdZopHXIuYPBYj27Cov642m5568Q9Y9QfOdYXlygacf
-         UOAqQ5dh3OEpjQeqzySTT1U0jsQgH+JdnulUL6U4mpS8B26enUENWY4bidAwYWlps4S/
-         oCBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721626058; x=1722230858;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jYhNlL0TW9Cy2/nk3DCvoidRHhuMUgDy0eNQxmk0POU=;
-        b=B/O5UBhXty+PI/fjW/dRIGYvLO8Nbgkf6EP7zIE9ws6efHdh5cgl+5/betKDEISMRp
-         +KmZO5PuSf9ZHEc9aBzcDhvMuvdAhLJ65vC4esB49xc2jg4jm9jaMNeTO5YSGtA/CMUH
-         dS8sXbKzh0afWABPa/kqbNuIgI692xaVZHJlAdtDGjHNGk5YhSziesyeQ0waHY+tuoaN
-         exfntJ/rt9rLpJzxFyhjWwBD0gjx35gLhgDbnDLL3pQUYacvC4xagm7hOCFHjRfZOPVX
-         /xoKfgQR8fnEkJjkbkoYcLWPsXqsqd2ZjIi7DfWN8GS//H+HVuUwmoursZDaTuGJ9o5e
-         eLJA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgz0/fMAJzSArj//w83xaqWio5suC0fdGYWzgIgmG3SkR9H8gNp+6EE0hJF82U09G1vyVcuvHVNjelqB502WfWmk4vDHp5S/XQ72yLUTXpEbKf1JaAv1wtiJNlbA5siTI8rC2xMgkugfMuiaPYPFp4e8L9GZNUr0SjckccbsAvRuNkyg==
-X-Gm-Message-State: AOJu0Yx3P/XEc/cIFv0K2fZq5tFV5AQYMsuQnasqCO/+xILsXdmn0Mzf
-	EjPBJtTQxoD9kOmIWSxDHSOcPHRTz7a4x+WSsNbmUzfBCYwyHuiZ
-X-Google-Smtp-Source: AGHT+IFgkPE9Gl1Dsdag0orsrBq5Uw2P0oA6hW+NPWFPfXaQkYzQRd/0EunZ3qrlWSGPXxHAajZAfQ==
-X-Received: by 2002:a05:6a21:78a5:b0:1c0:e9dd:11b8 with SMTP id adf61e73a8af0-1c4285ef2a3mr3262428637.28.1721626058283;
-        Sun, 21 Jul 2024 22:27:38 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f28f97fsm45848925ad.75.2024.07.21.22.27.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jul 2024 22:27:37 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <5d17aa29-8963-4951-9598-d1b9ca7a10d4@roeck-us.net>
-Date: Sun, 21 Jul 2024 22:27:35 -0700
+	 In-Reply-To:Content-Type; b=kl8d994v6BezHiDs472TBzugddK1MZVdOxSWz5+qqS0Ya3bkWKnLSyQ8H46+C5INygAk/ejgx0VzB5eddFM6FKqsDtY3fE9U6JBrawBqU2ZVFQdW+QYk4fobo+FWmW3wMTHSy03es5mLjnfz1QbCPSS8jk7UhxR5LN8Ib4VR08k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cnOUMEHX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07AA8C116B1;
+	Mon, 22 Jul 2024 05:48:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721627342;
+	bh=XzEok5NcFCLF0H8YZyRLoUBL2fVIZ6Kor2YGKH0dzu4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cnOUMEHXuHMTLZqfDbCQfoqpZenGtC9oXxXYliTXLR08UrYxtKbJs6ZPaNeQxqMiG
+	 y0dt0vCWFpkd5XnJVRRc8k3gFgeLM8VcpIDJcLtX74x19OH9Tjuc7U/pN6T4DPlcky
+	 OZdz5D4t7X1+xl5RDQJ0luN+TOfHAamE54zie1yXOEa57yxCVBjtI6C3BDmTJcGLHA
+	 lvjwZxW/or4ssSNT3IUJykmSB2T61wSaXpAK+WPu116X1s4G6KKBZpFP/NjHjJkz8w
+	 sjZuUQkCrJs1aWxN4RUP6SFOXeqyvNHnSoxAR6XMYQnlxDvVWFp6KMmII9AMi00HFO
+	 N1aGuNOaRgfIw==
+Message-ID: <b4a83536-aa42-4512-8b75-68b81561669c@kernel.org>
+Date: Mon, 22 Jul 2024 07:48:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,171 +50,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/3] hwmon: (adt7475) Add support for configuring
- initial PWM state
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, ukleinek@kernel.org
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20240722005825.1800403-1-chris.packham@alliedtelesis.co.nz>
- <20240722005825.1800403-4-chris.packham@alliedtelesis.co.nz>
- <15f4c51c-3f7d-4e93-9c3a-71ac1d626463@roeck-us.net>
- <c261c74f-6829-4888-9836-6f27ba87dc25@alliedtelesis.co.nz>
- <ed179848-2c8c-41ef-acca-a53d958a30b6@roeck-us.net>
- <e28e9ff2-a48e-4cf2-b763-6bf3b5d9a959@alliedtelesis.co.nz>
+Subject: Re: [PATCH v2 1/9] dt-bindings: power: supply: max77693: Add
+ monitored-battery property
+To: Artur Weber <aweber.kernel@gmail.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
+ Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
+ Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+References: <20240715-max77693-charger-extcon-v2-0-0838ffbb18c3@gmail.com>
+ <20240715-max77693-charger-extcon-v2-1-0838ffbb18c3@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <e28e9ff2-a48e-4cf2-b763-6bf3b5d9a959@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240715-max77693-charger-extcon-v2-1-0838ffbb18c3@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 7/21/24 21:36, Chris Packham wrote:
+On 15/07/2024 14:55, Artur Weber wrote:
+> Add the monitored-battery property, so that its constant charge current
+> property can be used to specify the current limit to use for fast charge
+> (when plugged into a wall charger).
 > 
-> On 22/07/24 16:27, Guenter Roeck wrote:
->> On 7/21/24 21:09, Chris Packham wrote:
->>>
->>> On 22/07/24 15:53, Guenter Roeck wrote:
->>>> On 7/21/24 17:58, Chris Packham wrote:
->>>>> By default the PWM duty cycle in hardware is 100%. On some systems this
->>>>> can cause unwanted fan noise. Add the ability to specify the fan
->>>>> connections and initial state of the PWMs via device properties.
->>>>>
->>>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>>>> ---
->>>>>
->>>>> Notes:
->>>>>      Changes in v6:
->>>>>      - Use do_div() instead of plain /
->>>>>      - Use a helper function to avoid repetition between the of and non-of
->>>>>        code paths.
->>>>>      Changes in v5:
->>>>>      - Deal with PWM frequency and duty cycle being specified in nanoseconds
->>>>>      Changes in v4:
->>>>>      - Support DT and ACPI fwnodes
->>>>>      - Put PWM into manual mode
->>>>>      Changes in v3:
->>>>>      - Use the pwm provider/consumer bindings
->>>>>      Changes in v2:
->>>>>      - Use correct device property string for frequency
->>>>>      - Allow -EINVAL and only warn on error
->>>>>      - Use a frequency of 0 to indicate that the hardware should be left as-is
->>>>>
->>>>>   drivers/hwmon/adt7475.c | 130 ++++++++++++++++++++++++++++++++++++++++
->>>>>   1 file changed, 130 insertions(+)
->>>>>
->>>>> diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
->>>>> index 4224ffb30483..fc5605d34f36 100644
->>>>> --- a/drivers/hwmon/adt7475.c
->>>>> +++ b/drivers/hwmon/adt7475.c
->>>>> @@ -21,6 +21,8 @@
->>>>>   #include <linux/of.h>
->>>>>   #include <linux/util_macros.h>
->>>>>   +#include <dt-bindings/pwm/pwm.h>
->>>>> +
->>>>>   /* Indexes for the sysfs hooks */
->>>>>     #define INPUT        0
->>>>> @@ -1662,6 +1664,130 @@ static int adt7475_set_pwm_polarity(struct i2c_client *client)
->>>>>       return 0;
->>>>>   }
->>>>>   +struct adt7475_pwm_config {
->>>>> +    int index;
->>>>> +    int freq;
->>>>> +    int flags;
->>>>> +    int duty;
->>>>> +};
->>>>> +
->>>>> +static int _adt7475_pwm_properties_parse_args(u32 args[4], struct adt7475_pwm_config *cfg)
->>>>> +{
->>>>> +    unsigned long freq_hz;
->>>>> +    unsigned long duty;
->>>>> +
->>>>> +    if (args[1] == 0)
->>>>> +        return -EINVAL;
->>>>> +
->>>>> +    freq_hz = 1000000000UL;
->>>>> +    do_div(freq_hz, args[1]);
->>>>> +    duty = 255 * args[3];
->>>>> +    do_div(duty, args[1]);
->>>>> +
->>>>
->>>> Gues I am a bit at loss here, just as 0-day. Why use do_div ? It is only needed
->>>> for 64-bit divide operations.
->>>
->>> Mainly because of Uwe's comment on v5. I think I've avoided the original u64 issue now that I'm converting fwnode_reference_args::args to a u32 array. I can probably get away with plain division, although 255 * args[3] / args[1] might overflow in theory but shouldn't in practice.
->>>
->>> I'll let the earth turn and send out a v7 that uses plain division unless someone has a strong opinion that I should sprinkle some more u64s around.
->>>
->>
->> You lost me, sorry. Neither duty nor freq_hz are u64. What u64 variables
->> are you talking about ? Using so_div doesn't make those variables u64.
-> 
-> One way of fixing the 0-day complaint (I think) is to declare freq_hz and duty as u64 which would avoid all the theoretical overflow issues.
-> 
-> But plain division is probably easier to understand for everyone so I'll send out something like this in v7
-> 
->    (unsigned?) int freq_hz;
->    (unsigned?) int duty;
->    ...
->    freq_hz = 1000000000UL / args[1];
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+> Changes in v2:
+> - Switched to monitored-battery property from separate fast charge
+>   current property
+> ---
+>  .../devicetree/bindings/power/supply/maxim,max77693.yaml         | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 
-This can not overflow.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->    duty = 255 * args[3] / args[1];
-
-This will overflow if args[3] is larger than 16843009. What is its expected range ?
-But even then you'd want something like
-	duty = div_u64(255ULL * args[3], args[1]);
-
-or
-	if (args[3] >= args[1])
-		duty = 255;
-	else
-		duty = div_u64(255ULL * args[3], args[1]);
-to be able to drop the subsequent clamp_val() on duty.
-
-Guenter
+Best regards,
+Krzysztof
 
 
