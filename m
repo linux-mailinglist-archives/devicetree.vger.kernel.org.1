@@ -1,108 +1,110 @@
-Return-Path: <devicetree+bounces-87291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0F1939109
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:53:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8B4939130
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 17:01:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27C211C21464
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 14:53:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A010282560
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 15:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24CC316DC33;
-	Mon, 22 Jul 2024 14:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9E516D9CD;
+	Mon, 22 Jul 2024 15:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QE6SvFrZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VU0gC2av"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814C516DC29;
-	Mon, 22 Jul 2024 14:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31C416D4CB;
+	Mon, 22 Jul 2024 15:01:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721660026; cv=none; b=n7v+qJvG+inVCTn7wKlfgxHWAkOSP0Oq4PAZocLFX4iTJr1C205BjybwvWgCxPGgK1E6HrO+pHDWfoOjwrwxSiJ6M/qvuNu3J+DyES3P0ByuHCWnHL/iCHKFD9L4hePxn8oUfJYSrrv7aXcnBl561IJIOrsqpYZlqJdB64t320M=
+	t=1721660473; cv=none; b=J2TnsCZOMcIB0ObCNDMKOUxEeVeqNL9nYHeS7hIPS2Sg6j/JDQk1+W+lBCAPeahqZukGQAXIP8sFPhPSNNl3NmUdjkrIxkRbSWt/fWZrAUEtAXqVdN9j7gKLNWpSoMaKYiF2REU7Nzgtxqa8pUd+Inog2yF9UCusxYqUMQqdT3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721660026; c=relaxed/simple;
-	bh=ReJ6PIw4rNKKvjtKFWY7U3j9FDNjTAGJ375FqNKVD1w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YysU5x1ja8VCNzMajPnFj7gIUPT13tsssgUAyxHbZECz7RQiqySube2QQFR2DvABNFsMI1S+eqJ/HIbLoxVIfM9EnZaNGFFwP5LP0HJqFHJSjV4+heRmmvoq7T43nVn8O9+iw8g8mCx5peWHVscZfdKiXOfvZqIuetjYPvdbvqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QE6SvFrZ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1721660022;
-	bh=ReJ6PIw4rNKKvjtKFWY7U3j9FDNjTAGJ375FqNKVD1w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QE6SvFrZXY9RlL7OIqqF0pMEBZndfkhJcS49Wvl3dyWdMPjVDqoWFPTnE6C452FEP
-	 ZRe+0qzLzTJKR1XuZbZbiXzunsc/SiyBL0AsygI5DMztO2nxLHtQji0JgtG6juH/n7
-	 yhY4feI+mVqEZdxMMc/GDrUX8j4qLpXn9xy2oGY8sPqU0HiaOs6N18Mk6yqt138M9A
-	 LCnR7UacjOIcQRwXsaHpLt7Y+f/6zmErQCJhnp09ypYfFQuRbYICX+UGiSP217mep/
-	 zSSoOQFcV5WwAcEWihxAo0qaqwKur74BpWYPB5W49T9aFc36+KT+mpw0BUz7YblgUE
-	 L2x6ncpUeYHjQ==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6B6783780523;
-	Mon, 22 Jul 2024 14:53:40 +0000 (UTC)
-Date: Mon, 22 Jul 2024 10:53:38 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Macpaul Lin <macpaul.lin@mediatek.com>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1721660473; c=relaxed/simple;
+	bh=tOTSEb+zxooFTv0SqVni8o6tNy6k03qvSLo2G9OoC28=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Jw+eebtWhYcCTLWlW1Ofs0TBK2luAusbVIAsS/11Wq0jH5K77LOpye5OuoYZxTCHJSOTBUCygq5emzWPKUB04y4+X8oqNxUmFe6X3n72OtwxaVgjmW75HGkDzKcGNmQqZfHZLUYpRP10ft9aHDlOgZIvEfEZC5HBBgB1kRZCfZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VU0gC2av; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2cb63ceff6dso2288531a91.1;
+        Mon, 22 Jul 2024 08:01:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721660471; x=1722265271; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LifFp8za0/fDe/DMyUuD2kVYz+L5AS9snMHlQAxSzgg=;
+        b=VU0gC2avwzF1K+BP2CsPS8qTOZxUFueJadRaZkXaBw2XNxbPL78l553Zh7cpVBJ8ow
+         tbFFcJF5zrsK60hfHgoKm3Ra9Po6g1WzRRjgWwqI5+qTwuz8gwVUaa9ptYJhxKwltsMe
+         XrhgTlJdKHhyb0F1CFSBGpLCUpOfjlmXK6kYA9q+MmFkKfBj1h96waCGteqEtu+c6bfC
+         1HXE+9f+CNTqxfEsnxIwB3XYquWVB4fA9KZhW1xhxtF5DaIP8LyyAnXvSVDpV7idGp6Q
+         08LIdUyvabh6xVL1SWtHmlA95wJmFjZ8nidILcoXTlj9Zv8KTkUrZ+KFEQ6QepondoJO
+         zxHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721660471; x=1722265271;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LifFp8za0/fDe/DMyUuD2kVYz+L5AS9snMHlQAxSzgg=;
+        b=grdgv3E1mjqvyNN4K3U9cJtx9D66czAB57voeFLRSDGvKBrmQBBzXc3myebI9fJuB+
+         NtAdUmA0yxUd/pnrb472iXd8tMsT9ACPhpNvlpt8Jmyb1kOd/9ho75byTyu0uoPoZu1W
+         Xz8QcxE4hwKkEJzkNaNzP9+WmXkKt7OGl0cU3Qz8VgZfYavByxOz772Ej1SP8qLwSSMH
+         PwM296h6s3cFrLEDqM1UW23CIBTOZ2kxClr/8KbaNQjlIDSPLltBL66UZF0ikuXbcea+
+         5ZO6C15YoLANAxWNsDoeaG+kH316xb2jK1LfB1PjOtaZTFAUqZ7/Wkfmw0Q6fe/5rlsG
+         aWNg==
+X-Forwarded-Encrypted: i=1; AJvYcCUxdD1aGxsHhiBb8rkH4b70XOF/5lh2SznV6apHaP+9xn39P54WK1rk4f3klQ2nm5lugN4ouoSmCyid7ABTAswc2Fs5WzHosZGHIdJhYGohyLPgzE3mtzzqGz0heS10hgSmEQhK9mRzqA==
+X-Gm-Message-State: AOJu0Ywu+/sPIlrgkqjq4TXobS2fq97ZGpKWjZPjmbZ6lEosXKlppMOL
+	LWCBV+nDKETd8DCOVqEkJidGPcvk8t4ehQFTWwAVrYtekIKi2pwe
+X-Google-Smtp-Source: AGHT+IHp0kMpE5js4nkQXc2GMSlg1Q0sPAxE54CT3VyYZOAoOxlisjAmUKLKIXkE8VYoyJ2O+rqSkA==
+X-Received: by 2002:a17:90b:3d0:b0:2c9:5a87:f17c with SMTP id 98e67ed59e1d1-2cd2740f285mr3469822a91.15.1721660470911;
+        Mon, 22 Jul 2024 08:01:10 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cb77304a15sm8224207a91.19.2024.07.22.08.01.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jul 2024 08:01:10 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Patrick Williams <patrick@stwcx.xyz>
+Cc: Potin Lai <potin.lai@quantatw.com>,
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>
-Subject: Re: Probe failure of usb controller @11290000 on MT8195 after
- next-20231221
-Message-ID: <fab8e144-e5ef-4ce8-a74a-89024cd95100@notapiano>
-References: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
- <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
- <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
- <da27d957-866f-f055-9e83-cdc362d98dc7@mediatek.com>
- <2dba1638-f155-463b-8f87-421101b8f4f2@collabora.com>
- <521df3a8-5bc2-4e81-a819-02b755c88d3a@notapiano>
- <ac0d1ba5-1ed0-4d4d-a287-1d3e6efadc0a@collabora.com>
- <ea97fb15-684e-4009-b312-f39c2acdde5b@notapiano>
- <9f12777b-b8b6-4d34-b336-7637e551b552@collabora.com>
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH 0/2] Add Meta(Facebook) Catalina BMC(AST2600)
+Date: Mon, 22 Jul 2024 22:58:55 +0800
+Message-Id: <20240722145857.2131100-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.31.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9f12777b-b8b6-4d34-b336-7637e551b552@collabora.com>
 
-On Mon, Jul 15, 2024 at 02:04:54PM +0200, AngeloGioacchino Del Regno wrote:
-[..]
-> Besides, I also noticed that the CLK_APMIXED_PLL_SSUSB26M is missing from u2port1
-> and the reason why it works is because other u3phy0 should be enabling that before
-> u3phy1 inits and/or before the USB controller using U3P1 tries to initialize, so
-> while you're at it ... if you can please also add that to the u3p1, I appreciate.
-> 
-> 			u2port1: usb-phy@0 {
-> 				reg = <0x0 0x700>;
-> 				clocks = <&apmixedsys CLK_APMIXED_PLL_SSUSB26M>,
-> 					 <&topckgen CLK_TOP_SSUSB_PHY_P1_REF>;
-> 				clock-names = "ref", "da_ref";
-> 				#phy-cells = <1>;
-> 			};
+Add Linux device tree entry related to Meta(Facebook) Catalina specific
+devices connected to BMC(AST2600) SoC.
 
-I'm not familiar with the clock topology on MT8195, but I noticed the
-CLK_APMIXED_PLL_SSUSB26M clock is currently only present in the USB3 phy nodes:
-u3port1 and u3port0. You're suggesting to add it to a USB2 phy node here. Is it
-needed by all USB2 phy nodes (u2port0, u2port1, u2port2, u2port3) then? 
+Potin Lai (2):
+  dt-bindings: arm: aspeed: add Meta Catalina board
+  ARM: dts: aspeed: catalina: add Meta Catalina BMC
 
-Thanks,
-Nícolas
+ .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../aspeed/aspeed-bmc-facebook-catalina.dts   | 1032 +++++++++++++++++
+ 3 files changed, 1034 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
+
+-- 
+2.31.1
+
 
