@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-87348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F809393AE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:41:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B04D19393B3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 20:42:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 796882824A1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:41:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E10DB1C2158A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9126B171651;
-	Mon, 22 Jul 2024 18:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E299A171E43;
+	Mon, 22 Jul 2024 18:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qt8BJMSu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYM+4JNL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68784171074;
-	Mon, 22 Jul 2024 18:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95CE17167D;
+	Mon, 22 Jul 2024 18:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721673694; cv=none; b=nfr2WnlT2sPZgqGfnXcKfMNiqMqi9XKe8uP8QhdoU3JUw5eKzQKdEkjPARJEfOagygO1K//HXGzlL3YkUEg1q2yVKXHZ9P1vohZFAmCKBTd9IOBjXLum441D9AnT4j2E4oqCBE82cJnKb2JzitaIgBIx743KS2QrmL0+XAuzmQM=
+	t=1721673698; cv=none; b=o1LOiNRGQAic6DSmUR2ElgjgXXKHW5sS9w8YFqyAxGQOfYnEwMCCSWZg2r0+qzlphW/olx4Iwl7ffjENKlJ2uU9poZLD2HVU6JU04YuY1UNb71+MMtofINAFa7UMVcus+8dxqeXzTaWvRwItxUuGEXWIFHNBdYGSpG3X+ABEY8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721673694; c=relaxed/simple;
-	bh=eKsiKDi83td80Cygwdo0Jd5hcxKG5FKYIIwCibICxeU=;
+	s=arc-20240116; t=1721673698; c=relaxed/simple;
+	bh=y0hQXaXm1Z0bh43rHFaXY9FdtGud+/3abXgd5MUoEGY=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Fxj7gfTMNXnV44IPRaKjpL/p+L2YqwR6rpMZOuBwmPfsnt/HBH3TCar/mu0E86pyDVxmty7NcGEUgk/4SdyBPmJ+ZRUedaR9Z3h0v7Zac1WXQgd0fu5/nupwEpufVY+NAm1U171w2fLztW4qhESQnCTdMJKotHlhj+nSeQQD6Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qt8BJMSu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D1E5C4AF10;
-	Mon, 22 Jul 2024 18:41:33 +0000 (UTC)
+	 Message-Id:Subject; b=OAY/qzqwzp/37C1F0B2BRciLJhdWFRs5gUxcbzwCYYT/jm2cH1kAi4W63j5rDqoZN0DISaa0eM7o4BWeOHrU/Zn7lCDjsZrHvWlJ/2owG1w4DoUBxsrsb0pUZ8sO6oLPzMxsjhhYqr/q7LAWjGB8MyjODAH1wCFp6BD+R26UhLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYM+4JNL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 939DBC4AF12;
+	Mon, 22 Jul 2024 18:41:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721673693;
-	bh=eKsiKDi83td80Cygwdo0Jd5hcxKG5FKYIIwCibICxeU=;
+	s=k20201202; t=1721673698;
+	bh=y0hQXaXm1Z0bh43rHFaXY9FdtGud+/3abXgd5MUoEGY=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=qt8BJMSuQq2upIMOTMggPfP+16UkW9bCZz9wp0H6ZY27l85/QzMfKgyICs5AHJEYi
-	 7Hlg7BxBY+5EUkuexFy1iiJUzEOls/yYYUG9yLxynAzaAZiVMriYD26OV76+a04P5W
-	 galC1KLHunA4IC/xrTEWAWm2ChXVi06Mt7jAKc3pGqWbJMBZtx8B5cM0TS/HF7UNm8
-	 azEvHasQOxye3QOsOtfIRJ+X+4uxe56HbBeJ1b6HS8Pboynu8jNEvpHXcMoCbBZEyQ
-	 so8rUhUj/BvHYPUJxndv4NgQLy/hlu6ZEXRJcqv+tZFS1nqCrq8zTDMHdEmN6W4N/z
-	 JYdgx4v5bSuyw==
-Date: Mon, 22 Jul 2024 12:41:30 -0600
+	b=uYM+4JNLuUOk6ptJugSUV/s4M9C7dDeutUWYnG+MxwodfnsofLQr1oOn5+YAWxLHx
+	 G74yGTGO/OKImDGurRO0+ta7/j4RXZ9Zo/irTfhzuMj2O8Cd2zUbWo6oUQmINpz6yN
+	 1E7pINoeXI7kiPA4KHrydxJfLGHJ/v+hBsjUEZnzwwxZyoq0GVefoEh8obnYINhHQ2
+	 8uCmWnuSjtPZ3q5oobk3wUBromZ+x5EOrqipHvNXy2y3TG6Fd5+v2EBeBxA4Nd9Vrn
+	 yu4RHnJD9JlDvPHJRuYlLJjRwy6GJW6nntJtlz3Zs1+RlAwROVQrvYjn/gH+3egXii
+	 ikf7UPbQq4X+w==
+Date: Mon, 22 Jul 2024 12:41:34 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -52,23 +52,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: ysionneau@kalrayinc.com
-Cc: Thomas Gleixner <tglx@linutronix.de>, 
- Conor Dooley <conor+dt@kernel.org>, Julian Vetter <jvetter@kalrayinc.com>, 
- linux-kernel@vger.kernel.org, Jules Maselbas <jmaselbas@zdiv.net>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Julian Vetter <jvetter@kalrayinc.com>, Jules Maselbas <jmaselbas@zdiv.net>, 
+ devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, 
  Jonathan Borne <jborne@kalrayinc.com>
-In-Reply-To: <20240722094226.21602-7-ysionneau@kalrayinc.com>
+In-Reply-To: <20240722094226.21602-8-ysionneau@kalrayinc.com>
 References: <20240722094226.21602-1-ysionneau@kalrayinc.com>
- <20240722094226.21602-7-ysionneau@kalrayinc.com>
-Message-Id: <172167364960.4405.5368780713667799253.robh@kernel.org>
-Subject: Re: [RFC PATCH v3 06/37] dt-bindings: Add binding for
- kalray,coolidge-itgen
+ <20240722094226.21602-8-ysionneau@kalrayinc.com>
+Message-Id: <172167365490.4512.1294837213673454855.robh@kernel.org>
+Subject: Re: [RFC PATCH v3 07/37] dt-bindings: Add binding for
+ kalray,coolidge-ipi-ctrl
 
 
-On Mon, 22 Jul 2024 11:41:17 +0200, ysionneau@kalrayinc.com wrote:
+On Mon, 22 Jul 2024 11:41:18 +0200, ysionneau@kalrayinc.com wrote:
 > From: Yann Sionneau <ysionneau@kalrayinc.com>
 > 
-> Add binding for Kalray Coolidge Interrupt Generator.
+> Add binding for Kalray Coolidge IPI controller.
 > 
 > Co-developed-by: Jules Maselbas <jmaselbas@zdiv.net>
 > Signed-off-by: Jules Maselbas <jmaselbas@zdiv.net>
@@ -77,11 +77,13 @@ On Mon, 22 Jul 2024 11:41:17 +0200, ysionneau@kalrayinc.com wrote:
 > 
 > Notes:
 > 
-> V2 -> V3: Fixed bindings to adhere to dt-schema
+> V2 -> V3:
+> - fixed bindings to adhere to dt-schema
+> - moved to interrupt-controller directory, like the related driver
 > ---
->  .../kalray,coolidge-itgen.yaml                | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/kalray,coolidge-itgen.yaml
+>  .../kalray,coolidge-ipi-ctrl.yaml             | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/kalray,coolidge-ipi-ctrl.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -89,12 +91,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/kalray,coolidge-itgen.example.dtb: interrupt-controller@27000000: reg: [[0, 654311424], [0, 4356]] is too long
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/kalray,coolidge-itgen.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/kalray,coolidge-ipi-ctrl.example.dtb: inter-processor-interrupt@ad0000: reg: [[0, 11337728], [0, 4096]] is too long
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/kalray,coolidge-ipi-ctrl.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240722094226.21602-7-ysionneau@kalrayinc.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240722094226.21602-8-ysionneau@kalrayinc.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
