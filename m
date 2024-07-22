@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-87330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31D79392B1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:44:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3329392BA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 18:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F3ADB2176E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:44:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27C1D1C214CD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 16:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9582C16EBE2;
-	Mon, 22 Jul 2024 16:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9A516DC3B;
+	Mon, 22 Jul 2024 16:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U8ic2+ht"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZdnvfcv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6615516E89B;
-	Mon, 22 Jul 2024 16:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BA5C2FD;
+	Mon, 22 Jul 2024 16:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721666687; cv=none; b=AIPdXTmVWCtrzqG2jP5lZ4KsHt2iuFEUmJZXLuF9zOE5DPcORvs8r+mJKmgKt7Z+K3nyyoAD5I97C0jnnBMcwoxDcL9pxfZtBb7TGVOHaxNHS4RwU1+M4aHTQ2U8j6zcObAVsJPzaOsRThwfsgUYOgicHPAyHY/BlK132uAN3eI=
+	t=1721667029; cv=none; b=t78jwwV0l1Qd7q2+DbWmoOjUwzegD5e+nkl1t83srI4IiBgjAMGf1oaUfvMaKFRnIGQ2DAr0DMrctPVk1/Ayyl7PRngoBh9Vw1ZXAJsc+aN8j1JxAnYtOzHSjD4SiBriT470W2faUMmHKV3UniPfHAS7LYCDtJ2LlcawPsPuw6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721666687; c=relaxed/simple;
-	bh=nMaQD7CcFCSVVlPv+PUVH+T24g4Li95JzDQj8TyNmdU=;
+	s=arc-20240116; t=1721667029; c=relaxed/simple;
+	bh=66t+9hIP68IAhD6QVB6l6ykYDYgg5yCXHj2vD1KEeC8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PLc++61B9BrvMZ7WVOFDZyowWs//UaWfwfAxjgas6MLyySlMeccE5277XkfBQh3EpyU9j7mFLHQPm6by7q3r5Cm+Oo8k0WaggHalgCpA50Tsnkvr2b+0QwPSHw9Pxzb2KLMFzsygN3IIbFV3NGSrCJG+XIkjIYV6wtqoTmYgLUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U8ic2+ht; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52104C116B1;
-	Mon, 22 Jul 2024 16:44:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=H8pCBFqGWusERRJnTan23hLHuFseM3OxWfMTQ6lTFr+Wc8wKaEeUhKZYV4KUt/3aFSbV/RdkkLan/dg0Pbb7Iyj3XRTArJ4jqCi5Pw3OH7DG790LJmGEBc6dRNMaz5IXl3T3bFllLZIXRGtPRqCZQmaJaQhtKX01Br3P6DIhvAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZdnvfcv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D04DCC116B1;
+	Mon, 22 Jul 2024 16:50:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721666686;
-	bh=nMaQD7CcFCSVVlPv+PUVH+T24g4Li95JzDQj8TyNmdU=;
+	s=k20201202; t=1721667028;
+	bh=66t+9hIP68IAhD6QVB6l6ykYDYgg5yCXHj2vD1KEeC8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U8ic2+htmt2MeAxldBS//m5HkTfNo98txmw5/51xyGtpgrLCiqHXUodcNV8ygx2c2
-	 X+8p50V8xfCoNUTCzG4gcsB7f1NgNufaOM+Ivccp6IyNVNNWFqM8gAhgxuhobqnCBl
-	 8MavFPdJDUFXBMvxMcZGlltDnkqr9I1kFIAZ/1pziJzaZQGokjBxwTj+Js2N6WsWOc
-	 LhRSzRZuOLWdtgGKcC2K7MGMUkLoFeEQiFHBCUTG0vPjJRULchLwk0uI1Xxrslj2Jl
-	 zVj/l8qa/lpvW8xXOgff5SzMHwWZipgjddasZ9FK5RLFIbKkl6VEEPsAAKM0FQ3tAI
-	 4tCEOPY/8wFjQ==
-Date: Mon, 22 Jul 2024 17:44:42 +0100
+	b=HZdnvfcvywZmjx/4GCW4ffOgZMwSc6LrqwpgC81/5bGJmqrVexcqlmZcNLOVHI+AZ
+	 +0AtmEFhW9DvYm8o+uNN0Eca8u2W6QjJmCs25AikaTXpfHKQAe4FaSzV1OCcWrk5OA
+	 G+Pwk07KBkUYjU3kWljsFUBr0yPbEcbhbs6f8IJha/2ZiLcw05PH9SefUdrNcU9c5y
+	 eYrAsVLFtXu8l8ABy04bZgx3AEibJnu88xyKBEdoE/GVXmczYPPi2TZD5jUJmgHFd0
+	 3zsEb0NO4+k9FmU7QRrzU2glc3NP3d5CW2GsRySdmMEjfwKZPtT2/EKfmOijhYTd6Q
+	 /WKB9fMquIvlw==
+Date: Mon, 22 Jul 2024 17:50:23 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Thippeswamy Havalige <thippesw@amd.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>, linux-doc@vger.kernel.org,
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, thippeswamy.havalige@amd.com,
-	linux-arm-kernel@lists.infradead.org, michal.simek@amd.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: xilinx-xdma: Add schemas for
- Xilinx QDMA PCIe Root Port Bridge
-Message-ID: <20240722-wham-molasses-ec515cc554a0@spud>
-References: <20240722062558.1578744-1-thippesw@amd.com>
- <20240722062558.1578744-2-thippesw@amd.com>
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 2/5] dt-bindings: arm: fsl: add imx-se-fw binding doc
+Message-ID: <20240722-popper-comfort-7538ea70c77b@spud>
+References: <20240722-imx-se-if-v6-0-ee26a87b824a@nxp.com>
+ <20240722-imx-se-if-v6-2-ee26a87b824a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,111 +64,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0qbwwrfU/idHp2B5"
+	protocol="application/pgp-signature"; boundary="iLD5d4oSUIlBzqiU"
 Content-Disposition: inline
-In-Reply-To: <20240722062558.1578744-2-thippesw@amd.com>
+In-Reply-To: <20240722-imx-se-if-v6-2-ee26a87b824a@nxp.com>
 
 
---0qbwwrfU/idHp2B5
+--iLD5d4oSUIlBzqiU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 22, 2024 at 11:55:57AM +0530, Thippeswamy Havalige wrote:
-> Add YAML devicetree schemas for Xilinx QDMA Soft IP PCIe Root Port Bridge.
+On Mon, Jul 22, 2024 at 10:21:37AM +0530, Pankaj Gupta wrote:
+> The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
+> creates an embedded secure enclave within the SoC boundary to enable
+> features like:
+> - HSM
+> - SHE
+> - V2X
 >=20
-> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+> Secure-Enclave(s) communication interface are typically via message
+> unit, i.e., based on mailbox linux kernel driver. This driver enables
+> communication ensuring well defined message sequence protocol between
+> Application Core and enclave's firmware.
+>=20
+> Driver configures multiple misc-device on the MU, for multiple
+> user-space applications, to be able to communicate over single MU.
+>=20
+> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+>=20
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
->  .../bindings/pci/xlnx,xdma-host.yaml          | 41 ++++++++++++++++++-
->  1 file changed, 39 insertions(+), 2 deletions(-)
-> ---
-> changes in v2
-> - update dt node label with pcie.
-> ---
-> diff --git a/Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml b/=
-Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml
-> index 2f59b3a73dd2..28d9350a7fb4 100644
-> --- a/Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml
-> @@ -14,10 +14,21 @@ allOf:
-> =20
->  properties:
->    compatible:
-> -    const: xlnx,xdma-host-3.00
+>  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 91 ++++++++++++++++=
+++++++
+>  1 file changed, 91 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml b=
+/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> new file mode 100644
+> index 000000000000..7511d0e9cf98
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/fsl,imx-se.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX HW Secure Enclave(s) EdgeLock Enclave
+> +
+> +maintainers:
+> +  - Pankaj Gupta <pankaj.gupta@nxp.com>
+> +
+> +description: |
+> +  NXP's SoC may contain one or multiple embedded secure-enclave HW
+> +  IP(s) like i.MX EdgeLock Enclave, V2X etc. These NXP's HW IP(s)
+> +  enables features like
+> +    - Hardware Security Module (HSM),
+> +    - Security Hardware Extension (SHE), and
+> +    - Vehicular to Anything (V2X)
+> +
+> +  Communication interface to the secure-enclaves(se) is based on the
+> +  messaging unit(s).
+> +
+> +properties:
+> +  compatible:
 > +    enum:
-> +      - xlnx,xdma-host-3.00
-> +      - xlnx,qdma-host-3.00
-> =20
->    reg:
-> -    maxItems: 1
-> +    items:
-> +      - description: configuration region and XDMA bridge register.
-> +      - description: QDMA bridge register.
-
-Please constrain the new entry to only the new compatible.
-
-> +    minItems: 1
+> +      - fsl,imx8ulp-se
+> +      - fsl,imx93-se
+> +      - fsl,imx95-se
 > +
-> +  reg-names:
+> +  mboxes:
 > +    items:
-> +      - const: cfg
-> +      - const: breg
-> +    minItems: 1
-> =20
->    ranges:
->      maxItems: 2
-> @@ -111,4 +122,30 @@ examples:
->                  interrupt-controller;
->              };
->          };
+> +      - description: mailbox phandle to send message to se firmware
+> +      - description: mailbox phandle to receive message from se firmware
 > +
-> +        pcie@80000000 {
+> +  mbox-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  sram:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - mboxes
+> +  - mbox-names
+> +
+> +allOf:
+> +  # memory-region
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8ulp-se
+> +              - fsl,imx93-se
+> +    then:
+> +      required:
+> +        - memory-region
+> +    else:
+> +      properties:
+> +        memory-region: false
+> +
+> +  # sram
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8ulp-se
+> +    then:
+> +      required:
+> +        - sram
+> +
+> +    else:
+> +      properties:
+> +        sram: false
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    senclave-firmware {
 
-tbh, don't see the point of a new example for this.
+Last revision this was "firmware", but now you've got something that
+appears non-generic. Why did you change it? The normal differentiator for
+multiple nodes is -[0-9]*, why can't you use that, if you're worried
+about multiple nodes?
 
-> +            compatible =3D "xlnx,qdma-host-3.00";
-> +            reg =3D <0x0 0x80000000 0x0 0x10000000>, <0x0 0x90000000 0x0=
- 0x10000000>;
-> +            reg-names =3D "cfg", "breg";
-> +            ranges =3D <0x2000000 0x0 0xa8000000 0x0 0xa8000000 0x0 0x80=
-00000>,
-> +                     <0x43000000 0x4 0x80000000 0x4 0x80000000 0x0 0x400=
-00000>;
-> +            #address-cells =3D <3>;
-> +            #size-cells =3D <2>;
-> +            #interrupt-cells =3D <1>;
-> +            device_type =3D "pci";
-> +            interrupt-parent =3D <&gic>;
-> +            interrupts =3D <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 85=
- IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names =3D "misc", "msi0", "msi1";
-> +            interrupt-map-mask =3D <0x0 0x0 0x0 0x7>;
-> +            interrupt-map =3D <0 0 0 1 &pcie_intc_0 0>,
-> +                            <0 0 0 2 &pcie_intc_0 1>,
-> +                            <0 0 0 3 &pcie_intc_0 2>,
-> +                            <0 0 0 4 &pcie_intc_0 3>;
-> +            pcie_intc_1: interrupt-controller {
-> +                #address-cells =3D <0>;
-> +                #interrupt-cells =3D <1>;
-> +                interrupt-controller;
-> +            };
-> +        };
->      };
+> +      compatible =3D "fsl,imx95-se";
+> +      mboxes =3D <&ele_mu0 0 0>, <&ele_mu0 1 0>;
+> +      mbox-names =3D "tx", "rx";
+> +    };
+> +...
+>=20
 > --=20
-> 2.25.1
+> 2.34.1
 >=20
 
---0qbwwrfU/idHp2B5
+--iLD5d4oSUIlBzqiU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6MegAKCRB4tDGHoIJi
-0pcBAP9LahMFVPGTtlUm8+OhxWG5Ur/e8PepALBK4xDJtO4ONQEA7BRaZ7ZjdO/u
-9xk3Bxqvw53xVCsmlLWgeSbSeylHWg0=
-=+Q7I
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp6NzwAKCRB4tDGHoIJi
+0mt9AP9uT5bF8Ef28A5zuCf5EZWLfCY/xWhJNXCln3owDgovygEAqM+oWbWX2nnG
+KKHdKE+HM2QM274P7GaHl3aqBtYhBAk=
+=B9e0
 -----END PGP SIGNATURE-----
 
---0qbwwrfU/idHp2B5--
+--iLD5d4oSUIlBzqiU--
 
