@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-87247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33177938D90
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 12:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B49938D9F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 12:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B010F1F2187D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:35:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A7491F20F4B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 10:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DACD16A399;
-	Mon, 22 Jul 2024 10:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BF616C69E;
+	Mon, 22 Jul 2024 10:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mj9aKqcX"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="0IhFle3D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A793234;
-	Mon, 22 Jul 2024 10:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5E52CA9
+	for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 10:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721644520; cv=none; b=o97P44KH6C6SZurb1AL9BoPlWgTnf4rQGzhXFzlDwvfZf/oUCqnzb9ghc5dlR7r/2/ZY15DatvrwSiXmiSehz0Qn5O5GDeRHmCsPKsNx374sGN/f/KIcKJe2drcX4dftIdnGl97ox+hEzEYBLCqtCNujEdVeGt7yhvUz+L+j9ZE=
+	t=1721645152; cv=none; b=JvKal0bEcrQX5UnhvggxtSNxG70FeFHgBO2eqbrbSMXa8DUYCarztQJ8JdtigH5wu/tQl52u4k6Ta/5Lfie0F8opc7qXfb0e5ybl2vtFa4w+No6pKTqmzyPH0XrCd7U7InPLlbHGRwBvxkHQYKMNtZ3Xh+JG9DHIsuzicuN5bFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721644520; c=relaxed/simple;
-	bh=D7hVRLYfxkch1U1mtSpiAIE5Iff35/q9e/U0R4Lh5oA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KUFm2faypuZH47oSQb1maNzwxfXAkkWynJGPDt1I/aBTsVsehs8H3aOiiy6NRSneSnosz+Sx8oq0+zXyOdAih0rVAEpSuQb1ScLHI0cz23erKnwm5A+f+kqoQCr9QByyARzO2oRZXGFwPPuIhKJuitOSx0/h5RqmgnsVPks1o0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Mj9aKqcX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46M0Drod012212;
-	Mon, 22 Jul 2024 10:35:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4Zj27V7JTwoD0SUx9EXR9+qKQSy89DA4nYKIcLU0tdI=; b=Mj9aKqcX5g4cx4Ji
-	B93jWhPgqKKhWo9r/82mx7HzBxwEo2Xic8QG7jDvvdWhahzaINZw8gDUGZXVUet7
-	FohqkDqb1NZZOnm3Kuz+uVEmpA+W4BaRTtYqfadc5rW1U1KYdKY1QYoTmg9zrPKq
-	/xbDzsHSGUYACDE8VXBbwS1QDVSb+r/xUXyTC0PpNn5dY3MVJkkFvBfvYrW61RXx
-	W9J5nPAic+iaEad1/iJTEFnpIHCHFni0B6tE6tO6XiumsWLviFBXSYfcyVeIXhVp
-	TACU4knATFEvqvbxmZVwUHxzoOfsC20iKWrXC44o/esf4eQLOMyHICihqkUlOOgP
-	tKpK7g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40g5m6uebc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jul 2024 10:35:01 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46MAYxZg018256
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jul 2024 10:34:59 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 22 Jul
- 2024 03:34:56 -0700
-Message-ID: <bbfb3ab2-1b59-4e84-bdff-a150b0393378@quicinc.com>
-Date: Mon, 22 Jul 2024 18:34:53 +0800
+	s=arc-20240116; t=1721645152; c=relaxed/simple;
+	bh=aF3j0TrmnVp1p2npQybDiv9LcE984vxGW4haXJ10hMY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o00zcSaqNoQhO4UsnlVnSdVmsIkxD9uLgWeX/RtbvG5NOc3r/OCi2+ChMjNEi/gd8MzKlUZt54G2GIvSsZ5iNTZUBRNlYfAXTrmRrcxpR+cN2S46L5Q7+3V6HGTjzx/a/tP/F8+a3rjynAFNK+xZLgAHoryP8580w/38lPIDUm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=0IhFle3D; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-70d133ad012so23678b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 03:45:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1721645151; x=1722249951; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yk4UQACOPEhu0mUYszop0tJksRuFg9b/i8uYeB9F4sQ=;
+        b=0IhFle3DAfFitRliix32nUj3H1My774JMDpbk/6S/WygCcTXtVli0pym5Ga5vqhqR4
+         TxlX6jvvclN4WpajwpMXC+vbbHTsll8QhwSpo7v9UeHZxzOfBukQkNvU/e09GnjVvmfS
+         O/Gc6jRnr+6S+i1VeRUE/t/2ai0n2tqDu3wropDjmB5B9CKchEY8hrYq7hqPs8Bn10Gn
+         fDcD63WBdQsRP4IqOtj1jtc7LJqrcI1No+zxXyXA6swN9670fJCsQNhVCarwyyxDtXgj
+         1Pe9W82Qh+XehAtNRirohnt5T/mgEyHeO6g2da3bGZePVgeNqnNwVQzouYmCATaQZYJI
+         I5Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721645151; x=1722249951;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yk4UQACOPEhu0mUYszop0tJksRuFg9b/i8uYeB9F4sQ=;
+        b=DhnOOudj2PfBA9SFY8YmSek8KOjuKzA9cgTGaQr5T4nyciSe69L0jXK8kL4Na9X6S+
+         Jo9Fs1rm2Wtx/t2rGlrhddS3bT8hlFMTW0zVcVHrNk8nHNZly6RzVSE9Bg/rI2RzubUo
+         AammIlUGH5BuO7HZj9GlhE1C5gd2wSIhdCRGJNkZ04mjWXZUERDSTq3d1ombWzMj535x
+         Ksg2QUfsnF1PRCKO7pPX5FSO1nXaIbP+eOWnN7Co8SJ23zRfZyPjoy1/GIIAV36YPp/B
+         LkhDQW6CTRBxLc3MnRW0nWlyzfVD+3okiFQWsqtBzCQR+hRrq8502k6jixi00TngF6nf
+         39mA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwFtVPyFn0hvtzfhmURQFsyb6OXB6NDLPs4vNCdFI7X95KPH8Ipwb+CQ6EqAAplaMzloDiZgaaxejE6VcLMCYBFPtW0PPHS5SMTQ==
+X-Gm-Message-State: AOJu0YwlF6M3d1e2UdZkjcCmrafMrewXekYtDqGI6ZKiSgnW417BC5HU
+	IZIKv5WpGnGt3mWuDjxPjT93Dh8s5T5qHPhK1iz5vDCl5yyPKL9IdTqXHxDkUQ==
+X-Google-Smtp-Source: AGHT+IGbTDbBwca1C4VrH0/hA3S6xV1DimazE2cwql0k7QUaUo+m4vZviNr4xZ00h+PE/OuBz/gSuA==
+X-Received: by 2002:a05:6a00:391b:b0:704:173c:5111 with SMTP id d2e1a72fcca58-70d08635b76mr5376790b3a.3.1721645150824;
+        Mon, 22 Jul 2024 03:45:50 -0700 (PDT)
+Received: from [172.22.58.167] ([117.250.76.237])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70cff5a149csm5078144b3a.169.2024.07.22.03.45.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jul 2024 03:45:50 -0700 (PDT)
+Message-ID: <5a865811-a6c0-47ad-b8a0-265bb31d4124@beagleboard.org>
+Date: Mon, 22 Jul 2024 16:15:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,115 +76,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] coresight: Add preferred trace id support
-To: Mike Leach <mike.leach@linaro.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark
-	<james.clark@arm.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Tingwei
- Zhang" <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang
-	<quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        songchai
-	<quic_songchai@quicinc.com>
-References: <20240626060724.28862-1-quic_jinlmao@quicinc.com>
- <CAJ9a7VhG4qNLnT87J7OiXpygbtMRZ8uAvNhZhcRCBxovMEPDEg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: net: ti,cc1352p7: Add boot-gpio
+To: Conor Dooley <conor@kernel.org>
+Cc: jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ greybus-dev@lists.linaro.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org>
+ <20240719-beagleplay_fw_upgrade-v1-1-8664d4513252@beagleboard.org>
+ <20240719-scuttle-strongbox-e573441c45e6@spud>
 Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <CAJ9a7VhG4qNLnT87J7OiXpygbtMRZ8uAvNhZhcRCBxovMEPDEg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <20240719-scuttle-strongbox-e573441c45e6@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PvBxoxGpQ_XelUOUq5HNNU0_df6cCoP2
-X-Proofpoint-ORIG-GUID: PvBxoxGpQ_XelUOUq5HNNU0_df6cCoP2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-22_06,2024-07-18_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- mlxlogscore=999 adultscore=0 bulkscore=0 mlxscore=0 spamscore=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1011 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407220081
 
 
+On 7/19/24 20:25, Conor Dooley wrote:
+> On Fri, Jul 19, 2024 at 03:15:10PM +0530, Ayush Singh wrote:
+>> boot-gpio (along with reset-gpio) is used to enable bootloader backdoor
+>> for flashing new firmware.
+>>
+>> The pin and pin level to enabel bootloader backdoor is configed using
+>> the following CCFG variables in cc1352p7:
+>> - SET_CCFG_BL_CONFIG_BL_PIN_NO
+>> - SET_CCFG_BL_CONFIG_BL_LEVEL
+>>
+>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>>   Documentation/devicetree/bindings/net/ti,cc1352p7.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+>> index 3dde10de4630..a3511bb59b05 100644
+>> --- a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+>> +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+>> @@ -29,6 +29,9 @@ properties:
+>>     reset-gpios:
+>>       maxItems: 1
+>>   
+>> +  boot-gpios:
+>> +    maxItems: 1
+> I think this needs a description that explains what this is actually
+> for, and "boot-gpios" is not really an accurate name for what it is used
+> for IMO.
 
-On 2024/7/18 23:57, Mike Leach wrote:
-> Hi,
-> 
-> I have detailed comments in the following patches but in summary we should:
-> 1) consistently use the term "static trace id" for these devices where
-> the hardware sets a non-programmable trace ID
-> 2) Simplify the patch set by introducing a new API function
-> int coresight_trace_id_get_system_static_id(int trace_id)
-> This would avoid having to change drivers which use the existing
-> function where no static ID is required.
-> 
+I was using the name `boot-gpios` since cc1352-flasher uses the name 
+boot-line. Anyway, would `bsl-gpios` be better? Or for more descriptive 
+names, I guess it can be `bootloader-config-gpios` or 
+`bootloader-backdoor-gpios`.
 
-Thanks for the comments, Mike.
-I will address your comments in next version.
 
-Thanks
-Jinlong Mao
+Ayush Singh
 
-> Regards
-> 
-> Mike
-> 
-> 
-> On Wed, 26 Jun 2024 at 07:07, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
->>
->> Some HW has static trace id which cannot be changed via
->> software programming. For this case, configure the trace id
->> in device tree with "arm,trace-id = <xxx>", and
->> call coresight_trace_id_get_system_id with the trace id value
->> in device probe function. The id will be reserved for the HW
->> all the time if the device is probed.
->>
->> Changes since V2:
->> 1. Change "trace-id" to "arm,trace-id".
->> 2. Add trace id flag for getting preferred id or ODD id.
->>
->> Changes since V1:
->> 1. Add argument to coresight_trace_id_get_system_id for preferred id
->> instead of adding new function coresight_trace_id_reserve_system_id.
->> 2. Add constraint to trace-id in dt-binding file.
->>
->> Mao Jinlong (3):
->>    dt-bindings: arm: Add arm,trace-id for coresight dummy source
->>    coresight: Add support to get preferred id for system trace sources
->>    coresight: dummy: Add reserve atid support for dummy source
->>
->>   .../sysfs-bus-coresight-devices-dummy-source  | 15 +++++
->>   .../arm/arm,coresight-dummy-source.yaml       |  6 ++
->>   drivers/hwtracing/coresight/coresight-dummy.c | 59 +++++++++++++++++--
->>   .../hwtracing/coresight/coresight-platform.c  | 25 ++++++++
->>   drivers/hwtracing/coresight/coresight-stm.c   |  2 +-
->>   drivers/hwtracing/coresight/coresight-tpda.c  |  2 +-
->>   .../hwtracing/coresight/coresight-trace-id.c  | 35 +++++++----
->>   .../hwtracing/coresight/coresight-trace-id.h  | 11 +++-
->>   include/linux/coresight.h                     |  1 +
->>   9 files changed, 137 insertions(+), 19 deletions(-)
->>   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
->>
->> --
->> 2.41.0
->>
-> 
-> 
-> --
-> Mike Leach
-> Principal Engineer, ARM Ltd.
-> Manchester Design Centre. UK
 
