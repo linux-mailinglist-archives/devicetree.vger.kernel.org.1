@@ -1,110 +1,128 @@
-Return-Path: <devicetree+bounces-87129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 244CB9389D4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:14:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68A5F9389DF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 09:15:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D44F12817F2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:14:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 068D91F217FA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2024 07:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A22461FDF;
-	Mon, 22 Jul 2024 07:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5968339FEC;
+	Mon, 22 Jul 2024 07:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="YFEenxm1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WMbN+HKh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0.riseup.net (mx0.riseup.net [198.252.153.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA63B5C603;
-	Mon, 22 Jul 2024 07:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC0E38DCC;
+	Mon, 22 Jul 2024 07:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721632303; cv=none; b=uAk/pZ1wRsPGBJ3E7SVnfWwHYJw4+a/d28PDwoTn1hdICpF33Z1/Omr6CLUq8CR+fe7VMLx+PYH4vsHBrKEPPOJdv15BoSDmSrpdBNG5IlpbPHU8j46aMuCRTi+R8lpGtKIxQNqts7ccCErm/5T/TvbMCI0GpOMbMgkIvwFlzSo=
+	t=1721632482; cv=none; b=mYkF+g8wMQZXlDnypmXAJo2kAc4zA9L96CUEFLHuaFy+UBBXBIwrT2qsjBDjZ6Il+w0TbxGXz1SUWUJXNrEly6eY+g0J0T/PTJ+JRSUvkTxyUAwooa466CF9wOfpv/q7FktPAoXb0zUSSBzZg7ymkcF2jAchtd8Zgm1AVOUIHAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721632303; c=relaxed/simple;
-	bh=Qp1HPrxtCdVBwj+fKMzHWw50d5Ybm0uUddMCdm6lVq8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rPojWqtY9ApkLyGzZT/C4SiRg7JbF0KyTRIXpn6L2hZ/ryBOUdFQAL+KnNs8crssu5oz7tPdEuGiq/ldNX+pvagmQaL+FU0v44BGRnbDQNWswtXD552F1zdc5zk5crKggdce/o5Dn8MaFuyZ5ugDrDJjQX+Xxi29c4sPwkWZgIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=YFEenxm1; arc=none smtp.client-ip=198.252.153.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx0.riseup.net (Postfix) with ESMTPS id 4WSBKT2Bbbz9v89;
-	Mon, 22 Jul 2024 07:11:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-	t=1721632301; bh=Qp1HPrxtCdVBwj+fKMzHWw50d5Ybm0uUddMCdm6lVq8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=YFEenxm17Qziom9S4BzvhPAUMOfyXqzeZrMI3tNwcJPgNiQsV3if9cXKXrAv4o1wx
-	 +ldkvsnaIsfsocY2tZLUp8AJ6HYhkNyYFj5Gq3Ed/DQdeg5DOIPWIyqTFKiXcWwiVS
-	 5QjaOaMDpYZDfIyPIWFnhVAN5nLwGoPGgJjDg8SE=
-X-Riseup-User-ID: 92DF24B5FB6C06253BDC6747F3C07A91FE2B59A39A253CA2BF8D1637276449BC
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4WSBKQ3WlVzJmqy;
-	Mon, 22 Jul 2024 07:11:38 +0000 (UTC)
-From: Dang Huynh <danct12@riseup.net>
-Date: Mon, 22 Jul 2024 14:10:22 +0700
-Subject: [PATCH 12/12] arm64: dts: qcom: sm6115-pro1x: Enable ATH10K WLAN
+	s=arc-20240116; t=1721632482; c=relaxed/simple;
+	bh=tr1O+hPwM0KJEn4ww9SJW6izyACl1EooSgjgX+2CExA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KjIp+fe92I8V8j2g8xD/enOpUock3J7BONiO+fClC9xK1FE3YznvnynOC8F2k+04EaJXYxVRwht23JbYikNNLRtKbw/pjZQev5eCV2VhZWLl6O0wDuobnZruTIVxBZHgVtM5BwlI+I2kOpmWwPSbuWZMNd9vqjnpRdcTrxUJ4lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WMbN+HKh; arc=none smtp.client-ip=209.85.160.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-44bd4920ef8so20056851cf.0;
+        Mon, 22 Jul 2024 00:14:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721632479; x=1722237279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GHAnK7eluryXOEPZRmaUZuOauSYKDPyEBhx9PYcGeRQ=;
+        b=WMbN+HKhlSiQJmxQooP0DHOm88dXHKLDWuBxhRtQRE6kUXNua9idI75yhiQl4a6/ki
+         oVFLilpGCbJn4IPJYiTzhl16k43LENErKj8ANe5U700qxP548EfpFckFMLp3RfVVX1Hp
+         PepYjg/f0qcGmyORlHksSDLNR5lnbxecEpAUaS2GnTY+XYlUmC4e65NdHGbdQT4OgGuQ
+         sH/BkZRXMzF83u6I35UU/Hf9fIu5j4eMLHqw8SdFJCmQ3OU4NrJeFoqFV+I9qyLgiVaI
+         FMDPscdFVLFBzKoFRCgrPRUQ03crU1aEW40PEq05e7NOqrhm+lv4+7M4wVdSR3gHpp7n
+         zKrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721632479; x=1722237279;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GHAnK7eluryXOEPZRmaUZuOauSYKDPyEBhx9PYcGeRQ=;
+        b=W0nNRpCpKqF4ptOyZIHY9wnvmlLEf/69JTMZA3T0KwUwZu+WxDrDBp0dnmJ7SZbShn
+         kOfUm/5XtO7DdJh1pqomQxrxlEV/8G5IImXkqq4cKyVxod8cQGY/T8MQtc/CpauTn6aK
+         e0ncd898aHp5CIP5hqkEI3AkqiU77Rg9DYzd/Jm+ZlUm6+OUXMDKYSAPrR6B68XJXWBo
+         j+Kt6w/poJU51UGi80L5/9gIdRhCNG0G6ugNJpvaBeMr/mRxsC3CNj+I27ndMnY+pPvO
+         t3eorBPwKv1eLvOFIaNbGzjrybOXTNPfRM1SXu2Nj8gEEmHsUUeqzVyJyGNS3RB9jsy1
+         AVBw==
+X-Forwarded-Encrypted: i=1; AJvYcCWTJNeRGMbW+Q0kz/hoV6I6LOzPzQBuuh5B9dIoYSoDBhXjvLoqKki2+E9HrmL3tllJ9Po4vtgJB2+5ZfzxLBTkWpNiNdAfyxXTWrugdJR+eMlDefWKzQJWvq8Sih804Pmb6wsn2TDtckgFZTjImMjdMMqr8gb9YnzTfezHFnNF/wnGmw==
+X-Gm-Message-State: AOJu0YwOsStKqhCwm1cRzYoYSzH6avHdNrpwVuKwPPOJULLSPPqNexe8
+	mUhQoc6gJgJhhcb6AaNoSRPabuZWnm+xVhhPd3TUyIfloDeZbSz4
+X-Google-Smtp-Source: AGHT+IFmt0kaRJkF7l1ZGUohrajnngP9LZQ7XiBkhajLauRmvkAVb+EHMoZ67DjkISZfM7G0gN2+zw==
+X-Received: by 2002:a05:6214:29ea:b0:6b2:9d0b:6148 with SMTP id 6a1803df08f44-6b95a7926a4mr101278676d6.53.1721632479495;
+        Mon, 22 Jul 2024 00:14:39 -0700 (PDT)
+Received: from [10.76.84.172] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b7b051c86csm30646556d6.116.2024.07.22.00.14.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jul 2024 00:14:39 -0700 (PDT)
+Message-ID: <6226f65a-3420-45e0-aeb9-8d31d26a070d@gmail.com>
+Date: Mon, 22 Jul 2024 10:14:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240722-qx1050-feature-expansion-v1-12-c4d486435b96@riseup.net>
-References: <20240722-qx1050-feature-expansion-v1-0-c4d486435b96@riseup.net>
-In-Reply-To: <20240722-qx1050-feature-expansion-v1-0-c4d486435b96@riseup.net>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 9/9] iio: adc: ad7173: Add support for AD411x devices
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240607-ad4111-v7-0-97e3855900a0@analog.com>
+ <20240607-ad4111-v7-9-97e3855900a0@analog.com>
+ <e48b2dee-11d2-4dbc-868d-10870e3c07dd@linaro.org>
+ <68a25946-247d-4351-b847-35605220b16f@gmail.com>
+ <04be66d2-de35-4190-ba9d-011b2b639f94@linaro.org>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <04be66d2-de35-4190-ba9d-011b2b639f94@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Enable onboard Wi-Fi on the F(x)tec Pro1X.
+On 16/07/2024 09:31, Krzysztof Kozlowski wrote:
+> On 15/07/2024 19:17, Ceclan, Dumitru wrote:
+>>>
+>>> Please run scripts/checkpatch.pl and fix reported warnings. Then please
+>>> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+>>> Some warnings can be ignored, especially from --strict run, but the code
+>>> here looks like it needs a fix. Feel free to get in touch if the warning
+>>> is not clear.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> I do not get any warnings, only checks
+>>
+>> If you meant the checks:
+>> - for the alignment check, i would only argue for struct_group(config_props that looks good
+>> - for unnecessary parentheses the compiler warning appears without the parentheses:
+>>       warning: suggest parentheses around comparison in operand of ‘!=’ [-Wparentheses]
+> 
+> Hm, in that case it looks like you documented some entirely different
+> bindings?
+> 
+> Best regards,
+> Krzysztof
+> 
 
-For reference, HW/SW identifies as:
-qmi chip_id 0x120 chip_family 0x4007 board_id 0xff soc_id 0x40670000
-qmi fw_version 0x324103d6 fw_build_timestamp 2021-12-02 08:20
-fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.2.4-00982-QCAHLSWMTPLZ-1
-
-Signed-off-by: Dang Huynh <danct12@riseup.net>
----
- arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-index 14d4f533f741..c148ebd1c8b4 100644
---- a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-@@ -531,6 +531,17 @@ &usb_qmpphy_out {
- 	remote-endpoint = <&pmi632_ss_in>;
- };
- 
-+&wifi {
-+	status = "okay";
-+
-+	vdd-0.8-cx-mx-supply = <&pm6125_l8a>;
-+	vdd-1.8-xo-supply = <&pm6125_l16a>;
-+	vdd-1.3-rfa-supply = <&pm6125_l17a>;
-+	vdd-3.3-ch0-supply = <&pm6125_l23a>;
-+
-+	qcom,ath10k-calibration-variant = "Fxtec_QX1050";
-+};
-+
- &xo_board {
- 	clock-frequency = <19200000>;
- };
-
--- 
-2.45.2
-
+On which file checkpatch returned warnings for you?
 
