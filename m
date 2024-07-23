@@ -1,106 +1,105 @@
-Return-Path: <devicetree+bounces-87455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A59939890
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 05:08:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901019398C0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 05:54:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 589ED1C217A1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 03:08:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467FE1F226DF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 03:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA42F13B5B9;
-	Tue, 23 Jul 2024 03:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D6EASUze"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A7D13B2AF;
+	Tue, 23 Jul 2024 03:54:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9692813A241;
-	Tue, 23 Jul 2024 03:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F8F13957B;
+	Tue, 23 Jul 2024 03:54:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721704123; cv=none; b=XkzKqj4g9dG8zBHnv1xVD/hEsca26tMr+YSztkvTccJljZBLpgRzKho/V1W2xpIwvjJDEWz3n6oaewKOdHrtFAMW7+yug4UmgJgU/jmhXoflLQWfmKreJsIMF+QRY/vUrzg/39eQBuN8iEIGalLF95FOjeaLO6l35ZpRJ+AQ1VQ=
+	t=1721706865; cv=none; b=jsVcChl+8vNn22lKH5U/kMn8l815I2QUurB6PC0MrvFeBxsVYBinmsI8u1H01+d81j0RB8Rxbryd+SJm9a7ru3zY32xtjh/TZ1l5aZWEIAJZnxV8zKQE4EbfQtIIC93/KHSRc8wH1+O7XvXYkRQOdcJvKctNTUbILE3llmBsJLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721704123; c=relaxed/simple;
-	bh=lCpxy95lx+Jjei/kZQBV3BIgkddjlRM1fYb5FYkdFxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ErZmjWHlnszfrvhYSxWVIM5seRudB1YOPyunRnYpuVlh2FSOnECzhcuCsySjHpSrqq4iIZdoCXuwvXr1e/Y1amzvhDbzr+68ThJ/nTi/6bzXOpwQKI9BoQQRjvQ/7t6F9y4jMu2ma8WkDHvK6OYQ4UqcNLxsC+W3PwhfrHECApQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D6EASUze; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C70C116B1;
-	Tue, 23 Jul 2024 03:08:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721704123;
-	bh=lCpxy95lx+Jjei/kZQBV3BIgkddjlRM1fYb5FYkdFxg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D6EASUzeZCvDJcQWdoO2YAHDSFfg5YuzE+EgXygaqPKmt8Fex6G4OnKpatzquZGfk
-	 Z6E8R3o/A1L0LJDvll+Cm4xajkinXYSubPnrea/kXAvlc/mAKh3IBIjKB9zfi8aX3u
-	 YTKYqb2ErQ+zVmQJ4ppvxcYPSucJHeplJL16EF5gPoEegG3WtAbb2folVLxH0ya1ed
-	 zcRGJycFne07+BKbdJr9QYudB+tVFgdSaq4MVYHrhO8LeaFjsr9OglheKwwu5yXHmo
-	 qEfvoz6EMV5yO65xVKPDNIg2kAmJ9jfqATOiP17bY49AKTCWJ8zZx968+UJoTmf0Rr
-	 w7J3bB+JsFRRQ==
-Date: Mon, 22 Jul 2024 21:08:40 -0600
-From: Rob Herring <robh@kernel.org>
-To: Mateusz Majewski <m.majewski2@samsung.com>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Subject: Re: [PATCH 6/6] dt-bindings: thermal: samsung,exynos: remove
- outdated information on trip point count
-Message-ID: <20240723030840.GA226948-robh@kernel.org>
-References: <20240719120853.1924771-1-m.majewski2@samsung.com>
- <CGME20240719120949eucas1p1b061c716ac55b4a79ba57c407c0b2d91@eucas1p1.samsung.com>
- <20240719120853.1924771-7-m.majewski2@samsung.com>
+	s=arc-20240116; t=1721706865; c=relaxed/simple;
+	bh=2mfBfGvPkaBeH2hLbWeN6l9L0QxXvLWhmVsi1nmC0QY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dD0dLIrl7V1OkKpJ957A9Wvn+A51N9OgM0bFr4xj3x7vrdn6ee2b4QeCCipz3cD0utFDmf4Ms/y2UlDWzld0ZcQPgP09eXulPaSuQnL2uV0sx8LIfgX4uUdsbl5PAeKFvoD3KpNgH7k+te/eg2t7WJ7SlIlf8shNOZVR2CW0U0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52efaae7edfso2171577e87.2;
+        Mon, 22 Jul 2024 20:54:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721706856; x=1722311656;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2mfBfGvPkaBeH2hLbWeN6l9L0QxXvLWhmVsi1nmC0QY=;
+        b=I9ec7bsv8GJodDYi/xnA5k8lutOWWfo60qhaJIMygZhlhb/cOJ1aBMm1hcbEfIYs7Q
+         XPCI686hCVMRa6KTxWE5DUpVg3ME//+7T9iwAuhzowMaMJr70pIkN9aSO9sY+8XJp91I
+         izqj40e4eM8WVrxxpXaXnGxpKO/vHs5WtSDk9GGFPFvIb3zOhGdMHK73MhEoO1gszfAK
+         uytuoKPhgGh+1KVBKAgNBr8kFoOeJ7qyY5rVASe98FOB20tOzYNyhkPKNNPaSADSKVvM
+         Jyvuvs2ZPTCrZGHZbzY3jPvXFT8QPW4LR9/2C0YLGyV0UDe6UZz6N7WKgdLNw+hWZ5mK
+         0HCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcspiBE8qYKPGN9IB1bYx8bBgaekfU41RR6rwk7vsB55Q/s9LM4swN6ivMODS+zWGHiqHznGy8G6CuwOzNrlAY/8mbbrdJNvc9NBEs2KSAeY9yVsUofmNPHwXe4Pm+AGpvrVid+FU35PbAoPfbMD/HZV5NMt6ZzUkydrydeJBdu0IWhniZ3u+BTHpYuaVnaDfQom/Dkh6fxiI0aWP6rvNyZ4AR9g==
+X-Gm-Message-State: AOJu0YzqUEiQWs8Q+JVy3sTrJHScTvVk7Fc5aA22XT3BjvxTQyInyxc1
+	GQ6L2y42i0L3/pl0WGys5sHSZNwj4HNVBpReO/WjnOWJAccOzhl8iJS2u2wb
+X-Google-Smtp-Source: AGHT+IEpgY52sXyXBs8UOnw2po47yLDH62/bZnwlCFB+BOMDHfONK9VEvqyQgBnkQQI53anO6BTnKg==
+X-Received: by 2002:a05:6512:a86:b0:52e:bf53:1c13 with SMTP id 2adb3069b0e04-52efb76d12fmr5606959e87.7.1721706855999;
+        Mon, 22 Jul 2024 20:54:15 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ef556afb5sm1432670e87.180.2024.07.22.20.54.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jul 2024 20:54:15 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ef2c56da6cso19767731fa.1;
+        Mon, 22 Jul 2024 20:54:15 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVdRKgACqVlwShqgiV/z5YcnRpzNLMAMSOZ8ip4+KWncfkuIrtD0V5mlBKHGsjcBupiboSIvWbU6rW/EUJiEDLNpchR0hf5fqwwlcCQMQUpKt0PCitLCXU3dsneRHbQtwweygA/G/bZi5mN9W8RehRazuqmwl/sPAS0gP5Un1llTiAkyMuSMO+K1y1QQYgWF4qc7ntue448C1KeO/Ftkc1mkJNt6Q==
+X-Received: by 2002:a2e:bc0f:0:b0:2ef:296d:1dda with SMTP id
+ 38308e7fff4ca-2ef296d21bbmr48058911fa.1.1721706855131; Mon, 22 Jul 2024
+ 20:54:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240719120853.1924771-7-m.majewski2@samsung.com>
+References: <20240722-xtheadvector-v6-0-c9af0130fa00@rivosinc.com> <20240722-xtheadvector-v6-3-c9af0130fa00@rivosinc.com>
+In-Reply-To: <20240722-xtheadvector-v6-3-c9af0130fa00@rivosinc.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Tue, 23 Jul 2024 11:54:02 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65WLShdZLBcKBUviHMWFOM4oZmwVHWzVqCfz2rKdnoWyA@mail.gmail.com>
+Message-ID: <CAGb2v65WLShdZLBcKBUviHMWFOM4oZmwVHWzVqCfz2rKdnoWyA@mail.gmail.com>
+Subject: Re: [PATCH v6 03/13] riscv: dts: allwinner: Add xtheadvector to the
+ D1/D1s devicetree
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jisheng Zhang <jszhang@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Samuel Holland <samuel.holland@sifive.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, 
+	Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>, 
+	Jessica Clarke <jrtc27@jrtc27.com>, Andrew Jones <ajones@ventanamicro.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 19, 2024 at 02:08:50PM +0200, Mateusz Majewski wrote:
-> This is not true as of commit 5314b1543787 ("thermal/drivers/exynos: Use
-> set_trips ops").
-> 
-> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
-> ---
->  .../bindings/thermal/samsung,exynos-thermal.yaml           | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
-> index 4363ee625339..5a82764a4dbb 100644
-> --- a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
-> @@ -40,11 +40,8 @@ properties:
->    interrupts:
->      description: |
->        The Exynos TMU supports generating interrupts when reaching given
-> -      temperature thresholds. Number of supported thermal trip points depends
-> -      on the SoC (only first trip points defined in DT will be configured)::
-> -       - most of SoC: 4
-> -       - samsung,exynos5433-tmu: 8
-> -       - samsung,exynos7-tmu: 8
-> +      temperature thresholds. The trip points will be set dynamically in
-> +      runtime, which means there is no limit on the number of trip points.
+On Tue, Jul 23, 2024 at 5:58=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.c=
+om> wrote:
+>
+> The D1/D1s SoCs support xtheadvector so it can be included in the
+> devicetree. Also include vlenb for the cpu.
+>
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-How can the hardware change how many trip points it supports?
+Acked-by: Chen-Yu Tsai <wens@csie.org>
 
->      maxItems: 1
->  
->    reg:
-> -- 
-> 2.45.1
-> 
+Please take this with all the other patches.
 
