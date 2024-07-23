@@ -1,73 +1,62 @@
-Return-Path: <devicetree+bounces-87681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C20F93A7EF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 21:59:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CC993A801
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 22:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 271F0284491
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 19:59:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B2F61F21F07
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 20:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602B61482E2;
-	Tue, 23 Jul 2024 19:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8078F1411F9;
+	Tue, 23 Jul 2024 20:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SJ9N2AlI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BSAWGQDj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3789813D62B;
-	Tue, 23 Jul 2024 19:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DC613C691;
+	Tue, 23 Jul 2024 20:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721764630; cv=none; b=bAGnxoVrvj7tf/LJXC1Cj6ngQ51oWAgeIMXe3cTULpf9OZqBkLjFyrUAV5xoQ2gdXhQG/gYEzuY8Wdkdz8ocfhRcG0GZSIbcqeGkRAZpEKnzsqZQfUV2ucA/rDrvvYorKWXJn2rJmxrg3oUeifYTudP2txBKmkJ4seFDfClv1Rw=
+	t=1721765654; cv=none; b=ZsZFmtVrPdLMoiJ/juPAfaQrrdlTVcGohpWI3Fd2qM66JPQSvp0oa/LdGJZymYFESRCpyUtivLhG2bzkreNa00apu2IApnCVfk31EY0VRuWR5wT5mtw/jT7XDHlZ8mWKHZ9vEnN3HPYybXESefvhV0hPMi3488aBqptgMQ+jHEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721764630; c=relaxed/simple;
-	bh=6GyisGMMWTqJb0J2MvRmj6DjMSNitzmY3uf2SOHcka0=;
+	s=arc-20240116; t=1721765654; c=relaxed/simple;
+	bh=90qCsmRc/KyIcHIjkewyjqSMR6l+O5gromMuJ21lzjM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LuMhdUFTrIOsvjAnbGHIhJB7wYmsNmrhD7RXdv2QWRkV7XLzLJTtIHSPqfHaaACwfysmQO4rSQZYs3+HvZinxvHP4BRethxNvOHFCuGY0T9dama2pmkzt0hJ2CaPeW9J08BGiRicVU8gwwLX3FrC1qr/X5qVAv2Te4PM2D/EJ/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SJ9N2AlI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BA3FC4AF09;
-	Tue, 23 Jul 2024 19:57:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W+pJV+Ro2OgRPleSl/Qf5RQ62SrgqMvdRLbOGtFnOaw1C9Hu8jGZvM00UcOzf+EyOF3R6+ILiojWuSlA+HDcViHSP502wO6kVxVu5XrSqru+qr5B+inNfUWdod/jW/Zj+CTATd+3Q35HwLPy2FCKaLfVPhqSer0cMSF+Z1RRbNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BSAWGQDj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59688C4AF0A;
+	Tue, 23 Jul 2024 20:14:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721764629;
-	bh=6GyisGMMWTqJb0J2MvRmj6DjMSNitzmY3uf2SOHcka0=;
+	s=k20201202; t=1721765653;
+	bh=90qCsmRc/KyIcHIjkewyjqSMR6l+O5gromMuJ21lzjM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SJ9N2AlICiYaJmyL8ODA1rY6n++1CJ5LuYUDeZE1iVkMXB/0RbMgtvp2lx5paTlXC
-	 o6MNFVsgEdO7FKf1Anb1oIOo57qrR748GcJxmYwtRxucv0XOlWlkhT84HLMoj5RiHY
-	 Uw8AiQYKcLpyv9yAoWCs5qiGu1/HT6tjW9QgTuoA8sG2QgtrM7uc08y4PRzXs8YG3J
-	 gBgW8eMbYPad1PZ4qHDfcjPVCeoJAkTFhsZsai3l9XLydAaBGm4V6/9zSMazkg2puL
-	 0DMJtAfA2z94lQqxv2ZaF/lDNmz2JApCrbWajLi8Qq5m0OO1sl5hjm3djWQC4LGyYU
-	 Tl9FLiGQqbq4g==
-Date: Tue, 23 Jul 2024 20:57:03 +0100
+	b=BSAWGQDjaFBMhHzuVyukfj/KRAtf99leF3Ay98Q5TFlOm7PdLYc3c5L7Jp10SPDQf
+	 ksIA169fWEVkEMXnBbTdbvH1ETzuMUcZE8pT3uuhpf0L29J/Fp8xT8kiVy4rzolF/l
+	 WBTFy3HW/5rrY/rk8ChIU1MWQpRbudGJvRnujOi0ltmcwxjYNfHTpodXfDJW0u+lNQ
+	 Swq6OdOfYvQkToj2bFcOtAI+2qlLeGcG2fwKDJn+c6VejlKjPxK7U81CUGhTzABaYt
+	 QVPYKV6/ZAVuHZN5SYMFXcUR2kYSy5Zeh7hOSthf1hUjEujdkH5v3oZhKOLn6kTXfT
+	 mf7flZobri0iw==
+Date: Tue, 23 Jul 2024 21:14:09 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Arnaud Vrac <avrac@freebox.fr>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-Message-ID: <20240723-bounce-pliable-f81d8ea0cff8@spud>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240627-display-quantum-48c2fa48ed1a@spud>
- <e9d53545-80fc-46d2-83a1-79842a729688@freebox.fr>
+To: Ilya Orazov <ilordash02@gmail.com>
+Cc: geert+renesas@glider.be, mkl@pengutronix.de, mailhol.vincent@wanadoo.fr,
+	vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, a-govindraju@ti.com, linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
+Message-ID: <20240723-municipal-snowy-136b08b6db90@spud>
+References: <20240718210322.37492-1-ilordash02@gmail.com>
+ <20240718210322.37492-2-ilordash02@gmail.com>
+ <20240719-ahead-kiwi-995e52bf3e74@spud>
+ <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
+ <20240723-dinginess-john-608d0b28293b@spud>
+ <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,130 +64,177 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tI2IJ38L9kmhKqI9"
+	protocol="application/pgp-signature"; boundary="Z63R+4Oqxis0CS5a"
 Content-Disposition: inline
-In-Reply-To: <e9d53545-80fc-46d2-83a1-79842a729688@freebox.fr>
+In-Reply-To: <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
 
 
---tI2IJ38L9kmhKqI9
+--Z63R+4Oqxis0CS5a
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 23, 2024 at 05:17:12PM +0200, Marc Gonzalez wrote:
-> On 27/06/2024 18:25, Conor Dooley wrote:
->=20
-> > On Thu, Jun 27, 2024 at 01:13:03PM +0200, Marc Gonzalez wrote:
+On Tue, Jul 23, 2024 at 10:55:17PM +0300, Ilya Orazov wrote:
+> On Tue, 23 Jul 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
 > >
-> >> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
-> >> It supports DVI 1.0, HDMI 1.4b and 2.0b.
-> >> It supports 4 TMDS channels, HPD, and a DDC interface.
-> >> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-> >> for power reduction. Several methods of power management are
-> >> implemented to reduce overall power consumption.
-> >> It supports fixed receiver EQ gain using I2C or pin strap to
-> >> compensate for different lengths input cable or board traces.
-> >>
-> >> Features
-> >>
-> >> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
-> >> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-> >> data rate, compatible with HDMI 2.0b electrical parameters
-> >> - DisplayPort dual-mode standard version 1.1
-> >> - Programmable fixed receiver equalizer up to 15.5dB
-> >> - Global or independent high speed lane control, pre-emphasis
-> >> and transmit swing, and slew rate control
-> >> - I2C or pin strap programmable
-> >> - Configurable as a DisplayPort redriver through I2C
-> >> - Full lane swap on main lanes
-> >> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
-> >>
-> >> https://www.ti.com/lit/ds/symlink/tdp158.pdf
-> >>
-> >> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> >> ---
-> >>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 +++++++++++++=
-+++++++++
-> >>  1 file changed, 51 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp15=
-8.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> >> new file mode 100644
-> >> index 0000000000000..21c8585c3bb2d
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> >> @@ -0,0 +1,51 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: TI TDP158 HDMI to TMDS Redriver
-> >> +
-> >> +maintainers:
-> >> +  - Arnaud Vrac <avrac@freebox.fr>
-> >> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: ti,tdp158
-> >> +
-> >> +  reg:
-> >> +    description: I2C address of the device
-> >=20
-> > Is reg not required? How do you communicate with the device if the i2c
-> > bus is not connected? Is the enable GPIO enough to operate it in some
-> > situations?
-> >=20
-> > Otherwise this looks good to me, but given Maxime commented about the
-> > complexity of the device, I'm probably out of my depth!
+> > On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
+> > > On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wrote:
+> > > >
+> > > > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
+> > > > > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+> > > > > It is pin-compatible with TI TCAN1042.
+> > > > >
+> > > > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
+> > > > >  1 file changed, 1 insertion(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-ca=
+n.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > > > index 79dad3e89aa6..03de361849d2 100644
+> > > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > > > @@ -18,6 +18,7 @@ properties:
+> > > > >        - nxp,tjr1443
+> > > > >        - ti,tcan1042
+> > > > >        - ti,tcan1043
+> > > > > +      - microchip,ata6561
+> > > >
+> > > > Given that your driver patch has
+> > > > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-=
+can-transceiver.c
+> > > > | index ee4ce4249698..dbcd99213ba1 100644
+> > > > | --- a/drivers/phy/phy-can-transceiver.c
+> > > > | +++ b/drivers/phy/phy-can-transceiver.c
+> > > > | @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiv=
+er_phy_ids[] =3D {
+> > > > |                 .compatible =3D "nxp,tjr1443",
+> > > > |                 .data =3D &tcan1043_drvdata
+> > > > |         },
+> > > > | +       {
+> > > > | +               .compatible =3D "microchip,ata6561",
+> > > > | +               .data =3D &tcan1042_drvdata
+> > > > | +       },
+> > > > |         { }
+> > > > |  };
+> > > >
+> > > > the driver patch is actually not needed at all, and you just need to
+> > > > allow ti,tcan1042 as fallback compatible in the binding, so somethi=
+ng
+> > > > like:
+> > > >
+> > > >   compatible:
+> > > >     oneOf:
+> > > >       - enum:
+> > > >           - nxp,tjr1443
+> > > >           - ti,tcan1042
+> > > >           - ti,tcan1043
+> > > >       - items:
+> > > >           - const: microchip,ata6561
+> > > >           - const: ti,tcan1042
+> > > >
+> > > >    '#phy-cells':
+> > > >      const: 0
+> > >
+> > > I tested the build with fallback compatible:
+> > >
+> > > compatible:
+> > >   oneOf:
+> > >     - items:
+> > >       - enum:
+> > >         - microchip,ata6561
+> > >       - const: ti,tcan1042
+> > >     - items:
+> > >       - enum:
+> > >         - nxp,tjr1443
+> > >       - const: ti,tcan1043
+> > >
+> > > and modified compatible property in DTS:
+> > >
+> > > compatible =3D "microchip,ata6561", "ti,tcan1042";
+> > >
+> > > Build succeeded, phy-can-transceiver driver was used. So I would like
+> > > to add a fallback compatible for both "microchip,ata6561" and
+> > > "nxp,tjr1443" in this binding and modify other DTS files with
+> > > compatible =3D "nxp,tjr1443". What do you think?
+> >
+> > This is wrong on two counts. Firstly, were what you have correct, you
+> > should
+> > squash the two:
+> >      - items:
+> >          - enum:
+> >            - nxp,tjr1443
+> >            - microchip,ata6561
+> >          - const: ti,tcan1042
+> >
+> > However, that does not allow the TI compatibles in isolation, so you
+> > still need to allow that for the actual TI devices, so you need:
+> >
+> >    oneOf:
+> >      - items:
+> >          - enum:
+> >            - microchip,ata6561
+> >            - nxp,tjr1443
+> >            - ti,tcan1043
+> >          - const: ti,tcan1042
+> >      - const: ti,tcan1042
+> >
+> > There's probably some devicetrees that would need to be fixed up. I'm
+> > just not convinced that this is worth retrofitting however.
 >=20
-> Hello Conor,
->=20
-> A cycle has been detected:
-> Above, you defer to Maxime.
-> Yet later, he wrote:
-> "DT maintainers have required that reg is always present"
+> But nxp,tjr1443 is pin compatible with ti,tcan1043, so it should
+> fallback only to ti,tcan1043 and not ti,tcan1042. That's why I decided
+> to split them into different enums.
 
-I think he was actually talking about Krzysztof.
+Ah, sorry I missed that. I misread the match data. Then you need:
+  compatible:
+    oneOf:
+      - items:
+        - enum:
+          - microchip,ata6561
+        - const: ti,tcan1042
+      - items:
+        - enum:
+          - nxp,tjr1443
+        - const: ti,tcan1043
+      - enum:
+          const: ti,tcan1042
+          const: ti,tcan1043
 
-> I propose we NOT mark the "reg" property as required.
-> (Thus, keep the binding as proposed in v3.)
->=20
-> Rationale:
->=20
-> - The device can be statically configured by pin straps,
-> in which case it is NOT connected to an I2C bus.
+because the TI devices exist and we still need to be able to
+differentiate the TI and NXP devices. If you have
+  compatible =3D "nxp,tjr1443", "ti,tcan1042";
+that means the device is an nxp,tjr1443. If you have
+  compatible =3D "ti,tcan1042";
+then that's a tcan1042.
 
-I'm inclined to say that, because connecting the i2c bus is not required
-at all for the device to be usable in some circumstances that we should
-not require reg. Someone could, in theory, use the device with a SoC
-without an i2c controller, right?
+> I made my patch according to a similar one that adds support for
+> nxp,tjr1443. You can find it's conversation on
+> https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45f3bb0.1674=
+037830.git.geert+renesas@glider.be/t/#u.
 
-> - Even if the device IS connected to an I2C bus,
-> no I2C accesses are required if the default configuration
-> meets the ODM's needs.
+> I thought we want to hold all PHY chip names in one compatible enum
+> and each in its own of_device_id struct in driver and extend them
+> where appropriate.
 
-In this case, I think a reg property is required actually, because it is
-on the bus, and devices on an i2c bus must have a reg property. That
-aside, even if the ODM doesn't want to change the defaults, the owner
-might.
+Nah, fallbacks are preferred when the programming model is either
+identical or a "compatible superset" of an existing device. New
+of_device_id structs should only be used where we need to account for
+differences in the programming model.
 
-> Is that OK with you? Can I get your Amen?
+Cheers,
+Conor.
 
-Sure.
-
---tI2IJ38L9kmhKqI9
+--Z63R+4Oqxis0CS5a
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqALDwAKCRB4tDGHoIJi
-0jh+AP9u8ZEH5hVvvCvRGra8iZ6dpbt0ZZjMWAd0jcsWuKtCAQD8DyrLRyc5cySR
-CJO4+GDZkxrNsHJvaHuL2/bzqmuNig4=
-=X93R
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqAPEQAKCRB4tDGHoIJi
+0kUtAQCD4m5JpvCin6NoTN7R88b/5D2xMXjRcMXCbKfv3R5+2AD+P2ctpV4F6zrF
+A+Iu8ksIp0p58jPpj6u/fU5EQe+iawE=
+=jKJ5
 -----END PGP SIGNATURE-----
 
---tI2IJ38L9kmhKqI9--
+--Z63R+4Oqxis0CS5a--
 
