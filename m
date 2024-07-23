@@ -1,311 +1,185 @@
-Return-Path: <devicetree+bounces-87644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E5693A294
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:21:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4992B93A2A6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:25:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3AA91F24070
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:21:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F37D728125B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137C6154BE9;
-	Tue, 23 Jul 2024 14:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B635154444;
+	Tue, 23 Jul 2024 14:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbI/3Fh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291EA154448
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50624153BC3;
+	Tue, 23 Jul 2024 14:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721744458; cv=none; b=VEySEqjaAFu2jPhlbprkgHh2FsLf0X65PJg4QPbMgE142HNjjAEesVBASq5QB3vF9xbbenPabTv4VihaEoO9q4sP6GJHQKdZ3j5Oh13lzI9vuDGmGbSBPePL/Tf2kaa2a5aHLHdmCrSKauUyWQp9tpddjYtVnXi435SN7amijYU=
+	t=1721744706; cv=none; b=IB10nYrSL4i3pecMV3sXOMBmrhvwDh9bXyyqRcPIxpXu/EMLYLgLEL0iA5BSzTZP/HiNkE4yddmoFwmgcXWn63/52JnS0a3nnBAy1vXzKoN4/ObOi6Rj2KqeoA4LQvT9C/8Pv9exkXr+qEswnXG9B275mS4QHYKjAuQovC3TMGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721744458; c=relaxed/simple;
-	bh=i12Xm/Li3GL40njshAMHceCt7UZ0nD8ZBeTSiCRmf0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B08OX8k5VDa8Zz2gHUs8x+xp0eWT8h0TzEPCQKUhqK9xTSDDFjaOmj+wCNFit7CkXHHcu6HmDuh3lGXVKD83fJ6DkkwvHC1Oln4IhPU+BuRprzT/bReEsTxoXmilvCe4WgkUsTC8VIIpvjanpHTWqZuWHVZXdA1f1Unt0Kph7A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1sWGNV-0008Px-90; Tue, 23 Jul 2024 16:20:33 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1sWGNU-001df0-Hm; Tue, 23 Jul 2024 16:20:32 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1sWGNU-00DTyT-1O;
-	Tue, 23 Jul 2024 16:20:32 +0200
-Date: Tue, 23 Jul 2024 16:20:32 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 5/5] firmware: imx: adds miscdev
-Message-ID: <Zp-8MPdWdAhGG9de@pengutronix.de>
-References: <20240722-imx-se-if-v6-0-ee26a87b824a@nxp.com>
- <20240722-imx-se-if-v6-5-ee26a87b824a@nxp.com>
+	s=arc-20240116; t=1721744706; c=relaxed/simple;
+	bh=9WyZu2fdhx95L4MWU+HsmmQBdmFmZES43db1/qlTG1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CWjmD+W3vXMW/SKqyzwmpgAEnmbrXCsvW2i+HQjJE0e76TDHCmsnhT8xbwP2F898Ss4L7pCItWzIcj1if/q0UlERbYUmEkPbjJSldMye264I7rPU9ufQFXvRb8zAONQ2nUr4jHPA+WJ0OHYM1GTWgX27LVYzyKV1Ni2wmys871o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sbI/3Fh/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 466C4C4AF0A;
+	Tue, 23 Jul 2024 14:25:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721744705;
+	bh=9WyZu2fdhx95L4MWU+HsmmQBdmFmZES43db1/qlTG1k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sbI/3Fh/mdDbBsnGg9lxDSG/ThkfFZCYplu2UGhWCeNottP5S2VAYnU6Ig8z7sT2P
+	 xbD/vnBtfgGMSFIUBqCrE+i4Se2P5hjHYKxhq5AWa3gaE+NH25tNTTtKkVC2rquXjD
+	 +Yi5KIhHIMrL3ohN5ajGMaWwpVROuzQiSVq4x4HyUeXH59Jzp9k8oVdScpCiq8ei/l
+	 lVq45CcQJgrYO3QeDghE1lG7K+5vYPYzJ3tKdzfS+xAQm4ia3y4oVQrxVgUzW8KOOI
+	 M6hmzuRhfBkQeeV52bj03SUNs52dyBipNDiYKH72+eh2bJxzsZ2go0fhZ+IQdo77Wm
+	 CMIK8tRCZZttA==
+Message-ID: <b7a01cba-9f68-4a6f-9795-b9103ee81d8b@kernel.org>
+Date: Tue, 23 Jul 2024 16:24:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240722-imx-se-if-v6-5-ee26a87b824a@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] riscv: dts: spacemit: add pinctrl support for K1 SoC
+To: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>
+Cc: Yangyu Chen <cyy@cyyself.name>, Jesse Taube <jesse@rivosinc.com>,
+ Jisheng Zhang <jszhang@kernel.org>, Inochi Amaoto <inochiama@outlook.com>,
+ Icenowy Zheng <uwu@icenowy.me>, Meng Zhang <zhangmeng.kevin@spacemit.com>,
+ Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240719-02-k1-pinctrl-v1-0-239ac5b77dd6@gentoo.org>
+ <20240719-02-k1-pinctrl-v1-1-239ac5b77dd6@gentoo.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240719-02-k1-pinctrl-v1-1-239ac5b77dd6@gentoo.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Pankaj,
-
-On Mon, Jul 22, 2024 at 10:21:40AM +0530, Pankaj Gupta wrote:
-> +static int se_ioctl_cmd_snd_rcv_rsp_handler(struct se_if_device_ctx *dev_ctx,
-> +					    u64 arg)
-> +{
-> +	struct se_if_priv *priv = dev_get_drvdata(dev_ctx->dev);
-> +	struct se_ioctl_cmd_snd_rcv_rsp_info cmd_snd_rcv_rsp_info;
-> +	struct se_api_msg *tx_msg __free(kfree) = NULL;
-> +	struct se_api_msg *rx_msg __free(kfree) = NULL;
-> +	int err = 0;
+On 19/07/2024 14:21, Yixun Lan wrote:
+> SpacemiT's K1 SoC has a pinctrl controller which can be
+> modeled using the pinctrl-single driver.
+> 
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 1746 ++++++++++++++++++++++++++
+>  arch/riscv/boot/dts/spacemit/k1-pinctrl.h    |  220 ++++
+>  arch/riscv/boot/dts/spacemit/k1.dtsi         |   14 +
+>  3 files changed, 1980 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> new file mode 100644
+> index 0000000000000..ad6f171d3ec1f
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> @@ -0,0 +1,1746 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (c) 2022 SpacemiT (Hangzhou) Technology Co. Ltd
+> + * Copyright (c) 2024 Yixun Lan <dlan@gentoo.org>
+> + */
 > +
-> +	if (copy_from_user(&cmd_snd_rcv_rsp_info, (u8 *)arg,
-> +			   sizeof(cmd_snd_rcv_rsp_info))) {
-> +		dev_err(dev_ctx->priv->dev,
-> +			"%s: Failed to copy cmd_snd_rcv_rsp_info from user\n",
-> +			dev_ctx->miscdev.name);
-> +		err = -EFAULT;
-> +		goto exit;
-> +	}
+> +#include "k1-pinctrl.h"
 > +
-> +	if (cmd_snd_rcv_rsp_info.tx_buf_sz < SE_MU_HDR_SZ) {
-> +		dev_err(dev_ctx->priv->dev,
-> +			"%s: User buffer too small(%d < %d)\n",
-> +			dev_ctx->miscdev.name,
-> +			cmd_snd_rcv_rsp_info.tx_buf_sz,
-> +			SE_MU_HDR_SZ);
-> +		err = -ENOSPC;
-> +		goto exit;
-> +	}
+> +&pinctrl {
+> +	camera0_pin: camera0-pin {
+> +		pinctrl-single,pins = <
+> +			K1_PADCONF0(53, 1) /* cam_mclk0 */
+> +		>;
+> +		pinctrl-single,bias-pullup = PINCTRL_PULLUP(0);
+> +		pinctrl-single,bias-pulldown = PINCTRL_PULLDN(1);
+> +		pinctrl-single,drive-strength = PINCTRL_1V8_DS(2);
+> +	};
 > +
-> +	rx_msg = kzalloc(cmd_snd_rcv_rsp_info.rx_buf_sz, GFP_KERNEL);
-> +	if (!rx_msg) {
-> +		err = -ENOMEM;
-> +		goto exit;
-> +	}
-> +
-> +	tx_msg = memdup_user(cmd_snd_rcv_rsp_info.tx_buf,
-> +			     cmd_snd_rcv_rsp_info.tx_buf_sz);
-> +	if (IS_ERR(tx_msg)) {
-> +		err = PTR_ERR(tx_msg);
-> +		goto exit;
-> +	}
-> +
-> +	if (tx_msg->header.tag != priv->cmd_tag) {
-> +		err = -EINVAL;
-> +		goto exit;
-> +	}
-> +
-> +	guard(mutex)(&priv->se_if_cmd_lock);
-> +	priv->waiting_rsp_dev = dev_ctx;
-> +	dev_ctx->temp_resp_size = cmd_snd_rcv_rsp_info.rx_buf_sz;
-> +
-> +	/* Device Context that is assigned to be a
-> +	 * FW's command receiver, has pre-allocated buffer.
-> +	 */
-> +	if (dev_ctx != priv->cmd_receiver_dev)
-> +		dev_ctx->temp_resp = rx_msg;
-> +
-> +	err = ele_miscdev_msg_send(dev_ctx,
-> +				   tx_msg,
-> +				   cmd_snd_rcv_rsp_info.tx_buf_sz);
-> +	if (err < 0)
-> +		goto exit;
-> +
-> +	cmd_snd_rcv_rsp_info.tx_buf_sz = err;
-> +
-> +	err = ele_miscdev_msg_rcv(dev_ctx,
-> +				  cmd_snd_rcv_rsp_info.rx_buf,
-> +				  cmd_snd_rcv_rsp_info.rx_buf_sz);
-
-Ok, here you now have serialized sending and receiving messages,
-
-With this you no longer need priv->waiting_rsp_dev, dev_ctx->temp_resp
-and dev_ctx->temp_resp_size. Drop these for further cleanup.
-
-> +}
-> +
-> +static int se_ioctl_get_mu_info(struct se_if_device_ctx *dev_ctx,
-> +				u64 arg)
-> +{
-> +	struct se_if_priv *priv = dev_get_drvdata(dev_ctx->dev);
-> +	struct se_if_node_info *if_node_info;
-> +	struct se_ioctl_get_if_info info;
-> +	int err = 0;
-> +
-> +	if_node_info = (struct se_if_node_info *)priv->info;
-> +
-> +	info.se_if_id = if_node_info->se_if_id;
-> +	info.interrupt_idx = 0;
-> +	info.tz = 0;
-> +	info.did = if_node_info->se_if_did;
-> +	info.cmd_tag = if_node_info->cmd_tag;
-> +	info.rsp_tag = if_node_info->rsp_tag;
-> +	info.success_tag = if_node_info->success_tag;
-> +	info.base_api_ver = if_node_info->base_api_ver;
-> +	info.fw_api_ver = if_node_info->fw_api_ver;
-
-This really shouldn't be here. You pass cmd_tag and rsp_tag to userspace
-just to guide userspace how to construct a message.
-
-This shows that the messages should be constructed in the Kernel rather
-than in userspace. Just pass the message content from userspace to the
-kernel and let the kernel build the message on the sender side.
-
-> +/* IOCTL entry point of a character device */
-> +static long se_ioctl(struct file *fp, unsigned int cmd, unsigned long arg)
-> +{
-> +	struct se_if_device_ctx *dev_ctx = container_of(fp->private_data,
-> +							struct se_if_device_ctx,
-> +							miscdev);
-> +	struct se_if_priv *se_if_priv = dev_ctx->priv;
-> +	int err = -EINVAL;
-> +
-> +	/* Prevent race during change of device context */
-> +	if (down_interruptible(&dev_ctx->fops_lock))
-> +		return -EBUSY;
-> +
-> +	switch (cmd) {
-> +	case SE_IOCTL_ENABLE_CMD_RCV:
-> +		if (!se_if_priv->cmd_receiver_dev) {
-> +			err = 0;
-> +			se_if_priv->cmd_receiver_dev = dev_ctx;
-> +			dev_ctx->temp_resp = kzalloc(MAX_NVM_MSG_LEN, GFP_KERNEL);
-> +			if (!dev_ctx->temp_resp)
-> +				err = -ENOMEM;
-> +		}
-
-cmd_receiver_dev isn't locked by anything, still it can be accessed by
-different userspace processes.
-
-Besides, when already another instance is configured for receiving
-commands I would expect an -EBUSY here instead of silently ignoring the
-ioctl.
-
-> +		break;
-> +	case SE_IOCTL_GET_MU_INFO:
-> +		err = se_ioctl_get_mu_info(dev_ctx, arg);
-> +		break;
-> +	case SE_IOCTL_SETUP_IOBUF:
-> +		err = se_ioctl_setup_iobuf_handler(dev_ctx, arg);
-> +		break;
-> +	case SE_IOCTL_GET_SOC_INFO:
-> +		err = se_ioctl_get_se_soc_info_handler(dev_ctx, arg);
-> +		break;
-> +	case SE_IOCTL_CMD_SEND_RCV_RSP:
-> +		err = se_ioctl_cmd_snd_rcv_rsp_handler(dev_ctx, arg);
-> +		break;
-> +
-> +	default:
-> +		err = -EINVAL;
-> +		dev_dbg(se_if_priv->dev,
-> +			"%s: IOCTL %.8x not supported\n",
-> +				dev_ctx->miscdev.name,
-> +				cmd);
-> +	}
-> +
-> +	up(&dev_ctx->fops_lock);
-> +	return (long)err;
-> +}
-> +
+> +	camera1_pin: camera1-pin {
+> +		pinctrl-single,pins = <
+> +			K1_PADCONF0(58, 1) /* cam_mclk1 */
+> +		>;
+> +		pinctrl-single,bias-pullup = PINCTRL_PULLUP(0);
+> +		pinctrl-single,bias-pulldown = PINCTRL_PULLDN(1);
+> +		pinctrl-single,drive-strength = PINCTRL_1V8_DS(2);
+> +	};
 
 ...
 
-> +static int init_device_context(struct se_if_priv *priv)
-> +{
-> +	const struct se_if_node_info *info = priv->info;
-> +	struct se_if_device_ctx *dev_ctx;
-> +	u8 *devname;
-> +	int ret = 0;
-> +	int i;
 > +
-> +	priv->ctxs = devm_kzalloc(priv->dev, sizeof(dev_ctx) * priv->max_dev_ctx,
-> +				  GFP_KERNEL);
-> +
-> +	if (!priv->ctxs) {
-> +		ret = -ENOMEM;
-> +		return ret;
-> +	}
-> +
-> +	/* Create users */
-> +	for (i = 0; i < priv->max_dev_ctx; i++) {
-> +		dev_ctx = devm_kzalloc(priv->dev, sizeof(*dev_ctx), GFP_KERNEL);
-> +		if (!dev_ctx) {
-> +			ret = -ENOMEM;
-> +			return ret;
-> +		}
-> +
-> +		dev_ctx->dev = priv->dev;
-> +		dev_ctx->status = SE_IF_CTX_FREE;
-> +		dev_ctx->priv = priv;
-> +
-> +		priv->ctxs[i] = dev_ctx;
-> +
-> +		/* Default value invalid for an header. */
-> +		init_waitqueue_head(&dev_ctx->wq);
-> +
-> +		INIT_LIST_HEAD(&dev_ctx->pending_out);
-> +		INIT_LIST_HEAD(&dev_ctx->pending_in);
-> +		sema_init(&dev_ctx->fops_lock, 1);
-> +
-> +		devname = devm_kasprintf(priv->dev, GFP_KERNEL, "%s_ch%d",
-> +					 info->se_name, i);
-> +		if (!devname) {
-> +			ret = -ENOMEM;
-> +			return ret;
-> +		}
-> +
-> +		dev_ctx->miscdev.name = devname;
-> +		dev_ctx->miscdev.minor = MISC_DYNAMIC_MINOR;
-> +		dev_ctx->miscdev.fops = &se_if_fops;
-> +		dev_ctx->miscdev.parent = priv->dev;
-> +		ret = misc_register(&dev_ctx->miscdev);
-> +		if (ret) {
-> +			dev_err(priv->dev, "failed to register misc device %d\n",
-> +				ret);
-> +			return ret;
-> +		}
+> +#endif /* __DT_BINDINGS_K1_PINCTRL_H */
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index 0777bf9e01183..2f0c56b06d413 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -416,6 +416,20 @@ uart9: serial@d4017800 {
+>  			status = "disabled";
+>  		};
+>  
+> +		pinctrl: pinctrl@d401e000 {
+> +			compatible = "pinconf-single";
 
-Here you register four character devices which all allow a single open.
+Please don't. This results in huge code in DTS mapping hardware
+registers, basically what once SoC platform did some time ago for clocks
+(one clock per node). That is not maintainable, not readable and does
+not reduce amount of work. Quite contrary - due to nature of DTS
+language, you have huge duplication of code.
 
-There's no need to artificially limit the number of users. Just register
-a single character device, allow it to be opened multiple times and
-allocate the instance specific context as necessary in se_if_fops_open().
+Define proper pin controller driver.
 
-Sascha
+Best regards,
+Krzysztof
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
