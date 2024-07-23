@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-87449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FED6939865
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:47:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0D093986A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:51:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD73AB21BFF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:47:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C2612829C7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E081386D8;
-	Tue, 23 Jul 2024 02:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6534213957B;
+	Tue, 23 Jul 2024 02:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gul9Ojrf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4bcjXKl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C2D134B6;
-	Tue, 23 Jul 2024 02:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D312F32;
+	Tue, 23 Jul 2024 02:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721702832; cv=none; b=MnfPp84rFdhPA+3ZYhb14ic5japMVtsZ9HpYMTZRQYHpDoVDzlMH+TEw/oifnNpxB0Y0ggec8JfYhHcM5WPoAQZuxV0TIT2h/JcuhqNlYuR1feKfAnfV5kMqYUd+DOzQMm9IhoNQLZbcM/IbUf/wVw6UTAi2azYQO59FKxLdQMo=
+	t=1721703073; cv=none; b=hh4/yCTZjiNS8WkI9rnzlSPtJALOG6zERE0Lw6cCInCxXafISWzGWDINfQBLgspD5AFZJHPgiJnEfnMFd4X3iXJmbWyRf67ieeflvfSXRSnALB5ezfKHFV6LMPJ8IlzE48sp4X/oIjWlzWFHEal6j3IdHdyhWAD8YKxlObIemSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721702832; c=relaxed/simple;
-	bh=MIMdnCy6yX2zuqekb7fQ2vPvHaFmS2xIlkV3aYtyUxk=;
+	s=arc-20240116; t=1721703073; c=relaxed/simple;
+	bh=8f4JRcrwXHy++9/5/z8Qgm+dkVwDQLC/tLAYNCJRVqI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ENvJXRY4ke0MFjO3ra4SIBNle+XpeJ4A4CGuaHZVn901rBx2X+aEJCbl6BxYC0/WexH2mh2eb/cMzsyOToh1o1k0I3OathzTiV8F2q+WHHOK8gTXJ2Lato9HLhPgn/rnyUzDAuQDy4voJ694plaFjPGtd7Ew0MplBgO11bgheD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gul9Ojrf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BED7C116B1;
-	Tue, 23 Jul 2024 02:47:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HN9t0DCZQbn2aL+IqsZITpQdHcJOZwiZn8tA58SG54se38BytyKZPY78U7l5BZs3RIMXf7km4sIUZgib3T+4ThsWAuBm+QSscvfU+CgSbGbeKBs+mkQtRtllXJc1rwWnelwhcNCKsYM3yAPmGpKxASV9Rt3u8PCIrPLlr+0qZuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4bcjXKl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD138C116B1;
+	Tue, 23 Jul 2024 02:51:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721702831;
-	bh=MIMdnCy6yX2zuqekb7fQ2vPvHaFmS2xIlkV3aYtyUxk=;
+	s=k20201202; t=1721703073;
+	bh=8f4JRcrwXHy++9/5/z8Qgm+dkVwDQLC/tLAYNCJRVqI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gul9OjrfrwQ13kkaqlqmBcpBWDbMPqd/2kwyWpHO+SMKNmluV+2dVmTJCn55kGNrB
-	 ZJf4RdEJ+pqv4uFOwCDQShSjDijcMzW6fl813d9yAsEZu8Gw7B+JOIIChzBSLg5drI
-	 OZfgNk1cTdeeD6LVQCwe/1BRU4xZu4F9kwi0HPFH+aql1QoymqoS0wNf4zhFYeeDG3
-	 qJlsbFr7GmqfNKrZMKt+TTx2+UF7NztmWMge9Z6tfguC+wn7g/yx6Z8m0DK/g9xNSJ
-	 1xoQxb29nthrjivBkA8y88tSLjI35jRwfZ3y/0uKDmurChOgil+Qs/A1pZ9yXLEaO1
-	 ZM43Pai4WxKOQ==
-Date: Mon, 22 Jul 2024 20:47:08 -0600
+	b=I4bcjXKlbq3vK4A9Yxj2HSavSoovc0HlmseEJt4vDSZcNzer0SiJ/s+E9VTqaUbrU
+	 LaLyhBgjeNWPjj3LUSmxQik0aF/cd9dq5919wLw4/zkF8Eu9Ysu0/bOv59SmU6QiVH
+	 453v6jicu2ak8/Bs74njb+yZEFa9g/mLr7Gd6bdBVjiViXztkcgwPI49ZQA96gYLOg
+	 gdtKUzDyjLRSZy8dMXbRB91A8T0VqgsU2jUO512Ze/v8TBsW4rIXXyK79mvQqYmwyx
+	 JdTiOUdOECE+H9EelMvQYBUQMkjJ1f76XM9wzJDhBR18sfLqrgnzERxBV4jkYuk38/
+	 3TSKVzFGpi6qA==
+Date: Mon, 22 Jul 2024 20:51:10 -0600
 From: Rob Herring <robh@kernel.org>
-To: Pawel Dembicki <paweldembicki@gmail.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: dsa: vsc73xx: add
- {rx,tx}-internal-delay-ps
-Message-ID: <20240723024708.GA192141-robh@kernel.org>
-References: <20240717212732.1775267-1-paweldembicki@gmail.com>
- <20240717212732.1775267-2-paweldembicki@gmail.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com,
+	gregkh@linuxfoundation.org, peter.chen@kernel.org,
+	herve.codina@bootlin.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+	jun.li@nxp.com
+Subject: Re: [PATCH 3/6] dt-bindings: phy: mxs-usb-phy: add nxp,sim property
+Message-ID: <20240723025110.GA199927-robh@kernel.org>
+References: <20240718102637.3964232-1-xu.yang_2@nxp.com>
+ <20240718102637.3964232-3-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,93 +64,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240717212732.1775267-2-paweldembicki@gmail.com>
+In-Reply-To: <20240718102637.3964232-3-xu.yang_2@nxp.com>
 
-On Wed, Jul 17, 2024 at 11:27:33PM +0200, Pawel Dembicki wrote:
-> Add a schema validator to vitesse,vsc73xx.yaml for MAC-level RGMII delays
-> in the CPU port. Additionally, valid values for VSC73XX were defined,
-> and a common definition for the RX and TX valid range was created.
+On Thu, Jul 18, 2024 at 06:26:34PM +0800, Xu Yang wrote:
+> i.MX7ULP need properly set System Integration Module(SIM) module to make
+> usb wakeup work well. This will add a "nxp,sim" property.
 > 
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
-> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > ---
-> v2:
->   - added info about default value when the rx/tx delay property
->     is missing
-> ---
->  .../bindings/net/dsa/vitesse,vsc73xx.yaml     | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
+>  .../devicetree/bindings/phy/fsl,mxs-usbphy.yaml    | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-> index b99d7a694b70..7022a6afde5c 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-> @@ -52,6 +52,25 @@ properties:
->  allOf:
->    - $ref: dsa.yaml#/$defs/ethernet-ports
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> index f4b1ca2fb562..2141f271f8f1 100644
+> --- a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> @@ -87,6 +87,12 @@ properties:
+>      maximum: 119
+>      default: 100
 >  
-> +patternProperties:
-> +  "^(ethernet-)?ports$":
-> +    additionalProperties: true
-> +    patternProperties:
-> +      "^(ethernet-)?port@6$":
-> +        allOf:
-> +          - if:
-> +              properties:
-> +                phy-mode:
-> +                  contains:
-> +                    enum:
-> +                      - rgmii
-> +            then:
-> +              properties:
-> +                rx-internal-delay-ps:
-> +                  $ref: "#/$defs/internal-delay-ps"
-> +                tx-internal-delay-ps:
-> +                  $ref: "#/$defs/internal-delay-ps"
+> +  nxp,sim:
+> +    description:
+> +      The system integration module (SIM) provides system control and chip
+> +      configuration registers.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 > +
->  # This checks if reg is a chipselect so the device is on an SPI
->  # bus, the if-clause will fail if reg is a tuple such as for a
->  # platform device.
-> @@ -67,6 +86,16 @@ required:
+>  required:
 >    - compatible
 >    - reg
+> @@ -110,6 +116,14 @@ allOf:
+>        required:
+>          - fsl,anatop
 >  
-> +$defs:
-> +  internal-delay-ps:
-> +    description:
-> +      Disable tunable delay lines using 0 ps, or enable them and select
-> +      the phase between 1400 ps and 2000 ps in increments of 300 ps.
-> +      When the property is missing, the delay value is set to 2000 ps
-> +      by default.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: fsl,imx7ulp-usbphy
+> +    then:
+> +      required:
+> +        - nxp,sim
 
-       default: 2000
+       else:
+         properties:
+           nxp,sim: false
 
-Not freeform text.
 
-> +    enum:
-> +      [0, 1400, 1700, 2000]
 > +
->  unevaluatedProperties: false
+>  additionalProperties: false
 >  
 >  examples:
-> @@ -108,6 +137,8 @@ examples:
->              reg = <6>;
->              ethernet = <&gmac1>;
->              phy-mode = "rgmii";
-> +            rx-internal-delay-ps = <0>;
-> +            tx-internal-delay-ps = <0>;
->              fixed-link {
->                speed = <1000>;
->                full-duplex;
-> @@ -150,6 +181,8 @@ examples:
->            ethernet-port@6 {
->              reg = <6>;
->              ethernet = <&enet0>;
-> +            rx-internal-delay-ps = <0>;
-> +            tx-internal-delay-ps = <0>;
->              phy-mode = "rgmii";
->              fixed-link {
->                speed = <1000>;
 > -- 
 > 2.34.1
 > 
