@@ -1,279 +1,243 @@
-Return-Path: <devicetree+bounces-87638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C20893A24F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:08:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611C793A26E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:17:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22B701C22B68
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:08:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9162CB21196
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B86153BC7;
-	Tue, 23 Jul 2024 14:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEDD153BEE;
+	Tue, 23 Jul 2024 14:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8iOCGcg"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Tp++tmdi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21945153800;
-	Tue, 23 Jul 2024 14:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6001214E2C0
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721743702; cv=none; b=NwzIZTFUpTU2jrI4oysIL1u9qdjnG9gBEKC0Jd7tYF47uqWGMDYpT1cf9K2L3X0ZFnlMDMFca3fXPZNH0NjiDxiM5gm28FzlhOSFnHcsI6Z49ic/ErLATyCXO6PiNNRp9BnUKCJZfyRYIb+2nEkVbSwpveeb3u2RlrnsFIlqUeY=
+	t=1721744224; cv=none; b=Xe0oS4cabbI+VfplRrs3Xv1XBpRFjwuV+MwmtFCYHEodiycuAlqgmc+4zN9G2iqAG+q/JIRovjJ3kXYlfYV9qSiscP61afLzR5GEKfVXtdrm9ufPDTkjEaL+/FSAk/yvz/axa+I/uOmVVtOmCGuG1WEs3cM1QWUByQIpDmVVxXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721743702; c=relaxed/simple;
-	bh=rIR6ptMSospz1fBXm3NdOc/NDWzLkQ7d8uaI/p2zgvs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jgKusE9Y+A01ezD0WYHQl0uXF3KH69Yzy0JJZXZi9INpMOANsp5QBU16Nj6Cliuzd22nE0hU6Ni6jYLG/edxhRaf4NcqbEbXIJlb6AjZEmSDfE2i25ahqx0CLFPC4cW99QvEQKoyJ77/GTrfHXI3/bbYOWA94oJMKseYMTGtwvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8iOCGcg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 033A9C4AF0A;
-	Tue, 23 Jul 2024 14:08:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721743702;
-	bh=rIR6ptMSospz1fBXm3NdOc/NDWzLkQ7d8uaI/p2zgvs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J8iOCGcg/qL2HCfhahlZnvGRqWZNwaDk2N/N4zh/0cSy5XZ4yWFYIstWkt55VQsNh
-	 klFDOMaEkL7gVEG+JpVAjeOfWk8afIbNjGErk1QJ+Agi9GmSxJK6PoxFaILOHmvWst
-	 gNcSXRfHViqpM3OXE9+NYSqtYpJaFLiGIeY22UMmdt5x6NjL9IaetJ7B1Uxn8h//y9
-	 JFfj1xzKZZzlbjmIZuAjzHt+jKRNmnyOq1jyDJHjb88a3Hf5H40J91oqOVKuFm5M5W
-	 ziUyEsdK2fdsbRdgF1EUv78pTWOCIZP4vMcYs6T0h8GayaX7dKhKLwCdjAHgRBEbhF
-	 mhtjAfYLx+taA==
-Date: Tue, 23 Jul 2024 15:08:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v6 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Message-ID: <20240723-smitten-shower-1d15c0f3cf97@spud>
-References: <20240722-imx-se-if-v6-0-ee26a87b824a@nxp.com>
- <20240722-imx-se-if-v6-2-ee26a87b824a@nxp.com>
- <20240722-popper-comfort-7538ea70c77b@spud>
- <AM9PR04MB8604123E065315093347F66C95A92@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1721744224; c=relaxed/simple;
+	bh=DokAt3REwYburQaPky05gjnMoWXv28kQ8L7i12RmZ2Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=HIlJbJrDwyYfyPxurdMSTVacOWsMRC7uiw70pgv7bYavYyz1EYLhG35IqE5SRo/+lBBmKfwrcoOeZwdy9r4iShUsoabUJLKap5c6M+ArSlAnlP3k8pLby66zxD6B20RtFg+ecT1HGNRUCCg2b0FaX0uUc6TrDJa1UVUH67bz+Xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Tp++tmdi; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240723141655euoutp02d823669edd24f03d95a7304aef2f2e27~k3T3dbiep0488604886euoutp02r
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:16:55 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240723141655euoutp02d823669edd24f03d95a7304aef2f2e27~k3T3dbiep0488604886euoutp02r
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1721744215;
+	bh=FMZuGVWWsRbasuE+xwjGAfo5VkxSVrg2vk1+uKbDH9I=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Tp++tmdiiZXtlwgv6otx4eHx3Zz5Mcl09xU3nrbxX0eGdTRZMqJsyL/Up48hKwRK3
+	 vmugfxrdaUcCISYQi9BhNP5+Qv+tXLgVS7PWXlqSuGvciyyiIYeYkirbAREFSgoat5
+	 BeN3T7TUwErOCMGmEqT6S+zw8ZBVnUyKvnoqRYEw=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20240723141654eucas1p27e8df6cdd970fdc8b6b3e87b7cb8c8c9~k3T3F7wAc0973109731eucas1p2D;
+	Tue, 23 Jul 2024 14:16:54 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id 17.E9.09875.65BBF966; Tue, 23
+	Jul 2024 15:16:54 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240723141654eucas1p2deadd470e2ceda1601042dad4acfc17e~k3T2iYk3f1687516875eucas1p2H;
+	Tue, 23 Jul 2024 14:16:54 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240723141654eusmtrp151b8102f680066a81154f58785982620~k3T2hmF6Z1462214622eusmtrp17;
+	Tue, 23 Jul 2024 14:16:54 +0000 (GMT)
+X-AuditID: cbfec7f4-131ff70000002693-2a-669fbb5666b3
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 58.46.08810.65BBF966; Tue, 23
+	Jul 2024 15:16:54 +0100 (BST)
+Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
+	[106.120.51.28]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240723141653eusmtip2de4eb2ab058d9df0509ecd6d9d145e33~k3T1sJZx12309623096eusmtip20;
+	Tue, 23 Jul 2024 14:16:53 +0000 (GMT)
+From: Mateusz Majewski <m.majewski2@samsung.com>
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Mateusz Majewski <m.majewski2@samsung.com>, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH 0/6] Add initial Exynos 850 support to the thermal
+ driver
+Date: Tue, 23 Jul 2024 16:16:37 +0200
+Message-ID: <20240723141638.374742-1-m.majewski2@samsung.com>
+X-Mailer: git-send-email 2.45.1
+In-Reply-To: <CAPLW+4m0xG5yHOT_ucGdrOhLZvjhga8caqHQZmVH6HHKUnBgkw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Jzq89wAQ2QEgaltg"
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8604123E065315093347F66C95A92@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBKsWRmVeSWpSXmKPExsWy7djP87phu+enGbzrN7Z4MG8bm8X3LdeZ
+	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi4VNLewWE49NZraY
+	+2Uqs8X/PTvYLZ487GOzeN63j8lBwGPNvDWMHjtn3WX3WLznJZPHplWdbB53ru1h89i8pN6j
+	b8sqRo/Pm+QCOKK4bFJSczLLUov07RK4Mu51nGIvOC5TsbFlGlMD4z6xLkZODgkBE4kfm58x
+	gdhCAisYJTZ9cO5i5AKyvzBKTD14kAnC+cwo8ebUJ5YuRg6wjneb4yHiyxklji+awgzhtDJJ
+	TJrWywIyik3AQOLBm2XsILaIgJ7Eupmv2EGKmAU2s0hceDqTFSQhLOAvsWDjN7DdLAKqEhdW
+	TgCzeQVsJdb+/cgMcZ+8RO/+PrA4p0CgxPy935ghagQlTs58AraMGaimeetssCskBKZzSlw+
+	uZ0NotlFom3RXShbWOLV8S3sELaMxOnJPSwQdr7EjM3voV6rkLh70AvCtJb4eIYZxGQW0JRY
+	v0sfothR4uW864wQFXwSN94KQhzAJzFp23RmiDCvREebEES1qsTxPZOg/pCWeNJymwnC9pDY
+	vfcC6wRGxVlIXpmF5JVZCHsXMDKvYhRPLS3OTU8tNspLLdcrTswtLs1L10vOz93ECExsp/8d
+	/7KDcfmrj3qHGJk4GA8xSnAwK4nwPnk1N02INyWxsiq1KD++qDQntfgQozQHi5I4r2qKfKqQ
+	QHpiSWp2ampBahFMlomDU6qBqVpmUSBnz4NXbq4XQ54wllhNz1RddMd0SuexbUccBI5cnbQi
+	pqW5p1fw1RbrCTfv+okryaoLvWL8cumKcEbW+9t+Ez9uaDZNWLiHl+vQvHMmx9O5lBqqtveI
+	Js9YJTmFs277BY7NhwWWxlrflZUWudWxtX5bgNO+D/7m5v/c+IWOVaqmh1ozCb7Z+8iw+c6L
+	cymTJVYueZ6rznuZVe1Ty/3fwe5zdj2+2+VTZ+P5/CbnvZmr1+3RvNwffkbhVLNW0CpZu6Pz
+	p3KbtjEbNMQUMP1jkY61s+ra9F37x8E/ZruenEyNerKhI59zw6Qa0eLvwfWcfmsrxGR3mt78
+	dvZ+wbmlX8PfNf1fKH/9msLTVCWW4oxEQy3mouJEAKzKaVbbAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJIsWRmVeSWpSXmKPExsVy+t/xe7phu+enGTxaL2DxYN42NovvW64z
+	WazZe47JYt5nWYv5R86xWpw/v4HdYtPja6wWl3fNYbP43HuE0WLG+X1MFgubWtgtJh6bzGwx
+	98tUZov/e3awWzx52Mdm8bxvH5ODgMeaeWsYPXbOusvusXjPSyaPTas62TzuXNvD5rF5Sb1H
+	35ZVjB6fN8kFcETp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSW
+	pRbp2yXoZdzrOMVecFymYmPLNKYGxn1iXYwcHBICJhLvNsd3MXJyCAksZZQ4ONMJxJYQkJY4
+	/GUKO4QtLPHnWhdbFyMXUE0zk8T26ZtYQRJsAgYSD94sAysSEdCTWDfzFTtIEbPAQRaJvtdX
+	mEESwgK+Er03FrOA2CwCqhIXVk5gArF5BWwl1v79yAyxQV6id38fWJxTIFBi/t5vzBAX8Ui8
+	2rCfEaJeUOLkzCdgc5iB6pu3zmaewCgwC0lqFpLUAkamVYwiqaXFuem5xYZ6xYm5xaV56XrJ
+	+bmbGIFxuO3Yz807GOe9+qh3iJGJg/EQowQHs5II75NXc9OEeFMSK6tSi/Lji0pzUosPMZoC
+	3T2RWUo0OR+YCPJK4g3NDEwNTcwsDUwtzYyVxHk9CzoShQTSE0tSs1NTC1KLYPqYODilGphW
+	K6u4ZDvKKUUuLj69aq3t0e1xKbbrHsyZpfF68Zno1ib3SBl3mVe2zUkvH560XfbkluWk38sv
+	z/4c5Xcin4v3lNDNKd7y1xx61mg5c7FbhyXP27w0MMfBYEPMq7+fZO/6vnrWXmd5TtyUcUnc
+	VBl1b5e1Qr6bjN0nMRluCg1uZpeW/Bo7ccvdpjm/5/eknuBdZ7ibfcYeN5mjCu1n2t5osc7c
+	zrB8UWTp8tKOh385n3uamUmJTvNLFAgzenzqaNz3U20SG/eZGra82R3GXdIhv8a9zrUo2H7t
+	pvOvPJ0P6f9n3jA9YY3X0XPfTh09Pul9v8d6vZWlM/vFjz02Mcpw8BX/6iT9+9NiRc+3N2KV
+	WIozEg21mIuKEwH9+gNETAMAAA==
+X-CMS-MailID: 20240723141654eucas1p2deadd470e2ceda1601042dad4acfc17e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20240723141654eucas1p2deadd470e2ceda1601042dad4acfc17e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240723141654eucas1p2deadd470e2ceda1601042dad4acfc17e
+References: <CGME20240723141654eucas1p2deadd470e2ceda1601042dad4acfc17e@eucas1p2.samsung.com>
 
+Hi :)
 
---Jzq89wAQ2QEgaltg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Thank you for the contribution! Did you by chance test it on any
+> hardware, perhaps on E850-96 board? Just noticed there are no dts
+> changes in this series (or as separate patches). If no -- I'll be glad
+> to assist you on that, if you can share dts definitions for E850-96
+> and the testing instructions with me.
 
-On Tue, Jul 23, 2024 at 09:28:31AM +0000, Pankaj Gupta wrote:
->=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Monday, July 22, 2024 10:20 PM
-> > To: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>;
-> > Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> > <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
-> > <s.hauer@pengutronix.de>; Pengutronix Kernel Team
-> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Rob
-> > Herring <robh+dt@kernel.org>; linux-doc@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev;
-> > linux-arm-kernel@lists.infradead.org
-> > Subject: [EXT] Re: [PATCH v6 2/5] dt-bindings: arm: fsl: add imx-se-fw =
-binding
-> > doc
+I did test it on our copy of E850-96. I used this for testing:
 
-Please fix this ^
+diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+index f1c8b4613cbc..cffc173fd059 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+@@ -617,6 +617,53 @@ sysreg_cmgp: syscon@11c20000 {
+ 			clocks = <&cmu_cmgp CLK_GOUT_SYSREG_CMGP_PCLK>;
+ 		};
+ 
++		tmuctrl_0: tmu@10070000{
++			compatible = "samsung,exynos850-tmu";
++			reg = <0x10070000 0x800>;
++			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		thermal-zones {
++			test_thermal: test-thermal{
++				polling-delay-passive = <0>;
++				polling-delay = <0>;
++				thermal-sensors = <&tmuctrl_0>;
++				trips {
++					test_40000: test-40000 {
++						temperature = <40000>;
++						hysteresis = <1000>;
++						type = "passive";
++					};
++					test_50000: test-50000 {
++						temperature = <50000>;
++						hysteresis = <1000>;
++						type = "passive";
++					};
++					test_60000: test-60000 {
++						temperature = <60000>;
++						hysteresis = <1000>;
++						type = "passive";
++					};
++					test_70000: test-70000 {
++						temperature = <70000>;
++						hysteresis = <1000>;
++						type = "passive";
++					};
++					test_80000: test-80000 {
++						temperature = <80000>;
++						hysteresis = <1000>;
++						type = "passive";
++					};
++					test_crit: test-crit {
++						temperature = <90000>;
++						hysteresis = <1000>;
++						type = "critical";
++					};
++				};
++			};
++		};
++
+ 		usbdrd: usb@13600000 {
+ 			compatible = "samsung,exynos850-dwusb3";
+ 			ranges = <0x0 0x13600000 0x10000>;
 
-> >=20
-> > On Mon, Jul 22, 2024 at 10:21:37AM +0530, Pankaj Gupta wrote:
-> > > The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
-> > > creates an embedded secure enclave within the SoC boundary to enable
-> > > features like:
-> > > - HSM
-> > > - SHE
-> > > - V2X
-> > >
-> > > Secure-Enclave(s) communication interface are typically via message
-> > > unit, i.e., based on mailbox linux kernel driver. This driver enables
-> > > communication ensuring well defined message sequence protocol between
-> > > Application Core and enclave's firmware.
-> > >
-> > > Driver configures multiple misc-device on the MU, for multiple
-> > > user-space applications, to be able to communicate over single MU.
-> > >
-> > > It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
-> > >
-> > > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 91
-> > ++++++++++++++++++++++
-> > >  1 file changed, 91 insertions(+)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
-> > > b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
-> > > new file mode 100644
-> > > index 000000000000..7511d0e9cf98
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
-> > > @@ -0,0 +1,91 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/firmware/fsl,imx-se.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: NXP i.MX HW Secure Enclave(s) EdgeLock Enclave
-> > > +
-> > > +maintainers:
-> > > +  - Pankaj Gupta <pankaj.gupta@nxp.com>
-> > > +
-> > > +description: |
-> > > +  NXP's SoC may contain one or multiple embedded secure-enclave HW
-> > > +  IP(s) like i.MX EdgeLock Enclave, V2X etc. These NXP's HW IP(s)
-> > > +  enables features like
-> > > +    - Hardware Security Module (HSM),
-> > > +    - Security Hardware Extension (SHE), and
-> > > +    - Vehicular to Anything (V2X)
-> > > +
-> > > +  Communication interface to the secure-enclaves(se) is based on the
-> > > + messaging unit(s).
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - fsl,imx8ulp-se
-> > > +      - fsl,imx93-se
-> > > +      - fsl,imx95-se
-> > > +
-> > > +  mboxes:
-> > > +    items:
-> > > +      - description: mailbox phandle to send message to se firmware
-> > > +      - description: mailbox phandle to receive message from se
-> > > + firmware
-> > > +
-> > > +  mbox-names:
-> > > +    items:
-> > > +      - const: tx
-> > > +      - const: rx
-> > > +
-> > > +  memory-region:
-> > > +    maxItems: 1
-> > > +
-> > > +  sram:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - mboxes
-> > > +  - mbox-names
-> > > +
-> > > +allOf:
-> > > +  # memory-region
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx8ulp-se
-> > > +              - fsl,imx93-se
-> > > +    then:
-> > > +      required:
-> > > +        - memory-region
-> > > +    else:
-> > > +      properties:
-> > > +        memory-region: false
-> > > +
-> > > +  # sram
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx8ulp-se
-> > > +    then:
-> > > +      required:
-> > > +        - sram
-> > > +
-> > > +    else:
-> > > +      properties:
-> > > +        sram: false
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    senclave-firmware {
-> >=20
-> > Last revision this was "firmware", but now you've got something that ap=
-pears
-> > non-generic. Why did you change it?=20
->=20
-> In case you missed, there was a previous email requesting your view on th=
-is change.
-> Having node as "firmware {", is very generic that has wide interpretation.
-> Hence, replaced firmware with "senclave-firmware".
+I did not post this because it would probably need some more thought,
+and it probably wouldn't get merged until this series does anyway I
+think? During testing I couldn't get readings higher than 35C, but the
+values reacted to CPU load as expected. Also, Marek had physical access
+to the board while I was testing it and has confirmed that the values
+are realistic. Some more testing was done with some combination of
+lowering the trip points, emul_temp and those temporary changes:
 
-Which I came across after reading the updated series. If you ask me for
-my opinion on something, just wait til I reply to you before sending
-another version.
-
-> Why "senclave"?
-> Like sram, for secure RAM, I proposed senclave for secure enclave.
->=20
->=20
-> Moreover, there are plenty of examples of YAML(s), that were already comm=
-itted; that are using this:
-> linux_bkp$:> find Documentation/ -name "*.yaml" | xargs grep -r "\-firmwa=
-re {"
-
-Just because something got in before doesn't mean it should now.
-
-> Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.yaml:      zynqm=
-p_firmware: zynqmp-firmware {
-> Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml:      z=
-ynqmp_firmware: zynqmp-firmware {
-> Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml:    =
-zynqmp-firmware {
->  And more...
->=20
-> If you any other suggested word to pre-fix , that narrows down this broad=
- referenced word "firmware".
-
-> Please suggest.
-
- I already did:
-> > The normal differentiator for multiple
-> > nodes is -[0-9]*, why can't you use that, if you're worried about multi=
-ple
-> > nodes?
-> Thanks Conor, for the suggestion this. Will use this. Thanks.
-
---Jzq89wAQ2QEgaltg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp+5UAAKCRB4tDGHoIJi
-0q7tAQCPrTH8oQp81LnUqAxW0aIBbOmWOERuWjwoAeRPTg11oAEAuQZuN8bt6s/u
-opD9Ek20yVXFya29Hbn2nTmfXQ0skAU=
-=l8OU
------END PGP SIGNATURE-----
-
---Jzq89wAQ2QEgaltg--
+diff --git a/drivers/thermal/samsung/exynos_tmu.c b/drivers/thermal/samsung/exynos_tmu.c
+index bd52663f1a5a..8db3f9039e7a 100644
+--- a/drivers/thermal/samsung/exynos_tmu.c
++++ b/drivers/thermal/samsung/exynos_tmu.c
+@@ -941,6 +941,7 @@ static irqreturn_t exynos_tmu_threaded_irq(int irq, void *id)
+ {
+ 	struct exynos_tmu_data *data = id;
+ 
++	pr_info("interrupt\n");
+ 	thermal_zone_device_update(data->tzd, THERMAL_EVENT_UNSPECIFIED);
+ 
+ 	mutex_lock(&data->lock);
+diff --git a/drivers/thermal/thermal_sysfs.c b/drivers/thermal/thermal_sysfs.c
+index 72b302bf914e..0864179526e2 100644
+--- a/drivers/thermal/thermal_sysfs.c
++++ b/drivers/thermal/thermal_sysfs.c
+@@ -232,13 +232,11 @@ emul_temp_store(struct device *dev, struct device_attribute *attr,
+ 
+ 	mutex_lock(&tz->lock);
+ 
+-	if (!tz->ops.set_emul_temp)
++	if (!tz->ops.set_emul_temp) {
+ 		tz->emul_temperature = temperature;
+-	else
+-		ret = tz->ops.set_emul_temp(tz, temperature);
+-
+-	if (!ret)
+ 		__thermal_zone_device_update(tz, THERMAL_EVENT_UNSPECIFIED);
++	} else
++		ret = tz->ops.set_emul_temp(tz, temperature);
+ 
+ 	mutex_unlock(&tz->lock);
+ 
 
