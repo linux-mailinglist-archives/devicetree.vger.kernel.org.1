@@ -1,228 +1,177 @@
-Return-Path: <devicetree+bounces-87666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD3F93A482
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 18:47:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A66B93A4E0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 19:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1DD69B2210A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:47:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A1A91F21F27
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 17:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005A6157E82;
-	Tue, 23 Jul 2024 16:47:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F5C157E91;
+	Tue, 23 Jul 2024 17:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HKIt7X2k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="knafn8at"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372C415748E
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 16:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F4A14C5A1;
+	Tue, 23 Jul 2024 17:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721753267; cv=none; b=r6DU//Lle5p64rvGkee+K6Sxpju/TObnuBzEM8ScpSQNppFoseOyDDYZMNkwyjeZXu378aucvT1lkZpMNUojk4TWBOwNI/hQ5FUf7aApwdiwz9PKrFAghlQvbmZ3W67ninot/Nd/9TbRIzFBIv3Y6XVrZUIOktVI8Pc/BBoAU1s=
+	t=1721755218; cv=none; b=oZPvGQkuBWRSM/UuPAATbTLuj/pps+Q5iXTb/3mnIi3iQp9DV/KdKC9F2IU75s45RsZGuv+xMmJ3Lbhep6wIBfJuwox0JxZgJ/HoYS3fytRrh6JpQkko2TJtbKSzFmMbbxtuzXwGcNv/wK/GeftGP7nC0MKxAZZVmq3CmJebs64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721753267; c=relaxed/simple;
-	bh=ovjQM5lG4ilTC+5F6TXGapRv5ns+z+SS4q+0grG1X+g=;
+	s=arc-20240116; t=1721755218; c=relaxed/simple;
+	bh=s+FbsBLL1jMHQREVmDymAVoIY7/hFnWDNk5fvkWdR6o=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W2n6kUiFdEkuQdeZTEw9cBfW4zTTwY6fY0XoBSRFj3pLntEfcJVrNmXj5pR1gOchHNJRFGvH5JfPrFEJHmiHAY/aaLRQJ/M4UlqHe1P7j3/JGviwo1Smu31NIWrIPiqHQTtZkWz2X0I8UIjOLE85rQ1GO6plRksHTJz9FrLA+wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HKIt7X2k; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-65f8626780aso58445137b3.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 09:47:45 -0700 (PDT)
+	 To:Cc:Content-Type; b=XIRdbw5+3u/Rnsfjw9Y4OFDI3EIivd0hy12z1NDJM9N030gKFKuHNrKZyrbXC/jn4xxqn5nNdig/8OeQvtg3nY/wxYt5BEQCeth8ixgBjGCs9RHm+OmHzof59zPvpAWB7VNuVnYq8B4hVJ0x3NeC+ggY+q41tFdclRScYfa1Nqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=knafn8at; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-66c7aeac627so27859937b3.1;
+        Tue, 23 Jul 2024 10:20:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721753265; x=1722358065; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=74HzxpSV7URZ5ukXyWUxMZBvB74HaX9SH0zHZjqujBk=;
-        b=HKIt7X2kV20DKkFXix5pBj/bCISABpeab4X1Z0VcLOSFe4sDIBnD7XP0ijUNT/bZQ5
-         dUPQIIuw71iEaAfXV6zA7DDWxoFIkzJD1+Hd6krdUhKZVMV5ypBzhU4MWGULqyPXDKnf
-         PQNKLbUvsJ/BSqFPiwxiokWoUMpPFIeZKHpgxMeneeX9LXD8/fGZSCbTEsB6XNzwVtZa
-         Hu6ONyKcRfD0pYOU1ZAXt0rxFTDokOf+zIUYiRWyCpPSX49k7zSEIKZ6n1KdeLrnPQXA
-         oYtG9nW2oM2i9QZ6y7IqUI/bqAanhZ2y/7oj8jMIxGMKa7J84YIzOu2fhwds83Ot3pip
-         J3/A==
+        d=gmail.com; s=20230601; t=1721755215; x=1722360015; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XOe0MLUMVLOrVxxv/ePfl9ff0aPXG4+Z35ycnARxiY8=;
+        b=knafn8at5vWjCFysx45qN1U/85CKT9teiAP+x1bOJa6ad4kL5MNeHMlq0jebMLQ1Q5
+         nj8BkwkcCb6jWBu1GIaSw0xQu/rIlhTSpWcxaNqDQ3mt0SmNubc68UApdBX30+RFo7lh
+         dtwF7QBfG0NpujzVng93Z0W4qTRrXJSa2NhE3RQi16i41p5fQ75osiRHOvdo7JnLVwVc
+         uFWeeBRxLUSg9cpC1xvqrPoO5IVbL6uTxoKj9LYJ1VkZ+B5ygLP+ld9FvSyNrKDpGblL
+         Mjyujl3B/5hcIE70/8BqEpQ1VqlwLV9KpZWka820uUDBhafBh3FJbV7Pf8WeLc9KRoLC
+         kwXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721753265; x=1722358065;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=74HzxpSV7URZ5ukXyWUxMZBvB74HaX9SH0zHZjqujBk=;
-        b=i6il6XXBRS4K60K9e5X1ebmwi5m/Af993KJPGUhbKyQGShCS/wOBMFI1Dp+Rv2eIzH
-         Ch5v9M0iz9dXE+M1wTNFdlMqeuCyQh8LZEuuhqoY9C9DwErn6qvLCjM9DmUgvZ0MAp1P
-         h9Yo/sXZHGkdhPfYHLamzBsn+sPQJJNz4Y/nuQNOiiTWP7x0LJdrN2AEfDyWop8gHI4Z
-         zZjV3nazTCf3r7dP2OK9aGx6QlWnkZ/+gNxCE+RiImbOxBApg1wJl7QPaOMaEJUGm4jk
-         LeasNzyQ7BLcldbDmRHzHXoUL9NGFohUNjs4BoL/N4+pvun3CxKmi/K03h6o3eWZXX8T
-         pUtA==
-X-Forwarded-Encrypted: i=1; AJvYcCW5+1KYPG1UstIHZvUKCP8pAMjiNKVp3IH5kFkSbAR65upaqNih4Qs1KxbOkkJNgZGckxcctk14QLKlvt1qscRHrEZQrqgvjS9dfw==
-X-Gm-Message-State: AOJu0YxVBcbWvQU9XPa6VT8ZSu6NPCjyo8idaPN/3+6wOrfYyum2w2eU
-	jm0J4ord0xIzbo1Hw75EBs4sEiMLTmSnjy/4Me39DilUcugxEh5V76XHY1X2hjT3hkUoVtP5xWR
-	qglJyeUGiodcr4SbNeUOpveqdXAPzGFTZgTknOw==
-X-Google-Smtp-Source: AGHT+IFNCdB6xhMgLIV6tTLbw7Kn49YzikMa5JepY3lzP+CVyBBnh+TeXodzPmrKVu+S0JqtiErgjD3DEMvkHBiHMwo=
-X-Received: by 2002:a05:690c:dc7:b0:65b:a403:9eba with SMTP id
- 00721157ae682-671f1098ee3mr3962687b3.11.1721753265081; Tue, 23 Jul 2024
- 09:47:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721755215; x=1722360015;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XOe0MLUMVLOrVxxv/ePfl9ff0aPXG4+Z35ycnARxiY8=;
+        b=MmBf7QMEAzzbkXI7wfrV2WB6weOAVNsveofKxrhKYIXUrYCZ9CtHV4Xn2HNxC90Xe2
+         WoVXrKbWfnyuf1MKqz73H8iayLFMWW5TXbAnO7+NSV33xYkbqL7Os1v1bOJMmtAi1Gcd
+         vpFH7ym89YdXogQJi2zY8WcVQiJq6fkjfjda1u+ikqRlzpuKr7SqSf2OZhtSMtuR66DU
+         mvgtxDJvfIyx7bZhstgEElKCikvsLUPUHpgTRzuaRS2ue2h9RZXPrYe5suAD/UfdMog3
+         wV6uCrSheqC5lSOFvkCQTA/qqjwvS51hNumu0lWrfO2LZRwVxVOvqpAFuMjnoMJrD+Wd
+         nNqA==
+X-Forwarded-Encrypted: i=1; AJvYcCVTKQVgOK+qbTjEEUI4eY37zb3tGX2t7yiiJdNJvDxaHaJskc8UDJtKEWGeq4bCYeobtR0NDoUqPMb4/EqG3VsscGB81AsksXSlNMkrHHFcHxkGqjDNJjuDvz3PAtakvBxMPDdewg==
+X-Gm-Message-State: AOJu0YwAsMPCT589xAByC0mbVclDHEaUasFGrl3/1JDKn/efG2p9G8oe
+	CMU8xMNpbbNBSYG7K6XAg72HmoPDnVATyl1hc+Fn1BYQ9U2NTNaQf0iOdsezJPFrrjS5Odf122K
+	hObRNlI66nPohy4vUHtRYk2akQdI=
+X-Google-Smtp-Source: AGHT+IFcHozHZx+cILlSEO6Gl2LmXfljpvHEyEVdBwuFcMIZtVfKaO43sgcYRG67ZYw8sJ27fCMFQ9KO8R/WVwG8mzo=
+X-Received: by 2002:a05:690c:10d:b0:64b:7e17:b339 with SMTP id
+ 00721157ae682-66a68b87fe5mr136874317b3.15.1721755215500; Tue, 23 Jul 2024
+ 10:20:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20240723141705eucas1p1bbe72a6d543031a41efdbe81d1b03ac3@eucas1p1.samsung.com>
- <CAPLW+4n6XB3fm8KQA=6_2z8ay9pDPtu-VFgAaW5imZkRH2ywkg@mail.gmail.com>
- <20240723141658.374755-1-m.majewski2@samsung.com> <CAPLW+4katjgDUS+e4+iYt+Cz_pKizLFUxqV4KGnbQ5ekAq9Mvw@mail.gmail.com>
-In-Reply-To: <CAPLW+4katjgDUS+e4+iYt+Cz_pKizLFUxqV4KGnbQ5ekAq9Mvw@mail.gmail.com>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 23 Jul 2024 11:47:34 -0500
-Message-ID: <CAPLW+4nfEjP4FDjRJORyyKk46x4VfFAcMuK88jXUT_LJoP1N_g@mail.gmail.com>
-Subject: Re: [PATCH 5/6] drivers/thermal/exynos: add initial Exynos 850 support
-To: Mateusz Majewski <m.majewski2@samsung.com>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+References: <20240718210322.37492-1-ilordash02@gmail.com> <20240718210322.37492-2-ilordash02@gmail.com>
+ <20240719-ahead-kiwi-995e52bf3e74@spud>
+In-Reply-To: <20240719-ahead-kiwi-995e52bf3e74@spud>
+From: IlorDash <ilordash02@gmail.com>
+Date: Tue, 23 Jul 2024 20:20:04 +0300
+Message-ID: <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
+To: Conor Dooley <conor@kernel.org>, geert+renesas@glider.be
+Cc: mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, vkoul@kernel.org, 
+	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, a-govindraju@ti.com, 
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 23, 2024 at 10:23=E2=80=AFAM Sam Protsenko
-<semen.protsenko@linaro.org> wrote:
+On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wrote:
 >
-> On Tue, Jul 23, 2024 at 9:17=E2=80=AFAM Mateusz Majewski
-> <m.majewski2@samsung.com> wrote:
+> On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
+> > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+> > It is pin-compatible with TI TCAN1042.
 > >
-> > > Do you know what are the possible implications of not using ACPM? As =
-I
-> > > understand, ACPM is a Samsung's downstream framework which uses APM
-> > > (Active Power Management) IP block internally to act as an IPC
-> > > mechanism, which makes it possible to offload any PM related
-> > > operations (which might get quite heavy, if we are to belive the TRM
-> > > description of APM) from CPU to APM. I'm not against the direct
-> > > registers access based implementation (in fact, I'm not sure how that
-> > > APM/ACPM thing can be implemented in upstreamable way and if it's
-> > > worth it at all). Just curious if we understand what we are
-> > > potentially missing out, and if at some point we'll be forced to
-> > > implement that ACPM thing anyway (for something else)?
+> > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > >
-> > Not sure honestly. The downstream v4.10 driver does many operations on
-> > registers anyway...?
-> >
-> > > Not sure if that's true, as already discussed in my comments for the
-> > > previous patches. Looks like one clock is still needed, which is the
-> > > PCLK bus clock (to interface registers) which might simultaneously ac=
-t
-> > > as an operating (functional) clock.
-> >
-> > The code seems to be working correctly without this clock, both registe=
-r
-> > reads and writes. Maybe the support for extra sensors, which I couldn't
-> > get to work, would require this clock?
-> >
+> > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > index 79dad3e89aa6..03de361849d2 100644
+> > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >        - nxp,tjr1443
+> >        - ti,tcan1042
+> >        - ti,tcan1043
+> > +      - microchip,ata6561
 >
-> Chances are that clock was enabled by the bootloader for us (or it's
-> just enabled by default) and it just keeps running. If that's so, I'd
-> say it must be described in dts and controlled by the driver. Because
-> otherwise it might get disabled at any point in future, e.g. kernel
-> may disable it during startup as an unused clock (when it's added to
-> the clock driver), etc. Let me enable that clock for you, and then you
-> can use /sys/kernel/debug/clk/ files to disable it manually and see if
-> it actually affects TMU driver.
+> Given that your driver patch has
+> | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
+> | index ee4ce4249698..dbcd99213ba1 100644
+> | --- a/drivers/phy/phy-can-transceiver.c
+> | +++ b/drivers/phy/phy-can-transceiver.c
+> | @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiver_phy_ids[] = {
+> |                 .compatible = "nxp,tjr1443",
+> |                 .data = &tcan1043_drvdata
+> |         },
+> | +       {
+> | +               .compatible = "microchip,ata6561",
+> | +               .data = &tcan1042_drvdata
+> | +       },
+> |         { }
+> |  };
 >
+> the driver patch is actually not needed at all, and you just need to
+> allow ti,tcan1042 as fallback compatible in the binding, so something
+> like:
+>
+>   compatible:
+>     oneOf:
+>       - enum:
+>           - nxp,tjr1443
+>           - ti,tcan1042
+>           - ti,tcan1043
+>       - items:
+>           - const: microchip,ata6561
+>           - const: ti,tcan1042
+>
+>    '#phy-cells':
+>      const: 0
+>
+> Cheers,
+> Conor.
+>
+> >
+> >    '#phy-cells':
+> >      const: 0
+> > --
+> > 2.34.1
+> >
+> >
 
-Yeah, that clock is definitely needed. Just submitted the series [1]
-adding it, which makes the kernel stuck on startup when your series is
-applied. To fix that I added next lines to the TMU node in dts:
+I tested the build with fallback compatible:
 
-8<-------------------------------------------------------------------------=
--->8
-     tmuctrl_0: tmu@10070000 {
-         compatible =3D "samsung,exynos850-tmu";
-         reg =3D <0x10070000 0x800>;
-         interrupts =3D <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
-+        clock-names =3D "tmu_apbif";
-+        clocks =3D <&cmu_peri CLK_GOUT_BUSIF_TMU_PCLK>;
-         #thermal-sensor-cells =3D <0>;
-    };
-8<-------------------------------------------------------------------------=
--->8
+compatible:
+  oneOf:
+    - items:
+      - enum:
+        - microchip,ata6561
+      - const: ti,tcan1042
+    - items:
+      - enum:
+        - nxp,tjr1443
+      - const: ti,tcan1043
 
-Please rework your patches to account for that required clock. Alas
-the TMU dts changes can't be submitted until my series [1] is applied.
-But you can still apply my series locally, and I think the driver and
-bindings changes don't depend on that clock, so it should be ok to
-send those
+and modified compatible property in DTS:
 
-Thanks!
+compatible = "microchip,ata6561", "ti,tcan1042";
 
-[1] https://lore.kernel.org/linux-samsung-soc/20240723163311.28654-2-semen.=
-protsenko@linaro.org/T/#mf28e4aab0111b95479ef632bc1979dff93d28cc7
+Build succeeded, phy-can-transceiver driver was used. So I would like
+to add a fallback compatible for both "microchip,ata6561" and
+"nxp,tjr1443" in this binding and modify other DTS files with
+compatible = "nxp,tjr1443". What do you think?
 
-> > > Exynos850 TRM says AVG_CONTROL offset is 0x38, and 0x58 is actually
-> > > for THRESHOLD0_TEMP_RISE3_2 register.
-> >
-> > Thank you so much! Will fix in v2. Though writing to the right place
-> > doesn't seem to change much in practice, probably just means that the
-> > correct mode is being used.
-> >
-> > > Something seems off to me here. How come the shift value for EXYNOS7
-> > > case is 8, but the mask is actually 9 bits long? Does it mean the
-> > > first error field is 8 bits long, and the second error field is 9 bit=
-s
-> > > long for EXYNOS7? I don't have the Exynos7 manual, so it's just a
-> > > hunch. But if it's true, maybe this shift value has to be added in
-> > > your [PATCH 2/6] to fix Exynos7 case?
-> >
-> > I did not really want to mess with Exynos7 code, as we don't have an
-> > Exynos7 board sadly. Honestly I feel like I should drop the 2/6 patch
-> > completely and only modify the code to run on 850 correctly.
-> >
->
-> It feels like there is an error for Exynos7 case there. Take a look at
-> this commit:
->
->     aef27b658b43 ("thermal: exynos: use sanitize_temp_error() in
-> exynos7_tmu_initialize()")
->
-> I think that commit just forgets to update the shift value for Exynos7
-> properly. This code:
->
->     data->temp_error1 =3D trim_info & tmu_temp_mask;
->     data->temp_error2 =3D ((trim_info >> EXYNOS_TRIMINFO_85_SHIFT) &
->                 EXYNOS_TMU_TEMP_MASK);
->
-> in case of Exynos7 becomes:
->
->     data->temp_error1 =3D trim_info & 0x1ff;    // mask =3D 9 bits
->     data->temp_error2 =3D (trim_info >> 8) & 0xff;
->
-> it contradicts itself, because it takes 9 rightmost bits for error1,
-> and then uses 1 of those bits for error2 too. It's obvious that if 9
-> bits are already used for error1, then for error2 it has to be shifted
-> by 9 bits, not 8.
->
-> That's why I think your patch 2/6 is legit and useful on its own, and
-> it's actually a good catch on your part! But the shift value has to be
-> fixed as well (for Exynos7). It's not ideal you don't have the
-> hardware to test it, but it just screams *bug* to me :) Also, maybe we
-> can ask someone who has Exynos7 hardware to test it for us?
->
-> > > Also, just an idea: those values (and other similar values) could be
-> > > pre-calculated somewhere during the probe, stored in some struct (e.g=
-.
-> > > _variant or _chip) and then just used here.
-> >
-> > sanitize_temp_error is only called one per probe and once per resume, s=
-o
-> > probably little to gain?
-> >
->
-> Sure, it was just a minor suggestion to make the code look more linear
-> so to speak. It can be totally skipped.
->
-> > Will also do all other.
+-- 
+Best regards,
+Ilya Orazov
 
