@@ -1,153 +1,280 @@
-Return-Path: <devicetree+bounces-87674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A468E93A77C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 20:55:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4755793A7A3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 21:18:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F35E28138D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 18:55:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FACAB220DD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 19:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E974413D633;
-	Tue, 23 Jul 2024 18:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2D713FD97;
+	Tue, 23 Jul 2024 19:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="se89imST"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Jz+4h2FB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF2613C8EE;
-	Tue, 23 Jul 2024 18:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFCA13DDC6
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 19:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721760924; cv=none; b=HxsAwqfKHU7YHW4UGxgvz/IioAa/bbGEFU8aJabeUIqFTFQPE7+9oRieUQyWgVc+Y8SYFDmeZVTZn5gQrOR7LR5/ggkTSDqVv0SafLgHoNacT+Qx94eBhL344VoUXmUY6WIkWTTnetiG7MHZeU/AXEwx1VZrKqudJPBf3zAs7rs=
+	t=1721762271; cv=none; b=RQNdwY1UDXMRQVkzQkCEX2vorIhGTlxMEkbxUPQ1V9uapP3raoRZDkpRG3Gl3+j4niFU5IzoWDhxlV6DS/MtyZ9mNWh9nxL1DqGZNuZRTAWOMkMDCdAHxCa9Yp/85hsaD0OR1/nq3greTS3l6mn4FDgnpSwikuZM6EFRSX6q0kE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721760924; c=relaxed/simple;
-	bh=m8tanHBnyb3um660m/Fiay8fgOwQGavPrK7RhkThkVo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bAT1yJ238tpHwC2bEZ7TcEyIYdmFCnLQ0WkX28sh12PJPxyQjLHX0SMN3+m3Jah3CSKMQX/Ak9SC3FPb4Vxh2mndubd+mkeMoWxFPwKdODizx+j6O3vBW6+t+5ncmcZULMy+AauGAWcgq4DV2pMLnSrjKN2tRQ+S2OEpV11wDb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=se89imST; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C46C4AF0A;
-	Tue, 23 Jul 2024 18:55:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721760924;
-	bh=m8tanHBnyb3um660m/Fiay8fgOwQGavPrK7RhkThkVo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=se89imST6u7xu1WZpSLkDPr15gFfD+93NSJRdzfETxOBTqcckcLg5e2QtWu22CSYc
-	 lbhcmIUiY2kOvzlI0x8lZiaf6iYmkKwHdqqLN3iL6rgs+VAhZA3mzCC47PbF1rjuSZ
-	 q2FIkkAT4XOL5DLoCCuWkjmDW1k2Dzvgz/EKxkmzytQGveQGsBYJaLlleJVHsM9aB2
-	 Kn1Vm8bbiyrfu/tiZ4VN8pojgP/h/XJaF0miCkpkhpUQMz6Lpxz7pnf+SK6V5mrdZo
-	 o4oxJ6FgGN9lRkWcwlwGOU1IvY6VaupNQwJ/+J4Zj/MOGifo0YOud6H9oU605vIxib
-	 ISnyfkLTiPYDg==
-Date: Tue, 23 Jul 2024 13:55:20 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, Abel Vesa <abel.vesa@linaro.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add X1E78100 ThinkPad T14s Gen 6
-Message-ID: <atjcj5qnetxilrnoom7xisqbl5yhq5ktg3jb7dfnkdnzbqblb5@qbkqupznvrua>
-References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
- <20240719-topic-t14s_upstream-v1-3-d7d97fdebb28@linaro.org>
- <Zp055OR+OzSgiHhX@linaro.org>
- <824edc08-f67f-4b2f-b4aa-da5df69b9df4@linaro.org>
- <Zp4vghH5SK/rLEce@linaro.org>
- <CAF6AEGszzRFiW16VzQQVF21U79uLcTNwwuGsHs98Zp_UGGTEBA@mail.gmail.com>
- <4w4b5pjrrl7jnanx3uodsjxw4cfenc3i6tgmp6kblgn6gavn45@uu2milys4n2z>
+	s=arc-20240116; t=1721762271; c=relaxed/simple;
+	bh=MoSUe8UtDKgYAQJpc7bEXz/Ktusv4aoCQejwWcyA59Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QYNxCydjOhuBjA3g/4jxoqxWvB5La1Zq1UJ4NfXBXBUHWs8lvNRGIEax0Dma0TAsfKjQMgq9XDM3fi46cb+EvZ+O5SgdtHN8MLkkbKoHDfsMYX8zK8UZyfVfkWCfttfOQR84oMYt1AVwjOQzb22qMGLvxNw4E3WOeKCST6SAveQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Jz+4h2FB; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-25e3bc751daso3214208fac.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 12:17:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1721762266; x=1722367066; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R0HgeFN0Ay5AIJvxgptlaXcddVWeUebYTJmY/Mw+Yg0=;
+        b=Jz+4h2FBbNBKx0fZMgdQJW0EUD/Tqe4/zP71KkkGCf8qU31INhObZGYtKDar1BArdo
+         GJ6jn3bdpxexBjVV5PHr+3n1wuU+Soh5OMvn9hYKNrgu0MBuNx3iwLj3clZGXf6xvMvE
+         UbUK2ACWxOvKfuIVzoQy8Ed8hsuv9p3PsNV0U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721762266; x=1722367066;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R0HgeFN0Ay5AIJvxgptlaXcddVWeUebYTJmY/Mw+Yg0=;
+        b=ezroMkmpJKpxhwiTxHZkDGK7xyCfnU+TVPTSMMMN8feeE5HO5n6qYKOyvjRsKEW/hG
+         aG/+0x7GxmZX0cBJGxHOfE5gass4z+wzUuIQGXvtlhIirHhZUBbucISxpdNCsWA8dop/
+         BBcukGcuEjvpwQ8e/hPeECR4pmPaUXVI3DxmE515FY+POSXFkpuE1Wz60BEpIH8aYqhZ
+         11RXefEz5nV/7HfVYWdifKL9XHEJpKNvr+PlhU4WkCmVuRC7WyavdosOrSrVEiSB4+6F
+         qD9vEAXpJIfWwGSTvHOaOyqCWEfzKuXYFP9yyQgRsZ6pHeVnnZzYIR19+X50K3j48G1R
+         5fgw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbc6QSnEResaPLkzHLaLBLN4i4iuRl6aRjP8uEi98m6abvRpv414S5BTV1/oHjhT2zSpdWZFtZi0X1T/GFhbZ1HH3tfG8SKTrF9A==
+X-Gm-Message-State: AOJu0YydC/F/3JmgDm6ANKYSepXEI97yuWES/s6R/C4BsKfGkSuR4Ypk
+	3vB1+VKqaNNtUEmz8mwnwf9fByNnjYDQk2XxgR+HSHhHAAglGRx5oHkXmjqghOoqaQoj+qQ2q74
+	=
+X-Google-Smtp-Source: AGHT+IG5MwFGMYVjh/0RHJwm81N22q8bQpbFFDYURJGbmtpTBnaZ4bp90oEuKNPBTqvPvsIY3Ntezw==
+X-Received: by 2002:a05:6870:e0d2:b0:25e:56b:484f with SMTP id 586e51a60fabf-2648768312emr726815fac.16.1721762266266;
+        Tue, 23 Jul 2024 12:17:46 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com. [209.85.160.173])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a199078805sm511752985a.120.2024.07.23.12.17.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jul 2024 12:17:44 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-44e534a1fbeso49191cf.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 12:17:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU1hVT2H0RsDznAGWrMA1yY0EpVl3/ugloMsDseJDXAt9dg9hQPtEeSU/tW50tFGl3/wUzCTK4DR6EkqZnN7plu7+ozerTpgxO93Q==
+X-Received: by 2002:a05:622a:491:b0:447:d81a:9320 with SMTP id
+ d75a77b69052e-44fd4c6382dmr843151cf.20.1721762263871; Tue, 23 Jul 2024
+ 12:17:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4w4b5pjrrl7jnanx3uodsjxw4cfenc3i6tgmp6kblgn6gavn45@uu2milys4n2z>
+References: <20240709-topic-sdm450-upstream-tbx605f-panel-v1-0-af473397835d@linaro.org>
+ <20240709-topic-sdm450-upstream-tbx605f-panel-v1-2-af473397835d@linaro.org>
+In-Reply-To: <20240709-topic-sdm450-upstream-tbx605f-panel-v1-2-af473397835d@linaro.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 23 Jul 2024 12:17:27 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VL1Wxd0veW7N+0Hy=LdKMzNbBang9_EZ9Zo_d-wZOBfw@mail.gmail.com>
+Message-ID: <CAD=FV=VL1Wxd0veW7N+0Hy=LdKMzNbBang9_EZ9Zo_d-wZOBfw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/panel: add BOE tv101wum-ll2 panel driver
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 22, 2024 at 07:03:43PM GMT, Dmitry Baryshkov wrote:
-> On Mon, Jul 22, 2024 at 08:00:19AM GMT, Rob Clark wrote:
-> > On Mon, Jul 22, 2024 at 3:11 AM Abel Vesa <abel.vesa@linaro.org> wrote:
-> > >
-> > > On 24-07-22 10:42:57, Konrad Dybcio wrote:
-> > > > On 21.07.2024 6:40 PM, Abel Vesa wrote:
-> > > > > On 24-07-19 22:16:38, Konrad Dybcio wrote:
-> > > > >> Add support for the aforementioned laptop. That includes:
-> > > > >>
-> > > > >> - input methods, incl. lid switch (keyboard needs the pdc
-> > > > >>   wakeup-parent removal hack..)
-> > > > >> - NVMe, WiFi
-> > > > >> - USB-C ports
-> > > > >> - GPU, display
-> > > > >> - DSPs
-> > > > >>
-> > > > >> Notably, the USB-A ports on the side are depenedent on the USB
-> > > > >> multiport controller making it upstream.
-> > > > >>
-> > > > >> At least one of the eDP panels used (non-touchscreen) identifies as
-> > > > >> BOE 0x0b66.
-> > > > >>
-> > > > >> See below for the hardware description from the OEM.
-> > > > >>
-> > > > >> Link: https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/lenovo-thinkpad-t14s-gen-6-(14-inch-snapdragon)/len101t0099
-> > > > >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > > >
-> > > > > Few comments below. Otherwise, LGTM.
-> > > > >
-> > > > > Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-> > > > >
-> > > > >> ---
-> > > > >>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
-> > > > >>  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 792 +++++++++++++++++++++
-> > > > >>  2 files changed, 793 insertions(+)
-> > > > >>
-> > > > >> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > > >> index 0e5c810304fb..734a05e04c4a 100644
-> > > > >> --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > > >> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > > >> @@ -261,6 +261,7 @@ dtb-$(CONFIG_ARCH_QCOM)        += sm8650-hdk-display-card.dtb
-> > > > >>  dtb-$(CONFIG_ARCH_QCOM)   += sm8650-hdk.dtb
-> > > > >>  dtb-$(CONFIG_ARCH_QCOM)   += sm8650-mtp.dtb
-> > > > >>  dtb-$(CONFIG_ARCH_QCOM)   += sm8650-qrd.dtb
-> > > > >> +dtb-$(CONFIG_ARCH_QCOM)   += x1e78100-lenovo-thinkpad-t14s.dtb
-> > > > >>  dtb-$(CONFIG_ARCH_QCOM)   += x1e80100-asus-vivobook-s15.dtb
-> > > > >>  dtb-$(CONFIG_ARCH_QCOM)   += x1e80100-crd.dtb
-> > > > >>  dtb-$(CONFIG_ARCH_QCOM)   += x1e80100-lenovo-yoga-slim7x.dtb
-> > > > >> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> > > > >
-> > > > > So what happens for SKUs of this model wil have x1e80100 ?
-> > > > >
-> > > > > Maybe we should stick to x1e80100 ?
-> > > >
-> > > > This one only ships with 78100
-> > > >
-> > >
-> > > Sure, but then in upstream we only have 80100. Plus, it is included in
-> > > this file as well.
-> > >
-> > > I don't know what's the right thing to do here. But I think it keeps
-> > > things more simple if we keep everything under the x1e80100 umbrella.
-> > 
-> > plus sticking to x1e80100 will avoid angering tab completion :-P
-> 
-> This is an old argument, with no clear answer. For some devices we
-> choose to use correct SoC name (sda660-inforce-ifc6560). For other we
-> didn't (sdm845-db845c, which really is SDA845). However for most of the
-> devices the goal is to be accurate (think about all the qcs vs qcm
-> stories). So my 2c. would go to x1e78100.
-> 
+Hi,
 
-I agree, x1e78100 follows the naming scheme we have agreed upon - for
-better or worse.
+On Tue, Jul 9, 2024 at 6:06=E2=80=AFAM Neil Armstrong <neil.armstrong@linar=
+o.org> wrote:
+>
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makef=
+ile
+> index 5581387707c6..79c90894b6a4 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -7,6 +7,7 @@ obj-$(CONFIG_DRM_PANEL_BOE_BF060Y8M_AJ0) +=3D panel-boe-b=
+f060y8m-aj0.o
+>  obj-$(CONFIG_DRM_PANEL_BOE_HIMAX8279D) +=3D panel-boe-himax8279d.o
+>  obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) +=3D panel-boe-th101mb31=
+ig002-28a.o
+>  obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) +=3D panel-boe-tv101wum-nl6.o
+> +obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) +=3D panel-boe-tv101wum-ll2.o
 
-Regards,
-Bjorn
+nit: please sort. L comes before N.
 
-> -- 
-> With best wishes
-> Dmitry
+
+>  obj-$(CONFIG_DRM_PANEL_DSI_CM) +=3D panel-dsi-cm.o
+>  obj-$(CONFIG_DRM_PANEL_LVDS) +=3D panel-lvds.o
+>  obj-$(CONFIG_DRM_PANEL_SIMPLE) +=3D panel-simple.o
+> diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c b/drivers/gpu=
+/drm/panel/panel-boe-tv101wum-ll2.c
+> new file mode 100644
+> index 000000000000..5513cb48d949
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c
+> @@ -0,0 +1,240 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +// Generated with linux-mdss-dsi-panel-driver-generator from vendor devi=
+ce tree:
+> +//   Copyright (c) 2013, The Linux Foundation. All rights reserved.
+> +//   Copyright (c) 2024, Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+
+nit: sort header files?
+
+> +static int boe_tv101wum_ll2_prepare(struct drm_panel *panel)
+> +{
+> +       struct boe_tv101wum_ll2 *ctx =3D to_boe_tv101wum_ll2(panel);
+> +       struct device *dev =3D &ctx->dsi->dev;
+> +       int ret;
+> +
+> +       ret =3D regulator_bulk_enable(ARRAY_SIZE(ctx->supplies),
+> +                                   ctx->supplies);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       boe_tv101wum_ll2_reset(ctx);
+> +
+> +       ret =3D boe_tv101wum_ll2_on(ctx);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to initialize panel: %d\n", ret);
+
+nit: Do you really need this error message? The "_multi" variants are
+all chatty and print the error message, so we don't really need this
+here...
+
+
+> +               gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +               return ret;
+
+Shouldn't you turn off the regulators?
+
+
+> +static int boe_tv101wum_ll2_unprepare(struct drm_panel *panel)
+> +{
+> +       struct boe_tv101wum_ll2 *ctx =3D to_boe_tv101wum_ll2(panel);
+> +       struct device *dev =3D &ctx->dsi->dev;
+> +       int ret;
+> +
+> +       ret =3D boe_tv101wum_ll2_off(ctx);
+> +       if (ret < 0)
+> +               dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+
+nit: Do you really need this error message? The "_multi" variants are
+all chatty and print the error message, so we don't really need this
+here...
+
+
+> +
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +
+> +       regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +
+> +       return 0;
+
+Maybe add a comment justifying why you don't return the error code
+that boe_tv101wum_ll2_off() returned?
+
+
+> +static int boe_tv101wum_ll2_get_modes(struct drm_panel *panel,
+> +                                     struct drm_connector *connector)
+> +{
+> +       return drm_connector_helper_get_modes_fixed(connector, &boe_tv101=
+wum_ll2_mode);
+
+Random question for you: on panels that don't use the
+drm_connector_helper the "bpc" gets set here. Is there a reason why
+some panel drivers (like this one) don't set bpc?
+
+
+> +static int boe_tv101wum_ll2_probe(struct mipi_dsi_device *dsi)
+> +{
+> +       struct device *dev =3D &dsi->dev;
+> +       struct boe_tv101wum_ll2 *ctx;
+> +       int ret;
+> +
+> +       ctx =3D devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +       if (!ctx)
+> +               return -ENOMEM;
+> +
+> +       ctx->supplies[0].supply =3D "vsp";
+> +       ctx->supplies[1].supply =3D "vsn";
+> +
+> +       ret =3D devm_regulator_bulk_get(&dsi->dev, ARRAY_SIZE(ctx->suppli=
+es),
+> +                                     ctx->supplies);
+
+Any chance I can convince you to use devm_regulator_bulk_get_const()?
+Then you can list your supply structures as "static const" instead of
+having to initialize them via code.
+
+
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +       if (IS_ERR(ctx->reset_gpio))
+> +               return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +                                    "Failed to get reset-gpios\n");
+> +
+> +       ctx->dsi =3D dsi;
+> +       mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +       dsi->lanes =3D 4;
+> +       dsi->format =3D MIPI_DSI_FMT_RGB888;
+> +       dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BUR=
+ST |
+> +                         MIPI_DSI_MODE_VIDEO_HSE;
+> +
+> +       drm_panel_init(&ctx->panel, dev, &boe_tv101wum_ll2_panel_funcs,
+> +                      DRM_MODE_CONNECTOR_DSI);
+> +       ctx->panel.prepare_prev_first =3D true;
+> +
+> +       ret =3D drm_panel_of_backlight(&ctx->panel);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Failed to get backlight\n=
+");
+> +
+> +       drm_panel_add(&ctx->panel);
+
+Any chance you could add devm_drm_panel_add() and then use it? Then
+you can fully get rid of your remove and error handling since
+devm_mipi_dsi_attach() already exists. Note that this would not change
+object lifetimes at all since you're already calling
+drm_panel_remove() in your remove code--it would just clean up the
+code...
+
+
+> +static struct mipi_dsi_driver boe_tv101wum_ll2_driver =3D {
+> +       .probe =3D boe_tv101wum_ll2_probe,
+> +       .remove =3D boe_tv101wum_ll2_remove,
+> +       .driver =3D {
+> +               .name =3D "panel-boe-tv101wum_ll2",
+> +               .of_match_table =3D boe_tv101wum_ll2_of_match,
+> +       },
+> +};
+> +module_mipi_dsi_driver(boe_tv101wum_ll2_driver);
+> +
+> +MODULE_DESCRIPTION("DRM driver for Boe TV101WUM-LL2 Panel");
+
+Should "Boe" be "BOE" ?
 
