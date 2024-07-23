@@ -1,120 +1,137 @@
-Return-Path: <devicetree+bounces-87509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1784939D09
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 10:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 304FD939D14
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:03:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E24E81C21B37
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 08:59:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C14A1C21D42
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 09:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C5314C5A7;
-	Tue, 23 Jul 2024 08:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B0114B96D;
+	Tue, 23 Jul 2024 09:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="p9qxGzt3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PvXmxeZK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1FE14AD3E;
-	Tue, 23 Jul 2024 08:59:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 308DD13B2AF;
+	Tue, 23 Jul 2024 09:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721725161; cv=none; b=ex0aBNg/NoAMW5AqP0XYQwsaQO8r6PkxAxCVMeEzTzOrCGsT43q7LPML216nTHosjnmwHDBYufXHhsNbR9b6qAsfJVfN4u49FywsRsdgEFu3YPeZpObO/2YWlX29H1rZnz3oHBPnCxDuE/EJ124ULNPY271TY8LV81MX1PPikNM=
+	t=1721725419; cv=none; b=pjWtU6fNUErMAe24qQIk1yOXoiRDZ/mCAeqz/6uBnYpfDsO7/Sl9TeTlYXhRxmoJel8LME5uZQSSiPfz5Ffe53dnKN+K/CriQGcBm/JiQ16wSIavoRsI3YOw88hBbgra3gK7N+OHJt7RFTJPgZYLQUpk3FSdFLH1O77A/4VLfjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721725161; c=relaxed/simple;
-	bh=vuB9BvBovznV2C5TzKywXf/pl325gqX7cPXFdfLvaOg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RpWBZSGqpJm7c6aImDjAT0bYQl42BozUvBmcwoNy4eVnJBwjVcBOnOSE/wmOQ34u5TwN2AH8MzTnoRIcZuDeYiXhPGbyGdgYM+wDLhsv6A1kzxOmSM0CwIGK/ZZErp1EwS+KlJZfkPMkzUhvNexG4pKlhMegog7M7otmIdAZt0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=p9qxGzt3; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1721725158; x=1753261158;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vuB9BvBovznV2C5TzKywXf/pl325gqX7cPXFdfLvaOg=;
-  b=p9qxGzt3cqVKDiYi3/oZ5tYoGVYBz9Nxaux5IWGCKmuWisTbo76DFvyZ
-   V8fcyV8Gb5c5QZJjjupqsKH9dobAIG0pCws7w+OK9GHR7TLQAc3Wnq6Jd
-   0WX3OcRLnEbWz6MQepNQLONCZrLmWmAe/tt96FU7onl1Ao+N2MdBZt+AU
-   7QcXRMKU7iVCPTtBrBDh2JVc2qMyV76WA3frbWFEh2ssNIQVQedEGwfEp
-   n/VGv+zFX2qHgxZ4kSsLs8igYyId97aB5maVstE9+7ADt5qCVBZxfxt0a
-   zbzRn3Gs1pbE0jp4PzKHVxKz5AXRdMg/g2NxyXxxg4Hm1I/MQ6BVYcj9/
-   Q==;
-X-CSE-ConnectionGUID: RDjQsaNRTDa14ayDCi8WyQ==
-X-CSE-MsgGUID: DGp6JnEZQhSDYcZqLRRLZA==
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; 
-   d="asc'?scan'208";a="32331318"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jul 2024 01:59:17 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Jul 2024 01:58:56 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Tue, 23 Jul 2024 01:58:54 -0700
-Date: Tue, 23 Jul 2024 09:58:30 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: David Lechner <dlechner@baylibre.com>
-CC: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Nuno =?iso-8859-1?Q?S=E1?=
-	<nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, <linux-spi@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-iio@vger.kernel.org>
-Subject: Re: [PATCH RFC v3 0/9] spi: axi-spi-engine: add offload support
-Message-ID: <20240723-cabbie-opossum-6e551fe246f2@wendy>
-References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+	s=arc-20240116; t=1721725419; c=relaxed/simple;
+	bh=IKDGW+S1M4rIGjWSyUzdgq3EqCJJHUgPhJCnriCxPNM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PQPEl7VD6WPDGG3Cmf7Q5He9/rJxbgOuEspHty6IaaWel2U+vQZR+JK8ubVcEK8PBZaa1H8di1C7mVy8BZZ0c2zKma5zuPN89PWSV/nXcONdmWKVCYTGZH+UvKgyMxnUszHDd8XQaznQkpLjLqSzQq0EiWRjNXA/LzaNN53GD7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PvXmxeZK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46N1qb75009577;
+	Tue, 23 Jul 2024 09:03:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=s4vojYXQW1c42hLl+9O/4V
+	8X2J5pFmtzAFiQxNZveXY=; b=PvXmxeZKKMVAWWI++VDe644bE8MZhRtJ1wMAC5
+	dk1EIVSVyVnINS9Bh5eGyjCQbAk5yDP/GQJgdMuSQ01FUzsdT5yKMgfgCv1HBeoE
+	/Q+vnVhuBXAHF11ALs/Ue9weZHuqJuV3k9/9KYLwLnZMY1WxvXEHrqj28ERxuQib
+	rxWfz5COVqcDIIr8ekBMA0P2mAINRHTN2Vo3xRz6827IGWVGDnXrRaV8EJJ1IIjC
+	qUMTwMbF+PI26TdaiW2GLq7F95Gc4OAN2gN9XmMPFo7eJX7/u93DdvZIkk24VTkb
+	H1OI3eBDT9nj7Z0aKOlX3rmgrc3xsPF/MjcNe3So+DjegDGw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40g60jx1bp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jul 2024 09:03:31 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46N93Uc1007366
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jul 2024 09:03:30 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 23 Jul 2024 02:03:24 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <konrad.dybcio@linaro.org>,
+        <djakov@kernel.org>, <quic_wcheng@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v4 0/5] Add interconnect driver for IPQ5332 SoC
+Date: Tue, 23 Jul 2024 14:32:59 +0530
+Message-ID: <20240723090304.336428-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jAXlsA67pT68+om8"
-Content-Disposition: inline
-In-Reply-To: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: m7w9_XRbnz9pq9ySm6dEjvdax0bzGqc0
+X-Proofpoint-GUID: m7w9_XRbnz9pq9ySm6dEjvdax0bzGqc0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-22_18,2024-07-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=712
+ priorityscore=1501 bulkscore=0 impostorscore=0 lowpriorityscore=0
+ mlxscore=0 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407230067
 
---jAXlsA67pT68+om8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Enable icc-clk based interconnect driver for IPQ5332. This is
+similar to IPQ9574's icc-clk based driver.
 
-On Mon, Jul 22, 2024 at 04:57:07PM -0500, David Lechner wrote:
-> There is a recap at the end of this cover letter for those not familiar
-> with the previous discussions. For those that are, we'll get right to
-> the changes since the last version.
->=20
-> In RFC v2, most of the discussion was around the DT bindings, so that
-> is what has mostly changed since then. I think we mostly settled on
-> what properties are needed and where they should go. There are probably
-> still some details to work out (see PATCH 5/9 for more discussion) but
-> I think we have the big-picture stuff figured out.
+dt_bindings_check and dtbs_check passed.
 
-Thanks for the updates. I'm on holiday until rc2, so it'll not be until
-then that I can really take a look at this. Figured I'd let you know
-rather than just ignore you...
+Ensured that icc_sync_state is called and relevant clocks are
+disabled.
 
---jAXlsA67pT68+om8
-Content-Type: application/pgp-signature; name="signature.asc"
+v4: Add Reviewed-By for the first patch
+    Move the gpll4_main change to next patch as suggested in review
 
------BEGIN PGP SIGNATURE-----
+v3: Not taking Reviewed-By: Krzysztof, due to minor change in file
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp9wtgAKCRB4tDGHoIJi
-0s45AP9fxybG2w4dniKJn5EQfbg7XWUzv0R5Hz9l8jkGqFRNfAEAkQTzWUaDvaud
-zdW3eay7nRJpxkBvMtV5Akz9ADBayA8=
-=nC48
------END PGP SIGNATURE-----
+    Add 'clk: qcom: ipq5332: Register gcc_qdss_tsctr_clk_src' to fix
+    gpll4_main's CLK_IGNORE_UNUSED issue.
 
---jAXlsA67pT68+om8--
+v2: Removed dependency as it is merged
+    dt-bindings update to accommodate USB clock names change
+    Use icc-clk for USB also
+
+v1:
+Dependency:
+[1] https://lore.kernel.org/linux-arm-msm/20240430064214.2030013-1-quic_varada@quicinc.com/
+
+
+Varadarajan Narayanan (5):
+  dt-bindings: interconnect: Add Qualcomm IPQ5332 support
+  dt-bindings: usb: qcom,dwc3: Update ipq5332 clock details
+  clk: qcom: ipq5332: Register gcc_qdss_tsctr_clk_src
+  clk: qcom: ipq5332: Use icc-clk for enabling NoC related clocks
+  arm64: dts: qcom: ipq5332: Add icc provider ability to gcc
+
+ .../bindings/clock/qcom,ipq5332-gcc.yaml      |  2 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    | 17 ++++++-
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  7 ++-
+ drivers/clk/qcom/gcc-ipq5332.c                | 36 ++++++++++-----
+ .../dt-bindings/interconnect/qcom,ipq5332.h   | 46 +++++++++++++++++++
+ 5 files changed, 94 insertions(+), 14 deletions(-)
+ create mode 100644 include/dt-bindings/interconnect/qcom,ipq5332.h
+
+-- 
+2.34.1
+
 
