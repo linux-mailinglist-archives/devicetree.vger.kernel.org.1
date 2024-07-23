@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-87444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83585939840
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:26:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD5A939847
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D69C1F22679
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:26:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97F4A282968
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182FF13A24E;
-	Tue, 23 Jul 2024 02:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E844501E;
+	Tue, 23 Jul 2024 02:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wh/bDAUR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8PbG/++"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD18F14287;
-	Tue, 23 Jul 2024 02:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D141D3D6A;
+	Tue, 23 Jul 2024 02:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721701582; cv=none; b=WICZzgHxLJFey1oakVdGcB6Q8GAMTCCUTTDe0DEF93qob53g/Sr+Am+7czyapSyuKnkEAsuU1NIbx1zalXr58Q19JnMurylUw0tHuCRIJ1fICR97KOyuUxgWjZfXIZEcJuPOpGSpJt1UhGuHyrGYvdvoscX8rks8OFIb9VXEkXw=
+	t=1721701964; cv=none; b=L92C+8QJYxcTtBB7ngd331niClUhu3fOoby2DflGZzhiUeBsnE+ZyJJQBrAVSrUsuYFt7/3OTbG+31odUsIR3bLtgeZS+BCIjeVKN6X6Pj++4F1Ti7OWvNRfYrhTlajlnYMVMNQIoDeTaAZ8IOVeUKHWNJb55kXDIrwsmBem/zQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721701582; c=relaxed/simple;
-	bh=CvBnaUn52mQsjo7putJFlBA0OHXKCUh77DIwGSeIFDQ=;
+	s=arc-20240116; t=1721701964; c=relaxed/simple;
+	bh=4MjUjUt3+OExmiMhXeg3eaZMQ9NujtpsbSoluxp06HM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JmojukqEsuEdZT7l4Zs4uAzEiYzSIV1g/3pininreIVO1diSAzRGAOOiTWjnAoIsnC6/gEF/8h98BpndvtAyBecwzwwlSZPTXRTL+Nzy4XRtt2huD/1hb15oacnh+B0K467CQb//jqINR2hY2dXj+xFXA8c4r+R20hFkYHMROHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wh/bDAUR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AD84C116B1;
-	Tue, 23 Jul 2024 02:26:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fuJZ19F63vWAoErehNAK36+6j/2n5ztPon42HkwqwpHINLS86+6n0u3wT5/QAl8GZfFCZ6BpnhDND9tucqiCWQfyqU4Ew6oSwwyhMVU+AxNfotQZlNHN0DoBlVA4qluISXN0ZI4dLdEMQgFh/vaQ3blBzH3Bx7C9cvKBBAlPvFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8PbG/++; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D505C116B1;
+	Tue, 23 Jul 2024 02:32:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721701581;
-	bh=CvBnaUn52mQsjo7putJFlBA0OHXKCUh77DIwGSeIFDQ=;
+	s=k20201202; t=1721701963;
+	bh=4MjUjUt3+OExmiMhXeg3eaZMQ9NujtpsbSoluxp06HM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wh/bDAURixcRQrQfIZOFV3X51sOAGG2pvqnFa+mFpzftqL7H/ayRXkAo1Lyq0mJJm
-	 rw6YVjtgIVMqxlmRF1/FfpZIB/NlBuMC5RnQNnJQ37yyRLZYym3Ut+Kc/HgI9oZ28F
-	 NSJciyiq3YGap+rRLnsxAQFVAU9+UxoqlV1gdOJz3LYXulTyblad0CmhB7lW8VHaXr
-	 QppfnlqJURWCkMleaOFJzqRrC0Ed5k2FYQ2U03qv57EGD2uRiYmyCqSurHaeSVSU8x
-	 cKYl7K2O0Aa10H/7rGBlbCqzy6zPIVpPQ+BJnfaKtovQdir5RTqOLzoxsRYOM+QS9x
-	 aSfGAid1vxRhg==
-Date: Mon, 22 Jul 2024 20:26:19 -0600
+	b=O8PbG/++481YtFJpvcbDhOkergvpVspSpxe9UNu/GoVd4PmC2fW9Z0J+EyB3zla5c
+	 rEVmDFTaN7VZQvgOBxXdXjPXKQOueYljYHFPozC4T6XeLCWzgKYcjW5+t9aaOYt957
+	 Eu9d4qYPHNhAWf6Sw9y5cXEHek/Pepr9x0R/mOvQF0dK8k030DU16DEhKgQ1M5Tu7/
+	 srdMxhfyyMdlaZ4wzCmz8VX+Sy7rpDZm/2SXvXnpiXDe8EuNfUXTQalACReCXYO3G9
+	 FArOwS3Oc1PpPT0xNVDPlpJ2WmNeUYUPg5Pb3DMZOqP8YpV/F9VRQJnNEI1G7z32aH
+	 Fp3TjqCnW2AHA==
+Date: Mon, 22 Jul 2024 20:32:40 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: yuenn@google.com, benjaminfair@google.com, venture@google.com,
-	avifishman70@gmail.com, joel@jms.id.au, openbmc@lists.ozlabs.org,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	tali.perry1@gmail.com, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: pinctrl: npcm8xx: remove
- non-existent groups and functions
-Message-ID: <172170157801.126503.9265506561761708567.robh@kernel.org>
-References: <20240716194008.3502068-1-tmaimon77@gmail.com>
- <20240716194008.3502068-2-tmaimon77@gmail.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 03/13] dt-bindings: PCI: pci-ep: Update Maintainers
+Message-ID: <172170195962.180906.10627145523008955004.robh@kernel.org>
+References: <20240717-pci-qcom-hotplug-v2-0-71d304b817f8@linaro.org>
+ <20240717-pci-qcom-hotplug-v2-3-71d304b817f8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +67,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240716194008.3502068-2-tmaimon77@gmail.com>
+In-Reply-To: <20240717-pci-qcom-hotplug-v2-3-71d304b817f8@linaro.org>
 
 
-On Tue, 16 Jul 2024 22:40:02 +0300, Tomer Maimon wrote:
-> Remove non-existent smb4den and lpcclk groups and functions from Nuvoton
-> NPCM8XX Pin controller binding documentation.
+On Wed, 17 Jul 2024 22:33:08 +0530, Manivannan Sadhasivam wrote:
+> Kishon's TI email ID is not active anymore, so use his korg ID. Also, since
+> I've been maintaining the PCI endpoint framework, I'm willing to maintain
+> the DT binding as well. So add myself as the Co-maintainer.
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../pinctrl/nuvoton,npcm845-pinctrl.yaml      | 70 +++++++++----------
->  1 file changed, 34 insertions(+), 36 deletions(-)
+>  Documentation/devicetree/bindings/pci/pci-ep.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
