@@ -1,240 +1,240 @@
-Return-Path: <devicetree+bounces-87682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CC993A801
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 22:14:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C2693A818
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 22:40:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B2F61F21F07
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 20:14:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B32C1C222DE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 20:40:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8078F1411F9;
-	Tue, 23 Jul 2024 20:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA881142633;
+	Tue, 23 Jul 2024 20:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BSAWGQDj"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MCfnyQEp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2085.outbound.protection.outlook.com [40.107.20.85])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DC613C691;
-	Tue, 23 Jul 2024 20:14:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721765654; cv=none; b=ZsZFmtVrPdLMoiJ/juPAfaQrrdlTVcGohpWI3Fd2qM66JPQSvp0oa/LdGJZymYFESRCpyUtivLhG2bzkreNa00apu2IApnCVfk31EY0VRuWR5wT5mtw/jT7XDHlZ8mWKHZ9vEnN3HPYybXESefvhV0hPMi3488aBqptgMQ+jHEs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721765654; c=relaxed/simple;
-	bh=90qCsmRc/KyIcHIjkewyjqSMR6l+O5gromMuJ21lzjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W+pJV+Ro2OgRPleSl/Qf5RQ62SrgqMvdRLbOGtFnOaw1C9Hu8jGZvM00UcOzf+EyOF3R6+ILiojWuSlA+HDcViHSP502wO6kVxVu5XrSqru+qr5B+inNfUWdod/jW/Zj+CTATd+3Q35HwLPy2FCKaLfVPhqSer0cMSF+Z1RRbNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BSAWGQDj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59688C4AF0A;
-	Tue, 23 Jul 2024 20:14:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721765653;
-	bh=90qCsmRc/KyIcHIjkewyjqSMR6l+O5gromMuJ21lzjM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BSAWGQDjaFBMhHzuVyukfj/KRAtf99leF3Ay98Q5TFlOm7PdLYc3c5L7Jp10SPDQf
-	 ksIA169fWEVkEMXnBbTdbvH1ETzuMUcZE8pT3uuhpf0L29J/Fp8xT8kiVy4rzolF/l
-	 WBTFy3HW/5rrY/rk8ChIU1MWQpRbudGJvRnujOi0ltmcwxjYNfHTpodXfDJW0u+lNQ
-	 Swq6OdOfYvQkToj2bFcOtAI+2qlLeGcG2fwKDJn+c6VejlKjPxK7U81CUGhTzABaYt
-	 QVPYKV6/ZAVuHZN5SYMFXcUR2kYSy5Zeh7hOSthf1hUjEujdkH5v3oZhKOLn6kTXfT
-	 mf7flZobri0iw==
-Date: Tue, 23 Jul 2024 21:14:09 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: geert+renesas@glider.be, mkl@pengutronix.de, mailhol.vincent@wanadoo.fr,
-	vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, a-govindraju@ti.com, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-Message-ID: <20240723-municipal-snowy-136b08b6db90@spud>
-References: <20240718210322.37492-1-ilordash02@gmail.com>
- <20240718210322.37492-2-ilordash02@gmail.com>
- <20240719-ahead-kiwi-995e52bf3e74@spud>
- <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
- <20240723-dinginess-john-608d0b28293b@spud>
- <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C92613C9CB;
+	Tue, 23 Jul 2024 20:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721767200; cv=fail; b=Gx08BLMfWQrw/MvHwRqHZM9FrpCEm/hBPiin+P6la3MBgTYsBaqalHlg2c4rpXHaFcW1Hgb73aFuhYbQ3g5eQU8C0v11CykHvM0HQDgG0Esn3rd5h52MgiP0GorSz4onru6/C+1cDmAAFtNLAHqvWsOsq1e28UPLugNk9FWZKaA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721767200; c=relaxed/simple;
+	bh=7I4SXQhbrLTTqNVkRlS177yJZrjtZM8/iAOekO1DQo4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=LzbbaxYEkkAnCpaCID2WXXqiQiLdZ4zMNEGJ111EWKIpD7OSRdej/pQvbFFvEQ0s91g/Fee563ZpxO4kLswNsuOdDDVS+vEmUmJ0a2W3qTvRe+J4hs9+rkJNpg5LEhlopfgbO3p5m3RcfG5s/dRwVeRq4AWQdMO09dLNqc08GwI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MCfnyQEp; arc=fail smtp.client-ip=40.107.20.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jVzqZqpDu81t8nMy/yEKMu8pMwggfi2C27xodeEWLDFr8MKAVVVXHkO0yWs9db90NSbi6BFbY6Kh4TucDoyn7FkrH/wtNv6/mPc8h7LbFeYqWW7dfvXwEEVGeQYORo6cSvof+ISf2PX8xCzmED6D1G6MdWvlqFhiiSMfZxIi4nE1GBqYS3sJJNO8XukvmTfIxMjpwGe5tv+2OiD3YAXOa9Xqduc/J105FamofvRTbRsSxFgbzN5c8om/mv1+P6Kclz686zHnVs70nupIhyLSFafnMicGR54UB1OTHHz2iRGn17G1SANUwbvtUqIlVwy6wjCKGwGtAzhsNYQa9045cQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Bm1GFrFAQ7U0L6a32VlotoTgIKupd0hGH/EEjVKMCjY=;
+ b=vp6BhCf8GiL058Opej0zzOFKBn/SaEfoSyYsLovSa1yq/CQbgJikAQigPxxOOGn20YjmwR/53Z3CWO8fFGrd9sa/dWj9ErfGw/NRc29MUax9/0wGkb4WI1KW+XmI2rpGfx9ElPMBd8MOV3GTMHsJbpfZqcqDx7UlgzYOdolLFJV8PY4xU+Vrpne3hUVL0+TmcdVGcjkOsfNYqQ5f5P0aF3D8wAMJQ7QEVgINO0rZ5PvaoSLqUNquCwE7t709wrV9Dw/TU1pnkzLmg4t49b9JI4+76MglBudfMOMF4lvJtJrA9bwnZgFW9L8AFVYlJ6yEsfsQpD0MX43gsUm+0mAzaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Bm1GFrFAQ7U0L6a32VlotoTgIKupd0hGH/EEjVKMCjY=;
+ b=MCfnyQEpf8xJd53p+YuX8uAO0C80B8sT6FgvIf9lOG+jG9TinO/QpwC0dkP0UxeRTtsQdHKlqTNNaYseCYFdU7dqdjFg+SDOr+OwsuEPPJ5YVEEeWyPW/zK3ZsORAQ76NI4dwhAwSuKLBxXAAcppKkG+Okj6goYUHkPXkcbQFX8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBBPR04MB7692.eurprd04.prod.outlook.com (2603:10a6:10:1f6::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Tue, 23 Jul
+ 2024 20:39:55 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7784.017; Tue, 23 Jul 2024
+ 20:39:55 +0000
+Date: Tue, 23 Jul 2024 16:39:40 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, l.stach@pengutronix.de,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de, imx@lists.linux.dev
+Subject: Re: [PATCH v1 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
+ "atu" for i.MX8M PCIe Endpoint
+Message-ID: <ZqAU6Yqq7182T5Nz@lizhi-Precision-Tower-5810>
+References: <1721634979-1726-1-git-send-email-hongxing.zhu@nxp.com>
+ <1721634979-1726-2-git-send-email-hongxing.zhu@nxp.com>
+ <20240722-displace-amusable-a884352e0ff9@spud>
+ <Zp7FYRaXM4NNO0oM@lizhi-Precision-Tower-5810>
+ <20240723-spinning-wikipedia-525130c48dcd@spud>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240723-spinning-wikipedia-525130c48dcd@spud>
+X-ClientProxiedBy: SJ0PR03CA0262.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::27) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Z63R+4Oqxis0CS5a"
-Content-Disposition: inline
-In-Reply-To: <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7692:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0233c5bc-9e15-4be9-d6d8-08dcab579c7e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?bgzV4xFYlH7uXaYdEOdHN9T3uweeoXg/GWmA/d7V0H116dl1+UKIqLdcbFuD?=
+ =?us-ascii?Q?4EAgJG4e0XJ99n+6Nr8jG15+PG3FRvz1h+bWNLC68lSG/twt0rpnDuZ5zy3k?=
+ =?us-ascii?Q?ioErt5ahGsx4DtUbbKnZtipFSv8irGxLkqvB/8pBB8m4UjxsA9fP04EXwyFT?=
+ =?us-ascii?Q?4ju6C0m+H/7/xGOWlSCeL1G1FKIW+ZfAqWR6/WvySGKomW0s8YAJsacB55/Y?=
+ =?us-ascii?Q?OX33z1ZQLAYJPcfxJuQB8uSCMEPHH7AdKPmuIlCJTLnbERvWVDydtw4DUKwR?=
+ =?us-ascii?Q?Fl+UwSKNCkoCCZvxrROtnF3gqk1IXMw7F3bwk9WyQZwT+YE9y8fde9voE/Zq?=
+ =?us-ascii?Q?h4wHjRf658ICoIR3Xt0ZeKBggLHmUwo/M56WitvtlBhZwhM4g1Y+Gzhcre4F?=
+ =?us-ascii?Q?uAOaU95LOPz7jmQYLasWDKpVGp9sPnIqpQgmPhVFjWG1oUD+xwsWGWnU5jMn?=
+ =?us-ascii?Q?YiRFgdWUGqtV203A11r3rcydaSwa7MxWGEVXrASujgNlFHcoqoaUl/XSNmKN?=
+ =?us-ascii?Q?JuGauXRlUaFKAhhXWnrA6GB83LJmdBAqRkuZCIXsln1pQJlFohlbZjK8XVxd?=
+ =?us-ascii?Q?J9ECaYX77VRw9YWkDVD2LxViAkK0Wk3MOkYDCCYsfj0nfB6ZA7YfRJPLJSeX?=
+ =?us-ascii?Q?TO+iNYxAgEi8BtMf6GAauGr2Fb2KLifqyTzc5MbDXagMGcn/wo2VzMB8NOLx?=
+ =?us-ascii?Q?ooehX35SSsOMpGGWuDebDp1F93klRAOarTB+mBO9Dxf+cDg+q29+1BpAN53q?=
+ =?us-ascii?Q?Tjci4tMIf0L9PuScM7+Iwi634e+39w1NXs+TXJsrrf9gI+JFsf1I7EMQEBMy?=
+ =?us-ascii?Q?96JbOCLzOlywuO9nR9JHzKUDl34wKhXKYI9DbQWft6VSxsru81LM3aPM+63n?=
+ =?us-ascii?Q?QlvBCg3gUqUTR+zhaaxGP7PUowPKKLfqmtye9YW5Q1mtTt/zGYeT9Vja3okG?=
+ =?us-ascii?Q?7LlebaBC918Mo0GtCV8Y6AuHjJkOyHb7wY+2UJw3kF8VkX4r181HqOMNXY6W?=
+ =?us-ascii?Q?aVETgOsEkIyjbo4KQJWXUeAJdEAu0ek9HlKHx9lmu8bMXz2usbaXh5n5+Vdy?=
+ =?us-ascii?Q?1AN/VxL048gK2Z69dfdS45A1bXp+oCZm2rnswBExCS8CB3vf3evV9FzbLM+g?=
+ =?us-ascii?Q?2MDJCwA0Vadgi2RsHD6oi3LOnDHc2sA3DgXuC+JSRH9PhjM+5Dr20Ev7nmec?=
+ =?us-ascii?Q?ve5Qn2ugeOz+7/Es4bitgSni5GyPMooBgvl64xI7IFskvv9ng0Mb2UuZ3nQO?=
+ =?us-ascii?Q?nj9P4AfhLdimsOezqFyQNzMkUOjGu2FP5Yd0SaIbCTksEuF4Da6dQYb8h+6F?=
+ =?us-ascii?Q?DI0SYkYyIBqTrxuCEv0iNllwybT+OjbVdjSnOrLlAeRjtBxUSG2Nslk2JdnV?=
+ =?us-ascii?Q?EFL++xT0rzb1yPu7QKsE0uP5uuvLActBpvyvKy5hjCSBdhvgRg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?MdyRcCnjGAlbfnV73aRRKd+FRuPu1XkG3qArPsVifvJX4lfsSTBfSlNyOK4O?=
+ =?us-ascii?Q?QIEdl8NKoX0K+/69d7eW+2FkRPC2fGs8C8L5wWiFZ7uujBRGbczgYnP9Gezz?=
+ =?us-ascii?Q?JZs2iYpwt9wENES51Bgz4EmPU5I0PtNmZD14zEX4Y1uuxFrq0wsD932vmFu/?=
+ =?us-ascii?Q?l0dj31HdQBcPIO3gGh9hipntXK/ucOfw6a6oejOaFRCtKdvYp/+lxHDlQEgz?=
+ =?us-ascii?Q?iIZHYzZnKREZLQn+fla7LsPX25kxmgLyuvzcVP6tl3KZXf3i3U7hxpHMnupW?=
+ =?us-ascii?Q?TEXVhkW/ICM3IdI9LHWyw2xdUaPe/vJBrS7V3Gs8g4VUoyhnaGqkqAgzMkcj?=
+ =?us-ascii?Q?BCqgh1T1NYhFxbtxvVekBkHiofUVPUfA3dCtScz8/h+Wj8kQNk5Ce0QyH1GY?=
+ =?us-ascii?Q?RNYf/pVlp7fEXyT4jgKicqt89bunx+fsAa4xTdTzIRetFkuzYCFr4FVe6v2M?=
+ =?us-ascii?Q?7dcefZoZfQFpai0DDqKAq+1koUyQvNfkjHipK/wj2qSZIpyGHvRplrudunoC?=
+ =?us-ascii?Q?whcHfgxNtxWX1XO/+TELLmCS0PEg/hxLRw9W0L9DAUQIe2i9RBVcczS+Zxtb?=
+ =?us-ascii?Q?03egn8bV8duC/i8Obq60BKroO+9ux3339o0yPv1fxM/bA9UeSMlt1YIFP6d3?=
+ =?us-ascii?Q?J4jGhAtRebKtwjoBihQfwAyc9RJ94KfDpZiAWeWe7fWCEwjkme8VnC6LVbxm?=
+ =?us-ascii?Q?zxbxH5PrmEQDnmE4iV2eDrxxija3YBYwttFn4Q5hx9a2rjncVMsSKcN9azGS?=
+ =?us-ascii?Q?vSKLL5fSFiwwsvUnzwZEXAtBG3bXrP/GlTECI6GS3RdLN90bRhaTxLMBFcpZ?=
+ =?us-ascii?Q?kw1qhATuewXlT7oTPvbJ1hPISA0G9IxHioTAxnK9OBu4+FZMRVJAR9v3GvUh?=
+ =?us-ascii?Q?AIaX4OSbAe2qRABnSsi3kCcBNPY9FeTbEP2v95Dtj4Oun1apwY0HTl2UVEUn?=
+ =?us-ascii?Q?wnCS5/daQ3aKKWZ2RrnwyBtvJsd1w+lPfIZyPnShmtcC+DKbbHYUDHJ6ER6E?=
+ =?us-ascii?Q?M126UHbCTRM7U6O2KVeEHHQxxcztAle1dtyzwOHVSHHNmQZYIp4PdC8kr4uj?=
+ =?us-ascii?Q?NsTOTOdOnUtMqSO15Uo8dsgUU9LpjetWsB4qhsyO5eWitOQveILa2ohybjuS?=
+ =?us-ascii?Q?X5JEywLtZYo/l0M2YvShV7gi0Ab0xLb8GPrO2Uit2zobB4rgSYK8AHYzGApi?=
+ =?us-ascii?Q?YmWVLo1AMy/wR24t1/lGQgCoRwH75Cmt1JUg4D8eOOWN0It60mv8X324kJJc?=
+ =?us-ascii?Q?te/jdCj5YUYr35z4HUqaB9iQ2Ta4+/GM/aKI1NduIGdztSmbYmGyB+uoM9ua?=
+ =?us-ascii?Q?i/IUY2TDt+hwe7lae7hX1ePRrqIFXgGWuqWZToQvRSuZRFJOESniVh72iCQY?=
+ =?us-ascii?Q?EPcH3wyMKnYppVMnqvQRLu3YtrzKhYzRGc/XuFQjFLBPB/Hk9u/ojgjNx4pe?=
+ =?us-ascii?Q?wcO+D4zBVpMRmXIy76CC68MSp1ua6ART5/LO/zpBQleVI1r3K/2BKKTCitae?=
+ =?us-ascii?Q?AtKoFdthPYIVWKzWazk47A4IK2O1OVXiwRxZ/ZaEVlYkt2KM5idod3gDZ3w5?=
+ =?us-ascii?Q?dZj6KapKfBWFKraPYUw=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0233c5bc-9e15-4be9-d6d8-08dcab579c7e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2024 20:39:55.7312
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OEzDelJQy5+++ZjmRdVNSqxUtP5tslFP6FuTbYpWKMkxHLvMooNmBil3AiIEBCkeTmVmb6QiwmRSYRj45GfUmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7692
+
+On Tue, Jul 23, 2024 at 03:35:11PM +0100, Conor Dooley wrote:
+> On Mon, Jul 22, 2024 at 04:47:29PM -0400, Frank Li wrote:
+> > On Mon, Jul 22, 2024 at 05:37:14PM +0100, Conor Dooley wrote:
+> > > On Mon, Jul 22, 2024 at 03:56:16PM +0800, Richard Zhu wrote:
+> > > > Add reg-name: "dbi2", "atu" for i.MX8M PCIe Endpoint.
+> > > > 
+> > > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > > ---
+> > > >  .../devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml  | 13 +++++++++----
+> > > >  1 file changed, 9 insertions(+), 4 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> > > > index a06f75df8458..309e8953dc91 100644
+> > > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> > > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> > > > @@ -65,11 +65,13 @@ allOf:
+> > > >      then:
+> > > >        properties:
+> > > >          reg:
+> > > > -          minItems: 2
+> > > > -          maxItems: 2
+> > > > +          minItems: 4
+> > > > +          maxItems: 4
+> > > >          reg-names:
+> > > >            items:
+> > > >              - const: dbi
+> > > > +            - const: dbi2
+> > > > +            - const: atu
+> > > 
+> > > New properties in the middle of the list is potentially an ABI break.
+> > > Why not add them at the end?
+> > 
+> > Because it ref to snps,dw-pcie-ep.yaml, which already defined the reg
+> > name orders.
+> 
+> Are you sure that it defines an order for reg? If it did, it would not
+> allow what you already have in this binding. The order is actually
+> defined in this file.
+
+Sorry, I missed oneOf in snps,dw-pcie-ep.yaml. You are right.
+
+Frank
+
+> 
+> > we using reg-names to get reg resource, I don't think it break
+> > the ABI. Driver already auto detect both 'dbi2' or no 'dbi2' case.
+> 
+> Linux's might, another might not. I don't see any point in breaking the
+> ABI when you can just put the entries at the end of he list and have no
+> problems at all.
+> 
+> Thanks,
+> Conor.
+> 
+> > > >              - const: addr_space
+> > > >  
+> > > >    - if:
+> > > > @@ -129,8 +131,11 @@ examples:
+> > > >  
+> > > >      pcie_ep: pcie-ep@33800000 {
+> > > >        compatible = "fsl,imx8mp-pcie-ep";
+> > > > -      reg = <0x33800000 0x000400000>, <0x18000000 0x08000000>;
+> > > > -      reg-names = "dbi", "addr_space";
+> > > > +      reg = <0x33800000 0x100000>,
+> > > > +            <0x33900000 0x100000>,
+> > > > +            <0x33b00000 0x100000>,
+> > > > +            <0x18000000 0x8000000>;
+> > > > +      reg-names = "dbi", "dbi2", "atu", "addr_space";
+> > > >        clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> > > >                 <&clk IMX8MP_CLK_HSIO_AXI>,
+> > > >                 <&clk IMX8MP_CLK_PCIE_ROOT>;
+> > > > -- 
+> > > > 2.37.1
+> > > > 
+> > 
+> > 
 
 
---Z63R+4Oqxis0CS5a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 23, 2024 at 10:55:17PM +0300, Ilya Orazov wrote:
-> On Tue, 23 Jul 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
-> > > On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wrote:
-> > > >
-> > > > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
-> > > > > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> > > > > It is pin-compatible with TI TCAN1042.
-> > > > >
-> > > > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
-> > > > >  1 file changed, 1 insertion(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-ca=
-n.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > index 79dad3e89aa6..03de361849d2 100644
-> > > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > @@ -18,6 +18,7 @@ properties:
-> > > > >        - nxp,tjr1443
-> > > > >        - ti,tcan1042
-> > > > >        - ti,tcan1043
-> > > > > +      - microchip,ata6561
-> > > >
-> > > > Given that your driver patch has
-> > > > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-=
-can-transceiver.c
-> > > > | index ee4ce4249698..dbcd99213ba1 100644
-> > > > | --- a/drivers/phy/phy-can-transceiver.c
-> > > > | +++ b/drivers/phy/phy-can-transceiver.c
-> > > > | @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiv=
-er_phy_ids[] =3D {
-> > > > |                 .compatible =3D "nxp,tjr1443",
-> > > > |                 .data =3D &tcan1043_drvdata
-> > > > |         },
-> > > > | +       {
-> > > > | +               .compatible =3D "microchip,ata6561",
-> > > > | +               .data =3D &tcan1042_drvdata
-> > > > | +       },
-> > > > |         { }
-> > > > |  };
-> > > >
-> > > > the driver patch is actually not needed at all, and you just need to
-> > > > allow ti,tcan1042 as fallback compatible in the binding, so somethi=
-ng
-> > > > like:
-> > > >
-> > > >   compatible:
-> > > >     oneOf:
-> > > >       - enum:
-> > > >           - nxp,tjr1443
-> > > >           - ti,tcan1042
-> > > >           - ti,tcan1043
-> > > >       - items:
-> > > >           - const: microchip,ata6561
-> > > >           - const: ti,tcan1042
-> > > >
-> > > >    '#phy-cells':
-> > > >      const: 0
-> > >
-> > > I tested the build with fallback compatible:
-> > >
-> > > compatible:
-> > >   oneOf:
-> > >     - items:
-> > >       - enum:
-> > >         - microchip,ata6561
-> > >       - const: ti,tcan1042
-> > >     - items:
-> > >       - enum:
-> > >         - nxp,tjr1443
-> > >       - const: ti,tcan1043
-> > >
-> > > and modified compatible property in DTS:
-> > >
-> > > compatible =3D "microchip,ata6561", "ti,tcan1042";
-> > >
-> > > Build succeeded, phy-can-transceiver driver was used. So I would like
-> > > to add a fallback compatible for both "microchip,ata6561" and
-> > > "nxp,tjr1443" in this binding and modify other DTS files with
-> > > compatible =3D "nxp,tjr1443". What do you think?
-> >
-> > This is wrong on two counts. Firstly, were what you have correct, you
-> > should
-> > squash the two:
-> >      - items:
-> >          - enum:
-> >            - nxp,tjr1443
-> >            - microchip,ata6561
-> >          - const: ti,tcan1042
-> >
-> > However, that does not allow the TI compatibles in isolation, so you
-> > still need to allow that for the actual TI devices, so you need:
-> >
-> >    oneOf:
-> >      - items:
-> >          - enum:
-> >            - microchip,ata6561
-> >            - nxp,tjr1443
-> >            - ti,tcan1043
-> >          - const: ti,tcan1042
-> >      - const: ti,tcan1042
-> >
-> > There's probably some devicetrees that would need to be fixed up. I'm
-> > just not convinced that this is worth retrofitting however.
->=20
-> But nxp,tjr1443 is pin compatible with ti,tcan1043, so it should
-> fallback only to ti,tcan1043 and not ti,tcan1042. That's why I decided
-> to split them into different enums.
-
-Ah, sorry I missed that. I misread the match data. Then you need:
-  compatible:
-    oneOf:
-      - items:
-        - enum:
-          - microchip,ata6561
-        - const: ti,tcan1042
-      - items:
-        - enum:
-          - nxp,tjr1443
-        - const: ti,tcan1043
-      - enum:
-          const: ti,tcan1042
-          const: ti,tcan1043
-
-because the TI devices exist and we still need to be able to
-differentiate the TI and NXP devices. If you have
-  compatible =3D "nxp,tjr1443", "ti,tcan1042";
-that means the device is an nxp,tjr1443. If you have
-  compatible =3D "ti,tcan1042";
-then that's a tcan1042.
-
-> I made my patch according to a similar one that adds support for
-> nxp,tjr1443. You can find it's conversation on
-> https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45f3bb0.1674=
-037830.git.geert+renesas@glider.be/t/#u.
-
-> I thought we want to hold all PHY chip names in one compatible enum
-> and each in its own of_device_id struct in driver and extend them
-> where appropriate.
-
-Nah, fallbacks are preferred when the programming model is either
-identical or a "compatible superset" of an existing device. New
-of_device_id structs should only be used where we need to account for
-differences in the programming model.
-
-Cheers,
-Conor.
-
---Z63R+4Oqxis0CS5a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqAPEQAKCRB4tDGHoIJi
-0kUtAQCD4m5JpvCin6NoTN7R88b/5D2xMXjRcMXCbKfv3R5+2AD+P2ctpV4F6zrF
-A+Iu8ksIp0p58jPpj6u/fU5EQe+iawE=
-=jKJ5
------END PGP SIGNATURE-----
-
---Z63R+4Oqxis0CS5a--
 
