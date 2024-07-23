@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-87611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D6AA93A020
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:43:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B34993A026
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FD6F1F22A58
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:43:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C72472836EA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B881152178;
-	Tue, 23 Jul 2024 11:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD0A14F9E4;
+	Tue, 23 Jul 2024 11:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oBN1Q6Mv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBH/w/6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0B614E2D0
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5555314EC49
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721734989; cv=none; b=Wxu4D1osy3c5M9BC5oILPMllQDSEimACyDDx5PHAFITETS+A2t83dKaw8SpJr7Qh4LcnKh0IweSxEiNYYLSTRr28wT4e7SsXcoYwQW4uaO4jFq1gxfoCEkF36CToRZRY7rMF30Qi0ggVqS9ylRs4fY5ZouuDc2TjWe7GsE4/qe0=
+	t=1721735160; cv=none; b=IOv4PV852M87vRBVMBnFt6+VWR34i8qr3K1vikK5ovX0yX/TyXDO4eGbLBauc+ZuIaUA+lVF5L6zrjx2wOdfg0M7yRTwLqXqnTfPpHigEPxa/bwXDhj53xlYyy4AgObXISBJN7p4x0ZekAreg/so9tYHUyKDZM0yFfdGUmvu+z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721734989; c=relaxed/simple;
-	bh=EQ/2R7CnVW/41ExqLPRynM0nz+7yZlIbAonf2Xv02oo=;
+	s=arc-20240116; t=1721735160; c=relaxed/simple;
+	bh=6klbDXk+dNrXrtKnKH1N5yyTB/VChyJgKU/xmS03774=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ors5rs+0D20NO+oOupsck4B37Y5b4sRTPx6QbwQ8E/SyZ8kOHPn31HE4ImLfIENO8j+rUtZPugcVYoRFMmIjKmNb8uHmu7GW0Vz94nTC4b9w3ffmKmnA46+vOfPWsNLavBaXRSna52ue3lHuYahVKbYY6ayQasy6qGWtI9pgbjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oBN1Q6Mv; arc=none smtp.client-ip=209.85.167.48
+	 In-Reply-To:Content-Type; b=gqthpAXQIIR1GFfW2PbxVxCosKf+KMoNhJ0UJalsWmsbOgF4Fki2oOliIQ0JIX+LXC0J7DbKJ+kzL4g5tdpAcQgEhoFJjxiPfHiPh4dLx1M+8qau5cMXN+tVeC+jb5YLI9nqc4EkJKQm8o/s7EyuKY9ycy+0AK5AT+t5B/Ufve4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CBH/w/6u; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52f04b3cb33so3920668e87.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:43:07 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5a1c496335aso2346793a12.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:45:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721734986; x=1722339786; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721735158; x=1722339958; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qNV4SPVYDOJceI4uC3ZSm5CO3Vjxa/pP9tGu0hDGYdY=;
-        b=oBN1Q6MvExdMGNdjZZZLRnTzq5qkuMEXT5zn3eMPLWoPdJ6AmmWQeCmflUg6g6tHzz
-         eCmr3Wgqc8kx0lN85vgyxhEPc9YUUgiOt7ZQ9ZqhUCkepho0cb80XMIITmlh/JwwPg4v
-         90IbXlnBen1H4c5o47wh2Db8A4nGewcI38di7E3070L5fMLYCSmCsP8cudDcmSIGE0uN
-         +NFW3EDpGoWU1lVCZUeAf81yFiJyCyravY6LTx72xidwdd6L6iCi1J00DUenf2s+2aWA
-         4ro+L7OXsfngQ+/PY+LQa3q9boSVT5y+waT1wyHud+ppYrBcTbz96qhyXTSoYN3OxgJD
-         FRWA==
+        bh=9xI6NYtG5D71HTe6PS66i4200HgJO39wGthc1X+t2sM=;
+        b=CBH/w/6uweaEZieAxNgKCufXVkhlEZhQprBswicVzyWkGDvg0+0nMVr3Pcgcnq9M7l
+         ifU+k443efm/7bnr489FEYn+Uh41C9n1dyT1DHzzzLKo/tOIA/4wUb7EKOax5y+Fansl
+         VFckfYwr6Z/byjVbSHbqjw+OB4MeXMunUWKpUBi7CGoP/nUYM5+qk5yc0W+Ly6iKWxAa
+         E6eJCfgLGGPWYrgwuWVU6wPjlAZ11FWmH3i9DyLCZcScz8eSOADdX5KP7IOtnHPPH50I
+         0YFCYCIeOoEdotuqvBIUboNQeiUne76XDwIKfVcGBW0c81ry8Ml0nVH0wMDD4HOP/rob
+         e4oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721734986; x=1722339786;
+        d=1e100.net; s=20230601; t=1721735158; x=1722339958;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qNV4SPVYDOJceI4uC3ZSm5CO3Vjxa/pP9tGu0hDGYdY=;
-        b=clAu2qbdl09uIWuZTeaYxCyR4ZKu7fQnIY9th2A9UC3MXlah6TIntn2f3zqJep23XM
-         odqU/pWTkM2+GeQDLYK85mGrMSq88VGO+Jf/t+MjIwFJeyJC4YnsPj2sOjsl1wKr1yYX
-         +uHFSu/BkYE4DC/Kx+p/XlM1mPobayD5i6w1UdnL1NIrQV6jXF208kQ5/ebRMmZhgwus
-         +dt9dMqJcfggjqnb+w3ZZoob/TuP8PdmZmNPR/F94Uckiwc4gL0Hb5kkNL5amDa78sFf
-         0Ggo9MpfQx2pynQzeNfVx+rwtVzgQHiWJBKnQWuwSmtRCr1UoVTASbA9ThvSchW5EoCH
-         m+TA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKxIfLBiVDQA3y5mI0tgp7JF7mnzS9SQIJ4ODY59EU0gQBOchQb2FV/7pCkTz04ii7K7UyPAZ/Nbg1Yiazc8od7Skjwteo1Qm2qw==
-X-Gm-Message-State: AOJu0Yy+M7V9mHmkkOipBh5ABGDQ695/MQTv/fLPTLPuV1WQCuOWKZ9k
-	3I7yG/gj9dqtiScIceByUyGCNFY2+fu6X1NPhha0c2XUrj5TWq+yWMbzwVQTXm8=
-X-Google-Smtp-Source: AGHT+IEs86rn39NavrG9rTs1cLDHFEyL54PTpu6BMueyoszMj29d5ZTv9gviYSc6SBIrVyLamlVaHw==
-X-Received: by 2002:a05:6512:1585:b0:52e:7df0:9a78 with SMTP id 2adb3069b0e04-52efb7498d0mr8442174e87.32.1721734985348;
-        Tue, 23 Jul 2024 04:43:05 -0700 (PDT)
+        bh=9xI6NYtG5D71HTe6PS66i4200HgJO39wGthc1X+t2sM=;
+        b=CRSPdsD5pt9Fvd4VG5wuBZ2x3o2YQBs8xMckzH2vwAkncuFO6Iqz4TXUnAj0J66OyN
+         hcoaAGGRucUOInvbHk0jIyHiz7w/+7uh+rydiU2jqC6+wmbtVCgjkcWQw2lVHlTsqou3
+         nAcgEdu02KMPJa+wUy25S7cI2zpzms3sADK/kifCf2YUJGoZC5xTvsLcelr25ubU8qdc
+         z/BqhUSyAFv7DB/z4uXg2Asl/m8WBnsenYZJ/JsEvYoIcuDdT8PzUMmkDMs2/Lg48H9G
+         QGHvrbS5O5M0mXGQczBj6Wg5ewqQg9TYLo9uzS/AY9ywzEgvv8pS3ZQv8mWkdonxdJgy
+         ORGg==
+X-Forwarded-Encrypted: i=1; AJvYcCVnVN4D9fmBZ+xN2w+m/O4E7S6ZXkKyxPxayc3O22KmtCMOFanD7fRT+8IOhZX5x0nc8xmGLcN1whajdCGNSEKfPLZS9qg8CKHE/g==
+X-Gm-Message-State: AOJu0YytssMvMB5L38lDmE/kvoBn7TBTB8BSVMpMvN1OO3s4t5ZO4Q3I
+	Difu8YpuYXe6wRdphxxKGUYJ4zzK9+ucENEbDR/2KZDjxxmp+cmpSpL7Ybb93MI=
+X-Google-Smtp-Source: AGHT+IG0pPkoZZXyMZz/LbJS8kKuhTvS33Qn3WHX2CF+Qti+Wh49c7/9SmS/Bm8ZABfjYVNXetMwlw==
+X-Received: by 2002:a05:6402:2710:b0:57a:3046:1cd8 with SMTP id 4fb4d7f45d1cf-5a478b678dbmr9273679a12.7.1721735157403;
+        Tue, 23 Jul 2024 04:45:57 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a3c91caabsm541615166b.143.2024.07.23.04.43.03
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c2f8808sm7357094a12.78.2024.07.23.04.45.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jul 2024 04:43:04 -0700 (PDT)
-Message-ID: <080a6fc8-72f6-4922-9237-31d5f80928de@linaro.org>
-Date: Tue, 23 Jul 2024 13:43:03 +0200
+        Tue, 23 Jul 2024 04:45:56 -0700 (PDT)
+Message-ID: <04ef978f-2bfd-46cc-a9f7-40a6f1c507f8@linaro.org>
+Date: Tue, 23 Jul 2024 13:45:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: msm8998-lenovo-miix-630: add
- WiFi calibration variant
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Jeffrey Hugo <quic_jhugo@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Kalle Valo <kvalo@kernel.org>
-References: <20240723-miix630-support-v2-0-7d98f6047a17@linaro.org>
- <20240723-miix630-support-v2-5-7d98f6047a17@linaro.org>
+ Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr>
+ <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
+ <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
+ <b6f6c845-6094-44ce-8ad0-ed4f6d353cec@freebox.fr>
+ <CAA8EJpqrAFKCr63JHEpZ3b3zdRfoNXoJP6SqKDOO4sqc=c6YdQ@mail.gmail.com>
+ <44101ecd-61f4-4609-bb22-12b40b692552@freebox.fr>
+ <CAA8EJpprtmefNM_CJFRbYVNxOWUVVWbedBq44r7GXOdDrQ2WjA@mail.gmail.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -124,21 +138,49 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240723-miix630-support-v2-5-7d98f6047a17@linaro.org>
+In-Reply-To: <CAA8EJpprtmefNM_CJFRbYVNxOWUVVWbedBq44r7GXOdDrQ2WjA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23.07.2024 1:28 PM, Dmitry Baryshkov wrote:
-> As most other board Miix uses board-id = 0xff, so define calibration
-> variant to distinguish it from other devices with the same chip_id.
+On 23.07.2024 11:59 AM, Dmitry Baryshkov wrote:
+> On Tue, 23 Jul 2024 at 12:48, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>>
+>> On 16/07/2024 18:37, Dmitry Baryshkov wrote:
+>>
+>>> No, that's fine. It is the SMMU issue that Konrad has been asking you
+>>> to take a look at.
+>>
+>> Context:
+>>
+>> [    4.911422] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>> [    4.923353] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>> [    4.927893] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>> [    4.941928] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>> [    4.944438] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>> [    4.956013] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>> [    4.961055] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>> [    4.974565] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>> [    4.977628] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>> [    4.989670] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>>
+>>
+>> As I mentioned, I don't think I've ever seen issues from cd00000.iommu
+>> on my board.
 > 
-> qmi chip_id 0x30214 chip_family 0x4001 board_id 0xff soc_id 0x40010002
+> Interestingly enough, I can also see iommu errors during WiFi startup
+> / shutdown on msm8998 / miix630. This leads me to thinking that it
+> well might be that there is a missing quirk in the iommu driver.
 > 
-> Cc: Kalle Valo <kvalo@kernel.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+>>
+>> I can test a reboot loop for a few hours, to see if anything shows up.
+> 
+> Yes, pleas.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Yeah I do trust you Marc that it actually works for you and I'm not
+gonna delay this series because of that, but please go ahead and
+reboot-loop your board
+
+8998/660 is """famous""" for it's iommu problems
 
 Konrad
 
