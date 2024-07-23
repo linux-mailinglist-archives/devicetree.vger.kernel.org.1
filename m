@@ -1,318 +1,191 @@
-Return-Path: <devicetree+bounces-87672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8960693A767
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 20:50:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F050293A76B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 20:51:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34B86284726
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 18:50:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A0F51F238FC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 18:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2896313C9D3;
-	Tue, 23 Jul 2024 18:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8957113C9AF;
+	Tue, 23 Jul 2024 18:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="S8+036AP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nB8cUGlB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C63214286
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 18:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5995214286;
+	Tue, 23 Jul 2024 18:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721760599; cv=none; b=YN10bSWH2vKOuQBggbjzm2B7Q+LPGU+Y8CxHKjaDPJuvhMPa6qCDn/fHCzThXT8Tmz8zcNahZgAM0wtciyuqKeED3whgEvXoVp28mAMBXZQpT7D0GOgiNzpjnSJEAozt+2WG22YETj9OyJEHpGAZUSC6v6Tw8jv/nNbFyCutqPU=
+	t=1721760657; cv=none; b=gQjT2US9BYsqB0p6MzLxx2btTBk8i5YxbIYc0Ja3Ata7gtEsXXvxIOkmnYMv0yGRjvF1jQ26BQjhiUWz/3GTB2WktkgxLm4Pahl4j/2EkYXirSxBMLifrsWkJs2eJrMqHjH8nzYF53zJ8ZhXgbPPIllHhxVMSLFhLgVZ3MTRheE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721760599; c=relaxed/simple;
-	bh=7i9uaoy2LCSf6eLmKEEYvufNV/bibcBimJUvKDw7+I0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tDDXk1dBZdSg8WzsQiwtz/CFFy5f3ZfAsaNwtTQFd//CFHQN19Zp2NFg5swLF44evn2UVf124DRIc9LUX6LWRtKDlPKdRal/hYmkAHJXzNvQNDAVZBxsZXRT96bGxmLEkuJcEFOBlaFFw3lVcBgYuCMeDfeaSlqysLrh/QkJQ3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=S8+036AP; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52fcc56c882so117846e87.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:49:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1721760595; x=1722365395; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5yCQ7cMPdavmkqgYQ9n8Dn73Ow0oR0UxJMGPClFQ4Qo=;
-        b=S8+036APePSK89u+PZOUkqhEIuiUTntj0JDDHLTiHPlsKEE4EWS6UhXLUmw7v/agZQ
-         3DLILebgAdGZlE90mtyx2osXlgGCQj+iipvMjEb6weB2A9PQjKfvF3J4qpW1P/ly2sG7
-         jO/i9MRFIfoersYzlfZZgt7IybfchN9dxEe5w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721760595; x=1722365395;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5yCQ7cMPdavmkqgYQ9n8Dn73Ow0oR0UxJMGPClFQ4Qo=;
-        b=DJ1eMrocgUIQGNDPc+SJoDaVWwBMlqHgdAzsguiTTvFiUQep5tayfxmcYI5sK7dCwi
-         +W5LZrxt50+Embtc9+EB35PnNZ95Mdp1ZP+mWESOS9qKzTApIYHe1OfWYmRFnEQZqa52
-         7Rxo0rdbv4ifw7ozEWzHx/JimFs8oBj3YX+oUsC9cg4yBMqIQF19GGNwPdpHUSC3ojZi
-         0gYUyxj0h2SUUH47PUldcmeG8z//n5WpykBgvKLNAFyTNavrLsmn86HIWLP+oXiYD5Hu
-         WHuAIAdt0umSWYN1BC0gQenTcoMUYX6kDomCJloExSk3TApmLrzRw2YNI3O/9nceM+KV
-         rUtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAK0FAsa7Z11uWARhxO6VUBEkKEIXopYEE78mPyxbcpXgZTGO1aSjDr5tiLlaP671rSxsDVkHpfewUJKqpcvRkOLPi3WpmkUSTBQ==
-X-Gm-Message-State: AOJu0Yxp2na44kKF3NvAGoyZrD93wnrfkMvT07iDGA8StKK8xrJs2h/X
-	4nJv+rvHkyblusTFNhw29o6CYL6zT9o7wx5OlhTZpml/t8jMorLqf1sZjRq5YZujmEDcgfxaFJD
-	TjhZP3fyfEJl4kLyS0wCOeP56Np2iRuLOIb8f
-X-Google-Smtp-Source: AGHT+IFN8g3iXTryQ+8Uy3bO3xLLZU2m1O7PBXXthWW9Bm9iwL9Ou3dzuN//ywjE6lZdchAH6pT9z7ApP0Bg7vtI3MU=
-X-Received: by 2002:a05:6512:3f06:b0:52c:dc56:ce62 with SMTP id
- 2adb3069b0e04-52fc66f0d20mr903091e87.12.1721760595167; Tue, 23 Jul 2024
- 11:49:55 -0700 (PDT)
+	s=arc-20240116; t=1721760657; c=relaxed/simple;
+	bh=vl1tL+qm9ouTAJDkwaDpLfLbUJBEPsRUkWIiVOPc7Wc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=piPS9qWXZr+ka9RNa35n+zEPCKDe+/WABn1Y9sMOBrtzC0+q2UdCvVbvauSbnYUmEhnLNYAzsu15APYhmd6RPyibCOp5JcSQxcY0uRTL9r727VhX+RVKqpjbaHRimi/hBTEcZxIc7cUDIiesIPxml0XsuO0Tc+vqJGMmmIOHh/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nB8cUGlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E864C4AF09;
+	Tue, 23 Jul 2024 18:50:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721760656;
+	bh=vl1tL+qm9ouTAJDkwaDpLfLbUJBEPsRUkWIiVOPc7Wc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nB8cUGlBm+7B0YBAMUzn270OoFVh2zSQvYM8rML0FikCLram4h3liP6vGlF7eNgE7
+	 WTGQvUbwx7zDhIMeSTAAvV0O9ZLXrwPYoJiphkQqJdgnM2L2J4GdKktDxC3jp94wbR
+	 BAjTM2peIlfNZ3Ys7ge9+dJ5kTwktjKtmnyQVQ4IWLkYncU7DOTnwoIeRgIkuoySQe
+	 YCUKgXEBpQnTmYHN7c8RHUhe3ANrssF8UzYO2SNYHrRXaZA2FQuMXlhseQdOI4CA6d
+	 133CfwSQ/VJO21ViPGPbAXjgljHmRMg+W4umkreTQR5AgIh29Q5tUcMm02rg2udKwh
+	 Acsu02hYpRokw==
+Date: Tue, 23 Jul 2024 19:50:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: IlorDash <ilordash02@gmail.com>
+Cc: geert+renesas@glider.be, mkl@pengutronix.de, mailhol.vincent@wanadoo.fr,
+	vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, a-govindraju@ti.com, linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
+Message-ID: <20240723-dinginess-john-608d0b28293b@spud>
+References: <20240718210322.37492-1-ilordash02@gmail.com>
+ <20240718210322.37492-2-ilordash02@gmail.com>
+ <20240719-ahead-kiwi-995e52bf3e74@spud>
+ <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240716213131.6036-1-james.quinlan@broadcom.com>
- <20240716213131.6036-2-james.quinlan@broadcom.com> <d20be2d3-4fdd-48ca-b73e-80e8157bd5b2@kernel.org>
- <CA+-6iNwvShkUwgQ5iTqa53gX1RtOMcDACPOJtqKm6zWCXN6Rtg@mail.gmail.com> <8e260164-cce2-4153-9f9c-0330c76408ef@kernel.org>
-In-Reply-To: <8e260164-cce2-4153-9f9c-0330c76408ef@kernel.org>
-From: Jim Quinlan <james.quinlan@broadcom.com>
-Date: Tue, 23 Jul 2024 14:49:43 -0400
-Message-ID: <CA+-6iNy5U6XG-sSjoBH4pAhFhP4=KDcKRVbD3dXZdsM2WCkd-w@mail.gmail.com>
-Subject: Re: [PATCH v4 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
- add 7712 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>, 
-	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000b17c8a061deea078"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Sb1wt06qVRZp8fX7"
+Content-Disposition: inline
+In-Reply-To: <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
 
---000000000000b17c8a061deea078
-Content-Type: text/plain; charset="UTF-8"
+
+--Sb1wt06qVRZp8fX7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 17, 2024 at 9:30=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 17/07/2024 15:20, Jim Quinlan wrote:
-> > On Wed, Jul 17, 2024 at 2:51=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 16/07/2024 23:31, Jim Quinlan wrote:
-> >>> o Change order of the compatible strings to be alphabetical
-> >>>
-> >>> o Describe resets/reset-names before using them in rules
-> >>>
-> >>
-> >> <form letter>
-> >> This is a friendly reminder during the review process.
-> >>
-> >> It seems my or other reviewer's previous comments were not fully
-> >> addressed. Maybe the feedback got lost between the quotes, maybe you
-> >> just forgot to apply it. Please go back to the previous discussion and
-> >> either implement all requested changes or keep discussing them.
-> >>
-> >> Thank you.
-> >> </form letter>
+On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
+> On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wrote:
 > >
-> > I'm sorry Krzysztof, but AFAICT I paid attention to all of your comment=
-s and
-> > tried to answer them as best as I could.  Please do not resort to a
-> > form letter; if
-> > you think I missed something(s) please oblige me and say what it is rat=
-her than
-> > having  me search for something that you know and I do not.
->
-> I do not see your response at all to my comments on patch #2.
->
+> > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
+> > > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+> > > It is pin-compatible with TI TCAN1042.
+> > >
+> > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.ya=
+ml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > index 79dad3e89aa6..03de361849d2 100644
+> > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > @@ -18,6 +18,7 @@ properties:
+> > >        - nxp,tjr1443
+> > >        - ti,tcan1042
+> > >        - ti,tcan1043
+> > > +      - microchip,ata6561
 > >
-> >>
-> >>> o Add minItems/maxItems where needed.
-> >>>
-> >>> o Change maintainer: Nicolas has not been active for a while.  It als=
-o
-> >>>   makes sense for a Broadcom employee to be the maintainer as many of=
- the
-> >>>   details are privy to Broadcom.
-> >>>
-> >>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> >>> ---
-> >>>  .../bindings/pci/brcm,stb-pcie.yaml           | 26 ++++++++++++++---=
---
-> >>>  1 file changed, 19 insertions(+), 7 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml=
- b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> index 11f8ea33240c..692f7ed7c98e 100644
-> >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml=
-#
-> >>>  title: Brcmstb PCIe Host Controller
-> >>>
-> >>>  maintainers:
-> >>> -  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> >>> +  - Jim Quinlan <james.quinlan@broadcom.com>
-> >>>
-> >>>  properties:
-> >>>    compatible:
-> >>> @@ -16,11 +16,11 @@ properties:
-> >>>            - brcm,bcm2711-pcie # The Raspberry Pi 4
-> >>>            - brcm,bcm4908-pcie
-> >>>            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-> >>> -          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-> >>>            - brcm,bcm7216-pcie # Broadcom 7216 Arm
-> >>> -          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> >>> +          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-> >>>            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
-> >>>            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
-> >>> +          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> >>>
-> >>>    reg:
-> >>>      maxItems: 1
-> >>> @@ -95,6 +95,18 @@ properties:
-> >>>        minItems: 1
-> >>>        maxItems: 3
-> >>>
-> >>> +  resets:
-> >>> +    minItems: 1
-> >>> +    items:
-> >>> +      - description: reset for external PCIe PERST# signal # perst
-> >>> +      - description: reset for phy reset calibration       # rescal
-> >>> +
-> >>> +  reset-names:
-> >>> +    minItems: 1
-> >>> +    items:
-> >>> +      - const: perst
-> >>> +      - const: rescal
-> >>
-> >> There are no devices with two resets. Anyway, this does not match one =
-of
-> >> your variants which have first element as rescal.
+> > Given that your driver patch has
+> > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-=
+transceiver.c
+> > | index ee4ce4249698..dbcd99213ba1 100644
+> > | --- a/drivers/phy/phy-can-transceiver.c
+> > | +++ b/drivers/phy/phy-can-transceiver.c
+> > | @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiver_p=
+hy_ids[] =3D {
+> > |                 .compatible =3D "nxp,tjr1443",
+> > |                 .data =3D &tcan1043_drvdata
+> > |         },
+> > | +       {
+> > | +               .compatible =3D "microchip,ata6561",
+> > | +               .data =3D &tcan1042_drvdata
+> > | +       },
+> > |         { }
+> > |  };
 > >
-> > The 4908 chip exclusively uses the "perst" reset, and the  7216 chip
-> > exclusively uses the "rescal" reset.   The rest of the chips use zero
-> > resets.   All together, there are two resets.
->
-> This is not enum, but a list. What you do mean overall two resets? You
-> have a chip which is both 4908 and 7216 at the same time? How is this
-> possible?
->
+> > the driver patch is actually not needed at all, and you just need to
+> > allow ti,tcan1042 as fallback compatible in the binding, so something
+> > like:
 > >
-> > You are the one that wanted me to first list all resets at the top,
-> > and refer to them by the conditional rules.
->
-> No, I wanted widest constraints at the top.
-Can you explain what you mean by "widest constraint"?  I did not see
-the word "wide" in any of the Linux YAML documentation.
+> >   compatible:
+> >     oneOf:
+> >       - enum:
+> >           - nxp,tjr1443
+> >           - ti,tcan1042
+> >           - ti,tcan1043
+> >       - items:
+> >           - const: microchip,ata6561
+> >           - const: ti,tcan1042
+> >
+> >    '#phy-cells':
+> >      const: 0
+>=20
+> I tested the build with fallback compatible:
+>=20
+> compatible:
+>   oneOf:
+>     - items:
+>       - enum:
+>         - microchip,ata6561
+>       - const: ti,tcan1042
+>     - items:
+>       - enum:
+>         - nxp,tjr1443
+>       - const: ti,tcan1043
+>=20
+> and modified compatible property in DTS:
+>=20
+> compatible =3D "microchip,ata6561", "ti,tcan1042";
+>=20
+> Build succeeded, phy-can-transceiver driver was used. So I would like
+> to add a fallback compatible for both "microchip,ata6561" and
+> "nxp,tjr1443" in this binding and modify other DTS files with
+> compatible =3D "nxp,tjr1443". What do you think?
 
->
-> My comment at v2 was already saying this:
->
-> "This does not match what you have in conditional, so just keep min and
-> max Items here."
->
-Okay, what I was referring to was your V1 response:
+This is wrong on two counts. Firstly, were what you have correct, you
+should
+squash the two:
+     - items:
+         - enum:
+           - nxp,tjr1443
+           - microchip,ata6561
+         - const: ti,tcan1042
 
-"Fix the binding first - properties should be defined in top level
-"properties:" and then customized."
+However, that does not allow the TI compatibles in isolation, so you
+still need to allow that for the actual TI devices, so you need:
 
-I think this is correct but I have not been describing the
-reset/reset-names properties properly at the top level; i.e.  I have
-been giving a full list instead of using "oneOf".
+   oneOf:
+     - items:
+         - enum:
+           - microchip,ata6561
+           - nxp,tjr1443
+           - ti,tcan1043
+         - const: ti,tcan1042
+     - const: ti,tcan1042
 
-Regards,
-Jim Quinlan
-Broadcom STB/CM
+There's probably some devicetrees that would need to be fixed up. I'm
+just not convinced that this is worth retrofitting however.
 
-> and you have numerous examples in the code for this.
->
-> Best regards,
-> Krzysztof
->
+--Sb1wt06qVRZp8fX7
+Content-Type: application/pgp-signature; name="signature.asc"
 
---000000000000b17c8a061deea078
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+-----BEGIN PGP SIGNATURE-----
 
-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
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCkensSROmUAhbnwUmygmgFBGpU2Dus
-XDg89I0iOb5JSjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA3
-MjMxODQ5NTVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEAaO63AjdO1ncFQmmasEfxaKJwAPVayZHaf/jYK6kbwmXDI0Xp
-EmLX3aOuNplfGXxJqf7pPEeIE/SvRUVKGeb+tMj2tLgGI6LaB65jMNrvioh5X8fRUE7O078Culo+
-kby6FFApxjEWSJKSxqM6GBp4jJrYU8SRm35QWvueZx1eXLSfQRyYhLgdikKO2/kechzJcEEJ4l+m
-E+K2ysS+m8Af4CtMBZ5OVeziW81NiHpUlJ5MCQqpTCrAuErrbk3fQI8/CvHALxlah60e29mRgPvG
-cQzpIie8SX+BKUltEo/DJ+yeKTJg341utnQTsTM8zi3C9xQMMBl2LdUwCQFIz611pw==
---000000000000b17c8a061deea078--
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp/7jAAKCRB4tDGHoIJi
+0kqmAQDbg7LV1E4pqgQO3NYNjah0s8scJYHyiLkSKEGkeV8vzgD/Vmkjp6MfrKVF
+sb9sNoZYQ2y9gDZh9eTTxUkOP+9ibAI=
+=oDmD
+-----END PGP SIGNATURE-----
+
+--Sb1wt06qVRZp8fX7--
 
