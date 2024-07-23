@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-87590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA5F939F9B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:19:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C7A5939FC1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3941F2308E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:19:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52AD6283785
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6399C14F9FD;
-	Tue, 23 Jul 2024 11:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12125150990;
+	Tue, 23 Jul 2024 11:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZOI8VeqX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LVabRT8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A61F14E2C4
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DB814F9E5
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721733534; cv=none; b=QtT1ssXIjFKDba+Xm9n9teDPQa9wFcLMCAAqyzgC3fAxhgbPuETwWXWzPkF5jGdFJwFZP8ewa1KS+Dz1v5Y2GUmDkXKtFp8uFGQvzDb3LshXLqHXbsg64XxBCMc4lUoxBD05PDx0YH8evHNBpF8j2BK4PRLaRZJj73eGfFgrN+g=
+	t=1721733884; cv=none; b=hqo4f7M9pBzH6BSt/6l5WQr6Pa4q1EODVCLUQTV1OZiN2906QCMWEuXeY5A+f8pzmzS6juAExO6TTxaxsq2VVldEi4h7LIejAxW1ciLG3oTD4FfpRKzD8l4iGlpFStB2wlg/PBZzC4ngu/4sYJvSSYxMVYQXiHQNOOOf7wT5c1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721733534; c=relaxed/simple;
-	bh=Vp7V3IF/Ot0z3Bm7uzFIPNRfMYgFXd2y7cZ6zfqBK74=;
+	s=arc-20240116; t=1721733884; c=relaxed/simple;
+	bh=YVMPj79spIzBfzD+t3mYb6jl6UKYspdQjI9uM+YBqUQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tld11EgWSuSITC1EcZ3AVQAn7XSTSZa8Hm/N4tzbH7lJtf7C2mLK3S0Q0pond+NEgQQZp1KCroIwVDDVScH1ehQtWIUrvOTg7Sg6/XAXnpXh4hF3IsF9gI1y9MmOVa9BfotuM+3/BXD3WF2DDopQrofV3vwmej1/k1CDC7vuP5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZOI8VeqX; arc=none smtp.client-ip=209.85.208.179
+	 In-Reply-To:Content-Type; b=H5Bru3rmJgcC75LuVPp4qU4QPrSjhy0Ybf8c+8YjHs0FvY1OYud4Vk3XyfgYh8rBsmuJIG98CQe22I5uJ3ae800YJ0jEUG+CJ78oihIexpPjdvOspMuj6b3hNMojlJtSwtm8SsgOOIXqvSI/LVa+5/lnYHlTAS5s82dOu2/rvOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LVabRT8j; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ef2c56d9dcso24366551fa.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:18:51 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5a309d1a788so4667006a12.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721733529; x=1722338329; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721733881; x=1722338681; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kFolGW5KvoLUbpFl88RtzAVsMtpA+UoJdah8t87Ny1E=;
-        b=ZOI8VeqXf7zGeOmBalIM7eKmBb0PALrK4HZH63/bQ0glFDZe3RktQ7Sa+IU/RQsujm
-         fXZzd8JmhFiGrzgDHPln3tyZ1wUD5SOyYEr1jIK7/Jh7czSjbJHHki/guQgzADSG3aoH
-         mm6GVPwR2xo4om7qWrhKnq2fUhQB0MuXlcS+558ll37938Z1dNNxBpWOYtLAAcF/7LnR
-         JB5JO+vQO7lvdss4dBoTY5l8vN1ddYPMVVXsGv+tpdlx59FRM7CIqr+n2uJrLkQv0Klc
-         RZcySPwoOutkC1wgqk/jT0AgG+DPIxTdK4PkHRHx6wh277KX4+SJk6GbDoaarWQRIF8c
-         CR1A==
+        bh=Pf8liIFKb/5Bo59Xoqcb1uhY+X6/Q/7mSGTOmR9IU9M=;
+        b=LVabRT8jcQD4dw3eDuoqE0YS9oYtuJlNEZqOekkl96hW3PhWxZ2n/OE756g27b6KKz
+         rPs1wzdgTNKvof4cBYswFSWgutJHdlD8+NZWNKpxMSr9dwX1goE8DBA9BawWAL/1dXVh
+         6hI0F4js6OcMe/8QC92yH8PtmWFh/6+eANrGRGAW4gKvIksiq6gxVRVeM/8D59pNwNWY
+         tJLMj+oY98o5HAUonHiJVZx2DaHNQNelqfMz/meVMxtspF1fPaDV5nmjbxBsUhYDiZhf
+         YfU/6WAJh+rD0UvQ65Ug6q95mq2ubiBt98L4JeEzhCq4M2j0jYxyXkHAO48zKN6pOKBo
+         FwNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721733529; x=1722338329;
+        d=1e100.net; s=20230601; t=1721733881; x=1722338681;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kFolGW5KvoLUbpFl88RtzAVsMtpA+UoJdah8t87Ny1E=;
-        b=HGt3a+jTk0Lw/AZirMvOzC8rfa0WcP0RZ0Au3k0mLpuB2F07asp0LdqCpKHVaEmgh/
-         JNV0y2vWWfxHpl+q16ILS0CC4VJOfMcSxiR/6cF+JgPvg+Gzj/DiexU6sEPCJh1Jkp3y
-         qPQY8YVS2ENeiT8NbGFEB9ERBNbvv2z7/mUj+6+m2xLkCrf8KOMHqjAo84pFe72wAAzR
-         K8Ds4MVNyu6DC5hwnVdslT/i3btyKRxRHnoZCi+KNP6DyqGHEFekewpqm4hq1C7IcwxW
-         tHyMSrlyQdmqkB14GffaGVYjEbMJAcvhFJyNJKF5u9KWL1vceSgF4uS7uXKqf8nfkQgF
-         3+Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCWSwbXGUOfhu5mT3kuRTbb3k/Orz/7iRYT8D0udfaJMR1ZzOjr5Kds5vOghdbWFIH/MG9sZc1j6PDvUkpgANJlXuDd5OwLs4TDsww==
-X-Gm-Message-State: AOJu0YwggL4aazGPU1k2/Lfnw2QyuiZeFqCTpDNQ++S7Cwp494qEQA3v
-	M2UzGZcRRBm2l+/qEAyQXcXwFiB5hC6Xm8aPQsdx7iQXWwMhobt39WriliNfZYk=
-X-Google-Smtp-Source: AGHT+IGh8ROLZYy+YmkLstU1pE8fBMI6VzD2hNGUxS476G6ZpE+5Khphj8l5y5mfEcxQaVxTwFRgzg==
-X-Received: by 2002:a05:651c:104d:b0:2ef:2247:9881 with SMTP id 38308e7fff4ca-2ef22479eb3mr68564041fa.31.1721733529173;
-        Tue, 23 Jul 2024 04:18:49 -0700 (PDT)
+        bh=Pf8liIFKb/5Bo59Xoqcb1uhY+X6/Q/7mSGTOmR9IU9M=;
+        b=Lj2sI1/3N/pP+VTTnOYRT3k7l35DLdU6tLsxiCmjyiWqCnclrFKLZe7u8UHF/qrZxw
+         hqaCdY0BbTyd1EyEWHy9eBWPSqQPl9B0AWMGNgXj6GKCPq7tBztAyXpztcPhbhZfbBE+
+         2YR0yXtbNoSql7i55pzl/Xw5bgBOKOyN5sq29vj3mybbQl7d0qFIBdqfTpGzeUomCrZ1
+         l+Zt4HYpMCxzPf2v5iK/nfRSFaObJbZ+ql+z7omAt8I/95PNtHZtcs0poweniWMm2gGx
+         rbUzPSZCWfFQ2pYDv/+Q8d9+vgUd6l/RPxGE2nq0oqdu90qjB1qeGietDgJTFZ58e1pW
+         554w==
+X-Forwarded-Encrypted: i=1; AJvYcCVAiqkvJj+1YPM5zhkAA25YM9QvDPJyS3f3cAUQDwZ8eD0Sxlaax8s9/uW+2ZvaOLxNrlZPq3m41m2REW76Dw+fCG9BiAfGFTro6A==
+X-Gm-Message-State: AOJu0YxUUbS3ZgQvoAGs9DNGUaYoddGbgEqpEBDDKKp6dlZVNH/U9xWK
+	IPvZguHqkuTMPrqGSSdwelr0pVIoHxHXkUlUNA0C3zzsUMH/9x73KqKR3/Ki8Oc=
+X-Google-Smtp-Source: AGHT+IHwRqANEvPqgvGHnLI3VNhxMChrZxIkFrDZQpVADo9ha22p0YIs0AO+yuQwVmeUEjTLQccaIA==
+X-Received: by 2002:a50:d593:0:b0:5a1:7d68:62d8 with SMTP id 4fb4d7f45d1cf-5a3f12b7c44mr5839091a12.38.1721733880362;
+        Tue, 23 Jul 2024 04:24:40 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a7661b26c4sm3497845a12.26.2024.07.23.04.18.46
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c7d32c6sm7270363a12.90.2024.07.23.04.24.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jul 2024 04:18:48 -0700 (PDT)
-Message-ID: <47fb662f-cff7-4b88-b960-af9733feab45@linaro.org>
-Date: Tue, 23 Jul 2024 13:18:45 +0200
+        Tue, 23 Jul 2024 04:24:39 -0700 (PDT)
+Message-ID: <0d982452-f41c-400e-b350-3c022927036c@linaro.org>
+Date: Tue, 23 Jul 2024 13:24:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add 0x81 Adreno speed bin
-To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- robdclark@gmail.com, sean@poorly.run, quic_abhinavk@quicinc.com,
- dmitry.baryshkov@linaro.org, marijn.suijten@somainline.org,
- airlied@gmail.com, daniel@ffwll.ch, fekz115@gmail.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, cros-qcom-dts-watchers@chromium.org
-References: <20240722184314.36510-1-danila@jiaxyga.com>
- <20240722184314.36510-3-danila@jiaxyga.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: msm8916-wingtech-wt865x8: Add
+ Lenovo A6000/A6010
+To: Nikita Travkin <nikita@trvn.ru>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Anton Bambura <jenneron@postmarketos.org>,
+ Stephan Gerhold <stephan@gerhold.net>
+References: <20240722-msm89xx-wingtech-init-v2-0-0c981bbc5238@trvn.ru>
+ <20240722-msm89xx-wingtech-init-v2-2-0c981bbc5238@trvn.ru>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -125,21 +126,70 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240722184314.36510-3-danila@jiaxyga.com>
+In-Reply-To: <20240722-msm89xx-wingtech-init-v2-2-0c981bbc5238@trvn.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22.07.2024 8:43 PM, Danila Tikhonov wrote:
-> From: Eugene Lepshy <fekz115@gmail.com>
+On 22.07.2024 2:47 PM, Nikita Travkin wrote:
+> From: Anton Bambura <jenneron@postmarketos.org>
 > 
-> A642L (speedbin 0x81) uses index 4, so this commit
-> sets the fourth bit for A642L supported opps.
-> 
-> Signed-off-by: Eugene Lepshy <fekz115@gmail.com>
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> ---
+> Add initial device-tree for Lenovo A6000 (wt86518) and Lenovo A6010
+> (wt86528), which are MSM8916-based devices. These devices are quite
+> similar, so some configuration is shared in msm8916-wingtech-wt865x8.dtsi.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+[...]
+
+
+> +/ {
+> +	model = "Lenovo A6000 (Wingtech WT86518)";
+> +	compatible = "wingtech,wt86518", "qcom,msm8916";
+> +	chassis-type = "handset";
+> +
+> +	speaker_amp: audio-amplifier {
+> +		compatible = "awinic,aw8738";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spk_ext_pa_default>;
+
+flip
+
+[...]
+
+> +&sound {
+> +	model = "wt88047";
+> +	widgets =
+> +		"Speaker", "Speaker",
+> +		"Headphone", "Headphones";
+
+Please don't start a new line for this (same below)
+
+> +	pin-switches = "Speaker", "Headphones";
+> +	audio-routing =
+> +		"Speaker", "Speaker Amp OUT",
+> +		"Speaker Amp IN", "HPH_R",
+
+[...]
+
+> +	/* left AW8736 */
+> +	speaker_amp_left: audio-amplifier-left {
+> +		compatible = "awinic,aw8738";
+
+Should this get a new compatible (with a fallback if sw-compatible)?
+
+> +
+> +		pinctrl-0 = <&spk_ext_pa_left_default>;
+> +		pinctrl-names = "default";
+> +
+> +		mode-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
+> +		sound-name-prefix = "Speaker Amp L";
+> +		awinic,mode = <3>;
+> +	};
+> +
+> +	/* right AW8736 */
+> +	speaker_amp_right: audio-amplifier-right {
+> +		compatible = "awinic,aw8738";
+
+ditto
 
 Konrad
 
