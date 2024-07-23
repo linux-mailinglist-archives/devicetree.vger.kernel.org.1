@@ -1,168 +1,161 @@
-Return-Path: <devicetree+bounces-87440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15AEA93975D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 204209397C2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 03:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71281B21C4C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 00:15:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54E7AB217B3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 01:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6768B1862;
-	Tue, 23 Jul 2024 00:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193A913211F;
+	Tue, 23 Jul 2024 01:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=stgolabs.net header.i=@stgolabs.net header.b="FU5sqAql"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pfCcvHWK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from donkey.ash.relay.mailchannels.net (donkey.ash.relay.mailchannels.net [23.83.222.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 897BB7F;
-	Tue, 23 Jul 2024 00:15:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.222.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721693744; cv=pass; b=GuKc7UIS72lGIt3XeL+nEvvIhvLtFTZr1tRGev7f7FRblMQWH5ul8QqdR4YqIeF74/+xfBOwQbpMrOc0kmqrQnHJGKZDKkNPscB/nOd2Trv7e+hAmYh1yPIZ4v7weWea2zGqJ0gzs6bft4KqUCUBBo9Yt/oZU0oyeQl41DYkBOs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721693744; c=relaxed/simple;
-	bh=oGJXC3r3PI/KSS4LiF2oAD9/jmrZBfw5xkD6Sq3/Le0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AmYgwI9yqK8vEiPweErBwTbGlieaSX/BZH9zI9FydMurJwWgfOkz//7XvmgeNSDvRvQQFteABRLqj97mF+IOZJEph8sQrQSz4UHsBy1Fc/gxD2cMuLSgezziutZu1zOrhwUDdAoGxmodVS1l2DycCYbfDBnEow5xtKCde0Y5Ol4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stgolabs.net; spf=pass smtp.mailfrom=stgolabs.net; dkim=pass (2048-bit key) header.d=stgolabs.net header.i=@stgolabs.net header.b=FU5sqAql; arc=pass smtp.client-ip=23.83.222.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stgolabs.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stgolabs.net
-X-Sender-Id: dreamhost|x-authsender|dave@stgolabs.net
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 1E086805A36;
-	Tue, 23 Jul 2024 00:15:39 +0000 (UTC)
-Received: from pdx1-sub0-mail-a214.dreamhost.com (unknown [127.0.0.6])
-	(Authenticated sender: dreamhost)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 4A384806031;
-	Tue, 23 Jul 2024 00:15:38 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1721693738; a=rsa-sha256;
-	cv=none;
-	b=NT/VuLPGSsXIS+33VS9VsqvYIMvRYDDuKR7jGAo1uczzflAGxyy0dq8IzLuBXAUoCF/A5o
-	r0dUQSRQwV0cGgh5kT4NsYiRkj7qRJ3SUqjV+hVTET1wLEVqagAZ6BMufpiCU60vxhTIHG
-	UiwgbCQaussisE3yLEVZeHmpAtoBjdg07DpL8KGqH+amyJLjzn4SNXrWInTsHOVKK6O13a
-	qxlp8722ii2v/+YIvG9YRD1PYeR6ohGVzZyRhEjiUMQMePf7apiR9KsZSQf3oxZ8HamAIl
-	yqzyfnZ5cru80vvBbNejM9uPRTG9x53YJP47GMbYztpBrW0c20m4P3OkS6sdNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1721693738;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=BfrsTF3PjDyketH5sAvV75FgyXiYN8/JjDAq8vHafIY=;
-	b=E2ZM2eRjdopLhRqJ0qkfxrHZlZAsVY66TXjoXe6dr3bDm3AABn4cDR12NX7RXY0R1JoBVM
-	bCSZqgizyBERW3jZ/jul91PwZ5i20Q78rmORhjyNFw0OwG/VEQHwqYaMRLqg3pGqqDNWVk
-	NbiQv6TvMfq1yYQAmrCxYS8G09Tt7xc+74qJ6IArlOoMy/MD6C/lJGZLMEIgSj4PjS2uOy
-	1d1WKJzIHp9QF/4p/tI+9TqjK1jYZXXeDWqukjxduieiW7xDncLGKeQtO1tfLCd93aveOD
-	Cfg0m8teciQcZOjYG5n7Uhlgs1/fgszgOFydcfaGWi4oJJNm4ZsEh89c7a9j4g==
-ARC-Authentication-Results: i=1;
-	rspamd-587dc898b6-9fwgf;
-	auth=pass smtp.auth=dreamhost smtp.mailfrom=dave@stgolabs.net
-X-Sender-Id: dreamhost|x-authsender|dave@stgolabs.net
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: dreamhost|x-authsender|dave@stgolabs.net
-X-MailChannels-Auth-Id: dreamhost
-X-Fearful-Macabre: 125d6dc84c6e5729_1721693738922_585174325
-X-MC-Loop-Signature: 1721693738922:3890902801
-X-MC-Ingress-Time: 1721693738922
-Received: from pdx1-sub0-mail-a214.dreamhost.com (pop.dreamhost.com
- [64.90.62.162])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.121.241.7 (trex/7.0.2);
-	Tue, 23 Jul 2024 00:15:38 +0000
-Received: from offworld (ip72-199-50-187.sd.sd.cox.net [72.199.50.187])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dave@stgolabs.net)
-	by pdx1-sub0-mail-a214.dreamhost.com (Postfix) with ESMTPSA id 4WSd2v6Krhz2K;
-	Mon, 22 Jul 2024 17:15:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stgolabs.net;
-	s=dreamhost; t=1721693738;
-	bh=BfrsTF3PjDyketH5sAvV75FgyXiYN8/JjDAq8vHafIY=;
-	h=Date:From:To:Cc:Subject:Content-Type;
-	b=FU5sqAqlnBAYPEJ1amDjGSFoog2KTuxMpl2bRre6zYepul8zS777HtjxiV/Ti470X
-	 7tTal7LNWT5qzdwm/Kgi3LJXNinfroiFwVnE6WJGEz2W/hH5jx9Nn61DcPRQ7jOeGJ
-	 QG2H/imfq2kX6wbJ1Wx+WC82p9fLQZ3CQU7UUqDOyiXQ8yVnFmdTaulAI/+6MeA0Ly
-	 TdXIhGuabrciys+H/4aPga+ApM7IEMPP6W7QeZajTtwkoraSNUOE2DuNdBwtLT8juH
-	 ND031tUJHkyvIA/KoaxhVv/myZsSqprEhkI80zrbBDsKfaVGCL4giJ+3VB8gTxKhgo
-	 bf18mBD7JAeog==
-Date: Mon, 22 Jul 2024 17:15:32 -0700
-From: Davidlohr Bueso <dave@stgolabs.net>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
-	Alexander Gordeev <agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, 
-	Dan Williams <dan.j.williams@intel.com>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	David Hildenbrand <david@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens <hca@linux.ibm.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Jonathan Cameron <jonathan.cameron@huawei.com>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	linux-cxl@vger.kernel.org, nvdimm@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH 04/17] arch, mm: move definition of node_data to generic
- code
-Message-ID: <vwofm2kcltxn4ysrf4lefe2zdqvo2upxdyntatmnh3sywcnjlq@4c6wlllurfn5>
-Mail-Followup-To: Mike Rapoport <rppt@kernel.org>, 
-	linux-kernel@vger.kernel.org, Alexander Gordeev <agordeev@linux.ibm.com>, 
-	Andreas Larsson <andreas@gaisler.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, 
-	Dan Williams <dan.j.williams@intel.com>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	David Hildenbrand <david@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Carstens <hca@linux.ibm.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Jonathan Cameron <jonathan.cameron@huawei.com>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	linux-cxl@vger.kernel.org, nvdimm@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-References: <20240716111346.3676969-1-rppt@kernel.org>
- <20240716111346.3676969-5-rppt@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5E73EA83
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 01:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721697007; cv=none; b=EPhTki+jiuC8tzONXMRWJNVe7zSOhD0zRF2dYjASee2aUxRNMri22AKxGWMsp4DGpe5V5SaIBnJ8GG729DnRecrV/bmsMSDK/SbltjQkmKsEX/Y3I3y/hILPX6t+BNAyLHt/TE7ZW1bGfT8dsjIvh5xVS+2O6XS1zcgEGlSRupc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721697007; c=relaxed/simple;
+	bh=F/YVPIt96eiD4fDEqIVV0BjgbhD3AMknFfl6Pf7/Seo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kBU+5FzVfP60AksLE35yEiRK2GjahLQcqi8SrbRnLPkROC4DE8WP0jomX2cnwbbPjo+ybAIHO2i5Q97fF1oD7JvjTcKub133j8xfRqIBgisha4gRKg06YF0tPhf6Ye61c9kiIo5IkMrOJv9mTnQXYXoOa1v3T8cqfrwc7+oClhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pfCcvHWK; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6634f0afe05so54758787b3.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 18:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721697003; x=1722301803; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=M+1mttumgraTmz8as/o8R81jMF1pkFas9HuIkAF6YD8=;
+        b=pfCcvHWKnncLvDK77wOZxrlYBUxm4zUEWiym7FZUc4hLGCfIZusQgzm/EuvrqrMZmf
+         fxUZFGn4ZgNKNkFbtjdAH5SirzedHAI5SSq7eKRFI8SiRWAhnS2yJ8D0upOPR/DziyON
+         UDBc5Ukzlx2LRSZCTkSx6q2yHOIKmnbppzjbKENRtNGpWnux86axCDc0qcJg+oE7PEVi
+         hTJ77yFXvsWtjR8cCjWPhI21hPLziqVEJX7QS4k0O6qzgXf5hvv3X40ppnjxouPU+Z9V
+         26XldUzrLd/U4PsNqkiOgagsBTrnJs7r0bF/GHcrRUxgdlSpsiGlIQqffVLTAtV2YG8/
+         5+1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721697003; x=1722301803;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M+1mttumgraTmz8as/o8R81jMF1pkFas9HuIkAF6YD8=;
+        b=tgytdi3MyNGiukSQFsiFNCvjJpNXhtxFAc/uMdmpM7wq92sl6QFWdnpaV1yniUQVrK
+         tyYzxtOO4QcRizFHY+bwO//nxE2IgDzCbKcE96u8mkveshfQUqW1jEdl80uZum9sXnBV
+         /Gxu28V/oYEhyX1SWnFeD2fKkW/JXAZdHxusklJzW8qDw8w/VEnZG2MF+aVuNyd+mLB5
+         pykWU50oL7sq+dlGwslr/0bs6hnoT82hWMomom3JxuYgbOU5R5crA/J/ZQTqUXAdlw+1
+         /tnrKpL1aWHOum7uR8M5g+kHDVOTRzGGT+GJJtwE3P1ojPb0p6x+dS7S/vzBwM6d28Tm
+         KX5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXtuHqQQRQIJLwvhz+f9XB7mcHzmbu2o5JSU28UmTxabRqEfLwy0byDg3iPNnmuQEl2kSxgQN77mObNEJPiOgpSXwwQ1X969+PB1w==
+X-Gm-Message-State: AOJu0YwBd8y9tWidvK1DSv1oixu27mt8MZTwXa2OA5UYKPjyyvqBXeN2
+	IXuC1OaExGSkuGoNJ5XYINVx6rUpvni20LAnupz8w535JkBDef6KYMJX4u2FIimE1KqIqjzUZZ0
+	Vu7rv92EfETQDsxuLXAQdkibh4yAVYy1+n0sOHQ==
+X-Google-Smtp-Source: AGHT+IFWh7F9HmWfROqNp44wr2VtiezP9UnvrKwkDXP8VHIqTEKzjfkOOrND9UfYVARn0ktR6qDNF/AN9J+nSHMSp2M=
+X-Received: by 2002:a05:690c:4087:b0:651:a00f:698a with SMTP id
+ 00721157ae682-66a65e6516amr86737777b3.38.1721697003132; Mon, 22 Jul 2024
+ 18:10:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240716111346.3676969-5-rppt@kernel.org>
-User-Agent: NeoMutt/20240425
+References: <20240722-miix630-support-v1-0-a6483cfe8674@linaro.org>
+ <20240722-miix630-support-v1-1-a6483cfe8674@linaro.org> <cac3d7ba-2a62-479d-94c2-c6dc4d7a5ba2@linaro.org>
+In-Reply-To: <cac3d7ba-2a62-479d-94c2-c6dc4d7a5ba2@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 23 Jul 2024 04:09:52 +0300
+Message-ID: <CAA8EJprROf-aJgJvUMb3D+dCzOUO-eRzM3khM6ZY8b+z+_gByA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: msm8998-lenovo-miix-630: enable touchscreen
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeffrey Hugo <quic_jhugo@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 16 Jul 2024, Mike Rapoport wrote:\n
->From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+On Tue, 23 Jul 2024 at 02:22, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
->Every architecture that supports NUMA defines node_data in the same way:
+> On 22.07.2024 1:57 PM, Dmitry Baryshkov wrote:
+> > There is no point in keeping touchscreen disabled, enable corresponding
+> > i2c-hid device.
+> >
+> > 04F3:2608 Touchscreen as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input1
+> > 04F3:2608 as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input2
+> > 04F3:2608 as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input3
+> > 04F3:2608 Stylus as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input4
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../boot/dts/qcom/msm8998-lenovo-miix-630.dts      | 28 ++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> > index a105143bee4a..118c55f5bcfd 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> > +++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> > @@ -11,6 +11,24 @@ / {
+> >       chassis-type = "convertible";
+> >  };
+> >
+> > +&blsp1_i2c5 {
+> > +     clock-frequency = <400000>;
+> > +     status = "okay";
+> > +
+> > +     tsc1: hid@10 {
+> weird (and unused label)
 >
->	struct pglist_data *node_data[MAX_NUMNODES];
+> very non-specific node name too
 >
->No reason to keep multiple copies of this definition and its forward
->declarations, especially when such forward declaration is the only thing
->in include/asm/mmzone.h for many architectures.
+> > +             compatible = "hid-over-i2c";
+> > +             reg = <0x10>;
+> > +             hid-descr-addr = <0x1>;
+> > +
+> > +             interrupts-extended = <&tlmm 125 IRQ_TYPE_LEVEL_LOW>;
+> > +
+> > +             pinctrl-0 = <&i2c5_hid_active>;
+> > +             pinctrl-names = "default";
+> > +
+> > +             wakeup-source;
 >
->Add definition and declaration of node_data to generic code and drop
->architecture-specific versions.
+> double tap to wake? tap to wake?
 >
->Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > +     };
+> > +};
+> > +
+> >  &blsp1_i2c6 {
+> >       status = "okay";
+> >
+> > @@ -35,3 +53,13 @@ &remoteproc_mss {
+> >  &sdhc2 {
+> >       cd-gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
+> >  };
+> > +
+> > +&tlmm {
+> > +     i2c5_hid_active: i2c5-hid-active-state {
+> > +             pins = "gpio125";
+> > +             function = "gpio";
+> > +
+> > +             bias-pull-up;
+> > +             drive-strength = <2>;
+>
+> Since there are no other pin definitions, you can do better and not
+> copy the old rotten style ;)
 
-Nice cleanup.
+Both node and pinctrl were c&p from c630. But was is rotten here?
 
-Acked-by: Davidlohr Bueso <dave@stgolabs.net>
+
+-- 
+With best wishes
+Dmitry
 
