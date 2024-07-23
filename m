@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-87627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5E893A1AF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 15:38:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98EED93A1B2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 15:38:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12022283E5F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:38:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F23EE1F2205B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3A61534EC;
-	Tue, 23 Jul 2024 13:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DBBF153506;
+	Tue, 23 Jul 2024 13:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="fN81/OOc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PrVL/cCU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20EB9152E15
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 13:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D12B9208A0;
+	Tue, 23 Jul 2024 13:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721741907; cv=none; b=fMX/FYkX9YbEplBbBr6a9tJhNIosfuhsAMsD1xu4ZUwTeqedOtGSQYtRuuKNkrMiaV97km/FYOXdOvPr0SGoV9h3rClJAly3iPNj4350E0VGQBdiDb+0QKdwNNRjbk4+geuJ36fzsfjOfWxF2o4toUkBdEI8R6tcQH9TDtaKtHc=
+	t=1721741931; cv=none; b=Y6g6Dt2ibRswAPK/ZiUezoFSq2IlVHox9EuRmDoUFKWOZH9YIohSSmmHE5m4rEa2bzJ4abqIArOFDS3vTCWKTrGW3YA219FRtHEWxvKv5z69DjPV12BGJolmn3cLNOMeHJY0sknsb8MIoRPY/04+ZG7SSYsau/wSjfyl/yiWRcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721741907; c=relaxed/simple;
-	bh=+E523LiZG+8eaRFNtnAcYUzaYyDbJAEf5+qMTt8FN/U=;
+	s=arc-20240116; t=1721741931; c=relaxed/simple;
+	bh=uRi1AB8AqowQcd8KFLY8MHr892jj9UIN2dVki7R4XPo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RYdoWpUSY5mXQ5ScRy3D3fGyD9Y7DEQ2T3pni4YFMwUOZ3Hzftod4XAvEKj7NV997yE1iH15CjUfHND8KWakXsgiW4AC8VW6tfqke2SCD1m4qavKfqgPk/NGQTotsZoeMj/KLmZv/7uV6zOMDcLHKEupr7PPAI4qSupb2c1tJ9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=fN81/OOc; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4279c924ca7so40392095e9.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 06:38:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1721741903; x=1722346703; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N3K8G5pHeQAwS16+pZRohvo75/Cf2iIKXzbelmWiAXE=;
-        b=fN81/OOcYQxGIY3wBOzQCWNCOaureVT3GGmeD7X1lXlWAY0gRDf9bOf8yGnHHKzBh9
-         rr46HFfBNTmbuZEzV61wFXH+/pdMG07kHH04gfb58qs3d3264wZDTedVAkU/iI7HIpfe
-         9B3l3WyLFObuwlezwNHhnBklqf72KnIqc6vSAbDQ40hrKy4uU7VytU5I3htLKUGKt6hp
-         5BGYav7NqfRIZYxe+7UtSC2fZUWtnSfIzcjBSvynGD8++o/rMasjgjsTDZ47fu4IumS0
-         Zb0tbJHPKHt4i5RZ4Pbo+ymqL0MLzeT658+3k6JA0bmPR8McjNX7jbs3drY+NNbuGgfq
-         3g+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721741903; x=1722346703;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N3K8G5pHeQAwS16+pZRohvo75/Cf2iIKXzbelmWiAXE=;
-        b=MwWWe+2uTq7EyKzEil+IN34yjXPVGjHkealScIEAaK6FgZ8qevM6KLkh6tqL7o6jgo
-         H4ynOm8gmjKpVVRhE88ZY2FdrtcPh5wXLR8CL8X5oJbn/P+ymQvu5Qt+ddcTKlXgoSwC
-         M1vKqqbtdeDhC9j9PXSK500Dg/18ZWA57FVQ9gf2ujjeDHWREq85qXgSTBWurIwV0Uze
-         xwaAWWiZVOmVM6HhF0I3skuz3hxjIAa0GhNLHkr2O/idaZAskgcU1viRzalEgmO1awsw
-         RICs3yi3zVB5wib6LAycte/sA+QbMe6I892bui/K2NoX2T0cfbLkOXUWe5aOmFHqwiIS
-         Mf4w==
-X-Forwarded-Encrypted: i=1; AJvYcCUJJo+sZFBSxzJ62GeG1Q2zuW8fwcHeJTSTYfkMsIjamoymCJlW4k+u0HwA9uP1CWt/5p9lrEZ/QlhsVXPstLkqy9UVFLrc9LwFfA==
-X-Gm-Message-State: AOJu0YxgftLCAB37bf5/Y5Zit0vo8gmCr+sMjaUcXunYtTSKt2cLCiOQ
-	1mDEVYYEFMR0DVOQTWsw8AW6jnIjV7sV0S1JJypibW+jJOn4qlDOItJZ9p5j2js=
-X-Google-Smtp-Source: AGHT+IGbKurHrcBQxOwjoCy3I00Mb7Ii4AMC80qELYY6RamyBgLgQUYcRMumqK9YF+XJH9OtD5bRNQ==
-X-Received: by 2002:a05:600c:4eca:b0:426:6876:83bb with SMTP id 5b1f17b1804b1-427dc52921amr59397295e9.17.1721741903494;
-        Tue, 23 Jul 2024 06:38:23 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d2a8e420sm203734675e9.35.2024.07.23.06.38.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jul 2024 06:38:23 -0700 (PDT)
-Message-ID: <a8c7db04-7212-4bf0-b8b1-d371ee33478b@freebox.fr>
-Date: Tue, 23 Jul 2024 15:38:22 +0200
+	 In-Reply-To:Content-Type; b=fXG51FWlDvJNHPAdsdabi0DO44duiInua6UQLCenq0g02LSfrpQ8VUGaMEz9Bu5QkkWGxqjYmCSrEpVHRxfDmAFKeo+rK9BE0Q30cOGIG2QLt8AZoz4F0OSZk90guVZBsllby2MUfxJ4V2wty83ccmdEvtRsyFY/pBr7iYyW56Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PrVL/cCU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5B9C4AF0A;
+	Tue, 23 Jul 2024 13:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721741931;
+	bh=uRi1AB8AqowQcd8KFLY8MHr892jj9UIN2dVki7R4XPo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PrVL/cCUkPWwTIi6EZiA+2lkQqW+CDe7Cvni74Yqhugp1Oe2219SIAjsQA6ZT2UUH
+	 mDs5mEcvWPnYQakl0PhoV2csCBcyyVXTFPh1Cet255dyW0UtxbNyidM+7UXaHziYjP
+	 yEjlo7LDaF29KqpY8gE7bv01w5gO0TXi5yaBr+bq8UxZcmxjEMQbumr+rPPkZ0aMdg
+	 CHnhJqUkBQ1WDJXpj/kBDFt4PkIGBs8PH5TBhI+Bm9Y1eGKLDtFGDXVqJaRWIvfg/V
+	 CUL88N6LvOvxMscbWyxrUvPBzrLHcPk/cr76vAMaeQVUwm7tQ2AIEtMYKP5vpSulxw
+	 Bt1wKsgBc3AFQ==
+Message-ID: <b4985dc2-73e5-4917-9015-f891938c8880@kernel.org>
+Date: Tue, 23 Jul 2024 15:38:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,103 +50,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>
-References: <20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr>
- <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
- <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
- <b6f6c845-6094-44ce-8ad0-ed4f6d353cec@freebox.fr>
- <CAA8EJpqrAFKCr63JHEpZ3b3zdRfoNXoJP6SqKDOO4sqc=c6YdQ@mail.gmail.com>
- <44101ecd-61f4-4609-bb22-12b40b692552@freebox.fr>
- <CAA8EJpprtmefNM_CJFRbYVNxOWUVVWbedBq44r7GXOdDrQ2WjA@mail.gmail.com>
- <04ef978f-2bfd-46cc-a9f7-40a6f1c507f8@linaro.org>
- <7d34a857-6495-482b-9070-1817c88c9913@freebox.fr>
- <45f5dae6-c606-4612-900a-b719f58d92ce@linaro.org>
+Subject: Re: [PATCH] arm64: dts: s32g: add the pinctrl node
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ NXP S32 Linux Team <s32@nxp.com>
+References: <20240723123720.1088067-1-andrei.stefanescu@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <45f5dae6-c606-4612-900a-b719f58d92ce@linaro.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240723123720.1088067-1-andrei.stefanescu@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/07/2024 15:08, Konrad Dybcio wrote:
-
-> On 23.07.2024 2:57 PM, Marc Gonzalez wrote:
->
->> On 23/07/2024 13:45, Konrad Dybcio wrote:
->>
->>> On 23.07.2024 11:59 AM, Dmitry Baryshkov wrote:
->>>
->>>> On Tue, 23 Jul 2024 at 12:48, Marc Gonzalez wrote:
->>>>
->>>>> On 16/07/2024 18:37, Dmitry Baryshkov wrote:
->>>>>
->>>>>> No, that's fine. It is the SMMU issue that Konrad has been asking you
->>>>>> to take a look at.
->>>>>
->>>>> Context:
->>>>>
->>>>> [    4.911422] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
->>>>> [    4.923353] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
->>>>> [    4.927893] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
->>>>> [    4.941928] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
->>>>> [    4.944438] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
->>>>> [    4.956013] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
->>>>> [    4.961055] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
->>>>> [    4.974565] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
->>>>> [    4.977628] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
->>>>> [    4.989670] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
->>>>>
->>>>>
->>>>> As I mentioned, I don't think I've ever seen issues from cd00000.iommu
->>>>> on my board.
->>>>
->>>> Interestingly enough, I can also see iommu errors during WiFi startup
->>>> / shutdown on msm8998 / miix630. This leads me to thinking that it
->>>> well might be that there is a missing quirk in the iommu driver.
->>>>
->>>>> I can test a reboot loop for a few hours, to see if anything shows up.
->>>>
->>>> Yes, please.
->>>
->>> Yeah I do trust you Marc that it actually works for you and I'm not
->>> gonna delay this series because of that, but please go ahead and
->>> reboot-loop your board
->>>
->>> 8998/660 is """famous""" for it's iommu problems
->>
->> [   20.501062] arm-smmu 16c0000.iommu: Unhandled context fault: fsr=0x402, iova=0x00000000, fsynr=0x1, cbfrsynra=0x1900, cb=0
->>
->> I get the above warning pretty reliably.
->> I don't think it's related to the issue(s) you mentioned.
->> System just keeps plodding along.
+On 23/07/2024 14:37, Andrei Stefanescu wrote:
+> Add the pinctrl node in the device tree in order to enable the
+> S32G2/S32G3 pinctrl driver to probe.
 > 
-> Yeah that one's "fine"
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/s32g2.dtsi | 51 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/s32g3.dtsi | 53 +++++++++++++++++++++++-
+>  2 files changed, 103 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> index fc19ae2e8d3b..b31f6857640b 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> @@ -159,5 +159,56 @@ gic: interrupt-controller@50800000 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <3>;
+>  		};
+> +
+> +		pinctrl: pinctrl@4009c240 {
+> +			compatible = "nxp,s32g2-siul2-pinctrl";
+> +				/* MSCR0-MSCR101 registers on siul2_0 */
+> +			reg = <0x4009c240 0x198>,
+> +				/* MSCR112-MSCR122 registers on siul2_1 */
+> +			      <0x44010400 0x2c>,
+> +				/* MSCR144-MSCR190 registers on siul2_1 */
+> +			      <0x44010480 0xbc>,
+> +				/* IMCR0-IMCR83 registers on siul2_0 */
+> +			      <0x4009ca40 0x150>,
+> +				/* IMCR119-IMCR397 registers on siul2_1 */
+> +			      <0x44010c1c 0x45c>,
+> +				/* IMCR430-IMCR495 registers on siul2_1 */
+> +			      <0x440110f8 0x108>;
+> +			status = "okay";
 
-I booted 40 times in a loop.
+Where did you disable it?
 
-`grep -a -i FSYNR console.logs` just returns the same 16c0000.iommu
-"Unhandled context fault" message 76 times (as above).
+> +
+> +			jtag_pins: jtag_pins {
 
-NB: I have maxcpus=1 set in bootargs.
+Underscores are not allowed. Please follow DTS coding style. The
+mainline one, not NXP coding style. Several other places here have also
+issues, so be sure you read if carefully.
 
-Could the iommu issue be a race condition, NOT triggered when code
-runs with less parallelism?
+>  	timer {
 
-Regards
+Best regards,
+Krzysztof
 
 
