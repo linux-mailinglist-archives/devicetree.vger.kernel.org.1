@@ -1,151 +1,134 @@
-Return-Path: <devicetree+bounces-87661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEA393A3B9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 17:26:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91C793A41E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 18:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 690B41F240D5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 15:26:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 146F21C22642
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB2C156F4C;
-	Tue, 23 Jul 2024 15:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55F8153838;
+	Tue, 23 Jul 2024 16:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="Didv7mRh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOqphG6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CB683D55D;
-	Tue, 23 Jul 2024 15:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8C213B599;
+	Tue, 23 Jul 2024 16:04:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721748373; cv=none; b=u8zZeziYi9+BGuRVQgDa0GK06apDK+ONaTIRSTlyPeZ3JcAATyhcRLb7fZZi1Gbi/W4NiqZFgRM+vVWaVBK/ok8hgzTyk94V+KnkLc++vV87Y0RDc/A4vUTN6KHnApMDh4JJyJmoJcyvBg6R7RaMue0L6ZDFPNVtl6JpBmVgu4M=
+	t=1721750671; cv=none; b=JpvlXGG4Smya5pu86sHMpJKWBVL4z9728Ig04VTzl9sDakJ7atkf3dt3B67kOqBE//661xOpPtcp/7IQydGKow+rLnAZe+3jmvuQ6C5TVul+WD91tyIQPT01NtZxrCGFpekj86HTvZDR7H3wvY1Rerjy3PYhc8xzbdVA3GOOqjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721748373; c=relaxed/simple;
-	bh=K8gU5w3T1PWXvWaMeSk5CCQtBdR9YrlwWnQneLiIZg8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=pv1CEgExk615lqvpbInbIC5xbBqP1PxndwUNaO1S5aVrIryv29gqgZBNouE/gHQedFup+a1wQjaGcLho9E+W1gt1YKBvRRzENr0AdHSoAy0ylSPaQzYG8iMR4xGQGdUcht4eGZw2VvQmUyngW8SyYh7Udjs7b+pAQp0h7XtXLAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=Didv7mRh; arc=none smtp.client-ip=194.87.146.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 07BA3403CC;
-	Tue, 23 Jul 2024 20:25:52 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1721748353; bh=K8gU5w3T1PWXvWaMeSk5CCQtBdR9YrlwWnQneLiIZg8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Didv7mRh+P7gY7vwxcBRAwk7wzgC6LUS8/tHtyJ5Km8grz2X3SEbfBqgxT6pPidPY
-	 m/A48gRZUq+e9sQHZN3qSKl0P/ZCFJyGvrXmrq/GS2TGP0Ra8mY0f5hePQfJ5Ft3kx
-	 CFyZz97UcnOpVjAgVMV1n68iHhsc3q3iCFzDeaiF/aewQj1b0X3pyXJR8KreXTj+Pk
-	 2zSSe1eqCpNKF23voFXqfRQB0re+8DnbhnbCs8bBX9pxRz5InOOFqvzbSkTftLM2VV
-	 ayE7KiWUwB+ZzBZNYT3AdQPTXxhEU3Ua0vf6s8hq8djCMGUuDAUxfg89kK0nHSYJd3
-	 RtpeiUmAGkfRw==
+	s=arc-20240116; t=1721750671; c=relaxed/simple;
+	bh=W/+fwuK1CNAAfIupAvdNDpGXw3AXSDiI3VRVBEBzu8E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jwt/W0sdlvrjVJwVhtt/FXUtnocVxwLH2b2EDBQF5yGEAQl/gMc8pbhnDrP5c+YHkYGfQSIsDHehltGk81eOH6c5wFBb5VZcOM6dvWXQAdfb67lpQYJxtBeP9iMO4Imy2akgM4bwBxZRTNs89T+HSTCYoPMuUHPpmIUJWfG2Gfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOqphG6H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF8A1C4AF09;
+	Tue, 23 Jul 2024 16:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721750671;
+	bh=W/+fwuK1CNAAfIupAvdNDpGXw3AXSDiI3VRVBEBzu8E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FOqphG6HOCuTixwQcQs2fjwA/9NFC7QrHNjGwhIaGxyVvlj8WV8bSPo0km0+hJZOZ
+	 PPZPunccS1zR+DEcDXuuioers0KBGQOF7vIlFYWTM1EwwNP1XqCTEYyfizf4WRmIQ2
+	 1A1crfZiXkCbMOyaNPP0rwrSMRDhD90CK9gNidt5rzsRy4LzqFlQMokCVySxdkYNF2
+	 qO4NXzinLAEPSWMF8l5A66NJE/7jhse9NnPBH9Xx1ZtiLmYf84w6GT6WMqCgyIxqVB
+	 459IZv6cKBTpqg3XcGdh7eKvpOyEz32AJ4PqyFBSWbcs/XdTriGfKgJpTRnzRx49pF
+	 6rFOxePeCXeWg==
+Date: Tue, 23 Jul 2024 18:04:23 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: tj@kernel.org, dlemoal@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	festevam@gmail.com, linux-ide@vger.kernel.org,
+	stable@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, kernel@pengutronix.de
+Subject: Re: [PATCH v4 4/6] ata: ahci_imx: Add 32bits DMA limit for i.MX8QM
+ AHCI SATA
+Message-ID: <Zp/Uh/mavwo+755Q@x1-carbon.lan>
+References: <1721367736-30156-1-git-send-email-hongxing.zhu@nxp.com>
+ <1721367736-30156-5-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 23 Jul 2024 20:25:50 +0500
-From: Nikita Travkin <nikita@trvn.ru>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Anton
- Bambura <jenneron@postmarketos.org>, Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: msm8916-wingtech-wt865x8: Add
- Lenovo A6000/A6010
-In-Reply-To: <0d982452-f41c-400e-b350-3c022927036c@linaro.org>
-References: <20240722-msm89xx-wingtech-init-v2-0-0c981bbc5238@trvn.ru>
- <20240722-msm89xx-wingtech-init-v2-2-0c981bbc5238@trvn.ru>
- <0d982452-f41c-400e-b350-3c022927036c@linaro.org>
-Message-ID: <bb270fce3c78314ffc5ac8590cc3685c@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1721367736-30156-5-git-send-email-hongxing.zhu@nxp.com>
 
-Konrad Dybcio писал(а) 23.07.2024 16:24:
-> On 22.07.2024 2:47 PM, Nikita Travkin wrote:
->> From: Anton Bambura <jenneron@postmarketos.org>
->>
->> Add initial device-tree for Lenovo A6000 (wt86518) and Lenovo A6010
->> (wt86528), which are MSM8916-based devices. These devices are quite
->> similar, so some configuration is shared in msm8916-wingtech-wt865x8.dtsi.
+On Fri, Jul 19, 2024 at 01:42:14PM +0800, Richard Zhu wrote:
+> Since i.MX8QM AHCI SATA only has 32bits DMA capability.
+> Add 32bits DMA limit here.
 > 
-> [...]
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  drivers/ata/ahci_imx.c | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> 
->> +/ {
->> +	model = "Lenovo A6000 (Wingtech WT86518)";
->> +	compatible = "wingtech,wt86518", "qcom,msm8916";
->> +	chassis-type = "handset";
->> +
->> +	speaker_amp: audio-amplifier {
->> +		compatible = "awinic,aw8738";
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&spk_ext_pa_default>;
-> 
-> flip
-
-Oops, missed this one, will fix.
-
-> 
-> [...]
-> 
->> +&sound {
->> +	model = "wt88047";
->> +	widgets =
->> +		"Speaker", "Speaker",
->> +		"Headphone", "Headphones";
-> 
-> Please don't start a new line for this (same below)
+> diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
+> index 4dd98368f8562..e94c0fdea2260 100644
+> --- a/drivers/ata/ahci_imx.c
+> +++ b/drivers/ata/ahci_imx.c
+> @@ -827,6 +827,9 @@ static const struct scsi_host_template ahci_platform_sht = {
+>  
+>  static int imx8_sata_probe(struct device *dev, struct imx_ahci_priv *imxpriv)
+>  {
+> +	if (!(dev->bus_dma_limit))
+> +		dev->bus_dma_limit = DMA_BIT_MASK(32);
+> +
+>  	imxpriv->sata_phy = devm_phy_get(dev, "sata-phy");
+>  	if (IS_ERR(imxpriv->sata_phy))
+>  		return dev_err_probe(dev, PTR_ERR(imxpriv->sata_phy),
+> -- 
+> 2.37.1
 > 
 
-Ack, will re-align.
+Why is this needed?
 
->> +	pin-switches = "Speaker", "Headphones";
->> +	audio-routing =
->> +		"Speaker", "Speaker Amp OUT",
->> +		"Speaker Amp IN", "HPH_R",
-> 
-> [...]
-> 
->> +	/* left AW8736 */
->> +	speaker_amp_left: audio-amplifier-left {
->> +		compatible = "awinic,aw8738";
-> 
-> Should this get a new compatible (with a fallback if sw-compatible)?
-> 
+ahci_imx.c calls ahci_platform_init_host(), which calls
+dma_coerce_mask_and_coherent():
+https://github.com/torvalds/linux/blob/v6.10/drivers/ata/libahci_platform.c#L750-L756
 
-Per my understanding those two are supposed to be effectively same
-chip, not sure if there is any point in adding a new compatible/fallback
-in this case... 
+Should this code perhaps look more like:
+https://github.com/torvalds/linux/blob/v6.10/drivers/ata/ahci.c#L1048-L1054
 
-Thanks for looking at this!
-Nikita
+where we set it to 64 or 32 bit explicitly.
 
->> +
->> +		pinctrl-0 = <&spk_ext_pa_left_default>;
->> +		pinctrl-names = "default";
->> +
->> +		mode-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
->> +		sound-name-prefix = "Speaker Amp L";
->> +		awinic,mode = <3>;
->> +	};
->> +
->> +	/* right AW8736 */
->> +	speaker_amp_right: audio-amplifier-right {
->> +		compatible = "awinic,aw8738";
-> 
-> ditto
-> 
-> Konrad
+Does this solve your problem:
+diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+index 581704e61f28..fc86e2c8c42b 100644
+--- a/drivers/ata/libahci_platform.c
++++ b/drivers/ata/libahci_platform.c
+@@ -747,12 +747,11 @@ int ahci_platform_init_host(struct platform_device *pdev,
+                        ap->ops = &ata_dummy_port_ops;
+        }
+ 
+-       if (hpriv->cap & HOST_CAP_64) {
+-               rc = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(64));
+-               if (rc) {
+-                       dev_err(dev, "Failed to enable 64-bit DMA.\n");
+-                       return rc;
+-               }
++       rc = dma_coerce_mask_and_coherent(dev,
++                       DMA_BIT_MASK((hpriv->cap & HOST_CAP_64) ? 64 : 32));
++       if (rc) {
++               dev_err(dev, "DMA enable failed\n");
++               return rc;
+        }
+ 
+        rc = ahci_reset_controller(host);
+
+
+
+Kind regards,
+Niklas
 
