@@ -1,134 +1,155 @@
-Return-Path: <devicetree+bounces-87613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1881893A02A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:46:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3EA293A058
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 776B0B21EB2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:46:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69620283537
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FDA152164;
-	Tue, 23 Jul 2024 11:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB6315217F;
+	Tue, 23 Jul 2024 11:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yElmIR5i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lgBVQbAj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A706814EC49
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:46:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B8114EC61
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721735172; cv=none; b=DPnpN9w53En6JG4A/88pShXyG24tA38ZGU2//bUYkI3scezHPdZDnuE9lw2YOYsKpnbbi86wonAnthGvL120I9o1Llk9K4bL28blVe2uU/xohTlEf01yWOAiNbdHdv0q02vJiFvxhhGPvij2G7YJMnq4cyut7yg0HLBcvopy4uI=
+	t=1721735918; cv=none; b=YZHLalU4tfROz1nRaGHmOWJe/E+PgWplpkwX09cw/lkPRFIN36dfwJH8uSxs1qHZi3gS1VCRmQAu6DlfGyPIrYM/xbau76DkMNj7nQFGT8QsTaTpI94UvmzqH7cORZFY35JkSXDQMwweDLuX/VwR0SROiTyfyxLxrqFNuKFoeVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721735172; c=relaxed/simple;
-	bh=M5tjVdtGLE6ZhRpxAclw0H4aLNG85TmecfEaglE2mMU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DgaA4ds2BHyyHFv2IHRYXj7sPcaDpgHajb+GFoWyaiYOl+lZcfW2XzMBcG1AB7YiEWUieiOrzNkrJJvrYzEOtWcIXZiPuolx9IswTKWwiDFLiX9hnaNHZiG2E1ZxLT0KLPsilD5Z6qorsx8qS3JOHcpOdjsr5pQaDYHL3Q5arEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yElmIR5i; arc=none smtp.client-ip=209.85.128.176
+	s=arc-20240116; t=1721735918; c=relaxed/simple;
+	bh=C1tz8K/u7VRu4jwZF1eRtTzAwuj9hXTHoeZsW7ZHnjw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gO1COgJCGIiNR8lyq3csan7i3w+AZTQArdfRZsXMTWjy2LrFSvjRoUktDGMSGuAtpK7HqTtVkLPe7r8GbHxri9X3y3owGcoy9JhcrM1maEtAkKHo8ALN7xjdc9f7q43jm4RbQMMQk3M0QpBesUDBm5CWimvSUF71u7rSCCFuXzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lgBVQbAj; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-661369ff30aso46469227b3.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:46:10 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5854ac817afso3730377a12.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:58:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721735169; x=1722339969; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9J1nHOASn3flj0zt7AwDv5DGq2s4Mkvfg+lObtW6fk4=;
-        b=yElmIR5iufXUJkRbAbB+3tdViw2k2FSWmERBLicHa3aZCP6mvA31RF3LSqqugn7opI
-         Kibcu2fVvQARMjuQ1eOZ9DnTDB5ffB1c3BBjPooZEPVW6CjijTV+0nV7GX6lxmegZEzA
-         Gg6ixkpoXAtfc7iuiw8rVVdmQerggsv70XSoorDm9MXGLTAwZ4OoN87impVMJy+tkcj9
-         6sBZcBsF8mVRZPDDhonR3R8730e4Fifi8dygmMERoyCcclX2ev5hi2GrTuj5x+Om2DKb
-         78Uy79ShLka+Sb+XaT6VikddiJqE0iT4/2igHPD+yl3Zz0tEnClqkGwg6rCXoYxIN6Fk
-         s6CQ==
+        d=linaro.org; s=google; t=1721735914; x=1722340714; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=P+djReoRTIhBXyvCN8UfaYCI1awzWvkrD6U3A9THW/Q=;
+        b=lgBVQbAj89iEgiNC85CWg64GA+/2J4e6UOtiVR2zyPBBiM1r6seDDlPhPL+4wZxy6k
+         9MhPPb4g+7xfYwwn3SQS71aFB6wa6jELwM+7zXsEer+Zo0pEPKECsqXv8fuZmbnrguuV
+         JziblqEuFZ0LkUudcocsO8d6DRaa75S8JDTUlYutxvtzJvhBtCoMLeMggb8bta1nrXU+
+         Ru9YZRsKnHaK+bFqmDYYsrXZ84UE1JvTqxnlSW/+9c6Lst1otaTjlGn51VXnBzLBDUTZ
+         9glHxQHAb49mS8Ed/wdCd4ul0R/l+01Jv5VPDzKLzqg5Xx0AoCtYNJn1AGnWtyVwwGyk
+         wiMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721735169; x=1722339969;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9J1nHOASn3flj0zt7AwDv5DGq2s4Mkvfg+lObtW6fk4=;
-        b=VM0bM3bCFfdIV9s3+qCL4TheA6+Uro76mCfN3hfd0Fqeze9N5BuvTKBgoRYSgyLkTj
-         DaR9pp0pIPPyZQoCKJOXm8Tg9MyZgUhZUxXEfxOixFA8018QieDzAMtOGiF0WY4Zp4RX
-         ubOzgYby2a8sm8oqk5d2MXIMY8TP2XY+GkLDW1ssVqBalEOdb8OnB/rOoG0Og2hTIYj8
-         c+Sehuh7CUSJmmBkplmA9ad65z0dQJwMqIlOZvlAdNSV1nWyn4YqQw0ME0haZzm2Cqnu
-         2h+DuM6A3YMAbiv7ZMAy6EiqsMl/dBY8ccNHbizHeaVrBvAmsr0FiT+okZ2zSHRzlld/
-         bvdg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ4HFY5AGM+Qx64o8Cpl5x77tAJimNILffgJ1XVYbbNrJrBYQKeOMPfqydVOq+cwyzb1BHj7dyV+MxNss/bxXEskEL0hOjhMJXmQ==
-X-Gm-Message-State: AOJu0YyMiBE4h2QHYZ6mfUs3JdfxsQF1Lw3/Lq6vIQa+bUwIGTSOHzbm
-	2aOm//qPN1JWyPO3rtg1HsiAJSyPy9zOXdaYrg3c46loTZQkagXXYI8jp4w6g84GG5q5T8U05zb
-	Zkp+ZfafKoK6ovkPOc7lbq/LEl3AAZaI6f30n1g==
-X-Google-Smtp-Source: AGHT+IGSYGEDmVnHeFsuTjlmIqz/4ONf12+6+8f3LKRIe2y+UOYqU4Ftt4o/BdIVEMd/OYTtRDd0xQtn8+Y5L3Jy2LU=
-X-Received: by 2002:a05:690c:3107:b0:64b:2cf2:391c with SMTP id
- 00721157ae682-66a641398e9mr106886647b3.18.1721735169615; Tue, 23 Jul 2024
- 04:46:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721735914; x=1722340714;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P+djReoRTIhBXyvCN8UfaYCI1awzWvkrD6U3A9THW/Q=;
+        b=HMqlnk61amf+fqhojk0ZknPBkpkMAyD3PuT/bONGg7BDJizoWLAdzVQIhcqREOsIjw
+         kaBo/ZMtfX0M0erzAbGkEzIIquUPjc/zmj8QA14Z4dShWK+1lFNKRVFgh81BP+QqDyhO
+         bhi0ynRco/OaCEhPJdnsqav5NgeFToEPwgfpKsyvJZIp/Nhtyta88RSebo8kR+7Cb2qZ
+         cXY2vJCU2ZHVvP40wkpihLXSIN5twi3h4H1+TMV+V26nPaotsfcM/2XJMmlP+l8oOXf9
+         g7gE3ZQLU8dOkmgRUfnkge3411ZwRAxx5DWNVsjSO4NDI2oQvV8dzB36VhrxncqY3j6P
+         aURg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmDTBjPO2qRoMXGvzks9bTdqMClQlbxfWeruhpilNOBhCNDGKbIA7ovRUQq/iMpE7zG3yt9vpQBDmP/v0f5s8vfCw61OOFtuCrNg==
+X-Gm-Message-State: AOJu0Yz4kcIzpJYiMtvdjXfuoYEIx0HjPG3b4XZe7chf+9QPb5tZ4Try
+	3nz2WAtuPsk/LpM3anU5f13MF8YD8r9r/tGya9Va0FYJUgQbSt1rT4Pvmv85MjI=
+X-Google-Smtp-Source: AGHT+IFGPFk3/DBxWgzuM2E00MW1mfvZYKIspK21ddEFkKQ9CsbeM3pj3Wy64tvPUlWKA6N3EvZHCw==
+X-Received: by 2002:a50:8d4b:0:b0:5a3:41cb:676a with SMTP id 4fb4d7f45d1cf-5a9438290famr1983315a12.27.1721735913896;
+        Tue, 23 Jul 2024 04:58:33 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a30c7d38f7sm7479874a12.88.2024.07.23.04.58.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jul 2024 04:58:32 -0700 (PDT)
+Message-ID: <3b00372c-0c81-4d0d-ac41-96020eef1580@linaro.org>
+Date: Tue, 23 Jul 2024 13:58:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240722-pmic-bindings-v1-0-555942b3c4e1@linaro.org>
- <20240722-pmic-bindings-v1-3-555942b3c4e1@linaro.org> <umsttn5qdjzg4cmgwya53la2sd57z3kxv5wo2b4nwme3jlthis@4vn3vwnlldkp>
- <df3bb042-1fb6-46ef-ad6f-1cbe0a380dd0@linaro.org>
-In-Reply-To: <df3bb042-1fb6-46ef-ad6f-1cbe0a380dd0@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 23 Jul 2024 14:45:58 +0300
-Message-ID: <CAA8EJpqEDqY79pFv_FUH43++BW1iUz3J6sozCEVNfQyQPBjCsw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: pma8084: add pon node
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rayyan Ansari <rayyan.ansari@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/9] dt-bindings: interconnect: qcom: msm8939: Fix
+ example
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Lypak <vladimir.lypak@gmail.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>,
+ Rohit Agarwal <quic_rohiagar@quicinc.com>,
+ Danila Tikhonov <danila@jiaxyga.com>, Bjorn Andersson
+ <andersson@kernel.org>, Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+ Andrew Halaney <ahalaney@redhat.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Barnabas Czeman <barnabas.czeman@mainlining.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Abel Vesa <abel.vesa@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>
+References: <20240709102728.15349-1-a39.skl@gmail.com>
+ <20240709102728.15349-8-a39.skl@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240709102728.15349-8-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 23 Jul 2024 at 14:39, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 23.07.2024 1:35 PM, Dmitry Baryshkov wrote:
-> > On Mon, Jul 22, 2024 at 12:47:57PM GMT, Rayyan Ansari wrote:
-> >> Wrap existing pwrkey node inside a pon node, to conform to dt schema.
-> >>
-> >> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
-> >> ---
-> >>  arch/arm/boot/dts/qcom/pma8084.dtsi | 14 +++++++++-----
-> >>  1 file changed, 9 insertions(+), 5 deletions(-)
-> >>
-> >> diff --git a/arch/arm/boot/dts/qcom/pma8084.dtsi b/arch/arm/boot/dts/qcom/pma8084.dtsi
-> >> index 2985f4805b93..dbf7afcbfd8b 100644
-> >> --- a/arch/arm/boot/dts/qcom/pma8084.dtsi
-> >> +++ b/arch/arm/boot/dts/qcom/pma8084.dtsi
-> >> @@ -19,12 +19,16 @@ rtc@6000 {
-> >>                      interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
-> >>              };
-> >>
-> >> -            pwrkey@800 {
-> >> -                    compatible = "qcom,pm8941-pwrkey";
-> >> +            pon@800 {
-> >> +                    compatible = "qcom,pm8941-pon";
-> >>                      reg = <0x800>;
-> >> -                    interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-> >> -                    debounce = <15625>;
-> >> -                    bias-pull-up;
-> >> +
-> >> +                    pwrkey {
-> >> +                            compatible = "qcom,pm8941-pwrkey";
-> >> +                            interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-> >> +                            debounce = <15625>;
-> >> +                            bias-pull-up;
-> >> +                    };
-> >
-> > It might be worth adding the resin node too, see pm8941.dtsi
->
-> This is a cleanup series, adding features is another thing and it
-> would be nice if somebody could test it
+On 9.07.2024 12:22 PM, Adam Skladowski wrote:
+> For now example list snoc_mm as children of bimc which is obviously
+> not valid, drop bimc and move snoc_mm into snoc.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
 
-Agreed.
+loool, thanks
 
 
--- 
-With best wishes
-Dmitry
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
