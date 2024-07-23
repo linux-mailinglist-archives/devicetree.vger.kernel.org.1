@@ -1,126 +1,253 @@
-Return-Path: <devicetree+bounces-87649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF46193A2D3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:34:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB4893A2BB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:29:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92C811F2452F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:34:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BF15B21742
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D523154445;
-	Tue, 23 Jul 2024 14:34:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="Wo7UBGfY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5A71552E7;
+	Tue, 23 Jul 2024 14:28:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E718414C59A;
-	Tue, 23 Jul 2024 14:34:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7A9154BE4
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721745250; cv=none; b=ffB4KrJGi4Oo20wDLu+mWmu7l7xKPJmpo5kLpPJSZ4iZK2rN7zmVwYCSSLdzpDrl+W73FAG7aKnhVRll9Q0adVALbUtbsrrSuK2lgoLWNCmB/df1WnPq8EkUc1coc18nECUKQ7TAF1xtWxgBw2AC+QuYrv8QFlQOVgFwnpbFL78=
+	t=1721744923; cv=none; b=Tx+g/djv/MdH5hku+XBGuUVTXFePFmx+HuzBMEDWDAyQg38nr3xBpIQiFLgPL5aqSnJbo7C2j5fhtVRvUMRTzhp/ZDQWBmOvfPaOyXGFlmkn80xNVIp3Lmhgi3TBA60nQnf7gNWBiJ3r/zyAJ81Azrz0d6AJjWoTItRjTzek0TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721745250; c=relaxed/simple;
-	bh=75GRhItwcVfF6+PhFRKfBxniuEzzQfAL1uhTyz+xRns=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JlGFCrGXA0/qC3jlEAwbzzl7j6yidVrYW5cXRFd5nn4JphuhroljGC6L7M1lmj3SRM2E2nIfLvkC0XxhrPWeNAwf3pVtaPx5/b6YPVYukhJsBnD804xkIIkEEaiO9wypFH6PCiN0yncZo+NTuy0XROFFZtqADg8zm3MV5MrGVTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=Wo7UBGfY; arc=none smtp.client-ip=81.19.3.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1721744728;
-	bh=OX/Gd4MFPxCKqZe87BS/KG6ALl+pygGDpsu0MExr26A=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Wo7UBGfYVfcctO8yVTMcaBzr6ULCBOn7rlO/BKrEUiicXaSuU1Xvx7LE5X82Iz0a6
-	 yYX3VZXjpeGUUldnYVcZ6QHhtzfex6eL35/fFV1+5n1KeB56/y/bHEE2ZUPz22QAQ8
-	 0qoHBPPERxC8d65Y/Y+hatPIlW1C7RqRWn4d3f8o=
-Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
-	by uho.ysoft.cz (Postfix) with ESMTP id 4AD59A0454;
-	Tue, 23 Jul 2024 16:25:28 +0200 (CEST)
-From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	s=arc-20240116; t=1721744923; c=relaxed/simple;
+	bh=6T/L5bxZz2nawLXtFCkHwUzGg9UXP3OG/DekgRv9/6M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q2NaJT5eERU0X5f4J0r4ySg3BOJQnlm0FImPk0c0nOnSrh7BTq+twWUBb2s2Iwh8stsrd6LtyarrHQtvOYSopoM0jqUAV8j2MmQgW6pirxVnfB1RI0M8cbCpaTq7mcpGb5jOn85VFCp12CE30uZxPOPS7Ma3YeT1tUT53a7Sorg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sWGV9-0000Wv-Hs; Tue, 23 Jul 2024 16:28:27 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sWGV8-001dfw-HI; Tue, 23 Jul 2024 16:28:26 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sWGV8-00DU4q-1L;
+	Tue, 23 Jul 2024 16:28:26 +0200
+Date: Tue, 23 Jul 2024 16:28:26 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] ARM: dts: imx6dl-yapp43: Increase LED current to match the yapp4 HW design
-Date: Tue, 23 Jul 2024 16:25:19 +0200
-Message-ID: <20240723142519.134083-1-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.43.0
+	Rob Herring <robh+dt@kernel.org>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 4/5] firmware: imx: add driver for NXP EdgeLock Enclave
+Message-ID: <Zp--Co8teXBO95QO@pengutronix.de>
+References: <20240722-imx-se-if-v6-0-ee26a87b824a@nxp.com>
+ <20240722-imx-se-if-v6-4-ee26a87b824a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240722-imx-se-if-v6-4-ee26a87b824a@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On the imx6dl-yapp4 revision based boards, the RGB LED is not driven
-directly by the LP5562 driver but through FET transistors. Hence the LED
-current is not determined by the driver but by the LED series resistors.
+On Mon, Jul 22, 2024 at 10:21:39AM +0530, Pankaj Gupta wrote:
+> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE),
+> are embedded in the SoC to support the features like HSM, SHE & V2X,
+> using message based communication interface.
+> 
+> The secure enclave FW communicates on a dedicated messaging unit(MU)
+> based interface(s) with application core, where kernel is running.
+> It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
+> 
+> This patch adds the driver for communication interface to secure-enclave,
+> for exchanging messages with NXP secure enclave HW IP(s) like EdgeLock
+> Enclave (ELE) from Kernel-space, used by kernel management layers like
+> - DM-Crypt.
+> 
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> ---
+>  drivers/firmware/imx/Kconfig        |  12 +
+>  drivers/firmware/imx/Makefile       |   2 +
+>  drivers/firmware/imx/ele_base_msg.c | 274 +++++++++++++++++++
+>  drivers/firmware/imx/ele_base_msg.h |  95 +++++++
+>  drivers/firmware/imx/ele_common.c   | 264 ++++++++++++++++++
+>  drivers/firmware/imx/ele_common.h   |  44 +++
+>  drivers/firmware/imx/se_ctrl.c      | 528 ++++++++++++++++++++++++++++++++++++
+>  drivers/firmware/imx/se_ctrl.h      |  87 ++++++
+>  include/linux/firmware/imx/se_api.h |  14 +
+>  9 files changed, 1320 insertions(+)
+> 
+> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
+> index 183613f82a11..0f6877a24f0b 100644
+> --- a/drivers/firmware/imx/Kconfig
+> +++ b/drivers/firmware/imx/Kconfig
+> @@ -22,3 +22,15 @@ config IMX_SCU
+>  
+>  	  This driver manages the IPC interface between host CPU and the
+>  	  SCU firmware running on M4.
+> +
+> +config IMX_SEC_ENCLAVE
+> +	tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave Firmware driver."
+> +	depends on IMX_MBOX && ARCH_MXC && ARM64
+> +	default m if ARCH_MXC
+> +
+> +	help
+> +	  It is possible to use APIs exposed by the iMX Secure Enclave HW IP called:
+> +	  - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
+> +	    like base, HSM, V2X & SHE using the SAB protocol via the shared Messaging
+> +	    Unit. This driver exposes these interfaces via a set of file descriptors
+> +	    allowing to configure shared memory, send and receive messages.
+> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
+> index 8f9f04a513a8..aa9033e0e9e3 100644
+> --- a/drivers/firmware/imx/Makefile
+> +++ b/drivers/firmware/imx/Makefile
+> @@ -1,3 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
+>  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
+> +sec_enclave-objs		= se_ctrl.o ele_common.o ele_base_msg.o
+> +obj-${CONFIG_IMX_SEC_ENCLAVE}	+= sec_enclave.o
+> diff --git a/drivers/firmware/imx/ele_base_msg.c b/drivers/firmware/imx/ele_base_msg.c
+> new file mode 100644
+> index 000000000000..7f16184a8b10
+> --- /dev/null
+> +++ b/drivers/firmware/imx/ele_base_msg.c
+> @@ -0,0 +1,274 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +#include <linux/types.h>
+> +
+> +#include <linux/completion.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/genalloc.h>
+> +
+> +#include "ele_base_msg.h"
+> +#include "ele_common.h"
+> +
+> +int ele_get_info(struct device *dev, struct ele_dev_info *s_info)
 
-On the imx6dl-yapp43 revision based boards, we removed the FET transistors
-to drive the LED directly from the LP5562 but forgot to tune the output
-current to match the previous HW design.
+I still think it's a bad idea to use some arbitrary struct device * as
+context pointer here. Users will be confused which device is expected
+here and bad things happen in case it's the wrong one.
 
-Set the LED current on imx6dl-yapp43 based boards to the same values
-measured on the imx6dl-yapp4 boards and limit the maximum current to 20mA.
+You should rather implement some ele_get() function which returns some
+pointer to be used as a context pointer here.
 
-Fixes: 7da4734751e0 ("ARM: dts: imx6dl-yapp43: Add support for new HW revision of the IOTA board")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
- arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+> +int ele_service_swap(struct device *dev,
+> +		     phys_addr_t addr,
+> +		     u32 addr_size, u16 flag)
+> +{
+> +	struct se_if_priv *priv = dev_get_drvdata(dev);
+> +	struct se_api_msg *tx_msg __free(kfree) = NULL;
+> +	struct se_api_msg *rx_msg __free(kfree) = NULL;
+> +	int ret = 0;
+> +
+> +	if (!priv) {
+> +		ret = -EINVAL;
+> +		goto exit;
+> +	}
+> +
+> +	tx_msg = kzalloc(ELE_SERVICE_SWAP_REQ_MSG_SZ, GFP_KERNEL);
+> +	if (!tx_msg) {
+> +		ret = -ENOMEM;
+> +		goto exit;
+> +	}
+> +
+> +	rx_msg = kzalloc(ELE_SERVICE_SWAP_RSP_MSG_SZ, GFP_KERNEL);
+> +	if (!rx_msg) {
+> +		ret = -ENOMEM;
+> +		goto exit;
+> +	}
+> +	priv->rx_msg_sz = ELE_SERVICE_SWAP_RSP_MSG_SZ;
+> +
+> +	ret = se_fill_cmd_msg_hdr(priv,
+> +				      (struct se_msg_hdr *)&tx_msg->header,
+> +				      ELE_SERVICE_SWAP_REQ,
+> +				      ELE_SERVICE_SWAP_REQ_MSG_SZ, true);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	tx_msg->data[0] = flag;
+> +	tx_msg->data[1] = addr_size;
+> +	tx_msg->data[2] = ELE_NONE_VAL;
+> +	tx_msg->data[3] = lower_32_bits(addr);
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-index 8cfb553a4db3..208356c7d355 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-@@ -274,24 +274,24 @@ leds: led-controller@30 {
- 
- 		led@0 {
- 			chan-name = "R";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
-+			led-cur = /bits/ 8 <0x6e>;
-+			max-cur = /bits/ 8 <0xc8>;
- 			reg = <0>;
- 			color = <LED_COLOR_ID_RED>;
- 		};
- 
- 		led@1 {
- 			chan-name = "G";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
-+			led-cur = /bits/ 8 <0xbe>;
-+			max-cur = /bits/ 8 <0xc8>;
- 			reg = <1>;
- 			color = <LED_COLOR_ID_GREEN>;
- 		};
- 
- 		led@2 {
- 			chan-name = "B";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
-+			led-cur = /bits/ 8 <0xbe>;
-+			max-cur = /bits/ 8 <0xc8>;
- 			reg = <2>;
- 			color = <LED_COLOR_ID_BLUE>;
- 		};
+addr could be a 64bit address. Either handle this properly or return an
+error when addr doesn't fit into 32bit.
+
+> +int ele_fw_authenticate(struct device *dev, phys_addr_t addr)
+> +{
+> +	struct se_if_priv *priv = dev_get_drvdata(dev);
+> +	struct se_api_msg *tx_msg __free(kfree) = NULL;
+> +	struct se_api_msg *rx_msg __free(kfree) = NULL;
+> +	int ret = 0;
+> +
+> +	if (!priv) {
+> +		ret = -EINVAL;
+> +		goto exit;
+> +	}
+> +
+> +	tx_msg = kzalloc(ELE_FW_AUTH_REQ_SZ, GFP_KERNEL);
+> +	if (!tx_msg) {
+> +		ret = -ENOMEM;
+> +		goto exit;
+> +	}
+> +
+> +	rx_msg = kzalloc(ELE_FW_AUTH_RSP_MSG_SZ, GFP_KERNEL);
+> +	if (!rx_msg) {
+> +		ret = -ENOMEM;
+> +		goto exit;
+> +	}
+> +	priv->rx_msg_sz = ELE_FW_AUTH_RSP_MSG_SZ;
+> +
+> +	ret = se_fill_cmd_msg_hdr(priv,
+> +				  (struct se_msg_hdr *)&tx_msg->header,
+> +				  ELE_FW_AUTH_REQ,
+> +				  ELE_FW_AUTH_REQ_SZ,
+> +				  true);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	tx_msg->data[1] = upper_32_bits(addr);
+> +	tx_msg->data[0] = lower_32_bits(addr);
+> +	tx_msg->data[2] = addr;
+
+Same here.
+
+Sascha
+
 -- 
-2.43.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
