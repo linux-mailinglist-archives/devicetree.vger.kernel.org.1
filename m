@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-87692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D0193A896
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 23:16:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF3C93A8A2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 23:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA1632817C6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 21:16:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFEBD28305B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 21:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5674142E83;
-	Tue, 23 Jul 2024 21:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132B8143C51;
+	Tue, 23 Jul 2024 21:24:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="os21XhD2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DicJMZHY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7174013DDDB;
-	Tue, 23 Jul 2024 21:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B4F142E83;
+	Tue, 23 Jul 2024 21:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721769390; cv=none; b=lgF4aOdxPO2a2WeJXUqOEkfEttBTO/0E5bOhU+wXfGemuNMLaPtPDJxgwIRRIfbUnLwallMASg+iyCwBGSHoP088FfgqNr9hED/G1NiD8SepVswWCgC8276kB/99siM6ggVrsGk3NtW55oVg8ujzkOpHzHnRLPsXxsflOj8WKnc=
+	t=1721769840; cv=none; b=IjSQqoWspCePAPU1ld5X0iBbJcy+mrJklHCBDv9jDKtsQEwkcAyPI8lw5DK4GwZypeBiM1lxci65zwohGM6UGvmMXCrgVTblG2XlPsS7va+mmI+yyzfFxEZr5k3Jk/anR6JEQ2KGLolLWgXjD6X3XMy9A8sDMqSLe2jmFmd8ayQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721769390; c=relaxed/simple;
-	bh=E0QRWyEOg+q3RsGsACmKO7O/WolLMK2r0fCiHo8RaxA=;
+	s=arc-20240116; t=1721769840; c=relaxed/simple;
+	bh=P9pr3+m7t3wp6988hnLFFKmyPOf+kz6tG11Ln4YfwpY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/ss8TKGFQZGPtUQ2s0Dh3kpV8UT1MSLL23O6LQPF4ZJkGRBdF7QMZHSjcdnuXEs2IKWWdnNIuDHIgn+DbLfqSLe8gboZhWWyAd9oQca6QYC2un++DqxQ+Q0DDePeek7My8n/1lOkJSw0ct+U2P87159aRbk65cV63rKP8UlBds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=os21XhD2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB0F1C4AF0A;
-	Tue, 23 Jul 2024 21:16:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p73g5vbGCUFVfxPa39wBb8YDNfbV6vLKhL9P53CMmtNEmN0dXQTvi+9BfwuNSSN7QfNM1yOzCs3Tb52kY/FY3IOxSqmBNChOXiB/kxfWvPb9l6J6Vp7lzTL8L9vG8K6tU9gUYkrbsprm/Jro0FCvpwoNfveojD0PReNUJuwKkwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DicJMZHY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8864AC4AF09;
+	Tue, 23 Jul 2024 21:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721769389;
-	bh=E0QRWyEOg+q3RsGsACmKO7O/WolLMK2r0fCiHo8RaxA=;
+	s=k20201202; t=1721769839;
+	bh=P9pr3+m7t3wp6988hnLFFKmyPOf+kz6tG11Ln4YfwpY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=os21XhD2dJ1OEzOS2D14CZNvSdA6qglHT9HSK8JRS5uAvkT7+2kAMTCZ1cnIUsYWa
-	 iOPNccsEMVNRrPWcI/qxPSoHcJEKBiU4IIrLXJUFPuc3If2iof+Uyn6RaIa06GyjPj
-	 qzm4M3YxuOByow+vkQQtnqCDIH17r1f6uoPdrjnc9NjsFyEZlv7vuWBUKf/sYEJiTQ
-	 IqbR4N3AIMFjnuHcl+kw7fqiwxjHUE/6xORrVqdBTR9l4nBH43vpxQZ8fLqiCVug9k
-	 5ZG2qzGPZczzikV4SHmbwyb8yo5ffH7OcIi5g14QVCySgwZwEJW/p1N7eKCxbOLaQ5
-	 URMe9Vn/9iEuQ==
-Date: Tue, 23 Jul 2024 16:16:28 -0500
+	b=DicJMZHY7CQqLkXZzq5e7D9FUoNGkx/RFZBusN6tlOYQGx7twHJEk8MGa8NroQFiI
+	 0y10xqvPAz6xJFTP6awQTjCsq/n8HfjBBUxlFWXlJSNWU1ReauVHqTWzBIfKOCYKMu
+	 7ly0cAqAZ9THtJU2hHtEULMIhdMhGUxyFIoyxKpokPqDxqMvER+fHCi5WCOVadMUhg
+	 56JrS0snC9oDgUgeHL/xc1JNDC3lNsgkgJO/vzYRI17lpiHq1+LYXAYYfAAGOLVUFw
+	 ucZGqCxu0zjCqfB/e0rd7y/2eoaMhE5Ci3/wxZhgiXbEVUXMSLFf0RQ1BiOE4P9mGB
+	 jYQF8DFTzq46g==
+Date: Tue, 23 Jul 2024 16:23:58 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-sound@vger.kernel.org, Banajit Goswami <bgoswami@quicinc.com>,
-	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Adam Skladowski <a39.skl@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Stephan Gerhold <stephan@gerhold.net>, alsa-devel@alsa-project.org,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: qcom,apq8016-sbc-sndcard: move to
- separate binding
-Message-ID: <172176938796.1119753.6821794654577391825.robh@kernel.org>
-References: <20240723083300.35605-1-krzysztof.kozlowski@linaro.org>
+To: Shresth Prasad <shresthprasad7@gmail.com>
+Cc: vkoul@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+	andrew@lunn.ch, dmaengine@vger.kernel.org,
+	javier.carrasco.cruz@gmail.com, skhan@linuxfoundation.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: dma: mv-xor-v2: Convert to dtschema
+Message-ID: <172176983632.1127918.8468061614483310922.robh@kernel.org>
+References: <20240723095518.9364-2-shresthprasad7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,23 +59,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240723083300.35605-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240723095518.9364-2-shresthprasad7@gmail.com>
 
 
-On Tue, 23 Jul 2024 10:33:00 +0200, Krzysztof Kozlowski wrote:
-> The APQ8016 SBC and MSM8916 QDSP6 sound cards are a bit different from
-> others: they have additional IO muxing address space and pin control.
-> Move them to separate schema, so the original qcom,sm8250.yaml will be
-> easier to manage.  New schema is going to grow for other platforms
-> having more of IO muxing address spaces.
+On Tue, 23 Jul 2024 15:25:19 +0530, Shresth Prasad wrote:
+> Convert txt bindings of Marvell XOR v2 engines to dtschema to allow
+> for validation.
 > 
-> Cc: Adam Skladowski <a39.skl@gmail.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Also add missing property `dma-coherent` as `drivers/dma/mv_xor_v2.c`
+> calls various dma-coherent memory functions.
+> 
+> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
 > ---
->  .../sound/qcom,apq8016-sbc-sndcard.yaml       | 205 ++++++++++++++++++
->  .../bindings/sound/qcom,sm8250.yaml           | 137 ------------
->  2 files changed, 205 insertions(+), 137 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml
+> Changes in v3:
+>     - Change maintainer
+>     - Simplify binding by removing `if:` block
+> 
+> Tested against `marvell/armada-7040-db.dtb`, `marvell/armada-7040-mochabin.dtb`
+> and `marvell/armada-8080-db.dtb`
+> ---
+>  .../bindings/dma/marvell,xor-v2.yaml          | 61 +++++++++++++++++++
+>  .../devicetree/bindings/dma/mv-xor-v2.txt     | 28 ---------
+>  2 files changed, 61 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/mv-xor-v2.txt
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
