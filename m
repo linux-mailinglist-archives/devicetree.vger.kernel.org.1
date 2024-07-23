@@ -1,155 +1,138 @@
-Return-Path: <devicetree+bounces-87503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C804939C75
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 10:19:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24CE939C6C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 10:18:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9033B2232E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 08:19:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E46711C21DBA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 08:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E12014B96F;
-	Tue, 23 Jul 2024 08:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769BA14B094;
+	Tue, 23 Jul 2024 08:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gb/VJl5w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFlaBSiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF85314B94C;
-	Tue, 23 Jul 2024 08:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94F18814;
+	Tue, 23 Jul 2024 08:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721722750; cv=none; b=ORQBiJYKYoRag1pPa3jt3oUHSx+2jOQWdWJwP+fITa9jceyg5X/YfUXGnn8TRILK40icQTg6U5iEOpNYCxozjGhj0T/fOH3KsmwkPOpQCX87yx/VDb7lEGsmwI+lzJSpmIBVbuJXjTeJN/fjDiEJpCxBMW7dSGjJDSWuusGf+7k=
+	t=1721722698; cv=none; b=MpqKiNpsaL/Tr0wVmLjP/HkgScdMWmpyb6QWup4ly2D8kU/8eA6ChmpJTs89vbH5cibv4U5i1qdRMN5bLOCLBkc3G56peWRHL3aWmnBU/60I54sepmqzGnZmpx8gBOgiNRFda7gVC+bbfS8eAAXM+Pk5H+BhqKsrChGLR9TCO20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721722750; c=relaxed/simple;
-	bh=6e0Z0aaAvxxzijYS/k8qqEo9hPFUeuv/sn/KQKMbgUI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KLNXOZRNDG0EHVMMmDwB/B4NmRYqzKcPFScmV8muEFVU7xT40eUQawbTYALUklnsjFwP4z46rSNpc+cxrow2lyKehVtaPR0lI2OIa4kHbe9epXaT26KfFHlDcwobxzB6W6CccaB87Kxz/3VeEIirQ0ISqL0EKE26S2hcMDca6sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gb/VJl5w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F2CFC4AF0A;
-	Tue, 23 Jul 2024 08:19:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721722749;
-	bh=6e0Z0aaAvxxzijYS/k8qqEo9hPFUeuv/sn/KQKMbgUI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gb/VJl5w+ctuVmoBVIwOTz+Jr0gmNClWvh/iF2ZSSTIyBlK6pG4f3/VsJXV3v4xO8
-	 BG92JiPGOqz2DX/Pkvi1eIIXmqHgaC/R61FyTb761kqzT9tFABbOeEvN2G+Eto87df
-	 Qfe9gWZhATv1A0RhwQSjJEz2WUGFVaWBKCzs1HmXtHjr4lkKOczzW5peKafYnl0ubD
-	 BZLGnjNDN7SFKg7LH6Z0lv+dG+sTsto5JzjYly+CJw1mZGYXKEWRn2RZE6islqdmI+
-	 RngBMIdjiSx13CB+H9An43fdJ1D4xyGLjPSUaqblbX1nr4G4HOOhr7KG85dpH3XJyh
-	 mMNZODpK3r+2A==
-Message-ID: <c9386ee6-77bb-49be-97cd-2b25ebb08472@kernel.org>
-Date: Tue, 23 Jul 2024 10:19:01 +0200
+	s=arc-20240116; t=1721722698; c=relaxed/simple;
+	bh=u7E64LWQHQVWAPK7DvBwdI1vf99nlz1Uva9cDir2Hw0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ObRm0SM+pB9UghQuu7kkzu2PGMVmoFpsb39OND1ioWDkYjM6/qZyvqrGAvSgcWCT1E0xD6dkexNAim2ml22nQIceTBPSXSwphE4GqYG8mL0+FDf8zkKsY+CISDodLjW7qG6UOSkv6CQDbKHCr1gUAXAAq0giNgkB484LOOdz7c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MFlaBSiM; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5a20de39cfbso4507270a12.1;
+        Tue, 23 Jul 2024 01:18:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721722695; x=1722327495; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=aomYwYHkUj9PIRAd01rbd7wfWXGOwCJ1e5XZ9LIok/0=;
+        b=MFlaBSiMoOYQEB/TbrTuQ6u6GVeJlrGksv6LLhvsxVWFKUtJgDL4preNsWOujpgP0A
+         WTPCIn5BeEq5eW7DudmXIPvANcrWA0QFjt5Ns7aHXgIK8uKoynl3m84tLZzffH3G7889
+         hjv1iWYHbd5jBkO+NR1gzDUIuhlufDXeerbrr+xUhuVcM+OhIv06UnbVROHGITPj4x6J
+         LFE5aTG7vlcxNfKnx56a6R2Yv5HqqUIMd77xqAqjqMcunN1NWl9ia23EFnNjDLAQEbZv
+         H89/XDgE4Se/QBQQggUklFAI0q6uLz/3JlyUbOlCvon8rcc7HUZoVfivLm8LXUVCFmG0
+         +zaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721722695; x=1722327495;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aomYwYHkUj9PIRAd01rbd7wfWXGOwCJ1e5XZ9LIok/0=;
+        b=imrWUcAqIV4vp1rUFi4r+MAkJ5e3m85TMusW6Q8cUvWauBFSX1A+4krn9RRuHr9VoW
+         AvoolRF8I1quhkZuxA0B2MCM12wawlJUsBX90FCmaFxd94OKppGSIP0oiMIwO6rHX4QL
+         djd1yByJOeozzzue4CyjjVX17TI00MSmFwp9Ph3rzHC6wd1nFKkbUpFhBGXIw0woT7gP
+         vQW5MvCg3IUdGSGibA+euVv4cRH3fwJnm5CvHbGvcx4jqPkWp0zZkzuOW6VZfZWHq/A7
+         mRvKVpbYA0gz9X5y1miSKsvQOSDQGTcFCOMDhTPk4jFAceru4s5hHmt7k5bStOzqzjPn
+         c/hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW93iDYOkNhPtXxs98G9JAIRbVz9ip2yFCZmwNBGIim9XgH3qBGOXohc34Hf2lT63s4KqztT74aq7pBIRcuxPvFOl3dsF7H7lGEv6G9fFX6+8qFnRg4eXIrTYXtzPmzdZfQJH4jEr9YUKgUZJMqrMRnhn7KprB2f73NGpWQ153kLBfPl1R4yT7H/Vjur53ycTW04Q1ui4aqGUlcopSkuQ==
+X-Gm-Message-State: AOJu0YwtmvGjSiqNCDnyxeWrW6381Sy+MkYlFE/s22NgvIEsbGXjN5u0
+	J6PeRbSPlO1Ol1fI4HQn71hm42ekdIoZTh0FUhsugkYiC27uzbM9YoDjkUji
+X-Google-Smtp-Source: AGHT+IFklgcj9RMewfqoRTiDzrQB8v9waGUGNso+QDgdI3GEz3JLuAWPW3wPxn2P1BM2UQpfPFM06A==
+X-Received: by 2002:a50:d681:0:b0:58c:ccc1:17f7 with SMTP id 4fb4d7f45d1cf-5a3eee84bb0mr6341358a12.15.1721722694828;
+        Tue, 23 Jul 2024 01:18:14 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a7535f402fsm3363982a12.93.2024.07.23.01.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jul 2024 01:18:14 -0700 (PDT)
+Message-ID: <04f44d9dcfe67ffc71a7999dcc11b892ff1c61dd.camel@gmail.com>
+Subject: Re: [PATCH RFC v3 9/9] iio: adc: ad7944: add support for SPI offload
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron
+	 <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno
+ =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
+	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
+	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org
+Date: Tue, 23 Jul 2024 10:22:12 +0200
+In-Reply-To: <20240722-dlech-mainline-spi-engine-offload-2-v3-9-7420e45df69b@baylibre.com>
+References: 
+	<20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+	 <20240722-dlech-mainline-spi-engine-offload-2-v3-9-7420e45df69b@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ASoC: dt-bindings: qcom,sm8250: Add
- msm8953/msm8976-qdsp6-sndcard
-To: Adam Skladowski <a39.skl@gmail.com>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240722095147.3372-1-a39.skl@gmail.com>
- <20240722095147.3372-4-a39.skl@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240722095147.3372-4-a39.skl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 22/07/2024 11:51, Adam Skladowski wrote:
-> Document MSM8953/MSM8976 QDSP6 cards.
-> 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+On Mon, 2024-07-22 at 16:57 -0500, David Lechner wrote:
+> This adds support for SPI offload to the ad7944 driver. This allows
+> reading data at the max sample rate of 2.5 MSPS.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>=20
 
 ...
 
-> +    then:
->        properties:
-> -        reg: false
-> -        reg-names: false
-> +        reg:
-> +          items:
-> +            - description: Microphone I/O mux register address
-> +            - description: Speaker I/O mux register address
-> +            - description: Quinary Mi2S I/O mux register address
-> +        reg-names:
-> +          items:
-> +            - const: mic-iomux
-> +            - const: spkr-iomux
-> +            - const: quin-iomux
-> +      required:
-> +        - compatible
-> +        - model
+> +static void ad7944_put_clk_trigger(void *p)
+> +{
+> +	clk_put(p);
+> +}
+> +
 
-Don't duplicate. It's already required.
+I think this means we may still need to improve the API a bit. This asymmet=
+ric
+handling is (to me) and indicator that something is not very well from a de=
+sign
+perspective. What I mean is that if you get the clock through spi I would a=
+lso
+expect to put() it through SPI. Now that I think about it that's also true =
+for
+the DMA channel handling but in there things are a bit more complicated.
 
-> +        - reg
-> +        - reg-names
+I mean, at least you're making this explicit in the docs so maybe it's
+acceptable. But it stills feels strange to me that the place where the reso=
+urces
+are requested and bound too is not the same one responsible for releasing t=
+hem.
 
-And what happened with all other variants? Why do you affect them?
+If we go with the provider/consumer approach and having a properly refcount=
+ed
+spi_offload object I think we may be able to do it from the offload object
+context. Maybe not worth it though... Not sure tbh.
 
->  
->  additionalProperties: false
->  
 
-Best regards,
-Krzysztof
-
+- Nuno S=C3=A1
 
