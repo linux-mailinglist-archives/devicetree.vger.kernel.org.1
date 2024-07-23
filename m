@@ -1,70 +1,101 @@
-Return-Path: <devicetree+bounces-87699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002F993A99A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 01:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA8393A99F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 01:09:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC2241F231D8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 23:08:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 235801F212A9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 23:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908BB1494D4;
-	Tue, 23 Jul 2024 23:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F692144D15;
+	Tue, 23 Jul 2024 23:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FXI5sp8y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OPd6GJlZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6281825760;
-	Tue, 23 Jul 2024 23:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30D7E148FE3;
+	Tue, 23 Jul 2024 23:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721776066; cv=none; b=kLGMAY/c/SpL+x9XqoeNNYFvj7NaQ+hpR/d1rCVVWbtoUzIKOuYPybMtt14fMJPPzj2+lOb9S4ll8ZNMLwjoQOpsly9eZZ3DAqXcXyt949kTSIsm+3IVBVU/RQIAW4Gm/FcK3k7g9mqtTFbuXGwt4F5kDcr2CGdrdeMATbZb4ss=
+	t=1721776163; cv=none; b=MmsxMYQVbvdfzJTIw2P1utwrYBkh9WYJV4h8BEnpHARpNUP+n0tiDcug1fPm8rgXqsDMGslJmOsqAsfoV2QwvMdhNaTM+CpIC5T3jHtqfSU++Bnaa0SBamEamTJ0Ps0CaDyVl1u8ygFprzLbG2v8DEnbMPQKNKneuh/+MszqriY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721776066; c=relaxed/simple;
-	bh=6M6lq895qViNTaq2hr+hE7JvW7KylM/aNiwI4bdXPmk=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=nkgs7cpCIqPFvfJhfFahur/mCOpy24xxgRLd2CXZpVaJRwQk7dCOxS8rv6QXy/LU+eIqoOVAZmTkicE1E3qUrMYBWKDsHtbE7ti2olQx1KEW8+XwG883zfEPs0E61c3/hWvmFkM/+MJ+dZ0Ax7jD+hbZ6fZ+Nr5z9rsyqxbnN3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FXI5sp8y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6D65C4AF0A;
-	Tue, 23 Jul 2024 23:07:45 +0000 (UTC)
+	s=arc-20240116; t=1721776163; c=relaxed/simple;
+	bh=j2EVut8i0tCcYSWzo0DB380672dQ74PXM4Z5BJKw5Q8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gGZaiy0MwxFV8r+vB4H8zdoWuQFZSz4ogskNuWMyteavdZ6p/K7AjKVyhoV+rjDPiXoXJ9DVUqVxarhsRoBxiJHdGLOE8n4pnDzYJR6pd9pINQ6ZXGLf1zi3XuT2glVR+m8XBw6BYc/YYq8sPsM0t9iy5Nr/GETzIdsOpYkckUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OPd6GJlZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAF9C4AF09;
+	Tue, 23 Jul 2024 23:09:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721776066;
-	bh=6M6lq895qViNTaq2hr+hE7JvW7KylM/aNiwI4bdXPmk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=FXI5sp8yD2uoaoCiBt1y/lhRL3BwcFJiofYdXLMdybyVQCV5TPtVVlwhvAukbssvW
-	 U+URViJ2RNAjWXL66bZq/7+BgKwAIQuSmGv8kTnCuaqqAMQbJcUW8jqWIGMuMN1x2N
-	 D++ZcFZ/dojR7PDPqXhInYU5tCw5fstcXrZuU/znHphcwi+FdsWLt1EKRHBvY9Gq08
-	 UIL23MxMKXH+bEwqUzT/iL45CrfzU0pETNZMCDlVWebeanSFQzFVmcSs8JbCck2su0
-	 xYPsRVDxG7NwLZXb7xgSm4+j1d5Pa8EWIXMVO/aS0CF1mfv9gME8FxS4aeeiqHwuig
-	 ceZQ412yq2w5Q==
-Message-ID: <0f2f98af8fc66ad24180a362ce99c6fc.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1721776162;
+	bh=j2EVut8i0tCcYSWzo0DB380672dQ74PXM4Z5BJKw5Q8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OPd6GJlZ+8k0ARgi0N1puIpEMBIiUG+Q0DxEXuVAVcMml0KikUYKtkcC8jnJrt4Jt
+	 aq+p4xwEI7KyRWLM0+OFaV6301LEHRJObpM+Q473+jRc17E8Pc+blsjf74WrZ5UhRD
+	 Sgo4yM+DLoWeV4o8Mqu/yOGGOaE+GlvjBr9oAz51x/C3UUekDg1CcdeqUafK7wm21A
+	 LXyAVQCbUL14dHIa5zDQjqit1n8omxUmD7mYDSBFOn9kK46tcuns7uhgDeLo9kzRQ/
+	 hfY0kcPV4FHBwABKdChtNOnMQhcBF9ihklJ/VZ0dPS//tCN1fPXsFFN9HZkjuX9IDp
+	 6LZQ7ilKUlTug==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio: adc: ad7192: Fix 'single-channel' constraints
+Date: Tue, 23 Jul 2024 18:09:03 -0500
+Message-ID: <20240723230904.1299744-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240720120048.36758-2-hpausten@protonmail.com>
-References: <20240720120048.36758-1-hpausten@protonmail.com> <20240720120048.36758-2-hpausten@protonmail.com>
-Subject: Re: [PATCH 1/7] clk: clocking-wizard: simplify probe/remove with devres helpers
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
-To: Conor Dooley <conor+dt@kernel.org>, Harry Austen <hpausten@protonmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>
-Date: Tue, 23 Jul 2024 16:07:43 -0700
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 
-Quoting Harry Austen (2024-07-20 05:01:29)
-> Remove need to do various operations in remove callback and error paths
-> by utilising device managed versions of clock and notifier APIs.
->=20
-> Signed-off-by: Harry Austen <hpausten@protonmail.com>
-> ---
+The 'single-channel' property is an uint32, not an array, so 'items' is
+an incorrect constraint. This didn't matter until dtschema recently
+changed how properties are decoded. This results in this warning:
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Documentation/devicetree/bindings/iio/adc/adi,ad7192.example.dtb: adc@0: \
+  channel@1:single-channel: 1 is not of type 'array'
+
+Fixes: caf7b7632b8d ("dt-bindings: iio: adc: ad7192: Add AD7194 support")
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+index a03da9489ed9..190889c7b62a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+@@ -120,9 +120,8 @@ patternProperties:
+         description:
+           Positive input can be connected to pins AIN1 to AIN16 by choosing the
+           appropriate value from 1 to 16. Negative input is connected to AINCOM.
+-        items:
+-          minimum: 1
+-          maximum: 16
++        minimum: 1
++        maximum: 16
+ 
+     oneOf:
+       - required:
+-- 
+2.43.0
+
 
