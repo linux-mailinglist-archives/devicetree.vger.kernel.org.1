@@ -1,105 +1,95 @@
-Return-Path: <devicetree+bounces-87456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901019398C0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 05:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC8A293999B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 08:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467FE1F226DF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 03:54:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ABDC1F221B0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 06:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A7D13B2AF;
-	Tue, 23 Jul 2024 03:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E5E13791C;
+	Tue, 23 Jul 2024 06:18:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="wkA35Y1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F8F13957B;
-	Tue, 23 Jul 2024 03:54:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA41BE6C;
+	Tue, 23 Jul 2024 06:18:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721706865; cv=none; b=jsVcChl+8vNn22lKH5U/kMn8l815I2QUurB6PC0MrvFeBxsVYBinmsI8u1H01+d81j0RB8Rxbryd+SJm9a7ru3zY32xtjh/TZ1l5aZWEIAJZnxV8zKQE4EbfQtIIC93/KHSRc8wH1+O7XvXYkRQOdcJvKctNTUbILE3llmBsJLU=
+	t=1721715530; cv=none; b=IOlaMVScuMxkK4KjYr67YM98+GHuNXaFljnLnfOw59TcPjOVBfprCbQb8dFWJ/TiPnoY1631AGlRJgLpJ5PgmTOegFezgtuiCcr1D6C6N0W+Gv8MEghdyuXlZ9WhQr6+4iFq0mdVMtqUABbem+Xg/nAwmWcNkEUQFk436sB++O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721706865; c=relaxed/simple;
-	bh=2mfBfGvPkaBeH2hLbWeN6l9L0QxXvLWhmVsi1nmC0QY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dD0dLIrl7V1OkKpJ957A9Wvn+A51N9OgM0bFr4xj3x7vrdn6ee2b4QeCCipz3cD0utFDmf4Ms/y2UlDWzld0ZcQPgP09eXulPaSuQnL2uV0sx8LIfgX4uUdsbl5PAeKFvoD3KpNgH7k+te/eg2t7WJ7SlIlf8shNOZVR2CW0U0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52efaae7edfso2171577e87.2;
-        Mon, 22 Jul 2024 20:54:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721706856; x=1722311656;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2mfBfGvPkaBeH2hLbWeN6l9L0QxXvLWhmVsi1nmC0QY=;
-        b=I9ec7bsv8GJodDYi/xnA5k8lutOWWfo60qhaJIMygZhlhb/cOJ1aBMm1hcbEfIYs7Q
-         XPCI686hCVMRa6KTxWE5DUpVg3ME//+7T9iwAuhzowMaMJr70pIkN9aSO9sY+8XJp91I
-         izqj40e4eM8WVrxxpXaXnGxpKO/vHs5WtSDk9GGFPFvIb3zOhGdMHK73MhEoO1gszfAK
-         uytuoKPhgGh+1KVBKAgNBr8kFoOeJ7qyY5rVASe98FOB20tOzYNyhkPKNNPaSADSKVvM
-         Jyvuvs2ZPTCrZGHZbzY3jPvXFT8QPW4LR9/2C0YLGyV0UDe6UZz6N7WKgdLNw+hWZ5mK
-         0HCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVcspiBE8qYKPGN9IB1bYx8bBgaekfU41RR6rwk7vsB55Q/s9LM4swN6ivMODS+zWGHiqHznGy8G6CuwOzNrlAY/8mbbrdJNvc9NBEs2KSAeY9yVsUofmNPHwXe4Pm+AGpvrVid+FU35PbAoPfbMD/HZV5NMt6ZzUkydrydeJBdu0IWhniZ3u+BTHpYuaVnaDfQom/Dkh6fxiI0aWP6rvNyZ4AR9g==
-X-Gm-Message-State: AOJu0YzqUEiQWs8Q+JVy3sTrJHScTvVk7Fc5aA22XT3BjvxTQyInyxc1
-	GQ6L2y42i0L3/pl0WGys5sHSZNwj4HNVBpReO/WjnOWJAccOzhl8iJS2u2wb
-X-Google-Smtp-Source: AGHT+IEpgY52sXyXBs8UOnw2po47yLDH62/bZnwlCFB+BOMDHfONK9VEvqyQgBnkQQI53anO6BTnKg==
-X-Received: by 2002:a05:6512:a86:b0:52e:bf53:1c13 with SMTP id 2adb3069b0e04-52efb76d12fmr5606959e87.7.1721706855999;
-        Mon, 22 Jul 2024 20:54:15 -0700 (PDT)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ef556afb5sm1432670e87.180.2024.07.22.20.54.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jul 2024 20:54:15 -0700 (PDT)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ef2c56da6cso19767731fa.1;
-        Mon, 22 Jul 2024 20:54:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVdRKgACqVlwShqgiV/z5YcnRpzNLMAMSOZ8ip4+KWncfkuIrtD0V5mlBKHGsjcBupiboSIvWbU6rW/EUJiEDLNpchR0hf5fqwwlcCQMQUpKt0PCitLCXU3dsneRHbQtwweygA/G/bZi5mN9W8RehRazuqmwl/sPAS0gP5Un1llTiAkyMuSMO+K1y1QQYgWF4qc7ntue448C1KeO/Ftkc1mkJNt6Q==
-X-Received: by 2002:a2e:bc0f:0:b0:2ef:296d:1dda with SMTP id
- 38308e7fff4ca-2ef296d21bbmr48058911fa.1.1721706855131; Mon, 22 Jul 2024
- 20:54:15 -0700 (PDT)
+	s=arc-20240116; t=1721715530; c=relaxed/simple;
+	bh=QE4dg2+Rl4ZejmUZbofrCMODSEG0DXtYj15bYB8fnsk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nr4n6I6UEJga99wJzcOQ3KvizMuqVGwxCnmvxjFjGHysgtSJZAaTrM+L3VoWSS83aiLi3SCkrXR5jdbCKoP/KQkF+S0oejDiv6aUqHqa8yaT2f/SZp23i7wPIr4N5JyWB4mLNeblBJep8TK10q+KdhRthFSuOhybnNqYd991LTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=wkA35Y1+; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721715522;
+	bh=QE4dg2+Rl4ZejmUZbofrCMODSEG0DXtYj15bYB8fnsk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=wkA35Y1+tzm5M3coifo1WOfsDxD2ADn3Xzl8ob0gx+ru0ApUHPpIiDYJ2IBp5tfQG
+	 iFxffGj2kkwUiELJbKcOm2FgU+k1Jp/TXKhHmhv7Lqgegw2+0Gge0ew6xoctIK3QuU
+	 nMq0uO9AAB5nJtVn8dMJUQjbOY5Zh/PjcnVZwxcqeLe1XNbGHcrWR0+Cvz2BTbn1GK
+	 CVZNUVRn2x1AX9FNzxBKiuSH4K8nsvhRm0oGTyCJSzAr8Cc+rTtst3DVNcUr3tirWI
+	 /X1du7VXHdD1Ysj/tI0CBeB+mPqWP+NmeCFiBqbA38PH7Nu6vhbMy7hQK8cO+1Yc8w
+	 09v4Rrjf68teg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 94862378001E;
+	Tue, 23 Jul 2024 06:18:41 +0000 (UTC)
+Message-ID: <89cac5d3-4ea9-4674-b8de-5fe2e5534bc0@collabora.com>
+Date: Tue, 23 Jul 2024 08:18:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240722-xtheadvector-v6-0-c9af0130fa00@rivosinc.com> <20240722-xtheadvector-v6-3-c9af0130fa00@rivosinc.com>
-In-Reply-To: <20240722-xtheadvector-v6-3-c9af0130fa00@rivosinc.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Tue, 23 Jul 2024 11:54:02 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65WLShdZLBcKBUviHMWFOM4oZmwVHWzVqCfz2rKdnoWyA@mail.gmail.com>
-Message-ID: <CAGb2v65WLShdZLBcKBUviHMWFOM4oZmwVHWzVqCfz2rKdnoWyA@mail.gmail.com>
-Subject: Re: [PATCH v6 03/13] riscv: dts: allwinner: Add xtheadvector to the
- D1/D1s devicetree
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Samuel Holland <samuel.holland@sifive.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, 
-	Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>, 
-	Jessica Clarke <jrtc27@jrtc27.com>, Andrew Jones <ajones@ventanamicro.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1
+ controller
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 23, 2024 at 5:58=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.c=
-om> wrote:
->
-> The D1/D1s SoCs support xtheadvector so it can be included in the
-> devicetree. Also include vlenb for the cpu.
->
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Il 22/07/24 17:26, Nícolas F. R. A. Prado ha scritto:
+> Currently if the xhci1 controller happens to probe before the pcie1
+> controller then it fails with the following errors:
+> 
+> xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+> xhci-mtk 11290000.usb: can't setup: -110
+> xhci-mtk: probe of 11290000.usb failed with error -110
+> 
+> The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
+> clock, although exactly why this pcie clock is needed for the usb
+> controller is still unknown. Add the clock to the xhci1 controller so it
+> always probes successfully and use a placeholder clock name for it.
+> 
+> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
+> Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Please take this with all the other patches.
+
 
