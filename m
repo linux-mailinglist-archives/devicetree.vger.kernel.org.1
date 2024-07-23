@@ -1,205 +1,204 @@
-Return-Path: <devicetree+bounces-87680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1454793A7D7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 21:55:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C20F93A7EF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 21:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B417B22EC4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 19:55:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 271F0284491
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 19:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88340141987;
-	Tue, 23 Jul 2024 19:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602B61482E2;
+	Tue, 23 Jul 2024 19:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QxT6fMS0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SJ9N2AlI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECDCC13D62B;
-	Tue, 23 Jul 2024 19:55:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3789813D62B;
+	Tue, 23 Jul 2024 19:57:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721764531; cv=none; b=oqWyKkxK4IyiUAQVzx+qxawUHSEYwcoryt5Ek76ZtXbPK2NFUeGXQMicC9tb6jk3RpbwAkgMnMk2pIzKAqmLFvY9ofexzJKj/AtPF/5nMZhJX1bKHC+qkDnvsISrwk/KD3YYyr3v7cw94ASYmsTuTM5iZ0gkRGud20oyb3LvUuo=
+	t=1721764630; cv=none; b=bAGnxoVrvj7tf/LJXC1Cj6ngQ51oWAgeIMXe3cTULpf9OZqBkLjFyrUAV5xoQ2gdXhQG/gYEzuY8Wdkdz8ocfhRcG0GZSIbcqeGkRAZpEKnzsqZQfUV2ucA/rDrvvYorKWXJn2rJmxrg3oUeifYTudP2txBKmkJ4seFDfClv1Rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721764531; c=relaxed/simple;
-	bh=QXrSGb32IAkRFiwh0qFRLKbFsw45qMUC7GOfMNbEyJ0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iSow/9uE3gTH0SL6Inwi0vDQB29CBGR8RBJHTs7n6gLWrqmnX8ewAIGTNEdxFWnGHjuGbr2q9e6ajZ9io034JSp3tKgjnUzY/9eDeR5j9+ckuBGL4u3Irgw/Z0p2s5t1T9mf65SVVucJk/EJrPxNiYb6ERfCPEbwyugAyCi9+d8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QxT6fMS0; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6659e81bc68so61123287b3.0;
-        Tue, 23 Jul 2024 12:55:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721764529; x=1722369329; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=etaAck1fX9Dd1SjvfDtSdQJAv2GP2QxAbK5wmmmFTuQ=;
-        b=QxT6fMS0Pz9t0wmMbbEYO0roDm5iJdIfcWZmWzIyCJIo7xodniR4ZnfuVHMWU29FoS
-         xD7cpJ4bQ73Z/qcbOLM5bMQkWtla3oEdGRTT0oTLv9sJwAEFcgo3NPTU+gubE6AdKnia
-         MCZFy1NkZ86Zwy9Crojh6wCt59JNs1q+2otVwvi7a5nNJuvjgk8sV8HwULLEaDy7uwJB
-         Fb/YRw+QmeNEOULUswMsfJKfHSpaSdPt88fIky5PGccP2V10Kb8Mdw1IYglFYQGHoC66
-         3gnrkx4xfbUpPbjnDJVw5SJ0QhbCUo2fhLhN+r9meDJuK9S4EDlpmYi0xrJpIZ545Wgi
-         gThw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721764529; x=1722369329;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=etaAck1fX9Dd1SjvfDtSdQJAv2GP2QxAbK5wmmmFTuQ=;
-        b=ATl2XslT+40im+mY0x15G70bJYM6NtZ3ui5G2+qfmh3Z8REJmn2x6W8LLBq59JnB1f
-         d3SdYdzaI4A4PGJ8k8RUWcB/pnqLlNe4jsdpnIAN49IuJYppbX87p2yBtgoCH9iSfxk0
-         avDdJlnwA8RU035gdxHwQmPHpk0drEFAcVnM4DQmeAprnlgI+ffHLz94BdnBTq0PkmTE
-         dqjKopTGBcPR9O/OsJS9xQdMM1l7Q/nFzZPVxiO3OICVUlebgh0ZGIBXGU7iaZrFlvTE
-         Jd49yxLHq5fcu7/ZAmDAp+EF4zV78fnvtPOHPCqBDvVLXzRHxAkNNEmzfm+OvCI4/8+O
-         tvjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWsPrmZKtJI0Ti8RvlBDKm1ZGDDAyuY0w0vivZslDyDiHp1vsmpX9og9HcSwCkT7Lmv2GpMS09/7Jurq4DlcuV8qAcPn7inXcwnIiJ7Zqfr7RZ00hyHWLE/Ax3Js6t7t8uQbzxcw==
-X-Gm-Message-State: AOJu0YymL5KXljHqBl0mCRcFMZ5/6+O9az1NetdaBtiQtt/RQgWNL+TL
-	IVELu/JntErc1qOROTXxVaRRGQ1WBsC5yvIiotpgiquey7DlIfnoevZ8T2DBMrWy0T346E8hR+E
-	U1TbEgo8i2HuS9ekvpygWU0kwT2y2SUj+WjU=
-X-Google-Smtp-Source: AGHT+IFXvl3OlgZ1GZmz0h0FPNpsPWMbHtygJfT9wCAu2tZOOz5UEQgu6RPgr0wwBKIqLTB+vdVKhSAS7wRFrH0i9mA=
-X-Received: by 2002:a05:690c:4505:b0:649:4256:9d49 with SMTP id
- 00721157ae682-6727e151e2amr13147b3.42.1721764528911; Tue, 23 Jul 2024
- 12:55:28 -0700 (PDT)
+	s=arc-20240116; t=1721764630; c=relaxed/simple;
+	bh=6GyisGMMWTqJb0J2MvRmj6DjMSNitzmY3uf2SOHcka0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LuMhdUFTrIOsvjAnbGHIhJB7wYmsNmrhD7RXdv2QWRkV7XLzLJTtIHSPqfHaaACwfysmQO4rSQZYs3+HvZinxvHP4BRethxNvOHFCuGY0T9dama2pmkzt0hJ2CaPeW9J08BGiRicVU8gwwLX3FrC1qr/X5qVAv2Te4PM2D/EJ/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SJ9N2AlI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BA3FC4AF09;
+	Tue, 23 Jul 2024 19:57:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721764629;
+	bh=6GyisGMMWTqJb0J2MvRmj6DjMSNitzmY3uf2SOHcka0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SJ9N2AlICiYaJmyL8ODA1rY6n++1CJ5LuYUDeZE1iVkMXB/0RbMgtvp2lx5paTlXC
+	 o6MNFVsgEdO7FKf1Anb1oIOo57qrR748GcJxmYwtRxucv0XOlWlkhT84HLMoj5RiHY
+	 Uw8AiQYKcLpyv9yAoWCs5qiGu1/HT6tjW9QgTuoA8sG2QgtrM7uc08y4PRzXs8YG3J
+	 gBgW8eMbYPad1PZ4qHDfcjPVCeoJAkTFhsZsai3l9XLydAaBGm4V6/9zSMazkg2puL
+	 0DMJtAfA2z94lQqxv2ZaF/lDNmz2JApCrbWajLi8Qq5m0OO1sl5hjm3djWQC4LGyYU
+	 Tl9FLiGQqbq4g==
+Date: Tue, 23 Jul 2024 20:57:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
+Message-ID: <20240723-bounce-pliable-f81d8ea0cff8@spud>
+References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
+ <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
+ <20240627-display-quantum-48c2fa48ed1a@spud>
+ <e9d53545-80fc-46d2-83a1-79842a729688@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240718210322.37492-1-ilordash02@gmail.com> <20240718210322.37492-2-ilordash02@gmail.com>
- <20240719-ahead-kiwi-995e52bf3e74@spud> <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
- <20240723-dinginess-john-608d0b28293b@spud>
-In-Reply-To: <20240723-dinginess-john-608d0b28293b@spud>
-From: Ilya Orazov <ilordash02@gmail.com>
-Date: Tue, 23 Jul 2024 22:55:17 +0300
-Message-ID: <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
-To: Conor Dooley <conor@kernel.org>
-Cc: geert+renesas@glider.be, mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, 
-	vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	a-govindraju@ti.com, linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tI2IJ38L9kmhKqI9"
+Content-Disposition: inline
+In-Reply-To: <e9d53545-80fc-46d2-83a1-79842a729688@freebox.fr>
 
-On Tue, 23 Jul 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
->
-> On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
-> > On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
-> > > > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> > > > It is pin-compatible with TI TCAN1042.
-> > > >
-> > > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > index 79dad3e89aa6..03de361849d2 100644
-> > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > @@ -18,6 +18,7 @@ properties:
-> > > >        - nxp,tjr1443
-> > > >        - ti,tcan1042
-> > > >        - ti,tcan1043
-> > > > +      - microchip,ata6561
-> > >
-> > > Given that your driver patch has
-> > > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
-> > > | index ee4ce4249698..dbcd99213ba1 100644
-> > > | --- a/drivers/phy/phy-can-transceiver.c
-> > > | +++ b/drivers/phy/phy-can-transceiver.c
-> > > | @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiver_phy_ids[] = {
-> > > |                 .compatible = "nxp,tjr1443",
-> > > |                 .data = &tcan1043_drvdata
-> > > |         },
-> > > | +       {
-> > > | +               .compatible = "microchip,ata6561",
-> > > | +               .data = &tcan1042_drvdata
-> > > | +       },
-> > > |         { }
-> > > |  };
-> > >
-> > > the driver patch is actually not needed at all, and you just need to
-> > > allow ti,tcan1042 as fallback compatible in the binding, so something
-> > > like:
-> > >
-> > >   compatible:
-> > >     oneOf:
-> > >       - enum:
-> > >           - nxp,tjr1443
-> > >           - ti,tcan1042
-> > >           - ti,tcan1043
-> > >       - items:
-> > >           - const: microchip,ata6561
-> > >           - const: ti,tcan1042
-> > >
-> > >    '#phy-cells':
-> > >      const: 0
-> >
-> > I tested the build with fallback compatible:
-> >
-> > compatible:
-> >   oneOf:
-> >     - items:
-> >       - enum:
-> >         - microchip,ata6561
-> >       - const: ti,tcan1042
-> >     - items:
-> >       - enum:
-> >         - nxp,tjr1443
-> >       - const: ti,tcan1043
-> >
-> > and modified compatible property in DTS:
-> >
-> > compatible = "microchip,ata6561", "ti,tcan1042";
-> >
-> > Build succeeded, phy-can-transceiver driver was used. So I would like
-> > to add a fallback compatible for both "microchip,ata6561" and
-> > "nxp,tjr1443" in this binding and modify other DTS files with
-> > compatible = "nxp,tjr1443". What do you think?
->
-> This is wrong on two counts. Firstly, were what you have correct, you
-> should
-> squash the two:
->      - items:
->          - enum:
->            - nxp,tjr1443
->            - microchip,ata6561
->          - const: ti,tcan1042
->
-> However, that does not allow the TI compatibles in isolation, so you
-> still need to allow that for the actual TI devices, so you need:
->
->    oneOf:
->      - items:
->          - enum:
->            - microchip,ata6561
->            - nxp,tjr1443
->            - ti,tcan1043
->          - const: ti,tcan1042
->      - const: ti,tcan1042
->
-> There's probably some devicetrees that would need to be fixed up. I'm
-> just not convinced that this is worth retrofitting however.
 
-But nxp,tjr1443 is pin compatible with ti,tcan1043, so it should
-fallback only to ti,tcan1043 and not ti,tcan1042. That's why I decided
-to split them into different enums.
+--tI2IJ38L9kmhKqI9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I made my patch according to a similar one that adds support for
-nxp,tjr1443. You can find it's conversation on
-https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45f3bb0.1674037830.git.geert+renesas@glider.be/t/#u.
-I thought we want to hold all PHY chip names in one compatible enum
-and each in its own of_device_id struct in driver and extend them
-where appropriate.
+On Tue, Jul 23, 2024 at 05:17:12PM +0200, Marc Gonzalez wrote:
+> On 27/06/2024 18:25, Conor Dooley wrote:
+>=20
+> > On Thu, Jun 27, 2024 at 01:13:03PM +0200, Marc Gonzalez wrote:
+> >
+> >> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
+> >> It supports DVI 1.0, HDMI 1.4b and 2.0b.
+> >> It supports 4 TMDS channels, HPD, and a DDC interface.
+> >> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
+> >> for power reduction. Several methods of power management are
+> >> implemented to reduce overall power consumption.
+> >> It supports fixed receiver EQ gain using I2C or pin strap to
+> >> compensate for different lengths input cable or board traces.
+> >>
+> >> Features
+> >>
+> >> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
+> >> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
+> >> data rate, compatible with HDMI 2.0b electrical parameters
+> >> - DisplayPort dual-mode standard version 1.1
+> >> - Programmable fixed receiver equalizer up to 15.5dB
+> >> - Global or independent high speed lane control, pre-emphasis
+> >> and transmit swing, and slew rate control
+> >> - I2C or pin strap programmable
+> >> - Configurable as a DisplayPort redriver through I2C
+> >> - Full lane swap on main lanes
+> >> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
+> >>
+> >> https://www.ti.com/lit/ds/symlink/tdp158.pdf
+> >>
+> >> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> >> ---
+> >>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 +++++++++++++=
++++++++++
+> >>  1 file changed, 51 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp15=
+8.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> >> new file mode 100644
+> >> index 0000000000000..21c8585c3bb2d
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> >> @@ -0,0 +1,51 @@
+> >> +# SPDX-License-Identifier: GPL-2.0-only
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: TI TDP158 HDMI to TMDS Redriver
+> >> +
+> >> +maintainers:
+> >> +  - Arnaud Vrac <avrac@freebox.fr>
+> >> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: ti,tdp158
+> >> +
+> >> +  reg:
+> >> +    description: I2C address of the device
+> >=20
+> > Is reg not required? How do you communicate with the device if the i2c
+> > bus is not connected? Is the enable GPIO enough to operate it in some
+> > situations?
+> >=20
+> > Otherwise this looks good to me, but given Maxime commented about the
+> > complexity of the device, I'm probably out of my depth!
+>=20
+> Hello Conor,
+>=20
+> A cycle has been detected:
+> Above, you defer to Maxime.
+> Yet later, he wrote:
+> "DT maintainers have required that reg is always present"
 
--- 
-Best regards,
-Ilya Orazov
+I think he was actually talking about Krzysztof.
+
+> I propose we NOT mark the "reg" property as required.
+> (Thus, keep the binding as proposed in v3.)
+>=20
+> Rationale:
+>=20
+> - The device can be statically configured by pin straps,
+> in which case it is NOT connected to an I2C bus.
+
+I'm inclined to say that, because connecting the i2c bus is not required
+at all for the device to be usable in some circumstances that we should
+not require reg. Someone could, in theory, use the device with a SoC
+without an i2c controller, right?
+
+> - Even if the device IS connected to an I2C bus,
+> no I2C accesses are required if the default configuration
+> meets the ODM's needs.
+
+In this case, I think a reg property is required actually, because it is
+on the bus, and devices on an i2c bus must have a reg property. That
+aside, even if the ODM doesn't want to change the defaults, the owner
+might.
+
+> Is that OK with you? Can I get your Amen?
+
+Sure.
+
+--tI2IJ38L9kmhKqI9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqALDwAKCRB4tDGHoIJi
+0jh+AP9u8ZEH5hVvvCvRGra8iZ6dpbt0ZZjMWAd0jcsWuKtCAQD8DyrLRyc5cySR
+CJO4+GDZkxrNsHJvaHuL2/bzqmuNig4=
+=X93R
+-----END PGP SIGNATURE-----
+
+--tI2IJ38L9kmhKqI9--
 
