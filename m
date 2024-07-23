@@ -1,162 +1,106 @@
-Return-Path: <devicetree+bounces-87454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BC293987D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A59939890
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 05:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0537D1C219DF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:58:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 589ED1C217A1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 03:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41C813C909;
-	Tue, 23 Jul 2024 02:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA42F13B5B9;
+	Tue, 23 Jul 2024 03:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mcNy7B/z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D6EASUze"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE3713C818;
-	Tue, 23 Jul 2024 02:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9692813A241;
+	Tue, 23 Jul 2024 03:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721703457; cv=none; b=fN1vopOFtjF34E8s0UBeNpB7z5S/cJbbYazqJ7mAyoJ6TbGlgiLgtK0xG7MBH2QU8oUvQImNok9hv515GXXmGaW1qIli0MNlyli1sORZJrKxL7mkgCMuDqvd785NHvCgnM4e+nh7ZADlKqGAJShpa3tGpj3bwRtEMUuYLKLZ8hQ=
+	t=1721704123; cv=none; b=XkzKqj4g9dG8zBHnv1xVD/hEsca26tMr+YSztkvTccJljZBLpgRzKho/V1W2xpIwvjJDEWz3n6oaewKOdHrtFAMW7+yug4UmgJgU/jmhXoflLQWfmKreJsIMF+QRY/vUrzg/39eQBuN8iEIGalLF95FOjeaLO6l35ZpRJ+AQ1VQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721703457; c=relaxed/simple;
-	bh=S/zDUoK/wOB3rI+BZgSAPwfa6YvcK/ZFEfSAjQA7fkw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=UVJLk9B0u0Xs57Akg8Kp7pdtY9JBaKQxsqnuHdRoHI0JJY05zWST4sQZyPoxPSVjXSdWAFyo8GiuzQEz/vVSzsgdokF574/9goDtQ0KT8X38GDpRGpuyTfcuKNPpi47C32KdgZRNRIRasHuGl2NboWC7nQA6BPAcGQsdhglheiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mcNy7B/z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E264BC32782;
-	Tue, 23 Jul 2024 02:57:36 +0000 (UTC)
+	s=arc-20240116; t=1721704123; c=relaxed/simple;
+	bh=lCpxy95lx+Jjei/kZQBV3BIgkddjlRM1fYb5FYkdFxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ErZmjWHlnszfrvhYSxWVIM5seRudB1YOPyunRnYpuVlh2FSOnECzhcuCsySjHpSrqq4iIZdoCXuwvXr1e/Y1amzvhDbzr+68ThJ/nTi/6bzXOpwQKI9BoQQRjvQ/7t6F9y4jMu2ma8WkDHvK6OYQ4UqcNLxsC+W3PwhfrHECApQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D6EASUze; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C70C116B1;
+	Tue, 23 Jul 2024 03:08:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721703457;
-	bh=S/zDUoK/wOB3rI+BZgSAPwfa6YvcK/ZFEfSAjQA7fkw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=mcNy7B/zTna23ZuGW3hu2uV2aX6ZzmjF+yDG/Ps07WonEgj876aF7xrL3AIaWhb5f
-	 sVebQLFRySpZs6Mr8V9MV+h+/lcX6KuijBZskrViVWdCihT1P6nhE9n9GwwPdFry8V
-	 SuuK52Uwfxrt+1HFAuPc/On5uO/ydPGJ3fUOmjSaoTb6a711+JHhgoxiH4vgl7Yu8e
-	 lpey7xTJL0t9X53QFh4rbNxMFLb+6zLKAuSbkLwWcceI26BjTlCXASkel4aaHrjjFA
-	 wiT6UTHXMkg/CI0cV3AZQdv0g02EUTLx1vQE1dbKzksiwWjJM+TakGH5FN9MgX6snL
-	 dn8v1YC9jI5gA==
-Date: Mon, 22 Jul 2024 20:57:35 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1721704123;
+	bh=lCpxy95lx+Jjei/kZQBV3BIgkddjlRM1fYb5FYkdFxg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D6EASUzeZCvDJcQWdoO2YAHDSFfg5YuzE+EgXygaqPKmt8Fex6G4OnKpatzquZGfk
+	 Z6E8R3o/A1L0LJDvll+Cm4xajkinXYSubPnrea/kXAvlc/mAKh3IBIjKB9zfi8aX3u
+	 YTKYqb2ErQ+zVmQJ4ppvxcYPSucJHeplJL16EF5gPoEegG3WtAbb2folVLxH0ya1ed
+	 zcRGJycFne07+BKbdJr9QYudB+tVFgdSaq4MVYHrhO8LeaFjsr9OglheKwwu5yXHmo
+	 qEfvoz6EMV5yO65xVKPDNIg2kAmJ9jfqATOiP17bY49AKTCWJ8zZx968+UJoTmf0Rr
+	 w7J3bB+JsFRRQ==
+Date: Mon, 22 Jul 2024 21:08:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mateusz Majewski <m.majewski2@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH 6/6] dt-bindings: thermal: samsung,exynos: remove
+ outdated information on trip point count
+Message-ID: <20240723030840.GA226948-robh@kernel.org>
+References: <20240719120853.1924771-1-m.majewski2@samsung.com>
+ <CGME20240719120949eucas1p1b061c716ac55b4a79ba57c407c0b2d91@eucas1p1.samsung.com>
+ <20240719120853.1924771-7-m.majewski2@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, Andrew Lunn <andrew@lunn.ch>, 
- linux-phy@lists.infradead.org, Yazan Shhady <yazan.shhady@solid-run.com>, 
- Konstantin Porotchkin <kostap@marvell.com>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>
-In-Reply-To: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
-References: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
-Message-Id: <172170324618.205229.14421004930608036629.robh@kernel.org>
-Subject: Re: [PATCH RFC v3 0/6] phy: mvebu-cp110-utmi: add support for
- armada-380 utmi phys
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240719120853.1924771-7-m.majewski2@samsung.com>
 
-
-On Sat, 20 Jul 2024 16:19:17 +0200, Josua Mayer wrote:
-> Armada 380 has smilar USB-2.0 PHYs as CP-110 (Armada 8K).
+On Fri, Jul 19, 2024 at 02:08:50PM +0200, Mateusz Majewski wrote:
+> This is not true as of commit 5314b1543787 ("thermal/drivers/exynos: Use
+> set_trips ops").
 > 
-> Add support for Armada 380 to cp110 utmi phy driver, and enable it for
-> armada-388-clearfog boards.
-> 
-> Additionally add a small bugfix for armada-388 clearfog:
-> Enable Clearfog Base M.2 connector for cellular modems with USB-2.0/3.0
-> interface.
-> This is not separated out to avoid future merge conflicts.
-> 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
 > ---
-> Changes in v3:
-> - updated bindings with additional comments, tested with dtbs_check:
->   used anyOf for the newly-added optional regs
-> - added fix for clearfog base m.2 connector / enable third usb
-> - dropped unnecessary syscon node using invalid compatible
->   (Reported-by: Krzysztof Kozlowski <krzk@kernel.org>)
-> - Link to v2: https://lore.kernel.org/r/20240716-a38x-utmi-phy-v2-0-dae3a9c6ca3e@solid-run.com
+>  .../bindings/thermal/samsung,exynos-thermal.yaml           | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
 > 
-> Changes in v2:
-> - add support for optional regs / make syscon use optional
-> - add device-tree changes for armada-388-clearfog
-> - attempted to fix warning reported by krobot (untested)
-> - tested on actual hardware
-> - drafted dt-bindings
-> - Link to v1: https://lore.kernel.org/r/20240715-a38x-utmi-phy-v1-0-d57250f53cf2@solid-run.com
+> diff --git a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
+> index 4363ee625339..5a82764a4dbb 100644
+> --- a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
+> @@ -40,11 +40,8 @@ properties:
+>    interrupts:
+>      description: |
+>        The Exynos TMU supports generating interrupts when reaching given
+> -      temperature thresholds. Number of supported thermal trip points depends
+> -      on the SoC (only first trip points defined in DT will be configured)::
+> -       - most of SoC: 4
+> -       - samsung,exynos5433-tmu: 8
+> -       - samsung,exynos7-tmu: 8
+> +      temperature thresholds. The trip points will be set dynamically in
+> +      runtime, which means there is no limit on the number of trip points.
+
+How can the hardware change how many trip points it supports?
+
+>      maxItems: 1
+>  
+>    reg:
+> -- 
+> 2.45.1
 > 
-> ---
-> Josua Mayer (6):
->       arm: dts: marvell: armada-388-clearfog: enable third usb on m.2/mpcie
->       arm: dts: marvell: armada-388-clearfog-base: add rfkill for m.2
->       dt-bindings: phy: cp110-utmi-phy: add compatible string for armada-38x
->       arm: dts: marvell: armada-38x: add description for usb phys
->       phy: mvebu-cp110-utmi: add support for armada-380 utmi phys
->       arm: dts: marvell: armada-388-clearfog: add description for usb phys
-> 
->  .../phy/marvell,armada-cp110-utmi-phy.yaml         |  34 +++-
->  .../boot/dts/marvell/armada-388-clearfog-base.dts  |  41 ++++
->  arch/arm/boot/dts/marvell/armada-388-clearfog.dts  |   8 +
->  arch/arm/boot/dts/marvell/armada-388-clearfog.dtsi |  30 ++-
->  arch/arm/boot/dts/marvell/armada-38x.dtsi          |  24 +++
->  drivers/phy/marvell/phy-mvebu-cp110-utmi.c         | 209 ++++++++++++++++-----
->  6 files changed, 288 insertions(+), 58 deletions(-)
-> ---
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> change-id: 20240715-a38x-utmi-phy-02e8059afe35
-> 
-> Sincerely,
-> --
-> Josua Mayer <josua@solid-run.com>
-> 
-> 
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y marvell/armada-388-clearfog-base.dtb marvell/armada-388-clearfog.dtb' for 20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com:
-
-arch/arm/boot/dts/marvell/armada-388-clearfog-base.dtb: usb@58000: phy-names:0: 'usb' was expected
-	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
-arch/arm/boot/dts/marvell/armada-388-clearfog.dtb: usb@58000: phy-names:0: 'usb' was expected
-	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
-arch/arm/boot/dts/marvell/armada-388-clearfog-base.dtb: usb3@f0000: Unevaluated properties are not allowed ('compatible', 'dr_mode', 'reg' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
-arch/arm/boot/dts/marvell/armada-388-clearfog-base.dtb: usb3@f8000: Unevaluated properties are not allowed ('compatible', 'dr_mode', 'reg' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
-arch/arm/boot/dts/marvell/armada-388-clearfog.dtb: usb3@f0000: Unevaluated properties are not allowed ('compatible', 'dr_mode', 'reg' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
-arch/arm/boot/dts/marvell/armada-388-clearfog.dtb: usb3@f8000: Unevaluated properties are not allowed ('compatible', 'dr_mode', 'reg' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
-
-
-
-
-
 
