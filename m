@@ -1,142 +1,216 @@
-Return-Path: <devicetree+bounces-87642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A16F93A27D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7F193A289
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:20:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C75E1C22BD8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:18:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50AEF1C22BEE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101B5155330;
-	Tue, 23 Jul 2024 14:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C39C154445;
+	Tue, 23 Jul 2024 14:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qalrJsB2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AgGodYIg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C4415383B
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B90152E0C
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721744246; cv=none; b=C1ybki6PM5dQOX+pMt3HFvEmFu9mpy4u3ZuO77RHgYj9SbSxSpFtiPm/D79PRMw9cZ5YyF5E5cXfQj1zdpim6f74sgw2U43pMwv7hGdJ6DxWscvbgz0/iFliKJLOKSbWrg7fHBp4AMAEzPEgKY6ituYn/VIyzEHhtbuOPgArogs=
+	t=1721744401; cv=none; b=NnWVb7UAgyJTwUROShmKIVIQPntwHPjAArK75o4lmihCgt2xP+bHQ9cKmrK5rlhe6itRGJ9HiGRmZubowEFntOnbqi5mQKHraDYtxRZBX/AFMZYBpu8O6GScuWu9zVHmpKSGQH/5ErjAyODGggvQJWtWqGCuVG84NVJxwpDNIBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721744246; c=relaxed/simple;
-	bh=10bl8tiaEBBnCOrnlBMrvSDtSEqa0TY1siP8CD6YMD0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=GK6Pyl5ZO0nETGLk50RUUirlPNFXFyo5EXMmqu1Mw6gTGw0mrRltNu9+N/ssoBGtPyYzyNh5gPXmVAy+U3q826HTcQ0cXKnwvruP0SQtA//hHH1hW+8yz6w8VMKDRydr0X1gsLuMdt0eUCYi/5nW06lZVPayPX0pFMY7Rj91Tko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qalrJsB2; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20240723141724euoutp012a42bb5936f60a1631bcf453596ad432~k3USJ39sL3078330783euoutp01j
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:17:24 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20240723141724euoutp012a42bb5936f60a1631bcf453596ad432~k3USJ39sL3078330783euoutp01j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1721744244;
-	bh=OjEes0gy0Xr25v3nLnZ/Vv7Q7TRCUEMjplYfFYeqS4U=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qalrJsB2Hz8WSGFYJgVEgYLGo1FjUWZkafTL8VOgYn4WyrIPnQPUilNaVjAtJsZJo
-	 ufwJdPyLIgpsmU9npIJMTUahFAvqtIDxHTNc1pDSV2heKyAAKM/pWs+4aglz8z6jHZ
-	 ndqTtD0mJUSqXvmMlds5fSPnmFbQTcYycFpTfz2E=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240723141723eucas1p239a29843eb1899e124dfb14bcab9ff12~k3URzUZBF1691016910eucas1p2D;
-	Tue, 23 Jul 2024 14:17:23 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 52.12.09620.37BBF966; Tue, 23
-	Jul 2024 15:17:23 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240723141723eucas1p18f5675128aa380857f4c854b5a851e34~k3URVxnaE1304213042eucas1p1Z;
-	Tue, 23 Jul 2024 14:17:23 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240723141723eusmtrp1060523108b462f8c2af0620a03c93547~k3URVEq9B1523215232eusmtrp1C;
-	Tue, 23 Jul 2024 14:17:23 +0000 (GMT)
-X-AuditID: cbfec7f5-d1bff70000002594-28-669fbb731e4e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 21.66.08810.37BBF966; Tue, 23
-	Jul 2024 15:17:23 +0100 (BST)
-Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
-	[106.120.51.28]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240723141722eusmtip1cdf2a1f16c40bcd12afa0363945ea782~k3UQlCSpw2618026180eusmtip1e;
-	Tue, 23 Jul 2024 14:17:22 +0000 (GMT)
-From: Mateusz Majewski <m.majewski2@samsung.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Mateusz Majewski <m.majewski2@samsung.com>, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>
-Subject: Re: [PATCH 6/6] dt-bindings: thermal: samsung,exynos: remove
- outdated information on trip point count
-Date: Tue, 23 Jul 2024 16:17:14 +0200
-Message-ID: <20240723141715.374786-1-m.majewski2@samsung.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240723030840.GA226948-robh@kernel.org>
+	s=arc-20240116; t=1721744401; c=relaxed/simple;
+	bh=jjnH4KpHZhT2haPQMe+bVgnA95htobOfsIhSzq7TUvM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NGD1QThiYca6+YktF2XQzIsw1kdtjKYazfE03tqhqb8krcBXwN8w1/JyPyNZzWxdoQyPYW734v8lr4Ns8hKGnkFKZbIO00GimoryHjMvWFyX5kBXA5MxvHXnjH4VjZinIfrTxXmGD9QCjC+MGVd/WBfJ98XfMQHDtjBqNzvqiOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AgGodYIg; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3d94293f12fso3331075b6e.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 07:19:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721744397; x=1722349197; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tkDJYIw/vdlMnKLTUNbD0wYDl1VQ8cd/2JB1blgM3rw=;
+        b=AgGodYIg0L/B6v4ipjsn6U15Q1Q3XoCxd+5bfBqMqm4qVCDVvojI6wjGhTQbflSg1b
+         61bI5XmyelYIJLMouV+F5Zu00+uYJHGkvH/prFLUGToxqxrsixjvuKrN/r3G/84dJrD6
+         xvmnL1jNeDDJpl3Zoi3o0nb+UkYX0N/BEBCqdDayKk0M/Ys577qA63mpCaANi21Tt4VK
+         j8oMbxiB2jF6sNpSfBNb1uZShAsQfKEX7NxPAEGOoPjBw7qbtaNHK+PUfQwHQ4KkqDIV
+         bQf70AUzGK9AFHMEmPyYKWvznVHHCFQwCmyRgnGzXTxo9N4z+jRxk89c1OzDitMAtL2v
+         PawQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721744397; x=1722349197;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tkDJYIw/vdlMnKLTUNbD0wYDl1VQ8cd/2JB1blgM3rw=;
+        b=Z59RXcLARlDDo4dcSqTLS45hwNLl+uzqtcXzrHsip1BeGVyzqIhrCLZLg4qVFFWQC6
+         BIosfJX2dSiwyBbuKPT+kv0We+JFUZf5X0i47ByuMsabxLFf5orAjFtb8X/h9B37qESZ
+         EZdIVE9JfqEDxsrHJFHbCUKgwpjdfVB64s+E6Grv7gqMbXPQB0f44iqTNGOjzrYE3j2T
+         f/qIbfKOVOr5S1lLUUKaN6F+UiaowIFTd0CSdmxgIYq2VcD8rO6pl73O9yKPcXGGuyiv
+         2SjGwnxOUpkgOKKYjv/XWdmwDzSO5mcmNtIOU9dub1sZK5glGJWcLRBaRZOl0zLH2MX3
+         oKxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUarTSEJexOWkB7UKhIkox1eFQG5PwA6TrxH5NCU1wIVzUGe1yYwwqkHhHhhu5o2oygGJNuE+Jatjkum6xdQaxpypRphDQKYWspqg==
+X-Gm-Message-State: AOJu0YwZi+vg/5VjE+vIpg1Q5ngxUDkGBTimQ/Vn5wnI9Jp0UZg0/VIh
+	jf4PgeQ6N1zqaNE9KmoR6NYec20xRdSMUIZEByZz/slR80lh+h7h2xxhWFOlrgA=
+X-Google-Smtp-Source: AGHT+IE7T5C6fJwK4ET9xVwmRjnoNNfEQHTQWnp+GuyNQ0Lv3Jq8gUsP+PLSTU4pWl4mxf1IK07wlA==
+X-Received: by 2002:a05:6808:2119:b0:3db:331:9d4a with SMTP id 5614622812f47-3db0331a1bbmr1703151b6e.26.1721744395979;
+        Tue, 23 Jul 2024 07:19:55 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3dae099012esm2010165b6e.31.2024.07.23.07.19.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jul 2024 07:19:55 -0700 (PDT)
+Message-ID: <ebfa05e7-2674-4869-bbfd-f0a6cf6b03fa@baylibre.com>
+Date: Tue, 23 Jul 2024 09:19:54 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v3 6/9] spi: axi-spi-engine: implement offload support
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+ <20240722-dlech-mainline-spi-engine-offload-2-v3-6-7420e45df69b@baylibre.com>
+ <5b246e7628ea189be5f8430dac4cffde723b7907.camel@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <5b246e7628ea189be5f8430dac4cffde723b7907.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrEKsWRmVeSWpSXmKPExsWy7djP87rFu+enGZx9I2/xYN42NovvW64z
-	WazZe47JYt5nWYv5R86xWpw/v4HdYtPja6wWl3fNYbP43HuE0WLG+X1MFgubWtgtJh6bzGwx
-	98tUZov/e3awWzx52MfmwO+xZt4aRo+ds+6yeyze85LJY9OqTjaPO9f2sHlsXlLv0bdlFaPH
-	501yARxRXDYpqTmZZalF+nYJXBnLnt1hLnjEVHFv7QnWBsYepi5GTg4JAROJazs+sncxcnEI
-	CaxglPh26jsrhPOFUWJ3ywxGCOczo8SEjRcYYVoatv1jBbGFBJYzSnx6aA1htzJJLP/pDGKz
-	CRhIPHizjB3EFhFQlPjdNg1sKrPAFBaJqz2/wZqFBQokLn1sYu5i5OBgEVCVuNlcChLmFbCV
-	2Nj9mQVil7xE7/4+sFM5BcwkOlomskDUCEqcnPkEzGYGqmneOpsZZL6EQDunxOq+/ewQzS4S
-	K840QB0tLPHq+BaouIzE6ck9UAvyJWZsfs8CcoOEQIXE3YNeEKa1xMczYJcxC2hKrN+lD1Hs
-	KLFkxip2iAo+iRtvBSEO4JOYtG06M0SYV6KjTQiiWlXi+J5JzBC2tMSTltvQIPeQuHToK8sE
-	RsVZSF6ZheSVWQh7FzAyr2IUTy0tzk1PLTbOSy3XK07MLS7NS9dLzs/dxAhMZqf/Hf+6g3HF
-	q496hxiZOBgPMUpwMCuJ8D55NTdNiDclsbIqtSg/vqg0J7X4EKM0B4uSOK9qinyqkEB6Yklq
-	dmpqQWoRTJaJg1OqgWnd+7XW2W/qo9Z5fLnVGFS4aaWN1GKfcyUd00PW3NdPmvhp8S7TL4Lt
-	JmFJG7blhW/buPVETt7KhVwrbs1PONA59XBy3Iu/19teJXrk21ir90e5TTsWsGyhBQ8v++lb
-	Rk5+lTrai3U3GTyd8/L16ZeRrX92bHpbl66bcStKQ1v2plVnRpVS6FIz6zfbw5wivNaeW+AV
-	/tvkyLYUFXG3mOUHJsjVTTvoeGDDkQjV857iXSpnGDh3L6xvPdX03iWF5aOt8pW/bZ/kZ71Z
-	Un3C7Lw63y7u/LPmnhu6xdZu2uDe5BZ34dfSI2v5bs1sW8hnxSZh+EOobEqCXrzFpi3KzsZe
-	YULJUaKze0y2PBBr3KPEUpyRaKjFXFScCADwg+kd1QMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrCIsWRmVeSWpSXmKPExsVy+t/xu7rFu+enGSzezGLxYN42NovvW64z
-	WazZe47JYt5nWYv5R86xWpw/v4HdYtPja6wWl3fNYbP43HuE0WLG+X1MFgubWtgtJh6bzGwx
-	98tUZov/e3awWzx52MfmwO+xZt4aRo+ds+6yeyze85LJY9OqTjaPO9f2sHlsXlLv0bdlFaPH
-	501yARxRejZF+aUlqQoZ+cUltkrRhhZGeoaWFnpGJpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJ
-	ehnLnt1hLnjEVHFv7QnWBsYepi5GTg4JAROJhm3/WLsYuTiEBJYySvS87GaHSEhLHP4yBcoW
-	lvhzrYsNoqiZSeLRtk8sIAk2AQOJB2+WgRWJCChK/G6bxgpiMwssYJG4faIGxBYWyJNY0XMP
-	qJ6Dg0VAVeJmcylImFfAVmJj92cWiPnyEr37+8AO4hQwk+homQgWFxLgkXi1YT8jRL2gxMmZ
-	T1ggxstLNG+dzTyBUWAWktQsJKkFjEyrGEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAqNv27Gf
-	m3cwznv1Ue8QIxMH4yFGCQ5mJRHeJ6/mpgnxpiRWVqUW5ccXleakFh9iNAU6eyKzlGhyPjD+
-	80riDc0MTA1NzCwNTC3NjJXEeT0LOhKFBNITS1KzU1MLUotg+pg4OKUamEwOMAsw7XN4eXaF
-	2BN3rnx17YeZb24sbl3Xfef4u+6rVjExbzICoxd2nw/74KfXX2zRe0LzkUbnsz0/FutnOF17
-	dfoL/7yGcE1xORnenGe8Vw136fD6n179KaX6XFWDA+uVVzohyV3/czsdXyTL3Owpnxggxhiz
-	Y+K7udduX162cGlna6BVe90J6TkHvJhczMLsX+6fsqruna/35QNPFmXpbLrOfsF+J8fipYJM
-	qgcjXuy2ytqbfMBj6ruHn/jnzrmhel3/64+atFd+sx1E50sIsR69Lfwsnn9V0Jz+eYLxIuUC
-	cmmt93W3tb0pD8rJDg9xti+t5UxLWSjh0uKiW3yOpzh9uZxTmO7T4+87lViKMxINtZiLihMB
-	kCdvz0cDAAA=
-X-CMS-MailID: 20240723141723eucas1p18f5675128aa380857f4c854b5a851e34
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240723141723eucas1p18f5675128aa380857f4c854b5a851e34
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240723141723eucas1p18f5675128aa380857f4c854b5a851e34
-References: <CGME20240723141723eucas1p18f5675128aa380857f4c854b5a851e34@eucas1p1.samsung.com>
 
-Hi :)
-
-> > +      temperature thresholds. The trip points will be set dynamically in
-> > +      runtime, which means there is no limit on the number of trip points.
+On 7/23/24 3:01 AM, Nuno Sá wrote:
+> On Mon, 2024-07-22 at 16:57 -0500, David Lechner wrote:
+>> This implements SPI offload support for the AXI SPI Engine. Currently,
+>> the hardware only supports triggering offload transfers with a hardware
+>> trigger so attempting to use an offload message in the regular SPI
+>> message queue will fail. Also, only allows streaming rx data to an
+>> external sink, so attempts to use a rx_buf in the offload message will
+>> fail.
+>>
+>> Signed-off-by: David Lechner <dlechner@baylibre.com>
+>> ---
+>>
 > 
-> How can the hardware change how many trip points it supports?
+> ...
+> 
+> 
+> I'm likely missing something but you already have:
+> 
+> priv = &spi_engine->offload_priv[args[0]];
+> 
+> which seems that from FW you already got the offload index you need. Can't we
+> just save that index in struct spi_device and use that directly in the other
+> operations? Saving the trouble to save the id string and having to always call 
+> spi_engine_get_offload()?
 
-Would just removing the whole "The trip points..." sentence be ok? I see
-how it is more confusing than helpful.
+Saving the index in the struct spi_device would assume 1. that all SPI
+peripherals can only use one SPI offload instance and 2. that all SPI
+offload providers have #spi-offload-cells = <1> where the cell is the
+index. I don't think either of these are safe assumptions.
+
+> 
+>> +
+>>
+> 
+> ...
+> 
+>> +}
+>> +
+>> +static void spi_engine_offload_unprepare(struct spi_device *spi, const char
+>> *id)
+>> +{
+>> +	struct spi_controller *host = spi->controller;
+>> +	struct spi_engine *spi_engine = spi_controller_get_devdata(host);
+>> +	struct spi_engine_offload *priv;
+>> +	unsigned int offload_num;
+>> +
+>> +	priv = spi_engine_get_offload(spi, id, &offload_num);
+>> +	if (IS_ERR(priv)) {
+>> +		dev_warn(&spi->dev, "failed match offload in unprepare\n");
+>> +		return;
+>> +	}
+>> +
+>> +	writel_relaxed(1, spi_engine->base +
+>> SPI_ENGINE_REG_OFFLOAD_RESET(offload_num));
+>> +	writel_relaxed(0, spi_engine->base +
+>> SPI_ENGINE_REG_OFFLOAD_RESET(offload_num));
+>> +
+>> +	priv->prepared = false;
+>> +}
+>> +
+>> +static int spi_engine_hw_trigger_mode_enable(struct spi_device *spi,
+>> +					     const char *id)
+>> +{
+>> +	struct spi_controller *host = spi->controller;
+>> +	struct spi_engine *spi_engine = spi_controller_get_devdata(host);
+>> +	struct spi_engine_offload *priv;
+>> +	unsigned int offload_num, reg;
+>> +
+>> +	priv = spi_engine_get_offload(spi, id, &offload_num);
+>> +	if (IS_ERR(priv))
+>> +		return PTR_ERR(priv);
+>> +
+>> +	reg = readl_relaxed(spi_engine->base +
+>> +			    SPI_ENGINE_REG_OFFLOAD_CTRL(offload_num));
+>> +	reg |= SPI_ENGINE_OFFLOAD_CTRL_ENABLE;
+>> +	writel_relaxed(reg, spi_engine->base +
+>> +			    SPI_ENGINE_REG_OFFLOAD_CTRL(offload_num));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void spi_engine_hw_trigger_mode_disable(struct spi_device *spi,
+>> +					       const char *id)
+>> +{
+>> +	struct spi_controller *host = spi->controller;
+>> +	struct spi_engine *spi_engine = spi_controller_get_devdata(host);
+>> +	struct spi_engine_offload *priv;
+>> +	unsigned int offload_num, reg;
+>> +
+>> +	priv = spi_engine_get_offload(spi, id, &offload_num);
+>> +	if (IS_ERR(priv)) {
+>> +		dev_warn(&spi->dev, "failed match offload in disable\n");
+>> +		return;
+>> +	}
+>> +
+>> +	reg = readl_relaxed(spi_engine->base +
+>> +			    SPI_ENGINE_REG_OFFLOAD_CTRL(offload_num));
+>> +	reg &= ~SPI_ENGINE_OFFLOAD_CTRL_ENABLE;
+>> +	writel_relaxed(reg, spi_engine->base +
+>> +			    SPI_ENGINE_REG_OFFLOAD_CTRL(offload_num));
+>> +}
+>> +
+> 
+> I would expect for the enable/disable() operations to act on the trigger. In
+> this case to enable/disable the clock...
+
+I'm not opposed to doing that, but things would get more complicated if we
+ever added more trigger types. Because then we would need to add some kind
+of trigger device abstraction to wrap the enable and disable functions of
+the various triggers.
+
+It seems simpler to me to have the peripheral driver do it since it already
+needs to get the clock device for other reasons anyway.
+
+But I also got some internal feedback that it might make more sense to add
+a trigger abstraction layer, so maybe that is something we should look into
+more.
 
