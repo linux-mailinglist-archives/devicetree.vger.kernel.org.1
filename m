@@ -1,161 +1,244 @@
-Return-Path: <devicetree+bounces-87441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204209397C2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 03:10:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E8A93982E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:17:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54E7AB217B3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 01:10:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CEE51C210DB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193A913211F;
-	Tue, 23 Jul 2024 01:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A277136663;
+	Tue, 23 Jul 2024 02:17:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pfCcvHWK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RxOuDL3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5E73EA83
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 01:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DB214287;
+	Tue, 23 Jul 2024 02:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721697007; cv=none; b=EPhTki+jiuC8tzONXMRWJNVe7zSOhD0zRF2dYjASee2aUxRNMri22AKxGWMsp4DGpe5V5SaIBnJ8GG729DnRecrV/bmsMSDK/SbltjQkmKsEX/Y3I3y/hILPX6t+BNAyLHt/TE7ZW1bGfT8dsjIvh5xVS+2O6XS1zcgEGlSRupc=
+	t=1721701036; cv=none; b=H+opDT/Gg5HySoRyM5FBsdv/vQqhEITPFZYWqkGFx4hwA8+Yyw6VZz8EmAn2uyVp7wGjJoP0VmCQnE0hsqqwIMnZs6TeiVYA6SpoTbRzX036n8HecPe1n5YAfe6LggJeFkAL1cS7/ThPzR4fkm4VKYYVJgZmaUkufRtM29L8YrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721697007; c=relaxed/simple;
-	bh=F/YVPIt96eiD4fDEqIVV0BjgbhD3AMknFfl6Pf7/Seo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kBU+5FzVfP60AksLE35yEiRK2GjahLQcqi8SrbRnLPkROC4DE8WP0jomX2cnwbbPjo+ybAIHO2i5Q97fF1oD7JvjTcKub133j8xfRqIBgisha4gRKg06YF0tPhf6Ye61c9kiIo5IkMrOJv9mTnQXYXoOa1v3T8cqfrwc7+oClhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pfCcvHWK; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6634f0afe05so54758787b3.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2024 18:10:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721697003; x=1722301803; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=M+1mttumgraTmz8as/o8R81jMF1pkFas9HuIkAF6YD8=;
-        b=pfCcvHWKnncLvDK77wOZxrlYBUxm4zUEWiym7FZUc4hLGCfIZusQgzm/EuvrqrMZmf
-         fxUZFGn4ZgNKNkFbtjdAH5SirzedHAI5SSq7eKRFI8SiRWAhnS2yJ8D0upOPR/DziyON
-         UDBc5Ukzlx2LRSZCTkSx6q2yHOIKmnbppzjbKENRtNGpWnux86axCDc0qcJg+oE7PEVi
-         hTJ77yFXvsWtjR8cCjWPhI21hPLziqVEJX7QS4k0O6qzgXf5hvv3X40ppnjxouPU+Z9V
-         26XldUzrLd/U4PsNqkiOgagsBTrnJs7r0bF/GHcrRUxgdlSpsiGlIQqffVLTAtV2YG8/
-         5+1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721697003; x=1722301803;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=M+1mttumgraTmz8as/o8R81jMF1pkFas9HuIkAF6YD8=;
-        b=tgytdi3MyNGiukSQFsiFNCvjJpNXhtxFAc/uMdmpM7wq92sl6QFWdnpaV1yniUQVrK
-         tyYzxtOO4QcRizFHY+bwO//nxE2IgDzCbKcE96u8mkveshfQUqW1jEdl80uZum9sXnBV
-         /Gxu28V/oYEhyX1SWnFeD2fKkW/JXAZdHxusklJzW8qDw8w/VEnZG2MF+aVuNyd+mLB5
-         pykWU50oL7sq+dlGwslr/0bs6hnoT82hWMomom3JxuYgbOU5R5crA/J/ZQTqUXAdlw+1
-         /tnrKpL1aWHOum7uR8M5g+kHDVOTRzGGT+GJJtwE3P1ojPb0p6x+dS7S/vzBwM6d28Tm
-         KX5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXtuHqQQRQIJLwvhz+f9XB7mcHzmbu2o5JSU28UmTxabRqEfLwy0byDg3iPNnmuQEl2kSxgQN77mObNEJPiOgpSXwwQ1X969+PB1w==
-X-Gm-Message-State: AOJu0YwBd8y9tWidvK1DSv1oixu27mt8MZTwXa2OA5UYKPjyyvqBXeN2
-	IXuC1OaExGSkuGoNJ5XYINVx6rUpvni20LAnupz8w535JkBDef6KYMJX4u2FIimE1KqIqjzUZZ0
-	Vu7rv92EfETQDsxuLXAQdkibh4yAVYy1+n0sOHQ==
-X-Google-Smtp-Source: AGHT+IFWh7F9HmWfROqNp44wr2VtiezP9UnvrKwkDXP8VHIqTEKzjfkOOrND9UfYVARn0ktR6qDNF/AN9J+nSHMSp2M=
-X-Received: by 2002:a05:690c:4087:b0:651:a00f:698a with SMTP id
- 00721157ae682-66a65e6516amr86737777b3.38.1721697003132; Mon, 22 Jul 2024
- 18:10:03 -0700 (PDT)
+	s=arc-20240116; t=1721701036; c=relaxed/simple;
+	bh=gnkOYbEfx9zPzHePEL/WxD5v0iNAO66aAz2aJlnJpSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XORJ/B1ApskxL9ZQ2+ZgoyOT0pjZ3N6+fznxRg/tvAI61O8j4GvtvuQpUXzLwatpWOm55yQkKKRyEvN96evFwaGluZg4n8/tTF8slPJQwRrQgoqaVCcn+EoTVCGOX3jF3fPfTZUGvxts1bbvQXT6j5N8Sj7a42/yQHYXxkNCswg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RxOuDL3m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C68D9C116B1;
+	Tue, 23 Jul 2024 02:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721701036;
+	bh=gnkOYbEfx9zPzHePEL/WxD5v0iNAO66aAz2aJlnJpSU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RxOuDL3mrORghbGY9jTuWQjgd2SP7GcjAZPVyjp3hU2M1TmgBi6NwPp8D9X5eUY/s
+	 FaQ0XUpyCBoHtPyz3lY2HoOUMew0FAxFxtLotpL5EqZXj+D+Fx/HQ4YQQd+FejrfEI
+	 Q9QT3y/Rdoy31gJeM1kqGRz1biqv/Lxy7q8mNEGCSlS9sivsTwN7lOpkoywP1llddd
+	 jtiuFux3oh+090v6KBkgxvS0y1ou+qfNYv8hED6vpiWHbs4/qb2qD2g0XdbkiQZIDY
+	 tKBvRxCBrN9e+2vQJ540AT1JpCsHiO6dQfhmuFnYxhSRyTj+ouGuc9cVSOIatcKgwi
+	 UxvT5COn+7daQ==
+Date: Mon, 22 Jul 2024 20:17:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	alexandre.belloni@bootlin.com, geert+renesas@glider.be,
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+	p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: mfd: renesas,r9a08g045-vbattb:
+ Document VBATTB
+Message-ID: <20240723021713.GA40385-robh@kernel.org>
+References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240716103025.1198495-2-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240722-miix630-support-v1-0-a6483cfe8674@linaro.org>
- <20240722-miix630-support-v1-1-a6483cfe8674@linaro.org> <cac3d7ba-2a62-479d-94c2-c6dc4d7a5ba2@linaro.org>
-In-Reply-To: <cac3d7ba-2a62-479d-94c2-c6dc4d7a5ba2@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 23 Jul 2024 04:09:52 +0300
-Message-ID: <CAA8EJprROf-aJgJvUMb3D+dCzOUO-eRzM3khM6ZY8b+z+_gByA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: msm8998-lenovo-miix-630: enable touchscreen
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeffrey Hugo <quic_jhugo@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240716103025.1198495-2-claudiu.beznea.uj@bp.renesas.com>
 
-On Tue, 23 Jul 2024 at 02:22, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 22.07.2024 1:57 PM, Dmitry Baryshkov wrote:
-> > There is no point in keeping touchscreen disabled, enable corresponding
-> > i2c-hid device.
-> >
-> > 04F3:2608 Touchscreen as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input1
-> > 04F3:2608 as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input2
-> > 04F3:2608 as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input3
-> > 04F3:2608 Stylus as /devices/platform/soc@0/c179000.i2c/i2c-0/0-0010/0018:04F3:2608.0001/input/input4
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../boot/dts/qcom/msm8998-lenovo-miix-630.dts      | 28 ++++++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
-> > index a105143bee4a..118c55f5bcfd 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
-> > +++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
-> > @@ -11,6 +11,24 @@ / {
-> >       chassis-type = "convertible";
-> >  };
-> >
-> > +&blsp1_i2c5 {
-> > +     clock-frequency = <400000>;
-> > +     status = "okay";
-> > +
-> > +     tsc1: hid@10 {
-> weird (and unused label)
->
-> very non-specific node name too
->
-> > +             compatible = "hid-over-i2c";
-> > +             reg = <0x10>;
-> > +             hid-descr-addr = <0x1>;
-> > +
-> > +             interrupts-extended = <&tlmm 125 IRQ_TYPE_LEVEL_LOW>;
-> > +
-> > +             pinctrl-0 = <&i2c5_hid_active>;
-> > +             pinctrl-names = "default";
-> > +
-> > +             wakeup-source;
->
-> double tap to wake? tap to wake?
->
-> > +     };
-> > +};
-> > +
-> >  &blsp1_i2c6 {
-> >       status = "okay";
-> >
-> > @@ -35,3 +53,13 @@ &remoteproc_mss {
-> >  &sdhc2 {
-> >       cd-gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
-> >  };
-> > +
-> > +&tlmm {
-> > +     i2c5_hid_active: i2c5-hid-active-state {
-> > +             pins = "gpio125";
-> > +             function = "gpio";
-> > +
-> > +             bias-pull-up;
-> > +             drive-strength = <2>;
->
-> Since there are no other pin definitions, you can do better and not
-> copy the old rotten style ;)
+On Tue, Jul 16, 2024 at 01:30:15PM +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock for RTC,
+> the tamper detector and a small general usage memory of 128B. Add
+> documentation for it.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+> 
+> Changes in v2:
+> - changed file name and compatible
+> - updated title, description sections
+> - added clock controller part documentation and drop dedicated file
+>   for it included in v1
+> - used items to describe interrupts, interrupt-names, clocks, clock-names,
+>   resets
+> - dropped node labels and status
+> - updated clock-names for clock controller to cope with the new
+>   logic on detecting the necessity to setup bypass
+> 
+>  .../mfd/renesas,r9a08g045-vbattb.yaml         | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,r9a08g045-vbattb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/renesas,r9a08g045-vbattb.yaml b/Documentation/devicetree/bindings/mfd/renesas,r9a08g045-vbattb.yaml
+> new file mode 100644
+> index 000000000000..30e4da65e2f6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/renesas,r9a08g045-vbattb.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/renesas,r9a08g045-vbattb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas Battery Backup Function (VBATTB)
+> +
+> +description:
+> +  Renesas VBATTB is an always on powered module (backed by battery) which
+> +  controls the RTC clock (VBATTCLK), tamper detection logic and a small
+> +  general usage memory (128B).
+> +
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a08g045-vbattb
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ranges: true
+> +
+> +  interrupts:
+> +    items:
+> +      - description: tamper detector interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: tampdi
 
-Both node and pinctrl were c&p from c630. But was is rotten here?
+Don't really need -names with only 1 entry.
 
+> +
+> +  clocks:
+> +    items:
+> +      - description: VBATTB module clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bclk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: VBATTB module reset
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+> +
+> +patternProperties:
+> +  "^clock-controller@1c+$":
+> +    type: object
+> +    description: VBATTCLK clock
+> +
+> +    properties:
+> +      compatible:
+> +        const: renesas,r9a08g045-vbattb-clk
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        items:
+> +          - description: input clock for VBATTCLK
+> +
+> +      clock-names:
+> +        description: |
+> +          Use xin if connected to an external crystal oscillator.
+> +          Use clkin if connected to an external hardware device generating the
+> +          clock.
+> +        enum:
+> +          - xin
+> +          - clkin
+> +
+> +      '#clock-cells':
+> +        const: 0
+> +
+> +      renesas,vbattb-load-nanofarads:
+> +        description: load capacitance of the on board xtal
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [ 4000, 7000, 9000, 12500 ]
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - clocks
+> +      - clock-names
+> +      - '#clock-cells'
+> +      - renesas,vbattb-load-nanofarads
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    vbattb@1005c000 {
+> +        compatible = "renesas,r9a08g045-vbattb";
+> +        reg = <0x1005c000 0x1000>;
+> +        ranges = <0 0 0x1005c000 0 0x1000>;
+> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "tampdi";
+> +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>;
+> +        clock-names = "bclk";
+> +        power-domains = <&cpg>;
+> +        resets = <&cpg R9A08G045_VBAT_BRESETN>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@1c {
+> +            compatible = "renesas,r9a08g045-vbattb-clk";
+> +            reg = <0 0x1c 0 0x10>;
+> +            clocks = <&vbattb_xtal>;
+> +            clock-names = "xin";
+> +            #clock-cells = <0>;
+> +            renesas,vbattb-load-nanofarads = <12500>;
+> +        };
 
--- 
-With best wishes
-Dmitry
+Is this really a separate device? Doesn't really look like it. This can 
+all be moved to the parent node.
+
+Rob
 
