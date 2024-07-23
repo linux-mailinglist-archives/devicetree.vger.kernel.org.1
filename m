@@ -1,119 +1,105 @@
-Return-Path: <devicetree+bounces-87450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0D093986A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE30939876
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:57:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C2612829C7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:51:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D139B282BEC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:57:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6534213957B;
-	Tue, 23 Jul 2024 02:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A7513B5B4;
+	Tue, 23 Jul 2024 02:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4bcjXKl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAoNQ/v6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D312F32;
-	Tue, 23 Jul 2024 02:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE1571DA22;
+	Tue, 23 Jul 2024 02:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721703073; cv=none; b=hh4/yCTZjiNS8WkI9rnzlSPtJALOG6zERE0Lw6cCInCxXafISWzGWDINfQBLgspD5AFZJHPgiJnEfnMFd4X3iXJmbWyRf67ieeflvfSXRSnALB5ezfKHFV6LMPJ8IlzE48sp4X/oIjWlzWFHEal6j3IdHdyhWAD8YKxlObIemSs=
+	t=1721703450; cv=none; b=LzH//WkYKQerbXlc1nJXSbOQX94RdiNZUH+URh3GT+dopKXaL/rW/AKJdjNar7ZtSX2iKInwlzIpBelg3WkHo/AcHBiUwOuUQ2hKvwj5+m3gIhK5jQrZiRde6E/w6pFxFlUNawx4e6dLt2CDmv6zbHy/F2tZY2s/3joye+YsDAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721703073; c=relaxed/simple;
-	bh=8f4JRcrwXHy++9/5/z8Qgm+dkVwDQLC/tLAYNCJRVqI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HN9t0DCZQbn2aL+IqsZITpQdHcJOZwiZn8tA58SG54se38BytyKZPY78U7l5BZs3RIMXf7km4sIUZgib3T+4ThsWAuBm+QSscvfU+CgSbGbeKBs+mkQtRtllXJc1rwWnelwhcNCKsYM3yAPmGpKxASV9Rt3u8PCIrPLlr+0qZuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4bcjXKl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD138C116B1;
-	Tue, 23 Jul 2024 02:51:12 +0000 (UTC)
+	s=arc-20240116; t=1721703450; c=relaxed/simple;
+	bh=J5uFm6YqfgSpgo25bY/mnStZM9plVsz22J6NfkR13mQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=IhQDqI8rHhpqqIZEj4h1R3smti9bwCzOcylV/7QnwcUC7dCdk5bgxcjbzGEaNhpWTXWoqeohdfQZY1J88tToP/DJwg3nSZpV5bQeY+BiQdjh9HZQEOfIsIFZat1oWwyK3/Hrbk/epF94LM8HXpofzLOK8OGezUIZN4aLyZQVRfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAoNQ/v6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 062B6C116B1;
+	Tue, 23 Jul 2024 02:57:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721703073;
-	bh=8f4JRcrwXHy++9/5/z8Qgm+dkVwDQLC/tLAYNCJRVqI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I4bcjXKlbq3vK4A9Yxj2HSavSoovc0HlmseEJt4vDSZcNzer0SiJ/s+E9VTqaUbrU
-	 LaLyhBgjeNWPjj3LUSmxQik0aF/cd9dq5919wLw4/zkF8Eu9Ysu0/bOv59SmU6QiVH
-	 453v6jicu2ak8/Bs74njb+yZEFa9g/mLr7Gd6bdBVjiViXztkcgwPI49ZQA96gYLOg
-	 gdtKUzDyjLRSZy8dMXbRB91A8T0VqgsU2jUO512Ze/v8TBsW4rIXXyK79mvQqYmwyx
-	 JdTiOUdOECE+H9EelMvQYBUQMkjJ1f76XM9wzJDhBR18sfLqrgnzERxBV4jkYuk38/
-	 3TSKVzFGpi6qA==
-Date: Mon, 22 Jul 2024 20:51:10 -0600
-From: Rob Herring <robh@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, peter.chen@kernel.org,
-	herve.codina@bootlin.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-	jun.li@nxp.com
-Subject: Re: [PATCH 3/6] dt-bindings: phy: mxs-usb-phy: add nxp,sim property
-Message-ID: <20240723025110.GA199927-robh@kernel.org>
-References: <20240718102637.3964232-1-xu.yang_2@nxp.com>
- <20240718102637.3964232-3-xu.yang_2@nxp.com>
+	s=k20201202; t=1721703450;
+	bh=J5uFm6YqfgSpgo25bY/mnStZM9plVsz22J6NfkR13mQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=JAoNQ/v6N6aBGKUDl9pyh0FjyEna8BBPeXf3cG39rYzDc7oiCDuYcrhCi3IVO/BPE
+	 cJ7M0dVkYOOP3YHiUOmh2NfWDVCVHBlctDzy/GS6SASfoyIJyHNLEhaMWkJ0xDFrxY
+	 ySzwLWcGP5JTXxYXNu286nW68kdcxAydoCb0ujUnT58W0AvW3Ai11l9pyI/opZ/it8
+	 j59fB0CgD2lC5fwTdWTKbNeLmuqLr7JO05BMPvq3s/nXLujgheVm2dwLOt3ShuGatV
+	 uX9f8DWH+870jWzAupHSzHNE0NHAIrrEJIs/J2iE6tsyZWAVDTXYzdmQzZ2y/NCUO2
+	 erNQhvHkiEcPQ==
+Date: Mon, 22 Jul 2024 20:57:28 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240718102637.3964232-3-xu.yang_2@nxp.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: krzk+dt@kernel.org, broonie@kernel.org, conor+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, otavio.salvador@ossystems.com.br, 
+ heiko@sntech.de
+In-Reply-To: <20240719111210.1287783-1-festevam@gmail.com>
+References: <20240719111210.1287783-1-festevam@gmail.com>
+Message-Id: <172170324289.205102.2615686187062234035.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: Document
+ elgin,jg10309-01
 
-On Thu, Jul 18, 2024 at 06:26:34PM +0800, Xu Yang wrote:
-> i.MX7ULP need properly set System Integration Module(SIM) module to make
-> usb wakeup work well. This will add a "nxp,sim" property.
+
+On Fri, 19 Jul 2024 08:12:08 -0300, Fabio Estevam wrote:
+> The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
+> The marking on the LCD is JG10309-01.
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Add an entry for the "elgin,jg10309-01" compatible string.
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
->  .../devicetree/bindings/phy/fsl,mxs-usbphy.yaml    | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+> Changes since v1:
+> - Use a more specific compatible string. (Conor)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> index f4b1ca2fb562..2141f271f8f1 100644
-> --- a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> @@ -87,6 +87,12 @@ properties:
->      maximum: 119
->      default: 100
->  
-> +  nxp,sim:
-> +    description:
-> +      The system integration module (SIM) provides system control and chip
-> +      configuration registers.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
->  required:
->    - compatible
->    - reg
-> @@ -110,6 +116,14 @@ allOf:
->        required:
->          - fsl,anatop
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: fsl,imx7ulp-usbphy
-> +    then:
-> +      required:
-> +        - nxp,sim
-
-       else:
-         properties:
-           nxp,sim: false
-
-
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.34.1
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y rockchip/rv1108-elgin-r1.dtb' for 20240719111210.1287783-1-festevam@gmail.com:
+
+arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+
+
+
+
+
 
