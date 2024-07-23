@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-87451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CE30939876
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:57:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15044939878
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 04:57:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D139B282BEC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:57:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE9A282C59
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 02:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A7513B5B4;
-	Tue, 23 Jul 2024 02:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BAD13B7A6;
+	Tue, 23 Jul 2024 02:57:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAoNQ/v6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tUBbTU7f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE1571DA22;
-	Tue, 23 Jul 2024 02:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11B51DA22;
+	Tue, 23 Jul 2024 02:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721703450; cv=none; b=LzH//WkYKQerbXlc1nJXSbOQX94RdiNZUH+URh3GT+dopKXaL/rW/AKJdjNar7ZtSX2iKInwlzIpBelg3WkHo/AcHBiUwOuUQ2hKvwj5+m3gIhK5jQrZiRde6E/w6pFxFlUNawx4e6dLt2CDmv6zbHy/F2tZY2s/3joye+YsDAY=
+	t=1721703453; cv=none; b=RrnIiobd8dVXmFHHiyEAeHVy8Nk1dv3i4anrL4Ua3hbUO4Tx61oH8k2wqTkMpnd7pD4TLM78PrbBxM7lziO8gwub7ZOu7+tmLtU0mWnhiz0SD7tBkfmFJEVuyXHjdCfNbt1KMtWDxA0slj5NAFRPMSdydy9bO3aWr9YxVa1Qsio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721703450; c=relaxed/simple;
-	bh=J5uFm6YqfgSpgo25bY/mnStZM9plVsz22J6NfkR13mQ=;
+	s=arc-20240116; t=1721703453; c=relaxed/simple;
+	bh=xHGeQVmisuPGHf8llb2dE/jfNDnDq1Ltx01L+xpb6MU=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=IhQDqI8rHhpqqIZEj4h1R3smti9bwCzOcylV/7QnwcUC7dCdk5bgxcjbzGEaNhpWTXWoqeohdfQZY1J88tToP/DJwg3nSZpV5bQeY+BiQdjh9HZQEOfIsIFZat1oWwyK3/Hrbk/epF94LM8HXpofzLOK8OGezUIZN4aLyZQVRfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAoNQ/v6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 062B6C116B1;
-	Tue, 23 Jul 2024 02:57:29 +0000 (UTC)
+	 Message-Id:Subject; b=d0a82gLmoLDvyKYF1RIBK/rckWxUyeUV/f5GK8YSBA0lmKWDSswGbIosZMH6n/1mU4xQIsCUx0JIqvY8ruFa+djFyoyqkaGoOIm8NObowPgTRVQVmXpdxoK5D1U7BtYF15IQsoA0Mjwx2Uz111IstI4FFK0TJPzROmci3J/QPY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tUBbTU7f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AFDBC116B1;
+	Tue, 23 Jul 2024 02:57:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721703450;
-	bh=J5uFm6YqfgSpgo25bY/mnStZM9plVsz22J6NfkR13mQ=;
+	s=k20201202; t=1721703452;
+	bh=xHGeQVmisuPGHf8llb2dE/jfNDnDq1Ltx01L+xpb6MU=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=JAoNQ/v6N6aBGKUDl9pyh0FjyEna8BBPeXf3cG39rYzDc7oiCDuYcrhCi3IVO/BPE
-	 cJ7M0dVkYOOP3YHiUOmh2NfWDVCVHBlctDzy/GS6SASfoyIJyHNLEhaMWkJ0xDFrxY
-	 ySzwLWcGP5JTXxYXNu286nW68kdcxAydoCb0ujUnT58W0AvW3Ai11l9pyI/opZ/it8
-	 j59fB0CgD2lC5fwTdWTKbNeLmuqLr7JO05BMPvq3s/nXLujgheVm2dwLOt3ShuGatV
-	 uX9f8DWH+870jWzAupHSzHNE0NHAIrrEJIs/J2iE6tsyZWAVDTXYzdmQzZ2y/NCUO2
-	 erNQhvHkiEcPQ==
-Date: Mon, 22 Jul 2024 20:57:28 -0600
+	b=tUBbTU7f5JZX0q12kG5PmR7igIGaPso3qx3LzYX5IZdHycEtpUjNQ2e4DqWKiRirc
+	 t4XOhW4LfRftgeMqqiYZdN2yk1pXJbpjFbmZcj0X5+gDyd9qxLvQBP4j469IT1f5Rd
+	 oTCMh6PS2uwbxdOIFK6ZHY3oR1r2ii8qWru0ntiSifOOkUMo/ao9cAGgln5imM0b/f
+	 AuX+cvLOfqYZp1De0Fws5E/QVe+sHF0AFRH5WhcT/qMWDi0jF+BmalCz/aYqJ0OoOh
+	 2exkBj7qIbCmfcbfL8LeONofnfqZiE7UjxMlx+yRZuaVD1cie7ApUyBB1cOiCzrwu+
+	 A3Gaf8Woi+YNw==
+Date: Mon, 22 Jul 2024 20:57:30 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,31 +51,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk+dt@kernel.org, broonie@kernel.org, conor+dt@kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, otavio.salvador@ossystems.com.br, 
- heiko@sntech.de
-In-Reply-To: <20240719111210.1287783-1-festevam@gmail.com>
-References: <20240719111210.1287783-1-festevam@gmail.com>
-Message-Id: <172170324289.205102.2615686187062234035.robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: Document
- elgin,jg10309-01
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Sibi Sankar <quic_sibis@quicinc.com>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240719131722.8343-1-johan+linaro@kernel.org>
+References: <20240719131722.8343-1-johan+linaro@kernel.org>
+Message-Id: <172170324360.205121.298903694803259916.robh@kernel.org>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: PCIe fixes and CRD
+ modem support
 
 
-On Fri, 19 Jul 2024 08:12:08 -0300, Fabio Estevam wrote:
-> The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
-> The marking on the LCD is JG10309-01.
+On Fri, 19 Jul 2024 15:17:15 +0200, Johan Hovold wrote:
+> This series fixes some issues with the current x1e80100 PCIe support,
+> adds the PCIe5 nodes and enables the modem on the CRD.
 > 
-> Add an entry for the "elgin,jg10309-01" compatible string.
+> The fixes should go into 6.11, but the modem support depends on them so
+> I decided to send everything in one series.
 > 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> ---
-> Changes since v1:
-> - Use a more specific compatible string. (Conor)
+> Johan
 > 
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> 
+> Johan Hovold (7):
+>   arm64: dts: qcom: x1e80100-crd: fix PCIe4 PHY supply
+>   arm64: dts: qcom: x1e80100: fix PCIe domain numbers
+>   arm64: dts: qcom: x1e80100-crd: fix up PCIe6a pinctrl node
+>   arm64: dts: qcom: x1e80100-crd: disable PCIe6A perst pull down
+>   arm64: dts: qcom: x1e80100-crd: fix missing PCIe4 gpios
+>   arm64: dts: qcom: x1e80100: add PCIe5 nodes
+>   arm64: dts: qcom: x1e80100-crd: enable SDX65 modem
+> 
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 110 +++++++++++++++++--
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi    | 125 +++++++++++++++++++++-
+>  2 files changed, 224 insertions(+), 11 deletions(-)
+> 
+> --
+> 2.44.2
+> 
+> 
 > 
 
 
@@ -93,10 +111,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rv1108-elgin-r1.dtb' for 20240719111210.1287783-1-festevam@gmail.com:
+New warnings running 'make CHECK_DTBS=y qcom/x1e80100-crd.dtb' for 20240719131722.8343-1-johan+linaro@kernel.org:
 
-arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-crd.dtb: pci@1c00000: Unevaluated properties are not allowed ('vddpe-3v3-supply' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml#
 
 
 
