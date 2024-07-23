@@ -1,161 +1,204 @@
-Return-Path: <devicetree+bounces-87650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED5593A2DE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:35:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2521E93A2F6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 16:41:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCC351F24522
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:35:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CB4DB24869
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 14:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DB11553A0;
-	Tue, 23 Jul 2024 14:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7978B154BEB;
+	Tue, 23 Jul 2024 14:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VtqKJGB7"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ySwd9f6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD93C155307;
-	Tue, 23 Jul 2024 14:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDFC153BE3
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 14:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721745318; cv=none; b=KxUd8/DDAvxMgNbYaFQY0b4RO4EDLDGEx1kFfEDEwT9hcCP+tyHrI/TQDfPTDBUzd5j1mWXDQVoAADjdXeRBGjf50D/+sSIW7wNNOikJR01e6M51o3C32tCo6hQFMkAVDyvdRgaIv05muYQbnECXU2wgyHjLuYjsAiBXawjTxvs=
+	t=1721745653; cv=none; b=pbCeiYORzenJd1gwWZOpdMzmoSFPZbrhIs+ltD0FzxLoWbZxju0CLrOGc77SBXCiCyukvmYO0nMG4LGPfnc4qoKL4vHtBPP85ErU5iEUyGIYoTrDd6wEJxTTdb1zrBDkRbDSFxAZtpObAkjGgI29uLFzJd7U66vHOXFe4lPI47g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721745318; c=relaxed/simple;
-	bh=SIEX4jZxPLkLEdwNUU9kodfaZkbypEBKoyUOHUf9f6E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NjOCQRStQ8WgYgclVDz42Y9B6vwTBJE0vSQ/bJw7R31y/2i2syu2dacrFx1TDduw57zNpTWZsANcpvecJAHSyiw3eoC8Zov7sJvNY3PnkCWYTlqSlfkga4tbtEpCIZnEcvqyjDYDXQHTtkzKwKp2PyXuBBnqgBXZUqE4jjyrxtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VtqKJGB7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF67C4AF0A;
-	Tue, 23 Jul 2024 14:35:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721745318;
-	bh=SIEX4jZxPLkLEdwNUU9kodfaZkbypEBKoyUOHUf9f6E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VtqKJGB7nMmm0EexSy9baNwYb9FRqmQC2CjMotyOTmjI5Vz+cjC14OC8ANYAItDM2
-	 9Rgey3t6jQiUABW6WUGo8Wl/BOAPvHcqBmvJdKHTV/XmNUcYiihbPUKC2rWK9WcYrD
-	 s8Ryv/ccXoUCZpvpL1yImSx70kgqsIYYDeKCoIrZ6Q7HvPttc6TH/pFIiM8dRBQbpF
-	 zeMDSB6yludRCUhCvuMuBuagpkCnE50T/uhsL98aaS65GB39aQRrlNtqEecdZ4kVJJ
-	 7hDPHWwYYogkq0uABp2OMK4HIqdqfMWe2gTI8/PCMiNFkbkoVK+YrvSYcj0Vysvxks
-	 gxKUQlf2fsdFg==
-Date: Tue, 23 Jul 2024 15:35:11 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, l.stach@pengutronix.de,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de, imx@lists.linux.dev
-Subject: Re: [PATCH v1 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
- "atu" for i.MX8M PCIe Endpoint
-Message-ID: <20240723-spinning-wikipedia-525130c48dcd@spud>
-References: <1721634979-1726-1-git-send-email-hongxing.zhu@nxp.com>
- <1721634979-1726-2-git-send-email-hongxing.zhu@nxp.com>
- <20240722-displace-amusable-a884352e0ff9@spud>
- <Zp7FYRaXM4NNO0oM@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1721745653; c=relaxed/simple;
+	bh=Ii/qPPRPd4H6EAcpkggPFOvxtd203ZTNo2muiH3wxlY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=smTlHcfNwVJfCGqom3RZ5hV87eTN9MoXs0/ZV5eiLJUX4/Z2QbJYGF7UJVg8PSnUZ4R1qT7HcaPe/omUXU3ZVZwlVHGQAh1plU15EL2TvgOjalgPjB9bZqfT5D1yjmeaaKf11MSJRgsRgFhEvs626Z6vavrp3bjq7n9Uq5IdmVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ySwd9f6T; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-36858357bb7so2981231f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 07:40:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1721745649; x=1722350449; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T3K8m7UYLI9e2nw2FiKuLBXvna2sOiFY/YtJCGaVVwg=;
+        b=ySwd9f6T3cVcPvOs/tIHOcDBGnpO6XUGfRTtzTkwBea+r8F7JnQiKe77aKgSOfQ7/2
+         g4X7KE3i91VZ7dMThTcfS50JdgzFCgY/lb7Osh6YgfEjNsaJeZ8jBrZ/w3qc8sMPzlyy
+         CmeWoCc1wo/Eo9lrjTjiC+72xrQ9cDziLgWAHGsSy61e/QXH7tO6Mq88EKkbsdcN5buZ
+         6m0GGSDSt84wqCqETRMOmlOJysz8kN9L2FJs3Sd/sUDaeujc+T49PQqlq0iNsbMreYFY
+         b6IQCe3KFUnOpuhDnPYenojCQ8VBsMaKtm7dRKhJS14pOwKB9SWva/2rFuGy49cXG9Fe
+         8Nyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721745649; x=1722350449;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T3K8m7UYLI9e2nw2FiKuLBXvna2sOiFY/YtJCGaVVwg=;
+        b=dH8nKfjYxA5lDACPGYbg22TwGgcoE+KePa/F0+af1gW2MmADFpQsnnGXO0CYfADPkF
+         G4iyRESccuufpegQ4L9wqfDzXgz4HmYwqBhgK0bkmtOS8itgaBlg2xtXaQC8of0YX4le
+         6Ooaj0zLUZuykbaAOkOoxz1KP20EAp1W/DKiu/i0lIGRbWA+C8z/pHsXufoJQZiVSKAT
+         4C5Clug7EtM10gtUBoSfvtRCPcKXaWFG/zL7jigOqKjh4zJtAY78xBRINtd9Kvcf6t1E
+         K3WAPZfpt2WF669dTWoYKth0+xeF84F9tEZZKIgupKFc9b8Z+dCNO+SgQ9Egkc1tOGOE
+         /HHg==
+X-Forwarded-Encrypted: i=1; AJvYcCXFFgIZWbbNoM9RJOxqYmUBOLAfMLsN/5af0iroletUT7DGuqTlKeWfuEo8EGvBfGEtXiLbicarZMjRiJkvutTvm4axld3qC59utg==
+X-Gm-Message-State: AOJu0YyhBQN93Zt7Ikz+6Cth+ZdHIKx3j6aI9rxH51WHJa10FSKnAJah
+	FPLwJwOf5bQyd5hGnkG4Xva2BMPv4ak/wYZ08KGKXEo4hTqUNQNbE28zv6S2qOw=
+X-Google-Smtp-Source: AGHT+IGlwpdFnzbN5dFR3IJlUvCm4jcY/F9lixNZD/n0wR4wTR15Py/Fg3+cKLPkHHM/vuMRaPpzDw==
+X-Received: by 2002:a05:6000:4026:b0:367:8a3b:2098 with SMTP id ffacd0b85a97d-369bbbb2e21mr7254343f8f.3.1721745649159;
+        Tue, 23 Jul 2024 07:40:49 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-368787cf182sm11760210f8f.82.2024.07.23.07.40.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jul 2024 07:40:48 -0700 (PDT)
+Message-ID: <0d5d3918-3988-4d29-8bb3-aaf7b0aa0045@freebox.fr>
+Date: Tue, 23 Jul 2024 16:40:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="f4Ml/B5fxYMPddxi"
-Content-Disposition: inline
-In-Reply-To: <Zp7FYRaXM4NNO0oM@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <20240627-hdmi-tx-v5-0-355d5c1fbc3c@freebox.fr>
+ <20240627-hdmi-tx-v5-4-355d5c1fbc3c@freebox.fr>
+ <d9898342-2439-4d3d-8e3d-5bf0a7a40245@linaro.org>
+ <b6f6c845-6094-44ce-8ad0-ed4f6d353cec@freebox.fr>
+ <CAA8EJpqrAFKCr63JHEpZ3b3zdRfoNXoJP6SqKDOO4sqc=c6YdQ@mail.gmail.com>
+ <44101ecd-61f4-4609-bb22-12b40b692552@freebox.fr>
+ <CAA8EJpprtmefNM_CJFRbYVNxOWUVVWbedBq44r7GXOdDrQ2WjA@mail.gmail.com>
+ <04ef978f-2bfd-46cc-a9f7-40a6f1c507f8@linaro.org>
+ <7d34a857-6495-482b-9070-1817c88c9913@freebox.fr>
+ <45f5dae6-c606-4612-900a-b719f58d92ce@linaro.org>
+ <a8c7db04-7212-4bf0-b8b1-d371ee33478b@freebox.fr>
+ <57c165e6-d942-4a17-a26b-7e4a0422127c@linaro.org>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <57c165e6-d942-4a17-a26b-7e4a0422127c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 23/07/2024 15:43, Konrad Dybcio wrote:
 
---f4Ml/B5fxYMPddxi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 23.07.2024 3:38 PM, Marc Gonzalez wrote:
+>
+>> On 23/07/2024 15:08, Konrad Dybcio wrote:
+>>
+>>> On 23.07.2024 2:57 PM, Marc Gonzalez wrote:
+>>>
+>>>> On 23/07/2024 13:45, Konrad Dybcio wrote:
+>>>>
+>>>>> On 23.07.2024 11:59 AM, Dmitry Baryshkov wrote:
+>>>>>
+>>>>>> On Tue, 23 Jul 2024 at 12:48, Marc Gonzalez wrote:
+>>>>>>
+>>>>>>> On 16/07/2024 18:37, Dmitry Baryshkov wrote:
+>>>>>>>
+>>>>>>>> No, that's fine. It is the SMMU issue that Konrad has been asking you
+>>>>>>>> to take a look at.
+>>>>>>>
+>>>>>>> Context:
+>>>>>>>
+>>>>>>> [    4.911422] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>>>>>>> [    4.923353] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>>>>>>> [    4.927893] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>>>>>>> [    4.941928] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>>>>>>> [    4.944438] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>>>>>>> [    4.956013] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>>>>>>> [    4.961055] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>>>>>>> [    4.974565] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>>>>>>> [    4.977628] arm-smmu cd00000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x0
+>>>>>>> [    4.989670] arm-smmu cd00000.iommu: FSYNR0 = 00000021 [S1CBNDX=0 PNU PLVL=1]
+>>>>>>>
+>>>>>>>
+>>>>>>> As I mentioned, I don't think I've ever seen issues from cd00000.iommu
+>>>>>>> on my board.
+>>>>>>
+>>>>>> Interestingly enough, I can also see iommu errors during WiFi startup
+>>>>>> / shutdown on msm8998 / miix630. This leads me to thinking that it
+>>>>>> well might be that there is a missing quirk in the iommu driver.
+>>>>>>
+>>>>>>> I can test a reboot loop for a few hours, to see if anything shows up.
+>>>>>>
+>>>>>> Yes, please.
+>>>>>
+>>>>> Yeah I do trust you Marc that it actually works for you and I'm not
+>>>>> gonna delay this series because of that, but please go ahead and
+>>>>> reboot-loop your board
+>>>>>
+>>>>> 8998/660 is """famous""" for it's iommu problems
+>>>>
+>>>> [   20.501062] arm-smmu 16c0000.iommu: Unhandled context fault: fsr=0x402, iova=0x00000000, fsynr=0x1, cbfrsynra=0x1900, cb=0
+>>>>
+>>>> I get the above warning pretty reliably.
+>>>> I don't think it's related to the issue(s) you mentioned.
+>>>> System just keeps plodding along.
+>>>
+>>> Yeah that one's "fine"
+>>
+>> I booted 40 times in a loop.
+>>
+>> `grep -a -i FSYNR console.logs` just returns the same 16c0000.iommu
+>> "Unhandled context fault" message 76 times (as above).
+>>
+>> NB: I have maxcpus=1 set in bootargs.
+>>
+>> Could the iommu issue be a race condition, NOT triggered when code
+>> runs with less parallelism?
+> 
+> No clue, can you try without maxcpus=1?
 
-On Mon, Jul 22, 2024 at 04:47:29PM -0400, Frank Li wrote:
-> On Mon, Jul 22, 2024 at 05:37:14PM +0100, Conor Dooley wrote:
-> > On Mon, Jul 22, 2024 at 03:56:16PM +0800, Richard Zhu wrote:
-> > > Add reg-name: "dbi2", "atu" for i.MX8M PCIe Endpoint.
-> > >=20
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml  | 13 +++++++++--=
---
-> > >  1 file changed, 9 insertions(+), 4 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.=
-yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > index a06f75df8458..309e8953dc91 100644
-> > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > @@ -65,11 +65,13 @@ allOf:
-> > >      then:
-> > >        properties:
-> > >          reg:
-> > > -          minItems: 2
-> > > -          maxItems: 2
-> > > +          minItems: 4
-> > > +          maxItems: 4
-> > >          reg-names:
-> > >            items:
-> > >              - const: dbi
-> > > +            - const: dbi2
-> > > +            - const: atu
-> >=20
-> > New properties in the middle of the list is potentially an ABI break.
-> > Why not add them at the end?
->=20
-> Because it ref to snps,dw-pcie-ep.yaml, which already defined the reg
-> name orders.
+Same behavior without maxcpus=1
 
-Are you sure that it defines an order for reg? If it did, it would not
-allow what you already have in this binding. The order is actually
-defined in this file.
+40 boots, no panics, no FSYNR other than 16c0000.iommu
 
-> we using reg-names to get reg resource, I don't think it break
-> the ABI. Driver already auto detect both 'dbi2' or no 'dbi2' case.
+> The thing will likely run slower (because reasons), but shouldn't
+> explode
 
-Linux's might, another might not. I don't see any point in breaking the
-ABI when you can just put the entries at the end of he list and have no
-problems at all.
+That makes sense!
 
-Thanks,
-Conor.
+- Hey, boot is slow. What can we do to make it slower?
+- Well, just add a bunch of cores running in parallel, that will get the job done!
 
-> > >              - const: addr_space
-> > > =20
-> > >    - if:
-> > > @@ -129,8 +131,11 @@ examples:
-> > > =20
-> > >      pcie_ep: pcie-ep@33800000 {
-> > >        compatible =3D "fsl,imx8mp-pcie-ep";
-> > > -      reg =3D <0x33800000 0x000400000>, <0x18000000 0x08000000>;
-> > > -      reg-names =3D "dbi", "addr_space";
-> > > +      reg =3D <0x33800000 0x100000>,
-> > > +            <0x33900000 0x100000>,
-> > > +            <0x33b00000 0x100000>,
-> > > +            <0x18000000 0x8000000>;
-> > > +      reg-names =3D "dbi", "dbi2", "atu", "addr_space";
-> > >        clocks =3D <&clk IMX8MP_CLK_HSIO_ROOT>,
-> > >                 <&clk IMX8MP_CLK_HSIO_AXI>,
-> > >                 <&clk IMX8MP_CLK_PCIE_ROOT>;
-> > > --=20
-> > > 2.37.1
-> > >=20
->=20
->=20
+As a matter of fact, trying to boot to command-line with
+maxcpus=1 causes the system to lock up & reboot.
+I had to add a systemd script to enable some cores at init.
+Some qcom daemon must be locking a core & expect progress
+from another process.
 
---f4Ml/B5fxYMPddxi
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZp+/nwAKCRB4tDGHoIJi
-0o1yAP9Ri4U2xMei9m2+GEfjZXiikHHGvpUwLmes7Zt8FfQGUgEAw+oENNzcQbGV
-qT0hibbBrevG9+0vEZBZvrBDpf4H0wI=
-=PIZD
------END PGP SIGNATURE-----
-
---f4Ml/B5fxYMPddxi--
 
