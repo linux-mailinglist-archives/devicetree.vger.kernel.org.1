@@ -1,193 +1,189 @@
-Return-Path: <devicetree+bounces-87658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5BE93A3AA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 17:17:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA4BB93A3B2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 17:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE58D1F23C1F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 15:17:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3477F1F24051
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 15:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8263B15444E;
-	Tue, 23 Jul 2024 15:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E928F156F4C;
+	Tue, 23 Jul 2024 15:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="qvSXdRjC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o9dN8cXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35EB93D55D
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 15:17:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39FE83D55D
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 15:23:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721747838; cv=none; b=VF0aj8WqUPuZJnIwH2c171F9iAZTwJb4G5nmh35nhaKgPTZirX6F0/uOuJaBzWWjylxHLPJCZllO+NdPBxP+gNzny/NvXqyTOtaN5fgj7XKKoVBdqKn7vEK3cEzAb7M+Nz8wTAyhJUcnMHHEAopZeXGoevy9iBApUT0Fbhm2MG4=
+	t=1721748229; cv=none; b=qkMGAyXLBppxFbbBtlt5+X2+WSQdgM6QQAB0uX+uz4IDkE9ju4dp1vqSMxfjvoUJjz7iVOrwo045Y53v0rKrTGzpm8cWlgR3ysfuXtO+SVsCLU10VQRv5nFV4BCC62Mje0EPI7p/M3I4scMCD6OfHQgtaMPs7qZtDW8qCCx0rgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721747838; c=relaxed/simple;
-	bh=k4BLloF5clv2a5Kq+UyoZgTDDctx+BVkEwa4h8tIOIk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sclCu7PwVemUbh9hjjk2x7ZQV3zzTmA5yLQT3OMOfYr+SXemtruQJUQ8MWB6TgSHX2UU0lTbuxNv+hfWoB7ERQa52feS8/I8o2lQVCty/vZH8YKUWwQP4ft+LmakNrr6m6QxnG6SXPt1mqBHT4bQHN18SgZ+ydz1sE7D2cN2ccM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=qvSXdRjC; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-427b1d4da32so27845835e9.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 08:17:15 -0700 (PDT)
+	s=arc-20240116; t=1721748229; c=relaxed/simple;
+	bh=9a1m8wCw15p882FhgcOXJOX77YRxNGDibajWEZXzWeM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X6iDuBJCNBhahCBjIBp+WgI8myW+N5FyA7ocdlTrvsdV7xKb9CVmni0neqZIIESazNQwRWyBfj1OSkkjyugH2IPHY51yy/ra95iNazxVrakKI+6yZwpyLlUXKvPYFvqHtbzYV664hOk/iBjy4t6/3ZFuZvPax4f+p+xuhEgyTqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o9dN8cXq; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-643f3130ed1so56135637b3.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 08:23:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1721747833; x=1722352633; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uea7fpwFzsLB/1iqowl2rAELpCia/ExDlWK7awEvfuY=;
-        b=qvSXdRjCkBG13g5mgnLNNc4hglm/SiXhBjvHhQ4PNzMeQegcsoTbvDEqj0St7CZcp4
-         t8iQpZbkxyJvx1oxunqN2TkdOiDVkM4kTUVuQV7Bts+J4FpW1UfJ4XoSb24EOG+tc9jb
-         MnO+3tkFVFL/cWgrCUrvEsBFKh/vp8ymtLk6IeUNgf4ovFg3ZeUkje0rSAYbOz6s4co4
-         VMa6TWjhrdHvdpwDrsGr6I5eM/spR6Y3JOfu39gTko5UPZibc/WPXus1pxhQs1kK4Vlj
-         AHqffq732A/Ibz3vc/oLP/nYo9jny9yYaa16XEfwzNyahwN6LY9YcWBMbc5NDO4BRg5v
-         gqHg==
+        d=linaro.org; s=google; t=1721748227; x=1722353027; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QmjktW+fy8V0urjYafMHY3WUuL7GfZ0ePI4CjTduJBY=;
+        b=o9dN8cXqCy5OTESuTSiJ/RYVgTDh6U+j79QlcdGzJgY0fhb6kC1jO5paz+0etJwpIy
+         v4X1Ig7uQPDTYbv6mb3rA/817S5DRyjHiq83hUA+Fspwvw8KfISXmaW9y3cj82vglYRH
+         so4bwZNumbrMvHX7IqmClMQB2k4YRsptkEn+Xwe1dtWMqM14yjG5m3eRcriZOS6pTOtS
+         PvLgTd1zvuNnitCUTj199NHR7JMIy7QmjGlXvYd9IbIWYtcIrkR5WI039wIngu8N0k26
+         Zf27uvZEEi3yvIeW1TZX/jEh+NLQmlxvoHcOrE1TBAq3/8+qoW4aDeKhztbfLVcAyxcQ
+         oWIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721747833; x=1722352633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uea7fpwFzsLB/1iqowl2rAELpCia/ExDlWK7awEvfuY=;
-        b=R3npyHqJQy2lvOVE2gBAuDnA9DEeobrt1nFl7tEyKfs+0LpLGJCYLelRELrN8uQ5+i
-         v//kKTJ6c6iYy1/9021DtDRVfumx8regE827xP+h9qfhq0DfK+mGHgm+pDZGhwStYQ8H
-         wi2hUwSGhWjd45UA1DiFmrhbn6rNmWYeBmyFRzr3Wh99cnVMjkAhzKKJ8MG3Z0nIIQdr
-         Fw/g5eQgoDjZaJxaAWabI7Jyn/5h6wlnIeXDp3Oes9e3N2Dz1PJ/3DJFj3ght7IwHxGe
-         4jXKYLj337GkCTrlQcvvbyZ8yzCGaP/mvZzgE6dUXH7PYaZkflb8W5Phzy2qHh5Sb/NM
-         BMyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVAYULs57KTv3wgFGQIx2hm1R4n+C0QT5l300o2DxMrNphVkNXkTeyew2hCyskJLHSofxBNL96yE3OpyIX2LfLoIQsilbtysewKw==
-X-Gm-Message-State: AOJu0Ywjyfu6LBFXXUwtv9gTpgUtHEC4XOT/cEMn5HaxkH+ttW1bg8rv
-	0+QbQeVqXt1G2620RQbfHBouquHI/XHHOk6e9656bpnd60ieG8oQcMHSJZPnSWs=
-X-Google-Smtp-Source: AGHT+IH9roU7SNg3lKjUnvzKa5IVDcJhlS9aYo3/Vqu5EDsOfZaYrMKcTKOzd1KQB0CGXudZUT579g==
-X-Received: by 2002:a05:600c:5122:b0:426:618a:a092 with SMTP id 5b1f17b1804b1-427ef3a873emr17950635e9.13.1721747833567;
-        Tue, 23 Jul 2024 08:17:13 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427d2a5c3d4sm204304085e9.17.2024.07.23.08.17.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jul 2024 08:17:13 -0700 (PDT)
-Message-ID: <e9d53545-80fc-46d2-83a1-79842a729688@freebox.fr>
-Date: Tue, 23 Jul 2024 17:17:12 +0200
+        d=1e100.net; s=20230601; t=1721748227; x=1722353027;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QmjktW+fy8V0urjYafMHY3WUuL7GfZ0ePI4CjTduJBY=;
+        b=un6Fjo5F3CeMpa52NZlrEDiETc6RXM8p2nI03XT1kolZiWFCA3BY9GtXhV2Ii2H8Aw
+         0gaP9xa0k8M+Ak0B4D/hpxarynr75BqujIJoD3GOMVUo6VntnfQ2I44aibihO6ujWLXC
+         aJ3SgxVnPm3Cv4i0Jik76hrbL6MM73+wxiUInGyWuykBPYkwN2zNez/TR9oFqJrfKr70
+         KpNsLKIy3MrMNQnGlh+SiQBxtLWu7w5DSJaDtcKskKm28UXdt+dIB6XQaBfpPKkWpAs0
+         Vdqly6HNt1JBRWzly5JrQC82hOYXlLPswx5BD5BQRQ0HJOG6hcYNBQTiOdyXfsvZqB5B
+         1Ocg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNyLPxO4iw//G2CKys6L55SwW2TnwaDshRuwf2Amii94Qmd9BZmqoTXxHfmOx7AVF8TMMtZZOiiX1kibWWuPiA9ytOLrf7vD36AQ==
+X-Gm-Message-State: AOJu0YwvG/SQCTu++h+cYNlYLEeP/vvh+gShZSo2NBE4kcQooD8KW8KC
+	KlVm7LIAXWVK+NSKeHfWLfnsPpCHQTnaspi4Iqyc2GopdmoJ/T+tqJmnRDMLg3WPyhMw5I8QQmY
+	Mb3Sz7W41MsplEFiQMlceqBG7XPh1D9uhVXF7JQ==
+X-Google-Smtp-Source: AGHT+IFNhYPefrkyhvZ5EiwckdgofM6l9C3j+l80SPqYeQxgCB1HTAyW3/snR2cX8yS7q1mpdKGAE7N7Tba1WvQLuX4=
+X-Received: by 2002:a05:690c:2886:b0:65f:86a2:b4c5 with SMTP id
+ 00721157ae682-66ada72f761mr103148437b3.31.1721748227226; Tue, 23 Jul 2024
+ 08:23:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240627-display-quantum-48c2fa48ed1a@spud>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <20240627-display-quantum-48c2fa48ed1a@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CGME20240723141705eucas1p1bbe72a6d543031a41efdbe81d1b03ac3@eucas1p1.samsung.com>
+ <CAPLW+4n6XB3fm8KQA=6_2z8ay9pDPtu-VFgAaW5imZkRH2ywkg@mail.gmail.com> <20240723141658.374755-1-m.majewski2@samsung.com>
+In-Reply-To: <20240723141658.374755-1-m.majewski2@samsung.com>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Tue, 23 Jul 2024 10:23:36 -0500
+Message-ID: <CAPLW+4katjgDUS+e4+iYt+Cz_pKizLFUxqV4KGnbQ5ekAq9Mvw@mail.gmail.com>
+Subject: Re: [PATCH 5/6] drivers/thermal/exynos: add initial Exynos 850 support
+To: Mateusz Majewski <m.majewski2@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27/06/2024 18:25, Conor Dooley wrote:
-
-> On Thu, Jun 27, 2024 at 01:13:03PM +0200, Marc Gonzalez wrote:
+On Tue, Jul 23, 2024 at 9:17=E2=80=AFAM Mateusz Majewski
+<m.majewski2@samsung.com> wrote:
 >
->> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
->> It supports DVI 1.0, HDMI 1.4b and 2.0b.
->> It supports 4 TMDS channels, HPD, and a DDC interface.
->> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
->> for power reduction. Several methods of power management are
->> implemented to reduce overall power consumption.
->> It supports fixed receiver EQ gain using I2C or pin strap to
->> compensate for different lengths input cable or board traces.
->>
->> Features
->>
->> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
->> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
->> data rate, compatible with HDMI 2.0b electrical parameters
->> - DisplayPort dual-mode standard version 1.1
->> - Programmable fixed receiver equalizer up to 15.5dB
->> - Global or independent high speed lane control, pre-emphasis
->> and transmit swing, and slew rate control
->> - I2C or pin strap programmable
->> - Configurable as a DisplayPort redriver through I2C
->> - Full lane swap on main lanes
->> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
->>
->> https://www.ti.com/lit/ds/symlink/tdp158.pdf
->>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
->>  1 file changed, 51 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
->> new file mode 100644
->> index 0000000000000..21c8585c3bb2d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: GPL-2.0-only
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI TDP158 HDMI to TMDS Redriver
->> +
->> +maintainers:
->> +  - Arnaud Vrac <avrac@freebox.fr>
->> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,tdp158
->> +
->> +  reg:
->> +    description: I2C address of the device
-> 
-> Is reg not required? How do you communicate with the device if the i2c
-> bus is not connected? Is the enable GPIO enough to operate it in some
-> situations?
-> 
-> Otherwise this looks good to me, but given Maxime commented about the
-> complexity of the device, I'm probably out of my depth!
+> > Do you know what are the possible implications of not using ACPM? As I
+> > understand, ACPM is a Samsung's downstream framework which uses APM
+> > (Active Power Management) IP block internally to act as an IPC
+> > mechanism, which makes it possible to offload any PM related
+> > operations (which might get quite heavy, if we are to belive the TRM
+> > description of APM) from CPU to APM. I'm not against the direct
+> > registers access based implementation (in fact, I'm not sure how that
+> > APM/ACPM thing can be implemented in upstreamable way and if it's
+> > worth it at all). Just curious if we understand what we are
+> > potentially missing out, and if at some point we'll be forced to
+> > implement that ACPM thing anyway (for something else)?
+>
+> Not sure honestly. The downstream v4.10 driver does many operations on
+> registers anyway...?
+>
+> > Not sure if that's true, as already discussed in my comments for the
+> > previous patches. Looks like one clock is still needed, which is the
+> > PCLK bus clock (to interface registers) which might simultaneously act
+> > as an operating (functional) clock.
+>
+> The code seems to be working correctly without this clock, both register
+> reads and writes. Maybe the support for extra sensors, which I couldn't
+> get to work, would require this clock?
+>
 
-Hello Conor,
+Chances are that clock was enabled by the bootloader for us (or it's
+just enabled by default) and it just keeps running. If that's so, I'd
+say it must be described in dts and controlled by the driver. Because
+otherwise it might get disabled at any point in future, e.g. kernel
+may disable it during startup as an unused clock (when it's added to
+the clock driver), etc. Let me enable that clock for you, and then you
+can use /sys/kernel/debug/clk/ files to disable it manually and see if
+it actually affects TMU driver.
 
-A cycle has been detected:
-Above, you defer to Maxime.
-Yet later, he wrote:
-"DT maintainers have required that reg is always present"
+> > Exynos850 TRM says AVG_CONTROL offset is 0x38, and 0x58 is actually
+> > for THRESHOLD0_TEMP_RISE3_2 register.
+>
+> Thank you so much! Will fix in v2. Though writing to the right place
+> doesn't seem to change much in practice, probably just means that the
+> correct mode is being used.
+>
+> > Something seems off to me here. How come the shift value for EXYNOS7
+> > case is 8, but the mask is actually 9 bits long? Does it mean the
+> > first error field is 8 bits long, and the second error field is 9 bits
+> > long for EXYNOS7? I don't have the Exynos7 manual, so it's just a
+> > hunch. But if it's true, maybe this shift value has to be added in
+> > your [PATCH 2/6] to fix Exynos7 case?
+>
+> I did not really want to mess with Exynos7 code, as we don't have an
+> Exynos7 board sadly. Honestly I feel like I should drop the 2/6 patch
+> completely and only modify the code to run on 850 correctly.
+>
 
+It feels like there is an error for Exynos7 case there. Take a look at
+this commit:
 
-I propose we NOT mark the "reg" property as required.
-(Thus, keep the binding as proposed in v3.)
+    aef27b658b43 ("thermal: exynos: use sanitize_temp_error() in
+exynos7_tmu_initialize()")
 
-Rationale:
+I think that commit just forgets to update the shift value for Exynos7
+properly. This code:
 
-- The device can be statically configured by pin straps,
-in which case it is NOT connected to an I2C bus.
+    data->temp_error1 =3D trim_info & tmu_temp_mask;
+    data->temp_error2 =3D ((trim_info >> EXYNOS_TRIMINFO_85_SHIFT) &
+                EXYNOS_TMU_TEMP_MASK);
 
-- Even if the device IS connected to an I2C bus,
-no I2C accesses are required if the default configuration
-meets the ODM's needs.
+in case of Exynos7 becomes:
 
-Is that OK with you? Can I get your Amen?
+    data->temp_error1 =3D trim_info & 0x1ff;    // mask =3D 9 bits
+    data->temp_error2 =3D (trim_info >> 8) & 0xff;
 
-Regards
+it contradicts itself, because it takes 9 rightmost bits for error1,
+and then uses 1 of those bits for error2 too. It's obvious that if 9
+bits are already used for error1, then for error2 it has to be shifted
+by 9 bits, not 8.
 
+That's why I think your patch 2/6 is legit and useful on its own, and
+it's actually a good catch on your part! But the shift value has to be
+fixed as well (for Exynos7). It's not ideal you don't have the
+hardware to test it, but it just screams *bug* to me :) Also, maybe we
+can ask someone who has Exynos7 hardware to test it for us?
+
+> > Also, just an idea: those values (and other similar values) could be
+> > pre-calculated somewhere during the probe, stored in some struct (e.g.
+> > _variant or _chip) and then just used here.
+>
+> sanitize_temp_error is only called one per probe and once per resume, so
+> probably little to gain?
+>
+
+Sure, it was just a minor suggestion to make the code look more linear
+so to speak. It can be totally skipped.
+
+> Will also do all other.
 
