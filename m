@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-87589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381E7939F94
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:18:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA5F939F9B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 13:19:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B95231F224B0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:18:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3941F2308E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:19:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F07D14F9CC;
-	Tue, 23 Jul 2024 11:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6399C14F9FD;
+	Tue, 23 Jul 2024 11:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S5jU+Izu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZOI8VeqX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD02814A4DA
-	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A61F14E2C4
+	for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 11:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721733518; cv=none; b=k+WeDVPz5QoDKvSigs1TPPomyfNhUqytVCxsq1edZqPNlea7r1mSu0137Sx8uCl5Idtp7ykxaFOmmb4KU/XIyCgOtg716ZImSD1CK9fef6T+BaNBZgBUejGR2leo6HQewsQ0mTf1VhIxUrkcHMB4gl0Xnj2dtRDw/1mx4d1eITU=
+	t=1721733534; cv=none; b=QtT1ssXIjFKDba+Xm9n9teDPQa9wFcLMCAAqyzgC3fAxhgbPuETwWXWzPkF5jGdFJwFZP8ewa1KS+Dz1v5Y2GUmDkXKtFp8uFGQvzDb3LshXLqHXbsg64XxBCMc4lUoxBD05PDx0YH8evHNBpF8j2BK4PRLaRZJj73eGfFgrN+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721733518; c=relaxed/simple;
-	bh=kCsFk5C2xPxba/SRvpms2TUS40hZzgN+rLq9Pet846U=;
+	s=arc-20240116; t=1721733534; c=relaxed/simple;
+	bh=Vp7V3IF/Ot0z3Bm7uzFIPNRfMYgFXd2y7cZ6zfqBK74=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BdHQSVwVlwvaKvPUJCwVtJQUE9W6PMiV/cxY8FTPAcfbeTGD/6WDhZMmZqpdZjmtHXnVfzflNRhtZrRs7S5UydyAxJ9rS2zUywBcZjdcrqymLmvqyUb6A7y+2qvmV76rm9lSMfDyWugaOyw2VP8PTUyQhep22sDcu55UJN55ZJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S5jU+Izu; arc=none smtp.client-ip=209.85.208.47
+	 In-Reply-To:Content-Type; b=Tld11EgWSuSITC1EcZ3AVQAn7XSTSZa8Hm/N4tzbH7lJtf7C2mLK3S0Q0pond+NEgQQZp1KCroIwVDDVScH1ehQtWIUrvOTg7Sg6/XAXnpXh4hF3IsF9gI1y9MmOVa9BfotuM+3/BXD3WF2DDopQrofV3vwmej1/k1CDC7vuP5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZOI8VeqX; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5a10bb7b237so5075345a12.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:18:36 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ef2c56d9dcso24366551fa.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2024 04:18:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721733515; x=1722338315; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721733529; x=1722338329; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=K8pz/FAf9Y2J7AWsrfobX5Hrf5irrouEfWs4xbMtYH8=;
-        b=S5jU+Izuu3DPEjwciHJbablBfksXS7drgKlefX1d4vQ2vuvuTGO1UIG3vuBo3e4bDS
-         ph5HV67tz3/fIFVgz18oPcSl5vQMxyNqeOnGBbSs/9PhReKQR3jHinCM5EPIN/XaV03F
-         M+RaMrLfOIR8+50V3duhHH0a6r8gY3Eiy1y12cH356T1IG5XJATtn3cLFT7g5gBYetgo
-         Mwdj9Y5xnCT7BuEm4SIPxB/ns0PJ7letG/lJpUIrYY6JHPv4EmoVcE6kvVgZ+36WzGei
-         ahHGneTi5ymZ+/j6pxM+lzaXWsBLHtJTvE484Z+FOlg3MrZ9RsyFBG1O4Mi3MgXLUcKP
-         wuEg==
+        bh=kFolGW5KvoLUbpFl88RtzAVsMtpA+UoJdah8t87Ny1E=;
+        b=ZOI8VeqXf7zGeOmBalIM7eKmBb0PALrK4HZH63/bQ0glFDZe3RktQ7Sa+IU/RQsujm
+         fXZzd8JmhFiGrzgDHPln3tyZ1wUD5SOyYEr1jIK7/Jh7czSjbJHHki/guQgzADSG3aoH
+         mm6GVPwR2xo4om7qWrhKnq2fUhQB0MuXlcS+558ll37938Z1dNNxBpWOYtLAAcF/7LnR
+         JB5JO+vQO7lvdss4dBoTY5l8vN1ddYPMVVXsGv+tpdlx59FRM7CIqr+n2uJrLkQv0Klc
+         RZcySPwoOutkC1wgqk/jT0AgG+DPIxTdK4PkHRHx6wh277KX4+SJk6GbDoaarWQRIF8c
+         CR1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721733515; x=1722338315;
+        d=1e100.net; s=20230601; t=1721733529; x=1722338329;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K8pz/FAf9Y2J7AWsrfobX5Hrf5irrouEfWs4xbMtYH8=;
-        b=qsb3TANxlRrVWoVngLQHKgEtOn1RNC9DhwhC62rFAdLwyRO/iLFRgdcU0Xr/Zai5RQ
-         tWq5hBarIEOIOtAzQasqhJY4U8kUi0nGyNzgnqRk2KKPZ/za2aNAFrFe/sd02vB5wMrC
-         7qwMy8RMxke3dft3XwM9o3Hr/8y5VSTqjr8FCF0PAaabr2/JKVyS+ta4FYtUCi/6zt91
-         NdDQiXvtEA9oaVq75XMlOEMq/mMJnGgQ1NNYsh8XiQBfKysHLJYgURRuZgseeMxIyewg
-         GU0iWsQtTApZ2siyqvtNJnj1BGdNyJ2d3CLmXazQEwC2LTpG8zWQJVFIVqQwbXyPHoAi
-         jVXw==
-X-Forwarded-Encrypted: i=1; AJvYcCVkOA8GJ2oV6CJTzGDT8eOVPeX2EEluj1F8SrZ9fj5LviHofqYQn8r5Nl0J6uA7Gr6xNiq/7XJVYxPimUIxipBK6xgJfq/1SpiKWw==
-X-Gm-Message-State: AOJu0YzhZKswsbDYyeLlcfBC5Miy3+Tv2308qxCTrMdYD5k3uiGw9IbB
-	DmjcrYn2XEchWLEeWNfj55ngz+n4jVw6ObWjy5j+WjR4XDHP9i+/smruSvlAhbM=
-X-Google-Smtp-Source: AGHT+IH+nAkhVaUuFpy0eYD4Hkm0wvZYu/TgIVWiiE/k5Ra+9jejRzLV7ZCLoUoz8xpoEdWHoADa0w==
-X-Received: by 2002:a17:907:9714:b0:a77:c26c:a570 with SMTP id a640c23a62f3a-a7a87e35d7amr196478266b.36.1721733514925;
-        Tue, 23 Jul 2024 04:18:34 -0700 (PDT)
+        bh=kFolGW5KvoLUbpFl88RtzAVsMtpA+UoJdah8t87Ny1E=;
+        b=HGt3a+jTk0Lw/AZirMvOzC8rfa0WcP0RZ0Au3k0mLpuB2F07asp0LdqCpKHVaEmgh/
+         JNV0y2vWWfxHpl+q16ILS0CC4VJOfMcSxiR/6cF+JgPvg+Gzj/DiexU6sEPCJh1Jkp3y
+         qPQY8YVS2ENeiT8NbGFEB9ERBNbvv2z7/mUj+6+m2xLkCrf8KOMHqjAo84pFe72wAAzR
+         K8Ds4MVNyu6DC5hwnVdslT/i3btyKRxRHnoZCi+KNP6DyqGHEFekewpqm4hq1C7IcwxW
+         tHyMSrlyQdmqkB14GffaGVYjEbMJAcvhFJyNJKF5u9KWL1vceSgF4uS7uXKqf8nfkQgF
+         3+Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSwbXGUOfhu5mT3kuRTbb3k/Orz/7iRYT8D0udfaJMR1ZzOjr5Kds5vOghdbWFIH/MG9sZc1j6PDvUkpgANJlXuDd5OwLs4TDsww==
+X-Gm-Message-State: AOJu0YwggL4aazGPU1k2/Lfnw2QyuiZeFqCTpDNQ++S7Cwp494qEQA3v
+	M2UzGZcRRBm2l+/qEAyQXcXwFiB5hC6Xm8aPQsdx7iQXWwMhobt39WriliNfZYk=
+X-Google-Smtp-Source: AGHT+IGh8ROLZYy+YmkLstU1pE8fBMI6VzD2hNGUxS476G6ZpE+5Khphj8l5y5mfEcxQaVxTwFRgzg==
+X-Received: by 2002:a05:651c:104d:b0:2ef:2247:9881 with SMTP id 38308e7fff4ca-2ef22479eb3mr68564041fa.31.1721733529173;
+        Tue, 23 Jul 2024 04:18:49 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7aa450c188sm15632966b.34.2024.07.23.04.18.32
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5a7661b26c4sm3497845a12.26.2024.07.23.04.18.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jul 2024 04:18:34 -0700 (PDT)
-Message-ID: <9932bf45-f0e6-49c4-9d46-e55f66fee556@linaro.org>
-Date: Tue, 23 Jul 2024 13:18:31 +0200
+        Tue, 23 Jul 2024 04:18:48 -0700 (PDT)
+Message-ID: <47fb662f-cff7-4b88-b960-af9733feab45@linaro.org>
+Date: Tue, 23 Jul 2024 13:18:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drivers: drm/msm/a6xx_catalog: Add A642L speedbin
- (0x81)
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add 0x81 Adreno speed bin
 To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  robdclark@gmail.com, sean@poorly.run, quic_abhinavk@quicinc.com,
@@ -88,7 +87,7 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, cros-qcom-dts-watchers@chromium.org
 References: <20240722184314.36510-1-danila@jiaxyga.com>
- <20240722184314.36510-2-danila@jiaxyga.com>
+ <20240722184314.36510-3-danila@jiaxyga.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -126,14 +125,15 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240722184314.36510-2-danila@jiaxyga.com>
+In-Reply-To: <20240722184314.36510-3-danila@jiaxyga.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22.07.2024 8:43 PM, Danila Tikhonov wrote:
 > From: Eugene Lepshy <fekz115@gmail.com>
 > 
-> According to downstream, A642L's speedbin is 129 and uses 4 as index
+> A642L (speedbin 0x81) uses index 4, so this commit
+> sets the fourth bit for A642L supported opps.
 > 
 > Signed-off-by: Eugene Lepshy <fekz115@gmail.com>
 > Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
