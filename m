@@ -1,248 +1,350 @@
-Return-Path: <devicetree+bounces-87545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C754939DC6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:30:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF815939DCE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 11:31:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E75E1F22DDC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 09:30:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43B221F23164
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2024 09:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89A01553AA;
-	Tue, 23 Jul 2024 09:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B5914EC46;
+	Tue, 23 Jul 2024 09:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="pLcoz6tS"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="sfMg5s3i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2084.outbound.protection.outlook.com [40.107.117.84])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013037.outbound.protection.outlook.com [52.101.67.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA5D15539F;
-	Tue, 23 Jul 2024 09:25:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110F414D2BD;
+	Tue, 23 Jul 2024 09:28:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.37
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721726702; cv=fail; b=aBb3r9XZrMtKL0rOPB7CfCayU2EQHw9opigNXcBNWu7vsXPkbGUPzcawhJJITT9JXSZC+J4fdvEFLumS580vBtkufrZMgE4AJdgeVvM7uSOrswBwnFsRdSDjpYL58gA0deKHyrIEDemieHWnwbj+elV7HLhyoiO9iuPY9smvdS0=
+	t=1721726918; cv=fail; b=LZWj5bdMMpvPb51jlnSiCA546w+2jUDYp3cF4396iXysi0O2urogkZuWNrV3W/PlP31SsvXSQruSm8zDIDnhLjYoE36utNSvXtABhzYNaFwFrN5184flA78arh9I0KokMOCVeRMw4EJAT1rXpig8cmkDSiRLa/Hr66ACQ7P8wSU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721726702; c=relaxed/simple;
-	bh=Zc44MPj5msfgVgX+6h+5N5exmY1yQ5xjfARItL8A3D4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uUdS3ojRZnkZHpGqmqhPY5yiQXG9Kcx+h4Q+/vRnm6VcmmMvX3Iexw2pvQQPpx6zLIdDt2PapmYmpm4kGPRfRtnyAcpXo3kON38reoexnQHJnJBQ0j7jlODmOfM62XoruTlLWkeoa8eyErcnGCWMsXDliWfkrQ4rKWBnzh//ZHY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=pLcoz6tS; arc=fail smtp.client-ip=40.107.117.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+	s=arc-20240116; t=1721726918; c=relaxed/simple;
+	bh=kthBrDMTM8K6nezWm5f1E1RFA9R71ZkSDbCXa5kLW88=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=CqiKkjFWzCGMYkPHk/u79EJseZ7Rz6YMPCZ28QCu5OSkpxXiEuTShdC8OmWdugW0m8/UnnhEg1Uwh7c3yqlS5CJGnfuMKbaVmbJFK8aGgQuWEV9K6e8sz6onjvm9REoZZVc7iqgda0j29Z2TdISYvekCoYcjPKhZjDJI8XvfBgU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=sfMg5s3i; arc=fail smtp.client-ip=52.101.67.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SEi39O22J3/ut7RGbwySz75Ffh0q4AqM4x0rezbcIOlPTJOLvlas2V8U4CJS8ws4zfHODBC/W1Wszvs3pIekxze8H2t+x9fWndLoQ1XHvUJTnE8/jWvqnHcBXHBXVP3ou+wDSPouO99V7v8vWeXaOE8UPX0ffKVTMjQdWp3CNYUGy46eocfsJPzYAskIbce3pb8re/2GianuO1XbbN5O+j+w7ILxMga6kp/ZcKFA0ei+tPIFpRUBQJK8R31gicA6pAV4WUL9Pxh9PF/3x5T8w4uk3uft9Tz3kgbc7OpM1Pb+J1gSP8K9PE1JXWjEzUqBgOAO15FbdJuRxO9/aplHNA==
+ b=mdxsrtGqQukWdGOwqGr6+mYBPa7Xsxx8Iy6mEjtYdn5yK7HvSsSHGWjjfXCtClL7o0iQw1J+ocIg0ZBH86t3CoHROfvvkq1L8+++JEwF0COnYJlWXp1Mv4ov8+O6ZEiFCfG0UqC+eFAGLTCZE/hl4wJxvpvvg5ASRoUqCbyxs6NkQUdRIFvkBfSFyx8K25fvPJv7TUwrNEvWnxRVOyCPN6XDdTJWdNDJMETQQaD7kTOQRKNDqiv1lz3rVIxCzdKZ0JgosubrrxMXcgtduNp348hCySkDZ4r2kakY/LhnLh8dyYNdpGrGnxh5B0OUbcEJD3Ms/G5PqrVM5mKC4Q3CMg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3pXz7BSWZBdMOtEGyFa/mxHhT1h94fl5HKQ6bKEYhdI=;
- b=Wryd+S9jfurebBmsalblHGfnCqFFsUYvB1WAJzsHhuCQc9qFsm0qJMaBd/ZgxXGnNRGdzCFGQB8izOrRWVJfZYJF0z8BO1XMt1XNOrGhiFb07Rjxa5GNhm1nJaob4FV3sgbeGywl5/o9WyCjtFMmJGjg46H8zxlmFYniYnkMYDv6dmEvnsz2Uu10B8ZCIioUf92BmCwBrMnE1s0FDbh1p5/EDrZo6JfKKJ1sSiATAYJEUQtdHoKCl/2W1MWHx/aGO0dXMVDPH1vs+MVn7qRFOyQvJjzlaIuDewxPWqoBbIOt5XGTflvJ3nGIwhGDzW+/0Vs6SEI6rQdUKlxnaL3Bvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
+ bh=CuLl15g+XEgQ+ME4GMKG/i3xXuZDakhkMjXnhWANj1U=;
+ b=i89YsCdnkrJklEW1ukM8zkQqAZcFStyGCjz3DtVN6/yk3i1/qdo0kqjUt8aPqCK+rA3nq2oXJFx2iRcIrIjP1oPnOiMS1XMXsebh5k+gRVWt3ahF7C51FHJ9yK8pa/tZ8ASgUebSc5Y8JICoNKavBzgvmPsTfhikpnYvO/7YbskGipp3HSNnR5jNZF58MUTbbT7X/s6KeCEKcNQ7fSd0FWA82T1IcXJ+8yNHQomBf4mGhfEIanE4LXPoU/AvHhBmTciqIU/hnEgAcJaYaYvOnXEh2maos6SinKDBJD1BDG8AulZ4T7rGu3oEMiJ9gMewqJd7FHE1Mm1cvfoPNY/8hA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3pXz7BSWZBdMOtEGyFa/mxHhT1h94fl5HKQ6bKEYhdI=;
- b=pLcoz6tSUgZVejfxIr3L4Qh6L5Jwz+mGO8tYbzmFiyHA4Cv/ayenl0/EKpC8rjVwxn+gDENDsml0fzv2Et8kn+kFmMfw+1JqSRj0Ifceckv62o+qDAkB7aD+q9LQkeW6fyMlt0z8LD+O5bZkJQS5Wf+Rig0ygZPyPgaLhk+7drTFTf2UH2GZw45AOZGXErpD7Grsy+fcsU7EYHkJ/hoYTTMyMr10NuXGl0aDZwQ1fOqXBbIokqq1a46oBA3C530axtnP7pNou6GPWna9yiRRUkRrdqNIZWLBj+snc287Jw0nxjEvIDhOezMabgigvmK9714Kh9Z9S+eWwcJCBdvFww==
-Received: from PS1PR01CA0019.apcprd01.prod.exchangelabs.com
- (2603:1096:300:75::31) by KL1PR04MB6734.apcprd04.prod.outlook.com
- (2603:1096:820:d8::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.14; Tue, 23 Jul
- 2024 09:24:56 +0000
-Received: from HK3PEPF00000221.apcprd03.prod.outlook.com
- (2603:1096:300:75:cafe::71) by PS1PR01CA0019.outlook.office365.com
- (2603:1096:300:75::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20 via Frontend
- Transport; Tue, 23 Jul 2024 09:24:56 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- HK3PEPF00000221.mail.protection.outlook.com (10.167.8.43) with Microsoft SMTP
- Server id 15.20.7784.11 via Frontend Transport; Tue, 23 Jul 2024 09:24:55
- +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v11 27/27] ARM: dts: aspeed: yosemite4: Adjust ioexp bus and remove mctp driver
-Date: Tue, 23 Jul 2024 17:23:08 +0800
-Message-Id: <20240723092310.3565410-28-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
+ bh=CuLl15g+XEgQ+ME4GMKG/i3xXuZDakhkMjXnhWANj1U=;
+ b=sfMg5s3i6UPPZe87VmsTyIFtBKLuJVF5gcjcz/hy7YbcXEtyL+n0Mz8P+v5lOUo/9lyn/Pi0JfBkcECyWo7DdKv7YX/9C9SsHDydN4uw12qLnQbJIsBb7z6p7kOXj07w9kKD6xdQWGW+eIO6+v/+a4YxpMxPU0A/avaeFNCTyZk=
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by GV1PR04MB10331.eurprd04.prod.outlook.com (2603:10a6:150:1d0::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.16; Tue, 23 Jul
+ 2024 09:28:32 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827%3]) with mapi id 15.20.7784.017; Tue, 23 Jul 2024
+ 09:28:31 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob
+ Herring <robh+dt@kernel.org>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v6 2/5] dt-bindings: arm: fsl: add imx-se-fw
+ binding doc
+Thread-Topic: [EXT] Re: [PATCH v6 2/5] dt-bindings: arm: fsl: add imx-se-fw
+ binding doc
+Thread-Index: AQHa2/NU1sJztJxAoEWO7LSlO6AOebIC9paAgADLMzA=
+Date: Tue, 23 Jul 2024 09:28:31 +0000
+Message-ID:
+ <AM9PR04MB8604123E065315093347F66C95A92@AM9PR04MB8604.eurprd04.prod.outlook.com>
+References: <20240722-imx-se-if-v6-0-ee26a87b824a@nxp.com>
+ <20240722-imx-se-if-v6-2-ee26a87b824a@nxp.com>
+ <20240722-popper-comfort-7538ea70c77b@spud>
+In-Reply-To: <20240722-popper-comfort-7538ea70c77b@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|GV1PR04MB10331:EE_
+x-ms-office365-filtering-correlation-id: d9cb037c-f2e4-4d9a-7761-08dcaaf9d194
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?ChHK+BzS9hFM8v1hikdNjjHytwq66oIsLkHAmwmMLV2v3Ep+oYXIlhADaKVE?=
+ =?us-ascii?Q?rAJO8NezGzvC/6HZcRrtPi3vzP6hdGIRwainkdCL462xceurFX0/kaxQ/xca?=
+ =?us-ascii?Q?ro1fBOu8UOLYsVuq5zxZugQH1pdF9d+OcjHCKZNUFE6Oz+RYS1w9obKmNAsi?=
+ =?us-ascii?Q?ATgv1cB7cP3Oc1r5l5nQY9im5EpPYYC37VOcMDxY+pdXrg1ZhDhHbOfVd1ya?=
+ =?us-ascii?Q?YKdGgA8St546mBbU7QSp0quVP83m5D2E0vfu2UEYshM0XN4hLqQkieASJpU5?=
+ =?us-ascii?Q?ieHB7cqw464bu84/2PGrgnsa+fPOUr7jVNK48nRg86ZOtPtKtTZmYMDNkC4w?=
+ =?us-ascii?Q?mjcLVEfXhTx9m6/vnFl9i8Rpy4eH9CQA91qaF0sOaVKNZoHLvKFq7gW7hVTa?=
+ =?us-ascii?Q?V4vzV8VGtozeOtD1fqU0ASLK65d7hy/UvEzsdOa+po6xIhC+VZZeGukO7qmt?=
+ =?us-ascii?Q?ktgTDgh64v2OIUrVBwunlRwaXgt7zey9vTEloswNvp8maTs5SLZ66GCPtmNk?=
+ =?us-ascii?Q?Bc6I7abZFJRgx+PtJGPtz1rl0G2NwcUjcrEoz1Ar1gzd/CYhC1hftSfSpIBB?=
+ =?us-ascii?Q?E9pM2+xkXjiNHgeH5fHMnZPdNAGKoY9ANk30eXkZ6ywWWldbTxhPeb/y95cB?=
+ =?us-ascii?Q?baLNGr+lbvZnTVJWm4I7Qn15vcLto+0pn+GYKJjuvhku+Dp2eCSr8BWOKsAL?=
+ =?us-ascii?Q?lZaJp7L8qfAxB35tdCeLGPqZ8Ze9aiT/OoQOIOidvXlYS2h7wzJ2jkvckkZs?=
+ =?us-ascii?Q?q9Ax7MZrqrCABRZbvvNhQUzzJb/CmjtYQtCLJ901blC82qkj9JhDAAoP9EnM?=
+ =?us-ascii?Q?aRvLm9APg9RBKVjPZD97gflQ6eL7RIe/a6LW0Uyx8MyfDcJRsqVsZyw//D6J?=
+ =?us-ascii?Q?2yelQuueFPmOM8O9j9PNCn/5XfYX7I2dK0k+XGVVzRhFxjaZEtngisKoVzAo?=
+ =?us-ascii?Q?cLtnWAe9jj8aJIJRLMO6zwIjx7W1TrbHEaw/y1VuDDhQAwMVDFCHJ1rqFzQN?=
+ =?us-ascii?Q?IRTXdw61e2C7s3KonPBQBynKEaWWGublAvf6FNsGH5+nvwJs3KALb1zClDNo?=
+ =?us-ascii?Q?7CNIzu6GZp/5yb01nvVnxheW3mmJZmL6Fx01JIAOfkMzxbMPIl/VIiYpFfGH?=
+ =?us-ascii?Q?nJXM8wDn1vjZcSGB1msdsJ8a3HLQx5yn/s9Q5jh8Ah4Y5BLpqGAZXTveyoDO?=
+ =?us-ascii?Q?cu4Mm894251vyfsM2rBCM0IWWCYDsXK/l9IzqmwCX7iCKI7KA96Dhx4oTsMn?=
+ =?us-ascii?Q?5FKI5nKGwSPefiwVCsFXwmABJJ7EPmDlX1/eK+mt85432GR9bIsWnsDAGYh+?=
+ =?us-ascii?Q?SRl885ynXd9Rh+p+cisgGymFr0+PN+7bnMvCoh/gECGUAoYhpU+gu0pxcIry?=
+ =?us-ascii?Q?6B4KshY=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?SQbPyLyhYfG2KMMjwm3LI8BRjcE08g63jvvsVEQIYOQ3rKQoxeGxyKJ7fJDC?=
+ =?us-ascii?Q?s/ChElmZKSGxTp7BwTOzmXPk7h5JL0effjK16dv5yUvobEle6XrDPN1e3WOX?=
+ =?us-ascii?Q?7/fIa8/THHpX58UJezx9oYQdh7QjxoMEm2bePN/vOHO3HCIx3TL0F2scH//r?=
+ =?us-ascii?Q?bkGmL39tYFco3DqXWpkl18JAJEf9E0iWwX07OTjeljk5g4Lbf/b+5WclaaBX?=
+ =?us-ascii?Q?vYwPi0KS6I5svMkRcsGxcSrkvtnKPp1/weK4KkS0bpGcIscbDBoFxp0axVfw?=
+ =?us-ascii?Q?7u7NfPk/6Un/ETG1kc9NQDEfWMWrIMXg0AgIQr32ER9bHPz63Vw/saC1vxuV?=
+ =?us-ascii?Q?0W3eYj2JDLTtXI/5xvwb4mS3OwiRULAXnLgUNCtBo3qdTCSC65dtuzoEk0OK?=
+ =?us-ascii?Q?EGnxkfB03sHudDILbUYcKfNQRCjHzKa305cXqWOkGEOewESjSDrUfUmCCGK8?=
+ =?us-ascii?Q?gc4oQX5IyAgH32y05DNmqz04850C3EK7Xfhewmb7l1sIsyFxyP8mncL7WD16?=
+ =?us-ascii?Q?9gC8btZqbArUSRjdTvLfZgTmYpOk3brq9+eQGO4nPeOIW/9MSr7tx6IsoLSW?=
+ =?us-ascii?Q?kxxo2wEvdr+cH03MpFje3FjbMuk9cXcfneib665zAeUbic/yeh7Aj2GbuTw5?=
+ =?us-ascii?Q?59n8Zwb0xJ1Z93tDomY+ZK0A/IWQX4aMCUCml2Pp/iqZtwvXDSUrqO6qRc/z?=
+ =?us-ascii?Q?ZFHVF9FivJzxuj8X9yDW5AGe+JOuVTcKbhPf35SQr2cYoKclSMeMmMJc9Z/w?=
+ =?us-ascii?Q?MK8yufb/pUqitY/Uc4x+MNQbNv/P+1CWDz96mzI6iAGigmyLw6LN3Q3W1OJm?=
+ =?us-ascii?Q?SH11SA/ciwvu1PqnuVMQAG10KTcQqBSZvrgfrtVgw057LUH/JOiKSejX0m8f?=
+ =?us-ascii?Q?ZjEDd++7Gw5ERPhLs30szoMva0hOjhhIXoj++iJ7ctoJ3VHixxOe+LpsUYAy?=
+ =?us-ascii?Q?yK6jR1wKjG3TbxD9Lx0Mrq9gKHHDCpqJnX6iavvp3aR4ZufOLsstCDIXmWy4?=
+ =?us-ascii?Q?I4NNoHE+mwpBM22Hxgm56uHMZAEil1+BTDmZrWGIXinhCHNGYUi4Zi2ALq19?=
+ =?us-ascii?Q?5ujKSECpHmopiHXu2aCzI+9MWiqwTq1Km2GjIcUVEyGE1zNJQq3EOoMW1HED?=
+ =?us-ascii?Q?sLdUeSHE0SPMRl/MaXcwTNnLFuKzCFXVzC/9wYiV3HPYQSEANB/3WSPsN94X?=
+ =?us-ascii?Q?QhiSa6blW6zTn33zA74MfepZbfQLDyFXUE5wGgGN8y/QxAadKAqff/7RofX6?=
+ =?us-ascii?Q?DJQ50FgY6BbiYqD92Nvfa0eKyOBOvVD9tVXwbfxRC01E/Tk0kbrlqnQcGBkY?=
+ =?us-ascii?Q?CyhhTP1u7UiKTu3Mt2B+ZDGbN/RLGen4hcn6siM3ydxzYs+cRDpjUqyNgkyj?=
+ =?us-ascii?Q?as7ARu2UsenSiDsFWztKD35C+MN6M2GLMN/uiuC2fXfXcEPzvNvW4iqAgImo?=
+ =?us-ascii?Q?2UNrpv2eMl0TvHUjqmW2GWjQMnrLZWdzKVHfwpgtxW96J/UU8W9AuOF6GN9d?=
+ =?us-ascii?Q?i3kwjQfU6uOoSdvBSzZwg9d4aorab8M3hh7VQnclnh6UT/WU1xmVgy4v517y?=
+ =?us-ascii?Q?cj8vgP/wDWTor3NmkR7C2AtLn4vUmcKMRZOF/ass?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF00000221:EE_|KL1PR04MB6734:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 8ab6db64-d7a6-43b1-2b90-08dcaaf950fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?VW7JqU6fwj4+BnNuV2821N8n9RyqahLNHCTH5gmvUrhBIs3VIOUL3kblbhXi?=
- =?us-ascii?Q?wN0mUZrdoxHejHruHJ505uFVYaigjHxT+IuvVVsfUP2DCRIOz3BzV5aP8Ye9?=
- =?us-ascii?Q?Yd+r/kNg/wsc614wyz8G/KPnEk4QxESPzh94c+7kK3xI6pcPOMFULI1xyyJY?=
- =?us-ascii?Q?wb5TI276ckd1o9kFiNQGrr30z1dQil5SbjwmMW+wyQdHg218rbMCufaHGe1u?=
- =?us-ascii?Q?oMRLiT2XYj6xMhjQINwNTw9nqoRMDQj2bJnBfjSAtPkm0cbCGkR8f9GpIuCR?=
- =?us-ascii?Q?sG4YkOA+AbQSZJJW0vQE3rwnczjM8DKzZ0EAEf+QXSDkT78Pzy8lHUKgeg5P?=
- =?us-ascii?Q?pA1v/n65ub5r5ta8p0TlKWX65CqYOkqVEqXEZXihKopdBYtzYY4rcJy1Hh47?=
- =?us-ascii?Q?u/Z/moL3GUNFQMZt5ZOIMpsQU9eY3ZR9gWWb22KUUyT0A0IghG8PfcHyksR2?=
- =?us-ascii?Q?/P8OToJIllCaKyKNmf9H28H5FOVI0myMtChmBwlUG4TKbCCLjL+934t8ZxmT?=
- =?us-ascii?Q?vUjFQGVpvLreydjahgzLrbKErKGb9nIK9m2MzLKp9IhM6aeBU2TOpPaxNDO8?=
- =?us-ascii?Q?+nJpAB57YdaWBT5k7xIRYiaY2sc7DxKzCmKEiKxjHoZgBj2t1OfOnPpBQiAf?=
- =?us-ascii?Q?07T4ijXsRRN59n8zi6BZ8EolBQnEhjiGQMX0ck2Jqy2hxkMYDpdKCkWdo7ko?=
- =?us-ascii?Q?P7H512ETO3NSKirW2xdpim2y67/CT8RzTOspG1flOHAPxWxV/c1MGYQUR2MX?=
- =?us-ascii?Q?pkXifNgINJg9/cs5FMbICfI4Xcy2gT1WwkMRmMgSvwnMTn4EJR0f8Jz/3FK2?=
- =?us-ascii?Q?KHkkUze4naY1pLCDkM8RaRpX79HmP5T7xobWpS7P2AF0UKf5PB2etBPrOZJi?=
- =?us-ascii?Q?CidxBfnpC/C/TPXtR2rDDGDQPA2emyRJEI7Uzq9gWlCdifr76SDhcnnV1BgQ?=
- =?us-ascii?Q?y4+S7Cf4YD9J1fPXjq1SXVnzPb5VB3hg11JGX6FweKnF8x0SL0erXBMywMzN?=
- =?us-ascii?Q?xQwEGTx6WIZxtlaLd+KK/lxsX3BVKQRR7Qvu4yx0YRYUIavHTxwSQS+aicw0?=
- =?us-ascii?Q?Uh7fdOPB/mCL7C+g+pzId+m6Wzd221QfD0xhxrisIvbI2EYpXrtB7jfPaeqX?=
- =?us-ascii?Q?UAEuFrEXa8RdRq/t3TBQc3bQrL5k/MJzsgo9IjMHcnqs0l+vsFr88xjr69Kv?=
- =?us-ascii?Q?Kqa4ez2n4c0RadeWao/tukGJlG4Bfcjj8D/0CA5o3t3pVZG0nRY0uJHlf/rv?=
- =?us-ascii?Q?VlEEY3Dq2kjmjaoQHJ810z7dcUsvgutAUM8yCLVKpmFA30bLzzww+H2JVbJo?=
- =?us-ascii?Q?ebWJQp0jUm1F3ZEswG9+/FDds0ugu0Bx/4+iluWd2QU5Hn4o71pdiyKj00aC?=
- =?us-ascii?Q?FW6TcUtuBKY/nwqvEzHkT89ufRTgwAgNMUYVNopK/W3GT4kXahi9ELnNpZcI?=
- =?us-ascii?Q?If0SVbYrAV2p95w4UI4pD4/H1FU3Yflh?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013)(7416014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2024 09:24:55.9262
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9cb037c-f2e4-4d9a-7761-08dcaaf9d194
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2024 09:28:31.9434
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ab6db64-d7a6-43b1-2b90-08dcaaf950fa
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK3PEPF00000221.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB6734
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Rb35SDQWzHCxFkTZs96HZrqLqz2us8Lbc9jgpyQURwFbrTanUYy/UZ6iJQNhL23pN1hn65VSpZnxzO0T+HXYvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10331
 
-Adjust CPLD io expender for PVT stage.
-Add GPIO name for GPIOO7.
-Only binding MCTP driver on the down-stream port of the mux.
-Remove unnecessary driver binding since there's no MCTP device before the mux.
 
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 59 +++++++++----------
- 1 file changed, 29 insertions(+), 30 deletions(-)
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Monday, July 22, 2024 10:20 PM
+> To: Pankaj Gupta <pankaj.gupta@nxp.com>
+> Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>;
+> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
+> <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Rob
+> Herring <robh+dt@kernel.org>; linux-doc@vger.kernel.org; linux-
+> kernel@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev;
+> linux-arm-kernel@lists.infradead.org
+> Subject: [EXT] Re: [PATCH v6 2/5] dt-bindings: arm: fsl: add imx-se-fw bi=
+nding
+> doc
+>=20
+> On Mon, Jul 22, 2024 at 10:21:37AM +0530, Pankaj Gupta wrote:
+> > The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
+> > creates an embedded secure enclave within the SoC boundary to enable
+> > features like:
+> > - HSM
+> > - SHE
+> > - V2X
+> >
+> > Secure-Enclave(s) communication interface are typically via message
+> > unit, i.e., based on mailbox linux kernel driver. This driver enables
+> > communication ensuring well defined message sequence protocol between
+> > Application Core and enclave's firmware.
+> >
+> > Driver configures multiple misc-device on the MU, for multiple
+> > user-space applications, to be able to communicate over single MU.
+> >
+> > It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+> >
+> > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> > ---
+> >  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 91
+> ++++++++++++++++++++++
+> >  1 file changed, 91 insertions(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> > b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> > new file mode 100644
+> > index 000000000000..7511d0e9cf98
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> > @@ -0,0 +1,91 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/firmware/fsl,imx-se.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP i.MX HW Secure Enclave(s) EdgeLock Enclave
+> > +
+> > +maintainers:
+> > +  - Pankaj Gupta <pankaj.gupta@nxp.com>
+> > +
+> > +description: |
+> > +  NXP's SoC may contain one or multiple embedded secure-enclave HW
+> > +  IP(s) like i.MX EdgeLock Enclave, V2X etc. These NXP's HW IP(s)
+> > +  enables features like
+> > +    - Hardware Security Module (HSM),
+> > +    - Security Hardware Extension (SHE), and
+> > +    - Vehicular to Anything (V2X)
+> > +
+> > +  Communication interface to the secure-enclaves(se) is based on the
+> > + messaging unit(s).
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx8ulp-se
+> > +      - fsl,imx93-se
+> > +      - fsl,imx95-se
+> > +
+> > +  mboxes:
+> > +    items:
+> > +      - description: mailbox phandle to send message to se firmware
+> > +      - description: mailbox phandle to receive message from se
+> > + firmware
+> > +
+> > +  mbox-names:
+> > +    items:
+> > +      - const: tx
+> > +      - const: rx
+> > +
+> > +  memory-region:
+> > +    maxItems: 1
+> > +
+> > +  sram:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - mboxes
+> > +  - mbox-names
+> > +
+> > +allOf:
+> > +  # memory-region
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx8ulp-se
+> > +              - fsl,imx93-se
+> > +    then:
+> > +      required:
+> > +        - memory-region
+> > +    else:
+> > +      properties:
+> > +        memory-region: false
+> > +
+> > +  # sram
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx8ulp-se
+> > +    then:
+> > +      required:
+> > +        - sram
+> > +
+> > +    else:
+> > +      properties:
+> > +        sram: false
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    senclave-firmware {
+>=20
+> Last revision this was "firmware", but now you've got something that appe=
+ars
+> non-generic. Why did you change it?=20
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index f139f426099e..abd4a9173de4 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -1156,6 +1156,34 @@ rtc@6f {
- 				compatible = "nuvoton,nct3018y";
- 				reg = <0x6f>;
- 			};
-+
-+			gpio@20 {
-+				compatible = "nxp,pca9506";
-+				reg = <0x20>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+
-+			gpio@21 {
-+				compatible = "nxp,pca9506";
-+				reg = <0x21>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+
-+			gpio@22 {
-+				compatible = "nxp,pca9506";
-+				reg = <0x22>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+
-+			gpio@23 {
-+				compatible = "nxp,pca9506";
-+				reg = <0x23>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
- 		};
- 
- 		imux35: i2c@1 {
-@@ -1188,34 +1216,6 @@ ipmb@10 {
- 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
- 		i2c-protocol;
- 	};
--
--	gpio@20 {
--		compatible = "nxp,pca9506";
--		reg = <0x20>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
--
--	gpio@21 {
--		compatible = "nxp,pca9506";
--		reg = <0x21>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
--
--	gpio@22 {
--		compatible = "nxp,pca9506";
--		reg = <0x22>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
--
--	gpio@23 {
--		compatible = "nxp,pca9506";
--		reg = <0x23>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
- };
- 
- &i2c14 {
-@@ -1470,7 +1470,6 @@ adc@35 {
- 
- &i2c15 {
- 	status = "okay";
--	mctp-controller;
- 	multi-master;
- 	bus-frequency = <400000>;
- 	i2c-clk-high-min-percent = <40>;
-@@ -1680,7 +1679,7 @@ &pinctrl_gpio3_unbiased &pinctrl_gpio4_unbiased
- 			"FM_BMC_READY_R2","RST_SMB_NIC0_R_N","","",
- 	/*O0-O7*/       "AC_ON_OFF_BTN_CPLD_SLOT8_N","RST_SMB_NIC1_R_N",
- 			"RST_SMB_NIC2_R_N","RST_SMB_NIC3_R_N",
--			"","","","",
-+			"","","","FM_BMC_SLED_CYCLE_R",
- 	/*P0-P7*/       "ALT_SMB_BMC_CPLD1_N","BTN_BMC_R2_N",
- 			"EN_P3V_BAT_SCALED_R","PWRGD_P5V_USB_BMC",
- 			"FM_BMC_RTCRST_R","RST_USB_HUB_R_N",
--- 
-2.25.1
+In case you missed, there was a previous email requesting your view on this=
+ change.
+Having node as "firmware {", is very generic that has wide interpretation.
+Hence, replaced firmware with "senclave-firmware".
 
+Why "senclave"?
+Like sram, for secure RAM, I proposed senclave for secure enclave.
+
+
+Moreover, there are plenty of examples of YAML(s), that were already commit=
+ted; that are using this:
+linux_bkp$:> find Documentation/ -name "*.yaml" | xargs grep -r "\-firmware=
+ {"
+
+Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.yaml:      zynqmp_=
+firmware: zynqmp-firmware {
+Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml:      zyn=
+qmp_firmware: zynqmp-firmware {
+Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml:    zy=
+nqmp-firmware {
+ And more...
+
+If you any other suggested word to pre-fix , that narrows down this broad r=
+eferenced word "firmware". Please suggest.
+=09
+> The normal differentiator for multiple
+> nodes is -[0-9]*, why can't you use that, if you're worried about multipl=
+e
+> nodes?
+Thanks Conor, for the suggestion this. Will use this. Thanks.
+
+>=20
+> > +      compatible =3D "fsl,imx95-se";
+> > +      mboxes =3D <&ele_mu0 0 0>, <&ele_mu0 1 0>;
+> > +      mbox-names =3D "tx", "rx";
+> > +    };
+> > +...
+> >
+> > --
+> > 2.34.1
+> >
 
