@@ -1,152 +1,113 @@
-Return-Path: <devicetree+bounces-87729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D96BC93ACAB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:32:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A15793ACB5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BF741F23655
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 06:32:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA9B9282938
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 06:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF44643150;
-	Wed, 24 Jul 2024 06:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842DC481CD;
+	Wed, 24 Jul 2024 06:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqswgNFg"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="LuJLgjYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCEE4C84;
-	Wed, 24 Jul 2024 06:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC08D4D8A2;
+	Wed, 24 Jul 2024 06:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721802761; cv=none; b=avfknnLBG4Rt/AJ4IZPYYd/Dup3ng8cyJqS9BypCYbsWtR7ENdz2iNgkM88LcQj5pUmrQYy8njkYz6P3j2Xs7ggVUMmJfmDMQXGjvD20Lbp+t8a17bos8iy8PL2rnljYN5gMSZegqlRmSCAgiTKzHx3oi+GjIKy5EI79P+fYXak=
+	t=1721803060; cv=none; b=pL6By0yRUlSqOaIAdO2qk7aGrJm/AlMk8uxm7kujcrzujNU+jOsYi3qZNra63z9m0Wf6FMxZWrW4SqFb9hfa61s3kwPg0K5XqdJhHrT/tDkDOlISYaAyUqrV1oqu90nHfuHQufTxBFCgdr5KMjXUwxGZg4nnP0N9zX2KPxPgEiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721802761; c=relaxed/simple;
-	bh=rEZHTWyj0uPCwPgc+sXXHg4YaVY9zXbUOvA+NcKie5I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=spZsCWBRuytQ3Ji0rUH7TtE2t7c4F8kXS/rcNz22aVApyELwQGNOiOoXAhJSiz2m6zfaCEe+y3S1LNcOhTOfaDOXuHgeXn8NlsKswdoL/GOJUxE0tAcbJVnf+OeBE/r/3fV+jKDt9cl+EhXZHthgVvIjensLmj+A173sh0ZPY4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqswgNFg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 500DCC32782;
-	Wed, 24 Jul 2024 06:32:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721802761;
-	bh=rEZHTWyj0uPCwPgc+sXXHg4YaVY9zXbUOvA+NcKie5I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YqswgNFgh7UCAUnhFxA40XGfMOYJ/U5CkYmP8cGL9EJqnbNGoC/vMMEEOpnwBu3Wl
-	 jKa3WKbq//JZYdJs9KAS5QALqvWJINFxqktPFMVtrueiKYfodlW7kT1y4m0x4dxXrZ
-	 mFz/Q2MImcAomRW7HrsVlh+DIKfcDQSki07y3aqyBLxEMjK2GfMzEdO0I1iuQ6B+wp
-	 uuTv2tY9ZaevUdTZy7Ri0PQQYMwML9uHqhQ9OHniHfDH+GQqhuJ89zH6JLaIgHOd+j
-	 IQZO4E1dv8fwDf+QbiI0lJKjgrMbjU9UQc5LWbMdK0YuW9cahVc8OUgzjNBV8u4Ddz
-	 OjP5bNhZpJATQ==
-Message-ID: <c9efb8a4-ca08-4e4a-97c6-de03ecea2955@kernel.org>
-Date: Wed, 24 Jul 2024 08:32:34 +0200
+	s=arc-20240116; t=1721803060; c=relaxed/simple;
+	bh=RTfGj90i3WLbh3f2b+8wNedcrh/JEyZm49rReFqIDTU=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ThgkoJcWIZDYfzSfZmwO2qaRKzo88mDKXAvgFf5leK4xXsRrDGXJyX0W8HPcrNqzZwuP/vZedgH7OxKqRxeAq/xC92tz6MQewRghaWbddsS97eMrXNV8nOAuVtOgpvpxy5KDoCS8urj1JxDJCV75br1G6Tm9rwU2PV6Z6Rf5KII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=LuJLgjYJ; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 8BC4C403E6;
+	Wed, 24 Jul 2024 11:37:34 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1721803054; bh=RTfGj90i3WLbh3f2b+8wNedcrh/JEyZm49rReFqIDTU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LuJLgjYJ8PSdwTOGbnttijbiGp/xKgyy+uDlIE8lSS7bx6WA3hwZaF0H1oGRbfe9L
+	 k81v38Eosxmx0q3H5+leZVYKjCSqxO4Zl1pAnAEfNhTF5Tz4utruKjGqEwML89TIrN
+	 k4nemddoLnEPQWGhLPyYjw0dIM68pYPS3J5bnFygfIy0+3pAGONFkeeYwckWEE8nJA
+	 bECzoATBXfN3kIKucp6Pk6gE0yD115N2KxfO23gO43FmcfocLBfWkUmbldeqE0Qm3A
+	 aRJaG7yqJDRno6HjypwbjXMMNa3ec5aeCPBpSScLZ45ndY/D83UgSSEz+nN7udeXfg
+	 67pN4OCQbnLNg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
- "atu" for i.MX8M PCIe Endpoint
-To: Hongxing Zhu <hongxing.zhu@nxp.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "l.stach@pengutronix.de" <l.stach@pengutronix.de>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>
-References: <1721790236-3966-1-git-send-email-hongxing.zhu@nxp.com>
- <1721790236-3966-2-git-send-email-hongxing.zhu@nxp.com>
- <dbcd776b-172a-4c53-b33a-3215f7dcfe77@kernel.org>
- <AS8PR04MB8676B0F1385BE39D209DFB698CAA2@AS8PR04MB8676.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <AS8PR04MB8676B0F1385BE39D209DFB698CAA2@AS8PR04MB8676.eurprd04.prod.outlook.com>
+Date: Wed, 24 Jul 2024 11:37:33 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Add msm8916/39 based
+ Lenovo devices
+In-Reply-To: <f8c36008-0deb-41b2-b51a-84de84312bb4@kernel.org>
+References: <20240722-msm89xx-wingtech-init-v2-0-0c981bbc5238@trvn.ru>
+ <20240722-msm89xx-wingtech-init-v2-1-0c981bbc5238@trvn.ru>
+ <f8c36008-0deb-41b2-b51a-84de84312bb4@kernel.org>
+Message-ID: <d7ce2f303d6d6faf0d9839ceafb9eb33@trvn.ru>
+X-Sender: nikita@trvn.ru
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 24/07/2024 08:26, Hongxing Zhu wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 2024年7月24日 14:07
->> To: Hongxing Zhu <hongxing.zhu@nxp.com>; robh@kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org; shawnguo@kernel.org;
->> l.stach@pengutronix.de
->> Cc: devicetree@vger.kernel.org; linux-pci@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
->> kernel@pengutronix.de; imx@lists.linux.dev
->> Subject: Re: [PATCH v2 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
->> "atu" for i.MX8M PCIe Endpoint
+Krzysztof Kozlowski писал(а) 24.07.2024 11:23:
+> On 22/07/2024 14:47, Nikita Travkin wrote:
+>> Add compaitble values for some variants of Lenovo A6000/A6010/A6020
+>> devices. These devices are based on designs from Wingtech so use it's
+>> vendor prefix and part numbers for compatibles.
 >>
->> On 24/07/2024 05:03, Richard Zhu wrote:
->>> Add reg-name: "dbi2", "atu" for i.MX8M PCIe Endpoint.
->>
->> This we see in the diff. What I do not see is why? Hardware changed? How come?
->>
-> For i.MX8M PCIe EP, the dbi2 and atu address are pre-defined in the driver.
-> This method is not good.
-> In commit b7d67c6130ee ("PCI: imx6: Add iMX95 Endpoint (EP) support"),
-> Frank suggests to fetch the dbi2 and atu from DT directly.
-> This series is preparation to do that for i.MX8M PCIe EP.
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
 
-This all must be explained in commit msg.
+Oops, sorry, I indeed forgot to pick up trailers... Seems like
+I made a mistake in my usual process and didn't flag the tag mail
+as something that I still need to act on :(
 
-Anyway, this will be an ABI break, so explain exactly why it is OK to
-break the ABI.
+Will pick it up in v3 since I need to do changes anyway.
 
-Best regards,
-Krzysztof
+I should probably write an yet another automation rule for this...
 
+Nikita
+
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions, under or above your Signed-off-by tag. Tag is "received", when
+> provided in a message replied to you on the mailing list. Tools like b4
+> can help here. However, there's no need to repost patches *only* to add
+> the tags. The upstream maintainer will do that for tags received on the
+> version they apply.
+> 
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
+> Best regards,
+> Krzysztof
 
