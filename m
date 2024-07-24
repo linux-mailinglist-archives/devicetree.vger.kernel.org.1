@@ -1,216 +1,146 @@
-Return-Path: <devicetree+bounces-87825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47AC393B199
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:27:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7DF693B1AC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:31:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8A441F218E8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:27:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FF38B2097E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB88158D84;
-	Wed, 24 Jul 2024 13:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A230158D72;
+	Wed, 24 Jul 2024 13:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oemAObco"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ptC4AZJy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D686679F0;
-	Wed, 24 Jul 2024 13:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C28D482FF
+	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 13:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721827649; cv=none; b=QohNyoBZHZCTgEJja/Lw9UHP2jSExr+yrff0oXN+vzr9q89Q+px1jn4Kpf7p5tu6gVmYObsLyDki2diX3O06rEqGL8ltf04uT/5esyWwtr8nz1C3WM996Kp5mwXVLgGpM7DZvGgCLulqD1/5iDQa6iN41aBhFydLkI4Gk5pyZrY=
+	t=1721827909; cv=none; b=fYbzNNoY731a1ashToGP1xJTEt+KuL2mO/rtMZeP5TKO0HIUeWVbRT4j7aOhQG+REHt6kM1Gjd9hb9NNGWlZXfnO2ygcrOwguFXj3MNDwr9xKpTJK3l0hEa9FIcb4repnX6kWYOcRIb+jna9tKmkiywuxk3q9rfSUv3SicRW180=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721827649; c=relaxed/simple;
-	bh=y9X5n3qdmPwr11Deal1sb3U21Htt0vla5lQICF8SJQc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IhtoR10k9WEqN2ZyjLeilyq8bPnbj8uWFHljinGI5jhe+s6IYUgLYGWD8HuX9zze4Ckd1ECT0la+llQren3Zd3f8HfByuJEuvwLJu5Z/AunG1mani5pudB0S6hH6hlbcr6t98zDdryCqrtHw4JOiLII+qpJrnQzUb3CX5OG07QI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oemAObco; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C187AC32782;
-	Wed, 24 Jul 2024 13:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721827649;
-	bh=y9X5n3qdmPwr11Deal1sb3U21Htt0vla5lQICF8SJQc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oemAObcoT4hSjBpdmS2nuYWe1sCGqIKOAvYgetQaCbiBlV7odg7/2sJJUm2GjEbYY
-	 qWM3d4kmekQFJGxJNNuIh4trnbFD+EQ+3QlIS64L0nvkBiv7fNYMX/mUUPjHmC3Xas
-	 SPaltVVLI4lux/NG0MR2eFmH5Kz4T7D+xluyLbHzttaDZeloj+CkPaXh2XrvQcbVPD
-	 IoVimXL09wkvHJiwwv9k8+haESsWII28xQdvVu7KocgjDx4exWIGnPbdieIUtlF6A5
-	 5EgYPnykMuCcnOvgyR7XaDFlD7tdZyGd5KfH3L5d8dywFuP8GVF6xdax857kE4h3Cn
-	 YAmE8I1sdbhbg==
-Message-ID: <3f732acc-6ed0-45f0-a2d6-ed8506b0fd6f@kernel.org>
-Date: Wed, 24 Jul 2024 15:27:21 +0200
+	s=arc-20240116; t=1721827909; c=relaxed/simple;
+	bh=uYCjH62094fWSixlswCV1RaLX7VIn9OqXvSaZojUorI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YM2fGPRsfL4N3x7SL/B1LatxZGRKbwbPj52xb97FGiqn/n+1L8eOKJO9oZuqX6tBKd4ZdT3W3oW+YiZw9XEC8AsO8KEXB8nYdrfUCCE8ccRy9Rui61EoKe0VH09ZTo1jtqXAcg1KUQD4ttrYxihCN7ZzBDTAH7yRGQZOsYnLHXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ptC4AZJy; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1fec34f94abso4435415ad.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 06:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721827908; x=1722432708; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=An58Dm8uzaKKX2Id+IrUBFJsqsLXfX4o2DrHskK6/IE=;
+        b=ptC4AZJybq12bXHiJWB1ty4tX2lxSPCjdhFrKYUOkdR4yvUtAhM47/YV6DrihbSP+R
+         2bYtorfQuAhCn2TGYXhNHGiHdJ8lSQmAZ2NaZd3vYuG8T8OWnSj8BiCLytXFZrZQhIhl
+         b46GL33qpPsx81c+7FqQGzHx3IUmzwXCeLpbfgwiG41QPUfrKt/ZmCUee9sTszZ76FBT
+         R+5iur67m/z8WZ7VJRJDi17InXnp4y9f0oNdBxsSOEoEBR0NPVZ1vPqmpnITyzZMlLDS
+         wTWwEW1pDxp858MmRpT4x4c2x9/Nu2VTEet5FDTxM6jmfJApwCo/gnaSreWVyoV8nZhz
+         b0bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721827908; x=1722432708;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=An58Dm8uzaKKX2Id+IrUBFJsqsLXfX4o2DrHskK6/IE=;
+        b=xN3B2Qrj77j4Vf+P845GJxh32Pzngb1uQVSuG5zdQlIiEnrWeWFlzAXwSiW2dqIGtq
+         Ul2e40TNq082Ra/a34PuP4yYiFQJRWawUcgGokH6ZTBwQhFRYiG2yoMVc9AwRN34xvt6
+         Xb+50PED9w1Paghh6bhfQq8j/EZbelCUgG324zfICNPBVQ6CdtYh4ea5qmhmITASMmA6
+         vxiBQPd4yotO9CxNWHesQycKpLunplLRa4z2tPiMHX+iLIE+Pwi7ddqO2oP1hL0pmRhO
+         brWdmZZDneMEhVbCp/7LJUEcwSfGUNE4yJo1R0HDm4Y+WAQfYHz5bb0yDsOgLfuzPjog
+         VsAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW+mnHpFPHNFA8OMMCJ0qlal9NaQ3ulbTGG8f+KGrpOLKcgw+vxvwvsi4yxhVBuWav/FbCt5RGpcYhMxMJ2iO8vZmmAy97Nukaj/A==
+X-Gm-Message-State: AOJu0YycEqwUYXWGdtaGF1hKqyIj9/TOAbtQRsSixyExetlf1ZHVDE3h
+	9sMRSx50dmDQTQISPYYAPcqulJV4fvvm9vnMC8AakUdFB+59MwbZBtTjiKManA==
+X-Google-Smtp-Source: AGHT+IHb0kWbPKxJXE8j3XbcKOASOVLyTWt8KuLbfjyutzlEHgdUE9xCdNY9SBRwTe6WQGUXPhg2RA==
+X-Received: by 2002:a17:902:cec8:b0:1fd:9c2d:2f17 with SMTP id d9443c01a7336-1fdd220ad6dmr32143095ad.44.1721827907808;
+        Wed, 24 Jul 2024 06:31:47 -0700 (PDT)
+Received: from thinkpad ([103.244.168.26])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f291f05sm94155675ad.90.2024.07.24.06.31.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jul 2024 06:31:47 -0700 (PDT)
+Date: Wed, 24 Jul 2024 19:01:39 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Mayank Rana <quic_mrana@quicinc.com>, will@kernel.org,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, jingoohan1@gmail.com, cassel@kernel.org,
+	yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
+	u.kleine-koenig@pengutronix.de, dlemoal@kernel.org,
+	amishin@t-argos.ru, thierry.reding@gmail.com, jonathanh@nvidia.com,
+	Frank.Li@nxp.com, ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
+	marek.vasut+renesas@gmail.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
+	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+	quic_nitegupt@quicinc.com
+Subject: Re: [PATCH V2 0/7] Add power domain and MSI functionality with PCIe
+ host generic ECAM driver
+Message-ID: <20240724133139.GB3349@thinkpad>
+References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
+ <rzf5jaxs2g4usnqzgvisiols2zlizcqr3pg4b63kxkoaekkjdf@rleudqbiur5m>
+ <a87d4948-a9ce-473b-ae36-9f0c04c3041e@quicinc.com>
+ <CAA8EJpq=rj-=JsYpPmwXiYkL=AALf-ZPQeq9drEoCkCAufLdig@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v7 2/6] dt-bindings: interrupt-controller: document
- PolarFire SoC's gpio interrupt mux
-To: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org
-Cc: conor@kernel.org, Marc Zyngier <maz@kernel.org>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
- <20240723-uncouple-enforcer-7c48e4a4fefe@wendy>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240723-uncouple-enforcer-7c48e4a4fefe@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAA8EJpq=rj-=JsYpPmwXiYkL=AALf-ZPQeq9drEoCkCAufLdig@mail.gmail.com>
 
-On 23/07/2024 13:27, Conor Dooley wrote:
-> On PolarFire SoC there are more GPIO interrupts than there are interrupt
-> lines available on the PLIC, and a runtime configurable mux is used to
-> decide which interrupts are assigned direct connections to the PLIC &
-> which are relegated to sharing a line.
-> This mux is, in our reference configuration, written by platform
-> firmware during boot based on the FPGA's configuration.
+On Wed, Jul 24, 2024 at 10:12:17AM +0300, Dmitry Baryshkov wrote:
+> On Wed, 24 Jul 2024 at 06:58, Mayank Rana <quic_mrana@quicinc.com> wrote:
+> >
+> >
+> >
+> > On 7/23/2024 7:13 PM, Dmitry Baryshkov wrote:
+> > > On Mon, Jul 15, 2024 at 11:13:28AM GMT, Mayank Rana wrote:
+> > >> Based on previously received feedback, this patch series adds functionalities
+> > >> with existing PCIe host generic ECAM driver (pci-host-generic.c) to get PCIe
+> > >> host root complex functionality on Qualcomm SA8775P auto platform.
+> > >>
+> > >> Previously sent RFC patchset to have separate Qualcomm PCIe ECAM platform driver:
+> > >> https://lore.kernel.org/all/d10199df-5fb3-407b-b404-a0a4d067341f@quicinc.com/T/
+> > >>
+> > >> 1. Interface to allow requesting firmware to manage system resources and performing
+> > >> PCIe Link up (devicetree binding in terms of power domain and runtime PM APIs is used in driver)
+> > >> 2. Performing D3 cold with system suspend and D0 with system resume (usage of GenPD
+> > >> framework based power domain controls these operations)
+> > >> 3. SA8775P is using Synopsys Designware PCIe controller which supports MSI controller.
+> > >> This MSI functionality is used with PCIe host generic driver after splitting existing MSI
+> > >> functionality from pcie-designware-host.c file into pcie-designware-msi.c file.
+> > >
+> > > Please excuse me my ignorance if this is described somewhere. Why are
+> > > you using DWC-specific MSI handling instead of using GIC ITS?
+> > Due to usage of GIC v3 on SA8775p with Gunyah hypervisor, we have
+> > limitation of not supporting GIC ITS
+> > functionality. We considered other approach as usage of free SPIs (not
+> > available, limitation in terms of mismatch between number of SPIs
+> > available with physical GIC vs hypervisor) and extended SPIs (not
+> > supported with GIC hardware). Hence we just left with DWC-specific MSI
+> > controller here for MSI functionality.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../microchip,mpfs-gpio-irq-mux.yaml          | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/microchip,mpfs-gpio-irq-mux.yaml
+> ... or extend Gunyah to support GIC ITS. I'd say it is a significant
+> deficiency if one can not use GIC ITS on Gunyah platforms.
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/microchip,mpfs-gpio-irq-mux.yaml b/Documentation/devicetree/bindings/interrupt-controller/microchip,mpfs-gpio-irq-mux.yaml
-> new file mode 100644
-> index 0000000000000..89ed3a630eef3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/microchip,mpfs-gpio-irq-mux.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/microchip,mpfs-gpio-irq-mux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip Polarfire SoC GPIO Interrupt Mux
-> +
-> +maintainers:
-> +  - Conor Dooley <conor.dooley@microchip.com>
-> +
-> +description: |
-> +  There are 3 GPIO controllers on this SoC, of which:
-> +  - GPIO controller 0 has 14 GPIOs
-> +  - GPIO controller 1 has 24 GPIOs
-> +  - GPIO controller 2 has 32 GPIOs
-> +
-> +  All GPIOs are capable of generating interrupts, for a total of 70.
-> +  There are only 41 IRQs available however, so a configurable mux is used to
-> +  ensure all GPIOs can be used for interrupt generation.
-> +  38 of the 41 interrupts are in what the documentation calls "direct mode",
-> +  as they provide an exclusive connection from a GPIO to the PLIC.
-> +  The 3 remaining interrupts are used to mux the interrupts which do not have
-> +  a exclusive connection, one for each GPIO controller.
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,mpfs-gpio-irq-mux
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  interrupts:
-> +    description:
-> +      The first 38 entries must be the "direct" interrupts, for exclusive
-> +      connections to the PLIC. The final 3 entries must be the
-> +      "non-direct"/muxed connections for each of GPIO controller 0, 1 & 2
-> +      respectively.
-> +    maxItems: 41
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
 
-Please put allOf: after required:.
+It if were possible, Qcom would've went with that. Unfortunately, it is not.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#interrupt-cells"
-> +  - interrupt-controller
+- Mani
 
-and here keep the same order as in properties, so
-controller+cells+interrupts.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    irqmux: interrupt-controller@20002054 {
-> +        compatible = "microchip,mpfs-gpio-irq-mux";
-> +        reg = <0x20002054 0x4>;
-> +        interrupt-parent = <&plic>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +        status = "okay";
-
-Drop status
-
-
-Best regards,
-Krzysztof
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
