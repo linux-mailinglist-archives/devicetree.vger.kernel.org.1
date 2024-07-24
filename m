@@ -1,54 +1,62 @@
-Return-Path: <devicetree+bounces-87835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F3C93B2BB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 16:33:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D38E93B328
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 16:54:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B2761F24B36
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 14:33:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2402285BBE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 14:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C59315A4B0;
-	Wed, 24 Jul 2024 14:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA96915B145;
+	Wed, 24 Jul 2024 14:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="s1PSxEML"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y8w/ulxe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934BD1E50F;
-	Wed, 24 Jul 2024 14:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C3115B12F;
+	Wed, 24 Jul 2024 14:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721831605; cv=none; b=qdWdswwP3rUtbWW3Yo6udm4Kb3OjCZ7pYA+J3+j0+36JniOzKGMQUJtkZuZ3sO5Y4PlqmH+hZib695GhEtlAJo11L+xyRYs2LNE+JmWw55t/TXaFwiCHng07MPgmXmUJ4cE6CRCsQCckYN6kBa9HUciRNisQzIgr6CfSgOYY24s=
+	t=1721832827; cv=none; b=uRsPGAK8ucUKrKEZJvWVCHc3by50Ht41MMtSY0g1jAL68B9eRaRtOwzSCA2fZkOBPmUjVrp4Toepqt6Gk6sDTJjAsniPc8bMh1DlryapKa7F8VsmRqoRU/i6EINPAlurCd/gAEJlsWicanrgsYGSnCDSsuG4Rm41ab2KfqemtyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721831605; c=relaxed/simple;
-	bh=EnV5UsbxFBuNVgZ1fpn8eYGK4awmnWIVIQgpXSfVkV0=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=pCtQuY5sK/CGRRuDV+Mnk5WVMfQesLSfBY+n7dw1cCciEvBGgW+wV+OgeUbIzU+ohDWBwVf+UzhmgqRqVxNDZt4tSilGAMen52f8iMZKJuku/hBjTydhWd41J+NT8nKTAGk1Ufa6ZK1/WeSAnWJSwKkVbPxIcIE82IYQuz7nVvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=s1PSxEML; arc=none smtp.client-ip=51.77.79.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1721831587; x=1722090787;
-	bh=EnV5UsbxFBuNVgZ1fpn8eYGK4awmnWIVIQgpXSfVkV0=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=s1PSxEMLCUvD6LF6DhbIib4nvaLF4ys6htTI9rPzgNoP6H9ClMqo2JTfHlUi+iSHe
-	 URxXe7lCloK5sME4oukdwyS+ZQcYgtlg+jBAO2fyuRtUWEVXVwBNW2YPXvB+hH5b2t
-	 y7s84TsRJQkuH78ztwjKdwpak5qqZQcRSDdcNNeTfnxKLP5njuYW50aKk7eY3wcyOk
-	 ODXu0/tD9MKuV9ywm0LHojnG12+781MGPskrei9xEbeR19iBSf/2LDwn+oD9uVQSG5
-	 odN9sTtWC7vsoCApKn/LzpswP4DAXK9qbqWk3M0DcYMaDVtXuWJSKyEYXTUmDVF437
-	 Gcyy3+4BPucTw==
-Date: Wed, 24 Jul 2024 14:32:51 +0000
-To: linux-kernel@vger.kernel.org
-From: Raymond Hackley <raymondhackley@protonmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH] arm64: dts: qcom: msm8916-samsung-fortuna: Add touch keys
-Message-ID: <20240724143230.3804-1-raymondhackley@protonmail.com>
-Feedback-ID: 49437091:user:proton
-X-Pm-Message-ID: aff0725e9f024821dc25699dbfd266db4bd634eb
+	s=arc-20240116; t=1721832827; c=relaxed/simple;
+	bh=EhGs3QHFWEAF4yCV+iWV8W/2NsVyT7nTpnaTm8KpojA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n4TPLW3PoBoV2oagfvfpPaMMks5mgeTg8fcgHsiI/qHHlnZmoNU9UnBZjBunN5jF1GKwxKO776+wDQ8mEmFRnNOGDZMyfU5kevFlykUQnfkL6f8BgwbBgbgrqV8OTV//Avq+suIXhSi00VpglV7oP0ampzDkPhjJpEx4m3DDZsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y8w/ulxe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE0E0C32781;
+	Wed, 24 Jul 2024 14:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721832827;
+	bh=EhGs3QHFWEAF4yCV+iWV8W/2NsVyT7nTpnaTm8KpojA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y8w/ulxe88J1URS6wQyFwZkVk96GQDqEdMvZ/kNvD5gdyiNEYnmjJpdp3UfGhJaO1
+	 ep0Wa8g0j2Rcto37s2A1/9Vsh4PodRY3AelZyYEARm5OOIH4OSWPLgaElb9FYPgRYA
+	 wf2gEc8rjccb2jqMqDvjnzjKe5Zr0G1fU5aHjfCv1rlsLJ3V1gINaoc1+2Ku6b6YUM
+	 lc1UiY3+ugOFBLyDazhUrEB5XtjAdAwZjfuh9UEI+N4VQElhqL1RQEzkOJTRqyusj5
+	 Ss28XcUpzbYB4BrvWqE7syKnqiySR/RjW1SBbJO8bYUEMm3dNSyYBtrfoD35h91M0h
+	 TwkxB5OIhh1SA==
+Date: Wed, 24 Jul 2024 15:53:40 +0100
+From: Lee Jones <lee@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	alexandre.belloni@bootlin.com, geert+renesas@glider.be,
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+	p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v2 02/11] mfd: renesas-vbattb: Add a MFD driver for the
+ Renesas VBATTB IP
+Message-ID: <20240724145340.GZ501857@google.com>
+References: <20240716103025.1198495-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240716103025.1198495-3-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,32 +64,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240716103025.1198495-3-claudiu.beznea.uj@bp.renesas.com>
 
-Touch keys feature on fortuna phones are provided by Zinitix touchscreen.
-Add property linux,keycodes to enable touch keys.
+On Tue, 16 Jul 2024, Claudiu wrote:
 
-Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
----
- arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Renesas VBATTB IP has logic to control the RTC clock, tamper detection
+> and a small 128B memory. Add a MFD driver to do the basic initialization
+> of the VBATTB IP for the inner components to work.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+> 
+> Changes in v2:
+> - none; this driver is new
+> 
+>  drivers/mfd/Kconfig          |  8 ++++
+>  drivers/mfd/Makefile         |  1 +
+>  drivers/mfd/renesas-vbattb.c | 78 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 87 insertions(+)
+>  create mode 100644 drivers/mfd/renesas-vbattb.c
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index bc8be2e593b6..df93e8b05065 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1383,6 +1383,14 @@ config MFD_SC27XX_PMIC
+>  	  This driver provides common support for accessing the SC27xx PMICs,
+>  	  and it also adds the irq_chip parts for handling the PMIC chip events.
+>  
+> +config MFD_RENESAS_VBATTB
+> +	tristate "Renesas VBATTB driver"
+> +	depends on (ARCH_RZG2L && OF) || COMPILE_TEST
+> +	select MFD_CORE
+> +	help
+> +	  Select this option to enable Renesas RZ/G3S VBATTB driver which
+> +	  provides support for the RTC clock, tamper detector and 128B SRAM.
+> +
+>  config RZ_MTU3
+>  	tristate "Renesas RZ/G2L MTU3a core driver"
+>  	depends on (ARCH_RZG2L && OF) || COMPILE_TEST
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 02b651cd7535..cd2f27492df2 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -186,6 +186,7 @@ pcf50633-objs			:= pcf50633-core.o pcf50633-irq.o
+>  obj-$(CONFIG_MFD_PCF50633)	+= pcf50633.o
+>  obj-$(CONFIG_PCF50633_ADC)	+= pcf50633-adc.o
+>  obj-$(CONFIG_PCF50633_GPIO)	+= pcf50633-gpio.o
+> +obj-$(CONFIG_MFD_RENESAS_VBATTB)	+= renesas-vbattb.o
+>  obj-$(CONFIG_RZ_MTU3)		+= rz-mtu3.o
+>  obj-$(CONFIG_ABX500_CORE)	+= abx500-core.o
+>  obj-$(CONFIG_MFD_DB8500_PRCMU)	+= db8500-prcmu.o
+> diff --git a/drivers/mfd/renesas-vbattb.c b/drivers/mfd/renesas-vbattb.c
+> new file mode 100644
+> index 000000000000..5d71565b8cbf
+> --- /dev/null
+> +++ b/drivers/mfd/renesas-vbattb.c
+> @@ -0,0 +1,78 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * VBATTB driver
+> + *
+> + * Copyright (C) 2024 Renesas Electronics Corp.
+> + */
+> +
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +
+> +static int vbattb_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct reset_control *rstc;
+> +	int ret;
+> +
+> +	rstc = devm_reset_control_array_get_exclusive(dev);
+> +	if (IS_ERR(rstc))
+> +		return PTR_ERR(rstc);
+> +
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = reset_control_deassert(rstc);
+> +	if (ret)
+> +		goto rpm_put;
+> +
+> +	platform_set_drvdata(pdev, rstc);
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi b=
-/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
-index 81b3e0760154f..7a7e99b015d9b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
-@@ -262,6 +262,8 @@ touchscreen: touchscreen@20 {
-=20
- =09=09pinctrl-0 =3D <&tsp_int_default>;
- =09=09pinctrl-names =3D "default";
-+
-+=09=09linux,keycodes =3D <KEY_APPSELECT KEY_BACK>;
- =09};
- };
-=20
---=20
-2.39.2
+Where is this consumed?
+
+> +	ret = devm_of_platform_populate(dev);
 
 
+Which devices will this probe?
+
+> +	if (ret)
+> +		goto reset_assert;
+> +
+> +	return 0;
+> +
+> +reset_assert:
+> +	reset_control_assert(rstc);
+> +rpm_put:
+> +	pm_runtime_put(dev);
+> +	return ret;
+> +}
+> +
+> +static void vbattb_remove(struct platform_device *pdev)
+> +{
+> +	struct reset_control *rstc = platform_get_drvdata(pdev);
+> +
+> +	reset_control_assert(rstc);
+> +	pm_runtime_put(&pdev->dev);
+> +}
+> +
+> +static const struct of_device_id vbattb_match[] = {
+> +	{ .compatible = "renesas,r9a08g045-vbattb" },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, vbattb_match);
+> +
+> +static struct platform_driver vbattb_driver = {
+> +	.probe = vbattb_probe,
+> +	.remove_new = vbattb_remove,
+> +	.driver = {
+> +		.name = "renesas-vbattb",
+> +		.of_match_table = vbattb_match,
+> +	},
+> +};
+> +module_platform_driver(vbattb_driver);
+> +
+> +MODULE_ALIAS("platform:renesas-vbattb");
+> +MODULE_AUTHOR("Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>");
+> +MODULE_DESCRIPTION("Renesas VBATTB driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.39.2
+> 
+
+-- 
+Lee Jones [李琼斯]
 
