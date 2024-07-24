@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-87725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3607B93AC82
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:21:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8149D93AC87
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67AC01C20D74
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 06:21:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0E82B20DAC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 06:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 509E83FE4A;
-	Wed, 24 Jul 2024 06:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B66F482EF;
+	Wed, 24 Jul 2024 06:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oj12oTMZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UMpXJ1pd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10962A955;
-	Wed, 24 Jul 2024 06:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079CF4C84;
+	Wed, 24 Jul 2024 06:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721802101; cv=none; b=RMkcvSmMt5JeXfanP6i9NqkKgeAiNU7GAui7YLUGT/qdB5Lo1ewIB3mRi+50XhMMAqeQnjZTugD21ZR2X3tuTtvw/PC6oR662wXpJzM3r2jIA7mfQtS+dNgLh1WCAZmjRIhzM2vzVr92cAsVpIEnjfJlVIQkMux+ko5tT3R7w2A=
+	t=1721802201; cv=none; b=RTL92aLzlEMVwncGMYT9gxuv5kYliynouBi+nDIXUemWdivraElIBiDow7yu4O0JxFsRrOh0ukt8cZ/U+F13DIjwVZsB0i/wv2z0i81bZh+OtwMB/ZsrFiO1FZuf9qN2rlDmjVVOnR4l9/c0XC66mJUBT60g+IluKGunlA1mSek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721802101; c=relaxed/simple;
-	bh=D1LuTU638ouH8Z6/jqHtOXHrtbKTso/WyM5OPDiJmDQ=;
+	s=arc-20240116; t=1721802201; c=relaxed/simple;
+	bh=VWEfGADZIYjZlIXiiTluhSsS8ifesulT9EoIKZebdqc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EwCU2iI93Mv+e812oNABbVlbL1wCpx7DkEIpXiNFgm1sBKweN2lL8u13WSb2qWR6tELwpYLh4WL6w9TaaWAXrbT6+eWziz9XgnUbzDmrmDjXkS6zQyMf8a26qoI/M8i/FtRwAtogC1A3TPbUNL6bu6lAIit9ZwyIBfNhEQFayGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oj12oTMZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D88CCC32782;
-	Wed, 24 Jul 2024 06:21:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=A77LZMFQ/RI4PFz2Z0GqghTSMb2Qq15VDI+NevZv6BrRy7U8snO7k+SheQqL6wLkw6h56QFoMmfcTlxYq9HCM6qy6mz0m+FActwxEvQrd7IfTG4eSRnTIF5QYAluZNVBRSK3Jv8miSuztqSnj1iAXIlDwhLzBdjKHjE+hoNRFaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UMpXJ1pd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6A9AC32782;
+	Wed, 24 Jul 2024 06:23:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721802100;
-	bh=D1LuTU638ouH8Z6/jqHtOXHrtbKTso/WyM5OPDiJmDQ=;
+	s=k20201202; t=1721802200;
+	bh=VWEfGADZIYjZlIXiiTluhSsS8ifesulT9EoIKZebdqc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Oj12oTMZmIDazNIzLX7aG/SEAuJDsAwJTY9V6/0Pteoir/5aU34EEK3b1bZLnxY1B
-	 SMT7D5QN97NKZFlgg1n14BP1c4wYtKIlWSdVwQce/PulIT4M9mSg1wXWbRLBvgGRIB
-	 4Obq/IGNIAYx0iY972cEEYC7zyXkj1Ggd13OCIZj0tgT2u5Zp6YhuASsM3bXuXS6wt
-	 zYGLIrkn0fYC+T5VfL0qpSocT//JU6J6yGArBTgXetL1CqyoUwkVZJV7xtfBSjQxzF
-	 HTxq6oO5NrTBD2NXpgHvHVFa5r81MuJYqLvMox4/AinrjCqQIS1+i2iZPG5IvdZgeN
-	 K+WBSQ74mY8Og==
-Message-ID: <e4089d9a-9154-46ad-87cb-4d6e43a1661d@kernel.org>
-Date: Wed, 24 Jul 2024 08:21:32 +0200
+	b=UMpXJ1pdAFBy4905gKgbdKLvD4eMNlBn1LBmdcL2x1IQ9ZKeO8avKzCrxvdte7tkE
+	 J4doSXAKTaJa47RURbipIcnWCsMEjxhezr7HTHEDyUXdu8kFNgQLH1dXZHPIQzLHid
+	 gc1+vts/MzcTkyb5z/kDWwVcxhAnF+f6ayUfGq4evzMHlJl2CXTMN1OQs3ufHwo8AA
+	 WTkO2v1Zq62+4EG6UsDJG2NcgoQR0v5riUAixHFSe6cLRA3zDoAIbNfMG/LDPclxYF
+	 bqHeNtpJvpu0GmXKuWlAMKJ3zfC7KghFfz0kPBdou9ZHiL6QhpV6TrS/jubOdm074A
+	 yx76wRKAY6l0A==
+Message-ID: <f8c36008-0deb-41b2-b51a-84de84312bb4@kernel.org>
+Date: Wed, 24 Jul 2024 08:23:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] bingdings: can: flexcan: move fsl,imx95-flexcan
- standalone
-To: Frank Li <Frank.Li@nxp.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- haibo.chen@nxp.com, imx@lists.linux.dev, han.xu@nxp.com
-References: <20240723-flexcan-v3-0-084056119ac8@nxp.com>
- <20240723-flexcan-v3-1-084056119ac8@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Add msm8916/39 based
+ Lenovo devices
+To: Nikita Travkin <nikita@trvn.ru>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240722-msm89xx-wingtech-init-v2-0-0c981bbc5238@trvn.ru>
+ <20240722-msm89xx-wingtech-init-v2-1-0c981bbc5238@trvn.ru>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,18 +105,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240723-flexcan-v3-1-084056119ac8@nxp.com>
+In-Reply-To: <20240722-msm89xx-wingtech-init-v2-1-0c981bbc5238@trvn.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/07/2024 22:48, Frank Li wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On 22/07/2024 14:47, Nikita Travkin wrote:
+> Add compaitble values for some variants of Lenovo A6000/A6010/A6020
+> devices. These devices are based on designs from Wingtech so use it's
+> vendor prefix and part numbers for compatibles.
 > 
-> The flexcan in iMX95 is not compatible with imx93 because wakeup method is
-> difference. Make fsl,imx95-flexcan not fallback to fsl,imx93-flexcan.
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 
-Subject: dt-bindings:
+<form letter>
+This is a friendly reminder during the review process.
 
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
