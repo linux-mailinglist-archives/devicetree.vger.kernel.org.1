@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-87740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836E493AD6E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 09:51:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA3F93AD80
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 09:54:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6CBA1C207BF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 07:51:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0C1D284911
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 07:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8054A74409;
-	Wed, 24 Jul 2024 07:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05CE68287A;
+	Wed, 24 Jul 2024 07:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mx5LgtrD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tYwV0kl0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A8354670
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 07:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40018120A
+	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 07:53:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721807463; cv=none; b=EWhnTgETF9d+YAKi7D9r+yauZRXN9JzNjydcxqkTCSLCtwuSJ4Wx/l9fZ3Y0dvVFEZw6Q2tu8Q+Xii3ZFOAlMj87WMRi7kA8DTI+BT2jLYFuzSQLdSjkT1mVMRoV/jvq1wbZBPaph47mShiOYMB8EaGBgv5VXlhvFEzDKrn6oGA=
+	t=1721807640; cv=none; b=k6CItttkhZ2vHCTUXZNhCHY/dZI2n8v6NyoqurLMBqv02bP3uiVVrp2JJGc/HsOKHmlps3bsA7vOw4ARoigXUz/r+V627eqs+6F2awrM0X791rHayOoMkUIHXTGQRJ34IGyvOH44cEzdsH2ro5dLQiTMTwIJ/OnnBUvsiRbeHfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721807463; c=relaxed/simple;
-	bh=TP4ZjMBBwBAji/RiLkkXBhCKvliF01yzRSW4M8m/cQs=;
+	s=arc-20240116; t=1721807640; c=relaxed/simple;
+	bh=HrypAteAGy/XTok6aN3mt/9eOnPMeF6ajXK9dY1/8p4=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cEtmzJz2ykEAy9xzT+Z0qY3lpwmn4+1HVLji9Sv2k48zJN+tTsYoFOQVTlKnJuRntW7FZPP77q7LZky7LBXzDNkZ+w7YIXOy4rNCwwLeCvCzYSYKp8xB+mBRB+IeN62eoAmNBBXVhxYP72o980qXmjly9Dhrzw5i4SvMvZLLCrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mx5LgtrD; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=uTXcv2ArZJQlK7TPjZm4pUuLptTnX4DQhkO8B0CKpckCHiihPlgj7d8AEb/+fe/oOAIVsApe1v06FkYqV9rS5aUFYGhqX6fxFegI3mpmPGARqp2ElWpdtpNdjbL1hRTKoHV+GzTxG+YCATSedLV6eG2LRWBInXpJIbr8eiJ3XI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tYwV0kl0; arc=none smtp.client-ip=209.85.208.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4277a5ed48bso48428925e9.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 00:51:01 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ee920b0781so70775911fa.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 00:53:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721807460; x=1722412260; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721807637; x=1722412437; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MIbDCUVg/y+Dd0v0s+pinKcZZyekq4cbEc+kOZTJTwY=;
-        b=mx5LgtrDItSFQ7dptrioSwAEyE026h/GfcmKATFrVT3k4GfTGBQ/TkDaepEYoamHBs
-         nXIWahevrZWXdqZxcL+QBwlSiIXaciyiMaAo0IWI04UgTie74IroxxOuKwEx2GulSuhr
-         cFAAv4fkT3NH0ACoI+lvw+x0dx8LJ/lNpB0+Ul/pGBN8nQO6vPg5PdZuNT8hlA4rgzUE
-         KsObVcYYMqIZ3tU2/KpvQiesRP8MbcPlfqa3G4LRxhdAGCj83XsBqNOhpeveXCLCqDuy
-         s6zHf0lTNb/95UAveZe6uPWLMwYJpQsKvgLrPtw8ydSFlFTXOHLw7XKGpDGYrTGOkVUv
-         bvmg==
+        bh=g6XxiA8bDlv8vuRJ02SZhiMKDIku4c/DTdy0+z+J+7w=;
+        b=tYwV0kl0Mj0GsrujeMq5qFU7R6W+7KY9UjEK6bbPfKuxEH8bl0+BRDskr9S/Z8Xofh
+         YouZ/q6ywhRt6WvFkxBhm+H9biyGiO9tMIHX3IaAoNatE1ywMz+xIOwlhCJvgGI4D/WS
+         psJRqMneWaKRYA0usqiy/tPmww9i1TMPMeQonyZRe5xoSRW0a2tMcv7EFp6B1bmCt3Ma
+         XUVWlf6xNnuoTfkcXb+drRIPo1qW34KHR4DUbmhV2xgX63OUtzz84dje7FP6VB4NKD2M
+         mw/3f+mmK2J/CDLsdr7Cd4XoIAkqEgtp1MxgZbkm+TnPWCKZJ4TxBKUaDJ75Qi7L4RhH
+         elFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721807460; x=1722412260;
+        d=1e100.net; s=20230601; t=1721807637; x=1722412437;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=MIbDCUVg/y+Dd0v0s+pinKcZZyekq4cbEc+kOZTJTwY=;
-        b=BHUqZWO1yC4WXiPO7ldmLtjUAFf0YC9GijFNF0BibXierbjBgAzpkkaJcJ0tI1n/DK
-         oXs7/pFAXnXbK2RQzoAisBrvazTdFsOmrkWKZ+7g4vqCn6qFmbmaH/D5WsN+ZSkNpbd/
-         uQRSytA8zUH26aDkI2PU+zPcGJIoTykTQ1Vv0Da5MbYU2GrQY2vrhkdVS6prT5g0PPuX
-         +qdLcsB5E70ElwSi8WRzGnRL6ujjUiOEWG0U3GrNt6AEGthXhszA3n105qW+Gu8+pcxw
-         xPY69pHjYLaqkPnck3JpsVwlq+mt6elYem4YZENS/LNtIaoPUOB8Ngtl3FeIWYjxcxUZ
-         gaXg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPQ55TFMQMgwX7tL+LTG4dpv7O5Bhd3bXZyiBwDPF5PW3KlI9lwUD6R5sUQ5a2KML5a57bvCdv1Qw65uXsX2QoYpQDM2fpRVulYA==
-X-Gm-Message-State: AOJu0Yy9jHukqGjxRL49htLfC3kqWVveI5dQEPFiwpAyH3RoBYQN7yOs
-	mW+2HCeKoECoqURNwCVeW3ADMUStFTfY0p7Is9pq1P/lm+kNNcr+HpqYdzWCPsY=
-X-Google-Smtp-Source: AGHT+IGlDCWTscNUHohC4ARykVUJaA2f0+Ld2k15SDK7jdUyHKZhZKOug80wqXIWE9zzqUc+DRVNVg==
-X-Received: by 2002:a05:600c:3b08:b0:426:59fe:ac2e with SMTP id 5b1f17b1804b1-427f95af28dmr8486985e9.29.1721807459477;
-        Wed, 24 Jul 2024 00:50:59 -0700 (PDT)
+        bh=g6XxiA8bDlv8vuRJ02SZhiMKDIku4c/DTdy0+z+J+7w=;
+        b=HT0VjgBL8YyL7KtEdLjt6ToYx46XhSN0O1VDgw4+JjnziYMnwj0OC+BsoovrgjWiW+
+         GpAt+yMqii/64bCSxFpra7IbA3kSCDOS7Ae24ptNuKcULG21zd9GbQQPVPYUi7QTXLOn
+         1fI5J38dyp1t8diNut2ENGseufsomcThD5m+hpyEiMgwtRbf1f0YLTgg7ngFCcf5zb1Q
+         arYlbYDC3KTRn8AracLV07H0w5tKwCUm0l6+QrVWK/r4FywrM/vEyVpAYaDjD6IjvM4D
+         QL4Sj0Jx6v1kGlVX3YooPWxBW80o06fcp7huWB4hbgVO93TD7fpxYSc0INY4BcOzYxAV
+         wKjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVA2I242+mA2MqExzaFy85lqfwpIxbh5eyey6zm3aGblnA/bSqhhHEL/Vfu5U++R/hqhTbaP3rF5zxMO779Eeb7KNFzwxTzcIuR9Q==
+X-Gm-Message-State: AOJu0YxrHCm30Hv24PSsl2Gp1ZccAPrPGai96r5uZ+0MMhDNSG54g3G+
+	DlWeCK5gmrrHtAUuuPMi75qKfe8t6cwGbRV9XXGpyVApxKng87wtu944frYM8xk=
+X-Google-Smtp-Source: AGHT+IH3RVhJiPkhqd/bqG8a3KDfnEDCCNAyJMI1TbkKhtbdBjj6Trw6bdv7DpASwnHCRQSd27HxhA==
+X-Received: by 2002:a2e:87ca:0:b0:2ee:8555:4742 with SMTP id 38308e7fff4ca-2f02b741c3dmr13617521fa.27.1721807636493;
+        Wed, 24 Jul 2024 00:53:56 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:deff:4fa8:5076:b4c7? ([2a01:e0a:982:cbb0:deff:4fa8:5076:b4c7])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f93e6021sm16856135e9.35.2024.07.24.00.50.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3687869439esm13416638f8f.52.2024.07.24.00.53.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jul 2024 00:50:59 -0700 (PDT)
-Message-ID: <dfb29dca-7110-4c11-b86e-9063f71a8ada@linaro.org>
-Date: Wed, 24 Jul 2024 09:50:58 +0200
+        Wed, 24 Jul 2024 00:53:56 -0700 (PDT)
+Message-ID: <d41e0587-689a-47d5-9473-dc980be66650@linaro.org>
+Date: Wed, 24 Jul 2024 09:53:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,18 +80,19 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] drm/panel: add BOE tv101wum-ll2 panel driver
-To: Doug Anderson <dianders@chromium.org>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
+Subject: Re: [PATCH v3 4/5] drm/panel: st7701: Add support for SPI for
+ configuration
+To: Hironori KIKUCHI <kikuchan98@gmail.com>, linux-kernel@vger.kernel.org
+Cc: Jagan Teki <jagan@amarulasolutions.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240709-topic-sdm450-upstream-tbx605f-panel-v1-0-af473397835d@linaro.org>
- <20240709-topic-sdm450-upstream-tbx605f-panel-v1-2-af473397835d@linaro.org>
- <CAD=FV=VL1Wxd0veW7N+0Hy=LdKMzNbBang9_EZ9Zo_d-wZOBfw@mail.gmail.com>
+ devicetree@vger.kernel.org
+References: <20240706102338.99231-1-kikuchan98@gmail.com>
+ <20240706102338.99231-5-kikuchan98@gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -118,216 +119,240 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAD=FV=VL1Wxd0veW7N+0Hy=LdKMzNbBang9_EZ9Zo_d-wZOBfw@mail.gmail.com>
+In-Reply-To: <20240706102338.99231-5-kikuchan98@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/07/2024 21:17, Doug Anderson wrote:
-> Hi,
+On 06/07/2024 12:23, Hironori KIKUCHI wrote:
+> The ST7701 supports not only MIPI DSI, but also SPI as an interface
+> for configuration. To support a panel connected via SPI with an RGB
+> parallel interface, add support for SPI using MIPI DBI helpers.
 > 
-> On Tue, Jul 9, 2024 at 6:06 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
->> index 5581387707c6..79c90894b6a4 100644
->> --- a/drivers/gpu/drm/panel/Makefile
->> +++ b/drivers/gpu/drm/panel/Makefile
->> @@ -7,6 +7,7 @@ obj-$(CONFIG_DRM_PANEL_BOE_BF060Y8M_AJ0) += panel-boe-bf060y8m-aj0.o
->>   obj-$(CONFIG_DRM_PANEL_BOE_HIMAX8279D) += panel-boe-himax8279d.o
->>   obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) += panel-boe-th101mb31ig002-28a.o
->>   obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) += panel-boe-tv101wum-nl6.o
->> +obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) += panel-boe-tv101wum-ll2.o
+> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                 |   3 +-
+>   drivers/gpu/drm/panel/panel-sitronix-st7701.c | 123 +++++++++++++++---
+>   2 files changed, 110 insertions(+), 16 deletions(-)
 > 
-> nit: please sort. L comes before N.
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 2ae0eb0638f..3dd52869520 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -755,7 +755,8 @@ config DRM_PANEL_SHARP_LS060T1SX01
+>   config DRM_PANEL_SITRONIX_ST7701
+>   	tristate "Sitronix ST7701 panel driver"
+>   	depends on OF
+> -	depends on DRM_MIPI_DSI
+> +	depends on SPI || DRM_MIPI_DSI
+> +	select DRM_MIPI_DBI if SPI
+>   	depends on BACKLIGHT_CLASS_DEVICE
+>   	help
+>   	  Say Y here if you want to enable support for the Sitronix
+> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> index a0644f7a4c8..9e83a760a8a 100644
+> --- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> @@ -4,6 +4,7 @@
+>    * Author: Jagan Teki <jagan@amarulasolutions.com>
+>    */
+>   
+> +#include <drm/drm_mipi_dbi.h>
+>   #include <drm/drm_mipi_dsi.h>
+>   #include <drm/drm_modes.h>
+>   #include <drm/drm_panel.h>
+> @@ -14,6 +15,7 @@
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+>   
+>   #include <video/mipi_display.h>
+>   
+> @@ -130,12 +132,16 @@ struct st7701_panel_desc {
+>   struct st7701 {
+>   	struct drm_panel panel;
+>   	struct mipi_dsi_device *dsi;
+> +	struct mipi_dbi dbi;
+>   	const struct st7701_panel_desc *desc;
+>   
+>   	struct regulator_bulk_data supplies[2];
+>   	struct gpio_desc *reset;
+>   	unsigned int sleep_delay;
+>   	enum drm_panel_orientation orientation;
+> +
+> +	int (*write_command)(struct st7701 *st7701, u8 cmd, const u8 *seq,
+> +			     size_t len);
+>   };
+>   
+>   static inline struct st7701 *panel_to_st7701(struct drm_panel *panel)
+> @@ -143,16 +149,22 @@ static inline struct st7701 *panel_to_st7701(struct drm_panel *panel)
+>   	return container_of(panel, struct st7701, panel);
+>   }
+>   
+> -static inline int st7701_dsi_write(struct st7701 *st7701, const void *seq,
+> -				   size_t len)
+> +static int st7701_dsi_write(struct st7701 *st7701, u8 cmd, const u8 *seq,
+> +			    size_t len)
+>   {
+> -	return mipi_dsi_dcs_write_buffer(st7701->dsi, seq, len);
+> +	return mipi_dsi_dcs_write(st7701->dsi, cmd, seq, len);
+>   }
+>   
+> -#define ST7701_WRITE(st7701, seq...)				\
+> -	{							\
+> -		const u8 d[] = { seq };				\
+> -		st7701_dsi_write(st7701, d, ARRAY_SIZE(d));	\
+> +static int st7701_dbi_write(struct st7701 *st7701, u8 cmd, const u8 *seq,
+> +			    size_t len)
+> +{
+> +	return mipi_dbi_command_stackbuf(&st7701->dbi, cmd, seq, len);
+> +}
+> +
+> +#define ST7701_WRITE(st7701, cmd, seq...)				\
+> +	{								\
+> +		const u8 d[] = { seq };					\
+> +		st7701->write_command(st7701, cmd, d, ARRAY_SIZE(d));	\
+>   	}
+>   
+>   static u8 st7701_vgls_map(struct st7701 *st7701)
+> @@ -211,10 +223,10 @@ static void st7701_init_sequence(struct st7701 *st7701)
+>   	/* Command2, BK0 */
+>   	st7701_switch_cmd_bkx(st7701, true, 0);
+>   
+> -	mipi_dsi_dcs_write(st7701->dsi, ST7701_CMD2_BK0_PVGAMCTRL,
+> -			   desc->pv_gamma, ARRAY_SIZE(desc->pv_gamma));
+> -	mipi_dsi_dcs_write(st7701->dsi, ST7701_CMD2_BK0_NVGAMCTRL,
+> -			   desc->nv_gamma, ARRAY_SIZE(desc->nv_gamma));
+> +	st7701->write_command(st7701, ST7701_CMD2_BK0_PVGAMCTRL, desc->pv_gamma,
+> +			      ARRAY_SIZE(desc->pv_gamma));
+> +	st7701->write_command(st7701, ST7701_CMD2_BK0_NVGAMCTRL, desc->nv_gamma,
+> +			      ARRAY_SIZE(desc->nv_gamma));
+>   	/*
+>   	 * Vertical line count configuration:
+>   	 * Line[6:0]: select number of vertical lines of the TFT matrix in
+> @@ -1051,6 +1063,10 @@ static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+>   
+>   	st7701 = dev_get_drvdata(&dsi->dev);
+>   	st7701->dsi = dsi;
+> +	st7701->write_command = st7701_dsi_write;
+> +
+> +	if (!st7701->desc->lanes)
+> +		return dev_err_probe(&dsi->dev, -EINVAL, "This panel is not for MIPI DSI\n");
+>   
+>   	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+>   			  MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> @@ -1064,30 +1080,107 @@ static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+>   	return 0;
+>   }
+>   
+> +static int st7701_spi_probe(struct spi_device *spi)
+> +{
+> +	struct st7701 *st7701;
+> +	struct gpio_desc *dc;
+> +	int err;
+> +
+> +	err = st7701_probe(&spi->dev, DRM_MODE_CONNECTOR_DPI);
+> +	if (err)
+> +		return err;
+> +
+> +	st7701 = dev_get_drvdata(&spi->dev);
+> +	st7701->write_command = st7701_dbi_write;
+> +
+> +	dc = devm_gpiod_get_optional(&spi->dev, "dc", GPIOD_OUT_LOW);
+> +	if (IS_ERR(dc))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(dc), "Failed to get GPIO for D/CX\n");
+> +
+> +	err = mipi_dbi_spi_init(spi, &st7701->dbi, dc);
+> +	if (err)
+> +		return dev_err_probe(&spi->dev, err, "Failed to init MIPI DBI\n");
+> +	st7701->dbi.read_commands = NULL;
+> +
+> +	return 0;
+> +}
+> +
+>   static void st7701_dsi_remove(struct mipi_dsi_device *dsi)
+>   {
+>   	mipi_dsi_detach(dsi);
+>   }
+>   
+> -static const struct of_device_id st7701_of_match[] = {
+> +static const struct of_device_id st7701_dsi_of_match[] = {
+>   	{ .compatible = "anbernic,rg-arc-panel", .data = &rg_arc_desc },
+>   	{ .compatible = "densitron,dmt028vghmcmi-1a", .data = &dmt028vghmcmi_1a_desc },
+>   	{ .compatible = "elida,kd50t048a", .data = &kd50t048a_desc },
+>   	{ .compatible = "techstar,ts8550b", .data = &ts8550b_desc },
+>   	{ }
+>   };
+> -MODULE_DEVICE_TABLE(of, st7701_of_match);
+> +MODULE_DEVICE_TABLE(of, st7701_dsi_of_match);
+> +
+> +static const struct of_device_id st7701_spi_of_match[] = {
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, st7701_spi_of_match);
+> +
+> +static const struct spi_device_id st7701_spi_ids[] = {
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, st7701_spi_ids);
+>   
+>   static struct mipi_dsi_driver st7701_dsi_driver = {
+>   	.probe		= st7701_dsi_probe,
+>   	.remove		= st7701_dsi_remove,
+>   	.driver = {
+>   		.name		= "st7701",
+> -		.of_match_table	= st7701_of_match,
+> +		.of_match_table	= st7701_dsi_of_match,
+>   	},
+>   };
+> -module_mipi_dsi_driver(st7701_dsi_driver);
+> +
+> +static struct spi_driver st7701_spi_driver = {
+> +	.probe		= st7701_spi_probe,
+> +	.id_table	= st7701_spi_ids,
+> +	.driver = {
+> +		.name		= "st7701",
+> +		.of_match_table	= st7701_spi_of_match,
+> +	},
+> +};
+> +
+> +static int __init st7701_driver_init(void)
+> +{
+> +	int err;
+> +
+> +	if (IS_ENABLED(CONFIG_SPI)) {
+> +		err = spi_register_driver(&st7701_spi_driver);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	if (IS_ENABLED(CONFIG_DRM_MIPI_DSI)) {
+> +		err = mipi_dsi_driver_register(&st7701_dsi_driver);
+> +		if (err) {
+> +			if (IS_ENABLED(CONFIG_SPI))
+> +				spi_unregister_driver(&st7701_spi_driver);
+> +			return err;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +module_init(st7701_driver_init);
+> +
+> +static void __exit st7701_driver_exit(void)
+> +{
+> +	if (IS_ENABLED(CONFIG_DRM_MIPI_DSI))
+> +		mipi_dsi_driver_unregister(&st7701_dsi_driver);
+> +
+> +	if (IS_ENABLED(CONFIG_SPI))
+> +		spi_unregister_driver(&st7701_spi_driver);
+> +}
+> +module_exit(st7701_driver_exit);
+>   
+>   MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
+> +MODULE_AUTHOR("Hironori KIKUCHI <kikuchan98@gmail.com>");
+>   MODULE_DESCRIPTION("Sitronix ST7701 LCD Panel Driver");
+>   MODULE_LICENSE("GPL");
 
-Good catch, thx
-
-> 
-> 
->>   obj-$(CONFIG_DRM_PANEL_DSI_CM) += panel-dsi-cm.o
->>   obj-$(CONFIG_DRM_PANEL_LVDS) += panel-lvds.o
->>   obj-$(CONFIG_DRM_PANEL_SIMPLE) += panel-simple.o
->> diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c
->> new file mode 100644
->> index 000000000000..5513cb48d949
->> --- /dev/null
->> +++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c
->> @@ -0,0 +1,240 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +// Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
->> +//   Copyright (c) 2013, The Linux Foundation. All rights reserved.
->> +//   Copyright (c) 2024, Neil Armstrong <neil.armstrong@linaro.org>
->> +
->> +#include <linux/delay.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
-> 
-> nit: sort header files?
-
-Will do while I'm it, but I don't personally care of the include order..
-
-> 
->> +static int boe_tv101wum_ll2_prepare(struct drm_panel *panel)
->> +{
->> +       struct boe_tv101wum_ll2 *ctx = to_boe_tv101wum_ll2(panel);
->> +       struct device *dev = &ctx->dsi->dev;
->> +       int ret;
->> +
->> +       ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies),
->> +                                   ctx->supplies);
->> +       if (ret < 0)
->> +               return ret;
->> +
->> +       boe_tv101wum_ll2_reset(ctx);
->> +
->> +       ret = boe_tv101wum_ll2_on(ctx);
->> +       if (ret < 0) {
->> +               dev_err(dev, "Failed to initialize panel: %d\n", ret);
-> 
-> nit: Do you really need this error message? The "_multi" variants are
-> all chatty and print the error message, so we don't really need this
-> here...
-
-Yeah you're right, it's a leftover of the linux-mdss-dsi-panel-driver-generator
-
-> 
-> 
->> +               gpiod_set_value_cansleep(ctx->reset_gpio, 1);
->> +               return ret;
-> 
-> Shouldn't you turn off the regulators?
-
-Indeed
-
-> 
-> 
->> +static int boe_tv101wum_ll2_unprepare(struct drm_panel *panel)
->> +{
->> +       struct boe_tv101wum_ll2 *ctx = to_boe_tv101wum_ll2(panel);
->> +       struct device *dev = &ctx->dsi->dev;
->> +       int ret;
->> +
->> +       ret = boe_tv101wum_ll2_off(ctx);
->> +       if (ret < 0)
->> +               dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-> 
-> nit: Do you really need this error message? The "_multi" variants are
-> all chatty and print the error message, so we don't really need this
-> here...
-
-Another leftover
-
-> 
-> 
->> +
->> +       gpiod_set_value_cansleep(ctx->reset_gpio, 1);
->> +
->> +       regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
->> +
->> +       return 0;
-> 
-> Maybe add a comment justifying why you don't return the error code
-> that boe_tv101wum_ll2_off() returned?
-
-Good point, as far as I remember I always avoided returning errors
-when disabling things, I'll investigate
-
-> 
-> 
->> +static int boe_tv101wum_ll2_get_modes(struct drm_panel *panel,
->> +                                     struct drm_connector *connector)
->> +{
->> +       return drm_connector_helper_get_modes_fixed(connector, &boe_tv101wum_ll2_mode);
-> 
-> Random question for you: on panels that don't use the
-> drm_connector_helper the "bpc" gets set here. Is there a reason why
-> some panel drivers (like this one) don't set bpc?
-
-Good question, I'll check
-
-> 
-> 
->> +static int boe_tv101wum_ll2_probe(struct mipi_dsi_device *dsi)
->> +{
->> +       struct device *dev = &dsi->dev;
->> +       struct boe_tv101wum_ll2 *ctx;
->> +       int ret;
->> +
->> +       ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->> +       if (!ctx)
->> +               return -ENOMEM;
->> +
->> +       ctx->supplies[0].supply = "vsp";
->> +       ctx->supplies[1].supply = "vsn";
->> +
->> +       ret = devm_regulator_bulk_get(&dsi->dev, ARRAY_SIZE(ctx->supplies),
->> +                                     ctx->supplies);
-> 
-> Any chance I can convince you to use devm_regulator_bulk_get_const()?
-> Then you can list your supply structures as "static const" instead of
-> having to initialize them via code.
-
-You convinced me!
-
-> 
-> 
->> +       if (ret < 0)
->> +               return ret;
->> +
->> +       ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
->> +       if (IS_ERR(ctx->reset_gpio))
->> +               return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
->> +                                    "Failed to get reset-gpios\n");
->> +
->> +       ctx->dsi = dsi;
->> +       mipi_dsi_set_drvdata(dsi, ctx);
->> +
->> +       dsi->lanes = 4;
->> +       dsi->format = MIPI_DSI_FMT_RGB888;
->> +       dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
->> +                         MIPI_DSI_MODE_VIDEO_HSE;
->> +
->> +       drm_panel_init(&ctx->panel, dev, &boe_tv101wum_ll2_panel_funcs,
->> +                      DRM_MODE_CONNECTOR_DSI);
->> +       ctx->panel.prepare_prev_first = true;
->> +
->> +       ret = drm_panel_of_backlight(&ctx->panel);
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "Failed to get backlight\n");
->> +
->> +       drm_panel_add(&ctx->panel);
-> 
-> Any chance you could add devm_drm_panel_add() and then use it? Then
-> you can fully get rid of your remove and error handling since
-> devm_mipi_dsi_attach() already exists. Note that this would not change
-> object lifetimes at all since you're already calling
-> drm_panel_remove() in your remove code--it would just clean up the
-> code...
-
-Yep I'll use it
-
-> 
-> 
->> +static struct mipi_dsi_driver boe_tv101wum_ll2_driver = {
->> +       .probe = boe_tv101wum_ll2_probe,
->> +       .remove = boe_tv101wum_ll2_remove,
->> +       .driver = {
->> +               .name = "panel-boe-tv101wum_ll2",
->> +               .of_match_table = boe_tv101wum_ll2_of_match,
->> +       },
->> +};
->> +module_mipi_dsi_driver(boe_tv101wum_ll2_driver);
->> +
->> +MODULE_DESCRIPTION("DRM driver for Boe TV101WUM-LL2 Panel");
-> 
-> Should "Boe" be "BOE" ?
-
-Good point aswell!
-
-Thanks for the review
-
-Neil
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
