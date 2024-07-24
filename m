@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-87728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF8293AC97
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:27:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D96BC93ACAB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:32:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 131712839FA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 06:27:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BF741F23655
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 06:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15E650A63;
-	Wed, 24 Jul 2024 06:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF44643150;
+	Wed, 24 Jul 2024 06:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpftxuPe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqswgNFg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE06D3E49D;
-	Wed, 24 Jul 2024 06:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCEE4C84;
+	Wed, 24 Jul 2024 06:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721802431; cv=none; b=WJnWt9SPi2IkXih8/yN7OjtwrO6/r6r3dS3A0yTrjyBmBBv4f3GEQRTt0wpLzwlnF2dAwjc+YhmiyXI/NIW1gqom1+8oRHr1KhZ3kgRmzZzultCWwWnlzf7QCZgLcFXIkSpR3WiNWU373ee5HOHiCiqVDvs2hOKM7Lmye5283BY=
+	t=1721802761; cv=none; b=avfknnLBG4Rt/AJ4IZPYYd/Dup3ng8cyJqS9BypCYbsWtR7ENdz2iNgkM88LcQj5pUmrQYy8njkYz6P3j2Xs7ggVUMmJfmDMQXGjvD20Lbp+t8a17bos8iy8PL2rnljYN5gMSZegqlRmSCAgiTKzHx3oi+GjIKy5EI79P+fYXak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721802431; c=relaxed/simple;
-	bh=2X0Ry7zeY8Ep1p58TlKAhA7i7D12mqF3dvDhfi5t5FA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=jo8W1CbNETAOBB0Z+z6o8WtqmKJEUjN8tVrQnH8u1GJUAXND+I+MU2aAlUV5X/DvphnpBcxVwUwxuIIyKC9blT8YMK2Dmu7obYyFmsgkfXYzjgqdpfQp9iFHjYKdqJNH9eoizMOULCnvHhLsDam7NQjw3qKXyZ/zV3rb7d/4hLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpftxuPe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91AA8C32782;
-	Wed, 24 Jul 2024 06:27:05 +0000 (UTC)
+	s=arc-20240116; t=1721802761; c=relaxed/simple;
+	bh=rEZHTWyj0uPCwPgc+sXXHg4YaVY9zXbUOvA+NcKie5I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=spZsCWBRuytQ3Ji0rUH7TtE2t7c4F8kXS/rcNz22aVApyELwQGNOiOoXAhJSiz2m6zfaCEe+y3S1LNcOhTOfaDOXuHgeXn8NlsKswdoL/GOJUxE0tAcbJVnf+OeBE/r/3fV+jKDt9cl+EhXZHthgVvIjensLmj+A173sh0ZPY4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqswgNFg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 500DCC32782;
+	Wed, 24 Jul 2024 06:32:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721802431;
-	bh=2X0Ry7zeY8Ep1p58TlKAhA7i7D12mqF3dvDhfi5t5FA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=VpftxuPe+ul+mUuxKy4yqo1LmMWETOnaSBcHcRqzRDpQTOeYXIeYkYMxrkbiZxtvg
-	 ItpstGSiCG7h42APRFxvdGyuaEmwWN2cHMTSopQ5v+SQaqXhXjQjRL1FSF5ZPNAyaJ
-	 7oqSD3fz1B5vL3mEn1CdnGyf3LXxMIEdF7oRxqgcCziTNJAuaZc/yFzE2Ta2XuM/q0
-	 vyrZKeHD22UjS/kbTzlgeEEu41ebqy71RWPyyKW9HpbAU8/jp/hDocJKFpXooyUD5J
-	 t2ijdtnOhH0MQcdHLyEBMApvDbt9V2s7Vy8U8Xpzx3kf6ZKxhF09BUXoevS2GSdNZK
-	 HheD/6bP098HA==
-Message-ID: <ac34c454-4800-4057-9a50-e0c5db1d3806@kernel.org>
-Date: Wed, 24 Jul 2024 08:27:03 +0200
+	s=k20201202; t=1721802761;
+	bh=rEZHTWyj0uPCwPgc+sXXHg4YaVY9zXbUOvA+NcKie5I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YqswgNFgh7UCAUnhFxA40XGfMOYJ/U5CkYmP8cGL9EJqnbNGoC/vMMEEOpnwBu3Wl
+	 jKa3WKbq//JZYdJs9KAS5QALqvWJINFxqktPFMVtrueiKYfodlW7kT1y4m0x4dxXrZ
+	 mFz/Q2MImcAomRW7HrsVlh+DIKfcDQSki07y3aqyBLxEMjK2GfMzEdO0I1iuQ6B+wp
+	 uuTv2tY9ZaevUdTZy7Ri0PQQYMwML9uHqhQ9OHniHfDH+GQqhuJ89zH6JLaIgHOd+j
+	 IQZO4E1dv8fwDf+QbiI0lJKjgrMbjU9UQc5LWbMdK0YuW9cahVc8OUgzjNBV8u4Ddz
+	 OjP5bNhZpJATQ==
+Message-ID: <c9efb8a4-ca08-4e4a-97c6-de03ecea2955@kernel.org>
+Date: Wed, 24 Jul 2024 08:32:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] dt-bindings: usb: qcom,dwc3: Update ipq5332 clock
- details
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
- konrad.dybcio@linaro.org, djakov@kernel.org, quic_wcheng@quicinc.com,
- quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20240723090304.336428-1-quic_varada@quicinc.com>
- <20240723090304.336428-3-quic_varada@quicinc.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
+ "atu" for i.MX8M PCIe Endpoint
+To: Hongxing Zhu <hongxing.zhu@nxp.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "l.stach@pengutronix.de" <l.stach@pengutronix.de>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>
+References: <1721790236-3966-1-git-send-email-hongxing.zhu@nxp.com>
+ <1721790236-3966-2-git-send-email-hongxing.zhu@nxp.com>
+ <dbcd776b-172a-4c53-b33a-3215f7dcfe77@kernel.org>
+ <AS8PR04MB8676B0F1385BE39D209DFB698CAA2@AS8PR04MB8676.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,52 +113,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240723090304.336428-3-quic_varada@quicinc.com>
+In-Reply-To: <AS8PR04MB8676B0F1385BE39D209DFB698CAA2@AS8PR04MB8676.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/07/2024 11:03, Varadarajan Narayanan wrote:
-> USB uses icc-clk framework to enable the NoC interface clock.
-> Hence the 'iface' clock is removed from the list of clocks.
-> Update the clock-names list accordingly.
+On 24/07/2024 08:26, Hongxing Zhu wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 2024年7月24日 14:07
+>> To: Hongxing Zhu <hongxing.zhu@nxp.com>; robh@kernel.org;
+>> krzk+dt@kernel.org; conor+dt@kernel.org; shawnguo@kernel.org;
+>> l.stach@pengutronix.de
+>> Cc: devicetree@vger.kernel.org; linux-pci@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>> kernel@pengutronix.de; imx@lists.linux.dev
+>> Subject: Re: [PATCH v2 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
+>> "atu" for i.MX8M PCIe Endpoint
+>>
+>> On 24/07/2024 05:03, Richard Zhu wrote:
+>>> Add reg-name: "dbi2", "atu" for i.MX8M PCIe Endpoint.
+>>
+>> This we see in the diff. What I do not see is why? Hardware changed? How come?
+>>
+> For i.MX8M PCIe EP, the dbi2 and atu address are pre-defined in the driver.
+> This method is not good.
+> In commit b7d67c6130ee ("PCI: imx6: Add iMX95 Endpoint (EP) support"),
+> Frank suggests to fetch the dbi2 and atu from DT directly.
+> This series is preparation to do that for i.MX8M PCIe EP.
 
-But the clock is still there and is still used by this block. This looks
-like adjusting hardware per Linux implementation.
+This all must be explained in commit msg.
 
-Why suddenly this clock was removed from this hardware?
-
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  .../devicetree/bindings/usb/qcom,dwc3.yaml      | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index efde47a5b145..6c5f962bbcf9 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -220,6 +220,22 @@ allOf:
->              - const: sleep
->              - const: mock_utmi
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,ipq5332-dwc3
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +            - const: sleep
-> +            - const: mock_utmi
-
-So this is the same as first case. Just put it there. It's your task to
-check if you are duplicating a case, not reviewer's...
+Anyway, this will be an ABI break, so explain exactly why it is OK to
+break the ABI.
 
 Best regards,
 Krzysztof
