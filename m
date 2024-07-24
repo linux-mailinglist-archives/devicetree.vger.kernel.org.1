@@ -1,314 +1,160 @@
-Return-Path: <devicetree+bounces-87913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9647593B71A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 20:57:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8CB93B73E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 21:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9AE1B23C2F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 18:57:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9974DB242B2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2FFF16B741;
-	Wed, 24 Jul 2024 18:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B0B16B739;
+	Wed, 24 Jul 2024 19:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="akW/DMj7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WNe8UZtr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC60D167D83
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 18:57:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59550169AC5;
+	Wed, 24 Jul 2024 19:13:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721847456; cv=none; b=jv3+0B+sUjehUfaKxVo7PgksOngT8mWwHGHRI3P984mkBKMb67hmO9Cw1pzDIhUfMUsL4T3M1z9yamioxiI3F2g5FsRY9kH+8nM29Ophum5fDwhAv/RvdSisL2zbFl5Qz9zj/RSaV6R0BIf2GKraualYn6egLJXC0VWlHA9qEsU=
+	t=1721848406; cv=none; b=CfrF2gq65eA45Q/y/Qq7+g23xX9+x+J6OTgevXROwWyn2IKJiMhHDKtQ3vk77IbB5vgLQ5lTgqTA2oetKF4PJxiCq+vT9HOoMqSXXdO6FD/QGBbAlIJ0NXAjW4oivrQCPM1fSo4PzttCHHn+3AC9SOxXYe96UlRMzF8ULEIrl6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721847456; c=relaxed/simple;
-	bh=Yb9CkfGo8qqW2dqmtuJtJ29QpDprm7REjejdf5m4DRI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h4zOKUqeavQf3mpeubHjSiWA8jQbwxUV7oMiHNGvynYV+DVNz6a9wf5WTXH+sqrXhzkklOKPSZuQkwXmLYBFtv2ychAn35jgL0UrohYsz9jpiVKhBw4EONM+eU4YUwAj1fCFZhR7FD+NtaitvMnMsAWtna6HbNCm5zIOH2DfL9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=akW/DMj7; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52efba36802so34777e87.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 11:57:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1721847452; x=1722452252; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6WEhVZHrESmH3cPPuIg5IhaVug2Q8o2MhnyFIl2cWFA=;
-        b=akW/DMj7wjjsGBp0tamuRcM58vjVzVa6c2DSCoj5VnTmylBou+yyH0SjLplDcH2YEz
-         O4/iYUcYmuGvVS3cs53T5ek35c49oXAAaZqG8mLUC/JoMHgDJUF1c8fz0s6Y6t/gDfFD
-         Nl1AxsWQKgxYgBFh+QKnQR2xjuVyrKjE0SGwI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721847452; x=1722452252;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6WEhVZHrESmH3cPPuIg5IhaVug2Q8o2MhnyFIl2cWFA=;
-        b=csIviArsD3g7nLPqVrsHJPlcf9JC1MTFTkG8rnYrvaH+13/M7ny9S/jXbsLwUzthUt
-         DJSD42D24j3QYOMnUMgObbaejzjL93sdrRGNuiTgQBasHV3/IojxRQGtAZnNVWEsGvn5
-         seuFtyzLBOFnaq8deuC/p1Xh11pisNtTcI8WROvuvgF0SqvUTA22XviO/LwSw7bikRKU
-         hW1XdZEW8Kje0o5N9VRm+KzybCFj0O4bonvZqclY4/DukbcPungx3g7d8x43xhYXuzSr
-         onOqG7o4Y77A8hQlRP6lHrxeWTH+4g3A4MQfO8h7OeVZUTIYqVI28py5137iCZbhinFz
-         flyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWnfk+oPiCyUNw8cUTNm7nKE1w2pSLj63kR/UYrb9AMJNRpXEZOM8BGRecmnXPB3d5pslQXm2kPZl0Eu0wjW786or/1R5O1SD2Xzw==
-X-Gm-Message-State: AOJu0YwR9rILChUUQDUVNDQm74CYNW8zbhHA0tRTqBeovCqbzIiTk/sR
-	ByZRumCtVkD1+BCvYRDvWLIqiLaQd7WuDuqOJQWE/zm2uMa6NNVjodLKSmalvk5iu66pA4vs/gR
-	kQ3WqPX5tNq30rlbdGpJNIm4V3VqoHg4EWooE
-X-Google-Smtp-Source: AGHT+IEfsm25M/sKFQlEJmxL9cZCAqQoSSykARJVhn/uLnyhIXUrcNSLMNjZBdX91mJc4gZJYbUFf2dYK/voTLeqr6w=
-X-Received: by 2002:a05:6512:3c91:b0:52e:76bb:c906 with SMTP id
- 2adb3069b0e04-52fd3f9017emr436254e87.61.1721847451819; Wed, 24 Jul 2024
- 11:57:31 -0700 (PDT)
+	s=arc-20240116; t=1721848406; c=relaxed/simple;
+	bh=2lrlzS9qds2GD+/yfxzMA3VPWxbQct5yC0RJ4cs9XgM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RqDSE/Zh8vO9rUNj7hOhxtN19XDjycPBxRQ3J8JNCpENqSGQZH8z7fUuF7PPezcE1Uw3iDK5eeZsmDmUqBHlByxUURs5WnfxIEthik7wGBH9rW24LWHiTvVKweJ1QVwYIWhpm65hk6tr4FuGuCE5lPOxY49q2dlQqdCNp5saaIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WNe8UZtr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7206AC32781;
+	Wed, 24 Jul 2024 19:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721848405;
+	bh=2lrlzS9qds2GD+/yfxzMA3VPWxbQct5yC0RJ4cs9XgM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WNe8UZtrMhNPRcRtdmDVxhGaUpLNOUwLtsNG6P+KzKydotRbbEaljZ4tnIJmx5nG4
+	 /+KCchVkAEPXDSyp25c63NodgiQgDkPt/F4r/uXZ00sK9fkWTagoBP19J9rJyiI6xk
+	 yPOQTfr72PizQFOH2kVdgTgH643XIyVEme/AILd4r6uAd9gNu6mboxnaLSCcE0qyAH
+	 epBGwrQ5XF95uZUchvYBaUk6T7dWbNIEMzBvx6Cv0IwwP3ic6XOEVPqGEYxIM3FU6e
+	 0XzJRKmGjyWtFXNEcS/RX7AJmodYA2NsNXVXPG2zjIibdkn9QYuGn62kVH8606wPmI
+	 /nT5kA89to+mg==
+Message-ID: <980422ea-8c44-47a4-8996-8653bab3ef8a@kernel.org>
+Date: Wed, 24 Jul 2024 21:13:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240716213131.6036-1-james.quinlan@broadcom.com>
- <20240716213131.6036-2-james.quinlan@broadcom.com> <d20be2d3-4fdd-48ca-b73e-80e8157bd5b2@kernel.org>
- <CA+-6iNzsE0hwUhFyfuUZtuAVgOAS-L8pR37x8TV4R779g6E-Jg@mail.gmail.com> <90d1d4a5-5d47-4ad0-ab0f-d4f549cd4eec@kernel.org>
-In-Reply-To: <90d1d4a5-5d47-4ad0-ab0f-d4f549cd4eec@kernel.org>
-From: Jim Quinlan <james.quinlan@broadcom.com>
-Date: Wed, 24 Jul 2024 14:57:19 -0400
-Message-ID: <CA+-6iNw-8co3Tx2S82To4Cs-6O+T+YrpaSBZBUci2sL4dRTpcw@mail.gmail.com>
-Subject: Re: [PATCH v4 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
- add 7712 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>, 
-	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000bfe70d061e02d938"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: Add device-name in the coresight
+ components
+To: Mao Jinlong <quic_jinlmao@quicinc.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, songchai <quic_songchai@quicinc.com>,
+ Jie Gan <quic_jiegan@quicinc.com>
+References: <20240703122340.26864-1-quic_jinlmao@quicinc.com>
+ <20240703122340.26864-2-quic_jinlmao@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240703122340.26864-2-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---000000000000bfe70d061e02d938
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 03/07/2024 14:23, Mao Jinlong wrote:
+> Current name of coresight component's folder consists of prefix of
+> the device and the id in the device list. When run 'ls' command,
+> we can get the register address of the device. Take CTI for example,
+> if we want to set the config for modem CTI, but we can't know which
+> CTI is modem CTI from all current information.
+> 
+> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
+> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
+> 
+> Add device-name in device tree which can provide a better description
+> of the coresight device. It can provide the info like the system or
+> HW it belongs to.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>  .../devicetree/bindings/arm/arm,coresight-cti.yaml          | 6 ++++++
+>  .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml | 6 ++++++
+>  .../devicetree/bindings/arm/arm,coresight-stm.yaml          | 6 ++++++
+>  .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml        | 6 ++++++
+>  4 files changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> index 2d5545a2b49c..6a73eaa66a42 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+> @@ -98,6 +98,12 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  arm,cs-dev-name:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Define the name which can describe what kind of HW or system the
+> +      coresight device belongs to.
 
-On Wed, Jul 24, 2024 at 4:05=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 23/07/2024 20:44, Jim Quinlan wrote:
-> > On Wed, Jul 17, 2024 at 2:51=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 16/07/2024 23:31, Jim Quinlan wrote:
-> >>> o Change order of the compatible strings to be alphabetical
-> >>>
-> >>> o Describe resets/reset-names before using them in rules
-> >>>
-> >>
-> >> <form letter>
-> >> This is a friendly reminder during the review process.
-> >>
-> >> It seems my or other reviewer's previous comments were not fully
-> >> addressed. Maybe the feedback got lost between the quotes, maybe you
-> >> just forgot to apply it. Please go back to the previous discussion and
-> >> either implement all requested changes or keep discussing them.
-> >>
-> >> Thank you.
-> >> </form letter>
-> >>
-> >>> o Add minItems/maxItems where needed.
-> >>>
-> >>> o Change maintainer: Nicolas has not been active for a while.  It als=
-o
-> >>>   makes sense for a Broadcom employee to be the maintainer as many of=
- the
-> >>>   details are privy to Broadcom.
-> >>>
-> >>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> >>> ---
-> >>>  .../bindings/pci/brcm,stb-pcie.yaml           | 26 ++++++++++++++---=
---
-> >>>  1 file changed, 19 insertions(+), 7 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml=
- b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> index 11f8ea33240c..692f7ed7c98e 100644
-> >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml=
-#
-> >>>  title: Brcmstb PCIe Host Controller
-> >>>
-> >>>  maintainers:
-> >>> -  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> >>> +  - Jim Quinlan <james.quinlan@broadcom.com>
-> >>>
-> >>>  properties:
-> >>>    compatible:
-> >>> @@ -16,11 +16,11 @@ properties:
-> >>>            - brcm,bcm2711-pcie # The Raspberry Pi 4
-> >>>            - brcm,bcm4908-pcie
-> >>>            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-> >>> -          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-> >>>            - brcm,bcm7216-pcie # Broadcom 7216 Arm
-> >>> -          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> >>> +          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-> >>>            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
-> >>>            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
-> >>> +          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> >>>
-> >>>    reg:
-> >>>      maxItems: 1
-> >>> @@ -95,6 +95,18 @@ properties:
-> >>>        minItems: 1
-> >>>        maxItems: 3
-> >>>
-> >>> +  resets:
-> >>> +    minItems: 1
-> >>> +    items:
-> >>> +      - description: reset for external PCIe PERST# signal # perst
-> >>> +      - description: reset for phy reset calibration       # rescal
-> >>> +
-> >>> +  reset-names:
-> >>> +    minItems: 1
-> >>> +    items:
-> >>> +      - const: perst
-> >>> +      - const: rescal
-> >>
-> >> There are no devices with two resets. Anyway, this does not match one =
-of
-> >> your variants which have first element as rescal.
-> >
-> >
-> > Hello Krzysztof,
-> >
-> > At this commit there are two resets; the 4908 requires "perst" and the
-> > 7216 requires "rescal".   I now think what you are looking for is the
-> > top-level
-> > description of something like
-> >
-> > resets:
-> >   maxItems: 1
-> >     oneOf:
-> >       - description: reset controller handling the PERST# signal
-> >       - description: phandle pointing to the RESCAL reset controller
->
-> Now tell me, what sort of new information comes with this description?
-> "Phandle"? It cannot be anything else. Redundant. "Pointing to"?
-> Redundant. "reset-controller"? Well, resets always point to reset
-> controller.
->
-> So what is the point of this description? Any point?
->
-> >
-> > reset-names:
-> >   maxItems: 1
-> >     oneOf:
-> >       - const: perst
-> >       - const: rescal
-> >
-> > I left out minItems because imItems=3D=3DmaxItems=3D1
-> >
-> > Before I was giving both of them as the "potential candidates list"
-> > that will be used further on, but this is not how Yaml should be used.
-> >
-> > Is the above in the right direction?
->
-> It's over complicated. First maxItems are redundant, because you define
-> number of items in items. Second, you have EXACTLY the same case as the
-> hardware for which I gave you bindings to use. I don't understand why
-> you insist on doing things differently, but you can. Take a look at many
-> other bindings how they achieve this - there are many, many examples.
-> But do not invent third or fourth method...
+Don't we use already label for such cases? Power domains, input, leds,
+panels, IIO, hwmon and more.
 
-ack, I will follow the qcom,ufs.yaml file you referenced.
+Best regards,
+Krzysztof
 
->
-> Best regards,
-> Krzysztof
->
-
---000000000000bfe70d061e02d938
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCD1vkufEO7dIkSTe0b7kToXkpptEW7b
-X+3wvLGrSbd9ADAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA3
-MjQxODU3MzJaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEADHD/qS4oNSDpGaBYmPGqLEQMIX7Sxq8TKIGwAGB0b/bQiOCn
-Fj5bMbPz/YlaSOrjYoByn9K+10b9oM/eU+YYf1l/MXbPaP8vFS7LHrSVauXmuU7fCDc5CrloBwKC
-zxE72TDLThx6T6Hsyww84cyhtHzHSfhaUGhe3R1QPT3buFPtjTIghdhj8SbN0wjsjftUEHF6gHss
-+Rxid/1So3WQMz3VPmTFw88l4NC8snEJfI4N6jfx8i5H5OjJJOBg3EJYlZgELzu989HIRvwhf9Oy
-XdsExRGhkWVouCQ43vwKMQQG4ERscS7+mJIA9lf01f/KlVstu1Zlaq4CGhzL1XE9Vw==
---000000000000bfe70d061e02d938--
 
