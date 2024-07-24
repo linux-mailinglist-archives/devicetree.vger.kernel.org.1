@@ -1,77 +1,71 @@
-Return-Path: <devicetree+bounces-87856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53CE893B3FD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD5593B42B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F601281E5A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:40:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97133282488
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4E215E5CE;
-	Wed, 24 Jul 2024 15:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5E7015E5DC;
+	Wed, 24 Jul 2024 15:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="f3BjWzMW"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="OhO3gu60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098FD15D5C4;
-	Wed, 24 Jul 2024 15:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980081C693;
+	Wed, 24 Jul 2024 15:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721835626; cv=none; b=fshB1phUtRJkM+z1RPvPi6PpHVSM7b2buzphugznS6pmlU3xiXRVl2vzpxX+SRXVasy38c9WSms38CZitNiLhzPenDurd3haTcC8Yo9RzOFMeJF9C5y5mLDWQZSv7+if7XtsAdpa3vS0wS4GoxLTOYC6Gadw8QofQRrzZoqZYwM=
+	t=1721836095; cv=none; b=uUWPzJN/XVkWi/43QM1bb5ohVkvSeju/RRmYTK6JOB0lxGPrU9XcZkRqC9WvuYtoiFNjlw4fP5eStHE14sF/9kihO+mThv8RX6ggu5zzoNgydQZrWj2r+Zycnzjs8lNiRx6kP7Tq0w3un2O9CB1mQM5iZT1MyL73Fgrdi8MX67E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721835626; c=relaxed/simple;
-	bh=ACMw6OrhWT8DLEUSXg0DCsjt2bgw9R8f1+y3yiiW0WQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NLnl+sr4mQDjRwwFdJ/5+dOpHCDhV+c8dNDfjP4XAWiCYky/A7qAGTf+doZi5gDj/bx3rorpitq0Pj9VH9MSr3kYWC/nmWombMwFr0rdTmjXA8vob9K9xDRIO0KLMpbZfBgq8sgPKp0H6sq2MHYlSzA8W0+lkjahnkIxS6ior6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=f3BjWzMW; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46OB3vlm014224;
-	Wed, 24 Jul 2024 17:40:12 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	/npYISOct7pomZUB0oHtp4IjfuX37MB3TRfqf89/z2s=; b=f3BjWzMW6NZ24H6x
-	ByQ6OqAbEGCvYg9/4qrE1doAG3O8UuMv1X3elOKrJDzaVrxL9BebL9+Q6wu1vWvA
-	WDsjDOyoZ2tfWrz+qdBbpto/oZLTquqBoV5/+DR53uzWHtZHbz43slvL19dKAlFC
-	rBaIRksZfN6uTirX9dF2cZnZR+qLPL3cq6bCFSXJbb0/Y17weY1ssswO9dxG/kf7
-	iTtLTRTjn72gvecqAbSvrRSXjZBLLy7tGqj78QmSJ5qSWLjS5/HhBUV6ar0mkDTT
-	Jbb6XRujufwUP9Zl4Ao2pRmBz/xoDq1i8I5zzeDaCSNQr3ZGRNFPukJBT7EJqSpx
-	EJRwIw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 40g2nh87s0-1
+	s=arc-20240116; t=1721836095; c=relaxed/simple;
+	bh=Du+trD5+wGpFSitFhV49nwjAnAsb4F+Ih5E786q8hpc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FozR0qxIpfG+WHnxKcXI1fmznJxYlza4OMF6Rfy2IDc3gBO7PKRdS1YB4lSyxI8iLPsWR7xArRc2utxReoQsO+tkJAbjhdm/PvBi68WMvPqr9abdhlCcBEGSIJxSOJkb0bsPtUCAjZsmI276c7pHmVmOxx+4q0N70pWUzc/vutU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=OhO3gu60; arc=none smtp.client-ip=67.231.148.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46OEGNFL001424;
+	Wed, 24 Jul 2024 08:47:56 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=SWSfewh/WqsSwJTqVzZj2QI
+	ihdoYcvZ9n23cIcj874M=; b=OhO3gu60DbhWlrQHj+WRnDWA9jrZVymp6cJpx6S
+	X935cpptpx68EXQaqLWXENS4ODKp5sS8psEuNiZSMvljCvLuZ+GAC9l1B1DhGK6K
+	eo8yNbHLXhtV6n/VHpSr3aOopKztxm3OusaN9zJpqoTWgs8A4FzoMB3zT0x1PDta
+	c+XjPltqEF/Oi4PeQr3FHL4OkkDClGnZm6OC00lL2dO6ZFJk/payMg7wYVmjCAZ1
+	9jOFUJbrT2RKdw6BfrX14ZBVejKnlYo9aMnsTEPx5Lb+OEB7y0fx4WJVyx7CyIxk
+	VM32KCO2yAnYAYzHJsy6MAmtNx+mhirHt/BNQ9ZI02f2pxw==
+Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
+	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 40k0yh1d6c-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jul 2024 17:40:12 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id AE50D40050;
-	Wed, 24 Jul 2024 17:40:07 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0DBD8241B41;
-	Wed, 24 Jul 2024 17:39:34 +0200 (CEST)
-Received: from localhost (10.252.12.39) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 24 Jul
- 2024 17:39:33 +0200
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: <fabrice.gasnier@foss.st.com>, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-CC: Olivier Moysan <olivier.moysan@foss.st.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 6/9] dt-bindings: iio: add vref support to sd modulator
-Date: Wed, 24 Jul 2024 17:36:34 +0200
-Message-ID: <20240724153639.803263-7-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240724153639.803263-1-olivier.moysan@foss.st.com>
-References: <20240724153639.803263-1-olivier.moysan@foss.st.com>
+	Wed, 24 Jul 2024 08:47:56 -0700 (PDT)
+Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
+ DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Wed, 24 Jul 2024 08:47:54 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
+ (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Wed, 24 Jul 2024 08:47:54 -0700
+Received: from Dell2s-9.sclab.marvell.com (unknown [10.110.150.250])
+	by maili.marvell.com (Postfix) with ESMTP id 4DBD13F706F;
+	Wed, 24 Jul 2024 08:47:54 -0700 (PDT)
+From: Witold Sadowski <wsadowski@marvell.com>
+To: <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <broonie@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <pthombar@cadence.com>, Witold Sadowski <wsadowski@marvell.com>
+Subject: [PATCH v11 0/9] Marvell HW overlay support for Cadence xSPI
+Date: Wed, 24 Jul 2024 08:47:30 -0700
+Message-ID: <20240724154739.582367-1-wsadowski@marvell.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,42 +74,179 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
+X-Proofpoint-GUID: u-0i9DaKvoR1oyF_3qrimuiRm35Rw6tX
+X-Proofpoint-ORIG-GUID: u-0i9DaKvoR1oyF_3qrimuiRm35Rw6tX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-07-24_15,2024-07-24_01,2024-05-17_01
 
-Allow to specify the reference voltage used by the SD modulator.
-When the SD modulator is defined as an IIO backend, the reference
-voltage can be used to evaluate scaling information of the IIO device.
-The reference voltage is not used otherwise.
+This patch series adds support for the second version of the Marvell
+hardware overlay for the Cadence xSPI IP block. The overlay is a hardware
+change made around the original xSPI block. It extends xSPI features with
+clock configuration, interrupt masking, and full-duplex, variable-length SPI
+operations.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- .../bindings/iio/adc/sigma-delta-modulator.yaml           | 8 ++++++++
- 1 file changed, 8 insertions(+)
+These functionalities allow the xSPI block to operate not only with memory
+devices but also with simple SPI devices and TPM devices.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml b/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml
-index b245971fecb0..ff04ae08f264 100644
---- a/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml
-@@ -31,6 +31,14 @@ anyOf:
-   - required: ['#io-backend-cells']
-   - required: ['#io-channel-cells']
- 
-+if:
-+  required:
-+    - '#io-backend-cells'
-+then:
-+  properties:
-+    vref-supply:
-+      description: Phandle to the vref input analog reference voltage.
-+
- additionalProperties: false
- 
- examples:
+Example ACPI entry:
+      Device (SPI0) {
+        Name (_HID, "PRP0001")          // ACPI_DT_NAMESPACE_HID
+        Name (_UID, 0)
+        Name (_DDN, "SPI controller 0")
+        Name (_CCA, ONE)
+
+        Method (_STA) {Return (0xF)}
+
+        Name (_CRS, ResourceTemplate() {
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+                        PosDecode,       // Decode
+                        MinFixed,        // MinType
+                        MaxFixed,        // MaxType
+                        NonCacheable,    // MemType
+                        ReadWrite,       // ReadWriteType
+                        0,               // AddressGranularity
+                        0x804000000000,  // MinAddress
+                        0x804000001037,  // MaxAddress
+                        0,               // AddressTranslation
+                        0x1038)          // AddressLength
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+                        PosDecode,       // Decode
+                        MinFixed,        // MinType
+                        MaxFixed,        // MaxType
+                        NonCacheable,    // MemType
+                        ReadWrite,       // ReadWriteType
+                        0,               // AddressGranularity
+                        0x804010000000,  // MinAddress
+                        0x804010000007,  // MaxAddress
+                        0,               // AddressTranslation
+                        0x8)             // AddressLength
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+                        PosDecode,       // Decode
+                        MinFixed,        // MinType
+                        MaxFixed,        // MaxType
+                        NonCacheable,    // MemType
+                        ReadWrite,       // ReadWriteType
+                        0,               // AddressGranularity
+                        0x804000002000,  // MinAddress
+                        0x804000004027,  // MaxAddress
+                        0,               // AddressTranslation
+                        0x2028)          // AddressLength
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+            PosDecode,       // Decode
+            MinFixed,        // MinType
+            MaxFixed,        // MaxType
+            NonCacheable,    // MemType
+            ReadWrite,       // ReadWriteType
+            0,               // AddressGranularity
+            0x804000008000,  // MinAddress
+            0x804000008237,  // MaxAddress
+            0,               // AddressTranslation
+            0x238)           // AddressLength
+
+          Interrupt(ResourceConsumer, Edge, ActiveHigh, Exclusive) { 0x7A }
+        })
+
+        Name (_DSD, Package() {
+            ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+            Package () {
+                Package () { "compatible", "marvell,cn10-xspi-nor"},
+                Package () { "reg", 0x8040},
+            }
+        })
+      } // SPI0
+
+Changes:
+v11:
+  Fix SDMA x86 build issue. Instead of ioread64_rep use readq functions
+
+v10:
+  Modify SDMA operation - Read as much data as possible using ioread64_rep, complete transfer with
+  memcpy. Ignore first step if buffer is not alligned
+  Clean unnecesary tennary operators
+  Add spi_transfer_delay_exec call
+  Rename "current_cycle_count" to "current_transfer_length"
+
+v9:
+  Split into smaller patches:
+    - Marvell overlay splitted into: PHY, Clock, Interrupt and SDMA ops
+    - ACPI support splitted into resource mapping, CS parameter reading and tx/rx bus length
+  Add separate ops and a few function pointers to distinguish between Cadence and Marvell:
+    - SDMA read handler.
+    - IRQ enable/disable handler
+    - Separate mem_ops for Marvell xSPI
+  Cleanup xfer code from magic numbers
+  Add more descriptive commit msg for xfer block
+  Use bitrev8 instead of custom bit reversal
+  Rework Marvell SDMA read operations
+  Add example ACPI entry
+
+v8:
+  Rename xferbase to xfer
+  Rework DLL reset, to return non inverted boolean value
+  Rework STIG and SDMA status check, to return non inverted boolean value
+
+v7:
+  Rebase patches to latest sources, changes in "Allow to read basic xSPI configuration
+ from ACPI"
+  Removed bugfix, as it was integrated to next tree from v6
+
+v6:
+  Fix item order in cdns,xspi.yaml
+
+v5:
+  Rework cdns,xspi.yaml file
+  Reword commit messages
+  Move mamory mapping to ACPI patch
+  Use devm_platform_ioremap_resource instead of two step mapping
+
+v4:
+  Rename new Marvell registers to keep naming conventions
+  Rename mrvl,xspi-nor to marvell,cnxx,xspi-nor
+  Various fixed for cdns,xspi.yaml file:
+    - Remove unnecesary parameters
+    - Link register xferbase with marvell,cn10-xspi-nor
+    - Move default values to .c file from device-tree
+  Clock configuration optimization
+  ACPI fixes:
+    - Remove incorrect ACPI match table
+  Added .data field to device_id, fixes for matching in ACPI and dtb case
+  Minor style comment changes
+
+v3:
+  Removed all kconfig changes
+  Added device-tree mrvl,xspi-nor tag
+
+v2:
+  Support for second overlay iteration
+
+v1:
+  -
+
+v0:
+  Initial support for v1 overlay
+
+Witold Sadowski (9):
+  spi: dt-bindings: cadence: Add Marvell overlay bindings documentation
+    for Cadence XSPI
+  spi: cadence: Add static PHY configuration in Marvell overlay
+  spi: cadence: Add clock configuration for Marvell xSPI overlay
+  spi: cadence: Add Marvell SDMA operations
+  spi: cadence: Add Marvell xSPI interrupt changes
+  spi: cadence: Add Marvell xfer operation support
+  spi: cadence: Change resource mapping
+  spi: cadence: Change cs property reading.
+  spi: cadence: Try to read spi-tx/rx-bus width property using ACPI
+
+ .../devicetree/bindings/spi/cdns,xspi.yaml    |  32 +-
+ drivers/spi/spi-cadence-xspi.c                | 692 +++++++++++++++++-
+ 2 files changed, 704 insertions(+), 20 deletions(-)
+
 -- 
-2.25.1
+2.43.0
 
 
