@@ -1,144 +1,215 @@
-Return-Path: <devicetree+bounces-87874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7779893B489
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 18:09:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD02793B4AA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 18:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 214F11F21315
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 16:09:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F4C1B20E35
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 16:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA07115B541;
-	Wed, 24 Jul 2024 16:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E0615B111;
+	Wed, 24 Jul 2024 16:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyXEaU+5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MtVqqqLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3B51BF38;
-	Wed, 24 Jul 2024 16:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436A215E5DC;
+	Wed, 24 Jul 2024 16:12:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721837368; cv=none; b=DwKroXfr+rQM+OEDailuc+qYhkP0GxlOItIx6rw8X8BbndxnB3lWLMYUSXvGE0JXAUzi6K6SPa55DcPQy2hAJ7UsK0Bi4GpIJZ3fJEijoDJVheAdSrsFNMRqH0O5ckWIsCnh4jZfwmXbc6wOfXxY/Xgii9BCzzXDqMfNga8I2P4=
+	t=1721837574; cv=none; b=JDenF+PJP0YFQRrivOcgCzPKo2b/8pfleA/LRxlipaecIGkz8yH0n3HwUJQtSIM+jRth5GMy7KZQ51tJhqQ7YSWTI0H4xVvVByCYmjy/g5Ar3LS31j48lmqgpvhuIFadGlDJ52sAW3Tu6iCR1qsFAumXkfaYdnTeLoPIZ6/vBk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721837368; c=relaxed/simple;
-	bh=Ae1TsuJM82AmyqCbGZaDDn2GLp1+nwcKq7q33PCnJzk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YgR7P4Esfg+Cygq9RVSWi2adMHgzRvTvltnMVOGeE36wIbvl1c1q8UDdozGiW6rodWhIrAa254ZS5LIUhdRrAjGD4E8u/E/jJ/ntBy4Jy/ibkIzdYynVY4UL57VFMmeEdtkOgzBDYfM7OOYhN00DcVl1dA+WWrrT4O7BHx2+wg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyXEaU+5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 232AFC32781;
-	Wed, 24 Jul 2024 16:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721837368;
-	bh=Ae1TsuJM82AmyqCbGZaDDn2GLp1+nwcKq7q33PCnJzk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gyXEaU+5/JxxDzD5YBxEvKhA+gdmfy4WWpy8E/V25vh4SXGNhazZV3e4fFbQ6n+Rb
-	 TJbrsqH6n+KpxCPHMBh+pkzG3lKrnQyy4gBih+3X1qnMjPS/BgGQJHpfPc9JTKS+Hj
-	 j+sX7SKplORBZ/TZSS5xyEaabj9+zVtKEJUXwE1lz5JkESj80iNqhAWtMP4WtST+IM
-	 7bXT8jVIev7aKaSEbyw0lXLyjmEKC0efEd7hm+EMb2Q0XlyrfwJu2G7kMcQmzGsQt+
-	 WHY5Ou4lJHma1Zc2/0pQMCmu9M82LYn7rrr8W/kSD6eAQBSYP6dbZz9YdEgz8LyAjv
-	 1eZqzC8xFfJHg==
-Message-ID: <3ee9644d-ac10-495b-ac7c-fa034f27d27a@kernel.org>
-Date: Wed, 24 Jul 2024 18:09:19 +0200
+	s=arc-20240116; t=1721837574; c=relaxed/simple;
+	bh=Lx9S94uaQu9bvfC1G0Dl39LGuHtgMpD9VsQXFEuMsOQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ah1xsMcCE2E5g2Ki2KU0o+8eHeAKDDk4LzohR2DqlxQBh9Vuvuk6qC+oSVlNLW1NBXmFT2WJlaZAuJyEvOI4D5igPNfRyqDBALd+hNnOOtOqk9rosPxkQF7oMgwopcDe8PQ8BBlvtUkuAgTV+l1cvtX0D4g1ZOe3iWvtyKHTpQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MtVqqqLn; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1fd6ed7688cso19373725ad.3;
+        Wed, 24 Jul 2024 09:12:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721837572; x=1722442372; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dGy8zPia1B1XKZzXuwWS8JSh1QUyF/w6Ab7CItZJ4ps=;
+        b=MtVqqqLnuuHcLOKjlNk2oHm/AXnoQ9Mcvi+WOKVOFBrVp34ShzEt3v5XfLV3v0lzwR
+         cC734j87LAv1JaZPjDN3y8y5/vtv4Z3FxKUwfGauKBoBoWANSy7L9A3ICLn7cTiWEbVY
+         M2j3fOE0thAXV9LY6FcJGDNcZkF0hwwAtvIS8pClCgrzQI+OUDEdrsOoQKya1QY5bJEw
+         ReMQ+77BMSbn5kS5DFch24xSep0hfOe0C5Mo/f2SBgC7II37aKdKx7h9xfNgtDFtVocB
+         onhm0PdzFH7VAspCkfDjH/4wWh4A26xaJj7SUIXM9vXYLRitIwaQdF3TN9Mvt3CPjNT9
+         jnvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721837572; x=1722442372;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dGy8zPia1B1XKZzXuwWS8JSh1QUyF/w6Ab7CItZJ4ps=;
+        b=ou8X+e+qqwoiztz5nawzSWgiPEbsiu3vDNEkRby2X0dtKEHXPIy4/JQqPzAbVcJ0fk
+         Sb/ruxf5q06hdWuvdeodQLGjtpow4a7IYPJAwUJKrD8vkmGSPN+xwVE7MGs063EQqjYc
+         vUKnU2n+T9Q/lxGLRxXYBrfI9L5FbODFeadV7+CBTBYlfGwjp3Po/gl09H0Kk+dhSl3F
+         0UVHA4ZjVCvWHwHBh0oFdDMzQUQ/WLXhfDSs6Wz4KXJJapzww90OF9UPvpCVCFahAkbi
+         jVzATbgnwrXtheTi8nEVwwL8bP3gFUozvi/WLttZ3YJKsMCcYQybzlWHsfRpeT4bpOPV
+         aqDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVVY0NzCOSnOBCO7J94obbge1TM9BbrSHD/p6ro2xSTuunh/GHRe0t8NjaJhWK8pT6slER9DXLZz8NVTSNMreCDozkmhSkCpTQgl75VWIo794/DcXi9LumCzNUSefHi4P1KvSAUD/qRfu3gYysd1KCQ8M06MyPBz5L147pKVXz1cLf2Sf0=
+X-Gm-Message-State: AOJu0YyaLC4dDR5O/DeDDNq35AWO41ciwmBCdciumZuZVqlBF4/dewvP
+	Ivnhu6pgQbkyucg4U8FJ1nPPNJUFiH/YSt7g1cxDuKE1N9RdPPbqVy04AEbvZ1k=
+X-Google-Smtp-Source: AGHT+IGwOmSmZRzublCwto8iAdsGQCIJhKKjiFYZCs+wlRCvU3WxVvNuBUWb0T/QF+lXF8AXBA39Dg==
+X-Received: by 2002:a17:903:230a:b0:1fc:2e38:d3de with SMTP id d9443c01a7336-1fed352f8e7mr551235ad.7.1721837572292;
+        Wed, 24 Jul 2024 09:12:52 -0700 (PDT)
+Received: from fedora.. ([115.240.194.54])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd6f31bd9bsm96065825ad.157.2024.07.24.09.12.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jul 2024 09:12:51 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpio: nxp,lpc32xx-gpio: Convert to dtschema
+Date: Wed, 24 Jul 2024 21:42:28 +0530
+Message-ID: <20240724161235.130333-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: add a7779 doc
-To: Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- linux-iio@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Cosmin Tanislav <cosmin.tanislav@analog.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Nuno Sa <nuno.sa@analog.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Marius Cristea <marius.cristea@microchip.com>,
- Mike Looijmans <mike.looijmans@topic.nl>, Liam Beguin
- <liambeguin@gmail.com>, Ivan Mikhaylov <fr0st61te@gmail.com>,
- Marcus Folkesson <marcus.folkesson@gmail.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240724155517.12470-1-ramona.nechita@analog.com>
- <20240724155517.12470-3-ramona.nechita@analog.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240724155517.12470-3-ramona.nechita@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/07/2024 17:54, Ramona Alexandra Nechita wrote:
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
+Convert the NXP LPC32xx SoC GPIO controller bindings to DT schema format.
 
-<form letter>
-This is a friendly reminder during the review process.
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+---
+ .../devicetree/bindings/gpio/gpio_lpc32xx.txt | 43 ---------------
+ .../bindings/gpio/nxp,lpc32xx-gpio.yaml       | 52 +++++++++++++++++++
+ 2 files changed, 52 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt b/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
+deleted file mode 100644
+index 49819367a011..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-NXP LPC32xx SoC GPIO controller
+-
+-Required properties:
+-- compatible: must be "nxp,lpc3220-gpio"
+-- reg: Physical base address and length of the controller's registers.
+-- gpio-controller: Marks the device node as a GPIO controller.
+-- #gpio-cells: Should be 3:
+-   1) bank:
+-      0: GPIO P0
+-      1: GPIO P1
+-      2: GPIO P2
+-      3: GPIO P3
+-      4: GPI P3
+-      5: GPO P3
+-   2) pin number
+-   3) optional parameters:
+-      - bit 0 specifies polarity (0 for normal, 1 for inverted)
+-- reg: Index of the GPIO group
+-
+-Example:
+-
+-	gpio: gpio@40028000 {
+-		compatible = "nxp,lpc3220-gpio";
+-		reg = <0x40028000 0x1000>;
+-		gpio-controller;
+-		#gpio-cells = <3>; /* bank, pin, flags */
+-	};
+-
+-	leds {
+-		compatible = "gpio-leds";
+-
+-		led0 {
+-			gpios = <&gpio 5 1 1>; /* GPO_P3 1, active low */
+-			linux,default-trigger = "heartbeat";
+-			default-state = "off";
+-		};
+-
+-		led1 {
+-			gpios = <&gpio 5 14 1>; /* GPO_P3 14, active low */
+-			linux,default-trigger = "timer";
+-			default-state = "off";
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml b/Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml
+new file mode 100644
+index 000000000000..5974b2775d23
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/nxp,lpc32xx-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP LPC32xx SoC GPIO controller
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++properties:
++  compatible:
++    const: nxp,lpc3220-gpio
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 3
++    description: |
++      1) bank:
++        0: GPIO P0
++        1: GPIO P1
++        2: GPIO P2
++        3: GPIO P3
++        4: GPI P3
++        5: GPO P3
++      2) pin number
++      3) optional parameters:
++        - bit 0 specifies polarity (0 for normal, 1 for inverted)
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - '#gpio-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    gpio@40028000 {
++        compatible = "nxp,lpc3220-gpio";
++        reg = <0x40028000 0x1000>;
++        gpio-controller;
++        #gpio-cells = <3>; /* bank, pin, flags */
++    };
+-- 
+2.45.2
 
 
