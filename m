@@ -1,244 +1,124 @@
-Return-Path: <devicetree+bounces-87891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49EE193B5C1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:18:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0B993B5CE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C83F1C21531
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:18:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82BDC1F24C3E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE30A15ECE8;
-	Wed, 24 Jul 2024 17:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA6A15FA76;
+	Wed, 24 Jul 2024 17:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="CTypsmQq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q/SNlbnY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B8A18E10
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 17:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EFB15ECE8
+	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 17:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721841525; cv=none; b=ZPsPrYd9w5I0sebTjzb+xZZ4eVEt4lGlbbuB8aVwCx+tYGBrT6iVvmSBn86yIdw8DzD0dipAXt05N1v8yvl81L/VnArIKKVIYKuZpR7+ZlbsAhnlS04/gXezbLvYJtD1vgaIa+moFNvLfaokWYIS1rZToqlanSt3bFIN0atogSA=
+	t=1721841781; cv=none; b=VRaPGkbP8BbiMxNf49CKsWRw/nlMGzCEZF258mzKp7A4YtI+/T92EQK9EF0rxo9reCwiS/apDXR7LNb7psoJ8JsmSFFIxVoy/gakr0VjwldC5JXzfvZaxHes4vJA7w4YIf+anJbWdZDX58RyROOhhzJLJ9QbP5lqU+O51hZnC3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721841525; c=relaxed/simple;
-	bh=vmJGO0JiPXfxdyd2VzbJ4GFRMOnhbZdKR+uCkLekv8c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PkyDgZg2rZaCmXEjwzcpd9gHE8OhCpCbj+Rb7er+0mxkWTV3yXkiP+DrD8eVMdwOJug6/0MdcyqZrD4V35G5WiJ3X6r9qpUszQebe5NGFaZGtjbK5BrB5bkawylscT/O2XrvdhI8ApzuVGSGwjUBD7j/sa/73XV7mARiqe6K/Ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=CTypsmQq; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-427d2c8c632so27115e9.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 10:18:42 -0700 (PDT)
+	s=arc-20240116; t=1721841781; c=relaxed/simple;
+	bh=ggnTWcK3pjB7kJizmljAvRwIt0ed0NYaiRHP2Yv3Am4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZqXqnPJCLISWRT4MLkDaN58iywEO7NFE38oF2L07TnsEN4guNbEsomwW8rCD3oJF7yEyZH1nbbtVwkSGtDYrTaiVExOydayTz+rjqVfpcBv2LgI0nAmFW/XgPNtZi1dMaEn+926bODPxkGTBGPrvf6/FyK780r+0mxDVkB3fuAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q/SNlbnY; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52efc60a6e6so6586437e87.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 10:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1721841521; x=1722446321; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BQaxjmAMq0/xp6YobYEUEMiu4h6XvMRuv8iaOxTtcz8=;
-        b=CTypsmQqmyabunJu8o1C8BWrjteq/5FNPQz/HudN5uHzmZ8tHx5kLgfFFCbvvFqN3x
-         asCtGSyiZqlu0dEE8yeKOnjwOBBPlA/jysv/w87R+bk9ibwnQJHr99nsfPsHLTNjSDhu
-         VCwW83CeXUCpkw6RJ4xLX1JIqZi9fTqPVv5WBMaRHqOmU7wsOA+g4oHa3vbj8AuEqbUc
-         G0CY0v/kIHH1ErHXD91JH8U9zpGtrn473sLKleJ3pOh7UksHmCWP58DDCU8ejtvEYLfI
-         +cyp8baDHw7+PS0NU0OXRQQoN00OtlYQGYXTQop95mNknfy2muq7DvDJqKZbYKwn3OK8
-         BOOA==
+        d=linaro.org; s=google; t=1721841777; x=1722446577; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+AnGIHLZqTHOkv8jJV9QlhymBM4MVLY0RrtuPzdfXxw=;
+        b=q/SNlbnYk/lOfA2NMTuyT3mzOu23gxVMnd0+FHU9nQMcSook8MziNp7jJfomRQoTyU
+         tGTujwMQAhzTKMttVc9OcTDhsxS/Cuq1aF6Bqb+5Ig7S9oLnAHPpKLSedAoCBUjxRWRk
+         96Jj5sikbb7IkwT3FQaePXiYwZARKOviMd0IybGwpAzkspK8cXEBaXZPr6C3ezIVawa5
+         8wAGRfA24+9MSfgXFW0CXQj1A9M6YaAfrj5Oa4um+s9mtnnr3h2a9BzCt1lIt5WZXjia
+         kxBicud/1zXJ2GjXrLkJFPH8stp2wu8SQtte0ml+/09HrFU8beK+t0vOiaZcUHtFYcGK
+         nlBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721841521; x=1722446321;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BQaxjmAMq0/xp6YobYEUEMiu4h6XvMRuv8iaOxTtcz8=;
-        b=u1KU0HO8KJC0kxVJohfX2fiErHopKlyINXxeUeYsg6m6e0RnUA5hFPM/8+VE42mlvs
-         GozvOmazQgzNxep3BQrvk8K0zUjK9RLuj4sa8oCwqJoHODh/O96kMDYuP/eYnHF6wIAk
-         ByZN7rl1DrGgVjc5uU+MdRjmShFdyHYNpLte9T3Ybl/VCb484LVbml3suoU5bxPg2RU/
-         BbnB+VYm1TW7VXEQZzSEaFy7SXNA+WjBr61DnmMbS+V5Q0XLmiPzrl7nOZgOIYYID5vS
-         629UG5Apq4OH81wNkXsr3aCtLwJDJ4dg2UsTkKTLDoEClpAbAswgGBbY//3MfbC9iKFt
-         IzBA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKPVfw3vBFHqqChnmhrX/IS33c4/+WLWjhhM1+0fk49TDLr9XqXrVSiidXmATaMRiiubtmSiAbp+nNG/cYfp5jqY7/moNJQlP4Lw==
-X-Gm-Message-State: AOJu0YxzhEKfUVFvCOcA3BYzq9dYtSPRcjLmFxkcopiVDRacBHCf3duU
-	GYyfi9N8tG01t3WuXh9fKK33oHzIjz2H6ZZlbrOye20cylrdYjpbQpTxsX8JZes=
-X-Google-Smtp-Source: AGHT+IFi7AchcLgHEdKTa5PHgma3FsDXem4wCnlPVQP1KTsPD4ot5Jk8WLTeV2FWCrSUpUImWpcDcg==
-X-Received: by 2002:a05:600c:4707:b0:427:ffa4:32d0 with SMTP id 5b1f17b1804b1-427ffa449ccmr8352685e9.28.1721841520984;
-        Wed, 24 Jul 2024 10:18:40 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ec24:52e0:fcff:6f45:dab:b3a8? ([2a01:e34:ec24:52e0:fcff:6f45:dab:b3a8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f93827fesm38250415e9.20.2024.07.24.10.18.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jul 2024 10:18:40 -0700 (PDT)
-Message-ID: <f40de173-0c61-4400-87b2-51c171a52baa@freebox.fr>
-Date: Wed, 24 Jul 2024 19:18:39 +0200
+        d=1e100.net; s=20230601; t=1721841777; x=1722446577;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+AnGIHLZqTHOkv8jJV9QlhymBM4MVLY0RrtuPzdfXxw=;
+        b=GiZ1LuDuu/+hizBc9iVg/S5LIwqV4M0E/daH7hgspxRXmOzSsv+gfRTBpzJYw91ECj
+         4tOvSA4fhWiZdVRiuQ+ia69xVGN2H6v93d1WPd/n7Yi7kAwFYiHEVbRqUsmUkVkC0ut8
+         LBI+WNz20BxcENd55nXnQ4cqyOJSoMUt8UQzTkjfySICCH1v02vOeUpmOEIb9Ud12W9P
+         jnowdlXbhruItqG+nWNYVYIhSzD903mktIA39GbV6x9xo1Z3GRgKHZgkCof7UYew+VMC
+         z7KDktczEbruSt8m5hCFzzAh6asztQ6oRJsokLv2k0rjyfmTFk6SO3dRtQHocmdSApPB
+         zMDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHI0L7w3KBSJGROwMF0/yYOl3JzI2vI5BOC838O3+/GTR1QvO51H5ixjaOWO07gGNKy6VlYqKOhbDbUdY6SVKlGlXm2xqN07Yq7Q==
+X-Gm-Message-State: AOJu0YwlIgF7KgjRlBqof7rk5H3pxquusqzN+kuexi1mndy2MOatvh+2
+	vCYYu4hJ+3bqZKISmU58SlRObz+GOyivHdjX92H2ps0zFPMeQjpsG38IhcbsbJs=
+X-Google-Smtp-Source: AGHT+IEWwx/MofUxwPo8lvoAod3ASgj4oIkVkizHpzCO8taKghKsAR4f06Rh66vlz4x1o/sMg/kNIg==
+X-Received: by 2002:a05:6512:2814:b0:52c:df6f:a66 with SMTP id 2adb3069b0e04-52fd3f7fc3amr256457e87.58.1721841776649;
+        Wed, 24 Jul 2024 10:22:56 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52efb8cdc72sm1621095e87.46.2024.07.24.10.22.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jul 2024 10:22:56 -0700 (PDT)
+Date: Wed, 24 Jul 2024 20:22:54 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: qcom: Allow 'vddpe-3v3-supply' again
+Message-ID: <nanfhmds3yha3g52kcou2flgn3sltjkzhr4aop75iudhvg2rui@fsp3ecz4vgkb>
+References: <20240723151328.684-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-To: Maxime Ripard <mripard@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240701-bug-of-great-honeydew-cfb6ef@houat>
- <e7bbbe4e-7deb-46c3-9cce-1922f9b6b3a2@freebox.fr>
- <20240708-ethereal-romantic-piculet-d4ae66@houat>
- <pp3rc5zob3xeghlatw4vnpzplc4yjpjadkea465zmhft55dyl5@3cpoc2zovftv>
- <20240715-shiny-enigmatic-firefly-2a6dec@houat>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <20240715-shiny-enigmatic-firefly-2a6dec@houat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240723151328.684-1-johan+linaro@kernel.org>
 
-On 15/07/2024 16:42, Maxime Ripard wrote:
-> On Mon, Jul 08, 2024 at 11:29:46PM GMT, Dmitry Baryshkov wrote:
->> On Mon, Jul 08, 2024 at 04:59:23PM GMT, Maxime Ripard wrote:
->>> On Mon, Jul 01, 2024 at 05:36:18PM GMT, Marc Gonzalez wrote:
->>>> On 01/07/2024 15:50, Maxime Ripard wrote:
->>>>
->>>>> On Thu, Jun 27, 2024 at 01:13:03PM GMT, Marc Gonzalez wrote:
->>>>>
->>>>>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
->>>>>> It supports DVI 1.0, HDMI 1.4b and 2.0b.
->>>>>> It supports 4 TMDS channels, HPD, and a DDC interface.
->>>>>> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
->>>>>> for power reduction. Several methods of power management are
->>>>>> implemented to reduce overall power consumption.
->>>>>> It supports fixed receiver EQ gain using I2C or pin strap to
->>>>>> compensate for different lengths input cable or board traces.
->>>>>>
->>>>>> Features
->>>>>>
->>>>>> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
->>>>>> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
->>>>>> data rate, compatible with HDMI 2.0b electrical parameters
->>>>>> - DisplayPort dual-mode standard version 1.1
->>>>>> - Programmable fixed receiver equalizer up to 15.5dB
->>>>>> - Global or independent high speed lane control, pre-emphasis
->>>>>> and transmit swing, and slew rate control
->>>>>> - I2C or pin strap programmable
->>>>>> - Configurable as a DisplayPort redriver through I2C
->>>>>> - Full lane swap on main lanes
->>>>>> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
->>>>>>
->>>>>> https://www.ti.com/lit/ds/symlink/tdp158.pdf
->>>>>>
->>>>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>>>>> ---
->>>>>>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
->>>>>>  1 file changed, 51 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
->>>>>> new file mode 100644
->>>>>> index 0000000000000..21c8585c3bb2d
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
->>>>>> @@ -0,0 +1,51 @@
->>>>>> +# SPDX-License-Identifier: GPL-2.0-only
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: TI TDP158 HDMI to TMDS Redriver
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Arnaud Vrac <avrac@freebox.fr>
->>>>>> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: ti,tdp158
->>>>>> +
->>>>>> +  reg:
->>>>>> +    description: I2C address of the device
->>>>>> +
->>>>>> +  enable-gpios:
->>>>>> +    description: GPIO controlling bridge enable
->>>>>> +
->>>>>> +  vcc-supply:
->>>>>> +    description: Power supply 3.3V
->>>>>> +
->>>>>> +  vdd-supply:
->>>>>> +    description: Power supply 1.1V
->>>>>> +
->>>>>> +  ports:
->>>>>> +    $ref: /schemas/graph.yaml#/properties/ports
->>>>>> +
->>>>>> +    properties:
->>>>>> +      port@0:
->>>>>> +        $ref: /schemas/graph.yaml#/properties/port
->>>>>> +        description: Bridge input
->>>>>> +
->>>>>> +      port@1:
->>>>>> +        $ref: /schemas/graph.yaml#/properties/port
->>>>>> +        description: Bridge output
->>>>>> +
->>>>>> +    required:
->>>>>> +      - port@0
->>>>>> +      - port@1
->>>>>
->>>>> The device supports DVI, HDMI or DP input, with various requirements and
->>>>> capabilities depending on the input. Your binding doesn't address that.
->>>>>
->>>>> Similarly, it can do lane-swapping, so we should probably have a
->>>>> property to describe what mapping we want to use.
->>>>>
->>>>> The i2c register access (and the whole behaviour of the device) is
->>>>> constrained on the I2C_EN pin status, and you can't read it from the
->>>>> device, so it's also something we need to have in the DT.
->>>>
->>>> We are using the device in its default configuration.
->>>> (Power on via OE, then it works as expected)
->>>
->>> I know, but that doesn't really matter for a binding.
->>>
->>>> Can we leave any additional properties to be defined by whomever needs
->>>> them in the future?
->>>
->>> If you can guarantee that doing so would be backward compatible, sure.
->>> But that means being able to answer those questions with a reasonable
->>> plan.
->>
->> I think proposed bindings are generic enough to cover other possible
->> usecases in future.
+On Tue, Jul 23, 2024 at 05:13:28PM GMT, Johan Hovold wrote:
+> Commit 756485bfbb85 ("dt-bindings: PCI: qcom,pcie-sc7280: Move SC7280 to
+> dedicated schema") incorrectly removed 'vddpe-3v3-supply' from the
+> bindings, which results in DT checker warnings like:
 > 
-> I don't think it is. The current binding is for a I2C device that
-> shouldn't be accessed through I2C.
+> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb: pcie@600000: Unevaluated properties are not allowed ('vddpe-3v3-supply' was unexpected)
+>         from schema $id: http://devicetree.org/schemas/pci/qcom,pcie.yaml#
 > 
-> It's working for now because the driver doesn't do any access, so it's
-> all great, but as soon as we add support for the other case, then we'll
-> have to add a property that states that while it's an i2c device, it
-> shouldn't be accessed.
+> Note that this property has been part of the Qualcomm PCIe bindings
+> since 2018 and would need to be deprecated rather than simply removed if
+> there is a desire to replace it with 'vpcie3v3' which is used for some
+> non-Qualcomm controllers.
+
+I think Rob Herring suggested [1] adding the property to the root port
+node rather than the host. If that suggestion still applies it might be
+better to enable the deprecated propertly only for the hosts, which
+already used it, and to define a new property at the root port.
+
+[1] https://lore.kernel.org/lkml/20240604235806.GA1903493-robh@kernel.org/
+
 > 
-> And adding such a property is a compatibility-breaking change.
+> Fixes: 756485bfbb85 ("dt-bindings: PCI: qcom,pcie-sc7280: Move SC7280 to dedicated schema")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml   | 3 +++
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml   | 3 ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sc8280xp.yaml | 3 ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml          | 3 +++
+>  4 files changed, 6 insertions(+), 6 deletions(-)
 
-Why do you say:
-"current binding is for a I2C device that
-shouldn't be accessed through I2C" ?
-
-As a matter of fact, my debug code queries the device ID using
-regmap_read() to make sure I set the correct I2C address.
-
-It's not that the device "SHOULD NOT" be accessed.
-
-It's just that the driver DOES NOT NEED TO access the device,
-simply because the default settings work fine.
-
-Regards
-
+-- 
+With best wishes
+Dmitry
 
