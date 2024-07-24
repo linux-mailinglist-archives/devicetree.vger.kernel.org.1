@@ -1,147 +1,219 @@
-Return-Path: <devicetree+bounces-87800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BC293B0C0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:55:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C75D93B110
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 14:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E302282E98
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 11:55:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CA57B215B2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 12:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0E115748D;
-	Wed, 24 Jul 2024 11:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D097156F2C;
+	Wed, 24 Jul 2024 12:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gmHy6cNe"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="JabA8/NH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2055.outbound.protection.outlook.com [40.107.22.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14DE1514ED;
-	Wed, 24 Jul 2024 11:55:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721822150; cv=none; b=hYWLXpIwX8Y8xo2Dk5UkHTmLQGgqmJVECgb2MCF02lNNrsrvgDfBbs5kXecTue3/1egJiuf+R/6StfMXQWHcl4J81I7KCt5ppXYjl2DF/dzzeXW42OKAEEn0j8MiqevMTz/FUtFhQvYwgjY1esMF1ILEormmVX74RTmj+zrGikg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721822150; c=relaxed/simple;
-	bh=aD1WuGUjqO0uEHPch3G63drQXoYwCBw9LLbsQd2a1pE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EBqzwH0kU4Zx/QovXBFpgOGyjDZuT5Mu91nRPN305JpGjajjzqvKtZAqbMMN9k+bmgQNbBtL92pVXftbx+Gb0HMl+m1tuyDIznzA78wmAXXUA1qdj4D8Wmw2M11uSyXlYU+HB4RPLyDqFigbrRzLLM6CGVC2DdakKKY9id/CnGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gmHy6cNe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57EBDC4AF0E;
-	Wed, 24 Jul 2024 11:55:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721822150;
-	bh=aD1WuGUjqO0uEHPch3G63drQXoYwCBw9LLbsQd2a1pE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gmHy6cNea0ci0v+HR1ntWSL6sH/t3GZvvOMfoUNYnH6NqSxbnLWZTIDchw8eQlrLs
-	 D+3riNF1MyV3JFrqGfwe6/ZiQAKfrNXx34/hJyVQFGuSDBWAY0KuBsWNe0GPH6XSQg
-	 5pYGnrtZ6MNQUvb+9usuQSa6unPkIgNaZkJpWYWF3CNmVrs692IWi9YNJCpCp/ogpr
-	 6qbMo1aTECDoCQLxyX0PyGmw57WTpU1KZpRZ4RghNchjDRiGi+Wj4qeqb26R/04m+k
-	 MQzMwEArEo1QRvXQwVZrQnnGiugIidQMmBjL44xu2TiicxxkOh+RxXDrlVHYDHRUh3
-	 eiDi2Jzv3+Ggw==
-Message-ID: <bc2da461-fd21-44d1-85a7-f89c60e2b207@kernel.org>
-Date: Wed, 24 Jul 2024 13:55:41 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011641E488;
+	Wed, 24 Jul 2024 12:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721825518; cv=fail; b=VZATLtHE1Q+JovRA8mLVb4zDG12cg7BZNee6rc1hK31YzY1iDV3VYaJ+YouByK/pt2COhd/FwGUUn0J2yWCjzlqClhSoDghgDeHR6WJU24JLRpubeYA80REI5CdoYZ5TqU2sMuJyEjvoQXpX5+JThRVOvjNA+PqFRhFESR7MlOU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721825518; c=relaxed/simple;
+	bh=gA0p82bVwMM/pTK+6ymmbNwkxX/28quSf2FLvFsNPm0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qZgm2CBzx9PX98MOoyajaviYERV4LLvpRF7u8R4esAEx/mLg3cIJc2/6moftnpJzVXVChQhS+k2xPWZG9f8bSr2ovamAYRYb9ObQRnYzHB5RSPadp9CvlgvD4snwz4r2S8SWs/jRTRLhDt1qS5ZixMR0OCYWWv88JPQbhXXmZts=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=JabA8/NH; arc=fail smtp.client-ip=40.107.22.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jCQlHZR/U7BALcf1J3MEHGkHmC2TkkhOElvvWnYRzDIHzW9SbR+xTm4xPzH9Chxlhfv3iuVaxhsnEMASiYlbyAPBipH7bp3TqE9jmAacOVogIJQvuPwL6VzPIZPQruLKrWl8fpgM1Ue85uZjzbBvOJr8GrEGeZM+fJTXywIBeavnVjVR20JwmPytmV7xlOttg14zE2TBDVauHk6oIaMQF5rPDa0MlRGLCGIGE9lyL7h/R7nUANe82bx86ef3NZkuki7slywEPJKA0Oesa1vMtqzIJRrv6GnMx4dn6TXOmN9cSdKOA5mT2ZVycxRJ777jl8YsNgWdUxut9EdvkakUsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TGHhaeuvPh/AOjyHJ9XkDvJA5lgc6bzSeYprYivfPnI=;
+ b=hmeRwz1/LyaoiISm5BPJPB/NnDIOhJe52dzvn0PqYjqCx4n2+3PUXvXvRTSfNF2qAFBAZ5sb2XJlaPbfuWb+w2NR++Y7JpcJ2QG2auA186kL5/sr4Oveo7aIeIMijksKkR0Pt/3JYfcj7P6TyMbuT5GMHYF0lcRQqVhS6xuFhSZQG4S2fFKaME4ovkSv5q25OOcyVuQOAV/uLW3YBwSVi+a4oRdnZvhWx75jDuZSK2BGEjCuhIIVtXQkuUZ6HL0M9+U5ZQx/vKKYX4umUFhR6UaLnq2H7IpKRGWey00jyVjCK95qT5S/ZcHNMX5C2muRUjVDyECJLZWUjPtXMVHJ7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 139.15.153.206) smtp.rcpttodomain=kernel.org smtp.mailfrom=de.bosch.com;
+ dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TGHhaeuvPh/AOjyHJ9XkDvJA5lgc6bzSeYprYivfPnI=;
+ b=JabA8/NHkD7P5b2fw9FGkD4nyhGQkS09H6lkT575f5vGNlY7qbSBPFm3jXgBFlIAkvOHFaMPOret0evV1ZMqTelVGfaoGjNJHYhUiEseCtn2/V6m4yT/eCcKcfZagaHOf2s063p/uh0D3OY9Pd0GljtxAI2czs3zlSmJnXjaEoUAwVHmR6AyaB1GYrWnwp3ixoeOu3D7ADPoNBhiVImzSIed9U1p4tEPOToAO8EtvL2uC15odWhrK2hHFM+BOitrS7UzuJg7yiPbzd3T5NMCrYH0JACF7h/xR880NR7NPX4cTLWxmHc5WVd1GWR1ujwNO9ZA5OTmCNCc51GoY0R8mA==
+Received: from DUZPR01CA0058.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:469::12) by DU0PR10MB7609.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:10:34d::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.18; Wed, 24 Jul
+ 2024 12:51:50 +0000
+Received: from DB1PEPF000509F7.eurprd02.prod.outlook.com
+ (2603:10a6:10:469:cafe::39) by DUZPR01CA0058.outlook.office365.com
+ (2603:10a6:10:469::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.19 via Frontend
+ Transport; Wed, 24 Jul 2024 12:51:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.206)
+ smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=de.bosch.com;
+Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
+ 139.15.153.206 as permitted sender) receiver=protection.outlook.com;
+ client-ip=139.15.153.206; helo=eop.bosch-org.com; pr=C
+Received: from eop.bosch-org.com (139.15.153.206) by
+ DB1PEPF000509F7.mail.protection.outlook.com (10.167.242.153) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7784.11 via Frontend Transport; Wed, 24 Jul 2024 12:51:50 +0000
+Received: from SI-EXCAS2000.de.bosch.com (10.139.217.201) by eop.bosch-org.com
+ (139.15.153.206) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 24 Jul
+ 2024 14:51:37 +0200
+Received: from LR-C-0008DVM.rt.de.bosch.com (10.139.217.196) by
+ SI-EXCAS2000.de.bosch.com (10.139.217.201) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 24 Jul 2024 14:51:37 +0200
+From: <Jianping.Shen@de.bosch.com>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <dima.fedrau@gmail.com>,
+	<marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<Jianping.Shen@de.bosch.com>, <Christian.Lorenz3@de.bosch.com>,
+	<Ulrike.Frauendorf@de.bosch.com>, <Kai.Dolde@de.bosch.com>
+Subject: [PATCH] dt-bindings: iio: imu: SMI240: add bosch,smi240.yaml
+Date: Wed, 24 Jul 2024 14:51:15 +0200
+Message-ID: <20240724125115.10110-1-Jianping.Shen@de.bosch.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] dt-bindings: usb: qcom,dwc3: Update ipq5332 clock
- details
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- gregkh@linuxfoundation.org, konrad.dybcio@linaro.org, djakov@kernel.org,
- quic_wcheng@quicinc.com, quic_kathirav@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20240723090304.336428-1-quic_varada@quicinc.com>
- <20240723090304.336428-3-quic_varada@quicinc.com>
- <ac34c454-4800-4057-9a50-e0c5db1d3806@kernel.org>
- <ZqDoXu9+Y4+O8M7W@hu-varada-blr.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ZqDoXu9+Y4+O8M7W@hu-varada-blr.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509F7:EE_|DU0PR10MB7609:EE_
+X-MS-Office365-Filtering-Correlation-Id: bd97b422-0300-4fdf-950e-08dcabdf62e9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SmUrR2JFWDhNN2VFajlVUDNtTkpKZThoZHlUeVVpSFg4d252bC9CemRHUCt4?=
+ =?utf-8?B?TU1wdkFFSVA0d0J3SWlHb2NYRFozb0RaL0FGWGNtTWZwUFl4N1o4bDRUa1hi?=
+ =?utf-8?B?V0ZaakprTG1VYm54enczdExwRi90dmdNY1JEOHczNUUxVjZrdmhuQmQrR2FG?=
+ =?utf-8?B?L3JlZEcrSGJkbnE0V2YyQVQ1ZEtCbjhsVWRhVTFGTnJCYllQaFJ1YlVhNjNL?=
+ =?utf-8?B?WGtqYjNWWXllSnlBN204U1RxeW9Db004RGxLYi9rSFpHS3hjR0pOaHRVajBU?=
+ =?utf-8?B?d01LczZIbmNMRTk5T0RycHFOdFVVN29iZm8waU5WdWdybVB5NjVpZ0V4blJV?=
+ =?utf-8?B?K2EzWFZXdzY4eFI4OGFRQ29xOGprWlIyWFJ3VmZXWDZvL00xU0Y0MUNnbjRM?=
+ =?utf-8?B?VkxleHBISjIwVG1LS04xTklCczBZSERmU2NkamRVZm0rUlUyblBtM2ErVjgz?=
+ =?utf-8?B?Tk9abzVVNWdvYkhGSmprcS9uUDU1d052dlBLczlacjZBZlR2UU9IdTlYamtG?=
+ =?utf-8?B?bjJEbERpSUgwM0Y5TjlmUDVUUU9zditmYVZwRDBKQnprRlNycWJ5MkZiZ2Fh?=
+ =?utf-8?B?RHhrajJETW0zZXk3dHlpR3FOMWo2OURnQlFNVXM1cjZqYzZpTHdKNFQxT3o5?=
+ =?utf-8?B?MU5FQ2haTVhjUnBtSmlWVXQzK2wvVkFocUtRa05ZV2JuVm5PaHhLWGtka0Fq?=
+ =?utf-8?B?cm9OczhncE5POGFPNFVYd0xYZmliRkZwamxOKy9KODMvRUVNT0pLRnFuNWdo?=
+ =?utf-8?B?ZDVDZXlCMFh6ZitCbjZOMnRFQ0w5Q1ZQYUZuMXhWM0UwdHdtWHdhNzZoNlpZ?=
+ =?utf-8?B?MlZabzBqejRubWZkcFBUSXhjayt2YUtTVkhnOU5uNWpIazBlQkpxQ0lQMTZI?=
+ =?utf-8?B?VlQzU0NPM3hFRmZaNVZuR1dQUFZiMnYzTUI2K3RWbm1QMkFlUUx4VGZDU3dT?=
+ =?utf-8?B?bWovSDNBa0Fyd2l0K09mR2UvcEk1WEtCS1dWZ25BTW5FVzh3T052Q0c2RjQ2?=
+ =?utf-8?B?Nmt6VlhMZmpRWXRFZ1BXMzdNNzNqMXMwTWNqM09KUEpkaXRzMWJLNmtYRkE1?=
+ =?utf-8?B?NUQySGo0eVZmREdBNWRnWmtySkhMcVdVaGJ1WEh2RC82VlB5QWk0TDk2aTNu?=
+ =?utf-8?B?Z1IzVEtNR1ZPMWlwcDhyQlZ6TDk4NW5OWHd3RHBQYzJkQnlXaDJ3VFk3bURQ?=
+ =?utf-8?B?ME9rczFybDR4WTQweEkyaHg3QkhseWEwQTcwOHN3MnUwUUNPTWpDcXVPckhO?=
+ =?utf-8?B?NTIzTWhERXhIbEs2dHNSMXEvVGk0dkhzdWtCVE56akROVFlKQ1djS2RXQllI?=
+ =?utf-8?B?akJ2SmNWZE1halRlYldiWFk1V2NrNCtGdWVDYjdyN3VtZjdVYm1sUkRhTlBu?=
+ =?utf-8?B?blZBQkVIQkt0ZTJTSDh5d1R4SEpGRHY0ZWp0Q1BPTkpobkFrUmJ6dDlRcGJl?=
+ =?utf-8?B?ZGl2TUdvemcxKzJOd2Ewa0FUWGp3Wi9qTHNKY2I1b3BNSTFOZUZFVldhV1JQ?=
+ =?utf-8?B?UWNVT2RNbWpnQmtOUkZOVGE1Ujc4N0VxOXFVOWxGSUU4NkRHT2FvM1RiK0E2?=
+ =?utf-8?B?Qy9TZlFYZnJUSjNCaTA3T3dQMEkwbEcxREpLckRWQWtrcmlKT3p1TkRsZ3VM?=
+ =?utf-8?B?ZkdmdkwvcW1td09mRFdsM0N2SzQ4Wld5S29qbFlsVEZ5cGQ4bFp4VlFtRStz?=
+ =?utf-8?B?cDJCMnNabjMvci80SzlTRXA4d2xKdktLV1dGVnhUamlCT0ZHYTBKdkJzb3U3?=
+ =?utf-8?B?YTBxdWVUTldUTENGTUZqc2dzaXMxWEpMU1pmSzhud1ZxNmY2WHRGMzBNb0dR?=
+ =?utf-8?B?MnJNcXQzSi82Z3dmck10QU5WcjJYSDAyN0pTalkvMlYxNHVQaFRPNWxiSG9l?=
+ =?utf-8?B?UVh0aXBobktkMnNUblJJMzJJMDAxdjZjMXVKd1ZWMExHMWc9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:139.15.153.206;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026)(7416014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: de.bosch.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2024 12:51:50.4362
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd97b422-0300-4fdf-950e-08dcabdf62e9
+X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.206];Helo=[eop.bosch-org.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509F7.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7609
 
-On 24/07/2024 13:41, Varadarajan Narayanan wrote:
-> On Wed, Jul 24, 2024 at 08:27:03AM +0200, Krzysztof Kozlowski wrote:
->> On 23/07/2024 11:03, Varadarajan Narayanan wrote:
->>> USB uses icc-clk framework to enable the NoC interface clock.
->>> Hence the 'iface' clock is removed from the list of clocks.
->>> Update the clock-names list accordingly.
->>
->> But the clock is still there and is still used by this block. This looks
->> like adjusting hardware per Linux implementation.
->>
->> Why suddenly this clock was removed from this hardware?
-> 
-> This clock per se is not used by the USB block. It is needed to
-> enable the path for CPU to reach the USB block (and vice versa).
-> Hence, we were adviced to use the ICC framework to enable this
-> clock and not the clocks/clock-names DT entries.
-> 
-> Please refer to [1] where similar clocks for IPQ9574 were NAK'ed.
+From: "Shen Jianping (ME-SE/EAD2)" <she2rt@LR-C-0008DVM.rt.de.bosch.com>
 
-So the original submission was not correct?
+dt-bindings: iio: imu: SMI240: add bosch,smi240.yaml
+Signed-off-by: Shen Jianping (ME-SE/EAD2) <she2rt@LR-C-0008DVM.rt.de.bosch.com>
+---
+ .../bindings/iio/imu/bosch,smi240.yaml        | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
 
-You really need to stop sending DTS based on current driver support and
-focus on proper hardware description.
-
-Such things pop up from time to time for Qualcomm and I don't see much
-of improvement. And we do not talk about some ancient code, predating
-guidelines, but IPQ5332 upstreamed ~1 year ago.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
+new file mode 100644
+index 00000000000..5e89d85d867
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/imu/bosch,smi240.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Bosch SMI240 IMU
++
++maintainers:
++  - Jianping Shen <Jianping.Shen@de.bosch.com>
++
++description: |
++  The SMI240 is a combined three axis angular rate and three axis acceleration sensor module
++  with a measurement range of +/-300°/s and up to 16g. SMI240 does not support interrupt. 
++  https://www.bosch-semiconductors.com/mems-sensors/highly-automated-driving/smi240/
++
++properties:
++  compatible:
++    const: bosch,smi240
++
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: provide VDD power to the sensor.
++
++  vddio-supply:
++    description: provide VDD IO power to the sensor.
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        spi@0 {
++            compatible = "bosch,smi240";            
++            reg = <0>;
++            spi-max-frequency = <10000000>;
++        };
++    };
+-- 
+2.34.1
 
 
