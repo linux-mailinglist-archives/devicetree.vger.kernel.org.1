@@ -1,94 +1,90 @@
-Return-Path: <devicetree+bounces-87894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49AF193B5DE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:25:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FD093B5E9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:26:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F37992856C1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:25:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 035BC281B4A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:26:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC5D15F400;
-	Wed, 24 Jul 2024 17:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894861684B9;
+	Wed, 24 Jul 2024 17:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cg8bajM6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GbYKJQV5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6BC200DE
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 17:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51D21607BD
+	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 17:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721841936; cv=none; b=TKqD2W4lCb2q5jtaPGmIavTv/otimIca1hzcq3Z6UF9H7wBW3SA6dgGhHcuMzLn8oz2K+0XWd//kZB0aBuorwhWbX3SjVzUUDAHwDPVMCdJtDMXRSFU143XON5dW1DqiD/9jKdtyX10n0ONS79muIwJwLr2nUi24zZndfT6Z1B0=
+	t=1721841994; cv=none; b=r2daqJx4m8QAEy16hL7FZK4srf0eWBQNkR3afyrw5RelhAe+iJ/rVwYUFDguP1a7Yy1VRdkgh/PHY7Zs5oLpxugXY9cFCajpII2wKnOnRAkZxDGnrCRI0SICIVzWs/WCCFtSNTVivB159K6kwEWk1iYow5VKGfHcZclJ49eg9Ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721841936; c=relaxed/simple;
-	bh=nFZf7S7ro//PLP9HS5yxjfdzCniQy0lbYHb658tkBTk=;
+	s=arc-20240116; t=1721841994; c=relaxed/simple;
+	bh=nirmYw7F2dXu3jHlu65M8bPLc+xMzWCodmmYzuIxjFM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RqLPh5S7G9lXhHnapbklgW+NGePy4zjZ4KnZ2aHuicB8HVeR+dPXLUTK7gMKWRj7R9+4JJWqXI1SVc5c4G1/pkwYWEVie3JH5qdBiac3P2OE3GyNR0U7uU/f/3WtWxiJDwcS9bGboepdROY9PzuQgZvEX4VfRmPVlAQAbJ4cmZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cg8bajM6; arc=none smtp.client-ip=209.85.167.51
+	 Content-Type:Content-Disposition:In-Reply-To; b=pDAX57SsUyn91zgUvMW/oZd2PgXbpQ0C0VjG1KOIJSSOxNsjwXFYD0ZRxD107vFZEyP3zTKAsFgF5eHct08tEW4iZERASSbDs58uJFW6MwO+nc395HkykEzRm2rMARioZ7YNbdsyl94Tof9MUyK/BrFhTQ6duFcpb6pelSCGou4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GbYKJQV5; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52f025bc147so5471509e87.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 10:25:34 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52ed9b802ceso7243405e87.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 10:26:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721841932; x=1722446732; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1721841991; x=1722446791; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pdsIcUIuG4F7BUsodEphNLEIZizsuXunws9wTKYJcI0=;
-        b=cg8bajM68JliseIO9b+Z5Wjb6LiDA/ZPA21hNQxgMGqoSaRy0cDdzFE6fKZWxm9rK+
-         xL6ef/t6egYdKP2F+ujv7hQ4L74dZY6pRc7S2xYSm7EUOphnaK9s6FZDEl7Z191KcbLS
-         TN9WmIs1TuTPXbvFlCrDbMBm4y8c5/8P/EbxSn+df9p/f+fLPjZygzZ2cSonVP8VOSXh
-         0Xt3d24oqgxMG6iMwMrEtAelIMiD+jAy4r/qBi2Y/ykinisilCp2SFwTarLEkXUo0u6F
-         8DLdIwzRC4upwr+2uvX/GF1Azwc2rfErDQo7Mj3tLVIio7zpblXf5g/L0/OOEu8p86Xx
-         UNWQ==
+        bh=6gyjxRwZj2E8/gds3ss9PWGb0Bwbvl9UNoycwou2Ge8=;
+        b=GbYKJQV5Z41sZnnojC+2kzGUU+MonqRkjCXhv9/obP9BXZgxny5EqvZPetqJnvO1Uq
+         1P5NdFEABffi7lU50WcObF7T6iXcxvaIt3eR9qOTqvafr2gdFs8ExXQYZBh2ymIilGM4
+         RdfJt8zQeGkZpQPgcNxBuG/JOOhBpyL1y1D0g/KH8L3kNYzusrRJGIz+qfQZJHhgyEbZ
+         mgSosZ853dbEnic4hAIjvMyP8IsCJwadXP4c/qQ6x9gV6kRoseJ9GPiqgFyEL7Xy06t9
+         /YebKDcwSa1VuoO4VLi0meaenERQIPWu1O/coxcO1ngTn5lM06OQP4iy3zOYsQNJLmvt
+         vJjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721841932; x=1722446732;
+        d=1e100.net; s=20230601; t=1721841991; x=1722446791;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pdsIcUIuG4F7BUsodEphNLEIZizsuXunws9wTKYJcI0=;
-        b=dnVCqxaxxNKyj0UGeDNr7qGrR86eqoxiYSYkSdaZEKFTX3JkNj2/1jwoZ7WtnSBfkx
-         aN5r8Wj07gGJ1IrbE63exAK52phoiEN0tLf2BzDSdQFYiSLFGEHVfybdpsp31iBGBycj
-         CdG7d9PcMaak6M5o6hw62yxEdC09Iq2PiV/rMA5SgW672lIT4Nh746vcnnefec6dERiD
-         LaavitUN2FSJdw1i/xlOvMejxCCDx3FbLXXIMJyP/+4Sdb/kWorMes45Gemg8klO1z0+
-         1oOW916OyxUldl3kqSHXSjQZRdcCbwsXW7t+FyOPiHg2kYkHRS7dXiT2FSJtvm2sOERN
-         SLzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVB+EHtRi64KKKENFz0qXQ39svchtAXSGTu5vTSJLoqF0+eSS6rrB7P9mLdTKdzVtWOXYOTOdS69ybn0M+PVbp5VWmIWlco6m0GTA==
-X-Gm-Message-State: AOJu0YyafHR9HNiDC120SZn7e/9S9TbKxnFbQR7Sm66Y2ln55K0bKdGV
-	sG1R7Fe6F/6PXePBWVNR94swu/+yMQBtdfc5O770pAj9kINjknNRiGcAn2tC+Hc=
-X-Google-Smtp-Source: AGHT+IEECUoCxDKGUPEy3aPp7AF8fHdHiOenlXOdyEZ33VXwFx39ZbX/NJ2O7llyKmDJp954FLHYBQ==
-X-Received: by 2002:a05:6512:3da9:b0:52e:f2a9:b21a with SMTP id 2adb3069b0e04-52fd3f069c7mr304608e87.19.1721841932407;
-        Wed, 24 Jul 2024 10:25:32 -0700 (PDT)
+        bh=6gyjxRwZj2E8/gds3ss9PWGb0Bwbvl9UNoycwou2Ge8=;
+        b=P7bNLPuK/bpLhwkF+SyqoFQm33WVPfvyqB+LH/O5AWhKyYgrn+SrIZEX3aRy1HZK7U
+         CYfySFvJ2my6eeDWiQg7c/6WsizB7LgHnA15HDsshhay5D/AUI2QPn4XkuIICWYkUGzS
+         0WRJsSpZYwnysWutV/e+Tso48c2A71N9duAim/uYCbsIP0R2K+LK63rQpCKWjsJe+Udv
+         Jzip9Lt3t6zgxLpmUTOiCnyXJskN1Kz3VkI5KkNUhKVr5ISPhPyAXCrbwwrUTfnHhKV2
+         3Uop1r83dE8E8WiRWB7lU058p7dbOE4ip0zRRnaCokJOe2y9frjQwyhDB/1h/NOOsC2V
+         6w+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXkIGxmx92OD39mZw+cx+GxDLTwAWqc4dQxPfei61dTLu6KYZG7cfk3p/mQtPdyz/NcXqAUvNCtmA2F0D6lo40hz5MswLMAMbkEvA==
+X-Gm-Message-State: AOJu0Yz0ujpgBhgF51hY2y94Q5s3y9dY96oW255TlJafnB/BQRI++hGq
+	kcUJyHNYo+gyvKiJyh8nNIgJiCgYlYZaooPFjtbGY+Bbt4LgkClSP+6TBeLFXx4=
+X-Google-Smtp-Source: AGHT+IHlDpSkUv36Gv/Yk9ACZKyixMbYij87/r4e8rpjoasoFjkXepMGnJgzlNprXteCON2oLyXFpw==
+X-Received: by 2002:a05:6512:b84:b0:52e:9b9e:a6cb with SMTP id 2adb3069b0e04-52fd3efa634mr362510e87.15.1721841987977;
+        Wed, 24 Jul 2024 10:26:27 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ef553c8b0sm1970944e87.81.2024.07.24.10.25.31
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52eff3bd6ecsm1445088e87.4.2024.07.24.10.26.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jul 2024 10:25:31 -0700 (PDT)
-Date: Wed, 24 Jul 2024 20:25:30 +0300
+        Wed, 24 Jul 2024 10:26:27 -0700 (PDT)
+Date: Wed, 24 Jul 2024 20:26:25 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-Message-ID: <j2ouvtywaasnkxq344rm4b6mrlqtu6bxlq4wrvz4fawzww3xad@yjp7k4zmfygu>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240701-bug-of-great-honeydew-cfb6ef@houat>
- <e7bbbe4e-7deb-46c3-9cce-1922f9b6b3a2@freebox.fr>
- <20240708-ethereal-romantic-piculet-d4ae66@houat>
- <pp3rc5zob3xeghlatw4vnpzplc4yjpjadkea465zmhft55dyl5@3cpoc2zovftv>
- <20240715-shiny-enigmatic-firefly-2a6dec@houat>
- <f40de173-0c61-4400-87b2-51c171a52baa@freebox.fr>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, ilia.lin@kernel.org, rafael@kernel.org, 
+	viresh.kumar@linaro.org, ulf.hansson@linaro.org, quic_sibis@quicinc.com, 
+	quic_rjendra@quicinc.com, danila@jiaxyga.com, neil.armstrong@linaro.org, 
+	otto.pflueger@abscue.de, abel.vesa@linaro.org, luca@z3ntu.xyz, geert+renesas@glider.be, 
+	stephan.gerhold@kernkonzept.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Praveenkumar I <quic_ipkumar@quicinc.com>
+Subject: Re: [PATCH v6 5/9] pmdomain: qcom: rpmpd: Add IPQ9574 power domains
+Message-ID: <iy3l3ybmvllqxtyqq7fifiokxaaedrs22davveel4ikjoqivdm@dinswoc52qpz>
+References: <20240710061102.1323550-1-quic_varada@quicinc.com>
+ <20240710061102.1323550-6-quic_varada@quicinc.com>
+ <d454e01f-3d6b-4a02-87cf-3d289bc6957c@linaro.org>
+ <ZpeLYG6vegJYZ5Rs@hu-varada-blr.qualcomm.com>
+ <ZqCD3xtkLHbw9BHN@hu-varada-blr.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,147 +93,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f40de173-0c61-4400-87b2-51c171a52baa@freebox.fr>
+In-Reply-To: <ZqCD3xtkLHbw9BHN@hu-varada-blr.qualcomm.com>
 
-On Wed, Jul 24, 2024 at 07:18:39PM GMT, Marc Gonzalez wrote:
-> On 15/07/2024 16:42, Maxime Ripard wrote:
-> > On Mon, Jul 08, 2024 at 11:29:46PM GMT, Dmitry Baryshkov wrote:
-> >> On Mon, Jul 08, 2024 at 04:59:23PM GMT, Maxime Ripard wrote:
-> >>> On Mon, Jul 01, 2024 at 05:36:18PM GMT, Marc Gonzalez wrote:
-> >>>> On 01/07/2024 15:50, Maxime Ripard wrote:
-> >>>>
-> >>>>> On Thu, Jun 27, 2024 at 01:13:03PM GMT, Marc Gonzalez wrote:
-> >>>>>
-> >>>>>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
-> >>>>>> It supports DVI 1.0, HDMI 1.4b and 2.0b.
-> >>>>>> It supports 4 TMDS channels, HPD, and a DDC interface.
-> >>>>>> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-> >>>>>> for power reduction. Several methods of power management are
-> >>>>>> implemented to reduce overall power consumption.
-> >>>>>> It supports fixed receiver EQ gain using I2C or pin strap to
-> >>>>>> compensate for different lengths input cable or board traces.
-> >>>>>>
-> >>>>>> Features
-> >>>>>>
-> >>>>>> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
-> >>>>>> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-> >>>>>> data rate, compatible with HDMI 2.0b electrical parameters
-> >>>>>> - DisplayPort dual-mode standard version 1.1
-> >>>>>> - Programmable fixed receiver equalizer up to 15.5dB
-> >>>>>> - Global or independent high speed lane control, pre-emphasis
-> >>>>>> and transmit swing, and slew rate control
-> >>>>>> - I2C or pin strap programmable
-> >>>>>> - Configurable as a DisplayPort redriver through I2C
-> >>>>>> - Full lane swap on main lanes
-> >>>>>> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
-> >>>>>>
-> >>>>>> https://www.ti.com/lit/ds/symlink/tdp158.pdf
-> >>>>>>
-> >>>>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> >>>>>> ---
-> >>>>>>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
-> >>>>>>  1 file changed, 51 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> >>>>>> new file mode 100644
-> >>>>>> index 0000000000000..21c8585c3bb2d
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> >>>>>> @@ -0,0 +1,51 @@
-> >>>>>> +# SPDX-License-Identifier: GPL-2.0-only
-> >>>>>> +%YAML 1.2
-> >>>>>> +---
-> >>>>>> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
-> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>>> +
-> >>>>>> +title: TI TDP158 HDMI to TMDS Redriver
-> >>>>>> +
-> >>>>>> +maintainers:
-> >>>>>> +  - Arnaud Vrac <avrac@freebox.fr>
-> >>>>>> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
-> >>>>>> +
-> >>>>>> +properties:
-> >>>>>> +  compatible:
-> >>>>>> +    const: ti,tdp158
-> >>>>>> +
-> >>>>>> +  reg:
-> >>>>>> +    description: I2C address of the device
-> >>>>>> +
-> >>>>>> +  enable-gpios:
-> >>>>>> +    description: GPIO controlling bridge enable
-> >>>>>> +
-> >>>>>> +  vcc-supply:
-> >>>>>> +    description: Power supply 3.3V
-> >>>>>> +
-> >>>>>> +  vdd-supply:
-> >>>>>> +    description: Power supply 1.1V
-> >>>>>> +
-> >>>>>> +  ports:
-> >>>>>> +    $ref: /schemas/graph.yaml#/properties/ports
-> >>>>>> +
-> >>>>>> +    properties:
-> >>>>>> +      port@0:
-> >>>>>> +        $ref: /schemas/graph.yaml#/properties/port
-> >>>>>> +        description: Bridge input
-> >>>>>> +
-> >>>>>> +      port@1:
-> >>>>>> +        $ref: /schemas/graph.yaml#/properties/port
-> >>>>>> +        description: Bridge output
-> >>>>>> +
-> >>>>>> +    required:
-> >>>>>> +      - port@0
-> >>>>>> +      - port@1
-> >>>>>
-> >>>>> The device supports DVI, HDMI or DP input, with various requirements and
-> >>>>> capabilities depending on the input. Your binding doesn't address that.
-> >>>>>
-> >>>>> Similarly, it can do lane-swapping, so we should probably have a
-> >>>>> property to describe what mapping we want to use.
-> >>>>>
-> >>>>> The i2c register access (and the whole behaviour of the device) is
-> >>>>> constrained on the I2C_EN pin status, and you can't read it from the
-> >>>>> device, so it's also something we need to have in the DT.
-> >>>>
-> >>>> We are using the device in its default configuration.
-> >>>> (Power on via OE, then it works as expected)
-> >>>
-> >>> I know, but that doesn't really matter for a binding.
-> >>>
-> >>>> Can we leave any additional properties to be defined by whomever needs
-> >>>> them in the future?
-> >>>
-> >>> If you can guarantee that doing so would be backward compatible, sure.
-> >>> But that means being able to answer those questions with a reasonable
-> >>> plan.
-> >>
-> >> I think proposed bindings are generic enough to cover other possible
-> >> usecases in future.
-> > 
-> > I don't think it is. The current binding is for a I2C device that
-> > shouldn't be accessed through I2C.
-> > 
-> > It's working for now because the driver doesn't do any access, so it's
-> > all great, but as soon as we add support for the other case, then we'll
-> > have to add a property that states that while it's an i2c device, it
-> > shouldn't be accessed.
-> > 
-> > And adding such a property is a compatibility-breaking change.
+On Wed, Jul 24, 2024 at 10:02:31AM GMT, Varadarajan Narayanan wrote:
+> On Wed, Jul 17, 2024 at 02:44:08PM +0530, Varadarajan Narayanan wrote:
+> > On Tue, Jul 16, 2024 at 02:15:12PM +0200, Konrad Dybcio wrote:
+> > > On 10.07.2024 8:10 AM, Varadarajan Narayanan wrote:
+> > > > From: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > > >
+> > > > Add the APC power domain definitions used in IPQ9574.
+> > > >
+> > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > > ---
+> > >
+> > > Could you please confirm [1]?
+> > >
+> > > Konrad
+> > >
+> > > [1] https://lore.kernel.org/linux-arm-msm/57dadb35-5dde-4127-87aa-962613730336@linaro.org/
+> >
+> > The author is off for a few days. Will get back to you once he is in.
 > 
-> Why do you say:
-> "current binding is for a I2C device that
-> shouldn't be accessed through I2C" ?
-> 
-> As a matter of fact, my debug code queries the device ID using
-> regmap_read() to make sure I set the correct I2C address.
+> Have responded to that query. Please see https://lore.kernel.org/linux-arm-msm/ZqCCpf1FwLWulSgr@hu-varada-blr.qualcomm.com/
 
-Please note: bingdings do not cover the driver at all. The driver might
-do whatever it wants. The bindings describe the hardware.
-
-> 
-> It's not that the device "SHOULD NOT" be accessed.
-> 
-> It's just that the driver DOES NOT NEED TO access the device,
-> simply because the default settings work fine.
+If it responds to voltage values, please model it as a regulator rather
+than a power domain.
 
 -- 
 With best wishes
