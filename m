@@ -1,209 +1,387 @@
-Return-Path: <devicetree+bounces-87889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF1193B57C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:01:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F8F93B5AC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 19:16:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BEDD281F11
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:01:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 391DB1C20FC9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA5115FA75;
-	Wed, 24 Jul 2024 17:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F62F15F3F9;
+	Wed, 24 Jul 2024 17:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fuiAGIzF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ba98B9Mf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7256B15EFC6;
-	Wed, 24 Jul 2024 17:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C493115ECCD
+	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 17:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721840451; cv=none; b=gNmGuLTm2KQnHa7VR8FlgPR6Tf4UhCtzvGBJ0+1kzkBD6Sy6vPh30KLXnwVE5NIq0+rhts0LWv92a0CUUHus/DuqVK2sCn9DPgNvjnVfVTG1+J4RjgXAJvPhsdroEcu2u/Zp7jYYkIhKF0uezFGli2hggkzH6T18dOhVT8J9ZZM=
+	t=1721841375; cv=none; b=iEm53sdXeDIyR/gue8OAXYzErjESVtPIoxPKfhxkAJJZkgH3o8xbxsKwsixws1TrZ3TcoE+X32MbFTymT/Wd25P8QCgSh/6lm/LTmD2Rypneywz+FW4xNY2UTOOQLmcr4JIqXUnA+J1X2DXcHnMzV0Lsw6M0O6JHYqi1eqcHR9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721840451; c=relaxed/simple;
-	bh=2Fp4P0nwOnEMoAXIjI4Y3vOGjyY6NokmL9megcF9vq8=;
+	s=arc-20240116; t=1721841375; c=relaxed/simple;
+	bh=/dU1cNTdY041Xy/3w5RX1KY4WSmaNnazUS/PFk5FsOc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mg4uD09xjBCJTiZQlFQhPvgy5M5HuZU/dNtng5VSoFiLVnSgcPSmBRDKzXDOSf8xxq3JJz1gQuIhgeRfaV1GaH03qQuPE8W9rzuYcvKWsUZKiE51mFvZmdKQN7mLLuEUjW+yr7bxdJmPDBUY7+GzaTuyOrIpTlO4HRWgUCJO+Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fuiAGIzF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB0C7C32781;
-	Wed, 24 Jul 2024 17:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721840451;
-	bh=2Fp4P0nwOnEMoAXIjI4Y3vOGjyY6NokmL9megcF9vq8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fuiAGIzF1Mk04XEIXWoBquP9gxq0hR7o3p8cRHVnkCkp1n/AWQN22x6+EKPARr+Gc
-	 w4AwDNIP86ve2KTlPJgZAh51KxTdfV/UuvhZeliWcCLcaNDlQP/No7AhGGZZAyRxIC
-	 mfE6P8ZzZzBPHPKl8HEmPhHOUJnc19nci2FNf8YkE7rXar+x8X3WDvGE9gV4teKQZK
-	 84TzmXO3nFBloc51YZuZa4bQYjlyCwZQfPaoH6+XNXQ6XvD4GGzfzQTX/5a8i6VzFz
-	 hV3RnG8cwoPi+aay6e/T2XK4OvOsB+my075lNLNQJTuaAFsb3t5aY4zOAPDauxDzqb
-	 ySsKAtRKEvG+w==
-Date: Wed, 24 Jul 2024 18:00:46 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Zapolskiy <vz@mleia.com>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: gpio: nxp,lpc32xx-gpio: Convert to dtschema
-Message-ID: <20240724-sappiness-apprehend-b66630b94bcf@spud>
-References: <20240724161235.130333-1-animeshagarwal28@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l19novZoGc1Jj4Q6WuEPn3oRGkUbRkN4Ex3ATYsHuRpHJY8RdMhds0v/wao+qllpP1CrIabf7xN8/ACIizpzkE0+Ejotvifzr+Wb8ebO9Ov5MfNCZIETEXEHyNqmGKAI2uH0m7beRti0wAV4hotDu9Llj4LZIss/MGxqsysRJp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ba98B9Mf; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-70d2ae44790so18033b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 10:16:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721841373; x=1722446173; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KyaQp44nnXsTM0SAEoKII/fnYGZT7U9n/kUXWtnFy+k=;
+        b=ba98B9MfVz33RY81CWmwNZltow55SPcUoearRvNnFl0lDVofhcEtbmT5pdf7pdWoe4
+         44u1kKTV5+pL0A8noQtvv+cDWGzwgsUfsNx7wrSzeWsGoDkQmpdFjDlu+gphLr2YmE9B
+         cOilBOWqHG7P8CsBeieYZI8JB/fKVkw+hCC9mhq/qDa+LNtggUoKoRZMNYVq8ZoKkKzg
+         hrqtifx6r0bnWrodrjBdnxl3eHtqiTK7yYB/uSHdDw/2OBZlw7pbj9Nj81iEYIrJ2EJD
+         V+KV2OFBcvxRJ8W4i2LkCSEE7jlPtxGOjNCDJAwL/Nv1ooilVtrC1ED9Qc9PXmMsCkV/
+         sNWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721841373; x=1722446173;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KyaQp44nnXsTM0SAEoKII/fnYGZT7U9n/kUXWtnFy+k=;
+        b=DpjPaPiRq6x7CTPAV45hXiu8SQH6vYy7gu3FX6xON+A3RQEyaLABPUpSaMmJNCksmA
+         la7VEoPnIQCO2xmXNhaMmOyHnSNWhnYh22iSThIauvCxAwExirMKNex7zSDymm67Zy5y
+         oYQiX8OyVZAy5UXsFl/mXkTnJorQyFBNhqrMa1u6DPCGIS3qVxVR+MQaieq8DXtAfXvK
+         6CSX2A9fZVjgSNzKT4+ag8dzz79+2SQflfsvOafqV1E888QQzvSA8GV3VrqycXjHgwSE
+         5MuiNwZJNlzJGlkjd7PLkVoRmwDHN/v+DOX8jUu3clgY2lCB+lgWylDx+cmnh8n5WetO
+         VwKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUm40KAJLAj9MWZwOjQ2SRemM7mKJC+LaZgt228a40j5Jg+yp3mAhEJvcs9kFWrN14W2pQJUXDTeB1DNB43nHUnrDdfGcR3cGaPSA==
+X-Gm-Message-State: AOJu0YxueGfEbeb5nC/s2kZWrxeve+L8HPfuGAlMOBTtiZj02MRHbdh5
+	QuIxPY9TmwrGT2Gy/1XagdtOPyoZA7w39olGwpptoTQFaYJXKzT4mUd8DgQegQ==
+X-Google-Smtp-Source: AGHT+IET+3PrzjkCJC0X6yQ8Z+hpWLYS7lVlEf69KG5hRlXm3bRMfzaAU7Yy57uPgRvipPcNBD5QFg==
+X-Received: by 2002:a05:6a00:8592:b0:70e:a4ef:e5c2 with SMTP id d2e1a72fcca58-70eaa885078mr212774b3a.13.1721841372739;
+        Wed, 24 Jul 2024 10:16:12 -0700 (PDT)
+Received: from thinkpad ([103.244.168.26])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70cff4b8166sm8760869b3a.85.2024.07.24.10.16.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jul 2024 10:16:12 -0700 (PDT)
+Date: Wed, 24 Jul 2024 22:46:05 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 04/10] PCI: imx6: Introduce SoC specific callbacks for
+ controlling REFCLK
+Message-ID: <20240724171605.GJ3349@thinkpad>
+References: <20240708-pci2_upstream-v7-0-ac00b8174f89@nxp.com>
+ <20240708-pci2_upstream-v7-4-ac00b8174f89@nxp.com>
+ <20240721075634.GC1908@thinkpad>
+ <Zp53yUlVmmEk2rAU@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RctCo8G3j4W6epQq"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240724161235.130333-1-animeshagarwal28@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zp53yUlVmmEk2rAU@lizhi-Precision-Tower-5810>
 
+On Mon, Jul 22, 2024 at 11:16:25AM -0400, Frank Li wrote:
+> On Sun, Jul 21, 2024 at 01:26:34PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Jul 08, 2024 at 01:08:08PM -0400, Frank Li wrote:
+> > > Instead of using the switch case statement to enable/disable the reference
+> > > clock handled by this driver itself, let's introduce a new callback
+> > > enable_ref_clk() and define it for platforms that require it. This
+> > > simplifies the code.
+> > > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/pci-imx6.c | 111 ++++++++++++++++------------------
+> > >  1 file changed, 51 insertions(+), 60 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> > > index 47134e2dfecf2..dbcb70186036e 100644
+> > > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > > @@ -103,6 +103,7 @@ struct imx_pcie_drvdata {
+> > >  	const u32 mode_mask[IMX_PCIE_MAX_INSTANCES];
+> > >  	const struct pci_epc_features *epc_features;
+> > >  	int (*init_phy)(struct imx_pcie *pcie);
+> > > +	int (*enable_ref_clk)(struct imx_pcie *pcie, bool enable);
+> > >  };
+> > >  
+> > >  struct imx_pcie {
+> > > @@ -585,21 +586,20 @@ static int imx_pcie_attach_pd(struct device *dev)
+> > >  	return 0;
+> > >  }
+> > >  
+> > > -static int imx_pcie_enable_ref_clk(struct imx_pcie *imx_pcie)
+> > > +static int imx6sx_pcie_enable_ref_clk(struct imx_pcie *imx_pcie, bool enable)
+> > >  {
+> > > -	unsigned int offset;
+> > > -	int ret = 0;
+> > > +	if (enable)
+> > > +		regmap_clear_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
+> > > +				  IMX6SX_GPR12_PCIE_TEST_POWERDOWN);
+> > 
+> > Since all SoCs except IMX6Q/6QP doesn't have both enable/disable controls (which
+> > is very weird btw), you can have separate enable/disable callbacks and just
+> > populate the ones that require.
+> 
+> I think old code is wrong, which depended on hardware reset value. It
+> should paired between enable/disable. I just want to keep the same logic
+> here as old code. I have another patches to improve these. This patch
+> series were already big, I want to do it after these patch merged.
+> 
+> Is it okay?
+> 
 
---RctCo8G3j4W6epQq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fine with me.
 
-Yo,
+- Mani
 
-On Wed, Jul 24, 2024 at 09:42:28PM +0530, Animesh Agarwal wrote:
-> Convert the NXP LPC32xx SoC GPIO controller bindings to DT schema format.
->=20
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
->  .../devicetree/bindings/gpio/gpio_lpc32xx.txt | 43 ---------------
->  .../bindings/gpio/nxp,lpc32xx-gpio.yaml       | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 43 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio_lpc32xx.t=
-xt
->  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gp=
-io.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt b/Do=
-cumentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
-> deleted file mode 100644
-> index 49819367a011..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -NXP LPC32xx SoC GPIO controller
-> -
-> -Required properties:
-> -- compatible: must be "nxp,lpc3220-gpio"
-> -- reg: Physical base address and length of the controller's registers.
-> -- gpio-controller: Marks the device node as a GPIO controller.
-> -- #gpio-cells: Should be 3:
-> -   1) bank:
-> -      0: GPIO P0
-> -      1: GPIO P1
-> -      2: GPIO P2
-> -      3: GPIO P3
-> -      4: GPI P3
-> -      5: GPO P3
-> -   2) pin number
-> -   3) optional parameters:
-> -      - bit 0 specifies polarity (0 for normal, 1 for inverted)
-> -- reg: Index of the GPIO group
+> Frank
+>  
+> > 
+> > This way it becomes clear which SoC is supporting what. If you have a common
+> > helper and just toggle based on a bool, then it becomes hard to follow.
+> > 
+> > - Mani
+> > 
+> > >  
+> > > -	switch (imx_pcie->drvdata->variant) {
+> > > -	case IMX6SX:
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
+> > > -				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN, 0);
+> > > -		break;
+> > > -	case IMX6QP:
+> > > -	case IMX6Q:
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int imx6q_pcie_enable_ref_clk(struct imx_pcie *imx_pcie, bool enable)
+> > > +{
+> > > +	if (enable) {
+> > >  		/* power up core phy and enable ref clock */
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
+> > > -				   IMX6Q_GPR1_PCIE_TEST_PD, 0 << 18);
+> > > +		regmap_clear_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_TEST_PD);
+> > >  		/*
+> > >  		 * the async reset input need ref clock to sync internally,
+> > >  		 * when the ref clock comes after reset, internal synced
+> > > @@ -607,55 +607,33 @@ static int imx_pcie_enable_ref_clk(struct imx_pcie *imx_pcie)
+> > >  		 * add one ~10us delay here.
+> > >  		 */
+> > >  		usleep_range(10, 100);
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
+> > > -				   IMX6Q_GPR1_PCIE_REF_CLK_EN, 1 << 16);
+> > > -		break;
+> > > -	case IMX7D:
+> > > -	case IMX95:
+> > > -	case IMX95_EP:
+> > > -		break;
+> > > -	case IMX8MM:
+> > > -	case IMX8MM_EP:
+> > > -	case IMX8MQ:
+> > > -	case IMX8MQ_EP:
+> > > -	case IMX8MP:
+> > > -	case IMX8MP_EP:
+> > > -		offset = imx_pcie_grp_offset(imx_pcie);
+> > > -		/*
+> > > -		 * Set the over ride low and enabled
+> > > -		 * make sure that REF_CLK is turned on.
+> > > -		 */
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, offset,
+> > > -				   IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE,
+> > > -				   0);
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, offset,
+> > > -				   IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE_EN,
+> > > -				   IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE_EN);
+> > > -		break;
+> > > +		regmap_set_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_REF_CLK_EN);
+> > > +	} else {
+> > > +		regmap_clear_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_REF_CLK_EN);
+> > > +		regmap_set_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1, IMX6Q_GPR1_PCIE_TEST_PD);
+> > >  	}
+> > >  
+> > > -	return ret;
+> > > +	return 0;
+> > >  }
+> > >  
+> > > -static void imx_pcie_disable_ref_clk(struct imx_pcie *imx_pcie)
+> > > +static int imx8mm_pcie_enable_ref_clk(struct imx_pcie *imx_pcie, bool enable)
+> > >  {
+> > > -	switch (imx_pcie->drvdata->variant) {
+> > > -	case IMX6QP:
+> > > -	case IMX6Q:
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
+> > > -				IMX6Q_GPR1_PCIE_REF_CLK_EN, 0);
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR1,
+> > > -				IMX6Q_GPR1_PCIE_TEST_PD,
+> > > -				IMX6Q_GPR1_PCIE_TEST_PD);
+> > > -		break;
+> > > -	case IMX7D:
+> > > -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
+> > > -				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL,
+> > > -				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
+> > > -		break;
+> > > -	default:
+> > > -		break;
+> > > +	int offset = imx_pcie_grp_offset(imx_pcie);
+> > > +
+> > > +	if (enable) {
+> > > +		regmap_clear_bits(imx_pcie->iomuxc_gpr, offset, IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE);
+> > > +		regmap_set_bits(imx_pcie->iomuxc_gpr, offset, IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE_EN);
+> > >  	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int imx7d_pcie_enable_ref_clk(struct imx_pcie *imx_pcie, bool enable)
+> > > +{
+> > > +	if (!enable)
+> > > +		regmap_set_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
+> > > +				IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
+> > > +	return 0;
+> > >  }
+> > >  
+> > >  static int imx_pcie_clk_enable(struct imx_pcie *imx_pcie)
+> > > @@ -668,10 +646,12 @@ static int imx_pcie_clk_enable(struct imx_pcie *imx_pcie)
+> > >  	if (ret)
+> > >  		return ret;
+> > >  
+> > > -	ret = imx_pcie_enable_ref_clk(imx_pcie);
+> > > -	if (ret) {
+> > > -		dev_err(dev, "unable to enable pcie ref clock\n");
+> > > -		goto err_ref_clk;
+> > > +	if (imx_pcie->drvdata->enable_ref_clk) {
+> > > +		ret = imx_pcie->drvdata->enable_ref_clk(imx_pcie, true);
+> > > +		if (ret) {
+> > > +			dev_err(dev, "Failed to enable PCIe REFCLK\n");
+> > > +			goto err_ref_clk;
+> > > +		}
+> > >  	}
+> > >  
+> > >  	/* allow the clocks to stabilize */
+> > > @@ -686,7 +666,8 @@ static int imx_pcie_clk_enable(struct imx_pcie *imx_pcie)
+> > >  
+> > >  static void imx_pcie_clk_disable(struct imx_pcie *imx_pcie)
+> > >  {
+> > > -	imx_pcie_disable_ref_clk(imx_pcie);
+> > > +	if (imx_pcie->drvdata->enable_ref_clk)
+> > > +		imx_pcie->drvdata->enable_ref_clk(imx_pcie, false);
+> > >  	clk_bulk_disable_unprepare(imx_pcie->drvdata->clks_cnt, imx_pcie->clks);
+> > >  }
+> > >  
+> > > @@ -1475,6 +1456,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > >  		.init_phy = imx_pcie_init_phy,
+> > > +		.enable_ref_clk = imx6q_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX6SX] = {
+> > >  		.variant = IMX6SX,
+> > > @@ -1489,6 +1471,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > >  		.init_phy = imx6sx_pcie_init_phy,
+> > > +		.enable_ref_clk = imx6sx_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX6QP] = {
+> > >  		.variant = IMX6QP,
+> > > @@ -1504,6 +1487,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > >  		.init_phy = imx_pcie_init_phy,
+> > > +		.enable_ref_clk = imx6q_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX7D] = {
+> > >  		.variant = IMX7D,
+> > > @@ -1516,6 +1500,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > >  		.init_phy = imx7d_pcie_init_phy,
+> > > +		.enable_ref_clk = imx7d_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX8MQ] = {
+> > >  		.variant = IMX8MQ,
+> > > @@ -1529,6 +1514,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[1] = IOMUXC_GPR12,
+> > >  		.mode_mask[1] = IMX8MQ_GPR12_PCIE2_CTRL_DEVICE_TYPE,
+> > >  		.init_phy = imx8mq_pcie_init_phy,
+> > > +		.enable_ref_clk = imx8mm_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX8MM] = {
+> > >  		.variant = IMX8MM,
+> > > @@ -1540,6 +1526,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.clks_cnt = ARRAY_SIZE(imx8mm_clks),
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > > +		.enable_ref_clk = imx8mm_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX8MP] = {
+> > >  		.variant = IMX8MP,
+> > > @@ -1551,6 +1538,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.clks_cnt = ARRAY_SIZE(imx8mm_clks),
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > > +		.enable_ref_clk = imx8mm_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX95] = {
+> > >  		.variant = IMX95,
+> > > @@ -1577,6 +1565,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_mask[1] = IMX8MQ_GPR12_PCIE2_CTRL_DEVICE_TYPE,
+> > >  		.epc_features = &imx8m_pcie_epc_features,
+> > >  		.init_phy = imx8mq_pcie_init_phy,
+> > > +		.enable_ref_clk = imx8mm_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX8MM_EP] = {
+> > >  		.variant = IMX8MM_EP,
+> > > @@ -1589,6 +1578,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > >  		.epc_features = &imx8m_pcie_epc_features,
+> > > +		.enable_ref_clk = imx8mm_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX8MP_EP] = {
+> > >  		.variant = IMX8MP_EP,
+> > > @@ -1601,6 +1591,7 @@ static const struct imx_pcie_drvdata drvdata[] = {
+> > >  		.mode_off[0] = IOMUXC_GPR12,
+> > >  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+> > >  		.epc_features = &imx8m_pcie_epc_features,
+> > > +		.enable_ref_clk = imx8mm_pcie_enable_ref_clk,
+> > >  	},
+> > >  	[IMX95_EP] = {
+> > >  		.variant = IMX95_EP,
+> > > 
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+> 
 
-> diff --git a/Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml=
- b/Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml
-> new file mode 100644
-> index 000000000000..5974b2775d23
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/nxp,lpc32xx-gpio.yaml
-
-Can you make this filename the same as the compatible string please?
-
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-
-Hmm, the original author does not appear to be from one of the companies
-where there's a carte blanche for binding relicensing.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/nxp,lpc32xx-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP LPC32xx SoC GPIO controller
-> +
-> +maintainers:
-> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,lpc3220-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 3
-> +    description: |
-> +      1) bank:
-> +        0: GPIO P0
-> +        1: GPIO P1
-> +        2: GPIO P2
-> +        3: GPIO P3
-> +        4: GPI P3
-> +        5: GPO P3
-> +      2) pin number
-> +      3) optional parameters:
-
-This isn't optional, since you've made the number of cells const: 3. The
-original binding also says "should be 3", so I think that's reasonable.
-Just drop the optional wording.
-
-Otherwise, looks pretty okay to me.
-
-Cheers,
-Conor.
-
-> +        - bit 0 specifies polarity (0 for normal, 1 for inverted)
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    gpio@40028000 {
-> +        compatible =3D "nxp,lpc3220-gpio";
-> +        reg =3D <0x40028000 0x1000>;
-> +        gpio-controller;
-> +        #gpio-cells =3D <3>; /* bank, pin, flags */
-> +    };
-> --=20
-> 2.45.2
->=20
-
---RctCo8G3j4W6epQq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqEzPgAKCRB4tDGHoIJi
-0uqwAPiDBQOdQdHa0Bxn92ixhY01Vmy5r/40U7pAC9hnuB5WAQDdnCaQ7+BNsMKm
-ufyZQGHMpLcUz3rSPoafZ5J6NzyXBA==
-=m3mS
------END PGP SIGNATURE-----
-
---RctCo8G3j4W6epQq--
+-- 
+மணிவண்ணன் சதாசிவம்
 
