@@ -1,253 +1,287 @@
-Return-Path: <devicetree+bounces-87782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B6193AF6C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 11:54:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4044993AFA9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 12:13:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 862DBB22F97
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 09:54:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62EB01C2146E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 10:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57AE152787;
-	Wed, 24 Jul 2024 09:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC72158A01;
+	Wed, 24 Jul 2024 10:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u2VW+aIM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyhsA9nH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86FE7C0B7
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 09:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE835158871;
+	Wed, 24 Jul 2024 10:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721814860; cv=none; b=Q4tzc7IbnTm6NBwMY3h0xdvsY+SUGfwyw1TX86vuqlLZTKHhkgZizZ14fxPuVA6FwH5n29WK0Fk7witwxGL2D+Ee5IAgU5Aggh1wiJCXID29/h9svNxUZNO2BV61Nsrz40R3z58Ud1A2mC86i7BTf44usHW+s5ed8hxQqurWVsM=
+	t=1721815928; cv=none; b=Up68s+FDJpmWBxrbhnoylmrHu/B6GlNJGqxZCZBK09tftMEPqeUI2Gcf1MrGh6T9fkJXc5zr6yQUS/VKpKPv2YVjOL0ic+xeaoeNmKMiE+6q5N38g6Y3daZyM43vkFTOHX6qL2UFXp/UVEnlAHY5EPDOTHvNO8GOqxoBciS6RZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721814860; c=relaxed/simple;
-	bh=nuk1P1pLa69zSDDPW80adj0k5y6J8I/iOm9ZZQGa9uM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H4AXV4ZDzxB+RZUdi6E3VZKo7F35/cwlyRxGeB1PWWlOBT3UZRON9pfMG2ai6/1Oy8ku0wsSObKEtw1tUG/r0l0P/1a5hmQ5oxZgYHwlNBvyXvdk21r6530stsQa8L0qelDNWdBn6S6l+PDTrBQitq8Y5FnNA2HJsI5CxamaOks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u2VW+aIM; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70d399da0b5so1778009b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 02:54:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721814858; x=1722419658; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=bDgEYlw9bJMyIkYG+I3RR+zw7mE/Wd3hBgx5OXzcfpk=;
-        b=u2VW+aIMQSk+jQ9WmHc9Seyl1fk7uShQeHtDx/fGZb3Ai4cmdtn3DycCWPguv1HRxw
-         VuDCtxoOYniTNzW4qc3J/UPkW9y7krRhKaCXC4n2ky0ghjelhUia7/zIG4AaXSivmzVS
-         ghftsnWopKM9YOIDdiQ4H5ySrZmBvBlZIheR2zfQEnt1N5lU+hrD33708v0ON0ukORrf
-         yL9Xlgj+kIyzIxsgpJKZBM4EmwGeA023lqXWpf+4f/M3mwWyEgwwEHwJHbm5dLJlz6Po
-         5npoKchRVekRBmFkgJ1D3BDsLhu+e2Q3dRy3uvvFBN3zy03t5SfYoY4i1LEvgOz5szja
-         9ZqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721814858; x=1722419658;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bDgEYlw9bJMyIkYG+I3RR+zw7mE/Wd3hBgx5OXzcfpk=;
-        b=f3RfWVdnawX/GnQFUYFh2f012oJfV1rl9Pg5f3C307UrPo16F3aOWSHEApj67DFQZ4
-         DLK3PbzNFO09iLsQao1D2cpS4/OeII2m5FDFDc86qrOBKopSzD5ZaWB3roMQfBRhNvf9
-         p9Lijgx1gGqVNGTYwUJmLRXysy+K6RvGrwKkwAMiSEHx5xsI0sKk63Mxm6W71Nn/SizL
-         1zqJP2jKn7uicuFgWLl6r6elHEwrE7fdLeIm4ADYShwVFxLEhIFBk0RUIHo2L1cACJ0W
-         NU/v9DnWB9YuXSHmPEHFN7SNUpHexohai5Sm4spFTPEzB9q8PQ6PLUf2N2sQpli7XKOl
-         S7Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCXKP6Sm8QRzRrsFq2I6JMTjtdGvPWLZK4vyj7z9R0he/NbxBlKLhLdgeYUe53547AbJP+POWzFNmmQjPLeok9HxR3NAEck3QNJGAw==
-X-Gm-Message-State: AOJu0YyCDZTkuTvWbZenyf0TkHVa+ANQvQV310LcodAXStb+vt33X058
-	nLtQejwHF/jTEvVGdEepERdZxQR2Iz1WHNBFkSk50/3VsU0MxZPMwL5uXPPcwg==
-X-Google-Smtp-Source: AGHT+IFc+bmwgUZf2NfrEi7RhkKsd/8QICOyMXuwNBmgqrPle6nKABbl1IG3MSOd56s4eQUb8WgHpA==
-X-Received: by 2002:a05:6a00:2e19:b0:70d:2796:bce8 with SMTP id d2e1a72fcca58-70e996ffa7amr2918567b3a.20.1721814858089;
-        Wed, 24 Jul 2024 02:54:18 -0700 (PDT)
-Received: from thinkpad ([2409:40f4:1015:1102:2847:8cd3:4e58:1c8])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-79f0b909876sm6583051a12.40.2024.07.24.02.54.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jul 2024 02:54:17 -0700 (PDT)
-Date: Wed, 24 Jul 2024 15:24:07 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Mayank Rana <quic_mrana@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>,
-	lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
-	jingoohan1@gmail.com, cassel@kernel.org,
-	yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com,
-	u.kleine-koenig@pengutronix.de, dlemoal@kernel.org,
-	amishin@t-argos.ru, thierry.reding@gmail.com, jonathanh@nvidia.com,
-	Frank.Li@nxp.com, ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com,
-	marek.vasut+renesas@gmail.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
-	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
-	quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 7/7] PCI: host-generic: Add dwc PCIe controller based
- MSI controller usage
-Message-ID: <20240724095407.GA2347@thinkpad>
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-8-git-send-email-quic_mrana@quicinc.com>
- <20240716085811.GA19348@willie-the-truck>
- <20240716134210.GA3534018-robh@kernel.org>
- <9b6eac04-f377-4afa-8712-ab916f831bba@quicinc.com>
- <6038632d-92ec-4034-bc68-add9d47f2bad@quicinc.com>
+	s=arc-20240116; t=1721815928; c=relaxed/simple;
+	bh=Uqbvr11D9AdAvRrO/Gx+qH47OKL06kpUfqsqfplLr44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YOI9iqqHv/NjQWinHZ4LQKGcRmkqGPnV2HJAumFJhfxBNmSov08xnxIIgM+Jv4OKs4y3fDADw2m+PaWmQ5zuXRE7Ghh49tVTHY0WctEOoO2NTT4mXhbKMJi6EjE6cd3cNCHqbJeXnsspcOeJ3RfVfLqVJVQrqyg6qyYuXjS4hco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyhsA9nH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C163C4AF0C;
+	Wed, 24 Jul 2024 10:12:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721815928;
+	bh=Uqbvr11D9AdAvRrO/Gx+qH47OKL06kpUfqsqfplLr44=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AyhsA9nHW5INzi1KByBWIblUwgL59r4vkjiK5TJdPIP4Y+QGqwnJmudUSFfb4v+2K
+	 DvD5MgWjcYh1RlxhAuwUiwaPOF1tATyEOteGpUFM5OIsTpTUpUU7j0WjTVJyU+ValF
+	 ZVWQYlLTNHcjH8xITeWv0rRZ80shTwkkZOcpScL3wb+j+R++Smx9qER+XT0fTy1Gq6
+	 3cFNwVwWt56RkVAkCp8S2d2CTwAIe+O6lPE2r0vh/WkfQiHC5OBMRYUlUBK0InkkwQ
+	 5R8AHESTtcWQty8ShWW2G7kVRYVmHrShUU0oGeKqoOqrarOAO9DfPToh83OZHiPQ1X
+	 cBWYgcrdSBASQ==
+Message-ID: <18f5565f-11f5-49ce-a816-366cff25b703@kernel.org>
+Date: Wed, 24 Jul 2024 12:12:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6038632d-92ec-4034-bc68-add9d47f2bad@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
+ bindings
+To: Sunyeal Hong <sunyeal.hong@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240722223333.1137947-1-sunyeal.hong@samsung.com>
+ <CGME20240722223340epcas2p4ab83b1e8dbc64eaaf32f4f8b7e3f015d@epcas2p4.samsung.com>
+ <20240722223333.1137947-2-sunyeal.hong@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240722223333.1137947-2-sunyeal.hong@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 23, 2024 at 03:56:35PM -0700, Mayank Rana wrote:
-> Hi Rob
+On 23/07/2024 00:33, Sunyeal Hong wrote:
+> Add dt-schema for ExynosAuto v920 SoC clock controller.
+> Add device tree clock binding definitions for below CMU blocks.
 > 
-> On 7/16/2024 3:32 PM, Mayank Rana wrote:
-> > Hi Will and Rob
-> > 
-> > Thank you for your quick review comments.
-> > 
-> > On 7/16/2024 6:42 AM, Rob Herring wrote:
-> > > On Tue, Jul 16, 2024 at 09:58:12AM +0100, Will Deacon wrote:
-> > > > On Mon, Jul 15, 2024 at 11:13:35AM -0700, Mayank Rana wrote:
-> > > > > Add usage of Synopsys Designware PCIe controller based MSI
-> > > > > controller to
-> > > > > support MSI functionality with ECAM compliant Synopsys Designware PCIe
-> > > > > controller. To use this functionality add device compatible string as
-> > > > > "snps,dw-pcie-ecam-msi".
-> > > > > 
-> > > > > Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
-> > > > > ---
-> > > > >   drivers/pci/controller/pci-host-generic.c | 92
-> > > > > ++++++++++++++++++++++++++++++-
-> > > > >   1 file changed, 91 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/drivers/pci/controller/pci-host-generic.c
-> > > > > b/drivers/pci/controller/pci-host-generic.c
-> > > > > index c2c027f..457ae44 100644
-> > > > > --- a/drivers/pci/controller/pci-host-generic.c
-> > > > > +++ b/drivers/pci/controller/pci-host-generic.c
-> > > > > @@ -8,13 +8,73 @@
-> > > > >    * Author: Will Deacon <will.deacon@arm.com>
-> > > > >    */
-> > > > > -#include <linux/kernel.h>
-> > > > >   #include <linux/init.h>
-> > > > > +#include <linux/kernel.h>
-> > > > >   #include <linux/module.h>
-> > > > > +#include <linux/of_address.h>
-> > > > >   #include <linux/pci-ecam.h>
-> > > > >   #include <linux/platform_device.h>
-> > > > >   #include <linux/pm_runtime.h>
-> > > > > +#include "dwc/pcie-designware-msi.h"
-> > > > > +
-> > > > > +struct dw_ecam_pcie {
-> > > > > +    void __iomem *cfg;
-> > > > > +    struct dw_msi *msi;
-> > > > > +    struct pci_host_bridge *bridge;
-> > > > > +};
-> > > > > +
-> > > > > +static u32 dw_ecam_pcie_readl(void *p_data, u32 reg)
-> > > > > +{
-> > > > > +    struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
-> > > > > +
-> > > > > +    return readl(ecam_pcie->cfg + reg);
-> > > > > +}
-> > > > > +
-> > > > > +static void dw_ecam_pcie_writel(void *p_data, u32 reg, u32 val)
-> > > > > +{
-> > > > > +    struct dw_ecam_pcie *ecam_pcie = (struct dw_ecam_pcie *)p_data;
-> > > > > +
-> > > > > +    writel(val, ecam_pcie->cfg + reg);
-> > > > > +}
-> > > > > +
-> > > > > +static struct dw_ecam_pcie *dw_pcie_ecam_msi(struct
-> > > > > platform_device *pdev)
-> > > > > +{
-> > > > > +    struct device *dev = &pdev->dev;
-> > > > > +    struct dw_ecam_pcie *ecam_pcie;
-> > > > > +    struct dw_msi_ops *msi_ops;
-> > > > > +    u64 addr;
-> > > > > +
-> > > > > +    ecam_pcie = devm_kzalloc(dev, sizeof(*ecam_pcie), GFP_KERNEL);
-> > > > > +    if (!ecam_pcie)
-> > > > > +        return ERR_PTR(-ENOMEM);
-> > > > > +
-> > > > > +    if (of_property_read_reg(dev->of_node, 0, &addr, NULL) < 0) {
-> > > 
-> > > Using this function on MMIO addresses is wrong. It is an untranslated
-> > > address.
-> > ok. do you prefer me to use of_address_to_resource() instead here ?
-> > 
-> > > > > +        dev_err(dev, "Failed to get reg address\n");
-> > > > > +        return ERR_PTR(-ENODEV);
-> > > > > +    }
-> > > > > +
-> > > > > +    ecam_pcie->cfg = devm_ioremap(dev, addr, PAGE_SIZE);
-> > > > > +    if (ecam_pcie->cfg == NULL)
-> > > > > +        return ERR_PTR(-ENOMEM);
-> > > > > +
-> > > > > +    msi_ops = devm_kzalloc(dev, sizeof(*msi_ops), GFP_KERNEL);
-> > > > > +    if (!msi_ops)
-> > > > > +        return ERR_PTR(-ENOMEM);
-> > > > > +
-> > > > > +    msi_ops->readl_msi = dw_ecam_pcie_readl;
-> > > > > +    msi_ops->writel_msi = dw_ecam_pcie_writel;
-> > > > > +    msi_ops->pp = ecam_pcie;
-> > > > > +    ecam_pcie->msi = dw_pcie_msi_host_init(pdev, msi_ops, 0);
-> > > > > +    if (IS_ERR(ecam_pcie->msi)) {
-> > > > > +        dev_err(dev, "dw_pcie_msi_host_init() failed\n");
-> > > > > +        return ERR_PTR(-EINVAL);
-> > > > > +    }
-> > > > > +
-> > > > > +    dw_pcie_msi_init(ecam_pcie->msi);
-> > > > > +    return ecam_pcie;
-> > > > > +}
-> > > > 
-> > > > Hmm. This looks like quite a lot of not-very-generic code to be adding
-> > > > to pci-host-generic.c. The file is now, what, 50% designware logic?
-> > > 
-> > > Agreed.
-> > > 
-> > > I would suggest you add ECAM support to the DW/QCom driver reusing some
-> > > of the common ECAM support code.
-> > I can try although there is very limited reusage of code with
-> > pcie-qcom.c and pcie-designware-host.c except reusing MSI functionality.
-> > That would make more new OPs within pcie-designware-host.c and
-> > pcie-qcom.c just to perform few operation. As now MSI functionality is
-> > available outside pcie core designware driver (although those changes
-> > are under review), will you be ok to allow separate Qualcomm PCIe ECAM
-> > driver as previously submitted RFC as https://lore.kernel.org/all/d10199df-5fb3-407b-b404-a0a4d067341f@quicinc.com/T/
-> > 
-> > I can modify above ECAM driver to call into PCIe designware module based
-> > MSI ops as doing here and that would allow reusing of MSI functionality
-> > at same time allowing separate driver for handling firmware VM based
-> > implementation.
-> Can you consider above request to have separate driver here ?
-> Please suggest on this.
+> - CMU_TOP
+> - CMU_PERIC0
 > 
+> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
+> ---
+>  .../clock/samsung,exynosautov920-clock.yaml   | 115 +++++++++++
+>  .../clock/samsung,exynosautov920.h            | 191 ++++++++++++++++++
+>  2 files changed, 306 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/samsung,exynosautov920.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+> new file mode 100644
+> index 000000000000..90f9f17da959
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/samsung,exynosautov920-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung ExynosAuto v920 SoC clock controller
+> +
+> +maintainers:
+> +  - Sunyeal Hong <sunyeal.hong@samsung.com>
+> +  - Chanwoo Choi <cw00.choi@samsung.com>
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
+> +
+> +description: |
+> +  ExynosAuto v920 clock controller is comprised of several CMU units, generating
+> +  clocks for different domains. Those CMU units are modeled as separate device
+> +  tree nodes, and might depend on each other. Root clocks in that clock tree are
+> +  two external clocks:: OSCCLK/XTCXO (38.4 MHz) and RTCCLK/XrtcXTI (32768 Hz).
+> +  The external OSCCLK must be defined as fixed-rate clock in dts.
+> +
+> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
+> +  dividers; all other clocks of function blocks (other CMUs) are usually
+> +  derived from CMU_TOP.
+> +
+> +  Each clock is assigned an identifier and client nodes can use this identifier
+> +  to specify the clock which they consume. All clocks available for usage
+> +  in clock consumer nodes are defined as preprocessor macros in
+> +  'include/dt-bindings/clock/samsung,exynosautov920.h' header.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynosautov920-cmu-top
+> +      - samsung,exynosautov920-cmu-peric0
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov920-cmu-top
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (38.4 MHz)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov920-cmu-peric0
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (38.4 MHz)
+> +            - description: CMU_PERIC0 NOC clock (from CMU_TOP)
+> +            - description: CMU_PERIC0 IP clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: noc
+> +            - const: ip
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+> +  - clocks
+> +  - clock-names
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock controller node for CMU_PERIC0
+> +  - |
+> +    #include <dt-bindings/clock/samsung,exynosautov920.h>
+> +
+> +    cmu_peric0: clock-controller@10800000 {
+> +        compatible = "samsung,exynosautov920-cmu-peric0";
+> +        reg = <0x10800000 0x8000>;
+> +        #clock-cells = <1>;
+> +
+> +        clocks = <&xtcxo>,
+> +                 <&cmu_top DOUT_CLKCMU_PERIC0_NOC>,
+> +                 <&cmu_top DOUT_CLKCMU_PERIC0_IP>;
+> +        clock-names = "oscclk",
+> +                      "noc",
+> +                      "ip";
+> +    };
+> +
+> +...
+> diff --git a/include/dt-bindings/clock/samsung,exynosautov920.h b/include/dt-bindings/clock/samsung,exynosautov920.h
+> new file mode 100644
+> index 000000000000..ad89728a4396
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/samsung,exynosautov920.h
+> @@ -0,0 +1,191 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2024 Samsung Electronics Co., Ltd.
+> + * Author: Sunyeal Hong <sunyeal.hong@samsung.com>
+> + *
+> + * Device Tree binding constants for ExynosAuto v920 clock controller.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H
+> +#define _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H
+> +
+> +/* CMU_TOP */
+> +#define FOUT_SHARED0_PLL		1
+> +#define FOUT_SHARED1_PLL		2
+> +#define FOUT_SHARED2_PLL		3
+> +#define FOUT_SHARED3_PLL		4
+> +#define FOUT_SHARED4_PLL		5
+> +#define FOUT_SHARED5_PLL		6
+> +#define FOUT_MMC_PLL			7
+> +
+> +/* MUX in CMU_TOP */
+> +#define MOUT_SHARED0_PLL		101
 
-Generic ECAM driver is already supporting some DWC based ECAM implementations
-like the ones added in commit 58fb207fb100 ("PCI: generic: Add support for
-Synopsys DesignWare RC in ECAM mode").
+This is some odd numbering. Numbers start from 0 or 1 and are continuous.
 
-From that perspective, I think it makes sense to add Qcom ECAM driver as a part
-of this. But at the same time, you can also add the ECAM mode to the existing
-DWC Qcom driver and reuse existing codes like MSI. Considering the amount of
-Qcom specific features you are going to add (like safety interrupts etc...), it
-won't look like a generic ECAM driver anyway.
 
-So I guess there is no *ideal* location for this driver. IMO as long as you
-avoid code duplication, I'm fine with whatever location.
+Best regards,
+Krzysztof
 
-From a quick look, I think it you go with Rob's suggestion, you can reuse
-existing MSI and future RASDES functionalities, isn't it?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
