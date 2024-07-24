@@ -1,108 +1,140 @@
-Return-Path: <devicetree+bounces-87787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708D993B00F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:03:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A14E93B03F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:17:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277321F22581
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 11:03:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56B77281C8C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 11:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C16156967;
-	Wed, 24 Jul 2024 11:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2719156F46;
+	Wed, 24 Jul 2024 11:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aTKKvC4D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mMVF6/UB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8270B1C6A3;
-	Wed, 24 Jul 2024 11:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46AA156C6C
+	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 11:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721818992; cv=none; b=nzfMwfreTwrHOzvFYTMT7rBIBadvuNVraajtI9x8IeV2VHTxY1D2Mz3ZdmSXMq+I1Zs2jGYdHnBoPQmNpUMi/ato7N9nQ0Z08u2ypX6abfMIrhJab2kZdgNuDzJIRZC6Xlzycci2QQ9foHKsrPTL7dyEG39vy6ZOchSFDCd0kPc=
+	t=1721819870; cv=none; b=TKe/rk+bMK1EOSYv5pu88XF2pMHPpotplXcxu7CKp9zzjkDRxuhjmXANR4U2xcdNrByseij7ysxTNBtQybQLcV9gx3KGjFEeyD/rghh55FPN8TN8lznVJnv0j5XiayOizPH3VyY/z5MOjiHKmP4/Zcy+ii3mNrGUkSkaL1gY3sY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721818992; c=relaxed/simple;
-	bh=ZN7NNcyU0S1YfbfqhcSpoRrSZCDKUwIk4FytmHMztN4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cwKSPnB+ImOvHNSoejDafwZZ2H6ozTX8NalyB+ywp+Pou/GtYWfH46tTLV25NtGvrAwMC7gJTtHmOQutENBo60GgQ5JsK7yAAbO6HEFWHRFYF+/QRtrOd0p4tF1dYCyqowZeWEsWYJmX27QjRReLXoce1dvunIVvQT5rYsDVNGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aTKKvC4D; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52efd2221efso297876e87.1;
-        Wed, 24 Jul 2024 04:03:09 -0700 (PDT)
+	s=arc-20240116; t=1721819870; c=relaxed/simple;
+	bh=u5P2XSotIVQI5KEmH6yp89E/OyUH7DW07t+T5awzKPE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IRUvjp6KlSoYhaNBrS46uPTWIobl2igp5e3pNPyPZBh1DgU1zZeOXBDpxSKbLDTd9Vgmpptoxi6RaZRMPUKh5CMO+A1Oa9J94W7VnRwIyE19c6yNbzyGsL0d4q0AKCpTe3k0w+hC2n0rY2tb+sxoBMBviGhzkulTco3kM2dRqzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mMVF6/UB; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso6528250a12.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 04:17:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721818988; x=1722423788; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OyZGnPtusGipb+xlX5GGLVHXWIPkIHym0QAfrDKBQw0=;
-        b=aTKKvC4Dhfh1Dimwhc2UNs9cf5dz6738tcPayxDCoBiO9/fifzGOJXQfAFRV2zOr8f
-         4uJrLn+nQOlS6ITdVaZ4xqXqFKrrzZJ8bhgjQ5oWKM9KnDe53Dd+JH9vi1cdsiUVow7W
-         27bSGrC8Mm0ZFlxs/GwSCG3ptjvI48o93rIQdtujETqZlMEgtSrju2M4kH9j/1MYjmNN
-         f2M96irsYRddgsPQ58OItuo5kWJCDjD2jIAZUkj0E0qOvysXeskcEFrnQ5OvuNGVw/Jq
-         7IObnshBX9yQZ3T3AU01IUcZ04qTs04YQv9SWj+R+Uh9s9byWm5xL3ZkDWayLQ8zv00V
-         s6qA==
+        d=linaro.org; s=google; t=1721819867; x=1722424667; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=foZI0aGrKNowqh8dzhyfBF+tDAZgNn62ZX2djJJye+8=;
+        b=mMVF6/UBx5lnuUU7+jafrv/WgmN6R9X0BrCfm9/R/rSIAmTGB7sKOKRszvG59olubm
+         Q8AbTLOWlhBsufjg++kxoaRnwYYmL/nFYc8qcdun4oBNMmA0/FJ6M7BN9PD5MkXyv407
+         1zp2eEtQ4bG0MJLlv7lIRDa+ssCZp2lAIr+KyS0zN0CxiC1V06TH5eTr9q8TapMeSAKJ
+         DkHiD/QNYxza2dtp1txd7RnmZGpq7yqTBvMkDPtONRfhnpvdrXoj9pDEpCgObSsdM6Lf
+         otG15772id6Xsvx0+X21GXWHl3vciq0plqdoWoMu1CZ0OUDnjp8/ME3hKmZgvr9urMfc
+         tt7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721818988; x=1722423788;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OyZGnPtusGipb+xlX5GGLVHXWIPkIHym0QAfrDKBQw0=;
-        b=FCzvDn4/oe4NtJ4/I2W5S327l9ZpGiINDV6jTCAkuXBrfG1JZfVMNpO1SECdOf8SBT
-         H+xq59iGsVv4mYRFcltXkV0xAy+yeYPbJoRKVoe2ohrsjGllPK9xJxko54af16RQOwX9
-         LcPxTKWJrA+QGkQUxypxvxQf2bsf4hLneMQn/y2LVF69D7v+zCOfUnCU06FShKlPlanD
-         BzUTyLwqMaCSAvuOGbCzaEYtEicN7V0jp1K7KOcNkPM1SYP7xOCKpHWruXSu5AXPQIWp
-         pzOBlkIGIbKwvaQLeSFicNnMU1UYGpxvC0ZZLlRweAC0/JHVXUV2xVImf8tPbOwuJ5Kg
-         P0fg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVIohd/rUeNMLT/00N/JTb7pkyu6DOl8Dq26Gf6kthXUhWKb1TrAQuYMbhF3hzGjqTDH/aLje4qTTp@vger.kernel.org, AJvYcCXiIQ1ntyN+RCY1nLNN2S4FLi9Jdsi4grm9GKOzGWUeIzq5HfnwzGDK5ojt48AFJnmiNCICJtwhBVBcAUbc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1K3XcGy8JTIi5Cne8/5W92kE9Nos66VlJVjVDI8dCmDThJfYU
-	+1YfD2US7QXd1Bd6ZpRm9EKE+7oRBsyaWGtj5dV9a/zFHp5RYMdKtexhh8/qp+XHgJyTTr3rQ8z
-	Cw66ueO+0K+cAaVRt4wywOuHD9hyDSyJk
-X-Google-Smtp-Source: AGHT+IHZ28WTL9zR0J5KAqNR5wSGYqOK6qMP43wFHJpRsp/GYZIHczD0y+ox1z8i9Eixd7+YrYjgxA4F1tkro8kjh5c=
-X-Received: by 2002:a05:6512:3f29:b0:52e:ccf5:7c3e with SMTP id
- 2adb3069b0e04-52ef8db6223mr4997174e87.7.1721818987347; Wed, 24 Jul 2024
- 04:03:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721819867; x=1722424667;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=foZI0aGrKNowqh8dzhyfBF+tDAZgNn62ZX2djJJye+8=;
+        b=gZ4knkkrtPQaTxgFW42XXq7J8gu3eKjUdSG5Xz3d/P/PgTHg/YBcyjLF0+L7ewZ6jU
+         BzomMs+6dMesDl5LwTcEIAfm88YqjWdb5wVlwjt82b6AR75AYa/Q2afDuKAa//IMWdgz
+         MWJPUhiLDRrpPyTMKB9ICD1wYohPFaluQSMwzDFFDxTmREddmVxwsD5nF8MzWURD68Ma
+         wuoaDcBhOjcBmuADQaawhDtIZTqGx7l0tWMBpmoKalCa4njMHBzu9sLhV+ePoIVW5K4I
+         aCOJwVHNb8oZOEVBeTSt8m0Lm+41K6F3JP422Pm8nDiZrVeQbm0LCQrgL+iWNHEJnUuB
+         48PA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWilkbM0c+jhhd4s9T1zhoZLI8+8/4cvFFBN2iMVPhWkJZJd+JlL0U1a6XvrsE9YUVwmIjsCpWFBiTd3FnjNsQhRFGi07+HPN1bg==
+X-Gm-Message-State: AOJu0YwRak6l7bNev+0uDaEP2kYtRgAKAVBeiW0pZ2iCyD+QJzfNkc8u
+	h9LwjB6jfwQCo9WvpQhfl0hfoP9N3CYp4vz8kPDNKriXQt45mNma0KBROddAMoM=
+X-Google-Smtp-Source: AGHT+IHVZNd88D6NET528Zgd6XV9jJ1tULhE5ZdXnc0lzEDfQWH4ANQji9eJWKRhji0xV1EABYWa2A==
+X-Received: by 2002:a17:907:9714:b0:a79:7f94:8a73 with SMTP id a640c23a62f3a-a7ab0d818f7mr135486366b.20.1721819867290;
+        Wed, 24 Jul 2024 04:17:47 -0700 (PDT)
+Received: from [192.168.1.4] ([79.115.63.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7a97c0731dsm169457266b.19.2024.07.24.04.17.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jul 2024 04:17:46 -0700 (PDT)
+Message-ID: <dd0449bc-f02a-4879-a7cd-e01fbea01d9f@linaro.org>
+Date: Wed, 24 Jul 2024 12:17:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240724105847.46962-1-tarang.raval@siliconsignals.io>
-In-Reply-To: <20240724105847.46962-1-tarang.raval@siliconsignals.io>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 24 Jul 2024 08:02:55 -0300
-Message-ID: <CAOMZO5AuiYD4KBZcfELRZsjEYXpPi7zGprvC7vq0hxfp75v5_w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: freescale: Add Ethernet Support
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] arm64: dts: exynos: add initial CMU clock nodes in
+ ExynosAuto v920
+To: Sunyeal Hong <sunyeal.hong@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240722223333.1137947-1-sunyeal.hong@samsung.com>
+ <CGME20240722223341epcas2p1b08b47cfefa981a2b31aad7878e3db64@epcas2p1.samsung.com>
+ <20240722223333.1137947-3-sunyeal.hong@samsung.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240722223333.1137947-3-sunyeal.hong@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Tarang,
+Hi, Sunyeal,
 
-Please mention the board name in the Subject:
+I quickly skimmed over the series and I fail to see where/how the HW
+auto clock gating is enabled/configured. Would you please add more
+details on how this works?
 
-arm64: dts: imx8mm-emtop-baseboard: Add Ethernet Support
+On 7/22/24 11:33 PM, Sunyeal Hong wrote:
+> Add cmu_top, cmu_peric0 clock nodes and
+> switch USI clocks instead of dummy fixed-rate-clock.
+> 
+> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
+> ---
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 40 +++++++++++++------
+>  1 file changed, 27 insertions(+), 13 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> index c1c8566d74f5..54fc32074379 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
 
-On Wed, Jul 24, 2024 at 7:59=E2=80=AFAM Tarang Raval
-<tarang.raval@siliconsignals.io> wrote:
 
-> +       mdio {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               ethphy0: ethernet-phy@4 {
-> +                       compatible =3D "ethernet-phy-ieee802.3-c22";
-> +                       reg =3D <4>;
-> +                       at803x,eee-disabled;
-> +                       at803x,vddio-1p8v;
+cut
 
-These two properties are not valid and not documented anywhere.
+> @@ -224,7 +237,8 @@ serial_0: serial@10880000 {
+>  				interrupts = <GIC_SPI 764 IRQ_TYPE_LEVEL_HIGH>;
+>  				pinctrl-names = "default";
+>  				pinctrl-0 = <&uart0_bus>;
+> -				clocks = <&clock_usi>, <&clock_usi>;
+> +				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
+
+isn't this MUX common to multiple GATEs? Wouldn't turning it off affect
+other users than the serial?
+
+Thanks,
+ta
+
+> +					 <&cmu_peric0 CLK_DOUT_PERIC0_USI00_USI>;
+>  				clock-names = "uart", "clk_uart_baud0";
+>  				samsung,uart-fifosize = <256>;
+>  				status = "disabled";
 
