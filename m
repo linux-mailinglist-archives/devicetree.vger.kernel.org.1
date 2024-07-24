@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-87849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE34393B3AB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:32:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B45993B3CB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 17:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9685B2178E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:32:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC9F81C22A83
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7423C15B987;
-	Wed, 24 Jul 2024 15:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CCDA15921D;
+	Wed, 24 Jul 2024 15:35:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="hIFvKCJ4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4ixcv/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C293115B14F
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 15:31:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35AE54759;
+	Wed, 24 Jul 2024 15:35:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721835089; cv=none; b=NDgak53bl+jvhpcViKsrrb+QwLYAfJUhZA4Wd8hvVwjGcnXGPHZp6p/sr6lmspBUoLxtitXqnl0OwnWmdMjHJKHMwxNwn0ckupJSuGJgTKHeiso9oyheU0h2vNcGbyztEZ3uFx1wU3+/VtlcJ2AYkWVHq22rcWC0AdVg+NdnIQs=
+	t=1721835309; cv=none; b=GoanFrR3Y5M/1QE1umH8PPGw+5Bz/s/rH4WisbF5pqJ8uGbqQjBqUtwP3m+ZoIsDNO1mTAW+c7TrWFB+Eat4W5VCWSxPIWsoc8gbKrT0KomITS1GPjNj5iKkpnOKFalDqjHZAMg58/htpNUO7qhL4gkzmmZ+tTdRF1oW88GBV6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721835089; c=relaxed/simple;
-	bh=47Ky+48e/8/FwyaHOpYAGpQHh6jTDnsO2L6HFR++eao=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=EbnosRAhI4tCjA9B7KWETHpdfQBVsOfFahP07krOn5l5SZzZem1LvASBeZvX+6mqkoqZlVNYTScyLHHT+q73Fe2tFKPmrFULo+zH7OvIV1B9ilo+yK+FYqX+CeNzBZrVrTANZ80gpWC8rXFj0jcTM8kyf89uBTllbRZGJA51FRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=hIFvKCJ4; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240724153126euoutp024e2934bd15ddb718d23cedca3e9622ee~lL_Nsm2Cw2383923839euoutp02a
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 15:31:26 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240724153126euoutp024e2934bd15ddb718d23cedca3e9622ee~lL_Nsm2Cw2383923839euoutp02a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1721835086;
-	bh=47Ky+48e/8/FwyaHOpYAGpQHh6jTDnsO2L6HFR++eao=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hIFvKCJ4a/X9fMagrETDmEM7857AUOHD3JfgaAGsTaa5S5qbi/09xHzFRhd9JwXbI
-	 osZsX01qA/KP8DLZSKtY3NS0PKhQHD5WzA84EtMzw4RLWxNUtgb1zSwmh2ZeBAO+uD
-	 TtIdMF/1aGtf5Bl3BoWXR/qNOBp0q+PHmPmfTNR4=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240724153125eucas1p1bb4665c4398c72bda4daf7735540fbd6~lL_NN_qkj3048130481eucas1p1C;
-	Wed, 24 Jul 2024 15:31:25 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id E2.6C.09624.D4E11A66; Wed, 24
-	Jul 2024 16:31:25 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240724153125eucas1p26cded41c82d3a851a7a4d845a81a3e29~lL_MzkPxx0144401444eucas1p2W;
-	Wed, 24 Jul 2024 15:31:25 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240724153125eusmtrp298afe717e274023e7905ddf73757422f~lL_My26L10803908039eusmtrp2b;
-	Wed, 24 Jul 2024 15:31:25 +0000 (GMT)
-X-AuditID: cbfec7f2-c11ff70000002598-4e-66a11e4d1a41
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 4A.D2.09010.D4E11A66; Wed, 24
-	Jul 2024 16:31:25 +0100 (BST)
-Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
-	[106.120.51.28]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20240724153124eusmtip230f3f2e6a87864305408c32ddb4a68b5~lL_L8rU_d2711927119eusmtip2l;
-	Wed, 24 Jul 2024 15:31:24 +0000 (GMT)
-From: Mateusz Majewski <m.majewski2@samsung.com>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Mateusz Majewski <m.majewski2@samsung.com>, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Subject: Re: [PATCH 0/6] Add initial Exynos 850 support to the thermal
- driver
-Date: Wed, 24 Jul 2024 17:31:17 +0200
-Message-ID: <20240724153118.914714-1-m.majewski2@samsung.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <CAPLW+4nYfVytXnpDs02QQGms59dL+=pAv7NMNPK6Ymsemmi_cw@mail.gmail.com>
+	s=arc-20240116; t=1721835309; c=relaxed/simple;
+	bh=LueIaqy3Q0j8fN4ues5sGnm8L0r16hoVxCOfXozdzfk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QHlXmU1+mLHLqVtN4ug4pMyU9bZgV6X+j1MirPybOpNvQdhyl62GIGd0PV2yvlbsnUOinatNmGSmjIr5h6RnfjD9SQJuWBAsEJebTy9+okusK3osiunpylSvOSW8K1td9Ps0TtgZVoYg7L6P3YOOIplrEeCfGK8FnUkDnok3CC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4ixcv/K; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4266f344091so51340305e9.0;
+        Wed, 24 Jul 2024 08:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721835306; x=1722440106; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rUj6GbLkyY4yBCtFy5bfIuKGv+kwHnS2SEUOPXf1qU4=;
+        b=Y4ixcv/KMJEWJrHlsOdBC7v1URZFkeq4WRsmVYp3Gu8sMqWNF6op1n7J5U0YYFoNW1
+         9rRGn3JqPK7PgH8rv1QaWesfH2JIZZS0Eb32S2D1CGj40cp9dl4FHsCI9RGtqUkwRd4w
+         gddfVyT9VsfIqXapgfH0t0ppphw3rwgqTUhbfQ+u1hoAdnixi1kixmMpIwUi1uUoU5Ja
+         z3xNnUGVhCDFhmLTWkhE/N2CBA4nDkcrct/4tQKCnNQgeU0HPiSfaIPsY9VO98NoG9bt
+         Xkt4QaWKsQGt+nvsXS3iQgGH9SXvcv1+4WwSPr1TKtfP+nBRYJLV+JZP3/YbfIVe/fVP
+         lwUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721835306; x=1722440106;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rUj6GbLkyY4yBCtFy5bfIuKGv+kwHnS2SEUOPXf1qU4=;
+        b=Z+7OgjWjkYEvZHtXlmI07Xz8LAbUJ1N/7Ox9JIe5fHNSdcfpuUJ4pXzDvCmasGG6W/
+         GDFLauW6LGtPyddkbG7hvC4z8mZkLdsPgWZavZREoK13TdJ2JeLMXfF6kqdjPkmQa0j9
+         X50f9T141Vgm6y6WOY3RumVkVGGoq3HcZeGthk9b5uuhemgGHFIxKDpnW8hpef+RHuH3
+         BH4DTrM7xbx4FXz/oEFW4E1u/puwriMK/4qMxLv6mV0ag633rgC/b7oterekVMl5XvTs
+         wtMM6CChdS/ynK4ShL2vzxn3DCriyni7UJusBVfbb4sUKEkSLZeQdH1EfSx0h+E3W7E8
+         ilGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWlQhwFelWKrkv9ekUlMqkSz1oBeZ92mirs+QxixyBOwM+UvRj7CdBwJg8aBFhdjd4mx0yXlawzXvRGSJs/RIFs+D6KiVJUxsOLBZtFSzUQzHDd9WGq35zZnl8UvW6etTxh7D2R+MwQqA==
+X-Gm-Message-State: AOJu0YyTxsN46FYD8ujbmZM1HkvnCW1KrLQl13woiRuM5nIe99ss5Xq+
+	qSZDoRZaUl4OuZbMB+5yrr2Q8N7LKEUx+4kEzQaUwo0TRnUBNzn9
+X-Google-Smtp-Source: AGHT+IFGecbpg9mGqnfUkHGeenSXuq52mdNzJsLo7P3GdgZyq4NhI/n3qLCgJHUsXurw22H8uvU1Zg==
+X-Received: by 2002:a05:600c:4f06:b0:425:5ec3:570b with SMTP id 5b1f17b1804b1-427f7a93eb4mr19383485e9.35.1721835305902;
+        Wed, 24 Jul 2024 08:35:05 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:2595:4364:d152:dff3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f9397337sm34609565e9.23.2024.07.24.08.35.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jul 2024 08:35:05 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Add support for Renesas RZ/V2H SoC
+Date: Wed, 24 Jul 2024 16:33:37 +0100
+Message-Id: <20240724153339.626460-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,52 +89,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJKsWRmVeSWpSXmKPExsWy7djPc7q+cgvTDG6+1Ld4MG8bm8X3LdeZ
-	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi4VNLewWE49NZraY
-	+2Uqs8X/PTvYLZ487GOzeN63j8lBwGPNvDWMHjtn3WX3WLznJZPHplWdbB53ru1h89i8pN6j
-	b8sqRo/Pm+QCOKK4bFJSczLLUov07RK4Mv7Nucdc8Iaxou3MQvYGxp2MXYycHBICJhIv5j5h
-	62Lk4hASWMEo8adjDyOE84VRYvvGqawgVUICnxklVl1MhOnounqFBaJoOaPEjYdnoDpamSSa
-	d/eCzWUTMJB48GYZO4gtIqAnsW7mK3aQImaBzSwSF57OBBsrLOAvsWDjNyYQm0VAVeLZ9Wdg
-	Nq+ArcSVGc+ZINbJS/Tu7wOzOQUCJb7PWccGUSMocXLmExYQmxmopnnrbGaQBRICkzklNu/7
-	wQrR7CKxdFc7C4QtLPHq+BZ2CFtG4v/O+VAL8iVmbH4PVMMBZFdI3D3oBWFaS3w8wwxiMgto
-	SqzfpQ9R7ChxdM4pVogKPokbbwUhDuCTmLRtOjNEmFeio00IolpV4vieScwQtrTEk5bbUCs9
-	JI5s+sY8gVFxFpJXZiF5ZRbC3gWMzKsYxVNLi3PTU4sN81LL9YoTc4tL89L1kvNzNzECU9vp
-	f8c/7WCc++qj3iFGJg7GQ4wSHMxKIrxPXs1NE+JNSaysSi3Kjy8qzUktPsQozcGiJM6rmiKf
-	KiSQnliSmp2aWpBaBJNl4uCUamCqfMfk2Btk2721yFxyo9C/I51e150F/pz+vfin0NaOr8c4
-	Lpe6ZauyPCtY6KV3UmGnVCm32KTob4e8d3yYo9w2b5J6nvxWE9fb0zSWzTXovBBf5y29cbs+
-	U/2XkvN1ry4eeZvDp+OlcYvzm59id9cXN5HrN9aVvNefOH/ykT27yvctyAnJckzQad6bVihY
-	deitqVHUk6WJUrPaJsnMcfh5YmLPP4HekkNKvzmnXuGfO/tX0TfZP933d0ToLO870ylS5qae
-	GWubZa6mLxDx7f2rtslSC68GHfwUY3lks+ykm/6Kp8+tdOl4M2XWZu088+Nyqy/pSCUrBb1Z
-	aG2xZOkP7+XcLNLeYm9UGAPmtJQqsRRnJBpqMRcVJwIAKhV7UtwDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNIsWRmVeSWpSXmKPExsVy+t/xe7q+cgvTDP68FLJ4MG8bm8X3LdeZ
-	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi4VNLewWE49NZraY
-	+2Uqs8X/PTvYLZ487GOzeN63j8lBwGPNvDWMHjtn3WX3WLznJZPHplWdbB53ru1h89i8pN6j
-	b8sqRo/Pm+QCOKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
-	Uov07RL0Mv7Nucdc8Iaxou3MQvYGxp2MXYycHBICJhJdV6+wdDFycQgJLGWU+DZ3IVRCWuLw
-	lynsELawxJ9rXWwQRc1MEovOTQcrYhMwkHjwZhlYkYiAnsS6ma/YQYqYBQ6ySPS9vsIMkhAW
-	8JXovbGYBcRmEVCVeHb9GROIzStgK3FlxnMmiA3yEr37+8BsToFAie9z1rGB2EICPBKvNuxn
-	hKgXlDg58wnYHGag+uats5knMArMQpKahSS1gJFpFaNIamlxbnpusZFecWJucWleul5yfu4m
-	RmAsbjv2c8sOxpWvPuodYmTiYDzEKMHBrCTC++TV3DQh3pTEyqrUovz4otKc1OJDjKZAd09k
-	lhJNzgcmg7ySeEMzA1NDEzNLA1NLM2MlcV7Pgo5EIYH0xJLU7NTUgtQimD4mDk6pBiYvL+mc
-	/icL+C7P/LLY6Wq+vv627Emd3Zuksi5wPXyVZ7RhpWjBvPb9RhpHuBZ0VXzM0uzT+s+TmbXb
-	dsnKtcLtBhPa1fycrz9fwHz798Zn/2y67nyc0HB/ifn5I6FiPwSeP6tUyLl7Vnnai8Jz638p
-	XnDcVyl40fDI2QMKi2O7/uYIpYrNvtg/TUL3p+mvuFWLPudlPUg5nvK5SP6o+JZL85rvT/GM
-	WzX9coWy69qj217y2fe22WbO+bQn6FnOOsa9bsJm9rcc3HQvHCpaxJL7dmnarzS39uYt63TY
-	L937GPOlZ0/OyiD5k09XL0ublrhfpue53jkNVhW1bG259xmrF38Tqg842nrzhVQS6zZdJZbi
-	jERDLeai4kQALbkc604DAAA=
-X-CMS-MailID: 20240724153125eucas1p26cded41c82d3a851a7a4d845a81a3e29
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240724153125eucas1p26cded41c82d3a851a7a4d845a81a3e29
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240724153125eucas1p26cded41c82d3a851a7a4d845a81a3e29
-References: <CGME20240724153125eucas1p26cded41c82d3a851a7a4d845a81a3e29@eucas1p2.samsung.com>
 
-> Btw, I'm
-> curious what is the reason for implementing TMU? Do you have some use
-> cases where it's needed?
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Not really AFAIK? Mostly because we have the hardware, are familiar with
-this driver, and have some time to do this :)
+Hi All,
+
+This patch series aims to add initial support for Renesas RZ/V2H(P)
+SoC and GP-EVK board.
+
+With this initial patch series we can boot up with initramfs,
+boot log: https://pastebin.com/CLcjgZfZ
+
+Note, the patch series is dependent on below series:
+1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240715125438.553688-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+2] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240724094707.569596-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  arm64: dts: renesas: Add initial SoC DTSI for RZ/V2H SoC
+  arm64: dts: renesas: Add initial DTS for RZ/V2H GP-EVK board
+
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 165 ++++++++++++++++++
+ .../boot/dts/renesas/r9a09g057h44-gp-evk.dts  |  61 +++++++
+ 3 files changed, 228 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dts
+
+-- 
+2.34.1
+
 
