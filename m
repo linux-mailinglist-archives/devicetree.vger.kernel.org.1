@@ -1,202 +1,131 @@
-Return-Path: <devicetree+bounces-87833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE88793B2A8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 16:29:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD17B93B2AA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 16:29:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79E611F24983
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 14:29:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86AE81F248AA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 14:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0646F15957D;
-	Wed, 24 Jul 2024 14:28:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D19158DC1;
+	Wed, 24 Jul 2024 14:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="Q9lYajWg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vsbrm+AR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4005D158D7C
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 14:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D051134DE;
+	Wed, 24 Jul 2024 14:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721831332; cv=none; b=UKXQEKLYR4OX/5vRnptxj3vmPvPd1+2LkAWKjENExtBvckmGU6Wmb1PHd23ff0K7PjvLCR5HZl1a3fTsGtr/FW7wN17GnBw+CV8959b24fFHXh7OylI+J0vW3izVK/6OpuQLdVuIOQdsbVuGptzqmGXgsfY02oxL5CvMeydObLY=
+	t=1721831382; cv=none; b=hy+/vlc4EayTzNSeXmWq4t0WDAXndEk8krG5812e/B9EXLwzjTqhZF2mt1vmViYD2EzwigYZGSUzUSkOBwCzbu9u6Sp2x6P+LYcntGJ4BKo+e6S5ttsqRO5nqySRbrk4enOKI05z+rA3De0uCLwjx7q/INgRaQM8nZf3SM2w68k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721831332; c=relaxed/simple;
-	bh=EMA3jmgRvVq0a7YipedppduacqjNjMeLpz4RLYvfPXM=;
-	h=Date:Subject:In-Reply-To:CC:From:To:Message-ID:Mime-Version:
-	 Content-Type; b=H3R2XP8nzgIzTBEYjbmFAgXQdbUs0k8Y/ay4G4AC+Doda1NoyCB+YOjeaHnNal9oEDDYTopLecMpezKAH923LV5NwDB+knO7y2BqT8xA4z4/eTU8t4S8s5ymI4/LvyuDsTFWbU2w2lBiQ3xP3j2lq69bAWnHGxnZONPVy+TyTzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com; spf=pass smtp.mailfrom=dabbelt.com; dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b=Q9lYajWg; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fc52394c92so19248515ad.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 07:28:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1721831329; x=1722436129; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D3nqH72VDw8RmqB9fqgozAQLD4BBtCtnc7ICMb0pdqo=;
-        b=Q9lYajWgOdAu4AvMZj1Xbs+XbjO9FuuNBOntAvCwuxZ0OyCBH5DqDU5MX/+7QW7U1c
-         7vTrWcOX/ScuSfEP53JFEU4WwdJ7gqGXXXWqwDfHKbsyWQ0s+R0C82jYDZYpE4IvZDIL
-         rmAsPBCX83ubnbAicvnPmPbpvbR2gqMUvFc6hhFgvxEfJyUrGpfEJKK9o7Nln3jy3oHt
-         8xyvZ8mvtk3T8M2Ojn0Qh3j4kWhRp4vsrml51kftv1oWtn6u6KXhRXoAY0rcgHC2LmpG
-         4NegKEKLteeUSOI74TLfEc6sig2QAowHZmCLEt/f99dqURYnebUqQa+cywS/i5LEYubj
-         FgSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721831329; x=1722436129;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D3nqH72VDw8RmqB9fqgozAQLD4BBtCtnc7ICMb0pdqo=;
-        b=lYdM6qEVxvbW3U4q5hFUbq8ktE9T9dJTGIG6iaGKWcMPfG5Yp39YaCCfZGTwvsIB/f
-         tFRTW+2tElJQWsXD2Wn/pE2lRe1f2RtbKd7fg1LQ9N7O/ar/eEHOYEDYSlnx6c1hzjDE
-         FZtn0cE+HgSNbh89kXZltXakhachJpLc8JFb0Ba8jvXnDcgHK9Aofmo0OHwMG+7CJmy5
-         AYFuqywYhWvt2m/p2R3o8uLQ4jm5CcFuiURt7xJL0JB7enjrqYP2fm8eGWQQCa8c7k/1
-         nOQP0959leaa3rO0Fzs8bWYLn2cOmNMe3MdDr/mND9JbR3xoSLoOZo8ZgCksCArZhd/9
-         nUvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXd5y70NH/qy93aVJKmmaKJxA9SAg3LEHLkl1RJJ7IpBiJKG/UPNsxegXMJ7t/HNmkQwZks/PnZqEXZOxImSNf04GG9EF6DWSSmYg==
-X-Gm-Message-State: AOJu0Yz9aI8MysYvPFSCftPsf8mM49r1A3bLu/F+Peqhngx3uLoBsN+7
-	urLz1lRGmNzK0608hCfXme8of4fOiD3aXzGMizOWPyON1yjOiqNRhk62I3vXZsk=
-X-Google-Smtp-Source: AGHT+IFi9T6gbkXmV6M0gUQxgPzjIznneNDGAuodoVLIsAjbkzHFshyyaJKmfCemmSEUumBxU+lXIw==
-X-Received: by 2002:a17:903:1c7:b0:1fa:4b9:d00f with SMTP id d9443c01a7336-1fdd558b54emr23328495ad.53.1721831329437;
-        Wed, 24 Jul 2024 07:28:49 -0700 (PDT)
-Received: from localhost ([192.184.165.199])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fd73e6868csm91370235ad.96.2024.07.24.07.28.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jul 2024 07:28:48 -0700 (PDT)
-Date: Wed, 24 Jul 2024 07:28:48 -0700 (PDT)
-X-Google-Original-Date: Wed, 24 Jul 2024 07:28:47 PDT (-0700)
-Subject:     Re: [PATCH v8 0/7] Linux RISC-V IOMMU Support
-In-Reply-To: <cover.1718388908.git.tjeznach@rivosinc.com>
-CC: joro@8bytes.org, Will Deacon <will@kernel.org>, robin.murphy@arm.com,
-  Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu, apatel@ventanamicro.com,
-  Sunil V L <sunilvl@ventanamicro.com>, mick@ics.forth.gr, seb@rivosinc.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-  conor+dt@kernel.org, devicetree@vger.kernel.org, iommu@lists.linux.dev,
-  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, tjeznach@rivosinc.com
-From: Palmer Dabbelt <palmer@dabbelt.com>
-To: tjeznach@rivosinc.com
-Message-ID: <mhng-7ec26af6-5347-4d42-b1de-696d2b7628ae@palmer-ri-x1c9>
+	s=arc-20240116; t=1721831382; c=relaxed/simple;
+	bh=A92SMp5L8vHye59S+gIpJ3oRDF6rjc+krm1iL8GTSdU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZnqbrZ2RJAkDEHfgYCXTSOjn+3450FZxq82S7IXP6k7iRMJcDgD5O9VYtf0c2apIss7PNJGlpSTzPnGAphMsQXlPujBICH6QkkYVGens1RwGcVIHVth2aCTzwsxwyfKTKEgclMQlBJm8inevVnxjuO1kHNL8IABqkMsEtXhijW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vsbrm+AR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6F22C32781;
+	Wed, 24 Jul 2024 14:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721831381;
+	bh=A92SMp5L8vHye59S+gIpJ3oRDF6rjc+krm1iL8GTSdU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Vsbrm+ARHzxUB9HwkUDAiki6u1+OirdVz3B5Wyd8s/xnM7KPb20rmiFciMjn6xLo0
+	 LUbBmQ/fLjOJB4Hg8N8J9DBNehqWGvfI6BpvBMn3TQkedh96UlfQ4ifXnk7mV356d+
+	 3SN3du/McYKnXzJa4uVoV8ylwsOVZGkZD2AMOlP0SGdgmb7JJscB5gd1cI2qbFZp4S
+	 5mtaomHVMJt/7GUIV6xEJclBJVIPqz2Kk/gqOl+449TvOG2gm8HegbCkjj+2VgnK3f
+	 lI1gbpbd63fgCSiHwfRgePmG+PZmTfqwZB4YVnFMUOqOGYJrq5UedCACMxGkWTY3Xu
+	 dZJKwTMnY4INQ==
+Date: Wed, 24 Jul 2024 15:29:36 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC v7 1/6] dt-bindings: gpio: fix microchip,mpfs-gpio
+ interrupt descriptions
+Message-ID: <20240724-oasis-emerald-a4253b6e73cb@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-trash-issuing-e2bdd55b764e@wendy>
+ <b07538f3-44e4-4d98-b64d-0d15428e720f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5uHEoWlbGxcUMhZB"
+Content-Disposition: inline
+In-Reply-To: <b07538f3-44e4-4d98-b64d-0d15428e720f@kernel.org>
 
-On Fri, 14 Jun 2024 22:27:30 PDT (-0700), tjeznach@rivosinc.com wrote:
-> This patch series introduces support for RISC-V IOMMU architected
-> hardware into the Linux kernel.
->
-> The RISC-V IOMMU specification, which this series is based on, is
-> ratified and available at GitHub/riscv-non-isa [1].
->
-> At a high level, the RISC-V IOMMU specification defines:
->
-> 1) Data structures:
->   - Device-context: Associates devices with address spaces and holds
->     per-device parameters for address translations.
->   - Process-contexts: Associates different virtual address spaces based
->     on device-provided process identification numbers.
->   - MSI page table configuration used to direct an MSI to a guest
->     interrupt file in an IMSIC.
-> 2) In-memory queue interface:
->   - Command-queue for issuing commands to the IOMMU.
->   - Fault/event queue for reporting faults and events.
->   - Page-request queue for reporting "Page Request" messages received
->     from PCIe devices.
->   - Message-signaled and wire-signaled interrupt mechanisms.
-> 3) Memory-mapped programming interface:
->   - Mandatory and optional register layout and description.
->   - Software guidelines for device initialization and capabilities discovery.
->
->
-> This series introduces RISC-V IOMMU hardware initialization and complete
-> single-stage translation with paging domain support.
->
-> The patches are organized as follows:
->
-> Patch 1: Introduces minimal required device tree bindings for the driver.
-> Patch 2: Defines RISC-V IOMMU data structures, hardware programming interface
->          registers layout, and minimal initialization code for enabling global
->          pass-through for all connected masters.
-> Patch 3: Implements the device driver for PCIe implementation of RISC-V IOMMU
->          architected hardware.
-> Patch 4: Introduces IOMMU interfaces to the kernel subsystem.
-> Patch 5: Implements device directory management with discovery sequences for
->          I/O mapped or in-memory device directory table location, hardware
->          capabilities discovery, and device to domain attach implementation.
-> Patch 6: Implements command and fault queue, and introduces directory cache
->          invalidation sequences.
-> Patch 7: Implements paging domain, using highest page-table mode advertised
->          by the hardware. This series enables only 4K mappings; complete support
->          for large page mappings will be introduced in follow-up patch series.
->
-> Follow-up patch series, providing large page support and updated walk cache
-> management based on the revised specification, and complete ATS/PRI/SVA support,
-> will be posted to GitHub [2].
->
-> Changes from v7:
-> - rebase on v6.10-rc3
-> - fix address shift (ppn -> pfn) for queue base register read
-> - add invalidation after DDTE update
->
-> Best regards,
->  Tomasz Jeznach
->
-> [1] link: https://github.com/riscv-non-isa/riscv-iommu
-> [2] link: https://github.com/tjeznach/linux
-> v7 link:  https://lore.kernel.org/linux-iommu/cover.1717612298.git.tjeznach@rivosinc.com/
-> v6 link:  https://lore.kernel.org/linux-iommu/cover.1716578450.git.tjeznach@rivosinc.com/
-> v5 link:  https://lore.kernel.org/linux-iommu/cover.1715708679.git.tjeznach@rivosinc.com/
-> v4 link:  https://lore.kernel.org/linux-iommu/cover.1714752293.git.tjeznach@rivosinc.com/
-> v3 link:  https://lore.kernel.org/linux-iommu/cover.1714494653.git.tjeznach@rivosinc.com/
-> v2 link:  https://lore.kernel.org/linux-iommu/cover.1713456597.git.tjeznach@rivosinc.com/
-> v1 link:  https://lore.kernel.org/linux-iommu/cover.1689792825.git.tjeznach@rivosinc.com/
->
-> Tomasz Jeznach (7):
->   dt-bindings: iommu: riscv: Add bindings for RISC-V IOMMU
->   iommu/riscv: Add RISC-V IOMMU platform device driver
->   iommu/riscv: Add RISC-V IOMMU PCIe device driver
->   iommu/riscv: Enable IOMMU registration and device probe.
->   iommu/riscv: Device directory management.
->   iommu/riscv: Command and fault queue support
->   iommu/riscv: Paging domain support
->
->  .../bindings/iommu/riscv,iommu.yaml           |  147 ++
->  MAINTAINERS                                   |    8 +
->  drivers/iommu/Kconfig                         |    1 +
->  drivers/iommu/Makefile                        |    2 +-
->  drivers/iommu/riscv/Kconfig                   |   20 +
->  drivers/iommu/riscv/Makefile                  |    3 +
->  drivers/iommu/riscv/iommu-bits.h              |  784 ++++++++
->  drivers/iommu/riscv/iommu-pci.c               |  119 ++
->  drivers/iommu/riscv/iommu-platform.c          |   92 +
->  drivers/iommu/riscv/iommu.c                   | 1684 +++++++++++++++++
->  drivers/iommu/riscv/iommu.h                   |   88 +
->  11 files changed, 2947 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
->  create mode 100644 drivers/iommu/riscv/Kconfig
->  create mode 100644 drivers/iommu/riscv/Makefile
->  create mode 100644 drivers/iommu/riscv/iommu-bits.h
->  create mode 100644 drivers/iommu/riscv/iommu-pci.c
->  create mode 100644 drivers/iommu/riscv/iommu-platform.c
->  create mode 100644 drivers/iommu/riscv/iommu.c
->  create mode 100644 drivers/iommu/riscv/iommu.h
->
->
-> base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
 
-This came up in the patchwork meeting this morning because people 
-weren't sure if it was for my tree.  I'd been assuming it was for the 
-IOMMU tree, from IRC it sounds like Will is OK with that.  So
+--5uHEoWlbGxcUMhZB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+On Wed, Jul 24, 2024 at 03:25:38PM +0200, Krzysztof Kozlowski wrote:
+> On 23/07/2024 13:27, Conor Dooley wrote:
+> > The microchip,mpfs-gpio binding suffered greatly due to being written
+> > with a narrow minded view of the controller, and the interrupt bits
+> > ended up incorrect. It was mistakenly assumed that the interrupt
+> > configuration was set by platform firmware, based on the FPGA
+> > configuration, and that the GPIO DT nodes were the only way to really
+> > communicate interrupt configuration to software.
+> >=20
+> > Instead, the mux should be a device in its own right, and the GPIO
+> > controllers should be connected to it, rather than to the PLIC.
+> > Now that a binding exists for that mux, try to fix the misconceptions
+> > in the GPIO controller binding.
+> >=20
+> > Firstly, it's not possible for this controller to have fewer than 14
+> > GPIOs, and thus 14 interrupts also. There are three controllers, with
+> > 14, 24 & 32 GPIOs each.
+> >=20
+> > The example is wacky too - it follows from the incorrect understanding
+> > that the GPIO controllers are connected to the PLIC directly. They are
+> > not however, with a mux sitting in between. Update the example to use
+> > the mux as a parent, and the interrupt numbers at the mux for GPIO2 as
+> > the example - rather than the strange looking, repeated <53>.
+> >=20
+>=20
+> You make ngpios required, which could be an ABI break except that there
+> is no Linux user for this, so there is no ABI break, right? If so, would
+> be nice to mention it. Rest looks good:
 
-in case that helps any.  No rush on my end, I just want to make sure I'm 
-not dropping the ball.
+No upstream user at least, and I don't believe that there are any
+non-linux projects using the GPIO controllers via DT. I could, I
+suppose, not make it required and use 32 as a default - but that could
+cause problems with existing devicetrees where all 3 controllers omitted
+the property, despite having differing numbers of GPIOs.
+
+Now that I look again, the driver actually doesn't enforce the presence
+of the property and I think it should fail to probe if not present.
+
+--5uHEoWlbGxcUMhZB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqEP0AAKCRB4tDGHoIJi
+0ryZAQDWgZQTcAZNOZjGXc3UbCVdXHcLhMvUltM54MOZgf2zbQD/YvX+QIIqkjKF
+LEjNQ6dPuMCwh7g8e/IKFvQP9VkqkQo=
+=R7Eb
+-----END PGP SIGNATURE-----
+
+--5uHEoWlbGxcUMhZB--
 
