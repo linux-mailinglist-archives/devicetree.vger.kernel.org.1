@@ -1,215 +1,160 @@
-Return-Path: <devicetree+bounces-87751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F2E93ADC4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 10:08:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD4593AE50
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 11:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 438C9B227B9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 08:08:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB8901C218C6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 09:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349EF13D881;
-	Wed, 24 Jul 2024 08:08:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BF41514D1;
+	Wed, 24 Jul 2024 09:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Afh4//Jn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JZwaBfV9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B8513957C;
-	Wed, 24 Jul 2024 08:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D7B14C58A;
+	Wed, 24 Jul 2024 09:09:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721808498; cv=none; b=nDEI4TM14QZc09jeGOxYOR22JN2zuXyZuPQ0RLk0MGZ2Tqy+bg0IVfmkYEf/5N8DMZFbAdRtg/duJAxPYD1RW7ZRjeW69OFbQ21oyMkJZ5j6I9Q+eZVy8TrMp5Yvo89cImDR6Gkryd1cWH1UlSul3Oi7hzq4ciV2YrMIMDopqj8=
+	t=1721812153; cv=none; b=fkhkUQW/GZnAb/UL4CfznwdYStUUfrm1WbivQR/r3RCm+AiJx3ikpRR77Kgx0DCsmLexmfEceroQMmxL1+3CWePzp7xDh74YSBMxIn45kLVwXpkcqo+PCy5D7zovpAYYtibTjLASpUbZgRxOZyAWCjhj7FirDmkpzGN04I8ei+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721808498; c=relaxed/simple;
-	bh=3iI4LQNfIFMmQKl7mTJvx9fak4tI16w7TQnMXLRC6P8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LmMsVj7wiNKqmWdrPbSTdZhNG+TPHpTNWzs82r+OQ7IHFszG6bCnyKanSqx8asWLM3Fdocwt8KTfdlyiXMx2Mx4rSxxaGZezSYVtlSZMHOrZPpvn4NMS/6Ljvwn3wTnAj+JVWiqqXg2qFFtWhuFwTafkY4t+A9sybBhSYfNmQJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Afh4//Jn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3270FC32782;
-	Wed, 24 Jul 2024 08:08:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721808497;
-	bh=3iI4LQNfIFMmQKl7mTJvx9fak4tI16w7TQnMXLRC6P8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Afh4//JnNVD1VuDOCFR7dnSHf5VvHfvu0jiXLDDMVdZQnolFbzxsUEpVy2P/oYTkc
-	 eBj0zFuWGKJtExIdBcpSuWz5LIVhwrZXv7SJLd4I8py7kh7BM298u7cHp5zjpxYgAc
-	 +kpcuCPwLQ+n6vcO4GoV7YeCs0Dpc4kPJcgYVrMGDe6jEM1bJLvaa6dsRLS1VqOmFW
-	 vZuhCd3v2jG+7UpGBSYRifF4KOORnbYwZfu2umJuvNwT1JINcDNiUkrODvzCM/zKpj
-	 pDmxf7ckPYZnPtdKaxEv/o6j5LfwIq04R22wrLRgXoups7iEnrjdkZmuf/lMjVJqJ9
-	 dkNOD/Ji8e8yA==
-Message-ID: <497c9438-5bb3-42d9-9df9-661235a556d2@kernel.org>
-Date: Wed, 24 Jul 2024 10:08:09 +0200
+	s=arc-20240116; t=1721812153; c=relaxed/simple;
+	bh=72kCNgT09jugqxctXzPAC8JE4tMd0YCkyyplx4RXL/k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iW+3NZnSbcaWBI7PD7TvlE2HCqi/ZzDv61B+lEleBBb0tGjazTTlp/Vd8aqezk0UHdXO3xvU5g/KzuwjPuwxkEN0q5Lo5ebj8UZjr+wit/tuTiZfXcLpAb8B2O834lFLqt8wCBdH2rmkGwrY+UmDV+kRtLyZIwnonwJnw72P3A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JZwaBfV9; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4266ea6a412so47231645e9.1;
+        Wed, 24 Jul 2024 02:09:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721812149; x=1722416949; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c5tcFG6nOiiD0Mb9BuxDlKvVb1JQJ5CmyQf8Enf7mbw=;
+        b=JZwaBfV9lh6xrR9PFp+djrirFChPwcLxBIVpM+pLUua0FTN0aVKGNXgTFKVwxbRGYy
+         eQuH8NYwab+mI/nUFZWrERgpXRT/LnVIFssopbIotyGlRe9snCNlNt/8ENqzgfv7TSPr
+         it7HdcP7pNIe/TFRKJ4m/ddPrKRZ2NCT+OqS6cQaQBFUAMCB9K4ZbflB1LEYOpe32h/h
+         KaMLm+XrVWpRbwcBCUF4uxl3/qZiGZVkvfGRr4J4TYuEdsCg6v7FLn8zhmiT0fgugmVM
+         Pww8xACP5jhH53Fm/5Q5aUomLhPvxmU72ABBEN2O9FjUesfaqKB/wO+XkmnlEzbQiDtF
+         PP2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721812149; x=1722416949;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c5tcFG6nOiiD0Mb9BuxDlKvVb1JQJ5CmyQf8Enf7mbw=;
+        b=YEocZJh0MJvREOIB0Dt+ZpcDkSxpsrsT0cQ2EgNFhyaSyS+upPC+0xV8cPOmZWFG86
+         KR4qnLYv8SdOd8m4pgXb+Ey+TT7URE85pZFsTX5EcvrN01+Vc6r0mVhcsxKAxPkZmql5
+         +RewFtFhb4rTU6m3MHDX0VtyvPxcUKTd+FSpNz85Ct88dYIh0pj/SwjJ+xDvmq9T5t1k
+         CzcqYZ+wE4UByL24HUe+7gZiW0rNf/+ZuJU66RMQ/ZPgJqQXw338ueOr7e/zK/TotrlR
+         3/SV/lEn2S6nuyZJfJG9NMlHbrqQ9ShjeT4O5ClfLrb8jU1l4E8Z2damWHVH7ujZQ50O
+         1raQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHnA8y+arWKHMoRzhOULiaYi0DRG7Yn+IKAl4e3oshFFhl2cbQ2XzGhNurCDYWOJUUu6rdxqsHAkolUH9ntC6RWZCUKFA2bPq84insorkkC+LeJJWyCHfG7yBp1ay0GTH6t8izl3OlOg==
+X-Gm-Message-State: AOJu0YxfEY8SFhMSB4PqWvBHGOsJEL+l3/8nxE9ZY8L6qrWFg4yjhN70
+	YaU7sL8HRYSIvPMzSRggYRUfrk0ufDiIGKROz55atGZYoud8JMqS
+X-Google-Smtp-Source: AGHT+IEO4uS7Z6jfmn3uVcgvmziuYqRM4Cm7eePr+5CeVLpQRirsl8sLQQX6oXYrHUOnq2+L5PLyow==
+X-Received: by 2002:a05:600c:1ca8:b0:426:62c5:473e with SMTP id 5b1f17b1804b1-427dc58f1e8mr85874945e9.26.1721812148313;
+        Wed, 24 Jul 2024 02:09:08 -0700 (PDT)
+Received: from localhost (host-82-58-19-206.retail.telecomitalia.it. [82.58.19.206])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f93e6795sm20886145e9.36.2024.07.24.02.09.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jul 2024 02:09:07 -0700 (PDT)
+From: Matteo Martelli <matteomartelli3@gmail.com>
+Subject: [PATCH v4 0/3] iio: adc: add support for pac1921
+Date: Wed, 24 Jul 2024 11:08:30 +0200
+Message-Id: <20240724-iio-pac1921-v4-0-723698e903a3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2] dt-bindings: clock: qcom: Remove required-opps from
- required list on SM8650
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Ajit Pandey <quic_ajipan@quicinc.com>, kernel test robot <lkp@intel.com>
-References: <20240720052818.26441-1-quic_jkona@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240720052818.26441-1-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI7EoGYC/13MSw6CMBSF4a2Yjq25fdBSR+7DOChtgZsIJWAaD
+ WHvFpyAw3OS75/JFEYME7meZjKGhBPGPg95PhHX2r4JFH3ehAOXoEBRxEgH65jhjGpdW6ityJO
+ RLIYx1PjeavdH3i1Orzh+tnhi6/vraBCHTmIUaCGd1N6wEip1azqLz4uLHVk7ie+tPFqeLfhQm
+ cLKUoL5t2JnOT9asdrCO2OYcpUQe7ssyxfq+hLmHgEAAA==
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marius Cristea <marius.cristea@microchip.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Matteo Martelli <matteomartelli3@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.0
 
-On 20/07/2024 07:28, Jagadeesh Kona wrote:
-> On SM8650, the minimum voltage corner supported on MMCX from cmd-db is
-> sufficient for clock controllers to operate and there is no need to specify
-> the required-opps. Hence remove the required-opps property from the list of
-> required properties for SM8650 camcc and videocc bindings.
-> 
-> This fixes:
-> arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@aaf0000:
-> 'required-opps' is a required property
-> 
-> arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@ade0000:
-> 'required-opps' is a required property
-> 
-> Fixes: a6a61b9701d1 ("dt-bindings: clock: qcom: Add SM8650 video clock controller")
-> Fixes: 1ae3f0578e0e ("dt-bindings: clock: qcom: Add SM8650 camera clock controller")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202407070147.C9c3oTqS-lkp@intel.com/
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> ---
-> Changes in V2:
->  - Made required: conditional and dropped required-opps from it only for SM8650 platform
->  - Dropped Krzysztof Acked-by tag due to above changes
->  - Link to V1: https://lore.kernel.org/all/20240708130836.19273-1-quic_jkona@quicinc.com/#r
-> 
-> .../bindings/clock/qcom,sm8450-camcc.yaml     | 26 +++++++++++++------
->  .../bindings/clock/qcom,sm8450-videocc.yaml   | 25 +++++++++++++-----
->  2 files changed, 36 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> index f58edfc10f4c..8698c801ed11 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> @@ -21,9 +21,6 @@ description: |
->      include/dt-bindings/clock/qcom,sm8650-camcc.h
->      include/dt-bindings/clock/qcom,x1e80100-camcc.h
->  
-> -allOf:
-> -  - $ref: qcom,gcc.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -53,11 +50,24 @@ properties:
->    reg:
->      maxItems: 1
->  
-> -required:
+Add iio driver and DT binding for the Microchip PAC1921 Current/Power
+monitor.
 
-You cannot remove required block.
+Implemented most of the features with few limitations listed in the
+driver commit message.
 
-> -  - compatible
-> -  - clocks
-> -  - power-domains
-> -  - required-opps
-> +allOf:
-> +  - $ref: qcom,gcc.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,sm8650-camcc
-> +    then:
-> +      required:
-> +        - compatible
-> +        - clocks
-> +        - power-domains
-> +    else:
-> +      required:
-> +        - compatible
-> +        - clocks
-> +        - power-domains
-> +        - required-opps
->  
->  unevaluatedProperties: false
->  
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> index b2792b4bb554..2e5a061f33d6 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> @@ -40,15 +40,26 @@ properties:
->      description:
->        A phandle to an OPP node describing required MMCX performance point.
->  
-> -required:
+Tested with a Pine64 host board connected to a PAC1921 click board [1]
+via I2C. The PAC1921 click board embeds the Microchip PAC1921 device
+and a 10 mOhms shunt resistor. The PAC1921 datasheet is at [2].
 
-No, you cannot remove required block.
+[1]: https://www.mikroe.com/pac1921-click
+[2]: https://ww1.microchip.com/downloads/en/DeviceDoc/PAC1921-Data-Sheet-DS20005293E.pdf
 
-To clarify: there is almost no single binding using your style. Even if
-there is one, then 99 others are using it differently. Do not implement
-things entirely different than everyone else. This is the same for C
-code you send upstream. No difference here...
+Signed-off-by: Matteo Martelli <matteomartelli3@gmail.com>
+---
+Changes in v4:
+- DT binding: rename microchip,read-int-gpios to read-integrate-gpios
+- Fix non constant ext info initializers, reported by kernel test robot,
+  ref: https://lore.kernel.org/oe-kbuild-all/202407240123.tjObpf49-lkp@intel.com/
+- Link to v3: https://lore.kernel.org/r/20240722-iio-pac1921-v3-0-05dc9916cb33@gmail.com
+
+Changes in v3:
+- Add shunt_resistor attribute for current channel
+- Generalize shunt_resistor ABI
+- Remove specific pac1921 ABI
+- Remove resolution and filters controls
+- Use scale attributes instead of hwgain attributes to control gains
+- Replace integration_num_samples and integration_time attributes with
+  oversample_ratio and sampling_frequency
+- Consider time to enter integration mode before marking data available
+- Add controls for overflow events
+- Add select fields in Kconfig
+- Refactoring based on Jonathan feedback from v2
+- Link to v2: https://lore.kernel.org/r/20240704-iio-pac1921-v2-0-0deb95a48409@gmail.com
+
+Changes in v2:
+- DT binding: remove vendor specific gains, add vdd-supply, add
+  read/int gpio and fix properties order in example
+- Remove parsing of gains from DT
+- Handle vdd regulator
+- Fix return value in filter_en write handler
+- Link to v1: https://lore.kernel.org/r/20240703-iio-pac1921-v1-0-54c47d9180b6@gmail.com
+
+---
+Matteo Martelli (3):
+      dt-bindings: iio: adc: add binding for pac1921
+      iio: ABI: generalize shunt_resistor attribute
+      iio: adc: add support for pac1921
+
+ Documentation/ABI/testing/sysfs-bus-iio            |    8 +
+ .../ABI/testing/sysfs-bus-iio-adc-max9611          |   17 -
+ Documentation/ABI/testing/sysfs-bus-iio-ina2xx-adc |    9 -
+ .../bindings/iio/adc/microchip,pac1921.yaml        |   71 ++
+ MAINTAINERS                                        |    7 +
+ drivers/iio/adc/Kconfig                            |   13 +
+ drivers/iio/adc/Makefile                           |    1 +
+ drivers/iio/adc/pac1921.c                          | 1263 ++++++++++++++++++++
+ 8 files changed, 1363 insertions(+), 26 deletions(-)
+---
+base-commit: 1ebab783647a9e3bf357002d5c4ff060c8474a0a
+change-id: 20240606-iio-pac1921-77fa0fa3ac11
 
 Best regards,
-Krzysztof
+-- 
+Matteo Martelli <matteomartelli3@gmail.com>
 
 
