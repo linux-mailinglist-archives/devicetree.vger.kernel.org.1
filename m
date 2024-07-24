@@ -1,172 +1,142 @@
-Return-Path: <devicetree+bounces-87827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66EDE93B1B0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:34:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5EC093B20E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 15:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24063281896
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:34:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8BAE1C20FE9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 13:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B97158D72;
-	Wed, 24 Jul 2024 13:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14901158DD8;
+	Wed, 24 Jul 2024 13:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IuWNtdrI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SEaWmgja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B00152511
-	for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 13:34:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B991A158D83;
+	Wed, 24 Jul 2024 13:53:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721828062; cv=none; b=NKcqRRK5UcPccNKVk1q4ThtmhDXUHwdlxWTyvQ7TGXVCClP/8GEilZrcRf37FcSNIIEJpvG5eddajBeUoX+Kqb185ke18DKrxRsYDQJBHMKcGlNtadoHaVDyXx4+SPLZZ2+Mv5oBuIBUxMlj5wSKJRH/Z2TdYl3Ju/MB+Mxarmk=
+	t=1721829230; cv=none; b=LAfs3o48Sgk0lQARumolfiMgvglTTd9QPesUMzf49+R4CiwxtT0kobXEYxG+S6x/l2At1f6PuQ2S0U/8cPaPWidlhC4abBqHeVRwL4LJB3rvpVRfjL1rI9qZJSay17GFX3n/KA0aAywNjvBihoKWeMzpvmODW3fChqd33h3ZdXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721828062; c=relaxed/simple;
-	bh=SUUQmRZ2+Ng08hMBvnZsJP3Ew1XLswHadjWxmeWwjWs=;
+	s=arc-20240116; t=1721829230; c=relaxed/simple;
+	bh=JHsErZ1Ymd3xIUMEC7/hpzB8p/mlL/O9e+IDU+AKN8I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fYH59kmPKTfq1WwjqOYHLSB5jOAQxqWjG/ObZU5kz2X6QyT4Lixg3e7uWSaaz7Hw6+G1TrupNZ1gMmshvBY9azrItRBRVzPSRgHPZ56qJstOdDM0t7sQd6DwcMScf2juevlyfUJ5PSgUguG07Y5H/3f5196+5MqSEZRboYU7ymU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IuWNtdrI; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6510c0c8e29so64427497b3.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 06:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721828059; x=1722432859; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SUUQmRZ2+Ng08hMBvnZsJP3Ew1XLswHadjWxmeWwjWs=;
-        b=IuWNtdrIJB/MILUxeb4oorGa7CVWlCw3O3q0TqNN4Zwc0v0jD8GBhs06uEGfNJzVSu
-         fUKHP0zHKZpzNuDo0wT7NCY9JDYswSqRbdxayxBYlWFtyRBLjLdHUtxF1KiP6gv5TTI2
-         5gUXlpl8bKvdKmj8x5juV2ss76HeuT6jSWHWkfIGc1U7/P42hEM05/BX9e0t/5oIDeyo
-         A+Luni/dW1CzbPc9XfO+d9K+LhzBfXiHrUatM6a/s6O1C5JYzSVRt8BpliYDZsaMNpat
-         2twMK5RlO6OKVmtemG7KAT59k3fsKMyhNxzFkGxDgWVUQTUWcd+4N6Gdm7LkYsKanjpA
-         3OJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721828059; x=1722432859;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SUUQmRZ2+Ng08hMBvnZsJP3Ew1XLswHadjWxmeWwjWs=;
-        b=jJTdAZseH5KN0sKK+/oyoirtifyqsSB/HahotxBAfn6JDRQzsfJK0JI1wj+JM72jFE
-         dYoM5hvYfx13v6bH83LfAnP5DrYybO3ZYJiMR7sx+PYwtwMOzjySPHaF4pQa4W2Q+2CX
-         lndhLstabf9ft9fJ8PwrkVaDn0H+X3vD3GSqfTgH/2cOmXdLJmMXF8zC3GaP2gNGhwuz
-         F81+8GcS9Gjy2DrFNdm5o54mm4o5QnflZcdfEZWHvPPOCDlffJxGejtPhdOgum90Jo68
-         6ddz4gYIHMYagE77yKWx1NNSVn2lNMxihc6VmaWWNYcqX60cADYdcw7NFSz9Lc33UQwT
-         dgaA==
-X-Forwarded-Encrypted: i=1; AJvYcCV67wA3gdiO/KXyVBJaEtSry2yAEnaeRZr9ZUrxege+uy0XmBugBdWd7xbn9BGRpR1vxlC6Z8z7DNJa05O9r9GT3dxM8bbadSu3cA==
-X-Gm-Message-State: AOJu0YzB1eDupDFkcv/0kGyiLAfisXU2FOhZSaJ/a1ysfRfwpQdfJAoE
-	ClRpZvGaOl4Q2V04fIyTSy3LxlnMPXZIlZerGK0iMQkue4eJRa+mIc6BLWpRV+jVJYRuE8WBlkh
-	7q1CR4Aqi4EKCMOwK+o8ojd1iNvPvTAaAfCTQmg==
-X-Google-Smtp-Source: AGHT+IEmdGS3kWJwFOXkHdsFDbk48NhySqk+PBrvHOVCdWUgLmQZKnzxI3vscqlPqEO9OwfBwd6wWPGHC+h+ULfhzqQ=
-X-Received: by 2002:a05:690c:fcb:b0:64a:7379:eb53 with SMTP id
- 00721157ae682-6727d7bca25mr25623317b3.43.1721828054790; Wed, 24 Jul 2024
- 06:34:14 -0700 (PDT)
+	 To:Cc:Content-Type; b=eq/4iZNentZKFWOohpADHzL50lzVZwsxliJ5ZwDmLA0u6CmxP4mQqgSf3sXdyNeWM6+AgpJEBwV0nIfUIzQUVXTX4pSe8bFWtb99uwxhO7kOodmW3EF5n9eI5t0bLhJph/XEXH8KeiEgY/fE1Z0dIlrwNPZw2XD7WiCmx2fmavo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SEaWmgja; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33282C4AF14;
+	Wed, 24 Jul 2024 13:53:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721829229;
+	bh=JHsErZ1Ymd3xIUMEC7/hpzB8p/mlL/O9e+IDU+AKN8I=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=SEaWmgjaMdyUPpB+3WNdnu/Gu9TlKShfVaI3kaPtTDUgi1+yOW7Vw3WRWHs1vW6yC
+	 Y3vEwLQLJbKWWj7Dx4mkYjG+Fx1/bCL3TcivZM6ZsDaDYvp/z9r7LEiiNnP5NYrZkJ
+	 SYAnbs406vjYmOQu2+pBQlU/xloyJFw0x9MXtYErO8Y/t++x+Y1gVMuplBSs0dRN1A
+	 aFLBZLP7F5kEjA3DsPqSbJfUS1DcN6ec3Q2ZQcBVKquPBr0eI+0v6rCG5wVA5SqCn8
+	 HZaFcNq4Nj/FL+NccJEe0+3FebAjkiI31jd7YbrmcZFhm5ZDnSwVEnGW06SIOREjmw
+	 xrF3Btp6K9YPg==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ef2c56d9dcso39539251fa.2;
+        Wed, 24 Jul 2024 06:53:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVaaZbjJYjhHIqupl8vBGkyCEWx3fIX8DGzS1b+8uLkuMt1KfPyzgZ7dpoxC8rJY2vAKrQxjUQtOuV3GonK1AXgrStSN6+jGRdsRnKTe49MQYZgrB3OQKo+ACd48kxwoU7xqBiwWYU8JdQvTm6ju+TfjkaH7nnI7vqnlLAmtSawpQ3LVrNuqFwID2LxJ86iE1yM9ZktYF6hMtUiV+JYCdGeNq1IcHhF8uFG8BBkVgd3CLqtHWEaIijGe8GZpu2FoXEJbZDpe2DWVodGYY8F0ewSmjTtcMrO6O3TF176dny2Ki+cOQ4QsyUiCxoaxMeVHPcSTGnb4UPptXcgD1BfwG8alrSdnrJPn/9ImVSK6k0LzJOB098nA20sdYZaHOeCmf47INa/LL53KokpOdEs9SSy38S0SFqI70+AB2X0OiQ/NV17DNtLdUw3dwZtmFcqmfWwPp2oRxcT0n8IMbleLunhlxOXP/s90LIJMd9zCqXZgWFaOL9OSafFE+xruPbamieQ4FGoP/lM2uE=
+X-Gm-Message-State: AOJu0YzFHhNsC/LtZP3P1oBEd4uWCHuaVYueEwGIGMi2cujgF/otLn4x
+	0by/UuwcoIcftkZn0Qs9LF3HfQ75uDePSxJnJf3MvBJNb409tNRHQu5zge4YlvQlKBlg2YtJJd5
+	sf9fSpzthkKFWqH9VCMI+lVRv/w==
+X-Google-Smtp-Source: AGHT+IEk3YhHLLuWHQez8La65BtnRIR9t5/9BONqzEk5mOwWdTbwESXZpTYF2WmMXYwp6gfL+EkMMSd8FeS9sIIdSCk=
+X-Received: by 2002:a05:6512:3984:b0:51a:f689:b4df with SMTP id
+ 2adb3069b0e04-52efb7db65bmr9357884e87.44.1721829216849; Wed, 24 Jul 2024
+ 06:53:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <rzf5jaxs2g4usnqzgvisiols2zlizcqr3pg4b63kxkoaekkjdf@rleudqbiur5m>
- <a87d4948-a9ce-473b-ae36-9f0c04c3041e@quicinc.com> <CAA8EJpq=rj-=JsYpPmwXiYkL=AALf-ZPQeq9drEoCkCAufLdig@mail.gmail.com>
- <20240724133139.GB3349@thinkpad>
-In-Reply-To: <20240724133139.GB3349@thinkpad>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 24 Jul 2024 16:34:03 +0300
-Message-ID: <CAA8EJprSTfddwT1DxK7_B-bLbqWO7hTWKRfHnN5kxya6GbcmEA@mail.gmail.com>
-Subject: Re: [PATCH V2 0/7] Add power domain and MSI functionality with PCIe
- host generic ECAM driver
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Mayank Rana <quic_mrana@quicinc.com>, will@kernel.org, lpieralisi@kernel.org, 
-	kw@linux.com, robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com, 
-	cassel@kernel.org, yoshihiro.shimoda.uh@renesas.com, s-vadapalli@ti.com, 
-	u.kleine-koenig@pengutronix.de, dlemoal@kernel.org, amishin@t-argos.ru, 
-	thierry.reding@gmail.com, jonathanh@nvidia.com, Frank.Li@nxp.com, 
-	ilpo.jarvinen@linux.intel.com, vidyas@nvidia.com, 
-	marek.vasut+renesas@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, quic_ramkri@quicinc.com, quic_nkela@quicinc.com, 
-	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com, 
-	quic_nitegupt@quicinc.com
+References: <20240717-of_property_for_each_u32-v2-1-4060990f49c9@bootlin.com>
+ <1e36b1ba8af3584128550822a70cb072.sboyd@kernel.org> <20240718085651.63ddfb20@booty>
+In-Reply-To: <20240718085651.63ddfb20@booty>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 24 Jul 2024 08:53:24 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKtOTgoDgfwq9Guvt_LbtnHHGJ+PDt-wgVRHU=oVzwhHw@mail.gmail.com>
+Message-ID: <CAL_JsqKtOTgoDgfwq9Guvt_LbtnHHGJ+PDt-wgVRHU=oVzwhHw@mail.gmail.com>
+Subject: Re: [PATCH v2] of: remove internal arguments from of_property_for_each_u32()
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Andreas Kemnade <andreas@kemnade.info>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Bjorn Andersson <andersson@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Chester Lin <chester62515@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Damien Le Moal <dlemoal@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Dong Aisheng <aisheng.dong@nxp.com>, 
+	Doug Berger <opendmb@gmail.com>, =?UTF-8?Q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>, 
+	Fabio Estevam <festevam@gmail.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jacky Bai <ping.bai@nxp.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jiri Slaby <jirislaby@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Mark Brown <broonie@kernel.org>, 
+	Matthias Brugger <mbrugger@suse.com>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Michael Turquette <mturquette@baylibre.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>, 
+	Nicholas Piggin <npiggin@gmail.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Richard Leitner <richard.leitner@linux.dev>, 
+	Roger Quadros <rogerq@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+	Saravana Kannan <saravanak@google.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Takashi Iwai <tiwai@suse.com>, Thomas Gleixner <tglx@linutronix.de>, Tony Lindgren <tony@atomide.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	llvm@lists.linux.dev, linux-clk@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-samsung-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-usb@vger.kernel.org, patches@opensource.cirrus.com, 
+	linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-riscv@lists.infradead.org, Andre Przywara <andre.przywara@arm.com>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 24 Jul 2024 at 16:31, Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+On Thu, Jul 18, 2024 at 1:57=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
 >
-> On Wed, Jul 24, 2024 at 10:12:17AM +0300, Dmitry Baryshkov wrote:
-> > On Wed, 24 Jul 2024 at 06:58, Mayank Rana <quic_mrana@quicinc.com> wrot=
-e:
-> > >
-> > >
-> > >
-> > > On 7/23/2024 7:13 PM, Dmitry Baryshkov wrote:
-> > > > On Mon, Jul 15, 2024 at 11:13:28AM GMT, Mayank Rana wrote:
-> > > >> Based on previously received feedback, this patch series adds func=
-tionalities
-> > > >> with existing PCIe host generic ECAM driver (pci-host-generic.c) t=
-o get PCIe
-> > > >> host root complex functionality on Qualcomm SA8775P auto platform.
-> > > >>
-> > > >> Previously sent RFC patchset to have separate Qualcomm PCIe ECAM p=
-latform driver:
-> > > >> https://lore.kernel.org/all/d10199df-5fb3-407b-b404-a0a4d067341f@q=
-uicinc.com/T/
-> > > >>
-> > > >> 1. Interface to allow requesting firmware to manage system resourc=
-es and performing
-> > > >> PCIe Link up (devicetree binding in terms of power domain and runt=
-ime PM APIs is used in driver)
-> > > >> 2. Performing D3 cold with system suspend and D0 with system resum=
-e (usage of GenPD
-> > > >> framework based power domain controls these operations)
-> > > >> 3. SA8775P is using Synopsys Designware PCIe controller which supp=
-orts MSI controller.
-> > > >> This MSI functionality is used with PCIe host generic driver after=
- splitting existing MSI
-> > > >> functionality from pcie-designware-host.c file into pcie-designwar=
-e-msi.c file.
-> > > >
-> > > > Please excuse me my ignorance if this is described somewhere. Why a=
-re
-> > > > you using DWC-specific MSI handling instead of using GIC ITS?
-> > > Due to usage of GIC v3 on SA8775p with Gunyah hypervisor, we have
-> > > limitation of not supporting GIC ITS
-> > > functionality. We considered other approach as usage of free SPIs (no=
-t
-> > > available, limitation in terms of mismatch between number of SPIs
-> > > available with physical GIC vs hypervisor) and extended SPIs (not
-> > > supported with GIC hardware). Hence we just left with DWC-specific MS=
-I
-> > > controller here for MSI functionality.
+> Hello Stephen,
+>
+> On Wed, 17 Jul 2024 16:33:34 -0700
+> Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> > > @@ -1191,20 +1191,24 @@ static int si5351_dt_parse(struct i2c_client =
+*client,
+> > >          * property silabs,pll-source : <num src>, [<..>]
+> > >          * allow to selectively set pll source
+> > >          */
+> > > -       of_property_for_each_u32(np, "silabs,pll-source", prop, p, nu=
+m) {
+> > > +       sz =3D of_property_read_variable_u32_array(np, "silabs,pll-so=
+urce", array, 2, 4);
+> > > +       sz =3D (sz =3D=3D -EINVAL) ? 0 : sz; /* Missing property is O=
+K */
+> > > +       if (sz < 0)
+> > > +               return dev_err_probe(&client->dev, sz, "invalid pll-s=
+ource");
 > >
-> > ... or extend Gunyah to support GIC ITS. I'd say it is a significant
-> > deficiency if one can not use GIC ITS on Gunyah platforms.
-> >
+> > Needs a newline on the printk message.
 >
-> It if were possible, Qcom would've went with that. Unfortunately, it is n=
-ot.
+> Ouch! Fix queued for v3.
 
-Ack.
-Mayank, if the patch gets resent for any reason, please add this to
-the commit message.
+I need v3 like today if I'm going to send it for rc1.
 
->
-> - Mani
->
-> --
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
-
-
-
---=20
-With best wishes
-Dmitry
+Rob
 
