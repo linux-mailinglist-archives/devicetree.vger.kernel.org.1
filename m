@@ -1,112 +1,148 @@
-Return-Path: <devicetree+bounces-88189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2345393C7FD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 20:04:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A793C81D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 20:06:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BED91F21EFA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 18:04:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB82D282697
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 18:05:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31F819D096;
-	Thu, 25 Jul 2024 18:04:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 552BC19D8B6;
+	Thu, 25 Jul 2024 18:05:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="UkOhq0Kd"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="C0jSlWy7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F75C23D0
-	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 18:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB4D23D0;
+	Thu, 25 Jul 2024 18:05:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721930640; cv=none; b=hA4cIDNxdwm1eSl5O6nUFjRoayjGWuQCiUJo47iDJT+A8izu9oGptxfvqiv5LjVp7OpaWt0xW2ODnNnOxJcJoOZd2mKa2ROt1yJtSLXjaFYt6Xdl9luM3kgIrA//eKM7kl106zXsyn4MnB2erUV6DAvnMmOWrz/J7TWW2U3njcs=
+	t=1721930757; cv=none; b=YbJCApZvwvq7bXz7ZNavBl+Ef5ejWklfp6ExtcD6mTOd6hbp5fD++PBZc/MSk82SMde967ecbzKrE1NGKwEIfcO9giXG/W5uHMz2o2eSESqgGRc4QCrZKWE95yxgB05SW2OOyQvdl8V/K0cbHXAossX6pRaFKHBpZc7PEdrtx94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721930640; c=relaxed/simple;
-	bh=/vzlTHznZRzefEs/2fMphB8KF+GSXShswe1vCfDZ7b0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V8hme58JTjh9WdHDK5B3AjxsNMweXAbJqJm4kAqZ6DKwx/uGZyuL5DQZRW9ycQdBeew4VuhrwkLYt+v1LJHWgK3uxdDMizqodRZNSoITYqGCShQNx+MlNw+D+ebp7gStU71CQN6TgHOhZSGDS30e4YftLQ/JOxCEFu7PR0W0uq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=UkOhq0Kd; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 1BC4787F19;
-	Thu, 25 Jul 2024 20:03:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1721930631;
-	bh=w8nfz/4yai5Bji+ltj8tkGjJLCH6SXLd4pLeB/UjSiw=;
-	h=From:To:Cc:Subject:Date:From;
-	b=UkOhq0KdgeRzxYu+osx6cb+48QVIUBwXmy4DulcmgxzV64OXL3sqX3BF4vLTezFV5
-	 G6sNNlpXiavcGSNxzJFoVxubh1mwgd62mA0Yd0zUzKvXV789aIXeFM+eGwMGPyMiV2
-	 U+tHlwgrSaRHdadomfknjucwwhP1z8qoeTEolDkc9QZpwMswrYIKl32NU+IZPsEON4
-	 jE0Vn/Zpey/Axb/MMoX/Z7FDjPbGGcVaMnFrtbKSAPQBD9wAIHb7oIE9+xcVeoT5fo
-	 hwyt3D12LOMGT8JA7Kn+y8IdI6gxdjpUmoRbS6+IEfaWccVTQ+RlureN5oQGEAI+qt
-	 1+iWlX2ALCbPQ==
-From: Marek Vasut <marex@denx.de>
-To: devicetree@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: hwmon: Document TI TPS546D24
-Date: Thu, 25 Jul 2024 20:03:23 +0200
-Message-ID: <20240725180337.64396-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1721930757; c=relaxed/simple;
+	bh=yBslK0qKxuTFiNQiopZ+rPRV5w7Tw7fjqPkyzsZIeuI=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ghU//Z4cfVj3WN3/NOM1XeBw8WWc77VtCL84cmHvi5LG2RBkdT101NFVF8yCAL9X1F24nLKBzNiwpjjPbC/3e2wGW1XLSmKPbiUwdU/bkc66mBR9Sr8Wg228epka0tpln9RGIx9vxICRgkTQqZ4JR2iE9m1McsQ7sQzizF6V/hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=C0jSlWy7; arc=none smtp.client-ip=185.70.40.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1721930753; x=1722189953;
+	bh=lzuLEPm4kjgW03M5qjjr86UmmBCtz9uvJ/WOtYQHA9M=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=C0jSlWy7WHEnnJGvs+0VHDUMEhypb0YEPWWiPqqtWdvqJbfWoee1/CCrKlE1NnFbE
+	 n/3wCWXL7oGPt1GxsPLAXQac2XGjsXaMhrq1zTZ/pQxFp/7RiNTLPOcyOnEj55abac
+	 QFSHCRgY4npd/Pzr00vQAAAzQJoEbT/0chLwyDlzmIIHbmYnj+fDfP5R6qEfYnqWpb
+	 2cmoLwSal7I6mISQmmwazGOeDhb8LBZI3rawtjBZeRA9wnfP/MD4+zVB54dgQnNS6V
+	 lRQBrASD52Af9wJHRSlOhQcD9068KYGefGZciVxjsp2IqJ9Ck59u4nDiZ8sOEW3bQM
+	 GzrJv6U8IBfYA==
+Date: Thu, 25 Jul 2024 18:05:48 +0000
+To: Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>
+From: Harry Austen <hpausten@protonmail.com>
+Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/7] clk: clocking-wizard: add user clock monitor support
+Message-ID: <D2YTI7LU63SW.3BD4V6FCRKQ60@protonmail.com>
+In-Reply-To: <1cacce63c7263a3532cca148ad2c567f.sboyd@kernel.org>
+References: <20240720120048.36758-1-hpausten@protonmail.com> <20240720120048.36758-6-hpausten@protonmail.com> <1cacce63c7263a3532cca148ad2c567f.sboyd@kernel.org>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: 32ddf0609ddb5c593a1b0e2588258dfd0f21aba2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Document TI TPS546D24 TPS546D24A 2.95-V to 16-V, 40-A, Up to 4x Stackable,
-PMBus Buck Converter as trivial device. Linux kernel does have an existing
-driver using the compatible documented here.
+On Wed Jul 24, 2024 at 12:29 AM BST, Stephen Boyd wrote:
+> Quoting Harry Austen (2024-07-20 05:01:53)
+> > Xilinx clocking wizard IP core supports monitoring of up to four
+> > optional user clock inputs, with a corresponding interrupt for
+> > notification in change of clock state (stop, underrun, overrun or
+> > glitch). Give userspace access to this monitor logic through use of the
+> > UIO framework.
+> >
+> > Use presence of the user monitor interrupt description in devicetree to
+> > indicate whether or not the UIO device should be registered. Also, this
+> > functionality is only supported from v6.0 onwards, so add indication of
+> > support to the device match data, in order to be tied to the utilised
+> > compatible string.
+> >
+> > Signed-off-by: Harry Austen <hpausten@protonmail.com>
+> > ---
+> > diff --git a/drivers/clk/xilinx/Kconfig b/drivers/clk/xilinx/Kconfig
+> > index 051756953558b..907a435694687 100644
+> > --- a/drivers/clk/xilinx/Kconfig
+> > +++ b/drivers/clk/xilinx/Kconfig
+> > @@ -21,6 +21,7 @@ config COMMON_CLK_XLNX_CLKWZRD
+> >         tristate "Xilinx Clocking Wizard"
+> >         depends on OF
+> >         depends on HAS_IOMEM
+> > +       depends on UIO
+>
+> If I have a pre-v6.0 device I probably don't want UIO though. Perhaps
+> you should use the auxiliary bus framework to register a device that is
+> otherwise unused and then have the uio driver live in drivers/uio and
+> match that device made here. I think you can have 'imply UIO' if you
+> like to put a weak Kconfig dependency.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>
-Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Noah Wang <noahwang.wang@outlook.com>
-Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc: Peter Yin <peteryin.openbmc@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Yeah I wasn't particularly happy about the UIO usage here. It seems like a
+nice way to leave control up to the user in userspace though, rather than
+adding a bunch of device attributes to read status registers, configure
+interrupts etc. but I agree the dependency isn't good here. Will look into
+your suggestion for v2.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 7913ca9b6b540..2a4a0406dbbd8 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -412,6 +412,7 @@ properties:
-           - ti,tps544b25
-           - ti,tps544c20
-           - ti,tps544c25
-+          - ti,tps546d24
-             # I2C Touch-Screen Controller
-           - ti,tsc2003
-             # Vicor Corporation Digital Supervisor
--- 
-2.43.0
+>
+> >         help
+> >           Support for the Xilinx Clocking Wizard IP core clock generato=
+r.
+> >           Adds support for clocking wizard and compatible.
+> > diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/x=
+ilinx/clk-xlnx-clock-wizard.c
+> > index 7b262d73310fe..2d419e8ad4419 100644
+> > --- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> > +++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> > @@ -1165,6 +1209,17 @@ static int clk_wzrd_probe(struct platform_device=
+ *pdev)
+> >                 return -EINVAL;
+> >         }
+> >
+> > +       data =3D device_get_match_data(&pdev->dev);
+> > +       if (data && data->supports_monitor) {
+> > +               irq =3D platform_get_irq(pdev, 0);
+> > +               if (irq > 0) {
+> > +                       ret =3D clk_wzrd_setup_monitor(&pdev->dev, irq,
+> > +                                                    platform_get_resou=
+rce(pdev, IORESOURCE_IO, 0));
+>
+> Any reason this can't be
+>
+> =09=09ret =3D clk_wzrd_setup_monitor(pdev);
+> =09=09if (ret)
+> =09=09=09return ret;
+>
+> and then all the surrounding code be moved into the function, including
+> the dev_err_probe()?
+
+That makes a lot more sense. Don't know what I was doing. Thanks!
+
+>
+> > +                       if (ret)
+> > +                               return dev_err_probe(&pdev->dev, ret, "=
+failed to setup monitor\n");
+> > +               }
+> > +       }
+> > +
+> >         ret =3D of_property_read_u32(np, "xlnx,nr-outputs", &nr_outputs=
+);
+
 
 
