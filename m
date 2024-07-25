@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-88162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50BAE93C43F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 16:34:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA0993C448
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 16:35:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCB162876EC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 14:34:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56AE4287708
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 14:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5929819ADB9;
-	Thu, 25 Jul 2024 14:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578F519D088;
+	Thu, 25 Jul 2024 14:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/5cTZXm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hoZZuPm3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCDA13DDB8;
-	Thu, 25 Jul 2024 14:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E41419D068;
+	Thu, 25 Jul 2024 14:35:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721918046; cv=none; b=IesbPMoNxkIIuc1245l05MWvKbAGX4Nn4yz6XmJUzwWoS8kMVtIQrj1fLUF/iVgm8JGKHr7WdiTdi//HTcaGTRKk9ZoYQBsMim4wmnfBmZ/L/p+5yyR01BfVHLnP3gBkdM/PMdf9IJOIjiwU07OHmOPwuRGBywkVgkWVl3CU+EE=
+	t=1721918127; cv=none; b=YSbqOwos2Pg/xW39GTjeIZVOusXv/z3yWgpT4TdV/MJYe39KyeVNzz771CQ1u0+5FgRymOZYs2GP5UHnpN+hqRm8vdcQPIIC2PQcFsZWbzS/i+YMLI6mpdSr3OgTg7A061zoSJnAuNF3hIEKqrZOj1aXI8UlX22z/6TwTDkW5b0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721918046; c=relaxed/simple;
-	bh=lEZEpDvFTWSV2VSZIoUY/qg4sxnX6WaUiNUVms4Rh8s=;
+	s=arc-20240116; t=1721918127; c=relaxed/simple;
+	bh=dWHk/SHpnPTKCLsDctksze4Kfo/ASX42EotFciliEv4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j7Jzy/6CqCxxIE5KfVGik0JAhKaD4DOlC3Qgl1e3yLYw5cU5gZpzI02hWRAiOqsfgZ6pdVxf1FqCr1IkWeIkTeaFM8C/QbHy+3cTi506N6sI+3qG+CHYL+FsLM0NEnC2offFxsXQdKEVOYL9mrCEr3To2nYLpzspE4hWSN6C20c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/5cTZXm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05EFEC116B1;
-	Thu, 25 Jul 2024 14:34:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=d3zc2DyLCGQ2hqlTxroUVWUnPsyL+yPt98XcA7wC7A4sCqPZSsRq4ZD+w8QPkMfYYsUgp8+85CTlBf/79ZZZUz8/87cCIhPTNTUCUk1R2UxOerDydQV6NrAzxVtffDQSg0VKYAah1kao82ihWSPjGHimolSR28bTbCtOaaQK9hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hoZZuPm3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B6D9C32782;
+	Thu, 25 Jul 2024 14:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721918045;
-	bh=lEZEpDvFTWSV2VSZIoUY/qg4sxnX6WaUiNUVms4Rh8s=;
+	s=k20201202; t=1721918126;
+	bh=dWHk/SHpnPTKCLsDctksze4Kfo/ASX42EotFciliEv4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S/5cTZXm0W/giFyipn0WT+M7ObbIv4K+DDS+TbjlBs0Zi3ydeR+Pm5BVk29d/VMBx
-	 3AiT2q9mcnaEA/TXxinbxxGkJt0FYezj+ZZkw14GuYyAtPlR15xoWqgnPVNlqQJQdO
-	 vGrpAdNLcRCf9TKg9l8MgxA/7C7O42tt0Is6jZgzPs1xxc1JCKAze9k/NaFdfCn/UW
-	 C9QLYLpwgKMJ+OafwVf3bnl6bALPd4XKcmrH4wsIVIlqOGLTaooWXEkX+xJRtSf02d
-	 C2jtty14cua2ffVnzI2001wn3Ye0P40KxzwrFyKKl5zzXma87KHdEsvfhaE7Qcw2mU
-	 P4HHk5kyVTxrg==
-Date: Thu, 25 Jul 2024 15:34:01 +0100
+	b=hoZZuPm3i0aH3yLncV6e7FXvyD9dOK0856uFSu9h35JDDJ7jdWL7E/VKnuTpU9Wfr
+	 UHL+O88SASJ4OvrzVMx1G35NtbFmbBx8svvT6Fu/tc1dlrZdf8F46rLf2JjWvalXT/
+	 qwqo0jHvGvzMmWpH/0ooLxBF4W8NArOA/S9hcraQMSK1VX9CaAGzBtDPy3y/Cak2xP
+	 xmbp3nH4YEy95AUz/yi6bhwmVJIcGGabMYi9ou/IXmfXfqPTPlHeGRdHDHXV64NpiP
+	 /2j9tqIjDGzUKbYcrkNQOr/eY1iCWWOGYLINx51Po9ekkoIO+3erQ3bslr3OuM2pnW
+	 iwR4dqhvMv4qQ==
+Date: Thu, 25 Jul 2024 15:35:22 +0100
 From: Conor Dooley <conor@kernel.org>
 To: pierre-henry.moussay@microchip.com
 Cc: Conor Dooley <conor.dooley@microchip.com>,
 	Daire McNamara <daire.mcnamara@microchip.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
 	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 14/17] dt-bindings: soc: microchip: mpfs-sys-controller:
- Add PIC64GX compatibility
-Message-ID: <20240725-jackpot-tapping-fae83673a04d@spud>
+Subject: Re: [PATCH 17/17] riscv: dts: microchip: add PIC64GX Curiosity Kit
+ dts
+Message-ID: <20240725-taco-jailbreak-6630da00cda4@spud>
 References: <20240725121609.13101-1-pierre-henry.moussay@microchip.com>
- <20240725121609.13101-15-pierre-henry.moussay@microchip.com>
+ <20240725121609.13101-18-pierre-henry.moussay@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,74 +66,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QgTWijV28ZC96G3W"
+	protocol="application/pgp-signature"; boundary="yPwJHk3tpKNwQYbJ"
 Content-Disposition: inline
-In-Reply-To: <20240725121609.13101-15-pierre-henry.moussay@microchip.com>
+In-Reply-To: <20240725121609.13101-18-pierre-henry.moussay@microchip.com>
 
 
---QgTWijV28ZC96G3W
+--yPwJHk3tpKNwQYbJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 25, 2024 at 01:16:06PM +0100, pierre-henry.moussay@microchip.co=
+On Thu, Jul 25, 2024 at 01:16:09PM +0100, pierre-henry.moussay@microchip.co=
 m wrote:
 > From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 >=20
-> PIC64GX is compatible with mpfs-sys-controller driver without additional
-> feature
-
-Bindings are about hardware, not drivers. Are you sure a fallback is
-appropriate here? Does the system controller expose the same features as
-it does on PolarFire SoC? For example, FPGA reprogramming: the driver
-creates a platform device to which the auto update driver is bound - I
-don't think that that is appropriate on a pic64gx.
-
-Thanks,
-Conor.
-
+> The Curiosity-GX10000 (PIC64GX SoC Curiosity Kit) is a compact SoC
+> prototyping board featuring a Microchip PIC64GX SoC
+> PIC64GC-1000. Features include:
+> - 1 GB DDR4 SDRAM
+> - Gigabit Ethernet
+> - microSD-card slot
 >=20
 > Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > ---
->  .../soc/microchip/microchip,mpfs-sys-controller.yaml        | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  arch/riscv/boot/dts/microchip/Makefile        |   1 +
+>  .../dts/microchip/pic64gx-curiosity-kit.dts   | 114 ++++
+>  arch/riscv/boot/dts/microchip/pic64gx.dtsi    | 616 ++++++++++++++++++
+>  3 files changed, 731 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/microchip/pic64gx-curiosity-kit.d=
+ts
+>  create mode 100644 arch/riscv/boot/dts/microchip/pic64gx.dtsi
 >=20
-> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mp=
-fs-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/mi=
-crochip,mpfs-sys-controller.yaml
-> index a3fa04f3a1bd..af89d5959747 100644
-> --- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-=
-controller.yaml
-> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-=
-controller.yaml
-> @@ -24,7 +24,11 @@ properties:
->      maxItems: 1
-> =20
->    compatible:
-> -    const: microchip,mpfs-sys-controller
-> +    oneOf:
-> +      - items:
-> +          - const: microchip,pic64gx-sys-controller
-> +          - const: microchip,mpfs-sys-controller
-> +      - const: microchip,mpfs-sys-controller
-> =20
->    microchip,bitstream-flash:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> --=20
-> 2.30.2
->=20
->=20
+> diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts=
+/microchip/Makefile
+> index e177815bf1a2..78ba2952a164 100644
+> --- a/arch/riscv/boot/dts/microchip/Makefile
+> +++ b/arch/riscv/boot/dts/microchip/Makefile
+> @@ -4,3 +4,4 @@ dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) +=3D mpfs-m100pfse=
+vp.dtb
+>  dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) +=3D mpfs-polarberry.dtb
+>  dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) +=3D mpfs-sev-kit.dtb
+>  dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) +=3D mpfs-tysom-m.dtb
+> +dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) +=3D pic64gx-curiosity-kit.dtb
 
---QgTWijV28ZC96G3W
+s/MICROCHIP_// please. And a patch renaming the others would be neat too
+;)
+
+--yPwJHk3tpKNwQYbJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqJiWQAKCRB4tDGHoIJi
-0qO/AQDHS4tIeC40U53nkW2mvlvdDVc93b6zd9C2Ij8wPVc5XAD9FE5pgk2AkakY
-f2Zrj4sp+eYAE9LaRofUTAh3pniqgAo=
-=Ed3R
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqJiqgAKCRB4tDGHoIJi
+0pNIAQDsNaXHT+ww+2ANltZ46PqzzFdkcKcI6MA0PVMYZzWjnQD8DY1vvjdvMqQf
+W3/o/h02Wbut5DXZqtSm+FHFS7ISLgI=
+=ZQmA
 -----END PGP SIGNATURE-----
 
---QgTWijV28ZC96G3W--
+--yPwJHk3tpKNwQYbJ--
 
