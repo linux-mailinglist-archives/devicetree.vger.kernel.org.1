@@ -1,136 +1,147 @@
-Return-Path: <devicetree+bounces-88006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CCF93BD0C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 09:23:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C756693BD09
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 09:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DCFA1C21467
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 07:23:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E2111F2247F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 07:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAF816F830;
-	Thu, 25 Jul 2024 07:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F96D16F84A;
+	Thu, 25 Jul 2024 07:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EpQR96/G"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oQcPRt0g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301382773C;
-	Thu, 25 Jul 2024 07:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC1C16D9B9;
+	Thu, 25 Jul 2024 07:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721892218; cv=none; b=gZEaEkhfhi3s4TsTgUnR6dJl6wY5UV3dMv2eXz3n1SrkfpKT6j9u2K5L9fD9vNn9n3Hgc3OICZCSX23xmVyQvevfebBVEksurZKWeL8J5RySO88M2vUMHDyyOKldmylvqXhCq2EEgmp0o2yfqVZCFa6iG7APlTCRCxqSwnvfPs4=
+	t=1721892194; cv=none; b=PfyZkCM+/olsrwpV96JmR7osoaC7yqzg9V4YMtSHirZbC8E11/YmyTp91Ao3Ctiz8OjN2htEb47UpQ7p+MeOs8gMVzhwDZo7J1zlRzdlW9lavKwcneXyTmjbPeErUHGG6NElyKbapLMHbFRjLBPie2OxIjtAHKDdEEENJh8glPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721892218; c=relaxed/simple;
-	bh=GyPLGzIhpsB35WhyIkpQkrT+qzzPtaB3iH1SRs0EeNQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=R6oYF/9NlUNGsXpZ0ahVFEe1UCCapnBjBQxDYkRVB2q08Tjq4Te9vEtw/F+6MrkzRaPreqUDMGONK5FpK31vpJdbBPpIzzwz7M7QAXAi6QvFO/D30EpgGj7OPNN9y+FgKTIonW6UwQAo8vCD5TJ/w9+I0aJ9dEP+gM2F7IVLpHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EpQR96/G; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46OM4A73011243;
-	Thu, 25 Jul 2024 07:23:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	qcppdkim1; bh=bm0A+PZNNGOd+thGnPWT5MTS/GX57MqMYz9vyIwVTYc=; b=Ep
-	QR96/G8XZVn+PqXbBUyrer9ILWxUcbKV+QrnIY5SYFKAggy+Fuhe3F8q7bcjBhp4
-	uR9RwGfX71iTW/qWmcpNYxuXyF3pe/LLuyez0xXhCHE2Qs4QgdL10Gk8Jq5YtCKy
-	ryxgs8+1vpj4vNYrRhKb6QDmCSdwWR62g9z0lQg/1t1uaUiSKp7Oi9PASObmU1Do
-	Pb1ErlLqYTFI5B6JPmFnA59GcI6+Q2vm9DXo55qVq2VNQ70Vxgq+mr8e4bwOk5k/
-	VBL/3fHbDLD2dwa4ifcfNdcX+uciXVe2//rXmzzkj+1HYMKi1OADwvWeVmVawKxU
-	BvkZWbswMJYaFvmqW4FA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40jyrfjj24-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jul 2024 07:23:30 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46P7NT4N027276
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jul 2024 07:23:29 GMT
-Received: from hu-qqzhou-sha.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 25 Jul 2024 00:23:26 -0700
-From: Qingqing Zhou <quic_qqzhou@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <ahalaney@redhat.com>,
-        <manivannan.sadhasivam@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Qingqing Zhou <quic_qqzhou@quicinc.com>, <stable@vger.kernel.org>
-Subject: [PATCH v3] arm64: dts: qcom: sa8775p: Mark APPS and PCIe SMMUs as DMA coherent
-Date: Thu, 25 Jul 2024 12:51:17 +0530
-Message-ID: <20240725072117.22425-1-quic_qqzhou@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1721892194; c=relaxed/simple;
+	bh=LybX6K9ckx8LWHxoZ8RF7U51lUc9uadONdKAka89nR8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rKRcaXmenZx7yTIzp3TIe5RASh0m5HY+mjP8JFxwlmD3+fhSiQItFQh6QaY4lNv/x6h6aiEQYddkN0tRrZmMndW1jhkj0whqe1nAEHVnSPvNXSWA9F3fvJ5C0ot2kgRT4bpUN8IAlx2LaukbMtpwlolUC2bLenqUdf68wJ/llBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oQcPRt0g; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721892190;
+	bh=LybX6K9ckx8LWHxoZ8RF7U51lUc9uadONdKAka89nR8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=oQcPRt0gV6n4RhWpSjX2OkdJhXIIy0qJSx1BiKa33V58VcISEGOS/6+rnSFlHlgbR
+	 EhpChXPIXtqLflIdzPrlrQBSzKz8xdVa3ZVsONDIFMuBcjVkZ/Gy9Nd8wrLmFJDgOb
+	 W/NdvgA7aMY3Pfs7bpV5TYvw3gMITgdc++x6JdBpywwoOx1KBaJKxLWdeDwWnr8GfJ
+	 hxSQS3osndlbfRrY+mZq9bXWLr8TTo10dslQp2nY+Umg8EvYYTWgTA/cYMiZYMa/DJ
+	 K1pNov4d76V5Vb8JSo0NNJkCZBZr0eWB6+0WDXRKRut+o0fJPzABHEc0N58O3t+1zl
+	 czYPPpZPws/kQ==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D514837808FA;
+	Thu, 25 Jul 2024 07:23:09 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	wenst@chromium.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH] arm64: dts: mediatek: mt8186: Fix supported-hw mask for GPU OPPs
+Date: Thu, 25 Jul 2024 09:22:43 +0200
+Message-ID: <20240725072243.173104-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lYtbkWatx8K18YPQnJ8ZyEZrB7n6APKc
-X-Proofpoint-ORIG-GUID: lYtbkWatx8K18YPQnJ8ZyEZrB7n6APKc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-25_07,2024-07-25_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=741 malwarescore=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 phishscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407250046
+Content-Transfer-Encoding: 8bit
 
-The SMMUs on sa8775p are cache-coherent. GPU SMMU is marked as such,
-mark the APPS and PCIe ones as well.
+The speedbin eFuse reads a value 'x' from 0 to 7 and, in order to
+make that compatible with opp-supported-hw, it gets post processed
+as BIT(x).
 
-Fixes: 603f96d4c9d0 ("arm64: dts: qcom: add initial support for qcom sa8775p-ride")
-Fixes: 2dba7a613a6e ("arm64: dts: qcom: sa8775p: add the pcie smmu node")
-Cc: stable@vger.kernel.org
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+Change all of the 0x30 supported-hw to 0x20 to avoid getting
+duplicate OPPs for speedbin 4, and also change all of the 0x8 to
+0xcf because speedbins different from 4 and 5 do support 900MHz,
+950MHz, 1000MHz with the higher voltage of 850mV, 900mV, 950mV
+respectively.
+
+Fixes: f38ea593ad0d ("arm64: dts: mediatek: mt8186: Wire up GPU voltage/frequency scaling")
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-v2 -> v3:
-  - Remove the line break between tags.
-  - Add the Cc stable tag.
-Link to v2: https://lore.kernel.org/all/20240723075948.9545-1-quic_qqzhou@quicinc.com/
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-v1 -> v2:
-  - Add the Fixes tags.
-  - Update the commit message.
-Link to v1: https://lore.kernel.org/lkml/20240715071649.25738-1-quic_qqzhou@quicinc.com/
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 23f1b2e5e624..95691ab58a23 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3070,6 +3070,7 @@
- 			reg = <0x0 0x15000000 0x0 0x100000>;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <2>;
-+			dma-coherent;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+index 4763ed5dc86c..d63a9defe73e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+@@ -731,7 +731,7 @@ opp-850000000 {
+ 		opp-900000000-3 {
+ 			opp-hz = /bits/ 64 <900000000>;
+ 			opp-microvolt = <850000>;
+-			opp-supported-hw = <0x8>;
++			opp-supported-hw = <0xcf>;
+ 		};
  
- 			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-@@ -3208,6 +3209,7 @@
- 			reg = <0x0 0x15200000 0x0 0x80000>;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <2>;
-+			dma-coherent;
+ 		opp-900000000-4 {
+@@ -743,13 +743,13 @@ opp-900000000-4 {
+ 		opp-900000000-5 {
+ 			opp-hz = /bits/ 64 <900000000>;
+ 			opp-microvolt = <825000>;
+-			opp-supported-hw = <0x30>;
++			opp-supported-hw = <0x20>;
+ 		};
  
- 			interrupts = <GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 921 IRQ_TYPE_LEVEL_HIGH>,
+ 		opp-950000000-3 {
+ 			opp-hz = /bits/ 64 <950000000>;
+ 			opp-microvolt = <900000>;
+-			opp-supported-hw = <0x8>;
++			opp-supported-hw = <0xcf>;
+ 		};
+ 
+ 		opp-950000000-4 {
+@@ -761,13 +761,13 @@ opp-950000000-4 {
+ 		opp-950000000-5 {
+ 			opp-hz = /bits/ 64 <950000000>;
+ 			opp-microvolt = <850000>;
+-			opp-supported-hw = <0x30>;
++			opp-supported-hw = <0x20>;
+ 		};
+ 
+ 		opp-1000000000-3 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <950000>;
+-			opp-supported-hw = <0x8>;
++			opp-supported-hw = <0xcf>;
+ 		};
+ 
+ 		opp-1000000000-4 {
+@@ -779,7 +779,7 @@ opp-1000000000-4 {
+ 		opp-1000000000-5 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <875000>;
+-			opp-supported-hw = <0x30>;
++			opp-supported-hw = <0x20>;
+ 		};
+ 	};
+ 
 -- 
-2.17.1
+2.45.2
 
 
