@@ -1,147 +1,223 @@
-Return-Path: <devicetree+bounces-87981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24BF93BBAC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 06:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 543F293BBF0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 07:03:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C49C281D2F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 04:20:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11A4A284CA7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 05:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E0B2BB02;
-	Thu, 25 Jul 2024 04:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46DDE1C68C;
+	Thu, 25 Jul 2024 05:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="eoMYAL0/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RpaxANy/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA7329414
-	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 04:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67A718040
+	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 05:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721881043; cv=none; b=ebM7+F8dp3pe4gj0IGH9aEv6m7hvSlKoclLfA29gTfx4pjUdx09x4OabNOSOyP5gKUcpF63MvoHD9eCKMmkOM7JIoZH8gXwRvqmeCri+6IoetRWI3PO8suV8ZurhoWtlksnkTq6WtnD1Vz6HEeUY+5U5h6wlpCVtfkbNXxUoXWo=
+	t=1721883808; cv=none; b=P3WfEpKZXLIo0ZfGj4t/PZwEBKTB1WpyXONi7bRTcCy6VuVf5VBoxls10ayPUf8OR0EXaWdNhsidRr9XrexyL5aGKaod7iE1ZkHv6KU04LVVThL+CKhTh3lQfUyla6lfIyff7c5wMkVy6V79dsoSSiGf74WZNisoeb0TeQDpijw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721881043; c=relaxed/simple;
-	bh=Kj0U9MTC5AyxWQYTo+VsBcBXCC89clLXpFMQ9HWKWsg=;
+	s=arc-20240116; t=1721883808; c=relaxed/simple;
+	bh=4jOWZRFpC9T03DeHefAHMwQwPmdX/qSrpARBw4vv4qc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dw+ZmAz4DRxTi1U2JYUyDoMBgZeyZ1kabAf1ZSI0HZNLUvQLVPWbxzxiItclwpcyD4DGAmU9ttjeakM6wym0zJRCklVWl1ZctdZkLs/OY8aWrfRpvL3XQS7bLEoNBRlagqMZ81xZj/kq2Mr4a6zKDNDmlGR8RdqoTd68I6VGvRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=eoMYAL0/; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-70d18112b60so372372b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 21:17:21 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=H0NNba33iNzmYJ/19c+YE2i42fMSde5EAMvA4cyKuzleKv0oVfEpvlrbs9AYAdYSc+b6hM9FCg2+2eUuDke6gfLsfoUgyxrf6iTJOrgurQ2qxzndyjRn8u4WCOdq1AmxjqKg6v4aYHa8R+fh6PuQ2RJ+lG+puu/7m0SeErYzpZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RpaxANy/; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70eb0ae23e4so67518b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2024 22:03:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1721881041; x=1722485841; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h+VMdQmHWFgj58kNWJtoryibFDwz3t5+vVkcIVzkHLE=;
-        b=eoMYAL0/Xr4/cduuK9twqtlGo7/Et7XYVIFE69mshHwfheHhrAM63vcFtaIzLv0l9+
-         E9mMHrtbLyHYEHQ7WI6kx5Neg+RkgVSp6vdV8OU86NaIGCCeTvDqkBR9akwLFtTM/n0J
-         i2C/mOx2xgK6LdCVXoXeP+7yydy3G5MxeQg4TnnKUHAgKAL03Z8+bniA9+7cQ2GDS8vf
-         4j0Qkezgnyx8LBO9NZtqyBkMVAM0SwBE6XrlILiTBsRDEd+gv0JnYW8/f+VlRAqCAOl0
-         9f6XYHQH3TUnVJvQDFsGOzyHpiRhvw3XWnXCNqJo5aMG6YFjVdc2BGmthVO0sf+RFEdK
-         hNEQ==
+        d=linaro.org; s=google; t=1721883805; x=1722488605; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WSFwKnfVczR16WD5Y3nfX2f2/Inf3FOYKXgV2SNCco4=;
+        b=RpaxANy/VKVKF2jDYfpWTid7exw1wSpKCCrMUcnHP2OEOfaK9QGSqfj5rXkQSZz/DR
+         qTnlMG5QM3y6ZUzhTINpA4MOzpvE9mRvKy+1VgNYxTYArROCDRqfCe8k7H19oNyRiR2H
+         dG7V8qZMg0h0ZOZA+nwTD589nzmv2DDe1cH0An/7ha8C316tkuD3zDUQsZ4jQ7o0CUYF
+         tsIdJIV661ZfY4vMwNtPbvvsVzeNAGRlxPrwbsgSm8w78D7/JtXdX2C9eZcR8k93dLuV
+         8FwqPnJWLP+0w2bySmJHUR32QhirheKqZRTgAZHThEm/fbG+4ZIwiqdpUPGebps0nWjT
+         NbIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721881041; x=1722485841;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h+VMdQmHWFgj58kNWJtoryibFDwz3t5+vVkcIVzkHLE=;
-        b=R/cJjGTJEQolYXY8zzuc+Hy3vWWAspM3q/p6hpXlGrTHVkxtZRM8sU9142rLartTCX
-         hrRFDYmAfLN77rxOPTk9Wxn/7UdMUPBSs/01hjIafQnZLgZL9CSHyG2b8M3kJv1uZPd1
-         k+yT8cA1NkLTYxDAD5EosKxKdJ7P4UMO3EC84s7Vf5Sj0KqUZABUmsIEx+0TNKgPsRg5
-         qGi3EI6YXjAqCfbg9ZKLpUimQhHKeDbO9QiNUtoPOmhHFAObBSLXQ2a7h6XywAReErS4
-         wZB+ijP6PLRXqyH7MoxeXVpMfZWYHm88zgllVmhQoXM4QdrRPkwKr8pTpw1uXMfW8xG+
-         EDrg==
-X-Forwarded-Encrypted: i=1; AJvYcCVYp0JzFuc4vTHy1+q1pWj/gJc71At3VihbYHm2CsoFz7rFefsRT5bvKo694JCSo26+lOuHV030UnPP/qYjeOTWXOSokKFewDopMg==
-X-Gm-Message-State: AOJu0Yx+58t8VIjgsuYEdSTP2DzABwYkbmDE+nP7TR4OI2JdjOqF+4H2
-	cWk9qI65f6cu4hHFrwYGQouVa56NhXERrdDOLIIsXVoerxauVnt/e9om6eNRcfg=
-X-Google-Smtp-Source: AGHT+IG8/lGGFfeqD0yKL6Ukrgul7u0XCxEnqHsWKKVCOGqLNIttHBNHSYlpgXB/YPJd1O/zSdOyZQ==
-X-Received: by 2002:a05:6a00:66cd:b0:704:151d:dcce with SMTP id d2e1a72fcca58-70eaa1e2e1emr2589164b3a.5.1721881040621;
-        Wed, 24 Jul 2024 21:17:20 -0700 (PDT)
-Received: from ghost ([2601:647:6700:2d90:4e8c:b287:20dc:e447])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead874b35sm322537b3a.167.2024.07.24.21.17.18
+        d=1e100.net; s=20230601; t=1721883805; x=1722488605;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WSFwKnfVczR16WD5Y3nfX2f2/Inf3FOYKXgV2SNCco4=;
+        b=eZvjhN39GUfOBiup7rR92xZm5QHPI0hYZUkiA7+xO5x73eIcFED5s3OKmp6DaUfRc/
+         YPbkB9mW7nV7sTZx3vspZzgY2INWXICiqp5Bb0FYFX0RjWZUSFTi0pX04jMC/mcv12/w
+         mHxjLn5MVqY/sQQHW+YkQkd9VtIZIJNmsfyvCuvovRKAxRu+0gmN0BrwSOmNBh57ryLy
+         kujfdU44ON7D/Up+9ZjwgOVBd/ggmPPxRsxS4wtsRf+nPtb+1r+uymDR3RJHfjbeJ/TT
+         MHt4jAlqGrnbj64Ho2TMDVcw2ue+AuIBe7q1MKT4YzPPzlMdgRzMmjHKF8r4n9Q2svG/
+         xcQA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJhNiHK9D1E42K4c98W9TQD+BDxF0aC/LJxS4DCYvLx2JG0ddyW+ICJ4ijXmBZPKgb/FEYH9yW1nTEdTZYS7y9fngcIokvnpyB9Q==
+X-Gm-Message-State: AOJu0Yy7RZd6QiFlWnbuw4C5X2BmPmpZNjleJTFO7acQ8uAfanE6qEXv
+	vH4m4hrOt1lax5lUjrpUvUDHWRKsUxXUnTqFvJNNcDRifso4KjsTUSy3cHRRgQ==
+X-Google-Smtp-Source: AGHT+IHUkqheWrPFgpUPoQDkhuPNo5ceh34Gz+2v4tjh+WIsehsAtjMWtZX+TlgSdAsBTKwMuQC1JQ==
+X-Received: by 2002:a05:6a20:b292:b0:1c0:e69f:f237 with SMTP id adf61e73a8af0-1c47b25a048mr559272637.21.1721883804913;
+        Wed, 24 Jul 2024 22:03:24 -0700 (PDT)
+Received: from thinkpad ([103.244.168.26])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cf28c7fe33sm551503a91.13.2024.07.24.22.03.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jul 2024 21:17:20 -0700 (PDT)
-Date: Wed, 24 Jul 2024 21:17:16 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>
-Cc: Conor Dooley <conor@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
-	jszhang@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
-	samuel@sholland.org, samuel.holland@sifive.com, corbet@lwn.net,
-	shuah@kernel.org, guoren@kernel.org, Evan Green <evan@rivosinc.com>,
-	andy.chiu@sifive.com, jrtc27@jrtc27.com, ajones@ventanamicro.com,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 09/13] riscv: vector: Support xtheadvector save/restore
-Message-ID: <ZqHRzAI0O+zsZd3A@ghost>
-References: <20240724-xtheadvector-v7-9-b741910ada3e@rivosinc.com>
- <mhng-28424e23-c9b4-407e-97d8-9dbb09101781@palmer-ri-x1c9>
+        Wed, 24 Jul 2024 22:03:24 -0700 (PDT)
+Date: Thu, 25 Jul 2024 10:33:19 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Cyril Brulebois <kibi@debian.org>,
+	Stanimir Varbanov <svarbanov@suse.de>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 00/12] PCI: brcnstb: Enable STB 7712 SOC
+Message-ID: <20240725050319.GM2317@thinkpad>
+References: <20240716213131.6036-1-james.quinlan@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <mhng-28424e23-c9b4-407e-97d8-9dbb09101781@palmer-ri-x1c9>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240716213131.6036-1-james.quinlan@broadcom.com>
 
-On Wed, Jul 24, 2024 at 08:23:27PM -0700, Palmer Dabbelt wrote:
-> On Wed, 24 Jul 2024 12:14:00 PDT (-0700), Charlie Jenkins wrote:
-> > Use alternatives to add support for xtheadvector vector save/restore
-> > routines.
-> > 
-> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Jul 16, 2024 at 05:31:15PM -0400, Jim Quinlan wrote:
+> V4 Changes:
+>   o Commit "Check return value of all reset_control_xxx calls"
+>     -- Blank line before "return" (Stan)
+>   o Commit "Use common error handling code in brcmstb_probe()"
+>     -- Drop the "Fixes" tag (Stan)
+>   o Commit "dt-bindings: PCI ..."
+>     -- Separate the main commit into two: cleanup and adding the
+>        7712 SoC (Krzysztof)
+>     -- Fold maintainer change commit into cleanup change (Krzysztof)
+>     -- Use minItems/maxItems where appropriate (Krzysztof)
+>     -- Consistent order of resets/reset-names in decl and usage
+>        (Krzysztof)
 > 
-> b4 isn't applying this, either on top of your last patch set or rc1 -- the
-> base commit in the header isn't a hash I have, so I'm not sure where it's
-> mean to apply to.
-> 
-> Also...
-> 
-> > ---
-> >  arch/riscv/include/asm/csr.h           |   6 +
-> >  arch/riscv/include/asm/switch_to.h     |   2 +-
-> >  arch/riscv/include/asm/vector.h        | 225 +++++++++++++++++++++++++--------
-> >  arch/riscv/kernel/cpufeature.c         |   5 +-
-> >  arch/riscv/kernel/kernel_mode_vector.c |   8 +-
-> >  arch/riscv/kernel/process.c            |   4 +-
-> >  arch/riscv/kernel/signal.c             |   6 +-
-> >  arch/riscv/kernel/vector.c             |  12 +-
-> >  8 files changed, 198 insertions(+), 70 deletions(-)
-> 
-> [...]
-> 
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> > index bf25215bad24..cb48092fdc5d 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -845,10 +845,7 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
-> >  			riscv_isa_set_ext(ext, source_isa);
-> >  		}
-> > 
-> > -<<<<<<< HEAD
-> >  		riscv_resolve_isa(source_isa, isainfo->isa, &this_hwcap, isa2hwcap);
-> > -=======
-> > ->>>>>>> 0f260ac829ca (riscv: Extend cpufeature.c to detect vendor extensions)
-> >  		riscv_fill_cpu_vendor_ext(cpu_node, cpu);
-> > 
-> >  		of_node_put(cpu_node);
-> 
-> This chunk isn't applying, and it's got a conflict marker in there.  So I
-> think that means something's gone off the rails?
 
-I really messed that up... Okay I sent a new version that is based off
-of your for-next that should work?
+Rpi mailing list owners: Could you please make the list 'unmoderated'? I haven't
+subscribe to this list, so I just keep getting the 'Your message to
+linux-rpi-kernel awaits moderator approval' for every review comment I post,
+which is a spam to me.
 
-- Charlie
+Also I won't subscribe to this list unless I work on Rpi. So using moderated
+list in LKML is just spamming the reviewers.
 
+- Mani
+
+> V3 Changes:
+>   o Commit "Enable 7712 SOCs"
+>     -- Move "model" check from outside to inside func (Stan)
+>   o Commit "Check return value of all reset_control_xxx calls"
+>     -- Propagate errors up the chain instead of ignoring them (Stan)
+>   o Commit "Refactor for chips with many regular inbound BARs"
+>     -- Nine suggestions given, nine implemented (Stan)
+>   o Commit "Make HARD_DEBUG, INTR2_CPU_BASE offsets SoC-specific"
+>     -- Drop tab, add parens around macro params in expression (Stan)
+>   o Commit "Use swinit reset if available"
+>     -- Treat swinit the same as other reset controllers (Stan)
+>        Stan suggested to use dev_err_probe() for getting resources
+>        but I will defer that to future series (if that's okay).
+>   o Commit "Get resource before we start asserting resets"
+>     -- Squash this with previous commit (Stan)
+>   o Commit "Use "clk_out" error path label"
+>     -- Move clk_prepare_enable() after getting resouurces (Stan)
+>     -- Change subject to "Use more common error handling code in
+>        brcm_pcie_probe()" (Markus)
+>     -- Use imperative commit description (Markus)
+>     -- "Fixes:" tag added for missing error return. (Markus)
+>   o Commit "dt-bindings: PCI ..."
+>     -- Split off maintainer change in separate commit.
+>     -- Tried to accomodate Krzysztof's requests, I'm not sure I
+>        have succeeded.  Krzysztof, please see [1] below.
+>   
+>   [1] Wrt the YAML of brcmstb PCIe resets, here is what I am trying
+>       to describe:
+> 
+>       CHIP       NUM_RESETS    NAMES
+>       ====       ==========    =====
+>       4908       1             perst
+>       7216       1             rescal
+>       7712       3             rescal, bridge, swinit
+>       Others     0             -
+> 
+> 
+> V2 Changes (note: four new commits):
+>   o Commit "dt-bindings: PCI ..."
+>     -- s/Adds/Add/, fix spelling error (Bjorn)
+>     -- Order compatible strings alphabetically (Krzysztof)
+>     -- Give definitions first then rules (Krzysztof)
+>     -- Add reason for change in maintainer (Krzysztof)
+>   o Commit "Use swinit reset if available"
+>     -- no need for "else" clause (Philipp)
+>     -- fix improper use of dev_err_probe() (Philipp) 
+>   o Commit "Use "clk_out" error path label"
+>     -- Improve commit message (Bjorn)
+>   o Commit "PCI: brcmstb: Make HARD_DEBUG, INTR2_CPU_BASE offsets SoC-specific"
+>     -- Improve commit subject line (Bjorn)
+>   o Commit (NEW) -- Change field name from 'type' to 'model'
+>     -- Added as requested (Stanimir)
+>   o Commit (NEW) -- Check return value of all reset_control_xxx calls
+>     -- Added as requested (Stanimir)
+>   o Commit (NEW) "Get resource before we start asserting reset controllers"
+>     -- Added as requested (Stanimir)
+>   o Commit (NEW) -- "Remove two unused constants from driver"
+> 
+> 
+> V1:
+>   This submission is for the Broadcom STB 7712, sibling SOC of the RPi5 chip.
+>   Stanimir has already submitted a patch "Add PCIe support for bcm2712" for
+>   the RPi version of the SOC.  It is hoped that Stanimir will allow us to
+>   submit this series first and subsequently rebase his patch(es).
+> 
+>   The largest commit, "Refactor for chips with many regular inbound BARs"
+>   affects both the STB and RPi SOCs.  It allows for multiple inbound ranges
+>   where previously only one was effectively used.  This feature will also
+>   be present in future STB chips, as well as Broadcom's Cable Modem group.
+> 
+> Jim Quinlan (12):
+>   dt-bindings: PCI: Cleanup of brcmstb YAML and add 7712 SoC
+>   dt-bindings: PCI: brcmstb: Add 7712 SoC description
+>   PCI: brcmstb: Use common error handling code in brcm_pcie_probe()
+>   PCI: brcmstb: Use bridge reset if available
+>   PCI: brcmstb: Use swinit reset if available
+>   PCI: brcmstb: PCI: brcmstb: Make HARD_DEBUG, INTR2_CPU_BASE offsets
+>     SoC-specific
+>   PCI: brcmstb: Remove two unused constants from driver
+>   PCI: brcmstb: Don't conflate the reset rescal with phy ctrl
+>   PCI: brcmstb: Refactor for chips with many regular inbound BARs
+>   PCI: brcmstb: Check return value of all reset_control_xxx calls
+>   PCI: brcmstb: Change field name from 'type' to 'model'
+>   PCI: brcmstb: Enable 7712 SOCs
+> 
+>  .../bindings/pci/brcm,stb-pcie.yaml           |  50 +-
+>  drivers/pci/controller/pcie-brcmstb.c         | 485 +++++++++++++-----
+>  2 files changed, 400 insertions(+), 135 deletions(-)
+> 
+> 
+> base-commit: 55027e689933ba2e64f3d245fb1ff185b3e7fc81
+> -- 
+> 2.17.1
+> 
+
+
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
