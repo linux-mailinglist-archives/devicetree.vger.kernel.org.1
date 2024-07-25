@@ -1,181 +1,506 @@
-Return-Path: <devicetree+bounces-87996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2890693BCB2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 08:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C95BB93BCB5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 08:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C8E61F23E47
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 06:42:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A8121F21DBA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 06:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631EF16D4E7;
-	Thu, 25 Jul 2024 06:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50F416D32C;
+	Thu, 25 Jul 2024 06:43:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="aUQZVNCZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZiCzSknb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2094.outbound.protection.outlook.com [40.92.102.94])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12C163C7;
-	Thu, 25 Jul 2024 06:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721889708; cv=fail; b=juLWsK/x+WAhi1WOFEQUaUQOc1zFQq7ag+oz1+sHbm+8BnFfdxP/9xl1z5/dsK6J2+G+ioS3yYhHe2/IbWlM6Xy28VDxVYA+Q8EfZuj3f9n+ql2H2ZaR4PbreaVXeRT93X3fa1rqGuC7wT+mcqWJhoj88aOSUFyRTOqS2KlEEiA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721889708; c=relaxed/simple;
-	bh=tNrBCE/NbHSn/eBmnK4bBLZ6kO7jZspAGenJ8EfCPO0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=nIQf7gzroCXdlW8MO2Vczic1VNkB9vXS/1zA2CHUv+oWWVhvWyMIaPOb5NVAL/64elcVPtWRfWspFC/H1cTV63oCR/ECZIRlKoTy27CsNU9mE3w9f8MhFmrf45Cmz7/2BSJb3/pbI1uiiREN8Y/4kprCTmMV2LOzbNV1E9rP0jo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=aUQZVNCZ; arc=fail smtp.client-ip=40.92.102.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=THDzwdXqiHL+KDu80Ks2C30fhIYWNrYToCMKB7TPxGZZyQqq/plj60p00yKGF8s2wbNDObmJzjSK3ikRpSyjqjCnAPIr/NcPOEg7Uu1JYbxx93T7z1Dqh9LGcuy9xMyaqd1S5HbELSpU52/VSGuRU8kXuv4dd/ucH7zZWugdN5mQ2/0QO0jVgc70UJmDdXK+a3GlyXyuk3T6mnT1qLEV7Gokq9JzT3wz55Z2C38tZT03rsXZUuHo96kLgMlDKxH4ulzP2BMLc8Umj2EZUTj22nVIFGe6VKwx6fPLdTB3rfqB/u9Hjk7Kuh1Gyj0dqNan/qmyl0J5kbpgAcDyPmQtaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eJXRZq0AFEHan0a2ngKZspxYaZNavttdsRnWllBl5BM=;
- b=Io6aecL7IbI/BDdg8s4A8t7Uppsibt0FLZKCm2+CSQpJYO+qDcLw+nof/0fyxt6SWXWX8ePP/Odk2E4N+lAnervFFOI46Lkvya/xU2vqGol1APDe0hnIEBW2NtP+LnraW4gysoG0mU37DDq/DIuRKeFu4TAopF/yU2LYnkSXud+HfMIi2TBLTe8QdmXfCn36YV5niUVum1Uct4OrPhhxnT6Vfhf/spIGQTXTEmtQNVFNIpWkisK/OyGegjs36MUCBBCGN84A8kBdYg5LoXBTEZSZpKJ/dfTmA+vb5g50193I7YdHD0qFk1Elr9yDlVUO8Gwy/EbUXB3MuVuOoxo3Ig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eJXRZq0AFEHan0a2ngKZspxYaZNavttdsRnWllBl5BM=;
- b=aUQZVNCZJDWciD3EcVB8Whylksqg7nW6e45VQVCpB2apqw8xkZjQp8Z7AdUvnj31YQFMoHssujARmcyI0H91vevEZYLzyulSver9g1c7O6+gXPogXpCJtTTcsvh0sUycyY/SzvpdomGhFIlEltUSJrvtTztlSW4PodkfdWQw3YJEtr9d94zJor9OFO8VbYRy+crwDM3F63l5XhALSbgjCCmC/mBrc6xpJlGpfAzbLycDywTUC3etMF81Gqlq3LQ8O23jVsd0Eh8tr29BOp9nUW8Ts3kgVkI8xXH9M+w9MFtmeA/rg1pvGbYb/tCAuRUZ8J6IErKued86/ZY2smcybA==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by MA0P287MB1626.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ff::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.28; Thu, 25 Jul
- 2024 06:41:39 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%6]) with mapi id 15.20.7784.020; Thu, 25 Jul 2024
- 06:41:39 +0000
-Message-ID:
- <MA0P287MB2822C12B909AA82D6602FC12FEAB2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 25 Jul 2024 14:41:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] riscv: dts: sophgo: Add sdhci0 configuration for Huanshan
- Pi
-To: Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jisheng Zhang <jszhang@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <IA1PR20MB49538AC83C5DB314D10F7186BBA92@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49538AC83C5DB314D10F7186BBA92@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [lUQxT4mEGb8wJ0SB4hUQ7l/hr4LfYngI]
-X-ClientProxiedBy: TYCPR01CA0063.jpnprd01.prod.outlook.com
- (2603:1096:405:2::27) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <d0b8c23a-e20c-48d2-a26b-17dd1fdfad77@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0E263C7;
+	Thu, 25 Jul 2024 06:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721889836; cv=none; b=EnJzCPwHKB/MSrRplYIyfG8yPLwdt83OmsuScQsRhpFFNnV4KB1IGF90ulqVW4a8quFPxexs08p5ojpIfK3636KH6I5r0WZex+D/mohhtT5ix0us4UWuh6ZDZt91UcFRhvWSKjxczmtpHAziF+e28D71mLd0jIUUbGG7B/W2WgY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721889836; c=relaxed/simple;
+	bh=j5u2RpXt7FLWK3p3uA35Pa2GPE4jCj0dwoVonDkPdqY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nqn7HqyPBW9TteHI8VLYkCWySMlHRWBFLmTQ30pQB+URHpnKEe4Emoydrude+wK2UvQHO4yT+uWD7heEOMoL2wVn3/qv9QgKYpT9xB7gZf0583TlfgDpn7OX5/IPum0rhik+t/Cq4w5Ti56UpwHXe6ZssZPRrTmXK5CF9BUR6Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZiCzSknb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A107C116B1;
+	Thu, 25 Jul 2024 06:43:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721889836;
+	bh=j5u2RpXt7FLWK3p3uA35Pa2GPE4jCj0dwoVonDkPdqY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZiCzSknbY+OksEDov3gvjl3Jf5xG355EhKITaXvqrA9kRiJPRUJ4Lio/j4risjF5w
+	 qKzetqLt619vnvQUctynXWqPDdMPXu9MRG0r3L3VfzuCrr5Uqsn2jwWpkdqgsxdzLh
+	 g8C5n4gYcf4YIk1RuoCqYwBS7q06RUjo3CY8ArrO4GbwWzJmwTwoAf7bVetTylRd4u
+	 ccNxoReArFA921fSVLMQNlbznN1BNgSb0o83574kpKvt33yXP7S/Zey+fnAyzTdKit
+	 HJfhmqXsbyoMI9VFuNSw8OaMIvKoKzHxa3khZh2osODFUulB33cHi2+dPZAb8jRNtG
+	 r4rCtQxoViCdQ==
+Date: Thu, 25 Jul 2024 12:13:52 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Konstantin Porotchkin <kostap@marvell.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC v3 5/6] phy: mvebu-cp110-utmi: add support for
+ armada-380 utmi phys
+Message-ID: <ZqH0KDVjCILr3A6r@matsya>
+References: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
+ <20240720-a38x-utmi-phy-v3-5-4c16f9abdbdc@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB1626:EE_
-X-MS-Office365-Filtering-Correlation-Id: b523b46e-a2fd-4754-a0c4-08dcac74d544
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|5072599006|461199028|8060799006|19110799003|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	03lXVCHoWYFyAY5szPIYJO4rO882HXx4bIOuUDjwXxK60DUbeP6hdz7ZnjPjx5aJgFHoAIuP20uewWpWYSGGOpYle1NH+vha1X3U6KfHKCL77xZIkTh7rUeQ4u0Xqq4mG+jngT57LsruB1HwS8ECR60lkZVHx7GHrLojpR7pow5ZCINrXUkA4HVdS0xppk4yRmy/hHByeOBtdxt7NkgGTC7HidiQz7MEbr0xyhZaxsoBSv2YP+kYb2yNuRl0zbHqO0FWrCfcIW/pmmRvvhWGuaWTmbnaYHtzFM1k+WnK9DRtuCW1EMn/g8HzAx7szjva5aTyK7/RmA2MwAiQotC23pyrR1R8jDYL6587K2eO9kbb/TqZV+EJeoPE4/Z077CugCLWQsybj+gfqcv4ALft7dHjRGN151SjLuDMsXi727kBKKnVXW63pPUm0npKz5eL//Uc4qc57Hial/YP9KnGdSs+phrMQrE+XFc6pSouIeikQWAjM7hocdH32kp9vv9llbFUF6JkHRGUTQmVbfnhIK2ANi1qAQZayOalt9+rb3kMV62VJygdsmC7BEtPdGasaTnFkSPXd5TL10b4dcTck9Dd+VYr29vEHwbO1qWZNcC8M9NUfhMWfoBKMCyaCnKhrTk2B5dCXmmyZr5p7iPiRs+UmlhNafpmCajunqZMc5tygru5jlp3zr45F+b6SnAP
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dlA3bUxIUkdEb0hSTnFOaGtnNVA3blBMc3dVaEFXNGZWaXBRaG1sbmhicGlF?=
- =?utf-8?B?M2dYanRTWlE0Z1hhZk9mTlNCam1SNUs2YzgzdmVQMm80cy9WNWlwOWNkc1FC?=
- =?utf-8?B?MElQL1dUSUR5RUEvUWtPcDBxMzZ1R0ZzTE4vMzJpVkh1Z0JSNEI5MkZnRVVB?=
- =?utf-8?B?R0g1RTkyYUd0RnI3cHVsU2I2RzNLV1hqdWdkdGFva0lBakVTK3J3TmhtQ2Y5?=
- =?utf-8?B?OWY0YkJtZTVMVkFoT0tGTmNKN1llaituYjRmVVBwU1h6WEFoMnk0Zyt5OEtw?=
- =?utf-8?B?bDVTRFNWUzh4ZUhRVkNYamJEV0EzMEdDMytEb2RuUzIwSldUa2Fzb1hDTzRr?=
- =?utf-8?B?b3AxeVJHMXdvN1ZZRkxEWnNWNmJGV3JUOTExcTl1QldoZkhWVWMwampsZkxJ?=
- =?utf-8?B?QWRGUUFpazc0RnljdnluRlFydkp2bndkd0hWczZiVEQycEJOOUpkbEtZd21u?=
- =?utf-8?B?TzJIbDhLd1MvVkIwT2VocFBYSkxIZUdCTnN0akJmUlNIcnJiOVVCNVg1YWo1?=
- =?utf-8?B?dDJxWlhuWWhnYjhWWUhSZ0F6ZnFtUUV1U1pRSmE0UUhpOSs2YlNmSENnR3hT?=
- =?utf-8?B?R05WUUpIUEx5M2JMSjdBVy9MYXBFVDlpQkx0c0p1djhWc1VGOHNqR3JscUlP?=
- =?utf-8?B?YzFRdnU5cVg1em5YbXdjWUFSR3VTY1B4bnNob3pyRFE1aHVTbWYxRVFnSmE5?=
- =?utf-8?B?WG96YTNzbHZQanh5aVRYcmc0LzFVWlBKSVA0cW82RHBaampXVEZHRHlBUWhr?=
- =?utf-8?B?UzRZK1ZEeURvekxnUHJNKzZvTDlzM1c4Zms2dnNZaHl5cnJNQS8xaU5sTW9J?=
- =?utf-8?B?RE81QnNxUURBRFdKVGdpUHNSN241TmcxUkVjMnpnUnJjM0hYTFpiUDRYYUVh?=
- =?utf-8?B?U3orMDdHQ2RVN3BnUFFTT2RzU0RTNWpTcEsxekpjUHU2dlVMcDl4WVNiTDJE?=
- =?utf-8?B?WkFZNjFWZWdwVXVGZUxFVjY2NnM4U05CR2JuMUlhWEhWT2tXbmhha0cwTjc3?=
- =?utf-8?B?TVg2aDI3cUZ6a0JkampTeEc5UDU2d3p6QXRocWlHM1F3RHlvalhpYzJienlt?=
- =?utf-8?B?RVVBRER0TzZYdzhsT2xMTkxVRzhyTWw0bHFQdXl3MzFrSmlUZjZ6S0RjeVlI?=
- =?utf-8?B?eGhRQ2EvQkx6THkvb2toK1NuK2dYRklJTENmVWtFT2RxUVV6UVVNVzVobUZo?=
- =?utf-8?B?dHpUdXJkYUhZTVVsalJoUXhwTEJwM0VwYVVjNWVOVG04Q0xwQkhnSlpxNFZG?=
- =?utf-8?B?UDF6UzVtajZ6ZUY3c2dRYWdGbnlWdWwvRDRybU9EMHE3a2x3NlVzaW92b2tQ?=
- =?utf-8?B?Z1dUb01yNXlrUjd4akMrU3FZcVEvb1hxbjJKdStIMWNUQUdqSzZBVkE4TGx0?=
- =?utf-8?B?eWw2UmY1QUxDY25JTTJFazdWSE5acUVtbm5qVzNseE0vVGZGUkRzbi9vVS9R?=
- =?utf-8?B?bkxJWk4xY243NXJ0a05HZEV0TFFNOVFjT1h3RU1uZWlJUXhwRjZkdmV1Rzd4?=
- =?utf-8?B?Tklsb3dhS0NaaUZwVmY3Q0gwM0NTQ3RKcExQNDBmbDVxd0djK1lrcXhJY0FJ?=
- =?utf-8?B?QXpla1kzY1ppY2FBR21aa1U5T0YrSWJQb2RCMlJXZ2RqdVBZdzdrR0FkOFUx?=
- =?utf-8?B?QXRXRnN6SHhjY3VpRzN0WUd2akRpQW16WExVMWV0d3JjNFRqalFRUXpuQmF0?=
- =?utf-8?Q?k70p/jPRajzkXxuXurJD?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b523b46e-a2fd-4754-a0c4-08dcac74d544
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 06:41:39.0587
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1626
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240720-a38x-utmi-phy-v3-5-4c16f9abdbdc@solid-run.com>
 
-
-On 2024/7/23 10:18, Inochi Amaoto wrote:
-> Add configuration for sdhci0 for Huanshan Pi to support sd card.
-
-Huanshan -> Huashan
-
-Others LGTM.
-
-Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
-
-Thanks,
-
-Chen
-
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+On 20-07-24, 16:19, Josua Mayer wrote:
+> Armada 380 has similar USB-2.0 PHYs as CP-110. The differences are:
+> - register base addresses
+> - gap between port registers
+> - number of ports: 388 has three, cp110 two
+> - device-mode mux bit refers to different ports
+> - syscon register's base address (offsets identical)
+> - armada-8k uses syscon for various drivers, a38x not
+> 
+> Differentiation uses of_match_data with distinct compatible strings.
+> 
+> Add support for Armada 380 PHYs by partially restructuting the driver:
+> - Port register pointers are moved to the per-port private data.
+> - Add armada-38x-specific compatible string and store enum value in
+>   of_match_data for differentiation.
+> - Add support for optional regs usb-cfg and utmi-cfg, to be used instead
+>   of syscon.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
->   arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts | 9 +++++++++
->   1 file changed, 9 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-> index aa361f3a86bb..7b5f57853690 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-> +++ b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-> @@ -43,6 +43,15 @@ &osc {
->   	clock-frequency = <25000000>;
->   };
->
-> +&sdhci0 {
-> +	status = "okay";
-> +	bus-width = <4>;
-> +	no-1-8-v;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
+>  drivers/phy/marvell/phy-mvebu-cp110-utmi.c | 209 +++++++++++++++++++++++------
+>  1 file changed, 166 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/phy/marvell/phy-mvebu-cp110-utmi.c b/drivers/phy/marvell/phy-mvebu-cp110-utmi.c
+> index 4922a5f3327d..4341923e85bc 100644
+> --- a/drivers/phy/marvell/phy-mvebu-cp110-utmi.c
+> +++ b/drivers/phy/marvell/phy-mvebu-cp110-utmi.c
+> @@ -19,7 +19,7 @@
+>  #include <linux/usb/of.h>
+>  #include <linux/usb/otg.h>
+>  
+> -#define UTMI_PHY_PORTS				2
+> +#define UTMI_PHY_PORTS				3
+>  
+>  /* CP110 UTMI register macro definetions */
+>  #define SYSCON_USB_CFG_REG			0x420
+> @@ -76,32 +76,44 @@
+>  #define PLL_LOCK_DELAY_US			10000
+>  #define PLL_LOCK_TIMEOUT_US			1000000
+>  
+> -#define PORT_REGS(p)				((p)->priv->regs + (p)->id * 0x1000)
+> +enum mvebu_cp110_utmi_type {
+> +	/* 0 is reserved to avoid clashing with NULL */
+> +	A380_UTMI = 1,
+> +	CP110_UTMI = 2,
 > +};
 > +
->   &uart0 {
->   	status = "okay";
->   };
-> --
-> 2.45.2
->
+> +struct mvebu_cp110_utmi_port;
+
+why forward declare and not move the structs instead?
+
+>  
+>  /**
+>   * struct mvebu_cp110_utmi - PHY driver data
+>   *
+> - * @regs: PHY registers
+> + * @regs_usb: USB configuration register
+>   * @syscon: Regmap with system controller registers
+>   * @dev: device driver handle
+>   * @ops: phy ops
+> + * @ports: phy object for each port
+>   */
+>  struct mvebu_cp110_utmi {
+> -	void __iomem *regs;
+> +	void __iomem *regs_usb;
+>  	struct regmap *syscon;
+>  	struct device *dev;
+>  	const struct phy_ops *ops;
+> +	struct mvebu_cp110_utmi_port *ports[UTMI_PHY_PORTS];
+>  };
+>  
+>  /**
+>   * struct mvebu_cp110_utmi_port - PHY port data
+>   *
+> + * @regs: PHY registers
+> + * @regs_cfg: PHY config register
+>   * @priv: PHY driver data
+>   * @id: PHY port ID
+>   * @dr_mode: PHY connection: USB_DR_MODE_HOST or USB_DR_MODE_PERIPHERAL
+>   */
+>  struct mvebu_cp110_utmi_port {
+>  	struct mvebu_cp110_utmi *priv;
+> +	void __iomem *regs;
+> +	void __iomem *regs_cfg;
+>  	u32 id;
+>  	enum usb_dr_mode dr_mode;
+>  };
+> @@ -118,47 +130,47 @@ static void mvebu_cp110_utmi_port_setup(struct mvebu_cp110_utmi_port *port)
+>  	 * The crystal used for all platform boards is now 25MHz.
+>  	 * See the functional specification for details.
+>  	 */
+> -	reg = readl(PORT_REGS(port) + UTMI_PLL_CTRL_REG);
+> +	reg = readl(port->regs + UTMI_PLL_CTRL_REG);
+
+why not handle this as a preparatory patch for this? Helps in review
+
+>  	reg &= ~(PLL_REFDIV_MASK | PLL_FBDIV_MASK | PLL_SEL_LPFR_MASK);
+>  	reg |= (PLL_REFDIV_VAL << PLL_REFDIV_OFFSET) |
+>  	       (PLL_FBDIV_VAL << PLL_FBDIV_OFFSET);
+> -	writel(reg, PORT_REGS(port) + UTMI_PLL_CTRL_REG);
+> +	writel(reg, port->regs + UTMI_PLL_CTRL_REG);
+>  
+>  	/* Impedance Calibration Threshold Setting */
+> -	reg = readl(PORT_REGS(port) + UTMI_CAL_CTRL_REG);
+> +	reg = readl(port->regs + UTMI_CAL_CTRL_REG);
+>  	reg &= ~IMPCAL_VTH_MASK;
+>  	reg |= IMPCAL_VTH_VAL << IMPCAL_VTH_OFFSET;
+> -	writel(reg, PORT_REGS(port) + UTMI_CAL_CTRL_REG);
+> +	writel(reg, port->regs + UTMI_CAL_CTRL_REG);
+>  
+>  	/* Set LS TX driver strength coarse control */
+> -	reg = readl(PORT_REGS(port) + UTMI_TX_CH_CTRL_REG);
+> +	reg = readl(port->regs + UTMI_TX_CH_CTRL_REG);
+>  	reg &= ~TX_AMP_MASK;
+>  	reg |= TX_AMP_VAL << TX_AMP_OFFSET;
+> -	writel(reg, PORT_REGS(port) + UTMI_TX_CH_CTRL_REG);
+> +	writel(reg, port->regs + UTMI_TX_CH_CTRL_REG);
+>  
+>  	/* Disable SQ and enable analog squelch detect */
+> -	reg = readl(PORT_REGS(port) + UTMI_RX_CH_CTRL0_REG);
+> +	reg = readl(port->regs + UTMI_RX_CH_CTRL0_REG);
+>  	reg &= ~SQ_DET_EN;
+>  	reg |= SQ_ANA_DTC_SEL;
+> -	writel(reg, PORT_REGS(port) + UTMI_RX_CH_CTRL0_REG);
+> +	writel(reg, port->regs + UTMI_RX_CH_CTRL0_REG);
+>  
+>  	/*
+>  	 * Set External squelch calibration number and
+>  	 * enable the External squelch calibration
+>  	 */
+> -	reg = readl(PORT_REGS(port) + UTMI_RX_CH_CTRL1_REG);
+> +	reg = readl(port->regs + UTMI_RX_CH_CTRL1_REG);
+>  	reg &= ~SQ_AMP_CAL_MASK;
+>  	reg |= (SQ_AMP_CAL_VAL << SQ_AMP_CAL_OFFSET) | SQ_AMP_CAL_EN;
+> -	writel(reg, PORT_REGS(port) + UTMI_RX_CH_CTRL1_REG);
+> +	writel(reg, port->regs + UTMI_RX_CH_CTRL1_REG);
+>  
+>  	/*
+>  	 * Set Control VDAT Reference Voltage - 0.325V and
+>  	 * Control VSRC Reference Voltage - 0.6V
+>  	 */
+> -	reg = readl(PORT_REGS(port) + UTMI_CHGDTC_CTRL_REG);
+> +	reg = readl(port->regs + UTMI_CHGDTC_CTRL_REG);
+>  	reg &= ~(VDAT_MASK | VSRC_MASK);
+>  	reg |= (VDAT_VAL << VDAT_OFFSET) | (VSRC_VAL << VSRC_OFFSET);
+> -	writel(reg, PORT_REGS(port) + UTMI_CHGDTC_CTRL_REG);
+> +	writel(reg, port->regs + UTMI_CHGDTC_CTRL_REG);
+>  }
+>  
+>  static int mvebu_cp110_utmi_phy_power_off(struct phy *phy)
+> @@ -166,22 +178,38 @@ static int mvebu_cp110_utmi_phy_power_off(struct phy *phy)
+>  	struct mvebu_cp110_utmi_port *port = phy_get_drvdata(phy);
+>  	struct mvebu_cp110_utmi *utmi = port->priv;
+>  	int i;
+> +	int reg;
+>  
+>  	/* Power down UTMI PHY port */
+> -	regmap_clear_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
+> -			  UTMI_PHY_CFG_PU_MASK);
+> +	if (!IS_ERR(port->regs_cfg)) {
+> +		reg = readl(port->regs_cfg);
+> +		reg &= ~(UTMI_PHY_CFG_PU_MASK);
+> +		writel(reg, port->regs_cfg);
+> +	} else
+> +		regmap_clear_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
+> +				  UTMI_PHY_CFG_PU_MASK);
+
+why are we doing both raw register read/write and regmap ops... that
+does not sound correct to me
+
+>  
+>  	for (i = 0; i < UTMI_PHY_PORTS; i++) {
+> -		int test = regmap_test_bits(utmi->syscon,
+> -					    SYSCON_UTMI_CFG_REG(i),
+> -					    UTMI_PHY_CFG_PU_MASK);
+> +		if (!utmi->ports[i])
+> +			continue;
+> +
+> +		if (!IS_ERR(utmi->ports[i]->regs_cfg))
+> +			reg = readl(utmi->ports[i]->regs_cfg);
+> +		else
+> +			regmap_read(utmi->syscon, SYSCON_UTMI_CFG_REG(i), &reg);
+> +		int test = reg & UTMI_PHY_CFG_PU_MASK;
+>  		/* skip PLL shutdown if there are active UTMI PHY ports */
+>  		if (test != 0)
+>  			return 0;
+>  	}
+>  
+>  	/* PLL Power down if all UTMI PHYs are down */
+> -	regmap_clear_bits(utmi->syscon, SYSCON_USB_CFG_REG, USB_CFG_PLL_MASK);
+> +	if (!IS_ERR(utmi->regs_usb)) {
+> +		reg = readl(utmi->regs_usb);
+> +		reg &= ~(USB_CFG_PLL_MASK);
+> +		writel(reg, utmi->regs_usb);
+> +	} else
+> +		regmap_clear_bits(utmi->syscon, SYSCON_USB_CFG_REG, USB_CFG_PLL_MASK);
+>  
+>  	return 0;
+>  }
+> @@ -191,8 +219,15 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
+>  	struct mvebu_cp110_utmi_port *port = phy_get_drvdata(phy);
+>  	struct mvebu_cp110_utmi *utmi = port->priv;
+>  	struct device *dev = &phy->dev;
+> +	const void *match;
+> +	enum mvebu_cp110_utmi_type type;
+>  	int ret;
+>  	u32 reg;
+> +	u32 sel;
+> +
+> +	match = device_get_match_data(utmi->dev);
+> +	if (match)
+> +		type = (enum mvebu_cp110_utmi_type)(uintptr_t)match;
+>  
+>  	/* It is necessary to power off UTMI before configuration */
+>  	ret = mvebu_cp110_utmi_phy_power_off(phy);
+> @@ -208,16 +243,45 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
+>  	 * to UTMI0 or to UTMI1 PHY port, but not to both.
+>  	 */
+>  	if (port->dr_mode == USB_DR_MODE_PERIPHERAL) {
+> -		regmap_update_bits(utmi->syscon, SYSCON_USB_CFG_REG,
+> -				   USB_CFG_DEVICE_EN_MASK | USB_CFG_DEVICE_MUX_MASK,
+> -				   USB_CFG_DEVICE_EN_MASK |
+> -				   (port->id << USB_CFG_DEVICE_MUX_OFFSET));
+> +		switch (type) {
+> +		case A380_UTMI:
+> +			/*
+> +			 * A380 muxes between ports 0/2:
+> +			 * - 0: Device mode on Port 2
+> +			 * - 1: Device mode on Port 0
+> +			 */
+> +			if (port->id == 1)
+> +				return -EINVAL;
+> +			sel = !!(port->id == 0);
+> +			break;
+> +		case CP110_UTMI:
+> +			/*
+> +			 * CP110 muxes between ports 0/1:
+> +			 * - 0: Device mode on Port 0
+> +			 * - 1: Device mode on Port 1
+> +			 */
+> +			sel = port->id;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		if (!IS_ERR(utmi->regs_usb)) {
+> +			reg = readl(utmi->regs_usb);
+> +			reg &= ~(USB_CFG_DEVICE_EN_MASK | USB_CFG_DEVICE_MUX_MASK);
+> +			reg |= USB_CFG_DEVICE_EN_MASK;
+> +			reg |= (sel << USB_CFG_DEVICE_MUX_OFFSET);
+> +			writel(reg, utmi->regs_usb);
+> +		} else
+> +			regmap_update_bits(utmi->syscon, SYSCON_USB_CFG_REG,
+> +					   USB_CFG_DEVICE_EN_MASK | USB_CFG_DEVICE_MUX_MASK,
+> +					   USB_CFG_DEVICE_EN_MASK |
+> +					   (sel << USB_CFG_DEVICE_MUX_OFFSET));
+>  	}
+>  
+>  	/* Set Test suspendm mode and enable Test UTMI select */
+> -	reg = readl(PORT_REGS(port) + UTMI_CTRL_STATUS0_REG);
+> +	reg = readl(port->regs + UTMI_CTRL_STATUS0_REG);
+>  	reg |= SUSPENDM | TEST_SEL;
+> -	writel(reg, PORT_REGS(port) + UTMI_CTRL_STATUS0_REG);
+> +	writel(reg, port->regs + UTMI_CTRL_STATUS0_REG);
+>  
+>  	/* Wait for UTMI power down */
+>  	mdelay(1);
+> @@ -226,16 +290,21 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
+>  	mvebu_cp110_utmi_port_setup(port);
+>  
+>  	/* Power UP UTMI PHY */
+> -	regmap_set_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
+> -			UTMI_PHY_CFG_PU_MASK);
+> +	if (!IS_ERR(port->regs_cfg)) {
+> +		reg = readl(port->regs_cfg);
+> +		reg |= UTMI_PHY_CFG_PU_MASK;
+> +		writel(reg, port->regs_cfg);
+> +	} else
+> +		regmap_set_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
+> +				UTMI_PHY_CFG_PU_MASK);
+>  
+>  	/* Disable Test UTMI select */
+> -	reg = readl(PORT_REGS(port) + UTMI_CTRL_STATUS0_REG);
+> +	reg = readl(port->regs + UTMI_CTRL_STATUS0_REG);
+>  	reg &= ~TEST_SEL;
+> -	writel(reg, PORT_REGS(port) + UTMI_CTRL_STATUS0_REG);
+> +	writel(reg, port->regs + UTMI_CTRL_STATUS0_REG);
+>  
+>  	/* Wait for impedance calibration */
+> -	ret = readl_poll_timeout(PORT_REGS(port) + UTMI_CAL_CTRL_REG, reg,
+> +	ret = readl_poll_timeout(port->regs + UTMI_CAL_CTRL_REG, reg,
+>  				 reg & IMPCAL_DONE,
+>  				 PLL_LOCK_DELAY_US, PLL_LOCK_TIMEOUT_US);
+>  	if (ret) {
+> @@ -244,7 +313,7 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
+>  	}
+>  
+>  	/* Wait for PLL calibration */
+> -	ret = readl_poll_timeout(PORT_REGS(port) + UTMI_CAL_CTRL_REG, reg,
+> +	ret = readl_poll_timeout(port->regs + UTMI_CAL_CTRL_REG, reg,
+>  				 reg & PLLCAL_DONE,
+>  				 PLL_LOCK_DELAY_US, PLL_LOCK_TIMEOUT_US);
+>  	if (ret) {
+> @@ -253,7 +322,7 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
+>  	}
+>  
+>  	/* Wait for PLL ready */
+> -	ret = readl_poll_timeout(PORT_REGS(port) + UTMI_PLL_CTRL_REG, reg,
+> +	ret = readl_poll_timeout(port->regs + UTMI_PLL_CTRL_REG, reg,
+>  				 reg & PLL_RDY,
+>  				 PLL_LOCK_DELAY_US, PLL_LOCK_TIMEOUT_US);
+>  	if (ret) {
+> @@ -262,7 +331,12 @@ static int mvebu_cp110_utmi_phy_power_on(struct phy *phy)
+>  	}
+>  
+>  	/* PLL Power up */
+> -	regmap_set_bits(utmi->syscon, SYSCON_USB_CFG_REG, USB_CFG_PLL_MASK);
+> +	if (!IS_ERR(utmi->regs_usb)) {
+> +		reg = readl(utmi->regs_usb);
+> +		reg |= USB_CFG_PLL_MASK;
+> +		writel(reg, utmi->regs_usb);
+> +	} else
+> +		regmap_set_bits(utmi->syscon, SYSCON_USB_CFG_REG, USB_CFG_PLL_MASK);
+>  
+>  	return 0;
+>  }
+> @@ -274,7 +348,8 @@ static const struct phy_ops mvebu_cp110_utmi_phy_ops = {
+>  };
+>  
+>  static const struct of_device_id mvebu_cp110_utmi_of_match[] = {
+> -	{ .compatible = "marvell,cp110-utmi-phy" },
+> +	{ .compatible = "marvell,a38x-utmi-phy", .data = (void *)A380_UTMI },
+> +	{ .compatible = "marvell,cp110-utmi-phy", .data = (void *)CP110_UTMI },
+
+Cast to void * are not required to be done
+
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, mvebu_cp110_utmi_of_match);
+> @@ -285,6 +360,10 @@ static int mvebu_cp110_utmi_phy_probe(struct platform_device *pdev)
+>  	struct mvebu_cp110_utmi *utmi;
+>  	struct phy_provider *provider;
+>  	struct device_node *child;
+> +	void __iomem *regs_utmi;
+> +	void __iomem *regs_utmi_cfg;
+> +	const void *match;
+> +	enum mvebu_cp110_utmi_type type;
+>  	u32 usb_devices = 0;
+>  
+>  	utmi = devm_kzalloc(dev, sizeof(*utmi), GFP_KERNEL);
+> @@ -293,18 +372,44 @@ static int mvebu_cp110_utmi_phy_probe(struct platform_device *pdev)
+>  
+>  	utmi->dev = dev;
+>  
+> +	match = device_get_match_data(dev);
+> +	if (match)
+> +		type = (enum mvebu_cp110_utmi_type)(uintptr_t)match;
+> +
+> +	/* Get UTMI memory region */
+> +	regs_utmi = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(regs_utmi)) {
+> +		dev_err(dev, "Failed to map utmi regs\n");
+> +		return PTR_ERR(regs_utmi);
+> +	}
+> +
+> +	/* Get usb config region */
+> +	utmi->regs_usb = devm_platform_ioremap_resource_byname(pdev, "usb-cfg");
+> +	if (IS_ERR(utmi->regs_usb) && PTR_ERR(utmi->regs_usb) != -EINVAL) {
+> +		dev_err(dev, "Failed to map usb config regs\n");
+> +		return PTR_ERR(utmi->regs_usb);
+> +	}
+> +
+> +	/* Get utmi config region */
+> +	regs_utmi_cfg = devm_platform_ioremap_resource_byname(pdev, "utmi-cfg");
+> +	if (IS_ERR(regs_utmi_cfg) && PTR_ERR(regs_utmi_cfg) != -EINVAL) {
+> +		dev_err(dev, "Failed to map usb config regs\n");
+> +		return PTR_ERR(regs_utmi_cfg);
+> +	}
+> +
+>  	/* Get system controller region */
+>  	utmi->syscon = syscon_regmap_lookup_by_phandle(dev->of_node,
+>  						       "marvell,system-controller");
+> -	if (IS_ERR(utmi->syscon)) {
+> -		dev_err(dev, "Missing UTMI system controller\n");
+> +	if (IS_ERR(utmi->syscon) && PTR_ERR(utmi->syscon) != -ENODEV) {
+> +		dev_err(dev, "Failed to get system controller\n");
+>  		return PTR_ERR(utmi->syscon);
+>  	}
+>  
+> -	/* Get UTMI memory region */
+> -	utmi->regs = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(utmi->regs))
+> -		return PTR_ERR(utmi->regs);
+> +	if (IS_ERR(utmi->syscon) &&
+> +	    (IS_ERR(utmi->regs_usb) || IS_ERR(regs_utmi_cfg))) {
+> +		dev_err(dev, "Missing utmi system controller or config regs");
+> +		return -EINVAL;
+> +	}
+>  
+>  	for_each_available_child_of_node(dev->of_node, child) {
+>  		struct mvebu_cp110_utmi_port *port;
+> @@ -326,6 +431,24 @@ static int mvebu_cp110_utmi_phy_probe(struct platform_device *pdev)
+>  			return -ENOMEM;
+>  		}
+>  
+> +		utmi->ports[port_id] = port;
+> +
+> +		/* Get port memory region */
+> +		switch (type) {
+> +		case A380_UTMI:
+> +			port->regs = regs_utmi + port_id * 0x1000;
+> +			break;
+> +		case CP110_UTMI:
+> +			port->regs = regs_utmi + port_id * 0x2000;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +		/* assign utmi cfg reg */
+> +		if (!IS_ERR(regs_utmi_cfg))
+> +			port->regs_cfg = regs_utmi_cfg + port_id * 4;
+> +
+>  		port->dr_mode = of_usb_get_dr_mode_by_phy(child, -1);
+>  		if ((port->dr_mode != USB_DR_MODE_HOST) &&
+>  		    (port->dr_mode != USB_DR_MODE_PERIPHERAL)) {
+> 
+> -- 
+> 2.43.0
+
+-- 
+~Vinod
 
