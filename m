@@ -1,84 +1,93 @@
-Return-Path: <devicetree+bounces-88057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C759793BF9C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 12:05:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF45093BFA0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 12:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30C59B21BF9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 10:05:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0BF41C208E8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 10:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E21197A7C;
-	Thu, 25 Jul 2024 10:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u0EqlOvp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B0E198A10;
+	Thu, 25 Jul 2024 10:05:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABD81386C0;
-	Thu, 25 Jul 2024 10:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065C0197512;
+	Thu, 25 Jul 2024 10:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721901927; cv=none; b=mmndZVtkahIcqx3/RtTpvi00ZOXttty2+6rnoSHj4wC5j46nojGBwAhp4ipL+3AdLn9vMPA09fKSgyZ24E18siaim43wvi+557yJnosH0zp/z8izYpVolq4VsMBzUBlR5ZtETnbt0tIwnpImKaTA8n65XvK2VJFV/6D09vtLKgg=
+	t=1721901949; cv=none; b=oMIjP+WcStKIO2tuBjHxGCsJ8yUInLKnY/xZ249/5/MB84feTWZQfWIR0MvPAD4KwWPm0ZsV9Vcvb+OgxxVRKPKJ1tNDWj5a3ReZqKWeDhMHKnx7s8BogHyJIGX6pdkAlS511s43iQ8nhOQ+qM/kJUE5hLNvIxCLZ7CJSuEb9ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721901927; c=relaxed/simple;
-	bh=IXZaUKEFxcAjDCalBrfAM3gF4uWGjMYjbdac2JgWr6U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=RkOndtzRRk+MlTPrJmCGMmH+X6wEvQdLKt2gkqxw0jl3+V0iwJicwdCAtcmTUG5N7jCGTzLo4QXM1RB7t1l06HFho5LWGgpgWgeo88FJtPJShGyN+bSkSSl3HiAFCo2OzHdjAzLWHJOq0SkNuz1ZspRFEiYF5i9EkSbhVjfiwa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u0EqlOvp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A77C116B1;
-	Thu, 25 Jul 2024 10:05:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721901927;
-	bh=IXZaUKEFxcAjDCalBrfAM3gF4uWGjMYjbdac2JgWr6U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=u0EqlOvpZZWF+abqTuQx8I8MFmrfcaxBijsT8yiJsHjL/bXmAqJdKWebQ9vROBj09
-	 4qdYFjVJmukByM/GtFUOxo3bsJqW1YS2sY59As+K5tqwrm70+9Q7tVTegjO0tx/WAu
-	 iSQpfpMSXkQT4G7s6hE6Uh+tcmaMmWs0hyQo6a0P34SbjWVCX7mCZR26o/gMmQg3iI
-	 fmxy56WF7OV8Pahajmx06fRg7ijH304Mbafj5yWnNV4agsROhBmeuJGkiO64KY3//v
-	 1b7E+D7CR7ZQHGMjJkVTA89dGLeXuJfYXch0WnLe+Wbv3W3Ur75Gd08+kzTdlp7mv+
-	 oXQ+w5mvIf9+w==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <ZpKM3yYKJixnRabP@standask-GA-A55M-S2HP>
-References: <ZpKM3yYKJixnRabP@standask-GA-A55M-S2HP>
-Subject: Re: (subset) [PATCH] dt-bindings: leds: sc2731-bltc: convert to
- YAML
-Message-Id: <172190192475.914923.1826411218359882858.b4-ty@kernel.org>
-Date: Thu, 25 Jul 2024 11:05:24 +0100
+	s=arc-20240116; t=1721901949; c=relaxed/simple;
+	bh=QibyyHCwSiOso56HlFLn+tssI9T1N+wjHQ+w87V6RdA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HgyTX1uTEVjrY9ts7NfiyY+c0wGdIMgNy0j48VGLpb32i9ScfPjkX5xucVq53pil+7IRtIsZXtpEGs6GySF60uehHd6xMjvRJd9pyGkzykd9QQJuxxdESW9fVVg457pO1+G1j1iR37F+wxbpqz2XwhnbGhjv/UGvenu0QUeUEf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-IronPort-AV: E=Sophos;i="6.09,235,1716217200"; 
+   d="scan'208";a="212750818"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 25 Jul 2024 19:05:45 +0900
+Received: from localhost.localdomain (unknown [10.226.93.56])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 3979B41F6305;
+	Thu, 25 Jul 2024 19:05:41 +0900 (JST)
+From: Oliver Rhodes <oliver.rhodes.aj@renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Oliver Rhodes <oliver.rhodes.aj@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH V2 0/6] Document r8a774a3 SoC bindings
+Date: Thu, 25 Jul 2024 11:05:28 +0100
+Message-Id: <20240725100534.5374-1-oliver.rhodes.aj@renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
 
-On Sat, 13 Jul 2024 16:19:11 +0200, Stanislav Jakubek wrote:
-> Convert the Spreadtrum SC2731 breathing light controller bindings
-> to DT schema. Adjust filename to match compatible.
-> 
-> 
+Hi all,
 
-Applied, thanks!
+This patch series updates the renesas DT bindings documentation for core
+components (SoC, SYSC, reset, clk, pinctrl, scif) on the RZ/G2M v3.0 (R8A774A3) SoC.
+This SoC is similar to R-CAR M3-W+ (R8A77961) SoC.
 
-[1/1] dt-bindings: leds: sc2731-bltc: convert to YAML
-      commit: 1b8684a0f19e2d8498501d17f2e0b590d5e4cfe8
+v2->v2 resend:
+* Updated the patch description for patch #3
+v1 resend->v2:
+* Added ack from Rob Herring for patches #1 and #2
+* Updated the commit descriptions for patches #2 and #3, as suggested by Conor Dooley
+v1->v1 resend:
+* Fixed the commit header for patch #4.
 
---
-Lee Jones [李琼斯]
+Oliver Rhodes (6):
+  dt-bindings: soc: renesas: Document RZ/G2M v3.0 (r8a774a3) SoC
+  dt-bindings: power: renesas: Document RZ/G2M v3.0 (r8a774a3) SYSC
+    binding
+  dt-bindings: clock: renesas: Document RZ/G2M v3.0 (r8a774a3) clock
+  dt-bindings: reset: renesas: Document RZ/G2M v3.0 (r8a774a3) reset
+    module
+  dt-bindings: serial: renesas: Document RZ/G2M v3.0 (r8a774a3) scif
+  dt-bindings: pinctrl: renesas: Document RZ/G2M v3.0 (r8a774a3) PFC
+    support
+
+ .../devicetree/bindings/clock/renesas,cpg-mssr.yaml  |  1 +
+ .../devicetree/bindings/pinctrl/renesas,pfc.yaml     |  1 +
+ .../devicetree/bindings/power/renesas,rcar-sysc.yaml |  1 +
+ .../devicetree/bindings/reset/renesas,rst.yaml       |  1 +
+ .../devicetree/bindings/serial/renesas,scif.yaml     |  1 +
+ .../devicetree/bindings/soc/renesas/renesas.yaml     | 12 ++++++++++++
+ 6 files changed, 17 insertions(+)
+
+-- 
+2.34.1
 
 
