@@ -1,148 +1,91 @@
-Return-Path: <devicetree+bounces-88047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D965393BF52
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:47:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 358B693BF68
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:55:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 169E41C2127C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 09:47:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66CEA1C20E67
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 09:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90547198A1A;
-	Thu, 25 Jul 2024 09:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC89813C809;
+	Thu, 25 Jul 2024 09:55:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0F6198A2A;
-	Thu, 25 Jul 2024 09:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2036AD7;
+	Thu, 25 Jul 2024 09:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721900816; cv=none; b=FGosMPS/+3U6AUX7HLAphd6OJIXJV3qd5yjP0pVb0qktI5/kogsquwb3RKfOp5sPCQFPDpnQGORPz/byoKC1PYLrJ0QDynMSv4wFtyLBvcOkD2R+ytFwH6axhdi18Fu50KesNx6ujLQ5+r1te5tRwcEPuOmoSddAhi66PuP4U8g=
+	t=1721901346; cv=none; b=cJf4MRqs+DsSuBKD5DSY8p7XnYYQB5uKHAa06pGVSTDQaFaiG2S6ZCohT5qnzc1oLTUAZd1M2hRLEcEYegmMUTZpBQWqUixk52J2PwiUNfjfrxWv9dcoAoGDGyP2qpb8buyXiJK+z8m0jjf+AvtbklMjHslUEFoxGJAVzOE7SSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721900816; c=relaxed/simple;
-	bh=Zl6WxDvgI6EdQ86iGmiE7ATIMtA9F82mrPyf5FE1DF8=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=PAd54vqabUapv34rM/FoxpZ80D7d0uWiLMRt1vnRpBWHMEmxgAwXsuuFUvWsfas8ugFKf4xFx1OmjTUWdJ1YFSg+NMrK8qG9N9mQZFYf2cHX95WBZUitUCysQOiTULvAKATkdDXywKU3g5RdHpJbJb1SgHfb3IPlCfJTFeBR89A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
-	by madrid.collaboradmins.com (Postfix) with ESMTP id AE7C137811F4;
-	Thu, 25 Jul 2024 09:46:51 +0000 (UTC)
-From: "Shreeya Patel" <shreeya.patel@collabora.com>
-In-Reply-To: <172142702137.153951.8294803513682327237.robh@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20240719124032.26852-1-shreeya.patel@collabora.com>
- <20240719124032.26852-3-shreeya.patel@collabora.com> <172142702137.153951.8294803513682327237.robh@kernel.org>
-Date: Thu, 25 Jul 2024 10:46:51 +0100
-Cc: kernel@collabora.com, mchehab@kernel.org, conor+dt@kernel.org, linux-media@vger.kernel.org, nelson.costa@synopsys.com, linux-arm-kernel@lists.infradead.org, heiko@sntech.de, mturquette@baylibre.com, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, linux-rockchip@lists.infradead.org, shawn.wen@rock-chips.com, sboyd@kernel.org, "Dmitry Osipenko" <dmitry.osipenko@collabora.com>, p.zabel@pengutronix.de, jose.abreu@synopsys.com, linux-kernel@vger.kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, nicolas.dufresne@collabora.com
-To: "Rob Herring (Arm)" <robh@kernel.org>
+	s=arc-20240116; t=1721901346; c=relaxed/simple;
+	bh=Jw/GsAGqcHKj3AtKsadcCA6sc1aGc8bFjrut53gvkjM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XR5cmpIX5X8oLUiBdLhRiQ+uJ6MFsZdL4gVqi30RA603xxuTX9sElccpYsXrHXrTg+sHdg4UdyIU+k10Hc/lmtvUNfp4oLREE6g5vC580XdRjCKiP/U6M/B9MHXEx2WTvd1lSsZyQ8UUNO80obevgtEZ9syBkVmdtYuCE/Qt3IM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-IronPort-AV: E=Sophos;i="6.09,235,1716217200"; 
+   d="scan'208";a="216707474"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 25 Jul 2024 18:55:42 +0900
+Received: from localhost.localdomain (unknown [10.226.93.56])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8B3814004BB8;
+	Thu, 25 Jul 2024 18:55:38 +0900 (JST)
+From: Oliver Rhodes <oliver.rhodes.aj@renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Oliver Rhodes <oliver.rhodes.aj@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH V2 0/6] Document r8a774a3 SoC bindings
+Date: Thu, 25 Jul 2024 10:55:24 +0100
+Message-Id: <20240725095530.5199-1-oliver.rhodes.aj@renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <ae465-66a21f00-1-25170f80@209442668>
-Subject: =?utf-8?q?Re=3A?= [PATCH v4 2/4] =?utf-8?q?dt-bindings=3A?=
- =?utf-8?q?_media=3A?= Document bindings for HDMI RX Controller
-User-Agent: SOGoMail 5.10.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Saturday, July 20, 2024 03:40 IST, "Rob Herring (Arm)" <robh@kernel.=
-org> wrote:
+Hi all,
 
->=20
-> On Fri, 19 Jul 2024 18:10:30 +0530, Shreeya Patel wrote:
-> > Document bindings for the Synopsys DesignWare HDMI RX Controller.
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> > Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-> > ---
-> >=20
-> > Changes in v4 :-
-> >   - No change
-> >=20
-> > Changes in v3 :-
-> >   - Rename hdmirx=5Fcma to hdmi=5Freceiver=5Fcma
-> >   - Add a Reviewed-by tag
-> >=20
-> > Changes in v2 :-
-> >   - Add a description for the hardware
-> >   - Rename resets, vo1 grf and HPD properties
-> >   - Add a proper description for grf and vo1-grf phandles
-> >   - Rename the HDMI Input node name to hdmi-receiver
-> >   - Improve the subject line
-> >   - Include gpio header file in example to fix dt=5Fbinding=5Fcheck=
- failure
-> >=20
-> >  .../bindings/media/snps,dw-hdmi-rx.yaml       | 132 ++++++++++++++=
-++++
-> >  1 file changed, 132 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/snps,dw=
--hdmi-rx.yaml
-> >=20
->=20
-> My bot found errors running 'make dt=5Fbinding=5Fcheck' on your patch=
-:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.exampl=
-e.dts:53.38-39 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bind=
-ings/media/snps,dw-hdmi-rx.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt=
-=5Fbinding=5Fcheck] Error 2
-> make: *** [Makefile:240: =5F=5Fsub-make] Error 2
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20=
-240719124032.26852-3-shreeya.patel@collabora.com
->=20
-> The base for the series is generally the latest rc1. A different depe=
-ndency
-> should be noted in *this* patch.
->=20
+This patch series updates the renesas DT bindings documentation for core
+components (SoC, SYSC, reset, clk, pinctrl, scif) on the RZ/G2M v3.0 (R8A774A3) SoC.
+This SoC is similar to R-CAR M3-W+ (R8A77961) SoC.
 
-My HDMI RX patches are based on the linux-next/master branch.
-Since the bot tested the patches on top of rc1, it resulted in some err=
-ors
-due to missing reset ID patches.
+v1 resend->v2:
+* Added ack from Rob Herring for patches #1 and #2
+* Updated the commit descriptions for patches #2 and #3, as suggested by Conor Dooley
+v1->v1 resend:
+* Fixed the commit header for patch #4.
 
-I think the above statement means I should explicitly mention in this
-patch that it is based on linux-next/master (something to keep in mind
-for future :)
+Oliver Rhodes (6):
+  dt-bindings: soc: renesas: Document RZ/G2M v3.0 (r8a774a3) SoC
+  dt-bindings: power: renesas: Document RZ/G2M v3.0 (r8a774a3) SYSC
+    binding
+  dt-bindings: clock: renesas: Document RZ/G2M v3.0 (r8a774a3) clock
+  dt-bindings: reset: renesas: Document RZ/G2M v3.0 (r8a774a3) reset
+    module
+  dt-bindings: serial: renesas: Document RZ/G2M v3.0 (r8a774a3) scif
+  dt-bindings: pinctrl: renesas: Document RZ/G2M v3.0 (r8a774a3) PFC
+    support
 
+ .../devicetree/bindings/clock/renesas,cpg-mssr.yaml  |  1 +
+ .../devicetree/bindings/pinctrl/renesas,pfc.yaml     |  1 +
+ .../devicetree/bindings/power/renesas,rcar-sysc.yaml |  1 +
+ .../devicetree/bindings/reset/renesas,rst.yaml       |  1 +
+ .../devicetree/bindings/serial/renesas,scif.yaml     |  1 +
+ .../devicetree/bindings/soc/renesas/renesas.yaml     | 12 ++++++++++++
+ 6 files changed, 17 insertions(+)
 
-> If you already ran 'make dt=5Fbinding=5Fcheck' and didn't see the abo=
-ve
-> error(s), then make sure 'yamllint' is installed and dt-schema is up =
-to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. =
-Note
-> that DT=5FSCHEMA=5FFILES can be set to your schema file to speed up c=
-hecking
-> your schema. However, it must be unset to test all examples with your=
- schema.
->=20
-> =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-> Kernel mailing list -- kernel@mailman.collabora.com
-> To unsubscribe send an email to kernel-leave@mailman.collabora.com
-> This list is managed by https://mailman.collabora.com
+-- 
+2.34.1
 
 
