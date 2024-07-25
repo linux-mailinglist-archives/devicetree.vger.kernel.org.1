@@ -1,131 +1,132 @@
-Return-Path: <devicetree+bounces-88181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D349693C6DA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 17:55:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4141993C70C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 18:16:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D97B1C21F69
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 15:55:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFE6EB2292F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 16:16:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E055119D89F;
-	Thu, 25 Jul 2024 15:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD19E19D881;
+	Thu, 25 Jul 2024 16:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNzI3fKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2055A19CCE6;
-	Thu, 25 Jul 2024 15:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F8817588;
+	Thu, 25 Jul 2024 16:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721922915; cv=none; b=q1RTmf+iifiN2CtYKhEMzx2+yLp6M7ieBSW2V9Brcg3B6nbdC/CJo8gpyjmH+8U25u9lYYDql0E8vssWpFJ4GDSgrFOLYo9UuuE8gcBhR6gMAePOIAkDsJYTuHako9Bt5aLra0WgSeW5vtcMyo4ckOpDfGJKwS0wzanrr1pXo5c=
+	t=1721924182; cv=none; b=b+yaZSvWTw5LqpR6o6LHYmB6vZftGgOcbGMPQdzjeuo/WcHMwLV7otqVlmOP7eVqt4VRB/PTikJGig2BDHeluzD4GtiEUZ5OXbdnw7NtDPE6NYlaAKgmtYCcdsZQxmu62+t3Di1RKoNFoO2K+LXU2iK6+9GTvLEJtcqC/le9NUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721922915; c=relaxed/simple;
-	bh=vYxc5IMKY3JQcIoQfBKz/JVvlUHBsbuO4zyhmT6q8Nk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BlEGyMtMLHjXzKDR6+zTpYv0SWmHOZfAu767d60D4KAzsMfyQvUHhqoPL4aG5Rs5OW0YnuoFopzgtcsE905px4z0i6Pyt74Q5d5Kn3p0IO6ZZdH937cB7I2Hg297ZG2wYhhOnZoq9QnXiwoDgaQvt58Z3GvD+VoBkQ8Xy0IejgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52efef496ccso304080e87.1;
-        Thu, 25 Jul 2024 08:55:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721922907; x=1722527707;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y2rmxXIjfvlqGvnNOjLh3FPE3gfoFA/YfS1QboIJxEA=;
-        b=SK3Fx7lBBFd/SQhrR3VmT719lUYaT8inoXWyweG/IVnZUcv5jK2Tm4qKNperW7nBvX
-         dH6iExf9jddlnd5toQrGq071Ts3MzsJBrtqL2nYfUD7p4pN0hGOLFv3a8MfdFh8od1vA
-         /zQag46uHENSN0aIwhNruHQt8rTNPMQH1t8xpcapBy8+TKKnJYkmCbc3h1/+Tv32A90L
-         a22RnFxn03ceVKg7FTPg2OAud/kiQ8hL5NRMTlAszARumD9Hf0eMiOr629dzydMwQTEz
-         yi6foOqRC5CPlG6BXKO6pFfrnUezpWic4YGI0vpRwENFub7EjceDY8RKMsyGaJnDRizw
-         gb0w==
-X-Forwarded-Encrypted: i=1; AJvYcCU4+AchOEgZsmH5og2g3pn5+O839Ym+ReLmY0HBINR1cKCSw5eh07Vtx5Jg390V3j9pQSceSlhuk6FGdvv56Gxo2U9tjm9nDDVI3j7B/c3s4PdHtIrut2TuvSg5t98N+BTlqk6AWU5MwrYY/Vk6
-X-Gm-Message-State: AOJu0YwVAR16qaEhti3xJXE00UOkFHbrxowvNZDAQWFh+l4za8MCn5oj
-	xVJhi8GYjZXtFfhz0rsu85dmfc3sCYtKgANw9pYAk3/FpWjGctvghaDTNLe+7Ro=
-X-Google-Smtp-Source: AGHT+IE0DLrENhBRAgundpSX7BNN5aXjUDyNyxgWxggviKd/2wokXaEfyWte+3upoyZNLB/tEt9lOw==
-X-Received: by 2002:a05:6512:3b29:b0:52f:18b:ea18 with SMTP id 2adb3069b0e04-52fd41f4068mr990051e87.1.1721922907349;
-        Thu, 25 Jul 2024 08:55:07 -0700 (PDT)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com. [209.85.167.52])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c08d1asm265492e87.143.2024.07.25.08.55.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jul 2024 08:55:07 -0700 (PDT)
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52f01613acbso305070e87.1;
-        Thu, 25 Jul 2024 08:55:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV5t0pwR5qtx6ktP4wyxE0X8A/fSqMoCROIDZ/Du3k3sato2EWy9ciZdrDZcOqv4VgYnLofCC6e90KL2Y7rTQu/mDXIzChS+9Vk7kTh5dEZaAVMkna+4OAVSH+tgB+QD4QajQVCUHaxLLIoW2/+
-X-Received: by 2002:a2e:a787:0:b0:2ef:216a:3ceb with SMTP id
- 38308e7fff4ca-2f03aa7413emr12103301fa.10.1721922906774; Thu, 25 Jul 2024
- 08:55:06 -0700 (PDT)
+	s=arc-20240116; t=1721924182; c=relaxed/simple;
+	bh=wSl7dU8k38O3kEBowowvVz0xiEyS8E2H52ryb/QbeBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g1mmOKbaQ0DNn1tTIYdK8u7ZkstBKetTbr/f6zxGo4wvHkE40SpM/qmp98nyJsHiNIIjz/rLOtll8k2dLlNmlGhPhw4VcKHFV/ZcChXhL8MiueDLqVwwuZVvJI3p5BWRtTLqgVhJ+gy+zeg3LkGSXXEX7CJQBA8X+JleLItRt3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNzI3fKY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4316AC32782;
+	Thu, 25 Jul 2024 16:16:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721924182;
+	bh=wSl7dU8k38O3kEBowowvVz0xiEyS8E2H52ryb/QbeBI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SNzI3fKYixRUWNQpyNNkIGvI6aaRP1z2Jwy/L5siZ7h11j9aje2SDTUtweUc+p02a
+	 Mlu8F8o9Q4AC2ClVmv8jh6X+TS8IKHkOTom1T5HmBaFgHXFVXRGTm+4bJJXbLX25Tc
+	 Wj/7N4lZN+AVYeuDFuNfXZcCU11WB7JchW6L1f/YeJXc+6OyetD8POx0ikDFZrlZlL
+	 jrn1CL/57c9fR9u9PNK3NvRboMA8wOMJ9MjcAIhKDsfXCZyCwkermnBWyZqbXjUFGI
+	 YjnYEqak+/T7bs6bhRVHdoPOK/WCoR5HrMULHRBAO0uysxS0B9qUU6tJBOY/+LdZB7
+	 1EZFjX1+j4unA==
+Date: Thu, 25 Jul 2024 17:16:16 +0100
+From: Lee Jones <lee@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Frank Li <Frank.li@nxp.com>
+Subject: Re: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller
+ support
+Message-ID: <20240725161616.GJ501857@google.com>
+References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240725100534.5374-1-oliver.rhodes.aj@renesas.com>
- <0e711bd9-8ff7-4346-ab18-a3b5e4d8d730@kernel.org> <OS7PR01MB11537E8348F88FDCE4479B02CCFAB2@OS7PR01MB11537.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS7PR01MB11537E8348F88FDCE4479B02CCFAB2@OS7PR01MB11537.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 25 Jul 2024 17:54:51 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU2r34S3vkH3nLdA74UktQnxJ_u085hBSvP_qbGrboUQA@mail.gmail.com>
-Message-ID: <CAMuHMdU2r34S3vkH3nLdA74UktQnxJ_u085hBSvP_qbGrboUQA@mail.gmail.com>
-Subject: Re: [PATCH V2 0/6] Document r8a774a3 SoC bindings
-To: Oliver Rhodes <oliver.rhodes.aj@renesas.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
 
-Hi Oliver,
+On Mon, 22 Jul 2024, Laurent Pinchart wrote:
 
-On Thu, Jul 25, 2024 at 5:22=E2=80=AFPM Oliver Rhodes
-<oliver.rhodes.aj@renesas.com> wrote:
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: Thursday, July 25, 2024 4:01 PM
-> > Subject: Re: [PATCH V2 0/6] Document r8a774a3 SoC bindings
-> >
-> > On 25/07/2024 12:05, Oliver Rhodes wrote:
-> > > This patch series updates the renesas DT bindings documentation for
-> > > core components (SoC, SYSC, reset, clk, pinctrl, scif) on the RZ/G2M =
-v3.0
-> > (R8A774A3) SoC.
-> > > This SoC is similar to R-CAR M3-W+ (R8A77961) SoC.
-> > >
-> > > v2->v2 resend:
-> > > * Updated the patch description for patch #3
-> >
-> > So it is a v3? Otherwise which v2 tools will pick up?
-> The reason for this patch series is that there was a typo in the
-> change history for patch #3.
-> This is supposed to be "v2 resend" but by mistake I sent this as "v2".
-> Shall I send this patch series as "v3"?
+> Hello,
+> 
+> This patch series introduces support for the Analog Devices ADP5585, a
+> GPIO expander, PWM and keyboard controller. It models the chip as an MFD
+> device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
+> for the GPIO (3/4) and PWM (4/4) functions.
+> 
+> Support for the keypad controller is left out, as I have no means to
+> test it at the moment. The chip also includes a tiny reset controller,
+> as well as a 3-bit input programmable logic block, which I haven't tried
+> to support (and also have no means to test).
+> 
+> The driver is based on an initial version from the NXP BSP kernel, then
+> extensively and nearly completely rewritten, with added DT bindings. I
+> have nonetheless retained original authorship. Clark, Haibo, if you
+> would prefer not being credited and/or listed as authors, please let me
+> know.
+> 
+> Compared to v6, this version addresses small review comments. I believe
+> it is ready to go, as the PWM and GPIO drivers have been acked by the
+> respective subsystem maintainers, and I have addressed Lee's comments on
+> the MFD side. Lee, if there's no more issue, could you apply this to
+> your tree for v6.12 ?
+> 
+> Clark Wang (1):
+>   pwm: adp5585: Add Analog Devices ADP5585 support
+> 
+> Haibo Chen (2):
+>   mfd: adp5585: Add Analog Devices ADP5585 core support
+>   gpio: adp5585: Add Analog Devices ADP5585 support
+> 
+> Laurent Pinchart (1):
+>   dt-bindings: mfd: Add Analog Devices ADP5585
+> 
+>  .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |   4 -
+>  MAINTAINERS                                   |  11 +
+>  drivers/gpio/Kconfig                          |   7 +
+>  drivers/gpio/Makefile                         |   1 +
+>  drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
+>  drivers/mfd/Kconfig                           |  12 +
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
+>  drivers/pwm/Kconfig                           |   7 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
+>  include/linux/mfd/adp5585.h                   | 126 ++++++++++
+>  13 files changed, 876 insertions(+), 4 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+>  create mode 100644 drivers/gpio/gpio-adp5585.c
+>  create mode 100644 drivers/mfd/adp5585.c
+>  create mode 100644 drivers/pwm/pwm-adp5585.c
+>  create mode 100644 include/linux/mfd/adp5585.h
 
-Apparently b4 can distinguish fine between the original and the resend,
-so for now there is no hard reason to send a v3.
+Note to self: This looks good to go.  Merge after -rc1 is released.
 
-> I apologise for the noise and the inconvenience I have caused.
-> I will take greater care next time.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Lee Jones [李琼斯]
 
