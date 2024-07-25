@@ -1,148 +1,106 @@
-Return-Path: <devicetree+bounces-88041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C8093BF0F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:26:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB61593BF44
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A34DB1C20EDF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 09:26:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59A5C1F21B4C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 09:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A6B198A31;
-	Thu, 25 Jul 2024 09:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B967417624F;
+	Thu, 25 Jul 2024 09:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EkfWu6KT"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="hZdsN0DP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96975198852
-	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 09:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5154413C691
+	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 09:46:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721899532; cv=none; b=RLU9KWw3df8DwnOZgc640yXtWvWb2CZaWC6gqWTj6I/0D7i2a23SOHTCFUb76Y9/rzVSdElXeXuEqv7HrbZ0oICYbEnpDj25EsDtm18mUP7R+vE7RNKZBq0Eg/RBaQdV0C94OhdwPbWugumXD8bGCbbEFT1CJWTGT2cSHR2Fv5Q=
+	t=1721900773; cv=none; b=VwkQ/j/UHpSVsWLJpt7n0GoQH0KTik1GSOPTviG7Cu+hEwfWcqeLl9xIUc7asZVvpsnw2DWPC1YmUC4Er73IYbr5DOxjhW+12E0rKBkK+qgt3kRoM4e4vrctJIk+nxlc0VbLVkSFTRKwcDAyCD+3E/5jipj2M7l/L/o051c6ipY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721899532; c=relaxed/simple;
-	bh=gfhDSYv+goNLSY8skJzBs3DMp2QrQFXE3Vf40oQG+YY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TWPIPKoz+nfy5ENOfNOkTqsq7ONsM3ts+yg0ksTO33LaYiRoJDtMfgM4dePxbNE5KqKN1CvqN/mawDIsI+aHj0MUFKRLgzcvG9xeaTEZWKtIglX2RTCAx4OUbDPg//sXZiNWL3729FTYnAaj1iqrMW/XUtevaYY7mYShUjZ1Rz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EkfWu6KT; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f035ae0fe0so6968541fa.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 02:25:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721899529; x=1722504329; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nh61NQ937S+7o1q94LnjJk/BLrUb/CjZ3hidr6TzOuk=;
-        b=EkfWu6KTqcBlg442LugSKiIdHn/9eQ5GI3FmhXhC1dDEGOd9DBXbQUUZ3jbHjOYPyC
-         JS+wHlg+KIvwuV4Tk0h4f6W40gdAC8ig0bIIIlM8DsEniEU9qABkv/6B5NxaG3aYYRfQ
-         vT/40wx4x9jMpdK3BSgWoMdAuqDQqb/J8GrC5212uXxqtBOzkaTiiFzLbBsSHQSWQ6gD
-         rpRZd3vAjH11TXvbVJJUlEVKAPhL/zyRWP4lffGAGBkqrnnbqgctwxmmyu9Vblt9zBTK
-         W9azppmdMoetwS6zjrdq4Y/3/ZNx7nK1SZRUB+SzRFW59vfjTqKK1f8jaFoc/mszef0d
-         W/2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721899529; x=1722504329;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nh61NQ937S+7o1q94LnjJk/BLrUb/CjZ3hidr6TzOuk=;
-        b=SzRAMNaKrSZBvYL6ifwH4ehDnf3Nnht+dhGH4nb8TRSnZP/Sfzm3OjFAqkMdrGaGx5
-         t8IYWf8Snevx51HvjpqRjetn+vV2xIvkwOPE1k07NACPmQO0Z1JY2EtRaqG66qNe3El7
-         ZZr8VPZwHy1AFHMhNaMz+gYgNsh2sChLxI6vjDQKMOoiiRDc2c3OeWgw+4FT1JRH1dvu
-         AHWRRYu9trPyVHoyRRWNbZCJQCfgyRZoIgzfKufqsUk+puAHEaGzXmCK88LF9hL+f+GF
-         MvOAhbV4zeMN2ofZtAG8R4OIwRAeTBOiVHjhxSURU9B5mKuW5EHYTTp3cpzenCMVz+Uv
-         Q9zw==
-X-Forwarded-Encrypted: i=1; AJvYcCWn/k55QRrqG7TDK7CMBCvGsDnmoEETA7M1DwfQ7sj46fLmTtik7Rlgdoeha3+/UW3aWs0vuSq3cZCm62mfoxjV2TcQpHTd6gxgrg==
-X-Gm-Message-State: AOJu0Yz7BSDBnS6rMkE7NWgYWnYY4Wjs1xIvitV2VFn1k3mgU05FLNls
-	aduJmaQYwk2cQkBck3o1EyQtCjKTtszZi087IXknoItiOmiZpKoDLcyWBx15OSndU9K6iQW9CA/
-	O
-X-Google-Smtp-Source: AGHT+IGi1wWEtfy7NWIDUmswNS4L1qJnX2gEGDOlhDHPBUMSNCMI4YEcpdjGn6OBceYfrQekIFXE7A==
-X-Received: by 2002:a2e:7d14:0:b0:2ef:232c:6938 with SMTP id 38308e7fff4ca-2f03db740edmr9284641fa.6.1721899528717;
-        Thu, 25 Jul 2024 02:25:28 -0700 (PDT)
-Received: from [192.168.1.191] ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427ef3f45cfsm65830385e9.0.2024.07.25.02.25.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jul 2024 02:25:28 -0700 (PDT)
-From: Rayyan Ansari <rayyan.ansari@linaro.org>
-Date: Thu, 25 Jul 2024 10:25:18 +0100
-Subject: [PATCH v3 3/3] ARM: dts: qcom: pma8084: add pon node
+	s=arc-20240116; t=1721900773; c=relaxed/simple;
+	bh=xJbE3/+oDT4lzzvGx9f9iayJZeqlQwh8BmnzVVqNqV0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rjtrgBRKRN0hD6v8sovS+xkV2oqdbZ5ZPMGQMRSFJwvVfv4PISA4d4UWs61NSlCrzXaMFZAU81laa4yhC2H5tg5K5AEBBn7tLtom9AQmLvNkSw+ilTeF3odfRcDoPvVYcHuRiUXuA8kDfUfIXsKvwF94uy4CBDJ6zjG6KXaJUak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=hZdsN0DP; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1721900762; x=1724492762;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xJbE3/+oDT4lzzvGx9f9iayJZeqlQwh8BmnzVVqNqV0=;
+	b=hZdsN0DPdXxzTdESLOrkWpNwdHNLlUqtg6nVIT1KwibvedsK+BQ4vVRqfvPRPs4M
+	r0hidalpr3ko0+J9gLfbWYrW1qrYTUgsOCbiEZ/49SI37/gExXgS9oGYelVMmBmv
+	Zy/XeTTr8l0+8Y9nioxDlq8o0gcE62t+qQOPeB93aaI=;
+X-AuditID: ac14000a-03e52700000021bc-ed-66a21ed93aac
+Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A3.CC.08636.9DE12A66; Thu, 25 Jul 2024 11:46:01 +0200 (CEST)
+Received: from llp-varakala.phytec.de (172.25.0.11) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 25 Jul
+ 2024 11:46:01 +0200
+From: Yashwanth Varakala <y.varakala@phytec.de>
+To: <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
+	<festevam@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<upstream@lists.phytec.de>, <y.varakala@phytec.de>
+Subject: [PATCH 0/3] arm64: dts: freescale: imx8mp-phycore: Add devicetree overlays
+Date: Thu, 25 Jul 2024 11:44:54 +0200
+Message-ID: <20240725094457.37739-1-y.varakala@phytec.de>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240725-pmic-bindings-v3-3-d7f6007b530d@linaro.org>
-References: <20240725-pmic-bindings-v3-0-d7f6007b530d@linaro.org>
-In-Reply-To: <20240725-pmic-bindings-v3-0-d7f6007b530d@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Rayyan Ansari <rayyan.ansari@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1332;
- i=rayyan.ansari@linaro.org; h=from:subject:message-id;
- bh=gfhDSYv+goNLSY8skJzBs3DMp2QrQFXE3Vf40oQG+YY=;
- b=owGbwMvMwCXmtuJiX/SRuS2Mp9WSGNIWSbHu2VYfYMq3pvWuR9PBnXa6sgLuK9yWWd26smJJ/
- dbDSksrO0pZGMS4GGTFFFkON31Z83q7k9CV7VWnYOawMoEMYeDiFICJ/PrN8D8wpLQ+8/VC5xwW
- ngdV15umxSSLz1r79pNzGa+ZvJbp0yUM/6vWxpZkPC91uOodtcLI/9T2A0FquW1s++QUzgcK1rK
- 8YwUA
-X-Developer-Key: i=rayyan.ansari@linaro.org; a=openpgp;
- fpr=C382F4ACEBB74212D4B77ACA46A8D18E5BC49D84
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Florix.phytec.de
+ (172.25.0.13)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJLMWRmVeSWpSXmKPExsWyRpKBV/eW3KI0g78bWSzW7D3HZDH/yDlW
+	i4dX/S1m3mtls1g1dSeLxctZ99gsNj2+xmpxedccNov/e3awW/zdvonF4sUWcYvud+oOPB47
+	Z91l99i0qpPNY/OSeo8Xm2cyevR3t7B69P818Pi8SS6APYrLJiU1J7MstUjfLoEr48DJn6wF
+	q9gqdu38xdjAuJG1i5GTQ0LAROLk/S72LkYuDiGBJUwSE35fB0sICTxllDgwVRjEZhPQl1ix
+	bhErSJGIwDJGiW+nu1lAHGaB7YwSJya+Y+pi5OAQFgiW+LDeB6SBRUBVYt+Ck2wgNq+ApcTs
+	l2uhtslL7D94lhkiLihxcuYTFhCbGSjevHU2M4QtIXHwxQtmiCMUJd4/7GCH6Z127jUzhB0q
+	MX/Nd/YJjAKzkIyahWTULCSjFjAyr2IUys1Mzk4tyszWK8ioLElN1ktJ3cQIig4RBq4djH1z
+	PA4xMnEwHmKU4GBWEuFddn9hmhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHe1R3BqUIC6Yklqdmp
+	qQWpRTBZJg5OqQZGp5o5f6Z1cj6Q6/13lue7qpr6zqUfbkq1RK8/kV1i6qE98cuFg9vYQnKj
+	bm+ZtfIj25P4NWUp5v0zN3LwFoay1TQ+WWJ53Gn36r6V4Zmiu1kYp86UaHgo5sqYfNdRv6xh
+	+f9z/580yR4Q131xqnDlXZmoCyu9Hxh4PzGTZZrz7mvvpIbZpwQ5lViKMxINtZiLihMBq3XS
+	+XwCAAA=
 
-Wrap existing pwrkey node inside a pon node, to conform to dt schema.
+Adding overlays for the phyboard imx8mp and updating them in
+the Makefile.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
----
- arch/arm/boot/dts/qcom/pma8084.dtsi | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+Yashwanth Varakala (3):
+  arm64: dts: freescale: imx8mp-phycore: Add no-rtc overlay
+  arm64: boot: dts: freescale: Add no-spiflash overlay
+  arm64: dts: Add phyBOARD-Pollux dts for rpmsg
 
-diff --git a/arch/arm/boot/dts/qcom/pma8084.dtsi b/arch/arm/boot/dts/qcom/pma8084.dtsi
-index 2985f4805b93..309f5256754b 100644
---- a/arch/arm/boot/dts/qcom/pma8084.dtsi
-+++ b/arch/arm/boot/dts/qcom/pma8084.dtsi
-@@ -1,5 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- #include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-@@ -19,12 +20,17 @@ rtc@6000 {
- 			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
- 		};
- 
--		pwrkey@800 {
--			compatible = "qcom,pm8941-pwrkey";
-+		pon@800 {
-+			compatible = "qcom,pm8941-pon";
- 			reg = <0x800>;
--			interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
--			debounce = <15625>;
--			bias-pull-up;
-+
-+			pwrkey {
-+				compatible = "qcom,pm8941-pwrkey";
-+				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+				linux,code = <KEY_POWER>;
-+			};
- 		};
- 
- 		pma8084_gpios: gpio@c000 {
+ arch/arm64/boot/dts/freescale/Makefile        |  6 ++
+ .../dts/freescale/imx8mp-phycore-no-rtc.dtso  | 12 ++++
+ .../freescale/imx8mp-phycore-no-spiflash.dtso | 16 ++++++
+ .../dts/freescale/imx8mp-phycore-rpmsg.dtso   | 57 +++++++++++++++++++
+ 4 files changed, 91 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-no-rtc.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-no-spiflash.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
 
 -- 
-2.45.2
+2.34.1
 
 
