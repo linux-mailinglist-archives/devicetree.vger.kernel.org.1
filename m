@@ -1,202 +1,184 @@
-Return-Path: <devicetree+bounces-87946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A51993BA1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 03:28:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180F793BA35
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 03:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D408D1F21EB9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 01:28:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B132B282240
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 01:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCCE4C74;
-	Thu, 25 Jul 2024 01:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D616112;
+	Thu, 25 Jul 2024 01:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="SQ37MeMx"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="X0y962t9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2062.outbound.protection.outlook.com [40.92.102.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC14428EC
-	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 01:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721870922; cv=none; b=qg/umWHk4T/zX+FkbwmGvwxAfbQBzgr0j9BCr7KMugbPnl3JYDXFGlpBU7oeKDdKR5byEPW/9T1Ha78qqqGU9lWtg0xOR81KbDyigjoQB5MZrsTxJR68uwRE+eKFpOJBIMfxE4Eu7YHkz9QPEIeOQmyzX8m7fWqw8D89vK47njo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721870922; c=relaxed/simple;
-	bh=93QoUvYNpaXjf/oi4/5ZnzIKnjE+RDQO+G2+qlbiUpY=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=sZNGU5D82hr1GS+PuTNbhseI6neDLKVmlF6/5mdgCWfI1ktQ4cv66WR5UWw/dT4juHQCLrsQFxI8eb+xeP3pzUn3S6WHdzVpViG4uIl2yt5C6O9MK6Zd2wK+BdY5UZIoFd6WmwTlMtuvvdDQm+DLH3JvigPtPZM9mLap42uN5Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=SQ37MeMx; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240725012838epoutp03f19a8b16af60e42f47502032c3d069b1~lUHpWWgqX1679516795epoutp032
-	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 01:28:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240725012838epoutp03f19a8b16af60e42f47502032c3d069b1~lUHpWWgqX1679516795epoutp032
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1721870918;
-	bh=eYXPHhdClqTMdVTqA66Qfhv5w8dRduzyKPjbIZb4jUw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=SQ37MeMx2K3QfurkxveQDYzA94Ak8Vc77aQLKaet8WfVNkNp6xRDjUq23K3NhzZlQ
-	 iVW9WYP4RSbpqFjMc3XdCmOlpsuG6L1lbSAGdKJG4HDH+E/qfXLPPnyBngr59J9RO2
-	 yb9wck8Iur9Z7LIm+vIwnpMwE85UX1vLkC21NfTM=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-	20240725012838epcas2p4de7572a55604a9d19ad45e8f8c65a139~lUHo9ITPn2511725117epcas2p47;
-	Thu, 25 Jul 2024 01:28:38 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.90]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4WTtZF5m9kz4x9Q0; Thu, 25 Jul
-	2024 01:28:37 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-	90.B9.10012.54AA1A66; Thu, 25 Jul 2024 10:28:37 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240725012836epcas2p29e970d29dec0926032eb8f7e215ea784~lUHnf_4uM1436914369epcas2p2N;
-	Thu, 25 Jul 2024 01:28:36 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240725012836epsmtrp2ee2b3c5afa655f4a784157b420ae7059~lUHnfGxRH1878218782epsmtrp2M;
-	Thu, 25 Jul 2024 01:28:36 +0000 (GMT)
-X-AuditID: b6c32a47-ea1fa7000000271c-ba-66a1aa45d6d8
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	27.4B.08456.44AA1A66; Thu, 25 Jul 2024 10:28:36 +0900 (KST)
-Received: from KORCO118965 (unknown [10.229.18.201]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240725012836epsmtip12b44db21ef24a84496629d7283188584~lUHnQAQRg1203912039epsmtip12;
-	Thu, 25 Jul 2024 01:28:36 +0000 (GMT)
-From: "sunyeal.hong" <sunyeal.hong@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
-	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
- Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
- Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <73922d54-2fb2-480b-a2af-1b1454429d52@kernel.org>
-Subject: RE: [PATCH v4 2/4] arm64: dts: exynos: add initial CMU clock nodes
- in ExynosAuto v920
-Date: Thu, 25 Jul 2024 10:28:36 +0900
-Message-ID: <035701dade31$f8815440$e983fcc0$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE24120EB;
+	Thu, 25 Jul 2024 01:36:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721871389; cv=fail; b=AQmixh6G7vG5mn6S4xmnEShf/3QXmK2n9H1w1oFshqV5ho+UCuTWRQkP6MoX6jrVBsmauf7i2fhpqzJyoqzKEdD74oJlg1KPrHFw8Jp6sfMqwLhNizFzA5YO85vtCLz+fCND1+JIyDjXr65EC/3eE9Mkevky0r6XosJlW5U+o0E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721871389; c=relaxed/simple;
+	bh=hNLQV1XRxqsrVRBvyJZx2OpGqeUlY8DQZGbvukwiYXY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Jdt3wR9fQxqjIKr54pUGcBhl5VJhW3BHaSFlPjggzDhAXQ3vhdshlkKLVODlpZys8qjTzsCvUdppMBlf1O+6N53uHujs2GJTkaukx9H/xPxaOjpKXMVTEgx2EOHAWElAlaUEhlVo5a3kOR9mwWbd7cfOvQuRi553aKIHP9wmB8w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=X0y962t9; arc=fail smtp.client-ip=40.92.102.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=x0andETyCfF9DbI/CUvfwRkgAx6rTLvsa4OTt0++5Tc0K8WQoajxvHdaqJOb3fr3mB+Ihb3rhW+vjcN37C4S8OkNYvwtghlJG/nDQ/oXqfijESOl5opSmf4dLNpVGN7eVjB7lOHZyJaZYN4ut/fEN3ShPQaokHPBICyw9qK0D16aV9jhpNJZMP1+lEoQVbZ3FwBJ2B1K3MJTP6LTG6H33vbHlLUVXqp/GMwPOLgeOY9PkPM0s90svumDhkmRabbTickEzSFBigt8xaj2PPiPnOXwEWIsOOMioQ0JEaiCJVsw1RwZg0wIldF3q/aIrD+3hfEQN1AGp3+O5Cwn/JQOvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SWBmIMvfSBptJwrZshjGIiQHwknJvw1TZAruUiKWRFU=;
+ b=xxFSsK5/wdlTt7i4g2rCEb0Zlf/OEfglGL7ADiIY0zWkAGZonw6zso7XM5NKhyCRUdB50eb2sWA6rrGQ7hOiwtBFIp2AqQ90F39Tq0IU6hWZQ7BzNte4Q0CMg8jY/L7MBcceSrb//DvRY3JWw1mSEcb4gPuYb2mcpKdVqCUcQBs058xmL3Tj4YMHfc0eIxCX0yM+JjyRO1FDIXRl3vfJRcxeDbXI8hxZ5zLNlqV9wR12bf/i57Pos57NTc7stqaDihXtshU6INYifXku8IMmMKdCNH28CzSEJYCwoiGqCN4aki62Cv/5/yWHbev4fIW6RTnBTY2BefzryFPc+VeIAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SWBmIMvfSBptJwrZshjGIiQHwknJvw1TZAruUiKWRFU=;
+ b=X0y962t93Akf881DCFFBLJdwmDzUctsglHJbov7dsUIw+XO1rlYWTGIiC59tc2oDi3MkYGeC8o8sICBsrQeiLDQ4ZplnJLIMSMJOXJztVLeodZh5uVJnq2Dzycg/5nPhWeG/iNwiqN32uGuII4VWgxCNSOpk6eQHGFUlrXoey4fOD9RDA8r3WasxDEFO1IlohHZBtxlOmcUbpilHbBDqSujWg/+wpu/AK75geRynDRJn6FNUBgALw0dXFL0g0ItgorcuWiZuk6ubftxrCYUrf0beIIpm9PNqK4y9IsZKm7fi48jFpgRU5Z0ZR/qNyTUffljJ+YWQbxFMkDVPx87CIA==
+Received: from PN1P287MB2818.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:214::7)
+ by PN3P287MB1446.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a0::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Thu, 25 Jul
+ 2024 01:36:18 +0000
+Received: from PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5a8a:9e40:a4e8:3e2d]) by PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5a8a:9e40:a4e8:3e2d%3]) with mapi id 15.20.7784.020; Thu, 25 Jul 2024
+ 01:36:18 +0000
+Message-ID:
+ <PN1P287MB281813D2CE721D2D8E697A52FEAB2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 25 Jul 2024 09:36:07 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/8] mmc: sdhci-of-dwcmshc: Add Sophgo SG2042 support
+To: Drew Fustini <drew@pdp7.com>, Chen Wang <unicornxw@gmail.com>
+Cc: adrian.hunter@intel.com, aou@eecs.berkeley.edu, conor+dt@kernel.org,
+ guoren@kernel.org, inochiama@outlook.com, jszhang@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
+ chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+ tingzhu.wang@sophgo.com
+References: <cover.1721377374.git.unicorn_wang@outlook.com>
+ <ZqFtjpxXv7pRpZHV@x1>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <ZqFtjpxXv7pRpZHV@x1>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [3nD3x9RLGdE9FTv8MBdkQqQWN0wWl3Kq]
+X-ClientProxiedBy: SG2PR02CA0121.apcprd02.prod.outlook.com
+ (2603:1096:4:188::21) To PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:214::7)
+X-Microsoft-Original-Message-ID:
+ <c8364838-598a-4fe9-a8d4-711cf0b9a5bd@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKlY5hu3bVCnsOExtpi/jJA6pOgwAIK48nRASeT9zcBnRCPFrBLH7ug
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKJsWRmVeSWpSXmKPExsWy7bCmqa7rqoVpBt8OaFg8mLeNzWLN3nNM
-	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
-	d20jiwOvx/sbrewem1Z1snlsXlLv0bdlFaPH501yAaxR2TYZqYkpqUUKqXnJ+SmZeem2St7B
-	8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6bpk5QCcqKZQl5pQChQISi4uV9O1sivJLS1IVMvKL
-	S2yVUgtScgrMC/SKE3OLS/PS9fJSS6wMDQyMTIEKE7Izpt/+yF5wkL+ia+od5gbGPTxdjJwc
-	EgImEvv2XmDqYuTiEBLYwSjxu2shM4TziVHi/dwD7BDON0aJ1ztvssO0vO29yQiR2MsocfHE
-	bKj+l4wS/64dBatiE9CXWN19mw0kISJwh0ni8vQ3YLOYBdYxSmyeeQSsilPATuLlo7NsILaw
-	QILEi+9PWUBsFgFViY5Pu4FqODh4BSwlHi4oAwnzCghKnJz5BKyEWUBbYtnC18wQJylI/Hy6
-	jBXEFhFwk2ib/4QJokZEYnZnG9hDEgInOCQOrXjLBtHgInH630uoZmGJV8e3QP0mJfH53V6o
-	mnyJydffMkE0NzBKXPvXDdVgL7HozE+w45gFNCXW79IHMSUElCWO3IK6jU+i4/Bfdogwr0RH
-	mxBEo5rEpyuXoYbISBw78Yx5AqPSLCSfzULy2SwkH8xC2LWAkWUVo1hqQXFuemqxUYExPLqT
-	83M3MYLTr5b7DsYZbz/oHWJk4mA8xCjBwawkwvvk1dw0Id6UxMqq1KL8+KLSnNTiQ4ymwKCe
-	yCwlmpwPzAB5JfGGJpYGJmZmhuZGpgbmSuK891rnpggJpCeWpGanphakFsH0MXFwSjUweXFy
-	tJXE2ryacdeCVaT49d6F+8Wfxn94+Cq3KO1bY9DCpyZfby2tknVb/cmVuYJ506WNVz4vf2/4
-	f4WfKk+S1Ck5ecfVLuuNRGTTIw+dyHvxLClj8x+1eQL/ZnEuYClLkfJwiA5ZqTkz9vC6PAvJ
-	2SbH/vX+iOU6u//qtsf7dx1dPSt3ed3lnayq2+r4Zwn5z31j+vOLUIbTjgOxStwLHkx8ppts
-	dHfq85OHnhc/3f4tf+GVrzY7NOIig9w+My05p3HldO39iJ2SPfejsxe9Tkt3MXM/51Ua13cr
-	7QnPoQcxxXs7Go002ZJ681XKb3/m2a8zS/vkmrln865ZfM24VJj3acYjy9oQtXdTvuk85Vdi
-	Kc5INNRiLipOBADofneHSAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIIsWRmVeSWpSXmKPExsWy7bCSnK7LqoVpBh8a9S0ezNvGZrFm7zkm
-	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxYHX4/2NVnaPTas62Tw2L6n36NuyitHj8ya5ANYoLpuU1JzMstQifbsEroztj5awF7zn
-	q+iZcJ61gfEVdxcjJ4eEgInE296bjF2MXBxCArsZJfb+nsAGkZCR2Njwnx3CFpa433KEFaLo
-	OaPE16+tjCAJNgF9idXdt9lAEiICj5gkph/5xA7iMAtsYpQ4t/smG0TLd0aJK19awWZxCthJ
-	vHx0FmyHsECcxNUFV1lBbBYBVYmOT7uBajg4eAUsJR4uKAMJ8woISpyc+YQFxGYW0JbofQix
-	GcRetvA1M8R5ChI/ny4DGyMi4CbRNv8JE0SNiMTszjbmCYzCs5CMmoVk1Cwko2YhaVnAyLKK
-	UTK1oDg3PbfYsMAoL7Vcrzgxt7g0L10vOT93EyM4FrW0djDuWfVB7xAjEwfjIUYJDmYlEd4n
-	r+amCfGmJFZWpRblxxeV5qQWH2KU5mBREuf99ro3RUggPbEkNTs1tSC1CCbLxMEp1cAU2x0Y
-	9jlm1cqALrsP+9av7zZfFfaioG+uUG7O5/gCs5TT7O/mGltqnGVLL126pLDs2DR3p7bVe3tN
-	Dd47h3w0/W307OqkuWaXv7Quk92+Y7fERamrH7La3sW9MgiZXhHQtjkwnjl5VuD7gNWfDnxR
-	un2qbf6e64bWZ5NUWWKc1Y9134+/r1NT8yWN6cMG26BDz3nTIn8dFmuo0pGSkb+vvm3J9ldt
-	VvMPt10P4r7bUGC7VSL4vqs1++S964Nm7rrJtqCov9Mi1XiTnHzX/sYmUbGX1mHV81grplk2
-	ZXBFPzzb2H/8rmUgu7nK6hIV5v3zrG9EKv+dv/DLzhVxZ9c7TWKO6CnlljtsMqvlxT4lluKM
-	REMt5qLiRACgz1mrNAMAAA==
-X-CMS-MailID: 20240725012836epcas2p29e970d29dec0926032eb8f7e215ea784
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240722223341epcas2p1b08b47cfefa981a2b31aad7878e3db64
-References: <20240722223333.1137947-1-sunyeal.hong@samsung.com>
-	<CGME20240722223341epcas2p1b08b47cfefa981a2b31aad7878e3db64@epcas2p1.samsung.com>
-	<20240722223333.1137947-3-sunyeal.hong@samsung.com>
-	<73922d54-2fb2-480b-a2af-1b1454429d52@kernel.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN1P287MB2818:EE_|PN3P287MB1446:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06904d1b-3e1b-4ca2-168e-08dcac4a2d39
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799006|461199028|19110799003|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	h2U3y7jt8jMWABEVOJRfFd4yAAkd9qqV+2vW1Eu1jV4X7mDANp9sSwee3sk/5kekLViWoiU+V+UrWt5QCzj0EMAAyWc/nP+vauHaFjN0jKSKCnKDhEIv6XTjuT2UyVkyJxzHLOq9yWewz4fUooyDl3Nc7u7RYrfrBDmyVZknaqmNu1tw9txRhD6l7mpaZzBCyFnPDuqkFSHsDrDABUk1Xq1MEupsy2XMNK2J/IpvguGLWt15/qMzTapNa+sB8e42rYEuFPcqT1emATNk5QwzzqHlk5opi+6Jdxa8GLzJp+az2iHwvQyIoQu0ZkKcODAR1rGqxm9LD5PEkPAvQxwt29j6sdn7mbcTFTwajW6IZjqsF8nZy9M51Rk3Zb9bww1KRz6jXeqMbYFGWlEnP2gPoIuVxnphK7VO8I+OMq05dJHL+vYN4CnLNNsGozGEf0225uCtPFbkroLl0lz31YEv1TFzmjgob8imewfUNEYVFOVBeYTu5pBOf1yRQBktNKGe/EoBIncuT89jk3v/moBpqhhqz83NsjvLCZhJZ3k8tBHZ/cvME0D24CkC/4GKAwVkk51O2gWFazk9uw/FvBnSvO3CQV5RhVFBPNR6b14Wtb94vxoiv1I6V62v8Gs+d25A+zCdhHUXChY/EKw3/Wnxnw==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?eS9Yby9Ec0V4cnVpTXZHY3VZSVc5aFYzbVBxMVBYZklTMlBxNjY1a1VpSU1m?=
+ =?utf-8?B?YzZGZ3BYcFp5Q3V1UGQwc08zbGNob28yOVNFSU9PV3poSE1NMStwN0tlTTJl?=
+ =?utf-8?B?bUtYRXRxRnJEYmVFQXNCWlA5d0Y0RzRueGhKTjN6bFBBR1BhZkZpM2hvTTVD?=
+ =?utf-8?B?QlpSY3ZEY3E1UWpydVlwTWJWZmNIZzhRTHNhWDFKWGc4dGdtdTBDR245ZUpU?=
+ =?utf-8?B?YjdrNTZqZ3lDWTkrSVZIQ0dZZDdybTV6WDl1bDhjcTNRandkOUlmTHltZVhy?=
+ =?utf-8?B?RGVXaUt6eXRwZUtlVzFHV1NuUE9VWTJOMmwreHI4RE1TVVAyOUtMa3YrS1NT?=
+ =?utf-8?B?cjFVTWRKOUpSNXJTZ2JuSVFiZDI2N1V5UXY2bGtQTEhHQWJzZEduTEsyT1pk?=
+ =?utf-8?B?TWJlYXBoTUJNM3BSNHE2aWdpdmFiRUNhUjNMRnphRWVXaVFtNldlbjJva2N0?=
+ =?utf-8?B?ZkcrRzVBeFlOdGdYRHVnMGVVanR5ZzRiamZBb1hGQXhnK3NhMjQxdG92ZWR5?=
+ =?utf-8?B?bHkrVVVBdUF1L3QxeDIvYkFDLzFQNEZ5UElSUVFlVElVVTJSdEZtWERXeHRZ?=
+ =?utf-8?B?R3RWejNzaEVnUjg5LzNJVTd3RUZqRU0vNlRtem02T3pIOFZ0eTY4Zm1NNXdQ?=
+ =?utf-8?B?QVBaMDNhNWJEZVpSSEpxbytnWDJhU3NLeEJ6dFJMeVdDMnBLUmxUK2pVMjZh?=
+ =?utf-8?B?anJlQkswT1BhL1haWXdSOWV3YUtKb1ZvUXAyVkpyS0xmWGg4WWRveDljYXZL?=
+ =?utf-8?B?VGpGcit2WUw5VHB4Mmt2ZFRSdzVCYW9KWDFKb2dqL09qVkVDOWlrMnVKOFV3?=
+ =?utf-8?B?aEpyaFMya2w3SlV5V3BlcVBFazdnTnZ3N3lmbUFwNkdMclc0RDVvQzB6blpr?=
+ =?utf-8?B?MkZEbEsyN01sMkJjckhVcXA0dHFzdUdGcTBHMzB6TGRZVnkvejVtbW9LaEh2?=
+ =?utf-8?B?b2VLVEhZVHFuUExqZ210a3lTVzBhaFFUYzdScXVsZlNlTDNKRll4UlhxVFE3?=
+ =?utf-8?B?Y0tJaTBULzg0d3Jma0V6UXNMdk9CQ2JyMlNlLzRybTVGejNLbW50MHZOT29y?=
+ =?utf-8?B?MElXeFZDc2JTbXJiTjU5TmY4ZUhsc2ttY0JjZnQ1bk05YmZQN3FRa0hsSE84?=
+ =?utf-8?B?QWUrVVpnbFFkRU1SWW4wZmVhU0xUZ25NSzB1dmtyUkdkWURSVzJwa2RHSWZk?=
+ =?utf-8?B?clU5RndESXlPUUNKMWdFQ1Y2ZlZhaWM0emJVeGVLdzJROGVrWFBUZmZSZk4x?=
+ =?utf-8?B?T3lkQi8yV3FSa0VoT1Fla2FWOU9hWW9UNlREblYzY1RqL3hEbkMvZDdlY3Vh?=
+ =?utf-8?B?K3NiTk0xVkZ0aXlsRUdxcHdGdlAwblpCY3IwdDJBSFhmQW05cjVaNlRqQ0Vk?=
+ =?utf-8?B?N1NHZFFiSFp3YkxBaGpzQjVSYmMyTTJ5K1hzbTE2UFFEY2luVEJlNVpRanph?=
+ =?utf-8?B?VmF6Mnp6TkgxOS80Qm84a1RRejJobGRsK2o0bXdETWl1ajlhR000OStRY0dR?=
+ =?utf-8?B?TUFFMUZIa3pHZFlKeXhMaGN2YUlvc3FmWUJRVExxclJpdC9BY1FSa2UwZDZ0?=
+ =?utf-8?B?L3JKQWZjaW5EdlRhKzVYcmdWSnhaU3hBNTVDRU4wZ0taK1pYUVJjQzNzcnBU?=
+ =?utf-8?B?MVRBdGpNcHkyMDNjeGIrbmRJdDNnVE4wSHpXeFpWUVY0ejFacE9la2xucVA4?=
+ =?utf-8?Q?P5XuT3afC20U1W2wb4Rq?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06904d1b-3e1b-4ca2-168e-08dcac4a2d39
+X-MS-Exchange-CrossTenant-AuthSource: PN1P287MB2818.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 01:36:18.2967
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1446
 
-Hello Krzysztof,
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Wednesday, July 24, 2024 7:14 PM
-> To: Sunyeal Hong <sunyeal.hong=40samsung.com>; Sylwester Nawrocki
-> <s.nawrocki=40samsung.com>; Chanwoo Choi <cw00.choi=40samsung.com>; Alim
-> Akhtar <alim.akhtar=40samsung.com>; Michael Turquette
-> <mturquette=40baylibre.com>; Stephen Boyd <sboyd=40kernel.org>; Rob Herri=
-ng
-> <robh=40kernel.org>; Conor Dooley <conor+dt=40kernel.org>
-> Cc: linux-samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH v4 2/4=5D arm64: dts: exynos: add initial CMU clock
-> nodes in ExynosAuto v920
->=20
-> On 23/07/2024 00:33, Sunyeal Hong wrote:
-> > Add cmu_top, cmu_peric0 clock nodes and switch USI clocks instead of
-> > dummy fixed-rate-clock.
-> >
-> > Signed-off-by: Sunyeal Hong <sunyeal.hong=40samsung.com>
->=20
-> Thank you for your patch. There is something to discuss/improve.
->=20
-> >  	cpus: cpus =7B
-> >  		=23address-cells =3D <2>;
-> >  		=23size-cells =3D <0>;
-> > =40=40 -182,6 +172,28 =40=40 chipid=4010000000 =7B
-> >  			reg =3D <0x10000000 0x24>;
-> >  		=7D;
-> >
-> > +		cmu_peric0: clock-controller=4010800000 =7B
-> > +			compatible =3D =22samsung,exynosautov920-cmu-peric0=22;
-> > +			reg =3D <0x10800000 0x8000>;
-> > +			=23clock-cells =3D <1>;
-> > +
-> > +			clocks =3D <&xtcxo>,
-> > +				 <&cmu_top DOUT_CLKCMU_PERIC0_NOC>,
-> > +				 <&cmu_top DOUT_CLKCMU_PERIC0_IP>;
-> > +			clock-names =3D =22oscclk=22,
-> > +				      =22noc=22,
-> > +				      =22ip=22;
-> > +		=7D;
-> > +
-> > +		cmu_top: clock-controller=4011000000 =7B
->=20
-> This does not look ordered. Please read DTS coding style.
->=20
-I will modify it by referring to the Order of Nodes item in the dts coding =
-style guide document.
+On 2024/7/25 5:09, Drew Fustini wrote:
+> On Fri, Jul 19, 2024 at 04:44:38PM +0800, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> This patchset is composed of two parts:
+>> - one is the improvement of the sdhci-of-dwcmshc framework,
+>> - the other is the support for sg2042 based on the improvement of the
+>>    framework.
+>> The reason for merging the two parts into one patchset is mainly to
+>> facilitate review, especially to facilitate viewing why we need to
+>> improve the framework and what benefits it will bring to us.
+>>
+>> When I tried to add a new soc(SG2042) to sdhci-of-dwcmshc, I found
+>> that the existing driver code could be optimized to facilitate expansion
+>> for the new soc. Patch 1 ~ Patch 5 is for this.
+>>
+>> Patch 6 ~ 7 are adding support for the mmc controller for Sophgo SG2042.
+>> Adding corresponding new compatible strings, and implement
+>> custom callbacks for SG2042 based on new framework.
+>>
+>> Patch 8 is the change for DTS.
+>>
+>> By the way, although I believe this patch only optimizes the framework
+>> of the code and does not change the specific logic, simple verification
+>> is certainly better. Since I don't have rk35xx/th1520 related hardware,
+>> it would be greatly appreciated if someone could help verify it.
+>> Note, the DTS change has dependency on clock changes for SG2042, which
+>> has not been merged in master/upstream, so if you want to test this
+>> new sdhci-of-dwcmshc driver for other hardware except SG2042, don't
+>> pick patch 8.
+> I have tested this on the LicheePi 4a and found no issues.
+>
+> Tested-by: Drew Fustini <drew@pdp7.com> # TH1520
+>
+> -Drew
 
-> Best regards,
-> Krzysztof
+Thank you Drew，you are always the best! :)
 
-Thanks,
-Sunyeal Hong.
+Regards,
+
+Chen
 
 
 
