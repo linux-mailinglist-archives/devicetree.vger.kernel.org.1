@@ -1,162 +1,181 @@
-Return-Path: <devicetree+bounces-88085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB87593C069
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 12:47:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFA393C085
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 13:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C2CFB229BA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 10:47:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C3211C21156
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788C5199EBB;
-	Thu, 25 Jul 2024 10:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E758D1991A1;
+	Thu, 25 Jul 2024 11:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M3fU1iAR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQZq/HxD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07551991AB;
-	Thu, 25 Jul 2024 10:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCADA176233;
+	Thu, 25 Jul 2024 11:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721904381; cv=none; b=CM6zh9/wjiIOCuKzb6QJDHsJ3MTu1e2SAzuMRAAS1FwXgwpAoLMHxwVzvfQV2kgKEN94eI25evMgRw5v7ZOohFdADNVSBReNvjpdFNpSDou9EbxN4lWnk+dJI+Ov57NnJWYVh8/4XDsEmLjbs4/L6FyK/uZ1Ito2Ei86AFiWJBI=
+	t=1721905413; cv=none; b=hR6vDFtjAUucmuBay6Txavyd4IVKrMMWyzDLCH/cD9OTmWd5qq6kXQzt5k2eYQ4bw5qUE6CbI8Es09UTCxQUjVW8CTFT9HjYWc+chnkrUL03OnES46ZORNfFPpEULr9mNvIF/x3BgIeaEzMgOBudkAcqE22dJsKA56VyxL5ILgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721904381; c=relaxed/simple;
-	bh=VgiJR7kEM+cnGMiBj+lSW8qPAhtGTOoj5UWbY5zfUyI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HU2v+NXF2wS+VjXNG4CbsdeBEYXvwik08H4WMsTLXh/FQN9dqwnWb+Q/yRWl6Z43h4j/S1r8nnXZxn5nn1CNFxwf11TGUKkTe1PQnhYowNdmYhZyCSlR2IeexrjXqoOvOECamhFbTTlkm+mhjOxQlWMwfconCcQ7R/yz34E38/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M3fU1iAR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46P8KcL5012610;
-	Thu, 25 Jul 2024 10:46:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9ifLbZTRgpqGEv2r30ppykhhVp36eH3TXwx0BaaMj7o=; b=M3fU1iARWTrBtbzj
-	4MsLWwPM3YQR3wS3nLEQ8j/F3n9gBBFbZmucsiNiaz4H3fis96sFpOv1RKsWhZvw
-	MyAsbZeXZ5IRNpUc+MclGWwE38cPgN1AK1CjTnWaAkFUavMK6CA5e5a55pk3vR+Z
-	6zPXK7m/jp7hwg+cLfvuWhPXnZEf8FrhUuxPtV5DLer6RMogakoNJ+WmsGis+pKU
-	1zYJQhSzvtmcQT4Go9iErla96fKiaYwIu481XdusOKEdGLkZ5Sfj7SvUAJH8c1eS
-	ahqe3Sa1cVzvsX8K8n/G0BGM4FRCrFzFzJkSs+sFTGR4rrAwvEUbNWmPNeZFl0iQ
-	FhoOVg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40g5auvx2d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jul 2024 10:46:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46PAkDWx008091
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jul 2024 10:46:13 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 25 Jul 2024 03:46:08 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <konrad.dybcio@linaro.org>,
-        <djakov@kernel.org>, <quic_wcheng@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-CC: Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v5 5/5] arm64: dts: qcom: ipq5332: Add icc provider ability to gcc
-Date: Thu, 25 Jul 2024 16:15:28 +0530
-Message-ID: <20240725104528.3504967-6-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240725104528.3504967-1-quic_varada@quicinc.com>
-References: <20240725104528.3504967-1-quic_varada@quicinc.com>
+	s=arc-20240116; t=1721905413; c=relaxed/simple;
+	bh=RCVBCoKT1vSGM8CC/3jXNwaZrAHFv8eiwDk/Yatez5A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s5svVHvB82pWJUED/+tKS5GlnXAA2ByiIrWR88pG6gYDDOgTBwwiRlnWRJjet/Ol+25gUkukw9pa6E2dg9r0/JutmDclWtJX7yLVMr45N8exG9YQSBn3X/lVY5M5EmiymeqSWCorQbEUHxLUILHqkBMvdbSmwtvOITHjfazN2LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQZq/HxD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852EEC116B1;
+	Thu, 25 Jul 2024 11:03:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721905413;
+	bh=RCVBCoKT1vSGM8CC/3jXNwaZrAHFv8eiwDk/Yatez5A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QQZq/HxDlxXi454xs8++s7E0GK+Or3EhCt84LW+1FAh+0XxXIyzXpdvMhUaz05Erg
+	 eU/3VZZAPv7mYiJp9rp7QkovXV121b8w/u1gYV64LcuUMRDYmW8VnS6PrynN9x6Mwn
+	 CupjHgtyI+1rgpnqCsAIFzwIiZ6aiW5kW0PUGS5mESDLkSb/hSsPjZVrIBNF2TZWwU
+	 HyOFwiVJ4kEECUa9/nTk8KRTOEIdVXWt+aAXxtGU1tJkRfRKC6PxCI9m/HCwejrsA9
+	 eSvpRIT+dFjOtf3eqLcKmurZySnkFiCIJoRkJfkplOSQNsj/uN7s9M5vNCIh7x4Ybt
+	 jl9jC+hOjmu+w==
+Date: Thu, 25 Jul 2024 16:33:29 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Konstantin Porotchkin <kostap@marvell.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RFC v3 5/6] phy: mvebu-cp110-utmi: add support for
+ armada-380 utmi phys
+Message-ID: <ZqIxAf2yPL32HLaP@matsya>
+References: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
+ <20240720-a38x-utmi-phy-v3-5-4c16f9abdbdc@solid-run.com>
+ <ZqH0KDVjCILr3A6r@matsya>
+ <f4835ad8-08c1-49f0-ae85-4f870ad90a8e@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: U94Pio0_6tflttZhT4Ovh-kIndw6FAEY
-X-Proofpoint-GUID: U94Pio0_6tflttZhT4Ovh-kIndw6FAEY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-25_11,2024-07-25_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 bulkscore=0 malwarescore=0 suspectscore=0 mlxscore=0
- clxscore=1015 phishscore=0 spamscore=0 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407250073
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f4835ad8-08c1-49f0-ae85-4f870ad90a8e@solid-run.com>
 
-IPQ SoCs dont involve RPM in managing NoC related clocks and
-there is no NoC scaling. Linux itself handles these clocks.
-However, these should not be exposed as just clocks and align
-with other Qualcomm SoCs that handle these clocks from a
-interconnect provider.
+On 25-07-24, 08:38, Josua Mayer wrote:
+> Am 25.07.24 um 08:43 schrieb Vinod Koul:
+> > On 20-07-24, 16:19, Josua Mayer wrote:
 
-Hence include icc provider capability to the gcc node so that
-peripherals can use the interconnect facility to enable these
-clocks. Change USB to use the icc-clk framework for the iface
-clock.
+> >> +struct mvebu_cp110_utmi_port;
+> > why forward declare and not move the structs instead?
+> Seemed like the smaller change / more readable as diff.
+> I can move the struct instead!
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
-v3: Fix #include file order
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Yes and that can be preparatory as well :-)
+ 
+> >
+> >>  	reg &= ~(PLL_REFDIV_MASK | PLL_FBDIV_MASK | PLL_SEL_LPFR_MASK);
+> >>  	reg |= (PLL_REFDIV_VAL << PLL_REFDIV_OFFSET) |
+> >>  	       (PLL_FBDIV_VAL << PLL_FBDIV_OFFSET);
+> >> -	writel(reg, PORT_REGS(port) + UTMI_PLL_CTRL_REG);
+> >> +	writel(reg, port->regs + UTMI_PLL_CTRL_REG);
+> >>  
+> >>  	/* Impedance Calibration Threshold Setting */
+> >> -	reg = readl(PORT_REGS(port) + UTMI_CAL_CTRL_REG);
+> >> +	reg = readl(port->regs + UTMI_CAL_CTRL_REG);
+> >>  	reg &= ~IMPCAL_VTH_MASK;
+> >>  	reg |= IMPCAL_VTH_VAL << IMPCAL_VTH_OFFSET;
+> >> -	writel(reg, PORT_REGS(port) + UTMI_CAL_CTRL_REG);
+> >> +	writel(reg, port->regs + UTMI_CAL_CTRL_REG);
+> >>  
+> >>  	/* Set LS TX driver strength coarse control */
+> >> -	reg = readl(PORT_REGS(port) + UTMI_TX_CH_CTRL_REG);
+> >> +	reg = readl(port->regs + UTMI_TX_CH_CTRL_REG);
+> >>  	reg &= ~TX_AMP_MASK;
+> >>  	reg |= TX_AMP_VAL << TX_AMP_OFFSET;
+> >> -	writel(reg, PORT_REGS(port) + UTMI_TX_CH_CTRL_REG);
+> >> +	writel(reg, port->regs + UTMI_TX_CH_CTRL_REG);
+> >>  
+> >>  	/* Disable SQ and enable analog squelch detect */
+> >> -	reg = readl(PORT_REGS(port) + UTMI_RX_CH_CTRL0_REG);
+> >> +	reg = readl(port->regs + UTMI_RX_CH_CTRL0_REG);
+> >>  	reg &= ~SQ_DET_EN;
+> >>  	reg |= SQ_ANA_DTC_SEL;
+> >> -	writel(reg, PORT_REGS(port) + UTMI_RX_CH_CTRL0_REG);
+> >> +	writel(reg, port->regs + UTMI_RX_CH_CTRL0_REG);
+> >>  
+> >>  	/*
+> >>  	 * Set External squelch calibration number and
+> >>  	 * enable the External squelch calibration
+> >>  	 */
+> >> -	reg = readl(PORT_REGS(port) + UTMI_RX_CH_CTRL1_REG);
+> >> +	reg = readl(port->regs + UTMI_RX_CH_CTRL1_REG);
+> >>  	reg &= ~SQ_AMP_CAL_MASK;
+> >>  	reg |= (SQ_AMP_CAL_VAL << SQ_AMP_CAL_OFFSET) | SQ_AMP_CAL_EN;
+> >> -	writel(reg, PORT_REGS(port) + UTMI_RX_CH_CTRL1_REG);
+> >> +	writel(reg, port->regs + UTMI_RX_CH_CTRL1_REG);
+> >>  
+> >>  	/*
+> >>  	 * Set Control VDAT Reference Voltage - 0.325V and
+> >>  	 * Control VSRC Reference Voltage - 0.6V
+> >>  	 */
+> >> -	reg = readl(PORT_REGS(port) + UTMI_CHGDTC_CTRL_REG);
+> >> +	reg = readl(port->regs + UTMI_CHGDTC_CTRL_REG);
+> >>  	reg &= ~(VDAT_MASK | VSRC_MASK);
+> >>  	reg |= (VDAT_VAL << VDAT_OFFSET) | (VSRC_VAL << VSRC_OFFSET);
+> >> -	writel(reg, PORT_REGS(port) + UTMI_CHGDTC_CTRL_REG);
+> >> +	writel(reg, port->regs + UTMI_CHGDTC_CTRL_REG);
+> >>  }
+> >>  
+> >>  static int mvebu_cp110_utmi_phy_power_off(struct phy *phy)
+> >> @@ -166,22 +178,38 @@ static int mvebu_cp110_utmi_phy_power_off(struct phy *phy)
+> >>  	struct mvebu_cp110_utmi_port *port = phy_get_drvdata(phy);
+> >>  	struct mvebu_cp110_utmi *utmi = port->priv;
+> >>  	int i;
+> >> +	int reg;
+> >>  
+> >>  	/* Power down UTMI PHY port */
+> >> -	regmap_clear_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
+> >> -			  UTMI_PHY_CFG_PU_MASK);
+> >> +	if (!IS_ERR(port->regs_cfg)) {
+> >> +		reg = readl(port->regs_cfg);
+> >> +		reg &= ~(UTMI_PHY_CFG_PU_MASK);
+> >> +		writel(reg, port->regs_cfg);
+> >> +	} else
+> >> +		regmap_clear_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
+> >> +				  UTMI_PHY_CFG_PU_MASK);
+> > why are we doing both raw register read/write and regmap ops... that
+> > does not sound correct to me
+> Indeed.
+> 
+> The next question would be why for Armada 8K / CP110 syscon was chosen.
+> From what I could find the registers accessed by utmi driver
+> are not accessed by other drivers.
+> 
+> I am adding raw register access as an alternative,
+> 
+> to keep supporting old device-tree specifying syscon handle.
+> 
+> I considered writing helper functions for the if-not-error-syscon-else-raw,
+> but between set_bits, clear_bits, global and per-port regs
+> would have ended up with too many.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index 573656587c0d..7e8f9d578382 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
-+#include <dt-bindings/interconnect/qcom,ipq5332.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
- / {
-@@ -208,6 +209,7 @@ gcc: clock-controller@1800000 {
- 			reg = <0x01800000 0x80000>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
-+			#interconnect-cells = <1>;
- 			clocks = <&xo_board>,
- 				 <&sleep_clk>,
- 				 <0>,
-@@ -327,11 +329,9 @@ usb: usb@8af8800 {
- 					  "dm_hs_phy_irq";
- 
- 			clocks = <&gcc GCC_USB0_MASTER_CLK>,
--				 <&gcc GCC_SNOC_USB_CLK>,
- 				 <&gcc GCC_USB0_SLEEP_CLK>,
- 				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
- 			clock-names = "core",
--				      "iface",
- 				      "sleep",
- 				      "mock_utmi";
- 
-@@ -342,6 +342,9 @@ usb: usb@8af8800 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-+			interconnects = <&gcc MASTER_SNOC_USB &gcc SLAVE_SNOC_USB>,
-+					<&gcc MASTER_SNOC_USB &gcc SLAVE_SNOC_USB>;
-+			interconnect-names = "usb-ddr", "apps-usb";
- 
- 			status = "disabled";
- 
+Aha, please add the comment so we know why it was done like this few
+years later
+
 -- 
-2.34.1
-
+~Vinod
 
