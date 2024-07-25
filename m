@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-88193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746B193C889
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 21:00:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 837EC93C88E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 21:00:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E416281764
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 19:00:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA977B21FB6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 19:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434274779D;
-	Thu, 25 Jul 2024 19:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B0D54759;
+	Thu, 25 Jul 2024 19:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="1488DJbz"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="C4CMyTxp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDEF25569
-	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 19:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9846E3CF5E
+	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 19:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721934017; cv=none; b=cT7b5dtHDiSVfpGoOcL4ltOBOUZbEnyXmMfxo69gQD7WhnPrAHg5/UDnKKbu4AuMPJG/GttkDPPMI4VLiDcYC71hbv2QDrvxdFd2v7oT3V47hPc98qt8kXcuygc8duHj4/ZW2qLAwQmPAPBJCv+YXRlbM6MRQCAY8x6SG8FpoHI=
+	t=1721934024; cv=none; b=lkky4X3WY34kE6mQV/Kvfd5N8x+SIZdQ/k3eFSGlYmvIs/mEw4P77XL+LVWic7SR8v6jk2OgmIcDUcOefq5vay+EqgcQLVypZuiSTOpb27i3sozxfRhdVUJ4cChBtUU4WLbQrxr9h+51+6Zyv2Y7NTEi3LghDUK7oJ6EazMnxA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721934017; c=relaxed/simple;
-	bh=1SXRSsqZz92FEOTrBrR6i2ym9WcdF3m0UDq9oqJ8/V0=;
+	s=arc-20240116; t=1721934024; c=relaxed/simple;
+	bh=Odp82Bt/6lQT9q7XLZznJSSdvglIivq+nF5Svn4ptT0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WUVmxqJcp8w5TW47gI7oSI1SCGXQZ+LyOvbuZXD7u9uiWyfbCFebWXDWYHYqP57W+49zSlIRgs47W1z8fO+PXaW0R2JoHfFxaEMmLQ49R4+V2s30Xi/NNb4VVKoR/fmeEgVtC7eNBP57GJathzjEHysqpvS1CCdW0x7nD79wSAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=1488DJbz; arc=none smtp.client-ip=209.85.208.53
+	 To:Cc:Content-Type; b=IIbGRCvEgSUWdP+D2FMjS12NY3mhFXInpIPGxsDQBUaTeKrEtA/8h0Z+QMs2Mc+2my2Sr2Ptvq+M8HaM/c1Qrjy4zb7YzqGMhCYZnezR5NoXaYxTLFXBYL0Ex67UZNY9Ea/HdvMS/0yu1T2YW2Dam5jpeJEGxA2JVxRj4mCV8jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=C4CMyTxp; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5a1fcb611baso1573572a12.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 12:00:15 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5a1337cfbb5so1717735a12.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 12:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1721934014; x=1722538814; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1721934021; x=1722538821; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1SXRSsqZz92FEOTrBrR6i2ym9WcdF3m0UDq9oqJ8/V0=;
-        b=1488DJbztqYCHXzB7B5mGAk/fo6Ugg5q6sb+n9cCS3SRS1qhZuEDxglsrVxZWUEGG3
-         SPI9+gfxBm008vrHfocqcVP3YhDj/W+zgeGnvM51C9qXoor7ZVJBPpBaNEXmdjCVft7N
-         DoMPSGBP/J+1uwnZrr0Aib0aZaj26+CaDmOXp6FxQNyN++qh5c9HXmtNzNs1qI3IJuNY
-         TaF/L7J4Tpn5OIokWvNOhi8Hubs47aa6/uRtBJgKx1kagvQqrcTcA+Q0b8SJJILQP714
-         YPGJI5Y+EeGj9XLNKa34xsqVx2S89fPlwZFTXTeKnY9o1qaouLucFKlQupLDee42HrP2
-         uIfg==
+        bh=Odp82Bt/6lQT9q7XLZznJSSdvglIivq+nF5Svn4ptT0=;
+        b=C4CMyTxpBcgEyntsBbmoBMG/Kplyrb9tzhVute+3QiJr8eVy72764SJOFX+0LX/3j/
+         VYPKxPriJG+9tiHw/q+u1Kw02d43gsNipkU+XzUUB67NA4fBuB2tEVZ9mLeygjR4ieoK
+         NbpONUio0nPZyDvD8iDliSA7hOk+7+Cd6SrEVzGOSkmys1Vd7MK88FysGryotYcL/v8t
+         GG1MnfNgJPevm7zhHqeK3sulsPlBw49ZWJgY+8xSqCBhf83z598aQt9yWDOv8jETNfZp
+         /UdRBVWeKPW7DciWePfe4w415wGGWLM9mfrasIMhd2iQRACPCG/bcpGoWJymTFXhOAUy
+         gK/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721934014; x=1722538814;
+        d=1e100.net; s=20230601; t=1721934021; x=1722538821;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1SXRSsqZz92FEOTrBrR6i2ym9WcdF3m0UDq9oqJ8/V0=;
-        b=em4ril9u4BSVFtKVI+Q+t+5GBF0gokRenz3nyXMAetjW39zxxJfwxAZLO/1uWA8Mg9
-         awrMYYV+p7aPcr0B/tUZfRkxjmKhIY1VBlDHHtQ7q4DnvhL5E6kvkjfql+sRVSt03aJs
-         DIHE7Zpys9lO1zFzopq2voIHERoXCcNYPcI2Tx+TG8HyVgN/V9pqZeCTI+bPiO9v8epn
-         MNraWp7GflvO0BcBeF0AiriQo17LkFY1GKWJ7+d0BdbnT8ECY9odLFNEDJuXR0+YyUUY
-         DT6YYe4SZTWiBGgjvPXhaQF2xMcmtq9qobaND2ydh5Wj/izIiIUOkfFOMM7GggDE4CL/
-         35rw==
-X-Forwarded-Encrypted: i=1; AJvYcCXjQ1g39iqD9GpZZ6YWcIbC5+lHI3EmdZbH5PhzDwOv5jFdAbFGqBVeDBxZC05Xi31Nf7pfJOQ1kxtx1ZoDy40+QyelqBWhO3HScg==
-X-Gm-Message-State: AOJu0YzaShmHmaMjSN2hMHUPjV/JCOwd34dk5HIDvsD9a4PFZMc5ZgWB
-	kCTg8LIJYHDM0yqP3GlnWK72WM9uGSonDgT4KpWd+iDoVEbEek5aUUKhZFxryNTCEkGcqELbN1J
-	M7OMkPi4z14V4+0XZgEYwKkKysyG1JZdFHgSo0A==
-X-Google-Smtp-Source: AGHT+IFHUqdSVej/FJ48bmkUm2ijOZ5NIMkgNmJ5x7nyiK8ULyjrs0OUa2kOhzuQ5Wr4IrghMERmj1LuPI17mje/MmQ=
-X-Received: by 2002:a17:907:6d0b:b0:a7a:b9dd:7766 with SMTP id
- a640c23a62f3a-a7acb4f9362mr226470666b.31.1721934014047; Thu, 25 Jul 2024
- 12:00:14 -0700 (PDT)
+        bh=Odp82Bt/6lQT9q7XLZznJSSdvglIivq+nF5Svn4ptT0=;
+        b=MuDXsC4Ld24zCna3kFEL5/Ij4pg2KRXXkkuSM+5KKLhWNwAxjmqBeg/N9JVyTp8qDD
+         cnXdIbbztVIWuycbJshQiKfiEZFv3w9jkNVT9hRjqq17dz/+UgIjYL5Jdys+RGhB2PrZ
+         GOjqeXPuFBZW4YgekTckW5JUdMTM4rrb+BYJGc3dbZEo2vnlkG9Yi4EiyomZDu9/fXb8
+         H4eaWyW8XPiz/705l9wLiUYnRVT24G32bdWWrv7DbZDUGaaZ7TTu18PLJBSAEWMxHBC+
+         kRntLBPHhbXxPzdNrcih8b0IjzwVf/BV18RFEpLcD5mjtHsr3vTFPnL2vC8aat+bx0BG
+         2pAw==
+X-Forwarded-Encrypted: i=1; AJvYcCWiSfVnXQRsNjgAwSF3BCGBT5pIGfplPby2i8GcUIl0WeBDtsN+miDzbH0aLBZj3crFmJ8Fm3lGHOdYFMb7O4ujqLTy9pSdVA7wCg==
+X-Gm-Message-State: AOJu0Yw3XSvBR2u7JeygdENWl1NL69uLgKv1LPEwwdHnCGduuTkloyLg
+	mCo+aocsrDFQcsUky1RU/bzXWdc8DmpvcY3UTkREVeRS4vFlNODJJRDOP6dkprUw9tlhguWk4li
+	TXrk3ydAgwhfnfD1e/7NDNESLIULb8ctJFIyGhQ==
+X-Google-Smtp-Source: AGHT+IHDvkKcJD4Ik/iost4JLdfIAMZE785wfXdt7jij5gd0w5caXSBtwl0brqZnk6WI+gW1KzKa1dQRWmFciMLLxGA=
+X-Received: by 2002:a17:907:93d6:b0:a72:40b4:c845 with SMTP id
+ a640c23a62f3a-a7ac50641dcmr215221666b.51.1721934021027; Thu, 25 Jul 2024
+ 12:00:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240724183605.4038597-1-jesse@rivosinc.com> <20240724183605.4038597-4-jesse@rivosinc.com>
-In-Reply-To: <20240724183605.4038597-4-jesse@rivosinc.com>
+References: <20240724183605.4038597-1-jesse@rivosinc.com> <20240724183605.4038597-6-jesse@rivosinc.com>
+In-Reply-To: <20240724183605.4038597-6-jesse@rivosinc.com>
 From: Evan Green <evan@rivosinc.com>
-Date: Thu, 25 Jul 2024 11:59:37 -0700
-Message-ID: <CALs-Hsv9KTz8crZ3BROuug-xzA-d6yG8wQR-Ny+5qmazhFHWBA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/8] RISC-V: Check scalar unaligned access on all CPUs
+Date: Thu, 25 Jul 2024 11:59:44 -0700
+Message-ID: <CALs-HsuW+p4KsR0GiOT5OpFVNB6CL23hJd2r6qgu2Ff7dhfRLQ@mail.gmail.com>
+Subject: Re: [PATCH v6 5/8] RISC-V: Replace RISCV_MISALIGNED with RISCV_SCALAR_MISALIGNED
 To: Jesse Taube <jesse@rivosinc.com>
 Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>, 
 	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -93,20 +93,18 @@ Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>,
 	Alexandre Ghiti <alexghiti@rivosinc.com>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
 	Erick Archer <erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	stable@vger.kernel.org
+	Conor Dooley <conor.dooley@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 On Wed, Jul 24, 2024 at 11:36=E2=80=AFAM Jesse Taube <jesse@rivosinc.com> w=
 rote:
 >
-> Originally, the check_unaligned_access_emulated_all_cpus function
-> only checked the boot hart. This fixes the function to check all
-> harts.
+> Replace RISCV_MISALIGNED with RISCV_SCALAR_MISALIGNED to allow
+> for the addition of RISCV_VECTOR_MISALIGNED in a later patch.
 >
-> Fixes: 71c54b3d169d ("riscv: report misaligned accesses emulation to hwpr=
-obe")
 > Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
 
 Reviewed-by: Evan Green <evan@rivosinc.com>
