@@ -1,111 +1,156 @@
-Return-Path: <devicetree+bounces-87959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1867493BA64
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 03:45:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7662C93BA74
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 03:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C08CB1F209B4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 01:45:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33168284584
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 01:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491C857C8E;
-	Thu, 25 Jul 2024 01:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66B66FB8;
+	Thu, 25 Jul 2024 01:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="srn4n+kJ"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="WRMoVOAf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41DF63A9;
-	Thu, 25 Jul 2024 01:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781764428;
+	Thu, 25 Jul 2024 01:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721871824; cv=none; b=oElfWBUiiOldcIOpTrEaYljyNrsa+6eMdZlDDLqAUTNnEXeJz0nmf1dsdTQE5KHf3eKI/GXSgyc1/GwLbHn4ChMgz+1QePL8gpKsnp1F5p4h37FMtBk030JysMK4GVxAdmohbmK07MLy3VpswSwuWviH42DOBGLkfB74Gv1+4Mk=
+	t=1721872751; cv=none; b=fV+n8lh3lo+iwxp+VbD3fTo5PPnAX+b+q8jlWo9q8YpfiOQAh7Lj9C+GEqdCUwadzSoeC0kgDwqsm5N1i+vMs7qJOIoOMhXafo2jVjU1QjdFjKkYjlBHgCKDFYEEywgrJpqXdBjSCxLjsNu3Y85jcE8vcHRPpOzN3K6P561qlT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721871824; c=relaxed/simple;
-	bh=W27i8GsddWkkGbO43nNSrNo7kUCmHrqjkxKShFt8uBE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DPkk2ngVE41UFy0E4VT4YYLs7x1hcOrtLwErzX8mRgjSxSvHkOB06xStl15ITxvnaX1ADXjUvVe/gGi8lFu63J0emDnS1sOEoCPSWXXIVYfzHN+5s+mrmp34o7nPQJ7yqe+a/35e4L9yCPhGMqNY+lRPazItiZ1QLEu3QCqkVdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=srn4n+kJ; arc=none smtp.client-ip=198.252.153.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx1.riseup.net (Postfix) with ESMTPS id 4WTtvf1skBzDqWn;
-	Thu, 25 Jul 2024 01:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-	t=1721871822; bh=W27i8GsddWkkGbO43nNSrNo7kUCmHrqjkxKShFt8uBE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=srn4n+kJrmAxuGdPRwpNbOq2jilBzgpNuAvZJZnYe7CiyjSxKuXgj0P0qZCapmGjB
-	 RGo/XBnpo5X2H/muUWMTWptuOAOutG5r1M5Bi9rZCHMqxahnWvn1E9RDC4PMHXXk0k
-	 xdVmimIbC2BfY6lD/vLj8bN47AVtiosREPKW6g9w=
-X-Riseup-User-ID: 3C13B24D9ADA5A948DEBA86D6218C0230D81CB46BC5330AC4AE95BA046F5E57E
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4WTtvb3YpXzJrRJ;
-	Thu, 25 Jul 2024 01:43:39 +0000 (UTC)
-From: Dang Huynh <danct12@riseup.net>
-Date: Thu, 25 Jul 2024 08:42:20 +0700
-Subject: [PATCH v2 11/11] arm64: dts: qcom: sm6115-pro1x: Enable ATH10K
- WLAN
+	s=arc-20240116; t=1721872751; c=relaxed/simple;
+	bh=qBhaZMviwHZ43OK4gVFL/py0L1GUd1txby0hMg+0/WQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lktYgGEYBfDYZA6h7QGKbS+i1lRPsTkvYvzXWwmj1ObUrl5KsVO6DkLbMMukNqp09m4cba3l5pZKp/3Ouwpsrv8gncGdMjLL3PEQjZQ8tB/Jdw2NctSP7ZUcIdXhHRich0BmYCmD7q0Ec7zc7DHjTP9+4Si0/odtNA9DVjU8ETw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=WRMoVOAf; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1721872329;
+	bh=Z3ooCPkfUhbJkl7PxDObcq/dMiqmdHgfLl7Tb+HWoe4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=WRMoVOAfRkT90uvkWi0GHYSYwFda8xGZaEMIPhM+q5x/OYIc7J873svet3gR6Vy2s
+	 4yUmDgCQN5bS/6gm55jN4ZIpyzBXKMqUT+as8TABn7pXyWMme18tyq0B1gFxNMbVQh
+	 TrTJ59vnDApwxk+iaokaA4Vu39+AzmGXH+oDaV29oi26zH4BQDoB573ddb3RVcYYpj
+	 Wd7Y1DykOjTPtt1r6sf7VNiDfAGZVJiraMemxmEz80XTCAlzMY8NuEMEQLAJJ449E/
+	 vEYTCgQ4sjAwbZjcilQy0oDrfVzl6skZqK0Tvuyg4a/Chkd+mzvDuGFsVm5T9gSGxn
+	 e15eA84pfxOFA==
+Received: from [192.168.2.60] (210-10-213-150.per.static-ipl.aapt.com.au [210.10.213.150])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id ED42B66AB4;
+	Thu, 25 Jul 2024 09:52:07 +0800 (AWST)
+Message-ID: <3483626b81037205679c4d38678f2e3529d53e14.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 2/2] i3c: i3c-hub: Add Renesas RG3MxxB12A1 I3C HUB driver
+From: Jeremy Kerr <jk@codeconstruct.com.au>
+To: Steven Niu <steven.niu.uj@renesas.com>, "alexandre.belloni@bootlin.com"
+ <alexandre.belloni@bootlin.com>, "linux-i3c@lists.infradead.org"
+ <linux-i3c@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>
+Cc: "zbigniew.lukwinski@linux.intel.com"
+ <zbigniew.lukwinski@linux.intel.com>,  Alejandro Gonzalez
+ <alejandro.gonzalez.wg@renesas.com>
+Date: Thu, 25 Jul 2024 09:52:07 +0800
+In-Reply-To: <TYTPR01MB109893062FB3F0D4141444219BAAA2@TYTPR01MB10989.jpnprd01.prod.outlook.com>
+References: <20240217131412.4145506-1-steven.niu.uj@renesas.com>
+	 <20240217131412.4145506-2-steven.niu.uj@renesas.com>
+	 <bae054d217aa577838593244eda02b008e3749a5.camel@codeconstruct.com.au>
+	 <TYTPR01MB109893062FB3F0D4141444219BAAA2@TYTPR01MB10989.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240725-qx1050-feature-expansion-v2-11-5fac4bbd946f@riseup.net>
-References: <20240725-qx1050-feature-expansion-v2-0-5fac4bbd946f@riseup.net>
-In-Reply-To: <20240725-qx1050-feature-expansion-v2-0-5fac4bbd946f@riseup.net>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>
 
-Enable onboard Wi-Fi on the F(x)tec Pro1X.
+Hi Steven,
 
-For reference, HW/SW identifies as:
-qmi chip_id 0x120 chip_family 0x4007 board_id 0xff soc_id 0x40670000
-qmi fw_version 0x324103d6 fw_build_timestamp 2021-12-02 08:20
-fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.2.4-00982-QCAHLSWMTPLZ-1
+> Apologize for the late reply. I am out of work for a long time
+> because of my personal emergency. I am back at work now.
 
-Signed-off-by: Dang Huynh <danct12@riseup.net>
----
- arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+No problem at all; Sorry to hear it, I hope things are okay now. Thanks
+for getting back to me though!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-index 3f6676edc9a7..2ef2733bff48 100644
---- a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-@@ -536,6 +536,17 @@ &usb_qmpphy_out {
- 	remote-endpoint = <&pmi632_ss_in>;
- };
- 
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&pm6125_l8a>;
-+	vdd-1.8-xo-supply = <&pm6125_l16a>;
-+	vdd-1.3-rfa-supply = <&pm6125_l17a>;
-+	vdd-3.3-ch0-supply = <&pm6125_l23a>;
-+
-+	qcom,ath10k-calibration-variant = "Fxtec_QX1050";
-+
-+	status = "okay";
-+};
-+
- &xo_board {
- 	clock-frequency = <19200000>;
- };
+> We are working on the following items after the first submit of the
+> patch:
+> 1. Modify the binding file to make it focused on the device
+> description instead of driver description.
+> 2. Fix the codes which doesn't following the kernel development
+> rules.
+> 3. Re-implement the SMBus Agent function with IBI mechanism instead
+> of polling.=20
+> =C2=A0=C2=A0 SMBus Agent function requires the driver to check the status
+> register of the I3C hub. Polling the status register over I3C bus
+> exhausts too much bus resources. I3C Hub supports reporting status
+> changes with IBI. This shall be supported in the driver.
+> 4. Remove the i2c slave-mqueue module.=20
+> =C2=A0=C2=A0 The slave-mqueue module is used to provide a user interface =
+for
+> SMBus Agent slave function. But it has not been included in upstream.
+>=20
+> The first two items have been finished. And we are working on the #3
+> and #4.=20
 
--- 
-2.45.2
+OK, sounds good. I have a few structural suggestions; some of these have
+been covered by others' reviews too, but to summarise:
 
+Specificity: it looks like you're proposing this as a generic i3c hub
+driver, but I don't think that's the case; as far as I can tell, it's a
+Renesas-specific design (and IO interface), so you want to reflect that
+in the naming & config options.
+
+which leads to:
+
+Binding: the driver cannot match on the I3C hub class BCR, as that
+doesn't specify any sort of register/behavioural interface. If another
+hardware hub was implemented, using the same class BCR, this driver
+would conflict. You'll need to match on vendor/device IDs instead.
+
+Existing infrastructure: you're re-implementing a few common bits of
+kernel infrastructure with this change; for example the LDO settings can
+use the regulator devices instead. Is this included in your (2) point
+above?
+
+Configuration: as you've noted, the run-time configuration of the device
+doesn't belong in the device tree binding in most cases. In fixing
+those, there are a couple of approaches:
+
+ * when moving to existing infrastructure (for example, the regulator=C2=A0
+   and/or pinctrl devices), the consumers of those devices can request
+   the correct configuration anyway, so you don't need to worry about
+   the specific configuration chosen
+
+ * for other runtime things, such as the downstream port configuration
+   (in i3c mode vs. SMBus Agent mode) may be better exposed via configfs
+
+ * for things that do belong as new properties in the device tree, you
+   want numeric values (with an appropriately named property) rather
+   than strings.
+
+ * there may be other configuration settings that don't sit well in
+   above categories, best to discuss those here.
+
+SMBus Agent i2c interface: the controller side looks fine, but the
+device side should be implemented as i2c_slave_event() events on the
+same controllers rather than the i2c-mqueue device (which isn't
+upstream, and doesn't look likely to be).
+
+Happy to provide specific feedback as you go, but it's the maintainers
+(Alexandre and Krzysztof) that will have the final say in design and
+style decisions.
+
+Cheers,
+
+
+Jeremy
 
