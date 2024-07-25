@@ -1,132 +1,99 @@
-Return-Path: <devicetree+bounces-88182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4141993C70C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 18:16:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87CE793C724
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 18:29:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFE6EB2292F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 16:16:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 440C22833A2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 16:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD19E19D881;
-	Thu, 25 Jul 2024 16:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 776D819DF6D;
+	Thu, 25 Jul 2024 16:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNzI3fKY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CyMfYCjV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F8817588;
-	Thu, 25 Jul 2024 16:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D2A19DF65;
+	Thu, 25 Jul 2024 16:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721924182; cv=none; b=b+yaZSvWTw5LqpR6o6LHYmB6vZftGgOcbGMPQdzjeuo/WcHMwLV7otqVlmOP7eVqt4VRB/PTikJGig2BDHeluzD4GtiEUZ5OXbdnw7NtDPE6NYlaAKgmtYCcdsZQxmu62+t3Di1RKoNFoO2K+LXU2iK6+9GTvLEJtcqC/le9NUE=
+	t=1721924941; cv=none; b=CW6tlzeu/gd1Ttk4yX2Zvf4agLQUCa/UpvMIfbf0eeBW2ckFpQpcmBcMYc8xDnXVZYkAu2z3EJlr/2R20rEUhXXu3BpPzkMO7MMdW+8sE1WNnR1/hKD6k7WxywWvZ6dievDWLBjVsvMyf5a/AC77z1tUCndYFYNNFHCr6QxE9x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721924182; c=relaxed/simple;
-	bh=wSl7dU8k38O3kEBowowvVz0xiEyS8E2H52ryb/QbeBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g1mmOKbaQ0DNn1tTIYdK8u7ZkstBKetTbr/f6zxGo4wvHkE40SpM/qmp98nyJsHiNIIjz/rLOtll8k2dLlNmlGhPhw4VcKHFV/ZcChXhL8MiueDLqVwwuZVvJI3p5BWRtTLqgVhJ+gy+zeg3LkGSXXEX7CJQBA8X+JleLItRt3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNzI3fKY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4316AC32782;
-	Thu, 25 Jul 2024 16:16:19 +0000 (UTC)
+	s=arc-20240116; t=1721924941; c=relaxed/simple;
+	bh=rA8r5GE2DmreSp4mzMERlx21Ozsy7idcGW/81EsYAjo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Jds7Wwnv0V2jTV2TdPsbzCcxfrbC4PrxjTHAwZDhV2BpFMZ8QMMFB0axK+vrgpU4kphLfY6NXOH4BFvq8xMyb7iZAWsSAZzyN+MOTfpS+LJOoX0VRYMde9P7nx4/cXL9SrcnuecoGaSMmilIZy0bF6Uz43H5jS6R1OV1+7t2CbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CyMfYCjV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2470FC116B1;
+	Thu, 25 Jul 2024 16:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721924182;
-	bh=wSl7dU8k38O3kEBowowvVz0xiEyS8E2H52ryb/QbeBI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SNzI3fKYixRUWNQpyNNkIGvI6aaRP1z2Jwy/L5siZ7h11j9aje2SDTUtweUc+p02a
-	 Mlu8F8o9Q4AC2ClVmv8jh6X+TS8IKHkOTom1T5HmBaFgHXFVXRGTm+4bJJXbLX25Tc
-	 Wj/7N4lZN+AVYeuDFuNfXZcCU11WB7JchW6L1f/YeJXc+6OyetD8POx0ikDFZrlZlL
-	 jrn1CL/57c9fR9u9PNK3NvRboMA8wOMJ9MjcAIhKDsfXCZyCwkermnBWyZqbXjUFGI
-	 YjnYEqak+/T7bs6bhRVHdoPOK/WCoR5HrMULHRBAO0uysxS0B9qUU6tJBOY/+LdZB7
-	 1EZFjX1+j4unA==
-Date: Thu, 25 Jul 2024 17:16:16 +0100
+	s=k20201202; t=1721924940;
+	bh=rA8r5GE2DmreSp4mzMERlx21Ozsy7idcGW/81EsYAjo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=CyMfYCjVimpSdrI/6NFuvB4RwQK2i2ehRHRAwXgwmifhEwwaPtfPhy/RarehoVDih
+	 m6tAo/0CyllD9poiPv69XdsODkaF1PDmZDmf/OnerivmewQKHipRxc6zKsk3Td9B5w
+	 8ehAkthL7Q9qtEmDTqC9LbMPsjfvbgQP1QEa8O9yw70+ESjjLkkJH8Fvcu5CWQSi17
+	 7bRAJ0GvSEFQWNFLyTFn4g18zKZH6A2Cvnca6l7Z74b7MfyuOZLQ54E0u9Xf3Slh3C
+	 2Rj+NwGKR7pZxhKZIU1vYDxaKMPkz7FTP1hVdIuvfwpkgR1R88GVfsQQw/Y1UuUGs8
+	 OlC1KbzaQB5mA==
 From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	Frank Li <Frank.li@nxp.com>
-Subject: Re: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller
- support
-Message-ID: <20240725161616.GJ501857@google.com>
-References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+In-Reply-To: <20240226-audio-i350-v5-3-54827318b453@baylibre.com>
+References: <20240226-audio-i350-v5-0-54827318b453@baylibre.com>
+ <20240226-audio-i350-v5-3-54827318b453@baylibre.com>
+Subject: Re: (subset) [PATCH RESEND v5 03/16] dt-bindings: mfd: mediatek:
+ Add codec property for MT6357 PMIC
+Message-Id: <172192493586.1054722.4853871002402475676.b4-ty@kernel.org>
+Date: Thu, 25 Jul 2024 17:28:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: b4 0.13.0
 
-On Mon, 22 Jul 2024, Laurent Pinchart wrote:
+On Fri, 14 Jun 2024 09:27:46 +0200, Alexandre Mergnat wrote:
+> Add the audio codec sub-device. This sub-device is used to set the
+> optional voltage values according to the hardware.
+> The properties are:
+>   - Setup of microphone bias voltage.
+>   - Setup of the speaker pin pull-down.
+> 
+> Also, add the audio power supply property which is dedicated for
+> the audio codec sub-device.
+> 
+> [...]
 
-> Hello,
-> 
-> This patch series introduces support for the Analog Devices ADP5585, a
-> GPIO expander, PWM and keyboard controller. It models the chip as an MFD
-> device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
-> for the GPIO (3/4) and PWM (4/4) functions.
-> 
-> Support for the keypad controller is left out, as I have no means to
-> test it at the moment. The chip also includes a tiny reset controller,
-> as well as a 3-bit input programmable logic block, which I haven't tried
-> to support (and also have no means to test).
-> 
-> The driver is based on an initial version from the NXP BSP kernel, then
-> extensively and nearly completely rewritten, with added DT bindings. I
-> have nonetheless retained original authorship. Clark, Haibo, if you
-> would prefer not being credited and/or listed as authors, please let me
-> know.
-> 
-> Compared to v6, this version addresses small review comments. I believe
-> it is ready to go, as the PWM and GPIO drivers have been acked by the
-> respective subsystem maintainers, and I have addressed Lee's comments on
-> the MFD side. Lee, if there's no more issue, could you apply this to
-> your tree for v6.12 ?
-> 
-> Clark Wang (1):
->   pwm: adp5585: Add Analog Devices ADP5585 support
-> 
-> Haibo Chen (2):
->   mfd: adp5585: Add Analog Devices ADP5585 core support
->   gpio: adp5585: Add Analog Devices ADP5585 support
-> 
-> Laurent Pinchart (1):
->   dt-bindings: mfd: Add Analog Devices ADP5585
-> 
->  .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
->  .../devicetree/bindings/trivial-devices.yaml  |   4 -
->  MAINTAINERS                                   |  11 +
->  drivers/gpio/Kconfig                          |   7 +
->  drivers/gpio/Makefile                         |   1 +
->  drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
->  drivers/mfd/Kconfig                           |  12 +
->  drivers/mfd/Makefile                          |   1 +
->  drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
->  drivers/pwm/Kconfig                           |   7 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
->  include/linux/mfd/adp5585.h                   | 126 ++++++++++
->  13 files changed, 876 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
->  create mode 100644 drivers/gpio/gpio-adp5585.c
->  create mode 100644 drivers/mfd/adp5585.c
->  create mode 100644 drivers/pwm/pwm-adp5585.c
->  create mode 100644 include/linux/mfd/adp5585.h
+Applied, thanks!
 
-Note to self: This looks good to go.  Merge after -rc1 is released.
+[03/16] dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
+        commit: 3821149eb101fe2d45a4697659e60930828400d8
 
--- 
+--
 Lee Jones [李琼斯]
+
 
