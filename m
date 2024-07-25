@@ -1,319 +1,417 @@
-Return-Path: <devicetree+bounces-87935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFA593B99F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 01:46:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED8193B9D3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 02:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42EA528551A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2024 23:46:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B68C62846F3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 00:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1553F148303;
-	Wed, 24 Jul 2024 23:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B52123CB;
+	Thu, 25 Jul 2024 00:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BwKlCQVH"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hWpdNJIL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07396146D79;
-	Wed, 24 Jul 2024 23:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721864750; cv=none; b=lAj4FsQzlXhvSGqLtbmKZT/FFS7KiFOLvio33ePrZuxz+HSaVv4xxWpRgbu9Bsz6+xzrt9ipKOtIeHIIvI5ev9qUiPJoytmbs88CdvkCWQZYPr0nsAtwi1v6yxFpvAdCbyVKzYyHb4frwweEHA3vLKbxKDw0gqjAr6oOAL8mmvg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721864750; c=relaxed/simple;
-	bh=uggjNB8xiPHrZhFwDJSSjFZt6W4b7QSRrczNrx0Ht4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZAa1nF3yuFTLu1akNptKjldkoX8Brmj6gWjdto8z+ezM70ROdjMc8jKmf5lXDJQtvRIh3MFEudDXVLD//DDxFI7ijNxQaZZ/h1DBTaz+2qIUb6ssOuOfg0JTdKNvzpw0tTz7X5DVabfkg+GJvtJMLjIx8mgR0URihoPgC1pc9tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BwKlCQVH; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1721864748; x=1753400748;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uggjNB8xiPHrZhFwDJSSjFZt6W4b7QSRrczNrx0Ht4c=;
-  b=BwKlCQVHeQasdb49RetgXgVvtvXjxyJyg1Rd3ecS58wPj8d4IAnKIG7b
-   dF+ZySNw7kgNVQksj+USflrD5dWHGK17Is5pupe8MijwUdjcqeOUubBNB
-   H6dhSEfu8JXHQI9MN/qDZkeg+sKEiSbqjwOWU5PMnQ2v4HJcCcs9yw/OA
-   3ie3VejE8FzItyFCMlPV6UzFDHBmw0rAYfgnioeYKlCL2ffmY5k94EVJ8
-   aPn+ORTIcWhxeYqivfy+Ddy/jCTOZkW3qQiG0CDheGNcvZLqbCzADmM7x
-   8Dxy87xbfeyFMVsQzGoFTVm9D+FQX6cSDp03Piz1S7DM9hqpCy74FD18A
-   A==;
-X-CSE-ConnectionGUID: 86kOIDdRSueVAAx7PUNV9w==
-X-CSE-MsgGUID: R8SypdVLSDmFLbhLY39PVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="42104371"
-X-IronPort-AV: E=Sophos;i="6.09,234,1716274800"; 
-   d="scan'208";a="42104371"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2024 16:45:47 -0700
-X-CSE-ConnectionGUID: Z9HAK5EPTrWrFl5pzvOZbw==
-X-CSE-MsgGUID: vG8qsWSlRKeL3nq3Np+hlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,234,1716274800"; 
-   d="scan'208";a="52654643"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 24 Jul 2024 16:45:42 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sWlfv-000nYW-1I;
-	Wed, 24 Jul 2024 23:45:39 +0000
-Date: Thu, 25 Jul 2024 07:45:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, broonie@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	manivannan.sadhasivam@linaro.org, esben@geanix.com,
-	linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, quic_mdalam@quicinc.com,
-	quic_varada@quicinc.com, quic_srichara@quicinc.com
-Subject: Re: [PATCH v7 6/8] spi: spi-qpic: add driver for QCOM SPI NAND flash
- Interface
-Message-ID: <202407250710.knYmJebL-lkp@intel.com>
-References: <20240724114225.2176448-7-quic_mdalam@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37AB080C;
+	Thu, 25 Jul 2024 00:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721867763; cv=fail; b=UqzdccvWoOd9GbByYACQ7jY209UDFXNhxM+BG9MlVlWg47ZB+UK4or1AQXAZ/Ah4pKuRNABgDhRerSFrYySt27a8Awh313CpkdMhwqRTrplnxq00ky/2HD7j710/Lqadb16+NmZ0aWugK6P0Kup6Q7KtcF1EfxjMH9GxZGRd59c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721867763; c=relaxed/simple;
+	bh=vwNTV2405fK6xuUJfj8WD8ZqZ7npJMRLNp6/YM3Pyng=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=H7baKEjJrscYR09tJlVh3Kw5/3omXmpcxEAe/6niFIbDoO5Eqa8U6ubYoJ3jqo/CAlOEyKZkx14iXekanmGIr/irqs94keYUhhncebvme5ErqSnYS7NGu+kzNj3ljQXkSG0wn/jHuZFGOL3KD0bxi7EbwN4E1Ueu6Itnz+Ki9jY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=hWpdNJIL; arc=fail smtp.client-ip=40.107.244.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ql2kQs/nrB1x3RngwzaEsYgV2E7zITfyigh8wJkXK+emLxOe2S+yl0l1JLOzO+lLpKClu/ecEkuDS5w1TSMmMc/l6P0FBexiUjrQrGLnEdLyzkjH78+V+vy3EDKNKJt4mzvFfvQEmFSjGPsp9WmBMUkkV0qoevclNPtXTSwmj8dVNmPIUMiTnyI7OgANEhiQvuZExYoxxYG2LKW0IsCAMFP62ALUjufIMtZZPSwH//9DQ8v5KUGkF36MMwyy2PPS+ITuMshHzlN10UL+wcvfzSNa/s72vHz/bGBmMNBmTQ5/17OpJAs9twHHkjAEtlS0En5XLGRr9AlJWD2gLEa+Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=puczn/Plvra1c85dji4K9vrlyWEUgXDf8mOWU9BkLB0=;
+ b=WG6kF6teJD2vxyd1Z00JQ0D7v8IJNSdtMfc3jpIz/8iuz3PUiQ6OaaxOIoJaBi0z1xDLBYvSW+wD7fYUty6cnR80V+qxmkLn501OFV20KyKvELh1arGiux2FpMfT8LtfB56rsiSmeAY8jfuIsiG4r0MOgsevXb2uqQUsfLYnbVvjY+0eb3+SdNAIsP1K/1nHBEJotTgsXbbG9TO+V7T1gYZyfweqP7f9FSrhd8eUaEt0TVDcKP1pG+jI3zajbGUiWI6FoXzR+4tpcApa0WtR59J5rJ2CA+9A5+KeJFbd492CJ7jjSplGwsG27y34yvKSsypGcyZZP0MOx1BT9WYjCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=puczn/Plvra1c85dji4K9vrlyWEUgXDf8mOWU9BkLB0=;
+ b=hWpdNJILJpAVIZDvejy+cbKEracGKV0LTQ6UUgJxG7q+54hJjR5qyEsD8sN3Sad97DFQRHPbUUzj/wWic6Mzb4k8QhHjXdMsYc5Ownw4TY14poUNzSOMmKmCVUTf25SMWukFCBX6auimKoQFWhCIqas2A4HguD43yJcISUQBC25iqj8fwXTZfud58ZBLwK0Iimj6jfAu0u51oCZTSkS+/S22vaQrUWBTaJPdYfdGGyTUcybuOHOlfWvWmDdUaWBB8GGerK9KIk36DmZ8gOxG1fwswWBVtwn3o8lYch/+b0XMmWYVFAshsSHFtgJ8fL9CYh5sDqOd6U7qOA1HkZZ/Cw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS7PR12MB5744.namprd12.prod.outlook.com (2603:10b6:8:73::18) by
+ MW4PR12MB7484.namprd12.prod.outlook.com (2603:10b6:303:212::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.28; Thu, 25 Jul
+ 2024 00:35:57 +0000
+Received: from DS7PR12MB5744.namprd12.prod.outlook.com
+ ([fe80::f018:13a9:e165:6b7e]) by DS7PR12MB5744.namprd12.prod.outlook.com
+ ([fe80::f018:13a9:e165:6b7e%4]) with mapi id 15.20.7784.017; Thu, 25 Jul 2024
+ 00:35:57 +0000
+From: Zi Yan <ziy@nvidia.com>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Gordeev <agordeev@linux.ibm.com>,
+ Andreas Larsson <andreas@gaisler.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>,
+ Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ David Hildenbrand <david@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso <dave@stgolabs.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Jonathan Corbet <corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>,
+ Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Rob Herring <robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>,
+ Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-cxl@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-mips@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-sh@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ loongarch@lists.linux.dev, nvdimm@lists.linux.dev,
+ sparclinux@vger.kernel.org, x86@kernel.org
+Subject: Re: [PATCH v2 00/25] mm: introduce numa_memblks
+Date: Wed, 24 Jul 2024 20:35:53 -0400
+X-Mailer: MailMate (1.14r6038)
+Message-ID: <6336C276-113E-4D93-A09E-13420A6438D8@nvidia.com>
+In-Reply-To: <1D474894-F8AC-427B-8F90-5A6808E77CC5@nvidia.com>
+References: <20240723064156.4009477-1-rppt@kernel.org>
+ <1D474894-F8AC-427B-8F90-5A6808E77CC5@nvidia.com>
+Content-Type: multipart/signed;
+ boundary="=_MailMate_0F561B29-1B56-4DB1-964E-7E202A4B673B_=";
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+X-ClientProxiedBy: MN2PR07CA0015.namprd07.prod.outlook.com
+ (2603:10b6:208:1a0::25) To DS7PR12MB5744.namprd12.prod.outlook.com
+ (2603:10b6:8:73::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240724114225.2176448-7-quic_mdalam@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR12MB5744:EE_|MW4PR12MB7484:EE_
+X-MS-Office365-Filtering-Correlation-Id: b00e961b-1ed9-4fc9-7d72-08dcac41c020
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?UEQXi1MXIgOm1aM3RiyjXJlXmZOZaqLT2V8uSuz9Cbf2rjo3wM6iyTrT4j3O?=
+ =?us-ascii?Q?H54v2O1XISyG1nVe3kbMjS37hTS4i+asyndqWx2aFYNCEeEyaEBp/tdOTdXm?=
+ =?us-ascii?Q?EaJcXBXsd5kSLNbXiThf5h7PMK+NqDnJYZBcMwSQEChgCD1WYwQ80VIsSnmX?=
+ =?us-ascii?Q?XogmRWDb+wt+35+BOv7asQR3NQPUjyUcc7EUdFaD43qSlW0RqPYQkwKnarHK?=
+ =?us-ascii?Q?pxcQEK1X+eRJh+kyatAoIS+HwYMm7ZiL0FxRaF8ZF4Y8Q/1MKS3QNlIlzo5N?=
+ =?us-ascii?Q?I1f9bPPENtuMYoOi6p7jK4bHj6ZTsjKkf3IbrEU0DT/ANvNI/yWyBMcKNof7?=
+ =?us-ascii?Q?DJ512UZqYym7fuhbPeAvEWQxUQb/rJqpWT4q6YBWMLfBlNIk8ymXKKmLnY4E?=
+ =?us-ascii?Q?bD+UJHPp76tdurk4ejtNvMCGc7k6aFlZWp3IkHjKOl3amtX39dou6P71X+yi?=
+ =?us-ascii?Q?jH/luSe5fp3YXhrlI0VXV5Y1yQJIkeqwWH3qT41W5LuXBeVtlI1GJoExd+yt?=
+ =?us-ascii?Q?p+uYmW1fCn6oRcT9NSMMvLUv4TVYhUEG1r8ucg2m9kNPU9YPqrOwl//JEyQ0?=
+ =?us-ascii?Q?CdiW/5YDYnogUU5J2YMoYSm56x5wtskRWZz7tOMocL+l3JArPLIb/JmcjJ3S?=
+ =?us-ascii?Q?6lLeXhdaad4Jx84KjmY3bIC2AD7cl20+mv0hc3Jsn+mgtdKPxoZ3l75ChBG8?=
+ =?us-ascii?Q?byc3uBxd5A//DDDOhM9qtNjXkBCODDiqTsxcTDKTSVs7mP39/ieUJBGHJsC8?=
+ =?us-ascii?Q?yEgyl4ltt0ZvfwqBHf3Wb16Ytw7IwdkVxUqQ0A2Qaxnmb2vR/nxhMgjlf9WS?=
+ =?us-ascii?Q?e5+KKmsfdj4Ytzz4iRW8uxULYTUQYDFlGwsQXNgbBgo0Q5XocyjfxyulnNT5?=
+ =?us-ascii?Q?gLbA8u3kCfpCF7PtbYWKHrxIfFdlUm8x9Pljp669M0+7xNYCZ5aBn+VA3GYO?=
+ =?us-ascii?Q?sYgmMVr7LFe8eGmXc4WadoSY9oyU68JTAvVRu9tRpNcKsKdMtunZKUC4UHOu?=
+ =?us-ascii?Q?rJAABLzuNy/PPAT7pWdaVa7Cr+DHmm3AKb2oySQI/7oPMh1l0Y9LaUitVnyg?=
+ =?us-ascii?Q?OBrw8GhIbJtMTbCJ4bl9r7OLLm8J0qPc/deR/8xa63bfC3fcSGC9thZT3+mg?=
+ =?us-ascii?Q?9tT52qpFax4XYg+mA2rajFCU1wKnBfW6x8ukYoOkxzmAEIV1G2/6+R83tW4Y?=
+ =?us-ascii?Q?wB7thchh3Qt+Bn9H0CUDo/QytfY8EexEDZi4TyfGuCbbB/CXYRYe2RTfuJNo?=
+ =?us-ascii?Q?yrsknjiegZl9n3v5374i0o45UdjD65YTHmZWBdaj2gAD2+74Q1LzbAhEjHlu?=
+ =?us-ascii?Q?E4Rm0zgk7LwT2WUopQmvDtV2s+xQBbkr1QxLFFbm4JhbyreH+20C0o+ORMOp?=
+ =?us-ascii?Q?HcHFcqs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB5744.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?UEsv3FlW8LVidPVPWv/90sGVkaqGQ+ZEbdZlhWXe/wtU9RlqLpGMhCLF5rch?=
+ =?us-ascii?Q?s5SA2lMNXvbNybnU5sUMjEu+e4S2hagZ5VE6YnNlPXRqRAeN+BqoLt2RIKIW?=
+ =?us-ascii?Q?pey2iy2+iuFEYfcRqCo4TWHssFNamBvjanLWhh62QSI7mIaXvjB+nUxVpZUt?=
+ =?us-ascii?Q?JWhumU5Z2Nu9UJgFVo+3T/DBDj/JTuoIXcXQzPTnBQu3iSEgejwZIn2X5ejG?=
+ =?us-ascii?Q?Ii1vgjKZLuYTsslJJ95mJfXmYx4BxWQfwlHxy7H4bRNlm+NuowndZX1rRkcn?=
+ =?us-ascii?Q?cSCaRiBg9IRmYMzzq8FXPgWL1uKpdSihsTYPcTh7YlLgG4YcteWHnWZYp8xp?=
+ =?us-ascii?Q?isXF3oq1ngbTa2lvcQ99FFu80QppOQI/JGExZ6QIbjPq0SYni2vagX66M1NQ?=
+ =?us-ascii?Q?rDbfOWs6QME5ZZ3oNS3attYJiuzoRKQVucgye3tmJdMR+JaTbnwC7FSsnUXM?=
+ =?us-ascii?Q?122Q4jYG1/HzgIPbMHPYGKqmEZIJn6/oAdTLk28CYBr8JLMzSIgRhC+z1QLr?=
+ =?us-ascii?Q?l/3V/0v0fpFHkEDltbJlYdTmjXUJjT7XECDwWjKwJW4A8TzdeYvC3WfA/Qah?=
+ =?us-ascii?Q?mGeUUmGiDjENF92yjVm38ODm3NPlcd+IN8gBn233xF0SlfVsnBRqSSw9PUt3?=
+ =?us-ascii?Q?fBs5HYxTkyjCiBU0RYIAjjSeqHDhAwaMX6Z8SPwcnTpsqUxtF5C1VQVJGTp0?=
+ =?us-ascii?Q?Q2280epUAWrFPiJ9l8zR9I2bJo06gq7PNz2VLOc9oWuXoQIm2/dhoyy7IMJ8?=
+ =?us-ascii?Q?ryVWD2dc/e/YeiPzBeXuAIw9r1G81skVA7tp4uU6bgLhidAOZBB/7537rMIi?=
+ =?us-ascii?Q?N+iOwxnRk18uYlF4F5NbTzWHzDJdb4C6Ommhr3an8fDgiAB1nLL7vydlLlFK?=
+ =?us-ascii?Q?TVKoEItAlHnLpheqFYyQYNfC9IwfiMlAgHsLtrgCSbBohMZ/sPeDLZ3ZEpAz?=
+ =?us-ascii?Q?HXdJXUxh0m+7aRyK1OfSwFqRj3gW3irczLzpRZTVsgc2MQhJ5Wmb51UoTp6d?=
+ =?us-ascii?Q?wJ5V3er1hczCDOr9vYfysSHBK+CMKGwBOU12faVlFjI/XgICCT/wBemmSiKE?=
+ =?us-ascii?Q?v5/vqdCAJmql1qCEsszzDcpi2oXBvZG0sm+T7bYn80dc77PJmybB8RflEEao?=
+ =?us-ascii?Q?5SJxHV2Dhg66B2ugohMEOzS3ZoqHdkmDa+lAOWxsqlLgjmjYXdYMHXQAUeVN?=
+ =?us-ascii?Q?DZW1X9PNNR/bX3Z+8KLwZiY5hCODsdNZ3gX4IlkqQMdIILHAUvmn87IlZzAG?=
+ =?us-ascii?Q?b1eGRayfLtVDyBTAmSCUGijUfyGZmrZmzWOraoNVCTarsqIADVfdVPEONiWA?=
+ =?us-ascii?Q?QxZM2cEEo9V0lUqJ6Yr8t55jZpH4Ak7KjHesnV/0waulmjeDN83NsME4VOFr?=
+ =?us-ascii?Q?l9rsqewyc8RoP/AQGBmZvqbVJ9s2hBLGqA0ibTNGWvjWLgw9K6xkIirWDGZ7?=
+ =?us-ascii?Q?fwGCWRLfNGSsu55gEbNRiOs+Fe+2OP7pDxqqXlzBCO0TnHSPgzuV5nAk5eAq?=
+ =?us-ascii?Q?KhQy1BtSjYggKa0b7yByUHQTXbVzDQt1CXJ/wk06Jfs39b+vvkBnokufUa2J?=
+ =?us-ascii?Q?0d8bxPUlqFmVXhswEYGtjv/tohUIJypvoeSOohpg?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b00e961b-1ed9-4fc9-7d72-08dcac41c020
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB5744.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 00:35:57.7342
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QK+rn9sLxym9rS/RFQjmNGqbhsvb1t1q656c7qz9/1Y4HHPzMxuVRfeqXlr3dlrx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7484
 
-Hi Md,
+--=_MailMate_0F561B29-1B56-4DB1-964E-7E202A4B673B_=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-kernel test robot noticed the following build errors:
+On 24 Jul 2024, at 18:44, Zi Yan wrote:
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on broonie-spi/for-next robh/for-next linus/master v6.10 next-20240724]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> On 23 Jul 2024, at 2:41, Mike Rapoport wrote:
+>
+>> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+>>
+>> Hi,
+>>
+>> Following the discussion about handling of CXL fixed memory windows on=
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Md-Sadre-Alam/spi-dt-bindings-Introduce-qcom-spi-qpic-snand/20240724-195819
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-patch link:    https://lore.kernel.org/r/20240724114225.2176448-7-quic_mdalam%40quicinc.com
-patch subject: [PATCH v7 6/8] spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
-config: xtensa-allyesconfig (https://download.01.org/0day-ci/archive/20240725/202407250710.knYmJebL-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240725/202407250710.knYmJebL-lkp@intel.com/reproduce)
+>> arm64 [1] I decided to bite the bullet and move numa_memblks from x86 =
+to
+>> the generic code so they will be available on arm64/riscv and maybe on=
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407250710.knYmJebL-lkp@intel.com/
+>> loongarch sometime later.
+>>
+>> While it could be possible to use memblock to describe CXL memory wind=
+ows,
+>> it currently lacks notion of unpopulated memory ranges and numa_memblk=
+s
+>> does implement this.
+>>
+>> Another reason to make numa_memblks generic is that both arch_numa (ar=
+m64
+>> and riscv) and loongarch use trimmed copy of x86 code although there i=
+s no
+>> fundamental reason why the same code cannot be used on all these platf=
+orms.
+>> Having numa_memblks in mm/ will make it's interaction with ACPI and FD=
+T
+>> more consistent and I believe will reduce maintenance burden.
+>>
+>> And with generic numa_memblks it is (almost) straightforward to enable=
+ NUMA
+>> emulation on arm64 and riscv.
+>>
+>> The first 9 commits in this series are cleanups that are not strictly
+>> related to numa_memblks.
+>> Commits 10-16 slightly reorder code in x86 to allow extracting numa_me=
+mblks
+>> and NUMA emulation to the generic code.
+>> Commits 17-19 actually move the code from arch/x86/ to mm/ and commits=
+ 20-22
+>> does some aftermath cleanups.
+>> Commit 23 switches arch_numa to numa_memblks.
+>> Commit 24 enables usage of phys_to_target_node() and
+>> memory_add_physaddr_to_nid() with numa_memblks.
+>> Commit 25 moves the description for numa=3Dfake from x86 to admin-guid=
+e
+>>
+>> [1] https://lore.kernel.org/all/20240529171236.32002-1-Jonathan.Camero=
+n@huawei.com/
+>>
+>> v1: https://lore.kernel.org/all/20240716111346.3676969-1-rppt@kernel.o=
+rg
+>> * add cleanup for arch_alloc_nodedata and HAVE_ARCH_NODEDATA_EXTENSION=
 
-All error/warnings (new ones prefixed by >>):
+>> * add patch that moves description of numa=3Dfake kernel parameter fro=
+m
+>>   x86 to admin-guide
+>> * reduce rounding up of node_data allocations from PAGE_SIZE to
+>>   SMP_CACHE_BYTES
+>> * restore single allocation attempt of numa_distance
+>> * fix several comments
+>> * added review tags
+>>
+>> Mike Rapoport (Microsoft) (25):
+>>   mm: move kernel/numa.c to mm/
+>>   MIPS: sgi-ip27: make NODE_DATA() the same as on all other architectu=
+res
+>>   MIPS: sgi-ip27: ensure node_possible_map only contains valid nodes
+>>   MIPS: sgi-ip27: drop HAVE_ARCH_NODEDATA_EXTENSION
+>>   MIPS: loongson64: rename __node_data to node_data
+>>   MIPS: loongson64: drop HAVE_ARCH_NODEDATA_EXTENSION
+>>   mm: drop CONFIG_HAVE_ARCH_NODEDATA_EXTENSION
+>>   arch, mm: move definition of node_data to generic code
+>>   arch, mm: pull out allocation of NODE_DATA to generic code
+>>   x86/numa: simplify numa_distance allocation
+>>   x86/numa: use get_pfn_range_for_nid to verify that node spans memory=
 
-   drivers/spi/spi-qpic-snand.c: In function 'qcom_spi_init':
->> drivers/spi/spi-qpic-snand.c:174:25: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     174 |         snand_cfg_val = FIELD_PREP(CLK_CNTR_INIT_VAL_VEC_MASK, CLK_CNTR_INIT_VAL_VEC) |
-         |                         ^~~~~~~~~~
-   drivers/spi/spi-qpic-snand.c: In function 'qcom_spi_ecc_init_ctx_pipelined':
->> drivers/spi/spi-qpic-snand.c:247:42: warning: variable 'steps' set but not used [-Wunused-but-set-variable]
-     247 |         int step_size = 0, strength = 0, steps;
-         |                                          ^~~~~
-   drivers/spi/spi-qpic-snand.c: In function 'qcom_spi_write_page':
-   drivers/spi/spi-qpic-snand.c:1261:30: warning: variable 's_op' set but not used [-Wunused-but-set-variable]
-    1261 |         struct qpic_snand_op s_op = {};
-         |                              ^~~~
-   drivers/spi/spi-qpic-snand.c: At top level:
-   drivers/spi/spi-qpic-snand.c:1632:19: error: initialization of 'int (*)(struct platform_device *)' from incompatible pointer type 'void (*)(struct platform_device *)' [-Wincompatible-pointer-types]
-    1632 |         .remove = qcom_spi_remove,
-         |                   ^~~~~~~~~~~~~~~
-   drivers/spi/spi-qpic-snand.c:1632:19: note: (near initialization for 'qcom_spi_driver.remove')
+>>   x86/numa: move FAKE_NODE_* defines to numa_emu
+>>   x86/numa_emu: simplify allocation of phys_dist
+>>   x86/numa_emu: split __apicid_to_node update to a helper function
+>>   x86/numa_emu: use a helper function to get MAX_DMA32_PFN
+>>   x86/numa: numa_{add,remove}_cpu: make cpu parameter unsigned
+>>   mm: introduce numa_memblks
+>>   mm: move numa_distance and related code from x86 to numa_memblks
+>>   mm: introduce numa_emulation
+>>   mm: numa_memblks: introduce numa_memblks_init
+>>   mm: numa_memblks: make several functions and variables static
+>>   mm: numa_memblks: use memblock_{start,end}_of_DRAM() when sanitizing=
 
+>>     meminfo
+>>   arch_numa: switch over to numa_memblks
+>>   mm: make range-to-target_node lookup facility a part of numa_memblks=
 
-vim +/FIELD_PREP +174 drivers/spi/spi-qpic-snand.c
+>>   docs: move numa=3Dfake description to kernel-parameters.txt
+>>
+> Hi,
+>
+> I have tested this series on both x86_64 and arm64. It works fine on x8=
+6_64.
+> All numa=3Dfake=3D options work as they did before the series.
+>
+> But I am not able to boot the kernel (no printout at all) on arm64 VM
+> (Mac mini M1 VMWare). By git bisecting, arch_numa: switch over to numa_=
+memblks
+> is the first patch causing the boot failure. I see the warning:
+>
+> WARNING: modpost: vmlinux: section mismatch in reference: numa_add_cpu+=
+0x1c (section: .text) -> early_cpu_to_node (section: .init.text)
+>
+> I am not sure if it is red herring or not, since changing early_cpu_to_=
+node
+> to cpu_to_node in numa_add_cpu() from mm/numa_emulation.c did get rid o=
+f the
+> warning, but the system still failed to boot.
+>
+> Please note that you need binutils 2.40 to build the arm64 kernel, sinc=
+e there
+> is a bug(https://sourceware.org/bugzilla/show_bug.cgi?id=3D31924) in 2.=
+42 preventing
+> arm64 kernel from booting as well.
+>
+> My config is attached.
 
-   168	
-   169	static int qcom_spi_init(struct qcom_nand_controller *snandc)
-   170	{
-   171		u32 snand_cfg_val = 0x0;
-   172		int ret;
-   173	
- > 174		snand_cfg_val = FIELD_PREP(CLK_CNTR_INIT_VAL_VEC_MASK, CLK_CNTR_INIT_VAL_VEC) |
-   175				FIELD_PREP(LOAD_CLK_CNTR_INIT_EN, 0) |
-   176				FIELD_PREP(FEA_STATUS_DEV_ADDR_MASK, FEA_STATUS_DEV_ADDR) |
-   177				FIELD_PREP(SPI_CFG, 0);
-   178	
-   179		snandc->regs->spi_cfg = snand_cfg_val;
-   180		snandc->regs->num_addr_cycle = SPI_NUM_ADDR;
-   181		snandc->regs->busy_wait_cnt = SPI_WAIT_CNT;
-   182	
-   183		qcom_write_reg_dma(snandc, &snandc->regs->spi_cfg, NAND_FLASH_SPI_CFG, 1, 0);
-   184	
-   185		snand_cfg_val &= ~LOAD_CLK_CNTR_INIT_EN;
-   186		snandc->regs->spi_cfg = snand_cfg_val;
-   187	
-   188		qcom_write_reg_dma(snandc, &snandc->regs->spi_cfg, NAND_FLASH_SPI_CFG, 1, 0);
-   189	
-   190		qcom_write_reg_dma(snandc, &snandc->regs->num_addr_cycle, NAND_NUM_ADDR_CYCLES, 1, 0);
-   191		qcom_write_reg_dma(snandc, &snandc->regs->busy_wait_cnt, NAND_BUSY_CHECK_WAIT_CNT, 1,
-   192				   NAND_BAM_NEXT_SGL);
-   193	
-   194		ret = qcom_submit_descs(snandc);
-   195		if (ret) {
-   196			dev_err(snandc->dev, "failure in submitting spi init descriptor\n");
-   197			return ret;
-   198		}
-   199	
-   200		return ret;
-   201	}
-   202	
-   203	static int qcom_spi_ooblayout_ecc(struct mtd_info *mtd, int section,
-   204					  struct mtd_oob_region *oobregion)
-   205	{
-   206		struct nand_device *nand = mtd_to_nanddev(mtd);
-   207		struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
-   208		struct qpic_ecc *qecc = snandc->qspi->ecc;
-   209	
-   210		if (section > 1)
-   211			return -ERANGE;
-   212	
-   213		oobregion->length = qecc->ecc_bytes_hw + qecc->spare_bytes;
-   214		oobregion->offset = mtd->oobsize - oobregion->length;
-   215	
-   216		return 0;
-   217	}
-   218	
-   219	static int qcom_spi_ooblayout_free(struct mtd_info *mtd, int section,
-   220					   struct mtd_oob_region *oobregion)
-   221	{
-   222		struct nand_device *nand = mtd_to_nanddev(mtd);
-   223		struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
-   224		struct qpic_ecc *qecc = snandc->qspi->ecc;
-   225	
-   226		if (section)
-   227			return -ERANGE;
-   228	
-   229		oobregion->length = qecc->steps * 4;
-   230		oobregion->offset = ((qecc->steps - 1) * qecc->bytes) + qecc->bbm_size;
-   231	
-   232		return 0;
-   233	}
-   234	
-   235	static const struct mtd_ooblayout_ops qcom_spi_ooblayout = {
-   236		.ecc = qcom_spi_ooblayout_ecc,
-   237		.free = qcom_spi_ooblayout_free,
-   238	};
-   239	
-   240	static int qcom_spi_ecc_init_ctx_pipelined(struct nand_device *nand)
-   241	{
-   242		struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
-   243		struct nand_ecc_props *conf = &nand->ecc.ctx.conf;
-   244		struct nand_ecc_props *reqs = &nand->ecc.requirements;
-   245		struct nand_ecc_props *user = &nand->ecc.user_conf;
-   246		struct mtd_info *mtd = nanddev_to_mtd(nand);
- > 247		int step_size = 0, strength = 0, steps;
-   248		int cwperpage, bad_block_byte;
-   249		struct qpic_ecc *ecc_cfg;
-   250	
-   251		cwperpage = mtd->writesize / NANDC_STEP_SIZE;
-   252		snandc->qspi->num_cw = cwperpage;
-   253	
-   254		ecc_cfg = kzalloc(sizeof(*ecc_cfg), GFP_KERNEL);
-   255		if (!ecc_cfg)
-   256			return -ENOMEM;
-   257		snandc->qspi->oob_buf = kzalloc(mtd->writesize + mtd->oobsize,
-   258						GFP_KERNEL);
-   259		if (!snandc->qspi->oob_buf)
-   260			return -ENOMEM;
-   261	
-   262		memset(snandc->qspi->oob_buf, 0xff, mtd->writesize + mtd->oobsize);
-   263	
-   264		nand->ecc.ctx.priv = ecc_cfg;
-   265		snandc->qspi->mtd = mtd;
-   266	
-   267		if (user->step_size && user->strength) {
-   268			step_size = user->step_size;
-   269			strength = user->strength;
-   270		} else if (reqs->step_size && reqs->strength) {
-   271			step_size = reqs->step_size;
-   272			strength = reqs->strength;
-   273		}
-   274	
-   275		if (step_size && strength)
-   276			steps = mtd->writesize / step_size;
-   277	
-   278		ecc_cfg->ecc_bytes_hw = 7;
-   279		ecc_cfg->spare_bytes = 4;
-   280		ecc_cfg->bbm_size = 1;
-   281		ecc_cfg->bch_enabled = true;
-   282		ecc_cfg->bytes = ecc_cfg->ecc_bytes_hw + ecc_cfg->spare_bytes + ecc_cfg->bbm_size;
-   283	
-   284		ecc_cfg->steps = 4;
-   285		ecc_cfg->strength = 4;
-   286		ecc_cfg->step_size = 512;
-   287		ecc_cfg->cw_data = 516;
-   288		ecc_cfg->cw_size = ecc_cfg->cw_data + ecc_cfg->bytes;
-   289		bad_block_byte = mtd->writesize - ecc_cfg->cw_size * (cwperpage - 1) + 1;
-   290	
-   291		mtd_set_ooblayout(mtd, &qcom_spi_ooblayout);
-   292	
-   293		ecc_cfg->cfg0 = FIELD_PREP(CW_PER_PAGE_MASK, (cwperpage - 1)) |
-   294				FIELD_PREP(UD_SIZE_BYTES_MASK, ecc_cfg->cw_data) |
-   295				FIELD_PREP(DISABLE_STATUS_AFTER_WRITE, 1) |
-   296				FIELD_PREP(NUM_ADDR_CYCLES_MASK, 3) |
-   297				FIELD_PREP(ECC_PARITY_SIZE_BYTES_RS, ecc_cfg->ecc_bytes_hw) |
-   298				FIELD_PREP(STATUS_BFR_READ, 0) |
-   299				FIELD_PREP(SET_RD_MODE_AFTER_STATUS, 1) |
-   300				FIELD_PREP(SPARE_SIZE_BYTES_MASK, ecc_cfg->spare_bytes);
-   301	
-   302		ecc_cfg->cfg1 = FIELD_PREP(NAND_RECOVERY_CYCLES_MASK, 0) |
-   303				FIELD_PREP(CS_ACTIVE_BSY, 0) |
-   304				FIELD_PREP(BAD_BLOCK_BYTE_NUM_MASK, bad_block_byte) |
-   305				FIELD_PREP(BAD_BLOCK_IN_SPARE_AREA, 0) |
-   306				FIELD_PREP(WR_RD_BSY_GAP_MASK, 20) |
-   307				FIELD_PREP(WIDE_FLASH, 0) |
-   308				FIELD_PREP(ENABLE_BCH_ECC, ecc_cfg->bch_enabled);
-   309	
-   310		ecc_cfg->cfg0_raw = FIELD_PREP(CW_PER_PAGE_MASK, (cwperpage - 1)) |
-   311				    FIELD_PREP(NUM_ADDR_CYCLES_MASK, 3) |
-   312				    FIELD_PREP(UD_SIZE_BYTES_MASK, ecc_cfg->cw_size) |
-   313				    FIELD_PREP(SPARE_SIZE_BYTES_MASK, 0);
-   314	
-   315		ecc_cfg->cfg1_raw = FIELD_PREP(NAND_RECOVERY_CYCLES_MASK, 0) |
-   316				    FIELD_PREP(CS_ACTIVE_BSY, 0) |
-   317				    FIELD_PREP(BAD_BLOCK_BYTE_NUM_MASK, 17) |
-   318				    FIELD_PREP(BAD_BLOCK_IN_SPARE_AREA, 1) |
-   319				    FIELD_PREP(WR_RD_BSY_GAP_MASK, 20) |
-   320				    FIELD_PREP(WIDE_FLASH, 0) |
-   321				    FIELD_PREP(DEV0_CFG1_ECC_DISABLE, 1);
-   322	
-   323		ecc_cfg->ecc_bch_cfg = FIELD_PREP(ECC_CFG_ECC_DISABLE, !ecc_cfg->bch_enabled) |
-   324				       FIELD_PREP(ECC_SW_RESET, 0) |
-   325				       FIELD_PREP(ECC_NUM_DATA_BYTES_MASK, ecc_cfg->cw_data) |
-   326				       FIELD_PREP(ECC_FORCE_CLK_OPEN, 1) |
-   327				       FIELD_PREP(ECC_MODE_MASK, 0) |
-   328				       FIELD_PREP(ECC_PARITY_SIZE_BYTES_BCH_MASK, ecc_cfg->ecc_bytes_hw);
-   329	
-   330		ecc_cfg->ecc_buf_cfg = 0x203 << NUM_STEPS;
-   331		ecc_cfg->clrflashstatus = FS_READY_BSY_N;
-   332		ecc_cfg->clrreadstatus = 0xc0;
-   333	
-   334		conf->step_size = ecc_cfg->step_size;
-   335		conf->strength = ecc_cfg->strength;
-   336	
-   337		snandc->regs->erased_cw_detect_cfg_clr = cpu_to_le32(CLR_ERASED_PAGE_DET);
-   338		snandc->regs->erased_cw_detect_cfg_set = cpu_to_le32(SET_ERASED_PAGE_DET);
-   339	
-   340		dev_dbg(snandc->dev, "ECC strength: %u bits per %u bytes\n",
-   341			ecc_cfg->strength, ecc_cfg->step_size);
-   342	
-   343		return 0;
-   344	}
-   345	
+I get more info after adding earlycon to the boot option.
+pgdat is NULL, causing issues when free_area_init_node() is dereferencing=
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+it at first WARN_ON.
+
+FYI, my build is this series on top of v6.10 instead of the base commit,
+where the series applies cleanly on top v6.10.
+
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x00000000ffd82fff]
+[    0.000000]   node   0: [mem 0x00000000ffd83000-0x00000000fffb5fff]
+[    0.000000]   node   0: [mem 0x00000000fffb6000-0x000000017befffff]
+[    0.000000]   node   0: [mem 0x000000017bf00000-0x000000017bfbffff]
+[    0.000000]   node   0: [mem 0x000000017bfc0000-0x000000017c02ffff]
+[    0.000000]   node   0: [mem 0x000000017c030000-0x000000017c03ffff]
+[    0.000000]   node   0: [mem 0x000000017c040000-0x000000017c09ffff]
+[    0.000000]   node   0: [mem 0x000000017c0a0000-0x000000017c13ffff]
+[    0.000000]   node   0: [mem 0x000000017c140000-0x000000017f41ffff]
+[    0.000000]   node   0: [mem 0x000000017f420000-0x000000017f4affff]
+[    0.000000]   node   0: [mem 0x000000017f4b0000-0x000000017f5bffff]
+[    0.000000]   node   0: [mem 0x000000017f5c0000-0x000000017f5dffff]
+[    0.000000]   node   0: [mem 0x000000017f5e0000-0x000000017fffffff]
+[    0.000000] pgdat: 0000000000000000, nid: 0
+[    0.000000] Unable to handle kernel paging request at virtual address =
+0000000000002220
+[    0.000000] Mem abort info:
+[    0.000000]   ESR =3D 0x0000000096000004
+[    0.000000]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
+[    0.000000]   SET =3D 0, FnV =3D 0
+[    0.000000]   EA =3D 0, S1PTW =3D 0
+[    0.000000]   FSC =3D 0x04: level 0 translation fault
+[    0.000000] Data abort info:
+[    0.000000]   ISV =3D 0, ISS =3D 0x00000004, ISS2 =3D 0x00000000
+[    0.000000]   CM =3D 0, WnR =3D 0, TnD =3D 0, TagAccess =3D 0
+[    0.000000]   GCS =3D 0, Overlay =3D 0, DirtyBit =3D 0, Xs =3D 0
+[    0.000000] [0000000000002220] user address but active_mm is swapper
+[    0.000000] Internal error: Oops: 0000000096000004 [#1] SMP
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 6.10.0+ #17
+[    0.000000] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYP=
+E=3D--)
+[    0.000000] pc : free_area_init+0x720/0xf90
+[    0.000000] lr : free_area_init+0x714/0xf90
+[    0.000000] sp : ffff800081eb3c20
+[    0.000000] x29: ffff800081eb3c20 x28: 000000017b5e710c x27: ffff80008=
+2158000
+[    0.000000] x26: 000000017ffff168 x25: ffff800081ecc000 x24: 000000000=
+0000000
+[    0.000000] x23: 0000000000000000 x22: 0000000000000000 x21: ffff80008=
+21f0480
+[    0.000000] x20: 0000000000000000 x19: ffff8000818863f0 x18: 000000000=
+0000006
+[    0.000000] x17: 00000000007fb000 x16: 000000017f805000 x15: ffff80008=
+1eb36b0
+[    0.000000] x14: 0000000000000000 x13: 30203a64696e202c x12: ffff80008=
+1f3ef10
+[    0.000000] x11: 0000000000000001 x10: 0000000000000001 x9 : 000000000=
+0017fe8
+[    0.000000] x8 : c0000000ffffefff x7 : ffff800081ee6d40 x6 : 000000000=
+0057fa8
+[    0.000000] x5 : ffff800081f3eeb8 x4 : 0000000000000000 x3 : 000000000=
+0000000
+[    0.000000] x2 : 0000000000000000 x1 : ffff800081ec8c40 x0 : 000000000=
+000001f
+[    0.000000] Call trace:
+[    0.000000]  free_area_init+0x720/0xf90
+[    0.000000]  bootmem_init+0x158/0x218
+[    0.000000]  setup_arch+0x220/0x650
+[    0.000000]  start_kernel+0x74/0x7e0
+[    0.000000]  __primary_switched+0x80/0x90
+[    0.000000] Code: 97a64606 b940b7f6 a90dffff f876dab4 (b9622280)
+[    0.000000] ---[ end trace 0000000000000000 ]---
+[    0.000000] Kernel panic - not syncing: Attempted to kill the idle tas=
+k!
+[    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the=
+ idle task! ]---
+
+--
+Best Regards,
+Yan, Zi
+
+--=_MailMate_0F561B29-1B56-4DB1-964E-7E202A4B673B_=
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename=signature.asc
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJDBAEBCgAtFiEE6rR4j8RuQ2XmaZol4n+egRQHKFQFAmahneoPHHppeUBudmlk
+aWEuY29tAAoJEOJ/noEUByhUlwUQAJhiW3WWTu3PREnDrPSG03Ni98AT5kE27HQs
+kZfZpevoam3PiqHoTYaJz02RxXnfY/8qp2JwPiTSCkDJfMuncNS+JC9tEykJzxdw
+15Y+zyIufYtDgu80/xlyvj4qBqkxliiAhG50K8iZOWEYBdu4GpAM87AWY3Ff0Iv+
+niUUJ/vmsNUH1R3ZYdyP2b2PfSC3Ok9kfFlwE5Jm4LXY9Ju4ixrU5Ku9C1UtxyDb
+CGRv/et2yGKPbzM34rR6u6/JAAFbXoQW3uJrUmSr2UnTbFITW51gqDQ7urvUwxPA
+pnnqqUCNLGLfR7inpVqC0EOs4AMVfnj4ZkOxWihSD73lnUz5tE8kTrt3yf7+qVO5
+Q2GTniU/D9l38KVu8yuX9Z3/DULpJN/La58dWMxPKAQlOU21eFhufMAX8sNLga/j
+VeJTo8tVpqMyJLJuT4gP0sXlZknYhCmV4RzWc5s8QT54TfcIbaAx5I2LhRJwmuu9
+Gze5NXEqCyEQ4guQ6t2oEfmf8+Eanax26jFgm08ZfUuZwfsgynTnYAyo8JtAj4az
+VIGf+kKnKOQDiojSMBABaQoiBk6h6Sh5U1AXirqeSvNrmKISkEdydul9NijMidjN
+aC97As4te+mPqJ1QyZNdudbYCtrZZ6+X+88HoDMKgB9uHhXmGpdnSsjDJ89LD9tk
+ROfMsB3E
+=mFe0
+-----END PGP SIGNATURE-----
+
+--=_MailMate_0F561B29-1B56-4DB1-964E-7E202A4B673B_=--
 
