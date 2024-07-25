@@ -1,93 +1,108 @@
-Return-Path: <devicetree+bounces-87983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D42093BC1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 07:45:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA5A893BC45
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 07:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E70F22844BA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 05:45:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B01F1F23A04
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 05:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204A21CAA2;
-	Thu, 25 Jul 2024 05:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E0914EC5D;
+	Thu, 25 Jul 2024 05:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hfjfeaQO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WfDeQ8Rk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DF11C683;
-	Thu, 25 Jul 2024 05:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D963014E2F5;
+	Thu, 25 Jul 2024 05:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721886346; cv=none; b=Foiijf5NZmC2TXGR2ZJIqAu0DseRcbG4i3kT0uO/0gwZs9naWE0HZ1YrdOFxIZKrDhhOncogdrrV71w+cWS+ieXGmBbwJ6GhkWH54Z4EjzERTPz9F0aSXvXLTeplwlqAj4mDQMOY39/AgzOWk9HObLCA/qL7beSOayOZTqCZ8mY=
+	t=1721887069; cv=none; b=QpXbAzbgVTeeucZ3RuSLKTVaJov7SVHZeE71/lMA+250CTCMfd8noeZTgHe6zdwR5i5HvAGL2sSWbsqrstggVywix5pSl0VQ2sYjn6tgcr/mfuh9O4lkNrhbDaBvNqaV7wYsyD3YZoARCaRyinwCkstzlqoSTyuHdyU7WpQiyrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721886346; c=relaxed/simple;
-	bh=pqT7xhhvO7rMmQZwot4PikAHl+lQe9ZQJxGQDXcMJ5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bqFRukKmda/hC4NGC6SpO3agULEKEKUIxxHZ3vkYl70HeFZ8j2PETPDRCWKmu7F0A5Wzqdkicv7e0LyeGUozlweCUm2wp3/7D06TKRo0Emloem6yG3UKWA61aL6Ql2D3b6EAsZWejtP0iPLpBafiCdyxzf1jBcDvza+e9Kudr9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hfjfeaQO; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B52121C0005;
-	Thu, 25 Jul 2024 05:45:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1721886335;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LxK8XBeQTTR4Tc/s5qyrrLBlrioJMMBQezGw7qaqjmQ=;
-	b=hfjfeaQOKrpWNaZD3IcFOlJIkjVOgvkaiWSMzkV2yY5PMPM6c2Siytc5wgXWO5vYEtQpYo
-	NVVZkByFOiWeCAmlEVRdVaFUardAELs+DTPPZHei7/r2fqvdBz+P8OxiC9uQGLUhWx8b/s
-	OOUxcvcwXjZX88IiKm54WgToaQRzBP/6B6eeewn8VD0kQfr5lojJCUFcbTQnlaJnRBCBnV
-	UIZskIUF/lrZ8ZM2t0P4kJE7/g9eHh+/x0Vyr+TqY+9WHBGIJdWkLui9vZk445NBe6Khv/
-	Cx+u50e6OfJ4lYbg33OGQP2wiAHh6ZBorzIjm3ls9/TO+LwsMMqvU1ZMyLDjzw==
-Date: Thu, 25 Jul 2024 07:45:32 +0200
-From: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: mehdi.djait@bootlin.com, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Mehdi Djait <mehdi.djait.k@gmail.com>
-Subject: Re: [PATCH 0/2] Add driver for Sharp Memory LCD
-Message-ID: <20240725074532.65616a26@windsurf>
-In-Reply-To: <20240725004734.644986-1-lanzano.alex@gmail.com>
-References: <20240725004734.644986-1-lanzano.alex@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1721887069; c=relaxed/simple;
+	bh=Xzo+/0fKEArw98UEUgyX6dDr16x8+/w97OLWloTwTPk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OPWEGdSaknn0D2HjNO0wxO5k8+XJcgTMQercjLyVUFQmS79EZTUUWIwuiZoEuDNWlv3Ctk4vDxEihxDuQL5XwEno0G3o3xDIpuR5hTj0Y3TX4JEAvuVdp0bQm+EGMoBTfP4g6NNpANKcF0ava28CMHRTs7wKpQf6TlXtR451aCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WfDeQ8Rk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D417CC116B1;
+	Thu, 25 Jul 2024 05:57:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721887068;
+	bh=Xzo+/0fKEArw98UEUgyX6dDr16x8+/w97OLWloTwTPk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WfDeQ8RkYPzzsKdE0libkMbEAdJRuiyi5kkV5F2ZK6X2KAEzZJTV13vPEOLiPm4BO
+	 ZxDI7mFTtg+L8GpXxhXatA2Z1h4whLXFUxM9ePFm6fN3pKZAMsfI0IoUhmadHAlUs4
+	 itiI3Lj7dclY2VD6BdYjdXO8KtMZ2Fc7SVRMXHkC+5TpvNSV3pk3oImAbEd40q+znj
+	 D2Uil+oJ1nCSoFNX10mNkCae+W92AbCKZoniuQyQs0nL5LbMdZczZsGI9HE9UVceRS
+	 s86u5jlhXP0S5nKRdtGu7CTqaGWvv0dFU/ZUKO6WJKHc4JAD39UKE6XYMQOBi1K1I7
+	 IUWsYb6OD/Q4g==
+Date: Thu, 25 Jul 2024 11:27:44 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
+	kernel test robot <lkp@intel.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, oe-kbuild-all@lists.linux.dev,
+	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH RESEND v9 2/2] dmaengine: Loongson1: Add Loongson-1 APB
+ DMA driver
+Message-ID: <ZqHpWKLhRUi0N5Ps@matsya>
+References: <20240711-loongson1-dma-v9-2-5ce8b5e85a56@gmail.com>
+ <202407140536.iIizeGVy-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.petazzoni@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202407140536.iIizeGVy-lkp@intel.com>
 
-Hello Alex,
+On 14-07-24, 05:11, kernel test robot wrote:
+> Hi Keguang,
+> 
+> kernel test robot noticed the following build warnings:
+> 
+> [auto build test WARNING on d35b2284e966c0bef3e2182a5c5ea02177dd32e4]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang-via-B4-Relay/dt-bindings-dma-Add-Loongson-1-APB-DMA/20240711-191657
+> base:   d35b2284e966c0bef3e2182a5c5ea02177dd32e4
+> patch link:    https://lore.kernel.org/r/20240711-loongson1-dma-v9-2-5ce8b5e85a56%40gmail.com
+> patch subject: [PATCH RESEND v9 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+> config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240714/202407140536.iIizeGVy-lkp@intel.com/config)
+> compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240714/202407140536.iIizeGVy-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202407140536.iIizeGVy-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    In file included from include/linux/printk.h:598,
+>                     from include/asm-generic/bug.h:22,
+>                     from arch/x86/include/asm/bug.h:87,
+>                     from include/linux/bug.h:5,
+>                     from include/linux/fortify-string.h:6,
+>                     from include/linux/string.h:374,
+>                     from include/linux/scatterlist.h:5,
+>                     from include/linux/dmapool.h:14,
+>                     from drivers/dma/loongson1-apb-dma.c:8:
+>    drivers/dma/loongson1-apb-dma.c: In function 'ls1x_dma_start':
+> >> drivers/dma/loongson1-apb-dma.c:137:34: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
+>      137 |         dev_dbg(chan2dev(dchan), "cookie=%d, starting hwdesc=%x\n",
 
-On Wed, 24 Jul 2024 20:47:01 -0400
-Alex Lanzano <lanzano.alex@gmail.com> wrote:
+You should not use %x for dma_addr_t, please see documentation
 
-> This patch series add support for the monochrome Sharp Memory LCD
-> panels. This series is based off of the work done by Mehdi Djait.
-
-Thanks for resuming the effort on this patch series! Since this patch
-series is clearly heavily based on Mehdi's work, wouldn't it make sense
-to preserve Mehdi's authorship for the patches?
-
-Best regards,
-
-Thomas
 -- 
-Thomas Petazzoni, co-owner and CEO, Bootlin
-Embedded Linux and Kernel engineering and training
-https://bootlin.com
+~Vinod
 
