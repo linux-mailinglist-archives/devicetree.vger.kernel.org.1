@@ -1,107 +1,133 @@
-Return-Path: <devicetree+bounces-88095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44BC293C133
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 13:56:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5751093C17C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 14:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD5EE1F22A02
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:56:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3CF71F2130A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 12:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63ED1199224;
-	Thu, 25 Jul 2024 11:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b="bizVwSo2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAE31991C3;
+	Thu, 25 Jul 2024 12:13:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tkos.co.il (wiki.tkos.co.il [84.110.109.230])
+Received: from out28-99.mail.aliyun.com (out28-99.mail.aliyun.com [115.124.28.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D063C3C;
-	Thu, 25 Jul 2024 11:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.110.109.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27FC822089;
+	Thu, 25 Jul 2024 12:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721908596; cv=none; b=WW1DEH/DwWTaeE15B2tDiI6cdI2h3ZsnFO0dVU+RA8vr4byfvhqjQlAPmE80VOXQGrqv62jv1lL/JgFG9CxXpmqCRjAKSS4qIVZkYDMXqgve811rdlnuWcjyQRd5DIzgdGcrf12KS7LSGBtitoYg2YHdVp9mT4jS9dXgWo4+ulE=
+	t=1721909623; cv=none; b=ge9AG+Lo+6q0pJqoDbXW3+IMRURNg6ce2Yg27xHgSRVISpnAFfLwsK2VC82awdBotsOUtFi7esy+Z+927TQFth36UgiK2HdXUB/w/u+fijm332mkjYlGa2wvxLZeHmKpeW7yRCY6bIX89RaiPm9tkc3CFnsC7jqj6YXPm6ufcQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721908596; c=relaxed/simple;
-	bh=yE1dvBcrEBKnorpECP4pOnlN7nPfgUokWU3jR2HlwE8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=s/f5x6fYVVUy8HTc2pmWlwZ6xiAATQGSiiztkt71a10NY5a+B/gyorKm73fKvq805f90jB7v+EVH6aM33Y9lZKNZ0GxLgfywta9a1aScIeg2CSu3iNY4sjtQ7CKEtowN8Nr4xMIVtAzA1E98LFyDf9j5fXgd/0HfFSvRVwSR33A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il; spf=pass smtp.mailfrom=tkos.co.il; dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b=bizVwSo2; arc=none smtp.client-ip=84.110.109.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tkos.co.il
-Received: from localhost (unknown [10.0.8.2])
-	by mail.tkos.co.il (Postfix) with ESMTP id 284E14404C3;
-	Thu, 25 Jul 2024 14:47:51 +0300 (IDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-	s=default; t=1721908071;
-	bh=yE1dvBcrEBKnorpECP4pOnlN7nPfgUokWU3jR2HlwE8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=bizVwSo2WQmGu0wUpHnYrd0vmUJZSj2EFi5MQvsuSsHcUPIlfFUeav8XA1ADfxEht
-	 swspOZXXy6Ab7EMunaOnm8NHsgOT9449191hCTw2/CpoAtwSwSaAwbieaI7844BSro
-	 ptDyP9e+pI/vXYmBCpx+M0RmTU+Lr81JVG8wPU3ZSwi4+YXygklxhz7lCo6Gusy58K
-	 seXAU/M/7An4QuSEy4KgL1CDRjrevZeRuLYxoakcQey6W84qW98DoLWlQoXDC09PaI
-	 4x/s1EdCLdeCgMg6IPGd80vPUq/70SWVPgWUFJSRDxadbEb9i2o8jR+4Mi0NXSi22V
-	 /YANXGITTzdfw==
-From: Baruch Siach <baruch@tkos.co.il>
-To: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Christoph Hellwig <hch@lst.de>,  Marek Szyprowski
- <m.szyprowski@samsung.com>,  Rob Herring <robh@kernel.org>,  Saravana
- Kannan <saravanak@google.com>,  Will Deacon <will@kernel.org>,  Robin
- Murphy <robin.murphy@arm.com>,  iommu@lists.linux.dev,
-  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-kernel@vger.kernel.org,  linuxppc-dev@lists.ozlabs.org,
-  linux-s390@vger.kernel.org,  Petr =?utf-8?B?VGVzYcWZw61r?=
- <petr@tesarici.cz>,  Ramon
- Fried <ramon@neureality.ai>,  Elad Nachman <enachman@marvell.com>
-Subject: Re: [PATCH RFC v2 2/5] of: get dma area lower limit
-In-Reply-To: <ZnH-VU2iz9Q2KLbr@arm.com> (Catalin Marinas's message of "Tue, 18
-	Jun 2024 22:38:29 +0100")
-References: <cover.1712642324.git.baruch@tkos.co.il>
-	<230ea13ef8e9f576df849e1b03406184ca890ba8.1712642324.git.baruch@tkos.co.il>
-	<ZnH-VU2iz9Q2KLbr@arm.com>
-Date: Thu, 25 Jul 2024 14:49:01 +0300
-Message-ID: <87cyn1k7yq.fsf@tarshish>
+	s=arc-20240116; t=1721909623; c=relaxed/simple;
+	bh=p+vG2tWN9wZD772RHA71+9xCCaFpZpjigPOUfnzFcSo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nfN3fvcC7TshNeMm6aE6tx6qpWVoZIqoRabCIeDG6s2c+lJVlxZMIW99m9BmoXFLmqmhhE7vfm5z/AkKCyv4KE3A7jMnPGucC2XQG3QE4xtXP08X5XBYkhbX7KSe8jzP2jzRP3KTAdxaueT3MCBHyn3l8Fds4g/S6RUtvoGz2N4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07479588|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00828105-0.000170853-0.991548;FP=7876820729503270039|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033071083032;MF=wangshuaijie@awinic.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.YZXAOr8_1721909576;
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.YZXAOr8_1721909576)
+          by smtp.aliyun-inc.com;
+          Thu, 25 Jul 2024 20:13:28 +0800
+From: wangshuaijie@awinic.com
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	waqar.hameed@axis.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: wangshuaijie@awinic.com,
+	liweilei@awinic.com,
+	kangjiajun@awinic.com
+Subject: [PATCH V4 0/2] Add support for aw9610x proximity sensor
+Date: Thu, 25 Jul 2024 12:12:50 +0000
+Message-ID: <20240725121252.865836-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-Hi Catalin,
+From: shuaijie wang <wangshuaijie@awinic.com>
 
-On Tue, Jun 18 2024, Catalin Marinas wrote:
-> On Tue, Apr 09, 2024 at 09:17:55AM +0300, Baruch Siach wrote:
->> of_dma_get_max_cpu_address() returns the highest CPU address that
->> devices can use for DMA. The implicit assumption is that all CPU
->> addresses below that limit are suitable for DMA. However the
->> 'dma-ranges' property this code uses also encodes a lower limit for DMA
->> that is potentially non zero.
->> 
->> Rename to of_dma_get_cpu_limits(), and extend to retrieve also the lower
->> limit for the same 'dma-ranges' property describing the high limit.
->
-> I don't understand the reason for the lower limit. The way the Linux
-> zones work is that ZONE_DMA always starts from the start of the RAM. It
-> doesn't matter whether it's 0 or not, you'd not allocate below the start
-> of RAM anyway. If you have a device that cannot use the bottom of the
-> RAM, it is pretty broken and not supported by Linux.
+Add drivers that support Awinic aw9610x proximity sensors.
 
-I won't argue with that assertion. My target system RAM happens to start
-at that the lower end of devices DMA zone, so I'm fine with skipping
-this patch.
+The aw9610x series are high-sensitivity capacitive proximity detection
+sensors. This device detects human proximity and assists electronic devices
+in reducing specific absorption rate (SAR) to pass SAR related certifications.
+The device reduces RF power and reduces harm when detecting human proximity. 
+Increase power and improve signal quality when the human body is far away.
 
-Just curious. What is the inherent limitation that prevents Linux from
-supporting DMA zone with lower limit above RAM start?
+The specific absorption rate (SAR) is a metric that measures the degree of
+absorption of electromagnetic radiation emitted by wireless devices,
+such as mobile phones and tablets, by human tissue.
 
-Thanks,
-baruch
+This patch implements device initialization, registration,
+I/O operation handling and interrupt handling, and passed basic testing.
 
+v1->v2:
+-------
+ - Remove unnecessary log printing.
+ - Optimize comment style.
+ - Issues with modifying the device tree.
+ - Optimize code style.
+
+v2->v3:
+-------
+ - Add a description about the hardware device.
+ - Remove inappropriate configuration items.
+ - Modify the formatting issues.
+ - Modify the structure of the driver.
+ - Change the style of the driver's comments.
+ - Remove unnecessary log printing.
+ - Modify the function used for memory allocation.
+ - Modify the driver registration process.
+ - Remove the functionality related to updating firmware.
+ - Change the input subsystem in the driver to the iio subsystem.
+ - Modify the usage of the interrupt pin.
+ 
+v3->v4:
+-------
+The changes in this patch version are quite significant, and I concur
+with Krzysztof's viewpoint that this driver is indeed overly complex for
+the proximity sensor. Therefore, I have removed the compatibility for the
+aw963xx series, and the driver will now exclusively support the aw9610x series.
+
+ - Modify the software architecture to remove compatibility for
+   the aw963xx series.
+ - Optimize the parsing of register configuration files (.bin).
+ - Remove unnecessary log printing.
+ - Delete redefinition of true and false.
+ - Remove unnecessary interfaces.
+ - Optimize regulator usage.
+ - Convert the I2C communication interface to regmap.
+
+shuaijie wang (2):
+  dt-bindings: iio: aw9610x: Add bindings for aw9610x sensor
+  iio: proximity: aw9610x: Add support for aw9610x proximity sensor
+
+ .../iio/proximity/awinic,aw9610x.yaml         |  61 ++
+ drivers/iio/proximity/Kconfig                 |  11 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/aw9610x.c               | 791 ++++++++++++++++++
+ drivers/iio/proximity/aw9610x.h               | 140 ++++
+ 5 files changed, 1004 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/awinic,aw9610x.yaml
+ create mode 100644 drivers/iio/proximity/aw9610x.c
+ create mode 100644 drivers/iio/proximity/aw9610x.h
+
+
+base-commit: c33ffdb70cc6df4105160f991288e7d2567d7ffa
 -- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+2.45.1
+
 
