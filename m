@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-87989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B516C93BC7A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 08:21:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A88493BC88
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 08:29:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53E401F257F3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 06:21:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99AFCB2217C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 06:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF4316C68E;
-	Thu, 25 Jul 2024 06:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C12DD16C6A5;
+	Thu, 25 Jul 2024 06:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jTOKuK73"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YbDpgVsJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9155814F111;
-	Thu, 25 Jul 2024 06:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9083519BB7;
+	Thu, 25 Jul 2024 06:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721888467; cv=none; b=pZGWGBgs5Wb9HmwVABGVC26FL6RMWO1CoIEjTKvvtH0nujw8zdDqjHTT6oGNV0kAKKGByywqpvjapr/wSY3hcxmEyuc131ZIq/0H3i9wf/Vq+Uljx7/INyS49cX3jPdmTMY+qaE2qTfPmVu0XoPQpOsaoWHr4V7EcDD7KrDditY=
+	t=1721888983; cv=none; b=Ebog1IP12b7PHhBGT4iBiWH1G7AYfNIm0T/QBaq3uXBlnjp8mIbyUXTAqYpvR7sqH4XVKncsciaAYTnTtb7ZJnBm7693lA6g4iHd3giVZDg3vMGOlBAZ4eSMPUFbJTBeNX062T9O64Kt72S/J94VtOPn9AxQlNzNBIHyjy3A5R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721888467; c=relaxed/simple;
-	bh=Ayg2wEWH8Ar09dOTu0SF1cvek1Sf0LqcopqXUz5dpN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EuYZFtIvEm3lst0gk0ist1mevNbYlgZ4iurRxqkfs9V7GO0GT8e+zcDpPL08nYNvr2Ho9elBIWjUivTkr16GKgs7s/43OVg1V2QYwO1eIP43kjl+FtAKBaOMIVYnK3v8rZCkI7P6PREii9dSyZhA+3H6qdJ38e6rzdPQe3MGm0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jTOKuK73; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C990C4AF07;
-	Thu, 25 Jul 2024 06:21:02 +0000 (UTC)
+	s=arc-20240116; t=1721888983; c=relaxed/simple;
+	bh=xTsGkWYFxVZROtS7ZsX2meQ/hHFUIWIY3sU4i/EzOMY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UKda/UE/zEPg8eUI9sFL06vOc2UtpdRI+HdzQQh01IwUumH6lcAbkfUhB8x3B1T6uiMS6nYTmxM4Y/C1oag6bEtuFCdge+vC+7u6/1TX48qXbm/gfPaVHztmU0laMljGnpfElHA4vmmI903cKQGBRL2VmMnqAc0YsXvcDJkzvjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YbDpgVsJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD6AEC116B1;
+	Thu, 25 Jul 2024 06:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721888467;
-	bh=Ayg2wEWH8Ar09dOTu0SF1cvek1Sf0LqcopqXUz5dpN4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jTOKuK736rJ3K7vRUnass0/LLV/xOt/a5f46jJb+M84fYuseK0f3UWvFhU2HIDg7T
-	 mOXENRVdLIHISWLxeloET9SOIA/Ah3ldYz/hZavebIGpOOjo0t76e8vPdF4a0c5Nr/
-	 rY/B13LP+LsN2TT2vCYgjccdtQLQkL3uqhYiH2rRCGRzDpcT7njUp7X5Z4oC/dYRTg
-	 CM/StraLljwO2Ll5kHBBMVYz6fnNi71fQEqfCMwmuFK3UO+TwpGLRACS/V3IpupMT0
-	 8AEpNlBdo4CXUSFqcTnfmzXWqJb+68lVY2moY+GwFdo4sAl0WSwdZkb0g1Hdu//Ljv
-	 5QkXzIGSUQNLQ==
-Message-ID: <bf6cd1c9-d60a-4ef1-89f3-5d28e003ce2d@kernel.org>
-Date: Thu, 25 Jul 2024 08:21:00 +0200
+	s=k20201202; t=1721888983;
+	bh=xTsGkWYFxVZROtS7ZsX2meQ/hHFUIWIY3sU4i/EzOMY=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=YbDpgVsJF/M2qz0YWTNPjTwJ6fvrTK+MvWTWNHaSr+2MFWinwzdzmpn7DVpwtXsiP
+	 gEtZzZmNio9vSpkfytq7GcoQuwO2skpzp1N7IiaVhUWQ2Wn8lXlvcX8Myis7mVAqbU
+	 11WzAF2QvuvYe0u3YYuG7pmt7GTwIRLavyMP8v7axM34oB4oWjKbdlE5hdsOavPpkI
+	 cO+w0QrurNQZxxYGInDt5QGTZJGtUxnua5fF/M3H9ZnqBIkVsNe4S1XP4lXbwLp+ka
+	 dnNkis4ny3pbadvzaL2Z1XZTwDBaKK8H4o5NrsP5jZWV4+OYXSq+NbNvdUb3fVWtuX
+	 TgSDey/IU7Y9A==
+Message-ID: <bfd2a8ea-9ddb-458c-bc34-f850092f0bc1@kernel.org>
+Date: Thu, 25 Jul 2024 08:29:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
- bindings
-To: "sunyeal.hong" <sunyeal.hong@samsung.com>, 'Rob Herring' <robh@kernel.org>
-Cc: 'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
- 'Chanwoo Choi' <cw00.choi@samsung.com>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>,
- 'Michael Turquette' <mturquette@baylibre.com>,
- 'Stephen Boyd' <sboyd@kernel.org>, 'Conor Dooley' <conor+dt@kernel.org>,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240722223333.1137947-1-sunyeal.hong@samsung.com>
- <CGME20240722223340epcas2p4ab83b1e8dbc64eaaf32f4f8b7e3f015d@epcas2p4.samsung.com>
- <20240722223333.1137947-2-sunyeal.hong@samsung.com>
- <20240723205714.GA1093352-robh@kernel.org>
- <035501dade31$55cc7f40$01657dc0$@samsung.com>
- <03b201dade3f$3d66e3b0$b834ab10$@samsung.com>
+Subject: Re: [PATCH v4 3/3] drivers: iio: adc: add support for ad777x family
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ linux-iio@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Cosmin Tanislav <cosmin.tanislav@analog.com>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Nuno Sa <nuno.sa@analog.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Marius Cristea <marius.cristea@microchip.com>,
+ Ivan Mikhaylov <fr0st61te@gmail.com>,
+ Mike Looijmans <mike.looijmans@topic.nl>,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Liam Beguin <liambeguin@gmail.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240724155517.12470-1-ramona.nechita@analog.com>
+ <20240724155517.12470-5-ramona.nechita@analog.com>
+ <7d474c3d-22ed-45d5-8224-caaf124b72a0@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -112,31 +114,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <03b201dade3f$3d66e3b0$b834ab10$@samsung.com>
+In-Reply-To: <7d474c3d-22ed-45d5-8224-caaf124b72a0@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/07/2024 05:03, sunyeal.hong wrote:
-
-> - dts
-> cmu_misc: clock-controller@10020000 {
-> 	compatible = "samsung,exynosautov920-cmu-misc";
-> 	reg = <0x10020000 0x8000>;
-> 	#clock-cells = <1>;
+On 24/07/2024 18:14, Krzysztof Kozlowski wrote:
+> On 24/07/2024 17:54, Ramona Alexandra Nechita wrote:
+>> Add support for AD7770, AD7771, AD7779 ADCs. The device is capable of
+>> sending out data both on DOUT lines interface,as on the SDO line.
+>> The driver currently implements only theSDO data streaming mode. SPI
+>> communication is used alternatively foraccessingregisters and streaming
 > 
-> 	clocks = <&xtcxo>,
-> 		 <&cmu_top DOUT_CLKCMU_MISC_NOC>;
-> 	clock-names = "oscclk",
-> 		      "noc";
-> };
+> Typo, please run spell check.
 > 
-> In this case, can you tell me how to handle it?
-> And if a new clock item is added and a new cmu block uses only the clock item added and oscclk, a problem may occur.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> 
+> There is no "drivers".
+> 
+>> data. Register access are protected by crc8.
+>>
+>> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+>> ---
+>>  drivers/iio/adc/Kconfig  |  11 +
+>>  drivers/iio/adc/Makefile |   1 +
+>>  drivers/iio/adc/ad7779.c | 952 +++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 964 insertions(+)
+>>  create mode 100644 drivers/iio/adc/ad7779.c
+>>
+> 
+> The driver has several trivial style issues. Please be sure such
+> trivialities are fixed. Get internal review on this. You do need to ask
+> community to tell you that you must run checkpatch. Or to tell them that
+> indentation/alignment is entirely broken. Grab some colleague of yours
+> and perform internal review first. This applies to entire Analog,
+> because there is increased amount of contributions from Analog and not
+> all of them look like passing basic sanity checks.
+> 
+> By sending code full of silly trivialities, community reviewers might
+> feel overwhelmed and quite grumpy.
 
-The same problem was in your original version, so why suddenly it appeared?
+The amount of trivial warnings pointed out by compilation in separate
+email is as well disappointing. You do not need community to check if
+all variables are used - compilers tell it, so use them. Toolchains and
+static checkers will point some issues without any need of using
+community reviewers. Look, isn't it great? Instead of using human force
+you can use tools...
 
-Anyway, why clock would be missing? You just wrote in the bindings that
-there is such input clock.
+This applies to all Analog contributions - *you must check* your code
+with W=1, sparse, smatch and coccinelle.
 
 Best regards,
 Krzysztof
