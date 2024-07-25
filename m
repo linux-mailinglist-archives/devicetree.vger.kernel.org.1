@@ -1,70 +1,75 @@
-Return-Path: <devicetree+bounces-88086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFA393C085
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 13:03:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AA293C0D1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 13:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C3211C21156
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:03:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3331282C34
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 11:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E758D1991A1;
-	Thu, 25 Jul 2024 11:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B533E1991D8;
+	Thu, 25 Jul 2024 11:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQZq/HxD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NLRcDziV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCADA176233;
-	Thu, 25 Jul 2024 11:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8489B197A77;
+	Thu, 25 Jul 2024 11:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721905413; cv=none; b=hR6vDFtjAUucmuBay6Txavyd4IVKrMMWyzDLCH/cD9OTmWd5qq6kXQzt5k2eYQ4bw5qUE6CbI8Es09UTCxQUjVW8CTFT9HjYWc+chnkrUL03OnES46ZORNfFPpEULr9mNvIF/x3BgIeaEzMgOBudkAcqE22dJsKA56VyxL5ILgw=
+	t=1721906921; cv=none; b=PxGY1K9n5vU7AN3abEomYTr8UpdBJVmVLdT02VSY06Nr0ECqVN9v7AkOTeTPFJwDu8ZNUS7ejWdwuA5rHd83nCXPQ8Vz5W4BMnkLd4IZDmXZm6zKh/By3q8um3rBM2czx9lUtqHZ8L7s6+pQd3V32AIg7ObTIOObKL09y8Mbo8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721905413; c=relaxed/simple;
-	bh=RCVBCoKT1vSGM8CC/3jXNwaZrAHFv8eiwDk/Yatez5A=;
+	s=arc-20240116; t=1721906921; c=relaxed/simple;
+	bh=tqxpcbUfbmXq4gYPOLPFEL8D1WTclkWhQrqiFH5NKao=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s5svVHvB82pWJUED/+tKS5GlnXAA2ByiIrWR88pG6gYDDOgTBwwiRlnWRJjet/Ol+25gUkukw9pa6E2dg9r0/JutmDclWtJX7yLVMr45N8exG9YQSBn3X/lVY5M5EmiymeqSWCorQbEUHxLUILHqkBMvdbSmwtvOITHjfazN2LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQZq/HxD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852EEC116B1;
-	Thu, 25 Jul 2024 11:03:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UXYpyHy5ps0K+o9aGlWbDInOoTTnTC9Zu1SjUphTge1+Hfv4nWsnklrPNt5StCjyZgdvoJL5uZ4V2c2ZqYXi5J8RP2nwruS3Fg//BiQ4RJb1KAgQO/TAgbUUnd/hFqUaV0rN7aN/Tv1Tl3QwQ2CUnUZkddDdy3vKkvJvQ3AFbl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NLRcDziV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3CB5C116B1;
+	Thu, 25 Jul 2024 11:28:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721905413;
-	bh=RCVBCoKT1vSGM8CC/3jXNwaZrAHFv8eiwDk/Yatez5A=;
+	s=k20201202; t=1721906921;
+	bh=tqxpcbUfbmXq4gYPOLPFEL8D1WTclkWhQrqiFH5NKao=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QQZq/HxDlxXi454xs8++s7E0GK+Or3EhCt84LW+1FAh+0XxXIyzXpdvMhUaz05Erg
-	 eU/3VZZAPv7mYiJp9rp7QkovXV121b8w/u1gYV64LcuUMRDYmW8VnS6PrynN9x6Mwn
-	 CupjHgtyI+1rgpnqCsAIFzwIiZ6aiW5kW0PUGS5mESDLkSb/hSsPjZVrIBNF2TZWwU
-	 HyOFwiVJ4kEECUa9/nTk8KRTOEIdVXWt+aAXxtGU1tJkRfRKC6PxCI9m/HCwejrsA9
-	 eSvpRIT+dFjOtf3eqLcKmurZySnkFiCIJoRkJfkplOSQNsj/uN7s9M5vNCIh7x4Ybt
-	 jl9jC+hOjmu+w==
-Date: Thu, 25 Jul 2024 16:33:29 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	b=NLRcDziVx8Skyei78ECJYsXdlBEmexjDpO0sziANWvbsRbLGYmkRaqzL2cNxWH2zk
+	 d0Jt1RT3BSbMOuk2KD/Y1iKCbpelLxP+uVJ+WUv17zQiUalLM3bLRVKhAlbINfMvkB
+	 ot1zwl8vHI1kq834F3+NVSTv9752DfX/uE49ojNQOhqyLCwlXo/Af2np5GytZ7zNwz
+	 Jw5SbkZOddNs2rviEi9l8Bqe6apTsp5TKcx7wifpHfdW/2r/AqvC5TkyaaWyiGMJ8C
+	 Y9vo4MGteIv98aiGWY1q5pd2xktQ8Lz+DmzKtXENI1IthCa0GxwEisSiE7hXtJdM9m
+	 t0U1Y9d3B5StA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sWweI-00000000094-2Ffb;
+	Thu, 25 Jul 2024 13:28:42 +0200
+Date: Thu, 25 Jul 2024 13:28:42 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Konstantin Porotchkin <kostap@marvell.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC v3 5/6] phy: mvebu-cp110-utmi: add support for
- armada-380 utmi phys
-Message-ID: <ZqIxAf2yPL32HLaP@matsya>
-References: <20240720-a38x-utmi-phy-v3-0-4c16f9abdbdc@solid-run.com>
- <20240720-a38x-utmi-phy-v3-5-4c16f9abdbdc@solid-run.com>
- <ZqH0KDVjCILr3A6r@matsya>
- <f4835ad8-08c1-49f0-ae85-4f870ad90a8e@solid-run.com>
+	Bjorn Andersson <andersson@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: qcom: Allow 'vddpe-3v3-supply' again
+Message-ID: <ZqI26iACl_mQX-zG@hovoldconsulting.com>
+References: <20240723151328.684-1-johan+linaro@kernel.org>
+ <nanfhmds3yha3g52kcou2flgn3sltjkzhr4aop75iudhvg2rui@fsp3ecz4vgkb>
+ <ZqHuE2MqfGuLDGDr@hovoldconsulting.com>
+ <CAA8EJppZ5V8dFC5z1ZG0u0ed9HwGgJRzGTYL-7k2oGO9FB+Weg@mail.gmail.com>
+ <ZqIJE5MSFFQ4iv-R@hovoldconsulting.com>
+ <y6ctin3zp55gzbvzamj2dxm4rdk2h5odmyprlnt4m4j44pnkvu@bfhmhu6djvz2>
+ <ZqIVQzQA5kHpwFgN@hovoldconsulting.com>
+ <pbkzwy63j7dh365amgdze2ns4krykckqyx2ncqjw2u4dufuoky@fg6rdpnqh5vb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,109 +78,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f4835ad8-08c1-49f0-ae85-4f870ad90a8e@solid-run.com>
+In-Reply-To: <pbkzwy63j7dh365amgdze2ns4krykckqyx2ncqjw2u4dufuoky@fg6rdpnqh5vb>
 
-On 25-07-24, 08:38, Josua Mayer wrote:
-> Am 25.07.24 um 08:43 schrieb Vinod Koul:
-> > On 20-07-24, 16:19, Josua Mayer wrote:
-
-> >> +struct mvebu_cp110_utmi_port;
-> > why forward declare and not move the structs instead?
-> Seemed like the smaller change / more readable as diff.
-> I can move the struct instead!
-
-Yes and that can be preparatory as well :-)
- 
-> >
-> >>  	reg &= ~(PLL_REFDIV_MASK | PLL_FBDIV_MASK | PLL_SEL_LPFR_MASK);
-> >>  	reg |= (PLL_REFDIV_VAL << PLL_REFDIV_OFFSET) |
-> >>  	       (PLL_FBDIV_VAL << PLL_FBDIV_OFFSET);
-> >> -	writel(reg, PORT_REGS(port) + UTMI_PLL_CTRL_REG);
-> >> +	writel(reg, port->regs + UTMI_PLL_CTRL_REG);
-> >>  
-> >>  	/* Impedance Calibration Threshold Setting */
-> >> -	reg = readl(PORT_REGS(port) + UTMI_CAL_CTRL_REG);
-> >> +	reg = readl(port->regs + UTMI_CAL_CTRL_REG);
-> >>  	reg &= ~IMPCAL_VTH_MASK;
-> >>  	reg |= IMPCAL_VTH_VAL << IMPCAL_VTH_OFFSET;
-> >> -	writel(reg, PORT_REGS(port) + UTMI_CAL_CTRL_REG);
-> >> +	writel(reg, port->regs + UTMI_CAL_CTRL_REG);
-> >>  
-> >>  	/* Set LS TX driver strength coarse control */
-> >> -	reg = readl(PORT_REGS(port) + UTMI_TX_CH_CTRL_REG);
-> >> +	reg = readl(port->regs + UTMI_TX_CH_CTRL_REG);
-> >>  	reg &= ~TX_AMP_MASK;
-> >>  	reg |= TX_AMP_VAL << TX_AMP_OFFSET;
-> >> -	writel(reg, PORT_REGS(port) + UTMI_TX_CH_CTRL_REG);
-> >> +	writel(reg, port->regs + UTMI_TX_CH_CTRL_REG);
-> >>  
-> >>  	/* Disable SQ and enable analog squelch detect */
-> >> -	reg = readl(PORT_REGS(port) + UTMI_RX_CH_CTRL0_REG);
-> >> +	reg = readl(port->regs + UTMI_RX_CH_CTRL0_REG);
-> >>  	reg &= ~SQ_DET_EN;
-> >>  	reg |= SQ_ANA_DTC_SEL;
-> >> -	writel(reg, PORT_REGS(port) + UTMI_RX_CH_CTRL0_REG);
-> >> +	writel(reg, port->regs + UTMI_RX_CH_CTRL0_REG);
-> >>  
-> >>  	/*
-> >>  	 * Set External squelch calibration number and
-> >>  	 * enable the External squelch calibration
-> >>  	 */
-> >> -	reg = readl(PORT_REGS(port) + UTMI_RX_CH_CTRL1_REG);
-> >> +	reg = readl(port->regs + UTMI_RX_CH_CTRL1_REG);
-> >>  	reg &= ~SQ_AMP_CAL_MASK;
-> >>  	reg |= (SQ_AMP_CAL_VAL << SQ_AMP_CAL_OFFSET) | SQ_AMP_CAL_EN;
-> >> -	writel(reg, PORT_REGS(port) + UTMI_RX_CH_CTRL1_REG);
-> >> +	writel(reg, port->regs + UTMI_RX_CH_CTRL1_REG);
-> >>  
-> >>  	/*
-> >>  	 * Set Control VDAT Reference Voltage - 0.325V and
-> >>  	 * Control VSRC Reference Voltage - 0.6V
-> >>  	 */
-> >> -	reg = readl(PORT_REGS(port) + UTMI_CHGDTC_CTRL_REG);
-> >> +	reg = readl(port->regs + UTMI_CHGDTC_CTRL_REG);
-> >>  	reg &= ~(VDAT_MASK | VSRC_MASK);
-> >>  	reg |= (VDAT_VAL << VDAT_OFFSET) | (VSRC_VAL << VSRC_OFFSET);
-> >> -	writel(reg, PORT_REGS(port) + UTMI_CHGDTC_CTRL_REG);
-> >> +	writel(reg, port->regs + UTMI_CHGDTC_CTRL_REG);
-> >>  }
-> >>  
-> >>  static int mvebu_cp110_utmi_phy_power_off(struct phy *phy)
-> >> @@ -166,22 +178,38 @@ static int mvebu_cp110_utmi_phy_power_off(struct phy *phy)
-> >>  	struct mvebu_cp110_utmi_port *port = phy_get_drvdata(phy);
-> >>  	struct mvebu_cp110_utmi *utmi = port->priv;
-> >>  	int i;
-> >> +	int reg;
-> >>  
-> >>  	/* Power down UTMI PHY port */
-> >> -	regmap_clear_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
-> >> -			  UTMI_PHY_CFG_PU_MASK);
-> >> +	if (!IS_ERR(port->regs_cfg)) {
-> >> +		reg = readl(port->regs_cfg);
-> >> +		reg &= ~(UTMI_PHY_CFG_PU_MASK);
-> >> +		writel(reg, port->regs_cfg);
-> >> +	} else
-> >> +		regmap_clear_bits(utmi->syscon, SYSCON_UTMI_CFG_REG(port->id),
-> >> +				  UTMI_PHY_CFG_PU_MASK);
-> > why are we doing both raw register read/write and regmap ops... that
-> > does not sound correct to me
-> Indeed.
+On Thu, Jul 25, 2024 at 01:24:27PM +0300, Dmitry Baryshkov wrote:
+> On Thu, Jul 25, 2024 at 11:05:07AM GMT, Johan Hovold wrote:
+> > On Thu, Jul 25, 2024 at 11:57:39AM +0300, Dmitry Baryshkov wrote:
+> > > On Thu, Jul 25, 2024 at 10:13:07AM GMT, Johan Hovold wrote:
+> > 
+> > > > It is already part of the bindings for all platforms.
+> > > 
+> > > It is not, it is enabled only for sc7280 and sc8280xp. 
+> > 
+> > No, that's both incorrect and irrelevant. It is used by msm8996 and
+> > older platforms by in-kernel DTs as well. But the point is that is has
+> > been part of the bindings an cannot simply be removed as there can be
+> > out-of-tree DTs that are correctly using this property for any of these
+> > platforms.
 > 
-> The next question would be why for Armada 8K / CP110 syscon was chosen.
-> From what I could find the registers accessed by utmi driver
-> are not accessed by other drivers.
-> 
-> I am adding raw register access as an alternative,
-> 
-> to keep supporting old device-tree specifying syscon handle.
-> 
-> I considered writing helper functions for the if-not-error-syscon-else-raw,
-> but between set_bits, clear_bits, global and per-port regs
-> would have ended up with too many.
+> It can not be removed from the driver, but it definitely can be remove
+> from bindings.
 
-Aha, please add the comment so we know why it was done like this few
-years later
+You apparently ignored the word "simply" in "cannot simply be removed".
 
--- 
-~Vinod
+Johan
 
