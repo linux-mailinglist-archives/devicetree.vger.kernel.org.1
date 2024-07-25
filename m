@@ -1,165 +1,145 @@
-Return-Path: <devicetree+bounces-88075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D5493C033
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 12:42:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC5693C038
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 12:42:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A82C1C21B01
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 10:42:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63EF01F24200
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 10:42:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06C7199E91;
-	Thu, 25 Jul 2024 10:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CE11991CC;
+	Thu, 25 Jul 2024 10:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iex0OlHN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CkBCq/DK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21DE1993A3;
-	Thu, 25 Jul 2024 10:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953EA1991A0
+	for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 10:41:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721904054; cv=none; b=DKaPEPyJsKLbUnDXNXG2BuCSvLLzEJwYhNTmQaHFPwGHC8+rBTyho0x4c2VmE45y7xLNNf72hsnQcZV4oUPbpI4X+cU3ocCPLoj8uqQLLEINO1GqdxBbvukruSAYZlDQwcfkhRQWoHWtYO7YFTmbBxj88loE5ali7rsKwMhalOk=
+	t=1721904105; cv=none; b=RJBKRGDX+nCgX8/R56LNFWvyuLfKfZPGPzZvAqF1bPJmhOtAZ5O9L72C7d/Hv90dUb7W9qdPxbPp8yhhtCrlaHqEaN6zXTi3tyd6idqYuWOGiKvWBvak8TwlC8Jt/DWt6yyCSs5yJhQlM/GMHz1L74+Ehdl2bSAaxKcb7GdphCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721904054; c=relaxed/simple;
-	bh=KWNNuFqNb/S25IX+uh0qv+bi86RJdKP7RJ0/PuyXSXs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c/qvZt++mLYUtyR5qOU8MhlnZkkFPoAt8JW4CDDqsLGMyFT6TIvGuJ84nV1I7flIpsYfFg9ZcMOzGjrblmPZ8aiSrk7cBYUst8Saqk/nXN+6wPXzbCKZjUYuH29T07m/sb5nDX/1ibmtRbuUEDNVQNLMApKOCrbmJkoYZQ0aheo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iex0OlHN; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a7a9cf7d3f3so43731166b.1;
-        Thu, 25 Jul 2024 03:40:52 -0700 (PDT)
+	s=arc-20240116; t=1721904105; c=relaxed/simple;
+	bh=FSwQ0wkvzxTWHcw6h+wBcTwPcBci8zA2o8+fRiyVn1Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fzOF36Y6oTbX0e91EaDeyAhW79hqOPMMR/JCgdPNUnhrl6Oqn2wRs8JrtSBypLRAqVkQ4UKMQGO525EW/75jiQ++lKDAKPY/gBevYwexchvwkYU8EJrxoFuf4D/bqeec10pUPskZc48kZW/bp4uYKJbaMgpTsO5wNI97xTQbBnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CkBCq/DK; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5a15692b6f6so1051292a12.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 03:41:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721904051; x=1722508851; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nf6VPiGgpzV4Bh7OdZ3UQlM8J+Hh+6fmABD4788z7Ds=;
-        b=iex0OlHNXQ8RXvOIevwO5HZ94lCMKHyJGsEg82tlKecLYQUpEzuq7B9ZIZCGiQMnWo
-         u4C9bLgZNt4A9dLm8BHzmHCpOI7MGoCUPTnzai16SYL8m22c2VWDxYm+pNSZwWeDax1W
-         dJCu04Fuwf0hnhDLYJavqolpZ0c96qkF/dHNI4uDwLeqcgupZ0dG18pWK6Jjn2WNRPlt
-         S1Gx8RinG3l52qOFcMdv2AqD/SLXvFBuaAqh+0MrGQcWrQAA6biIHtwg+ubFqK5WxmDK
-         CcZXX3NOq3PHHAz6ffSZsnRG0vo0a4FUUuTjGZN9uyoSvwTZgd6wYrKf2W/Ryy9hVvZW
-         1hqw==
+        d=linaro.org; s=google; t=1721904102; x=1722508902; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=vFtglIWJthoynwbfLw8PxYyGxtoLyAotI7f+V4bt/oY=;
+        b=CkBCq/DKJud2D9jfF6/OxVoyuVYX7OCmBfg3GelB7UAcq8Tr8JzrYp/cLzECRWrMz4
+         dlZEGGvhDoiUxOysRTGwciiqymcUOsFyQTnJs2Ho/uqDj16A1hXViexe+16EhODWR7T9
+         e9UHC95Z4dzhJ/5Gl/ILGGD9GZZygHFFkslFEohjEH3r4AZGkR/0+3ZEoF1vWYDyIVfk
+         vo6klXPolInfaB3oA8MzPcTO7KF5TR8vTFrZWlkBZjuAcbhqfnzPchcuT3reOcSb/08d
+         0qg6nD2IiDAJnuLHdEf3GuBWbFRrp0aiYiAciIrPmP8OduZZcmY/jbxnATdoXOHKx6pG
+         Fglw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721904051; x=1722508851;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nf6VPiGgpzV4Bh7OdZ3UQlM8J+Hh+6fmABD4788z7Ds=;
-        b=fEorfXwy+jlB2Y6YlybebygUPpvG2EIwgwsc2q7dlpNA0z+YahsDpho6Ow+kfgdwtj
-         MOxQ2vF+XFMaytba857PR27WpL+vhGnFdTH0HefGdf7fUSUiMvdNyg7MuWo0FPrWViGj
-         lmtWfuqxV9rL+jh9NsqeOE5T+pGjMkZXvLYXnKu5feGIB4ypXYXOeN2yyV2qgFomihhE
-         3ssHpbJOO2dnzvfk166Img6FZKiFRV/gwTFBNb+BsVxIUJcHShhjW8clM7+lbLdIeV91
-         gJG+KDaL2PoPRG66hITQystjsBWOvXuPr+6mPAPVR6MYr3x8aDqEPKasN/dEAOc/8jdj
-         RzdA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1yQSHihT5MRJS3neYSbuSwgAuRKiZIzdxVlNfjdONrWGMG7ZxdR7i38FrRT+kc0IiHCu109XHQ9I4B9RgmLDQrRj+p6jOkIhbaC/zAFOKpfcE91ra7jm573kY0dKWkZYEuCBdeBEJ7etkyqNOkCE7zLwHFSQhqpZ4WKHeUhFVCdHgV1G0SMDGFJ1upg==
-X-Gm-Message-State: AOJu0Yzjksd5z2kAKXbIKtbbzadUFnVQiIcm3zh9BjdF7eODZJtkNr//
-	TsSoHoDnImPArluLyIArbL3MGtBkV+maaSxSOwfUyWIC+FS4EepK
-X-Google-Smtp-Source: AGHT+IHFHN1eSuVeoNBYHF2aEjmsl6zUvRBRtaleADXs7+Y8AS7m0pQ7TJ12ZESC7WgwBTmMXOPAkw==
-X-Received: by 2002:a17:906:7d7:b0:a77:e55a:9e87 with SMTP id a640c23a62f3a-a7ac503afd5mr124692966b.48.1721904051139;
-        Thu, 25 Jul 2024 03:40:51 -0700 (PDT)
-Received: from tablet.my.domain (83.25.114.69.ipv4.supernova.orange.pl. [83.25.114.69])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acab23d56sm58342066b.38.2024.07.25.03.40.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jul 2024 03:40:50 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Thu, 25 Jul 2024 12:40:40 +0200
-Subject: [PATCH v2 6/6] ARM: dts: samsung: exynos4212-tab3: Drop dummy mic
- bias regulators
+        d=1e100.net; s=20230601; t=1721904102; x=1722508902;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vFtglIWJthoynwbfLw8PxYyGxtoLyAotI7f+V4bt/oY=;
+        b=QbKDwDvJTMR7MfXwr2eqkkZ7QsZYTI1kvWRjSq7xaBLyDiq6Dh6CJzVDk8hbCVO7h2
+         qtp0xh/F7srEVEQfQOk2U94lfXxqjxlBrINPOrplr/nTT+cQ98e/DIONF+PlL9E2AKhT
+         3z84Ru35UAqGobgr1fhks6P+9TsxUMNDgzk61Z8fZ4ojtgGYZwWgT7/J4qQJJdDjqRii
+         2SUwWkgFcm/tqqWzC5I+gYaLElxPwY6OnVWubZkEY1F2YlT+buwK6+bI3UZdEvH5Djuy
+         69Mbgf+lLYLlnmRY32i8IiHKIsL9J7mCOTaVb5i+pJ9cXs/RTNF3Tj3YyKaJOct8eHmE
+         lLsw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfmlaz+Z2P1jCKuNf/T3q7/oCg/U8ned7d6vXdxsW3TOXv7dhTyBr/ZWBf7Og+uD22b//4xxPF5TxGfm7R6F5mXj0mudRZoiuKDg==
+X-Gm-Message-State: AOJu0YxKwk8DNRb5qAzQURxPuLrLgrtWqxP9gliBjYFSJITJnub5O13W
+	un17lHmkTSzUvg6MamaeW0nvWFDFFLqQf4W6V/t5TKRWIvsAhzbdGBBSWoOmqDk=
+X-Google-Smtp-Source: AGHT+IHVvxlnfI9Ukx+jT1YweIaLcPDCHDq1H4IxeI7Mgyx27l1uhNoieLy7E64mr/e13aJH6h5AiQ==
+X-Received: by 2002:a17:906:7952:b0:a77:c199:9d01 with SMTP id a640c23a62f3a-a7ac4f18839mr190070066b.22.1721904101586;
+        Thu, 25 Jul 2024 03:41:41 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acada25a8sm58650166b.175.2024.07.25.03.41.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jul 2024 03:41:40 -0700 (PDT)
+Message-ID: <1a2095f9-b46f-4299-b07c-2fb628153ed1@linaro.org>
+Date: Thu, 25 Jul 2024 12:41:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 11/11] arm64: dts: qcom: sm6115-pro1x: Enable ATH10K
+ WLAN
+To: Dang Huynh <danct12@riseup.net>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240725-qx1050-feature-expansion-v2-0-5fac4bbd946f@riseup.net>
+ <20240725-qx1050-feature-expansion-v2-11-5fac4bbd946f@riseup.net>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20240725-qx1050-feature-expansion-v2-11-5fac4bbd946f@riseup.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240725-midas-audio-tab3-v2-6-dbc055c27879@gmail.com>
-References: <20240725-midas-audio-tab3-v2-0-dbc055c27879@gmail.com>
-In-Reply-To: <20240725-midas-audio-tab3-v2-0-dbc055c27879@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1778;
- i=aweber.kernel@gmail.com; h=from:subject:message-id;
- bh=KWNNuFqNb/S25IX+uh0qv+bi86RJdKP7RJ0/PuyXSXs=;
- b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBmoiuo73T/jCYrP6aHYU23aYR987wIqfIeBMOOC
- hJQMnOR0w+JAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZqIrqAAKCRCzu/ihE6BR
- aK5rD/9YmUzevnGSNsQKWo7b6UYIap/vF5Ks+XvjbkRyABXZjCQqmDJNf4tZ1hk8z5HG2CJlAsp
- 4wqetvaNMjlckh1dvtY/5ow7vQ4t0l/FhPQomwabSjSQJ2zoHldeMcI5bpIr+B4yQUkpeh0QgeR
- f1R+ZvcV3OFkBcFz4UQQ7h18yvW7LATZfxfi2LhNQVx9tl9M3fV1smoaJs1mOijiuMxu5X4TVYs
- ulA3Hnuc4bNPzpKk/Kt0FrgG8+Cd8qL+Vb3mPK0E5I+zkMdTzj8YsknziktUnXA57w/pvfLEELY
- sxTIQj6o2SptMltnODm54rcL3pGE/vhFmczWypdGORSSd6wMFBULknd15yqWC1jsf6Mj10czEfk
- WTjGLe0F2cR4JRIsv9461y6ELZf4D++V8Gii7zggeGdYjp2Av2Mu95QZjwlyhDFoRylmR5HofuF
- sTGBN24AiXzxR711sm3AeBXaA3gQwmsMBMIUXXtN4u0FtBbiaupV7Cljsm6Iq+Br/duy5fzG02s
- 2gHszWlqzdzqV3rF5+hHLIr6kgNVS8TIu2OyKQ93sS4pzotT32zA8aQ8BTocD4QvbknTnjDYsUr
- V+1DVS5TxV7Yr44a4XW+ZU12UBnVWefTyhzc24V9SvPuGo+/zWmIMJEWwo+a7IhDwovRyHhAi6R
- 0Kn8Id6ffUiAvPw==
-X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
- fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-Add the samsung,tab3-audio compatible that makes mic bias regulators
-non-required, and drop the dummy main/sub mic bias regulators that
-don't exist in hardware.
+On 25.07.2024 3:42 AM, Dang Huynh wrote:
+> Enable onboard Wi-Fi on the F(x)tec Pro1X.
+> 
+> For reference, HW/SW identifies as:
+> qmi chip_id 0x120 chip_family 0x4007 board_id 0xff soc_id 0x40670000
+> qmi fw_version 0x324103d6 fw_build_timestamp 2021-12-02 08:20
+> fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.2.4-00982-QCAHLSWMTPLZ-1
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ---
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
-Changes in v2:
-- Rename earmic bias reg node to voltage-regulator-4
----
- arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 20 ++------------------
- 1 file changed, 2 insertions(+), 18 deletions(-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-index 70e3091062f9..553ddc3d42da 100644
---- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-@@ -286,21 +286,7 @@ display_3v3_supply: voltage-regulator-3 {
- 		enable-active-high;
- 	};
- 
--	mic_bias_reg: voltage-regulator-4 {
--		compatible = "regulator-fixed";
--		regulator-name = "MICBIAS_LDO_2.8V";
--		regulator-min-microvolt = <2800000>;
--		regulator-max-microvolt = <2800000>;
--	};
--
--	submic_bias_reg: voltage-regulator-5 {
--		compatible = "regulator-fixed";
--		regulator-name = "SUB_MICBIAS_LDO_2.8V";
--		regulator-min-microvolt = <2800000>;
--		regulator-max-microvolt = <2800000>;
--	};
--
--	earmic_bias_reg: voltage-regulator-6 {
-+	earmic_bias_reg: voltage-regulator-4 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "EAR_MICBIAS_LDO_2.8V";
- 		regulator-min-microvolt = <2800000>;
-@@ -310,10 +296,8 @@ earmic_bias_reg: voltage-regulator-6 {
- 	};
- 
- 	sound: sound {
--		compatible = "samsung,midas-audio";
-+		compatible = "samsung,tab3-audio", "samsung,midas-audio";
- 		model = "TAB3";
--		mic-bias-supply = <&mic_bias_reg>;
--		submic-bias-supply = <&submic_bias_reg>;
- 
- 		lineout-sel-gpios = <&gpj1 2 GPIO_ACTIVE_HIGH>;
- 
-
--- 
-2.45.2
-
+Konrad
 
