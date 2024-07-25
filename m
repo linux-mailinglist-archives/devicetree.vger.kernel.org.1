@@ -1,156 +1,255 @@
-Return-Path: <devicetree+bounces-87960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-87961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7662C93BA74
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 03:59:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E9893BAD7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 04:32:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33168284584
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 01:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06D4C1F2219E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 02:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66B66FB8;
-	Thu, 25 Jul 2024 01:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150EB101F2;
+	Thu, 25 Jul 2024 02:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="WRMoVOAf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X88QKeSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781764428;
-	Thu, 25 Jul 2024 01:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440ED380;
+	Thu, 25 Jul 2024 02:32:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721872751; cv=none; b=fV+n8lh3lo+iwxp+VbD3fTo5PPnAX+b+q8jlWo9q8YpfiOQAh7Lj9C+GEqdCUwadzSoeC0kgDwqsm5N1i+vMs7qJOIoOMhXafo2jVjU1QjdFjKkYjlBHgCKDFYEEywgrJpqXdBjSCxLjsNu3Y85jcE8vcHRPpOzN3K6P561qlT0=
+	t=1721874776; cv=none; b=vGYAi00aToycA09SX/zHjtf67wvODpW5Vbyeg6PcrzqKgcY2lEUdLkYwxEIsFg44VQ90yn/nA7awFSL8+FIxX6r7xFNkoA3dyK8tAmlsG48Pv+F50v0TX+/I/UXpv1cWthyIZ5dUJ/eY2U4aIuxX+Ad7SYGLHunSBTWdYYACIZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721872751; c=relaxed/simple;
-	bh=qBhaZMviwHZ43OK4gVFL/py0L1GUd1txby0hMg+0/WQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lktYgGEYBfDYZA6h7QGKbS+i1lRPsTkvYvzXWwmj1ObUrl5KsVO6DkLbMMukNqp09m4cba3l5pZKp/3Ouwpsrv8gncGdMjLL3PEQjZQ8tB/Jdw2NctSP7ZUcIdXhHRich0BmYCmD7q0Ec7zc7DHjTP9+4Si0/odtNA9DVjU8ETw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=WRMoVOAf; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1721872329;
-	bh=Z3ooCPkfUhbJkl7PxDObcq/dMiqmdHgfLl7Tb+HWoe4=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=WRMoVOAfRkT90uvkWi0GHYSYwFda8xGZaEMIPhM+q5x/OYIc7J873svet3gR6Vy2s
-	 4yUmDgCQN5bS/6gm55jN4ZIpyzBXKMqUT+as8TABn7pXyWMme18tyq0B1gFxNMbVQh
-	 TrTJ59vnDApwxk+iaokaA4Vu39+AzmGXH+oDaV29oi26zH4BQDoB573ddb3RVcYYpj
-	 Wd7Y1DykOjTPtt1r6sf7VNiDfAGZVJiraMemxmEz80XTCAlzMY8NuEMEQLAJJ449E/
-	 vEYTCgQ4sjAwbZjcilQy0oDrfVzl6skZqK0Tvuyg4a/Chkd+mzvDuGFsVm5T9gSGxn
-	 e15eA84pfxOFA==
-Received: from [192.168.2.60] (210-10-213-150.per.static-ipl.aapt.com.au [210.10.213.150])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id ED42B66AB4;
-	Thu, 25 Jul 2024 09:52:07 +0800 (AWST)
-Message-ID: <3483626b81037205679c4d38678f2e3529d53e14.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 2/2] i3c: i3c-hub: Add Renesas RG3MxxB12A1 I3C HUB driver
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Steven Niu <steven.niu.uj@renesas.com>, "alexandre.belloni@bootlin.com"
- <alexandre.belloni@bootlin.com>, "linux-i3c@lists.infradead.org"
- <linux-i3c@lists.infradead.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,  "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>
-Cc: "zbigniew.lukwinski@linux.intel.com"
- <zbigniew.lukwinski@linux.intel.com>,  Alejandro Gonzalez
- <alejandro.gonzalez.wg@renesas.com>
-Date: Thu, 25 Jul 2024 09:52:07 +0800
-In-Reply-To: <TYTPR01MB109893062FB3F0D4141444219BAAA2@TYTPR01MB10989.jpnprd01.prod.outlook.com>
-References: <20240217131412.4145506-1-steven.niu.uj@renesas.com>
-	 <20240217131412.4145506-2-steven.niu.uj@renesas.com>
-	 <bae054d217aa577838593244eda02b008e3749a5.camel@codeconstruct.com.au>
-	 <TYTPR01MB109893062FB3F0D4141444219BAAA2@TYTPR01MB10989.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1721874776; c=relaxed/simple;
+	bh=MTAF3tHhSQ+iilx/KM0XPg93Ee6bItA5QT/jXwf2gUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eVC14dKM5HwmYcw8Qw/50EMvKu7Dh4X5yPPZh4qYwwQGJRZjStS23EFDyqpi3nxl9oqcW6y+KuARyH0ZMi/+faXtuU9j6ZHlclSs7NmX2zsAMoJ89ESTAHr67U/FFMjdFRy3+lOLd3NFvGDIIqm9Wbj/XCC7Dx/YWk3No1vfaxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X88QKeSE; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1721874773; x=1753410773;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MTAF3tHhSQ+iilx/KM0XPg93Ee6bItA5QT/jXwf2gUc=;
+  b=X88QKeSEbp8Sq/ghWE4UW+Za+abWZEIF2CdOlr1hIuwQmsl2TYPxcWJW
+   KTBRRKF5n21uXeNWjEhiBGVoILeDwOYnWa1bB5CCQ3FBr0LqzZncv8gV8
+   XuRCvSG6xJhoGQ2UTvybyMQtYSgxGu7t+NjE0yaWTGOaguEBGJZGMk9CG
+   3rYYTcgYhETZIoLBTPETEMbTZ5KWaAFo0T5JNnYeEhNDjfyoENfPrBWMs
+   Wxn4Lu23l+/Bi2x7lETh1kRw6bVsTMQgqaECi7VAmXasc7qDolnLSCNA2
+   58yyVl5kieK2v6o0MyidgRIDVDN/gZ5VLZFczzBw22r+4IxSZcg32Gs/r
+   w==;
+X-CSE-ConnectionGUID: /G9LiGIkQU23ACdpNPCVPQ==
+X-CSE-MsgGUID: tHUDYS2mSQelvnNIEbGB/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="45013475"
+X-IronPort-AV: E=Sophos;i="6.09,234,1716274800"; 
+   d="scan'208";a="45013475"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2024 19:32:51 -0700
+X-CSE-ConnectionGUID: kupUx1grTya+rJrtkMTegw==
+X-CSE-MsgGUID: RpkdS/1HS1+lEdIdex7VVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,234,1716274800"; 
+   d="scan'208";a="52692595"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 24 Jul 2024 19:32:46 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sWoHb-000ngC-33;
+	Thu, 25 Jul 2024 02:32:43 +0000
+Date: Thu, 25 Jul 2024 10:32:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	linux-iio@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Ivan Mikhaylov <fr0st61te@gmail.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	Liam Beguin <liambeguin@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] drivers: iio: adc: add support for ad777x family
+Message-ID: <202407251042.LUZ78skF-lkp@intel.com>
+References: <20240724155517.12470-5-ramona.nechita@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240724155517.12470-5-ramona.nechita@analog.com>
 
-Hi Steven,
+Hi Ramona,
 
-> Apologize for the late reply. I am out of work for a long time
-> because of my personal emergency. I am back at work now.
+kernel test robot noticed the following build warnings:
 
-No problem at all; Sorry to hear it, I hope things are okay now. Thanks
-for getting back to me though!
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.10 next-20240724]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> We are working on the following items after the first submit of the
-> patch:
-> 1. Modify the binding file to make it focused on the device
-> description instead of driver description.
-> 2. Fix the codes which doesn't following the kernel development
-> rules.
-> 3. Re-implement the SMBus Agent function with IBI mechanism instead
-> of polling.=20
-> =C2=A0=C2=A0 SMBus Agent function requires the driver to check the status
-> register of the I3C hub. Polling the status register over I3C bus
-> exhausts too much bus resources. I3C Hub supports reporting status
-> changes with IBI. This shall be supported in the driver.
-> 4. Remove the i2c slave-mqueue module.=20
-> =C2=A0=C2=A0 The slave-mqueue module is used to provide a user interface =
-for
-> SMBus Agent slave function. But it has not been included in upstream.
->=20
-> The first two items have been finished. And we are working on the #3
-> and #4.=20
+url:    https://github.com/intel-lab-lkp/linux/commits/Ramona-Alexandra-Nechita/dt-bindings-iio-adc-add-a7779-doc/20240725-000001
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20240724155517.12470-5-ramona.nechita%40analog.com
+patch subject: [PATCH v4 3/3] drivers: iio: adc: add support for ad777x family
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240725/202407251042.LUZ78skF-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240725/202407251042.LUZ78skF-lkp@intel.com/reproduce)
 
-OK, sounds good. I have a few structural suggestions; some of these have
-been covered by others' reviews too, but to summarise:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407251042.LUZ78skF-lkp@intel.com/
 
-Specificity: it looks like you're proposing this as a generic i3c hub
-driver, but I don't think that's the case; as far as I can tell, it's a
-Renesas-specific design (and IO interface), so you want to reflect that
-in the naming & config options.
+All warnings (new ones prefixed by >>):
 
-which leads to:
-
-Binding: the driver cannot match on the I3C hub class BCR, as that
-doesn't specify any sort of register/behavioural interface. If another
-hardware hub was implemented, using the same class BCR, this driver
-would conflict. You'll need to match on vendor/device IDs instead.
-
-Existing infrastructure: you're re-implementing a few common bits of
-kernel infrastructure with this change; for example the LDO settings can
-use the regulator devices instead. Is this included in your (2) point
-above?
-
-Configuration: as you've noted, the run-time configuration of the device
-doesn't belong in the device tree binding in most cases. In fixing
-those, there are a couple of approaches:
-
- * when moving to existing infrastructure (for example, the regulator=C2=A0
-   and/or pinctrl devices), the consumers of those devices can request
-   the correct configuration anyway, so you don't need to worry about
-   the specific configuration chosen
-
- * for other runtime things, such as the downstream port configuration
-   (in i3c mode vs. SMBus Agent mode) may be better exposed via configfs
-
- * for things that do belong as new properties in the device tree, you
-   want numeric values (with an appropriately named property) rather
-   than strings.
-
- * there may be other configuration settings that don't sit well in
-   above categories, best to discuss those here.
-
-SMBus Agent i2c interface: the controller side looks fine, but the
-device side should be implemented as i2c_slave_event() events on the
-same controllers rather than the i2c-mqueue device (which isn't
-upstream, and doesn't look likely to be).
-
-Happy to provide specific feedback as you go, but it's the maintainers
-(Alexandre and Krzysztof) that will have the final say in design and
-style decisions.
-
-Cheers,
+   drivers/iio/adc/ad7779.c:420:5: warning: unused variable 'low' [-Wunused-variable]
+     420 |         u8 low, mid, high;
+         |            ^~~
+   drivers/iio/adc/ad7779.c:420:10: warning: unused variable 'mid' [-Wunused-variable]
+     420 |         u8 low, mid, high;
+         |                 ^~~
+   drivers/iio/adc/ad7779.c:420:15: warning: unused variable 'high' [-Wunused-variable]
+     420 |         u8 low, mid, high;
+         |                      ^~~~
+   drivers/iio/adc/ad7779.c:445:5: warning: variable 'msb' set but not used [-Wunused-but-set-variable]
+     445 |         u8 msb, mid, lsb;
+         |            ^
+   drivers/iio/adc/ad7779.c:445:10: warning: variable 'mid' set but not used [-Wunused-but-set-variable]
+     445 |         u8 msb, mid, lsb;
+         |                 ^
+   drivers/iio/adc/ad7779.c:445:15: warning: variable 'lsb' set but not used [-Wunused-but-set-variable]
+     445 |         u8 msb, mid, lsb;
+         |                      ^
+   drivers/iio/adc/ad7779.c:475:6: warning: unused variable 'ret' [-Wunused-variable]
+     475 |         int ret;
+         |             ^~~
+>> drivers/iio/adc/ad7779.c:779:35: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     779 |                 return dev_err_probe(&spi->dev, ret,
+         |                                                 ^~~
+   drivers/iio/adc/ad7779.c:766:9: note: initialize the variable 'ret' to silence this warning
+     766 |         int ret;
+         |                ^
+         |                 = 0
+   8 warnings generated.
 
 
-Jeremy
+vim +/ret +779 drivers/iio/adc/ad7779.c
+
+   760	
+   761	static int ad7779_probe(struct spi_device *spi)
+   762	{
+   763		struct iio_dev *indio_dev;
+   764		struct ad7779_state *st;
+   765		struct gpio_desc *reset_gpio, *start_gpio;
+   766		int ret;
+   767	
+   768		indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+   769		if (!indio_dev)
+   770			return -ENOMEM;
+   771	
+   772		st = iio_priv(indio_dev);
+   773	
+   774		st->mclk = devm_clk_get_enabled(&spi->dev, "mclk");
+   775		if (IS_ERR(st->mclk))
+   776			return PTR_ERR(st->mclk);
+   777	
+   778		if (!spi->irq)
+ > 779			return dev_err_probe(&spi->dev, ret,
+   780					     "DRDY irq not present\n"); 
+   781	
+   782		reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_LOW);
+   783		if (IS_ERR(reset_gpio))
+   784			return PTR_ERR(reset_gpio);
+   785	
+   786		start_gpio = devm_gpiod_get(&spi->dev, "start", GPIOD_OUT_HIGH);
+   787		if (IS_ERR(start_gpio))
+   788			return PTR_ERR(start_gpio);
+   789	
+   790		crc8_populate_msb(ad7779_crc8_table, AD7779_CRC8_POLY);
+   791		st->spi = spi;
+   792	
+   793		st->chip_info = spi_get_device_match_data(spi);
+   794		if (!st->chip_info)
+   795			return -ENODEV;
+   796	
+   797		ret = ad7779_reset(indio_dev, start_gpio);
+   798		if (ret)
+   799			return ret;
+   800	
+   801		ad7779_powerup(st, start_gpio);
+   802		if (ret)
+   803			return ret;
+   804	
+   805		indio_dev->name = st->chip_info->name;
+   806		indio_dev->info = &ad7779_info;
+   807		indio_dev->modes = INDIO_DIRECT_MODE;
+   808		indio_dev->channels = st->chip_info->channels;
+   809		indio_dev->num_channels = ARRAY_SIZE(ad7779_channels);
+   810	
+   811		st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
+   812						  		indio_dev->name, iio_device_id(indio_dev));
+   813		if (!st->trig)
+   814			return -ENOMEM;
+   815	
+   816		st->trig->ops= &ad7779_trigger_ops;
+   817		st->trig->dev.parent = &spi->dev;
+   818	
+   819		iio_trigger_set_drvdata(st->trig, st);
+   820	
+   821		ret = devm_request_irq(&spi->dev, spi->irq,
+   822							   iio_trigger_generic_data_rdy_poll,
+   823							   IRQF_ONESHOT | IRQF_NO_AUTOEN,
+   824							   indio_dev->name, st->trig);
+   825		if (ret)
+   826			return dev_err_probe(&spi->dev, ret, "request irq %d failed\n",
+   827					     st->spi->irq);
+   828	
+   829		ret = devm_iio_trigger_register(&spi->dev, st->trig);
+   830		if (ret)
+   831			return ret;
+   832	
+   833		indio_dev->trig = iio_trigger_get(st->trig);
+   834	
+   835		init_completion(&st->completion);
+   836	
+   837		ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+   838											  &iio_pollfunc_store_time,
+   839											  &ad7779_trigger_handler,
+   840											  &ad7779_buffer_setup_ops);
+   841		if (ret)
+   842			return ret;
+   843	
+   844		ret = ad7779_spi_write_mask(st, AD7779_REG_DOUT_FORMAT,
+   845					    AD7779_DCLK_CLK_DIV_MSK,
+   846					    FIELD_PREP(AD7779_DCLK_CLK_DIV_MSK, 7));
+   847		if (ret)
+   848			return ret;
+   849	
+   850		return devm_iio_device_register(&spi->dev, indio_dev);
+   851	}
+   852	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
