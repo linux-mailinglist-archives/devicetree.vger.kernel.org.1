@@ -1,201 +1,159 @@
-Return-Path: <devicetree+bounces-88175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 542C593C69A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 17:38:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB3D93C626
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 17:07:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80881F2427B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 15:38:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8A041F21B72
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2024 15:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B34519D8AF;
-	Thu, 25 Jul 2024 15:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NwyXq7Pb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464F619D069;
+	Thu, 25 Jul 2024 15:07:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D95519D064;
-	Thu, 25 Jul 2024 15:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6107482;
+	Thu, 25 Jul 2024 15:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721921865; cv=none; b=NJ2H1B4L4iKeSZ3rG0j/1MhSzhs46MXEinkTsGmJc8oIQg7EtHXIr89AX9eVs8AMPxFTH+WR2gwIlT84NadvcrCArQBVfdRyL7uJbnOQgfZyKSUprZv94c7KOZTnhWkRRkF73BozjNlvK/T/R9C40fEchaLLfaTG4WrSYXhebnE=
+	t=1721920050; cv=none; b=OEdG08w8RJLtYWZjAlrWJrYqduEVWoRQj91zpzUpyMSEmp5jd1/8rL166L6S66/OHa91WOuGirKPca4r9I8U1XaxzCYyGt/9qtTzdgqoZHI2EdwvH8MJl8tkeua5kQ7XW7CLHoOMyXVAsAhh+BtNBrQl2aBUsYVTtVu2h8jy8I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721921865; c=relaxed/simple;
-	bh=03tZ91A7YswpGipNDG8v4RkhR31fXoTuQYG/b0jTBkw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qHbvsDQpAOhooK0ZHTN0sqqBsNB7SPA3dlbyl2DrnbT/Uy1O7lOLAgzyO9B95lry21mmju3vTJ1Xx8iRd2Gyi6YxXeJQ4vATqVx84OtaJz+S6c7X8dgvHMAHXhho6sd+YXR9i8Gp4stQxgxYAByEtQvLBnGxzlUM67XndG75cmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NwyXq7Pb; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1721920050; c=relaxed/simple;
+	bh=BEh/sCTy4zNiPRAXhSYF+nxfCWBN9Lnjv8lwTazSLAI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uHc6XG9LWDtykqbC7r7OStVKdTI8prKs9ivhShR9tGx5BBpNhd6jOMtg82HAPkq1506If/oYnRKptb4aN7o4p5JHFie9P8uvGYNIC1rbp8aymvrTJGDtqwXpNgT04V5hG+8lgxTdLaNan25/RNrSoCpfaKlXgW1IPAxbpkjIudg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-70d1d6369acso1505061b3a.0;
-        Thu, 25 Jul 2024 08:37:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721921864; x=1722526664; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vB3U4ho8ahoK7TZq66NQYIOWRcyNe+pRLj7UvJ+F/Mk=;
-        b=NwyXq7PbaC5Ts3fwvZP2blv3tyO3VAosMyd7lEzarbn4i41iJSp55areC1SUSTnuqh
-         TsiEzVN9B4/D9FUaCTAo82ucesu4RkyvAVJBzuadp/Jnr0nNO9XcitP44pp8qheCVBgb
-         c4K2UmWaZuXSnUTwGs1UOl0CAK4WmRBoKn+lkPc8f3fH3GN56Jmts6mHDlFZoKdqIm02
-         yXPY/kJXALoFNjQDT3/tTafdrUsqhA7nxvf9F0yuzoSt8j8Ak4a3HlI6OI7y4x3RwHrt
-         vcA3r+/Y3qUz+kuTf1LGcH4cZK6b7C/j3G2gLxMnjyRQgQgDxxN5/vpRY0dyVeKGUObL
-         P2Cg==
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-65f8626780aso10348917b3.3;
+        Thu, 25 Jul 2024 08:07:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721921864; x=1722526664;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1721920047; x=1722524847;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vB3U4ho8ahoK7TZq66NQYIOWRcyNe+pRLj7UvJ+F/Mk=;
-        b=JdV/sU/HH2cNS/0CQbLLmBhPl0sGtDVohJ80gu1eG3Xkb3IjLvviHUFZNQsi/Om4WB
-         dL+YleuP03QhX7BoG+2vFs+fLeEy6N/wqyAvItQHosCg6e6ZpQGccSYa5F5lrYUypFoS
-         +qEKWu1blmqMKIZawZzSbLOzNRHoGpxGHAdiNVV/Ic2cngsUq6MBLtw69O9etxMJ4CTs
-         64pz/2OFID0rgL/gL+a8aU6FwyS/J5VbfiitiC7nibUy2BBm+6BQhJ+vprDyaChSEpxG
-         mZeFUAsPYDnjuXWA/1k4ofnefa4yYDDZeYGzn7yS8Tl4IBpRgjLzmekrJey9o9mkC4LZ
-         lVJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXARIlwkqEnf+X2TclOuPmdcoB1s+Z4t7rASCO3g5JETHZ8IBs+6kUzMaz57dndHOuMj2Y1phTzCAZbk5Ob+hmddL1BFZ6oobWLvyFM2Slm3J9jVTeu8D5Z1LxNMVX/CSngPMsR00cwTbPKmO8=
-X-Gm-Message-State: AOJu0YzF/uVT6HxuIemTRTALJ8EhGu5GIT7RsSUx2fTvFHwDFnW54ZfL
-	5T2B4rccABhOc3ajqgqt7fQZM208E80pWzyqYkbZoVVeCUkBdogG
-X-Google-Smtp-Source: AGHT+IH8LuTEEz0kza3Ip2eiNoWxdeAVnurWiI0Y3XxzeXLcMZEfQ9CODVkP4VrmKdhSHSaR9QxW+Q==
-X-Received: by 2002:a05:6a20:840c:b0:1c0:f0af:60d with SMTP id adf61e73a8af0-1c473c5d298mr5172338637.6.1721921863552;
-        Thu, 25 Jul 2024 08:37:43 -0700 (PDT)
-Received: from kousik.local ([2405:201:c006:380f:2afe:8fe2:1930:3917])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead712bf0sm1270369b3a.74.2024.07.25.08.37.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jul 2024 08:37:43 -0700 (PDT)
-From: Kousik Sanagavarapu <five231003@gmail.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Kousik Sanagavarapu <five231003@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: watchdog: ti,davinci-wdt: convert to dtschema
-Date: Thu, 25 Jul 2024 20:33:12 +0530
-Message-ID: <20240725153711.16101-3-five231003@gmail.com>
-X-Mailer: git-send-email 2.45.2.827.g557ae147e6.dirty
-In-Reply-To: <20240725153711.16101-1-five231003@gmail.com>
-References: <20240725153711.16101-1-five231003@gmail.com>
+        bh=rx5Ed2YLCRreb1v6l0Ht4jWVloA8xOeuA1//EueecNo=;
+        b=lWGW3pTBjMrRpicxz3t5dPkILkDVv89yvh9Ox9Tu9orrqMJqrYQWWJAyPEDWWFGBrr
+         P29/rnESXErgw6TaObEPXdgUuOqhE0G7m8avfxu5dIuZtW+lMJcw9eSZalUSESEPGoEY
+         y+FxXHyuP65icG3XL4JlzrFSOommjeGMlLcW04GlVu+Qc/n2rGuOXwavJEkCI+8g/luM
+         eAjfOcHX4pk8WxcdYbtKvjorNdr1emYKtoFXTbuKKnk8D0x37OliShCgsRqq+b1iw+wY
+         mctmpxxKwHJraNxcRpn9wpbGwCveukMaX2Jv5NzUzPdapL4p5RAjsohrsql8VDMvrXwQ
+         YpSw==
+X-Forwarded-Encrypted: i=1; AJvYcCWH70ZOQIQT0b5vsCEYVcFnM8qA3XvJp320VlVSYKS61t8ZU+uauH0/c24ZW0uj4AswqnJqpcC0fJgv+iTPWnzsda/7xOpfDdcxUG+eryjj+Ldv1XCyxzsPFHD2OMhlWExVXKOBcFy3TeGSwRpXW6QCZhYbdSZid+sCPmWPeUUh2SzYlBQZA/twhll5
+X-Gm-Message-State: AOJu0YxSMDOxusDDMOkjCos1WC0R9INSGaTYDcxt+UNqIBZwrJO9BdBz
+	sljVXBHryMIU8piIUa0K7vJh+YRftdNmkfIb0BTevyesifjRAOCsWm4yemIz
+X-Google-Smtp-Source: AGHT+IHIY46VBxj//nudjUvJ8zOpDY4bAwsZCHerPEvmzZQnTVQvLSV0f35KCBH63u3GjNRS/uVcVQ==
+X-Received: by 2002:a81:c24e:0:b0:64b:a3f0:5eee with SMTP id 00721157ae682-675b6576b57mr21873877b3.17.1721920046678;
+        Thu, 25 Jul 2024 08:07:26 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6756b024abcsm4206237b3.85.2024.07.25.08.07.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jul 2024 08:07:26 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-66599ca3470so10720657b3.2;
+        Thu, 25 Jul 2024 08:07:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUUzAMsRq4wxmuI94hheTv3EmUkVvphB45miMYoyUQI0DwLiFVUfWbSV7N1z0/6fuVSV2NHywaXynSO2ukRvops0k+f6spOwy+zBC+sEXA6h9iD/tX6wj4w7StS97p+sLERaOk9CZ9LA0ES3jlQvpQ+/vSqUftVBi+I4ANccSFZ1WYSVMymMSIuTL06
+X-Received: by 2002:a0d:ee07:0:b0:64a:e220:bfbf with SMTP id
+ 00721157ae682-675b6c2fd50mr22917677b3.23.1721920046025; Thu, 25 Jul 2024
+ 08:07:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240725133932.739936-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240725133932.739936-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdUpZ6KWdjveVSS72jdSuySCB7KVgo=TSr7tt=G295bPXw@mail.gmail.com> <CA+V-a8vmiaYQnf4mCJD-Zx8BqSiDUS5NpaskYkOkuCpE7qH+3g@mail.gmail.com>
+In-Reply-To: <CA+V-a8vmiaYQnf4mCJD-Zx8BqSiDUS5NpaskYkOkuCpE7qH+3g@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 25 Jul 2024 17:07:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVtdh-ykbm4EOoXU_ZTjOp9Jz9E00OusjtB1A-msTySjg@mail.gmail.com>
+Message-ID: <CAMuHMdVtdh-ykbm4EOoXU_ZTjOp9Jz9E00OusjtB1A-msTySjg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: renesas: r9a07g044(l1): Correct GICD and
+ GICR sizes
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Marc Zyngier <maz@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert txt bindings of TI's DaVinci/Keystone Watchdog Timer Controller
-to dtschema to allow for validation.
+Hi Prabhakar,
 
-While at it, change the order of the compatibles w.r.t. the txt binding
-to stay in sync with the existing DTS.
+On Thu, Jul 25, 2024 at 4:59=E2=80=AFPM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Thu, Jul 25, 2024 at 3:53=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Thu, Jul 25, 2024 at 3:41=E2=80=AFPM Prabhakar <prabhakar.csengg@gma=
+il.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > The RZ/G2L SoC is equipped with the GIC-600. The GICD + GICDA is 128k=
+B,
+> > > and the GICR is 128kB per CPU.
+> > >
+> > > Fixes: 68a45525297b2 ("arm64: dts: renesas: Add initial DTSI for RZ/G=
+2{L,LC} SoC's")
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> > > @@ -1043,8 +1043,8 @@ gic: interrupt-controller@11900000 {
+> > >                         #interrupt-cells =3D <3>;
+> > >                         #address-cells =3D <0>;
+> > >                         interrupt-controller;
+> > > -                       reg =3D <0x0 0x11900000 0 0x40000>,
+> > > -                             <0x0 0x11940000 0 0x60000>;
+> > > +                       reg =3D <0x0 0x11900000 0 0x20000>,
+> > > +                             <0x0 0x11940000 0 0x40000>;
+> > >                         interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>=
+;
+> > >                 };
+> > >
+> > > diff --git a/arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi b/arch/arm6=
+4/boot/dts/renesas/r9a07g044l1.dtsi
+> > > index 9cf27ca9f1d2..6f4d4dc13f50 100644
+> > > --- a/arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
+> > > @@ -16,3 +16,8 @@ cpus {
+> > >                 /delete-node/ cpu@100;
+> > >         };
+> > >  };
+> > > +
+> > > +&gic {
+> > > +       reg =3D <0x0 0x11900000 0 0x20000>,
+> > > +             <0x0 0x11940000 0 0x20000>;
+> > > +};
+> >
+> > What's the point of overriding this here?
+> >
+> Are you suggesting we drop this, as we have no users for it currently?
 
-Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
----
- .../bindings/watchdog/davinci-wdt.txt         | 24 ---------
- .../bindings/watchdog/ti,davinci-wdt.yaml     | 52 +++++++++++++++++++
- 2 files changed, 52 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+I didn't mean to drop it because we have no users of r9a07g044l1.dtsi.
+I am just wondering what would be the side-effect of not overriding it?
+After all, all r9a07g044 SoC variants have the same GIC hardware block?
 
-diff --git a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt b/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-deleted file mode 100644
-index aa10b8ec36e2..000000000000
---- a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
--
--Required properties:
--- compatible : Should be "ti,davinci-wdt", "ti,keystone-wdt"
--- reg : Should contain WDT registers location and length
--
--Optional properties:
--- timeout-sec : Contains the watchdog timeout in seconds
--- clocks : the clock feeding the watchdog timer.
--	   Needed if platform uses clocks.
--	   See clock-bindings.txt
--
--Documentation:
--Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
--Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
--
--Examples:
--
--wdt: wdt@2320000 {
--	compatible = "ti,davinci-wdt";
--	reg = <0x02320000 0x80>;
--	timeout-sec = <30>;
--	clocks = <&clkwdtimer0>;
--};
-diff --git a/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-new file mode 100644
-index 000000000000..f1413e7370a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI DaVinci/Keystone Watchdog Timer Controller
-+
-+maintainers:
-+  - Kousik Sanagavarapu <five231003@gmail.com>
-+
-+description: |
-+  TI's Watchdog Timer Controller for DaVinci and Keystone Processors.
-+
-+  Datasheets
-+
-+    Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-+    Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: ti,keystone-wdt
-+      - const: ti,davinci-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    wdt: watchdog@22f0080 {
-+        compatible = "ti,keystone-wdt", "ti,davinci-wdt";
-+        reg = <0x022f0080 0x80>;
-+        clocks = <&clkwdtimer0>;
-+    };
-+
-+...
--- 
-2.45.2.827.g557ae147e6.dirty
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
