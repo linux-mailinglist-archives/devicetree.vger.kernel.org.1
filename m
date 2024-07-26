@@ -1,128 +1,171 @@
-Return-Path: <devicetree+bounces-88325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8CF93D28A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:48:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CD193D2D9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:11:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C73CB281F74
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:48:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC3DB1F21B19
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 12:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9068178CEE;
-	Fri, 26 Jul 2024 11:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DAED17A922;
+	Fri, 26 Jul 2024 12:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NkeUIeZF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="4ghq22hI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87937219EA;
-	Fri, 26 Jul 2024 11:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5A8A3D;
+	Fri, 26 Jul 2024 12:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721994478; cv=none; b=SWMye6zPGuSMeP7AIha0Ao7LP9Y5PoCx4dojMn8Pj1yTbiVL2BXm3NZufI8I1d/lO249Y+YSE8ZEaC7J5cQs6jm8fZS6eDb5oAPRq8Kp4pKgWS33MKjyCdOj74YSHDK8ueYJslaAINgajcfbALFv8PcPhL1P3S3FW1JwmUPmUA0=
+	t=1721995911; cv=none; b=NrRBnmQ+auvmyQO0TfYShuIa2kw2RrhZx20uIXRw6MdocInytqWBIdiW6royEVVLP9xzusQ+z/lG7JyzAvkZ1m4eRXYeRGUGZIg/IGu6HJTblJmx9LIpiZqydelS249aIankq9bLyMPe+4SzFNORs/ntIlH7LvLB8uZNkIYQvkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721994478; c=relaxed/simple;
-	bh=AJV3jdHmfcDdWezRW7h9NN67//21E0RY2qnfL7YGT+w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PZyWaTKbYUDsQSXgG5vyOSsS33RpfwbAIER+C9vOcMZlwYOIOEBIY4HnopiZNBlJtZ7EEtBh2ikWhNXFTsOP0OV3dpuFWkPfCy1es8WJ4tuTRHMxdi9MXjBV1Kt7B86Gf9EqqZwhjB+QAE81xOpNe8qfHbywxkvKxB8U7guS/qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NkeUIeZF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0408C32782;
-	Fri, 26 Jul 2024 11:47:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721994478;
-	bh=AJV3jdHmfcDdWezRW7h9NN67//21E0RY2qnfL7YGT+w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NkeUIeZF6AgayX0Jefc70l9RPMO4JUTL7wweyp8SR34bd/IYPsAzNrHkwK4Xuj6pY
-	 RcYhCQUQKsrh0BVCEgaGpQw1hkt255i23v2RR4bDJwA3CB4PYtIqvEfmjNkm40k2b+
-	 9JzDdF4ag7rcnhMoGWEAfiAjnWzwHWhIXgEMqWqlrXuOqaIVidLWCjd4tUdcN9Sclg
-	 RbllQCwDXJxSW11SilNRatypKjLLkQLsZbdeVPSQjSBjrpvL+SXuQTGUVLqMJRkMc0
-	 +EKppelAg6zgPl2U0d03dfThiGfl9ZktOGp1aB4WwSjPTdHQTxkv9/7PB8rNxztUDS
-	 +VyXkflhQEaZg==
-Date: Fri, 26 Jul 2024 06:47:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC v3 1/9] spi: dt-bindings: add spi-offload properties
-Message-ID: <20240726114755.GA985744-robh@kernel.org>
-References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
- <20240722-dlech-mainline-spi-engine-offload-2-v3-1-7420e45df69b@baylibre.com>
+	s=arc-20240116; t=1721995911; c=relaxed/simple;
+	bh=GZxo54bJ3f7Sd7a1JaifGKOqZ+KwanL7RY55M2lnB/g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ElbQUvehocXVZu3XkKWEbNU31skQNAx/xOjsnO/qYs6J0XPIkfonCwD6FYo1sb+kz4mgklXn3G2Fw1MGvTNtJWTzeQFROAbA9O+iaM1OLUWCAXtTYOZh18t8d2xPS2iERlip43OrIXnV8LF4naUbWFt3pKvumLgABXk2Aj1l8Bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=4ghq22hI; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1721995908;
+	bh=GZxo54bJ3f7Sd7a1JaifGKOqZ+KwanL7RY55M2lnB/g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=4ghq22hIr7fcrDa/seMdPi4r/UV0Ezaw3LfsT1qeXJdtLlHCSryyNyJHu9n+zb9H1
+	 p7FBhMMjPLUE78ce5iW82MMpYFCuHwX+kUOOJ4XqC28qg5P2Sq0U1+NPNJI1oOf5az
+	 OzVLZ5WSFixRy2yilz71K0OKguPwOCcc0JUJBYJuTsQOTcaHIFXI73j6idwR9gQTGY
+	 kVpwFg6RIHsGYeYQskcgTZyiTuxzA4Dq8lrjp7tAYI7q+bsG1qf6g3ChFkHf7o6343
+	 IJRqch/jf5qFoL38JTXCDsUTEHF0S3uR7c4/ifGhWLQ9kj71MBdeM5+ckeN1EePCTS
+	 k7jdWQe/2f+eQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3F55837804C6;
+	Fri, 26 Jul 2024 12:11:47 +0000 (UTC)
+Message-ID: <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com>
+Date: Fri, 26 Jul 2024 14:11:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240722-dlech-mainline-spi-engine-offload-2-v3-1-7420e45df69b@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1
+ controller
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
+ <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 22, 2024 at 04:57:08PM -0500, David Lechner wrote:
-> This adds a new provider/consumer property pair to the generic SPI
-> bindings for use with peripherals connected to controllers that support
-> offloading.
+Il 25/07/24 12:34, Chen-Yu Tsai ha scritto:
+> Hi,
 > 
-> Here, offloading means that the controller has the ability to perform
-> SPI transactions without any CPU intervention in some shape or form.
+> On Mon, Jul 22, 2024 at 11:27 PM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+>>
+>> Currently if the xhci1 controller happens to probe before the pcie1
+>> controller then it fails with the following errors:
+>>
+>> xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+>> xhci-mtk 11290000.usb: can't setup: -110
+>> xhci-mtk: probe of 11290000.usb failed with error -110
+>>
+>> The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
+>> clock, although exactly why this pcie clock is needed for the usb
+>> controller is still unknown. Add the clock to the xhci1 controller so it
+>> always probes successfully and use a placeholder clock name for it.
+>>
+>> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
+>> Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
+>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> The spi-offloads property will be used to assign controller offload
-> resources to each peripheral that needs them. What these resources are
-> will be defined by each specific controller binding by specifying the
-> value of the #spi-offload-cells property.
+> So I asked MediaTek about this, and it seems the correct thing to do is
+> disable USB 3 on this host controller using the following snippet. The
+> snippet is copy-pasted from our issue tracker and won't apply directly.
 > 
-> SPI peripherals that use multiple offload instances at the same time
-> for different functions can describe the functions using the
-> spi-offload-names property, for example, for a SPI flash memory, this
-> might be "read", "erase" and "write" functions.
+> This is also seen in mt8395-kontron-3-5-sbc-i1200.dts, on which xhci1
+> is used only for USB 2.0 on an M.2 slot.
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> 
-> v3 changes:
-> * Added #spi-offload-cells property to the controller binding.
-> * Changed spi-offloads to phandle-array.
-> * Added spi-offload-names property.
-> 
-> v2 changes:
-> 
-> In v1, instead of generic SPI bindings, there were only controller-
-> specific bindings, so this is a new patch.
-> ---
->  Documentation/devicetree/bindings/spi/spi-controller.yaml     |  5 +++++
->  .../devicetree/bindings/spi/spi-peripheral-props.yaml         | 11 +++++++++++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> index 093150c0cb87..0af9cce80be9 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> @@ -105,6 +105,11 @@ properties:
->      required:
->        - compatible
->  
-> +  '#spi-offload-cells':
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Number of cells in a SPI offload specifier.
-> +
 
-This is the SPI controller/bus schema, but this is likely not part of 
-the SPI controller. So needs its own schema.
+Uhm, okay, but why should USB3 be disabled on a controller that supports USB3?
 
-Some description around what you think would typically be in these cells 
-would be good.
+I agree about disabling it on specific boards that use only the USB 2.0 lines of
+this controller, but doing that globally looks wrong... and looks like being a
+workaround for an error that gets solved with adding a clock as well.
 
-Rob
+In short, the question is: why would that be the correct thing to do?
+
+Cheers,
+Angelo
+
+> 
+> ChenYu
+> 
+> index 8b7307cdefc6..2dac9f706a58
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1447,6 +1447,7 @@
+>                                        "xhci_ck";
+>                          mediatek,syscon-wakeup = <&pericfg 0x400 104>;
+>                          wakeup-source;
+> +                       mediatek,u3p-dis-msk = <0x1>;
+>                          status = "disabled";
+>                  };
+> 
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++++++--
+>>   1 file changed, 8 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> index 2ee45752583c..cc5169871f1c 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> @@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
+>>                                   <&topckgen CLK_TOP_SSUSB_P1_REF>,
+>>                                   <&apmixedsys CLK_APMIXED_USB1PLL>,
+>>                                   <&clk26m>,
+>> -                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
+>> +                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
+>> +                                /*
+>> +                                 * This clock is required due to a hardware
+>> +                                 * bug. The 'frmcnt_ck' clock name is used as a
+>> +                                 * placeholder.
+>> +                                 */
+>> +                                <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>;
+>>                          clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
+>> -                                     "xhci_ck";
+>> +                                     "xhci_ck", "frmcnt_ck";
+>>                          mediatek,syscon-wakeup = <&pericfg 0x400 104>;
+>>                          wakeup-source;
+>>                          status = "disabled";
+>>
+>> ---
+>> base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
+>> change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f46aac
+>>
+>> Best regards,
+>> --
+>> Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>
+>>
+
+
 
 
