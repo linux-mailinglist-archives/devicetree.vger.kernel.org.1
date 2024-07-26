@@ -1,203 +1,154 @@
-Return-Path: <devicetree+bounces-88378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC89B93D5B9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:11:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F364E93D5DC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6912C1F21129
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:11:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2168FB218D2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A9A149001;
-	Fri, 26 Jul 2024 15:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC1A17B51B;
+	Fri, 26 Jul 2024 15:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Nyh412+n"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vZeYDW9u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810BB23A8
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 15:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FB921103
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 15:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722006714; cv=none; b=fR0zUHnAp5vblO7SrlIT/BuQlgWGW7352nqZi/PwKifkNWhVNjJYzOnl+8pZLgGu4Gb7UgdDj6es1yeCpnrNcU8d3I/bb6twELCF2TRVuZId7rumq1ESA5B6O4ugVqQ+4fRC2vZynxKOWiusqCVJrgD7ApZvSHt3kJAfn2kl/7s=
+	t=1722007221; cv=none; b=k3bXGUPlIK3JLiBwpWZ2ihV1zTe7wXPciHBT28wuHZnUn575g/ccwDD+eKR1eEhBLqo/zIrRyF3Z9sKQouDWk2cI11KVrpLBujCzJQrk79MUtbGaEoyTmMtqQJ3mOVEzxgQlymXUMktrjAbihpxB88Lj0wPG7BTuvr3I6KKgHRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722006714; c=relaxed/simple;
-	bh=BsWFGdAF7XBzX8e4+jMwcTSNvr7Iw0hfVJ1CYXwe8I4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uOeX13Eq9ODcdrqUy7YyS1hMX3bk6p0zAfdhhZKumwhW+Ncsf32+HkR2YB7Y80L3/1cHZaQShfZf600IRQBEd8ZrG1prT1XJEN4CR+fAZC0cxbRV1TDNmqWoXOSDzUYSZibgZviSt2NoxwSycdAcU9EsQaA7g5dXi14zaUtOGBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Nyh412+n; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2eecd2c6432so20099821fa.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:11:52 -0700 (PDT)
+	s=arc-20240116; t=1722007221; c=relaxed/simple;
+	bh=CcSVrXgio5wQaIXNHB/uRRuS79CVZUk6owoeEqIgekE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oal3zbb0gP2nApG6sH41Tk74IWhFPlaQFm6b3gls9gRMkEPQvjezh8IkkY1oy/DHkx6d/a5mVpov8xOPcsqOiyy9vEvBkM2SUNQqlG1a3bmPebnVrZ49GLgN39voSFtL6jaR0Gu0wzDPdaO6ris6tM54dep7ntPJEMfQpNMQUn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vZeYDW9u; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3686b285969so1361365f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:20:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1722006711; x=1722611511; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kTcHH2j+s1hb1mCfRdNcGdP6fILWYb3lLn9HYz/KlSw=;
-        b=Nyh412+n6gF70nrK4XSUxrLZS26sL1OEoBywq4LlGAsQP2bvM4aZltRS4crGz17Geu
-         TzgeC7D9+NG2ZfCkCWmYREyv9M9Q4cPqJYTpM7PjnTHr/mNhJrL4Q5239QYrZvC49I8T
-         qkqV/i/QjYlVXsyDV71y/fi0Gq8ZKCGeknk0M=
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722007217; x=1722612017; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0AeN/4B/YnSfiF3EeOkW241sQaeu6ZqWm1AU0eyyb88=;
+        b=vZeYDW9uhFs+a+Daq9vAcWiJqJDo4Igy3tE69f86ob8txGXgxIMfVtLoJHxLIvTcvK
+         caRPcvMrAn0DiFRtDq+G5MF7s20bWJbumMUVCZwPb1AdkZS0zevCb7KtGxACxhRN/SxO
+         ZtvpdssTuXXwkY8SkwZxWcQUzosd8gd5PQ2ynpTYfdFgmclq47tCDw5JqnseMXqNRsLA
+         K/hMcVbcWbNLk3ghu0DINc6Qi19ojs36M1TpB4zpwxwvvfzT7Ezg4eqcgEaJlXVDkCXO
+         oyw4sC+e3C1Obhtn57dAZ4CSxnJdFcZY/F7pWGTcO+xDLP8LE3T4wwOrIxFWtDaKDKpT
+         bMiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722006711; x=1722611511;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kTcHH2j+s1hb1mCfRdNcGdP6fILWYb3lLn9HYz/KlSw=;
-        b=LEFRzKK7mQ1K7Kxo0NpOQp3Klpl1D7og8x+0XMwrBscP8Ot9RAegYj8HVDjHd8M1XU
-         iQGTPbL7Ic++XPMGpAIPTC+wBg7pnkaAvgRas/rKM5zuBNIlYvk9S6pdRMGD0ryAnNki
-         8+ttWEd7FREzjGKKbgz5nQamkmxSGETPcGp/dwsNPn1fvJXcN9kpVto1dUvpbYW636Y6
-         dssNrGeaKcJBMvniZp94PGVTkmcX9EFteB0CeJDMic7jHZxyN/PsBQgS0P30IbY+JXBV
-         QdqZqhD/K38QUSfa8pZ0jZbh6x060+aGEfVd42JE5kU405wodqgCb3NH1kSKFHlkR2/l
-         HgOw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOMU+xQj63WevleIelZuWn/uKNrgPVVZu6m3Rj+iZdQVQN1yYhJyOwcvze/ARGa0sh+/CRbbXiTZObJiGqY6Zc8D+qvQ+DeOfKIA==
-X-Gm-Message-State: AOJu0YyOyh1WagC2k69Z7JF4pTG4lBcdloPTsni+Ja0+q0ugiTK8Cxm2
-	U3p9ZR/WJQFhkmqB8lp4VjntOPntP4V2ezyul0nCsCREYKtakMDqdox/9JtVCwOic4qSwcD8QUV
-	NhryoB/9MlfWB4pyN7X91z4+alPp8eQ7j878m
-X-Google-Smtp-Source: AGHT+IHDVcZ7KXLOAKMLyDwEWrD5j4fRyegkq6cGnhaUP9u+zy4o58+lxAm64v2kyV8TtF07McmVZ2yCfIFULN1rXkc=
-X-Received: by 2002:a2e:9786:0:b0:2ef:324f:c907 with SMTP id
- 38308e7fff4ca-2f03db562c7mr51360951fa.5.1722006710402; Fri, 26 Jul 2024
- 08:11:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722007217; x=1722612017;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0AeN/4B/YnSfiF3EeOkW241sQaeu6ZqWm1AU0eyyb88=;
+        b=AHuCtRDfqMIyyVxJM7zfcDlSKRzOPRdXcRRPx62h7cydYTRSTBA1bp/PMIyks815KU
+         8PcqYZCvj/I+Ke8duBLVWgdJZScZONwJvS+I3GnkQyyXXFwYoU/5OohhXjElW3bDzFIL
+         0Soo8pdGMSCjLtFc/Su1Cbr1McjvqZncJuIBge4Sj6d4hRJ5KYsH1NfHtj5nErk5tKW7
+         jeRPUdj6tpc2mVNVoWJ6jkm+nNwCj5XZDM7+57MS7qoUqd6WCL7ntqLFHMyeawdWHhQ4
+         PRND3xBPl3DcEl3wph4f9mAZubvtmcPJH1yS9XaQPwNeQ3zKPZgmqyN1igF3+7gYJKLq
+         bP4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVVdSD9M7AojM352e9RtZdqvkfPbmFo/20AMZxEVlIjDmrHFE9t3nEt2i1X1Ab37dv4gCdABVM4Wk1Bvi9qFOlP2CCiDI1Tdrxg7w==
+X-Gm-Message-State: AOJu0YwtUzVFZBbPpp9TM1KwMa6SnDu/bIfTrE6oP7KGwnaUQZT0mBw8
+	sDaqOo3GlMzsvlq+5F5AKWH/Plq7MXflTd0MnfXdV9l4XUFqfcwIzDz4sPapNUU=
+X-Google-Smtp-Source: AGHT+IF6BPwk3Uv31HZuM/iBo8zO292n3pIWNBgKAoH7EyLiUKyXSFwiCMisxHtFeKxAAj/I1gjaqw==
+X-Received: by 2002:adf:e306:0:b0:366:ebd1:3bc1 with SMTP id ffacd0b85a97d-36b5cecf2abmr42532f8f.3.1722007216739;
+        Fri, 26 Jul 2024 08:20:16 -0700 (PDT)
+Received: from [192.168.1.61] (2a02-842a-d52e-6101-6f8f-5617-c4b6-8627.rev.sfr.net. [2a02:842a:d52e:6101:6f8f:5617:c4b6:8627])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36b367c0338sm5500985f8f.1.2024.07.26.08.20.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jul 2024 08:20:16 -0700 (PDT)
+From: Julien Stephan <jstephan@baylibre.com>
+Subject: [PATCH 0/5] ad7380: add support for single-ended parts
+Date: Fri, 26 Jul 2024 17:20:05 +0200
+Message-Id: <20240726-ad7380-add-single-ended-chips-v1-0-2d628b60ccd1@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
- <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com> <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com>
-In-Reply-To: <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 26 Jul 2024 23:11:37 +0800
-Message-ID: <CAGXv+5G92=-k5MDH4BPcM8tgPwcGTJ60trJwr7BwTGHD=wpnDw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1 controller
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKW+o2YC/x3MMQqAMAxA0atIZgO1ii1eRRxsEzUgVRoQQby7x
+ enzlv+AchZWGKoHMl+icqSCpq4gbnNaGYWKwRrbGWd7nMm13pQQqqR1Z+RETBg3ORVD1zpqYvT
+ BByiPM/Mi9/8fp/f9AH7NTG1vAAAA
+To: Michael Hennerich <michael.hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ David Lechner <dlechner@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Julien Stephan <jstephan@baylibre.com>
+X-Mailer: b4 0.13.0
 
-On Fri, Jul 26, 2024 at 8:11=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 25/07/24 12:34, Chen-Yu Tsai ha scritto:
-> > Hi,
-> >
-> > On Mon, Jul 22, 2024 at 11:27=E2=80=AFPM N=C3=ADcolas F. R. A. Prado
-> > <nfraprado@collabora.com> wrote:
-> >>
-> >> Currently if the xhci1 controller happens to probe before the pcie1
-> >> controller then it fails with the following errors:
-> >>
-> >> xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
-> >> xhci-mtk 11290000.usb: can't setup: -110
-> >> xhci-mtk: probe of 11290000.usb failed with error -110
-> >>
-> >> The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
-> >> clock, although exactly why this pcie clock is needed for the usb
-> >> controller is still unknown. Add the clock to the xhci1 controller so =
-it
-> >> always probes successfully and use a placeholder clock name for it.
-> >>
-> >> Reported-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com> #Ke=
-rnelCI
-> >> Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec=
-51@notapiano/
-> >> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> >
-> > So I asked MediaTek about this, and it seems the correct thing to do is
-> > disable USB 3 on this host controller using the following snippet. The
-> > snippet is copy-pasted from our issue tracker and won't apply directly.
-> >
-> > This is also seen in mt8395-kontron-3-5-sbc-i1200.dts, on which xhci1
-> > is used only for USB 2.0 on an M.2 slot.
-> >
->
-> Uhm, okay, but why should USB3 be disabled on a controller that supports =
-USB3?
->
-> I agree about disabling it on specific boards that use only the USB 2.0 l=
-ines of
-> this controller, but doing that globally looks wrong... and looks like be=
-ing a
-> workaround for an error that gets solved with adding a clock as well.
->
-> In short, the question is: why would that be the correct thing to do?
+This series will add support for ad7386/7/8 (16/14/12 bits) unsigned,
+dual simultaneous sampling, single-ended compatible parts, and the
+corresponding ad7386-4/7-4/8-4 4 channels to ad7380 driver.
 
-We can disable it in mt8195-cherry.dtsi then?
+These parts have a 2:1 multiplexer in front of each ADC. They also include
+additional configuration registers that allow for either manual selection
+or automatic switching (sequencer mode), of the multiplexer inputs.
 
-ChenYu
+From an IIO point of view, all inputs are exported, i.e ad7386/7/8
+export 4 channels and ad7386-4/7-4/8-4 export 8 channels.
 
-> Cheers,
-> Angelo
->
-> >
-> > ChenYu
-> >
-> > index 8b7307cdefc6..2dac9f706a58
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -1447,6 +1447,7 @@
-> >                                        "xhci_ck";
-> >                          mediatek,syscon-wakeup =3D <&pericfg 0x400 104=
->;
-> >                          wakeup-source;
-> > +                       mediatek,u3p-dis-msk =3D <0x1>;
-> >                          status =3D "disabled";
-> >                  };
-> >
-> >> ---
-> >>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++++++--
-> >>   1 file changed, 8 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boo=
-t/dts/mediatek/mt8195.dtsi
-> >> index 2ee45752583c..cc5169871f1c 100644
-> >> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> >> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> >> @@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
-> >>                                   <&topckgen CLK_TOP_SSUSB_P1_REF>,
-> >>                                   <&apmixedsys CLK_APMIXED_USB1PLL>,
-> >>                                   <&clk26m>,
-> >> -                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHC=
-I>;
-> >> +                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHC=
-I>,
-> >> +                                /*
-> >> +                                 * This clock is required due to a ha=
-rdware
-> >> +                                 * bug. The 'frmcnt_ck' clock name is=
- used as a
-> >> +                                 * placeholder.
-> >> +                                 */
-> >> +                                <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL=
-_96M>;
-> >>                          clock-names =3D "sys_ck", "ref_ck", "mcu_ck",=
- "dma_ck",
-> >> -                                     "xhci_ck";
-> >> +                                     "xhci_ck", "frmcnt_ck";
-> >>                          mediatek,syscon-wakeup =3D <&pericfg 0x400 10=
-4>;
-> >>                          wakeup-source;
-> >>                          status =3D "disabled";
-> >>
-> >> ---
-> >> base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
-> >> change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f46aac
-> >>
-> >> Best regards,
-> >> --
-> >> N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> >>
-> >>
->
->
->
+Inputs AinX0 of multiplexers correspond to the first half of IIO channels
+(i.e 0-1 or 0-3) and inputs AinX1 correspond to second half (i.e 2-3 or
+4-7). Example for AD7386/7/8 (2 channels parts):
+
+          IIO   | AD7386/7/8
+                |         +----------------------------
+                |         |     _____        ______
+                |         |    |     |      |      |
+       voltage0 | AinA0 --|--->|     |      |      |
+                |         |    | mux |----->| ADCA |---
+       voltage2 | AinA1 --|--->|     |      |      |
+                |         |    |_____|      |_____ |
+                |         |     _____        ______
+                |         |    |     |      |      |
+       voltage1 | AinB0 --|--->|     |      |      |
+                |         |    | mux |----->| ADCB |---
+       voltage3 | AinB1 --|--->|     |      |      |
+                |         |    |_____|      |______|
+                |         |
+                |         +----------------------------
+
+To ease the review, this series is split on several commits, in
+particular, sequencer mode is added as an additional commit.
+
+Cheers
+Julien
+
+Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+---
+Julien Stephan (5):
+      dt-bindings: iio: adc: ad7380: add single-ended compatible parts
+      ad7380: prepare driver for single-ended parts support
+      ad7380: add support for single-ended parts
+      ad7380: enable sequencer for single-ended parts
+      docs: iio: ad7380: add support for single-ended parts
+
+ .../devicetree/bindings/iio/adc/adi,ad7380.yaml    |  13 +
+ Documentation/iio/ad7380.rst                       |  42 ++
+ drivers/iio/adc/ad7380.c                           | 511 +++++++++++++++++----
+ 3 files changed, 488 insertions(+), 78 deletions(-)
+---
+base-commit: 472438c7e0e2261c6737a8321f46ef176eef1c8f
+change-id: 20240726-ad7380-add-single-ended-chips-b437d1cc8b8b
+
+Best regards,
+-- 
+Julien Stephan <jstephan@baylibre.com>
+
 
