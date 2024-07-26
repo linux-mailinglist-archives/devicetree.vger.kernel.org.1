@@ -1,290 +1,111 @@
-Return-Path: <devicetree+bounces-88413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B4793D739
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 18:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CEB493D79F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 19:31:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6366284D62
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:54:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1868D283DBF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A106E17C7B2;
-	Fri, 26 Jul 2024 16:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAFA17C9EA;
+	Fri, 26 Jul 2024 17:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="ApXdyx4+"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="MG6JQur6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A31E2E3F2
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 16:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F633282EA
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 17:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722012843; cv=none; b=rRe5LvXAz2c0AQ2ERsJBC9MKQq/eQAfDA0zh/W1NWM2BnaYc9MDz+7jwmKaHsqFDH1G0O6HInYLXRdpQEHsI2zftT0AKd1rJgUv+o6p4lB2m62pi72MhvKVVy/niPnB+CNeH+QRqU4O2zl53M0L79Xl3a08qudPa08mb76r2jx0=
+	t=1722015077; cv=none; b=rjfSYHjGc+yVNl/cvE3ErGhcsRoh1suGdqEQq8uADH1yWEopAhjBEkwjUBzVQ6ibtm5jLKBqvsbTOfjvkvXeqwojFD8HAvrYt8ixSHGDPoOBeO9o7wRbZkJn5FBKqnIyOJxnLzeiPW2oP6gikTy8wvcyvfBOT+IJ+bp9xYQ8Jzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722012843; c=relaxed/simple;
-	bh=dmddLWBN/JJSgxlPY/uX+nnH5tiexKBnmTEPaTfOGJA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b3xcYphEBVBWjgVPPPtqpKRFCZQOKnZbBGAXk9EITYq/XspvK2YbAoLfdjuAqG8/4DDJrSE4cmNkeuB5hpm+4sDRB7zBFJM+pCKxzqvkhztSVt3u4CimsIctndLcvGiGec/fDl/BagKAjZZu7iuJDuiohl+d6DLGHFfiJInTGAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=ApXdyx4+; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-428101fa30aso2919595e9.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 09:54:01 -0700 (PDT)
+	s=arc-20240116; t=1722015077; c=relaxed/simple;
+	bh=xl5MBziS7MMtJNQ+8lr6PG6+ExQShs8U6WB+5kJjGVI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZzA6LyLMSiLI8fQC5Jc2qFLGFaYekIgOVKPdWi97B3iR9yy0xEc4lCf9R/XTR4PaKreZc55L2G7OzD05kdJihDCrwJG/H8iaflssIij9tRW9dfmWE33IkdN/4VI6zeprtpAeK4g37rJkAe1cRNAYvdRh94Vn3HpdAWivKf67XfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=MG6JQur6; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52f01ec08d6so2306291e87.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 10:31:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1722012840; x=1722617640; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lyBUB0VjQodyh7/g5kyro/B0sHtxliR680HpWSHx5x4=;
-        b=ApXdyx4+qhxQTUsF2achsdGBhhXgXgt1PuSnEdNydsoUv8cR6RrhqhQW+6f2MXbPHW
-         qcPwf9cCEV8H2j9Rh0I4MxC3qhOLVID0RO9sJNxGvUYwQdqutchqsW6zQo0HUId1SKtt
-         /jIVw1w92G5/ndc+p21rhHCFHdOGAfcjzBPfgBe7tn486GyBS7tWCHliHP61qFI5yqol
-         x1zWj88Bu1vEs10lqL/GtKECrWUMNdBQ9QffgZR/IweS95bdUlgWE/s81XTlAY+GQmeu
-         wQYLlF2qkENH519ugLhzfHzhqo8BsueBThJMoaD+dnIEoJcqH0jgEYuQYZwG0wrNPqfC
-         Veew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722012840; x=1722617640;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722015074; x=1722619874; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lyBUB0VjQodyh7/g5kyro/B0sHtxliR680HpWSHx5x4=;
-        b=uGxiS1NDNI0Uq4K4Bo6GSC11sluiFWRteRNhk42E/omzAUpVxd2zhZEOmsSQc1nVoo
-         GNeh9UH00ZIc2fOtasjakEQFAkHW0NB9NfcOEPi4JhykRcfd23/A/kO+VhgmeJD8153j
-         L/QB0DjQFldF8TaIVAL9GkB5RQLbBF48JnYdEl2XR/SV9ZLcMziX+y+0gR9FZwN5Zs3Z
-         /J+374JApzhHyZFRvpIJvCKrnB3JZKaqTBb7t0FFQFj1AdYVbNW8cytds172C5JrKiUh
-         VqcrbwAv47BIpdzcYkujUzuJ2BtLHiomQt7Koq/3GJ3NYyL2JJwtN0vmLB9GX10Kp9PJ
-         XhVw==
-X-Forwarded-Encrypted: i=1; AJvYcCXgH8azzaTp8WlqyJzHbw/rTquiBU3S1eQDwlE5zjOMSPSB6t2LaHOk5kl8zuKe8tJjhxE4g+9OW3dqb1ceqVR/MlkEWDb6t0bKiw==
-X-Gm-Message-State: AOJu0Yw1cSP/J96G2YErN7M1aOOUzO55W04CVRR0wQOOJrggAVsQpvu0
-	BkIuybBYeIsvRFUfRyt0vsmevFQAZVkRaHFjk/F6eqAiRn5dRXp657g8kAFQ7Vc=
-X-Google-Smtp-Source: AGHT+IGpGw0WiufgY26+n/F7oToSP+bfbqFIHW3rW6u4ArhcoqZorHULtO/EvyMqvgVFTdS12d7ILA==
-X-Received: by 2002:a05:600c:6c4c:b0:426:5f06:5462 with SMTP id 5b1f17b1804b1-42811e422e4mr1002575e9.37.1722012839726;
-        Fri, 26 Jul 2024 09:53:59 -0700 (PDT)
-Received: from [192.168.0.32] ([47.62.239.100])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f9372e99sm125436245e9.16.2024.07.26.09.53.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jul 2024 09:53:59 -0700 (PDT)
-Message-ID: <f135b3ef-a846-4166-93ae-d5c40eee59fb@suse.com>
-Date: Fri, 26 Jul 2024 18:53:57 +0200
+        bh=xl5MBziS7MMtJNQ+8lr6PG6+ExQShs8U6WB+5kJjGVI=;
+        b=MG6JQur6bZDXKhuCUGDN4RLkZvGIPcBlmxMWpBDUSmAB73qkwz+r0F7kqvbRY54WqH
+         iOA0m+A4FdkBFSHqR9FTrDpkUHWCciGMjal9Gi+HMCWJASQPFZxDXC/5tDSDweefU9Yn
+         O/UyvtbaTaFgDYgYLEtIaaQ35nsoPnbSHg8Ou1DEsTjJGhBLqrVjHo1Z9G0jyDwe0VUA
+         2nR4REq5MPWD7UJbBK9k+3/qR6BKaE0WKYMlUllvT19A7HlRSunZNs5eO/R9ssAdZUN1
+         pO9662GPHi4ecINjaAblK+GTW4Kd1Rf07ea5lkUn+kbfrRMnb52NqSZIKPxKjBVyKvth
+         ghUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722015074; x=1722619874;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xl5MBziS7MMtJNQ+8lr6PG6+ExQShs8U6WB+5kJjGVI=;
+        b=lUFiJ2BV7SzwpVWSocOssyntfWg+jVETpHVHwFP60fKj1JET5KcIqKx4VnEdIY9Sb6
+         hQcCGfA5jhpOl3966oGbf7/7Ti/Gkp8yQfiiN/uSzuHMgB3K0FU48iBp2sESKwkujM9m
+         5scWH+1GkP/xHM6DDULtl1pwHhVS1BuoRbqizt185Hv+55vGusL2AHVnzEQnfEa70MPb
+         aZGOILIpI7bR5oZqaPiYTIAOwz7youHP4iPkhrjHUyEn9R5wU+wtYU384e0+epEhOuXk
+         +duKTPgXX97PmadCO1ZAbGO9DNc7L0i29dNERK7HdmxmcJltlFTiQlh4rwscoeq9VSUx
+         3yOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUBe3XErpZVxNtLIWAQC8qlBBDtzOKtPblC3glvR/NfLp/pwks0RLjZR+CN+zJDql/K/WOQzJqikvFSjqecyfO+dBD0VP3PtJNPpw==
+X-Gm-Message-State: AOJu0YwLxj1UWjySpVTPP/5s4iHKj2/NhWbQ8FX8P259yQXGesGysl9j
+	vm25GOMmUt1NcUPz71Vq3OAWh2cfIXL2k4Om7rUfNm9JOFyKUww59Oc9cQcvsCtpPxqF4zjjd0t
+	yoBt6wHqHjMxAhOaD2zpNmW2aCusbXB8yr8KShw==
+X-Google-Smtp-Source: AGHT+IHl0keqbTpli0qtFCDOs9KQPvh5FiTCtZnHeHGftMUia5rWkyP0BFbDvmTVhCAd2RbboRnEBTXgj6gIcpDtNJw=
+X-Received: by 2002:ac2:518e:0:b0:52f:2ea:499f with SMTP id
+ 2adb3069b0e04-5309b2803efmr341676e87.24.1722015074240; Fri, 26 Jul 2024
+ 10:31:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: s32g: add the pinctrl node
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
- Chester Lin <chester62515@gmail.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- NXP S32 Linux Team <s32@nxp.com>
-References: <20240724132415.1700386-1-andrei.stefanescu@oss.nxp.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <mbrugger@suse.com>
-Autocrypt: addr=mbrugger@suse.com; keydata=
- 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
- PVrr2NoUqi/bxI8fFQJD1jVj8K0=
-In-Reply-To: <20240724132415.1700386-1-andrei.stefanescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240726163719.1667923-1-jesse@rivosinc.com> <20240726163719.1667923-7-jesse@rivosinc.com>
+In-Reply-To: <20240726163719.1667923-7-jesse@rivosinc.com>
+From: Evan Green <evan@rivosinc.com>
+Date: Fri, 26 Jul 2024 10:30:38 -0700
+Message-ID: <CALs-HsubnuBw_jTfx+fcD0s=9KEmZ4zFauzyTTnUCpJxYq9Djg@mail.gmail.com>
+Subject: Re: [PATCH v7 6/8] RISC-V: Detect unaligned vector accesses supported
+To: Jesse Taube <jesse@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Andrew Jones <ajones@ventanamicro.com>, Charlie Jenkins <charlie@rivosinc.com>, 
+	Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>, 
+	Eric Biggers <ebiggers@google.com>, Greentime Hu <greentime.hu@sifive.com>, 
+	=?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@rivosinc.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin <costa.shul@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Baoquan He <bhe@redhat.com>, 
+	Anup Patel <apatel@ventanamicro.com>, Zong Li <zong.li@sifive.com>, 
+	Sami Tolvanen <samitolvanen@google.com>, Ben Dooks <ben.dooks@codethink.co.uk>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	Erick Archer <erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Jul 26, 2024 at 9:37=E2=80=AFAM Jesse Taube <jesse@rivosinc.com> wr=
+ote:
+>
+> Run a unaligned vector access to test if the system supports
+> vector unaligned access. Add the result to a new key in hwprobe.
+> This is useful for usermode to know if vector misaligned accesses are
+> supported and if they are faster or slower than equivalent byte accesses.
+>
+> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
 
-
-On 24/07/2024 15:24, Andrei Stefanescu wrote:
-> Add the pinctrl node in the device tree in order to enable the
-> S32G2/S32G3 pinctrl driver to probe.
-> 
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-
-Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-
-> ---
-> V2 -> V1: moved the pinctrl node before the uart1 one to sort based
-> 	  on the reg value, removed the status property, renamed the
-> 	  jtag_pins node and jtag_grp* subnodes
-> 
->   arch/arm64/boot/dts/freescale/s32g2.dtsi | 50 +++++++++++++++++++++++
->   arch/arm64/boot/dts/freescale/s32g3.dtsi | 52 +++++++++++++++++++++++-
->   2 files changed, 101 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> index fc19ae2e8d3b..fa054bfe7d5c 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> @@ -114,6 +114,56 @@ soc@0 {
->   		#size-cells = <1>;
->   		ranges = <0 0 0 0x80000000>;
->   
-> +		pinctrl: pinctrl@4009c240 {
-> +			compatible = "nxp,s32g2-siul2-pinctrl";
-> +				/* MSCR0-MSCR101 registers on siul2_0 */
-> +			reg = <0x4009c240 0x198>,
-> +				/* MSCR112-MSCR122 registers on siul2_1 */
-> +			      <0x44010400 0x2c>,
-> +				/* MSCR144-MSCR190 registers on siul2_1 */
-> +			      <0x44010480 0xbc>,
-> +				/* IMCR0-IMCR83 registers on siul2_0 */
-> +			      <0x4009ca40 0x150>,
-> +				/* IMCR119-IMCR397 registers on siul2_1 */
-> +			      <0x44010c1c 0x45c>,
-> +				/* IMCR430-IMCR495 registers on siul2_1 */
-> +			      <0x440110f8 0x108>;
-> +
-> +			jtag_pins: jtag-pins {
-> +				jtag-grp0 {
-> +					pinmux = <0x0>;
-> +					input-enable;
-> +					bias-pull-up;
-> +					slew-rate = <166>;
-> +				};
-> +
-> +				jtag-grp1 {
-> +					pinmux = <0x11>;
-> +					slew-rate = <166>;
-> +				};
-> +
-> +				jtag-grp2 {
-> +					pinmux = <0x40>;
-> +					input-enable;
-> +					bias-pull-down;
-> +					slew-rate = <166>;
-> +				};
-> +
-> +				jtag-grp3 {
-> +					pinmux = <0x23c0>,
-> +						 <0x23d0>,
-> +						 <0x2320>;
-> +				};
-> +
-> +				jtag-grp4 {
-> +					pinmux = <0x51>;
-> +					input-enable;
-> +					bias-pull-up;
-> +					slew-rate = <166>;
-> +				};
-> +			};
-> +		};
-> +
->   		uart0: serial@401c8000 {
->   			compatible = "nxp,s32g2-linflexuart",
->   				     "fsl,s32v234-linflexuart";
-> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> index c1b08992754b..b4226a9143c8 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
->   /*
-> - * Copyright 2021-2023 NXP
-> + * Copyright 2021-2024 NXP
->    *
->    * Authors: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
->    *          Ciprian Costea <ciprianmarian.costea@nxp.com>
-> @@ -171,6 +171,56 @@ soc@0 {
->   		#size-cells = <1>;
->   		ranges = <0 0 0 0x80000000>;
->   
-> +		pinctrl: pinctrl@4009c240 {
-> +			compatible = "nxp,s32g2-siul2-pinctrl";
-> +				/* MSCR0-MSCR101 registers on siul2_0 */
-> +			reg = <0x4009c240 0x198>,
-> +				/* MSCR112-MSCR122 registers on siul2_1 */
-> +			      <0x44010400 0x2c>,
-> +				/* MSCR144-MSCR190 registers on siul2_1 */
-> +			      <0x44010480 0xbc>,
-> +				/* IMCR0-IMCR83 registers on siul2_0 */
-> +			      <0x4009ca40 0x150>,
-> +				/* IMCR119-IMCR397 registers on siul2_1 */
-> +			      <0x44010c1c 0x45c>,
-> +				/* IMCR430-IMCR495 registers on siul2_1 */
-> +			      <0x440110f8 0x108>;
-> +
-> +			jtag_pins: jtag-pins {
-> +				jtag-grp0 {
-> +					pinmux = <0x0>;
-> +					input-enable;
-> +					bias-pull-up;
-> +					slew-rate = <166>;
-> +				};
-> +
-> +				jtag-grp1 {
-> +					pinmux = <0x11>;
-> +					slew-rate = <166>;
-> +				};
-> +
-> +				jtag-grp2 {
-> +					pinmux = <0x40>;
-> +					input-enable;
-> +					bias-pull-down;
-> +					slew-rate = <166>;
-> +				};
-> +
-> +				jtag-grp3 {
-> +					pinmux = <0x23c0>,
-> +						 <0x23d0>,
-> +						 <0x2320>;
-> +				};
-> +
-> +				jtag-grp4 {
-> +					pinmux = <0x51>;
-> +					input-enable;
-> +					bias-pull-up;
-> +					slew-rate = <166>;
-> +				};
-> +			};
-> +		};
-> +
->   		uart0: serial@401c8000 {
->   			compatible = "nxp,s32g3-linflexuart",
->   				     "fsl,s32v234-linflexuart";
+Reviewed-by: Evan Green <evan@rivosinc.com>
 
