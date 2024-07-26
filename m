@@ -1,150 +1,95 @@
-Return-Path: <devicetree+bounces-88244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4435293CDCC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 07:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC66793CDE3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:00:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01F37281EB5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 05:50:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96B6C2817B2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 06:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6F71552E4;
-	Fri, 26 Jul 2024 05:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A8F173351;
+	Fri, 26 Jul 2024 06:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="LkGSmevw"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="foWbyEGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8224154C10;
-	Fri, 26 Jul 2024 05:50:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54010172BCA;
+	Fri, 26 Jul 2024 06:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721973003; cv=none; b=FWp2kA90Jb9XwaYvK+hKimUIgCUJqoHhR5SLJ4V7z2f8XyY7WMzzNpQ0GTxfZ7r4PR1866M945ihAP+M/wtL5Zmtb76SZVlSsDj85glV6u/0434vnkxO84utboGZgGc9L2fNjPvNY41WWCe2GeNILEouSDbvITtczfGEnkopE3A=
+	t=1721973649; cv=none; b=CvTYOayFtDsvmBzuKLmgvB5JJpI8gjJbkXQ3sbBwQMLGUNCW5vyFCnLiPLogUjNoypMP0ffP7uSeNTZZ3bIq0VtkAinnnq77gB38PRSftOUFgKZxJqlQL4F+YblQDdjHsFOrhdhX4RUVeCoY6S6XyyPaE6LiJnE3e2w7BPcwLZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721973003; c=relaxed/simple;
-	bh=1RSV4wLf77v5OYCZydF77u28YwpEi2UycxOjfiDnplk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CUrDpts6YhcFeZpeRwcUCq8m5oZWk3mq3s+zJTojHh3C49GeagvfbmJH1BILOP36NCxG3Z3xDb/PpKyGlYP2lJyy0NX1U8vlfOO2+q3k+10I6od74SoxFAkh8PqfDaqK/c9R2qJhn5Yr+9pWVYBuKTZhDzPa9ETMFht+REtLuDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=LkGSmevw; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46Q4USqh026158;
-	Fri, 26 Jul 2024 05:49:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date
-	:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=pp1; bh=/pL0JuAfruxg3LvJnxZHYB3JtXD
-	cvdoee0Ej2lHdXwk=; b=LkGSmevwhm0aRHK+a9IJNrdqPoCeWWN1eHXuDHS7waf
-	GOcy3/xFTSbTwj69u2JTvZbqSpWKw92YuNTLaFfAEFVJSBEIDFE/JFlyvHCzRfqq
-	ncpROR4EKtzZNoXx+c6+Ijir3OhAifaABsQ3ejG+2iVWZglnNmUcu3pIf23gqDyQ
-	+0S6deZMi73ur/rZ8Ep9pAoNNXF71+TabWMDqssPyEghDm9TXJJhXQ2MhXbbmq0E
-	EHK/EoQeyYQaiCqc80haNKrtJzriNYZ8ND8NxzkbOC0H9kC9eawgKlUVYEa4njtf
-	HV1wrG3F2O5clA9cJxK1vCIz6OaZyul0rOZ0nFnYosw==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40m3g009m6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 05:49:46 +0000 (GMT)
-Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 46Q5nkSE024488;
-	Fri, 26 Jul 2024 05:49:46 GMT
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40m3g009m3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 05:49:46 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 46Q52p6l018513;
-	Fri, 26 Jul 2024 05:49:45 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 40kk3hmh6q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 05:49:45 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
-	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 46Q5ndtG50332122
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 26 Jul 2024 05:49:41 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 6BDC720043;
-	Fri, 26 Jul 2024 05:49:39 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 05D0120040;
-	Fri, 26 Jul 2024 05:49:36 +0000 (GMT)
-Received: from li-e7e2bd4c-2dae-11b2-a85c-bfd29497117c.ibm.com (unknown [9.124.219.245])
-	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Fri, 26 Jul 2024 05:49:35 +0000 (GMT)
-Date: Fri, 26 Jul 2024 11:19:31 +0530
-From: Amit Machhiwal <amachhiw@linux.ibm.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Lizhi Hou <lizhi.hou@amd.com>, Rob Herring <robh@kernel.org>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Vaibhav Jain <vaibhav@linux.ibm.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
-        Kowshik Jois B S <kowsjois@linux.ibm.com>,
-        Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v2] PCI: Fix crash during pci_dev hot-unplug on pseries
- KVM guest
-Message-ID: <dx32q3sa4oopk3fnm2zyeplotuq6gq3rmnbmaw3mo4q3lgjpe7@gvpgu4rdk4f4>
-Mail-Followup-To: Bjorn Helgaas <helgaas@kernel.org>, 
-	Lizhi Hou <lizhi.hou@amd.com>, Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Saravana Kannan <saravanak@google.com>, Vaibhav Jain <vaibhav@linux.ibm.com>, 
-	Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>, 
-	Lukas Wunner <lukas@wunner.de>
-References: <p6cs4fxzistpyqkc5bv2sb76inrw7fterocdcu3snnyjpqydbr@thxna6v2umrl>
- <20240725205537.GA858788@bhelgaas>
+	s=arc-20240116; t=1721973649; c=relaxed/simple;
+	bh=PnqlcM84WAxNl+swGQdrhpcrwrWIJk7Lt4l0m9IDul8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZkU8M3o6T2drDg9E3l9PU1XyqWvkEW9UgcBN8GCuqwSyFMWBtDOXo3JboCh9MPIjwkVKs7abBevoR3JqX87gAT6g73VXWv/VzAS/RAMNdU0E7Q01afRxuJrDqvd9vSgEqr67iCSKkVI0hU4PmKmmum6NP4Dc0+55OY3DSqdg9CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=foWbyEGq; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1721973645;
+	bh=QdbI3N7Rn42gDGMrzJpsnfGLEwUVSd33OvGXdiMpLbM=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=foWbyEGqPuTHASdBk94cKFKPR3WFpX+tk6hU/jIRiOtsHWML8oxuj1NPRaFhBEZsR
+	 fRAdgvwqOK3/fb09Vav319CW26jnzdg+uae712ROIV79s1ppn7TXIDPiHDKkwNbLb7
+	 sPMeiTMuwstFejO7k3rM9O2sKuVnF3HouebVCTk8n0j9FrxVNOEo2e5swpNjwutei3
+	 EyqeqXcjP3TsSDImTOOHIr6eAt/dsruPBUNGHeOQm/g1PKSNyerQBkRRMWWpvjXYr3
+	 N258giOsjwxKI/gIoQzj4POi+VM9XqiFjKV81BlSN75J4BpYwhTyoD4ct0XOLHvqbT
+	 R4ClGeVYgGopg==
+Received: from [192.168.68.112] (unknown [118.211.93.69])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 577B566AB4;
+	Fri, 26 Jul 2024 14:00:44 +0800 (AWST)
+Message-ID: <a4c2a2c25c7582b7b45fc42662b60c589b4748d4.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1 1/1] ARM: dts: aspeed: minerva: add host0-ready pin
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Yang Chen <yangchen.openbmc@gmail.com>, joel@jms.id.au,
+ patrick@stwcx.xyz,  amithash@meta.com,
+ linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org
+Cc: Jerry.Lin@quantatw.com, yang.chen@quantatw.com
+Date: Fri, 26 Jul 2024 15:30:43 +0930
+In-Reply-To: <20240711130501.2900301-2-yangchen.openbmc@gmail.com>
+References: <20240711130501.2900301-1-yangchen.openbmc@gmail.com>
+	 <20240711130501.2900301-2-yangchen.openbmc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240725205537.GA858788@bhelgaas>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: hrWbadeSvvg3pthFD6dbebsK6nYnlI9I
-X-Proofpoint-ORIG-GUID: TUS0qhJ3TBEy9O6kA7xiLL7ZbyW2NSJ5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-26_02,2024-07-25_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- bulkscore=0 clxscore=1015 mlxlogscore=671 priorityscore=1501
- suspectscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2407260036
 
-Hi Bjorn,
+On Thu, 2024-07-11 at 21:05 +0800, Yang Chen wrote:
+> Add host0-ready pin for phosphor-state-manager.
+>=20
+> Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts b/a=
+rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
+> index f5ac248097b4..41e2246cfbd1 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
+> @@ -613,7 +613,7 @@ &gpio0 {
+>  	/*P0-P7*/	"","","","","","","","",
+>  	/*Q0-Q7*/	"","","","","","power-chassis-control","","",
+>  	/*R0-R7*/	"","","","","","","","",
+> -	/*S0-S7*/	"","","","","","","","",
+> +	/*S0-S7*/	"","","","","","","","host0-ready",
+>  	/*T0-T7*/	"","","","","","","","",
+>  	/*U0-U7*/	"","","","","","","","",
+>  	/*V0-V7*/	"","","","","BAT_DETECT","","power-chassis-good","",
 
-On 2024/07/25 03:55 PM, Bjorn Helgaas wrote:
-> On Thu, Jul 25, 2024 at 11:15:39PM +0530, Amit Machhiwal wrote:
-> > ...
-> > The crash in question is a critical issue that we would want to have
-> > a fix for soon. And while this is still being figured out, is it
-> > okay to go with the fix I proposed in the V1 of this patch?
-> 
-> v6.10 has been released already, and it will be a couple months before
-> the v6.11 release.
-> 
-> It looks like the regression is 407d1a51921e, which appeared in v6.6,
-> almost a year ago, so it's fairly old.
-> 
-> What target are you thinking about for the V1 patch?  I guess if we
-> add it as a v6.11 post-merge window fix, it might get backported to
-> stable kernels before v6.11?  
+Thanks, I've applied this to a tree for Joel to pick up.
 
-Yes, I think we can go ahead with taking V1 patch for v6.11 post-merge window to
-fix the current bug and ask Ubuntu to pick it while Lizhi's proposed patch goes
-under test and review.
-
-Thanks,
-Amit
+Andrew
 
