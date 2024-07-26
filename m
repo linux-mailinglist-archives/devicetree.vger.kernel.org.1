@@ -1,110 +1,129 @@
-Return-Path: <devicetree+bounces-88445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5AA93D8C4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 20:56:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 892E393D8E2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 21:16:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A055B21307
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 18:56:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DD811F217E0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 19:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067CD13DBB1;
-	Fri, 26 Jul 2024 18:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CF02E633;
+	Fri, 26 Jul 2024 19:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="giBRPYVi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3wi38W0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF0013CF9C;
-	Fri, 26 Jul 2024 18:53:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBA724205;
+	Fri, 26 Jul 2024 19:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722020039; cv=none; b=VBEFvqhJMyMZxkZxbie6qmOZViPp2t7QEZbq64AwqVnr9Y7ruAnVbFrnWTo7aduedkO1tcefOre372VxDF3grbB4Pl7MGvMDoFj7PD/4pxaazao7IfWmMKoQRJ0L6xTDMW7KGpgynSgJmU6fz3NWbIes/eVt06rvgRcuUVhg2g8=
+	t=1722021360; cv=none; b=OI6karsot3NkfS4Pa2BMgswFH/yI1mtmfNxzO/XbAnPcr+8gZbZI9M/701alnNGB184Fo5Rq/C8rJPHyH8ps8HqaWMafJgrPaI66YE9ffwRgjJT9f91E8uLHEyPV80lnMf4I3ouPFsKI1l2X+ompYFwqVYVTCzbihWOXvqAZK4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722020039; c=relaxed/simple;
-	bh=1KCDwBHzt4Q+DteenjlZeGia75XcgPCBUa4IrYWwLSg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nHmOsbbMCVEVpNiApCdsJ2D0TzZthjRnNwqFdjzvbqvyE5OQ38N2qC4zxuR5xMpPy80vd+Rguhkl3m/VXtT9eZFdPpfrlSll7nDRl4Lj6uRiWngRB/w13UDqD5w0R379t96p/pDLIoipYbpxLMaaUz/sK8zps+g7fj7nfU2QqoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=giBRPYVi; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from localhost (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A8F6F41645;
-	Fri, 26 Jul 2024 20:53:56 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
-	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id BSK8HtbJLmbS; Fri, 26 Jul 2024 20:53:56 +0200 (CEST)
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1722020035; bh=1KCDwBHzt4Q+DteenjlZeGia75XcgPCBUa4IrYWwLSg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=giBRPYViicqa6jaK1ESAgoOEvIYZeIxLSPByH/ln3pWGzMjghfc0Ufa8U98JfuOCY
-	 KdYJulBeC0RbMxTUFSTkl5X/uO8pO/k/waRObF96syRa/8DIbzFTRa4H81IeIb5A4f
-	 cNaCUfIqtYnunGX9SvfRtE6+3edkVugErTi194fzBcrD1OztRMO1sRl7lzpfppxkdi
-	 62eCpwlwcPLlg61UwDPKQuJlQsI9dohmg1IrEtcdxyh1C35lsEzNkNawq+TvPTWzj5
-	 MQCL6m7IN0S7j+nujd4W1o9i2LQYFdb46ZGZr3hk2wnYvqcpeR4PDYFyz/tLNqSRmI
-	 36BdQ6OP9dJ7g==
-Date: Sat, 27 Jul 2024 00:23:33 +0530
-Subject: [PATCH v4 3/3] dt-bindings: iio: light: stk33xx: add compatible
- for stk3013
+	s=arc-20240116; t=1722021360; c=relaxed/simple;
+	bh=pDOSXMepXbUmRvL5kOGQExRmVA5TknrX/ZBy4egmSXo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=WX4MRBNUdTAVv8GYc1cr2ALRRjcLRBQorUpWocfTnJAPxac2S5K60wMlhQue2xK41g91jwnWo3o66ev/5LuCoFzg0XIH45YltExEfAgC1pvi9YuKc8sGzqfgoq/iDQOZo3ujhpI/zj560599aVg7KaOZYIpM44A+tFgNiUylx3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3wi38W0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89199C32782;
+	Fri, 26 Jul 2024 19:15:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722021359;
+	bh=pDOSXMepXbUmRvL5kOGQExRmVA5TknrX/ZBy4egmSXo=;
+	h=Date:From:To:Cc:Subject:From;
+	b=g3wi38W0+clK4gCQcr0UqZE71ZofhLsCiItgRZhsgoR+ATrdQV4z/cvBIQq49FUzZ
+	 A0jcaFPepeLGk2i9co/1xHQrjRU2K6fDKkeCowfQypBO6GtdKWypuVDzBfafWg7hJZ
+	 nAfCX+LgzUa7fbBlNvkyv2SHn2ij0gAUwglMwlzTZPHzrx4ithB7Q9a38Sk9cBDoX+
+	 3BAPnRudwOcqssmRPiJ2bHzz3XGU7b0kPXlOyK6+qIQyjGpO41ly/uDLz5hccH0cgz
+	 OCOQ4HM7s7sf1ye+i9qb1XHTlbpKh6wxQyfL2phzJkHtar1Kt7IFpQG+M2uoMUkDeT
+	 EtXcIL/JfrgwQ==
+Date: Fri, 26 Jul 2024 14:15:58 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree updates for v6.11, part 2
+Message-ID: <20240726191558.GA1888978-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240727-stk3310-v4-3-02497b1407ba@disroot.org>
-References: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
-In-Reply-To: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
-To: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-STK3013 is a proximity sensor by Sensortek, bearing chipid of 0x31. Despite
-being marketed as a proximity sensor, it also appears to have ambient
-light sensing capabilities.
+Linus,
 
-The part is fully compatible with the existing implementation of the
-device driver. Add the compatible string of stk3013 to the existing
-list, with a fallback of stk3310.
+Please pull 2nd batch of DT updates for 6.11. Most of it is a treewide 
+change to of_property_for_each_u32() which was small enough to do in one 
+go before rc1 and avoids the need to create 
+of_property_for_each_u32_some_new_name().
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+Rob
 
-diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-index f6e22dc9814a..e4341fdced98 100644
---- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-+++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-@@ -18,10 +18,15 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - sensortek,stk3310
--      - sensortek,stk3311
--      - sensortek,stk3335
-+    oneOf:
-+      - enum:
-+          - sensortek,stk3310
-+          - sensortek,stk3311
-+          - sensortek,stk3335
-+      - items:
-+          - enum:
-+              - sensortek,stk3013
-+          - const: sensortek,stk3310
- 
-   reg:
-     maxItems: 1
 
--- 
-2.45.2
+The following changes since commit c33ffdb70cc6df4105160f991288e7d2567d7ffa:
 
+  Merge tag 'phy-for-6.11' of git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy (2024-07-24 13:11:28 -0700)
+
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.11-1
+
+for you to fetch changes up to 6dc55268f64b780eb8774de3705f791b689853bb:
+
+  dt-bindings: iio: adc: ad7192: Fix 'single-channel' constraints (2024-07-26 13:53:20 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for 6.11, part 1
+
+- Treewide conversion of of_property_for_each_u32() to drop internal
+  arguments making struct property opaque
+
+- Add binding for Amlogic A4 SoC watchdog
+
+- Fix constraints for AD7192 'single-channel' property
+
+----------------------------------------------------------------
+Huqiang Qin (1):
+      dt-bindings: watchdog: add support for Amlogic A4 SoCs
+
+Luca Ceresoli (1):
+      of: remove internal arguments from of_property_for_each_u32()
+
+Rob Herring (Arm) (1):
+      dt-bindings: iio: adc: ad7192: Fix 'single-channel' constraints
+
+ .../devicetree/bindings/iio/adc/adi,ad7192.yaml    |  5 +--
+ .../bindings/watchdog/amlogic,meson-gxbb-wdt.yaml  |  1 +
+ arch/powerpc/sysdev/xive/native.c                  |  4 +-
+ arch/powerpc/sysdev/xive/spapr.c                   |  3 +-
+ drivers/bus/ti-sysc.c                              |  4 +-
+ drivers/clk/clk-conf.c                             |  4 +-
+ drivers/clk/clk-si5351.c                           | 43 +++++++++++++---------
+ drivers/clk/clk.c                                  | 12 +++---
+ drivers/clk/qcom/common.c                          |  4 +-
+ drivers/clk/sunxi/clk-simple-gates.c               |  4 +-
+ drivers/clk/sunxi/clk-sun8i-bus-gates.c            |  4 +-
+ drivers/clocksource/samsung_pwm_timer.c            |  4 +-
+ drivers/gpio/gpio-brcmstb.c                        |  5 +--
+ drivers/iio/adc/ti_am335x_adc.c                    |  4 +-
+ drivers/irqchip/irq-atmel-aic-common.c             |  4 +-
+ drivers/irqchip/irq-pic32-evic.c                   |  4 +-
+ drivers/mfd/ti_am335x_tscadc.c                     |  4 +-
+ drivers/pinctrl/nxp/pinctrl-s32cc.c                |  4 +-
+ drivers/pinctrl/pinctrl-k210.c                     |  4 +-
+ drivers/pwm/pwm-samsung.c                          |  4 +-
+ drivers/tty/sysrq.c                                |  4 +-
+ drivers/usb/misc/usb251xb.c                        |  4 +-
+ include/linux/of.h                                 | 15 ++++----
+ sound/soc/codecs/arizona.c                         | 12 +++---
+ 24 files changed, 64 insertions(+), 96 deletions(-)
 
