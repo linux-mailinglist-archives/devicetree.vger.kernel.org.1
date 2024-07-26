@@ -1,159 +1,131 @@
-Return-Path: <devicetree+bounces-88416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436C293D76D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 19:15:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91A0D93D688
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 18:05:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F389D284303
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:15:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4613B1F24948
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1DAC17D884;
-	Fri, 26 Jul 2024 17:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F330917B4E8;
+	Fri, 26 Jul 2024 16:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QFGLURIi"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="NKHCyAK2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C683F17D88A;
-	Fri, 26 Jul 2024 17:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0AE5588B
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 16:05:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722014115; cv=none; b=J/0GPyJNnFa7aVdf6C9dl/8wekSYmLG9lugECwc7+REGJLLzPd6zDpfEAPCigFnqX7H33nyY/G8A9uBBJ43anI4XzLAukpnDlbWGIBYdiG5SqLRAjUeFCExxo/f4zV/xyBdZkQjHMSSPizbGs3g+y87b5wApmX+8jFFqT/yTI88=
+	t=1722009924; cv=none; b=SDrUEKEBbdcYRIOr7v5me/bjmjpwDuwVEhxUnr1woT1kMOMDctwZdedvQG3W8ZgiESsqt74LpsBKXz9l16HEkRcsZ24dtEWyYyrI+jCjNz9j0a4rexA50kQBLp32flxXX5ykNidAw+4ax5W25UO5O+GRxYafo6KBPrXC3RrwpYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722014115; c=relaxed/simple;
-	bh=Xjke6rVR6dEfgaQ5g4hKX6iiE3ipqXqz8eG2hMIm8oE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qgov10W34yElO8bvuMhAkaVzojmYWKiu6jaUIi1x/lzfP40rn4fzP2Nzu/CrFXAtojR6ViigHv3kAo+gwWUEuuzfsOgG9b3QLiX/9nHJgzn8U1kHbVotWAiPZwhHvAGz+RSnK7u/Y3oyeO2GOdsDam+lGQaoDeiTz9we39i8ciM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QFGLURIi; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2cb55418470so858443a91.1;
-        Fri, 26 Jul 2024 10:15:13 -0700 (PDT)
+	s=arc-20240116; t=1722009924; c=relaxed/simple;
+	bh=+jiv+kL+MxHX09fUys/zYIAjsyoQbkviXtDOiuTe8Bk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dWwkYQVqOUyrYXy6MXKYNCdcIu/hlCLUlrvt3u9K7jcWs6R8mG6Bl9zt5WRC2jtKrDnSoy1PdvMfkdaeeR4cdPF81CzquahyzGNf1dvBm9U/Ew2qTf8XxAoonQB+1o073akSfPxwQSXj1jUfEEd3u5eGrOFRtdG5iW6RoCjipyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=NKHCyAK2; arc=none smtp.client-ip=209.85.160.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-25d6dd59170so899998fac.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 09:05:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722014113; x=1722618913; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wWES2bQT90aeNpHB9lBbGnFEyMSuVA3NqfH6hD88dJc=;
-        b=QFGLURIidziQtwSuuPZoLiF2VdzEqKXTGPwiMDtzmIHLdMVc321grhRv5oodnUD81C
-         Rfq7RWBnrbKWbkAqIT9xq5oKpz8rDu1hkSSIhXFEqaqI/MCPne0GNraVxJqc1c+B69RL
-         /F0QhS8wYAaIRWBgYbB3CnPbrIBBkHGLIAu9VKTD1duD9sJ7a3qnglIDgkFSJ9KRlj6P
-         e30bP1jlDZPgINnbk+mITl/YtQ5jqNHKOWkXETuaVt7vxpNCCbTesglzk6ai5YDjCTTd
-         HXXzLsy1hIrGEXLCnG/yfXoW+7OKZi7zYk8u//4lf7SphucW86I94CWC1eabNghHObuP
-         voXw==
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722009922; x=1722614722; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PvbEqWL5j+GN3Ik5CL00onvHz+Bz9PXQQigu5LQIRIw=;
+        b=NKHCyAK2VQowlKhhES9LLvADp98H73duPb5rMgq+qy8ahmfAF0SKB7DFPH5M0SqsPs
+         rkc1it82ELCNLp78t9B3OHU/I2BpGiIFFxVIRn/mfJY184AAkVXsvPyBB53m6Fp1FIJP
+         lXvU+nbR8OXYgdFCEzwFX/BzylxhhrlREmmEOyGL92gWj7LIftmI3Rtdai+05AgdgDn8
+         aHN/jGFpdEL76q5TRB+kXr+F99/OOQv6oYOj7VU9xmr8x/gIuvv5FKilSv6G3s7K7yrp
+         zBaDDePQQYLTrEPLUQnghxxa2bTlPT9qThdNot4OC3KN2IDoO+okHc/jFp/RsSrzn9SV
+         G7QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722014113; x=1722618913;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wWES2bQT90aeNpHB9lBbGnFEyMSuVA3NqfH6hD88dJc=;
-        b=mio0CVyRMZA4Gbd/EkUVKBZiWabBhS6YTK+KzkfoBapcr8N9KAalLdf3S1DtcUWH7k
-         PNmTrLTXdjN/JgHj3S87qih0S2hqFH7wBgAEMZYEzpSa4XszaASfA92UMfzzjDibMXD7
-         Tq57V9eCbO6plaxSAytX6xrwsJTT1txd1M/2ybwel3dXouruKl4ifuvZi+fHMcJ61sOZ
-         ZUd2fvYe+GzH3Ujo/w9NJOF27H8c8H9I5j5MbyZPnZmSXKtgm6KudLXdw3Bh7tTxUhx9
-         Tnt3oYvbO3nDqSv/ggAtfXmsKWy8oSPhRISCM5e1wSSob7/20yhYzK6NS8pNRqenFozx
-         Wrcg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0qiUp/5tDM4nWIZkMg6ok++U1eJMkESH2KB1lPiqtDa8eyQEhng5ww+xPU8GaD41wt1PiJNlPBdel6xVootDm9YB18qC+5xX2uM5TTF+9KrKXp4klTlljGfCJV60ZhbVnI4N+KDVW2g==
-X-Gm-Message-State: AOJu0YyixKSeD4vbQURBsGHtjw/hoZgOhMRduKTM2WykyNdp1jJWc4RZ
-	vLU9iHGzptH8M/PdhRjIMjAf0YI7uNfQYNggayn+MNb/8/L5lkOe
-X-Google-Smtp-Source: AGHT+IGJg1vkK8mEH1oYikk12jQXh5IJ2w10jCagEsadDUeCGJRIDXEshIIM4ECEILPSh+aPCPnL3w==
-X-Received: by 2002:a17:90b:4c04:b0:2c4:aae7:e27 with SMTP id 98e67ed59e1d1-2cf7e1ff170mr172266a91.23.1722014113033;
-        Fri, 26 Jul 2024 10:15:13 -0700 (PDT)
-Received: from localhost.localdomain ([113.30.217.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cdb73ededcsm5718855a91.31.2024.07.26.10.15.09
+        d=1e100.net; s=20230601; t=1722009922; x=1722614722;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PvbEqWL5j+GN3Ik5CL00onvHz+Bz9PXQQigu5LQIRIw=;
+        b=pBSLB+COs6W0kjJFYJP9eDX816L2cFjA5U10VkPeNCGOrbB/nopUqctKOjAeN2T5+l
+         GDM2Xifg0kwE/VyXWV/ce1OO6sEvqnekV2xciJFF/E4HtusOuCR4rIwDxKlmw5GXeGsn
+         6rjm/FMeHcOZXoOg8ajBmU35wKFSUKnG6Jzh3nTGrFm4g/93B2bv3tpgXmoh2u6YLOsg
+         AR7GzgsQozrSR2br6d0ZXzrTfIIvnsAROvqWI8vF6f4bLPyeFoa8/G9KppNQDBHJvR7T
+         5hD3u4jCL5CZ6wZxOlEELzACPeF+AtKQXVFtVI3z39eQm7La/l+nbYCzG3NSaF4peqLd
+         UYnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVV3YENoYkSdbQWcXiSVdGliKErdOnXWESpxIr2f7Q0WoD+raaHCx8iFUGWZpcS+Tp+pjGNoChG4TzqV86kpkngcRkQtt67uj77A==
+X-Gm-Message-State: AOJu0YyBnFc9zgqHgK+lHp396eIQhxcFRktkwZKWjiW1/pm0Fj/Kl5B1
+	reBm/AVsSZfhT5/gliPI14HgN+uVBvJ0yN5lc3c4dAfEPuwNeRnTexVfARYSkpI=
+X-Google-Smtp-Source: AGHT+IFDWKbRtXGN12vbxH/YCBj69sr4LV9l4Sw5hPuRUYNe3O/XobimAvxVyMcYWga3N6RbHvbWGQ==
+X-Received: by 2002:a05:6870:7a11:b0:25d:e3d:b441 with SMTP id 586e51a60fabf-267d4ef4551mr207175fac.40.1722009922555;
+        Fri, 26 Jul 2024 09:05:22 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:dd1c:823c:f5e3:153f])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead8215b3sm2865594b3a.121.2024.07.26.09.05.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jul 2024 10:15:12 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh@kernel.org>,
+        Fri, 26 Jul 2024 09:05:21 -0700 (PDT)
+Date: Fri, 26 Jul 2024 09:05:19 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: dts: rockchip: Add missing pinctrl for PCIe20x1 node
-Date: Fri, 26 Jul 2024 16:30:46 +0530
-Message-ID: <20240726110050.3664-3-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240726110050.3664-1-linux.amoon@gmail.com>
-References: <20240726110050.3664-1-linux.amoon@gmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/1] Add basic SPI support on TH1520
+Message-ID: <ZqPJP+b7iqSajXI9@x1>
+References: <20240705093503.215787-1-kanakshilledar@gmail.com>
+ <ZqMdeTrV5GE0TVUV@x1>
+ <CAJM55Z9WFZJ=vyosx8LSUxBXs-Uftr76yKuWqGi7D_L+v1cKRw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z9WFZJ=vyosx8LSUxBXs-Uftr76yKuWqGi7D_L+v1cKRw@mail.gmail.com>
 
-Add missing pinctrl settings for PCIe 2.0 x1 clock request and wake
-signals. Each component of PCIe communication have the following control
-signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
-high-speed signals and communicate with other PCIe devices.
-Used by root complex to endpoint depending on the power state.
+On Fri, Jul 26, 2024 at 04:19:51AM -0400, Emil Renner Berthing wrote:
+> Drew Fustini wrote:
+> > On Fri, Jul 05, 2024 at 03:04:58PM +0530, Kanak Shilledar wrote:
+> > > Implemented basic SPI support for TH1520 SoC. There are two SPIs reserved
+> > > on the LicheePi4A, one on the SPI Flash pads that are blanked out on the
+> > > back, and one on the pins. I implemented the one connected to the pad.
+> > >
+> > > It is using a fixed clock of 396MHz. The address and clock frequency was
+> > > referenced from the TH1520 System Reference Manual [1].
+> > >
+> > > [...]
+> >
+> > Applied to thead-dt-for-next, thanks!
+> 
+> Hi Drew,
+> 
+> Are you sure you want to merge this patch? It adds another dummy clock for the
+> SPI, but the next kernel should have your clock driver that actually models the
+> SPI clock.
+> Also the clock driver says the SPI clock has a frequency of 792MHz, eg. double
+> of what this dummy clock is set to.
+> 
+> /Emil
 
-PERST is referred to as a fundamental reset. PERST should be held low
-until all the power rails in the system and the reference clock are stable.
-A transition from low to high in this signal usually indicates the
-beginning of link initialization.
+I am planning send updated dts patches for thead,th1520-clk-ap support
+that addresses your recent comment [1]. I'll include a patch to convert
+the SPI clock similar to the other dts patches in that series. Assuming
+there are no issues with that new series, I will apply them to
+thead-dt-for-next with enough testing time for them to be included in
+the 6.12 pull request to Arnd.
 
-WAKE signal is an active-low signal that is used to return the PCIe
-interface to an active state when in a low-power state.
+Thanks,
+Drew
 
-CLKREQ signal is also an active-low signal and is used to request the
-reference clock.
-
-Rename node from 'pcie2' to 'pcie20x1' to align with schematic
-nomenclature.
-
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-v4: rebase on master, used RK_FUNC_GPIO GPIO function instead of PIN
-number.
-V3: New patch.
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index eeae14842b71..813a28b8916e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -326,7 +326,7 @@ &pcie2x1l0 {
- 
- &pcie2x1l2 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pcie2_2_rst>;
-+	pinctrl-0 = <&pcie20x12_pins>;
- 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
- 	status = "okay";
-@@ -363,9 +363,15 @@ hp_detect: hp-detect {
- 		};
- 	};
- 
--	pcie2 {
--		pcie2_2_rst: pcie2-2-rst {
--			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+	pcie20x1 {
-+		pcie20x12_pins: pcie20x12-pins {
-+			rockchip,pins =
-+				/* PCIE20_1_2_CLKREQn_M1_L */
-+				<3 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>,
-+				/* PCIE_PERST_L */
-+				<3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>,
-+				/* PCIE20_1_2_WAKEn_M1_L */
-+				<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
- 
--- 
-2.44.0
-
+[1] https://lore.kernel.org/linux-riscv/CAJM55Z8uo-Z_9ruyqygK1pbBCTkCxMBVoF8GD2dajhTKOYrAfA@mail.gmail.com/
 
