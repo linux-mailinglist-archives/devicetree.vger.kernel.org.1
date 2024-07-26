@@ -1,189 +1,147 @@
-Return-Path: <devicetree+bounces-88276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A017693D0EA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 12:15:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC90C93D12D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 12:30:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B2C91F21294
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:15:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09F611C21A23
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E927E148FED;
-	Fri, 26 Jul 2024 10:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B781117994F;
+	Fri, 26 Jul 2024 10:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="d+8QF/5T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DwXKyr8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FCBC1C286;
-	Fri, 26 Jul 2024 10:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4224517966F;
+	Fri, 26 Jul 2024 10:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721988952; cv=none; b=r2lLovt7iaUf43Q6ENoDFGXiHrV3R3xpUnFPbIKER5ph3z9i4GhNBx/cORZ4jJKp2NiTPvMdjKN+ArDFWDrbcKppgEcZvBqgWKl96ieJSlWYRlonzd2AEVC5gnAj8dZEr6yWwI3cOHGRr7RAQLuXzPCj8HtDl7AZ6Wh4szcAlDU=
+	t=1721989753; cv=none; b=pTxPWU6BDrjG6fQklnYCahNfIuJ+dNQdV/PX56A9OEqtAS9w2ZPZdOZN470f5P0bVXSc1Wlsm4fdvDDd3r4Ew8GW3x1QRS+jikDZE0pL1Vm/vnXyZqXedCI9GeDUvqnyZY/X9Ke+jP1E+gFlO+YmGhgZU3WDvCXnIKEVZ+hTzms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721988952; c=relaxed/simple;
-	bh=GsrwJej6TWCTSRQ+vLfnhXQEv6mHn1d6GGyajkUrraA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OH90zIbcLGqXHTuP7aXDflGNlj3Uai3f63+BF1wkHPyXaPZetR7tLHlAxdYqBHkUsEQpc2vzqpfr2LvvXeAr1No95BjTqSiTa/h9uPVNLMf+5BzBiemQXUfA0I49oQAwfA0Fz9UCoIjUiNm5uvt5SYynsAX4NQXCe7hSYtwqi68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=d+8QF/5T; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46QAFIPC128435;
-	Fri, 26 Jul 2024 05:15:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1721988918;
-	bh=7+5UTq5JTc/Qq3k+J69YHkKoUs00J/g0Hh7qYT4IjYM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=d+8QF/5T8zvrUDvo3KMY48lCpWRXwO2TVw9XXDHOZn8PG6hv7SLaT+J7G31wmJHgF
-	 mCBxDJZn1ZMfDk87oQY1XVMv5Oqvbutc5gFbUrKW1Js6rdlDoxXAb5xahZMR5wBTUI
-	 YyWbp3B6JIz9MMzcZfzpMgO53a4keXdJXI81sygs=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46QAFIxj116069
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 26 Jul 2024 05:15:18 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
- Jul 2024 05:15:18 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 26 Jul 2024 05:15:18 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46QAFHfT059409;
-	Fri, 26 Jul 2024 05:15:17 -0500
-Date: Fri, 26 Jul 2024 15:45:16 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <lee@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
-        <vigneshr@ti.com>, <kishon@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH 3/3] PCI: j721e: Add support for enabling ACSPCIE PAD IO
- Buffer output
-Message-ID: <cacb88b1-cab6-4e8b-850a-0477d41f6e80@ti.com>
-References: <20240715120936.1150314-4-s-vadapalli@ti.com>
- <20240725211841.GA859405@bhelgaas>
+	s=arc-20240116; t=1721989753; c=relaxed/simple;
+	bh=S8ZOFlqmcgPcpi9udVpIP3DnsEMtZDW/eFoHOzRFOjM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WTNhREMfdckNgpg8QFbhNhgNkM6Vh9rhUsC9R2DKW56Ip0F/zV+Aksh9wEn8+NFqADkfZKGNKJkuW45jDFQz8/HBw31kZchmsCYDHGBhSlCpLitljIPTmVikHBUEqccHAr0RKoBNeK3J1ofZQlCTk7PeYVUsIn/7i7EK/W5u4gM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DwXKyr8i; arc=none smtp.client-ip=209.85.167.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3db18102406so546898b6e.1;
+        Fri, 26 Jul 2024 03:29:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721989751; x=1722594551; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=taoLvNSxvJvDSIyoezhhEapktK4CQP/qTkZDErUBC00=;
+        b=DwXKyr8i6UGspsT2u48k5y8BmqDgaG0DkRA1WWAoy40kVPKXA6c6JxxT88NczHfpaN
+         blta1QHWYlVGYmMrXx/ylLGrsznGJnIH3MUp/apTML+emHQAwsRVBFlXIxExY/pvgbo4
+         2wCm03GPTFbu9qSEBQ2W/Rj+A07AxvvvLLCXF0Kv6eNUhupaXXPjpel0cLCwMvstULXk
+         TZWLkhIu0A5JwSbkcZpsBj02RQXc4Kz31weO4aJHl+lvCZFW9MHPSFbeqDujaovWYMyJ
+         hWowd4h8MOARc+Z2nyFb+yYbmTg5w5rGqO4SM5SVipB4Bl7Y2KwX43AxJwFJnuXNwI91
+         4k4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721989751; x=1722594551;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=taoLvNSxvJvDSIyoezhhEapktK4CQP/qTkZDErUBC00=;
+        b=Ok7jfawb6XHuAQF5I9qGMtQIiBdVb8X5jVfmbXobPJ5LjBIbh+Q54Nxeag1x1kQbgL
+         /hQuNeNHzYPjDqmWJrsOmT2OTW/8S+R/z60TSpnme/pHkxuz0BqsVrpnAlDqKZftu7L8
+         JFJ08MQf9XtA+1DGdIWb7PbAz8j1GDlAFGJ41prBiPUKYHhyzWidzPt9jAQwmJrRQ2nq
+         4xlp01wMoBg8qmEKun29YFvS3wQwayTibXcbCgge+WI/deoGegsN7CHT/s2Uxk4dLBZo
+         O2DMkQHWb8krW9KddVkOX+n2jPlBSIK7eAuXk2TraOt1ksf2dMUxEoBwCCKGIQxZ9TPI
+         uSnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFvRZdp3d+73b47JgPyp0kjNvvRzmIuaciL1b81s6JpNIKSN2D22SvzByer32LWLGNvUbZlEuWTVt1CPdxmhWEagkrX2vmllWBz3P4
+X-Gm-Message-State: AOJu0Yy4eauZPEJ0jyrRCHuaE98OPtOLpcWUZVusWX+XCglHk60isVzE
+	nwSL/bxmYwfw76K3sdJcrcZ+SWUOUs+8RjIXEETMoM7etM4TE2JD
+X-Google-Smtp-Source: AGHT+IG+DdKxRpU/fq6Ap6ktwC6YKBP8zhxIdBKlVK/dF6FJRoOcQcCcLikI4ou0llcy9suJ13nImA==
+X-Received: by 2002:a05:6808:2003:b0:3d9:244b:b9d3 with SMTP id 5614622812f47-3db140a4921mr5310951b6e.23.1721989751139;
+        Fri, 26 Jul 2024 03:29:11 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead8116a4sm2406545b3a.130.2024.07.26.03.29.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jul 2024 03:29:10 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v5 0/2] Add Meta(Facebook) Catalina BMC(AST2600)
+Date: Fri, 26 Jul 2024 18:26:48 +0800
+Message-Id: <20240726-potin-catalina-dts-v5-0-8f02305af527@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240725211841.GA859405@bhelgaas>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOl5o2YC/4XNSw6CMBCA4auQrq3BPni48h7GxdAOMAlQ0hKiI
+ dzdwooYo8t/MvPNwgJ6wsCuycI8zhTIDTH0KWGmhaFBTjY2E6lQaS4UH91EAzcwQUcDcDsFXlu
+ 4IEhR5tWFxcPRY03PHb0/YrcUJudf+49ZbNOf3Cx4yisorMq1iVvy1vRA3dm4nm3cLI+E/krIS
+ EjQlbYlZrYyn4T6T6hIAGS1kBoE5sWRWNf1DbDDNHE6AQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Potin Lai <potin.lai.pt@gmail.com>, Cosmo Chou <cosmo.chou@quantatw.com>, 
+ Potin Lai <potin.lai@quantatw.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1721989748; l=1681;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=S8ZOFlqmcgPcpi9udVpIP3DnsEMtZDW/eFoHOzRFOjM=;
+ b=7+JQIry5FaNhIM8qrgeiO9DO1/O3ekdaSP3aOVavYM+XGLff1kurGft6IBruHlbOCIcOXRIoE
+ NaVkNb81cyHAZQaeb6Q5sv9BvFv2xnbtWP4eGpdn2lzOv0K58TrW6Vg
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-On Thu, Jul 25, 2024 at 04:18:41PM -0500, Bjorn Helgaas wrote:
+Add Linux device tree entry related to Meta(Facebook) Catalina specific
+devices connected to BMC(AST2600) SoC.
 
-Hello Bjorn,
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Changes in v5:
+- fix spi1_gpio node name and properties
+- remove undefind properties in mac3, i2c7 & i2c11
+- Link to v4: https://lore.kernel.org/r/20240725-potin-catalina-dts-v4-0-aa6f235a2e78@gmail.com
 
-> On Mon, Jul 15, 2024 at 05:39:36PM +0530, Siddharth Vadapalli wrote:
-> > The ACSPCIE module is capable of driving the reference clock required by
-> > the PCIe Endpoint device. It is an alternative to on-board and external
-> > reference clock generators. Enabling the output from the ACSPCIE module's
-> > PAD IO Buffers requires clearing the "PAD IO disable" bits of the
-> > ACSPCIE_PROXY_CTRL register in the CTRL_MMR register space.
-> 
-> And I guess this patch actually *does* enable the ACSPCIE PAD IO
-> Buffer output?
-> 
-> This commit log tells me what is *required* to enable the output, but
-> it doesn't actually say whether the patch *does* enable the output.
-> 
-> Similarly, if this patch enables ACSPCIE PAD IO Buffer output, I would
-> make the subject be:
-> 
->   PCI: j721e: Enable ACSPCIE Refclk output when DT property is present
+Changes in v4:
+- change back io_expanderX due to parser error, build passed in v4 version.
+- Link to v3: https://lore.kernel.org/r/20240725-potin-catalina-dts-v3-0-3a5b5d9e6dbc@gmail.com
 
-I will update the commit message and the $subject to clearly indicate
-that the patch enables the reference clock output from the ACSPCIE module.
+Changes in v3:
+- rename tmp75 nodes to temperature-sensor
+- rename tmp421 nodes to temperature-sensor
+- rename ina230 nodes to power-sensor
+- rename io_expanderX nodes to io-expanderX
+- Link to v2: https://lore.kernel.org/r/20240724-potin-catalina-dts-v2-0-ba8d475c4073@gmail.com
 
-> 
-> > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > ---
-> >  drivers/pci/controller/cadence/pci-j721e.c | 33 ++++++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> > 
-> > diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-> > index 85718246016b..2fa0eff68a8a 100644
-> > --- a/drivers/pci/controller/cadence/pci-j721e.c
-> > +++ b/drivers/pci/controller/cadence/pci-j721e.c
+Changes in v2:
+- drop commented code in dts
+- rename i2c-mux channel nodes as i2c1muxXchY
+- rename gpio expander as io_expanderX
+- use "stdout-path" instead of "bootargs"
+- Link to v1: https://lore.kernel.org/all/20240722145857.2131100-1-potin.lai.pt@gmail.com/
 
-[...]
+---
+Potin Lai (2):
+      dt-bindings: arm: aspeed: add Meta Catalina board
+      ARM: dts: aspeed: catalina: add Meta Catalina BMC
 
-> > +
-> > +	ret = of_parse_phandle_with_fixed_args(node, "ti,syscon-acspcie-proxy-ctrl",
-> > +					       1, 0, &args);
-> > +	if (!ret) {
-> > +		/* PAD Enable Bits have to be cleared to in order to enable output */
-> 
-> Most of this file fits in 80 columns (printf strings are an exception
-> so they're easier to find with grep).  It'd be nice if your new code
-> and comments fit in 80 columns as well.
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 1016 ++++++++++++++++++++
+ 3 files changed, 1018 insertions(+)
+---
+base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
+change-id: 20240724-potin-catalina-dts-fda1ea3297b1
 
-I will wrap the lines to the 80 character limit.
+Best regards,
+-- 
+Potin Lai <potin.lai.pt@gmail.com>
 
-> 
-> An easy fix for the comment would be:
-> 
->   /* Clear PAD Enable bits to enable output */
-> 
-> Although it sounds non-sensical to *clear* enable bits to enable
-> something, and the commit log talks about clearing PAD IO *disable*
-> bits, so maybe you meant this instead?
-> 
->   /* Clear PAD IO disable bits to enable output */
-
-Thank you for the suggestion. This is much better and I will update the
-comment.
-
-> 
-> If the logical operation here is to enable driving Refclk, I think the
-> function name and error messages might be more informative if they
-> mentioned "refclk" instead of "PAD".
-
-While the Hardware terminology is "PAD", looking at it again, I agree
-that using "refclk" will be a better choice for describing the objective
-of the function, as well as the outcome in case of a failure.
-
-> 
-> > +		val = ~(args.args[0]);
-> > +		ret = regmap_update_bits(syscon, 0, mask, val);
-> > +		if (ret)
-> > +			dev_err(dev, "Enabling ACSPCIE PAD output failed: %d\n", ret);
-> > +	} else {
-> > +		dev_err(dev, "ti,syscon-acspcie-proxy-ctrl has invalid parameters\n");
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
-> >  {
-> >  	struct device *dev = pcie->cdns_pcie->dev;
-> > @@ -259,6 +284,14 @@ static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
-> >  		return ret;
-> >  	}
-> >  
-> > +	/* Enable ACSPCIe PAD IO Buffers if the optional property exists */
-> 
-> Is the canonical name "ACSPCIE" or "ACSPCIe"?  You used "ACSPCIE"
-> above?
-
-It is "ACSPCIE" and I have mentioned it that way consistently at all
-places including the dt-bindings patches but have accidentally written
-"ACSPCIe" above. I will fix this.
-
-Thank you for reviewing this patch.
-
-Regards,
-Siddharth.
 
