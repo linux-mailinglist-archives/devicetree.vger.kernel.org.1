@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA33593D04C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:17:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F0493D053
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 389C31F212AC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 09:17:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1F2AB20F93
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 09:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EF32B9B8;
-	Fri, 26 Jul 2024 09:17:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832C017334E;
+	Fri, 26 Jul 2024 09:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LlD5A7Q1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0d2+CaX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043CB6116;
-	Fri, 26 Jul 2024 09:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C098174E;
+	Fri, 26 Jul 2024 09:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721985452; cv=none; b=GnwFMa6GXhv5or9t0KX4NeHcv1ftPZdaQBrVGtn2OC0e9iHLfvN87MwuU0Qf1zflCwCqvy2OKvWITQRGcN8CbsWpEsbEQTQy2p1/BtDl8PxIpiyROFUWTP+Vd8NM7qxYJmrWNf4+MxHLIHUNsHJgfwnXX72Wp+m1deIJNeWWMIY=
+	t=1721985563; cv=none; b=EiujpkpAr8xILhoGJOxIhece1sKe8OmF3ekhnbeT5au9V9ZedTcxypRC8W2a9RwFeRdS5FsSTOHi36ln951h5+SItUC3/qQGQYZybQ9QvtJVV9XAke63bzD4OtEtjTBaKcWeVgzDH0UZ4vRuD2B31aBoftCjESYI9RtYMPzJ6GU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721985452; c=relaxed/simple;
-	bh=H2WROqdCLK9+mpQiRDwGhcjkbpvPkEWbYa5HanKsIUQ=;
+	s=arc-20240116; t=1721985563; c=relaxed/simple;
+	bh=tMi0zgrFMpPuBV9tMsXKq38gTeYqBlk4gkAooZNByMQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QWUmyYzdoMOB+DCouhPbNWp+vFRHhgVup2eapcA+bzuMx51mnI5SC8r2oeAlYpNgX726jgNFUzgf5OkGJ8437dARCA6P0F2QjNXOeycJygr02GEKC9MxQnRCPC8/EGEDkisqLHjaa+UFOEwiCWoNyPnRXaHoSP61nMjO1l1MN0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LlD5A7Q1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5739C32782;
-	Fri, 26 Jul 2024 09:17:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tk+PVqLfcDiVs03EQ95GQUv3LHas3D1H5X3tx358jKZW31WFvWIRq6bhPT6Pc6nLublAqUE6XnCpXYJqhqUY/pTRQiB7uwYsuvKpZhdiFUEZ3CQk3xiUPGoCUg8mtT5iZREKqRwjAW4Gb7RmlI/BXCfRzQVBhXKhMBNanrAofC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0d2+CaX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6FE1C32782;
+	Fri, 26 Jul 2024 09:19:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721985451;
-	bh=H2WROqdCLK9+mpQiRDwGhcjkbpvPkEWbYa5HanKsIUQ=;
+	s=k20201202; t=1721985563;
+	bh=tMi0zgrFMpPuBV9tMsXKq38gTeYqBlk4gkAooZNByMQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LlD5A7Q14JrMmT9kjpRM3CAnt4FhIT5tW7CrScq15opJxwJTiB9aHIKntW/GVvf2M
-	 gp4GfPFnfPPcM4BRoWRnob81wDgHFKPA+kHY9kn0K4xv+3z0Lb58SeWN1gOz42BFFf
-	 LpHjHfZWABTTfU6DX4x1BMEJfOpRtLnZ5Ns2xpRsbcnsyDo97OtSq/UFnIXY8aqF2i
-	 0yM8RaCNalCEg0AEaswBbZchjbWxAKyRRQFZBdj6515dnV13i9DOC6jVSNXQEZ4Z4e
-	 aXYEaWBGKHiGzA1isEY6vT663jC0kgnIs750xPP6c82wW36DGksu/OGBt6Vtv5/pzl
-	 gk2jKerRpsNpQ==
-Message-ID: <8c608d74-3c5b-4127-b4af-a91a5d6b82ea@kernel.org>
-Date: Fri, 26 Jul 2024 11:17:25 +0200
+	b=Z0d2+CaXqpcgY/qKxO4r8zT0cguOQK8rctC3XSCYroSY6aJqFiDrs1gQpdx68XTd5
+	 rqaDHk+1sdfmFKFVrdy4tTfEBhsmP+SvR4/sSkvuzkIY2qFDGfFy1J3VXGiXWTy2bY
+	 hyViXo7x48g/b06dj8lnO9ppKWkAUMANWdvQB4qpZ/SEYVHr1dh6yOrTij1/wU80At
+	 aExo4vEUFZaRVKk51HshkGctPkWA7ZYsKu0KwvB8+DRvdk7AEK0YpuxEpAtqzZV5Jz
+	 6pw1gXMrAXHdd1HwiEYXHQyL8Qqy3mMQZctQxjxyYxD64tO9SpND/s32Y56/KDR4z1
+	 iPJBPeJKEd7iQ==
+Message-ID: <ff922cad-0e0a-4ab7-981b-62ac60ff2d26@kernel.org>
+Date: Fri, 26 Jul 2024 11:19:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: watchdog: ti,davinci-wdt: convert to
- dtschema
-To: Kousik Sanagavarapu <five231003@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240725153711.16101-1-five231003@gmail.com>
- <20240725153711.16101-3-five231003@gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: Add phyBOARD-Pollux dts for rpmsg
+To: Yashwanth Varakala <y.varakala@phytec.de>, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ upstream@lists.phytec.de
+References: <20240725094457.37739-1-y.varakala@phytec.de>
+ <20240725094457.37739-4-y.varakala@phytec.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,60 +104,93 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240725153711.16101-3-five231003@gmail.com>
+In-Reply-To: <20240725094457.37739-4-y.varakala@phytec.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/07/2024 17:03, Kousik Sanagavarapu wrote:
-> Convert txt bindings of TI's DaVinci/Keystone Watchdog Timer Controller
-> to dtschema to allow for validation.
+On 25/07/2024 11:44, Yashwanth Varakala wrote:
+> Adds a devicetree containing reserved memory regions used for intercore
+> communication between A53 and M7 cores.
 > 
-> While at it, change the order of the compatibles w.r.t. the txt binding
-> to stay in sync with the existing DTS.
-
-... and add power-domains property, because it is used somwhere?
-
-> 
-> Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
+> Signed-off-by: Yashwanth Varakala <y.varakala@phytec.de>
 > ---
->  .../bindings/watchdog/davinci-wdt.txt         | 24 ---------
->  .../bindings/watchdog/ti,davinci-wdt.yaml     | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+>  arch/arm64/boot/dts/freescale/Makefile        |  2 +
+>  .../dts/freescale/imx8mp-phycore-rpmsg.dtso   | 57 +++++++++++++++++++
+>  2 files changed, 59 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt b/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-> deleted file mode 100644
-> index aa10b8ec36e2..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
-> -
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index dedea4b5c319..80cc87d50301 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -177,9 +177,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+>  imx8mp-phyboard-pollux-rdk-no-eth-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-eth.dtbo
+>  imx8mp-phyboard-pollux-rdk-no-rtc-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-rtc.dtbo
+>  imx8mp-phyboard-pollux-rdk-no-spiflash-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-spiflash.dtbo
+> +imx8mp-phyboard-pollux-rdk-rpmsg-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-rpmsg.dtbo
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-eth.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-rtc.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-spiflash.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-rpmsg.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso b/arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
+> new file mode 100644
+> index 000000000000..a5694f3aecaa
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
+> @@ -0,0 +1,57 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2024 PHYTEC Messtechnik GmbH
+> + * Author: Dominik Haller <d.haller@phytec.de>
+> + * 	   Cem Tenruh <c.tenruh@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/clock/imx8mp-clock.h>
+> +
+> +&{/} {
+> +	imx8mp-cm7 {
 
-...
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-> +  - Kousik Sanagavarapu <five231003@gmail.com>
-> +
-> +description: |
-> +  TI's Watchdog Timer Controller for DaVinci and Keystone Processors.
-> +
-> +  Datasheets
-> +
-> +    Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-> +    Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: ti,keystone-wdt
-> +      - const: ti,davinci-wdt
 
-Validate the DTS - you will see this is wrong. You miss davinci standing
-alone (so oneOf).
+> +		compatible = "fsl,imx8mn-cm7";
+> +		clocks = <&clk IMX8MP_CLK_M7_DIV>;
+> +		mboxes = <&mu 0 1
+> +			&mu 1 1
+> +			&mu 3 1>;
+
+That's one or there entries? look wrong.
+
+> +		mbox-names = "tx", "rx", "rxdb";
+> +		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>, <&rsc_table>;
+> +		rsc-da = <0x55000000>;
+> +		status = "okay";
+
+Why? Did you disable it anywhere? You add a new node.
+
+> +	};
+> +
+> +	reserved-memory {
+> +		ranges;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		m7_reserved: m7@0x80000000 {
+> +			no-map;
+> +			reg = <0 0x80000000 0 0x1000000>;
+> +		};
+> +
+> +		rsc_table: rsc_table@550ff000 {
+
+Please follow DTS coding style... This applies to all your contributions.
 
 Best regards,
 Krzysztof
