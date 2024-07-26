@@ -1,351 +1,209 @@
-Return-Path: <devicetree+bounces-88254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C7993CE2C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:31:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F2593CE3C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:38:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC7291C2101B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 06:31:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48219B20F3B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 06:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC1A39AEC;
-	Fri, 26 Jul 2024 06:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77998176223;
+	Fri, 26 Jul 2024 06:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="CR1IKsu/"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="z4KCQkBs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2066.outbound.protection.outlook.com [40.107.237.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBCB200C7;
-	Fri, 26 Jul 2024 06:31:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721975513; cv=none; b=QMYsmKMeLKMlHCnw4w2z1GLGuJGKKfR08rpCKkQc0BP3w/mU0vHMBvyaZN+kfwkAgXp79qV9bxaWZfIGuqJaYUNcjweh5pAqzettcLEBkZFqH2I6I6WbSirLPAk7JcstoRkJ68E6qTvSA8MeU5vdzkTOcow8FhCHJJJkUU+RvqM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721975513; c=relaxed/simple;
-	bh=axhGOFdqqCBo8dDjNu2JRchxwLfhoR4uqBdBIO9ONGc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=oGQxL2y+xFm2/PoyKddcPetfxkcjqaEVGcKlOwbRp9G26CVF8Hjbs+apWmRwLGOX7PxgmkI7cudzxo+NepTHuxsgFaAif8Ztzt5RMTLzOmFvcaY9V/B+5ZBH37dLVLyj/gl/lhi/bdnH0gtOmqYpKyh1QNbBfI2G+ge+m3qyS6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=CR1IKsu/; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1721975509;
-	bh=earu/kNf/I1qFPh3Js71T6jdXWVx5Bck8YzltMtP5UQ=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=CR1IKsu/ut3uUULW5zuaSarGS+UgcnV92ORPh6x6DWp1BClT/PPjryA4ljhPTzNnD
-	 3Ni50/x1IUBJdQ2hpUCKd1AxkkcG4+oJeXyoROIP38xLiNTDjcbRv96q1Fw7UVc/uN
-	 XbSAk6eFTxE7wjCXZmiyNmOklqV88O9/n3KINrIHs977o4I8rqpg9UgAFSsbRsRvze
-	 YxDqK83kqInkLxJY67qmL4mz4pTyjwOvv42o2GiLV4LsNarOYsatV5jUtHyeJam92P
-	 01RJkbzQJo5a0cUNEkgQFqLWXSFk0RMj78XsaQUeTKbl9iHrHhHjIm52gAFpS1Nenh
-	 RKraWFtQXJyiA==
-Received: from [192.168.68.112] (unknown [118.211.93.69])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7F9EB66AB4;
-	Fri, 26 Jul 2024 14:31:48 +0800 (AWST)
-Message-ID: <369ecaebb51307cee2c2f2c3a9c56fff3b235db8.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2] ARM: dts: aspeed: Add IEISystems NF5280M7 BMC machine
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: George Liu <liuxiwei1013@gmail.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, openbmc@lists.ozlabs.org, 
- robh+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- joel@jms.id.au,  krzysztof.kozlowski+dt@linaro.org,
- linux-aspeed@lists.ozlabs.org,  conor+dt@kernel.org
-Date: Fri, 26 Jul 2024 16:01:46 +0930
-In-Reply-To: <172044909462.3146303.7635761790191924717.robh@kernel.org>
-References: <20240708062316.208383-1-liuxiwei@ieisystem.com>
-	 <172044909462.3146303.7635761790191924717.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95187208DA;
+	Fri, 26 Jul 2024 06:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721975913; cv=fail; b=ma6kTbOXYGMFjjs4BYNq72fHTaY/6ua3w0sIxTDc3Huz9TpXkJSn5fD9zBn3YNB8KD9EMErBC6pS+sn59uV1MsWaLR9VENUrjZR3DTeXGo56BqZqFthLMTI2vLzdpNhhsxojf5+XTHUxn3Hzhl980bayZgAki0OvM4fIiSb3dx8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721975913; c=relaxed/simple;
+	bh=TT6rmYnZ2bz54K2pN1HCrBYH+dh0DR0PY01SwABjH7c=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MfpAiczoAke6fQWHfEJciBIoE9Rryw6hu0JXP2Ao+Jy0KYOv6/lNljlbun/osmpVJsYEWC3sujaxTpYfg1E3HZV+EiiIDLTLevh31LdmG6Jb1Yp/odeyTHGCK+WqEVAKVrwlv2YNaciAu8spN6I+Xf1RKAU/A6Rj79aBo2Eog+E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=z4KCQkBs; arc=fail smtp.client-ip=40.107.237.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yf+VGWqVN/v9TDazcps/nonBB0ClkpQIk85pCIvchQ4goukoNcHFWQgMqadFjaUEWVfKtsX2ydOKAxOs3bbmCPDR68IsexlYjuYq765Mll7cKmjVk3w6vpcubRZ6Rh4Wf6jKLTyRJUzMOeg5kJLaIty4W3ViW2EtGvg62GV3TXIXFCvpYt6k2atta25N6kxoInsCdV/zN2cPLBw6GCymS1Bh1tpMKeoPIhGDDDWfv7ue+kG/8ypF9+KUK6sE96K1YjTQZy+E80GJ9bWnqMZetVlMwXAHLKjGy7md/jqMLIhVvN6/NgAtq33+aHB+FrAXjQKVTRJClNV+PA79dCT0UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=685BShBWpl3qz6d8NVHNDjdSlgSkpQpZ2AggbHHAcyM=;
+ b=jo4uQQfnBXo/svPlfuCkwt7kEZi9SHLwjSxE8Q24avP6yh+4z21kJX0/JdfdjFKKH4SgqhRs1Qk+ndRsglceeU6swSVy2+m1aUFbysyDlFSOdun8HjdWt2S4A9gGyqSciRvGpC+MEKPfQ/fPZRD0o/SPL5UVT+r3rJtL3gkSrdC0TdAj7zhvUc3Npi1Wqxbp4xHjgA8aQSfGE8QJdXRHWWdeaqCIjLiE7NOwsO8+7+P4c3H5Gruk/FAD1Sx9cltulbomzQ2eysLMFB9hmcM44lbUdtLi45spafGLqs1pCDi+e4bq93/D1jkb7QOSqShh7fBSdT6PwCfjDmUg7TfTYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=685BShBWpl3qz6d8NVHNDjdSlgSkpQpZ2AggbHHAcyM=;
+ b=z4KCQkBsEnAeOsjLaHUN9EdbfSCS7EFJR8CPx5zuLhRLPVlqt2QHVHPXVDl5Ed0o6Ye30nJ/8fUAZNFt47fC5MFWDdS/7EDiI3wpSz9dmUBB7o928c+vgbx2FqTCjkyEw8iyJvys1Klu0OK2V/AqZ/q8Wf9xgtPmviYgPVhRcOQ=
+Received: from BN1PR13CA0008.namprd13.prod.outlook.com (2603:10b6:408:e2::13)
+ by DM4PR12MB6279.namprd12.prod.outlook.com (2603:10b6:8:a3::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.28; Fri, 26 Jul
+ 2024 06:38:29 +0000
+Received: from BN1PEPF0000468B.namprd05.prod.outlook.com
+ (2603:10b6:408:e2:cafe::c5) by BN1PR13CA0008.outlook.office365.com
+ (2603:10b6:408:e2::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20 via Frontend
+ Transport; Fri, 26 Jul 2024 06:38:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN1PEPF0000468B.mail.protection.outlook.com (10.167.243.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7784.11 via Frontend Transport; Fri, 26 Jul 2024 06:38:28 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 26 Jul
+ 2024 01:38:21 -0500
+From: Nava kishore Manne <nava.kishore.manne@amd.com>
+To: <git@amd.com>, <mdf@kernel.org>, <hao.wu@intel.com>, <yilun.xu@intel.com>,
+	<trix@redhat.com>, <robh@kernel.org>, <saravanak@google.com>,
+	<linux-fpga@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [RFC 0/1]Add user space interaction for FPGA programming
+Date: Fri, 26 Jul 2024 12:08:18 +0530
+Message-ID: <20240726063819.2274324-1-nava.kishore.manne@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468B:EE_|DM4PR12MB6279:EE_
+X-MS-Office365-Filtering-Correlation-Id: 217018b3-bbfe-4e83-0d44-08dcad3d8f26
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?l8RlPwIxqhNYDB/xZTu+jmFBh2kEpJTMJWDFRhgS7NFOe/iP345kpta4PqrW?=
+ =?us-ascii?Q?hBsz+nMcr55HwsKr76sGCZ/Re7MT3E7MK/5f4PYN8m7NRLq3qSydr/yhPmeK?=
+ =?us-ascii?Q?NoeGtlvJliWfcHCDGWRVMQx0vMhXtmeLRvvlJPU8dtFgJuSc50ZIgTLhSOsA?=
+ =?us-ascii?Q?HVb0mMvy5RFGge1O0VXljsgjUrcfzyJJvzoT7ofo5aF4lnvjh5zdLt1s9lSX?=
+ =?us-ascii?Q?5fvOKwh7ntMhCRDe4gkM340Z63sAT1NPJnvNsJ6/Lh65m2Q52eWfgponQ4VR?=
+ =?us-ascii?Q?sgW7NDnKM14ZniH0OsDJKKFskzb5J98x50wZgX8z8IwCQ7nx0OnR2TeXkH1K?=
+ =?us-ascii?Q?nL2AngH+iHvP8xuYrKiot9UglLVlUTLo14wDPrFgv1BOSCE7c15/pmlBleil?=
+ =?us-ascii?Q?NVTlzBzUXqihXreTj8IpzpTOZ/IXR1SC/3GWn7jbMsSMRgh7uC925IviNHGC?=
+ =?us-ascii?Q?0P5CU8wXGMcwwzfa9xM8PYRTAx3Ctl2H26V/RsbRQHCLw94LtniXaL2EJ0BU?=
+ =?us-ascii?Q?qG7HMNglP8s7iN/4vSHGRdtf/oToHO2QB29O0rJWWf6Z1CT91J2uRmOVl4cy?=
+ =?us-ascii?Q?rEcHduJpEuzra8h/bqby5pzZEDfSLks0bndy1O4UuzN54WllgL10SUNyJ7mF?=
+ =?us-ascii?Q?+dlITkEmpvk53a06Aelzzkgh3P/LrZ/fDZiiYttos2KOpJnJyfFVn2TSifXQ?=
+ =?us-ascii?Q?fZ8tJpqb/5JSfrSvRB+SqyvIyHCpXNP8fhHtJ2FbGZgaTRPzyzWkVM8q73VB?=
+ =?us-ascii?Q?+ScpMKuXAI1PguqyM8cbkRqh0U4z/qq958mzPZuTqaBaOQItP7V4BxR/y3yA?=
+ =?us-ascii?Q?OM5BF1w3OWPL62MYn1zR8gha/W/Q2S+HBsjIp+as27Wdj8xHIoHI2Qe5bkqX?=
+ =?us-ascii?Q?YGUuoTTUkXC4JtGfhOFwA+Nw068E7Nr9d/lYMyHEq60UmB345iypqk4QvUcs?=
+ =?us-ascii?Q?gzKXVIAYJWh7ZEI2wVk9u3h9LXBQpm1ztgGWAtV0wXunhyjKiDBTMtKPs0Y4?=
+ =?us-ascii?Q?qMpG1Gcyg8UN2gpCmD7wiokoMl3VST1/Pv44uSqJtW+5MYrp2ptApJSeyl6q?=
+ =?us-ascii?Q?I1CsKLqZQHXJbyQ71eMynL1WdUUUJlGDee29wharyOnuq37ZcGxElc0M+Aet?=
+ =?us-ascii?Q?+5JLBZVdVyk9vNLBZl//k/OHhTvZ5ds8U2TO3EEliklwx2n6vhgRI8fAHDq/?=
+ =?us-ascii?Q?1HUOZ67WLHyedb0AaHunaWzMk9RIN44IX3b0O0C5NBB0AwXq++GTWUzAx+HM?=
+ =?us-ascii?Q?lw2kSZw7mF1qrtEKy6a38TG17DLAKAt5A78Fs7pFZ8ewDyW8C0S6LPfCehJS?=
+ =?us-ascii?Q?wWAfac8NkC3dzxV8mdovGCPCZgEXzAmR85WkIoo2cGiulxulftOJsO4lc8nP?=
+ =?us-ascii?Q?FjvB/kL7LrNQ/489xWGpKzcbtz8Nr8WQS46dBnQ6+CjtC4unSw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 06:38:28.3513
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 217018b3-bbfe-4e83-0d44-08dcad3d8f26
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN1PEPF0000468B.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6279
 
-Hi George,
+The existing FPGA manager subsystem didn't have any user space interface
+(other than the status/state in sysfs) in Kernel. Basically, FPGAs are
+semiconductor devices that can be reprogrammed for desired hardware
+functionality.
 
-On Mon, 2024-07-08 at 08:34 -0600, Rob Herring (Arm) wrote:
-> On Mon, 08 Jul 2024 14:23:16 +0800, George Liu wrote:
-> > The IEISystems NF5280M7 is an x86 platform server with an
-> > AST2600-based BMC.
-> > This dts file provides a basic configuration for its OpenBMC
-> > development.
-> >=20
-> > Signed-off-by: George Liu <liuxiwei@ieisystem.com>
-> > ---
-> >  arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> >  .../aspeed/aspeed-bmc-ieisystems-nf5280m7.dts | 697 ++++++++++++++++++
-> >  2 files changed, 698 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf52=
-80m7.dts
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->=20
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->=20
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->=20
->   pip3 install dtschema --upgrade
->=20
->=20
-> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ieisystems-nf=
-5280m7.dtb' for 20240708062316.208383-1-liuxiwei@ieisystem.com:
->=20
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts:169.3-16: War=
-ning (reg_format): /ahb/apb/peci-controller@1e78b000/peci-client@30:reg: pr=
-operty has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =
-=3D=3D 1)
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts:174.3-16: War=
-ning (reg_format): /ahb/apb/peci-controller@1e78b000/peci-client@31:reg: pr=
-operty has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =
-=3D=3D 1)
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: Warning (pci=
-_device_reg): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: Warning (pci=
-_device_bus_num): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: Warning (i2c=
-_bus_reg): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: Warning (spi=
-_bus_reg): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts:167.17-170.4:=
- Warning (avoid_default_addr_size): /ahb/apb/peci-controller@1e78b000/peci-=
-client@30: Relying on default #address-cells value
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts:167.17-170.4:=
- Warning (avoid_default_addr_size): /ahb/apb/peci-controller@1e78b000/peci-=
-client@30: Relying on default #size-cells value
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts:172.17-175.4:=
- Warning (avoid_default_addr_size): /ahb/apb/peci-controller@1e78b000/peci-=
-client@31: Relying on default #address-cells value
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts:172.17-175.4:=
- Warning (avoid_default_addr_size): /ahb/apb/peci-controller@1e78b000/peci-=
-client@31: Relying on default #size-cells value
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /: compatibl=
-e: 'oneOf' conditional failed, one must be fixed:
-> 	'ieisystems,nf5280m7-bmc' is not one of ['delta,ahe50dc-bmc', 'facebook,=
-galaxy100-bmc', 'facebook,wedge100-bmc', 'facebook,wedge40-bmc', 'microsoft=
-,olympus-bmc', 'quanta,q71l-bmc', 'tyan,palmetto-bmc', 'yadro,vesnin-bmc']
-> 	'ieisystems,nf5280m7-bmc' is not one of ['amd,daytonax-bmc', 'amd,ethano=
-lx-bmc', 'ampere,mtjade-bmc', 'aspeed,ast2500-evb', 'asrock,e3c246d4i-bmc',=
- 'asrock,e3c256d4i-bmc', 'asrock,romed8hm3-bmc', 'asrock,spc621d8hm3-bmc', =
-'asrock,x570d4u-bmc', 'bytedance,g220a-bmc', 'facebook,cmm-bmc', 'facebook,=
-minipack-bmc', 'facebook,tiogapass-bmc', 'facebook,yamp-bmc', 'facebook,yos=
-emitev2-bmc', 'facebook,wedge400-bmc', 'hxt,stardragon4800-rep2-bmc', 'ibm,=
-mihawk-bmc', 'ibm,mowgli-bmc', 'ibm,romulus-bmc', 'ibm,swift-bmc', 'ibm,wit=
-herspoon-bmc', 'ingrasys,zaius-bmc', 'inspur,fp5280g2-bmc', 'inspur,nf5280m=
-6-bmc', 'inspur,on5263m5-bmc', 'intel,s2600wf-bmc', 'inventec,lanyang-bmc',=
- 'lenovo,hr630-bmc', 'lenovo,hr855xg2-bmc', 'portwell,neptune-bmc', 'qcom,c=
-entriq2400-rep-bmc', 'supermicro,x11spi-bmc', 'tyan,s7106-bmc', 'tyan,s8036=
--bmc', 'yadro,nicole-bmc', 'yadro,vegman-n110-bmc', 'yadro,vegman-rx20-bmc'=
-, 'yadro,vegman-sx20-bmc']
-> 	'ieisystems,nf5280m7-bmc' is not one of ['ampere,mtmitchell-bmc', 'aspee=
-d,ast2600-evb', 'aspeed,ast2600-evb-a1', 'asus,x4tf-bmc', 'facebook,bletchl=
-ey-bmc', 'facebook,cloudripper-bmc', 'facebook,elbert-bmc', 'facebook,fuji-=
-bmc', 'facebook,greatlakes-bmc', 'facebook,harma-bmc', 'facebook,minerva-cm=
-c', 'facebook,yosemite4-bmc', 'ibm,blueridge-bmc', 'ibm,everest-bmc', 'ibm,=
-fuji-bmc', 'ibm,rainier-bmc', 'ibm,system1-bmc', 'ibm,tacoma-bmc', 'invente=
-c,starscream-bmc', 'inventec,transformer-bmc', 'jabil,rbp-bmc', 'qcom,dc-sc=
-m-v1-bmc', 'quanta,s6q-bmc', 'ufispace,ncplite-bmc']
-> 	'aspeed,ast2400' was expected
-> 	'aspeed,ast2500' was expected
-> 	from schema $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /: failed to=
- match any schema with compatible: ['ieisystems,nf5280m7-bmc', 'aspeed,ast2=
-600']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: timer: 'cloc=
-ks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml=
-#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /sdram@1e6e0=
-000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-eda=
-c', 'syscon']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: bus@1e600000=
-: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-> 	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.y=
-aml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: ftgmac@1e660=
-000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
-> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yam=
-l#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: ftgmac@1e680=
-000: $nodename:0: 'ftgmac@1e680000' does not match '^ethernet(@.*)?$'
-> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yam=
-l#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: ftgmac@1e670=
-000: $nodename:0: 'ftgmac@1e670000' does not match '^ethernet(@.*)?$'
-> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yam=
-l#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: ftgmac@1e670=
-000: Unevaluated properties are not allowed ('#address-cells', '#size-cells=
-' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yam=
-l#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: ftgmac@1e690=
-000: $nodename:0: 'ftgmac@1e690000' does not match '^ethernet(@.*)?$'
-> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yam=
-l#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: ftgmac@1e690=
-000: Unevaluated properties are not allowed ('#address-cells', '#size-cells=
-' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yam=
-l#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: syscon@1e6e2=
-000: 'smp-memram@180' does not match any of the regexes: '^interrupt-contro=
-ller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^si=
-licon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.ya=
-ml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/sys=
-con@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['=
-aspeed,ast2600-smpmem']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/sys=
-con@1e6e2000/interrupt-controller@560: failed to match any schema with comp=
-atible: ['aspeed,ast2600-scu-ic0']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/sys=
-con@1e6e2000/interrupt-controller@570: failed to match any schema with comp=
-atible: ['aspeed,ast2600-scu-ic1']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/dis=
-play@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600=
--gfx', 'syscon']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/xdm=
-a@1e6e7000: failed to match any schema with compatible: ['aspeed,ast2600-xd=
-ma']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: adc@1e6e9000=
-: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-ad=
-c.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: adc@1e6e9100=
-: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-ad=
-c.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: crypto@1e6fa=
-000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acr=
-y.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/vid=
-eo@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-v=
-ideo-engine']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/tim=
-er@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-t=
-imer']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: peci-control=
-ler@1e78b000: 'gpios', 'peci-client@30', 'peci-client@31' do not match any =
-of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/peci/peci-aspeed.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/pec=
-i-controller@1e78b000/peci-client@30: failed to match any schema with compa=
-tible: ['intel,peci-client']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/pec=
-i-controller@1e78b000/peci-client@31: failed to match any schema with compa=
-tible: ['intel,peci-client']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: lpc@1e789000=
-: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+=
-'
-> 	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: lpc@1e789000=
-: reg-io-width: [[4]] is not of type 'object'
-> 	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: kcs@24: 'clo=
-cks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: kcs@28: 'clo=
-cks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: kcs@2c: 'clo=
-cks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: kcs@114: 'cl=
-ocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-b=
-mc.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/lpc=
-@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2=
-600-lhc']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/lpc=
-@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast=
-2600-ibt-bmc']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: sdc@1e740000=
-: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-> 	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: sdc@1e740000=
-: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-> 	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/sdc=
-@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['asp=
-eed,ast2600-sdhci', 'sdhci']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/sdc=
-@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['asp=
-eed,ast2600-sdhci', 'sdhci']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/bus=
-@1e78a000/i2c@180/i2c-mux@70/i2c@2/temperature-sensor@4c: failed to match a=
-ny schema with compatible: ['microchip,emc1413']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/bus=
-@1e78a000/i2c@280/ipmb0@10: failed to match any schema with compatible: ['i=
-pmb-dev']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: i2c-switch@7=
-0: $nodename:0: 'i2c-switch@70' does not match '^(i2c-?)?mux'
-> 	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: i2c-switch@7=
-0: Unevaluated properties are not allowed ('#address-cells', '#size-cells',=
- 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3', 'i2c@4', 'i2c@5', 'i2c@6', 'i2c@7' wer=
-e unexpected)
-> 	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: i2c@400: Une=
-valuated properties are not allowed ('#retries' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/i2c/aspeed,i2c.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: pca9555@21: =
-'#address-cells', '#size-cells' do not match any of the regexes: '^(hog-[0-=
-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: pca9555@22: =
-'#address-cells', '#size-cells' do not match any of the regexes: '^(hog-[0-=
-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/fsi=
-@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi=
--master', 'fsi-master']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/fsi=
-@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi=
--master', 'fsi-master']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/fsi=
-@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi=
--master', 'fsi-master']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/fsi=
-@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi=
--master', 'fsi-master']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: /ahb/apb/dma=
--controller@1e79e000: failed to match any schema with compatible: ['aspeed,=
-ast2600-udma']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: gpio-keys: '=
-cpld' does not match any of the regexes: '^(button|event|key|switch|(button=
-|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pin=
-ctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dtb: leds: 'fan-f=
-ault', 'heartbeat', 'memory-fault', 'psu-fault', 'system-fault', 'system-ho=
-t' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+=
-'
-> 	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+FPGAs can be reprogrammed at runtime with different types of logic and IPs
+as per user need and hence there is a need to use device tree overlays for
+removing/updating/adding the devices at runtime for the IPs/controllers
+that are present in FPGA. But we don't have any user interface in kernel
+for updating the device tree at runtime.
 
-Can you please try to address these issues where reasonable? For
-instance, you need to at least resolve the error "'ieisystems,nf5280m7-
-bmc' is not one of ...". Please also take a close look at the other
-issues; I don't expect you to fix problems caused by the DTSIs, but
-your DTS shouldn't add any of its own.
+Sometime back there was a series sent by Pantelis Antoniou
+(https://lore.kernel.org/lkml/1414528565-10907-4-git-send-email-pantelis.antoniou@konsulko.com/).
 
-Andrew
+This patch introduced a user interface configfs for Device Tree overlays,
+a method of dynamically altering the kernel's live Device Tree. However,
+this patch series was not accepted in mainline due to various concerns.
+For more details refer to this link:
+https://elinux.org/Frank%27s_Evolving_Overlay_Thoughts#issues_and_what_needs_to_be_completed_--_Not_an_exhaustive_list
+
+One of the major valid concerns that were raised with this configfs
+interface was security. It provides a generic interface (Not specific
+to the use cases) for modifying the live device tree.
+
+In order to configure/program the FPGA devices, All the major vendors of
+FPGA are using this configfs series as out-of-tree patch for configuring
+the FPGAs and there was never an attempt to introduce a generic interface
+to configure/program the FPGA in upstream and hence upstream kernel ended
+up in not having proper support for FPGAs configure/program.
+This series tries to address this gap of FPGA programmability by providing
+a new sysfs interface to the user.
+
+This newly added sysfs interface uses Device Tree Overlay (DTO) files to
+configure/reprogram an FPGA while an operating system is running and it
+restrict the overlay's subsystem usage only to FPGA regions in order to
+mitigate the major security concern with configfs.This proposed solution
+will not change the existing sequence when a DT overlay that
+targets an FPGA Region is applied.
+	- Disable appropriate FPGA bridges.
+	- Program the FPGA using the FPGA manager.
+	- Enable the FPGA bridges.
+	- The Device Tree overlay is accepted into the live tree.
+	- Child devices are populated.
+
+When the overlay is removed, the child nodes will be removed, and the FPGA
+Region will disable the bridges.
+
+Usage:
+To configure/reprogram an FPGA region:
+echo "fpga.dtbo" > /sys/class/fpga_region/<region>/device/load
+
+To remove an FPGA region:
+echo "fpga.dtbo" > /sys/class/fpga_region/<region>/device/remove
+
+To get an FPGA region status:
+cat /sys/class/fpga_region/<region>/device/status
+
+Nava kishore Manne (1):
+  of-fpga-region: Add sysfs interface support for FPGA configuration
+
+ .../ABI/testing/sysfs-class-of-fpga-region    | 30 ++++++
+ MAINTAINERS                                   |  1 +
+ drivers/fpga/fpga-region.c                    |  4 +-
+ drivers/fpga/of-fpga-region.c                 | 92 +++++++++++++++++++
+ include/linux/fpga/fpga-region.h              | 15 +++
+ 5 files changed, 141 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-of-fpga-region
+
+-- 
+2.34.1
+
 
