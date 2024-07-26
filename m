@@ -1,220 +1,277 @@
-Return-Path: <devicetree+bounces-88235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4065D93CC3C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 03:08:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A839E93CC51
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 03:18:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C51581F21C0C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 01:08:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D34821C20E6B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 01:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0561F80B;
-	Fri, 26 Jul 2024 01:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B04A2A;
+	Fri, 26 Jul 2024 01:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="CkfCVHPq"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="b4Hlp2d2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2022.outbound.protection.outlook.com [40.92.22.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22071EC5;
-	Fri, 26 Jul 2024 01:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.22
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721956095; cv=fail; b=Tm5uSEFHE9QY7OfAExojnJY4haG9MCtfVp3jwWB/b249bt5M5hi4NGKGc4ZH8rM7w0Dj/0vpIhupwpmdQ3M6AO6S4jlPO7vu+L8r+zaZGD9bDLFZ0Y6lT5B+YEbxHVec/izxUoEb2AafNSxX7us9334YcahjMLmm1jKLw6uLfPU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721956095; c=relaxed/simple;
-	bh=MtqmduaxtHQY11dW8wAKGZ86wN/s9+ONn0pgexCUSxg=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=EQQHMX/PDEf/BEkYjIvSQ260F/KH4S/u7wBs8Q50Ukrz+xMbEXsiYA5DxxyFOHNxMlGfHKXT9h1wX6QffsxMxQgCgb8QoH1iROHtThVfQMMBgfsRXTDBHE+hwIxD2S8xBmO6LM143NFaNpgiC8try9VE0u+0wB0dr5gNPNyhMRM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=CkfCVHPq; arc=fail smtp.client-ip=40.92.22.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WfmuHWW8JOSzwFBd63H7CuF5Ng3v6v4VAxirBhuffcNPwsEi6l287aofkDIgB//b6tBkxWAP+lZgTdMxrgfXnmDzVsXGm7dbhFMPhhpaJGBacpd2mINED9Ngm4beO2mob0lbniuP09eL3JMJI/wXH4nG4i6nuJegEreVzhDBpWMH77vILqxhWGSD1JiV/bkx8Bk8ozbtJ3wby4P9PiRZU7nGIFWKyfcO/ZPnGkXaSkBZj/ExxudoPxcPslg0FxZA/sXXz33bDPwzXc5hqgoUGGCd6YyOVPdYnMf8n5PO3Cbog7RnNd7YolgNAUVBqsbTTdCBYbUFDxuyTLY6JOQ8Cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=otMk6kF4zyBWyfKSfCJ2iXpjQMTGZoKuwD1+uxKZC58=;
- b=A+w/pZ+byT5sc/5fb92OKwoyEdT1FlWaAlRbYjnMjOaHy3de1GEqfDnIkshr/vduJIkLW3nIFrWwjAq+HKAx8pmLaRfsqiEroBLRJO6olvrIloHykzUA+E8RGF6a6cexSN8p6z/0iJoJeYRTdJ01IxpYNwjNv9PHubr+wh1OxmJ5eaZpDMRVrEqhfi9G6TFEV8bosCQW09kWF83eAYhdiXGWAhC8BnZkphvaHzaTnpqkEHVohxfkxJFDg4hOSoPZbBhnl6HrkC0mKKRtu6pqr9ZynoNCLFF4abgA9Vv2C8mF9Avtj8TRmuKJOjT0G35vxUNMJV+PpQ6PI/3ucI5wxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=otMk6kF4zyBWyfKSfCJ2iXpjQMTGZoKuwD1+uxKZC58=;
- b=CkfCVHPqwqiQawgx6Ma6Tstl9RdI54qMw2ofiQnCQGBalLLO7FJdVBdfFle/VxDquwyT0gD6b9hvMqgnPEBhyO4mzGNdKI2JTCXsWGi0S4bBq1GRLpTjAqcTkwjC659VPsDssSuqHHqO+ag93jn53lfu3iRtaF0g5VlQ9ILyI6lR4fymKOBsptKrH7bi/W+gwJF+okYp+d2ZJ1ELvpSFpCn21yQ/sNcv/FMb2MmcEiQOHUq7NIOuV1OrV61bk6RUwn0CsN0OG+VgLJoU6kLK3Dc6WO4B54yn2WqbBdPZ9VlnweZx0tpp4VUeThO60esds5PXToiQ4WCRyoACWztUKQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by LV2PR20MB4680.namprd20.prod.outlook.com (2603:10b6:408:175::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Fri, 26 Jul
- 2024 01:08:11 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7784.016; Fri, 26 Jul 2024
- 01:08:10 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] riscv: dts: sophgo: Add i2c device support for sg2042
-Date: Fri, 26 Jul 2024 09:07:50 +0800
-Message-ID:
- <IA1PR20MB49531864C828FE90C4C25D1BBBB42@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.45.2
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [wALZoNdTFZGbahKChd41BroSwG+umQPX1+9US3aSbJY=]
-X-ClientProxiedBy: TYCPR01CA0193.jpnprd01.prod.outlook.com
- (2603:1096:400:2b0::12) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240726010751.289537-1-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DD637E
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 01:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1721956686; cv=none; b=AS+E4UvhjrV7PgUPlOxDv4yYGqgzstn/tyyzxsXFXBJarE1VDNbMSoWn8SLDfxZU4Ymc3acbfm4MJ6p4GGT/4nK62wZeNRiyd1TuJtemjwD6IqhWLkJYycj3LC5JaQNhQ6bA/uQZynuRmklSC/l5ciju/WDBimDCaUjdWevOm20=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1721956686; c=relaxed/simple;
+	bh=mYsHdTOeYt1swSYCY8rpXqlt3bJ0YOLrFzaxg0SkMNc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Hy0DlG3LjP1ya27xJaj7cmkBXhhJGrttGfSKA0U6Dhl6JfHOK8uiizG9EvYOpk3yOda1fRwDXrsHpEL0A1IfVRksI6UXkSuElHzht0kbPZslzBkTyK8FzCpQElbU9yUIhVRrCW9TES8UfijrxzTS15C06FEITUCk3V4VDjZGl+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=b4Hlp2d2; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5a1337cfbb5so2074381a12.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 18:18:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1721956683; x=1722561483; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l1Tm0qZROMdMNWyVkds+ya5ewxNbo9zl5sVp0ymnAU0=;
+        b=b4Hlp2d2RVOFiWKF2pwHp6ABIx8Ce8A32PtQ1sXGPCQw739yPb6dUl7HN8DLnfgXO7
+         2By4ZUnzBXAyW3CYTr3xigZOCLrfR8fSSG1G3gfWvEofliAPTjqmugs/S+b0TEExkIuq
+         kefrBPMyOSymlEWJwFLi9vGZX1/PxLhb5iuPb5Hh76FitvR2yp8S6Lr8WRTsV/yhKLsc
+         7rjNynu1zfeXONXcmJW46FDpuMkPLV0CjXOLTppJxX2WEJac1fzS+QY8D2uvVQOatXll
+         x/6ZhT3EYmIlxFV7EGVU+bBfg8dL/Q5JDF+l2Uua7J4LQW6jQmfj7JD2uIKMExG6wa1L
+         zsUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721956683; x=1722561483;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l1Tm0qZROMdMNWyVkds+ya5ewxNbo9zl5sVp0ymnAU0=;
+        b=I6Q2mDCvzDfWtmRAozBAMx6fRb+tD5dpolvYxBGYTxSCN9XO/7YDvcKxGYjXlHlnMl
+         rODro0WejEtW2eEpemffHBOJg/cxDbrbglZSAeMZIgEWi+9chymoNTe4MBhiQS1ZlxnG
+         hN5nl0S7RJGuhXnlTV0IKW4oDQM0aE2LLtXqFvviyTXcevurMNGMkTrYtwtU6VUbHCW0
+         zzREI6DcELHhiWZlzioQyoJu4wryVnrJgY63ALvekOz6ptN+f194o4xX11HWVhl2Yr5o
+         G+S09KjV/Esi1hgdS/yYIIow+oDYbzlhFM++yh+aC6NNgwKKVUx5AGZJ6VrgTUQZ9H2D
+         5ZDw==
+X-Forwarded-Encrypted: i=1; AJvYcCUiIgA1iM8PI1nRt/N4XTeyjAsAL9Ya42KxW3RfuOrpED3zVy0URraud/BdDGy+XRCkmdX4crQp1RVZi5HpdKjUKOIqrS+jgSvh6g==
+X-Gm-Message-State: AOJu0YzfOo+9ASXgJ/U73caId/jVrcLwT65Qa669zd+SyzAXpLzFLyWD
+	T0BzptNJ9LHsLY+oovZsuDzwIkno5fD6M6S4F1MYODVblqsIuFvI71hH+pd8yZN4VP3gHKa7k1/
+	JHmTj7I1mX6VzGbwYGjzVl7vhmvf0nX8PgE1LLA==
+X-Google-Smtp-Source: AGHT+IEAhtBKbkjoEDahdTXkBpr/w1906ckM/RBw1+l4MKKccSVUTrt/TnoqtC45S9qzABZcVv7K3HyOpvUi4prADh8=
+X-Received: by 2002:a05:6402:3514:b0:5a2:b867:3bcc with SMTP id
+ 4fb4d7f45d1cf-5ac2c5a68a4mr3034549a12.38.1721956682633; Thu, 25 Jul 2024
+ 18:18:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|LV2PR20MB4680:EE_
-X-MS-Office365-Filtering-Correlation-Id: 39689e55-31dc-4e8e-5dea-08dcad0f6ab2
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|19110799003|5072599006|8060799006|440099028|3412199025|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	qffzTnonRMPsZMw0c1pkW2yjKdi7qy/6pYvjiyl5tIqAfJZsDNeShcragvXsdbyb4fqdcimKYbGyflfC4eBjpYHtG2OrVwJYSejwjzs5LNrqMfDf1ice+Ig1ArIudSFdJsSw4ewwSACW9w3bxwrx/3aR8ClgjTqoLGlhd6lwGAvHCLNvYOPyCwmg8isSOIygjQEviX+r5ytEiG3UgEqfc32f74pYLP0GKtQ/JDjIj+A7czW3Xo9LTyMDnFzRdd+i7nj14c1/kZBFLyAM4q5fZWfSM3ZNizsOGYSCJksoMZBEI4li4XtNyB7axxbmyfpFVvzU0sElnKYo5iNs/DzHE9Izc5rQ2P5FkT9RT9YJ3goTBIaSgihs/SRLsIsuMjeiu7uTGip2QgP6xA+jfvfTVhEjtfQXDItSVY2oJPL36vkRu0avo+sFbAahMaO/mvvXmbMfgrTtkOgeZj4w+w5MOfuEoX1+vK36Cvs9AVpcIQnnGCDwniLgY0JtBPgPtvG57XaqkGPD13wDTfqde0Q4I+D0Iqd2VoV8GlEqJcwraXMD+c08nnpvALPg4YI/Hw5bj1rdPVw0mitGSxUeIm1wBpHBUGm7JT3crltft7k/y6Fsgr098OtH7bV8gFsIzr8qlyChI1flVbe5GEu/zAyYuSsQOXhcVHWrTj9IcGicqOlo4SDGKVzUXC5qX/JpFG27q3Dk1nV6RWNCFoxt5lNsww==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?msj9DfXAm7D6RNRiybfPRC/ZYL5ps22krHL9Y27J6JJLfPzOhTDfnQRMKKq5?=
- =?us-ascii?Q?+2XRsfOO4XJKKWrLtKVDS5T0/EDZWtDSDrANwibVMTaGNRLaeF5PJKue9tMr?=
- =?us-ascii?Q?Fi1M0H3Wg3xJwlwjYoKzjZxcc6i+Fy3d9lgCmRVBKQH6HD+3C1PlL9itb1Qa?=
- =?us-ascii?Q?/4ttDaBpK9CHtLUkksGDNXBrqKHYLxOCTH/42GRyyLywcusVKf+GqZwjhSDe?=
- =?us-ascii?Q?VXJDo40AJ4yeq9RzDY4awbOfCdHac3XxbfmPXZKheot8tMMGJebaeylG8E1u?=
- =?us-ascii?Q?kX8d12v3cZq9mri3i5Hj/ZATv83cgEBkvzvz7YAGjAklEQFU4ZfVxZc6WSNn?=
- =?us-ascii?Q?0K9GdXQtga7bMhJUJZQCZTMKRSCz14/pA8VYg4CYDOENcepke+2HmRJbymVy?=
- =?us-ascii?Q?cYYeMdErspevlxHVC1i4EdGilBrXe1nz4mVxq54zLpUkLgFzDbFf+MMMvzfP?=
- =?us-ascii?Q?biv+T6NQPHjMTS6DBZhnnA8WkhzKMxdWAYZuXEeeeJ/XbO9rULEAII7Coa/r?=
- =?us-ascii?Q?eIRqAA+JoKo7XJlgbO0+LekkBpIrbfFVoIGjoBNGzXIHQsIGELjpuRpCbAmg?=
- =?us-ascii?Q?ff4BXdYfCg58N2A6Izg1N5ZQTE/RyrYSQTOCDzjdop2BnxfXEeNWB33MtkRH?=
- =?us-ascii?Q?mfmDTfE60nHGb3X7EBtyU4EPIsNPy7dIWPuVNaM3w4B805Gm2dGgn5PkrpTY?=
- =?us-ascii?Q?5XHXk83/VSNoEBgGf9CD3yXVUWMFmFreqFG+dzXbkzmD8YQyncasCCwFOu+f?=
- =?us-ascii?Q?4Oxv2r2SkZqVIZp/am9Um4VVKuUPlHVsxhCSINsnWFTDxFE0q0MNTxjN7oU5?=
- =?us-ascii?Q?lh9xGFG0dK73cNJs4bCHBRa6iK6Ef9pxHJIimHpOAUOSJV9fN5FmrdVrZuVP?=
- =?us-ascii?Q?mjw38FoGdmIhzUOhSk7IBR/WzKJoKiAD5+xBvpQVjtIgnNeTYiBXi80vWG5v?=
- =?us-ascii?Q?d/TXJo2F0yeE96xeQ3eJevE75VAlEGj10kp2DAM6HWtrbJSvJcB6TbykUB/5?=
- =?us-ascii?Q?SzDDtdrfVXHojMzKbMP2OZnDrVXa42R/EnXLg/RLSlCsqlnUBVFtFxJ7E97O?=
- =?us-ascii?Q?Shr3CPSmD+oh6Gb9rFWJwX4UVaDaiHjiOOqz8CPRaUBz+gzQMYqsbvg25+Bv?=
- =?us-ascii?Q?RtXGZcD5PxMR/wilsp40X8Lwl9MBIJP9MKuyhYiVGGrWk6U6Ub65cqRCQ3wk?=
- =?us-ascii?Q?KvS/xKiZytfgn68I5kmIQZynkRzLzVEACDXMetvBvyDHpXaxBuz6kwaLLX1K?=
- =?us-ascii?Q?oyaPy/16cN1HGseGhrkK?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 39689e55-31dc-4e8e-5dea-08dcad0f6ab2
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 01:08:10.9340
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR20MB4680
+References: <20240725083245.12253-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240725083245.12253-2-lvzhaoxiong@huaqin.corp-partner.google.com> <87o76lzwvr.fsf@intel.com>
+In-Reply-To: <87o76lzwvr.fsf@intel.com>
+From: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Date: Fri, 26 Jul 2024 09:17:51 +0800
+Message-ID: <CA+6=WdS5QKMVX2euxdeDqCoHrCpWuqB_cu5vzHGUNdUq4NnPZw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] drm/panel: jd9365da: Move the sending location of
+ the 11/29 command
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	dianders@chromium.org, hsinyi@google.com, airlied@gmail.com, daniel@ffwll.ch, 
+	jagan@edgeble.ai, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The i2c ip of sg2042 is a standard Synopsys i2c ip, which is already
-supported by the mainline kernel.
+On Thu, Jul 25, 2024 at 4:41=E2=80=AFPM Jani Nikula <jani.nikula@linux.inte=
+l.com> wrote:
+>
+> On Thu, 25 Jul 2024, Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google=
+.com> wrote:
+> > Move the 11/29 command from enable() to init() function
+>
+> OOC, what is the "11/29" command?
+>
+> BR,
+> Jani.
 
-Add i2c device node for sg2042.
+hi Jani
+Sorry, maybe I didn't describe it clearly. The 11/29 commands are sent
+by these two functions.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 54 +++++++++++++++++++++++++-
- 1 file changed, 53 insertions(+), 1 deletion(-)
+mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 34c802bd3f9b..eebd6817520e 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -44,8 +44,61 @@ soc: soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-+		interrupt-parent = <&intc>;
- 		ranges;
+MIPI_DCS_EXIT_SLEEP_MODE =3D 0x11,
+MIPI_DCS_SET_DISPLAY_ON=3D 0x29,
 
-+		i2c0: i2c@7030005000 {
-+			compatible = "snps,designware-i2c";
-+			reg = <0x70 0x30005000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clkgen GATE_CLK_APB_I2C>;
-+			clock-names = "ref";
-+			clock-frequency = <100000>;
-+			interrupts = <101 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&rstgen RST_I2C0>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@7030006000 {
-+			compatible = "snps,designware-i2c";
-+			reg = <0x70 0x30006000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clkgen GATE_CLK_APB_I2C>;
-+			clock-names = "ref";
-+			clock-frequency = <100000>;
-+			interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&rstgen RST_I2C1>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@7030007000 {
-+			compatible = "snps,designware-i2c";
-+			reg = <0x70 0x30007000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clkgen GATE_CLK_APB_I2C>;
-+			clock-names = "ref";
-+			clock-frequency = <100000>;
-+			interrupts = <103 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&rstgen RST_I2C2>;
-+			status = "disabled";
-+		};
-+
-+		i2c3: i2c@7030008000 {
-+			compatible = "snps,designware-i2c";
-+			reg = <0x70 0x30008000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clkgen GATE_CLK_APB_I2C>;
-+			clock-names = "ref";
-+			clock-frequency = <100000>;
-+			interrupts = <104 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&rstgen RST_I2C3>;
-+			status = "disabled";
-+		};
-+
- 		pllclk: clock-controller@70300100c0 {
- 			compatible = "sophgo,sg2042-pll";
- 			reg = <0x70 0x300100c0 0x0 0x40>;
-@@ -388,7 +441,6 @@ rstgen: reset-controller@7030013000 {
- 		uart0: serial@7040000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x00000070 0x40000000 0x00000000 0x00001000>;
--			interrupt-parent = <&intc>;
- 			interrupts = <112 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <500000000>;
- 			clocks = <&clkgen GATE_CLK_UART_500M>,
---
-2.45.2
-
+BR,
+>
+> >
+> > As mentioned in the patch:
+> > https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.co=
+rp-partner.google.com/
+> >
+> > Our DSI host has different modes in prepare() and enable()
+> > functions. prepare() is in LP mode and enable() is in HS mode.
+> > Since the 11/29 command must also be sent in LP mode,
+> > so we also move 11/29 command to the init() function.
+> >
+> > After moving the 11/29 command to the init() function,
+> > we no longer need additional delay judgment, so we delete
+> > variables "exit_sleep_to_display_on_delay_ms" and
+> > "display_on_delay_ms".
+> >
+> > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com=
+>
+> > ---
+> >  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 59 ++++++++++---------
+> >  1 file changed, 32 insertions(+), 27 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers=
+/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > index 04d315d96bff..ce73e8cb1db5 100644
+> > --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > @@ -31,8 +31,6 @@ struct jadard_panel_desc {
+> >       bool reset_before_power_off_vcioo;
+> >       unsigned int vcioo_to_lp11_delay_ms;
+> >       unsigned int lp11_to_reset_delay_ms;
+> > -     unsigned int exit_sleep_to_display_on_delay_ms;
+> > -     unsigned int display_on_delay_ms;
+> >       unsigned int backlight_off_to_display_off_delay_ms;
+> >       unsigned int display_off_to_enter_sleep_delay_ms;
+> >       unsigned int enter_sleep_to_reset_down_delay_ms;
+> > @@ -66,26 +64,6 @@ static inline struct jadard *panel_to_jadard(struct =
+drm_panel *panel)
+> >       return container_of(panel, struct jadard, panel);
+> >  }
+> >
+> > -static int jadard_enable(struct drm_panel *panel)
+> > -{
+> > -     struct jadard *jadard =3D panel_to_jadard(panel);
+> > -     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->dsi =
+};
+> > -
+> > -     msleep(120);
+> > -
+> > -     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > -
+> > -     if (jadard->desc->exit_sleep_to_display_on_delay_ms)
+> > -             mipi_dsi_msleep(&dsi_ctx, jadard->desc->exit_sleep_to_dis=
+play_on_delay_ms);
+> > -
+> > -     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > -
+> > -     if (jadard->desc->display_on_delay_ms)
+> > -             mipi_dsi_msleep(&dsi_ctx, jadard->desc->display_on_delay_=
+ms);
+> > -
+> > -     return dsi_ctx.accum_err;
+> > -}
+> > -
+> >  static int jadard_disable(struct drm_panel *panel)
+> >  {
+> >       struct jadard *jadard =3D panel_to_jadard(panel);
+> > @@ -202,7 +180,6 @@ static const struct drm_panel_funcs jadard_funcs =
+=3D {
+> >       .disable =3D jadard_disable,
+> >       .unprepare =3D jadard_unprepare,
+> >       .prepare =3D jadard_prepare,
+> > -     .enable =3D jadard_enable,
+> >       .get_modes =3D jadard_get_modes,
+> >       .get_orientation =3D jadard_panel_get_orientation,
+> >  };
+> > @@ -382,6 +359,12 @@ static int radxa_display_8hd_ad002_init_cmds(struc=
+t jadard *jadard)
+> >
+> >       jd9365da_switch_page(&dsi_ctx, 0x00);
+> >
+> > +     mipi_dsi_msleep(&dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > +
+> >       return dsi_ctx.accum_err;
+> >  };
+> >
+> > @@ -608,6 +591,12 @@ static int cz101b4001_init_cmds(struct jadard *jad=
+ard)
+> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE6, 0x02);
+> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE7, 0x0C);
+> >
+> > +     mipi_dsi_msleep(&dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > +
+> >       return dsi_ctx.accum_err;
+> >  };
+> >
+> > @@ -831,6 +820,16 @@ static int kingdisplay_kd101ne3_init_cmds(struct j=
+adard *jadard)
+> >
+> >       jd9365da_switch_page(&dsi_ctx, 0x00);
+> >
+> > +     mipi_dsi_msleep(&dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_msleep(&dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_msleep(&dsi_ctx, 20);
+> > +
+> >       return dsi_ctx.accum_err;
+> >  };
+> >
+> > @@ -859,8 +858,6 @@ static const struct jadard_panel_desc kingdisplay_k=
+d101ne3_40ti_desc =3D {
+> >       .reset_before_power_off_vcioo =3D true,
+> >       .vcioo_to_lp11_delay_ms =3D 5,
+> >       .lp11_to_reset_delay_ms =3D 10,
+> > -     .exit_sleep_to_display_on_delay_ms =3D 120,
+> > -     .display_on_delay_ms =3D 20,
+> >       .backlight_off_to_display_off_delay_ms =3D 100,
+> >       .display_off_to_enter_sleep_delay_ms =3D 50,
+> >       .enter_sleep_to_reset_down_delay_ms =3D 100,
+> > @@ -1074,6 +1071,16 @@ static int melfas_lmfbx101117480_init_cmds(struc=
+t jadard *jadard)
+> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x02);
+> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe7, 0x06);
+> >
+> > +     mipi_dsi_msleep(&dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_msleep(&dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_msleep(&dsi_ctx, 20);
+> > +
+> >       return dsi_ctx.accum_err;
+> >  };
+> >
+> > @@ -1102,8 +1109,6 @@ static const struct jadard_panel_desc melfas_lmfb=
+x101117480_desc =3D {
+> >       .reset_before_power_off_vcioo =3D true,
+> >       .vcioo_to_lp11_delay_ms =3D 5,
+> >       .lp11_to_reset_delay_ms =3D 10,
+> > -     .exit_sleep_to_display_on_delay_ms =3D 120,
+> > -     .display_on_delay_ms =3D 20,
+> >       .backlight_off_to_display_off_delay_ms =3D 100,
+> >       .display_off_to_enter_sleep_delay_ms =3D 50,
+> >       .enter_sleep_to_reset_down_delay_ms =3D 100,
+>
+> --
+> Jani Nikula, Intel
 
