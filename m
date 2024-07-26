@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-88417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CEB493D79F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 19:31:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 953FD93D7A2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 19:31:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1868D283DBF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:31:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B03641C204F7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAFA17C9EA;
-	Fri, 26 Jul 2024 17:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BFE517C9EE;
+	Fri, 26 Jul 2024 17:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="MG6JQur6"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="nspXGXMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F633282EA
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 17:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9958A1B970
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 17:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722015077; cv=none; b=rjfSYHjGc+yVNl/cvE3ErGhcsRoh1suGdqEQq8uADH1yWEopAhjBEkwjUBzVQ6ibtm5jLKBqvsbTOfjvkvXeqwojFD8HAvrYt8ixSHGDPoOBeO9o7wRbZkJn5FBKqnIyOJxnLzeiPW2oP6gikTy8wvcyvfBOT+IJ+bp9xYQ8Jzs=
+	t=1722015088; cv=none; b=RNmsMaadFi3Bzt1uxBcrVT3ZvEQh9MPEohHSYtngrbqhz02vvj9u5jxWbux9Vy81+SfDxZ+/obo9488BgWu0G65LB8HEp3+pVFFpNaCrEA59glic/lfND/7z6StqdMZgE4qhSAHNcS7oP7L5K85qSzwW3EmRO+5Bn4YxGtVnVuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722015077; c=relaxed/simple;
-	bh=xl5MBziS7MMtJNQ+8lr6PG6+ExQShs8U6WB+5kJjGVI=;
+	s=arc-20240116; t=1722015088; c=relaxed/simple;
+	bh=GHKjTGsA5xoJdxNc5US7opyHTsaUSz6DP4R2VVpLsL0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZzA6LyLMSiLI8fQC5Jc2qFLGFaYekIgOVKPdWi97B3iR9yy0xEc4lCf9R/XTR4PaKreZc55L2G7OzD05kdJihDCrwJG/H8iaflssIij9tRW9dfmWE33IkdN/4VI6zeprtpAeK4g37rJkAe1cRNAYvdRh94Vn3HpdAWivKf67XfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=MG6JQur6; arc=none smtp.client-ip=209.85.167.47
+	 To:Cc:Content-Type; b=T0hWQfE/FHADpSPQ36/v8+GlB1M9j1Yj1PztTeCFMSaxeag6qGX6vPsraPP2qEQIc06ieRwho5+c2rVqDcADvKzl+9tNLiLbRxb+PbhPLYk6az4bkvQhFxG3gyxqWGFEVX5TRVIU8FUEjt3Yoy/gUvnVSVBptKfRwqJlw9Wck40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=nspXGXMB; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52f01ec08d6so2306291e87.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 10:31:15 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a7a8caef11fso213138766b.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 10:31:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722015074; x=1722619874; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722015085; x=1722619885; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xl5MBziS7MMtJNQ+8lr6PG6+ExQShs8U6WB+5kJjGVI=;
-        b=MG6JQur6bZDXKhuCUGDN4RLkZvGIPcBlmxMWpBDUSmAB73qkwz+r0F7kqvbRY54WqH
-         iOA0m+A4FdkBFSHqR9FTrDpkUHWCciGMjal9Gi+HMCWJASQPFZxDXC/5tDSDweefU9Yn
-         O/UyvtbaTaFgDYgYLEtIaaQ35nsoPnbSHg8Ou1DEsTjJGhBLqrVjHo1Z9G0jyDwe0VUA
-         2nR4REq5MPWD7UJbBK9k+3/qR6BKaE0WKYMlUllvT19A7HlRSunZNs5eO/R9ssAdZUN1
-         pO9662GPHi4ecINjaAblK+GTW4Kd1Rf07ea5lkUn+kbfrRMnb52NqSZIKPxKjBVyKvth
-         ghUQ==
+        bh=GHKjTGsA5xoJdxNc5US7opyHTsaUSz6DP4R2VVpLsL0=;
+        b=nspXGXMB4vFOrnx+6+0SaIl5UlBNSnCSVsv31/DSOGz/ujAS0ziHDJCxRXDlWH91OW
+         wdXBhfNi8MlSkwluyQCUl+l1XtWgKFlTaGnAuYBjUSp+Al49d8VSb7kN85zGGA8WNzm8
+         EaNTGfJrMRhddLcX87FK/vmmK7/eBtDHh/C7dWQbE8RIje05Pvj8q7vuOe2Ka2EDsIr3
+         xlrHLh7EpR2Oe0cVIEvMzfbPMaNBctpyXG/39CcrGzhDZwJSlYhVGiZwiiTBixpqHKTu
+         mvJdpnbVMipM2vvtRI64f1nlU14P4CYCqKg7E0DBdLOHAZu9CQfTQKAdm+R51ZhLLrkX
+         OQUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722015074; x=1722619874;
+        d=1e100.net; s=20230601; t=1722015085; x=1722619885;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xl5MBziS7MMtJNQ+8lr6PG6+ExQShs8U6WB+5kJjGVI=;
-        b=lUFiJ2BV7SzwpVWSocOssyntfWg+jVETpHVHwFP60fKj1JET5KcIqKx4VnEdIY9Sb6
-         hQcCGfA5jhpOl3966oGbf7/7Ti/Gkp8yQfiiN/uSzuHMgB3K0FU48iBp2sESKwkujM9m
-         5scWH+1GkP/xHM6DDULtl1pwHhVS1BuoRbqizt185Hv+55vGusL2AHVnzEQnfEa70MPb
-         aZGOILIpI7bR5oZqaPiYTIAOwz7youHP4iPkhrjHUyEn9R5wU+wtYU384e0+epEhOuXk
-         +duKTPgXX97PmadCO1ZAbGO9DNc7L0i29dNERK7HdmxmcJltlFTiQlh4rwscoeq9VSUx
-         3yOA==
-X-Forwarded-Encrypted: i=1; AJvYcCUBe3XErpZVxNtLIWAQC8qlBBDtzOKtPblC3glvR/NfLp/pwks0RLjZR+CN+zJDql/K/WOQzJqikvFSjqecyfO+dBD0VP3PtJNPpw==
-X-Gm-Message-State: AOJu0YwLxj1UWjySpVTPP/5s4iHKj2/NhWbQ8FX8P259yQXGesGysl9j
-	vm25GOMmUt1NcUPz71Vq3OAWh2cfIXL2k4Om7rUfNm9JOFyKUww59Oc9cQcvsCtpPxqF4zjjd0t
-	yoBt6wHqHjMxAhOaD2zpNmW2aCusbXB8yr8KShw==
-X-Google-Smtp-Source: AGHT+IHl0keqbTpli0qtFCDOs9KQPvh5FiTCtZnHeHGftMUia5rWkyP0BFbDvmTVhCAd2RbboRnEBTXgj6gIcpDtNJw=
-X-Received: by 2002:ac2:518e:0:b0:52f:2ea:499f with SMTP id
- 2adb3069b0e04-5309b2803efmr341676e87.24.1722015074240; Fri, 26 Jul 2024
- 10:31:14 -0700 (PDT)
+        bh=GHKjTGsA5xoJdxNc5US7opyHTsaUSz6DP4R2VVpLsL0=;
+        b=Oe1mCdFDpftFkExlKq71X/VcAYSiV58mYv2P9qL/VOtsHcYQAXO/OLHNfil6/X20hp
+         nZk7pf5A7Mzr2goxQ39Rskp2NLWSAeT6G4xd2xElLUzQBjlNHKPVyooP+xLAfJQ62Eah
+         fImAQ0bR+v2bkjwjDFwjhmauqFIfqaujo0qduww4A/eD/vFSi78AGyaqorAOJoYX8E2c
+         T2UmZaC3tgRpCPQcCgV2iMPdtKmjrpPUs1Fx5r6RXs3D18CoT2gQNHmqXNV10CpAfLzG
+         pBC6dEHfP6TgEjacJA1Hci7IzOBmLQf8hmO7vIYm7PgSo622/aSVnPQk58VV5cebzQoV
+         njgw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbJDRiQ6VuXKRD8UbN0D6Tb9/IQ7+dh7JjIHxJhPFNrUtTdNEHHlE6jVKXyMeuchtT3MN5ezkxUNnEkdxTHUMGtJyTkJICvrUqkw==
+X-Gm-Message-State: AOJu0YwX1qJYvxlPp6bzjXGNCutWeon1lL6CjrheN7yqXYwHse25NPUO
+	X4dkJTlzrRwffKSOsEC20AD27RLSrijYNcxmZcAVIwtHR4vTkWv8ioBiAvMlOHF4mjpeRQfNGPa
+	QFmUsvtYLGV5qbGAy/LZnjBaF9f7thvQiR3Kfhg==
+X-Google-Smtp-Source: AGHT+IEI2htU4rQmXKR32DSuhL2duertaz8E+94T640gTu2H7zXYYH/H6bLeEQ07Rgpskv2eHm4WeT9H3VNis9yy8bk=
+X-Received: by 2002:a17:907:97c4:b0:a77:e1fb:7dec with SMTP id
+ a640c23a62f3a-a7d3fffd2b8mr14159766b.17.1722015084967; Fri, 26 Jul 2024
+ 10:31:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240726163719.1667923-1-jesse@rivosinc.com> <20240726163719.1667923-7-jesse@rivosinc.com>
-In-Reply-To: <20240726163719.1667923-7-jesse@rivosinc.com>
+References: <20240726163719.1667923-1-jesse@rivosinc.com> <20240726163719.1667923-8-jesse@rivosinc.com>
+In-Reply-To: <20240726163719.1667923-8-jesse@rivosinc.com>
 From: Evan Green <evan@rivosinc.com>
-Date: Fri, 26 Jul 2024 10:30:38 -0700
-Message-ID: <CALs-HsubnuBw_jTfx+fcD0s=9KEmZ4zFauzyTTnUCpJxYq9Djg@mail.gmail.com>
-Subject: Re: [PATCH v7 6/8] RISC-V: Detect unaligned vector accesses supported
+Date: Fri, 26 Jul 2024 10:30:48 -0700
+Message-ID: <CALs-HsvJzeqhymXDG07rN4t_iz2vZV54ACrqtmJ+1UA9jY+Rvw@mail.gmail.com>
+Subject: Re: [PATCH v7 7/8] RISC-V: Report vector unaligned access speed hwprobe
 To: Jesse Taube <jesse@rivosinc.com>
 Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>, 
 	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -99,10 +99,10 @@ Content-Transfer-Encoding: quoted-printable
 On Fri, Jul 26, 2024 at 9:37=E2=80=AFAM Jesse Taube <jesse@rivosinc.com> wr=
 ote:
 >
-> Run a unaligned vector access to test if the system supports
-> vector unaligned access. Add the result to a new key in hwprobe.
-> This is useful for usermode to know if vector misaligned accesses are
-> supported and if they are faster or slower than equivalent byte accesses.
+> Detect if vector misaligned accesses are faster or slower than
+> equivalent vector byte accesses. This is useful for usermode to know
+> whether vector byte accesses or vector misaligned accesses have a better
+> bandwidth for operations like memcpy.
 >
 > Signed-off-by: Jesse Taube <jesse@rivosinc.com>
 > Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
