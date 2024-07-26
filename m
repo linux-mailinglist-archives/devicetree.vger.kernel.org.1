@@ -1,95 +1,115 @@
-Return-Path: <devicetree+bounces-88245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC66793CDE3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:00:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BFF993CDFF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96B6C2817B2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 06:00:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12FC21F23559
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 06:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A8F173351;
-	Fri, 26 Jul 2024 06:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="foWbyEGq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5AB17334E;
+	Fri, 26 Jul 2024 06:13:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from out198-19.us.a.mail.aliyun.com (out198-19.us.a.mail.aliyun.com [47.90.198.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54010172BCA;
-	Fri, 26 Jul 2024 06:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C06515666F;
+	Fri, 26 Jul 2024 06:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721973649; cv=none; b=CvTYOayFtDsvmBzuKLmgvB5JJpI8gjJbkXQ3sbBwQMLGUNCW5vyFCnLiPLogUjNoypMP0ffP7uSeNTZZ3bIq0VtkAinnnq77gB38PRSftOUFgKZxJqlQL4F+YblQDdjHsFOrhdhX4RUVeCoY6S6XyyPaE6LiJnE3e2w7BPcwLZo=
+	t=1721974390; cv=none; b=r84T3hiz+qm+ixh8JJQ85Lfjqyae2bBGMLY7RtwuS+YBLFjn+f/tkFz3Vu41fNcr9gTEthx5LJ84xy3F7wQRBE2Yaucs1KsOIjnQ6zJAbVBZmoAspxa7X5Qa95FvubQbQcsYjvBNnYpp5TO1pvBtyYGUlsr7fFjgHBnXT8m+ApA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721973649; c=relaxed/simple;
-	bh=PnqlcM84WAxNl+swGQdrhpcrwrWIJk7Lt4l0m9IDul8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZkU8M3o6T2drDg9E3l9PU1XyqWvkEW9UgcBN8GCuqwSyFMWBtDOXo3JboCh9MPIjwkVKs7abBevoR3JqX87gAT6g73VXWv/VzAS/RAMNdU0E7Q01afRxuJrDqvd9vSgEqr67iCSKkVI0hU4PmKmmum6NP4Dc0+55OY3DSqdg9CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=foWbyEGq; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1721973645;
-	bh=QdbI3N7Rn42gDGMrzJpsnfGLEwUVSd33OvGXdiMpLbM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=foWbyEGqPuTHASdBk94cKFKPR3WFpX+tk6hU/jIRiOtsHWML8oxuj1NPRaFhBEZsR
-	 fRAdgvwqOK3/fb09Vav319CW26jnzdg+uae712ROIV79s1ppn7TXIDPiHDKkwNbLb7
-	 sPMeiTMuwstFejO7k3rM9O2sKuVnF3HouebVCTk8n0j9FrxVNOEo2e5swpNjwutei3
-	 EyqeqXcjP3TsSDImTOOHIr6eAt/dsruPBUNGHeOQm/g1PKSNyerQBkRRMWWpvjXYr3
-	 N258giOsjwxKI/gIoQzj4POi+VM9XqiFjKV81BlSN75J4BpYwhTyoD4ct0XOLHvqbT
-	 R4ClGeVYgGopg==
-Received: from [192.168.68.112] (unknown [118.211.93.69])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 577B566AB4;
-	Fri, 26 Jul 2024 14:00:44 +0800 (AWST)
-Message-ID: <a4c2a2c25c7582b7b45fc42662b60c589b4748d4.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1 1/1] ARM: dts: aspeed: minerva: add host0-ready pin
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Yang Chen <yangchen.openbmc@gmail.com>, joel@jms.id.au,
- patrick@stwcx.xyz,  amithash@meta.com,
- linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org
-Cc: Jerry.Lin@quantatw.com, yang.chen@quantatw.com
-Date: Fri, 26 Jul 2024 15:30:43 +0930
-In-Reply-To: <20240711130501.2900301-2-yangchen.openbmc@gmail.com>
-References: <20240711130501.2900301-1-yangchen.openbmc@gmail.com>
-	 <20240711130501.2900301-2-yangchen.openbmc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1721974390; c=relaxed/simple;
+	bh=oht5wu8auXZvkzrBwGhUiAVrI5TPXLIHnZkD3aaRoz4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=LFLA4uy2LR7R90f05HC2er6vsICzAAdGyDtBThwsRBEEv75uswG20I1j2YJgBrrJU3DEz1fc4tbznr10Hq9bfX5Fl16hbSf8528kDUYrtsxacjVptCSq0F84a+PfwlaPKD5TGT2rjgk8gputLZe1z8Y3ivMXa7yyhRVgfUmEmF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=47.90.198.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07492529|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_news_journal|0.0178663-0.00163005-0.980504;FP=7877272725547918842|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033070021176;MF=wangshuaijie@awinic.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.Ya96w9E_1721974363;
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.Ya96w9E_1721974363)
+          by smtp.aliyun-inc.com;
+          Fri, 26 Jul 2024 14:12:50 +0800
+From: wangshuaijie@awinic.com
+To: krzk@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	jic23@kernel.org,
+	kangjiajun@awinic.com,
+	krzk+dt@kernel.org,
+	lars@metafoo.de,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	liweilei@awinic.com,
+	robh@kernel.org,
+	wangshuaijie@awinic.com,
+	waqar.hameed@axis.com
+Subject: Re: [PATCH V4 1/2] dt-bindings: iio: aw9610x: Add bindings for aw9610x sensor
+Date: Fri, 26 Jul 2024 06:12:43 +0000
+Message-ID: <20240726061243.1371100-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <d9e0e87c-0332-48b3-879d-258ca0fe58ee@kernel.org>
+References: <d9e0e87c-0332-48b3-879d-258ca0fe58ee@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2024-07-11 at 21:05 +0800, Yang Chen wrote:
-> Add host0-ready pin for phosphor-state-manager.
->=20
-> Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
-> ---
->  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts b/a=
-rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-> index f5ac248097b4..41e2246cfbd1 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-> @@ -613,7 +613,7 @@ &gpio0 {
->  	/*P0-P7*/	"","","","","","","","",
->  	/*Q0-Q7*/	"","","","","","power-chassis-control","","",
->  	/*R0-R7*/	"","","","","","","","",
-> -	/*S0-S7*/	"","","","","","","","",
-> +	/*S0-S7*/	"","","","","","","","host0-ready",
->  	/*T0-T7*/	"","","","","","","","",
->  	/*U0-U7*/	"","","","","","","","",
->  	/*V0-V7*/	"","","","","BAT_DETECT","","power-chassis-good","",
-
-Thanks, I've applied this to a tree for Joel to pick up.
-
-Andrew
+On Thu, 25 Jul 2024 15:54:10 +0200, krzk@kernel.org wrote:=0D
+>On 25/07/2024 15:17, Rob Herring (Arm) wrote:=0D
+>> =0D
+>> On Thu, 25 Jul 2024 12:12:51 +0000, wangshuaijie@awinic.com wrote:=0D
+>>> From: shuaijie wang <wangshuaijie@awinic.com>=0D
+>>>=0D
+>>> Add device tree bindings for aw9610x proximity sensor.=0D
+>>>=0D
+>>> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>=0D
+>>> ---=0D
+>>>  .../iio/proximity/awinic,aw9610x.yaml         | 61 +++++++++++++++++++=
+=0D
+>>>  1 file changed, 61 insertions(+)=0D
+>>>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/awi=
+nic,aw9610x.yaml=0D
+>>>=0D
+>> =0D
+>> My bot found errors running 'make dt_binding_check' on your patch:=0D
+>> =0D
+>> yamllint warnings/errors:=0D
+>> =0D
+>> dtschema/dtc warnings/errors:=0D
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/=
+iio/proximity/awinic,aw9610x.yaml: $id: Cannot determine base path from $id=
+, relative path/filename doesn't match actual path or filename=0D
+>>  	 $id: http://devicetree.org/schemas/input/awinic,aw9610x.yaml=0D
+>>  	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/b=
+indings/iio/proximity/awinic,aw9610x.yaml=0D
+>=0D
+>Look, still not tested.=0D
+>=0D
+>You got comment on v3 that you must it prior to sending. The comment=0D
+>also explained how to perform the testing.=0D
+>=0D
+>You responded that you will implement testing but as easily we can see=0D
+>here, you still did not test it.=0D
+>=0D
+>Please, stop wasting our time. TEST your patches BEFORE sending.=0D
+>=0D
+>Best regards,=0D
+>Krzysztof=0D
+=0D
+Hi Krzysztof,=0D
+=0D
+I'm extremely sorry for wasting your time, and I feel incredibly guilty=0D
+about it. I did see the information before, but for some reason, I didn't=0D
+submit the correct patch. I apologize again for the inconvenience. I will=0D
+fix this issue in the next version.=0D
+=0D
+Kind regards,=0D
+Wang Shuaijie=
 
