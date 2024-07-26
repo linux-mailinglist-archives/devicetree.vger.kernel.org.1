@@ -1,163 +1,121 @@
-Return-Path: <devicetree+bounces-88264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3192793CFC1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:44:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF52493CFCD
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:46:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA4E9282884
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:44:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97B7E1F21F1C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E73176ACD;
-	Fri, 26 Jul 2024 08:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B3F177990;
+	Fri, 26 Jul 2024 08:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="laNhUgog"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="bO4k0fkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CAED77F11;
-	Fri, 26 Jul 2024 08:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E181F2E64B
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721983445; cv=none; b=gx/p8LNvPLaB218f+uni8UrtXlgUyslSqkjPcpFxiigX4P4BgJ5WW4/KJD+EuV2larCSr3pi3JPBkSgkJQeYA/TLlCUebpujxfadva0OFAiHSAeB7okIi4UXoWvha3eKkrHEfQCt1k5W09U/gtTulMUsop9S3+rTmG8Nyv34F14=
+	t=1721983549; cv=none; b=uV7aEFnP3QmyeWg1kSmj1U5iM4lgXUd7T36/NhK/clIs/j6j7UdfocUwyRbp19T/tkf6pANko0y9lejKAYwqefpY8PNPQckWJZW3dD113DpwvVMzyuu6OcHVd7MbP99VyKfh8oTsWv2BVhAmkeF/HT0hlvZAc4rpLjHPbOTWRnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721983445; c=relaxed/simple;
-	bh=eejb5Z2iHiQafBsqMRmDNsCTSs9ds9yQSnrjZYsNM6k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MR6WASgPg3DxhT+S9y+2BlmiGTb3dn577ZHR8PHxoUFLR9bnAAPL2gIF66q5kGxSg+4WfGdl343VhzTUkkpJ9ZAmNlsvMxuUMq4Y6cWUq3iAR3Kq5KCPISFcRCYR/VWZSliU3rXKuwsP1x7ZjA1M2uyPtD9OYCGxDob0TfBAdwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=laNhUgog; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 850DEC32782;
-	Fri, 26 Jul 2024 08:44:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721983444;
-	bh=eejb5Z2iHiQafBsqMRmDNsCTSs9ds9yQSnrjZYsNM6k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=laNhUgog5zdxQOChAauSSYv6EbLXiS4tVNsuzMZoKntWseRpNRns7yptfpQ3U1TRd
-	 MPykf72StMZBxhF3WPEjdEjZb9LuJ4pValMuRcwPPK/fvS/p0xBLenLjEPmnIVWU3S
-	 4nxGhc2kaV9a6iIo9DYT1TEPtVrdkmlmsWvLM3PilRHF0eISyJKz5aCHHB3YoJUFSb
-	 9/BwkBK1id8Bl0Z+1HjbWoab10uaXaDKrJhWCXPo+sK47opZY0eT+gLcUNnsbZXod1
-	 fqUbwjNmLWxm7uckQSTjQ5kkDTH0TvwQ4ocueSiLDYfYMrn7Trlo5Wy8rJsFxlo2eV
-	 F1r7eSf2CXeJA==
-Message-ID: <68a75949-a908-4416-bb2c-ad07596f0d29@kernel.org>
-Date: Fri, 26 Jul 2024 10:43:57 +0200
+	s=arc-20240116; t=1721983549; c=relaxed/simple;
+	bh=cpFuacOOU9PyOYqB0WWoaM9Cjcgmb9kMiCLGqJP8J2A=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pKNIzZhd8Wq9wKpi6R19G3IZiLAt4QXcJhhWSGt5FwAjS1V8XUfhrT534d543CPS0ITj29w2gxb9PzBYADh9xU5QhIIx7zUdOcEihoWeKVc2VgsN9r/Ohy3RtQqEBLdN2ItDF2D6v5MZ5sCSgd1jyRswl0o0Gov9FNZfOVv54/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=bO4k0fkB; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D7DF83F4EA
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:45:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1721983538;
+	bh=cpFuacOOU9PyOYqB0WWoaM9Cjcgmb9kMiCLGqJP8J2A=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=bO4k0fkBQRe173m3CGMT0PkuDlWQf0DRFORGVfmvJ6cLdIAMdDmlabedI2uoD7LIn
+	 3FVUGPNjv7tIAjP7GLndUsNIxNiAyit4TuL37W3iUNKONaWtNmVqE4JXayJeCj2dXj
+	 l6vutWhxz8LuSVhqnwiEyxMeC0bRScka3j9jZJn4t24hY1FQX9xq0/LkDZqednmL3g
+	 WBu8On4K3XeSgnhf4grrQ1/GAYsHR93E3s4mQKpB4TybMPA/DQeI19CDhRi4BxclGk
+	 t1LCF1d1yOVrHJgIX3kZ5lsy6tfVWL/GES9z5OQW6lfUFb4Yo5U9UdVS0OYHK58niO
+	 wozh72TVF2T8A==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-44ff289fea2so6678251cf.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 01:45:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721983537; x=1722588337;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cpFuacOOU9PyOYqB0WWoaM9Cjcgmb9kMiCLGqJP8J2A=;
+        b=gHueXSjPM1bIzqXo1kpX3h0wvNunGqZiVVMH7edftr8YoBHfMFLOdchSq1ueoDj8ac
+         yEFPHd+E3zrs9N3E9DXudExNmwVVQ91OtX1jMSJUetdouiju2WMrUpJB9dH1jWjeqhFA
+         pPQLze4mkha8jq8ihSJ4oH9m4O6H1LJLkIwesErd1j7/snkMEDMts4ThL2m1G1q2JDFt
+         4bpZHlgKi4jEEyFmUy+9EFs1bqBs1dWNhhgiWWB+VsTbevZXjG3XdmobJkgOMBAA1/WO
+         rb4fQGlvZWtHhpzvruK3pS2wM4Az8oELQFUtRgvAawMjyJjZZtkcAM/mHqQ0Zk8XJtHj
+         4kDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrD61tyWELDeyGfwZdv5j/tRW7TpSfe5pLNQsNq3JLPdTaNsOnN7TYpeTcKP/INL+HYJiNlTnDwEQt/0hIUodVlwoxu+hmdKzvYA==
+X-Gm-Message-State: AOJu0Yw39sYQXYzWB6Yy110rM+OtkepOMfxLMjh3hj5Fyg1LTy3HbV4G
+	p6YXWA2uQ14mxCuaqKTs45aqWjKApvi4ANuY/UeMD3O42STQUKzIlmEl+KnWwcZ+4MRxzhu6jc1
+	sDLZ+JRV0oLPOvxOz+4cU6pPoH9U7sJuADtwRDuPMOueROWuKktSBpEzmdpqwOVxvckB9OZkxmp
+	8Ayjt2DfBDZl7BDvgNYkru4t/s8Q6928RsNIYMVbqGJ1LBcJiEyQ==
+X-Received: by 2002:a05:622a:11c9:b0:446:5bbd:4802 with SMTP id d75a77b69052e-44fe92731famr52404331cf.56.1721983537666;
+        Fri, 26 Jul 2024 01:45:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEfWGnnFaUTMrdZkP7xOyuSJUp3K4zWzDQyC1gqU+SG7p0SaPT/1zgZF/fTQCd4H5ucjGPzcBLx8KLTXn+dlRM=
+X-Received: by 2002:a05:622a:11c9:b0:446:5bbd:4802 with SMTP id
+ d75a77b69052e-44fe92731famr52404111cf.56.1721983537186; Fri, 26 Jul 2024
+ 01:45:37 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 26 Jul 2024 03:45:36 -0500
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <57ef2eef45f2de15e6607da266b37b2a.sboyd@kernel.org>
+References: <20240623-th1520-clk-v2-0-ad8d6432d9fb@tenstorrent.com>
+ <20240623-th1520-clk-v2-1-ad8d6432d9fb@tenstorrent.com> <57ef2eef45f2de15e6607da266b37b2a.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/tiny: Add driver for Sharp Memory LCD
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: mehdi.djait@bootlin.com, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240725004734.644986-1-lanzano.alex@gmail.com>
- <20240725004734.644986-3-lanzano.alex@gmail.com>
- <0f98db88-71d4-43a6-85f7-a9661c50a382@kernel.org>
- <j5laj5fy4lamyhlyelaq5vfu5vfxj4ybrssrbvrbyndbnvmsyh@6voevw6f3xf7>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <j5laj5fy4lamyhlyelaq5vfu5vfxj4ybrssrbvrbyndbnvmsyh@6voevw6f3xf7>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Date: Fri, 26 Jul 2024 03:45:36 -0500
+Message-ID: <CAJM55Z8iF8yV5JK5v6ZtQqS5AaWwCZ7uwhSYb7hdxh0juDFdqg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: clock: Document T-Head TH1520
+ AP_SUBSYS controller
+To: Stephen Boyd <sboyd@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor+dt@kernel.org>, Drew Fustini <dfustini@tenstorrent.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Fu Wei <wefu@redhat.com>, 
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh@kernel.org>, Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
+	Yangtao Li <frank.li@vivo.com>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 26/07/2024 03:25, Alex Lanzano wrote:
-> On Thu, Jul 25, 2024 at 08:08:57AM GMT, Krzysztof Kozlowski wrote:
->> On 25/07/2024 02:47, Alex Lanzano wrote:
->>> +static const struct spi_device_id sharp_memory_ids[] = {
->>> +	{"ls010b7dh04", LS010B7DH04},
->>> +	{"ls011b7dh03", LS011B7DH03},
->>> +	{"ls012b7dd01", LS012B7DD01},
->>> +	{"ls013b7dh03", LS013B7DH03},
->>> +	{"ls013b7dh05", LS013B7DH05},
->>> +	{"ls018b7dh02", LS018B7DH02},
->>> +	{"ls027b7dh01", LS027B7DH01},
->>> +	{"ls027b7dh01a", LS027B7DH01A},
->>> +	{"ls032b7dd02", LS032B7DD02},
->>> +	{"ls044q7dh01", LS044Q7DH01},
->>> +	{},
->>> +};
->>> +MODULE_DEVICE_TABLE(spi, sharp_memory_ids);
->>> +
->>> +static const struct of_device_id sharp_memory_of_match[] = {
->>> +	{.compatible = "sharp,ls010b7dh04"},
->>
->> Both ID tables should be in sync. See not-so-recent IIO discussions and
->> commits.
->>
->>> +	{.compatible = "sharp,ls011b7dh03"},
->>> +	{.compatible = "sharp,ls012b7dd01"},
->>> +	{.compatible = "sharp,ls013b7dh03"},
->>> +	{.compatible = "sharp,ls013b7dh05"},
->>> +	{.compatible = "sharp,ls018b7dh02"},
->>> +	{.compatible = "sharp,ls027b7dh01"},
->>> +	{.compatible = "sharp,ls027b7dh01a"},
->>> +	{.compatible = "sharp,ls032b7dd02"},
->>> +	{.compatible = "sharp,ls044q7dh01"},
->>> +	{},
->>> +};
->>> +MODULE_DEVICE_TABLE(of, sharp_memory_of_match);
-> 
-> I'm having some trouble finding the discussions and commits you're referring to.
-> When you say the tables should be in sync are you referring to the ordering of
-> entries in the tables? Like at index x of both tables should define model y?
+Stephen Boyd wrote:
+> Quoting Drew Fustini (2024-06-23 19:12:31)
+> > Document bindings for the T-Head TH1520 AP sub-system clock controller.
+> >
+> > Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+> > Co-developed-by: Yangtao Li <frank.li@vivo.com>
+> > Signed-off-by: Yangtao Li <frank.li@vivo.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> > ---
+>
+> Applied to clk-next
 
-No, the match data.
+Thanks, but this driver seems a bit incomplete. With this applied the Lichee Pi
+4A no longer boots without the clk_ignore_unused kernel parameter.
 
-62d3fb9dcc091ccdf25eb3b716e90e07e3ed861f
-
-Best regards,
-Krzysztof
-
+/Emil
 
