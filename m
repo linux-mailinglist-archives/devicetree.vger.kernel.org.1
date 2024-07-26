@@ -1,95 +1,86 @@
-Return-Path: <devicetree+bounces-88313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A26A93D214
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C6CC93D215
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E84028286E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:19:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 294DA282B00
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F19179972;
-	Fri, 26 Jul 2024 11:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496E917A581;
+	Fri, 26 Jul 2024 11:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GRyCdPZ3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jY0zsxhQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CC1178CD6
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 11:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111EA178CD6;
+	Fri, 26 Jul 2024 11:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721992767; cv=none; b=ZN6mEgGwcgwwuAfG0dQ5OS02hSZzLKmVK0M9if16lG0c7EXnCya6OdAJruxl69sL2I/ISkmPElqGXDzBkbluzRzjfLitPNXwYU/KSXItzEi1ZtEhamoLRogrW0PxK90sKPhcbOegwSAmFt8sfyEezeF6/aGcDgh7sMvzeKyREJk=
+	t=1721992795; cv=none; b=HPsc1IrTi67ZOdKCuEC0AVJvWfyei/MX0cAcFaJy8pGdBv1LPfuHSE/pA5PW6zVopb3vwk6JQ1gaqvKDnFEOCsx8ZOgACgWnbxHw0nCBI190Eb5b8tZP2Fhkla2i7w/7r+4P/JVS5FdADH2u5e3Vd4uQ1mnyu9PXlRxdeUHafHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721992767; c=relaxed/simple;
-	bh=uiPCakp6fqVis2MXIorWvuto8T/zEYSsdNeOg6wPyfY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eYNFSS9PgbWtV9NWdmkO6npkQIU3gH6kuLXM0WUgNZHUZWnbaHdyE8RwA2q4uJFEWAfVoxf0pDGKnSw3JI6RAJ+cik5ysC4AfBzr312HkGtmKzFW8ptRmtDO7TcH5zrmlOedIg8qTqhv32jhJZL22D/liHQQ77Q0337HmSh+Po8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GRyCdPZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89813C32782;
-	Fri, 26 Jul 2024 11:19:26 +0000 (UTC)
+	s=arc-20240116; t=1721992795; c=relaxed/simple;
+	bh=5EX99VlAmyGBICk/5y+ev5w0dqO1k1M1oQo5RWS/vR8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VjFt897A072wDc1zKij7yxpQkXEBjYqAfatVzRf+nMwUHf3ixcNYk3EW1rg9m+9M2VWhzuhDHJlY3OgSXwXCFuiaxYKX058O+GVBXpisnZ8nSlYdHDPPKMgvRNbNt4kh0shpC4sftzqmtAUe7MwVv9QXxOXwfs6/P0YMHTkyyUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jY0zsxhQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9772C32782;
+	Fri, 26 Jul 2024 11:19:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721992766;
-	bh=uiPCakp6fqVis2MXIorWvuto8T/zEYSsdNeOg6wPyfY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GRyCdPZ3Ly7yVF9Q7Giu93RS8JKW47U/8EbgcRvnRUQmeC8ww5HVqk/vdQeljCMCR
-	 THSEOXlV0CT4wPq176hEYB6EmHpzkpVAol1iktUy03e6GOdoKz1dgfr85mmjxRsh1X
-	 gXSPqupmtiTdc/clAKUfgo4V+KmcdFfyAVpZ5ps0pWwZNADNj5cfQW50H/l/p6Tq6i
-	 ZF182RXfWldO26SdrPS7dDOrxZ/x1T0ZoA5yudrmpsfAHs1x6VNLWZ5Ui1EAbviC/Q
-	 LQg4d84mQb2ftVms3slXyIJoST3YLttbHp/RSbCHFNVtv6CV0e4sQY6n9IOG0Q1GP7
-	 4iH/iNenl+zDQ==
-Date: Fri, 26 Jul 2024 06:19:24 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Noah Wang <noahwang.wang@outlook.com>, devicetree@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH] dt-bindings: hwmon: Document TI TPS546D24
-Message-ID: <172199276351.949803.8944132907027970114.robh@kernel.org>
-References: <20240725180337.64396-1-marex@denx.de>
+	s=k20201202; t=1721992794;
+	bh=5EX99VlAmyGBICk/5y+ev5w0dqO1k1M1oQo5RWS/vR8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jY0zsxhQPwxuJVf1w+/9Ks8LYDpMKauqwex0+oSaN5DJ6Vxx4tzHn2GHoTqcbr99H
+	 MIjDZgS1PIKpBUmwvOwQK89nUuoEwDyesihbZcl2BlxdzgNnB3qiv56x3rTyRf1wQh
+	 YgcL9PYDsL8GE+SyM0klC1w4+xUCipmwaM6RaBupwa3FL13ZMa2NWq96Y3CAx25dyL
+	 GsAUvgVJgSpxG1/USf0bwP+F8PoUnWsGkBOffFCEZOcB0rX4oQ2+U2Bi6dyN3PCd6l
+	 iRTXb2KniXl86bFGlJPc8YwuWYZ7ej6X0MuF6vowGI+17YrZQ5Hdo9TQ9mE4bKHXCj
+	 G80PhhbJsPVQA==
+Message-ID: <39a2303c-c89c-4fa3-a2e3-87589d242f4e@kernel.org>
+Date: Fri, 26 Jul 2024 13:19:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240725180337.64396-1-marex@denx.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Update Konrad Dybcio's email addresses
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ linux-pm@vger.kernel.org, iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>
+References: <20240726-topic-konrad_email-v1-0-f94665da2919@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240726-topic-konrad_email-v1-0-f94665da2919@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-On Thu, 25 Jul 2024 20:03:23 +0200, Marek Vasut wrote:
-> Document TI TPS546D24 TPS546D24A 2.95-V to 16-V, 40-A, Up to 4x Stackable,
-> PMBus Buck Converter as trivial device. Linux kernel does have an existing
-> driver using the compatible documented here.
+
+On 26.07.2024 1:18 PM, Konrad Dybcio wrote:
+> Patch 3 should probably go straight to Rob's dt-bindings tree
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
 > ---
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Cc: Noah Wang <noahwang.wang@outlook.com>
-> Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Cc: Peter Yin <peteryin.openbmc@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> Konrad Dybcio (3):
+>       mailmap: Add an entry for Konrad Dybcio
+>       MAINTAINERS: Update Konrad Dybcio's email address
+>       dt-bindings: Batch-update Konrad Dybcio's email
 
-Applied, thanks!
+Err, please excuse the mismatched From: address.. it is definitely
+the same Konrad speaking..
 
+Konrad
 
