@@ -1,135 +1,163 @@
-Return-Path: <devicetree+bounces-88263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E52D993CF9D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3192793CFC1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:44:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C688281164
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:26:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA4E9282884
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48095176FAB;
-	Fri, 26 Jul 2024 08:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E73176ACD;
+	Fri, 26 Jul 2024 08:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kx33rf1t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="laNhUgog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7EA176AB6;
-	Fri, 26 Jul 2024 08:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CAED77F11;
+	Fri, 26 Jul 2024 08:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721982394; cv=none; b=PPDmVzuPNsgQ+Z6KbHPeHx7y+W6As63CtA2s2nU4OxqrPiItdpmuhGDFtxkpvh9BWckjhXqs/gBo/otPluJhCus/WBreaCHjGxI2eYcP8uiIbck3H3zB1HbcuAa7df82VZJ0Hq6A2JGm2WDJNfLNRYbA3RhIx3O6jcRL9yYXvJk=
+	t=1721983445; cv=none; b=gx/p8LNvPLaB218f+uni8UrtXlgUyslSqkjPcpFxiigX4P4BgJ5WW4/KJD+EuV2larCSr3pi3JPBkSgkJQeYA/TLlCUebpujxfadva0OFAiHSAeB7okIi4UXoWvha3eKkrHEfQCt1k5W09U/gtTulMUsop9S3+rTmG8Nyv34F14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721982394; c=relaxed/simple;
-	bh=l2IZLVVoqB72++NC/Bg6lOylPdP7F1zVWUXAP+Xhg28=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=c+9NhJ/tsH83mIn0Vc5C8u4g2DaI361NrMXdPs1qCeSTxxuNhVZd3CCOFaTs2ZCmYVoZQBcMPBkplQI0MKMMEir/5F+azVxppk8UIjoOvR2S+MlMS2z2yFBOJco3MYTXvWY2sRsd7g+40tB3/3HN7POU8NlZn9BZFDvswggH/Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kx33rf1t; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46Q19p9b027639;
-	Fri, 26 Jul 2024 08:26:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VxqvS5G/n0dALMTSTAsgqDdimLM3GriAm5TKGP1RhUM=; b=Kx33rf1tFlJV0Y0O
-	88tkdDE4lpApEQg04iwPU6f9boAspybi8eMKIafyz6hyZ4+AZ4BxTX8Z2f/07lMf
-	7qrLdLX+NOeN0cTj3qLNfjcBdxIQynYiq7zptF78peIoDUYhpvJ3LzStyI/bdO+M
-	tfgUrqBJbL1Xd9btI/jWoD4OIyRjdkvA4fc0zEsNntjnrGpoA18aYV2eT3rHrsLy
-	y4DPqfFSY/Wv1WOjgouuSrXnl6L2fg213gWtLVh+BAKsVix1gbRFYyN0+QOsgSSb
-	XY7P+dZgFcn52UJdpo77+A54HXMtqk1eBKli0cFNUwkWbFlUNuNaH2jn9G0zclvs
-	O/eV3w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40m1vygtu7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 08:26:00 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46Q8Pxtv016137
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 08:25:59 GMT
-Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Jul
- 2024 01:25:53 -0700
-Message-ID: <7ecfe568-6897-6dc5-fda7-50d6424298d9@quicinc.com>
-Date: Fri, 26 Jul 2024 13:55:50 +0530
+	s=arc-20240116; t=1721983445; c=relaxed/simple;
+	bh=eejb5Z2iHiQafBsqMRmDNsCTSs9ds9yQSnrjZYsNM6k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MR6WASgPg3DxhT+S9y+2BlmiGTb3dn577ZHR8PHxoUFLR9bnAAPL2gIF66q5kGxSg+4WfGdl343VhzTUkkpJ9ZAmNlsvMxuUMq4Y6cWUq3iAR3Kq5KCPISFcRCYR/VWZSliU3rXKuwsP1x7ZjA1M2uyPtD9OYCGxDob0TfBAdwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=laNhUgog; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 850DEC32782;
+	Fri, 26 Jul 2024 08:44:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721983444;
+	bh=eejb5Z2iHiQafBsqMRmDNsCTSs9ds9yQSnrjZYsNM6k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=laNhUgog5zdxQOChAauSSYv6EbLXiS4tVNsuzMZoKntWseRpNRns7yptfpQ3U1TRd
+	 MPykf72StMZBxhF3WPEjdEjZb9LuJ4pValMuRcwPPK/fvS/p0xBLenLjEPmnIVWU3S
+	 4nxGhc2kaV9a6iIo9DYT1TEPtVrdkmlmsWvLM3PilRHF0eISyJKz5aCHHB3YoJUFSb
+	 9/BwkBK1id8Bl0Z+1HjbWoab10uaXaDKrJhWCXPo+sK47opZY0eT+gLcUNnsbZXod1
+	 fqUbwjNmLWxm7uckQSTjQ5kkDTH0TvwQ4ocueSiLDYfYMrn7Trlo5Wy8rJsFxlo2eV
+	 F1r7eSf2CXeJA==
+Message-ID: <68a75949-a908-4416-bb2c-ad07596f0d29@kernel.org>
+Date: Fri, 26 Jul 2024 10:43:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for
- SM8150
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/tiny: Add driver for Sharp Memory LCD
+To: Alex Lanzano <lanzano.alex@gmail.com>
+Cc: mehdi.djait@bootlin.com, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240725004734.644986-1-lanzano.alex@gmail.com>
+ <20240725004734.644986-3-lanzano.alex@gmail.com>
+ <0f98db88-71d4-43a6-85f7-a9661c50a382@kernel.org>
+ <j5laj5fy4lamyhlyelaq5vfu5vfxj4ybrssrbvrbyndbnvmsyh@6voevw6f3xf7>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>
-References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
- <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
- <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
- <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com>
- <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
- <e235f19f-26b5-2cf7-ebb7-36e4dabe9b9b@quicinc.com>
- <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <j5laj5fy4lamyhlyelaq5vfu5vfxj4ybrssrbvrbyndbnvmsyh@6voevw6f3xf7>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kPAXfV9b_el9nMT0CcWuqcQetQs7sefF
-X-Proofpoint-GUID: kPAXfV9b_el9nMT0CcWuqcQetQs7sefF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-26_07,2024-07-25_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- impostorscore=0 suspectscore=0 mlxlogscore=969 mlxscore=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 priorityscore=1501 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407260054
 
-
->>>>> - I see that most if not all RCG clocks use rcg2_shared ops instead of
->>>>>      using simple rcg2 ops, could you please clarify that?
->>>> As per the HW design recommendation, RCG needs to be parked at a safe
->>>> clock source(XO) in the disable path, shared_ops is used to achieve the
->>>> same.
->>> Does it apply to SM8150? For example, on SM8250 RCG2s are not parked.
+On 26/07/2024 03:25, Alex Lanzano wrote:
+> On Thu, Jul 25, 2024 at 08:08:57AM GMT, Krzysztof Kozlowski wrote:
+>> On 25/07/2024 02:47, Alex Lanzano wrote:
+>>> +static const struct spi_device_id sharp_memory_ids[] = {
+>>> +	{"ls010b7dh04", LS010B7DH04},
+>>> +	{"ls011b7dh03", LS011B7DH03},
+>>> +	{"ls012b7dd01", LS012B7DD01},
+>>> +	{"ls013b7dh03", LS013B7DH03},
+>>> +	{"ls013b7dh05", LS013B7DH05},
+>>> +	{"ls018b7dh02", LS018B7DH02},
+>>> +	{"ls027b7dh01", LS027B7DH01},
+>>> +	{"ls027b7dh01a", LS027B7DH01A},
+>>> +	{"ls032b7dd02", LS032B7DD02},
+>>> +	{"ls044q7dh01", LS044Q7DH01},
+>>> +	{},
+>>> +};
+>>> +MODULE_DEVICE_TABLE(spi, sharp_memory_ids);
+>>> +
+>>> +static const struct of_device_id sharp_memory_of_match[] = {
+>>> +	{.compatible = "sharp,ls010b7dh04"},
 >>
->> Yes, it applies to SM8150.
-> Should the same logic be applied to other chipsets supported upstream?
-> If this is the case, which chipsets?
+>> Both ID tables should be in sync. See not-so-recent IIO discussions and
+>> commits.
+>>
+>>> +	{.compatible = "sharp,ls011b7dh03"},
+>>> +	{.compatible = "sharp,ls012b7dd01"},
+>>> +	{.compatible = "sharp,ls013b7dh03"},
+>>> +	{.compatible = "sharp,ls013b7dh05"},
+>>> +	{.compatible = "sharp,ls018b7dh02"},
+>>> +	{.compatible = "sharp,ls027b7dh01"},
+>>> +	{.compatible = "sharp,ls027b7dh01a"},
+>>> +	{.compatible = "sharp,ls032b7dd02"},
+>>> +	{.compatible = "sharp,ls044q7dh01"},
+>>> +	{},
+>>> +};
+>>> +MODULE_DEVICE_TABLE(of, sharp_memory_of_match);
+> 
+> I'm having some trouble finding the discussions and commits you're referring to.
+> When you say the tables should be in sync are you referring to the ordering of
+> entries in the tables? Like at index x of both tables should define model y?
 
+No, the match data.
 
-I will evaluate for what all chipsets it is applicable and post a series 
-to fix it.
+62d3fb9dcc091ccdf25eb3b716e90e07e3ed861f
 
+Best regards,
+Krzysztof
 
 
