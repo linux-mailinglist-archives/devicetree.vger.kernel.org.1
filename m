@@ -1,121 +1,163 @@
-Return-Path: <devicetree+bounces-88282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED07A93D150
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 12:44:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2111693D172
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57A772823C0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:44:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43D561C20BE3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A112178CFD;
-	Fri, 26 Jul 2024 10:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC92178CCF;
+	Fri, 26 Jul 2024 11:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XmrMoLFH"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="IGnFq8Dj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7272B9C4
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 10:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640B914277
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 11:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721990648; cv=none; b=YKrVq4yXxeJlvQFuLNRUCN3yJG7mkimH45laiAuwPw3z1Zf0oSijU9y8Pnpta4H44bmHKWbuMY+bn50SPMXHyIc77xDhm5Md3ByTLq/OD6InAhzbso0ITwYr57eBQ5Fk48zoukuihWNwn2no1NSY65B2g7JHQyrhuW7XKEj6K7o=
+	t=1721991703; cv=none; b=lWyuSE6ZlTD/yAVBvg1k45evodSwHxGdiWTtLxJhL/7RLyuPp+j3rbY8+Ahoin4ZhFJ64ecDK1f0KsvhhYXdOaIX4yriok8S67/Qmuekw9ObcAE8QF56rn/vUydWBjm2N2tnvDR4cNzktGIebd6ZvWf5HEd6XGloN9J4Snfdjss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721990648; c=relaxed/simple;
-	bh=gmcvBh8tAxM7U4muCR4NnBCWSdONDoqi+ah/t3fRe7M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JqIIEYfpdbfg+ll6tJLpoGmUFjp/A2UnDk/nb2xQrPWSKRLo+2GdklssBkCVW1xjasmXLXOuTFdK3fVhG2Sonb5cXjxmqQxIvAvurzC/NhxmGxahUQ9net616Qz6j8I5oalsGq+Zg9MKwD8X0SLs3wdiWqMm0jP/Q/4bvdDklPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XmrMoLFH; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e0b286b922eso1623951276.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 03:44:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1721990646; x=1722595446; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RN8ATHGy693sEWHqxL7yZGVaFgF60XWH6I6eHMXS/Kw=;
-        b=XmrMoLFH1HoXwj7ELHd3mGqFCCSqwXnKueKik1ObjVNTP+CaKfrPZY8tBnpTcmC37A
-         30BVdO5/Csr9bFtJ+EPGG0A/G1grTLlJkmCbGe3WDLL/VXEgH487at+oPHF6vfHN7bhe
-         //M6j3w/j6uOOuB8koWClfGpk8knujLz4DHJi+5doWLz7dtsNBTf6084YLuH5gJAZbmA
-         dsqoI429VmlsvEYs+RIA0i/yoHlw1uyg6aHkmuVpb8gEmhO8LRW2pv6F4BHbOSecft+S
-         SODqmUzH/iG30/tFkdxfqsmU/gLBMcSl+6A5VYYUkqM0EM4nfrs2vslPmLji9bqKSG7v
-         JYNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721990646; x=1722595446;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RN8ATHGy693sEWHqxL7yZGVaFgF60XWH6I6eHMXS/Kw=;
-        b=K5rsjY2I2mhchqVnqxfztsumIZxQ3UVRGZSQslgYFvtbVkAoUAqfualaUb+jTOXcI/
-         xUnmCvpSrJg8ZouM7Zba9DxKFIMBsnRHOzovmSDjRiy6LEZhmG97e6RfZcld2hO/Tp0u
-         7zkI4g0rt/+jVK08eehF7LV+0ftAe6pMGO+TUAWc9G9q0w9fB1dE2YzsGDFF0wQHVwF/
-         nJAcRDfumjzxN/spABXJn0UOgGQ1EJVc88PmX5H/ZZSkHXNuURvKqLNCxlVARXJm8a1E
-         JCjxT/GOEf47JTU3mVfVU+8O8uccPAz/o8Bo2DuLibw6e3Ca3FWxDN31ChlIZfkV/Bf9
-         Yi+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU33ewQozr0XgBnEZ0mHyRRIAYTEifufR5GapoayP+dCt3ECe/iLshZq+xuQ1VyxYv52iXghHc1HyFDw9X/I02cq2SHN8oahdG6cA==
-X-Gm-Message-State: AOJu0YyldZiBWDfkOT1GW8CCwar9nWdKQSD00ibRR7pO45ZeBZhCq6md
-	V7epxHHx0pR0bRyWPyk92EaSDHNjwQ4UoIgsxo2DRQXgWjVDDoXpWoaXPUiZ8nLB4zddjfWlURM
-	JIkopd2ricKfU/GiBtlpoV1oeM4gaybmZEZNlMw==
-X-Google-Smtp-Source: AGHT+IHb3A9j5z62UT6v6zQ6mW1WzMgmZNVqDkZSftx/n6W05QEmmC+a/Z/IWs5gAqZ401gu+abgWbO02bBNZXq3SLc=
-X-Received: by 2002:a05:6902:c0b:b0:e03:5f40:1ecf with SMTP id
- 3f1490d57ef6-e0b23233e44mr7064004276.44.1721990645837; Fri, 26 Jul 2024
- 03:44:05 -0700 (PDT)
+	s=arc-20240116; t=1721991703; c=relaxed/simple;
+	bh=Gv0ftQzDJ3EJWBl6xXDHU62sR2UU3NPqgkxGWopDc6c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=T86YaGsbT/wdraPX18msMvSt6LopVxbjO+nbzdAn/SkLbgJnYHD1zJnk9Nk0FYbyDMGcEzUAbknuFUlXeFKsA8IMQY+69TdW+bRKtKs8/S+ZnxCBUZDXQk/zwoRIMwFGs9XX7bg8rkdo0CffkKRChWi+0OX9TscsDgvY1ytPG44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=IGnFq8Dj; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240726110133euoutp0261bb54a7ea7a0b7056f058a0785ae1b4~lvlJuZYgi3005730057euoutp02U
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 11:01:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240726110133euoutp0261bb54a7ea7a0b7056f058a0785ae1b4~lvlJuZYgi3005730057euoutp02U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1721991693;
+	bh=0E7LtwcPeufFtOSVEEqAZtiyP4gVnHEqxC1AgRNHbFE=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=IGnFq8Dj6nxalpG/UeEdF+J3LHaLsYYUZY2CCR9o61gHVySy3i4kjotRAn5RPeOIm
+	 TJ70QF4sK1Lnnz2RlZWAO0hVJ4pHZi2TAa68LZVHSiFimAsaBQgFfbqYZxQmdQex/E
+	 d/59yMpycZeOXll/eKRfe4qnXS22rmr6XfgZN2jM=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20240726110133eucas1p20a5f1b3649c2ad33197053652596e4aa~lvlJZA9WV2815028150eucas1p29;
+	Fri, 26 Jul 2024 11:01:33 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id B0.C8.09875.D0283A66; Fri, 26
+	Jul 2024 12:01:33 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20240726110133eucas1p1a20d4fae252520ea6747bc1101c9d59a~lvlJBF5650303903039eucas1p1X;
+	Fri, 26 Jul 2024 11:01:33 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240726110133eusmtrp2bef4f151570af3f9d661eb48217a9019~lvlJAD7xO1722117221eusmtrp2S;
+	Fri, 26 Jul 2024 11:01:33 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-a1-66a3820d3710
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id FD.17.08810.C0283A66; Fri, 26
+	Jul 2024 12:01:32 +0100 (BST)
+Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
+	[106.120.51.28]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240726110132eusmtip25fbe6aa06af2249b547bb95285200c3c~lvlIECCRq2391923919eusmtip2e;
+	Fri, 26 Jul 2024 11:01:31 +0000 (GMT)
+From: Mateusz Majewski <m.majewski2@samsung.com>
+To: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Mateusz Majewski <m.majewski2@samsung.com>, Bartlomiej Zolnierkiewicz
+	<bzolnier@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
+	Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, Anand
+	Moon <linux.amoon@gmail.com>
+Subject: [PATCH v2 0/6] Add initial Exynos850 support to the thermal driver
+Date: Fri, 26 Jul 2024 13:01:04 +0200
+Message-ID: <20240726110114.1509733-1-m.majewski2@samsung.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
- <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
- <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
- <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com> <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
- <e235f19f-26b5-2cf7-ebb7-36e4dabe9b9b@quicinc.com> <CAA8EJpob5Qov78JfNN5BE+c1WyvnuBcQLYENHL0c1GTS+PPfSQ@mail.gmail.com>
- <7ecfe568-6897-6dc5-fda7-50d6424298d9@quicinc.com>
-In-Reply-To: <7ecfe568-6897-6dc5-fda7-50d6424298d9@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 26 Jul 2024 13:43:55 +0300
-Message-ID: <CAA8EJpovn=eAj21R=Q7mDXcb1SmHpRhYNnNpHpx+YHyaT7S0tw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for SM8150
-To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Abhishek Sahu <absahu@codeaurora.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDKsWRmVeSWpSXmKPExsWy7djP87q8TYvTDOY0iFo8mLeNzeL7lutM
+	Fmv2nmOymPdZ1mL+kXOsFufPb2C32PT4GqvF5V1z2Cw+9x5htJhxfh+TxbqNt9gtFja1sFtM
+	PDaZ2WLul6nMFv/37GC3ePKwj83ied8+JgdBjzXz1jB67Jx1l91j8Z6XTB6bVnWyedy5tofN
+	Y/OSeo++LasYPT5vkgvgiOKySUnNySxLLdK3S+DK2H7oCktBP1fFqwkTGRsY53F0MXJwSAiY
+	SLy8YdrFyMkhJLCCUeL4e58uRi4g+wujxJPFx1khnM+MEkf2TGEDqQJpOD73HiNEx3JGiU9H
+	RCGKWpkkDqydxwqSYBMwkHjwZhk7SEJEYDGjROOPd2CjmAWeMEv8fLUYrF1YwFuiYVEnM4jN
+	IqAqsWrRGzCbV8BOonviFqh18hK9+/uYIOKCEidnPmEBsZmB4s1bZzODDJUQ+MEhcfz4bKgG
+	F4m9B/ewQNjCEq+Ob2GHsGUk/u+czwRh50vM2PyeBRIAFRJ3D3pBmNYSH88wg5jMApoS63fp
+	Q0QdJW7vqYAw+SRuvBWE2M8nMWnbdGaIMK9ER5sQxGRVieN7JjFD2NIST1puQ230kJi37BEL
+	JNRiJV5c2sg8gVFhFpKvZiH5ahbCCQsYmVcxiqeWFuempxYb5aWW6xUn5haX5qXrJefnbmIE
+	JrjT/45/2cG4/NVHvUOMTByMhxglOJiVRHiX3V+YJsSbklhZlVqUH19UmpNafIhRmoNFSZxX
+	NUU+VUggPbEkNTs1tSC1CCbLxMEp1cDkcfRQgFJMxgde+75M6X37eXb8C7+/53VGtYiUrdMt
+	ronf30+JtEh/uWHf4bZQ63M9qfF7g5N0a/m5Tf/+3Cf8Y/eN1h8tffdnu/qs43jsGX1OOeiq
+	5wbPu2EhWgsT2xyv/b3tYLJa4ec3Fd6Frd+YnimGvyw4WHRnT/z5Kb/TnCx+57tv+HRmuepS
+	ea+v+y6XcMdzzbjEcvTYJKPWtQ2XC+v0/PQqFRvn2gZu5K2yi5my+Ld1ar+2s9yjVm7TCYbx
+	O5tWzn7mvurLO9+SvNuO5X+ayy2nW/wPmvchNivvYf2l4/dbs77NubOt/rS+4ay9z9a+PO3J
+	sXzVrLB2vjWGG4NDbC8yuu/vDLZVm7VWiaU4I9FQi7moOBEA+euU298DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsVy+t/xe7o8TYvTDD58s7R4MG8bm8X3LdeZ
+	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi3Ubb7FbLGxqYbeY
+	eGwys8XcL1OZLf7v2cFu8eRhH5vF8759TA6CHmvmrWH02DnrLrvH4j0vmTw2repk87hzbQ+b
+	x+Yl9R59W1YxenzeJBfAEaVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9n
+	k5Kak1mWWqRvl6CXsf3QFZaCfq6KVxMmMjYwzuPoYuTkkBAwkTg+9x5jFyMXh5DAUkaJQ2v/
+	sUEkpCUOf5nCDmELS/y51sUGUdTMJPFyySWwBJuAgcSDN8vAbBGB5YwSm9s9QGxmgXfMEu3n
+	/UBsYQFviYZFncwgNouAqsSqRW/AbF4BO4nuiVuglslL9O7vY4KIC0qcnPmEBWKOvETz1tnM
+	Exj5ZiFJzUKSWsDItIpRJLW0ODc9t9hQrzgxt7g0L10vOT93EyMwxrYd+7l5B+O8Vx/1DjEy
+	cTAeYpTgYFYS4V12f2GaEG9KYmVValF+fFFpTmrxIUZToPsmMkuJJucDozyvJN7QzMDU0MTM
+	0sDU0sxYSZzXs6AjUUggPbEkNTs1tSC1CKaPiYNTqoHJ9st5pkWPDxeHeSaZS69sf3fWxWC7
+	81fHC3t/8B/7ndlbEx6mJ3E/KlVvPoOYp/b87onTHr4+Pifrvmz1jXp207zl976E1b+eyDJB
+	O/P6u18SGXYXJntkub99ZDXzjpOzztUf/0S3TQs2/7Txifje7ev/ynxx+1h4Tyrrxfr5qZZh
+	q/nuTJBtZLDZa8vd99ArZ2aC5pOQh+d5OGQvPH3wZfUErzjPT7utPqjPXbLXXuNYb09GSJHK
+	e64t6h8tX17uc5M/F6hucL8vxKt5i/JnR/6rmSsF4qU92SYpvzv+64pr/aOerYarWAoaL9/m
+	Te6xSfo3zzDx6QG3QIGidZmRWqnneOasufp52YzySx8dlViKMxINtZiLihMBw7pCXToDAAA=
+X-CMS-MailID: 20240726110133eucas1p1a20d4fae252520ea6747bc1101c9d59a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20240726110133eucas1p1a20d4fae252520ea6747bc1101c9d59a
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240726110133eucas1p1a20d4fae252520ea6747bc1101c9d59a
+References: <CGME20240726110133eucas1p1a20d4fae252520ea6747bc1101c9d59a@eucas1p1.samsung.com>
 
-On Fri, 26 Jul 2024 at 11:26, Satya Priya Kakitapalli (Temp)
-<quic_skakitap@quicinc.com> wrote:
->
->
-> >>>>> - I see that most if not all RCG clocks use rcg2_shared ops instead of
-> >>>>>      using simple rcg2 ops, could you please clarify that?
-> >>>> As per the HW design recommendation, RCG needs to be parked at a safe
-> >>>> clock source(XO) in the disable path, shared_ops is used to achieve the
-> >>>> same.
-> >>> Does it apply to SM8150? For example, on SM8250 RCG2s are not parked.
-> >>
-> >> Yes, it applies to SM8150.
-> > Should the same logic be applied to other chipsets supported upstream?
-> > If this is the case, which chipsets?
->
->
-> I will evaluate for what all chipsets it is applicable and post a series
-> to fix it.
+This series adds initial Exynos850 support to the thermal driver
+together with its requirements (sanitize_temp_error fix, adding the new
+string to dt-bindings), while also cleaning up a bit (improving power
+management support and removing some outdated information from
+dt-bindings).
 
-Thanks a lot!
+Changelog:
+ v2:
+   - Reimplemented to use the Exynos850 TMU clock: removed the patch to
+     make the clock optional and changed dt-bindings change accordingly
+   - Improved the Exynos850 implementation itself (style and one correct
+     register offset)
+   - Removed conditional compilation in favor of pm_sleep_ptr
+   - Shortened dt-bindings description
 
+Mateusz Majewski (6):
+  drivers/thermal/exynos: use DEFINE_SIMPLE_DEV_PM_OPS
+  drivers/thermal/exynos: use pm_sleep_ptr instead of conditional
+    compilation
+  drivers/thermal/exynos: improve sanitize_temp_error
+  dt-bindings: thermal: samsung,exynos: add exynos850-tmu string
+  drivers/thermal/exynos: add initial Exynos850 support
+  dt-bindings: thermal: samsung,exynos: remove outdated information on
+    trip point count
+
+ .../thermal/samsung,exynos-thermal.yaml       |   8 +-
+ drivers/thermal/samsung/exynos_tmu.c          | 219 ++++++++++++++++--
+ 2 files changed, 199 insertions(+), 28 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.45.1
+
 
