@@ -1,204 +1,149 @@
-Return-Path: <devicetree+bounces-88353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C819293D3C3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB9B93D3E0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:14:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25E8FB227A0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:09:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D164B23A9A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BC317BB23;
-	Fri, 26 Jul 2024 13:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195A017BB1E;
+	Fri, 26 Jul 2024 13:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nG3ah4p4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lpq8sHos"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BA617BB1E;
-	Fri, 26 Jul 2024 13:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FBC17BB12
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 13:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721999387; cv=none; b=DYcdMswJPyVuwykWy5GDCdRsSOGOjSHjRqy9vgS5tnVCx7S+n5Yc+LApHvJj2Jda53xkA2IGKoRIC9iZZN9ikAI26Vf0C4Buw6H1yJgwNwxWB3XmTcgoIRu8QkghKVvSaO6WcLH0tLiCtOBGFfQ3dYhmWcP3Fa0GHpiUXdNscro=
+	t=1721999636; cv=none; b=Er3Orx1kfjNSW5Sp+c6pDCsRfi88XUi2JyWYp82PCm4rAkU6UkG+CaeKqVpkagZcPoDojc+Y7t1KXMhUs3LlQz3P/JQoUraDChJmwE/gxMcRjGQrVX9gmHA4cXonUIxWcnjb3McEIceruEe/fMZ2CUomlPEhH7tW19WCA2qjuFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721999387; c=relaxed/simple;
-	bh=m16SHb6+ZqjMIk/VB8thzx94l0dEIIpowFhPWl6yAdM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=cXS+gyXWzZpHzSk5xSbI8e1R+9Gwq11ZS8k/AOfipCT5NQeqMuxRGqZ3fnLQYXSU5O8dSsRTRNB9BwwJR7L3EXRM2wpCJg4yZ6T8Ek3Y5jfjOPE6iMlnCp10ghWQ/mvcv5uAZ+Pj3PSmbhQy54uToiqOwlufBylZUuXx1PuY3ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nG3ah4p4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCB4C4AF09;
-	Fri, 26 Jul 2024 13:09:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721999387;
-	bh=m16SHb6+ZqjMIk/VB8thzx94l0dEIIpowFhPWl6yAdM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=nG3ah4p4yi6Yn2v0gF2rHAz3r+rTMOQcqlL8n4l8dbwzs9MnqrvRmgNhK8g9j+IRi
-	 Ot6l4p7cl+P4OPR5+i0euE5wTCjgrVVdjsEXCgUGr+9ByC048hwx8OHMwvbJDmE2Es
-	 kTS+8k+W8D4lfiO2th60mBOzvEpdrmByYAYhwo4jCoLTL0OOHFl6pBNHsF+jOxVGu1
-	 ojuaAVIaPTqRFX6dIsJ/REeIIPUPR7+bmLlhFSxnMEWiBP6KH4Dp9eIZxog/QPQa1Q
-	 Awt31mXUylPb9RZ3qC24SCRZ2xL74PcNL0pMTQV2sY5pFt85csdj1Kqbay/1eELiYr
-	 FzaZXB3DWPqHg==
-Date: Fri, 26 Jul 2024 08:09:45 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1721999636; c=relaxed/simple;
+	bh=Cdmr1wNOXg3YuxF+fm5Dem5hL4V7dSar/S6BwJB33LY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JT0DNGpF56ZkL34csQhboXJifxwcyZy7H19JyEUWTsY48ey/YhtCWsHqtQ+jPSadT1rP6L46Klf5lH+kSqZqSG8tpBpqGu2O6wuUNkkNI83jNM3Xo7SO281LNmxVceXvt3spF+KAwJRPR4nyk4FBDM3S5H6fNGSeRsi/R1EeI9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lpq8sHos; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f025b94e07so15403041fa.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 06:13:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1721999629; x=1722604429; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zh3vyC1WH4G3/hH1Lds2F5b/d+/by8NtQNhwTrmTrdY=;
+        b=lpq8sHosHFvYj/G4H4eyCI5FkUEXF5DO8WxdFevId+KpjjJxpyugP1IWUD4D4Oq2+L
+         bxOafjX9um/OIBUE7y7/5W+r5rPGDZg/wA8crFrxSJoHsScEE3NPhR03WfusuYlGSZLV
+         fj16c++4JdTXfjQZlX6Xbu8sOYgiFSlnUcxqG4TRJGBGiVe3dJnVedzKFGMr6mBud9dF
+         2ekAaVNvTadEXoAKPlKbBYwSJTV070mWwUMXHZVWNWKE8qjDcpBcFFvI23Dhsw46GotL
+         WcWFHcKowjXPrvz1jqZcSRsytZ2+1CuzOBHC2HxgOiK+676TG8WvM+tNty4v0VSGuVEr
+         NeOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721999629; x=1722604429;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zh3vyC1WH4G3/hH1Lds2F5b/d+/by8NtQNhwTrmTrdY=;
+        b=mrTxv0Jfr7wwIEzm/T2k7I1YbmrIekEaxZ05f26K3+2TmtEWSarPK3fYWHRd0+kKyO
+         S10qF9t6C4P5IEgLXjrF10KxfE5tKfrE/n1+jS4KSGWqyT1BhxCMMbRmEBB2CqTrId3s
+         d9f96lz8UwD8+PhzVGV50f0z9dVKrtPan8mZhgB469ziYqlTaoDcw7ftIdX5erdFiPQr
+         uk9GCkiFQFld4nBwQbV3oY5/xUeQ6dyHIIGdRRLnsCNSpBWJ5EpZ6WsZAPrB6bX4XyPg
+         GaQvqeSeVu/QVPcbzqJsUBscBxyhyMykilZ1W+V+n4b5pDut5nc++6mrorr7dPXcU6gu
+         9+EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKgmCv1T5cbszS4nAs2bgc8760x4DalRngmo2n6xArnzSg2mpbalgfsIugbokOjkJQvCbAZ2BYi6f/UMBfxasrarvfNudR4V9UUg==
+X-Gm-Message-State: AOJu0YzuluKXQsV8On8RICYgmYRix1EMnmXSH8VgqyiQamMHaiyymQUD
+	fO/N7AEFEy8tnse9ywo4Ryfjk2w/dX12CBP4Haw9/hcSKDOWkQwVl4JYBRQrh08=
+X-Google-Smtp-Source: AGHT+IHnthYvJSLZi9A6Pf8OaQCOFLwe8XfHMSX3Suyha+VZUk+mAsZml7xZkNIcx932RlRPoxus5w==
+X-Received: by 2002:a2e:9f57:0:b0:2ef:18ae:5cc2 with SMTP id 38308e7fff4ca-2f03db8e156mr37629931fa.21.1721999628861;
+        Fri, 26 Jul 2024 06:13:48 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:414f:cfed:daba:4cb? ([2a01:e0a:982:cbb0:414f:cfed:daba:4cb])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4280574a8a2sm80575835e9.23.2024.07.26.06.13.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jul 2024 06:13:48 -0700 (PDT)
+Message-ID: <d1bee4fe-03c6-427c-ac3d-7a33f1533ecd@linaro.org>
+Date: Fri, 26 Jul 2024 15:13:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Potin Lai <potin.lai.pt@gmail.com>
-Cc: Patrick Williams <patrick@stwcx.xyz>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Cosmo Chou <cosmo.chou@quantatw.com>, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- Conor Dooley <conor+dt@kernel.org>, Potin Lai <potin.lai@quantatw.com>, 
- Joel Stanley <joel@jms.id.au>, Conor Dooley <conor.dooley@microchip.com>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-In-Reply-To: <20240726-potin-catalina-dts-v5-0-8f02305af527@gmail.com>
-References: <20240726-potin-catalina-dts-v5-0-8f02305af527@gmail.com>
-Message-Id: <172199921421.1507234.14901757413141840919.robh@kernel.org>
-Subject: Re: [PATCH v5 0/2] Add Meta(Facebook) Catalina BMC(AST2600)
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/3] mailmap: Add an entry for Konrad Dybcio
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ linux-pm@vger.kernel.org, iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>
+References: <20240726-topic-konrad_email-v1-0-f94665da2919@kernel.org>
+ <20240726-topic-konrad_email-v1-1-f94665da2919@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240726-topic-konrad_email-v1-1-f94665da2919@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Fri, 26 Jul 2024 18:26:48 +0800, Potin Lai wrote:
-> Add Linux device tree entry related to Meta(Facebook) Catalina specific
-> devices connected to BMC(AST2600) SoC.
+On 26/07/2024 13:18, Konrad Dybcio wrote:
+> Map my old addresses.
 > 
-> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
 > ---
-> Changes in v5:
-> - fix spi1_gpio node name and properties
-> - remove undefind properties in mac3, i2c7 & i2c11
-> - Link to v4: https://lore.kernel.org/r/20240725-potin-catalina-dts-v4-0-aa6f235a2e78@gmail.com
+>   .mailmap | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> Changes in v4:
-> - change back io_expanderX due to parser error, build passed in v4 version.
-> - Link to v3: https://lore.kernel.org/r/20240725-potin-catalina-dts-v3-0-3a5b5d9e6dbc@gmail.com
-> 
-> Changes in v3:
-> - rename tmp75 nodes to temperature-sensor
-> - rename tmp421 nodes to temperature-sensor
-> - rename ina230 nodes to power-sensor
-> - rename io_expanderX nodes to io-expanderX
-> - Link to v2: https://lore.kernel.org/r/20240724-potin-catalina-dts-v2-0-ba8d475c4073@gmail.com
-> 
-> Changes in v2:
-> - drop commented code in dts
-> - rename i2c-mux channel nodes as i2c1muxXchY
-> - rename gpio expander as io_expanderX
-> - use "stdout-path" instead of "bootargs"
-> - Link to v1: https://lore.kernel.org/all/20240722145857.2131100-1-potin.lai.pt@gmail.com/
-> 
-> ---
-> Potin Lai (2):
->       dt-bindings: arm: aspeed: add Meta Catalina board
->       ARM: dts: aspeed: catalina: add Meta Catalina BMC
-> 
->  .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
->  arch/arm/boot/dts/aspeed/Makefile                  |    1 +
->  .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 1016 ++++++++++++++++++++
->  3 files changed, 1018 insertions(+)
-> ---
-> base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
-> change-id: 20240724-potin-catalina-dts-fda1ea3297b1
-> 
-> Best regards,
-> --
-> Potin Lai <potin.lai.pt@gmail.com>
-> 
-> 
+> diff --git a/.mailmap b/.mailmap
+> index e51d76df75c2..d189c6424697 100644
+> --- a/.mailmap
+> +++ b/.mailmap
+> @@ -353,6 +353,8 @@ Kenneth Westfield <quic_kwestfie@quicinc.com> <kwestfie@codeaurora.org>
+>   Kiran Gunda <quic_kgunda@quicinc.com> <kgunda@codeaurora.org>
+>   Kirill Tkhai <tkhai@ya.ru> <ktkhai@virtuozzo.com>
+>   Kishon Vijay Abraham I <kishon@kernel.org> <kishon@ti.com>
+> +Konrad Dybcio <konradybcio@kernel.org> <konrad.dybcio@linaro.org>
+> +Konrad Dybcio <konradybcio@kernel.org> <konrad.dybcio@somainline.org>
+>   Konstantin Khlebnikov <koct9i@gmail.com> <khlebnikov@yandex-team.ru>
+>   Konstantin Khlebnikov <koct9i@gmail.com> <k.khlebnikov@samsung.com>
+>   Koushik <raghavendra.koushik@neterion.com>
 > 
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-facebook-catalina.dtb' for 20240726-potin-catalina-dts-v5-0-8f02305af527@gmail.com:
-
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: ftgmac@1e690000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/xdma@1e6e7000: failed to match any schema with compatible: ['aspeed,ast2600-xdma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: adc@1e6e9000: 'interrupts', 'vref' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: adc@1e6e9100: 'interrupts', 'vref' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: gpio@1e780000: 'pinctrl-0' is a dependency of 'pinctrl-names'
-	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: lpc@1e789000: reg-io-width: 4 is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/bus@1e78a000/i2c@100/i2c-mux@70/i2c@2/pwm@21: failed to match any schema with compatible: ['maxim,max31790']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/bus@1e78a000/i2c@100/i2c-mux@70/i2c@2/pwm@27: failed to match any schema with compatible: ['maxim,max31790']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/bus@1e78a000/i2c@100/i2c-mux@70/i2c@3/vrm@60: failed to match any schema with compatible: ['isil,raa228004']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/bus@1e78a000/i2c@100/i2c-mux@70/i2c@3/vrm@61: failed to match any schema with compatible: ['isil,raa228004']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/bus@1e78a000/i2c@100/i2c-mux@70/i2c@3/vrm@62: failed to match any schema with compatible: ['isil,raa228004']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/bus@1e78a000/i2c@400/ipmb@10: failed to match any schema with compatible: ['ipmb-dev']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-
-
-
-
-
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
