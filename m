@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7185D93D1DC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:15:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D48193D1E5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:15:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C53628201A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:15:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5459282CF4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DD6179955;
-	Fri, 26 Jul 2024 11:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA07F17A591;
+	Fri, 26 Jul 2024 11:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqWbt93R"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oybBgE4u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5C113D502;
-	Fri, 26 Jul 2024 11:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E86C208DA;
+	Fri, 26 Jul 2024 11:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721992497; cv=none; b=YjZeT4oLLYP7miJlxlnwRcyXvdW/+/6VvXmkqs55OpivtN07vqAT5SHRrG6qdlFXpbFIRzgLTGPGUwHfB3e9+cGSUHH2bYdAGmTIpdIgkQP5SFee7Llow2zMi9I7hbx0Lf9fb55QR1HV2Sx3TfJu9bBV/w5bHtazCOCcALRJoqI=
+	t=1721992518; cv=none; b=mZXU3DqrCDiCcD32Rq964rDchVn1OQv4vVu7jE17SfYzEGuf5Bg07S+lReX/gL5MXSQ0UBwA56Xbr7RTNsdVoy6z34ZEHFrSO2xm0M2h3jFyw2X9tvHa+KI/Cs2gpXypPLEPgFHhxY6MIq7IVYZTIBB/l9UCrPNyq1Pwa0Sva7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721992497; c=relaxed/simple;
-	bh=Tk8a4ZNmhaQOlRMB2a7gNLvIw2k+dlvH/hQpNPuIQr4=;
+	s=arc-20240116; t=1721992518; c=relaxed/simple;
+	bh=FjhP1BmKaw1pB43Y33s8TCUw1kBylkxAqln41CYFyww=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=r2EzyZ4lgtCibke0khGSsL4gXdqzqPL/sbgpGtPyvUqaQy487x5NjLtbVXbB5ldc2rvevEE43WJLburFMBFfFXmdei3/QM3H+KsOqfJitGAbKxH/QlkWu21eIw9BYQBOTZ+xgijc17eM5B0TNO3MjcliQXvhbGpqACzObnEv7m8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqWbt93R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3839AC32782;
-	Fri, 26 Jul 2024 11:14:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CpqPj02g1pOfpKaBDsLrnj5pFi49E7JdDgXFxBCiB/pIRdnvlIErDU9K2WAX9g35hklbZFjvWovrdTqfg+iLSpJhSppaiX7LbZmzcz8NEEK3oBZ+thn6yUGJQ3L423pZos9RUSDwECoqk/36Fbmf57AgIBJNHGCgYGplEJeJs08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oybBgE4u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41FE3C4AF09;
+	Fri, 26 Jul 2024 11:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721992496;
-	bh=Tk8a4ZNmhaQOlRMB2a7gNLvIw2k+dlvH/hQpNPuIQr4=;
+	s=k20201202; t=1721992518;
+	bh=FjhP1BmKaw1pB43Y33s8TCUw1kBylkxAqln41CYFyww=;
 	h=Date:Subject:List-Id:To:References:From:In-Reply-To:From;
-	b=FqWbt93RBxXlb2Kbk/jyKvVyHi2pysbmvV4nMRTYZOCkdRTSlwzfYewRBWGW60gew
-	 FztFFcX1ButBUzXW6Q1k+3k9e3PM6KaNOuAyghMlXXabSKFDXhaKlkRmUW9Ip+GL/r
-	 kvjwFx6ImsEMGoCpTy9Zqvza2wBOUzxDRHUkTcQstsOU5rvQ/sj+msxNY0sRaf6zN1
-	 69xYbELtuQDSVR/Y5ex0BoSyV6xxHWyeoB1R5e0/oXRsfJ7UBuxb9/VQVt7ZFRprqk
-	 cWcXg70e38ZUPqWYKlGKad+9qz9N53QtS8sP6LeIoY+65RdTwkFp8w4j+sklUlgXIM
-	 i2O1eAtAWXj7w==
-Message-ID: <7f3f7255-e177-4689-a2f1-b5f3196ed1a5@kernel.org>
-Date: Fri, 26 Jul 2024 13:14:46 +0200
+	b=oybBgE4uclllQTjEqtCvyxMRPuvm7XaI0rIKcen3PDP25MbZDdK4/Dpp1edo4e8Zb
+	 WbBjlRy7l5tpjHcO9huz27znwiawYdSxd/mZ/S/OkEBPY6hnxE56eZKqvBoSbJ2zpY
+	 dHyh/KWDv0rlo/slK2b3vEX/pTCDGJLthBl5Fd2E4EqP/Z0TjNZNN/XfP4PNCO17l0
+	 r9YSv56G+Je+ThJes0uGab+qZrXQfzeQYUK5WT+IpOD+7I97KWDd/cUjwf3iuIKkkZ
+	 E0oFKwwCc89UlkltTTfIbe+6TYgAt4NnQL7bOO8oo1ogqVycKmrg9X/jB8tFWysqnu
+	 YviW5/fO0GgNg==
+Message-ID: <371a7c7b-de32-4f97-b4c7-3c0ad0732e1a@kernel.org>
+Date: Fri, 26 Jul 2024 13:15:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 05/10] dt-bindings: arm: aspeed: Add maintainer
+Subject: Re: [PATCH v1 06/10] dt-bindings: arm: aspeed: Add aspeed,ast2700-evb
+ compatible string
 To: Kevin Chen <kevin_chen@aspeedtech.com>, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
  andrew@codeconstruct.com.au, lee@kernel.org, catalin.marinas@arm.com,
@@ -63,7 +64,7 @@ To: Kevin Chen <kevin_chen@aspeedtech.com>, robh@kernel.org,
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
  linux-clk@vger.kernel.org
 References: <20240726110355.2181563-1-kevin_chen@aspeedtech.com>
- <20240726110355.2181563-6-kevin_chen@aspeedtech.com>
+ <20240726110355.2181563-7-kevin_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,17 +110,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240726110355.2181563-6-kevin_chen@aspeedtech.com>
+In-Reply-To: <20240726110355.2181563-7-kevin_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/07/2024 13:03, Kevin Chen wrote:
-
-Why?
-
 > ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index 71c31c08a8ad..b21551817f44 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -99,4 +99,9 @@ properties:
+>                - ufispace,ncplite-bmc
+>            - const: aspeed,ast2600
+>  
+> +      - description: AST2700 based boards
+> +        items:
+> +          - enum:
+> +              - aspeed,ast2700-evb
+
+NAK, this cannot be alone. Look at all other examples. Why are you doing
+things differently?
+
 Best regards,
 Krzysztof
 
