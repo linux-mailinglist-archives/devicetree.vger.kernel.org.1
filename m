@@ -1,106 +1,273 @@
-Return-Path: <devicetree+bounces-88231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015B293CC0B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 02:20:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3457B93CC17
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 02:33:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5CEF1F220B9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 00:20:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EC501F21A17
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 00:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA77364C;
-	Fri, 26 Jul 2024 00:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CE1628;
+	Fri, 26 Jul 2024 00:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8EXQuS/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fb3SCh3N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB2963CB;
-	Fri, 26 Jul 2024 00:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A7419B;
+	Fri, 26 Jul 2024 00:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721953219; cv=none; b=lOYbJAMCIdSgD43w8grvkZIvw45qASZ7HmqQLhQSx/z0WmGIaP+JQ5upmpLYxPmwbufsQwFFoYlDK8MLS1QijSspO6879qpHPbhMGFIQiPf2Oua2cjad2v/D50cc18Pm03kOD4wRvRlYJRz4IzvKuZvJU9v/cRLOaJHUtr7yr14=
+	t=1721954030; cv=none; b=PMk6O4uzXG6b/eoq3TDKqzSSWroz87vyu0azlURTBI+HAgZrk4DQnlnP7VaR/2Wjy8HV78TeqkzKjE3ucVW7PqZ0RSIKg7q5/kqv0tj9YwZ+wSP+48fyBmTBopfR29BqhDprtFzP5EtIRwm7UKo/wQLjytUeC7e6KwRhkn1TrGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721953219; c=relaxed/simple;
-	bh=UowxC6Hl+spQMsfymKr1EuDGRGLZbprGrQdNhJkgmLA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=aPXlYi9eR4kMCWjBkuVQf46CAiU0wWAQNReBerHvNeWSbL7ZaBEetZYlHEbdmT0BBwPot5UZ8VmuOGhVWHYJVNMDJ4bpUbaRO5UEuxSkJkGQoH2JwELj6yvjlM3MV0yWofXepXzxK7gCOBSpe5eufLdrt3vI8b9/ICTUmk3Pd3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8EXQuS/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E71C8C116B1;
-	Fri, 26 Jul 2024 00:20:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721953219;
-	bh=UowxC6Hl+spQMsfymKr1EuDGRGLZbprGrQdNhJkgmLA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=O8EXQuS/gSxrsau85WQ3IRevrrfeHm2qwMaoGve/DCMCNxja7sZKwetW2XBu+fdp1
-	 0X4PEMSDeOJyBSOwq5RkX1+LfNNjLpXX0RMaFplyyW+X5AQJxJJuNOjrz7CcZoA0iX
-	 udckSB3vvnC39twkOFv6/SZ1uM44oYUW4SWidpBM6Z3V9HRXm2b2GvzMwoYOyqYN6g
-	 Z0f3FKSmoXyvu367ynGLaFB23+C/oLcuvrD/Iodn+jOM6nFe54BglkN6dqdpp2pkZm
-	 OScLqGcoOKybs1EA3mod5mzX1fz7uLeJHn8YPDawUBe9D6f2DpRFvIELIHO2I/PXFv
-	 QrqgjxaHL2v1A==
-Date: Thu, 25 Jul 2024 19:20:17 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1721954030; c=relaxed/simple;
+	bh=3JWQJxgRjgnRDkV+J163/giXHdA9KJEk2gKFlONUNB8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B4Tg14XdPJBFmvBiJrW7yIF3hvJvFU09tsL3lEeJDD8I+2O4ivQZU3pexy1ybAuszN2gKGsyNcRSs3Dw0zEkCVgqD4uD4jSPCDLOKe4ZfR0LNU8yqFKP37BhjIkiztYqME/5eLQ1tvVS7bYtRLj4+vdprnP8G16Zn7paLDzCJfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fb3SCh3N; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-67682149265so10467877b3.2;
+        Thu, 25 Jul 2024 17:33:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721954027; x=1722558827; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PGbRMFqNjqE2FGzKnJAnVl6N0locpudqp71TjSFPoRA=;
+        b=fb3SCh3NkQmZMDiIwnW6nhNcnjLbjJU6YbVskaX4HPoSFV/GAgSPEipxMCiwyC9oy6
+         63lSy5p1km9JWH4/7qmHXTj87A7aGTkyhMkgeeWOhHF2HFrM4+IAvmjfTgTw0noe/ny1
+         nXHBuY1nUKOdI3c3WHPuo2L7+B8ICjqglMYgst7ueU5dcvVtEtaR5WmQwLROWvbtLPYy
+         uodEWP3RYCTd7R43SmAxtov8qF2bSoaQg4XESUKWgjFe958Ddwsotm5pBw6VODZbGfAB
+         CA6pz4riF1vH9f1WaplsrFk8+OmffEfmFHcVJrVNh6fuYzQ5QMXFtwvTkDCDwSZd//ao
+         Flkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721954027; x=1722558827;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PGbRMFqNjqE2FGzKnJAnVl6N0locpudqp71TjSFPoRA=;
+        b=eTrrC20tLSe1PQMmVVF2vnah/oLjGyGuF5VvOS1dN8qrOOoWXTR+WoYw89YUsAFkfp
+         nwHxx0XtQRy1nu2i7YtbvBbR3+GGznoOH/jib/U/Qil2+y2fY2e+oqzo4g4if46fR2Q6
+         u7aHWutGr+WvbDehB5DMXw5VjWVwPfRd/GGB4epZfMCmTOYvZWDrsoO48wI6FF+l0hFt
+         v5vhimkf8NfxDRx9FVqT7GSK2jpDqd69+xJwGS0EGUJkceqcyrVF/bW3PMz872wS1T82
+         ElkFUlzvJE4RcK+vDrRZtZ0guRNX11gtF2KWg7nIkIUEzcoLCFeOtvIOnpP1d165fBvB
+         2AvA==
+X-Forwarded-Encrypted: i=1; AJvYcCVykLn+PM0vrVeMFIMIcycvBQuyCjOxn79e0FsGXv76mPzHhlVMqIQuPF+5k751+8lf7y8ITryawji/JknXlh6jDMRs+a/dzigAftz31ZMqLfPkyiumE2QAu/j51tXJmZjzbX0cnKRTtw==
+X-Gm-Message-State: AOJu0YxKEqnekWfV9YmmXjD9h9jGsQiPHSWkOL86sITCxPhl1N6FKPpT
+	zWvln1Tlit8kjbEECojx0LGLUF14hmGN+OprmmtHJ4dMgi7VoZy9crFYT1Lw
+X-Google-Smtp-Source: AGHT+IGvyKLluKIWk4xhy3Z+igBHGE1XI2dKeVygogOJaSS0FOIYI1CJKYYr8IK+0PZw+U7Unncn8Q==
+X-Received: by 2002:a81:bf4e:0:b0:648:3fb2:753b with SMTP id 00721157ae682-67512028191mr51762717b3.24.1721954027486;
+        Thu, 25 Jul 2024 17:33:47 -0700 (PDT)
+Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb3faea19bsm11714666d6.121.2024.07.25.17.33.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jul 2024 17:33:46 -0700 (PDT)
+Date: Thu, 25 Jul 2024 20:33:44 -0400
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mehdi.djait@bootlin.com, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: Add Sharp Memory LCD bindings
+Message-ID: <7l5jyzk4ojxtmihsnuz355x2qk632vgxdspgllxljhpzxzdhcb@aq5xyd64d2kb>
+References: <20240725004734.644986-1-lanzano.alex@gmail.com>
+ <20240725004734.644986-2-lanzano.alex@gmail.com>
+ <c7bf08aa-e7a0-4b60-b9fe-b43215ce3fb9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: krzk+dt@kernel.org, semen.protsenko@linaro.org, 
- linus.walleij@linaro.org, lars@metafoo.de, jic23@kernel.org, 
- conor+dt@kernel.org, 579lpy@gmail.com, ak@it-klinger.de, 
- andriy.shevchenko@linux.intel.com, linux-kernel@vger.kernel.org, 
- javier.carrasco.cruz@gmail.com, linux-iio@vger.kernel.org, 
- biju.das.jz@bp.renesas.com, devicetree@vger.kernel.org, 
- ang.iglesiasg@gmail.com
-In-Reply-To: <20240725231039.614536-6-vassilisamir@gmail.com>
-References: <20240725231039.614536-1-vassilisamir@gmail.com>
- <20240725231039.614536-6-vassilisamir@gmail.com>
-Message-Id: <172195321787.24634.18050300557799081241.robh@kernel.org>
-Subject: Re: [PATCH v2 5/7] dt-bindings: iio: pressure: bmp085: Add
- interrupts for BMP3xx and BMP5xx devices
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c7bf08aa-e7a0-4b60-b9fe-b43215ce3fb9@kernel.org>
 
+Thank you for the review! I will address these comments in V2
 
-On Fri, 26 Jul 2024 01:10:37 +0200, Vasileios Amoiridis wrote:
-> Add interrupt options for BMP3xx and BMP5xx devices as well.
+On Thu, Jul 25, 2024 at 08:17:01AM GMT, Krzysztof Kozlowski wrote:
+> On 25/07/2024 02:47, Alex Lanzano wrote:
+> > Add device tree bindings for the monochrome Sharp Memory LCD
+> > 
+> > Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+> > ---
+> >  .../bindings/display/sharp,sharp-memory.yaml  | 97 +++++++++++++++++++
+> >  include/dt-bindings/display/sharp-memory.h    |  9 ++
+> >  2 files changed, 106 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/sharp,sharp-memory.yaml
+> >  create mode 100644 include/dt-bindings/display/sharp-memory.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/sharp,sharp-memory.yaml b/Documentation/devicetree/bindings/display/sharp,sharp-memory.yaml
+> > new file mode 100644
+> > index 000000000000..a79edd97c857
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/sharp,sharp-memory.yaml
 > 
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> Filename based on compatible, so e.g. sharp,ls010b7dh04.yaml.
+> 
+> > @@ -0,0 +1,97 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/sharp,sharp-memory.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sharp Memory LCD panels
+> > +
+> > +maintainers:
+> > +  - Alex Lanzano <lanzano.alex@gmail.com>
+> > +
+> > +description:
+> > +  This binding is for the Sharp Memory LCD monochrome displays.
+> 
+> Do not say that binding is a binding... instead describe hardware.
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - sharp,ls010b7dh04
+> > +      - sharp,ls011b7dh03
+> > +      - sharp,ls012b7dd01
+> > +      - sharp,ls013b7dh03
+> > +      - sharp,ls013b7dh05
+> > +      - sharp,ls018b7dh02
+> > +      - sharp,ls027b7dh01
+> > +      - sharp,ls027b7dh01a
+> > +      - sharp,ls032b7dd02
+> > +      - sharp,ls044q7dh01
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-cs-high: true
+> 
+> You can drop it.
+> 
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 2000000
+> > +
+> > +  vcom-mode:
+> 
+> Missing vendor prefix.
+> 
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      VCOM is a signal that prevents DC bias from being built up in
+> > +      the panel resulting in pixels being forever stuck in one state.
+> > +      vcom-mode can be set to one of three modes
+> > +
+> > +      SHARP_MEMORY_SOFTWARE_VCOM - This method uses a kthread to periodically send a
+> > +      "maintain display" message to the display, toggling the vcom
+> > +      bit on and off with each message
+> 
+> You described Linux, this is not suitable for bindings.
+> 
+> > +
+> > +      SHARP_MEMORY_EXTERNAL_VCOM - This method relies on an external clock to generate
+> > +      the signal on the EXTCOMM pin
+> > +
+> > +      SHARP_MEMORY_PWM_VCOM - This method uses a pwm device to generate the signal
+> > +      on the EXTCOMM pin
+> 
+> I don't see why do you even need this property. Just choose the best
+> option based on available connections/pins.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I wanted to cover most of the hardware configurations I've seen with these
+displays. This property simplifies the driver implementation and allows the user
+to explicitly state how the VCOM signal will be generated on their platform.
 
-yamllint warnings/errors:
+> > +
+> > +    enum: [ 0, 1, 2 ]
+> 
+> Here 0/1/2 but above something entirely else. Just use strings.
+> 
+> > +
+> > +  enable-gpios:
+> > +    maxItems: 1
+> > +    description: Enables display
+> 
+> Drop description and maxItems. :true is enough
+> 
+> > +
+> > +  pwms:
+> > +    maxItems: 1
+> > +    description: External VCOM signal
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - spi-cs-high
+> > +  - vcom-mode
+> > +
+> 
+> allOf:
+> 
+> and missing ref to spi peripheral props
+> 
+> > +if:
+> > +  properties:
+> > +    vcom-mode:
+> > +      # SHARP_MEMORY_PWM_VCOM
+> > +      enum: [2]
+> > +then:
+> > +  required:
+> > +    - pwms
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/display/sharp-memory.h>
+> > +
+> > +    spi {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> 
+> Mess indentation.
+> 
+> Use 4 spaces for example indentation.
+> 
+> > +
+> > +            display@0{
+> > +                    compatible = "sharp,ls013b7dh03";
+> > +                    reg = <0>;
+> > +                    spi-cs-high;
+> > +                    spi-max-frequency = <1000000>;
+> > +                    vcom-mode = <SHARP_MEMORY_SOFTWARE_VCOM>;
+> > +            };
+> > +    };
+> > +...
+> > diff --git a/include/dt-bindings/display/sharp-memory.h b/include/dt-bindings/display/sharp-memory.h
+> > new file mode 100644
+> > index 000000000000..dea14c7bd7ec
+> > --- /dev/null
+> > +++ b/include/dt-bindings/display/sharp-memory.h
+> > @@ -0,0 +1,9 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +#ifndef _DT_BINDINGS_SHARP_MEMORY
+> > +#define _DT_BINDINGS_SHARP_MEMORY
+> > +
+> > +#define SHARP_MEMORY_SOFTWARE_VCOM	0
+> > +#define SHARP_MEMORY_EXTERNAL_VCOM	1
+> > +#define SHARP_MEMORY_PWM_VCOM		2
+> 
+> Nope, drop the binding.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml: properties:drive-open-drain: 'anyOf' conditional failed, one must be fixed:
-	'desription' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240725231039.614536-6-vassilisamir@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Alex
 
