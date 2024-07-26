@@ -1,195 +1,120 @@
-Return-Path: <devicetree+bounces-88261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F127093CF77
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:19:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3521593CF79
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:20:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8E182829E0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:19:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4A4D28183B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313D4176FC3;
-	Fri, 26 Jul 2024 08:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F0A17624F;
+	Fri, 26 Jul 2024 08:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mPHqZagA"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="EBUElDxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820DB176ABD;
-	Fri, 26 Jul 2024 08:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5B242A8A
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721981958; cv=none; b=GzGWJ4Zo9nS720ny7yGRItUrKfDzfmIhI54aCaNwtCQGC2BwzMzoLv+P7wAdnuYYmSV6Ut/qyPoUF1A2hcO8QV7uxqLyhMAZpmOpbbpm7bOAc7SKDx/M/ZoCDX1daEWgQlxsvEL3WOETazUx1bqlqGXq8KNeyJVooRaeShp4FU4=
+	t=1721982000; cv=none; b=p5iI28W7C54JABJNdWINUxZ1ga+28kI/VeRxh3FHXPWvaOdfx99/oPvf5l6TMBGLoE8XlbDakvVQnM1+9DBLTRCgkt/DmZ3XdehVYYasnt6fOJ0x7zwnExk9yg2t21TpElbl9gvufo1tqNRUWNGVsuDEo3gnkP+WXr/ftJyuAuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721981958; c=relaxed/simple;
-	bh=b0hZHMHdOCCC1gCaHcvQIdCIQnQjt3SAU3/9jz+NPZ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Xmny/pHU15bK5R0sst2WJsvXtmXlr0DfXOcTydYB4bNO4EdRnaRVsZ1IJr3D1hSgy3i9F7oYTEVRnKAbrnpsNH4XQU6+/jaUG2LdFEjeZsAWcXApB7IsPnHav4C9SjFvCua62onmKHG2yAo7Ly3ULpKuqAikLlqT93L5RIbrU9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mPHqZagA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46Q7pI68023458;
-	Fri, 26 Jul 2024 08:19:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TpMvZ/F5VAdyrXjWuZ6honAJQfBiWDrR/whqPTUKyOA=; b=mPHqZagAC4wjMkhH
-	C+5aWaJJba9MnKNEch3Lv6rXCigy8kQpRPqCxKd6uiOA/XhGLHPLcwSV29Rm1/Tq
-	3PhlAUelangYV4I+9vWO2Etiu9xPpodvN7CyOBwtIrUJd/VMUPpAC405lUHJo8Ug
-	TSULnK0qHaf6rICsj9QrXRCosLSIXZ38cZtw7TRRAEGXlAxGFhTRmXzDNKIGOCGW
-	LJHLlC9NaEy/kSvkiKHklREZTtATwADOtqNHora1/iJJJ9zOKXJQHcc06X8U7UAL
-	NtnD8Z0KgaO1uQHw/+ZzBVrpIHd6Rw6C5wpsUCDTsCvzR9R3zABAhY7mRNPtIqD1
-	3/rG1w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40m7sag2bv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 08:19:08 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46Q8J62e025432
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 08:19:06 GMT
-Received: from [10.218.10.146] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Jul
- 2024 01:19:01 -0700
-Message-ID: <f1c3450d-60bc-4f64-842d-f335338b2986@quicinc.com>
-Date: Fri, 26 Jul 2024 13:48:58 +0530
+	s=arc-20240116; t=1721982000; c=relaxed/simple;
+	bh=/puYacruPtS67r61Iy/obhcccA6V9gCxp2Q24bki4BQ=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cIW7zSzcJ4+3NWtyuX/umork+7QFcUX4T+FiD+ffg7Mk8tQf318PWaHbc51DDj7cmBECmvYGIJC5UTfnLvZt2Cm3psPDn5R4JeUYLlg0hz0PNwvrUSD4EfO4v0enlfXMGb9vvyI4gXYeGkDEtNDEoIRMb8CDXwZsAYaJiTLnIpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=EBUElDxd; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D0DA13F47C
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:19:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1721981993;
+	bh=/puYacruPtS67r61Iy/obhcccA6V9gCxp2Q24bki4BQ=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=EBUElDxdmTgLSoe5qGjZt8vkbV3hOlz84pI1bIqhV17xvHfHg3yXtRMC26vqaj4h1
+	 mMGYKdI9ic8vzimNNE7xK/Fq670lJCIagv5wi1GyxYYnsRnMuAfVSbzXdpcSTr3QQF
+	 uK8nf/Hdtis2o06R0Wr0EPehMQaNPNpOtNjUf4CDBcvj6utIOg1IqmECQdj5ToxEPz
+	 BicLMcLZ5kldtXlIhp61REOsTFnvttZWr3KVyrRALDQETb7V5p8Fi7C1eT6rwSL3nT
+	 0I+NDEmycnkY58FHP6zN4ivd6vfM088ker7Uo40St8j8zJ2E3AzM4kn8dEHlKjzx6m
+	 IgIRyhFmEhNqg==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-44dbd6ef5b2so6797621cf.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 01:19:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721981993; x=1722586793;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/puYacruPtS67r61Iy/obhcccA6V9gCxp2Q24bki4BQ=;
+        b=kWrc/fuPfT/I/F6fi0y+2ZV6BLZ7unPk5n91dcxJ0CuHcTuZ6fEMOG28COdhzB6oTY
+         N68DT+OxVGfYV6fcBSTt2z+6jt30v+DjPz7+wCZuI5AutSYQbt7JFqL9zPXMNTlMD59L
+         UD6SAqbG5l0weyte4au7qkotmGtBg7US28ZM5dRLioLCVf9sksWAAD3MnwR5Uay7mpL5
+         iUFh66OxQYLBVl5fNgAbVeoo6846DqTy2hLAoca9qCDoHmn8FzJjBg9NxE4QN01/SH0O
+         2HXYmfJMQq4H5tsQq5ODoFEAI8dDJjPoARe3ADqmK+iyn/z764RhA0qjdHNmA3qMSf40
+         P1Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCXlwnRbBQU7G8V9+Kxv+EKI98p/VfU0m8EQ/Ka2I11gV117/nMo5KeQBEmEoUaCiZjb0wVhSwVlVMWsE5dbmRljySU6Xb9azETQ3A==
+X-Gm-Message-State: AOJu0YwvXPVEIwynNBO/7+6LC+0/n7tLrwR4X9cDLi/DqOl9qTFfaKsg
+	lyqYNu9yPE5EM8b3ydI/UeWyYD9Je3i2stIWEn+VAwvTbRUTxcK+M2gUgnUFFm8ZzqE4ynvNWMg
+	6JHtCh9b3fAOlJ/r8m1W+fg1qKY77EMAqGpqZaRBm8xfcSuLtbuyne2U+EfwIeQ5mRhzYxc3CKJ
+	811SM+OfMw+nXPGAadpi9uOpUYDORuY2awk2m4lEGK0TRPxwc8bQ==
+X-Received: by 2002:a05:622a:5b94:b0:44f:e81b:75b5 with SMTP id d75a77b69052e-44fe81b7782mr57778911cf.16.1721981992719;
+        Fri, 26 Jul 2024 01:19:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF8qCEEvyC+WszzxwXuACFUSzr4cfPd8vim9AQL2WZcj216az/f/QtGrpD5fhoyMxIeLDZW45BC861YFQ0T+30=
+X-Received: by 2002:a05:622a:5b94:b0:44f:e81b:75b5 with SMTP id
+ d75a77b69052e-44fe81b7782mr57778681cf.16.1721981992332; Fri, 26 Jul 2024
+ 01:19:52 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 26 Jul 2024 04:19:51 -0400
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <ZqMdeTrV5GE0TVUV@x1>
+References: <20240705093503.215787-1-kanakshilledar@gmail.com> <ZqMdeTrV5GE0TVUV@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm4450: add camera, display and
- gpu clock controller
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Vinod Koul
-	<vkoul@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jagadeesh Kona
-	<quic_jkona@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>
-References: <20240611133752.2192401-1-quic_ajipan@quicinc.com>
- <20240611133752.2192401-9-quic_ajipan@quicinc.com>
- <76f5e3c7-a90b-42d2-8169-e5e2211a14a1@linaro.org>
- <ba7d12d3-c582-45ec-beed-e81182fe3252@quicinc.com>
- <95a835e2-9fd9-467b-bd0a-8eeb80ddf678@linaro.org>
- <9c3de930-47b7-45a9-bf7e-6e506ea2accc@quicinc.com>
- <8f7cdb31-c50d-4690-b878-518bad545612@linaro.org>
- <46e6f1f0-d244-4e53-99ce-9fee339dc4de@quicinc.com>
- <f9a23663-7a1d-44dc-8e0b-8463c3c88a29@linaro.org>
- <dd8ad439-f74c-4bb6-9066-73394bb9befe@quicinc.com>
- <164c62e8-6846-4d0b-81f5-8ed6e76abd5f@linaro.org>
-Content-Language: en-US
-From: Ajit Pandey <quic_ajipan@quicinc.com>
-In-Reply-To: <164c62e8-6846-4d0b-81f5-8ed6e76abd5f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: R-gDrgExbxtJjBua--coFMrLSGVUuxwv
-X-Proofpoint-GUID: R-gDrgExbxtJjBua--coFMrLSGVUuxwv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-26_05,2024-07-25_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
- suspectscore=0 adultscore=0 impostorscore=0 spamscore=0 phishscore=0
- priorityscore=1501 lowpriorityscore=0 mlxscore=0 malwarescore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407260053
+Mime-Version: 1.0
+Date: Fri, 26 Jul 2024 04:19:51 -0400
+Message-ID: <CAJM55Z9WFZJ=vyosx8LSUxBXs-Uftr76yKuWqGi7D_L+v1cKRw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/1] Add basic SPI support on TH1520
+To: Drew Fustini <drew@pdp7.com>, Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Drew Fustini wrote:
+> On Fri, Jul 05, 2024 at 03:04:58PM +0530, Kanak Shilledar wrote:
+> > Implemented basic SPI support for TH1520 SoC. There are two SPIs reserved
+> > on the LicheePi4A, one on the SPI Flash pads that are blanked out on the
+> > back, and one on the pins. I implemented the one connected to the pad.
+> >
+> > It is using a fixed clock of 396MHz. The address and clock frequency was
+> > referenced from the TH1520 System Reference Manual [1].
+> >
+> > [...]
+>
+> Applied to thead-dt-for-next, thanks!
 
+Hi Drew,
 
-On 7/16/2024 4:09 PM, Konrad Dybcio wrote:
-> On 16.07.2024 10:39 AM, Taniya Das wrote:
->>
->>
->> On 7/12/2024 6:10 PM, Konrad Dybcio wrote:
->>> On 12.07.2024 2:31 PM, Ajit Pandey wrote:
->>>>
->>>>
->>>> On 7/12/2024 5:52 PM, Konrad Dybcio wrote:
->>>>> On 12.07.2024 11:53 AM, Ajit Pandey wrote:
->>>>>>
->>>>>>
->>>>>> On 7/11/2024 3:25 PM, Konrad Dybcio wrote:
->>>>>>> On 3.07.2024 11:16 AM, Ajit Pandey wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 6/13/2024 1:11 PM, Konrad Dybcio wrote:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On 6/11/24 15:37, Ajit Pandey wrote:
->>>>>>>>>> Add device node for camera, display and graphics clock controller on
->>>>>>>>>> Qualcomm SM4450 platform.
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
->>>>>>>>>> ---
->>>>>>>>>
->>>>>>>>> None of these nodes reference a power domain (which would usually be
->>>>>>>>> CX/MX/MMCX). This way, the RPMhPDs will never be scaled.
->>>>>>>>>
->>>>>>>>> The current upstream implementation only allows one power domain to be
->>>>>>>>> scaled, but that's better than none (see other DTs for recent SoCs).
->>>>>>>>>
->>>>>>>>> Konrad
->>>>>>>>
->>>>>>>> SM4450 doesn't support MMCX and CX/MX domains will remain active so
->>>>>>>> power-domains property is actually not required for SM4450 clock nodes.
->>>>>>>
->>>>>>> It's not only about them being active.. some PLLs require e.g. MX to be
->>>>>>> at a certain level, or the system will be unstable
->>>>>>>
->>>>>>> Konrad
->>>>>>
->>>>>> With active I mean CX/MX rails will be default running at minimum level required for clock controllers. Adding power-domains property for CX/MX rails is like a redundant code as that will also scale such rails at default specified minimum level only. Also we hadn't added such property for other targets DT nodes to scale up CX/MX at minimum level.
->>>>>
->>>>> What I mean here is that, the minimum level may not be enough. In such case
->>>>> you would also add a required-opps = <&handle_to_rpmhpd_opp_level>
->>>>>
->>>>> Konrad
->>>>>
->>>>
->>>> Apologies, but could you please elaborate the use-case where minimum level isn't enough ? I guess for clock controllers configuration min level of CX/MX would be suffice, client will anyhow scale such rails to higher levels depending on their use-case.
->>>
->>> The main issue here is with PLLs within the clock controllers. Nobody
->>> votes for them. It's an unsolved problem and we currently work around
->>> cases where it's necessary by requiring that (with runtime pm, so when
->>> there's active consumers of the clock controller) the attached power
->>> domain is at >= SOME_LEVEL
->>>
->>> Konrad
->>
->> Konrad, this target (SM4450) have all the PLLs connected to CX/MX(again this is not collapsible). At boot the RPMHPD driver would keep the rails at minimum level and which is good to operate for the clock controller. I do not see currently this requirement you pose here specifically for SM4450.
->>
->> As part of the PLL requirement within clock controller, this is definitely a requirement which we plan to RFC soon. There are discussions already in progress on how to handle this requirement.
-> 
-> Ok, if it works, let's keep it as is until that RFC
-> 
-> Konrad
+Are you sure you want to merge this patch? It adds another dummy clock for the
+SPI, but the next kernel should have your clock driver that actually models the
+SPI clock.
+Also the clock driver says the SPI clock has a frequency of 792MHz, eg. double
+of what this dummy clock is set to.
 
-Thanks Konrad, please provide your ack on this patch if it looks fine 
-for now.
--- 
-Regards
-Ajit
+/Emil
 
