@@ -1,288 +1,251 @@
-Return-Path: <devicetree+bounces-88258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCCF993CF48
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5397F93CF59
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF178B20B74
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:07:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4A6AB23268
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF46176AAA;
-	Fri, 26 Jul 2024 08:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6543B745E4;
+	Fri, 26 Jul 2024 08:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YdYkMBfx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JcgUTQWz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6ED524B4;
-	Fri, 26 Jul 2024 08:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6861445009;
+	Fri, 26 Jul 2024 08:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721981210; cv=none; b=btJ+aVKWLcgO9jiyXPb5baXw1MmgLhHIKGmMSu8XHMNA0AfmYAvAOPfbNNM5yK+mm42mbCFWcyyW0zvwK2WddFzM2R4V9NW7Dx62k5KVFGsipQUDlnGDRQEaz1ytbO+6dVT2lq3RtmAXl98HxLeSxVirEqMzQbfkYmFejs5bR7E=
+	t=1721981481; cv=none; b=KuTRJ71rQHFjd5v1EMLk8faftho6Lj3xwfKZrCZVBFP0ZGTQAJ8KGY5yACoDkOmsnRdduyhP3dNkJyE8R0paa5XHoY8+eg3TweINYz0FJsmToqlr0TGALUHi6UcQetR7Z0XsIhFDralwrmimHCkem7VDuAloSPCyBSW8DeJv9dA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721981210; c=relaxed/simple;
-	bh=9XgdxMrvIfkd+SJBRa+5xDEpZzmO8H5H5XS3eZbYEog=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=JLp+0bQLgwSWK0H/UW1uU8LiTFPB7MKRsndI6nXMH13SjiSWX1NtAtUR/WZoAWpGK7GpGWwAxETSS2c9sF7E9LW6V2x3thylgrPk7hYbCqczi6+9CviA+5f2Ba7uwHtQ6ZHLWzkTAK+5EUhGzN2fjVgRG+8fLBw7qMsYW27JWTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YdYkMBfx; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1721981209; x=1753517209;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version:content-transfer-encoding;
-  bh=9XgdxMrvIfkd+SJBRa+5xDEpZzmO8H5H5XS3eZbYEog=;
-  b=YdYkMBfxjg1zTEZ3tLlFS5/hrNWYez9jgStxdgrKj0JgtXIFSGZZiSmM
-   rM28SOdMBPNEwe1z6WqfC2hIhSYK4KDAZWe/Rx63IFzglEucfEWoEpzE7
-   jG3s7AdqDNMaDNEcCQ/XJrRqMLzUgSGH+7Rm+d54J3h64mr4dF681EHWW
-   vbR8NCvauZR+ng7SdlEB0Tw9gqGUkN20YgrSsWwOX+yBkV8cQmgfo7bsH
-   NDj+CX4eKlpK6CZbURMMLVBRcubIUT3YtiXCtwkyYU30tPocixVfAgytv
-   UgOQ1/o8IVIoi3NtvDvTISvBeJIGPYoTEAtc+I9s/Z9jV3OprSkZu3pLk
-   g==;
-X-CSE-ConnectionGUID: ZVdS+E5ES/iNrHyYY28vLA==
-X-CSE-MsgGUID: awM6bI6eQuGdB3JWDwxCCw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="22679026"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; 
-   d="scan'208";a="22679026"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2024 01:06:48 -0700
-X-CSE-ConnectionGUID: r1ab+2STRCmEt3ZuWAdtjQ==
-X-CSE-MsgGUID: QzRcKxs0Q0au6gz37wJ4Bw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; 
-   d="scan'208";a="57984032"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.246.66])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2024 01:06:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, dianders@chromium.org, hsinyi@google.com,
- airlied@gmail.com, daniel@ffwll.ch, jagan@edgeble.ai,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] drm/panel: jd9365da: Move the sending location
- of the 11/29 command
-In-Reply-To: <CA+6=WdS5QKMVX2euxdeDqCoHrCpWuqB_cu5vzHGUNdUq4NnPZw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240725083245.12253-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240725083245.12253-2-lvzhaoxiong@huaqin.corp-partner.google.com>
- <87o76lzwvr.fsf@intel.com>
- <CA+6=WdS5QKMVX2euxdeDqCoHrCpWuqB_cu5vzHGUNdUq4NnPZw@mail.gmail.com>
-Date: Fri, 26 Jul 2024 11:06:40 +0300
-Message-ID: <87h6cczien.fsf@intel.com>
+	s=arc-20240116; t=1721981481; c=relaxed/simple;
+	bh=hlCDb6b2WUs98U9IenDfNqF06mSLL56KLYPtRUMNMPA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=rP1lBLCz0wy5z5E0GGg8yRhp65DRYAScwo6FeCiBQ9qUs/HCv9THA1Cu6PhgdrJOjTqypGTxclgWw/afG9Sv28T7Ur21XTNBag/8C0SQnHztYUrdnua7yVT6iLPFyrxG8iT5x/lX6a1Ff6fKqlLgw5cE1N+Edjb0SxuFhZsr0vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JcgUTQWz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46Q159J2028539;
+	Fri, 26 Jul 2024 08:10:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	F4rJq6yaOgiRKHemDXNb1OrhwKsbOWAE8LMCIM3HQvA=; b=JcgUTQWz92TcY/vE
+	/QWVrZ4yTVZB1FIzE2/cQXnzaJOCak3zeA+NXbl29ynrkimnOuYPXGXSWz1HZSUE
+	tpPP8PL7bSp6bWi8Kkn6MCsdJwiL3+lJpRSGrOWHah5naXswUJeA2l+asZzU+ChA
+	9jNQBR4cztNdRpFo45z0IwPKKEl47bmk5MsVeSRNrF12LrDSbhVH2HNrGqWWnUjy
+	xzjQtl5McmfekooNa7xTI9tZ81ewBEUkh+zKyObWufqyjrUu3uaMm3iUKvRFTfkE
+	KzuNvcpwgzdLXWVJbyV4FUvBjHg5BucblrsUpzrjpVmjO0SqhrPOgcQLoEs+NurP
+	5wKMDw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40m1ttgsc1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jul 2024 08:10:43 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46Q8Agmf005084
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jul 2024 08:10:42 GMT
+Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Jul
+ 2024 01:10:37 -0700
+Message-ID: <2a509ef6-1b83-d422-f3f8-29f51d6056be@quicinc.com>
+Date: Fri, 26 Jul 2024 13:40:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v2 3/6] clk: qcom: clk-alpha-pll: Add support for Regera
+ PLL ops
+Content-Language: en-US
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
+        "Imran
+ Shaik" <quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
+ <20240702-camcc-support-sm8150-v2-3-4baf54ec7333@quicinc.com>
+ <kxoxr5cxxedckh7q45zhhyssqx4ahdfbqw7sdsrxx2ddplummh@2s6jv62ipnhb>
+ <6adaca81-2751-ae48-850c-453a34c0e341@quicinc.com>
+In-Reply-To: <6adaca81-2751-ae48-850c-453a34c0e341@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MrbXSSvEBAljJApVTJOpUg5Bb8lsrUo3
+X-Proofpoint-ORIG-GUID: MrbXSSvEBAljJApVTJOpUg5Bb8lsrUo3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-26_05,2024-07-25_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0
+ spamscore=0 phishscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407260053
 
-On Fri, 26 Jul 2024, zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.c=
-om> wrote:
-> On Thu, Jul 25, 2024 at 4:41=E2=80=AFPM Jani Nikula <jani.nikula@linux.in=
-tel.com> wrote:
->>
->> On Thu, 25 Jul 2024, Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.googl=
-e.com> wrote:
->> > Move the 11/29 command from enable() to init() function
->>
->> OOC, what is the "11/29" command?
->>
->> BR,
->> Jani.
+
+On 7/9/2024 4:21 PM, Satya Priya Kakitapalli (Temp) wrote:
 >
-> hi Jani
-> Sorry, maybe I didn't describe it clearly. The 11/29 commands are sent
-> by these two functions.
+> On 7/3/2024 3:35 PM, Dmitry Baryshkov wrote:
+>> On Tue, Jul 02, 2024 at 09:20:41PM GMT, Satya Priya Kakitapalli wrote:
+>>> From: Taniya Das <quic_tdas@quicinc.com>
+>>>
+>>> Regera PLL ops are required to control the Regera PLL from clock
+>>> controller drivers, thus add support for the same.
+>> the same what?
 >
-> mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
 >
-> MIPI_DCS_EXIT_SLEEP_MODE =3D 0x11,
-> MIPI_DCS_SET_DISPLAY_ON=3D 0x29,
+> I'll rephrase the commit text.
+>
+>
+>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>>> ---
+>>>   drivers/clk/qcom/clk-alpha-pll.c | 32 
+>>> +++++++++++++++++++++++++++++++-
+>>>   drivers/clk/qcom/clk-alpha-pll.h |  5 +++++
+>>>   2 files changed, 36 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c 
+>>> b/drivers/clk/qcom/clk-alpha-pll.c
+>>> index d2bef078588f..afb7ab72c90d 100644
+>>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>>> @@ -1,7 +1,7 @@
+>>>   // SPDX-License-Identifier: GPL-2.0
+>>>   /*
+>>>    * Copyright (c) 2015, 2018, The Linux Foundation. All rights 
+>>> reserved.
+>>> - * Copyright (c) 2021, 2023, Qualcomm Innovation Center, Inc. All 
+>>> rights reserved.
+>>> + * Copyright (c) 2021, 2023-2024, Qualcomm Innovation Center, Inc. 
+>>> All rights reserved.
+>>>    */
+>>>     #include <linux/kernel.h>
+>>> @@ -2605,3 +2605,33 @@ const struct clk_ops 
+>>> clk_alpha_pll_stromer_plus_ops = {
+>>>       .set_rate = clk_alpha_pll_stromer_plus_set_rate,
+>>>   };
+>>>   EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_plus_ops);
+>>> +
+>>> +void clk_regera_pll_configure(struct clk_alpha_pll *pll, struct 
+>>> regmap *regmap,
+>>> +                 const struct alpha_pll_config *config)
+>>> +{
+>>> +    clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), 
+>>> config->alpha);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), 
+>>> config->config_ctl_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), 
+>>> config->config_ctl_hi_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), 
+>>> config->config_ctl_hi1_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll), 
+>>> config->user_ctl_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_USER_CTL_U(pll), 
+>>> config->user_ctl_hi_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_USER_CTL_U1(pll), 
+>>> config->user_ctl_hi1_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), 
+>>> config->test_ctl_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), 
+>>> config->test_ctl_hi_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), 
+>>> config->test_ctl_hi1_val);
+>>> +
+>>> +    /* Set operation mode to STANDBY */
+>>> +    regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(clk_regera_pll_configure);
+>> Does it make sense to call this function from clk_zonda_pll_configure()?
+>
+>
+> Okay, I'll evaluate this internally and see if that can be done.
+>
 
-Maybe refer to the commands with their names then? Exit sleep mode and
-set display on.
-
-BR,
-Jani.
-
+I have checked this, although there is common part between Zonda and 
+Regera PLL configure APIs, a different sequence needs to be followed for 
+Zonda, and calling this function from zonda_pll_configure would affect 
+the sequence. Hence, I think it is better to leave it as is.
 
 
 >
-> BR,
 >>
->> >
->> > As mentioned in the patch:
->> > https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.c=
-orp-partner.google.com/
->> >
->> > Our DSI host has different modes in prepare() and enable()
->> > functions. prepare() is in LP mode and enable() is in HS mode.
->> > Since the 11/29 command must also be sent in LP mode,
->> > so we also move 11/29 command to the init() function.
->> >
->> > After moving the 11/29 command to the init() function,
->> > we no longer need additional delay judgment, so we delete
->> > variables "exit_sleep_to_display_on_delay_ms" and
->> > "display_on_delay_ms".
->> >
->> > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.co=
-m>
->> > ---
->> >  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 59 ++++++++++---------
->> >  1 file changed, 32 insertions(+), 27 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/driver=
-s/gpu/drm/panel/panel-jadard-jd9365da-h3.c
->> > index 04d315d96bff..ce73e8cb1db5 100644
->> > --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
->> > +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
->> > @@ -31,8 +31,6 @@ struct jadard_panel_desc {
->> >       bool reset_before_power_off_vcioo;
->> >       unsigned int vcioo_to_lp11_delay_ms;
->> >       unsigned int lp11_to_reset_delay_ms;
->> > -     unsigned int exit_sleep_to_display_on_delay_ms;
->> > -     unsigned int display_on_delay_ms;
->> >       unsigned int backlight_off_to_display_off_delay_ms;
->> >       unsigned int display_off_to_enter_sleep_delay_ms;
->> >       unsigned int enter_sleep_to_reset_down_delay_ms;
->> > @@ -66,26 +64,6 @@ static inline struct jadard *panel_to_jadard(struct=
- drm_panel *panel)
->> >       return container_of(panel, struct jadard, panel);
->> >  }
->> >
->> > -static int jadard_enable(struct drm_panel *panel)
->> > -{
->> > -     struct jadard *jadard =3D panel_to_jadard(panel);
->> > -     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->dsi=
- };
->> > -
->> > -     msleep(120);
->> > -
->> > -     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
->> > -
->> > -     if (jadard->desc->exit_sleep_to_display_on_delay_ms)
->> > -             mipi_dsi_msleep(&dsi_ctx, jadard->desc->exit_sleep_to_di=
-splay_on_delay_ms);
->> > -
->> > -     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
->> > -
->> > -     if (jadard->desc->display_on_delay_ms)
->> > -             mipi_dsi_msleep(&dsi_ctx, jadard->desc->display_on_delay=
-_ms);
->> > -
->> > -     return dsi_ctx.accum_err;
->> > -}
->> > -
->> >  static int jadard_disable(struct drm_panel *panel)
->> >  {
->> >       struct jadard *jadard =3D panel_to_jadard(panel);
->> > @@ -202,7 +180,6 @@ static const struct drm_panel_funcs jadard_funcs =
-=3D {
->> >       .disable =3D jadard_disable,
->> >       .unprepare =3D jadard_unprepare,
->> >       .prepare =3D jadard_prepare,
->> > -     .enable =3D jadard_enable,
->> >       .get_modes =3D jadard_get_modes,
->> >       .get_orientation =3D jadard_panel_get_orientation,
->> >  };
->> > @@ -382,6 +359,12 @@ static int radxa_display_8hd_ad002_init_cmds(stru=
-ct jadard *jadard)
->> >
->> >       jd9365da_switch_page(&dsi_ctx, 0x00);
->> >
->> > +     mipi_dsi_msleep(&dsi_ctx, 120);
->> > +
->> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
->> > +
->> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
->> > +
->> >       return dsi_ctx.accum_err;
->> >  };
->> >
->> > @@ -608,6 +591,12 @@ static int cz101b4001_init_cmds(struct jadard *ja=
-dard)
->> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE6, 0x02);
->> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE7, 0x0C);
->> >
->> > +     mipi_dsi_msleep(&dsi_ctx, 120);
->> > +
->> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
->> > +
->> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
->> > +
->> >       return dsi_ctx.accum_err;
->> >  };
->> >
->> > @@ -831,6 +820,16 @@ static int kingdisplay_kd101ne3_init_cmds(struct =
-jadard *jadard)
->> >
->> >       jd9365da_switch_page(&dsi_ctx, 0x00);
->> >
->> > +     mipi_dsi_msleep(&dsi_ctx, 120);
->> > +
->> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
->> > +
->> > +     mipi_dsi_msleep(&dsi_ctx, 120);
->> > +
->> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
->> > +
->> > +     mipi_dsi_msleep(&dsi_ctx, 20);
->> > +
->> >       return dsi_ctx.accum_err;
->> >  };
->> >
->> > @@ -859,8 +858,6 @@ static const struct jadard_panel_desc kingdisplay_=
-kd101ne3_40ti_desc =3D {
->> >       .reset_before_power_off_vcioo =3D true,
->> >       .vcioo_to_lp11_delay_ms =3D 5,
->> >       .lp11_to_reset_delay_ms =3D 10,
->> > -     .exit_sleep_to_display_on_delay_ms =3D 120,
->> > -     .display_on_delay_ms =3D 20,
->> >       .backlight_off_to_display_off_delay_ms =3D 100,
->> >       .display_off_to_enter_sleep_delay_ms =3D 50,
->> >       .enter_sleep_to_reset_down_delay_ms =3D 100,
->> > @@ -1074,6 +1071,16 @@ static int melfas_lmfbx101117480_init_cmds(stru=
-ct jadard *jadard)
->> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x02);
->> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe7, 0x06);
->> >
->> > +     mipi_dsi_msleep(&dsi_ctx, 120);
->> > +
->> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
->> > +
->> > +     mipi_dsi_msleep(&dsi_ctx, 120);
->> > +
->> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
->> > +
->> > +     mipi_dsi_msleep(&dsi_ctx, 20);
->> > +
->> >       return dsi_ctx.accum_err;
->> >  };
->> >
->> > @@ -1102,8 +1109,6 @@ static const struct jadard_panel_desc melfas_lmf=
-bx101117480_desc =3D {
->> >       .reset_before_power_off_vcioo =3D true,
->> >       .vcioo_to_lp11_delay_ms =3D 5,
->> >       .lp11_to_reset_delay_ms =3D 10,
->> > -     .exit_sleep_to_display_on_delay_ms =3D 120,
->> > -     .display_on_delay_ms =3D 20,
->> >       .backlight_off_to_display_off_delay_ms =3D 100,
->> >       .display_off_to_enter_sleep_delay_ms =3D 50,
->> >       .enter_sleep_to_reset_down_delay_ms =3D 100,
->>
->> --
->> Jani Nikula, Intel
-
---=20
-Jani Nikula, Intel
+>>> +
+>>> +const struct clk_ops clk_alpha_pll_regera_ops = {
+>>> +    .enable = clk_zonda_pll_enable,
+>>> +    .disable = clk_zonda_pll_disable,
+>>> +    .is_enabled = clk_alpha_pll_is_enabled,
+>>> +    .recalc_rate = clk_trion_pll_recalc_rate,
+>>> +    .round_rate = clk_alpha_pll_round_rate,
+>>> +    .set_rate = clk_zonda_pll_set_rate,
+>>> +};
+>>> +EXPORT_SYMBOL_GPL(clk_alpha_pll_regera_ops);
+>>> diff --git a/drivers/clk/qcom/clk-alpha-pll.h 
+>>> b/drivers/clk/qcom/clk-alpha-pll.h
+>>> index fb6d50263bb9..5bb0a07da53d 100644
+>>> --- a/drivers/clk/qcom/clk-alpha-pll.h
+>>> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+>>> @@ -21,6 +21,7 @@ enum {
+>>>       CLK_ALPHA_PLL_TYPE_LUCID = CLK_ALPHA_PLL_TYPE_TRION,
+>>>       CLK_ALPHA_PLL_TYPE_AGERA,
+>>>       CLK_ALPHA_PLL_TYPE_ZONDA,
+>>> +    CLK_ALPHA_PLL_TYPE_REGERA = CLK_ALPHA_PLL_TYPE_ZONDA,
+>>>       CLK_ALPHA_PLL_TYPE_ZONDA_OLE,
+>>>       CLK_ALPHA_PLL_TYPE_LUCID_EVO,
+>>>       CLK_ALPHA_PLL_TYPE_LUCID_OLE,
+>>> @@ -189,6 +190,8 @@ extern const struct clk_ops 
+>>> clk_alpha_pll_postdiv_lucid_evo_ops;
+>>>   extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
+>>>   #define clk_alpha_pll_postdiv_rivian_evo_ops 
+>>> clk_alpha_pll_postdiv_fabia_ops
+>>>   +extern const struct clk_ops clk_alpha_pll_regera_ops;
+>>> +
+>>>   void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct 
+>>> regmap *regmap,
+>>>                    const struct alpha_pll_config *config);
+>>>   void clk_fabia_pll_configure(struct clk_alpha_pll *pll, struct 
+>>> regmap *regmap,
+>>> @@ -210,5 +213,7 @@ void clk_rivian_evo_pll_configure(struct 
+>>> clk_alpha_pll *pll, struct regmap *regm
+>>>                     const struct alpha_pll_config *config);
+>>>   void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct 
+>>> regmap *regmap,
+>>>                      const struct alpha_pll_config *config);
+>>> +void clk_regera_pll_configure(struct clk_alpha_pll *pll, struct 
+>>> regmap *regmap,
+>>> +                 const struct alpha_pll_config *config);
+>>>     #endif
+>>>
+>>> -- 
+>>> 2.25.1
+>>>
 
