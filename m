@@ -1,132 +1,195 @@
-Return-Path: <devicetree+bounces-88260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4255C93CF66
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:16:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F127093CF77
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 10:19:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72C3A1C20D3F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:16:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8E182829E0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 08:19:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9693B172BBC;
-	Fri, 26 Jul 2024 08:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313D4176FC3;
+	Fri, 26 Jul 2024 08:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fC/YTSK8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mPHqZagA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECC260EC4
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 08:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820DB176ABD;
+	Fri, 26 Jul 2024 08:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721981769; cv=none; b=MEwrYOYwp4At4TKMtiM0Ok1MEuGhMmH2HvBSW9u9XWDU7SdHRqywCv+Ll9hShOnlLMi0bAR/MR4K4B0oLfcpHAbrF1IXoAcFcezTz1tVOJhrvgX3BsD5P3s7P8VT2KLPHfJsEVTa8BpUVvK5eVvRSDCpUZ0rj52T5dX2nEOJcxY=
+	t=1721981958; cv=none; b=GzGWJ4Zo9nS720ny7yGRItUrKfDzfmIhI54aCaNwtCQGC2BwzMzoLv+P7wAdnuYYmSV6Ut/qyPoUF1A2hcO8QV7uxqLyhMAZpmOpbbpm7bOAc7SKDx/M/ZoCDX1daEWgQlxsvEL3WOETazUx1bqlqGXq8KNeyJVooRaeShp4FU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721981769; c=relaxed/simple;
-	bh=S/Hoh4bXg1UZDdZJQBXsz2bQKhdvNuE+/OwIDUSIuQU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nrTnHKnCKC6xgRPoNaUqj1ih3Zamfgum1eJ68TJRCkWor18OgRoBSccI/vY093naoJKNkCIf6hkVlamc338wwT9mwYywfPIdMBbxx2ifpjpT19ktUEqC+ElpaVZ+GS2VpVMHTz9iadU0d8rF2ktvSfQqGojgO9dHvpJa1VfRkHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fC/YTSK8; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2eecd2c6432so14595671fa.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 01:16:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1721981765; x=1722586565; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TYTI0CSVKI2TXvDPdpXJ4Kmrco4gw3sbLMb/7A/5juI=;
-        b=fC/YTSK8L1YD9K5Oqk1qxjGBzj2TxFC9/AfxfAA2k5Lk4HVsYWWY93nj9VqY2NDJR6
-         4Xx3RkGbXLglJGpnX959nZ8nlBSCfINi1mXXPJGMbsdAvrHhb78dXZg0REtjGGgx9KTR
-         cXdyDjHiuLEoRXUxc0j82qu4rWbjwcoMSoAggzExeebeG8s86apktOvj069x7ahrkdt4
-         MQVXC+8pXIBpXkvW00Kyl7VF8M4k2o6X5IIytWGl9gMgsmKmTfhyaI+I5ATNeUFaauHJ
-         ARIamJjEQFtt8U47MnhsD91k3afWf+vwBZj1elV0WuN3P/EDUO/3qCJSmawH8ESTpD7n
-         UHaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721981765; x=1722586565;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TYTI0CSVKI2TXvDPdpXJ4Kmrco4gw3sbLMb/7A/5juI=;
-        b=SSS6dAlhDW00VCb94/MhZ9oENMNA/beouIj+WHP0+40B9SDcfr/cVJAFltdOkY3xWx
-         zVOC8aIfrGEtFkVqqbk/jAc03F/gS473ca5Qn3nxbPpeHYrzDR7iTX7DL0P19rpobV3g
-         Fo8eMLrqVzIl2yjdN8YJkRcIh75E3xAdcRTfuDduPn0+XDW1G5O46thJBBSH53k1s612
-         0mM/9/IxPAbHOuTsB7HhiVC3PG+sOd1q8DqEDjRnYN5xqmBah64PElbKK+A3rofAxqEv
-         uEfwe5Ezq4P0087MrfZYLiCL/LWLygfY/FUMrudWmdyCAtaJnzP3qTVYQiGvSao0p0D7
-         r2Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCWGlp2V+9rnHp6KodiCvMeBnxsAFZ/V/GxnzcZkNBPFPhVk1vDwqPpgSI4mvDCZfGAGx3MeNdxImFJVI77aXo77+y6teBZFncS0Iw==
-X-Gm-Message-State: AOJu0YzJCx2ue87WbwhO5mH2VQujFW5yzygcglTrWsthHgzmxF83W12V
-	nW5ZQWzgGWw3ihTsB1NjC3eLrjdaGlGAQOtxGClJuL+I1IQJkrRm49e4ACXgfeTF+8xzC8pe66t
-	E
-X-Google-Smtp-Source: AGHT+IFARq9FwsB8RjXSIH+GWglIVcZ0UrF3Y3kjl0RxuQLU9iezQhGVz2hdxK4T5dKSzYVooaeGgw==
-X-Received: by 2002:a2e:8812:0:b0:2ef:296d:1de3 with SMTP id 38308e7fff4ca-2f03dabebd2mr35897911fa.0.1721981765244;
-        Fri, 26 Jul 2024 01:16:05 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:3ebe:e31b:885d:414e])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad41164sm147206766b.102.2024.07.26.01.16.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jul 2024 01:16:04 -0700 (PDT)
-Date: Fri, 26 Jul 2024 10:16:02 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH 0/2] dt-bindings: pwm: Add r8a779h0 support
-Message-ID: <yaavvcimdwatogeiejd4q6s325scnxdspqkl3d7u4x3qgho6sa@jgi2smviz4bz>
-References: <20240725193803.14130-4-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1721981958; c=relaxed/simple;
+	bh=b0hZHMHdOCCC1gCaHcvQIdCIQnQjt3SAU3/9jz+NPZ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Xmny/pHU15bK5R0sst2WJsvXtmXlr0DfXOcTydYB4bNO4EdRnaRVsZ1IJr3D1hSgy3i9F7oYTEVRnKAbrnpsNH4XQU6+/jaUG2LdFEjeZsAWcXApB7IsPnHav4C9SjFvCua62onmKHG2yAo7Ly3ULpKuqAikLlqT93L5RIbrU9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mPHqZagA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46Q7pI68023458;
+	Fri, 26 Jul 2024 08:19:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TpMvZ/F5VAdyrXjWuZ6honAJQfBiWDrR/whqPTUKyOA=; b=mPHqZagAC4wjMkhH
+	C+5aWaJJba9MnKNEch3Lv6rXCigy8kQpRPqCxKd6uiOA/XhGLHPLcwSV29Rm1/Tq
+	3PhlAUelangYV4I+9vWO2Etiu9xPpodvN7CyOBwtIrUJd/VMUPpAC405lUHJo8Ug
+	TSULnK0qHaf6rICsj9QrXRCosLSIXZ38cZtw7TRRAEGXlAxGFhTRmXzDNKIGOCGW
+	LJHLlC9NaEy/kSvkiKHklREZTtATwADOtqNHora1/iJJJ9zOKXJQHcc06X8U7UAL
+	NtnD8Z0KgaO1uQHw/+ZzBVrpIHd6Rw6C5wpsUCDTsCvzR9R3zABAhY7mRNPtIqD1
+	3/rG1w==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40m7sag2bv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jul 2024 08:19:08 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46Q8J62e025432
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jul 2024 08:19:06 GMT
+Received: from [10.218.10.146] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Jul
+ 2024 01:19:01 -0700
+Message-ID: <f1c3450d-60bc-4f64-842d-f335338b2986@quicinc.com>
+Date: Fri, 26 Jul 2024 13:48:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pynesepz3mktlh7g"
-Content-Disposition: inline
-In-Reply-To: <20240725193803.14130-4-wsa+renesas@sang-engineering.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm4450: add camera, display and
+ gpu clock controller
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, Vinod Koul
+	<vkoul@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jagadeesh Kona
+	<quic_jkona@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>
+References: <20240611133752.2192401-1-quic_ajipan@quicinc.com>
+ <20240611133752.2192401-9-quic_ajipan@quicinc.com>
+ <76f5e3c7-a90b-42d2-8169-e5e2211a14a1@linaro.org>
+ <ba7d12d3-c582-45ec-beed-e81182fe3252@quicinc.com>
+ <95a835e2-9fd9-467b-bd0a-8eeb80ddf678@linaro.org>
+ <9c3de930-47b7-45a9-bf7e-6e506ea2accc@quicinc.com>
+ <8f7cdb31-c50d-4690-b878-518bad545612@linaro.org>
+ <46e6f1f0-d244-4e53-99ce-9fee339dc4de@quicinc.com>
+ <f9a23663-7a1d-44dc-8e0b-8463c3c88a29@linaro.org>
+ <dd8ad439-f74c-4bb6-9066-73394bb9befe@quicinc.com>
+ <164c62e8-6846-4d0b-81f5-8ed6e76abd5f@linaro.org>
+Content-Language: en-US
+From: Ajit Pandey <quic_ajipan@quicinc.com>
+In-Reply-To: <164c62e8-6846-4d0b-81f5-8ed6e76abd5f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: R-gDrgExbxtJjBua--coFMrLSGVUuxwv
+X-Proofpoint-GUID: R-gDrgExbxtJjBua--coFMrLSGVUuxwv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-26_05,2024-07-25_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 spamscore=0 phishscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407260053
 
 
---pynesepz3mktlh7g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello Wolfram,
+On 7/16/2024 4:09 PM, Konrad Dybcio wrote:
+> On 16.07.2024 10:39 AM, Taniya Das wrote:
+>>
+>>
+>> On 7/12/2024 6:10 PM, Konrad Dybcio wrote:
+>>> On 12.07.2024 2:31 PM, Ajit Pandey wrote:
+>>>>
+>>>>
+>>>> On 7/12/2024 5:52 PM, Konrad Dybcio wrote:
+>>>>> On 12.07.2024 11:53 AM, Ajit Pandey wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 7/11/2024 3:25 PM, Konrad Dybcio wrote:
+>>>>>>> On 3.07.2024 11:16 AM, Ajit Pandey wrote:
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 6/13/2024 1:11 PM, Konrad Dybcio wrote:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On 6/11/24 15:37, Ajit Pandey wrote:
+>>>>>>>>>> Add device node for camera, display and graphics clock controller on
+>>>>>>>>>> Qualcomm SM4450 platform.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+>>>>>>>>>> ---
+>>>>>>>>>
+>>>>>>>>> None of these nodes reference a power domain (which would usually be
+>>>>>>>>> CX/MX/MMCX). This way, the RPMhPDs will never be scaled.
+>>>>>>>>>
+>>>>>>>>> The current upstream implementation only allows one power domain to be
+>>>>>>>>> scaled, but that's better than none (see other DTs for recent SoCs).
+>>>>>>>>>
+>>>>>>>>> Konrad
+>>>>>>>>
+>>>>>>>> SM4450 doesn't support MMCX and CX/MX domains will remain active so
+>>>>>>>> power-domains property is actually not required for SM4450 clock nodes.
+>>>>>>>
+>>>>>>> It's not only about them being active.. some PLLs require e.g. MX to be
+>>>>>>> at a certain level, or the system will be unstable
+>>>>>>>
+>>>>>>> Konrad
+>>>>>>
+>>>>>> With active I mean CX/MX rails will be default running at minimum level required for clock controllers. Adding power-domains property for CX/MX rails is like a redundant code as that will also scale such rails at default specified minimum level only. Also we hadn't added such property for other targets DT nodes to scale up CX/MX at minimum level.
+>>>>>
+>>>>> What I mean here is that, the minimum level may not be enough. In such case
+>>>>> you would also add a required-opps = <&handle_to_rpmhpd_opp_level>
+>>>>>
+>>>>> Konrad
+>>>>>
+>>>>
+>>>> Apologies, but could you please elaborate the use-case where minimum level isn't enough ? I guess for clock controllers configuration min level of CX/MX would be suffice, client will anyhow scale such rails to higher levels depending on their use-case.
+>>>
+>>> The main issue here is with PLLs within the clock controllers. Nobody
+>>> votes for them. It's an unsolved problem and we currently work around
+>>> cases where it's necessary by requiring that (with runtime pm, so when
+>>> there's active consumers of the clock controller) the attached power
+>>> domain is at >= SOME_LEVEL
+>>>
+>>> Konrad
+>>
+>> Konrad, this target (SM4450) have all the PLLs connected to CX/MX(again this is not collapsible). At boot the RPMHPD driver would keep the rails at minimum level and which is good to operate for the clock controller. I do not see currently this requirement you pose here specifically for SM4450.
+>>
+>> As part of the PLL requirement within clock controller, this is definitely a requirement which we plan to RFC soon. There are discussions already in progress on how to handle this requirement.
+> 
+> Ok, if it works, let's keep it as is until that RFC
+> 
+> Konrad
 
-On Thu, Jul 25, 2024 at 09:38:03PM +0200, Wolfram Sang wrote:
-> Add the bindings for both PWM controllers in this SoC.
->=20
-> Wolfram Sang (2):
->   dt-bindings: pwm: renesas,pwm-rcar: Add r8a779h0 support
->   dt-bindings: pwm: renesas,tpu: Add r8a779h0 support
-
-Looks straight forward. I applied it to my for-nexxt branch at
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
-nexxt
-=2E It will migrate to the branch with a single x that is included in next
-after the merge window closes. Still open to accept review tags for it.
-
-Thanks
-Uwe
-
---pynesepz3mktlh7g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmajWz8ACgkQj4D7WH0S
-/k7iQwf/SaZmhQb38lBOdeLuTyTAHQtHPx1LsLQ1pL2L65kY5d0vkly20vvGKG/J
-fNwcramcSMUtCJy8UhEBvIcMzxAhcBHhvkCAmLeWriVwwDRUZBiw+vzzVrxMYw/+
-h8XvwTZNBNMQ1k1feEQDxeWlGNo2n1HewQ61r/ge3VTWjL9efWAjVslIMs+vfFI5
-KCb5NNigStrQ7+MkXKhRT9p/WlQV+dhkRNrijMBxXUJZ5PnaTmpvF+wnYwXPekbC
-3XXvh4158OywG8Xo7WOUsz+e+GmkhJUsp351dpph/J3y4qjIRApkk1vpQxouMEM+
-KrWAc2L3vOtZB5u4KqST1Qqxzl1T3g==
-=CLxK
------END PGP SIGNATURE-----
-
---pynesepz3mktlh7g--
+Thanks Konrad, please provide your ack on this patch if it looks fine 
+for now.
+-- 
+Regards
+Ajit
 
