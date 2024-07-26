@@ -1,132 +1,169 @@
-Return-Path: <devicetree+bounces-88348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B17D93D399
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:00:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE5593D3AF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:07:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 745611C23191
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:00:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6A021F2452F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE5D17B51D;
-	Fri, 26 Jul 2024 12:59:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A38B17BB03;
+	Fri, 26 Jul 2024 13:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="CxSm85/J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YGeRQpfs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6542E3E8
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 12:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A158176AB4;
+	Fri, 26 Jul 2024 13:07:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721998799; cv=none; b=hpzn5lYOd0bPDX/M/qFwG+JUQNtG7VyYVFKkzSkYqvs0qVpZuddZd8/Oj+5BpbKyU1wyuI9wxaMd4tECoQkAbQuxEBNnd3p/OTEJ65zKTTU17CVmHPifrUm0jwEzkhPDExApUGmyXFRzIqrBgNnTp9guiyqJasL9FmIjujtN2aQ=
+	t=1721999252; cv=none; b=iDPiGupF0/9nNsDOpiHuHAuR9dtd4CRbxVMAMYOC0Iiquk/1BLX/uhlv+z2hcrB6OgNKFtsKBySk3jP4qP3tNXB3C17yMQ8qIRDAnwwJfmvQ6396MgYq0jzYSsrEDj62m6VwJtKUZBKMRUFyMA8p49i/6H6GK17w/QKFEVIdZEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721998799; c=relaxed/simple;
-	bh=1FaoIgcazK27xHpAWhnTuEBO61BLfDHMuFObkWX4Y8s=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b/X8m4yllD4mz9SQWTPMqF4upnau8X2aYvQg8TjlPmIDs8hYqZcF8MB22PeO1Jg26aBG4Pto7nz14EtvGEj4pYNTn4JZRVNBnEEejSiPFgWCTAy31dy5lBmYncEYiaG8dsPtmP+fVvKNRJsLawACFw+cdal3eWKiPVF1twFu2Zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=CxSm85/J; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com [209.85.167.197])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 347B63F22A
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 12:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1721998795;
-	bh=1FaoIgcazK27xHpAWhnTuEBO61BLfDHMuFObkWX4Y8s=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=CxSm85/J19JC/JJ/3ijslKqvn8rgDpUcdUb74ekehF3oIMJasjaIuLziKf9p3cJ7j
-	 mG+r2aNIlP9A3jwXooXPs0UWwSY29gQo++IzKgJBdC6zQmXPEiCtHkomAFNHwmSmlS
-	 KO0oKnAaa0QN+WiunyLszh++Xx2+U8WpAPKX74cq0OYciH0zjHMykKTSfL/fN56EZT
-	 s7GLA00z5TNeQUsh7ELXzGSTzBJkKcpl7EtkWBl4+ogrQDWlaLpailbJHhndOQo5Ol
-	 PUZwz+aUDycbMsf1W7JYL72gQXFcq/s6BHBqQ9SJeP6g8utu1imevt6rDyioHZrld9
-	 X2cr7krbXZ4Pw==
-Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-3d9381a0eccso1051302b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 05:59:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721998793; x=1722603593;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1FaoIgcazK27xHpAWhnTuEBO61BLfDHMuFObkWX4Y8s=;
-        b=MrcwCSOXDYRO+g+aTu6jESSZOIvulCMM75/hgSsTqWMmUizZBMqiw3IuWYHnNTCzrc
-         UJx4CCKyQgDWAOh1BkVXtKrcHVNuByZO7vAzMnwkbt+/PTs013Y7j9kHNuiBf79j/GhI
-         D36dvtHBVHAdfQ+cgqxJWIUDM5Gys+LLK4JfmT98LFarsbqKpwnfBkuYfQpGHSM082Bp
-         RCJgaNcRAcEjlfICkLJMy7nHrDpVmrg98vKGtIzs++X3YbBm1sLfOdU9TTV5FpbmKZY2
-         tErNfqq0cQSi4z4eIemw/IFA/yTPKlRuKJC+edJw2eeUSxvwxiU2Od6VfdHvDVPVRuD+
-         EwOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmojWgC/l4+eCde+inxySQiNhgJFoJiW8IoeAQ5P0CwWmISAw5ocBAuS4ClgOwBaWErUhATP/hM0JXWdjmto+W9HNbF6f6vMR6Zw==
-X-Gm-Message-State: AOJu0Yz2b5P+z1q1RzFn04uL27Bvh13R55Wky83lSzrP/ENo1/JMNN8Y
-	+7RrV5um3+GVP3DM+XfGW2nPfhqTKgC2CTi0cbOcXdcNa1AhfEhf3dKbvEUJFylHCHyPEFcRI7B
-	4tDABEbH57MasxwaREhPj1zmU6IoHdZhqTwlZxQolTG0jjUNzPPu8ubmUqYiyYxmbds6cZTeqM2
-	Y0kRhvDHbtkQbpU9hrw1fkHiRcC39TqLPacY5g1UB1IqxhIQgp4g==
-X-Received: by 2002:a05:6808:1301:b0:3d9:e090:5e1e with SMTP id 5614622812f47-3db140a9f79mr6565314b6e.7.1721998792767;
-        Fri, 26 Jul 2024 05:59:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFiUN4fyKdyXsmTQkEBFb4vT0Xp39UbgHgUlfO0wIWjYUMfsOxngCxeH3PUOM3smpR8JRzlRdM5B7RIva4IuKA=
-X-Received: by 2002:a05:6808:1301:b0:3d9:e090:5e1e with SMTP id
- 5614622812f47-3db140a9f79mr6565281b6e.7.1721998792337; Fri, 26 Jul 2024
- 05:59:52 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 26 Jul 2024 08:59:51 -0400
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240726-likewise-satin-81a7a4a3885c@spud>
-References: <20240716-majesty-antler-d9bedc7fd0af@wendy> <CAJM55Z9FAH-uiNmXDELM0gkYjHue+g8JQgOryxOCv4OXJ9f5EA@mail.gmail.com>
- <20240726-likewise-satin-81a7a4a3885c@spud>
+	s=arc-20240116; t=1721999252; c=relaxed/simple;
+	bh=o2zx3o5hVHzdjVgk8ltvnYkXMU43duXbPFt5gvBbsu0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SkC07hCh/sukM2hjPmGtGflUD2P1BCl8E21C4ITsSXI9IWIIafb4XHmnQT58Z3ByxDUi5WEKhk1c82PtKXZAWc9r7uYI1NXmu2zDJffTVwyGeeCOwqRMkl6jYk1FJP+vshBKJqkUin3wnJp1zWQXRNHDSngGBX6JHWbFu6ZVZAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YGeRQpfs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EAC30C32782;
+	Fri, 26 Jul 2024 13:07:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721999252;
+	bh=o2zx3o5hVHzdjVgk8ltvnYkXMU43duXbPFt5gvBbsu0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YGeRQpfsDTurlNnk2XQ6cYuuthXJgBHCIzN803835Kh86B4c3gUl0CewljvoPa7K/
+	 aaJGkKy6WpGNSxOuIaFA6AwL+sN+aUVG4NvSgREhGw3sEhirxovIBIWpSDHM3DczNX
+	 CTdaqoOBXLvdc0abzoA3J1V4yCGl6yYkolqel4/vRCpvtpcLV/yFdiJScqfxtxuCkR
+	 ubuYIKabgg6mRtDpvBw6XV7MEfiPJxiaPVvT/xnjVMZQPYVFHahhNQ469oIPJKpzz5
+	 bMDmiRlYskRzf8Km6uyuuYQQvuRq3PMEFkRRBATg0ohuCTyXXvJ+OOqSwyEPRcNpx2
+	 OZJpmPlAw8oOw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD822C3DA49;
+	Fri, 26 Jul 2024 13:07:31 +0000 (UTC)
+From: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
+Subject: [PATCH v10 0/2] Add support for Loongson1 APB DMA
+Date: Fri, 26 Jul 2024 21:06:48 +0800
+Message-Id: <20240726-loongson1-dma-v10-0-31bf095a6fa6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 26 Jul 2024 08:59:51 -0400
-Message-ID: <CAJM55Z_QFfKOVLhKTwZCHFRC--b7QPn7_Y_Dz9ffTBGNNDcuoQ@mail.gmail.com>
-Subject: Re: [PATCH v1] riscv: dts: starfive: remove non-existant spi device
- from jh7110-common.dtsi
-To: Conor Dooley <conor@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-riscv@lists.infradead.org, 
-	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGifo2YC/13OTU7DMBAF4KtUXuPIM67/WHEPxCK1J4lFEyO7R
+ ECVu+N0AZGXM9L33ruzQjlSYc+nO8u0xhLTUg8QTyfmp34ZicdQHwwFSgAU/JrSMpa0AA9zz0H
+ LfiBlhL04Vs1HpiF+PQJf3+o95DTz25Sp/0sRDi0gOCU7hWctLAf+TuNnLet+9sqXce7jtfNp3
+ hOnWG4pfz8WrnrP3VPOQoJutqyaC+5EIPTS+9pyCNq3rOag0bXaVC1NuChbNwVSrbb/WgvTalv
+ 14JzDgMqgEq12Bw2y1a5qDRYG9CaQp6Petu0XRxnnsacBAAA=
+To: Keguang Zhang <keguang.zhang@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jiaxun Yang <jiaxun.yang@flygoat.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1721999250; l=3092;
+ i=keguang.zhang@gmail.com; s=20231129; h=from:subject:message-id;
+ bh=o2zx3o5hVHzdjVgk8ltvnYkXMU43duXbPFt5gvBbsu0=;
+ b=T6wAI6PvcFTCfefJZNNBmUR4tLx2a1DrXnbf/80aDFRgQIvyjh438gbtDn8sSvUFJ37/vpbLh
+ YNjMOHuEFnQA+xmq6Vkk0O1gZKsq/oO1u/u1DNwwQhGD0EdoiIHSRjF
+X-Developer-Key: i=keguang.zhang@gmail.com; a=ed25519;
+ pk=FMKGj/JgKll/MgClpNZ3frIIogsh5e5r8CeW2mr+WLs=
+X-Endpoint-Received: by B4 Relay for keguang.zhang@gmail.com/20231129 with
+ auth_id=102
+X-Original-From: Keguang Zhang <keguang.zhang@gmail.com>
+Reply-To: keguang.zhang@gmail.com
 
-Conor Dooley wrote:
-> On Fri, Jul 26, 2024 at 08:29:39AM -0400, Emil Renner Berthing wrote:
-> > Conor Dooley wrote:
-> > > There is no rohm,dh2228fv on any of supported JH7110 boards - in fact
-> > > the dh2228fv almost certainly does not exist as it is not a valid Rohm
-> > > part number. Likely a typo by Maxime when adding the device originally,
-> > > and should have been bh2228fv, but these boards do not have a bh2228fv
-> > > either! Remove it from jh7110-common.dtsi - pretending to have a device
-> > > so that the spidev driver will be bound by Linux is not acceptable.
-> >
-> > This patch is correct, but as you mention the fake device was most likely added
-> > in order to use spidev from userspace with random devices added on the exposed
-> > pins. In case someone actually makes use of this wouldn't this be a regression?
-> > What is the right way to support this?
->
-> Unfortunately, there's no "right way" that's supported for for this
-> particular case. If people want to use spidev for their device, they
-> should either document it in the bindings, add the compatible to the
-> spidev driver and use an overlay to add the device to the dts or they
-> can r bind the spidev driver to the device from userspace.
->
-> The other thing, which doesn't exist yet, is a connector binding. The
-> folks are Beagle are currently working on creating a connector binding
-> for the Mikrobus connector - but that's rather far from complete at the
-> moment.
->
+Add the driver and dt-binding document for Loongson1 APB DMA.
 
-I see. Thanks for the explanation. At least now there is this thread
-any potential users might find.
+---
+Changes in v10:
+- Implement the hwdescs by link list to eliminate the limitation of the desc number.
+- Add the prefix 'LS1X_' for all registers and their bits.
+- Drop the macros: chan_readl() and chan_writel().
+- Use %pad for printing a dma_addr_t type.
+- Some minor fixes.
+- Link to v9: https://lore.kernel.org/r/20240613-loongson1-dma-v9-0-6181f2c7dece@gmail.com
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Changes in v9:
+- Fix all the errors and warnings when building with W=1 and C=1
+- Link to v8: https://lore.kernel.org/r/20240607-loongson1-dma-v8-0-f9992d257250@gmail.com
+
+Changes in v8:
+- Change 'interrupts' property to an items list
+- Link to v7: https://lore.kernel.org/r/20240329-loongson1-dma-v7-0-37db58608de5@gmail.com
+
+Changes in v7:
+- Change the comptible to 'loongson,ls1*-apbdma' (suggested by Huacai Chen)
+- Update the title and description part accordingly
+- Rename the file to loongson,ls1b-apbdma.yaml
+- Add a compatible string for LS1A
+- Delete minItems of 'interrupts'
+- Change patterns of 'interrupt-names' to const
+- Rename the file to loongson1-apb-dma.c to keep the consistency
+- Update Kconfig and Makefile accordingly
+- Link to v6: https://lore.kernel.org/r/20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com
+
+Changes in v6:
+- Change the compatible to the fallback
+- Implement .device_prep_dma_cyclic for Loongson1 sound driver,
+  as well as .device_pause and .device_resume.
+- Set the limitation LS1X_DMA_MAX_DESC and put all descriptors
+  into one page to save memory
+- Move dma_pool_zalloc() into ls1x_dma_alloc_desc()
+- Drop dma_slave_config structure
+- Use .remove_new instead of .remove
+- Use KBUILD_MODNAME for the driver name
+- Improve the debug information
+- Some minor fixes
+
+Changes in v5:
+- Add the dt-binding document
+- Add DT support
+- Use DT information instead of platform data
+- Use chan_id of struct dma_chan instead of own id
+- Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
+- Update the author information to my official name
+
+Changes in v4:
+- Use dma_slave_map to find the proper channel.
+- Explicitly call devm_request_irq() and tasklet_kill().
+- Fix namespace issue.
+- Some minor fixes and cleanups.
+
+Changes in v3:
+- Rename ls1x_dma_filter_fn to ls1x_dma_filter.
+
+Changes in v2:
+- Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
+- and rearrange it in alphabetical order in Kconfig and Makefile.
+- Fix comment style.
+
+---
+Keguang Zhang (2):
+      dt-bindings: dma: Add Loongson-1 APB DMA
+      dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+
+ .../bindings/dma/loongson,ls1b-apbdma.yaml         |  67 ++
+ drivers/dma/Kconfig                                |   9 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/loongson1-apb-dma.c                    | 675 +++++++++++++++++++++
+ 4 files changed, 752 insertions(+)
+---
+base-commit: 668d33c9ff922c4590c58754ab064aaf53c387dd
+change-id: 20231120-loongson1-dma-163afe5708b9
+
+Best regards,
+-- 
+Keguang Zhang <keguang.zhang@gmail.com>
+
+
 
