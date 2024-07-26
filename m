@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37B893D03A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:13:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A9093D03C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:14:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 028511C210AF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 09:13:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42393B20D08
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 09:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AC317798C;
-	Fri, 26 Jul 2024 09:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7407A176FC9;
+	Fri, 26 Jul 2024 09:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCcYy6p9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gfdru+sO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AD9176FA7;
-	Fri, 26 Jul 2024 09:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3B66116
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 09:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721985209; cv=none; b=SPpbeyX3qsUkEhC13uToZWd/JjPIKaWriCRoEb6sKhbKK1f7lKgFE2z7cpMtBXWokKUN1dFgnOKL854joc3LovkMW7Co5TmSTZ166kr6/5b9JGIaMtcuRecPzd24tI4GO/YXrbiKFoXMjI2uPG1FjBhdJ5abiJ/y/yCsC/iO4is=
+	t=1721985288; cv=none; b=EChMlWhuxy/j2kFwycc3GNVa7bFtOxj4GvVelj83faPMKe1No0BphS9pr036uV18gEjWeQLNv/RvvZSExUW9nEIbgsu+RZrNL0TkrPe+Biv73jhZQYmlumAh2jQweAW6O5v2alTnZ9mCTEVAabY/EV501NDS8G50f71iHGVTtLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721985209; c=relaxed/simple;
-	bh=OlkcOzBlGZRYua9zXK7SaugLIaFYISEG//Wb3HKY/kM=;
+	s=arc-20240116; t=1721985288; c=relaxed/simple;
+	bh=aARU1SxX8wYIUQqittLCDNqeT8g4YWC1lJvVZN0zRsk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gixzj1Aqqd/azWlEggoh1ti3Ul5haZjtHRlaElYJh0THGOMmt+ze6CRTGvobDjbc2giVdTuLBZz4vZeDaqpQ56WAA87WY7cWNskRKPu68MYPJ3wAubdtmVNcjowLlNIPoOfbMXDX4fZgeN927TqHEnpgo39/z3vgTq69oSam5M8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCcYy6p9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC050C32782;
-	Fri, 26 Jul 2024 09:13:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=U2JzUirL/WXioIV+KGT7VKHhi/CL0+HNvYPBSCgaFq1kTyAAxNnzeZU8C1AeBODycR7W0Sq7UvrSHVzomKMsf50NiAoEtejFe4kfQhSmAKcIt00WCIwoxX5g/CIl2TzUQnUl4UUKSTcY4Bms4esWT65efyBClmQB4uGLOGGcHAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gfdru+sO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19317C32782;
+	Fri, 26 Jul 2024 09:14:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721985208;
-	bh=OlkcOzBlGZRYua9zXK7SaugLIaFYISEG//Wb3HKY/kM=;
+	s=k20201202; t=1721985288;
+	bh=aARU1SxX8wYIUQqittLCDNqeT8g4YWC1lJvVZN0zRsk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oCcYy6p9HICzu5FKE4qozYtPgcdQ6S4EZ3bMcWh/mhgRgKBlm4qI5HvoRN7OefZG4
-	 qlVUUqly88gadZr/oK6IlmmiLKXakDBWW8Uzsp0jwsjNd/12Lbq+ok3PSkg9OMbCAJ
-	 tOPLEd3ztuSetQ+XtJZBybYjso0W7G4sPAJxPtk2DnBfJgqa6P5PtXG1PEr8Lbpch3
-	 KqcAq9qMR7+B0l9j8+O2l26oZ6APO/krZAjVFmMiNi+HhZty+OKeq0P/zgU7Pcu9qy
-	 ijDXylwz0cB3rVxnTPsmDyOSai1VImbtq8ObzqeGYn/kA3IBKyqgqCVZ6SxGPk5kQW
-	 7I80Jh9TisNOA==
-Message-ID: <c36db187-0779-4424-b3e9-2b96c4076d29@kernel.org>
-Date: Fri, 26 Jul 2024 11:13:21 +0200
+	b=gfdru+sOtn+c0JMYn3+OFsLWXioTw66J4MNu04K0nUbfTyydDepiUfJRHJ0jlNCxD
+	 rCmmWLtVqpSHLALPTg27fyArLEw7HQftpJbi5O/5hIDGHikS2IqIKUqGzJiol7WOT3
+	 S5m/lddkwLqDdJcdYoWG7AZGcE4M1948gFLeMISEP9iG5QUYNb6LvM2hlYN0f5oYPP
+	 YX8bP++JsREGy3+jS1J20G9tHXMmNp5w6iBDB6lRCX4XfZBm0ntWSnx3ogqIB5Fn41
+	 Z2zt7yErvR7MuHFM6w5VewmnfufsLlc3lc3eUlERX8i0Z06lKcVKjIcaJUDrUYIzbL
+	 X0a7L3Xb3dIKQ==
+Message-ID: <80123575-3142-42f0-bcea-f531c2da0cdf@kernel.org>
+Date: Fri, 26 Jul 2024 11:14:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: dmaengine: zynqmp_dma: Add a new
- compatible string
-To: Abin Joseph <abin.joseph@amd.com>, vkoul@kernel.org,
- michal.simek@amd.com, robh@kernel.org, u.kleine-koenig@pengutronix.de,
- krzk+dt@kernel.org, conor+dt@kernel.org, radhey.shyam.pandey@amd.com,
- harini.katakam@amd.com
-Cc: git@amd.com, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240726062639.2609974-1-abin.joseph@amd.com>
- <20240726062639.2609974-2-abin.joseph@amd.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Document TI TPS546D24
+To: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lukas Wunner <lukas@wunner.de>,
+ Noah Wang <noahwang.wang@outlook.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>
+References: <20240725180337.64396-1-marex@denx.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,61 +105,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240726062639.2609974-2-abin.joseph@amd.com>
+In-Reply-To: <20240725180337.64396-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/07/2024 08:26, Abin Joseph wrote:
-> Add compatible string "amd,versal2-dma-1.0" to support AMD Versal Gen 2
-> platform.
+On 25/07/2024 20:03, Marek Vasut wrote:
+> Document TI TPS546D24 TPS546D24A 2.95-V to 16-V, 40-A, Up to 4x Stackable,
+> PMBus Buck Converter as trivial device. Linux kernel does have an existing
+> driver using the compatible documented here.
 > 
-> AMD Versal Gen 2 has 8 LPD DMA IPs in PS that can be used as general
-> purpose DMAs which is designed to support memory to memory and memory to
-> IO buffer transfer. Versal Gen 2 DMA IP has different interrupt register
-> offset. Add example binding documentation for the newly added compatible
-> string.
-> 
-> Signed-off-by: Abin Joseph <abin.joseph@amd.com>
-> ---
->  .../dma/xilinx/xlnx,zynqmp-dma-1.0.yaml         | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> index 769ce23aaac2..17f16ae7e42b 100644
-> --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
-> @@ -24,7 +24,9 @@ properties:
->      const: 1
->  
->    compatible:
-> -    const: xlnx,zynqmp-dma-1.0
-> +    enum:
-> +      - xlnx,zynqmp-dma-1.0
-> +      - amd,versal2-dma-1.0
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Keep the list ordered.
-
->  
->    reg:
->      description: memory map for gdma/adma module access
-> @@ -74,6 +76,7 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
->      fpd_dma_chan1: dma-controller@fd500000 {
->        compatible = "xlnx,zynqmp-dma-1.0";
-> @@ -86,3 +89,15 @@ examples:
->        xlnx,bus-width = <128>;
->        dma-coherent;
->      };
-> +
-> +    fpd_dma_chan2: dma-controller@ebd00000 {
-
-That's the same example. Xilinx already received such comments, so
-finally please learn them. Drop the example.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
