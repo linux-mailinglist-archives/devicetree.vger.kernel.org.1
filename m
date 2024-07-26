@@ -1,154 +1,124 @@
-Return-Path: <devicetree+bounces-88327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82BF593D2F9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:29:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 013CE93D2FE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:31:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3DD41C225ED
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 12:29:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D8C01C21DCF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 12:31:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93ADD17B42D;
-	Fri, 26 Jul 2024 12:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7664417B4F6;
+	Fri, 26 Jul 2024 12:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="b8jpo+An"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="HvezL4Jb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B154E57E
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 12:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4358317B409
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 12:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721996986; cv=none; b=rR2/Hzh9HRMjK9IYh6nqUedxj+O7wl5o0goO2HmSAUFEFqsvq/cBsQ3l7LSMvUUetPLLav5qy31R2huO+XfvZFfc0GSCkrRaJn0CGjO0Wa18CF0Ov2qTFxxnw2YwBu6dq4d3Gcr2O2IbUBVJiySy1+/FUp8pI/LnqbxFSPjbYJI=
+	t=1721997079; cv=none; b=KdKfY52Y4i1tBYju0T8ngZAKrnnF/41CUzDiOcvp1l7iQ26OxgMRysTtYJZ1icJEEoUBO0eJDLyaJYs8qVe6AAbf4rFDga2RofkRBHgKiphL/JzCjiABr+KFzUuYquhPmnK245S+3WTm+vvx5x2t2BGu0CzstDpPQ8WLm7awDOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721996986; c=relaxed/simple;
-	bh=v4qjjUpu5k/Fegvrs8GbMmn+a0qL30i9outYfIDOKNg=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ph91fe6dfkGH1H52gbTyBEKAk5R10YPJCB/LxMZ9Jj3LXd5LtA+NCC7S20Ya0hVbh6I4pwi+ZA1vjgJ4QhBGu7xWrGxV96Xwnkl7vKQNaMccUh0/QtwBBD35NPqXJl4tiell5E+dh546KedP6iui4WgCaIVYuE+yFCH6Xh37W7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=b8jpo+An; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8B6CA3F59C
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 12:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1721996981;
-	bh=9LmZmw6NCs8eTK1rP6m6Jdcuf3clCtsx7hFAo9ghIiY=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=b8jpo+AntFyVkPdK3i0bWPGc6Cc99tnRets83/As9EQO2hY07wNiJCiXhcu+4Lp9f
-	 M0vZaVeUJnLfIdsjSnUb0coKcgjZBIbeEMebFaDUFjtoiVULzt82dpdYJrsRlTI7HI
-	 pY/5k5h5bc6Y3YV59dTwsD5h1vnf+FXjVSfobTNctkJGBYXD7lY1cFo6vzoMjVWav7
-	 FrAnCDHuaAkfL+Ctr1feQRr+7xmsZH3nqej1m+N3kDxhMKB+csfG9fPNkjwwOWFJ4z
-	 6af2FhXZrOHDcbQM6RDYznZk52xGKZammWc07gZ1tOON1EUrqqubTM472Hpv9tXnKc
-	 ym+M13WK+BRLw==
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7a1d690cef9so113372585a.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 05:29:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721996980; x=1722601780;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9LmZmw6NCs8eTK1rP6m6Jdcuf3clCtsx7hFAo9ghIiY=;
-        b=g//TwUcN7cWHqHzrPwk2JigYSbhZvDWuNLjQ1O8uY6ssG4vj190VwdOdxQZqMnu4yD
-         Aej/jMbW7iS1tDRAATqXujMI4Zzv0I/dhKfv/t/HH1dVx/jLZx/5j5/HXbdOkA8AI/pU
-         EBkUDmNfhB2VsWSq+8JfRzPhVvch0seRsWk0xR6Kg2vuQZQmk8gx5Z0vBo8f6fi6//Ss
-         Ce5bresQw1+WoFNeZvxJQCf3rtevie6C19WUshzcUajsAbbG3eBZw2tVM1SweLH/Mzf7
-         AfBto+KSU8mBIILlK9Ag8hkQYr4PhTUyqf4VYEeRVldJ1/1Q/6jz9eLSklzSlFNk+0sF
-         +i2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV/4V1zNcx9ggDekJzXcGH3N3eV4BdUfd0aU3K4l0NrrWaay6jchNIHZR3I4OGpdAq16L9ry79YlSpg6H8B6KczYucH6nePIsSEmg==
-X-Gm-Message-State: AOJu0YyMWI0DR+CJEx9DqfgdfeqbwpaFn9PsTXKALSraRR4iPSl6ddoY
-	SYQlc7Sx+KGLbsEHcoU++2XlskGXKJlODUmjtCJ+IJErzyepXXIX5Z/o3PJh8KMcZxLGF3Uo6KC
-	JMKRY/zt7997Wi7wRFMMaNd2iFm9DN6QwroArplkYkUEyBaGE/NXW5TDKTut3QYrn0sGz66i3jY
-	vixmhWaXabGHdafumtaatzxmwDqy+EpG4U4f2Oon8A1ybCWVE0aA==
-X-Received: by 2002:a05:620a:4484:b0:7a1:df6f:3632 with SMTP id af79cd13be357-7a1df6f4c34mr312157685a.32.1721996980422;
-        Fri, 26 Jul 2024 05:29:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGV1mtLr9ByO8GYPcPzKfiGrDWu4OQDQV5IWb3V25ZQO93w1m0w8xqeuro6Hm7vzdR2YevzoHOr3qHn42Z+DA0=
-X-Received: by 2002:a05:620a:4484:b0:7a1:df6f:3632 with SMTP id
- af79cd13be357-7a1df6f4c34mr312153485a.32.1721996980036; Fri, 26 Jul 2024
- 05:29:40 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 26 Jul 2024 08:29:39 -0400
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240716-majesty-antler-d9bedc7fd0af@wendy>
-References: <20240716-majesty-antler-d9bedc7fd0af@wendy>
+	s=arc-20240116; t=1721997079; c=relaxed/simple;
+	bh=MlJwlbjUlcCc+ZZTtdm6Pi/qZeMa/wtqkGavYiLkVXA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=qPkgh59DT2x4xKT6hzzR7IvG8jEtGEWyZH4qvRKvKKTHG78Mz3PDktzJ1KkXY38ymNs6XsGKRcNfiKs1mxJ+ymIGyRj0T03a5aPBvRJWKwG4a/IzLCkx4zjBm8OCtPS5JRarEADBh++EkQkc5lYaTqGFvBPdVo9QoA1f3E9Oe/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=HvezL4Jb; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1721997064; x=1724589064;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MlJwlbjUlcCc+ZZTtdm6Pi/qZeMa/wtqkGavYiLkVXA=;
+	b=HvezL4JbN5+QhxNyQoo487S9B50vvZ3KGzpyLr0S0009mQL67/QUGedFy8tfxI0Y
+	f/ZcFRoxdCwm5gStCdJRhKaUD43H8nKecX/4Y2+AgKnWE2emCBmZOChPCAOi0oNd
+	tPux8v7EWWw1m9nbQCxVNRCzHOG7XXt8Vz/HD9mA/QI=;
+X-AuditID: ac14000a-03251700000021bc-77-66a3970808c3
+Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A2.F1.08636.80793A66; Fri, 26 Jul 2024 14:31:04 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Jul
+ 2024 14:31:04 +0200
+Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
+ Fri, 26 Jul 2024 14:31:03 +0200
+From: Benjamin Hahn <B.Hahn@phytec.de>
+To: Andrej Picej <andrej.picej@norik.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, PHYTEC Upstream
+	<upstream@lists.phytec.de>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>
+Subject: Re: [Upstream] [PATCH] arm64: dts: imx8mp-phyboard-pollux: Disable
+ write-protect on SD card
+Thread-Topic: [Upstream] [PATCH] arm64: dts: imx8mp-phyboard-pollux: Disable
+ write-protect on SD card
+Thread-Index: AQHa31euUtK0aNEroEae9APeWMkSoA==
+Date: Fri, 26 Jul 2024 12:31:03 +0000
+Message-ID: <0b2eecd0-cd5f-48d9-9377-164b5ad5b78d@phytec.de>
+References: <20240716085114.3205582-1-andrej.picej@norik.com>
+In-Reply-To: <20240716085114.3205582-1-andrej.picej@norik.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BE72787A14AC7346A57308D98746FC04@phytec.de>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 26 Jul 2024 08:29:39 -0400
-Message-ID: <CAJM55Z9FAH-uiNmXDELM0gkYjHue+g8JQgOryxOCv4OXJ9f5EA@mail.gmail.com>
-Subject: Re: [PATCH v1] riscv: dts: starfive: remove non-existant spi device
- from jh7110-common.dtsi
-To: Conor Dooley <conor.dooley@microchip.com>, linux-riscv@lists.infradead.org
-Cc: conor@kernel.org, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLIsWRmVeSWpSXmKPExsWyRpKBV5dj+uI0g7cXRSym7mW0WLP3HJPF
+	/CPnWC0eXvW3mHmvlc1i1dSdLBYvZ91js9j0+BqrxeVdc9gs/u/ZwW7xd/smFosXW8Qtut+p
+	O/B67Jx1l91j06pONo/NS+o9XmyeyejR393C6vH96wZWj/6/Bh6fN8kFcERx2aSk5mSWpRbp
+	2yVwZZxrDC6YwVPxa9ZdlgbGD9xdjJwcEgImEp+v72fuYuTiEBJYwiSx68BfdgjnPqPE3JbZ
+	LBDOBkaJi9cfsoK0sAmoSex685oVJCEi8IZJ4uT9n2D9zAJrmCQ6p90GqxIWSJO41NvD1MXI
+	AVSVLrH1fSFIWERAT+Jl60YWEJtFQFWi59xnNhCbV8BGovnPMmYQW0jAVmJB3y8mEJtTwE5i
+	S9sRsJGMArISGzacB6thFhCX2PTsOyvEDwISS/ZAxCUERCVePv4HFZeXOHFrGtgJzAKaEut3
+	6UO0WkisWnqdCcJWlJjS/ZAd4gRBiZMzn7BMYBSfhWTDLITuWUi6ZyHpnoWkewEj6ypGodzM
+	5OzUosxsvYKMypLUZL2U1E2MoCQgwsC1g7FvjschRiYOxkOMEhzMSiK8y+4vTBPiTUmsrEot
+	yo8vKs1JLT7EKM3BoiTOu7ojOFVIID2xJDU7NbUgtQgmy8TBKdXAuPnB/f1t+mslHs9x+ewq
+	MfPf52qDfyU7pE7dnllpqZR6fdprVofeF1dcnC9l5x1/0fFKxmFW5R/JCqP2TNmFGddfiaa7
+	Xjg2IUXqzSkZ9mqNkGkXnl6U2n/eZuIcr9TA4EdzzANmON+VVdjNPFWxSiFj3b6lUbPzNUJW
+	vn2iFu0szlu9eLWwqBJLcUaioRZzUXEiAD277ETwAgAA
 
-Conor Dooley wrote:
-> There is no rohm,dh2228fv on any of supported JH7110 boards - in fact
-> the dh2228fv almost certainly does not exist as it is not a valid Rohm
-> part number. Likely a typo by Maxime when adding the device originally,
-> and should have been bh2228fv, but these boards do not have a bh2228fv
-> either! Remove it from jh7110-common.dtsi - pretending to have a device
-> so that the spidev driver will be bound by Linux is not acceptable.
-
-Hi Conor,
-
-This patch is correct, but as you mention the fake device was most likely added
-in order to use spidev from userspace with random devices added on the exposed
-pins. In case someone actually makes use of this wouldn't this be a regression?
-What is the right way to support this?
-
-/Emil
-
->
-> Fixes: 74fb20c8f05d ("riscv: dts: starfive: Add spi node and pins configuration")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> CC: Emil Renner Berthing <kernel@esmil.dk>
-> CC: Conor Dooley <conor@kernel.org>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: Albert Ou <aou@eecs.berkeley.edu>
-> CC: William Qiu <william.qiu@starfivetech.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ------
->  1 file changed, 6 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> index 8ff6ea64f048..395436ec0f97 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -346,12 +346,6 @@ &spi0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&spi0_pins>;
->  	status = "okay";
-> -
-> -	spi_dev0: spi@0 {
-> -		compatible = "rohm,dh2228fv";
-> -		reg = <0>;
-> -		spi-max-frequency = <10000000>;
-> -	};
->  };
->
->  &sysgpio {
-> --
-> 2.43.2
->
+T24gMTYuMDcuMjQgMTA6NTEsIEFuZHJlaiBQaWNlaiB3cm90ZToNCj4gTWljcm8gU0QgY2FyZHMg
+Y2FuJ3QgYmUgcGh5c2ljYWxseSB3cml0ZS1wcm90ZWN0ZWQgbGlrZSBmdWxsLXNpemVkDQo+IGNh
+cmRzLiBEaXNhYmxlIHRoaXMgZmVhdHVyZSBpbiBkZXZpY2UtdHJlZSB0byBnZXQgcmlkIG9mIHRo
+ZSBrZXJuZWwNCj4gd2FybmluZzoNCj4NCj4gImhvc3QgZG9lcyBub3Qgc3VwcG9ydCByZWFkaW5n
+IHJlYWQtb25seSBzd2l0Y2gsIGFzc3VtaW5nIHdyaXRlLWVuYWJsZSINCj4NCj4gU2lnbmVkLW9m
+Zi1ieTogQW5kcmVqIFBpY2VqIDxhbmRyZWoucGljZWpAbm9yaWsuY29tPg0KUmV2aWV3ZWQtYnk6
+IEJlbmphbWluIEhhaG4gPEIuSGFobkBwaHl0ZWMuZGU+DQo+IC0tLQ0KPiAgIGFyY2gvYXJtNjQv
+Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1waHlib2FyZC1wb2xsdXgtcmRrLmR0cyB8IDEgKw0K
+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPg0KPiBkaWZmIC0tZ2l0IGEvYXJj
+aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRz
+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1y
+ZGsuZHRzDQo+IGluZGV4IDAwYTI0MDQ4NGMyNS4uNzkxOTA5ZGNhNmUxIDEwMDY0NA0KPiAtLS0g
+YS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJk
+ay5kdHMNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJv
+YXJkLXBvbGx1eC1yZGsuZHRzDQo+IEBAIC0yNjcsNiArMjY3LDcgQEAgJnVzZGhjMiB7DQo+ICAg
+CXBpbmN0cmwtMSA9IDwmcGluY3RybF91c2RoYzJfMTAwbWh6PiwgPCZwaW5jdHJsX3VzZGhjMl9w
+aW5zPjsNCj4gICAJcGluY3RybC0yID0gPCZwaW5jdHJsX3VzZGhjMl8yMDBtaHo+LCA8JnBpbmN0
+cmxfdXNkaGMyX3BpbnM+Ow0KPiAgIAljZC1ncGlvcyA9IDwmZ3BpbzIgMTIgR1BJT19BQ1RJVkVf
+TE9XPjsNCj4gKwlkaXNhYmxlLXdwOw0KPiAgIAl2bW1jLXN1cHBseSA9IDwmcmVnX3VzZGhjMl92
+bW1jPjsNCj4gICAJYnVzLXdpZHRoID0gPDQ+Ow0KPiAgIAlzdGF0dXMgPSAib2theSI7DQoNCg0K
 
