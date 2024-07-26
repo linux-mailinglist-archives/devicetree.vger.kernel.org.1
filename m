@@ -1,240 +1,181 @@
-Return-Path: <devicetree+bounces-88368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7B293D523
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:31:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F92493D562
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:54:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2838E284F74
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D1D21F23392
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF67D13AF2;
-	Fri, 26 Jul 2024 14:31:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bttud4a8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A6E1CD23;
+	Fri, 26 Jul 2024 14:53:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BB37494;
-	Fri, 26 Jul 2024 14:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B308F1CD06;
+	Fri, 26 Jul 2024 14:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722004273; cv=none; b=E0WD9LuK/Vd0QP3ADkjzkCd7xHpIU9wxhJDr6k+aZSlqPMom+jhw8Tud4hey8kbBvX1igoKRaQjcV9lvryQ+zBEl4but8b95hBbID5xpYSycjWJeCc5vF5tCdvUvABWVGUgSuZc9zT4e+EzRU2CONR6Q3oa/7xOMkO1J14davps=
+	t=1722005636; cv=none; b=RFHKJWZjrhRvua+C2lxrYOAlhUiYzKqqLcjgOO7Dsb9X3q8ZfSoFox5H1VF9PSWj4WJu8aGrhYo2zVqokYbzq/bCo56HW+yz8yia2iq58x9Y2DQdJDF7cX/07HHDEro+8ZF2sOdf0NuZ1r1/h7FtjNRcX3OYdp6CQDMZRDdziJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722004273; c=relaxed/simple;
-	bh=Ih3QV1RSuxQmyD2qLwWr/3CC/yQ3mKU62ndQTvrkeTs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=g05BOlvMRyzhjJQgxsjKpPO3TK2+WoAKUywdeeOgPKwHG0zIdRYZHTMx0iLMZ1ORR2eR2wJ9AwDBzJ9JdFK4AFXQC3H7UVlm14rFTp/hagPosG+LAgVPcQcdnoUDICNqtLLgbbjM/Bpv1rb0B7r8JZuLjMmnQngPYmPECKhAZsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bttud4a8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46QCP1ht025140;
-	Fri, 26 Jul 2024 14:31:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZVcAaHss/BAFPqn0NyhXmxr9ea9uAXgczEoc/ZcMMnE=; b=Bttud4a8+USeY06E
-	LYEbzq4k/LqVghOJJdN9wRyxeN5fXyHgojUP8G6AiV6LMc991lXV6MddENy2eRGx
-	IWP0HrWXJwcSevRl+2xpGIcTxmy2qHIEJGPzJymNw2FaGXQnfGUX1QwRN+x+FXPP
-	ekTaT20AGzbvcphG0tvl4PvmvWDwIBP9UVL7OH7ld60HshDzWTGsDCgC7oCKtR0r
-	sUI2b0pzwTqW9dF8CKeO4eApx+p//748YTey1zugZ4mq7cnDQ8nJLZGn00+besem
-	ZHaTV48zg+ELnpRQx8EhF1o+Sts3TJQpwvze+eYIvXTVHWSn1jfZU6ix/OP/bNEe
-	E44pvw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40m1tw9nqa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 14:31:04 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46QEV32A003750
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jul 2024 14:31:03 GMT
-Received: from [10.216.52.68] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 26 Jul
- 2024 07:30:55 -0700
-Message-ID: <14f57121-46f1-4dbe-92fd-e840705b771b@quicinc.com>
-Date: Fri, 26 Jul 2024 20:00:42 +0530
+	s=arc-20240116; t=1722005636; c=relaxed/simple;
+	bh=iVW0ikqyEw/0nWTSPgYR305RZJhGR3f7/c805F0A8zk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=At5AX3orcQdQbpaYgerTsEjhLzxALJdHWrV56t0nSKyfQeMNkEPhzVeW9KOYZ1RXArQQy8+t/TJTqxkJt4hY0li3LQw/MmTISuGBA8JOpaZHPU0g8Sr9IlCh4ZB0Xq1rhgb6efKpb/t95SdioJoc0mee7/vN6b+WfnJDWc1VXH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e0365588ab8so2055263276.1;
+        Fri, 26 Jul 2024 07:53:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722005633; x=1722610433;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eYs31zBx6WMIkiJqqli8+VW+h8fHN0+SfH4ha976j9s=;
+        b=EuNVkwY3irAxxENDBGiAkZfBGn2ePvC1ZWKKjj24yukHlZm3I/NOZQpHhaQs8D/mpW
+         Kj9jILO0104KolLWUAR/BeWdjVSkHwSzKWzeY/iSkLCSnzBma94UdMq9WDADrG957Cex
+         unhOpskTEzzbi94npNocG2jmPP/rsMSux8XzYi2bRjD8+iT6B1F5DRk5MqTOHfp8shEE
+         iqL0pIsSrXOV+MDGz5nX1WWBmk2Duk14mvCGRuXVgUMendIugqyB0j8joufPRrICSSGf
+         i+lnbIDDBGYSLbtUME+pa76OqGPjheqHRYbZ/0nGPpIFGzHOD2tAp9mgacEBol2ah07H
+         tOMw==
+X-Forwarded-Encrypted: i=1; AJvYcCVp03W55W1D6CiJVSPzyJKWGsjBdYryZ7955RKBlNgIdBjc/QfKX7GS2OESWwqTOQawzSwTWzOnljKtaJlIORxRhqgSTxlNcRyLC/FBuiO8G57MjeRQ0u8P8tzAePrfwp5UyI51DcjpQE+RCoQG4CUNftCoFg5WqRmQ62+KLbb+HMioylTZDP4EMtXOEUAR/Mb1xEkk7KGdCBVNFgg9ul53ro7nRVDv
+X-Gm-Message-State: AOJu0YwRMMLn8hNkYewiPpccCcUHGAckDDGxm9JsQO1BEKklmThkf+Qi
+	YqrfQtHo7lKqiDvM5c1UY2mcChxWQ8EtShPSTAtmhNfymYIxHeBQy/bj3TCcQVE=
+X-Google-Smtp-Source: AGHT+IEWXKljourCVY2rb1xAdBAkOWyG8k36SwZB/0ONR7yarWYIUnUAw3Xjnxyb6JhFs6A1k8LtdA==
+X-Received: by 2002:a05:6902:1141:b0:e0b:1519:e0da with SMTP id 3f1490d57ef6-e0b5464eb97mr4075276.52.1722005632929;
+        Fri, 26 Jul 2024 07:53:52 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e0b2a972282sm760993276.63.2024.07.26.07.53.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jul 2024 07:53:52 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-663dd13c0bbso22125907b3.1;
+        Fri, 26 Jul 2024 07:53:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXGDg/n0Y04zgHw4ygyRXwdRIk6LTE/u+pT48JqMQNpjr9wPFe1iPvkEjLp3yRNVI/51WR9xb2QCE30c//UgzVMTjKHIPmeC59NXQS3tQIFQpoDOcGCi/XEREYKJxU+wtQVdzsoZP1aubX8tLcJlJAOhJdnNGcNVDxPeqDr90zoSvClSalgr+IoR7IhzLBDDSVELzY5VK4IifuwTNsbK8xpoE/nWVTT
+X-Received: by 2002:a05:690c:6a89:b0:630:f6b0:6c3d with SMTP id
+ 00721157ae682-67a070cdb93mr469397b3.23.1722005632311; Fri, 26 Jul 2024
+ 07:53:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2] dt-bindings: clock: qcom: Remove required-opps from
- required list on SM8650
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Vladimir
- Zapolskiy" <vladimir.zapolskiy@linaro.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Ajit
- Pandey" <quic_ajipan@quicinc.com>,
-        kernel test robot <lkp@intel.com>
-References: <20240720052818.26441-1-quic_jkona@quicinc.com>
- <497c9438-5bb3-42d9-9df9-661235a556d2@kernel.org>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <497c9438-5bb3-42d9-9df9-661235a556d2@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _r1Rn9Mc33Qm3QhhHOrpSPN3P_NEJN-R
-X-Proofpoint-GUID: _r1Rn9Mc33Qm3QhhHOrpSPN3P_NEJN-R
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-26_12,2024-07-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 impostorscore=0 phishscore=0 spamscore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 bulkscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2407260099
+References: <20240715125438.553688-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240715125438.553688-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240715125438.553688-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Jul 2024 16:53:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUvfAqJR6=4MG3hXC6cn1AnKz7+RAp4GG1jvdwOctgNzQ@mail.gmail.com>
+Message-ID: <CAMuHMdUvfAqJR6=4MG3hXC6cn1AnKz7+RAp4GG1jvdwOctgNzQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] clk: renesas: Add family-specific clock driver for RZ/V2H(P)
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Prabhakar,
 
+On Mon, Jul 15, 2024 at 2:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add family-specific clock driver for RZ/V2H(P) SoCs.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v3->v4
+> - Dropped masking of parent clks with 0xffff
+> - Dropped storing mod clk id and now calculating it
+>   based on index and bit.
+> - Made parent to u16 in struct rzv2h_mod_clk
+> - Made a copy of resets array in struct rzv2h_cpg_priv
 
-On 7/24/2024 1:38 PM, Krzysztof Kozlowski wrote:
-> On 20/07/2024 07:28, Jagadeesh Kona wrote:
->> On SM8650, the minimum voltage corner supported on MMCX from cmd-db is
->> sufficient for clock controllers to operate and there is no need to specify
->> the required-opps. Hence remove the required-opps property from the list of
->> required properties for SM8650 camcc and videocc bindings.
->>
->> This fixes:
->> arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@aaf0000:
->> 'required-opps' is a required property
->>
->> arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@ade0000:
->> 'required-opps' is a required property
->>
->> Fixes: a6a61b9701d1 ("dt-bindings: clock: qcom: Add SM8650 video clock controller")
->> Fixes: 1ae3f0578e0e ("dt-bindings: clock: qcom: Add SM8650 camera clock controller")
->> Reported-by: kernel test robot <lkp@intel.com>
->> Closes: https://lore.kernel.org/oe-kbuild-all/202407070147.C9c3oTqS-lkp@intel.com/
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->> ---
->> Changes in V2:
->>   - Made required: conditional and dropped required-opps from it only for SM8650 platform
->>   - Dropped Krzysztof Acked-by tag due to above changes
->>   - Link to V1: https://lore.kernel.org/all/20240708130836.19273-1-quic_jkona@quicinc.com/#r
->>
->> .../bindings/clock/qcom,sm8450-camcc.yaml     | 26 +++++++++++++------
->>   .../bindings/clock/qcom,sm8450-videocc.yaml   | 25 +++++++++++++-----
->>   2 files changed, 36 insertions(+), 15 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> index f58edfc10f4c..8698c801ed11 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> @@ -21,9 +21,6 @@ description: |
->>       include/dt-bindings/clock/qcom,sm8650-camcc.h
->>       include/dt-bindings/clock/qcom,x1e80100-camcc.h
->>   
->> -allOf:
->> -  - $ref: qcom,gcc.yaml#
->> -
->>   properties:
->>     compatible:
->>       enum:
->> @@ -53,11 +50,24 @@ properties:
->>     reg:
->>       maxItems: 1
->>   
->> -required:
-> 
-> You cannot remove required block.
-> 
->> -  - compatible
->> -  - clocks
->> -  - power-domains
->> -  - required-opps
->> +allOf:
->> +  - $ref: qcom,gcc.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,sm8650-camcc
->> +    then:
->> +      required:
->> +        - compatible
->> +        - clocks
->> +        - power-domains
->> +    else:
->> +      required:
->> +        - compatible
->> +        - clocks
->> +        - power-domains
->> +        - required-opps
->>   
->>   unevaluatedProperties: false
->>   
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->> index b2792b4bb554..2e5a061f33d6 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->> @@ -40,15 +40,26 @@ properties:
->>       description:
->>         A phandle to an OPP node describing required MMCX performance point.
->>   
->> -required:
-> 
-> No, you cannot remove required block.
-> 
-> To clarify: there is almost no single binding using your style. Even if
-> there is one, then 99 others are using it differently. Do not implement
-> things entirely different than everyone else. This is the same for C
-> code you send upstream. No difference here...
-> 
+Thanks for the update!
 
-Thanks Krzysztof for the explanation.
+> --- /dev/null
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
 
-Hi Dmitry,
+> +/**
+> + * struct rzv2h_cpg_priv - Clock Pulse Generator Private Data
+> + *
+> + * @info: Pointer to platform data
 
-As we discussed during SM8650 camcc and videocc changes, the MMCX rail's 
-minimum voltage level from cmd-db is adequate for these clock 
-controllers to operate on SM8650. So, we removed the 'required-opps' 
-property from their DT nodes.
+There is no longer an info member.
 
-Although 'required-opps' will remain in the properties list, it’s not 
-mandatory to be present in 'required:' list, as it is dependent on 
-cmd-db minimum level. So, can I please go ahead and update these 
-bindings to remove 'required-opps' from the 'required:' list, as done in 
-v1 of this series.
+Hint: W=3D1 would have told you.
 
-It seems unconventional to make 'required:' conditional based on the 
-platform type.
+> + * @dev: CPG device
+> + * @base: CPG register block base address
+> + * @clks: Array containing all Core and Module Clocks
+> + * @num_core_clks: Number of Core Clocks in clks[]
+> + * @num_mod_clks: Number of Module Clocks in clks[]
+> + * @resets: Array of resets
+> + * @num_resets: Number of Module Resets in info->resets[]
+> + * @last_dt_core_clk: ID of the last Core Clock exported to DT
+> + * @rcdev: Reset controller entity
+> + */
+> +struct rzv2h_cpg_priv {
+> +       struct device *dev;
+> +       void __iomem *base;
+> +
+> +       struct clk **clks;
+> +       unsigned int num_core_clks;
+> +       unsigned int num_mod_clks;
+> +       struct rzv2h_reset *resets;
+> +       unsigned int num_resets;
+> +       unsigned int last_dt_core_clk;
+> +
+> +       struct reset_controller_dev rcdev;
+> +};
 
-v1 link:- 
-https://lore.kernel.org/all/rbej7rbjiwtgf4reiomtmlv3ef3ljfys5yfzypigrertylucu7@be3v65aeuimb/
+> index 000000000000..33631c101541
+> --- /dev/null
+> +++ b/drivers/clk/renesas/rzv2h-cpg.h
 
-Thanks,
-Jagadeesh
+> +#define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit)      \
+> +       [_id] =3D { \
 
-> Best regards,
-> Krzysztof
-> 
+Indexing by _id means the reset array will be very sparse.  E.g. the
+innocent-looking r9a09g057_resets[] with only a single entry takes
+600 bytes:
+
+    $ nm -S drivers/clk/renesas/r9a09g057-cpg.o | grep r9a09g057_resets
+    0000000000000038 0000000000000258 r r9a09g057_resets
+
+So please pack the array here, and either unpack it while making the
+priv->resets copy, or implement translation ("look-up") from ID to
+packed index in rzv2h_cpg_reset_xlate().
+
+> +               .reset_index =3D (_resindex), \
+> +               .reset_bit =3D (_resbit), \
+> +               .mon_index =3D (_monindex), \
+> +               .mon_bit =3D (_monbit), \
+> +       }
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
