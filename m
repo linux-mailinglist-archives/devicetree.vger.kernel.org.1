@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6A9093D03C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:14:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B96F93D042
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 11:15:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42393B20D08
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 09:14:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 010991F212B2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 09:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7407A176FC9;
-	Fri, 26 Jul 2024 09:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E2652F9E;
+	Fri, 26 Jul 2024 09:15:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gfdru+sO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZVt14Hw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3B66116
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 09:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDB5224FA;
+	Fri, 26 Jul 2024 09:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721985288; cv=none; b=EChMlWhuxy/j2kFwycc3GNVa7bFtOxj4GvVelj83faPMKe1No0BphS9pr036uV18gEjWeQLNv/RvvZSExUW9nEIbgsu+RZrNL0TkrPe+Biv73jhZQYmlumAh2jQweAW6O5v2alTnZ9mCTEVAabY/EV501NDS8G50f71iHGVTtLQ=
+	t=1721985347; cv=none; b=LtjP8hshjGzoyOXtzR2l1IXi02B55Zxh2kOielcmWVawhci3M0oVKsBk9AoWr5ZK60i9os2hGqd1L5/18xZBqMGcaStJE7WxKLIOCYJhy5MeV8PSFOjZTv0KPRf5gHPM6kVb1nIrlcuJ7Sd9iPLhONTbK+MOOJ4EkRVuxpU9Pjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721985288; c=relaxed/simple;
-	bh=aARU1SxX8wYIUQqittLCDNqeT8g4YWC1lJvVZN0zRsk=;
+	s=arc-20240116; t=1721985347; c=relaxed/simple;
+	bh=eROaA8VCoj4V4A5O1+puLMgF6c0jjEMFtpdQUaD1ub4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U2JzUirL/WXioIV+KGT7VKHhi/CL0+HNvYPBSCgaFq1kTyAAxNnzeZU8C1AeBODycR7W0Sq7UvrSHVzomKMsf50NiAoEtejFe4kfQhSmAKcIt00WCIwoxX5g/CIl2TzUQnUl4UUKSTcY4Bms4esWT65efyBClmQB4uGLOGGcHAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gfdru+sO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19317C32782;
-	Fri, 26 Jul 2024 09:14:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=R74rQvim3jOh69d/zzIPowMnphTLmkrW3IPAnjwTjro+wLAxlmhkexgN7dlYzDfHUme0bz20mJ1RVzX+CL3oevjEU95g5Bjf6DRSkTSM+obOqgKOKFqZcK5dMJalgrYcQYmpL5dU3gUN2iq6IKYZlx33uxqwKzw2MFzZDpEVzGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZVt14Hw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 013B3C32782;
+	Fri, 26 Jul 2024 09:15:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1721985288;
-	bh=aARU1SxX8wYIUQqittLCDNqeT8g4YWC1lJvVZN0zRsk=;
+	s=k20201202; t=1721985346;
+	bh=eROaA8VCoj4V4A5O1+puLMgF6c0jjEMFtpdQUaD1ub4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gfdru+sOtn+c0JMYn3+OFsLWXioTw66J4MNu04K0nUbfTyydDepiUfJRHJ0jlNCxD
-	 rCmmWLtVqpSHLALPTg27fyArLEw7HQftpJbi5O/5hIDGHikS2IqIKUqGzJiol7WOT3
-	 S5m/lddkwLqDdJcdYoWG7AZGcE4M1948gFLeMISEP9iG5QUYNb6LvM2hlYN0f5oYPP
-	 YX8bP++JsREGy3+jS1J20G9tHXMmNp5w6iBDB6lRCX4XfZBm0ntWSnx3ogqIB5Fn41
-	 Z2zt7yErvR7MuHFM6w5VewmnfufsLlc3lc3eUlERX8i0Z06lKcVKjIcaJUDrUYIzbL
-	 X0a7L3Xb3dIKQ==
-Message-ID: <80123575-3142-42f0-bcea-f531c2da0cdf@kernel.org>
-Date: Fri, 26 Jul 2024 11:14:41 +0200
+	b=aZVt14HwX1bWKnY169cpWQg10gWJ4xUjLEFieldutljCs+J/lRkAp37YAeKrAPfga
+	 X6ImHMVtZ6T5O6zQ24adYJ7DrOku/3NagMHJ/KS0SnROhBG9prHQdRAzSA1R9UafVy
+	 v1e9Fnn03/Q26yagfqQ6UyzdSNl49dI52VaZ4Pfbi4mLASuSxrjccnVKGg4DEZq5zT
+	 CApN8n8ccgNppSWDPtmBhSCH3YqaxxdXuXnpcF5R2Kr5xv5KWSU6EpHy3hLo6gocPt
+	 rsAG7CtCze6KBnF8h6kPLoAkpcBgvJXOHTAj1kP4poFk9dbxozlJIDOdzVaDYnnzZ3
+	 3gBF8dN5Xr5xg==
+Message-ID: <5050db7d-ee46-4391-9a01-951ba66d2516@kernel.org>
+Date: Fri, 26 Jul 2024 11:15:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: Document TI TPS546D24
-To: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lukas Wunner <lukas@wunner.de>,
- Noah Wang <noahwang.wang@outlook.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>
-References: <20240725180337.64396-1-marex@denx.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: timer: ti,davinci-timer: convert to
+ dtschema
+To: Kousik Sanagavarapu <five231003@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240725153711.16101-1-five231003@gmail.com>
+ <20240725153711.16101-2-five231003@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,18 +107,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240725180337.64396-1-marex@denx.de>
+In-Reply-To: <20240725153711.16101-2-five231003@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/07/2024 20:03, Marek Vasut wrote:
-> Document TI TPS546D24 TPS546D24A 2.95-V to 16-V, 40-A, Up to 4x Stackable,
-> PMBus Buck Converter as trivial device. Linux kernel does have an existing
-> driver using the compatible documented here.
+On 25/07/2024 17:03, Kousik Sanagavarapu wrote:
+> Convert txt binding of TI's DaVinci timer to dtschema to allow for
+> validation.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> While at it, change the file name to match the compatible.
+> 
+> Signed-off-by: Kousik Sanagavarapu <five231003@gmail.com>
+> ---
+>  .../bindings/timer/ti,da830-timer.yaml        | 68 +++++++++++++++++++
+>  .../bindings/timer/ti,davinci-timer.txt       | 37 ----------
+>  2 files changed, 68 insertions(+), 37 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/timer/ti,da830-timer.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/timer/ti,davinci-timer.txt
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
