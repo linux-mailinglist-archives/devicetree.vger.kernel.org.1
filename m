@@ -1,367 +1,639 @@
-Return-Path: <devicetree+bounces-88366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98BF93D457
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:40:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 024E193D4EB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:16:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EC32286B6F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:40:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84A6A1F21BE0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C54817DE01;
-	Fri, 26 Jul 2024 13:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5B8C2FC;
+	Fri, 26 Jul 2024 14:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1NaWQUC+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i7qndoa4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3977217D35D
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 13:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FCC1B86CF;
+	Fri, 26 Jul 2024 14:15:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722001111; cv=none; b=gucbZk6hTAY+9IqKaWlfZ51OfDy9GWu4o1v2rBPLInPViWzqIu49eZWZkU8JevYBmOaRxjjPz0gG59iHydjiUi/UqrEysFoPal7l56FE9PFEhXBAuqp46jA1h5Op/KO6nEaWkv+MCwCEMwGlYteFUh+AJZt4wjd2sEyoUElt68M=
+	t=1722003357; cv=none; b=B3NGCj9VvHihgGTg6qXZmc4ifAdjumDb8Bq0uHwLihGaGfFWRp9pP4wkAtXM7EYx840Lgg6UvjbYZDMv4BpTpa+FJBFY4uGFlW0c21EJS2Td2s1/IDTVcg2a6JKkfyQGVjohoKCaVu9ULHiIdeZfunJLt15XyIByfWadf7OFVKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722001111; c=relaxed/simple;
-	bh=1Zkeq+FwqQEawcogj4oIwsbpb8D1Iv72qVcSnJf5tMA=;
-	h=Content-Type:Date:Message-Id:Cc:Subject:From:To:Mime-Version:
-	 References:In-Reply-To; b=bnJ66cl1Df4k/ijA2jj4itEhm5bWGagm0pz99neRBavvCBYkEIEgioZa7uN98NeMfIb0sVm9DAWm3q8b82LRvDJ2hYqqG8lb2w9YMdHIMY6CMcdwhDqf2F3Q3/ucWzhiQwmIhVoJ+ZuA9fdsmq8i4IiDG2tW3+lBthx+j/xdtbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1NaWQUC+; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-427d2c8c632so15274935e9.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 06:38:27 -0700 (PDT)
+	s=arc-20240116; t=1722003357; c=relaxed/simple;
+	bh=q+7vPrs9tt/3G8M1AeKN7lQVj9JjZLo0VFSqtFFUYyQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J4BRweoYNDmKR6Ah8YQfUMfkDqHY1Lb5jS2NAC+7auIJ+ebQAWoF6uNuk/ksDz618I2B/DtbK11E+NUXuBzvlJ9knhb57c72v5HL+A/F7EtO7YbEYVk2TJq1Vl8cJf8BTczN3aoIFcATq3LLs0com+HkXsj30gooX1r/3vleGFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i7qndoa4; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-70b703eda27so685017b3a.3;
+        Fri, 26 Jul 2024 07:15:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722001106; x=1722605906; darn=vger.kernel.org;
-        h=in-reply-to:references:content-transfer-encoding:mime-version:to
-         :from:subject:cc:message-id:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GigEj7Lw695sg9deooVuaRWVw5+qGFsdSGqMpUPvSFE=;
-        b=1NaWQUC+lYWv5rEPn5Ato0AIUIK7uiKQjUha6BCl0yPfiL3JIfVzLd9Kheg8s/2jT5
-         hzp3RQOmJjjcbwsLpaMGpzxPGh+bMmsmlUoj5nq7uF5E6Z4GlQOvvtpfUThbD9DZ/CYM
-         yr9ZaPyrG3goy2GXv9/6dXIFCZFG3RovPI3EalyNFsGSUNIbXFGy1dmicmiAFDSCq7gj
-         e7Bt7oiH3FZq1IYNrw5azadPGTseEEYEU4V4x/Y0Pv4v/4Ujc45DAW7m6EGdi3hXpqGT
-         YddW1zeVx0KZyYtCcSIwOUp2cEoWtyIDbrChZluyO+o8J+FtQQEeYmbxLLwksVKTwrLN
-         Q0jg==
+        d=gmail.com; s=20230601; t=1722003355; x=1722608155; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=IcU42lVW/EMANVHaPbsQ+AOUlbgahzpVYlZNTt0gz3c=;
+        b=i7qndoa4WJAbQjj4zBG3jY9QPrjkY+Njo1Q3bzU3jOu3dCttgxDyv7idL5yfTWD32Q
+         N3C2j1ieN5QA8p7pzYk+KdYmaCRybQVsmdopRIjjx/BTJbgdxvtHfTEZCXfJnrxctTZ8
+         irRFLbmBqWjHRe22HeFm2YAz7/HOVu5St2xRaTqkDsY2zJOVCQWbBlP5hBVBSibp6PxZ
+         OY5KmC5YDfJ6MK0LkvDLr9LZIR7cvUXb75nRu8E1T/tPnBBDJMoHt23S/Z8/YMxrwCTU
+         39VjQr721Zm8TSJH1TAWpjgci+Aupqd3DC3Q1WZMKeb7XsCg3aQ5Jt1ywVf9Dfu6DFiO
+         awBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722001106; x=1722605906;
-        h=in-reply-to:references:content-transfer-encoding:mime-version:to
-         :from:subject:cc:message-id:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GigEj7Lw695sg9deooVuaRWVw5+qGFsdSGqMpUPvSFE=;
-        b=TOS1VcqAoOpNSNj6HOeIpppYbnDwZmS/IxfqobwGUTnJ/VKlQ2aojAoLpc7jxHo9YK
-         CRNbpDI8tjSmvD/PGLIHdaGP/MojVrKYoCdGF1tNslEPuH+AnrZEF8WYEiwpaOnulRuO
-         CkwTFXd+hlc7FaX4DBElqHCXPRvJOXCA/hS5kaAle26cti8wDl14mpRg5vEOGpte9H/w
-         p9yKR8BoUHL0en2HrSR33eBGVYrznIkWSpvzNaS0f7yEiJ5CVijmNZHHxgTi+QlWeyfK
-         YfXpEvUCc6z0BaaEVWk3d5dL+Jy9kT63ildN4GNIYbGFXVwUv+2udcaNXwAmr85uXYpI
-         TBxA==
-X-Forwarded-Encrypted: i=1; AJvYcCUxDMZnVTIZNNS9ssSLdcC38HMbCIg3KLDLd4aUEV8VckrVura+6PQARj5NJbfofvREy2zx0NNUG5S/IsKetOdV9LuQdXmjitdnGA==
-X-Gm-Message-State: AOJu0Yxcsxu+gMHkD6n414blE6AuExtGq7Z6G0OBi366ia/FU2ZLtnr0
-	6ikSWrKV313P2QUMvvpS8xnz7cjUrvYvWgtcpjoXx3VA1mBGBoQSI7U3Yi6OwlwOkLcKJx3hXZQ
-	2
-X-Google-Smtp-Source: AGHT+IGDZyhVw3kXH9RHTJAk2rcXnF8LgZzeybbdjh6TQjgDoePuX2hy6ELD0soTgQTGWbm60VfOjA==
-X-Received: by 2002:a05:600c:548b:b0:426:5f75:1c2c with SMTP id 5b1f17b1804b1-42806b83e4amr35706195e9.11.1722001106301;
-        Fri, 26 Jul 2024 06:38:26 -0700 (PDT)
-Received: from localhost (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f940e62dsm123524595e9.39.2024.07.26.06.38.25
+        d=1e100.net; s=20230601; t=1722003355; x=1722608155;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IcU42lVW/EMANVHaPbsQ+AOUlbgahzpVYlZNTt0gz3c=;
+        b=IWmOltbP+IdQegYJNkTj0tJ2LYCz/apes9TRefTJsA5HvNQNC38WVSv/xJgioyLVbx
+         sFohC2J7FpZSfd4dqpQlN37FRPBxPk1aSx/6nE/UMhgVDLBFDqtb+0QyBKSX1xoNLxcX
+         JpKOaCcx20/J37rP2XKBePN8ebkhrkPrV8HMEdi/ZncenClrHdAdwU9m2w9EbaO3N7k9
+         H9VvuIOx+79CMnNxpgqxF61h+vihMx1/7OAsFLqmM23I8v/frUVrHBZ4rt8iwcZLlYYF
+         4NWrpXdF1R0fNBhTP15WqrWKb3tEMHm0qSja/3W6UPOcXaWn3/n6h/18hZVtSXgIdnTn
+         UHBw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbNvYeUb3mBf6pTgZlOi20NFVmm3cH6qSXR09muKIeqEUtJT8Yp865feVTVBFvgfF7bwnAwoBVc2USs/V1TNklj2car/gRmTFSjuWWEbOxIOkOkQdSIerLqjPBQlT3wL/tw0vIvfnmgOoZUJbPZTw1oEzHyuBL8KUo3gcA3bfdnsWR+VksDReg0JvA83E2NOsrRtN/otOSN/I5jzDS+CN9actYFUe2tsvubpiVehifTr0Nidp8Xv1iff+TOMNp
+X-Gm-Message-State: AOJu0Yw5Th0tiooUJFHIq0Jz3dv8jqa/TJLPYEp8IJafayS5bhuSe1tS
+	n3yL0xLkf7ttjPBFr7FoKFhvdquC09ZaA4lbDaDJo/8uBr0yC3t5
+X-Google-Smtp-Source: AGHT+IFHRgLy6fU2tz6dkC8CEuix85D6d1Htj4b3oD6BeYcL6dUKIQ0gxO+L9DALAoPyqXUn0jsW2g==
+X-Received: by 2002:a05:6a21:9688:b0:1c1:61a9:de4a with SMTP id adf61e73a8af0-1c472acd1camr6581243637.24.1722003354706;
+        Fri, 26 Jul 2024 07:15:54 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7a9f7b7b08dsm2828561a12.19.2024.07.26.07.15.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jul 2024 06:38:25 -0700 (PDT)
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 26 Jul 2024 15:38:24 +0200
-Message-Id: <D2ZIG2NK223D.J9VK1MWOICE3@baylibre.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "David Lechner" <dlechner@baylibre.com>
-Subject: Re: [PATCH RFC 2/5] iio: adc: ad4030: add driver for ad4030-24
-From: "Esteban Blanc" <eblanc@baylibre.com>
-To: =?utf-8?q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- <baylibre-upstreaming@groups.io>, "Lars-Peter Clausen" <lars@metafoo.de>,
- "Michael Hennerich" <Michael.Hennerich@analog.com>, "Jonathan Cameron"
- <jic23@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Nuno Sa"
- <nuno.sa@analog.com>
+        Fri, 26 Jul 2024 07:15:53 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <9572496f-f6b8-4f66-b084-de7644ea60a8@roeck-us.net>
+Date: Fri, 26 Jul 2024 07:15:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: aerc 0.17.0
-References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
- <20240627-eblanc-ad4630_v1-v1-2-fdc0610c23b0@baylibre.com>
- <0036d44542f8cf45c91c867f0ddd7b45d1904d6b.camel@gmail.com>
-In-Reply-To: <0036d44542f8cf45c91c867f0ddd7b45d1904d6b.camel@gmail.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] hwmon: add driver for the hwmon parts of qnap-mcu
+ devices
+To: Heiko Stuebner <heiko@sntech.de>, lee@kernel.org, jdelvare@suse.com,
+ dmitry.torokhov@gmail.com, pavel@ucw.cz
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ ukleinek@debian.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+References: <20240725194539.1780790-1-heiko@sntech.de>
+ <20240725194539.1780790-6-heiko@sntech.de>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240725194539.1780790-6-heiko@sntech.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Nuno,
+On 7/25/24 12:45, Heiko Stuebner wrote:
+> The MCU can be found on network-attached-storage devices made by QNAP
+> and provides access to fan control including reading back its RPM as
+> well as reading the temperature of the NAS case.
+> 
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-> > +			struct {
-> > +				s32 val[AD4030_MAX_DIFF_CHANNEL_NB];
-> > +				u8 common[AD4030_MAX_COMMON_CHANNEL_NB];
->
-> Not sure common makes sense as it comes aggregated with the sample. Maybe=
- this
-> could as simple as:
->
-> struct {
-> 	s32 val;
-> 	u64 timestamp __aligned(8);
-> } rx_data ...
+checkpatch --strict:
 
-See below my answer on channels order and storagebits.
+total: 0 errors, 1 warnings, 9 checks, 377 lines checked
 
-> So, from the datasheet, figure 39 we have something like a multiplexer wh=
-ere we
-> can have:
->
-> - averaged data;
-> - normal differential;
-> - test pattern (btw, useful to have it in debugfs - but can come later);
-> - 8 common mode bits;
->
-> While the average, normal and test pattern are really mutual exclusive, t=
-he
-> common mode voltage is different in the way that it's appended to differe=
-ntial
-> sample. Making it kind of an aggregated thingy. Thus I guess it can make =
-sense
-> for us to see them as different channels from a SW perspective (even more=
- since
-> gain and offset only apply to the differential data). But there are a cou=
-ple of
-> things I don't like (have concerns):
->
-> * You're pushing the CM channels into the end. So when we a 2 channel dev=
-ice
-> we'll have:
->
->  in_voltage0 - diff
->  in_voltage1 - diff
->  in_voltage2 - CM associated with chan0
->  in_voltage0 - CM associated with chan1
->
-> I think we could make it so the CM channel comes right after the channel =
-where
-> it's data belongs too. So for example, odd channels would be CM channels =
-(and
-> labels could also make sense).
+Te warning is about the MAINTAINERS file, which is your call,
+but please fix the check messages.
 
-I must agree with you it would make more sense.
+That does make me wonder, though. It looks like you don't plan to sign up
+to maintain this code. What do you expect to happen with it after it
+has been accepted ?
 
-> Other thing that came to mind is if we could somehow use differential =3D=
- true
-> here. Having something like:
->
-> in_voltage1_in_voltage0_raw - diff data
-> ...
-> And the only thing for CM would be:
->
-> in_voltage1_raw
-> in_voltage1_scale
->
-> (not sure if the above is doable with ext_info - maybe only with device_a=
-ttrs)
->
-> The downside of the above is that we don't have a way to separate the sca=
-n
-> elements. Meaning that we don't have a way to specify the scan_type for b=
-oth the
-> common mode and differential voltage. That said, I wonder if it is that u=
-seful
-> to buffer the common mode stuff? Alternatively, we could just have the sc=
-an_type
-> for the diff data and apps really wanting the CM voltage could still acce=
-ss the
-> raw data. Not pretty, I know...
+> ---
+>   drivers/hwmon/Kconfig          |  12 ++
+>   drivers/hwmon/Makefile         |   1 +
+>   drivers/hwmon/qnap-mcu-hwmon.c | 352 +++++++++++++++++++++++++++++++++
 
-At the moment the way I "separate" them is by looking at the
-`active_scan_mask`. If the user asked for differential channel only, I put =
-the
-chip in differential only mode. If all the channels are asked, I put
-the chip in differential + common mode. This way there is no need to
-separate anything in differential mode. See below for an example where
-this started.
+Documentation (Documentation/hwmon/...) missing.
 
-> However, even if we go with the two separate channels there's one thing t=
-hat
-> concerns me. Right now we have diff data with 32 for storage bits and CM =
-data
-> with 8 storage bits which means the sample will be 40 bits and in reality=
- we
-> just have 32. Sure, now we have SW buffering so we can make it work but t=
-he
-> ultimate goal is to support HW buffering where we won't be able to touch =
-the
-> sample and thus we can't lie about the sample size. Could you run any tes=
-t with
-> this approach on a HW buffer setup?=20
+>   3 files changed, 365 insertions(+)
+>   create mode 100644 drivers/hwmon/qnap-mcu-hwmon.c
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index e14ae18a973b3..87b6ee463a967 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -1806,6 +1806,18 @@ config SENSORS_PWM_FAN
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called pwm-fan.
+>   
+> +config SENSORS_QNAP_MCU_HWMON
+> +	tristate "QNAP MCU hardware monitoring"
+> +	depends on MFD_QNAP_MCU
+> +	depends on THERMAL || THERMAL=n
+> +	help
+> +	  Say yes here to enable support for fans and temperatures sensors
 
-Let's take AD4630-24 in diff+cm mode as an example. We would have 4 channel=
-s:
-- Ch0 diff with 24 bits of realbits and 24 bits of storagebits
-- Ch0 cm with 8 bits of realbits and 8 bits of storagebits
-- Ch1 diff with 24 bits of realbits and 24 bits of storagebits
-- Ch1 cm with 8 bits of realbits and 8 bits of storagebits
-ChX diff realbits + ChX cm realbits =3D 32 bits which is one sample as sent
-by the chip.
+s/temperatures/temperature/
 
-The problem I faced when trying to do this in this series is that IIO doesn=
-'t
-seem to like 24 storagebits and the data would get garbled. In diff only
-mode with the same channel setup (selecting only Ch0 diff and Ch1 diff)
-the data is also garbled. I used iio-oscilloscope software to test this set=
-up.
-Here is the output with iio_readdev:
-```
-# iio_readdev -s 1 ad4630-24 voltage0
-WARNING: High-speed mode not enabled
-Unable to refill buffer: Invalid argument (22)
-```
+> +	  connected to a QNAP MCU, as found in a number of QNAP network
+> +	  attached storage devices.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called qnap-mcu-hwmon.
+> +
+>   config SENSORS_RASPBERRYPI_HWMON
+>   	tristate "Raspberry Pi voltage monitor"
+>   	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWARE)
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index e3f25475d1f04..b72c6a059e4af 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -188,6 +188,7 @@ obj-$(CONFIG_SENSORS_POWERZ)	+= powerz.o
+>   obj-$(CONFIG_SENSORS_POWR1220)  += powr1220.o
+>   obj-$(CONFIG_SENSORS_PT5161L)	+= pt5161l.o
+>   obj-$(CONFIG_SENSORS_PWM_FAN)	+= pwm-fan.o
+> +obj-$(CONFIG_SENSORS_QNAP_MCU_HWMON)	+= qnap-mcu-hwmon.o
+>   obj-$(CONFIG_SENSORS_RASPBERRYPI_HWMON)	+= raspberrypi-hwmon.o
+>   obj-$(CONFIG_SENSORS_SBTSI)	+= sbtsi_temp.o
+>   obj-$(CONFIG_SENSORS_SBRMI)	+= sbrmi.o
+> diff --git a/drivers/hwmon/qnap-mcu-hwmon.c b/drivers/hwmon/qnap-mcu-hwmon.c
+> new file mode 100644
+> index 0000000000000..c4925ece165e2
+> --- /dev/null
+> +++ b/drivers/hwmon/qnap-mcu-hwmon.c
+> @@ -0,0 +1,352 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +/*
+> + * Driver for hwmon elements found on QNAP-MCU devices
+> + *
+> + * Copyright (C) 2024 Heiko Stuebner <heiko@sntech.de>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/mfd/qnap-mcu.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/thermal.h>
+> +
+> +struct qnap_mcu_hwmon {
+> +	struct qnap_mcu *mcu;
+> +	struct device *dev;
+> +
+> +	unsigned int pwm_min;
+> +	unsigned int pwm_max;
+> +
+> +	unsigned int pwm_value;
+> +	bool pwm_enabled;
+> +
+> +	unsigned int fan_state;
+> +	unsigned int fan_max_state;
+> +	unsigned int *fan_cooling_levels;
+> +
+> +	struct thermal_cooling_device *cdev;
+> +	struct hwmon_chip_info info;
+> +};
+> +
+> +static int qnap_mcu_hwmon_get_rpm(struct qnap_mcu_hwmon *hwm)
+> +{
+> +	u8 cmd[] = {
+> +		[0] = 0x40, /* @ */
+> +		[1] = 0x46, /* F */
+> +		[2] = 0x41  /* A */
+> +	};
 
-I think this is happening when computing the padding to align ch1 diff.
-In `iio_compute_scan_bytes` this line `bytes =3D ALIGN(bytes, length);`
-will be invoked with bytes =3D 3 and length =3D 3 when selecting ch0 diff
-and ch1 diff (AD4630-24 in differential mode). The output is 5. As
-specified in linux/align.h:
-> @a is a power of 2
-In our case `a` is `length`, and 3 is not a power of 2.
+Can this be static ?
 
-It works fine with Ch0/1 diff with 24 realbits and 32 storagebits with 8
-bits shift.
+> +	u8 reply[6];
+> +	int ret;
+> +
+> +	/* poll the fan rpm */
+> +	ret = qnap_mcu_exec(hwm->mcu, cmd, sizeof(cmd), reply, sizeof(reply));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* First 2 bytes must mirror the sent command */
+> +	if (memcmp(cmd, reply, 2)) {
+> +		dev_err(hwm->dev, "malformed data received\n");
 
-Intrestingly, a similar setup works great on AD4630-16:
-- Ch0 diff with 16 bits of realbits and 16 bits of storagebits
-- Ch0 cm with 8 bits of realbits and 8 bits of storagebits
-- Ch1 diff with 16 bits of realbits and 16 bits of storagebits
-- Ch1 cm with 8 bits of realbits and 8 bits of storagebits
+Pleas drop those error messages.
 
-In `iio_compute_scan_bytes` we will have ALIGN(3, 2) which will output
-4, everything is fine. The output of iio-oscilloscope is as expected,
-a clean sinewave and iio_readdev does not throw an error.
+> +		return -EIO;
+> +	}
+> +
+> +	return reply[4] * 450;
+> +}
+> +
+> +static int qnap_mcu_hwmon_update_fan(struct qnap_mcu_hwmon *hwm)
+> +{
+> +	u8 cmd[] = {
+> +		[0] = 0x40, /* @ */
+> +		[1] = 0x46, /* F */
+> +		[2] = 0x57, /* W */
+> +		[3] = 0x30, /* 0 ... fan-id? */
+> +		[4] = hwm->pwm_enabled ? hwm->pwm_value : 0
 
-All this to say that at the moment, I'm not sure how I will be able to
-put the CM byte in a separate channel for AD4630-24 without buffering it.
-It would be useful to return a "packed" buffer.
+Per ABI, pwm_enabled == 0 is
+		- 0: no fan speed control (i.e. fan at full speed)
+This does the opposite.
 
-> > +static int ad4030_conversion(struct ad4030_state *st, const struct
-> > iio_chan_spec *chan)
-> > +{
-> > +	unsigned int bytes_to_read =3D (BITS_TO_BYTES(chan->scan_type.realbit=
-s)
-> > +
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 ((st->mode =3D=3D AD4030_OUT_DATA_MD_24_DI=
-FF_8_COM
-> > ||
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 st->mode =3D=3D AD4030_OUT_DATA_MD_16_DIFF=
-_8_COM) ?
-> > 1 : 0)) *
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 st->chip->num_channels;
-> > +	struct spi_transfer xfer =3D {
-> > +		.rx_buf =3D st->rx_data.raw,
-> > +		.len =3D bytes_to_read,
-> > +	};
-> > +	unsigned char byte_index;
-> > +	unsigned int i;
-> > +	int ret;
-> > +
-> > +	gpiod_set_value_cansleep(st->cnv_gpio, 1);
-> > +	ndelay(AD4030_TCNVH_NS);
-> > +	gpiod_set_value_cansleep(st->cnv_gpio, 0);
-> > +	ndelay(AD4030_TCNVL_NS + AD4030_TCONV_NS);
-> > +
-> > +	ret =3D spi_sync_transfer(st->spi, &xfer, 1);
-> > +	if (ret || (st->mode !=3D AD4030_OUT_DATA_MD_16_DIFF_8_COM &&
-> > +		=C2=A0=C2=A0=C2=A0 st->mode !=3D AD4030_OUT_DATA_MD_24_DIFF_8_COM))
->
-> You should guarantee that st->mode is not invalid...
+I am not sure I understand the intent of pwm_enable.
+It seems to me it is supposed to turn off the fan, which
+is identical to just setting the pwm value to 0.
+If so, why have this attribute in the first place ?
 
-I don't see a code path where this could be the case. It's initialized
-at 0 in the probe (a valid value) and always set before `ad4030_conversion`
-in `ad4030_set_mode` called by `ad4030_buffer_preenable`. If the value
-is invalid, this is a driver error, not an invalid input from the user.
-Should I put an assert then?
+> +	};
+> +
+> +	/* poll the fan rpm */
+> +	return qnap_mcu_exec_with_ack(hwm->mcu, cmd, sizeof(cmd));
+> +}
+> +
+> +static int qnap_mcu_hwmon_get_temp(struct qnap_mcu_hwmon *hwm)
+> +{
+> +	u8 cmd[] = {
+> +		[0] = 0x40, /* @ */
+> +		[1] = 0x54, /* T */
+> +		[2] = 0x33  /* 3 */
+> +	};
 
-> > +		return ret;
-> > +
-> > +	byte_index =3D st->chip->precision_bits =3D=3D 16 ? 3 : 4;
-> > +	for (i =3D 0; i < st->chip->num_channels; i++)
->
-> So even for a single channel conversion we are going through all?
+static ?
 
-Yes. For ad4030-24 (this patch), that ok since num_channels =3D 1.
-For AD4630, we are getting the 2 channels samples anyway. Current
-allowed `scan_mask` are ch0 and ch1 (diff mode) or ch0 to ch3 (diff +
-common mode). The only case I could optimized currently is if I allowed
-scan_mask such as: ch0 & ch2, ch0 & ch1 & ch2, ch0 & ch1 & ch3. I'm not
-sure it makes sense to allow such `scan_mask` since the HW does not
-support it.
-What do you think?
+> +	u8 reply[4];
+> +	int ret;
+> +
+> +	/* poll the fan rpm */
+> +	ret = qnap_mcu_exec(hwm->mcu, cmd, sizeof(cmd), reply, sizeof(reply));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* First bytes must mirror the sent command */
+> +	if (memcmp(cmd, reply, sizeof(cmd))) {
+> +		dev_err(hwm->dev, "malformed data received\n");
 
-> > +static int ad4030_read_raw(struct iio_dev *indio_dev,
-> > +			=C2=A0=C2=A0 struct iio_chan_spec const *chan, int *val,
-> > +			=C2=A0=C2=A0 int *val2, long info)
-> > +{
-> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
->
-> Oh this is not neat :(. I guess there's still no work to make conditional=
- guards
-> to look more as the typical pattern...
+Same as above.
 
-Yeah... At first I put checks inside each function. Then I put guards
-inside each function. But at the end, almost every arm of the switch
-case needs to be in direct mode so... I can put it back in the function,
-as you wish.
+> +		return -EIO;
+> +	}
+> +
+> +	/*
+> +	 * There is an unknown bit set in bit7.
+> +	 * Bits [6:0] report the actual temperature as returned by the
+> +	 * original qnap firmware-tools, so just drop bit7 for now.
+> +	 */
+> +	return reply[3] & 0x7f;
+> +}
+> +
+> +static int qnap_mcu_hwmon_write(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long val)
+> +{
+> +	struct qnap_mcu_hwmon *hwm = dev_get_drvdata(dev);
+> +
+> +	switch (attr) {
+> +	case hwmon_pwm_input:
+> +		if (val < hwm->pwm_min || val > hwm->pwm_max)
+> +			return -EINVAL;
+> +
 
-> > +		switch (info) {
-> > +		case IIO_CHAN_INFO_RAW:
-> > +			return ad4030_single_conversion(indio_dev, chan,
-> > val);
-> > +
-> > +		case IIO_CHAN_INFO_SCALE:
-> > +			*val =3D (st->vref_uv * 2) / MILLI;
-> > +			*val2 =3D st->chip->precision_bits;
-> > +			return IIO_VAL_FRACTIONAL_LOG2;
->
-> I don't think this applies to CM?
+I'd suggest to bail out if the value is outside (0, 255) and then
+clamp to (pwm_min, pwm_max). Users of the API are expected to know that
+pwm values are between 0 and 255, but not what the actual value range is.
 
-Indded. Scale is not available for the CM channels.
+> +		hwm->pwm_value = val;
+> +		return qnap_mcu_hwmon_update_fan(hwm);
+> +	case hwmon_pwm_enable:
+> +		if (val < 0 || val > 1)
+> +			return -EINVAL;
+> +
+> +		hwm->pwm_enabled = val;
+> +		return qnap_mcu_hwmon_update_fan(hwm);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int qnap_mcu_hwmon_read(struct device *dev, enum hwmon_sensor_types type,
+> +			     u32 attr, int channel, long *val)
+> +{
+> +	struct qnap_mcu_hwmon *hwm = dev_get_drvdata(dev);
+> +
+> +	switch (type) {
+> +	case hwmon_pwm:
+> +		switch (attr) {
+> +		case hwmon_pwm_input:
+> +			*val = hwm->pwm_value;
 
-> > +static int ad4030_detect_chip_info(const struct ad4030_state *st)
-> > +{
-> > +	unsigned int grade;
-> > +	int ret;
-> > +
-> > +	ret =3D regmap_read(st->regmap, AD4030_REG_CHIP_GRADE, &grade);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	grade =3D FIELD_GET(AD4030_REG_CHIP_GRADE_MASK_CHIP_GRADE, grade);
-> > +	if (grade !=3D st->chip->grade)
-> > +		return dev_err_probe(&st->spi->dev, -EINVAL,
-> > +				"Unknown grade(%u) for %s\n", grade,
-> > +				st->chip->name);
->
-> I think in here we still want to proceed and just print a warning...
+This doesn't return a real pwm value. It returns the most recently configured
+value, or 0 if no value was ever set. That makes me really unhappy. At the very least,
+if it is indeed impossible to get the actual pwm value from the device, it needs to be
+very clearly documented.
 
-I've put this in because it's a quick and easy way to check:
-- If the SPI communication is working,
-- If the correct chip is installed. If it's not the correct one, we can
-  be sure that the parameters used to get any data out the chip will be
-  wrong and the data completely useless.
+> +			return 0;
+> +		case hwmon_pwm_enable:
+> +			*val = hwm->pwm_enabled;
+> +			return 0;
 
-If you feel that there is a use case I missed I will put a warning
-instead, no problem.
+		default:
+missing
 
+> +		}
+> +		return -EOPNOTSUPP;
+> +	case hwmon_fan:
+> +		*val = qnap_mcu_hwmon_get_rpm(hwm);
 
-All the comments I skipped and not replied to will be fixed in a V2.
+This returns errors as negative rpm values.
 
-Best regards,
+> +		return 0;
+> +	case hwmon_temp:
+> +		*val = qnap_mcu_hwmon_get_temp(hwm);
 
---=20
-Esteban "Skallwar" Blanc
-BayLibre
+hwmon ABI expects the temperature in degrees C. This returns
+a value between 0 and 0x7f, or in other words temperatures
+between 0 and 0.127 degrees C. On top of that, it returns errors
+as negative temperatures.
+
+Your call how to fix this. Either
+		ret = qnap_mcu_hwmon_get_temp(hwm);
+		if (ret < 0)
+			return ret;
+		*val = ret * 1000;
+		return 0;
+or
+		return qnap_mcu_hwmon_get_temp(hwm, val);
+
+and implement the conversion and return value assignment in
+qnap_mcu_hwmon_get_temp().
+
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static umode_t qnap_mcu_hwmon_is_visible(const void *data,
+> +				       enum hwmon_sensor_types type,
+> +				       u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		return 0444;
+> +
+> +	case hwmon_pwm:
+> +		return 0644;
+> +
+> +	case hwmon_fan:
+> +		return 0444;
+> +
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static const struct hwmon_ops qnap_mcu_hwmon_hwmon_ops = {
+> +	.is_visible = qnap_mcu_hwmon_is_visible,
+> +	.read = qnap_mcu_hwmon_read,
+> +	.write = qnap_mcu_hwmon_write,
+> +};
+> +
+> +/* thermal cooling device callbacks */
+> +static int qnap_mcu_hwmon_get_max_state(struct thermal_cooling_device *cdev,
+> +				      unsigned long *state)
+> +{
+> +	struct qnap_mcu_hwmon *hwm = cdev->devdata;
+> +
+> +	if (!hwm)
+> +		return -EINVAL;
+> +
+> +	*state = hwm->fan_max_state;
+> +
+> +	return 0;
+> +}
+> +
+> +static int qnap_mcu_hwmon_get_cur_state(struct thermal_cooling_device *cdev,
+> +				      unsigned long *state)
+> +{
+> +	struct qnap_mcu_hwmon *hwm = cdev->devdata;
+> +
+> +	if (!hwm)
+> +		return -EINVAL;
+> +
+> +	*state = hwm->fan_state;
+> +
+> +	return 0;
+> +}
+> +
+> +static int qnap_mcu_hwmon_set_cur_state(struct thermal_cooling_device *cdev,
+> +				      unsigned long state)
+> +{
+> +	struct qnap_mcu_hwmon *hwm = cdev->devdata;
+> +	int ret;
+> +
+> +	if (!hwm || (state > hwm->fan_max_state))
+
+Extra ( )
+
+> +		return -EINVAL;
+> +
+> +	if (state == hwm->fan_state)
+> +		return 0;
+> +
+> +	if (hwm->fan_cooling_levels[state]) {
+> +		hwm->pwm_enabled = 1;
+> +		hwm->pwm_value = hwm->fan_cooling_levels[state];
+> +	} else {
+> +		hwm->pwm_enabled = 0;
+> +	}
+> +
+> +	ret = qnap_mcu_hwmon_update_fan(hwm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hwm->fan_state = state;
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct thermal_cooling_device_ops qnap_mcu_hwmon_cooling_ops = {
+> +	.get_max_state = qnap_mcu_hwmon_get_max_state,
+> +	.get_cur_state = qnap_mcu_hwmon_get_cur_state,
+> +	.set_cur_state = qnap_mcu_hwmon_set_cur_state,
+> +};
+> +
+> +static int qnap_mcu_hwmon_get_cooling_data(struct device *dev, struct qnap_mcu_hwmon *hwm)
+> +{
+> +	int num, i, ret;
+> +
+> +	if (!device_property_present(dev->parent, "cooling-levels"))
+> +		return 0;
+> +
+> +	ret = device_property_count_u32(dev->parent, "cooling-levels");
+> +	if (ret <= 0) {
+> +		dev_err(dev, "Wrong data!\n");
+
+That doesn't really mean anything to the user. Please refer to
+'cooling-levels' like below.
+
+> +		return ret ? : -EINVAL;
+> +	}
+> +
+> +	num = ret;
+> +	hwm->fan_cooling_levels = devm_kcalloc(dev, num, sizeof(u32),
+> +						   GFP_KERNEL);
+> +	if (!hwm->fan_cooling_levels)
+> +		return -ENOMEM;
+> +
+> +	ret = device_property_read_u32_array(dev->parent, "cooling-levels",
+> +					     hwm->fan_cooling_levels, num);
+> +	if (ret) {
+> +		dev_err(dev, "Property 'cooling-levels' cannot be read!\n");
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < num; i++) {
+> +		if (hwm->fan_cooling_levels[i] > hwm->pwm_max) {
+> +			dev_err(dev, "fan state[%d]:%d > %d\n", i,
+> +				hwm->fan_cooling_levels[i], hwm->pwm_max);
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	hwm->fan_max_state = num - 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct hwmon_channel_info * const qnap_mcu_hwmon_channels[] = {
+> +	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT | HWMON_PWM_ENABLE),
+> +	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
+> +	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
+> +	NULL
+> +};
+> +
+> +static int qnap_mcu_hwmon_probe(struct platform_device *pdev)
+> +{
+> +	struct qnap_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
+> +	const struct qnap_mcu_variant *variant = qnap_mcu_get_variant_data(mcu);
+> +	struct qnap_mcu_hwmon *hwm;
+> +	struct thermal_cooling_device *cdev;
+> +	struct device *dev = &pdev->dev;
+> +	struct device *hwmon;
+> +	int ret;
+> +
+> +	hwm = devm_kzalloc(dev, sizeof(*hwm), GFP_KERNEL);
+> +	if (!hwm)
+> +		return -ENOMEM;
+> +
+> +	hwm->mcu = mcu;
+> +	hwm->dev = &pdev->dev;
+> +	hwm->pwm_min = variant->fan_pwm_min;
+> +	hwm->pwm_max = variant->fan_pwm_max;
+> +
+> +	platform_set_drvdata(pdev, hwm);
+> +
+> +	/*
+> +	 * Set duty cycle to maximum allowed and enable PWM output as well as
+> +	 * the regulator. In case of error nothing is changed
+> +	 */
+> +	hwm->pwm_value = hwm->pwm_max;
+> +	hwm->pwm_enabled = 1;
+> +	qnap_mcu_hwmon_update_fan(hwm);
+> +
+> +	hwm->info.ops = &qnap_mcu_hwmon_hwmon_ops;
+> +	hwm->info.info = qnap_mcu_hwmon_channels;
+> +
+> +	hwmon = devm_hwmon_device_register_with_info(dev, "qnapmcu",
+> +						     hwm, &hwm->info, NULL);
+> +	if (IS_ERR(hwmon))
+> +		return dev_err_probe(dev, PTR_ERR(hwmon), "Failed to register hwmon device\n");
+> +
+> +	ret = qnap_mcu_hwmon_get_cooling_data(dev, hwm);
+> +	if (ret)
+> +		return ret;
+> +
+
+Please move ahead of hwmon device registration. It doesn't make sense to register
+the hwmon device only to unregister it because of bad devicetree data.
+
+> +	hwm->fan_state = hwm->fan_max_state;
+> +
+> +	if (IS_ENABLED(CONFIG_THERMAL)) {
+> +		cdev = devm_thermal_of_cooling_device_register(dev,
+> +				dev->parent->of_node, "qnap-mcu-hwmon",
+> +				hwm, &qnap_mcu_hwmon_cooling_ops);
+
+Does it make sense to register the cooling device even if there is no
+cooling device data ?
+
+> +		if (IS_ERR(cdev))
+> +			return dev_err_probe(dev, PTR_ERR(cdev),
+> +				"Failed to register qnap-mcu-hwmon as cooling device\n");
+> +		hwm->cdev = cdev;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver qnap_mcu_hwmon_driver = {
+> +	.probe = qnap_mcu_hwmon_probe,
+> +	.driver = {
+> +		.name = "qnap-mcu-hwmon",
+> +	},
+> +};
+> +module_platform_driver(qnap_mcu_hwmon_driver);
+> +
+> +MODULE_ALIAS("platform:qnap-mcu-hwmon");
+> +MODULE_AUTHOR("Heiko Stuebner <heiko@sntech.de>");
+> +MODULE_DESCRIPTION("QNAP MCU hwmon driver");
+> +MODULE_LICENSE("GPL");
+
 
