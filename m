@@ -1,277 +1,135 @@
-Return-Path: <devicetree+bounces-88236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A839E93CC51
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 03:18:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94DE893CC6F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 03:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D34821C20E6B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 01:18:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50275282CDA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 01:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B04A2A;
-	Fri, 26 Jul 2024 01:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649A46FC5;
+	Fri, 26 Jul 2024 01:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="b4Hlp2d2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a4TqJlNr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DD637E
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 01:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02FE6FB6;
+	Fri, 26 Jul 2024 01:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721956686; cv=none; b=AS+E4UvhjrV7PgUPlOxDv4yYGqgzstn/tyyzxsXFXBJarE1VDNbMSoWn8SLDfxZU4Ymc3acbfm4MJ6p4GGT/4nK62wZeNRiyd1TuJtemjwD6IqhWLkJYycj3LC5JaQNhQ6bA/uQZynuRmklSC/l5ciju/WDBimDCaUjdWevOm20=
+	t=1721957129; cv=none; b=PoeT+Ew/kOxzZ8/ckCp0A3dj6EwVjKeRi9se8W4cXPb70u3qbMQgysYzxeT/X1SbvJ3UwcL9gAw6wpvENn00xnVMJ6UQkMQWZL81bPq2iwM60nWeAroSsIF5Dp/hKdXmOzLdqRJBs1c6Cv/xheRPD1/zUKWzW2wnupBGtjveAfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721956686; c=relaxed/simple;
-	bh=mYsHdTOeYt1swSYCY8rpXqlt3bJ0YOLrFzaxg0SkMNc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hy0DlG3LjP1ya27xJaj7cmkBXhhJGrttGfSKA0U6Dhl6JfHOK8uiizG9EvYOpk3yOda1fRwDXrsHpEL0A1IfVRksI6UXkSuElHzht0kbPZslzBkTyK8FzCpQElbU9yUIhVRrCW9TES8UfijrxzTS15C06FEITUCk3V4VDjZGl+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=b4Hlp2d2; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5a1337cfbb5so2074381a12.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2024 18:18:04 -0700 (PDT)
+	s=arc-20240116; t=1721957129; c=relaxed/simple;
+	bh=qs6CGBdWzgsKSgHVYe7pFucS6qBI0bJSg6gBrEfAc5o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dX/Dntdysd3X6SdChbyxPPtcU2VbJIKMn5IXphzqFn/l/TDuHx8sXkr88V4zeW6pcl/Jj5ZTtecaNdBzta2Hd8BmRqkftQwm8lzsh1YMM0Zo7L0mAsjXaeF01aT8jhtxEJIuLL2slmCOgCUFKIKiBsmh+nwtzqD1iADx9D7MCg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a4TqJlNr; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7a1d42da3f7so10855485a.2;
+        Thu, 25 Jul 2024 18:25:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1721956683; x=1722561483; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l1Tm0qZROMdMNWyVkds+ya5ewxNbo9zl5sVp0ymnAU0=;
-        b=b4Hlp2d2RVOFiWKF2pwHp6ABIx8Ce8A32PtQ1sXGPCQw739yPb6dUl7HN8DLnfgXO7
-         2By4ZUnzBXAyW3CYTr3xigZOCLrfR8fSSG1G3gfWvEofliAPTjqmugs/S+b0TEExkIuq
-         kefrBPMyOSymlEWJwFLi9vGZX1/PxLhb5iuPb5Hh76FitvR2yp8S6Lr8WRTsV/yhKLsc
-         7rjNynu1zfeXONXcmJW46FDpuMkPLV0CjXOLTppJxX2WEJac1fzS+QY8D2uvVQOatXll
-         x/6ZhT3EYmIlxFV7EGVU+bBfg8dL/Q5JDF+l2Uua7J4LQW6jQmfj7JD2uIKMExG6wa1L
-         zsUA==
+        d=gmail.com; s=20230601; t=1721957127; x=1722561927; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gcsiN3AG493yzq0rgBlB09MibvytHV+9kiz8MZRlZLg=;
+        b=a4TqJlNrDXB/S3uA6I3sn3KLul8JIVPYmHfhZn96SPL2oO5oX2iWgxNpXTFcpMURxQ
+         O7RE9ZzXnbana3DFqb59b414hTS2K2OiVVpJX4+0hs+0Uqz6ZePHcptqo6rtCw4klCjt
+         3be5bJzU42TEFlrZu8s2l5pKmZoP4nmbFUzUVLBqdECOtaPle5D5drY0m04XMU4S/x3s
+         LaknB25XRembMtfJ0X+myNCmS5/mAxVYZvGKFw2RzkYnXY+taolTlQ8Ur0Swk1erSEbF
+         RxGbiCpGZKDK9JGPtyxLn4SD1JPo38zzgRyrObM9K+b5PfgDXSF7YImyqzrUtwALrtWV
+         Qvzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721956683; x=1722561483;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l1Tm0qZROMdMNWyVkds+ya5ewxNbo9zl5sVp0ymnAU0=;
-        b=I6Q2mDCvzDfWtmRAozBAMx6fRb+tD5dpolvYxBGYTxSCN9XO/7YDvcKxGYjXlHlnMl
-         rODro0WejEtW2eEpemffHBOJg/cxDbrbglZSAeMZIgEWi+9chymoNTe4MBhiQS1ZlxnG
-         hN5nl0S7RJGuhXnlTV0IKW4oDQM0aE2LLtXqFvviyTXcevurMNGMkTrYtwtU6VUbHCW0
-         zzREI6DcELHhiWZlzioQyoJu4wryVnrJgY63ALvekOz6ptN+f194o4xX11HWVhl2Yr5o
-         G+S09KjV/Esi1hgdS/yYIIow+oDYbzlhFM++yh+aC6NNgwKKVUx5AGZJ6VrgTUQZ9H2D
-         5ZDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUiIgA1iM8PI1nRt/N4XTeyjAsAL9Ya42KxW3RfuOrpED3zVy0URraud/BdDGy+XRCkmdX4crQp1RVZi5HpdKjUKOIqrS+jgSvh6g==
-X-Gm-Message-State: AOJu0YzfOo+9ASXgJ/U73caId/jVrcLwT65Qa669zd+SyzAXpLzFLyWD
-	T0BzptNJ9LHsLY+oovZsuDzwIkno5fD6M6S4F1MYODVblqsIuFvI71hH+pd8yZN4VP3gHKa7k1/
-	JHmTj7I1mX6VzGbwYGjzVl7vhmvf0nX8PgE1LLA==
-X-Google-Smtp-Source: AGHT+IEAhtBKbkjoEDahdTXkBpr/w1906ckM/RBw1+l4MKKccSVUTrt/TnoqtC45S9qzABZcVv7K3HyOpvUi4prADh8=
-X-Received: by 2002:a05:6402:3514:b0:5a2:b867:3bcc with SMTP id
- 4fb4d7f45d1cf-5ac2c5a68a4mr3034549a12.38.1721956682633; Thu, 25 Jul 2024
- 18:18:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721957127; x=1722561927;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gcsiN3AG493yzq0rgBlB09MibvytHV+9kiz8MZRlZLg=;
+        b=IZJgoFI2PgPXukH/isDxY1bx/IBQAzH4GPSwjzkiRNcp6eTAoTCLReC7V1Op+grsVe
+         /Maw9dsBnKSXNIdEGPoNWb+JZ+FnElzET95ONL67S77qIt9nXjuFHLT87MYNzc77gqaO
+         3T11JRE89OSGwkGPul538DnHxNT2kdkJm1AwbT18IzDNrkb7LyMlihoB1pmwrffSUa3Y
+         /UmCKGsUUKY/6nYV8+pYRcqJ+qrfewo/95e+b/lul6F0lt635jL0T9tg55Z4Jg67rMF4
+         eBUaN1rlfZlSpAtNOaUhDbULWSDIHwivhC0uAbenT516ftCrxzR/6XdXx4h+R9uPoMKi
+         D0KA==
+X-Forwarded-Encrypted: i=1; AJvYcCV0O4KXqEWFgfh4T89Z2eOYVCArBhsrFC0GaBmGUCc6Gpg3ezRFDlRshZT/u5xMjnW0z/KvK5dyTuxk4ZaVsqESzDZ1LzOCtTgCpRMuyBkUgDjvDU/hJC0neWwkV+fwI7TrfgFH7lgh7w==
+X-Gm-Message-State: AOJu0YyqGsTfug/zPOzke2l2rTBG13RDl6UG3/1L6kb28IeBbh0bs2Ey
+	USh5p+Iln+7Px0d1g70FJEMT5RULQZkj3oYdd5bM82JQwIJD/7oL
+X-Google-Smtp-Source: AGHT+IEbX1qyvuNhBgiKknHBt9L3xXVKiF4PnTrA2aIRaf7R6KzZWcObfO6At+M5nm+Oef0b88VtJw==
+X-Received: by 2002:a05:620a:40cd:b0:79f:84f:80a8 with SMTP id af79cd13be357-7a1d7e13d23mr495676885a.13.1721957126727;
+        Thu, 25 Jul 2024 18:25:26 -0700 (PDT)
+Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a1d7398234sm132921785a.17.2024.07.25.18.25.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jul 2024 18:25:26 -0700 (PDT)
+Date: Thu, 25 Jul 2024 21:25:23 -0400
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mehdi.djait@bootlin.com, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] drm/tiny: Add driver for Sharp Memory LCD
+Message-ID: <j5laj5fy4lamyhlyelaq5vfu5vfxj4ybrssrbvrbyndbnvmsyh@6voevw6f3xf7>
+References: <20240725004734.644986-1-lanzano.alex@gmail.com>
+ <20240725004734.644986-3-lanzano.alex@gmail.com>
+ <0f98db88-71d4-43a6-85f7-a9661c50a382@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240725083245.12253-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240725083245.12253-2-lvzhaoxiong@huaqin.corp-partner.google.com> <87o76lzwvr.fsf@intel.com>
-In-Reply-To: <87o76lzwvr.fsf@intel.com>
-From: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Date: Fri, 26 Jul 2024 09:17:51 +0800
-Message-ID: <CA+6=WdS5QKMVX2euxdeDqCoHrCpWuqB_cu5vzHGUNdUq4NnPZw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] drm/panel: jd9365da: Move the sending location of
- the 11/29 command
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	dianders@chromium.org, hsinyi@google.com, airlied@gmail.com, daniel@ffwll.ch, 
-	jagan@edgeble.ai, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0f98db88-71d4-43a6-85f7-a9661c50a382@kernel.org>
 
-On Thu, Jul 25, 2024 at 4:41=E2=80=AFPM Jani Nikula <jani.nikula@linux.inte=
-l.com> wrote:
->
-> On Thu, 25 Jul 2024, Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google=
-.com> wrote:
-> > Move the 11/29 command from enable() to init() function
->
-> OOC, what is the "11/29" command?
->
-> BR,
-> Jani.
+On Thu, Jul 25, 2024 at 08:08:57AM GMT, Krzysztof Kozlowski wrote:
+> On 25/07/2024 02:47, Alex Lanzano wrote:
+> > +static const struct spi_device_id sharp_memory_ids[] = {
+> > +	{"ls010b7dh04", LS010B7DH04},
+> > +	{"ls011b7dh03", LS011B7DH03},
+> > +	{"ls012b7dd01", LS012B7DD01},
+> > +	{"ls013b7dh03", LS013B7DH03},
+> > +	{"ls013b7dh05", LS013B7DH05},
+> > +	{"ls018b7dh02", LS018B7DH02},
+> > +	{"ls027b7dh01", LS027B7DH01},
+> > +	{"ls027b7dh01a", LS027B7DH01A},
+> > +	{"ls032b7dd02", LS032B7DD02},
+> > +	{"ls044q7dh01", LS044Q7DH01},
+> > +	{},
+> > +};
+> > +MODULE_DEVICE_TABLE(spi, sharp_memory_ids);
+> > +
+> > +static const struct of_device_id sharp_memory_of_match[] = {
+> > +	{.compatible = "sharp,ls010b7dh04"},
+> 
+> Both ID tables should be in sync. See not-so-recent IIO discussions and
+> commits.
+> 
+> > +	{.compatible = "sharp,ls011b7dh03"},
+> > +	{.compatible = "sharp,ls012b7dd01"},
+> > +	{.compatible = "sharp,ls013b7dh03"},
+> > +	{.compatible = "sharp,ls013b7dh05"},
+> > +	{.compatible = "sharp,ls018b7dh02"},
+> > +	{.compatible = "sharp,ls027b7dh01"},
+> > +	{.compatible = "sharp,ls027b7dh01a"},
+> > +	{.compatible = "sharp,ls032b7dd02"},
+> > +	{.compatible = "sharp,ls044q7dh01"},
+> > +	{},
+> > +};
+> > +MODULE_DEVICE_TABLE(of, sharp_memory_of_match);
 
-hi Jani
-Sorry, maybe I didn't describe it clearly. The 11/29 commands are sent
-by these two functions.
+I'm having some trouble finding the discussions and commits you're referring to.
+When you say the tables should be in sync are you referring to the ordering of
+entries in the tables? Like at index x of both tables should define model y?
 
-mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-
-MIPI_DCS_EXIT_SLEEP_MODE =3D 0x11,
-MIPI_DCS_SET_DISPLAY_ON=3D 0x29,
-
-BR,
->
-> >
-> > As mentioned in the patch:
-> > https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.co=
-rp-partner.google.com/
-> >
-> > Our DSI host has different modes in prepare() and enable()
-> > functions. prepare() is in LP mode and enable() is in HS mode.
-> > Since the 11/29 command must also be sent in LP mode,
-> > so we also move 11/29 command to the init() function.
-> >
-> > After moving the 11/29 command to the init() function,
-> > we no longer need additional delay judgment, so we delete
-> > variables "exit_sleep_to_display_on_delay_ms" and
-> > "display_on_delay_ms".
-> >
-> > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com=
->
-> > ---
-> >  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 59 ++++++++++---------
-> >  1 file changed, 32 insertions(+), 27 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers=
-/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> > index 04d315d96bff..ce73e8cb1db5 100644
-> > --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> > +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> > @@ -31,8 +31,6 @@ struct jadard_panel_desc {
-> >       bool reset_before_power_off_vcioo;
-> >       unsigned int vcioo_to_lp11_delay_ms;
-> >       unsigned int lp11_to_reset_delay_ms;
-> > -     unsigned int exit_sleep_to_display_on_delay_ms;
-> > -     unsigned int display_on_delay_ms;
-> >       unsigned int backlight_off_to_display_off_delay_ms;
-> >       unsigned int display_off_to_enter_sleep_delay_ms;
-> >       unsigned int enter_sleep_to_reset_down_delay_ms;
-> > @@ -66,26 +64,6 @@ static inline struct jadard *panel_to_jadard(struct =
-drm_panel *panel)
-> >       return container_of(panel, struct jadard, panel);
-> >  }
-> >
-> > -static int jadard_enable(struct drm_panel *panel)
-> > -{
-> > -     struct jadard *jadard =3D panel_to_jadard(panel);
-> > -     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->dsi =
-};
-> > -
-> > -     msleep(120);
-> > -
-> > -     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > -
-> > -     if (jadard->desc->exit_sleep_to_display_on_delay_ms)
-> > -             mipi_dsi_msleep(&dsi_ctx, jadard->desc->exit_sleep_to_dis=
-play_on_delay_ms);
-> > -
-> > -     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> > -
-> > -     if (jadard->desc->display_on_delay_ms)
-> > -             mipi_dsi_msleep(&dsi_ctx, jadard->desc->display_on_delay_=
-ms);
-> > -
-> > -     return dsi_ctx.accum_err;
-> > -}
-> > -
-> >  static int jadard_disable(struct drm_panel *panel)
-> >  {
-> >       struct jadard *jadard =3D panel_to_jadard(panel);
-> > @@ -202,7 +180,6 @@ static const struct drm_panel_funcs jadard_funcs =
-=3D {
-> >       .disable =3D jadard_disable,
-> >       .unprepare =3D jadard_unprepare,
-> >       .prepare =3D jadard_prepare,
-> > -     .enable =3D jadard_enable,
-> >       .get_modes =3D jadard_get_modes,
-> >       .get_orientation =3D jadard_panel_get_orientation,
-> >  };
-> > @@ -382,6 +359,12 @@ static int radxa_display_8hd_ad002_init_cmds(struc=
-t jadard *jadard)
-> >
-> >       jd9365da_switch_page(&dsi_ctx, 0x00);
-> >
-> > +     mipi_dsi_msleep(&dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > +
-> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> > +
-> >       return dsi_ctx.accum_err;
-> >  };
-> >
-> > @@ -608,6 +591,12 @@ static int cz101b4001_init_cmds(struct jadard *jad=
-ard)
-> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE6, 0x02);
-> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE7, 0x0C);
-> >
-> > +     mipi_dsi_msleep(&dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > +
-> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> > +
-> >       return dsi_ctx.accum_err;
-> >  };
-> >
-> > @@ -831,6 +820,16 @@ static int kingdisplay_kd101ne3_init_cmds(struct j=
-adard *jadard)
-> >
-> >       jd9365da_switch_page(&dsi_ctx, 0x00);
-> >
-> > +     mipi_dsi_msleep(&dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > +
-> > +     mipi_dsi_msleep(&dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> > +
-> > +     mipi_dsi_msleep(&dsi_ctx, 20);
-> > +
-> >       return dsi_ctx.accum_err;
-> >  };
-> >
-> > @@ -859,8 +858,6 @@ static const struct jadard_panel_desc kingdisplay_k=
-d101ne3_40ti_desc =3D {
-> >       .reset_before_power_off_vcioo =3D true,
-> >       .vcioo_to_lp11_delay_ms =3D 5,
-> >       .lp11_to_reset_delay_ms =3D 10,
-> > -     .exit_sleep_to_display_on_delay_ms =3D 120,
-> > -     .display_on_delay_ms =3D 20,
-> >       .backlight_off_to_display_off_delay_ms =3D 100,
-> >       .display_off_to_enter_sleep_delay_ms =3D 50,
-> >       .enter_sleep_to_reset_down_delay_ms =3D 100,
-> > @@ -1074,6 +1071,16 @@ static int melfas_lmfbx101117480_init_cmds(struc=
-t jadard *jadard)
-> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x02);
-> >       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe7, 0x06);
-> >
-> > +     mipi_dsi_msleep(&dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > +
-> > +     mipi_dsi_msleep(&dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> > +
-> > +     mipi_dsi_msleep(&dsi_ctx, 20);
-> > +
-> >       return dsi_ctx.accum_err;
-> >  };
-> >
-> > @@ -1102,8 +1109,6 @@ static const struct jadard_panel_desc melfas_lmfb=
-x101117480_desc =3D {
-> >       .reset_before_power_off_vcioo =3D true,
-> >       .vcioo_to_lp11_delay_ms =3D 5,
-> >       .lp11_to_reset_delay_ms =3D 10,
-> > -     .exit_sleep_to_display_on_delay_ms =3D 120,
-> > -     .display_on_delay_ms =3D 20,
-> >       .backlight_off_to_display_off_delay_ms =3D 100,
-> >       .display_off_to_enter_sleep_delay_ms =3D 50,
-> >       .enter_sleep_to_reset_down_delay_ms =3D 100,
->
-> --
-> Jani Nikula, Intel
+Best regards,
+Alex
 
