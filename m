@@ -1,109 +1,106 @@
-Return-Path: <devicetree+bounces-88230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB1C93CBD6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 02:07:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 015B293CC0B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 02:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4086CB20C29
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 00:07:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5CEF1F220B9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 00:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C786370;
-	Fri, 26 Jul 2024 00:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA77364C;
+	Fri, 26 Jul 2024 00:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nm7tSlGs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8EXQuS/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F79E36D;
-	Fri, 26 Jul 2024 00:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB2963CB;
+	Fri, 26 Jul 2024 00:20:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1721952427; cv=none; b=Q0F1KfuZQBHwAICUgEEGvmoWoJg/AMBHk/rxvGIaQvEs5Vm0R80kmXlDIZTEnG4NVVp/eRCCkWvD4GRCdzyh4M6gm0F1bIJ6Z/WuYwaSZnUswcOqPryzhSy3E4mIvIuKsCjHUEQSzJUVdTCUwbmbn19GZdFPmHoS7yUEgmL/g00=
+	t=1721953219; cv=none; b=lOYbJAMCIdSgD43w8grvkZIvw45qASZ7HmqQLhQSx/z0WmGIaP+JQ5upmpLYxPmwbufsQwFFoYlDK8MLS1QijSspO6879qpHPbhMGFIQiPf2Oua2cjad2v/D50cc18Pm03kOD4wRvRlYJRz4IzvKuZvJU9v/cRLOaJHUtr7yr14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1721952427; c=relaxed/simple;
-	bh=8MdBcCjwOySNAbYQaTV2PkTHCb+RNP4SwIA5eHRLoM8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cvamVq78kB2vSpCVPcaG9LvxwsF76gMmCiIZ2U2RarMXlWsw+LsCEaEA9M53xM1o0UKpqa6PmHeRm3lAAaOEcIY2IwMQiiBO8Xhhw5xJzZbBbnDZY45TSZJMWaIL4IT+7WmX6ZxqMilkIm7Ua4n6Hm5CRnOGCfwrWIYe49Fxgqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nm7tSlGs; arc=none smtp.client-ip=209.85.219.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6b97097f7fdso824186d6.0;
-        Thu, 25 Jul 2024 17:07:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721952425; x=1722557225; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9mhrx66p4k+0HqBnVFIS3fmt62myrp/Me7feWqvjhdI=;
-        b=Nm7tSlGsI6na/kv4xv6g93m/PYV6IXfK99WC3VRGNeyAr+zTN0YhsDrBUIlvIJZ4ZI
-         cTqH6PY/jx3KcvMadWxiXPJdXsYvmjujrKsHWnJUenekEQSx78YwjTpNQCeGVscOW/Cn
-         ZgW8zTFoAK6hX7wS7My/lICyTz3vn0ehnEbxBcx75OL6qQMhNWFyQxPqRWLIhQry7yOY
-         iTQ6mIG5+Y7BoWNNG2H+WnNWxkqQojMEQ099jgrHj+wR/FwqFLm1DqGAlUQCmfmr3lub
-         sNpv90xON2zXgUrtSQ1OnS10hiJWrJRVTxQppDZNvcLpfd8W46jDUnFn0YL5RGxL3R5G
-         yeog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721952425; x=1722557225;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9mhrx66p4k+0HqBnVFIS3fmt62myrp/Me7feWqvjhdI=;
-        b=ZE0EBSjBOeECHJswiN+wWU9OQTlEfSaViKL72eKBUqV6s+Cx4h6Xrzcq3fjgFanh2O
-         XIfghyEwzJOQNs6J/7gDzseIfY68RA3NQ8kBP1LE/+a1C8IXDT+ajwINDfZUXRvtQGGt
-         qsXZhXKqyhxUOvoxmH8h2QQ10zVNvGGCwOfs9GumHvy+N4mJGY3b+jbLEiywecUDdF20
-         bPkb93sQPRFBsZhcQ+sI4UETNGXyoFG7LU3opzTo3wfMLikoKaUbZNTUnBTGxk9VXyOW
-         tHX5hJ2uGQMbXRu/hYEi1m1bQV8BnEnKbxayTnqZaAykshXssocAIgdA9uNSX1vDi06I
-         xtaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVbacX4CQbkID07CkQYkIBDBFjezORyjMIvei/GXuD+C6ZXN0hd2KYLOzPWVej9Uj0a7MV74u/LwIrb4Nsz46faWB1L6+efqhS8Xlrd1IZH9Q4iqVG18KtowaTp0Gy/1szArqw2jHbMKw==
-X-Gm-Message-State: AOJu0Yzw7/4B7gqKhOEkQz/dBMOP4wZxTPqBeqomLmNQ+lDH6s5qv41Q
-	piryA27WSz13QW8Vvt63/mzx0AJ8AIGyEBsfD/S4I8gypQ71GxOloEs7xv6W
-X-Google-Smtp-Source: AGHT+IGGfUcDRIS2ADeLCH+O/5hJ5jOciW87T8ynnw+FeWzNqY38U4MpJcRIw508BOtTHDbLgyKoBA==
-X-Received: by 2002:a05:6214:da3:b0:6b7:a6eb:c343 with SMTP id 6a1803df08f44-6bb4087082dmr46978076d6.51.1721952425017;
-        Thu, 25 Jul 2024 17:07:05 -0700 (PDT)
-Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb3fab9639sm11506416d6.103.2024.07.25.17.07.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jul 2024 17:07:04 -0700 (PDT)
-Date: Thu, 25 Jul 2024 20:07:01 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Cc: mehdi.djait@bootlin.com, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Mehdi Djait <mehdi.djait.k@gmail.com>
-Subject: Re: [PATCH 0/2] Add driver for Sharp Memory LCD
-Message-ID: <vlhicmhpvqkvdbyq2dsgqmofst5a5rjztr3uhp3bwyjhv3kqog@lu5lqtey262n>
-References: <20240725004734.644986-1-lanzano.alex@gmail.com>
- <20240725074532.65616a26@windsurf>
+	s=arc-20240116; t=1721953219; c=relaxed/simple;
+	bh=UowxC6Hl+spQMsfymKr1EuDGRGLZbprGrQdNhJkgmLA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=aPXlYi9eR4kMCWjBkuVQf46CAiU0wWAQNReBerHvNeWSbL7ZaBEetZYlHEbdmT0BBwPot5UZ8VmuOGhVWHYJVNMDJ4bpUbaRO5UEuxSkJkGQoH2JwELj6yvjlM3MV0yWofXepXzxK7gCOBSpe5eufLdrt3vI8b9/ICTUmk3Pd3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8EXQuS/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E71C8C116B1;
+	Fri, 26 Jul 2024 00:20:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1721953219;
+	bh=UowxC6Hl+spQMsfymKr1EuDGRGLZbprGrQdNhJkgmLA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=O8EXQuS/gSxrsau85WQ3IRevrrfeHm2qwMaoGve/DCMCNxja7sZKwetW2XBu+fdp1
+	 0X4PEMSDeOJyBSOwq5RkX1+LfNNjLpXX0RMaFplyyW+X5AQJxJJuNOjrz7CcZoA0iX
+	 udckSB3vvnC39twkOFv6/SZ1uM44oYUW4SWidpBM6Z3V9HRXm2b2GvzMwoYOyqYN6g
+	 Z0f3FKSmoXyvu367ynGLaFB23+C/oLcuvrD/Iodn+jOM6nFe54BglkN6dqdpp2pkZm
+	 OScLqGcoOKybs1EA3mod5mzX1fz7uLeJHn8YPDawUBe9D6f2DpRFvIELIHO2I/PXFv
+	 QrqgjxaHL2v1A==
+Date: Thu, 25 Jul 2024 19:20:17 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240725074532.65616a26@windsurf>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: krzk+dt@kernel.org, semen.protsenko@linaro.org, 
+ linus.walleij@linaro.org, lars@metafoo.de, jic23@kernel.org, 
+ conor+dt@kernel.org, 579lpy@gmail.com, ak@it-klinger.de, 
+ andriy.shevchenko@linux.intel.com, linux-kernel@vger.kernel.org, 
+ javier.carrasco.cruz@gmail.com, linux-iio@vger.kernel.org, 
+ biju.das.jz@bp.renesas.com, devicetree@vger.kernel.org, 
+ ang.iglesiasg@gmail.com
+In-Reply-To: <20240725231039.614536-6-vassilisamir@gmail.com>
+References: <20240725231039.614536-1-vassilisamir@gmail.com>
+ <20240725231039.614536-6-vassilisamir@gmail.com>
+Message-Id: <172195321787.24634.18050300557799081241.robh@kernel.org>
+Subject: Re: [PATCH v2 5/7] dt-bindings: iio: pressure: bmp085: Add
+ interrupts for BMP3xx and BMP5xx devices
 
-On Thu, Jul 25, 2024 at 07:45:32AM GMT, Thomas Petazzoni wrote:
-> Hello Alex,
-> 
-> On Wed, 24 Jul 2024 20:47:01 -0400
-> Alex Lanzano <lanzano.alex@gmail.com> wrote:
-> 
-> > This patch series add support for the monochrome Sharp Memory LCD
-> > panels. This series is based off of the work done by Mehdi Djait.
-> 
-> Thanks for resuming the effort on this patch series! Since this patch
-> series is clearly heavily based on Mehdi's work, wouldn't it make sense
-> to preserve Mehdi's authorship for the patches?
 
-Hi! Thanks for the review. 
+On Fri, 26 Jul 2024 01:10:37 +0200, Vasileios Amoiridis wrote:
+> Add interrupt options for BMP3xx and BMP5xx devices as well.
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
 
-What would be the best way to go about doing this? I'm guessing appending to
-MODULE_AUTHOR and adding a Signed-of-by or Co-Developed-by?
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml: properties:drive-open-drain: 'anyOf' conditional failed, one must be fixed:
+	'desription' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240725231039.614536-6-vassilisamir@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
