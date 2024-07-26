@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-88364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0596193D44D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:38:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C941793D44B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEFD01F21824
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:38:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749001F21743
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 13:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D657E17C9F0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D8917C7DC;
 	Fri, 26 Jul 2024 13:38:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [195.130.132.52])
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF7017C226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D8317C22C
 	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 13:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.52
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722001106; cv=none; b=o/agRNhW9aPsLpcd3Niyv/4gtHGLQw8rgZ6KH64N++jJdmZCg8HdLn0mq9boRcHpoj0zdY85p2R3jBuDBl+fxGjq3sHOV/RiFHGKr9Hca0+vteKjJmFOnJeKWHoW3Z/+JMlZG4lZDUQZsyZmeIuXqSdA3Yh0dRnJerMCVeMLVRA=
+	t=1722001106; cv=none; b=ttllBoRrMAuAXzvmRfdT7CFbNz15M8q68QPX6gKL9GQIuO2A/nPTaaYM21jjLSTFJRgb9R0EdJescsy3KSjFUyszRmojpZCv5xlTCtKbaFJ8go3x5GFg/XzPkz9vapvQKDLVvvHkr3m96p2vd/Yh4+5gbqFELFjOHOS6UcveE5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1722001106; c=relaxed/simple;
-	bh=bDQffbUZA5bghK/autS3tZR2RkAAIHVmCSryVm5aDTI=;
+	bh=Ng4wEO/SlAXdAnuf293XE/ZFStcFFPvsjblx6kRm6Oc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Gv7frXUYC+f6t1rfniejugzbRgE2umZXxFE9VqOiiFEpjEPSpZ+Da3+6Xjc0gOERUmPom1H+d8qUlueqt+BXm3hG3pcd6xxZUvqVPGpq45Hln2RTPcMQ5kyGse4TPUUkn2u/ITPEKJRnDbpT0wJ+Ga76FzGlKYsEQHE+A4DLIW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.52
+	 MIME-Version; b=nyjrRyMyIREK4ISyvyp6tlqpT1r7v+DQtePAvnQvYuqonc03WyP8pblHsTOEQgFnyzjJa/AFzHXK5A5fI+BdgBrQSyFLXzK96JgzhqyxQTXmTINjmo8vIVHRLrCCBHYGX6bkAeKuWwkkg7GpfvwxzuCJjYjrDBXu8X9TX7d4dhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:3d94:87cf:603a:d7ae])
-	by xavier.telenet-ops.be with bizsmtp
-	id sDeE2C0051mGjv501DeER1; Fri, 26 Jul 2024 15:38:15 +0200
+	by andre.telenet-ops.be with bizsmtp
+	id sDeE2C0021mGjv501DeEKs; Fri, 26 Jul 2024 15:38:15 +0200
 Received: from rox.of.borg ([192.168.97.57])
 	by ramsan.of.borg with esmtp (Exim 4.95)
 	(envelope-from <geert@linux-m68k.org>)
-	id 1sXL8p-003cML-V5;
+	id 1sXL8p-003cMO-W2;
 	Fri, 26 Jul 2024 15:38:13 +0200
 Received: from geert by rox.of.borg with local (Exim 4.95)
 	(envelope-from <geert@linux-m68k.org>)
-	id 1sXL9B-004G6a-Mw;
+	id 1sXL9B-004G6h-Op;
 	Fri, 26 Jul 2024 15:38:13 +0200
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Rob Herring <robh@kernel.org>,
@@ -53,9 +53,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v3 6/7] arm64: dts: renesas: r8a779g0: Add OTP_MEM node
-Date: Fri, 26 Jul 2024 15:38:11 +0200
-Message-Id: <3c12681c9b1ab9fc389521666cc1e14b518215f7.1721999833.git.geert+renesas@glider.be>
+Subject: [PATCH v3 7/7] arm64: dts: renesas: r8a779h0: Add OTP_MEM node
+Date: Fri, 26 Jul 2024 15:38:12 +0200
+Message-Id: <35889ce7e244d0d3513ab886ddcf2e4124c1d41a.1721999833.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1721999833.git.geert+renesas@glider.be>
 References: <cover.1721999833.git.geert+renesas@glider.be>
@@ -67,8 +67,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add a device node for the OTP non-volatile memory on the R-Car V4H
-(R8A779G0) SoC, which provides E-FUSE services.
+Add a device node for the OTP non-volatile memory on the R-Car V4M
+(R8A779H0) SoC, which provides E-FUSE services.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
@@ -79,24 +79,24 @@ v3:
 v2:
   - Add Reviewed-by.
 ---
- arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 5 +++++
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-index d6770d3d488b833a..3a0991a7789f4d13 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-@@ -463,6 +463,11 @@ tsc: thermal@e6198000 {
+diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+index 0124e682b248188c..4cf67ef2690f6af5 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+@@ -417,6 +417,11 @@ tsc: thermal@e6198000 {
  			#thermal-sensor-cells = <1>;
  		};
  
 +		otp: otp@e61be000 {
-+			compatible = "renesas,r8a779g0-otp";
++			compatible = "renesas,r8a779h0-otp";
 +			reg = <0 0xe61be000 0 0x1000>, <0 0xe61bf000 0 0x1000>;
 +		};
 +
  		intc_ex: interrupt-controller@e61c0000 {
- 			compatible = "renesas,intc-ex-r8a779g0", "renesas,irqc";
+ 			compatible = "renesas,intc-ex-r8a779h0", "renesas,irqc";
  			#interrupt-cells = <2>;
 -- 
 2.34.1
