@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-88371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243B693D56B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:55:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC1C93D58E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 17:06:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C91291F240F0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 14:55:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE8D51F23173
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 15:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 782AA1CF9B;
-	Fri, 26 Jul 2024 14:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA3F17334E;
+	Fri, 26 Jul 2024 15:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2lWswYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F0D14A82;
-	Fri, 26 Jul 2024 14:54:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB921EA6F;
+	Fri, 26 Jul 2024 15:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722005690; cv=none; b=e3i1PyxAwEUnAeCnENjRYldW3W+jo1DSFOQTAHQ6UAEVbgHC6KqrarXdpMa6SouH9+QDtrzvZ16TNSz+1VYyY6YOWa10hYCenVghvhRGT0gPdmaMKx8k2qnwxxDU/O15f5+mkR1Nc9MSj1jn4/y16dA53iYXst9QuQj4vavMfM4=
+	t=1722006359; cv=none; b=QUw9tfEbU5VT3wfBGIDIYsPAmEAeDWiFOYUJhmmIlCx8ZKwoVkrCQCUyFJWrFYS7xfcIJQGQl/MlbiAhfeWsVzTuodTHX+CyMSFYh2ru3K/6k5TazHVSvLPiDPj+Svehz/BR/h7Lp4tiPCYqjQrPQk8pD93lknGO5mzRBnOgrAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722005690; c=relaxed/simple;
-	bh=+0aUcO5CSUBprkdsZtY2K18NshvbYINLi5yqqJqafAM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uBo+UZ6odRgj1h99Li2mhVk2ISW+oTECgQHP+lNmUfekiUXhvnBx+ECgK/p31Kmi3QSq1M1zQUdJ1XF0lpJ3tTiUQpHeurLgpZQoza5P0JYqd3qe843tALClfsNXO3Pvk4uaMxY5SoiYbCumAe97VncbtVWiqOy3W0WtJYTZoBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1722006359; c=relaxed/simple;
+	bh=ijomKZW8jE+9m5l5lbDwqWA1plA0xObFyEntMFkqjWs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t4kBpgnrJaF09ZAqiPTYgOnwbIz5Fyyl5l43jggYoHUNyACBJ6UyeFltJ7S6BPBcPp6xhvWiQ3c2MhmAnxyf0BrCFVZ8XVF7af8QtnhqNsCyCqMm2d3ymXGuX11pfXO6TPK6NBPE258xaDNZWfkJDM2oGRx+CpSUl2RI5Ouu7I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2lWswYy; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-65f9e25fffaso22210397b3.3;
-        Fri, 26 Jul 2024 07:54:48 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-70d333d57cdso860761b3a.3;
+        Fri, 26 Jul 2024 08:05:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722006357; x=1722611157; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hGnp8p2ACwZe358GixNKJBFOLyC6zExAqsWloggrHCY=;
+        b=A2lWswYygs1I918ZhEJ3MbGwb+x45ElqfiGv9tpBPZkkgiejdzKsplH/mVzKdGsXPP
+         onYdpNBOaRwfrS/fLFj8FOUbLiPp428SBF2uxRJM+SwfIrfumyE6+oxidZlqN15ilcTF
+         8vZPXenZdsy9PUoiLxu9Ubv3O/gNnEgj7f+mmycTzIjYUApgNgBwycD8tbambuitnccK
+         rYFZzUjDbBj+weyfMMpugmEzyKqKNTBTFy4QlLvyE2Gtr2YfQ8COzTCDClIXuqCt21/f
+         Q9CmAxXjOpZsKDdeKcizm9r4K1C7sxHvGNyAZfT7oWxSomIZcbH2FAVQDNbtxWR7+4/W
+         l94Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722005687; x=1722610487;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i5XAGsGJDErL21c3oTRiz2cwW6EJXcM+HixopBltRNQ=;
-        b=auZmmX5miJvZzdIhyimn2WFDUPFyPA/p4tvjBPRCl+IMck5HzORGLAEgYYOPlT3JOX
-         2bngoWSaobn4fHCBNIYgp7/1VuBmATpAlFD5A7NWJm0yZBfTOe091wjlJfSyY9RquzNl
-         eVO3yTAZDdhV1jiFGOudufOqkZltw/PIO6ll0RXKVr+J3XzT+M+AtENHdsm+CpZtcWDf
-         6LFRRKAAOX/J70ZP1zOCnFJcn0twZeAGTr3ChsY0gmYaOvoa9+p+XV/t9fXeR7B/sD99
-         7vAad2Za37vNw5wELFWnYawTsXkjpV2s5rUiW0qS/HcqPDSNfkXOO1sUIqmZ2ScmxZg9
-         xKpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUbgtaUUrKg4AFC/714tWQyEy+rzeYNGDFW2r8Pm1XiEDJ+x/f4+QW7Wyi6GA551Fx3e0cvmrh2Sb/EhC/cI7zrw20DYb1dOy/JXihpB/kXdRkfySjkNA9cbLoTT957Ke8GwgvQE2XIoq7gb7t4MWtREmI+7t0gqJ5gfK6NrczqBqLpMuqiRZe/VNKiMvEkNPdHmo5rDrlhhGbGGIhye0fKM5+Tv7C/
-X-Gm-Message-State: AOJu0YyMXAqk3kli+fkJ9vcIDXTjprS4mNPr7kDjouqdIgV1lrBZuTjv
-	tKtegkwvAyy1UFKfdA1BlVPH/TKTUeyR6nU1u04HPJVD58uRyxukWdjNmtLq1y0=
-X-Google-Smtp-Source: AGHT+IEumWLEJ35QXp4rCuKUKZgGnxz/SvAxXq4jfv9ok2JEtouEz2ACy0CjWM8aepGuVUm+PTjPtA==
-X-Received: by 2002:a81:8104:0:b0:644:4b82:bb0a with SMTP id 00721157ae682-67a053e0c7amr642887b3.2.1722005687211;
-        Fri, 26 Jul 2024 07:54:47 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6756795e78esm9205417b3.43.2024.07.26.07.54.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jul 2024 07:54:47 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-66108213e88so20482747b3.1;
-        Fri, 26 Jul 2024 07:54:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUMO5a+HUz4qdceyhAESPLjkFzQy/P0umLgYrGnfoQkPtgdjDIrdJE0f+1iUbjiguHJylKnXx2FI6JlHFhevkJ6K0L7Tk7TvdCh9rm+crgGGplEshuh5OfeAILGhvpbREJ3CpZiLSzQCEZLaVW+WafASS/uep9sH1QFocSS5HJzAaTyaNzON41LRAtuvie1UwwL+/yBjoZwbOdzAX9nnxp9uvAEDjL3
-X-Received: by 2002:a81:94c5:0:b0:64b:2f31:296b with SMTP id
- 00721157ae682-67a053e0c61mr675507b3.4.1722005686758; Fri, 26 Jul 2024
- 07:54:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722006357; x=1722611157;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hGnp8p2ACwZe358GixNKJBFOLyC6zExAqsWloggrHCY=;
+        b=XgGIf0G9KMfaIozhFfv6jmcFt0zsDJ1/NSPnLxsrRlr6uf7k21r3bdwhoH1eIQsasS
+         ZSlp7vZqrCcdTc5xqcmiw7PW37ZsFRKhPerU8kyDILz3aqNYlgfa2EcL6bdmROzNCtDI
+         DZbJLw8hUyJgv4ADDhYULj/a5CMwR0GBW0VaIiQEIUj0quwcicObsjtDTARRA5xUoGhd
+         +CeXHExHEomqAi0/yoPHG9yDZIaxg3Ghjm8LsQpzj8EYTOC5wyO2dtTL+i+ETAQMO1JZ
+         qMNpED3MLmOlkUMSdkuRfQ8PagHsUfTS67fzW7lb5PSWz1FebmHFTjGNLc+N9qSo3F2h
+         J7ug==
+X-Forwarded-Encrypted: i=1; AJvYcCULwpzjIDBBGAp28xyYon9bsQkkpeZttlfyvWyMlPPwd7YYD3CfPRY/k62q5PuxxT11jYB11t7p2wcUrE+pL8YIK/lNIBsswD5F4FaOCZEBFvHM69YHGMlJTs3j6B0uP8z4Ko18nkRymrOqSPA=
+X-Gm-Message-State: AOJu0Yx4ViN5qaSbZaYuO6Y0Ba9B8wD+lLBo6n8Rh4Ko94ncA5pmBQ9f
+	5QzJCR0lzQmz0zvVcksbs12RlmbXM44sqDVpMS1l2DU3cythqPAB
+X-Google-Smtp-Source: AGHT+IFeyI5/lS8F3gDVaSnTdQU84GuKDEME56f7fy5v4tFXKDuYOkg8Irpl6/0RrDZCPA1x9A/18Q==
+X-Received: by 2002:a05:6a20:7f93:b0:1c4:9397:ff98 with SMTP id adf61e73a8af0-1c493980351mr1650364637.18.1722006356741;
+        Fri, 26 Jul 2024 08:05:56 -0700 (PDT)
+Received: from kousik.local ([2405:201:c006:380f:8948:e4a2:69fb:4168])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7aa9b184139sm2357653a12.75.2024.07.26.08.05.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jul 2024 08:05:56 -0700 (PDT)
+From: Kousik Sanagavarapu <five231003@gmail.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Kousik Sanagavarapu <five231003@gmail.com>
+Subject: [PATCH v3 0/2] ti: davinci, keystone: txt to yaml
+Date: Fri, 26 Jul 2024 20:27:48 +0530
+Message-ID: <20240726150537.6873-1-five231003@gmail.com>
+X-Mailer: git-send-email 2.45.2.827.g557ae147e6.dirty
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715125438.553688-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240715125438.553688-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240715125438.553688-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 26 Jul 2024 16:54:33 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWO-w6Lb6L1rLHwjJrs7WsNrdaYJxcuxPLABhSSCFOq5w@mail.gmail.com>
-Message-ID: <CAMuHMdWO-w6Lb6L1rLHwjJrs7WsNrdaYJxcuxPLABhSSCFOq5w@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: clock: renesas: Document RZ/V2H(P)
- SoC CPG
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 15, 2024 at 2:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Document the device tree bindings for the Renesas RZ/V2H(P) SoC
-> Clock Pulse Generator (CPG).
->
-> CPG block handles the below operations:
-> - Generation and control of clock signals for the IP modules
-> - Generation and control of resets
-> - Control over booting
-> - Low power consumption and power supply domains
->
-> Also define constants for the core clocks of the RZ/V2H(P) SoC. Note the
-> core clocks are a subset of the ones which are listed as part of section
-> 4.4.2 of HW manual Rev.1.01 which cannot be controlled by CLKON register.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> v3->v4
-> - Included RB tag form Krzysztof
-> - Changed reset and clock values to hex
-> - Renamed __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__ to
->   __DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__
+Convert txt bindings of DaVinci Timer and DaVinci/Keystone WDT
+Controller to dtschema.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+v2: https://lore.kernel.org/linux-devicetree/20240725153711.16101-1-five231003@gmail.com/
 
-Gr{oetje,eeting}s,
+Changes since v2:
+- Add Reviewed-by tag on 1/2.
 
-                        Geert
+- Change the compatible to match the DTS on 2/2 and also mention in the
+  commit msg that we are adding "power-domins" as an extra optional
+  property, which was missing in txt binding.
 
+v1: https://lore.kernel.org/linux-devicetree/20240721170840.15569-1-five231003@gmail.com/
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Changes vs v1:
+- Change davinci timer binding's file name to match with the compatible.
+  Also add "maxItems" for interrupts.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+- Change the order of compatibles in wdt controller bindings touched in
+  order to match DTS.
+
+- Drop 3/3 from v1 which might effect users and should not have been
+  included in this series in the first place.
+
+Kousik Sanagavarapu (2):
+  dt-bindings: timer: ti,davinci-timer: convert to dtschema
+  dt-bindings: watchdog: ti,davinci-wdt: convert to dtschema
+
+ .../bindings/timer/ti,da830-timer.yaml        | 68 +++++++++++++++++++
+ .../bindings/timer/ti,davinci-timer.txt       | 37 ----------
+ .../bindings/watchdog/davinci-wdt.txt         | 24 -------
+ .../bindings/watchdog/ti,davinci-wdt.yaml     | 55 +++++++++++++++
+ 4 files changed, 123 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/ti,da830-timer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/ti,davinci-timer.txt
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+
+-- 
+2.45.2.827.g557ae147e6.dirty
+
 
