@@ -1,168 +1,141 @@
-Return-Path: <devicetree+bounces-88411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC0A93D714
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 18:39:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A6593D717
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 18:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D1612846BC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:39:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CDE91F2151F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2024 16:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5044217E450;
-	Fri, 26 Jul 2024 16:38:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A1717D342;
+	Fri, 26 Jul 2024 16:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="za7UJh5e"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="LN2caqVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8A817E444
-	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 16:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF36F17C7D7
+	for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 16:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722011880; cv=none; b=uaJssLmnba6Osea6vk/TJptSP5c7KIIdtL7AcXYKreFTNvj668mudaher2rAq+bWithZJgq8vtFceWzui78gJf17JNBGW1PQNLX6TjtPBWmXX81X9ITF/nBjKgqnvfAonwguao6S2qHAGKipnfEAndM/jSC340JVQobwWr202TM=
+	t=1722011894; cv=none; b=jrdFhn40QvYtpixtMjlSJSJwim6PdB2LH4ptKu/+X/NHBjxYc3yqU7LBlltFWwliiosVlhRRNcjo6qMQBt031KEoB7a+uEi3U1cPO1w4cDz/wK4S+avj22I5b/uCg3PKiYT4CMzu8k9Rm35MccC2uTd9Hf4MQaA6Nbv6yNe2xg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722011880; c=relaxed/simple;
-	bh=wJlwKvHnHsmxr8ol1Mky5rqH/81g2E3nBO2+CHtrVdo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hS3yCPvM5nY91B3hHywLrBY0ESA0PAKvRwvaXcp1aoVYI7CMZ1/Yp63t1k/5g2FeUhA31FFn4M5DvfsBAx/VV4sUsB/1UPsNkhxzhaPTenygYfjfiU/hSKh68VolcqGbEROX2RG4nZcoiG5hqnM0bFXQgIAmxHfiq8Bawkxc8QI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=za7UJh5e; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2cb566d528aso908828a91.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 09:37:58 -0700 (PDT)
+	s=arc-20240116; t=1722011894; c=relaxed/simple;
+	bh=EdT0LNcW/fg+/3EqCSqFErM7Ot3ITnnmLAMCTmrP6I0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cnDp4pr2AFPFFmz3hdnrWGOWK8d50nLFAkN0q3ollRvedDDrH9egjORoZ8Ay4IJ1GD7urS030ZzcvXDUc1hVkpy1wQTB8WfB8luGowv6uWfgX4qBkcnsePJWxrw2skYhYL/Owu4X5xL1DEJ+9Hr+JX+M47PMKjeqsDtNKRdULbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=LN2caqVU; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1fc52394c92so8420335ad.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2024 09:38:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722011878; x=1722616678; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cCBQVSPRYPBIeQ5EoC+hl2LHpusqOR8yThszxhSpMg8=;
-        b=za7UJh5e5Y3eX4YWKOA56x87J3jAN9WbzToyvaj/bw1FEqzyYeHeZvN/dzpHSE1w0I
-         jKYTMSkl50oPUmpW9+oV4GVbgbtNJEgq0oWFI7Jy9k1tESFSwJ78f+NwTTlHwl9OaMTm
-         ZJh06JXzNdUYljZcsC1/Qc9Zxt953dIkQ32xbyR+sz/CHhqSS9oG9CMx4ruoeBLs9K99
-         m1hkrZ5QhwkM06FLGttWuPlfEP3KRszeul5xAVzeZQe6BbCODrCHa0CQSnMllGDmWHj7
-         lA5Qw3W9v1r41Tc9bOencUMeSWekDHc+8cG7MdTKoclxGWN4uaQ67nOHQasdInhKKFAa
-         KgsQ==
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722011892; x=1722616692; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=a0HpN9HmDodrUSDORXqRofIB4AnVMlhB5oPbGsDNiZk=;
+        b=LN2caqVU4451DdiX6i4QfOnjg3dGSMeGIxUlre8GSx1JCcC4nx7Emok8jZTfOaJ4qK
+         6UFzWawjgCm08F9ztkOl4PZrx4/t5wMuTEQesDzydCNA11+4eKisbRuYs502jOBXqt8m
+         tlacK6KfDDt2XfKtQioBFC8vmrOs+OCxrc7DxKZFXagHpsqjJbZLplGwXAE/hZUCnkMo
+         uV5FJbVIO02eYttnCnJISB463vdwopBvACmA7bx0Nlzv8kye7v/8rAzJgAPCHq6g8Sg1
+         5aJxhQay6pdepFnUs4RA6HfPgmjroRjI8fQYnc9prcJ/DiqBYM28MAc4QqLkHUXHBn04
+         Rm4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722011878; x=1722616678;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cCBQVSPRYPBIeQ5EoC+hl2LHpusqOR8yThszxhSpMg8=;
-        b=v5fxK99tPgs+bb3KwSJ2yeY9XPEkEfV3Ry8qDBWF6WxsiACwWeVHMrS+3auI+Q7719
-         iCd1vJZ4tKBXHLzgd5m4Slr3es/HxcqEY22JNV0ifqIDhbMTgAjHlddBs7AWz1/t8hri
-         TxGO45DgXDHO5f2VEU9QF6NjcEv/F4B49vDjaA8D6oXgR9z3KelbFFg1Rjj/FoIDoEAK
-         F1Q0BmY28IGgnD31Z0W4cDtGDa/EVKDw7jhkBKhxWpduQhfMrg1KIqkMGNiTawPKxbr9
-         BWBgAHioYyHjC6SBg4C0qCp1mtF/XcxmzWI+Wgb6uMCuCQhrnB2D+7TXkuQUTbSsQFFP
-         9Zsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuqssYe5TUDw2PraUEDt1pklrj0+qt6lIQjOcKFhLp/u/hsOtb5Mkp5BY2t5ljDr95jg+SjVsZPErAk34/adKJBN6HdZw8XFFOXA==
-X-Gm-Message-State: AOJu0YzuMD3lFJ7nLRVkAGbTh0c9qBKfqeXK9tVssYr7YZoOe4T+kRLJ
-	hi6qmV72LySPYVFmGyb4bB8e/sn9iUIqKMjH4x+3OfocYnE5OABXw8c5Px8esh0=
-X-Google-Smtp-Source: AGHT+IEXYMNp7r6J/EYXhRPF4svQfnFw/pxaQt/HnMEC+56U/jYOIE7D/L1AibRAOg2CvPdeVu0dyA==
-X-Received: by 2002:a17:90a:d98b:b0:2bd:d42b:22dc with SMTP id 98e67ed59e1d1-2cf7e868df4mr14654a91.43.1722011877991;
-        Fri, 26 Jul 2024 09:37:57 -0700 (PDT)
-Received: from jesse-desktop.ba.rivosinc.com (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cf28c55a2dsm3676619a91.7.2024.07.26.09.37.54
+        d=1e100.net; s=20230601; t=1722011892; x=1722616692;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a0HpN9HmDodrUSDORXqRofIB4AnVMlhB5oPbGsDNiZk=;
+        b=jPIKl9Bl+pX8LTpEz5U8x7n9gq+WBsiXfduSuHVu+GX1X8+zMF73znZevoc7KPYOpv
+         VKn7miq6LG0AxtwkjY2+sJDUdgnUGhJGsFNshjbJToCHrVesl3YsoMI+ExSfuK/bTIRS
+         ieG6dy95r5tKLzrNRlCFFbkXZBcL/KvGg6YiQ6dxAVLDSqKknzYPUUOK0DkEWC7TS9kD
+         rEZHKJSU8yYCZhuVgXzc37ljIvI0u9j+MB5TKAbLOfu9ecDjA0bzJXr7OeAGL+ogxrcG
+         vD4XGN4278Bs0su/f8SESIH3C2YfQXecS14326H8/qewbOg5kw6CXwNLQNWasRsoDrPK
+         sjPw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZJ/f06KJobYqXuvnHHINutWOT7mUkuQnBVFpB2FyoVmbnjEGOLy6HvAxaEm31czHvdRcygy4KsJAg37tavd7RdKW2GDau/TIrJw==
+X-Gm-Message-State: AOJu0YxJ7deFCX3vDLhCDOmf0nuvs+UqBvYhs0YqcANEvqiXXdqsUjZl
+	ZwVQaFAq4wyZjASgIqWjcefyCQ3bipio/5EdYQ4SusvtZaH/EwzyhRQIBlFVNzc=
+X-Google-Smtp-Source: AGHT+IGgSdGMTreHVjBjvhyywbGtPKuHA78vW4E4X9Wxkh8LiuFv+1u6kKBI9jhD+IpTldIfmpl/Bw==
+X-Received: by 2002:a17:903:234d:b0:1fd:80f0:e859 with SMTP id d9443c01a7336-1ff047e4564mr2287615ad.2.1722011892159;
+        Fri, 26 Jul 2024 09:38:12 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:dd1c:823c:f5e3:153f])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fed7edd91asm34682265ad.131.2024.07.26.09.38.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jul 2024 09:37:57 -0700 (PDT)
-From: Jesse Taube <jesse@rivosinc.com>
-To: linux-riscv@lists.infradead.org
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+        Fri, 26 Jul 2024 09:38:11 -0700 (PDT)
+Date: Fri, 26 Jul 2024 09:38:09 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <dfustini@tenstorrent.com>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Evan Green <evan@rivosinc.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Jesse Taube <jesse@rivosinc.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Xiao Wang <xiao.w.wang@intel.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	Eric Biggers <ebiggers@google.com>,
-	Greentime Hu <greentime.hu@sifive.com>,
-	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@rivosinc.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Costa Shulyupin <costa.shul@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Baoquan He <bhe@redhat.com>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Zong Li <zong.li@sifive.com>,
-	Sami Tolvanen <samitolvanen@google.com>,
-	Ben Dooks <ben.dooks@codethink.co.uk>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Erick Archer <erick.archer@gmx.com>,
-	Joel Granados <j.granados@samsung.com>,
-	linux-doc@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Yangtao Li <frank.li@vivo.com>, linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v7 8/8] RISC-V: hwprobe: Document unaligned vector perf key
-Date: Fri, 26 Jul 2024 12:37:19 -0400
-Message-ID: <20240726163719.1667923-9-jesse@rivosinc.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240726163719.1667923-1-jesse@rivosinc.com>
-References: <20240726163719.1667923-1-jesse@rivosinc.com>
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: clock: Document T-Head TH1520
+ AP_SUBSYS controller
+Message-ID: <ZqPQ8X51S6PrzQxI@x1>
+References: <20240623-th1520-clk-v2-0-ad8d6432d9fb@tenstorrent.com>
+ <20240623-th1520-clk-v2-1-ad8d6432d9fb@tenstorrent.com>
+ <57ef2eef45f2de15e6607da266b37b2a.sboyd@kernel.org>
+ <CAJM55Z8iF8yV5JK5v6ZtQqS5AaWwCZ7uwhSYb7hdxh0juDFdqg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z8iF8yV5JK5v6ZtQqS5AaWwCZ7uwhSYb7hdxh0juDFdqg@mail.gmail.com>
 
-Document key for reporting the speed of unaligned vector accesses.
-The descriptions are the same as the scalar equivalent values.
+On Fri, Jul 26, 2024 at 03:45:36AM -0500, Emil Renner Berthing wrote:
+> Stephen Boyd wrote:
+> > Quoting Drew Fustini (2024-06-23 19:12:31)
+> > > Document bindings for the T-Head TH1520 AP sub-system clock controller.
+> > >
+> > > Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+> > > Co-developed-by: Yangtao Li <frank.li@vivo.com>
+> > > Signed-off-by: Yangtao Li <frank.li@vivo.com>
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> > > ---
+> >
+> > Applied to clk-next
+> 
+> Thanks, but this driver seems a bit incomplete. With this applied the Lichee Pi
+> 4A no longer boots without the clk_ignore_unused kernel parameter.
+> 
+> /Emil
 
-Signed-off-by: Jesse Taube <jesse@rivosinc.com>
-Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
----
-V1 -> V2:
-  - New patch
-V2 -> V3:
- - Specify access width
-V3 -> V4:
- - Clarify we're talking about byte accesses using vector registers
- - Spell out _VECTOR_ in macros
-V4 -> V5:
- - No changes
-V5 -> V6:
- - No changes
-V6 -> V7:
- - No changes
----
- Documentation/arch/riscv/hwprobe.rst | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Is this the case when you apply the dts patches from this series?
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index 78acd37b6477..f83a13dc4cbc 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -238,3 +238,19 @@ The following keys are defined:
- 
- * :c:macro:`RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE`: An unsigned int which
-   represents the size of the Zicboz block in bytes.
-+
-+* :c:macro:`RISCV_HWPROBE_KEY_VECTOR_MISALIGNED_PERF`: An enum value describing the
-+     performance of misaligned vector accesses on the selected set of processors.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN`: The performance of misaligned
-+    vector accesses is unknown.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_SLOW`: 32-bit misaligned accesses using vector
-+    registers are slower than the equivalent quantity of byte accesses via vector registers.
-+    Misaligned accesses may be supported directly in hardware, or trapped and emulated by software.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_FAST`: 32-bit misaligned accesses using vector
-+    registers are faster than the equivalent quantity of byte accesses via vector registers.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_UNSUPPORTED`: Misaligned vector accesses are
-+    not supported at all and will generate a misaligned address fault.
--- 
-2.45.2
+The dts patches won't go in until 6.12 so I don't think the presence of
+the clk-th1520-ap.c itself in 6.11 would break existing systems.
 
+That said, I have been using clk_ignore_unused. I had been thinking that
+made sense because the full set of clock controller drivers like
+AON_SUBSYS (always on), AUDIO_SUBSYS, DSP_SUBSYS, etc, are not present
+yet in mainline. However, the T-Head vendor kernel does have drivers for
+all those clock controllers and I was suprised to see that the vendor
+kernel fails to boot when I just tested removing clk_ignore_unused.
+
+As for clk-th1520-ap.c in mainline, I'll investigate further which clk
+disables seem to causing the boot failure when using the dts from this
+series. I suspect I may need to add nodes that will cause the necessary
+clks to be enabled by their respective drivers.
+
+Thanks,
+Drew
 
