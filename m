@@ -1,93 +1,89 @@
-Return-Path: <devicetree+bounces-88509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D3293DF31
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 13:48:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9EEE93DF38
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 14:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4242282940
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:48:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F1A41F2239C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 12:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D24E85D8F0;
-	Sat, 27 Jul 2024 11:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18BC864A8F;
+	Sat, 27 Jul 2024 12:14:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPGD0RJ3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZQiWKIsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171D353373;
-	Sat, 27 Jul 2024 11:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E7A4653A;
+	Sat, 27 Jul 2024 12:14:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722080926; cv=none; b=UGLX4EWNGtljmxNP3XxXTYXMKoesCl6xfIsZ4lMgFZ9g5D1n1EhbTQ7hm9EYgFUbDq78gKYxOCRGRKfVhntyC7y8GV6OQM5hz3qyH7vrnZ3HfJnLBz/O322ivEo9oF5koMrFT2sirTQD0Ve8R4Wg2SjGq6SW0KU0lsjGBHoEZGE=
+	t=1722082497; cv=none; b=fLxbIkXKkPHu+uPHkZOhAZxpC5pW2GCpBMzLQ7OQYztVgbG1hmVTXbM6J02ftd54463gVlSVt3eKDvBkZblu4p0HMsSXND8sveU/HJ30hzVKAR3XJNa+YnLaXMe8Zjrwdv2LOgVUt8OYJ5Xr8g5TWBv1AYav4t1Q+rKkjQKUJHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722080926; c=relaxed/simple;
-	bh=PFd5L4vY6MFEbobL3PfpcKVz6T4XEkV+SklT8sIl0S0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jQAzsOUQFgotvRjyK93pTM1/dPK7g6lp1kDlybfJQuVkjpLg+VT0gYloh/RxlrE5jHuhK5Xppp19plfCqs7XZV47u9OUncxczVYq631tv4I3xv57+D3+f3fa0Am9e8pkdIs2gSF92R85e3UqsNb2XAvAms4wjI1YaeZM7RbcaA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IPGD0RJ3; arc=none smtp.client-ip=209.85.167.54
+	s=arc-20240116; t=1722082497; c=relaxed/simple;
+	bh=b6Da9uxrR4UyJRF4fvh8QbN4eQVeb6Nk4qWqno2klCE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=gwxFkO5ca0QdOeCoC3uE3G1r1U9Vb+nId4Gu+ngl9tB6OPSZBCYEf7AfAt26pbiyonMjE8VsnWRkVw9w/kA/uKx0fnn3XT0D8u6HD6PdlTU7CM3MXNbN6cSPCW/rPESSb9IcJczDlQ/CSUmmWmFzXJGWvGCWBLlmx9a/7smzyDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZQiWKIsS; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52efabf5d7bso2518478e87.1;
-        Sat, 27 Jul 2024 04:48:44 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ef2cce8be8so25826551fa.1;
+        Sat, 27 Jul 2024 05:14:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722080923; x=1722685723; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sKCRLjbQA6RvyM/1xlZDuHSO8eeRysapt2U7o6q2WV8=;
-        b=IPGD0RJ3BevWz1KJRJYX5d83LUHStn24nGPRAeZsMUDssALNGQyNa9Ifw0pVv/BbB0
-         x0xc9MbhVWqJjomrY1Y6EKZEE6+mz6IDqzihCyR+4EyWn+R2rh2uLRRYGlnHaNhRcOFK
-         djVRvoA+igKZBTjr1M79Qjr6Me0yXoBGu7gsJMcFlahNT2ljmS+vJK9FmroR8kl8LgJE
-         AZoxehXuHC5k22wcHAfYVYKSpyQF9W3PZUpXRXOGAvbKnZJTGJrCFJv1iCCcEeulcpCF
-         BvzBwUuOotYpO2d5Dw0w/6Q8HvU3Kb//K15C3zhpe7pbli5vXEPEteem2rO0NXtF30Vj
-         YVeQ==
+        d=gmail.com; s=20230601; t=1722082493; x=1722687293; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5i/RPAEt+X5RN+U7Llg8eBVQiQiZ0+jhsIvicw3bLk4=;
+        b=ZQiWKIsSzjS4/zRnAKEz/ku/Jk9PjVT57ENPHVlIhcJZqV6UhGug6rC89QcvfZQipv
+         pTTEiTpV3hFJ9f3M77PSjyr9M75Q/SEo1RgWwKNUwH44z+oIvujeiVlDPXHmJdvGcrnd
+         U0EE7gr4zS3T/3LKed8gRe1uWAges1u73EqIPAh/3htEjsoPMUvCLSNFC8tzPF4gRjnD
+         Gw9NOUzTs0/KT4JRBvdO3oBSoa9E4h35QPru5BWj1LDWYlJJcOQJ71/gMwSBO2T6HH0b
+         Vof10g2wj5r2U4YOtolPea9YZx8WuHeNoyq+xOweQr0ONhzw9GL2emidxpaK8APdHxgC
+         RxkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722080923; x=1722685723;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sKCRLjbQA6RvyM/1xlZDuHSO8eeRysapt2U7o6q2WV8=;
-        b=GT1lxOXqlJAfNiJWWEVq6CuK4icmU1/TlQxvaM/9YWdUfl6BDNwMWiNrW1Bzt0+rhV
-         XfNHq98uynpyIpYzEOfrX6i45j2dQb1pe+76vGr1Fa8A+rKqLQerXmfw1RY1CoukbNmt
-         rjvtZpcJz4Y+fb32VrG5qab6mROvGN/PZ3ZEuSUOFhmwvUZLvswn+0Bn/qJXY678IUmO
-         pDfrGvOomVLgBchWcHHqQbn2pP2dJzZYKMYmU6TFT11TKBWX2AzfJK3d8K+jau0BggRi
-         fgjedSIizcj/1neAyXCcnrkSEOsiVPgs+Tmkypsdjhzu3eTRc2E1XmgekclALz4M2oEc
-         y/yw==
-X-Forwarded-Encrypted: i=1; AJvYcCUAW3v6IbIEGDY7rJiH8LW3HykC+xHUygBJ8HdfsVJbnrM82LfiFQJ4NDj8w6hS4ZsXTC8joYychm7Pf1q17nKgCAe0DwJa6ek4JHM0pVFNwhwvDpeLA2IIS0iv0qX6pMHR+FqvhQ==
-X-Gm-Message-State: AOJu0YyuFAC2/YKXp0QA4gX/WnmNa9pE1jJ1dMJ8WrYmNMvlrsYJL96U
-	23vhQPn+4EuHHbLqi+lEceypj+m0ng9dwDiQ7ia00HgVAtfrrElo
-X-Google-Smtp-Source: AGHT+IHztZvH8zOyLXhWrkFxbk6bDQdmH6x989Bk067SMCu0neN94/uYnvBqs0sXqUfogLOjVpDGZw==
-X-Received: by 2002:ac2:54a1:0:b0:52f:eb:aaca with SMTP id 2adb3069b0e04-5309b299206mr1338536e87.32.1722080922910;
-        Sat, 27 Jul 2024 04:48:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722082493; x=1722687293;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5i/RPAEt+X5RN+U7Llg8eBVQiQiZ0+jhsIvicw3bLk4=;
+        b=CyLOU45Sp0vWOT0rpy1TQzkNXBvasUVw7jpUaBqfhrspF+ZDpIdLZP7sqmCVmh70qa
+         3sXuXyFFlzmqzRqLK+7wk5PiWE7Z/dDkvTsCgHmhqYARzyhHNGmbgY5nut7844TMsrE8
+         Tc4miFJFX5WscoiqY/W3+SifXT0jtR6rcEHJilaj2SvJqxly2rsvKNtU2T29QgHKPuQi
+         WYLN7/n/ZmhWUik0wgHXBDdS19s6Q8vH+ZxqVyge5qMkWeAn6nOHYbeOYRetmmlzHd/T
+         tZixcOBMrrsbvj0+3+cdER6B9x9BuTsji8nfHMXIinn6M3nc29413DPVWhGXTdS5fCfx
+         XY2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVU8si+4+GKklsTtvrTq3io7tGgqe/O9pQiFYe2sadv8zBUy+PUi3EDAVSEmjaVJLj/8AmAOCFU6oHcPXp/pqcfzc+C7dDHtFRD5A==
+X-Gm-Message-State: AOJu0YxtpgGvCx3BH9fsnCoRQinOeDik8dtv5XCLFizPEDyji/7z/EEw
+	arXrRzCFHGMG9U4AfghnaQpmmoEYKd3NeD7XaY7yllCH02YtJJQo
+X-Google-Smtp-Source: AGHT+IEk8TIJM9PpIVUJ/v4T39HeP7HfTLORM7kK3IUCwmiPBpyqRdBIiMVkQeuhuirbkSdQ/m5+KQ==
+X-Received: by 2002:ac2:4acb:0:b0:52c:d27b:ddcb with SMTP id 2adb3069b0e04-5309b269d13mr1645499e87.3.1722082493171;
+        Sat, 27 Jul 2024 05:14:53 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad9316csm272646166b.186.2024.07.27.04.48.41
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ac63590e73sm3005180a12.35.2024.07.27.05.14.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Jul 2024 04:48:42 -0700 (PDT)
+        Sat, 27 Jul 2024 05:14:52 -0700 (PDT)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Mark Brown <broonie@kernel.org>,
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Leilk Liu <leilk.liu@mediatek.com>,
-	linux-spi@vger.kernel.org,
+Cc: linux-serial@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	John Crispin <john@phrozen.org>,
 	Daniel Golle <daniel@makrotopia.org>,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt7981: add SPI controllers
-Date: Sat, 27 Jul 2024 13:48:28 +0200
-Message-Id: <20240727114828.29558-2-zajec5@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: serial: mediatek,uart: add MT7981
+Date: Sat, 27 Jul 2024 14:14:46 +0200
+Message-Id: <20240727121447.1016-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240727114828.29558-1-zajec5@gmail.com>
-References: <20240727114828.29558-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,66 +95,25 @@ Content-Transfer-Encoding: 8bit
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-MT7981 (Filogic 820) has three on-SoC SPI controllers.
+Add compatible string for serial on MT7981 SoC.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi | 42 +++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index 64aeeb24efac..b096009ef99c 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -109,6 +109,48 @@ i2c@11007000 {
- 			status = "disabled";
- 		};
- 
-+		spi@11009000 {
-+			compatible = "mediatek,mt7981-spi-ipm", "mediatek,spi-ipm";
-+			reg = <0 0x11009000 0 0x1000>;
-+			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_CB_M_D2>,
-+				 <&topckgen CLK_TOP_SPI_SEL>,
-+				 <&infracfg CLK_INFRA_SPI2_CK>,
-+				 <&infracfg CLK_INFRA_SPI2_HCK_CK>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk", "hclk";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi@1100a000 {
-+			compatible = "mediatek,mt7981-spi-ipm", "mediatek,spi-ipm";
-+			reg = <0 0x1100a000 0 0x1000>;
-+			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_CB_M_D2>,
-+				 <&topckgen CLK_TOP_SPI_SEL>,
-+				 <&infracfg CLK_INFRA_SPI0_CK>,
-+				 <&infracfg CLK_INFRA_SPI0_HCK_CK>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk", "hclk";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi@1100b000 {
-+			compatible = "mediatek,mt7981-spi-ipm", "mediatek,spi-ipm";
-+			reg = <0 0x1100b000 0 0x1000>;
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_CB_M_D2>,
-+				 <&topckgen CLK_TOP_SPI_SEL>,
-+				 <&infracfg CLK_INFRA_SPI1_CK>,
-+				 <&infracfg CLK_INFRA_SPI1_HCK_CK>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk", "hclk";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		pio: pinctrl@11d00000 {
- 			compatible = "mediatek,mt7981-pinctrl";
- 			reg = <0 0x11d00000 0 0x1000>,
+diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+index ff61ffdcad1d..1b02f0b197ff 100644
+--- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
++++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+@@ -36,6 +36,7 @@ properties:
+               - mediatek,mt7622-uart
+               - mediatek,mt7623-uart
+               - mediatek,mt7629-uart
++              - mediatek,mt7981-uart
+               - mediatek,mt7986-uart
+               - mediatek,mt7988-uart
+               - mediatek,mt8127-uart
 -- 
 2.35.3
 
