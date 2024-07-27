@@ -1,148 +1,426 @@
-Return-Path: <devicetree+bounces-88506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 191BC93DF23
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 13:25:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1ABF93DF2B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 13:36:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469D01C212E2
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:25:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6727F1F21828
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CAC51016;
-	Sat, 27 Jul 2024 11:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B9053373;
+	Sat, 27 Jul 2024 11:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="urBFO0Uq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265BF41746;
-	Sat, 27 Jul 2024 11:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E693A4204B;
+	Sat, 27 Jul 2024 11:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722079538; cv=none; b=F0SwgH9z7FFt5P0gNaZ/c6pe+sg48J+enHkuwWJgIlXeSpIM021x6IrUVM4U10ne5xFgXPOwTrTDTcHHGse2+XFE49Ez8wH44CdOI09Ka9C67/bM/71xhhSrXo9zldcrIZg04ojh6Vygw1kS1tx7F+Rh2rbLN8Iw0gFUKnsYyrQ=
+	t=1722080204; cv=none; b=X7Rq7gxGU8T9r4xxrk6MXBlvqGPIjT8QV90AM7WTXcNduH7+gU2pTTXIJTk3BRZRRXx9PQXngsYhslORx1rkDNitLy92JsdBalN6dUUrkkVnEYJG/qzgTZnPKlJedLAVftS+qwSqu9v/BEgrEGEo1jRk8U7AgNssNgyIWwbLeiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722079538; c=relaxed/simple;
-	bh=shcZgEGUYYMT+gcHW7Kj4tHAAku12N18LuY18LdFaxA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=We/09GMIlW6aAmhgcwgpB7hmbiV0fUljShkWUMGgX/wHkf1ppfb5FyDAsKf4cXUrTFABFNu5GZCbIxfT04VZfaPON2z1QKps1PGVHrXHZU3zPVVELeccimRhj3CIPQlwc0t9OZ4HzHlU1D4AP6aFIwiwL91zaKoNdmR32yHJOZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e860cde.versanet.de ([94.134.12.222] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sXfYK-0005ZZ-6A; Sat, 27 Jul 2024 13:25:32 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Conor Dooley <conor@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-Subject:
- Re: [PATCH v2 1/3] dt-bindings: clocks: add binding for
- voltage-controlled-oscillators
-Date: Sat, 27 Jul 2024 13:25:31 +0200
-Message-ID: <33119212.aRNtrjHk3s@diego>
-In-Reply-To: <00f9f4b8722d97b1c6fcec27d53bc06d.sboyd@kernel.org>
-References:
- <20240715110251.261844-1-heiko@sntech.de>
- <20240718-prozac-specks-6b5fd8b83e3e@spud>
- <00f9f4b8722d97b1c6fcec27d53bc06d.sboyd@kernel.org>
+	s=arc-20240116; t=1722080204; c=relaxed/simple;
+	bh=5YYMZLLx2P9UK49B7UON1nmQlF7P0LtKe0zNJ/gBbV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XBgv2/1f0JAqDBAOILy6AJOX07GLzSTtejajT6YUC29YiBxpu4gxKK3paJURuXYPJ7+LOrP6lGeV+8T5SUvnWWYvtzGYRtqltWdFMqHw9kCD3SsuPoBvtlqnQyx8SLIIYjSM2gBi9YEb7yVlg+UelqwqEmhg0z8SV2ge1onJOKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=urBFO0Uq; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Xh6Pz/JmDqczwozccFWy61OPZD8kJgJxezbXQwZ8ipg=; b=urBFO0Uq7ySikkxlc3UpKl2vkt
+	fNojBqmEgDpjyEKj2pVH50hEFQZ1i2hP7dDBIZm6fnnJ0MZyMIZUdhUw8b279ZETRS5h0BqsjdOOg
+	JzvLwPIZjb0GqKYzwq8ZPh/P5e4DKQKD+yjrl+w6DSn5YeEn8koLCGn/kOi8zYWpkgI0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sXfir-003LPP-St; Sat, 27 Jul 2024 13:36:25 +0200
+Date: Sat, 27 Jul 2024 13:36:25 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Frank.Sae" <Frank.Sae@motor-comm.com>
+Cc: hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux@armlinux.org.uk,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, yuanlai.cui@motor-comm.com,
+	hua.sun@motor-comm.com, xiaoyong.li@motor-comm.com,
+	suting.hu@motor-comm.com, jie.han@motor-comm.com
+Subject: Re: [PATCH 2/2] net: phy: Add driver for Motorcomm yt8821 2.5G
+ ethernet phy
+Message-ID: <fa2a7a4a-a5fc-4b05-b012-3818f65631c4@lunn.ch>
+References: <20240727092031.1108690-1-Frank.Sae@motor-comm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240727092031.1108690-1-Frank.Sae@motor-comm.com>
 
-Am Samstag, 27. Juli 2024, 00:21:44 CEST schrieb Stephen Boyd:
-> Quoting Conor Dooley (2024-07-18 08:59:50)
-> > 
-> > FWIW, I wouldn't classify this as device-specific. "enable-gpios" and
-> > "vdd-supply" are pretty generic and I think the latter is missing from
-> > the vast majority of real* "fixed-clocks". I would expect that devices
-> > where the datasheet would call
-> > 
-> > * Real because there's plenty of "fixed-clocks" (both in and out of tree)
-> > that are used to work around the lack of a clock-controller driver for an
-> > SoC.
+On Sat, Jul 27, 2024 at 02:20:31AM -0700, Frank.Sae wrote:
+>  Add a driver for the motorcomm yt8821 2.5G ethernet phy.
+>  Verified the driver on
+>  BPI-R3(with MediaTek MT7986(Filogic 830) SoC) development board,
+>  which is developed by Guangdong Bipai Technology Co., Ltd..
+>  On the board, yt8821 2.5G ethernet phy works in
+>  AUTO_BX2500_SGMII or FORCE_BX2500 interface,
+>  supports 2.5G/1000M/100M/10M speeds, and wol(magic package).
+>  Since some functions of yt8821 are similar to YT8521
+>  so some functions for yt8821 can be reused.
+
+No leading space please.
+
 > 
-> I agree!
+> Signed-off-by: Frank.Sae <Frank.Sae@motor-comm.com>
+> ---
+>  drivers/net/phy/motorcomm.c | 639 +++++++++++++++++++++++++++++++++++-
+>  1 file changed, 636 insertions(+), 3 deletions(-)
 > 
-> > 
-> > > I think generic power-sequences
-> > >   were the topic back then, though that might have changed over time?
-> > > - There are places that describe "fixed-clock" as
-> > >   "basic fixed-rate clock that cannot gate" [1]
-> > 
-> > I think that that is something that could be changed, it's "just" a
-> > comment in some code! Sounds like Stephen disagrees though :)
-> 
-> It's more about making a clear break from the fixed-clock binding so
-> that the extra properties are required.
-> 
-> > 
-> > > - Stephen also suggested a separate binding [2]
-> > 
-> > I liked your "gated-oscillator" suggestion in another reply, but
-> > "gated-fixed-clock" might be a better "thematic" fit since this is a
-> > special case of fixed-clocks?
-> > 
-> 
-> It looks to me like we've arrived at the hardest problem in computer
-> science, i.e. naming. Any of these names is fine. I'd look to see what
-> those parts on mouser are called and use that to drive the compatible
-> name decision if you can't decide. The description section in the
-> binding could be verbose and link to some parts/pdfs if that helps too.
-> In the past I've seen EEs call these things clock buffers. I'm not a
-> classically trained EE myself but it usually helps to use similar names
-> from the schematic in DT because DT authors are sorta translating
-> schematics to DT.
+> diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
+> index 7a11fdb687cc..a432b27dd849 100644
+> --- a/drivers/net/phy/motorcomm.c
+> +++ b/drivers/net/phy/motorcomm.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0+
+>  /*
+> - * Motorcomm 8511/8521/8531/8531S PHY driver.
+> + * Motorcomm 8511/8521/8531/8531S/8821 PHY driver.
+>   *
+>   * Author: Peter Geis <pgwipeout@gmail.com>
+>   * Author: Frank <Frank.Sae@motor-comm.com>
+> @@ -16,7 +16,7 @@
+>  #define PHY_ID_YT8521		0x0000011a
+>  #define PHY_ID_YT8531		0x4f51e91b
+>  #define PHY_ID_YT8531S		0x4f51e91a
+> -
+> +#define PHY_ID_YT8821		0x4f51ea19
+>  /* YT8521/YT8531S Register Overview
+>   *	UTP Register space	|	FIBER Register space
+>   *  ------------------------------------------------------------
+> @@ -52,6 +52,15 @@
+>  #define YTPHY_SSR_SPEED_10M			0x0
+>  #define YTPHY_SSR_SPEED_100M			0x1
+>  #define YTPHY_SSR_SPEED_1000M			0x2
+> +/* bit9 as speed_mode[2], bit15:14 as Speed_mode[1:0]
+> + * Speed_mode[2:0]:
+> + * 100 = 2P5G
+> + * 011 = 10G
+> + * 010 = 1000 Mbps
+> + * 001 = 100 Mbps
+> + * 000 = 10 Mbps
+> + */
+> +#define YT8821_SSR_SPEED_2500M			0x4
 
-TL;DR: I'm fine with both "gated-oscillator" or "gated-fixed-clock" .
-Some tiny part in the back of my head wants to name things in the most
-specific way aka "gated-oscillator", but I guess "gated-fixed-clock" will
-possibly spare us the naming dance in the future :-)
+If these bits are spread around, why 0x4? Ahh, because you extract the
+bits and reform the value. Maybe:
 
-So I guess if nobody objects anymore, I'll go with "gated-fixed-clock".
+#define YTPHY_SSR_SPEED_10M			(0x0 << 14)
+#define YTPHY_SSR_SPEED_100M			(0x1 << 14)
+#define YTPHY_SSR_SPEED_1000M			(0x2 << 14)
+#define YTPHY_SSR_SPEED_10G			(0x3 << 14)
+#define YT8821_SSR_SPEED_2500M			(0x0 << 14) | BIT(9)
+#define YTPHY_SSR_SPEED_MASK			(0x3 << 14) | BIT(9)
 
---------- 8< --------
-Some background stuff for the oscillator / clock-buffer difference,
-which are actually both used on the Rock 5 ITX in question:
+> +#define YT8821_SDS_EXT_CSR_CTRL_REG			0x23
+> +#define YT8821_SDS_EXT_CSR_PLL_SETTING			0x8605
+> +#define YT8821_UTP_EXT_FFE_IPR_CTRL_REG			0x34E
+> +#define YT8821_UTP_EXT_FFE_SETTING			0x8080
+> +#define YT8821_UTP_EXT_VGA_LPF1_CAP_CTRL_REG		0x4D2
+> +#define YT8821_UTP_EXT_VGA_LPF1_CAP_SHT_SETTING		0x5200
+> +#define YT8821_UTP_EXT_VGA_LPF2_CAP_CTRL_REG		0x4D3
+> +#define YT8821_UTP_EXT_VGA_LPF2_CAP_SHT_SETTING		0x5200
+> +#define YT8821_UTP_EXT_TRACE_CTRL_REG			0x372
+> +#define YT8821_UTP_EXT_TRACE_LNG_MED_GAIN_THR_SETTING	0x5A3C
+> +#define YT8821_UTP_EXT_IPR_CTRL_REG			0x374
+> +#define YT8821_UTP_EXT_IPR_ALPHA_IPR_SETTING		0x7C6C
+> +#define YT8821_UTP_EXT_ECHO_CTRL_REG			0x336
+> +#define YT8821_UTP_EXT_ECHO_SETTING			0xAA0A
+> +#define YT8821_UTP_EXT_GAIN_CTRL_REG			0x340
+> +#define YT8821_UTP_EXT_AGC_MED_GAIN_SETTING		0x3022
+> +#define YT8821_UTP_EXT_TH_20DB_2500_CTRL_REG		0x36A
+> +#define YT8821_UTP_EXT_TH_20DB_2500_SETTING		0x8000
+> +#define YT8821_UTP_EXT_MU_COARSE_FR_CTRL_REG		0x4B3
+> +#define YT8821_UTP_EXT_MU_COARSE_FR_FFE_GN_DC_SETTING	0x7711
+> +#define YT8821_UTP_EXT_MU_FINE_FR_CTRL_REG		0x4B5
+> +#define YT8821_UTP_EXT_MU_FINE_FR_FFE_GN_DC_SETTING	0x2211
+> +#define YT8821_UTP_EXT_ANALOG_CFG7_CTRL_REG		0x56
+> +#define YT8821_UTP_EXT_ANALOG_CFG7_RESET		0x20
+> +#define YT8821_UTP_EXT_ANALOG_CFG7_PI_CLK_SEL_AFE	0x3F
+> +#define YT8821_UTP_EXT_VCT_CFG6_CTRL_REG		0x97
+> +#define YT8821_UTP_EXT_VCT_CFG6_FECHO_AMP_TH_SETTING	0x380C
+> +#define YT8821_UTP_EXT_TXGE_NFR_FR_THP_CTRL_REG		0x660
+> +#define YT8821_UTP_EXT_TXGE_NFR_FR_SETTING		0x112A
+> +#define YT8821_UTP_EXT_PLL_CTRL_REG			0x450
+> +#define YT8821_UTP_EXT_PLL_SPARE_SETTING		0xE9
+> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL23_CTRL_REG	0x466
+> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL23_SETTING	0x6464
+> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL01_CTRL_REG	0x467
+> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL01_SETTING	0x6464
+> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL23_CTRL_REG	0x468
+> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL23_SETTING	0x6464
+> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL01_CTRL_REG	0x469
+> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL01_SETTING	0x6464
 
-[my ASCII-art may not survive mail readers]
-                                        ------------
-VCC3v3_PI6C (to both VDD + Enable) -----| VCC*     | - CLKoutA - to PCIe
-  |                                     |          |
---------------------                    |          | - CLKoutB - to PCIe
-| 100MHz,3.3V,3225 |-------XTAL_IN_OUT -| Au5426   |
---------------------                    |          | - REFout (unconnected)
-                                        ------------
+All these _SETTING are magic numbers. Can you document any of them?
 
-Just asking Google for that "100MHz,3.3V,3225" brings me to
-"100 MHz Standard Clock Oscillators" on Mouser.
+> +/**
+> + * yt8821_probe() - read dts to get chip mode
+> + * @phydev: a pointer to a &struct phy_device
+> + *
+> + * returns 0 or negative errno code
 
-The Au5426 from Aurasemi is a "4 Differential and 1 LVCMOS Output Ultra
-Low Jitter High Performance Buffer" - aka a clock-buffer.
+kerneldoc requires a : after returns.
 
-In the Rock-5-ITX patch, I opted to ignore it, because on _that_ board
-it is transparent to the system, enabled by the same sources as the
-crystal and statically configured.
+> + */
+> +static int yt8821_probe(struct phy_device *phydev)
+> +{
+> +	struct device_node *node = phydev->mdio.dev.of_node;
+> +	struct device *dev = &phydev->mdio.dev;
+> +	struct yt8821_priv *priv;
+> +	u8 chip_mode;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	phydev->priv = priv;
+> +
+> +	if (of_property_read_u8(node, "motorcomm,chip-mode", &chip_mode))
+> +		chip_mode = YT8821_CHIP_MODE_FORCE_BX2500;
+> +
+> +	switch (chip_mode) {
+> +	case YT8821_CHIP_MODE_AUTO_BX2500_SGMII:
+> +		priv->chip_mode = YT8821_CHIP_MODE_AUTO_BX2500_SGMII;
+> +		break;
+> +	case YT8821_CHIP_MODE_FORCE_BX2500:
+> +		priv->chip_mode = YT8821_CHIP_MODE_FORCE_BX2500;
+> +		break;
+> +	default:
+> +		phydev_warn(phydev, "chip_mode err:%d\n", chip_mode);
+> +		return -EINVAL;
 
-On the other hand, the Au5426 actually _has_ input pins to select
-its working mode: 
-- select between different clock sources
-- enable/disable the output of the input clock as refclk
-- configure the clock buffer type (lvpecl, lvds, hcsl, hiz)
+Didn't the binding say it defaults to forced? Yet here it gives an
+error?
 
-So I didn't want to conjure a binding for that stuff out of thin air :-)
+> + * yt8821_get_rate_matching - read register to get phy chip mode
+
+Why? You have it in priv?
+
+> +/**
+> + * yt8821gen_init_paged() - generic initialization according to page
+> + * @phydev: a pointer to a &struct phy_device
+> + * @page: The reg page(YT8521_RSSR_FIBER_SPACE/YT8521_RSSR_UTP_SPACE) to
+> + * operate.
+> + *
+> + * returns 0 or negative errno code
+> + */
+> +static int yt8821gen_init_paged(struct phy_device *phydev, int page)
+> +{
+> +	int old_page;
+> +	int ret = 0;
+> +
+> +	old_page = phy_select_page(phydev, page & YT8521_RSSR_SPACE_MASK);
+> +	if (old_page < 0)
+> +		goto err_restore_page;
+> +
+> +	if (page & YT8521_RSSR_SPACE_MASK) {
+> +		/* sds init */
+> +		ret = __phy_modify(phydev, MII_BMCR, BMCR_ANENABLE, 0);
+> +		if (ret < 0)
+> +			goto err_restore_page;
+> +
+> +		ret = ytphy_write_ext(phydev, YT8821_SDS_EXT_CSR_CTRL_REG,
+> +				      YT8821_SDS_EXT_CSR_PLL_SETTING);
+> +		if (ret < 0)
+> +			goto err_restore_page;
+> +	} else {
+> +		/* utp init */
+> +		ret = ytphy_write_ext(phydev, YT8821_UTP_EXT_FFE_IPR_CTRL_REG,
+> +				      YT8821_UTP_EXT_FFE_SETTING);
+> +		if (ret < 0)
+> +			goto err_restore_page;
+> +
+
+...
+
+> +	}
+> +
+> +err_restore_page:
+> +	return phy_restore_page(phydev, old_page, ret);
+> +}
+> +
+> +/**
+> + * yt8821gen_init() - generic initialization
+> + * @phydev: a pointer to a &struct phy_device
+> + *
+> + * returns 0 or negative errno code
+> + */
+> +static int yt8821gen_init(struct phy_device *phydev)
+> +{
+> +	int ret = 0;
+> +
+> +	ret = yt8821gen_init_paged(phydev, YT8521_RSSR_FIBER_SPACE);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return yt8821gen_init_paged(phydev, YT8521_RSSR_UTP_SPACE);
+
+That is odd. Why not have two functions, rather than one with a
+parameter. You get better functions names then, making it clearer what
+each function is doing.
+
+> +}
+> +
+> +/**
+> + * yt8821_auto_sleep_config() - phy auto sleep config
+> + * @phydev: a pointer to a &struct phy_device
+> + * @enable: true enable auto sleep, false disable auto sleep
+> + *
+> + * returns 0 or negative errno code
+> + */
+> +static int yt8821_auto_sleep_config(struct phy_device *phydev, bool enable)
+> +{
+> +	int old_page;
+> +	int ret = 0;
+> +
+> +	old_page = phy_select_page(phydev, YT8521_RSSR_UTP_SPACE);
+> +	if (old_page < 0)
+> +		goto err_restore_page;
+> +
+> +	ret = ytphy_modify_ext(phydev,
+> +			       YT8521_EXTREG_SLEEP_CONTROL1_REG,
+> +			       YT8521_ESC1R_SLEEP_SW,
+> +			       enable ? 1 : 0);
+
+So each page has its own extension registers?
+
+> +	if (ret < 0)
+> +		goto err_restore_page;
+> +
+> +err_restore_page:
+> +	return phy_restore_page(phydev, old_page, ret);
+> +}
+> +
+
+> +/**
+> + * yt8821_config_init() - phy initializatioin
+> + * @phydev: a pointer to a &struct phy_device
+> + *
+> + * returns 0 or negative errno code
+> + */
+> +static int yt8821_config_init(struct phy_device *phydev)
+> +{
+> +	struct yt8821_priv *priv = phydev->priv;
+> +	int ret, val;
+> +
+> +	phydev->irq = PHY_POLL;
+
+Why do this?
+
+> +
+> +	val = ytphy_read_ext_with_lock(phydev, YT8521_CHIP_CONFIG_REG);
+> +	if (priv->chip_mode == YT8821_CHIP_MODE_AUTO_BX2500_SGMII) {
+> +		ret = ytphy_modify_ext_with_lock(phydev,
+> +						 YT8521_CHIP_CONFIG_REG,
+> +						 YT8521_CCR_MODE_SEL_MASK,
+> +						 FIELD_PREP(YT8521_CCR_MODE_SEL_MASK, 0));
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		__assign_bit(PHY_INTERFACE_MODE_2500BASEX,
+> +			     phydev->possible_interfaces,
+> +			     true);
+> +		__assign_bit(PHY_INTERFACE_MODE_SGMII,
+> +			     phydev->possible_interfaces,
+> +			     true);
+> +
+> +		phydev->rate_matching = RATE_MATCH_NONE;
+> +	} else if (priv->chip_mode == YT8821_CHIP_MODE_FORCE_BX2500) {
+> +		ret = ytphy_modify_ext_with_lock(phydev,
+> +						 YT8521_CHIP_CONFIG_REG,
+> +						 YT8521_CCR_MODE_SEL_MASK,
+> +						 FIELD_PREP(YT8521_CCR_MODE_SEL_MASK, 1));
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		phydev->rate_matching = RATE_MATCH_PAUSE;
+> +	}
+
+The idea of this phydev->possible_interfaces is to allow the core to
+figure out what mode is most appropriate. So i would drop the mode in
+DT, default to auto, and let the core tell you it wants 2500 BaseX if
+that is all the MAC can do.
+
+> +static int yt8821_read_status(struct phy_device *phydev)
+> +{
+> +	struct yt8821_priv *priv = phydev->priv;
+> +	int old_page;
+> +	int ret = 0;
+> +	int link;
+> +	int val;
+> +
+> +	if (phydev->autoneg == AUTONEG_ENABLE) {
+> +		int lpadv = phy_read_mmd(phydev,
+> +					 MDIO_MMD_AN, MDIO_AN_10GBT_STAT);
+> +
+> +		if (lpadv < 0)
+> +			return lpadv;
+> +
+> +		mii_10gbt_stat_mod_linkmode_lpa_t(phydev->lp_advertising,
+> +						  lpadv);
+> +	}
+> +
+> +	ret = ytphy_write_ext_with_lock(phydev,
+> +					YT8521_REG_SPACE_SELECT_REG,
+> +					YT8521_RSSR_UTP_SPACE);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = genphy_read_status(phydev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	old_page = phy_select_page(phydev, YT8521_RSSR_UTP_SPACE);
+> +	if (old_page < 0)
+> +		goto err_restore_page;
+> +
+> +	val = __phy_read(phydev, YTPHY_SPECIFIC_STATUS_REG);
+> +	if (val < 0) {
+> +		ret = val;
+> +		goto err_restore_page;
+> +	}
+> +
+> +	link = val & YTPHY_SSR_LINK;
+> +	if (link)
+> +		yt8821_adjust_status(phydev, val);
+> +
+> +	if (link) {
+> +		if (phydev->link == 0)
+> +			phydev_info(phydev,
+> +				    "%s, phy addr: %d, link up, mii reg 0x%x = 0x%x\n",
+> +				    __func__, phydev->mdio.addr,
+> +				    YTPHY_SPECIFIC_STATUS_REG,
+> +				    (unsigned int)val);
+
+phydev_dbg()?
 
 
-Heiko
+> +		phydev->link = 1;
+> +	} else {
+> +		if (phydev->link == 1)
+> +			phydev_info(phydev, "%s, phy addr: %d, link down\n",
+> +				    __func__, phydev->mdio.addr);
 
+phydev_dbg()?
 
+	Andrew
 
