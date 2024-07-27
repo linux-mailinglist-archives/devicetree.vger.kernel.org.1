@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0528093DDEB
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:03:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0560493DE08
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:06:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B09782826A1
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 09:03:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83BC41F22559
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 09:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D69381D4;
-	Sat, 27 Jul 2024 09:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1953B54BD4;
+	Sat, 27 Jul 2024 09:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LDCNYx6o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FzmnWdzd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2827C446A5;
-	Sat, 27 Jul 2024 09:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3608481B9;
+	Sat, 27 Jul 2024 09:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722071006; cv=none; b=Lm7f7NxqXKP0TqXSCdLfwBylexdWtIV/xatXphgxBfzZb4ojgmgAeqEh2u710Sfrxo1b4UU8PQulePTB+4EW1Eh2pZAs0x8pkqDmXY11hl3VHam5RlB3g9IoeKDOcwl3zarhVHzbXjR4bHKVOjxVQY8kpkA+2oxXN1CgdSBR1ws=
+	t=1722071173; cv=none; b=czXuDSekFacMhwb7wQq/mpQMZo+W2Mi2Djxc6M/YdRmZqgD0v/rs/NPohE3XnsYaONgG0rR/WPKQ53VQPWaJTcQj6yfc1c+0LFjaUKWMYXDBprohXejfv8orMOoINs5XN0GuetvL700t+qirefkaoG3kOTMYMJ4zdoaG5c6jLHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722071006; c=relaxed/simple;
-	bh=vuzJjbJxlWslldrS96nzbWjN24fcUOlWq0xB/Pgml3M=;
+	s=arc-20240116; t=1722071173; c=relaxed/simple;
+	bh=Z4hMzwjlVCw7IekS4CNQPfHlyOxqR5j69BIvedqQkYU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P6UpUkIqomZqBJFwcdr2+NCcOzKrTq2H2XvxbEInR5FBzkstfjNlBDxfhU0d/2HLEZczUGXp2dx4UKZrPM/IgVld+GSVdSODhjMcb9toFfkXcia8b6qipiIIs5oee+UzVCMYXZMNw3UobIxdyespnGguPE63pYpz78ldAEeEHd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDCNYx6o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80484C32781;
-	Sat, 27 Jul 2024 09:03:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=K0uVk5BncFkvwPZXfcBlJzT6Ct4s9Tj5MRSgGjicwCLDuZCVZLGJ5sZRkDuDdgTVUiV1Zz669Y1b0zJscAToKdvYEH3sWdwzvYL6ikStT75ihcd9elX4tBDrCHk0uqn6GQZPdYDtF8y9bVc2J963K8eFhUSN8LjvVEqe0v0pu74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FzmnWdzd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80738C32781;
+	Sat, 27 Jul 2024 09:06:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722071005;
-	bh=vuzJjbJxlWslldrS96nzbWjN24fcUOlWq0xB/Pgml3M=;
+	s=k20201202; t=1722071172;
+	bh=Z4hMzwjlVCw7IekS4CNQPfHlyOxqR5j69BIvedqQkYU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LDCNYx6ofosQ9xO0I4LleWBNXOMRmMWYtdD4Eg9PI2afjGX8G+xr1hy9S5i4L2wge
-	 48T7n5XfdIbN7iTljIgQ+uT6EzyAw288ru9hLrMnLkC98X7slptpFEGsrUrMC7ImZv
-	 smaHjVSsKtny7qY7ou3+58TkGnVofflUlOiyStp91ZQtwrhjunDw67NIalcDoSwjct
-	 73sB7FCIt/3EGhW5CQCriHb/D7OJBoTg/bqBxjNAkPVVY/KAe5NM9ISQiskkRofarS
-	 VFHWkv59kax+1+F6MOq/WlEWALrAyXo3uXSZa2aF1IeT36J/X8+0fpEXLRAPcKz82F
-	 10ULQyiui9F1g==
-Message-ID: <3b6297d6-f954-499a-9504-233b27ff686a@kernel.org>
-Date: Sat, 27 Jul 2024 11:03:19 +0200
+	b=FzmnWdzdi28nnYKKzar3Td0ojsbTV+BNYCbunFUaUEW26slgC+e/wBHnb7SIXh+aY
+	 PUEmA/vkv/uaZsztqLEdq3jWQO/8VHeUpb3PlkpkVh6U2OOTMmnLUK8urqiz2AUTVx
+	 2JC8umjUoW614G+/KiuYtN9r6uoXllcoxbhpHCzN9FNp3pRlfiAOw7ylW5IgM02lJk
+	 DR6wpflN4JmYrjWEGEaUAmJKBzc9ibOA4snp+iz28S/UdmZU3R+EZchluooNborlDt
+	 JUYksZa7rLeQxWNyBSZ3bMd2b3Q+1b9uHPaffF9fih6YsG4+4YqPp9UhCRZmSiadVl
+	 IftGTbEs85aOg==
+Message-ID: <52bf1aa6-449f-4f77-992e-45e510fe6e7f@kernel.org>
+Date: Sat, 27 Jul 2024 11:06:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/tiny: Add driver for Sharp Memory LCD
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: Add Sharp Memory LCD
+ bindings
 To: Alex Lanzano <lanzano.alex@gmail.com>, mehdi.djait@bootlin.com,
  christophe.jaillet@wanadoo.fr,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -62,7 +63,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240725004734.644986-1-lanzano.alex@gmail.com>
  <20240726194456.1336484-1-lanzano.alex@gmail.com>
- <20240726194456.1336484-3-lanzano.alex@gmail.com>
+ <20240726194456.1336484-2-lanzano.alex@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,155 +109,149 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240726194456.1336484-3-lanzano.alex@gmail.com>
+In-Reply-To: <20240726194456.1336484-2-lanzano.alex@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/07/2024 21:44, Alex Lanzano wrote:
-> Add support for the monochrome Sharp Memory LCDs.
+> Add device tree bindings for the monochrome Sharp Memory LCD
 > 
 > Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
 > Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
 > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+
+The order of tags is incorrect. Who developed it first? Please read at
+Submitting patches - it explained this case quite precisely.
+
 > ---
->  MAINTAINERS                         |   7 +
->  drivers/gpu/drm/tiny/Kconfig        |  20 +
->  drivers/gpu/drm/tiny/Makefile       |   1 +
->  drivers/gpu/drm/tiny/sharp-memory.c | 726 ++++++++++++++++++++++++++++
->  4 files changed, 754 insertions(+)
->  create mode 100644 drivers/gpu/drm/tiny/sharp-memory.c
+>  .../bindings/display/sharp,ls010b7dh04.yaml   | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 71b739b40921..b5b08247a994 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7123,6 +7123,13 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
->  F:	drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
->  
-> +DRM DRIVER FOR SHARP MEMORY LCD
-> +M:	Alex Lanzano <lanzano.alex@gmail.com>
-> +S:	Maintained
-> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> diff --git a/Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml b/Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
+> new file mode 100644
+> index 000000000000..79bde7bf0d7d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/sharp,ls010b7dh04.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sharp Memory LCD panels
+> +
+> +maintainers:
+> +  - Alex Lanzano <lanzano.alex@gmail.com>
+> +
+> +description:
+> +  Sharp Memory LCDs are a series of monochrome displays that operate over
+> +  a SPI bus when the chip select is high. The displays require a signal (VCOM)
+> +  to be generated to prevent DC bias build up resulting in pixels being
+> +  unable to change. Three modes can be used to provide the VCOM signal
+> +  ("software", "external", "pwm").
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sharp,ls010b7dh04
+> +      - sharp,ls011b7dh03
+> +      - sharp,ls012b7dd01
+> +      - sharp,ls013b7dh03
+> +      - sharp,ls013b7dh05
+> +      - sharp,ls018b7dh02
+> +      - sharp,ls027b7dh01
+> +      - sharp,ls027b7dh01a
+> +      - sharp,ls032b7dd02
+> +      - sharp,ls044q7dh01
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-cs-high: true
 
+<form letter>
+This is a friendly reminder during the review process.
 
-Do you have drm-misc commit rights? If not, drop it. There is no point
-to put some other maintainer's tree in your entry. Git tree is already
-present in the maintainer's entry who is going to apply the patches.
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-
-> +F:	Documentation/devicetree/bindings/display/sharp,sharp-memory.yaml
-
-If you rename the file in your patchset, you must rename it EVERYWHERE.
-
-
-> +F:	drivers/gpu/drm/tiny/sharp-memory.c
-> +
->  DRM DRIVER FOR SITRONIX ST7586 PANELS
-
-
-...
-
-> +	smd->spi = spi;
-> +	drm = &smd->drm;
-> +	ret = drmm_mode_config_init(drm);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to initialize drm config\n");
-> +
-> +	smd->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-> +	if (smd->enable_gpio == NULL)
-> +		dev_warn(&spi->dev, "Enable gpio not defined\n");
-> +
-> +	/*
-> +	 * VCOM is a signal that prevents DC bias from being built up in
-> +	 * the panel resulting in pixels being forever stuck in one state.
-> +	 *
-> +	 * This driver supports three different methods to generate this
-> +	 * signal depending on EXTMODE pin:
-> +	 *
-> +	 * software (EXTMODE = L) - This mode uses a kthread to
-> +	 * periodically send a "maintain display" message to the display,
-> +	 * toggling the vcom bit on and off with each message
-> +	 *
-> +	 * external (EXTMODE = H) - This mode relies on an external
-> +	 * clock to generate the signal on the EXTCOMM pin
-> +	 *
-> +	 * pwm (EXTMODE = H) - This mode uses a pwm device to generate
-> +	 * the signal on the EXTCOMM pin
-> +	 *
-> +	 */
-> +	smd->vcom = 0;
-> +	if (device_property_read_string(&spi->dev, "vcom-mode", &vcom_mode_str))
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Unable to find vcom-mode node in device tree\n");
-> +
-> +	if (!strcmp("software", vcom_mode_str)) {
-> +		smd->vcom_mode = SHARP_MEMORY_SOFTWARE_VCOM;
-> +
-> +	} else if (!strcmp("external", vcom_mode_str)) {
-> +		smd->vcom_mode = SHARP_MEMORY_EXTERNAL_VCOM;
-> +
-> +	} else if (!strcmp("pwm", vcom_mode_str)) {
-> +		smd->vcom_mode = SHARP_MEMORY_PWM_VCOM;
-> +		ret = sharp_memory_init_pwm_vcom_signal(smd);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to initialize external COM signal\n");
-> +	} else {
-> +		return dev_err_probe(dev, -EINVAL, "Invalid value set for vcom-mode\n");
-> +	}
-> +
-> +	drm->mode_config.funcs = &sharp_memory_mode_config_funcs;
-> +
-> +	/* Set the DRM display mode depending on panel model */
-> +	model = (uintptr_t)spi_get_device_match_data(spi);
-> +	switch (model) {
-> +	case LS013B7DH03:
-> +		smd->mode = &sharp_memory_ls013b7dh03_mode;
-> +		break;
-> +
-> +	case LS010B7DH04:
-> +		smd->mode = &sharp_memory_ls010b7dh04_mode;
-> +		break;
-> +
-> +	case LS011B7DH03:
-> +		smd->mode = &sharp_memory_ls011b7dh03_mode;
-> +		break;
-> +
-> +	case LS012B7DD01:
-> +		smd->mode = &sharp_memory_ls012b7dd01_mode;
-> +		break;
-> +
-> +	case LS013B7DH05:
-> +		smd->mode = &sharp_memory_ls013b7dh05_mode;
-> +		break;
-> +
-> +	case LS018B7DH02:
-> +		smd->mode = &sharp_memory_ls018b7dh02_mode;
-> +		break;
-> +
-> +	case LS027B7DH01:
-> +		fallthrough;
-> +	case LS027B7DH01A:
-> +		smd->mode = &sharp_memory_ls027b7dh01_mode;
-> +		break;
-> +
-> +	case LS032B7DD02:
-> +		smd->mode = &sharp_memory_ls032b7dd02_mode;
-> +		break;
-> +
-> +	case LS044Q7DH01:
-> +		smd->mode = &sharp_memory_ls044q7dh01_mode;
-> +		break;
-
-This is over-complicated. Just store the mode in device match data.
-
+Thank you.
+</form letter>
 
 > +
-> +	default:
-> +		return dev_err_probe(&spi->dev, -EINVAL, "Invalid DRM display mode\n");
-> +	}
+> +  spi-max-frequency:
+> +    maximum: 2000000
+> +
+> +  sharp,vcom-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      software - This mode relies on a software operation to send a
+> +      "maintain display" message to the display, toggling the vcom
+> +      bit on and off with each message
+> +
+> +      external - This mode relies on an external clock to generate
+> +      the signal on the EXTCOMM pin
 
+External clock? Then you might be missing clocks property.
+> +
+> +      pwm - This mode relies on a pwm device to generate the signal
+> +      on the EXTCOMM pin
+
+That's an enum. Otherwise why "pony" would be a correct vcom-mode?
+
+> +
+> +  enable-gpios: true
+> +
+> +  pwms:
+> +    maxItems: 1
+> +    description: External VCOM signal
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-cs-high
+> +  - sharp,vcom-mode
+> +
+> +allOf:
+> +  - $ref: panel/panel-common.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        sharp,vcom-mode:
+> +          const: pwm
+> +    then:
+> +      required:
+> +        - pwms
+> +
+> +additionalProperties: false
+
+Instead:
+unevaluatedProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        display@0{
+
+Missing space (see DTS coding style or any DTS)
+
+> +            compatible = "sharp,ls013b7dh03";
+> +            reg = <0>;
+> +            spi-cs-high;
+> +            spi-max-frequency = <1000000>;
+> +            sharp,vcom-mode = "software";
+> +        };
+> +    };
+> +...
 
 Best regards,
 Krzysztof
