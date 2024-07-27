@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0560493DE08
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:06:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AA993DE0D
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:10:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83BC41F22559
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 09:06:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 971221C203BC
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 09:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1953B54BD4;
-	Sat, 27 Jul 2024 09:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E08381D4;
+	Sat, 27 Jul 2024 09:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FzmnWdzd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XYCPmNeh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3608481B9;
-	Sat, 27 Jul 2024 09:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC1943AAB;
+	Sat, 27 Jul 2024 09:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722071173; cv=none; b=czXuDSekFacMhwb7wQq/mpQMZo+W2Mi2Djxc6M/YdRmZqgD0v/rs/NPohE3XnsYaONgG0rR/WPKQ53VQPWaJTcQj6yfc1c+0LFjaUKWMYXDBprohXejfv8orMOoINs5XN0GuetvL700t+qirefkaoG3kOTMYMJ4zdoaG5c6jLHQ=
+	t=1722071399; cv=none; b=SokqYsG5M42unfK/fXZpJ8CUlmAikPg9TLmIF30HjoxxXGbrpWTmjTOelCdOvdheMKFQT6wQgQMJDDBNvJlezp2yfqsGFbXFkhVaoj3/jp62VUtyb3lVWEB80y8qo28ZIa3SK01nUZzqziHELxiDAIoyJwcE9gWkiNLNyYYhc8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722071173; c=relaxed/simple;
-	bh=Z4hMzwjlVCw7IekS4CNQPfHlyOxqR5j69BIvedqQkYU=;
+	s=arc-20240116; t=1722071399; c=relaxed/simple;
+	bh=eLsefthmcGYqxw5g4EybCkj266s7F3dR/OoW099n4xE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K0uVk5BncFkvwPZXfcBlJzT6Ct4s9Tj5MRSgGjicwCLDuZCVZLGJ5sZRkDuDdgTVUiV1Zz669Y1b0zJscAToKdvYEH3sWdwzvYL6ikStT75ihcd9elX4tBDrCHk0uqn6GQZPdYDtF8y9bVc2J963K8eFhUSN8LjvVEqe0v0pu74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FzmnWdzd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80738C32781;
-	Sat, 27 Jul 2024 09:06:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IolfPuh3KXRO6ozCoLOnnokPHIvCPrxo2hbJpBWWYFIA2vTTO0IFdd1lswou2C+5uWnFeTt5FeTC5JsVJp6aLxPsVyOMuKtqdJWiw8WFZbM2BqVQ6QczDc9FxOdTbQt30bITyH+PVUuccAVlLTv6ftHM3ChjWuvjjN5HOcQALmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XYCPmNeh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC38AC32781;
+	Sat, 27 Jul 2024 09:09:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722071172;
-	bh=Z4hMzwjlVCw7IekS4CNQPfHlyOxqR5j69BIvedqQkYU=;
+	s=k20201202; t=1722071399;
+	bh=eLsefthmcGYqxw5g4EybCkj266s7F3dR/OoW099n4xE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FzmnWdzdi28nnYKKzar3Td0ojsbTV+BNYCbunFUaUEW26slgC+e/wBHnb7SIXh+aY
-	 PUEmA/vkv/uaZsztqLEdq3jWQO/8VHeUpb3PlkpkVh6U2OOTMmnLUK8urqiz2AUTVx
-	 2JC8umjUoW614G+/KiuYtN9r6uoXllcoxbhpHCzN9FNp3pRlfiAOw7ylW5IgM02lJk
-	 DR6wpflN4JmYrjWEGEaUAmJKBzc9ibOA4snp+iz28S/UdmZU3R+EZchluooNborlDt
-	 JUYksZa7rLeQxWNyBSZ3bMd2b3Q+1b9uHPaffF9fih6YsG4+4YqPp9UhCRZmSiadVl
-	 IftGTbEs85aOg==
-Message-ID: <52bf1aa6-449f-4f77-992e-45e510fe6e7f@kernel.org>
-Date: Sat, 27 Jul 2024 11:06:05 +0200
+	b=XYCPmNehpOPnu868q0BIZL252/ESSFJFfy5bcnZcXfw2qBDzuNh+F9KlaJwrTnPAq
+	 ysXr6z+GmzWYwwIUPzGI8TLA8bVxW5vdcRa6x32SMat4T6OvWDzkgT/78YjRsTNhiM
+	 iLuY4RfkvOAxe53bo5tTyQ4cDtmLznvvSH13R8H/Q6sI7Q0N45jtaA+R98OcpuJkdJ
+	 W/i4+xvbet04J/21GjXbCmqMuwCXbwM7AV7iPa0rBDY4uz75aYhMBKFPutX/pDQ5Bk
+	 G6LehFM+E3niorWSdQ9KTnuOpvEikRDRg3KzU2zjQyqE/HEHDKbBkQ27G6bw2fwysF
+	 tGm2LGODwHxPA==
+Message-ID: <ddd1b5d5-d3b2-4f65-8021-2e53c9016b49@kernel.org>
+Date: Sat, 27 Jul 2024 11:09:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: Add Sharp Memory LCD
- bindings
-To: Alex Lanzano <lanzano.alex@gmail.com>, mehdi.djait@bootlin.com,
- christophe.jaillet@wanadoo.fr,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240725004734.644986-1-lanzano.alex@gmail.com>
- <20240726194456.1336484-1-lanzano.alex@gmail.com>
- <20240726194456.1336484-2-lanzano.alex@gmail.com>
+Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Add GameForce Ace
+To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, jagan@edgeble.ai,
+ andyshrk@163.com, jonas@kwiboo.se, sre@kernel.org, t.schramm@manjaro.org,
+ heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+References: <20240726194948.109326-1-macroalpha82@gmail.com>
+ <20240726194948.109326-5-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,149 +103,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240726194456.1336484-2-lanzano.alex@gmail.com>
+In-Reply-To: <20240726194948.109326-5-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/07/2024 21:44, Alex Lanzano wrote:
-> Add device tree bindings for the monochrome Sharp Memory LCD
+On 26/07/2024 21:49, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
-> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-
-The order of tags is incorrect. Who developed it first? Please read at
-Submitting patches - it explained this case quite precisely.
-
+> Add devicetree binding for the GameForce Ace.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/display/sharp,ls010b7dh04.yaml   | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml b/Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
-> new file mode 100644
-> index 000000000000..79bde7bf0d7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/sharp,ls010b7dh04.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sharp Memory LCD panels
-> +
-> +maintainers:
-> +  - Alex Lanzano <lanzano.alex@gmail.com>
-> +
-> +description:
-> +  Sharp Memory LCDs are a series of monochrome displays that operate over
-> +  a SPI bus when the chip select is high. The displays require a signal (VCOM)
-> +  to be generated to prevent DC bias build up resulting in pixels being
-> +  unable to change. Three modes can be used to provide the VCOM signal
-> +  ("software", "external", "pwm").
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sharp,ls010b7dh04
-> +      - sharp,ls011b7dh03
-> +      - sharp,ls012b7dd01
-> +      - sharp,ls013b7dh03
-> +      - sharp,ls013b7dh05
-> +      - sharp,ls018b7dh02
-> +      - sharp,ls027b7dh01
-> +      - sharp,ls027b7dh01a
-> +      - sharp,ls032b7dd02
-> +      - sharp,ls044q7dh01
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-cs-high: true
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
-> +
-> +  spi-max-frequency:
-> +    maximum: 2000000
-> +
-> +  sharp,vcom-mode:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: |
-> +      software - This mode relies on a software operation to send a
-> +      "maintain display" message to the display, toggling the vcom
-> +      bit on and off with each message
-> +
-> +      external - This mode relies on an external clock to generate
-> +      the signal on the EXTCOMM pin
-
-External clock? Then you might be missing clocks property.
-> +
-> +      pwm - This mode relies on a pwm device to generate the signal
-> +      on the EXTCOMM pin
-
-That's an enum. Otherwise why "pony" would be a correct vcom-mode?
-
-> +
-> +  enable-gpios: true
-> +
-> +  pwms:
-> +    maxItems: 1
-> +    description: External VCOM signal
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-cs-high
-> +  - sharp,vcom-mode
-> +
-> +allOf:
-> +  - $ref: panel/panel-common.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        sharp,vcom-mode:
-> +          const: pwm
-> +    then:
-> +      required:
-> +        - pwms
-> +
-> +additionalProperties: false
-
-Instead:
-unevaluatedProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        display@0{
-
-Missing space (see DTS coding style or any DTS)
-
-> +            compatible = "sharp,ls013b7dh03";
-> +            reg = <0>;
-> +            spi-cs-high;
-> +            spi-max-frequency = <1000000>;
-> +            sharp,vcom-mode = "software";
-> +        };
-> +    };
-> +...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
