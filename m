@@ -1,89 +1,88 @@
-Return-Path: <devicetree+bounces-88531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3320693E00C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 18:00:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D96093E014
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 18:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A45BD1F218A7
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 16:00:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80900B21746
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 16:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E13C181B8C;
-	Sat, 27 Jul 2024 16:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A221850B8;
+	Sat, 27 Jul 2024 16:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dnY2tWFK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qm1gZCAw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284DD1E533;
-	Sat, 27 Jul 2024 16:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA071EF12
+	for <devicetree@vger.kernel.org>; Sat, 27 Jul 2024 16:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722096033; cv=none; b=WRDFbLCk81M2i6nahNbm+Mj5E47gobr4jspoGH1MRoEuYIgfbhDZE2FSg6e3X0EPMf6Q62U/U4VUVxo8fSnk47+nysBMieMORF3Ow99P+1+7ZRDYClLSfOzdWciWcYcow1XbIMKvqp3R43yNc+wa0/UY8EtfHzGJD22t0RGYUtE=
+	t=1722096698; cv=none; b=JbR4VQSkK18Hhlos7kKR6UYBVSot+ara9BASBcYn3iD2RAbpoShc7ZTwOqj4UQg01hrpLg9wzvSn71KmbGK7fnvB7e+LgnVEGJFRGfYmcc+C2QiIIdrfVOrVtx+7ECSVbOf/taWjmAwqcqYy/sSCpflZzsIzDwlbuDLNkKJmOG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722096033; c=relaxed/simple;
-	bh=jZK/rmA4ayO7aWEQBS2PzK8pYVctyzjXoQECEIKOeMo=;
+	s=arc-20240116; t=1722096698; c=relaxed/simple;
+	bh=EsBhvQlOZK7H48/dvn9boK4pxLvMBa1HsD15rOYYEF8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qHBUrORiPCc8epNQbzuhwaqaTKWZPewBP6FrdWr19uQs4K594ZWkGf/0Ctv7l3Yf28q1qlx4EglrX9DMTVacKIvb/Xk3MugBwoQyTlcfsar0Zbin5FiY7yebONHYPzYpnOs2BZcbbQOW3Q8uciIkHEbHJgzd4OkeKhVhgEfpRAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dnY2tWFK; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722096031; x=1753632031;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jZK/rmA4ayO7aWEQBS2PzK8pYVctyzjXoQECEIKOeMo=;
-  b=dnY2tWFKJ1PpPXf35dqKf3Ju+QVETRvKgVUJ4HbPTz13CStKDpqXw6zV
-   VnzCc+LtnBNl/vnU6uGYSGlDKtxlWYLdGnG6MV24fT31LUq3s2gSTykt2
-   SSPFWQt4iBeMnGcR+MVNYBJ7dXnyaqsoi3dYeB2ha7ku/duX7dIBW2CLn
-   HSmecgEEKFqXQDiXtMWfkRfthlwYpBuWXS8DWxy4aYZzym4S3TD1aEWzu
-   grb6L/33o6Q0kI+cpDbDE/Pa29N7R5UEBZjlomHop99NuOz6UANsHFiTk
-   wdekVJngkiAxFXL/xywtmYjuLHsHI7pMbujnu3xeRPoDHYQVthQv50qmK
-   g==;
-X-CSE-ConnectionGUID: NW3LnwlPRH+x0H+HiwU2Lw==
-X-CSE-MsgGUID: jl04zFMxSo6/MsU9hX7HMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11146"; a="22788670"
-X-IronPort-AV: E=Sophos;i="6.09,241,1716274800"; 
-   d="scan'208";a="22788670"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jul 2024 09:00:30 -0700
-X-CSE-ConnectionGUID: lJb010xXT/C2Y/p9MNpB2g==
-X-CSE-MsgGUID: 1UJ96dyvRkOMvrEIihIpSA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,241,1716274800"; 
-   d="scan'208";a="84189567"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa002.jf.intel.com with ESMTP; 27 Jul 2024 09:00:26 -0700
-Date: Sat, 27 Jul 2024 23:58:35 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Ian Dannapel <iansdannapel@gmail.com>
-Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] fpga: Add Efinix Trion & Titanium serial SPI
- programming driver
-Message-ID: <ZqUZK14ROqNvVuiO@yilunxu-OptiPlex-7050>
-References: <20240620144217.124733-1-iansdannapel@gmail.com>
- <20240628152348.61133-1-iansdannapel@gmail.com>
- <20240628152348.61133-2-iansdannapel@gmail.com>
- <ZpDSz5dp+zFPYjVw@yilunxu-OptiPlex-7050>
- <CAKrir7iHjxnRvZvch8ADgGFymm_z1=rU8gOM+Q==xpe64G6xkA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HdgGtSo8Ms34pffgYBuv4m6FlmmJajIgMLgbXszHiBp4zQ9PKfRo+H1f9yzoNsMwDlxxmBTs89qGHoFZaCSh1N4vVMjEkeVfZaW2B3DBP6Ns7T/eLy/BD5+PyI+2hykbDEJTaGdq2FA0bWIKH9TVOA+ym5SxXGc7oI24NejBFtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qm1gZCAw; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52efd530a4eso3340030e87.0
+        for <devicetree@vger.kernel.org>; Sat, 27 Jul 2024 09:11:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722096694; x=1722701494; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UBusllycXeOxRmMQscoyIs5AgPJe93SHCpBqt0L+kPU=;
+        b=Qm1gZCAwG1+YvYM2F9t8LGJxmjauTzTqC3atj8JSqusHMg07yC0VDDyr4i09JeEBED
+         0LImvS912knWx9g6DkvEdbX06jf9ojdWdafBhi/3t4g+ztXzEY8LPxsFa9tn5KNebuds
+         r2TxwooNYUNd2OrmxGnJgy6ue96jwN66Oip5jWr5/pTj/kRtPPuK/0nwfVC2oiG6v1nI
+         GrHGG9MJn8Ji6oH7vvGakY+6BlsCqH5qYZcETB+CNg0C3HorgFxdWI0xy6AP6EM+nvxm
+         4hKFCCRhZzg/gvyVYN5v7M7WH43QPdc6+nb5NYSyjFTxjeydb/OQ1UcbuAmb1yOqZE6B
+         PKkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722096694; x=1722701494;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UBusllycXeOxRmMQscoyIs5AgPJe93SHCpBqt0L+kPU=;
+        b=ezVf2//gtdtJaBInIzfUwWviTghD+SLFsXoT6lqG5OYYz5IdfDESt6RRd3spZt4mwc
+         bdgBUn+ASg9CndlRG+xwx1XWPv5wGB/AFSZkCrLn+6sDlCu/d3d1QagXKP/bYK+QUPGF
+         rqhKB1lC3F6ChnPUM96BpMYIy/ofap8VrG+dqBbrA5UURKVw3rms4NtbMvcWzESRz5xX
+         nEACvbluCwbZZZGBLOG4L6Ve2JiL6LrP2/yLuCbrATnm193V4n26vAo5VdMVWwzUYmDH
+         xg0CR38jdIHcf0gO0M96HnXSsHTkqHWHiOY8PdPHQmBd267tJIJY6rSx5NY5MKJHaHy3
+         dwwA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/PodJ4pa9QkqnrsGE+QDWcIR8c/eY8VweWnQH7POdwYpV+WIFvaI4g3l1CMoEmFUIprde0C2gumMtKg60n38BCtK26Z8FsfpG5A==
+X-Gm-Message-State: AOJu0YyA77KPK50A8CdeeuTRmd8D9XvdNc50kTewmsZkBMqUjR8o95CI
+	E8BYMoo2SOBjMVo46s6d3FbIwhr0x1DiNsYUMWGzJ6tZkD5lntVZgl+YC4GJh+4=
+X-Google-Smtp-Source: AGHT+IGE/jZAAc2Nvw2MwerHR0yM2Y7j8htLQh1i+XFzPdpbP2zrSjL7bEwU58lE0zhsp1lfp1yK8Q==
+X-Received: by 2002:a2e:b710:0:b0:2ef:2c86:4d43 with SMTP id 38308e7fff4ca-2f12edf9e66mr19092791fa.3.1722096694188;
+        Sat, 27 Jul 2024 09:11:34 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f03d074b19sm7153491fa.110.2024.07.27.09.11.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Jul 2024 09:11:33 -0700 (PDT)
+Date: Sat, 27 Jul 2024 19:11:32 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, p.zabel@pengutronix.de, 
+	airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, 
+	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org, francesco@dolcini.it, 
+	frank.li@nxp.com
+Subject: Re: [PATCH v2 06/16] drm/imx: Add i.MX8qxp Display Controller
+ display engine
+Message-ID: <ib6brwxeai3wkgzglihfbqx7jakjslnftydbzo32xthijkd4u6@y4ebhgk5o3ec>
+References: <20240712093243.2108456-1-victor.liu@nxp.com>
+ <20240712093243.2108456-7-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,224 +91,203 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAKrir7iHjxnRvZvch8ADgGFymm_z1=rU8gOM+Q==xpe64G6xkA@mail.gmail.com>
+In-Reply-To: <20240712093243.2108456-7-victor.liu@nxp.com>
 
-On Thu, Jul 25, 2024 at 03:44:54PM +0200, Ian Dannapel wrote:
-> Hi Yilun, thanks for the review.
+On Fri, Jul 12, 2024 at 05:32:33PM GMT, Liu Ying wrote:
+> i.MX8qxp Display Controller display engine consists of all processing
+> units that operate in a display clock domain.  Add minimal feature
+> support with FrameGen and TCon so that the engine can output display
+> timings.  The display engine driver as a master binds FrameGen and
+> TCon drivers as components.  While at it, the display engine driver
+> is a component to be bound with the upcoming DRM driver.
+
+Generic question: why do you need so many small subdrivers? Are they
+used to represent the flexibility of the pipeline? Can you instantiate
+these units directly from the de(?) driver and reference created
+structures without the need to create subdevices?
+
 > 
-> Am Fr., 12. Juli 2024 um 09:00 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
-> >
-> > On Fri, Jun 28, 2024 at 05:23:46PM +0200, iansdannapel@gmail.com wrote:
-> > > From: Ian Dannapel <iansdannapel@gmail.com>
-> > >
-> >
-> > Please don't reply to the previous series when you post a new version.
-> sure
-> >
-> > > Add a new driver for loading binary firmware using "SPI passive
-> >
-> > Loading to some nvram or reporgraming to FPGA logic blocks.
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v2:
+> * Use OF alias id to get instance id.
+> * Add dev member to struct dc_tc.
+> 
+>  drivers/gpu/drm/imx/Kconfig     |   1 +
+>  drivers/gpu/drm/imx/Makefile    |   1 +
+>  drivers/gpu/drm/imx/dc/Kconfig  |   5 +
+>  drivers/gpu/drm/imx/dc/Makefile |   5 +
+>  drivers/gpu/drm/imx/dc/dc-de.c  | 151 +++++++++++++
+>  drivers/gpu/drm/imx/dc/dc-de.h  |  62 ++++++
+>  drivers/gpu/drm/imx/dc/dc-drv.c |  32 +++
+>  drivers/gpu/drm/imx/dc/dc-drv.h |  24 +++
+>  drivers/gpu/drm/imx/dc/dc-fg.c  | 366 ++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/imx/dc/dc-tc.c  | 137 ++++++++++++
+>  10 files changed, 784 insertions(+)
+>  create mode 100644 drivers/gpu/drm/imx/dc/Kconfig
+>  create mode 100644 drivers/gpu/drm/imx/dc/Makefile
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fg.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-tc.c
+> 
+> diff --git a/drivers/gpu/drm/imx/Kconfig b/drivers/gpu/drm/imx/Kconfig
+> index 03535a15dd8f..3e8c6edbc17c 100644
+> --- a/drivers/gpu/drm/imx/Kconfig
+> +++ b/drivers/gpu/drm/imx/Kconfig
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  
+> +source "drivers/gpu/drm/imx/dc/Kconfig"
+>  source "drivers/gpu/drm/imx/dcss/Kconfig"
+>  source "drivers/gpu/drm/imx/ipuv3/Kconfig"
+>  source "drivers/gpu/drm/imx/lcdc/Kconfig"
+> diff --git a/drivers/gpu/drm/imx/Makefile b/drivers/gpu/drm/imx/Makefile
+> index 86f38e7c7422..c7b317640d71 100644
+> --- a/drivers/gpu/drm/imx/Makefile
+> +++ b/drivers/gpu/drm/imx/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  
+> +obj-$(CONFIG_DRM_IMX8_DC) += dc/
+>  obj-$(CONFIG_DRM_IMX_DCSS) += dcss/
+>  obj-$(CONFIG_DRM_IMX) += ipuv3/
+>  obj-$(CONFIG_DRM_IMX_LCDC) += lcdc/
+> diff --git a/drivers/gpu/drm/imx/dc/Kconfig b/drivers/gpu/drm/imx/dc/Kconfig
+> new file mode 100644
+> index 000000000000..32d7471c49d0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/imx/dc/Kconfig
+> @@ -0,0 +1,5 @@
+> +config DRM_IMX8_DC
+> +	tristate "Freescale i.MX8 Display Controller Graphics"
+> +	depends on DRM && COMMON_CLK && OF && (ARCH_MXC || COMPILE_TEST)
+> +	help
+> +	  enable Freescale i.MX8 Display Controller(DC) graphics support
+> diff --git a/drivers/gpu/drm/imx/dc/Makefile b/drivers/gpu/drm/imx/dc/Makefile
+> new file mode 100644
+> index 000000000000..56de82d53d4d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/imx/dc/Makefile
+> @@ -0,0 +1,5 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +imx8-dc-drm-objs := dc-de.o dc-drv.o dc-fg.o dc-tc.o
+> +
+> +obj-$(CONFIG_DRM_IMX8_DC) += imx8-dc-drm.o
+> diff --git a/drivers/gpu/drm/imx/dc/dc-de.c b/drivers/gpu/drm/imx/dc/dc-de.c
+> new file mode 100644
+> index 000000000000..2c8268b76b08
+> --- /dev/null
+> +++ b/drivers/gpu/drm/imx/dc/dc-de.c
+> @@ -0,0 +1,151 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +#include <linux/component.h>
+> +#include <linux/container_of.h>
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "dc-de.h"
+> +#include "dc-drv.h"
+> +
+> +#define POLARITYCTRL		0xc
+> +#define  POLEN_HIGH		BIT(2)
+> +
+> +struct dc_de_priv {
+> +	struct dc_de engine;
+> +	void __iomem *reg_top;
+> +};
+> +
+> +static inline struct dc_de_priv *to_de_priv(struct dc_de *de)
+> +{
+> +	return container_of(de, struct dc_de_priv, engine);
+> +}
+> +
+> +static inline void
+> +dc_dec_write(struct dc_de *de, unsigned int offset, u32 value)
+> +{
+> +	struct dc_de_priv *priv = to_de_priv(de);
+> +
+> +	writel(value, priv->reg_top + offset);
 
-Sorry for typo, this is a question:
+Is there a point in this wrapper? Can you call writel directly? This
+question generally applies to the driver. I see a lot of small functions
+which can be inlined without losing the clarity.
 
-  Loading to some nvram or reporgraming to FPGA logic blocks?
+> +}
+> +
+> +static void dc_dec_init(struct dc_de *de)
+> +{
+> +	dc_dec_write(de, POLARITYCTRL, POLEN_HIGH);
+> +}
+> +
+> +static int dc_de_bind(struct device *dev, struct device *master, void *data)
+> +{
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct dc_drm_device *dc_drm = data;
+> +	struct dc_de_priv *priv;
+> +	int ret;
+> +
+> +	priv = drmm_kzalloc(&dc_drm->base, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->reg_top = devm_platform_ioremap_resource_byname(pdev, "top");
+> +	if (IS_ERR(priv->reg_top))
+> +		return PTR_ERR(priv->reg_top);
+> +
+> +	priv->engine.irq_shdld = platform_get_irq_byname(pdev, "shdload");
+> +	if (priv->engine.irq_shdld < 0)
+> +		return priv->engine.irq_shdld;
+> +
+> +	priv->engine.irq_framecomplete =
+> +				platform_get_irq_byname(pdev, "framecomplete");
+> +	if (priv->engine.irq_framecomplete < 0)
+> +		return priv->engine.irq_framecomplete;
+> +
+> +	priv->engine.irq_seqcomplete =
+> +				platform_get_irq_byname(pdev, "seqcomplete");
+> +	if (priv->engine.irq_seqcomplete < 0)
+> +		return priv->engine.irq_seqcomplete;
+> +
+> +	priv->engine.id = of_alias_get_id(dev->of_node, "dc0-display-engine");
 
-> >
-> > > programming" on Efinix FPGAs.
-> > >
-> > > Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
-> > > ---
-> > >  drivers/fpga/Kconfig                    |   8 +
-> > >  drivers/fpga/Makefile                   |   1 +
-> > >  drivers/fpga/efinix-trion-spi-passive.c | 219 ++++++++++++++++++++++++
-> > >  3 files changed, 228 insertions(+)
-> > >  create mode 100644 drivers/fpga/efinix-trion-spi-passive.c
-> > >
-> > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> > > index 37b35f58f0df..25579510e49e 100644
-> > > --- a/drivers/fpga/Kconfig
-> > > +++ b/drivers/fpga/Kconfig
-> > > @@ -83,6 +83,14 @@ config FPGA_MGR_XILINX_SPI
-> > >         FPGA manager driver support for Xilinx FPGA configuration
-> > >         over slave serial interface.
-> > >
-> > > +config FPGA_MGR_EFINIX_SPI
-> > > +     tristate "Efinix FPGA configuration over SPI passive"
-> > > +     depends on SPI
-> > > +     help
-> > > +       This option enables support for the FPGA manager driver to
-> > > +       configure Efinix Trion and Titanium Series FPGAs over SPI
-> > > +       using passive serial mode.
-> > > +
-> > >  config FPGA_MGR_ICE40_SPI
-> > >       tristate "Lattice iCE40 SPI"
-> > >       depends on OF && SPI
-> > > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> > > index aeb89bb13517..1a95124ff847 100644
-> > > --- a/drivers/fpga/Makefile
-> > > +++ b/drivers/fpga/Makefile
-> > > @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)               += ts73xx-fpga.o
-> > >  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)   += xilinx-core.o
-> > >  obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)      += xilinx-selectmap.o
-> > >  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)    += xilinx-spi.o
-> > > +obj-$(CONFIG_FPGA_MGR_EFINIX_SPI)    += efinix-trion-spi-passive.o
-> > >  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)     += zynq-fpga.o
-> > >  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)   += zynqmp-fpga.o
-> > >  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)   += versal-fpga.o
-> > > diff --git a/drivers/fpga/efinix-trion-spi-passive.c b/drivers/fpga/efinix-trion-spi-passive.c
-> > > new file mode 100644
-> > > index 000000000000..eb2592e788b9
-> > > --- /dev/null
-> > > +++ b/drivers/fpga/efinix-trion-spi-passive.c
-> > > @@ -0,0 +1,219 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Trion and Titanium Series FPGA SPI Passive Programming Driver
-> > > + *
-> > > + * Copyright (C) 2024 iris-GmbH infrared & intelligent sensors
-> > > + *
-> > > + * Ian Dannapel <iansdannapel@gmail.com>
-> > > + *
-> > > + * Manage Efinix FPGA firmware that is loaded over SPI using
-> > > + * the serial configuration interface.
-> > > + */
-> > > +
-> > > +#include <linux/delay.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/fpga/fpga-mgr.h>
-> > > +#include <linux/gpio/consumer.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/mod_devicetable.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/spi/spi.h>
-> > > +#include <linux/sizes.h>
-> > > +
-> > > +struct efinix_spi_conf {
-> > > +     struct spi_device *spi;
-> > > +     struct gpio_desc *cdone;
-> > > +     struct gpio_desc *creset;
-> > > +     struct gpio_desc *cs;
-> > > +};
-> > > +
-> > > +static int get_cdone_gpio(struct fpga_manager *mgr)
-> >
-> > Is it better use 'struct efinix_spi_conf *conf' as parameter?
-> >
-> > Same for the following functions.
-> >
-> > > +{
-> > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > +     int ret;
-> > > +
-> > > +     ret = gpiod_get_value(conf->cdone);
-> > > +     if (ret < 0)
-> > > +             dev_err(&mgr->dev, "Error reading CDONE (%d)\n", ret);
-> > > +
-> > > +     return ret;
-> > > +}
-> > > +
-> > > +static void reset(struct fpga_manager *mgr)
-> >
-> > Please unify the naming of the internal functions. You use
-> > 'efinix_spi_apply_clk_cycles()' below.
-> >
-> > > +{
-> > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > +
-> > > +     gpiod_set_value(conf->creset, 1);
-> > > +     /* wait tCRESET_N */
-> > > +     usleep_range(5, 15);
-> > > +     gpiod_set_value(conf->creset, 0);
-> > > +}
-> > > +
-> > > +static enum fpga_mgr_states efinix_spi_state(struct fpga_manager *mgr)
-> > > +{
-> > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > +
-> > > +     if (conf->cdone && get_cdone_gpio(mgr) == 1)
-> > > +             return FPGA_MGR_STATE_OPERATING;
-> > > +
-> > > +     return FPGA_MGR_STATE_UNKNOWN;
-> > > +}
-> > > +
-> > > +static int efinix_spi_apply_clk_cycles(struct fpga_manager *mgr)
-> > > +{
-> > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > +     char data[13] = {0};
-> > > +
-> > > +     return spi_write(conf->spi, data, sizeof(data));
-> > > +}
-> > > +
-> > > +static int efinix_spi_write_init(struct fpga_manager *mgr,
-> > > +                              struct fpga_image_info *info,
-> > > +                              const char *buf, size_t count)
-> > > +{
-> > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > +
-> > > +     if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
-> > > +             dev_err(&mgr->dev, "Partial reconfiguration not supported\n");
-> > > +             return -EINVAL;
-> > > +     }
-> > > +
-> > > +     /* reset with chip select active */
-> > > +     gpiod_set_value(conf->cs, 1);
-> >
-> > Why operating chip selective at SPI client driver? Isn't it the job for SPI
-> > controller?
-> to enter the passive programming mode, a reset must be executed while
-> the chip select is active.
-> The is controlling the chip select from here, since I expect that the
-> SPI controller to only activate
-> the CS when communicating.
+Is this alias documented somewhere? Is it Acked by DT maintainers?
 
-The concern is, it may conflict with the underlying cs control in spi
-controller.
+> +	if (priv->engine.id < 0) {
+> +		dev_err(dev, "failed to get alias id: %d\n", priv->engine.id);
+> +		return priv->engine.id;
+> +	}
+> +
+> +	priv->engine.dev = dev;
+> +
+> +	dev_set_drvdata(dev, priv);
+> +
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dc_drm->de[priv->engine.id] = &priv->engine;
+> +
+> +	return 0;
+> +}
+> +
 
-There are several control flags in struct spi_transfter to affect cs. Is
-there any chance using them, or try to improve if they doesn't meet your
-request?
-
-> >
-> > > +     usleep_range(5, 15);
-> > > +     reset(mgr);
-> > > +
-> > > +     /* wait tDMIN */
-> > > +     usleep_range(100, 150);
-
-And these ones, or you could use some delay controls in struct spi_transfer.
-
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int efinix_spi_write(struct fpga_manager *mgr, const char *buf,
-> > > +                         size_t count)
-> > > +{
-> > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > +     int ret;
-> > > +
-> > > +     ret = spi_write(conf->spi, buf, count);
-> > > +     if (ret) {
-> > > +             dev_err(&mgr->dev, "SPI error in firmware write: %d\n",
-> > > +                     ret);
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     /* append at least 100 clock cycles */
-> > > +     efinix_spi_apply_clk_cycles(mgr);
-> > > +
-> > > +     /* release chip select */
-> > > +     gpiod_set_value(conf->cs, 0);
-> >
-> > Is it correct? What if there is remaining data to write?
-> I assumed that the spi controller should write complete buffer and
-> decide on the transfer block size,
-> so there shouldn't be any remaining data. Can someone confirm?
-
-This is not about spi transfer, it is the fpga_manager_ops.write could
-be called multiple times during one time reprogramming. Please
-investigate more about the FPGA mgr core.
-
-Thanks,
-Yilun
+-- 
+With best wishes
+Dmitry
 
