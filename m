@@ -1,68 +1,59 @@
-Return-Path: <devicetree+bounces-88523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB8093DFA4
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 16:00:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A5793DFAC
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 16:12:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B5FE1F21662
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 14:00:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B818D28136B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 14:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AFD155A55;
-	Sat, 27 Jul 2024 14:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA172172762;
+	Sat, 27 Jul 2024 14:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KBlFGSQ0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etpzCSRg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD09E4C9B;
-	Sat, 27 Jul 2024 14:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC31B171679;
+	Sat, 27 Jul 2024 14:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722088820; cv=none; b=Ca3DDp+5/vaZMarmk3drGaX+PU/tnQuWMt6XPmXyLsZbp56YLoTJlHU3tPBx78OFEEHwRCsv3JN9wqwRfSDNb8TOTK1zMNo09hYdDbrqDeg0lbEFR2OS6ikWMT5e1k81KjKgDYojcB943VmsRxwzzU7Yw+v2nvwungGjLNYGHEc=
+	t=1722089536; cv=none; b=jPuaAQoltopkjhbXKZoU7Kzqx452FmwMGOtdEArCHScjc02lX+TCy3I2iUHYCHV3vXqSvmtpJ8VHtv2EJmGNyuCuzI5xtD2JPy4UBMLC2WPGGyeaKcWxxr8SVhHCyB6YeqvmvNRShHKh8tPaFUsKZC1bNpmb/oy5vTWfFN81X5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722088820; c=relaxed/simple;
-	bh=kng2a24IIhui3ei3nXplkXa+REq/o4eUmggboW0tYEQ=;
+	s=arc-20240116; t=1722089536; c=relaxed/simple;
+	bh=LAXD1eyCD4cqWYJ3DXOC9Ot083musefdyG8yo+EdFpo=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Udm39JXiAX60qnPxpwdMAlQQ/7ewATyToi2RLyJQP7RkNPSI9RF4q4re7nX6MWDeKaQl6Oc8SnHikPQikU+oopb50vouHKe4YVoM8DdshjUBk66sOJgRxUtNaKvtBO9JTU7+kLgD67JxuuohokRmkgpwJmGzYhXVmyiobSUsLvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KBlFGSQ0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DDFEC32781;
-	Sat, 27 Jul 2024 14:00:14 +0000 (UTC)
+	 MIME-Version:Content-Type; b=L71obKtvVtvlka6nlDODDnsRqvqp+F/w7ufwvRxApFBBdAf+F7fCkFhuNMgrnpzoFoqwXnmNx0C+Inurd/qgnIZbU0olaFAuZI23BqDJ36c9nRjrZpkllu0tq7GqgxO/oBH9Umjm3QSexreZ2Bup+/wrRRfLAbGja36iWsPH//8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etpzCSRg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C1CC32781;
+	Sat, 27 Jul 2024 14:12:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722088819;
-	bh=kng2a24IIhui3ei3nXplkXa+REq/o4eUmggboW0tYEQ=;
+	s=k20201202; t=1722089536;
+	bh=LAXD1eyCD4cqWYJ3DXOC9Ot083musefdyG8yo+EdFpo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KBlFGSQ0Gaa1m/TmqfRjy2wAhLODtlax6ymklp7wArD/kpJawijK7sklYdpIWNm37
-	 UYzz5GLh9DoiGC+c4oWN+7ZpyZ8AlL/CnkUBQqpkM2zBPihdbAwjOAM6e+QmmV6uhx
-	 aCQc/CcRY7OjkuZVRi9k95XMdDStH6l1l6vbh3WuhF4bsBDkW4GkAGG2Q+uRL4nh4A
-	 AJ/eUPsrS6z0IrqK1HOA1I2SIbdk30kc4r9w+/2g7bTSD2JiBJLW9oaaNTjTaB5etP
-	 wP/lihvLlAh+6EuLdcsY9b5wb7uAmlHrKMmZPrIYycaY78TBJO+h7aZUVNNYNKnVgY
-	 cVZvW2rCntZyA==
-Date: Sat, 27 Jul 2024 15:00:11 +0100
+	b=etpzCSRg7aPcW+yfWja0iw8A6aN7EeobFXpEzdIRD9yK3NeOeVIw3SznVnU095EVk
+	 EeDZOzOjYfXPpm9ODXfoVnAgT5NyVQjaQmEp88cZPEoERUuLfpiFYu1ocMKHHEIex9
+	 RVRN96doH+3/uuAoSicRS1V6tYp8iaYgSJbMmmgKbbCPK8CbAlqi7vOFxTrCONx37Q
+	 dN1d/3zgZQRtxqji5JJjbp1047ekTZu/tHDWXN2hKKZjtLjIT3CT77SYKNApz2oBSE
+	 1AJxKgvh8LWdM/dPZRoOq2FyXbQRjNmXLwHSoG01dli2hqAL5EvyLuosEPrAELbDds
+	 oHco60I1RZOdw==
+Date: Sat, 27 Jul 2024 15:12:08 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>, Krzysztof
- Kozlowski <krzk@kernel.org>, "lars@metafoo.de" <lars@metafoo.de>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "dima.fedrau@gmail.com" <dima.fedrau@gmail.com>,
- "marcelo.schmitt1@gmail.com" <marcelo.schmitt1@gmail.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Lorenz
- Christian (ME-SE/EAD2)" <Christian.Lorenz3@de.bosch.com>, "Frauendorf
- Ulrike (ME/PJ-SW3)" <Ulrike.Frauendorf@de.bosch.com>, "Dolde Kai
- (ME-SE/PAE-A3)" <Kai.Dolde@de.bosch.com>
-Subject: Re: [PATCH] dt-bindings: iio: imu: SMI240: add bosch,smi240.yaml
-Message-ID: <20240727150011.019344c6@jic23-huawei>
-In-Reply-To: <20240724-ogle-equal-d14de4318080@spud>
-References: <20240724125115.10110-1-Jianping.Shen@de.bosch.com>
-	<20a8ad37-f6ce-4342-a2f7-bf3495dfeb69@kernel.org>
-	<AM8PR10MB47219903C83BA4F0AFE2DAA3CDAA2@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-	<20240724-ogle-equal-d14de4318080@spud>
+To: wangshuaijie@awinic.com
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, waqar.hameed@axis.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ liweilei@awinic.com, kangjiajun@awinic.com
+Subject: Re: [PATCH V5 1/2] dt-bindings: iio: aw9610x: Add bindings for
+ aw9610x sensor
+Message-ID: <20240727151208.667a9df7@jic23-huawei>
+In-Reply-To: <20240726061312.1371450-2-wangshuaijie@awinic.com>
+References: <20240726061312.1371450-1-wangshuaijie@awinic.com>
+	<20240726061312.1371450-2-wangshuaijie@awinic.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -73,30 +64,116 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Wed, 24 Jul 2024 16:25:39 +0100
-Conor Dooley <conor@kernel.org> wrote:
+On Fri, 26 Jul 2024 06:13:11 +0000
+wangshuaijie@awinic.com wrote:
 
-> On Wed, Jul 24, 2024 at 02:19:25PM +0000, Shen Jianping (ME-SE/EAD2) wrote:
-> > Anyway, please send bindings with driver in the same patchset.
-> >   
-> > -> It's fine for us. Nevertheless according to the Devicetree (DT) binding submitting rules 1.1  
-> > 
-> > " The Documentation/ and include/dt-bindings/ portion of the patch should be a separate patch." See -> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-> > 
-> > Shall we still put the binding and driver in the same patch ?  
+> From: shuaijie wang <wangshuaijie@awinic.com>
 > 
-> No, different patches please. Also, please fix your mail client so that
-> it quotes emails properly.
-To add a little more detail.
-We are looking for a cover letter and a pair of patches.
-1st adds the dt-binding docs.
-2nd provides the driver.
+> Add device tree bindings for aw9610x proximity sensor.
+> 
+> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+> ---
+>  .../iio/proximity/awinic,aw9610x.yaml         | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/awinic,aw9610x.yaml
 
-The cover letter provides a brief summary of the whole series and provides
-a convenient name for tracking it as a whole.
+No wild cards in naming of dt-bindings or within the driver.
+It goes wrong far too often because manufacturers love to release
+new devices that have similar part names but are completely unrelated.
 
-Take a look at how other recent driver addition patch series have been
-broken up.
+So we just name everything after the first part supported.
+
+One other thing inline.
 
 Jonathan
+
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/awinic,aw9610x.yaml b/Documentation/devicetree/bindings/iio/proximity/awinic,aw9610x.yaml
+> new file mode 100644
+> index 000000000000..631b1fe5a900
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/proximity/awinic,aw9610x.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/proximity/awinic,aw9610x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic's AW9610X capacitive proximity sensor
+
+Title is less important for wild cards but even here I'd just name it
+after one part + add "and similar" to the end of the title.
+
+title: Awinic's AW96101 capacity proximity sensor and similar
+
+> +
+> +maintainers:
+> +  - Wang Shuaijie <wangshuaijie@awinic.com>
+> +
+> +description: |
+> +  Awinic's AW9610X proximity sensor.
+> +  The specific absorption rate (SAR) is a metric that measures
+> +  the degree of absorption of electromagnetic radiation emitted by
+> +  wireless devices, such as mobile phones and tablets, by human tissue.
+> +  In mobile phone applications, the proximity sensor is primarily
+> +  used to detect the proximity of the human body to the phone. When the
+> +  phone approaches the human body, it will actively reduce the transmit
+> +  power of the antenna to keep the SAR within a safe range. Therefore,
+> +  we also refer to the proximity sensor as a SAR sensor.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - awinic,aw96103
+> +      - awinic,aw96105
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Generated by the device to announce that a close/far
+> +      proximity event has happened.
+> +    maxItems: 1
+> +
+> +  vcc-supply:
+> +    description:
+> +      Optional regulator for chip, 1.7V-3.6V.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+
+vcc-supply should be required.
+Note this is about the binding documenting the need for power vs
+an optional powersupply which some devices have.  It is not
+related to whether the dts files actually provide that supply
+(though good if they do) because the regulator core will happily
+provide you with a fake regulator on the assumption that any regulators
+we don't know about must be turned on already.
+
+A well written dts will use a fixed regulator to provide more
+description to the drivers etc.
+
+Jonathan
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        proximity@12 {
+> +            compatible = "awinic,aw96103";
+> +            reg = <0x12>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+> +        };
+> +    };
+
 
