@@ -1,138 +1,148 @@
-Return-Path: <devicetree+bounces-88505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4691593DF1F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 13:17:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 191BC93DF23
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 13:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4E1B1F21C15
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:17:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469D01C212E2
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C36653E22;
-	Sat, 27 Jul 2024 11:17:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zHAxzyqP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CAC51016;
+	Sat, 27 Jul 2024 11:25:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB3F4D9FE
-	for <devicetree@vger.kernel.org>; Sat, 27 Jul 2024 11:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265BF41746;
+	Sat, 27 Jul 2024 11:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722079034; cv=none; b=bszyo7zWkO62E8k717itvdxhEk0EVdcAA9IWr+GaB2YLzjCXQNmFsLpD4D6sISJ4LhHRoFcXAkuaynWksmAH5FPs63I4dmhd++ob/EpQGGj0f5b0jlY7rzTkXX7IjHFkMraYFJL1UU8bwUiSBfzLAcsTxs6z8nTU2RIHkRnOKek=
+	t=1722079538; cv=none; b=F0SwgH9z7FFt5P0gNaZ/c6pe+sg48J+enHkuwWJgIlXeSpIM021x6IrUVM4U10ne5xFgXPOwTrTDTcHHGse2+XFE49Ez8wH44CdOI09Ka9C67/bM/71xhhSrXo9zldcrIZg04ojh6Vygw1kS1tx7F+Rh2rbLN8Iw0gFUKnsYyrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722079034; c=relaxed/simple;
-	bh=K/OyH/TONUiOndjiSj9G40F9VMCneoDFn/qv59esQ8A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mXF6FCr1v6A/V0qFpWPC6OdxL0drUDbXrLLwI32RJB+Im1gQfUJ+yRCuPS0+waJJ6KI0vaqzFtWIhCHNZwyJJxo9RM00nxc/USVi0tTOfi+w9ZbQomN738BO1gIk8yC6Q7mkgP9BrLEDdcMOiBUoWFCO0wM/aOFZMJtjcjYcq3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zHAxzyqP; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ef2ed59200so24630561fa.3
-        for <devicetree@vger.kernel.org>; Sat, 27 Jul 2024 04:17:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722079031; x=1722683831; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fkpa8TJ5OIzpKRb43AjTpsIXqFuO8ZOzenewpTC4PxI=;
-        b=zHAxzyqPBrxjqxrpzAdTPW5JclRhSdaU12FIZ2yVywFpap20hTNQ3HfTBWqHFtGcnM
-         VOQXnea3tgqZ4msrP0+wFRt6i/ITKC69AficBbTU7W+2RMJ/r8AX19nj6mixD4tI8xGY
-         R7TeF1FL4Was2ZUIzku68Imom7vQVxEBxA1mHO/S0urKj0sS1HTAIRZAY4OFjl/CDtmt
-         5RiP/V6b6h9sYy0GAaaGarVCg8KfuP6p0aeWCR9AskvXTIynYHlm8HVvD+eADcTXdNvD
-         19ISXhSj8bs9HVp3t4V9gXmm/BqrHoT99X5PHQhDUzpIP8DGvsMud/xhHaUiEPau/Ap8
-         /SKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722079031; x=1722683831;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fkpa8TJ5OIzpKRb43AjTpsIXqFuO8ZOzenewpTC4PxI=;
-        b=c2Q0d8tsKQ3yYU9vLPY4WsweejLcXsW7QqhiXk00J9Bm/L1h9cGckKp4U4PjfrOXuL
-         Rdk9f/efH3NhHGUifKBpUX5dyjAlaHPXxSS3ir2v7PSL70MK3l2tqxdRd127Efmjdt5z
-         lHqkv6V25lUTj1tmCge3vy1aif7uyqyTqLOpPd8Xcq3VrkCXGoZna7AxKyavLWLqzygj
-         MWVg3NMS/R/kcqrO2bjH4QYMfAztId5MR+KIVbSDvXaTLY/MBZsXfDBijboCiQ63HI/K
-         dEugakWWt0nHw4/1q454PIRlWaOwOXPaIzmWnLkzYLehnJLGebBk7LxJ1i7jnPthbqyD
-         rRkw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7OdtO5CXLvcXL3w0a6To7OhhPc6TyCSixTFWRILsygNzD0yMO3TDpiote5KfZjiyepW/cp/5zwaieVhjgjjuOaPTJF+hN34QCKA==
-X-Gm-Message-State: AOJu0YwPBuuCRDY87UcQ4+O4phQHkY2W3QL5b7MtsV/6/muXQ/NKupId
-	3IA1aXYgzV1ynEpIgyexE+wE89Xi0ZtXk3oNLRO2fdesStsNATbvMJyerVSuTVY=
-X-Google-Smtp-Source: AGHT+IFV2u5maYoEb8aiufChQSWaSXHdEC+3/iMuz9LLuZn9KA+LN3EVhcasTTkA+CVS8KmRnu6Uww==
-X-Received: by 2002:ac2:511c:0:b0:52c:dac3:392b with SMTP id 2adb3069b0e04-5309b27d5d1mr1449168e87.33.1722079030930;
-        Sat, 27 Jul 2024 04:17:10 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c19dc4sm733863e87.221.2024.07.27.04.17.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Jul 2024 04:17:10 -0700 (PDT)
-Date: Sat, 27 Jul 2024 14:17:08 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Cc: Chris Healy <cphealy@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 00/12] drm/imx/ipuv3: switch LDB and parallel-display
- driver to use drm_bridge_connector
-Message-ID: <uqsnphe2pm366xenpdvtsxvpkiewgmxoqyv2zvbgc3ewlx23mp@guesbce35jcm>
-References: <20240602-drm-imx-cleanup-v3-0-e549e2a43100@linaro.org>
+	s=arc-20240116; t=1722079538; c=relaxed/simple;
+	bh=shcZgEGUYYMT+gcHW7Kj4tHAAku12N18LuY18LdFaxA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=We/09GMIlW6aAmhgcwgpB7hmbiV0fUljShkWUMGgX/wHkf1ppfb5FyDAsKf4cXUrTFABFNu5GZCbIxfT04VZfaPON2z1QKps1PGVHrXHZU3zPVVELeccimRhj3CIPQlwc0t9OZ4HzHlU1D4AP6aFIwiwL91zaKoNdmR32yHJOZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e860cde.versanet.de ([94.134.12.222] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sXfYK-0005ZZ-6A; Sat, 27 Jul 2024 13:25:32 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Conor Dooley <conor@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Subject:
+ Re: [PATCH v2 1/3] dt-bindings: clocks: add binding for
+ voltage-controlled-oscillators
+Date: Sat, 27 Jul 2024 13:25:31 +0200
+Message-ID: <33119212.aRNtrjHk3s@diego>
+In-Reply-To: <00f9f4b8722d97b1c6fcec27d53bc06d.sboyd@kernel.org>
+References:
+ <20240715110251.261844-1-heiko@sntech.de>
+ <20240718-prozac-specks-6b5fd8b83e3e@spud>
+ <00f9f4b8722d97b1c6fcec27d53bc06d.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240602-drm-imx-cleanup-v3-0-e549e2a43100@linaro.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Sun, Jun 02, 2024 at 03:04:40PM GMT, Dmitry Baryshkov wrote:
-> The IPUv3 DRM i.MX driver contains several codepaths for different
-> usescases: both LDB and paralllel-display drivers handle next-bridge,
-> panel and the legacy display-timings DT node on their own.
+Am Samstag, 27. Juli 2024, 00:21:44 CEST schrieb Stephen Boyd:
+> Quoting Conor Dooley (2024-07-18 08:59:50)
+> > 
+> > FWIW, I wouldn't classify this as device-specific. "enable-gpios" and
+> > "vdd-supply" are pretty generic and I think the latter is missing from
+> > the vast majority of real* "fixed-clocks". I would expect that devices
+> > where the datasheet would call
+> > 
+> > * Real because there's plenty of "fixed-clocks" (both in and out of tree)
+> > that are used to work around the lack of a clock-controller driver for an
+> > SoC.
 > 
-> Drop unused ddc-i2c-bus and edid handling (none of the DT files merged
-> upstream ever used these features), switch to panel-bridge driver,
-> removing the need to handle drm_panel codepaths separately and finally
-> switch to drm_bridge_connector, removing requirement for the downstream
-> bridges to create drm_connector on their own.
+> I agree!
 > 
-> This has been tested on the iMX53 with the DPI panel attached to LDB via
-> LVDS decoder, using all possible usecases (lvds-codec + panel, panel
-> linked directly to LDB node and the display-timings node).
+> > 
+> > > I think generic power-sequences
+> > >   were the topic back then, though that might have changed over time?
+> > > - There are places that describe "fixed-clock" as
+> > >   "basic fixed-rate clock that cannot gate" [1]
+> > 
+> > I think that that is something that could be changed, it's "just" a
+> > comment in some code! Sounds like Stephen disagrees though :)
 > 
-> To be able to test on the iMX53 QSRB with the HDMI cape apply [1], [2]
+> It's more about making a clear break from the fixed-clock binding so
+> that the extra properties are required.
 > 
-> [1] https://lore.kernel.org/all/20240514030718.533169-1-victor.liu@nxp.com/
-> [2] https://lore.kernel.org/all/20240602-imx-sii902x-defconfig-v1-1-71a6c382b422@linaro.org/
+> > 
+> > > - Stephen also suggested a separate binding [2]
+> > 
+> > I liked your "gated-oscillator" suggestion in another reply, but
+> > "gated-fixed-clock" might be a better "thematic" fit since this is a
+> > special case of fixed-clocks?
+> > 
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Changes in v3:
-> - Notice (soft) dependencies in the cover letter (Chris)
-> - Select DRM_BRIDGE instead of depending on it (Philipp)
-> - Dropped unused selection of DRM_PANEL (Philipp)
-> - Added missing include of <drm/bridge/imx.h> to parallel-display.c
->   (Philipp)
-> - Link to v2: https://lore.kernel.org/r/20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org
-> 
-> Changes in v2:
-> - Fixed drm_bridge_attach flags in imx/parallel-display driver.
-> - Moved the legacy bridge to drivers/gpu/drm/bridge
-> - Added missing EXPORT_SYMBOL_GPL to the iMX legacy bridge
-> - Link to v1: https://lore.kernel.org/r/20240311-drm-imx-cleanup-v1-0-e104f05caa51@linaro.org
+> It looks to me like we've arrived at the hardest problem in computer
+> science, i.e. naming. Any of these names is fine. I'd look to see what
+> those parts on mouser are called and use that to drive the compatible
+> name decision if you can't decide. The description section in the
+> binding could be verbose and link to some parts/pdfs if that helps too.
+> In the past I've seen EEs call these things clock buffers. I'm not a
+> classically trained EE myself but it usually helps to use similar names
+> from the schematic in DT because DT authors are sorta translating
+> schematics to DT.
 
-Just a gracious ping, this has been without maintainer's review for
-nearly two months.
+TL;DR: I'm fine with both "gated-oscillator" or "gated-fixed-clock" .
+Some tiny part in the back of my head wants to name things in the most
+specific way aka "gated-oscillator", but I guess "gated-fixed-clock" will
+possibly spare us the naming dance in the future :-)
 
-Should we change ipu-v3 to the 'S: Odd Fixes' state?
+So I guess if nobody objects anymore, I'll go with "gated-fixed-clock".
 
--- 
-With best wishes
-Dmitry
+--------- 8< --------
+Some background stuff for the oscillator / clock-buffer difference,
+which are actually both used on the Rock 5 ITX in question:
+
+[my ASCII-art may not survive mail readers]
+                                        ------------
+VCC3v3_PI6C (to both VDD + Enable) -----| VCC*     | - CLKoutA - to PCIe
+  |                                     |          |
+--------------------                    |          | - CLKoutB - to PCIe
+| 100MHz,3.3V,3225 |-------XTAL_IN_OUT -| Au5426   |
+--------------------                    |          | - REFout (unconnected)
+                                        ------------
+
+Just asking Google for that "100MHz,3.3V,3225" brings me to
+"100 MHz Standard Clock Oscillators" on Mouser.
+
+The Au5426 from Aurasemi is a "4 Differential and 1 LVCMOS Output Ultra
+Low Jitter High Performance Buffer" - aka a clock-buffer.
+
+In the Rock-5-ITX patch, I opted to ignore it, because on _that_ board
+it is transparent to the system, enabled by the same sources as the
+crystal and statically configured.
+
+On the other hand, the Au5426 actually _has_ input pins to select
+its working mode: 
+- select between different clock sources
+- enable/disable the output of the input clock as refclk
+- configure the clock buffer type (lvpecl, lvds, hcsl, hiz)
+
+So I didn't want to conjure a binding for that stuff out of thin air :-)
+
+
+Heiko
+
+
 
