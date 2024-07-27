@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61C093DE23
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:25:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 632CD93DE54
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 11:46:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2A5D1C21528
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 09:25:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F3781C2166F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 09:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CCF4AEF5;
-	Sat, 27 Jul 2024 09:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB6542045;
+	Sat, 27 Jul 2024 09:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SHolPxWp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DSElptFr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3694C487BF;
-	Sat, 27 Jul 2024 09:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907D61B86CD;
+	Sat, 27 Jul 2024 09:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722072334; cv=none; b=eA/zG2aLuGv6aIP6e4VsIg4hDhFo3u0BVoN92Ph+hajUIcoLGa4+eVX1admCEXWbFaIlcsQWs2epYp8E/zXremnYQQsJyyGv+89HTlxDidaT5TIos9ajOtfzEndrTr7HAXq589OIOv998bfqa/WuLexNVUfco/7N6C1U6lQDqag=
+	t=1722073587; cv=none; b=IlBLZMkFNQS2e+o7Cf4nsjHhNGyKx+9LCRemVrSWJavB4WN0pipF0+PNDXdvO/8helSt3QV63wM4yR1UiTEzEdNPw+VlIUjjtTR/n/BU0SdDPj0YH8xEXITmVqzL/rSkPXdeyMaQ1klMfjrTvJeQjUE79LPGgoVRY/6i41oJDwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722072334; c=relaxed/simple;
-	bh=FKWdEEfKwiHZEjR/g5jblQ0qk2xKb1tNXvjLXnAAvxE=;
+	s=arc-20240116; t=1722073587; c=relaxed/simple;
+	bh=9FQnGXlM3SBNU9QPFIRpF4CE71e9eQq1O4i18cUi9c0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XNN7rtWJ1AkRe5xZX7LSjXtt5mN4hmuDmfegVnfnTW5QrJrgwG8g+m5krDPTJwZaC42slQmy1BLGj+vJydYfbUcYORcWkQ/se+gI1JLzVq8K6LH4aOuW533EwXNb3MdtgCeb5HyJEJWrRyEqJ1kqQHMCclrHkv7HNwf5l+6PGuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SHolPxWp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0503DC32781;
-	Sat, 27 Jul 2024 09:25:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iWrZnyAd9KQZ7dTZ+5W1xH7c69PVNueu7mWTyh96yNYtqVjdpxPAUEQY3WPFZNomQkZeVHx6ThbYEkzjYQktU8CjJdumBy2uNsW7U87H5nq8NpZpjk4Dx5I9gl0LwVXwzu2Bu6q2QXoqscLrxa8kkA5TLgjQWJYS37QxznTwi38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DSElptFr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B1DFC32781;
+	Sat, 27 Jul 2024 09:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722072333;
-	bh=FKWdEEfKwiHZEjR/g5jblQ0qk2xKb1tNXvjLXnAAvxE=;
+	s=k20201202; t=1722073587;
+	bh=9FQnGXlM3SBNU9QPFIRpF4CE71e9eQq1O4i18cUi9c0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SHolPxWpFfdGBRgaFzCWl0NEKJCm1vmfY6RVdGBVTQRWrPu9cf3GlCsMQyGfCRbw8
-	 fHrD8pyx/qnvX+KK4Q1upcyvuigGDDMXTNSqOna8/DE630LfJwB0r+t7q/243/v20C
-	 N6/1siFd0TaN3SZLmFIdo0k6NJ/++ECX9Wew4I4zwmSlkJs2W+lT6Fusmet/GwSOuH
-	 04RuWElp176qrtXkImkNmAJLReStBggKLLcTufAzw7G3N3ev3wakixmuvN3Wf/mbQ+
-	 hHIDuMySzUplvKiPZ8rwbLJTK9Xl17IvSPOokebB/DRFUzKi+6KP6ENECfy64+kPo7
-	 64hZJcmBkKDdw==
-Message-ID: <ac84b12f-ae91-4a2f-a5f7-88febd13911c@kernel.org>
-Date: Sat, 27 Jul 2024 11:25:25 +0200
+	b=DSElptFrIoh7UZ6QJTFAzvnob3lgXLYIOQktkTPDZdgEewdj61kQ2U5o9UCoAmlUM
+	 FS4uV/0dgz2ZodZlaEsQRviqQOIhWNDuTCp1cBQojywbLQsDU1rqlxt0RWp0Vn7Th7
+	 4s97zQ8lB49IxSyUwp2jExJJfKfHVqLrHyIZhqLYhrLOcf2IJF5F9d9USfDhYhPyFD
+	 c4dSfe7Mgllm0pYL+rlAbaRks18zDW+SVT9xuJmN45K+kAwWJObSf7glba4RtkH0pA
+	 4QaH0laJEEwWr9DwB6G24EURdFPYSmGggoNeZz6I44dWxldMlakGezbwK0QgWO1lHF
+	 ZjT7/TyFWX0Kw==
+Message-ID: <2132f31e-f543-4082-ab09-e269c53100cb@kernel.org>
+Date: Sat, 27 Jul 2024 11:46:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: motorcomm: Add chip mode cfg
-To: "Frank.Sae" <Frank.Sae@motor-comm.com>, andrew@lunn.ch,
- hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux@armlinux.org.uk
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, yuanlai.cui@motor-comm.com,
- hua.sun@motor-comm.com, xiaoyong.li@motor-comm.com,
- suting.hu@motor-comm.com, jie.han@motor-comm.com
-References: <20240727092009.1108640-1-Frank.Sae@motor-comm.com>
+Subject: Re: [PATCH V5 1/2] dt-bindings: iio: aw9610x: Add bindings for
+ aw9610x sensor
+To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ waqar.hameed@axis.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: liweilei@awinic.com, kangjiajun@awinic.com
+References: <20240726061312.1371450-1-wangshuaijie@awinic.com>
+ <20240726061312.1371450-2-wangshuaijie@awinic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,88 +104,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240727092009.1108640-1-Frank.Sae@motor-comm.com>
+In-Reply-To: <20240726061312.1371450-2-wangshuaijie@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/07/2024 11:20, Frank.Sae wrote:
->  The motorcomm phy (yt8821) supports the ability to
->  config the chip mode of serdes.
->  The yt8821 serdes could be set to AUTO_BX2500_SGMII or
->  FORCE_BX2500.
->  In AUTO_BX2500_SGMII mode, SerDes
->  speed is determined by UTP, if UTP link up
->  at 2.5GBASE-T, SerDes will work as
->  2500BASE-X, if UTP link up at
->  1000BASE-T/100BASE-Tx/10BASE-T, SerDes will work
->  as SGMII.
->  In FORCE_BX2500, SerDes always works
->  as 2500BASE-X.
-
-Very weird wrapping.
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
+On 26/07/2024 08:13, wangshuaijie@awinic.com wrote:
+> From: shuaijie wang <wangshuaijie@awinic.com>
 > 
-> Signed-off-by: Frank.Sae <Frank.Sae@motor-comm.com>
-
-Didn't you copy user-name as you name?
-
+> Add device tree bindings for aw9610x proximity sensor.
+> 
+> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
 > ---
->  .../bindings/net/motorcomm,yt8xxx.yaml          | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
 
-Also, your threading is completely broken. Use git send-email or b4.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> index 26688e2302ea..ba34260f889d 100644
-> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> @@ -110,6 +110,23 @@ properties:
->        Transmit PHY Clock delay train configuration when speed is 1000Mbps.
->      type: boolean
->  
-> +  motorcomm,chip-mode:
-> +    description: |
-> +      Only for yt8821 2.5G phy, it supports two chip working modes,
-
-Then allOf:if:then disallowing it for the other variant?
-
-> +      one is AUTO_BX2500_SGMII, the other is FORCE_BX2500.
-> +      If this property is not set in device tree node then driver
-> +      selects chip mode FORCE_BX2500 by default.
-
-Don't repeat constraints in free form text.
-
-> +      0: AUTO_BX2500_SGMII
-> +      1: FORCE_BX2500
-> +      In AUTO_BX2500_SGMII mode, serdes speed is determined by UTP,
-> +      if UTP link up at 2.5GBASE-T, serdes will work as 2500BASE-X,
-> +      if UTP link up at 1000BASE-T/100BASE-Tx/10BASE-T, serdes will
-> +      work as SGMII.
-> +      In FORCE_BX2500 mode, serdes always works as 2500BASE-X.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
-Explain why this is even needed and why "auto" is not correct in all
-cases. In commit msg or property description.
+---
 
-> +    $ref: /schemas/types.yaml#/definitions/uint8
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
 
-Make it a string, not uint8.
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-
-> +    enum: [ 0, 1 ]
-> +    default: 1
-
-Why 1 not 0? Auto seems more logical?
-
-> +
->  unevaluatedProperties: false
->  
->  examples:
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
 Best regards,
 Krzysztof
