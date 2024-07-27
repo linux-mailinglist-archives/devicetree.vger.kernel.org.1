@@ -1,85 +1,87 @@
-Return-Path: <devicetree+bounces-88535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E735293E028
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 18:30:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C46A393E030
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 18:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6758A1F21B3F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 16:30:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A7271F2191B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 16:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80698181328;
-	Sat, 27 Jul 2024 16:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF6118562A;
+	Sat, 27 Jul 2024 16:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QKRIR57t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B7xZsoVa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A75A41746;
-	Sat, 27 Jul 2024 16:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8406C16F0C5
+	for <devicetree@vger.kernel.org>; Sat, 27 Jul 2024 16:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722097853; cv=none; b=ZvEFBUHq/Cqn1P/GzXfz/ij557XQnC1adGZN9sHUMyIuzo5w6Iw3QPGDrXeBrwr/zNsNzIBlkDsTMfS0lQNFYvrlShQQyGJrjjbqu/FXr90uj6HU1RZNIYpyE+gakGFAGigUf6aE8YxiCiotTPg7PEH5o+WUWVz6hi3a6Ry1KAs=
+	t=1722098401; cv=none; b=fYj6xtDlPImmmzC2U7Nc2DxcXkFsf/A7HTixp0z4O0a1TH27xxatJ2IbdPFpXYNdp3TXjoMdNtCLN0JJjTsvBXpTtEO8qQQZQ5+cEq7L9MaCC9AiDyw9nAhhH59+8LYUh5Y/v07C1U/hKjVZB3F53iv9R5TxCYDi0EIg1lj6HUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722097853; c=relaxed/simple;
-	bh=+vsnHt5Ja3DaktxdEBTWYyCS/lDyoapV2AbOb20uF+Y=;
+	s=arc-20240116; t=1722098401; c=relaxed/simple;
+	bh=FUNE4JQOrI+mbE6a2Bb/3GxHEC37Whm4hYXMdfdGvWc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fppyX5fRr1QyMjI8PtbJLK0eIihJKoe1Du2AiNIpiQ1+B6gvDQU8CDsNNhQ/X1fO1g0n7Cg3MRlrewJc8mfxlgds3QYjTvYgBKXyVbTUgshb1NLiDTuRhzn52KfrdTR//w6FSGe7jHZQfk9FQJqh4TQWNsaw3c+grPzG7pwVF+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QKRIR57t; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5d5bd1b79cfso1190173eaf.2;
-        Sat, 27 Jul 2024 09:30:51 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KkSXDB/vTsCNd/7GV/S2kgdSJzVuIYo3CA2JvRULwj3MknMdIT4751oeCH0MXZzR0oKKquuLbJdc4zSWoWXfWLUhhn9POLjLe+2UKaXrTbRfKUQ9WwjS4HjcSGbZ32WtzTtIUBXmk2DGHJcSvEQiy9mAD6JI3TzJxpaxCAxCWM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B7xZsoVa; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52ed9b802ceso2685077e87.3
+        for <devicetree@vger.kernel.org>; Sat, 27 Jul 2024 09:39:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722097851; x=1722702651; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722098398; x=1722703198; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pSZQAyMIRObm618hS6wHfoirqkRF5Nnp2L7TvwbLNbI=;
-        b=QKRIR57t/vMiCyIL8dq9azd5anX5orqD+M7mseZI6ceirHh5HZ9aSkIh04T6ttv9vA
-         I7+TnVwUHkawtEV1HFOfdkIeWhAgk3Ovh3tZjLhF49tz/g+SjayYr5YHIvOQC8yd2OYU
-         qo5WXS9WKKpccrCToRMvxlyc05QmvVqfXMU1jKReksCodQcF4GD8mtryrRc3IrJmL6Mm
-         2emW00kXRUxKFlDJiNhlIW8CDPzESws7xoiaSGxg3ZR16cOErVHWerwSkS9pyvXh5NJL
-         ka7eR1atix5Ulv+7tDcaL/KRTmWY+YOs/rjDE3ku7q8vkcasDmgnbOD6XBiZtS+yhyl3
-         XPAQ==
+        bh=e37AhEISBQ02gc3ZCHLGCwU3mAG5uPYdG67GQd5E1Pk=;
+        b=B7xZsoVaJUVPC+OANvgXyJ71UUHH4oDVwNeA+Kc59+89qS4FvKKC8RCVwaWPhXjSZw
+         kNXUpR1w4/a7Geoij5wPJRrx63GZtvPjJYAFDW95M19j7RtX9vKjUi8SGuiagBroathR
+         Rk3NZRS1FXFZ6GX/bJjYpbrJekkr8Nu53Nb5FDOs+b/MQ/SdF57gkGWpbo3KR69Ln2TB
+         lEhlQfs/EKdo9NDht9OwPO4FFYqSPsNUN7wTxjCPpY3JbkC12JjtFihrS8ItcewwsmLZ
+         /hDt6dKveR0jQShQq8I+zF5PBoYaMN1aizOLEhXungSjTQ/Eny9K8aXPsUpliyM1U/Pf
+         aDzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722097851; x=1722702651;
+        d=1e100.net; s=20230601; t=1722098398; x=1722703198;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pSZQAyMIRObm618hS6wHfoirqkRF5Nnp2L7TvwbLNbI=;
-        b=peUVMB8GSa4IsQcEg9lExxmkEMZEmIN+MEKLb9KFW8rmfpSYxO2GzXIpSZBvKdAP/L
-         GIOCgk0Yzmvv3uP9auvRaEJtRCa2rvOyt3XgwURBT4uSepgUQl6E1l/u3XRtFqlzijRI
-         urLYXgBpA3CxUD5Sbs7snaujoR5R9TvZ4V9JVGDRQy5Zg7wG+WUhpSmX3vIRwn0WE9DE
-         xo1QobG9ojfmwHlpyw8KNcS0mE9eSjwpzDY6DvREMuxzPZXzyhIZUKXkaQpr9mAqkleU
-         +qoFWv47hPkWZ7Oci0RC+AbWyKV1t7p5unJM75TsTtERxYWhX9E7Xe/fw5Hi0GaTQMsY
-         /bkA==
-X-Forwarded-Encrypted: i=1; AJvYcCWbNLDVUiDh9a9G3iAImCs/RWmPPY4CzdKVpkocHFrEcLTTagPG6gH5p3VEEjImowVUQbtic5RnevelqFwe+EJPnQsGEa1CzD870HzRj0l1YQtDOv7G+9dYNEVgPomtbSLzUSNC9kNB1g==
-X-Gm-Message-State: AOJu0YzzQJx5cJiYraiXcg1plxGgvC0Siv3U6tTyBmBBKWBTkSBwCQUz
-	5Hp00V/0l4E8NV2aAVHcztB9e4ba4kWhnHxr3PsinZeuLiO9MG1ybjegfggC
-X-Google-Smtp-Source: AGHT+IEX+cctMy9+qbckneOibrEfIU1roDKKau6ih6elPcuSQOKlNgrpj2aZKDnI7HV7rLbOHmKljw==
-X-Received: by 2002:a05:6358:f07:b0:1a4:8048:56df with SMTP id e5c5f4694b2df-1adc06ca0bcmr249912955d.22.1722097850909;
-        Sat, 27 Jul 2024 09:30:50 -0700 (PDT)
-Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb3f925de2sm30472186d6.64.2024.07.27.09.30.49
+        bh=e37AhEISBQ02gc3ZCHLGCwU3mAG5uPYdG67GQd5E1Pk=;
+        b=Bn2yUDaAzQ4ra4YatY3ONSgZhaN7tKJ/9/nNB36acNjZZFkV43WWe6E0+xT6mcw4/m
+         m13nX+y5BR7TkxeJ0n6RO7jiu52wfg1/hTjHniUi+oMVv+E4vqbFvmi2ZxTbLQleits4
+         UetSsNSdUYN4wFydC3hAnVmyh0Np0X1BZxyGMElWEG7a1Nv8dBtHF50c2T6PjSTmO8wp
+         14qDgQ+Ir/Dmwt2Oxk2iBlmjQD9Dc7ydKGuVqdiNCpK7uigGFY7laIgaL/j+/1GeSEnu
+         omFLeshOgtU3LQgSAVqXag29vzTGi7EsZiCNzhrkYvmcMaV7IE5YXHdXMrNp9NTYPej4
+         4img==
+X-Forwarded-Encrypted: i=1; AJvYcCXASYP9lJdg596ygpBdesbfpYohP6Aemmz57go5T7HTH2GI/3YTApItQNOr3CsFkxtZaydfLixV9d1J2/R1uAjNzUOYB0VYzMmxdA==
+X-Gm-Message-State: AOJu0Yyirs6lx9Ni4HuQBTNieZG+1DvkaXXZs5u4O5/GdbKe6OsoTMLU
+	eXPTgCQEslqdhxMOpWtoFEKaWtEZ4mc75vEjxOJl0fkF6fUds2cjrl5qO20G7p4=
+X-Google-Smtp-Source: AGHT+IGhwepcIOBfQ1zb5uvMu7DFH8peCt2X7vNb7TKdJEffIwJXb+SCw0b5V1egmjG7hA92CaUC2w==
+X-Received: by 2002:a05:6512:524:b0:52c:8c4d:f8d6 with SMTP id 2adb3069b0e04-5309b2bcc06mr2028466e87.45.1722098397341;
+        Sat, 27 Jul 2024 09:39:57 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c1a0d2sm805229e87.224.2024.07.27.09.39.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Jul 2024 09:30:50 -0700 (PDT)
-Date: Sat, 27 Jul 2024 12:30:48 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: mehdi.djait@bootlin.com, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: Add Sharp Memory LCD bindings
-Message-ID: <7zpp4ebzj5xk3wbbpt7l5xnhqg3i52mdjhn3grmn562mres4k5@a3g2xxftk2td>
-References: <20240725004734.644986-1-lanzano.alex@gmail.com>
- <20240725004734.644986-2-lanzano.alex@gmail.com>
- <c7bf08aa-e7a0-4b60-b9fe-b43215ce3fb9@kernel.org>
+        Sat, 27 Jul 2024 09:39:56 -0700 (PDT)
+Date: Sat, 27 Jul 2024 19:39:55 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, p.zabel@pengutronix.de, 
+	airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, 
+	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org, francesco@dolcini.it, 
+	frank.li@nxp.com
+Subject: Re: [PATCH v3 00/19] Add Freescale i.MX8qxp Display Controller
+ support
+Message-ID: <wky3mjl7fn773myatyrdsea6oc2xebkvrgmigmmoj36eswgqry@2kox5ad5dynl>
+References: <20240724092950.752536-1-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,36 +90,244 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c7bf08aa-e7a0-4b60-b9fe-b43215ce3fb9@kernel.org>
+In-Reply-To: <20240724092950.752536-1-victor.liu@nxp.com>
 
-On Thu, Jul 25, 2024 at 08:17:01AM GMT, Krzysztof Kozlowski wrote:
-> On 25/07/2024 02:47, Alex Lanzano wrote:
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - sharp,ls010b7dh04
-> > +      - sharp,ls011b7dh03
-> > +      - sharp,ls012b7dd01
-> > +      - sharp,ls013b7dh03
-> > +      - sharp,ls013b7dh05
-> > +      - sharp,ls018b7dh02
-> > +      - sharp,ls027b7dh01
-> > +      - sharp,ls027b7dh01a
-> > +      - sharp,ls032b7dd02
-> > +      - sharp,ls044q7dh01
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-cs-high: true
+On Wed, Jul 24, 2024 at 05:29:31PM GMT, Liu Ying wrote:
+> Hi,
 > 
-> You can drop it.
+> This patch series aims to add Freescale i.MX8qxp Display Controller support.
+> 
+> The controller is comprised of three main components that include a blit
+> engine for 2D graphics accelerations, display controller for display output
+> processing, as well as a command sequencer.
+> 
+> Previous patch series attempts to do that can be found at:
+> https://patchwork.freedesktop.org/series/84524/
+> 
+> This series addresses Maxime's comments on the previous one:
+> a. Split the display controller into multiple internal devices.
+>    1) List display engine, pixel engine, interrupt controller and more as the
+>       controller's child devices.
+>    2) List display engine and pixel engine's processing units as their child
+>       devices.
+> 
+> b. Add minimal feature support.
+>    Only support two display pipelines with primary planes with XR24 fb,
+>    backed by two fetchunits.  No fetchunit dynamic allocation logic(to be done
+>    when necessary).
+> 
+> c. Use drm_dev_{enter, exit}().
+> 
+> Since this series changes a lot comparing to the previous one, I choose to
+> send it with a new patch series, not a new version.
+
+I'm sorry, I have started reviewing v2 without noticing that there is a
+v3 already.
+
+Let me summarize my comments:
+
+- You are using OF aliases. Are they documented and acked by DT
+  maintainers?
+
+- I generally feel that the use of so many small devices to declare
+  functional blocks is an abuse of the DT. Please consider creating
+  _small_ units from the driver code directly rather than going throught
+  the components. Also please describe how everything fits together in
+  the cover letter.
+
+- I assume that there more functional units that you are cunrretly
+  adding and there is more versatility. Please describe that in the
+  commit messages.
+
+- I see a lot of small functions, which can be inlined without the lost
+  of code clarify. Please consider self-reviewing your code from this
+  perspective.
+
+- There were other small comments, but I think they are less important
+  now. You might still consider them for v4.
+
+> To follow up i.MX8qxp TRM, I changed the controller name to "Display Controller"
+> instead of the previous "DPU".  "DPU" is only mentioned in the SoC block
+> diagram and represents the whole display subsystem which includes the display
+> controller and prefech engines, etc.
+> 
+> With an additional patch[1] for simple-pm-bus.c, this series facilitates
+> testing a LVDS panel on i.MX8qxp MEK.
+> 
+> Please do NOT merge patch 14-19.
+> 
+> [1] https://lkml.org/lkml/2023/1/25/120
+> 
+> v3:
+> * Collect Rob's R-b tag on the patch for adding fsl,imx8qxp-dc-intc.yaml.
+> * Combine fsl,imx8qxp-dc-fetchunit-common.yaml,
+>   fsl,imx8qxp-dc-fetchlayer.yaml and fsl,imx8qxp-dc-fetchwarp.yaml
+>   into 1 schema doc fsl,imx8qxp-dc-fetchunit.yaml. (Rob)
+> * Document all processing units, command sequencer, axi performance counter
+>   and blit engine. (Rob)
+> 
+> v2:
+> * Drop fsl,dc-*-id DT properties from fsl,imx8qxp-dc*.yaml. (Krzysztof)
+> * Move port property from fsl,imx8qxp-dc-display-engine.yaml to
+>   fsl,imx8qxp-dc-tcon.yaml. (Krzysztof)
+> * Drop unneeded "|" from fsl,imx8qxp-dc-intc.yaml. (Krzysztof)
+> * Use generic pmu pattern property in fsl,imx8qxp-dc.yaml. (Krzysztof)
+> * Fix register range size in fsl,imx8qxp-dc*.yaml.
+> * Use OF alias id to get instance id from display driver.
+> * Find next bridge from TCon's port from display driver.
+> * Drop drm/drm_module.h include from dc-drv.c.
+> * Improve file list in MAINTAINERS. (Frank)
+> * Add entire i.MX8qxp display controller device tree for review. (Krzysztof)
+> * Add MIPI/LVDS subsystems device tree and a DT overlay for imx8qxp
+>   MEK to test a LVDS panel as an example. (Francesco)
+> 
+> Liu Ying (19):
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller processing
+>     units
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller blit engine
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller display
+>     engine
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller pixel
+>     engine
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller AXI
+>     performance counter
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller command
+>     sequencer
+>   dt-bindings: interrupt-controller: Add i.MX8qxp Display Controller
+>     interrupt controller
+>   dt-bindings: display: imx: Add i.MX8qxp Display Controller
+>   drm/imx: Add i.MX8qxp Display Controller display engine
+>   drm/imx: Add i.MX8qxp Display Controller pixel engine
+>   drm/imx: Add i.MX8qxp Display Controller interrupt controller
+>   drm/imx: Add i.MX8qxp Display Controller KMS
+>   MAINTAINERS: Add maintainer for i.MX8qxp Display Controller
+>   dt-bindings: phy: mixel,mipi-dsi-phy: Allow assigned-clock* properties
+>   dt-bindings: firmware: imx: Add SCU controlled display pixel link
+>     nodes
+>   arm64: dts: imx8qxp: Add display controller subsystem
+>   arm64: dts: imx8qxp: Add MIPI-LVDS combo subsystems
+>   arm64: dts: imx8qxp-mek: Enable display controller
+>   arm64: dts: imx8qxp-mek: Add MX8-DLVDS-LCD1 display module support
+> 
+>  ...sl,imx8qxp-dc-axi-performance-counter.yaml |  57 ++
+>  .../imx/fsl,imx8qxp-dc-blit-engine.yaml       | 204 +++++++
+>  .../display/imx/fsl,imx8qxp-dc-blitblend.yaml |  41 ++
+>  .../display/imx/fsl,imx8qxp-dc-clut.yaml      |  44 ++
+>  .../imx/fsl,imx8qxp-dc-command-sequencer.yaml |  67 ++
+>  .../imx/fsl,imx8qxp-dc-constframe.yaml        |  44 ++
+>  .../imx/fsl,imx8qxp-dc-display-engine.yaml    | 152 +++++
+>  .../display/imx/fsl,imx8qxp-dc-dither.yaml    |  45 ++
+>  .../display/imx/fsl,imx8qxp-dc-extdst.yaml    |  72 +++
+>  .../display/imx/fsl,imx8qxp-dc-fetchunit.yaml | 141 +++++
+>  .../display/imx/fsl,imx8qxp-dc-filter.yaml    |  43 ++
+>  .../display/imx/fsl,imx8qxp-dc-framegen.yaml  |  64 ++
+>  .../display/imx/fsl,imx8qxp-dc-gammacor.yaml  |  32 +
+>  .../imx/fsl,imx8qxp-dc-layerblend.yaml        |  39 ++
+>  .../display/imx/fsl,imx8qxp-dc-matrix.yaml    |  44 ++
+>  .../imx/fsl,imx8qxp-dc-pixel-engine.yaml      | 250 ++++++++
+>  .../display/imx/fsl,imx8qxp-dc-rop.yaml       |  43 ++
+>  .../display/imx/fsl,imx8qxp-dc-safety.yaml    |  34 ++
+>  .../imx/fsl,imx8qxp-dc-scaling-engine.yaml    |  83 +++
+>  .../display/imx/fsl,imx8qxp-dc-signature.yaml |  53 ++
+>  .../display/imx/fsl,imx8qxp-dc-store.yaml     |  96 +++
+>  .../display/imx/fsl,imx8qxp-dc-tcon.yaml      |  45 ++
+>  .../bindings/display/imx/fsl,imx8qxp-dc.yaml  | 236 +++++++
+>  .../devicetree/bindings/firmware/fsl,scu.yaml |  20 +
+>  .../fsl,imx8qxp-dc-intc.yaml                  | 318 ++++++++++
+>  .../bindings/phy/mixel,mipi-dsi-phy.yaml      |   5 -
+>  MAINTAINERS                                   |   8 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   4 +
+>  .../arm64/boot/dts/freescale/imx8-ss-dc0.dtsi | 408 +++++++++++++
+>  .../imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso | 183 ++++++
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  34 ++
+>  .../boot/dts/freescale/imx8qxp-ss-dc.dtsi     | 240 ++++++++
+>  .../dts/freescale/imx8qxp-ss-mipi-lvds.dtsi   | 437 +++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |  28 +-
+>  drivers/gpu/drm/imx/Kconfig                   |   1 +
+>  drivers/gpu/drm/imx/Makefile                  |   1 +
+>  drivers/gpu/drm/imx/dc/Kconfig                |   8 +
+>  drivers/gpu/drm/imx/dc/Makefile               |   7 +
+>  drivers/gpu/drm/imx/dc/dc-cf.c                | 157 +++++
+>  drivers/gpu/drm/imx/dc/dc-crtc.c              | 578 ++++++++++++++++++
+>  drivers/gpu/drm/imx/dc/dc-crtc.h              |  67 ++
+>  drivers/gpu/drm/imx/dc/dc-de.c                | 151 +++++
+>  drivers/gpu/drm/imx/dc/dc-de.h                |  65 ++
+>  drivers/gpu/drm/imx/dc/dc-drv.c               | 275 +++++++++
+>  drivers/gpu/drm/imx/dc/dc-drv.h               |  54 ++
+>  drivers/gpu/drm/imx/dc/dc-ed.c                | 266 ++++++++
+>  drivers/gpu/drm/imx/dc/dc-fg.c                | 366 +++++++++++
+>  drivers/gpu/drm/imx/dc/dc-fl.c                | 136 +++++
+>  drivers/gpu/drm/imx/dc/dc-fu.c                | 241 ++++++++
+>  drivers/gpu/drm/imx/dc/dc-fu.h                | 129 ++++
+>  drivers/gpu/drm/imx/dc/dc-fw.c                | 149 +++++
+>  drivers/gpu/drm/imx/dc/dc-ic.c                | 249 ++++++++
+>  drivers/gpu/drm/imx/dc/dc-kms.c               | 143 +++++
+>  drivers/gpu/drm/imx/dc/dc-kms.h               |  15 +
+>  drivers/gpu/drm/imx/dc/dc-lb.c                | 300 +++++++++
+>  drivers/gpu/drm/imx/dc/dc-pe.c                | 140 +++++
+>  drivers/gpu/drm/imx/dc/dc-pe.h                |  91 +++
+>  drivers/gpu/drm/imx/dc/dc-plane.c             | 227 +++++++
+>  drivers/gpu/drm/imx/dc/dc-plane.h             |  37 ++
+>  drivers/gpu/drm/imx/dc/dc-tc.c                | 137 +++++
+>  60 files changed, 7598 insertions(+), 6 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-axi-performance-counter.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-blit-engine.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-blitblend.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-clut.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-command-sequencer.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-constframe.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-display-engine.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-dither.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-extdst.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-fetchunit.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-filter.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-framegen.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-gammacor.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-layerblend.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-matrix.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-pixel-engine.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-rop.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-safety.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-scaling-engine.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-signature.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-store.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-tcon.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,imx8qxp-dc-intc.yaml
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-dc0.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-dc.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-mipi-lvds.dtsi
+>  create mode 100644 drivers/gpu/drm/imx/dc/Kconfig
+>  create mode 100644 drivers/gpu/drm/imx/dc/Makefile
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-cf.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-crtc.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-crtc.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-ed.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fg.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fl.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fu.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fu.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fw.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-ic.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-kms.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-kms.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-lb.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-pe.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-pe.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-plane.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-plane.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-tc.c
+> 
+> -- 
+> 2.34.1
 > 
 
-This is a required property in order for the display to function correctly.
-But I have no issues removing it if there's a better place to document it.
-
-Best regards,
-Alex
+-- 
+With best wishes
+Dmitry
 
