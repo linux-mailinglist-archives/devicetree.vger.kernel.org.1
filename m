@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-88527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B061F93DFE6
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 17:10:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4683393DFF2
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 17:24:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21381C20FC4
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 15:10:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEE4F2819B9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2024 15:24:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B01017F4F7;
-	Sat, 27 Jul 2024 15:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A336417F4F5;
+	Sat, 27 Jul 2024 15:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sGVvsfQK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bsdI2Oz0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF6C1741D9;
-	Sat, 27 Jul 2024 15:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D506F30B;
+	Sat, 27 Jul 2024 15:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722093052; cv=none; b=sO9lzIUIrT+wo4tLkLSuKfXMQnVMJEQCY2miivobTCv5J1dNaBx3qhx5Nz9zUVer2GCig9Bi84lLkwopPD8wJY2/CatyB0VR1EwKta/+zIHOv8T3qNz7gC9ed0E80NSRuBIjd5VapW+6yTiplMZj6LtJrnAs0uF4qfgJDLGZGpk=
+	t=1722093837; cv=none; b=VIB9bOs6KATfCSiP/G9ZtgnpFmtZ55lFL729aRAo0Obme9oaloCIxVUp00kUAdXAlSJFZskUZ/GI2hDkRpPkAdPhL6c2E9gA6VmWAtV8MggQYMx0GVgtiKElEziiJ7gwV7EKNirhPSmu5UmuSc0HzJIMoLNPLgGtu1O6ryHrfmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722093052; c=relaxed/simple;
-	bh=7mts/eMFhwQuLK44GnWhdhfkk0mKpYxPPMqwbdP86xY=;
+	s=arc-20240116; t=1722093837; c=relaxed/simple;
+	bh=8zg+3Q4qdZh2c+7tjZafeq34AmHYH10iUg/BmrKF5V4=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u7UthEAfiEqYiN0V4kSZKkAcMrTTLmUjZZ2KwYxYqqoAzlK9EW0xYYTxLHZTlLkZIV4pmH/XCCJW03xmRQQfRTIZPC34RsBBBQ4+MpwQwCjQNFTr2cJCeUlaRI/q7NRzXT53Na1eRnz22I/hhZx8BZDJ3iqWYSyS/0XBiSnWUP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sGVvsfQK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 036EBC32781;
-	Sat, 27 Jul 2024 15:10:46 +0000 (UTC)
+	 MIME-Version:Content-Type; b=CM463MPqi2qFSBhjP5Np1CevnDWGrrjGPGyiRAtEdzXBXO2yrDP2J7vtAdMxT8+Bip8Z2EuBzFsuSDBRBEYUv6PcTlkypmf6XGJ4/77EKhJcfurYl0wRH9GASoIvneIQBqFB7CsWVzDYo0zq8tB0LDbQHAXUMuRIGR0DCBLIDZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bsdI2Oz0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C276C32781;
+	Sat, 27 Jul 2024 15:23:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722093051;
-	bh=7mts/eMFhwQuLK44GnWhdhfkk0mKpYxPPMqwbdP86xY=;
+	s=k20201202; t=1722093836;
+	bh=8zg+3Q4qdZh2c+7tjZafeq34AmHYH10iUg/BmrKF5V4=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sGVvsfQKoLRxz/Pqd/sd5Czy7Tr3LuM9cORRuIfYivLMe8hCl5SJ+0AVca1Gwfxvz
-	 UeHFZYrXZZeWNGr58RX8ZomuQsDSstEZsk6qMWNTdRWMzbx2fEiTSmniyJ6CJpJp4Z
-	 H42DELSnUibpt6z9+BXuWe4522PcYN+WyhtLOMeDkuYr/fAg9mr9RYMuiHOYFL5EBr
-	 if+tsEXevPI0gN8K+x0JRe8/WI7+VTOwZyB80i3jUvJS1V6xMMgl4zIlJxdYuGvL5C
-	 jGvxvnyD7Uhp00lO4Fn9eus4NCSwBm5PfQDrzkxYgbmRucGqQ+70D8ZPUpo9dATDN0
-	 996TW37ZMXlew==
-Date: Sat, 27 Jul 2024 16:10:42 +0100
+	b=bsdI2Oz001Po1JTadNbPzemMB0CoFFoTuYed9/LvFZj5c4zfg0JG7HF8tW6kByOuf
+	 hThy1gtAbO3iGRqa9lrdqmwnPIYCZxCkdlQMo/N3LY8aZ9n5TiwM5nuo4y/61iABgC
+	 VVAl40n/jXhgrOHyAk4AtHRQp50LlootYtsXYAv2nOofH7zAWRiExaiGTqanvzTeN+
+	 qD3jbp4ySgU+F9sC8eD1FleYrw6IsYO/OpMpgr3oq//jLlPYuCjCXsKE5kOrIHVAWz
+	 KIALEti1O2eeEuJBVYpvSPUPBmrX+3I7gNaoS1ptdLZgcybfcWGc2WQZtZ+P97feON
+	 yvJYivxFyQoWw==
+Date: Sat, 27 Jul 2024 16:23:47 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Alisa-Dariana Roman
- <alisadariana@gmail.com>, Michael Hennerich <michael.hennerich@analog.com>,
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Conor Dooley <conor.dooley@microchip.com>,
- linux-iio@vger.kernel.org, Alisa-Dariana Roman <alisa.roman@analog.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, Lars-Peter Clausen
- <lars@metafoo.de>
-Subject: Re: [PATCH] dt-bindings: iio: adc: ad7192: Fix 'single-channel'
- constraints
-Message-ID: <20240727161042.3a19a105@jic23-huawei>
-In-Reply-To: <172201986894.1860751.13842106591481858905.robh@kernel.org>
-References: <20240723230904.1299744-1-robh@kernel.org>
-	<172201986894.1860751.13842106591481858905.robh@kernel.org>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: <linux-iio@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Cosmin Tanislav <cosmin.tanislav@analog.com>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Andy
+ Shevchenko" <andriy.shevchenko@linux.intel.com>, Nuno Sa
+ <nuno.sa@analog.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>, Marius
+ Cristea <marius.cristea@microchip.com>, Mike Looijmans
+ <mike.looijmans@topic.nl>, Liam Beguin <liambeguin@gmail.com>, Ivan
+ Mikhaylov <fr0st61te@gmail.com>, Marcus Folkesson
+ <marcus.folkesson@gmail.com>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: add a7779 doc
+Message-ID: <20240727162347.51fb6270@jic23-huawei>
+In-Reply-To: <20240724155517.12470-3-ramona.nechita@analog.com>
+References: <20240724155517.12470-1-ramona.nechita@analog.com>
+	<20240724155517.12470-3-ramona.nechita@analog.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,32 +67,131 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 26 Jul 2024 13:52:58 -0500
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
+On Wed, 24 Jul 2024 18:54:39 +0300
+Ramona Alexandra Nechita <ramona.nechita@analog.com> wrote:
 
-> On Tue, 23 Jul 2024 18:09:03 -0500, Rob Herring (Arm) wrote:
-> > The 'single-channel' property is an uint32, not an array, so 'items' is
-> > an incorrect constraint. This didn't matter until dtschema recently
-> > changed how properties are decoded. This results in this warning:
-> > 
-> > Documentation/devicetree/bindings/iio/adc/adi,ad7192.example.dtb: adc@0: \
-> >   channel@1:single-channel: 1 is not of type 'array'
-> > 
-> > Fixes: caf7b7632b8d ("dt-bindings: iio: adc: ad7192: Add AD7194 support")
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
-> >   
-> 
-> I have other fixes for rc1 already, so I've applied this one.
-> 
-> Rob
+> Add dt bindings for adc ad7779.
+>=20
+> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7779.yaml          | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7779.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
+> new file mode 100644
+> index 000000000000..10a67644e915
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
+> @@ -0,0 +1,85 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7779.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD777X family 8-Channel, 24-Bit, Simultaneous Samp=
+ling ADCs
+> +
+> +maintainers:
+> +  - Ramona Nechita <ramona.nechita@analog.com>
+> +
+> +description: |
+> +  The AD777X family consist of 8-channel, simultaneous sampling analog-t=
+o-
+> +  digital converter (ADC). Eight full =CE=A3-=CE=94 ADCs are on-chip. The
+> +  AD7771 provides an ultralow input current to allow direct sensor
+> +  connection. Each input channel has a programmable gain stage
+> +  allowing gains of 1, 2, 4, and 8 to map lower amplitude sensor
+> +  outputs into the full-scale ADC input range, maximizing the
+> +  dynamic range of the signal chain.
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7770.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7771.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7779.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7770
+> +      - adi,ad7771
+> +      - adi,ad7779
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
 
-Cool
-For the record (no need to add to patch!)
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+I missed this earlier, but a device that only has a reference supply is=20
+novel.  A quick glance at the datasheet shows a bunch of others power suppl=
+ies.
+They all need to be documented and any that are required for the device to =
+function
+must be listed as required.
+
+Also seems to be at least one plausible interrupt line (alert)
+that needs documenting whether or not the driver supports it yet.
+
+
+
+> +  vref-supply:
+> +    description:
+> +      The regulator to use as an external reference. If it does not exis=
+ts the
+> +      internal reference will be used.
+> +
+> +  start-gpios:
+> +    description:
+> +      Pin that controls start synchronization pulse.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +          compatible =3D "adi,ad7779";
+> +          reg =3D <0>;
+> +          vref-supply =3D <&vref>;
+> +          start-gpios =3D <&gpio0 87 GPIO_ACTIVE_LOW>;
+> +          reset-gpios =3D <&gpio0 93 GPIO_ACTIVE_LOW>;
+> +          clocks =3D <&adc_clk>;
+> +        };
+> +    };
+> +...
+
 
