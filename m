@@ -1,249 +1,178 @@
-Return-Path: <devicetree+bounces-88574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C07FC93E430
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:52:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF97693E437
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 11:08:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C837B20F17
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 08:52:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97191281A2D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 09:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDAA111AD;
-	Sun, 28 Jul 2024 08:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACC0182D2;
+	Sun, 28 Jul 2024 09:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EKrmcFQx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SDsJJ5t5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BA3182B4;
-	Sun, 28 Jul 2024 08:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C138F62
+	for <devicetree@vger.kernel.org>; Sun, 28 Jul 2024 09:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722156766; cv=none; b=c0YYEKKe7O2KD7pEZBM0ruuYcOAidXKch+y9jopIlOQL6T6ddwYBjMQ18bYpoE2tzMtDkiuSK7kLNvIYuS4fOt8AcMQoTG1A0MWGFb8J3EEy95YnUriY6hmwThyAKKYJ+j1ir+vB1H72iZoPyF253t7HHJC6Zg9YpOmrD1puXro=
+	t=1722157707; cv=none; b=FU7A4+8xk8YKExy36UbVeFB1g3YFHs+fuvfYfTgpOLUyfyNh0HQGJjx09QkIi1JPix3+EkAdfZAX9k93Z/Xs9L+O/+h6zNueHFw/w6tzGqrq9yAGuoEeWEVQGqlYF4+0zwrjUBUS4N8usoK5t2wirTsm3JXeJtvIxsJWLBWUvR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722156766; c=relaxed/simple;
-	bh=NlU2OuxD9BmWpHF9CFPJ/QLw6zy8dx7RCela9LKcZJE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XL8KI+xBVnxbJrVF/B/33l9bjfuoJlnXCK4+oW66uij2vG0dFrzZNxSnYHiSJyma33E0CKKh++5LVPPLtH2cb9umWpqjcO4TJu5gYSl/Hhpq8wICCnDVmuEY0BovS+lqW6PjI/K77qCvTBOzSUfZCqcAE62QLvqSD4F3IKCe818=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EKrmcFQx; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-67b709024bfso8767637b3.3;
-        Sun, 28 Jul 2024 01:52:43 -0700 (PDT)
+	s=arc-20240116; t=1722157707; c=relaxed/simple;
+	bh=DGMu3LcGZCETzwzuTSzObefjtm3VJ0HhgxxmDWV2U9w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iv0J2pRYTleY9n+YuVsQhKP4UAIxGW0yVkF99LeVmpmo8wv+Ry3CIPOlbbK2pUqyxU+7IWR/Jx7xBy7dI4IY2ip9qaI69pbMOHR2PjlKeVYGD2o/A71pl+pAiP5sEU6vtitGVSk/zNQjGg3UHajSdV9SBGHNKfJ5aJeCeWhLZCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SDsJJ5t5; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-427ffae0b91so10749845e9.0
+        for <devicetree@vger.kernel.org>; Sun, 28 Jul 2024 02:08:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722156763; x=1722761563; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=b50kQg9CcOfPljkM2el62+Gp/5HcSGg+41XNn2C/3x4=;
-        b=EKrmcFQxwD85npuV8oMNEqGSXAzoKU9AwvsxtRG3RvQi07+780C+C4bwwuGa2iVq+A
-         9tbUw//c86izq3hpvXTuksXVHwICqEjg/xEMom2b6eBttuxtWRTEWssuhC4UpT2UhaIR
-         ACxXZCtosP3gZ5RRg1ckzpIwRhU+ECO0xlCDH1mR/tsHxnWCq/oiJI90nUFnfgsN9xka
-         hAyn4+P15H+p3mmlsapP6obxWYiu/Fo2SK55j8blzxv8LlHfIRku6tdcQjoD2HuFHnVW
-         tg8dkUwMtFs9jOIP/R2n7NXZdu+egBlauq8NdAAdBux0yubWtRg1n2KvHT4tjoKu5LdV
-         TkYg==
+        d=linaro.org; s=google; t=1722157704; x=1722762504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=B0AlYY3fc/ZZl1znfYJ42AN0KaZkXyNYq98lIN0P/S0=;
+        b=SDsJJ5t5IkLhuEJHXGDmHEA64Wah+1b6feU8byxPQeDhsCh14t+qG+b6gYMC+agYyw
+         ytNTLEq/pTG8pPbxhAgE6rfGq1HF1l1PhmBIMtX+YYsQlVwMPgAOZf3dxIVmfnXK/LrV
+         ji6G9XG0tVPkLwN24db7QYSNF9Vmd4/KuKQBb0UxhQCHQPkf5FjX4f71utWJZt0cAQDK
+         UwlGjFedeKiIAPLabeLFfhgDuyb3E3x5f9wor2Wq3wyNkhvDjUnGuNZflQms22uKglCG
+         1QjUEl4hEBaZkY6dDIelM0V6yTuAm9ptqv68DYY2BuyRtyZnDWyOePctDqYM29p5vKSu
+         3VXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722156763; x=1722761563;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1722157704; x=1722762504;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=b50kQg9CcOfPljkM2el62+Gp/5HcSGg+41XNn2C/3x4=;
-        b=JgNyOBi5LH+V384h1cdoFreMzHVk/j6ixKITcv1gczgOUHscH8gzW2u9+UhGxbrNxf
-         VMH3cpcfm1WNE7GoTNCPB1ShhKiRUWJNQnywFywtx6h6PZB1o9P11zQjaa//MmfPbqYW
-         vHIQKXXkph13tMPe8Z2qiqaVPfCdj/o5betDQTniktZ6tbpAKA/YZmW2Z83JxGB3Wdk4
-         aS0FPgXssPJa8xNtR6b3wxsRXF3+O11llJxTStfwPUvT1xaWSUGM8OrMaNGGGDsXwSFc
-         1ZOeUHBHL+PxkUISDG1T9RDJSYfLTnUue/baTaT3RghkPcgjFt3BGZR4LDi7MgJS4pdS
-         oHkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVmtLGZHJxT1+hu6aQosy8ujo/6SiABBhGwatCHom8RO2AQDqrjF/H/6oRAbOwvtuQyCG47Lew+FVDROOKV8PVp1f8AYLf+mIaKgrOc0tiCSbDw+jDd8fstLwVdcXM9qMY3kRV1jg==
-X-Gm-Message-State: AOJu0YxDlFjFY4cjLWw4l6iT0bCOsvRX2/wlE2m/uMijJUjxJ+eBd0e8
-	dHLA4teURvNGhLod5zOEL7AvWoKmrO0XjSXaS6GeNwrQwuY383eEHmxGOaiP1GIFXDu5xemUyUM
-	E0k4QAiXXHn9fGAgNyaYTkSlNHYk=
-X-Google-Smtp-Source: AGHT+IFxPxC4Ng6BBPJ48T04Y3ihU8aK+aGafUQKzzm/XI0/Mws3uR/xLo9Uwm/f7iZEJNeBJn29rXvYEXrH93XwLTE=
-X-Received: by 2002:a0d:ea0e:0:b0:67a:f3d4:d9d2 with SMTP id
- 00721157ae682-67af3d4e244mr38363277b3.39.1722156762788; Sun, 28 Jul 2024
- 01:52:42 -0700 (PDT)
+        bh=B0AlYY3fc/ZZl1znfYJ42AN0KaZkXyNYq98lIN0P/S0=;
+        b=rk73iIupb7Hfu4jsAe/jKnhQhULbdJJP2pK3kOhMF7UDHapkXyLkIPtAosQ11wuwNg
+         2cs7cRgv+9Lozb8vXY7G1NHEYfM4mTTHZh7qSgva0y9A1zr+101PAfe8y3VU2UwDQ4QG
+         hiHsLfY8T7WGgG7uWyNcbDm8Jl5C2Anl05NzUH8l4lkOBFlkFn1j/nY5V4JxQztlx8P8
+         4QyqAhGIBvyaFxdLqQTerZohulv3Q0ageDVYEDNbUyYsl9HdZqmyIgYI+OTCTK3bryTt
+         ABlhMArx9mGSf3ZOAxBJC0LmS2UDA69bK5lte9ZeaGmW1QzSftCmwuAWH+2y1YZZuceq
+         Z4Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+d9G4ZO9PlF/urzW+D4iFxCpcTQBOF/hrIHlpCBf9LqQe5QvoKhPZWK1r42cdmotl79t2q6YEMtFbDmQZLXCqth5OIEoSKaTqMw==
+X-Gm-Message-State: AOJu0YzEh/2FOSuC73Q2cqEClFs6fem5H4Dwh09BEr2iVPQTlAOwZoIf
+	OnR9NZFc3cIf8gAMJkGg4RvJ9gRacAnoONqNfWsUSIOkD7rBymLilOyx9yeJGwY=
+X-Google-Smtp-Source: AGHT+IFzrsC/3yUJT1aZoNiMmn7LzTvw3TcPL3GVffUIkmTe+Lydehx1iLrqSywEpeW71ST106QMHQ==
+X-Received: by 2002:a05:600c:314c:b0:426:690d:d5b7 with SMTP id 5b1f17b1804b1-42811dd43a6mr35284895e9.25.1722157704185;
+        Sun, 28 Jul 2024 02:08:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428057a6307sm138855285e9.36.2024.07.28.02.08.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Jul 2024 02:08:23 -0700 (PDT)
+Message-ID: <e430b228-ce14-497d-b63e-15f14388a5f7@linaro.org>
+Date: Sun, 28 Jul 2024 11:08:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240718210322.37492-1-ilordash02@gmail.com> <20240718210322.37492-2-ilordash02@gmail.com>
- <20240719-ahead-kiwi-995e52bf3e74@spud> <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
- <20240723-dinginess-john-608d0b28293b@spud> <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
- <20240723-municipal-snowy-136b08b6db90@spud>
-In-Reply-To: <20240723-municipal-snowy-136b08b6db90@spud>
-From: Ilya Orazov <ilordash02@gmail.com>
-Date: Sun, 28 Jul 2024 11:52:31 +0300
-Message-ID: <CAGCz5HnJKjNj7A0YD2fw20m-NrEs3MoCLwox86mC11Kudq8xbg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
-To: Conor Dooley <conor@kernel.org>, geert+renesas@glider.be
-Cc: mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, vkoul@kernel.org, 
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, a-govindraju@ti.com, 
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: imx93-11x11-evk: add bt-sco sound card
+ support
+To: Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1721897948-6306-1-git-send-email-shengjiu.wang@nxp.com>
+ <1721897948-6306-2-git-send-email-shengjiu.wang@nxp.com>
+ <e4ab2fc9-eac4-4ab7-9346-d4129fd778e6@linaro.org>
+ <CAA+D8ANj0oond9bT0tv7DhBRpoXTEB95zMLALrLLZZZsw7sC=Q@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAA+D8ANj0oond9bT0tv7DhBRpoXTEB95zMLALrLLZZZsw7sC=Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Thank you for your detailed explanation. I support the decision to use
-fallback compatible.
+On 26/07/2024 05:42, Shengjiu Wang wrote:
+> On Thu, Jul 25, 2024 at 7:32 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 25/07/2024 10:59, Shengjiu Wang wrote:
+>>> Add bt-sco sound card, which is used by BT HFP case.
+>>> It supports wb profile as default
+>>
+>> <form letter>
+>> Please use scripts/get_maintainers.pl to get a list of necessary people
+>> and lists to CC (and consider --no-git-fallback argument). It might
+>> happen, that command when run on an older kernel, gives you outdated
+>> entries. Therefore please be sure you base your patches on recent Linux
+>> kernel.
+>>
+>> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+>> people, so fix your workflow. Tools might also fail if you work on some
+>> ancient tree (don't, instead use mainline) or work on fork of kernel
+>> (don't, instead use mainline). Just use b4 and everything should be
+>> fine, although remember about `b4 prep --auto-to-cc` if you added new
+>> patches to the patchset.
+>> </form letter>
+> 
+> Sorry,  I don't get the point. I used the scripts/get_maintainer.pl to get
+> the list of people.   Anything wrong?
 
-However, I am curious as to why the NXP CAN PHY transceiver was not
-included as fallback compatible. Geert, could you please share your
-thoughts on this matter?
+Read the message, carefully. If you used get_maintainer.pl, then:
+"YOU WORK ON SOME ANCIENT TREE"
 
-On Tue, 23 Jul 2024 at 23:14, Conor Dooley <conor@kernel.org> wrote:
->
-> On Tue, Jul 23, 2024 at 10:55:17PM +0300, Ilya Orazov wrote:
-> > On Tue, 23 Jul 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > > On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
-> > > > On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wrote:
-> > > > >
-> > > > > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
-> > > > > > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> > > > > > It is pin-compatible with TI TCAN1042.
-> > > > > >
-> > > > > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> > > > > > ---
-> > > > > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
-> > > > > >  1 file changed, 1 insertion(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > > index 79dad3e89aa6..03de361849d2 100644
-> > > > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > > @@ -18,6 +18,7 @@ properties:
-> > > > > >        - nxp,tjr1443
-> > > > > >        - ti,tcan1042
-> > > > > >        - ti,tcan1043
-> > > > > > +      - microchip,ata6561
-> > > > >
-> > > > > Given that your driver patch has
-> > > > > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
-> > > > > | index ee4ce4249698..dbcd99213ba1 100644
-> > > > > | --- a/drivers/phy/phy-can-transceiver.c
-> > > > > | +++ b/drivers/phy/phy-can-transceiver.c
-> > > > > | @@ -89,6 +89,10 @@ static const struct of_device_id can_transceiver_phy_ids[] = {
-> > > > > |                 .compatible = "nxp,tjr1443",
-> > > > > |                 .data = &tcan1043_drvdata
-> > > > > |         },
-> > > > > | +       {
-> > > > > | +               .compatible = "microchip,ata6561",
-> > > > > | +               .data = &tcan1042_drvdata
-> > > > > | +       },
-> > > > > |         { }
-> > > > > |  };
-> > > > >
-> > > > > the driver patch is actually not needed at all, and you just need to
-> > > > > allow ti,tcan1042 as fallback compatible in the binding, so something
-> > > > > like:
-> > > > >
-> > > > >   compatible:
-> > > > >     oneOf:
-> > > > >       - enum:
-> > > > >           - nxp,tjr1443
-> > > > >           - ti,tcan1042
-> > > > >           - ti,tcan1043
-> > > > >       - items:
-> > > > >           - const: microchip,ata6561
-> > > > >           - const: ti,tcan1042
-> > > > >
-> > > > >    '#phy-cells':
-> > > > >      const: 0
-> > > >
-> > > > I tested the build with fallback compatible:
-> > > >
-> > > > compatible:
-> > > >   oneOf:
-> > > >     - items:
-> > > >       - enum:
-> > > >         - microchip,ata6561
-> > > >       - const: ti,tcan1042
-> > > >     - items:
-> > > >       - enum:
-> > > >         - nxp,tjr1443
-> > > >       - const: ti,tcan1043
-> > > >
-> > > > and modified compatible property in DTS:
-> > > >
-> > > > compatible = "microchip,ata6561", "ti,tcan1042";
-> > > >
-> > > > Build succeeded, phy-can-transceiver driver was used. So I would like
-> > > > to add a fallback compatible for both "microchip,ata6561" and
-> > > > "nxp,tjr1443" in this binding and modify other DTS files with
-> > > > compatible = "nxp,tjr1443". What do you think?
-> > >
-> > > This is wrong on two counts. Firstly, were what you have correct, you
-> > > should
-> > > squash the two:
-> > >      - items:
-> > >          - enum:
-> > >            - nxp,tjr1443
-> > >            - microchip,ata6561
-> > >          - const: ti,tcan1042
-> > >
-> > > However, that does not allow the TI compatibles in isolation, so you
-> > > still need to allow that for the actual TI devices, so you need:
-> > >
-> > >    oneOf:
-> > >      - items:
-> > >          - enum:
-> > >            - microchip,ata6561
-> > >            - nxp,tjr1443
-> > >            - ti,tcan1043
-> > >          - const: ti,tcan1042
-> > >      - const: ti,tcan1042
-> > >
-> > > There's probably some devicetrees that would need to be fixed up. I'm
-> > > just not convinced that this is worth retrofitting however.
-> >
-> > But nxp,tjr1443 is pin compatible with ti,tcan1043, so it should
-> > fallback only to ti,tcan1043 and not ti,tcan1042. That's why I decided
-> > to split them into different enums.
->
-> Ah, sorry I missed that. I misread the match data. Then you need:
->   compatible:
->     oneOf:
->       - items:
->         - enum:
->           - microchip,ata6561
->         - const: ti,tcan1042
->       - items:
->         - enum:
->           - nxp,tjr1443
->         - const: ti,tcan1043
->       - enum:
->           const: ti,tcan1042
->           const: ti,tcan1043
->
-> because the TI devices exist and we still need to be able to
-> differentiate the TI and NXP devices. If you have
->   compatible = "nxp,tjr1443", "ti,tcan1042";
-> that means the device is an nxp,tjr1443. If you have
->   compatible = "ti,tcan1042";
-> then that's a tcan1042.
->
-> > I made my patch according to a similar one that adds support for
-> > nxp,tjr1443. You can find it's conversation on
-> > https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45f3bb0.1674037830.git.geert+renesas@glider.be/t/#u.
->
-> > I thought we want to hold all PHY chip names in one compatible enum
-> > and each in its own of_device_id struct in driver and extend them
-> > where appropriate.
->
-> Nah, fallbacks are preferred when the programming model is either
-> identical or a "compatible superset" of an existing device. New
-> of_device_id structs should only be used where we need to account for
-> differences in the programming model.
->
-> Cheers,
-> Conor.
+I think I was pretty clear in above form letter, unless you just want to
+ping pack to me so I will waste more time to explain why you cc wrong
+addresses...
 
-
-
--- 
 Best regards,
-Ilya Orazov
+Krzysztof
+
 
