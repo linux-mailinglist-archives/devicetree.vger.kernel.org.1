@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4610C93E41C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:40:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A8093E41E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:41:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDCAAB21168
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 08:40:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E335D1F217C4
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 08:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6B710A0E;
-	Sun, 28 Jul 2024 08:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECC610A0E;
+	Sun, 28 Jul 2024 08:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8f+Dlm/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B7zYoPtv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7AAEC144;
-	Sun, 28 Jul 2024 08:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814E8BA34;
+	Sun, 28 Jul 2024 08:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722156031; cv=none; b=pLMnIJPCCiGqHUuDwc39FbI8VVcN6nGH9+bRLJChY1fTm6Kjvcifig3XCkCY0zjMG/itQav+SypjXM3/7CXUACKkVviYDRI304YgsQF6EpXrJLj3W9FBpfevd+gG7t/Jq2A2FnNnaAZKbcL/eERTP9Aap+gTGJk7qEj8mPibE7g=
+	t=1722156071; cv=none; b=Ws17uljrZID3//YtBDN77lttdHP52VoETR1eljG9PA7SyZIG+LjtzCHmYfcUsJoNQk3HYdDE9GjlcDhk2BR0NfIGebm2LsXDMTbMCXjj8ONOaymhTeONBnj4BPGXOhpSCDfNZHAb6HnL7hi+0VGP9URrC502yn4TJbpoI/DWSVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722156031; c=relaxed/simple;
-	bh=8sD63r22j8l3RQCICGnk68cMDwXLD/p08VqF4GxRphA=;
+	s=arc-20240116; t=1722156071; c=relaxed/simple;
+	bh=/Bi4KvCOpUh2vfddp26zZyy0Hwn/YMVYEAibqT+vD3Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CvVVe9Vh8S0109ZkSEINg6LyobhKCSj+vMOYCKU2ybgwv9UfnBe6669x2iOtSe0kZUf613uyZZqvel9QCuRWOhrFIWQdsLBYI9CSANS62F7SVdAwwO4oZHm7nX8NIWe+jYVIDM1vRmaIpJdVZygFd5Mp/5kXrIHW5Yyf6/FD3rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8f+Dlm/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C73CC116B1;
-	Sun, 28 Jul 2024 08:40:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oZVtN8X59YEvMB+5TmUc8xwNK9QgUdNhTiBNjiqUGL94Skg2wqGHa20yC94nIVDe1qSPvITCYifgD2/bJDHOfJhCz7EbGAfbrDClm/vGxDISclDjA06cDW36cHFerXGm87E0ne5d03QeinEOXLKyPX76xwjSnc9zEB2WkH6BX/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B7zYoPtv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 134E9C116B1;
+	Sun, 28 Jul 2024 08:41:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722156031;
-	bh=8sD63r22j8l3RQCICGnk68cMDwXLD/p08VqF4GxRphA=;
+	s=k20201202; t=1722156071;
+	bh=/Bi4KvCOpUh2vfddp26zZyy0Hwn/YMVYEAibqT+vD3Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J8f+Dlm/jPjNCFk5Vr8uikBLnjjLPtoQZ6xmo0HuMvH3xxy5Se3JUZNwtN4/+j+vd
-	 E2CQPXIoycjlVj7+5UdOX0fc2VcrhAUUfM6wJSVPMJHwZ8UDbd49ar9v1OFjl+fCE/
-	 dzP3GbGUpJ4D9PdenZB9uqolefwhiUoSygWAQ1ksB3q5UGcNwQcSn9OGsn1RfMja0e
-	 f8xd2ju5apL4Ighduqc0/oT1ZcdT2HgQhVUngpUJLhjFOHg2n8ZmfiBpgqvX6AFrMQ
-	 oUcL+TIhlMRn4cZD1LHaY5GJimcy+dDWD5WRVfvQ0iRF7JaFNDYQQTBThlmH/TwWFw
-	 HUlIo+l7w+z6g==
-Message-ID: <2d28134f-63d0-498c-8539-1cf2d0f1d68d@kernel.org>
-Date: Sun, 28 Jul 2024 10:40:23 +0200
+	b=B7zYoPtvY9KGIMHz7fnc8lzXAp9SiHOWY1WtlwLjmV0ox4mPTc9PduF/W1ynjj5rw
+	 ZmRIyRNTqTHMhj7befls2lJ7r0WmgHi/uj9Vkq3rrxth32kTX3TinmJYwQQaTmo9xT
+	 aRbrgEp1MXDRD0pUyJHscMm4WScyiIDljTbgK0JY7pqJdigBn7vS4a4+7OD1HjLB95
+	 yEYvzh0GP0Vgzrb7+tcUyqyWZoFBr1QuMCbTsLgF2JxIO11OpmxTX9IqgRaPqF4ufW
+	 kJW6rLo+vY2EN5dMa/r7Pawg6fh4ONp5DZOo06vcBOCNELg7Bfzu8l2Z/trH9MKtzX
+	 Ml0yFS43FKDUw==
+Message-ID: <27fb423a-e8f4-44c2-be1a-38d2a42a11b6@kernel.org>
+Date: Sun, 28 Jul 2024 10:41:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: Add Sharp Memory LCD bindings
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: mehdi.djait@bootlin.com,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240725004734.644986-1-lanzano.alex@gmail.com>
- <20240725004734.644986-2-lanzano.alex@gmail.com>
- <c7bf08aa-e7a0-4b60-b9fe-b43215ce3fb9@kernel.org>
- <7zpp4ebzj5xk3wbbpt7l5xnhqg3i52mdjhn3grmn562mres4k5@a3g2xxftk2td>
+Subject: Re: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x
+ proximity sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: wangshuaijie@awinic.com, lars@metafoo.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, waqar.hameed@axis.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, liweilei@awinic.com, kangjiajun@awinic.com
+References: <20240726061312.1371450-1-wangshuaijie@awinic.com>
+ <20240726061312.1371450-3-wangshuaijie@awinic.com>
+ <3ef6c902-b004-4aa0-96c9-dabd81a01a6a@kernel.org>
+ <20240727160628.115e295e@jic23-huawei>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,40 +106,59 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <7zpp4ebzj5xk3wbbpt7l5xnhqg3i52mdjhn3grmn562mres4k5@a3g2xxftk2td>
+In-Reply-To: <20240727160628.115e295e@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/07/2024 18:30, Alex Lanzano wrote:
-> On Thu, Jul 25, 2024 at 08:17:01AM GMT, Krzysztof Kozlowski wrote:
->> On 25/07/2024 02:47, Alex Lanzano wrote:
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - sharp,ls010b7dh04
->>> +      - sharp,ls011b7dh03
->>> +      - sharp,ls012b7dd01
->>> +      - sharp,ls013b7dh03
->>> +      - sharp,ls013b7dh05
->>> +      - sharp,ls018b7dh02
->>> +      - sharp,ls027b7dh01
->>> +      - sharp,ls027b7dh01a
->>> +      - sharp,ls032b7dd02
->>> +      - sharp,ls044q7dh01
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  spi-cs-high: true
->>
->> You can drop it.
->>
+On 27/07/2024 17:06, Jonathan Cameron wrote:
 > 
-> This is a required property in order for the display to function correctly.
-> But I have no issues removing it if there's a better place to document it.
+>> ...
+>>
+>>> +static int aw9610x_read_chipid(struct aw9610x *aw9610x)
+>>> +{
+>>> +	unsigned char cnt = 0;
+>>> +	u32 reg_val;
+>>> +	int ret;
+>>> +
+>>> +	while (cnt < AW_READ_CHIPID_RETRIES) {
+> Why retries? 
+>>> +		ret = aw9610x_i2c_read(aw9610x, REG_CHIPID, &reg_val);
+>>> +		if (ret < 0) {
+>>> +			cnt++;
+>>> +			usleep_range(2000, 3000);
+>>> +		} else {
+>>> +			reg_val = FIELD_GET(AW9610X_CHIPID_MASK, reg_val);
+>>> +			break;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	if (reg_val == AW9610X_CHIP_ID)
+>>> +		return 0;  
+>>
+>> So devices are detectable? Encode this in the bindings (oneOf and a
+>> fallback compatible) and drop unneeded entry from ID tables.
+> 
+> Hi Krzysztof,
+> 
+> I think this is not a good idea.
+> 
+> Even though these two are detectable, this breaks if along comes a 3rd device
+> in the future which is truly compatible with one of these two parts but that
+> we don't yet know about (so can't discover). For that part we will want to
+> provide a meaningful fallback compatible.
+> 
+> It needs to fallback to either the 3 channel or the 5 channel chip and handle
+> it as appropriate. (Note that this difference is non obvious as right now the
+> code pretends there are always 5 channels and that needs fixing).
+> 
+> If the chips provided a register that told all the chip specific data like
+> how many channels, then sure making one fallback to the other would be fine
+> as future devices could use those standard registers.
+> 
+> With just an Id register, we can't discover enough.  Hence these two
+> parts should not be listed as compatible with each other.
 
-The sharp LCD device or the board (e.g. via some inversion)?
+Sure
 
 Best regards,
 Krzysztof
