@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4DB393E486
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 12:31:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748B093E48A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 12:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E08B12815C3
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:31:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 984811C203E2
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6021946F;
-	Sun, 28 Jul 2024 10:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7840021373;
+	Sun, 28 Jul 2024 10:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3Lm4dQV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HBwRCuPF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B02BBA20;
-	Sun, 28 Jul 2024 10:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504AEBA20;
+	Sun, 28 Jul 2024 10:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722162672; cv=none; b=U1vvgZF/kCmza3JeHgdttw15lfOcIEB0TJmBAxj0W+Uj9W3kOyJ3OGb5hpBEzDuYfi5EKQR5jk42Ju+LMD/QmOxxItIXAPcgc5rnS1ncW43GKZy0QhSWqAXIZBAARePVcqg4RXNN/9aew9fNS8fyIMSvCJANT/uFfxCiPXiuf4w=
+	t=1722162686; cv=none; b=mIZzw8Oj1r53g8OfNpXMRtqFlWTXzRvrZ0H2f6TJuYGe/zcMxy6HoxUpRkT4tb5pwfrkftkek7D/7j3g2Ds1NexB6k3oKYRJEZwX5Bz1mXKA1WXJh2+9u9aRzj5o/+Z4q1aDjY0X3huFhN94T0PydXkbgSjSeG6jWodJ3Hg1feM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722162672; c=relaxed/simple;
-	bh=17b1KmsZq4pAU+NvEPQVCR4iwJs15gGQjUnqpFafd7I=;
+	s=arc-20240116; t=1722162686; c=relaxed/simple;
+	bh=vdOfdbzQN8uEiVmLCwGmr1PmbBvmwZ3m81s7PpNeXj0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ij2QOXyapg9fevSTJ22RnjG4SSeRQbXEyWL7XgoI3eaWvrJqespeVSYA2l96Q/L58dJwCSZ7LNCYTbXEWusOG3teaVL8bAIt2CeaaLqkLGBy5cmQ+i1NdhkfObFdamjPzrJ2ervauOxoNNn07P/4FafIYW3kaahfa2ykMePwoNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3Lm4dQV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4264C4AF09;
-	Sun, 28 Jul 2024 10:31:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=R+jlIsEjmAhpkHJFhZZPV2fOoePkfOon8gSRQ3adoThmpVMXj0Ki9JcNQiiVpZU8KsCJnfnDtoZiiFSMQSf456UBp+b85AHaIw/POuCzcvRh2i7sDCBOw5JSUEwKXU96W03XL8mr3X8c3/sVMZZjapOCFwrJPtEJPVa/b1l9t98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HBwRCuPF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E101FC116B1;
+	Sun, 28 Jul 2024 10:31:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722162672;
-	bh=17b1KmsZq4pAU+NvEPQVCR4iwJs15gGQjUnqpFafd7I=;
+	s=k20201202; t=1722162685;
+	bh=vdOfdbzQN8uEiVmLCwGmr1PmbBvmwZ3m81s7PpNeXj0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d3Lm4dQV3e4YLATou/cPITSifz+DThCJeeq2z50qYNb6Ma67yiMTu9ANq6+t9GvEq
-	 RIJEOIU1t41OLsPEFX/GL8ulHgIQN5TxIyNme2RuBsLir4KT8P28Pa1aOO7lohzelK
-	 jLdqWjqMkldOyE/W+6kRmqy82HwEpw7NKag5ZlWOSODWZqapWfl6FVe7DVSaMYiB9I
-	 ZwRzIT1gM2Uy28EF2/GgrRrS2KH0f03SVg8UlWYSs6qB2Ipc7+WXBs6MCb7HjNGMVR
-	 ZICMV7hhzqsoS5uFiC66AYZ8gl5/43MEDeTDLrEL0tnAP+2w9IuQh0upDdFLiw8Y5o
-	 YONv8115y4G4Q==
-Message-ID: <55c86b6a-0746-4e5e-b085-9bc33f95a78b@kernel.org>
-Date: Sun, 28 Jul 2024 12:31:06 +0200
+	b=HBwRCuPF4vF4dF8Se84UG2NaW5+gHZPd1ZhCFemovn8QOdKgNirC7HYW8ARMYdiW5
+	 x9ZqgvGdgRIza59xYj4W782Y6phIGAAYi/CgO2Y9G+coLclrkTOl7MqC4Zlxngpyqc
+	 Xiji32qM4DY4pYmkm59MPATP1GpkGTqBb/BebOkkadu552MvLW7An0PkdVogdDzDdX
+	 I0KT6rWhBzBYNM2VyPRDs6EipHQ3RTcnPsYEQ8iv7N2ieDUcQRrwW1/ghwtyePAr/h
+	 O2bVB9vFJmMTqbXRLvDaM8tp+uMiXHoWQacYpvOHTzdFS+1pswJ0JInKZcpq1SMY1Z
+	 8HW4dGteVOvAw==
+Message-ID: <d27972fb-33fc-4d90-8d9b-4bfd4aa9a693@kernel.org>
+Date: Sun, 28 Jul 2024 12:31:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: mediatek,uart: add MT7981
+Subject: Re: [PATCH 1/2] dt-bindings: spi: mediatek,spi-mt65xx: add compatible
+ for MT7981
 To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- John Crispin <john@phrozen.org>, Daniel Golle <daniel@makrotopia.org>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240727121447.1016-1-zajec5@gmail.com>
+Cc: Leilk Liu <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, John Crispin <john@phrozen.org>,
+ Daniel Golle <daniel@makrotopia.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240727114828.29558-1-zajec5@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,15 +108,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240727121447.1016-1-zajec5@gmail.com>
+In-Reply-To: <20240727114828.29558-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 27/07/2024 14:14, Rafał Miłecki wrote:
+On 27/07/2024 13:48, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Add compatible string for serial on MT7981 SoC.
+> MT7981 has SPI controllers based on IPM design
 > 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
