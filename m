@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-88581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED18393E453
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 11:40:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A939B93E483
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 12:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88972B2122A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 09:40:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F1A281B63
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321DD18EAD;
-	Sun, 28 Jul 2024 09:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9DC2D613;
+	Sun, 28 Jul 2024 10:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="vzEeJJFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/xYx9T7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866951877;
-	Sun, 28 Jul 2024 09:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336C52C69B;
+	Sun, 28 Jul 2024 10:30:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722159651; cv=none; b=rtWCR5MnRnXILJ5U2Mq8bP4230QIJOJ/M5mi5QmC02zRRiu22JAya5SQpo3vvUEuFAhfYrurUv2XMfvlW0uiHoVimrhBcs95Mav/dTMKx+DsDwkiwcIskRtpJAly5+GIJcIMIZQmWj/VPdLiOFYjbJHCWDisnQmKnIdSIPH7XUM=
+	t=1722162620; cv=none; b=MEdylj8WdMJhf5SBxrUcuOVB+66VPuGADSsgYvamHk1RnlNWKM8l41qdRHQzPzc9qWgv+ktQ424pto3Ed5i6xVCqm8xTdIeXoK3lWouiQK1u4QWOpsNlk+nj+ri4M6alKkcMmQ9TBUKnY2aMlHCc/2umxSY5KykyWh3oYlRu1ZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722159651; c=relaxed/simple;
-	bh=EXcK3Bit/zJbF5FFNhIJyAliX82cCKj798f/pZPgAlU=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=WZvws+t0E1rcKeeaR/2nxBFfo56HofJCe41gbxVa3ghmL0oYtCkJfAO7MgJWSCy8ZYyvDM2eV/uis1WnHYQEzhABRc4xeZBm80wxsKMURbnqD+eM0oDqqphbS9eX0/jESJ0xykV6b0p0XfdcjqHT+1qNW85pmNfKLkB6ct1uLnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=vzEeJJFr; arc=none smtp.client-ip=212.227.15.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1722159627; x=1722764427; i=markus.elfring@web.de;
-	bh=+pIgS+e9JSh9ALc2y7z8EVfK9KqYIRU+dVlJTa5wImw=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=vzEeJJFrdYO0Z7gepnNEXWUPldetGOb/5WUqQXGlktmQ+JA3BCV3dkRn0CRE+Hn/
-	 fMtD7/P9/Hgr5nmtgAeOsi8kSIM6a1kp5vvdGYtkDj0zJ+4RflGoo0l64evijOtfy
-	 MF/bUuizkPxRX1gOJg5yCms7/kVEbDJybXo1L/k2YZsa/ED1TGEAb+EdhHyeYKRLy
-	 6jnhRoS+twghHdyE65mS8dwo4iE1xyVMuIwkKoAfxlpBUem33KRg8DxUWDJ2hIfJ0
-	 1rkjnz2wO8Va1gEzFL7FTcJ7MMfCnz4pnw959KoJ6HdMrmZUnij9EOcM4sId46E2C
-	 gEAAHhouJDoF6O1AHg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.85.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MUlDJ-1shBUI0aBd-00NJfD; Sun, 28
- Jul 2024 11:40:27 +0200
-Message-ID: <624be618-1a1a-422c-85e9-be3e1d182adf@web.de>
-Date: Sun, 28 Jul 2024 11:40:12 +0200
+	s=arc-20240116; t=1722162620; c=relaxed/simple;
+	bh=eDWjhLzi6G1agWre6Y7l9EsOG8ksGnVzkj/CACSAyj0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EVFvbq+bJ1T75Uhz/RPhV833GOrZgEAt2RtxFpGogZJp8UcxOuTOlbrujJ1w6zjy9hvzpmcbOadrB35elFqccHB/Mw238Q3EKeO86c7Uyoz74rMqlOogvOKUJS6EvVmN4iAXC86bebWBEsHReAUC2zqMsJ9DWuM2nLylHKNYW8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/xYx9T7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6C7AC116B1;
+	Sun, 28 Jul 2024 10:30:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722162619;
+	bh=eDWjhLzi6G1agWre6Y7l9EsOG8ksGnVzkj/CACSAyj0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k/xYx9T7/I2WLfcnu+Qa5RkJFKH7BboES21hXWKrBAIClTAFCPA1Oqyli2VQYQn7h
+	 9yVsmefHU5cfToCSrPRG9wTIeOo3mD93MxzSc9NScVH/PEtZZgsgsei8bcXhXW01PW
+	 WkbOvyR8aNgRuZZXiIZayXSyK08RAWwZd3Si9fGI+0tmLcz3vo4gs2aGf4OuLgFvAu
+	 wVow3KrkyVlKuzd2cKdAlWDieWPy1zSFbfwBxUxOMBlEQNmSk0hZyZxeiBc6ACZn9H
+	 zcJCbeuVv5/ssY8PSXvoooSn0oGM/6RcYMka/BqlBsGWVdVVr+hOSsmAurOZetqJJN
+	 pO04cnEfEZNTA==
+Message-ID: <3d9f76c1-2e14-43dc-b438-5fac94ffc73e@kernel.org>
+Date: Sun, 28 Jul 2024 12:30:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,66 +50,135 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: Keguang Zhang <keguang.zhang@gmail.com>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Vinod Koul <vkoul@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240726-loongson1-dma-v10-2-31bf095a6fa6@gmail.com>
-Subject: Re: [PATCH v10 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA
- driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240726-loongson1-dma-v10-2-31bf095a6fa6@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: qcom,apq8016-sbc-sndcard: move to
+ separate binding
+To: Stephan Gerhold <stephan@gerhold.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Adam Skladowski <a39.skl@gmail.com>,
+ Stephan Gerhold <stephan.gerhold@linaro.org>
+References: <20240723083300.35605-1-krzysztof.kozlowski@linaro.org>
+ <ZqVXUI37fNB5D0DM@gerhold.net>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZqVXUI37fNB5D0DM@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:vKdYf3+VVL8lUjs0NnYPuuZGf0jwH3HnMk4HXP2F2E/BhGMrNLA
- rMxItCDPm2VSc86myDMzMtR48kNQ/unwWe2yQ6liTiPtq3kwtw9dDLAluTD/u0zIp1E/Azd
- NPJ17efnNhN8am2AvwntAb8ynndyGPeU18yFYkixb/Eb2j5XWOyELAQfEnhLCR4P8ImpVWl
- N2CX8Knw4QOhJbxZBMBmQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:vdhynPY24B8=;islEhC1vUb9Jjgtp5vF+hzhTZOD
- c0L/a/RL8NqzHjJL92VzYimNs62q6Ugsoj1kuloXNtvHnGxb6S25fRcOlVCF9cpheV7IX5IE1
- jJ5ETAxg4C9zrVRXRhlliIjsOISOnNxZDUAqiYdTPLogkR6xBu+m+fSF9gb2bHxOm20OV4zVU
- OvrWl3W/gPP9ywWUK3RIYCfTjjlvLKmt4VJb2+sOcm5DB+C3Chu7uRJcTCquMUndT9XCHAj/N
- 0MLvPM9MWHX4Fbc4R6aw2K+ElLj5pkufKW+5Q96Br3S9dUCe37aH/vFYbnmp0+xM6eS/gkYWL
- 6CNLwhB0WfwPNDtak7OAnPsqhaT13xjJoWeKy8aGTZI7Bs8hgITlLvMT2VEQD3VbZrdal6jd9
- tAUpnkcrHiYwSYPheJZZWldHMAqSlQUTn158tsW5Q5XS0o2CFB0PJdQRsk+LUzKQV8/0HCrLA
- JxGCu6Wd4Wcr/eTdSiZjCz/fcgSR2KI2CgUaeLyZ7IjYFjHXEkF4eeVuSOAhRQAno7fIqfXI8
- m6xp3woy7iamU24g5G6OmonJ/KSJoC1R9OP0i8GXyKSWzz3P50hTHI0shVCxn8A3d2WkCKCHk
- bsEQbrTIwwTmOxnOgOsvpj1t0Y4ivUQ6Ugvg7Ld0Ssw0g10cViRZ8KOEKqzHffMy2QD/8p3fK
- o6w/CjtRvRcq1SB7cGIygFMDaspt7rmZ/n93+NRI0B6BqUruRZ6V2oj1MY+9TGjCcic+GGB0I
- dlswdtO6rnNK4vsaJXaqxw4jH5Ez7fIX3qqLWbYkac30rU6Fc5gWfsBUwlkBETZi0ydl98pO2
- fZObadqMfnnO6wKOoXnKJXp/f3ObripWYbJVnF6vSKTNU=
+Content-Transfer-Encoding: 7bit
 
-> This patch adds =E2=80=A6
+On 27/07/2024 22:23, Stephan Gerhold wrote:
+> On Tue, Jul 23, 2024 at 10:33:00AM +0200, Krzysztof Kozlowski wrote:
+>> The APQ8016 SBC and MSM8916 QDSP6 sound cards are a bit different from
+>> others: they have additional IO muxing address space and pin control.
+>> Move them to separate schema, so the original qcom,sm8250.yaml will be
+>> easier to manage.  New schema is going to grow for other platforms
+>> having more of IO muxing address spaces.
+>>
+>> Cc: Adam Skladowski <a39.skl@gmail.com>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>> .../sound/qcom,apq8016-sbc-sndcard.yaml       | 205 ++++++++++++++++++
+>> .../bindings/sound/qcom,sm8250.yaml           | 137 ------------
+>> 2 files changed, 205 insertions(+), 137 deletions(-)
+>> create mode 100644 Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml b/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml
+>> new file mode 100644
+>> index 000000000000..6ad451549036
+>> [...]
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> index c9076dcd44c1..1d3acdc0c733 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> @@ -27,9 +27,7 @@ properties:
+>>               - qcom,sm8650-sndcard
+>>           - const: qcom,sm8450-sndcard
+>>       - enum:
+>> -          - qcom,apq8016-sbc-sndcard
+>>           - qcom,apq8096-sndcard
+>> -          - qcom,msm8916-qdsp6-sndcard
+>>           - qcom,qcm6490-idp-sndcard
+>>           - qcom,qcs6490-rb3gen2-sndcard
+>>           - qcom,qrb5165-rb5-sndcard
+>> @@ -58,18 +56,6 @@ properties:
+>>     $ref: /schemas/types.yaml#/definitions/string
+>>     description: User visible long sound card name
+>>
+>> -  pin-switches:
+>> -    description: List of widget names for which pin switches should be created.
+>> -    $ref: /schemas/types.yaml#/definitions/string-array
+>> -
+>> -  widgets:
+>> -    description: User specified audio sound widgets.
+>> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>> -
+> 
+> These two properties are also valid and supported on all newer
+> platforms, please keep them here! There are certain use cases where
+> these are needed independent of the platform, e.g. to control an analog
+> switch or mux connected to speaker or headphone outputs.
+> 
+> I agree that it is cleaner to move the IO muxing to a new schema though.
+> Perhaps we could define something like a shared qcom,sndcard-common.yaml
+> schema to avoid duplication for these generic properties? In the Linux
+> driver, these are handled for all platforms in sound/soc/qcom/common.c.
 
-See also:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/process/submitting-patches.rst?h=3Dv6.10#n94
+This was added to the common driver code but it does not mean it is
+reasonable binding. I don't understand why for example we even accept
+here aux-devs, instead of putting them into one of DAI links.
 
+The pin-switches and widgets could be used, but are they? The only valid
+argument to keep them is that you added them to common driver code.
 
-=E2=80=A6
-> +++ b/drivers/dma/loongson1-apb-dma.c
-> @@ -0,0 +1,675 @@
-=E2=80=A6
-> +static int ls1x_dma_resume(struct dma_chan *dchan)
-> +{
-=E2=80=A6
-> +	spin_lock_irqsave(&chan->vchan.lock, flags);
-> +	ret =3D ls1x_dma_start(chan, &chan->curr_lli->phys);
-> +	spin_unlock_irqrestore(&chan->vchan.lock, flags);
-> +
-> +	return ret;
-> +}
-=E2=80=A6
+Best regards,
+Krzysztof
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(spinlock_irqsave)(&chan->vchan.lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10.2/source/include/linux/spinlock.h#L=
-574
-
-Regards,
-Markus
 
