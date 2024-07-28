@@ -1,62 +1,55 @@
-Return-Path: <devicetree+bounces-88616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD6093E8A0
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 18:37:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC1C93E8BE
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 19:05:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58875281651
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 16:37:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A5D41C212A7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 17:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915C44EB51;
-	Sun, 28 Jul 2024 16:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821DB5D8F0;
+	Sun, 28 Jul 2024 17:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lFfN+Uz9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PbT3KJFU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E955A35;
-	Sun, 28 Jul 2024 16:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A67157333;
+	Sun, 28 Jul 2024 17:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722184655; cv=none; b=MlbcwEcOEgxvagR4g+J8UJn8l20WW43zaZGl79Ooy4RqfZxGxdUpSCibbGlFDQFJvBAsb4FafC8rWWkKkUXib6O3ZXutFFRfy7r7QA8x2wkAwKYDaeU1+Gm7AsMi1NECmoqLL6kPbFZj2uuvwCpQ/m3nyY3sbN6LUzEwuVdBM18=
+	t=1722186347; cv=none; b=UHjybbIx2GYsy7V4ZoLA+aEsmoalfQ4Pyb/oPV2XHplojPJ6yS8VpU8bPBn/ifdhtFqkwOyA0mNVBLHt2c7XFJ6C8hsUhwtIGufvC7VF5/f9MtslivRdxLHP9m69l1QM3AMRqO/FWu1jSWqeQWuKiKNy5FIA4V4ela8DWUesyjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722184655; c=relaxed/simple;
-	bh=ZIIHf+HwBIHRbom7T8jcOcH7zIjW/YploDXNxkI/jxo=;
+	s=arc-20240116; t=1722186347; c=relaxed/simple;
+	bh=QKJk+c2O3Jw4S0812ZXaWb0JNoGZSMaEm/HW36Sh8/U=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dHmtiJ2Xd7DLAt6jG+dMdfU6lPujUIJcE1KoCgpTWdw6JnKdpHQJ1NsuO0XpcB08vxsqWEtEtp3xAgyYQ7AY7y9j4Dtd/ZEiLEjRCVe+gJKJGk08UC9/yTiJQeog3sjAFZ6OlB61YylO/vUn//2ulxzyXqbaCupefkFhvK0MsI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lFfN+Uz9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B25CC116B1;
-	Sun, 28 Jul 2024 16:37:29 +0000 (UTC)
+	 MIME-Version:Content-Type; b=aoeGkhDGhETDrnONGAaQBUomJs03zybJVBNElSPcBuj8hsm0T03XaoKFTIj6posSv6oiVD7hqQiEohf5XNCH3As5BI9+A+A6bEnXJrfKERSI7o0Iyitovg4YO0NbjF1YQNlkvu0SpWznuHtJ+pRnpKjHevzPEh3wXHvFz9ZAtRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PbT3KJFU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D983FC116B1;
+	Sun, 28 Jul 2024 17:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722184654;
-	bh=ZIIHf+HwBIHRbom7T8jcOcH7zIjW/YploDXNxkI/jxo=;
+	s=k20201202; t=1722186346;
+	bh=QKJk+c2O3Jw4S0812ZXaWb0JNoGZSMaEm/HW36Sh8/U=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lFfN+Uz90m/oAmvHUgbe5h8IlyqbbrDPC39jgTE3wmO2Xqpsw1AYiD0+AKLiBi5Rx
-	 RSTCrPHgMxOl8tQAN7cFk9c24t6J0ESXojkVAmsdO2yI8ANDVKIL6y7+i5WPy++9b4
-	 NJQUgr7mSDOCSiqVvau46e8GxDa/mb3OIeesawUb1IQ/EIEzqlTOIxhB2d3ufbl7qE
-	 ub4XclWf/2oTPqubnf9cNbAkIKJvEGplu0z39SGx6+NXnHBQnj+vEkNtbdoYqzkYtQ
-	 cDOh0QW2rERW2mqaKmG3Bshn86Fstm2jEsZCfHbXj3KORaWUfSC89b1RoP14y3IF9X
-	 METthFbf2KV3w==
-Date: Sun, 28 Jul 2024 17:37:25 +0100
+	b=PbT3KJFUScgue678YEFigvlUBOTMmuQr8VkaOcWmtL41MyDenudZuDhU/jG1YETul
+	 EQ5kUQKHSLenRcIuN3EWareaAI7H0axPPcxKGGt0nMCWBdnVogdt8cn0yj4YfkhGFa
+	 r7kk4tHHF0feN+TzCZ9hL1/k6eXhS8UUO95aNBGJxJSyeeYg57pYU4ulhar2okeCAj
+	 NwKV27k/ntxJqw9Bv/G+u7DkcGBmY+bnDZscI9NkpEIExKJUwZEM/Fu92kHGHzi7ML
+	 ope+fAIWLYFeOqyFDbNGv61UDpVl0+WGb2SWNQfmxHzcAZQkvlUJiOwu2NjUSUpCsb
+	 OIlETIgR5isBg==
+Date: Sun, 28 Jul 2024 18:05:41 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH 5/5] docs: iio: ad7380: add support for single-ended
- parts
-Message-ID: <20240728173725.45043f11@jic23-huawei>
-In-Reply-To: <20240726-ad7380-add-single-ended-chips-v1-5-2d628b60ccd1@baylibre.com>
-References: <20240726-ad7380-add-single-ended-chips-v1-0-2d628b60ccd1@baylibre.com>
-	<20240726-ad7380-add-single-ended-chips-v1-5-2d628b60ccd1@baylibre.com>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/3] iio: light: stk3310: stk3013 support
+Message-ID: <20240728180541.3aff18e1@jic23-huawei>
+In-Reply-To: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
+References: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,94 +60,31 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 26 Jul 2024 17:20:10 +0200
-Julien Stephan <jstephan@baylibre.com> wrote:
+On Sat, 27 Jul 2024 00:23:30 +0530
+Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
 
-> The AD7380 family has some compatible single-ended chips: AD7386/7/8(-4).
-> These single-ended chips have a  2:1 multiplexer in front of each ADC.
-> They also include additional configuration registers that allow for either
-> manual selection or automatic switching (sequencer mode), of the
-> multiplexer inputs. Add a section to describe this.
+> STK3013 is a part manufactured by Sensortek which is marketed as a [1]
+> "Proximity Sensor". This part is available in several consumer mobile
+> devices, including, but not limited to, Samsung Galaxy J7 Prime and
+> Samsung Galaxy A2 Core.
 > 
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-Just one trivial missing space.
+> The existing ambient light sensor seemed suitable for this chip, and on
+> enabling the driver, it was discovered that these "Proximity Sensors" had
+> ambient light sensing capabilities as well.
+> 
+> The downstream kernel driver shipped with this phone by Samsung [2] exposes
+> a sysfs interface for proximity sensing, but leaves out the light sensing
+> features, hence there's no such functionality in userspace.
+> 
+> The following patch series aims to add support for STK3013 as an
+> ambient light/proximity sensor.
+> 
+> [1] https://www.sensortek.com.tw/index.php/en/products/optical-sensor/
+> [2] https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870/blob/master/drivers/sensors/stk3013.c
+Series LGTM. I'll leave it on list for a few more days though for other
+review to come in.
 
-Nice patch set. Thanks,
+Thanks,
 
 Jonathan
-
-
-> ---
->  Documentation/iio/ad7380.rst | 42 ++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
-> 
-> diff --git a/Documentation/iio/ad7380.rst b/Documentation/iio/ad7380.rst
-> index 061cd632b5df..81dfa39519fb 100644
-> --- a/Documentation/iio/ad7380.rst
-> +++ b/Documentation/iio/ad7380.rst
-> @@ -17,10 +17,16 @@ The following chips are supported by this driver:
->  * `AD7381 <https://www.analog.com/en/products/ad7381.html>`_
->  * `AD7383 <https://www.analog.com/en/products/ad7383.html>`_
->  * `AD7384 <https://www.analog.com/en/products/ad7384.html>`_
-> +* `AD7386 <https://www.analog.com/en/products/ad7386.html>`_
-> +* `AD7387 <https://www.analog.com/en/products/ad7387.html>`_
-> +* `AD7388 <https://www.analog.com/en/products/ad7388.html>`_
->  * `AD7380-4 <https://www.analog.com/en/products/ad7380-4.html>`_
->  * `AD7381-4 <https://www.analog.com/en/products/ad7381-4.html>`_
->  * `AD7383-4 <https://www.analog.com/en/products/ad7383-4.html>`_
->  * `AD7384-4 <https://www.analog.com/en/products/ad7384-4.html>`_
-> +* `AD7386-4 <https://www.analog.com/en/products/ad7386-4.html>`_
-> +* `AD7387-4 <https://www.analog.com/en/products/ad7387-4.html>`_
-> +* `AD7388-4 <https://www.analog.com/en/products/ad7388-4.html>`_
->  
->  
->  Supported features
-> @@ -69,6 +75,42 @@ must restart iiod using the following command:
->  
->  	root:~# systemctl restart iiod
->  
-> +Channel selection and sequencer (single-end chips only)
-> +-------------------------------------------------------
-> +
-> +Single-ended chips of this family (ad7386/7/8(-4)) have a 2:1 multiplexer in
-> +front of each ADC. They also include additional configuration registers that
-allow for either manual selection or automatic switching (sequencer mode),of the
-space after ,
-plus adjust the wrap as that'll make it 81 chars I think.
-
-> +multiplexer inputs.
-> +
-> +From an IIO point of view, all inputs are exported, i.e ad7386/7/8
-> +export 4 channels and ad7386-4/7-4/8-4 export 8 channels.
-> +
-> +Inputs ``AinX0`` of multiplexers correspond to the first half of IIO channels (i.e
-> +0-1 or 0-3) and inputs ``AinX1`` correspond to second half (i.e 2-3 or 4-7).
-> +Example for AD7386/7/8 (2 channels parts):
-> +
-> +.. code-block::
-> +
-> +	   IIO   | AD7386/7/8
-> +	         |         +----------------------------
-> +	         |         |     _____        ______
-> +	         |         |    |     |      |      |
-> +	voltage0 | AinA0 --|--->|     |      |      |
-> +	         |         |    | mux |----->| ADCA |---
-> +	voltage2 | AinA1 --|--->|     |      |      |
-> +	         |         |    |_____|      |_____ |
-> +	         |         |     _____        ______
-> +	         |         |    |     |      |      |
-> +	voltage1 | AinB0 --|--->|     |      |      |
-> +	         |         |    | mux |----->| ADCB |---
-> +	voltage3 | AinB1 --|--->|     |      |      |
-> +	         |         |    |_____|      |______|
-> +	         |         |
-> +	         |         +----------------------------
-> +
-> +
-> +When enabling sequencer mode, the effective sampling rate is divided by two.
->  
->  Unimplemented features
->  ----------------------
-> 
-
 
