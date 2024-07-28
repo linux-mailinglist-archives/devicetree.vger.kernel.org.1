@@ -1,229 +1,154 @@
-Return-Path: <devicetree+bounces-88612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B13B93E840
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 18:26:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 219D193E83D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 18:26:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CB6D1C213F1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 16:26:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6F7A1F219B0
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 16:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3881891BA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358CB1891AB;
 	Sun, 28 Jul 2024 16:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggspoy6/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="im4CjrhP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AEB188CC9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE54188CA5;
 	Sun, 28 Jul 2024 16:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722182966; cv=none; b=K6crX1HqAb0l5jSXqUpUhayjCUpn+ffyENA3SSmnyneAko5A7BJDJAhoamslsjms4tTzjKnQkq94WdLf1V+67iSm8JEZGXCPHmDTZiANs2N3r7kdwTqGSrW4pVLHwJls6MeBruFrNyRLK70mnUUX7xMopYm+4MiXGqTarrHq5rs=
+	t=1722182966; cv=none; b=RVIkafDFj2ZrFrlbHLJ/pBrr2QOdUFb7lewqmyv8Df5s4r5Xh1Ai/C/EGZObIhDHHGsC65k0vTJkdJKphWt5+q/UKG0DTJwOfgMitM9jq4Y2UKYVwYHRAVTVREflTxeacjcMruEN3tEVG0MbvUNy3E04H8HPFVUzQXx7lnn1gcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1722182966; c=relaxed/simple;
-	bh=9AIK2iwZ0EhqJdHrKvk2sDDhodlWUriV+u54rpKFRV8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ncf+AC4yRMxOWte13kdiF1SW90Z+xe4KREe83ySzQYFsRAh+VS6naDKqd9zRL4x0OixDmVcnKmycs5n6jO6OkJl24+0PvzWt7Q8h1sYnqgc7AqQL1d7zKD1b2mM1y7Mxok8MowRMHwsWqhQyLeNG2jTMCTGuSeSEyxLtgcKW4E4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ggspoy6/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47ECCC32782;
-	Sun, 28 Jul 2024 16:09:24 +0000 (UTC)
+	bh=DG5ulTQk+MG42W/U9N7gwMfUOg5bBXfQjT06OCk3/gE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MswCC8Wem19limuAtLTRDEG02PlUAEKPt9uYujT/mWSTxhsd0edOKaAtz5ejGskjW2zusqMpXiiPvUN3xeFEymSSup+l8vKFx+imj6COu6pq2l1CehRN+OyiBe7KRIRLbIYfGvbRC7iqCogcy72Wq6Cl60PGdSJQFdPltTZaMfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=im4CjrhP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFAF8C4AF0B;
+	Sun, 28 Jul 2024 16:09:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1722182965;
-	bh=9AIK2iwZ0EhqJdHrKvk2sDDhodlWUriV+u54rpKFRV8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ggspoy6/kDTzuLXtVteAh6hF0a3Smj8wJshSD8qD3/0rOHAiHpHin7ektWMU2ZAfh
-	 drT13H+Tkm+A6DMht3WOy4IiGLhINVjzX+EfEm8Okp2SgxSo+nMDOB1SRVHZem0NzJ
-	 0J/9nSrtRoEmopORvgTGqq5PHoV5tFHY1oxLXn2BDi0pwO6eiEClq5lG/No7DP49L7
-	 tBdH3zp07wGjdhtjDRxfJud1NyMGYpdyXdX3/nUlbAllMDvOOnnjzZt/WdIR6gdsdS
-	 yNtRHkwIm0C4DzWWXGBdNAd7L9nakJAFbZK2uregcsOb9A5LLVTTt6jwnbil4aAJsi
-	 BhUQR0giqkZWw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Sasha Levin <sashal@kernel.org>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	siyanteng@loongson.cn,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 07/13] MIPS: Loongson64: DTS: Fix PCIe port nodes for ls7a
-Date: Sun, 28 Jul 2024 12:08:49 -0400
-Message-ID: <20240728160907.2053634-7-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240728160907.2053634-1-sashal@kernel.org>
-References: <20240728160907.2053634-1-sashal@kernel.org>
+	bh=DG5ulTQk+MG42W/U9N7gwMfUOg5bBXfQjT06OCk3/gE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=im4CjrhPvqFwYPU1Bu6w63799uYd6O5rZtIJ6BhQuOdLumaKqNe4Bh11bcbhzbGLp
+	 CEtXZ74kja4cSjQNU0CqtAD82PX5To1LxBCq4DWOXhB8cGmvgDLYAHGY45bL+hRhw1
+	 WqoSLo1aVW2fnrWCcbS+7/hHz25izTdL9pj4c4DIJavkqw4fhNkozWOvz2okFPbemC
+	 jE09xSPhmZuVLf8utl+gcSM0SgTgPtdkKNHgQZeafbIiIdpP7qFxmWAJNOQtb7b+7/
+	 CymffrCDTsXR3tXkTdcn1e+tnOymfF+IpzE48gPcDpLu3MAkE9h9bWHW+o/LmlQoQH
+	 iTpPa83HsGdcQ==
+Date: Sun, 28 Jul 2024 17:09:15 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+ ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
+ biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
+ semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 7/7] iio: pressure bmp280: Move bmp085 interrupt to
+ new configuration
+Message-ID: <20240728170915.26b4a01d@jic23-huawei>
+In-Reply-To: <20240725231039.614536-8-vassilisamir@gmail.com>
+References: <20240725231039.614536-1-vassilisamir@gmail.com>
+	<20240725231039.614536-8-vassilisamir@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.164
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+On Fri, 26 Jul 2024 01:10:39 +0200
+Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
 
-[ Upstream commit d89a415ff8d5e0aad4963f2d8ebb0f9e8110b7fa ]
+> This commit intends to add the old BMP085 sensor to the new IRQ interface
+> of the sensor consistence. No functional changes intended.
+> 
+> The BMP085 sensor is equivalent with the BMP180 with the only difference of
+> BMP085 having an extra interrupt pin to inform about an End of Conversion.
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+Trivial comments inline + as the build bot pointed out you can't use data from
+one array to fill the other.
 
-Add various required properties to silent warnings:
+Jonathan
 
-arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi:116.16-297.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
-arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+> ---
+>  drivers/iio/pressure/bmp280-core.c | 72 +++++++++++++++++++++++-------
+>  drivers/iio/pressure/bmp280-i2c.c  |  4 +-
+>  drivers/iio/pressure/bmp280-spi.c  |  4 +-
+>  drivers/iio/pressure/bmp280.h      |  1 +
+>  4 files changed, 60 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
+> index 4238f37b7805..e4d017358b68 100644
+> --- a/drivers/iio/pressure/bmp280-core.c
+> +++ b/drivers/iio/pressure/bmp280-core.c
+> @@ -3104,13 +3104,19 @@ static irqreturn_t bmp085_eoc_irq(int irq, void *d)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static int bmp085_fetch_eoc_irq(struct device *dev,
+> -				const char *name,
+> -				int irq,
+> -				struct bmp280_data *data)
+> +static int bmp085_trigger_probe(struct iio_dev *indio_dev)
+>  {
+> +	struct bmp280_data *data = iio_priv(indio_dev);
+> +	struct device *dev = data->dev;
+> +	struct fwnode_handle *fwnode;
+>  	unsigned long irq_trig;
+> -	int ret;
+> +	int ret, irq;
+> +
+> +	fwnode = dev_fwnode(data->dev);
+> +	if (!fwnode)
+> +		return -ENODEV;
+> +
+> +	irq = fwnode_irq_get(fwnode, 0);
+>  
+>  	irq_trig = irqd_get_trigger_type(irq_get_irq_data(irq));
+>  	if (irq_trig != IRQF_TRIGGER_RISING) {
+> @@ -3120,13 +3126,12 @@ static int bmp085_fetch_eoc_irq(struct device *dev,
+>  
+>  	init_completion(&data->done);
+>  
+> -	ret = devm_request_threaded_irq(dev,
+> -			irq,
+> -			bmp085_eoc_irq,
+> -			NULL,
+> -			irq_trig,
+> -			name,
+> -			data);
+> +	ret = devm_request_irq(dev,
+> +			       irq,
+> +			       bmp085_eoc_irq,
+> +			       irq_trig,
+> +			       indio_dev->name,
+> +			       data);
+Whilst here, put some of those parameters on the same line (staying below
+80 chars).
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../boot/dts/loongson/loongson64-2k1000.dtsi  | 37 +++++++++++++++----
- 1 file changed, 30 insertions(+), 7 deletions(-)
-
-diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-index d73d8f4fd78e6..1093979b395bd 100644
---- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-@@ -106,7 +106,6 @@ pci@1a000000 {
- 			device_type = "pci";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
--			#interrupt-cells = <2>;
- 
- 			reg = <0 0x1a000000 0 0x02000000>,
- 				<0xfe 0x00000000 0 0x20000000>;
-@@ -192,93 +191,117 @@ sata@8,0 {
- 				interrupt-parent = <&liointc0>;
- 			};
- 
--			pci_bridge@9,0 {
-+			pcie@9,0 {
- 				compatible = "pci0014,7a19.0",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x4800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 0 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@a,0 {
-+			pcie@a,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x5000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 1 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@b,0 {
-+			pcie@b,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x5800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 2 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@c,0 {
-+			pcie@c,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x6000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 3 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@d,0 {
-+			pcie@d,0 {
- 				compatible = "pci0014,7a19.0",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x6800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 4 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@e,0 {
-+			pcie@e,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x7000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 5 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--- 
-2.43.0
+>  	if (ret) {
+>  		/* Bail out without IRQ but keep the driver in place */
+>  		dev_err(dev, "unable to request DRDY IRQ\n");
+> @@ -3137,6 +3142,44 @@ static int bmp085_fetch_eoc_irq(struct device *dev,
+>  	return 0;
+>  }
+>  
+> +const struct bmp280_chip_info bmp085_chip_info = {
+> +	.id_reg = bmp180_chip_info.id_reg,
+As the build bot has pointed out you can't do this.
+Annoying but just duplicate the original structure with whatever
+changes you need.
 
 
