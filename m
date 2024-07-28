@@ -1,99 +1,155 @@
-Return-Path: <devicetree+bounces-88618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE2493E8F3
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 21:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6025693E989
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 23:18:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B87EA1F218AC
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 19:00:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CFE41F2128F
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 21:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0EF74E09;
-	Sun, 28 Jul 2024 19:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="ltQDmRo/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F36DD77F2F;
+	Sun, 28 Jul 2024 21:18:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF73E6F31E
-	for <devicetree@vger.kernel.org>; Sun, 28 Jul 2024 19:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2003074E26;
+	Sun, 28 Jul 2024 21:18:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722193203; cv=none; b=RA2oQmrF8tL8JhfJrojYgeqIzrBJ5cgCkD12JTQiDRFdSrlyyo8OsG6wwLNmueZrGv2qBxdq3ziwtzVFLYzLixVA3SPehb9ksY2oWQvO8Ae1FvpWdRjlaKu6Xh/nqm+gZ3eliSwqecHGscvHLA9sIm5pgcq9LLkRUz1hlKjDcS4=
+	t=1722201504; cv=none; b=SQr1AJjzm7Htw1qUQWM/j+rT99Q283IRUyMXO1j9WfHioloZo1JWdqYp++m2gZi7D845sQzwzV5vBEdd40sR/vGNGMpcaxjn2dZT4sIaZREn/b0vM34ibioJWF5FHug788Zky1RWbb9qbcVmpvFErMN0et7fgSXd/9WBcAlmIwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722193203; c=relaxed/simple;
-	bh=1MyMmZ97Pppecmq9EM2Z5W/UBgCxk2y+Yc/6WxfOg2s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f+scAwToXBRs856vS9G9jQf2g4+PpbCGFVyXTnOqodPojDBcA+HHLdtceub/vnBGyjlSNANI65AqawFqaeBATbjgM87/Ur9xTqhBZGWYwavdlNEB+VulE5/ZrgnmYXzvtyJ5/xF9ngpDErTZ5EKlGOnFnIQFxOdQMmXKbqr/bZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=ltQDmRo/; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 03E2E240103
-	for <devicetree@vger.kernel.org>; Sun, 28 Jul 2024 21:00:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
-	t=1722193200; bh=1MyMmZ97Pppecmq9EM2Z5W/UBgCxk2y+Yc/6WxfOg2s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type:Autocrypt:OpenPGP:From;
-	b=ltQDmRo/FOKt6uTnPiadITldqlg/J4KZf9v3mm93HktGcKKcX3uR4YnogZmaqOTfS
-	 qisaX2m79uzJadvXDrSI4XntTB3l/fsTNeENURQ4DjiH9ll3W61qaGHDMI6Hz5U7Gz
-	 D2S2JHTml79OnacdEpYrqvlTK4HA52mMJ2O+60MmzFgmIZUP294i1TUrBC+ytQQEDI
-	 +dYg2fADYePs31ISzig2ZJhQAMkUmssukSrPdHb9LJTDbb3HC59mbyJ9TGuc3wr4mY
-	 2tnuD0ZyX0HqEnpzw8xIcNFSFXMFT31n+4eBjzrmk1m7dmGDVEMtHZoSURNuJu0e8b
-	 sTJbihUnCPONA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4WX9ly53pMz9rxL;
-	Sun, 28 Jul 2024 20:59:58 +0200 (CEST)
-From: Alexander Reimelt <alexander.reimelt@posteo.de>
-To: Petr Vorel <petr.vorel@gmail.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Add LG G4 (h815)
-Date: Sun, 28 Jul 2024 18:59:48 +0000
-Message-ID: <5636859.rdbgypaU67@desktop>
-In-Reply-To: <20240728151329.GA1196482@pevik>
-References:
- <20240727201413.114317-1-alexander.reimelt@posteo.de>
- <20240727201413.114317-2-alexander.reimelt@posteo.de>
- <20240728151329.GA1196482@pevik>
+	s=arc-20240116; t=1722201504; c=relaxed/simple;
+	bh=ZYGrFzPi2pxjX/oJDXS1AtwBl7Vn2z2wa5ciW9wKbco=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oZjUnUAIokGaxpeH+EwAL5Wl2r2dz9ffHi0cdPpjAHmAC8vafH42Dyoz3Kxocuztk0KmlmZ1in63Tijd69PeoyzmRK74rw2Rw+UEp5sAwVYmknIk3hVbNyhZSWJvJwBpQwtQtBqFo3ioQ/56a8HKtDg0tDCjT3F+SArrgCjRyFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e86192c.versanet.de ([94.134.25.44] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sYBHD-0005yh-I0; Sun, 28 Jul 2024 23:17:59 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: lee@kernel.org,
+	jdelvare@suse.com,
+	linux@roeck-us.net,
+	dmitry.torokhov@gmail.com,
+	pavel@ucw.cz
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	ukleinek@debian.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-hwmon@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: [PATCH v2 0/7] Drivers to support the MCU on QNAP NAS devices
+Date: Sun, 28 Jul 2024 23:17:44 +0200
+Message-Id: <20240728211751.2160123-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-Autocrypt: addr=alexander.reimelt@posteo.de;
-  keydata=xjMEZg0fSRYJKwYBBAHaRw8BAQdAIcaNTdj3NWDe5HQPCUs6oYyQygAJWP9LCzhr+C7RwMrNG2Fs
-  ZXhhbmRlci5yZWltZWx0QHBvc3Rlby5kZcKZBBMWCgBBFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIF
-  AmYNH0kCGwMFCQWjo9cFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQHqi3OKk8uRJ8ogD9
-  EVg4zgfmC2SqXCgms6LETAzVX4CrAS8yMhyd7Md921cA/R8lhm9B96RYgA7MvFPFJb1T6JFY75Jg
-  QLXrtIE5llwHzjgEZg0fSRIKKwYBBAGXVQEFAQEHQBGDuxZLOTvppxyM4G18fSR6xzT0xkkPOia7
-  Bh6L1vAAAwEIB8J+BBgWCgAmFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIFAmYNH0kCGwwFCQWjo9cA
-  CgkQHqi3OKk8uRIa1wD8CZDdCAKXstgXY96eeSSP7MecEF5TBdmWOiVgjlEIpoEA/RnGuDaj06B1
-  F51wyGAjYXSmn5qFoNHu3yXyLUkFz1ME
-OpenPGP: url=https://posteo.de/keys/alexander.reimelt@posteo.de.asc
+Content-Transfer-Encoding: 8bit
 
-Hello,
+This implements a set of drivers for the MCU used on QNAP NAS devices.
 
-> Alexander, others have added their tags in previous versions. IMHO generally
-> it'd be worth if you carry others tags in next versions (when nothing
-> changes).
-I already replied to Krzysztof, but I messed it up and sent it only to him. 
-I'm sorry I wasted everyone's time. I didn't fully understand how the system 
-behind these tags worked until now. I should have asked earlier, but thanks 
-for pointing it out.
+Of course no documentation for the serial protocol is available, so
+thankfully QNAP has a tool on their rescue-inird to talk to the MCU and
+I found interceptty [0] to listen to what goes over the serial connection.
 
-Kind regards,
-Alexander
+In general it looks like there are two different generations in general,
+an "EC" device and now this "MCU" - referenced in the strings of the
+userspace handlers for those devices.
+
+For the MCU "SPEC3" and "SPEC4" are listed which is configured in
+the model.conf of the device. When setting the value from SPEC4 to
+SPEC3 on my TS433, the supported commands change, but the command
+interface stays the same and especially the version command is the
+same.
+
+The binding also does not expose any interals of the device that
+might change, so hopefully there shouldn't be big roadblocks to
+support different devices, apart from possibly adapting the commands.
+
+changes in v2:
+binding:
+- rename to qnap,ts433-mcu.yaml (Krzysztof)
+- drop "preserve formatting" indicator (Krzysztof)
+- add Krzysztof's Review tag
+
+mfd:
+- fix checkpatch --strict CHECKs
+- add a MAINTAINERS entry for all qnap-mcu-parts
+
+hwmon:
+address Guenter's review comments:
+- fix checkpatch strict warnings
+  I've kept the devm_thermal_of_cooling_device_register alignment,
+  because that line is so long that aligning to the "(" would make
+  things way too long and unreadable
+- add hwmon documentation
+- spelling corrections
+- report actual pwm value, not last-set one
+- make some cmd arrays static
+- drop pwm_enable as the pwm-mode is not controllable
+- actually handle error returns from mcu commands
+- fix calculation of fan-rpm (I read my notes wrong)
+- fix temperature calculation to return millicelsius as expected
+- only bail at obviously wrong pwm values, but clamp to min,max
+- only register cooling-device if cooling-levels are available
 
 
+[0] https://github.com/geoffmeyers/interceptty
 
+Heiko Stuebner (7):
+  dt-bindings: mfd: add binding for qnap,ts433-mcu devices
+  mfd: add base driver for qnap-mcu devices
+  leds: add driver for LEDs from qnap-mcu devices
+  Input: add driver for the input part of qnap-mcu devices
+  hwmon: add driver for the hwmon parts of qnap-mcu devices
+  arm64: dts: rockchip: hook up the MCU on the QNAP TS433
+  arm64: dts: rockchip: set hdd led labels on qnap-ts433
+
+ .../bindings/mfd/qnap,ts433-mcu.yaml          |  43 ++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/qnap-mcu-hwmon.rst        |  27 ++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/rockchip/rk3568-qnap-ts433.dts   |  58 +++
+ drivers/hwmon/Kconfig                         |  12 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/qnap-mcu-hwmon.c                | 375 ++++++++++++++++++
+ drivers/input/misc/Kconfig                    |  12 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/qnap-mcu-input.c           | 156 ++++++++
+ drivers/leds/Kconfig                          |  11 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-qnap-mcu.c                  | 247 ++++++++++++
+ drivers/mfd/Kconfig                           |  10 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/qnap-mcu.c                        | 358 +++++++++++++++++
+ include/linux/mfd/qnap-mcu.h                  |  28 ++
+ 18 files changed, 1352 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
+ create mode 100644 Documentation/hwmon/qnap-mcu-hwmon.rst
+ create mode 100644 drivers/hwmon/qnap-mcu-hwmon.c
+ create mode 100644 drivers/input/misc/qnap-mcu-input.c
+ create mode 100644 drivers/leds/leds-qnap-mcu.c
+ create mode 100644 drivers/mfd/qnap-mcu.c
+ create mode 100644 include/linux/mfd/qnap-mcu.h
+
+-- 
+2.39.2
 
 
