@@ -1,90 +1,99 @@
-Return-Path: <devicetree+bounces-88617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC1C93E8BE
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 19:05:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE2493E8F3
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 21:00:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A5D41C212A7
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 17:05:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B87EA1F218AC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 19:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821DB5D8F0;
-	Sun, 28 Jul 2024 17:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0EF74E09;
+	Sun, 28 Jul 2024 19:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PbT3KJFU"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="ltQDmRo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A67157333;
-	Sun, 28 Jul 2024 17:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF73E6F31E
+	for <devicetree@vger.kernel.org>; Sun, 28 Jul 2024 19:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722186347; cv=none; b=UHjybbIx2GYsy7V4ZoLA+aEsmoalfQ4Pyb/oPV2XHplojPJ6yS8VpU8bPBn/ifdhtFqkwOyA0mNVBLHt2c7XFJ6C8hsUhwtIGufvC7VF5/f9MtslivRdxLHP9m69l1QM3AMRqO/FWu1jSWqeQWuKiKNy5FIA4V4ela8DWUesyjM=
+	t=1722193203; cv=none; b=RA2oQmrF8tL8JhfJrojYgeqIzrBJ5cgCkD12JTQiDRFdSrlyyo8OsG6wwLNmueZrGv2qBxdq3ziwtzVFLYzLixVA3SPehb9ksY2oWQvO8Ae1FvpWdRjlaKu6Xh/nqm+gZ3eliSwqecHGscvHLA9sIm5pgcq9LLkRUz1hlKjDcS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722186347; c=relaxed/simple;
-	bh=QKJk+c2O3Jw4S0812ZXaWb0JNoGZSMaEm/HW36Sh8/U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aoeGkhDGhETDrnONGAaQBUomJs03zybJVBNElSPcBuj8hsm0T03XaoKFTIj6posSv6oiVD7hqQiEohf5XNCH3As5BI9+A+A6bEnXJrfKERSI7o0Iyitovg4YO0NbjF1YQNlkvu0SpWznuHtJ+pRnpKjHevzPEh3wXHvFz9ZAtRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PbT3KJFU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D983FC116B1;
-	Sun, 28 Jul 2024 17:05:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722186346;
-	bh=QKJk+c2O3Jw4S0812ZXaWb0JNoGZSMaEm/HW36Sh8/U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=PbT3KJFUScgue678YEFigvlUBOTMmuQr8VkaOcWmtL41MyDenudZuDhU/jG1YETul
-	 EQ5kUQKHSLenRcIuN3EWareaAI7H0axPPcxKGGt0nMCWBdnVogdt8cn0yj4YfkhGFa
-	 r7kk4tHHF0feN+TzCZ9hL1/k6eXhS8UUO95aNBGJxJSyeeYg57pYU4ulhar2okeCAj
-	 NwKV27k/ntxJqw9Bv/G+u7DkcGBmY+bnDZscI9NkpEIExKJUwZEM/Fu92kHGHzi7ML
-	 ope+fAIWLYFeOqyFDbNGv61UDpVl0+WGb2SWNQfmxHzcAZQkvlUJiOwu2NjUSUpCsb
-	 OIlETIgR5isBg==
-Date: Sun, 28 Jul 2024 18:05:41 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] iio: light: stk3310: stk3013 support
-Message-ID: <20240728180541.3aff18e1@jic23-huawei>
-In-Reply-To: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
-References: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1722193203; c=relaxed/simple;
+	bh=1MyMmZ97Pppecmq9EM2Z5W/UBgCxk2y+Yc/6WxfOg2s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=f+scAwToXBRs856vS9G9jQf2g4+PpbCGFVyXTnOqodPojDBcA+HHLdtceub/vnBGyjlSNANI65AqawFqaeBATbjgM87/Ur9xTqhBZGWYwavdlNEB+VulE5/ZrgnmYXzvtyJ5/xF9ngpDErTZ5EKlGOnFnIQFxOdQMmXKbqr/bZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=ltQDmRo/; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 03E2E240103
+	for <devicetree@vger.kernel.org>; Sun, 28 Jul 2024 21:00:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1722193200; bh=1MyMmZ97Pppecmq9EM2Z5W/UBgCxk2y+Yc/6WxfOg2s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type:Autocrypt:OpenPGP:From;
+	b=ltQDmRo/FOKt6uTnPiadITldqlg/J4KZf9v3mm93HktGcKKcX3uR4YnogZmaqOTfS
+	 qisaX2m79uzJadvXDrSI4XntTB3l/fsTNeENURQ4DjiH9ll3W61qaGHDMI6Hz5U7Gz
+	 D2S2JHTml79OnacdEpYrqvlTK4HA52mMJ2O+60MmzFgmIZUP294i1TUrBC+ytQQEDI
+	 +dYg2fADYePs31ISzig2ZJhQAMkUmssukSrPdHb9LJTDbb3HC59mbyJ9TGuc3wr4mY
+	 2tnuD0ZyX0HqEnpzw8xIcNFSFXMFT31n+4eBjzrmk1m7dmGDVEMtHZoSURNuJu0e8b
+	 sTJbihUnCPONA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4WX9ly53pMz9rxL;
+	Sun, 28 Jul 2024 20:59:58 +0200 (CEST)
+From: Alexander Reimelt <alexander.reimelt@posteo.de>
+To: Petr Vorel <petr.vorel@gmail.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Add LG G4 (h815)
+Date: Sun, 28 Jul 2024 18:59:48 +0000
+Message-ID: <5636859.rdbgypaU67@desktop>
+In-Reply-To: <20240728151329.GA1196482@pevik>
+References:
+ <20240727201413.114317-1-alexander.reimelt@posteo.de>
+ <20240727201413.114317-2-alexander.reimelt@posteo.de>
+ <20240728151329.GA1196482@pevik>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+Autocrypt: addr=alexander.reimelt@posteo.de;
+  keydata=xjMEZg0fSRYJKwYBBAHaRw8BAQdAIcaNTdj3NWDe5HQPCUs6oYyQygAJWP9LCzhr+C7RwMrNG2Fs
+  ZXhhbmRlci5yZWltZWx0QHBvc3Rlby5kZcKZBBMWCgBBFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIF
+  AmYNH0kCGwMFCQWjo9cFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQHqi3OKk8uRJ8ogD9
+  EVg4zgfmC2SqXCgms6LETAzVX4CrAS8yMhyd7Md921cA/R8lhm9B96RYgA7MvFPFJb1T6JFY75Jg
+  QLXrtIE5llwHzjgEZg0fSRIKKwYBBAGXVQEFAQEHQBGDuxZLOTvppxyM4G18fSR6xzT0xkkPOia7
+  Bh6L1vAAAwEIB8J+BBgWCgAmFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIFAmYNH0kCGwwFCQWjo9cA
+  CgkQHqi3OKk8uRIa1wD8CZDdCAKXstgXY96eeSSP7MecEF5TBdmWOiVgjlEIpoEA/RnGuDaj06B1
+  F51wyGAjYXSmn5qFoNHu3yXyLUkFz1ME
+OpenPGP: url=https://posteo.de/keys/alexander.reimelt@posteo.de.asc
 
-On Sat, 27 Jul 2024 00:23:30 +0530
-Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+Hello,
 
-> STK3013 is a part manufactured by Sensortek which is marketed as a [1]
-> "Proximity Sensor". This part is available in several consumer mobile
-> devices, including, but not limited to, Samsung Galaxy J7 Prime and
-> Samsung Galaxy A2 Core.
-> 
-> The existing ambient light sensor seemed suitable for this chip, and on
-> enabling the driver, it was discovered that these "Proximity Sensors" had
-> ambient light sensing capabilities as well.
-> 
-> The downstream kernel driver shipped with this phone by Samsung [2] exposes
-> a sysfs interface for proximity sensing, but leaves out the light sensing
-> features, hence there's no such functionality in userspace.
-> 
-> The following patch series aims to add support for STK3013 as an
-> ambient light/proximity sensor.
-> 
-> [1] https://www.sensortek.com.tw/index.php/en/products/optical-sensor/
-> [2] https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870/blob/master/drivers/sensors/stk3013.c
-Series LGTM. I'll leave it on list for a few more days though for other
-review to come in.
+> Alexander, others have added their tags in previous versions. IMHO generally
+> it'd be worth if you carry others tags in next versions (when nothing
+> changes).
+I already replied to Krzysztof, but I messed it up and sent it only to him. 
+I'm sorry I wasted everyone's time. I didn't fully understand how the system 
+behind these tags worked until now. I should have asked earlier, but thanks 
+for pointing it out.
 
-Thanks,
+Kind regards,
+Alexander
 
-Jonathan
+
+
+
 
