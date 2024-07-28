@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A939B93E483
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 12:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DB393E486
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 12:31:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F1A281B63
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:30:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E08B12815C3
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9DC2D613;
-	Sun, 28 Jul 2024 10:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6021946F;
+	Sun, 28 Jul 2024 10:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/xYx9T7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3Lm4dQV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336C52C69B;
-	Sun, 28 Jul 2024 10:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B02BBA20;
+	Sun, 28 Jul 2024 10:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722162620; cv=none; b=MEdylj8WdMJhf5SBxrUcuOVB+66VPuGADSsgYvamHk1RnlNWKM8l41qdRHQzPzc9qWgv+ktQ424pto3Ed5i6xVCqm8xTdIeXoK3lWouiQK1u4QWOpsNlk+nj+ri4M6alKkcMmQ9TBUKnY2aMlHCc/2umxSY5KykyWh3oYlRu1ZU=
+	t=1722162672; cv=none; b=U1vvgZF/kCmza3JeHgdttw15lfOcIEB0TJmBAxj0W+Uj9W3kOyJ3OGb5hpBEzDuYfi5EKQR5jk42Ju+LMD/QmOxxItIXAPcgc5rnS1ncW43GKZy0QhSWqAXIZBAARePVcqg4RXNN/9aew9fNS8fyIMSvCJANT/uFfxCiPXiuf4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722162620; c=relaxed/simple;
-	bh=eDWjhLzi6G1agWre6Y7l9EsOG8ksGnVzkj/CACSAyj0=;
+	s=arc-20240116; t=1722162672; c=relaxed/simple;
+	bh=17b1KmsZq4pAU+NvEPQVCR4iwJs15gGQjUnqpFafd7I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EVFvbq+bJ1T75Uhz/RPhV833GOrZgEAt2RtxFpGogZJp8UcxOuTOlbrujJ1w6zjy9hvzpmcbOadrB35elFqccHB/Mw238Q3EKeO86c7Uyoz74rMqlOogvOKUJS6EvVmN4iAXC86bebWBEsHReAUC2zqMsJ9DWuM2nLylHKNYW8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/xYx9T7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6C7AC116B1;
-	Sun, 28 Jul 2024 10:30:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ij2QOXyapg9fevSTJ22RnjG4SSeRQbXEyWL7XgoI3eaWvrJqespeVSYA2l96Q/L58dJwCSZ7LNCYTbXEWusOG3teaVL8bAIt2CeaaLqkLGBy5cmQ+i1NdhkfObFdamjPzrJ2ervauOxoNNn07P/4FafIYW3kaahfa2ykMePwoNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3Lm4dQV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4264C4AF09;
+	Sun, 28 Jul 2024 10:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722162619;
-	bh=eDWjhLzi6G1agWre6Y7l9EsOG8ksGnVzkj/CACSAyj0=;
+	s=k20201202; t=1722162672;
+	bh=17b1KmsZq4pAU+NvEPQVCR4iwJs15gGQjUnqpFafd7I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k/xYx9T7/I2WLfcnu+Qa5RkJFKH7BboES21hXWKrBAIClTAFCPA1Oqyli2VQYQn7h
-	 9yVsmefHU5cfToCSrPRG9wTIeOo3mD93MxzSc9NScVH/PEtZZgsgsei8bcXhXW01PW
-	 WkbOvyR8aNgRuZZXiIZayXSyK08RAWwZd3Si9fGI+0tmLcz3vo4gs2aGf4OuLgFvAu
-	 wVow3KrkyVlKuzd2cKdAlWDieWPy1zSFbfwBxUxOMBlEQNmSk0hZyZxeiBc6ACZn9H
-	 zcJCbeuVv5/ssY8PSXvoooSn0oGM/6RcYMka/BqlBsGWVdVVr+hOSsmAurOZetqJJN
-	 pO04cnEfEZNTA==
-Message-ID: <3d9f76c1-2e14-43dc-b438-5fac94ffc73e@kernel.org>
-Date: Sun, 28 Jul 2024 12:30:12 +0200
+	b=d3Lm4dQV3e4YLATou/cPITSifz+DThCJeeq2z50qYNb6Ma67yiMTu9ANq6+t9GvEq
+	 RIJEOIU1t41OLsPEFX/GL8ulHgIQN5TxIyNme2RuBsLir4KT8P28Pa1aOO7lohzelK
+	 jLdqWjqMkldOyE/W+6kRmqy82HwEpw7NKag5ZlWOSODWZqapWfl6FVe7DVSaMYiB9I
+	 ZwRzIT1gM2Uy28EF2/GgrRrS2KH0f03SVg8UlWYSs6qB2Ipc7+WXBs6MCb7HjNGMVR
+	 ZICMV7hhzqsoS5uFiC66AYZ8gl5/43MEDeTDLrEL0tnAP+2w9IuQh0upDdFLiw8Y5o
+	 YONv8115y4G4Q==
+Message-ID: <55c86b6a-0746-4e5e-b085-9bc33f95a78b@kernel.org>
+Date: Sun, 28 Jul 2024 12:31:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: qcom,apq8016-sbc-sndcard: move to
- separate binding
-To: Stephan Gerhold <stephan@gerhold.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: serial: mediatek,uart: add MT7981
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Adam Skladowski <a39.skl@gmail.com>,
- Stephan Gerhold <stephan.gerhold@linaro.org>
-References: <20240723083300.35605-1-krzysztof.kozlowski@linaro.org>
- <ZqVXUI37fNB5D0DM@gerhold.net>
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ John Crispin <john@phrozen.org>, Daniel Golle <daniel@makrotopia.org>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240727121447.1016-1-zajec5@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,73 +107,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZqVXUI37fNB5D0DM@gerhold.net>
+In-Reply-To: <20240727121447.1016-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27/07/2024 22:23, Stephan Gerhold wrote:
-> On Tue, Jul 23, 2024 at 10:33:00AM +0200, Krzysztof Kozlowski wrote:
->> The APQ8016 SBC and MSM8916 QDSP6 sound cards are a bit different from
->> others: they have additional IO muxing address space and pin control.
->> Move them to separate schema, so the original qcom,sm8250.yaml will be
->> easier to manage.  New schema is going to grow for other platforms
->> having more of IO muxing address spaces.
->>
->> Cc: Adam Skladowski <a39.skl@gmail.com>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->> .../sound/qcom,apq8016-sbc-sndcard.yaml       | 205 ++++++++++++++++++
->> .../bindings/sound/qcom,sm8250.yaml           | 137 ------------
->> 2 files changed, 205 insertions(+), 137 deletions(-)
->> create mode 100644 Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml b/Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.yaml
->> new file mode 100644
->> index 000000000000..6ad451549036
->> [...]
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> index c9076dcd44c1..1d3acdc0c733 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> @@ -27,9 +27,7 @@ properties:
->>               - qcom,sm8650-sndcard
->>           - const: qcom,sm8450-sndcard
->>       - enum:
->> -          - qcom,apq8016-sbc-sndcard
->>           - qcom,apq8096-sndcard
->> -          - qcom,msm8916-qdsp6-sndcard
->>           - qcom,qcm6490-idp-sndcard
->>           - qcom,qcs6490-rb3gen2-sndcard
->>           - qcom,qrb5165-rb5-sndcard
->> @@ -58,18 +56,6 @@ properties:
->>     $ref: /schemas/types.yaml#/definitions/string
->>     description: User visible long sound card name
->>
->> -  pin-switches:
->> -    description: List of widget names for which pin switches should be created.
->> -    $ref: /schemas/types.yaml#/definitions/string-array
->> -
->> -  widgets:
->> -    description: User specified audio sound widgets.
->> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> -
+On 27/07/2024 14:14, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> These two properties are also valid and supported on all newer
-> platforms, please keep them here! There are certain use cases where
-> these are needed independent of the platform, e.g. to control an analog
-> switch or mux connected to speaker or headphone outputs.
+> Add compatible string for serial on MT7981 SoC.
 > 
-> I agree that it is cleaner to move the IO muxing to a new schema though.
-> Perhaps we could define something like a shared qcom,sndcard-common.yaml
-> schema to avoid duplication for these generic properties? In the Linux
-> driver, these are handled for all platforms in sound/soc/qcom/common.c.
 
-This was added to the common driver code but it does not mean it is
-reasonable binding. I don't understand why for example we even accept
-here aux-devs, instead of putting them into one of DAI links.
-
-The pin-switches and widgets could be used, but are they? The only valid
-argument to keep them is that you added them to common driver code.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
