@@ -1,229 +1,326 @@
-Return-Path: <devicetree+bounces-88607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B24593E7E3
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 18:18:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FCA693E7C7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 18:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12D9EB2272B
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 16:18:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24B5628649A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 16:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE8F146017;
-	Sun, 28 Jul 2024 16:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28548143734;
+	Sun, 28 Jul 2024 16:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pXTcptzs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SuvU4MO0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CD5146000;
-	Sun, 28 Jul 2024 16:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CD46EB7D;
+	Sun, 28 Jul 2024 16:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722182851; cv=none; b=U6+7Tn8E87lwYWwPSAT1FBf8++Tistz72XWodWVSUBqTdTu02p04PrXCJKp1j9TBP2Zgx+nvqSbDUs2rYY68JRNV22BWhOA7M4Av9hr2wPsQMc9z+HVX+rdK5E59s2JpLCHVKFVtsw4Mr8gg3VdwLbED21p+8qAbJr81x6KXft0=
+	t=1722182822; cv=none; b=FqzdbSVTO5/+QS7sFLFH/QDrL5DnK0wpH0oQFStdM5c1iZA9uN/SP80TRuVMuTIevaRMaRWTXUcD7cebNLXnH2zPoNO4IuiPsJFVdOJ1lrwdXoetvfU82MMuFTMMfGkCfA1BkAyAFbbr0Drc6qFTy4JpqlPXshwYJ4Sxp9nldNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722182851; c=relaxed/simple;
-	bh=YJyW18Cic3+oLsuGLQKOztB5FqyPIyN7YB2rAw9ucm8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PldqwdAX4f+USW1oK5wkbHMRuJ2UmdWt1V2GKF7WPqlcYjfb1x86N2bELEVhl7CVqNMZLuegSymuQ5BoR5fOyxQwqbvTbsFoCUZOkJhv+L0hw0ei8UoHwddho71zMV64nb+jYtGhCMfYUOBS3dAB3te5HtZ1AJztehECraGeDVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pXTcptzs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2163C4AF0B;
-	Sun, 28 Jul 2024 16:07:28 +0000 (UTC)
+	s=arc-20240116; t=1722182822; c=relaxed/simple;
+	bh=BMwezFOuUeXzj9V/f3Nbnw4+zQyy48Ewrt//fCqB2LY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sOgI6diS6C0BWHrqR5Mn7OSXOl0t16Q49NaHGRLuHOfmklPZq4BFopPv7BO6FsGmnrAKocHxxFoEotC51WchcLz+ryGuir4JXinZg1pHhT0oRbmHQvDM9V32Djq643wgYpuWqYYFUCz+omw5eSaAMKw0hX78R6+iSD22QZUMdmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuvU4MO0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 552A0C32782;
+	Sun, 28 Jul 2024 16:06:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722182850;
-	bh=YJyW18Cic3+oLsuGLQKOztB5FqyPIyN7YB2rAw9ucm8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pXTcptzspvA2X3f+Eyx4ODpDQl1JRxMgvnCRrvWGyT4gHr8Wp1ROOxR/PU7RMX7SV
-	 DjYYU64aiDpg05M98/rjJVJA+f5bCt/VAC0JXWw3t8zWqLTrSBl/M6RHsoSBBAZLbL
-	 gK+Hbp3OZSZNeImik0zzRA4HtC7DcXiIAWh1lUQRfq0eM1rW0HFvVODt9k+Lw1xi9j
-	 VlCrTIZdzGa5ZWsuaQbXy0JDZpaYcOGRlhGQ0VnSHy3kX6H+fM5ybeey8ISyEG1z4t
-	 Q8PkEFEY/e8vEAVsYimXx3Y2LuXf6KPXCqVa/Z0T5de3dldT8zziTjz/DHC0MjdhsQ
-	 i0u7nwmAno+zQ==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Sasha Levin <sashal@kernel.org>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	siyanteng@loongson.cn,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 08/17] MIPS: Loongson64: DTS: Fix PCIe port nodes for ls7a
-Date: Sun, 28 Jul 2024 12:06:44 -0400
-Message-ID: <20240728160709.2052627-8-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240728160709.2052627-1-sashal@kernel.org>
-References: <20240728160709.2052627-1-sashal@kernel.org>
+	s=k20201202; t=1722182821;
+	bh=BMwezFOuUeXzj9V/f3Nbnw4+zQyy48Ewrt//fCqB2LY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=SuvU4MO0/ctD32n6vV7YOcJm9jjqv2WhXA+rblXJofyk7rctqoPDinQqQ6I6uGs7W
+	 WQdQCj4OE1EVquaC28Q6yiK8yCPcRYxi7QonoFVl/dDAR4ekw8VKTXQWB44+pxPFzJ
+	 MF80zYYymscf2FxRYv1Z7EWqEhbdcm3ng8hM3lQtm+TDwi7T6O1GrXG2kp6j8G3xgj
+	 DW07kzDvQENryD9tKjk6wYJ8MCwpLIkvQUeBGHZPpEzQSSk4tFk8RU0KxBPbc67zCC
+	 I6oB7caa1g/4kwpRgaY/sWA6HQgL5IiwvshpaDWVNJK5tyaJTNyOgy/wRv5Y9kCaHM
+	 uJ2TlQkibrlRQ==
+Date: Sun, 28 Jul 2024 17:06:50 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+ ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
+ biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
+ semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] iio: pressure: bmp280: Add data ready trigger
+ support
+Message-ID: <20240728170650.649839e7@jic23-huawei>
+In-Reply-To: <20240725231039.614536-7-vassilisamir@gmail.com>
+References: <20240725231039.614536-1-vassilisamir@gmail.com>
+	<20240725231039.614536-7-vassilisamir@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.43
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+On Fri, 26 Jul 2024 01:10:38 +0200
+Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
 
-[ Upstream commit d89a415ff8d5e0aad4963f2d8ebb0f9e8110b7fa ]
+> The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
+> a trigger for when there are data ready in the sensor for pick up.
+> 
+> This use case is used along with NORMAL_MODE in the sensor, which allows
+> the sensor to do consecutive measurements depending on the ODR rate value.
+> 
+> The trigger pin can be configured to be open-drain or push-pull and either
+> rising or falling edge.
+> 
+> No support is added yet for interrupts for FIFO, WATERMARK and out of range
+> values.
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+Hi Vasileios,
 
-Add various required properties to silent warnings:
+A few minor things inline, including a suggestion that perhaps the trigger_probe()
+functions can be combined to reduce duplication. That would use a
+__bmp280_trigger_probe(struct iio_dev *, struct iio_trigger_ops *,
+                       + some function pointers).
 
-arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi:116.16-297.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
-arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+Perhaps it's not worth it - I didn't try writing the actual code!
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../boot/dts/loongson/loongson64-2k1000.dtsi  | 37 +++++++++++++++----
- 1 file changed, 30 insertions(+), 7 deletions(-)
+Jonathan
 
-diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-index ee3e2153dd13f..b5593f7cc383b 100644
---- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-@@ -118,7 +118,6 @@ pci@1a000000 {
- 			device_type = "pci";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
--			#interrupt-cells = <2>;
- 
- 			reg = <0 0x1a000000 0 0x02000000>,
- 				<0xfe 0x00000000 0 0x20000000>;
-@@ -204,93 +203,117 @@ sata@8,0 {
- 				interrupt-parent = <&liointc0>;
- 			};
- 
--			pci_bridge@9,0 {
-+			pcie@9,0 {
- 				compatible = "pci0014,7a19.0",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x4800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 0 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@a,0 {
-+			pcie@a,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x5000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 1 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@b,0 {
-+			pcie@b,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x5800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 2 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@c,0 {
-+			pcie@c,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x6000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 3 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@d,0 {
-+			pcie@d,0 {
- 				compatible = "pci0014,7a19.0",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x6800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 4 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--			pci_bridge@e,0 {
-+			pcie@e,0 {
- 				compatible = "pci0014,7a09.0",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
- 						   "pciclass0604";
- 
- 				reg = <0x7000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &liointc1 5 IRQ_TYPE_LEVEL_LOW>;
-+				ranges;
- 				external-facing;
- 			};
- 
--- 
-2.43.0
+> ---
+>  drivers/iio/pressure/bmp280-core.c   | 309 ++++++++++++++++++++++++++-
+>  drivers/iio/pressure/bmp280-regmap.c |   2 +-
+>  drivers/iio/pressure/bmp280.h        |  23 +-
+>  3 files changed, 328 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
+> index 4a8d2ed4a9c4..4238f37b7805 100644
+> --- a/drivers/iio/pressure/bmp280-core.c
+> +++ b/drivers/iio/pressure/bmp280-core.c
+> @@ -37,12 +37,14 @@
+
+
+
+> +static irqreturn_t bmp380_irq_thread_handler(int irq, void *p)
+> +{
+> +	struct iio_dev *indio_dev = p;
+> +	struct bmp280_data *data = iio_priv(indio_dev);
+> +	unsigned int int_ctrl;
+> +	int ret;
+> +
+> +	scoped_guard(mutex, &data->lock) {
+> +		ret = regmap_read(data->regmap, BMP380_REG_INT_STATUS, &int_ctrl);
+> +		if (ret)
+> +			return IRQ_NONE;
+> +	}
+> +
+> +	if (FIELD_GET(BMP380_INT_STATUS_DRDY, int_ctrl))
+> +		iio_trigger_poll_nested(data->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int bmp380_trigger_probe(struct iio_dev *indio_dev)
+
+Two of these functions are very similar.  Perhaps define a common
+function that takes a function call for int config, the ops, and
+interrupt handler as arguments then add device specific
+calls that use that.
+
+
+
+> +{
+> +	struct bmp280_data *data = iio_priv(indio_dev);
+> +	struct fwnode_handle *fwnode;
+> +	int ret, irq, irq_type;
+> +	struct irq_data *desc;
+> +
+> +	fwnode = dev_fwnode(data->dev);
+> +	if (!fwnode)
+> +		return -ENODEV;
+> +
+> +	irq = fwnode_irq_get(fwnode, 0);
+> +	if (!irq) {
+> +		dev_err(data->dev, "No interrupt found\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	desc = irq_get_irq_data(irq);
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	irq_type = irqd_get_trigger_type(desc);
+> +	switch (irq_type) {
+> +	case IRQF_TRIGGER_RISING:
+> +		data->trig_active_high = true;
+> +		break;
+> +	case IRQF_TRIGGER_FALLING:
+> +		data->trig_active_high = false;
+> +		break;
+> +	default:
+> +		dev_err(data->dev, "Invalid interrupt type specified\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	data->trig_open_drain = fwnode_property_read_bool(fwnode,
+> +							  "int-open-drain");
+> +
+> +	ret = bmp380_int_config(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->trig = devm_iio_trigger_alloc(data->dev, "%s-dev%d",
+> +					    indio_dev->name,
+> +					    iio_device_id(indio_dev));
+> +	if (!data->trig)
+> +		return -ENOMEM;
+> +
+> +	data->trig->ops = &bmp380_trigger_ops;
+> +	iio_trigger_set_drvdata(data->trig, data);
+> +
+> +	ret = devm_request_threaded_irq(data->dev, irq, NULL,
+> +					bmp380_irq_thread_handler, IRQF_ONESHOT,
+> +					indio_dev->name, indio_dev);
+> +	if (ret) {
+> +		dev_err(data->dev, "request irq failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_iio_trigger_register(data->dev, data->trig);
+> +	if (ret) {
+> +		dev_err(data->dev, "iio trigger register failed\n");
+> +		return ret;
+> +	}
+> +
+> +	indio_dev->trig = iio_trigger_get(data->trig);
+> +
+> +	return 0;
+> +}
+> +
+> +
+
+one blank line only.
+
+>  static irqreturn_t bmp380_trigger_handler(int irq, void *p)
+>  {
+>  	struct iio_poll_func *pf = p;
+> @@ -1854,6 +1998,7 @@ const struct bmp280_chip_info bmp380_chip_info = {
+>  	.wait_conv = bmp380_wait_conv,
+>  	.preinit = bmp380_preinit,
+>  
+> +	.trigger_probe = bmp380_trigger_probe,
+>  	.trigger_handler = bmp380_trigger_handler,
+>  };
+>  EXPORT_SYMBOL_NS(bmp380_chip_info, IIO_BMP280);
+> @@ -2390,6 +2535,154 @@ static int bmp580_chip_config(struct bmp280_data *data)
+>  	return 0;
+>  }
+>
+
+...
+
+> +static irqreturn_t bmp580_irq_thread_handler(int irq, void *p)
+> +{
+> +	struct iio_dev *indio_dev = p;
+> +	struct bmp280_data *data = iio_priv(indio_dev);
+> +	unsigned int int_ctrl;
+> +	int ret;
+> +
+> +	scoped_guard(mutex, &data->lock) {
+
+Indent wrong.
+
+> +	ret = regmap_read(data->regmap, BMP580_REG_INT_STATUS, &int_ctrl);
+> +	if (ret)
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	if (FIELD_GET(BMP580_INT_STATUS_DRDY_MASK, int_ctrl))
+> +		iio_trigger_poll_nested(data->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int bmp580_trigger_probe(struct iio_dev *indio_dev)
+> +{
+...
+
+> +
+> +	data->trig = devm_iio_trigger_alloc(data->dev, "%s-dev%d",
+> +					    indio_dev->name,
+> +					    iio_device_id(indio_dev));
+> +	if (!data->trig)
+> +		return -ENOMEM;
+> +
+> +	data->trig->ops = &bmp580_trigger_ops;
+> +	iio_trigger_set_drvdata(data->trig, data);
+> +
+> +	ret = devm_request_threaded_irq(data->dev, irq, NULL,
+> +					bmp580_irq_thread_handler, IRQF_ONESHOT,
+> +					indio_dev->name, indio_dev);
+> +	if (ret) {
+> +		dev_err(data->dev, "request irq failed\n");
+
+Only in probe paths I think, so return dev_err_probe() thoughout these
+trigger setup callbacks.
+
+
+
+> +}
+
+> diff --git a/drivers/iio/pressure/bmp280-regmap.c b/drivers/iio/pressure/bmp280-regmap.c
+> index d27d68edd906..cccdf8fc6c09 100644
+> --- a/drivers/iio/pressure/bmp280-regmap.c
+> +++ b/drivers/iio/pressure/bmp280-regmap.c
+> @@ -109,7 +109,7 @@ static bool bmp380_is_writeable_reg(struct device *dev, unsigned int reg)
+>  	case BMP380_REG_FIFO_WATERMARK_LSB:
+>  	case BMP380_REG_FIFO_WATERMARK_MSB:
+>  	case BMP380_REG_POWER_CONTROL:
+> -	case BMP380_REG_INT_CONTROL:
+> +	case BMP380_REG_INT_CTRL:
+
+Unrelated change.  I'm also not sure it's worth making.
+
+>  	case BMP380_REG_IF_CONFIG:
+>  	case BMP380_REG_ODR:
+>  	case BMP380_REG_OSR:
+> diff --git a/drivers/iio/pressure/bmp280.h b/drivers/iio/pressure/bmp280.h
+> index f5d192509d61..754eda367941 100644
+> --- a/drivers/iio/pressure/bmp280.h
+> +++ b/drivers/iio/pressure/bmp280.h
+> @@ -55,8 +55,17 @@
+>  #define BMP580_CMD_NVM_WRITE_SEQ_1	0xA0
+>  #define BMP580_CMD_SOFT_RESET		0xB6
+>  
+> +#define BMP580_INT_STATUS_DRDY_MASK	BIT(0)
+>  #define BMP580_INT_STATUS_POR_MASK	BIT(4)
+>  
+> +#define BMP580_INT_SOURCE_DRDY		BIT(0)
+> +
+> +#define BMP580_INT_CONFIG_MASK		GENMASK(3, 0)
+> +#define BMP580_INT_CONFIG_LATCH		BIT(0)
+> +#define BMP580_INT_CONFIG_LEVEL		BIT(1)
+> +#define BMP580_INT_CONFIG_OPEN_DRAIN	BIT(2)
+> +#define BMP580_INT_CONFIG_INT_EN	BIT(3)
+> +
+>  #define BMP580_STATUS_CORE_RDY_MASK	BIT(0)
+>  #define BMP580_STATUS_NVM_RDY_MASK	BIT(1)
+>  #define BMP580_STATUS_NVM_ERR_MASK	BIT(2)
+> @@ -117,7 +126,7 @@
+>  #define BMP380_REG_OSR			0x1C
+>  #define BMP380_REG_POWER_CONTROL	0x1B
+>  #define BMP380_REG_IF_CONFIG		0x1A
+> -#define BMP380_REG_INT_CONTROL		0x19
+> +#define BMP380_REG_INT_CTRL		0x19
+As above.
+
+Jonathan
 
 
