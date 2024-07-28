@@ -1,109 +1,96 @@
-Return-Path: <devicetree+bounces-88573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB7793E427
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:47:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D62493E411
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 10:21:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFF991C20F39
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 08:47:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C65891F21648
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2024 08:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634DF286A8;
-	Sun, 28 Jul 2024 08:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C02DF5C;
+	Sun, 28 Jul 2024 08:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="FKiXAUWC"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="iyfKsx5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A25091CFA9;
-	Sun, 28 Jul 2024 08:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E548F8C06;
+	Sun, 28 Jul 2024 08:20:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722156462; cv=none; b=EFvhOK0W94kAzWJhjCX/zTNdpLQLxFT8Ka6VJvPafQ6FKKoygFwqOddyqypEjybCRrbW0wgV1HCfPXjeVt1pHrPI4pWC00XgBvelm7Hi5zFtQ5MGuO4LWLIUuw83PJ7OihtzG3vJE7ZhA30yaEDOze6hjSPRLJVyLG01wYKXT74=
+	t=1722154863; cv=none; b=SjhxfQwWpi+Lx7X6f32cRsHWMbpw1gq6YGgcYOQeujaeZku5NMU1oikjL8CP13fQQ9rcayLSLqUt/f9gNvzDbDESAZL5WpYWhreMSsEWEEQW538pNGtIFm3pF5kAmFseCGichofFnZakztrzzQ+xuyKorI+4d+BnrVGQrMyQ1yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722156462; c=relaxed/simple;
-	bh=wkCTu1XgbZxHWtMNt9uk1vYk2H5PNPY7J4VdBbI3HnU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QVpJvLakVs47A0cf3PL6U4EqZ2f26iXay97rWJG8fgYIeUh/D2HnB7Rx//jHzZpkgrn0A0JwjOqyPubI8+lba/VhOagpXdMEMKNhJ6dcUnOPFCoHjCal+gEqsc/S+cnSBVXK6KvUXZEkpmIneXE12M49b9EhkkFPlimzxHSW0Mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=FKiXAUWC; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=KFX/SC+Zxxjw9y7AUq6KQ/fBhSumCRs8PxWgkMO54jk=; b=FKiXAUWC8SmyYBnI2y/SiK7KMj
-	3eZtsI+De4dkzQ95HfBI9Ar6cBuzTUyUVDfyG4C1fjN4Ew7wQi0TSDZNeJ1YLe1g43R1dEnYQ+l4n
-	7z6HWp7gVs5RI9kdaDE2AZ012cxJ9aLE1jnKptecOBLjAlzqysYOlKE8Sz0xbGeLOHsgvnJGShtN6
-	s08YCL17ih9XLIO6VSt/8RHA3L6ik+Q6EZ+NdeHSYEqB5MQVUJQfEPYqxD+CiZTCop+VBg1RxYutk
-	f7PCjYuk/t5IMMobjxbvAx8efU8Fy7RDVdbvb1kffSL9HQ3ubK8x96ZbsjlBuZ2HXyOydedGVZn7Q
-	UgK5SOxA==;
-Date: Sun, 28 Jul 2024 10:06:58 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Sicelo <absicsz@gmail.com>
-Cc: tony@atomide.com, linux-omap@vger.kernel.org,
- maemo-leste@lists.dyne.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, Aaro Koskinen
- <aaro.koskinen@iki.fi>
-Subject: Re: [PATCH] ARM: dts: omap3-n900: correct the accelerometer
- orientation
-Message-ID: <20240728100658.0001864d@akphone>
-In-Reply-To: <ZqU_UPQHCJ37qZfa@tp440p.steeds.sam>
-References: <20240722113137.3240847-1-absicsz@gmail.com>
-	<ZqU_UPQHCJ37qZfa@tp440p.steeds.sam>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.37; aarch64-alpine-linux-musl)
+	s=arc-20240116; t=1722154863; c=relaxed/simple;
+	bh=VEqyOaOnbH7k/vuDrxwukqau9uwg7ZnmlPoONB5vzWM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oHFeYwoxJ5rwEpuUA4719uhGQ4xk3TlcOu1idixWm5tMv06N52QYwvAOAMYM/rCRSWjlI/4Z9BirJCmeY10f9jtnnuCYbMK60UGgW+x+iUeXmkXdV3ZcoOOYElzMEAmVwgmv1N/WGatgp+ZpXGMX7Cq20d+v5RIGo79XDmIza38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=iyfKsx5w; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=adiGC
+	DuL728eGkg+8TRJCfZU+t/cL/RD1/bFz0cBfCM=; b=iyfKsx5w6IVHdwq3IPnCz
+	dTpvZXD97qoYx8YNqr+L9yq28GNUd9UuGfGhoySt2cZxPbAfbdh7eMI4GC6uDC8M
+	XAag+tAGHet3V/GhmUp/d6GhAJovNdmGEmuv5MnGeFfimdhV1LbvEZarm0G0/Ccp
+	x4rVo3M/76DOVeGewgr2J8=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by gzga-smtp-mta-g2-4 (Coremail) with SMTP id _____wCnb242_6VmJZF9Bw--.37149S2;
+	Sun, 28 Jul 2024 16:20:10 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: dsimic@manjaro.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andyshrk@163.com>
+Subject: [PATCH v2 0/2] Add support for Cool Pi GenBook
+Date: Sun, 28 Jul 2024 16:20:02 +0800
+Message-Id: <20240728082004.36575-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wCnb242_6VmJZF9Bw--.37149S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7GF1kKFy8Xw13XF1ktryftFb_yoWDJwb_Ka
+	y7WrZrJa1FqFn09F9xt3y8JrW3G39Fkr98GF4rZFsxZF9rJ3y8GF1ftw1vvF15AFW29r13
+	Aa1FqF1rWwn8CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sR_NBMPUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqQYqXmVOBz4pcgAAsS
 
-On Sat, 27 Jul 2024 20:41:20 +0200
-Sicelo <absicsz@gmail.com> wrote:
+Cool Pi GenBook is a rk3588 based laptop, it is designed
+to consist of a carrier board conntected with a CM5 SoM.
 
-> On Mon, Jul 22, 2024 at 01:31:11PM +0200, Sicelo A. Mhlongo wrote:
-> > Negate the values reported for the accelerometer z-axis in order to
-> > match Documentation/devicetree/bindings/iio/mount-matrix.txt.
-> > 
-> > Fixes: 14a213dcb004 ("ARM: dts: n900: use iio driver for
-> > accelerometer")
-> > 
-> > Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/ti/omap/omap3-n900.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/ti/omap/omap3-n900.dts
-> > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts index
-> > 07c5b963af78..4bde3342bb95 100644 ---
-> > a/arch/arm/boot/dts/ti/omap/omap3-n900.dts +++
-> > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts @@ -781,7 +781,7 @@
-> > accelerometer@1d { 
-> >  		mount-matrix =	 "-1",  "0",  "0",
-> >  				  "0",  "1",  "0",
-> > -				  "0",  "0",  "1";
-> > +				  "0",  "0",  "-1";
-> >  	};
-> >  
-> >  	cam1: camera@3e {
-> > -- 
-> > 2.45.2
-> >   
-> 
-> CC: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
-> <andreas@kemnade.info>
-> 
-I would expect it to be a rotation matrix but it is not. So maybe this
-should be fixed in,the driver?
+This series add support of eMMC/USB HOST/WiFi/Battery/TouchPad/Keyboard,
+with a mainline based u-boot[0], it can boot a third-party distribution
+such as Armbian on u-disk.
 
-Regards
-Andreas
+[0]https://github.com/andyshrk/u-boot/commit/8eedc6700367166bfa63b861d8e7aca486d315fe
+
+Changes in v2:
+- Descripte it as Cool Pi CM5 GenBook
+- rename dts to rk3588-coolpi-cm5-genbook
+- enable touchpad
+- enable battery
+
+Andy Yan (2):
+  dt-bindings: arm: rockchip: Add Cool Pi CM5 GenBook
+  arm64: dts: rockchip: Add support for rk3588 based Cool Pi CM5 GenBook
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   8 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rockchip/rk3588-coolpi-cm5-genbook.dts    | 349 ++++++++++++++++++
+ 3 files changed, 358 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dts
+
+-- 
+2.34.1
+
 
