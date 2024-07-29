@@ -1,252 +1,199 @@
-Return-Path: <devicetree+bounces-89132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA97294007B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 23:34:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141959400CF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4410E1F22952
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:34:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07EEEB22252
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647F318A93C;
-	Mon, 29 Jul 2024 21:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EC3174EE4;
+	Mon, 29 Jul 2024 22:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="BQmUqUdF"
+	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="ghiNgKzF";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="XYDWeQvN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from msa.smtpout.orange.fr (smtp-68.smtpout.orange.fr [80.12.242.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41337D3F1;
-	Mon, 29 Jul 2024 21:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17A21B86D6;
+	Mon, 29 Jul 2024 22:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722288884; cv=none; b=QTDsXZMZKJC03HctRiWu1TADtwhYJeGNanL7PyWZbjLGSWtuuhMBUPHvi+SOVpRAMm7RjJOkX98NsiXc8z9EwMDDo4aUrVS50nPu7LM9HlCswbTnN0CHkyHVRUodGWFco3FfN7ag7HRAXZ60Mz2rPLPh0VXV625es8fnJ5K3ZBc=
+	t=1722290610; cv=none; b=TRulJc607ThYWFjKtFt17UwQleIdithXHuE9tsexD8EVt/f+JhrUYqgB0kqyllwtGNf72sxCO+J+sIcWf+2jDMob6HLWX0/U4Cq6VkGvsArlnlXBNP8aptP4ZAWUqTYqLBbwPN+zEV4Lh7lZdHjPjujw3thEyratKU3OjAGgRzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722288884; c=relaxed/simple;
-	bh=3+pwqht9xHkMiBhYxd7W7IBBqiquaAIYlWA4EU4Jh5o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ee00tpLpJKpPOqEqZZvGEmqOo7EG/LCq3yPr/nuKPJNw0sgFi8G0PCi4i5UKM426lknu9s/arnZxy5uFyHVvM6h+UVckJa2QrMIq48MitnaD+3G8sjLZOThWLy820XOJrdhc5bLxAXUknvvWVHS43vAgC3VrR59pxlClarmoij4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=BQmUqUdF; arc=none smtp.client-ip=80.12.242.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id YY0ksSWFSN67nYY0lstwr6; Mon, 29 Jul 2024 23:34:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1722288873;
-	bh=ucumROewCOlJ/+rkXDYdvCUcwadsziBKuLfZMTTlVCw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=BQmUqUdFImiktTc2UhLFzwAfTSFqRGo1TXLFX9xhyScHS18InvAC1p7Valv8yvQiB
-	 cBs2QvzMtQbxsyqn9qc11jyIjSaLjeqUQR0/hc4ECUqzjC4AL2ygV8vu8wzBjdNzlL
-	 j8pl7tSVsOBTsrMaIg+i/ryqarHvy+L8hyjisZLGvWfO/fDJS1wID3rL0QSloJafKe
-	 1HkT3yjpUY4M1WlMJTPaoelvV8Y3I4CbOSzfKc1jRES67+A3iNExzfUNr+qtzPE24j
-	 zT+p2KXNj+ToGS/txNbdH9i08GuWHsB/mJFFkyBxtUfyCnnlecNnJJb4ZF+amL/B70
-	 YDToJtZBthbkg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Mon, 29 Jul 2024 23:34:33 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <aeb5e95a-f108-4b23-b14b-c9fe1463775e@wanadoo.fr>
-Date: Mon, 29 Jul 2024 23:34:30 +0200
+	s=arc-20240116; t=1722290610; c=relaxed/simple;
+	bh=ROcRg0KFhN8r6j4xsLw04EX7NmQN33F5dqFZ4waAK7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WJ6gWMdIo9Xz+BmcOZ8JugQMXT1OoqpPpCoPQ89GM20eoyp2WoH76PZaVZ4qHwTxbM/n1ET+GBXvVyNVudGmWtK4ljJA2mOQS+NA7OFC0F+JQJ36/yq9JyHz+rl4a6Dd2Uli1pq/8SCf3RgPB3alV+zPiyptOamNgSjJoAEbsRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz; spf=pass smtp.mailfrom=stwcx.xyz; dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b=ghiNgKzF; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=XYDWeQvN; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 50F9C1380098;
+	Mon, 29 Jul 2024 18:03:26 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute7.internal (MEProxy); Mon, 29 Jul 2024 18:03:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1722290606; x=1722377006; bh=VjPyELCCVA
+	p8GD4brdOAygR7b9CF1TOQ2OxSnfbzxpc=; b=ghiNgKzFqWCljYzdeutQBEQahf
+	w0dMtX7V2LpQhf6DVVUDNa1AMTGSRdVfD1QzbBqV7mPW+2O78KG2P2fbZSIG9RVd
+	3JEVVjNj9f6VjqOgNT5rns2nzoaLrECCxW5nJCIJatXEPj2HyX3XZUfUdvsppXI6
+	QeGYEJiSGQYkg1onJ0F5gF134EM/xNdrheF1VbzWmoP0zZlE3eOVCc4Il7gl6MPr
+	RFhZIPLfkg5JroExmr9poa/TxMvTIbKX+UiNYKjmWOGBuYESLe8lKVcfaHfTq0hb
+	HAko1QMFdNvupzx0Ks+viy3DhnBWP/37SyjrHZavCVgUiBNdQj0gWu5KNSZg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1722290606; x=1722377006; bh=VjPyELCCVAp8GD4brdOAygR7b9CF
+	1TOQ2OxSnfbzxpc=; b=XYDWeQvNQdCSJbhAp/9rsl707f+XNxahPc0G+FyRDJ6w
+	V/P8CLfLOciyzS85m9lu2C/eCKKwYBIm6oVbC3IqdOzx0y/0NWpvAHy4BMzJ2mU/
+	AUlbLj2gQpTSAdux4J6K9+g2Y/koBcvgx0aigKr5vOzHRZhQQTFsPTDOgO0A8/pD
+	GWqiMw4xup4kOWd2wDceQvb9NKB8/otFypSzoTAVrWoYtSGmG/ZICBuqNCKM1XE4
+	P1ZNiieLdWllVTPktyB5N2iRIcFltD5q/VLCzn9ZU1cBXK1kaITbvY3PFvceBi/0
+	heg/MRG6RDkPahclW6OoQHNGlMxjjqsLvkggb+PLiQ==
+X-ME-Sender: <xms:rRGoZu0uSsACTw0MSEwhrs6IKpELTZxMJMr7zIA4A28RxF49eXJzEQ>
+    <xme:rRGoZhEFMZYuSbDGxl8vqI_zvHdKENwmpm0QWnD_TkH0PdHeTJZux46RhRQuK7F1x
+    CBrd2JXiUVJArf7Wj4>
+X-ME-Received: <xmr:rRGoZm7GeF5D0a0MeBCbNiPy0jIpfXDP2UXWQpePcgf0nCqsJDSfeHuZYZe3naNreB-GD0BUiFTvJZy8jEJ9dr2rTIMQYv91U4s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrjeefgddtiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenfg
+    hrlhcuvffnffculddvfedmnecujfgurhepfffhvfevuffkfhggtggujgesghdtreertddt
+    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
+    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepheefjeehfedtjeeivdefkeffheel
+    udekudelleffkefgtdeludelvddtgedtheeknecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihiidpnhgs
+    pghrtghpthhtoheptd
+X-ME-Proxy: <xmx:rRGoZv28_lHbPUF0zCB61iGQCpRfMtLgvsLC-gWdOmDpCSu5ppdSKA>
+    <xmx:rRGoZhGKwaIuLhqwqypbm5fco7Y4egGtvmdIakKnw8EZ4vHrnuASmw>
+    <xmx:rRGoZo-rBbVb04bKi_qOGQq1DJxexwgJ11NWqFC6p7GPSZktCLHCVg>
+    <xmx:rRGoZmkX_sccaKUq3ahIw3LTO40H5FspPJSOC8PLdj7V5qMetUV-pA>
+    <xmx:rhGoZp_CUlY4yjJ4E3o8jUHF6sDREhUivgZbmwdCasHIU5i5BaDJYqt_>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 29 Jul 2024 18:03:25 -0400 (EDT)
+Date: Mon, 29 Jul 2024 17:03:23 -0500
+From: Patrick Williams <patrick@stwcx.xyz>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 25/27] ARM: dts: aspeed: yosemite4: add RTQ6056
+ support
+Message-ID: <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
+References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
+ <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/5] iio: adc: ad4030: add driver for ad4030-24
-To: eblanc@baylibre.com
-Cc: Michael.Hennerich@analog.com, baylibre-upstreaming@groups.io,
- conor+dt@kernel.org, devicetree@vger.kernel.org, dlechner@baylibre.com,
- jic23@kernel.org, krzk+dt@kernel.org, lars@metafoo.de,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, nuno.sa@analog.com,
- robh@kernel.org
-References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
- <20240627-eblanc-ad4630_v1-v1-2-fdc0610c23b0@baylibre.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240627-eblanc-ad4630_v1-v1-2-fdc0610c23b0@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="bXkOT6UHBEHOiAfs"
+Content-Disposition: inline
+In-Reply-To: <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
 
-Le 27/06/2024 à 13:59, Esteban Blanc a écrit :
-> This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
-> 
-> The driver implements basic support for the AD4030-24 1 channel
-> differential ADC with hardware gain and offset control.
-> 
-> Signed-off-by: Esteban Blanc <eblanc-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
+
+--bXkOT6UHBEHOiAfs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jul 23, 2024 at 05:23:06PM +0800, Delphine CC Chiu wrote:
+> Add RTQ6056 (spider board 3rd source) support in yosemite4 DTS.
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 > ---
+>  .../boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index f73719b3c2f1..03a1e41312e3 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -1240,35 +1240,35 @@ adc@37 {
+>  	};
+> =20
+>  	power-sensor@40 {
+> -		compatible =3D "ti,ina233";
+> +		compatible =3D "ti,ina233", "richtek,rtq6056";
 
-Hi,
+Is this legal to have two chips both listed as compatible?  I thought
+this approach has been rejected before.
 
-a few nitpick below, should it help.
+>  		reg =3D <0x40>;
+>  		resistor-calibration =3D /bits/ 16 <0x0a00>;
+>  		current-lsb=3D /bits/ 16 <0x0001>;
+>  	};
+> =20
+>  	power-sensor@41 {
+> -		compatible =3D "ti,ina233";
+> +		compatible =3D "ti,ina233", "richtek,rtq6056";
+>  		reg =3D <0x41>;
+>  		resistor-calibration =3D /bits/ 16 <0x0a00>;
+>  		current-lsb=3D /bits/ 16 <0x0001>;
+>  	};
+> =20
+>  	power-sensor@42 {
+> -		compatible =3D "ti,ina233";
+> +		compatible =3D "ti,ina233", "richtek,rtq6056";
+>  		reg =3D <0x42>;
+>  		resistor-calibration =3D /bits/ 16 <0x0a00>;
+>  		current-lsb=3D /bits/ 16 <0x0001>;
+>  	};
+> =20
+>  	power-sensor@43 {
+> -		compatible =3D "ti,ina233";
+> +		compatible =3D "ti,ina233", "richtek,rtq6056";
+>  		reg =3D <0x43>;
+>  		resistor-calibration =3D /bits/ 16 <0x0a00>;
+>  		current-lsb=3D /bits/ 16 <0x0001>;
+>  	};
+> =20
+>  	power-sensor@44 {
+> -		compatible =3D "ti,ina233";
+> +		compatible =3D "ti,ina233", "richtek,rtq6056";
+>  		reg =3D <0x44>;
+>  		resistor-calibration =3D /bits/ 16 <0x0a00>;
+>  		current-lsb=3D /bits/ 16 <0x0001>;
+> --=20
+> 2.25.1
+>=20
 
-...
+--=20
+Patrick Williams
 
-> +static int ad4030_read_avail(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *channel,
-> +			     const int **vals, int *type,
-> +			     int *length, long mask)
-> +{
-> +	struct ad4030_state *st = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> +		*vals = ad4030_get_offset_avail(st);
-> +		*type = IIO_VAL_INT;
-> +		return IIO_AVAIL_RANGE;
-> +
-> +	case IIO_CHAN_INFO_CALIBSCALE:
-> +		*vals = (void *)ad4030_gain_avail;
-> +		*type = IIO_VAL_INT_PLUS_MICRO;
-> +		return IIO_AVAIL_RANGE;
+--bXkOT6UHBEHOiAfs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Nitpick: in other switch below, there is a blank line before default:
+-----BEGIN PGP SIGNATURE-----
 
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmaoEakACgkQqwNHzC0A
+wRllJg/8D0+FcC+HnpCDyCMQIlzeZjWQHJwsQ+gAQnniXua4BX1ViSqRQCflaEjq
+Ro30E3wAQMWVN9ZnXJ2hUndBEPH+o59gS7iJhrr8pRv7co2yVA7MqgCkK4HD0eWw
+NWrguDAy/iPbbzUSQv1S8PVje7YwTOxe/4FZFD7Bv4qQyxvLBXlQpTwk959Rh96M
+AD+lflRovhD65652++Y7HjTlT0YYFC9q4nowhm+9Hn7OmE1eevPBL8kuujPTYIgK
+0nbcAXB3TkxnKyvjz1R/LBiabphsK/ZKuxBefmQfl+4+PUxibfi/6nqvIBipp6cu
+kR7kXYQJ7A+4Al1NSji5in7vj/F5FJDmo+0F3lLfzUZTWk2ObKgdDW96R/xU5r0G
+yI5KbKYzfV9maDqx/XBRDmOfAMKb2OSbR2Ssu7FMkI52dKGBlQJB4VW7yqojtfz/
+Rin3U0YDKr4QPNTYe8zIzOsy6qOoQRNCrT3dnpCDI8azLVoZ90k5Aw4UIGr1f8uN
+1H+CtyxAmsVkd40pD4cgbXcTokTt34l1XGnzij8y2OU+VIOHEo37aR8taYJY7JL5
+NIFuyErSfvOHFNzR71H/hkYrqG35e/qm49KJpRx02bMkF0EopPKxucsG35710I2z
+9BSnk3xZxDBVvfDjrxl7B4K4kjsDwaJgON2sLyog+rou8+VOOCE=
+=auiB
+-----END PGP SIGNATURE-----
 
-...
-
-> +static int ad4030_regulators_get(struct ad4030_state *st)
-> +{
-> +	struct device *dev = &st->spi->dev;
-> +	static const char * const ids[] = {"vdd-5v", "vdd-1v8"};
-> +	int ret;
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(ids), ids);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
-> +
-> +	st->vio_uv = devm_regulator_get_enable_read_voltage(dev, "vio");
-> +	if (st->vio_uv < 0)
-> +		return dev_err_probe(dev, st->vio_uv,
-> +				     "Failed to enable and read vio voltage");
-
-Nitpick: missing \n
-
-> +
-> +	st->vref_uv = devm_regulator_get_enable_read_voltage(dev, "ref");
-> +	if (st->vref_uv < 0) {
-> +		if (st->vref_uv != -ENODEV)
-> +			return dev_err_probe(dev, st->vref_uv,
-> +					     "Failed to read vref voltage");
-
-Nitpick: missing \n
-
-> +
-> +		/* if not using optional REF, the internal REFIN must be used */
-> +		st->vref_uv = devm_regulator_get_enable_read_voltage(dev, "refin");
-> +		if (st->vref_uv < 0)
-> +			return dev_err_probe(dev, st->vref_uv,
-> +					     "Failed to read vrefin voltage");
-
-Nitpick: missing \n
-
-> +	}
-> +
-> +	if (st->vref_uv < AD4030_VREF_MIN_UV || st->vref_uv > AD4030_VREF_MAX_UV)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "vref(%d) must be in the range [%lu %lu]\n",
-> +				     st->vref_uv, AD4030_VREF_MIN_UV,
-> +				     AD4030_VREF_MAX_UV);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ad4030_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev = &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ad4030_state *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-
-Nitpick: dev could be used. It is the same &spi->dev
-
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->spi = spi;
-> +
-> +	/* Make sure the SPI clock is within range to read register */
-> +	st->conversion_speed_hz = spi->max_speed_hz;
-> +	if (spi->max_speed_hz > AD4030_SPI_MAX_REG_XFER_SPEED)
-> +		spi->max_speed_hz = AD4030_SPI_MAX_REG_XFER_SPEED;
-> +
-> +	st->regmap = devm_regmap_init(&spi->dev, &ad4030_regmap_bus, st,
-
-Nitpick: dev could be used. It is the same &spi->dev
-
-> +				      &ad4030_regmap_config);
-> +	if (IS_ERR(st->regmap))
-> +		dev_err_probe(&spi->dev, PTR_ERR(st->regmap),
-
-Nitpick: dev could be used. It is the same &spi->dev
-
-> +			      "Failed to initialize regmap\n");
-> +
-> +	st->chip = spi_get_device_match_data(spi);
-> +	if (!st->chip)
-> +		return -EINVAL;
-> +
-> +	ret = ad4030_regulators_get(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4030_reset(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4030_detect_chip_info(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4030_config(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->cnv_gpio = devm_gpiod_get(dev, "cnv", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->cnv_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->cnv_gpio),
-> +				     "Failed to get cnv gpio");
-
-Nitpick: missing \n
-
-> +
-> +	indio_dev->name = st->chip->name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &ad4030_iio_info;
-> +	indio_dev->channels = st->chip->channels;
-> +	indio_dev->num_channels =  2 * st->chip->num_channels + 1;
-
-Nitpick : 2 spaces after =
-
-> +	indio_dev->available_scan_masks = st->chip->available_masks;
-> +	indio_dev->masklength = st->chip->available_masks_len;
-> +
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> +					      iio_pollfunc_store_time,
-> +					      ad4030_trigger_handler,
-> +					      &ad4030_buffer_setup_ops);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to setup triggered buffer\n");
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
-...
-
-CJ
-
+--bXkOT6UHBEHOiAfs--
 
