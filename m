@@ -1,165 +1,208 @@
-Return-Path: <devicetree+bounces-88981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B9B93F865
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:40:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ADE893F876
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:42:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD94F1C21311
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:40:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C10E5280E7C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543BB1534FB;
-	Mon, 29 Jul 2024 14:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1E6154C0C;
+	Mon, 29 Jul 2024 14:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="caa3XgGt"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3aV5L0ST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0BC823A9;
-	Mon, 29 Jul 2024 14:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2759E14AD19
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 14:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722264034; cv=none; b=dUETmbBXXUd8rRMSy5lN8BsbqW6H4ybl8uVfhRscR87vG1RDs/5ciUMx7kDBzKTXhXWR5UUwFb8NX2SukIXjVvxJVc3An1LZjSH4GaVfh9KF+A4PtzgpiA/k57dvxZKhlDUYwaecMVF7eYQH1U5DperkAwioBzhF2hAuWRH+gxs=
+	t=1722264140; cv=none; b=dpdGSFFeNwnQugBcBT1liAvPSTlPytxb2cSTl4ylHI2VN9vDoIIq8Y7qUaCcaEk4dyIrf/MPqLY8lBrvsv96/vvMAYx3TTe0CwbRpYKOD3OX2+gn5bd3UMzgl/WNmOfwv8xxle1O2+PwP1NKa9b/CZSvRVSMtjzQdvO1wemuYoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722264034; c=relaxed/simple;
-	bh=z7vuHWzxrCX7qIN3Um9g/pzfEQKn+uL+PxpROEm26DM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ap/bDtdL2PcXOlU9yxtyyzd2/J7aozjjTsqxhIcHmwX9r7BW0lpHioPtEu7ErbjO/k/RlyciZLdKwV2OWJ6fnbzC7Rz2yfvIMONzaU06vaKwc7j1BuksivPg6VOW9SOXnoNCeUrELFkDtF/fRONd4J2IyYQ9NMwRTKQRHtJ0OCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=caa3XgGt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TAKjsC000633;
-	Mon, 29 Jul 2024 14:40:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=xHMB3TmsExJZYf6ASsTzPCkN
-	xehCRJLMBmMI14RE/xo=; b=caa3XgGtjBgyWU1YjINatimkmzlSoYVowb1Ga3kE
-	LU+u1z6DZH+esqs2l9Qgiy85if3UspPyRBV77w1nrJt73NItVe8xSSwWqK2hKaMh
-	z3wo0By4reoWrvND+u00hfcUpiNdDFa/aTnJtPgZyBnx6Pevdl3Xo/utNcmwRtgo
-	j6m5ilYL2+V+pg0UrEowO62KLhjSygW3zv2IlEqwt1WZwlJFD7FaXPBl2WMEdIfI
-	DjwkKfrY68PWCNpho7iJpMqbmr86Bd6aFjvKHy+3JkFAl4YrIfI0mkZyMmsGsgJO
-	QrOF1AHHqvVvmcOuDO+cMeoRs47+18eUucDGxDiPzWBWkg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mt2kmdp0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 14:40:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46TEeJAb007298
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 14:40:19 GMT
-Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 29 Jul 2024 07:40:14 -0700
-Date: Mon, 29 Jul 2024 20:10:10 +0530
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Abhinav
- Kumar" <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>,
-        Bjorn Andersson <andersson@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Elliot Berman <quic_eberman@quicinc.com>
-Subject: Re: [PATCH v5 1/5] drm/msm/adreno: Implement SMEM-based speed bin
-Message-ID: <20240729144010.yj2anp253qgqsuna@hu-akhilpo-hyd.qualcomm.com>
-References: <20240709-topic-smem_speedbin-v5-0-e2146be0c96f@linaro.org>
- <20240709-topic-smem_speedbin-v5-1-e2146be0c96f@linaro.org>
- <20240715200419.l47ng6efa25in6sg@hu-akhilpo-hyd.qualcomm.com>
- <8e2ebc97-f455-4f41-81da-af56263e6cf6@linaro.org>
- <87607d2c-a4b1-4923-ba9f-9cfc56a0aa38@kernel.org>
- <aaf74e25-ba24-454c-8bc1-c2b079d549e3@kernel.org>
+	s=arc-20240116; t=1722264140; c=relaxed/simple;
+	bh=Pa38IDDz14ZyF1Kf+6NrTlL3LquE/bkSNCFq2Fv3qCA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=TSsLLh79U6QonvYExGLD9k7qbcDuvgdcsbJnxYOXwXnJlpchGQ4l6bqDr6LwFgeNtcpsvR5/DIf+SQWlRBCGi/Dsn5gS4dv+QGRziSD3GxJpGfL1GBeA1ErNHj1DoGRnUf0fRktuU+f/CaM7VhGb4QwecHM9lttzMw+tTjtbpf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3aV5L0ST; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42809d6e719so17504035e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 07:42:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722264137; x=1722868937; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/vryNgyzMsFde+cbe622LWwyKPkGWCTER1RhK0F4O8U=;
+        b=3aV5L0STHV2sWsoHNVwh6zESYw2eZIPKDKksAey+bUownSMc/x2fCHgzwmlXRWcVWa
+         xRR2TCgM2ZvmrFlsar+JLWKHFN48M9eKTyfU5CIijuqcyxXFluxYV11lfWst4UA/ak7b
+         eA990enPPF6ayq5QMKjH6yaH2r3RRTZ6fYUUZfsSbp2tbvcKq3Pa6njmIxsrCo+G+yuG
+         KypqNb35RN/CbV6+hYMxh/utbxbi7OHW4Eulgbpg3fQQ4yTBoUtzVAmpU6/0FJmpSLix
+         YtWsYUCC5SlABEtkwb/D5kxIetv0mZU7lu2KOBPiTnDzQ9HsyNNnCKitO/2DAe04ETzh
+         LmCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722264137; x=1722868937;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/vryNgyzMsFde+cbe622LWwyKPkGWCTER1RhK0F4O8U=;
+        b=kQ1nzsGhhAo1k163CGcYFr+YnyhsbENw6Bo6wnMtMgxfwrraCR6q2CWMmwqD7agjRB
+         d8Z6c1TL1I8x/qqaHoaWeGyWk8PM232ufLhOXryAVRBEyjAcfaDEPIiXncDLhoF/3tPY
+         X3lC9cBlvoONy+qQXqvEYyV2t5fxR5yjNSrcVoz5iiiy5waZmVyTS4rtiLQ9KY0Dcqr8
+         4CE7mOHBXfY+b7pYxYhk2D36fEWrkLVA/Ths3CBcD6ihJkZMfp1FZ9Hv/qMLb3gKjiXj
+         dEYmuYdHVNuwEMHA6bktYL+uFObJoy0fxXU8qaPcgdovCa0W59ek3ZflFK93bvwCVfjF
+         oCAA==
+X-Forwarded-Encrypted: i=1; AJvYcCX1H3JGEtvP1xI1ip7Ip/LZDJPHp5mDy64LHKDRuTjgJmL14EgczVQeJexCVwhtKfYOaNbZm02pNsEmSBYmZdEQGZExpS7G2jqpFA==
+X-Gm-Message-State: AOJu0YwQM2+8odEcElamxygWLccBCJYrRBjZ45VGZsdL5XcRrh3UuT/5
+	PqbccH6+z4tMnhtDYu6bCfnF3iOP6lCsGH1le1b+1qxQK9/vcxwmh1IiqO60q6w=
+X-Google-Smtp-Source: AGHT+IFZFxS6E27mnr9vmlBnL/tw27bvTGWht1x8YDq/zlbnhtJdSomwiir8f5bX62qkw+iQQ586Rg==
+X-Received: by 2002:a05:600c:3505:b0:426:67ad:38e3 with SMTP id 5b1f17b1804b1-42811d73aa0mr55232845e9.3.1722264137354;
+        Mon, 29 Jul 2024 07:42:17 -0700 (PDT)
+Received: from localhost (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428057a635csm180606715e9.30.2024.07.29.07.42.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jul 2024 07:42:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aaf74e25-ba24-454c-8bc1-c2b079d549e3@kernel.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: pkp9BHs2kNXQ7wplHmUEY4Eti-5alllV
-X-Proofpoint-GUID: pkp9BHs2kNXQ7wplHmUEY4Eti-5alllV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-29_12,2024-07-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=679
- malwarescore=0 spamscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0
- suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407290098
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 29 Jul 2024 16:42:16 +0200
+Message-Id: <D323OLK1T0CG.1OGNBVY1FDVJT@baylibre.com>
+Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
+ <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Nuno Sa" <nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "David
+ Lechner" <dlechner@baylibre.com>
+Subject: Re: [PATCH RFC 2/5] iio: adc: ad4030: add driver for ad4030-24
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Jonathan Cameron" <jic23@kernel.org>
+X-Mailer: aerc 0.17.0
+References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
+ <20240627-eblanc-ad4630_v1-v1-2-fdc0610c23b0@baylibre.com>
+ <20240629173945.25b72bde@jic23-huawei>
+In-Reply-To: <20240629173945.25b72bde@jic23-huawei>
 
-On Mon, Jul 29, 2024 at 02:40:30PM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 29.07.2024 2:13 PM, Konrad Dybcio wrote:
-> > On 16.07.2024 1:56 PM, Konrad Dybcio wrote:
-> >> On 15.07.2024 10:04 PM, Akhil P Oommen wrote:
-> >>> On Tue, Jul 09, 2024 at 12:45:29PM +0200, Konrad Dybcio wrote:
-> >>>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
-> >>>> abstracted through SMEM, instead of being directly available in a fuse.
-> >>>>
-> >>>> Add support for SMEM-based speed binning, which includes getting
-> >>>> "feature code" and "product code" from said source and parsing them
-> >>>> to form something that lets us match OPPs against.
-> >>>>
-> >>>> Due to the product code being ignored in the context of Adreno on
-> >>>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
-> >>>>
-> >>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>> ---
-> >> [...]
-> >>
-> >>>>  
-> >>>> -	if (adreno_read_speedbin(dev, &speedbin) || !speedbin)
-> >>>> +	if (adreno_read_speedbin(adreno_gpu, dev, &speedbin) || !speedbin)
-> >>>>  		speedbin = 0xffff;
-> >>>> -	adreno_gpu->speedbin = (uint16_t) (0xffff & speedbin);
-> >>>> +	adreno_gpu->speedbin = speedbin;
-> >>> There are some chipsets which uses both Speedbin and Socinfo data for
-> >>> SKU detection [1].
-> >> 0_0
-> >>
-> >>
-> >>> We don't need to worry about that logic for now. But
-> >>> I am worried about mixing Speedbin and SKU_ID in the UABI with this patch.
-> >>> It will be difficult when we have to expose both to userspace.
-> >>>
-> >>> I think we can use a separate bitfield to expose FCODE/PCODE. Currently,
-> >>> the lower 32 bit is reserved for chipid and 33-48 is reserved for speedbin,
-> >>> so I think we can use the rest of the 16 bits for SKU_ID. And within that
-> >>> 16bits, 12 bits should be sufficient for FCODE and the rest 8 bits
-> >>> reserved for future PCODE.
-> >> Right, sounds reasonable. Hopefully nothing overflows..
-> > +CC Elliot
-> > 
-> > Would you know whether these sizes ^ are going to be sufficient for
-> > the foreseeable future?
-> 
-> Also Akhil, 12 + 8 > 16.. did you mean 8 bits for both P and FCODE? Or
-> 12 for FCODE and 4 for PCODE?
+On Sat Jun 29, 2024 at 6:39 PM CEST, Jonathan Cameron wrote:
+> On Thu, 27 Jun 2024 13:59:13 +0200
+> Esteban Blanc <eblanc@baylibre.com> wrote:
+>
+> > This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
+> >=20
+> > The driver implements basic support for the AD4030-24 1 channel
+> > differential ADC with hardware gain and offset control.
+> >=20
+> > Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
 
-Sorry, "8 bits" was a typo. You are right, 12 bits for Fcode and 4 bits for PCODE.
+...
 
--Akhil
+> > +static int ad4030_spi_read(void *context, const void *reg, size_t reg_=
+size,
+> > +			   void *val, size_t val_size)
+> > +{
+> > +	struct ad4030_state *st =3D context;
+> > +
+> > +	struct spi_transfer xfer =3D {
+> > +		.tx_buf =3D st->tx_data,
+> > +		.rx_buf =3D st->rx_data.raw,
+> > +		.len =3D reg_size + val_size,
+> > +	};
+> > +	int ret;
+> > +
+> > +	memcpy(st->tx_data, reg, reg_size);
+> > +
+> > +	ret =3D spi_sync_transfer(st->spi, &xfer, 1);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	memcpy(val, &st->rx_data.raw[reg_size], val_size);
+>
+> Can you just use spi_write_then_read() here?
+>
 
-> 
-> Konrad
+I was planning on doing that. But I'm getting a timeout issue when
+using `spi_write_then_read`. I can see the tx_data going out, rx_data
+is recived but CS is kept asserted. I need to investigate more but in
+the meantime I'm using this as it is working. I will remove this
+workaround if I can find a fix and add a comment for now.
+
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (st->chip->precision_bits =3D=3D 16)
+> > +		offset <<=3D 16;
+> > +	else
+> > +		offset <<=3D 8;
+>
+> As below. This is hard tor read. Just use appropriate unaligned gets for =
+the
+> two cases to extract the write bytes directly.
+>
+> > +	*val =3D be32_to_cpu(offset);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ad4030_set_chan_gain(struct iio_dev *indio_dev, int ch, int=
+ gain_int,
+> > +				int gain_frac)
+> > +{
+> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
+> > +	__be16 val;
+> > +	u64 gain;
+> > +
+> > +	gain =3D mul_u32_u32(gain_int, MICRO) + gain_frac;
+> > +
+> > +	if (gain > AD4030_REG_GAIN_MAX_GAIN)
+> > +		return -EINVAL;
+> > +
+> > +	val =3D cpu_to_be16(DIV_ROUND_CLOSEST_ULL(gain * 0x8000, MICRO));
+> > +
+> > +	return regmap_bulk_write(st->regmap, AD4030_REG_GAIN_CHAN(ch), &val,
+> > +			  AD4030_REG_GAIN_BYTES_NB);
+> > +}
+> > +
+> > +static int ad4030_set_chan_offset(struct iio_dev *indio_dev, int ch, i=
+nt offset)
+> > +{
+> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
+> > +	__be32 val;
+> > +
+> > +	if (offset < st->min_offset || offset > st->max_offset)
+> > +		return -EINVAL;
+> > +
+> > +	val =3D cpu_to_be32(offset);
+> > +	if (st->chip->precision_bits =3D=3D 16)
+> > +		val >>=3D 16;
+> > +	else
+> > +		val >>=3D 8;
+>
+> I 'think' I get what this is doing but not 100% sure as it's a bit too un=
+usual
+> and I'm not even sure what happens if we shift a __be32 value on a little=
+ endian
+> system. I would instead split this into appropriate cpu_to_be24() and cpu=
+_to_be16()
+> to put the value directly in the right place rather than shifting in plac=
+e.
+
+cpu_to_be24 does not exist yet. I will have a look on how to add them.
+
+
+All the other comments will be addressed in V2.
+
+Best regards,
+
+--=20
+Esteban "Skallwar" Blanc
+BayLibre
 
