@@ -1,117 +1,112 @@
-Return-Path: <devicetree+bounces-89036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C4493FCC9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:50:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D7F93FD01
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDBD128392C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:50:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F02F21F22D17
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7BF31741D1;
-	Mon, 29 Jul 2024 17:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFCA16F0E7;
+	Mon, 29 Jul 2024 18:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DrZK72TN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iCRixNK1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64ECA158DC6
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 17:50:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7697283A09;
+	Mon, 29 Jul 2024 18:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722275402; cv=none; b=mxhv41a+3k8EBlWt5KI9RPXBWb9g2lEYMLQGEkhZLsiPr3/0eoiIwlTmEHiUWPmDUWGluYAhg7Ajot8O4yIT6QHzV46MTDG/y8/dZPA1nPcRQZJFYkw4EnEIVf4aNVSz/hzzA3Zh0K5XI72TSgAjeWd98CNE48y9a4P+p8Zwcwk=
+	t=1722276147; cv=none; b=mECr9szAoEasQeFa05aZJ85lTY+g2zUh6IskN7WKsn2T8jRjjIUZQyZh9Y2MtNCKFstMA76MS3CbGckC+tqH86Y8C/DgTdbitmYvzNsjun7p8MapeWmItnmoORe6RJfgqqPKT5zwCo/WDOIt58DcCJnXbtRxsX7vHrUblwEKo1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722275402; c=relaxed/simple;
-	bh=bihYQoBOOiJiGuf2B6GESNpxVhKjMGZpNIOW4gqLU2o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rL8TnsskHLKHNcR2zXN6vKYuMlvd4p1qzZGvAZ1rlAl8c0HfOnNwyyYN7y4Mf9fos178YnwgqWY4AojjC2E5M2ar3LtvnQyZFDdScfK5HNAIPNJcbVVrcQu0mTgXHVCDaN1p/cCSiW4rE0agiAnviUJMyZtGqFyaGmjxfL88Q50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DrZK72TN; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-64b417e1511so24573487b3.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 10:50:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722275399; x=1722880199; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=U48fpdCm4NGtwo1sTgsrUBIRZd2qhEbh1HbahK/oVr8=;
-        b=DrZK72TNN2Bw9yhAy8wcAzarLK+KX8QP0P5ydHneLlLRYIXNOUCvu9lxO9Aqxo/kso
-         b1KBujIOyzuDQK9sd6JWAwk3cKBbRif9IOohVQ0q5GXxz4mrhOM4uCrRF37y2RQappqm
-         M7k2/zGbv9RwsedClBsBUjHii8dXkrZEt4a5JtF2fLJKaflJW++0f9a/RGd4/2TR0hq6
-         lqncgsk2EYDvF98zG+tiVY4wSPEPMHhmLtMvE6+cmbu5E9apSyluqoWfcUAUj/Vi5VhX
-         s8lHL7DKT3wFlZSNje5x11NBvZv5/DcasPdmvqnVm6jxeAtBe8gofDbSPhEgI7s7CuAo
-         k7gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722275399; x=1722880199;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U48fpdCm4NGtwo1sTgsrUBIRZd2qhEbh1HbahK/oVr8=;
-        b=Eh3899yxpLFOD/8nKkDAYezQIZv0jG3VajKO2grk2T5lghkhlN7Ifct9OSFMF6z80m
-         Ve+MnwK+JbafWvUY1CBj29MBpylTyECxHXOXFtomkQrgQJ8B4LX/ZzCIU+fxjjTuBDsa
-         9URE7gz4qfk4SAuqNYZAA4dOer9ucOWEVQ4o7K1QgHbpZrnN8Q544t7xk217D1qdYEbg
-         8OI+AIRRPwLfz4TARiIYo6j+4ymHGmzi3dCAXkW9SKPPacZNsR4WcSDnDhDBOaqz3cl2
-         fQmmQl/7K8/Ipnjn5HVh/a6k4HA5TrgrehEFAxPqShNbweTN57CcJT5giX6KZbv48/w7
-         L5IA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqbkdQKoXOoT8X6RDOD9I3Bvh3Tv+wRq8VLNXuGOQnMsYqWYpET5zjLNxPteEshRHO+zqO6Iqxl1eOuYao06HFZ3oNXIUKpZGn1g==
-X-Gm-Message-State: AOJu0YwmUciS3RbrztG168WAdVxFtahdsTRuolvBLTtARdh8Am3Ih7nR
-	qAlnvYHG+XLB4vGzq5E2qGQ39IrpRmN6o5WuTBYbpRW/M2CcEdf3P9of2rPqH4p62bzsUo/6yj7
-	OAbBjFe9PGUWw0Sp2+pqqFhWRjekr/svdeNLhhQ==
-X-Google-Smtp-Source: AGHT+IGyAtQWoTJobqaZBwhClULReeX2eVYFV263RkPuVkU/hSqxYd91PSjHx1mgomnc4KTeZggZZGZiQG6l1PmOvJM=
-X-Received: by 2002:a05:690c:3384:b0:675:a51b:fafc with SMTP id
- 00721157ae682-67a0959640fmr100729907b3.30.1722275399444; Mon, 29 Jul 2024
- 10:49:59 -0700 (PDT)
+	s=arc-20240116; t=1722276147; c=relaxed/simple;
+	bh=KoE42wYCFQAOjAZ4a4ADdh/ApdMibPMqpeElX/dPg2s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WBtNsALp8n8fe2D8gDyRGo/vODuJUHSH4PUVjsbQkUAqShRJTFjF6yXrHwIFaCT2eskt+ri9fvmhxkEnsFIOUfDYi7H4IJaOXuqiVQWY2uXuBqifEUDDAkskMVZv3TNMUV1bUfpg1BGTR5+/YEMJ1J9XhMCvZwTrcVOBQN6yUFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iCRixNK1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 049BBC32786;
+	Mon, 29 Jul 2024 18:02:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722276147;
+	bh=KoE42wYCFQAOjAZ4a4ADdh/ApdMibPMqpeElX/dPg2s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=iCRixNK1gsc2ea0kZsxL2LB87W4bxKWS+W19+OZ8bTsXbN+bXNVoBLWozfXiTNul8
+	 lPJXO/8TsKMxmYZ05ThORQgO3juMMh0g4h7GeNpG7Kv+K6k00HLsHmJvY2rNG2irHk
+	 hWaQOLUuylbiv5ZVWt35bdZ31Dy+RC7L28nwxPAYQ3q9ar6OXBi2SD1hi243S4tgSa
+	 IYrnbDyT/CJqlqtASof593xfgyEfv6ZBU8NmQDnwD7Qb1zeD0wuQ4VCuI1LOci9KT1
+	 dtZatEuBB9EJHimMRoutspFhZEXG+qFWlK7JnOQadOESk/xmAPLd+v+auxBJkzxgIA
+	 s4eHYH8XKb6GQ==
+From: Mark Brown <broonie@kernel.org>
+To: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ nuno.sa@analog.com, dlechner@baylibre.com, corbet@lwn.net, 
+ marcelo.schmitt1@gmail.com, Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-spi@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <cover.1719686465.git.marcelo.schmitt@analog.com>
+References: <cover.1719686465.git.marcelo.schmitt@analog.com>
+Subject: Re: (subset) [PATCH v6 0/7] Add support for AD4000 series of ADCs
+Message-Id: <172227614374.120386.3055005856415965055.b4-ty@kernel.org>
+Date: Mon, 29 Jul 2024 19:02:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240729-fix-smd-rpm-v1-0-99a96133cc65@linaro.org>
- <20240729-fix-smd-rpm-v1-2-99a96133cc65@linaro.org> <6c5acb84-0d09-4a87-adb2-d0b10c67b98d@kernel.org>
-In-Reply-To: <6c5acb84-0d09-4a87-adb2-d0b10c67b98d@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jul 2024 20:49:48 +0300
-Message-ID: <CAA8EJppO_fohT_NWJ1P95YYejgAnZQdzrBpz7Ooceiu-t_MkQg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] soc: qcom: smd-rpm: add qcom,smd-rpm compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Gross <agross@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-37811
 
-On Mon, 29 Jul 2024 at 18:04, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 29/07/2024 13:04, Dmitry Baryshkov wrote:
-> > The device node has the compatible string, so the glink channel name
-> > isn't used for modprobing. Add the qcom,smd-rpm compatible to let the
-> > module be automatically loaded when required.
->
-> So autoloading is not working? I don't understand whether you are fixing
-> real issue or just making something complete based on your feelings.
+On Sat, 29 Jun 2024 16:04:00 -0300, Marcelo Schmitt wrote:
+> This patch series extends the SPI bitbang, gpio, and spi-engine controllers to
+> support configurable MOSI line idle states.
+> It then introduces the ad4000 driver which uses the MOSI idle configuration to
+> provide improved support for the AD4000 series of ADCs.
+> Documentation is added describing the new extension to the SPI protocol.
+> The currently supported wiring modes for AD4000 devices were documented under
+> IIO documentation directory.
+> 
+> [...]
 
-Yes, autoloading of smd-rpm is not working since bcabe1e09135, kernel
-looks for qcom,rpm-FOO rather than the rpmsg:rpm_requests.
-The obvious fix is to revert the commit, but I don't think that
-listing all the chipsets there is a correct thing.
+Applied to
 
-> >
-> > Fixes: bcabe1e09135 ("soc: qcom: smd-rpm: Match rpmsg channel instead of compatible")
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/soc/qcom/smd-rpm.c | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
->
-> Best regards,
-> Krzysztof
->
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
 
--- 
-With best wishes
-Dmitry
+[1/7] spi: Enable controllers to extend the SPI protocol with MOSI idle configuration
+      commit: f58872f45c36ded048bccc22701b0986019c24d8
+[2/7] spi: bitbang: Implement support for MOSI idle state configuration
+      commit: 320f6693097bf89d67f9cabad24a2b911e23073f
+[3/7] spi: spi-gpio: Add support for MOSI idle state configuration
+      commit: 927d382c7efbcc2206c31fa2f672fa264c0f1d5b
+[4/7] spi: spi-axi-spi-engine: Add support for MOSI idle configuration
+      commit: a62073f4b2164028fc7c5ae45ceba10c9326cd91
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
