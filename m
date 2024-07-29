@@ -1,91 +1,90 @@
-Return-Path: <devicetree+bounces-89121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F0693FFF0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:57:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4253940002
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 23:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEDBF1F22923
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:57:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A7892814BA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FE318C350;
-	Mon, 29 Jul 2024 20:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4498F18A954;
+	Mon, 29 Jul 2024 21:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LFlxC2S9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P2NJaj8d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450E97F484;
-	Mon, 29 Jul 2024 20:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F87E189F2D;
+	Mon, 29 Jul 2024 21:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722286660; cv=none; b=GF9uxDo+ZfMagjWLR+p07MFL5GqGkFXjE4RLT+Ka9yAlwHoGkUX0qe3s1kamDNF3GUG2j3QylijFtJtRHEbfCRF5osLVkmjk54QAB8VBtdYsETXmUfxQlIIsKUcw5EubUtVn4L80lqsbhfzFWQ4UK9LmOQduWAgEKQh0jO0twY8=
+	t=1722286940; cv=none; b=FvLmi5UQySMqEhLP1HnbLl47H2Qcu4QkV+dQHFMr7pD+4h767KOcAB0p0AmODCiPrue+gp3rBOMsER1T6b6vh0J8j77+AB/2DWBJGXuWsTgmdV5ZzUJhgAs+sp30V2rARQ4jP6eOayUhvLuZ0so1SRMQpKSg9zPQ9QwWID0y7G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722286660; c=relaxed/simple;
-	bh=F+mwvPBXoLMzjYSMn2EfxWn5boenx+6/6CQfkZwYJ4Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IQiVuUaFoBMCOJGI21kG9RSGDVkKIrrI2WGY0ukvpbAA55XiAtHM93hHsGqSSFRvU1KHZOyezX/+ULnFAZP/jQE+pZH1GpM7oydDT96Sj15luXVIGVc0huEiOhqg988U40hIj396aNNJNmerS79rdP4WWnwhOv0577tiqxhJf/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LFlxC2S9; arc=none smtp.client-ip=209.85.210.176
+	s=arc-20240116; t=1722286940; c=relaxed/simple;
+	bh=OwJ4nV0UC7z6sWgw/tEs87svxoBXUwYrj6+WA/PpIjk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ajxfwhw7EiU9n9IRy22F3ikmbNcSEYem7OrSl7OjakcXg3BFd5b6m2rtAGjUgxVGppp3fkTmEbxxtCcjC4PKpGfpzohbMHA232AiJnO76L3WrODkvRTkvaptwRfR4dXHsoc/PPynEIdY2g6uWtr/utG+jPEWQC8HFmcXBLZl3J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P2NJaj8d; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-70d2b27c115so2945884b3a.2;
-        Mon, 29 Jul 2024 13:57:39 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52f04b3cb33so8722792e87.0;
+        Mon, 29 Jul 2024 14:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722286658; x=1722891458; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ERKl3Sx+w+cZ4flJtIrrow6K82V5k/KKmUneLiQEpbQ=;
-        b=LFlxC2S9KOJvyM6OU3nqUCAQC+4hr47FQBFmTcC30Mm1XuPvM3s6wK5+wfYxGy8ctR
-         NGyn7orRObpew4iHikg9EyX8zi8ppJZfU7WCquON8/IqA46FUvUvQKJIGSW5IT8ZpzOQ
-         Uw6pznVreH609PC5kNCGoUYWLFxnkFdC1qYypSYMlxyy9nMNiqTCv3K6ft/r1QfV1O+l
-         c7yeVtvLtUPJ7fJoaaBRAkNuYVUtBgOu8yh3z+dUQe8utmnKGszVGddsVKQ5Mv9OCPOW
-         FlU855woK/U/Fn3EAdEHeYfkj6IMuEM1xEygom08FJ7+nmtMfdfwrwA1rAJ6cmrMr8ef
-         SzoQ==
+        d=gmail.com; s=20230601; t=1722286936; x=1722891736; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BxImqjImHSTIXbOqmwogsB2DN1FXNY9aC5IORIJ/6/Y=;
+        b=P2NJaj8dXL9vqNkDN3gGWt77N+paIXmuI1IwtCCosXvWwLTwRXB6zqmuEW99o1/rQ2
+         ZpdiTZCkaimigZzYQjOvFoIduH4vN42J3aKt/yxWl5aV53rII8zrM+UeM4hhKfpeWSFe
+         64LPfUaBIOHsWIvoVNI/xCV4GVisGDYX4q0X7Z3aFEbT41qxqZ/jRhUk9S4KCfoBoezJ
+         XO71O4GkTAdebjxxBF3rTbKiGvHgPE31RkDPHMWCcRperxD53AihMp/r1220Hs5RpfgC
+         FwN86WDVzmCIE1i7q9+UjB0ZqXd7pHgASWbnlv+5UH8dd63C2SDlkBhyRa9PUEbL9lpo
+         dwJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722286658; x=1722891458;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ERKl3Sx+w+cZ4flJtIrrow6K82V5k/KKmUneLiQEpbQ=;
-        b=w8gXdZlDU3w3oJWsedCpvmg2SKzw/bEQ53tNdGg2Iu9KEDBaCIhRGUE9UOVUGg+g5A
-         WrZWYzlrqWEKbmQ7jxWrx6RYk9+l5hHPW0S7Wrx1hwxuFqw7x2OtgZnaksXsW148QFT5
-         74W9ggtnj9U2GJOdTjJYdxZQnHm5BU7LLn/ijwYSzw9C9ehROhft2v0vsgbJ4sdNcAqH
-         WNxLUsXYJfgejjJusWaiXWLtUGxmrv1HPqVxKIAC5JzwllFAGg4QJIwNPMeT3jNNZyul
-         AhrjV+bfmRnTLl4zlSH0hEqVOYwBp8ofY0s/7xbrl1uLKuykUKArBCLGIMA+d5KTLpBj
-         M3cw==
-X-Forwarded-Encrypted: i=1; AJvYcCXIlK2ir2N0mSD1nfrcSTl7MaD5Bf6pJilCe5lQVCPV/lQVXhYQBRqrp2c8KWx2UrV8Cfsg8Y9lqpCrgWkyNI2hQGFZFZfByB/cFn2TFH2FGHHRvQo3uxBQqNti0FxyZWWG9BPAh5dzkg==
-X-Gm-Message-State: AOJu0YyNoEQzcqWI5nmQOTA4xFs3KFbpUp5tofdp3rh4W6CbqQOHlZpK
-	EFrIYXq1H2Gf7AbzJWoKUACwlIO0+FFN1jWxo5kJmDJAqNc7+5yovrvq3A==
-X-Google-Smtp-Source: AGHT+IHd8zHlIcDm8Hl9yK0OAeYxEN589zt5m+ynTtCK7eKu09dJkvyX+79AOzKybTXDRUarDuB/zA==
-X-Received: by 2002:a05:6a00:3d4e:b0:70a:f3de:3ff with SMTP id d2e1a72fcca58-70ecea30bb4mr10982908b3a.14.1722286657917;
-        Mon, 29 Jul 2024 13:57:37 -0700 (PDT)
-Received: from localhost ([100.84.200.15])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead8a105bsm7207991b3a.194.2024.07.29.13.57.36
+        d=1e100.net; s=20230601; t=1722286936; x=1722891736;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BxImqjImHSTIXbOqmwogsB2DN1FXNY9aC5IORIJ/6/Y=;
+        b=TND37sBxbbcfQZUqw7drA2niA9L0SyZ+8kd75A9Q7N40YLbbPJJcAXg80M1WW1sgpD
+         B3sKbHqkNDdlgAaX6gEZ3U8PCjn64cPONY6ey/12qUgEsx0d18x3UGOQem/7wAd+auJ/
+         5gLdq8IwQZwJ+FkTMia1l28hr1xOQVnfx5i60/wDsu4SWO+iPdkqGEYvcqnE+2FDx2Lj
+         4o5NO+xJFy6l3D+Xzni9gyi6zrpnSwFPJ3I6gLcovB0KZL2hfVtnlzsHPF8YK+uXkTM8
+         f8b4JEOmDb6+s12K7bztLr0CTePp/s/gnvlg6IWpMCUVAoqusixx4WyJD4zBalk9V//T
+         xJpA==
+X-Forwarded-Encrypted: i=1; AJvYcCVgbFiYD85iUGl6mnCcGBuYbADR1Ap36zEt5lMS67MsZ/92aNHwGmxxqa74c9BkLXnsekHiXMaSHDD+Ctl8OpAEHBsv3TlLTt/+mw43y+89N+m+dEsaNvJ9FrCjtF3GuVLHrk/X1mO+lA==
+X-Gm-Message-State: AOJu0Yy9YQSJtiNiph14H5WzqLU7F7wJ6NmHKGVcmE4ALuzarfCd6dzS
+	D3sM835NElPqA0wuNISBRad5cvfnln+B56RsK0/1ur5qWtcSChzn6Hdid9kU
+X-Google-Smtp-Source: AGHT+IFFtSBzwsQc7lH/eH0vzXqE5voEFwgC/6quafLaFGvh4reIjNQUy1cZGiBNw9v2f5qWS0yFRA==
+X-Received: by 2002:a05:6512:3504:b0:52c:db0e:6c4a with SMTP id 2adb3069b0e04-5309b269280mr8853961e87.2.1722286935821;
+        Mon, 29 Jul 2024 14:02:15 -0700 (PDT)
+Received: from WBEC325.dom.lan ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c0831fsm1621050e87.174.2024.07.29.14.02.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 13:57:36 -0700 (PDT)
-From: Rob Clark <robdclark@gmail.com>
-To: linux-arm-msm@vger.kernel.org
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Clark <robdclark@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mon, 29 Jul 2024 14:02:15 -0700 (PDT)
+From: Pawel Dembicki <paweldembicki@gmail.com>
+To: netdev@vger.kernel.org
+Cc: Pawel Dembicki <paweldembicki@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 2/2] arm64: dts: qcom: x1e80100-yoga: Update panel bindings
-Date: Mon, 29 Jul 2024 13:57:25 -0700
-Message-ID: <20240729205726.7923-2-robdclark@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240729205726.7923-1-robdclark@gmail.com>
-References: <20240729205726.7923-1-robdclark@gmail.com>
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v3 1/2] net: dsa: vsc73xx: make RGMII delays configurable
+Date: Mon, 29 Jul 2024 23:01:59 +0200
+Message-Id: <20240729210200.279798-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,65 +93,115 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Rob Clark <robdclark@chromium.org>
+This patch switches hardcoded RGMII transmit/receive delay to
+a configurable value. Delay values are taken from the properties of
+the CPU port: 'tx-internal-delay-ps' and 'rx-internal-delay-ps'.
 
-Use the correct panel compatible, and wire up enable-gpio.  It is wired
-up in the same way as the x1e80100-crd.
+The default value is configured to 2.0 ns to maintain backward
+compatibility with existing code.
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
 ---
-Note that the power-source differs from the CRD.  Figured that out by
-diffing $debugfs/gpio.
+v3:
+  - added 'Reviewed-by:' only
+v2:
+  - return -EINVAL when value is wrong
+  - info about default value are silenced
+---
+ drivers/net/dsa/vitesse-vsc73xx-core.c | 70 ++++++++++++++++++++++++--
+ 1 file changed, 66 insertions(+), 4 deletions(-)
 
- .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index 70977e9fa266..6f8d52c368a4 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -190,7 +190,6 @@ vreg_edp_3p3: regulator-edp-3p3 {
- 		pinctrl-0 = <&edp_reg_en>;
- 		pinctrl-names = "default";
+diff --git a/drivers/net/dsa/vitesse-vsc73xx-core.c b/drivers/net/dsa/vitesse-vsc73xx-core.c
+index d9d3e30fd47a..07b704a1557e 100644
+--- a/drivers/net/dsa/vitesse-vsc73xx-core.c
++++ b/drivers/net/dsa/vitesse-vsc73xx-core.c
+@@ -684,6 +684,67 @@ vsc73xx_update_vlan_table(struct vsc73xx *vsc, int port, u16 vid, bool set)
+ 	return vsc73xx_write_vlan_table_entry(vsc, vid, portmap);
+ }
  
--		regulator-always-on;
- 		regulator-boot-on;
- 	};
- 
-@@ -592,9 +591,13 @@ &mdss_dp3 {
- 
- 	aux-bus {
- 		panel {
--			compatible = "edp-panel";
-+			compatible = "samsung,atna45dc02", "samsung,atna33xc20";
-+			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
- 			power-supply = <&vreg_edp_3p3>;
- 
-+			pinctrl-0 = <&edp_bl_en>;
-+			pinctrl-names = "default";
++static int vsc73xx_configure_rgmii_port_delay(struct dsa_switch *ds)
++{
++	/* Keep 2.0 ns delay for backward complatibility */
++	u32 tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS;
++	u32 rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS;
++	struct dsa_port *dp = dsa_to_port(ds, CPU_PORT);
++	struct device_node *port_dn = dp->dn;
++	struct vsc73xx *vsc = ds->priv;
++	u32 delay;
 +
- 			port {
- 				edp_panel_in: endpoint {
- 					remote-endpoint = <&mdss_dp3_out>;
-@@ -669,6 +672,16 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pmc8380_3_gpios {
-+	edp_bl_en: edp-bl-en-state {
-+		pins = "gpio4";
-+		function = "normal";
-+		power-source = <0>; /* 1.8V */
-+		input-disable;
-+		output-enable;
-+	};
-+};
++	if (!of_property_read_u32(port_dn, "tx-internal-delay-ps", &delay)) {
++		switch (delay) {
++		case 0:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_NONE;
++			break;
++		case 1400:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_4_NS;
++			break;
++		case 1700:
++			tx_delay = VSC73XX_GMIIDELAY_GMII0_GTXDELAY_1_7_NS;
++			break;
++		case 2000:
++			break;
++		default:
++			dev_err(vsc->dev,
++				"Unsupported RGMII Transmit Clock Delay\n");
++			return -EINVAL;
++		}
++	} else {
++		dev_dbg(vsc->dev,
++			"RGMII Transmit Clock Delay isn't configured, set to 2.0 ns\n");
++	}
 +
- &qupv3_0 {
- 	status = "okay";
- };
++	if (!of_property_read_u32(port_dn, "rx-internal-delay-ps", &delay)) {
++		switch (delay) {
++		case 0:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_NONE;
++			break;
++		case 1400:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_1_4_NS;
++			break;
++		case 1700:
++			rx_delay = VSC73XX_GMIIDELAY_GMII0_RXDELAY_1_7_NS;
++			break;
++		case 2000:
++			break;
++		default:
++			dev_err(vsc->dev,
++				"Unsupported RGMII Receive Clock Delay value\n");
++			return -EINVAL;
++		}
++	} else {
++		dev_dbg(vsc->dev,
++			"RGMII Receive Clock Delay isn't configured, set to 2.0 ns\n");
++	}
++
++	/* MII delay, set both GTX and RX delay */
++	return vsc73xx_write(vsc, VSC73XX_BLOCK_SYSTEM, 0, VSC73XX_GMIIDELAY,
++			     tx_delay | rx_delay);
++}
++
+ static int vsc73xx_setup(struct dsa_switch *ds)
+ {
+ 	struct vsc73xx *vsc = ds->priv;
+@@ -746,10 +807,11 @@ static int vsc73xx_setup(struct dsa_switch *ds)
+ 			      VSC73XX_MAC_CFG, VSC73XX_MAC_CFG_RESET);
+ 	}
+ 
+-	/* MII delay, set both GTX and RX delay to 2 ns */
+-	vsc73xx_write(vsc, VSC73XX_BLOCK_SYSTEM, 0, VSC73XX_GMIIDELAY,
+-		      VSC73XX_GMIIDELAY_GMII0_GTXDELAY_2_0_NS |
+-		      VSC73XX_GMIIDELAY_GMII0_RXDELAY_2_0_NS);
++	/* Configure RGMII delay */
++	ret = vsc73xx_configure_rgmii_port_delay(ds);
++	if (ret)
++		return ret;
++
+ 	/* Ingess VLAN reception mask (table 145) */
+ 	vsc73xx_write(vsc, VSC73XX_BLOCK_ANALYZER, 0, VSC73XX_VLANMASK,
+ 		      0xff);
 -- 
-2.45.2
+2.34.1
 
 
