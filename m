@@ -1,277 +1,259 @@
-Return-Path: <devicetree+bounces-88809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3539A93F038
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:52:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B2893F05C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:54:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEA252837C3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:52:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 908FA2836AA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD1A13C801;
-	Mon, 29 Jul 2024 08:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF6613C9CF;
+	Mon, 29 Jul 2024 08:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="u7HdGz6M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40971139D12;
-	Mon, 29 Jul 2024 08:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459DB139D12;
+	Mon, 29 Jul 2024 08:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722243127; cv=none; b=ZorE/tipSsPP9uf899bzFMtJ6egfSST5V376L2v6TMrn9VQM24bRGs1+SV5509NmFC9jqS6yCuhZyW7KnpepUT+SulLPllFKO7kvtQNvdH4VTrnRRxZ6WSZ4UAWTspA/Oxim/g483fslydvuFsLpdAVQU9AoC5sNAbYcnLlu40w=
+	t=1722243257; cv=none; b=c1I7mPt+bMt1AgebEBqEKrk23QOMrrX6tsJvLkpHQS4maebI7frl3hPxo8un6IsSZqgTAUYhMlroMLSHa/g1SiniktdUz6eZD3NP9fJY64TVseR+ulqjAvP5d33TrK24RVGsjcEY9dtburqn8fda8J4Vcj0ZMpvupuIiPEJvh78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722243127; c=relaxed/simple;
-	bh=EllNsFQhKjhnG5Z+UAfKg7NfTbmjqrF+y4x25MeYGlo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ReIfVRpm/sQNQXFwaAerHNN2QR6BLR7TYRJtRVZdYecW2D2RptFlm89DRPLJGEeZXK5oMVp/1zNO9UoK1C0faIlz0rZYJmGz41m0XP2hQfbHPvRu2Vu99lLzDvMMJ2kKcoBsZaJ52yvwidJBiF0dSqmnAMS55ygj7lE0N/E4Izo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-65cd720cee2so17070657b3.1;
-        Mon, 29 Jul 2024 01:52:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722243123; x=1722847923;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qqSAntpxwAaK8Ju6K/LOPA95uiNO3TLROZcY1mWI+vA=;
-        b=omEd6X0xfLCJ/A/OIWUJvZDB6zcMIxPFTpqaAvL7lbbmQO21Lw9GkhkLEx0xYAlrVF
-         TgEAttJzF3t23xppUH6muXzr6/h76BHP0hzZ/nqll7xJj6Ur3K3ns56BO2FDP8yrW4Ps
-         g+0NRSJelcP8nE/2igTDNfslyGXDiMs58yq/SxzGZ9lyAUwxInPsJTM1TbfGjk5gvZNR
-         v5CfnI3bG4yiOvgUbZ9nVMvoAOzAwbLtimZCQ63BXab8XNdc7+fSxchu0p13kdmED9H2
-         n4YPukEMrIdRMn+gdqvJiwc3scMDmHXUVGCR1EOBUOskihZ61oFey1MXcXH5XyGRt8rK
-         9ZDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXfRZPRitOrTvR+kXltBlXfdDsinDmuOs6uDpZ1u23WhGUw6aq98GsIeo2h3BRLQ2oDhcWtbRKqH3ZrlokTxklprXolcwvcMQYLzfvi0egt58fewItZKsIjVvuA+7hxtZs9eRAoGw==
-X-Gm-Message-State: AOJu0Yxfac8RAUg9RsrlGV9Ut8JYJ2ieQFR6plY5ElM0M5c2kWtns/T6
-	uL3rmII1/ATMSlBYPY5ie5ekPv8g6LGpQFHdSDCL3Pt3dfbEwCVItxDDJrwO
-X-Google-Smtp-Source: AGHT+IE3FxFtbW35rP/iJQ67nZfFXxxUlKx05dZvHcF3PjBZpWjKzXJlT6fCPlwvNCfjVbmd3I+L+g==
-X-Received: by 2002:a0d:c344:0:b0:64a:e220:bfbf with SMTP id 00721157ae682-67a0813c74amr83389287b3.23.1722243123161;
-        Mon, 29 Jul 2024 01:52:03 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6756b024aeasm19700287b3.89.2024.07.29.01.52.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jul 2024 01:52:02 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-66599ca3470so16080977b3.2;
-        Mon, 29 Jul 2024 01:52:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWk1gI/PjQQ48EM3cdzm6nk2grcC/3HbZkuU8iEq8gHHrX63YyNpoZm8tveTsJQxXyA50HSlYFFMkS0d/DmCYHWhli3ByU22/63Q8uB/ejVsqdRPXeQcAv6gUAieaNciPAajrGbhA==
-X-Received: by 2002:a81:8101:0:b0:665:54fa:5abf with SMTP id
- 00721157ae682-67a05e78c43mr85473567b3.2.1722243122638; Mon, 29 Jul 2024
- 01:52:02 -0700 (PDT)
+	s=arc-20240116; t=1722243257; c=relaxed/simple;
+	bh=mtlAilVTPNs8lYp8w2hPGsvB8pLsy8XrVF7CDsDBCxI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VazDvsxTpG+TEZqPXt+G4CyLj07UpeZOmxHwIWoBuJNh4odMM40WOC93dvDwZp3XBo9fSsP5GdjLC2yO/bhhnsmqMNLXdjc1Qx7SrDYsVyH/Ake4DlHk2kJBKXA95kyZv76klqbvYTdTQv9o7UKgFF1VJdL54u8cGl1iho5L2ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=u7HdGz6M; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722243253;
+	bh=mtlAilVTPNs8lYp8w2hPGsvB8pLsy8XrVF7CDsDBCxI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u7HdGz6MSzyPAYP0xlb5hQAV2DXtnrDP4m+i1OiL5EtIynq0MzeVaXqPWeYc5L4Bf
+	 GUdO5IdhTj1FcJ8QM4d8eCgZbuHnCoJKUKVOcorYOACwS2Uzo8Qst48jMa3N1+b02J
+	 u8LMpAR8xbLjFdQzc/jiUddK7FQaV4+jPtkGfTEvVseYlitNicnlwNOhZrd+RQpIZb
+	 6KzcrwIHlO4PE1h2jChsYnAEpV5oHEQCK0A5Ipow6aHUnTgyRl1xiQq6JfV8sSVFd6
+	 PcQ6O8qgjZ0Nq/YKYpOUGGbNRTXkjnQz8XAoiEvL5IfJaABvh+qwj7T/7ha7htg/G6
+	 DnN0cshChwIGA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id ABCD13780BC9;
+	Mon, 29 Jul 2024 08:54:12 +0000 (UTC)
+Message-ID: <de0b0daa-2a35-4286-b4db-4f646073a04c@collabora.com>
+Date: Mon, 29 Jul 2024 10:54:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240718210322.37492-1-ilordash02@gmail.com> <20240718210322.37492-2-ilordash02@gmail.com>
- <20240719-ahead-kiwi-995e52bf3e74@spud> <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
- <20240723-dinginess-john-608d0b28293b@spud> <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
- <20240723-municipal-snowy-136b08b6db90@spud> <CAGCz5HnJKjNj7A0YD2fw20m-NrEs3MoCLwox86mC11Kudq8xbg@mail.gmail.com>
-In-Reply-To: <CAGCz5HnJKjNj7A0YD2fw20m-NrEs3MoCLwox86mC11Kudq8xbg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Jul 2024 10:51:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUf=McxMLqb1hgu_-4QkSFJkdWrdtbwiwn9yJoMSi3YWA@mail.gmail.com>
-Message-ID: <CAMuHMdUf=McxMLqb1hgu_-4QkSFJkdWrdtbwiwn9yJoMSi3YWA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: Conor Dooley <conor@kernel.org>, mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, 
-	vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	a-govindraju@ti.com, linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1
+ controller
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
+ <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com>
+ <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com>
+ <CAGXv+5G92=-k5MDH4BPcM8tgPwcGTJ60trJwr7BwTGHD=wpnDw@mail.gmail.com>
+ <51f0f4f3-11a5-4d74-981e-3f24f8475c7f@collabora.com>
+ <CAGXv+5F-U6O3dQdU2L8bR5V+D=PLreACZYCh5sxBY3PFrex1zg@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAGXv+5F-U6O3dQdU2L8bR5V+D=PLreACZYCh5sxBY3PFrex1zg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Ilya,
+Il 29/07/24 10:07, Chen-Yu Tsai ha scritto:
+> On Mon, Jul 29, 2024 at 3:59 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 26/07/24 17:11, Chen-Yu Tsai ha scritto:
+>>> On Fri, Jul 26, 2024 at 8:11 PM AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>>
+>>>> Il 25/07/24 12:34, Chen-Yu Tsai ha scritto:
+>>>>> Hi,
+>>>>>
+>>>>> On Mon, Jul 22, 2024 at 11:27 PM Nícolas F. R. A. Prado
+>>>>> <nfraprado@collabora.com> wrote:
+>>>>>>
+>>>>>> Currently if the xhci1 controller happens to probe before the pcie1
+>>>>>> controller then it fails with the following errors:
+>>>>>>
+>>>>>> xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+>>>>>> xhci-mtk 11290000.usb: can't setup: -110
+>>>>>> xhci-mtk: probe of 11290000.usb failed with error -110
+>>>>>>
+>>>>>> The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
+>>>>>> clock, although exactly why this pcie clock is needed for the usb
+>>>>>> controller is still unknown. Add the clock to the xhci1 controller so it
+>>>>>> always probes successfully and use a placeholder clock name for it.
+>>>>>>
+>>>>>> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
+>>>>>> Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
+>>>>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>>>>
+>>>>> So I asked MediaTek about this, and it seems the correct thing to do is
+>>>>> disable USB 3 on this host controller using the following snippet. The
+>>>>> snippet is copy-pasted from our issue tracker and won't apply directly.
+>>>>>
+>>>>> This is also seen in mt8395-kontron-3-5-sbc-i1200.dts, on which xhci1
+>>>>> is used only for USB 2.0 on an M.2 slot.
+>>>>>
+>>>>
+>>>> Uhm, okay, but why should USB3 be disabled on a controller that supports USB3?
+>>>>
+>>>> I agree about disabling it on specific boards that use only the USB 2.0 lines of
+>>>> this controller, but doing that globally looks wrong... and looks like being a
+>>>> workaround for an error that gets solved with adding a clock as well.
+>>>>
+>>>> In short, the question is: why would that be the correct thing to do?
+>>>
+>>> We can disable it in mt8195-cherry.dtsi then?
+>>
+>> That device does not use this controller, so yes we can disable it, but that still
+>> doesn't resolve the issue pointed out by Nicolas...!
+> 
+> No. I mean disable USB3 on this port. Also see the next paragraph.
+> 
 
-On Sun, Jul 28, 2024 at 10:52=E2=80=AFAM Ilya Orazov <ilordash02@gmail.com>=
- wrote:
-> On Tue, 23 Jul 2024 at 23:14, Conor Dooley <conor@kernel.org> wrote:
-> > On Tue, Jul 23, 2024 at 10:55:17PM +0300, Ilya Orazov wrote:
-> > > On Tue, 23 Jul 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
-> > > > On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
-> > > > > On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org> wro=
-te:
-> > > > > >
-> > > > > > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote:
-> > > > > > > Microchip ATA6561 is High-Speed CAN Transceiver with Standby =
-Mode.
-> > > > > > > It is pin-compatible with TI TCAN1042.
-> > > > > > >
-> > > > > > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> > > > > > > ---
-> > > > > > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml |=
- 1 +
-> > > > > > >  1 file changed, 1 insertion(+)
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104=
-x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > > > > index 79dad3e89aa6..03de361849d2 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.y=
-aml
-> > > > > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.y=
-aml
-> > > > > > > @@ -18,6 +18,7 @@ properties:
-> > > > > > >        - nxp,tjr1443
-> > > > > > >        - ti,tcan1042
-> > > > > > >        - ti,tcan1043
-> > > > > > > +      - microchip,ata6561
-> > > > > >
-> > > > > > Given that your driver patch has
-> > > > > > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/=
-phy-can-transceiver.c
-> > > > > > | index ee4ce4249698..dbcd99213ba1 100644
-> > > > > > | --- a/drivers/phy/phy-can-transceiver.c
-> > > > > > | +++ b/drivers/phy/phy-can-transceiver.c
-> > > > > > | @@ -89,6 +89,10 @@ static const struct of_device_id can_trans=
-ceiver_phy_ids[] =3D {
-> > > > > > |                 .compatible =3D "nxp,tjr1443",
-> > > > > > |                 .data =3D &tcan1043_drvdata
-> > > > > > |         },
-> > > > > > | +       {
-> > > > > > | +               .compatible =3D "microchip,ata6561",
-> > > > > > | +               .data =3D &tcan1042_drvdata
-> > > > > > | +       },
-> > > > > > |         { }
-> > > > > > |  };
-> > > > > >
-> > > > > > the driver patch is actually not needed at all, and you just ne=
-ed to
-> > > > > > allow ti,tcan1042 as fallback compatible in the binding, so som=
-ething
-> > > > > > like:
-> > > > > >
-> > > > > >   compatible:
-> > > > > >     oneOf:
-> > > > > >       - enum:
-> > > > > >           - nxp,tjr1443
-> > > > > >           - ti,tcan1042
-> > > > > >           - ti,tcan1043
-> > > > > >       - items:
-> > > > > >           - const: microchip,ata6561
-> > > > > >           - const: ti,tcan1042
-> > > > > >
-> > > > > >    '#phy-cells':
-> > > > > >      const: 0
-> > > > >
-> > > > > I tested the build with fallback compatible:
-> > > > >
-> > > > > compatible:
-> > > > >   oneOf:
-> > > > >     - items:
-> > > > >       - enum:
-> > > > >         - microchip,ata6561
-> > > > >       - const: ti,tcan1042
-> > > > >     - items:
-> > > > >       - enum:
-> > > > >         - nxp,tjr1443
-> > > > >       - const: ti,tcan1043
-> > > > >
-> > > > > and modified compatible property in DTS:
-> > > > >
-> > > > > compatible =3D "microchip,ata6561", "ti,tcan1042";
-> > > > >
-> > > > > Build succeeded, phy-can-transceiver driver was used. So I would =
-like
-> > > > > to add a fallback compatible for both "microchip,ata6561" and
-> > > > > "nxp,tjr1443" in this binding and modify other DTS files with
-> > > > > compatible =3D "nxp,tjr1443". What do you think?
-> > > >
-> > > > This is wrong on two counts. Firstly, were what you have correct, y=
-ou
-> > > > should
-> > > > squash the two:
-> > > >      - items:
-> > > >          - enum:
-> > > >            - nxp,tjr1443
-> > > >            - microchip,ata6561
-> > > >          - const: ti,tcan1042
-> > > >
-> > > > However, that does not allow the TI compatibles in isolation, so yo=
-u
-> > > > still need to allow that for the actual TI devices, so you need:
-> > > >
-> > > >    oneOf:
-> > > >      - items:
-> > > >          - enum:
-> > > >            - microchip,ata6561
-> > > >            - nxp,tjr1443
-> > > >            - ti,tcan1043
-> > > >          - const: ti,tcan1042
-> > > >      - const: ti,tcan1042
-> > > >
-> > > > There's probably some devicetrees that would need to be fixed up. I=
-'m
-> > > > just not convinced that this is worth retrofitting however.
-> > >
-> > > But nxp,tjr1443 is pin compatible with ti,tcan1043, so it should
-> > > fallback only to ti,tcan1043 and not ti,tcan1042. That's why I decide=
-d
-> > > to split them into different enums.
-> >
-> > Ah, sorry I missed that. I misread the match data. Then you need:
-> >   compatible:
-> >     oneOf:
-> >       - items:
-> >         - enum:
-> >           - microchip,ata6561
-> >         - const: ti,tcan1042
-> >       - items:
-> >         - enum:
-> >           - nxp,tjr1443
-> >         - const: ti,tcan1043
-> >       - enum:
-> >           const: ti,tcan1042
-> >           const: ti,tcan1043
-> >
-> > because the TI devices exist and we still need to be able to
-> > differentiate the TI and NXP devices. If you have
-> >   compatible =3D "nxp,tjr1443", "ti,tcan1042";
-> > that means the device is an nxp,tjr1443. If you have
-> >   compatible =3D "ti,tcan1042";
-> > then that's a tcan1042.
-> >
-> > > I made my patch according to a similar one that adds support for
-> > > nxp,tjr1443. You can find it's conversation on
-> > > https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45f3bb0.=
-1674037830.git.geert+renesas@glider.be/t/#u.
-> >
-> > > I thought we want to hold all PHY chip names in one compatible enum
-> > > and each in its own of_device_id struct in driver and extend them
-> > > where appropriate.
-> >
-> > Nah, fallbacks are preferred when the programming model is either
-> > identical or a "compatible superset" of an existing device. New
-> > of_device_id structs should only be used where we need to account for
-> > differences in the programming model.
->
-> However, I am curious as to why the NXP CAN PHY transceiver was not
-> included as fallback compatible. Geert, could you please share your
-> thoughts on this matter?
+Yes, sorry I was meaning the same - but I effectively wrote "disable controller"
+instead, my bad.
 
-The TJR1443 looked sufficiently similar to the TCAN1043 to use the
-same driver configuration (which is limited to having standby and/or
-enable signals or not).  However, I'm not sure it behaves exactly
-the same, e.g. in case of reporting an error condition (which is not
-yet supported by the driver). The part numbers are also different,
-so this is not a simple case of SN74HCxx vs. CD74HCxx.
+>> Please note that the issue that he sees doesn't happen only on Tomato, but also on
+>> other MediaTek MT8195/MT8395 boards - and applying this commit makes disabling the
+>> controller, or disabling the USB 3 lines on the controller, kinda redundant, as
+>> this will effectively fix probing it... but again, fixing the actual issue with
+>> this controller is something that must be done.
+> 
+> If those other boards use the XHCI1 USB3 lines for ... USB3, then the USB3
+> PHY should also be tied to XHCI1, right now due to the Cherry Chromebook
+> design, only the USB2 PHY is tied to it.
+> 
 
-Summary: I don't know if they are identical, or if TJR1443 is a
-compatible superset of TCAN1043, or vice versa. Hence I went for the
-safest way....
+Yes, I am aware of that.
 
-Gr{oetje,eeting}s,
+>> Disabling the controller on Tomato is a different topic - here we are discussing
+>> about fixing the issue, and that will happen, again, on any board that has this
+>> controller enabled with USB3 lines. :-)
+>>
+>> So, unless there is any specific reason for which applying this commit is a bad
+>> idea, or any alternative fix to this that is better than the proposed one, and
+>> not a workaround... I'm applying this one.
+> 
+> Didn't I just relay what MediaTek says is the correct fix? Disable USB3
+> for this port on devices where the serial pairs are used for PCIe instead
+> of USB3.
+> 
 
-                        Geert
+I think there must've been some misunderstanding here.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Yes you did relay what MediaTek is the correct fix, and I agree that the USB3 must
+be disabled on devices where those serial pairs are used for PCIe instead of USB,
+or on devices where those are completely unused.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+This, though, will fix the issue only on those devices (because we are disabling
+those lines entirely, so depending on how we see it, this might not be a fix but
+rather a workaround).
+
+
+If we don't apply this fix, any board that uses those pairs for USB 3 instead will
+still show the same "clocks are not stable" error, leaving them with a broken port.
+
+And I believe that because the clocks are not routed externally but rather are
+internal to the SoC, so, if INFRA_AO_PCIE_P1_TL_96M is necessary for that USB 3
+port to work, a board that intends to use those pairs for USB3 would still need
+this exact clock to actually get that port to work.
+
+
+As for Tomato itself - I agree that we must add the u3p-dis-msk=0x1 flag, yes,
+and we will, but I'm purely talking about - again - an eventual board that would
+not have that property because USB3 is exposed/used for real.
+
+Cheers,
+Angelo
+
+> 
+> Regards
+> ChenYu
+> 
+>> Cheers,
+>> Angelo
+>>
+>>>
+>>> ChenYu
+>>>
+>>>> Cheers,
+>>>> Angelo
+>>>>
+>>>>>
+>>>>> ChenYu
+>>>>>
+>>>>> index 8b7307cdefc6..2dac9f706a58
+>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>> @@ -1447,6 +1447,7 @@
+>>>>>                                          "xhci_ck";
+>>>>>                            mediatek,syscon-wakeup = <&pericfg 0x400 104>;
+>>>>>                            wakeup-source;
+>>>>> +                       mediatek,u3p-dis-msk = <0x1>;
+>>>>>                            status = "disabled";
+>>>>>                    };
+>>>>>
+>>>>>> ---
+>>>>>>     arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++++++--
+>>>>>>     1 file changed, 8 insertions(+), 2 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>>> index 2ee45752583c..cc5169871f1c 100644
+>>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>>> @@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
+>>>>>>                                     <&topckgen CLK_TOP_SSUSB_P1_REF>,
+>>>>>>                                     <&apmixedsys CLK_APMIXED_USB1PLL>,
+>>>>>>                                     <&clk26m>,
+>>>>>> -                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
+>>>>>> +                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
+>>>>>> +                                /*
+>>>>>> +                                 * This clock is required due to a hardware
+>>>>>> +                                 * bug. The 'frmcnt_ck' clock name is used as a
+>>>>>> +                                 * placeholder.
+>>>>>> +                                 */
+>>>>>> +                                <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>;
+>>>>>>                            clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
+>>>>>> -                                     "xhci_ck";
+>>>>>> +                                     "xhci_ck", "frmcnt_ck";
+>>>>>>                            mediatek,syscon-wakeup = <&pericfg 0x400 104>;
+>>>>>>                            wakeup-source;
+>>>>>>                            status = "disabled";
+>>>>>>
+>>>>>> ---
+>>>>>> base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
+>>>>>> change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f46aac
+>>>>>>
+>>>>>> Best regards,
+>>>>>> --
+>>>>>> Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>>>>>
+>>>>>>
+>>>>
+>>>>
+>>>>
+>>
+
 
