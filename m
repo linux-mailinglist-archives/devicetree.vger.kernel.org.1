@@ -1,126 +1,106 @@
-Return-Path: <devicetree+bounces-88909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C574F93F5A3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:41:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C05493F5E4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:52:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA76F1C22070
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:41:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 590E2281567
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125391494AC;
-	Mon, 29 Jul 2024 12:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF42614A0AE;
+	Mon, 29 Jul 2024 12:52:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mIYD5Ml5"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="CqF08xnD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95441494A6;
-	Mon, 29 Jul 2024 12:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3AC146D6D;
+	Mon, 29 Jul 2024 12:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722256839; cv=none; b=igJzLVm79/Kg7NopSHpnjMawCoNzlJTIPeMN3mhBuTOX0ERwlaIXSAMAIVi9ybZtNZIMe9ytf/bykc/fYNsWsR0EDqzrSYE/fTli173KXRSPR3+Sp7uIX1swI6qgoSq1gUFPDBqCGPrSDoTkIRjoIzwWHMqCt8YMfWudBcqhcqw=
+	t=1722257522; cv=none; b=pd5R5xjnLi4PCAnO67EUC2tDf92Z3/ofnB8PJHkUyrF/OjE3QuJ2B2BBT8x8yPOnf9H1JacODipWY+vYzZlbavE1URLWw0lo81I/6sVpPgZIMbPepXUDh2kVlkAUiXLUEF+WI/Cj+qku4Ug937raSebA+CoaeEETcw+FR2NYV54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722256839; c=relaxed/simple;
-	bh=N3xXeZ5Sz94ZClfXA2KC8TLwvIpUwZiE2+p14uPFP0U=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=vE0cYKU3XWqWl4I5DpTEXK2Zs1MmB6y5zQb93tlxjuMkEJH0vY0ZP776Z42Q8dcfIuSkP2kdNmXf/1HA4/4M+qmD3uQJiDynM4W2rr4k39WRmGJvoHf/4kwnkt0ZVPvEXRk2NE+kV0aDdmII5MbCPKMKdCW/dSNj1H36b3PIbSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mIYD5Ml5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 038F3C32786;
-	Mon, 29 Jul 2024 12:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722256838;
-	bh=N3xXeZ5Sz94ZClfXA2KC8TLwvIpUwZiE2+p14uPFP0U=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=mIYD5Ml5u6jBbAhz4WBkGgqO6N37dImmRT5PYLWABPIwOVl9rxQyXhvqF2WTzKuiX
-	 uO7wSu1FteyPMT7TlL2SxhguOg9jZZVMTD7NzQn0558cQxqAcxt5W35CcxjHha28vx
-	 nxU1fXT/+fpEDGsaIUAUweGv51VHDz/XAt9DNRAiGxcy/B1449qgp1LCC48K+tNuZw
-	 s0SaQEOUMSX1MuE01fZczIbVXIJi1mdwW2+/4Q7qtVeyPkJnnMiNqq+jCFbmfTQWOF
-	 hkHN0iAgil+j6hW1Krw1lv5nftLljpu92YMHKoOYSgsBC2vdJOoctfLWcACZ86mauj
-	 F/1Enhe/KWCBQ==
-Message-ID: <aaf74e25-ba24-454c-8bc1-c2b079d549e3@kernel.org>
-Date: Mon, 29 Jul 2024 14:40:30 +0200
+	s=arc-20240116; t=1722257522; c=relaxed/simple;
+	bh=sVol7CCKvMaaj4cV778tSQMTceaUobuUv8VI8vIyV3g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e5NfQvjQjQOp92jTIzNfqXRX5Wl/51Fl1Y1tlNhyr0msRf2zkFFRLDvm+VkT1RQn/dKWUKAfeTblUoP7mBUkkH9i7JKOvqvmWcwSB8iwE2ZDlBjhewZn0kLhH3ueHv01+Axcrw2ueIaFGwyrXXMjlLoNNCbSZxxHDApM2bRgx9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=CqF08xnD; arc=none smtp.client-ip=116.203.77.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E0A45BFB30;
+	Mon, 29 Jul 2024 14:45:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1722257163; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=41E+2ee+3+BIiOkpYpN0gRFPVvr9+0trL/IaKGKh1Wo=;
+	b=CqF08xnD+Uqyq5EmLVxFgp85xs1ioES7Ka2TTSncaPdpw62pTTBqxMHZCxDR4mUORcAX8w
+	Bo3QTJ9LjRpYft4T/SNhR02m4GvYd1VxpPo/IgwJSRmYlbqi6F2eyXu2PLFOEDTBf+SlaK
+	sv+5vhIyRu6RNqpyZu6f08XYLDa8ENOrHeebWUVKb5LB/2I0S0quuyJzzO0EOHLH1Aysiu
+	F4TJozOmmtHjsNx/70u6tmYKRQZbLcRro2UNe6ZSSuNuwKirGPoHBGFett2FAAkmjBIlPL
+	g+ZvuhEt/UaDQgVUfdtygeu1HqMmq1b+jT8SRKiKK6RiNDj9zvPK8KoO7ctVWA==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Parthiban Nallathambi <parthiban@linumiz.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v3 0/2] Add support for Kontron OSM-S i.MX93 SoM and carrier board
+Date: Mon, 29 Jul 2024 14:44:22 +0200
+Message-ID: <20240729124450.118497-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] drm/msm/adreno: Implement SMEM-based speed bin
-From: Konrad Dybcio <konradybcio@kernel.org>
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Elliot Berman <quic_eberman@quicinc.com>
-References: <20240709-topic-smem_speedbin-v5-0-e2146be0c96f@linaro.org>
- <20240709-topic-smem_speedbin-v5-1-e2146be0c96f@linaro.org>
- <20240715200419.l47ng6efa25in6sg@hu-akhilpo-hyd.qualcomm.com>
- <8e2ebc97-f455-4f41-81da-af56263e6cf6@linaro.org>
- <87607d2c-a4b1-4923-ba9f-9cfc56a0aa38@kernel.org>
-Content-Language: en-US
-In-Reply-To: <87607d2c-a4b1-4923-ba9f-9cfc56a0aa38@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
+Patch 1: board DT bindings
+Patch 2: add devicetrees
 
-On 29.07.2024 2:13 PM, Konrad Dybcio wrote:
-> On 16.07.2024 1:56 PM, Konrad Dybcio wrote:
->> On 15.07.2024 10:04 PM, Akhil P Oommen wrote:
->>> On Tue, Jul 09, 2024 at 12:45:29PM +0200, Konrad Dybcio wrote:
->>>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
->>>> abstracted through SMEM, instead of being directly available in a fuse.
->>>>
->>>> Add support for SMEM-based speed binning, which includes getting
->>>> "feature code" and "product code" from said source and parsing them
->>>> to form something that lets us match OPPs against.
->>>>
->>>> Due to the product code being ignored in the context of Adreno on
->>>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->> [...]
->>
->>>>  
->>>> -	if (adreno_read_speedbin(dev, &speedbin) || !speedbin)
->>>> +	if (adreno_read_speedbin(adreno_gpu, dev, &speedbin) || !speedbin)
->>>>  		speedbin = 0xffff;
->>>> -	adreno_gpu->speedbin = (uint16_t) (0xffff & speedbin);
->>>> +	adreno_gpu->speedbin = speedbin;
->>> There are some chipsets which uses both Speedbin and Socinfo data for
->>> SKU detection [1].
->> 0_0
->>
->>
->>> We don't need to worry about that logic for now. But
->>> I am worried about mixing Speedbin and SKU_ID in the UABI with this patch.
->>> It will be difficult when we have to expose both to userspace.
->>>
->>> I think we can use a separate bitfield to expose FCODE/PCODE. Currently,
->>> the lower 32 bit is reserved for chipid and 33-48 is reserved for speedbin,
->>> so I think we can use the rest of the 16 bits for SKU_ID. And within that
->>> 16bits, 12 bits should be sufficient for FCODE and the rest 8 bits
->>> reserved for future PCODE.
->> Right, sounds reasonable. Hopefully nothing overflows..
-> +CC Elliot
-> 
-> Would you know whether these sizes ^ are going to be sufficient for
-> the foreseeable future?
+Changes for v2:
+* remove applied patches
+* rebase onto v6.11-rc1
 
-Also Akhil, 12 + 8 > 16.. did you mean 8 bits for both P and FCODE? Or
-12 for FCODE and 4 for PCODE?
+Frieder Schrempf (2):
+  dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
+  arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier
+    board
 
-Konrad
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx93-kontron-bl-osm-s.dts  | 165 ++++++
+ .../dts/freescale/imx93-kontron-osm-s.dtsi    | 547 ++++++++++++++++++
+ 4 files changed, 719 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
+
+-- 
+2.45.2
+
 
