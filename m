@@ -1,142 +1,122 @@
-Return-Path: <devicetree+bounces-88830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F074293F190
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:48:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3842393F1DB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:56:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81153B217CB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:48:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C56FDB20817
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48A113DB9B;
-	Mon, 29 Jul 2024 09:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6CA1448DE;
+	Mon, 29 Jul 2024 09:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XwgYUAlX"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="K+tMnX/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765B513E8B6;
-	Mon, 29 Jul 2024 09:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E72013C69A;
+	Mon, 29 Jul 2024 09:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722246521; cv=none; b=tjK8oNShnubs4csj8JxoFSvEzNfyk3iAxuUENcFkza06K1mcL5XAk0ctEmYgwv7Fy73rt+YcY8Q3Ttat33H0o8WMD4O21ilWWR0a9NPZK5HWNLgKCUXTCr7N5/Rlm8L04unf2duxRoXadRZ02ttEpG0gOxu34dcwfnRUtG6Nxgc=
+	t=1722246696; cv=none; b=ACBmnHzSdk0NKhB4Yt7KD8zo3kvUMA9pDgq7t6KfL4fIT++TFmfsXO/Irj5u92UIFtEHLxpZi5Ouj61uSwX1zugi7EJ3AmMAZ0ib0GMpJ7VlrYgYPQwMdax7834V7leL+qrgD/9o6AsmKb0O+PQqQ9Qfefmy7YYoE9a7v5TDpwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722246521; c=relaxed/simple;
-	bh=qSPyotyVUhFqzMLYuSb8yd20opgR/58WglImplQRbIs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=r9npR0cF05D6TQJlPcL6yq963bUTJ+qcFH5WfwnWFtjcNmubNrEJMcWDu7Rbrg7z9V/BPx5KRNSjJk1brPVQBvglh1i/mskUIv5lEXSMRqhqFYECim/IoF+kf+CPTiw1kSWtFGzM1N35LJengpdSDaUpGr/N8fhlfR7Q1udveSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XwgYUAlX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46SMaD6m030534;
-	Mon, 29 Jul 2024 09:48:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GMTwjppP8KE8bJ8k15SFfFSrauYBMpXxI/bn2QkeTbY=; b=XwgYUAlXe1ID+VP7
-	NlWZ6zASZiycjFvTeDZIzyjkK4ypgFF7j4U9K+MczOAHmxLgy28gf84lCN7MjDjn
-	hrSFHtHl2a+HY+iHrIi7MCm0iXuukCIrMpTRaOY6ZYo9V138hiDEOQNHeKj7UcEF
-	lPwX3HQkDyxzBUa5NbCbnp7DpArnAOBd6pp6WVslirYMcnCoHgPS8Be0TBv9eLT3
-	OJzWCKMKYdZseRQAmTwgxAoXFqhf/1e9p0z0Z7ZpcfiCD3JZBrq3p0p/r2KcKitq
-	dAhOtOQotX4VIYGz7CLUcHTZ+vpTQEQlQ8ZTlF6zu2RSAQ+bQBsTK01O9OSS0qgC
-	LxxT2Q==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mt68kkma-1
+	s=arc-20240116; t=1722246696; c=relaxed/simple;
+	bh=2kGsOd+ZwJrV7UsrgURsmloJIJIXbumlQwR7uJ9i/k8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ujqEitWr+mJNS2hSZiDCrT53yksDzjjaTguhiprOghWRhBL0AyrUnaj1DdgBRie1/61VWYDHL3h7bGRSkx9V5ECSvBnkNdrl8F4OqLBoaZlgnyaF5fpRr50OHNKUipsnkyf4a73y3F+OSiLnSNOb+7LSgDnHobJhwNRKTRCCnro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=K+tMnX/h; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46T92RpN023245;
+	Mon, 29 Jul 2024 05:51:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=ZB/kns7KnoBYOA7us37Us+BiYr4
+	OwWgyx2Jl8wKA6cA=; b=K+tMnX/hw9OUdWB59pPsG6/n0eKx0xlezwOF1R0wUNb
+	7kcLz4ts5h8e7uMvJUkH9/CyhYmzalBgXr2utAlScK5bhLg0Ce5WBPSU2CjLaucG
+	8oggNtZpu9+EiLaEMRG1MUrIyiuQP7iz76EUBQxLmc56glazjeE/pRRG94O7KjWK
+	pB2lAmDoeoc0DQkPwX7KpEfZItUFHM3LTfKsDQk+zVJEkglxkXsRadzm+tU4OxCL
+	jx1rqsxhY0WTbjteo5hUvBQb4d2cGp5HsGQxtZZDMpGyC6AyIGCG3vx285xHTCFd
+	JCSu3YBZf6d4hKjxROz4LsDN4SUPEuaCMymWOfd4N3Q==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 40ndy4kp49-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 09:48:33 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46T9mWoh007642
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 09:48:32 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 29 Jul
- 2024 02:48:27 -0700
-Message-ID: <6e69b670-b228-4ed8-a2f5-6fa22ddb1552@quicinc.com>
-Date: Mon, 29 Jul 2024 17:48:25 +0800
+	Mon, 29 Jul 2024 05:51:10 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 46T9p9m1019209
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Jul 2024 05:51:09 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 29 Jul
+ 2024 05:51:08 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 29 Jul 2024 05:51:08 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.170])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 46T9orqV024934;
+	Mon, 29 Jul 2024 05:50:56 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dragos
+ Bogdan <dragos.bogdan@analog.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] *** Add ADF4378 Support ***
+Date: Mon, 29 Jul 2024 12:50:42 +0300
+Message-ID: <20240729095047.25040-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] phy: qcom: add the SGMII SerDes PHY driver support
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-0-5ffeb16252db@quicinc.com>
- <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-2-5ffeb16252db@quicinc.com>
- <CACMJSet_FX85rwa2JNBCSfVKUQbZrNdi-ya4KnJjNOumrJaOfg@mail.gmail.com>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <CACMJSet_FX85rwa2JNBCSfVKUQbZrNdi-ya4KnJjNOumrJaOfg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: lDELU6EuLUVCnFUxiU_Ix846arGKREcX
-X-Proofpoint-GUID: lDELU6EuLUVCnFUxiU_Ix846arGKREcX
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: WfTrWBVtyBvav83w-7AhZCiZttAJMHcS
+X-Proofpoint-GUID: WfTrWBVtyBvav83w-7AhZCiZttAJMHcS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-29_07,2024-07-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0
- impostorscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ definitions=2024-07-29_08,2024-07-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 spamscore=0 priorityscore=1501
+ impostorscore=0 clxscore=1015 adultscore=0 phishscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2407110000 definitions=main-2407290066
 
+Add support for ADF4378 high performance, ultra-low jitter, integer-N
+phased locked loop (PLL) with an integrated voltage controlled
+oscillator (VCO) and system reference (SYSREF) retimer ideally
+suited for data converter and mixed signal front end (MxFE) clock
+applications.
 
+The main difference between ADF4377 and ADF4378 is that the second one
+provides only one output frequency channel which is enable/disabled via
+one GPIO. 
 
-On 7/9/2024 11:42 PM, Bartosz Golaszewski wrote:
-> On Tue, 9 Jul 2024 at 17:16, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->>
->> Add the SGMII SerDes PHY driver support for QCS9100 platform.
->> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
->> platform use non-SCMI resource. In the future, the SA8775p platform will
->> move to use SCMI resources and it will have new sa8775p-related device
->> tree. Consequently, introduce "qcom,qcs9100-dwmac-sgmii-phy" to the
->> SGMII SerDes PHY device match table.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-sgmii-eth.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-sgmii-eth.c b/drivers/phy/qualcomm/phy-qcom-sgmii-eth.c
->> index 5b1c82459c12..0ea7140564a9 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-sgmii-eth.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-sgmii-eth.c
->> @@ -353,6 +353,7 @@ static int qcom_dwmac_sgmii_phy_probe(struct platform_device *pdev)
->>   }
->>
->>   static const struct of_device_id qcom_dwmac_sgmii_phy_of_match[] = {
->> +       { .compatible = "qcom,qcs9100-dwmac-sgmii-phy" },
->>          { .compatible = "qcom,sa8775p-dwmac-sgmii-phy" },
->>          { },
->>   };
->>
->> --
->> 2.25.1
->>
-> 
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org
+Both the driver and the bindings are updated to reflect that difference.
 
-After considering the feedback provided on the subject, We have decided
-to keep current SA8775p compatible and ABI compatibility in drivers.
-Let's close this session and ignore all the current patches here.
-Thank you for your input.
+Antoniu Miclaus (2):
+  dt-bindings: iio: adf4377: add adf4378 support
+  iio: frequency: adf4377: add adf4378 support
+
+ .../bindings/iio/frequency/adi,adf4377.yaml   | 10 ++++++
+ drivers/iio/frequency/adf4377.c               | 35 +++++++++++++++----
+ 2 files changed, 38 insertions(+), 7 deletions(-)
 
 -- 
-Thx and BRs,
-Tengfei Fan
+2.45.2
+
 
