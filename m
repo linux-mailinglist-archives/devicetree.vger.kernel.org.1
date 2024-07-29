@@ -1,199 +1,166 @@
-Return-Path: <devicetree+bounces-89133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141959400CF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:03:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3E39400D7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:07:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07EEEB22252
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:03:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D940128116A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EC3174EE4;
-	Mon, 29 Jul 2024 22:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24A418D4CA;
+	Mon, 29 Jul 2024 22:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="ghiNgKzF";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="XYDWeQvN"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Q4OwAbrN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17A21B86D6;
-	Mon, 29 Jul 2024 22:03:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373311B86D6
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 22:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722290610; cv=none; b=TRulJc607ThYWFjKtFt17UwQleIdithXHuE9tsexD8EVt/f+JhrUYqgB0kqyllwtGNf72sxCO+J+sIcWf+2jDMob6HLWX0/U4Cq6VkGvsArlnlXBNP8aptP4ZAWUqTYqLBbwPN+zEV4Lh7lZdHjPjujw3thEyratKU3OjAGgRzU=
+	t=1722290839; cv=none; b=cwXuqG9uIJGS3zGLEns+vc5w+HUC8M7OpZgVL8fLskbetjaMa2hlMURByeuirHFeZr3ln9ZhRpMummiQFgsQBWwRdegA0LrwgYFOK6+6lnBH46mFtuM4kr4nTKMyFxZX7+ET7na5fwydqnGMSKImbN8QVyciwd0eiixEKGrkP9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722290610; c=relaxed/simple;
-	bh=ROcRg0KFhN8r6j4xsLw04EX7NmQN33F5dqFZ4waAK7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJ6gWMdIo9Xz+BmcOZ8JugQMXT1OoqpPpCoPQ89GM20eoyp2WoH76PZaVZ4qHwTxbM/n1ET+GBXvVyNVudGmWtK4ljJA2mOQS+NA7OFC0F+JQJ36/yq9JyHz+rl4a6Dd2Uli1pq/8SCf3RgPB3alV+zPiyptOamNgSjJoAEbsRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz; spf=pass smtp.mailfrom=stwcx.xyz; dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b=ghiNgKzF; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=XYDWeQvN; arc=none smtp.client-ip=103.168.172.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 50F9C1380098;
-	Mon, 29 Jul 2024 18:03:26 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute7.internal (MEProxy); Mon, 29 Jul 2024 18:03:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1722290606; x=1722377006; bh=VjPyELCCVA
-	p8GD4brdOAygR7b9CF1TOQ2OxSnfbzxpc=; b=ghiNgKzFqWCljYzdeutQBEQahf
-	w0dMtX7V2LpQhf6DVVUDNa1AMTGSRdVfD1QzbBqV7mPW+2O78KG2P2fbZSIG9RVd
-	3JEVVjNj9f6VjqOgNT5rns2nzoaLrECCxW5nJCIJatXEPj2HyX3XZUfUdvsppXI6
-	QeGYEJiSGQYkg1onJ0F5gF134EM/xNdrheF1VbzWmoP0zZlE3eOVCc4Il7gl6MPr
-	RFhZIPLfkg5JroExmr9poa/TxMvTIbKX+UiNYKjmWOGBuYESLe8lKVcfaHfTq0hb
-	HAko1QMFdNvupzx0Ks+viy3DhnBWP/37SyjrHZavCVgUiBNdQj0gWu5KNSZg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1722290606; x=1722377006; bh=VjPyELCCVAp8GD4brdOAygR7b9CF
-	1TOQ2OxSnfbzxpc=; b=XYDWeQvNQdCSJbhAp/9rsl707f+XNxahPc0G+FyRDJ6w
-	V/P8CLfLOciyzS85m9lu2C/eCKKwYBIm6oVbC3IqdOzx0y/0NWpvAHy4BMzJ2mU/
-	AUlbLj2gQpTSAdux4J6K9+g2Y/koBcvgx0aigKr5vOzHRZhQQTFsPTDOgO0A8/pD
-	GWqiMw4xup4kOWd2wDceQvb9NKB8/otFypSzoTAVrWoYtSGmG/ZICBuqNCKM1XE4
-	P1ZNiieLdWllVTPktyB5N2iRIcFltD5q/VLCzn9ZU1cBXK1kaITbvY3PFvceBi/0
-	heg/MRG6RDkPahclW6OoQHNGlMxjjqsLvkggb+PLiQ==
-X-ME-Sender: <xms:rRGoZu0uSsACTw0MSEwhrs6IKpELTZxMJMr7zIA4A28RxF49eXJzEQ>
-    <xme:rRGoZhEFMZYuSbDGxl8vqI_zvHdKENwmpm0QWnD_TkH0PdHeTJZux46RhRQuK7F1x
-    CBrd2JXiUVJArf7Wj4>
-X-ME-Received: <xmr:rRGoZm7GeF5D0a0MeBCbNiPy0jIpfXDP2UXWQpePcgf0nCqsJDSfeHuZYZe3naNreB-GD0BUiFTvJZy8jEJ9dr2rTIMQYv91U4s>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrjeefgddtiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenfg
-    hrlhcuvffnffculddvfedmnecujfgurhepfffhvfevuffkfhggtggujgesghdtreertddt
-    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
-    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepheefjeehfedtjeeivdefkeffheel
-    udekudelleffkefgtdeludelvddtgedtheeknecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihiidpnhgs
-    pghrtghpthhtoheptd
-X-ME-Proxy: <xmx:rRGoZv28_lHbPUF0zCB61iGQCpRfMtLgvsLC-gWdOmDpCSu5ppdSKA>
-    <xmx:rRGoZhGKwaIuLhqwqypbm5fco7Y4egGtvmdIakKnw8EZ4vHrnuASmw>
-    <xmx:rRGoZo-rBbVb04bKi_qOGQq1DJxexwgJ11NWqFC6p7GPSZktCLHCVg>
-    <xmx:rRGoZmkX_sccaKUq3ahIw3LTO40H5FspPJSOC8PLdj7V5qMetUV-pA>
-    <xmx:rhGoZp_CUlY4yjJ4E3o8jUHF6sDREhUivgZbmwdCasHIU5i5BaDJYqt_>
-Feedback-ID: i68a1478a:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Jul 2024 18:03:25 -0400 (EDT)
-Date: Mon, 29 Jul 2024 17:03:23 -0500
-From: Patrick Williams <patrick@stwcx.xyz>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 25/27] ARM: dts: aspeed: yosemite4: add RTQ6056
- support
-Message-ID: <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
-References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
- <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
+	s=arc-20240116; t=1722290839; c=relaxed/simple;
+	bh=W/4Cbn8/kkKSr8waaVeTGkTkc0iDnw17OTmovtR+Hs4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=THbcXWXcySpDxpp+DXqVVKNl4ZhRgwcxR8jyIndWbfKzgCkUQkZ5MIRWyTj0Ai4ypnDiAPFIY0+LpfQnYbqBSDrlhX3wmvPe2TOVng3cB8mmn6V7ZvIQwGy7pdP15nXtHjI+cpKWbCbOV5J9oTlQfF7kEKpwsullGWg7hj07jA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Q4OwAbrN; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3d9e13ef8edso2672004b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 15:07:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1722290837; x=1722895637; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=b8H5cqONla5l6xRWvkLKshaUuFMDuSBaKxHVTiX3aGg=;
+        b=Q4OwAbrNg+MJwpTown7TEU2hk1t+PRRoDYNHV0P+AQIEdbvkilYMh0PUpjZuyrwucS
+         Gz/xCYUBEOURYtc9vl9j+5Ri5qhNbRltx2jjSBJ7uQKPfy1M/KWNJfuFUvJ8aNAjDBgj
+         CBwQgowzbYtK7e+hofZVOKiBW/fz4FJOw44VM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722290837; x=1722895637;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b8H5cqONla5l6xRWvkLKshaUuFMDuSBaKxHVTiX3aGg=;
+        b=HUn07u7hcXexDm4/KEE9XAxsWPPrO9dZaC8QrI08tYAQ5qJTt0r0nADMnVrAu18Vvk
+         iole3cBoYjEMlmyK3ypFirq+07phSnCy2sFWTY9rgCmZNjJI6St7xioYFYtjMYaPtftP
+         Zix05kKrRL9F0Mh/KA4aRtU+8vPadDmMq0L4p1ozWKHay0zEYB/JeJ1tBRvN2ML5pcnk
+         LFJc2llKXyEzRmEI12J6nxJ1jjQ807Xk1XwaJ7n96/UH5amOzUPw2rCm9aPb3OayZStu
+         4J3K7qjKwMt03NJVhLhl76kSGnT/flLS0XQFIVwuVSXA6UoY47aYsYdxLPuzyrroKota
+         FLUg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2ij0EZRP1h79PMHnQkb1fmkObqDqKvHFXQc5bKf86zZYbmW1pAegmhfw6373I1WMDiAR70f2z2TFwSvxMJ2DcvS3uKmwfFbnQiw==
+X-Gm-Message-State: AOJu0Yx0NnwK30lc7c6Gt6hNzNcQ1O/bnY3GeK1E4g+wQVfsEYa5GpG+
+	nK5r9vDRHYUgzJ6LVwsK/FHUonhhFIFq+dJ6+rEb9/NKvEBRtGARushfIEl7WQ==
+X-Google-Smtp-Source: AGHT+IFmzx13eC2YOwTGHAR3k4HhBvZs4D0wU8GU1PmpTExe5XjmFJWYAVLbbHRlKtFyTcU6KK3o6w==
+X-Received: by 2002:a05:6808:f93:b0:3db:3303:8377 with SMTP id 5614622812f47-3db33038678mr6508739b6e.30.1722290837185;
+        Mon, 29 Jul 2024 15:07:17 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-44fe8187c0fsm44783511cf.55.2024.07.29.15.07.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jul 2024 15:07:16 -0700 (PDT)
+Message-ID: <70365646-ee0d-485f-b865-e0aaa304d758@broadcom.com>
+Date: Mon, 29 Jul 2024 15:07:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bXkOT6UHBEHOiAfs"
-Content-Disposition: inline
-In-Reply-To: <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 0/2] ARM: dts: bcm-mobile: Split out nodes used
+ by both BCM21664 and BCM23550
+To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>
+Cc: Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>,
+ ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240729-bcm21664-common-v2-0-ebc21a89bf63@gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20240729-bcm21664-common-v2-0-ebc21a89bf63@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 7/29/24 05:34, Artur Weber wrote:
+> The BCM21664 and BCM23550 are nearly identical to each other in terms
+> of register layout. This was verified against a downstream kernel[1] -
+> Broadcom's kernel has "RDB" directories which includes headers with
+> the full register maps for the included hardware. Running:
+> 
+>    diff --recursive arch/arm/mach-{hawaii,java}/include/mach/rdb
+> 
+> reveals that the differences are minuscule - some things related to
+> ISP and H264 decoding. Most of the other differences are related to
+> the different CPUs in the two chipsets - the BCM21664 has 2x Cortex-A9
+> cores, and the BCM23550 has 4x Cortex-A7 cores.
+> 
+> In mainline, most drivers are also re-used between the two.
+> 
+> To make development for both platforms easier, split out the common
+> nodes into a separate DTSI, bcm2166x-common.dtsi. This only leaves
+> the device-specific nodes - so, CPU and related things - in the SoC-
+> specific DTSIs (bcm21664.dtsi and bcm23550.dtsi).
+> 
+> The new DTSI is based off the bcm23550.dtsi, with its split into
+> busses. Since it's pretty much 99% identical, I kept the licensing
+> of the original file (BSD 3-clause). The license for the bcm21664.dtsi
+> file remains GPL 2.0 as it originally was.
+> 
+> make CHECK_DTBS=y on bcm21664-garnet.dtb and bcm23550-sparrow.dtb
+> seem to pass fine for me (thanks to Stanislav Jakubek for converting
+> the bindings to YAML format!).
+> 
+> [1] https://github.com/knuxdroid/android_kernel_samsung_baffinlite
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
---bXkOT6UHBEHOiAfs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for resending, I had those on my radar to push out, now done!
 
-On Tue, Jul 23, 2024 at 05:23:06PM +0800, Delphine CC Chiu wrote:
-> Add RTQ6056 (spider board 3rd source) support in yosemite4 DTS.
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index f73719b3c2f1..03a1e41312e3 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -1240,35 +1240,35 @@ adc@37 {
->  	};
-> =20
->  	power-sensor@40 {
-> -		compatible =3D "ti,ina233";
-> +		compatible =3D "ti,ina233", "richtek,rtq6056";
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next
+-- 
+Florian
 
-Is this legal to have two chips both listed as compatible?  I thought
-this approach has been rejected before.
-
->  		reg =3D <0x40>;
->  		resistor-calibration =3D /bits/ 16 <0x0a00>;
->  		current-lsb=3D /bits/ 16 <0x0001>;
->  	};
-> =20
->  	power-sensor@41 {
-> -		compatible =3D "ti,ina233";
-> +		compatible =3D "ti,ina233", "richtek,rtq6056";
->  		reg =3D <0x41>;
->  		resistor-calibration =3D /bits/ 16 <0x0a00>;
->  		current-lsb=3D /bits/ 16 <0x0001>;
->  	};
-> =20
->  	power-sensor@42 {
-> -		compatible =3D "ti,ina233";
-> +		compatible =3D "ti,ina233", "richtek,rtq6056";
->  		reg =3D <0x42>;
->  		resistor-calibration =3D /bits/ 16 <0x0a00>;
->  		current-lsb=3D /bits/ 16 <0x0001>;
->  	};
-> =20
->  	power-sensor@43 {
-> -		compatible =3D "ti,ina233";
-> +		compatible =3D "ti,ina233", "richtek,rtq6056";
->  		reg =3D <0x43>;
->  		resistor-calibration =3D /bits/ 16 <0x0a00>;
->  		current-lsb=3D /bits/ 16 <0x0001>;
->  	};
-> =20
->  	power-sensor@44 {
-> -		compatible =3D "ti,ina233";
-> +		compatible =3D "ti,ina233", "richtek,rtq6056";
->  		reg =3D <0x44>;
->  		resistor-calibration =3D /bits/ 16 <0x0a00>;
->  		current-lsb=3D /bits/ 16 <0x0001>;
-> --=20
-> 2.25.1
->=20
-
---=20
-Patrick Williams
-
---bXkOT6UHBEHOiAfs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmaoEakACgkQqwNHzC0A
-wRllJg/8D0+FcC+HnpCDyCMQIlzeZjWQHJwsQ+gAQnniXua4BX1ViSqRQCflaEjq
-Ro30E3wAQMWVN9ZnXJ2hUndBEPH+o59gS7iJhrr8pRv7co2yVA7MqgCkK4HD0eWw
-NWrguDAy/iPbbzUSQv1S8PVje7YwTOxe/4FZFD7Bv4qQyxvLBXlQpTwk959Rh96M
-AD+lflRovhD65652++Y7HjTlT0YYFC9q4nowhm+9Hn7OmE1eevPBL8kuujPTYIgK
-0nbcAXB3TkxnKyvjz1R/LBiabphsK/ZKuxBefmQfl+4+PUxibfi/6nqvIBipp6cu
-kR7kXYQJ7A+4Al1NSji5in7vj/F5FJDmo+0F3lLfzUZTWk2ObKgdDW96R/xU5r0G
-yI5KbKYzfV9maDqx/XBRDmOfAMKb2OSbR2Ssu7FMkI52dKGBlQJB4VW7yqojtfz/
-Rin3U0YDKr4QPNTYe8zIzOsy6qOoQRNCrT3dnpCDI8azLVoZ90k5Aw4UIGr1f8uN
-1H+CtyxAmsVkd40pD4cgbXcTokTt34l1XGnzij8y2OU+VIOHEo37aR8taYJY7JL5
-NIFuyErSfvOHFNzR71H/hkYrqG35e/qm49KJpRx02bMkF0EopPKxucsG35710I2z
-9BSnk3xZxDBVvfDjrxl7B4K4kjsDwaJgON2sLyog+rou8+VOOCE=
-=auiB
------END PGP SIGNATURE-----
-
---bXkOT6UHBEHOiAfs--
 
