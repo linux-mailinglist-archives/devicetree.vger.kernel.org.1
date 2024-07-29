@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-89046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51B893FDC0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:52:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA37493FDC3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60D6D282C3C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:52:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82D9A1F22FEB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609BD16DEDA;
-	Mon, 29 Jul 2024 18:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5621418732F;
+	Mon, 29 Jul 2024 18:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fe5oeRdj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Av7deGNI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365A257CB5;
-	Mon, 29 Jul 2024 18:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2689957CB5;
+	Mon, 29 Jul 2024 18:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722279173; cv=none; b=Li7I/4AcN9JUjWBEKkY0bDJd/XZkn8cG2ymP04nbuVFHc89eMqvxCMNutyb71JSPJRg69b1W1HdB5/clGyISL5ezXsSTn+YjWP8H733SQoXQcpcQtH0Jhcwkhh0dRMEo1SK3hUHiiQXSh6EUIatP0PvTFnuyvb0ZQc0PpHFa9Pw=
+	t=1722279175; cv=none; b=eqLfHemIPyrKn8MY8ZLaz7A+OytRhN9f/+zV1ju9rwqIPkWc7mcUZpGTakEOtQogFq/4c341qr7amwlUqOABLjopgKIVyTpV87RtbrMrUjBHcW98O1t6MyHZI8cae9gm6bnmP798h8lE9p6wGp8423/Hx1AJ9znVvFEYp3Zv34c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722279173; c=relaxed/simple;
-	bh=yt/TEqkUG7PE55ZFi3CWgk1De/758QNjYZB7+sdWAF8=;
+	s=arc-20240116; t=1722279175; c=relaxed/simple;
+	bh=FpxqXn3ulTPkxNmNNiEYEsaYlOlwWAESDZSzyLCKPNs=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=soABoaLkRzhVnoVvwf2eEzLvVTFwahUucGbf0UbpazRmKIoUpWa/nAKCx/oGkisBatE8MrIDi8bDAIFxV679fhCcxyGzfcytXizIWaxKcD3B7IGy7vVfeSpdk5Rg9z+cIIpJiYJ2ZkLoRr0qhXn7a34jTsfcSrMoHPNq5vxaEYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fe5oeRdj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E48B7C32786;
-	Mon, 29 Jul 2024 18:52:51 +0000 (UTC)
+	 Message-Id:Subject; b=OQUhZOpAcfMKqWTJlb10OLUc8TMSJ64HmZWqUGo1IxIMpIVVIgcnx+0MNZcDO3VaY3DnxcwsoLQ0b5SfvQrquTf6IucETzm2CgcxZRj0Mahk40utARItmEe5b8B1WWAL0u4JCaOUYub1H1TpAL1n/2OB79jEFsjIg+xnCKxaf50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Av7deGNI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D453C32786;
+	Mon, 29 Jul 2024 18:52:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722279172;
-	bh=yt/TEqkUG7PE55ZFi3CWgk1De/758QNjYZB7+sdWAF8=;
+	s=k20201202; t=1722279174;
+	bh=FpxqXn3ulTPkxNmNNiEYEsaYlOlwWAESDZSzyLCKPNs=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=fe5oeRdjCPJrzt8taKEaRFv5iTxsmq835QgyWaogwQnJzLezor+5acCS6DwJlaqa7
-	 oFzvObtInXfwJAg4k9Zp96ccDMJfbRK6lUcWwWtx/fkueElPKyssu4eT6QITGFwy8g
-	 4rXIu0+Ql2MPfVV63K0M5N8mgR47nkBdsdirvuKaIebO43VaNIo9+RgDN9dxSojLWN
-	 eXoQOwoQDWsHYOD6kkLTYD8vQxwBk1Nw1kSnyi2GY5xoIt3DlLClKkFFEKdBROx/Hn
-	 z1qdNFHbeNTaIfFembiNqffMcJDC3Z3+s7uNICG+M3K5BfYUfByk6MuCcG/8PqYE8P
-	 ULC2bUIvIWtTQ==
-Date: Mon, 29 Jul 2024 12:52:50 -0600
+	b=Av7deGNIlp9jxS8JxTm0p+urwg/oI9stprzVT9QGC9PZtRLJ7MsLePx/KVxKh/ZTW
+	 7vmccIH0XpreHV/ATSykhQa2eAlWZS0pxl8cA91PsBjboocvSRYn3tF4mVn3Y650g6
+	 NLiNtgQwgdj/3u3xi+uvbukOxfWI+ry1KR+c5tErN5PHL2TY/2aPo4jdsmfEWYxe2m
+	 8yoPexnPeh5OWn7S6+ymcsoE0y+2s34VHQB2luV2vHA0WqowXHXCO5UDkp2yjwLDUB
+	 +CAuiH9ItQ+pSW0VpnSMrfIVLcRMkxYVuGMkcRUUVFOFZ1nqKXnoBSx2HX6In7aKR0
+	 C/VHgAG5tLOEg==
+Date: Mon, 29 Jul 2024 12:52:52 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,44 +51,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: sre@kernel.org, linux-pm@vger.kernel.org, jagan@edgeble.ai, 
- jonas@kwiboo.se, heiko@sntech.de, Chris Morgan <macromorgan@hotmail.com>, 
- krzk+dt@kernel.org, andyshrk@163.com, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- t.schramm@manjaro.org
-In-Reply-To: <20240726194948.109326-1-macroalpha82@gmail.com>
-References: <20240726194948.109326-1-macroalpha82@gmail.com>
-Message-Id: <172227904756.1346368.2529190213661296274.robh@kernel.org>
-Subject: Re: [PATCH 0/5] Add GameForce Ace
+To: Alexander Reimelt <alexander.reimelt@posteo.de>
+Cc: konrad.dybcio@linaro.org, conor+dt@kernel.org, andersson@kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
+ petr.vorel@gmail.com, robh+dt@kernel.org
+In-Reply-To: <20240727201413.114317-1-alexander.reimelt@posteo.de>
+References: <20240727201413.114317-1-alexander.reimelt@posteo.de>
+Message-Id: <172227904849.1346409.17501721516983590086.robh@kernel.org>
+Subject: Re: [PATCH v3 0/2] arm64: Add basic support for LG H815
 
 
-On Fri, 26 Jul 2024 14:49:43 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Sat, 27 Jul 2024 20:04:48 +0000, Alexander Reimelt wrote:
+> Hello,
 > 
-> Add support for the GameForce Ace. The GameForce Ace is an RK3588s
-> based gaming device with a 1080p display, touchscreen, hall effect
-> joysticks and triggers, 128GB of eMMC, 8GB or 12GB of RAM, WiFi 5,
-> and support for a 2242 NVME.
+> Changes in v3:
+> - use 0x0 consistently
+> - pad to 8 digits
+> - drop compatible = "framebuffer" because it's unused
+> - drop chosen
 > 
-> Chris Morgan (5):
->   dt-bindings: power: supply: add dual-cell for cw2015
->   power: supply: cw2015: Add support for dual-cell configurations
->   arm64: dts: rockchip: Pull up sdio pins on RK3588
->   dt-bindings: arm: rockchip: Add GameForce Ace
->   arm64: dts: rockchip: Add GameForce Ace
+> Thanks again for your time.
 > 
->  .../devicetree/bindings/arm/rockchip.yaml     |    5 +
->  .../bindings/power/supply/cw2015_battery.yaml |    6 +
->  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
->  .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   10 +-
->  .../dts/rockchip/rk3588s-gameforce-ace.dts    | 1315 +++++++++++++++++
->  drivers/power/supply/cw2015_battery.c         |    7 +
->  6 files changed, 1339 insertions(+), 5 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
+> v2: https://lore.kernel.org/linux-devicetree/20240530135922.23326-1-alexander.reimelt@posteo.de/
+> 
+> Alexander Reimelt (2):
+>   dt-bindings: arm: qcom: Add LG G4 (h815)
+>   arm64: dts: qcom: msm8992-lg-h815: Initial support for LG G4 (H815)
+> 
+>  .../devicetree/bindings/arm/qcom.yaml         |   1 +
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts  | 231 ++++++++++++++++++
+>  3 files changed, 233 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts
 > 
 > --
-> 2.34.1
+> 2.45.2
 > 
 > 
 > 
@@ -108,10 +106,14 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3588s-gameforce-ace.dtb' for 20240726194948.109326-1-macroalpha82@gmail.com:
+New warnings running 'make CHECK_DTBS=y qcom/msm8992-lg-h815.dtb' for 20240727201413.114317-1-alexander.reimelt@posteo.de:
 
-arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: typec-portc@22: 'vbus-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/usb/fcs,fusb302.yaml#
+arch/arm64/boot/dts/qcom/msm8992-lg-h815.dtb: usb@f92f8800: 'interrupt-names' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/msm8992-lg-h815.dtb: usb@f92f8800: 'oneOf' conditional failed, one must be fixed:
+	'interrupts' is a required property
+	'interrupts-extended' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
 
 
 
