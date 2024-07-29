@@ -1,263 +1,106 @@
-Return-Path: <devicetree+bounces-89017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8291793FBEC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:56:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C00493FC04
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:03:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7D91B22173
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:56:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD07CB227AB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3847E16C6A4;
-	Mon, 29 Jul 2024 16:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F5F15F32D;
+	Mon, 29 Jul 2024 17:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="q/L/+Tor"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zmPT911L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C047E78B50;
-	Mon, 29 Jul 2024 16:55:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08CD15ECD2
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 17:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722272162; cv=none; b=twFcIq/T+9NkHYe9VcS5ZhJvMhUTvNT7QmhLSg1GljSt1B71Wlyc+cEbmRp5u+Bo5Dn7jO9ZggRMxYkDZGdpmky6d6rwMljpwQI3UIl+bldNO+hmK+WuigE4WQ0yKHIsUQg4inEq0uEwerA8nOGr2xs/M2GDRymm/EQ4Me5ZuO0=
+	t=1722272596; cv=none; b=CInSqeHHXNx73EQzNuSVgViglJkT7h1KRhFi5qx/PKtT+Xyo5EcSIgqvSFVf0PYLKYGFuxg4a+rQv03Z3w+wDzR9kTqNseR7y0jm0QIqjGji6WPwD8rQlHt/0MJwFvI/tVQeAZlBYYo8R486YhCpdjAvCRPdZhAcosUp+HykScM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722272162; c=relaxed/simple;
-	bh=LbYRipITzNz2cVnITep0A0Bc9eCQQGDIEuZlBYENEn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GymaXlRkh0FOS76y2mry0YJ3OBs3F0GFaeUHKrQYsnINI1aAOpGwDarQOX4VP3clA3QPTI1GfrNSzVFGSQ3G/Ld7ZwuOIo7xsBlTqxBpjALB5PZSL+x47fg+LFYVD+mN1jRlvMUhc1QdYdNDCrvrgwX/VGnBynaEAyj/tklwOXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=q/L/+Tor; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353723.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TGTfEt025061;
-	Mon, 29 Jul 2024 16:55:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date
-	:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-transfer-encoding:in-reply-to; s=pp1; bh=r
-	P7XGHo7glYOi1uyLM/8GrOjl/KJ3E+Se5g0xynW93M=; b=q/L/+Tor8gpPxGYCU
-	sx2wOiY9pezsvaCFFgrWpZ7Xb/w9iv/ibSvCKxizx2micTQmrdWYx2S1k+9V5koE
-	N7gO+ln3w9+mqZPnNfoDv1+AFKPov5rGDEvGO+Mfl24qZ/27C3E7sUR881Of0Nka
-	uXZ6fIYW1U775EhE3/5OyYEM8ZG0+LZrx4Lzo8mPWQESiIUkQ6iarvHm7ALZ8y4U
-	o3PsIh03FnYa7Yc314RIq+/qjYhUKch74uiK5pkupRLMqmu08vaLUnmb5smoPrHW
-	qPhN5phRn1glh5pA77tU2GLl6qcXkBUVwQgvFeFW493G90jCYoT/MA23B/dCQKsF
-	E6s0Q==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40pemu81g7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 16:55:43 +0000 (GMT)
-Received: from m0353723.ppops.net (m0353723.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 46TGtgkL003055;
-	Mon, 29 Jul 2024 16:55:42 GMT
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40pemu81g1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 16:55:42 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 46TGUFWW007457;
-	Mon, 29 Jul 2024 16:55:41 GMT
-Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 40nb7tyyvm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 16:55:41 +0000
-Received: from smtpav04.fra02v.mail.ibm.com (smtpav04.fra02v.mail.ibm.com [10.20.54.103])
-	by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 46TGtabm7733654
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 29 Jul 2024 16:55:38 GMT
-Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E6AEC20043;
-	Mon, 29 Jul 2024 16:55:35 +0000 (GMT)
-Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id EC6E720040;
-	Mon, 29 Jul 2024 16:55:32 +0000 (GMT)
-Received: from li-e7e2bd4c-2dae-11b2-a85c-bfd29497117c.ibm.com (unknown [9.195.41.40])
-	by smtpav04.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Mon, 29 Jul 2024 16:55:32 +0000 (GMT)
-Date: Mon, 29 Jul 2024 22:25:28 +0530
-From: Amit Machhiwal <amachhiw@linux.ibm.com>
-To: Lizhi Hou <lizhi.hou@amd.com>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Saravana Kannan <saravanak@google.com>,
-        Kowshik Jois B S <kowsjois@linux.ibm.com>, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kvm-ppc@vger.kernel.org,
-        Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
-        Lukas Wunner <lukas@wunner.de>, Nicholas Piggin <npiggin@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vaibhav Jain <vaibhav@linux.ibm.com>, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v2] PCI: Fix crash during pci_dev hot-unplug on pseries
- KVM guest
-Message-ID: <vctizrpvsuy4ebrvmub756sxs2bridn6gkav55ehlz5gjlc44b@jyzymbydkut2>
-Mail-Followup-To: Lizhi Hou <lizhi.hou@amd.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Saravana Kannan <saravanak@google.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>, 
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, kvm-ppc@vger.kernel.org, 
-	Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, Lukas Wunner <lukas@wunner.de>, 
-	Nicholas Piggin <npiggin@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Vaibhav Jain <vaibhav@linux.ibm.com>, linuxppc-dev@lists.ozlabs.org
-References: <20240723162107.GA501469-robh@kernel.org>
- <a8d2e310-9446-6cfa-fe00-4ef83cdb6590@amd.com>
- <CAL_JsqJjhaLFm9jiswJTfi4yZFYGKJUdC+HV662RLWEkJjxACw@mail.gmail.com>
- <ac3aeec4-70fc-cd9e-498c-acab0b218d9b@amd.com>
- <p6cs4fxzistpyqkc5bv2sb76inrw7fterocdcu3snnyjpqydbr@thxna6v2umrl>
- <d20b78cd-ed34-3e5a-0176-c20ee5afd0db@amd.com>
- <CAL_JsqJAuVexFAz6gWWuTtX1Go-FnHe6vJapv0znHBERSCtv+Q@mail.gmail.com>
- <0b1be7b7-e65b-8d8e-0659-388dec303039@amd.com>
- <6mjt477ltxhr4sudizyzbspkqb7yspxvnoiblzeiwxw5kwwsmq@bchicp4bmtzq>
- <af45d85c-2145-cbce-b91b-2aa70a9dcd0f@amd.com>
+	s=arc-20240116; t=1722272596; c=relaxed/simple;
+	bh=UHVNvFrTrI5pqn9bcN//du/ZwIV/yuivfOCu8/p0nUA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=bw5EPiXe2HP0k9bwE+p+oya4QbyumX7sc8zJxFv3GsKkAD5eogha40JHRn7nKX++TIvzSEO7170acKFa/tca8L+hnZdEvLariIQ6MNoTruUa0momL4+ifO56YlZP3XzM+v+cX/47U4CxX9X74dIFVQb9rEoMpqHqicyxSPzwaOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zmPT911L; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428085a3ad1so19230365e9.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 10:03:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722272591; x=1722877391; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NY5TOx2hRF+eF5XgzHezi9Eadz0rgXiadgCBpJMGjfc=;
+        b=zmPT911LMxADSPYsIsjEhWaLxBBnU2o7+PvVliShMRLcz+P7FKec8KNnPasQSQQwJA
+         CGpqJsZZuUzx7DN15jkPKy/DzU6LVTvs81RWzNtUb4yYB3YxqpfjsnweWcUdXltrw+zs
+         wDPfBHgSvttVbiA6quxcT/yBJdIr5APbBn5axLVJv6SG1YIrLbYAWiqtVJmB2hrBVNbH
+         aQxS4qqR54AwrA0vmbYhF3eCpNkZT4RMNN1++iCGAROy9JFXDw8Wno+VmeFrExmILE+l
+         rMy9Wrkz+dYdEWd/VS1LoDFKghq9853wW+Oavvdb+Kd67IEk1RsN0XF8kPJmptZ4sN5V
+         fOQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722272591; x=1722877391;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NY5TOx2hRF+eF5XgzHezi9Eadz0rgXiadgCBpJMGjfc=;
+        b=sqBzCN0u46rLmST+EqNv4d48EHVSY1Aj2xjvob967JJ34MSmKf3wPTwpOg9QpmTpkP
+         BdhEOyvqvKfS07+7CAElPt8GQmNeGLdOxOcLPBUCGWSOJEiekfy2KZbFwQLEPKcfaPRP
+         WgEL7XN0kDdcCcpDMXfoHUbIP4PclvckP/Z5NrrmrDFgW6T5K3m5iTiF0wEjZgoW0W54
+         M9HIwO31O4Vtq1QPGu2Z69YHY2QybhIOk0VKPPcmdI448V5ZaQe0cV5MFwCTYraMlHSI
+         JaabJGSWU4bZYhRu4Yju3zPsGjH8PczJ4x1EwcJALA2dw2Am0JddXHIEu5X1ttmFK/JM
+         qK1g==
+X-Forwarded-Encrypted: i=1; AJvYcCU+rXebnVCFFqynkmeKS9D9U1mochgrtrGda3vQ9ZGTGECsiTRatlZs0rv4MZeG7UggEISvNsncfWi8y40BfItGZbw0BqwoWi9omQ==
+X-Gm-Message-State: AOJu0YzoRJ85whxakkPTZ9t8OWSQHrqRWuWB/WGZffDwhp6t3NfhZ1Mz
+	RT4uJFrRNGDokJM6bcYHbezIWPdYpIB7+amgxggtoyMMmRhDb5M+1w+LPA+Meh4=
+X-Google-Smtp-Source: AGHT+IGNPdzs0UIEPCwCmFyWraPBLzbyEZadx1Vll6KLs5CYVRk3p18pfByHR1j6BgOgSb7ZcteNXg==
+X-Received: by 2002:a05:600c:154b:b0:428:1090:cfd4 with SMTP id 5b1f17b1804b1-42811df08a0mr56262375e9.33.1722272591104;
+        Mon, 29 Jul 2024 10:03:11 -0700 (PDT)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:abd3:cdc8:2363:54ef])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4281a26e1bcsm59809445e9.34.2024.07.29.10.03.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 10:03:10 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240719093934.3985139-1-jbrunet@baylibre.com>
+References: <20240719093934.3985139-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/3] clk: meson: sm1: add earcrx clocks
+Message-Id: <172227259008.348899.7822977439322261576.b4-ty@baylibre.com>
+Date: Mon, 29 Jul 2024 19:03:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <af45d85c-2145-cbce-b91b-2aa70a9dcd0f@amd.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: zERw8w-BfFVdH2DDIJaNTMQ227-zUjP4
-X-Proofpoint-GUID: yHn67uTODD4v1Bvu00La6-lWVUPXglYb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-29_15,2024-07-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0
- adultscore=0 mlxscore=0 phishscore=0 lowpriorityscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407290113
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.0
 
-Hi Lizhi,
+Applied to clk-meson (clk-meson-next), thanks!
 
-On 2024/07/29 09:47 AM, Lizhi Hou wrote:
-> Hi Amit
-> 
-> On 7/29/24 04:13, Amit Machhiwal wrote:
-> > Hi Lizhi,
-> > 
-> > On 2024/07/26 11:45 AM, Lizhi Hou wrote:
-> > > On 7/26/24 10:52, Rob Herring wrote:
-> > > > On Thu, Jul 25, 2024 at 6:06 PM Lizhi Hou <lizhi.hou@amd.com> wrote:
-> > > > > Hi Amit,
-> > > > > 
-> > > > > 
-> > > > > I try to follow the option which add a OF flag. If Rob is ok with this,
-> > > > > I would suggest to use it instead of V1 patch
-> > > > > 
-> > > > > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> > > > > index dda6092e6d3a..a401ed0463d9 100644
-> > > > > --- a/drivers/of/dynamic.c
-> > > > > +++ b/drivers/of/dynamic.c
-> > > > > @@ -382,6 +382,11 @@ void of_node_release(struct kobject *kobj)
-> > > > >                                   __func__, node);
-> > > > >            }
-> > > > > 
-> > > > > +       if (of_node_check_flag(node, OF_CREATED_WITH_CSET)) {
-> > > > > +               of_changeset_revert(node->data);
-> > > > > +               of_changeset_destroy(node->data);
-> > > > > +       }
-> > > > What happens if multiple nodes are created in the changeset?
-> > > Ok. multiple nodes will not work.
-> > > > > +
-> > > > >            if (node->child)
-> > > > >                    pr_err("ERROR: %s() unexpected children for %pOF/%s\n",
-> > > > >                            __func__, node->parent, node->full_name);
-> > > > > @@ -507,6 +512,7 @@ struct device_node *of_changeset_create_node(struct
-> > > > > of_changeset *ocs,
-> > > > >            np = __of_node_dup(NULL, full_name);
-> > > > >            if (!np)
-> > > > >                    return NULL;
-> > > > > +       of_node_set_flag(np, OF_CREATED_WITH_CSET);
-> > > > This should be set where the data ptr is set.
-> > > Ok. It sounds the fix could be simplified to 3 lines change.
-> > Thanks for the patch. The hot-plug and hot-unplug of PCI device seem to work
-> > fine as expected. I see this patch would attempt to remove only the nodes which
-> > were created in `of_pci_make_dev_node()` with the help of the newly introduced
-> > flag, which looks good to me.
-> > 
-> > Also, since a call to `of_pci_make_dev_node()` from `pci_bus_add_device()`, that
-> > creates devices nodes only for bridge devices, is conditional on
-> > `pci_is_bridge()`, it only makes sense to retain the logical symmetry and call
-> > `of_pci_remove_node()` conditionally on `pci_is_bridge()` as well in
-> > `pci_stop_dev()`. Hence, I would like to propose the below change along with the
-> > above patch:
-> > 
-> > diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
-> > index 910387e5bdbf..c6394bf562cd 100644
-> > --- a/drivers/pci/remove.c
-> > +++ b/drivers/pci/remove.c
-> > @@ -23,7 +23,8 @@ static void pci_stop_dev(struct pci_dev *dev)
-> >                  device_release_driver(&dev->dev);
-> >                  pci_proc_detach_device(dev);
-> >                  pci_remove_sysfs_dev_files(dev);
-> > -               of_pci_remove_node(dev);
-> > +               if (pci_is_bridge(dev))
-> > +                       of_pci_remove_node(dev);
-> >                  pci_dev_assign_added(dev, false);
-> >          }
-> > 
-> > Please let me know of your thoughts on this and based on that I can spin the v3
-> > of this patch.
-> 
-> As I mentioned, there are endpoints in pci quirks (pci/quirks.c) will also
-> create nodes by of_pci_make_dev_node(). So please remove above two lines.
+[1/3] dt-bindings: clock: axg-audio: add earcrx clock ids
+      https://github.com/BayLibre/clk-meson/commit/02672e609fa9
+[2/3] clk: meson: axg-audio: setup regmap max_register based on the SoC
+      https://github.com/BayLibre/clk-meson/commit/dd8ab39a8b41
+[3/3] clk: meson: axg-audio: add sm1 earcrx clocks
+      https://github.com/BayLibre/clk-meson/commit/4cb834703c64
 
-Sorry if I'm misinterpreting something here but as I mentioned,
-`of_pci_make_dev_node()` is called only for bridge devices with check performed
-via `pci_is_bridge()`, could you please elaborate more on why the same check
-can't be put while removing the node via `of_pci_remove_node()`?
+Best regards,
+--
+Jerome
 
-Thanks,
-Amit
-
-> 
-> Thanks,
-> 
-> Lizhi
-> 
-> > 
-> > In addition to this, can this patch be taken as part of 6.11 as a bug fix?
-> > 
-> > Thanks,
-> > Amit
-> > 
-> > > 
-> > > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> > > index 51e3dd0ea5ab..0b3ba1e1b18c 100644
-> > > --- a/drivers/pci/of.c
-> > > +++ b/drivers/pci/of.c
-> > > @@ -613,7 +613,7 @@ void of_pci_remove_node(struct pci_dev *pdev)
-> > >          struct device_node *np;
-> > > 
-> > >          np = pci_device_to_OF_node(pdev);
-> > > -       if (!np || !of_node_check_flag(np, OF_DYNAMIC))
-> > > +       if (!np || !of_node_check_flag(np, OF_CREATED_WITH_CSET))
-> > >                  return;
-> > >          pdev->dev.of_node = NULL;
-> > > 
-> > > @@ -672,6 +672,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
-> > >          if (ret)
-> > >                  goto out_free_node;
-> > > 
-> > > +       of_node_set_flag(np, OF_CREATED_WITH_CSET);
-> > >          np->data = cset;
-> > >          pdev->dev.of_node = np;
-> > >          kfree(name);
-> > > diff --git a/include/linux/of.h b/include/linux/of.h
-> > > index a0bedd038a05..a46317f6626e 100644
-> > > --- a/include/linux/of.h
-> > > +++ b/include/linux/of.h
-> > > @@ -153,6 +153,7 @@ extern struct device_node *of_stdout;
-> > >   #define OF_POPULATED_BUS       4 /* platform bus created for children */
-> > >   #define OF_OVERLAY             5 /* allocated for an overlay */
-> > >   #define OF_OVERLAY_FREE_CSET   6 /* in overlay cset being freed */
-> > > +#define OF_CREATED_WITH_CSET    7 /* created by of_changeset_create_node */
-> > > 
-> > >   #define OF_BAD_ADDR    ((u64)-1)
-> > > 
-> > > 
-> > > Lizhi
-> > > 
-> > > > Rob
 
