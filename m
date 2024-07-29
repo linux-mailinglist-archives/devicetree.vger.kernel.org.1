@@ -1,72 +1,70 @@
-Return-Path: <devicetree+bounces-88725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F49D93ED85
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:34:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6346393ED8F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC4FE281DD8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:34:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3FA7B20A74
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CD585283;
-	Mon, 29 Jul 2024 06:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F3E84A2F;
+	Mon, 29 Jul 2024 06:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fa5kOALX"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZVnpsQXM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0A781219;
-	Mon, 29 Jul 2024 06:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F6164D;
+	Mon, 29 Jul 2024 06:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722234869; cv=none; b=h3LqmD2esWuTYF3CZtoOiARd8jdjCy2qTcXGOKFmYOfYAGs8Z1jtCHrsF5ljMtHKd+jgB8EJcHiBweCcfZLMV4kFFB+Rlp74DMpIFkfPXX/U5dqQQLnooW2YG8S0FrR9ddjxlAHs59MjHFUK5pibLIHoqUJ1AqIg8XC7mte9weU=
+	t=1722235225; cv=none; b=eHxTqcYR0WDRluz0EyL/QrfQKgWob6sNsHYWDIxffRmUXwJfUpnUR+8fWMC15e9igWSSZfKTKvTmO/u//CInTCH9T6bburZno4J424pQKiONoaKIvuLKjvzdSHlxXgpzQmSc8DTsB2EY0VodBE5mDAHuOMZUXY39Nlxl3MO8IDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722234869; c=relaxed/simple;
-	bh=173BkkWfPoWytLzjzquFuNNvQTqOrgx/sLMj0gHUsV0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TUuXBYFAes95wTyxFQpdk1EoALW4iNhokt12cnnLzD5UgGep9pjuBHdcF3Mws7aK6dnOGEJBrCKD9PhuIB1LRK4e9copufzp5wANMCFp3tDm2gsD05rkd8DenkHBrk93tGRQciFXpoR+fwZ2+4xtDh1VheraAwHMivpuby7hf+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fa5kOALX; arc=none smtp.client-ip=198.47.23.249
+	s=arc-20240116; t=1722235225; c=relaxed/simple;
+	bh=a99jbsDVfgeTc2MdUT3Lg0p6OXzFeZkjRJ8ktTYnmY4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=muzQF5LDW4+DpV1zns/4egWUfXNEmLR5PUZbBNoKChHE6Mh6pe6Kevqi+ktwBJ+pu5Y2PT7jT249pTYSeqB7A0+z6lXt19UYFf0sd57zuOD2Z+d94zXz64A2kxvyiXYL8hnJieNcfDDPVxB/AE2LteAtvqn9FGK8ZJVbJNk0dpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZVnpsQXM; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46T6YFL3090243;
-	Mon, 29 Jul 2024 01:34:15 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46T6eHJG114240;
+	Mon, 29 Jul 2024 01:40:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722234855;
-	bh=H2XwplQ/spv3rja8Vu2RamSiRc9QFHxrtiHa0The5Ro=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=fa5kOALXquaO0fU1J0YexZcuoB2zZigsw6pesbB57sqU7wwIs1vUPMCQaxLHBt1Rk
-	 TMh+JydSuZ5PYZOwGrlauQzOUVbO+yjFAIlvdONBp/nzYJvc8cin5+uZ+78cjQLZb5
-	 +SfKfpztHCTF+ypyRXxbzKdcAAli5jA6NaerznKA=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46T6YF22075911
+	s=ti-com-17Q1; t=1722235217;
+	bh=OP5Y1xSavSMvddNO5CRaAcRmVaS3+7inY/Rfp9dfFZc=;
+	h=From:To:CC:Subject:Date;
+	b=ZVnpsQXMXtm20ljpPMkJS9JUvBLtHYHDSujcsjH1my3npI7od6WNr5oa997ZOyQ1M
+	 uROKWcMk/3cvDg3mjMrEZDnpiITelfRqxPtFzOWzZeUAurzUQVzZbayObem+Pa9z4C
+	 +YlagS74bIRLzy7lGzL4wY0TpIR6G8XJZtj4CWVw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46T6eHDs102437
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jul 2024 01:34:15 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 29 Jul 2024 01:40:17 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Jul 2024 01:34:15 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2024 01:40:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Jul 2024 01:34:15 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46T6YErH078218;
-	Mon, 29 Jul 2024 01:34:15 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <b-kapoor@ti.com>, <jm@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j7200-som-p0: Update mux-controller node name
-Date: Mon, 29 Jul 2024 12:04:11 +0530
-Message-ID: <20240729063411.1570930-3-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240729063411.1570930-1-b-kapoor@ti.com>
-References: <20240729063411.1570930-1-b-kapoor@ti.com>
+ Frontend Transport; Mon, 29 Jul 2024 01:40:17 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46T6eD5A010045;
+	Mon, 29 Jul 2024 01:40:14 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v2] dt-bindings: mfd: syscon: Add ti,j784s4-acspcie-proxy-ctrl compatible
+Date: Mon, 29 Jul 2024 12:10:12 +0530
+Message-ID: <20240729064012.1915674-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,39 +75,55 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-There are 2 mux-controller nodes in J7200 which are responsible for
-transferring can signals to the can phy but same node names for both
-the mux-controllers led to errors while setting up both mux-controllers
-for can phys simultaneously.
-Thus, update node names for these mux-controller.
+The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J784S4
+SoC are used to drive the reference clock to the PCIe Endpoint device via
+the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+obtain the regmap for the ACSPCIE_CTRL register within the System
+Controller device-tree node in order to enable the PAD IO Buffers.
 
-Fixes: da23e8d1124b ("arm64: dts: ti: k3-j7200-som-p0: Add support for CAN instance 0 in main domain")
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+The Technical Reference Manual for J784S4 SoC with details of the
+ASCPCIE_CTRL registers is available at:
+https://www.ti.com/lit/zip/spruj52
+
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index 21fe194a5766..89b68325e4e2 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -84,13 +84,13 @@ rtos_ipc_memory_region: ipc-memories@a4000000 {
- 		};
- 	};
- 
--	mux0: mux-controller {
-+	mux0: mux-controller-0 {
- 		compatible = "gpio-mux";
- 		#mux-state-cells = <1>;
- 		mux-gpios = <&exp_som 1 GPIO_ACTIVE_HIGH>;
- 	};
- 
--	mux1: mux-controller {
-+	mux1: mux-controller-1 {
- 		compatible = "gpio-mux";
- 		#mux-state-cells = <1>;
- 		mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
+Hello,
+
+This patch is based on linux-next tagged next-20240729.
+v1: https://lore.kernel.org/r/20240715120936.1150314-2-s-vadapalli@ti.com/
+Changes since v1:
+- Rebased patch on next-20240729.
+- Separated this patch from the series.
+- Collected Acked-by tag from:
+  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+  https://lore.kernel.org/r/04d94188-5e30-4cab-b534-e97c0b2a61f3@kernel.org/
+
+NOTE: Though it was mentioned on 25th July 2024 that this patch was applied:
+https://lore.kernel.org/r/172190301400.925833.12525656543896105526.b4-ty@kernel.org/
+since I did not find the commit in the MFD tree and the Linux-Next tree,
+I am reposting this patch.
+
+Regards,
+Siddharth.
+
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index 9dc594ea3654..13cbc6fe996e 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -113,6 +113,7 @@ select:
+           - ti,am625-dss-oldi-io-ctrl
+           - ti,am62p-cpsw-mac-efuse
+           - ti,am654-dss-oldi-io-ctrl
++          - ti,j784s4-acspcie-proxy-ctrl
+           - ti,j784s4-pcie-ctrl
+           - ti,keystone-pllctrl
+   required:
 -- 
-2.34.1
+2.40.1
 
 
