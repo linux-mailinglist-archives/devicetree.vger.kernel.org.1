@@ -1,149 +1,162 @@
-Return-Path: <devicetree+bounces-88828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2182E93F16D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 311FD93F17E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:47:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B82571F2309A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:45:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E5B1F234E0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C8B13DB9B;
-	Mon, 29 Jul 2024 09:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E3913E8B6;
+	Mon, 29 Jul 2024 09:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="UA3P/trA";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ltiJPzbF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ivz3633o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067DB84FDF;
-	Mon, 29 Jul 2024 09:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165FA13DBB1;
+	Mon, 29 Jul 2024 09:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722246328; cv=none; b=DBSdibC3W9NE686tjYkPk6AOQvo7OSE+VNNnn455Xj7DdhD0BNuk7p3k6wo28xnvm0UEoQ9P21yTAM66Q3sb/R4RIxOy0yVdXpwqol+caAgXPcRDzpAIu06dOyPypjjcPyHof3n2yH7zU8DF/QwU9qAbLcKzVmZ/RgRfVipp/Hg=
+	t=1722246449; cv=none; b=WXI37Wqo4qA8og3Nq/Nbi2cjfqj6q4tCbrVmb5mmigGG/w1cK++8vL0xeAKgHM6IacZLSI6ye1l/pnfQhqJGfJeYXDYskChaRIf15Fee7ii9xBGw3m1Z1AWgzZi1Z6dLkes89uIO8VVsWWCgIosiBUCnb9PUIOVb7BRubdfXmYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722246328; c=relaxed/simple;
-	bh=BhaZ7Rc9aF9i9ArddOfTXrgPz6tl9rJUNGxa29a61yE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=V7e7peZxObQxhGY2EnaUQROMq4tCKgntymqVHFrkXzkAurcLD/wnOOGK4SrTrwUlHJeoiHo7jKm1nxNV2YCoxXUaCl6CvY2Nx4w3MNgCvlL/wOT6sgNe+oaZ1g3uSVHtARro2V6jlZF3Ng5W6f56p40nrECrdy/UjhtcKm/KyJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=UA3P/trA; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ltiJPzbF reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1722246325; x=1753782325;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=L/Jlbrty+MzML5G8tyzzNVjp9Rsyo7JZTTPa+J3gl+E=;
-  b=UA3P/trAgFMd2HmKsxzHw8gUcKpcj9tHRE2O1ErkcUXZyRzIwTTGhN7l
-   v4imTTr1Mi1tUqW/1Caw+/Hce+8HcK3FvB0eu+qXoLxW8alwgA1DNp6u5
-   7n9CYo2qQy+uon0OEWqUW8A8QGjVd2vyrLLZdFBk9iqU1hipEtxkq8PBw
-   YWb7a2t3/klC4Ict59NoPVeYLwXirgK1bMo+LsDK9sD8uu9wY9hSpHr7Q
-   hgVlt/ba6UrN99MVI+fLj4hdcLVg6BLh2Fb4w8Vfq96LyPt4ZCu+LWQlR
-   2bsFwovLxJXZHMI8mAKj8duiZdZ1AEOIjUhkvsUE+5A6knWTPSSqsIos+
-   Q==;
-X-CSE-ConnectionGUID: WhuqI1NHSkWRwviwQYtdlA==
-X-CSE-MsgGUID: SBieUcVESaS1e0LRa0kXAg==
-X-IronPort-AV: E=Sophos;i="6.09,245,1716242400"; 
-   d="scan'208";a="38121794"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 29 Jul 2024 11:45:16 +0200
-X-CheckPoint: {66A764AC-17-E6D9A9-F72EA055}
-X-MAIL-CPID: 21804CAF3C8574BEB2D5434E4405EE3F_4
-X-Control-Analysis: str=0001.0A782F15.66A764AC.0136,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 23648161486;
-	Mon, 29 Jul 2024 11:45:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1722246312; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=L/Jlbrty+MzML5G8tyzzNVjp9Rsyo7JZTTPa+J3gl+E=;
-	b=ltiJPzbFhPHwDr/MsWqnk1ArQIjbSe/kNebypNeVBvk589n5QmV7V4tPFXnQhKAoRKZC/r
-	/+AHn8bYS9wLzW4pyteIHttWRQ5+fljm3OuhUw+0KzsNSAX8c5/dsU7r196mhWm3ikMqv0
-	x0zZZP5AgoNpZb7J7DYulz3HnPtHA4p3iHkbU6jxiQxRGEHgHTsc7/X5H7r2gSRKOW+1rU
-	WuATx4UOkyGK+23NAe4B/9k8ovoCp5sv4Z0jNSmJKM1wSUWWMdwqLlVnRjKjelIyMOogJY
-	8oQk8lyIa2Oj4dLJaZ8UX9U7S6GYR0GCkWT70WMAN7emw1xGlnXwNzGvJp6qqg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Clark Wang <xiaoning.wang@nxp.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: imx8-ss-dma: enable dma support for lpspi
-Date: Mon, 29 Jul 2024 11:45:10 +0200
-Message-Id: <20240729094511.159467-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1722246449; c=relaxed/simple;
+	bh=HNIbBQm01jXPtQXTe3CcpuHXrwUo9KYaV3exGuzXmXo=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=CvXjsohXMZYQaWMhyJ7uEP+IZpFpq1uhur6JykwpCDvP/4Q5CzsSOx2tV+IE0/8sd8DJf3XjVVxXDJxD+rwcloDSYp9PivIl7FaYW7jNJ6p4CIFXFoRRML3kVmwyhAOCijyDK5m+Eqe+Z+mqPj6oWvlTE2qFX6PnBVxUPzUX4zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ivz3633o; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46T0K33K018457;
+	Mon, 29 Jul 2024 09:47:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Pxxdc/pYVKgzVeeMdjjBXMbhXRjZr78T908e+MFmHB0=; b=ivz3633oyDfDv3j7
+	onp5fU+isjOxou4O8FhRvN3pLugQHzFQg6EeehW4PORw9ROtL8kgtoT3mcgS3EaA
+	xAqhkI/nMXLyMcw9WXrGYgnxFkT6sz3TH5SCvXWXIWl+AHQa2AZso1Ui3D/v2mtz
+	5L/aqmKbYS0QFU3KwY3fOPy/ucayCXdMEsVT+dvBtSFlk7JuRekd0dc8kpu+Mbph
+	XCWIyianmPszYXpx40zl6JwdgK0c9Q/W/4ysnjfP6DdAcvt9Q8O1Sii7IVYWdXPI
+	kZCWKuGSnyB46XcXm/F2EXjB9QUbw9xBdEbyEnT12LDNJL268r3TOGhXcTVWN0Fb
+	wI8dng==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mrfxkqrm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 09:47:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46T9lJYH022094
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 09:47:19 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 29 Jul
+ 2024 02:47:13 -0700
+Message-ID: <21c86552-4719-4e60-ab7e-9df3d732df46@quicinc.com>
+Date: Mon, 29 Jul 2024 17:47:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: describe the Qualcomm SGMII PHY
+ for QCS9100
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-0-5ffeb16252db@quicinc.com>
+ <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-1-5ffeb16252db@quicinc.com>
+ <1486c975-3cc8-46b9-b049-1df4dfed0040@kernel.org>
+ <8ef27923-03ed-44d2-bfa3-6efc75f8d6be@quicinc.com>
+In-Reply-To: <8ef27923-03ed-44d2-bfa3-6efc75f8d6be@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tg_MxtNkXlRMhuqreJSbhio9BbFLijZw
+X-Proofpoint-ORIG-GUID: tg_MxtNkXlRMhuqreJSbhio9BbFLijZw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-29_07,2024-07-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxlogscore=999 malwarescore=0
+ bulkscore=0 phishscore=0 clxscore=1011 mlxscore=0 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407290065
 
-From: Clark Wang <xiaoning.wang@nxp.com>
 
-Add DMA configurations for LPSPI nodes on i.MX8QX/QM/DXL.
 
-Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Using the DMA configuration bits from downstream kernel.
-Tested on TQMa8XxS.
+On 7/11/2024 11:52 AM, Tengfei Fan wrote:
+> 
+> 
+> On 7/10/2024 6:13 PM, Krzysztof Kozlowski wrote:
+>> On 09/07/2024 17:15, Tengfei Fan wrote:
+>>> Document the Qualcomm SGMII PHY for the QCS9100 platforms.
+>>> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
+>>> platform use non-SCMI resource. In the future, the SA8775p platform will
+>>> move to use SCMI resources and it will have new sa8775p-related device
+>>> tree. Consequently, introduce "qcom,qcs9100-dwmac-sgmii-phy" to describe
+>>> non-SCMI based the Qualcomm SGMII PHY.
+>>>
+>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>> ---
+>>>   
+>>> .../devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml        
+>>> | 5 ++++-
+>>>   1 file changed, 4 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
+>>> index b9107759b2a5..74ec4579c0d6 100644
+>>> --- 
+>>> a/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
+>>> +++ 
+>>> b/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
+>>> @@ -15,7 +15,10 @@ description:
+>>>   properties:
+>>>     compatible:
+>>> -    const: qcom,sa8775p-dwmac-sgmii-phy
+>>> +    items:
+>>
+>> items is not needed here, this could be an enum directly.
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Thanks Krzysztof!
+> 
+> In the next version patch series, I will check all the patch series, 
+> using an enum instead od items.
 
- arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+After considering the feedback provided on the subject, We have decided
+to keep current SA8775p compatible and ABI compatibility in drivers.
+Let's close this session and ignore all the current patches here.
+Thank you for your input.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-index 1ee9496c988c5..8ae5f065b4180 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-@@ -34,6 +34,8 @@ lpspi0: spi@5a000000 {
- 		assigned-clocks = <&clk IMX_SC_R_SPI_0 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <60000000>;
- 		power-domains = <&pd IMX_SC_R_SPI_0>;
-+		dma-names = "tx","rx";
-+		dmas = <&edma2 1 0 0>, <&edma2 0 0 FSL_EDMA_RX>;
- 		status = "disabled";
- 	};
- 
-@@ -50,6 +52,8 @@ lpspi1: spi@5a010000 {
- 		assigned-clocks = <&clk IMX_SC_R_SPI_1 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <60000000>;
- 		power-domains = <&pd IMX_SC_R_SPI_1>;
-+		dma-names = "tx","rx";
-+		dmas = <&edma2 3 0 0>, <&edma2 2 0 FSL_EDMA_RX>;
- 		status = "disabled";
- 	};
- 
-@@ -66,6 +70,8 @@ lpspi2: spi@5a020000 {
- 		assigned-clocks = <&clk IMX_SC_R_SPI_2 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <60000000>;
- 		power-domains = <&pd IMX_SC_R_SPI_2>;
-+		dma-names = "tx","rx";
-+		dmas = <&edma2 5 0 0>, <&edma2 4 0 FSL_EDMA_RX>;
- 		status = "disabled";
- 	};
- 
-@@ -82,6 +88,8 @@ lpspi3: spi@5a030000 {
- 		assigned-clocks = <&clk IMX_SC_R_SPI_3 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <60000000>;
- 		power-domains = <&pd IMX_SC_R_SPI_3>;
-+		dma-names = "tx","rx";
-+		dmas = <&edma2 7 0 0>, <&edma2 6 0 FSL_EDMA_RX>;
- 		status = "disabled";
- 	};
- 
+> 
+>>
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+
 -- 
-2.34.1
-
+Thx and BRs,
+Tengfei Fan
 
