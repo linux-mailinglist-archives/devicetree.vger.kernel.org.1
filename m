@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-88875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D2793F38A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 13:05:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65E7193F38E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 13:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13DD31C21B72
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:05:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B46F9B21CAD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41396145A0D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74E8145A1E;
 	Mon, 29 Jul 2024 11:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Drthm67q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zLI4BrKC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B2214534D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B5E14535B
 	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 11:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722251096; cv=none; b=L8S7X9Uu0PieB3KNR5/9pvvwOoIp8Y4q1QM2WsBf1aRURC+kAV1F0lP3AC5bNgKlxvJ05EChIKJfrAXg5+zep42Tq4Wtoo6AtcoSLjBhGpNL6mULUFIq/rz1Oj2u6Bmy4s7slKZdRl1BNkEPM+RynlY928j6myaWy8iGWAPurlk=
+	t=1722251096; cv=none; b=VxBxPuMNOS46UP2quBQW5DtRZUwrLOPDaE7eehCzbor8o/ZNhVhdgvP9qEl1zpzhhUbsfAbgtIh3L8+qy9HFzRiUK1CKN7vWJqJXrPrL/ttq9rFGZLFP39pJrLpJFqkVrkHBe+b4QZGGpBD/gmYNYOpD1xL6ZpY5vqMmuKnyAwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1722251096; c=relaxed/simple;
-	bh=7hXerL1IiWVUTXqdgSPGGoH3EsZvPPHNEeO6LvFBZgk=;
+	bh=wiHorBUhj641Q6oV/qrNPMJIqAneXVethyazgnIjMOI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mo2NIix/L+p7ejH3a18tZskyK2zu+L2eNRf2otrX+WTDFifplLPZYwbxlt4ro/7U3bIpMOJ34wsrpW5EJjFGXf0zhLC7+oTZTv2hgvV261WBFuWeEznI2BlXFv3eUTxf4msGzMJeAPyB1Ehm5GboPbS929BP+FhXb8jSmKYbgQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Drthm67q; arc=none smtp.client-ip=209.85.167.41
+	 In-Reply-To:To:Cc; b=mXuNkGm4HnGpvdRkJycy7H9UCvvWwhz9YrnSi3Z20Bd8b7Hx9kI/fMDZbHLlD8QMibi/QAjRf9XnJbh+dGgzLJZNWwONGtR1jHgNgpgSt5vG1P63VSpwc9xeL6lGWWSyzxmdggnwVJbBmkVEuvqxRPIDELQLvYbHbMRkVyU0RFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zLI4BrKC; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52efd530a4eso5181438e87.0
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52ed9b802ceso3949211e87.3
         for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 04:04:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722251092; x=1722855892; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722251093; x=1722855893; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JyKToe6TxBmz/YWrLy6w0oK844kg41jA+g/8mxCxauk=;
-        b=Drthm67q+bhS9qeWeiqN9qc6sdXCA4nVaUgVn0ynHFOXE5Ac0wV9GkqHVEQP66zhul
-         R9uF+UJbUFS9c8dET/KTNbSBwGeEltbkiROxNbWDjXyMygr6eDnzLkaArHEV91CFl6DE
-         FIKLkbSQ8W0lcExERbKfibHFr4HIWRzIjM+XT3b7aLTXgVgmMQh48c65TDtPZnk9+mJg
-         ephaTKhTLi5C+OaBYQBfq+czKp7l0jasU3FuwVTsT6BsZkLzx3Yf8TlECq+xAXBtzGkY
-         GJLOmJ653zc1KdKqF3sCV56mODytX+9QFYghkHzAvJyxMxazkAdXtWUm9QTRrLs86cuU
-         mBbg==
+        bh=L5b8NfoF5bQE4HsyeOkUu3DqTVC6nI+j7dvweyg98M4=;
+        b=zLI4BrKCFFarfrvXkl3+Ppsf2c8cn7tz0s9P5enhITMdxR7xruPwCgo0DhIxnR+64x
+         CGmSRmDEN2pMFuA9G4JdjxS1HjLBVIe5dto1K/SOQzFg48QWq4lKdr7iX0MVsTZA7m2A
+         BFBsbxBQzXEi4n+2BJjUNVRaycO/jqeMSKdcZanbpJuhD623xSxWyUIocGVBdbDa4m3V
+         Vw0GmlXeZIFMXpTfMSkUcjbZYkjZAHjaC5ABvIKAUKtrZL3Rf9iigcLgzc4gfq7N6fvE
+         vTxsGltgcDMUyMm9KKoMr8LUpbK1GqN1WlTtxR62FiSwY/z1WF/5X+MoGRmZPtoZmvjW
+         uZ+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722251092; x=1722855892;
+        d=1e100.net; s=20230601; t=1722251093; x=1722855893;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JyKToe6TxBmz/YWrLy6w0oK844kg41jA+g/8mxCxauk=;
-        b=GUH4QkeFHmPem4CbiM079LyrAciskaLlmsP9AkATRmHJejmJo0X65rEGAuMtGLpznr
-         KbG7pqHireycSjYOgYsVT3N25NfzCOQIKNxXUNEj9G1QnP2QhPZ4LWekPzsDtKnDETmI
-         L6BxbSBEFB1qWjyWs1Od+uAyM6vu8SKbSUQ7UCC/MzyndY8IIZcSevdck50F+34v5dBX
-         PKVVdsWa2eFYyFl5sLfBoo5FCfWTSU6tlEi2JKFQqp0NrI5f3zlh09Wg5nSKeZ3GXuUM
-         J/RsUkcepbdHqThbIAkIDIYAqsrvTrbjISNazRGnHKTXnALsvJRnXAJ/XpO2nepf/xqO
-         f1ig==
-X-Forwarded-Encrypted: i=1; AJvYcCUcbBOkt2FksVOqjlswt6i9On+vi9GaqBbOgVQ/AC1ZSCJKJFRtFn64q8Tg71VUD6VO4vLuhYofJUxMD6ugME24FpF7t/joIBsbaw==
-X-Gm-Message-State: AOJu0YwcFnSH4kwIYKMRLLMWsgy/cg0jTnKtwpwUys4wf6VMhCJlnmcT
-	Hpdbtnd/RCaC06vnx2r/isGVt8sUsOMu+3ENK8jZkm928Du81KTiikE0sVW8Mu8=
-X-Google-Smtp-Source: AGHT+IFxG6yGKfSxUTwgDL1UDjMZblrWSXE6WEn9r2KI7bws9zhWzus1HrT8Zfm/hZFVU3+n7458bw==
-X-Received: by 2002:a05:6512:39c4:b0:52f:159:2dc5 with SMTP id 2adb3069b0e04-5309b2ca468mr5408080e87.42.1722251092487;
-        Mon, 29 Jul 2024 04:04:52 -0700 (PDT)
+        bh=L5b8NfoF5bQE4HsyeOkUu3DqTVC6nI+j7dvweyg98M4=;
+        b=Fms2sZumG1aHSGBPl30qzVmZiMlmnazgZmB9aoA7roFshdo5K5sVvYvS9abSBLGGvv
+         ifmbUShz+3QdnF/UaTgsvemx3IU/YiYcPbfc00rHQ/SU8SahBCBkZzZXidrVZqoC9tlH
+         ARHLcUG09jOaUJ+MZZkxPb3+LiPgcJ7WWfTBY26YEDFMgxAb8evEB/5LyN/DhxmpHZuU
+         ATZ70XGNT3lJZKdV+H917wwhNX03N/cg02TxWaKqYvFCtL+tPNoulxF0Vk1W4TbqtnKE
+         ZrTyhSAuvkf6MCCAZIj1A8lSkhIyBYsAwxymqjbV6peLOub0OCgku5AKhEz36rDyZgHH
+         sN0A==
+X-Forwarded-Encrypted: i=1; AJvYcCU8XHfs0nbzv6JBONxM4fVuEz0mliL6bNMkPWWoZ2I9C3QYnV0St7fkPt3oFxo3a4PtEnVFwGV510YhT2RBT9dPH8YmTMFSRBGD9Q==
+X-Gm-Message-State: AOJu0YzNI8BQSY/H1f4VnsESHDB8CnoGtnT0uMg3bMl5NHKFNrxnuj+W
+	Yz0Zb2T+7JKhAL9S5EvHrysjGmRvuSNYVCaHqiGK+CxXUgwYs38F+q/jBXQWxYk4XeXiNU2j3p5
+	C
+X-Google-Smtp-Source: AGHT+IEWticA2JgqD+f2b33RyXUiYg6ZvRFfaaln3GF0wuNHAHlR4O+1NJnB3UC+hIDE8TVnZxy9gA==
+X-Received: by 2002:a05:6512:2144:b0:52c:e0e1:9ae3 with SMTP id 2adb3069b0e04-5309b2c79fbmr4537532e87.57.1722251093170;
+        Mon, 29 Jul 2024 04:04:53 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c09093sm1457806e87.172.2024.07.29.04.04.51
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c09093sm1457806e87.172.2024.07.29.04.04.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 29 Jul 2024 04:04:52 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jul 2024 14:04:45 +0300
-Subject: [PATCH 1/4] dt-bindings: soc: qcom: smd-rpm: add generic
- compatible
+Date: Mon, 29 Jul 2024 14:04:46 +0300
+Subject: [PATCH 2/4] soc: qcom: smd-rpm: add qcom,smd-rpm compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240729-fix-smd-rpm-v1-1-99a96133cc65@linaro.org>
+Message-Id: <20240729-fix-smd-rpm-v1-2-99a96133cc65@linaro.org>
 References: <20240729-fix-smd-rpm-v1-0-99a96133cc65@linaro.org>
 In-Reply-To: <20240729-fix-smd-rpm-v1-0-99a96133cc65@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -90,91 +90,56 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2297;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1305;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=7hXerL1IiWVUTXqdgSPGGoH3EsZvPPHNEeO6LvFBZgk=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmp3dSYL8kTG2g9+EtZGuToEqNO72f2kK5FXZwp
- UJvY2D5DxiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZqd3UgAKCRCLPIo+Aiko
- 1eo1B/0bdIKiemgxtZMeDN5jdNF22rIXgGyV5wPRkYqEgDmwcL35weJXBcg/bNcUSRt5CK/uxuH
- QHuhwa8i+iX5PNnTrWkIRGhh9fqtPAewiq4STO+T0pmyRfeYZ3RC1zNCsclQsQOhRMGmJJmFFhd
- j/lXVX0GQAkJADBPjmIOqsDcMpTnrpszucvrSwy7ppDsixYbQrzGjdRCnJQ4Zgyt7oFPkljo6UZ
- CLnzuH5qnRUyWcvwTFpYc7F02vx84cal8sSAnwrb66gKU4Rydm8kcd1IkfC4sBt++Hz4tCDJno4
- i/+2IXjaTSMLFSxiBNJrCCwPMQStN7y3J9S4szPga4CVMQbR
+ bh=wiHorBUhj641Q6oV/qrNPMJIqAneXVethyazgnIjMOI=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmp3dSOFsAd6tXbImSKU999wihHa4LwRGlIU660
+ LJFK58/xdyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZqd3UgAKCRCLPIo+Aiko
+ 1fmpB/9DTCcps5xKTTsXwvw54SmRRhEkKxdcn4RNE3WTfOPlbKtR0wZ8MqeYJhYWGPIbMF1yNZF
+ bMOskjNxQy0qBjD2xVEvL3NJ3akT/XS1eUIhPRxJTspzDpYlj+/+k6VP7n9d89wPDx+iEsf0oIu
+ qS7BQR8GTajjTNJWPcm0PY/LZblxpQyCuhkydGxUZjWeGcNJ7S+YImtPF+RpMurQQN38z3ERlp+
+ I/2Dk0/vB/pz6Pz/KWF7f493/MEV/GR4xmdD3n3kZ+2dc+f1LHeZnNozKR31P/uKR91/obzsB7J
+ 3doE+erQmQUNBi5MsmhpiWToZfBTATHZpVZoIa80P7T36W3W
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Add generic compatible to all smd-rpm devices, they follow the same
-RPMSG protocol.
+The device node has the compatible string, so the glink channel name
+isn't used for modprobing. Add the qcom,smd-rpm compatible to let the
+module be automatically loaded when required.
 
 Fixes: bcabe1e09135 ("soc: qcom: smd-rpm: Match rpmsg channel instead of compatible")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 52 +++++++++++-----------
- 1 file changed, 27 insertions(+), 25 deletions(-)
+ drivers/soc/qcom/smd-rpm.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-index 2fa725b8af5d..6f70683f84d9 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-@@ -30,31 +30,33 @@ maintainers:
+diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
+index b7056aed4c7d..ad12cacf80ce 100644
+--- a/drivers/soc/qcom/smd-rpm.c
++++ b/drivers/soc/qcom/smd-rpm.c
+@@ -224,12 +224,21 @@ static const struct rpmsg_device_id qcom_smd_rpm_id_table[] = {
+ };
+ MODULE_DEVICE_TABLE(rpmsg, qcom_smd_rpm_id_table);
  
- properties:
-   compatible:
--    enum:
--      - qcom,rpm-apq8084
--      - qcom,rpm-ipq6018
--      - qcom,rpm-ipq9574
--      - qcom,rpm-mdm9607
--      - qcom,rpm-msm8226
--      - qcom,rpm-msm8610
--      - qcom,rpm-msm8909
--      - qcom,rpm-msm8916
--      - qcom,rpm-msm8917
--      - qcom,rpm-msm8936
--      - qcom,rpm-msm8937
--      - qcom,rpm-msm8952
--      - qcom,rpm-msm8953
--      - qcom,rpm-msm8974
--      - qcom,rpm-msm8976
--      - qcom,rpm-msm8994
--      - qcom,rpm-msm8996
--      - qcom,rpm-msm8998
--      - qcom,rpm-qcm2290
--      - qcom,rpm-qcs404
--      - qcom,rpm-sdm660
--      - qcom,rpm-sm6115
--      - qcom,rpm-sm6125
--      - qcom,rpm-sm6375
-+    items:
-+      - enum:
-+          - qcom,rpm-apq8084
-+          - qcom,rpm-ipq6018
-+          - qcom,rpm-ipq9574
-+          - qcom,rpm-mdm9607
-+          - qcom,rpm-msm8226
-+          - qcom,rpm-msm8610
-+          - qcom,rpm-msm8909
-+          - qcom,rpm-msm8916
-+          - qcom,rpm-msm8917
-+          - qcom,rpm-msm8936
-+          - qcom,rpm-msm8937
-+          - qcom,rpm-msm8952
-+          - qcom,rpm-msm8953
-+          - qcom,rpm-msm8974
-+          - qcom,rpm-msm8976
-+          - qcom,rpm-msm8994
-+          - qcom,rpm-msm8996
-+          - qcom,rpm-msm8998
-+          - qcom,rpm-qcm2290
-+          - qcom,rpm-qcs404
-+          - qcom,rpm-sdm660
-+          - qcom,rpm-sm6115
-+          - qcom,rpm-sm6125
-+          - qcom,rpm-sm6375
-+      - const: qcom,smd-rpm
++static const struct of_device_id smd_rpm_of_match[] = {
++	{ .compatible = "qcom,smd-rpm" },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, smd_rpm_of_match);
++
+ static struct rpmsg_driver qcom_smd_rpm_driver = {
+ 	.probe = qcom_smd_rpm_probe,
+ 	.remove = qcom_smd_rpm_remove,
+ 	.callback = qcom_smd_rpm_callback,
+ 	.id_table = qcom_smd_rpm_id_table,
+-	.drv.name = "qcom_smd_rpm",
++	.drv = {
++		.name = "qcom_smd_rpm",
++		.of_match_table = smd_rpm_of_match,
++	},
+ };
  
-   clock-controller:
-     $ref: /schemas/clock/qcom,rpmcc.yaml#
+ static int __init qcom_smd_rpm_init(void)
 
 -- 
 2.39.2
