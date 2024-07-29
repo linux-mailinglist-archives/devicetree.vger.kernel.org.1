@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-89076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BCD93FEA2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:56:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3D593FEA4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:57:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 649D928235E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:56:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2296B213AA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2CF188CB8;
-	Mon, 29 Jul 2024 19:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE55188CD5;
+	Mon, 29 Jul 2024 19:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q28e5zvh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U4HnnVPo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE03187355
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 19:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32D5187355
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 19:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722282997; cv=none; b=fNwbHXTgh/9WjqQZAbDn5Lhjhr+V0H9vUJiHDiL56KKfK7r7cbtv3l2elGyFf5gtLA8AqVthIXC/80Is9xlhMF+lZBhSlXr4MAbIKY37ijly1yk7DHMx4yG+R0HS+DcUWdUMz69/Z6QjMTaVtVlTBQyv1us2UcAfMnmrjZ+KJEU=
+	t=1722283059; cv=none; b=M9Ea/wI4sOilvGxDkm3Tjf47tVY8qUaxc3ol7vGRsLvhgX8PD9BSi6jDAHJc1o04BfCHNY0tODGbHdERLBOxeAbxmB84/mbuq6Q8F8n4ZBx1TBavhyf1xYanxcWkde6Y9vcjNLdMJuJSg9WUDFyBYY10Oaq9xzcRo4tUn0Ttbgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722282997; c=relaxed/simple;
-	bh=YqgXBWqgawrQ2GCIT/CPZ0b/lhDSwL0sHCnAeJKg/xc=;
+	s=arc-20240116; t=1722283059; c=relaxed/simple;
+	bh=trM2O+rr9bV4LesywylqLRqG+0npdiIzz5q9qSoKCH8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jOICyem/gHU3yqa6XiIzwyhg3MzXoxQDl6fFBe0T77Af8L0dLCMOCI/DXLdnQS6fK6KaZVjC9zSFoXl0BFGKB0jaNJujfpDa8Uayzyngd+Amcv19TXATJJ+ZwWVRQAUaaECjADJFd38QlEztrhiKLr7hnqjmJbZ1xe+k9nzi2VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q28e5zvh; arc=none smtp.client-ip=209.85.167.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=H1o2jxLXkaUPcEQsiHp7YuPa+1ArC2B2tLaX8rauC5aC4mGvYeUfMwFJHV6+jjZNByzsT920KdyE6JBLbgcl8DVGj/VOEG18iVCCjEfWsGNqTr9venf30H4KnO06Ccdgr9o0AyHpcTR6P8aD3jQ4ogF5eLiSCc9Z0cM5g7F+/q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U4HnnVPo; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52efa16aad9so5732759e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 12:56:35 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52f01ec08d6so5904328e87.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 12:57:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722282993; x=1722887793; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722283056; x=1722887856; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=020JGgTMWcZIx2NYCO8r+LbUIGlcmT7lsGFDdPjejo8=;
-        b=q28e5zvha6HTepJ/RDPuYRuSr+wm8dPdD9Y41rFyCyKQDoarYjywlDjMfvS2rpAezm
-         y0LSHE17wkfTPa122tpjd0nj6jHDP7hm10MHuVCLLRvem1QRxYr2GXjcAxlkMnyuEn3A
-         /9bOcPk6x5fR9lY5a164CE085uhkl6RnoG/xEslfazZswaRntRfrycnV10b3J22rtexy
-         wOYMbY48HkqF6SFvz7iKObIMb3rmi/ZFnO8ghhU4nyT4aJjbRDeZ4jWoQYPqHUGFVAE7
-         8s+w+y0cLSHkDEVu6/bpaZ1VOnJulezPBhgexo2ttthAjhan37YegymppQXhFqgjUVHq
-         b+3w==
+        bh=+SqnnDYE6kct0XV14lMyb3SDYD0Ty7GXWU1n/Q+fOCw=;
+        b=U4HnnVPoDvZxU3hUn6tHcUUOH8fNIMxaSJM7VblXWQ/vC8gmKQaPO+3hUlnXE2UFZ2
+         Hjg0o+e7EyzhgGMIquQm74Dcs5wR+ZpD2EuHARWrQcEH0tqG/66TGmlhkeNPxftASjYf
+         Run7labuqbY6lYF2mFma3R22RshUpidiV7VvKn/GlhRqH7fpVvH6GghhLLdEGdSX+nAY
+         Bh44KDhJFQcFeg8qWULs2yA4trQEreYGc1gMocxzDk5fjS3D/dtjQ7VEF2hhLupNNYm9
+         zp7F9SiYiwepd+WP0pipn4UezW0Wdy3tiXm1tosGKKbwjoG1jmlBIO7Q0FffFEXMyj96
+         F4tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722282993; x=1722887793;
+        d=1e100.net; s=20230601; t=1722283056; x=1722887856;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=020JGgTMWcZIx2NYCO8r+LbUIGlcmT7lsGFDdPjejo8=;
-        b=fzGoMGraWqhO+6/mXDzMwkxxySi7017bxZa1c6g2mHzV7Qt/gFLaNeavP59CJ7I2uN
-         AjCyggSHDw/fkreiZK4zvi+Gd3A87y/MlOfynY71jaJhzkq6JHK7LSb+KTqY6nk2VDrz
-         3hGa+GK4QbqTvoijEnYVKf2ey8eHktf+2CS6rReOvsmfjNHloV8DJIz9PlfLgfELjth5
-         HCZ4BURYYGX0CqM0Z7qPyHLrhx94bZdCwi9Wvl7hOlxgRXDaksPw93lmOEX38+9QH+QL
-         M/C8UrLTdnEsO2KIDOu/lIio/4t77IcLk2yKl25h8bGUG7fxoh/Pcfqq2I7GUdUZFhn3
-         nFAw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Efu1L+Xu4Uzbs5/YB6PM7yEeXvNp6+okdzC8CXPn0be3JVmBnXZyjeA0hjGX0yhoqS4lsAtlF5OD5LUTyDx1TbzxZkVodHjqXw==
-X-Gm-Message-State: AOJu0Yz2ISou5clv6EFWDaLYmbue4tPAqyWmp6C05sAQrFQByrJaRRdk
-	azD0kdbzGaQGtihRYy59G98Fad/zv6ZNgeDSfqyBs95UVeRDmIisvzQ7c1EmddM=
-X-Google-Smtp-Source: AGHT+IGozCHqd0w6iFDoVxOAUJStLvOsB8sp3H77TGFuL7QnXA67z0Bf66cowsXNkbziywq0zm6dpA==
-X-Received: by 2002:a05:6512:2c8c:b0:52e:9fe0:bee8 with SMTP id 2adb3069b0e04-5309b269b9dmr6109379e87.8.1722282993288;
-        Mon, 29 Jul 2024 12:56:33 -0700 (PDT)
+        bh=+SqnnDYE6kct0XV14lMyb3SDYD0Ty7GXWU1n/Q+fOCw=;
+        b=mNxEZuZVsHi5V4tPORSFGhMLhNFELNmxu9ubJ+8j4cgt720qC7h+WDmZiG6luFELFB
+         aWkEPMnKQByHqWg2dQAZgBZW2h5WdSWgEOBDkuNzzRnT7cNgRk4Ppdp33kx7nMeOcyFO
+         HLJlD+5qftSL0VaAIIL560IaAyVUalgT4bN3HK33mCEt9cL5OGoYxEo02DfrKPlQ30iU
+         HbiaQJhuBbB0CiejYFOF9UKlm1LlXTT/SEBZch3W0uTxs2vOwmA+UYaaros78KUX2yEv
+         FoELxCLOTDb9m8WdXQWR0T8MW8f79SWmiX8FdJMCMFSJbEaacwLdAk3g6O6iDvAVqc4K
+         PTyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIpo7QSEL4q/RLpk+wh+8Wl3LNzpMK4Jqsm+LVyIMXiXD9yBvzHFcQu0bFvnpwBKp5BTKpNd5AMsqkaQ53bINMR1llVFJVu/S3Fg==
+X-Gm-Message-State: AOJu0YzdRUbncWsF72Ye3K9KBHcRJ39jSe/67/FwGYh9vZid+0XF+z7Y
+	X/1IR3/IgU6r4QklaMTDavfXKPM+4lDv5fZXVWo2/lLhGsQcSrk181JQiFzpDUU=
+X-Google-Smtp-Source: AGHT+IGU7pQmqUmGKaSIWVKnKEMXKhEM3oxtggFcHC4HPPRwfwBdgdynlaWbk6c3WNLSirf/4oEFiw==
+X-Received: by 2002:ac2:4c8e:0:b0:52e:f950:31f7 with SMTP id 2adb3069b0e04-5309b280422mr5231024e87.28.1722283055719;
+        Mon, 29 Jul 2024 12:57:35 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c2bce4sm1614081e87.251.2024.07.29.12.56.32
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c318d0sm1607452e87.287.2024.07.29.12.57.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 12:56:32 -0700 (PDT)
-Date: Mon, 29 Jul 2024 22:56:31 +0300
+        Mon, 29 Jul 2024 12:57:35 -0700 (PDT)
+Date: Mon, 29 Jul 2024 22:57:33 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Xu Yang <xu.yang_2@nxp.com>
 Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
@@ -74,10 +74,10 @@ Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
 	kernel@pengutronix.de, festevam@gmail.com, andersson@kernel.org, 
 	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org, jun.li@nxp.com
-Subject: Re: [PATCH 3/3] arm64: dts: imx8mq-evk: add typec node
-Message-ID: <2qifmfgul7ks6kozm455jci4rdbfnh5wft3nyt6pdnov6tcbst@vjosluwibkg7>
+Subject: Re: [PATCH 1/3] dt-bindings: usb: gpio-sbu-mux: Add an entry for
+ PTN36043
+Message-ID: <a3trxkx2fue2oahscjkc4silnfhesrws5xn7brjefjmke5emci@dn3cbb7yzmux>
 References: <20240729081039.3904797-1-xu.yang_2@nxp.com>
- <20240729081039.3904797-3-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,160 +86,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240729081039.3904797-3-xu.yang_2@nxp.com>
+In-Reply-To: <20240729081039.3904797-1-xu.yang_2@nxp.com>
 
-On Mon, Jul 29, 2024 at 04:10:39PM GMT, Xu Yang wrote:
-> The first port of USB with type-C connector, which has dual data
-> role and dual power role.
+On Mon, Jul 29, 2024 at 04:10:37PM GMT, Xu Yang wrote:
+> Add a compatible entry for the NXP PTN36043 GPIO-based mux hardware
+> used for connecting, disconnecting and switching orientation of
+> the SBU lines in USB Type-C applications.
+
+NAK, this is not correct. PTN36043 switchies SuperSpeed lines and not
+SBU.
+
+> 
+> PTN36043 datasheet: https://www.nxp.com/docs/en/data-sheet/PTN36043A.pdf
 > 
 > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 93 ++++++++++++++++++++
->  1 file changed, 93 insertions(+)
+>  Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> index 7507548cdb16..008e8c37c76b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> @@ -6,6 +6,7 @@
->  
->  /dts-v1/;
->  
-> +#include <dt-bindings/usb/pd.h>
->  #include "imx8mq.dtsi"
->  
->  / {
-> @@ -27,6 +28,20 @@ pcie0_refclk: pcie0-refclk {
->  		clock-frequency = <100000000>;
->  	};
->  
-> +	ptn36043: typec-mux {
-> +		compatible = "nxp,ptn36043", "gpio-sbu-mux";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_typec_mux>;
-> +		select-gpios =<&gpio3 15 GPIO_ACTIVE_LOW>;
-> +		orientation-switch;
-> +
-> +		port {
-> +			usb3_data_ss: endpoint {
-> +				remote-endpoint = <&typec_con_ss>;
-> +			};
-> +		};
-
-If this the "SBU" mux, then why is it connected to the SS lines?
-Where are the SS lines further going?
-
-> +	};
-> +
->  	reg_pcie1: regulator-pcie {
->  		compatible = "regulator-fixed";
->  		pinctrl-names = "default";
-> @@ -315,6 +330,50 @@ vgen6_reg: vgen6 {
->  			};
->  		};
->  	};
-> +
-> +	ptn5110: tcpc@50 {
-> +		compatible = "nxp,ptn5110", "tcpci";
-> +		reg = <0x50>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_typec>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		usb_con: connector {
-> +			compatible = "usb-c-connector";
-> +			label = "USB-C";
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +			try-power-role = "sink";
-> +			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-> +			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-> +				     PDO_VAR(5000, 20000, 3000)>;
-> +			op-sink-microwatt = <15000000>;
-> +			self-powered;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					typec_dr_sw: endpoint {
-
-the DR (dual role) isn't a physical signal. These ports descrbie HS
-(high speed) lanes, please consider naming them correspondingly.
-
-> +						remote-endpoint = <&usb3_drd_sw>;
-> +					};
-> +				};
-> +
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					typec_con_ss: endpoint {
-> +						remote-endpoint = <&usb3_data_ss>;
-> +					};
-> +				};
-
-No SBU port?
-
-> +			};
-> +		};
-> +	};
->  };
->  
->  &lcdif {
-> @@ -445,6 +504,28 @@ &uart1 {
->  	status = "okay";
->  };
->  
-> +&usb3_phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_0 {
-> +	dr_mode = "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	adp-disable;
-> +	usb-role-switch;
-> +	role-switch-default-mode = "none";
-> +	snps,dis-u1-entry-quirk;
-> +	snps,dis-u2-entry-quirk;
-> +	status = "okay";
-> +
-> +	port {
-> +		usb3_drd_sw: endpoint {
-> +			remote-endpoint = <&typec_dr_sw>;
-> +		};
-> +	};
-> +};
-> +
->  &usb3_phy1 {
->  	status = "okay";
->  };
-> @@ -597,6 +678,18 @@ MX8MQ_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
->  		>;
->  	};
->  
-> +	pinctrl_typec: typecgrp {
-> +		fsl,pins = <
-> +			MX8MQ_IOMUXC_NAND_CE2_B_GPIO3_IO3		0x17059
-> +		>;
-> +	};
-> +
-> +	pinctrl_typec_mux: typecmuxgrp {
-> +		fsl,pins = <
-> +			MX8MQ_IOMUXC_NAND_RE_B_GPIO3_IO15		0x16
-> +		>;
-> +	};
-> +
->  	pinctrl_uart1: uart1grp {
->  		fsl,pins = <
->  			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
+> diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> index 8a5f837eff94..152849f744c1 100644
+> --- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> @@ -20,6 +20,7 @@ properties:
+>      items:
+>        - enum:
+>            - nxp,cbdtu02043
+> +          - nxp,ptn36043
+>            - onnn,fsusb43l10x
+>            - pericom,pi3usb102
+>            - ti,tmuxhs4212
 > -- 
 > 2.34.1
 > 
