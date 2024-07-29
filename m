@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-88684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F7093EC2C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B82493EC38
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FC9D1F22562
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:00:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2581A1F22C78
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:01:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE1912EBF3;
-	Mon, 29 Jul 2024 03:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444A913790B;
+	Mon, 29 Jul 2024 03:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KyaUffV6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goCk/Ivq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF44823AF;
-	Mon, 29 Jul 2024 03:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A35E13774B;
+	Mon, 29 Jul 2024 03:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722225529; cv=none; b=LlN0J09OWkDj85bchuLBDeUWgbOhkANYwGwxQW72JLgQPWvX7qrjxlW+fJChD22UaxlNj5O7L4qbTMcq4XP19qpLZLJVfWoJoj77wChVJjk6EHsy2e500QfOVwrmZwLm2Tv7xV5r5VExa8SvnI9eOtxQ5ulEPID0T96tMnpiaAU=
+	t=1722225532; cv=none; b=WzAd1dc2b0i/0t/Bj7FuRzuvZ+jfEg9hYMcz+CaFZczKgg9RJznCz4y4/LG30typge/wKRudo2aWeuZGW5p8BHs/I1ZWnOZHmPGfkrvASsLpM70iFMJ073A8W9JA6Z84GKikTK5iKwWime+TX2SPYXz4azWCbCusfCD5nd7Ho34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722225529; c=relaxed/simple;
-	bh=ATaRItJ/Sz0VUq0W/PC5liODZCDYtH2gbLIdYmeEUIg=;
+	s=arc-20240116; t=1722225532; c=relaxed/simple;
+	bh=Bc/hBMJ+lQFooYOF2TcG+dcTNSSr+5tFNBcsfoNlPkc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IFCZi4so0/vXXxILii/WYJ80g5l97M9bkz8jPPm+r5DFuh3+FsNc3x4jypbwBrkXj9cDtOnrijRNzTkILFkw13yoIGsCP2f84XdoMVVkUqCj95IrgLcWsR5JP92XzJH5MFEBs4wleKFo5zwIa2i9KEn5OlYolqGkhjqiCVct8pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KyaUffV6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9E0C4AF10;
-	Mon, 29 Jul 2024 03:58:48 +0000 (UTC)
+	 MIME-Version:Content-Type; b=q/0JyUkKlfgRUaQo6On2cjf4CIcza/KYmmVLK8ShcvAT67Aci2Q2kKNk/ukdsewr4WjHWWiV7qe92jijANO19rPphqNtdJKSkz5Wyxfv5tBkB8bT+fc3mRzNBPyVTJ67IIg24bjnw+dS+jdCR5KqtOtdN3aCs64ZV/rpVPkkYqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goCk/Ivq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA2FC4AF07;
+	Mon, 29 Jul 2024 03:58:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722225529;
-	bh=ATaRItJ/Sz0VUq0W/PC5liODZCDYtH2gbLIdYmeEUIg=;
+	s=k20201202; t=1722225532;
+	bh=Bc/hBMJ+lQFooYOF2TcG+dcTNSSr+5tFNBcsfoNlPkc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KyaUffV647u60mkzU5NbJv3ZT2RDfb6X9PWOLZwIOlaFrWsUtVW3x3kXumhA+yqn8
-	 1iGtNUwyD2QF8Af/Aag6yhNgpQQ3pMMI0YjnsBX1+wM6o0LZ8XOWsx5HFEJvLfc8WN
-	 QZ00CrcVj85zcAgd3LDs8fXwf7DeHyBimGF6PC3CTIhOCQa7eqZ7XD+rk0xCe0gjNp
-	 B3PNtJyAaZaMx2TNs8I+UHnuGIxV3nLKpNBvfJ3qwH8en0z6qOpxySH2Rj1vIqrKrM
-	 7aF+q0LwRAgay/Kz9DNz7FKiAm6X26MzIxAFWQK4jFPeZ01P2cfGy5oW6guw9ESvRi
-	 ykR9R3cMV046Q==
+	b=goCk/IvqKMS8e4faCtiBCT7BDdCIBQG9aWQV4WWfywOwQo8EdODDcPnl8T6Xz+1rP
+	 A4QXecLnDCPkfnobiLbZkDYSb/qu2AJXlJPlRjccMkYIDobbMnzBGT36QUlCJ0rriA
+	 f45j1/uDRYZqbVwYA9EX1cSgd2HHGfHy8dnAOqe5j0pZr0YSFtk64M/FQpe9Cznreg
+	 M3OgqC9SBGHfJnTdXMbCpc3p5hV+vKOu3h35pv81zchYyzCh1M0kMPFLv1r2MpR5LX
+	 lGlxMnabDRufoJx67Dm4RxmUWJe9zByXTpraKyrxUteJSvigOKjUOMNsv+FtE3EK/f
+	 astr7Ab6YPQQw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	"Lin, Meng-Bo" <linmengbo06890@proton.me>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2] arm64: dts: qcom: msm8916-samsung-grandmax: Add touchscreen
-Date: Sun, 28 Jul 2024 22:58:15 -0500
-Message-ID: <172222551318.175430.17570782671190447857.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: sm8[56]50: use the PMU to power up bluetooth
+Date: Sun, 28 Jul 2024 22:58:18 -0500
+Message-ID: <172222551311.175430.11797522159810417451.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240718112715.6117-1-linmengbo06890@proton.me>
-References: <20240718112715.6117-1-linmengbo06890@proton.me>
+In-Reply-To: <20240716-topic-sm8x50-upstream-use-pmu-to-power-up-bt-v1-0-67b3755edf6a@linaro.org>
+References: <20240716-topic-sm8x50-upstream-use-pmu-to-power-up-bt-v1-0-67b3755edf6a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,16 +67,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 18 Jul 2024 11:28:57 +0000, Lin, Meng-Bo wrote:
-> Grand Max uses an Imagis IST3038 touchscreen that is connected to
-> blsp_i2c5. Add it to the device tree.
+On Tue, 16 Jul 2024 11:45:09 +0200, Neil Armstrong wrote:
+> Update DT of SM8550-QRD and SM865-HDK to use the PMU to power up bluetooth.
+> 
+> Based on the SM8650-QRD change at [1]
+> 
+> [1] https://lore.kernel.org/all/20240709-hci_qca_refactor-v3-6-5f48ca001fed@linaro.org/
 > 
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: msm8916-samsung-grandmax: Add touchscreen
-      commit: 1e19ffdb780a43f34d5da28b7f84ae8c23b47451
+[1/2] arm64: dts: qcom: sm8650-hdk: use the PMU to power up bluetooth
+      commit: dd5f9b31bb1af9da835fd67def673eba9096b864
+[2/2] arm64: dts: qcom: sm8550-qrd: use the PMU to power up bluetooth
+      commit: af8f801f59ed6fbe490414fa61276287f7aca332
 
 Best regards,
 -- 
