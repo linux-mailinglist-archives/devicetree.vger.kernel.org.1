@@ -1,145 +1,113 @@
-Return-Path: <devicetree+bounces-88716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DBCC93ED3B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:14:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A1E93ED3E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:15:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBF7D1F21CF0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:14:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3ADF1F21D66
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BEF83A0E;
-	Mon, 29 Jul 2024 06:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3975F83A07;
+	Mon, 29 Jul 2024 06:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyRZlmCh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AiarIFb2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4977E1;
-	Mon, 29 Jul 2024 06:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD8F5811A;
+	Mon, 29 Jul 2024 06:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722233630; cv=none; b=mnWUJ67ro+FiTSymyDVab0sCThKPGwRwojje8ZpF9lVAquDh+1uV/ZMmsQQDWZ/1MZersPDw18gPLFsBklfDUXLaybTorL0Jkl9j7cknrXde2NPMkOUyFWSeEkPtz5NW6KDtHRkhCXx5iwZnE1g0Q9WDKIfNmIxyx5+oG48Vkyw=
+	t=1722233717; cv=none; b=mr13+fSYoYIjZ6QKnhcGHmwKZXud+W4sv2dfq7fOGJ1sRsUgyjKU6HeO+6LouGjGd4FMThJPKGmFXdI8rxpqN3H5ofSjx6deWtQqXqSLcC8aRn8LaH1KnBbfLmrg2GSUwhdo1EqUT9z+r0A1Qs+6L3tM9zrxo02tNM2HQt/XOOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722233630; c=relaxed/simple;
-	bh=CM5TBVU0fxKvyCZslBI7UangH8rppPARNRUot+WrboI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AGz+0ZZ4e928EFyxr9MG5NDROMtUOE16fxtJjJsoqNORwZU7HpA3h9orOc6s65zQ/4USjy7ihzsvK6fhuOoYVxGgDrqC31vxAQkouiJufsa5P5vtailaHWS42FmBxf7lLQzlYSBEiOhk7lVdEU94QGs7b1hpDAHWXj7TcJSa4Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyRZlmCh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04E6BC4AF15;
-	Mon, 29 Jul 2024 06:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722233630;
-	bh=CM5TBVU0fxKvyCZslBI7UangH8rppPARNRUot+WrboI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AyRZlmChp5fSphXXKObYGPDYTlymXGFu4rYpeVFUFMNUydT/YwjoJs9l2b+bzQ97V
-	 pGY+i0wgcwUE6+8/tuomVA5deewCQGWdnbEWbpdYUGR8CwL9l/sigFWt+9ui8J9VHv
-	 TnjEDTVccd121t4miIOPK6FGx5jo4dfkBqoqnBwL3f0Al2m1SWJICcHjMgvznC7lJx
-	 AVByneWJsWKMoTCalvytvB3+bBA5eXKXINdN+ifgU/Ezxqc4NeOZs27xb92/l3xEWM
-	 nOa7BDHJ8TSkPwo6Xsdh3KvycqYAGxKX0XEhBNy1LRIxFSzgTBIE8eh2udu0TYTstl
-	 Bqdtmm3SIkWRw==
-Message-ID: <73bcc013-046a-41f1-a5ea-393be94eae97@kernel.org>
-Date: Mon, 29 Jul 2024 08:13:45 +0200
+	s=arc-20240116; t=1722233717; c=relaxed/simple;
+	bh=ohdm9U8pGSb+ODDHuG64S2+tS59dP7IMxId1G9XNVx8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jZJPEjpFJj9SND1eAz/1HWViIcrOQWcFcGznaqRlOtOgo1sERZ9beMwO0utgRbq4T01WEa28yxtb8LFfMRjwPoMU7x/6nKfOIZ4UUiU9MdXK1zqKRH0aYvjXbHj/s7CWJsg6oTlGTS4bqpk4Szy/kDIY9QwTBZCvNOCNQ1aDfbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AiarIFb2; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2c964f5a037so1723330a91.0;
+        Sun, 28 Jul 2024 23:15:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722233715; x=1722838515; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RkdmkH9P7FNHCqeL8cTyw/SKGQeTyqFKsGJjHolVZz4=;
+        b=AiarIFb29RLrPN0GLm2MJZj5D7GVTT8ERcEgvLYrOynKVOg9/CtknSFoaI+99xV/Kp
+         65kdEO1i3WgP3sXgW/IzH59B+YT+ov1PS3B3o3l1TPL37CQbWP95vegpK5GcdBsZQPkU
+         8ueUqC0Emuq8/c4W2d4Gk/EBtvi0UGmsITaRZ4fhoz3g5qoyEq4Caz9Z/KMCpKEgTwit
+         VDZtwuHAoMx7UUgvboGIOJCrsfDfrz8GGHVGS5ELOgwyp9jWiLzwpEdGSMON/qh+bHtY
+         2Kf7xwYhQqlqOT6vwAO0nXrxk/rXrj5ychCdSj2IErqRMZ6EcpyHQdzAJOeyv5UndBYX
+         +MWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722233715; x=1722838515;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RkdmkH9P7FNHCqeL8cTyw/SKGQeTyqFKsGJjHolVZz4=;
+        b=V05gQyu0CJsk9e8uvAW4lcCFzSJpBZpr+f41uWnfhRehK+NYYZYp9xLiw9OOuyCbZA
+         duAWQbhbtmg7A1+rY2jkOpkTnUAV+lXuJG8weCtSTyQhN3+AS2Wai3vZzUkC3WjiHfdO
+         1dtjmo4ZgCybv6VtyDzpwUzDmIXlRMQbdEaVxy9qoT+dZxnvQsj+R9bsYZz23pHsBit1
+         f5PvDgaQtsxXVidEklJLxNSYPGYGyrWKW7KJnyfAy6Mup2QWiELdijkRZUfJLTcrlcnl
+         3D4m8D7+6yNNOdgYe8+rph+2NcPkEerAwTBqpbz5ssqOSEkiwcOWEBsBqx3hhbczEJV9
+         2U6A==
+X-Forwarded-Encrypted: i=1; AJvYcCWi/xMpYwuYK0L7zvnCNbfT+diBszrRqGGm52J3zDZeFWJcpmA7fS9l3MQmKZgF3SOVCnrPPOU0Yzed2/BDp6OxBMDgTZwkjWKSQluaXFqDlzzk7qaY5BayPgfwi07o5sV9NuBprOL0mA==
+X-Gm-Message-State: AOJu0Yyv3dLrXUrMBbDR8WmHT3Fe/qsF7AB/M56a40ZQaEUf47cRhig8
+	4KPTgKryMJ4FQvRoudpNYUL30b/ImDjGSIdoVRk/jacoqKr/QERV
+X-Google-Smtp-Source: AGHT+IGob1bEgytYJnj0SiiCG3A6boOEiSQ01nw4oqdlBVhDtz8jfOxe1az8Aj1H3fB4jZddi6ow7w==
+X-Received: by 2002:a17:90a:8d0a:b0:2cb:4e14:fd5d with SMTP id 98e67ed59e1d1-2cf7e1f7f76mr4475705a91.17.1722233714943;
+        Sun, 28 Jul 2024 23:15:14 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cd8cd2013fsm7951282a91.0.2024.07.28.23.15.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Jul 2024 23:15:14 -0700 (PDT)
+From: hpchen0 <hpchen0nvt@gmail.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	hpchen0 <hpchen0nvt@gmail.com>
+Subject: [PATCH 0/2] Add support for nuvoton ma35 usb2 phy
+Date: Mon, 29 Jul 2024 06:15:07 +0000
+Message-Id: <20240729061509.83828-1-hpchen0nvt@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: Add Sharp Memory LCD
- bindings
-To: Alex Lanzano <lanzano.alex@gmail.com>, christophe.jaillet@wanadoo.fr,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240729014311.1746371-1-lanzano.alex@gmail.com>
- <20240729014311.1746371-2-lanzano.alex@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240729014311.1746371-2-lanzano.alex@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/07/2024 03:42, Alex Lanzano wrote:
-> Add device tree bindings for the monochrome Sharp Memory LCD
-> 
-> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+This patch series adds the usb2 phy driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35 usb2 phy driver.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+hpchen0 (2):
+  dt-bindings: phy: nuvoton,ma35-usb2-phy: add new bindings
+  phy: nuvoton: add new driver for the Nuvoton MA35 SoC USB 2.0 PHY
 
+ .../bindings/phy/nuvoton,ma35-usb2-phy.yaml   |  51 ++++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/nuvoton/Kconfig                   |  13 ++
+ drivers/phy/nuvoton/Makefile                  |   3 +
+ drivers/phy/nuvoton/phy-ma35-usb2.c           | 160 ++++++++++++++++++
+ 6 files changed, 229 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/nuvoton,ma35-usb2-phy.yaml
+ create mode 100644 drivers/phy/nuvoton/Kconfig
+ create mode 100644 drivers/phy/nuvoton/Makefile
+ create mode 100644 drivers/phy/nuvoton/phy-ma35-usb2.c
 
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
-
-Best regards,
-Krzysztof
+-- 
+2.25.1
 
 
