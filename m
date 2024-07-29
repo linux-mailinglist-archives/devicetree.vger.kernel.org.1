@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-89019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903EA93FC33
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:17:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64AB93FC36
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:18:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEA181C21D6E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:17:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5707D1F23105
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6171862B7;
-	Mon, 29 Jul 2024 17:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B472B18734F;
+	Mon, 29 Jul 2024 17:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+JLfyg3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YS5VSpME"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7393B15F32E;
-	Mon, 29 Jul 2024 17:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8914F15F32E;
+	Mon, 29 Jul 2024 17:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722273439; cv=none; b=ikkbu6EDmH0tkwChxQ6zP6TfAu38gVhic6jX/2PVQGvNB68nMt1hHcAl2wIgUVnPT2WtHmDO+Nkqty5GCPPlQ3wbUTFnrhdrNxb6ZyQ0Oqo2hIU1Nnge7SFX/XoTJd5c2EEP6/mmpbqc6uLeg52v2Zkb/EzxRV3HAg9srflhzZI=
+	t=1722273446; cv=none; b=qw6vSE2fVEesVg9B49KxTejlX467QmQkRIutMvMlTqHQLJetIxDIuvbNnzbeXBDK6LLdD8UMc9/gWLsAM1tFn6xp0knlGR386j/Lc0HrhL7wVQMxNVhoBxJTejTjxobK69katSU3IF7bhgLaaNAJBb8nyW3ljoLPMFq71eal+b4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722273439; c=relaxed/simple;
-	bh=ub2XiA1hn6+BNDRtOQD/sPOjh2gGpJW/+F3Q1VdfMhI=;
+	s=arc-20240116; t=1722273446; c=relaxed/simple;
+	bh=jPVwPbzGjpuo+qaDkF9mdK7f0mgjanMEINPeVhLJejM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=l8urUQwAPviA9X2wUG/pO4p2AyH3MqpMHJQsQyXsr45/HnFVTMDHvIKvB6fqJ0nmLrD/BO55Xv75/pp8f+uJA88bDLe2Gi7pqwap8MlFQQmEMc56TE/s6Fh9kSM02R34vdkQjrMg1ZN3vhj5Pm5l8VAvesszSMsoixjR4OnGvBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+JLfyg3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 918A5C32786;
-	Mon, 29 Jul 2024 17:17:17 +0000 (UTC)
+	 MIME-Version:Content-Type; b=UIHo5yWqfjCdEdHTRdvGoJaTmkgKxbUKgRKnwf3FdT8r+NkUPiyqsxAY8AQftVTU77PrhVIAwxzONzG9CQNlBdTXjFhp/SfZQLKYiIVfVwvVPPE1iJRU9sdE2jHufvvgTWiYj7ivHN065DBClXsQbHA+9TwWz4IzHTzVw1tSWQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YS5VSpME; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2378DC4AF0A;
+	Mon, 29 Jul 2024 17:17:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722273439;
-	bh=ub2XiA1hn6+BNDRtOQD/sPOjh2gGpJW/+F3Q1VdfMhI=;
+	s=k20201202; t=1722273445;
+	bh=jPVwPbzGjpuo+qaDkF9mdK7f0mgjanMEINPeVhLJejM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=X+JLfyg3c2NX3tX7wRg2IeKF7YlAao4mH63kBi8XW7YE005iUnHJ1n3NfGGj8+ZPW
-	 biDFN3tcPTnQB1r6/L3LU/RiPfu3mtLHsmm5P3cWk3jmND/9sEoM831lSQ02wK7Dg/
-	 xNfBnyRIOL2RjcStQwfSMDCCYJib+tTSjW8EHokLMl5/OGkMnUvX56MHI9o/eQrQpV
-	 xIkUEOOyFi3c497IOHyvNdNUtrIwQnPaYGuS2kg+PN0GNYNDN8cn7CTkcreU6tBuJK
-	 QAbN1YFm954ZdEMRMOCZVAJODbeTKI7g27Ba+Ni8uhafUyZ3OvRF9VUwEsniXVaJOO
-	 WIDHG+j882qkA==
+	b=YS5VSpMEepZ9R58xMIv3/G5EyHeLzOqkkkbsDKeeMxD77XwdbudyuMN9OkJ5GBqEq
+	 MqexMOW8Z+PzTeLKdrDAuLtMjv6A65arKhY8aFkF9uun0rNS5H9ya1hsgkHW99SyRP
+	 yas6drFTiC5LCzBGAjBHBgqvylSKuhERSCL2/zPc8IhDzrplaAsFUBAxTtHm6VAJvI
+	 twEVO+7onblEDpRaOdQsah2DOOhxk1qL/5HrYqKv7CQOcBX6DoheOePhaYH58CS2Jz
+	 nt+a8qzcp7TbLyyhSen0mWBFH9eVPtF+JL0JNku8+NggwJ51BMhz8lICq3dlto4dvl
+	 8HmWTx/HpvXbA==
 From: Mark Brown <broonie@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
+To: Support Opensource <support.opensource@diasemi.com>, 
  Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240717134729.51661-1-animeshagarwal28@gmail.com>
-References: <20240717134729.51661-1-animeshagarwal28@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
-Message-Id: <172227343732.109775.15565180087385393576.b4-ty@kernel.org>
-Date: Mon, 29 Jul 2024 18:17:17 +0100
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+In-Reply-To: <7645c9024a1762d281f4067504bc32a7a3d27caa.1721649741.git.geert+renesas@glider.be>
+References: <7645c9024a1762d281f4067504bc32a7a3d27caa.1721649741.git.geert+renesas@glider.be>
+Subject: Re: [PATCH] dt-bindings: sound: dlg,da7213: Convert to json-schema
+Message-Id: <172227344287.109775.17086394127467756882.b4-ty@kernel.org>
+Date: Mon, 29 Jul 2024 18:17:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,9 +65,11 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-37811
 
-On Wed, 17 Jul 2024 19:17:21 +0530, Animesh Agarwal wrote:
-> Convert the PCM512x and TAS575x audio CODECs/amplifiers bindings to DT
-> schema format. Add missing sound-dai-cells property.
+On Mon, 22 Jul 2024 14:04:00 +0200, Geert Uytterhoeven wrote:
+> Convert the Dialog Semiconductor DA7212/DA7213 Audio Codec Device Tree
+> binding documentation to json-schema.
+> 
+> Add missing properties.
 > 
 > 
 
@@ -75,8 +79,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: ti,pcm512x: Convert to dtschema
-      commit: 00425bf8cbc9981bd975a5475cec4964544fb297
+[1/1] dt-bindings: sound: dlg,da7213: Convert to json-schema
+      commit: d57ef03314f529e76385a9d5108c115459b54c2b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
