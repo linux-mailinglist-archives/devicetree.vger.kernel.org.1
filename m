@@ -1,208 +1,218 @@
-Return-Path: <devicetree+bounces-88982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ADE893F876
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C04CB93F899
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:48:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C10E5280E7C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:42:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73C1A28301B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1E6154C0C;
-	Mon, 29 Jul 2024 14:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C59C155342;
+	Mon, 29 Jul 2024 14:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3aV5L0ST"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NliA7n3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2759E14AD19
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 14:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC34F146580
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 14:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722264140; cv=none; b=dpdGSFFeNwnQugBcBT1liAvPSTlPytxb2cSTl4ylHI2VN9vDoIIq8Y7qUaCcaEk4dyIrf/MPqLY8lBrvsv96/vvMAYx3TTe0CwbRpYKOD3OX2+gn5bd3UMzgl/WNmOfwv8xxle1O2+PwP1NKa9b/CZSvRVSMtjzQdvO1wemuYoQ=
+	t=1722264494; cv=none; b=AQq0hCvpDudu+EHo7tjGPGYo07T6fSUryng8XGrm+29DRy6su72U58pzec5kLE7iYC7MgEbORaYran0j2Q7DfgXA1b+R/hcJDuAqIpW++acaHQHCnlqh1MnbswL6zPA1VhOjpS96K+pSJ+vcF7W7wLk0o/ifi1wWx4UkTDBC90g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722264140; c=relaxed/simple;
-	bh=Pa38IDDz14ZyF1Kf+6NrTlL3LquE/bkSNCFq2Fv3qCA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=TSsLLh79U6QonvYExGLD9k7qbcDuvgdcsbJnxYOXwXnJlpchGQ4l6bqDr6LwFgeNtcpsvR5/DIf+SQWlRBCGi/Dsn5gS4dv+QGRziSD3GxJpGfL1GBeA1ErNHj1DoGRnUf0fRktuU+f/CaM7VhGb4QwecHM9lttzMw+tTjtbpf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3aV5L0ST; arc=none smtp.client-ip=209.85.128.44
+	s=arc-20240116; t=1722264494; c=relaxed/simple;
+	bh=ySWwjbdflwz6rIYs8Vpx3Qn+TK/ceOwnExEmWEHZ3+Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G8ghNSVVIMkX3UPX4/hcEY96RgnmuieA8gGtWEm82P+iDMSChQae3IS+ufCaFHa9cCJn8OqO1ga+M6zs7IPR91yxxQvzZxAxtpGajWqafTIJQXJdVWILGRUx/6jLZV1Mg5JiRsBMwirIMcIA/J3zqFCSOtFSIBxsUI8bY3Ecjjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NliA7n3E; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42809d6e719so17504035e9.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 07:42:18 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4280bbdad3dso17932705e9.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 07:48:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722264137; x=1722868937; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/vryNgyzMsFde+cbe622LWwyKPkGWCTER1RhK0F4O8U=;
-        b=3aV5L0STHV2sWsoHNVwh6zESYw2eZIPKDKksAey+bUownSMc/x2fCHgzwmlXRWcVWa
-         xRR2TCgM2ZvmrFlsar+JLWKHFN48M9eKTyfU5CIijuqcyxXFluxYV11lfWst4UA/ak7b
-         eA990enPPF6ayq5QMKjH6yaH2r3RRTZ6fYUUZfsSbp2tbvcKq3Pa6njmIxsrCo+G+yuG
-         KypqNb35RN/CbV6+hYMxh/utbxbi7OHW4Eulgbpg3fQQ4yTBoUtzVAmpU6/0FJmpSLix
-         YtWsYUCC5SlABEtkwb/D5kxIetv0mZU7lu2KOBPiTnDzQ9HsyNNnCKitO/2DAe04ETzh
-         LmCA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722264490; x=1722869290; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7VN27lnGUNsVwhKI93/YGx82K/xOtrW+XHUZkxMgX6Y=;
+        b=NliA7n3EfM3D48Oc1FnCm7sOf1ZvnK29KKf4XGPehPfyiedYvKJCDnNLm0yf9DVKwo
+         W2idXVoJdqRZVTlfES4U3r9+bDgcbnSP+sWeP8LtuMPJLi9tf6RacBjbBASDxjBATL8j
+         TNj+EEqKmCxPbqTR5B1xQtEqyXvsNhOkSCBLQVt6xsLPwQYinlWxiqyJBuXT6FLPcZwA
+         4XJqJzafy+o2wT3CCpi6KhXTvSFTXMUdqJ+0PYnscji4jpS2Bzlp+pHFBzHZV9evQsPQ
+         2pBc/my3OBPLD9eDfVv05bWgyndu78ROhS/dsP8vh2AEXoPm8aEz+CX2SyDbVX44j6Fp
+         yQVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722264137; x=1722868937;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/vryNgyzMsFde+cbe622LWwyKPkGWCTER1RhK0F4O8U=;
-        b=kQ1nzsGhhAo1k163CGcYFr+YnyhsbENw6Bo6wnMtMgxfwrraCR6q2CWMmwqD7agjRB
-         d8Z6c1TL1I8x/qqaHoaWeGyWk8PM232ufLhOXryAVRBEyjAcfaDEPIiXncDLhoF/3tPY
-         X3lC9cBlvoONy+qQXqvEYyV2t5fxR5yjNSrcVoz5iiiy5waZmVyTS4rtiLQ9KY0Dcqr8
-         4CE7mOHBXfY+b7pYxYhk2D36fEWrkLVA/Ths3CBcD6ihJkZMfp1FZ9Hv/qMLb3gKjiXj
-         dEYmuYdHVNuwEMHA6bktYL+uFObJoy0fxXU8qaPcgdovCa0W59ek3ZflFK93bvwCVfjF
-         oCAA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1H3JGEtvP1xI1ip7Ip/LZDJPHp5mDy64LHKDRuTjgJmL14EgczVQeJexCVwhtKfYOaNbZm02pNsEmSBYmZdEQGZExpS7G2jqpFA==
-X-Gm-Message-State: AOJu0YwQM2+8odEcElamxygWLccBCJYrRBjZ45VGZsdL5XcRrh3UuT/5
-	PqbccH6+z4tMnhtDYu6bCfnF3iOP6lCsGH1le1b+1qxQK9/vcxwmh1IiqO60q6w=
-X-Google-Smtp-Source: AGHT+IFZFxS6E27mnr9vmlBnL/tw27bvTGWht1x8YDq/zlbnhtJdSomwiir8f5bX62qkw+iQQ586Rg==
-X-Received: by 2002:a05:600c:3505:b0:426:67ad:38e3 with SMTP id 5b1f17b1804b1-42811d73aa0mr55232845e9.3.1722264137354;
-        Mon, 29 Jul 2024 07:42:17 -0700 (PDT)
-Received: from localhost (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428057a635csm180606715e9.30.2024.07.29.07.42.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jul 2024 07:42:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722264490; x=1722869290;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7VN27lnGUNsVwhKI93/YGx82K/xOtrW+XHUZkxMgX6Y=;
+        b=SW/Eih2WUTKJO4nL+CwtkBq9ZMNCD7rjE5eczAnqHbDET+WhZPRqH69Xu/WfFIurq4
+         vy1FrnJyqBFiGZTieGex8GV7xPKvuFDsUKpkYSHZB4M0W3K2l1dxMApbC3qUgRdWWq/r
+         fys8S7/KPU6nlVdrBkOjdJjXM/+Yo46VEA6uAX5ioHkUJWS9tfL/OSB6XwvPR1XHFucy
+         QeLDI+rWB8yE0OLF1s8NBIDqFJiLRNOwqsrhV57eeTBvAyG//g+vdmVvfQOy3Rw6+Uk+
+         vxH57UUD0YIed/g+Q5YfnBhyfS/coCoKoh9ViHL7jZlo119ZwExADREB9gLgrKOalbet
+         iGBg==
+X-Forwarded-Encrypted: i=1; AJvYcCVkgRkwwQYKEGFyE1rHWxxUM8MOdxNTh6RGgtg3yfdMlodECYDGikmIuy6an4FpD+z55EwG8k40dzVqtS4v6cVQLDt0rwKOcQ8whg==
+X-Gm-Message-State: AOJu0YwugXo9rto3H+4DHyB3QSvlhNuREfVsMsSsZA0smGx/DUqmkPwW
+	h4enA85qMB4KqbtgE5Xzt8n8tXWBbJsC4S/3FVZxmfL9dMzEqbWZ/zR2JoL139A=
+X-Google-Smtp-Source: AGHT+IGRl6/MNLY2ZSmQMwTK/Pc+WFeT2/juGGW0MYOhUlv5eI7dtyXMyHhwMeLTTvCkHpcOzEmo7w==
+X-Received: by 2002:a05:600c:3511:b0:428:3b5:816b with SMTP id 5b1f17b1804b1-42811d6e2ddmr55999485e9.3.1722264489790;
+        Mon, 29 Jul 2024 07:48:09 -0700 (PDT)
+Received: from [192.168.42.0] (2a02-842a-d52e-6101-6fd0-06c4-5d68-f0a5.rev.sfr.net. [2a02:842a:d52e:6101:6fd0:6c4:5d68:f0a5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428057b645dsm180091705e9.43.2024.07.29.07.48.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 07:48:09 -0700 (PDT)
+From: Julien Stephan <jstephan@baylibre.com>
+Subject: [PATCH v6 0/5] Add Mediatek ISP3.0
+Date: Mon, 29 Jul 2024 16:47:59 +0200
+Message-Id: <20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 29 Jul 2024 16:42:16 +0200
-Message-Id: <D323OLK1T0CG.1OGNBVY1FDVJT@baylibre.com>
-Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
- <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nuno Sa" <nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "David
- Lechner" <dlechner@baylibre.com>
-Subject: Re: [PATCH RFC 2/5] iio: adc: ad4030: add driver for ad4030-24
-From: "Esteban Blanc" <eblanc@baylibre.com>
-To: "Jonathan Cameron" <jic23@kernel.org>
-X-Mailer: aerc 0.17.0
-References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
- <20240627-eblanc-ad4630_v1-v1-2-fdc0610c23b0@baylibre.com>
- <20240629173945.25b72bde@jic23-huawei>
-In-Reply-To: <20240629173945.25b72bde@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKCrp2YC/4WNQQ6CMBBFr0Jm7ZhaKKAr72FYtGWQiUKbFomEc
+ HcLF/Dv3k/++ytECkwRbtkKgWaO7MYE5SkD2+vxSchtYpBCFqISBeq2xWF6IUePOQqMH+9dmFC
+ LWl+r2mqbl5DWPlDH38P8aBL3HCcXluNoVnv73zmrBKazexRZebkbvbzZBDpbN0CzbdsPq2hQX
+ 8EAAAA=
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Andy Hsieh <andy.hsieh@mediatek.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Julien Stephan <jstephan@baylibre.com>, 
+ Louis Kuo <louis.kuo@mediatek.com>, Phi-Bang Nguyen <pnguyen@baylibre.com>, 
+ Florian Sylvestre <fsylvestre@baylibre.com>, 
+ Paul Elder <paul.elder@ideasonboard.com>
+X-Mailer: b4 0.13.0
 
-On Sat Jun 29, 2024 at 6:39 PM CEST, Jonathan Cameron wrote:
-> On Thu, 27 Jun 2024 13:59:13 +0200
-> Esteban Blanc <eblanc@baylibre.com> wrote:
->
-> > This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
-> >=20
-> > The driver implements basic support for the AD4030-24 1 channel
-> > differential ADC with hardware gain and offset control.
-> >=20
-> > Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+This series adds the support of the Mediatek ISP3.0 found on some
+Mediatek SoCs such as the mt8365. The driver is divided into 2 parts:
 
-...
+* SENINF: the sensor interface
+* CAMSV: this driver provides a path to bypass the SoC ISP so that image
+  data coming from the SENINF can go directly into memory without any
+  image processing. This allows the use of an external ISP or camera
+  sensor directly.
 
-> > +static int ad4030_spi_read(void *context, const void *reg, size_t reg_=
-size,
-> > +			   void *val, size_t val_size)
-> > +{
-> > +	struct ad4030_state *st =3D context;
-> > +
-> > +	struct spi_transfer xfer =3D {
-> > +		.tx_buf =3D st->tx_data,
-> > +		.rx_buf =3D st->rx_data.raw,
-> > +		.len =3D reg_size + val_size,
-> > +	};
-> > +	int ret;
-> > +
-> > +	memcpy(st->tx_data, reg, reg_size);
-> > +
-> > +	ret =3D spi_sync_transfer(st->spi, &xfer, 1);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	memcpy(val, &st->rx_data.raw[reg_size], val_size);
->
-> Can you just use spi_write_then_read() here?
->
+The SENINF driver is based on previous work done by Louis Kuo available
+as an RFC here: https://lore.kernel.org/all/20200708104023.3225-1-louis.kuo@mediatek.com/
 
-I was planning on doing that. But I'm getting a timeout issue when
-using `spi_write_then_read`. I can see the tx_data going out, rx_data
-is recived but CS is kept asserted. I need to investigate more but in
-the meantime I'm using this as it is working. I will remove this
-workaround if I can find a fix and add a comment for now.
+This series depends on the following series for the phy [1]
 
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (st->chip->precision_bits =3D=3D 16)
-> > +		offset <<=3D 16;
-> > +	else
-> > +		offset <<=3D 8;
->
-> As below. This is hard tor read. Just use appropriate unaligned gets for =
-the
-> two cases to extract the write bytes directly.
->
-> > +	*val =3D be32_to_cpu(offset);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ad4030_set_chan_gain(struct iio_dev *indio_dev, int ch, int=
- gain_int,
-> > +				int gain_frac)
-> > +{
-> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
-> > +	__be16 val;
-> > +	u64 gain;
-> > +
-> > +	gain =3D mul_u32_u32(gain_int, MICRO) + gain_frac;
-> > +
-> > +	if (gain > AD4030_REG_GAIN_MAX_GAIN)
-> > +		return -EINVAL;
-> > +
-> > +	val =3D cpu_to_be16(DIV_ROUND_CLOSEST_ULL(gain * 0x8000, MICRO));
-> > +
-> > +	return regmap_bulk_write(st->regmap, AD4030_REG_GAIN_CHAN(ch), &val,
-> > +			  AD4030_REG_GAIN_BYTES_NB);
-> > +}
-> > +
-> > +static int ad4030_set_chan_offset(struct iio_dev *indio_dev, int ch, i=
-nt offset)
-> > +{
-> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
-> > +	__be32 val;
-> > +
-> > +	if (offset < st->min_offset || offset > st->max_offset)
-> > +		return -EINVAL;
-> > +
-> > +	val =3D cpu_to_be32(offset);
-> > +	if (st->chip->precision_bits =3D=3D 16)
-> > +		val >>=3D 16;
-> > +	else
-> > +		val >>=3D 8;
->
-> I 'think' I get what this is doing but not 100% sure as it's a bit too un=
-usual
-> and I'm not even sure what happens if we shift a __be32 value on a little=
- endian
-> system. I would instead split this into appropriate cpu_to_be24() and cpu=
-_to_be16()
-> to put the value directly in the right place rather than shifting in plac=
-e.
+Changes in v6:
+- remove unneeded "link" tag from commits
 
-cpu_to_be24 does not exist yet. I will have a look on how to add them.
+bindings:
+- remove labels from example node
+- remove complexity for phy and phy-name properties
 
+driver:
+- fix some comments from CK :
+  - remove unneeded variables
+  - rename irqlock to buf_list_lock for clarity
+  - remove unneeded lock/unlock around hw_enable/hw_disable
 
-All the other comments will be addressed in V2.
+- Link to v5: https://lore.kernel.org/r/20240704-add-mtk-isp-3-0-support-v5-0-bfccccc5ec21@baylibre.com
+
+Changes on v5:
+drivers:
+- rebase on 6.10-rc1
+- fix various comments from all reviews (mostly style issues and minor
+  code refactor)
+- add a function to calculate the clock divider for the master sensor
+  clock: NOTE: setting this register seems to have no effect at all,
+  currently checking with mediatek apps engineer (OOO until 17/04)
+
+bindings:
+- camsv: update description
+- seninf: fix phy definition and example indentation
+- use generic name for node example
+
+dts:
+- sort nodes by addresses
+- use lower case for hexadecimal
+
+Changes in v4:
+- fix suspend/resume deadlock
+- fix various locking issues reported by Laurent Pinchart on v3
+- run LOCKDEP
+- add missing include reported by kernel-test-robot for non mediatek arch and COMPILE_TEST=y
+- use atomic poll inside mtk_camsv30_setup
+- drop second lane support as it was not used
+- remove useless members in structs
+- fix media entity initialization
+- initialize correct pad for camsv video device
+- add isp support in mt8365.dtsi
+- rebase on 6.7
+
+Changes in v3:
+- fix a lot of formatting issues/coding style issues found in camsv/seninf reported by Angelo on v2
+- fix camsv/seninf binding file error reported by Rob
+
+Changes in v2:
+- renamed clock `cam_seninf` to `camsys`
+- renamed clock `top_mux_seninf` to `top_mux`
+- moved phy properties from port nodes to top level
+- remove patternProperties
+- specify power management dependency in the cover letter description to fix
+  missing include in dt-binding example
+- change '$ref' properties on some endpoint nodes from
+  '$ref: video-interfaces.yaml#' to '$ref: /schemas/graph.yaml#/$defs/endpoint-base'
+ where applicable
+
+Best
+Julien Stephan
+
+Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+---
+Julien Stephan (1):
+      arm64: dts: mediatek: mt8365: Add support for camera
+
+Louis Kuo (2):
+      dt-bindings: media: add mediatek ISP3.0 sensor interface
+      media: platform: mediatek: isp_30: add mediatek ISP3.0 sensor interface
+
+Phi-bang Nguyen (2):
+      dt-bindings: media: add mediatek ISP3.0 camsv
+      media: platform: mediatek: isp_30: add mediatek ISP3.0 camsv
+
+ .../bindings/media/mediatek,mt8365-camsv.yaml      |  109 ++
+ .../bindings/media/mediatek,mt8365-seninf.yaml     |  259 ++++
+ MAINTAINERS                                        |   10 +
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           |  125 ++
+ drivers/media/platform/mediatek/Kconfig            |    1 +
+ drivers/media/platform/mediatek/Makefile           |    1 +
+ drivers/media/platform/mediatek/isp/Kconfig        |    2 +
+ drivers/media/platform/mediatek/isp/Makefile       |    3 +
+ drivers/media/platform/mediatek/isp/isp_30/Kconfig |   35 +
+ .../media/platform/mediatek/isp/isp_30/Makefile    |    4 +
+ .../platform/mediatek/isp/isp_30/camsv/Makefile    |    7 +
+ .../platform/mediatek/isp/isp_30/camsv/mtk_camsv.c |  327 ++++
+ .../platform/mediatek/isp/isp_30/camsv/mtk_camsv.h |  192 +++
+ .../mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c     |  413 +++++
+ .../mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h   |   60 +
+ .../mediatek/isp/isp_30/camsv/mtk_camsv_video.c    |  742 +++++++++
+ .../platform/mediatek/isp/isp_30/seninf/Makefile   |    5 +
+ .../mediatek/isp/isp_30/seninf/mtk_seninf.c        | 1576 ++++++++++++++++++++
+ .../mediatek/isp/isp_30/seninf/mtk_seninf_reg.h    |  117 ++
+ 19 files changed, 3988 insertions(+)
+---
+base-commit: 99b9aaac4abdf30968b2ce9c9848951290fbde92
+change-id: 20240704-add-mtk-isp-3-0-support-a08a978cac36
 
 Best regards,
+-- 
+Julien Stephan <jstephan@baylibre.com>
 
---=20
-Esteban "Skallwar" Blanc
-BayLibre
 
