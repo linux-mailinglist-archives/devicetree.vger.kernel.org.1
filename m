@@ -1,260 +1,193 @@
-Return-Path: <devicetree+bounces-88801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3995E93EF99
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:14:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5407393EFAD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 474EF1C21925
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:14:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A6A3B21611
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B621F139580;
-	Mon, 29 Jul 2024 08:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C3413AA42;
+	Mon, 29 Jul 2024 08:17:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2106.outbound.protection.outlook.com [40.107.117.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3722678C98;
-	Mon, 29 Jul 2024 08:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722240882; cv=none; b=PYGyOun26PE6JiUs1eopuxDwf6xzDHHtsQMNqpLfoZYzW0FEMJPAPzwcpPI1bxVKsZHjWK90EYjBM76cH1Gpqf7kAWUdufwNFu8DOiiiQzDhTu3I3HFd6YU0De6msKYdbCxvUrbAZXpZK1MqkGKWuFJEChfScaCQKXbsIOi57TU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722240882; c=relaxed/simple;
-	bh=TjciwxBZFvj3o1heIGosoDiwk140Sw33SeHArxc+voo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VDNA+w6ObhkpZ0JyMCiiUBand0Th7ekEMaBVm2MgcbEDJxrbUP2Km0b85a7YhjTXXVg7WrHFQ3f8HQWyPan6Tvx2KeIGTj90gdGRw7khn5006VZ1xPQwfFll5lkg9MnN6rpkzVNCq70zQ19VVIHL/IsqG9RYPc9EceDIc+VzpkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e026a2238d8so1632129276.0;
-        Mon, 29 Jul 2024 01:14:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722240879; x=1722845679;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R1EIdtPGiXOSospH+OEGixBiy6HXU/pJVnoa2jx2Y5Y=;
-        b=G1AjGp9I2wKBZmFDWi1mpWB7JAfBmgfcirfI9M1iRwGjNYN/R86/bwcyo3zl9hcF/l
-         CHyI7Or8LWGdlrQsIaNWhvpL6g8/GTb+EnPJqc/VUMCxRkyx0F9+jipLdNQlKgLyLaeZ
-         FCBsE8oeRli9iQP9A++jgKx1oH9PsgiAyRCu3ec9N4y2ySzo0F1znaLb/shvqzLY1I9t
-         NDOfoTcM+CLGFnx7lfIsI4CEVqn3t29gsaJhCgbC4o/PeM5u/8boLZpWfvqKUhS3E+cu
-         D9ZzqmXkXGldss8ONFlGbfHhkzZQwTidAAi0DyBF8UnK2xTJ76CIcYnGMrcLd+fRWxqm
-         LItQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXD1gpyWowTCqhWcy8FK/7cPdB075lf/nJ3nr6383OJ96R+Kici+TxhQ6rHIKCv9Lq9teXikgelA2TgrUVJfFHAzxbcPlh1dMmgFqpE/gkyemv8Gi+fPh6lHxCV8m45TwdcI1ehijAXS78IH9yKjZn9xcLt8g9xjn9MMaaIQ6rNGT/3Bw/BW2n2Qup7+cHvJDNLOpbFVkkroC3zOcsKNbdLd/MAYhMY
-X-Gm-Message-State: AOJu0Yx03FL0lYXREPR9+mCWla0+meFn2bLY0zG9dKBRuG2fSKoXbYRE
-	cvIX8GrTJgNSZPMxGu6hm1QM9B6Uw/DJV8t2MYZ3213VlPmP9DQueci5Fy/o
-X-Google-Smtp-Source: AGHT+IGvfh4ym0okaqEwFy1SyN+Pc4WM0XSleoIYaURCr0eWk6WUaZHg3I73a/utq3k74pO0PvNEWg==
-X-Received: by 2002:a25:9187:0:b0:dff:91e:56ed with SMTP id 3f1490d57ef6-e0b5449e17dmr7235013276.1.1722240878714;
-        Mon, 29 Jul 2024 01:14:38 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e0b6ece061dsm576856276.49.2024.07.29.01.14.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jul 2024 01:14:38 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-66599ca3470so15747997b3.2;
-        Mon, 29 Jul 2024 01:14:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVhNElTauyIXF15EyxobegRRFMkmRhixCPhembv9ou+WrarroWFfDUyVdepq8dFvZYWD9HD7PbpC8yNvpOQXTONAUhJuUYtqZ+mvbaEtgHXrbxYRV4qLH1viH8vyacYv3tlxpH7DBNkDLK/fO+uS8PWElr1wPjg1Qvh0MSUv4ypnZzx7MDxM4J8ututBQVMHCUGz+4I1n01TrtkjIaxG8JZupVNRafF
-X-Received: by 2002:a81:9145:0:b0:660:56fb:7f00 with SMTP id
- 00721157ae682-67a0adc957bmr56006987b3.46.1722240878292; Mon, 29 Jul 2024
- 01:14:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC846F2F1;
+	Mon, 29 Jul 2024 08:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722241034; cv=fail; b=bHAgCh9Y5RORyUls88NoY6mkqJ/iWgxU80HQ8Rgb1B8/gt+iHpWy4GZ0o3fTo4ARFleaJfzsZJU+zvGgNar9gawTEYdyBYOJ2UUfMMYiziqOW08uTBn4VIzNfLJdmEWbAtsGc6X28Y3bLR4ww/8VbcUHdCCz/qYP3mJ9ZZ0BxZw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722241034; c=relaxed/simple;
+	bh=hiNTRqJTT3t2Qv1MqTWsjfnhiPzGs2hqbPz1fvdpMaw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=J7U3hnGugUN5btwCrXvmNBuXZZvDer5963RB/wIO6Kwf8iJWxUQZZQqH2Lnb0NbqAbnycvLDil+2odIIm8441u4U89JoiBHsTQAqBAiSS0GZcRdM0Es/cnXXt5dlAJp23kojNYXbJMmS34sxveBzUkO6Oh4QTULuxyy7vbWsHYI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.117.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yiYDgAV5nrjkuFS7fcHsTL+0pIQ+fs23ZNHPn7S75WRKLsMzQwmg9XOPeCjeAilwn/eIMNsIDUPUNrmkKdALhQwV5xtX0FEQ7VaJo002tBdxkh3+jKfMqFZN+5etNJ5KtpWoYjknwGwSir5ljBQLL5BnFwG8MBNPhZ4kZv54lQ3hirntsiTE8ilGTwuqnZOk4R0W7G5eJNUWKRNPdgyf6DmD8ur8IbVpRDweatpmyIIWaPjxxKLybsI6h7zKxxoElROd8aBQfCzT4oMsQBo9LAEXHJ9Z4nagC6mu6oybu61LIg5sQkQoAZ90oh/OVZn1XsE2+fFRR0qBa8Q073LOfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hiNTRqJTT3t2Qv1MqTWsjfnhiPzGs2hqbPz1fvdpMaw=;
+ b=oEWi3T5SSFwdogZXCc3dptZHJukeWN/BvO30VdA1kd+maALNHhZYMFEalP4aKhoISj0cm/U043IV0vx5eRVULTlCRAzMf48cycaM7wWU1aSO/G1W41xmsGdZg3t5/mJTRs3LBsuCt7jZdjJVCKC8DBh++fFPfHirYofyksuN6lWzRa0wrVRuBYiQo3gOv1oDxRafCZIvKTtG7fzRZWx7nmi+E5vTYEpwW8DiL6ecVAU9ZGkAS00/6UBmsR0uhWt5MRf5BhBGUFV1ZVDi3Abu40Z+3S4dclHD5t36nD6Ys3VTLIJafVETzg3Esnn9fmbPgf+An9ZCqU0XgH5BM2w0Pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by SEZPR03MB6643.apcprd03.prod.outlook.com (2603:1096:101:7b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.26; Mon, 29 Jul
+ 2024 08:17:06 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7784.020; Mon, 29 Jul 2024
+ 08:17:06 +0000
+From: Jacobe Zang <jacobe.zang@wesion.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"heiko@sntech.de" <heiko@sntech.de>, "kvalo@kernel.org" <kvalo@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "arend.vanspriel@broadcom.com"
+	<arend.vanspriel@broadcom.com>
+CC: "efectn@protonmail.com" <efectn@protonmail.com>, "dsimic@manjaro.org"
+	<dsimic@manjaro.org>, "jagan@edgeble.ai" <jagan@edgeble.ai>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
+	<linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "arend@broadcom.com" <arend@broadcom.com>,
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "megi@xff.cz"
+	<megi@xff.cz>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "minipli@grsecurity.net"
+	<minipli@grsecurity.net>, "brcm80211@lists.linux.dev"
+	<brcm80211@lists.linux.dev>, "brcm80211-dev-list.pdl@broadcom.com"
+	<brcm80211-dev-list.pdl@broadcom.com>, Nick Xie <nick@khadas.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
+ clock description for AP6275P Wi-Fi device
+Thread-Topic: [PATCH v4 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
+ clock description for AP6275P Wi-Fi device
+Thread-Index: AQHa4YUmartUX8inGk+UWrzTMZFVbLINUJgAgAAKtvw=
+Date: Mon, 29 Jul 2024 08:17:06 +0000
+Message-ID:
+ <TYZPR03MB7001247E93FB6473128FEB2480B72@TYZPR03MB7001.apcprd03.prod.outlook.com>
+References: <20240729070102.3770318-1-jacobe.zang@wesion.com>
+ <20240729070102.3770318-3-jacobe.zang@wesion.com>
+ <1724f480-369d-4b4a-9384-1c6b33b00433@kernel.org>
+In-Reply-To: <1724f480-369d-4b4a-9384-1c6b33b00433@kernel.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB7001:EE_|SEZPR03MB6643:EE_
+x-ms-office365-filtering-correlation-id: e12eb581-5a5c-4716-5c2b-08dcafa6d5c5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|921020|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?a/XRHHUJDSwC6nPD9BJLaT3BmjSn0sZ4ldZtTLkNq0Ux0TZdooXcPE5Mck?=
+ =?iso-8859-1?Q?eb2JK881qpc2OzT/jAkQhZlQ10A7n7yV5H3yvg5AbqeHjBzoq0KN+tPISQ?=
+ =?iso-8859-1?Q?8S0vnck1P9s+K+4r4pndzNe0C1gOHXm5k2mZ+FLRg1hv9i5K16l3H4iZlz?=
+ =?iso-8859-1?Q?R2y+3Vsp4sEOjCw//zM/kxQNCJS46OqlhaARDV0AtHWa/dhrolkwr0kN/o?=
+ =?iso-8859-1?Q?p1yoc7EpWEwmxGOucOTQS7stcfW3/RJxAe55lUsG/iuwZKRZjEKwiAno1f?=
+ =?iso-8859-1?Q?WpLgjZeKrLPZI6xUlIJ120f8/dALFJ4AWIacb4Ya1UkzsDSlTYsiBS/8/h?=
+ =?iso-8859-1?Q?E8LTQym1ApjsmPLVE85AXfXVFLIeR+65LB2YinP6eFU20Drlk5DY+MiGbO?=
+ =?iso-8859-1?Q?jUpgfoaWGldKfAohfXkDhWp8eb7xEMdV5PPSOjbnB9/aubFXiOzySYuutQ?=
+ =?iso-8859-1?Q?RDv/OsAE42PVmD+ntumA+QjL6xNaMLottXqq66NQAGv30R0dnVi3rey58e?=
+ =?iso-8859-1?Q?DfQOFblJOQejJMGJ8oqdmFO0DZ7TjUO2vJToNNT+vU8sEM0xgSn9nU5/sJ?=
+ =?iso-8859-1?Q?UOxR0gSLRnOoEXNbk8hT53Xp3l78ij2jJQuT3FSXAS0/WNtNpMnZmBrLRM?=
+ =?iso-8859-1?Q?kp5KXTdkqdD49Mc0HO0dUd2qggCvzdoyQNVW+fUQuVN6N9w9RzNSTu96Mh?=
+ =?iso-8859-1?Q?JSXxruLcmD4Qm+PP31x4v9XeFyQVmCg+IxnECX/gmPYZ2apw7y9NiBV8Zm?=
+ =?iso-8859-1?Q?oe5fC2iGkiwxSWxkEln9guUaLVyVMvq5WS8W/zKx9vEqq/takuBK/uQsWZ?=
+ =?iso-8859-1?Q?xvqa3gLQBYiffO3s/2Dk0JSliCl7tYpht4tNR5rh6zBS/JzETB/nw1aT7z?=
+ =?iso-8859-1?Q?XY6osn3Wkm91tD+LJlxDxPChsRqfJB3ayT9w9Xsl8g7KLzlfSh3vxcmcME?=
+ =?iso-8859-1?Q?1gTGcUl3Ylqma7K/jWQH9zDTNw0P6vSUAV9BXgahkl8dng114eUqjeTXs/?=
+ =?iso-8859-1?Q?c5+IQZF5HrtcIqublF1LoFoVAVEWtrKFRDcTl2X7rNq66SoES+JFWe2Fo4?=
+ =?iso-8859-1?Q?5ASMetqQXMFXTeQt8e4hPTheeaHS1bOjRLPvYw2dDsBnD6j+sSquxM3Rr1?=
+ =?iso-8859-1?Q?Nx2j8lYA5FbV7YLMaoyImm2TL67oVJ9NdcYtD0iXCX4/RfdKFNrpcWFhQg?=
+ =?iso-8859-1?Q?URZPVV9pjxiDxJLSkZ3XH96TYotatIPrp/C0febG0beTAeWEieP2g7Ke+P?=
+ =?iso-8859-1?Q?Ws6yLLbLlGhz8mnXwdbhB8iczhgnBbRGOChxFB5yOEse2KYQDPoKgrzw8Z?=
+ =?iso-8859-1?Q?r8sTbWGEQC5AbsMD9OaXqCjk6ZhKmuhdJkYz2rNEAO9+7lRwh3Dpaw3/GK?=
+ =?iso-8859-1?Q?gkrykAYmPMLZKdZUrrJk5V2yxEEFW8XzduBTFf6WbVCLo6/ijg/8eZ/kcy?=
+ =?iso-8859-1?Q?JgKEnA/kILI1InGNEzTzIPVLNXm7qCIg4D7BS13xX0QnMsQPuHAhExHQJl?=
+ =?iso-8859-1?Q?s=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(921020)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?kPTgX2B0e88rBhUFzdFUMCKoiJDWI48Na9SEWWX977kDA2VlM3dGI9qHFB?=
+ =?iso-8859-1?Q?dh+AFiqrj53l61aAy/zUqXSW3SzJbOrDNt1A/MgxtFjrmv9iemddDF728X?=
+ =?iso-8859-1?Q?c8pI18GcE9Vx7p+wxtmD3yWW52ylNUX4YeMRp66cMafnT2ZJHBjWWKk8o3?=
+ =?iso-8859-1?Q?oZ1+XAlveC6BcVPiUlPhnMC0HaqfcyvbqXLiK/HRFxWKt8oS/6WLH7GYNq?=
+ =?iso-8859-1?Q?FRGSP84x+BFGnG9hEQxDjGU+RpEnWnbvsxU06K+NNJCSrW6XgvtZ6rWHTr?=
+ =?iso-8859-1?Q?BpDS6pR0vvsvnw+5xeUVQfXeGMGfV5njOwwEoavbwVnyHyHvWTnlRzE2ck?=
+ =?iso-8859-1?Q?z1CC+15sLD/NuBH4TrhiQbNjm3Y9SVmnJDm1y/Dz2YpV+cxIV3tlHDX9Y+?=
+ =?iso-8859-1?Q?+HBBlbV0OQwlVEZutA1Ka5caKp9mLyk62DT1SWMCIYlzKD3uijbKL4XW1c?=
+ =?iso-8859-1?Q?sbXhZDKJqij93IRI8MbW/Z3wfsVkjEy0rXBIM1d2eDSUL611/YKboubp09?=
+ =?iso-8859-1?Q?KGVoy2IRSgc1JLFzkMCG8H8Ay7A04BXlB1FBPUmsHFZfS4EXOqog3YRfOu?=
+ =?iso-8859-1?Q?qge1pzyKI12FuYL8qpMNOlPviYjiZr5uKzlDoPoldJmwSGQ06RE3QzbpCu?=
+ =?iso-8859-1?Q?m4QwrOrQdsNq03LgKmrRjM0UKYbpob3iudYZ+H+/I7Bobla4FNWfDZll1R?=
+ =?iso-8859-1?Q?yhXHDgYvTn9rfSl7w3cKHrxKrRsKG9WkJ+1vRXa3MPEQSRu/PlqCsSg/dj?=
+ =?iso-8859-1?Q?tyUBjJwx8bNXtSchYG+uHzGwgMnpTaodwTwj3NEQrSr8TPkCDsiKnBKYYO?=
+ =?iso-8859-1?Q?X3JZXPMaWZDx+5bLMtz6z3Z/+aICoJ29Qh769VQBtyZJtIdi3YowztDx6x?=
+ =?iso-8859-1?Q?ByNEFtItdZxr3YWoC3sdzsn8rAQd+xfXhLRrkUoeqz40cZgnn/5TIrCi7T?=
+ =?iso-8859-1?Q?z/+faeW3gvWVdsKgQY62Nb0Y5/rQ6h/W8WtBvDSUQ/rYQrtPoCMsGkag/4?=
+ =?iso-8859-1?Q?sCba9lvN2M0DinkftNUgSn3Zxo4VnIxQU9qS05RgbSSSX8ovvRc7VfY/yB?=
+ =?iso-8859-1?Q?d/qgVH5v/l/wtFfiXoavAXQxIGXjD7x+Gqx0Ld0hROCDXemTtBGXa8fUDr?=
+ =?iso-8859-1?Q?WbhsZdCodh9TtJk1WzSjhZuxTt5i1p31pEjePSwni95GU0PiwuAwCOfLEt?=
+ =?iso-8859-1?Q?EeEPaCkJnhyEdCXRNySN0vRdqLpj2an9cOi5UhI9QZFgGmOE5YP7FbXWzU?=
+ =?iso-8859-1?Q?ExE1zEc6aJErUToroLbMf67x64Yaniz8buGi5WovzHvHssWbZmXv3B9l7U?=
+ =?iso-8859-1?Q?rriiZJslIFOdxUHVqzrmpW4Os0SeiVoubYbZzCEkt4i/w7TiuspL2s6y7S?=
+ =?iso-8859-1?Q?CSMBpJ1t3sdL3xpwqMzQ0zOctiBIf4VDKvMYeQyPpzJIEYIiV1TxktaVte?=
+ =?iso-8859-1?Q?sgusRz9twpwB1i5uXnLswnNgaXXOWMpk/gXMuj7KrisWJwJjdHY3nO2pJ/?=
+ =?iso-8859-1?Q?nMChPu0IdFwpYgYmXWnAOd1/WzvYER6WYgxKy7JZqPOqd1jzZRQZnWPq5A?=
+ =?iso-8859-1?Q?6PnKWzsmpo6Q443msM+p9mbdBSu+EhAFdjAExbg5EQODlknNIPm/WVEClS?=
+ =?iso-8859-1?Q?XFPkJtAdd/ca4wqrLExIybQSZ9qq9mzZFn?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715125438.553688-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240715125438.553688-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdUvfAqJR6=4MG3hXC6cn1AnKz7+RAp4GG1jvdwOctgNzQ@mail.gmail.com> <CA+V-a8uBL-2DeAtu6BnF37Loe_fT6PNbAx=8O9acTR1Ey2zRrg@mail.gmail.com>
-In-Reply-To: <CA+V-a8uBL-2DeAtu6BnF37Loe_fT6PNbAx=8O9acTR1Ey2zRrg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Jul 2024 10:14:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU3ijNmw8nfTHbrsX28ASwO=pTaMaODPg1PUr9x5kPibg@mail.gmail.com>
-Message-ID: <CAMuHMdU3ijNmw8nfTHbrsX28ASwO=pTaMaODPg1PUr9x5kPibg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] clk: renesas: Add family-specific clock driver for RZ/V2H(P)
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e12eb581-5a5c-4716-5c2b-08dcafa6d5c5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2024 08:17:06.5069
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mRXV/ij/yAvclZK0DaqOG9slxJdsKB480syniJ4sJdJFStkER0ZlArCsdQRKnjmk6UGoNJLP++tYgqFE74/9Lg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6643
 
-Hi Prabhakar,
-
-On Sat, Jul 27, 2024 at 12:51=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Fri, Jul 26, 2024 at 3:53=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Mon, Jul 15, 2024 at 2:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gma=
-il.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add family-specific clock driver for RZ/V2H(P) SoCs.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> > > --- /dev/null
-> > > +++ b/drivers/clk/renesas/rzv2h-cpg.h
-> >
-> > > +#define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit)   =
-   \
-> > > +       [_id] =3D { \
-> >
-> > Indexing by _id means the reset array will be very sparse.  E.g. the
-> > innocent-looking r9a09g057_resets[] with only a single entry takes
-> > 600 bytes:
-> >
-> >     $ nm -S drivers/clk/renesas/r9a09g057-cpg.o | grep r9a09g057_resets
-> >     0000000000000038 0000000000000258 r r9a09g057_resets
-> >
-> Agreed.
->
-> > So please pack the array here, and either unpack it while making the
-> > priv->resets copy, or implement translation ("look-up") from ID to
-> > packed index in rzv2h_cpg_reset_xlate().
-> >
-> OK, I will implement the below:
->
-> #define PACK_RESET(_resindex, _resbit, _monindex, _monbit)    \
->     (((_resindex) << 24) | ((_resbit) << 16) | ((_monindex) << 8) | (_mon=
-bit))
->
-> #define DEF_RST(_resindex, _resbit, _monindex, _monbit)    \
->     PACK_RESET(_resindex, _resbit, _monindex, _monbit)
->
-> #define GET_RESET_INDEX(x)    (((x) >> 24) & 0xFF)
-> #define GET_RESET_BIT(x)    (((x) >> 16) & 0xFF)
-> #define GET_MON_INDEX(x)    (((x) >> 8) & 0xFF)
-> #define GET_MON_BIT(x)        ((x) & 0xFF)
->
-> static int rzv2h_cpg_reset_xlate(struct reset_controller_dev *rcdev,
->                  const struct of_phandle_args *reset_spec)
-> {
->     struct rzv2h_cpg_priv *priv =3D rcdev_to_priv(rcdev);
->     unsigned int id =3D reset_spec->args[0];
->     u8 rst_index =3D id / 16;
->     u8 rst_bit =3D id % 16;
->     unsigned int i;
->
->     for (i =3D 0; i < rcdev->nr_resets; i++) {
->         u8 cur_index =3D GET_RESET_INDEX(priv->resets[i]);
->         u8 cur_bit =3D GET_RESET_BIT(priv->resets[i]);
->
->         if (rst_index =3D=3D cur_index && rst_bit =3D=3D cur_bit)
->             return i;
->     }
->
->     return -EINVAL;
-> }
->
-> Let me know if this is OK, or to avoid looping in xlate maybe we can
-> have a packed entry in the resets property of DT by this way we can
-> avoid having the resets array all together?
-
-Sorry for being unclear. I did not mean packing the fields in the struct
-into a single word, but packing the entries in the r9a09g057_resets[]
-array.  Using the rzv2h_reset structure is fine.
-
-With:
-
-    #define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit)      =
- \
-            [_id] =3D { \
-                    .reset_index =3D (_resindex), \
-                    .reset_bit =3D (_resbit), \
-                    .mon_index =3D (_monindex), \
-                    .mon_bit =3D (_monbit), \
-            }
-
-    #define DEF_RST(_resindex, _resbit, _monindex, _monbit) \
-            DEF_RST_BASE(RST_ID((_resindex), (_resbit)), _resindex,
-_resbit, _monindex, _monbit)
-
-    static const struct rzv2h_reset r9a09g057_resets[] __initconst =3D {
-        DEF_RST(9, 5, 4, 6),            /* SCIF_0_RST_SYSTEM_N */
-    };
-
-is expanded into an array of 150 entries (9 * 16 + 5 =3D 149 empty entries
-followed by the SCIF_0_RST_SYSTEM_N entry), which is wasteful.
-Over time the array will be filled more, but I expect there will still
-be lots of unused entries.
-
-Hence I suggest to drop the "[id]":
-
-   - define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit)      =
- \
-   -       [_id] =3D { \
-   +#define DEF_RST(_resindex, _resbit, _monindex, _monbit)       \
-   +       { \
-                   .reset_index =3D (_resindex), \
-                    .reset_bit =3D (_resbit), \
-                    .mon_index =3D (_monindex), \
-                    .mon_bit =3D (_monbit), \
-            }
-   -
-   -#define DEF_RST(_resindex, _resbit, _monindex, _monbit) \
-   -        DEF_RST_BASE(RST_ID((_resindex), (_resbit)), _resindex,
-_resbit, _monindex, _monbit)
-
-Then r9a09g057_resets[] will contain only non-empty entries, at the
-expense of no longer being able to index it directly by reset ID.
-To solve the indexing, there are two options.
-
-Option A: Translate from reset ID to real index during lookup, like
-          you do in the rzv2h_cpg_reset_xlate() above:
-
-    static int rzv2h_cpg_reset_xlate(struct reset_controller_dev *rcdev,
-                     const struct of_phandle_args *reset_spec)
-    {
-        struct rzv2h_cpg_priv *priv =3D rcdev_to_priv(rcdev);
-        unsigned int id =3D reset_spec->args[0];
-        u8 rst_index =3D id / 16;
-        u8 rst_bit =3D id % 16;
-        unsigned int i;
-
-        for (i =3D 0; i < rcdev->nr_resets; i++) {
-            if (rst_index =3D=3D priv->resets[i].reset_index &&
-                rst_bit =3D=3D ->resets[i].reset_bit)
-                return i;
-        }
-
-        return -EINVAL;
-    }
-
-Option B: "Unpack" rzv2h_cpg_info.resets[] during copying in
-          rzv2h_cpg_probe():
-
-    priv->resets =3D devm_kcalloc(dev, max_num_reset_ids,
-                                 sizeof(*priv->resets), GFP_KERNEL);
-    for (i =3D 0; i < ARRAY_SIZE(info->resets); i++) {
-            id =3D RST_ID(info->resets[i].reset_index, info->resets[i].rese=
-t_bit);
-            priv->resets[id] =3D info->resets[i];
-    }
-
-BTW, for option B (and for the current code in v4),
-rzv2h_cpg_reset_xlate() should validate that the entry is non-empty.
-
-I hope this is more clear?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>> Add clocks and clock-names for brcm4329-fmac.=0A=
+>=0A=
+> Why? Which devices have it? If only your newest addon, then squash the=0A=
+> patches and add appropriate allOf:if:then disallowing the clocks for=0A=
+> others. Or maybe all of them have it? Why commit msg does not explain=0A=
+> anything about the hardware?=0A=
+=0A=
+Alright... Becuase of the datasheet said hardware has one LPO clock input. =
+So=0A=
+I will add allOf:if:then for this specific hardware=0A=
+=0A=
+---=0A=
+Best Regards=0A=
+Jacobe=0A=
 
