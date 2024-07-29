@@ -1,104 +1,188 @@
-Return-Path: <devicetree+bounces-89109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9669993FF6F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:29:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6998593FF76
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E88B284816
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:29:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFF831F2377D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9971C1891AA;
-	Mon, 29 Jul 2024 20:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839A3189F4B;
+	Mon, 29 Jul 2024 20:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RuByZOAN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C5AA37708
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 20:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D66189F27;
+	Mon, 29 Jul 2024 20:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722284701; cv=none; b=JUf/X2RngUcUG6mWvHpUFuxdG4PP5lJ0FaimXBG10YRELMXnk8PR1HA5JBAMgRWKCddFMIKxQiv7YbTKBUBJ3hfUPvmJTPdsZcxCbYKIoJZ5PoC6c+fsJ+b5ZUtB5NrgktgAaSSKWKbbTJ8DBCgyNYhxr9KVea3EhXlSGPtyeyM=
+	t=1722284911; cv=none; b=H9NdH0r39izQIDTgrhJUkR2R/9xYjuFineGZ56/7vSI+mrWlXGpuhrfqAk09r9awJrm3dLzWLBxU3Qwsq9kLCsreqVMGFTM5hqofQwKqRqiYbpOcGAX7QagjxOFe9fhYDBVYHsQKBThh+i9IXxsMQDFesf17MpKUx44yuEK6NwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722284701; c=relaxed/simple;
-	bh=k+aLb2zk0zDQ3OLaPuMBMB/PwZwGyTvc1/kzg46Jkrs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=AfsdEdl7hVYmnH41i3r30xbazuY50IuAsid4MpuWICiChswiuy+ZAf57Oth+a3vyLlEEqm81i2GWBylS51RGWQLGY45pk9YMbKzwDkuNKOyoAvFkhAV82yGrnzLUz/hlMXAZJyNyRSDBLTACvcx132JGBpmkNB5XSvFUW/VW38s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1fc60c3ead4so21982995ad.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 13:24:59 -0700 (PDT)
+	s=arc-20240116; t=1722284911; c=relaxed/simple;
+	bh=S7hvrf+9Paq/uhlTpuFZrrrwvEqHdkAAKsQXj61NzuI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kQ3rLi7PdjFElRxWEr2STJDR7u5xPAzbRTCRkUTn39SIORmtsYUAIo/nKmAHs7fqKI5d7NyGIa5J3s99idiTp95p1wrEkkzqLUTil6JQaawp7ejl7guXs7PYF7Y+YFoFKyVuX9SeMUbIlJ5/WjJ1Z6UhLW0Mvzgcm54BWfVIVzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RuByZOAN; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42122ac2f38so13376365e9.1;
+        Mon, 29 Jul 2024 13:28:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722284908; x=1722889708; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W285L47FymCa5B1MY1AIE9W3CgMuwpH/hLzuxYQVFR8=;
+        b=RuByZOANP1ltJxsB6dJB26JDg+OHC6xNPuUIdW0ugZy7ALu8tUALXYPgStG+5wqp9P
+         dimfxlA0KPO3f9Gx2UfqT730DRSMJA3/wRBE/DdOugxQf4eqXdJLcKysT5Vb5gKUcuc0
+         lt9DsJ06dnqMtwEuBWBPC7/Mr9QMZRZwGipSZv/M03M8U1eK9xvEgVAf9eAvk/4Gpc3s
+         +uYAsmoLmP9cxa/SAQDFWfbc82lF5Ruf6ct0eb2LybG3GNy54bfL5oSATau8TXp5F9bN
+         bVdI1u/yfeKdkTZOXiWFX9BrOCqaaQW2VW04f+WHfM6KSPwZGZ1iGGRQ9p/XVsT/0Ari
+         cddA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722284699; x=1722889499;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=083DIGVwY1s52Yql4zVhjameXJVd9htGKGheDXBjW/w=;
-        b=EkaSiD2ksivdC9izf1gKlayvqzX3f29m68GAbEge8OFLbsEuJYSDarN0pj/B7qL4Z4
-         Adh/SXTlwvmq6gIVZENuMCc1aHUzGV3ANj5oL06DcP38pNMvKXHiklK2dBbgz/+6d8Lu
-         jxVyZ1ZmBLlNUsXNSZlnylXblYkk84MA5ZDUwYfwMTvhumME5ubRGuGtUp7/jt/LdWVC
-         9364kzURnljXl5r3Q044Ih9Jl09NTYXIda9EAUDxManbleHB4n+oq1P3YyeApnUWOTkd
-         l3elmGj1BEUUEdycp52ZMf++uicD/95eupa7kTgT9/XkR2/uotCepDIS8Ve/PfkOCOpi
-         bONw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3zmwJL0T27M8O7d+lph8N878C4QxoHh6I9FHfxZyduov1w8mx0yhNRmVGhSuSkMlRxTShmyDT/W22HYGfojUQN5Jxg9JpiWY5hQ==
-X-Gm-Message-State: AOJu0YwKpBM7ih0EnyCycfsJpz2rOFMpi7AFrkRlVOeC+mS74P47IFT5
-	UiZV5Z8WE0azt/xvdIIb5ECkUBuitEb8SGNooqcP4/GDoLu7D2/aL2nDkT1qXU8=
-X-Google-Smtp-Source: AGHT+IFaoIYolpqDXKvmz4AJh4w8HIrzefVUkn4tMKwtqCG2E8NuNmhBwdq43k3APJ3edufWyQrY/g==
-X-Received: by 2002:a17:903:32cb:b0:1fb:43b5:877b with SMTP id d9443c01a7336-1ff04808975mr71149725ad.5.1722284698420;
-        Mon, 29 Jul 2024 13:24:58 -0700 (PDT)
-Received: from localhost (75-172-120-197.tukw.qwest.net. [75.172.120.197])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fed7fbc1e7sm86958505ad.266.2024.07.29.13.24.57
+        d=1e100.net; s=20230601; t=1722284908; x=1722889708;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W285L47FymCa5B1MY1AIE9W3CgMuwpH/hLzuxYQVFR8=;
+        b=rKRPhbvk1dCDVIPMlqIwo3T8VbdM8A34/M2t81BWNJJoimjzjy3AzEyX3BXgs+XjF6
+         JBeKDk/ffx4MkCEMz8i7CRIFG80ozXDvHrUpIvPTdK/Z4hUItzGLQpPrLfHa0pdRS73F
+         fNjt8CPhpvZymmSlpcRtVJNtcNSJF+pbymxnb/ZCqIfUFCxJhf+p61w6zj1oXSkLkfgm
+         rS6o34oYFceE0V6Of+30odad1lcbfPVCLCXrN9PtPwVcHKqQeQpHdRGekqrVSVI6XCnE
+         Kk73BhJS1juptoWvyRPOEXunlAw7ith1LrXSgjssOLtAjg2OhuHWVb+rzXIpq2zntllW
+         I7TA==
+X-Forwarded-Encrypted: i=1; AJvYcCWvkJEcGqh9iTg/ULzEmfech2K9gzLaXAz52lrNCCMVG2PLy9U/T5gvxzVHdUneXlSGg7406DJMogNEFsT9Hptjypi4eo/N8btcEiKzhZeFAWWlI4bqjsCi9RumqwEvhJqfQtAiZJfoqk6Y4UZnlu2xf0l8LvsijfbdrjcIOLs9D95bVQ==
+X-Gm-Message-State: AOJu0YxgmiKfGwB4C9WnM7B/SKfPAqrzEfq0y26qbe9uH63pq7yHqEN9
+	9DcGkN6ie5nPXBIFEmHpEJ4+982z82bkyeqGorQ1LhbWrd8xfQW6
+X-Google-Smtp-Source: AGHT+IG7DX+8vGSp1IdYAI7LCaAtmO5EJO4lzP9zDgbDSE/2BA6sGAhtL1/ioaanHmeuCpLuC3OP5A==
+X-Received: by 2002:a05:600c:35d4:b0:428:b48:8eed with SMTP id 5b1f17b1804b1-42811e52248mr58321195e9.7.1722284907299;
+        Mon, 29 Jul 2024 13:28:27 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:91c0:6bc7:8f80:c05e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4280f484cdesm125478115e9.44.2024.07.29.13.28.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 13:24:58 -0700 (PDT)
-From: Kevin Hilman <khilman@kernel.org>
-To: =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, =?utf-8?Q?Beno?=
- =?utf-8?Q?=C3=AEt?= Cousson
- <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, =?utf-8?Q?Rafa?=
- =?utf-8?Q?=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: omap: convert NVMEM content to layout syntax
-In-Reply-To: <a08e6a76-6f01-4234-8102-675c32d1171f@gmail.com>
-References: <20240523042750.26238-1-zajec5@gmail.com>
- <a08e6a76-6f01-4234-8102-675c32d1171f@gmail.com>
-Date: Mon, 29 Jul 2024 13:24:57 -0700
-Message-ID: <7h8qxk3q06.fsf@baylibre.com>
+        Mon, 29 Jul 2024 13:28:26 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v5 0/3] Add CPG support for RZ/V2H(P) SoC
+Date: Mon, 29 Jul 2024 21:26:42 +0100
+Message-Id: <20240729202645.263525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> writes:
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> On 23.05.2024 06:27, Rafa=C5=82 Mi=C5=82ecki wrote:
->> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->>=20
->> Use cleaner (and non-deprecated) bindings syntax. See commit
->> bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
->> details.
->
-> Ping? Could I get this PATCH picked up, please?
->
+Hi All,
 
-Sorry for the lag here.  Tony is stepping down from maintaining these
-platforms and I'm stepping into help (but with some lag.)
+This patch series aims to add the CPG support for the Renesas
+RZ/V2H(P) SoC.
 
-I'll queue this up for v6.12.
+v4->v5
+- Included RB tag form Geert for patchs 1/3 and 3/3
+- Packed resets array
+- Updated rzv2h_cpg_reset_xlate() to get index
+- Dropped description for info member from struct rzv2h_cpg_priv
 
-Note: I'll do a minor subject fix to add am335x-bone to be more
-specific.
+v3 -> v4
+- Included RB tag form Krzysztof for patch 1/3
+- Changed reset and clock values to hex
+- Renamed __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__ to
+  __DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__
+- Dropped masking of parent clks with 0xffff
+- Dropped storing mod clk id and now calculating it
+  based on index and bit.
+- Made parent to u16 in struct rzv2h_mod_clk
+- Made a copy of resets array in struct rzv2h_cpg_priv
+- Added a comment for core clocks in patch 3/3
+- Made r9a09g057_mod_clks as __initconst
+- Made r9a09g057_resets as __initconst
+- Made r9a09g057_cpg_info as __initconst
 
-Thanks,
+v2 -> v3
+- Dropped '|' for CPG description
+- Dropped description for '#power-domain-cells' property
+- Added 3 clock inputs for CPG
+- Dropped label in example node
+- Used 4 spaces for example node
+- Renamed r9a09g057-cpg.h -> renesas,r9a09g057-cpg.h
+- Merged adding renesas,r9a09g057-cpg.h in DT binding patch
+- Updated commit message for patch 1/3
+- Dropped num_hw_resets from struct rzv2h_cpg_priv
+- Dropped range_check for module clocks
+- Made mon_index to s8 instead of u8 in struct rzv2h_mod_clk
+- Added support for critical module clocks with DEF_MOD_CRITICAL
+- Added check for mon_index in rzv2h_mod_clock_endisable and
+  rzv2h_mod_clock_is_enabled()
+- Added CLK_PLLDTY
+- Added core clocks sys_0_pclk and iotop_0_shclk
+- Dropped r9a09g057_crit_mod_clks
 
-Kevin
+v1 -> v2
+- Updated commit message
+- Updated description for binding as suggested by Geert
+- Updated descriptions for clocks and resets property
+- Renamed extal->qextal
+- Updated '#power-domain-cells' value
+- Dropped the module clocks and just added the core clocks
+- Introduced family specific config option
+- Now using register indexes for CLKON/CLKMON/RST/RSTMON
+- Introduced PLL_CONF macro
+- Dropped function pointer to get PLL_CLK1/2 offsets
+- Added range check for core clks
+- Dropped NULLified clocks check
+- Dropped pll_clk1/clk2_offset
+- Made r9a09g057_mod_clks/r9a09g057_resets as static const
+
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240524082800.333991-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: clock: renesas: Document RZ/V2H(P) SoC CPG
+  clk: renesas: Add family-specific clock driver for RZ/V2H(P)
+  clk: renesas: Add RZ/V2H(P) CPG driver
+
+ .../bindings/clock/renesas,rzv2h-cpg.yaml     |  80 ++
+ drivers/clk/renesas/Kconfig                   |   9 +
+ drivers/clk/renesas/Makefile                  |   2 +
+ drivers/clk/renesas/r9a09g057-cpg.c           |  80 ++
+ drivers/clk/renesas/rzv2h-cpg.c               | 689 ++++++++++++++++++
+ drivers/clk/renesas/rzv2h-cpg.h               | 151 ++++
+ .../dt-bindings/clock/renesas,r9a09g057-cpg.h |  21 +
+ 7 files changed, 1032 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+ create mode 100644 drivers/clk/renesas/r9a09g057-cpg.c
+ create mode 100644 drivers/clk/renesas/rzv2h-cpg.c
+ create mode 100644 drivers/clk/renesas/rzv2h-cpg.h
+ create mode 100644 include/dt-bindings/clock/renesas,r9a09g057-cpg.h
+
+-- 
+2.34.1
 
 
