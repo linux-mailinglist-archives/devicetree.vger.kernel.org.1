@@ -1,104 +1,107 @@
-Return-Path: <devicetree+bounces-89007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5351393F9C0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:41:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3AE93FA25
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:59:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02BE31F2330A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:41:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C86BD282E9A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82628185E7F;
-	Mon, 29 Jul 2024 15:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF8015AD86;
+	Mon, 29 Jul 2024 15:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ucr7hsEP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n6SPavpH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B25418308E;
-	Mon, 29 Jul 2024 15:40:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BC81E4A2;
+	Mon, 29 Jul 2024 15:58:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722267613; cv=none; b=CnQTNH6rXGc5UnE+5s160Jw9+Bzx1QFTFVxnhDhG8DEaz9fKBtf+EU4Cjch7pyrIHUth4AKQ1a6dvvujy2XlBrV2q9/z0PF2yzUZ6q+jg6aE33qUy/p4tNjy0u52yWAZW1R9oat8EDEbNOcmGlZaDKeLoZXtDn4kms4JzZ2B4w8=
+	t=1722268737; cv=none; b=W1uNxt5PSsmpKpWCwvV8/wfxhG0NxEKjCbVqarGzV20XCGUEzXnBLKio44sb1hp8rgF8rL1WQHf0A3WXlICoY1r1vTk3pOiKCV1djzUasH14tPPLtvxS8M3lz4VoE15ras5XybgwVWrvBs6WWa/ww2aRzqrggjHzgTZ2Ra8v0gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722267613; c=relaxed/simple;
-	bh=uylFLwNOYdKjfLJ3Fcuo4VxUycGhddVAuVf2ch5UZX0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LBjNo4SyTACDsXpt/qDhvfKtg2m/9rC9Gj+drV7dBBPIXUfTJjGTYYb/2E47ypH0NwrCV1CHwoD3lTLWulrvfdJnfd/bSNTjIKDWPdgZ4oma72b7whm/zAf3PbFLZAgColNMlpPmYk0r32yzx8W+f6tbIvY3nTYCivjUorwNQ+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ucr7hsEP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F44DC4AF0A;
-	Mon, 29 Jul 2024 15:40:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722267613;
-	bh=uylFLwNOYdKjfLJ3Fcuo4VxUycGhddVAuVf2ch5UZX0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Ucr7hsEPKCdBT5GMa8bR6DoDPo0ZlbNg/B1UXakUVJm5ulmVOHBnqYA/u8O702hcu
-	 w9smP9bznSPE6OKHPpSV1P4X3GfTa53pA4suOKgpstIF2+M1leEwTaABKDiFaC3pT3
-	 etdEkkDTb9kMSVB1fjd+ECacCuxq4EIs1WZdiNGZHblrjimntG0H1TeNpXJ6cfW9+5
-	 pQwEnYbBAVAiFfCbDa1S2Nlqh9AUK0jxf7v6U8Qhu2V5ZbBQlB1/iuYNJgYQIq0RrE
-	 30PEypX5QLJ1n+WR90g2Yy0uNraJQesl1kXtADmR5V2lE8uCHVd/zaP87sS7u6pWJ4
-	 XDugO+1O2fZZQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: Leilk Liu <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, John Crispin <john@phrozen.org>, 
- Daniel Golle <daniel@makrotopia.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-In-Reply-To: <20240727114828.29558-1-zajec5@gmail.com>
-References: <20240727114828.29558-1-zajec5@gmail.com>
-Subject: Re: (subset) [PATCH 1/2] dt-bindings: spi: mediatek,spi-mt65xx:
- add compatible for MT7981
-Message-Id: <172226761022.71144.306390741868262406.b4-ty@kernel.org>
-Date: Mon, 29 Jul 2024 16:40:10 +0100
+	s=arc-20240116; t=1722268737; c=relaxed/simple;
+	bh=Qd0V6uEEt+MlDRsvthQTsw9ALbu+/sxmMXHbNxvXJ/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BTOC7q3D7reu8t/GjdhWffCah0/8GpXcx52EwpaEYb3KPFLI0VVhBWRUA7MucznA3/q1xJNaWF8j5koCW560sP5mnJ6Q1Iv95xgmqngb+SSe00TPYQ/UUG2XMR8GUww4gULMK02AMdR25F6K471gJoAWXGTVMaUQd9D7XnHz6Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n6SPavpH; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722268736; x=1753804736;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Qd0V6uEEt+MlDRsvthQTsw9ALbu+/sxmMXHbNxvXJ/w=;
+  b=n6SPavpH/oy6h/1CPH1F/6rtAOWgViH2UvEpVnSLw7rXkfOLowkWLDon
+   WqRmPHYEj0+33r+1XE36QKdp7qjrt/dW5ISfKw2WRzGjpApq4GncPu06N
+   7wQDgRiktmZcfYwVifl1UjC0nKtH3LdEV7iPvyd75LzG+4QLn57y/ks6I
+   vkt770DUtjaRhI4qcA21wOJA5UDnxDQdGBPGR9k4MX4Fv3mZI3IVFlpxX
+   dO9gg7RKAa3jKYXXJs0kPY8Q689o+PBOcbFyHrZTNPWZ6AL83WSg3Re8B
+   rHSwh4jm6pXqv6qO3K/Zl252xbVjsqwPrH7zzll30tiQef1nIc+pgYtV5
+   g==;
+X-CSE-ConnectionGUID: DUBwiyIjR9ynltNTUv0+rA==
+X-CSE-MsgGUID: qvkf3rWIQ064eP5M0QdDXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="37540542"
+X-IronPort-AV: E=Sophos;i="6.09,246,1716274800"; 
+   d="scan'208";a="37540542"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jul 2024 08:58:54 -0700
+X-CSE-ConnectionGUID: pSsxZAZEThecrcnpbL95hw==
+X-CSE-MsgGUID: IZWRdteTTdeHpd+qkQmgeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,246,1716274800"; 
+   d="scan'208";a="59109505"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orviesa004.jf.intel.com with ESMTP; 29 Jul 2024 08:58:51 -0700
+Date: Mon, 29 Jul 2024 23:56:58 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Nava kishore Manne <nava.kishore.manne@amd.com>
+Cc: git@amd.com, mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+	trix@redhat.com, robh@kernel.org, saravanak@google.com,
+	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC 1/1] of-fpga-region: Add sysfs interface support for FPGA
+ configuration
+Message-ID: <Zqe7yoAMIJ+Qv8YC@yilunxu-OptiPlex-7050>
+References: <20240726063819.2274324-1-nava.kishore.manne@amd.com>
+ <20240726063819.2274324-2-nava.kishore.manne@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-37811
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240726063819.2274324-2-nava.kishore.manne@amd.com>
 
-On Sat, 27 Jul 2024 13:48:27 +0200, Rafał Miłecki wrote:
-> MT7981 has SPI controllers based on IPM design
+On Fri, Jul 26, 2024 at 12:08:19PM +0530, Nava kishore Manne wrote:
+> Adds sysfs interface as part of the of-fpga-region. This newly added
+> sysfs interface uses Device Tree Overlay (DTO) files to configure/reprogram
+> an FPGA while an operating system is running.This solution will not change
+> the existing sequence When a DT overlay that targets an FPGA Region is
+> applied.
+> 	- Disable appropriate FPGA bridges.
+> 	- Program the FPGA using the FPGA manager.
+> 	- Enable the FPGA bridges.
+> 	- The Device Tree overlay is accepted into the live tree.
+> 	- Child devices are populated.
 > 
+> When the overlay is removed, the child nodes will be removed, and the FPGA
+> Region will disable the bridges.
 > 
+> Usage:
+> To configure/reprogram an FPGA region:
+> echo "fpga.dtbo" > /sys/class/fpga_region/<region>/device/load
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/2] dt-bindings: spi: mediatek,spi-mt65xx: add compatible for MT7981
-      commit: 158678bea637020dd6fc521536c5b07701447777
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+IIRC, last time we are considering some generic interface for both OF &
+non-OF FPGA region, but this is still OF specific.
 
 Thanks,
-Mark
-
+Yilun
 
