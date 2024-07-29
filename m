@@ -1,209 +1,219 @@
-Return-Path: <devicetree+bounces-89024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57FF193FC5E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:22:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3DB93FC9B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:47:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D37C11F21D1A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:22:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 380DD280052
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA3015B542;
-	Mon, 29 Jul 2024 17:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CD315ECF7;
+	Mon, 29 Jul 2024 17:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ns+vfzAQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IqbhU3Fl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F36565028C;
-	Mon, 29 Jul 2024 17:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2442B9D2;
+	Mon, 29 Jul 2024 17:47:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722273686; cv=none; b=MCo64GAzmR9/JdiBbbPKLHIDuRGG7j7Y7OZMY2KS/zMXjHOB9VBQMRpyAOqki2SIPyjXDxPq0cQ3QWQNslmInZVifihp3DHuCjgFlabqZ94fuq1+a0XGxYFgWg3CyN0DOnJGjW085fnTemTmjXsWLQfc0RKDsPQq8fOpxKMGUQo=
+	t=1722275270; cv=none; b=Ta+KN703QsTn+wFChOytTWAmQ7MbN6E3Od4DiGvjCGWikPDLfZ+sVDMgMTHtkRr6N9F+nS1wNZeZuuWDvnFwoxFhanh2ct+/xyK23e3g7eLo5xO2tnZhf9VL8fkz6rV41HOqRV1htarurBC828IYegbkVYY30amT2zt9hSEMnTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722273686; c=relaxed/simple;
-	bh=4fQr//Ka7sTy/VMt7ggKFrz3+ahovq34k1sJWhkzznQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=r6BvVQa2tE0llxqL6VD5o9JsTRuBEsd7EulqbdD8RuMm+Golbi7MMdzQfQcUwHnWTVIZqzzVsJUfQX1hzuUIKoechG5c3Lq+YRTxhxQxPmA7NYXU5O7NGt/NNBxAOqz2bK2wdWmvBF2EQ8knx1isu3jyn0v12SpIIc9NjeaZ1Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ns+vfzAQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TAG9PJ030809;
-	Mon, 29 Jul 2024 17:19:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9cUy14n2UN04pp4Q33jv4wdH2wJt0tYU3Imvp2lZlLM=; b=Ns+vfzAQCwgtKVra
-	8A/9VBAiSvWr5yKACWl3Rmv3WHBLyn7ZW9CHE3dxZf5d1oTl2vT2oSu/GnIlAL7H
-	8sH5uRX6BE2vO9/f/6q8ygKf1sGCgGHtAN09N6WVCCFRgB0gWulr9M6W4+IDZ/Nm
-	NI416IfE7tRItLXkkmUqldb1cZIbg0Oerej+eVHT6vrrBSdiWnnYyG/4/SmlrE+6
-	TDYs1P7wwh9pTEOF/+C3+jlQq0NAY7054P/Pp8YnRndivu5ldJd6b3iuseGJ6RhU
-	BYYSOFgPWyOliQGnB+uM3rwzCtoGV6zcGdIay0SZqJ0m912WPsapab2K5zx95llD
-	1WJzYw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mrfxn15u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 17:19:47 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46THJkIj017051
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jul 2024 17:19:46 GMT
-Received: from [10.110.106.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 29 Jul
- 2024 10:19:45 -0700
-Message-ID: <925d1eca-975f-4eec-bdf8-ca07a892361a@quicinc.com>
-Date: Mon, 29 Jul 2024 10:19:45 -0700
+	s=arc-20240116; t=1722275270; c=relaxed/simple;
+	bh=ZBeCVq76s1YcWohvGVE5wNLt+NvZAu6jcfawXYj2BqM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=meUyNCgcPHwtlypJd0GotFnZqXtwKOuWLXTrgO0LbtbF49OatwO2LWAEzjzQiE43t+9pOb88anHSfj4EB0PLoK/+5dx8li8z99rA3ROFvpVgY69/H6UrcJ92CkTX0Xkfdb/MhBzyRtiLU/nIQPVzgFGjgc95+iRipmSEPKVi57k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IqbhU3Fl; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-36858357bb7so1579722f8f.2;
+        Mon, 29 Jul 2024 10:47:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722275267; x=1722880067; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pnyl1Fm6dnpc6MtOd4c54WB7CEXHNdORrEgIOaBPmMw=;
+        b=IqbhU3FlB4HSCGZtB5zXTbGnj47gG7l79dUjsKx7G/g3aHRMDzwJZdRAYta3coLSoW
+         2eTferrNB54nomYtS3gmZIIMNkHooeODwzPXJB/VOTk458l5MQvwOPIshrPOyTCTL3Ww
+         hkXS4zGMdEJ+EGWOadJi9xtx/6V70ZEKIjyzRnRalvaRh07PI2qXkcEvofR+tcraAV/J
+         01doOVOchQgOz6yxKg+IW62UaUsucYUzzwRhRnB6u66UrAEeeMlwzms6ERMWXWiKEDQZ
+         mNFXl5DjoKqcCs8PmsbrDYLGaPBNIZPCSHA6hu1rRWoV7EBlVLoXKiqPWNsOQVM9XW77
+         75Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722275267; x=1722880067;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pnyl1Fm6dnpc6MtOd4c54WB7CEXHNdORrEgIOaBPmMw=;
+        b=b0EUVOn9qEEhsyIDQaZNXuO64hAE3H06EG0I2vX9XBrQGNyCLbANdNDiQWV/WEWXCd
+         7gv8CzJBeN38lUCPj0nvYpdaS3l58zhW8m4HczG7eh4ONyM21qf2xGIS+1HQvAZBWRIR
+         YIppc+pModbLHUnkUjrr3hTyYPyBal/EzHdNA3xgJsoA9/THwK67y9utgHqCfiBzn2dD
+         PfIX5RJb8SetMVi4Ce8rzVkaxk85QG3E6ZghRC7+myq8FhsBamK9Oh6dCyeIG/3aTEAT
+         zBrk5fC2mnDMJ/V4WLwFerSrEgrBmchHq/TSBHNH1Us8R3nPN8ls9rUWc5eyHteqgY+2
+         cAOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTCf8+1sdlT5hPiiEJ1Qpz88Luek0VGvOsKh0V7X3MbS0Bb9oGESrAseEGAndpSVxhW197PvkqWSwKTyH719CKyVOsdHp10XaDwBjNz+rA9HLoTIIuTFx1gyrX5e66zHhgq5tjId1Py+Vu6K0YLaPpbN2m1vFr0JLEia1j0/XCv3m4BBwNTdqaa4Mvd2pk3OngJ/mxHM78DcMCxBjT/etL7yUUUfI=
+X-Gm-Message-State: AOJu0YyYdJK6vf1q5+FKzvMFXr/Gytr6ZFyNBN3/IRCsqJuQwTf7BuUX
+	uTXVN3V9E0qOxPLiVqwo+NODNtNgxaYPPDYvBTJd8nUiwPHgMzb1WY2Kbw==
+X-Google-Smtp-Source: AGHT+IHLvm7BPEtc9W0QLw+jMFn9fEXLREx620qqvb1/GY1x18fNukgK4rt67upiSgT2nwwCGAPipg==
+X-Received: by 2002:adf:f5cd:0:b0:367:8a87:ada2 with SMTP id ffacd0b85a97d-36b5cefd2fdmr5004948f8f.26.1722275266424;
+        Mon, 29 Jul 2024 10:47:46 -0700 (PDT)
+Received: from tablet.my.domain ([37.30.0.99])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36b367fc8a7sm12716550f8f.59.2024.07.29.10.47.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 10:47:45 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v3 00/10] power: supply: max77693: Toggle charging/OTG
+ based on extcon status
+Date: Mon, 29 Jul 2024 19:47:34 +0200
+Message-Id: <20240729-max77693-charger-extcon-v3-0-02315a6869d4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 0/7] Add power domain and MSI functionality with PCIe
- host generic ECAM driver
-To: <will@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-        <manivannan.sadhasivam@linaro.org>, <cassel@kernel.org>,
-        <yoshihiro.shimoda.uh@renesas.com>, <s-vadapalli@ti.com>,
-        <u.kleine-koenig@pengutronix.de>, <dlemoal@kernel.org>,
-        <amishin@t-argos.ru>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <Frank.Li@nxp.com>,
-        <ilpo.jarvinen@linux.intel.com>, <vidyas@nvidia.com>,
-        <marek.vasut+renesas@gmail.com>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC: <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
-        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
-        <quic_nitegupt@quicinc.com>
-References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
-Content-Language: en-US
-From: Mayank Rana <quic_mrana@quicinc.com>
-In-Reply-To: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: j3DfV2Yq7u24d5QjiHxI1vJcR5BX8XOb
-X-Proofpoint-ORIG-GUID: j3DfV2Yq7u24d5QjiHxI1vJcR5BX8XOb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-29_15,2024-07-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- lowpriorityscore=0 priorityscore=1501 mlxlogscore=965 malwarescore=0
- bulkscore=0 phishscore=0 clxscore=1015 mlxscore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407290116
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALbVp2YC/3XOyw6CMBAF0F8hXVvTh9jiyv8wLvqYQhOhpCUNh
+ vDvFmKiG5Z3JvfMLChB9JDQrVpQhOyTD0MJ/FQh06mhBextyYgRdiE1q3GvZiGuDcdlHVuIGOb
+ JhAE3oLXQykpuAJX2GMH5eZcfz5I7n6YQ3/uhTLfp1+Tk0MwUE2wNUw3U2jpO7m2v/OtsQo82M
+ 7OfI+jxb5kVh0gundOaSsP/nXVdP5ss+r0GAQAA
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>, 
+ Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>, 
+ Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>, 
+ Artur Weber <aweber.kernel@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4799;
+ i=aweber.kernel@gmail.com; h=from:subject:message-id;
+ bh=ZBeCVq76s1YcWohvGVE5wNLt+NvZAu6jcfawXYj2BqM=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBmp9W98Mdnl67vI2rkeJCCu+vhxYNNREfuNvBtU
+ n3iwxgaY3mJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZqfVvQAKCRCzu/ihE6BR
+ aJJ7EACYEfWhfKcmtoLfb+s8cjo4YaBDhaY44DbG+hWpObrevEb3Cpe/nVxC4tyH7FWqVWjWk5k
+ 3+CDF3t38H355pscftMTQTs23cosdgkh2ZfJsb81CitzFJKCehwXWiVbY2fbP+w5dqmn8KsI5wi
+ eKSuI5VAT8RQNkGyIC+jawaqIOWUqtTZKHXwT8xWudcJHmZkvp+NYZoyfMvWAfiN/Po+Vy5wjmZ
+ kAOnWBvg2Y+qhcIfTlEis97pM0XcY74ADiN6iuoulT5J76WGt3qDXh44WXNNYH7KveVixrhb8Nd
+ xGYkDx7fAMoGA8OxroyZyhs9D8cp3p+wIhEyqTKKAzdbtRD7nD1Obr9mJT5mRgFZlTIInIChzw8
+ qtvaxMPvJxYs9w2ncs3miYwde4cVO8AdpXn4lhlehk0w+Jvbt+R3lphytX9eWyk/j4siTeKCcuh
+ 0QdyjozRefV0okQk5hHr7ZlHa4KoNatXq9Xz/iUt6wRhRZWhrzsGHsLabTwfbGbQfuyEdoJcU28
+ v8dFlpAjksS1PRcPuw4V0TSbvBD5WfEzpc3PR2W/Ir5VzzLHam4eFoC7V55hRfRcTcN8FvQB4dy
+ TveJfBzV3bPIvEjwMuva42sQi79JkC57dgtWiATjUOapf7jus1P9NlSv/lU9EpL1bDA2Ja/kjcu
+ b/FUadLBbleBGoQ==
+X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
+ fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-Hi Bjorn / Mani
+This patchset does the following:
 
-Gentle ping for your review/feedback on this series.
-Thank you.
+- Add CURRENT_MAX and INPUT_CURRENT_MAX power supply properties to
+  expose the "fast charge current" (maximum current from charger to
+  battery) and "CHGIN input current limit" (maximum current from
+  external supply to charger).
 
-Regards,
-Mayank
+- Add functions for toggling charging and OTG modes.
 
-On 7/15/2024 11:13 AM, Mayank Rana wrote:
-> Based on previously received feedback, this patch series adds functionalities
-> with existing PCIe host generic ECAM driver (pci-host-generic.c) to get PCIe
-> host root complex functionality on Qualcomm SA8775P auto platform.
-> 
-> Previously sent RFC patchset to have separate Qualcomm PCIe ECAM platform driver:
-> https://lore.kernel.org/all/d10199df-5fb3-407b-b404-a0a4d067341f@quicinc.com/T/
-> 
-> 1. Interface to allow requesting firmware to manage system resources and performing
-> PCIe Link up (devicetree binding in terms of power domain and runtime PM APIs is used in driver)
-> 2. Performing D3 cold with system suspend and D0 with system resume (usage of GenPD
-> framework based power domain controls these operations)
-> 3. SA8775P is using Synopsys Designware PCIe controller which supports MSI controller.
-> This MSI functionality is used with PCIe host generic driver after splitting existing MSI
-> functionality from pcie-designware-host.c file into pcie-designware-msi.c file.
-> 
-> Below architecture is used on Qualcomm SA8775P auto platform to get ECAM compliant PCIe
-> controller based functionality. Here firmware VM based PCIe driver takes care of resource
-> management and performing PCIe link related handling (D0 and D3cold). Linux VM based PCIe
-> host generic driver uses power domain to request firmware VM to perform these operations
-> using SCMI interface.
-> ----------------
-> 
-> 
->                                     ┌────────────────────────┐
->                                     │                        │
->    ┌──────────────────────┐         │     SHARED MEMORY      │            ┌──────────────────────────┐
->    │     Firmware VM      │         │                        │            │         Linux VM         │
->    │ ┌─────────┐          │         │                        │            │    ┌────────────────┐    │
->    │ │ Drivers │ ┌──────┐ │         │                        │            │    │   PCIE host    │    │
->    │ │ PCIE PHY◄─┤      │ │         │   ┌────────────────┐   │            │    │  generic driver│    │
->    │ │         │ │ SCMI │ │         │   │                │   │            │    │                │    │
->    │ │PCIE CTL │ │      │ ├─────────┼───►    PCIE        ◄───┼─────┐      │    └──┬──────────▲──┘    │
->    │ │         ├─►Server│ │         │   │    SHMEM       │   │     │      │       │          │       │
->    │ │Clk, Vreg│ │      │ │         │   │                │   │     │      │    ┌──▼──────────┴──┐    │
->    │ │GPIO,GDSC│ └─▲──┬─┘ │         │   └────────────────┘   │     └──────┼────┤PCIE SCMI Inst  │    │
->    │ └─────────┘   │  │   │         │                        │            │    └──▲──────────┬──┘    │
->    │               │  │   │         │                        │            │       │          │       │
->    └───────────────┼──┼───┘         │                        │            └───────┼──────────┼───────┘
->                    │  │             │                        │                    │          │
->                    │  │             └────────────────────────┘                    │          │
->                    │  │                                                           │          │
->                    │  │                                                           │          │
->                    │  │                                                           │          │
->                    │  │                                                           │IRQ       │HVC
->                IRQ │  │HVC                                                        │          │
->                    │  │                                                           │          │
->                    │  │                                                           │          │
->                    │  │                                                           │          │
-> ┌─────────────────┴──▼───────────────────────────────────────────────────────────┴──────────▼──────────────┐
-> │                                                                                                          │
-> │                                                                                                          │
-> │                                      HYPERVISOR                                                          │
-> │                                                                                                          │
-> │                                                                                                          │
-> │                                                                                                          │
-> └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘
->                                                                                                              
->    ┌─────────────┐    ┌─────────────┐  ┌──────────┐   ┌───────────┐   ┌─────────────┐  ┌────────────┐
->    │             │    │             │  │          │   │           │   │  PCIE       │  │   PCIE     │
->    │   CLOCK     │    │   REGULATOR │  │   GPIO   │   │   GDSC    │   │  PHY        │  │ controller │
->    └─────────────┘    └─────────────┘  └──────────┘   └───────────┘   └─────────────┘  └────────────┘
->                                                                                                              
-> ----------
-> Changes in V2:
-> - Drop new PCIe Qcom ECAM driver, and use existing PCIe designware based MSI functionality
-> - Add power domain based functionality within existing ECAM driver
-> 
-> Tested:
-> - Validated NVME functionality with PCIe0 and PCIe1 on SA8775P-RIDE platform
-> 
-> Mayank Rana (7):
->    PCI: dwc: Move MSI related code to separate file
->    PCI: dwc: Add msi_ops to allow DBI based MSI register access
->    PCI: dwc: Add pcie-designware-msi driver kconfig option
->    dt-bindings: PCI: host-generic-pci: Add power-domains binding
->    PCI: host-generic: Add power domain based handling for PCIe controller
->    dt-bindings: PCI: host-generic-pci: Add snps,dw-pcie-ecam-msi binding
->    PCI: host-generic: Add dwc MSI based MSI functionality
-> 
->   .../devicetree/bindings/pci/host-generic-pci.yaml  |  64 +++
->   drivers/pci/controller/dwc/Kconfig                 |   8 +
->   drivers/pci/controller/dwc/Makefile                |   1 +
->   drivers/pci/controller/dwc/pci-keystone.c          |  12 +-
->   drivers/pci/controller/dwc/pcie-designware-host.c  | 438 ++-------------------
->   drivers/pci/controller/dwc/pcie-designware-msi.c   | 413 +++++++++++++++++++
->   drivers/pci/controller/dwc/pcie-designware-msi.h   |  63 +++
->   drivers/pci/controller/dwc/pcie-designware.c       |   1 +
->   drivers/pci/controller/dwc/pcie-designware.h       |  26 +-
->   drivers/pci/controller/dwc/pcie-rcar-gen4.c        |   1 +
->   drivers/pci/controller/dwc/pcie-tegra194.c         |   5 +-
->   drivers/pci/controller/pci-host-generic.c          | 127 +++++-
->   12 files changed, 723 insertions(+), 436 deletions(-)
->   create mode 100644 drivers/pci/controller/dwc/pcie-designware-msi.c
->   create mode 100644 drivers/pci/controller/dwc/pcie-designware-msi.h
-> 
+- Add an extcon-based handler that enables charging or OTG depending
+  on the cable type plugged in. The extcon device to use for cable
+  detection can be specified in the device tree, and is entirely
+  optional.
+
+The extcon listener implementation is inspired by the rt5033 charger
+driver (commit 8242336dc8a8 ("power: supply: rt5033_charger: Add cable
+detection and USB OTG supply")).
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+v3 no longer uses the CHARGER regulator to manage the power status, and
+that's for two reasons:
+
+- Regulator enable/disable behavior was interfering with how the power
+  supply driver worked (we occasionally got "unbalanced disables"
+  errors when switching charging state, despite checking for the
+  regulator status with regulator_is_enabled() - the CHARGER reg would
+  report as enabled despite the enable count being 0).
+  This broke OTG insertion if the OTG cable was plugged in first, and
+  sometimes caused warnings on unsuspend.
+
+- Changing the charging values directly in the power supply driver is
+  less opaque and lets us avoid bringing in a dependency on regulators.
+
+It also splits the current limits back into two properties:
+INPUT_CURRENT_LIMIT and CONSTANT_CHARGE_CURRENT_MAX. Again, there are
+two reasons for this split:
+
+- They are two separate current controls, one for USB->charger and one
+  for charger->battery, and they have different limits (0-2.1A for CC
+  vs 60mA-2.58A for input). Given that the power supply core has the
+  properties for both values separately, it's more logical to present
+  them as such.
+
+- It's safer to keep these separate; CONSTANT_CHARGE_CURRENT_MAX is
+  pretty explicitly only set *once* - at probe time with a safe value
+  specified in the DT. This way, INPUT_CURRENT_LIMIT is safer to modify
+  since in the event of an invalid value the CC current will hold back
+  the extra current thus preventing damage to the battery.
+
+The latter is relevant as I'm working on a follow-up patchset that
+allows for controlling the charging parameters using power supply
+properties/sysfs properties rather than the CHARGER regulator.
+
+Note that the CHARGER regulator gets disabled automatically if it's
+not used, which will disable charging if it was auto-enabled by the
+extcon code. This can be worked around by re-attaching the cable, or
+more properly by removing the CHARGER regulator from DT for devices
+that use the extcon-based charger management, as has been done in the
+Galaxy Tab 3 8.0 DTSI.
+
+See v1 for old description:
+
+https://lore.kernel.org/r/20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com
+---
+Changes in v3:
+- Drop uses of CHARGER regulator, manage registers directly in power
+  supply driver instead
+- Link to v2: https://lore.kernel.org/r/20240715-max77693-charger-extcon-v2-0-0838ffbb18c3@gmail.com
+
+Changes in v2:
+- Changed to use monitored-battery for charge current value
+- Both current limit variables are now set by the CHARGER regulator
+- Link to v1: https://lore.kernel.org/r/20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com
+
+---
+Artur Weber (10):
+      dt-bindings: power: supply: max77693: Add monitored-battery property
+      dt-bindings: power: supply: max77693: Add maxim,usb-connector property
+      power: supply: max77693: Expose input current limit and CC current properties
+      power: supply: max77693: Set charge current limits during init
+      power: supply: max77693: Add USB extcon detection for enabling charging
+      power: supply: max77693: Add support for detecting and enabling OTG
+      power: supply: max77693: Set up charge/input current according to cable type
+      ARM: dts: samsung: exynos4212-tab3: Add battery node with charge current value
+      ARM: dts: samsung: exynos4212-tab3: Add USB connector node
+      ARM: dts: exynos4212-tab3: Drop CHARGER regulator
+
+ .../bindings/power/supply/maxim,max77693.yaml      |  15 +
+ arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi     |  22 +-
+ drivers/power/supply/Kconfig                       |   1 +
+ drivers/power/supply/max77693_charger.c            | 302 ++++++++++++++++++++-
+ include/linux/mfd/max77693-private.h               |  12 +
+ 5 files changed, 337 insertions(+), 15 deletions(-)
+---
+base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
+change-id: 20240525-max77693-charger-extcon-9ebb7bad83ce
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
+
 
