@@ -1,248 +1,177 @@
-Return-Path: <devicetree+bounces-88728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1121193EDB2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:56:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7534093EDBF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:00:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90A1E1F22102
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:56:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F3792822B2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF56584DF1;
-	Mon, 29 Jul 2024 06:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9EC6F2F0;
+	Mon, 29 Jul 2024 07:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rrZDaPwk"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="NkDXW+29"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2031.outbound.protection.outlook.com [40.92.21.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D3C2119;
-	Mon, 29 Jul 2024 06:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722236202; cv=none; b=pVWtyShhlxzIB6naN5ntIkoS9Q7GRgSVr6U9A+04EqUDfDX18KxdznVS+YUxovcNMu/AMjPF3ybP9eiY4ozYLSds65IkURHbY+TarFS2yqqLtEr9tusczis9P6jsPPwggwT0jF9K3dNb67fLx2vrnK/YVZl9Gg3cYbSZv2Dhg1o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722236202; c=relaxed/simple;
-	bh=4Bj6pOgZySaik8CfN968/6tFIMbD5TTGKEjxKtr17M4=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LDjPH5kHbUG4GoChERVWjtuWfomsqUb36GEm8KUnLf5AJaDghxPrx9h8Zht8WTM8zzlsPLaszQ9elzxWkCF+LQ0Yxa1o5olFNotPRWOEP11u29qAeuZBIz7tLJyZWZf8tUquogQU1CcB2KRhVOKX2fGoG/YXqe7bEDg3eOWNdp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rrZDaPwk; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1722236200; x=1753772200;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=4Bj6pOgZySaik8CfN968/6tFIMbD5TTGKEjxKtr17M4=;
-  b=rrZDaPwk4m4/PNDrazQcDldXcvwCWlOBdaFwmeyiASVAatF3x+O72yO7
-   nhZYFL9vBz9276Gh3lNSNN00bf1eXxwv7hti7VEXUZQ2KFAPpJn36xNOY
-   oEl6kXRGbSA/fIV6FmNRBZVX48DUrSNF9wcbCmb/K63okvzJEz235XuVt
-   LAqTY1S6/q4EJjcMhEGXCE68WdOx/mC6SrVXQnG2B42/DS6/PsClVoawD
-   nI/Ahe1GNn2DBiwGaZOcmnxD+TXUmvvZBXWej1KUShT6lEWeb9aHjA8n2
-   GoxJOG2DB1rNOpBoWn6pnWgosrO8FTRcaUcvw1x4J+32A416BnH5UIH3E
-   A==;
-X-CSE-ConnectionGUID: kDWal4QQS/6xpsg/XCP1jw==
-X-CSE-MsgGUID: Q8MkapfqRxWh2kKHl5ZfZA==
-X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; 
-   d="scan'208";a="30453453"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Jul 2024 23:56:32 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 28 Jul 2024 23:56:18 -0700
-Received: from che-lt-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Sun, 28 Jul 2024 23:56:06 -0700
-From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<tglx@linutronix.de>, <lee@kernel.org>, <sre@kernel.org>,
-	<p.zabel@pengutronix.de>, <richard.genoud@bootlin.com>,
-	<radu_nicolae.pirea@upb.ro>, <gregkh@linuxfoundation.org>,
-	<jirislaby@kernel.org>, <linux@armlinux.org.uk>, <matthias.bgg@gmail.com>,
-	<angelogioacchino.delregno@collabora.com>, <ychuang3@nuvoton.com>,
-	<schung@nuvoton.com>, <mihai.sain@microchip.com>,
-	<varshini.rajendran@microchip.com>, <andrei.simion@microchip.com>,
-	<arnd@arndb.de>, <Jason@zx2c4.com>, <dharma.b@microchip.com>,
-	<rdunlap@infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-	<linux-spi@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<linux-mediatek@lists.infradead.org>
-Subject: [PATCH v6 00/27] Add support for sam9x7 SoC family
-Date: Mon, 29 Jul 2024 12:26:03 +0530
-Message-ID: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46542119;
+	Mon, 29 Jul 2024 07:00:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.21.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722236440; cv=fail; b=nzjBr+XRRsf3eYam1Njs6jkZp5C5AMzou6UdXsJkExQpToJwmQ5aUS0i+la6sb5P6qE28qRKJ/exaXPjKmrdPUaCeaanSn8nFSZ2lwd9WCTa6k6ZPo5Dt8UMX3EdCa/QZ+0iCvE8aKM5CSeRCJaCkyNH4DVWErMkI20TbVAfqa0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722236440; c=relaxed/simple;
+	bh=8WBMYnNO+fo9kNLP5pzJz4+fHcmxIijdbAllD2+6bH0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=aAMaQIXZUpSLX7+lPudrMcduv4oXwpLpC8JTC6TEafcFmCMeq2GuytX3f2mQiNb/YvdU7mCsOWNhXjaG/HBt4FexU78OIzB7cMjl0gx8nzEnLVP03i2E5XRrSom1xSuZ/ISjhdlIdwpJUbKYXdHZdB5kGgM7SYYJNBpomNQyKV4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=NkDXW+29; arc=fail smtp.client-ip=40.92.21.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wQX6AsudfsOHT4yh4SVyjnpr29TlTO0giQgdFRFw/OU73QEnKMhW98h5+OciByNVfdCPqr3lfBdjf/cslEBEMYdR+YuIqROUgS1fm8EYtCC/R5RVlPaFk/vjnmkkJ2YBiTFipPwjoNzvo6ZZBRWArLpbTMDiYpSSsW8h5EFxP5DBJ+kDWYxbcYPg5P4wCZJWsVRLUJ7JX+Bbu7alHE6MgAo4jKSCEZqyKla5EyEcMJAoCqu+FiHq5LQIgTsIuv2Bwph5WHioQ2cFFzcxGg1cdWBmyiWHNBFXKL6VaY1fD01vVNm2xYNjPD277ow6yKZx167MLUlB30QCWDOR+RLR5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fN+1yCZ+QNH+gRv4l7bg8Tn2fvkOGB55tsFCOU9vuX4=;
+ b=IV7I3202g+vm35xJ4sy95ZV9+cq4bCg/QpvqVqgAe8tKRb291t7HUnUFckRTp0D5KfA0tklI6TYszEWrg/k5Bomy0RAlOLEwynh/1hU8Th0fXuJbb2w0F7dHBjyZZ10NqpO/BuyRqUEEJrv4p1Vg4vzqf54Hb5IEMbEJtw/BNoeOrnjk1GlS97UIw0JidyNWg6RzeKyF0m74VSpDzwbw1ZzxVwsZ9v3ppUW+ZL/vrzg9wHIuP9E/aqj5ZyPujaW+2Ck864CNH/smJ/3MAb+gbA5HgdiiyYbJpI/BGGZ1ZVVRk8+1jpjfME8081VCeYp4ueL4Zy/F2coVYwqjiJPzRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fN+1yCZ+QNH+gRv4l7bg8Tn2fvkOGB55tsFCOU9vuX4=;
+ b=NkDXW+293Nepf/E/KGLY+UVn0pfhQaqjVZxo0p3E945zIeDX9YUz65CFYwARC7p39tUiJeyF9noS2I9bEPZDUk1s2JfwtQWImSDpUmkIvPO8AzYbgDJ58i30S86X8HW7e/DzBOgBKGh4nVGbTkYNUmOtAx9IM+XpJfdJrQ0km3QRYRBlOloSmSKzfKq2FNqXcMIEVtzw3jMAd8Apvy064F5q8jbLD5HDYzRPXe5zJJEYCPucQeFqiuO+YsmaalSdRqPUF5qDLw+wzTmR34mwxndrVr14jYOQ3dLBgMnvoeT0tgsr+nQxstpPstqzNF9xv8ILbwVzXwGE4DClLMm4tQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SA1PR20MB6122.namprd20.prod.outlook.com (2603:10b6:806:33c::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.27; Mon, 29 Jul
+ 2024 07:00:34 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
+ 07:00:34 +0000
+Date: Mon, 29 Jul 2024 15:00:08 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, dmaengine@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Liu Gui <kenneth.liu@sophgo.com>, linux-riscv@lists.infradead.org, 
+	Chen Wang <unicorn_wang@outlook.com>, Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v8 RESEND 1/3] dt-bindings: dmaengine: Add dma
+ multiplexer for CV18XX/SG200X series SoC
+Message-ID:
+ <IA1PR20MB4953E3AEACAC85765AE9442BBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB49535EC188F8EE3F8FD0B68DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953865775FA926B2BA4580CBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <172223050278.2763977.11180028101195359000.robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <172223050278.2763977.11180028101195359000.robh@kernel.org>
+X-TMN: [m2Fi3HpymJN3mW/ZibNT64M3kqP4n+K46CfWUfFwl9s=]
+X-ClientProxiedBy: OSBPR01CA0102.jpnprd01.prod.outlook.com
+ (2603:1096:604:71::18) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <i7vwif2wxsntz4bas5tef34atyucqu4fajbqksylndi7ydyomc@satsfrptm6rm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SA1PR20MB6122:EE_
+X-MS-Office365-Filtering-Correlation-Id: eac6e5e1-646d-4e2d-0b36-08dcaf9c24cc
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5072599006|19110799003|8060799006|461199028|1602099012|440099028|4302099013|3412199025|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	leVOA0GwIgR50yxD+zNw2nG5JPbVzfs50onfEVGcnmCCDWph+SwB3Y+mkUt86dbsJWF3WTG0qbphF7m2VZdS7ZoYQDUPRetpvFAPf/FxsuWgry9FUL/rNRy73IQ2OVNM/3CCctcrpa3xsZhLF+a+Zbwsw9ZH70HGyTC4Wup9y8DcVjrdu9Ivd5zp3ntmO2P8nELYWbqR7dhosP4knEXsGfiWSAynJD2wkKJ4IAbfb4lsyZYjwaDJV85rrvOnoG87+dqeYepxqEEnuydKQtkTVr6/wfe+hCqnATLUxDn8i9Pj/N3WryJ08r7xR2p3GBPWABbwOxTxKRjhbNtf+XAJd+LFmx0Xgwy0yQ8jZNJPmsCzU2ifnDjFcHiFUsGe/TVGt95kNNU5RxeDH8OHYCmZT/iyfDX5U6Kb6nTkoSlJDJnabtJQeKRIp3oT78WT/fG2gfN9AIg2IN0ca6i9tZn49zlVDfjy0T+ePtaIiuDa3QLh8nVqX+hUC7UiwseKmo3R7CaPHLlrRgRIGK4jDkAFG3+/H1eXLhSVKWWoQnbZ0EHG2du8ku0cXRUfQsYVrQedeqwi/ge7Si8Jf0z76Ui2/EeNHnGWdOFhIcl3YqHnD77ObOPhETXW82PAYzHJ9nbh6kduclZCKiMk//qPotdBsOspXGa/eXxqOZlzL4x+bJ+xcgCXLa2oLpd8m6MMtwI2GQKN/qFndISLvEbrU8CjCN4aDMd9Dos8TmbQJkparZEpas7aBKzwLI7WqSMTgdgIvpXr80KQIWapKInC7kPzsoqBEJKsaEJHOy7U02tmwfH0+q6iXtELxgByKgknRpM1
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?e1EGD4uhoLGImgy/jVMYT69Gu08B+rCrbDI+JP75xN3tBs8gMn5slOWqCKjF?=
+ =?us-ascii?Q?t119nMmaj0ILmZTz4XTi+Hd4O+FLG0Z7vepXLFD2XKMbmLEaWGXiZ7SV3nQ8?=
+ =?us-ascii?Q?xQSmScH9fz5dvstBAipn0llteRsDYhn16agS+sgawdjSmekgdWDrtmif1iE3?=
+ =?us-ascii?Q?J65+ZGem5G+Uuwj4SWMeRw6DMiImCjDIHkSngh0MQ1K241on2py0h451b6LN?=
+ =?us-ascii?Q?l127P1tN1ILwCeQDsZcKMXMXqlyGuP5uRnd4S6NM+n0xKE1zpkMKeI7OPrg1?=
+ =?us-ascii?Q?9U2rGALcylonNhicNvL/UlN+5jlrsn/ERAh6bv1QHDaTy2S70Mh6QvZ3ncSG?=
+ =?us-ascii?Q?EFFMRI4AlvNWiEPfQXUiiL2v2M/4753Rkrixv+wrZsBNNhP8o69C0aHLEb62?=
+ =?us-ascii?Q?0UOr8mlv70RgJ1SVwKFMn/1BFu3ihgppSrPtKZmzao6MROyZM4djb/Fbl6PV?=
+ =?us-ascii?Q?vnKugKVstLpQKKzIwsjPlYKhxTat57R/zMSPlfRmqItgWcWq6/czPRYjPL87?=
+ =?us-ascii?Q?6Ikp3VpqFImTqKyFYUWajQnuCv6c9rezhXJ3HFb7CtGYWVI6aR2WC773kITe?=
+ =?us-ascii?Q?kPgbJnb6Sn+aGgnQJEgvyuOH5qAhvNfXK5itdboZ3tesCyu/KZTtWvIAN8iQ?=
+ =?us-ascii?Q?/oMBWamIBBT3dNdO81d01hAUyE5GWYhKpEtrDELbTKD69Ou5RGCKOz0syItX?=
+ =?us-ascii?Q?4BS0fv7tVbka4Pny6W1qIQVsSQSyICEgKlM2jUTfBxwus5F5XWTHTfdIUXyI?=
+ =?us-ascii?Q?dKEzQWrXcX2B9LDCqCBUay04jEkucmS95Xm4Akszi0Od/tmzidydaMFQ0Dns?=
+ =?us-ascii?Q?UFuDRfC059Pxb4AbN60h5W4vhZEuHITxtQBc4wsGLt/Z+KlWJO4LyurZIegt?=
+ =?us-ascii?Q?PgCTCzd53xLG1eZYErfaUR0Qa9A3/AdMf2tVy9h9jcAsFNLyA2qkfnvyDFQv?=
+ =?us-ascii?Q?nfeZjqcs9vOubWCOUSfzr4WYgBUEWlHGpKRINiw51+/gUAc0ZEnL48A5C/mz?=
+ =?us-ascii?Q?U663KUvn7pjejdQWNYLXOd8mNEE++nWYqNErjI3KLO2IknYxjGqyWKVaXBJO?=
+ =?us-ascii?Q?02WxSR4RvKrwqJmIs8W5SvsbFNVPWDwYSSvWEjMVphMuX7/I9XL2Rm2Dl4Xk?=
+ =?us-ascii?Q?Jiu1KXhbfXmC7BkFasn837Cf7SytGP56KvhY7ja58PDCTvog21GX/e2tOXli?=
+ =?us-ascii?Q?PYj2UUJxd/dcuRP38Z1I/aFhAnHh4QIS8uJNuW1E1LKTlFGQrv69S5rOuCCk?=
+ =?us-ascii?Q?RcDaFZQPpuACTi8vDt9U?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eac6e5e1-646d-4e2d-0b36-08dcaf9c24cc
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 07:00:34.9080
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR20MB6122
 
-This patch series adds support for the new SoC family - sam9x7.
- - The device tree, configs and drivers are added
- - Clock driver for sam9x7 is added
- - Support for basic peripherals is added
- - Target board SAM9X75 Curiosity is added
+On Mon, Jul 29, 2024 at 12:21:42AM GMT, Rob Herring (Arm) wrote:
+> 
+> On Mon, 29 Jul 2024 12:36:51 +0800, Inochi Amaoto wrote:
+> > The DMA IP of Sophgo CV18XX/SG200X is based on a DW AXI CORE, with
+> > an additional channel remap register located in the top system control
+> > area. The DMA channel is exclusive to each core.
+> > 
+> > In addition, the DMA multiplexer is a subdevice of system controller,
+> > so this binding only contains necessary properties for the multiplexer
+> > itself.
+> > 
+> > Add the dmamux binding for CV18XX/SG200X series SoC.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../bindings/dma/sophgo,cv1800-dmamux.yaml    | 51 +++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
+> 	from schema $id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
+> 	from schema $id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
+> 	from schema $id: http://devicetree.org/schemas/dma/dma-router.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
+> 	from schema $id: http://devicetree.org/schemas/dma/dma-router.yaml#
+> 
 
- Changes in v6:
- --------------
+Hi Rob,
 
- - Addressed all the review comments in the patches
- - Picked up all Acked-by and Reviewed-by tags
- - Reverted the IRQ patch to that of version 3 of the same series
- - All the specific changes are captured in the corresponding patches
+Could you share some suggestions? I can not reproduce this error with
+latest dtschema. I think this is more like a misreporting.
 
- Changes in v5:
- --------------
-
- - Addressed all the review comments in the patches
- - Picked up all Acked-by and Reviewed-by tags
- - Dropped applied patches from the series
- - Addressed the ABI breakage reported in the IRQ patch
- - All the specific changes are captured in the corresponding patches
-
- Changes in v4:
- --------------
-
- - Addressed all the review comments in the patches
- - Picked up all Acked-by and Reviewed-by tags
- - Dropped applied patches from the series
- - Added pwm node and related dt binding documentation
- - Added support for exporting some clocks to DT
- - Dropped USB related patches and changes. See NOTE.
- - All the specific changes are captured in the corresponding patches
-
- NOTE: Owing to the discussion here
- https://lore.kernel.org/linux-devicetree/CAL_JsqJ9PrX6fj-EbffeJce09MXs=B7t+KS_kOinxaRx38=WxA@mail.gmail.com/
- the USB related changes are dropped from this series in order to enable
- us to work on the mentioned issues before adding new compatibles as
- said. The issues/warnings will be addressed in subsequent patches.
- After which the USB related support for sam9x7 SoCs will be added. Hope
- this works out fine.
-
- Changes in v3:
- --------------
-
- - Fixed the DT documentation errors pointed out in v2.
- - Dropped Acked-by tag in tcb DT doc patch as it had to be adapted
-   according to sam9x7 correctly.
- - Picked by the previously missed tags.
- - Dropped this patch "dt-bindings: usb: generic-ehci: Document clock-names
-   property" as the warning was not found while validating DT-schema for
-   at91-sam9x75_curiosity.dtb.
- - Dropped redundant words in the commit message.
- - Fixed the CHECK_DTBS warnings validated against
-   at91-sam9x75_curiosity.dtb.
- - Renamed dt nodes according to naming convention.
- - Dropped unwanted status property in dts.
- - Removed nodes that are not in use from the board dts.
- - Removed spi DT doc patch from the series as it was already applied
-   and a fix patch was applied subsequently. Added a patch to remove the
-   compatible to adapt sam9x7.
- - Added sam9x7 compatibles in usb dt documentation.
-
-
- Changes in v2:
- --------------
-
- - Added sam9x7 specific compatibles in DT with fallbacks
- - Documented all the newly added DT compatible strings
- - Added device tree for the target board sam9x75 curiosity and
-   documented the same in the DT bindings documentation
- - Removed the dt nodes that are not supported at the moment
- - Removed the configs added by previous version that are not supported
-   at the moment
- - Fixed all the corrections in the commit message
- - Changed all the instances of copyright year to 2023
- - Added sam9x7 flag in PIT64B configuration
- - Moved macro definitions to header file
- - Added another divider in mck characteristics in the pmc driver
- - Fixed the memory leak in the pmc driver
- - Dropped patches that are no longer needed
- - Picked up Acked-by and Reviewed-by tags
-
-
-Hari Prasath (1):
-  irqchip/atmel-aic5: Add support for sam9x7 aic
-
-Varshini Rajendran (26):
-  dt-bindings: atmel-sysreg: add sam9x7
-  dt-bindings: mfd: syscon: add microchip's sam9x7 sfr
-  dt-bindings: atmel-ssc: add microchip,sam9x7-ssc
-  dt-bindings: serial: atmel,at91-usart: add compatible for sam9x7.
-  dt-bindings: microchip: atmel,at91rm9200-tcb: add sam9x7 compatible
-  ARM: at91: pm: add support for sam9x7 SoC family
-  ARM: at91: pm: add sam9x7 SoC init config
-  ARM: at91: add support in SoC driver for new sam9x7
-  dt-bindings: clocks: atmel,at91sam9x5-sckc: add sam9x7
-  dt-bindings: clocks: atmel,at91rm9200-pmc: add sam9x7 clock controller
-  clk: at91: clk-sam9x60-pll: re-factor to support individual core freq
-    outputs
-  clk: at91: sam9x7: add support for HW PLL freq dividers
-  clk: at91: sama7g5: move mux table macros to header file
-  dt-bindings: clock: at91: Allow PLLs to be exported and referenced in
-    DT
-  clk: at91: sam9x7: add sam9x7 pmc driver
-  dt-bindings: interrupt-controller: Add support for sam9x7 aic
-  power: reset: at91-poweroff: lookup for proper pmc dt node for sam9x7
-  power: reset: at91-reset: add reset support for sam9x7 SoC
-  power: reset: at91-reset: add sdhwc support for sam9x7 SoC
-  dt-bindings: reset: atmel,at91sam9260-reset: add sam9x7
-  dt-bindings: power: reset: atmel,sama5d2-shdwc: add sam9x7
-  ARM: at91: Kconfig: add config flag for SAM9X7 SoC
-  ARM: configs: at91: enable config flags for sam9x7 SoC family
-  ARM: dts: at91: sam9x7: add device tree for SoC
-  dt-bindings: arm: add sam9x75 curiosity board
-  ARM: dts: microchip: sam9x75_curiosity: add sam9x75 curiosity board
-
- .../devicetree/bindings/arm/atmel-at91.yaml   |    6 +
- .../devicetree/bindings/arm/atmel-sysregs.txt |    6 +-
- .../bindings/clock/atmel,at91rm9200-pmc.yaml  |    2 +
- .../bindings/clock/atmel,at91sam9x5-sckc.yaml |    4 +-
- .../interrupt-controller/atmel,aic.yaml       |    1 +
- .../devicetree/bindings/mfd/syscon.yaml       |  188 +--
- .../devicetree/bindings/misc/atmel-ssc.txt    |    1 +
- .../power/reset/atmel,sama5d2-shdwc.yaml      |    3 +
- .../reset/atmel,at91sam9260-reset.yaml        |    4 +
- .../bindings/serial/atmel,at91-usart.yaml     |    9 +-
- .../soc/microchip/atmel,at91rm9200-tcb.yaml   |   20 +-
- arch/arm/boot/dts/microchip/Makefile          |    3 +
- .../dts/microchip/at91-sam9x75_curiosity.dts  |  312 +++++
- arch/arm/boot/dts/microchip/sam9x7.dtsi       | 1226 +++++++++++++++++
- arch/arm/configs/at91_dt_defconfig            |    1 +
- arch/arm/mach-at91/Kconfig                    |   22 +-
- arch/arm/mach-at91/Makefile                   |    1 +
- arch/arm/mach-at91/generic.h                  |    2 +
- arch/arm/mach-at91/pm.c                       |   29 +
- arch/arm/mach-at91/sam9x7.c                   |   33 +
- drivers/clk/at91/Makefile                     |    1 +
- drivers/clk/at91/clk-sam9x60-pll.c            |   42 +-
- drivers/clk/at91/pmc.h                        |   18 +
- drivers/clk/at91/sam9x60.c                    |    7 +
- drivers/clk/at91/sam9x7.c                     |  946 +++++++++++++
- drivers/clk/at91/sama7g5.c                    |   42 +-
- drivers/irqchip/irq-atmel-aic5.c              |   10 +
- drivers/power/reset/Kconfig                   |    4 +-
- drivers/power/reset/at91-sama5d2_shdwc.c      |    1 +
- drivers/soc/atmel/soc.c                       |   23 +
- drivers/soc/atmel/soc.h                       |    9 +
- include/dt-bindings/clock/at91.h              |    4 +
- 32 files changed, 2840 insertions(+), 140 deletions(-)
- create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
- create mode 100644 arch/arm/boot/dts/microchip/sam9x7.dtsi
- create mode 100644 arch/arm/mach-at91/sam9x7.c
- create mode 100644 drivers/clk/at91/sam9x7.c
-
--- 
-2.25.1
+Regards,
+Inochi.
 
 
