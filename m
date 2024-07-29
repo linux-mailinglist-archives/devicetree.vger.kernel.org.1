@@ -1,333 +1,250 @@
-Return-Path: <devicetree+bounces-89075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7003293FE9B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:53:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9BCD93FEA2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:56:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DD3A1C225D2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:53:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 649D928235E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:56:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B161318D4BE;
-	Mon, 29 Jul 2024 19:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2CF188CB8;
+	Mon, 29 Jul 2024 19:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RnOqvt/c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q28e5zvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FA618C338
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 19:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE03187355
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 19:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722282748; cv=none; b=eaKVZjtkxCfZN7N4JvI5ukZeKWM27sCxNtRcZRhu57X+81I2Ow1xOjWBCuof3ympN2ahiZQQySIkCcx2OxVfRrUAMTCEiJu9OS91hvSNJQardOpugpzvL3jSuniscA6+GExpI9QbB8lBBrUlSgkjWYISoZuTAPdKeySDxXPvAA4=
+	t=1722282997; cv=none; b=fNwbHXTgh/9WjqQZAbDn5Lhjhr+V0H9vUJiHDiL56KKfK7r7cbtv3l2elGyFf5gtLA8AqVthIXC/80Is9xlhMF+lZBhSlXr4MAbIKY37ijly1yk7DHMx4yG+R0HS+DcUWdUMz69/Z6QjMTaVtVlTBQyv1us2UcAfMnmrjZ+KJEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722282748; c=relaxed/simple;
-	bh=lGFZGgA/O9A/S5qTh5NR5ly34Ld4DtkmOO5/k+pKHKs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VnviqKSBiP4zeXnoIV6GhfO2oXIdR4KKxWteDQ5tn92ervaqQIKlrBwmG54oaqaKdNra2RfBVVvxS9EuoiUERZltaPl17GEgwskOulx3Em+FtO/yXkhxTNcdyx2KdXS7l5fMK6wxI5awdHiRDiwYOKa02Iqk51WQqV19ppeB5to=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RnOqvt/c; arc=none smtp.client-ip=209.85.167.42
+	s=arc-20240116; t=1722282997; c=relaxed/simple;
+	bh=YqgXBWqgawrQ2GCIT/CPZ0b/lhDSwL0sHCnAeJKg/xc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jOICyem/gHU3yqa6XiIzwyhg3MzXoxQDl6fFBe0T77Af8L0dLCMOCI/DXLdnQS6fK6KaZVjC9zSFoXl0BFGKB0jaNJujfpDa8Uayzyngd+Amcv19TXATJJ+ZwWVRQAUaaECjADJFd38QlEztrhiKLr7hnqjmJbZ1xe+k9nzi2VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q28e5zvh; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52efa9500e0so4589388e87.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 12:52:24 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52efa16aad9so5732759e87.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 12:56:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722282743; x=1722887543; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NzkDp7NapSOrLl8ec7U9pJiscxvgpUDR6AyuyeyD8V8=;
-        b=RnOqvt/c0e99g1wVhG8Heva0kcftKlRzHhhm++bjtQnuAltn3TSp72xr3PWMV2w13T
-         1nBMHAsJrJf4ThLFL0WwZIHVEr31HMqtDsUbRawj3/FylXarigvrLngUGyQkEYIoCHIS
-         /0ASiK1iD7EQYYDioZqMQet/9O+E2oR0PJU8ZDqd7Jg7P3evzwzG0kIQnzKj6B3o/QD7
-         hiZQ4GlTRR1hOQ1T1vNUF1dN3lKqWoXMtoapJiHIlJJDGeMH4RNs7xUH8ggz1jQ/RdFg
-         edcDGhNOgqboSOnazGYzyGGKrRag7yihi9y0IqLrZGTjqjn5DRNHCalhwO+UiKAh5dWH
-         lMxw==
+        d=linaro.org; s=google; t=1722282993; x=1722887793; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=020JGgTMWcZIx2NYCO8r+LbUIGlcmT7lsGFDdPjejo8=;
+        b=q28e5zvha6HTepJ/RDPuYRuSr+wm8dPdD9Y41rFyCyKQDoarYjywlDjMfvS2rpAezm
+         y0LSHE17wkfTPa122tpjd0nj6jHDP7hm10MHuVCLLRvem1QRxYr2GXjcAxlkMnyuEn3A
+         /9bOcPk6x5fR9lY5a164CE085uhkl6RnoG/xEslfazZswaRntRfrycnV10b3J22rtexy
+         wOYMbY48HkqF6SFvz7iKObIMb3rmi/ZFnO8ghhU4nyT4aJjbRDeZ4jWoQYPqHUGFVAE7
+         8s+w+y0cLSHkDEVu6/bpaZ1VOnJulezPBhgexo2ttthAjhan37YegymppQXhFqgjUVHq
+         b+3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722282743; x=1722887543;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NzkDp7NapSOrLl8ec7U9pJiscxvgpUDR6AyuyeyD8V8=;
-        b=AdTh3rX5JZg/05JceaNZvs6WFRp1pAnaqGzoODLg+18N6FGbg5Isy2uTNfM03WaVoC
-         4ERL/FpSN4YQvM3w+sMOmewWO3RPpAHCspao3xfXg6s05MpoWdawBjAb/QZB8vsykrCD
-         MYqSBt8DzVj52VGdebwfjDeUg+lgnF3nUfIonrgKFDnSiqKdQOp7r2VI0ssfiGE81pQ3
-         QNLN1AOaCuZENqSu+FdAKB974RyAJppZ+5KfQqF9+AVQDdoH6nHQyPtymc8VO6ZBgSoZ
-         O2hElUxprMquZloxGMPTMl8m+YooAE4Nn3EupgMo0D3C2R4HK5vAUBXqTj5dvJxWRxcN
-         6neg==
-X-Forwarded-Encrypted: i=1; AJvYcCWrvdXFvO5M3YKyn5h4ruztmSc36dx5SqLvDfHC4SWdNgUWFDCSE9llZP7cQuYvXTO7soWcQREXfV69+WzzktfAvOpWaTttkyQ7GQ==
-X-Gm-Message-State: AOJu0YwfaujIwTMDk6DpyiWsW6uxLGYqc/GUOCx32/HhspUb6HOt/Dp7
-	UsFCa28/eWQfeMK7KfJWNWKLD3leZoUeIZ9YiaUDefT5pYA/u0wVQbyJNuobxUg=
-X-Google-Smtp-Source: AGHT+IEoUa5Kq4BiEJEbD/pnaPgcbfWAsGmbgkhlgJhiVuF+n53mG9ru8cRtBtnLWxCCpIfBP96BCA==
-X-Received: by 2002:ac2:4f07:0:b0:52e:a60e:3a08 with SMTP id 2adb3069b0e04-5309b25aa12mr7561340e87.11.1722282742634;
-        Mon, 29 Jul 2024 12:52:22 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5bd1088sm1615590e87.106.2024.07.29.12.52.21
+        d=1e100.net; s=20230601; t=1722282993; x=1722887793;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=020JGgTMWcZIx2NYCO8r+LbUIGlcmT7lsGFDdPjejo8=;
+        b=fzGoMGraWqhO+6/mXDzMwkxxySi7017bxZa1c6g2mHzV7Qt/gFLaNeavP59CJ7I2uN
+         AjCyggSHDw/fkreiZK4zvi+Gd3A87y/MlOfynY71jaJhzkq6JHK7LSb+KTqY6nk2VDrz
+         3hGa+GK4QbqTvoijEnYVKf2ey8eHktf+2CS6rReOvsmfjNHloV8DJIz9PlfLgfELjth5
+         HCZ4BURYYGX0CqM0Z7qPyHLrhx94bZdCwi9Wvl7hOlxgRXDaksPw93lmOEX38+9QH+QL
+         M/C8UrLTdnEsO2KIDOu/lIio/4t77IcLk2yKl25h8bGUG7fxoh/Pcfqq2I7GUdUZFhn3
+         nFAw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8Efu1L+Xu4Uzbs5/YB6PM7yEeXvNp6+okdzC8CXPn0be3JVmBnXZyjeA0hjGX0yhoqS4lsAtlF5OD5LUTyDx1TbzxZkVodHjqXw==
+X-Gm-Message-State: AOJu0Yz2ISou5clv6EFWDaLYmbue4tPAqyWmp6C05sAQrFQByrJaRRdk
+	azD0kdbzGaQGtihRYy59G98Fad/zv6ZNgeDSfqyBs95UVeRDmIisvzQ7c1EmddM=
+X-Google-Smtp-Source: AGHT+IGozCHqd0w6iFDoVxOAUJStLvOsB8sp3H77TGFuL7QnXA67z0Bf66cowsXNkbziywq0zm6dpA==
+X-Received: by 2002:a05:6512:2c8c:b0:52e:9fe0:bee8 with SMTP id 2adb3069b0e04-5309b269b9dmr6109379e87.8.1722282993288;
+        Mon, 29 Jul 2024 12:56:33 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c2bce4sm1614081e87.251.2024.07.29.12.56.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 12:52:21 -0700 (PDT)
+        Mon, 29 Jul 2024 12:56:32 -0700 (PDT)
+Date: Mon, 29 Jul 2024 22:56:31 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jul 2024 22:52:18 +0300
-Subject: [PATCH v2 5/5] arm64: dts: qcom: add generic compat string to RPM
- glink channels
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, andersson@kernel.org, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, jun.li@nxp.com
+Subject: Re: [PATCH 3/3] arm64: dts: imx8mq-evk: add typec node
+Message-ID: <2qifmfgul7ks6kozm455jci4rdbfnh5wft3nyt6pdnov6tcbst@vjosluwibkg7>
+References: <20240729081039.3904797-1-xu.yang_2@nxp.com>
+ <20240729081039.3904797-3-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240729-fix-smd-rpm-v2-5-0776408a94c5@linaro.org>
-References: <20240729-fix-smd-rpm-v2-0-0776408a94c5@linaro.org>
-In-Reply-To: <20240729-fix-smd-rpm-v2-0-0776408a94c5@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
- Stephan Gerhold <stephan@gerhold.net>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-clk@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8405;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=lGFZGgA/O9A/S5qTh5NR5ly34Ld4DtkmOO5/k+pKHKs=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmp/Lxkkf1Hee0/3zaCdHJ6DntkURb4bZWzrS7n
- pJMqskhXzmJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZqfy8QAKCRCLPIo+Aiko
- 1UZ+CAClqTh6Y/FVSqyLyzKrVNGkoLtqAbBJkvsHJsoWgv9SgemgVqpfTXKk4lz9RojYo9XEZH7
- WFRiwQiU6VbsPlonYLUSCL6haENBgHtA1hcw65PlowiXM8Ysd+fldhDy2izWDz6ctABM2jOK95Q
- HBFNfeuHUcRPbincq6FErpQPZ9VAyFzMffLoYeJqwk7xwAeP/X/uPsuRDhnz24aF6oIOz5f5FPn
- YPZHOL76TZ+zkv4ag5u77AJERC7YUWjP5OypOXlcqri7qfj/CuckVMtqz0tWq/plyj7FcrdFVku
- N8EJvJoPmrAeTCGsYwALJm7NdgYRflH6gmn91d23ZNCCSJPi
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240729081039.3904797-3-xu.yang_2@nxp.com>
 
-Add the generic qcom,smd-rpm / qcom,glink-smd-rpm compatible to RPM
-nodes to follow the schema.
+On Mon, Jul 29, 2024 at 04:10:39PM GMT, Xu Yang wrote:
+> The first port of USB with type-C connector, which has dual data
+> role and dual power role.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 93 ++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> index 7507548cdb16..008e8c37c76b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> @@ -6,6 +6,7 @@
+>  
+>  /dts-v1/;
+>  
+> +#include <dt-bindings/usb/pd.h>
+>  #include "imx8mq.dtsi"
+>  
+>  / {
+> @@ -27,6 +28,20 @@ pcie0_refclk: pcie0-refclk {
+>  		clock-frequency = <100000000>;
+>  	};
+>  
+> +	ptn36043: typec-mux {
+> +		compatible = "nxp,ptn36043", "gpio-sbu-mux";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_typec_mux>;
+> +		select-gpios =<&gpio3 15 GPIO_ACTIVE_LOW>;
+> +		orientation-switch;
+> +
+> +		port {
+> +			usb3_data_ss: endpoint {
+> +				remote-endpoint = <&typec_con_ss>;
+> +			};
+> +		};
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8976.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8994.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/qcs404.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm6115.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm6125.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm6375.dtsi  | 2 +-
- 15 files changed, 15 insertions(+), 15 deletions(-)
+If this the "SBU" mux, then why is it connected to the SS lines?
+Where are the SS lines further going?
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index e1e45da7f787..8edd535a188f 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -168,7 +168,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-ipq6018";
-+				compatible = "qcom,rpm-ipq6018", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				regulators {
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 48dfafea46a7..08a82a5cf667 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -181,7 +181,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-ipq9574";
-+				compatible = "qcom,rpm-ipq9574", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 7383bcc603ab..0ee44706b70b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -312,7 +312,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8916";
-+				compatible = "qcom,rpm-msm8916", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-index 46d9480cd464..28634789a8a9 100644
---- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-@@ -252,7 +252,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8936";
-+				compatible = "qcom,rpm-msm8936", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index a4bfb624fb8a..d20fd3d7c46e 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -199,7 +199,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8953";
-+				compatible = "qcom,rpm-msm8953", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-index d62dcb76fa48..c76cab9174be 100644
---- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-@@ -247,7 +247,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8976";
-+				compatible = "qcom,rpm-msm8976", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-index 917fa246857d..fc2a7f13f690 100644
---- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-@@ -188,7 +188,7 @@ smd-edge {
- 			qcom,remote-pid = <6>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8994";
-+				compatible = "qcom,rpm-msm8994", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 0fd2b1b944a5..e5966724f37c 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -472,7 +472,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8996";
-+				compatible = "qcom,rpm-msm8996", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 7f44807b1b97..2bcfa480509d 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -352,7 +352,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8998";
-+				compatible = "qcom,rpm-msm8998", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index 8f3be4c75db3..79bc42ffb6a1 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -215,7 +215,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-qcm2290";
-+				compatible = "qcom,rpm-qcm2290", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index c291bbed6073..cddc16bac0ce 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -177,7 +177,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-qcs404";
-+				compatible = "qcom,rpm-qcs404", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index c7e3764a8cf3..c8da5cb8d04e 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -372,7 +372,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sdm660";
-+				compatible = "qcom,rpm-sdm660", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index e374733f3b85..41216cc319d6 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -376,7 +376,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sm6115";
-+				compatible = "qcom,rpm-sm6115", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 777c380c2fa0..133610d14fc4 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -192,7 +192,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sm6125";
-+				compatible = "qcom,rpm-sm6125", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index ddea681b536d..4d519dd6e7ef 100644
---- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -653,7 +653,7 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sm6375";
-+				compatible = "qcom,rpm-sm6375", "qcom,glink-smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
+> +	};
+> +
+>  	reg_pcie1: regulator-pcie {
+>  		compatible = "regulator-fixed";
+>  		pinctrl-names = "default";
+> @@ -315,6 +330,50 @@ vgen6_reg: vgen6 {
+>  			};
+>  		};
+>  	};
+> +
+> +	ptn5110: tcpc@50 {
+> +		compatible = "nxp,ptn5110", "tcpci";
+> +		reg = <0x50>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_typec>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		usb_con: connector {
+> +			compatible = "usb-c-connector";
+> +			label = "USB-C";
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +			try-power-role = "sink";
+> +			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+> +			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
+> +				     PDO_VAR(5000, 20000, 3000)>;
+> +			op-sink-microwatt = <15000000>;
+> +			self-powered;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					typec_dr_sw: endpoint {
+
+the DR (dual role) isn't a physical signal. These ports descrbie HS
+(high speed) lanes, please consider naming them correspondingly.
+
+> +						remote-endpoint = <&usb3_drd_sw>;
+> +					};
+> +				};
+> +
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					typec_con_ss: endpoint {
+> +						remote-endpoint = <&usb3_data_ss>;
+> +					};
+> +				};
+
+No SBU port?
+
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &lcdif {
+> @@ -445,6 +504,28 @@ &uart1 {
+>  	status = "okay";
+>  };
+>  
+> +&usb3_phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_0 {
+> +	dr_mode = "otg";
+> +	hnp-disable;
+> +	srp-disable;
+> +	adp-disable;
+> +	usb-role-switch;
+> +	role-switch-default-mode = "none";
+> +	snps,dis-u1-entry-quirk;
+> +	snps,dis-u2-entry-quirk;
+> +	status = "okay";
+> +
+> +	port {
+> +		usb3_drd_sw: endpoint {
+> +			remote-endpoint = <&typec_dr_sw>;
+> +		};
+> +	};
+> +};
+> +
+>  &usb3_phy1 {
+>  	status = "okay";
+>  };
+> @@ -597,6 +678,18 @@ MX8MQ_IOMUXC_SPDIF_RX_SPDIF1_IN		0xd6
+>  		>;
+>  	};
+>  
+> +	pinctrl_typec: typecgrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_NAND_CE2_B_GPIO3_IO3		0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_typec_mux: typecmuxgrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_NAND_RE_B_GPIO3_IO15		0x16
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
+> -- 
+> 2.34.1
+> 
 
 -- 
-2.39.2
-
+With best wishes
+Dmitry
 
