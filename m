@@ -1,273 +1,247 @@
-Return-Path: <devicetree+bounces-88879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CE4193F397
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 13:05:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2953593F3C4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 13:14:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 486BDB20F0B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:05:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BB9C1C21846
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8847146587;
-	Mon, 29 Jul 2024 11:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A716145B0C;
+	Mon, 29 Jul 2024 11:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JYmIfHJ2"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="I7dUGmPZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16FA145A1C
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 11:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9DE140363;
+	Mon, 29 Jul 2024 11:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722251098; cv=none; b=np1wCOyef4X1kvhOEOLajn6HwvHiO4dPdpUzINqW9UJVT2dnixDKS5DxUS6C2nLDQV9UIyqEeHv3ZylFivZyNnRmZBVjM1cu0/VtrvyFG8QwDHe5kXEEqiNAk1fdI1hLFLYVHvXrQ3ybnOTJUBP3YoF8TWROwj6SgYtd46AolIM=
+	t=1722251654; cv=none; b=PeJjFxB65f4xS+8irshbjHMjMLMjmGsmQ+85gcImWe12TMAGnO735DPXKNqfm1oNdh7sSJDB7h3MN/QYi6roepGrYfB9XIgqO0/aBRpwHF/xSNyKCrnwwcpPFnGI6yeOi3N1rmywsA2B++8Bxvs3HkCjD6J8AgxB01mm3OHuykU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722251098; c=relaxed/simple;
-	bh=LmnFWXQwB+zVmUbaXAxgLw8NL6rGHH1AOIMYnhPLopg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XosoB0h0bySwaICWovft7wppsg+vgPO0geoEbQeQs+J9AUPvmJjglOp2KYdIocxVVBOLIo93uxVzzzWcWMsOFVLFNW7GyH/xvh5K4o3PWMNl2WfwpCCN7PuOKHGfwrc7sMO2NQWmkdTEj+e5aIDRoJVxYbTRcnGNflbLWncNOwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JYmIfHJ2; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52ef95ec938so3891446e87.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 04:04:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722251095; x=1722855895; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vo5dVHxwYUOCulmoYzfsTboShJXb0xMjQ5jWjKDTtlU=;
-        b=JYmIfHJ2guL8ccjw1aQiI0sBzzVrw8pdwC4gPLQ59xDdU81voKoCI+0HlGhzPZ+Obt
-         12zbpOaLGEfJNsO8PMJARTt0SxfEkOAs55l80LhqNLuhZPIYSPnJX5K/IJMSsKOlUEly
-         JohsN2QAa2yFp/+bl9rNNSh9EgvoDhTzMh9jqLe/D5PJt0GE7sj9EoZRxPTVvGv6+ZHU
-         8Q7Q6FoU2jcGJgjx53CrY1cxPcWzVqBFsBcxBkQOXdlKjLi3KCXS4VSf48WjB04s2txE
-         bpGaocn7NB4vMdx+bqY+SR0hI3IG1DDLUC8ng6A+OuEWvF1die8nXmje2AxasoLE5sya
-         fdEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722251095; x=1722855895;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vo5dVHxwYUOCulmoYzfsTboShJXb0xMjQ5jWjKDTtlU=;
-        b=os32UzagZCw3rQ5160vvLw98xwktEHVZjtPfewrzgK/UQjDtshrq9S/QLafQqTjJhi
-         z25JqipbBgqBzhEEvwZMdmmoxjuwaJtOK7W6ygf/4ANzOBPQZYZyZelWp9gZ0S/9QpEa
-         90dPqRl0J3hzQ6sowwkpaX8zVs11N1Y/nXxJiUslkMYlSPtMbb3HbA7FrRtZidgfgT2w
-         huy4X1eDRuN/3DFZKplj7wOEg67J7uzgsCKWOZfnLemglfneAvwfkkZpSozRSAO2e+kp
-         IirEt3ePilysPZQRgAKJsdBjke0f2Ttyd6aQNfkKVxH2hOcIbwIKRExyyfJO5vWtHt71
-         v1mg==
-X-Forwarded-Encrypted: i=1; AJvYcCXIdp6D+9cF3LRGgLBU1jSS2xXPFnE1cNJSM6r5QQeIAWS4A/CfFxi5nhD+04LOdM99nCxYzj4ClpXoAoWCeCi+Sv+yAnasp2KuIg==
-X-Gm-Message-State: AOJu0YwFLJxib4ojYso8dQjWH18TpDOPQHSvBNJPoU5UP9jX3Aw7qb24
-	z5KCWi9JV8uHXAhXiZxbQG0hxGCgaTEI9A/92gJLPS9+0RjzYPejaA72hmZNnnL8WWxTFrXJgSs
-	C
-X-Google-Smtp-Source: AGHT+IHwkV/HB89HoVuW58uAQaN2wo3IqgtJuRVZdOtgC0SrdBcCIdOAa7QH6TfvFJAoPVKyCyCbKw==
-X-Received: by 2002:a19:6919:0:b0:52c:6461:e913 with SMTP id 2adb3069b0e04-5309b26b5dcmr4944450e87.16.1722251094568;
-        Mon, 29 Jul 2024 04:04:54 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c09093sm1457806e87.172.2024.07.29.04.04.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 04:04:54 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jul 2024 14:04:48 +0300
-Subject: [PATCH 4/4] arm64: dts: qcom: add generic compat string to RPM
- glink channels
+	s=arc-20240116; t=1722251654; c=relaxed/simple;
+	bh=t7wX+aL1HlfiwcGy2buh3bECW1GJ9PGepZeKPA+JOp0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P0Wky3JzPPHqYLmg6hCCLXOEItdb6Q86TeINHFQOLLdyW8ZUHQCsWOOI04erVkleoFyyzsii5NkiXBUhiYq2LCxbPGRcOrv11EZfyleF/aF2mhWmNUET2sQUT+pyGnRu27PZVsGIzyyLo+sqkxyI7XovTfZ/PljydE3dP0Bv2wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=I7dUGmPZ; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353722.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TAc8Cm001491;
+	Mon, 29 Jul 2024 11:14:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date
+	:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-transfer-encoding:in-reply-to; s=pp1; bh=1
+	gs6YnTcqP0KDMgj9iXPwFr3Dpb/8bcmwNBHWzaJYYs=; b=I7dUGmPZuFjYgLTif
+	kmcQYm9gLQbTC2gYu1LiD+AzTgn76nDLNeBbyEd6qWEAlNYb4hqpS0ZFiwb5OIKY
+	aCiKuXA/VDZPW4K3ryh+Nc3Vt3nGU80pREx7jajBTEN2dLtZ7rAZcvMGaXmh0R5d
+	HthGOxBdNJeoqHCN+k3+tV0FeYLKzr+ep51WpAjwzApmDyGmBTD5Nr7ck+IjJdzq
+	dblg1Tq+XJTivOp5o7OhBqHyD4ZiQXWh7oWkue8aSeltW/G+7sjbN8eMMfbvuLdr
+	NfAneQ2N4Z8dIcRgxFA4Dsl+7li3cxLzkm1KPD7O1dE3rqNXU6OZHAEVUyOvdyOv
+	dtzRQ==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40p10294b8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 11:13:59 +0000 (GMT)
+Received: from m0353722.ppops.net (m0353722.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 46TBDxH2029072;
+	Mon, 29 Jul 2024 11:13:59 GMT
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40p10294b5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 11:13:59 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 46T9QucQ007479;
+	Mon, 29 Jul 2024 11:13:58 GMT
+Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 40nb7txhp3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 11:13:58 +0000
+Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com [10.20.54.104])
+	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 46TBDqpg56557926
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 29 Jul 2024 11:13:54 GMT
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id BA0892004D;
+	Mon, 29 Jul 2024 11:13:52 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id AEBB62004B;
+	Mon, 29 Jul 2024 11:13:49 +0000 (GMT)
+Received: from li-e7e2bd4c-2dae-11b2-a85c-bfd29497117c.ibm.com (unknown [9.109.198.40])
+	by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Mon, 29 Jul 2024 11:13:49 +0000 (GMT)
+Date: Mon, 29 Jul 2024 16:43:43 +0530
+From: Amit Machhiwal <amachhiw@linux.ibm.com>
+To: Lizhi Hou <lizhi.hou@amd.com>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Saravana Kannan <saravanak@google.com>,
+        Kowshik Jois B S <kowsjois@linux.ibm.com>, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kvm-ppc@vger.kernel.org,
+        Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+        Lukas Wunner <lukas@wunner.de>, Nicholas Piggin <npiggin@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vaibhav Jain <vaibhav@linux.ibm.com>, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v2] PCI: Fix crash during pci_dev hot-unplug on pseries
+ KVM guest
+Message-ID: <6mjt477ltxhr4sudizyzbspkqb7yspxvnoiblzeiwxw5kwwsmq@bchicp4bmtzq>
+Mail-Followup-To: Lizhi Hou <lizhi.hou@amd.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	Saravana Kannan <saravanak@google.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, kvm-ppc@vger.kernel.org, 
+	Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, Lukas Wunner <lukas@wunner.de>, 
+	Nicholas Piggin <npiggin@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Vaibhav Jain <vaibhav@linux.ibm.com>, linuxppc-dev@lists.ozlabs.org
+References: <CAL_JsqKKkcXDJ2nz98WNCvsSFzzc3dVXVnxMCntFXsCP=MeKsA@mail.gmail.com>
+ <a6c92c73-13fb-8e9c-29de-1437654c3880@amd.com>
+ <20240723162107.GA501469-robh@kernel.org>
+ <a8d2e310-9446-6cfa-fe00-4ef83cdb6590@amd.com>
+ <CAL_JsqJjhaLFm9jiswJTfi4yZFYGKJUdC+HV662RLWEkJjxACw@mail.gmail.com>
+ <ac3aeec4-70fc-cd9e-498c-acab0b218d9b@amd.com>
+ <p6cs4fxzistpyqkc5bv2sb76inrw7fterocdcu3snnyjpqydbr@thxna6v2umrl>
+ <d20b78cd-ed34-3e5a-0176-c20ee5afd0db@amd.com>
+ <CAL_JsqJAuVexFAz6gWWuTtX1Go-FnHe6vJapv0znHBERSCtv+Q@mail.gmail.com>
+ <0b1be7b7-e65b-8d8e-0659-388dec303039@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240729-fix-smd-rpm-v1-4-99a96133cc65@linaro.org>
-References: <20240729-fix-smd-rpm-v1-0-99a96133cc65@linaro.org>
-In-Reply-To: <20240729-fix-smd-rpm-v1-0-99a96133cc65@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
- Stephan Gerhold <stephan@gerhold.net>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6332;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=LmnFWXQwB+zVmUbaXAxgLw8NL6rGHH1AOIMYnhPLopg=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmp3dTA7VR3a+S7TA+mPifZW9dRlIZPwMz17Tr9
- g3uKaL0Vx2JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZqd3UwAKCRCLPIo+Aiko
- 1bGLB/4y/S4Ey3R1gulWcErPO0KSQs5KbupD7D7xJWAeZjPnHFnheO8ygtga8oU1kQ9azj+Yc2t
- /qawWpESm1jPJKpfXdHiSaw+rSDQ7gcXXBWlUSUmdBIfSYOSw04/h8p5Y7t38TISVMwX09sCbrP
- lO1pnHsuaqzOhKj1/iywiFeuta/c0CnUy8WjFM0yRVdtrcso0ylvdAueCoYvGqkiDekQgU3IGdZ
- 1+h/2iLRbS0Kl/GMCndHBM0WSDAy5j16xq7oIPuTqiTPPGW8eKzD2k+erAT+wcR6RZ3Ontx5a4F
- cRweDaoihh/wW3taY3KrrXaDZyYr+zWktxChRTwZXF+qOYJz
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0b1be7b7-e65b-8d8e-0659-388dec303039@amd.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: rc17lGWPFBYXtbMfuL_DVAKA2x0JxuLl
+X-Proofpoint-GUID: 4tGW0z5h9ARYRTEuJ_avk15AcJCpM8FZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-29_09,2024-07-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=999
+ priorityscore=1501 bulkscore=0 phishscore=0 impostorscore=0 suspectscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407290073
 
-Add the generic qcom,smd-rpm compatible to RPM nodes to follow the
-schema (and to allow automatic driver loading in a sane way).
+Hi Lizhi,
 
-Fixes: bcabe1e09135 ("soc: qcom: smd-rpm: Match rpmsg channel instead of compatible")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8976.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8994.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm6115.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm6125.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm6375.dtsi  | 2 +-
- 11 files changed, 11 insertions(+), 11 deletions(-)
+On 2024/07/26 11:45 AM, Lizhi Hou wrote:
+> 
+> On 7/26/24 10:52, Rob Herring wrote:
+> > On Thu, Jul 25, 2024 at 6:06 PM Lizhi Hou <lizhi.hou@amd.com> wrote:
+> > > Hi Amit,
+> > > 
+> > > 
+> > > I try to follow the option which add a OF flag. If Rob is ok with this,
+> > > I would suggest to use it instead of V1 patch
+> > > 
+> > > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > > index dda6092e6d3a..a401ed0463d9 100644
+> > > --- a/drivers/of/dynamic.c
+> > > +++ b/drivers/of/dynamic.c
+> > > @@ -382,6 +382,11 @@ void of_node_release(struct kobject *kobj)
+> > >                                  __func__, node);
+> > >           }
+> > > 
+> > > +       if (of_node_check_flag(node, OF_CREATED_WITH_CSET)) {
+> > > +               of_changeset_revert(node->data);
+> > > +               of_changeset_destroy(node->data);
+> > > +       }
+> > What happens if multiple nodes are created in the changeset?
+> Ok. multiple nodes will not work.
+> > 
+> > > +
+> > >           if (node->child)
+> > >                   pr_err("ERROR: %s() unexpected children for %pOF/%s\n",
+> > >                           __func__, node->parent, node->full_name);
+> > > @@ -507,6 +512,7 @@ struct device_node *of_changeset_create_node(struct
+> > > of_changeset *ocs,
+> > >           np = __of_node_dup(NULL, full_name);
+> > >           if (!np)
+> > >                   return NULL;
+> > > +       of_node_set_flag(np, OF_CREATED_WITH_CSET);
+> > This should be set where the data ptr is set.
+> 
+> Ok. It sounds the fix could be simplified to 3 lines change.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 7383bcc603ab..0ee44706b70b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -312,7 +312,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8916";
-+				compatible = "qcom,rpm-msm8916", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-index 46d9480cd464..28634789a8a9 100644
---- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-@@ -252,7 +252,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8936";
-+				compatible = "qcom,rpm-msm8936", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index a4bfb624fb8a..d20fd3d7c46e 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -199,7 +199,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8953";
-+				compatible = "qcom,rpm-msm8953", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-index d62dcb76fa48..c76cab9174be 100644
---- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-@@ -247,7 +247,7 @@ smd-edge {
- 			qcom,smd-edge = <15>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8976";
-+				compatible = "qcom,rpm-msm8976", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-index 917fa246857d..fc2a7f13f690 100644
---- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-@@ -188,7 +188,7 @@ smd-edge {
- 			qcom,remote-pid = <6>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8994";
-+				compatible = "qcom,rpm-msm8994", "qcom,smd-rpm";
- 				qcom,smd-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 0fd2b1b944a5..f8de9bafcc24 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -472,7 +472,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8996";
-+				compatible = "qcom,rpm-msm8996", "qcom,smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 7f44807b1b97..072bc03f5833 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -352,7 +352,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-msm8998";
-+				compatible = "qcom,rpm-msm8998", "qcom,smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index c7e3764a8cf3..7d11cdea4f7c 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -372,7 +372,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sdm660";
-+				compatible = "qcom,rpm-sdm660", "qcom,smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index e374733f3b85..69c9d2d9af87 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -376,7 +376,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sm6115";
-+				compatible = "qcom,rpm-sm6115", "qcom,smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 777c380c2fa0..1686db0f1c89 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -192,7 +192,7 @@ glink-edge {
- 			mboxes = <&apcs_glb 0>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sm6125";
-+				compatible = "qcom,rpm-sm6125", "qcom,smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
-diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index ddea681b536d..f2908fa2dfac 100644
---- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -653,7 +653,7 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
- 
- 			rpm_requests: rpm-requests {
--				compatible = "qcom,rpm-sm6375";
-+				compatible = "qcom,rpm-sm6375", "qcom,smd-rpm";
- 				qcom,glink-channels = "rpm_requests";
- 
- 				rpmcc: clock-controller {
+Thanks for the patch. The hot-plug and hot-unplug of PCI device seem to work
+fine as expected. I see this patch would attempt to remove only the nodes which
+were created in `of_pci_make_dev_node()` with the help of the newly introduced
+flag, which looks good to me.
 
--- 
-2.39.2
+Also, since a call to `of_pci_make_dev_node()` from `pci_bus_add_device()`, that
+creates devices nodes only for bridge devices, is conditional on
+`pci_is_bridge()`, it only makes sense to retain the logical symmetry and call
+`of_pci_remove_node()` conditionally on `pci_is_bridge()` as well in
+`pci_stop_dev()`. Hence, I would like to propose the below change along with the
+above patch:
 
+diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+index 910387e5bdbf..c6394bf562cd 100644
+--- a/drivers/pci/remove.c
++++ b/drivers/pci/remove.c
+@@ -23,7 +23,8 @@ static void pci_stop_dev(struct pci_dev *dev)
+                device_release_driver(&dev->dev);
+                pci_proc_detach_device(dev);
+                pci_remove_sysfs_dev_files(dev);
+-               of_pci_remove_node(dev);
++               if (pci_is_bridge(dev))
++                       of_pci_remove_node(dev);
+ 
+                pci_dev_assign_added(dev, false);
+        }
+
+Please let me know of your thoughts on this and based on that I can spin the v3
+of this patch.
+
+In addition to this, can this patch be taken as part of 6.11 as a bug fix?
+
+Thanks,
+Amit
+
+> 
+> 
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index 51e3dd0ea5ab..0b3ba1e1b18c 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -613,7 +613,7 @@ void of_pci_remove_node(struct pci_dev *pdev)
+>         struct device_node *np;
+> 
+>         np = pci_device_to_OF_node(pdev);
+> -       if (!np || !of_node_check_flag(np, OF_DYNAMIC))
+> +       if (!np || !of_node_check_flag(np, OF_CREATED_WITH_CSET))
+>                 return;
+>         pdev->dev.of_node = NULL;
+> 
+> @@ -672,6 +672,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>         if (ret)
+>                 goto out_free_node;
+> 
+> +       of_node_set_flag(np, OF_CREATED_WITH_CSET);
+>         np->data = cset;
+>         pdev->dev.of_node = np;
+>         kfree(name);
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index a0bedd038a05..a46317f6626e 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -153,6 +153,7 @@ extern struct device_node *of_stdout;
+>  #define OF_POPULATED_BUS       4 /* platform bus created for children */
+>  #define OF_OVERLAY             5 /* allocated for an overlay */
+>  #define OF_OVERLAY_FREE_CSET   6 /* in overlay cset being freed */
+> +#define OF_CREATED_WITH_CSET    7 /* created by of_changeset_create_node */
+> 
+>  #define OF_BAD_ADDR    ((u64)-1)
+> 
+> 
+> Lizhi
+> 
+> > 
+> > Rob
 
