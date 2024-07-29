@@ -1,203 +1,192 @@
-Return-Path: <devicetree+bounces-88784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35FFB93EF40
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:59:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F1493EF49
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FC401C21B03
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:59:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31B8F1F21221
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBBE12FB34;
-	Mon, 29 Jul 2024 07:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C910113774B;
+	Mon, 29 Jul 2024 08:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="zHQiCVl2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="dS3EWcBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA3D12D1FA;
-	Mon, 29 Jul 2024 07:59:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478FE4EB51
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 08:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722239974; cv=none; b=pyXxmFygqyfPwE4L6uXONB1nlA6Ud9ZaWRHBxyFxnj6nbrYYWfxiIewH03epx3IUrOG9BE3/gqQjNdlytqnVeyQJ4Ix31HdWhRq6Y/Y5in8+ZDmWQxHA2GZiCXg6FDUiv409axZYrc7+/SToAR39tF+S97XiAW8F3BYnhhMDqzI=
+	t=1722240076; cv=none; b=jDyQ7w4zWrUPU7BdZquCzWJXJkmD2gZP7bVf6tszgbrwH8G7ojiI/3fkV0Ngavv3z++J6xhwjwQrQG43SXvNIWX+wN5RzD/uiaHOZNwgegDqeKzstb2ULGp/xl9PaaK7Jz0b9GjihAsUD7jjXClRPVtizYeI4hBMBcLS7x6RitQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722239974; c=relaxed/simple;
-	bh=fzVSMdR2QxHZlMfsS7rulnJXcfjo/rELHom0IR6qjsE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=COy28pfC63Rp2hFbIRlA/UFKrXpIr3OLmSKGgZ1qrr4jxL/lSEWmFApcZ4iZk/EmzDFn9tMmD8pXJRWAJqmgRO89QYWG3fvlD+vqwk6ObilsMZBhEk3TWcZetqjH0i7Z3p4avYg6dzpCQTR5no1UILxb1lWUtx10f1ovQiZpcnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=zHQiCVl2; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722239970;
-	bh=fzVSMdR2QxHZlMfsS7rulnJXcfjo/rELHom0IR6qjsE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=zHQiCVl2n0w7TV43R1MMuAInYVtVCnw5Mls9c6zb7s742CpKptJrfechxO3jWcbPD
-	 aWLabwPjjBXHbXY8b86v83LeK3T7Pj3zPoni9gM5JbcmCTPFvMlheP4Ygacl58Fvus
-	 R2bPjPNa+ISI1dkutCDNA9ATWs5Ie3vmdxOrJ6Wa2TXn1EU7p5x3KeJB1hAOgv46tm
-	 SO+nH7Qs/oW1yWEkaTzfid3X4a4cjzCNLgm7SqDNUVQgSmHGFEMpPDvRL2YdpeYMoq
-	 vG36aU6ca4xoQbq82O8OqP61VbSbXeUpsSZOqKvRrJitTpa/7fcAAzH/QrAKxvKUu1
-	 tVgTtLwPfVwJg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1324A37809CE;
-	Mon, 29 Jul 2024 07:59:30 +0000 (UTC)
-Message-ID: <51f0f4f3-11a5-4d74-981e-3f24f8475c7f@collabora.com>
-Date: Mon, 29 Jul 2024 09:59:29 +0200
+	s=arc-20240116; t=1722240076; c=relaxed/simple;
+	bh=3tXeGXM2RduzxnTIgBYHqy2rVhLERb9KPD1y545fYr8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HIkhh9D74r8Utq8uYG6gFGQG7nuva+XlTTh+zZv4JCu9lDgyDOrH4jpkaT35oDQzN9ydhZ7QETWsaQEbII/3rwh7riIrDhda7Q3JUHkJ9+iAAMMIWvydd6GMD0qH5hybKNeqMW/ePBJcsekQ/HS+pKnkjYC+wAlY8hZ9W3GUOjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=dS3EWcBl; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-427fc97a88cso14009845e9.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 01:01:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722240073; x=1722844873; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jLO+jXA3M7oEf5JfEDBMAtggCBs7km6BzLtZrlx73qM=;
+        b=dS3EWcBl/8K7gZ7xlumVHE3YfjluxafcMvRKkO2JlN0vTfT1WcvENLagwhfiQupV4+
+         cuWCKxP3bM4uRnFC0+G7jh4RoW0NgQBQO6sd5zSsnFY+52Dtnj6ugM6OTn70Emg6cair
+         BP/SSR5hoKHvoZvhgG+AQUr1Vu5A5Vb1ivBh8rFuhIvh2WJt0BzrmKTvzIbcSmlfSdxb
+         M5yaq8Jx2qu9YS3/d6CQTh6WZeou1uDR6d0a5N+2Qsr9OjOYJZNVtLdTclgy0KrUrjYq
+         YZgUpOkrAJ5p/ifUch+4QY1iiDxrCsrnpOHPaGmbwEb25ZNmCCqKTETeXuBqQSIOmCdR
+         E12w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722240073; x=1722844873;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jLO+jXA3M7oEf5JfEDBMAtggCBs7km6BzLtZrlx73qM=;
+        b=N2YwD3QnHcpcbpW1W4N+0AVyNL9bnzteSWkBUHgxdRhKctMmkZVVZNIWO8lB3cO7Tq
+         caTlS4oZVp9xa22lFCUbtFCdgkvh2+O6srtD6UmBdMsb1m+f5NQ7it1dT8KUKery2hd+
+         h+E+VsDUtjDJHg10rrduFClcGZwZbQSf9yiLF5FkVWKn2gpqLdgZUNmGl53H2WtdhRn5
+         8UFXl+rMdPX4n1RQAkizB+I4n51D9SPRKKhmTG0e/7H/zdWmEZ4xdTiw7d5xzJCuz78s
+         KoJ9IckjRnG49B0fLmRaJqoaJ5tiZFUZSnPFoTgduVbm39/ScditGtucms5L1mzdXpT0
+         Dj+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVUNXz2N1Rza6jA+76QmqkwMbvxdPxsAr0PEF6LfNSPRzYn1IwYtbaF8GEEPGvhx2sGrftJ9VHxbuPKCZLeNaLfewBOlis5fIItvg==
+X-Gm-Message-State: AOJu0Yz/EGKnfQL+LXLg9Ob19pWKtRGzH2OeDEllkXJNFMpRemABut3F
+	Vm84xzdYVptnQflPxIbWp0ivVbPIBP/PGUx6Kf+YXkB2NJRMeENJhNkkzEoJYmQ=
+X-Google-Smtp-Source: AGHT+IGwDbx71v3X0g5AThC0OfXjuZ5crp6ajq9RjiMpyHii0qoF+GSo7T4l/t/6SWct2QxntireeA==
+X-Received: by 2002:a05:600c:4f0c:b0:426:629f:154e with SMTP id 5b1f17b1804b1-42811dd10d7mr38054595e9.30.1722240072500;
+        Mon, 29 Jul 2024 01:01:12 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4091:a245:8609:c1c4:a4f8:94c8:31f2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42819d9a007sm45452635e9.1.2024.07.29.01.01.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 01:01:12 -0700 (PDT)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Nishanth Menon <nm@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Santosh Shilimkar <ssantosh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Dhruva Gole <d-gole@ti.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v2 0/6] firmware: ti_sci: Partial-IO support
+Date: Mon, 29 Jul 2024 10:00:55 +0200
+Message-ID: <20240729080101.3859701-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1
- controller
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
- <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com>
- <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com>
- <CAGXv+5G92=-k5MDH4BPcM8tgPwcGTJ60trJwr7BwTGHD=wpnDw@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5G92=-k5MDH4BPcM8tgPwcGTJ60trJwr7BwTGHD=wpnDw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 26/07/24 17:11, Chen-Yu Tsai ha scritto:
-> On Fri, Jul 26, 2024 at 8:11 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 25/07/24 12:34, Chen-Yu Tsai ha scritto:
->>> Hi,
->>>
->>> On Mon, Jul 22, 2024 at 11:27 PM Nícolas F. R. A. Prado
->>> <nfraprado@collabora.com> wrote:
->>>>
->>>> Currently if the xhci1 controller happens to probe before the pcie1
->>>> controller then it fails with the following errors:
->>>>
->>>> xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
->>>> xhci-mtk 11290000.usb: can't setup: -110
->>>> xhci-mtk: probe of 11290000.usb failed with error -110
->>>>
->>>> The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
->>>> clock, although exactly why this pcie clock is needed for the usb
->>>> controller is still unknown. Add the clock to the xhci1 controller so it
->>>> always probes successfully and use a placeholder clock name for it.
->>>>
->>>> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
->>>> Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
->>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>
->>> So I asked MediaTek about this, and it seems the correct thing to do is
->>> disable USB 3 on this host controller using the following snippet. The
->>> snippet is copy-pasted from our issue tracker and won't apply directly.
->>>
->>> This is also seen in mt8395-kontron-3-5-sbc-i1200.dts, on which xhci1
->>> is used only for USB 2.0 on an M.2 slot.
->>>
->>
->> Uhm, okay, but why should USB3 be disabled on a controller that supports USB3?
->>
->> I agree about disabling it on specific boards that use only the USB 2.0 lines of
->> this controller, but doing that globally looks wrong... and looks like being a
->> workaround for an error that gets solved with adding a clock as well.
->>
->> In short, the question is: why would that be the correct thing to do?
-> 
-> We can disable it in mt8195-cherry.dtsi then?
+Hi,
 
-That device does not use this controller, so yes we can disable it, but that still
-doesn't resolve the issue pointed out by Nicolas...!
+v2
+--
+In v2 I fixed the comments on the first version of this series and
+rebased to v6.11-rc1. See below for a more detailed list.
 
-Please note that the issue that he sees doesn't happen only on Tomato, but also on
-other MediaTek MT8195/MT8395 boards - and applying this commit makes disabling the
-controller, or disabling the USB 3 lines on the controller, kinda redundant, as
-this will effectively fix probing it... but again, fixing the actual issue with
-this controller is something that must be done.
+I also dropped the omap serial series for Partial-IO as it can't be
+tested with Partial-IO at the moment. The code was tested with other low
+power modes but they will be upstreamed later on.
 
-Disabling the controller on Tomato is a different topic - here we are discussing
-about fixing the issue, and that will happen, again, on any board that has this
-controller enabled with USB3 lines. :-)
+Series
+------
+Partial-IO is a poweroff SoC state with a few pingroups active for
+wakeup. This state can be entered by sending a TI_SCI PREPARE_SLEEP
+message.
 
-So, unless there is any specific reason for which applying this commit is a bad
-idea, or any alternative fix to this that is better than the proposed one, and
-not a workaround... I'm applying this one.
+The message is sent on poweroff if one of the potential wakeup sources
+for this power state are wakeup enabled. A list of potential wakeup
+sources for the specific SoC is described in the devicetree. The wakeup
+sources can be individually enabled/disabled by the user in the running
+system.
 
-Cheers,
-Angelo
+The series is based on v6.11-rc1.
 
-> 
-> ChenYu
-> 
->> Cheers,
->> Angelo
->>
->>>
->>> ChenYu
->>>
->>> index 8b7307cdefc6..2dac9f706a58
->>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>> @@ -1447,6 +1447,7 @@
->>>                                         "xhci_ck";
->>>                           mediatek,syscon-wakeup = <&pericfg 0x400 104>;
->>>                           wakeup-source;
->>> +                       mediatek,u3p-dis-msk = <0x1>;
->>>                           status = "disabled";
->>>                   };
->>>
->>>> ---
->>>>    arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++++++--
->>>>    1 file changed, 8 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>> index 2ee45752583c..cc5169871f1c 100644
->>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>> @@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
->>>>                                    <&topckgen CLK_TOP_SSUSB_P1_REF>,
->>>>                                    <&apmixedsys CLK_APMIXED_USB1PLL>,
->>>>                                    <&clk26m>,
->>>> -                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
->>>> +                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
->>>> +                                /*
->>>> +                                 * This clock is required due to a hardware
->>>> +                                 * bug. The 'frmcnt_ck' clock name is used as a
->>>> +                                 * placeholder.
->>>> +                                 */
->>>> +                                <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>;
->>>>                           clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
->>>> -                                     "xhci_ck";
->>>> +                                     "xhci_ck", "frmcnt_ck";
->>>>                           mediatek,syscon-wakeup = <&pericfg 0x400 104>;
->>>>                           wakeup-source;
->>>>                           status = "disabled";
->>>>
->>>> ---
->>>> base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
->>>> change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f46aac
->>>>
->>>> Best regards,
->>>> --
->>>> Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>>
->>>>
->>
->>
->>
+Partial-IO
+----------
+This series is part of a bigger topic to support Partial-IO on am62,
+am62a and am62p. Partial-IO is a poweroff state in which some pins are
+able to wakeup the SoC. In detail MCU m_can and two serial port pins can
+trigger the wakeup.
+A documentation can also be found in section 6.2.4 in the TRM:
+  https://www.ti.com/lit/pdf/spruiv7
+
+This other series is relevant for the support of Partial-IO:
+
+ - can: m_can: Add am62 wakeup support
+   https://lore.kernel.org/lkml/20240729074135.3850634-1-msp@baylibre.com/
+   https://gitlab.baylibre.com/msp8/linux/-/tree/topic/mcan-wakeup-source/v6.11?ref_type=heads
+
+Testing
+-------
+A test branch is available here that includes all patches required to
+test Partial-IO:
+
+https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-lp-sk-partialio/v6.11?ref_type=heads
+
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+I tested these patches on am62-lp-sk.
+
+Best,
+Markus
+
+Previous versions:
+ v1: https://lore.kernel.org/lkml/20240523080225.1288617-1-msp@baylibre.com/
+
+Changes in v2:
+ - Rebase to v6.11-rc1
+ - dt-binding:
+    - Update commit message
+    - Add more verbose description of the new binding for a better
+      explanation.
+ - ti_sci driver:
+    - Combine ti_sci_do_send() into ti_sci_do_xfer and only wait on a
+      response if a flag is set.
+    - On failure to enter Partial-IO, do emergency_restart()
+    - Add comments
+    - Fix small things
+
+Markus Schneider-Pargmann (5):
+  dt-bindings: ti, sci: Add property for partial-io-wakeup-sources
+  firmware: ti_sci: Partial-IO support
+  arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
+  arm64: dts: ti: k3-am62: Add partial-io wakeup sources
+  arm64: dts: ti: k3-am62a: Add partial-io wakeup sources
+
+Vibhore Vardhan (1):
+  arm64: dts: ti: k3-am62p: Add partial-io wakeup sources
+
+ .../bindings/arm/keystone/ti,sci.yaml         |  13 ++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi           |   4 +
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi          |   4 +
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi          |   4 +
+ arch/arm64/boot/dts/ti/k3-pinctrl.h           |   3 +
+ drivers/firmware/ti_sci.c                     | 160 +++++++++++++++---
+ drivers/firmware/ti_sci.h                     |  34 ++++
+ 7 files changed, 203 insertions(+), 19 deletions(-)
+
+-- 
+2.45.2
 
 
