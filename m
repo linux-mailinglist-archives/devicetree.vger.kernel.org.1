@@ -1,154 +1,229 @@
-Return-Path: <devicetree+bounces-89116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0DE93FF9C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0615693FFA9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:42:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 672431C20F91
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:40:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 251551C216CA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918AC1891AA;
-	Mon, 29 Jul 2024 20:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBA21891C6;
+	Mon, 29 Jul 2024 20:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="idoXaJ/V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YzS1IyPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03AE14601E;
-	Mon, 29 Jul 2024 20:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A00770F6;
+	Mon, 29 Jul 2024 20:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722285639; cv=none; b=pIo4xBv7BiEDglCMYeundHUaKnPylUhzFFnrpf+xPTetCoJLsprgchSGWAJ0iQ7AkbWELM1krooXIwoelxzr6amjBo7LstsxX48biaiz+umrZ+xDQSswQZSnMGaPdpRMwX+8EToH1hQO5EfHI6V6JXtESUBwqXUMbBEBJsyHK/w=
+	t=1722285740; cv=none; b=fmUC/jdhrTtSkbRHEJxBnGsS9f5euye+2ODVGD8WvcpSRzjUxeOIkrehRSGe4YMqvm3TxBt2hYSx0CBms8kf1jgzgyE293iFxLAM35GNTbboLmCXRO2sdbNkiSv07A9MG4QvGBsak6psVYsC5fs3sN30sc9zbw7u7hx7bIHzLYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722285639; c=relaxed/simple;
-	bh=Vy8JdXDw1XfAmLV6Z9SHmUhGP36VprPtP1X5qnDehj8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oICBhpBhXdsEYgvedVFKgSdESnTSY4f0P98YdTHBFTNpEno7zH9MshrfsMZ1Pulc6dh7lzU7+fv0n1gA6i3ocRd5bVXMELoxFXv+dMbUwUPPTUcfpluFWWkO1+mXhAPBmQHnEUjjLMQwksZlpvB8HgvPgXX5AJn+dzpGcP9yhyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=idoXaJ/V; arc=none smtp.client-ip=209.85.128.52
+	s=arc-20240116; t=1722285740; c=relaxed/simple;
+	bh=IQiKkzaTDl7twmBKLWj9YjzgADMmay2FkJMxC7ZbwrQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MJUOYzh9mIBAG2zUWaiOC2RHtwR6NMybT+tfbbGZlnerqSbZ7ABEmM+VFYEUNA2ByrVt0KBd9P3lgKGMFXfwhuIPVRfqHwrayhqWJl3kRREAtpuPURkBvE6rOpcyi/yKDX14/ywrpVnTaT4gxiGkmBw1tGqk69KoSDK2aB7/WXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YzS1IyPb; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428141be2ddso20386195e9.2;
-        Mon, 29 Jul 2024 13:40:37 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-595856e2336so8001053a12.1;
+        Mon, 29 Jul 2024 13:42:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722285636; x=1722890436; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rq+JYssKdPU95PWekAjV2U0WcUbJ7MXMWsw4i+/X8iw=;
-        b=idoXaJ/VSoTyLlFFXaLvAa3E9sVICSGh1Og0+F0ADKBCVNEwgcI5uvMDEocfFTLmrF
-         ZcvdyxZVKOcnVAleG+ueG7UZ86QkMWaY7xO+0pMVwuiKsTaCXoL/DOSTYrHWF9ztbD7r
-         nqTtkxUZQOUfjmtQlAGgoKqE3LUTyclkL0rnAif+N9tcCKwF5x4RySPh7/0xpTAs4XH0
-         z5olmH9Er19cWTM6fR6Vc4C94UtLfJ0jyDFsoWBZ/RL5RtcpkLrRkRmZO87ME5u7Kbnz
-         VJjwVTqDhLHQvVXCt6fKK1CXeOgk/yhXv8qt8iQx65RelWxvvT78tNklJeqmTLdj0CSg
-         tufg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722285636; x=1722890436;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1722285737; x=1722890537; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rq+JYssKdPU95PWekAjV2U0WcUbJ7MXMWsw4i+/X8iw=;
-        b=ZzZykdRexPkSEZiK88IlgGTtwhkKzp7yGIDgfxRKgZSTEEwEMfqZMocrGf5TeDO+1L
-         CdMNjza3g2DLVh2EHoUhbNmqNbuzuEJBJ0pob+alUfHsmjSlWe4hSYkJpjFh5amhVge8
-         scLNaI0O9Xi3wAmUxd0V6OW9Je9D5vg9aTRI0+sVIZWKg0vjylu1ctVQYkllbbv4LUUA
-         d8glyDlUxQWJKUSzIQC3pXx1dMFSJ1cyM3vcxcuAOc87q9YWp7Empt5/fM2Ds2sko+Do
-         ostiCZKPuM6Vp3NCuZYjIbw7OukVU20yEIIu91I8XZahsSQq2YPj+oLG9bElpEGlHjkc
-         5FEg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0eyS6q6G1teqUlyqrqF00AKMO0vSTL6gGf+PwD43CJztVvbgs4zF/fPwd+KbFtE9uPKTg05N5tutrW3y0FYPEAx9QMnKShpZIPbN0sBF8q58IkI0XNFLJLhYTAey3kI5judMSue0=
-X-Gm-Message-State: AOJu0YzaLe55rf3jJM0vQ57yKG3VAvsF9d3ao1BMTnHgWl9QuRHaJwG6
-	DcIYSIwp0ebqrqGo+qCKRpntQR0fncbKsnDy75ZbZeBbXN7uJBK+
-X-Google-Smtp-Source: AGHT+IG05AWEMxKvjbxKVaqKlVeGt7iQUkLNmXQumGlS7RLzyBBtfq1yAkpuBU87nLFq0iKWcyyosQ==
-X-Received: by 2002:a05:600c:444d:b0:426:6e95:78d6 with SMTP id 5b1f17b1804b1-42811d71018mr56853145e9.4.1722285635677;
-        Mon, 29 Jul 2024 13:40:35 -0700 (PDT)
-Received: from tp440p.steeds.sam ([2602:fbf6:10:a::2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428175e60b7sm84572055e9.42.2024.07.29.13.40.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 13:40:35 -0700 (PDT)
-Date: Mon, 29 Jul 2024 22:40:22 +0200
-From: Sicelo <absicsz@gmail.com>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: tony@atomide.com, linux-omap@vger.kernel.org,
-	maemo-leste@lists.dyne.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	Aaro Koskinen <aaro.koskinen@iki.fi>
-Subject: Re: [PATCH] ARM: dts: omap3-n900: correct the accelerometer
- orientation
-Message-ID: <Zqf-NosCToA_czCQ@tp440p.steeds.sam>
-References: <20240722113137.3240847-1-absicsz@gmail.com>
- <ZqU_UPQHCJ37qZfa@tp440p.steeds.sam>
- <20240728100658.0001864d@akphone>
+        bh=KZpqW1FNzf6K1KcY9MxfqaCZ/LDFNl8Inmwxrmuyygw=;
+        b=YzS1IyPbXCyxmUaKntUJSmbICOXoCFxFNBW4seweHEM9ufMM4uMqpaf5qgkqF/cS7A
+         NRHiBToBRQlECIPZu0ZfvDwRs2Q87RN4/dYz7yK6kmZyg2gwcG1R/Ab8RGi/o/kOps3L
+         2tC9HCioEbrlsyXp15g+V28eU1/69lTFgTqyGIMoKCvGjgPO7P94lpTgU/au0Tv0s9md
+         M7sjB95swjzNfcxx2mZ5L6UOieswM0yHfsRGkEKV2/VmkLNcif979VWxTJLqZNFuWwgp
+         CNBDqTvJ+o2d7xwqRN5bhP68hiP6Wuqpesxr5k0i2hlrIzKMBqueEvDFYMLo73d+4JqG
+         Q6fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722285737; x=1722890537;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KZpqW1FNzf6K1KcY9MxfqaCZ/LDFNl8Inmwxrmuyygw=;
+        b=J1Yp80hL7yUfTEMR7PL1Qtyc89tFV0/bKZ6sExuEoKe6loTEfwaWAP7nqtAMW314c+
+         7CqRv6P7xeYDeACo5jDdDQNuuz+6sw3Se2ICwzMvYOY37XgCI1LzjtspukLX3KNzKa/r
+         Nh7uCTqhtkNmrdV934zJ+RE8rSUlZZAY5NJFy6boonzqJxs1W6O6KMJE1UcIx26ooNBc
+         b/TrdN2n+dhn2C/FlmtJ9hXQLw9PRls0piVQkTJdO4V9uJn6Q0xPKVFsY5rpzUIN1L+R
+         fFr62vf/krj9pnPhhPzfYf7JnuST1lteAc2GF7gc+6m6L1I6ADBKcZ9YZ9Swx1/PWSST
+         8NCg==
+X-Forwarded-Encrypted: i=1; AJvYcCUJV+dANSjio/AuT8/sXQC9O/0Sq1jNw72BaaQxo1FDLpzrtghN9IEgmlAu6hnuhISoDRf+eL+tOoMSRnGM2lVFOZ7/Fm/w90Wxr+O8H0ko5F+rQMj9mjJnG9g9HNqM27wDatNRHiUMzqqiggfHS8fTGNAs9j6yj5ZlwKEeaJ8eKFo43nOMh8g=
+X-Gm-Message-State: AOJu0YxiHtE+6sCUWf/nk28qkzKc76JNlMrVFGYRa0eeHCh+oxn+Qf94
+	BJeO9eiWirpvA1qrj5FxO5s7eidZHOEGCwvkvcPZi1qjPF6xjrXuIyB+65in8GLIq/4+XmO/O4i
+	Ds3DCR9xrgOKrrxmFaYnWcbpNX0o=
+X-Google-Smtp-Source: AGHT+IELVmUsxUqYVsUBpaSO4qSLMUdrKZlg0f0o3R5olNU3hsTcYbTRf6kbLbRKSE2iOv0ZVYTu2ALyuE6vHzEW+Ws=
+X-Received: by 2002:a50:9984:0:b0:57d:3e48:165d with SMTP id
+ 4fb4d7f45d1cf-5b016cdaa27mr8243785a12.4.1722285736445; Mon, 29 Jul 2024
+ 13:42:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240728100658.0001864d@akphone>
+References: <20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org>
+ <20240719-topic-t14s_upstream-v1-3-d7d97fdebb28@linaro.org>
+ <Zp055OR+OzSgiHhX@linaro.org> <824edc08-f67f-4b2f-b4aa-da5df69b9df4@linaro.org>
+ <Zp4vghH5SK/rLEce@linaro.org> <CAF6AEGszzRFiW16VzQQVF21U79uLcTNwwuGsHs98Zp_UGGTEBA@mail.gmail.com>
+ <4w4b5pjrrl7jnanx3uodsjxw4cfenc3i6tgmp6kblgn6gavn45@uu2milys4n2z>
+ <atjcj5qnetxilrnoom7xisqbl5yhq5ktg3jb7dfnkdnzbqblb5@qbkqupznvrua> <87o76ng5mr.fsf@bloch.sibelius.xs4all.nl>
+In-Reply-To: <87o76ng5mr.fsf@bloch.sibelius.xs4all.nl>
+From: Rob Clark <robdclark@gmail.com>
+Date: Mon, 29 Jul 2024 13:42:04 -0700
+Message-ID: <CAF6AEGvjkStnnL=51LCVnyqMyupzfUT-HVrgyREXW+uAFWCTgQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add X1E78100 ThinkPad T14s Gen 6
+To: Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc: Bjorn Andersson <andersson@kernel.org>, dmitry.baryshkov@linaro.org, abel.vesa@linaro.org, 
+	konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, marijn.suijten@somainline.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, johan@kernel.org, patrick@openbsd.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Andreas
+On Tue, Jul 23, 2024 at 2:28=E2=80=AFPM Mark Kettenis <mark.kettenis@xs4all=
+.nl> wrote:
+>
+> > Date: Tue, 23 Jul 2024 13:55:20 -0500
+> > From: Bjorn Andersson <andersson@kernel.org>
+> >
+> > On Mon, Jul 22, 2024 at 07:03:43PM GMT, Dmitry Baryshkov wrote:
+> > > On Mon, Jul 22, 2024 at 08:00:19AM GMT, Rob Clark wrote:
+> > > > On Mon, Jul 22, 2024 at 3:11=E2=80=AFAM Abel Vesa <abel.vesa@linaro=
+.org> wrote:
+> > > > >
+> > > > > On 24-07-22 10:42:57, Konrad Dybcio wrote:
+> > > > > > On 21.07.2024 6:40 PM, Abel Vesa wrote:
+> > > > > > > On 24-07-19 22:16:38, Konrad Dybcio wrote:
+> > > > > > >> Add support for the aforementioned laptop. That includes:
+> > > > > > >>
+> > > > > > >> - input methods, incl. lid switch (keyboard needs the pdc
+> > > > > > >>   wakeup-parent removal hack..)
+> > > > > > >> - NVMe, WiFi
+> > > > > > >> - USB-C ports
+> > > > > > >> - GPU, display
+> > > > > > >> - DSPs
+> > > > > > >>
+> > > > > > >> Notably, the USB-A ports on the side are depenedent on the U=
+SB
+> > > > > > >> multiport controller making it upstream.
+> > > > > > >>
+> > > > > > >> At least one of the eDP panels used (non-touchscreen) identi=
+fies as
+> > > > > > >> BOE 0x0b66.
+> > > > > > >>
+> > > > > > >> See below for the hardware description from the OEM.
+> > > > > > >>
+> > > > > > >> Link: https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkp=
+adt/lenovo-thinkpad-t14s-gen-6-(14-inch-snapdragon)/len101t0099
+> > > > > > >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > > > > > >
+> > > > > > > Few comments below. Otherwise, LGTM.
+> > > > > > >
+> > > > > > > Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+> > > > > > >
+> > > > > > >> ---
+> > > > > > >>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+> > > > > > >>  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 792 ++=
++++++++++++++++++++
+> > > > > > >>  2 files changed, 793 insertions(+)
+> > > > > > >>
+> > > > > > >> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/=
+boot/dts/qcom/Makefile
+> > > > > > >> index 0e5c810304fb..734a05e04c4a 100644
+> > > > > > >> --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > >> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > >> @@ -261,6 +261,7 @@ dtb-$(CONFIG_ARCH_QCOM)        +=3D sm86=
+50-hdk-display-card.dtb
+> > > > > > >>  dtb-$(CONFIG_ARCH_QCOM)   +=3D sm8650-hdk.dtb
+> > > > > > >>  dtb-$(CONFIG_ARCH_QCOM)   +=3D sm8650-mtp.dtb
+> > > > > > >>  dtb-$(CONFIG_ARCH_QCOM)   +=3D sm8650-qrd.dtb
+> > > > > > >> +dtb-$(CONFIG_ARCH_QCOM)   +=3D x1e78100-lenovo-thinkpad-t14=
+s.dtb
+> > > > > > >>  dtb-$(CONFIG_ARCH_QCOM)   +=3D x1e80100-asus-vivobook-s15.d=
+tb
+> > > > > > >>  dtb-$(CONFIG_ARCH_QCOM)   +=3D x1e80100-crd.dtb
+> > > > > > >>  dtb-$(CONFIG_ARCH_QCOM)   +=3D x1e80100-lenovo-yoga-slim7x.=
+dtb
+> > > > > > >> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkp=
+ad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> > > > > > >
+> > > > > > > So what happens for SKUs of this model wil have x1e80100 ?
+> > > > > > >
+> > > > > > > Maybe we should stick to x1e80100 ?
+> > > > > >
+> > > > > > This one only ships with 78100
+> > > > > >
+> > > > >
+> > > > > Sure, but then in upstream we only have 80100. Plus, it is includ=
+ed in
+> > > > > this file as well.
+> > > > >
+> > > > > I don't know what's the right thing to do here. But I think it ke=
+eps
+> > > > > things more simple if we keep everything under the x1e80100 umbre=
+lla.
+> > > >
+> > > > plus sticking to x1e80100 will avoid angering tab completion :-P
+> > >
+> > > This is an old argument, with no clear answer. For some devices we
+> > > choose to use correct SoC name (sda660-inforce-ifc6560). For other we
+> > > didn't (sdm845-db845c, which really is SDA845). However for most of t=
+he
+> > > devices the goal is to be accurate (think about all the qcs vs qcm
+> > > stories). So my 2c. would go to x1e78100.
+> > >
+> >
+> > I agree, x1e78100 follows the naming scheme we have agreed upon - for
+> > better or worse.
+>
+> So should the device trees for the Asus Vivobook S15 and the Lenovo
+> Yoga Slim 7x be renamed then?  Since those also (only) ship with
+> X1E-78-100 variants of the SoC.
+>
+> There is supposed to be a variant of the Vivobook with the X1P-64-100
+> (I haven't seen it actually for sale yet).  Since that one has only 10
+> CPU cores, should that one gets its own device tree?  That may not be
+> possible.  I have a strong suspicion that all the variants are just
+> binned versions of the same SoC, where the X1P just has two of the
+> cores disabled.  If Qualcomm, like Apple, attempts to increase the
+> yield by binning SoCs with broken or badly performing cores as X1P it
+> might be a lottery which of the 12 cores get disabled.
+>
+> And for the vendors that do offer models with different X1E variants,
+> are there going to multiple device trees, one for each variant?
+>
+> I'm asking because on OpenBSD we load the device trees in our
+> bootloader and map SMBIOS vendor and product names to a device tree
+> name.  So a consistent naming scheme for the device trees is
+> desirable.
 
-On Sun, Jul 28, 2024 at 10:06:58AM +0200, Andreas Kemnade wrote:
-> > On Mon, Jul 22, 2024 at 01:31:11PM +0200, Sicelo A. Mhlongo wrote:
-> > > Negate the values reported for the accelerometer z-axis in order to
-> > > match Documentation/devicetree/bindings/iio/mount-matrix.txt.
-> > > 
-> > > Fixes: 14a213dcb004 ("ARM: dts: n900: use iio driver for
-> > > accelerometer")
-> > > 
-> > > Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
-> > > ---
-> > >  arch/arm/boot/dts/ti/omap/omap3-n900.dts | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/ti/omap/omap3-n900.dts
-> > > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts index
-> > > 07c5b963af78..4bde3342bb95 100644 ---
-> > > a/arch/arm/boot/dts/ti/omap/omap3-n900.dts +++
-> > > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts @@ -781,7 +781,7 @@
-> > > accelerometer@1d { 
-> > >  		mount-matrix =	 "-1",  "0",  "0",
-> > >  				  "0",  "1",  "0",
-> > > -				  "0",  "0",  "1";
-> > > +				  "0",  "0",  "-1";
-> > >  	};
-> > >  
-> > >  	cam1: camera@3e {
-> > > -- 
-> > > 2.45.2
-> > >   
-> > 
-> > CC: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
-> > <andreas@kemnade.info>
-> > 
-> I would expect it to be a rotation matrix but it is not. So maybe this
-> should be fixed in,the driver?
+multi-sku laptops are going to make this a mess..  We really should
+just reconsider.. or maybe sidestep the issue and call them all
+"x1-crd.dts", "x1-lenovo-yoga-7x.dts", etc
 
-The mount matrix is documented in the kernel docs [1], and this patch
-implements the suggestion that the z-axis should "be negative under the
-screen and positive in front of it, toward the face of the user."
+BR,
+-R
 
-On the N900, the accelerometer is mounted such that the raw z-values are
-opposite to the specification in the kernel docs. The driver itself
-seems to be correct, and is used on a number of other boards (such as
-Motorola Droid 4), reporting expected values when used in conjuction with
-mount matrices.
-
-There is not a lot of userspace that uses accelerometer z-axis
-information, hence I could not perform thorough testing for the z-values
-when I submitted 14a213dcb004 ("ARM: dts: n900: use iio driver for
-accelerometer"). The error became evident when Maemo Leste gained
-support for face up and face down device states [2]. With the patch in
-this thread, userspace reports correct face up/down information.
-
-I hope I have not misunderstood your reply, and please let me know if I
-am missing something.
-
-Sicelo A. Mhlongo
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/mount-matrix.txt#n31
-[2] https://github.com/maemo-leste/mce/commit/0dac5a7e4286b5e9a4dafc627c49cef8cc92f092
+> Thanks,
+>
+> Mark
+>
+> > Regards,
+> > Bjorn
+> >
+> > > --
+> > > With best wishes
+> > > Dmitry
+> >
 
