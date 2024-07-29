@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-88677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CCEE93EC0E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 05:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6690F93EC18
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 05:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BE9B1C2163E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 03:58:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 973411C215BA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 03:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFBB4823DD;
-	Mon, 29 Jul 2024 03:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BAA84A39;
+	Mon, 29 Jul 2024 03:58:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rjk5BaiN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EjoqFBFU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D89C823AC;
-	Mon, 29 Jul 2024 03:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB968405D;
+	Mon, 29 Jul 2024 03:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722225520; cv=none; b=US0a0UJZFwOP11p4D8hSgUmhdfsfh/k+eTc2mVH0b6z0Fx3yOue/ux+JXeKW7HvnKT9xVfeZtcqti8kjiHFahD1xa2ok2dcnmgCkplsDlvWWrP9NZB9aZa4RT9p0yREySza7sa8o9gc3xIu3atpegk9H+cl7679qvMtIWEOA9j8=
+	t=1722225523; cv=none; b=i1JMS1KY8Yph9yohu2I4mAeB87/QbINp3y9yrvxRxLgvR0VqeF/CKeRcdA8S/kDc8wlwixlrgF7sLHXXSEAKP0rT2XuBMgXVq1Kt/ge8w/B7ivPWipH1n2TAB+uPOdg+v51XNsoyUsMpq0AeLPHEB4iud+89Yc3+DHrcql/+MOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722225520; c=relaxed/simple;
-	bh=TA5poETAAz92aOIyTBfRr7V2ADhM0BC36aDqASPb1yk=;
+	s=arc-20240116; t=1722225523; c=relaxed/simple;
+	bh=LmVqQmuz9xZZcRUniQRMKVTeGtz3bp9z68kpBWoskVw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K6y+zAvLZk/U2+sPVFMe3q1ZRgimLxL5Mm21u75fAA7/ObeoRMwVtl/Dt8FgR3WG1hSbEzgQHUaVSCWaJwOZLS75l6Yq2sRV3oy7wISgGdM+Ez4wTXK5BSA8SP4W6GWtgyE2OvOyg1pvM2OBGyPR+TzwNQXhWMfq9YkV6iPHg/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rjk5BaiN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C9AC4AF09;
-	Mon, 29 Jul 2024 03:58:39 +0000 (UTC)
+	 MIME-Version:Content-Type; b=O5oltAohDjJzZBzmM4H4PV7T6S4yVzyYUEIGtvDSQe9gxm9dseAvpjoy5Gonxyav7AKcgOO7YCzygl1Tj1pDD22KCdB102AtIX2hl/Vr1Hdm70Pr0DhdeKvLlwRlsyoHvL3qBqa+OxlpQnBSG8Ln7S4Ou3EizJHOxeneK020GTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EjoqFBFU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14C11C4AF0F;
+	Mon, 29 Jul 2024 03:58:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722225520;
-	bh=TA5poETAAz92aOIyTBfRr7V2ADhM0BC36aDqASPb1yk=;
+	s=k20201202; t=1722225522;
+	bh=LmVqQmuz9xZZcRUniQRMKVTeGtz3bp9z68kpBWoskVw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rjk5BaiNex5Nb2WgfjNPLRG+bP0SIXreQ/mpaGms+hfyPfCXlYxiqW+yYwbcvpqlw
-	 mdDSUuS/k6JWBUoACxhdnQW5Ga5R07PoksOweJKBZlOeE/Sz9jh1EzT3eU2V+EKuX0
-	 6845m1hzOUmsFHWgjjCNzS1QjdIii9qNBpsmrtW5WNENJ85J8KBwf0tB18/QTRlSXa
-	 nQQ0+9gxyZaHd8KDtkQ+4x+ougfE+wQATXPFHZu2RxZAFu70l/AJnQ0nLfYsgGyOE6
-	 0PNX2hLQazjjtyqes6mQcag/RJEE+sGFmLf6R0pwpsqlH07twYYOuCWVGHsYYpWw3Y
-	 r6BHnkIlqpanw==
+	b=EjoqFBFUUhrGqyEse2AQ0xsVvTxjp0gdne4Cjoo2GA6sinUyMhuGK9+55lya1Ymbz
+	 JEB8sfEQFI+tr7G8lTdWbjbYxAl24fc1OSsvIiwwtVqIpsULFf0B2ryW6IPCPxexNp
+	 PlMWIcgdTzo3Dxrwutn/iNCm4FSr6IFXvff9x7IUqEcIOdCVAxZcaUMjfhukCp87sT
+	 8y3Ds0p74jUpQhYAKaUQefVas0oEbW6hZF87ROHe6DVPK5qjrmo8rFK3rP9vJYQktZ
+	 hRgWuYjPA8Vl1lQ2uKmj21EKmpnxzQmoe5PaSFJDYd6WqCVtqULtJ1ImF06s2b4X2+
+	 cvURMqo6LK81w==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Amit Pundir <amit.pundir@linaro.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-	dt <devicetree@vger.kernel.org>,
-	lkml <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550-hdk: add the Wifi node
-Date: Sun, 28 Jul 2024 22:58:06 -0500
-Message-ID: <172222551318.175430.1023758913285401428.b4-ty@kernel.org>
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?St=C3=A9phane=20Martins?= <stemartins@proton.me>
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916-longcheer-l8910: Add rear flash
+Date: Sun, 28 Jul 2024 22:58:09 -0500
+Message-ID: <172222551323.175430.4176360480927663011.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240718125545.2238857-1-amit.pundir@linaro.org>
-References: <20240718125545.2238857-1-amit.pundir@linaro.org>
+In-Reply-To: <20240722-x5_sy7802-v1-1-b2ffeeaf8d2d@apitzsch.eu>
+References: <20240722-x5_sy7802-v1-1-b2ffeeaf8d2d@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,16 +67,15 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 18 Jul 2024 18:25:45 +0530, Amit Pundir wrote:
-> Describe the ath12k WLAN on-board the WCN7850 module present on the
-> board.
+On Mon, 22 Jul 2024 22:05:01 +0200, André Apitzsch wrote:
+> The phone has a Silergy SY7802 flash LED controller.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8550-hdk: add the Wifi node
-      commit: 73655137a570e4a3cd226fd9f17920f507cec028
+[1/1] arm64: dts: qcom: msm8916-longcheer-l8910: Add rear flash
+      commit: 7a373bbc1b50de75572b00063b52ac79eaeb9701
 
 Best regards,
 -- 
