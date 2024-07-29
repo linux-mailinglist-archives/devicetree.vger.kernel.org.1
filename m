@@ -1,166 +1,188 @@
-Return-Path: <devicetree+bounces-89134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3E39400D7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C4C9400E7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:10:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D940128116A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:07:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46D81283ABD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24A418D4CA;
-	Mon, 29 Jul 2024 22:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA2B618F2EB;
+	Mon, 29 Jul 2024 22:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Q4OwAbrN"
+	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="pZmJYnAr";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Zi0Iu2Cf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373311B86D6
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 22:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD83818EFF3;
+	Mon, 29 Jul 2024 22:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722290839; cv=none; b=cwXuqG9uIJGS3zGLEns+vc5w+HUC8M7OpZgVL8fLskbetjaMa2hlMURByeuirHFeZr3ln9ZhRpMummiQFgsQBWwRdegA0LrwgYFOK6+6lnBH46mFtuM4kr4nTKMyFxZX7+ET7na5fwydqnGMSKImbN8QVyciwd0eiixEKGrkP9g=
+	t=1722290972; cv=none; b=WPs+RnMYBqXDm8ignZ5/Kb9TZ9oHbMVxD8J0M9OUrkMtXh67RVIBNsu3yNz+KDJTVc8kKR/lz2c3LesbRv25FU8MxptgrWX5FDnF2BD0/gIebNOaZSsFbOwfDpvTuJ1I70yhUsYUqDVvuFKbnPcthykccaRIxQZAX9laQGazweQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722290839; c=relaxed/simple;
-	bh=W/4Cbn8/kkKSr8waaVeTGkTkc0iDnw17OTmovtR+Hs4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=THbcXWXcySpDxpp+DXqVVKNl4ZhRgwcxR8jyIndWbfKzgCkUQkZ5MIRWyTj0Ai4ypnDiAPFIY0+LpfQnYbqBSDrlhX3wmvPe2TOVng3cB8mmn6V7ZvIQwGy7pdP15nXtHjI+cpKWbCbOV5J9oTlQfF7kEKpwsullGWg7hj07jA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Q4OwAbrN; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3d9e13ef8edso2672004b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 15:07:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722290837; x=1722895637; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=b8H5cqONla5l6xRWvkLKshaUuFMDuSBaKxHVTiX3aGg=;
-        b=Q4OwAbrNg+MJwpTown7TEU2hk1t+PRRoDYNHV0P+AQIEdbvkilYMh0PUpjZuyrwucS
-         Gz/xCYUBEOURYtc9vl9j+5Ri5qhNbRltx2jjSBJ7uQKPfy1M/KWNJfuFUvJ8aNAjDBgj
-         CBwQgowzbYtK7e+hofZVOKiBW/fz4FJOw44VM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722290837; x=1722895637;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b8H5cqONla5l6xRWvkLKshaUuFMDuSBaKxHVTiX3aGg=;
-        b=HUn07u7hcXexDm4/KEE9XAxsWPPrO9dZaC8QrI08tYAQ5qJTt0r0nADMnVrAu18Vvk
-         iole3cBoYjEMlmyK3ypFirq+07phSnCy2sFWTY9rgCmZNjJI6St7xioYFYtjMYaPtftP
-         Zix05kKrRL9F0Mh/KA4aRtU+8vPadDmMq0L4p1ozWKHay0zEYB/JeJ1tBRvN2ML5pcnk
-         LFJc2llKXyEzRmEI12J6nxJ1jjQ807Xk1XwaJ7n96/UH5amOzUPw2rCm9aPb3OayZStu
-         4J3K7qjKwMt03NJVhLhl76kSGnT/flLS0XQFIVwuVSXA6UoY47aYsYdxLPuzyrroKota
-         FLUg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2ij0EZRP1h79PMHnQkb1fmkObqDqKvHFXQc5bKf86zZYbmW1pAegmhfw6373I1WMDiAR70f2z2TFwSvxMJ2DcvS3uKmwfFbnQiw==
-X-Gm-Message-State: AOJu0Yx0NnwK30lc7c6Gt6hNzNcQ1O/bnY3GeK1E4g+wQVfsEYa5GpG+
-	nK5r9vDRHYUgzJ6LVwsK/FHUonhhFIFq+dJ6+rEb9/NKvEBRtGARushfIEl7WQ==
-X-Google-Smtp-Source: AGHT+IFmzx13eC2YOwTGHAR3k4HhBvZs4D0wU8GU1PmpTExe5XjmFJWYAVLbbHRlKtFyTcU6KK3o6w==
-X-Received: by 2002:a05:6808:f93:b0:3db:3303:8377 with SMTP id 5614622812f47-3db33038678mr6508739b6e.30.1722290837185;
-        Mon, 29 Jul 2024 15:07:17 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-44fe8187c0fsm44783511cf.55.2024.07.29.15.07.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jul 2024 15:07:16 -0700 (PDT)
-Message-ID: <70365646-ee0d-485f-b865-e0aaa304d758@broadcom.com>
-Date: Mon, 29 Jul 2024 15:07:12 -0700
+	s=arc-20240116; t=1722290972; c=relaxed/simple;
+	bh=EftCZMjEefsCA1L+DOsKUuVILfFtibMPXx8kWgfDyvI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iFlt/DhQlDv4TqNK4TV4pFJCNjHryt3onv83iIAZbH5AiXINz39pV6Y43tSzmG9iSk7YR9m2jfW5dBmm4WGkefW4UgCdZYKI9TMm5tEB7BMuy2a/dP+OkH/ltE5c3U7Qu7Z/nPB5yfkpej0vOlwgk4r0VsibsVYpTPhN2rK6yTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz; spf=pass smtp.mailfrom=stwcx.xyz; dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b=pZmJYnAr; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Zi0Iu2Cf; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfout.nyi.internal (Postfix) with ESMTP id ED91C1380161;
+	Mon, 29 Jul 2024 18:09:29 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 29 Jul 2024 18:09:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1722290969; x=1722377369; bh=OD+/qBJDKb
+	S3ABPU0JbMD+Hs/uz67NSCTS1YeEEaLZ8=; b=pZmJYnArafsAJRF8DOerpedrkh
+	GL/AfYXbcBMqGmIenj0xQfZAPa+AIq4dS07F20FL4QX1eBpHQfrMzPIeAcvvRMb0
+	+TVnLfOEBa4O2tTBKBFPp2T9urbpL7FKbn9Z7lzK+/zSNsABIhR+HAgHyfsYaEQF
+	JFW95lSLxG6x96bo+hO3V3CceDxpDtXEeuNCfmXJuqnWdsSUbOm2ad4f7T0lSi33
+	yAicsIBozrbRFnF+hRJIHHvLCzSrOaIO2jcR+JW77Sf2YtRv/0ugK5sDsIV/MoaQ
+	u2zreUVHGFbFguyOha/2gnXxWmaNymiDExlPGJDTPJ2XHa7z7doyXJA8cYWg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1722290969; x=1722377369; bh=OD+/qBJDKbS3ABPU0JbMD+Hs/uz6
+	7NSCTS1YeEEaLZ8=; b=Zi0Iu2CfwtJnnRIJ3cMu9/ABgpjJkIfa13w61dgQGdNF
+	SHF855rqpZL8HoMM7Lf7f3ndD82RVCVfWX7T8eAaant0igJgHstlYfuyh1FJ/d/u
+	GWM7cu+cNex+sjzHdowKB74IIMEfkJ2S/0+XqaE54eXRX3/2jA84Eot9yYqawYmY
+	6xyX8lrWOl87WB74mkF74z83WF2vq5i4QAw3YpcMbH++XuWGLjMw0XFLhRZQFVDc
+	xOAkHdG/yqJK7CxzeAfi1R5vieXlDRDbpPjhEK9BFCQJlBLtxMAZlQOpRc6gaMGG
+	N7BR0sd+PbM9AvFwv4uhTy6zlCSHreQgj0GDwhlvVw==
+X-ME-Sender: <xms:GROoZhmUmsH0TEP3UQa2a2sFl95hyBKCJFVOhN4qNuzEPEZpBvjzAw>
+    <xme:GROoZs2g4cxKnByNgQ11Y5Yau1l_Ov8ufZMfcI24Xrgl-Gr9maKX9nEvNk6BaLkiI
+    Yru3EALUy7yLLzXMTE>
+X-ME-Received: <xmr:GROoZnr95eyLQSfMYPx_ofHSYbNqz7ymZzqPf_hhAQAV5TsJ4E6dgoeEMTbsEth_f-4AV4puHkXqy30pLB5S9vHJNAsJ9Yfrw2o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrjeefgddtkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenfg
+    hrlhcuvffnffculddujedmnecujfgurhepfffhvfevuffkfhggtggujgesghdtreertddt
+    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
+    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepjefgtdelledvfedtgeegffefueef
+    veegjeekleegueejveevueefiefgiedvjeejnecuffhomhgrihhnpehkvghrnhgvlhdroh
+    hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehp
+    rghtrhhitghksehsthiftgigrdighiiipdhnsggprhgtphhtthhopedt
+X-ME-Proxy: <xmx:GROoZhn1Az1DItK_TsU7PvJq-sjLyjxQLuzRDq0U4B-mIETPDHNsLQ>
+    <xmx:GROoZv2VM2Zp9T5y4cHyJeNJOm9Z1JoYdABdveoZGuQ29idNrRsTdg>
+    <xmx:GROoZgvH2gi-6ox4PszCJEOhLXAmIwwEj7c4249n--1MCP9LApGQRg>
+    <xmx:GROoZjUzvM7kWHXsTQ0Uas5AEnfZL6Pbky3PtqcxK0rHsoTF9d5Jsg>
+    <xmx:GROoZouhT8GjqblB3mIihgQJY3gqGrOqnW0X4lnZXNilAF0818hd7ZbZ>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 29 Jul 2024 18:09:29 -0400 (EDT)
+Date: Mon, 29 Jul 2024 17:09:28 -0500
+From: Patrick Williams <patrick@stwcx.xyz>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 22/27] ARM: dts: aspeed: yosemite4: Revise i2c
+ duty-cycle
+Message-ID: <ZqgTGJ40wuaCJVe3@heinlein.vulture-banana.ts.net>
+References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
+ <20240723092310.3565410-23-Delphine_CC_Chiu@wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 0/2] ARM: dts: bcm-mobile: Split out nodes used
- by both BCM21664 and BCM23550
-To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>
-Cc: Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Stanislav Jakubek <stano.jakubek@gmail.com>,
- ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240729-bcm21664-common-v2-0-ebc21a89bf63@gmail.com>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240729-bcm21664-common-v2-0-ebc21a89bf63@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Yea2wkXUphGPWaXv"
+Content-Disposition: inline
+In-Reply-To: <20240723092310.3565410-23-Delphine_CC_Chiu@wiwynn.com>
 
-On 7/29/24 05:34, Artur Weber wrote:
-> The BCM21664 and BCM23550 are nearly identical to each other in terms
-> of register layout. This was verified against a downstream kernel[1] -
-> Broadcom's kernel has "RDB" directories which includes headers with
-> the full register maps for the included hardware. Running:
-> 
->    diff --recursive arch/arm/mach-{hawaii,java}/include/mach/rdb
-> 
-> reveals that the differences are minuscule - some things related to
-> ISP and H264 decoding. Most of the other differences are related to
-> the different CPUs in the two chipsets - the BCM21664 has 2x Cortex-A9
-> cores, and the BCM23550 has 4x Cortex-A7 cores.
-> 
-> In mainline, most drivers are also re-used between the two.
-> 
-> To make development for both platforms easier, split out the common
-> nodes into a separate DTSI, bcm2166x-common.dtsi. This only leaves
-> the device-specific nodes - so, CPU and related things - in the SoC-
-> specific DTSIs (bcm21664.dtsi and bcm23550.dtsi).
-> 
-> The new DTSI is based off the bcm23550.dtsi, with its split into
-> busses. Since it's pretty much 99% identical, I kept the licensing
-> of the original file (BSD 3-clause). The license for the bcm21664.dtsi
-> file remains GPL 2.0 as it originally was.
-> 
-> make CHECK_DTBS=y on bcm21664-garnet.dtb and bcm23550-sparrow.dtb
-> seem to pass fine for me (thanks to Stanislav Jakubek for converting
-> the bindings to YAML format!).
-> 
-> [1] https://github.com/knuxdroid/android_kernel_samsung_baffinlite
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-Thanks for resending, I had those on my radar to push out, now done!
+--Yea2wkXUphGPWaXv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next
--- 
-Florian
+On Tue, Jul 23, 2024 at 05:23:03PM +0800, Delphine CC Chiu wrote:
+> Revise duty cycle SMB11 and SMB16 to high: 40%, low: 60%,
+> to meet 400kHz-i2c clock low time spec (> 1.3 us) from EE request
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index c2994651e747..c940d23c8a4b 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -761,6 +761,7 @@ eeprom@54 {
+>  &i2c10 {
+>  	status =3D "okay";
+>  	bus-frequency =3D <400000>;
+> +	i2c-clk-high-min-percent =3D <40>;
 
+I don't see upstream code referencing this property.
+
+It looks like this problem has been reported by Rob's bot multiple times
+before when you've submitted this:
+
+https://lore.kernel.org/lkml/171198916336.1093653.5612835610479588096.robh@=
+kernel.org/
+
+Is there a reason we aren't fixing this?
+
+Maybe we are depending on this commit?  I think we need to reference it
+somehow here.
+
+https://lore.kernel.org/lkml/47e7eb15-e38d-ead3-de84-b7454e2c6eb8@gmail.com/
+
+
+>  	i2c-mux@74 {
+>  		compatible =3D "nxp,pca9544";
+>  		i2c-mux-idle-disconnect;
+> @@ -1314,6 +1315,7 @@ &i2c15 {
+>  	mctp-controller;
+>  	multi-master;
+>  	bus-frequency =3D <400000>;
+> +	i2c-clk-high-min-percent =3D <40>;
+> =20
+>  	mctp@10 {
+>  		compatible =3D "mctp-i2c-controller";
+> --=20
+> 2.25.1
+>=20
+
+--=20
+Patrick Williams
+
+--Yea2wkXUphGPWaXv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmaoExgACgkQqwNHzC0A
+wRnEEA//YKsI3SqDkEHLvlXgFnmbBJieaBhRlT0uVK6neAVOqhZ+Ny3CtXwzHOt+
+XG/9erO/lquF7PV4KBYdoVRYPeJbWrpp3tCScUEpq7y81NuBEy6BGMGw0nmAD6TA
+DOmsI4DiG5iTbxvrez4fsplAU9Oe32cYL9kq3jAhFA6NDNCe7bY+2BnONSUyNsVu
+eU1FRIbOIouW1BZVRt/3H2HqSAOwd3XMHFpqxLrqtzcvAPBLr43lh2R4dCfRtXZ7
+mdySsQmMYem0XZN1uZpqvu3WFEQmofuPAoYTvntfFMH12n5YmQGdZJdgUz+XxdpR
+zVf0ZXt5NkwyfbpTDBZfTgD55Tva8gYNKIA1mIje3sTFoLT5/FqHbIOSMBAHfRXG
+PzDAE3EI2W0qZhbc6MD5cgFhhfC498i8ye12WkJa8v2MFWQfiyAXysZ+PskR+mHj
+uBNRwc2i+k9q3UPrcmxm2scEHUOVSxa3OobJOVKm7KDZPfeQx74iWf9dNEBAZ7lK
+jMlF46Uj/QIj+Yuc0hGwX0qaR6q7FQQdSIpil2vwApw1W7gW1W0nW2F4uzvlqcek
+l5O+8UACVwyFXXhrNEwF1lZ2Bqj9FmeSdkE0ECPW3hFtzgdk1nG5MwYxvwhmgXb6
+NixyGkwLzJxYiWjR/P+lGS+y2hc5x3z7Jfv8AEKzlQ6z/LxmWK0=
+=jpXX
+-----END PGP SIGNATURE-----
+
+--Yea2wkXUphGPWaXv--
 
