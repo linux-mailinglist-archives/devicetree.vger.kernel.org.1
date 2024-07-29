@@ -1,83 +1,118 @@
-Return-Path: <devicetree+bounces-89064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7B193FE2D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 779C693FE3C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:27:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAE31B21057
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:22:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09A98B21957
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD98185606;
-	Mon, 29 Jul 2024 19:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE60187851;
+	Mon, 29 Jul 2024 19:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QRQXKTf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313D784D34;
-	Mon, 29 Jul 2024 19:22:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4924E187322;
+	Mon, 29 Jul 2024 19:27:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722280934; cv=none; b=u+MZaVZMq2rM5glUsvAlKwQLrAxVoIX9Ox273nvEcF/kkPN3VCWDaZWr5GJSx+2gkpQ+5U0F7iXCp7lDuyb+gEWvW7l7u8UXF/pISjPAHNPW3tye9Gc/i+sdGWWLeQl/9yDyqII3xMahAxpfGzDb7o/rhQXlzSpNBiqy4EcqDFc=
+	t=1722281247; cv=none; b=VRYElihG7IVraTJ+R6JU3DC/8UT9kNy1KC/Kg/4bqA16bXgGIP6o+u0dQeRA+StAgxm+M8Fo51WWD9aoBMfNvAOi0TFP4sK37UT0RNjEXZLtUAQD+xSG2JOS4bVt3zyP4pVRps3iPYe18mgKSiZQn3MSjFkT7SR33c92z4yT2/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722280934; c=relaxed/simple;
-	bh=mOfRS1Nw8ey6+muwNAxOfEuNvzUEh2WXLYGHHq8WeYY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oYjYHQu+HHkR3F396eUnyydcQXS2gpQV0gVvLX6NCzAE1bPYq1FALAsAcXnamMyAJHei4KTUReQtmEiZzR5kiUUnnEOITLKfiuiGin5cWHTzPQfM2aapzmxPKOmJYwC7Kzut50JhUPgtO6OpSYyBRr8iJLHZ8pkSsiXGc3EP0/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e86192c.versanet.de ([94.134.25.44] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sYVwc-0007DX-3G; Mon, 29 Jul 2024 21:22:06 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Michael Riesch <michael.riesch@wolfvision.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: add wolfvision pf5 visualizer display
-Date: Mon, 29 Jul 2024 21:22:05 +0200
-Message-ID: <1941803.VZ3vTMCxA0@diego>
-In-Reply-To: <171338906385.2268267.11350398666302673626.b4-ty@sntech.de>
-References:
- <20240412-feature-wolfvision-pf5-display-v1-1-f032f32dba1a@wolfvision.net>
- <171338906385.2268267.11350398666302673626.b4-ty@sntech.de>
+	s=arc-20240116; t=1722281247; c=relaxed/simple;
+	bh=Sx5GnLyFD86DhvvRIf0ymkAYo91m0ZR+VpQ3SCr3aCw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QnMZokLokaNgeBFj+kQEfZay1OGA5UJLd4lLOuCiib25ptZ6QpG4PoP5S3LE26kx/sUHogiB4wLF64s3NY4u1+8z2p6FKbyooycoMTCcUoGQPnBtZS3+5Vo8hFQus3173LO7xozIH2K/9dy3+duPwlq6ANhQ03g4UnK/CAZDizY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QRQXKTf9; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=SPWJtm427QjfDF7wPVvtx41fVv4rQ2hu/R2QSwgK83Y=; b=QRQXKTf95sTqQZ3pCXczu3HPxh
+	RrNU7+s7H8s6ve3l50tTqcU2rL5khfEfGL/AvOQr9S5GNDw/42DnM04lR5C4UJFTcLPb1jM/EQ+eC
+	HRdmjLpnAzt0R665oqXCIV+SMX3K7uAa3oPeQ2PCmRDlTGhovX7RsNC2Pw6ES6NVxYoQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sYW1Q-003Uzh-5d; Mon, 29 Jul 2024 21:27:04 +0200
+Date: Mon, 29 Jul 2024 21:27:04 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Martin =?iso-8859-1?Q?Hundeb=F8ll?= <martin@geanix.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Michal Kubiak <michal.kubiak@intel.com>,
+	Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+	Conor Dooley <conor@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/7] can: m_can: Map WoL to device_set_wakeup_enable
+Message-ID: <15424d0f-9538-402f-bc5d-cdd630c7c5e9@lunn.ch>
+References: <20240729074135.3850634-1-msp@baylibre.com>
+ <20240729074135.3850634-3-msp@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240729074135.3850634-3-msp@baylibre.com>
 
-Am Mittwoch, 17. April 2024, 23:24:34 CEST schrieb Heiko Stuebner:
-> On Fri, 12 Apr 2024 14:54:09 +0200, Michael Riesch wrote:
-> > Add device tree overlay for the WolfVision PF5 Visualizer display.
-> > Since there shall be additional variants of the WolfVision PF5 display in
-> > future, move common definitions to a device tree include file.
-> > 
-> > 
+On Mon, Jul 29, 2024 at 09:41:30AM +0200, Markus Schneider-Pargmann wrote:
+> In some devices the pins of the m_can module can act as a wakeup source.
+> This patch helps do that by connecting the PHY_WAKE WoL option to
+> device_set_wakeup_enable. By marking this device as being wakeup
+> enabled, this setting can be used by platform code to decide which
+> sleep or poweroff mode to use.
 > 
-> Applied, thanks!
+> Also this prepares the driver for the next patch in which the pinctrl
+> settings are changed depending on the desired wakeup source.
 > 
-> [1/1] arm64: dts: rockchip: add wolfvision pf5 visualizer display
->       commit: ecca3b96aa849bf7a6e704567c5f71bff912cec0
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>  drivers/net/can/m_can/m_can.c | 37 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+> 
+> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+> index 81e05746d7d4..2e4ccf05e162 100644
+> --- a/drivers/net/can/m_can/m_can.c
+> +++ b/drivers/net/can/m_can/m_can.c
+> @@ -2182,6 +2182,36 @@ static int m_can_set_coalesce(struct net_device *dev,
+>  	return 0;
+>  }
+>  
+> +static void m_can_get_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
+> +{
+> +	struct m_can_classdev *cdev = netdev_priv(dev);
+> +
+> +	wol->supported = device_can_wakeup(cdev->dev) ? WAKE_PHY : 0;
+> +	wol->wolopts = device_may_wakeup(cdev->dev) ? WAKE_PHY : 0;
+> +}
 
-I have kept that patch around for a while, hoping the DTC patch would
-get merged soon'ish, but it looks like this will still take a bit.
+It is nice to see Ethernet WoL mapped to CAN :-)
 
-Keeping this patch on top of the pile makes everything hard, so sadly
-I've dropped it for now.
+So will any activity on the CAN BUS wake the device? Or does it need
+to be addresses to this device?
 
-
-Heiko
-
-
+	Andrew
 
