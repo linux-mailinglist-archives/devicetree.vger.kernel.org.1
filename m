@@ -1,166 +1,132 @@
-Return-Path: <devicetree+bounces-88914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32CB193F5EC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:54:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1892A93F5F3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A67FB22AB5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:54:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B6FD1F22589
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 655C7148FF8;
-	Mon, 29 Jul 2024 12:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785FA149C41;
+	Mon, 29 Jul 2024 12:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="K3eQqE0J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cH/nuxBN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CAB6F31E
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 12:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE01148FE1;
+	Mon, 29 Jul 2024 12:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722257647; cv=none; b=IEdufQUY/F8RuG08mwln2Dtv+k0BVPc3KKJCpIESu4WA76JII9y53YAZdt9ziqQ3m3LhchOGBpXi5E3BzAViSWU9WKPIgpLtzcHWe8IUqvBkjUOHcEKTHiNEjxQ2y7YydcICuzO+6OxacK2pHgMH1io/URvBET2cTBzN5FBqoek=
+	t=1722257764; cv=none; b=op1USOD/K/02nUjtCAyLeHnuR/CJEKDWVKj6IeMgmUbDmtFkJGdXoQNi4ZgL+5oeOvdz7WDrUwuaVfWMwtxnPNL/AkMnD67he3RS2ot4PJI+jcvdBUZYrBUKBFs4HezvjClfdQCe/uyOrPze9zEPRk9gSJAQhW/LtKZWNedwtj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722257647; c=relaxed/simple;
-	bh=ZyK8lBnv7aPT0UGg2fcGb5SoYz2sKUKEENHPf6Yf+yw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=af8iarQyckCjts8YbHKN1Om0v4preTbsBado/qoyEZiCJSfCoh+7T1SGc7lFPMNDzJ4+1n5VAHx5YZohfq/owNAoq7CtMwT9HZ6hGX4Dy+gcatfCE/QzwyXQLIKSyeE0bjSiC1PMV1aFMkjGyb42v+iXTzBISIyGdZ+wYTF/iGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=K3eQqE0J; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42809d6e719so16365345e9.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 05:54:04 -0700 (PDT)
+	s=arc-20240116; t=1722257764; c=relaxed/simple;
+	bh=yp8Y9Dip8DSGCmHHwje5HV5mtF25REE/X+2S8lF6exw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EPLmOPBrevrjGBvPn2zlw3Y/uLDv6n2kUTNkSnL7g9HB4FSyRs6W1tK5IT8sUTKpZtsfDS5Wn5CEmSa9xbbXEsT/VJNUe03CanojYan+mxHLBAdXrc28HGX9mdsDbZWGD7MzU5k/OzqB0/2MtoA1TPZL6KIGyDLci7jfR8NVDas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cH/nuxBN; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2f0dfdc9e16so39987351fa.2;
+        Mon, 29 Jul 2024 05:56:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1722257643; x=1722862443; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d8CWPRtMQ6i+SW6jqovkol7RV6B7Kvi8g7hg+UsVQpk=;
-        b=K3eQqE0JtfwlK9ZL13gxqEovm5N+RSRc6rasFrxhpItBuKHWm9JW5kMK5G3TxOpZcF
-         fLcFARR7Us5c5cJVcezkO9n8ir5ameOe5bhrDBxQe6rtWrllyZ1+A5evdeB9OzhMRMfH
-         neYPyHmKb2jbwPxo6OcrX56ykeJUcFYJb8yMy7Xbwk9n1zjOo51cJlTtmXAC9S5ipK/J
-         O2ipPMLufsdkUNUjciRMB177kzu4LtxBQaIE58bpfEwdOD38Q1TN73y3iCfseqieWCma
-         BKwpJIbR4cSiloAQzYAMIGKXdo6j/foUuGdNV/lVfa0euH6LfzgTyqIhH57nJaF0gsPX
-         TzeQ==
+        d=gmail.com; s=20230601; t=1722257761; x=1722862561; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k+SHx7NLarzUQJttZx/UL50p3XbT43LUQzIyvyMh5qc=;
+        b=cH/nuxBNmwpm1f7b9NNuTT4BAZ9LOotD18TI/zGU8S49oiAAQdLyIyzFuFLTCfovuD
+         /NWmrbGI5VAFt3Z/aUdKpWyeEFuJSHDsbzW7sDSU3wx5Ad2mINIQBmVC5zAt4TrT2GaC
+         6rCGfLIRNzIe5c1Wzvng4LVKOco7tvrFMQMhFEA4YIXKTcHKK05fUVKM++OjeZktgA8d
+         Yr48y1LADcDK1y6e2+1WZs+JTK1oXwq1/MJCWWq8xlGBf4qD4UJJs49hGM9o4GUNqMgN
+         spG8lDpA7XIQjO5o16Xt5qpf2pL6Wmg/RDqzBG7OtX4txArSaQ+DkEVy8NvsDTaqB6kz
+         9DbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722257643; x=1722862443;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d8CWPRtMQ6i+SW6jqovkol7RV6B7Kvi8g7hg+UsVQpk=;
-        b=SpEEBWlk7v9obiYHDQ89C/pjEdFNs0q5lEL/ee6fNqjyd+OFcz4W+aZH1GBr+jciaC
-         32nJL2O6KlMkF51MS42l/GNwFb2JmVlFIkWcD8Km+7vTGoIXU2A6y5dPkQ2IPm9V/f1I
-         0epciF0Xe1xhti7p6gwt1EyLuHbrHNjihyXgJJ8RvV557z/11qC/jkhzd4hgtC430Vnb
-         hZwlgKTYUY2SYy/IxZqBHj8RYjdwUv0ciC1U1Lt2h0mak+qsKvr4B2YLj6fVXmdfPHYC
-         bYEyQHfjo5yVqZAX5mgyH0XAawkMHzm3fUe+2evuImhS0akOhBNXQsVbuNxHeViDnLD6
-         0GPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXfWa3dq2MO6un5GRVhq/uzED6ZpY7TxnncoSvA50jWmNBs7b7mufzWglQQjMzDxsNO63jIA1mQvyq+y1HQY8y2reTgKviIrOeVVA==
-X-Gm-Message-State: AOJu0YwCIXH8SuY3SmBvdslFGRMPSZBwM/7kj+1z40Bobw8+cJtlIUMO
-	gP3X5DJl0N7kfb3ULa10QDisqexbIw1zt8yZdNEAZKMahOqfNNmj+GaI6BK/UZ8=
-X-Google-Smtp-Source: AGHT+IFAprFQeursk+pLM9WBhRQ6uq4d9IDvkkDE0E5tziAxefBSTePjFLPqqskNa+VnTiufDe0B7Q==
-X-Received: by 2002:a05:600c:474f:b0:426:6696:9e50 with SMTP id 5b1f17b1804b1-42811d8a81dmr56313735e9.14.1722257643238;
-        Mon, 29 Jul 2024 05:54:03 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428057a6283sm176878745e9.32.2024.07.29.05.54.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jul 2024 05:54:02 -0700 (PDT)
-Message-ID: <e137bbaa-65b8-4bf0-86ee-ab1d6efb8ede@freebox.fr>
-Date: Mon, 29 Jul 2024 14:54:02 +0200
+        d=1e100.net; s=20230601; t=1722257761; x=1722862561;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k+SHx7NLarzUQJttZx/UL50p3XbT43LUQzIyvyMh5qc=;
+        b=FED+VIQ33xtoThO2zTHT6NuPv6YGqD/1nz3pYR8pYwBXrKpnx/IQEGARBadUuwHUla
+         Ukq+Q2Nd8vRygCK2pv+WGS9bZc4qI4WOBzVHlJ+FVliUbAsBIgdG20TFEFtfKnyECvBC
+         NtZVhoC0EB/LinNLNU19sWxHD7l+fAGEmVx+9iSX+fndx9ALD4gjCztCz0qJNDAlvqrH
+         oSokljRWPNVWjzKPMRqxjPIf3ulOTbMapRjPPji9dVZ08pANCnbBiRAtaqp26kuYKUFK
+         oJX0yIkkFB27HVPLFkDzCemJAfhRoqJ4Y1zHs53tNN/unj7rsfGnK1/83gfBCQ2nHAbr
+         ie0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXkp0YCRRrbcchXl3dJmSmv+LhqY53UyOrzXNWSyNiyGDMXJTUEmP9rxSyLImCyyXKaOx1gy4hIFP4aDSrl9z6m7i+PUbXSLjFOuKDfgFL8FlYWWtWzDCAJflfmGf25I2U1SuHa0fPAFmO5hQR/hc/KmnwSboXEkNYrMW4YM/bkx3roqCg=
+X-Gm-Message-State: AOJu0YzD9gfrlvwChP8mwrrCgx8i6r6dg5aJpNPugiLfwviqK6PL36QO
+	NwUTM+qO3xDrgl4XG69P7uAwr15yfwysdIyRClN3HHPwuivwk/bKnoj7TnPJ85m6vULcQ2y66Ur
+	lApbDKKqkdQ790A20SS98qYv3Ia4=
+X-Google-Smtp-Source: AGHT+IFx/JAJN6hMd2OA7VlWKt2ZMfRpaXKwoXE5AXkNHXjAt/8Vn3UBgg+/SdvA9YVDCyRXZkJUyfyKstWkcGE9bGE=
+X-Received: by 2002:a2e:a314:0:b0:2ef:20ae:d113 with SMTP id
+ 38308e7fff4ca-2f12ee5abf3mr46470491fa.40.1722257760588; Mon, 29 Jul 2024
+ 05:56:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] Basic support for TI TDP158
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240726-loongson1-dma-v10-2-31bf095a6fa6@gmail.com> <624be618-1a1a-422c-85e9-be3e1d182adf@web.de>
+In-Reply-To: <624be618-1a1a-422c-85e9-be3e1d182adf@web.de>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Mon, 29 Jul 2024 20:55:24 +0800
+Message-ID: <CAJhJPsUb4KibbFtPJ3-byrsB2Yv82eGczkcysNrJjJ7WiYYhxQ@mail.gmail.com>
+Subject: Re: [PATCH v10 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mips@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27/06/2024 13:13, Marc Gonzalez wrote:
+On Sun, Jul 28, 2024 at 5:40=E2=80=AFPM Markus Elfring <Markus.Elfring@web.=
+de> wrote:
+>
+> > This patch adds =E2=80=A6
+>
+> See also:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
+ocumentation/process/submitting-patches.rst?h=3Dv6.10#n94
+>
+Will drop "This patch".
+>
+> =E2=80=A6
+> > +++ b/drivers/dma/loongson1-apb-dma.c
+> > @@ -0,0 +1,675 @@
+> =E2=80=A6
+> > +static int ls1x_dma_resume(struct dma_chan *dchan)
+> > +{
+> =E2=80=A6
+> > +     spin_lock_irqsave(&chan->vchan.lock, flags);
+> > +     ret =3D ls1x_dma_start(chan, &chan->curr_lli->phys);
+> > +     spin_unlock_irqrestore(&chan->vchan.lock, flags);
+> > +
+> > +     return ret;
+> > +}
+> =E2=80=A6
+>
+> Under which circumstances would you become interested to apply a statemen=
+t
+> like =E2=80=9Cguard(spinlock_irqsave)(&chan->vchan.lock);=E2=80=9D?
+> https://elixir.bootlin.com/linux/v6.10.2/source/include/linux/spinlock.h#=
+L574
+>
+Will switch to guard() and scoped_guard().
+Thanks!
 
-> Changes in v3:
-> - Add 'select DRM_PANEL_BRIDGE' in driver Kconfig
-> - Fix checkpatch errors
-> - log errors using dev_err (so save dev pointer)
-> - expand a few error messages
-> - expand commit messages with info from the datasheet
-> - mark regulators as required in the DT binding
-> - Link to v2: https://lore.kernel.org/r/20240625-tdp158-v2-0-a3b344707fa7@freebox.fr
-
-Series has been rebased on top of v6.11-rc1
-
-Current changelog is:
-
-Changes in v4:
-- Add blurb about I2C vs pin strap mode in cover letter
-- Add blurb about I2C vs pin strap mode in binding commit message
-- Add blurb about I2C mode in driver commit message
-- Add comment in binding explaining when reg is required
-- Add comment in binding describing Operation Enable / Reset Pin
-- Link to v3: https://lore.kernel.org/r/20240627-tdp158-v3-0-fb2fbc808346@freebox.fr
-
-
-For reference, binding commit message blurb:
-
-    Like the TFP410, the TDP158 can be set up in 2 different ways:
-    1) hard-coding its configuration settings using pin-strapping resistors
-    2) placing it on an I2C bus, and defer set-up until run-time
-    
-    The mode is selected via pin 8 = I2C_EN
-    I2C_EN high = I2C Control Mode
-    I2C_EN low  = Pin Strap Mode
-    
-    On our board, I2C_EN is pulled high.
+> Regards,
+> Markus
 
 
-driver commit message blurb:
 
-    On our board, I2C_EN is pulled high.
-    Thus, this code defines a module_i2c_driver.
-    
-    The default settings work fine for our use-case.
-    So this basic driver doesn't need to tweak any I2C registers.
+--=20
+Best regards,
 
-
-binding comments:
-
-+# The reg property is required if and only if the device is connected
-+# to an I2C bus. In pin strap mode, reg must not be specified.
-+  reg:
-+    description: I2C address of the device
-+
-+# Pin 36 = Operation Enable / Reset Pin
-+# OE = L: Power Down Mode
-+# OE = H: Normal Operation
-+# Internal weak pullup: device resets on H to L transitions
-+  enable-gpios:
-+    description: GPIO controlling bridge enable
-
-
-I plan to send a formal v4 in a few hours.
-
-Regards
-
+Keguang Zhang
 
