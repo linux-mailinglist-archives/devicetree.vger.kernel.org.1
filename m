@@ -1,135 +1,165 @@
-Return-Path: <devicetree+bounces-88980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD8D93F845
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:37:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B9B93F865
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 551C51F22B7D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:37:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD94F1C21311
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80C61494BB;
-	Mon, 29 Jul 2024 14:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543BB1534FB;
+	Mon, 29 Jul 2024 14:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="caa3XgGt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A649C1527AC
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 14:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0BC823A9;
+	Mon, 29 Jul 2024 14:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722263409; cv=none; b=sB7mO8OT5RPrKQMN9Fne8kp5WxSspbAPugmgNUWScJVO9bJb8NVlTqKc+A0kKuJd+WvMMReUm9ZgnIaxWrNWblMKxxOC45Zwv+Njtzj8FYo4J4BY8ObxJRMgybok1A/0H0T44YGq+kRuStJnEYV4RUMMj4cBmuYDWEifvOUa5Yc=
+	t=1722264034; cv=none; b=dUETmbBXXUd8rRMSy5lN8BsbqW6H4ybl8uVfhRscR87vG1RDs/5ciUMx7kDBzKTXhXWR5UUwFb8NX2SukIXjVvxJVc3An1LZjSH4GaVfh9KF+A4PtzgpiA/k57dvxZKhlDUYwaecMVF7eYQH1U5DperkAwioBzhF2hAuWRH+gxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722263409; c=relaxed/simple;
-	bh=WC9sVcHy1AkXcZiA4Qgl99gog2NHatg7hAmpUCUUDeQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rQkyAS8EQynFznzrGeO0sUVVEF1cvnEqcEJ+VZsSGOajVH65028JBFalE23cXOvlCaPQXH7ZCyg1d5sGVArpuNNnnT+7VmZtyry3GMGETTUDyHUiyOlNVEXUo8jS3F51xG2rKarycTkY9f8HtbS86Q0o7ktI71aVsL5+rBslUTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3CFFD40007;
-	Mon, 29 Jul 2024 14:30:01 +0000 (UTC)
-Message-ID: <51043fe4-297b-4f2e-9e67-669ea53cf273@ghiti.fr>
-Date: Mon, 29 Jul 2024 16:30:00 +0200
+	s=arc-20240116; t=1722264034; c=relaxed/simple;
+	bh=z7vuHWzxrCX7qIN3Um9g/pzfEQKn+uL+PxpROEm26DM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ap/bDtdL2PcXOlU9yxtyyzd2/J7aozjjTsqxhIcHmwX9r7BW0lpHioPtEu7ErbjO/k/RlyciZLdKwV2OWJ6fnbzC7Rz2yfvIMONzaU06vaKwc7j1BuksivPg6VOW9SOXnoNCeUrELFkDtF/fRONd4J2IyYQ9NMwRTKQRHtJ0OCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=caa3XgGt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TAKjsC000633;
+	Mon, 29 Jul 2024 14:40:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=xHMB3TmsExJZYf6ASsTzPCkN
+	xehCRJLMBmMI14RE/xo=; b=caa3XgGtjBgyWU1YjINatimkmzlSoYVowb1Ga3kE
+	LU+u1z6DZH+esqs2l9Qgiy85if3UspPyRBV77w1nrJt73NItVe8xSSwWqK2hKaMh
+	z3wo0By4reoWrvND+u00hfcUpiNdDFa/aTnJtPgZyBnx6Pevdl3Xo/utNcmwRtgo
+	j6m5ilYL2+V+pg0UrEowO62KLhjSygW3zv2IlEqwt1WZwlJFD7FaXPBl2WMEdIfI
+	DjwkKfrY68PWCNpho7iJpMqbmr86Bd6aFjvKHy+3JkFAl4YrIfI0mkZyMmsGsgJO
+	QrOF1AHHqvVvmcOuDO+cMeoRs47+18eUucDGxDiPzWBWkg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mt2kmdp0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 14:40:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46TEeJAb007298
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jul 2024 14:40:19 GMT
+Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 29 Jul 2024 07:40:14 -0700
+Date: Mon, 29 Jul 2024 20:10:10 +0530
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Abhinav
+ Kumar" <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        David Airlie <airlied@gmail.com>, "Daniel
+ Vetter" <daniel@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v5 1/5] drm/msm/adreno: Implement SMEM-based speed bin
+Message-ID: <20240729144010.yj2anp253qgqsuna@hu-akhilpo-hyd.qualcomm.com>
+References: <20240709-topic-smem_speedbin-v5-0-e2146be0c96f@linaro.org>
+ <20240709-topic-smem_speedbin-v5-1-e2146be0c96f@linaro.org>
+ <20240715200419.l47ng6efa25in6sg@hu-akhilpo-hyd.qualcomm.com>
+ <8e2ebc97-f455-4f41-81da-af56263e6cf6@linaro.org>
+ <87607d2c-a4b1-4923-ba9f-9cfc56a0aa38@kernel.org>
+ <aaf74e25-ba24-454c-8bc1-c2b079d549e3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/6] riscv: Add Zawrs support for spinlocks
-Content-Language: en-US
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, conor.dooley@microchip.com, anup@brainfault.org,
- atishp@atishpatra.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, christoph.muellner@vrull.eu, heiko@sntech.de,
- charlie@rivosinc.com, David.Laight@aculab.com, parri.andrea@gmail.com,
- luxu.kernel@bytedance.com
-References: <20240426100820.14762-8-ajones@ventanamicro.com>
- <20240426100820.14762-11-ajones@ventanamicro.com>
- <4de22b20-8a6a-47d0-a4e9-74343c45411c@ghiti.fr>
- <20240729-b6707d037c0546c2c2f8da25@orel>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20240729-b6707d037c0546c2c2f8da25@orel>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <aaf74e25-ba24-454c-8bc1-c2b079d549e3@kernel.org>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pkp9BHs2kNXQ7wplHmUEY4Eti-5alllV
+X-Proofpoint-GUID: pkp9BHs2kNXQ7wplHmUEY4Eti-5alllV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-29_12,2024-07-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=679
+ malwarescore=0 spamscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407290098
 
-On 29/07/2024 16:01, Andrew Jones wrote:
-> On Mon, Jul 29, 2024 at 03:43:30PM GMT, Alexandre Ghiti wrote:
-> ...
->>> +static __always_inline void __cmpwait(volatile void *ptr,
->>> +				      unsigned long val,
->>> +				      int size)
->>> +{
->>> +	unsigned long tmp;
->>> +
->>> +	asm goto(ALTERNATIVE("j %l[no_zawrs]", "nop",
->>> +			     0, RISCV_ISA_EXT_ZAWRS, 1)
->>> +		 : : : : no_zawrs);
->>> +
->>> +	switch (size) {
->>> +	case 4:
->>> +		asm volatile(
->>> +		"	lr.w	%0, %1\n"
->>> +		"	xor	%0, %0, %2\n"
->>> +		"	bnez	%0, 1f\n"
->>> +			ZAWRS_WRS_NTO "\n"
->>> +		"1:"
->>> +		: "=&r" (tmp), "+A" (*(u32 *)ptr)
->>> +		: "r" (val));
->>> +		break;
->>> +#if __riscv_xlen == 64
->>> +	case 8:
->>> +		asm volatile(
->>> +		"	lr.d	%0, %1\n"
->>> +		"	xor	%0, %0, %2\n"
->>> +		"	bnez	%0, 1f\n"
->>> +			ZAWRS_WRS_NTO "\n"
->>> +		"1:"
->>> +		: "=&r" (tmp), "+A" (*(u64 *)ptr)
->>> +		: "r" (val));
->>> +		break;
->>> +#endif
->>> +	default:
->>> +		BUILD_BUG();
->>> +	}
->>> +
->>> +	return;
->>> +
->>> +no_zawrs:
->>> +	asm volatile(RISCV_PAUSE : : : "memory");
->>
->> Shouldn't we fallback to the previous implementation (cpu_relax()) here? Not
->> sure this is really important, but I want to make sure it was not an
->> oversight.
->>
-> Hi Alex,
->
-> It was intentional. We can't easily call cpu_relax() from here because
-> asm/vdso/processor.h includes asm/barrier.h which includes asm/cmpxchg.h.
-> We've mostly reproduced cpu_relax() here since we're only skipping the
-> div, and, as __cmpwait will be used in loops which load memory for the
-> comparison, I didn't think we needed the extra div stalls.
+On Mon, Jul 29, 2024 at 02:40:30PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 29.07.2024 2:13 PM, Konrad Dybcio wrote:
+> > On 16.07.2024 1:56 PM, Konrad Dybcio wrote:
+> >> On 15.07.2024 10:04 PM, Akhil P Oommen wrote:
+> >>> On Tue, Jul 09, 2024 at 12:45:29PM +0200, Konrad Dybcio wrote:
+> >>>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
+> >>>> abstracted through SMEM, instead of being directly available in a fuse.
+> >>>>
+> >>>> Add support for SMEM-based speed binning, which includes getting
+> >>>> "feature code" and "product code" from said source and parsing them
+> >>>> to form something that lets us match OPPs against.
+> >>>>
+> >>>> Due to the product code being ignored in the context of Adreno on
+> >>>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
+> >>>>
+> >>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >>>> ---
+> >> [...]
+> >>
+> >>>>  
+> >>>> -	if (adreno_read_speedbin(dev, &speedbin) || !speedbin)
+> >>>> +	if (adreno_read_speedbin(adreno_gpu, dev, &speedbin) || !speedbin)
+> >>>>  		speedbin = 0xffff;
+> >>>> -	adreno_gpu->speedbin = (uint16_t) (0xffff & speedbin);
+> >>>> +	adreno_gpu->speedbin = speedbin;
+> >>> There are some chipsets which uses both Speedbin and Socinfo data for
+> >>> SKU detection [1].
+> >> 0_0
+> >>
+> >>
+> >>> We don't need to worry about that logic for now. But
+> >>> I am worried about mixing Speedbin and SKU_ID in the UABI with this patch.
+> >>> It will be difficult when we have to expose both to userspace.
+> >>>
+> >>> I think we can use a separate bitfield to expose FCODE/PCODE. Currently,
+> >>> the lower 32 bit is reserved for chipid and 33-48 is reserved for speedbin,
+> >>> so I think we can use the rest of the 16 bits for SKU_ID. And within that
+> >>> 16bits, 12 bits should be sufficient for FCODE and the rest 8 bits
+> >>> reserved for future PCODE.
+> >> Right, sounds reasonable. Hopefully nothing overflows..
+> > +CC Elliot
+> > 
+> > Would you know whether these sizes ^ are going to be sufficient for
+> > the foreseeable future?
+> 
+> Also Akhil, 12 + 8 > 16.. did you mean 8 bits for both P and FCODE? Or
+> 12 for FCODE and 4 for PCODE?
 
+Sorry, "8 bits" was a typo. You are right, 12 bits for Fcode and 4 bits for PCODE.
 
-Ok thanks for your quick answer. Actually I'm asking because I fell onto 
-the issue with the headers and I managed to fix it by replacing 
-asm/barrier.h with linux/compiler.h, which is actually where is defined 
-barrier().
+-Akhil
 
-But anyway, it makes sense.
-
-Thanks,
-
-Alex
-
-
-> Thanks,
-> drew
+> 
+> Konrad
 
