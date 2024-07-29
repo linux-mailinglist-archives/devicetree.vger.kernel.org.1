@@ -1,265 +1,149 @@
-Return-Path: <devicetree+bounces-88827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5424293F162
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:40:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2182E93F16D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07339284A87
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:40:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B82571F2309A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3A813AD03;
-	Mon, 29 Jul 2024 09:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C8B13DB9B;
+	Mon, 29 Jul 2024 09:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hy6/F8Vt"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="UA3P/trA";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ltiJPzbF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B3B78B4E;
-	Mon, 29 Jul 2024 09:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067DB84FDF;
+	Mon, 29 Jul 2024 09:45:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722246005; cv=none; b=RJ1x7Vqg+UYHjEz6lSCBkia801Owfu90Zn2x4TFzp1NzZ9K2D0aJNfCbPh58E5oa5Egs7a3Rmg5sV/zUadD1RLNde/JUfIiGzPiTIygw0oYSQpxnEJ4CRGnRsWbsQW36qFQg20ScSbyHlHZaHPwCeoMMEd7dOca7MXONw9qyNqY=
+	t=1722246328; cv=none; b=DBSdibC3W9NE686tjYkPk6AOQvo7OSE+VNNnn455Xj7DdhD0BNuk7p3k6wo28xnvm0UEoQ9P21yTAM66Q3sb/R4RIxOy0yVdXpwqol+caAgXPcRDzpAIu06dOyPypjjcPyHof3n2yH7zU8DF/QwU9qAbLcKzVmZ/RgRfVipp/Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722246005; c=relaxed/simple;
-	bh=v5CVpGXRECC7xxZl4Fle2Mk+XUxzkpObh9lVcLfvV1s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uiecYG1XnNlGngT4/5+BkoAV5fvcy88BNLOhZ6PETidMZAYf5a2qolHiG0HsLx3erHNEtTTjhRMSXZxDWY6KDM8GEgzkBiet28H1VwKXC3ayya7N05nAIkkN0EoDQGMMJcjXce2WeJbB4p1GBsaKnN9z2S2KciZOM4dcYiCoMag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hy6/F8Vt; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-4f6b8b7d85bso1083101e0c.1;
-        Mon, 29 Jul 2024 02:40:03 -0700 (PDT)
+	s=arc-20240116; t=1722246328; c=relaxed/simple;
+	bh=BhaZ7Rc9aF9i9ArddOfTXrgPz6tl9rJUNGxa29a61yE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=V7e7peZxObQxhGY2EnaUQROMq4tCKgntymqVHFrkXzkAurcLD/wnOOGK4SrTrwUlHJeoiHo7jKm1nxNV2YCoxXUaCl6CvY2Nx4w3MNgCvlL/wOT6sgNe+oaZ1g3uSVHtARro2V6jlZF3Ng5W6f56p40nrECrdy/UjhtcKm/KyJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=UA3P/trA; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ltiJPzbF reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722246003; x=1722850803; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qqJ/zR4THD+IIHEf2QepwtOw7uhTMsZvKiU8UBFA/vA=;
-        b=Hy6/F8VtnhtrOCV2FcTRgE7DJhYeh4iicv6moqk0NBUCCguz3q8gBXdr5hNVQDDpPe
-         4Jf4RfdgpdVdDBqdbVM63THXs7wNtEvHu4Soh9xwnEyMt0YsIhfv7lHA0Br6CMz2kD42
-         Tv9cflDOKZv2yHKwJiWhiB4SHxerMTkEXW3k8viedFu5sdIQdpr535Okz5nVaDnAKx8i
-         nXSEg4YMt3Da4m9FaNV4E8OlNhSgSO4VGezLaV2wWQeuXKishWjneh8cENxyO/gd7w6k
-         fjyOfuUef7U65kVD5zng3s/8DKwmSlk2BcAQZKHuLEdNo2w+1WgDkJndJ4PmnFM8vOd/
-         WhTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722246003; x=1722850803;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qqJ/zR4THD+IIHEf2QepwtOw7uhTMsZvKiU8UBFA/vA=;
-        b=XAF2DT/f0Q9KHo2YxJEd3Gjw5BDOODfDfIavdG6KI/Xuy4lWw3hCSVBlBJR6gKn3dO
-         azN+N/slHgwVOhCCe1QD/3sNN8I2MVn2m+i+Dl+6lyWChOiu+N3zVZgahaw9rr2hU6/2
-         pheE+6YUlefvM4luOwThZWXHkCyk2NyS2vn7bJ3i1XqG0n6b2/cArhGwVxh6RbyJcpNC
-         qdWjDESigtGo0YwF/QlEsEqyOVXiaNIcdAhqhL8r/CAry3/jlSu+NOEqA+6cXTVL1PV/
-         71iVnb7W7CaCbnpNbhefl4M4ZfKJVhUpXCM1GYxg312hv59lVgHdOpGbvPGa1QpbZxtn
-         u7qw==
-X-Forwarded-Encrypted: i=1; AJvYcCUh0yEv6EWT33NDfUQXF9wwNt2yLEGp1egoOm8wKJSoqelv2IPUaDRVqq4BXjvIRcO5RdU4HCzxtGNNJS5bgz6RftV7yf2WNDtekBAWMZlY0iDi1CSkkqEQi9E4neA00G493KVk10e42GrJch2eeAmYHu2mqNwcvlah3TU2RtXAbkmU6qBpvJO9KlvI0FX+yXnEzpONw6viKnkQ8s7+ZzfVNI6td2vx
-X-Gm-Message-State: AOJu0YyOzYJjzmni7eHUHBc9fsnL1GTkm3LFRSQn0Xaw+5vro9+72DwC
-	13DXt16Xrkuhgdb0P0tRLE1cvCl6/sH2uzQW0kz70XygmLnZ4JLxkqLf/dj8pBJ8M3yUybno4w/
-	ZAo18+UZUOGfblmaXwb15ZGfQ3Ic=
-X-Google-Smtp-Source: AGHT+IHJOw3LYL+pc0QeWca13CNB+qj11UjJq1kTH+3jSlVQYnx+/46EaOcVohMn+/9cRGfpWpZzHXtBAp0ZZa7aFWg=
-X-Received: by 2002:a05:6122:459e:b0:4f5:23e4:b7c with SMTP id
- 71dfb90a1353d-4f6e66f6614mr7603498e0c.0.1722246002839; Mon, 29 Jul 2024
- 02:40:02 -0700 (PDT)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1722246325; x=1753782325;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=L/Jlbrty+MzML5G8tyzzNVjp9Rsyo7JZTTPa+J3gl+E=;
+  b=UA3P/trAgFMd2HmKsxzHw8gUcKpcj9tHRE2O1ErkcUXZyRzIwTTGhN7l
+   v4imTTr1Mi1tUqW/1Caw+/Hce+8HcK3FvB0eu+qXoLxW8alwgA1DNp6u5
+   7n9CYo2qQy+uon0OEWqUW8A8QGjVd2vyrLLZdFBk9iqU1hipEtxkq8PBw
+   YWb7a2t3/klC4Ict59NoPVeYLwXirgK1bMo+LsDK9sD8uu9wY9hSpHr7Q
+   hgVlt/ba6UrN99MVI+fLj4hdcLVg6BLh2Fb4w8Vfq96LyPt4ZCu+LWQlR
+   2bsFwovLxJXZHMI8mAKj8duiZdZ1AEOIjUhkvsUE+5A6knWTPSSqsIos+
+   Q==;
+X-CSE-ConnectionGUID: WhuqI1NHSkWRwviwQYtdlA==
+X-CSE-MsgGUID: SBieUcVESaS1e0LRa0kXAg==
+X-IronPort-AV: E=Sophos;i="6.09,245,1716242400"; 
+   d="scan'208";a="38121794"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 29 Jul 2024 11:45:16 +0200
+X-CheckPoint: {66A764AC-17-E6D9A9-F72EA055}
+X-MAIL-CPID: 21804CAF3C8574BEB2D5434E4405EE3F_4
+X-Control-Analysis: str=0001.0A782F15.66A764AC.0136,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 23648161486;
+	Mon, 29 Jul 2024 11:45:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1722246312; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=L/Jlbrty+MzML5G8tyzzNVjp9Rsyo7JZTTPa+J3gl+E=;
+	b=ltiJPzbFhPHwDr/MsWqnk1ArQIjbSe/kNebypNeVBvk589n5QmV7V4tPFXnQhKAoRKZC/r
+	/+AHn8bYS9wLzW4pyteIHttWRQ5+fljm3OuhUw+0KzsNSAX8c5/dsU7r196mhWm3ikMqv0
+	x0zZZP5AgoNpZb7J7DYulz3HnPtHA4p3iHkbU6jxiQxRGEHgHTsc7/X5H7r2gSRKOW+1rU
+	WuATx4UOkyGK+23NAe4B/9k8ovoCp5sv4Z0jNSmJKM1wSUWWMdwqLlVnRjKjelIyMOogJY
+	8oQk8lyIa2Oj4dLJaZ8UX9U7S6GYR0GCkWT70WMAN7emw1xGlnXwNzGvJp6qqg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Clark Wang <xiaoning.wang@nxp.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: imx8-ss-dma: enable dma support for lpspi
+Date: Mon, 29 Jul 2024 11:45:10 +0200
+Message-Id: <20240729094511.159467-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240715125438.553688-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240715125438.553688-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdUvfAqJR6=4MG3hXC6cn1AnKz7+RAp4GG1jvdwOctgNzQ@mail.gmail.com>
- <CA+V-a8uBL-2DeAtu6BnF37Loe_fT6PNbAx=8O9acTR1Ey2zRrg@mail.gmail.com> <CAMuHMdU3ijNmw8nfTHbrsX28ASwO=pTaMaODPg1PUr9x5kPibg@mail.gmail.com>
-In-Reply-To: <CAMuHMdU3ijNmw8nfTHbrsX28ASwO=pTaMaODPg1PUr9x5kPibg@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 29 Jul 2024 10:38:00 +0100
-Message-ID: <CA+V-a8vDKDsEOnPONgo7Q4fKX==VdCwUfXcrQqEMU+VQmEb0fg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] clk: renesas: Add family-specific clock driver for RZ/V2H(P)
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Geert,
+From: Clark Wang <xiaoning.wang@nxp.com>
 
-On Mon, Jul 29, 2024 at 9:14=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Sat, Jul 27, 2024 at 12:51=E2=80=AFPM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Fri, Jul 26, 2024 at 3:53=E2=80=AFPM Geert Uytterhoeven <geert@linux=
--m68k.org> wrote:
-> > > On Mon, Jul 15, 2024 at 2:56=E2=80=AFPM Prabhakar <prabhakar.csengg@g=
-mail.com> wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Add family-specific clock driver for RZ/V2H(P) SoCs.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
-om>
-> > > > --- /dev/null
-> > > > +++ b/drivers/clk/renesas/rzv2h-cpg.h
-> > >
-> > > > +#define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit) =
-     \
-> > > > +       [_id] =3D { \
-> > >
-> > > Indexing by _id means the reset array will be very sparse.  E.g. the
-> > > innocent-looking r9a09g057_resets[] with only a single entry takes
-> > > 600 bytes:
-> > >
-> > >     $ nm -S drivers/clk/renesas/r9a09g057-cpg.o | grep r9a09g057_rese=
-ts
-> > >     0000000000000038 0000000000000258 r r9a09g057_resets
-> > >
-> > Agreed.
-> >
-> > > So please pack the array here, and either unpack it while making the
-> > > priv->resets copy, or implement translation ("look-up") from ID to
-> > > packed index in rzv2h_cpg_reset_xlate().
-> > >
-> > OK, I will implement the below:
-> >
-> > #define PACK_RESET(_resindex, _resbit, _monindex, _monbit)    \
-> >     (((_resindex) << 24) | ((_resbit) << 16) | ((_monindex) << 8) | (_m=
-onbit))
-> >
-> > #define DEF_RST(_resindex, _resbit, _monindex, _monbit)    \
-> >     PACK_RESET(_resindex, _resbit, _monindex, _monbit)
-> >
-> > #define GET_RESET_INDEX(x)    (((x) >> 24) & 0xFF)
-> > #define GET_RESET_BIT(x)    (((x) >> 16) & 0xFF)
-> > #define GET_MON_INDEX(x)    (((x) >> 8) & 0xFF)
-> > #define GET_MON_BIT(x)        ((x) & 0xFF)
-> >
-> > static int rzv2h_cpg_reset_xlate(struct reset_controller_dev *rcdev,
-> >                  const struct of_phandle_args *reset_spec)
-> > {
-> >     struct rzv2h_cpg_priv *priv =3D rcdev_to_priv(rcdev);
-> >     unsigned int id =3D reset_spec->args[0];
-> >     u8 rst_index =3D id / 16;
-> >     u8 rst_bit =3D id % 16;
-> >     unsigned int i;
-> >
-> >     for (i =3D 0; i < rcdev->nr_resets; i++) {
-> >         u8 cur_index =3D GET_RESET_INDEX(priv->resets[i]);
-> >         u8 cur_bit =3D GET_RESET_BIT(priv->resets[i]);
-> >
-> >         if (rst_index =3D=3D cur_index && rst_bit =3D=3D cur_bit)
-> >             return i;
-> >     }
-> >
-> >     return -EINVAL;
-> > }
-> >
-> > Let me know if this is OK, or to avoid looping in xlate maybe we can
-> > have a packed entry in the resets property of DT by this way we can
-> > avoid having the resets array all together?
->
-> Sorry for being unclear. I did not mean packing the fields in the struct
-> into a single word, but packing the entries in the r9a09g057_resets[]
-> array.  Using the rzv2h_reset structure is fine.
->
-> With:
->
->     #define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit)    =
-   \
->             [_id] =3D { \
->                     .reset_index =3D (_resindex), \
->                     .reset_bit =3D (_resbit), \
->                     .mon_index =3D (_monindex), \
->                     .mon_bit =3D (_monbit), \
->             }
->
->     #define DEF_RST(_resindex, _resbit, _monindex, _monbit) \
->             DEF_RST_BASE(RST_ID((_resindex), (_resbit)), _resindex,
-> _resbit, _monindex, _monbit)
->
->     static const struct rzv2h_reset r9a09g057_resets[] __initconst =3D {
->         DEF_RST(9, 5, 4, 6),            /* SCIF_0_RST_SYSTEM_N */
->     };
->
-> is expanded into an array of 150 entries (9 * 16 + 5 =3D 149 empty entrie=
-s
-> followed by the SCIF_0_RST_SYSTEM_N entry), which is wasteful.
-> Over time the array will be filled more, but I expect there will still
-> be lots of unused entries.
->
-> Hence I suggest to drop the "[id]":
->
->    - define DEF_RST_BASE(_id, _resindex, _resbit, _monindex, _monbit)    =
-   \
->    -       [_id] =3D { \
->    +#define DEF_RST(_resindex, _resbit, _monindex, _monbit)       \
->    +       { \
->                    .reset_index =3D (_resindex), \
->                     .reset_bit =3D (_resbit), \
->                     .mon_index =3D (_monindex), \
->                     .mon_bit =3D (_monbit), \
->             }
->    -
->    -#define DEF_RST(_resindex, _resbit, _monindex, _monbit) \
->    -        DEF_RST_BASE(RST_ID((_resindex), (_resbit)), _resindex,
-> _resbit, _monindex, _monbit)
->
-> Then r9a09g057_resets[] will contain only non-empty entries, at the
-> expense of no longer being able to index it directly by reset ID.
-> To solve the indexing, there are two options.
->
-> Option A: Translate from reset ID to real index during lookup, like
->           you do in the rzv2h_cpg_reset_xlate() above:
->
->     static int rzv2h_cpg_reset_xlate(struct reset_controller_dev *rcdev,
->                      const struct of_phandle_args *reset_spec)
->     {
->         struct rzv2h_cpg_priv *priv =3D rcdev_to_priv(rcdev);
->         unsigned int id =3D reset_spec->args[0];
->         u8 rst_index =3D id / 16;
->         u8 rst_bit =3D id % 16;
->         unsigned int i;
->
->         for (i =3D 0; i < rcdev->nr_resets; i++) {
->             if (rst_index =3D=3D priv->resets[i].reset_index &&
->                 rst_bit =3D=3D ->resets[i].reset_bit)
->                 return i;
->         }
->
->         return -EINVAL;
->     }
->
-> Option B: "Unpack" rzv2h_cpg_info.resets[] during copying in
->           rzv2h_cpg_probe():
->
->     priv->resets =3D devm_kcalloc(dev, max_num_reset_ids,
->                                  sizeof(*priv->resets), GFP_KERNEL);
->     for (i =3D 0; i < ARRAY_SIZE(info->resets); i++) {
->             id =3D RST_ID(info->resets[i].reset_index, info->resets[i].re=
-set_bit);
->             priv->resets[id] =3D info->resets[i];
->     }
->
-> BTW, for option B (and for the current code in v4),
-> rzv2h_cpg_reset_xlate() should validate that the entry is non-empty.
->
-> I hope this is more clear?
->
-Yes, thanks for the clarification. I will go with option A, so we
-don't waste memory.
+Add DMA configurations for LPSPI nodes on i.MX8QX/QM/DXL.
 
-Cheers,
-Prabhakar
+Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Using the DMA configuration bits from downstream kernel.
+Tested on TQMa8XxS.
+
+ arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+index 1ee9496c988c5..8ae5f065b4180 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+@@ -34,6 +34,8 @@ lpspi0: spi@5a000000 {
+ 		assigned-clocks = <&clk IMX_SC_R_SPI_0 IMX_SC_PM_CLK_PER>;
+ 		assigned-clock-rates = <60000000>;
+ 		power-domains = <&pd IMX_SC_R_SPI_0>;
++		dma-names = "tx","rx";
++		dmas = <&edma2 1 0 0>, <&edma2 0 0 FSL_EDMA_RX>;
+ 		status = "disabled";
+ 	};
+ 
+@@ -50,6 +52,8 @@ lpspi1: spi@5a010000 {
+ 		assigned-clocks = <&clk IMX_SC_R_SPI_1 IMX_SC_PM_CLK_PER>;
+ 		assigned-clock-rates = <60000000>;
+ 		power-domains = <&pd IMX_SC_R_SPI_1>;
++		dma-names = "tx","rx";
++		dmas = <&edma2 3 0 0>, <&edma2 2 0 FSL_EDMA_RX>;
+ 		status = "disabled";
+ 	};
+ 
+@@ -66,6 +70,8 @@ lpspi2: spi@5a020000 {
+ 		assigned-clocks = <&clk IMX_SC_R_SPI_2 IMX_SC_PM_CLK_PER>;
+ 		assigned-clock-rates = <60000000>;
+ 		power-domains = <&pd IMX_SC_R_SPI_2>;
++		dma-names = "tx","rx";
++		dmas = <&edma2 5 0 0>, <&edma2 4 0 FSL_EDMA_RX>;
+ 		status = "disabled";
+ 	};
+ 
+@@ -82,6 +88,8 @@ lpspi3: spi@5a030000 {
+ 		assigned-clocks = <&clk IMX_SC_R_SPI_3 IMX_SC_PM_CLK_PER>;
+ 		assigned-clock-rates = <60000000>;
+ 		power-domains = <&pd IMX_SC_R_SPI_3>;
++		dma-names = "tx","rx";
++		dmas = <&edma2 7 0 0>, <&edma2 6 0 FSL_EDMA_RX>;
+ 		status = "disabled";
+ 	};
+ 
+-- 
+2.34.1
+
 
