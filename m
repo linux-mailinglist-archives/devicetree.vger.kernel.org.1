@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-88745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE66093EE06
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:08:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31B9A93EE11
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9938B1F23C21
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:08:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEAF5282923
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DBE984DF1;
-	Mon, 29 Jul 2024 07:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE1112F581;
+	Mon, 29 Jul 2024 07:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ufcfvTrR"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QpxTvoYm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF4D84DEB;
-	Mon, 29 Jul 2024 07:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855F385628;
+	Mon, 29 Jul 2024 07:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722236866; cv=none; b=CLyxIuqOcNpP8TIR6RVhfyC2r6dQUD+jSKVeDMD3ynAclzZqxZiM78hYL0gQOsSlEFPIyWmHMjYa0GEtwAXm+2oxZB4dzmeq3UGFUnFzAvlgCoAJ5DmmG89Nf0aShvApXuWOkNpzyMeC8CNA5n/xTds4OxM+pEsGWE7UVHOPHgk=
+	t=1722236908; cv=none; b=p+FoNtVF9KSjudRmYy7c1j0JAEDZEwUpw/m0YbudFeBcYMuvVEDwm91IWH4U1S6rxf+crxqs5nQUv4NUgKZ09YGpLxaaKcvFJIHIIuIMKhE7OVaFXbuz0rk/qWf9cjj55Rv5RFrjm3CvZFISKtmoCElpWETEJkfTU2gqGZBl7eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722236866; c=relaxed/simple;
-	bh=fDqE0tBeSlSB34dZ9C+ua0ag8uXX5Nqi4XoXWGufPtw=;
+	s=arc-20240116; t=1722236908; c=relaxed/simple;
+	bh=fkG6RF9SVnoEx+IzruR0HjZJb1UJHtjYsNIynC9sonI=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CUaJB/7V4GCrtmzUA1P3BAk0fl9qz6SiEyelZaDM8WfHtaXUkvTS/eWDf3FP7+ivruKJjqJGMs5lr0bh6JzSUsgnnaUbLPd57zJQ6nPSN/eFNO9ZxT8JNDlACFPNPJvF5Ph19r953+/llgPtXVaNcQfmEaCcHkTiIiTsObj2ses=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ufcfvTrR; arc=none smtp.client-ip=68.232.154.123
+	 MIME-Version:Content-Type; b=Bq7hP2NeOOX84qmreRWJoJZM/VCrmpsP+PhZs5j0ucZwXLck+gc1eYWwSSPppJuwK4oTnyWCgHZAEn4ytgqdGz32pL9MLvw7N/dZiW/IFWIVFC1ohGmxCtqoh4olvXVw8BcyLofjE9o2FmrcoRlL0hrx8ykOvpZrmU5gxACWEOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=QpxTvoYm; arc=none smtp.client-ip=68.232.154.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1722236864; x=1753772864;
+  t=1722236906; x=1753772906;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=fDqE0tBeSlSB34dZ9C+ua0ag8uXX5Nqi4XoXWGufPtw=;
-  b=ufcfvTrRbEju8QF/hrMAiG8GDaUE9bGN12e5g4+D/emGoKar1t+7PG+e
-   mtWw6DMWgpqpxhu2gERjek/PG8tIxPe7Q36s+UCIQgUBC9jpxcMiwAE8c
-   xbZYYJYMXsR1yR10lgt1+LOIndle8u7Am/CKgYIBrW7eI3kPEAI/I50qh
-   pOTSAom2PK7vZEq13IU/dipYpJ+EhUTMJsHY5Li+iWIJQzKjKDaYbeDot
-   GOU53e6qKDj32eHcAQfysF2aoavUl20RoBpIR2xgwp2h63QedEYi7YSOW
-   8BCPymepg2fePNIfGZJACB24mWAytJ6mnbG509RbQWKsbvD3Z90isQioE
+  bh=fkG6RF9SVnoEx+IzruR0HjZJb1UJHtjYsNIynC9sonI=;
+  b=QpxTvoYmQlSZA80zTe9Lbp1MaJpkTkA5Hq8aCCpr7kK0q5oKwqyQizGL
+   IRA2JCxVzM15OFWpLUJrPghJNL5SiyYezKB15Yr+6SonimSge+ECodazh
+   Dt/sH+CylY49quJxFyTMW48s7DbMyj9I9TCsPmlM8MMJghukFs9m4X44C
+   LvUCSrQz0CDx5ye85xKB9NCcCoV0iLiLPcTa5ca9WP4xPOHvAlkJgixzh
+   xypoKCAwv6ZCIt13Et5tB16K+0T8jnYkNktwBdlaQO+jhIG6qrd0UHYFD
+   XQRIzivJoJroU7c20OtcIp9zxj5+xJEeTGw8yF9WwJOo9lPcIDoxW3urm
    w==;
-X-CSE-ConnectionGUID: qXa6hTCZRDuoKzAisfRBPw==
-X-CSE-MsgGUID: LdKhooi9QLqydwfPPztv2w==
+X-CSE-ConnectionGUID: F/hyoSnPT1CJ+O22vYM+Pg==
+X-CSE-MsgGUID: OkOVbUIjQaeK/3X0zFOtlw==
 X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; 
-   d="scan'208";a="197213861"
+   d="scan'208";a="197213938"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Jul 2024 00:07:43 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Jul 2024 00:08:25 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Jul 2024 00:07:37 -0700
+ 15.1.2507.35; Mon, 29 Jul 2024 00:08:10 -0700
 Received: from che-lt-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 29 Jul 2024 00:07:32 -0700
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 29 Jul 2024 00:08:06 -0700
 From: Varshini Rajendran <varshini.rajendran@microchip.com>
 To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
 	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
 	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
 	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <varshini.rajendran@microchip.com>, Conor Dooley
-	<conor.dooley@microchip.com>
-Subject: [PATCH v6 10/27] dt-bindings: clocks: atmel,at91rm9200-pmc: add sam9x7 clock controller
-Date: Mon, 29 Jul 2024 12:37:26 +0530
-Message-ID: <20240729070726.1990705-1-varshini.rajendran@microchip.com>
+CC: <varshini.rajendran@microchip.com>
+Subject: [PATCH v6 14/27] dt-bindings: clock: at91: Allow PLLs to be exported and referenced in DT
+Date: Mon, 29 Jul 2024 12:38:03 +0530
+Message-ID: <20240729070803.1990916-1-varshini.rajendran@microchip.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
 References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
@@ -81,40 +80,35 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Add bindings for SAM9X7's pmc.
+Allow PLLADIV2 and LVDSPLL to be referenced as a PMC_TYPE_CORE
+clock from phandle in DT for sam9x7 SoC family.
 
 Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 ---
 Changes in v6:
 
- - Corrected the subject line
  - Updated Reviewed-by tag
 ---
- .../devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+ include/dt-bindings/clock/at91.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
-index c1bdcd9058ed..c9eb60776b4d 100644
---- a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
-+++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
-@@ -42,6 +42,7 @@ properties:
-               - atmel,sama5d3-pmc
-               - atmel,sama5d4-pmc
-               - microchip,sam9x60-pmc
-+              - microchip,sam9x7-pmc
-               - microchip,sama7g5-pmc
-           - const: syscon
+diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
+index 3e3972a814c1..6ede88c3992d 100644
+--- a/include/dt-bindings/clock/at91.h
++++ b/include/dt-bindings/clock/at91.h
+@@ -38,6 +38,10 @@
+ #define PMC_CPU			(PMC_MAIN + 9)
+ #define PMC_MCK1		(PMC_MAIN + 10)
  
-@@ -88,6 +89,7 @@ allOf:
-           contains:
-             enum:
-               - microchip,sam9x60-pmc
-+              - microchip,sam9x7-pmc
-               - microchip,sama7g5-pmc
-     then:
-       properties:
++/* SAM9X7 */
++#define PMC_PLLADIV2		(PMC_MAIN + 11)
++#define PMC_LVDSPLL		(PMC_MAIN + 12)
++
+ #ifndef AT91_PMC_MOSCS
+ #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
+ #define AT91_PMC_LOCKA		1		/* PLLA Lock */
 -- 
 2.25.1
 
