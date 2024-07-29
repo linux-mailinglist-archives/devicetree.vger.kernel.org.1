@@ -1,89 +1,84 @@
-Return-Path: <devicetree+bounces-89114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A351F93FF88
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:31:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0DE93FF9C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C6F31F238BA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:31:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 672431C20F91
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4092A18A95B;
-	Mon, 29 Jul 2024 20:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918AC1891AA;
+	Mon, 29 Jul 2024 20:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eRVOJSzg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="idoXaJ/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F89518A952;
-	Mon, 29 Jul 2024 20:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03AE14601E;
+	Mon, 29 Jul 2024 20:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722285062; cv=none; b=X4aRKrv9FnWbK4kngMIcBUSGjyuVLhhg0/UGxkVQJ710j7xjCZQtkKJi8++TbM1gXRo/z0VfrQ9O2xBc9Xw9ZOhIhOLN1hizLrqQnW1Rpp6JLDZui83XR3SquTYds+CZ79zjabUFc/t3YyC3zA3FSAvmvTAkh47Kx+G7wzhZxQg=
+	t=1722285639; cv=none; b=pIo4xBv7BiEDglCMYeundHUaKnPylUhzFFnrpf+xPTetCoJLsprgchSGWAJ0iQ7AkbWELM1krooXIwoelxzr6amjBo7LstsxX48biaiz+umrZ+xDQSswQZSnMGaPdpRMwX+8EToH1hQO5EfHI6V6JXtESUBwqXUMbBEBJsyHK/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722285062; c=relaxed/simple;
-	bh=BSoRj75es4wloghJ2NUvSnLE/FHCzV5x64+tkcmLEug=;
+	s=arc-20240116; t=1722285639; c=relaxed/simple;
+	bh=Vy8JdXDw1XfAmLV6Z9SHmUhGP36VprPtP1X5qnDehj8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LDLnnVkD4MPNpYCfLbrc2CvVTI4S92qkI0q2gMBpTSibwowzXOjc1tElpl31nV7PC1DhTE8TQCpcRhr0ZcDXFQOKdFPEX85HamIq2Psyk1Rf53Lm8dO++2tdML30LX8LvRU1m4PNUABk4tqRgTwzkjdfeYrG6rwBNyrxPIbk//0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eRVOJSzg; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	 Content-Type:Content-Disposition:In-Reply-To; b=oICBhpBhXdsEYgvedVFKgSdESnTSY4f0P98YdTHBFTNpEno7zH9MshrfsMZ1Pulc6dh7lzU7+fv0n1gA6i3ocRd5bVXMELoxFXv+dMbUwUPPTUcfpluFWWkO1+mXhAPBmQHnEUjjLMQwksZlpvB8HgvPgXX5AJn+dzpGcP9yhyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=idoXaJ/V; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-70d2d7e692eso2899186b3a.0;
-        Mon, 29 Jul 2024 13:30:59 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428141be2ddso20386195e9.2;
+        Mon, 29 Jul 2024 13:40:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722285059; x=1722889859; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1722285636; x=1722890436; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vAcrmpJG3WgIqb/hoYI/E7IiNyFNvmrDkaWV4Iwhnl0=;
-        b=eRVOJSzg5Tiyo/3A3jlO1/Bxzx8pA1AhSo/JwwhKHm4Ul2Lpg/Qyu/26v+ZnLJ2B0t
-         69x404QbP7Fy5/og4H4mv0M20ACbU1izwI5Y2+xxf5rTu0agRn+fm2jG5fKZcdeJKHaw
-         SbzEIV2Gr9+zfOpI1F5XoMUKaFO02ik8YKuwzODLZ+MOQjVWeV12/X+yUJzGY08xrRwX
-         tm0mDCg7Y1/VuYYvPpPQ1VnrBWTlGU3Zj61Q8mQ6Mts/gVj12oyOFWBgm43LvU4tPVwd
-         vFCnvTgai0j9S0AHZ2udp5J85B1eYqGB5SnH4wD+YKaCWWPV4oplITquAZG2aQsO8Ixc
-         5Nug==
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rq+JYssKdPU95PWekAjV2U0WcUbJ7MXMWsw4i+/X8iw=;
+        b=idoXaJ/VSoTyLlFFXaLvAa3E9sVICSGh1Og0+F0ADKBCVNEwgcI5uvMDEocfFTLmrF
+         ZcvdyxZVKOcnVAleG+ueG7UZ86QkMWaY7xO+0pMVwuiKsTaCXoL/DOSTYrHWF9ztbD7r
+         nqTtkxUZQOUfjmtQlAGgoKqE3LUTyclkL0rnAif+N9tcCKwF5x4RySPh7/0xpTAs4XH0
+         z5olmH9Er19cWTM6fR6Vc4C94UtLfJ0jyDFsoWBZ/RL5RtcpkLrRkRmZO87ME5u7Kbnz
+         VJjwVTqDhLHQvVXCt6fKK1CXeOgk/yhXv8qt8iQx65RelWxvvT78tNklJeqmTLdj0CSg
+         tufg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722285059; x=1722889859;
+        d=1e100.net; s=20230601; t=1722285636; x=1722890436;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vAcrmpJG3WgIqb/hoYI/E7IiNyFNvmrDkaWV4Iwhnl0=;
-        b=UjVR6wTf3+X/FxPAu5Q953u5MCQxpvHSjTRxMSIZbTpY5rSePPjpsLOvaDmmy1eBHU
-         9D/pCmBdxd3RozIliZDqdYi+Ru7Fr9sPj84T+M/qL9h8pS5yVpcQO9DCwAmx0u2+dIBp
-         Oqubput7Az8SaJHtUTe7E/m5PC7DfmLk3yoK089NIElYDpEdZ4pclfcrXxFi2nLWebrh
-         IK8nUaBT9Zy9JWmoAzkhDKc1eym01mPZHajyD6FlZpoQYthFfQKmKKVJxpMJBEcAyLAd
-         /mb8nSUeZ01P2rqwhRDuMKt7UCBSnN/cJx6CCTdsy3BkqmVeLvDrDxUcx05WYc0/PbQ6
-         456g==
-X-Forwarded-Encrypted: i=1; AJvYcCUi1YuJ7Md0xMRS9V2P8fEfBFGpPEQd6PwoBWcBfXwKCDdr9/OHgRC7mKFIrnIozhW0M8dOQdakoTls2q1yfIxF3E3w+1kU5gB4dHkqt+8NV69w89HXGXQbGt8nXOUChNEB4ciso0X90w==
-X-Gm-Message-State: AOJu0YyH2mh6Iv37iGzf7czuZXrCxeBQejY+BERl8Zct2vyfNAXWoYgp
-	9aQPtomlD5OR7ps2lU3/czh3z3qy1TktmBtqPKxX7J50SWJO4WQj
-X-Google-Smtp-Source: AGHT+IHu1WjRq+e4goX2kbeKYztE5DX0B/faU+/NMUOkawkO5r0UFEKbZQMS651ttHa8yhUJIzwKdA==
-X-Received: by 2002:a05:6a21:3406:b0:1c2:88ad:b26d with SMTP id adf61e73a8af0-1c4a1511353mr6406879637.48.1722285059190;
-        Mon, 29 Jul 2024 13:30:59 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead87a991sm7483346b3a.176.2024.07.29.13.30.57
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rq+JYssKdPU95PWekAjV2U0WcUbJ7MXMWsw4i+/X8iw=;
+        b=ZzZykdRexPkSEZiK88IlgGTtwhkKzp7yGIDgfxRKgZSTEEwEMfqZMocrGf5TeDO+1L
+         CdMNjza3g2DLVh2EHoUhbNmqNbuzuEJBJ0pob+alUfHsmjSlWe4hSYkJpjFh5amhVge8
+         scLNaI0O9Xi3wAmUxd0V6OW9Je9D5vg9aTRI0+sVIZWKg0vjylu1ctVQYkllbbv4LUUA
+         d8glyDlUxQWJKUSzIQC3pXx1dMFSJ1cyM3vcxcuAOc87q9YWp7Empt5/fM2Ds2sko+Do
+         ostiCZKPuM6Vp3NCuZYjIbw7OukVU20yEIIu91I8XZahsSQq2YPj+oLG9bElpEGlHjkc
+         5FEg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0eyS6q6G1teqUlyqrqF00AKMO0vSTL6gGf+PwD43CJztVvbgs4zF/fPwd+KbFtE9uPKTg05N5tutrW3y0FYPEAx9QMnKShpZIPbN0sBF8q58IkI0XNFLJLhYTAey3kI5judMSue0=
+X-Gm-Message-State: AOJu0YzaLe55rf3jJM0vQ57yKG3VAvsF9d3ao1BMTnHgWl9QuRHaJwG6
+	DcIYSIwp0ebqrqGo+qCKRpntQR0fncbKsnDy75ZbZeBbXN7uJBK+
+X-Google-Smtp-Source: AGHT+IG05AWEMxKvjbxKVaqKlVeGt7iQUkLNmXQumGlS7RLzyBBtfq1yAkpuBU87nLFq0iKWcyyosQ==
+X-Received: by 2002:a05:600c:444d:b0:426:6e95:78d6 with SMTP id 5b1f17b1804b1-42811d71018mr56853145e9.4.1722285635677;
+        Mon, 29 Jul 2024 13:40:35 -0700 (PDT)
+Received: from tp440p.steeds.sam ([2602:fbf6:10:a::2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428175e60b7sm84572055e9.42.2024.07.29.13.40.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 13:30:57 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 29 Jul 2024 13:30:56 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm/arm64: dts: arm: Use generic clock and regulator
- nodenames
-Message-ID: <b53e17ec-fec4-4cf6-9c61-41552188c670@roeck-us.net>
-References: <20240528191536.1444649-1-robh@kernel.org>
- <20240528191536.1444649-2-robh@kernel.org>
+        Mon, 29 Jul 2024 13:40:35 -0700 (PDT)
+Date: Mon, 29 Jul 2024 22:40:22 +0200
+From: Sicelo <absicsz@gmail.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: tony@atomide.com, linux-omap@vger.kernel.org,
+	maemo-leste@lists.dyne.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	Aaro Koskinen <aaro.koskinen@iki.fi>
+Subject: Re: [PATCH] ARM: dts: omap3-n900: correct the accelerometer
+ orientation
+Message-ID: <Zqf-NosCToA_czCQ@tp440p.steeds.sam>
+References: <20240722113137.3240847-1-absicsz@gmail.com>
+ <ZqU_UPQHCJ37qZfa@tp440p.steeds.sam>
+ <20240728100658.0001864d@akphone>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,53 +87,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240528191536.1444649-2-robh@kernel.org>
+In-Reply-To: <20240728100658.0001864d@akphone>
 
-On Tue, May 28, 2024 at 02:15:32PM -0500, Rob Herring (Arm) wrote:
-> With the recent defining of preferred naming for fixed clock and
-> regulator nodes, convert the Arm Ltd. boards to use the preferred
-> names. In the cases which had a unit-address, warnings about missing
-> "reg" property are fixed.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Hello Andreas
 
-With this patch in the tree, all versatileab/pb qemu emulations
-fail silently (no console output). Reverting this patch fixes
-the problem. Bisect log is attached for reference.
+On Sun, Jul 28, 2024 at 10:06:58AM +0200, Andreas Kemnade wrote:
+> > On Mon, Jul 22, 2024 at 01:31:11PM +0200, Sicelo A. Mhlongo wrote:
+> > > Negate the values reported for the accelerometer z-axis in order to
+> > > match Documentation/devicetree/bindings/iio/mount-matrix.txt.
+> > > 
+> > > Fixes: 14a213dcb004 ("ARM: dts: n900: use iio driver for
+> > > accelerometer")
+> > > 
+> > > Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
+> > > ---
+> > >  arch/arm/boot/dts/ti/omap/omap3-n900.dts | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/ti/omap/omap3-n900.dts
+> > > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts index
+> > > 07c5b963af78..4bde3342bb95 100644 ---
+> > > a/arch/arm/boot/dts/ti/omap/omap3-n900.dts +++
+> > > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts @@ -781,7 +781,7 @@
+> > > accelerometer@1d { 
+> > >  		mount-matrix =	 "-1",  "0",  "0",
+> > >  				  "0",  "1",  "0",
+> > > -				  "0",  "0",  "1";
+> > > +				  "0",  "0",  "-1";
+> > >  	};
+> > >  
+> > >  	cam1: camera@3e {
+> > > -- 
+> > > 2.45.2
+> > >   
+> > 
+> > CC: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+> > <andreas@kemnade.info>
+> > 
+> I would expect it to be a rotation matrix but it is not. So maybe this
+> should be fixed in,the driver?
 
-Guenter
+The mount matrix is documented in the kernel docs [1], and this patch
+implements the suggestion that the z-axis should "be negative under the
+screen and positive in front of it, toward the face of the user."
 
----
-# bad: [8400291e289ee6b2bf9779ff1c83a291501f017b] Linux 6.11-rc1
-# good: [0c3836482481200ead7b416ca80c68a29cfdaabd] Linux 6.10
-git bisect start 'v6.11-rc1' 'v6.10'
-# bad: [280e36f0d5b997173d014c07484c03a7f7750668] nsfs: use cleanup guard
-git bisect bad 280e36f0d5b997173d014c07484c03a7f7750668
-# bad: [0434dbe32053d07d658165be681505120c6b1abc] Merge tag 'linux_kselftest-next-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
-git bisect bad 0434dbe32053d07d658165be681505120c6b1abc
-# good: [cc0f7c3f97bc6e888bf4be28a9da9dbd3735d2b4] Merge tag 'soc-drivers-6.11' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
-git bisect good cc0f7c3f97bc6e888bf4be28a9da9dbd3735d2b4
-# bad: [462eeb978db8071722a3a546039943d42a297114] Merge tag 'mvebu-dt64-6.11-1' of https://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu into soc/dt
-git bisect bad 462eeb978db8071722a3a546039943d42a297114
-# bad: [f01448addcb9ede2d5d2762229cd26fc2540813a] Merge tag 'imx-dt-6.11' of https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into soc/dt
-git bisect bad f01448addcb9ede2d5d2762229cd26fc2540813a
-# good: [aff39a02b5b12fffa75922fedeaf133d1cb7213e] Merge tag 'v6.11-rockchip-dts64-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip into soc/dt
-git bisect good aff39a02b5b12fffa75922fedeaf133d1cb7213e
-# bad: [35b94a99fc67e1886e3be68179cc7477370f0b2a] Merge tag 'amlogic-arm64-dt-for-v6.11' of https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux into soc/dt
-git bisect bad 35b94a99fc67e1886e3be68179cc7477370f0b2a
-# good: [1443b6ea806dfcdcee6c894784332c9c947ac319] arm64: dts: amlogic: setup hdmi system clock
-git bisect good 1443b6ea806dfcdcee6c894784332c9c947ac319
-# good: [c5003718cb5ab71b75139a237741f413a147876e] Merge tag 'v6.11-rockchip-dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip into soc/dt
-git bisect good c5003718cb5ab71b75139a237741f413a147876e
-# good: [659c0b4444b24c872ab19e5fa4b96d32043a0a6c] arm64: dts: renesas: Add interrupt-names to arch timer nodes
-git bisect good 659c0b4444b24c872ab19e5fa4b96d32043a0a6c
-# good: [ade990619444234d96ee5a79ca6305474c6c687b] ARM: dts: turris-omnia: Add GPIO key node for front button
-git bisect good ade990619444234d96ee5a79ca6305474c6c687b
-# good: [3a94fa4cb86e96103657ba3550ee68b424269613] arm64: dts: microchip: sparx5_pcb135: move non-MMIO nodes out of axi
-git bisect good 3a94fa4cb86e96103657ba3550ee68b424269613
-# bad: [04f08ef291d4b8d76f8d198bf2929ad43b96eecf] arm/arm64: dts: arm: Use generic clock and regulator nodenames
-git bisect bad 04f08ef291d4b8d76f8d198bf2929ad43b96eecf
-# good: [7f8165eee188536e3ca9f65564d4872dc1c2df06] Merge tag 'microchip-dt64-6.11' of https://git.kernel.org/pub/scm/linux/kernel/git/at91/linux into soc/dt
-git bisect good 7f8165eee188536e3ca9f65564d4872dc1c2df06
-# first bad commit: [04f08ef291d4b8d76f8d198bf2929ad43b96eecf] arm/arm64: dts: arm: Use generic clock and regulator nodenames
+On the N900, the accelerometer is mounted such that the raw z-values are
+opposite to the specification in the kernel docs. The driver itself
+seems to be correct, and is used on a number of other boards (such as
+Motorola Droid 4), reporting expected values when used in conjuction with
+mount matrices.
+
+There is not a lot of userspace that uses accelerometer z-axis
+information, hence I could not perform thorough testing for the z-values
+when I submitted 14a213dcb004 ("ARM: dts: n900: use iio driver for
+accelerometer"). The error became evident when Maemo Leste gained
+support for face up and face down device states [2]. With the patch in
+this thread, userspace reports correct face up/down information.
+
+I hope I have not misunderstood your reply, and please let me know if I
+am missing something.
+
+Sicelo A. Mhlongo
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/mount-matrix.txt#n31
+[2] https://github.com/maemo-leste/mce/commit/0dac5a7e4286b5e9a4dafc627c49cef8cc92f092
 
