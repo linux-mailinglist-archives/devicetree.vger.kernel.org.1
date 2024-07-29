@@ -1,320 +1,178 @@
-Return-Path: <devicetree+bounces-88627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139D693EA37
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 02:12:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D3E93EA42
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 02:24:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A50F1C213F2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 00:12:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B00DB21181
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 00:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2398383;
-	Mon, 29 Jul 2024 00:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679BC137E;
+	Mon, 29 Jul 2024 00:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OLpIkGby"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="qf6o7FRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2058.outbound.protection.outlook.com [40.92.23.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2D9372;
-	Mon, 29 Jul 2024 00:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722211941; cv=none; b=ohpOmeveLzliHehq4VOEdLNgNdqX4MXFKf+xYPEsWpzrd40u9Q1NgxQmriefi7CeP602teP34yt6pQWb9zSjJ3dcY93U5jk6cTiFhckO+5EAq3Ao7qbc8+JGv0uKWYxISzhHwLDLYaZCpR+NuEw/i36E/7z8v2Qk4Ae80/KzeRg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722211941; c=relaxed/simple;
-	bh=/TwQ0FiiJh0E8/J2SSTHCENCIdB/WpQhzyIACSbtXLc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dvn3tMzifQVzvPfcOtYethsNLuFajwrzMClAmK7s7ERIFdJK6vkqtn648PDVCqxZvizEzIHSshtLzXpopsw0fgBLQSvOK6hDSm3XG2L3+I89mKhll6hvN++zMkI+e3wi0HU/cta+S2QHFotz3McZKg3c+hj1mXS4Y8/o7uSsCVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OLpIkGby; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-709465248b7so841131a34.3;
-        Sun, 28 Jul 2024 17:12:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722211939; x=1722816739; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wq6LCH29AVIUOnczbAjX+lNk/5KihGhzsCJtp4bWP14=;
-        b=OLpIkGbyBKeXYYWuW6odWPdtdzdQn/UfG9oI3rvmVRk3U4fDTKwyv5plhcH7flFLcw
-         VmbDfiJwi3kRiR2SsVtPUlwNcxzDnDWRHH0LMJ1xetHJ25/Rk9wbEeTcYtsKDCIexc8q
-         2+120/sZP8YMGZOT/UT2laA5LboSJlloD3AyMMQgimVstjCFhkb0Urp1EN3U2DpQ6j0o
-         irs3pU1+gQs5vDNuotSWezcdU2na35+MU5UzLsRReyjiVd6FFB1xP8uQ3N54QiA8gdIK
-         brkdoTawdqxY5p0PSPt2fVtlwCinZmcWjOB0Pb83m3aQ5q9NabawctD/gGh82VIxRyNj
-         ZPsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722211939; x=1722816739;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wq6LCH29AVIUOnczbAjX+lNk/5KihGhzsCJtp4bWP14=;
-        b=WIwuTn0MqI7N3X7JfKO78MlHlB5TmzJhtti4rwBdFBqUeVb/R6GwuOo7Dqyw0Dogji
-         Drp5oUC7Fxv9DuEYRxeHqg/RCan84DrpIpS7lN40BEMEckl/eShQXyyjPBY7rkN0iVr8
-         fzaga/6CiUtysRjVJ/DtAqmUl6FYKRJBUhT/hUsoIf5Y6EocunigGJdQdHXT2kW3SMDV
-         MjV/UC6HuwpLOgG42EXnVyZjmM+IfJBYE/B1aFBlx35Rptt2qh37XmjaqGisKbDfuP12
-         OW64LcTmQ+lXeKEYpv7UM+YpIUn2AAopJL8w3DbIwdhrmYEdZs1HT2+vDkdLy/q3krvB
-         0MIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTAj6YFmNjc4uDEjvSMfwivb5iq28ncL8tKbLTw7rjj+Qa0XlLoEle3OD906WMXQ+v8cxBQYQ67+yHfHKv6ecRiUZr9mRAIVkuhJek/ItKmvg6Qt8f0dLu6tAmGjJXDVC+I8d2VSSBycF1sYEol5y3BAFC4vZgKkylJW4Ado/db89xlmY6uasAaY/xrA8vFBxIMkqSHQpwlk9jNVCbxkKwYaN/VPSRjVpkGKDt2lwRD/OvRmw8F/jez2az7DwG
-X-Gm-Message-State: AOJu0YwGk08zsu331O3CIygLIdjsTkedqzrM+wse04Sc91S6DPH0jda9
-	6jj0L3iPd1IWggmxjuZW1ToisueHBmqYTQhNZ1aIdh5JRfLAn5U+
-X-Google-Smtp-Source: AGHT+IGVyP6gbXtVMP8ZYuvJnPbXecyEUUCdfpDFZwJFJscmplOk9XdMFLdqjqofeRs+8ynqhon/yw==
-X-Received: by 2002:a05:6830:2714:b0:709:3b82:7680 with SMTP id 46e09a7af769-70940c1aa9fmr9821703a34.19.1722211938803;
-        Sun, 28 Jul 2024 17:12:18 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:74de:62d6:bed2:4c63])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cdb73eb9b1sm9153999a91.28.2024.07.28.17.12.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Jul 2024 17:12:18 -0700 (PDT)
-Date: Sun, 28 Jul 2024 17:12:15 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: lee@kernel.org, jdelvare@suse.com, linux@roeck-us.net, pavel@ucw.cz,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	ukleinek@debian.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-hwmon@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v2 4/7] Input: add driver for the input part of qnap-mcu
- devices
-Message-ID: <ZqbeX923IR3tp5Ns@google.com>
-References: <20240728211751.2160123-1-heiko@sntech.de>
- <20240728211751.2160123-5-heiko@sntech.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622157462;
+	Mon, 29 Jul 2024 00:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722212685; cv=fail; b=I90my0rUccDXySbhMpZg+akIZ7CKwh6vhvgVJhHLtPFAxFduaSjT+H0HBczhKq925Pt71soW+MlJ0g0ieo8iWZf4wjqYgQ15sULDe4PK1rFVQKlGfTBCh1HDc2f1+8qpLBlQ4apqI1079QXOdwq/meiZC+odKQjAtEzHyfzIWrM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722212685; c=relaxed/simple;
+	bh=AZKZHDtK6hgGX1fzdgq/ZYx2eOtpuzrkrS9jN3kJqNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=VABYsGTYpzTxag+KpN+p1gfcW38w5iETNG7629ayiJZwzfbGOypKPW37h91pyAmQ/6AU3UdHyOgjH7XvgE+pwqlViDzRUiCkSs4N1Uy2Xy5z0T3RT3pdfcKA+ycNp+6/QOcrXvbZdn1ADgo5ZOkaYdgVN2h1eyZUb17GyhW4Fhg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=qf6o7FRe; arc=fail smtp.client-ip=40.92.23.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c8Xhs6Y172zP3fJ2OyLlupaVSuv0jPA67H9ymsnaJG3ZBi9uL3k+u1Me3PGuYxCO/QH3KBbo26BrsEt0oYcJJZobZHlhTqLdK83Q1E2PkwePVBlgNC3TQPTe4P0RnRxK+85hh0L2W/5EiCOSl8gqHdGfMF8Fw/APGZB75WHjmj78tdWMvpqDkr87MwWvKfuxhLj80z+y7rLqOJcAWdyoWPB5SJmMtclDxDD4E9+KpsRYN8o1B1wo6iq8USJzMPYo4YGGOgFcUYNEiF/lXtizdID5fBHa520yZIIA7VkTk6L2XbAQaR5PxIynTuLPg2+uBO1Oz7hfz6ABUPe64xFq2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jp7XdrNo9pSv7YpMlGpP4RfK9cPjOaa22RNrEUUh/uQ=;
+ b=NL5ZY6dgupLZ2a08Y9A+GusGTyXYd/wj6gM71sljG+JMi/1Z0bXP3HNCRA0eq9XJOycqEiujsG/9ihdI0luMzL7Rn9NecCU0D5ASL2f3ID0c4yTAnuYRcxtATCmYQ+7eyzXK58EeYpipaR3omA1SwnlJXovbrepUNivJoo/lsPyFyj6l4bWzYL1TeOpY0ihSjdb8kQzNXzqtnGnvoOM2KyO9fVX2Yv7hUckXRDHMbbrzubYg34K3Eoxlhj5l6r+wx5pm+6/4mzswUk88ReDBjh1mBrLJHMG6DC+PbH0Y81XeTddQMdGd+kmKTNaRVobrWZo3eNbtO7YzZ1XK0dsWbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Jp7XdrNo9pSv7YpMlGpP4RfK9cPjOaa22RNrEUUh/uQ=;
+ b=qf6o7FReQoQP0s6+Q5ErwY1mH9wAXUEf+/HngYNGCDrfBKlkNlFMogv6t1Ww9wb0+YA2cJwAw1y6ZvBNU19hkJAV93DAVpuAFfCoh3yuxR2BKqpeZHwFWzg9KD1bJkgOzJ82fFUmiL7A+qw5eWWd6IzR2x5ET9IshfwTxxV20M1FpcBX/XXZiRfqeFKjgJYdroN/6qXD1gz3vFcQywTuOADNWzsepLbPFf/26KrNwbJLzX+Y+SHalAWpOqvD4yOeK7ZTNcTFMenWURrsn2FCn6TgWPsoOCWqF0S0bAVnffbGmLZMvU/U9eRR5xZ3TSmEsWxsugTuHJdG645+yPN9KQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by MW4PR20MB5274.namprd20.prod.outlook.com (2603:10b6:303:20b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.24; Mon, 29 Jul
+ 2024 00:24:41 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
+ 00:24:41 +0000
+Date: Mon, 29 Jul 2024 08:24:15 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: sophgo: Add sdhci0 configuration for
+ Huanshan Pi
+Message-ID:
+ <IA1PR20MB4953E36FD6384F3A4E7AAD0BBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB49538AC83C5DB314D10F7186BBA92@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <MA0P287MB2822C12B909AA82D6602FC12FEAB2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB2822C12B909AA82D6602FC12FEAB2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+X-TMN: [4d78yEad1YZ8ZpIDAGqHonM6hfzaTDFAGc9pUguO+HE=]
+X-ClientProxiedBy: TYWPR01CA0022.jpnprd01.prod.outlook.com
+ (2603:1096:400:aa::9) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <beknb34g6of455g72wehqebaomtlaefpyi5pabuffrxtn2zkuv@b5je6pxqtbza>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240728211751.2160123-5-heiko@sntech.de>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MW4PR20MB5274:EE_
+X-MS-Office365-Filtering-Correlation-Id: 979df449-51ff-4c63-3fa4-08dcaf64d63a
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|8060799006|5072599006|19110799003|3412199025|440099028|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	JOBd4c3bnOylw4OkutfGNSMX76fngTM6p5FUOD/wpxaffp3vCbppeLPhZNVaYkiDu+By8cicgQbmHMCJHV2YRdjl2J4Bt+chIX3qb36cuowdlj+0jlonsSkGn/CgkbuOXszQV456lqAJ48cKzEiUxXrL+Sf5qMSIbMJOHNPdUcDBxHcb2BIzVV+eK2hmhPEZgkX4tF2B8DwSe9uz7zkdGrVOCMJb/DS9Wo91Rvm8mJn6HHOAveFSNdpJc9PL+phLrdrRva4799O+2g00mkbYu/RLgHvufBqyah82t0sm+OmtjP0qykufhyV0HTnyCIwPqcqFOGfdocd/wB3rMkJ5N9dWAnKJdbk4EfgElXxj5aRWPsfQ7OATMaU6F0k30atugPNadOzKHAwNbkWGG7WnKS3+T0unl8AiCO/wYHL3OJbzM1v0wZIUN8XdbPSv2naeAzKd/fiS+YFbMlwb2cOnsBXDxsSLYSQzA69jxSuds/e3xT6FKoknqlo3sab+ykkHHis/7YsVq3xc4s0O7w8+E6aJmuk1PGWXk1l99TlD8d725pWAby+QRAr0XgvnfEjDUmpCA9AoV5WDa2/7kIhfxe6ET/t6T3X7Xk7Ow0GZIf9qa95dzSxmUqny+PQeK0+/MJ8HPznLoR99gsn56zpNJiON+Hm7QK+IZ9JPSBJe0osYRBw3skfhepfNLNe0Ov14EUUdVIj29hPapTVzkndTZg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?YJFErhI6mhp1ydkUV68mCh6bGXBzuhKfHv8n/DpSdAP793LJFRjrl2DL7akS?=
+ =?us-ascii?Q?1A+cfQToeTX+udVY2/Of+167Vg/mVJ0FMqx1DBjfHcGdM3wfN4zUQs8b/SZH?=
+ =?us-ascii?Q?0Bz3No6HWya1E9C2Az9pqeTcwvecE/gFwqjyhfmzb7lYTcVb4ePAPR9E3Nkh?=
+ =?us-ascii?Q?E9H+3EafuhpAv8JjBtJD5axC9+F3YnPOoD9CPQcVpoWkd8oZObaYpoVNQHR9?=
+ =?us-ascii?Q?tY1XJsqjrpsAK0GHRhTicqo0GK/hMBjlHPRgQ0WEMzbcEMscrEvoOIucBRHe?=
+ =?us-ascii?Q?dJ1sZbESlOx9ErNxDsDz3FzLbuute6LF8meHycpMZUPszbXFiz8uJte8cEjb?=
+ =?us-ascii?Q?O3xOxheXtgP0do597nKyoLtuehYyXKgkrzzHp6lCVBqxblN81vWEO3G2FJ6x?=
+ =?us-ascii?Q?1/x+Y9pcG10nyYg/wNiPKb44NRYdRZ9MVyGi/5aTHmKt/U8pmQiXYX7Rq38g?=
+ =?us-ascii?Q?i3NqwWeh9jBGzYiqmlhQVKMnMGAFYShp4Bev4Icr0+grcB8p3iBOHPFXTYyn?=
+ =?us-ascii?Q?Ie3cgtyKuopsUS8KR7e5r3q7A4DpKRcsWWwPedZs2HXk+5KZltiI1fblT6pZ?=
+ =?us-ascii?Q?VwdmR3/KtrraNbCvRVLXpbfq9tVtJWrg7jIEkwZj5scvpUx7dt8VGWVgx38l?=
+ =?us-ascii?Q?ZXP/sbtEAtrVoJPbVzvAEztlKAN/ql16AEj6tsz9ooDRc6PesUW3ibaykkX8?=
+ =?us-ascii?Q?I5z1tzoxVNc8J44kQjZs+VbrNK1m8Xe78dGYZLTC83We0+ARn+BwPh9q9NO1?=
+ =?us-ascii?Q?rQRm+/AzuOBBJXQ2DtcWyJwBaJ3yuieaZ7ErwnHBnSOEDa8jJJ2B4lRnrtNq?=
+ =?us-ascii?Q?TCD/mZh+EPvsNVxx0YCHkbthaExN03ibn91uPZPHOvancSvJz45VrNVZ+Eem?=
+ =?us-ascii?Q?DFHsROanmquxMGm54Cd5UtD6lyXf8T370bSV9VWBEElBbxh2Z6Kv7QD+Pqgv?=
+ =?us-ascii?Q?RzGVhhJlpaqMjJQsWmDUEKcFw2IMS5u9UQ6MOU7ex6tc1NDk+rBsWUabSiMN?=
+ =?us-ascii?Q?+3pSPmWmy/xvrJi0RILP1zq/J8cGw371iEEbokUPh1OIV/E8fiVH+IUTdQ28?=
+ =?us-ascii?Q?aDYDgSPGU2uNaKr9ryp68PWkPvBJyBliDUDrPgYY0W6A9dVpVgqbkyOSMsma?=
+ =?us-ascii?Q?w+2qZhTGWbEXmsUxo/sTFd88IhVQZ3JaGNH8sHPMZekQHDM3FHeQ1VyT5OFx?=
+ =?us-ascii?Q?mxRppz9mfZ0zB9uDMAn7oS3r1fFVwbhUgBhn8aAckqxjSlFD9n3RXAk/tqAo?=
+ =?us-ascii?Q?+AqddM44cBee3lv3pMXu?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 979df449-51ff-4c63-3fa4-08dcaf64d63a
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 00:24:40.9967
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR20MB5274
 
-Hi Heiko,
-
-On Sun, Jul 28, 2024 at 11:17:48PM +0200, Heiko Stuebner wrote:
-> The MCU controls the power-button and beeper, so expose them as input
-> device. There is of course no interrupt line, so the status of the
-> power-button needs to be polled. To generate an event the power-button
-> also needs to be held for 1-2 seconds, so the polling interval does
-> not need to be overly fast.
+On Thu, Jul 25, 2024 at 02:41:28PM GMT, Chen Wang wrote:
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  MAINTAINERS                         |   1 +
->  drivers/input/misc/Kconfig          |  12 +++
->  drivers/input/misc/Makefile         |   1 +
->  drivers/input/misc/qnap-mcu-input.c | 156 ++++++++++++++++++++++++++++
->  4 files changed, 170 insertions(+)
->  create mode 100644 drivers/input/misc/qnap-mcu-input.c
+> On 2024/7/23 10:18, Inochi Amaoto wrote:
+> > Add configuration for sdhci0 for Huanshan Pi to support sd card.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f690b55730111..58574f278bfed 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18345,6 +18345,7 @@ F:	drivers/media/tuners/qm1d1c0042*
->  QNAP MCU DRIVER
->  M:	Heiko Stuebner <heiko@sntech.de>
->  S:	Maintained
-> +F:	drivers/input/misc/qnap-mcu-input.c
->  F:	drivers/leds/leds-qnap-mcu.c
->  F:	drivers/mfd/qnap-mcu.c
->  F:	include/linux/qnap-mcu.h
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index 6ba984d7f0b18..4ab8fe8301635 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -900,6 +900,18 @@ config INPUT_HISI_POWERKEY
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called hisi_powerkey.
->  
-> +config INPUT_QNAP_MCU
-> +	tristate "Input Support for QNAP MCU controllers"
-> +	depends on MFD_QNAP_MCU
-> +	help
-> +	  This option enables support for input elements available on
-> +	  embedded controllers used in QNAP NAS devices.
-> +
-> +	  This includes a polled power-button as well as a beeper.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called qnap-mcu-input.
-> +
->  config INPUT_RAVE_SP_PWRBUTTON
->  	tristate "RAVE SP Power button Driver"
->  	depends on RAVE_SP_CORE
-> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-> index 04296a4abe8e8..05f5d0072b08f 100644
-> --- a/drivers/input/misc/Makefile
-> +++ b/drivers/input/misc/Makefile
-> @@ -66,6 +66,7 @@ obj-$(CONFIG_INPUT_PMIC8XXX_PWRKEY)	+= pmic8xxx-pwrkey.o
->  obj-$(CONFIG_INPUT_POWERMATE)		+= powermate.o
->  obj-$(CONFIG_INPUT_PWM_BEEPER)		+= pwm-beeper.o
->  obj-$(CONFIG_INPUT_PWM_VIBRA)		+= pwm-vibra.o
-> +obj-$(CONFIG_INPUT_QNAP_MCU)		+= qnap-mcu-input.o
->  obj-$(CONFIG_INPUT_RAVE_SP_PWRBUTTON)	+= rave-sp-pwrbutton.o
->  obj-$(CONFIG_INPUT_RB532_BUTTON)	+= rb532_button.o
->  obj-$(CONFIG_INPUT_REGULATOR_HAPTIC)	+= regulator-haptic.o
-> diff --git a/drivers/input/misc/qnap-mcu-input.c b/drivers/input/misc/qnap-mcu-input.c
-> new file mode 100644
-> index 0000000000000..9bac7ea2c6b80
-> --- /dev/null
-> +++ b/drivers/input/misc/qnap-mcu-input.c
-> @@ -0,0 +1,156 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/*
-> + * Driver for input events on QNAP-MCUs
-> + *
-> + * Copyright (C) 2024 Heiko Stuebner <heiko@sntech.de>
-> + */
-> +
-> +#include <linux/input.h>
-> +#include <linux/mfd/qnap-mcu.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <uapi/linux/input-event-codes.h>
-> +
-> +/*
-> + * The power-key needs to be pressed for a while to create an event,
-> + * so there is no use for overly frequent polling.
-> + */
-> +#define POLL_INTERVAL		500
-> +
-> +struct qnap_mcu_input_dev {
-> +	struct input_dev *input;
-> +	struct qnap_mcu *mcu;
-> +	struct device *dev;
-> +
-> +	struct work_struct beep_work;
-> +	int beep_type;
-> +};
-> +
-> +static void qnap_mcu_input_poll(struct input_dev *input)
-> +{
-> +	struct qnap_mcu_input_dev *idev = input_get_drvdata(input);
-> +	u8 cmd[] = {
-> +		[0] = 0x40, /* @ */
-> +		[1] = 0x43, /* C */
-> +		[2] = 0x56  /* V */
-> +	};
-> +	u8 reply[4];
-> +	int state, ret;
-> +
-> +	/* poll the power button */
-> +	ret = qnap_mcu_exec(idev->mcu, cmd, sizeof(cmd), reply, sizeof(reply));
-> +	if (ret)
-> +		return;
-> +
-> +	/* First bytes must mirror the sent command */
-> +	if (memcmp(cmd, reply, sizeof(cmd))) {
-> +		dev_err(idev->dev, "malformed data received\n");
-> +		return;
-> +	}
-> +
-> +	state = reply[3] - 0x30;
-> +	input_event(input, EV_KEY, KEY_POWER, state);
-> +	input_sync(input);
-> +}
-> +
-> +static void qnap_mcu_input_beeper_work(struct work_struct *work)
-> +{
-> +	struct qnap_mcu_input_dev *idev =
-> +		container_of(work, struct qnap_mcu_input_dev, beep_work);
-> +	u8 cmd[] = {
+> Huanshan -> Huashan
+> 
+> Others LGTM.
+> 
+> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Thanks,
+> 
+> Chen
+> 
 
-Can this be const?
+Thanks, I will sed it when applying the patch.
 
-> +		[0] = 0x40, /* @ */
-> +		[1] = 0x43, /* C */
-> +		[2] = (idev->beep_type == SND_TONE) ? 0x33 : 0x32
-> +	};
-> +
-> +	qnap_mcu_exec_with_ack(idev->mcu, cmd, sizeof(cmd));
-> +}
-> +
-> +static int qnap_mcu_input_event(struct input_dev *input, unsigned int type,
-> +				unsigned int code, int value)
-> +{
-> +	struct qnap_mcu_input_dev *idev = input_get_drvdata(input);
-> +
-> +	if (type != EV_SND || (code != SND_BELL && code != SND_TONE))
-> +		return -EOPNOTSUPP;
-> +
-> +	if (value < 0)
-> +		return -EINVAL;
-> +
-> +	/* beep runtime is determined by the MCU */
-> +	if (value == 0)
-> +		return 0;
-> +
-> +	/* Schedule work to actually turn the beeper on */
-> +	idev->beep_type = code;
-> +	schedule_work(&idev->beep_work);
-
-I do not see this being canceled anywhere. You should define ->close()
-method for the input device and cancel the work there.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int qnap_mcu_input_probe(struct platform_device *pdev)
-> +{
-> +	struct qnap_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
-> +	struct qnap_mcu_input_dev *idev;
-> +	struct device *dev = &pdev->dev;
-> +	struct input_dev *input;
-> +	int ret;
-> +
-> +	idev = devm_kzalloc(dev, sizeof(*idev), GFP_KERNEL);
-> +	if (!idev)
-> +		return -ENOMEM;
-> +
-> +	input = devm_input_allocate_device(dev);
-> +	if (!input)
-> +		return dev_err_probe(dev, -ENOMEM, "no memory for input device\n");
-> +
-> +	idev->input = input;
-> +	idev->dev = dev;
-> +	idev->mcu = mcu;
-> +
-> +	input_set_drvdata(input, idev);
-> +
-> +	input->name		= "qnap-mcu";
-> +	input->phys		= "qnap-mcu-input/input0";
-> +	input->id.bustype	= BUS_HOST;
-> +	input->id.vendor	= 0x0001;
-> +	input->id.product	= 0x0001;
-> +	input->id.version	= 0x0100;
-> +	input->event		= qnap_mcu_input_event;
-> +
-> +	input_set_capability(input, EV_KEY, KEY_POWER);
-> +	input_set_capability(input, EV_SND, SND_BELL);
-> +	input_set_capability(input, EV_SND, SND_TONE);
-> +
-> +	INIT_WORK(&idev->beep_work, qnap_mcu_input_beeper_work);
-> +
-> +	ret = input_setup_polling(input, qnap_mcu_input_poll);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "unable to set up polling\n");
-> +
-> +	input_set_poll_interval(input, POLL_INTERVAL);
-> +
-> +	ret = input_register_device(input);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "unable to register input device\n");
-> +
-> +	qnap_mcu_input_poll(input);
-> +	input_sync(input);
-
-Why do you need this here? Either the device will be opened by now (and
-will be polled) or there are no listeners and events will be dropped on
-the floor...
-
-Thanks.
-
--- 
-Dmitry
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > ---
+> >   arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts | 9 +++++++++
+> >   1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+> > index aa361f3a86bb..7b5f57853690 100644
+> > --- a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+> > +++ b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
+> > @@ -43,6 +43,15 @@ &osc {
+> >   	clock-frequency = <25000000>;
+> >   };
+> > 
+> > +&sdhci0 {
+> > +	status = "okay";
+> > +	bus-width = <4>;
+> > +	no-1-8-v;
+> > +	no-mmc;
+> > +	no-sdio;
+> > +	disable-wp;
+> > +};
+> > +
+> >   &uart0 {
+> >   	status = "okay";
+> >   };
+> > --
+> > 2.45.2
+> > 
 
