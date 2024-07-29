@@ -1,108 +1,120 @@
-Return-Path: <devicetree+bounces-89045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29D393FD9B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:42:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A51B893FDC0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:52:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3F121C22089
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:42:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60D6D282C3C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D8617C211;
-	Mon, 29 Jul 2024 18:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609BD16DEDA;
+	Mon, 29 Jul 2024 18:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fe5oeRdj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FE28061C;
-	Mon, 29 Jul 2024 18:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365A257CB5;
+	Mon, 29 Jul 2024 18:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722278536; cv=none; b=X2oHCy0955CcY3a+wCiIPyTcp37wa34NKfptaqNQSr4ZuEYGLizcN2gN5sHryqvxbDNEeM7/dxSVkGo+rOUNkrFzltPSQRfu+2HTMBD1x6JyJUxZHnUus2Z9jPShOxmNscNy1TJp9K4L+kue4jdiY+XvyPQUD2xlpRMf94+TFRw=
+	t=1722279173; cv=none; b=Li7I/4AcN9JUjWBEKkY0bDJd/XZkn8cG2ymP04nbuVFHc89eMqvxCMNutyb71JSPJRg69b1W1HdB5/clGyISL5ezXsSTn+YjWP8H733SQoXQcpcQtH0Jhcwkhh0dRMEo1SK3hUHiiQXSh6EUIatP0PvTFnuyvb0ZQc0PpHFa9Pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722278536; c=relaxed/simple;
-	bh=Wnx0qvjxspruIcf4/Y9rK2byAG2Z2O9VS8esrKBtiNc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R15J9BdzMDc4cWGM/ibWWjjs5KZorT8Orpxun74M/g7bfUILg+KBj9EvZHRf9+PdFo32nEYF2R8++AXH7GLe4cwp9xizHEaK8mj5fb/8NvdtcoXSDaYuZC/Cvxj9Rebkwem8gg1pQSBDPRSi69lvSKgx93scxMfG6wUoPk3+/oA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-66ca5e8cc51so26164627b3.1;
-        Mon, 29 Jul 2024 11:42:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722278532; x=1722883332;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dR/4A7+nr/LL0s6VEXDKmBKWbVdIcV+/2Qu7ZjRDS6k=;
-        b=FKvBLOhVoiK+CzArYnZzZn0ZUNy4YgbNWeUcyj8ybFIQ5wp6EONBCqETVHlJbafFhs
-         ufoW4bqoXA8cfbmC/DQYrkobtn282aju+Ly7S5Eg32CSGNz735Q9Uv5XfK3LpYS6MDUk
-         9o0aExCMx5iCZLGGZH0i9TG7uvQhvQGKPNqSxroto9TfQuD6IyZvHf/WejATcCc3ifC5
-         BQqL79ZGHw2I2gpnAED15bmOqsApxJ6EX+g+LQWepTRYB9H+1eFOTSThGu9d8meOYCzx
-         xwkxYuMBl/9jgZmSQLoa2PGSGo0geV0ii2J8PjlVwswj4C82gcYpcEMU9nK6XYcH3EkM
-         Ym9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVMvK31qLhYU75Sh3f4y6/2FCEVOWqeNtaxZdh0/deGRUf08qZgTnj73ehIfFtQwecpZ6mS2ekb+DIrsxNginBn13huGmj5pAn30UqH2dbcNK6HNTTZY8L8dyrLxplzOyMSrYNPAGZmeFDVRbHYiWDdXxrheHxbOQ6X5N5cBrQQf3x2ug==
-X-Gm-Message-State: AOJu0YwLTso9X2c401ai/jARMKia8qQ7YcrOF8GlkCj9F0vtU7g6kVuZ
-	Ol9LCLs/O0XFWyA3xLysYL9/G+9cpC1X5uEXLLZKLaswWlp5mVk/TsJUgcSy
-X-Google-Smtp-Source: AGHT+IHEPN06BBKoLvj9j2AFlxiWDvA70usQNaN/MzyE4VxR9DP/YFcYHZfSfPx/8fig3/NWaz8l1g==
-X-Received: by 2002:a05:690c:6d08:b0:66a:8ce9:b1c7 with SMTP id 00721157ae682-67a0a136022mr116737847b3.37.1722278532044;
-        Mon, 29 Jul 2024 11:42:12 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6756b024905sm21917227b3.76.2024.07.29.11.42.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jul 2024 11:42:11 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6634f0afe05so26415257b3.0;
-        Mon, 29 Jul 2024 11:42:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXElx/qBNOUXYUyEu3gUknP2VOlXHw9mLbOhnK80aOlttJNPyhP6GZwoN2DMb9jPGGJ4B2Q6devkWYtn8GKFXk2LxHEUnLzDFInbMTrYJFFfgDtDrjpvLsLGCy5jRWBbGWYi2Ey6pRb6hWN8Do3y/nwe0G1hsMQVzXwT6rhtHSxNBDScA==
-X-Received: by 2002:a0d:d007:0:b0:673:1ac6:4be0 with SMTP id
- 00721157ae682-67a0a3231d1mr94499717b3.44.1722278531101; Mon, 29 Jul 2024
- 11:42:11 -0700 (PDT)
+	s=arc-20240116; t=1722279173; c=relaxed/simple;
+	bh=yt/TEqkUG7PE55ZFi3CWgk1De/758QNjYZB7+sdWAF8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=soABoaLkRzhVnoVvwf2eEzLvVTFwahUucGbf0UbpazRmKIoUpWa/nAKCx/oGkisBatE8MrIDi8bDAIFxV679fhCcxyGzfcytXizIWaxKcD3B7IGy7vVfeSpdk5Rg9z+cIIpJiYJ2ZkLoRr0qhXn7a34jTsfcSrMoHPNq5vxaEYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fe5oeRdj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E48B7C32786;
+	Mon, 29 Jul 2024 18:52:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722279172;
+	bh=yt/TEqkUG7PE55ZFi3CWgk1De/758QNjYZB7+sdWAF8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=fe5oeRdjCPJrzt8taKEaRFv5iTxsmq835QgyWaogwQnJzLezor+5acCS6DwJlaqa7
+	 oFzvObtInXfwJAg4k9Zp96ccDMJfbRK6lUcWwWtx/fkueElPKyssu4eT6QITGFwy8g
+	 4rXIu0+Ql2MPfVV63K0M5N8mgR47nkBdsdirvuKaIebO43VaNIo9+RgDN9dxSojLWN
+	 eXoQOwoQDWsHYOD6kkLTYD8vQxwBk1Nw1kSnyi2GY5xoIt3DlLClKkFFEKdBROx/Hn
+	 z1qdNFHbeNTaIfFembiNqffMcJDC3Z3+s7uNICG+M3K5BfYUfByk6MuCcG/8PqYE8P
+	 ULC2bUIvIWtTQ==
+Date: Mon, 29 Jul 2024 12:52:50 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240725193803.14130-4-wsa+renesas@sang-engineering.com> <20240725193803.14130-6-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20240725193803.14130-6-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Jul 2024 20:41:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX8jYDeKfw9qtPGVauM8eUZ32j93Dvaqa25kf=AAeG6Zw@mail.gmail.com>
-Message-ID: <CAMuHMdX8jYDeKfw9qtPGVauM8eUZ32j93Dvaqa25kf=AAeG6Zw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: pwm: renesas,tpu: Add r8a779h0 support
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jul 25, 2024 at 9:38=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Document support for the 16-Bit Timer Pulse Unit (TPU) in the Renesas
-> R-Car V4M (R8A779H0) SoC.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: sre@kernel.org, linux-pm@vger.kernel.org, jagan@edgeble.ai, 
+ jonas@kwiboo.se, heiko@sntech.de, Chris Morgan <macromorgan@hotmail.com>, 
+ krzk+dt@kernel.org, andyshrk@163.com, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ t.schramm@manjaro.org
+In-Reply-To: <20240726194948.109326-1-macroalpha82@gmail.com>
+References: <20240726194948.109326-1-macroalpha82@gmail.com>
+Message-Id: <172227904756.1346368.2529190213661296274.robh@kernel.org>
+Subject: Re: [PATCH 0/5] Add GameForce Ace
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+On Fri, 26 Jul 2024 14:49:43 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add support for the GameForce Ace. The GameForce Ace is an RK3588s
+> based gaming device with a 1080p display, touchscreen, hall effect
+> joysticks and triggers, 128GB of eMMC, 8GB or 12GB of RAM, WiFi 5,
+> and support for a 2242 NVME.
+> 
+> Chris Morgan (5):
+>   dt-bindings: power: supply: add dual-cell for cw2015
+>   power: supply: cw2015: Add support for dual-cell configurations
+>   arm64: dts: rockchip: Pull up sdio pins on RK3588
+>   dt-bindings: arm: rockchip: Add GameForce Ace
+>   arm64: dts: rockchip: Add GameForce Ace
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+>  .../bindings/power/supply/cw2015_battery.yaml |    6 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+>  .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   10 +-
+>  .../dts/rockchip/rk3588s-gameforce-ace.dts    | 1315 +++++++++++++++++
+>  drivers/power/supply/cw2015_battery.c         |    7 +
+>  6 files changed, 1339 insertions(+), 5 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
+> 
+> --
+> 2.34.1
+> 
+> 
+> 
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y rockchip/rk3588s-gameforce-ace.dtb' for 20240726194948.109326-1-macroalpha82@gmail.com:
+
+arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: typec-portc@22: 'vbus-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/fcs,fusb302.yaml#
+
+
+
+
+
 
