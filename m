@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-89022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D313493FC3E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:18:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A7693FC42
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:19:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F5081C214EC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:18:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CACFD282BEA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3857E188CB6;
-	Mon, 29 Jul 2024 17:17:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E148181328;
+	Mon, 29 Jul 2024 17:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bb+yU8MG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fMzzMZ0J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0494C16B73E;
-	Mon, 29 Jul 2024 17:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C471802A8;
+	Mon, 29 Jul 2024 17:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722273452; cv=none; b=ezCid8o7V1xJdFwIO6hcIx0qjPQp4s0G/r5De3XTc5iyz1JjAmEgtMmhYxXfkrRPj3PhO7LZ2B49gqq2ppNtxaAPu0E6R4UbzCondPO963X348DHM6NDf1j2gip1bh+UNDsMMmkmtx3WScMF4qHcqOqJXLweBm4KtI2vLdIc65A=
+	t=1722273461; cv=none; b=sKZxf9TnuhVjPMyn6N8i7k7tEOzddMj5NppTvX7ssm+mZFsutWikq5bsXoGHWgamJBEhAAVVBBfAFMQJ5070Lx1ID4PH51Go52B0VCgvB6XazZPj64u0rAKnd+yhAAUGeNmGpMLpR7ciyHezXbV5omVST9whNLZ7vpQwCwhZEcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722273452; c=relaxed/simple;
-	bh=0oCbFyazV4V0QRH9pY87aoH1nnqT33dgn4DPEnU0YzU=;
+	s=arc-20240116; t=1722273461; c=relaxed/simple;
+	bh=zPFv4KwNIuU4ve60Fo9+iaJnjEzZlsd7Zqw0MTQ6lLU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=rvEMt0ZjUneHGhGCafR1vMGqu1nZfvQHXXpF9iJwAMirWpyThvXWnfboaxDh4LO6mAqwQb6V8g3jcaxRMWk0mQa+xiwFE7Yy8XCIgzTlKVuLv5zoRZZHErp5jCHTmNluSKwNIdy5AANCf3p6bORaIZxVOFThXpUf8fyIJkI5iA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bb+yU8MG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D37C4AF0A;
-	Mon, 29 Jul 2024 17:17:28 +0000 (UTC)
+	 MIME-Version:Content-Type; b=PsNcEj0U/lWUpubd++LGmsRJDwzcYhMdbUufAwY42NyGEgzGUNokY8+LENP+MYphHygxBkYv/5MTP4AdELSlnY8bfwqUYQMNS6pjr4uV14IspPLYMqTssXoCTSujkEcclJMLNJPywXa0WZeYUmwCzP7ODn9qOLsB/zWfunknaA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fMzzMZ0J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9955FC32786;
+	Mon, 29 Jul 2024 17:17:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722273451;
-	bh=0oCbFyazV4V0QRH9pY87aoH1nnqT33dgn4DPEnU0YzU=;
+	s=k20201202; t=1722273460;
+	bh=zPFv4KwNIuU4ve60Fo9+iaJnjEzZlsd7Zqw0MTQ6lLU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Bb+yU8MGUF1IoSzYeWvnDsHGJBnVuRXCrPW0wi8hgaYIMkhrQFoBcIuyi+sEErph3
-	 jNTTYUbUdqbBf79ye+aiDNTfWqSGoI13QRXz99deSGPDEl+xVzm3XIvFRwLRkc3ILf
-	 kr7VARZNBmqx02C0KM01IaZGiTbz9ElR+p4VPVh6tWtJQFevl1PS6juWFFib4SPIuK
-	 ZwERUjhJZszoeOY/b4cvP4vvsjz/P6Aoc9dy9ScuAQy/Dgtvs+deWx8WT3DOQx59Gf
-	 hx51tO/xdMizRm0W+IAHuxv445V/tlE9oSaWF7CQeEGnqzUXyP4NhwmwqP2K54WFlM
-	 aQqIUAryeu32Q==
+	b=fMzzMZ0Jc7Ho+gbE/bycsFnZ22Rei8oGUXeqgtEgwGhq8GoTZo8OmgYmx/7oTggKR
+	 iQffh4oxiZIQModxMtnhfFbkzrGAu2JKQaegPCfI82ffHo0tv4wD8DO7ssdUOt1Pu2
+	 OY6bmIS7BWsuYUdGcYCgS/SelI/2hxfe+sPAteOtN+YwzXQ/PIjoXnXZhqedqoznig
+	 S2bVYtI2iqIdQmimhQ2GCk7o50ZGzeSRlIKYFOIy9ek9pZgCzrWSMIVQCXTFNGbrOM
+	 bNqY236l8ShCExOtMpasd36/MOg1L0O1UOswQh4FXFeg4NOpxAHOrS4/7OYS3JBnMx
+	 Q192odNDSdjFg==
 From: Mark Brown <broonie@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240722063657.23018-1-animeshagarwal28@gmail.com>
-References: <20240722063657.23018-1-animeshagarwal28@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: fsl,imx-audio-es8328: Convert to
- dtschema
-Message-Id: <172227344847.109775.11150603605763736185.b4-ty@kernel.org>
-Date: Mon, 29 Jul 2024 18:17:28 +0100
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+ Biju Das <biju.das.au@gmail.com>
+In-Reply-To: <20240725084559.13127-1-biju.das.jz@bp.renesas.com>
+References: <20240725084559.13127-1-biju.das.jz@bp.renesas.com>
+Subject: Re: (subset) [PATCH 0/3] Add HDMI Audio support
+Message-Id: <172227345834.109775.4869081271247920625.b4-ty@kernel.org>
+Date: Mon, 29 Jul 2024 18:17:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,11 +65,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-37811
 
-On Mon, 22 Jul 2024 12:06:51 +0530, Animesh Agarwal wrote:
-> Convert the Freescale i.MX audio complex with ES8328 codec bindings to
-> DT schema format.
+On Thu, 25 Jul 2024 09:45:53 +0100, Biju Das wrote:
+> This patch series aims to add HDMI audio support for RZ/{G2L,G2LC,V2L}
+> SMARC EVKs.
 > 
+> Biju Das (3):
+>   ASoC: dt-bindings: renesas,rz-ssi: Document port property
+>   arm64: dts: renesas: rzg2l-smarc: Enable HDMI audio
+>   arm64: dts: renesas: rzg2lc-smarc: Enable HDMI audio
 > 
+> [...]
 
 Applied to
 
@@ -80,8 +82,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: fsl,imx-audio-es8328: Convert to dtschema
-      commit: 00645b42e3ca6a35fc4a357dd769bcef41d4a077
+[1/3] ASoC: dt-bindings: renesas,rz-ssi: Document port property
+      commit: 2cc719983603f0e9d24da256b58d6abb79e3884a
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
