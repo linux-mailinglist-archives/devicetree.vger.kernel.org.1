@@ -1,101 +1,205 @@
-Return-Path: <devicetree+bounces-89125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B92940035
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 23:16:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F98940048
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 23:22:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7E381C21185
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:16:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0E8CB22253
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC83187350;
-	Mon, 29 Jul 2024 21:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D488018C347;
+	Mon, 29 Jul 2024 21:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="k5qdzrT9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmAt9mx5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E0C80038;
-	Mon, 29 Jul 2024 21:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8796182869;
+	Mon, 29 Jul 2024 21:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722287787; cv=none; b=uDHClLINNydcADQIOzouAXJ7N+8UmxyuWZtKpyIBIVTAAUpR7ljOHYBGE7jErdeYk2UiKxpDpKSLd+Z04V+Upb1NBLVaADNdmAUEKeP4WASz5S2ZTyekyaZZQ14JGmagyRu0/bdotUbC3A/io14gjB/e/BYpXZT9NhjO0WAi1No=
+	t=1722288156; cv=none; b=i4F7h3oTtX0ojoEU4J4M32gsgTuos9aIBHVtu+aNqeK/B+HopU4syuvMEk8BO3bS0mVDC+T+wDE/ITZ0YgjbdGeLPDjiMJABqNAA7IPQpKtEgxj4B18ldFLnOy3D58xL8pXDovYoBTCjD5fBd/zj1vSUIpV7rjRbh2FmGNO4hWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722287787; c=relaxed/simple;
-	bh=LOZJvW/JL7dJF2U2piC6XH9x32IcP9JJ89yfsFfMpIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ivj7pSUjfpSkM94E8uEvZ5RizuwoNSjoGc0+b1k55EqLaH1gTAM8PIOrhRBGsyTvWZsiJ0ZWm71AYvwB4Hb/JiipFhlmZzsvAhZqtc+0XG74Of+1C0HvXyJqgo/bjIrovKg0NWaN8lwgirssWxDgqiBaRfrqfRsfUYkerkCmSSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=k5qdzrT9; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722287784;
-	bh=LOZJvW/JL7dJF2U2piC6XH9x32IcP9JJ89yfsFfMpIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k5qdzrT9Ou4tuZtEMBs5zQ0gIzg6Wfd3Y7dsWRh3OMGzUMuIvKTXvlGM1Lf2Xj4pN
-	 mpIeolAWd7gF9Mi2XrA+Bq6U2IWi2zbqHUcRRrjHovqpKZwOuFmO2ZMDlzC/S26I+F
-	 7koLBQsqBNgMMaoH2S4gnfY/TuOIOdlGaGo2qTX38fnG7CcbJyTW/SuIRBOhSeDu7L
-	 NlYpGJlN1VrzXKqJpqkERy8LcoGlIsg5Vb36VQYxRErnrMXayWWQV8DPY4mjcSX6av
-	 Se6QOAv+rCSePEorqDFNbOCjY/ZXRme3dwsN61WbUZM1K4RMzRAryrbqncoLuewJ9Z
-	 cChufSEGXJrSQ==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A74DF3780530;
-	Mon, 29 Jul 2024 21:16:21 +0000 (UTC)
-Date: Mon, 29 Jul 2024 17:16:19 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: mediatek: cherry: Specify pull resistance
- for RSEL GPIOs
-Message-ID: <1fc31d16-dbc6-4d92-b594-27f7df3d6215@notapiano>
-References: <20240531-tomato-rsel-gpio34-35-fix-v1-1-64ab2545f182@collabora.com>
+	s=arc-20240116; t=1722288156; c=relaxed/simple;
+	bh=F8ef2LDwx73H3bb2EMmW031XbE67mopRtD6WTxjZLwQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Zr5Gwe/j6WQqshJB87bfp6F6XYFaRf9WH4Qv4IvzaEJXjTDzCZm7A6XE6GDLkjVQXkWxuJIgMPjeH1g5sO4KX//x+3sJE2Jj3dqvTjR1p886+gY1jftQOQcO+yDImNRSgDCJe+jorRJEqjXH4NUswnW5W//IErkrqLzStUw3HTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmAt9mx5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0EAF3C32786;
+	Mon, 29 Jul 2024 21:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722288156;
+	bh=F8ef2LDwx73H3bb2EMmW031XbE67mopRtD6WTxjZLwQ=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=PmAt9mx5DLPTLR9pzzN+MNia/8Zg+5f7ddSrppVHUoxoNwaP+W9qeymFNDeGCLdCB
+	 KtTXISWn/Sxno7pF339Q1L++CAdfqrhUNRAVqQbtBcAcOQpQLMbjKJdgn7tkY40WvM
+	 YLu00LqZ+MU7xCiUXgAsKSOnful/TLzadr4JSbpxlS1yed7osSooSvFp+dT9k8B5Fh
+	 v4H5JmpGzW5oh0KPonvw1/+Vp3Cvl1Fsqcee4wojz+qtBDKe5psAKWfdG655ZGmupS
+	 zRWAJjnM9uHDVgVk4/+P/tm/Ejfv+AyOUTDRHa3RrZrZBp2DkSHv7mFv08M+9Qz1hk
+	 l0Qjs4wgaYJ4A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F1687C3DA61;
+	Mon, 29 Jul 2024 21:22:35 +0000 (UTC)
+From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
+Date: Mon, 29 Jul 2024 23:23:04 +0200
+Subject: [PATCH RESEND v6] arm64: dts: qcom: msm8939-longcheer-l9100: Add
+ rear flash
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240531-tomato-rsel-gpio34-35-fix-v1-1-64ab2545f182@collabora.com>
+Message-Id: <20240729-sy7802-v6-1-86bb9083e40b@apitzsch.eu>
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+ Trilok Soni <quic_tsoni@quicinc.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Kees Cook <kees@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1722288184; l=3739;
+ i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
+ bh=PCHxsETnqMCOtnrhqJf1EyDZwF469Myb53EG0JzMbr8=;
+ b=R41Cn5ZKcw2KtJh8ebGpfkx53Ew/zWyK2YNsULcY/fu5FAXW8J1xss0PQq6fsocyHz6f22SRm
+ C1GF2/xvJwuBWbUHV2FMavpMU+x7Fxny+yIK5EXtoABuKtQfm69wCJ8
+X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
+ pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
+X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
+ auth_id=142
+X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Reply-To: git@apitzsch.eu
 
-On Fri, May 31, 2024 at 05:51:09PM -0400, NÌcolas F. R. A. Prado wrote:
-> GPIOs 34 and 35 on MT8195 are of type MTK_PULL_PU_PD_RSEL_TYPE, meaning
-> not only can they be configured as pull-up or pull-down, but the pull
-> resistance can also be configured.
-> 
-> The current bias setting however doesn't specify a resistance value,
-> resulting on the following errors:
-> 
-> mt8195-pinctrl 10005000.pinctrl: Not support rsel value 1 Ohm for pin = 34 (GPIO34)
-> mt8195-pinctrl 10005000.pinctrl: Not support rsel value 1 Ohm for pin = 35 (GPIO35)
-> 
-> Specify the pull resistance for those GPIOs to fix the errors.
-> 
-> Fixes: 5bf7dabe40f2 ("arm64: dts: mediatek: cherry: Document gpios and add default pin config")
-> Signed-off-by: NÌcolas F. R. A. Prado <nfraprado@collabora.com>
+From: Andr√© Apitzsch <git@apitzsch.eu>
 
-Hi Angelo,
+The phone has a Silergy SY7802 flash LED controller.
 
-it seems this patch fell through the cracks. Do you want me to rebase & resend
-it? 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Andr√© Apitzsch <git@apitzsch.eu>
+---
+This series introduces a driver for the Silergy SY7802 charge pump used
+in the BQ Aquaris M5 and X5 smartphones.
 
-Same question for this patch:
-https://lore.kernel.org/all/20240606-mt8195-dma-scp-node-err-v2-1-e14702e9d3f2@collabora.com/
+The implementation is based on information extracted from downstream as
+the datasheet provided by a distributor of the hardware didn't include
+any information about the i2c register description.
+---
+Changes in v6:
+- Drop applied patches 1/3 and 2/3
+- Move #address-/size-cells to the end
+- Add R-b tag
+- Link to v5: https://lore.kernel.org/r/20240624-sy7802-v5-0-7abc9d96bfa6@apitzsch.eu
 
-Thanks,
-NÌcolas
+Changes in v5:
+- Fix language in driver description comment
+- Unwrap function arguments
+- Remove unnecessary empty lines
+- Add Acked-by tag to second patch
+- Link to v4: https://lore.kernel.org/r/20240616-sy7802-v4-0-789994180e05@apitzsch.eu
+
+Changes in v4:
+- Use for_each_available_child_of_node_scoped() to simplify code
+- Use dev_err_probe() to be consistent with the other code in
+  sy7802_probe()
+- Split devm_add_action() into 2 devm_add_action_or_reset() to simplify
+  code and balance regulator_enable()
+- Link to v3: https://lore.kernel.org/r/20240612-sy7802-v3-0-1e9cc1c79b79@apitzsch.eu
+
+Changes in v3:
+- Add R-b tag to first patch
+- Extend driver commit message
+- Improve readability of defines by using BIT()
+- Rename some variables/parameters
+  * led_no -> led_id
+  * level -> brightness
+  * curr -> fled_{strobe,torch}_used_tmp
+  * mask -> {flash,torch}_mask
+  * i -> child_num
+- Restructure structs ("Place th big stuff at the top")
+- Declare 'child' on a separate line
+- Move multi-line assignments out of declaration block
+- Update warning/error messages and comments
+- Use gotos to handle error path
+- Use devm API to cleanup module's resources
+- Init mutex before LED class device is registered to avoid race
+  condition
+- Link to v2: https://lore.kernel.org/r/20240401-sy7802-v2-0-1138190a7448@apitzsch.eu
+
+Changes in v2:
+- bindings: remove unneeded allOf
+- bindings: example: move flash-led-controller under i2c node to fix
+  check error
+- Cc to phone-devel
+- Link to v1: https://lore.kernel.org/r/20240327-sy7802-v1-0-db74ab32faaf@apitzsch.eu
+---
+ .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 27 ++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+index e3404c4455cf..b845da4fa23e 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
++++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+@@ -159,6 +159,26 @@ led@2 {
+ 			};
+ 		};
+ 	};
++
++	flash-led-controller@53 {
++		compatible = "silergy,sy7802";
++		reg = <0x53>;
++
++		enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
++
++		pinctrl-0 = <&camera_rear_flash_default>;
++		pinctrl-names = "default";
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		led@0 {
++			reg = <0>;
++			function = LED_FUNCTION_FLASH;
++			color = <LED_COLOR_ID_WHITE>;
++			led-sources = <0>, <1>;
++		};
++	};
+ };
+ 
+ &blsp_i2c3 {
+@@ -318,6 +338,13 @@ camera_front_flash_default: camera-front-flash-default-state {
+ 		bias-disable;
+ 	};
+ 
++	camera_rear_flash_default: camera-rear-flash-default-state {
++		pins = "gpio9", "gpio16", "gpio51";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
+ 		pins = "gpio20";
+ 		function = "gpio";
+
+---
+base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+change-id: 20240325-sy7802-f40fc6f56525
+
+Best regards,
+-- 
+Andr√© Apitzsch <git@apitzsch.eu>
+
+
 
