@@ -1,654 +1,293 @@
-Return-Path: <devicetree+bounces-89015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E46A93FB6A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:39:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C2A93FBCA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 18:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 912F11C2219F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:39:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98DA81F218F7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2B415F308;
-	Mon, 29 Jul 2024 16:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1085139CEF;
+	Mon, 29 Jul 2024 16:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="u1Mlkhsf"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="L51NkV9H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2076.outbound.protection.outlook.com [40.107.237.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3EA17FBA8;
-	Mon, 29 Jul 2024 16:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722271165; cv=none; b=rrKxlbqRcKnVvBceiYe2QifNfRTSaXmT5JpjtqSBbjVjBG+b2w4Wk6zZtkceWd2oWO8x+DqYr4WPM+HeIEhTzqZ+oXPvm7ceEXmvp/zw0b6S30SKLbTEWe5JPPtte68hDMf5hG2kZQE2XwPA/XzZpByTH/zr9Hff40t5OrIMBSI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722271165; c=relaxed/simple;
-	bh=KgpD4djcJkVLBZxuo39QF5wHw/ewcB6wWjwEeF3HeRo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pT9kkHuuGkm3RG/TM9Yjrk8kyn9YeBqfiQMYRY7ih5TRSzhKN/25uDh+kYk9O1SKufr8zshixINx9ryCFQ4BPm0X24OAT3vMVjMasXpIuYTfTxD4qz9HRpZT3FBqz0K7aK8oPvQRquFmJXmd4nZyouyuZhmphn2ZzwzFLz+NJyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=u1Mlkhsf; arc=none smtp.client-ip=194.87.146.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id C3F73405D8;
-	Mon, 29 Jul 2024 21:39:13 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1722271154; bh=KgpD4djcJkVLBZxuo39QF5wHw/ewcB6wWjwEeF3HeRo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=u1Mlkhsf9kDJ9LxAi4mp25ghW/9yLE+1aFDXshpgOQ7SVZlPMAwFRaWO+bP/KGJUc
-	 9RhUBN//5A2CISvi5L2WEgb+KMwhHsw2l4xK3CYAJeLJk3CVIM2IWgwdNnwNX1CIdb
-	 EVylqWc2DY7JeInfnyWjmzp+LISrOZEBz8ljh8kDQDRIMilgsudWg/C45uMhSL0U8f
-	 XEaq7LekFsAtpWq86kep9t7YbsnoerbpSYxLmt1eB8S4XqOb+fWe5nIuO/gjPVlqRu
-	 iDxVKgstcKVRTbdTcwsuv6dURq+1r9hxRL0g3L5OxAjJ3Mk7sOG0mY189bncg/tIWo
-	 OnkCzbKoxs1Ow==
-From: Nikita Travkin <nikita@trvn.ru>
-Date: Mon, 29 Jul 2024 21:38:49 +0500
-Subject: [PATCH v3 3/3] arm64: dts: qcom: msm8939-wingtech-wt82918: Add
- Lenovo Vibe K5 devices
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B6E17756;
+	Mon, 29 Jul 2024 16:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722271664; cv=fail; b=t8LwldZXIS/O51KLDSb8lTcBP6tdZXCgymkqV/Bt3tgTMJJQZWEjlWZwLA2zNUJhG3HSp/Zt9HtWMZxpVDY+xr6cpm6KcSFE/lSDY47uL/9JYEA4hEB9sF1BDTCY67wZYX+uxltXEBvXFrUYu0BBsEyeqNLBXNt8lCUsZjciBB0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722271664; c=relaxed/simple;
+	bh=Y8wKVCKqceNlgawYmMH8RhJJsgLzgjBjjCEl8KKtQAw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=WlHBQtwb+5hS/UTG2+i6EK368iJAcJng/P0UOwv2ol0mvC4oLOKn210BPMOXd9crFomCvIe2Auxdw73fIGkrbZAHeoFFm0lusuIs+tA2hBfvocmJvqloObkJyDAIOarRHHKnpU+CgGGrrAZTX7gPeU7PdbbPu0B4uu/i6Dhpwb0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=L51NkV9H; arc=fail smtp.client-ip=40.107.237.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kbmjjzW7GFA3Cdm3IhypOecmloqayec5pfO/PbFij3Hc9JekHxWc6bbjV1K2x1X6UKV8TO+sO5GJ2SVuLuowTlBQ4CleRDm+jk4Gngx6jPGNts06QEij8ZQDYbf7I5SFfSGOBSX92YHt0Fd5v+dLx2Q15WZzFRATfkAiGKWGFhu/0YMwavOhwos45J3fcEdgjG//cJInuZOL88HDg/Bajt8Zjw03AntB+4xVv9bMkiq4984BhuW+sbLBtw809Pi83EM3T9HIsM6FnBMfBfauNgyDNMAyHw0U28lxOEWTUGLk9EnKuDDlrjvX7samewgzRpSpnshbyKrxG78r74qIqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h9lSRfD4qn7SfOPDVwxfVekaWjW05U739WhjytYfpYg=;
+ b=rwe/e7uiWZkg8XCRLYJ9hPnJjfRmhlYvCGrThCSj+lYJi/uCFwpBDbKOAIPXRI4BGrPri1fjv5sITnS3H4WgR0T3LuXUhWNS+YeTKvdwxRRgveiekCvrKMj9ZTACLJVMR/mrBzoAHpujTqG0nWaCgel1Mghz/0qW9z7hqvZ4qkoZIbohtqMQDK3CLjXbWtVS1h9Mh+N9lzq1F58Sa1ceVplUCsKAH0F9Kn+7ph/S1DrXr6+WFepX6ZtjB/U2znbHzanZstHcJMzXQfM/O64IMxubN6jAhHA7MuVz/FZSNrgLuDtPGtSU0rJrf+tS//G8HU5ZuWaH8VuUJfOg4xlmvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h9lSRfD4qn7SfOPDVwxfVekaWjW05U739WhjytYfpYg=;
+ b=L51NkV9HUIk7ltwmxnI5SjPtMEHK9ipEANB5IHG1iAw1ZSph0aV+UTYxahxMDr/v0wjC9xwOQnjxgdJOqCEzxiE9RWODYzS/EQ9gYspqfYrf2ajzJCON/uc3hkQI3WwGzdt1tHSeIknrl3J6ck2fD9XzIqhwB/TmxhL3vYjZVZ8=
+Received: from SA1PR04CA0013.namprd04.prod.outlook.com (2603:10b6:806:2ce::19)
+ by CY5PR12MB6597.namprd12.prod.outlook.com (2603:10b6:930:43::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Mon, 29 Jul
+ 2024 16:47:39 +0000
+Received: from SN1PEPF00036F43.namprd05.prod.outlook.com
+ (2603:10b6:806:2ce:cafe::a6) by SA1PR04CA0013.outlook.office365.com
+ (2603:10b6:806:2ce::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.35 via Frontend
+ Transport; Mon, 29 Jul 2024 16:47:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF00036F43.mail.protection.outlook.com (10.167.248.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7828.19 via Frontend Transport; Mon, 29 Jul 2024 16:47:39 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 29 Jul
+ 2024 11:47:39 -0500
+Received: from [172.19.71.207] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 29 Jul 2024 11:47:38 -0500
+Message-ID: <af45d85c-2145-cbce-b91b-2aa70a9dcd0f@amd.com>
+Date: Mon, 29 Jul 2024 09:47:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] PCI: Fix crash during pci_dev hot-unplug on pseries
+ KVM guest
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>, Saravana
+ Kannan <saravanak@google.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>,
+	<linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<kvm-ppc@vger.kernel.org>, Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+	Lukas Wunner <lukas@wunner.de>, Nicholas Piggin <npiggin@gmail.com>, Bjorn
+ Helgaas <bhelgaas@google.com>, Vaibhav Jain <vaibhav@linux.ibm.com>,
+	<linuxppc-dev@lists.ozlabs.org>
+References: <CAL_JsqKKkcXDJ2nz98WNCvsSFzzc3dVXVnxMCntFXsCP=MeKsA@mail.gmail.com>
+ <a6c92c73-13fb-8e9c-29de-1437654c3880@amd.com>
+ <20240723162107.GA501469-robh@kernel.org>
+ <a8d2e310-9446-6cfa-fe00-4ef83cdb6590@amd.com>
+ <CAL_JsqJjhaLFm9jiswJTfi4yZFYGKJUdC+HV662RLWEkJjxACw@mail.gmail.com>
+ <ac3aeec4-70fc-cd9e-498c-acab0b218d9b@amd.com>
+ <p6cs4fxzistpyqkc5bv2sb76inrw7fterocdcu3snnyjpqydbr@thxna6v2umrl>
+ <d20b78cd-ed34-3e5a-0176-c20ee5afd0db@amd.com>
+ <CAL_JsqJAuVexFAz6gWWuTtX1Go-FnHe6vJapv0znHBERSCtv+Q@mail.gmail.com>
+ <0b1be7b7-e65b-8d8e-0659-388dec303039@amd.com>
+ <6mjt477ltxhr4sudizyzbspkqb7yspxvnoiblzeiwxw5kwwsmq@bchicp4bmtzq>
+From: Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <6mjt477ltxhr4sudizyzbspkqb7yspxvnoiblzeiwxw5kwwsmq@bchicp4bmtzq>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240729-msm89xx-wingtech-init-v3-3-32c35476f098@trvn.ru>
-References: <20240729-msm89xx-wingtech-init-v3-0-32c35476f098@trvn.ru>
-In-Reply-To: <20240729-msm89xx-wingtech-init-v3-0-32c35476f098@trvn.ru>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- Nikita Travkin <nikita@trvn.ru>, 
- =?utf-8?q?Adam_S=C5=82abo=C5=84?= <asaillen@protonmail.com>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=14205; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=+hm61tXguqoYLuXRRZvDkGq+7Thgh2O0FVJL2S7g2yw=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBmp8WuM1YgrMr/6gcUXSGvCLmRFmQcl/8mGRaRJ
- YTDkZB7qBWJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZqfFrgAKCRBDHOzuKBm/
- dTfCEACJTVvVs+6YjWdRolo+uQdykGgig0eDJlXu4CqSUIBrjpYj9scYrYCvk3lgKChtIfWkVJy
- XBO8REaLM3JqrI4aXNA9e3kQitR4ES5hnIaT+hWllf4bTKSenMD5fT6rlP3nQsczfSXKeed9cdX
- Q3FAD+iHTVFaqPL4jPcQYxxaFsROQr8XD/g1yET685E2ziisAPGHdiH9ecew0/wcOh9AHkYty7y
- pJzLr1X9bspL3I5mPrZrDtRD3JgbSCRTkq2KJJ5BkEl2DqeAj1zDeV2C8HGIkccMfupiWdq1wYZ
- oSzxQ+E8+kEUAWhAY/PArAmf4QQb2RxkRIG8bpPJ4CDsi6ygGtTCp8yOc/1zhImASc6q2iFul/E
- MxcIHlxskcLXUCKzuuPIJVHQJaPUeArDtDVnni3O0g2L7pgHoJJIvHB+Iv8m1MuHyayQyjNkhIc
- Mkr3nosoQ9KcNUZiOEhqckmNFFstTT+P4SLF1YNc4DuW/SDk/mx2++GLK1BwwrBDiq7XKcfqz7Q
- dA8r2AOa4zY6b6RFkgyu/xPck8G9i+yengonN2nlu6s/xeF66k1j3sbMWvp5OX9fGsQqoOQxcXd
- leHYNwOZBkMXklaTTGl2vGptbeFv/MhnYY63iCcaL6L8SvYeKYRXRumPh0FtbJr8oLUrWiopRIA
- ABohUNZ6mUZVvSQ==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
+Received-SPF: None (SATLEXMB03.amd.com: lizhi.hou@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F43:EE_|CY5PR12MB6597:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8a44371-3ede-447b-e3fc-08dcafee287a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|7416014|376014|36860700013|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RkptYkpuTFE1clZmcnBVekpKZUVOTkYyQmY0dUlNekQ2VFY4UjMwVU55Umx2?=
+ =?utf-8?B?MGdTZHdXd0M0R0djUFJIYnVZS1BGdjJxd2NzSHdxNWYxNHNodncwcGlCK2sx?=
+ =?utf-8?B?WDFDQnFlc3BTQzZrNTNKYnhqWjQrMUhKdXVyNlNCVVltbGY5UXZodnREei81?=
+ =?utf-8?B?ZDBWV1I0K1c2a044MWtCd1hWSGxLRVNxeVVjbWdidFVGcTEzbXR6ZURTcFBM?=
+ =?utf-8?B?anEyT1F0bUkyRnFuZXlQRnNkdCtZVldRMEJ4aENVWG04TFBGUndlT3c5WXd5?=
+ =?utf-8?B?SUZIYUM0Vk5sQmo3S0dvTDRnRjJEMG1uZlBQS1l6RjRsQlBPVWl0MGxMZTFL?=
+ =?utf-8?B?bm1HWjY4TWJITWpYK0pLUXB4UDg0R2pGdGdhWndZWEhJNmRWNkEzL0FiYS9H?=
+ =?utf-8?B?T1RKcUlWc050VS9DN1NjNXJVQ3BEV3RvSks0VElDU25DdXBJdHVFOHBYejN5?=
+ =?utf-8?B?ZXh1QWsrUzZQTVY0d1grUU5Rd0J6MU9MWlpxUTh6UWh2UVp6T3EySFpoSlNv?=
+ =?utf-8?B?N1dDYmxDd0RmajRuYzJDWVRMMzRYbkhVWHdyM2pSeUpxM2tORllLWnc4Vldv?=
+ =?utf-8?B?dXlJamszTU8vVHVzTkQwdVJ0c1VPMVRrODY4U2tuVDkzWmdBT01salc5dEN6?=
+ =?utf-8?B?OURnUWc0THhFbm00M0NoaVFwVjZKYlJjUU84KzJZRFFLK0Q2NlIxWTU5N3Br?=
+ =?utf-8?B?cWhUaDNZNEZwZWRqdC9JVGtnNnlETFhrMnVNbkdPbklGQm1VU012WmVPKzRo?=
+ =?utf-8?B?a3VoMjI4dVl3dmRiYUd2Qzd0OG9zVEo1c2szQ1ZkZHJUWWwydmRHUzg1OE5O?=
+ =?utf-8?B?T3lXVG9ZaVc2UjBzTHpvbjk0R08xRThKSmlyRXZKckprbHBmSzRDZ0VIYklN?=
+ =?utf-8?B?VzNFNnNuRlBnSm1ITElxMXN0ZzFObnFuVDFZdG1UZks0SWE5cGdpUWJUVHd0?=
+ =?utf-8?B?UlZ3Qkx6NnhvM0dNN09TL3hsTVhlQXA0YlJWc3FiQXlDdVNXSnhtNmIxNjhj?=
+ =?utf-8?B?S0JlcXNIZ0pIVXJuZlNxUUt5MlZ0NVFISWg0cDFoZS9oTnIvU3NYdmJUOUl0?=
+ =?utf-8?B?K1FvVENvY2hiK1c1NFZORUVwekordWxMMzFSQ01FUUhDYytFckZnSElCeGNn?=
+ =?utf-8?B?b2VJZ1pWOWpjRUZOMURhbmFHZndoQjV3Y2hmOWprV2ZZQVVCb2U5ME8wby9I?=
+ =?utf-8?B?a2xUdG9kMnZMUnlESU00UnVzYk10V0ZaV3RGbVlQdDdCUUdseFN1b21iYzZs?=
+ =?utf-8?B?a0JpcGN0aVVIVTlOMFRTYUxJbTdRdFJzZ1gvSnZmVnU4U3lVQzBBbHhXay9Y?=
+ =?utf-8?B?SE1tZzZxblB4NWZnckhDV1FPSFhOKzU4NUFacy9yTkdncDdDTFlORVdDQlZE?=
+ =?utf-8?B?TVJTbnhjYllwdFRVNzlvbXo3bEtSNk43T1Z2dE1OTUNrSXBKOVVQSEllQTFJ?=
+ =?utf-8?B?RnV6TlJUa3lJTEhMVGVhb1A3TzVsbDhyZzBPQXIzcTNaaCtnODY5U1gvd2wz?=
+ =?utf-8?B?bDZZMHVoV2IvdjFwRit1NW5DR2E3VU00S0c2RHIrb3dHenpkS2lJOEhQODdU?=
+ =?utf-8?B?bHlEb2pLRU0rQzEzZ2NGb0I3bnNPU1paRXo1WFJuQktVN1U2d1RGN1pwTXNy?=
+ =?utf-8?B?elBNVVFhcUxPK1ZRc1ZxMnAzSThIbGFkZFZORG5Da3luRVZSS2wvL3FKbjEv?=
+ =?utf-8?B?dktBRWpXSlpuOGJtdkNvaXVHbko1VjNEeFJoYmdXK3cwYW1hVjdyZk55NUU0?=
+ =?utf-8?B?SU1YOGVlMTlJMHJwbkJUQ3lqbEpoWkxTcytLcTVodDRteXBtMC9JZFpIM3RO?=
+ =?utf-8?B?dXRHUGhpOUV3dktWRnlFYVAyWjNQVGJ0d1ZoTHhML0tYN2NwcFVScU5EaVhR?=
+ =?utf-8?B?RzN2YnRCTllyVHdXTG1RSjNOOFh4U3o3S0tjSklnYTBvWWJkaEFnd0tPdEdS?=
+ =?utf-8?B?VXFpSE8zNURQSTBHaWxHVFdOZ3hxcU1SVGJjZktLWG11Wm1qVE9pOUxMcjM5?=
+ =?utf-8?B?RGMvWTlRY2VBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(7416014)(376014)(36860700013)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 16:47:39.5206
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8a44371-3ede-447b-e3fc-08dcafee287a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF00036F43.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6597
 
-From: Adam Słaboń <asaillen@protonmail.com>
+Hi Amit
 
-This commit introduces multiple hardware variants of Lenovo Vibe K5.
+On 7/29/24 04:13, Amit Machhiwal wrote:
+> Hi Lizhi,
+>
+> On 2024/07/26 11:45 AM, Lizhi Hou wrote:
+>> On 7/26/24 10:52, Rob Herring wrote:
+>>> On Thu, Jul 25, 2024 at 6:06 PM Lizhi Hou <lizhi.hou@amd.com> wrote:
+>>>> Hi Amit,
+>>>>
+>>>>
+>>>> I try to follow the option which add a OF flag. If Rob is ok with this,
+>>>> I would suggest to use it instead of V1 patch
+>>>>
+>>>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+>>>> index dda6092e6d3a..a401ed0463d9 100644
+>>>> --- a/drivers/of/dynamic.c
+>>>> +++ b/drivers/of/dynamic.c
+>>>> @@ -382,6 +382,11 @@ void of_node_release(struct kobject *kobj)
+>>>>                                   __func__, node);
+>>>>            }
+>>>>
+>>>> +       if (of_node_check_flag(node, OF_CREATED_WITH_CSET)) {
+>>>> +               of_changeset_revert(node->data);
+>>>> +               of_changeset_destroy(node->data);
+>>>> +       }
+>>> What happens if multiple nodes are created in the changeset?
+>> Ok. multiple nodes will not work.
+>>>> +
+>>>>            if (node->child)
+>>>>                    pr_err("ERROR: %s() unexpected children for %pOF/%s\n",
+>>>>                            __func__, node->parent, node->full_name);
+>>>> @@ -507,6 +512,7 @@ struct device_node *of_changeset_create_node(struct
+>>>> of_changeset *ocs,
+>>>>            np = __of_node_dup(NULL, full_name);
+>>>>            if (!np)
+>>>>                    return NULL;
+>>>> +       of_node_set_flag(np, OF_CREATED_WITH_CSET);
+>>> This should be set where the data ptr is set.
+>> Ok. It sounds the fix could be simplified to 3 lines change.
+> Thanks for the patch. The hot-plug and hot-unplug of PCI device seem to work
+> fine as expected. I see this patch would attempt to remove only the nodes which
+> were created in `of_pci_make_dev_node()` with the help of the newly introduced
+> flag, which looks good to me.
+>
+> Also, since a call to `of_pci_make_dev_node()` from `pci_bus_add_device()`, that
+> creates devices nodes only for bridge devices, is conditional on
+> `pci_is_bridge()`, it only makes sense to retain the logical symmetry and call
+> `of_pci_remove_node()` conditionally on `pci_is_bridge()` as well in
+> `pci_stop_dev()`. Hence, I would like to propose the below change along with the
+> above patch:
+>
+> diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+> index 910387e5bdbf..c6394bf562cd 100644
+> --- a/drivers/pci/remove.c
+> +++ b/drivers/pci/remove.c
+> @@ -23,7 +23,8 @@ static void pci_stop_dev(struct pci_dev *dev)
+>                  device_release_driver(&dev->dev);
+>                  pci_proc_detach_device(dev);
+>                  pci_remove_sysfs_dev_files(dev);
+> -               of_pci_remove_node(dev);
+> +               if (pci_is_bridge(dev))
+> +                       of_pci_remove_node(dev);
+>   
+>                  pci_dev_assign_added(dev, false);
+>          }
+>
+> Please let me know of your thoughts on this and based on that I can spin the v3
+> of this patch.
 
-- A6020a40 (msm8929-wingtech-wt82918hd)
-- A6020a46/A6020l36 (msm8939-wingtech-wt82918)
-- A6020a40 S616 H39 (msm8939-wingtech-wt82918hd)
+As I mentioned, there are endpoints in pci quirks (pci/quirks.c) will 
+also create nodes by of_pci_make_dev_node(). So please remove above two 
+lines.
 
-These devices are added with support for many features, notably:
 
-- Basic features like USB, mmc/sd storage, wifi, buttons, leds;
-- Accelerometer;
-- Touchscreen;
-- Sound and modem.
+Thanks,
 
-Note that "HD" variant of K5 is based on msm8929 which is a lower bin
-of msm8939 SoC. A simple dtsi is added for this soc along with the new
-devices.
+Lizhi
 
-Unfortunately, despite the heavy similarities, the combination of minor
-differences between variants make them incompatible between each other.
-
-Signed-off-by: Adam Słaboń <asaillen@protonmail.com>
-[Nikita: Minor cleanup, commit message]
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   3 +
- arch/arm64/boot/dts/qcom/msm8929-pm8916.dtsi       | 162 +++++++++++++
- .../boot/dts/qcom/msm8929-wingtech-wt82918hd.dts   |  17 ++
- arch/arm64/boot/dts/qcom/msm8929.dtsi              |   7 +
- .../boot/dts/qcom/msm8939-wingtech-wt82918.dts     |  17 ++
- .../boot/dts/qcom/msm8939-wingtech-wt82918.dtsi    | 252 +++++++++++++++++++++
- .../boot/dts/qcom/msm8939-wingtech-wt82918hd.dts   |  17 ++
- 7 files changed, 475 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index fd4c7c41ddc4..48ec781fa1d8 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -58,10 +58,13 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8929-pm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8929-pm8916.dtsi
-new file mode 100644
-index 000000000000..c2bf25997e9b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8929-pm8916.dtsi
-@@ -0,0 +1,162 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * msm8929-pm8916.dtsi describes common properties (e.g. regulator connections)
-+ * that apply to most devices that make use of the MSM8929 SoC and PM8916 PMIC.
-+ * Many regulators have a fixed purpose in the original reference design and
-+ * were rarely re-used for different purposes. Devices that deviate from the
-+ * typical reference design should not make use of this include and instead add
-+ * the necessary properties in the board-specific device tree.
-+ */
-+
-+#include "msm8929.dtsi"
-+#include "pm8916.dtsi"
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&pm8916_l2>;
-+	vddio-supply = <&pm8916_l6>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vddio-supply = <&pm8916_l6>;
-+};
-+
-+&mdss_dsi1 {
-+	vdda-supply = <&pm8916_l2>;
-+	vddio-supply = <&pm8916_l6>;
-+};
-+
-+&mdss_dsi1_phy {
-+	vddio-supply = <&pm8916_l6>;
-+};
-+
-+&mpss {
-+	pll-supply = <&pm8916_l7>;
-+};
-+
-+&pm8916_codec {
-+	vdd-cdc-io-supply = <&pm8916_l5>;
-+	vdd-cdc-tx-rx-cx-supply = <&pm8916_l5>;
-+	vdd-micbias-supply = <&pm8916_l13>;
-+};
-+
-+&rpm_requests {
-+	pm8916_rpm_regulators: regulators {
-+		compatible = "qcom,rpm-pm8916-regulators";
-+		vdd_l1_l2_l3-supply = <&pm8916_s3>;
-+		vdd_l4_l5_l6-supply = <&pm8916_s4>;
-+		vdd_l7-supply = <&pm8916_s4>;
-+
-+		/* pm8916_s1 is managed by rpmpd (MSM8939_VDDMDCX) */
-+		/* pm8916_s2 is managed by rpmpd (MSM8939_VDDCX) */
-+		pm8916_s3: s3 {
-+			regulator-min-microvolt = <1250000>;
-+			regulator-max-microvolt = <1350000>;
-+			regulator-always-on; /* Needed for L2 */
-+		};
-+		pm8916_s4: s4 {
-+			regulator-min-microvolt = <1850000>;
-+			regulator-max-microvolt = <2150000>;
-+			regulator-always-on; /* Needed for L5/L7 */
-+		};
-+
-+		/*
-+		 * Some of the regulators are unused or managed by another
-+		 * processor (e.g. the modem). We should still define nodes for
-+		 * them to ensure the vote from the application processor can be
-+		 * dropped in case the regulators are already on during boot.
-+		 *
-+		 * The labels for these nodes are omitted on purpose because
-+		 * boards should configure a proper voltage before using them.
-+		 */
-+		l1 {};
-+
-+		pm8916_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-always-on; /* Needed for LPDDR RAM */
-+		};
-+
-+		/* pm8916_l3 is managed by rpmpd (MSM8939_VDDMX) */
-+
-+		l4 {};
-+
-+		pm8916_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on; /* Needed for most digital I/O */
-+		};
-+
-+		pm8916_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8916_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on; /* Needed for CPU PLL */
-+		};
-+
-+		pm8916_l8: l8 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8916_l9: l9 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		l10 {};
-+
-+		pm8916_l11: l11 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <200000>;
-+		};
-+
-+		pm8916_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8916_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		l14 {};
-+		l15 {};
-+		l16 {};
-+		l17 {};
-+		l18 {};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8916_l8>;
-+	vqmmc-supply = <&pm8916_l5>;
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&pm8916_l11>;
-+	vqmmc-supply = <&pm8916_l12>;
-+};
-+
-+&usb_hs_phy {
-+	v1p8-supply = <&pm8916_l7>;
-+	v3p3-supply = <&pm8916_l13>;
-+};
-+
-+&wcnss {
-+	vddpx-supply = <&pm8916_l7>;
-+};
-+
-+&wcnss_iris {
-+	vddxo-supply = <&pm8916_l7>;
-+	vddrfa-supply = <&pm8916_s3>;
-+	vddpa-supply = <&pm8916_l9>;
-+	vdddig-supply = <&pm8916_l5>;
-+};
-+
-diff --git a/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-new file mode 100644
-index 000000000000..8feecffb16bf
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8929-pm8916.dtsi"
-+#include "msm8939-wingtech-wt82918.dtsi"
-+
-+/ {
-+	model = "Lenovo Vibe K5 (HD) (Wingtech WT82918)";
-+	compatible = "wingtech,wt82918hd", "qcom,msm8929";
-+	chassis-type = "handset";
-+};
-+
-+&touchscreen {
-+	touchscreen-size-x = <720>;
-+	touchscreen-size-y = <1280>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8929.dtsi b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-new file mode 100644
-index 000000000000..ef7bb1ced954
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-@@ -0,0 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8939.dtsi"
-+
-+&opp_table {
-+	/delete-node/ opp-550000000;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dts b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dts
-new file mode 100644
-index 000000000000..aa6b699aa2a1
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-pm8916.dtsi"
-+#include "msm8939-wingtech-wt82918.dtsi"
-+
-+/ {
-+	model = "Lenovo Vibe K5 (Wingtech WT82918)";
-+	compatible = "wingtech,wt82918", "qcom,msm8939";
-+	chassis-type = "handset";
-+};
-+
-+&touchscreen {
-+	touchscreen-size-x = <1080>;
-+	touchscreen-size-y = <1920>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtsi b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtsi
-new file mode 100644
-index 000000000000..800e0747a2f7
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918.dtsi
-@@ -0,0 +1,252 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8916-modem-qdsp6.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-+
-+/ {
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pm8916_pwm 0 100000>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <128>;
-+	};
-+
-+	flash-led-controller {
-+		compatible = "sgmicro,sgm3140";
-+		enable-gpios = <&tlmm 31 GPIO_ACTIVE_HIGH>;
-+		flash-gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_front_flash_default>;
-+		pinctrl-names = "default";
-+
-+		flash_led: led {
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		button-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		pinctrl-0 = <&gpio_leds_default>;
-+		pinctrl-names = "default";
-+
-+		led-0 {
-+			gpios = <&tlmm 69 GPIO_ACTIVE_LOW>;
-+			function = LED_FUNCTION_CHARGING;
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "off";
-+			retain-state-suspended;
-+		};
-+
-+		led-1 {
-+			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			retain-state-suspended;
-+		};
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp_i2c2 {
-+	status = "okay";
-+
-+	accelerometer@68 {
-+		compatible = "invensense,icm20608";
-+		reg = <0x68>;
-+
-+		interrupts-extended = <&tlmm 115 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&accelerometer_default>;
-+		pinctrl-names = "default";
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l6>;
-+
-+		mount-matrix = "-1", "0", "0",
-+				"0", "1", "0",
-+				"0", "0", "1";
-+	};
-+};
-+
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen: touchscreen@38 {
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x38>;
-+
-+		interrupts-extended = <&tlmm 13 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&touchscreen_default>;
-+		pinctrl-names = "default";
-+
-+		vcc-supply = <&pm8916_l17>;
-+		iovcc-supply = <&pm8916_l6>;
-+
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&blsp_uart2 {
-+	status = "okay";
-+};
-+
-+&mpss_mem {
-+	reg = <0x0 0x86800000 0x0 0x5500000>;
-+};
-+
-+&pm8916_pwm {
-+	pinctrl-0 = <&pwm_out>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pm8916_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8916_rpm_regulators {
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default>;
-+	pinctrl-1 = <&sdc2_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	accelerometer_default: accelerometer-default-state {
-+		pins = "gpio115";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	camera_front_flash_default: camera-front-flash-default-state {
-+		pins = "gpio31", "gpio32";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	gpio_leds_default: gpio-leds-default-state {
-+		pins = "gpio36", "gpio69";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	touchscreen_default: touchscreen-default-state {
-+		reset-pins {
-+			pins = "gpio12";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		touchscreen-pins {
-+			pins = "gpio13";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&pm8916_mpps {
-+	pwm_out: mpp4-state {
-+		pins = "mpp4";
-+		function = "digital";
-+		power-source = <PM8916_MPP_VPH>;
-+		output-low;
-+		qcom,dtest = <1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dts b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dts
-new file mode 100644
-index 000000000000..59414db42508
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-wingtech-wt82918hd.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-pm8916.dtsi"
-+#include "msm8939-wingtech-wt82918.dtsi"
-+
-+/ {
-+	model = "Lenovo Vibe K5 (HD) (Wingtech WT82918)";
-+	compatible = "wingtech,wt82918hdhw39", "qcom,msm8939";
-+	chassis-type = "handset";
-+};
-+
-+&touchscreen {
-+	touchscreen-size-x = <720>;
-+	touchscreen-size-y = <1280>;
-+};
-
--- 
-2.45.2
-
+>
+> In addition to this, can this patch be taken as part of 6.11 as a bug fix?
+>
+> Thanks,
+> Amit
+>
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index 51e3dd0ea5ab..0b3ba1e1b18c 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -613,7 +613,7 @@ void of_pci_remove_node(struct pci_dev *pdev)
+>>          struct device_node *np;
+>>
+>>          np = pci_device_to_OF_node(pdev);
+>> -       if (!np || !of_node_check_flag(np, OF_DYNAMIC))
+>> +       if (!np || !of_node_check_flag(np, OF_CREATED_WITH_CSET))
+>>                  return;
+>>          pdev->dev.of_node = NULL;
+>>
+>> @@ -672,6 +672,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>>          if (ret)
+>>                  goto out_free_node;
+>>
+>> +       of_node_set_flag(np, OF_CREATED_WITH_CSET);
+>>          np->data = cset;
+>>          pdev->dev.of_node = np;
+>>          kfree(name);
+>> diff --git a/include/linux/of.h b/include/linux/of.h
+>> index a0bedd038a05..a46317f6626e 100644
+>> --- a/include/linux/of.h
+>> +++ b/include/linux/of.h
+>> @@ -153,6 +153,7 @@ extern struct device_node *of_stdout;
+>>   #define OF_POPULATED_BUS       4 /* platform bus created for children */
+>>   #define OF_OVERLAY             5 /* allocated for an overlay */
+>>   #define OF_OVERLAY_FREE_CSET   6 /* in overlay cset being freed */
+>> +#define OF_CREATED_WITH_CSET    7 /* created by of_changeset_create_node */
+>>
+>>   #define OF_BAD_ADDR    ((u64)-1)
+>>
+>>
+>> Lizhi
+>>
+>>> Rob
 
