@@ -1,153 +1,245 @@
-Return-Path: <devicetree+bounces-89078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE8D693FECE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:09:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6655093FED5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 22:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68702283934
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:09:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D95741F226E0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 20:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40DF18787B;
-	Mon, 29 Jul 2024 20:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADE2188CBC;
+	Mon, 29 Jul 2024 20:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S4WGVnKH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RwObgNdu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311B584D02
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 20:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C65B43152;
+	Mon, 29 Jul 2024 20:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722283777; cv=none; b=lCbXiNkF6eypllpptWaeOUw+InIlTk70uiDBj5C5bnA/NIsoko99V7IGsOJkxyvwsmrco9392K0yaqSyjsMvyTtcw6k/ykHSUfbT+hGyWLS8ZKe4rXuKpnk1rzQ3Vja8cW9L8WRmCEEMOrVQDsv8QsoX/Dv/2E5DLJ6bphyDOWw=
+	t=1722283868; cv=none; b=UqzkvDQsKIZqm5KSIK/cgBVe4iBeNasSPyeH8yvByoT+9nOxEid9GJ5WPcBFBqiNqvd0d5ASDw+d4SS/rkuU+cKa1eAmQoXbvxCedFAHbD99JJ/KGJ1HWtTzM9EtHMyINuQZPeqQhRi7tdh4LlrxJqYr+AfzOcQdf8xEcMGP4pU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722283777; c=relaxed/simple;
-	bh=Y0bKmENPrkpO62iFnuZrcOnFpoRNmn6cKOZ5PurDAzE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=imAvfq1QXoQsGGj8kO/0JB6cCpZA377am0WrZi1B+qCzupSt60pMl6PVmrnXYYo80fwEsXJOLVMq5snUzQXvfF+ysHrJN+R7QIpsT/uuk4N+BQ+VWmQ5xmX2HjGFCoWPeBfPgLI8c7RFtJ47Mipd1+UeOaf/XYfabuacTuN4JH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S4WGVnKH; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6659e81bc68so26547037b3.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 13:09:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722283775; x=1722888575; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qO5YO3gTMJxRN4DD9FtUSuJI3FyT9bz9kOdIwn73kJI=;
-        b=S4WGVnKH6AyS5gPtspPJzWTkk+ywyjShusJXRGuXl+wrvty76H1OZXBOnZyfiU2UEP
-         fBTrRVaFbPOpz1xeSw0g9Eq7kXhjnRwwPYw8qfD5JrNc3QUv7XIU1/qLCCpZFqZDR0c2
-         xD+xtjL6k/MlvwePlEeGhNd7PVyXLwo7XBqNPWvSQncEGlFTkFVN8Vkq5JmFusdEHpGc
-         gUHG2qbCrbMBYdOpNOYRLA0smKmC185VV08Vk8CBoinzeWYq+DuxNT00Rb0EkB91ba3Q
-         NozT/sEs+NP02cO3D6Cs5CAFuLhYkPPp/Gv7HE+5isL7v+xobseF2ZR/8L39Jx1X8Pki
-         t0TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722283775; x=1722888575;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qO5YO3gTMJxRN4DD9FtUSuJI3FyT9bz9kOdIwn73kJI=;
-        b=m6Fv383isDRFFH/fTw9Wucd8d2bxjThMZcoW1z9TiG5MdKk0uLH2ZiveZt/FNN53ia
-         /7Hw34mlazkhBb21PcoYQAErt5WXvm8jRW+Gj3YHGZAVCrGCAUEtH8F9r6H2e+KiI4Kd
-         jBdwUTRUcf8X9f5y9pEjdsX1jhWcEScg9xGl2fOASema/P6LoJ0kOTwrNVe7OIEd/W7w
-         2/3rB/aln6RpwiCGLHJerxHvkfQp1Ypm9zuvmQsyu0L5N0JuJgNc87zY05iEwSA9QJCo
-         8yMUhOEWqjqUxNlGBeDynbGB43Dx+Dcv3hosFy0RKCGe9UxE7e7z10Zyy9JUD2jvQSMx
-         ST1g==
-X-Forwarded-Encrypted: i=1; AJvYcCWapUQfTa9MfFlwVI9VjVr9F+aCXRcaqKMFvuUd/zyRaCNPUwTjuZHHbcYFAeoH8oIs82oZ3KWY8tiU1pNXrG77Ybh46Y8WtPX99Q==
-X-Gm-Message-State: AOJu0Yy4ZHO2tbO6fE1smkqIs0vMYnm658LIdK5J1oBPHro5NVJMTXIx
-	+OR7Q1J6g36BYyEsKyF4c6eQrfHzOZgEfj+dGsSAdaMDT6qf7eDYtZIYwMpgeqdESYU51vdTElG
-	OZCOfE4xKSfKTuWrvHe76mADME1CZE8/6VZh8qg==
-X-Google-Smtp-Source: AGHT+IHNGA9/9hOvLxvdj7+5y602kFWRi0g00FzF83tJv7u7qWJ8+ORj1d+m/utPMN2nC0Pnz2E1p8NJESCd3fTXz34=
-X-Received: by 2002:a0d:e746:0:b0:65f:9873:73e9 with SMTP id
- 00721157ae682-67a09593ba6mr101492697b3.33.1722283775155; Mon, 29 Jul 2024
- 13:09:35 -0700 (PDT)
+	s=arc-20240116; t=1722283868; c=relaxed/simple;
+	bh=uDb5Fh4ZhVMA92QTS5K4scO4cYY50h/RnlGeYZVwiwM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BVT1OX6q9Qvq6fgowX2NC7vAZjDPbNLy4Pj0BIBunBbxvE64cXC2Xk6OBkPZ956s1DeBtNEUvNaImUd049oSaYUyN6NwKDqWFUY8tU9a6x26YDPzs4+ZxnaV+K85oCSpoiatVb5R/SgPAg79wWYjR6jvCOiq/R4gyy/8Smg1azo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RwObgNdu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9542FC32786;
+	Mon, 29 Jul 2024 20:11:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722283867;
+	bh=uDb5Fh4ZhVMA92QTS5K4scO4cYY50h/RnlGeYZVwiwM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=RwObgNdu4TuyaneR49qXJ8hUPuHkt2cwiPFRkhiSqKe4isQVyBStcN6WT4FXJVUDG
+	 B82BIpGs86xP4gsgb/nDY32bD8ihwDnCpU98lzsRhUju44RxLR6w9PhKHr5O31r48y
+	 7jpsYUMB1sqDCyZGuwVZVy2INvu24Mv42YTlL7ocCTJ0yMTrWnMZQdVo0XUkk58GZI
+	 oGxwaS3zlEAObNELuHZybqejelAebyRBAAzmpdqWB+vDak7gFifi0+cQdjXt23hf+o
+	 oV115+f799iVMSpMbwY0w1zqI4q3Cbi5BzF4pNHG8kH++58bguAFPfasLJV3urEnyQ
+	 isrKY/CGnIXTQ==
+Date: Mon, 29 Jul 2024 21:11:00 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matteo Martelli <matteomartelli3@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marius Cristea <marius.cristea@microchip.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] iio: adc: add support for pac1921
+Message-ID: <20240729211100.0d602d6e@jic23-huawei>
+In-Reply-To: <66a784bac1db7_89a37017@njaxe.notmuch>
+References: <20240724-iio-pac1921-v4-0-723698e903a3@gmail.com>
+	<20240724-iio-pac1921-v4-3-723698e903a3@gmail.com>
+	<20240728135306.422713ea@jic23-huawei>
+	<66a784bac1db7_89a37017@njaxe.notmuch>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240725083245.12253-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240725083245.12253-2-lvzhaoxiong@huaqin.corp-partner.google.com>
- <gq5fcttutomphgfrwrtloqzczia3uc5qpont3lrowocan2xjc5@ubfabhsh3mfl> <CA+6=WdQuFYbADjG0i_zWMGYmw95H1U_McqCw4CLW0+Gate50YA@mail.gmail.com>
-In-Reply-To: <CA+6=WdQuFYbADjG0i_zWMGYmw95H1U_McqCw4CLW0+Gate50YA@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jul 2024 23:09:24 +0300
-Message-ID: <CAA8EJppoj1Y2675UOp=JH=-HLdYuuzfr2Sxy1zzkvLosmrRQNw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] drm/panel: jd9365da: Move the sending location of
- the 11/29 command
-To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	dianders@chromium.org, hsinyi@google.com, airlied@gmail.com, daniel@ffwll.ch, 
-	jagan@edgeble.ai, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, 29 Jul 2024 at 06:10, zhaoxiong lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> On Sun, Jul 28, 2024 at 12:59=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Thu, Jul 25, 2024 at 04:32:44PM GMT, Zhaoxiong Lv wrote:
-> > > Move the 11/29 command from enable() to init() function
-> > >
-> > > As mentioned in the patch:
-> > > https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.=
-corp-partner.google.com/
-> > >
-> > > Our DSI host has different modes in prepare() and enable()
-> > > functions. prepare() is in LP mode and enable() is in HS mode.
-> > > Since the 11/29 command must also be sent in LP mode,
-> > > so we also move 11/29 command to the init() function.
-> > >
-> > > After moving the 11/29 command to the init() function,
-> > > we no longer need additional delay judgment, so we delete
-> > > variables "exit_sleep_to_display_on_delay_ms" and
-> > > "display_on_delay_ms".
-> >
-> > Won't this result in a garbage being displayed on the panel during
-> > startup?
->
-> Hi Dmitry
->
-> We just moved "Exit sleep mode" and "set display on" from the enable()
-> function to the init() function and did not make any other changes.
-> It seems that many drivers also put the "init code" and "Exit sleep
-> mode" in one function.
+> > > +
+> > > +/*
+> > > + * Emit on sysfs the list of available scales contained in scales_tbl
+> > > + *
+> > > + * TODO:: this function can be replaced with iio_format_avail_list() if the
+> > > + * latter will ever be exported.  
+> > 
+> > You could just have added a precursor patch doing that.
+> > If you have time I'd certainly consider a patch that does export that function
+> > and uses it here.
+> >  
+> I wasn't sure that one usage was enough to justify the export. I could
+> definitely do it, I am assuming it would now go to a new patch series since
+> this has already been merged into testing, right?
+The requirements for justifying exporting an existing function is less
+than it would be to add a new one.  As such I think it makes sense.
 
-You have moved the functions that actually enable the display out. And
-by the definition it's expected that there is no video stream during
-pre_enable(), it gets turned on afterwards. That's why I asked if
-there is any kind of garbage or not.
+As you note, needs a separate patch on top of the tree.
 
-> In addition, we briefly tested the kingdisplay_kd101ne3 panel and
-> melfas_lmfbx101117480 panel, and it seems that there is no garbage on
-> the panel.
+> 
+> > > + *
+> > > + * Must be called with lock held if the scales_tbl can change runtime (e.g. for
+> > > + * the current scales table)
+> > > + */
+> > > +static ssize_t pac1921_format_scale_avail(const int (*const scales_tbl)[2],
+> > > +					  size_t size, char *buf)
+> > > +{
+> > > +	ssize_t len = 0;
+> > > +
+> > > +	for (unsigned int i = 0; i < size; i++) {
+> > > +		if (i != 0) {
+> > > +			len += sysfs_emit_at(buf, len, " ");
+> > > +			if (len >= PAGE_SIZE)
+> > > +				return -EFBIG;
+> > > +		}
+> > > +		len += sysfs_emit_at(buf, len, "%d.%09d", scales_tbl[i][0],
+> > > +				     scales_tbl[i][1]);
+> > > +		if (len >= PAGE_SIZE)
+> > > +			return -EFBIG;
+> > > +	}
+> > > +
+> > > +	len += sysfs_emit_at(buf, len, "\n");
+> > > +	return len;
+> > > +}
+> > > +
+> > > +/*
+> > > + * Read available scales for a specific channel
+> > > + *
+> > > + * NOTE: using extended info insted of iio.read_avail() because access to
+> > > + * current scales must be locked as they depend on shunt resistor which may
+> > > + * change runtime. Caller of iio.read_avail() would access the table unlocked
+> > > + * instead.  
+> > 
+> > That's a corner case we should think about closing. Would require an indicator
+> > to read_avail that the buffer it has been passed is a snapshot that it should
+> > free on completion of the string building.  I don't like passing ownership
+> > of data around like that, but it is fiddly to do anything else given
+> > any simple double buffering is subject to race conditions.
+> >  
+> If I understand your suggestion the driver would allocate a new table and copy
+> the values into it at each read_avail() call. Then
+> iio_read_channel_info_avail() would free the buffer if some sort of
+> free-after-use indicator flag is set. I guess such indicator might be set via an
+> additional read_avail function argument (would be an extensive API change) or
+> maybe via a new iio_chan_spec attribute.
 
-Ack.
+Probably needs to be in read_avail() as otherwise we end up with yet more masks.
+However, doesn't need to be global.  read_avail_ext() could be added that
+is used in preference to read_avail() if it is supplied.  That new one can
+be used only be drivers that need to handle the allocation and free.
+However I prefer the explicit resource free option as we can in theory
+at least do much cleverer things than simply freeing the buffer.
 
->
-> BR
-> >
-> > >
-> > > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.c=
-om>
-> > > ---
-> > >  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 59 ++++++++++-------=
---
-> > >  1 file changed, 32 insertions(+), 27 deletions(-)
-> >
+> 
+> > An alternative would use a key of sometype to associate individual read_avail
+> > calls with new ones to read_avail_release_resource. That might be cleaner.
+> >   
+> Are you referring to introduce a new read_avail_realease_resource callback that
+> would be called at the end of iio_read_channel_info_avail() if set? Similarly
+> to the previous point the driver would allocate a new table and copy the values
+> into it at each read_avail() call, but the driver would also define a release
+> callback to free such table. If otherwise you are referring to something less
+> trivial, is there a similar API in the kernel that can be referred to for
+> clarity?
+
+Indeed what you suggest. Key is it puts the burden on the driver to do it's
+own management. That avoids handing ownership of the buffer to the core
+which is a pattern I'm not that keen on if we can avoid it.
+
+The new callback would take the buffer pointer that came back from read_avail()
+and pass that back to the driver.  In simple case the driver could just
+free the buffer.  However, it could also do some cleverer stuff to keep
+it around if a write hasn't raced with this code.  That might make sense if
+it's a big table and calculating the values is expensive.
+
+> 
+> > oh well, a cleanup job for another day.   I suspect we have drivers today
+> > that are subject to tearing of their available lists.
+> >   
+> I've just taken a quick look at the other drivers and the following twos seem
+> to have the race condition issue since they are updating an available table
+> during a write_raw() call and also exposing it during a read_avail() call:
+> * drivers/iio/light/as73211.c: see int_time_avail table
+> * drivers/iio/adc/ad7192.c: see filter_freq_avail table
+> 
+> There might be others, I've only looked into those that seemed likely to have
+> this issue after some trivial greps.
+> 
+> Is there already a common way for iio to keep track of open issues (e.g. Issue
+> tracker/TODO lists/etc)?
+
+Not really.  Email to the list tends to be the most we do for tracking.
+I have had various todo lists public over the years, but they tend to rot.
+
+Fix stuff before we forget about it! :(
+
+> 
+
+> > > +static int pac1921_init(struct pac1921_priv *priv)
+> > > +{
+> > > +	unsigned int val;
+> > > +	int ret;
+> > > +
+> > > +	/* Enter READ state before configuration */
+> > > +	ret = regmap_update_bits(priv->regmap, PAC1921_REG_INT_CFG,
+> > > +				 PAC1921_INT_CFG_INTEN, 0);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	/* Configure gains, use 14-bits measurement resolution (HW default) */
+> > > +	val = (u8)FIELD_PREP(PAC1921_GAIN_DI_GAIN_MASK, priv->di_gain) |
+> > > +	      (u8)FIELD_PREP(PAC1921_GAIN_DV_GAIN_MASK, priv->dv_gain);  
+> > 
+> > Why are these cases needed?
+> > Each of those values is going to fit in a u8 just fine and it's getting
+> > written to a much larger variable.
+> >   
+> FIELD_PREP result type would be a long unsigned int due to the GENMASK type and
+> -Wconversion would trigger a warning. The explicit casts is just to address
+> -Wconversion warnings and to "state" that such casts are safe. 
+
+In these cases the compiler can see the value range so it 'shouldn't' be necessary.
+The compiler should be able to trivially establish there isn't a problem.
+
+I can't see enough of the example to tell if the compiler has the visibility
+of that function call that would be necessary to establish if the value
+is big enough.
+
+Of course, sometimes we get a dumb compiler so maybe it will still warn.
+
+GCC docs state:
+"
+The option should not warn for explicit conversions or for cases where the value
+cannot in fact change despite the implicit conversion."
+https://gcc.gnu.org/wiki/NewWconversion
+
+and we should be in that category here.  A lot of compiler work goes into
+ensuring that the false positive rates for this sort of warning are low.
+This particular case of a mask and shift by compile time constants should
+be easy to figure out!
+
+Jonathan
 
 
+> In this way
+> with -Wconversion (KBUILD_EXTRA_WARN=3) one could easily spot those other
+> implicit casts that would end up with unwanted data corruption. I thought it to
+> be a common practice and I also saw it in some other kernel patches, for
+> example https://lore.kernel.org/all/1540883612.2354.2.camel@smigroup.net/ , but
+> maybe it's not that common as I thought.
+> I also see that maybe in this case casting to unsigned int would have likely
+> been more clear.
+> 
+> Thanks,
+> Matteo Martelli
 
---=20
-With best wishes
-Dmitry
 
