@@ -1,122 +1,117 @@
-Return-Path: <devicetree+bounces-88710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E2C93ECEA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4E593ED04
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:42:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C0601F21B3D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 05:21:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F6C51F21EF9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 05:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19758002A;
-	Mon, 29 Jul 2024 05:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7249981720;
+	Mon, 29 Jul 2024 05:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXRsqslY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CSTGPJ5T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A905E163;
-	Mon, 29 Jul 2024 05:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D76964D;
+	Mon, 29 Jul 2024 05:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722230504; cv=none; b=t2jJ61MtdtArIqTZa47faN9Ew/qM/b23YsDGd0SQoFhN+HZ/N/nDr1h/L221XkzVs8YCs2JNSb5RCprQWe9jTR2YWdxT8cufgS9tmweoaqzEL0RxnTD+xcJL/v5p5+kZMs5CQ8M7IWT11Ckn1kRb3jXdQ4Y67AGujHL0DkqucTo=
+	t=1722231722; cv=none; b=Z2rbP7V9AU/yV6jf11X+Q+GwgKG1tJ6aPm7c2i+0CytNX1C7eAYmSVgMH1E6rjuIuiQRqccgrAHbYMfqTlBxzQmGx3kb2Uasc984ZYpxc6WRHxi4uH2iO/r3sIuOvt8d3V75vSVsKVEimdAdsjKJhHf4xASSt1JZJ0xKqugZE2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722230504; c=relaxed/simple;
-	bh=KruHvoHH42zwDU1xGJ3PkJoXwnikfd0WtTHCdlVyxtM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=MeHliD4O/Y0cawUHxSPzqo9VA5h/E/Vu9C6tkFZowZcbjBanLw3wQm6e8NNVBollcXEBVZ79xmhs5Ry5Kho/tepM1ryGSoDKmI4KjAHXztkw/yprwkSAuVu09fF2la+wY8x+r5C7j31s83Mwvqgw7YTkkTtufnz9Gp/1E3RlPk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cXRsqslY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07B1EC32786;
-	Mon, 29 Jul 2024 05:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722230504;
-	bh=KruHvoHH42zwDU1xGJ3PkJoXwnikfd0WtTHCdlVyxtM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=cXRsqslYpi8b2/pM30oSUMlqF+vLezHFJPViUlcz/TYJ0YmJSAOoKWYGEKYOQ5/Te
-	 nzaZ1t9jRXAcaNTDI2ld0oDP/Jl5juLPDIvluplad0WCiL4Ajhxte63YLpMqx/lWoa
-	 tfOLUFfqs2+nEpPpGX5lF6cUpaMTC1DfuPu8bJC/pT4pkDhmjQ7KXhiCQ2MIQ606OS
-	 mSWy3n0jENFeJJrrn+mhagS7LNx+cuKonx0U+VR8vTFduO2dp7M26R12SMTq4ok2Fv
-	 mib9WriSAVJWyI+k/JpUNTTMhH+R5HHvXjA425eEa7TbTRJelZdjCxtnQLRZVo60oZ
-	 9Mzc+wWcxdRWw==
-Date: Mon, 29 Jul 2024 00:21:42 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1722231722; c=relaxed/simple;
+	bh=eN97W4AJl8VwFzZID1IWU9r6D2Aa8cVQYiFEoHJTaGk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HCMArZn//sKaGfFf0aeJFM83GmCmXJ3XNObn3gRjL6YK6lzY5btyw0UJ7UYRDRteiT/LCpd3dMkWTX+a1a0Q+LNaMTNyBr9gAGEeivke8Rc96CHE7+P+GqplHhjCydrkA9Ur3TO8f1TMtmweOFi6G4DKrVhYqSFWpzjz1Szv4pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CSTGPJ5T; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46T5fbF3095616;
+	Mon, 29 Jul 2024 00:41:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722231697;
+	bh=HgdeL/6Y64GlvcJmJ4VTLd40a0vZOfkawLINOafE49Y=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=CSTGPJ5TLaElvSWopyvQ0Y/RwgIR5a7C8rsfEaMPs0LaHBGKFhCitNzB5kbjHYekR
+	 UK2jCCO8jtq+qCBg1o8MLiKeoucwXHcSKaceYcRcijTQYvQFMQSXgjLudQU+bU3vPY
+	 mXmOJ6LT1E9ui5ernXp0JCtWPhLP/4Q9yboT/I/w=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46T5fbkO014713
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Jul 2024 00:41:37 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Jul 2024 00:41:37 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Jul 2024 00:41:37 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46T5faUe046404;
+	Mon, 29 Jul 2024 00:41:36 -0500
+Date: Mon, 29 Jul 2024 11:11:35 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Lee Jones <lee@kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <vigneshr@ti.com>, <kishon@kernel.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>
+Subject: Re: (subset) [PATCH 1/3] dt-bindings: mfd: syscon: Add
+ ti,j784s4-acspcie-proxy-ctrl compatible
+Message-ID: <a640435f-e840-48a8-9cf5-c796c7422070@ti.com>
+References: <20240715120936.1150314-1-s-vadapalli@ti.com>
+ <20240715120936.1150314-2-s-vadapalli@ti.com>
+ <172190301400.925833.12525656543896105526.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
- Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- dmaengine@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Liu Gui <kenneth.liu@sophgo.com>, linux-riscv@lists.infradead.org, 
- Chen Wang <unicorn_wang@outlook.com>, Vinod Koul <vkoul@kernel.org>
-In-Reply-To: 
- <IA1PR20MB4953865775FA926B2BA4580CBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49535EC188F8EE3F8FD0B68DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953865775FA926B2BA4580CBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
-Message-Id: <172223050278.2763977.11180028101195359000.robh@kernel.org>
-Subject: Re: [PATCH v8 RESEND 1/3] dt-bindings: dmaengine: Add dma
- multiplexer for CV18XX/SG200X series SoC
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <172190301400.925833.12525656543896105526.b4-ty@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On Thu, Jul 25, 2024 at 11:23:34AM +0100, Lee Jones wrote:
 
-On Mon, 29 Jul 2024 12:36:51 +0800, Inochi Amaoto wrote:
-> The DMA IP of Sophgo CV18XX/SG200X is based on a DW AXI CORE, with
-> an additional channel remap register located in the top system control
-> area. The DMA channel is exclusive to each core.
+Hello Lee,
+
+> On Mon, 15 Jul 2024 17:39:34 +0530, Siddharth Vadapalli wrote:
+> > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J784S4
+> > SoC are used to drive the reference clock to the PCIe Endpoint device via
+> > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+> > obtain the regmap for the ACSPCIE_CTRL register within the System
+> > Controller device-tree node in order to enable the PAD IO Buffers.
+> > 
+> > The Technical Reference Manual for J784S4 SoC with details of the
+> > ASCPCIE_CTRL registers is available at:
+> > https://www.ti.com/lit/zip/spruj52
+> > 
+> > [...]
 > 
-> In addition, the DMA multiplexer is a subdevice of system controller,
-> so this binding only contains necessary properties for the multiplexer
-> itself.
+> Applied, thanks!
 > 
-> Add the dmamux binding for CV18XX/SG200X series SoC.
-> 
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/dma/sophgo,cv1800-dmamux.yaml    | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
-> 
+> [1/3] dt-bindings: mfd: syscon: Add ti,j784s4-acspcie-proxy-ctrl compatible
+>       commit: d86ce301dcf715ea2d5147bb013a29f722bf5d0b
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I don't see the commit in the MFD tree [1] and Linux-Next. Therefore I
+am assuming that this patch was not committed and will be posting the v2
+series with this patch included.
 
-yamllint warnings/errors:
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/dma/dma-router.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/dma/dma-router.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/IA1PR20MB4953865775FA926B2BA4580CBBB72@IA1PR20MB4953.namprd20.prod.outlook.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Regards,
+Siddharth.
 
