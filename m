@@ -1,105 +1,104 @@
-Return-Path: <devicetree+bounces-89006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CA7793F987
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:34:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5351393F9C0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:41:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3A821C22290
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:34:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02BE31F2330A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8DB158D92;
-	Mon, 29 Jul 2024 15:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82628185E7F;
+	Mon, 29 Jul 2024 15:40:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WFTE+tIv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ucr7hsEP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2492613C9A7;
-	Mon, 29 Jul 2024 15:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B25418308E;
+	Mon, 29 Jul 2024 15:40:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722267251; cv=none; b=b9IF+gLFh2olhKddhd5QAS1GELdNB4pI2/ckqA5jPHCHTo8FyE2MkUTQk0MzFzaPV9ejRn5SA8cLk4DBE/PAYucCqDL5Pb/QIE8hQHsnQ5kgy69OVYy5FyokqBeytuphPXgg3Me1QHFPDumQGxf5GjpQlZf4VMXU+LMjCj0tFjE=
+	t=1722267613; cv=none; b=CnQTNH6rXGc5UnE+5s160Jw9+Bzx1QFTFVxnhDhG8DEaz9fKBtf+EU4Cjch7pyrIHUth4AKQ1a6dvvujy2XlBrV2q9/z0PF2yzUZ6q+jg6aE33qUy/p4tNjy0u52yWAZW1R9oat8EDEbNOcmGlZaDKeLoZXtDn4kms4JzZ2B4w8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722267251; c=relaxed/simple;
-	bh=mzYFMovn+k7oVAsF37f/0receWM06j5IkQ9VA/yeUSY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k7Bz5ytA7EVxFKE6NO1nwNv/27NkJECuIluD8gn5MRPKI8Tn0Bq9ND99YZlpOqmOcgL0vuu/E+H2O1QcZguqQOaQ65ZcFmHQmaRDhxJf3kDYG24JRBlJbBmeD1q6Amr9Zx8ZGl4Qwc9xYrfM5NXY2ZfBzY07TBcMAkQKvcTwwWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WFTE+tIv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E773C32786;
-	Mon, 29 Jul 2024 15:34:09 +0000 (UTC)
+	s=arc-20240116; t=1722267613; c=relaxed/simple;
+	bh=uylFLwNOYdKjfLJ3Fcuo4VxUycGhddVAuVf2ch5UZX0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=LBjNo4SyTACDsXpt/qDhvfKtg2m/9rC9Gj+drV7dBBPIXUfTJjGTYYb/2E47ypH0NwrCV1CHwoD3lTLWulrvfdJnfd/bSNTjIKDWPdgZ4oma72b7whm/zAf3PbFLZAgColNMlpPmYk0r32yzx8W+f6tbIvY3nTYCivjUorwNQ+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ucr7hsEP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F44DC4AF0A;
+	Mon, 29 Jul 2024 15:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722267249;
-	bh=mzYFMovn+k7oVAsF37f/0receWM06j5IkQ9VA/yeUSY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WFTE+tIvunFR1D9DNkIqF55hQDwc3o0SIrQXCY63uadpyNrUK9i9Ve8Mo6yEuVuIr
-	 7+ZnWNChbJYYU+5kVHH0FiCKcRj76aLrBfD2MCZKJErMj7ktvMfx6KIis+kAELmq2v
-	 uewS370vaUQgIHEFCHKKo/5u5weNvwx8ghVBcq9m4tT+9dX5xRl756+lmbYgjNqDjx
-	 L68QbFr6R6HKwzxAIDAkDUZqmaS5DPoFD6zk1XYcRKNDwz+eVHS/EyHm5Gs3J6NMxG
-	 E1aCpNVUpWSp9z/p0pGVfxpD5lNyaKICJAdkYEdQ/l8f8B88NyANpKVYIoCGXKYYTU
-	 I3zn9rriTNlEQ==
-Date: Mon, 29 Jul 2024 10:34:08 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
-	freedreno@lists.freedesktop.org, linux-remoteproc@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
-	Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: Batch-update Konrad Dybcio's email
-Message-ID: <172226724571.728425.2439563101739958891.robh@kernel.org>
-References: <20240726-topic-konrad_email-v1-0-f94665da2919@kernel.org>
- <20240726-topic-konrad_email-v1-3-f94665da2919@kernel.org>
+	s=k20201202; t=1722267613;
+	bh=uylFLwNOYdKjfLJ3Fcuo4VxUycGhddVAuVf2ch5UZX0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Ucr7hsEPKCdBT5GMa8bR6DoDPo0ZlbNg/B1UXakUVJm5ulmVOHBnqYA/u8O702hcu
+	 w9smP9bznSPE6OKHPpSV1P4X3GfTa53pA4suOKgpstIF2+M1leEwTaABKDiFaC3pT3
+	 etdEkkDTb9kMSVB1fjd+ECacCuxq4EIs1WZdiNGZHblrjimntG0H1TeNpXJ6cfW9+5
+	 pQwEnYbBAVAiFfCbDa1S2Nlqh9AUK0jxf7v6U8Qhu2V5ZbBQlB1/iuYNJgYQIq0RrE
+	 30PEypX5QLJ1n+WR90g2Yy0uNraJQesl1kXtADmR5V2lE8uCHVd/zaP87sS7u6pWJ4
+	 XDugO+1O2fZZQ==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc: Leilk Liu <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, John Crispin <john@phrozen.org>, 
+ Daniel Golle <daniel@makrotopia.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+In-Reply-To: <20240727114828.29558-1-zajec5@gmail.com>
+References: <20240727114828.29558-1-zajec5@gmail.com>
+Subject: Re: (subset) [PATCH 1/2] dt-bindings: spi: mediatek,spi-mt65xx:
+ add compatible for MT7981
+Message-Id: <172226761022.71144.306390741868262406.b4-ty@kernel.org>
+Date: Mon, 29 Jul 2024 16:40:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726-topic-konrad_email-v1-3-f94665da2919@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-37811
 
-
-On Fri, 26 Jul 2024 13:18:25 +0200, Konrad Dybcio wrote:
-> Use my @kernel.org address everywhere.
+On Sat, 27 Jul 2024 13:48:27 +0200, Rafał Miłecki wrote:
+> MT7981 has SPI controllers based on IPM design
 > 
-> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,dispcc-sm6350.yaml         | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml           | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml            | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,gcc-sm6350.yaml            | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm6115-gpucc.yaml          | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm6125-gpucc.yaml          | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm6350-camcc.yaml          | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml         | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml            | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm6375-gpucc.yaml          | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml        | 2 +-
->  Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml          | 2 +-
->  Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml     | 2 +-
->  .../devicetree/bindings/display/panel/asus,z00t-tm5p5-nt35596.yaml      | 2 +-
->  Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml    | 2 +-
->  Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml    | 2 +-
->  Documentation/devicetree/bindings/interconnect/qcom,sc8280xp-rpmh.yaml  | 2 +-
->  Documentation/devicetree/bindings/interconnect/qcom,sm8450-rpmh.yaml    | 2 +-
->  Documentation/devicetree/bindings/iommu/qcom,iommu.yaml                 | 2 +-
->  Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-tlmm.yaml        | 2 +-
->  Documentation/devicetree/bindings/pinctrl/qcom,sm6350-tlmm.yaml         | 2 +-
->  Documentation/devicetree/bindings/pinctrl/qcom,sm6375-tlmm.yaml         | 2 +-
->  Documentation/devicetree/bindings/remoteproc/qcom,rpm-proc.yaml         | 2 +-
->  Documentation/devicetree/bindings/soc/qcom/qcom,rpm-master-stats.yaml   | 2 +-
->  24 files changed, 24 insertions(+), 24 deletions(-)
 > 
 
-Applied, thanks!
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/2] dt-bindings: spi: mediatek,spi-mt65xx: add compatible for MT7981
+      commit: 158678bea637020dd6fc521536c5b07701447777
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
