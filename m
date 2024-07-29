@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-88788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A523493EF50
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:01:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B54793EF52
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 10:01:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5E341C21C45
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:01:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 034F02818F3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 08:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F54E13B58F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0ABB13BACC;
 	Mon, 29 Jul 2024 08:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rb3WXiVL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gvzjSWcT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DE0139D07
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1949D13A405
 	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 08:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722240080; cv=none; b=peDKadjdvaUBKG1qwMB9BXrAXYmS6rc7UfXDofCJ3X140N9TY6ZCV1k6HefDbPeENDW1AiDlmVAu0YZ/BQfyCksCp2HTtgsPKifYL8urNT/PgrTHWtGEZLExOHd3SdCyeYjxl85MnIwJR4DHv3BQDrkAV8czzDa7M/SaXwo/JKE=
+	t=1722240080; cv=none; b=uvNpzvUh5g1d/Iwfu3ec2zFI7D3lxYcV2b58nuoUX5iFhuY6KXV78fydAxUBn/gAdbtRr6gtfjkF8sSJSxGJ5aMur5uwqWiUlYUsktdJgiyh1j7GJOt1s4WdGxQjjFDrN7Yjtq2s3wjwq3HjtxrL0A1Ljd6rpB4pKA/ErpmFx0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1722240080; c=relaxed/simple;
-	bh=20Wfk3w47c2eDHVGu9FwABnkA+VXPgQxsX/7uDKiMEU=;
+	bh=Ws5NM+P7MDrdFopIXmvse5S24KmyyD/4+cTZxJM/IqY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ht1ZcH5Stau3Vx1ZUhd5i4S7hJtwK39nGb/hs1jS/AQLzDC/aRjPwcUDnbtXnv6Wx29PgykjFRz77mgw08CxaiOoFfihoknFSlXYIt4+VZYvu+vMkdhUNvyNKLxdZB8xFoKPK5PbCd3ZixvVYpiBVkjGWtZjox8k11x1Y7oBJ34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rb3WXiVL; arc=none smtp.client-ip=209.85.221.53
+	 MIME-Version; b=HsRZ7vYOeiZHL0p3DehtTA6++/vXUTi2qfbNs5Plxbv8GxjqhWuehlR9Gn88K8Ooy7Yb7cZmynYpdpk0NhrHdBYz+T1PxBg+OYsV889QkaSS7wDLV/QtLJURE2kd+i0nAVN/C7PO4TlDZOItzewt7T+K2OO0fC+nWdUd+um39eQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gvzjSWcT; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-368440b073bso906634f8f.0
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4280ca0791bso12581565e9.1
         for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 01:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722240077; x=1722844877; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lznQr0jMS1hTSLYpt3zZD9a+rnGG0mWFLbB4ZWDI+Vo=;
-        b=rb3WXiVLUjitK8p1jEwKDtDpCHMKkt7AtC3R1z6rrg8oRCPzKdnRQM7GwXlgzoFyFW
-         UbDcWjYvZYvsrZSdyYRZGSAJ9i8bJCfwA4adlSCXNPPwul19/MtvOXsAkdMvszh6IOtm
-         FepBAvjMSuqR6c4P9wR/T1oIEDD10L2NhgRC3klcErkcvPxnJK71sFyuoo8uZxTshD3U
-         nrLlPp9l4ojI3uG1u9g9IEbt8c/D/kj8sVRGm6mrTrBmhjU8M8WxK2GFS1OmHoIDFbM+
-         ThtDxTTD88mu0YCUP8FJ3c2TgeM6URYWXnCCtxn3JM9W9CGI5LBWbbh6VPKRmQPoDAkz
-         agOg==
+        bh=JU8YPDGhfgyNA8aWOgCS08s+SEmwnZ36/MbZAdv9Jy0=;
+        b=gvzjSWcT6vfSd53Z1VcrNcXFcdBbrUWGjiIOM5bkH8L/yV9oWYRUGg38K2bJj9pkmW
+         7j4ivAknfnMT31aADaNghNMi0SAIBYsM9AEKIlooqs+jq1UsKFgX4ZwRDSQihcOH3Z1n
+         K1DxIygfhPgB2w8pQ4RgtlxKJQVgX1cKOkVfvxsvVXy562TBHczLt1aBzOSBkmZ1L9Fn
+         S/SdvqKoGgpPME+SpKZRGReQJIlfJTH66nJUNiOLLe3GXSlwNo6Wmc+tm+R6URsIuTfH
+         WpeKy8sAEIDGG18OX5Xrln+j1dQho7iBPRtxHPh7OUZ7ZWNYn0v7/dau8x2/3mF9rZYh
+         4TjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1722240077; x=1722844877;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lznQr0jMS1hTSLYpt3zZD9a+rnGG0mWFLbB4ZWDI+Vo=;
-        b=uP6Nt0jCNXmsyx0EsDncIyRxcKv8TvjtWp3Ss6H0FH0AptkLdMXG8h9UtdniIved4p
-         3McujJxk3LcBYkzewD9PsUU5Nne000FM2kECqqYAvWEL28zocLyNY84rZkAopU0CNs6l
-         nausRwn0okg/2YNaLmacA4NzXXiIQQ76zfk+vaGxwUz03gZ+xY2LJYfUqFgHR3Go3Yop
-         rN63d9Pdw5OKQOaFFIGNMlmZOYHH261vNfsfSD93RL4BKaLZ4mkW71BiSOUu+oMESDKw
-         fahOeGzmNO5nNqn3zvBn6/A6iXklIsM6tHJFSCCzm46znpr8XIjFWI5hHvE1J5mqsi0g
-         iAoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVr9rGR5Wrrl/FkUhRAeYE/tsUrq+2AQCKZqLkM+OC4+3Iac+9G4HZK9dQFfiF7qVTRcRgbwl/GLfuopzGQ58+HItjS7RkFqzQrMg==
-X-Gm-Message-State: AOJu0YyUVg0QDeeLTMdeYX6coplDfNw+f77YK2ePzWB3jBRDprPCmz3n
-	exYLzsNow7MzqpMz9Kjhv6Q82gfqCgiF6892DuCH7+yL+94VrBiQXcIHIAlIweU=
-X-Google-Smtp-Source: AGHT+IH/sKkBGs22dutys1BjvCqtKuAkAgjEZni/gmQywUyTEpKEfEuJOGjetR+NjIPAma/Q1+SuTA==
-X-Received: by 2002:a05:6000:1101:b0:361:e909:60c3 with SMTP id ffacd0b85a97d-36b5d7c4bfamr3707368f8f.9.1722240076629;
-        Mon, 29 Jul 2024 01:01:16 -0700 (PDT)
+        bh=JU8YPDGhfgyNA8aWOgCS08s+SEmwnZ36/MbZAdv9Jy0=;
+        b=WPWTg6hLvWoSLJC9gUl+o05hwqG4aCPiFu0W2B/Y8lWF9P/AoZTPziGwvTaK+u4inf
+         H9QyqZ6W+orAbcqWneaA3qMuhTz68slwe8qMfuJiROa+yWbJBCUQqVeUyXg/zx8zqWtj
+         rbiirRAUK/8btnVt670kNv7DhjbMh2QqTubCoXCOJ5mEkKnhogv3FMBroiUcWJDYGfWm
+         r8eif7EAd1WYwehtYPg2pv038K4MfVrAWxC4ut68UOmYChDrIpArZCfoEs+dgh20J8nQ
+         ABNYzDqSX+tu8XSilEQAbnCTsbyzHSaR7o1JaNJkaCzSeuoTMyXde8WsROrCf9attD2g
+         58Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWmIA8NCYKNWo3c1Kky/uKwHpY5e8MOcFtKK4e6DS5cZLotN4+XGOwU0YZyZIh8E+8Ik3r3+b1A4efuY0PHI9nunykfI0V7a95PdQ==
+X-Gm-Message-State: AOJu0YwPfgCfInmZcVCg6m63OdPn7pPn1j85IVaRVkLuaZOCr0ycGlRP
+	W8K6AJ3Nywif9eftO5y4SlWs6V0bdRGItx0vc6IkmTw5Zw+MJLdD+rrs0LrMuYM=
+X-Google-Smtp-Source: AGHT+IEzvxgrlq2sVwdVFU/d76RGHkKf/FL9gxRWixH14NbnUpqsy79WU0duVX8v51Y9Flhr4p4u/w==
+X-Received: by 2002:a05:600c:3c95:b0:426:5dde:627a with SMTP id 5b1f17b1804b1-42811dd48f9mr43960815e9.23.1722240077554;
+        Mon, 29 Jul 2024 01:01:17 -0700 (PDT)
 Received: from blmsp.fritz.box ([2001:4091:a245:8609:c1c4:a4f8:94c8:31f2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42819d9a007sm45452635e9.1.2024.07.29.01.01.15
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42819d9a007sm45452635e9.1.2024.07.29.01.01.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jul 2024 01:01:16 -0700 (PDT)
+        Mon, 29 Jul 2024 01:01:17 -0700 (PDT)
 From: Markus Schneider-Pargmann <msp@baylibre.com>
 To: Nishanth Menon <nm@ti.com>,
 	Tero Kristo <kristo@kernel.org>,
@@ -82,9 +82,9 @@ Cc: Vibhore Vardhan <vibhore@ti.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: [PATCH v2 4/6] arm64: dts: ti: k3-am62: Add partial-io wakeup sources
-Date: Mon, 29 Jul 2024 10:00:59 +0200
-Message-ID: <20240729080101.3859701-5-msp@baylibre.com>
+Subject: [PATCH v2 5/6] arm64: dts: ti: k3-am62a: Add partial-io wakeup sources
+Date: Mon, 29 Jul 2024 10:01:00 +0200
+Message-ID: <20240729080101.3859701-6-msp@baylibre.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240729080101.3859701-1-msp@baylibre.com>
 References: <20240729080101.3859701-1-msp@baylibre.com>
@@ -101,17 +101,17 @@ the list of phandles to these wakeup sources.
 
 Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62.dtsi | 4 ++++
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-index bfb55ca11323..2bae8550c900 100644
---- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-@@ -122,3 +122,7 @@ dss_vp1_clk: clock-divider-oldi {
- #include "k3-am62-main.dtsi"
- #include "k3-am62-mcu.dtsi"
- #include "k3-am62-wakeup.dtsi"
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a.dtsi b/arch/arm64/boot/dts/ti/k3-am62a.dtsi
+index b1b884600293..5c13851c29ec 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a.dtsi
+@@ -123,3 +123,7 @@ cbass_wakeup: bus@b00000 {
+ #include "k3-am62a-main.dtsi"
+ #include "k3-am62a-mcu.dtsi"
+ #include "k3-am62a-wakeup.dtsi"
 +
 +&dmsc {
 +	ti,partial-io-wakeup-sources = <&mcu_mcan0>, <&mcu_mcan1>, <&mcu_uart0>, <&wkup_uart0>;
