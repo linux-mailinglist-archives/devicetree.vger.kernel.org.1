@@ -1,141 +1,110 @@
-Return-Path: <devicetree+bounces-88900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980E393F566
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:29:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC2093F56E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:31:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41D941F22643
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:29:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 315021C219F6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B31148851;
-	Mon, 29 Jul 2024 12:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE44148310;
+	Mon, 29 Jul 2024 12:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFAJ6zS2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xx2+iyqK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F15148848;
-	Mon, 29 Jul 2024 12:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF61255886
+	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 12:31:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722256135; cv=none; b=Hmvs9VkU+r6YeOt761r+W/bspmR/ACU+MFnBoIM3IiVBXUtN5ZU1hH8yE+lBDx+4cySI6CEx97cOKWRyknkZRaW+AK0/rEKwz5VJ5LExBZNc9oSo0mkoHFh6/Dp7L7tHRTmvjhp+wA69olDhEIW+tmDCDYCRsc8VJESPMJ7wj8g=
+	t=1722256276; cv=none; b=VT0Od50xHhHQuuuPRwxFsf0BuSsfyWDKkz4svWFsF4KI7UN79sa/9vMv54tbaDQCwD0l8ZRE4Pu/WIoug/PJIlbZJ+ozbP6G46P1TTBXOLbTO/woZSpxSq2W50HB6RrrWNunmclSt9R5cy9Ls9XAbBXOWnkxKoFo/bcMY/uOLzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722256135; c=relaxed/simple;
-	bh=i/f9RNjegDbAVcIH695L6x7YuHT0EcJod2GMkAu014M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T05sxgm6GdYUyGEzI2n9Rd8MhmosbxoWW3MOXIdtxyS3bpLm1zDMFPVBW37VDCz1wp+1vOsMVlUf7rP7D8tV3swN/RKjPFyQaG6TlZhgIlwWW1L79EdRch+jpY1hfkZnkwICCtIAvrHsJ9LxW3mkSA0xahePsN8wi968/3bOFCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFAJ6zS2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1177C32786;
-	Mon, 29 Jul 2024 12:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722256135;
-	bh=i/f9RNjegDbAVcIH695L6x7YuHT0EcJod2GMkAu014M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rFAJ6zS2BAdUbmKideEICIZgJbU6ZGIwa9bvbYbI2ZDuPVtNA0IH0pbzaAwQLZJHQ
-	 xJfDEZtdxJThBrc76Lu2B9a0+/HUs+2ps6qbxXveetV72tFYhw+6/vtlbaoQMwaNwr
-	 /YuGeujOhXm16pi06K1UPA10h1tQpfFJt5rX9/kLlWDE6/brDizB3WLlUt4uj3fiPc
-	 OBW3A6NpmgcJH/Eo4XEBtIfxj4a0tWRJxMvnNciWUWi4wyvlr5INJoJooB2XKnXfbF
-	 qeaVTEJWzcHDvRhsXkDADzyVzJLRB35S5Nlsmk3wfOoo57v/MTIIbnyziRtA0pZ/1o
-	 5CiA2AChnWqmw==
-Message-ID: <b5edd9f8-4764-41e3-a4ea-5d9838acd5f9@kernel.org>
-Date: Mon, 29 Jul 2024 14:28:48 +0200
+	s=arc-20240116; t=1722256276; c=relaxed/simple;
+	bh=DNhanqTWJd/OkgCTvbBYdOC5y5bwxHTguZCfFa1RUyo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=KeQXYs2oyzEXs7UkinY+XKJOsOrBk//88vtpbqD3ngn4KxcuUhmfRjrIrsI0IiITb7RLh9gwDhzzjiw4Huwcy7fexIZpXyDbyaA9zbs0S5jOT2Y3pUbW0c1cN4m4/JannYdobBEj2n3H7sdKRW/jAGhN5gXBzE+wILMyNuvh/wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xx2+iyqK; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52f04b3cb33so7593250e87.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 05:31:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722256272; x=1722861072; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y7hmd3mWm1gQNax1rdnBwm9X3nvRpjYNFyOf3EAYVg8=;
+        b=Xx2+iyqK2xILW5rbylj88DdGnDjEPkDH+GfKyPJl4dz359q+EUq4MihYUQQ14EkytO
+         hVHNdZk4bPDRfMAeRccC1KWZu70IfX1gTaUDAtAI5/4krI4reRk2R52Eva/2R7hQz7RI
+         QbfG9Y5XK0fqiaQu+U5eGXu7WJwBkmh8S1rVvxurWwOl2aWWuAZwVyw5rC3bTGap9hFP
+         Q7LWHzxwjd/18vb9++74fFlNqm1swXhp8r7+io8UhyZXOgII3h0O31RNi8Bi8LHnM3YB
+         K0yteUmWUUzWqD4zAttuaPkv8NguKKsLPkxQaL1NtQnI/cHhaZtc89T3l6ZK5ZRco/ui
+         w00w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722256272; x=1722861072;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y7hmd3mWm1gQNax1rdnBwm9X3nvRpjYNFyOf3EAYVg8=;
+        b=ZFx+zXrlS71FTvD4FSBvdYu1EhXutSpg6108sz45vdG40rPLaIKtI60v+9+jASP4/R
+         yXTB4Xe7wTLQkqxJUZO0E3Ei/AAeMOp6OkzalyMm6brKIPwHg2yr+A3IbBADsihhiCRa
+         iBZzOphITN0zubbIFlwVleXM2Cam15yIYH3T7G6sghHUTdAA4Lck0665hN8D60Pb9JOB
+         Xqvfr+JE5jZFIjp9w6unJLWzQ45zXXeBrPimZarDCVFfIPT3rEbZ8U6rIaJHCp9yyis0
+         QeTDxE11suydwzUD7E9cIgSA3dHy5iBwpVwjYGYRFO95k285Xio7qCDmYZ81NHFrSJvZ
+         u24g==
+X-Forwarded-Encrypted: i=1; AJvYcCWOgpnDo9PYLmp84dD1HvIFk5IOBLIFcBO31pnfs5465kgLdSkZOCv7ZbJrfwhiJF4RGDxNzcqKpsij2mxn0njiSPxPNdJ5T6ZHBA==
+X-Gm-Message-State: AOJu0Yxm9ynB6OkcrsJXjE31h9CdMhH2ymnzkH4paoYeztfqEIxtWONc
+	sPYQgRNEL4nlMRfvYRIMJr8MFYOUqO9Ju3Z+eNQgN1dZloo0DjhvyI6PRTnvNsI=
+X-Google-Smtp-Source: AGHT+IHmZcVRj+OQubC+Y9JLE+mJvdVS0zZVFUn2gdyL1G0hR405kWsdn6atd1FZXPPAZ9g+dW56PA==
+X-Received: by 2002:ac2:4f07:0:b0:52c:df55:e110 with SMTP id 2adb3069b0e04-5309b26928bmr7668841e87.12.1722256271901;
+        Mon, 29 Jul 2024 05:31:11 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acab22ff1sm501973966b.35.2024.07.29.05.31.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 05:31:11 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: David Virag <virag.david003@gmail.com>
+Cc: phone-devel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sam Protsenko <semen.protsenko@linaro.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240713180607.147942-3-virag.david003@gmail.com>
+References: <20240713180607.147942-3-virag.david003@gmail.com>
+Subject: Re: [PATCH] arm64: dts: exynos: exynos7885-jackpotlte: Correct RAM
+ amount to 4GB
+Message-Id: <172225627029.280610.17022654796794760064.b4-ty@linaro.org>
+Date: Mon, 29 Jul 2024 14:31:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/tiny: Add driver for Sharp Memory LCD
-To: Alex Lanzano <lanzano.alex@gmail.com>,
- Markus Elfring <Markus.Elfring@web.de>
-Cc: Mehdi Djait <mehdi.djait@bootlin.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
- Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20240729014311.1746371-3-lanzano.alex@gmail.com>
- <0b1ee6f7-b24d-49a6-ba90-d917c864ecf4@web.de>
- <darls2mffvsw2ktkirzimzij6w5w45hxylvfcfwgmd3k3elmar@xeg6mfpa3yax>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <darls2mffvsw2ktkirzimzij6w5w45hxylvfcfwgmd3k3elmar@xeg6mfpa3yax>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On 29/07/2024 14:05, Alex Lanzano wrote:
->> Under which circumstances would you become interested to apply a statement
->> like “guard(mutex)(&smd->tx_mutex);”?
->> https://elixir.bootlin.com/linux/v6.10.2/source/include/linux/mutex.h#L196
->>
-> 
-> Ah, I didn't realize guarded mutexes were implemented. That's really
-> good to know.
-> 
-> I'd usually use them when it's possible to return before mutex_unlock is
-> called to avoid goto cleanup logic. But it's probably best to just use them
-> by default.
-> 
-> Thanks for the review. Will clean up in v4.
 
-<form letter>
-Feel free to ignore all comments from Markus, regardless whether the
-suggestion is reasonable or not. This person is banned from LKML and
-several maintainers ignore Markus' feedback, because it is just a waste
-of time.
-</form letter>
+On Sat, 13 Jul 2024 19:58:32 +0200, David Virag wrote:
+> All known jackpotlte variants have 4GB of RAM, let's use it all.
+> RAM was set to 3GB from a mistake in the vendor provided DTS file.
+> 
+> 
+
+Applied, thanks!
+
+[1/1] arm64: dts: exynos: exynos7885-jackpotlte: Correct RAM amount to 4GB
+      https://git.kernel.org/krzk/linux/c/d281814b8f7a710a75258da883fb0dfe1329c031
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
