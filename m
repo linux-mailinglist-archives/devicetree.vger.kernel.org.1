@@ -1,108 +1,150 @@
-Return-Path: <devicetree+bounces-88664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CAC93EB10
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:17:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 521C693EAFB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B3A11F220C5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 02:17:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 715641C21605
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 02:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717BC80BEC;
-	Mon, 29 Jul 2024 02:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D5978C7A;
+	Mon, 29 Jul 2024 02:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="XZOoY6D5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2104.outbound.protection.outlook.com [40.92.42.104])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4ACA7E0FC;
-	Mon, 29 Jul 2024 02:16:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722219363; cv=none; b=A6qSW6uRITy/UWRMEgxgssvQerYVndPXrJ0+Y4G0UhRbVagZwbhIHE+e0BfSnU6P5iXzf8/+J70aorg/LTJ0mb2L9KL66/f+3SqIpJFfWW7hiKLY739jlw7FMT7I6fq00UBT4p6AmNdxvokbEMulbzBcgfLAqhwMquSoaCVweJI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722219363; c=relaxed/simple;
-	bh=+pROoBrurakCGvGD6Blb+j4X0fhL0kJk1RxtcHF2TWU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=Txm+/Z3l4D2sUF6Vi4aMZOZ2fdK3+y/HB0O7qDzRWQG4fF8bnjqy85mXdKfE2HrHVUZ5WAflf6s7aQ+OEfcluRN7b643oJeEGKAoZU1kf6Jyky+4wAF8wim+BySbU9J1FqrDtfnmVE6xAAak5KoeGmHVVTrQdWioErRZUaPStHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 50986201274;
-	Mon, 29 Jul 2024 04:16:00 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 212232019A4;
-	Mon, 29 Jul 2024 04:16:00 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 81D30183AD44;
-	Mon, 29 Jul 2024 10:15:58 +0800 (+08)
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	l.stach@pengutronix.de
-Cc: hongxing.zhu@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: [PATCH v4 4/4] dts: arm64: imx8mm: Add dbi2 and atu reg for i.MX8MM PCIe EP
-Date: Mon, 29 Jul 2024 09:56:45 +0800
-Message-Id: <1722218205-10683-5-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1722218205-10683-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1722218205-10683-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F330577119;
+	Mon, 29 Jul 2024 02:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.104
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722219201; cv=fail; b=jMUSd4nwLNnFupyPv3+IEsopMPnSwAQ34wIe3gqs15eWXYnCdjjH6bPTEm3sKCcHNFAe2EeeU95V/UuozmRzFQ+d6V9U/fdxndg9ebDaeIGD2o4rfL106HpwCBj/qnqUgTAnLMGExQj+y0PA9Uzzuy0bPek7vW64WeM6iqj4daQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722219201; c=relaxed/simple;
+	bh=aCchrBEPv+MKHse5aoiws7WwUO8HA3VSp0hw8SUf8KE=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=EAlvLCIVVz5xvGV7Gm4KipIj4kppZy+TcWGQeuBgr/zDTUxaIyH01Ds/bmU3AOJeyTK9ROjkSF34F1bJs9FFsFHyKRvNHgo1KKXtLtB7cSqEI+m51MgBhpEbbfH1xNoP5x3JeUDdZ8qCTSgDv/mlt2wxsiTjKU+of4swWcczsf8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=XZOoY6D5; arc=fail smtp.client-ip=40.92.42.104
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GB0RHGkc2YjyYqefkcAeokKY9gJlVJP6Oj5iCIMsXhV47hueTs3xPkA7925DWWXz1mFhpX4iu3Ul7BfbsPxs6fdmXxe5PD1gb+xr2c/aklxLOR8nBpTuSmmsVKZuyBgglH3th8o7WNw3pD6wE0aauBjWlsZ7V6Qd4etlmXvGXY4GB/J4FaGHuB3L801Vc5OIWTo4GW9iXuQUdKsIYnvTXFR4bpV1k1fpUxrUXofPWhIEPdNuFVuQQA5NvIJSIjXJywjB6SkAyIxDaibnBzunyCfePx2YBMHQivqyXomb4oQAH421kc7yxRDXIlobOlOYadQ+OPCy90pUnhkA9SbDrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sSlgZx68KsXcZbYS7tlwavyEPedDXSWgIJXwJD+zLi0=;
+ b=whoDd0piHZieE0LHAM/U2DX1PdQuyW20Q6QkzqgP6te/pyTxQcOrmbagLJtcT+FnOiZmORV5SqkCqpifoxttxNFad5ZELGdHRgbf5QE/CA5Gtwh6knP1Pi1vQWxRoNoadNYebDxC66XEJMHhJgF/I2GAhI9+h+7nYF3FTguvLFsSnbXGwq/qm3NctuVJtb+MTmr9OkMDZfAyuj/a96mnLDwb7CpaIFoCijMpK6J7pwPnsPtlVA3iiHTM9g8hTefy/mnl2OAWD4inbtN5JJ+23zeI9+oexFyZnjFhgEp59bzM42x3FHGMGs6ooZ+YKrD0GQyCR7ai2ecNvrYvLzoEZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sSlgZx68KsXcZbYS7tlwavyEPedDXSWgIJXwJD+zLi0=;
+ b=XZOoY6D5DRn3Pt4NIk19ts80EEqjQmIASmyKmzfc9Bhwce68a0sESoDY1AvwFW4UuUgV3OhB2jki/GV7Fa7zzCPRrTM9Tv0JJpz0yporRQ1u2sZi/2Tkkj/srZCeWlHOpuISREMpYhwER8BhsThU6vQ7IuJ4MnqxskspLzvjtF2upmk/Pw2y7Lab5ufNWdElCm09HZjOw7vXrwiIFihwLN8TqR8DiGBVA7cqUz8/KvxxJJtnBXaTYXNaS4ueoAz59vjihnqZfOWToXSufk0aQPEad6rAbUfjZRbS5u+/2cTo2CIkkyKMFJr20+Q5xe0vf9Jmtjrf6Fmu9qhnSN1FDQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DS0PR20MB5767.namprd20.prod.outlook.com (2603:10b6:8:144::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.26; Mon, 29 Jul
+ 2024 02:13:18 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
+ 02:13:17 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Guo Ren <guoren@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Chao Wei <chao.wei@sophgo.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] riscv: dts: sophgo: Add i2c device support for sg2042
+Date: Mon, 29 Jul 2024 10:12:51 +0800
+Message-ID:
+ <IA1PR20MB4953DB82FB7D75BF8409FFF4BBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.45.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [j6lmJTTMRJr97VpPkDkNC1DW0AQi5fGfy3q0N06F2jw=]
+X-ClientProxiedBy: TYCPR01CA0175.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b2::15) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20240729021253.838541-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS0PR20MB5767:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57aa253f-7fba-4823-1387-08dcaf74029d
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|8060799006|5072599006|19110799003|3412199025|440099028|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	a/T95Rf4JDiA1MXpJ6ySKpBG4br+UHxcTt6g49P/nZeyNoDbwazRtoqDa1iN/KpcMrv6syPTYqyd95RoZrdDqPzotImusQLuMPpV0woCIdhFCB3J7/cEoCmC4iO5ouYe2VXas4Z1sT6sdMDrJukaICvzC6CWsDhax4hCc0IDb4mTMhVdfnq1ao82ZVT4WDhvr/24c7ghenLUEqmQpl8XOf89NvI8sPwm5WgadbQCzndCzVrZVfELAC85CBwm2CoPUvJosvlHutxVPso2b9ZyWs17Q6P/HbTSoCE4VoE3TMEBlnvhSN0ccWocz0OqP20lUB5G0VEMYAyI69b6WLhud0jmaALYT3gXocNC3oHvDm2qKFKN+9X/0ITrF3z/v4P76H74ckiqRQEsgzgP5jgr/7sqcS9fY2RdpdNsKAfpUUplqmnzpi2RdH5RPTgkzuebociN537KdhF/I3CY2QsJb91ymJUk1GZ5yI1+vwuR2Vh8dOOhcFDjEJH9oItxA5KLnxUYqB8vwrLCsD9Me/u6B/pjqGJQd5wxIHjF3KBq6RzvlWHVfpG6+ZQwz+bH35XJ0/sj2Il5qNhajuFgtX9UIgUh34KJH07l3LO2li1q1reg2wBnzA/0yNyfXSl8AVmTKxrY2M4uQJHI7sfM6NNZW250x6Hc16cNjA/5iJgk5PrUyUYkE19S5Bk380CxdA85l6iTWJu7rB1PHvKgGDGwtg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?DlsXUu2JGSj+ZJMy3R7/CyDtbZJnsmpnAxIlp/g84PDxiV/7r+6JQbgq6iAb?=
+ =?us-ascii?Q?LAFGMtaoZX1gQRPk45fJ36nj2BPZvZjrucHVrejdVG2FpTPOFKNjhHk7ofVD?=
+ =?us-ascii?Q?5FTL/rZ6zgQmKPIXXUf6fVEzC9cFkZkEb3bb6shnpjzZRll/xE1wBqjnFFb3?=
+ =?us-ascii?Q?px1CY4pulQuCVKV6v+nVvkGfTusz+DgiYDcAp07/XeHJ8xlmAXC6nkIHFae9?=
+ =?us-ascii?Q?E9xku0sbtLWGoxBSWJZjkL9dxvqHtQqCb63vmrV+7DmoCnhgqDHVM0q5xsN7?=
+ =?us-ascii?Q?b6r2wiUtZXK50dVOjxRgxvkYoedd96XSqu6QNapd4IWUSSg4+Hq/cqen7Azm?=
+ =?us-ascii?Q?E0V1pSPIrd27OMBDD7ChzXYLtrsQQtn0fVqeR3GIt0eYcSWhM4EAY+dTXBur?=
+ =?us-ascii?Q?GQ7hK0fIx7CAuElW34XYJmWa9+mQkkQY2Uu/AG8cFWxxA1q7YL8AbQHF4nCh?=
+ =?us-ascii?Q?KFXC8dYqneetub2kZVaQWjfVo/hlxBhecDZKmiKOPPpoHQXAwP/wZKTd48YE?=
+ =?us-ascii?Q?ZShZDF8LIEeRPgBV8quc/dmKtSHXC2unjI278tqjtFL2wOINjoRs3/u0CU7B?=
+ =?us-ascii?Q?4FIrUJijvqEpMe44n8EXoQ6PHZkF9T/RPZlGJ5xl4hQ0T2pftUb+SsJj5OPV?=
+ =?us-ascii?Q?V0eogNG9Gluzu5gvIvsw4GZTuv60Ier+aUIqzEz4Clunb38yxzgNaM9glkFV?=
+ =?us-ascii?Q?Cy5t7CC0Ju8WN8dypv+GE90LvGoXH7CaBjZLeeJOKA+JSnzcqqdgNr6PhEn+?=
+ =?us-ascii?Q?k50x6mYr7xsAWOkzceS03Bp8hyWlf+kvRVsuZDY1s/DOZe/wSl79H8+DMt4m?=
+ =?us-ascii?Q?TngthLXr7H01k1SnMOKPSQBMUUNVRHp5YUhzwAxJFXi1oTg0cUNjWsvjX1Jn?=
+ =?us-ascii?Q?w162yCRJCCZGM8RmLL7RjxCa6WvG8ZJLiJY4dSJkCukuWuiegRicRkOkH/QP?=
+ =?us-ascii?Q?U0NsZiosp6+Kkauupwl4Me2yhi9RASvkML+en1FERWqy0BHl7bIrp3GiHom7?=
+ =?us-ascii?Q?NG4wW5hFEhzA5lvc4wdLJ+YG8PZ0VkX7ZfKNRlgrsBIcuLCMML+qKrSk/Di1?=
+ =?us-ascii?Q?jDBMji21CbTZYF2mdLr3TjFokrHnEv4uBGP5yiuZMFerKf3Vud3jzOR5+x0l?=
+ =?us-ascii?Q?AhC88l9UFCO9GuORu34Y/41VnRuRI64B330ZUGFvcT6xh0XDjyVNGjWVsldI?=
+ =?us-ascii?Q?sxHFy5G055pSgB0LLOfASIYWvtBgwV4io+g3nk6PctOP8ZpmSUHO2mb0l5k1?=
+ =?us-ascii?Q?lTq2BFj4hPCJuOb4AmT5?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57aa253f-7fba-4823-1387-08dcaf74029d
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 02:13:17.6207
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR20MB5767
 
-Add dbi2 and iatu reg for i.MX8MM PCIe EP.
+Add i2c dt node for sg2042
 
-For i.MX8M PCIe EP, the dbi2 and atu addresses are pre-defined in the
-driver. This method is not good.
+Changed from v1:
+1. split the "interrupt-parent" change as a separated patch
 
-In commit b7d67c6130ee ("PCI: imx6: Add iMX95 Endpoint (EP) support"),
-Frank suggests to fetch the dbi2 and atu from DT directly. This commit is
-preparation to do that for i.MX8MM PCIe EP.
+Inochi Amaoto (2):
+  riscv: dts: sophgo: Use common "interrupt-parent" for all peripherals
+    for sg2042
+  riscv: dts: sophgo: Add i2c device support for sg2042
 
-These changes wouldn't break driver function. When "dbi2" and "atu"
-properties are present, i.MX PCIe driver would fetch the according base
-addresses from DT directly. If only two reg properties are provided, i.MX
-PCIe driver would fall back to the old method.
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi | 54 +++++++++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 1 deletion(-)
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 9535dedcef59..4de3bf22902b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -1375,9 +1375,11 @@ pcie0: pcie@33800000 {
- 
- 		pcie0_ep: pcie-ep@33800000 {
- 			compatible = "fsl,imx8mm-pcie-ep";
--			reg = <0x33800000 0x400000>,
--			      <0x18000000 0x8000000>;
--			reg-names = "dbi", "addr_space";
-+			reg = <0x33800000 0x100000>,
-+			      <0x18000000 0x8000000>,
-+			      <0x33900000 0x100000>,
-+			      <0x33b00000 0x100000>;
-+			reg-names = "dbi", "addr_space", "dbi2", "atu";
- 			num-lanes = <1>;
- 			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "dma";
--- 
-2.37.1
+--
+2.45.2
 
 
