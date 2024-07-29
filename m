@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-88689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4805B93EC4C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC6E93EC51
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:03:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 013AA281421
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:02:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE280282423
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802AE13DBB7;
-	Mon, 29 Jul 2024 03:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D7D13DBB1;
+	Mon, 29 Jul 2024 03:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uUuigub7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wjqq/ltT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5704113DB99;
-	Mon, 29 Jul 2024 03:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D788140360;
+	Mon, 29 Jul 2024 03:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722225539; cv=none; b=qEUhDWlrcjAhY+PWmk/qAH7kdvIDF9yjQOmErlLZHTp9DxUuJbklAUbY3J5hLo0wr6Z7mErnhJ6qGkqgk6ZLhLj+iC7NTZByqHkU3TeLeAaWG2S9cyF0T5rkHZ9/UP8fpb8aoZK8H1dwNcvC+dbyM7kSWMpIKE6HSaeqXXwQgaM=
+	t=1722225541; cv=none; b=Zq9q55HGnHx/kC6Cj2ZwYxUZj5ZiUXTVOytMLg8nvpqb8Ym0ehfZOWkgfKkeJmI8JPrg2rDzggd/dcIA2pvYZNSmWDp99S4NBDd8OZwU3yn64AWCgdT9/iTHE40NqE8TiPXIE5zcG0WcOat9tYgSTyRHeJVk/eTHrRyqtGw/FDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722225539; c=relaxed/simple;
-	bh=o+7NscFlntH8IpheuGOfBNKanM/LsZ9nMHeTmUJjy2g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ny723VHZ1Uz0OREE+Ex892RzSMxPIv79vdo4KgYpFWrw8Wgna4X8eiJzUa2UHGK0PUH/bFJqG2GFXhWq9J2cUDnB1G82AsGn0Ootd7rUGM4Eo9Xku8iNSB8VHxqfA3vCZa0Sbszy4g1srsTvpVm3K2/31PnyaLXSOnG0Lr3Ccnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uUuigub7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18104C32786;
-	Mon, 29 Jul 2024 03:58:58 +0000 (UTC)
+	s=arc-20240116; t=1722225541; c=relaxed/simple;
+	bh=RMMv3zKvenq8v82/xYmA1hOhsf/+rwm6tvocMX1DsqI=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a5yhrDHeudjV4JqnD+d2g46bFjVEwZLOo3ozZjf/+3MfSX/2sZFE/E6/ihG6vLjvyvtyCVItfU1SyvQ1Ted4v62LxG8mQgux9Zsbiu8FoLT/CGrs+h4WUHVHvbxmo0F3+tNab6yJFmoFLSlmMaej4eZXGbBYsfPu95z2BSVwhPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wjqq/ltT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21264C4AF07;
+	Mon, 29 Jul 2024 03:59:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722225539;
-	bh=o+7NscFlntH8IpheuGOfBNKanM/LsZ9nMHeTmUJjy2g=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uUuigub70RLbT3x5M23CE9fZ9iqerrMNRa0hONePulsS1HtcIIwUQTCEKvc5eDkPj
-	 4OmOzv7HKk1vYYHOq42jzWoilXV289Pay27W+eIn9DQqNd5iVZMCAwr5bMmLJGYC7m
-	 M6r2eeNWBFwY2Kqf5lc4UXXKIETpjmq5W0okNiX/BsFhm2mXDJvyc9AIsyEvCGHbK8
-	 2sAqpYTzSv5NZ55zi5C+FtmVxhsGmgV/jlgBHsgOGPUsY8YPrbMgB58Br7hTk35vTN
-	 lzdpKcOHvFXzwKfyIMwm4aT0LbCYwKH72UW99zMLz0g9401bOWTg6yK5v2r1JVhVr0
-	 HcDGCiw5qQWnw==
+	s=k20201202; t=1722225541;
+	bh=RMMv3zKvenq8v82/xYmA1hOhsf/+rwm6tvocMX1DsqI=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=Wjqq/ltTlPL6AHVLj5+IUgezbfHt3bvKLtJjG9guGFnLQo76WM9g3Yf3RuY6jV1ZU
+	 o7qpfs0jzASpt8VQ+Mg/xWwiWZBbL7/77Cg0VLTUSnxkiRCB71X2uuf05pADHO2KxS
+	 Txl+9dYLJfyiqwHyLBE+OzZw2mhnMzehs+jNUO1VCDBjr4SsGC+EJx7PIRRjRi+aOT
+	 V38qaxTpAJG1sWUeCVgN5lVzCGMdIefUeBDohcte+EDNnNARM6NWXhK7eHnHb2p/+t
+	 9IY/DOqRlHGpBo9sX1dCvjvzvoQIkrdAzO2d/ucQeHgXBOMEMtBlhc60ideuPzl5hd
+	 DhZZuGHBpqpJA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
+To: gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	konrad.dybcio@linaro.org,
+	quic_wcheng@quicinc.com,
+	quic_kriskura@quicinc.com,
+	linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	kernel@quicinc.com
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Add interconnects for ethernet
-Date: Sun, 28 Jul 2024 22:58:24 -0500
-Message-ID: <172222551298.175430.15440221416185805132.b4-ty@kernel.org>
+	Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: Re: (subset) [PATCH v3 0/2] Fix ipq5332 usb interrupt trigger type
+Date: Sun, 28 Jul 2024 22:58:26 -0500
+Message-ID: <172222551326.175430.1002136487404622409.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240709-icc_bw_voting_emac_dtsi-v2-1-a1e02c7099a5@quicinc.com>
-References: <20240709-icc_bw_voting_emac_dtsi-v2-1-a1e02c7099a5@quicinc.com>
+In-Reply-To: <20240723100151.402300-1-quic_varada@quicinc.com>
+References: <20240723100151.402300-1-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,15 +70,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 09 Jul 2024 11:21:40 -0700, Sagar Cheluvegowda wrote:
-> Define interconnect properties for ethernet hardware.
+On Tue, 23 Jul 2024 15:31:49 +0530, Varadarajan Narayanan wrote:
+> Trigger type is incorrectly specified as IRQ_TYPE_EDGE_BOTH
+> instead of IRQ_TYPE_LEVEL_HIGH. This trigger type is not
+> supported for SPIs and results in probe failure with -EINVAL.
 > 
+> Fix dt_binding_check/dtbs_check errors associated with usb's
+> interrupts.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sa8775p: Add interconnects for ethernet
-      commit: e93230d0597a2736f1123cd7790a4e549f3049a8
+[2/2] arm64: dts: qcom: ipq5332: Fix interrupt trigger type for usb
+      commit: 60a76f7826b88ebf7697a56fdcd9596b23c2b616
 
 Best regards,
 -- 
