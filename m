@@ -1,297 +1,219 @@
-Return-Path: <devicetree+bounces-88906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A9CA93F580
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:35:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF12C93F598
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:38:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D70521F211BD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:35:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B59D228231B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 12:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8566B1494DC;
-	Mon, 29 Jul 2024 12:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793521474CF;
+	Mon, 29 Jul 2024 12:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LxcKquUF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GpPFeofe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DBB1148857;
-	Mon, 29 Jul 2024 12:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2571465BE;
+	Mon, 29 Jul 2024 12:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722256472; cv=none; b=mUiEmfE+25qR7rj90c7Pym1ZEKShDKwCJr6++YifVa4Intgnh4+XVFepDgfj0Y7fWq8kt3i8dScJhqqqAzameuMbhK60U+mN8f5H8AaPv7jd0TAMyUIaIyUq8syFhKJxfznxEVftEIZXvvMlubYkVfMHmBXrHSoKCYC/5QguV9w=
+	t=1722256653; cv=none; b=I7gRKuRiUcLH2rBXZMFkq80R/Sj+FrvtQ0KtnqMhmMaxJXdg60KKIYQidoQVFyPbrt5f5OBk1f/22vtFkzIGxpC/4tEDRwxYhCiVyUQSxYsGQip7l4J4BIX1z0jZDE476hkupqhdlhulqPJIDnXUeYXC7KMRZj3DTSuEZ4BtwrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722256472; c=relaxed/simple;
-	bh=UITJqYPFQ0UBpEFJQBghvMlRrEj2NhPURPP2f9omv4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WwdyYwkeb6Ra1fO8TrZ4yJSDrjT4bMYetzj24YZTl+1QUeAvbFGaJZfMtoyFxVUbnC+6bRGfW4qI2QcBHE0Sbhnx4KMgPgdtDwTK3xSXDFG9CENlY6rtVdRIH5zHw2u+2ECSeCJpaYLKo82ejaIVHyTp8uY/6iASc0okkzbXicE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LxcKquUF; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722256468;
-	bh=UITJqYPFQ0UBpEFJQBghvMlRrEj2NhPURPP2f9omv4Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LxcKquUF00FhdboZ6vslCL6q3b1+2tkTGLFvLiN1twWKtgmYaBeYl8mtVv8uBL48D
-	 /c+mhvYTJSehPVoX4vf5iAklgRoRKWkXsQKLxpVIOQSBlEHLIrXaECvwucpd2Woavs
-	 rFQbBcQTZxaTYY8byqLnrFS1uPAbbFFZOPNpljnbS2xIHvbg6e/OgqM8UATaFUfkj/
-	 CVzy3alXkgxVTd0ncTBC/QUocmhJJGk9CIXP/yf5/BDPaT+Gpi7++EpNvTp5ZOQCfg
-	 2uRU3RyWE4mec26H+/5mrCO189t4zoTx4aquEWmtZjlf4HbBcq8M00B+Y0QY0T640X
-	 x98Tnhx8EiLLQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E30B037804D4;
-	Mon, 29 Jul 2024 12:34:27 +0000 (UTC)
-Message-ID: <c3e38dae-646f-471a-ae40-150b8f86cac0@collabora.com>
-Date: Mon, 29 Jul 2024 14:34:27 +0200
+	s=arc-20240116; t=1722256653; c=relaxed/simple;
+	bh=v/UdfaszXLVUAktOPHAg8IjIS8dJ6yoJdT16feuIrQQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GxTmMJMO78ixWqBGdQ072HKmGi5yzhu8Bqzu8E4lErLuTnET+RQBCx8ObPQfsYk7ZzdjWwN+F1/E8azKW16aoaSBnfxeVVCKA3DDrGonV0cdWAX0AGkkf7xn+RyY6FLFriloshzozXRly4YRx5G1dCcT7x5yCEOLfikKQ4DCe+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GpPFeofe; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2cf213128a1so1813096a91.2;
+        Mon, 29 Jul 2024 05:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722256650; x=1722861450; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+NZITpfAHD8JXe97iGR8siEXB5NDSsMSDkZ3Z4QQ/T4=;
+        b=GpPFeofe31nP2/u2weljH0e0ovPnPlGQesdPSyVW7w5mCgRKhdPToYMesynbx6CHz9
+         2MSYc2OjrkUqrc/1177dYZD4fgkW48QlxybSE0rMMAxe2gaHzxfpgj7qiwnfCsfMdGbd
+         Xox+WvZGYax+STqBNvY6/sHbhVeeMPo2shyaDoewCBM13w3d0wPnw7C01GwP7/E+ibFL
+         RQ0QDC2x2WxI1iHezfjoRpcQkKG0ASAJoUH37HSFg4ISGvkWgmj4ecVe+BpB87GxO81G
+         PO10xh82rvgGBJONQSc2kB5pAf7YPAretTBMRv76psWd2QbIohsBQoJqdNuq3ct3FHBt
+         rOUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722256650; x=1722861450;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+NZITpfAHD8JXe97iGR8siEXB5NDSsMSDkZ3Z4QQ/T4=;
+        b=aD8GGDN0SMG5MTx3y0Ii3mg4FDWxMrB2FdKZlNUSuA6zElN7aRkA6tQzU+1Y1SqR67
+         tMK5RsHqszTLYZATIMYVyTS5XYx6Gcf5UkWONdmqXXjtlfGRaKHETq5mZuAkyt8MkJwB
+         EHanBAza1J4Z+HKtp04f2zs192yl48KURzyUvXgImdyy3mKXOL5y/XzXfyf5rWiQ5dho
+         I+qY0ItcCf44W4A+GTPbDLbgk4uI+N78M1KteJKRgDhJ3hmKlpfPPcC9KbCT5FUCyw6J
+         zzfMG7/LlByHY4SI5yL+KqvA81vmok83DxPYOaXdCxUflIn1ofTfACkZsCmXvqIZ8Nb+
+         iHmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUbOJUmLTlp0D+pDAUh2dKh9pJnxb7pzbcipSHec5xDyaJIWsttKVCr0/ev5pbc00/VrM0g1hGnTl8virL3SJ0AYLSpmB8lefsIDbz/B3XCVwse3KGoWCcRBJixEN/JV78EgtRqjO7dfw==
+X-Gm-Message-State: AOJu0YzScC48QYc92+wi4TkPFc3zn9F6/H+xg17gvLfau0Wgmjjrh+G3
+	560zAuhh6uECcvOVxv/pc6yYrZHVU7JUywTlx84aEUI1WohXWbQn
+X-Google-Smtp-Source: AGHT+IFyQ9DhUPSpERL815jrQzcyMO8O7mgJl28wdppTnye7TQwm3hhu4PhWWh7+rQJKr3HKhOfIqw==
+X-Received: by 2002:a17:90b:1282:b0:2c9:7e9d:8424 with SMTP id 98e67ed59e1d1-2cf7e5f50f8mr5046382a91.30.1722256649932;
+        Mon, 29 Jul 2024 05:37:29 -0700 (PDT)
+Received: from localhost.localdomain ([113.30.217.222])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cdb738842bsm10569248a91.6.2024.07.29.05.37.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 05:37:29 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Dragan Simic <dsimic@manjaro.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5] arm64: dts: rockchip: Add missing pinctrl wake and clkreq for PCIe node
+Date: Mon, 29 Jul 2024 18:07:07 +0530
+Message-ID: <20240729123709.2981-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1
- controller
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
- <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com>
- <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com>
- <CAGXv+5G92=-k5MDH4BPcM8tgPwcGTJ60trJwr7BwTGHD=wpnDw@mail.gmail.com>
- <51f0f4f3-11a5-4d74-981e-3f24f8475c7f@collabora.com>
- <CAGXv+5F-U6O3dQdU2L8bR5V+D=PLreACZYCh5sxBY3PFrex1zg@mail.gmail.com>
- <de0b0daa-2a35-4286-b4db-4f646073a04c@collabora.com>
- <CAGXv+5EvzRr8h5vnuV2h=zkVwkVp3fShDP_45BpaO0HkivuDtQ@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5EvzRr8h5vnuV2h=zkVwkVp3fShDP_45BpaO0HkivuDtQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Il 29/07/24 12:48, Chen-Yu Tsai ha scritto:
-> On Mon, Jul 29, 2024 at 4:54 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 29/07/24 10:07, Chen-Yu Tsai ha scritto:
->>> On Mon, Jul 29, 2024 at 3:59 PM AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>
->>>> Il 26/07/24 17:11, Chen-Yu Tsai ha scritto:
->>>>> On Fri, Jul 26, 2024 at 8:11 PM AngeloGioacchino Del Regno
->>>>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>>>
->>>>>> Il 25/07/24 12:34, Chen-Yu Tsai ha scritto:
->>>>>>> Hi,
->>>>>>>
->>>>>>> On Mon, Jul 22, 2024 at 11:27 PM Nícolas F. R. A. Prado
->>>>>>> <nfraprado@collabora.com> wrote:
->>>>>>>>
->>>>>>>> Currently if the xhci1 controller happens to probe before the pcie1
->>>>>>>> controller then it fails with the following errors:
->>>>>>>>
->>>>>>>> xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
->>>>>>>> xhci-mtk 11290000.usb: can't setup: -110
->>>>>>>> xhci-mtk: probe of 11290000.usb failed with error -110
->>>>>>>>
->>>>>>>> The issue has been tracked down to the CLK_INFRA_AO_PCIE_P1_TL_96M
->>>>>>>> clock, although exactly why this pcie clock is needed for the usb
->>>>>>>> controller is still unknown. Add the clock to the xhci1 controller so it
->>>>>>>> always probes successfully and use a placeholder clock name for it.
->>>>>>>>
->>>>>>>> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
->>>>>>>> Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
->>>>>>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>>>>>
->>>>>>> So I asked MediaTek about this, and it seems the correct thing to do is
->>>>>>> disable USB 3 on this host controller using the following snippet. The
->>>>>>> snippet is copy-pasted from our issue tracker and won't apply directly.
->>>>>>>
->>>>>>> This is also seen in mt8395-kontron-3-5-sbc-i1200.dts, on which xhci1
->>>>>>> is used only for USB 2.0 on an M.2 slot.
->>>>>>>
->>>>>>
->>>>>> Uhm, okay, but why should USB3 be disabled on a controller that supports USB3?
->>>>>>
->>>>>> I agree about disabling it on specific boards that use only the USB 2.0 lines of
->>>>>> this controller, but doing that globally looks wrong... and looks like being a
->>>>>> workaround for an error that gets solved with adding a clock as well.
->>>>>>
->>>>>> In short, the question is: why would that be the correct thing to do?
->>>>>
->>>>> We can disable it in mt8195-cherry.dtsi then?
->>>>
->>>> That device does not use this controller, so yes we can disable it, but that still
->>>> doesn't resolve the issue pointed out by Nicolas...!
->>>
->>> No. I mean disable USB3 on this port. Also see the next paragraph.
->>>
->>
->> Yes, sorry I was meaning the same - but I effectively wrote "disable controller"
->> instead, my bad.
->>
->>>> Please note that the issue that he sees doesn't happen only on Tomato, but also on
->>>> other MediaTek MT8195/MT8395 boards - and applying this commit makes disabling the
->>>> controller, or disabling the USB 3 lines on the controller, kinda redundant, as
->>>> this will effectively fix probing it... but again, fixing the actual issue with
->>>> this controller is something that must be done.
->>>
->>> If those other boards use the XHCI1 USB3 lines for ... USB3, then the USB3
->>> PHY should also be tied to XHCI1, right now due to the Cherry Chromebook
->>> design, only the USB2 PHY is tied to it.
->>>
->>
->> Yes, I am aware of that.
->>
->>>> Disabling the controller on Tomato is a different topic - here we are discussing
->>>> about fixing the issue, and that will happen, again, on any board that has this
->>>> controller enabled with USB3 lines. :-)
->>>>
->>>> So, unless there is any specific reason for which applying this commit is a bad
->>>> idea, or any alternative fix to this that is better than the proposed one, and
->>>> not a workaround... I'm applying this one.
->>>
->>> Didn't I just relay what MediaTek says is the correct fix? Disable USB3
->>> for this port on devices where the serial pairs are used for PCIe instead
->>> of USB3.
->>>
->>
->> I think there must've been some misunderstanding here.
->>
->> Yes you did relay what MediaTek is the correct fix, and I agree that the USB3 must
->> be disabled on devices where those serial pairs are used for PCIe instead of USB,
->> or on devices where those are completely unused.
-> 
-> OK. I will send a patch for Tomato as you asked.
-> 
->> This, though, will fix the issue only on those devices (because we are disabling
->> those lines entirely, so depending on how we see it, this might not be a fix but
->> rather a workaround).
-> 
-> I would say that is a more accurate description of the hardware, so a fix.
-> 
+Add missing pinctrl settings WAKE and CLKREQ for PCIe 3.0 x4, PCIe 3.0 x1
+and PCIe 2.1 x1 nodes. Each component of PCIe communication have the
+following control signals: PERST, WAKE, CLKREQ, and REFCLK.
+These signals work to generate high-speed signals and communicate with
+other PCIe devices. Used by root complex to endpoint depending on
+the power state.
 
-I can accept a patch for Tomato with a Fixes tag. Yes.
+PERST# is referred to as a fundamental reset. PERST should be held
+low until all the power rails in the system and the reference clock
+are stable. A transition from low to high in this signal usually
+indicates the beginning of link initialization.
 
->> If we don't apply this fix, any board that uses those pairs for USB 3 instead will
->> still show the same "clocks are not stable" error, leaving them with a broken port.
->>
->> And I believe that because the clocks are not routed externally but rather are
->> internal to the SoC, so, if INFRA_AO_PCIE_P1_TL_96M is necessary for that USB 3
->> port to work, a board that intends to use those pairs for USB3 would still need
->> this exact clock to actually get that port to work.
-> 
-> I couldn't reproduce the issue by disabling pcie1 as Nicolas mentioned.
-> I don't have any more to add to this though. Sorry for the noise.
-> 
+WAKE# signal is an active-low signal that is used to return the PCIe
+interface to an active state when in a low-power state.
 
-Sometimes the noise actually opens some eyes around (be it mine or whoever else's),
-so as long as it is constructive, I don't see it as noise.
+CLKREQ# signal is also an active-low signal and is used to request the
+reference clock.  L1 sub-states is providing a digital signal
+(CLKREQ#) for PHYs to use to wake up and resume normal operation.
 
-In short: no worries! :-)
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+v5: Merged all 3 patch into single patch, reabse on master
+    Fix the $subject and commit message.
+    Drop the RK_FUNC_GPIO for WAKE and CLKREQ as these seignal are
+    ment for was introduced to allow PCI Express devices to enter
+    even deeper power savings states (“L1.1” and “L1.2”) while still
+     appearing to legacy software to be in the “L1” state
+---
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      | 46 +++++++++++++------
+ 1 file changed, 33 insertions(+), 13 deletions(-)
 
->> As for Tomato itself - I agree that we must add the u3p-dis-msk=0x1 flag, yes,
->> and we will, but I'm purely talking about - again - an eventual board that would
->> not have that property because USB3 is exposed/used for real.
-> 
-> I think it would make more sense to fix the `phys = ` statement in mt8195.dtsi
-> to list both the USB2 and USB3 PHYs. At the board level, for boards only
-> using USB2, we would have the overriding `phys = ` statement alongside the
-> `mediatek,u3p-dis-mask` property. Does that make sense to you?
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+index 966bbc582d89..a1e83546f1be 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+@@ -318,7 +318,7 @@ map2 {
+ 
+ &pcie2x1l0 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie2_0_rst>;
++	pinctrl-0 = <&pcie30x1_pins>;
+ 	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie2x1l0>;
+ 	status = "okay";
+@@ -326,7 +326,7 @@ &pcie2x1l0 {
+ 
+ &pcie2x1l2 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie2_2_rst>;
++	pinctrl-0 = <&pcie20x12_pins>;
+ 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
+ 	status = "okay";
+@@ -338,7 +338,7 @@ &pcie30phy {
+ 
+ &pcie3x4 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie3_rst>;
++	pinctrl-0 = <&pcie30x4_pins>;
+ 	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie30>;
+ 	status = "okay";
+@@ -363,28 +363,48 @@ hp_detect: hp-detect {
+ 		};
+ 	};
+ 
+-	pcie2 {
+-		pcie2_0_rst: pcie2-0-rst {
+-			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
++	pcie20x1 {
++		pcie20x12_pins: pcie20x12-pins {
++			rockchip,pins =
++				/* PCIE20_1_2_CLKREQn_M1_L */
++				<3 RK_PC7 4 &pcfg_pull_up>,
++				/* PCIE_PERST_L */
++				<3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>,
++				/* PCIE20_1_2_WAKEn_M1_L */
++				<3 RK_PD0 4 &pcfg_pull_up>;
+ 		};
++	};
+ 
++	pcie30x1 {
+ 		pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
+ 			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+-		pcie2_2_rst: pcie2-2-rst {
+-			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		pcie30x1_pins: pcie30x1-pins {
++			rockchip,pins =
++				/* PCIE30x1_0_CLKREQn_M1_L */
++				<4 RK_PA3 4 &pcfg_pull_down>,
++				/* PCIE30x1_0_PERSTn_M1_L */
++				<4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_down>,
++				/* PCIE30x1_0_WAKEn_M1_L */
++				<4 RK_PA4 4 &pcfg_pull_down>;
+ 		};
+ 	};
+ 
+-	pcie3 {
+-		pcie3_rst: pcie3-rst {
+-			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+-		};
+-
++	pcie30x4 {
+ 		pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+ 			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
++
++		pcie30x4_pins: pcie30x4-pins {
++			rockchip,pins =
++				/* PCIE30X4_CLKREQn_M1_L */
++				<4 RK_PB4 4 &pcfg_pull_up>,
++				/* PCIE30X4_PERSTn_M1_L */
++				<4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>,
++				/* PCIE30X4_WAKEn_M1_L */
++				<4 RK_PB5 4 &pcfg_pull_down>;
++		};
+ 	};
+ 
+ 	usb {
 
-Yeah, that'd make sense, though I'm not sure if the driver can cope with that: in
-that case, we'd obviously need "two" patches and not one :-)
-
-Cheers!
-
-> 
-> Thanks
-> ChenYu
-> 
->> Cheers,
->> Angelo
->>
->>>
->>> Regards
->>> ChenYu
->>>
->>>> Cheers,
->>>> Angelo
->>>>
->>>>>
->>>>> ChenYu
->>>>>
->>>>>> Cheers,
->>>>>> Angelo
->>>>>>
->>>>>>>
->>>>>>> ChenYu
->>>>>>>
->>>>>>> index 8b7307cdefc6..2dac9f706a58
->>>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>>>>> @@ -1447,6 +1447,7 @@
->>>>>>>                                           "xhci_ck";
->>>>>>>                             mediatek,syscon-wakeup = <&pericfg 0x400 104>;
->>>>>>>                             wakeup-source;
->>>>>>> +                       mediatek,u3p-dis-msk = <0x1>;
->>>>>>>                             status = "disabled";
->>>>>>>                     };
->>>>>>>
->>>>>>>> ---
->>>>>>>>      arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++++++--
->>>>>>>>      1 file changed, 8 insertions(+), 2 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>>>>>> index 2ee45752583c..cc5169871f1c 100644
->>>>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>>>>>>> @@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
->>>>>>>>                                      <&topckgen CLK_TOP_SSUSB_P1_REF>,
->>>>>>>>                                      <&apmixedsys CLK_APMIXED_USB1PLL>,
->>>>>>>>                                      <&clk26m>,
->>>>>>>> -                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
->>>>>>>> +                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
->>>>>>>> +                                /*
->>>>>>>> +                                 * This clock is required due to a hardware
->>>>>>>> +                                 * bug. The 'frmcnt_ck' clock name is used as a
->>>>>>>> +                                 * placeholder.
->>>>>>>> +                                 */
->>>>>>>> +                                <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>;
->>>>>>>>                             clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
->>>>>>>> -                                     "xhci_ck";
->>>>>>>> +                                     "xhci_ck", "frmcnt_ck";
->>>>>>>>                             mediatek,syscon-wakeup = <&pericfg 0x400 104>;
->>>>>>>>                             wakeup-source;
->>>>>>>>                             status = "disabled";
->>>>>>>>
->>>>>>>> ---
->>>>>>>> base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
->>>>>>>> change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f46aac
->>>>>>>>
->>>>>>>> Best regards,
->>>>>>>> --
->>>>>>>> Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>>>>>>
->>>>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>
->>
-
-
+base-commit: dc1c8034e31b14a2e5e212104ec508aec44ce1b9
+-- 
+2.44.0
 
 
