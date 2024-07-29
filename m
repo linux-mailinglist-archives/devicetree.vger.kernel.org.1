@@ -1,134 +1,125 @@
-Return-Path: <devicetree+bounces-88737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039CF93EDEB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:04:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ABC793EDF3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:06:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 829631F227AD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:04:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8FD51F22DD4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C4984DE0;
-	Mon, 29 Jul 2024 07:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E64B74076;
+	Mon, 29 Jul 2024 07:06:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="lk+TjvCz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF51B76F1B
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 07:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBCE43AAB;
+	Mon, 29 Jul 2024 07:06:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722236590; cv=none; b=gfs/u5ik6ozeyrsY6Zya8a62jixAcPrjqqJXC4bGMXO5OtZIwlW9+8BDukHFfiPtobmzNPG1PpdCYgX2TXtmMOHXKm1y8atFtEgL1+IUfwV2h+tD00Z7driDuxDjsyYHU3EfVT2Y+HNyvWBAu3sSTv7ydxlywhMvdB5tDHlllGs=
+	t=1722236797; cv=none; b=HN3itWeTwuClwo9fGdgspPlOlQboovLvnC7tQvwGR9XRPt7IxXQlfNcJ2nf1uz4zuuQs6Pr51kuDSBvZhk8/7bU8IsiF3RAVzZdHZxHKSo3gIQArKFAJKphY8HVM6yLKa4fEFQQK1pzu94RxTptSYXqot2MImPf72p8Lu5JpiaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722236590; c=relaxed/simple;
-	bh=Z9X75EpJBnQUF+ecvzyLU5RTqQNhVQ+oAUONH1D66ps=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=vChNeByVEnhhXZqJ+YMf4FQEk1pGZJ+0d5QvZ6JnbNhQ8XM0CzZ1528reO1mpZXGLqqLdcih9rS0hDnfE7Teo4GEc5sFvoEQaVmbr1Qy8JGGrLOE8134GIZ7JGCrHQtjZb+qBfirX7MEWh7SfG+ybvPJIf2MV8mVdzNa+4TCoXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1sYKP4-0003xR-9C; Mon, 29 Jul 2024 09:02:42 +0200
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Mon, 29 Jul 2024 09:02:39 +0200
-Subject: [PATCH v2 2/2] drm/panel: simple: add Innolux G070ACE-LH3 LVDS
- display support
+	s=arc-20240116; t=1722236797; c=relaxed/simple;
+	bh=QRI0nR/CG7Adw5rChLp9HDCOcBuhHZs1uFOHuPs9fuE=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TBTJLwvdyHfF3gagjhl00Q8/1VfncxmNHv/Ea/trkEjYCbyNP1HBPCETk7ZAyIw/rwR3OCMmpFIV1nXUJzYRWdZhM8vDO5B+3Z/aIShffE84hhYaFKhEnY0UDYdhMhcjYxrlBXHdpdNx1d4+HCUU1ZEpnJvnX7vg42CG9y4PgNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=lk+TjvCz; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1722236795; x=1753772795;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=QRI0nR/CG7Adw5rChLp9HDCOcBuhHZs1uFOHuPs9fuE=;
+  b=lk+TjvCzuEcDBaNWOUHYUaapUIFy52ATP08MkhOYtZ/fFQ1mOlf5PDXb
+   P7i45mSfpvx/0ZBv1rgKDJYkFSML6/l/wko6/t3JpPLytpB2Uo9M+OKH/
+   64IcBcKZ8bt+x79tfECMdknr0CxJ0XBD/MLz3cC28TXgUFt77TMGP9eSE
+   Bpz/I9O5v2ulBhoXfsFTbt/5t13vkpqqTRYma+kui8Kv5vGEnAtNfRUCs
+   qNzOznrxUdg8E6qcA+KLrBzUHRCyfIxfnOmgi0qzAIbFMQJgN9KpglJCD
+   3BO3DnK+bJpbtxkH7eUjGk8Uo260svIvJbouDQa2isINO2iJfdaXf6CLd
+   w==;
+X-CSE-ConnectionGUID: dbvVkR59Tgaty9Rjj1qKOQ==
+X-CSE-MsgGUID: DxV5YsByR/iwxA7iJAd0iw==
+X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; 
+   d="scan'208";a="30453968"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Jul 2024 00:06:34 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 29 Jul 2024 00:06:02 -0700
+Received: from che-lt-i67070.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 29 Jul 2024 00:05:58 -0700
+From: Varshini Rajendran <varshini.rajendran@microchip.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <varshini.rajendran@microchip.com>,
+	<lee@kernel.org>, <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 01/27] dt-bindings: atmel-sysreg: add sam9x7
+Date: Mon, 29 Jul 2024 12:35:43 +0530
+Message-ID: <20240729070543.1990209-1-varshini.rajendran@microchip.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
+References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240729-b4-v6-10-topic-innolux-v2-2-27d32c766ce5@pengutronix.de>
-References: <20240729-b4-v6-10-topic-innolux-v2-0-27d32c766ce5@pengutronix.de>
-In-Reply-To: <20240729-b4-v6-10-topic-innolux-v2-0-27d32c766ce5@pengutronix.de>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Steffen Trumtrar <s.trumtrar@pengutronix.de>, 
- kernel@pengutronix.de
-X-Mailer: b4 0.14.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-The G070ACE-LH3 is a 7" TFT Color LCD module with WLED backlight.
+Add RAM controller & PIT64 DT bindings.
 
-https://www.data-modul.com/sites/default/files/products/G070ACE-LH3-specification-12058417.pdf
-
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/gpu/drm/panel/panel-simple.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Changes in v6:
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index dcb6d0b6ced06..d3200dd035662 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2509,6 +2509,38 @@ static const struct panel_desc innolux_g070y2_l01 = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
+ - Removed sfr compatible from the previous version patch as the syscon
+   devices compatible are moved to a different file. Did not remove the
+   Acked-by tag as there is no additional changes, only a change that is
+   removed.
+--
+ Documentation/devicetree/bindings/arm/atmel-sysregs.txt | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+index 7374beb5a613..76e2b7978250 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
++++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+@@ -11,7 +11,8 @@ PIT Timer required properties:
+   shared across all System Controller members.
  
-+static const struct display_timing innolux_g070ace_lh3_timing = {
-+	.pixelclock = { 25200000, 25400000, 35700000 },
-+	.hactive = { 800, 800, 800 },
-+	.hfront_porch = { 30, 32, 87 },
-+	.hback_porch = { 29, 31, 86 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 480, 480, 480 },
-+	.vfront_porch = { 4, 5, 65 },
-+	.vback_porch = { 3, 4, 65 },
-+	.vsync_len = { 1, 1, 1 },
-+	.flags = DISPLAY_FLAGS_DE_HIGH,
-+};
-+
-+static const struct panel_desc innolux_g070ace_lh3 = {
-+	.timings = &innolux_g070ace_lh3_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 152,
-+		.height = 91,
-+	},
-+	.delay = {
-+		.prepare = 10,
-+		.enable = 450,
-+		.disable = 200,
-+		.unprepare = 510,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode innolux_g070y2_t02_mode = {
- 	.clock = 33333,
- 	.hdisplay = 800,
-@@ -4599,6 +4631,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "innolux,g070ace-l01",
- 		.data = &innolux_g070ace_l01,
-+	}, {
-+		.compatible = "innolux,g070ace-lh3",
-+		.data = &innolux_g070ace_lh3,
- 	}, {
- 		.compatible = "innolux,g070y2-l01",
- 		.data = &innolux_g070y2_l01,
-
+ PIT64B Timer required properties:
+-- compatible: Should be "microchip,sam9x60-pit64b"
++- compatible: Should be "microchip,sam9x60-pit64b" or
++			"microchip,sam9x7-pit64b", "microchip,sam9x60-pit64b"
+ - reg: Should contain registers location and length
+ - interrupts: Should contain interrupt for PIT64B timer
+ - clocks: Should contain the available clock sources for PIT64B timer.
+@@ -31,7 +32,8 @@ RAMC SDRAM/DDR Controller required properties:
+ 			"atmel,at91sam9g45-ddramc",
+ 			"atmel,sama5d3-ddramc",
+ 			"microchip,sam9x60-ddramc",
+-			"microchip,sama7g5-uddrc"
++			"microchip,sama7g5-uddrc",
++			"microchip,sam9x7-ddramc", "atmel,sama5d3-ddramc".
+ - reg: Should contain registers location and length
+ 
+ Examples:
 -- 
-2.45.1
+2.25.1
 
 
