@@ -1,450 +1,391 @@
-Return-Path: <devicetree+bounces-88708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9686493ECA1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:38:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07DFE93ECB1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 225A21F21665
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:38:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8698C1F21C28
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E4584A21;
-	Mon, 29 Jul 2024 04:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085BE80623;
+	Mon, 29 Jul 2024 04:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="p5IUJq6P"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HdVZnDxc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2012.outbound.protection.outlook.com [40.92.23.12])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012004.outbound.protection.outlook.com [52.101.66.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6CD83CDA;
-	Mon, 29 Jul 2024 04:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE1F757E0;
+	Mon, 29 Jul 2024 04:47:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.4
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722227850; cv=fail; b=qgHTFo3Pq01Fm5OEBNBMn/xx24PA3HFROnVGIPvA53BvSJzlh4JA9eqp27dYsFGBRfGotwU3WYNT5pDZpxhmj4tRl0lDZaba0eznr1KG4uKWtKACxaPc3GCP3+fJdvAKi50BVqsq4AhBof0l7xxT2dotvuMW/RE+rF3ZUjrwZHI=
+	t=1722228453; cv=fail; b=j11WnWhocP8bdFjj6vBAsQobrk9BusYV/Dp8IDum1i0b+Hyu2bNg9Ctl7Z8l0C/3DY+0exiwiizhDTUeqDjBDjb2w7RumzvHQmfAprNmDOt8yL5ot1VM7G/4yvwMWh4gogSBouRtkE7JMto87deb8Gm4fXeKbIcl+pdSQePFpaU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722227850; c=relaxed/simple;
-	bh=JAyHy+YA0aYNbZyDEp8mEDtdLqamjMswz0XLY/PSjAQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dB8YD+57uu4oKoP7m0O7owOHzJzVI7MW8VNUxRISa+Q3aO8iOO61RnXuNKDmlKcLo+PhJuI+RLrJCZ5tuusbqGP81AxDT/huagRsOfTxPsCQNR55UO0nTcLBk3aF0E1XYPq8nco8aby9cdMzY3e1GUJ2tcXdCsiOaSMbANVEjMQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=p5IUJq6P; arc=fail smtp.client-ip=40.92.23.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1722228453; c=relaxed/simple;
+	bh=fHqRob5lQd/VjtR5Bzjr97IKLZyiqW17O/6CSk+THcc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=qX7Wex+RsSgmtS9CG7Zn97LkTwjhzW//hGMBdBjbw5XQ91wFmszn6UhUIh59uqmN/fANXalrq++K8WDL2SUudJ61OZ11V4SWIqE+VTZO0OC5kLu7xrjrk550XjAih8+4vgraVR0/3ddhFRldIG2OM7bpg5UYyLtDGYBtn8QlBmY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HdVZnDxc; arc=fail smtp.client-ip=52.101.66.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KbAYerldT7lO3u9edaaXtZsvqiREeMTXEw02j2/ucYR7Qzrrz3TH9r1YRAhSq3iETRN6cvU5KoBdy4kUaHHyTZBXGHUsfTS6cq0yD1QCI5+Twr3pm8XwAv7WyEHXm09byRaQQhD0hWCJKUYmu0drxSuk3sLOIeyTWBZkafXwyt/Z0uEcvBTOP62CiOA0OvP/swD+XPVthCbOFHOIXSY1u5F2TYWddOKMqWaq8pMTX9qisdSbwmYfaMJQVkz2QKLRaCvbIVP4K3ayJZ/kk2Txe53d02gC86zmzrrmFlv/ov9Ts+y6HFieD1vCF2hkzxZFOFfaVeMpgDTIGWMjfQ8NEg==
+ b=RFLlnYhzdaqHu0XPbW15ncIHkYq/4ffBie9c4kWDVHzxZJl5Vz5qh1QGb4/u9yMqBEFJImMiQGWC7/lVEHkqcgFAcOade1fkVDqJYBVJzphd+tVNYLpASAoq2awZalvAd+v2rFleyWgUaxg5G1rGpUC1f6W5Ekf9pw3hRUx8FmefUX51Rfe6YtzXjew/QQbaNkJkOKB3Wb6zElKtHTykesy/KkyqTjJH1rJIdNf3H86Z1FePxjn1zV1LlzM6Ldd5cMgutcW5/G8QEeT9E+ML8Vesw2yK+GTBxCyKTGa4g1TPlbQnJP3omITe/oiV5uelK1svtznG9/+tF9yNABGeog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sVvw0KcRO3YlrxiYZpzerGioQkzY8USL+mN5SJYl50c=;
- b=gscCQqkWSn6Y+jTqoohwldMn8pJaaYAHmoQkjYooKpNuatGVQnD06a4JvVt39CfyulCiFMmRtoeXOixJ8SaTmBzpKSeHgt3FbtlGq0R3aOZdgWbnNf60o+uJWO0TP5ITHUFzzwW7WbPpLpLa6Atn0CJCyILsyv3I/0KI9DRskvCPixCW5gTDcz/LPvJiROPiy5x+jHrK5DYgXtZH9iFVMeBMVF+1O/NnM+cP2SQNZSGdbWja55zIovW6Jc21s5unXB7I4XHHSaBy4p2LdFPHgVCbGkg5RTZ40XhAiohFnb6O5M2b9vfXFFm/zqXpJzVYvAus5rfZVMA0rtDxh90tYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=3o7UgIfZEvf+MOTgbkWNJ/IzTOCN7xLwGatTi0C3wOg=;
+ b=MSLdzvUSUNzZXR/59BFUBpdCxSYfCGIrng2O8lKz2EWAtiV2rzmWvm1jkbENySGn4/QZxaXhiyrHlTFCYSL5rp1xdAJHb+jS7SYfKvuobjCLDwF4H930a7O4kiOHZkcjsX8veqx1ScfnqE2TuP17tdzzC+ZLASiTt5JqZclGgSw5TfyfMEwxYyPBZAscBn3PQJa8eZ84KM8i0L2v9DA3jopZ/SyEt/laAycOHAT5W6PXXxRtdiODek/7CLaZbFrtQzr3BL4wJABlrHhP35huQ4PtnLcgAuKGiFVWgVsuDNZmpz5KhFxKMztRXjWIptQro1p7kLaAfBUkER59ZNR5NQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sVvw0KcRO3YlrxiYZpzerGioQkzY8USL+mN5SJYl50c=;
- b=p5IUJq6PT5Wc/C/ytTBdAwWritH+O+o4F6mhciGR+HrWj3AsN3UhaCcEvyM9obHZEbpmKk4wHgCQeBxT3HsVzj6TZ3alYdT0qa4UdtY3uXEEMYkGYJP75uxJsWKRVubiwJA1ElEms5oLnu91WAz4YYxW9PB7eaSvyyAz+yqKBAKb73BZeatJbYcQGYp06hDipcC6pRKaPsQh8+KTNUv5V2t8lTaeK4YWyOY3dYlJANTzIRB/OmwnXfCHUx6KjhgEl9zUytfRAiUjVn0Ed8cMb0/QOOzEI+Gf6Usi3FHtX+N6wicNFsKxgQ3QcG9BvM0UqF+yXFssAV8IM3gXSRkQ+g==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by SA1PR20MB4516.namprd20.prod.outlook.com (2603:10b6:806:23d::8) with
+ bh=3o7UgIfZEvf+MOTgbkWNJ/IzTOCN7xLwGatTi0C3wOg=;
+ b=HdVZnDxcdPpw1D4flIf7VUEmzYfwnBhH3RXnUJhCDLg4yzeI2IPPn7IV394fC+D6gl9Q0MJqHK7o75ijaNldIpD+SKjuffqiTEip3cj1pCVEEBNIN6N+go0/44vCPguPBZkM6qAVFEeHHUJMaJTQ27ePSAb/1NorscTv2Ul6lGhVGMsOqMGW9a1t5G0Hav30oNeoVDgXAamGz77qRaDSf0CMc52tmsw4lrvr5kpUkhbwF/NlShSB+QBUT+qOmmaBrnnXtxoklphJzW5YOyYt5nAvmfYT7CHR6UKmX0ogyjXMtmM0YvVEQr9ch4ecnZPyhYtUGUngWf88/f2p/B1eoQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS5PR04MB9875.eurprd04.prod.outlook.com (2603:10a6:20b:652::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Mon, 29 Jul
- 2024 04:37:25 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
- 04:37:25 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Liu Gui <kenneth.liu@sophgo.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v8 RESEND 3/3] dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
-Date: Mon, 29 Jul 2024 12:36:53 +0800
-Message-ID:
- <IA1PR20MB49533F3CC6E7FE99EB290E9DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <IA1PR20MB49535EC188F8EE3F8FD0B68DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49535EC188F8EE3F8FD0B68DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [2wGaVa5uJy+MaoEB50U5drkt5On76xTEXS5HnJtP3yA=]
-X-ClientProxiedBy: TYCP301CA0064.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:7d::16) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240729043653.899480-3-inochiama@outlook.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.27; Mon, 29 Jul
+ 2024 04:47:28 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%2]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
+ 04:47:28 +0000
+Message-ID: <2488314e-7a0f-406c-acec-ee106038f238@nxp.com>
+Date: Mon, 29 Jul 2024 12:47:58 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] ARM: dts: imx53-qsb: Add MCIMX-LVDS1 display module
+ support
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, saravanak@google.com
+References: <20240726065012.618606-1-victor.liu@nxp.com>
+ <xoj4sypxndql62k64ztmco5ufddeysp26fyc46prwr4ezik223@sssy5zmefwtg>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <xoj4sypxndql62k64ztmco5ufddeysp26fyc46prwr4ezik223@sssy5zmefwtg>
+Content-Type: text/plain; charset=UTF-8
+X-ClientProxiedBy: SI2PR02CA0034.apcprd02.prod.outlook.com
+ (2603:1096:4:195::9) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SA1PR20MB4516:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2454099-eef8-4f58-56a7-08dcaf882518
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|5072599006|19110799003|461199028|440099028|3412199025|1710799026;
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS5PR04MB9875:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31259253-21df-4e5e-9782-08dcaf898c7e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
 X-Microsoft-Antispam-Message-Info:
-	D77KAMEvGSjFDpWFEOCYWvuvR1PoCrC1J03Ov8waxw2dhupZrX7Us3Ga1fht6rYWrh3zRyVTPMRhOSwk5SAz2VW0Mb+f4SZs9sdJ+cS2Ec8ZPDGXRuK6L4PL09gfkEwizKzI9+Lwtm8b7jEr5iv3RvxFC6vhGOCsFqbtdM3PJDm4f6OrFA9gKCIpQaSqdSqFDuFI5XZ5Aza79i+o9aNdamB7GJOyRDiv+S3twvAHoZa02Br+HmL+gw11XSvZdj/FXsso6lEqQ5KxF2G9zgvYlnoF0B7coZGppwXx0TjpV1FzEbpy606bd/18iKRCemvLbJ6lVMhnDV8hx1l+N/8h/zlS9xv2RMO84M5OORRWrztCaKv3ruw5/J5B7NzsO98ixM5LwWFk8STDKffewgh3oUEh5TfKNqmZIWaN/Le4x6plu4u93XNv+OJPDzht6FL4WHyVFWXtJzf6mOlnY2VzyIeEipfKJQ7LAOu/YKUH06MGWoRrYy12U0uwNhNtlZkS4cnqoGYVM8ftvm1ZourXsp6pTTft52E34R23Gn2Tiy85ke7msIvl3dsbh8JV2MljJYA78ZprUsDQl13cDEgmrbsWHtJ0HRu406b1wqJessd9xlOWYZtsgPUDysimQiYlEsVgkzh0QDfSgmKTAwwr69zQmIKUkv7f3bI1RMoqP94XNKrrP8J+A9UKoYz7I1IUd9uTLE8eDtPewABJwoiijg==
+	=?utf-8?B?RDNBeDYxWnduU0ZmNWtRYlZkMy8zU05FeDRpdWlYMW5XKzFDaFNiOW9nS1BW?=
+ =?utf-8?B?UHl4LzJPcnFlZ1QyVDBaT1RjMDBJWXRRNGRHT0lJUGhCM0tFYWgrY0tlNGNQ?=
+ =?utf-8?B?L01ZV0FES1p6ODcwaG1KalY1TzZmcHkvR2FXKzJ3VlhvQnAwZlkzMnRMV2Jz?=
+ =?utf-8?B?dGt6Wk9hRzZDN05QdVhvemhRNFlvZnFvMTF5S3dNcEplcmNvbE1Fa09pZFM2?=
+ =?utf-8?B?WXdxdm4rSmc2bHc0b3VIbDZ5UmVqTHhvcEVybkdCZTk4MHBFOTVub3RUT0hp?=
+ =?utf-8?B?TGxOVm9yckhUdS91SGlvMTV1WmxtK1FsZk1WUTMxUHJLOHdSeVkvY0htZGFE?=
+ =?utf-8?B?UGx5RHN6SzZmS2tZQU40VzhzZHRjSS8wRE4vaFBDM05ZS3VjalRkOFdqVTll?=
+ =?utf-8?B?ZHV3SUlqdXpvdnFXNDhxV0lOS0lXWEtOclJhZlcwRUpQZ3VKK21VZWtSN3E0?=
+ =?utf-8?B?dnUrLzhpendFVkVNNURGeE53dTlqWXFFTE5BNkg2L2ZwWXNZNmJ5OEZEaWpp?=
+ =?utf-8?B?M21yL0JZSmNPbUR1VmN5Y0d2eFJCclhqTkpnZEdVTi9PdmxCNVB4MDhodCtZ?=
+ =?utf-8?B?MnQ5ejAwNHhycG5LazYrby9ENlFLaXVVcVFPWm90S0pCWDRSbVdpTHVmd2JO?=
+ =?utf-8?B?V3hTYmRYYVV3TlU1alpIU0lmYnBBTGJRTU9sb0d0ZVUzemhrbTh0enVLWWxx?=
+ =?utf-8?B?dFhHNGxmamRHWUpaYlhMd3A1dnVhSTBsdDEvZHVDb05KRFpTMzJiazYwK094?=
+ =?utf-8?B?cUxjTHJQREFTOTB1cGh0bG1ETzNybHlOdmtYdFFPMWxTanhTeFpadzllRnlY?=
+ =?utf-8?B?bGVJcUNRTGRnTVFHYW5NNjlCRzhmWm9vWlV5WXRyYjRrQlFoSGNGSW9KWmV6?=
+ =?utf-8?B?S3Q3aGVkMWZzdE1uWGxnbDgwR0FHMmFnQTMxZnVIZnNqc3kzd21lT0ROWERQ?=
+ =?utf-8?B?WVd1MHBkM3krOStFWTdzMmhaRTdWQXVOMGtIbjZKMnpVSi9BdGNaNUcvNDhW?=
+ =?utf-8?B?L2k0OGhjNHo3Q2lTQzdpUFlXcHlDQm4xSlBLN0lhNFJXMVd6blhqZSt3R0tJ?=
+ =?utf-8?B?NnNkaFI3M3VMYkxlNERLcngydkFxNnFhYlNqV2huaVBkMWJSZEhqL3NHaTZX?=
+ =?utf-8?B?NG5YMGYrWnhkUms0YVdEWWlPaFhYdnpBZE1hUk9QU21oeVZOZ0J2YmpNbjJR?=
+ =?utf-8?B?L3MxRHVFVHloTkhBRlU3WVFaMmxBQUdCNE1YYWZhOXlrMGNPclRiTGpnajAr?=
+ =?utf-8?B?Q3dQRDNRNVpKNGsra2ZkbmNCMTg0NkJERjZERzZEMmY1Yy8zbUFnR1RxeE55?=
+ =?utf-8?B?L1orc1dwSWZVclJFeDkvYmFveVN5dzdvSStYQmgxa2thNXovVEdvd0lRdDRC?=
+ =?utf-8?B?UjBQaTg0ZXM1OXI2VjRWRnRPMFNOaTU2ei8yNnpmVlJVYjNrMnBTS2lJK2hi?=
+ =?utf-8?B?dUtGODY3d25waEVkVURPeHpoL3R2QnNRR1BMeUlHYnFVVmZjU2ZHRGRaK29N?=
+ =?utf-8?B?WlNVa0lXTU9Rb09Fa2l2R3g4YjJTSlVMOGV4Vml1MzVIRGZNRWNFeXdFUkd1?=
+ =?utf-8?B?Y3VHanZvMzVuTTZ5dmdINW1HWHlnRnVsYndNUDQ5cFVsdWQ1NnlDQzU2ZVRC?=
+ =?utf-8?B?cFVFeU9qbFU0QVhEQmNSeHVRcDZIOWtEMDBYOEJrSDZmWm9HWlMyc0RCenFT?=
+ =?utf-8?B?QTg0ZjJKbkxoUElYb0Ywa0pnWDdwYis3VGxzempXMktHaVloN0MvbjdWbS9m?=
+ =?utf-8?B?czJSNFZmUXBaNFd4NmlwK254Uk5uREdqWDZ1QTlnRGYrWDhXT1hyZDE4WGtZ?=
+ =?utf-8?B?alQ0Uk4vS0dCdlh5RVJMdz09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?LRWYAeAOHY7x+sSeztoRp18eIMitVlGVHt0m474K+0HVV9coDd1iCHVcKJ97?=
- =?us-ascii?Q?YRUv+RvNTFD/9ejmD91BPMtGPgeTJewXzrMhq3h9BMjQyvovgsgrRQKO6spa?=
- =?us-ascii?Q?BZZipx+mMSGjl1TVWBAKBH3Y/SAODFXsoScjiiV1uxZj/2cEpHrkG1np08nR?=
- =?us-ascii?Q?Wus2PCy/sqyZMV1bI5FZaHDNWQAH5HAtIM1/Z0ZMMMBNCRslspY6qZnD6DDo?=
- =?us-ascii?Q?Mmwfw5V3k2tw6kpPSvtsnqjTXCIWAk38ySaCgt/uq6AGZBkiixaFBrmVMOKr?=
- =?us-ascii?Q?9jFzL86qsqNQjg6HB9lzJ4H8MaXDx9zKprqrFEoGRbLVH8B4T9TuU5ec4ygG?=
- =?us-ascii?Q?7qKz00r0TZPJ8++5oU1GuL9EJz6JbI2YNufgQ87ioP4sUTMDzArEYRs3ZfhS?=
- =?us-ascii?Q?CbWWK6onO5UIP6aNQqQ7ZNPZzu/I8bRxsjW9vKhKc80bXGib4QRDnFN74HRB?=
- =?us-ascii?Q?zSiQ5A4EpurNe2hU2Zza5fNgb4HVUS4VtXAx9K6j6+PHa2rXJK0avnZ2XmFC?=
- =?us-ascii?Q?6SKrxmoKvBp7n66psBCdya+FpFpMZnbhVUKTDcy5meeEsMhdEpSrK4oozgXL?=
- =?us-ascii?Q?Kj5LZzT2YEE9os08i5C/La6La46N0FngUtPeKf5bSZ+Vje9Bkt15G9X/wGja?=
- =?us-ascii?Q?RVNwqINvZvwV4oVDCTmlwUbF6QFaojIFYuCWP1DKMqKIEWdKfzlNjTmsdabN?=
- =?us-ascii?Q?UJhSY49p+SobB24LT1MJ+pGKtDYyU1A7lr8Oi+qUbRN70p9IUEuS0HmODtd3?=
- =?us-ascii?Q?Ok6Ju0G07XJmmd2ePVv3OlXHc1nZT2HHRhcCeq/KXKdoQ5WPlILGWJuob1yx?=
- =?us-ascii?Q?Fj8S3seu6bsN3J6eUoK6uwqMRpA/I/U4mD92rS1vADBaOjXU49j+i6KaDZmn?=
- =?us-ascii?Q?GhRWXCT15MPHNfa3CBsayFQhLlznu2ts5kOn4SexM0inW0/3UNQmhuQavhkM?=
- =?us-ascii?Q?y1nXzPBEgsixgI0kwJUd+V8iKXQcnmJAnpngaKMKQg1Glbgk2+59zEqKsd1F?=
- =?us-ascii?Q?BwBYv1uKQKTOeWwkCSkikUYxNy89YoEOK2d4hbw/LoCe+5Pf8ssaBCmqjyXS?=
- =?us-ascii?Q?94y1zI1VJ/4KPs9Pr2+CkNXWyiKxWo9JE/s8xz2CpSn+qduyRb6Wx6F+sDGT?=
- =?us-ascii?Q?LTCSIv8pMT0j808bMLsjYW1VvqHTA96TREzQHSvjb7eWOoMp16TBJYoIFM/t?=
- =?us-ascii?Q?YcVvXCqbbpAayr3wAWiAlZ7v/l8rsuxkUBxgmIKSG9gsleXNmG1qaFu5ztcy?=
- =?us-ascii?Q?NKKpjdjKwitmOVb0oSx2?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2454099-eef8-4f58-56a7-08dcaf882518
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+	=?utf-8?B?dUlhRC9Pd2E1Nzc0YzZhRGFjc1VxVzhWekJ0TWxIK2grRXpuclJ5Y1BxOE9i?=
+ =?utf-8?B?Y2l0OTRaM01xODRJTGRMelhFcUE2Wm55UFg2dURuVmpYeHJMa3Y3SCtUb0Jr?=
+ =?utf-8?B?aDVJOVphdzllMitpbjFNY1NoT1V5cnRYOTYrb2dwdXBBWmVRUkl4bEhzZ2pr?=
+ =?utf-8?B?dUZIRjlOZzUvMDM5UXh1dmZqMU5GcHFDa2hGd09VWnd6UzhUNkN2VytSQzg3?=
+ =?utf-8?B?Rm1aVkZGMU42SXUxdld3TGpTU1FnSnBFdFNydzB1TFluczVINW5va0RGeUh3?=
+ =?utf-8?B?WXlzZk5LWlJxZ3JldEJaa3dnUmdUdDM1QlZ4ZjVpWlh4RGNBL2R5Y0YrVHVI?=
+ =?utf-8?B?Q0dGTVJPU3lXTFQvQU9lNVl2ZG03Slo3SlpuU2MwTGw2dUhHNUVXVFpxalNx?=
+ =?utf-8?B?S2FJUWNDMk1XWWp1eEFDNFVOdTF0WEdxSlRXc3ErZENwcUZmNFhNc2wwQW9X?=
+ =?utf-8?B?N01DN3gxeWdmSGMvaXIvS1pDOW1ZZFZhV3VEbTZGTkNtaWJ6ZlloQS9OTk15?=
+ =?utf-8?B?YytTWFZFeFB5NEZLT2wzb1luOWpWWVVZN2tYQkJER3VsVzJrYWYyUVl5d3dR?=
+ =?utf-8?B?UVRmcEViZnBJM202R1l3NlZPQXZ0OEhZOTJrVlZ0OXZQSDZIZ2RFeVVPNlhK?=
+ =?utf-8?B?WUhwOVFTUC9wYzlDZ2w5VWIwOUljTDJGaWpYTVZPRURybTB6cU53Y0RTQTZU?=
+ =?utf-8?B?K0F2RXlaZ011TE9IeFNIdC9zZ3krMmhEM004WE5nRlBGWTV5SjU2dlNtOHpy?=
+ =?utf-8?B?WmJoRUZUZHNoNFdnTlJoK0xEeDd0cTJlQzR2K0ZDTysrQXd3RmZ0VVVnN05T?=
+ =?utf-8?B?WG42cHNhaTJDaDVIUmtMOVg0T3krdG1wc3VVUitwQmhERkhsdVJ6UlRXcTFR?=
+ =?utf-8?B?SVZ2YzEzeG1YLzZrbWoyNk1zeVFvempwZnFtaDIrQW1pSi9PZjgzeEU2ejFY?=
+ =?utf-8?B?L1luNzRyQ3lIYUpXU2dsMnR3bVdya1ZHdUdLbkdPL0dwUUNIZjhDZ3RWSGxB?=
+ =?utf-8?B?MGpYcWl5VjlmaDc1L2t1MkVZamxOQWs3WnArOWVWbllhRjN3TjNTKzdYT1Zr?=
+ =?utf-8?B?aHVueXo1T256bXNwYXBsYkw0STg1Q0VmSjlXYmhDd3dlNFYwR094Ky81V1VL?=
+ =?utf-8?B?YTFYQ0V3bEVZQ25mdTFiekNGSTRPRW1MTnZNWlJ0WDFOVnlwZmdDYm92QWxh?=
+ =?utf-8?B?YkI2M21paUpnY0FsV043NjFaOUhwbjBpcHFvSDc1TUJVVVVYVDJXMW1uVzBM?=
+ =?utf-8?B?b21IWFcwTHhrVUZ4YXI3Q1lxVXI0UlZhMEZPV1YwR0N2RHJSandUa05zUEVI?=
+ =?utf-8?B?N28zNXRITHBGcTgyc1V0OU5UWGovSHhJckZxR0NMdm92SGQ5ZFNFWHU3cndW?=
+ =?utf-8?B?T21mMThzUm1OUmxBZU5IV3VCbDNaSVlva2dNRXhrdWQ3TGI0c2dqN2NuR2Ix?=
+ =?utf-8?B?ZmZtVlV6OVp6WlBsNVVmYk81Y3A1bE1kZm0rd2ZQNXFmcEJJYjJlaVVjVTcr?=
+ =?utf-8?B?dEROMUxEWXpqYzVjeWRNKytRcFB3SG0wdVRNQWZQRnFoTEo0N3FjcUxVWWFy?=
+ =?utf-8?B?QUUyV1p1SFB2cUFvVW9rUFo3M1JmVGc1dlBRZjh5bFlKaHZnN05lK2g2RGpq?=
+ =?utf-8?B?OEl6Yk9mN3N5ekZqWDhNVFIzditQYll3Ykc1YWxMMGxaaVk4Q2VndnM4MW9V?=
+ =?utf-8?B?U0xZandlQnZ6NWxLUE5EUHBxOE1WSDR6TGJocktPQWY1VUd0Y0t0OU9pNUVQ?=
+ =?utf-8?B?a3hSWVlpRmk0b3pQZzh2QkdzZ1JSTUd1NTIxSUU0QnFIS0s3QTZHRk43SWRi?=
+ =?utf-8?B?Tmd0TGlhWUQwOUVzaFMwMi9jVk9LcnFwM3RleGZIVDR1UGlmWTZhMUlOVGsz?=
+ =?utf-8?B?SjhQV2xwT0wyU212bzNmYWpZUnRldncwN3J4NjN5ck43cm5pQjVkSmdaQ0RD?=
+ =?utf-8?B?djhtcWZOWTdrTDY2UGJaMTVhQnVYNHVBNlZLaWQ1R1RxNWlEWEQwUzBGcDM3?=
+ =?utf-8?B?bnFIWDJJZnNyUFJBbFl1TW53VU5WK284M3RuVWgzcEZ5QUVDNFFISTJrZGM3?=
+ =?utf-8?B?MDgvZ2l2T2dCWThSNUlGOWNsZzRmcXM5TW5wb1VQQW1zZDMvTDljTk84b3l4?=
+ =?utf-8?Q?nV/5k1WrrE6gmmgB6lDzEJJiO?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31259253-21df-4e5e-9782-08dcaf898c7e
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 04:37:25.5519
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 04:47:28.3147
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR20MB4516
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zzp1FC1wCFLqPeVRJhXOmyTDm0X+a4x3vrffPrsGsIakmG9W65ygunYd1ACORjbgZb5R9fWDOWKfgLxefUS9EA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9875
 
-Sophgo CV18XX/SG200X use DW AXI CORE with a multiplexer for remapping
-its request lines. The multiplexer supports at most 8 request lines.
+Hi Dmitry,
 
-Add driver for Sophgo CV18XX/SG200X DMA multiplexer.
+On 07/27/2024, Dmitry Baryshkov wrote:
+> On Fri, Jul 26, 2024 at 02:50:12PM GMT, Liu Ying wrote:
+>> MCIMX-LVDS1[1] display module integrates a HannStar HSD100PXN1 LVDS
+>> display panel and a touch IC.  Add an overlay to support the LVDS
+>> panel on i.MX53 QSB / QSRB platforms.
+>>
+>> [1] https://www.nxp.com/part/MCIMX-LVDS1
+>>
+>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>> ---
+>> I mark RFC in patch subject prefix because if the DT overlay is used, both ldb
+>> and panel devices end up as devices deferred.  However, if the DT overlay is
+>> not used and the devices are defined in imx53-qsb-common.dtsi, then they can be
+>> probed ok.
+>>
+>> With a dev_err_probe() added to imx_ldb_probe() in imx-ldb.c, devices_deferred
+>> indicates 53fa8008.ldb and panel-lvds kind of depend on each other.
+>>
+>> root@imx53qsb:~# cat /sys/kernel/debug/devices_deferred
+>> 53fa8008.ldb    imx-ldb: failed to find panel or bridge for channel0
+>> panel-lvds      platform: wait for supplier /soc/bus@50000000/ldb@53fa8008/lvds-channel@0
+>>
+>> It looks like the issue is related to fw_devlink, because if "fw_devlink=off"
+>> is added to kernel bootup command line, then the issue doesn't happen.
+> 
+> Could you please fdtdump /sys/firmware/fdt (or just generated DTB files)
+> in both cases and compare the dumps for sensible differences?
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- drivers/dma/Kconfig         |   9 ++
- drivers/dma/Makefile        |   1 +
- drivers/dma/cv1800-dmamux.c | 259 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 269 insertions(+)
- create mode 100644 drivers/dma/cv1800-dmamux.c
+I fdtdump imx53-qsrb-mcimx-lvds1.dtb and imx53-qsrb.dtb.
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 002a5ec80620..cb31520b9f86 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -546,6 +546,15 @@ config PLX_DMA
- 	  These are exposed via extra functions on the switch's
- 	  upstream port. Each function exposes one DMA channel.
+I see three sensible differences.
+1) panel-lvds node position.
+   For imx53-qsrb-mcimx-lvds1.dtb, it comes very early and is next to
+   'compatible = "fsl,imx53-qsrb", "fsl,imx53";'.
+   For imx53-qsrb.dtb, it comes later and is next to panel node in '/' node.
 
-+config SOPHGO_CV1800_DMAMUX
-+	tristate "Sophgo CV1800/SG2000 series SoC DMA multiplexer support"
-+	depends on MFD_SYSCON
-+	depends on ARCH_SOPHGO
-+	help
-+	  Support for the DMA multiplexer on Sophgo CV1800/SG2000
-+	  series SoCs.
-+	  Say Y here if your board have this soc.
-+
- config STE_DMA40
- 	bool "ST-Ericsson DMA40 support"
- 	depends on ARCH_U8500
-diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index dfd40d14e408..7465f249ee47 100644
---- a/drivers/dma/Makefile
-+++ b/drivers/dma/Makefile
-@@ -67,6 +67,7 @@ obj-$(CONFIG_PPC_BESTCOMM) += bestcomm/
- obj-$(CONFIG_PXA_DMA) += pxa_dma.o
- obj-$(CONFIG_RENESAS_DMA) += sh/
- obj-$(CONFIG_SF_PDMA) += sf-pdma/
-+obj-$(CONFIG_SOPHGO_CV1800_DMAMUX) += cv1800-dmamux.o
- obj-$(CONFIG_STE_DMA40) += ste_dma40.o ste_dma40_ll.o
- obj-$(CONFIG_STM32_DMA) += stm32-dma.o
- obj-$(CONFIG_STM32_DMAMUX) += stm32-dmamux.o
-diff --git a/drivers/dma/cv1800-dmamux.c b/drivers/dma/cv1800-dmamux.c
-new file mode 100644
-index 000000000000..6ce3c292fe12
---- /dev/null
-+++ b/drivers/dma/cv1800-dmamux.c
-@@ -0,0 +1,259 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Inochi Amaoto <inochiama@outlook.com>
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/module.h>
-+#include <linux/of_dma.h>
-+#include <linux/of_address.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/llist.h>
-+#include <linux/regmap.h>
-+#include <linux/spinlock.h>
-+#include <linux/mfd/syscon.h>
-+
-+#include <soc/sophgo/cv1800-sysctl.h>
-+
-+#define DMAMUX_NCELLS			2
-+#define MAX_DMA_MAPPING_ID		42
-+#define MAX_DMA_CPU_ID			2
-+#define MAX_DMA_CH_ID			7
-+
-+#define DMAMUX_INTMUX_REGISTER_LEN	4
-+#define DMAMUX_NR_CH_PER_REGISTER	4
-+#define DMAMUX_BIT_PER_CH		8
-+#define DMAMUX_CH_MASk			GENMASK(5, 0)
-+#define DMAMUX_INT_BIT_PER_CPU		10
-+#define DMAMUX_CH_UPDATE_BIT		BIT(31)
-+
-+#define DMAMUX_CH_REGPOS(chid) \
-+	((chid) / DMAMUX_NR_CH_PER_REGISTER)
-+#define DMAMUX_CH_REGOFF(chid) \
-+	((chid) % DMAMUX_NR_CH_PER_REGISTER)
-+#define DMAMUX_CH_REG(chid) \
-+	((DMAMUX_CH_REGPOS(chid) * sizeof(u32)) + \
-+	 CV1800_SDMA_DMA_CHANNEL_REMAP0)
-+#define DMAMUX_CH_SET(chid, val) \
-+	(((val) << (DMAMUX_CH_REGOFF(chid) * DMAMUX_BIT_PER_CH)) | \
-+	 DMAMUX_CH_UPDATE_BIT)
-+#define DMAMUX_CH_MASK(chid) \
-+	DMAMUX_CH_SET(chid, DMAMUX_CH_MASk)
-+
-+#define DMAMUX_INT_BIT(chid, cpuid) \
-+	BIT((cpuid) * DMAMUX_INT_BIT_PER_CPU + (chid))
-+#define DMAMUX_INTEN_BIT(cpuid) \
-+	DMAMUX_INT_BIT(8, cpuid)
-+#define DMAMUX_INT_CH_BIT(chid, cpuid) \
-+	(DMAMUX_INT_BIT(chid, cpuid) | DMAMUX_INTEN_BIT(cpuid))
-+#define DMAMUX_INT_MASK(chid) \
-+	(DMAMUX_INT_BIT(chid, 0) | \
-+	 DMAMUX_INT_BIT(chid, 1) | \
-+	 DMAMUX_INT_BIT(chid, 2))
-+#define DMAMUX_INT_CH_MASK(chid, cpuid) \
-+	(DMAMUX_INT_MASK(chid) | DMAMUX_INTEN_BIT(cpuid))
-+
-+struct cv1800_dmamux_data {
-+	struct dma_router	dmarouter;
-+	struct regmap		*regmap;
-+	spinlock_t		lock;
-+	struct llist_head	free_maps;
-+	struct llist_head	reserve_maps;
-+	DECLARE_BITMAP(mapped_peripherals, MAX_DMA_MAPPING_ID);
-+};
-+
-+struct cv1800_dmamux_map {
-+	struct llist_node node;
-+	unsigned int channel;
-+	unsigned int peripheral;
-+	unsigned int cpu;
-+};
-+
-+static void cv1800_dmamux_free(struct device *dev, void *route_data)
-+{
-+	struct cv1800_dmamux_data *dmamux = dev_get_drvdata(dev);
-+	struct cv1800_dmamux_map *map = route_data;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+
-+	regmap_update_bits(dmamux->regmap,
-+			   DMAMUX_CH_REG(map->channel),
-+			   DMAMUX_CH_MASK(map->channel),
-+			   DMAMUX_CH_UPDATE_BIT);
-+
-+	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-+			   DMAMUX_INT_CH_MASK(map->channel, map->cpu),
-+			   DMAMUX_INTEN_BIT(map->cpu));
-+
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
-+	dev_dbg(dev, "free channel %u for req %u (cpu %u)\n",
-+		map->channel, map->peripheral, map->cpu);
-+}
-+
-+static void *cv1800_dmamux_route_allocate(struct of_phandle_args *dma_spec,
-+					  struct of_dma *ofdma)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
-+	struct cv1800_dmamux_data *dmamux = platform_get_drvdata(pdev);
-+	struct cv1800_dmamux_map *map;
-+	struct llist_node *node;
-+	unsigned long flags;
-+	unsigned int chid, devid, cpuid;
-+	int ret;
-+
-+	if (dma_spec->args_count != DMAMUX_NCELLS) {
-+		dev_err(&pdev->dev, "invalid number of dma mux args\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	devid = dma_spec->args[0];
-+	cpuid = dma_spec->args[1];
-+	dma_spec->args_count = 1;
-+
-+	if (devid > MAX_DMA_MAPPING_ID) {
-+		dev_err(&pdev->dev, "invalid device id: %u\n", devid);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (cpuid > MAX_DMA_CPU_ID) {
-+		dev_err(&pdev->dev, "invalid cpu id: %u\n", cpuid);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", 0);
-+	if (!dma_spec->np) {
-+		dev_err(&pdev->dev, "can't get dma master\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+
-+	if (test_bit(devid, dmamux->mapped_peripherals)) {
-+		llist_for_each_entry(map, dmamux->reserve_maps.first, node) {
-+			if (map->peripheral == devid && map->cpu == cpuid)
-+				goto found;
-+		}
-+
-+		ret = -EINVAL;
-+		goto failed;
-+	} else {
-+		node = llist_del_first(&dmamux->free_maps);
-+		if (!node) {
-+			ret = -ENODEV;
-+			goto failed;
-+		}
-+
-+		map = llist_entry(node, struct cv1800_dmamux_map, node);
-+		llist_add(&map->node, &dmamux->reserve_maps);
-+		set_bit(devid, dmamux->mapped_peripherals);
-+	}
-+
-+found:
-+	chid = map->channel;
-+	map->peripheral = devid;
-+	map->cpu = cpuid;
-+
-+	regmap_set_bits(dmamux->regmap,
-+			DMAMUX_CH_REG(chid),
-+			DMAMUX_CH_SET(chid, devid));
-+
-+	regmap_update_bits(dmamux->regmap, CV1800_SDMA_DMA_INT_MUX,
-+			   DMAMUX_INT_CH_MASK(chid, cpuid),
-+			   DMAMUX_INT_CH_BIT(chid, cpuid));
-+
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
-+	dma_spec->args[0] = chid;
-+
-+	dev_dbg(&pdev->dev, "register channel %u for req %u (cpu %u)\n",
-+		chid, devid, cpuid);
-+
-+	return map;
-+
-+failed:
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+	of_node_put(dma_spec->np);
-+	dev_err(&pdev->dev, "errno %d\n", ret);
-+	return ERR_PTR(ret);
-+
-+}
-+
-+static int cv1800_dmamux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *mux_node = dev->of_node;
-+	struct cv1800_dmamux_data *data;
-+	struct cv1800_dmamux_map *tmp;
-+	struct device *parent = dev->parent;
-+	struct regmap *regmap = NULL;
-+	unsigned int i;
-+
-+	if (!parent)
-+		return -ENODEV;
-+
-+	regmap = device_node_to_regmap(parent->of_node);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	data = devm_kmalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	spin_lock_init(&data->lock);
-+	init_llist_head(&data->free_maps);
-+
-+	for (i = 0; i <= MAX_DMA_CH_ID; i++) {
-+		tmp = devm_kmalloc(dev, sizeof(*tmp), GFP_KERNEL);
-+		if (!tmp) {
-+			/* It is OK for not allocating all channel */
-+			dev_warn(dev, "can not allocate channel %u\n", i);
-+			continue;
-+		}
-+
-+		init_llist_node(&tmp->node);
-+		tmp->channel = i;
-+		llist_add(&tmp->node, &data->free_maps);
-+	}
-+
-+	/* if no channel is allocated, the probe must fail */
-+	if (llist_empty(&data->free_maps))
-+		return -ENOMEM;
-+
-+	data->regmap = regmap;
-+	data->dmarouter.dev = dev;
-+	data->dmarouter.route_free = cv1800_dmamux_free;
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	return of_dma_router_register(mux_node,
-+				      cv1800_dmamux_route_allocate,
-+				      &data->dmarouter);
-+}
-+
-+static void cv1800_dmamux_remove(struct platform_device *pdev)
-+{
-+	of_dma_controller_free(pdev->dev.of_node);
-+}
-+
-+static const struct of_device_id cv1800_dmamux_ids[] = {
-+	{ .compatible = "sophgo,cv1800-dmamux", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_dmamux_ids);
-+
-+static struct platform_driver cv1800_dmamux_driver = {
-+	.driver = {
-+		.name = "cv1800-dmamux",
-+		.of_match_table = cv1800_dmamux_ids,
-+	},
-+	.probe = cv1800_dmamux_probe,
-+	.remove_new = cv1800_dmamux_remove,
-+};
-+module_platform_driver(cv1800_dmamux_driver);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
-+MODULE_DESCRIPTION("Sophgo CV1800/SG2000 Series Soc DMAMUX driver");
-+MODULE_LICENSE("GPL");
---
-2.44.0
+2) properties order in panel-lvds node.
+   For imx53-qsrb-mcimx-lvds1.dtb, it shows
+   panel-lvds {                                                                 
+        power-supply = <0x0000001c>;                                             
+        backlight = <0x00000030>;                                                
+        compatible = "hannstar,hsd100pxn1";                                      
+        port {                                                                   
+            endpoint {                                                           
+                phandle = <0x0000007d>;                                          
+                remote-endpoint = <0x0000007c>;                                  
+            };                                                                   
+        };                                                                       
+    };
+    For imx53-qsrb.dtb, it shows
+    panel-lvds {                                                                 
+        compatible = "hannstar,hsd100pxn1";                                      
+        backlight = <0x00000031>;                                                
+        power-supply = <0x0000001d>;                                             
+        port {                                                                   
+            endpoint {                                                           
+                remote-endpoint = <0x00000033>;                                      
+                phandle = <0x00000017>;                                              
+            };                                                                   
+        };                                                                       
+    };         
+
+3) No 'lvds0_out' and 'panel_lvds_in' in __symbols__ node for
+   imx53-qsrb-mcimx-lvds1.dtb, but for imx53-qsrb.dtb they are in it.
+lvds0_out = "/soc/bus@50000000/ldb@53fa8008/lvds-channel@0/port@2/endpoint";
+panel_lvds_in = "/panel-lvds/port/endpoint";
+
+BTW, reverting Saravana's commits
+7cb50f6c9fba ("of: property: fw_devlink: Fix stupid bug in remote-endpoint parsing")
+and/or
+7fddac12c382 ("driver core: Fix device_link_flag_is_sync_state_only()")
+avoids the issue from happening.
+
+> 
+>>
+>> Saravana, DT folks, any ideas?
+>>
+>> Thanks.
+>>
+>>  arch/arm/boot/dts/nxp/imx/Makefile            |  4 ++
+>>  .../boot/dts/nxp/imx/imx53-qsb-common.dtsi    |  4 +-
+>>  .../dts/nxp/imx/imx53-qsb-mcimx-lvds1.dtso    | 43 +++++++++++++++++++
+>>  3 files changed, 49 insertions(+), 2 deletions(-)
+>>  create mode 100644 arch/arm/boot/dts/nxp/imx/imx53-qsb-mcimx-lvds1.dtso
+>>
+>> diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
+>> index 92e291603ea1..7116889e1515 100644
+>> --- a/arch/arm/boot/dts/nxp/imx/Makefile
+>> +++ b/arch/arm/boot/dts/nxp/imx/Makefile
+>> @@ -46,8 +46,10 @@ dtb-$(CONFIG_SOC_IMX53) += \
+>>  	imx53-ppd.dtb \
+>>  	imx53-qsb.dtb \
+>>  	imx53-qsb-hdmi.dtb \
+>> +	imx53-qsb-mcimx-lvds1.dtb \
+>>  	imx53-qsrb.dtb \
+>>  	imx53-qsrb-hdmi.dtb \
+>> +	imx53-qsrb-mcimx-lvds1.dtb \
+>>  	imx53-sk-imx53.dtb \
+>>  	imx53-sk-imx53-atm0700d4-lvds.dtb \
+>>  	imx53-sk-imx53-atm0700d4-rgb.dtb \
+>> @@ -57,7 +59,9 @@ dtb-$(CONFIG_SOC_IMX53) += \
+>>  	imx53-usbarmory.dtb \
+>>  	imx53-voipac-bsb.dtb
+>>  imx53-qsb-hdmi-dtbs := imx53-qsb.dtb imx53-qsb-hdmi.dtbo
+>> +imx53-qsb-mcimx-lvds1-dtbs := imx53-qsb.dtb imx53-qsb-mcimx-lvds1.dtbo
+>>  imx53-qsrb-hdmi-dtbs := imx53-qsrb.dtb imx53-qsb-hdmi.dtbo
+>> +imx53-qsrb-mcimx-lvds1-dtbs := imx53-qsrb.dtb imx53-qsb-mcimx-lvds1.dtbo
+>>  dtb-$(CONFIG_SOC_IMX6Q) += \
+>>  	imx6dl-alti6p.dtb \
+>>  	imx6dl-apf6dev.dtb \
+>> diff --git a/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi
+>> index 05d7a462ea25..430792a91ccf 100644
+>> --- a/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi
+>> +++ b/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi
+>> @@ -16,7 +16,7 @@ memory@70000000 {
+>>  		      <0xb0000000 0x20000000>;
+>>  	};
+>>  
+>> -	backlight_parallel: backlight-parallel {
+>> +	backlight: backlight {
+> 
+> Nit: this seems unrelated to the LVDS support
+
+Do you suggest to do this in a separate patch?
+If yes, is it worth adding a Fixes tag?
+
+> 
+>>  		compatible = "pwm-backlight";
+>>  		pwms = <&pwm2 0 5000000 0>;
+>>  		brightness-levels = <0 4 8 16 32 64 128 255>;
+>> @@ -89,7 +89,7 @@ panel_dpi: panel {
+>>  		compatible = "sii,43wvf1g";
+>>  		pinctrl-names = "default";
+>>  		pinctrl-0 = <&pinctrl_display_power>;
+>> -		backlight = <&backlight_parallel>;
+>> +		backlight = <&backlight>;
+>>  		enable-gpios = <&gpio3 24 GPIO_ACTIVE_HIGH>;
+>>  
+>>  		port {
+>> diff --git a/arch/arm/boot/dts/nxp/imx/imx53-qsb-mcimx-lvds1.dtso b/arch/arm/boot/dts/nxp/imx/imx53-qsb-mcimx-lvds1.dtso
+>> new file mode 100644
+>> index 000000000000..27f6bedf3d39
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/nxp/imx/imx53-qsb-mcimx-lvds1.dtso
+>> @@ -0,0 +1,43 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright 2024 NXP
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +&{/} {
+>> +	panel-lvds {
+> 
+> Nit: Just 'panel' should be enough.
+
+Nope.
+
+'panel-lvds' is needed to differentiate it from 'panel' in
+imx53-qsb-common.dtsi which is a DPI panel.
+
+Using 'panel-lvds', procfs lists exactly the properties needed.
+root@imx53qsb:~# ls /proc/device-tree/panel-lvds/
+backlight     compatible    name          port          power-supply
+
+Using 'panel', more are listed.
+root@imx53qsb:~# ls /proc/device-tree/panel/
+backlight      compatible     enable-gpios   name           phandle        pinctrl-0      pinctrl-names  port           power-supply
+
+> 
+>> +		compatible = "hannstar,hsd100pxn1";
+>> +		backlight = <&backlight>;
+>> +		power-supply = <&reg_3p2v>;
+>> +
+>> +		port {
+>> +			panel_lvds_in: endpoint {
+>> +				remote-endpoint = <&lvds0_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&ldb {
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +	status = "okay";
+>> +
+>> +	lvds-channel@0 {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		fsl,data-mapping = "spwg";
+>> +		fsl,data-width = <18>;
+>> +		status = "okay";
+>> +
+>> +		port@2 {
+>> +			reg = <2>;
+>> +
+>> +			lvds0_out: endpoint {
+>> +				remote-endpoint = <&panel_lvds_in>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> -- 
+>> 2.34.1
+>>
+> 
+
+-- 
+Regards,
+Liu Ying
 
 
