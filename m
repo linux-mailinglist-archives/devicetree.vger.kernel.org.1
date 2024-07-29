@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33DD993F8DC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 16:58:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BEF693F8F0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:02:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0AC4282900
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 14:58:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB1821F229E5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE74155CB0;
-	Mon, 29 Jul 2024 14:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8E4156227;
+	Mon, 29 Jul 2024 15:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfwNi6hB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VHBU/s7F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D97315538C;
-	Mon, 29 Jul 2024 14:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BB9155A21;
+	Mon, 29 Jul 2024 15:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722265115; cv=none; b=mvSr2JBjaL3PsxxSoGLQ3h7nrTtmFQoNrODqwjD/6hRvLzqQl+Oc4Ruzja78tgokl4vl0mPW6dQIQToKRfbzl14vpYXEFTMW4tu32jEEMEbc5OFyL5zOAo4ULZAugvgBrHPvsw8DctmUulxIiASY6+VZmK6d8LKXyEa7xofik2I=
+	t=1722265324; cv=none; b=QnrflTQ48t4tR4zV+Ic4KwjyK+XbBqKUpTtL309TgAQVjLAZaP+Ya/r4SQ+zPAtTanX9wedCqMiqBwGO/htjSdR+ueCfUDW3WFtikZUF9ybD73Nhu3WDB13OlkaeiIXkk7oMIMsaxLnsnvvvXCHg0nfbu0UuCJ7y+cp70gL4fa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722265115; c=relaxed/simple;
-	bh=kbaRAF/NbWFFXE3u0pttj5/UNqC198dwrEX0HlvWcB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=YIU960vEAuUkLhUepLMoj8zHI89yu4yakT5F/9K23zrstJ0BirlOXgBTGcOlVWoH0z79+ltULcC6H8DiTBa1XYkRDteukMrFqSxr53vy6RqsAEzv2djZYHtHhzJs2oH3d7PFNOCIYsUyyA21/YeyOdTVCIznk5ZHDoJLCAT+bjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hfwNi6hB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5EF1C32786;
-	Mon, 29 Jul 2024 14:58:31 +0000 (UTC)
+	s=arc-20240116; t=1722265324; c=relaxed/simple;
+	bh=aSG63Ny9qBbpu8tNKh1V6tarP45rHiFMLWwrEqyHz88=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IxOb4pRIYkUTNH29w0KwbrMHsDL3LdmZXyF9R7IJ8e1FUTpVbeOUXzz440nplOzOPQxxbceisDpxQG4ViHJQv3UKwCLdnxEoC7ozFy/8XyB9TF19QyUy9zQyBAr8sTNqO+fSNv92Dv5+pbuQmeG9SkLTjzvmydjlrfvVfb6t+DY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VHBU/s7F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AB79C32786;
+	Mon, 29 Jul 2024 15:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722265114;
-	bh=kbaRAF/NbWFFXE3u0pttj5/UNqC198dwrEX0HlvWcB4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=hfwNi6hBTUt9FQGe28YhjjHWdyO66DPfp6YkFmuya/Uqery3EXBcdiCRcRcKXP1Xd
-	 831cqtNgdxzpLuh7Siy4v9AutY3J+Hz8N++u5lheh5xUxe1N8cj9eStif5OZItSUfy
-	 4hy0BnqUa0Au/IaPEsidmGuqr3mYkHJ0FLBFuZKbcy6x0JmhzxYFR+gR/MJTC9jihv
-	 2BfQmoM9qks/VpxbSRCnXU/SicOo0i/FUMjTm5mGPuu026VA5Vo4fBZp6h4uK0AJ8R
-	 ArvmTI+weDnY183PFYYZ0mUh49jqVbnqek24uK5Mwp2Z7/P6gkVrmNuA5ue17IM6Sw
-	 RpJlCZMGVQr+w==
-Message-ID: <c93a6bf3-7360-4696-833d-82726d10f604@kernel.org>
-Date: Mon, 29 Jul 2024 16:58:29 +0200
+	s=k20201202; t=1722265323;
+	bh=aSG63Ny9qBbpu8tNKh1V6tarP45rHiFMLWwrEqyHz88=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VHBU/s7F8LqSvNYru6R2LOrBHT2AOnv0oGB575qAsNroL4HOrwpa3km09Y3ccPWjn
+	 g3FI8xyaW171ZJrguZUHgWdUBLQqupOOptP/7sRd/k2Hbz6zH5ezu6RgpP2RU+WPcz
+	 UYotS1raULmv9YX0cp2YgdBstaRWcgsbQwyHAjTzs+XztKOP6rA6nW2tVOeJzgUG7/
+	 T2ez78lDWCzjrVEHXXlNw/w2LYnUFolhPS7f+ah6CJOYKh1jc+/ljvkp3obbrW23Mx
+	 sa/hrRDqRmd/4cvTKcLdNiHOrC8mPEoT4le0WUtT00pw9KP5bqW+TGvRDqKsmIkzrJ
+	 1OU1HjarJbylA==
+Message-ID: <75a6b4fd-f81c-4bd7-a07b-7f7165ece2fe@kernel.org>
+Date: Mon, 29 Jul 2024 17:01:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] *** Add ADF4378 Support ***
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/4] dt-bindings: soc: qcom: smd-rpm: add generic
+ compatible
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dragos Bogdan <dragos.bogdan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Stephan Gerhold <stephan@gerhold.net>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240729095047.25040-1-antoniu.miclaus@analog.com>
+References: <20240729-fix-smd-rpm-v1-0-99a96133cc65@linaro.org>
+ <20240729-fix-smd-rpm-v1-1-99a96133cc65@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,24 +107,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240729095047.25040-1-antoniu.miclaus@analog.com>
+In-Reply-To: <20240729-fix-smd-rpm-v1-1-99a96133cc65@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/07/2024 11:50, Antoniu Miclaus wrote:
-> Add support for ADF4378 high performance, ultra-low jitter, integer-N
-> phased locked loop (PLL) with an integrated voltage controlled
-> oscillator (VCO) and system reference (SYSREF) retimer ideally
-> suited for data converter and mixed signal front end (MxFE) clock
-> applications.
+On 29/07/2024 13:04, Dmitry Baryshkov wrote:
+> Add generic compatible to all smd-rpm devices, they follow the same
+> RPMSG protocol.
 > 
-> The main difference between ADF4377 and ADF4378 is that the second one
-> provides only one output frequency channel which is enable/disabled via
-> one GPIO. 
-> 
-> Both the driver and the bindings are updated to reflect that difference.
+> Fixes: bcabe1e09135 ("soc: qcom: smd-rpm: Match rpmsg channel instead of compatible")
 
-That's a v3, but where is the changelog?
+I do not see a bug being fixed here. Whether you have fallback or not,
+is a design decision with both options reasonable in certain cases.
+
+More over, some explanation, why you are doing this or what is the
+benefit, is missing.
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 52 +++++++++++-----------
+>  1 file changed, 27 insertions(+), 25 deletions(-)
+
 
 Best regards,
 Krzysztof
