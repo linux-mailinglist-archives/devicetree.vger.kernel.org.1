@@ -1,72 +1,74 @@
-Return-Path: <devicetree+bounces-88743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E6C93EDFE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:07:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A333093EE03
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:08:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DA371F23609
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:07:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C77F2816AD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0655312CD88;
-	Mon, 29 Jul 2024 07:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 170F712C474;
+	Mon, 29 Jul 2024 07:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CISnNhmX"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="AQfe3hqZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834AA12C7FD;
-	Mon, 29 Jul 2024 07:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A69312C473;
+	Mon, 29 Jul 2024 07:07:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722236829; cv=none; b=IWzoGJIhzik4rSRv/Kul0eI68AOVLc8MIE76zPTNolK+6L4EDW527BihwpS/jGeNiJj1Xen9wyRf74vGBJ5e7a4KZu+zXtvY4cTUo51pCiAQIPMuCDFkZLwjMpXzwIkVB0qfo7iqM+2rY96gtKk7hY/H0rPV05QM0ZhGp1A8Pxs=
+	t=1722236855; cv=none; b=IgkeNGsiiJL7q9Sv2kn57x5hbiIulLTnPGbgHqeRCf433zI1fIkS5HUrY3fAxFHXngbOFdlQzgGlQy1lVp6rBNWsxYB0MEBtyTP1VYyJdEWR9cXSqcntXx2fB3gBZGxIEG3wKxmr7DJiMF39LKy5HLcSsVOlnl0Hp3PJ20fRKoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722236829; c=relaxed/simple;
-	bh=PSn+93YxahuM4/eEil9r4edmIQw42eptfiHBu+CeLF0=;
+	s=arc-20240116; t=1722236855; c=relaxed/simple;
+	bh=MNyu+rKOG9IBkjo6Ew4FHJmJxmIaK4QmU4WgBoqiApY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MgIdjUF3SNURuZPA/ajOMqPUorG2Pji0OwL3kwCNmZPTWnGPGe84TwAcjfnTdpT+OSomsz4xmo4vYiuVEuuSx04vxGX0/OfA3o7/D6EjIKuORq0lBrIs5lxgt2nxZQubZ6BlJT1BuiZ0BqIC1IAxgbLbYj3YWqXTorCy2iasWRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CISnNhmX; arc=none smtp.client-ip=68.232.154.123
+	 MIME-Version:Content-Type; b=V3UZffI6l6pj8vJxfNpWnla1zrUvoGh2peyDG+WfFqdp4tn0TH94HGIcMl0btZIjZawthtqpq3ng4rlAodkoXr5KJNrKcsIcHBOX2gXDywKLdIEUvAkFJT6OwlDZAksL5oQfzIhkSzNseBDU6Iqx82tTrG3bQPE3dKT9pIt4uvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=AQfe3hqZ; arc=none smtp.client-ip=68.232.154.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1722236828; x=1753772828;
+  t=1722236853; x=1753772853;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=PSn+93YxahuM4/eEil9r4edmIQw42eptfiHBu+CeLF0=;
-  b=CISnNhmX4A0Ka59HNgpTR1BOZYhCRxOco/OTM4A/SJXr6WHjXOeBmtVM
-   AOtBPo+aJMDgdP7M8TBO60jlZhkdD7nYl20WYi0gsuMP8p3r8jKzKgGG6
-   ZNhCINJCRQ1dnAdOiHdbzlV2ls+YQTHjIBM4P1kuY1DwFLDNjc4VqOMad
-   cmFGhmDoSde7tIXPP2+8r/DjLrt4YiGCaoSkwTimbbm1UlUNL52+KN0fR
-   dWm4Bv5xoMGEmDhW3KyZiROnzbqIiWQQktEFvQ9Jn5uCib+2qwZYJaCa7
-   fMM7owor9lU/a9LI5JLrptqMmIaaRGOIrc1R9SB+UaciI5TJ+fvpXEsYt
-   g==;
-X-CSE-ConnectionGUID: pQjOSLNzTjuj0oMDb/547w==
-X-CSE-MsgGUID: yLpZle7ZSI6AhsOFjTjvyw==
+  bh=MNyu+rKOG9IBkjo6Ew4FHJmJxmIaK4QmU4WgBoqiApY=;
+  b=AQfe3hqZlEoBT64kx8pBCt2blhZ6QT4dB4ZC91CYvYsQAiTIZzyTMynt
+   FoIqdugtn1p6NLMFgHcTi09HU9IqxBMSwtxug1klsMq+MokYaQaE/2yeH
+   GQJE8G3vh1AEj4d5Q8ztvVgxvkOALfXuE61i9lgR0WKge6AT+3y7yCy06
+   mM7YGub81KnO6GlQUHtCl8NOBRTjwBrd6PCFs7XUOLhlrax0LfFxM+UR9
+   yy53INPcOCMgYfjSMcqfXIetCzPyT9LBF9FrWaDuJrC/3QaBr8Wln1KMm
+   mz704sJ79aXBqXwZMyUimhRuxTrYl1K+kWT++kcxomR1CZhuHnoEPsy5a
+   A==;
+X-CSE-ConnectionGUID: Trl5Yg7lR5GRkbAtH6EZiQ==
+X-CSE-MsgGUID: 22ZYDZI7RGS7RMNUdYDxJw==
 X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; 
-   d="scan'208";a="197213810"
+   d="scan'208";a="29767661"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Jul 2024 00:07:06 -0700
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Jul 2024 00:07:32 -0700
 Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
  chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Jul 2024 00:06:58 -0700
+ 15.1.2507.35; Mon, 29 Jul 2024 00:07:25 -0700
 Received: from che-lt-i67070.microchip.com (10.10.85.11) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 29 Jul 2024 00:06:54 -0700
+ 15.1.2507.35 via Frontend Transport; Mon, 29 Jul 2024 00:07:20 -0700
 From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <conor@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
+To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <varshini.rajendran@microchip.com>
-Subject: [PATCH v6 05/27] dt-bindings: microchip: atmel,at91rm9200-tcb: add sam9x7 compatible
-Date: Mon, 29 Jul 2024 12:36:49 +0530
-Message-ID: <20240729070649.1990427-1-varshini.rajendran@microchip.com>
+CC: <varshini.rajendran@microchip.com>, Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: [PATCH v6 09/27] dt-bindings: clocks: atmel,at91sam9x5-sckc: add sam9x7
+Date: Mon, 29 Jul 2024 12:37:17 +0530
+Message-ID: <20240729070717.1990654-1-varshini.rajendran@microchip.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
 References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
@@ -79,48 +81,35 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Add support for sam9x7 device compatible.
+Add bindings for SAM9X7's slow clock controller.
 
 Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 ---
 Changes in v6:
 
-- New patch in v6 to document tcb compatible.
+ - Corrected the subject line
+ - Updated Reviewed-by tag
 ---
- .../soc/microchip/atmel,at91rm9200-tcb.yaml   | 20 ++++++++++++-------
- 1 file changed, 13 insertions(+), 7 deletions(-)
+ .../devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml      | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-index a46411149571..2c7275c4503b 100644
---- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-+++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-@@ -15,13 +15,19 @@ description: |
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - atmel,at91rm9200-tcb
--          - atmel,at91sam9x5-tcb
--          - atmel,sama5d2-tcb
--      - const: simple-mfd
--      - const: syscon
-+    oneOf:
-+      - items:
+diff --git a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
+index 7be29877e6d2..c2283cd07f05 100644
+--- a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
++++ b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
+@@ -18,7 +18,9 @@ properties:
+           - atmel,sama5d4-sckc
+           - microchip,sam9x60-sckc
+       - items:
+-          - const: microchip,sama7g5-sckc
 +          - enum:
-+              - atmel,at91rm9200-tcb
-+              - atmel,at91sam9x5-tcb
-+              - atmel,sama5d2-tcb
-+          - const: simple-mfd
-+          - const: syscon
-+      - items:
-+          - const: microchip,sam9x7-tcb
-+          - const: atmel,sama5d2-tcb
-+          - const: simple-mfd
-+          - const: syscon
++              - microchip,sam9x7-sckc
++              - microchip,sama7g5-sckc
+           - const: microchip,sam9x60-sckc
  
    reg:
-     maxItems: 1
 -- 
 2.25.1
 
