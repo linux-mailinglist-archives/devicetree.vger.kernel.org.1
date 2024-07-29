@@ -1,251 +1,193 @@
-Return-Path: <devicetree+bounces-88700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E7F93EC86
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:31:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5423E93EC97
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 06:36:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C4581C20A00
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C96AA1F2157B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 04:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDCC6824AE;
-	Mon, 29 Jul 2024 04:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1300A80BEC;
+	Mon, 29 Jul 2024 04:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qaKlVzTM"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="GR6cJg9G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2066.outbound.protection.outlook.com [40.92.23.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB2580617
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 04:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722227469; cv=none; b=If34nUUtS8d9pw/ODA/4qLRIsqY0lVBWdriCLXdi9twXmRC/qStASMFj6VhUdp4oebvXgkZjG51vbd4Bbpm49AH7HWW4zCKTmdu/fJucnQcR6qg5tCKpvMwRbRFbXidlTQWalwM71/wwJE1Qdc9t6UOL97h1O9shDY/JaPJwwnI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722227469; c=relaxed/simple;
-	bh=iTUhhoRU5HL63irCLUt43QUjivIRS8EstPcnmxLQCro=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=jGCetKdosI7Da+9q8XCe3XN83bZh+ziP7Kxyt6HcyPfeG6Sthio5+o+m2aDvnmyJvpL7yimlFaM2ya9jxjWjKrPggQO5vtTw8PGydcmRjoJa6ypI0NZK9kSFgvLIUUeiHcv5VWIzwmSMLGe02gj9Wc8E4w0wH6gEhYu3dVjKUww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qaKlVzTM; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240729043104epoutp03c323e2b66e21bebdfdfb029ab3aba7f2~mlMErUoj73094030940epoutp03k
-	for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 04:31:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240729043104epoutp03c323e2b66e21bebdfdfb029ab3aba7f2~mlMErUoj73094030940epoutp03k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1722227464;
-	bh=WG4pekMnekNHbH9qbttvlmoxeH6/97stlcOmnMH/o0w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qaKlVzTMA8YHHDEvaS+R9RKa2SeeNeBgU/fDVft07Wox6EA2kEGHHZpX2n/4+Z44g
-	 NkKn+Q45sfR0jUyFYZEyRCRsfLTJ9ImuQf5K66ascvfWkIynM2y1ZOZw0at8loxL/D
-	 PD3evB/Cojo631GpjnVBT+AorZ+7x6lmFyeevBl0=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas1p4.samsung.com (KnoxPortal) with ESMTP id
-	20240729043104epcas1p43aabc0eace945f5c9e93168d1faac38c~mlMEJq5We2386323863epcas1p4W;
-	Mon, 29 Jul 2024 04:31:04 +0000 (GMT)
-Received: from epsmgec1p1-new.samsung.com (unknown [182.195.36.132]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4WXQQv0wfyz4x9Pw; Mon, 29 Jul
-	2024 04:31:03 +0000 (GMT)
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-	epsmgec1p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	E2.08.19509.60B17A66; Mon, 29 Jul 2024 13:31:02 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-	20240729043102epcas1p4e4c20eb6335103e4956f7233d35cd79b~mlMCg3xLD2709827098epcas1p4Q;
-	Mon, 29 Jul 2024 04:31:02 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240729043102epsmtrp19db89debd06eddbdc50621c17f808a01~mlMCfxx8p0743307433epsmtrp1B;
-	Mon, 29 Jul 2024 04:31:02 +0000 (GMT)
-X-AuditID: b6c32a4c-9ebcba8000004c35-af-66a71b06f536
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	98.24.19367.60B17A66; Mon, 29 Jul 2024 13:31:02 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.113.111.204]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240729043102epsmtip112fa8e23bfb60ac6898ab21d36e8361f~mlMCPFJUs1808918089epsmtip1C;
-	Mon, 29 Jul 2024 04:31:02 +0000 (GMT)
-From: Kwanghoon Son <k.son@samsung.com>
-To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
-	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, tomasz.figa@gmail.com
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Kwanghoon
-	Son <k.son@samsung.com>
-Subject: [PATCH 4/4] clk: samsung: exynosautov9: add dpum clock support
-Date: Mon, 29 Jul 2024 13:30:39 +0900
-Message-Id: <20240729043039.134435-5-k.son@samsung.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240729043039.134435-1-k.son@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96ADF1E49E;
+	Mon, 29 Jul 2024 04:36:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722227769; cv=fail; b=W8ZxT1r07aFmreDUWTIbia8vCf5lrRSfvFBKyCiw6mlqUfWUhWazC0OEivbBIj5defAH98nVqXxkhxY1Fk2mttMSkvDW4yot1ihnJhmaT+8x2k17COWniI9PiIUh4Grn4kBxratmOhuQb6X+l60V8aYSyBT5URUpZ1sQf2hMaDA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722227769; c=relaxed/simple;
+	bh=P1jOG3ND4Mf1zjSBQvVz4l0JIQR4C4K7EMCPtti7aTU=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=YZgd2yx3FM7yCSl+hWxPikRIJ12hbVvOguzdbIZU/bjKCPFewFcl30v8MvQ71u2pWKoRA95cVKE67MOIeKqsknE7FSpJYXgttLDkmCnqZG6m/FLlkxXAqr1jNjZkPQNBlP2PJbL806Sqby6HWPmXa919WS1MpQGHeoehsOrg5C4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=GR6cJg9G; arc=fail smtp.client-ip=40.92.23.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jL6DOeqGuaZynAjDgDv6m+hsNKrcLjamCdlpEFHdGuqwEToBUztxfZW4oM4ciTZbPkry5VYBHsHcZ8vi+d3Cs3G597tvyIuOTtEbCFxDeEPvgzjjnhK8l4NI7DGE4nNrrjV0iZH0lDDTbuuEzWhy5YqMEd6cxcIwdUS9LPqxkUsUnZy+i5P7tltz0xmqv8Z7YKC5//GI3lolV6YuZO7z3GeKO6Fr4QqnXfyDRUyzL3V7Z/t/o9AVAm8Ty7S/bEy6rMM2oZ+Qp7EgqLvN7Q9VpFivfG4ypyA5NY0wWOXh+nlhZwqGpFRs0+EFdUoNOuLF6wwA/9lKTg8ihL8G93j3gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PSdhpdIFY/BUNL2KPiiab+YLI170g9vlizGWY0C00TU=;
+ b=UkMM8cmyhx3BKXSBDu82U7C6h1Irn7wF3qe3itvqFzpZ7WoGGF7C5XO0LHo/UIKL9jY9kFy0BSQbT5Pz+1y8r6Fn0eCqyH6bBexDGuMGbeFnRJuBtwI1NROq2E4w6+3X2MQl+4TCtC049gAOwIgwwYyafk+L8SvHNa/x+rzOPSGdgUIQfkgdebtIkRsBWDQqz/rCVWTp3MYRW0N4kZgFJbJZiNtv9O8ue9+Ar1gu5PSNtM2nbmKgZhT8k2yZKpeYA7Dg9JjK3fIOLHIBpAUzjRzkF05LCsh2d2lRzkPNDxhPMLNtSAIjQSfnV/eipvs5J2iDdB9/m2+w9N0eyWwSuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PSdhpdIFY/BUNL2KPiiab+YLI170g9vlizGWY0C00TU=;
+ b=GR6cJg9GwMh0JJQ/yKaFPeyyjPtfgKn+e1claj8bzp+6MaVDU5qdtHEEJ6n5CEHHqOF6qKxBI2DhUFJqG5HYcSO/8bzgzj/I8mmhZW1n8h1eaRM/4QZ5mF9Ue/rqqgAHpdKt38U2w+YDaCymDPMNt+1hQEKXJFrXSiB+rh21QbKEo4hyIoOdPmgb2bT/S2hsJm6PQrJdvkefmgAG+TsFeJMjNFmlfEJH+Oo7BO2TxU9roHVAKkSWt+xElGz54tkN2GS49RqKQqxmrYf2NtCfvAYm645Mm3IehQ6aGjVIFwbgUd8ULLhyMI0MtTJcmKFbwYlOK+gMSDY623vh2r5fAg==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SA1PR20MB4516.namprd20.prod.outlook.com (2603:10b6:806:23d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Mon, 29 Jul
+ 2024 04:36:02 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
+ 04:36:02 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Liu Gui <kenneth.liu@sophgo.com>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v8 RESEND 0/3] riscv: sophgo: add dmamux support for Sophgo CV1800/SG2000 SoCs
+Date: Mon, 29 Jul 2024 12:35:37 +0800
+Message-ID:
+ <IA1PR20MB49535EC188F8EE3F8FD0B68DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.45.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [fmjuxwUoloLA8W1zDaR2bPY01FRSXtxehJazvoC6+WE=]
+X-ClientProxiedBy: SG2PR01CA0110.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:40::14) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20240729043538.897754-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFJsWRmVeSWpSXmKPExsWy7bCmgS6b9PI0g/6jlhYP5m1js1iz9xyT
-	xfUvz1kt5h85x2rRu+Yqk8X58xvYLTY9vsZq8bHnHqvFjPP7mCwunnK1+L9nB7vF4TftrBb/
-	rm1ksVi16w+jA5/H+xut7B47Z91l99i0qpPNY/OSeo++LasYPT5vkgtgi8q2yUhNTEktUkjN
-	S85PycxLt1XyDo53jjc1MzDUNbS0MFdSyEvMTbVVcvEJ0HXLzAE6VkmhLDGnFCgUkFhcrKRv
-	Z1OUX1qSqpCRX1xiq5RakJJTYFqgV5yYW1yal66Xl1piZWhgYGQKVJiQnfHh3xPmgiaNipv7
-	GtkaGG8qdTFyckgImEj0fDrO1MXIxSEksIdR4szHY8wQzidGiWOdXWxwTvObeewwLZ+2HGGF
-	SOxklOi93A7V8oVR4tXHk6wgVWwC6hJL2taygyREBI4DDV7SzQjiMAusZJR4sOoJC0iVsIC7
-	RPfiuWwgNouAqkTHgRlgNq+AucTp9pNAYzmA9slLLH4gARLmFLCQ6Po3kRmiRFDi5EyIMcxA
-	Jc1bZ4NdISEwl0Pi950bzBC3uki8ebSWBcIWlnh1fAvUD1ISL/vboOxsiaMf97JB2CUS12ct
-	YoWwjSX2L53MBHIDs4CmxPpd+hC7+CTefe1hhTiNV6KjTQjmylud5RCNohJnnn6EGughsXzl
-	HLADhAS6GSWm9phPYJSfheSBWUgemIWwawEj8ypGqdSC4tz01GTDAkPdvNRyeMwm5+duYgQn
-	Wi2fHYzf1//VO8TIxMF4iFGCg1lJhDf+ytI0Id6UxMqq1KL8+KLSnNTiQ4ymwBCeyCwlmpwP
-	TPV5JfGGJpYGJmZGxiYWhmaGSuK8Z66UpQoJpCeWpGanphakFsH0MXFwSjUwGaq8E+laOF2t
-	TSOV8eMDgcczeXVarrVdmyhsp+y3e06Na7r1lNXPG7Napv8O3rkqSM/c+01G/s7mtfuZj+36
-	zLt+9oHL8xdeOra17jfj2RqDh2vZp6tFz2/Yq9Rqrvcx2n2t/sTcz4rCiw62FYrc+cx/dNEJ
-	fg6Fki6rKa+yvu85ZXFv/1SeC8bR2zVl9STY/z55lOTnX7gx5r/8lBWNu+yfXeY696qppTDw
-	6slr2X1tk8y7vE0WsletWF6tyV8XOUXg7o6l+4XyNnSmyTW6CN3l3VvwTlHdy/25HM8pmcfR
-	+rx8wTnf7q7zDo37cZFp1a1KDo0n+j41oWqxK2PSZpxtViznlCvyyK9avvmCEktxRqKhFnNR
-	cSIAcsLkqz0EAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBLMWRmVeSWpSXmKPExsWy7bCSnC6b9PI0g0v3ZSwezNvGZrFm7zkm
-	i+tfnrNazD9yjtWid81VJovz5zewW2x6fI3V4mPPPVaLGef3MVlcPOVq8X/PDnaLw2/aWS3+
-	XdvIYrFq1x9GBz6P9zda2T12zrrL7rFpVSebx+Yl9R59W1YxenzeJBfAFsVlk5Kak1mWWqRv
-	l8CV8eHfE+aCJo2Km/sa2RoYbyp1MXJySAiYSHzacoQVxBYS2M4ocXUiVFxUouNyI2MXIweQ
-	LSxx+HBxFyMXUMknRonrt+ezg9SwCahLLGlbyw6SEBG4zCjxf8EkRhCHWWAto8TTKU/AqoQF
-	3CW6F89lA7FZBFQlOg7MALN5BcwlTrefZIbYIC+x+IEESJhTwEKi699EZoiDzCXuX50AVS4o
-	cXLmExYQmxmovHnrbOYJjAKzkKRmIUktYGRaxSiaWlCcm56bXGCoV5yYW1yal66XnJ+7iREc
-	GVpBOxiXrf+rd4iRiYPxEKMEB7OSCG/8laVpQrwpiZVVqUX58UWlOanFhxilOViUxHmVczpT
-	hATSE0tSs1NTC1KLYLJMHJxSDUyMqQ8y9n3dpjlhQXAE/2LjE6fEDl958OiN9sclDr5fJ3rf
-	OXv8x58fVkfs9/dr+FxX3HvrWYW+6l6FN7FyB919zwsGz7LVSF2V6BnbY+8kZznLvc1nl4X6
-	9bAFn5tLvk5xbd8va3Czbd7J3ETXu64n86UCYjzZts6w/qhbEsux/3P2hANe7Cy7VtZ2t/qr
-	e7440sg6befj325phifeXp7tL5+w2OpK84UVcfIPrrit9+JymH1cNaPkrFxqX5vr2klzY2O6
-	v+3VnXtfkfOlg8oiDddHLyLu/5QS9dZ6r/6383FrzNq2hSc29TYcCZbPUDywxkxI7/jpK1fC
-	bT5Mep38hTO9O6hQv+3W7mAX+aVKLMUZiYZazEXFiQBvgue++wIAAA==
-X-CMS-MailID: 20240729043102epcas1p4e4c20eb6335103e4956f7233d35cd79b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240729043102epcas1p4e4c20eb6335103e4956f7233d35cd79b
-References: <20240729043039.134435-1-k.son@samsung.com>
-	<CGME20240729043102epcas1p4e4c20eb6335103e4956f7233d35cd79b@epcas1p4.samsung.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SA1PR20MB4516:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d74a90d-ba64-46ed-c4c4-08dcaf87f38d
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799006|5072599006|19110799003|461199028|440099028|3412199025|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	4Y5GEAx+oZbUWAg19I/37jQJXHYti/psl7koGYD/JqEsJ6nnti+DDi6o64D/GT9ljMuwSy2n4fI6DYlvChAII+8zELJK7mtF0jfSUwNI2ZCMtK3sy98VfY0pO8qpUmxr5E55q1QV7mnLpOh3XTCZ+h3wKvkzaS8zmANVe4PYr4oZHr3ayqmpmSsAZ81NGqwKrEAv83VycUTvDBxWGzGOcR6dF6tOkAsFVee3vDS2nt6j1avT37mHYH5euh54p6S7nV+7NYBFC/84DPg4bDe+0gVaTnJrGuNJ4v/fNqJC1PoG8dfmjmbCLbGxczAc+YMTNpN2J3rJdjddzk2GHhs0DLmO5z0kkyKWIZ40j/ieg9tJMV6P3d2JUSL/YkGdgmmsRp3B6qd5+zYs6wBTIRcxKsM7D83X5VJR9bHgt6O6hdDvmxj+pitQIwzJ9Dhi2cNyd1aU/kzeGU/ZR+1Dbd9yQD0Fok+/YViiefz4+zihHtLXD9ZXMT5kRimLHr8qgS88Q2U1dFZvRGwFFmnWgRDm8TkvUp77U24pcQvc02U8FFrTmMa55ogfcDp1YtcB/gbQUQP/aBmTaZ52UXFYkiBd2I/r57obVwvE5OydSKtyU8Yi0UPLLpCcF863L2HC57NrMCFjBJ0pTH/GfJyaYsV51voewBm3EgK3rGtSRNoRsO7y0cX996ZdSvdmmFScT8v7dcoDmPxVLZ24D19eYwjEhw==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?dYZZAEEgY3wVA8EYYao/aX9FRaama4a+QwC0rxH11VBP3AkZMZXcvBG06I+5?=
+ =?us-ascii?Q?zfOO7T2i8YhGPGS1DcMoEATK8KqabvMnIU7PgmOGldI7yA7pd1jMQjdAMrym?=
+ =?us-ascii?Q?nAwHMQupvjxl+QCD9jzOTMvHD86TRnptk1RgnYa4jNCE4VkC+je9ie+d2V7o?=
+ =?us-ascii?Q?kXz7fvZKXbUrnl26UMPjVDgwR68WPRX5JD1QfxNzwKkAy6YX4xB8FDHRiXz3?=
+ =?us-ascii?Q?cZuamO3ZZvp4JPZ45+QLWYLCIo5IxvcVL6BR8wJCMpnvB7bm5ZDshFTmDvku?=
+ =?us-ascii?Q?Jyibf3AI18mxxQQRjN4WQAH8I9lQ1A3+vG46Ep8SitP0hVsl2Z2a6tZTt90P?=
+ =?us-ascii?Q?F+VOtlsNLkTR/z1ELQM0fPFyag5PfjV3USk1CmNjaAbd/Msj0yj0/3c9HfXo?=
+ =?us-ascii?Q?mQ9jk72CHDoe/+YctsqnrZA2BtWOAVa5/pUoIlEKpntgZg5qItmhArUhkr0Y?=
+ =?us-ascii?Q?v9bq6IHKgQ2aPjKxIgYiw5zH+RbdH1H0PVS2+uKY7belXRAavtNi3VuRNmzT?=
+ =?us-ascii?Q?z+3zfzIkBc0nr2j410P2rwDrdZd4uU3R5e+go/Rkpo5wwyZIhV6am0n8wMmS?=
+ =?us-ascii?Q?iDU007R6mMLVfBqJ1xFoqAyY1Zj2iOtNsjTBo08Z1I96wAb0VyivrYR2tcrB?=
+ =?us-ascii?Q?xGK2HX9UnRpyqvc206+RNEG36aVjc1hUIEfemHNPtu2W2itjfg57eU5gOPd+?=
+ =?us-ascii?Q?YCjkoH8zHv8j523QqBiR/FjYjWByQa1m6vp/POeZ204OXQXJ39OvmpCiQGk9?=
+ =?us-ascii?Q?H6WmsgdzHKTlY1+EW/0aPb+HEmL8iV8dHD9xafT1U3CA2r8zFnKBbzFbLHZb?=
+ =?us-ascii?Q?3gWs2d3ejO5hyKqfBBYpGEgdO/lfo5iSQbD6R1L8BTjEp5TdFj+qZKGLNbdi?=
+ =?us-ascii?Q?KUwvLONrfT9LSSkWsVRaQdOyuJRoP7HzQGs6Ua6Mhj3xu3ib6MoG1cuujkV0?=
+ =?us-ascii?Q?Si4fWp65GJdeRmgHvaxTkB24ZT8CHxctienCh1lkefcmP0w57+n00DxusTaN?=
+ =?us-ascii?Q?VOK/tqpyg8RW+fSNHU6EKNV248pIOVEQKnr/vgEWVODj1cEy98LLiOifPx7L?=
+ =?us-ascii?Q?/ZUrArOByNx//oIFskcWdZ8IJCl1nZKslh9UmzdtTDrbOJnSc+J0sKDeBkG5?=
+ =?us-ascii?Q?2sCeNEH0DbziTqo1NlD9JT3Oadus3gJ5U3bp19Lybz6Ca2oDQmDhUtctNrtO?=
+ =?us-ascii?Q?q5O6sCTgRHHyjBaqs23/L+YVf0J8brvsDiy0pBAEVnDO2gzIKlxv6x8UpUcY?=
+ =?us-ascii?Q?uyB9s5WrX4xRnIP+qm9E?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d74a90d-ba64-46ed-c4c4-08dcaf87f38d
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 04:36:02.3944
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR20MB4516
 
-Add dpum clock for exynosautov9.
+Add dma multiplexer support for the Sophgo CV1800/SG2000 SoCs.
 
-Signed-off-by: Kwanghoon Son <k.son@samsung.com>
----
- drivers/clk/samsung/clk-exynosautov9.c | 83 ++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+As the syscon device of CV1800 have a usb phy subdevices. The
+binding of the syscon can not be complete without the usb phy
+is finished. As a result, the binding of syscon is removed
+and will be evolved in its original series after the usb phy
+binding is fully explored.
 
-diff --git a/drivers/clk/samsung/clk-exynosautov9.c b/drivers/clk/samsung/clk-exynosautov9.c
-index f04bacacab2c..3569748b30a9 100644
---- a/drivers/clk/samsung/clk-exynosautov9.c
-+++ b/drivers/clk/samsung/clk-exynosautov9.c
-@@ -20,6 +20,7 @@
- #define CLKS_NR_TOP			(GOUT_CLKCMU_PERIS_BUS + 1)
- #define CLKS_NR_BUSMC			(CLK_GOUT_BUSMC_SPDMA_PCLK + 1)
- #define CLKS_NR_CORE			(CLK_GOUT_CORE_CMU_CORE_PCLK + 1)
-+#define CLKS_NR_DPUM			(CLK_GOUT_DPUM_SYSMMU_D3_CLK + 1)
- #define CLKS_NR_FSYS0			(CLK_GOUT_FSYS0_PCIE_GEN3B_4L_CLK + 1)
- #define CLKS_NR_FSYS1			(CLK_GOUT_FSYS1_USB30_1_ACLK + 1)
- #define CLKS_NR_FSYS2			(CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO + 1)
-@@ -1076,6 +1077,85 @@ static const struct samsung_cmu_info core_cmu_info __initconst = {
- 	.clk_name		= "dout_clkcmu_core_bus",
- };
- 
-+/* ---- CMU_DPUM ---------------------------------------------------------- */
-+
-+/* Register Offset definitions for CMU_DPUM (0x18c00000) */
-+#define PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER				0x0600
-+#define CLK_CON_DIV_DIV_CLK_DPUM_BUSP					0x1800
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON		0x202c
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA		0x2030
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP		0x2034
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1	0x207c
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1	0x2084
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1	0x208c
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1	0x2094
-+
-+static const unsigned long dpum_clk_regs[] __initconst = {
-+	PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER,
-+	CLK_CON_DIV_DIV_CLK_DPUM_BUSP,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1,
-+};
-+
-+PNAME(mout_dpum_bus_user_p) = { "oscclk", "dout_clkcmu_dpum_bus" };
-+
-+static const struct samsung_mux_clock dpum_mux_clks[] __initconst = {
-+	MUX(CLK_MOUT_DPUM_BUS_USER, "mout_dpum_bus_user",
-+	    mout_dpum_bus_user_p, PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER, 4, 1),
-+};
-+
-+static const struct samsung_div_clock dpum_div_clks[] __initconst = {
-+	DIV(CLK_DOUT_DPUM_BUSP, "dout_dpum_busp", "mout_dpum_bus_user",
-+	    CLK_CON_DIV_DIV_CLK_DPUM_BUSP, 0, 3),
-+};
-+
-+static const struct samsung_gate_clock dpum_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_DPUM_ACLK_DECON, "gout_dpum_decon_aclk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_ACLK_DMA, "gout_dpum_dma_aclk", "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_ACLK_DPP, "gout_dpum_dpp_aclk", "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D0_CLK, "gout_dpum_sysmmu_d0_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D1_CLK, "gout_dpum_sysmmu_d1_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D2_CLK, "gout_dpum_sysmmu_d2_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D3_CLK, "gout_dpum_sysmmu_d3_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+};
-+
-+static const struct samsung_cmu_info dpum_cmu_info __initconst = {
-+	.mux_clks		= dpum_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(dpum_mux_clks),
-+	.div_clks		= dpum_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(dpum_div_clks),
-+	.gate_clks		= dpum_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(dpum_gate_clks),
-+	.nr_clk_ids		= CLKS_NR_DPUM,
-+	.clk_regs		= dpum_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(dpum_clk_regs),
-+	.clk_name		= "dout_clkcmu_dpum_bus",
-+};
-+
- /* ---- CMU_FSYS0 ---------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_FSYS2 (0x17700000) */
-@@ -2085,6 +2165,9 @@ static const struct of_device_id exynosautov9_cmu_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-core",
- 		.data = &core_cmu_info,
-+	}, {
-+		.compatible = "samsung,exynosautov9-cmu-dpum",
-+		.data = &dpum_cmu_info,
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-fsys0",
- 		.data = &fsys0_cmu_info,
--- 
-2.39.2
+Changed from v7:
+1. remove unused variable
+
+Changed from v6:
+1. fix copyright time.
+2. driver only output mapping info in when debugging.
+3. remove dma-master check in the driver init since the binding
+always require it.
+
+Changed from v5:
+1. remove dead binding header.
+2. make "reg" required so the syscon binding can have the same
+example node of the dmamux binding.
+
+Changed from v4:
+1. remove the syscon binding since it can not be complete (still
+lack some subdevices)
+2. add reg description for the binding,
+3. remove the fixed channel assign for dmamux binding
+3. driver adopt to the binding change. Now the driver allocates all the
+channel when initing and maps the request chan to the channel dynamicly.
+
+Changed from v3:
+1. fix dt-binding address issue.
+
+Changed from v2:
+1. add reg property of dmamux node in the binding of patch 2
+
+Changed from v1:
+1. fix wrong title of patch 2.
+
+
+Inochi Amaoto (3):
+  dt-bindings: dmaengine: Add dma multiplexer for CV18XX/SG200X series
+    SoC
+  soc/sophgo: add top sysctrl layout file for CV18XX/SG200X
+  dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
+
+ .../bindings/dma/sophgo,cv1800-dmamux.yaml    |  51 ++++
+ drivers/dma/Kconfig                           |   9 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/cv1800-dmamux.c                   | 259 ++++++++++++++++++
+ include/soc/sophgo/cv1800-sysctl.h            |  30 ++
+ 5 files changed, 350 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+ create mode 100644 drivers/dma/cv1800-dmamux.c
+ create mode 100644 include/soc/sophgo/cv1800-sysctl.h
+
+--
+2.44.0
 
 
