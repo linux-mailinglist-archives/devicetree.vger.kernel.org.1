@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-88762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA8693EE7C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:35:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 284F393EE93
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 09:37:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94E3FB209D2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:35:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C295E1F2219C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 07:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437B185931;
-	Mon, 29 Jul 2024 07:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02AE312F37F;
+	Mon, 29 Jul 2024 07:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nBVdmPxn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j6enCwsV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD2A8563E;
-	Mon, 29 Jul 2024 07:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C751F2F46;
+	Mon, 29 Jul 2024 07:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722238511; cv=none; b=C6hda2WGo/4XFX2ADcUf3LnonQR3nLz/45ChvpXs8pkKCq0mzwBndG+B6OjQWGHzwcMNtF7Q8zpbqGKJ9egXHjv2Fo1aZts8HFJ7nM/+BXKME6I/od2MehXKXl/sKgGxIffa7vabaUSN1HpsBpPH8vHmGoG18lQKPD/lreP1MBQ=
+	t=1722238592; cv=none; b=n5cVYtZgMjUtGUQtM4eXal5GWJ2v3JAjKEBa3cAqVvkrdOuX1zPzktiPGCWk+gEAJjhYftyyaBBVA4OMNosMcoGknSlDQVtNfk3pmWZVsV9aVQVEx1+vT/B/dc1WCTXHJ0UAlbrUZmYD1Qnaw8lsauY1ALsIt3IGGJiExkKOs3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722238511; c=relaxed/simple;
-	bh=gyRMn/ZRT8UeeZ9ZlmeuVUiCI2n55MR2NKAn/5uQ2Kg=;
+	s=arc-20240116; t=1722238592; c=relaxed/simple;
+	bh=XosIECa9dwDc/SeeYGOHoU+Fn74A7HJoCXZZbfGRZFg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y9CJwPp50wjtuYNNxtSmr8vSQ6pT6jU5BYMfFAwEtBQQI/lX721wPmaavSpsK18ImN5RlKpuzlQuRuxoXnqE3g3P/4nd16JLEt7+w++bIt0dFgG+S6LkO4iDEYQafYP6+ICTnIIZeELAFxsiXco6ygGg9FAWsDHEho+SpHXHE+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nBVdmPxn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A545C32786;
-	Mon, 29 Jul 2024 07:35:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KIoqouOiqYqPH4Halb9AdlfIHt2YpmdSXBE6zJI3Lk04ca/BCJGawh25i9qFMdxv4HnAGFiIUi/njJANZTgYGyU8d0Hvy11T506t010+n3Z98oIvvq2zPF50NH7vvwuNXB472N1y5nVHdMZdg3AlGwa+9kAidPorTeQxVQuBSUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j6enCwsV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B43FBC4AF60;
+	Mon, 29 Jul 2024 07:36:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722238510;
-	bh=gyRMn/ZRT8UeeZ9ZlmeuVUiCI2n55MR2NKAn/5uQ2Kg=;
+	s=k20201202; t=1722238592;
+	bh=XosIECa9dwDc/SeeYGOHoU+Fn74A7HJoCXZZbfGRZFg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nBVdmPxnfwUe1lhpDN0VPiG2GuVMSYvhsM4D1IHWiD0xODPoCJGO3it9K0KaB2xOq
-	 Cye3iXX2TJqQp0bZ78Tsx37FqW239ItnlIxul5XDRy9n+R/yB3DrYOchmyuLd8FN++
-	 WLuwP2IyHoCsHZtxgHoHk+MwZTpUbOuEGJ4KhF+apHp5qZcD1HMUxoyDwzHmNHFU1n
-	 VfI8uDt91dwyWkAJKELGvXj4mkVljagKqfNfTglCmzVfbgy3LGK7+IoXeAkGK5bEtI
-	 3ALizYx+3K1KnSxOS3tL5QEYK5uQPaQZkEfm2kdAwHGkpQFYvu0r8xa6CrYMXobehf
-	 q55ZelSpdacnQ==
-Message-ID: <1724f480-369d-4b4a-9384-1c6b33b00433@kernel.org>
-Date: Mon, 29 Jul 2024 09:35:00 +0200
+	b=j6enCwsVQxxlnY1e9z84CpSYf/8pmAqCtE1N5yic67wkXsxY9dX7qPCdwZvnjYFAb
+	 MXBUvjaGIoOYHt0TW4ro1e4bKK6vaHEgIxOCIaz/p1O+/vUaQ7n7y06gaAoPAJHC9O
+	 dLATESsLY8XJyzlZFDgE3vlrw5i7tTEbBwsec2CaUQXdptO5MfhYjFaDPM2fty5YZb
+	 E4tOKUBlCjj33W7tMGOXzSQHCLO/yzo5yK9uoLeCqJAM1TY12L+mUUoUcr8MXkKSny
+	 +TR6yUSL3HUPhUI8XokUTFgdHb9Xp1LAHp9TnnOzcctPnwg5tVPAdz8FdOEEcsUiRm
+	 ZSYNq2jYSVyoQ==
+Message-ID: <dceb85da-0518-4215-9963-2d577b183021@kernel.org>
+Date: Mon, 29 Jul 2024 09:36:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
- clock description for AP6275P Wi-Fi device
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- conor+dt@kernel.org, arend.vanspriel@broadcom.com
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
-References: <20240729070102.3770318-1-jacobe.zang@wesion.com>
- <20240729070102.3770318-3-jacobe.zang@wesion.com>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: mt6765: Add missing PMIC clock
+To: Arseniy Velikanov <me@adomerle.xyz>, mturquette@baylibre.com,
+ sboyd@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, sean.wang@kernel.org,
+ linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, frank.li@vivo.com, jiasheng@iscas.ac.cn,
+ mars.cheng@mediatek.com, owen.chen@mediatek.com, macpaul.lin@mediatek.com,
+ zh.chen@mediatek.com, argus.lin@mediatek.com
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240729073428.28983-1-me@adomerle.xyz>
+ <20240729073428.28983-2-me@adomerle.xyz>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,22 +108,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240729070102.3770318-3-jacobe.zang@wesion.com>
+In-Reply-To: <20240729073428.28983-2-me@adomerle.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/07/2024 09:00, Jacobe Zang wrote:
-> Add clocks and clock-names for brcm4329-fmac.
-
-Why? Which devices have it? If only your newest addon, then squash the
-patches and add appropriate allOf:if:then disallowing the clocks for
-others. Or maybe all of them have it? Why commit msg does not explain
-anything about the hardware?
-
+On 29/07/2024 09:34, Arseniy Velikanov wrote:
+> Add PWRAP clock binding and shift the following ones
 > 
-> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> Fixes: eb7beb65ac30 ("clk: mediatek: add mt6765 clock IDs")
+
+Please describe the bug and its observable impact.
+
+> Signed-off-by: Arseniy Velikanov <me@adomerle.xyz>
 > ---
+>  include/dt-bindings/clock/mt6765-clk.h | 131 +++++++++++++------------
+>  1 file changed, 66 insertions(+), 65 deletions(-)
+> 
+> diff --git a/include/dt-bindings/clock/mt6765-clk.h b/include/dt-bindings/clock/mt6765-clk.h
+> index eb97e568518e..5d3a603a0d36 100644
+> --- a/include/dt-bindings/clock/mt6765-clk.h
+> +++ b/include/dt-bindings/clock/mt6765-clk.h
+> @@ -161,71 +161,72 @@
+>  #define CLK_TOP_NR_CLK			126
+>  
+>  /* INFRACFG */
+> -#define CLK_IFR_ICUSB			0
+
+NAK, you cannot change the bindings. Especially without bigger
+description where the bug is.
 
 Best regards,
 Krzysztof
