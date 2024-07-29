@@ -1,168 +1,360 @@
-Return-Path: <devicetree+bounces-89062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FBD493FE11
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:09:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70CDF93FE15
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 21:12:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF003B227D9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:09:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 260EB282913
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 19:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5AA155CB3;
-	Mon, 29 Jul 2024 19:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E48816D4C3;
+	Mon, 29 Jul 2024 19:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WRbnqhgg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011052.outbound.protection.outlook.com [52.101.65.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B04688F6E;
-	Mon, 29 Jul 2024 19:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722280184; cv=none; b=i8TcbkzZybdTk040fk0zhaptg36igt76Ed2oxNikJxyFAjSAdR2y+vYyo0VrfZtG3sc/PFQ0LxeM9PLXbkCFO+DyU4sUfaMktRa7P366KnyTwRE5TCmXtJrRX1NFVu1y/sdfEDhtqpX8dhq+5ZlHggP5In5p9s3pXgBDQ05QVbs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722280184; c=relaxed/simple;
-	bh=fvEG8IuZUXuSrOmwSWUOQopan86PdBzlFjFcPT7zo5k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c8qpcV1BCPyPAGaBVlqAdte7XQ4ThjnGlrfSk7MbzSGLnb2ZduUq0pW3O/MRHu4gPCt7wpl8O5nZNL0F1ofZPZv2nCv3Ntumgie5L6sPmNabcsyAe4MrXZxruy8L54zhhjZ9VJQSMAKiH+b+tv24I4hnxd5n6kpXu+zb/9W2J2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e86192c.versanet.de ([94.134.25.44] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sYVkP-00079A-SW; Mon, 29 Jul 2024 21:09:29 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Sam Edwards <cfsworks@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Jonathan Bennett <jbennett@incomsystems.biz>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Daniel =?utf-8?B?S3VraWXFgmE=?= <daniel@kukiela.pl>,
- Sven Rademakers <sven.rademakers@gmail.com>, Joshua Riek <jjriek@verizon.net>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add PCIe pinctrls to Turing RK1
-Date: Mon, 29 Jul 2024 21:09:28 +0200
-Message-ID: <2401016.9fHWaBTJ5E@diego>
-In-Reply-To: <659dfd80-5962-4265-836d-5761c3e41ca0@incomsystems.biz>
-References:
- <20231208062510.893392-1-CFSworks@gmail.com>
- <66f413d2-1a5b-b9e3-3c86-35a1d150f486@gmail.com>
- <659dfd80-5962-4265-836d-5761c3e41ca0@incomsystems.biz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1AB8F6E;
+	Mon, 29 Jul 2024 19:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722280325; cv=fail; b=APfg/EMCCooKVKSX7uBG1SATS/arN3N3zVaDKm9IZzBESRvFRAz3ZpzMPxFEuA+9wWxAjqWBTOCHpHvHwP+gGVmhRhKtIVPBDs8HEpN+TRRKIphP8oo2Vv3jj3No6LrbqxXb0Zq9oyv9ZU6V6gKy3i3qUFPqcDJpzZg46Ar+CQQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722280325; c=relaxed/simple;
+	bh=/RogscTK2/eFMWy5hCLda6Rka08tIQv6wYoGxfQP1xA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=T5sl62xqND9o37rIL1A4GaRx6Ero/83SKjfjY2aaTQN7BK/B/pQ7Lz9PwPJXHPQ+yaOwvgx4NRTSkfDebIQIgS9gP5W4wqvyTnITKTD8TmWNys+SrufYmPriKl0a/1WeS88rYfvz2ORCM4LndTrSUP6Uv7YadBlb/oTyYV5zq1g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WRbnqhgg; arc=fail smtp.client-ip=52.101.65.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=e652HF/JEDQPW4Ssd2XH2hID1EpV3Fd8EQOioUwCAc0cuK5yWE3kfvY3B0fIvSFrV6Jy8SvEVI7emSPXeot96eoMojPpsoV3E5wbnpRwdXnND0uFma7qP3rs3mF2t6LSXI1f145/gUIaQokY4SkQXsLnMHxH6ZUOemXVjuvOVionti4tp0TpknUZQVocuUPptZklhjhUGZtyyzzSkvW7EYEd3yxeXyVpMTymwYeFI13YxdDcc+Kuo9UJ4BuHnG+tu3OBuuXbuLf1gCf9OH+4pqRYFB6rTXDRr0IVxqXOWhe36pkuaplXgBumvWkcs7SJJsHpESleMZfltx+LEOa0xQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JCsi7YEvLI9ZylUJ9nzGtVjkEG917DqbNXG+mkLGto8=;
+ b=fsZ0qtY9F8LPSbXpD/s3Z4BEy+HW8GdGh63x0ZWlk9cAnewbXZWA+DJnuKzwf1X82ZZMyy/XdLgicct235f8V0Pzukj3ObtpXsf+nhHyt0W+4vyMD1DUkngeJ66PLaENCUMyiEcufChmGvQDfIgVSe+JDdDDHptTZwcr8Y0Y4QoDI0N43mWXqq3HTtSvjOuUJGUrbKZ/y9jNjbg1CxCRb5GyeReHH5JaoygxJYTXCyYlzNaSgY7Iu0g4WTsF/2Mfq6HvZ2FtsGsE0rBjp8KzLYUaKLgAyZ6xiAiPlOcUAsYFkSMBGbjjIIwK7xVysY+N6t5pLI2zFmg7zLp06jlGOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JCsi7YEvLI9ZylUJ9nzGtVjkEG917DqbNXG+mkLGto8=;
+ b=WRbnqhgg0m05vo/2bk4gkYYouezqJuke+X9U3B0Upj7AWH2h2wnjr1A6GygcvFmaq3zG0S8ilgXHWfX9pJOUO7VCdafT0eWzDcVaWthPMqIfD4PEQtl+eZiyQiM0J15VlNvAJMSBgq0IXg8hKG9v2yLb5xRSWeWRtihkATVvbdRoJXCtfMUKCCebB3paT57Xnt8kIJPn4HmT1zi8GjFLSPrT5rvomjZUw+yxa70f+TjkSX+2bKI1s9wOssSgOU+bTbllBy0I6Ns3P2uiBDx4+WiPdsEDqjSspz9BwRXTq9Hqh4l23+U8pbcbEL0apnSj5UjBpXrXaimKksmvaurKbQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB7557.eurprd04.prod.outlook.com (2603:10a6:20b:294::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.27; Mon, 29 Jul
+ 2024 19:12:00 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7807.026; Mon, 29 Jul 2024
+ 19:12:00 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	linux-rtc@vger.kernel.org (open list:REAL TIME CLOCK (RTC) SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list),
+	linuxppc-dev@lists.ozlabs.org (open list:FREESCALE SOC DRIVERS),
+	linux-arm-kernel@lists.infradead.org (moderated list:FREESCALE SOC DRIVERS)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: soc: fsl: Convert rcpm to yaml format
+Date: Mon, 29 Jul 2024 15:11:42 -0400
+Message-Id: <20240729191143.1826125-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR05CA0041.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7557:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a61ad68-8192-403a-587b-08dcb0025266
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|52116014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?BtJOyh2Suhgalp3PFNlzZd2I+X89QGuiw5iu06Sfdv1c8VvpIZbPHw2ljyXu?=
+ =?us-ascii?Q?fMMSVMPe1fhAbWwQex6Xxx8Ua4/2GbECzVakUZmn6B7zfnMsax5yvOKW3TFt?=
+ =?us-ascii?Q?xp9/KUxM00xlHsFuwFUI9OkRqLCFgfCkapOwHeJqaeAmUv1oaF4Ii6ydiCGo?=
+ =?us-ascii?Q?mvdccExI1yFnz3GtpQYnftQszEdUZdGdhY60Q0yFZUgsECOUZyot0vS7iybH?=
+ =?us-ascii?Q?SGeyI4qH0URxoiz0Xu4tWzslZ/iSpV2gvAEQol4pwH3CNpGtZTDRUcOiG4Ep?=
+ =?us-ascii?Q?fNaSQq8zCufnUf4eKjnCmtpI+2amiViuWl7Wwl6RYjHbNngS4fezuE/LAUbB?=
+ =?us-ascii?Q?6LQvg5sL13VzRl75wN/a+MWsZlaIhdzUlRqAEWCtZhxNBEIOCHOQjLPGsYOl?=
+ =?us-ascii?Q?J6o43fUb2e+Ey9lvMcGwlAcm/SNCyPvW1BKpnkfvQ23BwAQrcqFFYMnSaXs5?=
+ =?us-ascii?Q?kLRFy/yz/shS44kYFBbvw4yQ9BPUKGQQPnXmgXSu5pE/KfvisZ4aai3V4dyi?=
+ =?us-ascii?Q?Xf1f/uBi0t0RR7HbvU3GABOAYCUXW8BA5W/whTK5mKi1JuemKzRdU3uEi7Gg?=
+ =?us-ascii?Q?bCG0ThCisarr9OvIibUBJ3gpisRzWpHXpYBNUssfmr72i3x8DrNnRL2WR9K1?=
+ =?us-ascii?Q?vWA8CGbxGHi5SIHTkO+OKRtM3wGQT11ZuH+x3hyacWd1uUGCgQ6dOC4bAto4?=
+ =?us-ascii?Q?U0FaaN/Hu2AI0Qv9Z7VfYMmr8u9TmAANZMFfDArLmxQXwBXlEm19GeIGxock?=
+ =?us-ascii?Q?hGHGr/fyHDNki6/DdGb2wAOByUqMph+jLelHlliGRDobiiFLuF760PIWGC/l?=
+ =?us-ascii?Q?fxagolvTdwIMEx/FTP8Hwxp2lrEtbYnlj70gXJWCh0CmwZpVj1jUU8pCCa1R?=
+ =?us-ascii?Q?nvHYicDPWgesNRv7xeE2Em5S1UqnOnZOZriigiUapV06r56Y/wjZ/KAEIed1?=
+ =?us-ascii?Q?XqmGyQjaVFsh9jcU07mVl5YduKG0QNHj0j9ubeQluILFlV48I6mp3mGboxZi?=
+ =?us-ascii?Q?z8R+mCHn87MbUWwnizVUx5hrvnSbMWw5TkG7sbnl0KMJ6whX6JEXScrFgpk+?=
+ =?us-ascii?Q?sEqeUFUsAKtNC8GNkE1x5dLjV9lnKiUbVt/pmRtOcgYt1JJSN6OSVggsqzSP?=
+ =?us-ascii?Q?9WaoEdsTM3geo3VBLKAf7hoS2Xkkkkdsm08YuwOHFghh98UACCvytZ4HXVs8?=
+ =?us-ascii?Q?vvdOi8OZFgDtY/euB12GgCDtwMtAyPRqrzf7/6fwXHiOipIGsScNYjHyDjc6?=
+ =?us-ascii?Q?em66Kdb/wtdGZm/yoTWEq+0dYNlUu66F7vkVlsYKngzp20kGeE0I1CoxTH2D?=
+ =?us-ascii?Q?ItuO6q/tdj90mYFmr0/BdR0Qup3xDp7gcUbtMkn0YSZNAFbre7COYMEDcmOZ?=
+ =?us-ascii?Q?N8qu8itP47h0xNGgQJz0wHfhjEZi?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(52116014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?el+yGtakbAF7x32ItC8Bb7npe3yQ/0R8wsaeiTr01DV7gw89bWOCDynIAImc?=
+ =?us-ascii?Q?j7/3vIA0EJooKD2OrF87mLuvjBgXwf+JuyoFM06rN+lhG4w6kIhQ/5eJQp58?=
+ =?us-ascii?Q?vhVA7GegmLbCw47PIZoXii1pfzo3l0yzjgNJs3zFeMFxXrDZqJIHlKhe1P1Y?=
+ =?us-ascii?Q?oLjWYbcVHcNVF7RmRKwHL+HBwEsVm+f/p7kwLgpWmPDlIaIpDrJw4ce9XSq2?=
+ =?us-ascii?Q?TGvgcx0cOjGdDuIS3Vq04lYTtiDOQ8BFSlglXOIxo4WZ1KGq6xGB/VKCwzKZ?=
+ =?us-ascii?Q?OXrRhTo8V2CRcjNKPCTwKJUuxYZYe94vGK5oHLgmsNGALyHYvkbSVHAD0sIK?=
+ =?us-ascii?Q?F7yQLpF3hS47l6YIrdWndPis/ZSS4PwmdJY8bH7oMHRyOmPjk4a2tQwuukra?=
+ =?us-ascii?Q?ZV9lY7TynZa3mZeZaUL923+huQ0/c11negt+laRi5NzVhCH1YqV9ZRDaEcUq?=
+ =?us-ascii?Q?9IUdedZtNbi1TuftI9+NpJSvONtTR5GicmA6lke+nK74kzL8K8jhnpgsFxq2?=
+ =?us-ascii?Q?ELKMDL3d+OFOaf3aXBunRsrpOY52WiNn/rBBAATDTJE4CssrVjDMery1uHzM?=
+ =?us-ascii?Q?WQl44ufp8w2vCFC+l703bzbcJi/5ijwwiPlELWxE4GkXS6yifIA9rjLSBdbr?=
+ =?us-ascii?Q?ntGQe2/rC3HuYrqaxkATQlmXmc50XAyQQnSrWHPp+LDjNAstkqLEdt7CNS7/?=
+ =?us-ascii?Q?Dryax5T/5soeDTPP2aG3+xp/3ZBawo/17auOkhe7o9PPETF0KpVURbohGY52?=
+ =?us-ascii?Q?7bSerJfvl8YDzu9YdOjPYqW5dTZY0BEHuK39BvIf9OFXecpIv6U8ia9RoKrV?=
+ =?us-ascii?Q?LhWnd1yMcn3fSNmXGA0OZfDgUkYpWwP6gK9jsodxANtRFNeJM/NCQX2TwYxN?=
+ =?us-ascii?Q?3L1wfLdGBiImo4ODuUV7tCln2POjbYGbCbPIdpwxYEcX3N6Nz5/Kx9GKDd/U?=
+ =?us-ascii?Q?HHp3vHkxlAQwTQkk0DZ64kKjBsyN8mb+UkVobMO7hORmVCWdztuaUCWIvtBq?=
+ =?us-ascii?Q?LLMOY2Djoa7eInhVP2Qxd3D07W2e/vTDcAz3OyzJRZbC2Ywx/Xwjix3kYGFY?=
+ =?us-ascii?Q?nVwbZ+1GM97vJ1LGRX2wn76TQZi2NLAoqV6l3PDObGX6uoH7m1ln4oIC4Vle?=
+ =?us-ascii?Q?jmCB0erNGcl3ELTSWSQyL/oPCRwtyWzb/vnDqvDC/ENhxGr5IJkK1dmdHM9G?=
+ =?us-ascii?Q?ZsqvE975DPQStu7JJZCtUapWaMQtohT455fv1NLnB+cH3ScWi9fwL4z25Ryb?=
+ =?us-ascii?Q?dSD0xKEkzz6d0JVVSkulykAGEuQu6LSWZ1cxHHBvyu9VZPMRfJ9Xu1J/3Rt0?=
+ =?us-ascii?Q?k4zm5SkLMFtn4PcyoRjvAxqXc1xx2EiRduuqlyjgrYLkUa7E0wqpfMkImQzF?=
+ =?us-ascii?Q?q6XNYig1z5Ae+mdZZgaBWqFwpQrZ4h/HeY27cY/sPFwn9GbIEOWb188ya/NE?=
+ =?us-ascii?Q?FyNdRHxhRUlFvuhFMMIeVpzYLoX4A5p2ODLgIezHvhK6UbW1prSFIGOMuwIn?=
+ =?us-ascii?Q?Q7Lr3L8AvtKVKqeOMQXa4Wio5s5Opu0GVrl2gpNYU87dIE9axIT+vSOKNwwK?=
+ =?us-ascii?Q?rvZ7vUQHZd34f6v77Yaqp0IunkfOiYHTG82EOQGb?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a61ad68-8192-403a-587b-08dcb0025266
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2024 19:11:59.9919
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HyOzITQ9HYW6yMmEqniN+zvMNdTAfhW36EFJE1mls22249Z3XTFnywyuls49L0Ac5XGobZZy9/wjGknnksmHjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7557
 
-Hi Jonathan, Sam,
+Convert dt-binding rcpm from txt to yaml format.
+Add fsl,ls1028a-rcpm compatible string.
 
-Am Mittwoch, 5. Juni 2024, 21:45:42 CEST schrieb Jonathan Bennett:
-> On 12/8/23 11:27 AM, Sam Edwards wrote:
-> > On 12/8/23 04:05, Heiko St=FCbner wrote:
-> >> Am Freitag, 8. Dezember 2023, 07:25:10 CET schrieb Sam Edwards:
-> >>> The RK3588 PCIe 3.0 controller seems to have unpredictable behavior=20
-> >>> when
-> >>> no CLKREQ/PERST/WAKE pins are configured in the pinmux. In=20
-> >>> particular, it
-> >>> will sometimes (varying between specific RK3588 chips, not over=20
-> >>> time) shut
-> >>> off the DBI block, and reads to this range will instead stall
-> >>> indefinitely.
-> >>>
-> >>> When this happens, it will prevent Linux from booting altogether. The
-> >>> PCIe driver will stall the CPU core once it attempts to read the=20
-> >>> version
-> >>> information from the DBI range.
-> >>>
-> >>> Fix this boot hang by adding the correct pinctrl configuration to the
-> >>> PCIe 3.0 device node, which is the proper thing to do anyway. While
-> >>> we're at it, also add the necessary configuration to the PCIe 2.0 nod=
-e,
-> >>> which may or may not fix the equivalent problem over there -- but is=
-=20
-> >>> the
-> >>> proper thing to do anyway. :)
-> >>>
-> >>> Fixes: 2806a69f3fef6 ("arm64: dts: rockchip: Add Turing RK1 SoM=20
-> >>> support")
-> >>> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-> >>> ---
-> >>>
-> >>> Hi list,
-> >>>
-> >>> Compared to v1, v2 removes the `reset-gpios` properties as well --=20
-> >>> this should
-> >>> give control of the PCIe resets exclusively to the PCIe cores. (And=20
-> >>> even if the
-> >>> `reset-gpios` props had no effect in v1, it'd be confusing to have=20
-> >>> them there.)
-> >>
-> >> Hmm, I'd think this could result in differing behaviour.
-> >>
-> >> I.e. I tried the same on a different board with a nvme drive on the=20
-> >> pci30x4
-> >> controller. But moving the reset from the gpio-way to "just" setting t=
-he
-> >> perstn pinctrl, simply hung the controller when probing the device.
-> >
-> > Ah, I'm guessing it died in:
-> > ver =3D dw_pcie_readl_dbi(pci, PCIE_VERSION_NUMBER);
-> >
-> > If so, that's the same hang that this patch is aiming to solve. I'm=20
-> > starting to wonder if having muxed pins !=3D 1 for a given signal upset=
-s=20
-> > the RC(s). Is your board (in an earlier boot stage:=20
-> > reset/maskrom/bootloader) muxing a different perstn pin option to that=
-=20
-> > controller (and Linux doesn't know to clear it away)? Then when you=20
-> > add the perstn pinctrl the total number of perstns muxed to the=20
-> > controller comes to 2, and without a reset-gpios =3D <...>; to take it=
-=20
-> > away again, that number stays at 2 to cause the hang upon the DBI read?
-> >
-> > If so, that'd mean the change resolves the hang for me, because it=20
-> > brings the total up to 1 (from 0), but also causes the hang for you,=20
-> > because it brings the total up to 2 (away from 1).
-> >
-> >>
-> >> So I guess I'd think the best way would be to split the pinctrl up=20
-> >> into the
-> >> 3 separate functions (clkreqn, perstn, waken) so that boards can inclu=
-de
-> >> them individually.
-> >
-> > Mm, maybe. Though that might be more appropriate if a board comes=20
-> > along that doesn't connect all of those signals to the same group of=20
-> > pins. I worry that attempting to solve this hang by doing that will=20
-> > instead just mask the real problem.
-> >
-> >>
-> >> Nobody is using the controller pinctrl entries so far anyway :-) .
-> >
-> > Then it's interesting that this board requires them in order to avoid=20
-> > a hang on boot. I'll see if there's anything else that I can find out.
->=20
-> I've just finished testing the latest iteration of this patch with=20
-> 6.10-rc2 on my RK1 on a Turing Pi 2 carrier board. I can confirm that=20
-> unpatched mainline fails to boot with the same hang described here, and=20
-> the patch does make the board boot again.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../bindings/rtc/fsl,ls-ftm-alarm.yaml        |  2 +-
+ .../devicetree/bindings/soc/fsl/fsl,rcpm.yaml | 91 +++++++++++++++++++
+ .../devicetree/bindings/soc/fsl/rcpm.txt      | 69 --------------
+ 3 files changed, 92 insertions(+), 70 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/fsl/rcpm.txt
 
-Can you possibly test if
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D28b8d7793b8573563b3d45321376f36168d77b1e
-
-changes anything? In 6.11-rc1 now.
-
-The PERST# toggling happening before that patch could've caused
-issues with your PCIe device.
-
-
-Heiko
-
+diff --git a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+index 388102ae30cd8..3ec111f2fdc40 100644
+--- a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
++++ b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+@@ -42,7 +42,7 @@ properties:
+         minItems: 1
+     description:
+       phandle to rcpm node, Please refer
+-      Documentation/devicetree/bindings/soc/fsl/rcpm.txt
++      Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+ 
+   big-endian:
+     $ref: /schemas/types.yaml#/definitions/flag
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+new file mode 100644
+index 0000000000000..6c6cda7f2b220
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+@@ -0,0 +1,91 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,rcpm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Run Control and Power Management
++
++description:
++  The RCPM performs all device-level tasks associated with device run control
++  and power management.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - fsl,ls1012a-rcpm
++          - fsl,ls1021a-rcpm
++          - fsl,ls1028a-rcpm
++          - fsl,ls1043a-rcpm
++          - fsl,ls1045a-rcpm
++          - fsl,p2041-rcpm
++          - fsl,p5020-rcpm
++          - fsl,t4240-rcpm
++      - enum:
++          - fsl,qoriq-rcpm-1.0
++          - fsl,qoriq-rcpm-2.0
++          - fsl,qoriq-rcpm-2.1
++          - fsl,qoriq-rcpm-2.1+
++    minItems: 1
++    description: |
++      All references to "1.0" and "2.0" refer to the QorIQ chassis version to
++      which the chip complies.
++      Chassis Version         Example Chips
++      ---------------         -------------------------------
++      1.0                     p4080, p5020, p5040, p2041, p3041
++      2.0                     t4240, b4860, b4420
++      2.1                     t1040,
++      2.1+                    ls1021a, ls1012a, ls1043a, ls1046a
++
++  reg:
++    maxItems: 1
++
++  "#fsl,rcpm-wakeup-cells":
++    description: |
++      The number of IPPDEXPCR register cells in the
++      fsl,rcpm-wakeup property.
++
++      Freescale RCPM Wakeup Source Device Tree Bindings
++
++      Required fsl,rcpm-wakeup property should be added to a device node if
++      the device can be used as a wakeup source.
++
++      fsl,rcpm-wakeup: Consists of a phandle to the rcpm node and the IPPDEXPCR
++      register cells. The number of IPPDEXPCR register cells is defined in
++      "#fsl,rcpm-wakeup-cells" in the rcpm node. The first register cell is
++      the bit mask that should be set in IPPDEXPCR0, and the second register
++      cell is for IPPDEXPCR1, and so on.
++
++      Note: IPPDEXPCR(IP Powerdown Exception Control Register) provides a
++      mechanism for keeping certain blocks awake during STANDBY and MEM, in
++      order to use them as wake-up sources.
++
++  little-endian:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      RCPM register block is Little Endian. Without it RCPM
++      will be Big Endian (default case).
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    rcpm: global-utilities@e2000 {
++          compatible = "fsl,t4240-rcpm", "fsl,qoriq-rcpm-2.0";
++          reg = <0xe2000 0x1000>;
++          #fsl,rcpm-wakeup-cells = <2>;
++    };
++
++    serial@2950000 {
++         compatible = "fsl,ls1021a-lpuart";
++         reg = <0x2950000 0x1000>;
++         interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++         clocks = <&sysclk>;
++         clock-names = "ipg";
++         fsl,rcpm-wakeup = <&rcpm 0x0 0x40000000>;
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+deleted file mode 100644
+index 5a33619d881d0..0000000000000
+--- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
++++ /dev/null
+@@ -1,69 +0,0 @@
+-* Run Control and Power Management
+--------------------------------------------
+-The RCPM performs all device-level tasks associated with device run control
+-and power management.
+-
+-Required properites:
+-  - reg : Offset and length of the register set of the RCPM block.
+-  - #fsl,rcpm-wakeup-cells : The number of IPPDEXPCR register cells in the
+-	fsl,rcpm-wakeup property.
+-  - compatible : Must contain a chip-specific RCPM block compatible string
+-	and (if applicable) may contain a chassis-version RCPM compatible
+-	string. Chip-specific strings are of the form "fsl,<chip>-rcpm",
+-	such as:
+-	* "fsl,p2041-rcpm"
+-	* "fsl,p5020-rcpm"
+-	* "fsl,t4240-rcpm"
+-
+-	Chassis-version strings are of the form "fsl,qoriq-rcpm-<version>",
+-	such as:
+-	* "fsl,qoriq-rcpm-1.0": for chassis 1.0 rcpm
+-	* "fsl,qoriq-rcpm-2.0": for chassis 2.0 rcpm
+-	* "fsl,qoriq-rcpm-2.1": for chassis 2.1 rcpm
+-	* "fsl,qoriq-rcpm-2.1+": for chassis 2.1+ rcpm
+-
+-All references to "1.0" and "2.0" refer to the QorIQ chassis version to
+-which the chip complies.
+-Chassis Version		Example Chips
+----------------		-------------------------------
+-1.0				p4080, p5020, p5040, p2041, p3041
+-2.0				t4240, b4860, b4420
+-2.1				t1040,
+-2.1+				ls1021a, ls1012a, ls1043a, ls1046a
+-
+-Optional properties:
+- - little-endian : RCPM register block is Little Endian. Without it RCPM
+-   will be Big Endian (default case).
+-
+-Example:
+-The RCPM node for T4240:
+-	rcpm: global-utilities@e2000 {
+-		compatible = "fsl,t4240-rcpm", "fsl,qoriq-rcpm-2.0";
+-		reg = <0xe2000 0x1000>;
+-		#fsl,rcpm-wakeup-cells = <2>;
+-	};
+-
+-* Freescale RCPM Wakeup Source Device Tree Bindings
+--------------------------------------------
+-Required fsl,rcpm-wakeup property should be added to a device node if the device
+-can be used as a wakeup source.
+-
+-  - fsl,rcpm-wakeup: Consists of a phandle to the rcpm node and the IPPDEXPCR
+-	register cells. The number of IPPDEXPCR register cells is defined in
+-	"#fsl,rcpm-wakeup-cells" in the rcpm node. The first register cell is
+-	the bit mask that should be set in IPPDEXPCR0, and the second register
+-	cell is for IPPDEXPCR1, and so on.
+-
+-	Note: IPPDEXPCR(IP Powerdown Exception Control Register) provides a
+-	mechanism for keeping certain blocks awake during STANDBY and MEM, in
+-	order to use them as wake-up sources.
+-
+-Example:
+-	lpuart0: serial@2950000 {
+-		compatible = "fsl,ls1021a-lpuart";
+-		reg = <0x0 0x2950000 0x0 0x1000>;
+-		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&sysclk>;
+-		clock-names = "ipg";
+-		fsl,rcpm-wakeup = <&rcpm 0x0 0x40000000>;
+-	};
+-- 
+2.34.1
 
 
