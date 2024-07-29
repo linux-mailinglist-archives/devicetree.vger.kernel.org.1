@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9232993F925
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:10:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D98A193F929
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 17:13:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 118F41F222C0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:10:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5C011C21F67
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 15:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8190F15624D;
-	Mon, 29 Jul 2024 15:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8ED4156654;
+	Mon, 29 Jul 2024 15:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V9ZXO8d5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLvLepuk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D3E14B087;
-	Mon, 29 Jul 2024 15:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7156F15624C;
+	Mon, 29 Jul 2024 15:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722265853; cv=none; b=iUxULAJ0+JYNuwcpotAuMQMell1o0HKFLtz1kQVKmRsL3nEMCVOubRLBKtyD9ZlERImHN1itetgn9PmGDi/vSjPwM0OLYB48L9KzyJas4n7K7aryM9WgB+QXFOeBPI1dbepP2htmqvyE9ef6j6tStJZOov79g+54cmWL3FXGiXY=
+	t=1722265990; cv=none; b=dfkT2mbSiFD/EmATLnWaYPuUvs9kf5vgKWGq4OuG0ohE6o55iis8IoHsYwGEPI5Jx4E5+oXBThO1HU1uUk8yyyoQVRmfaUcMGpsPfILOmBYSLBOVF0clSkzfhDS9rxwt2SXPS3dFKwG+aWBJYVChMCgELqhHKQIpBN7fjGXonyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722265853; c=relaxed/simple;
-	bh=jcci7z4PwjhgEDOaAxC+tw4UeosmJl4Bgx+sNpCjg+s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p4Yk43ipybeRsmeZJsv53IDUYJ7QcpCgg7Cdt5wcLyV1Fe8NO0Ha0MaFclxxOzVDNv6G5JNcrALpIJDM/T2NoMJjiZLEKqEd3mRmNJMaOrRUOS3mJYxGpyvN0/njwrecyeUbb4CcnfKh/z6gQxX7LSOFYSPO/9ukv2TdInhrutw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V9ZXO8d5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1773DC32786;
-	Mon, 29 Jul 2024 15:10:49 +0000 (UTC)
+	s=arc-20240116; t=1722265990; c=relaxed/simple;
+	bh=lqnvlkLMFozm2wwc3+7Pn5KfGkqDgWA8zFqYfPHqMwQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Css49ERYqDan5eWg6jymVf5KQPfnE68wZU3w6oY5W+UryMo4mn/6KcB5YvNRF6D2y18QhsKotuxgLuJ84f6QyzoiUYhIFMwIjgiGGAXvnG/brkOh/ux6tIoY9pz5WYA74P63zx2rT2NOL9zKvOqovigTy4Z2WI6nqgDhjCzJ+QQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLvLepuk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ABC0C32786;
+	Mon, 29 Jul 2024 15:13:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722265853;
-	bh=jcci7z4PwjhgEDOaAxC+tw4UeosmJl4Bgx+sNpCjg+s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V9ZXO8d5hXIc/yfn5uK3Ft/hyQWL4K9MU0OcWNS0dStS4pehZnhlJ8MJpiIWQz2+o
-	 +zvOX8gFfhSxzy2pP2KJVuqNafsAztOO2kyVk9QKPL2jJFxSoq3+90ozoh+718y/pV
-	 8I7yb30BtNBpRX8XJuCAJ6g0LZ1Ge8m6JBwVb5kB9GSMsxdJQlkh+aJl0d8jhVmEYk
-	 Qg2vt2K9g7PF+Lbt5zs98HtfPZxSMb6kHOMXDQSFl61exvV70v0+O7W+IUkXinKnl6
-	 y9bSlotJi0ST6d23ZyIDJymL4vJJT/ukYMZEfI6O4548Ag1d9vQI+wmG9oPeooZM/2
-	 /Z/RJgUN91IVw==
-Message-ID: <6c6bb89e-a9d8-4d5c-837a-30f3bae56f0f@kernel.org>
-Date: Mon, 29 Jul 2024 17:10:48 +0200
+	s=k20201202; t=1722265990;
+	bh=lqnvlkLMFozm2wwc3+7Pn5KfGkqDgWA8zFqYfPHqMwQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=TLvLepukpOP2F8N4Dv4txfPbezkREc1aTC3uvBFwEDV5tE4x1gElGfjR5w5kC3xSx
+	 K9sXgiz7DfMLspa5ukpOZfGV0BifdQ+hRa82/ztEgH3J3e3LumgoFPRG9WyaeM/j11
+	 xRHWF+l4FHdnDnHrsQVcGBuiX8zR/1wQo6SSH9HozZ/TtkBk1R3qtoiTfkpsVrWp0l
+	 r6JD54awGqwgiievGjLW8M1NeWodfxSjRcRLSlCnomS11IQLI7mcOIWjEtfx7Ze0dS
+	 X+ESMgT/JhnycQuec66WIEutrV2w+yD8c1PirvlSgYig13ffh7CxQo/HFI1JqSVQPF
+	 E8s8F2CgSd+3Q==
+Message-ID: <3ae2671d-d8ff-426d-8cc8-c1603e616f8c@kernel.org>
+Date: Mon, 29 Jul 2024 17:13:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: imx8-ss-dma: enable dma support for lpspi
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Clark Wang <xiaoning.wang@nxp.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240729094511.159467-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v5 2/5] dt-bindings: usb: qcom,dwc3: Update ipq5332 clock
+ details
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
+ konrad.dybcio@linaro.org, djakov@kernel.org, quic_wcheng@quicinc.com,
+ quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240725104528.3504967-1-quic_varada@quicinc.com>
+ <20240725104528.3504967-3-quic_varada@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,35 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240729094511.159467-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20240725104528.3504967-3-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/07/2024 11:45, Alexander Stein wrote:
-> From: Clark Wang <xiaoning.wang@nxp.com>
+On 25/07/2024 12:45, Varadarajan Narayanan wrote:
+> USB uses icc-clk framework to enable the NoC interface clock.
+> Hence the 'iface' clock is removed from the list of clocks.
+> Update the clock-names list accordingly.
 > 
-> Add DMA configurations for LPSPI nodes on i.MX8QX/QM/DXL.
-> 
-> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
-> Using the DMA configuration bits from downstream kernel.
-> Tested on TQMa8XxS.
-> 
->  arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> index 1ee9496c988c5..8ae5f065b4180 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> @@ -34,6 +34,8 @@ lpspi0: spi@5a000000 {
->  		assigned-clocks = <&clk IMX_SC_R_SPI_0 IMX_SC_PM_CLK_PER>;
->  		assigned-clock-rates = <60000000>;
->  		power-domains = <&pd IMX_SC_R_SPI_0>;
-> +		dma-names = "tx","rx";
 
-Missing spaces. Unexpected order, unless that's the coding style for imx.
+Explanation you gave in v4 should be in the commit msg.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
