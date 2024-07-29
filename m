@@ -1,119 +1,172 @@
-Return-Path: <devicetree+bounces-88891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D41F93F440
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 13:39:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D0493F452
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 13:41:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0978283B30
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:39:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 428041C2164D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2024 11:41:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E25145B16;
-	Mon, 29 Jul 2024 11:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43ED2145B19;
+	Mon, 29 Jul 2024 11:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="GUBgOF9X"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="LWjeg9qb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2871422C4;
-	Mon, 29 Jul 2024 11:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AFB145330;
+	Mon, 29 Jul 2024 11:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722253140; cv=none; b=FXjgbiFIKLCvyQz9+yVz5EGFUSpZ9VlKQs5xlHp1/8hPXynEWIqhGPmoJbgsDb3vq318iNa0VA6qMexqII5i4bL3AjVDQwDOjm70j0gzNBAanjUPG6swNMkTZ6nIlPMv8jH2Seix3nzomm85J/u10TsX7ZxwuTLqTw0fYeQ0ZS0=
+	t=1722253308; cv=none; b=VuqUeqxLY3LjU15d6xo2q/yKHGs4IYkSgRGOT8WqYPW4mAehg2RKv0ZegzhCeGsz2SmAUU7abv/MJ5Bk3hr8yZsLqTPgmXnRpI9TMKIApeQz4PMYgXhgoo+8EVEbxtTAKjbvpkiqpYPFU8BszFXSZ5Xtcbsxx2zy/izHwLO6AMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722253140; c=relaxed/simple;
-	bh=TD6EXM4kVLwJX3pO87Jj3iLBgEokmITV99XHcrCbz8A=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=t6gb8wroyNRMMOHs3Y4GfIetVltGVQ5MkcTxh9W1ZewV0cQgHPifYkKekMPfo1ldRl//3+49TP5rJMTJFXY3jjyuH32MOJ25d+LkrCi3T58cmoPUES+ZxscMfjwbUPrXvN1hkq++Ps2KkI7wvRZ9qwt0760q92He1VdALaMfwd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=GUBgOF9X; arc=none smtp.client-ip=212.227.15.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1722253097; x=1722857897; i=markus.elfring@web.de;
-	bh=uEAC/L6ulAgRBK7yshpqZXqeMAXPvPPVORtFM67NtzY=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=GUBgOF9Xli7CwuuHwjs8OKVQ22hlk8G/lgquh2nvsmRyxvIsBkfspwJbPH1/BSII
-	 yjfVL9MVrdTNJC/NahRfATjq29p6zPn7zDOku3Jalk1I4RV5wfkrVFm8ZuKr4XLe2
-	 Ju52Wk68jaiIzdeKz9wiTcX6qjYXlhF//rqXOq7miLpqqgyV7uVmOTZ8EKS4gm/TP
-	 NGJ3BTVQFCD9IG/WWK9lbynCjxvNTf5fJRD0zyiUpv/APMCwsdBQz9vVelGgE1kSZ
-	 v/l4tYVtlmqstPbEcsne8MHRfu6DofA3n/CaQgA9ZkdbaO+RnBa1M5L9sN2I6IVi9
-	 bUIUZhdV16eB5Xbayg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MPKFF-1sv7ae2P4H-00SrVu; Mon, 29
- Jul 2024 13:38:17 +0200
-Message-ID: <633f5f40-481f-4063-ab5d-f383e981b0fe@web.de>
-Date: Mon, 29 Jul 2024 13:38:06 +0200
+	s=arc-20240116; t=1722253308; c=relaxed/simple;
+	bh=JRrHbiKlytnHj6P/j86pANIOFLHYhVfQU9hbiPuPzM0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XwP/A3o9u9LPdiJrBjohZ9L/9aqq0v/Dwh3JXhAj/qjUbojE06Vm6tcP6zv5QEwJFa2GoNGl36qxKFZxrcHdwlpYV4VHsHijtod44dXNqDEAFFCm1CJvoAWlmeTC4YbMe6xq9klgvl8+gpDYUhVhR3AJJ5poAVvtgd5GiXpdHh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=LWjeg9qb; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MIEWQH2EbsC6quDfk/x97k807fOjv5v98y+H4O3aEqc=; b=LWjeg9qbZoz8Yy5ZZwr/a+sh7A
+	njMK0Rr8wOmMpILkmPLL8ptcF+wpWIY6m2BuPN97PZ/traVbLxVqcEVK/LSHIIQW/e3IzqfsS/Dg4
+	8oF/L7QuB2gdnH1jWT2sYV3Uz26gDxxpcgl56wazNzhEu9dt2RL0q1ejXUCnpcmfdG4D9sBGRdBwz
+	GRhG3hKiKhMTWzpoCeas1cu8yRgT0gPcrz6NsIDv8rumRHm/5bF1Q/vgDZPuqWCiyyTrzWjttmkjQ
+	CuZ/cqOGprt9q+RiHwML+vE0tX549zIVu+udwZcz7rw3PORr4GP9FyjhnVN/a9GfQ59VGDsE56eo2
+	ItNP/S/Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47642)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1sYOkp-00049A-2P;
+	Mon, 29 Jul 2024 12:41:27 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1sYOks-0004IU-KC; Mon, 29 Jul 2024 12:41:30 +0100
+Date: Mon, 29 Jul 2024 12:41:30 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: "Frank.Sae" <Frank.Sae@motor-comm.com>
+Cc: andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, yuanlai.cui@motor-comm.com,
+	hua.sun@motor-comm.com, xiaoyong.li@motor-comm.com,
+	suting.hu@motor-comm.com, jie.han@motor-comm.com
+Subject: Re: [PATCH 2/2] net: phy: Add driver for Motorcomm yt8821 2.5G
+ ethernet phy
+Message-ID: <Zqd/6u5b7z1bCFaT@shell.armlinux.org.uk>
+References: <20240727092031.1108690-1-Frank.Sae@motor-comm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Inochi Amaoto <inochiama@outlook.com>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>,
- Vinod Koul <vkoul@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Liu Gui <kenneth.liu@sophgo.com>, Yixun Lan <dlan@gentoo.org>
-References: <IA1PR20MB4953438ED600110E71F9D092BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
-Subject: Re: [PATCH v8 3/3] dmaengine: add driver for Sophgo CV18XX/SG200X
- dmamux
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <IA1PR20MB4953438ED600110E71F9D092BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:GuWTcqeMLKlGqfoVB2IgHQverNB8k9DzW7aGPu5et/thqYoUxeV
- KEaLGtlbDU3IoswCwFmckdVvcDKB8i1tshlQCalFohaz8Rc36HME6RrXwaPL/mz3kfZ1izs
- M9ItePqwVvC53KrJEBxcqW/qvTdzotvUs3yFd+vMfeT0DANp/43whYy5MToOvtrhHGOj91q
- P9KxYNHMlp2nwwq0tFDdA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:08Yd6C93Dv8=;WU8IyE2VzIfMaK/x1K0zR89Plvb
- G+1CETmKoqcHYDBdnun/+wkAQTGMZu+RQo7BNlFBGkM/tsNY5wLqFr2hX9U6H5yyDWc62r/0q
- x68A8e8PZLrpDfBcZLDe+gLMsokXWetCaYG1JykNU9teOWQoTZML0X+VpunA9G/dvObgSMBMt
- lE8pL+kfqfgL7ysj3GA0RHavuhnf1cU80yMjt8uIPFuFs8iM5MCkhfGtoKVUcu9qTBg64TgfA
- OD/VEOB+cCqmFahz/HJMzYeQs+X99JVNp4pmj3bDgsNiz4YsE0R6UM6GqLfSuZmtr7nVXLH8P
- +NM6+GYrO+FM4qHustw07vxRnwxMXyViEOoKzuCYncHUQpBySnFtSYBmeHzMY0CgIztQCwfoK
- nZ//FZPxkYOG4MUC9/aRJiV3jv7Z6LU6MAzr8x/GIVr68CeRJEfU2gHkj26NFCYESw4E2S9cY
- 8TSooqezO0UP2LZb4tfky0EmHS2jUVNP+OBCjaaxHeggWJ8sLTMbCz4yHTVCryT7FiE4C17vm
- tL+fslgrA3QnWBpPojEvUBhw1x9N03MHgb7qcOTHaJp/H9c5brx5ga5XwuLXhqz5pU/BGVG/Y
- aj9knUeus/+/6TlwH0k44WBGjqfp6zyZA8HqqPzLlQa8toPR4NwkkIDySLOuI0x5ss0Crz2mb
- MiIOFqnv6zO6Ghz8Vw1lO4gTVZSu2X7yf5qVyunCrarhYIraYr9PoEujNzKmek4nsbUH0rbeW
- D6RrV2hIZgJmMmpZ2RESXOPBCXzXEudGTtzZLB+gE4djooAb+mk7aRsjvwIothxNM8uPxKetX
- 3h3QH2An+MXbZcxVasF2y70g==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240727092031.1108690-1-Frank.Sae@motor-comm.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-=E2=80=A6
-> +++ b/drivers/dma/cv1800-dmamux.c
-> @@ -0,0 +1,259 @@
-=E2=80=A6
-> +static void cv1800_dmamux_free(struct device *dev, void *route_data)
+On Sat, Jul 27, 2024 at 02:20:31AM -0700, Frank.Sae wrote:
+> +/**
+> + * yt8821_config_init() - phy initializatioin
+> + * @phydev: a pointer to a &struct phy_device
+> + *
+> + * returns 0 or negative errno code
+> + */
+> +static int yt8821_config_init(struct phy_device *phydev)
 > +{
-=E2=80=A6
-> +	unsigned long flags;
+> +	struct yt8821_priv *priv = phydev->priv;
+> +	int ret, val;
 > +
-> +	spin_lock_irqsave(&dmamux->lock, flags);
-=E2=80=A6
-> +	spin_unlock_irqrestore(&dmamux->lock, flags);
-=E2=80=A6
+> +	phydev->irq = PHY_POLL;
+> +
+> +	val = ytphy_read_ext_with_lock(phydev, YT8521_CHIP_CONFIG_REG);
+> +	if (priv->chip_mode == YT8821_CHIP_MODE_AUTO_BX2500_SGMII) {
+> +		ret = ytphy_modify_ext_with_lock(phydev,
+> +						 YT8521_CHIP_CONFIG_REG,
+> +						 YT8521_CCR_MODE_SEL_MASK,
+> +						 FIELD_PREP(YT8521_CCR_MODE_SEL_MASK, 0));
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		__assign_bit(PHY_INTERFACE_MODE_2500BASEX,
+> +			     phydev->possible_interfaces,
+> +			     true);
+> +		__assign_bit(PHY_INTERFACE_MODE_SGMII,
+> +			     phydev->possible_interfaces,
+> +			     true);
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(spinlock_irqsave)(&dmamux->lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10.2/source/include/linux/spinlock.h#L=
-574
+Before each and every call to .config_init, phydev->possible_interfaces
+will be cleared. So, please use __set_bit() here.
 
-Regards,
-Markus
+> +static int yt8821_read_status(struct phy_device *phydev)
+> +{
+> +	struct yt8821_priv *priv = phydev->priv;
+> +	int old_page;
+> +	int ret = 0;
+> +	int link;
+> +	int val;
+> +
+> +	if (phydev->autoneg == AUTONEG_ENABLE) {
+> +		int lpadv = phy_read_mmd(phydev,
+> +					 MDIO_MMD_AN, MDIO_AN_10GBT_STAT);
+> +
+> +		if (lpadv < 0)
+> +			return lpadv;
+> +
+> +		mii_10gbt_stat_mod_linkmode_lpa_t(phydev->lp_advertising,
+> +						  lpadv);
+> +	}
+> +
+> +	ret = ytphy_write_ext_with_lock(phydev,
+> +					YT8521_REG_SPACE_SELECT_REG,
+> +					YT8521_RSSR_UTP_SPACE);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = genphy_read_status(phydev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	old_page = phy_select_page(phydev, YT8521_RSSR_UTP_SPACE);
+> +	if (old_page < 0)
+> +		goto err_restore_page;
+> +
+> +	val = __phy_read(phydev, YTPHY_SPECIFIC_STATUS_REG);
+> +	if (val < 0) {
+> +		ret = val;
+> +		goto err_restore_page;
+> +	}
+> +
+> +	link = val & YTPHY_SSR_LINK;
+
+What link status is this reporting? For interface switching to work,
+phydev->link must _only_ indicate whether the _media_ side interface
+is up or down. It must _not_ include the status of the MAC facing
+interface from the PHY.
+
+Why? The interface configuration of the MAC is only performed when
+the _media_ link comes up, denoted by phydev->link becoming true.
+If the MAC interface configuration mismatches the PHY interface
+configuration, then the MAC facing interface of the PHY will
+remain down, and if phydev->link is forced to false, then the link
+will never come up.
+
+So, I hope that this isn't testing the MAC facing interface status
+of the PHY!
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
