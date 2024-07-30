@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-89562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2859420E4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:45:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28AC59420ED
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:46:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A80E284F40
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:45:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 564491C23314
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA8D18CBE2;
-	Tue, 30 Jul 2024 19:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A14D18CBE2;
+	Tue, 30 Jul 2024 19:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h16IfaV0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKM4hSs9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2029118C938;
-	Tue, 30 Jul 2024 19:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7648149C41;
+	Tue, 30 Jul 2024 19:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722368614; cv=none; b=QNGINuuJL7OWe9Eh2K16+gvWGfbWpj0QNCJvjp+A4J9HiNwvQ/GYP7rIqBhWB2kYbj3huvYdLu0o0/qkDQa4bTTz9e9lF/VHmFLMomgIVIFr4q2DeJ4HSmTFOFsXIWLclxxr9hDuEQd2OuUpPTq9ATgeuwzCD1x4Qn5RKS9Zuhk=
+	t=1722368728; cv=none; b=ZklC8vaDkQP/x4EHDEk30rKM3VthYtd2bZRPNMww0l6KDxMA6xsPeRIhrt9hG/q7ZoYFsiRkONN9d2LLtG7+metkFxQcPJvFNwvQlrLVdJSTFIdqTXhe0B/5WRb1F5Lwu2Xtw3cyBZo97U/FE+KjBa/rSfOVcdcgRe7PxOED7ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722368614; c=relaxed/simple;
-	bh=7ZWS8u9aPiBFISBPRpifvY/WoT4OE1+Bi2YojbT+WFI=;
+	s=arc-20240116; t=1722368728; c=relaxed/simple;
+	bh=Cn8UGTm+5clbj1815kjTPqeoSHJJ041j85Ym5yyD1oQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MuqWHs+m38mYa5SKnIoOweiimzUaJapsJZD/qMnqkZwODtCwJIGeBI2XHlhR9IVGbwYmX5aeieCKdZmtuWUMpKhEkjtUG87gvj04miwVdJI2h3xCUc9vQohpgyGUc7LDFOs9wnGhfeNbf/uk3AX+Y+1f5iWGy1G3FmLSsYNSlkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h16IfaV0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ED71C32782;
-	Tue, 30 Jul 2024 19:43:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBB1fsYZOlJHzo1pxWPC6Twk4g/RWSqQccxb4EN2TFFp6p2DIB8XMc/ep7OXneXaIdVlgQZTLnjhi/BMYZbX393oZgv+N80XWqFdN6ovRjhncd0xSvgPJKMfmP5aqbcrpDMM7U3e2HgZtZssnsyNBNsfBGv1iQGBdDysrOC9wNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKM4hSs9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34374C32782;
+	Tue, 30 Jul 2024 19:45:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722368613;
-	bh=7ZWS8u9aPiBFISBPRpifvY/WoT4OE1+Bi2YojbT+WFI=;
+	s=k20201202; t=1722368727;
+	bh=Cn8UGTm+5clbj1815kjTPqeoSHJJ041j85Ym5yyD1oQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h16IfaV09C1EP1HeYxv9Lfjjb2QZyn6y/AGl00vvL51gux3ZdTtCtkgu1PIeevz3U
-	 YrtJ9cB2kTu+C92kK9ODdHm62FWdQ9kRPww0iYG2WF2JZNknNKf7OJ4pBS+3Ra3ZUm
-	 TLrcthVrzu2tpe2tHmCZayfZLHjFltdbNsnyxOaO4LmqVyj1w+bYWGy8ONNaxa3MT3
-	 BqEVfWi00ONraIbPRf+advZiGJIkjyui2jnFDq/0hSCCWxMoRgmjqyHGJfDjvgL0dF
-	 78gLkeyOjG83pes5QNqVGE+uugTbXEdwA/Ewsoz0mC6xJ4W6104pzswLOYoh/YY9Q2
-	 rBxV0kM3qlooA==
-Date: Tue, 30 Jul 2024 13:43:32 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	b=aKM4hSs94pSbl8XDmbASUr+D13FvPq2tlNPTxpf1huOglb+fLDrpNZigvyNl2YhSM
+	 /PTHADLsxd+sKipAXOlAppKGc4qbA44CDlEY86inE4tB2L/neWdCci6xc3Swsk2CMX
+	 DnpHd5KRcM5Gh4n+G6GbvKbJPiAsq3unNoCQS2/ryvqhK7czQdp9nCw7YXcCx2B77z
+	 NDZODbO2Qo8rsBRMW4LfooAeWKSOoJhV9wIVSvYBa3yGRoXMni5DHdYhbqpLpXkmM8
+	 f3EN5y7N1Y506GilLvp5UOVLMvcZ+S7YZQcIR7HAP2NZ2hxp06u5MwCiZCTI2jINWy
+	 0Cdw4phunBnuA==
+Date: Tue, 30 Jul 2024 13:45:26 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	"open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:FREESCALE SOC DRIVERS" <linuxppc-dev@lists.ozlabs.org>,
-	"moderated list:FREESCALE SOC DRIVERS" <linux-arm-kernel@lists.infradead.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: soc: fsl: Convert rcpm to yaml format
-Message-ID: <20240730194332.GA2029820-robh@kernel.org>
-References: <20240729191143.1826125-1-Frank.Li@nxp.com>
+	Stephan Gerhold <stephan@gerhold.net>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH v2 2/5] dt-bindings: soc: qcom: smd-rpm: add generic
+ compatibles
+Message-ID: <172236872511.2035012.2163751854672645367.robh@kernel.org>
+References: <20240729-fix-smd-rpm-v2-0-0776408a94c5@linaro.org>
+ <20240729-fix-smd-rpm-v2-2-0776408a94c5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,135 +68,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240729191143.1826125-1-Frank.Li@nxp.com>
+In-Reply-To: <20240729-fix-smd-rpm-v2-2-0776408a94c5@linaro.org>
 
-On Mon, Jul 29, 2024 at 03:11:42PM -0400, Frank Li wrote:
-> Convert dt-binding rcpm from txt to yaml format.
-> Add fsl,ls1028a-rcpm compatible string.
+
+On Mon, 29 Jul 2024 22:52:15 +0300, Dmitry Baryshkov wrote:
+> Add two generic compatibles to all smd-rpm devices, they follow the same
+> RPMSG protocol and are either accessed through the smd-edge or through
+> the glink-edge.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/rtc/fsl,ls-ftm-alarm.yaml        |  2 +-
->  .../devicetree/bindings/soc/fsl/fsl,rcpm.yaml | 91 +++++++++++++++++++
->  .../devicetree/bindings/soc/fsl/rcpm.txt      | 69 --------------
->  3 files changed, 92 insertions(+), 70 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+>  .../devicetree/bindings/clock/qcom,rpmcc.yaml      |  2 +-
+>  .../bindings/remoteproc/qcom,glink-rpm-edge.yaml   |  2 +-
+>  .../bindings/remoteproc/qcom,rpm-proc.yaml         |  4 +-
+>  .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 74 ++++++++++------------
+>  .../devicetree/bindings/soc/qcom/qcom,smd.yaml     |  2 +-
+>  5 files changed, 38 insertions(+), 46 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
-> index 388102ae30cd8..3ec111f2fdc40 100644
-> --- a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
-> @@ -42,7 +42,7 @@ properties:
->          minItems: 1
->      description:
->        phandle to rcpm node, Please refer
-> -      Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> +      Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
->  
->    big-endian:
->      $ref: /schemas/types.yaml#/definitions/flag
-> diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
-> new file mode 100644
-> index 0000000000000..6c6cda7f2b220
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/fsl/fsl,rcpm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Run Control and Power Management
-> +
-> +description:
-> +  The RCPM performs all device-level tasks associated with device run control
-> +  and power management.
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,ls1012a-rcpm
-> +          - fsl,ls1021a-rcpm
-> +          - fsl,ls1028a-rcpm
-> +          - fsl,ls1043a-rcpm
-> +          - fsl,ls1045a-rcpm
-> +          - fsl,p2041-rcpm
-> +          - fsl,p5020-rcpm
-> +          - fsl,t4240-rcpm
-> +      - enum:
-> +          - fsl,qoriq-rcpm-1.0
-> +          - fsl,qoriq-rcpm-2.0
-> +          - fsl,qoriq-rcpm-2.1
-> +          - fsl,qoriq-rcpm-2.1+
 
-You can't just allow any combination.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +    minItems: 1
-> +    description: |
-> +      All references to "1.0" and "2.0" refer to the QorIQ chassis version to
-> +      which the chip complies.
-> +      Chassis Version         Example Chips
-> +      ---------------         -------------------------------
-> +      1.0                     p4080, p5020, p5040, p2041, p3041
-> +      2.0                     t4240, b4860, b4420
-> +      2.1                     t1040,
-> +      2.1+                    ls1021a, ls1012a, ls1043a, ls1046a
-
-The compatible lists above needs to match this.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#fsl,rcpm-wakeup-cells":
-> +    description: |
-> +      The number of IPPDEXPCR register cells in the
-> +      fsl,rcpm-wakeup property.
-> +
-> +      Freescale RCPM Wakeup Source Device Tree Bindings
-> +
-> +      Required fsl,rcpm-wakeup property should be added to a device node if
-> +      the device can be used as a wakeup source.
-> +
-> +      fsl,rcpm-wakeup: Consists of a phandle to the rcpm node and the IPPDEXPCR
-> +      register cells. The number of IPPDEXPCR register cells is defined in
-> +      "#fsl,rcpm-wakeup-cells" in the rcpm node. The first register cell is
-> +      the bit mask that should be set in IPPDEXPCR0, and the second register
-> +      cell is for IPPDEXPCR1, and so on.
-> +
-> +      Note: IPPDEXPCR(IP Powerdown Exception Control Register) provides a
-> +      mechanism for keeping certain blocks awake during STANDBY and MEM, in
-> +      order to use them as wake-up sources.
-> +
-> +  little-endian:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      RCPM register block is Little Endian. Without it RCPM
-> +      will be Big Endian (default case).
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    rcpm: global-utilities@e2000 {
-> +          compatible = "fsl,t4240-rcpm", "fsl,qoriq-rcpm-2.0";
-> +          reg = <0xe2000 0x1000>;
-> +          #fsl,rcpm-wakeup-cells = <2>;
-> +    };
-> +
-> +    serial@2950000 {
-> +         compatible = "fsl,ls1021a-lpuart";
-> +         reg = <0x2950000 0x1000>;
-> +         interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> +         clocks = <&sysclk>;
-> +         clock-names = "ipg";
-> +         fsl,rcpm-wakeup = <&rcpm 0x0 0x40000000>;
-> +    };
 
