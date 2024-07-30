@@ -1,238 +1,139 @@
-Return-Path: <devicetree+bounces-89445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB6294120B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:39:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 381F2941218
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91BE3B27232
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:39:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3DB0B25728
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB83919EEC0;
-	Tue, 30 Jul 2024 12:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC811A01C0;
+	Tue, 30 Jul 2024 12:42:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kHSaWT0D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HHQw2keq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD422757FC;
-	Tue, 30 Jul 2024 12:38:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4103E19EEA1;
+	Tue, 30 Jul 2024 12:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722343140; cv=none; b=eq1P3mcoGSaT4IGOCKrr+Ae4dNFlAVbizeXa6ZR7G26qV5k5guOucwD6SqQqzjVW7FDOjWLBNvRBzPf9ufbdD+x7bxKd5/mI1e4Nc2DAgNJ5nGP/8sCwYph3jRwp7PJv3x3+Irxu+YoJWUM2exDNAQlZjUg++5I2A52Ytii8QAE=
+	t=1722343352; cv=none; b=r0zUvka7KP55qiCw3yqFQ3ahv45o2IaQFpznUWO8NAsgJiebjWd1up6Cg84rZROhsuF0JRCWGF8dmg3a/uvtGYstPUYX0j4aeD9yXmh01MzPKnDsFEQ8kxMwRfQtbeNr49rrOAtRcJqskS8ethVcekrS84qs+w6DggbjRZ8bUXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722343140; c=relaxed/simple;
-	bh=lFTKPbFHREQpS123d9Xfv3BiBZqxvIzz/vBQn9ZUMo8=;
+	s=arc-20240116; t=1722343352; c=relaxed/simple;
+	bh=bYnUpP7Mmu+3DjXN8Jp/cEq686gvZ7Y4PhqtstpNYYM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HEn/ygimz9Riu1n24P5gvqAEgXQnSt5n3O8nwsvHxg/Iz9MuhBK0LVmNBzk0TczdUPeXY22ldr036+FmxWaFGQ6EKfzdodMidH84qW5cotwuJX1MzDk3oZRK8IQdxBvrPj7uuvmbnz5nKXBdDFpCJZXxs/SPjJseBWiFyf3gGhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kHSaWT0D; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2E4E48A9;
-	Tue, 30 Jul 2024 14:38:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1722343090;
-	bh=lFTKPbFHREQpS123d9Xfv3BiBZqxvIzz/vBQn9ZUMo8=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=JBjOiRJu4tA4+89s5Efu/nZkWQuYz4sMf76tyXC3nmWy/cqgEmiW+v0pfwt1algAFnrwPDg8oPY4aSougy5yryLDYyuaiuvGFpt0S4v4T1K/NcGo3HOGk1ZJxcMwGraJUbD91lF2EJX1dGSlEiL6M5a3qthgAeu80PkPbq9GwKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HHQw2keq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5372CC32782;
+	Tue, 30 Jul 2024 12:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722343351;
+	bh=bYnUpP7Mmu+3DjXN8Jp/cEq686gvZ7Y4PhqtstpNYYM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kHSaWT0DxrWSgByUaApIi/7GpZMWCI4lvmojRXulYNTmJiZ3QRLATjgFuPvbqKI2H
-	 cjss6CjhV6/GBXrVpliUa1qxg+ghKk5UeVClOiXbtJyxRM8EivEx/XKVeJj+F4UnPl
-	 3ERdj+4TvugoQxoDRTtiwby3bvbIXfWtvz4L/ebQ=
-Date: Tue, 30 Jul 2024 15:38:36 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Julien Stephan <jstephan@baylibre.com>,
-	Andy Hsieh <andy.hsieh@mediatek.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Louis Kuo <louis.kuo@mediatek.com>,
-	Phi-Bang Nguyen <pnguyen@baylibre.com>
-Subject: Re: [PATCH v6 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
- interface
-Message-ID: <20240730123836.GK1552@pendragon.ideasonboard.com>
-References: <20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com>
- <20240729-add-mtk-isp-3-0-support-v6-1-c374c9e0c672@baylibre.com>
- <92b18918-979d-43f6-890d-888caea08561@collabora.com>
- <2a01a1b2-4da7-42a2-b215-a32b53082290@collabora.com>
+	b=HHQw2keqogAbOhnbmPpqTqC3S6Uuj+59BEz1Cw6n6nEZd0uhhcl964PrjxPbj3Iia
+	 vYuYUmvIbKbV/6u4yOe538iK9x6oaln80arKlUP2StxknSvZC91qlboQs1X9SFJdEf
+	 6kBN0hHIjZzjkhMrRUD5pJnaZew/pBYCuE5NgjC3iivc4sKiS84A6uxEcAvc8TVxM2
+	 b3crpyA/5E6KcjD9UXkJJSvLxPMrvy27NBU6fD7A8vrChiMAxIxG8QQl1zlyOn1xft
+	 ydLW6FXls1JjAONqwikdnchXgfqhOfctK33mqEuKCh/LEno3WgYGxhwGr0BJ7yp5re
+	 mFZYWjD60B9NA==
+Date: Tue, 30 Jul 2024 14:42:28 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc: netdev@vger.kernel.org, daniel@makrotopia.org, dqfext@gmail.com,
+	sean.wang@mediatek.com, andrew@lunn.ch, f.fainelli@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, upstream@airoha.com
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: mediatek,mt7530: Add
+ airoha,en7581-switch
+Message-ID: <ZqjftJJZpSa4_atg@lore-desk>
+References: <cover.1722325265.git.lorenzo@kernel.org>
+ <63f5d56a0d8c81d70f720c9ad2ca3861c7ce85e8.1722325265.git.lorenzo@kernel.org>
+ <3d0e39a3-02e9-42b4-ad49-7c1778bfa874@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rmJ3g8aJy3cwZr9o"
+Content-Disposition: inline
+In-Reply-To: <3d0e39a3-02e9-42b4-ad49-7c1778bfa874@arinc9.com>
+
+
+--rmJ3g8aJy3cwZr9o
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a01a1b2-4da7-42a2-b215-a32b53082290@collabora.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Angelo,
+> On 30/07/2024 10:46, Lorenzo Bianconi wrote:
+> > Add documentation for the built-in switch which can be found in the
+> > Airoha EN7581 SoC.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >   .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml     | 9 ++++++++-
+> >   1 file changed, 8 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.=
+yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> > index 7e405ad96eb2..aa89bc89eb45 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> > @@ -92,6 +92,10 @@ properties:
+> >             Built-in switch of the MT7988 SoC
+> >           const: mediatek,mt7988-switch
+> > +      - description:
+> > +          Built-in switch of the Airoha EN7581 SoC
+> > +        const: airoha,en7581-switch
+> > +
+> >     reg:
+> >       maxItems: 1
+> > @@ -284,7 +288,10 @@ allOf:
+> >     - if:
+> >         properties:
+> >           compatible:
+> > -          const: mediatek,mt7988-switch
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt7988-switch
+> > +              - airoha,en7581-switch
+>=20
+> The compatible string won't be more than one item. So this would be a
+> better description:
+>=20
+> compatible:
+>   oneOf:
+>     - const: mediatek,mt7988-switch
+>     - const: airoha,en7581-switch
+>=20
+> Ar=C4=B1n=C3=A7
 
-On Mon, Jul 29, 2024 at 05:08:35PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 29/07/24 16:57, AngeloGioacchino Del Regno ha scritto:
-> > Il 29/07/24 16:48, Julien Stephan ha scritto:
-> >> From: Louis Kuo <louis.kuo@mediatek.com>
-> >>
-> >> This adds the bindings, for the mediatek ISP3.0 SENINF module embedded in
-> >> some Mediatek SoC, such as the mt8365
-> >>
-> >> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
-> >> Signed-off-by: Phi-Bang Nguyen <pnguyen@baylibre.com>
-> >> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> >> ---
-> >>   .../bindings/media/mediatek,mt8365-seninf.yaml     | 259 +++++++++++++++++++++
-> >>   MAINTAINERS                                        |   7 +
-> >>   2 files changed, 266 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml 
-> >> b/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
-> >> new file mode 100644
-> >> index 000000000000..8bd78ef424ac
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
-> >> @@ -0,0 +1,259 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +# Copyright (c) 2023 MediaTek, BayLibre
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/media/mediatek,mt8365-seninf.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: MediaTek Sensor Interface 3.0
-> >> +
-> > 
-> > ..snip..
-> > 
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    #include <dt-bindings/clock/mediatek,mt8365-clk.h>
-> >> +    #include <dt-bindings/interrupt-controller/irq.h>
-> >> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> +    #include <dt-bindings/phy/phy.h>
-> >> +    #include <dt-bindings/power/mediatek,mt8365-power.h>
-> >> +
-> >> +    soc {
-> >> +        #address-cells = <2>;
-> >> +        #size-cells = <2>;
-> >> +
-> >> +        csi@15040000 {
-> >> +            compatible = "mediatek,mt8365-seninf";
-> >> +            reg = <0 0x15040000 0 0x6000>;
-> >> +            interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_LOW>;
-> >> +            clocks = <&camsys CLK_CAM_SENIF>,
-> >> +                     <&topckgen CLK_TOP_SENIF_SEL>;
-> >> +            clock-names = "camsys", "top_mux";
-> >> +
-> >> +            power-domains = <&spm MT8365_POWER_DOMAIN_CAM>;
-> >> +
-> >> +            phys = <&mipi_csi0 PHY_TYPE_DPHY>, <&mipi_csi1>;
-> >> +            phy-names = "csi0", "csi1";
-> >> +
-> >> +            ports {
-> >> +                #address-cells = <1>;
-> >> +                #size-cells = <0>;
-> >> +
-> >> +                port@0 {
-> >> +                    reg = <0>;
-> >> +                    seninf_in1: endpoint {
-> >> +                        clock-lanes = <2>;
-> >> +                        data-lanes = <1 3 0 4>;
-> >> +                        remote-endpoint = <&isp1_out>;
-> >> +                    };
-> >> +                };
-> >> +
-> >> +                port@1 {
-> >> +                    reg = <1>;
-> >> +                };
-> >> +
-> >> +                port@2 {
-> >> +                    reg = <2>;
-> >> +                };
-> >> +
-> >> +                port@3 {
-> >> +                    reg = <3>;
-> >> +                };
-> > 
-> > I don't really get why you got all those empty ports here, as you could simply
-> > avoid adding all of the empty nodes instead.
-> > 
-> > I don't have strong opinions about that anyway so, regardless of that....
-> > 
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Wait a minute. No. The ports are all required?! Why?!
+ack, I will fix it in v2.
 
-Because they exist at the hardware level, even if not all of them are
-supported in drivers in this series. Ports 6 to 9, for instance, are
-connected to ISPs that have no current mainline support, but they exist
-in the hardware.
-
-> >> +
-> >> +                port@4 {
-> >> +                    reg = <4>;
-> >> +                    seninf_camsv1_endpoint: endpoint {
-> >> +                        remote-endpoint = <&camsv1_endpoint>;
-> >> +                    };
-> >> +                };
-> >> +
-> >> +                port@5 {
-> >> +                    reg = <5>;
-> >> +                    seninf_camsv2_endpoint: endpoint {
-> >> +                        remote-endpoint = <&camsv2_endpoint>;
-> >> +                    };
-> >> +                };
-> >> +
-> >> +                port@6 {
-> >> +                    reg = <6>;
-> >> +                };
-> >> +
-> >> +                port@7 {
-> >> +                    reg = <7>;
-> >> +                };
-> >> +
-> >> +                port@8 {
-> >> +                    reg = <8>;
-> >> +                };
-> >> +
-> >> +                port@9 {
-> >> +                    reg = <9>;
-> >> +                };
-> >> +            };
-> >> +        };
-> >> +    };
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index d6c90161c7bf..6bd7df1c3e08 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -14158,6 +14158,13 @@ M:    Sean Wang <sean.wang@mediatek.com>
-> >>   S:    Maintained
-> >>   F:    drivers/char/hw_random/mtk-rng.c
-> >> +MEDIATEK ISP3.0 DRIVER
-> >> +M:    Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >> +M:    Julien Stephan <jstephan@baylibre.com>
-> >> +M:    Andy Hsieh <andy.hsieh@mediatek.com>
-> >> +S:    Supported
-> >> +F:    Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
-> >> +
-> >>   MEDIATEK SMI DRIVER
-> >>   M:    Yong Wu <yong.wu@mediatek.com>
-> >>   L:    linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-> >>
-
--- 
 Regards,
+Lorenzo
 
-Laurent Pinchart
+--rmJ3g8aJy3cwZr9o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZqjftAAKCRA6cBh0uS2t
+rH5cAP93Dtt6PHl6bZl3bXLMM7y0eddjamO6oouR/zhyZJeRzwD5AfitMaRnL09b
+PkLA9hXs4iAvS/UrWXjPkrQKBLxH1wY=
+=b1Gg
+-----END PGP SIGNATURE-----
+
+--rmJ3g8aJy3cwZr9o--
 
