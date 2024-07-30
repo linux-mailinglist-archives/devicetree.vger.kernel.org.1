@@ -1,169 +1,92 @@
-Return-Path: <devicetree+bounces-89519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C261941769
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:11:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8E1941788
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB814286C6E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:11:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC114B25700
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3121D1A4B4E;
-	Tue, 30 Jul 2024 16:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A934318455C;
+	Tue, 30 Jul 2024 16:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ot/qMUX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B71D1A4B44;
-	Tue, 30 Jul 2024 16:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8134A184535;
+	Tue, 30 Jul 2024 16:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722355716; cv=none; b=KX3Hk6XHzCTCV9jwx9o4tzXMzeyTHghFqRVUwlWB/nQKZGu/b+5R/8ZQOWQK8Lk1N7Oa48zNo4/7mVNQyp0Bh+cW3/WLVffY0edF16YpYJaTTQTvHP0RTjLeSYCgQltnDF6imUZdkyIn4PoP02HlxRPQHwh1q7YItsB7PpDf0d0=
+	t=1722355787; cv=none; b=fLWujrqRI4C/PFurlBbPnZCse5lU9UhZuIdlJxl2pH6wL3jHMuvZO/Fs2O+gQh4aHVb4zRMNWboaGmcPZh6IExeIWbWTi0nqNqs1bAbImwflyfiq4Wf5k/iHTgBg4sSXdMk5f/UiRjM2O4vPO5IreFYzeWtBnH9Y/pN95Y4LDwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722355716; c=relaxed/simple;
-	bh=SbcfHMDD7F2lgNB1acsCs6fg8GG51YngRe59u4jN2I4=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3sOL0IgKWirah4cXrmnP99Rnx4Ymf/Azw3ABizU7rfrgKusgG7PeRDdN98aVmWB7FJXs7jEfr/ywO2uO56v5ThcQsUB9qncpJ2EMhQYYsuCQVON2+WwZLvNgEsSyHQhsfnR0bcHIhTzmKzzzkxqZfaEz7XHRSRF3cyvXDOAv6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sYpOg-000000002Lj-3eAX;
-	Tue, 30 Jul 2024 16:08:22 +0000
-Date: Tue, 30 Jul 2024 17:08:19 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 1/3] dt-bindings: rng: Add Rockchip RK3568 TRNG
-Message-ID: <686aae7633f14528c983b8072d79a660cc56528e.1722355365.git.daniel@makrotopia.org>
-References: <cover.1722355365.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1722355787; c=relaxed/simple;
+	bh=/COP5d4lcWWm1MPCW33JkqIwJpoFVmcdzXmXsC3yKgM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=qbRic7BryOSkaf6uBhfwpJwrJ9H0GgC8L5pAM+zXNEfBV67d0/w2msqyFHHfm0TgEgTKUE3X7b91Rei6ZD4mN2yGYgsMbub9RJKglq9xKa52FCva/rqp+MaJnhUiPBo9vCed09l6U+FNEu5Jt5GusLbmIHI2RaRM7UFuTbLdfhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ot/qMUX5; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 991B41C0003;
+	Tue, 30 Jul 2024 16:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1722355778;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/COP5d4lcWWm1MPCW33JkqIwJpoFVmcdzXmXsC3yKgM=;
+	b=Ot/qMUX5Wl8TuolPF3Q3e34haHtoENDlSlggWsFdsxVnMh4YQB2DcGgFdH3+dHHImE77XE
+	KwDRgayvZdzn2SiFn8z82Yn9Ni2czG0tfoYbU7fkpobX+eR8zBRKhjg/b5kQ3Ay94xgB+Q
+	NQ9XDSAYeONEHkxvz9K7Jr5vgizwz6us4TR6b6Bo1eoplW+Cp/NK4K6QTyEgQ3fhIYAx5t
+	8eYNeLfXro7Dmxqkm1OOMkcNJyA8eibyWjRRyRkCxXsCDqMqBNiPUje2wZo1mGrjqxNANA
+	23eWAaeuHxaPPBiVEDK0QCNT10iLJqUUaZX1tqTIADzuch9Jfoy3l4HRya9PqQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1722355365.git.daniel@makrotopia.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 30 Jul 2024 18:09:37 +0200
+Message-Id: <D33060WY0OJ5.1UQYALBQ8A6QG@bootlin.com>
+Subject: Re: [PATCH RESEND v2 0/2] Add Mobileye EyeQ5 pinctrl support
+Cc: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Linus Walleij"
+ <linus.walleij@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.18.1-0-gaa8319bc591f
+References: <20240730-mbly-pinctrl-v2-0-d470f64e0395@bootlin.com>
+In-Reply-To: <20240730-mbly-pinctrl-v2-0-d470f64e0395@bootlin.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-From: Aurelien Jarno <aurelien@aurel32.net>
+Hello all,
 
-Add the True Random Number Generator on the Rockchip RK3568 SoC.
+On Tue Jul 30, 2024 at 6:08 PM CEST, Th=C3=A9o Lebrun wrote:
+> This series adds a driver handling EyeQ5 (and only EyeQ5, not EyeQ6L nor
+> EyeQ6H) SoC pin config and muxing. It is an auxiliary driver being
+> instantiated by the platform clk driver.
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/rng/rockchip,rk3568-rng.yaml     | 61 +++++++++++++++++++
- MAINTAINERS                                   |  6 ++
- 2 files changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+This is a friendly RESEND of the Mobileye system-controller pinctrl
+series. It can rebase on v6.11-rc1 without issues, and it works as
+expected on real hardware.
 
-diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
-new file mode 100644
-index 0000000000000..e0595814a6d98
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rng/rockchip,rk3568-rng.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip RK3568 TRNG
-+
-+description: True Random Number Generator on Rockchip RK3568 SoC
-+
-+maintainers:
-+  - Aurelien Jarno <aurelien@aurel32.net>
-+  - Daniel Golle <daniel@makrotopia.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3568-rng
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: TRNG clock
-+      - description: TRNG AHB clock
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: ahb
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rk3568-cru.h>
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      rng@fe388000 {
-+        compatible = "rockchip,rk3568-rng";
-+        reg = <0x0 0xfe388000 0x0 0x4000>;
-+        clocks = <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
-+        clock-names = "core", "ahb";
-+        resets = <&cru SRST_TRNG_NS>;
-+      };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 12b870712da4a..9b75626b54e16 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19722,6 +19722,12 @@ F:	Documentation/userspace-api/media/v4l/metafmt-rkisp1.rst
- F:	drivers/media/platform/rockchip/rkisp1
- F:	include/uapi/linux/rkisp1-config.h
- 
-+ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
-+M:	Daniel Golle <daniel@makrotopia.org>
-+M:	Aurelien Jarno <aurelien@aurel32.net>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
-+
- ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
- M:	Jacob Chen <jacob-chen@iotwrt.com>
- M:	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
--- 
-2.45.2
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
