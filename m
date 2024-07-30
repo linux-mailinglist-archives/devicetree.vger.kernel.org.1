@@ -1,56 +1,68 @@
-Return-Path: <devicetree+bounces-89528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49FC9418CB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:25:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E03E941936
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:30:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C26928847B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:25:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB7381F24C81
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904F11A6186;
-	Tue, 30 Jul 2024 16:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5561898E5;
+	Tue, 30 Jul 2024 16:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nbYm0LQq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L1/ysDqu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686A31A6161;
-	Tue, 30 Jul 2024 16:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5BF98BE8;
+	Tue, 30 Jul 2024 16:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722356707; cv=none; b=TsHsaLjAZRvZKeWsUAAe4hB6H4iDEuZiLIPu+IyTKqg90vC+Wq1DxY3RkwmmgZWgL0tWXnwYcg/RGXrSEw8Hk/p5MJqr8M0RdL7TqYyBu+nlrmfKYD//0ylW5DJJZ15RZnc+LMA4SE7PwRI4JjRg6cK2T68o47TeXrJBIIYmUBQ=
+	t=1722357020; cv=none; b=CYN/q8ZHlpL+5h5JcZ1zCY7bhQtZBaqeIZBl2mR4QriByJ48v9/45VHZcs0N2Gz21SXME/42uO4tkm+jzkr2UrZZ2ZQGwBt+EFL+SW7Ee2i9Lu57nrQgJe8ciZAB/vKIvRMiBDmbIRsFlsFnVj49A8qMqfuqHKS4HHgp9JFwpCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722356707; c=relaxed/simple;
-	bh=VbCyqmc1UmLWidPvbHAC5GqzsjxRL2iBn6qJtaqPnsY=;
+	s=arc-20240116; t=1722357020; c=relaxed/simple;
+	bh=lhNcZ8ZEN5axq+CHqFJ7t45r9e7XQ0fIr4cY5Y/XNZI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JXoOtZth9clPBeApxiSp9WLmGhLqWS4g7yNd1Vr+NIN4TB/HXQ16u3jRyWEKwIqkotkngKNmGJy/aug9OPy5TMrIWWW0ibZITte/2utWSv69d1clkgjeH86/6QNzj1FNK5bKy1YF9QIjJpSJ08TMlU9rYu9M3ssjawzQ/JFHn9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nbYm0LQq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25D1AC4AF0F;
-	Tue, 30 Jul 2024 16:25:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nApnmZvjujNQCR/i8doJC0pIWwSEeTY9khIJ9SVTLWdV9srFAsYlnwJwtQLIzuUKCa/mlejBBT/jNxWeH/zxn36VQgLF1QHKbjAjCvvdSVX7NAQIcuCPlE6Felxi+05EyTOiZlT3SvLhkwvArJhh5YP2m+2uklqSvg6brtLOPYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L1/ysDqu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D675CC4AF0A;
+	Tue, 30 Jul 2024 16:30:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722356707;
-	bh=VbCyqmc1UmLWidPvbHAC5GqzsjxRL2iBn6qJtaqPnsY=;
+	s=k20201202; t=1722357020;
+	bh=lhNcZ8ZEN5axq+CHqFJ7t45r9e7XQ0fIr4cY5Y/XNZI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nbYm0LQqKCtNbS4u8e0uJNqqCMttSAhtjgrQo0ZfKTeqvunODGNmnAr+L+LxIIS4a
-	 2lS5o87dSbf44tTRTanXK+QtZDlePupluFa+dZ/pFMhk1Vdm+7LGNSaCrtXUoI94Wn
-	 TVhzmvXsvlzj1d9QofF2f0z2elpj3G5aADBtHbhuz+yxku2wMDE0xiPXDw75CwhZC/
-	 xrsHR4/moe5JnTBAF/mRVsnt5fdz5OyDi6K1H2dio/jmWpuABJzGwb5JNp5x7hBmrB
-	 nVk4Id4rjIv2dQl9EEag+W8tzpBisfpzIkampAeQ9Brrk2REow5dZPogZo2p9vMv4g
-	 MQrsnObGgygAA==
-Date: Tue, 30 Jul 2024 10:25:06 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor@kernel.org>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: iio: light: stk33xx: add compatible
- for stk3013
-Message-ID: <172235670545.1485713.10394540280750747057.robh@kernel.org>
-References: <20240727-stk3310-v4-0-02497b1407ba@disroot.org>
- <20240727-stk3310-v4-3-02497b1407ba@disroot.org>
+	b=L1/ysDqurtwedhyL2BI5lr4jACXoOR7RkG3q1LQ0Mt8chwVcNtO3dpKsOTH3YNYY3
+	 q9M8YFUT6zqNswbQgxugD9D9IDziuZNP4nKZD2V2nhsrkNDP0D8Z1c1ZnAVKg2xBuo
+	 yuIhLuhquJGC/eSxVqxJYKQvrp1baRY/n66TGzb97Ei7Y+NZArkn3t8Ma9jIPuQPsp
+	 JXypy/Uf5ZHtmPNIoNC59tfmA25QgasPj/tWs4BHOtWTptZsPa1lSzehYQ5ngw4vsZ
+	 JeVlu0uR1SyUu69PG78cGazGnYYNdK3ZGVQDzMt+4h5v2OoE84NyCag8LcmdGJOKH5
+	 /CyLOjWq5LKhw==
+Date: Tue, 30 Jul 2024 17:30:14 +0100
+From: Simon Horman <horms@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: kernel@pengutronix.de, Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	David Jander <david.jander@protonic.nl>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH can-next 19/21] can: rockchip_canfd: add hardware
+ timestamping support
+Message-ID: <20240730163014.GC1781874@kernel.org>
+References: <20240729-rockchip-canfd-v1-0-fa1250fd6be3@pengutronix.de>
+ <20240729-rockchip-canfd-v1-19-fa1250fd6be3@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,24 +71,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240727-stk3310-v4-3-02497b1407ba@disroot.org>
+In-Reply-To: <20240729-rockchip-canfd-v1-19-fa1250fd6be3@pengutronix.de>
 
-
-On Sat, 27 Jul 2024 00:23:33 +0530, Kaustabh Chakraborty wrote:
-> STK3013 is a proximity sensor by Sensortek, bearing chipid of 0x31. Despite
-> being marketed as a proximity sensor, it also appears to have ambient
-> light sensing capabilities.
+On Mon, Jul 29, 2024 at 03:05:50PM +0200, Marc Kleine-Budde wrote:
+> Add support for hardware based timestamping.
 > 
-> The part is fully compatible with the existing implementation of the
-> device driver. Add the compatible string of stk3013 to the existing
-> list, with a fallback of stk3310.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
-> 
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Hi Marc,
 
+This patch seems to break allmodconfig builds on (at least) x86_64
+when applied to net-next.
+
+In file included from drivers/net/can/rockchip/rockchip_canfd-ethtool.c:9:
+drivers/net/can/rockchip/rockchip_canfd.h:471:29: error: field 'cc' has incomplete type
+  471 |         struct cyclecounter cc;
+
+...
 
