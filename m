@@ -1,130 +1,115 @@
-Return-Path: <devicetree+bounces-89349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF861940D4B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:23:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDD6940D6A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:26:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28624B2368E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:22:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C789E1F246E0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB48194AD7;
-	Tue, 30 Jul 2024 09:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38436194C73;
+	Tue, 30 Jul 2024 09:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uFpBNT+A"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="CbWJN3ji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.3])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1F51946DC
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 09:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5606194AF2;
+	Tue, 30 Jul 2024 09:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722331326; cv=none; b=XtJSMqkQA8Q/ivmHJSZBltQOdX0QVS5qqBQe2jlp7lbJBQmieRmLFDW1pqQomhpTEY7/7FTFkI7HcRH7JLpHRbc7sKtTy8xZZ7mB+iooKCxXveqpXmnS0nShM4iPqf3hLCpUfp0x1O7CdYBfnIBY3b+SIrmoV6DSGbuH9y7jF+8=
+	t=1722331558; cv=none; b=A7RP2aaT/+CR8tDIbdBw96amHQEesnfAAYjQs2KAItxh4zxPIjlqCs1/ReiASVDidbnLo84Ud+A1rZY3NiJBVxzLBfqn83OSgDLjof/wBeDk6JWVvjq+JL5tO7seKVOiONb48k5Y6KzjZFQgKMxnJRbiT898sld9e3gxsDybI+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722331326; c=relaxed/simple;
-	bh=qc4+vz7nNBQX6rw27KLvTXvTj448QyhgejGiWWuvDsk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sNrI7ripH08vKFDaNt8myrURfMtDifLZShmBej+xpGZH+J67/oLOh8FHsFpGl5eVWttEtN022IdWxpaiFEZHSUPpO//WipuKc2JXJ/dVJdadPISp+Yk24HGzfamOM2RNbi3G7ZETUSJu7JecOEBWCVqbFnx7Yho+3aSqQ7My+vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uFpBNT+A; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ef32fea28dso51639811fa.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 02:22:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722331323; x=1722936123; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hbTPUWP7dEvHs9yHy9hlJD4fx65Y8B6hataVoHic/KU=;
-        b=uFpBNT+AsCp4sTvC0i7DPT5Qcopfn7aw9PMTbSTHH9r8LWm6Cap/ATWvraCk/fdzTO
-         4LpFKM7jBd6G48TbomN8Hi2jq12bM08UbhshzJx/mwAdWw6lZ8fAPew8AttsHqHRlGY+
-         tpwMWa06No14E3JlFohF1QmuS04uHllhTOUpaXU0FhXZaY2uYmtB5sY74VBovkp1bw/4
-         PDCth88wZdEdyiLXPE/JKPrNboib+LX+lioXBzAj0IpUSGCJ8xYy7YYoBiOd7ELpl9qr
-         UTkW1OY6p+A5mVIiCKur9Ev/Q+BEiiFnmH/fTdnHifDZnUoFN2O2Mfv03iX0zNLb1Q42
-         xxtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722331323; x=1722936123;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hbTPUWP7dEvHs9yHy9hlJD4fx65Y8B6hataVoHic/KU=;
-        b=aqUeWM9WymmaWrjfOGVFBb5sf5403JUfn0UNVIBEXj0r6EUVzNcbjUb8qgC2lGBW2h
-         FEg1heaDhja+ROjcVpixXLdhLjoABuh4WNoKG+Q5PEMXAN6uk1Obk1CVKC2mrhYyl4PR
-         yj0qlkOtfmB4He/b9xNKnynOjuqG8yEeWmp0t/XaYwW0gMLv266D1DL8djbh9JBxuJVQ
-         rA0EHw6o2nprmcN1Qlr5J2NWB2nypwNY457eSN+W0dOn/mvOv8590EVcDgziqPP31PIG
-         kHUZtmLFGPKns40AMNTpZpidKeIGtGloby6sTfhmCf8025isPXL0bB8Qqsg4s+cTJpJv
-         Y1fw==
-X-Forwarded-Encrypted: i=1; AJvYcCUG9u3QZGIH+1qAuMZRXXX/DCiDM1Ap2j9FpDZMdHMpMy1T/bQ7EeW2bSiJeyj2TeF4nY3bKUE/JquC1suQyfzyPznKF/gJNyGZ0A==
-X-Gm-Message-State: AOJu0YzIK1K9bDVn3bYgG6/5RTxFca1/2e9ECqhMB6Q1zS6RAj16xOT+
-	n2M+EtQhU6IsRo+5bvMMj9juLMDcnrPTrbULtjxmt/QcshLq1A3ouwwUlikfIDA=
-X-Google-Smtp-Source: AGHT+IHFbaEWsPpnN36GEwy4+3Xjn07ym7RpZkkVMFK8u4jwJ6w8wTu0z813D8wad9QBLW/ixrXKNA==
-X-Received: by 2002:a2e:8508:0:b0:2ed:275d:aa44 with SMTP id 38308e7fff4ca-2f12edd67f5mr64620911fa.28.1722331322853;
-        Tue, 30 Jul 2024 02:22:02 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f03cf2e62dsm16009241fa.29.2024.07.30.02.22.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 02:22:02 -0700 (PDT)
-Date: Tue, 30 Jul 2024 12:22:00 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Richard Acayan <mailingradian@gmail.com>, 
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] iommu/arm-smmu-qcom: add sdm670 adreno iommu
- compatible
-Message-ID: <aim6b46amzzrfg6pohmdjr6cnhnmxqwfidlebqeou22cjludb3@kwi3mcjf7v4j>
-References: <20240730013820.41702-4-mailingradian@gmail.com>
- <20240730013820.41702-6-mailingradian@gmail.com>
- <9c4a586c-e9f2-44eb-a8ce-0b3943b07de0@kernel.org>
+	s=arc-20240116; t=1722331558; c=relaxed/simple;
+	bh=B8pPZpptIq748GFBsju+USRBJIgQXhm6PsH1p3yF93A=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=Qwa1vq2BV5B2RMb60HACV48ScqQ/q9buvL745YF/A/1PbS1acircsZBrkn6GEatwav7qZB3IMrVoM4uMI1K1vfq8gdLQ7bO0zm3wmhRiCdJWKjzGw+QmvdL3FYnTe5vwEgiiqHiTe0LV+C9pWyULs8GrhH24SJcyvxuGhx0m0Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=CbWJN3ji; arc=none smtp.client-ip=212.227.15.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1722331528; x=1722936328; i=markus.elfring@web.de;
+	bh=UuXPUKpAxDUJSU7l9ijEWWWr13YM4cXuW3gjBPRNm0A=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=CbWJN3jib0JHsUqML0cfbUsCpoVIXwrEAp4um1p1ZXrQnbPsLAdzmjtLCjzHoGyA
+	 RX4lCwa8DEKaSIDXORdG9MVXZKZJ7Pfd8rxaECmwt43AFpQ63umvVIt0yGgohBVYu
+	 PYmD1PIAjlQwaSNHXCTPYQYQFZKObRKggSzYG1y09BjVkXydAl2PqNHUUDUnKuHzS
+	 LjinVc9VJqK909fcj/tjFcBgBB2ZCCHfjVdzO7n918mHdOuUd0no2WgOsN862Y7r3
+	 pGTY5S/Wg3Z1Ekwr+igGsHwVkEtOagg2IohZh+b9Rz4yjE1LM3YStZkEm2zOwLGQS
+	 /ZwJpKonFm/8KlDDCQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MLzmv-1sqfV30ZZx-00W9SH; Tue, 30
+ Jul 2024 11:25:28 +0200
+Message-ID: <7ed0f4dc-9865-4139-bd88-7ca270b9a466@web.de>
+Date: Tue, 30 Jul 2024 11:25:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9c4a586c-e9f2-44eb-a8ce-0b3943b07de0@kernel.org>
+User-Agent: Mozilla Thunderbird
+To: Herve Codina <herve.codina@bootlin.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+ Mark Brown <broonie@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
+ Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20240729142107.104574-15-herve.codina@bootlin.com>
+Subject: Re: [PATCH 14/36] soc: fsl: cpm1: tsa: Add support for QUICC Engine
+ (QE) implementation
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240729142107.104574-15-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Enr+kaZULtHao8xj1MEf/uKFDf7xcXnvnwHaPuDxNtdiZHuvaY1
+ faTKq0TSqBUp5PnbVfJHtSKkWkSvb14oZqqMrmafdm9no2GWN+cFWhjHN15JJxYtMz9Y+u+
+ rlbcI5vrBr9iXxgxveDoHTs1RKZ9xgqvf3m/bg2joG0pnQwCi/b1i14gAI/SZySsyF82FFS
+ 2x8gGxTr1kypTc+y1/2nQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:m0k7Pq+00cY=;zaWDnDXkBAX0V6Qm/QR6xTJQWOt
+ lAzDsi9PqBK3FR60RDK/jWhujt8nktX2uQqP+P1rZpIjM6bcrcbu7XF4jxeK7o5Dt223usX35
+ BBqN7NnPy3zRkbJ9sSQHLljufz3JvkdfSn112I6X0ooGDqUSYtQl9PTh6KkkFhWiUOETGeFgW
+ XIZ5qSKnxOU76/JX5GRyBBVCvQGWTRPzbjJ66wkoKI4p8mGV26r2lJ3Q/8JLKvO0KUIg+EM12
+ uUeYj+q40/yNl2shqnpXHYqjZttEdqgsi7MFjoP0YJMcrqCVAgGLZtPdtQOeXMj8ak/5ejWRd
+ ylynbfeCMHWELfdbyuewGClmsxHONIG0Esg1PAX4WOtCuX5bh42F0wREKEXMe5E287j822sHu
+ 5i5XVkYFSbw9BGJkwDEb9GJaklRvCTM5JbRjCdiiH2QwW62Q0Ak9jalIolsECfVWMMQVqC01z
+ Vcpolul3yrBMxSt7jqfO0jFdU+UBgZCIZ4L0NU5qfDtFvgJYGFasD4zivPogv1ONbg+qjTXPf
+ 7UtYgTmnkEm86b7xm0BjmK72gKSCdUYlZxM3ThVuKcsYLn6mn7s5T1jyTEcXsVDZK5lCS7oM0
+ Sbx20VAB2q99Vx5shGWmbnNcbOIhaaefhqvszRRfSCy9FMxLTy6cZ1mkMFM4L+QlA7ghXjRdX
+ +aGhCK0qr99HW+SvCxyFearKhmz5L16uGS53BatAUNTk4M05+aUJgjwvZHzKHQFRmAcuc0dLz
+ E52BPCsWSgYAbpm4Dvr+4xqEgos82xxwSC/EsjogHDCNv26J98AWK8HRD8YwoHvSnpAC8v54f
+ N2mHin7mhcn4fXhNJ1jmq+Bg==
 
-On Tue, Jul 30, 2024 at 08:23:44AM GMT, Krzysztof Kozlowski wrote:
-> On 30/07/2024 03:38, Richard Acayan wrote:
-> > Add the compatible for the separate IOMMU on SDM670 for the Adreno GPU.
-> > 
-> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> > ---
-> >  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> > index 36c6b36ad4ff..7f4b15be4a11 100644
-> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> > @@ -539,6 +539,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
-> >  	{ .compatible = "qcom,sc8180x-smmu-500", .data = &qcom_smmu_500_impl0_data },
-> >  	{ .compatible = "qcom,sc8280xp-smmu-500", .data = &qcom_smmu_500_impl0_data },
-> >  	{ .compatible = "qcom,sdm630-smmu-v2", .data = &qcom_smmu_v2_data },
-> > +	{ .compatible = "qcom,sdm670-smmu-v2", .data = &qcom_smmu_v2_data },
-> 
-> Do the people even read the comments? What the comment is saying? I
-> admit it might be not precise, but "500" and "v2" are the same from that
-> point of view.
+=E2=80=A6
+> +++ b/drivers/soc/fsl/qe/tsa.c
+=E2=80=A6
+> +static int tsa_qe_serial_connect(struct tsa_serial *tsa_serial, bool co=
+nnect)
+> +{
+=E2=80=A6
+> +	spin_lock_irqsave(&tsa->lock, flags);
+> +	ret =3D ucc_set_qe_mux_tsa(ucc_num, connect);
+> +	spin_unlock_irqrestore(&tsa->lock, flags);
+=E2=80=A6
 
-Well, the comment speaks about -500 explicitly, because -v2 have
-differences (it is known that these platforms require more quirks).
+Under which circumstances would you become interested to apply a statement
+like =E2=80=9Cguard(spinlock_irqsave)(&tsa->lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.11-rc1/source/include/linux/spinlock.h=
+#L572
 
-> 
-> NAK.
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-With best wishes
-Dmitry
+Regards,
+Markus
 
