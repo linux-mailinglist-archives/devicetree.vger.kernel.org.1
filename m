@@ -1,203 +1,87 @@
-Return-Path: <devicetree+bounces-89507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C569416FC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:05:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E06219416EE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:05:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BECD9287759
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:05:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0B6C28764E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AADA1898F5;
-	Tue, 30 Jul 2024 16:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE99189511;
+	Tue, 30 Jul 2024 16:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WGG5/HkJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KBxAy+sn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C19B3DABFE;
-	Tue, 30 Jul 2024 16:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74237187FF2;
+	Tue, 30 Jul 2024 16:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722355497; cv=none; b=Y6gqJm7C3zIL3P2wEy/IPJyqwJSru3eitB6EjHPTIE/5Xx5ZrCk4wDRL+z7b+KWxvUfOegNIHTFxsFw3J+Mh9/WM7P2owkVvGItupUi/ea+l398wuNq67iSDb11HvRMegRkwpBDhW0wC+lzXSO+Fii9RwdtjdKcPM2hduobH8FA=
+	t=1722355492; cv=none; b=GPflIN5y2SvjlfB5rjQyjCJHOteAj9S2JDrYIOIBqw1b1c/o0PWQ0cAeohXI5ebpYgBqfNjmFR+s821si8XpPlMqSKJL2wAH55k9SW6qk9RFR3CGmPwdMUhNL9oJ+WjhehSiywoOcMovNEDSeA9TpEu8hL5VodRLEc66g+VPTK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722355497; c=relaxed/simple;
-	bh=w2If79lWwbWbJEfpkvSvIjHGyXXDg5JyR1TcCbacBAo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HtBOeBHY+vnnzq6zTNLmcr99cNKy++0/OECZmMvdVr08ro/OXlGaAh1VHCzicTjWoHDyWMHCRdYh5fbLuM0ZBt85FyniwS/Ui0vFbKCJGLWIF9I0W2niWA3vqYNNm3YB/rao09SLeZ4hiQwxZx+y6futECqZ++2sEfwuNLKuPO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WGG5/HkJ; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BB314E000D;
-	Tue, 30 Jul 2024 16:04:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1722355487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=a9tyEv6JiL2E2sj4V72RhLJVpp93RMHsSx3RfEM+Nf0=;
-	b=WGG5/HkJaXINyTfXkv5jOXFl5rql2F3GotcTKUfglD6L9wtok9Zcpp+WAOSvpMb5dFyuzR
-	wVtTiE55kIz2v0yXLn3thDO+n8BI5ZNAyYBnyJxs68zii5djFSU9z2ensc76VN8Ad+Do99
-	M6FzcK6IfGeS1WhQQ5SKOkLe/ECJgUJ0VhQzJZvpNyqTgO13OUtNGDJjY02HHssWccPntl
-	/H3DZfrsxZHdXejWCvXpsWzHWo9kM/PvoAzSeKUrVTorTAEHl/KIzDaW/VNAeo9ASRVJqa
-	0l0y0YCqC9TZYRQrI8vo3/prAClDPoWu+TYaiEWW0aKkHtDdJkhFcQTeVBmODw==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Tue, 30 Jul 2024 18:04:45 +0200
-Subject: [PATCH RESEND v3 3/4] clk: divider: Introduce
- CLK_DIVIDER_EVEN_INTEGERS flag
+	s=arc-20240116; t=1722355492; c=relaxed/simple;
+	bh=f5xwyBTY5wcQG8Xzs8zNrFwJGxLHh7s/zhtpeic6m1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YCGMLhfFhuZTP9mJvYP47ZspqLiu4cSk7V0dEDLBwkfMsSlvnmmmUdPPgM5rMknfnCznBSnlgf4YazV2X9soT2hrcyHXWsvD4L/Qc6TMIa2q1H9a55omMxCirwKYYF2Hm9PiGmF2y6E+Iqg8OpaDGd5ypJW0PMDyTQ8JbbFw2Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KBxAy+sn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1BA4C4AF0E;
+	Tue, 30 Jul 2024 16:04:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722355492;
+	bh=f5xwyBTY5wcQG8Xzs8zNrFwJGxLHh7s/zhtpeic6m1s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KBxAy+snUOejKGM0/WwdqvSOrlTo08ZzHPB5LNA5+7FVCnBEgRsKQTnWMma6CYUOG
+	 Fi5ZXzIT/Iwil6My1eTOZkSkcexOjDyi3bY5H7+U4j/0L0ecF9Po4K1jdxLk62Jmur
+	 +folz2IWP0ene3yw3PQ8B0LXXQ4dlH7BzFs15IY7254uEjofg6qdxsNRGWnMfMAQe2
+	 EITAMpDB2ctSBQ+T9u5ptZmBCKUOKR1wSFNNatcryRsc0F/oIp6disomS25BclT7ZA
+	 Y5BTDpmE4r9vpAPsf/MCw3BCS4fu3dyeMvjsbUyJNjqeowJqfMfU5vbghryBYkGrtH
+	 om1LqBpsbMpZA==
+Date: Tue, 30 Jul 2024 10:04:50 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Oliver Rhodes <oliver.rhodes.aj@renesas.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-renesas-soc@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH V2 6/6] dt-bindings: pinctrl: renesas: Document RZ/G2M
+ v3.0 (r8a774a3) PFC support
+Message-ID: <172235549013.1348255.1946918733596079884.robh@kernel.org>
+References: <20240725100534.5374-1-oliver.rhodes.aj@renesas.com>
+ <20240725100534.5374-7-oliver.rhodes.aj@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240730-mbly-clk-v3-3-4f90fad2f203@bootlin.com>
-References: <20240730-mbly-clk-v3-0-4f90fad2f203@bootlin.com>
-In-Reply-To: <20240730-mbly-clk-v3-0-4f90fad2f203@bootlin.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.14.1
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240725100534.5374-7-oliver.rhodes.aj@renesas.com>
 
-Add CLK_DIVIDER_EVEN_INTEGERS flag to support divisor of 2, 4, 6, etc.
-The same divisor can be done using a table, which would be big and
-wasteful for a clock dividor of width 8 (256 entries).
 
-Require increasing flags size from u8 to u16 because
-CLK_DIVIDER_EVEN_INTEGERS is the eighth flag.
+On Thu, 25 Jul 2024 11:05:34 +0100, Oliver Rhodes wrote:
+> Document PFC support for Renesas RZ/G2M v3.0 (a.k.a r8a774a3) SoC.
+> 
+> Signed-off-by: Oliver Rhodes <oliver.rhodes.aj@renesas.com>
+> ---
+> v2->v2 resend:
+> * No change.
+> v1 resend->v2:
+> * No change.
+> v1->v1 resend:
+> * No change.
+> ---
+>  Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- drivers/clk/clk-divider.c    | 12 +++++++++---
- include/linux/clk-provider.h | 11 +++++++----
- 2 files changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
-index a2c2b5203b0a..b6654c5c36d2 100644
---- a/drivers/clk/clk-divider.c
-+++ b/drivers/clk/clk-divider.c
-@@ -72,6 +72,8 @@ static unsigned int _get_maxdiv(const struct clk_div_table *table, u8 width,
- 		return clk_div_mask(width);
- 	if (flags & CLK_DIVIDER_POWER_OF_TWO)
- 		return 1 << clk_div_mask(width);
-+	if (flags & CLK_DIVIDER_EVEN_INTEGERS)
-+		return 2 * (clk_div_mask(width) + 1);
- 	if (table)
- 		return _get_table_maxdiv(table, width);
- 	return clk_div_mask(width) + 1;
-@@ -97,6 +99,8 @@ static unsigned int _get_div(const struct clk_div_table *table,
- 		return 1 << val;
- 	if (flags & CLK_DIVIDER_MAX_AT_ZERO)
- 		return val ? val : clk_div_mask(width) + 1;
-+	if (flags & CLK_DIVIDER_EVEN_INTEGERS)
-+		return 2 * (val + 1);
- 	if (table)
- 		return _get_table_div(table, val);
- 	return val + 1;
-@@ -122,6 +126,8 @@ static unsigned int _get_val(const struct clk_div_table *table,
- 		return __ffs(div);
- 	if (flags & CLK_DIVIDER_MAX_AT_ZERO)
- 		return (div == clk_div_mask(width) + 1) ? 0 : div;
-+	if (flags & CLK_DIVIDER_EVEN_INTEGERS)
-+		return (div >> 1) - 1;
- 	if (table)
- 		return  _get_table_val(table, div);
- 	return div - 1;
-@@ -538,7 +544,7 @@ struct clk_hw *__clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u16 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock)
- {
- 	struct clk_divider *div;
-@@ -610,7 +616,7 @@ EXPORT_SYMBOL_GPL(__clk_hw_register_divider);
- struct clk *clk_register_divider_table(struct device *dev, const char *name,
- 		const char *parent_name, unsigned long flags,
- 		void __iomem *reg, u8 shift, u8 width,
--		u8 clk_divider_flags, const struct clk_div_table *table,
-+		u16 clk_divider_flags, const struct clk_div_table *table,
- 		spinlock_t *lock)
- {
- 	struct clk_hw *hw;
-@@ -664,7 +670,7 @@ struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u16 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock)
- {
- 	struct clk_hw **ptr, *hw;
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index 4a537260f655..cb348e502e41 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -675,13 +675,15 @@ struct clk_div_table {
-  * CLK_DIVIDER_BIG_ENDIAN - By default little endian register accesses are used
-  *	for the divider register.  Setting this flag makes the register accesses
-  *	big endian.
-+ * CLK_DIVIDER_EVEN_INTEGERS - clock divisor is 2, 4, 6, 8, 10, etc.
-+ *	Formula is 2 * (value read from hardware + 1).
-  */
- struct clk_divider {
- 	struct clk_hw	hw;
- 	void __iomem	*reg;
- 	u8		shift;
- 	u8		width;
--	u8		flags;
-+	u16		flags;
- 	const struct clk_div_table	*table;
- 	spinlock_t	*lock;
- };
-@@ -697,6 +699,7 @@ struct clk_divider {
- #define CLK_DIVIDER_READ_ONLY		BIT(5)
- #define CLK_DIVIDER_MAX_AT_ZERO		BIT(6)
- #define CLK_DIVIDER_BIG_ENDIAN		BIT(7)
-+#define CLK_DIVIDER_EVEN_INTEGERS	BIT(8)
- 
- extern const struct clk_ops clk_divider_ops;
- extern const struct clk_ops clk_divider_ro_ops;
-@@ -726,18 +729,18 @@ struct clk_hw *__clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u16 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock);
- struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u16 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock);
- struct clk *clk_register_divider_table(struct device *dev, const char *name,
- 		const char *parent_name, unsigned long flags,
- 		void __iomem *reg, u8 shift, u8 width,
--		u8 clk_divider_flags, const struct clk_div_table *table,
-+		u16 clk_divider_flags, const struct clk_div_table *table,
- 		spinlock_t *lock);
- /**
-  * clk_register_divider - register a divider clock with the clock framework
-
--- 
-2.45.2
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
