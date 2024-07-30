@@ -1,119 +1,130 @@
-Return-Path: <devicetree+bounces-89261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98A89409E9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:27:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 912089409EF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8621BB21A21
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 07:27:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 446E72823AE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 07:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72972190489;
-	Tue, 30 Jul 2024 07:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E591684BE;
+	Tue, 30 Jul 2024 07:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="HzYzVsWO"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="SCpnZRFO";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="gOjKUvEg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.17.11])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E03C15FD08;
-	Tue, 30 Jul 2024 07:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244B613B780;
+	Tue, 30 Jul 2024 07:30:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722324394; cv=none; b=Pua2udEGJkoL/sZmSyrWZbgFkAieNtZxTcSny9HjXQU2U/sMFR6ogrP7tczBwQVLjOWirKikliGtdKDv9Yv8gGkEoYdhXwd6NrOw3Nb+tDmxXswWn4cLNLHfULZgbWGa4YDHj2G2j8UAvksmXTqmd7lKq44yRIXbP9j/S/ZBIXU=
+	t=1722324628; cv=none; b=mYiZLJYx+fibB1Zr8VFpVTUUC/HM3+6ooXImXtxrFvL3pOsEvX1lABTww0vC9kQ5Vx84NmSCT2qqIKUrPfV/UHfDzBqIxtjsEyogqaDnHyYL208HO277knVSuqVzRuphrsKghdDxzkXIL9xQR/Ckxb8jYAz2I3nMpcTxzFsDXSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722324394; c=relaxed/simple;
-	bh=JPZZ3Rcof6JZ+WH+47Q0chcov6L97fX5CwYUguKChoc=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=BbgEgGWB73ajSZA/usPTMJuURuVF9N49LngCXmdEXldP7vq3ToyfbKVD/JLZtPhwM/aVhqMfeeCeGacAw3ucOYfqnwmg/YrvB8imbBNkI7BSbw7cbGF1ElPLr4OShQl80RfSO+IzYyvkhqgyFOQv6BjWZorvjICcAuJ3eCK6w78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=HzYzVsWO; arc=none smtp.client-ip=212.227.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1722324362; x=1722929162; i=markus.elfring@web.de;
-	bh=Y29Cu3aNgFt3lRUAJtHfjwbzXHmscrTrGrCYF6YO//0=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=HzYzVsWOtT7f+UfbZ+pTB4befjGK7iWGD5ZGbGSzJCLHS44J8K2pg75PXHbpUjRG
-	 IgonXxtCzlYCeH0evgN5LlQcDh/mRWxibv/9Z4rZBc/zKmmLwtKHb/B6a9H0DcJK4
-	 kBtWeF8glZY5Ms7yqr/VwLwFp6OwPaJyUIcmJWxT2qKYt5s+IIGUyFcuK4/HEJVpj
-	 hORzFBmb+t+EU/P6CSVcQJGNMtaLJALejP/XetYS0g3CHIW7yvmEQ3i/jvX3QxdQ6
-	 Ebbgi6B96uoYBUcCh2byMtjZ2d87WL7+fVQyj4vwOVXHelYaiUUZldqeZqzCSCo1d
-	 BAcu4kNWV/ckDbbZdA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MODiN-1sspUp1WBt-00Nvj2; Tue, 30
- Jul 2024 09:26:02 +0200
-Message-ID: <6bccc366-7b21-48a7-895e-d6693bac809d@web.de>
-Date: Tue, 30 Jul 2024 09:25:45 +0200
+	s=arc-20240116; t=1722324628; c=relaxed/simple;
+	bh=JdKJLcs14SxN51YwQ8AqZjX1VBfSECpjMN02hOEUTqo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Hx/yJBBdsdTS5F6uRwvHm0jolTCrYq1alMo3ja2Wf5gFf7n6Kv+SaUEmqN7FQy+8BOG45r8Uum/lxLST62F6SyJJUyExdXe9Bm4zDbgyq21Raj+pb8CYWXpwLDIdCPeVx8ztDBsDiGi8HWn4OHNzwQki/dq0rJRO8LMIkBPG1RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=SCpnZRFO; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=gOjKUvEg reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1722324624; x=1753860624;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=phzzdkq7fOGAfE/5nN2HQ8Rb+AHqVU2SBA1vaHHG5FY=;
+  b=SCpnZRFOxzdyboo8HFnTW5ABckHj4j9wZu3blVjkUpaqsBe4X/qGOR0r
+   Dik4mUwZ+9h0z8sl0DR51UZGjQNb+DeubFpv/LLgLBws0ptyqKV4O5lU5
+   VQp738GSdZQ1OpqtVDBwm+UcxbmeFXzvGv3ZJJrsHLFMACTPLEA7Z7D1e
+   JJjw4uT/U1k+3UwVcmje3AkRQoq1ozOb3mURRIdFAjwP2gpahJtLxYs0I
+   Nu03P9k0IayW9/r8DAxg/OXSidM/904eSxXCpazR92xRn104pND6oJ+9H
+   WXNHhfahuNzHhHk5Ls/mSgyRMGQMwbgMOO8FO/ihovh7VKo72Dlay9EEk
+   A==;
+X-CSE-ConnectionGUID: kypxY0/5SNCSnqMUHtlmgQ==
+X-CSE-MsgGUID: BxK5qmE6Tnuw52PxG5QURQ==
+X-IronPort-AV: E=Sophos;i="6.09,248,1716242400"; 
+   d="scan'208";a="38139756"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 30 Jul 2024 09:30:21 +0200
+X-CheckPoint: {66A8968D-20-CA1431AC-CF855369}
+X-MAIL-CPID: 1C57A42B986A162BA27F0E30C682380C_1
+X-Control-Analysis: str=0001.0A782F1F.66A8968D.0165,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1DA58167B75;
+	Tue, 30 Jul 2024 09:30:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1722324617;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=phzzdkq7fOGAfE/5nN2HQ8Rb+AHqVU2SBA1vaHHG5FY=;
+	b=gOjKUvEgQdABiwt2rGFfKsC2GaDVi1OjvnUHPzG4nHO9QcJSqcVG0m5wLIsNEuPL8NQx1q
+	QOd6uuKxN9Gu15HJjw9PPlz27O+GMgXDFzZeLwAkiJZPYSKKDPK2u/uNyRbKs+j8IV7QYr
+	e/S68gvGaErQKHLLbEXw00ZjPWN/v6KR7tXx1ZfqebVwPb+wdz7xLdK7kq24/hXPHKGbOh
+	HBsuFCzJhLbe9TxYtgbZkIWI2THz+4RQCv0hgHrXuHbNdt2O3NQMXxmdrMfiidW7lAPLvg
+	aFMQa2CpRrQ0snmip0vYxUUXjl6sUsvE82lr+U1j2kHXoc1KMersq4sG+nZLTA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Clark Wang <xiaoning.wang@nxp.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: imx8-ss-dma: enable dma support for lpspi
+Date: Tue, 30 Jul 2024 09:30:16 +0200
+Message-ID: <2840074.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <6c6bb89e-a9d8-4d5c-837a-30f3bae56f0f@kernel.org>
+References: <20240729094511.159467-1-alexander.stein@ew.tq-group.com> <6c6bb89e-a9d8-4d5c-837a-30f3bae56f0f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Florian Sylvestre <fsylvestre@baylibre.com>,
- Julien Stephan <jstephan@baylibre.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Paul Elder <paul.elder@ideasonboard.com>,
- Phi-bang Nguyen <pnguyen@baylibre.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andy Hsieh <andy.hsieh@mediatek.com>,
- Angelo Gioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240704-add-mtk-isp-3-0-support-v5-4-bfccccc5ec21@baylibre.com>
-Subject: Re: [PATCH v5 4/5] media: platform: mediatek: isp_30: add mediatek
- ISP3.0 camsv
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240704-add-mtk-isp-3-0-support-v5-4-bfccccc5ec21@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:yvPCQKrKXBCoDamMmIKaF729ETlr5jjPPSiqGwUVUeJt8P75TyN
- OG2ePZ2Kh2QWizHR51/Ed8zsDlVH/pEgjI2BWaRW6cIfMDUb9rnmVRRSTRcKUm/r1netZki
- pu6CbiuPuV8xRamEqTnSEtedOGZnLV1QMIKgPZrAd88K6MAghc8529Idl12rXXoq+eNhouL
- 9BnUD8mxibuK2JdcWQs9Q==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:F5C1DnPzew8=;YgqK+iYHl2KVBnza3FawQVr13aP
- QSQeEPgRTv8d/HiQoSSUkH33WdfeCKBP49vFLS898Ni1XGeVwBBghRndtgWXHvxj9N0OzgDVP
- WVq46FLsdoLi256Sg8rHNoKkt+fNWfzfPTZ7j/AZzVSEncowxGsNjb3dKtwI74RucYlZilK9i
- 7e9tL1uhivn8AlWFNEh0V3fdN9BYyZfC3CM46Pg0GiGHgfVeuhSkP0Y2NnILYBU3vPc76ovf0
- btBlEV+wd3lTFJEFkreqim5MphVtaAYbiC2abHd5xFToi0kiQSN+1I8XPkkmiCOL6q7O/1m0E
- 1CPab4Z3faLDw2C/3fdAVqiBaYyj8rg2RXzfAb4rhuSqheHs6k3t3cIB16Nu0ZoDozkMGi8WF
- /IU4iqLcataQEdv77yD/XEx7luhECCHCVwypHPxLHWV3a5KixBoFXReXaZWhh3Lj+i7YaXo3W
- o0T1aDT4TG6gN6nWLWUD8Ylihi/CaTvdIrXnUa8pBLn8bWZQR6d4sz4H6f+N0L9iU7d+rBla3
- Oj7vqqGRqJ3TaiindStvhV5hK1kfcbSUJOS8RPFGnZ0fyr8LETzm04qgWgg7d8DwYRZFM/thy
- Q1jYfTo5NhBbE7A7o59jmnwuujLQFAILRBbZTqV0YsmaNGVFvMjAri0NZa1VpbQ6A4O18rjWl
- W0yZdt45bR4RAfAQjYIUx/XSjrqiIh+QDGQHlVonAVbjNAXNtQ2lLxoLe0aCH9fP0aMe2UpsB
- DLoQUjsaQA0xNEIFY8txTozJkul/bcUaxZNK1TX728nnd1InHv6mca1poCK6NWYx5wdjvQdwI
- aIhgsEWVjl4w5ynfcb8gHsvg==
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-=E2=80=A6
-> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
-> @@ -0,0 +1,413 @@
-=E2=80=A6
-> +static int mtk_camsv30_runtime_suspend(struct device *dev)
-> +{
-=E2=80=A6
-> +	if (vb2_is_streaming(vbq)) {
-> +		mutex_lock(&cam_dev->op_lock);
-> +		v4l2_subdev_call(&cam_dev->subdev, video, s_stream, 0);
-> +		mutex_unlock(&cam_dev->op_lock);
-> +	}
-=E2=80=A6
+Hi Krzysztof,
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(mutex)(&cam_dev->op_lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10.2/source/include/linux/mutex.h#L196
+Am Montag, 29. Juli 2024, 17:10:48 CEST schrieb Krzysztof Kozlowski:
+> On 29/07/2024 11:45, Alexander Stein wrote:
+> > From: Clark Wang <xiaoning.wang@nxp.com>
+> >=20
+> > Add DMA configurations for LPSPI nodes on i.MX8QX/QM/DXL.
+> >=20
+> > Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Using the DMA configuration bits from downstream kernel.
+> > Tested on TQMa8XxS.
+> >=20
+> >  arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm6=
+4/boot/dts/freescale/imx8-ss-dma.dtsi
+> > index 1ee9496c988c5..8ae5f065b4180 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+> > @@ -34,6 +34,8 @@ lpspi0: spi@5a000000 {
+> >  		assigned-clocks =3D <&clk IMX_SC_R_SPI_0 IMX_SC_PM_CLK_PER>;
+> >  		assigned-clock-rates =3D <60000000>;
+> >  		power-domains =3D <&pd IMX_SC_R_SPI_0>;
+> > +		dma-names =3D "tx","rx";
+>=20
+> Missing spaces. Unexpected order, unless that's the coding style for imx.
 
-Regards,
-Markus
+Ack for the space, will correct. But the order is defined that way in
+Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
