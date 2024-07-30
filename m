@@ -1,187 +1,261 @@
-Return-Path: <devicetree+bounces-89359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B78940E11
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:42:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D058940E30
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E0F81F22401
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:42:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85BD1B2A52E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB95195B08;
-	Tue, 30 Jul 2024 09:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA727195399;
+	Tue, 30 Jul 2024 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Uor3g7kK"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="f1ofYy35"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013008.outbound.protection.outlook.com [52.101.67.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40C31922C1;
-	Tue, 30 Jul 2024 09:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722332505; cv=none; b=pH2t5Q9VnwiKspwgSFIyzhhnul5AMj+Z9ptDEgU1Oq6DhxdNi7BGEyJWduXvwtBmdTCfR023ikPFXpQG9ryllMrqzxkQf5Xq9Pd1NtHQZW8osT6jSos4OEutt2Hk94RaITb2hDAVt0HmRFv8PqadIMmjclVwOREF018WP49CwEM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722332505; c=relaxed/simple;
-	bh=hgNqnU4Er33p+LqqcZgo595E37aXhaKnOBZSc3IoLZ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZYgNdIDriPEbcGC3gBA5yzuQoeKFUmbZIN/paRyJM/CBcteJyFj/osPRKPOFr42rdgswe8S7zD2+nvsjIdPhA3jqGcE6o8744JJdz8kXFLdgr3zeRYQWQ0Z+t3qdS9PFAt8eoBh6aK2pdhDxXGAwFbK+aExhiBgAX3sr/FB8Iqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Uor3g7kK; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722332502;
-	bh=hgNqnU4Er33p+LqqcZgo595E37aXhaKnOBZSc3IoLZ4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Uor3g7kK6v9AlBioKHDcqkhdlnieTcyYn3qckI4rk6+5sXc81Gz2+lksR4tytnMY2
-	 uXWTq4OLNv6r46AZt7vDdXrhM33klHA7KuauybDtyJIs5UwM1RpUn8q+tfDf01L+D/
-	 TSlIl7gUmyZOej7bei8TpGrCWTUxAxkpFLxjrBh4Asr8v5On4cesJaIIX8d6d5/kvq
-	 Gvo18xarfxaF53LYuv5+HcOkCsMpHt8qYmPLw8MhYAZY3DI0BJPu50QMdLzzHwWQKm
-	 6M0GHl/uCrZ5vUjw2w0Jv8ZgEtbfluOpr01A9sItS5rn5+UZ3k5uM9Ik+Zz41gTUi4
-	 Wh3nS5xL7dsdA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 13D4E37821ED;
-	Tue, 30 Jul 2024 09:41:41 +0000 (UTC)
-Message-ID: <b3fa66cc-516b-4d78-aee5-62a47b52a3b1@collabora.com>
-Date: Tue, 30 Jul 2024 11:41:40 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01D6195B33;
+	Tue, 30 Jul 2024 09:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722332518; cv=fail; b=jHSLL9EUIO887h+OT1pjLEjAORn+HWrQDpAnuTzgQiqOviflNLA3aRHPT4+o9+OqIHUMeG6tgAFLpNbMv50sf0n10a7VbVg1o6exyvY+jx3w50SHZ92TcQN09/9LLmXrSt4h1ADB03ZTgYjx0RuMOvmTHsJBczo6/OSOQOL8kK8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722332518; c=relaxed/simple;
+	bh=mNYAkbi2SQDtYX7e70rwlV0+F1Da2dIMGHdUFTzzZZw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=EuVCs7F4xgJkw0ylOGlFku/RsUb26t/iJx/G8VpZV6dluBv79WLTgKr0xzuTknceLtIwgNbYQMFLEG4jFJIF5nnkzX9VlrkU7fvo1Q3LzazhPKK2mrs6n0xuSUacEx7ywxNvHYwYMItZdB83tkMS2R/56R2U+I4M/QJR639wojU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=f1ofYy35; arc=fail smtp.client-ip=52.101.67.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bemaJjbGpnw8kC514n4K9OmBHocgb+yh5akcbh5wRBiKm9UDMSdkgdqd2UzLTdR75grPzheFBpaXi52laHp96Y1EJb5jlhOcVd4/+JonHMPiodw5RzMEmtnxyVlglvV6tvCZwjRI4erErxhp3McvRlRCczvVFlg96SQgT8JyCKf4fkSYUgHFH6tbVjeTrSsJD/bGUKhtRfYewtkoKDPUz2I1rytKtO4nwFXmmejgTjRvGFSRuqs2JvCZQ8W6+Zcp97YHIAyQWnJSM2VBX46Lq/ANHnQYxppCYi7JjFgFBmRfP7RXXwMqX5C4t7GhrGdEnSNXtooiaiRq6Y095w8E2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j3/VQqEgLisAz5XfcheW4PdcUrSEn7AZsAtVQ/BhiYI=;
+ b=cq4v1pzbFECIWR5Tk89OH6Ew4orrzAS5CHY0uAeJxddSMF4yQFu2jEBUGE2EEa73HIn4oM4/zaO8/aA/7mn8AdiAUf3HFC1iaMth3adOnGGoakpR4VswycrhnKC72owka7Wy2LpZdI44wZoY/qkz3l9p8On+3pZg3NH7Mfl/ubqrDoTRAZD1EMnNjUhICWXIDjNwpRbtm2gzHETL9+J9EssJwocVy0Ld7/8CcKWDkF7ToYpPCZIPG0lBWCRuwwK9OnLw4yxVbTh1xXUT3mdsfdMpHhGdVkxzeDgynAIv0QwxtkmCsqjFaXx/JBqgGwZPj+At/yqvCqTsk16ENn3OlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j3/VQqEgLisAz5XfcheW4PdcUrSEn7AZsAtVQ/BhiYI=;
+ b=f1ofYy35WxfohxUgVGZlHaCDDI5eN4TYBwTBVRH2J21Sx6txRhJDKnHwIw8WB3Tyo/z+AmVHegJx3OiGjHuWeeby2wGubFTf5S0qaXWD6edjsUvwdggXJSJx+XvnWkqnUjdgdi5xNAbc7acjzcq1v/iSNst6rjwwd19ttEpLDCE+VMCoR+TPruwmBZCKflVdcTx9JrtoiuRSZk0zdKssxaUv7DZwp71QxytFWcs3IBLcCmME0O608I1R8O5de5J+g7C2veQHrVXWberLB3/4kaK+la4z3KHhbeKrttmBt0343EFKJCHqgWfoE5cWBbClmSVLPTSdcxp+e8+al7w2Kg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by GVXPR04MB10473.eurprd04.prod.outlook.com (2603:10a6:150:1e6::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Tue, 30 Jul
+ 2024 09:41:49 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%2]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
+ 09:41:48 +0000
+Message-ID: <81afd7ef-c4a6-49e8-b232-8007a25aaf51@nxp.com>
+Date: Tue, 30 Jul 2024 17:42:15 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/16] drm/imx: Add i.MX8qxp Display Controller pixel
+ engine
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, kishon@kernel.org,
+ aisheng.dong@nxp.com, agx@sigxcpu.org, francesco@dolcini.it, frank.li@nxp.com
+References: <20240712093243.2108456-1-victor.liu@nxp.com>
+ <20240712093243.2108456-8-victor.liu@nxp.com>
+ <ibdzow7lvbimaefrp2z2aolgp4pytpq3dcr2y3pegjavvknhgm@2e6j3f4zytqp>
+ <107d89b9-e7b8-4613-bc07-9af7b52c2b8a@nxp.com>
+ <0e7a8d52-6556-4531-882f-73513f99259b@kernel.org>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <0e7a8d52-6556-4531-882f-73513f99259b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2P153CA0008.APCP153.PROD.OUTLOOK.COM (2603:1096::18) To
+ AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
- <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
- <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
- <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
- <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
- <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
- <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
- <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|GVXPR04MB10473:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53113a39-5894-42e7-f9be-08dcb07bd561
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VHlaa3hLYUlPS1BlQU9scTZWL3c5a3dTbGd1YjJacGU2WU92RjJrV0JlVyt0?=
+ =?utf-8?B?WXhmYkNlNnQzd0xrSytWYzJHdjhZVjc0dHhSNTgyL1hNdllFWUZjbm1tU3FP?=
+ =?utf-8?B?a3JpZlhERFZtRXJrZCtvSVdmZnZBOXRJaStUUHoxQnRjakN2SnVjREE1TU5z?=
+ =?utf-8?B?VC91S0hoZ0NpblJUN1V5MlhqaEMxeGVYbVNreDc4cVBzV2NCdzhBTnhySk1K?=
+ =?utf-8?B?aG5aLzJvbWNXVE90ZzA2SlMrQ2dnNkFkQTQyQitnM3VpVXJVSEVNaDBhbUdC?=
+ =?utf-8?B?RXdRdlFtYnB2OFlMQ245b01xbldzcmVWOVRJYVdsMHJ1bHhFd1hLejZmRXZ0?=
+ =?utf-8?B?ZXRmTm0rY2pDbWVjcVEvR0dmS3M0YktoSmkrcnJUUlpiVTEzOVdEWVpVb0Qx?=
+ =?utf-8?B?ZGhlRW9VaXpVam15WEphbVpBcFFXWGRGL1BndjBtenVrMkdYajdjdzVIOUZE?=
+ =?utf-8?B?UHFiSkFDZjB5TGFndlhjSHQ4bUpsSHdtYXFIUm5tS0NqbGJveGxRVEgzZE03?=
+ =?utf-8?B?ZFE4UFhOVUlGaDRYcXBrS0JjdHdQWHZJckZ6YVNiNTI4UDkzLzBHVzF3Wmdk?=
+ =?utf-8?B?R1ZCWGo2azJvcG5HNWNZOUk0czl3a29FMHdBdjBiVDllMUJFNW8rKzFNdkRw?=
+ =?utf-8?B?R2tTQ09OVXNEMXNTN2RKVlBMWHRseVh4OFlVbXZZY2RlbXZrem9IUm95M3BH?=
+ =?utf-8?B?eGlrQ2ZSbUxjTEN1MFFrcGxSdW0rbVFvM2VodWN4b3FwYXNNc0VvM0lkVGwv?=
+ =?utf-8?B?RjhZSVhoUGZiTVUxS3U3aTlKUHJ5UHdxcXhFcVdhckZaS3FLTWRmZ1IxeEQw?=
+ =?utf-8?B?dnhLZWpRNE9rTFY5TWRFY1I5dlpZNlRHeWIxR0JjVXI2c1hnQW9WalJjTjZJ?=
+ =?utf-8?B?OC9xK0xpT3pZUWd5UjRPV3Q1QnRBMHJORks3dDhSSWNkRlZhbDg2Tlg5N1Vw?=
+ =?utf-8?B?NlAyYUNoYzl6emhxbjNjMkRCemtNUm9RNnIraDVRdXoyWXJSK1V6R0Z1Mmpn?=
+ =?utf-8?B?WDFSQjFNK0ZGZkI2aGd4bE5jOGx1YkdaNlV6S0w5ZmRmQk0wZXdFYTFRTHBT?=
+ =?utf-8?B?RDkzZVkra3pCcUt3ZFg5alNxd3BHV3NobWNDbHUvNmdtNHBmNE93VVEwWUJZ?=
+ =?utf-8?B?cUJrTXg2dW8yTnh3TUNoNG1PeVNtc0ZyTUpFdTMvS0xwWGdYYTFsSkZhbVZ2?=
+ =?utf-8?B?UEhkTSsrRkQyODZ2ZGhLNmcrYm50TGkwcnhPN1dhRUh6cGN6UHYrUmszZ1lG?=
+ =?utf-8?B?QzRVaExGdmcyczdhV0UyOFphVW1KRUk4RkMrcWxFSno4WHBjY1Z0cm1FM09o?=
+ =?utf-8?B?QzVXaHRpRGgwc3pjYjByVzZnRGR0STFOTTR4V0QrVThuY0hsUThoeWNlalhm?=
+ =?utf-8?B?blo0M1RQc0M1ckQvZm0zZmJhWVRkKzNiZUI5ejR3dURibC9EMFRxOWE1OUIx?=
+ =?utf-8?B?Qlh1QzRMWENJVXBqbS83VFMrd3B6dGMvY21NZllPTC9ITHkrcnpYS2JYbVlp?=
+ =?utf-8?B?UXdlNnhzU3V3aVREeEpPeEd2V1Q3TzR1REpWRHc0U1l6UVdxaG5vMVhOaEZk?=
+ =?utf-8?B?ZS9mTW93dU5hQjFjbHN1YXFDSGhhdE1RbTlqdUdWVG8rMlExaEM5ODBCOStk?=
+ =?utf-8?B?VHl2L3lBQldpSC9qbkR0dmZJZlJIbUpweDRrSTg4ZGp5cFVTaUF1cEhNaFlk?=
+ =?utf-8?B?eVo3NW5RY1lUYVN5TnFoazE1NExsZWtrMi9Nd3pJVmhzdmNLV0FwRkNIME1p?=
+ =?utf-8?B?aU1EWE5qbXhnTStBZlorVi8yZXhxL09CWHhhNngrWk1tcllCblBGQ3V4UWNV?=
+ =?utf-8?B?NGRGU0t3aU1uMDV5c1VTdz09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OVhCU2pzL3RMVDV2Y0JvRzVSZFhOU3REVGJjZGJOckd0Z1VuNFVibmw3R2ty?=
+ =?utf-8?B?UXgwRklIM2l4WS93cTVRT240OWUwWncvck5pamN6cVJ3Y2xheHdoNnlvV1NF?=
+ =?utf-8?B?Q1phRG40dm9aM0VRVm84alhMQ0IwOVZjVmJLVG11bU9sanlmUWZjRXYxdXlE?=
+ =?utf-8?B?amZIWk1EdG5WRnRVdlFWQnpPT2p6cjVKcmEzODdIZXdzSTJiemsyN2owUkZ6?=
+ =?utf-8?B?L24rMDUwRS9UT20xY3lQeTRlUXYydklkVGpXa3BOOUFqcCtoU0dWUzJsUTZi?=
+ =?utf-8?B?NTRsME5INUJ6YnIvWDd6NzU2SlIrQWlNSUh2eGNUQ2w2Y1NwK1RpT01GSklw?=
+ =?utf-8?B?Wm9Rb3RwNEdFVEsxZHQ2a011SkpPbklwYUZNVzEyUndkQ252QmZMTjRKRmpi?=
+ =?utf-8?B?WHluQ1g2cHEwUllPcWpuNm9KNkIveFFncitrdGJhL01yWVFVa3ZkbXZZUUph?=
+ =?utf-8?B?YjdqQ1EyRTJKMVdxdTdXdEpnSmhlNGVXdmFySEFqdUVlV3ZCaFFKdGx6TjVJ?=
+ =?utf-8?B?MUQvL1ZJZ0h3YzVFdmRKaFBKOERTN0t2ZUdrOUtzNGMrd2Q5M2YrOVI3UWEy?=
+ =?utf-8?B?d1daTGlrY3BXbTNIcDFxZkF2ZnZSN014OUJJNVQxdEtyWVozaUp3S2Rwd1l2?=
+ =?utf-8?B?Y0VKM0o4bFo3NFlGazJMa1dkYTlnenFIK3ZOZ0xMMGtsTGgvOSthckVidkEw?=
+ =?utf-8?B?aDBSMVhVeU1QeElCNmNJTXorR01sL2JvRGZDQlBIRkxuVGdwTHhkM0JUUzcr?=
+ =?utf-8?B?cTcxUmpnekNqSS9salRKazRNNlN0amVnQkRWc0JmUWhCS2o5bjFMbVRpcjhM?=
+ =?utf-8?B?bVNBc0F3blVoOXo3Nnlzd3djMlVMK04xdkt1STRBQjlIRytBSzhnYlV5TzNh?=
+ =?utf-8?B?Y2wxNFVGMlQwekNWZ3Y3SDl1WTdKS3VuMG12aEs2NmN6ZEVMME5wOWt5S3kw?=
+ =?utf-8?B?UTZVYUVRNjdkUzh1MjFlOHprSGR5K2ZjZTY5NSt4K2w1ZXdrL2Nlb1NlTkZQ?=
+ =?utf-8?B?aXhnUTBRcml0VDJPdCtYaHFIemFod201TTRHOW0xc3JqYk5LTDgzSmRUVmdm?=
+ =?utf-8?B?WmwxUlhxR1BBeTNDdHN4NGIxZlhQTnZXdUZQbVlpeHFXck1sd2NtbDU5WHFM?=
+ =?utf-8?B?NE9qckpjNUhwYUsrQS9JUzRmYndkeTlHbEsrTElqWEdwVDZ1VDVsL3JLbUVZ?=
+ =?utf-8?B?ZVlFQjNwMHR2Y0dTcEZsYm9ZanVoK2tZcHFkRitSaDBLZklSYy9ndEh2dFEy?=
+ =?utf-8?B?YVFkWUdobEJCTkhNemVkWW5sYzR2eTgxWHRQdlNPbzV2cHZIcjhYZmIvVFpV?=
+ =?utf-8?B?NG1pSDE0MUlpanVjYzh0OXRTMCtmMFYzZjZIZmJnK3Q0Zm85QjNWQkFhbURs?=
+ =?utf-8?B?SkJLYWxhbW8yQmlNcGZHOVBkd2RHMG0vRmU3S2JiTHRwdis1eEVmaE1hQW5K?=
+ =?utf-8?B?Q09VblptR0ZhOHdWSWFVU0pCMVBWSW1IUFdvMnA4WDJlWVM0RktacXd2R2pk?=
+ =?utf-8?B?OFEza29KT0libjBReloyYldYVDBhQXQ0U1BOdERxUEVzZHZpQTZKQmt3djlM?=
+ =?utf-8?B?cCtqazY5UUNZN1BOVmYrdFNTTG9oMVAzNitpc28wVmRmTWNlQlpmOW5MU0pL?=
+ =?utf-8?B?M09pNFJyYkZwUzBpMjZkYWJqUDl4eEc3eEdGZ3I1ZEFwb3BYb2tPZmp1aWxy?=
+ =?utf-8?B?QkV0WktUUHpUQ3p6dmZWdkpDdi8xZE1EeG5hb2dwUXFWakxBVjVxKzBwU1N2?=
+ =?utf-8?B?RFZFZm5qS2pNOHZEd0NEZmJUQkNFZWJPWGs3Uk9LQkpGME1kckZYSW92TEVw?=
+ =?utf-8?B?eDVOOURlZEJNZnNaa0V4M01FeGpWSlJhYkI5OTV6TG9YRFQwWVFHb0lMbFZw?=
+ =?utf-8?B?WmdZNlFwQldOT0FWU0xCWTNXMWwrNHNCeDZnekxBblhTMXlLNlFjY0psTlJC?=
+ =?utf-8?B?bHdQTnErd0dQVTd3QStlOUVUU25rWExVVFVSTXZVcUJTZXZYNUxEeEZzTEtI?=
+ =?utf-8?B?aDc3YWo1SkpMeEhCSFk1M21mQWlSWlUzeTlLNUdIcE1YcGlTcFA0K1FnM2lj?=
+ =?utf-8?B?QmhLZWN1bmU0SUl0RnpNU0laOEpOL2g1L1NFTjg4ejJKQmJqcWhYcU80R0My?=
+ =?utf-8?Q?RGVAsMrMmKA2wmuco39XrJanc?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53113a39-5894-42e7-f9be-08dcb07bd561
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 09:41:48.8194
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Jh+OGJA00lNkWkRRtb9XhaoL//4uWpeDROBWyuBjz0lqbHbUjGCB0lAYFu04lvQO3a6AObu4koTKAfvJ4Vwgcg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10473
 
-Il 01/07/24 10:15, Arınç ÜNAL ha scritto:
-> On 01/07/2024 11:04, Linux regression tracking (Thorsten Leemhuis) wrote:
->> On 01.07.24 09:44, Arınç ÜNAL wrote:
->>> On 01/07/2024 09:16, Linux regression tracking (Thorsten Leemhuis) wrote:
->>>> [CCing the other net maintainers]
->>>>
->>>> On 25.06.24 10:51, AngeloGioacchino Del Regno wrote:
->>>>> Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) ha
->>>>> scritto:
->>>>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
->>>>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
->>>>>>> wrote:
->>>>>>> [...]
->>>>>> It looks more and more like we are stuck here (or was there progress
->>>>>> and
->>>>>> I just missed it?) while the 6.10 final is slowly getting closer.
->>>>>> Hence:
->>>>>>
->>>>>> AngeloGioacchino, should we ask the net maintainers to revert
->>>>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
->>>>>> device tree") for now to resolve this regression? Reminder, there is
->>>>>> nothing wrong with that commit per se afaik, it just exposes a problem
->>>>>> that needs to be fixed first before it can be reapplied.
->>>>>
->>>>> To be clear on this: I asked for the commit to be fixed such that it
->>>>> guarantees
->>>>> backwards compatibility with older device trees.
->>>>>
->>>>> If no fix comes,
->>>>
->>>> I haven't see any since that mail, did you? If not, I think...
->>>>
->>>>> then I guess that we should ask them to revert this commit
->>>>> until a fix is available.
->>>>
->>>> ...it's time to ask them for the revert to resolve this for -rc7 (and
->>>> avoid a last minute revert), or what do you think?
+On 07/30/2024, Krzysztof Kozlowski wrote:
+> On 30/07/2024 08:55, Liu Ying wrote:
+>> On 07/28/2024, Dmitry Baryshkov wrote:
+>>> On Fri, Jul 12, 2024 at 05:32:34PM GMT, Liu Ying wrote:
+>>>> i.MX8qxp Display Controller pixel engine consists of all processing
+>>>> units that operate in the AXI bus clock domain.  Add drivers for
+>>>> ConstFrame, ExtDst, FetchLayer, FetchWarp and LayerBlend units, as
+>>>> well as a pixel engine driver, so that two displays with primary
+>>>> planes can be supported.  The pixel engine driver as a master binds
+>>>> those unit drivers as components.  While at it, the pixel engine
+>>>> driver is a component to be bound with the upcoming DRM driver.
 >>>
->>> This is quite frustrating. I absolutely won't consent to a revert. [...]
+>>> Same question / comment: create subnodes directly, without going
+>>> through the subdevices. A lot of small functions that would benefit
+>>> being inlined.
 >>
->> Reminder: try to not see a revert as a bad thing. It's just means "not
->> ready yet, revert and we'll try again later" -- that's actually
->> something Linus wrote just a few hours ago:
->> https://lore.kernel.org/lkml/CAHk-=wgQMOscLeeA3QXOs97xOz_CTxdqJjpC20tJ-7bUdHWtSA@mail.gmail.com/
+>> Like I replied in patch 06/16, I can't create sub devices directly.
+>>
+>> Can you please point out typical ones for those small functions if
+>> the comment still stands?
+>>
+>>>
+>>>> +static int dc_cf_bind(struct device *dev, struct device *master, void *data)
+>>>> +{
+>>>> +	struct platform_device *pdev = to_platform_device(dev);
+>>>> +	struct dc_drm_device *dc_drm = data;
+>>>> +	struct dc_pe *pe = dc_drm->pe;
+>>>> +	struct dc_cf_priv *priv;
+>>>> +	int id;
+>>>> +
+>>>> +	priv = drmm_kzalloc(&dc_drm->base, sizeof(*priv), GFP_KERNEL);
+>>>> +	if (!priv)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	priv->reg_cfg = devm_platform_ioremap_resource_byname(pdev, "cfg");
+>>>> +	if (IS_ERR(priv->reg_cfg))
+>>>> +		return PTR_ERR(priv->reg_cfg);
+>>>> +
+>>>> +	id = of_alias_get_id(dev->of_node, "dc0-constframe");
+>>>
+>>> Is it documented? Acked?
+>>
+>> Like I replied in patch 06/16, I can add aliases nodes to examples,
+>> if needed.
+>>
+>> No Nak from DT maintainers I'd say, but I hope there will be direct
+>> Ack(s).
+>>
 > 
-> Except it is ready and trying again is my responsibility, which means
-> unnecessary work for me to do. I've already got a ton of things to do.
-> Applying the device tree patch resolves this regression; no reverts needed.
-> And then there's the patch in the works by Daniel that will address all the
-> remaining cases outside of the reported regression.
+> It was not Acked, because there was no documentation added for it.
+
+I may add aliases nodes in examples in next version, if no objections.
+
+> Anyway, naming is quite cryptic, e.g. "0" in "dc0" is quite confusing.
+> Do you expect different aliases for dc1 or dc9? But anyway, aliases for
+
+Yes, I do.  If the alias approach is used, DC instance ids need to be
+specified in aliases.
+
+> sub-devices of pipeline look wrong.
+
+Why?  They are separate devices.  Though I agree with Rob that
+aliases should be generic rather than vendor specific, it seems
+that there are some vendor specific aliases in upstream device
+trees.
+
+Any better way to specify the instance ids?  OF graph ports?
+
+> 
+> Best regards,
+> Krzysztof
+> 
 > 
 
-The commit that fixes your breakage in a way that does *not* please me
-(because of older devicetrees being still broken with the new driver) was
-picked and it is in v6.11-rc1.
+-- 
+Regards,
+Liu Ying
 
-I had to do this because I value the community (in this case, the users) much
-more than trying to make an arrogant developer to act in a community-friendly
-manner while leaving things completely broken.
-
-That said, remembering that we're humans and, as such, it's normal to get something
-wrong during the development process, I want to remind you that:
-
-  1. A series that creates regressions is *not* good and *not* ready to be
-     upstreamed; and
-  2. As a maintainer, you have the responsibility of not breaking the kernel,
-     not breaking devices and not breaking currently working functionality; and
-  3. Devicetrees being wrong (but working) since day 0 is not an excuse to break
-     functionality; and
-  4. Blaming the one who introduced the devicetree (you're doing that, since you
-     are blaming the devicetree being wrong) isn't solving anything and will not
-     magically make your code acceptable or good; and
-  5. If you push a wrong commit, there's nothing to be ashamed of; and
-  6. If you make a mistake, you should recognize that and find a way to
-     make things right, that should be done for the community, not for
-     yourself; and
-  7. You shall respect the community: in this case, with your arrogant behavior
-     you did *not* respect the users.
-
-P.S.: The right way of making such change is to:
-       1. Avoid breaking currently working devices by making sure that their DT
-          still works with the new driver; and
-       2. If breakage is unavoidable, make it so one kernel version has a fix that
-          works with both old and new driver, and the next version introduces the
-          breakage. N.2 should ideally never happen, anyway.
-
-Let's wrap up this matter now - I don't want to spend any more word, nor time,
-on this, as I really have nothing else to say.
-
-Best regards,
-Angelo
 
