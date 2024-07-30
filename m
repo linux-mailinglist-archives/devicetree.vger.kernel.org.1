@@ -1,67 +1,68 @@
-Return-Path: <devicetree+bounces-89567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26638942155
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 22:11:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CCC942162
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 22:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADFEEB24B2E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 20:11:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 259A4B2396D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 20:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD2318CC0D;
-	Tue, 30 Jul 2024 20:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CF918CC1F;
+	Tue, 30 Jul 2024 20:14:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JwjCx34K"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="C2H3gKII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB1318B479;
-	Tue, 30 Jul 2024 20:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8DED1667F1;
+	Tue, 30 Jul 2024 20:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722370292; cv=none; b=cf9FHBFZkhbHpV3pgo6QMcIWrfjLFT8dqtn/OPvlZ2W4spsr/2/mcKx5uamkfrY/w+OzKcC5Tag2j4gJbvaJPZNSxwrb1Ecy6+EkEOgFTleWc53HCSW/jIKcV7WN8JEeV8nn74uDtmGJYqB9diroYXpZ5WkLitdBVTq9WOyr7kI=
+	t=1722370481; cv=none; b=OeMECoDDO2O5IyJgvqaG8RSFiDM3+lhNOeMfNI04WCEzUS8PHFxwymNU7jCjClxulxbZg8gY/hQJuQwgTGwh9Ocwvp43mNIt17aoYWxHtfEiotuwFImcNyBb2e5nq5RWLEoyNY8Fbr+Hp7v56/9r2sxxqs2lIL4xYY92FPHejHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722370292; c=relaxed/simple;
-	bh=h7xX26OUGEpC01WYdJ3hZXmyAhI3DKjPX1LnEyj8824=;
+	s=arc-20240116; t=1722370481; c=relaxed/simple;
+	bh=9FSQ4rRw0IzGDwl2vOi2QSzdr2u/VER9L8rUJuaSq5Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pS43CtiJrvH37b6GzQ7aX81c8TO21NOILyQRi1TUHG8s6Q6e50GjDBdoUsLArJM15RltKlfpQB1V8kthi7lJ2rOIBSXi9F2jNE7l1o/aksxmsxbBWNsZNrqJXzK0+EA5oWnZ+bVojyP9xFGx6jbi9KJiRxE0Kh5Wy6F2Z8jbfT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JwjCx34K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D34D1C32782;
-	Tue, 30 Jul 2024 20:11:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722370292;
-	bh=h7xX26OUGEpC01WYdJ3hZXmyAhI3DKjPX1LnEyj8824=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JwjCx34K+uBYqyDO2TeGAoWeLfBrz65dSk4iUyUi72Uz5xOp3OPezmamBQ4KEeWwI
-	 zBXCCaEz3efqUabyLYLWgE1I03N2jfyOR8ueD0FGIOeYtMfOYyId3HQhalGeIEjpW7
-	 dzwgL/ps4093qOl9thTjsqMtZ9d2x7x5c2cO+9m0cPHUFjaW9e6zIesxKv7MB/FX0n
-	 tZ17bSEjw+OX0nFIM6RN5NDQPeth9KrKY/fwRpt2YTHkEWjeXA4PMW+goxf5G9Csbh
-	 Cr/EBHb3iTuSF4GYozPA3zMl/EWSNo6xS93HBSoEeF9ViyUhLzNI+u+QE1Kk4tnY0U
-	 fM7vrjPIs3ptg==
-Date: Tue, 30 Jul 2024 14:11:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, rafael@kernel.org,
-	viresh.kumar@linaro.org, heikki.krogerus@linux.intel.com,
-	gregkh@linuxfoundation.org, kees@kernel.org, tony.luck@intel.com,
-	gpiccoli@igalia.com, sudeep.holla@arm.com, quic_rjendra@quicinc.com,
-	andre.przywara@arm.com, ulf.hansson@linaro.org,
-	davidwronek@gmail.com, neil.armstrong@linaro.org,
-	heiko.stuebner@cherry.de, rafal@milecki.pl, macromorgan@hotmail.com,
-	linus.walleij@linaro.org, dmitry.baryshkov@linaro.org,
-	johan+linaro@kernel.org, javier.carrasco.cruz@gmail.com,
-	quic_kriskura@quicinc.com, lpieralisi@kernel.org, fekz115@gmail.com,
+	 Content-Type:Content-Disposition:In-Reply-To; b=alq39LWaWdWfbOs3DM0eubBtgYcbAIBphhnEuXcGfrcXRA5GFbhK5jnQkEGCwNBnNGVdCiAJk0ZyeD2mr3g56y/QJ0LKNrsv4EiLiaY+VPFRIiqu8xrDIy5V4jEz4PIOugVSYX241wAX8Qq9VFsqIO8Jt7emCzp9/e5i/6TbkSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=C2H3gKII; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=v4CFd2TasPmU5GDteTVVRLuZB39ec134+LR0uaf3ydU=; b=C2H3gKIIUm+tU5C1HxkyyXLETb
+	PlZtDj4JkLFTu4kywGSODjI4ivgbmrIhmZvC1pSmlDF3UAWR0fxQ21aOZ/zSTXvmirEW9gg3bcvOm
+	IWoixsdzzX5pVPIZWZxFnXl8cXx+o+WAJWXWa4kfOHVB2oR9hNjQrTn+3VmGOGgw8bzU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sYtEk-003brc-7n; Tue, 30 Jul 2024 22:14:22 +0200
+Date: Tue, 30 Jul 2024 22:14:22 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Swathi K S <swathi.ks@samsung.com>
+Cc: krzk@kernel.org, robh@kernel.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	conor+dt@kernel.org, richardcochran@gmail.com,
+	mcoquelin.stm32@gmail.com, alim.akhtar@samsung.com,
+	linux-fsd@tesla.com, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-hardening@vger.kernel.org,
-	linux@mainlining.org
-Subject: Re: [PATCH 00/11] Add Nothing Phone (1) support
-Message-ID: <20240730201130.GA2074210-robh@kernel.org>
-References: <20240729201843.142918-1-danila@jiaxyga.com>
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, alexandre.torgue@foss.st.com,
+	peppe.cavallaro@st.com, joabreu@synopsys.com, rcsekar@samsung.com,
+	ssiddha@tesla.com, jayati.sahu@samsung.com,
+	pankaj.dubey@samsung.com, ravi.patel@samsung.com,
+	gost.dev@samsung.com
+Subject: Re: [PATCH v4 2/4] net: stmmac: dwc-qos: Add FSD EQoS support
+Message-ID: <18b83c34-c0e4-466c-aaa1-fff38c507e9a@lunn.ch>
+References: <20240730091648.72322-1-swathi.ks@samsung.com>
+ <CGME20240730092902epcas5p1520f9cac624dad29f74a92ed4c559b25@epcas5p1.samsung.com>
+ <20240730091648.72322-3-swathi.ks@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,19 +71,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240729201843.142918-1-danila@jiaxyga.com>
+In-Reply-To: <20240730091648.72322-3-swathi.ks@samsung.com>
 
-On Mon, Jul 29, 2024 at 11:18:07PM +0300, Danila Tikhonov wrote:
-> This series of patches adds support for the Nothing Phone (1), identified
-> as nothing,spacewar. The Nothing Phone (1) is built on the Qualcomm
-> Snapdragon 778G+ (SM7325-AE, also known as yupik).
+> +static int dwc_eqos_rxmux_setup(void *priv, bool external)
+> +{
+> +	int i = 0;
+> +	struct fsd_eqos_plat_data *plat = priv;
+> +	struct clk *rx1 = NULL;
+> +	struct clk *rx2 = NULL;
+> +	struct clk *rx3 = NULL;
 
-Your email header has this:
+Reverse Christmas tree please.
 
-Content-Type: text/plain; charset=y                                                                        
+> @@ -264,6 +264,7 @@ struct plat_stmmacenet_data {
+>  	void (*ptp_clk_freq_config)(struct stmmac_priv *priv);
+>  	int (*init)(struct platform_device *pdev, void *priv);
+>  	void (*exit)(struct platform_device *pdev, void *priv);
+> +	int (*rxmux_setup)(void *priv, bool external);
+>  	struct mac_device_info *(*setup)(void *priv);
+>  	int (*clks_config)(void *priv, bool enabled);
+>  	int (*crosststamp)(ktime_t *device, struct system_counterval_t *system,
 
-charset=y is not valid. When git-send-email asks what charset, press 
-<enter>, not 'y', to accept the default utf-8.
+It would be good if one of the stmmas Maintainers looked at
+this. There are already a lot of function pointers here, we should not
+be added another one if one of the exiting ones could be used.
 
-Rob
+    Andrew
+
+---
+pw-bot: cr
+
 
