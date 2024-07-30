@@ -1,166 +1,169 @@
-Return-Path: <devicetree+bounces-89580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE1B94222C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:28:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B96942256
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23B771F21995
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:28:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 615E9284CC4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E84018E028;
-	Tue, 30 Jul 2024 21:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2481518CC05;
+	Tue, 30 Jul 2024 21:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="R8E0VYA8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9151AA3FF;
-	Tue, 30 Jul 2024 21:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5B41AA3EF;
+	Tue, 30 Jul 2024 21:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722374908; cv=none; b=dObrXnE/M4mku+fMRgGMaawA0V34vu6OrQq8sTqLFbxnr4BYLlaKe5viMwpvkJPwq3bxEyJGasvbE4had8o2U4F7XOSoJEf7Nezl02Nw8OVyOdWV5mTPEDC9tvTbJlMcELsHA2CBvlUBzyk/6mLQVGJlA6FJLVoesZQVO8oovbI=
+	t=1722376001; cv=none; b=Imr8AcCHCdZ6OeBe8U4rum779B8T+Pz8RS8FEJ022nNo8gRzLsnDgDd56fQj9IMBI5O9Cdimt3+fowIn1f3ibiJrfoOtid98D/IXnKgZrb7HrHGIB6m8KXU3AhF4mXlrdF4KEEI8HhhXu+5tRqlxo4/UjUXM+4jgJXpYL+T4P8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722374908; c=relaxed/simple;
-	bh=tohvFFcsA+kMrDpqQwvEya1ZxVR68qd1fyh4J321LRM=;
+	s=arc-20240116; t=1722376001; c=relaxed/simple;
+	bh=qUYdf+gZuTds5PhuUyLPNnIDV699yL2kJ6XlyDPmW5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EnBYutsMHjInnWJn1wV4ChXfQphlbimXDPbpdYObTruCF4+ZUxPnggbAqSMSG97xpvX4zQbBk2DS5ad21p9NwbylkH+nma2H9/kngwWApQalxca+pbYpBA1LHc4Q7kJeGav0k39vcITgcyhnDUsjAr/0LkbsQvKHFKmRqTeZQKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sYuO5-000000003kq-49Se;
-	Tue, 30 Jul 2024 21:28:06 +0000
-Date: Tue, 30 Jul 2024 22:28:01 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Christoph Hellwig <hch@infradead.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Ming Lei <ming.lei@redhat.com>,
-	Christian Heusel <christian@heusel.eu>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Chad Monroe <chad.monroe@adtran.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Tianling Shen <cnsztl@immortalwrt.org>,
-	Chuanhong Guo <gch981213@gmail.com>,
-	Chen Minqiang <ptpt52@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-block@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] block: add support for notifications
-Message-ID: <Zqla4Tw7YSi1pv7h@makrotopia.org>
-References: <cover.1722365899.git.daniel@makrotopia.org>
- <ca0022886e8f211a323a716653a1396a3bc91653.1722365899.git.daniel@makrotopia.org>
- <ZqlA21iolCpnu4wn@infradead.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dc+cWH8HV+97QwtRZUpoIf2xV0d2fisFUUs7C0kS4FRRf1n3KVff8O7u3s6EX85YXeTGCXkFMz05at0lsF//ZqmxjX4vk7ZaHjZfz7wiJqidBb38+lAy0T8sALlVd6kS7Fbmq/d+9QVpQjNL5cn1kOLpaXw7HYxV+qHUS+EWb+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=R8E0VYA8; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C8DAB4C9;
+	Tue, 30 Jul 2024 23:45:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1722375950;
+	bh=qUYdf+gZuTds5PhuUyLPNnIDV699yL2kJ6XlyDPmW5c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R8E0VYA8fbLbAN6gzvmG6Y3CjL8MvZQ22+A5nzqO6zst1zZstVrrC4z5GsRfHYmad
+	 uJGl0aFoYLVscyMbDmCmHs4hOMctRZ7FOR/b5L+uVIayy/cQocX8wLZiLcC6XG6FAb
+	 mYs5e2W6/U9wfY+JE4S8pCzs/fzSkOvefu9x8szs=
+Date: Wed, 31 Jul 2024 00:46:16 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v6 13/18] media: platform: Fill stats buffer on ISP_START
+Message-ID: <20240730214616.GF8146@pendragon.ideasonboard.com>
+References: <20240709132906.3198927-1-dan.scally@ideasonboard.com>
+ <20240709132906.3198927-14-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZqlA21iolCpnu4wn@infradead.org>
+In-Reply-To: <20240709132906.3198927-14-dan.scally@ideasonboard.com>
 
-On Tue, Jul 30, 2024 at 12:36:59PM -0700, Christoph Hellwig wrote:
-> Same NAK as last time.  Random modules should not be able to hook
-> directly into block device / partition probing.
+Hi Dan,
 
-Would using delayed_work be indirect enough for your taste?
-If so, that would of course be rather easy to implement.
+Thank you for the patch.
 
+On Tue, Jul 09, 2024 at 02:29:01PM +0100, Daniel Scally wrote:
+> On ISP_START, fill the stats buffer by reading out the metering space
+> in the ISP's memory. This is done for the non-active config just as
+> the dma transfer of the registers is. To acheive that, move the
+
+s/acheive/achieve/
+
+> checking of the current config outside of mali_c55_swap_next_config()
+> so we can use it for both functions.
 > 
-> What you want to do can be done trivially in userspace in initramfs,
-> please do that as recommended multiple times before.
+> Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v6:
 > 
+> 	- None
+> 
+> Changes in v5:
+> 
+> 	- New patch
+> 
+>  .../platform/arm/mali-c55/mali-c55-core.c     | 34 ++++++++++++++-----
+>  1 file changed, 26 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-core.c b/drivers/media/platform/arm/mali-c55/mali-c55-core.c
+> index eedc8f450184..ed0db34767a4 100644
+> --- a/drivers/media/platform/arm/mali-c55/mali-c55-core.c
+> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-core.c
+> @@ -567,15 +567,9 @@ static int mali_c55_check_hwcfg(struct mali_c55 *mali_c55)
+>  	return 0;
+>  }
+>  
+> -static void mali_c55_swap_next_config(struct mali_c55 *mali_c55)
+> +static void mali_c55_swap_next_config(struct mali_c55 *mali_c55, u32 next_config)
+>  {
+>  	struct mali_c55_context *ctx = mali_c55_get_active_context(mali_c55);
+> -	u32 curr_config, next_config;
+> -
+> -	curr_config = mali_c55_read(mali_c55, MALI_C55_REG_PING_PONG_READ);
+> -	curr_config = (curr_config & MALI_C55_REG_PING_PONG_READ_MASK)
+> -		      >> (ffs(MALI_C55_REG_PING_PONG_READ_MASK) - 1);
+> -	next_config = curr_config ^ 1;
+>  
+>  	mali_c55_update_bits(mali_c55, MALI_C55_REG_MCU_CONFIG,
+>  			     MALI_C55_REG_MCU_CONFIG_WRITE_MASK,
+> @@ -588,6 +582,7 @@ static irqreturn_t mali_c55_isr(int irq, void *context)
+>  {
+>  	struct device *dev = context;
+>  	struct mali_c55 *mali_c55 = dev_get_drvdata(dev);
+> +	u32 curr_config, next_config;
+>  	u32 interrupt_status;
+>  	unsigned int i, j;
+>  
+> @@ -612,7 +607,30 @@ static irqreturn_t mali_c55_isr(int irq, void *context)
+>  			for (j = i; j < MALI_C55_NUM_CAP_DEVS; j++)
+>  				mali_c55_set_next_buffer(&mali_c55->cap_devs[j]);
+>  
+> -			mali_c55_swap_next_config(mali_c55);
+> +			/*
+> +			 * When the ISP starts a frame we have some work to do:
+> +			 *
+> +			 * 1. Copy over the config for the **next** frame
+> +			 * 2. Read out the metering stats for the **last** frame
+> +			 */
+> +
+> +			curr_config = mali_c55_read(mali_c55,
+> +						    MALI_C55_REG_PING_PONG_READ);
+> +			curr_config &= MALI_C55_REG_PING_PONG_READ_MASK;
+> +			curr_config >>= ffs(MALI_C55_REG_PING_PONG_READ_MASK) - 1;
+> +			next_config = curr_config ^ 1;
+> +
+> +			/*
+> +			 * The ordering of these two is currently important as
+> +			 * mali_c55_stats_fill_buffer() is asynchronous whereas
+> +			 * mali_c55_swap_next_config() is not.
+> +			 *
+> +			 * TODO: Should mali_c55_swap_next_config() be async?
 
-While the average desktop or server **general purpose** Linux
-distribution uses an initramfs, often generated dynamically on the
-target system during installation or kernel updates, this is NOT how
-things are working in the embedded Linux world and for OpenWrt
-specifically.
+Isn't it in this version of the series, at least when using DMA ?
 
-For the OpenWrt community, the great thing is that the Linux Kernel, and
-even an identical userland can run on embedded devices with as little as
-8 megabytes of NOR flash as well as on much more resourceful systems
-with large a eMMC or even NVMe disks, but almost always just exactly one
-single non-volatile storage device. All of those devices come without
-complex boot firmware, so no ACPI, no UEFI, ... just U-Boot and a DT
-blob which gets glued to the kernel in one way or another. And it would
-of course be nice if they would all wake up with correct MAC addresses
-and working WiFi, even if they come with larger (typically
-block-oriented) storage. In terms of hardware such boards are often just
-two or three IC packages: SoC (sometimes including RAM) and some sort
-of non-volatile memory big enough to store a Linux-based firmware,
-factory data (MAC addresses, WiFI calibration, serial number) and
-user settings.
+As I wrote in the review of 07/18, I think the reconfiguration probably
+needs more careful consideration.
 
-The same Linux Kernel source tree is also used to build kernels running
-on countless large servers (and comparingly small number of desktop
-systems) with complex (proprietary) boot firmware and typically a hand
-full of flashes and EEPROMs on the motherboard alone. On such systems,
-Ethernet NICs are dedicated chips or even PCIe cards with sometimes
-even dedicated EEPROMs storing their MAC addresses. Or virtual machines
-having the host taking care of all of that.
+> +			 */
+> +			mali_c55_stats_fill_buffer(mali_c55,
+> +				next_config ? MALI_C55_CONFIG_PING :
+> +				MALI_C55_CONFIG_PONG);
+> +			mali_c55_swap_next_config(mali_c55, next_config);
+>  
+>  			break;
+>  		case MALI_C55_IRQ_ISP_DONE:
 
-Coexistance of all those different scales, without forcing the ways of
-large systems onto the small ones (and vice versa) has been a huge
-strength in my opinion.
+-- 
+Regards,
 
-When it comes to the small (sub $100, often much less) boards for
-plastic-case network appliances such as routers and access points, often
-times the exact same board can be bought either with on-board SPI-NAND
-(used with UBI) or an eMMC. Of course, the vendors keep things as
-similar as possible, so the layout used for the NVMEM bits is often
-identical, just that in one case those (typically less than a memory
-page full of) bits are stored on an MTD partition or directly inside a
-UBI volume, and in the other case they are stored either at a fixed
-offset on the mmcblk0boot[01] device or inside a GPT partition. This is
-just how reality for this class of devices already looks like today.
-In previous iterations of the series I've provided multiple examples of
-mainstream device vendors (Adtran, ASUS, GL.iNet, ...) to illustrate
-that.
-
-Hence I fail to understand why different rules should apply for block
-devices than for EEPROMs, e-fuses, raw or SPI-connected NOR or NAND
-flashes, or UBI. Especially as this is about something completely
-optional, and disabled by default.
-
-Effectively, if an interface to reference and access block-oriented
-storage devices as NVMEM providers in the same way as MTD, UBI, ... is
-rejected by the Linux kernel, it just means we will have to carry that
-as a downstream patch in OpenWrt in order to support those devices in a
-decent way. Generating a device-specific initramfs for each and every
-device would not be decent imho. Carrying information about all devices
-in the filesystem used on every device is also not decent. Our goal is
-exactly to get rid of the board-specific switch-case Shell script
-madness in userspace instead of having more of it...
-
-Traversing DT in userspace (via /sys/firmware/) would of course be
-possible, but it's often simply too late (ie. after rootfs has been
-mounted, and that includes initramfs) for many use-cases (eg. nfsroot),
-and it would be a redundant implementation of things which are already
-implemented in the kernel. We don't like to repeat ourselves, nor do we
-like to deal with board-specific details in userland.
-
-Having a complex do-it-all initramfs like on the common x86-centric
-desktop or server distribution is also not an option, it would never fit
-into the storage of lower-end devices with only a few megabytes of NOR
-flash. You'd need two copies of libc and busybox (one in initramfs and
-one in the actual rootfs), and even the extreme case of a single static
-ELF binary used as initrd would still occupy hundreds of kilobytes of
-storage, and be a hell to maintain. If that sounds like very little to
-you, that means you haven't been dealing with that class of devices.
-
-
-Thank you for your consideration
-
-
-Daniel
+Laurent Pinchart
 
