@@ -1,311 +1,152 @@
-Return-Path: <devicetree+bounces-89449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047289412BB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:01:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C12F9412C4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 288F81C22901
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:01:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A041F23799
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2224D1DFE4;
-	Tue, 30 Jul 2024 13:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4DC19FA66;
+	Tue, 30 Jul 2024 13:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xHUGXHcB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DSv5RWdJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D8D256E
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 13:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3ABF19F48D;
+	Tue, 30 Jul 2024 13:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722344481; cv=none; b=kF7LbqULdxAmpVea7bd+yKEdMmowb9HPu3yw2ga9o/XoBGQ3Yh8/HEB/eBBuEfS+jqv9INPNaYO935BraWznVQHOjwX3qD+dcGrTRyL3IcZGg7QDauo4imDOlUHQ4OStKNU4LqR0MtFnTlyG+RyoS0630IWfAeyI+w8RUvgfot4=
+	t=1722344669; cv=none; b=NlsdH00r4VlNzfJqd2lzNGL6iBgPVlCqzX+BVoIRDguvtrGMj0Ub9nf/zDl5uVyuW+mamwC9uNZLla3dDCE5y50ihtL21NWLX+G/iyIhZPyWMMpXL2IOTrDzC5PBL4jUEVAWu84Xx8KpcBRF5p9ka+Y6Gtvk1ru1LBFBXh3Q6+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722344481; c=relaxed/simple;
-	bh=hmhLIng6c059pzvOYv2iZcklNrlk4sp5KvNtRpk3gAQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=niRXyiz+Z2xMwJf23eqdc1kIKvvpTSkNioS00lc2xd2hITZRLyv9vQdyrJkqf8Fdqi1B4+SwxRO6CDI+FCd5kMK9u8XLq5AjAE2Qk4D/OWnA+vnt22Cpntk9N9M2B5Mor5Y0j88xArgniFtMvvNWqrzutfjyOJRbtc+N4e8reA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xHUGXHcB; arc=none smtp.client-ip=209.85.166.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-396675b83afso26019885ab.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 06:01:18 -0700 (PDT)
+	s=arc-20240116; t=1722344669; c=relaxed/simple;
+	bh=o7jV0TsjHShHuJW+lvGQPrtCv1eUSRwbwdqYfZNvf5g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KYs4goctbnjXmqt0Om++8VY/g3r9vVrBl8t0D5sqYxGJMyIfdRMbbdIiaukwXFGin9jJ7g+SinSnGpeX628a1ugOmz06LD5kx4Zxez/LbN06n5n1mQGH1yooiUJ00wWAf4OpoDfTBhAli/sjC+u0azJ/HV1vv0vurDnj5VPllyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DSv5RWdJ; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-6bce380eb96so2590427a12.0;
+        Tue, 30 Jul 2024 06:04:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722344478; x=1722949278; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9RI/exw0UDuuOm9Ra0mTLdt9ClxNeQNOb2ROdTYCmDE=;
-        b=xHUGXHcB1hZQFDJOAWy0/VQ90KtlquSLM7Soag2K7XZEV5b9BKAoW4z0iMhJfYUOEK
-         dF3iqq4tAhhNhjG61Ixg0wkxB5bgHp1XJYh9bDsm/OuGPjXWGdfjmCQ+tRhDtGXH2THR
-         S8wEqUp92/mc6/ZUNuL3EYb2gWeSd4JSx815bnPzCTgRZSQw9rqqQzu2kTdu+8lZR3Pm
-         QqCkXKrflCXmp+5DBxUsihHvAsKySSFPxkxzuOvqpSYtPwlLA+HhgqvtdfkdKjgNAQJO
-         FIBC1q7qQ9RNwiBDXlWpsuz7brUl1sMnQSzfi21YJZMVIjYpMHt3GBCc4tu78CYHUypv
-         5h/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722344478; x=1722949278;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1722344667; x=1722949467; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9RI/exw0UDuuOm9Ra0mTLdt9ClxNeQNOb2ROdTYCmDE=;
-        b=RQFfCgPDY6N5WH0LT9xgRRshCLbmXEXgRRC4YGTbRRBesMaOvGbl9kXvtjp5bZzZri
-         f9YWjYwu1V98OzeN/mktPcn0nxQ+q93jT2ciWqzXnrmCWCXNTmZw0Qnvid65IE42Uvoc
-         2TsKMJ6EAWEyWnVN34ZVoCci+aeRZS/6ijNbGIW+W4KhGa5CZcTIRSBZlLUtra79cl5J
-         qBsOPzSh/2BNMpScMfxVfGJ2slFK4Z8RdSV9e9TjK7Z4cIkpdIvmDSpxaEiyBhvRlpIZ
-         I2//t161BYUIU1VLMVDZ9p+DLL5ipj402rbtYesIgLiXUykEkSKGVc1O9tkaBQhyXClM
-         rNpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEhWXrGOq1Qx1HSEbxsE82IVrIV3YTSpNBAsybfKsQGnrLRFEsRuLl3+8/L8+TbD17SXOTnlK8kpF3DaA2UWgytV3SauTpKtRjEg==
-X-Gm-Message-State: AOJu0Yz+YksBd26vcRnmJloUlf9EepT5BV1Z8ip5weUwsuiDGJx4Q+Mc
-	yp4eu/CrOISAsbZI6AClASHd3Uxmw5xWLVCyJHibXP2IFHeWcvS0Ebflue7r1bU=
-X-Google-Smtp-Source: AGHT+IFgbcLAc1fRk8/4fljINGyXBPTYgpctkSdW9iE6bPdmkFssRuKjeYeo4aPuqUr2D4zXXdux2w==
-X-Received: by 2002:a92:c26e:0:b0:385:e2e5:ac37 with SMTP id e9e14a558f8ab-39aec40c9c6mr134065645ab.22.1722344477441;
-        Tue, 30 Jul 2024 06:01:17 -0700 (PDT)
-Received: from blmsp ([2001:4091:a245:8609:c1c4:a4f8:94c8:31f2])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-39a22f13f81sm46399455ab.70.2024.07.30.06.01.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 06:01:16 -0700 (PDT)
-Date: Tue, 30 Jul 2024 15:01:13 +0200
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Nishanth Menon <nm@ti.com>
-Cc: Tero Kristo <kristo@kernel.org>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Vibhore Vardhan <vibhore@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] firmware: ti_sci: Partial-IO support
-Message-ID: <x4y44ajcdi2y2dieaa6oohrptpzyiono3fruvwcdelmtzsh4ne@cgqxsz45ohcy>
-References: <20240729080101.3859701-1-msp@baylibre.com>
- <20240729080101.3859701-3-msp@baylibre.com>
- <20240730122801.jzo5ahkurxaexwcm@ambiance>
+        bh=HeccX9FlLPnJUb8SbtR469SLQigZSvmfeJTapPIcJEo=;
+        b=DSv5RWdJp5O+Sm3J4jYd0I+JQmqhI1af3vvw/Z1ieFJAaZIrZ3dVj1Qvb4rb3Kpjyg
+         Q0EkTeLNWpSjvkA90K1WNUrncpsJPz8Kf0bAx2tjizchK5qTb0bBK9XSHa68rdlSJAEw
+         9OhTGl/0e8fmA5csdO8TdDBI7z9NaKuR4gDFf5W0nmS5PV5pho8HMrprSEwRCMDZEHWF
+         ZprESS2rIpBucZgaMLltj/qxy+S7DezMFwPRDtQaj6WxzGBZ2i+RAzZzY9IHm/p/lbUW
+         exFFCqm9TUbsazKUZ1NLLxO70yzwOryqc6ZP9bxogDoOkL7Ak4t3jkOjYmCJdpb3blPc
+         V+kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722344667; x=1722949467;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HeccX9FlLPnJUb8SbtR469SLQigZSvmfeJTapPIcJEo=;
+        b=BcMSgwuI5oI+gMVApbZzHxtCQ3ni3CKd3RtfpdRv6R89jvUUX6APNZ2qDPOcJiFBNg
+         elCQ715PrfY1dRkg8xNz4yOj2ISL4L9w53TsRcaaY9PFnjBgGx6tnbKlfOyh19U+fwFo
+         OVznG9Ux4DKItWZSs4WUTMDghJ+44wk2B1YmMvJg/ZFXdokPuKejUsVYO292SE0Gzr4Y
+         iNAXUpD5Y0np2UOlNmj031hz0XT891LGBEAVxqxFJWiETnvPYOoe3ZRJJrX3VC/37V1L
+         ONRBAJae4isxWxm8X+629qFGmtgKtasBb8r0Bz1N8zb90qrDiMd0Ztw2Ot2Lu3PAVyGg
+         ZaOA==
+X-Forwarded-Encrypted: i=1; AJvYcCXS5plI1CKjAVggqAIfs7hSG8h2MqX7A30Cc4lKKWhRK8bynbBYvX4i2JsgKcpicFaWmhMw0nFQoDubRzvjbVb4K9fUW2wMgXFro904gTuwqNw4lrwhbow6MyD015/zVYtxLANZnF8Z0g==
+X-Gm-Message-State: AOJu0YyXuaPex+9GUXRo6ZgDh7vnvPts+xAydHejxiTr9hziNeESPv3n
+	z7ca5STc6TuLi8Gv0MuAxmAmdd0vc2WUGIxWZq50sYLtIGbMh0IgWGuh61lnMrP/lsaODN/mwBm
+	k3UBk0OlOxXVgHzMsNKoann/2WO0=
+X-Google-Smtp-Source: AGHT+IHgcXQCsSqKIUHuUWZSHKpsG+ja+gPjqOUYutQQRnCj/8Yw7YUXnXOnDA1PxG+ZugQo8W1m/pNBPvI+7DKcWA0=
+X-Received: by 2002:a17:90a:ac2:b0:2c9:5c67:dd9e with SMTP id
+ 98e67ed59e1d1-2cf7e1ff4e8mr8772739a91.19.1722344666339; Tue, 30 Jul 2024
+ 06:04:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240730122801.jzo5ahkurxaexwcm@ambiance>
+References: <20240714172017.422811-1-aford173@gmail.com>
+In-Reply-To: <20240714172017.422811-1-aford173@gmail.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Tue, 30 Jul 2024 08:04:14 -0500
+Message-ID: <CAHCN7x+_M6Mmo8OmvA4EWcWwtedSHB4uFT0+7n+s6iVK+dxrkw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-beacon-kit: Fix Stereo Audio on WM8962
+To: linux-arm-kernel@lists.infradead.org
+Cc: aford@beaconembedded.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 30, 2024 at 07:28:01AM GMT, Nishanth Menon wrote:
-> On 10:00-20240729, Markus Schneider-Pargmann wrote:
-> > Add support for Partial-IO poweroff. In Partial-IO pins of a few modules
-> > can generate system wakeups while DDR memory is not powered resulting in
-> > a fresh boot of the system. The modules that can be wakeup sources are
-> > defined by the devicetree.
-> > 
-> > Only wakeup sources that are actually enabled by the user will be
-> > considered as a an active wakeup source. If none of the wakeup sources
-> > are enabled the system will do a normal poweroff. If at least one wakeup
-> > source is enabled it will instead send a TI_SCI_MSG_PREPARE_SLEEP
-> > message from the sys_off handler. Sending this message will result in an
-> > immediate shutdown of the system. No execution is expected after this
-> > point. The code will enter an infinite loop.
-> > 
-> > The wakeup source device nodes are gathered during probe. But they are
-> > only resolved to the actual devices in the sys_off handler, if they
-> > exist. If they do not exist, they are ignored.
-> > 
-> > A short documentation about Partial-IO can be found in section 6.2.4.5
-> > of the TRM at
-> >   https://www.ti.com/lit/pdf/spruiv7
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >  drivers/firmware/ti_sci.c | 160 +++++++++++++++++++++++++++++++++-----
-> >  drivers/firmware/ti_sci.h |  34 ++++++++
-> >  2 files changed, 175 insertions(+), 19 deletions(-)
-> > 
-> > diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
-> > index 160968301b1f..ba2e56da0215 100644
-> > --- a/drivers/firmware/ti_sci.c
-> > +++ b/drivers/firmware/ti_sci.c
-> > @@ -99,6 +99,9 @@ struct ti_sci_desc {
-> >   * @node:	list head
-> >   * @host_id:	Host ID
-> >   * @users:	Number of users of this instance
-> > + * @nr_wakeup_sources: Number of device nodes in wakeup_source_nodes
-> > + * @wakeup_source_nodes: Array of all device_nodes listed as wakeup sources in
-> > + *			 the devicetree
-> >   */
-> >  struct ti_sci_info {
-> >  	struct device *dev;
-> > @@ -116,6 +119,9 @@ struct ti_sci_info {
-> >  	u8 host_id;
-> >  	/* protected by ti_sci_list_mutex */
-> >  	int users;
-> > +
-> > +	int nr_wakeup_sources;
-> > +	struct device_node **wakeup_source_nodes;
-> >  };
-> >  
-> >  #define cl_to_ti_sci_info(c)	container_of(c, struct ti_sci_info, cl)
-> > @@ -392,10 +398,13 @@ static void ti_sci_put_one_xfer(struct ti_sci_xfers_info *minfo,
-> >  static inline int ti_sci_do_xfer(struct ti_sci_info *info,
-> >  				 struct ti_sci_xfer *xfer)
-> >  {
-> > +	struct ti_sci_msg_hdr *hdr = (struct ti_sci_msg_hdr *)xfer->tx_message.buf;
-> >  	int ret;
-> >  	int timeout;
-> >  	struct device *dev = info->dev;
-> >  	bool done_state = true;
-> > +	bool response_expected = !!(hdr->flags & (TI_SCI_FLAG_REQ_ACK_ON_PROCESSED |
-> > +						  TI_SCI_FLAG_REQ_ACK_ON_RECEIVED));
-> 
-> I think a separate patch to introduce a no_response expected patch would
-> make sense on which we build tisci_sys_off_handler in the next patch?
-> 
-> >  
-> >  	ret = mbox_send_message(info->chan_tx, &xfer->tx_message);
-> >  	if (ret < 0)
-> > @@ -403,25 +412,27 @@ static inline int ti_sci_do_xfer(struct ti_sci_info *info,
-> >  
-> >  	ret = 0;
-> >  
-> > -	if (system_state <= SYSTEM_RUNNING) {
-> > -		/* And we wait for the response. */
-> > -		timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
-> > -		if (!wait_for_completion_timeout(&xfer->done, timeout))
-> > -			ret = -ETIMEDOUT;
-> > -	} else {
-> > -		/*
-> > -		 * If we are !running, we cannot use wait_for_completion_timeout
-> > -		 * during noirq phase, so we must manually poll the completion.
-> > -		 */
-> > -		ret = read_poll_timeout_atomic(try_wait_for_completion, done_state,
-> > -					       done_state, 1,
-> > -					       info->desc->max_rx_timeout_ms * 1000,
-> > -					       false, &xfer->done);
-> > -	}
-> > +	if (response_expected) {
-> 
-> 	How about a goto?
+On Sun, Jul 14, 2024 at 12:20=E2=80=AFPM Adam Ford <aford173@gmail.com> wro=
+te:
+>
+> The L/R clock needs to be controlled by the SAI3 instead of the
+> CODEC to properly achieve stereo sound. Doing this allows removes
+> the need for unnecessary clock manipulation to try to get the
+> CODEC's clock in sync with the SAI3 clock, since the CODEC can cope
+> with a wide variety of clock inputs.
 
-Yes, thanks, looks cleaner.
+Shawn,
 
-> 
-> if (!response_expected)
-> 	goto no_response;
-> > +		if (system_state <= SYSTEM_RUNNING) {
-> > +			/* And we wait for the response. */
-> > +			timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
-> > +			if (!wait_for_completion_timeout(&xfer->done, timeout))
-> > +				ret = -ETIMEDOUT;
-> > +		} else {
-> > +			/*
-> > +			 * If we are !running, we cannot use wait_for_completion_timeout
-> > +			 * during noirq phase, so we must manually poll the completion.
-> > +			 */
-> > +			ret = read_poll_timeout_atomic(try_wait_for_completion, done_state,
-> > +						       done_state, 1,
-> > +						       info->desc->max_rx_timeout_ms * 1000,
-> > +						       false, &xfer->done);
-> > +		}
-> >  
-> > -	if (ret == -ETIMEDOUT)
-> > -		dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
-> > -			(void *)_RET_IP_);
-> > +		if (ret == -ETIMEDOUT)
-> > +			dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
-> > +				(void *)_RET_IP_);
-> > +	}
-> >  
-> no_response:
-> 
-> >  	/*
-> >  	 * NOTE: we might prefer not to need the mailbox ticker to manage the
-> > @@ -3262,6 +3273,82 @@ static int tisci_reboot_handler(struct sys_off_data *data)
-> >  	return NOTIFY_BAD;
-> >  }
-> >  
-> [...]
-> 
-> > +static int tisci_sys_off_handler(struct sys_off_data *data)
-> > +{
-> > +	struct ti_sci_info *info = data->cb_data;
-> > +	int i;
-> > +	int ret;
-> > +	bool enter_partial_io = false;
-> > +
-> > +	for (i = 0; i != info->nr_wakeup_sources; ++i) {
-> > +		struct platform_device *pdev =
-> > +			of_find_device_by_node(info->wakeup_source_nodes[i]);
-> > +
-> > +		if (!pdev)
-> > +			continue;
-> > +
-> > +		if (device_may_wakeup(&pdev->dev)) {
-> > +			dev_dbg(info->dev, "%pOFp identified as wakeup source\n",
-> > +				info->wakeup_source_nodes[i]);
-> > +			enter_partial_io = true;
-> > +		}
-> > +	}
-> > +
-> > +	if (!enter_partial_io)
-> > +		return NOTIFY_DONE;
-> > +
-> > +	ret = tisci_enter_partial_io(info);
-> > +
-> > +	if (ret) {
-> > +		dev_err(info->dev,
-> > +			"Failed to enter Partial-IO %pe, trying to do an emergency restart\n",
-> > +			ERR_PTR(ret));
-> > +		emergency_restart();
-> > +	}
-> > +
-> > +	while (1);
-> 
-> Why not fall through OR go through emergency_restart (since there is
-> no fall through for shutdown path) if it acks, but actually fails to
-> enter LPM state after a dt described or a default timeout period?
-> 
-> > +
-> > +	return NOTIFY_DONE;
-> > +}
-> > +
-> >  /* Description for K2G */
-> >  static const struct ti_sci_desc ti_sci_pmmc_k2g_desc = {
-> >  	.default_host_id = 2,
-> > @@ -3398,6 +3485,35 @@ static int ti_sci_probe(struct platform_device *pdev)
-> >  		goto out;
-> >  	}
-> >  
-> > +	if (of_property_read_bool(dev->of_node, "ti,partial-io-wakeup-sources")) {
-> 
-> You should probably check on TISCI_MSG_QUERY_FW_CAPS[1] if
-> Partial IO on low power mode is supported as well? if there is a
-> mismatch, report so?
+Any chance this could get reviewed and/or applied?
 
-I actually have another series in my queue that introduces this check. I
-just implemented this check for Partial-IO yesterday in the patch that
-introduces fw capabilities. If you like I can switch these series
-around.
+thanks,
 
-> 
-> > +		info->nr_wakeup_sources =
-> > +			of_count_phandle_with_args(dev->of_node,
-> > +						   "ti,partial-io-wakeup-sources",
-> > +						   NULL);
-> > +		info->wakeup_source_nodes =
-> > +			devm_kzalloc(dev, sizeof(*info->wakeup_source_nodes),
-> > +				     GFP_KERNEL);
-> > +
-> > +		for (i = 0; i != info->nr_wakeup_sources; ++i) {
-> > +			struct device_node *devnode =
-> > +				of_parse_phandle(dev->of_node,
-> > +						 "ti,partial-io-wakeup-sources",
-> > +						 i);
-> > +			info->wakeup_source_nodes[i] = devnode;
-> 
-> Curious: Don't we need to maintain reference counting for the devnode
-> if CONFIG_OF_DYNAMIC?
+adam
 
-In case you mean I missed of_node_put(), yes, I did, thank you. I added
-it in a ti_sci_remove().
-
-Best
-Markus
+>
+> Fixes: 161af16c18f3 ("arm64: dts: imx8mp-beacon-kit: Fix audio_pll2 clock=
+")
+> Fixes: 69e2f37a6ddc ("arm64: dts: imx8mp-beacon-kit: Enable WM8962 Audio =
+CODEC")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/a=
+rm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> index 1871c10f5c12..de5b64fa479a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> @@ -222,13 +222,12 @@ sound-wm8962 {
+>
+>                 simple-audio-card,cpu {
+>                         sound-dai =3D <&sai3>;
+> +                       frame-master;
+> +                       bitclock-master;
+>                 };
+>
+>                 simple-audio-card,codec {
+>                         sound-dai =3D <&wm8962>;
+> -                       clocks =3D <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
+> -                       frame-master;
+> -                       bitclock-master;
+>                 };
+>         };
+>  };
+> @@ -544,10 +543,9 @@ &pcie_phy {
+>  &sai3 {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&pinctrl_sai3>;
+> -       assigned-clocks =3D <&clk IMX8MP_CLK_SAI3>,
+> -                         <&clk IMX8MP_AUDIO_PLL2> ;
+> -       assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL2_OUT>;
+> -       assigned-clock-rates =3D <12288000>, <361267200>;
+> +       assigned-clocks =3D <&clk IMX8MP_CLK_SAI3>;
+> +       assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +       assigned-clock-rates =3D <12288000>;
+>         fsl,sai-mclk-direction-output;
+>         status =3D "okay";
+>  };
+> --
+> 2.43.0
+>
 
