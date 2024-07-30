@@ -1,67 +1,61 @@
-Return-Path: <devicetree+bounces-89526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BEA941886
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:23:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A982C941A13
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:40:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A8D11F23C96
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:23:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34790B2A5AB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E7D1A6196;
-	Tue, 30 Jul 2024 16:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B9D1898EB;
+	Tue, 30 Jul 2024 16:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GsLfLhOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E0D1A6161;
-	Tue, 30 Jul 2024 16:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573781898E1;
+	Tue, 30 Jul 2024 16:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722356579; cv=none; b=fp9yf10GayJmeF4mi1JmmCreuHiRXIS/wcOsRWsjCSmvg1C8G4dMXX9U3G6QNLXzGfsd6fgmK85AG7VVJLBFJ5HeLLffTbh9WMIhCh20db/ZVzz0ELhWFZ5Bi8qTMPoFJojb1ClI4wEFnxRrFpgQi4KAsUSHG3uyiDS2bMcCBUs=
+	t=1722356677; cv=none; b=F4KLdlEF1hrqlOqBdOcFMyH9o9uemdMyYPK9CGwmACi+hUmlSpUugXgNcRbwiFBc1CiaIxRbpr+go67m//GtGU3GY2NtdFuTFGmzYoDE96uad5e0UsT/cIN0+1Gl+Qza0ILr9KXe6josq+aBnLqvrMurEhzwx3Jq8AQgWJIjl4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722356579; c=relaxed/simple;
-	bh=c/mVr9gTlg70oedvLOoEn2BtKUU3gEiIrg9E3aZ0pgo=;
+	s=arc-20240116; t=1722356677; c=relaxed/simple;
+	bh=uT6R5uY0ZH4GFNGa0yn0GoapUoLl0in7iX4GIpT4gNM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GJjomfJGU5FGfCEwGrQ+N0shL3KrjSbYpfqefUofBqC2g/xi0JYp3MQknUJyAGsoSBpqMU72t5RNWaODo3U/oNJP4e6z/A6OhSB1lj5BNg/oBsJRoNTza/Gd5SJxaVB1ftxa6ux3DA6DCAXcHmgE7zDFlPP/MaT4m4wwbVCy5c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sYpch-000000002QG-0tH9;
-	Tue, 30 Jul 2024 16:22:51 +0000
-Date: Tue, 30 Jul 2024 17:22:47 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: arinc.unal@arinc9.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Linux regressions mailing list <regressions@lists.linux.dev>,
-	Paolo Abeni <pabeni@redhat.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, frank-w@public-files.de,
-	Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=YJgddg5PfUC61N9cRcrhzSMnaHL91GLwArAnmFD+jHtOAqlxVPv4Bzg0o+x70vQBTtj8GN0CUKcEOEWvUPr2PVBC1Q+4YdJY4rD5/t4d7NdzoISwmLZxCZZY4kgPnqpxMqODVmnAf4SamARlxTAeq1/R3xpvXx5cvEs5vDShE3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GsLfLhOU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3D96C4AF0E;
+	Tue, 30 Jul 2024 16:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722356677;
+	bh=uT6R5uY0ZH4GFNGa0yn0GoapUoLl0in7iX4GIpT4gNM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GsLfLhOU4GVqNpgcMqEVGQ/dOEm0ZWndU5EsN514S9YhDhoQ32T29dGTNexxOlAWg
+	 Lg0V5ctO85b821SACFkSY//w/SkH8fRskzv+QHm9Dp3K+U58bDJRYs2twr/xVoSV8V
+	 DAIjGSM6o1LBG3a9oxfuweI+c+vXYOlyszmCQvkbZ1t7gjAeD4dVobqmr8W0U1MTjk
+	 6wWBXNO7W9tJwzdmy6Kv8p//+E0ZfDS9mz1yvVgPYU+dvHa6apLZYVfBH5fMfcZF3q
+	 25X+Um3EUJPlRG5yGZbwGcytTBHNHePopxnH5Mm59hiuU25sJq01UHMxAwvxXS+RS5
+	 axOYC5yP2W7+Q==
+Date: Tue, 30 Jul 2024 10:24:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-Message-ID: <ZqkTVygxG8cJULbt@makrotopia.org>
-References: <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
- <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
- <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
- <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
- <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
- <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
- <b3fa66cc-516b-4d78-aee5-62a47b52a3b1@collabora.com>
- <2076f699540c3c9d10effdb8b55d3f89@arinc9.com>
- <921f448b-4085-4c8d-85f8-478318d9c054@kernel.org>
+	Magnus Damm <magnus.damm@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: fuse: Move renesas,rcar-{efuse,otp}
+ to nvmem
+Message-ID: <20240730162435.GA1480758-robh@kernel.org>
+References: <cover.1721999833.git.geert+renesas@glider.be>
+ <1a3d4ff8ce34a5e676d1cb1fafd40525378e29a4.1721999833.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,27 +64,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <921f448b-4085-4c8d-85f8-478318d9c054@kernel.org>
+In-Reply-To: <1a3d4ff8ce34a5e676d1cb1fafd40525378e29a4.1721999833.git.geert+renesas@glider.be>
 
-Hi,
-
-On Tue, Jul 30, 2024 at 06:04:12PM +0200, Krzysztof Kozlowski wrote:
-> On 30/07/2024 13:22, arinc.unal@arinc9.com wrote:
-> > [...]
-> > In my view, your behaviour of not applying a devicetree patch before a
-> > Linux driver patch was applied, and then not replying to any arguments
-> > whatsoever, was keeping the devicetree files hostage until your demands
+On Fri, Jul 26, 2024 at 03:38:06PM +0200, Geert Uytterhoeven wrote:
+> The R-Car E-FUSE blocks can be modelled better using the nvmem
+> framework.
 > 
-> Hm, why ever DTS patch should be applied before driver patch is? This
-> clearly suggests ABI break. You proposed to fix ABI issue by fixing DTS,
-> which is not the way, because it literally fixes nothing. You got
-> comments - fix the driver to be backwards compatible.
+> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, to show
+> the definition of nvmem cells.  While at it, drop unneeded labels from
+> the examples, and fix indentation.
+> 
+> Add an entry to the MAINTAINERS file.
+> 
+> Reported-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v3:
+>   - New.
+> 
+> I would expect that the calib@144 node needs:
+> 
+>     #nvmem-cell-cells = <0>;
+> 
+> but after adding that, "make dt_binding_check" starts complaining:
+> 
+>     Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb: fuse@e6078800: nvmem-layout: 'oneOf' conditional failed, one must be fixed:
+> 	    '#address-cells', '#size-cells', 'calib@144' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	    Unevaluated properties are not allowed ('nvmem-cell-cells' was unexpected)
 
-I've suggested a fix for the driver here:
+Did you want 'nvmem-cell-cells' or '#nvmem-cell-cells'?
 
-https://patchwork.kernel.org/project/netdevbpf/patch/f485d1d4f7b34cc2ebf3d60030d1c67b4016af3c.1720107535.git.daniel@makrotopia.org/
-
-It has been tested and acknowledged by Arinc, hence a possible solution
-would be to apply it and there by restore compatibility with existing
-(broken) device trees.
+> 	    'kontron,sl28-vpd' was expected
+> 	    'onie,tlv-layout' was expected
+> 	    from schema $id: http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
+>     Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb: fuse@e6078800: nvmem-layout: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'calib@144' were unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
+>     Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb: fuse@e6078800: Unevaluated properties are not allowed ('nvmem-layout' was unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
 
