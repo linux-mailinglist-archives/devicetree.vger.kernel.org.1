@@ -1,95 +1,91 @@
-Return-Path: <devicetree+bounces-89346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E248940D3A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:18:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C51FF940D43
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:21:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD93E28117E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:18:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF3F2B219F0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F74194ACD;
-	Tue, 30 Jul 2024 09:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695C4194ACF;
+	Tue, 30 Jul 2024 09:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Wka0bnrB"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nOH/Hr3m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9DC194ACA
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 09:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21FA1667FA;
+	Tue, 30 Jul 2024 09:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722331122; cv=none; b=WfvYPSSrAjUZhgM0pxYWKqRvdHMZraYe3wn+vAjwnZarjjVoMSVAQei7XuKvYJkAF3G4Xa7nxAtI5sx2JdUjxuqropC7ubN367NUHH4NIfA20AYBpyhKT5q7jPkGd0rqNOQZsfSvXKXrMFJSwGuudP080UktfnZGvbWzs7vuU4k=
+	t=1722331279; cv=none; b=bbJvX/s1WJ2b3epw483PgTryNSRvoCBtuTqDmKkX9h/1Yf9RkcyvqBeOLb3xAdwqdDEY9omSsEe3KPWg3AdmWn6dDoNF6oEmnAMYEZmHgwbubWuGfFo0gDRnLniGFP+G2Zjt4cqfcMRgVLouxrqM0WN1tKp/k1VbmgLdIr11zbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722331122; c=relaxed/simple;
-	bh=K++cy+QQYYiPZPo6DWmmBwlEs0caJQ/eUx5pta9W1jU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fA9um8zh+4fywnf7x/sIAPJxtRIakHNv8AY6XrjRNTG3EpviCdg3bA/Q/MTBqqJvOQ8eJTht9jbXhFau6KhB85/G+U3D1RsQ5Ei2O2/ZuwyhzW8WNs9JyXZjL1MkSDsaX3tfvSbH7z4dQ2ghWHi8atmVK17xPgQWXm7eVbOYZ18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Wka0bnrB; arc=none smtp.client-ip=46.235.227.194
+	s=arc-20240116; t=1722331279; c=relaxed/simple;
+	bh=o4tOgYmx9IHZXKqcTaeAPkWXB0TNxC4dHpxp0ch94Cw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=St3mo6ywHwZW6yjJPqh1wHpuWUUefMf+BJbOfuAVoQINgNZ75XhC6LjYjm3EEkmqhddZ6QUVyF53QciQSkVlqgm6lBLJee56DaodDHa+Q6rfAbTb99O+44xosMjLI6HedhwmDnR5fQolCVMTTfIkmst87BOcTihaMuKkZsAnAxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nOH/Hr3m; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722331119;
-	bh=K++cy+QQYYiPZPo6DWmmBwlEs0caJQ/eUx5pta9W1jU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Wka0bnrBABJEJcOvB4V/pfaNdBBdQNeL/CDuf5nkONQc6+d7ik9H8n/H3FVsh0+bh
-	 HIqs9huLWBd0EPXrSr0o0zaSiemOnn81eg/xjkPu8ga5S26gjhu7ggcm8p3Do4rzEH
-	 fxjUmfmXaoeZS7jkqSJMl9pnoq1LxsoA+NHs1li/0Qs7nTy8H6o01KMjX9b73NGzfr
-	 UVDE5W/cAf0ZyylrUC7qO47Fahu2Ghv+iQCMStaSRStnAG38Mt5+ttishxOsYId24d
-	 cX37LN3dfrtda4Bp5WrOMW+ejmnIcwSbWnmMcCR70cjhUZKiF3CrK6Oybq6XvzkZiH
-	 A3Dvl92/GEP7A==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	s=mail; t=1722331276;
+	bh=o4tOgYmx9IHZXKqcTaeAPkWXB0TNxC4dHpxp0ch94Cw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=nOH/Hr3mnG3TX5BHt8NrsOxsq/xpuhlHzT+VqI9QWKzQxUFEt69g8ySrP4uN3IC8G
+	 GWVYoeQJ+6tpoheISRYFNumC5ATlh5y4hfe+fLCT/z7QOpwVAnKCLkgcW7Svu2pzKg
+	 yf2EzmX4at+3xtiloyIkgW0bBSGsvp30UhMzJDM5mF8NQLWbbUqDiUWPTwgGdvrwPv
+	 gz31q/VPWGuHQQK95beOkaVNV1J/9R6+K8xLgFUlcFwRlaDI2kyMMnam3OQZkMXAmu
+	 qm/Klwh6tGsKGV3ijKU4yffJPtg/NplWBcQEBzwrgQNzBqmHx3o34g3snxqObOmPpV
+	 W5xFNx0zVoakQ==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5170B3782190;
-	Tue, 30 Jul 2024 09:18:38 +0000 (UTC)
-Message-ID: <b5b4c23b-e5d5-4266-9df1-28bc731c469e@collabora.com>
-Date: Tue, 30 Jul 2024 11:18:37 +0200
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 790D93780521;
+	Tue, 30 Jul 2024 09:21:15 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20240531-tomato-rsel-gpio34-35-fix-v1-1-64ab2545f182@collabora.com>
+References: <20240531-tomato-rsel-gpio34-35-fix-v1-1-64ab2545f182@collabora.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: cherry: Specify pull resistance
+ for RSEL GPIOs
+Message-Id: <172233127541.66997.11462154822766150179.b4-ty@collabora.com>
+Date: Tue, 30 Jul 2024 11:21:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: mt7986: add missing UART1
- CTS/RTS pins in BPI-R3
-To: Leith Bade <leith@bade.nz>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, frank-w@public-files.de
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, didi.debian@cknow.org
-References: <20240627075856.2314804-1-leith@bade.nz>
- <20240627075856.2314804-5-leith@bade.nz>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240627075856.2314804-5-leith@bade.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-Il 27/06/24 09:58, Leith Bade ha scritto:
-> The current definition of the uart1_pins pin group does not include the
-> CTS and RTS pins that are available on header CON1.
+On Fri, 31 May 2024 17:51:09 -0400, Nícolas F. R. A. Prado wrote:
+> GPIOs 34 and 35 on MT8195 are of type MTK_PULL_PU_PD_RSEL_TYPE, meaning
+> not only can they be configured as pull-up or pull-down, but the pull
+> resistance can also be configured.
 > 
-> In the public schematic for the BPI-R3 (titled "BPI-R3-MT7986A",
-> revision "V1.1", sheet 4), the UART1_RTS and UART1_CTS pins are connected
-> via nets to the connector CON1 (sheet 14) UART0-RTS and UART0-CTS pins.
-> The datasheet does not show these nets as connected to anything else.
+> The current bias setting however doesn't specify a resistance value,
+> resulting on the following errors:
 > 
-> These pins can be configured for either UART1 or as a GPIO, with no other
-> alternate usage listed in the pinctrl driver. By changing the pin group
-> definition from uart1_rx_tx to uart1 the additional RTS and CTS pins are
-> included.
-> 
-> Signed-off-by: Leith Bade <leith@bade.nz>
+> [...]
 
-Fixes tag please, after which:
+Applied to v6.11-next/dts64, thanks!
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+[1/1] arm64: dts: mediatek: cherry: Specify pull resistance for RSEL GPIOs
+      commit: d92fd0cc01b31d59a0e95f44e3f08921fd74fb87
 
 Cheers,
 Angelo
