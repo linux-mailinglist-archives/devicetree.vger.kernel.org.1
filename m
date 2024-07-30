@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-89563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AC59420ED
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:46:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F65942112
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:51:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 564491C23314
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:46:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0BC9B241A0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A14D18CBE2;
-	Tue, 30 Jul 2024 19:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A45018B479;
+	Tue, 30 Jul 2024 19:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKM4hSs9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b63rnBRW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7648149C41;
-	Tue, 30 Jul 2024 19:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E77E13AD13;
+	Tue, 30 Jul 2024 19:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722368728; cv=none; b=ZklC8vaDkQP/x4EHDEk30rKM3VthYtd2bZRPNMww0l6KDxMA6xsPeRIhrt9hG/q7ZoYFsiRkONN9d2LLtG7+metkFxQcPJvFNwvQlrLVdJSTFIdqTXhe0B/5WRb1F5Lwu2Xtw3cyBZo97U/FE+KjBa/rSfOVcdcgRe7PxOED7ZE=
+	t=1722369074; cv=none; b=aouXYrE4Jl3Lig78WtrLlcNQ/GxI0PsSAhK1dmcrv9XU0yheANGxXCs5WwfcBbMwLu68Ftmf5T9bQ1q1croYbA1GdTq2rP/hShjz2467pxvF2juzv/jzPqp2wc4roSrDYcFdnyLROE5GKJzCagtI9xJ6eCVRIa2ZXSpUis/WqoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722368728; c=relaxed/simple;
-	bh=Cn8UGTm+5clbj1815kjTPqeoSHJJ041j85Ym5yyD1oQ=;
+	s=arc-20240116; t=1722369074; c=relaxed/simple;
+	bh=fAa3YqztrXvUe4q2HK4TpXZwBl0ND7KIRKvnTFi0STE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FBB1fsYZOlJHzo1pxWPC6Twk4g/RWSqQccxb4EN2TFFp6p2DIB8XMc/ep7OXneXaIdVlgQZTLnjhi/BMYZbX393oZgv+N80XWqFdN6ovRjhncd0xSvgPJKMfmP5aqbcrpDMM7U3e2HgZtZssnsyNBNsfBGv1iQGBdDysrOC9wNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKM4hSs9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34374C32782;
-	Tue, 30 Jul 2024 19:45:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CEcGM1BzEJrpSaOkYnJpJQvTvpNY83jbEbdjXDi22UJ83jwVlre3b4mS1TBvrwkijeMrUj+i+4/VjWSKqhTfhHYugTMQU54fmqfwAPhKtPDKFXYpxpi8wjz74TzGUumBs2dXckxg643CIb2q0FUJqAq7sw7hu4XbGyjwlVsQQoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b63rnBRW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E60C32782;
+	Tue, 30 Jul 2024 19:51:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722368727;
-	bh=Cn8UGTm+5clbj1815kjTPqeoSHJJ041j85Ym5yyD1oQ=;
+	s=k20201202; t=1722369073;
+	bh=fAa3YqztrXvUe4q2HK4TpXZwBl0ND7KIRKvnTFi0STE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aKM4hSs94pSbl8XDmbASUr+D13FvPq2tlNPTxpf1huOglb+fLDrpNZigvyNl2YhSM
-	 /PTHADLsxd+sKipAXOlAppKGc4qbA44CDlEY86inE4tB2L/neWdCci6xc3Swsk2CMX
-	 DnpHd5KRcM5Gh4n+G6GbvKbJPiAsq3unNoCQS2/ryvqhK7czQdp9nCw7YXcCx2B77z
-	 NDZODbO2Qo8rsBRMW4LfooAeWKSOoJhV9wIVSvYBa3yGRoXMni5DHdYhbqpLpXkmM8
-	 f3EN5y7N1Y506GilLvp5UOVLMvcZ+S7YZQcIR7HAP2NZ2hxp06u5MwCiZCTI2jINWy
-	 0Cdw4phunBnuA==
-Date: Tue, 30 Jul 2024 13:45:26 -0600
+	b=b63rnBRW/5AdgoMSrV3IA2ucuV/cEEWON1SXrgPwvsi3z7ROmihKK6Gp53tZj7mjK
+	 2ZTCloU1xkg1LBUuH16GN3HLHQ9Ace8U+7JZ3xVLCsRM0pWEaYOeSxWV0qKPztBfPm
+	 yLKqz3CEzNPc+Xc/olClbh/4edSkNiwq4O9eF5SV4Rnns8dDbIw4XUr0s3jr2K6+3I
+	 /70t29QyLnjPRlcEGQNM2i6+VwQBgLxhKAOSiYXJzjurCX8inPJMSdedfvRa5idHEc
+	 0wZjtpgKzOvSltr0uvlPfRVnS/JtUVZlxV7TuxrEgQ3xGJE0ISuERV/1sAtIzvF3Je
+	 Oizhit8T4fQTQ==
+Date: Tue, 30 Jul 2024 13:51:12 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+To: Pawel Dembicki <paweldembicki@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Eric Dumazet <edumazet@google.com>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Stephan Gerhold <stephan@gerhold.net>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
-	Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: soc: qcom: smd-rpm: add generic
- compatibles
-Message-ID: <172236872511.2035012.2163751854672645367.robh@kernel.org>
-References: <20240729-fix-smd-rpm-v2-0-0776408a94c5@linaro.org>
- <20240729-fix-smd-rpm-v2-2-0776408a94c5@linaro.org>
+	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH net-next v3 2/2] dt-bindings: net: dsa: vsc73xx: add
+ {rx,tx}-internal-delay-ps
+Message-ID: <172236907155.2041115.15896777059497841424.robh@kernel.org>
+References: <20240729210200.279798-1-paweldembicki@gmail.com>
+ <20240729210200.279798-2-paweldembicki@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,22 +66,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240729-fix-smd-rpm-v2-2-0776408a94c5@linaro.org>
+In-Reply-To: <20240729210200.279798-2-paweldembicki@gmail.com>
 
 
-On Mon, 29 Jul 2024 22:52:15 +0300, Dmitry Baryshkov wrote:
-> Add two generic compatibles to all smd-rpm devices, they follow the same
-> RPMSG protocol and are either accessed through the smd-edge or through
-> the glink-edge.
+On Mon, 29 Jul 2024 23:02:01 +0200, Pawel Dembicki wrote:
+> Add a schema validator to vitesse,vsc73xx.yaml for MAC-level RGMII delays
+> in the CPU port. Additionally, valid values for VSC73XX were defined,
+> and a common definition for the RX and TX valid range was created.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+> 
 > ---
->  .../devicetree/bindings/clock/qcom,rpmcc.yaml      |  2 +-
->  .../bindings/remoteproc/qcom,glink-rpm-edge.yaml   |  2 +-
->  .../bindings/remoteproc/qcom,rpm-proc.yaml         |  4 +-
->  .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 74 ++++++++++------------
->  .../devicetree/bindings/soc/qcom/qcom,smd.yaml     |  2 +-
->  5 files changed, 38 insertions(+), 46 deletions(-)
+> v3:
+>   - use 'default:' instead text in description
+> v2:
+>   - added info about default value when the rx/tx delay property
+>     is missing
+> ---
+>  .../bindings/net/dsa/vitesse,vsc73xx.yaml     | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
