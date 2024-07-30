@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-89197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068D494061A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 05:56:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 278FE940622
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 05:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 383A31C212A1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 03:56:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5B40281509
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 03:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD4814B06A;
-	Tue, 30 Jul 2024 03:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28DFD15B542;
+	Tue, 30 Jul 2024 03:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="GOKo00CW"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ihpbVfD3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1401474BC;
-	Tue, 30 Jul 2024 03:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A61C1474BC;
+	Tue, 30 Jul 2024 03:59:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722311799; cv=none; b=Ogduim7GhhVdgFKljSJbhcPCxzi1D92pZJxJvyYCf77LZoiMgDe8bqlKb7sDplHUsZPHRMd1JR6H5o1LW7aXNP7wS4OIsosm6UkXtuMUdvjdzF3YWNxClVqSMUC/QhoZ/u7UPvsllHepcdYWa2ZSKp+tISp7NCrUDKTs170Ht0A=
+	t=1722311954; cv=none; b=ftseaJj+prbWuH6Xvf3N39Q7M+f3JQnU/kKoKE1qBkpo4iIwOIZBh3tpGRdxxRTQrhHWp3EFyYXqEp1cknyzosGJgYE+KYpJMMJev0Xo+2S7ji+TyMMy7O1b7zXFTQ4mEpVM3c32AXt6vf2xPs6hiaDne9w/2wlKAmOGZXjbcqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722311799; c=relaxed/simple;
-	bh=2uGIxog9NdeojwZ6uUCFl0uUwO8rbODnB4sHB/OAJro=;
+	s=arc-20240116; t=1722311954; c=relaxed/simple;
+	bh=lCEOBMNK6HXjhZZPWMjaCKh7PhpXD5XkbjAdQ8Yyb1I=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cKsymn11JldqpArqSIkeFF2GRPtk2paG1Q8DwTBhX+NIeNPwq+XWgnGrRWUoEZmQ0vIqWJf4VkYQ+OqXnkoLq59ruA5Rw4ltasiyGmNgsek8tOAUPGt7A9sBp/W4WkSsCZkynlhDOBjt8VOMNywPcqcTO937kTx5VrOou9glnz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=GOKo00CW; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=C94AsEHOnUB0ZoJb9gb4jRASu/aPnKTbVe+Yr8p7fLBDGFVU79I6LmRTtQZnw40IHsp2AcVdpoXfqrxtbJ8nZyAvZdzZU6ZP5H2hLvPevyrwjM88hCRjy+rIVibgd/YQV+OucItCQWth8zjXcrOzhEgRYbEm90D604hcGetFPns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ihpbVfD3; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1722311787;
-	bh=MS3klEd7ZevntHEIeQtcKtN+G0dUXIcDk100cqPHI1Y=;
+	d=codeconstruct.com.au; s=2022a; t=1722311950;
+	bh=4mdg6uNPlSlauYbqabzkmGIjQsigmJdCbZUU2fN6GHw=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=GOKo00CWVXVHiPBmdkyKdzHKroWlZdp73d+ebOWjKyINjoBN2Vhmw4TMLP0oGzuz6
-	 tAPZKohwTr5JtCqIKJDxWM0PGLFjpltsVozRKnO9EWu2FdbAKWaU6NUuxvQo02RfAP
-	 vYA1O6nP8gtv9E0wtYt8gpo9g3g1MUiciDKLKVfSXxqiKYVsa5tBllZTYTDMSDHJBD
-	 j2dgbZri8BtnQkonvSqbTmCSiZnpgXU8Nh7Lf2YieLV6MmiTCA0y6moVdXiD/ESQPh
-	 ZS+a/AtKywnn5s6LZxEArI0RZpXlQ6OL3BVJQEFdGBBcAd2mfvR1Amwj5HS5sJlkUf
-	 +bJVoTTtgEcLw==
+	b=ihpbVfD3yuXOH42/S++YNFoUIDokwIAYeTvYZbGB9bdHqVBHjvnLH28I3V2pJ86lA
+	 y18iJjyxGDg8yzdrRjHpLEgT0fgG7x6qBF7IRpAt9Y3flwtEYaj7h+Yosd4IhdLtIS
+	 9vmtgi5TRY4l74OpDjOfK5iBDMdNZ9Oqx34uml/e+rasa+g1WP+90IV1ecwkcQz5Rb
+	 l+kY/vLikGiw5K3qeYFfVG809nOLDplj4ruFifhJwZvZX5YmvuiGZG/iFXh8PhAwaG
+	 MlPnIIdNZ4nBtp3b0TNhCQvgoz5F6pOwxpjvTdCgpKKS0dVfR4Vyy/EiS91S0PdHAv
+	 2k+Yu2wzyAaNA==
 Received: from [192.168.68.112] (ppp118-210-29-70.adl-adc-lon-bras31.tpg.internode.on.net [118.210.29.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 6F32266B02;
-	Tue, 30 Jul 2024 11:56:24 +0800 (AWST)
-Message-ID: <cf5f5efb49ef6230ba5084e53316a8fb8ddedef1.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v11 25/27] ARM: dts: aspeed: yosemite4: add RTQ6056
- support
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7114966CCF;
+	Tue, 30 Jul 2024 11:59:09 +0800 (AWST)
+Message-ID: <86a3b58d00fc475065ad51458504a636e2f67e02.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v11 20/27] ARM: dts: aspeed: yosemite4: support medusa
+ board adc sensors
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Patrick Williams <patrick@stwcx.xyz>, Delphine CC Chiu
 	 <Delphine_CC_Chiu@wiwynn.com>
@@ -54,11 +54,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
   Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
  linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Date: Tue, 30 Jul 2024 13:26:21 +0930
-In-Reply-To: <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
+Date: Tue, 30 Jul 2024 13:29:08 +0930
+In-Reply-To: <ZqgTz9DVPcqtTfUC@heinlein.vulture-banana.ts.net>
 References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
-	 <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
+	 <20240723092310.3565410-21-Delphine_CC_Chiu@wiwynn.com>
+	 <ZqgTz9DVPcqtTfUC@heinlein.vulture-banana.ts.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,35 +69,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Mon, 2024-07-29 at 17:03 -0500, Patrick Williams wrote:
-> On Tue, Jul 23, 2024 at 05:23:06PM +0800, Delphine CC Chiu wrote:
-> > Add RTQ6056 (spider board 3rd source) support in yosemite4 DTS.
+On Mon, 2024-07-29 at 17:12 -0500, Patrick Williams wrote:
+> On Tue, Jul 23, 2024 at 05:23:01PM +0800, Delphine CC Chiu wrote:
+> > Add ina233/ina28 support for medusa board adc sensors
 > >=20
 > > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 > > ---
-> >  .../boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 10 +++++-----
-> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> >  .../dts/aspeed/aspeed-bmc-facebook-yosemite4.dts    | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
 > >=20
 > > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts=
  b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> > index f73719b3c2f1..03a1e41312e3 100644
+> > index 98eeee49b082..49500db53a13 100644
 > > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
 > > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> > @@ -1240,35 +1240,35 @@ adc@37 {
+> > @@ -915,6 +915,19 @@ power-sensor@40 {
+> >  		reg =3D <0x40>;
 > >  	};
 > > =20
-> >  	power-sensor@40 {
-> > -		compatible =3D "ti,ina233";
-> > +		compatible =3D "ti,ina233", "richtek,rtq6056";
+> > +	power-sensor@41 {
+> > +			compatible =3D "ti,ina233";
+> > +			resistor-calibration =3D /bits/ 16 <0x0a00>;
+> > +			current-lsb=3D /bits/ 16 <0x0001>;
+> > +			reg =3D <0x41>;
+> > +	};
 >=20
-> Is this legal to have two chips both listed as compatible?  I thought
-> this approach has been rejected before.
+> This depends on this unmerged patchset, right?
+>=20
+> https://lore.kernel.org/lkml/4a1cb223-448c-3e93-eb38-d86f543659e3@roeck-u=
+s.net/
+>=20
+> Please resolve the issues Guenter raised.
 
-It depends on the circumstances. Does one have a superset of the
-functionality of the other?
-
-https://github.com/devicetree-org/devicetree-specification/blob/main/source=
-/chapter2-devicetree-basics.rst#compatible
+Probably best to drop these nodes until those issues are resolved and
+the binding patch is merged.
 
 Andrew
 
