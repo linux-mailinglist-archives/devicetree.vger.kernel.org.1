@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14F6941601
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:55:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EAAC941640
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E34081C22FCC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:55:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B550028560E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF7D1BA860;
-	Tue, 30 Jul 2024 15:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC1C1BC07B;
+	Tue, 30 Jul 2024 15:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIQyC4z7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f9/wurqa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520BD1B5837;
-	Tue, 30 Jul 2024 15:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2351BA883;
+	Tue, 30 Jul 2024 15:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722354921; cv=none; b=gYGxOR1icKe8JjmkM5D69DHEN6Yz//WfNO1AeTJOZy90GopIJa4bd9SAJlfLfotgnY2/cGCeGh9aWIclj4BJabhW+5wKtCgYLF4c9BrRFEm3Gu4kdTZL1Cx0+yPiQBWlMWWzHGMmKgMLXpxjQhKLcZ7G7ZGB0rjMOmuZ0LnLNcs=
+	t=1722355073; cv=none; b=Ljo3cLXCzyZtJENALLlejPgv/kIgQ9yDOhxeYahllsAYbF0j6Wf01OEVXVpUhrjveh2nzyN0paedkKa9ufNmKipSkRLpQjEq9F5xUknCDiNSDfEgiCf6rZ/Ds1VQyRXK5ZaD32TeILINzCrhCuyNlr2tvGtapnRiBumwPB16/x8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722354921; c=relaxed/simple;
-	bh=xYtSwqJGDTf2FfqT2U56g2vG/vLggIF/nyA+uPeuj/o=;
+	s=arc-20240116; t=1722355073; c=relaxed/simple;
+	bh=SQELyUfZGLCrV0rCnnFI6nALeOacjdEpR7+pAQn4+nE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E5y+9sJiw3k+4LWCO25L70suKrbek/c36sDXyulNiOTxBjEx3ELSmIUFnhoFkFNa3ZbKjSgljUKdsDg4t0kBRDi5wpbxtPGgfAzDM83kCRiwAtY/4OQZJPz1vfLa9TCLWGOkITA3S85PNYGFDIgcyMjoR4xpS0YSMVQ4pb0F3LI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIQyC4z7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07A61C4AF0C;
-	Tue, 30 Jul 2024 15:55:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uFostc1Q4GvLMjI5gJbl4zldmFDAOEr3LLrWEi48P2GWHAt6N6HM60L1PPsS83PYPjTPMefS5TDncJcXVqDAiGiZz7IpG5bgTdeBrFfjLoWi+m+BzRHJv4QZ3MQ5bRBJ2RTalb0XUfLf336O9LfMI4U7kIZM6ssK0SEtB8j0Ozc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f9/wurqa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0781EC4AF0C;
+	Tue, 30 Jul 2024 15:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722354921;
-	bh=xYtSwqJGDTf2FfqT2U56g2vG/vLggIF/nyA+uPeuj/o=;
+	s=k20201202; t=1722355073;
+	bh=SQELyUfZGLCrV0rCnnFI6nALeOacjdEpR7+pAQn4+nE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fIQyC4z7fOtrnEeDBLESzUszXgbPo7KIWu4kXECDiqf2b/zyetLFXriLOuhFiCYpK
-	 rmAxanN2l9ilXJmQA67wOGF9QoEl/2pja9vgFPZ8Rm0SpJiGXxZhDNGcdvxgwpuW3U
-	 RnmaY33naB7TkXJZoD7rkzqwspds6y32152Wtw3awCrOr0ZaHuNJLipnU0gVGLbz2x
-	 L7WdbCn38J0xScHvuKtYmoDZ8BvTTfqkkM2GZlz+hA/mqyToEhhYcno3WyFAvnvVgt
-	 Mb9oGGfAhf6p5avvKbBHMRSmmnadSGR+YWnKBa3OKPJL0yKtt2Ayo9fbzgmN/jo4od
-	 vbIitJAvEO/ag==
-Message-ID: <0c8fe4f3-c3d8-4a7e-bf3e-f6b1390c9ced@kernel.org>
-Date: Tue, 30 Jul 2024 17:55:14 +0200
+	b=f9/wurqa0yfYVsJuBkbK6J7tObzE+3vXMlykd4KnNdPkhEBpk905nhG8RxR8gyYn1
+	 O+tWxQvzVTSIF1Zd7PNUnYMIu62rZEvyhAlbcXvqMY0wHup+Gn8Ah/pnZAlkOv80ch
+	 ju4dj1iJqUEN+ATmo8Aart438cz7ritrj6EEqthhuRVWATKTkpJJndTC/4CZERhtuL
+	 mhnSfJA01ozuqE69UxjINvGprwgiOT43aqy9NbFe1A2gOk2ctgpgGJ4GkLtKqo7pHy
+	 OcGnwg/9o+/l7NZwcU6xGgnyDXeJ53VoRywkpnbD3lPpk60fqjojlelUFXbDhEjuKj
+	 cVvh2qz+pCHxQ==
+Message-ID: <159a9d77-5038-4691-8246-e10d3b49e26a@kernel.org>
+Date: Tue, 30 Jul 2024 17:57:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: gpio: nxp,lpc3220-gpio: Convert to dtschema
+Subject: Re: [PATCH] dt-bindings: clock: nxp,lpc3220-clk: Convert bindings to
+ DT schema
 To: Animesh Agarwal <animeshagarwal28@gmail.com>
 Cc: Daniel Baluta <daniel.baluta@nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240727130008.408772-1-animeshagarwal28@gmail.com>
+ <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240729193731.142069-1-animeshagarwal28@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,48 +105,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240727130008.408772-1-animeshagarwal28@gmail.com>
+In-Reply-To: <20240729193731.142069-1-animeshagarwal28@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/07/2024 15:00, Animesh Agarwal wrote:
-> Convert the NXP LPC3220 SoC GPIO controller bindings to DT schema format.
+On 29/07/2024 21:37, Animesh Agarwal wrote:
+> Convert the NXP LPC32xx Clock Controller bindings to yaml format.
 > 
 > Cc: Daniel Baluta <daniel.baluta@nxp.com>
 > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> 
-> --
-
-Not a complete delimiter.
-
-> Changes in v2:
->   - Changed the file name to match the compatible string.
->   - Removed optional from the description of '#gpio-cells' as it was wrongly
->     present.
-> ---
-
-...
-
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-
-Drop include
 
 > +
-> +    gpio@40028000 {
-> +        compatible = "nxp,lpc3220-gpio";
-> +        reg = <0x40028000 0x1000>;
-> +        gpio-controller;
-> +        #gpio-cells = <3>; /* bank, pin, flags */
-> +    };
+> +properties:
+> +  compatible:
+> +    const: nxp,lpc3220-clk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    description: Phandles of external oscillators, the list must contain one
+> +      32768 Hz oscillator and may have one optional high frequency oscillator.
+> +    maxItems: 2
+
+That's not correct and does not match clock-names. List the items with
+description instead of above "phandles ...." and add minItems.
+
+
+> +
+> +  clock-names:
+> +    oneOf:
+
+Drop. It's:
+
+minItems: 1
+items:
+ - const: ...
+ - const:
+
+> +      - items:
+> +          - const: xtal_32k
+> +          - const: xtal
+> +      - const: xtal_32k
+> +
+
 
 Best regards,
 Krzysztof
