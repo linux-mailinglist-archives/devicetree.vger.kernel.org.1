@@ -1,184 +1,311 @@
-Return-Path: <devicetree+bounces-89448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527B39412B3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:59:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 047289412BB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF46B1F225FA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:59:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 288F81C22901
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318F919F47A;
-	Tue, 30 Jul 2024 12:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2224D1DFE4;
+	Tue, 30 Jul 2024 13:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yku7b5+v"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xHUGXHcB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4967D18E77B
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 12:59:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D8D256E
+	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 13:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722344343; cv=none; b=nMXgQ6WV/B7BorzZ+uzOGHxoWQaFrFRf4W4a3gzLDjLy8slb1TJxPTkIBciH8Y9BumnXE3Xi8mO7aMKCnJrH9ccWIzB30IJkak40n19yi/IRsWl+RgvmDqrqjApIqgDYKzdVdpAcq22GEEdspNL+4YPGWRtJxuYGeX8yKGgSZrA=
+	t=1722344481; cv=none; b=kF7LbqULdxAmpVea7bd+yKEdMmowb9HPu3yw2ga9o/XoBGQ3Yh8/HEB/eBBuEfS+jqv9INPNaYO935BraWznVQHOjwX3qD+dcGrTRyL3IcZGg7QDauo4imDOlUHQ4OStKNU4LqR0MtFnTlyG+RyoS0630IWfAeyI+w8RUvgfot4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722344343; c=relaxed/simple;
-	bh=NJ5wWQX+MXzcjI3xAU8zMQzGIm1Nwk32FjZNMdSzKqE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eIcobgZmdJPOR2P+vXVpODgB9aw0PbpZmKfG8y7c4vGdLmeExyXZfaZiHEXS5wvnKhaZywGr7A/mkR6dd0B5gXZixVTM/SEssWl/qKQFeiB69A9pk5qsHUnKPl9WOE5p44FEwVP7evMewpwLoBBHIiQKT5229VUdHH2kkuaOGsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yku7b5+v; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-36887ca3da2so2039956f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 05:59:01 -0700 (PDT)
+	s=arc-20240116; t=1722344481; c=relaxed/simple;
+	bh=hmhLIng6c059pzvOYv2iZcklNrlk4sp5KvNtRpk3gAQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=niRXyiz+Z2xMwJf23eqdc1kIKvvpTSkNioS00lc2xd2hITZRLyv9vQdyrJkqf8Fdqi1B4+SwxRO6CDI+FCd5kMK9u8XLq5AjAE2Qk4D/OWnA+vnt22Cpntk9N9M2B5Mor5Y0j88xArgniFtMvvNWqrzutfjyOJRbtc+N4e8reA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xHUGXHcB; arc=none smtp.client-ip=209.85.166.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-396675b83afso26019885ab.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 06:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722344339; x=1722949139; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sV4jeBWTzwj/MSeNBURYBG9491IFNxtmxPBAzKA8sQA=;
-        b=yku7b5+v+/m7EbIF6+0TPzqdYiU/fCf8PpVsbLh4i1nwsPwrCxGKUOEGWDplfUgCW/
-         aSIfL62BYfQWLNOQW8oS6zcDyAqmpEwl2C8CaBtgeBfnPJfJAfLaWmmMEBvU9SMsOEtU
-         EQsl5hYJd6GJx5vMQOdqdV6Cs1DNCNzAqSnIvayjAxp1w0Gz3bttqydDyyLkHukS2Wrn
-         aQkxYjN9+ALqKHzMM+XV1KMQwK1YnFdPsg5cL9q9+/jmDPocMxiHUus5ZzDytyTpB1P7
-         MiHLPjblm8LWT9JPibyKYQpj1d2ROSufTjkiKInLLGM8rGmisocmucsj5VdwpYeJgodJ
-         dIPg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722344478; x=1722949278; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9RI/exw0UDuuOm9Ra0mTLdt9ClxNeQNOb2ROdTYCmDE=;
+        b=xHUGXHcB1hZQFDJOAWy0/VQ90KtlquSLM7Soag2K7XZEV5b9BKAoW4z0iMhJfYUOEK
+         dF3iqq4tAhhNhjG61Ixg0wkxB5bgHp1XJYh9bDsm/OuGPjXWGdfjmCQ+tRhDtGXH2THR
+         S8wEqUp92/mc6/ZUNuL3EYb2gWeSd4JSx815bnPzCTgRZSQw9rqqQzu2kTdu+8lZR3Pm
+         QqCkXKrflCXmp+5DBxUsihHvAsKySSFPxkxzuOvqpSYtPwlLA+HhgqvtdfkdKjgNAQJO
+         FIBC1q7qQ9RNwiBDXlWpsuz7brUl1sMnQSzfi21YJZMVIjYpMHt3GBCc4tu78CYHUypv
+         5h/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722344339; x=1722949139;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sV4jeBWTzwj/MSeNBURYBG9491IFNxtmxPBAzKA8sQA=;
-        b=BJ54GghUQ2z5300vSvYZ+ZOchYaxArmL+cpIGtFxMC2Bu9dJVfttki/0GrkETNOoBW
-         lG/wqOCEqgxZcWN+kRmEK8una609qCLyl8xiLlCeZOBNjaZ5oCD/g0W5Jn7gWs0H/Mlu
-         BTohnbIxE3S6sIe8F+vrNSvWhPHZBOkPNACGHlRBpx5NK4Tdm+sHIQ7rWa73CZ9avCKX
-         ZRU8Bm/zSj7tOchp8y4M1bPj9CeqpH2cMGe0W4B4l9GK2pRJh3LGhYuIz1wN87Z1EVY8
-         VjStrA6nxTC6CZt7fo+H1MoI+TJoUrcTTMFdrAVoeTx3fZpcYGxc7+PeA3qxZIqNGOvv
-         zVMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0B2wUQ5r8z+GFDmxBJ0pPP3KeQLObylpjQ9W7eG0HtTWWnUZTyj2jHe3PWDNtISwWwtJIJtnBlroSvQaXqcevzY9wfD8D0MC23g==
-X-Gm-Message-State: AOJu0Yx3SpAHGzBm5ndr94fymEoO/5ImNCYeJ6uW5cOuiSG6jYzhmKrr
-	oi8i1vEIs0TzjoewHZLESeTmyy/wWY3ozJVGctZShjdDtlk8EYHTMILaOQf0XqI=
-X-Google-Smtp-Source: AGHT+IEJ80Tw++90S7g7P+XpB8UJiHhB+NG+j2W+cdqE3/ULUdJYsOta4GEOWr+gvdHyJczeGBOJxg==
-X-Received: by 2002:a5d:6351:0:b0:36b:33ec:ac40 with SMTP id ffacd0b85a97d-36b5ceef045mr6414694f8f.16.1722344339443;
-        Tue, 30 Jul 2024 05:58:59 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-36b36857e46sm14761036f8f.67.2024.07.30.05.58.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jul 2024 05:58:59 -0700 (PDT)
-Message-ID: <f9527614-01ba-4954-88de-8a17ae1a84ba@linaro.org>
-Date: Tue, 30 Jul 2024 14:58:58 +0200
+        d=1e100.net; s=20230601; t=1722344478; x=1722949278;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9RI/exw0UDuuOm9Ra0mTLdt9ClxNeQNOb2ROdTYCmDE=;
+        b=RQFfCgPDY6N5WH0LT9xgRRshCLbmXEXgRRC4YGTbRRBesMaOvGbl9kXvtjp5bZzZri
+         f9YWjYwu1V98OzeN/mktPcn0nxQ+q93jT2ciWqzXnrmCWCXNTmZw0Qnvid65IE42Uvoc
+         2TsKMJ6EAWEyWnVN34ZVoCci+aeRZS/6ijNbGIW+W4KhGa5CZcTIRSBZlLUtra79cl5J
+         qBsOPzSh/2BNMpScMfxVfGJ2slFK4Z8RdSV9e9TjK7Z4cIkpdIvmDSpxaEiyBhvRlpIZ
+         I2//t161BYUIU1VLMVDZ9p+DLL5ipj402rbtYesIgLiXUykEkSKGVc1O9tkaBQhyXClM
+         rNpw==
+X-Forwarded-Encrypted: i=1; AJvYcCUEhWXrGOq1Qx1HSEbxsE82IVrIV3YTSpNBAsybfKsQGnrLRFEsRuLl3+8/L8+TbD17SXOTnlK8kpF3DaA2UWgytV3SauTpKtRjEg==
+X-Gm-Message-State: AOJu0Yz+YksBd26vcRnmJloUlf9EepT5BV1Z8ip5weUwsuiDGJx4Q+Mc
+	yp4eu/CrOISAsbZI6AClASHd3Uxmw5xWLVCyJHibXP2IFHeWcvS0Ebflue7r1bU=
+X-Google-Smtp-Source: AGHT+IFgbcLAc1fRk8/4fljINGyXBPTYgpctkSdW9iE6bPdmkFssRuKjeYeo4aPuqUr2D4zXXdux2w==
+X-Received: by 2002:a92:c26e:0:b0:385:e2e5:ac37 with SMTP id e9e14a558f8ab-39aec40c9c6mr134065645ab.22.1722344477441;
+        Tue, 30 Jul 2024 06:01:17 -0700 (PDT)
+Received: from blmsp ([2001:4091:a245:8609:c1c4:a4f8:94c8:31f2])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-39a22f13f81sm46399455ab.70.2024.07.30.06.01.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jul 2024 06:01:16 -0700 (PDT)
+Date: Tue, 30 Jul 2024 15:01:13 +0200
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Nishanth Menon <nm@ti.com>
+Cc: Tero Kristo <kristo@kernel.org>, 
+	Santosh Shilimkar <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Vibhore Vardhan <vibhore@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] firmware: ti_sci: Partial-IO support
+Message-ID: <x4y44ajcdi2y2dieaa6oohrptpzyiono3fruvwcdelmtzsh4ne@cgqxsz45ohcy>
+References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-3-msp@baylibre.com>
+ <20240730122801.jzo5ahkurxaexwcm@ambiance>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/4] thermal: Add support of multiple sensors
-To: Alexandre Bailon <abailon@baylibre.com>, rafael@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: rui.zhang@intel.com, lukasz.luba@arm.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240613132410.161663-1-abailon@baylibre.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240613132410.161663-1-abailon@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240730122801.jzo5ahkurxaexwcm@ambiance>
 
-
-Hi Alexandre,
-
-thanks for your series and my apologizes for taking a so long time to 
-review.
-
-I went through the series and at the first glance I'm not sure we want 
-to add all the multi specific code in a separate file.
-
-IMO, there is a preparatory work by changing the functions:
-
-thermal_zone_device_register_with_trips() and 
-thermal_zone_device_register_tripless()
-
-where we group and move the functions parameters to the 
-thermal_zone_device_param.
-
-Then we can add a num_ops field which is will default to zero.
-
-With that we should have put a foundation for multiple ops, so multiple 
-sensors.
-
-On 13/06/2024 15:24, Alexandre Bailon wrote:
-> Following this comment [1], this updates thermal_of to support multiple
-> sensors.
+On Tue, Jul 30, 2024 at 07:28:01AM GMT, Nishanth Menon wrote:
+> On 10:00-20240729, Markus Schneider-Pargmann wrote:
+> > Add support for Partial-IO poweroff. In Partial-IO pins of a few modules
+> > can generate system wakeups while DDR memory is not powered resulting in
+> > a fresh boot of the system. The modules that can be wakeup sources are
+> > defined by the devicetree.
+> > 
+> > Only wakeup sources that are actually enabled by the user will be
+> > considered as a an active wakeup source. If none of the wakeup sources
+> > are enabled the system will do a normal poweroff. If at least one wakeup
+> > source is enabled it will instead send a TI_SCI_MSG_PREPARE_SLEEP
+> > message from the sys_off handler. Sending this message will result in an
+> > immediate shutdown of the system. No execution is expected after this
+> > point. The code will enter an infinite loop.
+> > 
+> > The wakeup source device nodes are gathered during probe. But they are
+> > only resolved to the actual devices in the sys_off handler, if they
+> > exist. If they do not exist, they are ignored.
+> > 
+> > A short documentation about Partial-IO can be found in section 6.2.4.5
+> > of the TRM at
+> >   https://www.ti.com/lit/pdf/spruiv7
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > ---
+> >  drivers/firmware/ti_sci.c | 160 +++++++++++++++++++++++++++++++++-----
+> >  drivers/firmware/ti_sci.h |  34 ++++++++
+> >  2 files changed, 175 insertions(+), 19 deletions(-)
+> > 
+> > diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
+> > index 160968301b1f..ba2e56da0215 100644
+> > --- a/drivers/firmware/ti_sci.c
+> > +++ b/drivers/firmware/ti_sci.c
+> > @@ -99,6 +99,9 @@ struct ti_sci_desc {
+> >   * @node:	list head
+> >   * @host_id:	Host ID
+> >   * @users:	Number of users of this instance
+> > + * @nr_wakeup_sources: Number of device nodes in wakeup_source_nodes
+> > + * @wakeup_source_nodes: Array of all device_nodes listed as wakeup sources in
+> > + *			 the devicetree
+> >   */
+> >  struct ti_sci_info {
+> >  	struct device *dev;
+> > @@ -116,6 +119,9 @@ struct ti_sci_info {
+> >  	u8 host_id;
+> >  	/* protected by ti_sci_list_mutex */
+> >  	int users;
+> > +
+> > +	int nr_wakeup_sources;
+> > +	struct device_node **wakeup_source_nodes;
+> >  };
+> >  
+> >  #define cl_to_ti_sci_info(c)	container_of(c, struct ti_sci_info, cl)
+> > @@ -392,10 +398,13 @@ static void ti_sci_put_one_xfer(struct ti_sci_xfers_info *minfo,
+> >  static inline int ti_sci_do_xfer(struct ti_sci_info *info,
+> >  				 struct ti_sci_xfer *xfer)
+> >  {
+> > +	struct ti_sci_msg_hdr *hdr = (struct ti_sci_msg_hdr *)xfer->tx_message.buf;
+> >  	int ret;
+> >  	int timeout;
+> >  	struct device *dev = info->dev;
+> >  	bool done_state = true;
+> > +	bool response_expected = !!(hdr->flags & (TI_SCI_FLAG_REQ_ACK_ON_PROCESSED |
+> > +						  TI_SCI_FLAG_REQ_ACK_ON_RECEIVED));
 > 
-> This series intends to add support of thermal aggregation.
-> One use case for it is using the IPA in the case we have
-> multiple sensors for one performance domain.
+> I think a separate patch to introduce a no_response expected patch would
+> make sense on which we build tisci_sys_off_handler in the next patch?
 > 
-> This has been tested on the mt8195 using s-tui.
-> To test and validate, we heat up the CPU and the heat sink.
-> At some point, we run benchmark tests with different configurations:
-> - Mediatek kernel (IPA + their own thermal aggregation)
-> - Mainline kernel
-> - Mainline kernel with IPA and aggregation enabled
-> With the IPA and the aggregation enabled, we get the best performances
-> with the most stable CPU temperature.
+> >  
+> >  	ret = mbox_send_message(info->chan_tx, &xfer->tx_message);
+> >  	if (ret < 0)
+> > @@ -403,25 +412,27 @@ static inline int ti_sci_do_xfer(struct ti_sci_info *info,
+> >  
+> >  	ret = 0;
+> >  
+> > -	if (system_state <= SYSTEM_RUNNING) {
+> > -		/* And we wait for the response. */
+> > -		timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
+> > -		if (!wait_for_completion_timeout(&xfer->done, timeout))
+> > -			ret = -ETIMEDOUT;
+> > -	} else {
+> > -		/*
+> > -		 * If we are !running, we cannot use wait_for_completion_timeout
+> > -		 * during noirq phase, so we must manually poll the completion.
+> > -		 */
+> > -		ret = read_poll_timeout_atomic(try_wait_for_completion, done_state,
+> > -					       done_state, 1,
+> > -					       info->desc->max_rx_timeout_ms * 1000,
+> > -					       false, &xfer->done);
+> > -	}
+> > +	if (response_expected) {
 > 
-> The aggregation is configured and enabled using device tree.
-> One thermal zone has to be created with a list of sensors.
-> It will take care of registering a thermal zone for each sensors.
-> The cooling device will only be registered with the aggregating thermal
-> zone.
-> 
-> There are still something important missing: a way to check that all
-> aggregated sensors are part of the same performance domain.
-> So far, I don't see how this should be done. Some recommendations would be
-> appreciated.
-> 
-> Changes in v2:
-> - Rebased on 6.7
-> - Separated generic multi sensor and dt specific code
-> - Simplified the code
-> - Drop min / max and only do weighted average (seems more adequate for IPA)
-> 
-> Changes in v3:
-> - Rebased on 6.9
-> - Reworked the way to register a multi sensor thermal zone
->    - Only one thermal zone to define in device tree
-> - Max has been re-added
-> - Enabled it on mt8195
-> 
-> Changes in v4:
-> - Rebased on lastest master (fixed the build issue)
-> - Dropped the average since I don't have any usecase for it
-> 
-> [1]: https://patchwork.kernel.org/comment/24723927/
-> 
-> Alexandre Bailon (4):
->    dt-bindings: thermal: Restore the thermal-sensors property
->    thermal: Add support of multi sensors to thermal_core
->    thermal: Add support of multi sensors to thermal_of
->    ARM64: mt8195: Use thermal aggregation for big and little cpu
-> 
->   .../bindings/thermal/thermal-zones.yaml       |   5 +-
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 212 ++-----------
->   drivers/thermal/Makefile                      |   1 +
->   drivers/thermal/thermal_core.h                |  15 +
->   drivers/thermal/thermal_multi.c               | 288 ++++++++++++++++++
->   drivers/thermal/thermal_of.c                  | 250 ++++++++++++++-
->   include/uapi/linux/thermal.h                  |   5 +
->   7 files changed, 579 insertions(+), 197 deletions(-)
->   create mode 100644 drivers/thermal/thermal_multi.c
-> 
+> 	How about a goto?
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Yes, thanks, looks cleaner.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> 
+> if (!response_expected)
+> 	goto no_response;
+> > +		if (system_state <= SYSTEM_RUNNING) {
+> > +			/* And we wait for the response. */
+> > +			timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
+> > +			if (!wait_for_completion_timeout(&xfer->done, timeout))
+> > +				ret = -ETIMEDOUT;
+> > +		} else {
+> > +			/*
+> > +			 * If we are !running, we cannot use wait_for_completion_timeout
+> > +			 * during noirq phase, so we must manually poll the completion.
+> > +			 */
+> > +			ret = read_poll_timeout_atomic(try_wait_for_completion, done_state,
+> > +						       done_state, 1,
+> > +						       info->desc->max_rx_timeout_ms * 1000,
+> > +						       false, &xfer->done);
+> > +		}
+> >  
+> > -	if (ret == -ETIMEDOUT)
+> > -		dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
+> > -			(void *)_RET_IP_);
+> > +		if (ret == -ETIMEDOUT)
+> > +			dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
+> > +				(void *)_RET_IP_);
+> > +	}
+> >  
+> no_response:
+> 
+> >  	/*
+> >  	 * NOTE: we might prefer not to need the mailbox ticker to manage the
+> > @@ -3262,6 +3273,82 @@ static int tisci_reboot_handler(struct sys_off_data *data)
+> >  	return NOTIFY_BAD;
+> >  }
+> >  
+> [...]
+> 
+> > +static int tisci_sys_off_handler(struct sys_off_data *data)
+> > +{
+> > +	struct ti_sci_info *info = data->cb_data;
+> > +	int i;
+> > +	int ret;
+> > +	bool enter_partial_io = false;
+> > +
+> > +	for (i = 0; i != info->nr_wakeup_sources; ++i) {
+> > +		struct platform_device *pdev =
+> > +			of_find_device_by_node(info->wakeup_source_nodes[i]);
+> > +
+> > +		if (!pdev)
+> > +			continue;
+> > +
+> > +		if (device_may_wakeup(&pdev->dev)) {
+> > +			dev_dbg(info->dev, "%pOFp identified as wakeup source\n",
+> > +				info->wakeup_source_nodes[i]);
+> > +			enter_partial_io = true;
+> > +		}
+> > +	}
+> > +
+> > +	if (!enter_partial_io)
+> > +		return NOTIFY_DONE;
+> > +
+> > +	ret = tisci_enter_partial_io(info);
+> > +
+> > +	if (ret) {
+> > +		dev_err(info->dev,
+> > +			"Failed to enter Partial-IO %pe, trying to do an emergency restart\n",
+> > +			ERR_PTR(ret));
+> > +		emergency_restart();
+> > +	}
+> > +
+> > +	while (1);
+> 
+> Why not fall through OR go through emergency_restart (since there is
+> no fall through for shutdown path) if it acks, but actually fails to
+> enter LPM state after a dt described or a default timeout period?
+> 
+> > +
+> > +	return NOTIFY_DONE;
+> > +}
+> > +
+> >  /* Description for K2G */
+> >  static const struct ti_sci_desc ti_sci_pmmc_k2g_desc = {
+> >  	.default_host_id = 2,
+> > @@ -3398,6 +3485,35 @@ static int ti_sci_probe(struct platform_device *pdev)
+> >  		goto out;
+> >  	}
+> >  
+> > +	if (of_property_read_bool(dev->of_node, "ti,partial-io-wakeup-sources")) {
+> 
+> You should probably check on TISCI_MSG_QUERY_FW_CAPS[1] if
+> Partial IO on low power mode is supported as well? if there is a
+> mismatch, report so?
 
+I actually have another series in my queue that introduces this check. I
+just implemented this check for Partial-IO yesterday in the patch that
+introduces fw capabilities. If you like I can switch these series
+around.
+
+> 
+> > +		info->nr_wakeup_sources =
+> > +			of_count_phandle_with_args(dev->of_node,
+> > +						   "ti,partial-io-wakeup-sources",
+> > +						   NULL);
+> > +		info->wakeup_source_nodes =
+> > +			devm_kzalloc(dev, sizeof(*info->wakeup_source_nodes),
+> > +				     GFP_KERNEL);
+> > +
+> > +		for (i = 0; i != info->nr_wakeup_sources; ++i) {
+> > +			struct device_node *devnode =
+> > +				of_parse_phandle(dev->of_node,
+> > +						 "ti,partial-io-wakeup-sources",
+> > +						 i);
+> > +			info->wakeup_source_nodes[i] = devnode;
+> 
+> Curious: Don't we need to maintain reference counting for the devnode
+> if CONFIG_OF_DYNAMIC?
+
+In case you mean I missed of_node_put(), yes, I did, thank you. I added
+it in a ti_sci_remove().
+
+Best
+Markus
 
