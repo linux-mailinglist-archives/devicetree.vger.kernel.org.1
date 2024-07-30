@@ -1,161 +1,297 @@
-Return-Path: <devicetree+bounces-89440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FD409411DB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:27:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FB99411DF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:28:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC7E61C23196
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:27:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D3F7284F21
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F46119EED2;
-	Tue, 30 Jul 2024 12:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF3119EEBB;
+	Tue, 30 Jul 2024 12:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gDtPAdA0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WDw95eZ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AAC1991DB;
-	Tue, 30 Jul 2024 12:27:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C8A18F2FF;
+	Tue, 30 Jul 2024 12:28:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722342446; cv=none; b=XO0G5u6+J+4hY2tELI8RJ7FcccvPYiZd2qdGYCSt9wl5DS0u3hMft8zZyeRpT7ePKF1/Gs66K1R9pWJ8reHbBjf9G5PXqIYr1cRicVv7G5pWA3msf64XeWthUh2rJcm2l//IUBgxQH40j0Y/mdv2yOhdFdmuUsb2Dm0P+aizbqM=
+	t=1722342490; cv=none; b=W6WvWdMeBpmYUjcx9EOTddHYj88itVkp3C+RM5MrnNkQrm4IlrtcVQYMnXGVSlhk+CkbzwlA/n23UL1qrj2RHn5awkC04JKxi+7van/cYz5/fi7dk/t3eUV20ppD9LwVSBNxab6XTFQdwDUIfdz5/KuSDBg0QLY8g7etQCeYJ78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722342446; c=relaxed/simple;
-	bh=e+ZL6TSqkZKahnPMn90VX3rkVqcs9drz8zKkWT9DWFw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QIurGqFhZuoZor+Y2vkS2HFSasqPTQAUYNo9hNrArfY9tXcnAJohv9n+A+UnLAMP2duHC0s8sGYl/1FLdfRf8Xs4fuT+87bUZNcK5IcxBxM5RuEZ5NvtNdkGrcFZIzGkajoNcgREhhOxNaMC/Z5SApTBkoQd5RdINIILKy6b3t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gDtPAdA0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E77DC4AF0A;
-	Tue, 30 Jul 2024 12:27:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722342445;
-	bh=e+ZL6TSqkZKahnPMn90VX3rkVqcs9drz8zKkWT9DWFw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gDtPAdA0DBtv2cPn/6Ldv1M1znhjV911ZuUyuwF8RPAvjlvnIbxHdneu+pbzF1ebH
-	 RSXoFyduWAMFePay2i5XunVbKVAkeLO7jRsVnSbk8/ilUhW6T1L6AADlrcAfMphn/i
-	 qv0IIxnWFK/qWT5rziazAP7bGCJcq8fsHdcbA/o20/ZuoIOxIUUidD8zaC9paVMTNR
-	 PxxC/SJz5dOVPgj484QF7i/Q2wsYghmXy6o911F2hxmctuI9GrugQGHIacDLdM6hTE
-	 4hytrJCVM+vJ7qk0DHSlvjRUjsoI80doqlJA29IzXn4g3eKhE3vBvXXAWc6tbBUKUw
-	 xwCJfbL2aMgTw==
-Message-ID: <a41a6143-ef2e-4d86-b102-eaf442985173@kernel.org>
-Date: Tue, 30 Jul 2024 14:27:19 +0200
+	s=arc-20240116; t=1722342490; c=relaxed/simple;
+	bh=3yMZ5H3LG66tCZWcVqIT98+fTDkfkMun8jW45XXpPLk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kJnx7kGFhMhD7utY3sEXWH6c7DoD7zVmKhSI9ncU7b0ZzKsWumS5ZP7K1/Dg1FTyHsEE/uHVuHvcyHYxxHhj0d88XMG8cFsPtlWp0ob5ZwBOWwJKmTWYZt5FFl6w0ValP9H8CmMxq6U659SKaTjBsGaG5TqhW2YYUB0G3gcQbiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WDw95eZ2; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46UCS1jk046064;
+	Tue, 30 Jul 2024 07:28:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722342481;
+	bh=Mj7vienUobj8v6f3b/FHGW2m18yRGe3qtBMwD7ZsNn8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=WDw95eZ22eEChiJ6jRESxhAwzR9obX8dSbFZRTnVNuMT0KnVmeHBwseYBoM/P6Vkf
+	 Y7MpfBLeTlbck8qglnFLBkCTtmTljUEeq9m6PWkJDT494wjEYx/d5DjgrYN8EB21sT
+	 cqvPlgQkI1Nx8pDxUEoaKo/nlWF2ESHOwYocB0OM=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46UCS1nJ037975
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Jul 2024 07:28:01 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ Jul 2024 07:28:01 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 Jul 2024 07:28:01 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46UCS1Wx107344;
+	Tue, 30 Jul 2024 07:28:01 -0500
+Date: Tue, 30 Jul 2024 07:28:01 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+        Dhruva
+ Gole <d-gole@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] firmware: ti_sci: Partial-IO support
+Message-ID: <20240730122801.jzo5ahkurxaexwcm@ambiance>
+References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-3-msp@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] ARM: dts: samsung: Add cache information to the
- Exynos542x SoC
-To: Anand Moon <linux.amoon@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240730091322.5741-1-linux.amoon@gmail.com>
- <CGME20240730091412eucas1p18feced3968a5f87dc8fe05f78d5c7659@eucas1p1.samsung.com>
- <20240730091322.5741-2-linux.amoon@gmail.com>
- <09e9cf0b-27fd-46b8-8631-87d798afd19e@samsung.com>
- <CANAwSgT_TOFwP80+H8-CdXDLLu+u2XZMr2dnxcsSDe8S5yeYCw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CANAwSgT_TOFwP80+H8-CdXDLLu+u2XZMr2dnxcsSDe8S5yeYCw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240729080101.3859701-3-msp@baylibre.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 30/07/2024 14:06, Anand Moon wrote:
-> Hi Marek,
+On 10:00-20240729, Markus Schneider-Pargmann wrote:
+> Add support for Partial-IO poweroff. In Partial-IO pins of a few modules
+> can generate system wakeups while DDR memory is not powered resulting in
+> a fresh boot of the system. The modules that can be wakeup sources are
+> defined by the devicetree.
 > 
-> On Tue, 30 Jul 2024 at 17:14, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
->>
->>
->> On 30.07.2024 11:13, Anand Moon wrote:
->>> As per Exynos 5422 user manual add missing cache information to
->>> the Exynos542x SoC.
->>>
->>> - Each Cortex-A7 core has 32 KB of instruction cache and
->>>       32 KB of L1 data cache available.
->>> - Each Cortex-A15 core has 32 KB of L1 instruction cache and
->>>       32 KB of L1 data cache available.
->>> - The little (A7) cluster has 512 KB of unified L2 cache available.
->>> - The big (A15) cluster has 2 MB of unified L2 cache available.
->>>
->>> Features:
->>> - Exynos 5422 support cache coherency interconnect (CCI) bus with
->>>    L2 cache snooping capability. This hardware automatic L2 cache
->>>    snooping removes the efforts of synchronizing the contents of the
->>>    two L2 caches in core switching event.
->>>
->>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->>
->>
->> The provided values are not correct. Please refer to commit 5f41f9198f29
->> ("ARM: 8864/1: Add workaround for I-Cache line size mismatch between CPU
->> cores"), which adds workaround for different l1 icache line size between
->> big and little CPUs. This workaround gets enabled on all Exynos542x/5800
->> boards.
->>
-> Ok, I have just referred to the Exynos 5422 user manual for this patch,
-> This patch is just updating the cache size for CPU for big.litle architecture..
+> Only wakeup sources that are actually enabled by the user will be
+> considered as a an active wakeup source. If none of the wakeup sources
+> are enabled the system will do a normal poweroff. If at least one wakeup
+> source is enabled it will instead send a TI_SCI_MSG_PREPARE_SLEEP
+> message from the sys_off handler. Sending this message will result in an
+> immediate shutdown of the system. No execution is expected after this
+> point. The code will enter an infinite loop.
 > 
+> The wakeup source device nodes are gathered during probe. But they are
+> only resolved to the actual devices in the sys_off handler, if they
+> exist. If they do not exist, they are ignored.
+> 
+> A short documentation about Partial-IO can be found in section 6.2.4.5
+> of the TRM at
+>   https://www.ti.com/lit/pdf/spruiv7
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>  drivers/firmware/ti_sci.c | 160 +++++++++++++++++++++++++++++++++-----
+>  drivers/firmware/ti_sci.h |  34 ++++++++
+>  2 files changed, 175 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
+> index 160968301b1f..ba2e56da0215 100644
+> --- a/drivers/firmware/ti_sci.c
+> +++ b/drivers/firmware/ti_sci.c
+> @@ -99,6 +99,9 @@ struct ti_sci_desc {
+>   * @node:	list head
+>   * @host_id:	Host ID
+>   * @users:	Number of users of this instance
+> + * @nr_wakeup_sources: Number of device nodes in wakeup_source_nodes
+> + * @wakeup_source_nodes: Array of all device_nodes listed as wakeup sources in
+> + *			 the devicetree
+>   */
+>  struct ti_sci_info {
+>  	struct device *dev;
+> @@ -116,6 +119,9 @@ struct ti_sci_info {
+>  	u8 host_id;
+>  	/* protected by ti_sci_list_mutex */
+>  	int users;
+> +
+> +	int nr_wakeup_sources;
+> +	struct device_node **wakeup_source_nodes;
+>  };
+>  
+>  #define cl_to_ti_sci_info(c)	container_of(c, struct ti_sci_info, cl)
+> @@ -392,10 +398,13 @@ static void ti_sci_put_one_xfer(struct ti_sci_xfers_info *minfo,
+>  static inline int ti_sci_do_xfer(struct ti_sci_info *info,
+>  				 struct ti_sci_xfer *xfer)
+>  {
+> +	struct ti_sci_msg_hdr *hdr = (struct ti_sci_msg_hdr *)xfer->tx_message.buf;
+>  	int ret;
+>  	int timeout;
+>  	struct device *dev = info->dev;
+>  	bool done_state = true;
+> +	bool response_expected = !!(hdr->flags & (TI_SCI_FLAG_REQ_ACK_ON_PROCESSED |
+> +						  TI_SCI_FLAG_REQ_ACK_ON_RECEIVED));
 
-Let me get it right. Marek's comment was that you used wrong values.
-Marek also provided rationale for this. Now your reply is that you
-update cache size? Sorry, I fail how you address Marek's comment.
+I think a separate patch to introduce a no_response expected patch would
+make sense on which we build tisci_sys_off_handler in the next patch?
 
-Do not repeat what the patch is doing. We all can see it. Instead
-respond to the comment with some sort of arguments.
+>  
+>  	ret = mbox_send_message(info->chan_tx, &xfer->tx_message);
+>  	if (ret < 0)
+> @@ -403,25 +412,27 @@ static inline int ti_sci_do_xfer(struct ti_sci_info *info,
+>  
+>  	ret = 0;
+>  
+> -	if (system_state <= SYSTEM_RUNNING) {
+> -		/* And we wait for the response. */
+> -		timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
+> -		if (!wait_for_completion_timeout(&xfer->done, timeout))
+> -			ret = -ETIMEDOUT;
+> -	} else {
+> -		/*
+> -		 * If we are !running, we cannot use wait_for_completion_timeout
+> -		 * during noirq phase, so we must manually poll the completion.
+> -		 */
+> -		ret = read_poll_timeout_atomic(try_wait_for_completion, done_state,
+> -					       done_state, 1,
+> -					       info->desc->max_rx_timeout_ms * 1000,
+> -					       false, &xfer->done);
+> -	}
+> +	if (response_expected) {
 
-Best regards,
-Krzysztof
+	How about a goto?
 
+if (!response_expected)
+	goto no_response;
+> +		if (system_state <= SYSTEM_RUNNING) {
+> +			/* And we wait for the response. */
+> +			timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
+> +			if (!wait_for_completion_timeout(&xfer->done, timeout))
+> +				ret = -ETIMEDOUT;
+> +		} else {
+> +			/*
+> +			 * If we are !running, we cannot use wait_for_completion_timeout
+> +			 * during noirq phase, so we must manually poll the completion.
+> +			 */
+> +			ret = read_poll_timeout_atomic(try_wait_for_completion, done_state,
+> +						       done_state, 1,
+> +						       info->desc->max_rx_timeout_ms * 1000,
+> +						       false, &xfer->done);
+> +		}
+>  
+> -	if (ret == -ETIMEDOUT)
+> -		dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
+> -			(void *)_RET_IP_);
+> +		if (ret == -ETIMEDOUT)
+> +			dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
+> +				(void *)_RET_IP_);
+> +	}
+>  
+no_response:
+
+>  	/*
+>  	 * NOTE: we might prefer not to need the mailbox ticker to manage the
+> @@ -3262,6 +3273,82 @@ static int tisci_reboot_handler(struct sys_off_data *data)
+>  	return NOTIFY_BAD;
+>  }
+>  
+[...]
+
+> +static int tisci_sys_off_handler(struct sys_off_data *data)
+> +{
+> +	struct ti_sci_info *info = data->cb_data;
+> +	int i;
+> +	int ret;
+> +	bool enter_partial_io = false;
+> +
+> +	for (i = 0; i != info->nr_wakeup_sources; ++i) {
+> +		struct platform_device *pdev =
+> +			of_find_device_by_node(info->wakeup_source_nodes[i]);
+> +
+> +		if (!pdev)
+> +			continue;
+> +
+> +		if (device_may_wakeup(&pdev->dev)) {
+> +			dev_dbg(info->dev, "%pOFp identified as wakeup source\n",
+> +				info->wakeup_source_nodes[i]);
+> +			enter_partial_io = true;
+> +		}
+> +	}
+> +
+> +	if (!enter_partial_io)
+> +		return NOTIFY_DONE;
+> +
+> +	ret = tisci_enter_partial_io(info);
+> +
+> +	if (ret) {
+> +		dev_err(info->dev,
+> +			"Failed to enter Partial-IO %pe, trying to do an emergency restart\n",
+> +			ERR_PTR(ret));
+> +		emergency_restart();
+> +	}
+> +
+> +	while (1);
+
+Why not fall through OR go through emergency_restart (since there is
+no fall through for shutdown path) if it acks, but actually fails to
+enter LPM state after a dt described or a default timeout period?
+
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+>  /* Description for K2G */
+>  static const struct ti_sci_desc ti_sci_pmmc_k2g_desc = {
+>  	.default_host_id = 2,
+> @@ -3398,6 +3485,35 @@ static int ti_sci_probe(struct platform_device *pdev)
+>  		goto out;
+>  	}
+>  
+> +	if (of_property_read_bool(dev->of_node, "ti,partial-io-wakeup-sources")) {
+
+You should probably check on TISCI_MSG_QUERY_FW_CAPS[1] if
+Partial IO on low power mode is supported as well? if there is a
+mismatch, report so?
+
+> +		info->nr_wakeup_sources =
+> +			of_count_phandle_with_args(dev->of_node,
+> +						   "ti,partial-io-wakeup-sources",
+> +						   NULL);
+> +		info->wakeup_source_nodes =
+> +			devm_kzalloc(dev, sizeof(*info->wakeup_source_nodes),
+> +				     GFP_KERNEL);
+> +
+> +		for (i = 0; i != info->nr_wakeup_sources; ++i) {
+> +			struct device_node *devnode =
+> +				of_parse_phandle(dev->of_node,
+> +						 "ti,partial-io-wakeup-sources",
+> +						 i);
+> +			info->wakeup_source_nodes[i] = devnode;
+
+Curious: Don't we need to maintain reference counting for the devnode
+if CONFIG_OF_DYNAMIC?
+
+	[...]
+
+[1] https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/general/core.html#tisci-msg-query-fw-caps
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
