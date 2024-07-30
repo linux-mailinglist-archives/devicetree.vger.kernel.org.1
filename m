@@ -1,128 +1,220 @@
-Return-Path: <devicetree+bounces-89538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5FF1941E67
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:28:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E5D941EED
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E28FB26A62
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:25:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CEB51F235E8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EEB71A76C3;
-	Tue, 30 Jul 2024 17:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C399189918;
+	Tue, 30 Jul 2024 17:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CMSeGHBl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LRGoCPiZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF40B1A76C1
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 17:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 094C31A76C6;
+	Tue, 30 Jul 2024 17:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722360356; cv=none; b=BMdmKV17BiGo7kkrSdQnqHD8RR5jXhLfyUQFZUYtIRHsTvYnzBOZnAdX++ZF+Mfjf34fJwW75R1ypulq0OoGa9qC8uz5KVpk1QPWBxMC8ZBmhrWdIIhU5XVyGdAS1pH5UAlB6mgGVqopwJTZPco5sDhle0jj93EP8vXeuxJ8wC8=
+	t=1722361100; cv=none; b=gNZbbI90QNJUIOKwmRPRdxf1st9I4EV1ey98HegzBxL9xVYdeOnlfa0eTr25sAccWE6ZMwy5pvh+knSiV4cbB77KLLQTjZjklX27gcAAVdxUBh2E1zTTWu6IvPBn481ymXyHaF+Hv7oeAhJ6vZwlw0yg9tonoUPQHWIxtvXj/08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722360356; c=relaxed/simple;
-	bh=SR4ep8u0jDhObX+j+vH22fJ0Ll1+cct0CntZJ+AgVsk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n+UVr4W2cy0U1nJcb8kn8cDb6QLXxunrr9j0Ia9cV+mIgMA+IE1ApON3J/PDFw4PUf7v16fOWql9hN0XiOxrva9KcbK1miTADfFqEw9l2TapiGurie0kw5frG6kxKHhYqxW6mPeqMXNDOHU8D4CL5VDhTJqDUGrgoIOenr3Y6Ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CMSeGHBl; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-654cf0a069eso32007087b3.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 10:25:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722360354; x=1722965154; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SR4ep8u0jDhObX+j+vH22fJ0Ll1+cct0CntZJ+AgVsk=;
-        b=CMSeGHBlwIQhj3U0fyS/ew+XpR6cSHCzsagRO7YCSC7WQrMGvS8EfIEsJb21sn6QDW
-         L0va3+a1qC8IW3lCuwUh65F7TRI770ywZGUKx+algIattbafZzgm5paSLRuNk2k21J3b
-         4lItTkLrhSUJr8WZeF79SX/oMkSPbIbYjfZG+SIcqTM/gk1A4JK2E+vLqpPDH74qRPxU
-         V0qlsekLQEToydkJkEsJaSP7iJKUHDD6OCil9b5Y4Fm52hIPXRLIkn5yFZi5nIABKk5D
-         V3jmkSccPG9iSG/6ejG2H9jIZxrWo91cnBlCLtIvJes5w1GjpHWbqiUWAYRjGYj3s/nO
-         2k4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722360354; x=1722965154;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SR4ep8u0jDhObX+j+vH22fJ0Ll1+cct0CntZJ+AgVsk=;
-        b=wpZeyhD1K4yiSuXjT5h6OLey+7ovPEtzPhB8I+8Z3YE5o1XnWnB1QqSSDcOqVqdufg
-         e42V0bLCyZ+KsALDPs/GtplNJpk9KGQ+uRobPwu1teBXjt527bH/Gy1cWaQfM9k2tkY/
-         vHjUSBwBXhV5sE1sH3tk7SGg4pRNlTXTdMRUrUDCT1yU5XdkSW+jSYW6SsquXOEuU3Hf
-         H8ERdbyAqtOIJpezYtG5pMnCQdV+P+qFU7GbJ7HjLiwATVhDg+8CqAC5rLcgVexJJRfN
-         65HtoQ0DIVmMzpV/aaJBmPY6FwmRapGjmCkcNaBOTZ0T2I5RL3hYNrI6XobE3yhqDx5Q
-         1JOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAfMrmvbWZ9wEwW/fODS7lBOl7/L5ZH4kf/Gf/wfni5gnvtAxoAU5Au2IVPBQbXgmjtIX6YU2Rzs8q/a5rpIX7x9hZ2EKPBL2fTQ==
-X-Gm-Message-State: AOJu0Yytu8dVD+UYpn+qJLrzT/Dke3h06BG3OjbQp+1g8VCoy9JnffQ9
-	K7yYB0sNVYEl8cGWf7xVHkrcwkSJsaRdm2RAx2nXWMCEX0lAEx8D8a4dkRrY3ys0hIKuCYz10GL
-	wJrzZkFWIO4fxrx91ddDvHDvWCUOElz4l3v3XGw==
-X-Google-Smtp-Source: AGHT+IE5wZhEQttbYW1SZcrl7UTaSkRi1X+/IcIlYkWNAtNbmsb6pPs3LqQs8Xr4/GbhKK2YKJn/GGcCRIMa4SAcUGI=
-X-Received: by 2002:a05:690c:46c6:b0:675:a51b:fafd with SMTP id
- 00721157ae682-67a097874e5mr154692857b3.31.1722360353870; Tue, 30 Jul 2024
- 10:25:53 -0700 (PDT)
+	s=arc-20240116; t=1722361100; c=relaxed/simple;
+	bh=9IUleP8OzhpQtp7S1NkmiFennhuOo0B3m/rmGIOk5+M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fu8QHHZRAvb4T9vVmSMKP5zDZmNMK0aJ2OohYkNegAX4I+RJq56iDFujjGhx4rrcU9vWbfFZuE6IO0DnyyMf5mP//OROSIoHOlP4/0VBCEP1Uw5ipaSrWfDC7sV28jwh048+2VPc3VBWW4EQSwfX6J7PVBGSfqm9E/X6DIHbV/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LRGoCPiZ; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722361096;
+	bh=9IUleP8OzhpQtp7S1NkmiFennhuOo0B3m/rmGIOk5+M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LRGoCPiZ0JAyuj7ggrTjMFyQRrwTvDzXOiWdMhoyjs55Te5FcWuCA9a2yMO90y6B+
+	 pm7uqlKSKJrS5muy4DTbqQ6E+8r9o8x9wEsFFqKeGj3mDABsPgU6mzkqbTz8UuWop3
+	 sCZcybBDE31UicBaqMaCTGoKoqMiJ1C4q9LMvnjLdRVHs6q8WLCqZzN8ibQGKy/FZb
+	 KvYHjpHqbX6y7gROPQ/4oZSkWsa4lwQevOiozL9vzus5VKGUzoUxzzbP9BD2HNtns7
+	 o6laaQKI8jsgDLBP5MqYg6P1eV5x9fMMEL0KQveiRtfMJl9/DRYlUpGkHrJohdWGu1
+	 EU+ryKM3Pt85w==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CC1AA3781139;
+	Tue, 30 Jul 2024 17:38:16 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 70AD510609BB; Tue, 30 Jul 2024 19:38:16 +0200 (CEST)
+Date: Tue, 30 Jul 2024 19:38:16 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Arend Van Spriel <arend.vanspriel@broadcom.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org, krzk+dt@kernel.org, heiko@sntech.de, 
+	kvalo@kernel.org, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, conor+dt@kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+	efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com, minipli@grsecurity.net, 
+	brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
+Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
+ clock description for AP6275P
+Message-ID: <k3dhdsa5bjzad2ha5e2uurg2azzs773ier5thkot4w2qcvnv54@yuf52eluqsae>
+References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
+ <20240730033053.4092132-3-jacobe.zang@wesion.com>
+ <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+ <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
+ <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+ <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
+ <191035b8c28.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240726110114.1509733-1-m.majewski2@samsung.com>
- <CGME20240726110142eucas1p29f261e5e81c177456fd5bb5546871eb4@eucas1p2.samsung.com>
- <20240726110114.1509733-7-m.majewski2@samsung.com> <20240730161748.GA1414176-robh@kernel.org>
-In-Reply-To: <20240730161748.GA1414176-robh@kernel.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 30 Jul 2024 12:25:42 -0500
-Message-ID: <CAPLW+4=WsGikZ6qOi8dWg4wFsVbhp29cv=DKP06jc4TQn=yUeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] dt-bindings: thermal: samsung,exynos: remove
- outdated information on trip point count
-To: Mateusz Majewski <m.majewski2@samsung.com>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Anand Moon <linux.amoon@gmail.com>, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jf2alk6nvvmfsvtq"
+Content-Disposition: inline
+In-Reply-To: <191035b8c28.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+
+
+--jf2alk6nvvmfsvtq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 30, 2024 at 11:17=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Fri, Jul 26, 2024 at 01:01:10PM +0200, Mateusz Majewski wrote:
-> > This is not true as of commit 5314b1543787 ("thermal/drivers/exynos: Us=
-e
-> > set_trips ops").
->
-> What is not true?
->
-> How can the h/w change? I already asked that. Please make your commit
-> message summarize prior discussions so that the patch stands on its own
-> and you don't get the same response again. Assume the reviewers have 0
-> recollection of the prior versions because we don't. This is just one of
-> 100s of patches a week...
->
+Hi,
 
-Hi Mateusz,
+On Tue, Jul 30, 2024 at 01:16:57PM GMT, Arend Van Spriel wrote:
+> On July 30, 2024 12:18:20 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>=20
+> > On 30/07/2024 11:52, Arend Van Spriel wrote:
+> > > On July 30, 2024 11:01:43 AM Krzysztof Kozlowski <krzk@kernel.org> wr=
+ote:
+> > >=20
+> > > > On 30/07/2024 08:37, Arend Van Spriel wrote:
+> > > > > + Linus W
+> > > > >=20
+> > > > > On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesion.com> =
+wrote:
+> > > > >=20
+> > > > > > Not only AP6275P Wi-Fi device but also all Broadcom wireless de=
+vices allow
+> > > > > > external low power clock input. In DTS the clock as an optional=
+ choice in
+> > > > > > the absence of an internal clock.
+> > > > > >=20
+> > > > > > Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> > > > > > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> > > > > > ---
+> > > > > > .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 +=
++++++++
+> > > > > > 1 file changed, 8 insertions(+)
+> > > > > >=20
+> > > > > > diff --git
+> > > > > > a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-f=
+mac.yaml
+> > > > > > b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-f=
+mac.yaml
+> > > > > > index 2c2093c77ec9a..a3607d55ef367 100644
+> > > > > > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43=
+29-fmac.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43=
+29-fmac.yaml
+> > > > > > @@ -122,6 +122,14 @@ properties:
+> > > > > > NVRAM. This would normally be filled in by the bootloader from =
+platform
+> > > > > > configuration data.
+> > > > > >=20
+> > > > > > +  clocks:
+> > > > > > +    items:
+> > > > > > +      - description: External Low Power Clock input (32.768KHz)
+> > > > > > +
+> > > > > > +  clock-names:
+> > > > > > +    items:
+> > > > > > +      - const: lpo
+> > > > > > +
+> > > > >=20
+> > > > > We still have an issue that this clock input is also present in t=
+he
+> > > > > bindings specification broadcom-bluetooth.yaml (not in bluetooth
+> > > > > subfolder). This clock is actually a chip resource. What happens =
+if both
+> > > > > are defined and both wifi and bt drivers try to enable this clock=
+? Can this
+> > > > > be expressed in yaml or can we only put a textual warning in the =
+property
+> > > > > descriptions?
+> > > >=20
+> > > > Just like all clocks, what would happen? It will be enabled.
+> > >=20
+> > > Oh, wow! Cool stuff. But seriously is it not a problem to have two en=
+tities
+> > > controlling one and the same clock? Is this use-case taken into accou=
+nt by
+> > > the clock framework?
+> >=20
+> > Yes, it is handled correctly. That's a basic use-case, handled by CCF
+> > since some years (~12?). Anyway, whatever OS is doing (or not doing)
+> > with the clocks is independent of the bindings here. The question is
+>=20
+> Agree. Probably the bindings would not be the place to document this if it
+> would be an issue.
+>=20
+> > about hardware - does this node, which represents PCI interface of the
+> > chip, has/uses the clocks.
+>=20
+> The schematics I found for the wifi module and the khadas edge platform s=
+how
+> these are indeed wired to the chip.
 
-Do I understand it correctly that the patch actually removes an
-outdated description of *driver* implementation, and not outdated
-hardware description? If so, then maybe it makes sense to rework the
-patch title and commit message in a way Rob suggests. I.e. rather than
-stating that the patch removes an outdated information, instead
-mention it removes *software* (driver) description which was
-incorrectly added earlier. Because bindings are only meant for
-hardware description and should be completely independent of driver's
-side of things. Also in that case it probably doesn't make much sense
-referencing that commit for using set_trips ops. Just my two cents.
+I have a Rockchip RK3588 Evaluation Board on my desk, which uses the
+same WLAN AP6275P module. I think I already commented on a prior
+version of this series: The LPO clock is needed to make the PCIe
+device visible on the bus. That means this series only works if the
+clock has already been running. Otherwise the PCIe driver will never
+be probed. To become visible the devices requires:
 
-Thanks!
+1. The LPO clock to be enabled
+2. Power to be applied
+3. The WL_EN gpio to be configured correctly
 
-[snip]
+If one of the above is not met, the device will not even appear in
+'lspci'. I believe the binding needs to take into consideration, that
+pwrseq is needed for the PCIe side. Fortuantely the heavy lifting of
+creating the proper infrastructure for this has already been done by
+Bartosz Golaszewski for Qualcomm WLAN chips. What is missing is a
+pwrseq driver for the Broadcom chip (or this specific module?).
+
+Greetings,
+
+-- Sebastian
+
+--jf2alk6nvvmfsvtq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmapJP4ACgkQ2O7X88g7
++ppEtw//U1k4jbWPNYlqHLMqe+zCNqwKR5lm/UcmOBN5NZbS+CUQkPZxNBGlVGmV
+GN7dnCABPzlKtbi+IybAV9D3zuZ9pjWqoUmqXDENHluMxyevsPqeIqUdg+QWQbgr
+5XbEXHYbGSl2Ous+jbo3pUBC+riwepUOqO9lMVS/AjpeOgX1JyOIpYEOT9IAqrRn
+ZMHASWZ8jZZCgXZcivEAkpVXhz9TrxDjGZzUKe8zXu4JawYlZt7z1bD3pwoxyQ7J
+KRZpVm3a5RWSJzWcPefJwJ2mhk+/TmDJHMhn+bGtg5j/IoNiBAqFn+hiNRcn1S9E
+Bprr5IAJEs/jYjyytrCAm013AXPpI29pd9k5zBTbj8OeS0DKZA1dOi8gDhB89jVo
+wC/+s6YU2RYC4DwY5FXBjvoZGb2jCALl9vWb2Hhrk9OLtjtphUEz3aPkZYnARWpo
+ElAVz0x76stHIfe4DOIautJHlH9zf4TaBEiqv8M4Sx2fM10Kq5sps6gbSESNLyru
+rswZR4SJwBnJfcAarov9LcWiESEztmGm5HRVGehHqw2470kyUprdElP2h3YLudfx
+frNemcdHN9IByCVz70O6m9sHl9wTaIDCRaFul8DlNalIRbcHNE4Gw1Pr7P8t7rRZ
+pe2MsIYPSY9JzvYlRcuztpgaGHmChUSdhTMhQdbu6x416/EFaOY=
+=lH9x
+-----END PGP SIGNATURE-----
+
+--jf2alk6nvvmfsvtq--
 
