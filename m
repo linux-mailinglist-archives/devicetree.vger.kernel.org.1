@@ -1,238 +1,224 @@
-Return-Path: <devicetree+bounces-89410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C206A941063
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:22:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F901941072
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:25:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F6941F21871
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:22:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77F8CB21CD9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3219019D88E;
-	Tue, 30 Jul 2024 11:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3820319D09D;
+	Tue, 30 Jul 2024 11:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="H/HBDECl"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="doswjICO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2079.outbound.protection.outlook.com [40.107.104.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E761993B0;
-	Tue, 30 Jul 2024 11:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722338569; cv=none; b=KLCbiJ56S24TIIzsLcr06lax1mk8QT1Za/J0OxDqsIpVa5XMAqSPEpx/l5wtN6isuNF745nO7L1OAmWYVJMrncTrPZ9OZjSlTsnV/1ETkjqc+yXfXsZoMtz9nphhopJYDsmPxmZ2C3S2PYXo2ilWAEI6RFOkhvaen0Sqn5Ulz3k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722338569; c=relaxed/simple;
-	bh=btvD72VMf28f4JF1iiQKodEMlXAnBnvUhO4SSPsC4/0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=LbXnY4UFjKle0q1HnuPEaODdhLSr5SxlXLUvyKJb8cWdxrsCh4kxjkAZOxTJLyvhuefA/GSo2eh1QNptrK0IpsHdDLFFbLmWJBnvljqnGUdFuWbVRaBN7UAVmOG4IX9x/dDjxJI/cd6t8wNOSphUhirNQ1tpAIO7fECPGnfPIjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=H/HBDECl; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6ADFF240011;
-	Tue, 30 Jul 2024 11:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1722338564;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PP/aZvi4J4ACsG3LNnAx3Id3SUazT49L+SvSO08XIr4=;
-	b=H/HBDEClYQq3xqPGa+ABJv4b/avijVZDQhtiSYi9VtJsCQhuTYC5HodiXiHmXH5A5ts/nf
-	q5H2BI5FOwYH7waBvP+wsbv7cdfgr9AMDQTVaBlqAwcUSGN9S+UP4YQI8vG8+ccR9J9f8n
-	46BuwDUr97QMIPOw+iTlGslDBEyiSrqjBbQYqZxhjRTC7CrcKJONyabeil1WUBma1JY1rf
-	EsIPkAiq86qe+OuOGM4L2Lj9KrfXoOfVWPgG3dl+zpcxBNBc9dkwfAtuWgf8WlXq4QdsVW
-	HHWqNgdjd75pmO4L2HE8X4U/fOVR78iMPn9OBIQkmrSql1RHBAXdwKzEc05kTw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FA618C336;
+	Tue, 30 Jul 2024 11:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.79
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722338742; cv=fail; b=IIgDfsNUP2noAdw7GH6j1LYHHVz+OkZ9dZbHX0O50GZsZdVyRNTBmQSs9y5ekHWYIsAWJ+mpExA+m0PAfdG+TU64ebk13rQ0vOV7ULI64G9tXUA+txVzSeOMkRK4v6A+I7210cITOFv372WUR/WT8ug3FpIJ4b6CfmK1wew44sU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722338742; c=relaxed/simple;
+	bh=oKUivYmYosnkr59067Xo3SYhsDAQeg18GPhaFs6dlL0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=pHMIS+Kz8uinarO28K9W9/b7+6hyKNjF4jismKswLtP524nVxuLW+U4N4xo6ZfdOTgnSvCkhKS0rme4AmisHnlwef+XJAzRt3jnqEZextIwymAe07S15ac1dx5e+8aFs81phfomQx/X+3lyz0RQEATrDYc/5z+N6J8q2wXe1oEg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=doswjICO; arc=fail smtp.client-ip=40.107.104.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pBQfrUdxIqUcNHKq8Ja5MH5Iyj4yjysOL4RHNj8yWR5AXAP+Mu6G9g0AY2veBbQlwDSGetC6n70zLqlGWLU7G7AsE8YtFPGcgMSPB+SkjAvfQSVUXk7zKvhEs94syc+qdRlMulcZy5QhKDqD/tFPVpfdEqJ4K7koO+Bsy6MNqYUa4ZBms6axrtiwbQmn7fQqpehYDznM9t6AzJFvTEjDeUiLv/2ZAqKcwIvlvcAhL+yHu/vDOkyyMTBUKxgx0wgssPxvzh305HavjmAaPcwCOaQQFsXZeTD6E4halJkwnGFNKDew7tCqXNZyfaSHI7KQLpjObEZU84C/WJjaSbWfQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kV0gHTrkJiQbxN5VNbKoH5cR6sohTHfba51bqpKB/kk=;
+ b=FV8GHibEQJ6outHJ9ZptYWE/YYXLpblaFLhIGhb/d+rhtlDKk66maaNmazcrNCJq/hm3VoEB9vF55JJACi/HxfxOqmbxOM+J4JNq/A+uajH/4o6CE2CvNYkAsps3+4Ewo1PrWts/6C1NVKN0wr2FnhoC8TVXqOqHmpYG+9Y+/qrohSwmyxYVISjWnvN+fXxXtGfWpoHZ1bid7xfWZA8PCKBPTWl3sDoZw4dvw3yJTtwZNrmMrfC2kvML7mrqIz2fKvbQZgLTO1wBIC5jnBAFGJ2ONbGMHU0qAaz5m+9tHnLqL1mVixWuYgos7xAt3bPqb7ql9NIHKWXnSkei+dnueQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kV0gHTrkJiQbxN5VNbKoH5cR6sohTHfba51bqpKB/kk=;
+ b=doswjICOKtI8xTYPB2YPMmfFmYzu9USq00WPcGOth8zpJPonDXiLEdboexGPgFni652eey/wQlviW+RQhIsqyaVe4f4qZccdFwSY1TxK3g8V7zEPYlHFpD0z46xdWX4pj/b1rCvRthH7OhstwOtfoPPUJ0r/ZwVgI0ljKZB/OTeRaQewRyUXdi5K6vZq1KXvnEeCU+aI9aIvkoEc/37SadapofSW1b0MBXcANiy8xeqPCCXQnbMYILwV67qQiw6L7pCLZG16+ERhghQ51WKqWfDoS9DCtSqP1Ugjqc5a4e+Rsr3MUaUPTIYhzO35+lwPwE+MiJmL8l8T5hpRchO6mw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by PAXPR04MB9023.eurprd04.prod.outlook.com (2603:10a6:102:212::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Tue, 30 Jul
+ 2024 11:25:36 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.7784.016; Tue, 30 Jul 2024
+ 11:25:36 +0000
+Date: Tue, 30 Jul 2024 19:23:02 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, andersson@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	jun.li@nxp.com
+Subject: Re: [PATCH 1/3] dt-bindings: usb: gpio-sbu-mux: Add an entry for
+ PTN36043
+Message-ID: <20240730112302.7l3h5blafioghmyq@hippo>
+References: <20240729081039.3904797-1-xu.yang_2@nxp.com>
+ <a3trxkx2fue2oahscjkc4silnfhesrws5xn7brjefjmke5emci@dn3cbb7yzmux>
+ <20240730025844.b647xuoolg6zq6f5@hippo>
+ <7gojzjkcpq753x2eb67osvvwfzxytqkm6sxm5qyank4qpdmdnb@mdunl7yq5wd6>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7gojzjkcpq753x2eb67osvvwfzxytqkm6sxm5qyank4qpdmdnb@mdunl7yq5wd6>
+X-ClientProxiedBy: SI2PR04CA0017.apcprd04.prod.outlook.com
+ (2603:1096:4:197::15) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 30 Jul 2024 14:22:42 +0300
-From: arinc.unal@arinc9.com
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>, Paolo
- Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, Jakub
- Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Daniel Golle <daniel@makrotopia.org>,
- frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-In-Reply-To: <b3fa66cc-516b-4d78-aee5-62a47b52a3b1@collabora.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
- <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
- <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
- <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
- <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
- <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
- <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
- <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
- <b3fa66cc-516b-4d78-aee5-62a47b52a3b1@collabora.com>
-Message-ID: <2076f699540c3c9d10effdb8b55d3f89@arinc9.com>
-X-Sender: arinc.unal@arinc9.com
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|PAXPR04MB9023:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf6dfd59-bf15-4659-127d-08dcb08a554d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?G+O0cRZINalllPASt1GMQj1tSt4Wh7qTNmzM9uJzUNdpSFuoD2hLW9yaz98l?=
+ =?us-ascii?Q?x/EhUDYRv5kB+geXSjwaLL00MS6FJXsRxa5Tqp6/NgaP+WzB9WFmm/aUZFd/?=
+ =?us-ascii?Q?MK8iwzVrxs1xIaZ6UZYyGrqFy9tnLx4U9ZcJ9XPLwOQE4pFCRAr8SDSF12+T?=
+ =?us-ascii?Q?lsDdjQLu+49DKQ+9lP6gcXx+JE18xoczEkLInBGSw77jkiHldVrtfjisDrzt?=
+ =?us-ascii?Q?MbDQr6WrHMBRUOTeCZe4Sy8mnZrafF56yXKcoPhar2/eMbYFNEhi1G2F2g/z?=
+ =?us-ascii?Q?S17B7j7ThV92vw0OLxTU8WP9wk6pJQkxM5UdStNcLMM1XuGyaDgSdfOy+wCT?=
+ =?us-ascii?Q?kPj7xU2G9ZB4d24aYu1Sp3NLdqttYWdmvczUMIrvzsUjOSbeGGhUG0GJURrc?=
+ =?us-ascii?Q?wOKRIqd9Nl0oizNv3Iis4WPzka1WT6Vh5LiI2jg0zRiu7zk3KzS3RQUnSIhY?=
+ =?us-ascii?Q?GlnuCBS640hH4djBpRkAvmQm+w+5X7xn5YHZRa5Li2ySWd+2Gjpq/Pc4jhZ+?=
+ =?us-ascii?Q?nb7Wn8Emyi0f2OKyKzJF2BFRcwI2cn4KNEJpY8jcfXl0TVRDBOHqwlqbdjdI?=
+ =?us-ascii?Q?jTDpO84WQlakA/7F0liyntv2VPfTs6reBWGxOO14474D8iyKO1A+Mlvoe8Ic?=
+ =?us-ascii?Q?6TSXDntsT6OYTd5b53M3yoAJTWpTDGp2yUUnU62mw5hZaJjKALvoLgCtgPLF?=
+ =?us-ascii?Q?n7PRnS1RvAb9nXkmw5c8EIWXNHu4Aw+fbhQWfII0Mb8rvC0EZ8kKNJvSIoLk?=
+ =?us-ascii?Q?ijn9hdTUBMAln+dbbM/3ogNChHsXr4LDZ9pdDPhtzDA/npfMzJ+mQ8BJhJ9f?=
+ =?us-ascii?Q?1VdXoDeQXVRMaic26y4kNyxWy3pYQM5oC3t27XNZrAhzvSnnwdgOgBGjQAMC?=
+ =?us-ascii?Q?fD5IzPuaPQi2GJyoqzd4Y1Wh6bmpv7Dhhv8iqA1rCRqf2Ka3ZAUCLg/ufCBg?=
+ =?us-ascii?Q?y+nv92A2aHnPBwWYK+5NU+pAPiPGUmzxfIHVNMDFt+7cJxCEhDWaJZplqizY?=
+ =?us-ascii?Q?kSoTOykBZNBHGZcJYO10OiNg/G825bXfTHJwKL0zKhexw3yd1K04zhxHXB1+?=
+ =?us-ascii?Q?6NYXZdzZN6C2zAYpH+GE4QubSectbluGeZF52G+CuuXNJmphxmFw57RJqOal?=
+ =?us-ascii?Q?78WTTB3ZZ8UGSSuuxw3AYNlhn9H3AYI5qhYFR0bheD1seF+3UpxbdL/Em4W+?=
+ =?us-ascii?Q?jkZrkjl1xicN2HMOwYp5+Lh3rus/8kL9TlCuWKqkxwifMC3Kamrc2wWQvojn?=
+ =?us-ascii?Q?GtYL74hlAhCe+fcgQ4AuKmtqpY3pGm4uPwPc8GYD2lG7a0gpF8HUMRbjscxg?=
+ =?us-ascii?Q?Y1XP7UelkEB3ghHbbgh6V7SgApuYiNfPAchORxjJZ+PigySpPXFnh6VsBuvr?=
+ =?us-ascii?Q?0+uOLKY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?y1youCS5IjfDMxO4v3N62zbWdhrZf+gccG4Zru/lUoAeAd/GwQgFdZC6tVjF?=
+ =?us-ascii?Q?PF7pXhx6sXPegn6od+U/8uAYrfhxT37e1BzcJ7gd5jkCKxpZvwXRotK7gR3U?=
+ =?us-ascii?Q?yVGe6cHSaKNtInyOxjdQLZEeBxp4rFxmdGpoeLLo1DvC0C8sSK/y7DSZ8xUx?=
+ =?us-ascii?Q?IgqetakuogcwO8nocmLA5Yi4EywEV2oIzrCDrHHfIBAItQkHCb8ztFnI5XMs?=
+ =?us-ascii?Q?wtIF78KA83t0dlnkFvDavcJlxi9nTcwMgi9SJVWj86y8kyBpXVBBBl0ZJhVb?=
+ =?us-ascii?Q?XqrEPgPC+a/ZpMGtHedk6kyj3Q2BYpU4a2d0ON3Ve5p+Br3De2MVPxGz7swR?=
+ =?us-ascii?Q?3sxsZc7n2KTvthimhmdk7T1F97PNLyS+ricXYVsjr4aaMdmvJr9hFD2mAmiP?=
+ =?us-ascii?Q?O5hGhxFcaRFkRShnwcuOABFrOgitKTfFot122hB+q8YtyEFkLKVFonsJF3ia?=
+ =?us-ascii?Q?/sU0U8DvFFssJnwzOzyrL4gkq7W4yp7eXGgM4NeBCyWvY6ouz2lduacoh5kb?=
+ =?us-ascii?Q?0BcGgQQr4qq6Hc6YXVGLR5CyFYfTUFaNVIVy53Fdg7w+sY1s96a1/+VU/p0h?=
+ =?us-ascii?Q?UfWZ4nHf8bBtsohdqvQwBWT8dbaXa7NbeHO/NsjJAcqLRruOr93sh5lohcup?=
+ =?us-ascii?Q?fVi+wto2S5wKNn3E2ERmrSAIebuCjbHigl5ljAlbnKrO8txGk+3MwhNGhhxI?=
+ =?us-ascii?Q?ton6HdyhhfF9uRaH5j20n/yttK56s6RdIytgrPceNbnNyanryhBjn9Ou1CHa?=
+ =?us-ascii?Q?LaEm5Sz5f7027fAWyTSaPvAdyJc3WhlQgji3WE3ndbaE3LIOpdAeIBEOO8TS?=
+ =?us-ascii?Q?yehQyDlTI0qjDv9BSIcEDM8gK5mxP+p/bo2VAIHa/FMSPDH3qmjWX1GFNGlK?=
+ =?us-ascii?Q?Ib7oawaF9EfPY57rzjDdeoPmqkG6F/rj0wPBi0xFCa/uVlQS6KjvgzmTtstA?=
+ =?us-ascii?Q?W2v7giCT+by3IlDw9c17wEtCdAtHC2k3XGp7FHowD/yHxVobl/X0jQ8PzsPs?=
+ =?us-ascii?Q?ZdDUULZUrlX5Dq2ITj3alkUuWxXILxq2yosr63LtXskPHJk456/OG5Hsnujh?=
+ =?us-ascii?Q?iENDH/T+pil27wUk9heKetpyowJvMKq/1zHjA+s5X9GCH+8FX7vl2jsFTyDo?=
+ =?us-ascii?Q?Qyub+V+9spuDgC/Dn26ID4D5xxBa3SWjup+/PeVN1uA5+YQYrlAfIqM+Izhc?=
+ =?us-ascii?Q?hPFy6jkkr9TzDiPyI6dkwNDDq4oufvhRXaDUetG4SZTYKqvexb8A8U4ZQ+YD?=
+ =?us-ascii?Q?Iot5eh67grOnjmF2VZ3m8sx3u3d0U8SOcCRsvA3ub/RDFDh5FnuASMfOPg43?=
+ =?us-ascii?Q?1UpHdm1bchKuvz3zm0odZ2TkIuK4POabLle9HQk9ghv/PyoEm+Ogx1HqSBwQ?=
+ =?us-ascii?Q?hOH9XvhD2Ya/mIFiNCRIEOeqdNfbwUAovek+C5dVaQJY2IjPNjizP+3IMJFK?=
+ =?us-ascii?Q?ch0w9D3g5amlp+OMn2gRhmqnfahfEzdivrdWsB5HolnKIdut/hpuDI38TCQg?=
+ =?us-ascii?Q?gwwes72x3Ol+Pmth2GlO2u81iw6joRQA8NNeeYjhbbEiKwJB2SiBZPxGj3qX?=
+ =?us-ascii?Q?6gzRvTrebaNvcPlbuWw/Z83KghRYeqGOPDE8pjb1?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf6dfd59-bf15-4659-127d-08dcb08a554d
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 11:25:36.3909
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PO3Tfe5ADjT6GXW9CZj3pPDo08JTFOAzuZCMgOyTbdZsUj99wj4CLIt/nilkvJeAUUdTfdDX49q1BAqYXmTpFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9023
 
-On 2024-07-30 12:41, AngeloGioacchino Del Regno wrote:
-> Il 01/07/24 10:15, Arınç ÜNAL ha scritto:
->> On 01/07/2024 11:04, Linux regression tracking (Thorsten Leemhuis) 
->> wrote:
->>> On 01.07.24 09:44, Arınç ÜNAL wrote:
->>>> On 01/07/2024 09:16, Linux regression tracking (Thorsten Leemhuis) 
->>>> wrote:
->>>>> [CCing the other net maintainers]
->>>>> 
->>>>> On 25.06.24 10:51, AngeloGioacchino Del Regno wrote:
->>>>>> Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) 
->>>>>> ha
->>>>>> scritto:
->>>>>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
->>>>>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten 
->>>>>>>> Leemhuis)
->>>>>>>> wrote:
->>>>>>>> [...]
->>>>>>> It looks more and more like we are stuck here (or was there 
->>>>>>> progress
->>>>>>> and
->>>>>>> I just missed it?) while the 6.10 final is slowly getting closer.
->>>>>>> Hence:
->>>>>>> 
->>>>>>> AngeloGioacchino, should we ask the net maintainers to revert
->>>>>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of 
->>>>>>> switch from
->>>>>>> device tree") for now to resolve this regression? Reminder, there 
->>>>>>> is
->>>>>>> nothing wrong with that commit per se afaik, it just exposes a 
->>>>>>> problem
->>>>>>> that needs to be fixed first before it can be reapplied.
->>>>>> 
->>>>>> To be clear on this: I asked for the commit to be fixed such that 
->>>>>> it
->>>>>> guarantees
->>>>>> backwards compatibility with older device trees.
->>>>>> 
->>>>>> If no fix comes,
->>>>> 
->>>>> I haven't see any since that mail, did you? If not, I think...
->>>>> 
->>>>>> then I guess that we should ask them to revert this commit
->>>>>> until a fix is available.
->>>>> 
->>>>> ...it's time to ask them for the revert to resolve this for -rc7 
->>>>> (and
->>>>> avoid a last minute revert), or what do you think?
->>>> 
->>>> This is quite frustrating. I absolutely won't consent to a revert. 
->>>> [...]
->>> 
->>> Reminder: try to not see a revert as a bad thing. It's just means 
->>> "not
->>> ready yet, revert and we'll try again later" -- that's actually
->>> something Linus wrote just a few hours ago:
->>> https://lore.kernel.org/lkml/CAHk-=wgQMOscLeeA3QXOs97xOz_CTxdqJjpC20tJ-7bUdHWtSA@mail.gmail.com/
->> 
->> Except it is ready and trying again is my responsibility, which means
->> unnecessary work for me to do. I've already got a ton of things to do.
->> Applying the device tree patch resolves this regression; no reverts 
->> needed.
->> And then there's the patch in the works by Daniel that will address 
->> all the
->> remaining cases outside of the reported regression.
->> 
+On Tue, Jul 30, 2024 at 02:12:32PM +0300, Dmitry Baryshkov wrote:
+> On Tue, Jul 30, 2024 at 10:58:44AM GMT, Xu Yang wrote:
+> > On Mon, Jul 29, 2024 at 10:57:33PM +0300, Dmitry Baryshkov wrote:
+> > > On Mon, Jul 29, 2024 at 04:10:37PM GMT, Xu Yang wrote:
+> > > > Add a compatible entry for the NXP PTN36043 GPIO-based mux hardware
+> > > > used for connecting, disconnecting and switching orientation of
+> > > > the SBU lines in USB Type-C applications.
+> > > 
+> > > NAK, this is not correct. PTN36043 switchies SuperSpeed lines and not
+> > > SBU.
+> > 
+> > Yes. Since this gpio mux is able to switch both sbu line and ss line,
+> > I will change SBU to SuperSpeed in next version in commit message to avoid
+> > confusion.
 > 
-> The commit that fixes your breakage in a way that does *not* please me
-> (because of older devicetrees being still broken with the new driver) 
-> was
-> picked and it is in v6.11-rc1.
-> 
-> I had to do this because I value the community (in this case, the 
-> users) much
-> more than trying to make an arrogant developer to act in a 
-> community-friendly
-> manner while leaving things completely broken.
-> 
-> That said, remembering that we're humans and, as such, it's normal to 
-> get something
-> wrong during the development process, I want to remind you that:
-> 
->  1. A series that creates regressions is *not* good and *not* ready to 
-> be
->     upstreamed; and
->  2. As a maintainer, you have the responsibility of not breaking the 
-> kernel,
->     not breaking devices and not breaking currently working 
-> functionality; and
->  3. Devicetrees being wrong (but working) since day 0 is not an excuse 
-> to break
->     functionality; and
->  4. Blaming the one who introduced the devicetree (you're doing that, 
-> since you
->     are blaming the devicetree being wrong) isn't solving anything and 
-> will not
->     magically make your code acceptable or good; and
->  5. If you push a wrong commit, there's nothing to be ashamed of; and
->  6. If you make a mistake, you should recognize that and find a way to
->     make things right, that should be done for the community, not for
->     yourself; and
->  7. You shall respect the community: in this case, with your arrogant 
-> behavior
->     you did *not* respect the users.
-> 
-> P.S.: The right way of making such change is to:
->       1. Avoid breaking currently working devices by making sure that 
-> their DT
->          still works with the new driver; and
->       2. If breakage is unavoidable, make it so one kernel version has 
-> a fix that
->          works with both old and new driver, and the next version 
-> introduces the
->          breakage. N.2 should ideally never happen, anyway.
-> 
-> Let's wrap up this matter now - I don't want to spend any more word, 
-> nor time,
-> on this, as I really have nothing else to say.
-> 
-> Best regards,
-> Angelo
+> Ack. This needs new compatible and probably more schema (and driver)
+> changes. I think you can't just terminate SS lanes in the mux, they
+> should go to the actual SoC part (like the SS controller or PHY).
 
-To be clear, I only became aware that my patch was picked by reading 
-this
-email. It is clear that we have different views. To that extend, all of
-what you have written above can be answered to by reading what I have
-already written in this thread. Therefore, I don't see any wrongdoing 
-from
-my side and invite everyone to fully read this thread to draw their own
-conclusions; something you seem not to have done. And I'm not the one,
-calling people names here. I can only offer my respect for hard working
-people.
+Thanks for your remainder. The SS signals already go to i.MX8MP soc (USB PHY)
+on my board.
 
-In my view, your behaviour of not applying a devicetree patch before a
-Linux driver patch was applied, and then not replying to any arguments
-whatsoever, was keeping the devicetree files hostage until your demands
-were met. What I see is that, you failed as a maintainer to attend to my
-points against this practice. It's no surprise that, after not having 
-heard
-back from you with an argument against my points, my patch was 
-eventually
-taken in by someone else.
+Thanks,
+Xu Yang
 
-Arınç
+> 
+> > 
+> > Thanks,
+> > Xu Yang
+> > 
+> > > 
+> > > > 
+> > > > PTN36043 datasheet: https://www.nxp.com/docs/en/data-sheet/PTN36043A.pdf
+> > > > 
+> > > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > > index 8a5f837eff94..152849f744c1 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > > +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > > @@ -20,6 +20,7 @@ properties:
+> > > >      items:
+> > > >        - enum:
+> > > >            - nxp,cbdtu02043
+> > > > +          - nxp,ptn36043
+> > > >            - onnn,fsusb43l10x
+> > > >            - pericom,pi3usb102
+> > > >            - ti,tmuxhs4212
+> > > > -- 
+> > > > 2.34.1
+> > > > 
+> > > 
+> > > -- 
+> > > With best wishes
+> > > Dmitry
+> 
+> -- 
+> With best wishes
+> Dmitry
 
