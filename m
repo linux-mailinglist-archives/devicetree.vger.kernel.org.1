@@ -1,95 +1,109 @@
-Return-Path: <devicetree+bounces-89470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76491941485
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F1D9414B9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 217E21F23DD0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:37:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 810701F24619
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21881A0AE9;
-	Tue, 30 Jul 2024 14:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oSSybwPz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB8A19E83E;
+	Tue, 30 Jul 2024 14:47:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FAEF18FC75;
-	Tue, 30 Jul 2024 14:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD4F1A2562;
+	Tue, 30 Jul 2024 14:47:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722350238; cv=none; b=AT+onqjVYf7UwI/6XNw2I2Qe+waWYFWTcAos5wbQXB6vU8Lpuz3SfKz87xm2a0D7//D/zpkFegISvK0yg7tHnk6kKvOC5WAHeUK358N6uka8OqD9rhl62RCoj/4yTL3T1kVP9GAs6PcxBfrwPchUFGDdArRFgTGJMDejTCXIlNg=
+	t=1722350878; cv=none; b=JL8LtqbU2x8W5aMOR1u+PgRInLfDv/+8fBSxwuPPYsmZbJULUHiN3/rzd/NKsfNe1dFebBGLzwFAAWh29WuG/u7te7fAahX/KRKxQBbyVyDem8dCs4CtpZ1c4L+/UCAWNaHbBD6Xzc1ysAyUMI9TUhGEtFYOy+rf5bC1P5N/npg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722350238; c=relaxed/simple;
-	bh=Plzyk1Dywd7+rQj/2Gc3nMT3tnqW4USmHzptYCMZn88=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=haofQB9uTTaFBsPXJxSW+qB36/hDqL6YwpJZ7Hjs3qDrQ+rvaK64i2QKQp8ujJxUHqMxH5y4K3470FV+nbaNgwCthHu7Veu/32AZfbBNqqOg7goUrZlvFpty3XCvtJmk/Yg79ovRixrfP5GUDfS8AutPH9v7wn/WzsSY6uvJqTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oSSybwPz; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722350235;
-	bh=Plzyk1Dywd7+rQj/2Gc3nMT3tnqW4USmHzptYCMZn88=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=oSSybwPzTP7cjwwrw8p/b/yO/+l/aAXl4poombyE4M7wubfRY4cM2fsnieUL8UKIz
-	 0hmi5Zvcwuy75qdKbqwOrOe+5RR4//Gt5djQP8Rd0Dh92M3O+eNmVveS5TZc8nbQkQ
-	 wng0JjFNjTGFuqjqtPWqlAD49sREALW6s+Q6k8AZXyh40bil1icTQSG419b7QyQhsc
-	 o9vHjDyHDRJ0qLdFYn+2Js0NZtQAImKguIvwH7xUaWyB6Mrbwny9hxYYfak7YD/lkC
-	 +eK9ngdeSQIn57XLs8GEO7kcjeR/9LfdPt7jKYsyYabFPUkoVEUCccDmwl+XeHPS/h
-	 w/DHreYBqzHYA==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9232037809B0;
-	Tue, 30 Jul 2024 14:37:14 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, Moudy Ho <moudy.ho@mediatek.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-In-Reply-To: <20240606-mt8195-dma-scp-node-err-v2-1-e14702e9d3f2@collabora.com>
-References: <20240606-mt8195-dma-scp-node-err-v2-1-e14702e9d3f2@collabora.com>
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8195: Add SCP phandle to
- MDP3 DMA controller
-Message-Id: <172235023450.223861.8133527009930724710.b4-ty@collabora.com>
-Date: Tue, 30 Jul 2024 16:37:14 +0200
+	s=arc-20240116; t=1722350878; c=relaxed/simple;
+	bh=2sgCmXyTvyCNB45FWIC91IVz4X+itKN3UPLmwF3Xl8A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZY1fbJ7z5iGdbztZLVUNmoIznFhE4OKJxIhV3YfZmM0sUs6eqpCWlgbdLl+xvkmsjdouLJrLFMsSbwButAIKWanLGt0TVjgEVBU6e7V2yry5m/XM4gblfyrfGMHfVCj4vULxdSC5UUWd+6AQWbYBJWvTovdQlW94pbVZnrjTtXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 717921007;
+	Tue, 30 Jul 2024 07:48:18 -0700 (PDT)
+Received: from pluto.guestnet.cambridge.arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 01B4D3F766;
+	Tue, 30 Jul 2024 07:47:49 -0700 (PDT)
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: sudeep.holla@arm.com,
+	james.quinlan@broadcom.com,
+	f.fainelli@gmail.com,
+	vincent.guittot@linaro.org,
+	etienne.carriere@st.com,
+	peng.fan@oss.nxp.com,
+	michal.simek@amd.com,
+	quic_sibis@quicinc.com,
+	quic_nkela@quicinc.com,
+	dan.carpenter@linaro.org,
+	souvik.chakravarty@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v1 0/6] Add SCMI transport descriptors
+Date: Tue, 30 Jul 2024 15:47:01 +0100
+Message-ID: <20240730144707.1647025-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
 
-On Thu, 06 Jun 2024 17:12:04 -0400, Nícolas F. R. A. Prado wrote:
-> While the MDP3 DMA controller can look for the SCP node based on
-> compatible, it's best practice to supply the MDP3 node with a phandle to
-> the SCP since that allows supporting dual core SCP as well. Besides,
-> relying on the compatible search causes an error to be printed, since
-> the phandle is tried first:
-> 
->   mtk-mdp3 14001000.dma-controller: can't get SCP node
-> 
-> [...]
+Hi,
 
-Applied to v6.11-next/dts64, thanks!
+this small series is an extended version of this recent, already reviewed,
+series [1] posted by Peng to add a new arm,scmi property to describe some
+platform-specific SCMI timeout constraints.
 
-[1/1] arm64: dts: mediatek: mt8195: Add SCP phandle to MDP3 DMA controller
-      commit: 587c945c933364f24d132918d7703997fd1e2cd6
+On top of that, this adds 2 more properties to describe a couple more
+platform-specific transport characteristics.
 
-Cheers,
-Angelo
+To minimize conflicts, the whole series is based on top of another recent
+series, which represents a rework of the core SCMI stack to split SCMI
+transports as standalone drivers. [2]
 
+Thanks,
+Cristian
+
+[1]: https://lore.kernel.org/linux-arm-kernel/20240709140957.3171255-1-peng.fan@oss.nxp.com/
+[2]: https://lore.kernel.org/linux-arm-kernel/20240730133318.1573765-1-cristian.marussi@arm.com/T/#t
+
+---
+
+Cristian Marussi (5):
+  firmware: arm_scmi: Remove const from transport descriptors
+  firmware: arm_scmi: Use max-rx-timeout-ms from devicetree
+  dt-bindings: firmware: arm,scmi: Introduce more transport properties
+  firmware: arm_scmi: Use max_msg and max_msg_size from devicetree
+  firmware: arm_scmi: Relocate atomic_threshold to scmi_desc
+
+Peng Fan (1):
+  dt-bindings: firmware: arm,scmi: Introduce property max-rx-timeout-ms
+
+ .../bindings/firmware/arm,scmi.yaml           | 22 +++++++++
+ drivers/firmware/arm_scmi/common.h            |  9 +++-
+ drivers/firmware/arm_scmi/driver.c            | 46 ++++++++++++-------
+ .../arm_scmi/scmi_transport_mailbox.c         |  2 +-
+ .../firmware/arm_scmi/scmi_transport_optee.c  |  2 +-
+ .../firmware/arm_scmi/scmi_transport_smc.c    |  2 +-
+ .../firmware/arm_scmi/scmi_transport_virtio.c |  2 +-
+ 7 files changed, 64 insertions(+), 21 deletions(-)
+
+-- 
+2.45.2
 
 
