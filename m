@@ -1,187 +1,350 @@
-Return-Path: <devicetree+bounces-89167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AE5494027E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 02:36:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FDA39402E7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 02:58:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FB7FB212C8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:36:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 582DBB21B65
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 00:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA0A7E6;
-	Tue, 30 Jul 2024 00:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155BC17D2;
+	Tue, 30 Jul 2024 00:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="tlSac8AB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SXjtXTdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2061.outbound.protection.outlook.com [40.92.19.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7694A1E;
-	Tue, 30 Jul 2024 00:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722299776; cv=fail; b=HhVQ+IbOTSRRfrHv8sD7M4dGUbVAR+A3q6wEX02lZM+QMZ4Uj8jJq3kTuhjk98UIOmnCelzcEU3rVH7JkYZJIPnsjthPXUwH5v5iDy4Hfn5U6oRiF9Nm8A6bILSiMYtNb/4D7I8g0kDDQrxiPq5azIiiEutoVgE+fui8MpC0zes=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722299776; c=relaxed/simple;
-	bh=GakbvSk1taPK/cC3cPUxZaCj/OFPnGxZg5FmXebbS3Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=FWrhJ5Q6Dh/6X6OUr50YdM9koCOPzknp2kMIXOAou+FpXxtPtKMuDMhLyeo+roL1rO18hYwN5I4WrMi9RbNxWJ3vkePCGQFer3uevSVk8eilcdHse9ESlu8/ULwKMBiQr8lHGSNeJlGqu+S/AtPfBIpQUtP5F5VTQSAcF/GqGJQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=tlSac8AB; arc=fail smtp.client-ip=40.92.19.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tGdT1PrILM1GHZVfaOB92Udeq5xO6+kJJpjhsGucJuQo97CJFP3jDKM6ZGMFIIAHx3kZJV4HKWZ9YhNsZt/eoCs3mhDWtpMbANpUMD+tYLUqpPLt73uWP7uGy8AKo0+LlffGr6HbDl1/rzdB01tGefn2u7CIcqXroMrlYa7dHzsIR2a4EkOpCcxMpFy8Zgw/jwba63tv9+FkutVr1TpaxwME5Gf2WAvX/JZ0QwCR2t23l/NKDp0FY1vvKQqY+4pyL6Z4KuNCVI8GDHzlkwgUwJc8aZ9XP9+OgY5FNpbrK9Hj5elXrTRqqT+HGqSELyAN28KBLXmWbJwBVRtCgK508Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=erzdgCbknvnZsiIZASlCA2aDMyRHIqkSj34n9C6KhMk=;
- b=YfUeIY7eKZ5wUH2OmCHcvszmDs7qN0oy27FAIUg/czDmqinCaUu70C4FJ/H064xuYQBdEFEA+PcSkQ0VkCkKrwkrSYqo0IaP3oQGe6nkQjytKAi0YyJWDC5j9HnZ4VpdtSWjN4hUX7DQ+mPYoCZAjyx+1wDvnzzc3TCqUBoms8HmKAAjORz/aak9kSmI+tP6lXEYXdeM7hs7balrM3cGpFdrpIaYQvExklTvT+drSPyyTtrGCvMB6sXjGo8fpuS0q7KGcUnElnlLKxuuxTvlOcl7UNrNUx/RJoOrAybna5+K2TZJbcEBxcus8tCNsjer3xQ2LmgCHLXyOJaVG1O9qg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=erzdgCbknvnZsiIZASlCA2aDMyRHIqkSj34n9C6KhMk=;
- b=tlSac8ABRtlZfBFKMzAmNsSVYp+XFQzvC2+VlEr3kCscFavc2S/e/x2ESTTR2as1QBUJH32tb1khfkrk9HmrVx1Bc6xsCk742Tif0/1jbAMP7cPGKCgLV4JCWUtJrmy3ONY5q5iICFzIMpIfrEBnZOX9RndMmhGaVTrvXNXjMxSaFLaq6cI4D0KbfcLbiZxno4ysqJl3Kzo7JQftVdzYsvkDfviiKKdaoGzXjDVP9gdwfw9sqPF9/5R0I9kR4tX0I2koq6UWuY+CpZbZaQQGq5UrFbLQHGyR/3UeeuZ105Qt5d2VeTFPPwPlug2+vhLz1N7/Ki3IFPWHD9+wArv4Ag==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH7PR20MB5211.namprd20.prod.outlook.com (2603:10b6:510:1ae::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Tue, 30 Jul
- 2024 00:36:10 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
- 00:36:10 +0000
-Date: Tue, 30 Jul 2024 08:35:44 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Rob Herring <robh@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, dmaengine@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Liu Gui <kenneth.liu@sophgo.com>, linux-riscv@lists.infradead.org, 
-	Chen Wang <unicorn_wang@outlook.com>, Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v8 RESEND 1/3] dt-bindings: dmaengine: Add dma
- multiplexer for CV18XX/SG200X series SoC
-Message-ID:
- <IA1PR20MB49537B8C3871AE401426539CBBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49535EC188F8EE3F8FD0B68DBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953865775FA926B2BA4580CBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
- <172223050278.2763977.11180028101195359000.robh@kernel.org>
- <IA1PR20MB4953E3AEACAC85765AE9442BBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
- <2e4b504c-6413-42fc-a544-472d4cc1a06b@linaro.org>
- <IA1PR20MB4953343445D88F046E1D28EFBBB72@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20240729150201.GA334758-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240729150201.GA334758-robh@kernel.org>
-X-TMN: [VnOr2tZ/DpwXyqkEskKXCVsh99E5rhN4JJslMWqWg5A=]
-X-ClientProxiedBy: TYCP286CA0233.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c7::19) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <lhfayonvgwnj25cpq255mptyhdljik3tlocep25k2xo2xecf5j@eftwhf7szcyw>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA019460;
+	Tue, 30 Jul 2024 00:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722301115; cv=none; b=pC8+GtXZg63b3UnIbMxtS3gSrYdkzBXgCsuOoiOZzvtxXWOk1Ga24DWjNmDmZpwmVOGQSnMjSvWuxpL+b1qF9Qi0eCrdpR+oweITVRga1XwDZXXaIq67hFfips+653hjUk8sXcCcy8lEo6uS59j9/eApgCevqQUj20aUUs4IRjY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722301115; c=relaxed/simple;
+	bh=CpYECB0kmaquqCdk4FxbZ09dwK4tNbkto3Y1jPXD1mI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cCKRwTuLVu6pEfSlAqudqp7H0AgZIlPD2veGMpevhw75PgC+5oO24XAFk188LVeBKjNZtVWiU+oKzkv5AifYhM9dTPZFNgUf7VCJJGxEAXuG5sia27Ema1QDuy6GvfK5+9g1nobJoXyE1pA3hhDfqjsLLdOmig+jdGHpJ7uo3ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SXjtXTdS; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-70d150e8153so2405216b3a.0;
+        Mon, 29 Jul 2024 17:58:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722301112; x=1722905912; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RDSB5pPC4KBnYq35M/mZ4xVlhDzcx3CFEpFuR7OQWhw=;
+        b=SXjtXTdSJydJwXKgd+WvJpky37Y8O2Hn6Cebw0lVW1s5amITlk46lWD9EyaefUe6br
+         +XsjchxxWp6qtQHO/PcnTqzLv1oUdDyvmkiJMp4bubn/1Slj8kb0zuyCCTP15tgusn24
+         folHj1IkcWrfFvv0yUNAXbQuQI+U+g4ZFn7KjDsZfvW9Wp3G9r6r3iZSeh73wd27HZNj
+         2u3636CKkb4crX+/1p7KaiithBnxoGXQoLlZ4FSXWn5XbU4c3cTQGBqr3RUcbnu4u2vi
+         Y1+zA8sEzlBvpCLF72itCDfF/H3cI5hKq+LbnivUSsmZq5j1mZLETLf9YUkCdSJjYLFo
+         ybLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722301112; x=1722905912;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RDSB5pPC4KBnYq35M/mZ4xVlhDzcx3CFEpFuR7OQWhw=;
+        b=da7gih406NNDbDgp/5GI8m3XDM8Jxez3AoQ3mSHIx5Gc+B2Ikw/sSxLQ/BfpRgYrSX
+         Yjmq08RKw6uGmtxWbetCfnyAwempZsIt5DNnZC4DDMlpJG8NkHaYsaobtRXn2z/GZ46G
+         92z7bTSRCoTKTVUWytWuiEbXyWEcTse1/h21c0pLQON+d3rrlcwbzirnMqJ1QiG93WKm
+         /Fe6N+7nMrtTX3dHwC8CRYk181a0hY0GeJinHo2ImrZMV6ASJ8TiaLShXDDT2Q/rvRxX
+         nEKi/pb0Dz1m+Fpk5bbk/n4JLdpQY9auKtiSipfuU1iwwo39UnOupJ0pRosylq358Ec8
+         oXPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWrMdhuptmeBhfgDZdbOBGR2CGzSyTbO3gMczCOLqENjBHMHo1LCbRl5zuOlKFSNCfhz7c7tIWBwdCIXcPXsHI8GtyhpDWX8InYrAiPsCE9qETPfkCRn3onh3BhRiguQLAYx7DAq1vs2znrLfPYRhl9HZvkQREHk+KKLFcWVxD31SN9cWbn
+X-Gm-Message-State: AOJu0YxxOkS+H5s8P1FHFd4x+qP/4zM1NSe22mNfZ0Kybgsq/oYaINn9
+	KUHE0djiDK7IvL/NtxxuIW13r7ZmaVZvBSdFISu588r4PZ2McDKc
+X-Google-Smtp-Source: AGHT+IGlRbqc8Vnkb/OVeSxyLoLVHmlnHJgJ1CjK24WFJc9iHRieP0JngOXu75PmQbjxav/NMb5GfQ==
+X-Received: by 2002:a05:6a00:9a2:b0:704:151d:dcce with SMTP id d2e1a72fcca58-70efe428b7dmr681641b3a.5.1722301112114;
+        Mon, 29 Jul 2024 17:58:32 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:f53a:d352:6282:526b])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead712f1asm7392956b3a.61.2024.07.29.17.58.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jul 2024 17:58:31 -0700 (PDT)
+Date: Mon, 29 Jul 2024 17:58:28 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: nick@shmanahar.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	linus.walleij@linaro.org, francesco.dolcini@toradex.com,
+	joao.goncalves@toradex.com, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: Re: [PATCH v6 3/3] Input: atmel_mxt_ts - add support for
+ poweroff-sleep
+Message-ID: <Zqg6tNbCn3W79Li_@google.com>
+References: <20240715153330.91979-1-eichest@gmail.com>
+ <20240715153330.91979-4-eichest@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH7PR20MB5211:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bcbf21d-7e5e-4d59-a58f-08dcb02f9bc7
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|19110799003|5072599009|461199028|1602099012|440099028|3412199025|4302099013|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	iJwdME2OOWoLopjSnXwIjnfmB8lc06J4wVKf/0CFcTa0nr9uWNh8awAN8pN4oJWofl6gnBc1u9qKkmqQBSadnSJme7z1SOtX3nyjupjf5HHG21o1zqeVCWCgBrBM9Tt3PsxF5D2NKiDIs8ZxEazHdKOZ2v2IlCUGDknpIHLUWRyVcy75LYQzRkcl3uy4TDDnn0iYoV7BRsXAtHvASrMQMv2sEMRJ7nx45Fv2jBDbunCH45RdlDWcjGrXs45K1ACiqVQC3xqjMfn3POzz8EmxO1OknDed14efDhV6Tb/LXXRxDY6oucUXOxgYNUUmkmlsDn+UayQkVnRP3AGOw4B/KiLEqF+W0JkLrCvD5FqbYa+2kbtnpyq1nJmKVGyayXXHvOS2d039RzD1eS46mk3yEmcIP15KzmNyP9OSJTo+xZE5VAUZcuyEEQqWVOAY295Mrr4+7E2YfgxeQAqwfR7ldMggk6TC6n9DiY0ENDHEaxvPdPkxRt6NhCRcoaHbjMj4lfiESw97Tz0E04m01uOBmjZ++YWD1kyBTy9Fn8oS0LAyi86Px8MlowRoy0vZhcTUcwwRAwMe5qI62n9zm2Dk6qcm0e33uiXNYFsFzFytWFzl/PkIYBE9rrZPvfmMalI+xnx2duU4soU4BiUxm1EtVpLE/Va4HKueinmQJaKdFbv4WnQNOH0T71zWEMHWFMqh05kBrqsmdVOoT60JrXJDxXoU33xuzu+bfasMP1cdx4N7NTzOMKLxcXxAYKUDnKyeAD1ZiTzj6suGFILBrX/8UN7gpiQsL99ktkSireVFzm4qXeyKsFgYlxOyzfDv69Ol
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8aoF8nTY6+OS5Q1y/VyYT/YjmsWbg6nCWn/qRsqdKawl5U/r4pEMl3gpV67E?=
- =?us-ascii?Q?yN6yzIesz7BhuVPNyOtCmrnHRo02dHZn/7SPm4F7UV03Pt5bIbfjGb3b7V9R?=
- =?us-ascii?Q?t7IkuBdN577aDTYfalzNUPNIiELDxnnRIfj2CZ+tGKtFsZwTnNWyruPXTF5W?=
- =?us-ascii?Q?zna26rlD50x27xs+GNuQEFEyecjIeTT+IxeQ16h96qDuxx+JOzjD7JCg8Sa3?=
- =?us-ascii?Q?CVLwF2CPmv00XW1PbH0I4YN3hTVZGv6+ryHjefbjP+XQe7xbG70XgoN5z/sm?=
- =?us-ascii?Q?42bjiCGgndBt86JgeuZBDT0+6YEiZouFPvlFFRc0clElqXnEYYdnC05oaMCM?=
- =?us-ascii?Q?Hc4Z1sb/U+wtuz+ZZxB04j/Dcjv+fcGIkD2/jHs/azenIwH8vOvkP1peT+u6?=
- =?us-ascii?Q?uPUcA+38WOA/JwLczaqwLZ+anEL4YiDxsOMxUtiz4ql0j2Tcp30MKM8S3Ay/?=
- =?us-ascii?Q?cDG2oQMcr8q2znT1/hNYH0hk04oYYajVAHccwEXTjtWtI8uQ74x4NVEAidza?=
- =?us-ascii?Q?EKtlxq0jsg6zv0aBoN+Nmq/TCbkLqf3R+cgw4AMNoVIux065gGUa2H8mgZ/+?=
- =?us-ascii?Q?hN/JzzezpGB6QwLY2RUVxUznlnk+1F6j8ctTPyRlrWcvR/+Nj8jm58oFVMfS?=
- =?us-ascii?Q?6LPpNPFbvwIu1eKD0a3QJLzqsMtsykMGJey29DtGPCgMnh0+3rY8FgWGtq1c?=
- =?us-ascii?Q?Go8LHWAx1SE+Y5+a2iW9pqSUkUT1MzucSZuhpRds4TAyXQW3/65spDm9AGA2?=
- =?us-ascii?Q?DFnRpKOOS5W9FuDHBhuMs5Fb5jDNxWduzKL+0pB9KFUkDNaQwFyY2rQsbb00?=
- =?us-ascii?Q?npgG3myMq6kkREBhPLtSox6vWD7/x3wsiMctleEpKyuf5yyDwDPNsjHzko6K?=
- =?us-ascii?Q?2A3waEbAW+1gl96kQE73VU3S3IhjzNB/KfVmET2huJepb2NnQZM5fydeoGwE?=
- =?us-ascii?Q?E80VYHb4FEQbCLWcNZOkEyiv0u1frUf5AlhHu3qz+piZv4jfXTLHsW7cw8Fg?=
- =?us-ascii?Q?jyM0e1gRrJRFJ6IR+mehMTtfgNwAa+NS+DD4f4Xwb4W/8G5j0GDtt+UXaoHk?=
- =?us-ascii?Q?bHgxbj0Zp4y6fuVW8sB/P/eMVKBF+XsGdvjC0Vav7v719uE6cY1i+85skdOB?=
- =?us-ascii?Q?bLNBjARdIeWL1lAf1sQDTN1Vzfi+JNqT3Zvl3/QI9ubpssrADOuRdtzGOr+C?=
- =?us-ascii?Q?f1RIDwi79YPH6Tt4709AgAfg3mJ+PnRWUy3J2M/hwrqr0pa/rvnJmtFTEZ5L?=
- =?us-ascii?Q?wrCgY4pJlbPNm0y6RpGl?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bcbf21d-7e5e-4d59-a58f-08dcb02f9bc7
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 00:36:10.6104
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR20MB5211
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240715153330.91979-4-eichest@gmail.com>
 
-On Mon, Jul 29, 2024 at 10:02:01AM GMT, Rob Herring wrote:
-> On Mon, Jul 29, 2024 at 08:28:09PM +0800, Inochi Amaoto wrote:
-> > On Mon, Jul 29, 2024 at 11:30:20AM GMT, Krzysztof Kozlowski wrote:
-> > > On 29/07/2024 09:00, Inochi Amaoto wrote:
-> > > >> yamllint warnings/errors:
-> > > >>
-> > > >> dtschema/dtc warnings/errors:
-> > > >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-> > > >> 	from schema $id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
-> > > >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-> > > >> 	from schema $id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
-> > > >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-> > > >> 	from schema $id: http://devicetree.org/schemas/dma/dma-router.yaml#
-> > > >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.example.dtb: dma-router@154: dma-masters: 4294967295 is not of type 'array'
-> > > >> 	from schema $id: http://devicetree.org/schemas/dma/dma-router.yaml#
-> > > >>
-> > > > 
-> > > > Hi Rob,
-> > > > 
-> > > > Could you share some suggestions? I can not reproduce this error with
-> > > > latest dtschema. I think this is more like a misreporting.
-> > > 
-> > > You would need dtschema from the master branch, so newer than 2024.05.
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > > 
-> > 
-> > Is it a must for the type array to have more than 1 element?
-> > I have tested the value "<&dmac 0>" and "<&dmac>, <&dmac>".
-> > Both pass the check (These value are just for test, not the
-> > real hardware).
-> > 
-> > Setting dma-masters to type "phandle" also has no change. 
-> > It do not accept the value "<&dmac>", Is there any suggestion
-> > for this? Thanks in advance.
-> 
-> The issue is 'dma-masters' is also defined as a uint32 in the Spear 
-> binding. Types aren't local to a binding, so when there's a 4 byte 
-> value, is that a phandle or plain uint32? I'm working on a fix in 
-> dtschema for this. It should be committed shortly.
-> 
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> 
-> Rob
+Hi Stefan,
 
-Thanks for the explanation.
+On Mon, Jul 15, 2024 at 05:31:23PM +0200, Stefan Eichenberger wrote:
+> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> 
+> Add support for poweroff-sleep to the Atmel maXTouch driver. This allows
+> us to power off the input device entirely and only power it on when it
+> is opened. This will also automatically power it off when we suspend the
+> system.
 
-Regards,
-Inochi.
+I have been looking at the patch closely and I have a few comments.
+
+> 
+> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> ---
+>  drivers/input/touchscreen/atmel_mxt_ts.c | 82 ++++++++++++++++++++----
+>  1 file changed, 70 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
+> index 9416de53bf9af..46ed3dbf0c5ed 100644
+> --- a/drivers/input/touchscreen/atmel_mxt_ts.c
+> +++ b/drivers/input/touchscreen/atmel_mxt_ts.c
+> @@ -265,6 +265,7 @@ enum v4l_dbg_inputs {
+>  enum mxt_suspend_mode {
+>  	MXT_SUSPEND_DEEP_SLEEP	= 0,
+>  	MXT_SUSPEND_T9_CTRL	= 1,
+> +	MXT_SUSPEND_POWEROFF	= 2,
+>  };
+>  
+>  /* Config update context */
+> @@ -1311,6 +1312,10 @@ static int mxt_power_on(struct mxt_data *data)
+>  {
+>  	int error;
+>  
+> +	/* Make sure the device is in reset before enabling power */
+> +	if (data->reset_gpio)
+> +		gpiod_set_value_cansleep(data->reset_gpio, 1);
+> +
+>  	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
+>  				      data->regulators);
+>  	if (error) {
+> @@ -2270,8 +2275,38 @@ static int mxt_configure_objects(struct mxt_data *data,
+>  
+>  static void mxt_config_cb(const struct firmware *cfg, void *ctx)
+>  {
+> +	struct mxt_data *data = ctx;
+> +
+>  	mxt_configure_objects(ctx, cfg);
+>  	release_firmware(cfg);
+> +
+> +	if ((data->suspend_mode == MXT_SUSPEND_POWEROFF) && !data->in_bootloader) {
+> +		disable_irq(data->irq);
+> +		mxt_power_off(data);
+> +	}
+
+I do not think you can do it like that here. When you register an input
+device it goes through the list of registered handlers and attaches
+matching ones. Some of them may be in-kernel (for example on Chrome OS
+ARM we have a handler that momentarily boosts CPU frequency on user
+activity) and may open the input device immediately. So when you get to
+this spot the device might be powered up and being used.
+
+You should probably check result of input_device_enabled() when deciding
+whether to power it off.
+
+Also I think this would be valid for other suspend modes. Why don't we
+power off unused device?
+
+> +}
+> +
+> +static void mxt_initialize_after_resume(struct mxt_data *data)
+> +{
+> +	int error;
+> +
+> +	error = mxt_power_on(data);
+> +	if (error) {
+> +		dev_err(&data->client->dev, "Failed to power on device\n");
+> +		return;
+> +	}
+> +
+> +	error = mxt_acquire_irq(data);
+> +	if (error) {
+> +		dev_err(&data->client->dev, "Failed to acquire IRQ\n");
+> +		return;
+> +	}
+> +
+> +	error = mxt_configure_objects(data, NULL);
+
+I do not think you need to call mxt_configure_objects() here. You are
+not going to apply the config (you do not have it) and you are not going
+to create the input device (it should already be created or we do not
+have right fw/config for it to be created). You also do not need to call
+mxt_init_t7_power_cfg() because it is supposed to be run already. We
+just need to call mxt_set_t7_power_cfg() to set the right T7 power
+config, which happens later in mxt_start() anyways.
+
+I think you just need to power on and re-enable interrupts here, and I
+would do it directly in mxt_start.
+
+
+> +	if (error) {
+> +		dev_err(&data->client->dev, "Failed to configure objects\n");
+> +		return;
+> +	}
+>  }
+>  
+>  static int mxt_initialize(struct mxt_data *data)
+> @@ -2828,15 +2863,18 @@ static int mxt_configure_objects(struct mxt_data *data,
+>  			dev_warn(dev, "Error %d updating config\n", error);
+>  	}
+>  
+> -	if (data->multitouch) {
+> -		error = mxt_initialize_input_device(data);
+> -		if (error)
+> -			return error;
+> -	} else {
+> -		dev_warn(dev, "No touch object detected\n");
+> -	}
+> +	/* Do not initialize and register input device twice */
+> +	if (!data->input_dev) {
+> +		if (data->multitouch) {
+> +			error = mxt_initialize_input_device(data);
+> +			if (error)
+> +				return error;
+> +		} else {
+> +			dev_warn(dev, "No touch object detected\n");
+> +		}
+>  
+> -	mxt_debug_init(data);
+> +		mxt_debug_init(data);
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -3070,6 +3108,12 @@ static ssize_t mxt_update_fw_store(struct device *dev,
+>  	struct mxt_data *data = dev_get_drvdata(dev);
+>  	int error;
+>  
+> +	if ((data->suspend_mode == MXT_SUSPEND_POWEROFF) && !data->in_bootloader) {
+> +		error = mxt_power_on(data);
+
+Can we not make it dependent on data->suspend_mode? Maybe keep track of
+the power state the device is in and just call mxt_power_on() if we
+believe that the device is off? Or even have this check (counter?) in
+mxt_power_on()/mxt_power_off()?
+
+> +		if (error)
+> +			return error;
+> +	}
+> +
+>  	error = mxt_load_fw(dev, MXT_FW_NAME);
+>  	if (error) {
+>  		dev_err(dev, "The firmware update failed(%d)\n", error);
+> @@ -3104,7 +3148,10 @@ static const struct attribute_group mxt_attr_group = {
+>  
+>  static void mxt_start(struct mxt_data *data)
+>  {
+> -	mxt_wakeup_toggle(data->client, true, false);
+> +	if (data->suspend_mode == MXT_SUSPEND_POWEROFF)
+> +		mxt_initialize_after_resume(data);
+> +	else
+> +		mxt_wakeup_toggle(data->client, true, false);
+>  
+>  	switch (data->suspend_mode) {
+>  	case MXT_SUSPEND_T9_CTRL:
+> @@ -3116,6 +3163,7 @@ static void mxt_start(struct mxt_data *data)
+>  				MXT_TOUCH_MULTI_T9, MXT_T9_CTRL, 0x83);
+>  		break;
+>  
+> +	case MXT_SUSPEND_POWEROFF:
+
+I would do like this:
+
+		error = mxt_power_on(...);
+		if (error) {
+			dev_err(...);
+			return;
+		}
+
+  		mxt_set_t7_power_cfg(data, MXT_POWER_CFG_RUN);
+
+		/*
+		 * I am not sure if explicit calibration is needed
+		 * after full power up.
+		 */
+		mxt_t6_command(data, MXT_COMMAND_CALIBRATE, 1, false);
+		mxt_acquire_irq(...);
+		break;
+
+>  	case MXT_SUSPEND_DEEP_SLEEP:
+>  	default:
+>  		mxt_set_t7_power_cfg(data, MXT_POWER_CFG_RUN);
+> @@ -3141,7 +3189,12 @@ static void mxt_stop(struct mxt_data *data)
+>  		break;
+>  	}
+>  
+> -	mxt_wakeup_toggle(data->client, false, false);
+> +	if (data->suspend_mode == MXT_SUSPEND_POWEROFF) {
+> +		disable_irq(data->irq);
+> +		mxt_power_off(data);
+
+Work it into switch() as well. If you need to move mxt_wakeup_toggle()
+into individual cases that is fine.
+
+> +	} else {
+> +		mxt_wakeup_toggle(data->client, false, false);
+> +	}
+>  }
+>  
+>  static int mxt_input_open(struct input_dev *dev)
+> @@ -3338,6 +3391,9 @@ static int mxt_probe(struct i2c_client *client)
+>  	if (error)
+>  		return error;
+>  
+> +	if (device_property_read_bool(&client->dev, "atmel,poweroff-sleep"))
+> +		data->suspend_mode = MXT_SUSPEND_POWEROFF;
+> +
+>  	/*
+>  	 * Controllers like mXT1386 have a dedicated WAKE line that could be
+>  	 * connected to a GPIO or to I2C SCL pin, or permanently asserted low.
+> @@ -3387,7 +3443,8 @@ static void mxt_remove(struct i2c_client *client)
+>  	sysfs_remove_group(&client->dev.kobj, &mxt_attr_group);
+>  	mxt_free_input_device(data);
+>  	mxt_free_object_table(data);
+> -	mxt_power_off(data);
+> +	if (!(data->suspend_mode == MXT_SUSPEND_POWEROFF))
+> +		mxt_power_off(data);
+
+Please make decision based on the state, not suspend mode.
+
+>  }
+>  
+>  static int mxt_suspend(struct device *dev)
+> @@ -3420,7 +3477,8 @@ static int mxt_resume(struct device *dev)
+>  	if (!input_dev)
+>  		return 0;
+>  
+> -	enable_irq(data->irq);
+> +	if (!(data->suspend_mode == MXT_SUSPEND_POWEROFF))
+> +		enable_irq(data->irq);
+
+It would be good to have consistent IRQ management regardless of the
+suspend mode.
+
+>  
+>  	mutex_lock(&input_dev->mutex);
+>  
+> -- 
+> 2.43.0
+> 
+
+Thanks.
+
+-- 
+Dmitry
 
