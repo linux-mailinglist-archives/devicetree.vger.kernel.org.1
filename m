@@ -1,127 +1,162 @@
-Return-Path: <devicetree+bounces-89555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9479420A1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:34:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF5F9420A9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23A4E284251
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:34:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 580E2B20BB2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9017A18A6C5;
-	Tue, 30 Jul 2024 19:34:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF57218C92A;
+	Tue, 30 Jul 2024 19:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OhghCyWA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Csvc6qmG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ED0770F6
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 19:33:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3A818A6C5
+	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 19:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722368041; cv=none; b=uDb2Mqbyw+vgavtDQFisi/3VVyI9BzevIiXJm3x0DaoN7FzCtZD5snWK5JZbM6CpX3rSpImWf8kcB6dEg+rFdkC+VYnONv1mXOyanwAPPhJn1MxQ6+lGJcxiP0TfDgD0xu119BNNh1lYdHaUIAVYuLunAoG3YnpP1OZeFDsB7ys=
+	t=1722368113; cv=none; b=YWypdGk3aQezsCUsOfTm3nent/ZydYJOcoejiC09No/aH36a6huMZjhj5ibpy3S5e56phVrKMpbs+SS1JlXD3mEzdFdw/kO719k9UqutPmGfFEDm1k+ralR7ZIygDdNJJDAXIPL6BvjUxx7Td5vUGruL6mwpTHjR6o8pcd7vKXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722368041; c=relaxed/simple;
-	bh=omf2X1L/LKEL4UHtKhSM2wQmgye4tQs+vDaZiXSvInQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FVDk0QuWBohYw/BP73ol8DbusGeey8c5BmqqrZBHGgRPckgLu8QkIMdp9CugXh2AUK7Cw5yV4S6dX4Nwk4F63bjIaaa25nJ9uf5CDwny95n+lKsHkXO38AQ1tvc8YWRDJePihH6ABZlv52MhE9MUL1Tn53lqvuaOqsjY+6MMU8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OhghCyWA; arc=none smtp.client-ip=209.85.214.175
+	s=arc-20240116; t=1722368113; c=relaxed/simple;
+	bh=SKmTOaBX04wjOvlQyIPGR7vKP77at+uhYghiUX95zAk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d/8Z6E/3UZqs/uopaylCtrrBTO6tcCzKKQAn9+NeulZLdSplilIwM+4ZC1+haKcYi3KzqeL+AHwKgGMX8jGUm1R8L2KG+BgdDywUa0mBODP+R+95XKZ4Bboj29zWveQbuTBf5mwr/2a2sgsXUoUHgmDoeFb7sIaE0F11LoucIJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Csvc6qmG; arc=none smtp.client-ip=209.85.160.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1fc66fc35f2so1700355ad.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 12:33:59 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-264545214efso2735677fac.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 12:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722368039; x=1722972839; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VeimEcrtXREu345QOU87DnizcugtBEtpmX3D5QJy8J4=;
-        b=OhghCyWATs/ozEG4uDYanTn1mnhf1y82xZ9/fNjaE/cawi3B3HoyR0jGck5QNxzirG
-         Obpo8Ft7x++GlfN8AYHpR2GwhqxFNVASfDkylzN8tzUZyZFetZNj0VWIEzS6kAhK+xba
-         x1QiajA6cGk481ggv+iaZEMWlRPTTbEG/+wLTs4a3z/L2kq12N9igc1KYp1jnq0Ub3tV
-         OZM9PpbLcvy2xqQsMtQAklo80FI1E3lPtOmXdQBJJH2YoVpOHQN6DWLRgWug0Fi9r0ic
-         mwK4/MbDf6DM6W58LrvLCfSybrRlJxQYew+JJ0qTbyK/v00s87qnXDCwG8T3Ee1T5Zz0
-         R/KQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722368111; x=1722972911; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oAcSp3gzGol40k+svpWQDlw0FhOiOc6Z+GibD7IgbDs=;
+        b=Csvc6qmG8dgGcmg7XS2jjJXlgKxkO5N6VBT1VTAHIyY9UVE3a/enZNkbhJv1l8d+o/
+         ABol9CKGRd/P6VAVQHlCO698vGHCY7SU0Awtg9U/B3i5fzm7Itf6knxAaOAtd311YBMt
+         BGGhvHglMDP0EFUvkkrW1Rc5XNsDAugja8EEFN/4u7CQl6SGxEpviA+agB1Dk7i3irrw
+         bmtz9/kL8pFjYK+Xyir1fsWI5v8dV5Wr+2Bc+E2KwPTkwff00HDzkpgeFf79uuTPA4nj
+         cfScMSGywbkvKMdgi9llsUuEGfl+kG6/Ud/VmqI8jd+xJy8Yu5fiOXkvhkiEkv0KHge3
+         Nsew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722368039; x=1722972839;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VeimEcrtXREu345QOU87DnizcugtBEtpmX3D5QJy8J4=;
-        b=RAte8xJ78GuK6QJXQxzJGl+sVid32olsPvj+zOOAqo5NW2Qu6HiLMN2aXciPy9lsiY
-         unTnU0rkpYHPAyW+kBpnZjCuJuax06BhdxlmgARPxYZFO6/fi2hf0rkelLtf93duHBUc
-         lDfjAV9xcLCvi+ygrNBb1cQblkKGVjJ5oAmeErDVvmnPUXAVmyBwiZFo3fP4+zj567le
-         6+a0E/PwaTcwvuyt0RMuNzWMMloQmFrsxKZd4zhqcudYof+ChFHI2r6PU5PcaGUYySVV
-         JPkAA3PdPtb/tZfLGd+Yw4NQ0EZSmgnqi9A7+0Ana9UnK7E9ZvaEzxKAHKAyGIHjbSMc
-         9dZw==
-X-Forwarded-Encrypted: i=1; AJvYcCXwIcYhLStobbDKfpFZEncCq7a9qUVo7H0wWHR//btHxgI3sJai650HARe8PGh1oaQoisVK5CWFHgGRqkM1l/ABGeCCaO8P09anQw==
-X-Gm-Message-State: AOJu0YzaND1AoGlNf2clx3uHAcw+xqZt9UswJYeClOvsXPUjmOH4GT2l
-	qsmySK8V7WXw7iZ7adTD+Nw7JioC3JMihd9yH/013KNw6gtx0uBHA/VfNXo+ul/LRBps/JYSZe9
-	5
-X-Google-Smtp-Source: AGHT+IFkDhc8yviwAlThuG4ZoWAs5VdPkSosPcXR0VUE/A4FR2+6AXlSgN0b2AGf1N+G4hTO/60CJA==
-X-Received: by 2002:a17:902:c40f:b0:1fb:5d71:20dd with SMTP id d9443c01a7336-1ff37b2efc8mr57345095ad.0.1722368038924;
-        Tue, 30 Jul 2024 12:33:58 -0700 (PDT)
-Received: from localhost (75-172-120-197.tukw.qwest.net. [75.172.120.197])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7a9f8461b5asm9312814a12.36.2024.07.30.12.33.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 12:33:58 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Tony Lindgren <tony@atomide.com>, John Ogness <john.ogness@linutronix.de>,
- Markus Schneider-Pargmann <msp@baylibre.com>, Uwe =?utf-8?Q?Kleine-K?=
- =?utf-8?Q?=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Ronald Wahl <ronald.wahl@raritan.com>,
- Thomas Richard <thomas.richard@bootlin.com>, Thomas Gleixner
- <tglx@linutronix.de>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Arnd Bergmann <arnd@arndb.de>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Vibhore Vardhan <vibhore@ti.com>, Dhruva Gole <d-gole@ti.com>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/5] serial: 8250: omap: Set wakeup capable, do not enable
-In-Reply-To: <20240523075819.1285554-4-msp@baylibre.com>
-References: <20240523075819.1285554-1-msp@baylibre.com>
- <20240523075819.1285554-4-msp@baylibre.com>
-Date: Tue, 30 Jul 2024 12:33:57 -0700
-Message-ID: <7hsevq65ei.fsf@baylibre.com>
+        d=1e100.net; s=20230601; t=1722368111; x=1722972911;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oAcSp3gzGol40k+svpWQDlw0FhOiOc6Z+GibD7IgbDs=;
+        b=u5GsGvDTibFqyWR1qzQhGXBPG2Q1l4bSLOjiawKge/XvhO0SZzg5NM6UveeETlC2V9
+         EoP1No1OHix5GrngkScyTi1KlJGA6Dk7LZhAJIIhph+TqM6K3u641PSYLvr2jzR0rBGR
+         ELfGJDMViwM5rR5B5nS+2PJc6Mlp6wBf6faJ39e9HhTrs8ccQLt0Qo1e8NIiYseY8i/v
+         sBExMUFC96eDfv9UKEknIz6tPUdJznKn/tLbtZACwILrVqjwd1Yzw2UsZUnrfIayURmi
+         dssKJRtyLl5huNO6omHcIhJ8QHV14t0TRXoZvXzi6idxs6ZrGblopdPCMMdskTdf1N4J
+         O7Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCVwJP5+SGDgVELWfll8XXEuzqCf+ky3Dg861ApG+4ZoQeuuMtkGjV4+H9rSZgonyOoNeMjBouoPq6J67B92F9vGtaBzAuGNrjQSmQ==
+X-Gm-Message-State: AOJu0YyhFG5Cnz6BPL+CckgUegl3bUaKfGR7tDxGG7fPcHKlFXHA1bOF
+	Zm3y+SPmC220QFSz9nVmrtut1XPec8+IKmKfhFqTbLPaNevbXbu6jtEiwHE90XRuuG5GfqEjxI8
+	L
+X-Google-Smtp-Source: AGHT+IFCb4s837HEsfLSfEZCdGT8mLs37+UsP2wobJU3n1Q8DMM7Wkk0LGDGtJ5LNwhc4EwtwGrFWA==
+X-Received: by 2002:a05:6870:46a1:b0:261:22a4:9235 with SMTP id 586e51a60fabf-267d4ef991cmr12257418fac.32.1722368111095;
+        Tue, 30 Jul 2024 12:35:11 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2657723a471sm2372513fac.54.2024.07.30.12.35.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jul 2024 12:35:10 -0700 (PDT)
+Message-ID: <0e60b324-143a-4976-869c-15d1a288f922@baylibre.com>
+Date: Tue, 30 Jul 2024 14:35:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v3 2/9] spi: add basic support for SPI offloading
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+ <20240722-dlech-mainline-spi-engine-offload-2-v3-2-7420e45df69b@baylibre.com>
+ <20240727141512.6dfecc03@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20240727141512.6dfecc03@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Markus Schneider-Pargmann <msp@baylibre.com> writes:
+On 7/27/24 8:15 AM, Jonathan Cameron wrote:
+> On Mon, 22 Jul 2024 16:57:09 -0500
+> David Lechner <dlechner@baylibre.com> wrote:
+> 
 
-> The driver sets wakeup enable by default. But not all uarts are meant to
-> be wakeup enabled. Change the default to be wakeup capable but not
-> enabled. The user can enable wakeup when needed.
->
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+>> +/**
+>> + * spi_offload_prepare - prepare offload hardware for a transfer
+>> + * @spi:	The spi device to use for the transfers.
+>> + * @id:		Function ID if SPI device uses more than one offload or NULL.
+>> + * @msg:	The SPI message to use for the offload operation.
+>> + *
+>> + * Requests an offload instance with the specified ID and programs it with the
+>> + * provided message.
+>> + *
+>> + * The message must not be pre-optimized (do not call spi_optimize_message() on
+>> + * the message).
+>> + *
+>> + * Calls must be balanced with spi_offload_unprepare().
+>> + *
+>> + * Return: 0 on success, else a negative error code.
+>> + */
+>> +int spi_offload_prepare(struct spi_device *spi, const char *id,
+>> +			struct spi_message *msg)
+>> +{
+>> +	struct spi_controller *ctlr = spi->controller;
+>> +	int ret;
+>> +
+>> +	if (!ctlr->offload_ops)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	msg->offload = true;
+> I'd set this later perhaps as...
 
-> ---
->  drivers/tty/serial/8250/8250_omap.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/tty/serial/8250/8250_omap.c b/drivers/tty/serial/8250/8250_omap.c
-> index ca456ea23317..5b7508dfb5d8 100644
-> --- a/drivers/tty/serial/8250/8250_omap.c
-> +++ b/drivers/tty/serial/8250/8250_omap.c
-> @@ -1496,7 +1496,7 @@ static int omap8250_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, priv);
->  
-> -	device_init_wakeup(&pdev->dev, true);
-> +	device_set_wakeup_capable(&pdev->dev, true);
->  	pm_runtime_enable(&pdev->dev);
->  	pm_runtime_use_autosuspend(&pdev->dev);
->  
-> -- 
-> 2.43.0
+If we move it, then we would have to create a new function
+to call instead of spi_optimize_message() so that the controller
+driver can know that this is an offload message and not a
+regular message since they will need to be handled differently
+during the optimization phase.
+
+>> +
+>> +	ret = spi_optimize_message(spi, msg);
+>> +	if (ret)
+> 
+> It otherwise needs clearing here so it doesn't have side
+> effects if an error occurs.
+> 
+>> +		return ret;
+>> +
+>> +	mutex_lock(&ctlr->io_mutex);
+>> +	ret = ctlr->offload_ops->prepare(spi, id, msg);
+>> +	mutex_unlock(&ctlr->io_mutex);
+>> +
+>> +	if (ret) {
+>> +		spi_unoptimize_message(msg);
+>> +		msg->offload = false;
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(spi_offload_prepare);
+> 
 
