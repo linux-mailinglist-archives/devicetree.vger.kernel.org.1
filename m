@@ -1,163 +1,238 @@
-Return-Path: <devicetree+bounces-89409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFB7941055
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:17:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C206A941063
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:22:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32E71C2233F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:17:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F6941F21871
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4710919CD06;
-	Tue, 30 Jul 2024 11:17:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3219019D88E;
+	Tue, 30 Jul 2024 11:22:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Nd+EfQ+w"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="H/HBDECl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A4219885F
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 11:17:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E761993B0;
+	Tue, 30 Jul 2024 11:22:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722338229; cv=none; b=KXR7b6bn9hp6rLe4V070aTnpidpw+0/MJrm23gWubfqK9m6FBZ9S9NmiBl0DQJuSq25DhRJBWPJmrXuwUjCIMyXBVOPMEDTsfKx2Ym0DMT0lD/9NBkj41ZPoqKsgbKQJXUNnjXg8w5AgZ4xIdVeicBGD7bcRkSTnBNdnNcuxkSc=
+	t=1722338569; cv=none; b=KLCbiJ56S24TIIzsLcr06lax1mk8QT1Za/J0OxDqsIpVa5XMAqSPEpx/l5wtN6isuNF745nO7L1OAmWYVJMrncTrPZ9OZjSlTsnV/1ETkjqc+yXfXsZoMtz9nphhopJYDsmPxmZ2C3S2PYXo2ilWAEI6RFOkhvaen0Sqn5Ulz3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722338229; c=relaxed/simple;
-	bh=0c0bFjkp6lOGtIuddq5kJa8o0xZsFNb6mXA9glrX6aU=;
-	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=ptqvrfy5Fu/opi0N+nqB3d5pspYhETfAwvYqCA5pPy+Yd4G2hJywuYRbpvpVu8NfXCqoanNch1YeIVe1O/Q1H7JZi5uy6PtHCHH+6i5dqoQAgl8UeZEcD6TmjjR9n5mQVu78aRfuGIg6qUuHdrveTOd79c+NY4MDwgwxH62/4IM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Nd+EfQ+w; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-70d316f0060so2726688b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 04:17:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722338227; x=1722943027; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zMjbsaf9Qg0PIMOUCDvNeB4fJscDIysusSNb+GlHnFs=;
-        b=Nd+EfQ+wIj9qw10KlWIT2v8R7MM1vJIS5xk08TZMHj2pkl0eLoEl0US5hFI9orFTta
-         ZKMaaevAYeNzsm500qLWn8xShKGVzHYwsBBYXLfVyc9dRMhL7HO7BzlAlWESqeivzsVl
-         3pRVfp1L1arNye74db56Fk4hFLzHr/yhjpf5s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722338227; x=1722943027;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMjbsaf9Qg0PIMOUCDvNeB4fJscDIysusSNb+GlHnFs=;
-        b=rel+tkgZ0OOCL1imni+Oud2IlEnD/qYmpfokAOwlkbxLmd/+SFu4J3Eg3KRg4AhUsu
-         kD5z6l0NM1ANlzMnXf0nQE0rYD3PCN6GyPlUVtgP4/PDgiWdqBppqHIBbEzevyxDJYa6
-         cuMn2XCqqEFW2/rMtVDdoGtiCet0UzkVbG+9UgUNyzaabEeNJm6sr+V740ZXMSMyk1wM
-         0X1GtHbFSJxAYyE06Ce30ysz8Yy9SkN6b4VAtLetfsU+M2dySa3GC2vbWQ06kGujGnZl
-         NloxmwmymHVQ7HNwVMx1XjbUJkOoaok/+sGy+iTTZWG++EeaUHfnbODntReL1asCefh0
-         vbwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWco7BfrdI+nnOgu+sc2VKLZXTeMp2aB1vuqLKr6BRDn0rXN1fT9NI9Uqx2sSw4Q5kFE2xfJuj7jTZAuZmsCrKlJpGkjIHyuSBGBA==
-X-Gm-Message-State: AOJu0Yzg+UPAkjtjq81ksbgPqKeAHNO6cQIbtOPKyH/2mZtp87Imp5sz
-	JKNeUqTVcGdzXHzL4BgH9ZInuELGz9Sexvjk/ULk5GCHITFf/IRg+GJOb1WGEQ==
-X-Google-Smtp-Source: AGHT+IH4GPuLW4JZ70pCnepe2Vow6yWK71i6a+LS+KmDte3yg0ALlYZIjJj1WsTlusgr/MqCrENMNw==
-X-Received: by 2002:a05:6a20:7346:b0:1be:c41d:b6b7 with SMTP id adf61e73a8af0-1c4e47fb70fmr3042955637.19.1722338226714;
-        Tue, 30 Jul 2024 04:17:06 -0700 (PDT)
-Received: from [192.168.178.38] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead81272esm8462046b3a.97.2024.07.30.04.16.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jul 2024 04:17:06 -0700 (PDT)
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Jacobe Zang <jacobe.zang@wesion.com>, <robh@kernel.org>, <krzk+dt@kernel.org>, <heiko@sntech.de>, <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>
-CC: <efectn@protonmail.com>, <dsimic@manjaro.org>, <jagan@edgeble.ai>, <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <arend@broadcom.com>, <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>, <megi@xff.cz>, <duoming@zju.edu.cn>, <bhelgaas@google.com>, <minipli@grsecurity.net>, <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>, <nick@khadas.com>
-Date: Tue, 30 Jul 2024 13:16:57 +0200
-Message-ID: <191035b8c28.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
-In-Reply-To: <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
-References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
- <20240730033053.4092132-3-jacobe.zang@wesion.com>
- <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
- <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
-User-Agent: AquaMail/1.51.5 (build: 105105504)
-Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add clock description for AP6275P
+	s=arc-20240116; t=1722338569; c=relaxed/simple;
+	bh=btvD72VMf28f4JF1iiQKodEMlXAnBnvUhO4SSPsC4/0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=LbXnY4UFjKle0q1HnuPEaODdhLSr5SxlXLUvyKJb8cWdxrsCh4kxjkAZOxTJLyvhuefA/GSo2eh1QNptrK0IpsHdDLFFbLmWJBnvljqnGUdFuWbVRaBN7UAVmOG4IX9x/dDjxJI/cd6t8wNOSphUhirNQ1tpAIO7fECPGnfPIjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=H/HBDECl; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6ADFF240011;
+	Tue, 30 Jul 2024 11:22:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1722338564;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PP/aZvi4J4ACsG3LNnAx3Id3SUazT49L+SvSO08XIr4=;
+	b=H/HBDEClYQq3xqPGa+ABJv4b/avijVZDQhtiSYi9VtJsCQhuTYC5HodiXiHmXH5A5ts/nf
+	q5H2BI5FOwYH7waBvP+wsbv7cdfgr9AMDQTVaBlqAwcUSGN9S+UP4YQI8vG8+ccR9J9f8n
+	46BuwDUr97QMIPOw+iTlGslDBEyiSrqjBbQYqZxhjRTC7CrcKJONyabeil1WUBma1JY1rf
+	EsIPkAiq86qe+OuOGM4L2Lj9KrfXoOfVWPgG3dl+zpcxBNBc9dkwfAtuWgf8WlXq4QdsVW
+	HHWqNgdjd75pmO4L2HE8X4U/fOVR78iMPn9OBIQkmrSql1RHBAXdwKzEc05kTw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="us-ascii"
+Date: Tue, 30 Jul 2024 14:22:42 +0300
+From: arinc.unal@arinc9.com
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Linux regressions mailing list <regressions@lists.linux.dev>, Paolo
+ Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, Jakub
+ Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Daniel Golle <daniel@makrotopia.org>,
+ frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+In-Reply-To: <b3fa66cc-516b-4d78-aee5-62a47b52a3b1@collabora.com>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+ <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+ <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
+ <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
+ <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
+ <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
+ <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
+ <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
+ <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
+ <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
+ <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
+ <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
+ <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
+ <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
+ <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
+ <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
+ <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
+ <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
+ <b3fa66cc-516b-4d78-aee5-62a47b52a3b1@collabora.com>
+Message-ID: <2076f699540c3c9d10effdb8b55d3f89@arinc9.com>
+X-Sender: arinc.unal@arinc9.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
-On July 30, 2024 12:18:20 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 30/07/2024 11:52, Arend Van Spriel wrote:
->> On July 30, 2024 11:01:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->>> On 30/07/2024 08:37, Arend Van Spriel wrote:
->>>> + Linus W
->>>>
->>>> On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
->>>>
->>>>> Not only AP6275P Wi-Fi device but also all Broadcom wireless devices allow
->>>>> external low power clock input. In DTS the clock as an optional choice in
->>>>> the absence of an internal clock.
->>>>>
->>>>> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
->>>>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
->>>>> ---
->>>>> .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
->>>>> 1 file changed, 8 insertions(+)
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>>> index 2c2093c77ec9a..a3607d55ef367 100644
->>>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>>> @@ -122,6 +122,14 @@ properties:
->>>>> NVRAM. This would normally be filled in by the bootloader from platform
->>>>> configuration data.
->>>>>
->>>>> +  clocks:
->>>>> +    items:
->>>>> +      - description: External Low Power Clock input (32.768KHz)
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: lpo
->>>>> +
->>>>
->>>> We still have an issue that this clock input is also present in the
->>>> bindings specification broadcom-bluetooth.yaml (not in bluetooth
->>>> subfolder). This clock is actually a chip resource. What happens if both
->>>> are defined and both wifi and bt drivers try to enable this clock? Can this
->>>> be expressed in yaml or can we only put a textual warning in the property
->>>> descriptions?
->>>
->>> Just like all clocks, what would happen? It will be enabled.
->>
->> Oh, wow! Cool stuff. But seriously is it not a problem to have two entities
->> controlling one and the same clock? Is this use-case taken into account by
->> the clock framework?
->
-> Yes, it is handled correctly. That's a basic use-case, handled by CCF
-> since some years (~12?). Anyway, whatever OS is doing (or not doing)
-> with the clocks is independent of the bindings here. The question is
-
-Agree. Probably the bindings would not be the place to document this if it 
-would be an issue.
-
-> about hardware - does this node, which represents PCI interface of the
-> chip, has/uses the clocks.
-
-The schematics I found for the wifi module and the khadas edge platform 
-show these are indeed wired to the chip.
-
-Regards,
-Arend
-
+On 2024-07-30 12:41, AngeloGioacchino Del Regno wrote:
+> Il 01/07/24 10:15, Arınç ÜNAL ha scritto:
+>> On 01/07/2024 11:04, Linux regression tracking (Thorsten Leemhuis) 
+>> wrote:
+>>> On 01.07.24 09:44, Arınç ÜNAL wrote:
+>>>> On 01/07/2024 09:16, Linux regression tracking (Thorsten Leemhuis) 
+>>>> wrote:
+>>>>> [CCing the other net maintainers]
+>>>>> 
+>>>>> On 25.06.24 10:51, AngeloGioacchino Del Regno wrote:
+>>>>>> Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) 
+>>>>>> ha
+>>>>>> scritto:
+>>>>>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
+>>>>>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten 
+>>>>>>>> Leemhuis)
+>>>>>>>> wrote:
+>>>>>>>> [...]
+>>>>>>> It looks more and more like we are stuck here (or was there 
+>>>>>>> progress
+>>>>>>> and
+>>>>>>> I just missed it?) while the 6.10 final is slowly getting closer.
+>>>>>>> Hence:
+>>>>>>> 
+>>>>>>> AngeloGioacchino, should we ask the net maintainers to revert
+>>>>>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of 
+>>>>>>> switch from
+>>>>>>> device tree") for now to resolve this regression? Reminder, there 
+>>>>>>> is
+>>>>>>> nothing wrong with that commit per se afaik, it just exposes a 
+>>>>>>> problem
+>>>>>>> that needs to be fixed first before it can be reapplied.
+>>>>>> 
+>>>>>> To be clear on this: I asked for the commit to be fixed such that 
+>>>>>> it
+>>>>>> guarantees
+>>>>>> backwards compatibility with older device trees.
+>>>>>> 
+>>>>>> If no fix comes,
+>>>>> 
+>>>>> I haven't see any since that mail, did you? If not, I think...
+>>>>> 
+>>>>>> then I guess that we should ask them to revert this commit
+>>>>>> until a fix is available.
+>>>>> 
+>>>>> ...it's time to ask them for the revert to resolve this for -rc7 
+>>>>> (and
+>>>>> avoid a last minute revert), or what do you think?
+>>>> 
+>>>> This is quite frustrating. I absolutely won't consent to a revert. 
+>>>> [...]
+>>> 
+>>> Reminder: try to not see a revert as a bad thing. It's just means 
+>>> "not
+>>> ready yet, revert and we'll try again later" -- that's actually
+>>> something Linus wrote just a few hours ago:
+>>> https://lore.kernel.org/lkml/CAHk-=wgQMOscLeeA3QXOs97xOz_CTxdqJjpC20tJ-7bUdHWtSA@mail.gmail.com/
+>> 
+>> Except it is ready and trying again is my responsibility, which means
+>> unnecessary work for me to do. I've already got a ton of things to do.
+>> Applying the device tree patch resolves this regression; no reverts 
+>> needed.
+>> And then there's the patch in the works by Daniel that will address 
+>> all the
+>> remaining cases outside of the reported regression.
+>> 
+> 
+> The commit that fixes your breakage in a way that does *not* please me
+> (because of older devicetrees being still broken with the new driver) 
+> was
+> picked and it is in v6.11-rc1.
+> 
+> I had to do this because I value the community (in this case, the 
+> users) much
+> more than trying to make an arrogant developer to act in a 
+> community-friendly
+> manner while leaving things completely broken.
+> 
+> That said, remembering that we're humans and, as such, it's normal to 
+> get something
+> wrong during the development process, I want to remind you that:
+> 
+>  1. A series that creates regressions is *not* good and *not* ready to 
+> be
+>     upstreamed; and
+>  2. As a maintainer, you have the responsibility of not breaking the 
+> kernel,
+>     not breaking devices and not breaking currently working 
+> functionality; and
+>  3. Devicetrees being wrong (but working) since day 0 is not an excuse 
+> to break
+>     functionality; and
+>  4. Blaming the one who introduced the devicetree (you're doing that, 
+> since you
+>     are blaming the devicetree being wrong) isn't solving anything and 
+> will not
+>     magically make your code acceptable or good; and
+>  5. If you push a wrong commit, there's nothing to be ashamed of; and
+>  6. If you make a mistake, you should recognize that and find a way to
+>     make things right, that should be done for the community, not for
+>     yourself; and
+>  7. You shall respect the community: in this case, with your arrogant 
+> behavior
+>     you did *not* respect the users.
+> 
+> P.S.: The right way of making such change is to:
+>       1. Avoid breaking currently working devices by making sure that 
+> their DT
+>          still works with the new driver; and
+>       2. If breakage is unavoidable, make it so one kernel version has 
+> a fix that
+>          works with both old and new driver, and the next version 
+> introduces the
+>          breakage. N.2 should ideally never happen, anyway.
+> 
+> Let's wrap up this matter now - I don't want to spend any more word, 
+> nor time,
+> on this, as I really have nothing else to say.
+> 
 > Best regards,
-> Krzysztof
+> Angelo
 
+To be clear, I only became aware that my patch was picked by reading 
+this
+email. It is clear that we have different views. To that extend, all of
+what you have written above can be answered to by reading what I have
+already written in this thread. Therefore, I don't see any wrongdoing 
+from
+my side and invite everyone to fully read this thread to draw their own
+conclusions; something you seem not to have done. And I'm not the one,
+calling people names here. I can only offer my respect for hard working
+people.
 
+In my view, your behaviour of not applying a devicetree patch before a
+Linux driver patch was applied, and then not replying to any arguments
+whatsoever, was keeping the devicetree files hostage until your demands
+were met. What I see is that, you failed as a maintainer to attend to my
+points against this practice. It's no surprise that, after not having 
+heard
+back from you with an argument against my points, my patch was 
+eventually
+taken in by someone else.
 
+Arınç
 
