@@ -1,99 +1,98 @@
-Return-Path: <devicetree+bounces-89573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426BC9421D0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 22:45:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8819421FB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:01:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE461B20FDF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 20:45:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76C6D28724D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:01:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE8315FCED;
-	Tue, 30 Jul 2024 20:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4D614B94C;
+	Tue, 30 Jul 2024 21:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyLWFCLN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjB/OoFm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A6D1AA3C3;
-	Tue, 30 Jul 2024 20:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63F238B;
+	Tue, 30 Jul 2024 21:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722372328; cv=none; b=fSUrjZIsfeEnuXVzKIbTnOUACaiRmc50X8XL2H72KaHj2Awn5PNxkfm/fGJtvPItII/oLKzNfMqqG10B8TpR7ZtNFP9QmwWk8x/y03Y49eJQzVTpqPZnBKlLtHrGeBpxHv84wDgyVjmASF6U5XPaBdbxBWp4meLqAtMuZMRyIJY=
+	t=1722373300; cv=none; b=Ai7vsa3LTyRnZzsFXxrtrsQdcmS5uxDUX2+VJi6xHG/s5b/JtmS3bnUMy4DgCvO18elSTF50BB85teUoqB2z/dmWubs+ELmFOf3Rj+mCirpY21lbB7FVuMXucp5fspCmsIs2OS6RadT5gHTWhlFQc76hY/lsVpmYSAZRNAXzToQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722372328; c=relaxed/simple;
-	bh=0YzjR5c0pbRE+19CcyJEhFSQ4FHcBF5tp1FQmqVJmwE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=No6ekhL/cJzvP5+M+z8k36DLDzcQYAicRNSUPYv55nHLwxD28cfyQc2rH2LN+I1vZb6MPdclR+l5axo0fNs6LyDETj+7iaKE7PQkALfMtufSlb2jLPOgRkh7HVswMW4BvR7epTUd7bSz7hntxdSKkf1wqie1BMuLm+rBKeThVp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyLWFCLN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA7E1C4AF0B;
-	Tue, 30 Jul 2024 20:45:27 +0000 (UTC)
+	s=arc-20240116; t=1722373300; c=relaxed/simple;
+	bh=GkvH/3sbCTojDz8X59B3D08RDAYiw6xu367HrjfDwHg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LAV+TytM7ivMxRtakf87Z/3Qx1hoLSE73jckSKL2X1slKD8vBvBuhMiHhDEDIJHGrk1UgRRa/XQec1dIBeVbW60aXl5qQGGyYP+HhFMtIGec621Jqso7x3dA1BVfzTtEMfWIqOvf7nd51Zxml6wB9NR3jUq3f02AJ0WWlaBKttU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjB/OoFm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158E0C32782;
+	Tue, 30 Jul 2024 21:01:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722372327;
-	bh=0YzjR5c0pbRE+19CcyJEhFSQ4FHcBF5tp1FQmqVJmwE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=fyLWFCLNqWakfsIiTBp1yll88fVMwPF1THhVBeRLKLjIrtMpfOaVoxfQED1CnDAWH
-	 0HJ1g+iXRLh65REHUYX3Ho6299vGK+PZ3td1MFSDHQskAiADQJg7CNqTcLBACeAJCN
-	 7RFguG8yIYIK15oAYGBMZM4uPL6UMnMHRXUBjc6Y//5Qvulw/HRiY/t3QfP1qfJQhv
-	 oYLpsZBNT/dvWeAq4Fp6lVE/zOq4W+wFKWyXrR5nv1XXnBFDyqFxm3WiahQN9hWkDB
-	 QBhqMt566uAQU6Hd41IeVqTZEGJTcl7N5hTDGhHNoO1kZ7P2D+EdfM6Km2DzwKe3Q/
-	 l6a5Nc2og+KpQ==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ef2fbf1d14so2317761fa.1;
-        Tue, 30 Jul 2024 13:45:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW+ZXqUc8xhWuVOKJKbdH9LfLrQfHx84zUrcTt8MAX22i+2DgHEHf6WT2qAyxjRviHUSmkiznT58cyMvDM0cUJPUbOX9t3T35C1CXo+LGfAoc0MTzECyRBm5l+r11PGHZSXTwsJhSIZiQ==
-X-Gm-Message-State: AOJu0YxTHyyYHqyP0S2s3lfj1sYW26zwGDISKDNPj35ZmaLIqpx/IO1v
-	N/VTDLBFsypm8A7nANZZJhWFZ0O5Qr1HhEDeDKWxVZPNhE+LY6m1U9KWDVq7huamEJa8PaDy/8K
-	tfotxiqVRRHZo9116q4N0pQBFew==
-X-Google-Smtp-Source: AGHT+IHc9H3vnbGCFpvTKGKhBwJPYc5iDfDwYOy/+05XyRg3TD38Wnql8ZYvRTzKUnyZjPdr+ZL/h3FO/93Ays/4USI=
-X-Received: by 2002:a2e:818f:0:b0:2ee:7c35:d892 with SMTP id
- 38308e7fff4ca-2f14790644cmr9297341fa.17.1722372326136; Tue, 30 Jul 2024
- 13:45:26 -0700 (PDT)
+	s=k20201202; t=1722373300;
+	bh=GkvH/3sbCTojDz8X59B3D08RDAYiw6xu367HrjfDwHg=;
+	h=From:List-Id:To:Cc:Subject:Date:From;
+	b=MjB/OoFm/D8Qb00wxaBsHlOJKIAMSAnsq1fI9CUg838XuMnw8+/6alnQxMPH7mE+4
+	 STyJ84AfEfTVNBXJOCAjN3c0/JyGQDO0unx4eHkFrESjQXbTuro/lL/+oOt5Qdelsh
+	 q0HTAZh0X+3urlZKlARfIf3hzP0MU/6DfajRZCLtfRAHYWHa7x+4LQDKnRyZGQ/+vQ
+	 Ho8CQoXgTxsyqRpEk5OETQ0E+Rn34/z3ZDVurHXM2GUNVnn0ZHpr+gjK7G4pb9R4p7
+	 5as2aJg+BBz9UsSnMSYaPNYSEb77ZNw63pkI4QXqYQZFF6afqBkLxqIhM2gTwh0GLs
+	 B/ehQyATM9u1g==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: soc@kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Arnd Bergmann <arnd@arndb.de>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm: dts: arm: versatile-ab: Fix duplicate clock node name
+Date: Tue, 30 Jul 2024 15:00:30 -0600
+Message-ID: <20240730210030.2150467-2-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240528191536.1444649-1-robh@kernel.org> <20240528191536.1444649-2-robh@kernel.org>
- <b53e17ec-fec4-4cf6-9c61-41552188c670@roeck-us.net>
-In-Reply-To: <b53e17ec-fec4-4cf6-9c61-41552188c670@roeck-us.net>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 30 Jul 2024 14:45:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKLjy=X9_7=UiEwN-uO3+yuofv_xQcmr-1d00w5LuaWWQ@mail.gmail.com>
-Message-ID: <CAL_JsqKLjy=X9_7=UiEwN-uO3+yuofv_xQcmr-1d00w5LuaWWQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm/arm64: dts: arm: Use generic clock and regulator nodenames
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 29, 2024 at 2:31=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
-wrote:
->
-> On Tue, May 28, 2024 at 02:15:32PM -0500, Rob Herring (Arm) wrote:
-> > With the recent defining of preferred naming for fixed clock and
-> > regulator nodes, convert the Arm Ltd. boards to use the preferred
-> > names. In the cases which had a unit-address, warnings about missing
-> > "reg" property are fixed.
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->
-> With this patch in the tree, all versatileab/pb qemu emulations
-> fail silently (no console output). Reverting this patch fixes
-> the problem. Bisect log is attached for reference.
+Commit 04f08ef291d4 ("arm/arm64: dts: arm: Use generic clock and
+regulator nodenames") renamed nodes and created 2 "clock-24000000" nodes
+(at different paths). The kernel can't handle these duplicate names
+even though they are at different paths. Fix this by renaming one of
+the nodes to "clock-pclk". This name is aligned with other Arm boards
+(those didn't have a known frequency to use in the node name).
 
-The problem is fixed-factor-clock driver can't handle 2 clocks with
-the same node name (at different paths), and then the serial driver
-(and others) defer. Really, that should be fixed, but I'm going to do
-the simple fix and rename one to 'clock-pclk' in line with other Arm
-boards.
+Fixes: 04f08ef291d4 ("arm/arm64: dts: arm: Use generic clock and regulator nodenames")
+Reported-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Arnd, I imagine you can take this directly.
 
-Rob
+ arch/arm/boot/dts/arm/versatile-ab.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/arm/versatile-ab.dts b/arch/arm/boot/dts/arm/versatile-ab.dts
+index 6fe6b49f5d8e..635ab9268899 100644
+--- a/arch/arm/boot/dts/arm/versatile-ab.dts
++++ b/arch/arm/boot/dts/arm/versatile-ab.dts
+@@ -157,7 +157,7 @@ timclk: clock-1000000 {
+ 			clocks = <&xtal24mhz>;
+ 		};
+ 
+-		pclk: clock-24000000 {
++		pclk: clock-pclk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			clock-div = <1>;
+-- 
+2.43.0
+
 
