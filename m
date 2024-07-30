@@ -1,105 +1,122 @@
-Return-Path: <devicetree+bounces-89478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9396F9414EB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:57:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D73C79414FA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:00:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FC02282897
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:57:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AB1A2877E0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2521A0B00;
-	Tue, 30 Jul 2024 14:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E42198E81;
+	Tue, 30 Jul 2024 15:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TLAlR3Nr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120B1CA6B;
-	Tue, 30 Jul 2024 14:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DAB2A1C7;
+	Tue, 30 Jul 2024 15:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722351420; cv=none; b=oktr+CQ7oCz8P/Mq1y+z1Ri7KoHy1O5ArIMH6//vNpGyLdVT91jmZ/0zfN4AKEFEpgwwNEK7kdLNlWhqkve3tT0taYDKm2j6S+PIc4Cpm/QT1D2YTkqNWQRsm7YbZJ4pfPTYR0SCIOrrnyDANW5a4K45MRU4rYaO09WpH1KmuFo=
+	t=1722351614; cv=none; b=R7MEAuA7PgDgHx8FB7DfquLqIDG0PJZFyONc4Ur4gIPabNfYMe+7QJW1wNxjN4hb5bbyQn2TXv/dknxjOyYQAs5Hs0TzJRdGIrAGxajEBwR5+plCZCRynOwfduJUAukMQw2s0GRfv1+7SnXnt2CPWM4P8GgnsWGWfNYzUIInyjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722351420; c=relaxed/simple;
-	bh=VsBH3rXK2CS3G7G2pQ+b11aJQVl/XnQ5tZ2MibiEpB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t8v1Wt9rVN8eoyWQPgSPbH16KmYsFajFBr2aB9wlTmCzbttG6ML/KEPY8BJ12dInS3f3Cnl4gYuvgmMHJaubft8VPLZ3gV6YeUjC1SLOCLXBDEvoVkhTL1gIkXSrLAO6m7RhPdmOgW3P/rcMg9u9smaXXVn93R9yv99hgXijUmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E315F1007;
-	Tue, 30 Jul 2024 07:57:23 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 89E9A3F5A1;
-	Tue, 30 Jul 2024 07:56:56 -0700 (PDT)
-Date: Tue, 30 Jul 2024 15:56:32 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	"sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V3 2/2] firmware: arm_scmi: set mailbox timeout value
- from device tree
-Message-ID: <Zqj_ILnsWRHmSWaQ@pluto>
-References: <20240709140957.3171255-1-peng.fan@oss.nxp.com>
- <20240709140957.3171255-2-peng.fan@oss.nxp.com>
- <PAXPR04MB84594F4271F68D9072BA0C0D88AC2@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <ZqjPGvTgtosWQTzM@pluto>
- <DB9PR04MB84613EEEC8EA13469757FF8B88B02@DB9PR04MB8461.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1722351614; c=relaxed/simple;
+	bh=/enkpj9O+dBztsb4mwD2ol6JSUHYTrMr7pu0zOXi1us=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hpru13GZQQysGjk9TkBZBhV0EWlII2uiiDjOGNiEp5u+5ixsSUFFkubUWcuaBaZIfYnnO5ji+ulOLBsq24PC+yeGC0WaqhzpfehEUORUgOIbyx7yCdizA50mYqbuWmjxkzpzemywuk5DAThoBxoKEDn/6RcS98ZSC5qPC4pMi1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TLAlR3Nr; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46UExu6u072132;
+	Tue, 30 Jul 2024 09:59:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722351596;
+	bh=F0r+M6XIh5C0j0WCIA+BEDAjLC+mgSZtp+xtv/V0OT4=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=TLAlR3NrHJ5/HmvkiUkfxW71YCp6DwV/n25Uvtz0yj+zmkA13lQg/dJPK+b61abpx
+	 8f/kJWJBHidReUXdn2eeWx1PeV4xNOygNFjMSjLIphYEJ+Xd3ArDUEOmb2zm+L4UyH
+	 /5JtuCi4/7jy4kX1ymRMcJbWwlhDKCm9JM8EnmWc=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46UExu2r016856
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Jul 2024 09:59:56 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ Jul 2024 09:59:56 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 Jul 2024 09:59:56 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46UExuCo082521;
+	Tue, 30 Jul 2024 09:59:56 -0500
+Date: Tue, 30 Jul 2024 09:59:56 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Jared McArthur <j-mcarthur@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62p: Add gpio-ranges for
+ mcu_gpio0
+Message-ID: <20240730145956.n7brt337sc5vjpg5@violet>
+References: <20240730143324.114146-1-j-mcarthur@ti.com>
+ <20240730143324.114146-2-j-mcarthur@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <DB9PR04MB84613EEEC8EA13469757FF8B88B02@DB9PR04MB8461.eurprd04.prod.outlook.com>
+In-Reply-To: <20240730143324.114146-2-j-mcarthur@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Jul 30, 2024 at 02:24:17PM +0000, Peng Fan wrote:
-> Hi Cristian,
+On 09:33-20240730, Jared McArthur wrote:
+> Commit d72d73a44c3c ("arm64: dts: ti: k3-am62p: Add gpio-ranges
+> properties") introduced pinmux range definition for gpio-ranges,
+> however missed introducing the range description for the mcu_gpio0
+> node. As a result, automatic mapping of GPIO to pin control for mcu
+> gpios is broken. Fix this by introducing the proper ranges.
 > 
-> > Subject: Re: [PATCH V3 2/2] firmware: arm_scmi: set mailbox timeout
-> > value from device tree
-> > 
-> > On Thu, Jul 18, 2024 at 02:24:15AM +0000, Peng Fan wrote:
-> > > Hi Cristian,
-> > >
-> > 
-> > Hi Peng,
-> > 
-> > > > Subject: [PATCH V3 2/2] firmware: arm_scmi: set mailbox timeout
-> > > > value from device tree
-> > >
-> > > The binding has got R-b from Rob, will you pick this patch in your
-> > > next Patchset?
-> > >
-> > 
-> > I am going to post a new transport_drivers_V3 and, as a separate series
-> > on top of that, your latest "max-rx-timeuout" DT patch as reviewed by
-> > Rob, plus the related new logic based on transport_drivers_V3 and a
-> > few more similar changes as requested by Nikunj.
+> Fixes: d72d73a44c3c ("arm64: dts: ti: k3-am62p: Add gpio-ranges properties")
+> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Ok, so your V3 not include this patchset. Do you have time to give
-> a look on the 2nd patch? We are still waiting this got R-b to land
-> this in Google GKI kernel.
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> index e65db6ce02bf..c0bdbd00dc23 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> @@ -146,6 +146,9 @@ mcu_gpio0: gpio@4201000 {
+>  		power-domains = <&k3_pds 79 TI_SCI_PD_EXCLUSIVE>;
+>  		clocks = <&k3_clks 79 0>;
+>  		clock-names = "gpio";
+> +		gpio-ranges = <&mcu_pmx0 0 0 21>, <&mcu_pmx0 21 23 1>,
+> +			      <&mcu_pmx0 22 32 2>;
+> +		ti,ngpio = <24>;
+
+we already have ti,ngpio - please drop
+
+>  	};
+>  
+>  	mcu_rti0: watchdog@4880000 {
+> -- 
+> 2.34.1
 > 
 
-As said above, your max-rx-timeout-ms DT patch (with Rob R-b) and more is 
-included in this small series (just posted):
-
-https://lore.kernel.org/linux-arm-kernel/20240730144707.1647025-1-cristian.marussi@arm.com/T/#t
-
-based on top of transport_drivers_V3.
-
-Thanks,
-Cristian
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
