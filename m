@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB95940ED1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:18:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE24940EDD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4548D2832AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 10:18:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE9F41C22626
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 10:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12108197A86;
-	Tue, 30 Jul 2024 10:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12BA19885F;
+	Tue, 30 Jul 2024 10:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxTTp3OH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTXB4Re0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA12191F91;
-	Tue, 30 Jul 2024 10:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4021198852;
+	Tue, 30 Jul 2024 10:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722334698; cv=none; b=sZyA0Nu1mrdANRRi8d+TeSa7OElDHhUSQCaDlGYnO7mKduTG1VuuqnlSqkFzCXqzpMIf6peT5bRNI6EtsagERqqsk4knjegsoGYfwwvUuCYMXN8wNdyevbdDMcYmc13fYBGdAhYQBVBHt6oZSB13d8uIxD/p1NWJh34yLx8gAaU=
+	t=1722334845; cv=none; b=Aoafd0ccyeXh++SOgrmxRDSIEJEfOi2LjOqfadw2ILhl6+fEn+Rz3qtz+0Wx0pYOyA+7sO+XJ/RElCaR37AU3bby9dMG1RYsJ+3H4I3BpdIsU0Wi0OBpJsH0KJ7boWhZ9wQ2R08IYPnQpa9RKxyn0F3lkU5RuxLER0wNhqVdOBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722334698; c=relaxed/simple;
-	bh=dgapsSUvyz1RmzNFWZwgzxuzg9iCKSYYw6aIwpJPBIc=;
+	s=arc-20240116; t=1722334845; c=relaxed/simple;
+	bh=xwbo8CgZid8XywgKj08NTyU5S6B6z34ldR9Hj5HGt/I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r/FGK5lxZJ0j7+8JLq7ODX42bdHEDgoFiTbUZOSftxEQEgfdF0ddhqp3TUVBoA/HfEVPer0Z5+7fgVy34jflnMivoo7dicVglbFag4pwm84H15gErEuqK15FYTtfRVOTDKPafJzPm0UELLgPytEBuQ6haZaRo5O4nnOWqAf5cFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxTTp3OH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F261DC32782;
-	Tue, 30 Jul 2024 10:18:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hELsf9cO/t2cp2i6i0D3NznFM/B//M3bAL5PVXgccpdnhc3ha+eyM8aEn56GvVo37ov3FBNs7irxflrhZYvncEdeyeEyJ1AHkk+MMeXWFi2gnoSk2e9zh6w12kiIJDfBUsmJrINNzQAy7Zcz2KEDhPErd/UUD344KHwjrMe3AjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTXB4Re0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1044FC32782;
+	Tue, 30 Jul 2024 10:20:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722334697;
-	bh=dgapsSUvyz1RmzNFWZwgzxuzg9iCKSYYw6aIwpJPBIc=;
+	s=k20201202; t=1722334845;
+	bh=xwbo8CgZid8XywgKj08NTyU5S6B6z34ldR9Hj5HGt/I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WxTTp3OH33Sr9TEajoa5stvPiK+uen6ojhdAX5akri7tWRT0M0q+CXR7JkjDHSuu+
-	 WFEam31JmKPdUfNiBFxxFOF23T6HUsWJ3E9ynGFJu9rLuVVw7keSIcNVM/tzPp0J08
-	 CZKpxehbTxoILcSfU+x9O/rKxKBL+sxIuXdt12HJkkVZq20icIGheVT92ycXRQQlq+
-	 fRXpN0Dwv+GTzy/KydsLUjaBmwapwltX5iolmn6DwWFv4jeEKtUPFARf7DbEJNmn6D
-	 JMBdl2v/B0fcREciw3ZsB+3jWZzlZ/89JmtB2VGQFYL7GtY20R5z0EEpL2guudS60I
-	 vk+a09HNbtdGg==
-Message-ID: <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
-Date: Tue, 30 Jul 2024 12:18:06 +0200
+	b=YTXB4Re00tyDf8hKnBc0H85WQXLdG2tMhabYYUDB9yehlZW/hcj4zsw28OjHRTZju
+	 fxYeGXbDz50Xsn5Bu+4V8C+163X9K+mEWmJtkD9b5dyO8/Zupfl/7NGuNJm4xDehx9
+	 vz5U270gjGeTQqkLEMh6lJ0vrKK1AJwwtdZrTDIHFNM0Q9iIEqDBdedU84QIutToOm
+	 c1D7KUewbne5mDCkmx2B1DScBXyK1ylCX7HEh5rU9jWritQ8gETNNFd7xi+WA31lzn
+	 byZk1ojZWtz70fUMLgcg46L28PwrCWmEfsykOXMpUXLQIcVjoeSJ7wB+ffoWwTxgdG
+	 9WKOpMO/xtE6A==
+Message-ID: <edf48813-3e2e-4fe2-b2e5-80f68ef0172f@kernel.org>
+Date: Tue, 30 Jul 2024 12:20:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
- clock description for AP6275P
-To: Arend Van Spriel <arend.vanspriel@broadcom.com>,
- Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org, krzk+dt@kernel.org,
- heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
-References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
- <20240730033053.4092132-3-jacobe.zang@wesion.com>
- <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
- <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+Subject: Re: [PATCH v2 07/16] drm/imx: Add i.MX8qxp Display Controller pixel
+ engine
+To: Liu Ying <victor.liu@nxp.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, kishon@kernel.org,
+ aisheng.dong@nxp.com, agx@sigxcpu.org, francesco@dolcini.it, frank.li@nxp.com
+References: <20240712093243.2108456-1-victor.liu@nxp.com>
+ <20240712093243.2108456-8-victor.liu@nxp.com>
+ <ibdzow7lvbimaefrp2z2aolgp4pytpq3dcr2y3pegjavvknhgm@2e6j3f4zytqp>
+ <107d89b9-e7b8-4613-bc07-9af7b52c2b8a@nxp.com>
+ <0e7a8d52-6556-4531-882f-73513f99259b@kernel.org>
+ <81afd7ef-c4a6-49e8-b232-8007a25aaf51@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,65 +114,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+In-Reply-To: <81afd7ef-c4a6-49e8-b232-8007a25aaf51@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2024 11:52, Arend Van Spriel wrote:
-> On July 30, 2024 11:01:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On 30/07/2024 08:37, Arend Van Spriel wrote:
->>> + Linus W
->>>
->>> On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
->>>
->>>> Not only AP6275P Wi-Fi device but also all Broadcom wireless devices allow
->>>> external low power clock input. In DTS the clock as an optional choice in
->>>> the absence of an internal clock.
+On 30/07/2024 11:42, Liu Ying wrote:
+> On 07/30/2024, Krzysztof Kozlowski wrote:
+>> On 30/07/2024 08:55, Liu Ying wrote:
+>>> On 07/28/2024, Dmitry Baryshkov wrote:
+>>>> On Fri, Jul 12, 2024 at 05:32:34PM GMT, Liu Ying wrote:
+>>>>> i.MX8qxp Display Controller pixel engine consists of all processing
+>>>>> units that operate in the AXI bus clock domain.  Add drivers for
+>>>>> ConstFrame, ExtDst, FetchLayer, FetchWarp and LayerBlend units, as
+>>>>> well as a pixel engine driver, so that two displays with primary
+>>>>> planes can be supported.  The pixel engine driver as a master binds
+>>>>> those unit drivers as components.  While at it, the pixel engine
+>>>>> driver is a component to be bound with the upcoming DRM driver.
 >>>>
->>>> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
->>>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
->>>> ---
->>>> .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
->>>> 1 file changed, 8 insertions(+)
->>>>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> index 2c2093c77ec9a..a3607d55ef367 100644
->>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> @@ -122,6 +122,14 @@ properties:
->>>> NVRAM. This would normally be filled in by the bootloader from platform
->>>> configuration data.
->>>>
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: External Low Power Clock input (32.768KHz)
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: lpo
->>>> +
+>>>> Same question / comment: create subnodes directly, without going
+>>>> through the subdevices. A lot of small functions that would benefit
+>>>> being inlined.
 >>>
->>> We still have an issue that this clock input is also present in the
->>> bindings specification broadcom-bluetooth.yaml (not in bluetooth
->>> subfolder). This clock is actually a chip resource. What happens if both
->>> are defined and both wifi and bt drivers try to enable this clock? Can this
->>> be expressed in yaml or can we only put a textual warning in the property
->>> descriptions?
+>>> Like I replied in patch 06/16, I can't create sub devices directly.
+>>>
+>>> Can you please point out typical ones for those small functions if
+>>> the comment still stands?
+>>>
+>>>>
+>>>>> +static int dc_cf_bind(struct device *dev, struct device *master, void *data)
+>>>>> +{
+>>>>> +	struct platform_device *pdev = to_platform_device(dev);
+>>>>> +	struct dc_drm_device *dc_drm = data;
+>>>>> +	struct dc_pe *pe = dc_drm->pe;
+>>>>> +	struct dc_cf_priv *priv;
+>>>>> +	int id;
+>>>>> +
+>>>>> +	priv = drmm_kzalloc(&dc_drm->base, sizeof(*priv), GFP_KERNEL);
+>>>>> +	if (!priv)
+>>>>> +		return -ENOMEM;
+>>>>> +
+>>>>> +	priv->reg_cfg = devm_platform_ioremap_resource_byname(pdev, "cfg");
+>>>>> +	if (IS_ERR(priv->reg_cfg))
+>>>>> +		return PTR_ERR(priv->reg_cfg);
+>>>>> +
+>>>>> +	id = of_alias_get_id(dev->of_node, "dc0-constframe");
+>>>>
+>>>> Is it documented? Acked?
+>>>
+>>> Like I replied in patch 06/16, I can add aliases nodes to examples,
+>>> if needed.
+>>>
+>>> No Nak from DT maintainers I'd say, but I hope there will be direct
+>>> Ack(s).
+>>>
 >>
->> Just like all clocks, what would happen? It will be enabled.
+>> It was not Acked, because there was no documentation added for it.
 > 
-> Oh, wow! Cool stuff. But seriously is it not a problem to have two entities 
-> controlling one and the same clock? Is this use-case taken into account by 
-> the clock framework?
+> I may add aliases nodes in examples in next version, if no objections.
 
-Yes, it is handled correctly. That's a basic use-case, handled by CCF
-since some years (~12?). Anyway, whatever OS is doing (or not doing)
-with the clocks is independent of the bindings here. The question is
-about hardware - does this node, which represents PCI interface of the
-chip, has/uses the clocks?
+Example is just example. It is not a documentation. You must explain it
+in the binding, e.g. description.
+
+> 
+>> Anyway, naming is quite cryptic, e.g. "0" in "dc0" is quite confusing.
+>> Do you expect different aliases for dc1 or dc9? But anyway, aliases for
+> 
+> Yes, I do.  If the alias approach is used, DC instance ids need to be
+> specified in aliases.
+
+Really? Uh, that does not look good. I tend to like this binding less
+and less.
+
 
 Best regards,
 Krzysztof
