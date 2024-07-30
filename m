@@ -1,98 +1,189 @@
-Return-Path: <devicetree+bounces-89454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8386C941303
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:21:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10BC794130E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:23:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B541B1C23118
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:21:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8257D1F21097
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6947D19F48B;
-	Tue, 30 Jul 2024 13:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F5819EECA;
+	Tue, 30 Jul 2024 13:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oyIKrgLR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G2gs/UqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD8F19EED5;
-	Tue, 30 Jul 2024 13:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64DCE18FC6E;
+	Tue, 30 Jul 2024 13:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722345654; cv=none; b=KBDS+ZUH6+uphPqOgrlsINSX1Zb2Ev68HjZnSp8LCzM8de1fKWELIFcDZ+XMjuU+QLF+avNOTUkcN6R2lRDyl2zbXvlVlcb1of9yFPkv/4qg4/E0QG6xQ1F5HJtBenV7VVU7W4Di57q3vdLf4qoa/db31ObMCskZnicXqDdmzvA=
+	t=1722345831; cv=none; b=OEDmB+jPTZjW/V+wcY/QeGJXflkwna3vmir71nt0OdAg3GkJv/OAfWLdBxwtHy98rFy8Z2q91rPi8PUjz0hdzxncXPydvCKDi3jtnBChv7aIMC9s3zMU5vEdOhT938Qn4UYH+t6dzC5gJZm7CKu+ENOoO11b5ha9tnwEiM6VXuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722345654; c=relaxed/simple;
-	bh=eXaI/4FwsIpMMOSXo9miQuvnjamSIypwnH2R9aE0zu0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A9RFwveTDtruOv4+/07HDzk5Dza1r6lLc7Rwm7/vgmOODTba6876XkrXJLvwvEZStsvMP0Jp5UNYLFCIEm590UCt3k3jPUbpZWsY4z/TPLdSmytdAfCcyhrwW4PIOqxqxeiD4rU879rPojd7od1xqz5J7Jk6vkcI1fR1WoI73nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oyIKrgLR; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722345650;
-	bh=eXaI/4FwsIpMMOSXo9miQuvnjamSIypwnH2R9aE0zu0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oyIKrgLR1b61z1jp1U8LKQ+bZZe3UCz2uWQm94URXzu4zoq+R9wvNZP5BRiXWXwVw
-	 Efsgz/NSbmMmINLLF8Bk3bBM2tA4AlfCLgXudpsrGd4sUrnJxWybYUAqq4gWHWf1sN
-	 u+Ov361y5CTxk8f3zV57dG7TUhdABz23Gtb4O+POaikg22Q36674DQClbLbuiqk5Va
-	 lV7simRNIRhppRx6kXW8b4SLdOge9q9fYTn3AtNRgbSgz7yZjshLRB1kEX1v6NuSF2
-	 AreCuWMCZ30/+Wav1R4erGt2sWgHpKS11zYxMIILl9lEHihD45MaGGyi9s6gfrchgm
-	 4fnlYZpk9tINg==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 478E43781188;
-	Tue, 30 Jul 2024 13:20:48 +0000 (UTC)
-Date: Tue, 30 Jul 2024 09:20:46 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Moudy Ho <moudy.ho@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8195: Add SCP phandle to MDP3
- DMA controller
-Message-ID: <9820b8cb-2443-4085-a18a-264da51e0a08@notapiano>
-References: <20240606-mt8195-dma-scp-node-err-v2-1-e14702e9d3f2@collabora.com>
+	s=arc-20240116; t=1722345831; c=relaxed/simple;
+	bh=1NYevBkd4z+RY0RT9VGcYwWAUeaOucmoLi75vIzyIZM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DxftDEvpFVDZqhdAHVOQWEypgQ7opq5xzdz2/cV6ymz+rFT9lzTuTZhRa1vxxci+u1OtAUHwtYgCsfYJ2N0Gvm5FSeaE2wOLy7ddoYlLEbJIwMPuUzzEDyuvPq1NuzdUcMv9DKk26S5FUBKCF/WEAdbstudIW8EOb8o7oM3XLAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G2gs/UqC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A7C6C32782;
+	Tue, 30 Jul 2024 13:23:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722345830;
+	bh=1NYevBkd4z+RY0RT9VGcYwWAUeaOucmoLi75vIzyIZM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G2gs/UqCTXg+yP7xRY6DrJq6KjnrnkjeVwAld8DDZQUBw/pnrlS41bNvhXvuzGzcL
+	 QliZW7bRbWgghWr9cO1FvIS6Rg/oNgPTrc79gjutkRUbTwHMJyyUI1pOk2J8sC3EJX
+	 rQQ3WLDWvuSkPAsSs33yY+ZUG8vPeSs5+N2ahQtl/cUPK1BpolzSZczhp7RMbScjIk
+	 o+NjlXOnMfC241V1FlxGWvMz7isOjw2CxcsO0kQm1Kek4a6EuLc455OoBjohU+ycDq
+	 6duaC+R3gwLxWnGY3Ss5tvxXOLf+oW7ipETwt0HPweR2jBG6eGxeB9wstjOAYP2hJv
+	 kXCdasuxzxEOQ==
+Message-ID: <d72d7927-079a-4a82-a298-db9ed70a816f@kernel.org>
+Date: Tue, 30 Jul 2024 15:23:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240606-mt8195-dma-scp-node-err-v2-1-e14702e9d3f2@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] ARM: dts: samsung: Add cache information to the
+ Exynos542x SoC
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240730091322.5741-1-linux.amoon@gmail.com>
+ <CGME20240730091412eucas1p18feced3968a5f87dc8fe05f78d5c7659@eucas1p1.samsung.com>
+ <20240730091322.5741-2-linux.amoon@gmail.com>
+ <09e9cf0b-27fd-46b8-8631-87d798afd19e@samsung.com>
+ <CANAwSgT_TOFwP80+H8-CdXDLLu+u2XZMr2dnxcsSDe8S5yeYCw@mail.gmail.com>
+ <a41a6143-ef2e-4d86-b102-eaf442985173@kernel.org>
+ <CANAwSgSbSgXwOQLrVrHD7jpDe0=Bq7r2K8p0JjvZJMPpVNq4XQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CANAwSgSbSgXwOQLrVrHD7jpDe0=Bq7r2K8p0JjvZJMPpVNq4XQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 06, 2024 at 05:12:04PM -0400, Nícolas F. R. A. Prado wrote:
-> While the MDP3 DMA controller can look for the SCP node based on
-> compatible, it's best practice to supply the MDP3 node with a phandle to
-> the SCP since that allows supporting dual core SCP as well. Besides,
-> relying on the compatible search causes an error to be printed, since
-> the phandle is tried first:
+On 30/07/2024 15:20, Anand Moon wrote:
+> Hi Krzysztof,
 > 
->   mtk-mdp3 14001000.dma-controller: can't get SCP node
+> On Tue, 30 Jul 2024 at 17:57, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 30/07/2024 14:06, Anand Moon wrote:
+>>> Hi Marek,
+>>>
+>>> On Tue, 30 Jul 2024 at 17:14, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>>>>
+>>>>
+>>>> On 30.07.2024 11:13, Anand Moon wrote:
+>>>>> As per Exynos 5422 user manual add missing cache information to
+>>>>> the Exynos542x SoC.
+>>>>>
+>>>>> - Each Cortex-A7 core has 32 KB of instruction cache and
+>>>>>       32 KB of L1 data cache available.
+>>>>> - Each Cortex-A15 core has 32 KB of L1 instruction cache and
+>>>>>       32 KB of L1 data cache available.
+>>>>> - The little (A7) cluster has 512 KB of unified L2 cache available.
+>>>>> - The big (A15) cluster has 2 MB of unified L2 cache available.
+>>>>>
+>>>>> Features:
+>>>>> - Exynos 5422 support cache coherency interconnect (CCI) bus with
+>>>>>    L2 cache snooping capability. This hardware automatic L2 cache
+>>>>>    snooping removes the efforts of synchronizing the contents of the
+>>>>>    two L2 caches in core switching event.
+>>>>>
+>>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>>>>
+>>>>
+>>>> The provided values are not correct. Please refer to commit 5f41f9198f29
+>>>> ("ARM: 8864/1: Add workaround for I-Cache line size mismatch between CPU
+>>>> cores"), which adds workaround for different l1 icache line size between
+>>>> big and little CPUs. This workaround gets enabled on all Exynos542x/5800
+>>>> boards.
+>>>>
+>>> Ok, I have just referred to the Exynos 5422 user manual for this patch,
+>>> This patch is just updating the cache size for CPU for big.litle architecture..
+>>>
+>>
+>> Let me get it right. Marek's comment was that you used wrong values.
+>> Marek also provided rationale for this. Now your reply is that you
+>> update cache size? Sorry, I fail how you address Marek's comment.
+>>
+>> Do not repeat what the patch is doing. We all can see it. Instead
+>> respond to the comment with some sort of arguments.
+>>
 > 
-> Add the missing phandle to follow the best practice and get rid of the
-> error.
+> Ok, If I am not wrong  icache_size is hard-coded in the above commit.
 > 
-> Fixes: 5710462a116c ("arm64: dts: mediatek: mt8195: add MDP3 nodes")
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> +#ifdef CONFIG_CPU_ICACHE_MISMATCH_WORKAROUND
+> +.globl icache_size
+> +       .data
+> +       .align  2
+> +icache_size:
+> +       .long   64
+> +       .text
+> +#endif
+> 
+> In the check_cpu_icache_size function, we read the control reg
+> and recalculate the icache_size.
+> if there mismatch we re-apply the Icache_size,
+> 
+> So dts passed values do not apply over here,
 
-Hi Angelo,
+So you provide incorrect values in terms of them being ignored? Then do
+not provide at all.
 
-I already asked in another patch, but in case that was missed: It seems this
-patch was missed. Do you want me to resend it?
+Best regards,
+Krzysztof
 
-Thanks,
-Nícolas
 
