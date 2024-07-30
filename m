@@ -1,152 +1,107 @@
-Return-Path: <devicetree+bounces-89450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C12F9412C4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:04:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050D29412E5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A041F23799
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:04:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DF381F244F1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4DC19FA66;
-	Tue, 30 Jul 2024 13:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D7819FA7A;
+	Tue, 30 Jul 2024 13:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DSv5RWdJ"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="HQAazus6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3ABF19F48D;
-	Tue, 30 Jul 2024 13:04:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A04F19EECA;
+	Tue, 30 Jul 2024 13:16:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722344669; cv=none; b=NlsdH00r4VlNzfJqd2lzNGL6iBgPVlCqzX+BVoIRDguvtrGMj0Ub9nf/zDl5uVyuW+mamwC9uNZLla3dDCE5y50ihtL21NWLX+G/iyIhZPyWMMpXL2IOTrDzC5PBL4jUEVAWu84Xx8KpcBRF5p9ka+Y6Gtvk1ru1LBFBXh3Q6+Y=
+	t=1722345405; cv=none; b=HBy23JuoZjh0wnCYl9Hud+FAq8goM6GdYTVWIknsXJ24NEVmQ/hgTVK26TvHJBoqwMqueJQ/Sam0F7sjIUk9Ma+rMV39P4jhs9Rf2szNAah6UTDsql2UPlbaPZsRqJvbUbzjurDoV/F0pMwKkFxzJD9JYjMl65xo0wn9yCmCSiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722344669; c=relaxed/simple;
-	bh=o7jV0TsjHShHuJW+lvGQPrtCv1eUSRwbwdqYfZNvf5g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KYs4goctbnjXmqt0Om++8VY/g3r9vVrBl8t0D5sqYxGJMyIfdRMbbdIiaukwXFGin9jJ7g+SinSnGpeX628a1ugOmz06LD5kx4Zxez/LbN06n5n1mQGH1yooiUJ00wWAf4OpoDfTBhAli/sjC+u0azJ/HV1vv0vurDnj5VPllyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DSv5RWdJ; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-6bce380eb96so2590427a12.0;
-        Tue, 30 Jul 2024 06:04:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722344667; x=1722949467; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HeccX9FlLPnJUb8SbtR469SLQigZSvmfeJTapPIcJEo=;
-        b=DSv5RWdJp5O+Sm3J4jYd0I+JQmqhI1af3vvw/Z1ieFJAaZIrZ3dVj1Qvb4rb3Kpjyg
-         Q0EkTeLNWpSjvkA90K1WNUrncpsJPz8Kf0bAx2tjizchK5qTb0bBK9XSHa68rdlSJAEw
-         9OhTGl/0e8fmA5csdO8TdDBI7z9NaKuR4gDFf5W0nmS5PV5pho8HMrprSEwRCMDZEHWF
-         ZprESS2rIpBucZgaMLltj/qxy+S7DezMFwPRDtQaj6WxzGBZ2i+RAzZzY9IHm/p/lbUW
-         exFFCqm9TUbsazKUZ1NLLxO70yzwOryqc6ZP9bxogDoOkL7Ak4t3jkOjYmCJdpb3blPc
-         V+kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722344667; x=1722949467;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HeccX9FlLPnJUb8SbtR469SLQigZSvmfeJTapPIcJEo=;
-        b=BcMSgwuI5oI+gMVApbZzHxtCQ3ni3CKd3RtfpdRv6R89jvUUX6APNZ2qDPOcJiFBNg
-         elCQ715PrfY1dRkg8xNz4yOj2ISL4L9w53TsRcaaY9PFnjBgGx6tnbKlfOyh19U+fwFo
-         OVznG9Ux4DKItWZSs4WUTMDghJ+44wk2B1YmMvJg/ZFXdokPuKejUsVYO292SE0Gzr4Y
-         iNAXUpD5Y0np2UOlNmj031hz0XT891LGBEAVxqxFJWiETnvPYOoe3ZRJJrX3VC/37V1L
-         ONRBAJae4isxWxm8X+629qFGmtgKtasBb8r0Bz1N8zb90qrDiMd0Ztw2Ot2Lu3PAVyGg
-         ZaOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXS5plI1CKjAVggqAIfs7hSG8h2MqX7A30Cc4lKKWhRK8bynbBYvX4i2JsgKcpicFaWmhMw0nFQoDubRzvjbVb4K9fUW2wMgXFro904gTuwqNw4lrwhbow6MyD015/zVYtxLANZnF8Z0g==
-X-Gm-Message-State: AOJu0YyXuaPex+9GUXRo6ZgDh7vnvPts+xAydHejxiTr9hziNeESPv3n
-	z7ca5STc6TuLi8Gv0MuAxmAmdd0vc2WUGIxWZq50sYLtIGbMh0IgWGuh61lnMrP/lsaODN/mwBm
-	k3UBk0OlOxXVgHzMsNKoann/2WO0=
-X-Google-Smtp-Source: AGHT+IHgcXQCsSqKIUHuUWZSHKpsG+ja+gPjqOUYutQQRnCj/8Yw7YUXnXOnDA1PxG+ZugQo8W1m/pNBPvI+7DKcWA0=
-X-Received: by 2002:a17:90a:ac2:b0:2c9:5c67:dd9e with SMTP id
- 98e67ed59e1d1-2cf7e1ff4e8mr8772739a91.19.1722344666339; Tue, 30 Jul 2024
- 06:04:26 -0700 (PDT)
+	s=arc-20240116; t=1722345405; c=relaxed/simple;
+	bh=zj0aIYvulMLaTJ7jE+J2kdKeVFkwwt29ptI8jdT24ac=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ub5NO6ASK2wRtaVgcRBqA3oMCqzRdZMaW2Awe49enxcSPvSn7QxLHjZx2TJxGbAf9Nd/7WQoBLdwzeBJmVy1AIRiapph6JFG40VhDqeJGTVvBrb/vWcevCLDPSvIh3p9Lp6QDBnpPLSz+N+sZZsyTdwBZro8mKvojpIPDG3G9Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=HQAazus6; arc=none smtp.client-ip=67.231.148.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46UAeME7001880;
+	Tue, 30 Jul 2024 06:16:39 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=RADa8Ey5n2vTN7vraUqNbAm
+	IjccE2rtWUFiiMqI//WQ=; b=HQAazus67isubswKRp/WgN5GrNgGns7wIJ+bn8r
+	j+TjLQVtHYYO2UaN84/e1enegjXiWOdo77MBLuaHa6PnFEAglKPZcZSBS5jAPnv2
+	9lDBPZviVp7zvyRdBr+LmSHvY1okOJNdPhGIQATj5VyCSUMi0YE22RxoMSgsG/lh
+	ZA+AlB7H3uNjcdvR9+1qYOdTtqpD/QSfqapIWzPXHxSP2rml+xOUWgRbSsodmAwE
+	1OIt6YROKYAD0g61ihe4v5TzShgoEguSvncL4FR+k4bqjcyb0CkB+Tnr/s4vm0kj
+	kfxvjpOvi7JQwm+GqUqltgG5kxezygexsCJSZ1DBCwjWfBg==
+Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
+	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 40pnp5ja8q-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jul 2024 06:16:38 -0700 (PDT)
+Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
+ DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Tue, 30 Jul 2024 06:16:37 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
+ (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Tue, 30 Jul 2024 06:16:37 -0700
+Received: from Dell2s-9.sclab.marvell.com (unknown [10.110.150.250])
+	by maili.marvell.com (Postfix) with ESMTP id E99D05B692F;
+	Tue, 30 Jul 2024 06:16:36 -0700 (PDT)
+From: Witold Sadowski <wsadowski@marvell.com>
+To: <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <broonie@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <pthombar@cadence.com>, Witold Sadowski <wsadowski@marvell.com>
+Subject: [PATCH 1/1] spi: cadence: Add 64BIT Kconfig dependency
+Date: Tue, 30 Jul 2024 06:16:26 -0700
+Message-ID: <20240730131627.1874257-1-wsadowski@marvell.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240714172017.422811-1-aford173@gmail.com>
-In-Reply-To: <20240714172017.422811-1-aford173@gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Tue, 30 Jul 2024 08:04:14 -0500
-Message-ID: <CAHCN7x+_M6Mmo8OmvA4EWcWwtedSHB4uFT0+7n+s6iVK+dxrkw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-beacon-kit: Fix Stereo Audio on WM8962
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: 5OAndy0DIvkuBJ6ZpACMykqzjd_s7uRy
+X-Proofpoint-ORIG-GUID: 5OAndy0DIvkuBJ6ZpACMykqzjd_s7uRy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-30_11,2024-07-30_01,2024-05-17_01
 
-On Sun, Jul 14, 2024 at 12:20=E2=80=AFPM Adam Ford <aford173@gmail.com> wro=
-te:
->
-> The L/R clock needs to be controlled by the SAI3 instead of the
-> CODEC to properly achieve stereo sound. Doing this allows removes
-> the need for unnecessary clock manipulation to try to get the
-> CODEC's clock in sync with the SAI3 clock, since the CODEC can cope
-> with a wide variety of clock inputs.
+xSPI block requires 64 bit operation for proper Marvell SDMA handling.
+Disallow bulding on targets without 64 bit support.
 
-Shawn,
+Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
+---
+ drivers/spi/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Any chance this could get reviewed and/or applied?
+diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+index a2c99ff33e0a..d7b5c9b5c676 100644
+--- a/drivers/spi/Kconfig
++++ b/drivers/spi/Kconfig
+@@ -267,7 +267,7 @@ config SPI_CADENCE_QUADSPI
+ 
+ config SPI_CADENCE_XSPI
+ 	tristate "Cadence XSPI controller"
+-	depends on OF && HAS_IOMEM
++	depends on OF && HAS_IOMEM && 64BIT
+ 	depends on SPI_MEM
+ 	help
+ 	  Enable support for the Cadence XSPI Flash controller.
+-- 
+2.43.0
 
-thanks,
-
-adam
-
->
-> Fixes: 161af16c18f3 ("arm64: dts: imx8mp-beacon-kit: Fix audio_pll2 clock=
-")
-> Fixes: 69e2f37a6ddc ("arm64: dts: imx8mp-beacon-kit: Enable WM8962 Audio =
-CODEC")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/a=
-rm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> index 1871c10f5c12..de5b64fa479a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> @@ -222,13 +222,12 @@ sound-wm8962 {
->
->                 simple-audio-card,cpu {
->                         sound-dai =3D <&sai3>;
-> +                       frame-master;
-> +                       bitclock-master;
->                 };
->
->                 simple-audio-card,codec {
->                         sound-dai =3D <&wm8962>;
-> -                       clocks =3D <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
-> -                       frame-master;
-> -                       bitclock-master;
->                 };
->         };
->  };
-> @@ -544,10 +543,9 @@ &pcie_phy {
->  &sai3 {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&pinctrl_sai3>;
-> -       assigned-clocks =3D <&clk IMX8MP_CLK_SAI3>,
-> -                         <&clk IMX8MP_AUDIO_PLL2> ;
-> -       assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL2_OUT>;
-> -       assigned-clock-rates =3D <12288000>, <361267200>;
-> +       assigned-clocks =3D <&clk IMX8MP_CLK_SAI3>;
-> +       assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
-> +       assigned-clock-rates =3D <12288000>;
->         fsl,sai-mclk-direction-output;
->         status =3D "okay";
->  };
-> --
-> 2.43.0
->
 
