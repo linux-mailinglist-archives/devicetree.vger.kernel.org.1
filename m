@@ -1,126 +1,220 @@
-Return-Path: <devicetree+bounces-89493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7156094156C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:27:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 399169415AE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:48:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C1301F247E3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:27:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4399285606
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30581A2C3E;
-	Tue, 30 Jul 2024 15:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503631B5837;
+	Tue, 30 Jul 2024 15:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LYpN4cLg"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Cj9AwbfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2057.outbound.protection.outlook.com [40.107.241.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1655219FA91;
-	Tue, 30 Jul 2024 15:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722353268; cv=none; b=JIRNvcrbr3b8+dPIZMnlIStwKfoSwfRFOEsY110C10Sx8OV33ynaMf/JD/sAIJSzLbdrH7xWI7cmo/r29/sd8kr2nEjDci5xxby64kSrbThUluzns04TjzDZFiIb7aYdqNOZXUrzuIoIfNs1XygUaacYLT1dJYoSHICupt4NK1o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722353268; c=relaxed/simple;
-	bh=JZw8WwEedVSoAPqbDc8RGAXuCyf+bLo0NDiUMu3dTPI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T/ZHu+9snx4/AgQf+Sa+7+Xz4EUchlP6hknal1t0GmgQgXa/jYjZrVxA+4mw92lf8B7hkubKRGTalewWWyhFn00WrJQTg6FNaMNA379EqgyPb96DA0CHjg2F3HtuxSAQ5tvWTZkKpdgMx2cEw77mx4ERaaVp4tY7RocewJUUWMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LYpN4cLg; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-70d333d57cdso3185505b3a.3;
-        Tue, 30 Jul 2024 08:27:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722353265; x=1722958065; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k9fB8RPDY0z+oCE/hyzm1c3RzHRC+GlwxeI848w9iZo=;
-        b=LYpN4cLg6yPJBuTqajK1NEWW1TupN2oof4JoY8S5xD8p22BoQZ04ta+eWDuuwlyJjk
-         Gb/z/ci7miHfEeCkgV1U+fpCQhrrxR9k+ZlYa94xrKaBgmd9ShS52iMiKQun7WsO5v/8
-         JG9T+v2uYvdBaRhpMf5KVPLPpMYLQxsB6a0n6WpIg7ATqV+SUil+zpB5cOVVDPQjURid
-         9ivFgX7lrWS/FYBTmKv543JIq+FiJlVodZUfjcLp5VjgYW3FbbCE2ZDIT2fTynU+Hbtd
-         BgLOkbrYCME1qkev1+z40tmDTW+LIdp4gggPCUzmzMDNEnRyLPAzxKcQHshlpvJNSpre
-         L+tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722353265; x=1722958065;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=k9fB8RPDY0z+oCE/hyzm1c3RzHRC+GlwxeI848w9iZo=;
-        b=mjtyw/aCBrZbKLFFrA0CdOmm1WzbsnACfqpQRBVw23z3+Lk9UNYN34Ducmeu/zIIaa
-         6xfT5qM4Wmw/fv8UA70iuuDLwW7p1hTG3cOoWt4zM3iq6n1/9W7t7/YEYhJXTuR9rYsM
-         znTNA1FI455qp5P5O0vZd76r1BeFTTR1bHHD08UCpWl6/t3ynp4oNtbdvbm+b4iYlLDw
-         DNDIq2tG8y9EgOCvqf2ttuYlIHh2d5BcwTxNYsc1ggssfffdzMeGHdM/U3kAGTz09Z6l
-         ZLcRB96ey5KQOkoCW9nZFFJE04vhOz4HMCCU2OluXQlcHhAHNUKwPeXERbRI9jeYimuY
-         wbBg==
-X-Forwarded-Encrypted: i=1; AJvYcCXtro2saMEhkAn4XR9xHVt1pLyzce26qq0v5UKANpEe8k0wQISPwjl9uBuJWjRyOHBbF3FGm+/oKh+ldmxrlSvTbB2WQ9Wd6Y+ru2Ue6ZMpxpfclri9fQSw6+TE9jqsAIgePyMdHMwGk/On89eW0J8r22J1iKe2LRjZHKfqPUxJgpn04p94ntR3SAtlcOsvZAbaQcJovXr8w5ps6Roio3HAbVYPUMBKFSg4mBmB4+mNVXPYY5rVtWcZ7HkMCO+p
-X-Gm-Message-State: AOJu0YxW+AUGIxFBAuVrw1ewEuosjbdZZRmOwiToUEQ2WYLSJg2hoDju
-	+gP6nw5mdMowZ9afY/Lj7YoJlTd26GsbLGqMeVL8cQBf0FLNUkNv
-X-Google-Smtp-Source: AGHT+IH53uN+ps3K8FG722OlZVH9uQ9lhJBPizHtofyjk7vLzArAEYnaqOOhdbpSqtoFe0xY9sV3lg==
-X-Received: by 2002:a05:6a21:6da0:b0:1c2:8ece:97ae with SMTP id adf61e73a8af0-1c4a13afd52mr8779302637.34.1722353265287;
-        Tue, 30 Jul 2024 08:27:45 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead86ff47sm8863987b3a.145.2024.07.30.08.27.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 08:27:44 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 30 Jul 2024 08:27:42 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: lee@kernel.org, jdelvare@suse.com, dmitry.torokhov@gmail.com,
-	pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ukleinek@debian.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E94D1B5808;
+	Tue, 30 Jul 2024 15:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722354524; cv=fail; b=o6b79ejecwhYJwvd3mkTSwMOjxDShnKfiQYlbGT6mKallRYhrIlY7p9D3VA6erR5V3k1lXYh1Rhpwr4F4FhYOPUZ8kmQmaSmZYIs2a9msj85Sq69dl1/jx3I7ya/vdE2PJud5NgSpyiITZRp7Ektz9Uhf8NVGGgLTNZ60mS11Mw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722354524; c=relaxed/simple;
+	bh=LMWnbSrtaR4qWrU/o5yEYHwnhFjP2yRg0OF69n7CBnI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=b9GLksAsq7mwaL+/H5sfVwo841+sCcTaBABFpJyVw8g7/ypzansXPEI4r7bnW7DnFIdZNuMx0KmxKjzG8UdC45bfYE9aLu6Uz39Ybl2MS0U1WzzwjBfWm3e9uo0hF5KPX44/gt4GArpGqQgLr+scOwTYDcmgOwtT7K0U7F9Xhhw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Cj9AwbfL; arc=fail smtp.client-ip=40.107.241.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xbSsftcOnnhxi9tPasU+ZcZjOx+hEjKWI3OJPSQiz0BnpQVM5SwiMEIBZdP6Xr6szimGMNbGrX/U2oO9zDuAiMM2EICFCByRcjz7dWJM5NCa8rzN2VgNLWYyH10VAc86Qe8Pw4JgNuNCRZZiXI4+ctXbzDHPKiyam1DjnABx7aOqvylmP4p2wcISzpv0y4iyKunWusc4dsre5lJDduejHsPwmKuwqtZW3bi1zYK9tq6obMci0dqoV2lGwl1a/GQVlxTVRjhc0qbrbj8rLznjwZRB+nHcfkXYd1LJf/aI/r/JH65Z4vMAnUvyzyAkbYZfeSMATtZVqXdxqzHQZ629SQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cxgr+jGJ26Td48XD0u4lS6ZxKlCIkQ7YPu2en6xMBUA=;
+ b=wtp+vDtGorM4mbEOrCu3uzzjjilkB93z4ZExdsUz7XP+EJf8HdOwqbjERMr7s72uJG0imz+QmBQjoNS2CTJf6qb6opqw02l6TKs1TaiARzhw8ex2uDE8koZxHFC3k7rgnVsc9pfjhYkXW56nSIB6MK7wmyKF1n/81g6+NMK/k4IV1YwR+AEqR9cyoduSLPvWeD34b5nMCd8/aw50cZE7zY0JnT6z61FRJ+hxuXaZhPMPGzcp2OaWZeza0Z9XbhSKOVYE5olYB3IJPJSKfUewQ2BuSo+degCno5X6G+ljc1hPhw29+Frh6CjwkU9cSnoeWJGPmy//Xm3nDyt0uQjbGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cxgr+jGJ26Td48XD0u4lS6ZxKlCIkQ7YPu2en6xMBUA=;
+ b=Cj9AwbfLcgcyVs2vx/ri226cmkYYbnFpGnLmGFv4P4wI0SHrBlm/LrLdv5ImiOx5cBkhraO09B/9O1pkaMoNSz551OWlzRxhfzn0OZPa5noxWmvmAQ8v23eVE0tTJgEXvDgrc286wK3YEC0JqjW2WYH2D5jEFqohZyBl8bcRiKOi3U5Cd4xL4AHZIz0OoBbmRtIqNoy+Abzi9xV7cypyYA2NVCnkEOMZzvwvoakpJFanZxGPm+sttpyMGGm5WG9yoQnS9pE+RD9W+n26beEWhA1WH6pukjPq5T54xb42OkpNU2gfOZNtEegrysbDzE8DPvCmw5ZwT7Dtrp9NSrXTsA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB7864.eurprd04.prod.outlook.com (2603:10a6:20b:2a4::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Tue, 30 Jul
+ 2024 15:48:38 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
+ 15:48:38 +0000
+Date: Tue, 30 Jul 2024 11:48:31 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Shawn Guo <shawnguo@kernel.org>, linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-hwmon@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] hwmon: add driver for the hwmon parts of qnap-mcu
- devices
-Message-ID: <83226476-8b23-4a11-a100-d01049f6eef2@roeck-us.net>
-References: <20240728211751.2160123-1-heiko@sntech.de>
- <20240728211751.2160123-6-heiko@sntech.de>
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH 3/3] arm64: dts: layerscape: move dwc3 usb under glue
+ layer node
+Message-ID: <ZqkLT/2myU7S4uYu@lizhi-Precision-Tower-5810>
+References: <20240710-ls-dwc-v1-0-62f8cbed31d7@nxp.com>
+ <20240710-ls-dwc-v1-3-62f8cbed31d7@nxp.com>
+ <20240711213846.GA3049961-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711213846.GA3049961-robh@kernel.org>
+X-ClientProxiedBy: SJ0P220CA0016.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240728211751.2160123-6-heiko@sntech.de>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7864:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf09440e-1775-440f-4aa5-08dcb0af1414
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?vYjrNpm2+oX06Ad7f6hbaaYv4CBUOjNMu/ZG7nIfzhQhS0hv19SRH/zvt7qW?=
+ =?us-ascii?Q?hb+OEHXsg6Xj6p9VGv9PJ5HGxaG3FdH33VAImOV69JEDS6/FLsc9hC5pOo01?=
+ =?us-ascii?Q?kyO0tT/oT9DcIyAacVk3Edn3x8ZGIK2kxmiozDyGX4/g+fLt8EoYPT7G8iZF?=
+ =?us-ascii?Q?Wf1o4u+6YiKND1QvgVrUmRBiedLndRMQC9bJd8JChOUyJTMs3K0tZmHU0X2g?=
+ =?us-ascii?Q?Ya4ZI2W0jFayePpaj4XYTX7huCkV2nYbAVc0uHK80vYBRD8VjLbKAmW8If6z?=
+ =?us-ascii?Q?167yifBnn3Gj2tnS/q2c9gCBmFqQNKMp3jvsohaz0aJb0Ger2clNnb6kDG2A?=
+ =?us-ascii?Q?OUnW2rBTVIMsXuvzGX6XLWs8WEk4tnjFYKctBDMuho79+i+w8phpHWxIV+Js?=
+ =?us-ascii?Q?vypfVr9z8MxOVfeN+unCcahVvm4340P2XZXlya8suGlP8ZhE39op2AReFI/N?=
+ =?us-ascii?Q?WKZPiV+bbIgo88U9OllnPxWuOsjo1BDoh3Y6oKZl5Q3yAgmvvEmmbqSe0NIC?=
+ =?us-ascii?Q?bN4of/reXwPSg+3RovABLIFshPtTQutFiOIuJvqsXUnKBJbc5a5ygCxwftJI?=
+ =?us-ascii?Q?QEyRZeUb0ljTvKqvxeoh9gTuSV6Xx+9PNa5/FHn5JaUgegwVALlOGf+BxTZS?=
+ =?us-ascii?Q?ITmhWHeDPaAuZfLscOISdMi/KBO6tGaTUj7ahvxF9HAdpc6D6SJqfBkdTr3e?=
+ =?us-ascii?Q?pB3WJWEDV9n7bYrmoOnFoQ9M3sZdOD+F3T3PGIDkOg3gqTKrcegQKZBeqaSs?=
+ =?us-ascii?Q?4dtzQyQe1ZvmHuwf5PHNwolkxRugzSpemqKbQWPmYEzBNgy+k2niDf88cZXF?=
+ =?us-ascii?Q?/A0AymEst0rq2/vPYjufCEfOvVF9SNCzQhqBdjSbycYlHkPb8btBAt2D+ucX?=
+ =?us-ascii?Q?hRW0oGe4aiQCYkkQTC7f0VrLVVmK1dktdVJN7PvXbShuVUdvzjp1C5kqtbfL?=
+ =?us-ascii?Q?EKTZo4FhCTZmSewxKf7g08ybzTYMCpvof8oZSvMcXXWDZyP5S8mPKc/s+Mxc?=
+ =?us-ascii?Q?mRAkCT27NwnO93G/KrD33FtBFSMN2o3V0HYQAFXoBgnW83FXEukBD4ncGC2O?=
+ =?us-ascii?Q?Fy3H0wTI5XsSZUUPiqw2Y6EUgDJu2JGLihO44B/pUA5S//JLJtLWYSlaJzgr?=
+ =?us-ascii?Q?BCoc2b5MEe0qTktylDwJ1RqFKDBu5NyWbTKqg3KgQDQk1q6eZF7Kn5VOMUKm?=
+ =?us-ascii?Q?fYUKagTpo8g2j9ifAQ8OyMGrzH5kSEeBX6FTaLOhJSKB1oN+g54WincNRrvw?=
+ =?us-ascii?Q?Z5x6caQ8e+WmwjZw3QpjJHqK3dSOa19Ax+hWfzVow1T0+TOOuTzC0h4ggCGP?=
+ =?us-ascii?Q?uPtOZv2O1CQgoLOZDPRRXkptb2eSDk1O8z5w5fjriLJ9IxglCXtlBw+mA34P?=
+ =?us-ascii?Q?7PuN6+bWxq19l602fmV0msF1epfSZ2JqCuycdI2RWy2wOMnD1Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?kFlk8kJZg6eE1JBEoxndD++NONuBlpA9e0IuwBiIisJk158SEM4cl+k945se?=
+ =?us-ascii?Q?AIMPcccarjPPK0rAbLOyl4J+QpqC6WmytpJVfBQv2jwUMgDZmDPSAlhvOLpm?=
+ =?us-ascii?Q?UsNcAARwgIyJ4Cc+ln8zzQwBxfoiRgRBwqUnrksxMwL//1DFWWhf/w6b7C4n?=
+ =?us-ascii?Q?8DbXeG3gWeZyHK63GO4qXGQxHAKh20ZHxwWndghDIwH4QWA/GtEcjMDO83lX?=
+ =?us-ascii?Q?x8MAuFjVUswk6YwrJimvSRusIUY5zRP2BXwYP+8vU7/i0fv9NT02FTTi/0EF?=
+ =?us-ascii?Q?HDIBOWsp9BiYzrrF7eH0I3D8S6aWwEV4OnOI6IrYeWf2kdBSjUkdSj2O3DpL?=
+ =?us-ascii?Q?Z2vOo3nVsJQYggJtDcmz+k71OS7cd4/8+qyxyO5rHrFixctYXpNJ+DPhlRdn?=
+ =?us-ascii?Q?yOQ6prnywXtoMBoOxx9zwSU+Pf8yZJuMyzcTMfRvYur/TfDtz0jhXogjgsiQ?=
+ =?us-ascii?Q?jl537wkHdTGbiPQaAiww9UjO2ucJQsimYRKFrT+h7BhQxHmK88ufBSDwzpt1?=
+ =?us-ascii?Q?hrQSp759/5L/wBZgvRGCq20tbMvgMNcnIPM1DBBgbAfTEuoFs8chA2jok+xr?=
+ =?us-ascii?Q?OlCVsCnIR3+web64ZLJBSHdw5S3Wfh1WRo2bLuKIQBAUvQMQgVnjcUrsfC7E?=
+ =?us-ascii?Q?so+OD63exPDhEeSegeTh3JOb7p2VvPG8EVAq0ZTN4czUYRmVfE0n1SO0DNKx?=
+ =?us-ascii?Q?nlyU8wC1kIX/R4Yb4qhnZ1cblYzBa/UQMZDuSkrUacCTdCqxIRqB/htShqvS?=
+ =?us-ascii?Q?m3KzOnc2fDRjKvWrls0coOziNBSy5LLIuKmY98SiNm2RvdUVB8pGO0LuNifx?=
+ =?us-ascii?Q?J6Zwe9f8TU/FHn84OBV1z6GqucAeIiw24pMGeLX3WCXJMyUculNAbNGG1FlC?=
+ =?us-ascii?Q?WZ88ZZa73563a2NUym+DUdRf6qDW8iDbDhXWHxLkeIUdFR6jcttp7Yc5LWwI?=
+ =?us-ascii?Q?JL0/pO33Kiq4xbKr1YsFjBHhORAq7ryJ6DTyzfDUzs+RX/P2KRov/eaFOH0Y?=
+ =?us-ascii?Q?zvzDNl5wXIp33K/CfUUFrhAr9zOc3G5kdYFRQVZ+WlM9003tGnLpqy3dr+xB?=
+ =?us-ascii?Q?tyK2ivk/BkdG6XJ9tphCE/0gpqMei/0pNPXxsMCAaf68kYccblMqvI/YeJ0F?=
+ =?us-ascii?Q?jslCmvZVaPoAsBQ+PuD7pyqyhMC1Zd8vI1s8TExD5rRUSEA3ybjoDX6rgJE/?=
+ =?us-ascii?Q?z/GOjwdRnQl3LD3yId1GISgTngX/r0toQa2zTznWGYmZyLFzcXLaLUg6fGNp?=
+ =?us-ascii?Q?xBFyZu45Iusez7MW4dYA22iqSFmfyQpkld8nM4eqvf5bjB8zVcNMvbjA2QO0?=
+ =?us-ascii?Q?jRSUyegN0N3C9z/81Hhjs5M+9lMzQFlIA5hY/wxLZZ63hB2xfhBRqyKXf5Eu?=
+ =?us-ascii?Q?geVtAiXfXovluX/rHi7ofJantGhE8szjn4qMjLqtt5xygtiaNpFCv6kQI+Kw?=
+ =?us-ascii?Q?3kKLTlvUqDLj+f4oiWI5cz9VAtgvkWrOEa0VJlzjLxU8cfBJgTKX/EJF0zpe?=
+ =?us-ascii?Q?PUSeLeYAp+Bq2k/jbGfFVjMa1nhQH8m/P0pdCc5YOVZrzreAceZCpD7fgOg7?=
+ =?us-ascii?Q?02qePoCL9gjqXQnGacEeud7BlsEU2mg7YnF+uPEW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf09440e-1775-440f-4aa5-08dcb0af1414
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 15:48:38.3814
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zlo+CDgUuLCdChnhtO1tv+aZ1/kcImdmyp1b/UOk1itFeufIk1PPIxZwkSFH/9hqU7VZofO0ZFGCOyM0sZfY7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7864
 
-On Sun, Jul 28, 2024 at 11:17:49PM +0200, Heiko Stuebner wrote:
-> The MCU can be found on network-attached-storage devices made by QNAP
-> and provides access to fan control including reading back its RPM as
-> well as reading the temperature of the NAS case.
+On Thu, Jul 11, 2024 at 03:38:46PM -0600, Rob Herring wrote:
+> On Wed, Jul 10, 2024 at 07:02:24PM -0400, Frank Li wrote:
+> > New usb glue layer driver support enable dma-coherent. So put dwc3 usb node
+> > under glue layer node and enable dma-coherent.
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 43 ++++++++++++++++----------
+> >  1 file changed, 26 insertions(+), 17 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > index 70b8731029c4e..24b937032480f 100644
+> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > @@ -615,24 +615,33 @@ gpio3: gpio@2320000 {
+> >  			little-endian;
+> >  		};
+> >  
+> > -		usb0: usb@3100000 {
+> > -			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
+> > -			reg = <0x0 0x3100000 0x0 0x10000>;
+> > -			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> > -			snps,dis_rxdet_inp3_quirk;
+> > -			snps,quirk-frame-length-adjustment = <0x20>;
+> > -			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+> > -			status = "disabled";
+> > -		};
+> > +		usb {
+> > +			compatible = "fsl,ls1028a-dwc3";
+> > +			#address-cells = <2>;
+> > +			#size-cells = <2>;
+> > +			ranges;
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> No, the existing way is preferred unless you have actual glue/wrapper 
+> registers. Plus this breaks compatibility.
 
-Minor comment inline, in case you resend, otherwise
+Actually, it has glue layer, such as wakeup controller. Remote wakeup have
+not implement at layerscape platform yet. But this register distribute to
+difference place with other module misc controller registers. It is
+difference for difference chips. I can think deep how to handle this. 
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+but anyways, it will break compatibility. I have not find good way to
+keep compatibility and add glue layer, such as wakeup support.
 
-> +static int qnap_mcu_hwmon_write(struct device *dev, enum hwmon_sensor_types type,
-> +				u32 attr, int channel, long val)
-> +{
-> +	struct qnap_mcu_hwmon *hwm = dev_get_drvdata(dev);
-> +
-> +	switch (attr) {
-> +	case hwmon_pwm_input:
-> +		if (val < 0 || val > 255)
-> +			return -EINVAL;
-> +
-> +		if (val < hwm->pwm_min)
-> +			val = hwm->pwm_min;
-> +
-> +		if (val > hwm->pwm_max)
-> +			val = hwm->pwm_max;
-> +
-		val = clamp_val(val, hwm->pwm_min, hwm->pwm_max);
+Frank
 
-Guenter
+> 
+> > +
+> > +			usb0: usb@3100000 {
+> > +				compatible = "snps,dwc3";
+> > +				reg = <0x0 0x3100000 0x0 0x10000>;
+> > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> > +				dma-coherent;
+> > +				snps,dis_rxdet_inp3_quirk;
+> > +				snps,quirk-frame-length-adjustment = <0x20>;
+> > +				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+> > +				status = "disabled";
+> > +			};
 
