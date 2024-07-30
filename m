@@ -1,98 +1,127 @@
-Return-Path: <devicetree+bounces-89574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8819421FB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:01:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B716942200
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76C6D28724D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:01:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6747C1C22924
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4D614B94C;
-	Tue, 30 Jul 2024 21:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0442161320;
+	Tue, 30 Jul 2024 21:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjB/OoFm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IomQ3G7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63F238B;
-	Tue, 30 Jul 2024 21:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E28238B;
+	Tue, 30 Jul 2024 21:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722373300; cv=none; b=Ai7vsa3LTyRnZzsFXxrtrsQdcmS5uxDUX2+VJi6xHG/s5b/JtmS3bnUMy4DgCvO18elSTF50BB85teUoqB2z/dmWubs+ELmFOf3Rj+mCirpY21lbB7FVuMXucp5fspCmsIs2OS6RadT5gHTWhlFQc76hY/lsVpmYSAZRNAXzToQ=
+	t=1722373505; cv=none; b=aBdHoeKBpOmWvFz0ZCTTUGS9fI8OI9WVd44X4yeUYLqkUAYn81jlrRPPoRd39Maa5g/21oePF8OEWz1Pal5eC+6GQ4v6hp5eA3r2OogoeKygIoiyn4tZD3tajOco3fR1jn1Gq6WGu1KnObXCA2h0UkPStGznpzamEYNyurXLLDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722373300; c=relaxed/simple;
-	bh=GkvH/3sbCTojDz8X59B3D08RDAYiw6xu367HrjfDwHg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LAV+TytM7ivMxRtakf87Z/3Qx1hoLSE73jckSKL2X1slKD8vBvBuhMiHhDEDIJHGrk1UgRRa/XQec1dIBeVbW60aXl5qQGGyYP+HhFMtIGec621Jqso7x3dA1BVfzTtEMfWIqOvf7nd51Zxml6wB9NR3jUq3f02AJ0WWlaBKttU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjB/OoFm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158E0C32782;
-	Tue, 30 Jul 2024 21:01:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722373300;
-	bh=GkvH/3sbCTojDz8X59B3D08RDAYiw6xu367HrjfDwHg=;
-	h=From:List-Id:To:Cc:Subject:Date:From;
-	b=MjB/OoFm/D8Qb00wxaBsHlOJKIAMSAnsq1fI9CUg838XuMnw8+/6alnQxMPH7mE+4
-	 STyJ84AfEfTVNBXJOCAjN3c0/JyGQDO0unx4eHkFrESjQXbTuro/lL/+oOt5Qdelsh
-	 q0HTAZh0X+3urlZKlARfIf3hzP0MU/6DfajRZCLtfRAHYWHa7x+4LQDKnRyZGQ/+vQ
-	 Ho8CQoXgTxsyqRpEk5OETQ0E+Rn34/z3ZDVurHXM2GUNVnn0ZHpr+gjK7G4pb9R4p7
-	 5as2aJg+BBz9UsSnMSYaPNYSEb77ZNw63pkI4QXqYQZFF6afqBkLxqIhM2gTwh0GLs
-	 B/ehQyATM9u1g==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: soc@kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Arnd Bergmann <arnd@arndb.de>
-Cc: Guenter Roeck <linux@roeck-us.net>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm: dts: arm: versatile-ab: Fix duplicate clock node name
-Date: Tue, 30 Jul 2024 15:00:30 -0600
-Message-ID: <20240730210030.2150467-2-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1722373505; c=relaxed/simple;
+	bh=GCu4r98kTw83zvHTndHVyfmkZDruuPHLD2NCCoobUuM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vp99L4ti2XQ14/fLKofchGHOLaQ0ZWK6aVw+iGaPpQi0CwGXx6KutQ50Chl6JORz9k/JpH6ZHrm2JcB0dfCAKqzjAl5hrTUT0QpHiZKcD2r3b1j3kytRba+Z99Qfe2LJyvwL+ChtLgC28W39Fmo8nn3qnKbkBpEFF1B7MP7t2X0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IomQ3G7/; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46UL4o3h044671;
+	Tue, 30 Jul 2024 16:04:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722373490;
+	bh=o2Zer9N8QrcaJ8Sh0l8q8o4PRjk5luhYHbS7vLCXUQg=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=IomQ3G7/RBGWWV5m7ZMa9p/oNEJyLdHqOhgGlePmpnrh4on5bOwKpi22veVSkalQW
+	 Tbh4tNjiVVc2bAy6QrpnUEMz9UP94Z7c+C+Kn+AOFPkYcwXgN/RHnJFU9SId08QRsX
+	 f2zNsnXduvWaBI/T/g+4TZlWbLChWAjFojbO/LFM=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46UL4oQP010906
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Jul 2024 16:04:50 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ Jul 2024 16:04:50 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 Jul 2024 16:04:50 -0500
+Received: from [128.247.81.191] (uda0499903.dhcp.ti.com [128.247.81.191])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46UL4ogn071067;
+	Tue, 30 Jul 2024 16:04:50 -0500
+Message-ID: <56306559-7f30-47f2-a6c6-bace35fc77c5@ti.com>
+Date: Tue, 30 Jul 2024 16:04:49 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62p: Add gpio-ranges for
+ mcu_gpio0
+To: Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20240730143324.114146-1-j-mcarthur@ti.com>
+ <20240730143324.114146-2-j-mcarthur@ti.com>
+ <20240730145956.n7brt337sc5vjpg5@violet>
+Content-Language: en-US
+From: Jared McArthur <j-mcarthur@ti.com>
+In-Reply-To: <20240730145956.n7brt337sc5vjpg5@violet>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Commit 04f08ef291d4 ("arm/arm64: dts: arm: Use generic clock and
-regulator nodenames") renamed nodes and created 2 "clock-24000000" nodes
-(at different paths). The kernel can't handle these duplicate names
-even though they are at different paths. Fix this by renaming one of
-the nodes to "clock-pclk". This name is aligned with other Arm boards
-(those didn't have a known frequency to use in the node name).
 
-Fixes: 04f08ef291d4 ("arm/arm64: dts: arm: Use generic clock and regulator nodenames")
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-Arnd, I imagine you can take this directly.
 
- arch/arm/boot/dts/arm/versatile-ab.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 7/30/24 09:59, Nishanth Menon wrote:
+> On 09:33-20240730, Jared McArthur wrote:
+>> Commit d72d73a44c3c ("arm64: dts: ti: k3-am62p: Add gpio-ranges
+>> properties") introduced pinmux range definition for gpio-ranges,
+>> however missed introducing the range description for the mcu_gpio0
+>> node. As a result, automatic mapping of GPIO to pin control for mcu
+>> gpios is broken. Fix this by introducing the proper ranges.
+>>
+>> Fixes: d72d73a44c3c ("arm64: dts: ti: k3-am62p: Add gpio-ranges properties")
+>> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> index e65db6ce02bf..c0bdbd00dc23 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> @@ -146,6 +146,9 @@ mcu_gpio0: gpio@4201000 {
+>>  		power-domains = <&k3_pds 79 TI_SCI_PD_EXCLUSIVE>;
+>>  		clocks = <&k3_clks 79 0>;
+>>  		clock-names = "gpio";
+>> +		gpio-ranges = <&mcu_pmx0 0 0 21>, <&mcu_pmx0 21 23 1>,
+>> +			      <&mcu_pmx0 22 32 2>;
+>> +		ti,ngpio = <24>;
+> we already have ti,ngpio - please drop
+Sorry, missed that. I will fix it and resend the patch.
+>>  	};
+>>  
+>>  	mcu_rti0: watchdog@4880000 {
+>> -- 
+>> 2.34.1
+>>
 
-diff --git a/arch/arm/boot/dts/arm/versatile-ab.dts b/arch/arm/boot/dts/arm/versatile-ab.dts
-index 6fe6b49f5d8e..635ab9268899 100644
---- a/arch/arm/boot/dts/arm/versatile-ab.dts
-+++ b/arch/arm/boot/dts/arm/versatile-ab.dts
-@@ -157,7 +157,7 @@ timclk: clock-1000000 {
- 			clocks = <&xtal24mhz>;
- 		};
- 
--		pclk: clock-24000000 {
-+		pclk: clock-pclk {
- 			#clock-cells = <0>;
- 			compatible = "fixed-factor-clock";
- 			clock-div = <1>;
 -- 
-2.43.0
+Best,
+Jared McArthur
 
 
