@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2ED94080A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 909A594081E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C6E91F23D81
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:04:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D1AC1F23947
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B749115FD08;
-	Tue, 30 Jul 2024 06:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3A616728B;
+	Tue, 30 Jul 2024 06:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oIjsVLO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n94dmUvS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCA2824AF;
-	Tue, 30 Jul 2024 06:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F17F161914;
+	Tue, 30 Jul 2024 06:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722319486; cv=none; b=qcXdsf58y+9CZv2gse62uBW927PBfz6nJwxk9DNFdDczu+d0524eYQBFttVpCWcU8RF/1vs2YGtYHiGKw49XSWU1GSQqCvyU8VC26DRbk9hBKAr3Ju66JMfEUuUFyHYUNOKLPKU5Zu3Ja241uOHdMfNT1FvBTAtfvEUuAhwgQtY=
+	t=1722320109; cv=none; b=e9TxzcwkNjQQFNOJNRw1yrAGOZBOaULAp37YTU3y3GHIq3L5184nK72WihI/mkCk+wF3l+dfcTfRAzq9XJjpAB76wJvNOuHUIkYPup4KyTJ0bEsaViyODvMeNmoNSPmL/QT2PBR6XLAqYeV31khT8pqpKjzWAHJffM3dSfmD6rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722319486; c=relaxed/simple;
-	bh=6atBhaAQqEw+o784boMj0u6Ji4rgOGC5RZ3DD2SHTNk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aKncBqRWeXWZPTwJXYW4DvPlOqfvbilTDab47V9H2kNKYsO159ipmgcjLZaKTBremsS7/61fLg3kPSF4ykeiSPVCa6R5wVPmKwCUHGr1t6eiMmffuF9l/bMUqjMdc/OnsJ8fPOjGr8RsGwqyvA1D+DVkIIBaWPhbWdmWM83WSTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIjsVLO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1846DC32782;
-	Tue, 30 Jul 2024 06:04:41 +0000 (UTC)
+	s=arc-20240116; t=1722320109; c=relaxed/simple;
+	bh=Oej+fPpzXjgqOHYOYKIC4KwEdSHy7A5a1zk/PCs4epQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=DZuolQlETkNihJZPLHnw/OhYE3ItE+1iBaVJCBK73iV3rMIsfSHk/6pFnmYvJ34GCmnjeYuIk+cL6CGND0WEx4pKxbCtk4Jg65b3TfwlKa2V8oT0P7PxgpqzzonY7YE+WtuQRwtjUNRxTjZO1dJ6yPao7llnxyPW78H0ElxGXEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n94dmUvS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F9EC32782;
+	Tue, 30 Jul 2024 06:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722319486;
-	bh=6atBhaAQqEw+o784boMj0u6Ji4rgOGC5RZ3DD2SHTNk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oIjsVLO+kApVerFedU1bNVkV7EeaLv2osA3PEtMHiJaRlCrciJyKyucMSJ9TzpdE8
-	 6yAsAwLdrWYo3sTRa8dfKFslSEngk38yyd7QxS5hz8yhcZEsLv1sfKY+txkdIhg6Lf
-	 2FanSW64v1gH+0CbDOYBs2/2WU5ADS8AANzGKZeVWu7T5DDI1KbIBsfZEn6ZSKIHOV
-	 OYIs0sFWU9urAoVYB0ieUQwAneCxfFZuhvF1EdsYeS+jZ0a0RmY00zJIY0fXyp1Nn2
-	 3Svfl//mmeYHrPPjsEyBz0TtQbMyPTtS2rZsgsgODHJoNRO7BrgLO3bSXXNtRVj4B3
-	 vpIaT/teXJjmw==
-Message-ID: <8e416a44-f637-4a3a-ad9a-6a84b3770b2e@kernel.org>
-Date: Tue, 30 Jul 2024 08:04:40 +0200
+	s=k20201202; t=1722320109;
+	bh=Oej+fPpzXjgqOHYOYKIC4KwEdSHy7A5a1zk/PCs4epQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=n94dmUvSFz4+yTb7QQvlcmXeM3yUX3zYyFXxK5DM6SG1ZLYqlmbQGxM2+BwSNJLwt
+	 NsrNqbUgwa0GKDI2ve158JWh18SUKJ1+5xvyRrNgzbSCkC+leUgDjtZJQbpSt48YBR
+	 4UbG0zBpxKg2gcMiKMx9L+PstGRsnEXy060m+A2bMCzIXYt5noY9yDIXSRtLqp2DBD
+	 Hh+IqpbO63L8jDE408SsU4W2hlu8nM5P6sPaUkq6hh3hRRGf1R2snXiAL7FqI+6iBT
+	 9zpF4MYgzv8o2aTGNXi618c4GIwSJliRy/6C5VZ4gY2v0SOzh0Sim89EJWRSsLq2Th
+	 JHC9dxM6ufABQ==
+Message-ID: <71cbe674-b232-4327-929b-351630907540@kernel.org>
+Date: Tue, 30 Jul 2024 08:15:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 25/27] ARM: dts: aspeed: yosemite4: add RTQ6056
- support
-To: Patrick Williams <patrick@stwcx.xyz>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
- <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
- <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: dac: add docs for ad8460
+To: Mariel Tinaco <Mariel.Tinaco@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Dimitri Fedrau <dima.fedrau@gmail.com>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
+References: <20240730030509.57834-1-Mariel.Tinaco@analog.com>
+ <20240730030509.57834-2-Mariel.Tinaco@analog.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,41 +107,140 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
+In-Reply-To: <20240730030509.57834-2-Mariel.Tinaco@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2024 00:03, Patrick Williams wrote:
-> On Tue, Jul 23, 2024 at 05:23:06PM +0800, Delphine CC Chiu wrote:
->> Add RTQ6056 (spider board 3rd source) support in yosemite4 DTS.
->>
->> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
->> ---
->>  .../boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 10 +++++-----
->>  1 file changed, 5 insertions(+), 5 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
->> index f73719b3c2f1..03a1e41312e3 100644
->> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
->> @@ -1240,35 +1240,35 @@ adc@37 {
->>  	};
->>  
->>  	power-sensor@40 {
->> -		compatible = "ti,ina233";
->> +		compatible = "ti,ina233", "richtek,rtq6056";
+On 30/07/2024 05:05, Mariel Tinaco wrote:
+> This adds the bindings documentation for the 14-bit
+> High Voltage, High Current, Waveform Generator
+> Digital-to-Analog converter.
 > 
-> Is this legal to have two chips both listed as compatible?  I thought
-> this approach has been rejected before.
-> 
+> Signed-off-by: Mariel Tinaco <Mariel.Tinaco@analog.com>
 
-Testing would tell... This was clearly not tested and is just ridiculous.
+> +
+> +  refio-1p2v-supply:
+> +    description: Drive voltage in the range of 1.2V maximum to as low as
+> +      low as 0.12V through the REF_IO pin to adjust full scale output span
+> +
+> +  clocks:
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+maxItems: 1
+and drop description (or use items: - description, but then do not
+repeat redundant parts)
+
+> +    description: The clock for the DAC. This is the sync clock
+> +
+> +  adi,rset-ohms:
+> +    description: Specify value of external resistor connected to FS_ADJ pin
+> +      to establish internal HVDAC's reference current I_REF
+> +    default: 2000
+> +    minimum: 2000
+> +    maximum: 20000
+> +
+> +  adi,range-microvolt:
+> +    description: |
+> +      Voltage output range specified as <minimum, maximum>
+> +    oneOf:
+
+Not an oneOf.
+
+> +      - items:
+> +          - const: -40000000
+> +          - const: 40000000
+
+Why do you need this property if this cannot be anything else? Drop.
+
+> +
+> +  adi,range-microamp:
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      Current output range specified as <minimum, maximum>
+> +    oneOf:
+> +      - items:
+> +          - const: 0
+> +          - const: 50000
+> +      - items:
+> +          - const: -50000
+> +          - const: 50000
+> +
+> +  adi,temp-max-millicelsius:
+> +    description: Overtemperature threshold
+> +    default: 50000
+> +    minimum: 20000
+> +    maximum: 150000
+> +
+> +  sdn-reset-gpios:
+
+reset-gpios or shutdown-gpios or anything from gpio-consumer-common
+which is not deprecated.
+
+> +    description: GPIO spec for the SHUTDOWN RESET pin. As the line is active high,
+
+Do not repeat the obvious or redundant parts. There is no point in
+saying that "GPIO spec is a GPIO spec for ...". It cannot be anything
+else than GPIO spec. Instead say something useful. It's confusing to
+have two reset pins, so explain what is the purpose of this pin.
+
+> +      it should be marked GPIO_ACTIVE_HIGH.
+
+Drop last part "it should be marked", because it is clearly incorrect.
+Different board designs can have it differently.
+
+
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: GPIO spec for the RESET pin. As the line is active low, it
+> +      should be marked GPIO_ACTIVE_LOW.
+
+Again, marking it always as active low is not correct. It is enough to
+say that line is active low.
+
+> +    maxItems: 1
+> +
+> +  sdn-io-gpios:
+> +    description: GPIO spec for the SHUTDOWN INPUT/OUTPUT pin. As the line is
+> +      active high, it should be marked GPIO_ACTIVE_HIGH.
+
+What's the purpose?
+
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        dac@0 {
+> +            compatible = "adi,ad8460";
+> +            reg = <0>;
+> +            spi-max-frequency = <8000000>;
+> +            adi,rset-ohms = <2000>;
+> +            adi,range-microvolt = <(-40000000) 40000000>;
+> +            adi,range-microamp = <0 50000>;
+> +            adi,temp-max-millicelsius = <50000>;
+
+Custom properties go to the end. See DTS coding style.
+
+> +
+> +            dmas = <&tx_dma 0>;
+> +            dma-names = "tx";
 
 
 Best regards,
