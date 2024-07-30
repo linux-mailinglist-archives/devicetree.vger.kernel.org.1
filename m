@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-89535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C601941A78
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:44:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24BF0941B04
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 18:50:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D6361C233F3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:44:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56AB21C2314F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6F3189535;
-	Tue, 30 Jul 2024 16:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96826189537;
+	Tue, 30 Jul 2024 16:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CLM52lno"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ko3XZPEd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A2818801C;
-	Tue, 30 Jul 2024 16:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D30A155CB3;
+	Tue, 30 Jul 2024 16:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722357847; cv=none; b=EYIaTw88s4RP3iCAsUca0f3r/jBoAYRvW+nS5qr8jCgi6Z5sYlkGdMusBCuIrAzW+xccXsYM1b8zCHrL9QNKZSO0vcHMdz2JBDKX2bdZEINnOm2vmd4k7Y0gzHJHhDm+AxyA1dZ2GWs3kdbSnMxkIg+NSAv+WAv88mRppihnuNM=
+	t=1722358204; cv=none; b=jsEUrfzLKpU7oOckTFlOKbQRZD5J/RqIQ4qR0ewrvP4uiAwOHxXoUwsMcjrMY4t5NQb3TxC8XjcdgVWrbJU+7eM8wliF8ZDevtKBkFiOvUbRVYAXEabO4c2LYxJ1j6ZDq7I3opweJxXQivEy/b2gwk7iHKUBQPPia4deA+1yA9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722357847; c=relaxed/simple;
-	bh=Rftd5SMFzgvkrqtKYeOg6P+2kJ52Nckqpi9+qfZgqvc=;
+	s=arc-20240116; t=1722358204; c=relaxed/simple;
+	bh=r3X8C/3sWlCsyEECb963nRYST3e36OQCZGpGejhXErU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efK/WS3/FmIEFOPH7RQNCuXEWF0mpnL+tHHX+AcLjnXJ06nTTM/LFltUklAqI/pA9GCd7qKzFGirN1zeWiH6dlNWd/oEaATVb565fK4jCpYLFOPxIbj2po9nvWHfI64TtoFteN55+LosaRA9Hqr3dZls7qEx6Ya56GJBT0QAIo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CLM52lno; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEF2EC32782;
-	Tue, 30 Jul 2024 16:44:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UV6AVJIAEo58YMNPNTM+HES3reTvBMa1McS+MTbO6C7RWkQ3Rmhr9RghGJcW0kz717ZJda5N/ZbXCaHupV0yiA/3OOW/LX0d/63Pe8vzps4a7t8cB0rQAJYDZNi641A46Ah+aMfUbXSVj5scfdFDiBHcTexD8HdFEk9mpdmHGo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ko3XZPEd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE6B2C4AF0F;
+	Tue, 30 Jul 2024 16:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722357847;
-	bh=Rftd5SMFzgvkrqtKYeOg6P+2kJ52Nckqpi9+qfZgqvc=;
+	s=k20201202; t=1722358204;
+	bh=r3X8C/3sWlCsyEECb963nRYST3e36OQCZGpGejhXErU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CLM52lnozQsI4sXRr0KOts2j9HhXwa/TsStKURYBcCScyOTqEwo8mdBIAXfH6uP+A
-	 5lOv8LY9BPSu+BifTimHjr6LBDCDVtkMaSFDT3qDbk26yxtgvb5aadvp191B7qTRxX
-	 Bi6CW+eHp0OcxJHeKIvmL7ck2PaX3oefXgD3+1Z5QwscC4HXd/3LyH/3rhGLIZeka5
-	 5YB0ISkkCiSPR3WjApCOJ5GqCgPlphKBiYx/cwjwTfxoXAeiyNH12chjCkWylQCn0T
-	 8qMm1KxBlF9LN+RqaGbRfYibpVLWf5iPPnfh8G/JuHMPtJXb4fGzOg78zlVh9vugS8
-	 go6EvMm6NPVQQ==
-Date: Tue, 30 Jul 2024 17:44:01 +0100
-From: Simon Horman <horms@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: kernel@pengutronix.de, Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	David Jander <david.jander@protonic.nl>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	b=ko3XZPEdtdl2sPr6s46xPFbd66QXg+miej6Cbb1GsG7uIIPEsup07vHsotmwHVoOB
+	 essYkhUabKD4F8O7z3jtNn/S0QHbBE4PPv5/AzRZjgjJC5O1U3Ppa56X4N+Butlnkt
+	 0K1Zws/MmxgMirLHC6tUgdXbniQGKXvNGZcZ7dcBsBBJ1RD/0aaE8VdfgjkMaGqNAL
+	 DQMtIXgDQZk+uc2klppC42Uup+oafEGnEfIK0UyATrQVagWUjbMn7BV1HjBwj8Zh3y
+	 SBTAHM7c74Cij2tOr/CemKxTtcm9dy274vhurvWGkgVqy7J9z/0ievfXL3qZ4JqTNn
+	 RGx1+0o3z71vA==
+Date: Tue, 30 Jul 2024 10:50:02 -0600
+From: Rob Herring <robh@kernel.org>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+	ychuang3@nuvoton.com, schung@nuvoton.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH can-next 12/21] can: rockchip_canfd: add TX PATH
-Message-ID: <20240730164401.GD1967603@kernel.org>
-References: <20240729-rockchip-canfd-v1-0-fa1250fd6be3@pengutronix.de>
- <20240729-rockchip-canfd-v1-12-fa1250fd6be3@pengutronix.de>
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v6 02/27] dt-bindings: mfd: syscon: add microchip's
+ sam9x7 sfr
+Message-ID: <20240730165002.GA1508552-robh@kernel.org>
+References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
+ <20240729070603.1990265-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,44 +63,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240729-rockchip-canfd-v1-12-fa1250fd6be3@pengutronix.de>
+In-Reply-To: <20240729070603.1990265-1-varshini.rajendran@microchip.com>
 
-On Mon, Jul 29, 2024 at 03:05:43PM +0200, Marc Kleine-Budde wrote:
-> The IP core has a TX event FIFO. In other IP cores, this type of FIFO
-> normally contains the event that a CAN frame has been successfully
-> sent. However, the IP core on the rk3568v2 the FIFO also holds events
-> of unsuccessful transmission attempts.
+On Mon, Jul 29, 2024 at 12:36:03PM +0530, Varshini Rajendran wrote:
+> Add compatible for sam9x7 SoC's SFR.
+
+That's (kind of) obvious from the diff. How is the block on the new SoC 
+the same or different from the prior chip? It's kind of strange that one 
+of these blocks which tend to be register bit soup of left over controls 
+would be the same or a superset of another SoC.
+
 > 
-> It turned out that the best way to work around this problem is to set
-> the IP core to self-receive mode (RXSTX), filter out the self-received
-> frames and insert them into the complete TX path.
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
+> Changes in v6:
 > 
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+>  - New patch in v6 as the syscon devices are moved to a new file
+>    upstream.
+> ---
+>  .../devicetree/bindings/mfd/syscon.yaml       | 188 +++++++++---------
+>  1 file changed, 97 insertions(+), 91 deletions(-)
 
-...
+Put this in your own schema file. I don't think we want get into more 
+complicated cases here.
 
-> diff --git a/drivers/net/can/rockchip/rockchip_canfd-tx.c b/drivers/net/can/rockchip/rockchip_canfd-tx.c
-
-...
-
-> +void rkcanfd_handle_tx_done_one(struct rkcanfd_priv *priv, const u32 ts,
-> +				unsigned int *frame_len_p)
-> +{
-> +	struct net_device_stats *stats = &priv->ndev->stats;
-> +	unsigned int tx_tail;
-> +	struct sk_buff *skb;
-> +
-> +	tx_tail = rkcanfd_get_tx_tail(priv);
-> +	skb = priv->can.echo_skb[tx_tail];
-
-nit: skb is set but otherwise unused in this function.
-
-> +	stats->tx_bytes +=
-> +		can_rx_offload_get_echo_skb_queue_timestamp(&priv->offload,
-> +							    tx_tail, ts,
-> +							    frame_len_p);
-> +	stats->tx_packets++;
-> +}
-
-...
+Rob
 
