@@ -1,122 +1,129 @@
-Return-Path: <devicetree+bounces-89480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E0A9414FD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:01:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDC5941507
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 17:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8317C1F24649
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7227C1C22D7B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B93D1A00E6;
-	Tue, 30 Jul 2024 15:01:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="SZ33MQPc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30C31A0B1A;
+	Tue, 30 Jul 2024 15:02:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7F42A1C7;
-	Tue, 30 Jul 2024 15:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581D11A2C2A;
+	Tue, 30 Jul 2024 15:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722351660; cv=none; b=m7iz83h+akRT+ib8XDvyfpDrasptagcwnwyVjVzB/Mtii+GIpS2VpfL1RuB8pAbpn4/ZN+dMGezr8d+CVm498nOqGedSVQ60ghkRc2325giYFFUSbrUvCps76S096uOfl4wZR+SpNmoN9wqx9bZgGtXd9i+gUwn84tCFtBvkbJM=
+	t=1722351722; cv=none; b=qUQWXqgPvPjp/iSdf811iorZV2CUf90kZl71cBt+dk7TSRa5o7UO1fYMXWKr+2HnHAn57alkr8TFp1eRmoIupYTU7CORr8GvYJB+9c3wCfyAeDtYv6KPdBxsWQZU0nTowOC9lae0qNNC2JOYmFSPUlWxzNKhlFjN6PPOPfD6haE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722351660; c=relaxed/simple;
-	bh=C46lnTgTdEUHa4MNm/fgHHaaUwl9VVGJLeuJ6XjMX7Q=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=qtLYoHdgyKOp8e5dZm8h97LyEHM8XmE56utyrMIs/IrGQwR50WI5oJvFZmY1SriiwX+MUgGmeea/P/FtEJjQfDsUIzCZo/CIOazUmKFHy1Ze8twB3C4c0GVz5ViVSDIKGu99/0rbevSGkOAk+8VHw3iY3qRJXzLXQ9G0VCNOKx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=SZ33MQPc; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1722351619; x=1722956419; i=markus.elfring@web.de;
-	bh=fzQR8FFAK3t7+2p17buzYuiThMVwwBizpzlOP3GSlj8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=SZ33MQPcPzwuLTVOaAuIFcUXcJ/beaQl8rUgcEJZSQ5g6wEB/pg5XVTiKNkT/NPP
-	 LxTt9N5eJhGyqskFL/xQzclyRO6ZC63gLCfRHpZVmu1yDs8IGERT8yUZTRzB7ENsS
-	 mj9X/Kh978YrttoI7vqhdy5BjzztdIXWVzGnCReC6eD3Kw6aVNvpsudMBYRxGSGhI
-	 L/QLEdPFhZlC2V9z10GpKi0zOGXKVkRY3ClhMeAebY5j80ZyGGbtJtYBxONv7qi7J
-	 0HljMTJh7mDJwyxLa8rhdGYU6I67l0LbbUihAjcDzkvNasg2WfR3d92DZUJ2ZxSVW
-	 SEsSDe7p9Pi2y3luiA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MFJnh-1sRzvG16PR-00BmDG; Tue, 30
- Jul 2024 17:00:19 +0200
-Message-ID: <f88557ca-536f-4ea4-ac13-e20fb296195c@web.de>
-Date: Tue, 30 Jul 2024 17:00:17 +0200
+	s=arc-20240116; t=1722351722; c=relaxed/simple;
+	bh=OBy8O2Q3Rcrbpz2I8iDBgN9IOSfB4/NWSOoDb2Dvzxg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lDQj8jYSnLRmLOISA2AOFm8DSwENnR9nxtBMGlpeK5XyQreTtHYLGJiqx3YSvyBSmAavp4M+J2O0NFq/HMpETE9F7DZBxCfAscKFZAN6UhBylw0uJJnrcOOSgzbAZdsAbnXRR5KyMuKEe0jngA5OammxhHmGWr6/6nYrAmEX1fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id 4DF5F20C77;
+	Tue, 30 Jul 2024 17:01:51 +0200 (CEST)
+Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id 35DCC20547;
+	Tue, 30 Jul 2024 17:01:51 +0200 (CEST)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v4 0/2] Basic support for TI TDP158
+Date: Tue, 30 Jul 2024 17:01:30 +0200
+Message-Id: <20240730-tdp158-v4-0-da69001bdea2@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Florian Sylvestre <fsylvestre@baylibre.com>,
- Julien Stephan <jstephan@baylibre.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andy Hsieh <andy.hsieh@mediatek.com>,
- Angelo Gioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240729-add-mtk-isp-3-0-support-v6-4-c374c9e0c672@baylibre.com>
-Subject: Re: [PATCH v6 4/5] media: platform: mediatek: isp_30: add mediatek
- ISP3.0 camsv
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240729-add-mtk-isp-3-0-support-v6-4-c374c9e0c672@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:4Zb/x/JAgneBRKvvPm7xyrFIbDn22ofBuCL90y77rx2Jfy2Zbi2
- RJ6KHcqJfBXMxBGJWCexAO8OMDdoKFRK0ClzvdKoTH97oQgYRBc9P7FLWwOrTuRJtNCkuIA
- bLSAeCcxrEr5KQt/mJ33MA2xFGWiFIVU96M6cIcgW0f9M8b0eYeD+itSGxBveAzdkk2xagE
- c3CinLYom+6K7w6U8YTOg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:bHM4AXgBl7w=;lD6T+yVR3keWuF801q7VmAjs13/
- gwxHaMPiF66h5qf0tryLq2OfzWDbHh6meIwbYdkSypjLUV3BOnLeorO4UwYI2iWQsx4YHs7Rv
- /P4mnaDQZFDRCDr+Vywxzz5PalF1juvLXQEXXHrnoKvFNPA3DDcqX+cXZsn/Jx228jKPMbjoe
- GWqRDT61JvCoa2lqF5iMciRoIlvyVVH+pxxbw/olVwe/tLgsbz7EGgBXhXnbm97nO7ZnoAay3
- 6mufhXoq7vynQNx1Whg50Iuv5c4tIPxJrLACcH3pjaLxFFHyNl6/+BpDqtdPIHjaMFAuoViju
- USpyhAY6LiryeON9/rh3j8fARMaccC/sMtxDf/B4DB2Rdd4OArxvffZnwA7U9BVaj/nRTt2ei
- TVWCftEzH2BaKLq50VZSAfMm3NBpCD6RVUs8TpLaLgTuKQSoqXdZEUCjREHL2dGzA9k7vybml
- 4pHlZxYv3XA1Mz+R0AERoK54ESzsBXT27YMflMGGKHAXS/stlgNJ9X1HyQmm3hr/9zIOHdDzM
- y1PcCglz0zdAyVE1apYyqAMjdjXFhoM3n9p4ltiewazV2tMc4ZMnreQxSaNaNTzN0M5e4jXJ9
- YyB8nK6+zoSdXpXC9dXdGbyGLW8vjcTzn+cY9oAi2Ff53WIbbe9iHAEcf0dmoD3gZECjTwDez
- m4duuqDqN9KFcx6/nGDGWD0MFz4MNY/iVYTkkx0IVulRQxOF45P0EapBtEdq4tfgh+9WCLfbc
- 8b26+A1XqGrHiCaGZuFavo3brp94dq/aX724fQSMBdsgAu3ukpuZHbYbFgPEBMgPZfZu09GrI
- 8jdThC2m+7BJIeO7fBQD4M9w==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEoAqWYC/2XNTQ6DIBCG4as0rEvDn0K76j2aLgRmKhs1YIiN8
+ e5FF62Ny2/C8zKTBDFAIrfTTCLkkELflaHOJ+LapnsBDb5sIphQrOaajn7glaGKG8GYr51jlpT
+ HQwQM0xZ6PMtuQxr7+N66ma/XQyJzyqjHqwHUHlzt7xgBbD9dMJK1kcXOierrRHGNtFIpzTQ2+
+ uDk3v3+k8WhFWidYUaq+s8ty/IBQxaMrA0BAAA=
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
+ Pierre-Hugues Husson <phhusson@freebox.fr>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Marc Gonzalez <mgonzalez@freebox.fr>
+X-Mailer: b4 0.13.0
 
-=E2=80=A6
-> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
-> @@ -0,0 +1,413 @@
-=E2=80=A6
-> +static int mtk_camsv30_runtime_resume(struct device *dev)
-> +{
-=E2=80=A6
-> +		mtk_camsv30_setup(cam_dev, fmt->width, fmt->height,
-> +				  fmt->plane_fmt[0].bytesperline, vdev->fmtinfo->code);
-> +
-> +		spin_lock_irqsave(&cam_dev->buf_list_lock, flags);
-=E2=80=A6
-> +		mtk_camsv30_cmos_vf_hw_enable(cam_dev);
-> +
-> +		spin_unlock_irqrestore(&cam_dev->buf_list_lock, flags);
-=E2=80=A6
+TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(spinlock_irqsave)(&cam_dev->buf_list_lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.11-rc1/source/include/linux/spinlock.h=
-#L572
+Like the TFP410, the TDP158 can be set up in 2 different ways:
+1) hard-coding its configuration settings using pin-strapping resistors
+2) placing it on an I2C bus, and defer set-up until run-time
 
-Regards,
-Markus
+The mode is selected by pin 8 = I2C_EN
+I2C_EN = 1 ==> I2C Control Mode
+I2C_EN = 0 ==> Pin Strap Mode
+
+On our board, I2C_EN is pulled high (hard-wired).
+
+---
+Changes in v4:
+- Rebase series on top of v6.11-rc1
+- Add blurb about I2C vs pin strap mode in cover letter
+- Add blurb about I2C vs pin strap mode in binding commit message
+- Add blurb about I2C mode in driver commit message
+- Add comment in binding explaining when reg is required
+- Add comment in binding describing Operation Enable / Reset Pin
+- Link to v3: https://lore.kernel.org/r/20240627-tdp158-v3-0-fb2fbc808346@freebox.fr
+
+Changes in v3:
+- Add 'select DRM_PANEL_BRIDGE' in driver Kconfig
+- Fix checkpatch errors
+- log errors using dev_err (so save dev pointer)
+- expand a few error messages
+- expand commit messages with info from the datasheet
+- mark regulators as required in the DT binding
+- Link to v2: https://lore.kernel.org/r/20240625-tdp158-v2-0-a3b344707fa7@freebox.fr
+
+Changes in v2:
+- Don't overload simple-bridge, spin new minimal driver
+- New driver, new binding
+- Default device settings work fine for us, so we don't tweak registers
+- Link to v1: https://lore.kernel.org/r/20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr
+
+- Link to v0b: https://lore.kernel.org/r/b41f2f86-0d99-4199-92a9-42cbb9d6a6d5@freebox.fr/
+- Link to v0a: https://lore.kernel.org/r/d3de652f-ce89-4f57-b900-07b11f8bf8f9@free.fr/
+
+---
+Marc Gonzalez (2):
+      dt-bindings: display: bridge: add TI TDP158
+      drm/bridge: add support for TI TDP158
+
+ .../bindings/display/bridge/ti,tdp158.yaml         |  57 +++++++++++
+ drivers/gpu/drm/bridge/Kconfig                     |   7 ++
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/ti-tdp158.c                 | 108 +++++++++++++++++++++
+ 4 files changed, 173 insertions(+)
+---
+base-commit: c6072668fcfb13295b600747dbd89f00da1a4ed9
+change-id: 20240617-tdp158-418200d6cc0b
+
+Best regards,
+-- 
+Marc Gonzalez <mgonzalez@freebox.fr>
+
 
