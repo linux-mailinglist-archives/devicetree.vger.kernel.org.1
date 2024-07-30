@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB7F940805
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:04:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2ED94080A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:04:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327451F23954
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:04:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C6E91F23D81
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAAF168481;
-	Tue, 30 Jul 2024 06:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B749115FD08;
+	Tue, 30 Jul 2024 06:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VupzIOaf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oIjsVLO+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59A3624;
-	Tue, 30 Jul 2024 06:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCA2824AF;
+	Tue, 30 Jul 2024 06:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722319422; cv=none; b=el/Sgq91/a+NynfnrABxjkIM7MjXB+e+UigIiP9Os6+itGAJD21XfuaSTmvTI8sQ87cCauTg4avoJ5lEUbq0jBTdRLGWqHPC763HxU9Z2nsOm3OtO2xdJt9mIlUcbrIMWpFvU//OI1vIp1bU+k3ZCl6LOtITVLuOsRGcnMwZvHs=
+	t=1722319486; cv=none; b=qcXdsf58y+9CZv2gse62uBW927PBfz6nJwxk9DNFdDczu+d0524eYQBFttVpCWcU8RF/1vs2YGtYHiGKw49XSWU1GSQqCvyU8VC26DRbk9hBKAr3Ju66JMfEUuUFyHYUNOKLPKU5Zu3Ja241uOHdMfNT1FvBTAtfvEUuAhwgQtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722319422; c=relaxed/simple;
-	bh=J1drVKJOLr7ECqy0xr8VVmAHJ0xro7tTHQnAtctm4Jg=;
+	s=arc-20240116; t=1722319486; c=relaxed/simple;
+	bh=6atBhaAQqEw+o784boMj0u6Ji4rgOGC5RZ3DD2SHTNk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Sqam9Ua4H8OgUoQkCzCNP2ZARhlvlxDBDrScQiL/T8gXXnSyBXG1xGkFs3LfzWZuL5gheMBmurHmskN3+vMGf4MNKvtpqRaCUof2xVDBxwGJFCKSY2kQPhWfVlLftIWlhYopiwHaM0G87XCac6PjyJFJHuLRvdE4Wl3ZFdrsZDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VupzIOaf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00472C4AF09;
-	Tue, 30 Jul 2024 06:03:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aKncBqRWeXWZPTwJXYW4DvPlOqfvbilTDab47V9H2kNKYsO159ipmgcjLZaKTBremsS7/61fLg3kPSF4ykeiSPVCa6R5wVPmKwCUHGr1t6eiMmffuF9l/bMUqjMdc/OnsJ8fPOjGr8RsGwqyvA1D+DVkIIBaWPhbWdmWM83WSTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIjsVLO+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1846DC32782;
+	Tue, 30 Jul 2024 06:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722319422;
-	bh=J1drVKJOLr7ECqy0xr8VVmAHJ0xro7tTHQnAtctm4Jg=;
+	s=k20201202; t=1722319486;
+	bh=6atBhaAQqEw+o784boMj0u6Ji4rgOGC5RZ3DD2SHTNk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VupzIOafU5MV+C/FfeoUDuldze0mfrhBAZ/Kp6Nk/Sv94V3Bwycxj5O+TWk85zLUn
-	 Orgpj8wRJxohBKQ2t41qWNLBq9E4nFnMTX1RCQpppNEod+ABoNOEc2XCD584Ftcc7q
-	 GvZfxR0kGu+AnvLFb6NIiVZXIhK3Oy4Avos1drmqzkXq/2kDPZ92vB1OK7xtW7drqZ
-	 tpQU5SZ6Iek3rOmQrcvWKlG50ru2hKqhXGt+TtmWCYubLrSwVjeWBXCNun/SAby6wF
-	 3hWRmO6Os9izN2t18ILa/RQjILxPzpNnnJnjP9F3RYyFsvi/h5XPafU0vcXMbXqTho
-	 8JT8yeW7G7t9w==
-Message-ID: <06894f75-f066-42b3-92e5-8d2eef7b1341@kernel.org>
-Date: Tue, 30 Jul 2024 08:03:27 +0200
+	b=oIjsVLO+kApVerFedU1bNVkV7EeaLv2osA3PEtMHiJaRlCrciJyKyucMSJ9TzpdE8
+	 6yAsAwLdrWYo3sTRa8dfKFslSEngk38yyd7QxS5hz8yhcZEsLv1sfKY+txkdIhg6Lf
+	 2FanSW64v1gH+0CbDOYBs2/2WU5ADS8AANzGKZeVWu7T5DDI1KbIBsfZEn6ZSKIHOV
+	 OYIs0sFWU9urAoVYB0ieUQwAneCxfFZuhvF1EdsYeS+jZ0a0RmY00zJIY0fXyp1Nn2
+	 3Svfl//mmeYHrPPjsEyBz0TtQbMyPTtS2rZsgsgODHJoNRO7BrgLO3bSXXNtRVj4B3
+	 vpIaT/teXJjmw==
+Message-ID: <8e416a44-f637-4a3a-ad9a-6a84b3770b2e@kernel.org>
+Date: Tue, 30 Jul 2024 08:04:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
- clock description for AP6275P
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com,
- Arend van Spriel <arend.vanspriel@broadcom.com>
-References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
- <20240730033053.4092132-3-jacobe.zang@wesion.com>
+Subject: Re: [PATCH v11 25/27] ARM: dts: aspeed: yosemite4: add RTQ6056
+ support
+To: Patrick Williams <patrick@stwcx.xyz>,
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20240723092310.3565410-1-Delphine_CC_Chiu@wiwynn.com>
+ <20240723092310.3565410-26-Delphine_CC_Chiu@wiwynn.com>
+ <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,19 +107,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240730033053.4092132-3-jacobe.zang@wesion.com>
+In-Reply-To: <ZqgRq4h0HWClxSEW@heinlein.vulture-banana.ts.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2024 05:30, Jacobe Zang wrote:
-> Not only AP6275P Wi-Fi device but also all Broadcom wireless devices allow
-> external low power clock input. In DTS the clock as an optional choice in
-> the absence of an internal clock.
+On 30/07/2024 00:03, Patrick Williams wrote:
+> On Tue, Jul 23, 2024 at 05:23:06PM +0800, Delphine CC Chiu wrote:
+>> Add RTQ6056 (spider board 3rd source) support in yosemite4 DTS.
+>>
+>> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+>> ---
+>>  .../boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 10 +++++-----
+>>  1 file changed, 5 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+>> index f73719b3c2f1..03a1e41312e3 100644
+>> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+>> @@ -1240,35 +1240,35 @@ adc@37 {
+>>  	};
+>>  
+>>  	power-sensor@40 {
+>> -		compatible = "ti,ina233";
+>> +		compatible = "ti,ina233", "richtek,rtq6056";
 > 
-> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> Is this legal to have two chips both listed as compatible?  I thought
+> this approach has been rejected before.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Testing would tell... This was clearly not tested and is just ridiculous.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
 
 Best regards,
 Krzysztof
