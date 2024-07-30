@@ -1,129 +1,130 @@
-Return-Path: <devicetree+bounces-89357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D115C940DE0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:37:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9628B940DE6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:38:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DB7C2854CA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:37:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9CB01C245D0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AE4195807;
-	Tue, 30 Jul 2024 09:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673281946B2;
+	Tue, 30 Jul 2024 09:38:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gDqxSAI/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7tfWTu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C64018EFE0;
-	Tue, 30 Jul 2024 09:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D07194140;
+	Tue, 30 Jul 2024 09:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722332259; cv=none; b=hM0takv6rGpErmAmwNrkgiJCp3IpgPBpwT4z2y/nv7BsGR6s3V6v4TdAA5ezvmbqrNt8alvYseY8ZGj6esEW7ahOx8tmQnMTOeMROHhZt7Ede2YZhiY5ulGQI/tDuU8vI5CXi01GNTBaZ4vdIkXDLySDbYFbMLoUdYRajxGb7/I=
+	t=1722332296; cv=none; b=YmPnf0lgDReOlAoVshizZMfU81bRClCTnTv+wGEurlgjoFPZ2xWU1gHRLi0lWDnREmNA1NzBK00pTJq/DPPYJmIbeFBlQ4GxOlS2a8yvvBOMn7yz2+n6NparB9YqVsZqd+8sF/yhZirnKnRYtC9iz9gIz82q0OsbgvzAzfmx+N4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722332259; c=relaxed/simple;
-	bh=eQ4F1x/lpLxGO5KX65v21lz8EB6jaKNod2yiaHWTOHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pOAD4G1JsKRpPW3OBxrE3CI8EV/CYDD7VhmAv4C9o1vo1j9mGsfqq9Bz6+KwkpP90Y8U1rlVo+sC43bqqzErvLqQnyO7eYUZV9uBG2LgIH99yAPeAO0I/SHHdnKOxbtttZFhG7uZfMccR4NzGSn9mWcYTmfuMFtXDgW4hekC5EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gDqxSAI/; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722332257; x=1753868257;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eQ4F1x/lpLxGO5KX65v21lz8EB6jaKNod2yiaHWTOHU=;
-  b=gDqxSAI/lWgnwnaZzcjDa32ePLqjrrHcLbJ8GMZQ7jYA7zQq9tmHrRX5
-   UXWnD5xq10uSnm8ATuHK6HyYiDMxP0eNXE8u+s1IesJzMnLiHL+KzoUmx
-   5TPeEs2vRECrx4LTY2l1qeQlLbY/XznxQxc5cRI6bXp0kD/goBjMmQqsl
-   95VQv5G8UQIrMpTYneO5rynQusz3nGEZ5B5AxvD2cd+4n6JkMVEwmkxpz
-   fYy1A7u9daA7KDU/SImxvH/wS1JwrQaHR8yWghZygP913UHJ0sou7CWO6
-   drT6aQmBaupIB9vxJl1Yw7ks1SM6bviJWlmRiXCteb7cFFlxNKkHQ0BAv
-   g==;
-X-CSE-ConnectionGUID: 6qX+W8k0TnGsHmFSRMf23w==
-X-CSE-MsgGUID: RxkUyNQeQOiwuiYSm1zj/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="37609123"
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; 
-   d="scan'208";a="37609123"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jul 2024 02:37:36 -0700
-X-CSE-ConnectionGUID: LKz+kXhGS6K4pP63RiYLZQ==
-X-CSE-MsgGUID: CH0h1jCyQo+6eb2XHzFn6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; 
-   d="scan'208";a="58605605"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 30 Jul 2024 02:37:33 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sYjIQ-000sjU-11;
-	Tue, 30 Jul 2024 09:37:30 +0000
-Date: Tue, 30 Jul 2024 17:36:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Inochi Amaoto <inochiama@outlook.com>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Jinyu Tang <tangjinyu@tinylab.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 3/4] riscv: dts: sophgo: Add mcu device for Milk-V
- Pioneer
-Message-ID: <202407301749.K0pFCNLU-lkp@intel.com>
-References: <IA1PR20MB4953826DECDCC141A7CDE634BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
+	s=arc-20240116; t=1722332296; c=relaxed/simple;
+	bh=DwLFtEiElQ/3D4yNuQ5m7YF07dO8c14iwsl62eSuZtM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RZIaQV6D0h78b0N0ASTXMb2/jAelZnYoWxtwvs3Rgmdnbqu8Pfn+Axs39aCZHDGDaNbzcBOpTtNwyXXedI+5WH5v8GavFsESb8IOq7969IihlbDUsKpQVIozRYkA0crdOLBJvf6CIoLZ8KKfLTZRFdZEguPvmhRvZ4t+OiK54Y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g7tfWTu5; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5af51684d52so4301277a12.1;
+        Tue, 30 Jul 2024 02:38:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722332293; x=1722937093; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zYk6hexZkIu1KsNcGcB/6xdUxP9FHGUqGXf6v+D1grs=;
+        b=g7tfWTu57qeKwZaw0xadI8q4XfU9N958SaWTgvsnUBNxf13siMbmmak9kKKRgbLFrV
+         m2IJERsfmud6aDM2VD5cZl6oYOxym88/+udChOAMB1XkZJE5ncPnnIhs/m4G3pwWotO6
+         pMQxCs3xtupEENUNNLBz9PIZ3MObSOkPCkigU6/0zsfh1PmHk5Ou2MimgugmFISc4l2/
+         RGLVKARkBw2pAwBLgjm54fMsYjVi4i9mLcCTKLskuB5FHQAlepFP7qMYuL8SeH1MvBvv
+         ax1QhJKWwhKoA8W1hQ7LkjC7WqaRDMayq7PiXih+dN3lhVMPWMiH3RpPrDH8eoyEyFKp
+         4+TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722332293; x=1722937093;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zYk6hexZkIu1KsNcGcB/6xdUxP9FHGUqGXf6v+D1grs=;
+        b=TCW27j92DmwaSSE6zj/8JXPEPVziPUlOADY9wrsXcQyqscSirqJXKqBz4iITmmCdPn
+         qoHvwe0jqbKoHSvTZWR1fZ7SqGI3HbhmJw6ro0lKDoXVTGqBCxKXDquqDLrVpINYabm2
+         MWGdJIlP7WrHiief5QKilfoqC0WmrQGo/x/KclzpJGZHYOr3DyaxwsiYzeqodhFTVMmT
+         X+FTFMnMT8fnSJU3KJdA1FGuDiRUibg1rvX3FQEZM5XXJ1RGldhmlPxCfH/r1m/EBpjz
+         E9vLEHS3vuyfo6k+DMGswK9B0k/VYit0TxBtkdA7Qp50E0MM+k35ycykjOrP0+uUOPCY
+         Mfnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWFRZ5q/xYA8R51P7SNGMeI9iMXUzCPHi9JeWkbIM9wJzg89AdbuIx7XYnLkNr3OtboxUoOFqPkWgftqPWU7A4iJd8AkBsL7K338CCfFpkyYX0xvxKSjMwh8kdELV7VdZchEeIlb59sZg==
+X-Gm-Message-State: AOJu0YwrrAGrM8/+GdTBKcPxiCkwO6zwqilExomIKDUDld8t8tyhSCE1
+	6Gfg4dTQ9P6UdIJWAJi2bc4Hzp8Vfq1/ZUI9+vGh8U9Qo4CyAkxs
+X-Google-Smtp-Source: AGHT+IGbhRs9nJholLOLVhLsvxULMGP1/MxzpVWNfaIm9yRfiGrakmJA0Pk2xTuKIkzyoL43x6mr0A==
+X-Received: by 2002:a17:906:f599:b0:a71:40d4:b1d7 with SMTP id a640c23a62f3a-a7d4015f9aemr644826966b.56.1722332292611;
+        Tue, 30 Jul 2024 02:38:12 -0700 (PDT)
+Received: from partp-nb.corp.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acada27ddsm613910666b.184.2024.07.30.02.38.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jul 2024 02:38:12 -0700 (PDT)
+From: Parth Pancholi <parth105105@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Parth Pancholi <parth.pancholi@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: ti: k3-j784s4-main: Correct McASP DMAs
+Date: Tue, 30 Jul 2024 11:37:54 +0200
+Message-Id: <20240730093754.1659782-1-parth105105@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953826DECDCC141A7CDE634BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Inochi,
+From: Parth Pancholi <parth.pancholi@toradex.com>
 
-kernel test robot noticed the following build errors:
+Correct the McASP nodes - mcasp3 and mcasp4 with the right
+DMAs thread IDs as per TISCI documentation [1] for J784s4.
+This fixes the related McASPs probe failure due to incorrect
+DMA IDs.
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on robh/for-next linus/master v6.11-rc1 next-20240730]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/j784s4/psil_cfg.html#psi-l-source-and-destination-thread-ids/ [1]
+Fixes: 5095ec4aa1ea ("arm64: dts: ti: k3-j784s4-main: Add McASP nodes")
+Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+---
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-hwmon-Add-Sophgo-SG2042-external-hardware-monitor-support/20240730-160416
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/IA1PR20MB4953826DECDCC141A7CDE634BBB02%40IA1PR20MB4953.namprd20.prod.outlook.com
-patch subject: [PATCH v8 3/4] riscv: dts: sophgo: Add mcu device for Milk-V Pioneer
-config: riscv-randconfig-051-20240730 (https://download.01.org/0day-ci/archive/20240730/202407301749.K0pFCNLU-lkp@intel.com/config)
-compiler: riscv64-linux-gcc (GCC) 14.1.0
-dtschema version: 2024.6.dev4+g23441a4
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240730/202407301749.K0pFCNLU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407301749.K0pFCNLU-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts:29.1-6 Label or path i2c1 not found
-   FATAL ERROR: Syntax error parsing input tree
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+index f170f80f00c1..d4ac1c9872a5 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+@@ -2755,7 +2755,7 @@ mcasp3: mcasp@2b30000 {
+ 		interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "tx", "rx";
+-		dmas = <&main_udmap 0xc500>, <&main_udmap 0x4500>;
++		dmas = <&main_udmap 0xc403>, <&main_udmap 0x4403>;
+ 		dma-names = "tx", "rx";
+ 		clocks = <&k3_clks 268 0>;
+ 		clock-names = "fck";
+@@ -2773,7 +2773,7 @@ mcasp4: mcasp@2b40000 {
+ 		interrupts = <GIC_SPI 552 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 553 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "tx", "rx";
+-		dmas = <&main_udmap 0xc501>, <&main_udmap 0x4501>;
++		dmas = <&main_udmap 0xc404>, <&main_udmap 0x4404>;
+ 		dma-names = "tx", "rx";
+ 		clocks = <&k3_clks 269 0>;
+ 		clock-names = "fck";
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
