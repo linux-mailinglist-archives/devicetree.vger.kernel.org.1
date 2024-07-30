@@ -1,308 +1,258 @@
-Return-Path: <devicetree+bounces-89415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C2BD941104
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:47:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 680C094110B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32BCE28632B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:47:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85C8C1C22973
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB81319FA81;
-	Tue, 30 Jul 2024 11:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0993B1A072E;
+	Tue, 30 Jul 2024 11:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rs8gIPSc"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="DQPK5knA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04E119EEDF
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 11:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410C218D4D7;
+	Tue, 30 Jul 2024 11:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722339886; cv=none; b=MIRSFW4BJKwLzrjC467C2gND2g27h4Eo/btCqe0kNo7EjFPOzcPPCOMTIfBV4viLsFiVi0uSUeIzLoROWZ0lE3KyjTjr+cU/IueUJXivlMjcb17eu8sW1WolHTP3B/ZfzejVkSksEIzABXVEwWh0/2yRtZY7LNZZk++lOaurydA=
+	t=1722339945; cv=none; b=UIt8D5ZiDtQ9Lf7HZ8WWsP3pGZlTRMMokWScbc/zeImE60kmi3HdqCSUBt01z24eP+IfTGazYpb4+RREKNULALE1ctyjweKLWONfdxMeDNXV6MTchGHMjTqaJ959y9lkSPjTWz7QsTkCXkfIQClRTPr2oudBq52fuSgBt46iJWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722339886; c=relaxed/simple;
-	bh=QRXj6RQttpiz5ZDNTET50nTYV/yvORvJdoGwJq46rAM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=kZkVyuYSDN4rOv5o+uY5vVXbDCytupdEHVZBA3T8raKls4GRc/mMD4e7f0cJupKqZ5O2HX+6iqzu/qUtyyiINrqSzLTDx7qX7Mmz1qWfVqiuJDL6p0pMhH3AsGH8wCDzhwzGcelzrNm+nPf4Z7FNny0LL5mXiLsVht8WVOY9k+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rs8gIPSc; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20240730114442euoutp01b01f0815e0c21a277e08f983a803157c~m_v9TKthd0729107291euoutp01a
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 11:44:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20240730114442euoutp01b01f0815e0c21a277e08f983a803157c~m_v9TKthd0729107291euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1722339882;
-	bh=pCbKlJaDg+laaap6ynSdGrvZR5pllUN9unnnOVUI4G8=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=rs8gIPScHO8jZM6ap4o3/sxp21x7cC0pcFyFnF+SJHByu7fnuOeVCJtdex4+P780o
-	 f7L94JS9S8Ob7ckpIPDmJniSA8cX2GEi2lFvZAAJgQFnuhMjuHEGeHxuojG6tau6Eh
-	 XVdIhdmKidleBdAPtOI5ATsEWNQmNVksTXde/+Dg=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240730114441eucas1p23f9982159414f819fc4d4b0cd76acbdf~m_v9Df34n1769217692eucas1p2d;
-	Tue, 30 Jul 2024 11:44:41 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 77.1D.09620.922D8A66; Tue, 30
-	Jul 2024 12:44:41 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240730114441eucas1p16aabcc3a8097dbe284e73ecf69e6d03c~m_v8fTgWy0204902049eucas1p10;
-	Tue, 30 Jul 2024 11:44:41 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240730114441eusmtrp1170c8f6f96a84f6504c8002787a1890e~m_v8erAUp2598725987eusmtrp1V;
-	Tue, 30 Jul 2024 11:44:41 +0000 (GMT)
-X-AuditID: cbfec7f5-d1bff70000002594-77-66a8d229829e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 6C.2F.09010.822D8A66; Tue, 30
-	Jul 2024 12:44:40 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240730114439eusmtip1a520c3de7ae9ea61577d8218c192c31c~m_v7K3nXv0586705867eusmtip1P;
-	Tue, 30 Jul 2024 11:44:39 +0000 (GMT)
-Message-ID: <09e9cf0b-27fd-46b8-8631-87d798afd19e@samsung.com>
-Date: Tue, 30 Jul 2024 13:44:38 +0200
+	s=arc-20240116; t=1722339945; c=relaxed/simple;
+	bh=I82S2mhSJS+Z0GItb6C3XmzanEjGnSvA4xFmeDw0tp8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XfoAajibDq/VLmu7kzHH4hVea+CiDUusGmUP2BNCpS8mR0Y0qNtn0QRnToOLJZ5rbAVnf6XJv4hRwyOupIHwD2eMoHBLck1Lg4sCqASRZnTG6LQNI5mha1jEIWKBLfNQy+UTCLd1ZP1RHXMgCQgAkc1Efh+nWrkS78rAezsXXXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=DQPK5knA; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46U7ucLN030420;
+	Tue, 30 Jul 2024 04:45:39 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=F3bS0DEAvKVBCdXjr3S+8q/
+	T3Eli4/+yRJ1XrOjQFJ0=; b=DQPK5knAvRlb036w+RhXjzL7Am0hREDGUQMCkzz
+	mhUQmgFLFciZ4kEJSLljHscYN6ywur+GeDoPLkM1qWc8qBzQmo+Q5B/TLTX0Yr6H
+	XTYoP5v3W+usNetzhi11jymyvVaOe/XrYs8ijxpEIIv7r7paVl4xJGLjUrYEIfbE
+	hFi2Z4I8ZxNN0Vm5PMUmfTKpkOn3xocrEhIFJlwpB9Qlr4Lt88adZIRqq7L9017e
+	nE8Rplw1SRdi3Rip6LvN/I7qj+eREKXGVkjCrP5l8NpybWjwGfYTiWab6iWBKyRU
+	zabP7mYbOeO0reCIjJrq/kXwcoV45YhHlpzIyh8LhcO8Ovg==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 40n0dqsk96-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jul 2024 04:45:38 -0700 (PDT)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Tue, 30 Jul 2024 04:45:37 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Tue, 30 Jul 2024 04:45:37 -0700
+Received: from Dell2s-9.sclab.marvell.com (unknown [10.110.150.250])
+	by maili.marvell.com (Postfix) with ESMTP id 304235B692C;
+	Tue, 30 Jul 2024 04:45:37 -0700 (PDT)
+From: Witold Sadowski <wsadowski@marvell.com>
+To: <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <broonie@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <pthombar@cadence.com>, Witold Sadowski <wsadowski@marvell.com>
+Subject: [PATCH v12 0/9] Marvell HW overlay support for Cadence xSPI
+Date: Tue, 30 Jul 2024 04:45:24 -0700
+Message-ID: <20240730114534.1837077-1-wsadowski@marvell.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] ARM: dts: samsung: Add cache information to the
- Exynos542x SoC
-To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20240730091322.5741-2-linux.amoon@gmail.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJKsWRmVeSWpSXmKPExsWy7djPc7qal1akGXy/p2jxYN42Nos1e88x
-	Wcw/co7V4uWse2wWmx5fY7W4vGsOm8WM8/uYLNZtvMVu8X/PDnYHTo+ds+6ye2xa1cnmsXlJ
-	vUffllWMHp83yQWwRnHZpKTmZJalFunbJXBl/Fh2h71gsmHF/Xs/mBoYF6p2MXJySAiYSMx4
-	NYG5i5GLQ0hgBaPEhgN3GCGcL4wSvdeOMINUCQl8ZpS4v1oBpuP8hFdQRcsZJc6daWODcD4y
-	SrRf+QXWwStgJ7Fr5RRWEJtFQFXi5eSVrBBxQYmTM5+wgNiiAvIS92/NYAexhQViJD7vWwN2
-	h4jAPkaJHdsWs4M4zALtjBKn5twAq2IWEJe49WQ+E4jNJmAo0fW2iw3E5hSwknjY+pYJokZe
-	YvvbOWCTJATecEhMaGpmhzjcReLZ9TesELawxKvjW6DiMhKnJ/ewQDQAbVvw+z4ThDOBUaLh
-	+S1GiCpriTvnfgGt4wBaoSmxfpc+RNhR4lrbW7CwhACfxI23ghBH8ElM2jadGSLMK9HRJgRR
-	rSYx6/g6uLUHL1xinsCoNAspYGYheXMWkndmIexdwMiyilE8tbQ4Nz212DgvtVyvODG3uDQv
-	XS85P3cTIzA1nf53/OsOxhWvPuodYmTiYDzEKMHBrCTCG39laZoQb0piZVVqUX58UWlOavEh
-	RmkOFiVxXtUU+VQhgfTEktTs1NSC1CKYLBMHp1QDk8s149+mJ77+l/F9meD5ZSrbmin67V9M
-	u//KTykJcJKc3FN07+SEYy8br9t/bVv8ZueamfbNug4RW6a5f9l1fY4b+9MlbfU/nxkXfuuS
-	tyg945D/lrnlHZuQTfNEqymVxRc+uovdv/f7sgo7a9qN2z/uFCzf9eL0rsZbjVIXv+w/u+jR
-	xHs/y3e+kZtUev9/8c7jF3wTmJyCwlrmWH+cuZnt6mddV8VPX/4rlLzh3xPEsi7U9skEWRXF
-	BC/DrzGaJzsnVilXKh1we5OU5x71qbbGZseZAy5P+08qi50SbJEx3Lf9/iqpk3x5wfOm+Z95
-	FuDkuGTGqcdv/X/vtyjceWFz1OnSacZyFna6XVulfxQosRRnJBpqMRcVJwIAKAYGFbwDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNIsWRmVeSWpSXmKPExsVy+t/xu7oal1akGXy4aGXxYN42Nos1e88x
-	Wcw/co7V4uWse2wWmx5fY7W4vGsOm8WM8/uYLNZtvMVu8X/PDnYHTo+ds+6ye2xa1cnmsXlJ
-	vUffllWMHp83yQWwRunZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTm
-	ZJalFunbJehl/Fh2h71gsmHF/Xs/mBoYF6p2MXJySAiYSJyf8IoRxBYSWMooMWunNkRcRuLk
-	tAZWCFtY4s+1LrYuRi6gmveMEpsOz2UDSfAK2EnsWjkFrIhFQFXi5eSVrBBxQYmTM5+wgNii
-	AvIS92/NYAexhQViJD7vW8MMMkhEYB+jxNmppxlBHGaBdkaJO29nQ63YC3TGim9MIC3MAuIS
-	t57MB7PZBAwlut52ga3mFLCSeNj6FqrGTKJraxcjhC0vsf3tHOYJjEKzkFwyC8moWUhaZiFp
-	WcDIsopRJLW0ODc9t9hIrzgxt7g0L10vOT93EyMwFrcd+7llB+PKVx/1DjEycTAeYpTgYFYS
-	4Y2/sjRNiDclsbIqtSg/vqg0J7X4EKMpMDgmMkuJJucDk0FeSbyhmYGpoYmZpYGppZmxkjiv
-	Z0FHopBAemJJanZqakFqEUwfEwenVAPTboafDLIse7uEW0U/H6zl82nzqHD5fezsmlqdTbYT
-	+uzPtE54+UVhfUHLGYPDvrWKfyZ80fH69j1Ycos87//Loe2Vy35cWbROxCu30Mo9THj39Sk9
-	+kzGvzVTbjPYB2yJFXF4/aT/3wb+ysfqL75477hqr83E1rgs8UCmx2/XGV+fz3f9X9kSqcD4
-	K2Pn/PL7Rw4vTRZsifw7Z+7ULTfDn1VcjrooyPwtlImtj62IZSXn0VdPQt0tGDQ/+KTPZHoY
-	XGfT+f3reZO1nsZT4m2K1h5MDThXxbnc/OnNYylBPsySkinXxUqMG32/PGfjv8Z4atcEq+Uv
-	C9SFz6g0WU/26p4Q+3PRRRvV1EYTMx8lluKMREMt5qLiRACaRA+FTgMAAA==
-X-CMS-MailID: 20240730114441eucas1p16aabcc3a8097dbe284e73ecf69e6d03c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240730091412eucas1p18feced3968a5f87dc8fe05f78d5c7659
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240730091412eucas1p18feced3968a5f87dc8fe05f78d5c7659
-References: <20240730091322.5741-1-linux.amoon@gmail.com>
-	<CGME20240730091412eucas1p18feced3968a5f87dc8fe05f78d5c7659@eucas1p1.samsung.com>
-	<20240730091322.5741-2-linux.amoon@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: mCtrfK1wkA72p6HK1kTyfP_E3BG0nqUs
+X-Proofpoint-ORIG-GUID: mCtrfK1wkA72p6HK1kTyfP_E3BG0nqUs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-30_11,2024-07-30_01,2024-05-17_01
 
+This patch series adds support for the second version of the Marvell
+hardware overlay for the Cadence xSPI IP block. The overlay is a hardware
+change made around the original xSPI block. It extends xSPI features with
+clock configuration, interrupt masking, and full-duplex, variable-length SPI
+operations.
 
-On 30.07.2024 11:13, Anand Moon wrote:
-> As per Exynos 5422 user manual add missing cache information to
-> the Exynos542x SoC.
->
-> - Each Cortex-A7 core has 32 KB of instruction cache and
-> 	32 KB of L1 data cache available.
-> - Each Cortex-A15 core has 32 KB of L1 instruction cache and
-> 	32 KB of L1 data cache available.
-> - The little (A7) cluster has 512 KB of unified L2 cache available.
-> - The big (A15) cluster has 2 MB of unified L2 cache available.
->
-> Features:
-> - Exynos 5422 support cache coherency interconnect (CCI) bus with
->    L2 cache snooping capability. This hardware automatic L2 cache
->    snooping removes the efforts of synchronizing the contents of the
->    two L2 caches in core switching event.
->
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+These functionalities allow the xSPI block to operate not only with memory
+devices but also with simple SPI devices and TPM devices.
 
+Due to adding 64bit read/write driver will be limited to 64bit systems.
 
-The provided values are not correct. Please refer to commit 5f41f9198f29 
-("ARM: 8864/1: Add workaround for I-Cache line size mismatch between CPU 
-cores"), which adds workaround for different l1 icache line size between 
-big and little CPUs. This workaround gets enabled on all Exynos542x/5800 
-boards.
+Example ACPI entry:
+      Device (SPI0) {
+        Name (_HID, "PRP0001")          // ACPI_DT_NAMESPACE_HID
+        Name (_UID, 0)
+        Name (_DDN, "SPI controller 0")
+        Name (_CCA, ONE)
 
+        Method (_STA) {Return (0xF)}
 
-> ---
->   .../arm/boot/dts/samsung/exynos5422-cpus.dtsi | 74 +++++++++++++++++++
->   1 file changed, 74 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/samsung/exynos5422-cpus.dtsi b/arch/arm/boot/dts/samsung/exynos5422-cpus.dtsi
-> index 412a0bb4b988..9b9b2bdfb522 100644
-> --- a/arch/arm/boot/dts/samsung/exynos5422-cpus.dtsi
-> +++ b/arch/arm/boot/dts/samsung/exynos5422-cpus.dtsi
-> @@ -59,6 +59,13 @@ cpu0: cpu@100 {
->   			reg = <0x100>;
->   			clocks = <&clock CLK_KFC_CLK>;
->   			clock-frequency = <1000000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a7>;
->   			cci-control-port = <&cci_control0>;
->   			operating-points-v2 = <&cluster_a7_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -72,6 +79,13 @@ cpu1: cpu@101 {
->   			reg = <0x101>;
->   			clocks = <&clock CLK_KFC_CLK>;
->   			clock-frequency = <1000000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a7>;
->   			cci-control-port = <&cci_control0>;
->   			operating-points-v2 = <&cluster_a7_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -85,6 +99,13 @@ cpu2: cpu@102 {
->   			reg = <0x102>;
->   			clocks = <&clock CLK_KFC_CLK>;
->   			clock-frequency = <1000000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a7>;
->   			cci-control-port = <&cci_control0>;
->   			operating-points-v2 = <&cluster_a7_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -98,6 +119,13 @@ cpu3: cpu@103 {
->   			reg = <0x103>;
->   			clocks = <&clock CLK_KFC_CLK>;
->   			clock-frequency = <1000000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a7>;
->   			cci-control-port = <&cci_control0>;
->   			operating-points-v2 = <&cluster_a7_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -111,6 +139,13 @@ cpu4: cpu@0 {
->   			reg = <0x0>;
->   			clocks = <&clock CLK_ARM_CLK>;
->   			clock-frequency = <1800000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a15>;
->   			cci-control-port = <&cci_control1>;
->   			operating-points-v2 = <&cluster_a15_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -124,6 +159,13 @@ cpu5: cpu@1 {
->   			reg = <0x1>;
->   			clocks = <&clock CLK_ARM_CLK>;
->   			clock-frequency = <1800000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a15>;
->   			cci-control-port = <&cci_control1>;
->   			operating-points-v2 = <&cluster_a15_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -137,6 +179,13 @@ cpu6: cpu@2 {
->   			reg = <0x2>;
->   			clocks = <&clock CLK_ARM_CLK>;
->   			clock-frequency = <1800000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a15>;
->   			cci-control-port = <&cci_control1>;
->   			operating-points-v2 = <&cluster_a15_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
-> @@ -150,12 +199,37 @@ cpu7: cpu@3 {
->   			reg = <0x3>;
->   			clocks = <&clock CLK_ARM_CLK>;
->   			clock-frequency = <1800000000>;
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&L2_a15>;
->   			cci-control-port = <&cci_control1>;
->   			operating-points-v2 = <&cluster_a15_opp_table>;
->   			#cooling-cells = <2>; /* min followed by max */
->   			capacity-dmips-mhz = <1024>;
->   			dynamic-power-coefficient = <310>;
->   		};
-> +
-> +		L2_a7: l2-cache-cluster0 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +			cache-size = <0x80000>;	/* L2. 512 KB */
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +		};
-> +
-> +		L2_a15: l2-cache-cluster1 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +			cache-size = <0x200000>; /* L2, 2M */
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +		};
->   	};
->   };
->   
+        Name (_CRS, ResourceTemplate() {
 
-Best regards
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+                        PosDecode,       // Decode
+                        MinFixed,        // MinType
+                        MaxFixed,        // MaxType
+                        NonCacheable,    // MemType
+                        ReadWrite,       // ReadWriteType
+                        0,               // AddressGranularity
+                        0x804000000000,  // MinAddress
+                        0x804000001037,  // MaxAddress
+                        0,               // AddressTranslation
+                        0x1038)          // AddressLength
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+                        PosDecode,       // Decode
+                        MinFixed,        // MinType
+                        MaxFixed,        // MaxType
+                        NonCacheable,    // MemType
+                        ReadWrite,       // ReadWriteType
+                        0,               // AddressGranularity
+                        0x804010000000,  // MinAddress
+                        0x804010000007,  // MaxAddress
+                        0,               // AddressTranslation
+                        0x8)             // AddressLength
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+                        PosDecode,       // Decode
+                        MinFixed,        // MinType
+                        MaxFixed,        // MaxType
+                        NonCacheable,    // MemType
+                        ReadWrite,       // ReadWriteType
+                        0,               // AddressGranularity
+                        0x804000002000,  // MinAddress
+                        0x804000004027,  // MaxAddress
+                        0,               // AddressTranslation
+                        0x2028)          // AddressLength
+
+          QWordMemory ( ResourceConsumer,// ResourceUsage
+            PosDecode,       // Decode
+            MinFixed,        // MinType
+            MaxFixed,        // MaxType
+            NonCacheable,    // MemType
+            ReadWrite,       // ReadWriteType
+            0,               // AddressGranularity
+            0x804000008000,  // MinAddress
+            0x804000008237,  // MaxAddress
+            0,               // AddressTranslation
+            0x238)           // AddressLength
+
+          Interrupt(ResourceConsumer, Edge, ActiveHigh, Exclusive) { 0x7A }
+        })
+
+        Name (_DSD, Package() {
+            ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+            Package () {
+                Package () { "compatible", "marvell,cn10-xspi-nor"},
+                Package () { "reg", 0x8040},
+            }
+        })
+      } // SPI0
+
+Changes:
+v12:
+  Add 64BIT Kconfig requirement
+
+v11:
+  Fix SDMA x86 build issue. Instead of ioread64_rep use readq functions
+
+v10:
+  Modify SDMA operation - Read as much data as possible using ioread64_rep, complete transfer with
+  memcpy. Ignore first step if buffer is not alligned
+  Clean unnecesary tennary operators
+  Add spi_transfer_delay_exec call
+  Rename "current_cycle_count" to "current_transfer_length"
+
+v9:
+  Split into smaller patches:
+    - Marvell overlay splitted into: PHY, Clock, Interrupt and SDMA ops
+    - ACPI support splitted into resource mapping, CS parameter reading and tx/rx bus length
+  Add separate ops and a few function pointers to distinguish between Cadence and Marvell:
+    - SDMA read handler.
+    - IRQ enable/disable handler
+    - Separate mem_ops for Marvell xSPI
+  Cleanup xfer code from magic numbers
+  Add more descriptive commit msg for xfer block
+  Use bitrev8 instead of custom bit reversal
+  Rework Marvell SDMA read operations
+  Add example ACPI entry
+
+v8:
+  Rename xferbase to xfer
+  Rework DLL reset, to return non inverted boolean value
+  Rework STIG and SDMA status check, to return non inverted boolean value
+
+v7:
+  Rebase patches to latest sources, changes in "Allow to read basic xSPI configuration
+ from ACPI"
+  Removed bugfix, as it was integrated to next tree from v6
+
+v6:
+  Fix item order in cdns,xspi.yaml
+
+v5:
+  Rework cdns,xspi.yaml file
+  Reword commit messages
+  Move mamory mapping to ACPI patch
+  Use devm_platform_ioremap_resource instead of two step mapping
+
+v4:
+  Rename new Marvell registers to keep naming conventions
+  Rename mrvl,xspi-nor to marvell,cnxx,xspi-nor
+  Various fixed for cdns,xspi.yaml file:
+    - Remove unnecesary parameters
+    - Link register xferbase with marvell,cn10-xspi-nor
+    - Move default values to .c file from device-tree
+  Clock configuration optimization
+  ACPI fixes:
+    - Remove incorrect ACPI match table
+  Added .data field to device_id, fixes for matching in ACPI and dtb case
+  Minor style comment changes
+
+v3:
+  Removed all kconfig changes
+  Added device-tree mrvl,xspi-nor tag
+
+v2:
+  Support for second overlay iteration
+
+v1:
+  -
+
+v0:
+  Initial support for v1 overlay
+
+Witold Sadowski (9):
+  spi: dt-bindings: cadence: Add Marvell overlay bindings documentation
+    for Cadence XSPI
+  spi: cadence: Add static PHY configuration in Marvell overlay
+  spi: cadence: Add clock configuration for Marvell xSPI overlay
+  spi: cadence: Add Marvell SDMA operations
+  spi: cadence: Add Marvell xSPI interrupt changes
+  spi: cadence: Add Marvell xfer operation support
+  spi: cadence: Change resource mapping
+  spi: cadence: Change cs property reading.
+  spi: cadence: Try to read spi-tx/rx-bus width property using ACPI
+
+ .../devicetree/bindings/spi/cdns,xspi.yaml    |  32 +-
+ drivers/spi/Kconfig                           |   2 +-
+ drivers/spi/spi-cadence-xspi.c                | 692 +++++++++++++++++-
+ 3 files changed, 705 insertions(+), 21 deletions(-)
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+2.43.0
 
 
