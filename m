@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-89566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0B83942143
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 22:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9C194215B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 22:13:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EE91B2517C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 20:03:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D34AB25175
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 20:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4ADF18CC0D;
-	Tue, 30 Jul 2024 20:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55C918CC17;
+	Tue, 30 Jul 2024 20:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuxualcN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DFBPADVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1F91AA3C1;
-	Tue, 30 Jul 2024 20:03:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED5F1667F1;
+	Tue, 30 Jul 2024 20:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722369817; cv=none; b=V6MHWE2+J/pcbX6MGTkte+cVGf0/k4crpOP52hVxjmwzCTx3D6a5g7Aom+cluWxUX1v2DeF7WAZsO2Ph0pc9lpG9Gpl+I5aUR8ADoqWxhvFDiI483xLx212uRuAd1lZN2vUXqTXrSYjmieEz2ch9KVfe+3u4HwjfK+N1/JBaJoY=
+	t=1722370418; cv=none; b=XzumUHx/r843KKxh2zhzwMbzx5Z6fIeMS1KbSFNLYI1AQ1eWzR8hfxoWM7mPgz+uL1+oELcnOY9PQYyqYG4zhqVOzDuvfnW/Wi2z/RDvHq4raK+kxmsPka2yJMlGNsRCJ+v6M5viykhx6zd2XuJBx9lVLYt77uAMjWXgWMT+ZSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722369817; c=relaxed/simple;
-	bh=ioCjriq9osqMbAs8+EODo48zUlg3xS+R9XDTxWKShkE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mOulZKqhc5dDtg7RTs2rlmFJyp/IxVWHj3SIK68sZRdLHOCQEReTLEE3k5GmsLLKy+hVjhpYf0F17HbR0tpQj1iuipvv9o0cksCudd1sQaPJVnWbYnaYQVscZH8Yufe6appaxqlO1WoeVcCahY0ptFaiVsg1heZ/rnjKcxxbkCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuxualcN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07519C4AF0B;
-	Tue, 30 Jul 2024 20:03:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722369817;
-	bh=ioCjriq9osqMbAs8+EODo48zUlg3xS+R9XDTxWKShkE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BuxualcNOych3A4yWU5cC100YYKH0ZeP2O6ecJ6E7SdoTqmSAR4goUieQ4axHS4Sm
-	 25X41wCdbhg4c0vRdGG4MzgTwqQqXL/IA3FLE8DIFHXqoyUGu1cpgJMjIgJ8zMhmTV
-	 XBykMsqVmjGMn+evEkltJbJkdCHBPnRO31XXRRlftLgVQ132Y/3XCqZ44Mah2L5ePX
-	 AF7v/SRgM2uRQz1shDNW3BIazLQ28VJJvZSiCBpYI+ifgGdNFZrzI+d5pHw4OH6Iq4
-	 /0+mNUxDsvMP9Fehd426LT/8NV8zshFdNu1LhT16CaNG2y1CSfyWdW2A6qa0s6/hqS
-	 cl8ZWVHu7tWUw==
-Date: Tue, 30 Jul 2024 14:03:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org,
-	daniel@makrotopia.org, dqfext@gmail.com, sean.wang@mediatek.com,
-	andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: mediatek,mt7530: Add
- airoha,en7581-switch
-Message-ID: <20240730200335.GA2059838-robh@kernel.org>
-References: <cover.1722325265.git.lorenzo@kernel.org>
- <63f5d56a0d8c81d70f720c9ad2ca3861c7ce85e8.1722325265.git.lorenzo@kernel.org>
- <3d0e39a3-02e9-42b4-ad49-7c1778bfa874@arinc9.com>
+	s=arc-20240116; t=1722370418; c=relaxed/simple;
+	bh=lS5ymWF0CvjTZUAileBs6DhXKhlkS20xnG81Az3pj0M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eHStOOeFmoSHESBFUe1qcAYr/9VYN8z/X2tT3Xzpu0mF9pFqYGOZdlu6IoqkGuGWMhGldAy8mgFQvo9zOhfIrCWMTEzRGpREYgEslhjo/LWMRipGmPuW3qG54qk+RFfmidRXpN3P2l5FXhiMpisbSeIjO0nIaKwtv/Jbz2syu3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DFBPADVu; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52fc4388a64so8547586e87.1;
+        Tue, 30 Jul 2024 13:13:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722370415; x=1722975215; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lS5ymWF0CvjTZUAileBs6DhXKhlkS20xnG81Az3pj0M=;
+        b=DFBPADVu+kZRvLhTfa2kDkpHdVHFRMDV2F3EZUSemIIwEntUfs3PT4tFTRtg5vQicl
+         +RsSQ0VKFDnQ64kMRonpwwpyjahngvTXD/2YeaNnY1fuCSep1ACh/tRH+nXJgV4nrLv2
+         rnoWoR8KHw61hxx7MXkbIW02INow4qj699vf1gzNUH4IoHnmC0K+KBhwpqJ1ZTP6f3UN
+         cxMzRdW/GwLrKRsnCy0ChRGot8uI638mAVuLYO6H3AOx3McXukFkzdxO8Fylrxd1nbmV
+         WTgeFWSfZK/6pfdUiq46BJqpytRk4vtwoD6yND9pur4UkYWmXWVMkDOWaA/nVioukytx
+         XD3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722370415; x=1722975215;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lS5ymWF0CvjTZUAileBs6DhXKhlkS20xnG81Az3pj0M=;
+        b=IVtBm0j8MzYTjjTMMeHrE+tJAfci/P0DkqQht//4NSamwG6W+PjcSR2teI+ndrEICN
+         tMs6kmn1r+hHr9AtRb3CDFSmP54XJGHtKmkY9Td+bUAJnPgqajsWo1u0Zr2leogvJAfH
+         IWACQxc10n8KkrZfVZJnQH+6adPAE2EVVfy1lbpwsUaP0njG9qFg2MMxxodEYBzaLuWz
+         HzE1QRvTOyDB9bzEEQdTU/ahAO1H+xz7dJ5DrZXAzClISLiGMLZKdhT2j+KvVCida0vk
+         ju3LsiRYznSLGkMygOQIUa0uXm6EK1auiuf6jqh0q7l/c4kbl4RlMCrkyrGdm7JDS24/
+         G+Sg==
+X-Forwarded-Encrypted: i=1; AJvYcCWA91dmSpqdYAQBUaxmLlsglUBaHZjt/xxsZ4mbIzOPkmWn2O9ed3MLwh4biO+WG3PdeJvCZyCzvDVvAW5C/6mztP+CR0lQSfWyuGDsLJRBpLs46kMzycydjZjlAFD/nxpsA3JPYHW+DgOih+vJPJWHlGPTXxj7S9cbtI41OHz7KDni4A==
+X-Gm-Message-State: AOJu0YxopMFvAc1ISkd5p5jAG/WUqZ4l4kT85TLuEhMKWJY0fugO3Is3
+	f4Ro+EGHsS9VHpgj0k9U3gWOJkNO7559AAGi0kffUZRWP1DkAdtoGzedTq4y0nka07kxOrnYvUA
+	LvPERRg4KpQfSf+aue/SzoZYrNYI=
+X-Google-Smtp-Source: AGHT+IE/Htvw+zkNTT26DQCtKiH85EFRVdjXjDUFcZ13o/4tsPHnhoBsqSL2jYxdDvF+5Pk8pp9hi3yrGDsq/jM/lTQ=
+X-Received: by 2002:a19:f007:0:b0:52f:44b:7d42 with SMTP id
+ 2adb3069b0e04-5309b2d8db5mr6545711e87.58.1722370414576; Tue, 30 Jul 2024
+ 13:13:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3d0e39a3-02e9-42b4-ad49-7c1778bfa874@arinc9.com>
+References: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
+ <20240625-add-tyhx-hx9023s-sensor-driver-v7-3-b1d65b221811@gmail.com>
+In-Reply-To: <20240625-add-tyhx-hx9023s-sensor-driver-v7-3-b1d65b221811@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 30 Jul 2024 21:43:31 +0200
+Message-ID: <CAHp75VfN56gPp1VVwfS715vTNUbA2p0uz9Dcq8PkehXG7bNjSw@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] iio: proximity: Add driver support for TYHX's
+ HX9023S capacitive proximity sensor
+To: Yasin Lee <yasin.lee.x@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	Alexandru Ardelean <aardelean@baylibre.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 30, 2024 at 11:57:36AM +0300, Arınç ÜNAL wrote:
-> On 30/07/2024 10:46, Lorenzo Bianconi wrote:
-> > Add documentation for the built-in switch which can be found in the
-> > Airoha EN7581 SoC.
-> > 
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >   .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml     | 9 ++++++++-
-> >   1 file changed, 8 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> > index 7e405ad96eb2..aa89bc89eb45 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> > @@ -92,6 +92,10 @@ properties:
-> >             Built-in switch of the MT7988 SoC
-> >           const: mediatek,mt7988-switch
-> > +      - description:
-> > +          Built-in switch of the Airoha EN7581 SoC
-> > +        const: airoha,en7581-switch
-> > +
-> >     reg:
-> >       maxItems: 1
-> > @@ -284,7 +288,10 @@ allOf:
-> >     - if:
-> >         properties:
-> >           compatible:
-> > -          const: mediatek,mt7988-switch
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt7988-switch
-> > +              - airoha,en7581-switch
-> 
-> The compatible string won't be more than one item. So this would be a
-> better description:
-> 
-> compatible:
->   oneOf:
->     - const: mediatek,mt7988-switch
->     - const: airoha,en7581-switch
+On Tue, Jun 25, 2024 at 4:31=E2=80=AFAM Yasin Lee <yasin.lee.x@gmail.com> w=
+rote:
+>
+> A SAR sensor from NanjingTianyihexin Electronics Ltd.
+>
+> The device has the following entry points:
+>
+> Usual frequency:
+> - sampling_frequency
+>
+> Instant reading of current values for different sensors:
+> - in_proximity0_raw
+> - in_proximity1_raw
+> - in_proximity2_raw
+> - in_proximity3_raw
+> - in_proximity4_raw
+> and associated events in events/
 
-enum, not oneOf+const
+...
+
+> Reported-by=EF=BC=9A Dan Carpenter <dan.carpenter@linaro.org>
+> Closes: https://lore.kernel.org/r/202405170824.uhEslLI0-lkp@intel.com/
+> Closes: https://lore.kernel.org/r/202406142001.swm6CU40-lkp@intel.com/
+> Reported-by=EF=BC=9A kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202406171946.qe83Tde0-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202406081148.j9y5W5Ru-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202405310327.5dCrF4gX-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202405310010.dSPEpCuu-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202405300812.jv99FywV-lkp@i=
+ntel.com/
+
+The above shouldn't be present in a new code. This is NOT a fix-patch for s=
+ure!
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
