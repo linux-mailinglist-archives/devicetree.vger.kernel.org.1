@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8AB940A13
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:40:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 204F1940A23
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AD4B282693
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 07:40:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFE54283493
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 07:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5C418FC9A;
-	Tue, 30 Jul 2024 07:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A556E18FDA3;
+	Tue, 30 Jul 2024 07:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BH7wBuuv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKqPk131"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556D818EFF3;
-	Tue, 30 Jul 2024 07:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758661662E8;
+	Tue, 30 Jul 2024 07:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722325217; cv=none; b=ab1OU3KoEZi+j/2iYBMTskwcgIwj1JwIwic/pQDcd1paBj64Clx/Z2gubWKjMODSgykhrMowMVQUwdeVaTKYnb/BGmeH8DG8U7m2dgDJXsDGQ/LUs+cE9qwDZAp6P9td0CjdbJ3X8fVKDzIjwwN5ODxeTH7PmQ5l4WqsEK5Rd5A=
+	t=1722325451; cv=none; b=VO/FaICqnKgQRQhqNhziCDWBMWhMhsqgGux3K1Mo0Ea1ZgR/A9dftF7EyVooab0e56qkqmsh+KtJXsdf+4Qb+3cWfQWgAgy2MewOvIRxXBITZpehtZ2mr+BMZvOtNcx+tjh7XmO9M4kVib2CU5yjiGzcfBXpuC4AZLsge9NRBUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722325217; c=relaxed/simple;
-	bh=4mFIGj1lIrkXrBR5ZTP0C3On+p5gvEXPITEybz7SNG8=;
+	s=arc-20240116; t=1722325451; c=relaxed/simple;
+	bh=1g/t7ljDEEMZaF9QKFLSVrGcCV6DmGX+hiOIu+Dzc0E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j90zTj2Y0KqgvBDxyYSjCuFlCLfbz4QlrANyb1BihWm8faCiKUk86hgVnuWM3YB19ubhLsjhXeay/BJfyzb/MI3vo32Z/JMpd5/rimkC89T9agUQ54sLzGKWHNb1oI35aVPiN47dB+onHNOXexHGtJnuVWmxCAWKxN69Gkf5Qzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BH7wBuuv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88048C32782;
-	Tue, 30 Jul 2024 07:40:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GIOeg/IFmvgEWtsM7fDJbrUcAW3U2sImZYHqXUuPNwSgzu3596IAr071ZPxbzchbZkYWBYxagxuDW1Nj7SKGgIL8q+fC9ctpYTdkquz9L9y9yhVQ3fvtcPT0ylaW/R6pv9eWyQ79DDNlzkRZEF8bS38u/aHc8f29GHT1wYdfq3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKqPk131; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24ADFC32782;
+	Tue, 30 Jul 2024 07:44:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722325216;
-	bh=4mFIGj1lIrkXrBR5ZTP0C3On+p5gvEXPITEybz7SNG8=;
+	s=k20201202; t=1722325451;
+	bh=1g/t7ljDEEMZaF9QKFLSVrGcCV6DmGX+hiOIu+Dzc0E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BH7wBuuv/WgzlrD6/q0rOrdUupSJFl9GlJ4gypCfadObQiLNW/Kbg3AdtdGunTwVi
-	 8ltfpXiTLVLBatCkfnYZjZJV+/vFCtdpo1FAAfcLTpJmiOZi0CGc8r2rCwYpKS413S
-	 g280o9aBhUZngsTzQHaOToUuH/bE0xySdR6MQ/bfSMwsm8u4Ja8bdvS+zfiJ9WjIRN
-	 ZtE4QvzNjiSlK3AWb2DFleMPEMosNCzgL8W+OvvA9ZleDeVHtqq9D3CUl6Lou0QafO
-	 XmWCn+9vITaF/aftYX44rjlAb2it+UU+RMUvM3BDLCL+SUAP4pYlM61L+PGSA71xaw
-	 wRBVOc6kxWNKQ==
-Message-ID: <40b13efe-5453-425b-82d9-7d13fc51c782@kernel.org>
-Date: Tue, 30 Jul 2024 09:40:11 +0200
+	b=aKqPk131CCKu2OCRZYxmUf2q9yg/o2hqvU0QgKY8jDuxZSbKubqzyGBDof+eVRp7E
+	 P7SqGs3O+HWjYndUwjPOxzbQTR2dLa/tPPLv+QrDg9MzySUJ32+yw+rvRwoZ2+lDq4
+	 +5dDhEVr85Fdvr/cBIZcjP02wdfVJrbkYxawukWzjfKt19C3HmHW8eEwNeZksZ5yN+
+	 z+B2b4KhusPFp/4I840W7HshgOB0/40DMf2WuuTttGm+0sM9Rk9vaxaDwl0/wGhrkn
+	 vF8hsaYbO09GeWNRl6UGbMboYr3XpKsL1OuY6lHmS8DTWX5fNwZwEtlEabsCITjyGA
+	 SE2aYky5wR5tA==
+Message-ID: <0e7a8d52-6556-4531-882f-73513f99259b@kernel.org>
+Date: Tue, 30 Jul 2024 09:44:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for J742S2 SoCs
- and Boards
-To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Udit Kumar <u-kumar1@ti.com>,
- Neha Malcom Francis <n-francis@ti.com>, Aniket Limaye <a-limaye@ti.com>
-References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
- <20240730-b4-upstream-j742s2-v2-1-6aedf892156c@ti.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 07/16] drm/imx: Add i.MX8qxp Display Controller pixel
+ engine
+To: Liu Ying <victor.liu@nxp.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, kishon@kernel.org,
+ aisheng.dong@nxp.com, agx@sigxcpu.org, francesco@dolcini.it, frank.li@nxp.com
+References: <20240712093243.2108456-1-victor.liu@nxp.com>
+ <20240712093243.2108456-8-victor.liu@nxp.com>
+ <ibdzow7lvbimaefrp2z2aolgp4pytpq3dcr2y3pegjavvknhgm@2e6j3f4zytqp>
+ <107d89b9-e7b8-4613-bc07-9af7b52c2b8a@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -106,17 +112,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240730-b4-upstream-j742s2-v2-1-6aedf892156c@ti.com>
+In-Reply-To: <107d89b9-e7b8-4613-bc07-9af7b52c2b8a@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2024 09:13, Manorit Chawdhry wrote:
-> Add devicetree bindings for J742S2 family of devices.
+On 30/07/2024 08:55, Liu Ying wrote:
+> On 07/28/2024, Dmitry Baryshkov wrote:
+>> On Fri, Jul 12, 2024 at 05:32:34PM GMT, Liu Ying wrote:
+>>> i.MX8qxp Display Controller pixel engine consists of all processing
+>>> units that operate in the AXI bus clock domain.  Add drivers for
+>>> ConstFrame, ExtDst, FetchLayer, FetchWarp and LayerBlend units, as
+>>> well as a pixel engine driver, so that two displays with primary
+>>> planes can be supported.  The pixel engine driver as a master binds
+>>> those unit drivers as components.  While at it, the pixel engine
+>>> driver is a component to be bound with the upcoming DRM driver.
+>>
+>> Same question / comment: create subnodes directly, without going
+>> through the subdevices. A lot of small functions that would benefit
+>> being inlined.
 > 
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> ---
+> Like I replied in patch 06/16, I can't create sub devices directly.
+> 
+> Can you please point out typical ones for those small functions if
+> the comment still stands?
+> 
+>>
+>>> +static int dc_cf_bind(struct device *dev, struct device *master, void *data)
+>>> +{
+>>> +	struct platform_device *pdev = to_platform_device(dev);
+>>> +	struct dc_drm_device *dc_drm = data;
+>>> +	struct dc_pe *pe = dc_drm->pe;
+>>> +	struct dc_cf_priv *priv;
+>>> +	int id;
+>>> +
+>>> +	priv = drmm_kzalloc(&dc_drm->base, sizeof(*priv), GFP_KERNEL);
+>>> +	if (!priv)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	priv->reg_cfg = devm_platform_ioremap_resource_byname(pdev, "cfg");
+>>> +	if (IS_ERR(priv->reg_cfg))
+>>> +		return PTR_ERR(priv->reg_cfg);
+>>> +
+>>> +	id = of_alias_get_id(dev->of_node, "dc0-constframe");
+>>
+>> Is it documented? Acked?
+> 
+> Like I replied in patch 06/16, I can add aliases nodes to examples,
+> if needed.
+> 
+> No Nak from DT maintainers I'd say, but I hope there will be direct
+> Ack(s).
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It was not Acked, because there was no documentation added for it.
+Anyway, naming is quite cryptic, e.g. "0" in "dc0" is quite confusing.
+Do you expect different aliases for dc1 or dc9? But anyway, aliases for
+sub-devices of pipeline look wrong.
 
 Best regards,
 Krzysztof
