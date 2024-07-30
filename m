@@ -1,127 +1,195 @@
-Return-Path: <devicetree+bounces-89575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B716942200
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:05:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A7EA942213
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6747C1C22924
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:05:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65CB51C22903
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0442161320;
-	Tue, 30 Jul 2024 21:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28AFB18DF6B;
+	Tue, 30 Jul 2024 21:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IomQ3G7/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oTr+Xkn5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E28238B;
-	Tue, 30 Jul 2024 21:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3798157466
+	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 21:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722373505; cv=none; b=aBdHoeKBpOmWvFz0ZCTTUGS9fI8OI9WVd44X4yeUYLqkUAYn81jlrRPPoRd39Maa5g/21oePF8OEWz1Pal5eC+6GQ4v6hp5eA3r2OogoeKygIoiyn4tZD3tajOco3fR1jn1Gq6WGu1KnObXCA2h0UkPStGznpzamEYNyurXLLDk=
+	t=1722374177; cv=none; b=nvj2Ep/n/jlL7XOuAp/fQGI0nSZAn6d2cwr+yI56cA8Tao8X6B2MtnkOdveTegrM6e2IrgzUldWSFzaVdM57e5jJSaSG528LBG017x9Ihgz+EI3Z5FES/pa8chKZLu4Pw5t9U4NWmH4unStZdaY2KRdG8Qxpg+orukxGrVcykbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722373505; c=relaxed/simple;
-	bh=GCu4r98kTw83zvHTndHVyfmkZDruuPHLD2NCCoobUuM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Vp99L4ti2XQ14/fLKofchGHOLaQ0ZWK6aVw+iGaPpQi0CwGXx6KutQ50Chl6JORz9k/JpH6ZHrm2JcB0dfCAKqzjAl5hrTUT0QpHiZKcD2r3b1j3kytRba+Z99Qfe2LJyvwL+ChtLgC28W39Fmo8nn3qnKbkBpEFF1B7MP7t2X0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IomQ3G7/; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46UL4o3h044671;
-	Tue, 30 Jul 2024 16:04:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722373490;
-	bh=o2Zer9N8QrcaJ8Sh0l8q8o4PRjk5luhYHbS7vLCXUQg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=IomQ3G7/RBGWWV5m7ZMa9p/oNEJyLdHqOhgGlePmpnrh4on5bOwKpi22veVSkalQW
-	 Tbh4tNjiVVc2bAy6QrpnUEMz9UP94Z7c+C+Kn+AOFPkYcwXgN/RHnJFU9SId08QRsX
-	 f2zNsnXduvWaBI/T/g+4TZlWbLChWAjFojbO/LFM=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46UL4oQP010906
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Jul 2024 16:04:50 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- Jul 2024 16:04:50 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 Jul 2024 16:04:50 -0500
-Received: from [128.247.81.191] (uda0499903.dhcp.ti.com [128.247.81.191])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46UL4ogn071067;
-	Tue, 30 Jul 2024 16:04:50 -0500
-Message-ID: <56306559-7f30-47f2-a6c6-bace35fc77c5@ti.com>
-Date: Tue, 30 Jul 2024 16:04:49 -0500
+	s=arc-20240116; t=1722374177; c=relaxed/simple;
+	bh=ORTj1whOmho9EBXBhVyx/Aod4OLgvVRSILSuObjsbck=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=IEun7aUggYgmmeafdczKcl4iaMaWBgSa/7q4W1kIS0NWWJ3XMv7Es2FTCNELk4j8kO3K/U5U9YbmTb5Y9ZW7g/jY/Jw8q2SxoKpydjA9fNqmr3UvbWxiZbiT/nM9R4e3fioX+oExHD++QQz3jRtlNZQ0qFxUlXvqnUl8Bcocs5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oTr+Xkn5; arc=none smtp.client-ip=209.85.160.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-25e3d8d9f70so3216495fac.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 14:16:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722374173; x=1722978973; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SNgZGwTB2OgZzwunwEodtuAzjkcRKhZuJtkoHDBu5E=;
+        b=oTr+Xkn5h/qwuJThagnlLaF4yBndOz/gaTEy51pqX7TtGsSpyG7lm1Y+h46oavZ4Bu
+         UBLkYxOe2u0bSAcW9uflJVbTSLsuQJY71E0J1ILAqwzQgRjeLd2R/0SVe1epmUas6IGN
+         ShwbgQtTM+B91FrN27FGpOHCcLg5nwT9o4dxsyL4fvr/tGSEFXqjq1owqMeC+adRnEyW
+         Qxl+RsU3ryVWIIus2Ekcp9ioDy+/7OHzJ8x8OyWzycFjTeh8Pdc6r28eMuelvRyPlmag
+         qMxUOQfUXZTRwCa7i/2xJYywmlEA7J8tk+CY0dFen2MS8uId2/AkJsIVIE+Ukfr8LJ0c
+         qf+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722374173; x=1722978973;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SNgZGwTB2OgZzwunwEodtuAzjkcRKhZuJtkoHDBu5E=;
+        b=m491q+NN2YcJs6K8Ua4l28TfPr3ajyGKHSPuu6C85q0BB9Ktr1rZ4c/Qb2Z/18ajHb
+         Zg1LvU1amlvX2IiriZbZt3Lpi/+KsSrt6yaObSL8rrV3u3wrKx/PWXwC4ATZqj9kBlfk
+         4UN6pOMc76BK/xWeGj7Eig4CJuYvsrbcFL2tzrrngy8zj2NEpvBydXoyL0jt6omvUljv
+         DqvA5MRl5YVjKMkDiu0MbhArC2CK1HQEIz8UN37IIINHqS629JYpm+pkhbmfpC+rIdrD
+         /y3iz/MOJxCjOvdxUfo0sRTsYYj6JLgcA58fQuILPvuCXqzWeYlq+1cuHAzMegaotWYf
+         TzMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfInH4LZ+Dzi/HZAdwCNJeBU6Wcoh6yo3y3+JKI8uitGBj6veQuEO8k1kWbbz9ALQ0CUj/wP+NRdtVzJYxtByf6HlL+RlLeL2VOA==
+X-Gm-Message-State: AOJu0Yzcf5duKWOnoiMnqgXgp25Yn0/E4qrjk1zEjhfsHr/O6ZOBrfhX
+	C3957pBrijy58mueypNIgcw7MgCIX/L1bZ6L7Io3xtThemVf3OtI/OYTvNM2F2w=
+X-Google-Smtp-Source: AGHT+IEOaxswI3H9GFDKwy5yHX/0pb4wx+ESzHZirngCc6mranrs6dBot2o0wvrjYlgus5dT9h5zxw==
+X-Received: by 2002:a05:6870:468e:b0:24e:8987:6f34 with SMTP id 586e51a60fabf-267d4cae74cmr15605740fac.3.1722374172963;
+        Tue, 30 Jul 2024 14:16:12 -0700 (PDT)
+Received: from localhost (75-172-120-197.tukw.qwest.net. [75.172.120.197])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7a9f836c845sm9423606a12.37.2024.07.30.14.16.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jul 2024 14:16:12 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Tony Lindgren <tony@atomide.com>, John Ogness <john.ogness@linutronix.de>,
+ Markus Schneider-Pargmann <msp@baylibre.com>, Uwe =?utf-8?Q?Kleine-K?=
+ =?utf-8?Q?=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>, Ronald Wahl <ronald.wahl@raritan.com>,
+ Thomas Richard <thomas.richard@bootlin.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Arnd Bergmann <arnd@arndb.de>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Vibhore Vardhan <vibhore@ti.com>, Dhruva Gole <d-gole@ti.com>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/5] serial: 8250: omap: Support wakeup pinctrl state
+In-Reply-To: <20240523075819.1285554-5-msp@baylibre.com>
+References: <20240523075819.1285554-1-msp@baylibre.com>
+ <20240523075819.1285554-5-msp@baylibre.com>
+Date: Tue, 30 Jul 2024 14:16:12 -0700
+Message-ID: <7hmsly60o3.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62p: Add gpio-ranges for
- mcu_gpio0
-To: Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20240730143324.114146-1-j-mcarthur@ti.com>
- <20240730143324.114146-2-j-mcarthur@ti.com>
- <20240730145956.n7brt337sc5vjpg5@violet>
-Content-Language: en-US
-From: Jared McArthur <j-mcarthur@ti.com>
-In-Reply-To: <20240730145956.n7brt337sc5vjpg5@violet>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
 
+Markus Schneider-Pargmann <msp@baylibre.com> writes:
 
+> UART can be used as a wakeup source for am62 from a powered-off SoC
 
-On 7/30/24 09:59, Nishanth Menon wrote:
-> On 09:33-20240730, Jared McArthur wrote:
->> Commit d72d73a44c3c ("arm64: dts: ti: k3-am62p: Add gpio-ranges
->> properties") introduced pinmux range definition for gpio-ranges,
->> however missed introducing the range description for the mcu_gpio0
->> node. As a result, automatic mapping of GPIO to pin control for mcu
->> gpios is broken. Fix this by introducing the proper ranges.
->>
->> Fixes: d72d73a44c3c ("arm64: dts: ti: k3-am62p: Add gpio-ranges properties")
->> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
->> index e65db6ce02bf..c0bdbd00dc23 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
->> @@ -146,6 +146,9 @@ mcu_gpio0: gpio@4201000 {
->>  		power-domains = <&k3_pds 79 TI_SCI_PD_EXCLUSIVE>;
->>  		clocks = <&k3_clks 79 0>;
->>  		clock-names = "gpio";
->> +		gpio-ranges = <&mcu_pmx0 0 0 21>, <&mcu_pmx0 21 23 1>,
->> +			      <&mcu_pmx0 22 32 2>;
->> +		ti,ngpio = <24>;
-> we already have ti,ngpio - please drop
-Sorry, missed that. I will fix it and resend the patch.
->>  	};
->>  
->>  	mcu_rti0: watchdog@4880000 {
->> -- 
->> 2.34.1
->>
+nit: To be a bit more precise, instead of saying UART can be used as a
+wakeup source, I think you should say:
 
--- 
-Best,
-Jared McArthur
+Certain UART pins can be used...
 
+> state. To enable wakeup from UART am62 requires a wakeup flag being set
+> in the pinctrl.
+>
+> If the device is marked as wakeup enabled, select the 'wakeup' pinctrl
+> state on sys_off.
+>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+> ---
+>  drivers/tty/serial/8250/8250_omap.c | 39 +++++++++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>
+> diff --git a/drivers/tty/serial/8250/8250_omap.c b/drivers/tty/serial/8250/8250_omap.c
+> index 5b7508dfb5d8..617a421a1396 100644
+> --- a/drivers/tty/serial/8250/8250_omap.c
+> +++ b/drivers/tty/serial/8250/8250_omap.c
+> @@ -27,8 +27,10 @@
+>  #include <linux/pm_qos.h>
+>  #include <linux/pm_wakeirq.h>
+>  #include <linux/dma-mapping.h>
+> +#include <linux/reboot.h>
+>  #include <linux/sys_soc.h>
+>  #include <linux/pm_domain.h>
+> +#include <linux/pinctrl/consumer.h>
+>  
+>  #include "8250.h"
+>  
+> @@ -149,6 +151,9 @@ struct omap8250_priv {
+>  	spinlock_t rx_dma_lock;
+>  	bool rx_dma_broken;
+>  	bool throttled;
+> +
+> +	struct pinctrl *pinctrl;
+> +	struct pinctrl_state *pinctrl_wakeup;
+>  };
+>  
+>  struct omap8250_dma_params {
+> @@ -1345,6 +1350,30 @@ static int omap8250_no_handle_irq(struct uart_port *port)
+>  	return 0;
+>  }
+>  
+> +static int omap8250_select_wakeup_pinctrl(struct device *dev,
+> +					  struct omap8250_priv *priv)
+> +{
+> +	if (IS_ERR_OR_NULL(priv->pinctrl_wakeup))
+> +		return 0;
+> +
+> +	if (!device_may_wakeup(dev))
+> +		return 0;
+> +
+> +	return pinctrl_select_state(priv->pinctrl, priv->pinctrl_wakeup);
+> +}
+> +
+> +static int omap8250_sysoff_handler(struct sys_off_data *data)
+> +{
+> +	struct omap8250_priv *priv = dev_get_drvdata(data->dev);
+> +	int ret;
+> +
+> +	ret = omap8250_select_wakeup_pinctrl(data->dev, priv);
+> +	if (ret)
+> +		dev_err(data->dev, "Failed to select pinctrl state 'wakeup', continuing poweroff\n");
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+>  static struct omap8250_dma_params am654_dma = {
+>  	.rx_size = SZ_2K,
+>  	.rx_trigger = 1,
+> @@ -1566,6 +1595,16 @@ static int omap8250_probe(struct platform_device *pdev)
+>  	priv->line = ret;
+>  	pm_runtime_mark_last_busy(&pdev->dev);
+>  	pm_runtime_put_autosuspend(&pdev->dev);
+> +
+> +	priv->pinctrl = devm_pinctrl_get(&pdev->dev);
+> +	if (!IS_ERR_OR_NULL(priv->pinctrl))
+> +		priv->pinctrl_wakeup = pinctrl_lookup_state(priv->pinctrl, "wakeup");
+> +
+> +	devm_register_sys_off_handler(&pdev->dev,
+> +				      SYS_OFF_MODE_POWER_OFF_PREPARE,
+> +				      SYS_OFF_PRIO_DEFAULT,
+> +				      omap8250_sysoff_handler, NULL);
+> +
+>  	return 0;
+>  err:
+>  	pm_runtime_dont_use_autosuspend(&pdev->dev);
+> -- 
+> 2.43.0
 
