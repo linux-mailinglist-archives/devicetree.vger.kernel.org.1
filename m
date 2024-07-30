@@ -1,141 +1,145 @@
-Return-Path: <devicetree+bounces-89363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E30940E4F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:53:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3408940E56
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:54:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 240081C209CD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:53:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A20991F234DA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E252195FFC;
-	Tue, 30 Jul 2024 09:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC78195FE5;
+	Tue, 30 Jul 2024 09:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="V2w9peLG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WqBs0YqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9E0194C78
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 09:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C191922CA;
+	Tue, 30 Jul 2024 09:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722333185; cv=none; b=t3Rwkh5klqIqIl6tNMrFVdGZ0e65pKSelN9tXRGQcFxLmoPpo1XpyznjGv+UjESbluDSVvSzHJ6I31YjWvisDZi/nLu/2jeP7AbXXwYu2VtodhBc8hdY6yK5RXAatIDoLZEzu/gEV7/2QosoG+xOcGaBR9O91kAoMkxJmIvZtE0=
+	t=1722333249; cv=none; b=UeghD8oVEaXytOqu4WamdkpSJ8gNoPUSSVhN+xfIrh2BpWYWrl7CwQVeQ8LMgO+wvVTojUP/1pZY6dzFH+ZT7gUQjYrIMY1IrGQMn/LfPbtLl6J9H6USBnXDza60f7Bdit92rorPgYuZE28wPtqq+rolEpZg8SY7/vGve/CnXaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722333185; c=relaxed/simple;
-	bh=yyO3hcRLNuqAV2Gf157yrnXtadAYEe17pUI/1dgy2Ho=;
-	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=hBOvsdqjPXhobHHzbcVK07rFJ8jI9xiokG9lK3A54X9T8tz/p5e4iB24vsHCRha0Hf+D6ysOXzayNzuObF7kpkWE8sxv+NwCFWnIMiLyLhujN1PcOIRI8CJ+nFQlxCgc1AF/8gr1giM0QNiACVvzi5QmI3IRVQJgrxcGp7W6fmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=V2w9peLG; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52f04b3cb33so9807667e87.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 02:53:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722333181; x=1722937981; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RA46jBL+SPUUXOwt3hGVdpN7JmCGwJMtQwXehgaQlLY=;
-        b=V2w9peLGXrcmmgqenpSNQmrmZwyV1BOPyeC1QfYu+bB0jh7NrhsXoyFOdYxFN4fquq
-         qDfRVUznX9nw1ZPIt6GGGdUB+EIrt/ufNS2WLGX/A2FUVABWAXfNdWzPlV2ymvUWz/xx
-         DM/08NOouP9eggvHspF/K9x/y0WgSC28lW3ww=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722333181; x=1722937981;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RA46jBL+SPUUXOwt3hGVdpN7JmCGwJMtQwXehgaQlLY=;
-        b=tM0MEdR5fg0w97BMd8LVX5E9V7kPQY1eUKClIfsw3lmsKJ+00VknXy15nr/lHJNUDh
-         3N6Q4jGSEfrXJnA3wsr8H4FSswBcyOFx1EcRfNnFCGrlD9Xu4LnoH0HgPH3A8+ohM3G8
-         HpmGg6CspjeCH/tXWZ3psI8LDbpPK8D9yxlSLKe54AnshocIJOGtfUEQa5dzmTal6LCD
-         z807tCGhn/JYKpstzUyCnGqGaRgu0cwY2tm/vNbzTCtioMhX0nKZg1/rH0YMhtbMxwa1
-         LT0TNzVPRgTnE1tYNLsoyCGXpU/yCZe/4ajop2Us8M86K15hqLQtu0c2J8lPy3FIHKrF
-         avkA==
-X-Forwarded-Encrypted: i=1; AJvYcCXm3wRPcfJ14Lzseu06dq5g9oBzG3DEfEe3+j498MVtnCCYEjEDo3BVrgVXefXmHS/dZDrMJWpHrgBTamgP7ILsh9fxzehc9DOahg==
-X-Gm-Message-State: AOJu0YzFqb8fO881ne3e7HkHf3q9O9zwuljf5BlKVtVNIdb6pP4uniB6
-	B1kr+4D199RLUixFwLIP6T/SL0pcuCfuUxI0LvzZmMs/EAzqUOQCWtAZudzrEA==
-X-Google-Smtp-Source: AGHT+IHlCt/1eobcVjTAVX4BrkBS2kd5LjzvzW4U/MFQXgveeXv+o8QcHY9jzRml82ZRhYYMl0R/EQ==
-X-Received: by 2002:a05:6512:2c0d:b0:529:b718:8d00 with SMTP id 2adb3069b0e04-5309b2694e5mr8676169e87.8.1722333181165;
-        Tue, 30 Jul 2024 02:53:01 -0700 (PDT)
-Received: from [192.168.178.38] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad41961sm624701966b.131.2024.07.30.02.52.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jul 2024 02:53:00 -0700 (PDT)
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Jacobe Zang <jacobe.zang@wesion.com>, <robh@kernel.org>, <krzk+dt@kernel.org>, <heiko@sntech.de>, <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>
-CC: <efectn@protonmail.com>, <dsimic@manjaro.org>, <jagan@edgeble.ai>, <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <arend@broadcom.com>, <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>, <megi@xff.cz>, <duoming@zju.edu.cn>, <bhelgaas@google.com>, <minipli@grsecurity.net>, <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>, <nick@khadas.com>
-Date: Tue, 30 Jul 2024 11:52:59 +0200
-Message-ID: <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
-In-Reply-To: <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
-References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
- <20240730033053.4092132-3-jacobe.zang@wesion.com>
- <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
-User-Agent: AquaMail/1.51.5 (build: 105105504)
-Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add clock description for AP6275P
+	s=arc-20240116; t=1722333249; c=relaxed/simple;
+	bh=F9DKMMqI0vWmkAkIJUVRr0xfxbUyOJ/q9rg1X098EIQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=TmDj6qj5oys9KKyzepjxeAi6JyWl+FwJ/mC0GAE4wdCZ73Ogv8jrpHgvedUjfMNzHf1wg5x+1/U4G1TvSjd3/R/UvckiN5kmd2/id6DZe4cQWwd/zISs0SVEIEnrM1YA2MqL0yDtI6ohd/9BLLr6IEOCsQ6XjFFxkN91Myv7XAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WqBs0YqF; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46U9s1Yt006886;
+	Tue, 30 Jul 2024 04:54:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722333241;
+	bh=ugtmiRpAmCqi4LtLpNLj8IUxCysgBMlMyAKDsxH2xuI=;
+	h=From:Subject:Date:To:CC;
+	b=WqBs0YqFkpy/2jYdvIUN/y5EUmJ2Lc/iTNUzW+SiuI0GbgE7SlyRyJZjs2HIJaGDF
+	 k+FgytGSYkhU1PTvZ/joXUigW9ODm2NcaAx+h0bXtjrUanyzd895bdoDpAnWle7d4M
+	 5cE6nXQNQ/Neak0GT+GulmaHQGMFisw1/CPjGIhw=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46U9s16c087396
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Jul 2024 04:54:01 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ Jul 2024 04:54:00 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 Jul 2024 04:54:00 -0500
+Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46U9rulu008969;
+	Tue, 30 Jul 2024 04:53:56 -0500
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+Subject: [PATCH v3 0/5] Add bootph-all property for J7 boards
+Date: Tue, 30 Jul 2024 15:23:50 +0530
+Message-ID: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC64qGYC/3XNSw6CMBSF4a2Yjq25LfShI/dhHNAH0gQoaWujI
+ ezdgomOGP4nud+dUbTB2YguhxkFm110fixRHQ9Id834sNiZ0ogCraGuAKsaP6eYgm0GrLxPU4e
+ bvsfS1EIJqjS0BpXjKdjWvTb4di/duZh8eG9/MlnXL8lA7JGZYMCaG0Y5I5Lx9prcSfsBrV6mf
+ 0MA2zVoMc4AgktijTDyZyzL8gFF3hhk/QAAAA==
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Beleswar Padhi
+	<b-padhi@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Manorit Chawdhry
+	<m-chawdhry@ti.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1722333236; l=2257;
+ i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
+ bh=F9DKMMqI0vWmkAkIJUVRr0xfxbUyOJ/q9rg1X098EIQ=;
+ b=kTg+meFlXaPl+osTL9xBi6uY41w2xa4XOxtF+EcnrAxFErPFHHiUPyDUJZUTmhHZfniV2SHhc
+ hu5awn6WumiCzM0njmL0uaiprzCVw1OS2+/e7WyfMTXu7oeQbO0ey9a
+X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
+ pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On July 30, 2024 11:01:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+The idea of this series is to add bootph-all and bootph-pre-ram property
+in all the leaf nodes wherever required and cleanup any other places where
+bootph-all/bootph-pre-ram exist in the parent nodes as well.
 
-> On 30/07/2024 08:37, Arend Van Spriel wrote:
->> + Linus W
->>
->> On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
->>
->>> Not only AP6275P Wi-Fi device but also all Broadcom wireless devices allow
->>> external low power clock input. In DTS the clock as an optional choice in
->>> the absence of an internal clock.
->>>
->>> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
->>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
->>> ---
->>> .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
->>> 1 file changed, 8 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>> index 2c2093c77ec9a..a3607d55ef367 100644
->>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>> @@ -122,6 +122,14 @@ properties:
->>> NVRAM. This would normally be filled in by the bootloader from platform
->>> configuration data.
->>>
->>> +  clocks:
->>> +    items:
->>> +      - description: External Low Power Clock input (32.768KHz)
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: lpo
->>> +
->>
->> We still have an issue that this clock input is also present in the
->> bindings specification broadcom-bluetooth.yaml (not in bluetooth
->> subfolder). This clock is actually a chip resource. What happens if both
->> are defined and both wifi and bt drivers try to enable this clock? Can this
->> be expressed in yaml or can we only put a textual warning in the property
->> descriptions?
->
-> Just like all clocks, what would happen? It will be enabled.
+Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+---
+Changes in v3:
+* Vignesh
+- Remove bootph-all from sms/dmsc node
 
-Oh, wow! Cool stuff. But seriously is it not a problem to have two entities 
-controlling one and the same clock? Is this use-case taken into account by 
-the clock framework?
+- Remove bootph-all j7200 from main_uart2 and mcu_cpsw
+- Link to v2: https://lore.kernel.org/r/20240705-b4-upstream-bootph-all-v2-0-9007681ed7d8@ti.com
 
-Regards,
-Arend
+---
+Manorit Chawdhry (5):
+      arm64: dts: ti: k3-j721s2*: Add bootph-* properties
+      arm64: dts: ti: k3-j784s4*: Remove bootph properties from parent nodes
+      arm64: dts: ti: k3-am68*: Add bootph-* properties
+      arm64: dts: ti: k3-j721e*: Add bootph-* properties
+      arm64: dts: ti: k3-j7200*: Add bootph-* properties
 
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts     | 10 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi           |  2 ++
+ .../arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 20 ++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi            |  2 ++
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 10 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi          |  7 +++++++
+ .../arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 20 ++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi            |  2 ++
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  9 +++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts               | 18 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi          |  5 +++++
+ .../boot/dts/ti/k3-j721s2-common-proc-board.dts      | 14 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi           |  2 ++
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 11 +++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi         |  2 ++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts             |  9 +--------
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  8 ++++----
+ 17 files changed, 139 insertions(+), 12 deletions(-)
+---
+base-commit: cd19ac2f903276b820f5d0d89de0c896c27036ed
+change-id: 20240430-b4-upstream-bootph-all-8d47b72bc0fd
+
+Best regards,
+-- 
+Manorit Chawdhry <m-chawdhry@ti.com>
 
 
