@@ -1,464 +1,166 @@
-Return-Path: <devicetree+bounces-89216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36729940678
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:17:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 095B3940684
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:29:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC79B1F2347C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 04:17:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98CEAB222CE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 04:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4773F15539A;
-	Tue, 30 Jul 2024 04:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FC1158214;
+	Tue, 30 Jul 2024 04:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fO/V6sbO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EK75cH4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0282C8C0
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 04:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED717339AB;
+	Tue, 30 Jul 2024 04:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722313040; cv=none; b=BuaR4lK+rVG0ySuioAgIqmrJlvu8lkQI9xGY69PKZE1fVptapehaCffvyD5sefIST/WULE5vZLj7M5nx4XEXcsPmRsOSZacYibK0c+cKirtPZ4bks3VjF37k4Zku/7lV5xdVMBQ/5IqEWELJELDQPO46bfvGWHN5oKD+pbihtvk=
+	t=1722313732; cv=none; b=Jl5Kf5dgKVmJcJEoLQJNigtzOr1PiixF9xvj/+7+Xoi6yu9glbDWAFcjLOfoh1WRROCwqpGuhS++OqjHe1nw4IxC4KKSlAEj96FBfX+zRcKs0Cn5rkWpUq2Q2Joa9UDv23+BvYIMu5cdpsnLALq2jvfNmmQa1ORwhyrcGykqpwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722313040; c=relaxed/simple;
-	bh=oRP5hh3HldKI/SLa7wHbq3PN8+8efznTDqDUUCwpI34=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mhKVawz8QFHn3BbL8SFbYxRakgeKYGw+5+J2qfRttAVZcw/RZan/jlTuO8ugYXTgnnceF+KuTbznDdgCFxbtXOLSxylziCrkkcHi5WYekR2bURrBJ20WCuL2JMP2miO6X93X2m9z+ve0JRgUixUdhsT5ojmuwsLxezw4VaCoi9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fO/V6sbO; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2eeb1ba0468so64832641fa.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 21:17:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1722313036; x=1722917836; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OgGP1ucTPfcv4IyFkymcgQIfN0PbeyLZRnIeoFwlKQM=;
-        b=fO/V6sbOe6ymVxo3cdjnujtd8JJLtL4RjhKdCjTymcNBv60Zxg54Oo2OwReDIFplCQ
-         w8L3RzySQu32jyDIDH+b4DPdXDa1xi4K+EYs36mjlDsA8grSzLoqdhX3VRA0eEFuxn5W
-         Ognm+hwUiz8oSAou4FACfJxEcPD/Gr9XwalMk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722313036; x=1722917836;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OgGP1ucTPfcv4IyFkymcgQIfN0PbeyLZRnIeoFwlKQM=;
-        b=xU7sKgDHhZWT9xRInplrP97EiNNUgQ8b6n14Aa593FgrMbD3ONrPojoYRxNER46fnm
-         alLNa9HLzjjS/3vPYEhctMyvUhcVH/tCogvNrFWcXsQicvMGTcyhvRi5K4p7HqFm67nE
-         oMS6GuhvW5Z5hwXpqdz8gy2evqpzAW1DpctNAwhNgWbvs1o1spkLJ+P21CDeYrGnKmoP
-         wmXbjKTbmG0u4SbPEdLbPKT8PvjHFQqDnL1BXyUc2/F0Nc6ltuyMeuQLld9cM3qYiEKK
-         M6s8TVK2bYAj6wLmDezWe/jZcEjDUtnmPh1Pz6KOitCxXcO4ReQ+RxjS5Ldsiery1Klq
-         qH5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWA/YII3s6sFOcpKPNP8Dd2RIFbm7MHZb6uiEtkWotMzMernbimFnqEFgatOxVmTvLxVFkcBKMgwZ+VMEIYQQGWZFZLOj9saC/DZA==
-X-Gm-Message-State: AOJu0YyX6c5Pf19kfUSUrcK27EcSfNgkU3ZduDrPgIzEHt/1eyZXcUq8
-	d5O7PLQYM6Qd8rf62EOnqq059OFn500szuN3tcleKhDS/o9zfhSC8AKEuCbMd2Ut+s0Gk1lFdmE
-	S/jvFUzEgiRZfqiN0Xjhkay/OBODnVy2PP7eo
-X-Google-Smtp-Source: AGHT+IGfiA0+QZ9Kb6Y4YqqZvxoYTPMWzVGbPjJzPBkYhPspR8Xa0o5mt/jjmatQ4v/8mnzKWm+4pAxAxR9srNb4oU8=
-X-Received: by 2002:a05:651c:545:b0:2f0:1fd5:2f29 with SMTP id
- 38308e7fff4ca-2f12edfef11mr69164661fa.19.1722313035624; Mon, 29 Jul 2024
- 21:17:15 -0700 (PDT)
+	s=arc-20240116; t=1722313732; c=relaxed/simple;
+	bh=ECDJw41kftKekRgPyFzH6GhtVmcagqZ9r2akdj30Wuw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uU9yA4TzyZCYM3RMMP8cLaBO8PiW/wl+w+XrSS5WHi9TNJ5ksruXfAJ9SSxFRzu7KrLTyAhoqjcyMlu3PR8ukeOg0wH/yURa4Ax9EoOaBwjeLyfk7xMbeq8GEhCyo6R4Q8j0ru9nZlA8YXp2wtB3fvM6qlCwNo6Cu72hFnTxk30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EK75cH4U; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46TIiUqJ007857;
+	Tue, 30 Jul 2024 04:28:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hOGJ1/3ZiTqZhOAkMmzEjDSTSpshuCZFzsSd4IbyfsU=; b=EK75cH4UHVY0m4UP
+	GuWplahCyaslwsh9GoGnFK9tM4A2jAqhoX9VNyxeQHkt3FrA0k+TOVjzvlKnWUsF
+	kaRamXpQ1ZLXvBbLqZuf0A5ghe21opeIYZh0tZnw11QPK4V6eeGrLwewINpGzQMN
+	WdYD8KFkiwO4TaSkfg4v8kCVvKUdfYPQZv8mwzOesIfzd2fhsH3eRGh6F/i67crh
+	FTJPGfmFvE+6DYyn2wEht06zjN7c1MAy6Gwfl+SClHA4m8iL0RKjIQTTKxb2uS6b
+	wELWKUXeb1sKp+B1KxIwFsMGNhdWvviL1qo+YDtgl0M3otMimslny//7XmYl5zHc
+	U0eRgw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40ms96p6ve-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jul 2024 04:28:23 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46U4SMK4009657
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jul 2024 04:28:22 GMT
+Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 29 Jul
+ 2024 21:28:16 -0700
+Message-ID: <d64be833-0e37-49d2-be45-951ec731a364@quicinc.com>
+Date: Tue, 30 Jul 2024 09:58:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240722-usb-1129-probe-pci-clk-fix-v1-1-99ea804228b6@collabora.com>
- <CAGXv+5H_pxR18sHeqdWPy9_FARrnLwyyOHV4VXCn9p5OExseiQ@mail.gmail.com>
- <f12ba385-090b-4772-8c52-e515e25b00ac@collabora.com> <CAGXv+5G92=-k5MDH4BPcM8tgPwcGTJ60trJwr7BwTGHD=wpnDw@mail.gmail.com>
- <51f0f4f3-11a5-4d74-981e-3f24f8475c7f@collabora.com> <CAGXv+5F-U6O3dQdU2L8bR5V+D=PLreACZYCh5sxBY3PFrex1zg@mail.gmail.com>
- <de0b0daa-2a35-4286-b4db-4f646073a04c@collabora.com> <CAGXv+5EvzRr8h5vnuV2h=zkVwkVp3fShDP_45BpaO0HkivuDtQ@mail.gmail.com>
- <c3e38dae-646f-471a-ae40-150b8f86cac0@collabora.com> <be8a0047-3a37-4e25-b4aa-ab34adff4418@notapiano>
-In-Reply-To: <be8a0047-3a37-4e25-b4aa-ab34adff4418@notapiano>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 30 Jul 2024 12:17:04 +0800
-Message-ID: <CAGXv+5EybBNiapMDcnvW5kMKm_ig8kta6-XsGYAFss8EOyKCCg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add missing clock for xhci1 controller
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Macpaul Lin <macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 30, 2024 at 2:14=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> On Mon, Jul 29, 2024 at 02:34:27PM +0200, AngeloGioacchino Del Regno wrot=
-e:
-> > Il 29/07/24 12:48, Chen-Yu Tsai ha scritto:
-> > > On Mon, Jul 29, 2024 at 4:54=E2=80=AFPM AngeloGioacchino Del Regno
-> > > <angelogioacchino.delregno@collabora.com> wrote:
-> > > >
-> > > > Il 29/07/24 10:07, Chen-Yu Tsai ha scritto:
-> > > > > On Mon, Jul 29, 2024 at 3:59=E2=80=AFPM AngeloGioacchino Del Regn=
-o
-> > > > > <angelogioacchino.delregno@collabora.com> wrote:
-> > > > > >
-> > > > > > Il 26/07/24 17:11, Chen-Yu Tsai ha scritto:
-> > > > > > > On Fri, Jul 26, 2024 at 8:11=E2=80=AFPM AngeloGioacchino Del =
-Regno
-> > > > > > > <angelogioacchino.delregno@collabora.com> wrote:
-> > > > > > > >
-> > > > > > > > Il 25/07/24 12:34, Chen-Yu Tsai ha scritto:
-> > > > > > > > > Hi,
-> > > > > > > > >
-> > > > > > > > > On Mon, Jul 22, 2024 at 11:27=E2=80=AFPM N=C3=ADcolas F. =
-R. A. Prado
-> > > > > > > > > <nfraprado@collabora.com> wrote:
-> > > > > > > > > >
-> > > > > > > > > > Currently if the xhci1 controller happens to probe befo=
-re the pcie1
-> > > > > > > > > > controller then it fails with the following errors:
-> > > > > > > > > >
-> > > > > > > > > > xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f=
-)
-> > > > > > > > > > xhci-mtk 11290000.usb: can't setup: -110
-> > > > > > > > > > xhci-mtk: probe of 11290000.usb failed with error -110
-> > > > > > > > > >
-> > > > > > > > > > The issue has been tracked down to the CLK_INFRA_AO_PCI=
-E_P1_TL_96M
-> > > > > > > > > > clock, although exactly why this pcie clock is needed f=
-or the usb
-> > > > > > > > > > controller is still unknown. Add the clock to the xhci1=
- controller so it
-> > > > > > > > > > always probes successfully and use a placeholder clock =
-name for it.
-> > > > > > > > > >
-> > > > > > > > > > Reported-by: N=C3=ADcolas F. R. A. Prado <nfraprado@col=
-labora.com> #KernelCI
-> > > > > > > > > > Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-=
-b3df-63e1ddb0ec51@notapiano/
-> > > > > > > > > > Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@c=
-ollabora.com>
-> > > > > > > > >
-> > > > > > > > > So I asked MediaTek about this, and it seems the correct =
-thing to do is
-> > > > > > > > > disable USB 3 on this host controller using the following=
- snippet. The
-> > > > > > > > > snippet is copy-pasted from our issue tracker and won't a=
-pply directly.
-> > > > > > > > >
-> > > > > > > > > This is also seen in mt8395-kontron-3-5-sbc-i1200.dts, on=
- which xhci1
-> > > > > > > > > is used only for USB 2.0 on an M.2 slot.
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > Uhm, okay, but why should USB3 be disabled on a controller =
-that supports USB3?
-> > > > > > > >
-> > > > > > > > I agree about disabling it on specific boards that use only=
- the USB 2.0 lines of
-> > > > > > > > this controller, but doing that globally looks wrong... and=
- looks like being a
-> > > > > > > > workaround for an error that gets solved with adding a cloc=
-k as well.
-> > > > > > > >
-> > > > > > > > In short, the question is: why would that be the correct th=
-ing to do?
-> > > > > > >
-> > > > > > > We can disable it in mt8195-cherry.dtsi then?
-> > > > > >
-> > > > > > That device does not use this controller, so yes we can disable=
- it, but that still
-> > > > > > doesn't resolve the issue pointed out by Nicolas...!
-> > > > >
-> > > > > No. I mean disable USB3 on this port. Also see the next paragraph=
-.
-> > > > >
-> > > >
-> > > > Yes, sorry I was meaning the same - but I effectively wrote "disabl=
-e controller"
-> > > > instead, my bad.
-> > > >
-> > > > > > Please note that the issue that he sees doesn't happen only on =
-Tomato, but also on
-> > > > > > other MediaTek MT8195/MT8395 boards - and applying this commit =
-makes disabling the
-> > > > > > controller, or disabling the USB 3 lines on the controller, kin=
-da redundant, as
-> > > > > > this will effectively fix probing it... but again, fixing the a=
-ctual issue with
-> > > > > > this controller is something that must be done.
-> > > > >
-> > > > > If those other boards use the XHCI1 USB3 lines for ... USB3, then=
- the USB3
-> > > > > PHY should also be tied to XHCI1, right now due to the Cherry Chr=
-omebook
-> > > > > design, only the USB2 PHY is tied to it.
-> > > > >
-> > > >
-> > > > Yes, I am aware of that.
-> > > >
-> > > > > > Disabling the controller on Tomato is a different topic - here =
-we are discussing
-> > > > > > about fixing the issue, and that will happen, again, on any boa=
-rd that has this
-> > > > > > controller enabled with USB3 lines. :-)
-> > > > > >
-> > > > > > So, unless there is any specific reason for which applying this=
- commit is a bad
-> > > > > > idea, or any alternative fix to this that is better than the pr=
-oposed one, and
-> > > > > > not a workaround... I'm applying this one.
-> > > > >
-> > > > > Didn't I just relay what MediaTek says is the correct fix? Disabl=
-e USB3
-> > > > > for this port on devices where the serial pairs are used for PCIe=
- instead
-> > > > > of USB3.
-> > > > >
-> > > >
-> > > > I think there must've been some misunderstanding here.
-> > > >
-> > > > Yes you did relay what MediaTek is the correct fix, and I agree tha=
-t the USB3 must
-> > > > be disabled on devices where those serial pairs are used for PCIe i=
-nstead of USB,
-> > > > or on devices where those are completely unused.
-> > >
-> > > OK. I will send a patch for Tomato as you asked.
-> > >
-> > > > This, though, will fix the issue only on those devices (because we =
-are disabling
-> > > > those lines entirely, so depending on how we see it, this might not=
- be a fix but
-> > > > rather a workaround).
-> > >
-> > > I would say that is a more accurate description of the hardware, so a=
- fix.
-> > >
-> >
-> > I can accept a patch for Tomato with a Fixes tag. Yes.
-> >
-> > > > If we don't apply this fix, any board that uses those pairs for USB=
- 3 instead will
-> > > > still show the same "clocks are not stable" error, leaving them wit=
-h a broken port.
-> > > >
-> > > > And I believe that because the clocks are not routed externally but=
- rather are
-> > > > internal to the SoC, so, if INFRA_AO_PCIE_P1_TL_96M is necessary fo=
-r that USB 3
-> > > > port to work, a board that intends to use those pairs for USB3 woul=
-d still need
-> > > > this exact clock to actually get that port to work.
-> > >
-> > > I couldn't reproduce the issue by disabling pcie1 as Nicolas mentione=
-d.
-> > > I don't have any more to add to this though. Sorry for the noise.
->
-> Huh, that's surprising. FWIW I just reproduced with kernel next-20240729,
-> upstream defconfig (besides a CONFIG_USB_ONBOARD_DEV=3Dn to be able to bo=
-ot from
-> my USB drive), and the pcie1 node in mt8195-cherry.dtsi disabled. Hardwar=
-e is
-> mt8195-cherry-tomato-r2.
->
-> Also, I just tested adding
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
-/boot/dts/mediatek/mt8195-cherry.dtsi
-> index fe5400e17b0f..a60c4d1419df 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -1401,6 +1401,7 @@ &xhci0 {
->  &xhci1 {
->         status =3D "okay";
->
-> +       mediatek,u3p-dis-msk =3D <0x1>;
->         rx-fifo-depth =3D <3072>;
->         vusb33-supply =3D <&mt6359_vusb_ldo_reg>;
->         vbus-supply =3D <&usb_vbus>;
->
-> And that fixed the issue as well. So as far as fixing the error on Tomato=
-, this
-> patch works too, and makes more sense.
-
-Could you also try adding the USB3 PHY instead of disabling U3 on the
-controller? As:
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 2ee45752583c..61b3c202a8cd 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1444,7 +1444,7 @@ xhci1: usb@11290000 {
-                              <0 0x11293e00 0 0x0100>;
-                        reg-names =3D "mac", "ippc";
-                        interrupts =3D <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH 0>;
--                       phys =3D <&u2port1 PHY_TYPE_USB2>;
-+                       phys =3D <&u2port1 PHY_TYPE_USB2>, <&u3port1
-PHY_TYPE_USB3>;
-                        assigned-clocks =3D <&topckgen CLK_TOP_USB_TOP_1P>,
-                                          <&topckgen CLK_TOP_SSUSB_XHCI_1P>=
-;
-                        assigned-clock-parents =3D <&topckgen
-CLK_TOP_UNIVPLL_D5_D4>,
-
-I wanted to test this, but I couldn't actually reproduce the error.
-
-> However I agree with Angelo that a board that does use USB3 on this contr=
-oller
-> would still need the original patch adding the PCIE clock to work. But su=
-ch a
-> board doesn't currently exist, does it? And we don't actually know if USB=
-3
-> really works in that case. Or why this clock is needed. So there are a fe=
-w
-> unknowns...
-
-MacPaul seems to have one. He mentioned to me that he doesn't need the patc=
-h
-adding the PCIE clock, but needs "mediatek,force-mode" instead.
-
-Looking at the comments around "mediatek,force-mode" in the driver, it
-seems that the PHY defaults to PCIe mode. A combination of not initializing
-the PHY to USB3 and turning on the PCIe related clock might be what is
-allowing the PHY to respond to the controller? This is just a guess though.
-
-> Anyway, I really don't know what option would be better. Just let me know=
- if I
-> should resend a patch or CC me in any alternative patch.
-
-I'll send the patches to fix up pure USB2 usage. Given we have conflicting
-reports on whether the PCIe clock is needed, I ask that you try the PHY
-assignment change first.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2] dt-bindings: clock: qcom: Remove required-opps from
+ required list on SM8650
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Bryan
+ O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Ajit
+ Pandey" <quic_ajipan@quicinc.com>,
+        kernel test robot <lkp@intel.com>
+References: <20240720052818.26441-1-quic_jkona@quicinc.com>
+ <d760dfb1-b86b-4d1b-a927-575416e780fd@linaro.org>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <d760dfb1-b86b-4d1b-a927-575416e780fd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PH3hirN91UNy-5wEpXj-xkeTxUWzCeNG
+X-Proofpoint-GUID: PH3hirN91UNy-5wEpXj-xkeTxUWzCeNG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-30_04,2024-07-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 mlxlogscore=680 bulkscore=0 malwarescore=0 phishscore=0
+ priorityscore=1501 clxscore=1015 lowpriorityscore=0 spamscore=0
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407300031
 
 
-Thanks
-ChenYu
 
-> Thanks,
-> N=C3=ADcolas
->
-> > >
-> >
-> > Sometimes the noise actually opens some eyes around (be it mine or whoe=
-ver else's),
-> > so as long as it is constructive, I don't see it as noise.
-> >
-> > In short: no worries! :-)
-> >
-> > > > As for Tomato itself - I agree that we must add the u3p-dis-msk=3D0=
-x1 flag, yes,
-> > > > and we will, but I'm purely talking about - again - an eventual boa=
-rd that would
-> > > > not have that property because USB3 is exposed/used for real.
-> > >
-> > > I think it would make more sense to fix the `phys =3D ` statement in =
-mt8195.dtsi
-> > > to list both the USB2 and USB3 PHYs. At the board level, for boards o=
-nly
-> > > using USB2, we would have the overriding `phys =3D ` statement alongs=
-ide the
-> > > `mediatek,u3p-dis-mask` property. Does that make sense to you?
-> > >
-> >
-> > Yeah, that'd make sense, though I'm not sure if the driver can cope wit=
-h that: in
-> > that case, we'd obviously need "two" patches and not one :-)
-> >
-> > Cheers!
-> >
-> > >
-> > > Thanks
-> > > ChenYu
-> > >
-> > > > Cheers,
-> > > > Angelo
-> > > >
-> > > > >
-> > > > > Regards
-> > > > > ChenYu
-> > > > >
-> > > > > > Cheers,
-> > > > > > Angelo
-> > > > > >
-> > > > > > >
-> > > > > > > ChenYu
-> > > > > > >
-> > > > > > > > Cheers,
-> > > > > > > > Angelo
-> > > > > > > >
-> > > > > > > > >
-> > > > > > > > > ChenYu
-> > > > > > > > >
-> > > > > > > > > index 8b7307cdefc6..2dac9f706a58
-> > > > > > > > > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > > > > > > > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > > > > > > > @@ -1447,6 +1447,7 @@
-> > > > > > > > >                                           "xhci_ck";
-> > > > > > > > >                             mediatek,syscon-wakeup =3D <&=
-pericfg 0x400 104>;
-> > > > > > > > >                             wakeup-source;
-> > > > > > > > > +                       mediatek,u3p-dis-msk =3D <0x1>;
-> > > > > > > > >                             status =3D "disabled";
-> > > > > > > > >                     };
-> > > > > > > > >
-> > > > > > > > > > ---
-> > > > > > > > > >      arch/arm64/boot/dts/mediatek/mt8195.dtsi | 10 ++++=
-++++--
-> > > > > > > > > >      1 file changed, 8 insertions(+), 2 deletions(-)
-> > > > > > > > > >
-> > > > > > > > > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b=
-/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > > > > > > > > index 2ee45752583c..cc5169871f1c 100644
-> > > > > > > > > > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > > > > > > > > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > > > > > > > > @@ -1453,9 +1453,15 @@ xhci1: usb@11290000 {
-> > > > > > > > > >                                      <&topckgen CLK_TOP=
-_SSUSB_P1_REF>,
-> > > > > > > > > >                                      <&apmixedsys CLK_A=
-PMIXED_USB1PLL>,
-> > > > > > > > > >                                      <&clk26m>,
-> > > > > > > > > > -                                <&pericfg_ao CLK_PERI_=
-AO_SSUSB_1P_XHCI>;
-> > > > > > > > > > +                                <&pericfg_ao CLK_PERI_=
-AO_SSUSB_1P_XHCI>,
-> > > > > > > > > > +                                /*
-> > > > > > > > > > +                                 * This clock is requi=
-red due to a hardware
-> > > > > > > > > > +                                 * bug. The 'frmcnt_ck=
-' clock name is used as a
-> > > > > > > > > > +                                 * placeholder.
-> > > > > > > > > > +                                 */
-> > > > > > > > > > +                                <&infracfg_ao CLK_INFR=
-A_AO_PCIE_P1_TL_96M>;
-> > > > > > > > > >                             clock-names =3D "sys_ck", "=
-ref_ck", "mcu_ck", "dma_ck",
-> > > > > > > > > > -                                     "xhci_ck";
-> > > > > > > > > > +                                     "xhci_ck", "frmcn=
-t_ck";
-> > > > > > > > > >                             mediatek,syscon-wakeup =3D =
-<&pericfg 0x400 104>;
-> > > > > > > > > >                             wakeup-source;
-> > > > > > > > > >                             status =3D "disabled";
-> > > > > > > > > >
-> > > > > > > > > > ---
-> > > > > > > > > > base-commit: dee7f101b64219f512bb2f842227bd04c14efe30
-> > > > > > > > > > change-id: 20240722-usb-1129-probe-pci-clk-fix-ef8646f4=
-6aac
-> > > > > > > > > >
-> > > > > > > > > > Best regards,
-> > > > > > > > > > --
-> > > > > > > > > > N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> > > > > > > > > >
-> > > > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > >
-> > > >
-> >
-> >
-> >
+On 7/29/2024 12:57 PM, Vladimir Zapolskiy wrote:
+> Hi Jagadeesh,
+> 
+> On 7/20/24 08:28, Jagadeesh Kona wrote:
+>> On SM8650, the minimum voltage corner supported on MMCX from cmd-db is
+>> sufficient for clock controllers to operate and there is no need to 
+>> specify
+>> the required-opps. Hence remove the required-opps property from the 
+>> list of
+>> required properties for SM8650 camcc and videocc bindings.
+>>
+>> This fixes:
+>> arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@aaf0000:
+>> 'required-opps' is a required property
+>>
+>> arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@ade0000:
+>> 'required-opps' is a required property
+>>
+>> Fixes: a6a61b9701d1 ("dt-bindings: clock: qcom: Add SM8650 video clock 
+>> controller")
+>> Fixes: 1ae3f0578e0e ("dt-bindings: clock: qcom: Add SM8650 camera 
+>> clock controller")
+>> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> Well, I believe I reported about this problem way before the change has 
+> been merged
+> and the problem reported by the robot, however it was not taken into 
+> account in time:
+> 
+> https://lore.kernel.org/all/0f13ab6b-dff1-4b26-9707-704ae2e2b535@linaro.org/
+> 
+
+Sorry for not addressing this issue in time, I am working on fixing this 
+issue now. I posted V3 including your Reported-by tag.
+
+V3: 
+https://lore.kernel.org/all/20240730034552.31271-1-quic_jkona@quicinc.com/
+
+Thanks,
+Jagadeesh
+
+>> Closes: 
+>> https://lore.kernel.org/oe-kbuild-all/202407070147.C9c3oTqS-lkp@intel.com/
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> 
+> -- 
+> Best wishes,
+> Vladimir
+> 
 
