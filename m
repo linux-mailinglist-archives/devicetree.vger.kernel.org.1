@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-89457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27799413AA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 15:53:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3914A9413E8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 16:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 388191F240B9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:53:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 887961F244A3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1672B1A08AB;
-	Tue, 30 Jul 2024 13:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A581A08B6;
+	Tue, 30 Jul 2024 14:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="oIXmMkeD"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HHK1tBKh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A5E198856;
-	Tue, 30 Jul 2024 13:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8271A08BB;
+	Tue, 30 Jul 2024 14:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722347582; cv=none; b=g2nIw/ohVG2DTa1XQ4a/5nfD/ZopuT60o7yVa+81zg2qF67g/f6xcCCbWqWvjkh82EcmCZzUOgryXzW0VCDFrC7NUVtbTiBe+DHAQUSG2Vl8F/NH0t7vQl06n6vrE/1g3ag54yTc1Ct0y4bja65keGY8raeHMF4YvRfr1KFHNyA=
+	t=1722348577; cv=none; b=kHAOcXrnZW69/8Y3MY1hYOP9KbzIwfX6XZsrQRLJmOqgSPVgr30STVz8zOI6ECZnKW0i62Hz8+1ET10/HTiBtACBU4XEr5HsIaUU1m5K1oNpJ0vlMq2P5Eus6SSdYtmuBRVtW/4UCyn618cRHSRVVh75xgQcB36LMLoS6fZzpk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722347582; c=relaxed/simple;
-	bh=qIyOcQsZcyT5YWOcsocqXDlV8I27Gls55oT7rTXEyRk=;
+	s=arc-20240116; t=1722348577; c=relaxed/simple;
+	bh=Wy1pvzg5Xwx/dqPM3SdzguWybJcdp/9dCj8MbkZ1M4g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qitmn78LDsnkfCiVIZj+E/pI0mhWN4NCl/SzN1n/pGe79Y68cnXsTeo8914C813z6dDoi3h7X+9JVKX/XIMcauO9aO8q8EJN5SwGLf/mQGLtsFsWsDnWeT0S5/s6EgcoMNDeLJk5NWT1hVH+prSbcG4PWH2FMblSt8M2wDadRNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=oIXmMkeD; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB0FA14816A2;
-	Tue, 30 Jul 2024 15:45:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1722347105; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=/fTKcRBjAzVsRyje9tb3MZmm69iEkcK43nYIiGT3dF4=;
-	b=oIXmMkeD6jKO0IeS6YRhFOzKwAfwGhX/jWysS21OyZEdD8JRcfM2ak6lTO1vD/YmGV0N2R
-	tyU2FkHK2lwgjKOQ1uu8G7dVqt+IOLDXkO2kEdd1QtVDd5Ekk3m0MIy9dawELFgaMXlT54
-	13yCEyMhDvXbnRWHEobjDo1aJV0QW1P933Xk1sTDCaNqglP8pKXrpuSVFPXfmgE17Ng01N
-	ejhLZtbogcWjQbUaDtdr9laZXosXfNroOl7OrMaRn6BugDj1L14J6ElF6e2Ymm8yLiKk9e
-	M5KM/oMraoRU/LMcG04+Rw1LpovfDyot+WJeF5Fw3PvrflyK4ZcVsocgNeQ0tQ==
-Date: Tue, 30 Jul 2024 15:44:56 +0200
-From: Alexander Dahl <ada@thorsis.com>
-To: Andrei Simion <andrei.simion@microchip.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=A8VNqj/KzVk1Jsl2N8UU3ZlfTJJUJcYOcsYN6+6MZ3SnZ1uYKaiqgGCyouc0g9bpUMvE3RCoCxS/c1NOZhxF1b1enGJTQqU4JGwJEw1VuZWmhlpkQf+XpK0wvHstO+ire/IIxa96Zp0cnadQkKTfjHPNe4FlXBcY4qog17OTmjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HHK1tBKh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D299C743;
+	Tue, 30 Jul 2024 16:08:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1722348524;
+	bh=Wy1pvzg5Xwx/dqPM3SdzguWybJcdp/9dCj8MbkZ1M4g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HHK1tBKhPlJCwOSmk3ZoUjJuGz0pIOj7jNsABnlTmKRizaGtNXxiGsKVVMmNtijmO
+	 Gzu4fRaS4pJjet17pofTmi5HfEIEfNLJ2axP+v1k4EVL3VnaItur4ySVG8oxefvDoP
+	 +Z62X6asSf/Fe8D+eHsP6+Ihb909+75M3iBoEIb0=
+Date: Tue, 30 Jul 2024 17:09:10 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Andy Hsieh <andy.hsieh@mediatek.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-leds@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: microchip: Rename node, sub-node, and clean up
- spacing
-Message-ID: <20240730-rambling-helping-2f03f5ddee6a@thorsis.com>
-Mail-Followup-To: Andrei Simion <andrei.simion@microchip.com>,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-leds@vger.kernel.org
-References: <20240723131228.189308-1-andrei.simion@microchip.com>
+	linux-mediatek@lists.infradead.org,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Paul Elder <paul.elder@ideasonboard.com>
+Subject: Re: [PATCH v6 4/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 camsv
+Message-ID: <20240730140910.GB5473@pendragon.ideasonboard.com>
+References: <20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com>
+ <20240729-add-mtk-isp-3-0-support-v6-4-c374c9e0c672@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,1597 +69,1994 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240723131228.189308-1-andrei.simion@microchip.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <20240729-add-mtk-isp-3-0-support-v6-4-c374c9e0c672@baylibre.com>
 
-Hello Andrei,
+Hi Julien,
 
-Am Tue, Jul 23, 2024 at 04:12:28PM +0300 schrieb Andrei Simion:
-> Cosmetic work:
-> Rename the eeprom node according to device tree specification.
-> Rename the usb node according to device tree specification.
-> Rename the led sub nodes according to device tree specification.
+Thank you for the patch.
 
-You have to be careful here if sysfs file names should stay stable,
-see below.
-
-> Rename the pmic node according to the device tree specification.
-> Clean up spacing and indentation.
+On Mon, Jul 29, 2024 at 04:48:03PM +0200, Julien Stephan wrote:
+> From: Phi-bang Nguyen <pnguyen@baylibre.com>
 > 
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-> ---
-> Modifications Based On:
-> https://lore.kernel.org/linux-arm-kernel/c4b23da5-10fc-476e-8acc-8ba0815f5def@kernel.org/
-> ---
->  arch/arm/boot/dts/microchip/aks-cdu.dts       | 12 +++++-----
->  arch/arm/boot/dts/microchip/animeo_ip.dts     | 10 ++++----
->  .../dts/microchip/at91-cosino_mega2560.dts    |  2 +-
->  arch/arm/boot/dts/microchip/at91-foxg20.dts   |  4 ++--
->  .../arm/boot/dts/microchip/at91-qil_a9260.dts |  4 ++--
->  .../boot/dts/microchip/at91-sam9_l9260.dts    |  2 +-
->  .../arm/boot/dts/microchip/at91-sam9x60ek.dts |  6 ++---
->  .../dts/microchip/at91-sama5d27_som1.dtsi     |  2 +-
->  .../dts/microchip/at91-sama5d27_som1_ek.dts   | 14 +++++------
->  .../dts/microchip/at91-sama5d27_wlsom1.dtsi   |  2 +-
->  .../dts/microchip/at91-sama5d29_curiosity.dts |  2 +-
->  .../boot/dts/microchip/at91-sama5d2_icp.dts   | 10 ++++----
->  .../dts/microchip/at91-sama5d2_ptc_ek.dts     |  8 +++----
->  .../dts/microchip/at91-sama5d2_xplained.dts   |  8 +++----
->  .../dts/microchip/at91-sama5d3_xplained.dts   |  6 ++---
->  .../dts/microchip/at91-sama5d4_ma5d4evk.dts   |  6 ++---
->  .../dts/microchip/at91-sama5d4_xplained.dts   |  6 ++---
->  .../arm/boot/dts/microchip/at91-sama5d4ek.dts |  6 ++---
->  .../arm/boot/dts/microchip/at91-sama7g5ek.dts |  2 +-
->  arch/arm/boot/dts/microchip/at91-vinco.dts    |  6 ++---
->  arch/arm/boot/dts/microchip/at91rm9200.dtsi   |  4 ++--
->  arch/arm/boot/dts/microchip/at91rm9200ek.dts  | 10 ++++----
->  arch/arm/boot/dts/microchip/at91sam9260.dtsi  |  4 ++--
->  arch/arm/boot/dts/microchip/at91sam9260ek.dts | 10 ++++----
->  arch/arm/boot/dts/microchip/at91sam9261.dtsi  |  4 ++--
->  arch/arm/boot/dts/microchip/at91sam9261ek.dts | 10 ++++----
->  arch/arm/boot/dts/microchip/at91sam9263.dtsi  |  4 ++--
->  arch/arm/boot/dts/microchip/at91sam9263ek.dts | 12 +++++-----
->  arch/arm/boot/dts/microchip/at91sam9g20ek.dts |  4 ++--
->  .../boot/dts/microchip/at91sam9g20ek_2mmc.dts |  4 ++--
->  .../dts/microchip/at91sam9g20ek_common.dtsi   |  6 ++---
->  .../at91sam9g25-gardena-smart-gateway.dts     | 24 +++++++++----------
->  arch/arm/boot/dts/microchip/at91sam9g45.dtsi  |  6 ++---
->  .../boot/dts/microchip/at91sam9m10g45ek.dts   |  6 ++---
->  arch/arm/boot/dts/microchip/at91sam9n12.dtsi  |  4 ++--
->  arch/arm/boot/dts/microchip/at91sam9n12ek.dts | 10 ++++----
->  arch/arm/boot/dts/microchip/at91sam9rl.dtsi   |  2 +-
->  arch/arm/boot/dts/microchip/at91sam9rlek.dts  |  2 +-
->  arch/arm/boot/dts/microchip/at91sam9x5.dtsi   |  6 ++---
->  arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi |  4 ++--
->  arch/arm/boot/dts/microchip/ethernut5.dts     |  4 ++--
->  arch/arm/boot/dts/microchip/evk-pro3.dts      |  4 ++--
->  arch/arm/boot/dts/microchip/mpa1600.dts       |  2 +-
->  arch/arm/boot/dts/microchip/pm9g45.dts        |  4 ++--
->  arch/arm/boot/dts/microchip/sam9x60.dtsi      |  6 ++---
->  arch/arm/boot/dts/microchip/sama5d2.dtsi      |  6 ++---
->  arch/arm/boot/dts/microchip/sama5d3.dtsi      |  6 ++---
->  arch/arm/boot/dts/microchip/sama5d34ek.dts    |  2 +-
->  arch/arm/boot/dts/microchip/sama5d3xmb.dtsi   |  6 ++---
->  .../boot/dts/microchip/sama5d3xmb_cmp.dtsi    |  2 +-
->  arch/arm/boot/dts/microchip/sama5d4.dtsi      |  6 ++---
->  arch/arm/boot/dts/microchip/tny_a9263.dts     |  2 +-
->  .../boot/dts/microchip/usb_a9260_common.dtsi  |  4 ++--
->  arch/arm/boot/dts/microchip/usb_a9263.dts     |  4 ++--
->  54 files changed, 156 insertions(+), 156 deletions(-)
+> This driver provides a path to bypass the SoC ISP so that image data
+> coming from the SENINF can go directly into memory without any image
+> processing. This allows the use of an external ISP.
 > 
-> diff --git a/arch/arm/boot/dts/microchip/aks-cdu.dts b/arch/arm/boot/dts/microchip/aks-cdu.dts
-> index 742fcf525e1b..cdb8ff27b13c 100644
-> --- a/arch/arm/boot/dts/microchip/aks-cdu.dts
-> +++ b/arch/arm/boot/dts/microchip/aks-cdu.dts
-> @@ -50,13 +50,13 @@ macb0: ethernet@fffc4000 {
->  				status = "okay";
->  			};
+> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> [Paul Elder fix irq locking]
+> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Co-developed-by: Julien Stephan <jstephan@baylibre.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  MAINTAINERS                                        |   1 +
+>  drivers/media/platform/mediatek/isp/isp_30/Kconfig |  19 +
+>  .../media/platform/mediatek/isp/isp_30/Makefile    |   1 +
+>  .../platform/mediatek/isp/isp_30/camsv/Makefile    |   7 +
+>  .../platform/mediatek/isp/isp_30/camsv/mtk_camsv.c | 327 +++++++++
+>  .../platform/mediatek/isp/isp_30/camsv/mtk_camsv.h | 192 ++++++
+>  .../mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c     | 413 ++++++++++++
+>  .../mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h   |  60 ++
+>  .../mediatek/isp/isp_30/camsv/mtk_camsv_video.c    | 742 +++++++++++++++++++++
+>  9 files changed, 1762 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5e697e288671..9b866731bf38 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14165,6 +14165,7 @@ M:	Andy Hsieh <andy.hsieh@mediatek.com>
+>  S:	Supported
+>  F:	Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+>  F:	Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+> +F:	drivers/media/platform/mediatek/isp/isp_30/camsv/*
+>  F:	drivers/media/platform/mediatek/isp/isp_30/seninf/*
 >  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 15 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
->  		};
+>  MEDIATEK SMI DRIVER
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/Kconfig b/drivers/media/platform/mediatek/isp/isp_30/Kconfig
+> index 9791312589fb..5293a061ae0b 100644
+> --- a/drivers/media/platform/mediatek/isp/isp_30/Kconfig
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/Kconfig
+> @@ -14,3 +14,22 @@ config MTK_SENINF30
 >  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> @@ -98,23 +98,23 @@ rootfs@500000 {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		red {
-> +		led-0 {
->  			gpios = <&pioC 10 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "none";
->  		};
->  
-> -		green {
-> +		led-1 {
->  			gpios = <&pioA 5 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "none";
->  			default-state = "on";
->  		};
->  
-> -		yellow {
-> +		led-2 {
->  			gpios = <&pioB 20 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "none";
->  		};
->  
-> -		blue {
-> +		led-3 {
->  			gpios = <&pioB 21 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "none";
->  		};
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called mtk-seninf.
+> +
+> +config MTK_CAMSV30
 
-For all these paths would probably change, for example from
-/sys/class/leds/blue to /sys/class/leds/led-3 … which might break
-userspace depending on these paths.  To keep the old path, an
-additional node "label" can be added, see other boards for examples.
-Other boards in this patch don't seem to be affected.
+Alphabetical order please.
 
-Added linux-leds@vger.kernel.org to Cc.
+> +	tristate "MediaTek ISP3.0 CAMSV driver"
+> +	depends on VIDEO_V4L2_SUBDEV_API
 
-Greets
-Alex
+You can replace this with
 
-> diff --git a/arch/arm/boot/dts/microchip/animeo_ip.dts b/arch/arm/boot/dts/microchip/animeo_ip.dts
-> index 29936bfbeeb7..553320ccce89 100644
-> --- a/arch/arm/boot/dts/microchip/animeo_ip.dts
-> +++ b/arch/arm/boot/dts/microchip/animeo_ip.dts
-> @@ -136,7 +136,7 @@ ubi@60000 {
->  			};
->  		};
+        select MEDIA_CONTROLLER
+        select VIDEO_V4L2_SUBDEV_API
+
+> +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	depends on OF
+> +	depends on PM
+> +	select VIDEOBUF2_VMALLOC
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select MTK_SENINF30
+> +	select PHY_MTK_MIPI_CSI_0_5
+
+Alphabetical order please.
+
+> +	default n
+> +	help
+> +	  This driver provides a path to bypass the SoC ISP so that
+> +	  image data come from the SENINF can go directly into memory
+> +	  without any image processing.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called mtk-camsv30.
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/Makefile b/drivers/media/platform/mediatek/isp/isp_30/Makefile
+> index ac3142de4739..a76f440c5358 100644
+> --- a/drivers/media/platform/mediatek/isp/isp_30/Makefile
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
 >  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			atmel,vbus-gpio = <&pioB 15 GPIO_ACTIVE_LOW>;
->  			status = "okay";
-> @@ -146,23 +146,23 @@ usb0: ohci@500000 {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		power_green {
-> +		led-0 {
->  			label = "power_green";
->  			gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		power_red {
-> +		led-1 {
->  			label = "power_red";
->  			gpios = <&pioA 2 GPIO_ACTIVE_HIGH>;
->  		};
->  
-> -		tx_green {
-> +		led-2 {
->  			label = "tx_green";
->  			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
->  		};
->  
-> -		tx_red {
-> +		led-3 {
->  			label = "tx_red";
->  			gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts b/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
-> index 04cb7bee937d..1279dfb38300 100644
-> --- a/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
-> @@ -7,7 +7,7 @@
->   *			HCE Engineering
->   *
->   * Derived from at91sam9g35ek.dts by:
-> - * 	Copyright (C) 2012 Atmel,
-> + *	Copyright (C) 2012 Atmel,
->   *      2012 Nicolas Ferre <nicolas.ferre@atmel.com>
->   */
->  
-> diff --git a/arch/arm/boot/dts/microchip/at91-foxg20.dts b/arch/arm/boot/dts/microchip/at91-foxg20.dts
-> index 9dfd5de808d1..9ee71fab7ee1 100644
-> --- a/arch/arm/boot/dts/microchip/at91-foxg20.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-foxg20.dts
-> @@ -45,7 +45,7 @@ timer@2 {
->  				};
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 6 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -131,7 +131,7 @@ watchdog@fffffd40 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91-qil_a9260.dts b/arch/arm/boot/dts/microchip/at91-qil_a9260.dts
-> index 5ccb3c139592..0088e40a87bd 100644
-> --- a/arch/arm/boot/dts/microchip/at91-qil_a9260.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-qil_a9260.dts
-> @@ -42,7 +42,7 @@ timer@2 {
->  				};
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -114,7 +114,7 @@ shdwc: poweroff@fffffd10 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts b/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts
-> index 2fb51b9aca2a..49dc1a4ccb36 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sam9_l9260.dts
-> @@ -105,7 +105,7 @@ nand0: nand@40000000 {
->  			status = "okay";
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			status = "okay";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-> index f3cbb675cea4..66b03e32a79a 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-> @@ -53,17 +53,17 @@ leds {
->  		pinctrl-0 = <&pinctrl_gpio_leds>;
->  		status = "okay"; /* Conflict with pwm0. */
->  
-> -		red {
-> +		led-0 {
->  			label = "red";
->  			gpios = <&pioB 11 GPIO_ACTIVE_HIGH>;
->  		};
->  
-> -		green {
-> +		led-1 {
->  			label = "green";
->  			gpios = <&pioB 12 GPIO_ACTIVE_HIGH>;
->  		};
->  
-> -		blue {
-> +		led-2 {
->  			label = "blue";
->  			gpios = <&pioB 13 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
-> index 95ecb7d040a8..8ac85dac5a96 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
-> @@ -106,7 +106,7 @@ i2c0: i2c@f8028000 {
->  				scl-gpios = <&pioA PIN_PD22 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  				status = "okay";
->  
-> -				at24@50 {
-> +				eeprom@50 {
->  					compatible = "atmel,24c02";
->  					reg = <0x50>;
->  					pagesize = <8>;
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts
-> index f3ffb8f01d8a..ac595ba23f5f 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts
-> @@ -30,14 +30,14 @@ chosen {
->  	};
->  
->  	ahb {
-> -		usb0: gadget@300000 {
-> +		usb0: usb@300000 {
->  			atmel,vbus-gpio = <&pioA PIN_PD20 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@400000 {
-> +		usb1: usb@400000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0 /* &pioA PIN_PD20 GPIO_ACTIVE_HIGH */
->  					   &pioA PIN_PA27 GPIO_ACTIVE_HIGH
-> @@ -48,7 +48,7 @@ &pioA PIN_PA27 GPIO_ACTIVE_HIGH
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@500000 {
-> +		usb2: usb@500000 {
->  			status = "okay";
->  		};
->  
-> @@ -258,10 +258,10 @@ pinctrl_i2c1_default: i2c1_default {
->  				};
->  
->  				pinctrl_i2c1_gpio: i2c1_gpio {
-> -                                        pinmux = <PIN_PD4__GPIO>,
-> -                                                 <PIN_PD5__GPIO>;
-> -                                        bias-disable;
-> -                                };
-> +					pinmux = <PIN_PD4__GPIO>,
-> +						 <PIN_PD5__GPIO>;
-> +					bias-disable;
-> +				};
->  
->  
->  				pinctrl_isc_base: isc_base {
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> index 4617805c7748..2114b2ad9a91 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> @@ -67,7 +67,7 @@ &i2c1 {
->  	scl-gpios = <&pioA PIN_PD20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	status = "okay";
->  
-> -	mcp16502@5b {
-> +	pmic@5b {
->  		compatible = "microchip,mcp16502";
->  		reg = <0x5b>;
->  		status = "okay";
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> index 6b02b7bcfd49..412cc65472ff 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> @@ -141,7 +141,7 @@ &i2c0 {
->  	i2c-sda-hold-time-ns = <350>;
->  	status = "okay";
->  
-> -	mcp16502@5b {
-> +	pmic@5b {
->  		compatible = "microchip,mcp16502";
->  		reg = <0x5b>;
->  		status = "okay";
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
-> index 999adeca6f33..e4648682c994 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
-> @@ -187,7 +187,7 @@ i2c6: i2c@600 {
->  		i2c-digital-filter-width-ns = <35>;
->  		status = "okay";
->  
-> -		mcp16502@5b {
-> +		pmic@5b {
->  			compatible = "microchip,mcp16502";
->  			reg = <0x5b>;
->  			status = "okay";
-> @@ -407,10 +407,10 @@ pinctrl_i2c1_default: i2c1_default {
->  	};
->  
->  	pinctrl_i2c1_gpio: i2c1_gpio {
-> -                pinmux = <PIN_PD19__GPIO>,
-> -                         <PIN_PD20__GPIO>;
-> -                bias-disable;
-> -        };
-> +		pinmux = <PIN_PD19__GPIO>,
-> +			 <PIN_PD20__GPIO>;
-> +		bias-disable;
+>  obj-$(CONFIG_MTK_SENINF30) += seninf/
+> +obj-$(CONFIG_MTK_CAMSV30) += camsv/
+
+Alphabetical order too.
+
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile b/drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile
+> new file mode 100644
+> index 000000000000..fffbc6e7cb78
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +mtk-camsv30-objs += mtk_camsv.o
+> +mtk-camsv30-objs += mtk_camsv30_hw.o
+> +mtk-camsv30-objs += mtk_camsv_video.o
+> +
+> +obj-$(CONFIG_MTK_CAMSV30) += mtk-camsv30.o
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c
+> new file mode 100644
+> index 000000000000..9dd3c6a0e09b
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c
+> @@ -0,0 +1,327 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2020 BayLibre
+> + * Copyright (c) 2022 MediaTek Inc.
+> + */
+> +
+> +#include <media/v4l2-async.h>
+> +#include <media/v4l2-device.h>
+> +
+> +#include "mtk_camsv.h"
+> +
+> +static inline struct mtk_cam_dev *to_mtk_cam_dev(struct v4l2_subdev *sd)
+> +{
+> +	return container_of(sd, struct mtk_cam_dev, subdev);
+> +}
+> +
+> +static const u32 mtk_cam_mbus_formats[] = {
+> +	MEDIA_BUS_FMT_SBGGR8_1X8,
+> +	MEDIA_BUS_FMT_SGBRG8_1X8,
+> +	MEDIA_BUS_FMT_SGRBG8_1X8,
+> +	MEDIA_BUS_FMT_SRGGB8_1X8,
+> +	MEDIA_BUS_FMT_SBGGR10_1X10,
+> +	MEDIA_BUS_FMT_SGBRG10_1X10,
+> +	MEDIA_BUS_FMT_SGRBG10_1X10,
+> +	MEDIA_BUS_FMT_SRGGB10_1X10,
+> +	MEDIA_BUS_FMT_SBGGR12_1X12,
+> +	MEDIA_BUS_FMT_SGBRG12_1X12,
+> +	MEDIA_BUS_FMT_SGRBG12_1X12,
+> +	MEDIA_BUS_FMT_SRGGB12_1X12,
+> +	MEDIA_BUS_FMT_UYVY8_1X16,
+> +	MEDIA_BUS_FMT_VYUY8_1X16,
+> +	MEDIA_BUS_FMT_YUYV8_1X16,
+> +	MEDIA_BUS_FMT_YVYU8_1X16,
+> +};
+> +
+> +/* -----------------------------------------------------------------------------
+> + * V4L2 Subdev Operations
+> + */
+> +
+> +static int mtk_cam_cio_stream_on(struct mtk_cam_dev *cam)
+> +{
+> +	struct device *dev = cam->dev;
+> +	struct v4l2_subdev *seninf;
+> +	int ret;
+> +
+> +	if (!cam->seninf) {
+> +		cam->seninf = media_pad_remote_pad_first(&cam->subdev_pads[MTK_CAM_CIO_PAD_SENINF]);
+> +		if (!cam->seninf) {
+> +			dev_err(dev, "%s: No SENINF connected\n", __func__);
+> +			return -ENOLINK;
+> +		}
+> +	}
+> +
+> +	seninf = media_entity_to_v4l2_subdev(cam->seninf->entity);
+> +
+> +	/* Seninf must stream on first */
+> +	ret = v4l2_subdev_call(seninf, pad, enable_streams, NULL, cam->seninf->index, 0);
+
+Use v4l2_subdev_enable_streams() and v4l2_subdev_disable_streams().
+
+> +	if (ret) {
+> +		dev_err(dev, "failed to stream on %s:%d\n",
+> +			seninf->entity.name, ret);
+> +		return ret;
+> +	}
+> +
+> +	cam->streaming = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_cio_stream_off(struct mtk_cam_dev *cam)
+> +{
+> +	int ret;
+> +
+> +	if (cam->seninf) {
+> +		struct v4l2_subdev *sd = media_entity_to_v4l2_subdev(cam->seninf->entity);
+> +
+> +		ret = v4l2_subdev_call(sd, pad, disable_streams, NULL,
+> +				       cam->seninf->index, 0);
+> +		if (ret) {
+> +			dev_err(cam->dev, "failed to stream off %s:%d\n",
+> +				sd->entity.name, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	cam->streaming = false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_sd_s_stream(struct v4l2_subdev *sd, int enable)
+> +{
+> +	struct mtk_cam_dev *cam = to_mtk_cam_dev(sd);
+> +
+> +	if (enable) {
+> +		/* Align vb2_core_streamon design */
+> +		if (cam->streaming) {
+> +			dev_warn(cam->dev, "already streaming on\n");
+
+Can this happen ?
+
+> +			return 0;
+> +		}
+> +		return mtk_cam_cio_stream_on(cam);
+> +	}
+> +
+> +	if (!cam->streaming) {
+> +		dev_warn(cam->dev, "already streaming off\n");
+
+And this.
+
+> +		return 0;
+> +	}
+> +
+> +	return mtk_cam_cio_stream_off(cam);
+> +}
+> +
+> +static struct v4l2_mbus_framefmt *
+> +mtk_cam_get_pad_format(struct mtk_cam_dev *cam,
+> +		       struct v4l2_subdev_state *sd_state,
+> +		       unsigned int pad, u32 which)
+> +{
+> +	switch (which) {
+> +	case V4L2_SUBDEV_FORMAT_TRY:
+> +		return v4l2_subdev_state_get_format(sd_state, pad);
+> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
+> +		return &cam->formats[pad];
+> +	default:
+> +		return NULL;
+> +	}
+> +}
+> +
+> +static int mtk_cam_init_state(struct v4l2_subdev *sd,
+> +			      struct v4l2_subdev_state *sd_state)
+> +{
+> +	static const struct v4l2_mbus_framefmt def_format = {
+> +		.code = MEDIA_BUS_FMT_SGRBG10_1X10,
+> +		.width = IMG_MAX_WIDTH,
+> +		.height = IMG_MAX_HEIGHT,
+> +		.field = V4L2_FIELD_NONE,
+> +		.colorspace = V4L2_COLORSPACE_SRGB,
+> +		.xfer_func = V4L2_XFER_FUNC_DEFAULT,
+> +		.ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT,
+> +		.quantization = V4L2_QUANTIZATION_DEFAULT,
 > +	};
->  
->  	pinctrl_key_gpio_default: key_gpio_default {
->  		pinmux = <PIN_PD0__GPIO>;
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
-> index 200b20515ab1..0857f4aed939 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
-> @@ -40,14 +40,14 @@ main_xtal {
->  	};
->  
->  	ahb {
-> -		usb0: gadget@300000 {
-> +		usb0: usb@300000 {
->  			atmel,vbus-gpio = <&pioA PIN_PB11 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@400000 {
-> +		usb1: usb@400000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0
->  					   &pioA PIN_PB12 GPIO_ACTIVE_HIGH
-> @@ -58,7 +58,7 @@ &pioA PIN_PB12 GPIO_ACTIVE_HIGH
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@500000 {
-> +		usb2: usb@500000 {
->  			status = "okay";
->  		};
->  
-> @@ -231,7 +231,7 @@ i2c1: i2c@fc028000 {
->  				scl-gpios = <&pioA PIN_PC7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  				status = "okay";
->  
-> -				at24@50 {
-> +				eeprom@50 {
->  					compatible = "atmel,24c02";
->  					reg = <0x50>;
->  					pagesize = <8>;
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-> index 6680031387e8..13cb1c298bd5 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-> @@ -39,14 +39,14 @@ main_xtal {
->  	};
->  
->  	ahb {
-> -		usb0: gadget@300000 {
-> +		usb0: usb@300000 {
->  			atmel,vbus-gpio = <&pioA PIN_PA31 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@400000 {
-> +		usb1: usb@400000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0 /* &pioA PIN_PB9 GPIO_ACTIVE_HIGH */
->  					   &pioA PIN_PB10 GPIO_ACTIVE_HIGH
-> @@ -57,7 +57,7 @@ &pioA PIN_PB10 GPIO_ACTIVE_HIGH
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@500000 {
-> +		usb2: usb@500000 {
->  			status = "okay";
->  		};
->  
-> @@ -411,7 +411,7 @@ i2c1: i2c@fc028000 {
->  				scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  				status = "okay";
->  
-> -				at24@54 {
-> +				eeprom@54 {
->  					compatible = "atmel,24c02";
->  					reg = <0x54>;
->  					pagesize = <16>;
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts
-> index 820033727088..c1949d02147f 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d3_xplained.dts
-> @@ -276,14 +276,14 @@ pinctrl_vcc_mmc0_reg_gpio: vcc_mmc0_reg_gpio_default {
->  			};
->  		};
->  
-> -		usb0: gadget@500000 {
-> +		usb0: usb@500000 {
->  			atmel,vbus-gpio = <&pioE 9 GPIO_ACTIVE_HIGH>;	/* PE9, conflicts with A9 */
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@600000 {
-> +		usb1: usb@600000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0
->  					   &pioE 3 GPIO_ACTIVE_LOW
-> @@ -294,7 +294,7 @@ &pioE 4 GPIO_ACTIVE_LOW
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@700000 {
-> +		usb2: usb@700000 {
->  			status = "okay";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d4_ma5d4evk.dts b/arch/arm/boot/dts/microchip/at91-sama5d4_ma5d4evk.dts
-> index 8adf567f2f0f..2196f05a21c7 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d4_ma5d4evk.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d4_ma5d4evk.dts
-> @@ -15,14 +15,14 @@ chosen {
->  	};
->  
->  	ahb {
-> -		usb0: gadget@400000 {
-> +		usb0: usb@400000 {
->  			atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@500000 {
-> +		usb1: usb@500000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0
->  					   &pioE 11 GPIO_ACTIVE_LOW
-> @@ -31,7 +31,7 @@ &pioE 14 GPIO_ACTIVE_LOW
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@600000 {
-> +		usb2: usb@600000 {
->  			status = "okay";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d4_xplained.dts
-> index 95d701d13fef..ae6f127bf807 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d4_xplained.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d4_xplained.dts
-> @@ -157,14 +157,14 @@ pinctrl_vcc_mmc1_reg: vcc_mmc1_reg {
->  			};
->  		};
->  
-> -		usb0: gadget@400000 {
-> +		usb0: usb@400000 {
->  			atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@500000 {
-> +		usb1: usb@500000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0
->  					   &pioE 11 GPIO_ACTIVE_HIGH
-> @@ -175,7 +175,7 @@ &pioE 14 GPIO_ACTIVE_HIGH
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@600000 {
-> +		usb2: usb@600000 {
->  			status = "okay";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d4ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d4ek.dts
-> index 20ac775059ca..819336231d56 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d4ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d4ek.dts
-> @@ -191,14 +191,14 @@ pinctrl_mxt_ts: mxt_irq {
->  			};
->  		};
->  
-> -		usb0: gadget@400000 {
-> +		usb0: usb@400000 {
->  			atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@500000 {
-> +		usb1: usb@500000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0 /* &pioE 10 GPIO_ACTIVE_LOW */
->  					   &pioE 11 GPIO_ACTIVE_LOW
-> @@ -207,7 +207,7 @@ &pioE 12 GPIO_ACTIVE_LOW
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@600000 {
-> +		usb2: usb@600000 {
->  			status = "okay";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-> index 20b2497657ae..3eb22d7f2a46 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-> @@ -236,7 +236,7 @@ i2c1: i2c@600 {
->  		i2c-digital-filter-width-ns = <35>;
->  		status = "okay";
->  
-> -		mcp16502@5b {
-> +		pmic@5b {
->  			compatible = "microchip,mcp16502";
->  			reg = <0x5b>;
->  			status = "okay";
-> diff --git a/arch/arm/boot/dts/microchip/at91-vinco.dts b/arch/arm/boot/dts/microchip/at91-vinco.dts
-> index ecbdacf48708..fd087b4c62d6 100644
-> --- a/arch/arm/boot/dts/microchip/at91-vinco.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-vinco.dts
-> @@ -155,14 +155,14 @@ pinctrl_usba_vbus: usba_vbus {
->  			};
->  		};
->  
-> -		usb0: gadget@400000 {
-> +		usb0: usb@400000 {
->  			atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "disabled";
->  		};
->  
-> -		usb1: ohci@500000 {
-> +		usb1: usb@500000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <0
->  					   &pioE 11 GPIO_ACTIVE_LOW
-> @@ -171,7 +171,7 @@ &pioE 12 GPIO_ACTIVE_LOW
->  			status = "disabled";
->  		};
->  
-> -		usb2: ehci@600000 {
-> +		usb2: usb@600000 {
->  			/* 4G Modem */
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91rm9200.dtsi b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
-> index 16c675e3a890..0f123308fbe1 100644
-> --- a/arch/arm/boot/dts/microchip/at91rm9200.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
-> @@ -662,7 +662,7 @@ usart3: serial@fffcc000 {
->  				status = "disabled";
->  			};
->  
-> -			usb1: gadget@fffb0000 {
-> +			usb1: usb@fffb0000 {
->  				compatible = "atmel,at91rm9200-udc";
->  				reg = <0xfffb0000 0x4000>;
->  				interrupts = <11 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -702,7 +702,7 @@ &pioB 1 GPIO_ACTIVE_HIGH
->  			status = "disabled";
->  		};
->  
-> -		usb0: ohci@300000 {
-> +		usb0: usb@300000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00300000 0x100000>;
->  			interrupts = <23 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91rm9200ek.dts b/arch/arm/boot/dts/microchip/at91rm9200ek.dts
-> index 4624a6f076f8..516a4c313b47 100644
-> --- a/arch/arm/boot/dts/microchip/at91rm9200ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91rm9200ek.dts
-> @@ -43,7 +43,7 @@ timer@2 {
->  				};
->  			};
->  
-> -			usb1: gadget@fffb0000 {
-> +			usb1: usb@fffb0000 {
->  				atmel,vbus-gpio = <&pioD 4 GPIO_ACTIVE_HIGH>;
->  				atmel,pullup-gpio = <&pioD 5 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
-> @@ -89,7 +89,7 @@ rtc: rtc@fffffe00 {
->  			};
->  		};
->  
-> -		usb0: ohci@300000 {
-> +		usb0: usb@300000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> @@ -127,19 +127,19 @@ root@350000  {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		ds2 {
-> +		led-ds2 {
->  			label = "green";
->  			gpios = <&pioB 0 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "mmc0";
->  		};
->  
-> -		ds4 {
-> +		led-ds4 {
->  			label = "yellow";
->  			gpios = <&pioB 1 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		ds6 {
-> +		led-ds6 {
->  			label = "red";
->  			gpios = <&pioB 2 GPIO_ACTIVE_LOW>;
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9260.dtsi b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
-> index e56d5546554c..c57efecad967 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9260.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
-> @@ -637,7 +637,7 @@ macb0: ethernet@fffc4000 {
->  				status = "disabled";
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				compatible = "atmel,at91sam9260-udc";
->  				reg = <0xfffa4000 0x4000>;
->  				interrupts = <10 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -742,7 +742,7 @@ gpbr: syscon@fffffd50 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00500000 0x100000>;
->  			interrupts = <20 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9260ek.dts b/arch/arm/boot/dts/microchip/at91sam9260ek.dts
-> index 720c15472c4a..f24a5497b294 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9260ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9260ek.dts
-> @@ -45,7 +45,7 @@ timer@2 {
->  				};
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -131,7 +131,7 @@ gpbr: syscon@fffffd50 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> @@ -165,7 +165,7 @@ button-4 {
->  	i2c-gpio-0 {
->  		status = "okay";
->  
-> -		24c512@50 {
-> +		eeprom@50 {
->  			compatible = "atmel,24c512";
->  			reg = <0x50>;
->  		};
-> @@ -174,13 +174,13 @@ i2c-gpio-0 {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		ds1 {
-> +		led-ds1 {
->  			label = "ds1";
->  			gpios = <&pioA 9 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		ds5 {
-> +		led-ds5 {
->  			label = "ds5";
->  			gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9261.dtsi b/arch/arm/boot/dts/microchip/at91sam9261.dtsi
-> index 307b60658014..47977ef49428 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9261.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9261.dtsi
-> @@ -77,7 +77,7 @@ ahb {
->  		#size-cells = <1>;
->  		ranges;
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00500000 0x100000>;
->  			interrupts = <20 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -142,7 +142,7 @@ tcb0: timer@fffa0000 {
->  				clock-names = "t0_clk", "t1_clk", "t2_clk", "slow_clk";
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				compatible = "atmel,at91sam9261-udc";
->  				reg = <0xfffa4000 0x4000>;
->  				interrupts = <10 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9261ek.dts b/arch/arm/boot/dts/microchip/at91sam9261ek.dts
-> index 045cb253f23a..2f2ee43a2336 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9261ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9261ek.dts
-> @@ -31,7 +31,7 @@ main_xtal {
->  	};
->  
->  	ahb {
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			status = "okay";
->  		};
->  
-> @@ -136,7 +136,7 @@ timer1: timer@2 {
->  				};
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioB 29 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -192,19 +192,19 @@ watchdog@fffffd40 {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		ds8 {
-> +		led-ds8 {
->  			label = "ds8";
->  			gpios = <&pioA 13 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "none";
->  		};
->  
-> -		ds7 {
-> +		led-ds7 {
->  			label = "ds7";
->  			gpios = <&pioA 14 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "nand-disk";
->  		};
->  
-> -		ds1 {
-> +		led-ds1 {
->  			label = "ds1";
->  			gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "heartbeat";
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9263.dtsi b/arch/arm/boot/dts/microchip/at91sam9263.dtsi
-> index 75d8ff2d12c8..030c5c9c8b3c 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9263.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9263.dtsi
-> @@ -636,7 +636,7 @@ macb0: ethernet@fffbc000 {
->  				status = "disabled";
->  			};
->  
-> -			usb1: gadget@fff78000 {
-> +			usb1: usb@fff78000 {
->  				compatible = "atmel,at91sam9263-udc";
->  				reg = <0xfff78000 0x4000>;
->  				interrupts = <24 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -768,7 +768,7 @@ fb0: fb@700000 {
->  			status = "disabled";
->  		};
->  
-> -		usb0: ohci@a00000 {
-> +		usb0: usb@a00000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00a00000 0x100000>;
->  			interrupts = <29 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9263ek.dts b/arch/arm/boot/dts/microchip/at91sam9263ek.dts
-> index ce8baff6a9f4..812ad757e4ea 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9263ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9263ek.dts
-> @@ -61,7 +61,7 @@ macb0: ethernet@fffbc000 {
->  				status = "okay";
->  			};
->  
-> -			usb1: gadget@fff78000 {
-> +			usb1: usb@fff78000 {
->  				atmel,vbus-gpio = <&pioA 25 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -86,7 +86,7 @@ pinctrl@fffff200 {
->  				mmc0 {
->  					pinctrl_board_mmc0: mmc0-board {
->  						atmel,pins =
-> -							<AT91_PIOE 18 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH 	/* PE18 gpio CD pin pull up and deglitch */
-> +							<AT91_PIOE 18 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH	/* PE18 gpio CD pin pull up and deglitch */
->  							 AT91_PIOE 19 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;	/* PE19 gpio WP pin pull up */
->  					};
->  				};
-> @@ -207,7 +207,7 @@ data@7ca0000 {
->  			};
->  		};
->  
-> -		usb0: ohci@a00000 {
-> +		usb0: usb@a00000 {
->  			num-ports = <2>;
->  			status = "okay";
->  			atmel,vbus-gpio = <&pioA 24 GPIO_ACTIVE_HIGH
-> @@ -219,13 +219,13 @@ &pioA 21 GPIO_ACTIVE_HIGH
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		d3 {
-> +		led-d3 {
->  			label = "d3";
->  			gpios = <&pioB 7 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		d2 {
-> +		led-d2 {
->  			label = "d2";
->  			gpios = <&pioC 29 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "nand-disk";
-> @@ -253,7 +253,7 @@ button-right-click {
->  	i2c-gpio-0 {
->  		status = "okay";
->  
-> -		24c512@50 {
-> +		eeprom@50 {
->  			compatible = "atmel,24c512";
->  			reg = <0x50>;
->  			pagesize = <128>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9g20ek.dts b/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
-> index 6de7a7cd3c07..1e62fd371ddb 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
-> @@ -14,13 +14,13 @@ / {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		ds1 {
-> +		led-ds1 {
->  			label = "ds1";
->  			gpios = <&pioA 9 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		ds5 {
-> +		led-ds5 {
->  			label = "ds5";
->  			gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9g20ek_2mmc.dts b/arch/arm/boot/dts/microchip/at91sam9g20ek_2mmc.dts
-> index 172af6ff4b18..3e5eab57d1a5 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9g20ek_2mmc.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9g20ek_2mmc.dts
-> @@ -40,13 +40,13 @@ pinctrl_board_mmc0_slot0: mmc0_slot0-board {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		ds1 {
-> +		led-ds1 {
->  			label = "ds1";
->  			gpios = <&pioB 9 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		ds5 {
-> +		led-ds5 {
->  			label = "ds5";
->  			gpios = <&pioB 8 GPIO_ACTIVE_LOW>;
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9g20ek_common.dtsi b/arch/arm/boot/dts/microchip/at91sam9g20ek_common.dtsi
-> index 565b99e79c52..e969f50257b5 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9g20ek_common.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9g20ek_common.dtsi
-> @@ -90,7 +90,7 @@ macb0: ethernet@fffc4000 {
->  				status = "okay";
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				pinctrl-0 = <&pinctrl_usb1_vbus_gpio>;
->  				pinctrl-names = "default";
->  				atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
-> @@ -211,7 +211,7 @@ data@7ca0000 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> @@ -220,7 +220,7 @@ usb0: ohci@500000 {
->  	i2c-gpio-0 {
->  		status = "okay";
->  
-> -		24c512@50 {
-> +		eeprom@50 {
->  			compatible = "atmel,24c512";
->  			reg = <0x50>;
->  			vcc-supply = <&reg_3v3>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts b/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
-> index af70eb8a3a02..60560e4c1696 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
-> @@ -37,71 +37,71 @@ button {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		power_blue {
-> +		led-0 {
->  			label = "smartgw:power:blue";
->  			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		power_green {
-> +		led-1 {
->  			label = "smartgw:power:green";
->  			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
->  			default-state = "on";
->  		};
->  
-> -		power_red {
-> +		led-2 {
->  			label = "smartgw:power:red";
->  			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		radio_blue {
-> +		led-3 {
->  			label = "smartgw:radio:blue";
->  			gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		radio_green {
-> +		led-4 {
->  			label = "smartgw:radio:green";
->  			gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		radio_red {
-> +		led-5 {
->  			label = "smartgw:radio:red";
->  			gpios = <&pioC 16 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		internet_blue {
-> +		led-6 {
->  			label = "smartgw:internet:blue";
->  			gpios = <&pioC 15 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		internet_green {
-> +		led-7 {
->  			label = "smartgw:internet:green";
->  			gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		internet_red {
-> +		led-8 {
->  			label = "smartgw:internet:red";
->  			gpios = <&pioC 13 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
->  		};
->  
-> -		heartbeat {
-> +		led-9 {
->  			label = "smartgw:heartbeat";
->  			gpios = <&pioB 8 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		pb18 {
-> +		led-pb18 {
->  			status = "disabled";
->  		};
->  
-> -		pd21 {
-> +		led-pd21 {
->  			status = "disabled";
->  		};
->  	};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-> index 325c63a53118..56cca6035c79 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-> @@ -913,7 +913,7 @@ spi1: spi@fffa8000 {
->  				status = "disabled";
->  			};
->  
-> -			usb2: gadget@fff78000 {
-> +			usb2: usb@fff78000 {
->  				compatible = "atmel,at91sam9g45-udc";
->  				reg = <0x00600000 0x80000
->  				       0xfff78000 0x400>;
-> @@ -964,7 +964,7 @@ fb0: fb@500000 {
->  			status = "disabled";
->  		};
->  
-> -		usb0: ohci@700000 {
-> +		usb0: usb@700000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00700000 0x100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -973,7 +973,7 @@ usb0: ohci@700000 {
->  			status = "disabled";
->  		};
->  
-> -		usb1: ehci@800000 {
-> +		usb1: usb@800000 {
->  			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
->  			reg = <0x00800000 0x100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9m10g45ek.dts b/arch/arm/boot/dts/microchip/at91sam9m10g45ek.dts
-> index 071db4f16313..63150cc61b5f 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9m10g45ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9m10g45ek.dts
-> @@ -174,7 +174,7 @@ flash@0 {
->  				};
->  			};
->  
-> -			usb2: gadget@fff78000 {
-> +			usb2: usb@fff78000 {
->  				atmel,vbus-gpio = <&pioB 19 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -303,14 +303,14 @@ data@4000000 {
->  			};
->  		};
->  
-> -		usb0: ohci@700000 {
-> +		usb0: usb@700000 {
->  			status = "okay";
->  			num-ports = <2>;
->  			atmel,vbus-gpio = <&pioD 1 GPIO_ACTIVE_LOW
->  					   &pioD 3 GPIO_ACTIVE_LOW>;
->  		};
->  
-> -		usb1: ehci@800000 {
-> +		usb1: usb@800000 {
->  			status = "okay";
->  		};
->  	};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9n12.dtsi b/arch/arm/boot/dts/microchip/at91sam9n12.dtsi
-> index 8dc04e9031a6..7f69be02b27a 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9n12.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9n12.dtsi
-> @@ -738,7 +738,7 @@ pwm0: pwm@f8034000 {
->  				status = "disabled";
->  			};
->  
-> -			usb1: gadget@f803c000 {
-> +			usb1: usb@f803c000 {
->  				compatible = "atmel,at91sam9260-udc";
->  				reg = <0xf803c000 0x4000>;
->  				interrupts = <23 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -748,7 +748,7 @@ usb1: gadget@f803c000 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00500000 0x00100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9n12ek.dts b/arch/arm/boot/dts/microchip/at91sam9n12ek.dts
-> index 4c644d4c6be7..ce165f198c74 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9n12ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9n12ek.dts
-> @@ -142,7 +142,7 @@ hlcdc_panel_output: endpoint@0 {
->  				};
->  			};
->  
-> -			usb1: gadget@f803c000 {
-> +			usb1: usb@f803c000 {
->  				pinctrl-names = "default";
->  				pinctrl-0 = <&pinctrl_usb1_vbus_sense>;
->  				atmel,vbus-gpio = <&pioB 16 GPIO_ACTIVE_HIGH>;
-> @@ -180,7 +180,7 @@ nand@3 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <1>;
->  			atmel,vbus-gpio = <&pioB 7 GPIO_ACTIVE_LOW>;
->  			status = "okay";
-> @@ -207,19 +207,19 @@ bl_reg: backlight_regulator {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		d8 {
-> +		led-d8 {
->  			label = "d8";
->  			gpios = <&pioB 4 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "mmc0";
->  		};
->  
-> -		d9 {
-> +		led-d9 {
->  			label = "d9";
->  			gpios = <&pioB 5 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "nand-disk";
->  		};
->  
-> -		d10 {
-> +		led-d10 {
->  			label = "d10";
->  			gpios = <&pioB 6 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9rl.dtsi b/arch/arm/boot/dts/microchip/at91sam9rl.dtsi
-> index 7436b5c862b1..c7e70c0438ec 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9rl.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9rl.dtsi
-> @@ -282,7 +282,7 @@ adc0: adc@fffd0000 {
->  				atmel,adc-startup-time = <40>;
->  			};
->  
-> -			usb0: gadget@fffd4000 {
-> +			usb0: usb@fffd4000 {
->  				compatible = "atmel,at91sam9rl-udc";
->  				reg = <0x00600000 0x100000>,
->  				      <0xfffd4000 0x4000>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9rlek.dts b/arch/arm/boot/dts/microchip/at91sam9rlek.dts
-> index a57351270551..252af64ff8ac 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9rlek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91sam9rlek.dts
-> @@ -172,7 +172,7 @@ &pinctrl_adc0_ad5
->  				status = "okay";
->  			};
->  
-> -			usb0: gadget@fffd4000 {
-> +			usb0: usb@fffd4000 {
->  				atmel,vbus-gpio = <&pioA 8 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9x5.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5.dtsi
-> index a7456c2191fa..30914ac4174b 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9x5.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9x5.dtsi
-> @@ -847,7 +847,7 @@ spi1: spi@f0004000 {
->  				status = "disabled";
->  			};
->  
-> -			usb2: gadget@f803c000 {
-> +			usb2: usb@f803c000 {
->  				compatible = "atmel,at91sam9g45-udc";
->  				reg = <0x00500000 0x80000
->  				       0xf803c000 0x400>;
-> @@ -886,7 +886,7 @@ pwm0: pwm@f8034000 {
->  			};
->  		};
->  
-> -		usb0: ohci@600000 {
-> +		usb0: usb@600000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00600000 0x100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -895,7 +895,7 @@ usb0: ohci@600000 {
->  			status = "disabled";
->  		};
->  
-> -		usb1: ehci@700000 {
-> +		usb1: usb@700000 {
->  			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
->  			reg = <0x00700000 0x100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi
-> index cdd37f67280b..fb3c19bdfcb6 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi
-> @@ -120,13 +120,13 @@ rootfs@800000 {
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		pb18 {
-> +		led-pb18 {
->  			label = "pb18";
->  			gpios = <&pioB 18 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		pd21 {
-> +		led-pd21 {
->  			label = "pd21";
->  			gpios = <&pioD 21 GPIO_ACTIVE_HIGH>;
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/ethernut5.dts b/arch/arm/boot/dts/microchip/ethernut5.dts
-> index ad7a0850252a..c5273c52bca3 100644
-> --- a/arch/arm/boot/dts/microchip/ethernut5.dts
-> +++ b/arch/arm/boot/dts/microchip/ethernut5.dts
-> @@ -60,7 +60,7 @@ macb0: ethernet@fffc4000 {
->  				status = "okay";
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -101,7 +101,7 @@ data@20000 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/evk-pro3.dts b/arch/arm/boot/dts/microchip/evk-pro3.dts
-> index 6d519d02d190..d4fd28da6d20 100644
-> --- a/arch/arm/boot/dts/microchip/evk-pro3.dts
-> +++ b/arch/arm/boot/dts/microchip/evk-pro3.dts
-> @@ -35,7 +35,7 @@ usart2: serial@fffb8000 {
->  				status = "okay";
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -45,7 +45,7 @@ watchdog@fffffd40 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/mpa1600.dts b/arch/arm/boot/dts/microchip/mpa1600.dts
-> index 005c2758e229..2a97e2c0b894 100644
-> --- a/arch/arm/boot/dts/microchip/mpa1600.dts
-> +++ b/arch/arm/boot/dts/microchip/mpa1600.dts
-> @@ -57,7 +57,7 @@ ssc1: ssc@fffd4000 {
->  			};
->  		};
->  
-> -		usb0: ohci@300000 {
-> +		usb0: usb@300000 {
->  			num-ports = <1>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/pm9g45.dts b/arch/arm/boot/dts/microchip/pm9g45.dts
-> index c349fd3758a6..2258e62f5864 100644
-> --- a/arch/arm/boot/dts/microchip/pm9g45.dts
-> +++ b/arch/arm/boot/dts/microchip/pm9g45.dts
-> @@ -139,12 +139,12 @@ data@900000 {
->  			};
->  		};
->  
-> -		usb0: ohci@700000 {
-> +		usb0: usb@700000 {
->  			status = "okay";
->  			num-ports = <2>;
->  		};
->  
-> -		usb1: ehci@800000 {
-> +		usb1: usb@800000 {
->  			status = "okay";
->  		};
->  	};
-> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> index 291540e5d81e..3471d8245fb5 100644
-> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> @@ -74,7 +74,7 @@ ahb {
->  		#size-cells = <1>;
->  		ranges;
->  
-> -		usb0: gadget@500000 {
-> +		usb0: usb@500000 {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
->  			compatible = "microchip,sam9x60-udc";
-> @@ -88,7 +88,7 @@ usb0: gadget@500000 {
->  			status = "disabled";
->  		};
->  
-> -		usb1: ohci@600000 {
-> +		usb1: usb@600000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00600000 0x100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -97,7 +97,7 @@ usb1: ohci@600000 {
->  			status = "disabled";
->  		};
->  
-> -		usb2: ehci@700000 {
-> +		usb2: usb@700000 {
->  			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
->  			reg = <0x00700000 0x100000>;
->  			interrupts = <22 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d2.dtsi b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-> index 5f8e297e19ed..6757eb8fbaa6 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d2.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-> @@ -126,7 +126,7 @@ nfc_sram: sram@100000 {
->  
->  		};
->  
-> -		usb0: gadget@300000 {
-> +		usb0: usb@300000 {
->  			compatible = "atmel,sama5d3-udc";
->  			reg = <0x00300000 0x100000
->  			       0xfc02c000 0x400>;
-> @@ -136,7 +136,7 @@ usb0: gadget@300000 {
->  			status = "disabled";
->  		};
->  
-> -		usb1: ohci@400000 {
-> +		usb1: usb@400000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00400000 0x100000>;
->  			interrupts = <41 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -145,7 +145,7 @@ usb1: ohci@400000 {
->  			status = "disabled";
->  		};
->  
-> -		usb2: ehci@500000 {
-> +		usb2: usb@500000 {
->  			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
->  			reg = <0x00500000 0x100000>;
->  			interrupts = <41 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d3.dtsi b/arch/arm/boot/dts/microchip/sama5d3.dtsi
-> index d4fc0c1dfc10..37acbbcbe5f6 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d3.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d3.dtsi
-> @@ -1064,7 +1064,7 @@ nfc_sram: sram@200000 {
->  			ranges = <0 0x200000 0x2400>;
->  		};
->  
-> -		usb0: gadget@500000 {
-> +		usb0: usb@500000 {
->  			compatible = "atmel,sama5d3-udc";
->  			reg = <0x00500000 0x100000
->  			       0xf8030000 0x4000>;
-> @@ -1074,7 +1074,7 @@ usb0: gadget@500000 {
->  			status = "disabled";
->  		};
->  
-> -		usb1: ohci@600000 {
-> +		usb1: usb@600000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00600000 0x100000>;
->  			interrupts = <32 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -1083,7 +1083,7 @@ usb1: ohci@600000 {
->  			status = "disabled";
->  		};
->  
-> -		usb2: ehci@700000 {
-> +		usb2: usb@700000 {
->  			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
->  			reg = <0x00700000 0x100000>;
->  			interrupts = <32 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d34ek.dts b/arch/arm/boot/dts/microchip/sama5d34ek.dts
-> index bffd61397cb5..18943b873fff 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d34ek.dts
-> +++ b/arch/arm/boot/dts/microchip/sama5d34ek.dts
-> @@ -36,7 +36,7 @@ i2c0: i2c@f0014000 {
->  			i2c1: i2c@f0018000 {
->  				status = "okay";
->  
-> -				24c256@50 {
-> +				eeprom@50 {
->  					compatible = "atmel,24c256";
->  					reg = <0x50>;
->  					pagesize = <64>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d3xmb.dtsi b/arch/arm/boot/dts/microchip/sama5d3xmb.dtsi
-> index 3652c9e24124..1212a8df0c0a 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d3xmb.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d3xmb.dtsi
-> @@ -165,14 +165,14 @@ watchdog@fffffe40 {
->  			};
->  		};
->  
-> -		usb0: gadget@500000 {
-> +		usb0: usb@500000 {
->  			atmel,vbus-gpio = <&pioD 29 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
->  			status = "okay";
->  		};
->  
-> -		usb1: ohci@600000 {
-> +		usb1: usb@600000 {
->  			num-ports = <3>;
->  			atmel,vbus-gpio = <&pioD 25 GPIO_ACTIVE_HIGH
->  					   &pioD 26 GPIO_ACTIVE_LOW
-> @@ -181,7 +181,7 @@ &pioD 27 GPIO_ACTIVE_LOW
->  			status = "okay";
->  		};
->  
-> -		usb2: ehci@700000 {
-> +		usb2: usb@700000 {
->  			status = "okay";
->  		};
->  	};
-> diff --git a/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi b/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi
-> index 5d9e97fecf83..389d0506b942 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi
-> @@ -216,7 +216,7 @@ watchdog@fffffe40 {
->  			};
->  		};
->  
-> -		usb0: gadget@500000 {
-> +		usb0: usb@500000 {
->  			atmel,vbus-gpio = <&pioD 29 GPIO_ACTIVE_HIGH>;
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pinctrl_usba_vbus>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d4.dtsi b/arch/arm/boot/dts/microchip/sama5d4.dtsi
-> index 58ceed997889..5a80ae176141 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d4.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d4.dtsi
-> @@ -109,7 +109,7 @@ vdec0: vdec@300000 {
->  			clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
->  		};
->  
-> -		usb0: gadget@400000 {
-> +		usb0: usb@400000 {
->  			compatible = "atmel,sama5d3-udc";
->  			reg = <0x00400000 0x100000
->  			       0xfc02c000 0x4000>;
-> @@ -119,7 +119,7 @@ usb0: gadget@400000 {
->  			status = "disabled";
->  		};
->  
-> -		usb1: ohci@500000 {
-> +		usb1: usb@500000 {
->  			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
->  			reg = <0x00500000 0x100000>;
->  			interrupts = <46 IRQ_TYPE_LEVEL_HIGH 2>;
-> @@ -128,7 +128,7 @@ usb1: ohci@500000 {
->  			status = "disabled";
->  		};
->  
-> -		usb2: ehci@600000 {
-> +		usb2: usb@600000 {
->  			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
->  			reg = <0x00600000 0x100000>;
->  			interrupts = <46 IRQ_TYPE_LEVEL_HIGH 2>;
-> diff --git a/arch/arm/boot/dts/microchip/tny_a9263.dts b/arch/arm/boot/dts/microchip/tny_a9263.dts
-> index 62b7d9f9a926..ca928355f784 100644
-> --- a/arch/arm/boot/dts/microchip/tny_a9263.dts
-> +++ b/arch/arm/boot/dts/microchip/tny_a9263.dts
-> @@ -47,7 +47,7 @@ timer@2 {
->  				};
->  			};
->  
-> -			usb1: gadget@fff78000 {
-> +			usb1: usb@fff78000 {
->  				atmel,vbus-gpio = <&pioB 11 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> diff --git a/arch/arm/boot/dts/microchip/usb_a9260_common.dtsi b/arch/arm/boot/dts/microchip/usb_a9260_common.dtsi
-> index 8744b5f6f792..5ef60b7e2288 100644
-> --- a/arch/arm/boot/dts/microchip/usb_a9260_common.dtsi
-> +++ b/arch/arm/boot/dts/microchip/usb_a9260_common.dtsi
-> @@ -39,7 +39,7 @@ macb0: ethernet@fffc4000 {
->  				status = "okay";
->  			};
->  
-> -			usb1: gadget@fffa4000 {
-> +			usb1: usb@fffa4000 {
->  				atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -111,7 +111,7 @@ data@7ca0000 {
->  			};
->  		};
->  
-> -		usb0: ohci@500000 {
-> +		usb0: usb@500000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm/boot/dts/microchip/usb_a9263.dts b/arch/arm/boot/dts/microchip/usb_a9263.dts
-> index 45745915b2e1..6421e9c55384 100644
-> --- a/arch/arm/boot/dts/microchip/usb_a9263.dts
-> +++ b/arch/arm/boot/dts/microchip/usb_a9263.dts
-> @@ -52,7 +52,7 @@ macb0: ethernet@fffbc000 {
->  				status = "okay";
->  			};
->  
-> -			usb1: gadget@fff78000 {
-> +			usb1: usb@fff78000 {
->  				atmel,vbus-gpio = <&pioB 11 GPIO_ACTIVE_HIGH>;
->  				status = "okay";
->  			};
-> @@ -139,7 +139,7 @@ data@7ca0000 {
->  			};
->  		};
->  
-> -		usb0: ohci@a00000 {
-> +		usb0: usb@a00000 {
->  			num-ports = <2>;
->  			status = "okay";
->  		};
-> 
-> base-commit: 2347b4c79f5e6cd3f4996e80c2d3c15f53006bf5
-> -- 
-> 2.34.1
-> 
-> 
+> +	struct mtk_cam_dev *cam = to_mtk_cam_dev(sd);
+> +	u32 which = sd_state ? V4L2_SUBDEV_FORMAT_TRY
+> +		  : V4L2_SUBDEV_FORMAT_ACTIVE;
+> +	struct v4l2_mbus_framefmt *format;
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < sd->entity.num_pads; i++) {
+> +		format = mtk_cam_get_pad_format(cam, sd_state, i, which);
+> +		*format = def_format;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_enum_mbus_code(struct v4l2_subdev *sd,
+> +				  struct v4l2_subdev_state *sd_state,
+> +				  struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	if (code->index >= ARRAY_SIZE(mtk_cam_mbus_formats))
+> +		return -EINVAL;
+> +
+> +	code->code = mtk_cam_mbus_formats[code->index];
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_get_fmt(struct v4l2_subdev *sd,
+> +			   struct v4l2_subdev_state *sd_state,
+> +			   struct v4l2_subdev_format *fmt)
+> +{
+> +	struct mtk_cam_dev *cam = to_mtk_cam_dev(sd);
+> +
+> +	fmt->format = *mtk_cam_get_pad_format(cam, sd_state, fmt->pad,
+> +					      fmt->which);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_set_fmt(struct v4l2_subdev *sd,
+> +			   struct v4l2_subdev_state *sd_state,
+> +			   struct v4l2_subdev_format *fmt)
+> +{
+> +	struct mtk_cam_dev *cam = to_mtk_cam_dev(sd);
+> +	struct v4l2_mbus_framefmt *format;
+> +	unsigned int i;
+> +
+> +	/*
+> +	 * We only support pass-through mode, the format on source pads can't
+> +	 * be modified.
+> +	 */
+> +	if (fmt->pad != MTK_CAM_CIO_PAD_SENINF)
+> +		return mtk_cam_get_fmt(sd, sd_state, fmt);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(mtk_cam_mbus_formats); ++i) {
+> +		if (mtk_cam_mbus_formats[i] == fmt->format.code)
+> +			break;
+> +	}
+> +
+> +	if (i == ARRAY_SIZE(mtk_cam_mbus_formats))
+> +		fmt->format.code = mtk_cam_mbus_formats[0];
+> +
+> +	format = mtk_cam_get_pad_format(cam, sd_state, fmt->pad, fmt->which);
+> +	format->width = fmt->format.width;
+> +	format->height = fmt->format.height;
+> +	format->code = fmt->format.code;
+> +
+> +	fmt->format = *format;
+> +
+> +	/* Propagate the format to the source pad. */
+> +	format = mtk_cam_get_pad_format(cam, sd_state, MTK_CAM_CIO_PAD_VIDEO,
+> +					fmt->which);
+> +	format->width = fmt->format.width;
+> +	format->height = fmt->format.height;
+> +	format->code = fmt->format.code;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_subdev_registered(struct v4l2_subdev *sd)
+> +{
+> +	struct mtk_cam_dev *cam = to_mtk_cam_dev(sd);
+> +
+> +	/* Create the video device and link. */
+> +	return mtk_cam_video_register(cam);
+> +}
+> +
+> +static const struct v4l2_subdev_video_ops mtk_cam_subdev_video_ops = {
+> +	.s_stream = mtk_cam_sd_s_stream,
+> +};
+> +
+> +static const struct v4l2_subdev_pad_ops mtk_cam_subdev_pad_ops = {
+> +	.enum_mbus_code = mtk_cam_enum_mbus_code,
+> +	.set_fmt = mtk_cam_set_fmt,
+> +	.get_fmt = mtk_cam_get_fmt,
+> +	.link_validate = v4l2_subdev_link_validate_default,
+> +};
+> +
+> +static const struct v4l2_subdev_ops mtk_cam_subdev_ops = {
+> +	.video = &mtk_cam_subdev_video_ops,
+> +	.pad = &mtk_cam_subdev_pad_ops,
+> +};
+> +
+> +static const struct v4l2_subdev_internal_ops mtk_cam_internal_ops = {
+> +	.init_state = mtk_cam_init_state,
+> +	.registered = mtk_cam_subdev_registered,
+> +};
+> +
+> +/* -----------------------------------------------------------------------------
+> + * Media Entity Operations
+> + */
+> +
+> +static const struct media_entity_operations mtk_cam_media_entity_ops = {
+> +	.link_validate = v4l2_subdev_link_validate,
+> +	.get_fwnode_pad = v4l2_subdev_get_fwnode_pad_1_to_1,
+> +};
+> +
+> +/* -----------------------------------------------------------------------------
+> + * Init & Cleanup
+> + */
+> +
+> +static int mtk_cam_v4l2_register(struct mtk_cam_dev *cam)
+> +{
+> +	struct device *dev = cam->dev;
+> +	int ret;
+> +
+> +	cam->subdev_pads[MTK_CAM_CIO_PAD_SENINF].flags = MEDIA_PAD_FL_SINK;
+> +	cam->subdev_pads[MTK_CAM_CIO_PAD_VIDEO].flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	/* Initialize subdev pads */
+> +	ret = media_entity_pads_init(&cam->subdev.entity,
+> +				     ARRAY_SIZE(cam->subdev_pads),
+> +				     cam->subdev_pads);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize media pads:%d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Initialize subdev */
+> +	v4l2_subdev_init(&cam->subdev, &mtk_cam_subdev_ops);
+> +
+> +	cam->subdev.dev = dev;
+> +	cam->subdev.entity.function = MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER;
+> +	cam->subdev.entity.ops = &mtk_cam_media_entity_ops;
+> +	cam->subdev.internal_ops = &mtk_cam_internal_ops;
+> +	cam->subdev.flags = V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	strscpy(cam->subdev.name, dev_name(dev), sizeof(cam->subdev.name));
+> +	v4l2_set_subdevdata(&cam->subdev, cam);
+> +
+> +	mtk_cam_init_state(&cam->subdev, NULL);
+
+Please use v4l2_subdev_init_finalize() instead of doing this, and switch
+to storing the active state in the active state managed by the
+v4l2_subdev core, like you've done for seninf. Please also implement the
+.enable_streams() and .disable_streams() operations instead of
+.s_stream() if possible.
+
+> +
+> +	ret = v4l2_async_register_subdev(&cam->subdev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize subdev:%d\n", ret);
+> +		media_entity_cleanup(&cam->subdev.entity);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_cam_v4l2_unregister(struct mtk_cam_dev *cam)
+> +{
+> +	mtk_cam_video_unregister(&cam->vdev);
+> +
+> +	media_entity_cleanup(&cam->subdev.entity);
+> +	v4l2_async_unregister_subdev(&cam->subdev);
+> +}
+> +
+> +int mtk_cam_dev_init(struct mtk_cam_dev *cam_dev)
+> +{
+> +	int ret;
+> +
+> +	mutex_init(&cam_dev->op_lock);
+> +
+> +	/* v4l2 sub-device registration */
+> +	ret = mtk_cam_v4l2_register(cam_dev);
+> +	if (ret) {
+> +		mutex_destroy(&cam_dev->op_lock);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +void mtk_cam_dev_cleanup(struct mtk_cam_dev *cam)
+> +{
+> +	mtk_cam_v4l2_unregister(cam);
+> +	mutex_destroy(&cam->op_lock);
+> +}
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h
+> new file mode 100644
+> index 000000000000..9de53230bf2d
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h
+> @@ -0,0 +1,192 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2020 BayLibre
+> + * Copyright (c) 2022 MediaTek Inc.
+> + */
+> +
+> +#ifndef __MTK_CAMSV_H__
+> +#define __MTK_CAMSV_H__
+> +
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/errno.h>
+> +#include <linux/kernel.h>
+> +#include <linux/of_graph.h>
+
+This can be dropped.
+
+> +#include <linux/pm_runtime.h>
+> +#include <linux/videodev2.h>
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-subdev.h>
+> +#include <media/videobuf2-core.h>
+> +#include <media/videobuf2-dma-contig.h>
+> +#include <media/videobuf2-v4l2.h>
+> +#include <soc/mediatek/smi.h>
+> +
+> +#define IMG_MAX_WIDTH			5376U
+> +#define IMG_MAX_HEIGHT			4032U
+> +#define IMG_MIN_WIDTH			80U
+> +#define IMG_MIN_HEIGHT			60U
+> +
+> +#define MTK_CAM_CIO_PAD_SENINF		0U
+> +#define MTK_CAM_CIO_PAD_VIDEO		1U
+> +#define MTK_CAM_CIO_NUM_PADS		2U
+> +
+> +struct mtk_cam_format_info {
+> +	u32 code;
+> +	u32 fourcc;
+> +	u8 bpp;
+> +};
+> +
+> +struct mtk_cam_dev_buffer {
+> +	struct vb2_v4l2_buffer v4l2_buf;
+> +	struct list_head list;
+> +	dma_addr_t daddr;
+> +	void *vaddr;
+> +};
+> +
+> +struct mtk_cam_sparams {
+> +	u32 w_factor;
+> +	u32 module_en_pak;
+> +	u32 fmt_sel;
+> +	u32 pak;
+> +	u32 imgo_stride;
+> +};
+> +
+> +/**
+> + * struct mtk_cam_vdev_desc - MTK camera device descriptor
+> + * @name: name of the node
+> + * @cap: supported V4L2 capabilities
+> + * @buf_type: supported V4L2 buffer type
+> + * @link_flags: default media link flags
+> + * @def_width: the default format width
+> + * @def_height: the default format height
+> + * @num_fmts: the number of supported node formats
+> + * @ioctl_ops:  mapped to v4l2_ioctl_ops
+> + * @fmts: supported format
+> + * @frmsizes: supported V4L2 frame size number
+> + */
+> +struct mtk_cam_vdev_desc {
+> +	const char *name;
+> +	u32 cap;
+> +	u32 buf_type;
+> +	u32 link_flags;
+> +	u32 def_width;
+> +	u32 def_height;
+> +	u8 num_fmts;
+> +	const struct v4l2_ioctl_ops *ioctl_ops;
+> +	const u32 *fmts;
+> +	const struct v4l2_frmsizeenum *frmsizes;
+> +};
+> +
+> +/**
+> + * struct mtk_cam_video_device - MediaTek video device structure
+> + * @desc: The node description of video device
+> + * @vdev_pad: The media pad graph object of video device
+> + * @vdev: The video device instance
+> + * @vbq: A videobuf queue of video device
+> + * @vdev_lock: Serializes vb2 queue and video device operations
+> + * @format: The V4L2 format of video device
+> + * @fmtinfo: Information about the current format
+> + */
+> +struct mtk_cam_video_device {
+> +	const struct mtk_cam_vdev_desc *desc;
+> +
+> +	struct media_pad vdev_pad;
+> +	struct video_device vdev;
+> +	struct vb2_queue vbq;
+> +
+> +	/* Serializes vb2 queue and video device operations */
+> +	struct mutex vdev_lock;
+> +
+> +	struct v4l2_pix_format_mplane format;
+> +	const struct mtk_cam_format_info *fmtinfo;
+> +};
+> +
+> +/**
+> + * struct mtk_cam_dev - MediaTek camera device structure.
+> + * @dev: Pointer to device.
+> + * @regs: Base address of CAMSV.
+> + * @regs_img0: Base address of CAMSV IMG0.
+> + * @regs_tg: Base address of CAMSV TG.
+> + * @num_clks: Number of clocks.
+> + * @clks: The clocks.
+> + * @irq: Irq fired when buffer is ready.
+> + * @conf: soc specific driver data.
+> + * @pipeline: Media pipeline information.
+> + * @subdev: The V4L2 sub-device instance.
+> + * @subdev_pads: Media pads of this sub-device.
+> + * @formats: Media bus format for all pads.
+> + * @vdev: The video device node.
+> + * @seninf: Pointer to the seninf pad.
+> + * @streaming: Indicate the overall streaming status is on or off.
+> + * @stream_count: Number of streaming video nodes.
+> + * @sequence: Buffer sequence number.
+> + * @op_lock: Serializes driver's VB2 callback operations.
+
+Name it vb2_lock to make it clearer. <reads the rest of the driver>
+Except that's not what the lock is used for... You seem to use this to
+protect against .s_stream() being called concurrently from different
+camsv instances, is that right ? If so this won't help, as different
+instances will have different locks. Locking needs to be revisited.
+
+> + * @buf_list_lock: Protects the buffer list.
+> + * @buf_list: List head for the buffer list.
+> + * @hw_functions: Hardware specific functions.
+> + * @dummy: Dummy buffer used when user buffer is not available.
+> + * @dummy_size : Size of the dummy buffer.
+> + * @is_dummy_used: True if dummy buffer is currently used.
+> + */
+> +struct mtk_cam_dev {
+> +	struct device *dev;
+> +	void __iomem *regs;
+> +	void __iomem *regs_img0;
+> +	void __iomem *regs_tg;
+> +
+> +	unsigned int num_clks;
+> +	struct clk_bulk_data *clks;
+> +	unsigned int irq;
+> +	const struct mtk_cam_conf *conf;
+> +
+> +	struct media_pipeline pipeline;
+> +	struct v4l2_subdev subdev;
+> +	struct media_pad subdev_pads[MTK_CAM_CIO_NUM_PADS];
+> +	struct v4l2_mbus_framefmt formats[MTK_CAM_CIO_NUM_PADS];
+> +	struct mtk_cam_video_device vdev;
+> +	struct media_pad *seninf;
+> +	unsigned int streaming;
+> +	unsigned int stream_count;
+> +	unsigned int sequence;
+> +
+> +	struct mutex op_lock;
+> +	spinlock_t buf_list_lock;
+> +
+> +	struct list_head buf_list;
+> +
+> +	const struct mtk_cam_hw_functions *hw_functions;
+> +
+> +	struct mtk_cam_dev_buffer dummy;
+> +	unsigned int dummy_size;
+> +	bool is_dummy_used;
+> +};
+> +
+> +/**
+> + * struct mtk_cam_conf - MediaTek camera configuration structure
+> + * @tg_sen_mode: TG sensor mode
+> + * @module_en: module enable
+> + * @imgo_con: dma control register
+> + * @imgo_con2: dma control register 2
+> + */
+> +struct mtk_cam_conf {
+> +	u32 tg_sen_mode;
+> +	u32 module_en;
+> +	u32 imgo_con;
+> +	u32 imgo_con2;
+> +};
+> +
+> +struct mtk_cam_hw_functions {
+> +	void (*mtk_cam_setup)(struct mtk_cam_dev *cam_dev, u32 width,
+> +			      u32 height, u32 bpl, u32 mbus_fmt);
+> +	void (*mtk_cam_update_buffers_add)(struct mtk_cam_dev *cam_dev,
+> +					   struct mtk_cam_dev_buffer *buf);
+> +	void (*mtk_cam_cmos_vf_hw_enable)(struct mtk_cam_dev *cam_dev);
+> +	void (*mtk_cam_cmos_vf_hw_disable)(struct mtk_cam_dev *cam_dev);
+> +};
+> +
+> +int mtk_cam_dev_init(struct mtk_cam_dev *cam_dev);
+> +void mtk_cam_dev_cleanup(struct mtk_cam_dev *cam_dev);
+> +int mtk_cam_video_register(struct mtk_cam_dev *cam_dev);
+> +void mtk_cam_video_unregister(struct mtk_cam_video_device *vdev);
+> +
+> +#endif /* __MTK_CAMSV_H__ */
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+> new file mode 100644
+> index 000000000000..6ce256743f56
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+> @@ -0,0 +1,413 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2020 BayLibre
+> + * Copyright (c) 2022 MediaTek Inc.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iommu.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/ktime.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "mtk_camsv.h"
+> +#include "mtk_camsv30_regs.h"
+> +
+> +#define MTK_CAMSV30_AUTOSUSPEND_DELAY_MS 100
+> +
+> +static const struct mtk_cam_conf camsv30_conf = {
+> +	.tg_sen_mode = 0x00010002U, /* TIME_STP_EN = 1. DBL_DATA_BUS = 1 */
+> +	.module_en = 0x40000001U, /* enable double buffer and TG */
+> +	.imgo_con = 0x80000080U, /* DMA FIFO depth and burst */
+> +	.imgo_con2 = 0x00020002U, /* DMA priority */
+> +};
+> +
+> +static void fmt_to_sparams(u32 mbus_fmt, struct mtk_cam_sparams *sparams)
+> +{
+> +	switch (mbus_fmt) {
+> +	/*
+> +	 * SBGGR values coming from isp5.0 configuration.
+> +	 * not tested on isp2.0
+> +	 */
+> +	case MEDIA_BUS_FMT_SBGGR12_1X12:
+> +	case MEDIA_BUS_FMT_SGBRG12_1X12:
+> +	case MEDIA_BUS_FMT_SGRBG12_1X12:
+> +	case MEDIA_BUS_FMT_SRGGB12_1X12:
+> +		sparams->w_factor = 1;
+> +		sparams->module_en_pak = 0x4;
+> +		sparams->fmt_sel = 0x2;
+> +		sparams->pak = 0x5;
+> +		sparams->imgo_stride = 0x000B0000;
+
+Lowercase hex constants.
+
+Please define macros for all the magic values, here and through the
+driver.
+
+> +		break;
+> +	case MEDIA_BUS_FMT_SBGGR10_1X10:
+> +	case MEDIA_BUS_FMT_SGBRG10_1X10:
+> +	case MEDIA_BUS_FMT_SGRBG10_1X10:
+> +	case MEDIA_BUS_FMT_SRGGB10_1X10:
+> +		sparams->w_factor = 1;
+> +		sparams->module_en_pak = 0x4;
+> +		sparams->fmt_sel = 0x1;
+> +		sparams->pak = 0x6;
+> +		sparams->imgo_stride = 0x000B0000;
+> +		break;
+> +	case MEDIA_BUS_FMT_SBGGR8_1X8:
+> +	case MEDIA_BUS_FMT_SGBRG8_1X8:
+> +	case MEDIA_BUS_FMT_SGRBG8_1X8:
+> +	case MEDIA_BUS_FMT_SRGGB8_1X8:
+> +		sparams->w_factor = 1;
+> +		sparams->module_en_pak = 0x4;
+> +		sparams->fmt_sel = 0x0;
+> +		sparams->pak = 0x7;
+> +		sparams->imgo_stride = 0x000B0000;
+> +		break;
+> +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> +	case MEDIA_BUS_FMT_VYUY8_1X16:
+> +	case MEDIA_BUS_FMT_YUYV8_1X16:
+> +	case MEDIA_BUS_FMT_YVYU8_1X16:
+> +		sparams->w_factor = 2;
+> +		sparams->module_en_pak = 0x8;
+> +		sparams->fmt_sel = 0x1000003;
+> +		sparams->pak = 0x0;
+> +		sparams->imgo_stride = 0x00090000;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +}
+> +
+> +static void mtk_camsv30_update_buffers_add(struct mtk_cam_dev *cam_dev,
+> +					   struct mtk_cam_dev_buffer *buf)
+> +{
+> +	writel(buf->daddr, cam_dev->regs_img0 + CAMSV_IMGO_SV_BASE_ADDR);
+> +
+> +	writel(0x1U, cam_dev->regs + CAMSV_IMGO_FBC);
+> +}
+> +
+> +static void mtk_camsv30_cmos_vf_hw_enable(struct mtk_cam_dev *cam_dev)
+> +{
+> +	u32 clk_en = CAMSV_TG_DP_CLK_EN | CAMSV_DMA_DP_CLK_EN | CAMSV_PAK_DP_CLK_EN;
+> +
+> +	writel(clk_en, cam_dev->regs + CAMSV_CLK_EN);
+> +	writel(readl(cam_dev->regs_tg + CAMSV_TG_VF_CON) | CAMSV_TG_VF_CON_VFDATA_EN,
+> +			cam_dev->regs_tg + CAMSV_TG_VF_CON);
+> +}
+> +
+> +static void mtk_camsv30_cmos_vf_hw_disable(struct mtk_cam_dev *cam_dev)
+> +{
+> +	writel(readl(cam_dev->regs_tg + CAMSV_TG_SEN_MODE) & ~CAMSV_TG_SEN_MODE_CMOS_EN,
+> +			cam_dev->regs_tg + CAMSV_TG_SEN_MODE);
+> +	writel(readl(cam_dev->regs_tg + CAMSV_TG_VF_CON) & ~CAMSV_TG_VF_CON_VFDATA_EN,
+> +			cam_dev->regs_tg + CAMSV_TG_VF_CON);
+> +}
+> +
+> +static void mtk_camsv30_setup(struct mtk_cam_dev *cam_dev, u32 w, u32 h,
+> +			      u32 bpl, u32 mbus_fmt)
+> +{
+> +	const struct mtk_cam_conf *conf = cam_dev->conf;
+> +	u32 int_en = INT_ST_MASK_CAMSV;
+> +	u32 tmp;
+> +	struct mtk_cam_sparams sparams;
+> +
+> +	fmt_to_sparams(mbus_fmt, &sparams);
+> +
+> +	if (pm_runtime_resume_and_get(cam_dev->dev) < 0) {
+> +		dev_err(cam_dev->dev, "failed to get pm_runtime\n");
+> +		return;
+> +	}
+> +
+> +	writel(conf->tg_sen_mode, cam_dev->regs_tg + CAMSV_TG_SEN_MODE);
+> +
+> +	writel((w * sparams.w_factor) << 16U, cam_dev->regs_tg + CAMSV_TG_SEN_GRAB_PXL);
+> +
+> +	writel(h << 16U, cam_dev->regs_tg + CAMSV_TG_SEN_GRAB_LIN);
+> +
+> +	/* YUV_U2S_DIS: disable YUV sensor unsigned to signed */
+> +	writel(0x1000U, cam_dev->regs_tg + CAMSV_TG_PATH_CFG);
+> +
+> +	/* Reset cam */
+> +	writel(CAMSV_SW_RST, cam_dev->regs + CAMSV_SW_CTL);
+> +	writel(0x0U, cam_dev->regs + CAMSV_SW_CTL);
+> +	writel(CAMSV_IMGO_RST_TRIG, cam_dev->regs + CAMSV_SW_CTL);
+> +
+> +	readl_poll_timeout_atomic(cam_dev->regs + CAMSV_SW_CTL, tmp,
+> +				  (tmp == (CAMSV_IMGO_RST_TRIG | CAMSV_IMGO_RST_ST)), 10, 200);
+> +
+> +	writel(0x0U, cam_dev->regs + CAMSV_SW_CTL);
+> +
+> +	writel(int_en, cam_dev->regs + CAMSV_INT_EN);
+> +
+> +	writel(conf->module_en | sparams.module_en_pak,
+> +	       cam_dev->regs + CAMSV_MODULE_EN);
+> +	writel(sparams.fmt_sel, cam_dev->regs + CAMSV_FMT_SEL);
+> +	writel(sparams.pak, cam_dev->regs + CAMSV_PAK);
+> +
+> +	writel(bpl - 1U, cam_dev->regs_img0 + CAMSV_IMGO_SV_XSIZE);
+> +	writel(h - 1U, cam_dev->regs_img0 + CAMSV_IMGO_SV_YSIZE);
+> +
+> +	writel(sparams.imgo_stride | bpl, cam_dev->regs_img0 + CAMSV_IMGO_SV_STRIDE);
+> +
+> +	writel(conf->imgo_con, cam_dev->regs_img0 + CAMSV_IMGO_SV_CON);
+> +	writel(conf->imgo_con2, cam_dev->regs_img0 + CAMSV_IMGO_SV_CON2);
+> +
+> +	/* CMOS_EN first */
+> +	writel(readl(cam_dev->regs_tg + CAMSV_TG_SEN_MODE) | CAMSV_TG_SEN_MODE_CMOS_EN,
+> +			cam_dev->regs_tg + CAMSV_TG_SEN_MODE);
+> +
+> +	/* finally, CAMSV_MODULE_EN : IMGO_EN */
+> +	writel(readl(cam_dev->regs + CAMSV_MODULE_EN) | CAMSV_MODULE_EN_IMGO_EN,
+> +		     cam_dev->regs + CAMSV_MODULE_EN);
+> +
+> +	pm_runtime_put_autosuspend(cam_dev->dev);
+> +}
+> +
+> +static irqreturn_t isp_irq_camsv30(int irq, void *data)
+> +{
+> +	struct mtk_cam_dev *cam_dev = (struct mtk_cam_dev *)data;
+> +	struct mtk_cam_dev_buffer *buf;
+> +	unsigned int irq_status;
+> +
+> +	spin_lock(&cam_dev->buf_list_lock);
+> +
+> +	irq_status = readl(cam_dev->regs + CAMSV_INT_STATUS);
+> +
+> +	if (irq_status & INT_ST_MASK_CAMSV_ERR)
+> +		dev_err(cam_dev->dev, "irq error 0x%lx\n", irq_status & INT_ST_MASK_CAMSV_ERR);
+> +
+> +	/* De-queue frame */
+> +	if (irq_status & CAMSV_IRQ_PASS1_DON) {
+> +		cam_dev->sequence++;
+> +
+> +		if (!cam_dev->is_dummy_used) {
+> +			buf = list_first_entry_or_null(&cam_dev->buf_list,
+> +						       struct mtk_cam_dev_buffer,
+> +						       list);
+> +			if (buf) {
+> +				buf->v4l2_buf.sequence = cam_dev->sequence;
+> +				buf->v4l2_buf.vb2_buf.timestamp = ktime_get_ns();
+> +				vb2_buffer_done(&buf->v4l2_buf.vb2_buf,
+> +						VB2_BUF_STATE_DONE);
+> +				list_del(&buf->list);
+> +			}
+> +		}
+> +
+> +		if (list_empty(&cam_dev->buf_list)) {
+> +			mtk_camsv30_update_buffers_add(cam_dev, &cam_dev->dummy);
+> +			cam_dev->is_dummy_used = true;
+> +		} else {
+> +			buf = list_first_entry_or_null(&cam_dev->buf_list,
+> +						       struct mtk_cam_dev_buffer,
+> +						       list);
+> +			mtk_camsv30_update_buffers_add(cam_dev, buf);
+> +			cam_dev->is_dummy_used = false;
+> +		}
+> +	}
+> +
+> +	spin_unlock(&cam_dev->buf_list_lock);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int mtk_camsv30_runtime_suspend(struct device *dev)
+> +{
+> +	struct mtk_cam_dev *cam_dev = dev_get_drvdata(dev);
+> +	struct vb2_queue *vbq = &cam_dev->vdev.vbq;
+> +
+> +	if (vb2_is_streaming(vbq)) {
+> +		mutex_lock(&cam_dev->op_lock);
+> +		v4l2_subdev_call(&cam_dev->subdev, video, s_stream, 0);
+
+Use the v4l2_subdev_disable_streams() helper.
+
+> +		mutex_unlock(&cam_dev->op_lock);
+> +	}
+> +
+> +	clk_bulk_disable_unprepare(cam_dev->num_clks, cam_dev->clks);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_camsv30_runtime_resume(struct device *dev)
+> +{
+> +	struct mtk_cam_dev *cam_dev = dev_get_drvdata(dev);
+> +	struct mtk_cam_video_device *vdev = &cam_dev->vdev;
+> +	const struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +	struct vb2_queue *vbq = &vdev->vbq;
+> +	struct mtk_cam_dev_buffer *buf, *buf_prev;
+> +	int ret;
+> +	unsigned long flags = 0;
+> +
+> +	ret = clk_bulk_prepare_enable(cam_dev->num_clks, cam_dev->clks);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable clock:%d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (vb2_is_streaming(vbq)) {
+> +
+> +		mtk_camsv30_setup(cam_dev, fmt->width, fmt->height,
+> +				  fmt->plane_fmt[0].bytesperline, vdev->fmtinfo->code);
+> +
+> +		spin_lock_irqsave(&cam_dev->buf_list_lock, flags);
+> +		buf = list_first_entry_or_null(&cam_dev->buf_list,
+> +					       struct mtk_cam_dev_buffer,
+> +					       list);
+> +		if (buf) {
+> +			mtk_camsv30_update_buffers_add(cam_dev, buf);
+> +			cam_dev->is_dummy_used = false;
+> +		} else {
+> +			mtk_camsv30_update_buffers_add(cam_dev, &cam_dev->dummy);
+> +			cam_dev->is_dummy_used = true;
+> +		}
+> +
+> +		mtk_camsv30_cmos_vf_hw_enable(cam_dev);
+> +
+> +		spin_unlock_irqrestore(&cam_dev->buf_list_lock, flags);
+> +
+> +		/* Stream on the sub-device */
+> +		mutex_lock(&cam_dev->op_lock);
+> +		ret = v4l2_subdev_call(&cam_dev->subdev, video, s_stream, 1);
+
+And v4l2_subdev_enable_streams() here. Same in
+mtk_cam_vb2_start_streaming() and mtk_cam_vb2_stop_streaming()
+
+> +
+> +		if (ret) {
+> +			cam_dev->stream_count--;
+> +			if (cam_dev->stream_count == 0)
+> +				media_pipeline_stop(vdev->vdev.entity.pads);
+> +		}
+> +		mutex_unlock(&cam_dev->op_lock);
+> +
+> +		if (ret)
+> +			goto fail_no_stream;
+> +	}
+> +
+> +	return 0;
+> +
+> +fail_no_stream:
+> +	spin_lock_irqsave(&cam_dev->buf_list_lock, flags);
+> +	list_for_each_entry_safe(buf, buf_prev, &cam_dev->buf_list, list) {
+> +		buf->daddr = 0ULL;
+> +		list_del(&buf->list);
+> +		vb2_buffer_done(&buf->v4l2_buf.vb2_buf, VB2_BUF_STATE_ERROR);
+> +	}
+> +	spin_unlock_irqrestore(&cam_dev->buf_list_lock, flags);
+> +	return ret;
+> +}
+> +
+> +static const struct mtk_cam_hw_functions mtk_camsv30_hw_functions = {
+> +	.mtk_cam_setup = mtk_camsv30_setup,
+> +	.mtk_cam_update_buffers_add = mtk_camsv30_update_buffers_add,
+> +	.mtk_cam_cmos_vf_hw_enable = mtk_camsv30_cmos_vf_hw_enable,
+> +	.mtk_cam_cmos_vf_hw_disable = mtk_camsv30_cmos_vf_hw_disable,
+> +};
+> +
+> +static int mtk_camsv30_probe(struct platform_device *pdev)
+> +{
+> +	static const char * const clk_names[] = { "cam", "camtg", "camsv"};
+> +
+> +	struct mtk_cam_dev *cam_dev;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +	int i;
+
+i is never negative, make it an unsigned int.
+
+> +
+> +	if (!iommu_present(&platform_bus_type))
+> +		return -EPROBE_DEFER;
+> +
+> +	cam_dev = devm_kzalloc(dev, sizeof(*cam_dev), GFP_KERNEL);
+> +	if (!cam_dev)
+> +		return -ENOMEM;
+> +
+> +	cam_dev->conf = of_device_get_match_data(dev);
+
+device_get_match_data()
+
+and replace 
+
+#include <linux/of_platform.h>
+
+above with linux/property.h.
+
+> +	if (!cam_dev->conf)
+> +		return -ENODEV;
+> +
+> +	cam_dev->dev = dev;
+> +	dev_set_drvdata(dev, cam_dev);
+> +
+> +	cam_dev->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(cam_dev->regs))
+> +		return dev_err_probe(dev, PTR_ERR(cam_dev->regs),
+> +				"failed to map register base\n");
+
+Wrong alignment
+
+		return dev_err_probe(dev, PTR_ERR(cam_dev->regs),
+				     "failed to map register base\n");
+Same in other places.
+
+> +
+> +
+> +	cam_dev->regs_img0 = devm_platform_ioremap_resource(pdev, 1);
+> +
+
+Drop the blank line.
+
+> +	if (IS_ERR(cam_dev->regs_img0))
+> +		return dev_err_probe(dev, PTR_ERR(cam_dev->regs_img0),
+> +				"failed to map img0 register base\n");
+> +
+> +
+> +	cam_dev->regs_tg = devm_platform_ioremap_resource(pdev, 2);
+> +	if (IS_ERR(cam_dev->regs_tg))
+> +		return dev_err_probe(dev, PTR_ERR(cam_dev->regs_tg),
+> +				"failed to map TG register base\n");
+> +
+> +
+> +	cam_dev->num_clks = ARRAY_SIZE(clk_names);
+> +	cam_dev->clks = devm_kcalloc(dev, cam_dev->num_clks,
+> +				     sizeof(*cam_dev->clks), GFP_KERNEL);
+> +	if (!cam_dev->clks)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < cam_dev->num_clks; ++i)
+> +		cam_dev->clks[i].id = clk_names[i];
+> +
+> +	ret = devm_clk_bulk_get(dev, cam_dev->num_clks, cam_dev->clks);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get clocks: %i\n", ret);
+> +
+> +
+
+Extra blank line.
+
+> +	cam_dev->irq = platform_get_irq(pdev, 0);
+> +	ret = devm_request_irq(dev, cam_dev->irq, isp_irq_camsv30, 0, dev_name(dev), cam_dev);
+
+Line wrap.
+
+> +	if (ret != 0)
+> +		return dev_err_probe(dev, -ENODEV, "failed to request irq=%d\n",
+> +				     cam_dev->irq);
+> +
+> +	cam_dev->hw_functions = &mtk_camsv30_hw_functions;
+> +
+> +	spin_lock_init(&cam_dev->buf_list_lock);
+> +
+> +	/* initialise runtime power management */
+> +	pm_runtime_set_autosuspend_delay(dev, MTK_CAMSV30_AUTOSUSPEND_DELAY_MS);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_set_suspended(dev);
+> +	devm_pm_runtime_enable(dev);
+> +
+> +	/* Initialize the v4l2 common part */
+> +	return mtk_cam_dev_init(cam_dev);
+> +}
+> +
+> +static void mtk_camsv30_remove(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mtk_cam_dev *cam_dev = dev_get_drvdata(dev);
+> +
+> +	mtk_cam_dev_cleanup(cam_dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +}
+> +
+> +static const struct dev_pm_ops mtk_camsv30_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +				pm_runtime_force_resume)
+> +	SET_RUNTIME_PM_OPS(mtk_camsv30_runtime_suspend,
+> +			   mtk_camsv30_runtime_resume, NULL)
+> +};
+> +
+> +static const struct of_device_id mtk_camsv30_of_ids[] = {
+> +	{ .compatible = "mediatek,mt8365-camsv", .data = &camsv30_conf },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_camsv30_of_ids);
+> +
+> +static struct platform_driver mtk_camsv30_driver = {
+> +	.probe = mtk_camsv30_probe,
+> +	.remove_new = mtk_camsv30_remove,
+
+You can now use .remove() again.
+
+> +	.driver = {
+> +		.name = "mtk-camsv-isp30",
+> +		.of_match_table = mtk_camsv30_of_ids,
+> +		.pm = &mtk_camsv30_pm_ops,
+> +	}
+> +};
+> +
+> +module_platform_driver(mtk_camsv30_driver);
+> +
+> +MODULE_DESCRIPTION("MediaTek CAMSV ISP3.0 driver");
+> +MODULE_AUTHOR("Florian Sylvestre <fsylvestre@baylibre.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h
+> new file mode 100644
+> index 000000000000..6d30087270cc
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h
+> @@ -0,0 +1,60 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2022 MediaTek Inc.
+> + */
+> +
+> +#ifndef __MTK_CAMSV30_REGS_H__
+> +#define __MTK_CAMSV30_REGS_H__
+> +
+
+#include <linux/bit.h>
+
+> +/* CAMSV */
+> +#define CAMSV_MODULE_EN				0x0000
+> +#define CAMSV_MODULE_EN_IMGO_EN			BIT(4)
+> +#define CAMSV_FMT_SEL				0x0004
+> +#define CAMSV_INT_EN				0x0008
+> +#define CAMSV_INT_STATUS			0x000c
+> +#define CAMSV_SW_CTL				0x0010
+> +#define CAMSV_IMGO_FBC				0x001C
+> +#define CAMSV_CLK_EN				0x0020
+> +#define CAMSV_PAK				0x003c
+> +
+> +/* CAMSV_TG */
+> +#define CAMSV_TG_SEN_MODE			0x0010
+> +#define CAMSV_TG_VF_CON				0x0014
+> +#define CAMSV_TG_SEN_GRAB_PXL			0x0018
+> +#define CAMSV_TG_SEN_GRAB_LIN			0x001c
+> +#define CAMSV_TG_PATH_CFG			0x0020
+> +
+> +/* CAMSV_IMG0 */
+> +#define CAMSV_IMGO_SV_BASE_ADDR			0x0000
+> +#define CAMSV_IMGO_SV_XSIZE			0x0008
+> +#define CAMSV_IMGO_SV_YSIZE			0x000c
+> +#define CAMSV_IMGO_SV_STRIDE			0x0010
+> +#define CAMSV_IMGO_SV_CON			0x0014
+> +#define CAMSV_IMGO_SV_CON2			0x0018
+> +
+> +#define CAMSV_TG_SEN_MODE_CMOS_EN		BIT(0)
+> +#define CAMSV_TG_VF_CON_VFDATA_EN		BIT(0)
+> +
+> +/* CAMSV_CLK_EN bits */
+> +#define CAMSV_TG_DP_CLK_EN			BIT(0)
+> +#define CAMSV_PAK_DP_CLK_EN			BIT(2)
+> +#define CAMSV_DMA_DP_CLK_EN			BIT(15)
+> +
+> +/* CAMSV_SW_CTL bits */
+> +#define CAMSV_IMGO_RST_TRIG			BIT(0)
+> +#define CAMSV_IMGO_RST_ST			BIT(1)
+> +#define CAMSV_SW_RST				BIT(2)
+> +
+> +/* IRQ BITS */
+> +#define CAMSV_IRQ_TG_ERR			BIT(4)
+> +#define CAMSV_IRQ_TG_GBERR			BIT(5)
+> +#define CAMSV_IRQ_PASS1_DON			BIT(10)
+> +#define CAMSV_IRQ_IMGO_ERR			BIT(16)
+> +
+> +#define INT_ST_MASK_CAMSV                                                      \
+> +	(CAMSV_IRQ_PASS1_DON)
+> +
+> +#define INT_ST_MASK_CAMSV_ERR                                                  \
+> +	(CAMSV_IRQ_TG_ERR | CAMSV_IRQ_TG_GBERR | CAMSV_IRQ_IMGO_ERR)
+> +
+> +#endif /* __MTK_CAMSV30_REGS_H__ */
+> diff --git a/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+> new file mode 100644
+> index 000000000000..967bac446fb3
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+> @@ -0,0 +1,742 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * mtk_camsv_video.c - V4L2 video node support
+> + *
+> + * Copyright (c) 2020 BayLibre
+> + * Copyright (c) 2022 MediaTek Inc.
+> + */
+> +
+> +#include <linux/version.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-ioctl.h>
+> +#include <media/v4l2-mediabus.h>
+> +
+> +#include "mtk_camsv.h"
+> +
+> +static inline struct mtk_cam_video_device *
+> +file_to_mtk_cam_video_device(struct file *__file)
+> +{
+> +	return container_of(video_devdata(__file),
+> +			    struct mtk_cam_video_device, vdev);
+> +}
+> +
+> +static inline struct mtk_cam_video_device *
+> +vb2_queue_to_mtk_cam_video_device(struct vb2_queue *vq)
+> +{
+> +	return container_of(vq, struct mtk_cam_video_device, vbq);
+> +}
+> +
+> +static inline struct mtk_cam_dev_buffer *
+> +to_mtk_cam_dev_buffer(struct vb2_buffer *buf)
+> +{
+> +	return container_of(buf, struct mtk_cam_dev_buffer, v4l2_buf.vb2_buf);
+> +}
+> +
+> +/* -----------------------------------------------------------------------------
+> + * Format Information
+> + */
+> +
+> +static const struct mtk_cam_format_info mtk_cam_format_info[] = {
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_SBGGR8,
+> +		.code = MEDIA_BUS_FMT_SBGGR8_1X8,
+> +		.bpp = 8,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_SGBRG8,
+> +		.code = MEDIA_BUS_FMT_SGBRG8_1X8,
+> +		.bpp = 8,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_SGRBG8,
+> +		.code = MEDIA_BUS_FMT_SGRBG8_1X8,
+> +		.bpp = 8,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_SRGGB8,
+> +		.code = MEDIA_BUS_FMT_SRGGB8_1X8,
+> +		.bpp = 8,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_YUYV,
+> +		.code = MEDIA_BUS_FMT_YUYV8_1X16,
+> +		.bpp = 16,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_YVYU,
+> +		.code = MEDIA_BUS_FMT_YVYU8_1X16,
+> +		.bpp = 16,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_UYVY,
+> +		.code = MEDIA_BUS_FMT_UYVY8_1X16,
+> +		.bpp = 16,
+> +	}, {
+> +		.fourcc = V4L2_PIX_FMT_VYUY,
+> +		.code = MEDIA_BUS_FMT_VYUY8_1X16,
+> +		.bpp = 16,
+> +	},
+> +};
+> +
+> +static const struct mtk_cam_format_info *
+> +mtk_cam_format_info_by_fourcc(u32 fourcc)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(mtk_cam_format_info); ++i) {
+> +		const struct mtk_cam_format_info *info =
+> +			&mtk_cam_format_info[i];
+> +
+> +		if (info->fourcc == fourcc)
+> +			return info;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +static const struct mtk_cam_format_info *
+> +mtk_cam_format_info_by_code(u32 code)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(mtk_cam_format_info); ++i) {
+> +		const struct mtk_cam_format_info *info =
+> +			&mtk_cam_format_info[i];
+> +
+> +		if (info->code == code)
+> +			return info;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +static bool mtk_cam_dev_find_fmt(const struct mtk_cam_vdev_desc *desc,
+> +				 u32 format)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < desc->num_fmts; i++) {
+> +		if (desc->fmts[i] == format)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static void calc_bpl_size_pix_mp(const struct mtk_cam_format_info *fmtinfo,
+> +				 struct v4l2_pix_format_mplane *pix_mp)
+> +{
+> +	unsigned int bpl;
+> +	unsigned int i;
+> +
+> +	bpl = ALIGN(DIV_ROUND_UP(pix_mp->width * fmtinfo->bpp, 8), 2);
+> +
+> +	for (i = 0; i < pix_mp->num_planes; ++i) {
+> +		pix_mp->plane_fmt[i].bytesperline = bpl;
+> +		pix_mp->plane_fmt[i].sizeimage = bpl * pix_mp->height;
+
+Can we make at least the stride configurable by the application ?
+
+> +	}
+> +}
+> +
+> +static void mtk_cam_dev_load_default_fmt(struct mtk_cam_dev *cam)
+> +{
+> +	struct mtk_cam_video_device *vdev = &cam->vdev;
+> +	struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +
+> +	fmt->num_planes = 1;
+> +	fmt->pixelformat = vdev->desc->fmts[0];
+> +	fmt->width = vdev->desc->def_width;
+> +	fmt->height = vdev->desc->def_height;
+> +
+> +	fmt->colorspace = V4L2_COLORSPACE_SRGB;
+> +	fmt->field = V4L2_FIELD_NONE;
+> +	fmt->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	fmt->quantization = V4L2_QUANTIZATION_DEFAULT;
+> +	fmt->xfer_func = V4L2_XFER_FUNC_DEFAULT;
+> +
+> +	vdev->fmtinfo = mtk_cam_format_info_by_fourcc(fmt->pixelformat);
+> +
+> +	calc_bpl_size_pix_mp(vdev->fmtinfo, fmt);
+> +}
+> +
+> +/* -----------------------------------------------------------------------------
+> + * VB2 Queue Operations
+> + */
+> +
+> +static int mtk_cam_vb2_queue_setup(struct vb2_queue *vq,
+> +				   unsigned int *num_buffers,
+> +				   unsigned int *num_planes,
+> +				   unsigned int sizes[],
+> +				   struct device *alloc_devs[])
+> +{
+> +	struct mtk_cam_video_device *vdev =
+> +		vb2_queue_to_mtk_cam_video_device(vq);
+> +	const struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +	unsigned int size;
+> +	unsigned int np_conf;
+> +	unsigned int i;
+> +
+> +	size = fmt->plane_fmt[0].sizeimage;
+> +	/* Add for q.create_bufs with fmt.g_sizeimage(p) / 2 test */
+
+What's that ?
+
+> +
+> +	np_conf = 1;
+
+Weird name.
+
+> +
+> +	if (*num_planes == 0) {
+> +		*num_planes = np_conf;
+> +		for (i = 0; i < *num_planes; ++i)
+> +			sizes[i] = size;
+> +	} else if (*num_planes != np_conf || sizes[0] < size) {
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_vb2_buf_prepare(struct vb2_buffer *vb)
+> +{
+> +	struct mtk_cam_video_device *vdev =
+> +		vb2_queue_to_mtk_cam_video_device(vb->vb2_queue);
+> +	struct mtk_cam_dev *cam = vb2_get_drv_priv(vb->vb2_queue);
+> +	struct mtk_cam_dev_buffer *buf = to_mtk_cam_dev_buffer(vb);
+> +	const struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +	u32 size;
+> +	int i;
+> +
+> +	for (i = 0; i < vb->num_planes; i++) {
+> +		size = fmt->plane_fmt[i].sizeimage;
+> +		if (vb2_plane_size(vb, i) < size) {
+> +			dev_err(cam->dev, "plane size is too small:%lu<%u\n",
+> +				vb2_plane_size(vb, i), size);
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	buf->v4l2_buf.field = V4L2_FIELD_NONE;
+> +
+> +	for (i = 0; i < vb->num_planes; i++) {
+> +		size = fmt->plane_fmt[i].sizeimage;
+> +		vb2_set_plane_payload(vb, i, size);
+> +	}
+> +
+> +	if (!buf->daddr)
+> +		buf->daddr = vb2_dma_contig_plane_dma_addr(vb, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_cam_vb2_buf_queue(struct vb2_buffer *vb)
+> +{
+> +	struct mtk_cam_dev *cam = vb2_get_drv_priv(vb->vb2_queue);
+> +	struct mtk_cam_dev_buffer *buf = to_mtk_cam_dev_buffer(vb);
+> +	unsigned long flags;
+> +
+> +	/* added the buffer into the tracking list */
+
+s/added/Add/
+
+> +	spin_lock_irqsave(&cam->buf_list_lock, flags);
+> +	list_add_tail(&buf->list, &cam->buf_list);
+> +	spin_unlock_irqrestore(&cam->buf_list_lock, flags);
+> +}
+> +
+> +static void mtk_cam_vb2_return_all_buffers(struct mtk_cam_dev *cam,
+> +					   enum vb2_buffer_state state)
+> +{
+> +	struct mtk_cam_dev_buffer *buf, *buf_prev;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&cam->buf_list_lock, flags);
+> +	list_for_each_entry_safe(buf, buf_prev, &cam->buf_list, list) {
+> +		buf->daddr = 0ULL;
+> +		list_del(&buf->list);
+> +		vb2_buffer_done(&buf->v4l2_buf.vb2_buf, state);
+> +	}
+> +	spin_unlock_irqrestore(&cam->buf_list_lock, flags);
+> +}
+> +
+> +static void mtk_cam_cmos_vf_enable(struct mtk_cam_dev *cam_dev,
+> +				   bool enable, bool pak_en)
+> +{
+> +	struct device *dev = cam_dev->dev;
+> +
+> +	if (pm_runtime_get_sync(dev) < 0) {
+> +		dev_err(dev, "failed to get pm_runtime\n");
+> +		goto out;
+
+pm_runtime_resume_and_get(), so you can return here.
+
+Actually, do you need to get runtime PM here ?
+
+> +	}
+> +
+> +	if (enable)
+> +		cam_dev->hw_functions->mtk_cam_cmos_vf_hw_enable(cam_dev);
+> +	else
+> +		cam_dev->hw_functions->mtk_cam_cmos_vf_hw_disable(cam_dev);
+> +
+> +out:
+> +	pm_runtime_put_autosuspend(dev);
+> +}
+> +
+> +static int mtk_cam_verify_format(struct mtk_cam_dev *cam)
+> +{
+> +	struct mtk_cam_video_device *vdev = &cam->vdev;
+> +	struct v4l2_subdev_format fmt = {
+> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+> +		.pad = MTK_CAM_CIO_PAD_VIDEO,
+> +	};
+> +	int ret;
+> +
+> +	ret = v4l2_subdev_call(&cam->subdev, pad, get_fmt, NULL, &fmt);
+> +	if (ret < 0)
+> +		return ret == -ENOIOCTLCMD ? -EINVAL : ret;
+> +
+> +	if (vdev->fmtinfo->code != fmt.format.code ||
+> +	    vdev->format.height != fmt.format.height ||
+> +	    vdev->format.width != fmt.format.width)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_vb2_start_streaming(struct vb2_queue *vq,
+> +				       unsigned int count)
+> +{
+> +	struct mtk_cam_dev *cam = vb2_get_drv_priv(vq);
+> +	struct mtk_cam_dev_buffer *buf;
+> +	struct mtk_cam_video_device *vdev =
+> +		vb2_queue_to_mtk_cam_video_device(vq);
+> +	struct device *dev = cam->dev;
+> +	const struct v4l2_pix_format_mplane *fmt = &vdev->format;
+> +	int ret;
+> +	unsigned long flags;
+> +
+> +	if (pm_runtime_get_sync(dev) < 0) {
+
+pm_runtime_resume_and_get(), so you can drop the
+pm_runtime_put_autosuspend() in the error path.
+
+> +		dev_err(dev, "failed to get pm_runtime\n");
+> +		pm_runtime_put_autosuspend(dev);
+> +		return -1;
+> +	}
+> +
+> +	(*cam->hw_functions->mtk_cam_setup)(cam, fmt->width, fmt->height,
+> +			fmt->plane_fmt[0].bytesperline, vdev->fmtinfo->code);
+> +
+> +
+> +	/* Enable CMOS and VF */
+> +	mtk_cam_cmos_vf_enable(cam, true, true);
+> +
+> +	mutex_lock(&cam->op_lock);
+> +
+> +	ret = mtk_cam_verify_format(cam);
+> +	if (ret < 0)
+> +		goto fail_unlock;
+> +
+> +	/* Start streaming of the whole pipeline now*/
+> +	if (!cam->pipeline.start_count) {
+> +		ret = media_pipeline_start(vdev->vdev.entity.pads,
+> +					   &cam->pipeline);
+> +		if (ret) {
+> +			dev_err(dev, "failed to start pipeline:%d\n", ret);
+> +			goto fail_unlock;
+> +		}
+> +	}
+> +
+> +	/* Media links are fixed after media_pipeline_start */
+> +	cam->stream_count++;
+> +
+> +	cam->sequence = (unsigned int)-1;
+> +
+> +	/* Stream on the sub-device */
+> +	ret = v4l2_subdev_call(&cam->subdev, video, s_stream, 1);
+> +	if (ret)
+> +		goto fail_no_stream;
+> +
+> +	mutex_unlock(&cam->op_lock);
+> +
+> +	/* Create dummy buffer */
+> +	cam->dummy_size = fmt->plane_fmt[0].sizeimage;
+> +
+> +	cam->dummy.vaddr = dma_alloc_coherent(cam->dev, cam->dummy_size,
+> +					      &cam->dummy.daddr, GFP_KERNEL);
+
+There's an ongoing discussion on the need to allocate a large dummy
+buffer in the previous version of this patch. It's still applicable
+here.
+
+> +	if (!cam->dummy.vaddr) {
+> +		ret = -ENOMEM;
+> +		goto fail_no_buffer;
+> +	}
+> +
+> +	/* update first buffer address */
+> +
+> +	/* added the buffer into the tracking list */
+> +	spin_lock_irqsave(&cam->buf_list_lock, flags);
+> +	if (list_empty(&cam->buf_list)) {
+> +		(*cam->hw_functions->mtk_cam_update_buffers_add)(cam, &cam->dummy);
+> +		cam->is_dummy_used = true;
+> +	} else {
+> +		buf = list_first_entry_or_null(&cam->buf_list,
+> +					       struct mtk_cam_dev_buffer,
+> +					       list);
+> +		(*cam->hw_functions->mtk_cam_update_buffers_add)(cam, buf);
+> +		cam->is_dummy_used = false;
+> +	}
+> +	spin_unlock_irqrestore(&cam->buf_list_lock, flags);
+> +
+> +	return 0;
+> +
+> +fail_no_buffer:
+> +	mutex_lock(&cam->op_lock);
+> +	v4l2_subdev_call(&cam->subdev, video, s_stream, 0);
+> +fail_no_stream:
+> +	cam->stream_count--;
+> +	if (cam->stream_count == 0)
+> +		media_pipeline_stop(vdev->vdev.entity.pads);
+> +fail_unlock:
+> +	mutex_unlock(&cam->op_lock);
+> +	mtk_cam_vb2_return_all_buffers(cam, VB2_BUF_STATE_QUEUED);
+> +
+> +	return ret;
+> +}
+> +
+> +static void mtk_cam_vb2_stop_streaming(struct vb2_queue *vq)
+> +{
+> +	struct mtk_cam_dev *cam = vb2_get_drv_priv(vq);
+> +	struct mtk_cam_video_device *vdev =
+> +		vb2_queue_to_mtk_cam_video_device(vq);
+> +
+> +	/* Disable CMOS and VF */
+> +	mtk_cam_cmos_vf_enable(cam, false, false);
+> +
+> +	mutex_lock(&cam->op_lock);
+> +
+> +	v4l2_subdev_call(&cam->subdev, video, s_stream, 0);
+> +
+> +	mtk_cam_vb2_return_all_buffers(cam, VB2_BUF_STATE_ERROR);
+> +	cam->stream_count--;
+> +	if (cam->stream_count) {
+> +		mutex_unlock(&cam->op_lock);
+> +		return;
+> +	}
+> +
+> +	/* Destroy dummy buffer */
+> +	if (cam->dummy.vaddr) {
+> +		dma_free_coherent(cam->dev, cam->dummy_size, cam->dummy.vaddr,
+> +				  cam->dummy.daddr);
+> +		memset(&cam->dummy, 0, sizeof(cam->dummy));
+> +		cam->dummy_size = 0;
+> +		cam->is_dummy_used = false;
+> +	}
+> +
+> +	mutex_unlock(&cam->op_lock);
+> +
+> +	media_pipeline_stop(vdev->vdev.entity.pads);
+> +}
+> +
+> +static const struct vb2_ops mtk_cam_vb2_ops = {
+> +	.queue_setup = mtk_cam_vb2_queue_setup,
+> +	.buf_prepare = mtk_cam_vb2_buf_prepare,
+> +	.buf_queue = mtk_cam_vb2_buf_queue,
+> +	.start_streaming = mtk_cam_vb2_start_streaming,
+> +	.stop_streaming = mtk_cam_vb2_stop_streaming,
+> +	.wait_prepare = vb2_ops_wait_prepare,
+> +	.wait_finish = vb2_ops_wait_finish,
+> +};
+> +
+> +/* -----------------------------------------------------------------------------
+> + * V4L2 Video IOCTLs
+> + */
+> +
+> +static int mtk_cam_vidioc_querycap(struct file *file, void *fh,
+> +				   struct v4l2_capability *cap)
+> +{
+> +	struct mtk_cam_dev *cam = video_drvdata(file);
+> +
+> +	strscpy(cap->driver, dev_driver_string(cam->dev), sizeof(cap->driver));
+> +	strscpy(cap->card, dev_driver_string(cam->dev), sizeof(cap->card));
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_vidioc_enum_fmt(struct file *file, void *fh,
+> +				   struct v4l2_fmtdesc *f)
+> +{
+> +	struct mtk_cam_video_device *vdev = file_to_mtk_cam_video_device(file);
+> +	const struct mtk_cam_format_info *fmtinfo;
+> +	unsigned int i;
+> +
+> +	/* If mbus_code is not set enumerate all supported formats. */
+> +	if (!f->mbus_code) {
+> +		if (f->index >= vdev->desc->num_fmts)
+> +			return -EINVAL;
+> +
+> +		/* f->description is filled in v4l_fill_fmtdesc function */
+> +		f->pixelformat = vdev->desc->fmts[f->index];
+> +		f->flags = 0;
+> +
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * Otherwise only enumerate supported pixel formats corresponding to
+> +	 * that bus code.
+> +	 */
+> +	if (f->index)
+> +		return -EINVAL;
+> +
+> +	fmtinfo = mtk_cam_format_info_by_code(f->mbus_code);
+> +	if (!fmtinfo)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < vdev->desc->num_fmts; ++i) {
+> +		if (vdev->desc->fmts[i] == fmtinfo->fourcc) {
+> +			f->pixelformat = fmtinfo->fourcc;
+> +			f->flags = 0;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int mtk_cam_vidioc_g_fmt(struct file *file, void *fh,
+> +				struct v4l2_format *f)
+> +{
+> +	struct mtk_cam_video_device *vdev = file_to_mtk_cam_video_device(file);
+> +
+> +	f->fmt.pix_mp = vdev->format;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_vidioc_try_fmt(struct file *file, void *fh,
+> +				  struct v4l2_format *f)
+> +{
+> +	struct mtk_cam_video_device *vdev = file_to_mtk_cam_video_device(file);
+> +	struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
+> +	const struct mtk_cam_format_info *fmtinfo;
+> +
+> +	/* Validate pixelformat */
+> +	if (!mtk_cam_dev_find_fmt(vdev->desc, pix_mp->pixelformat))
+> +		pix_mp->pixelformat = vdev->desc->fmts[0];
+> +
+> +	pix_mp->width = clamp_val(pix_mp->width, IMG_MIN_WIDTH, IMG_MAX_WIDTH);
+> +	pix_mp->height = clamp_val(pix_mp->height, IMG_MIN_HEIGHT,
+> +				   IMG_MAX_HEIGHT);
+> +
+> +	pix_mp->num_planes = 1;
+> +
+> +	fmtinfo = mtk_cam_format_info_by_fourcc(pix_mp->pixelformat);
+> +	calc_bpl_size_pix_mp(fmtinfo, pix_mp);
+> +
+> +	/* Constant format fields */
+> +	pix_mp->colorspace = V4L2_COLORSPACE_SRGB;
+> +	pix_mp->field = V4L2_FIELD_NONE;
+> +	pix_mp->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	pix_mp->quantization = V4L2_QUANTIZATION_DEFAULT;
+> +	pix_mp->xfer_func = V4L2_XFER_FUNC_DEFAULT;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_vidioc_s_fmt(struct file *file, void *fh,
+> +				struct v4l2_format *f)
+> +{
+> +	struct mtk_cam_dev *cam = video_drvdata(file);
+> +	struct mtk_cam_video_device *vdev = file_to_mtk_cam_video_device(file);
+> +	int ret;
+> +
+> +	if (vb2_is_busy(vdev->vdev.queue)) {
+> +		dev_dbg(cam->dev, "%s: queue is busy\n", __func__);
+
+I think you can drop this message.
+
+> +		return -EBUSY;
+> +	}
+> +
+> +	ret = mtk_cam_vidioc_try_fmt(file, fh, f);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Configure to video device */
+> +	vdev->format = f->fmt.pix_mp;
+> +	vdev->fmtinfo =
+> +		mtk_cam_format_info_by_fourcc(f->fmt.pix_mp.pixelformat);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cam_vidioc_enum_framesizes(struct file *file, void *priv,
+> +					  struct v4l2_frmsizeenum *sizes)
+> +{
+> +	struct mtk_cam_video_device *vdev = file_to_mtk_cam_video_device(file);
+> +
+> +	if (sizes->index)
+> +		return -EINVAL;
+> +
+> +	if (!mtk_cam_dev_find_fmt(vdev->desc, sizes->pixel_format))
+> +		return -EINVAL;
+> +
+> +	sizes->type = vdev->desc->frmsizes->type;
+> +	memcpy(&sizes->stepwise, &vdev->desc->frmsizes->stepwise,
+> +	       sizeof(sizes->stepwise));
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_ioctl_ops mtk_cam_v4l2_vcap_ioctl_ops = {
+> +	.vidioc_querycap = mtk_cam_vidioc_querycap,
+> +	.vidioc_enum_framesizes = mtk_cam_vidioc_enum_framesizes,
+> +	.vidioc_enum_fmt_vid_cap = mtk_cam_vidioc_enum_fmt,
+> +	.vidioc_g_fmt_vid_cap_mplane = mtk_cam_vidioc_g_fmt,
+> +	.vidioc_s_fmt_vid_cap_mplane = mtk_cam_vidioc_s_fmt,
+> +	.vidioc_try_fmt_vid_cap_mplane = mtk_cam_vidioc_try_fmt,
+> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
+> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
+> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
+> +	.vidioc_querybuf = vb2_ioctl_querybuf,
+> +	.vidioc_qbuf = vb2_ioctl_qbuf,
+> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
+> +	.vidioc_streamon = vb2_ioctl_streamon,
+> +	.vidioc_streamoff = vb2_ioctl_streamoff,
+> +	.vidioc_expbuf = vb2_ioctl_expbuf,
+> +	.vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
+> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_file_operations mtk_cam_v4l2_fops = {
+> +	.unlocked_ioctl = video_ioctl2,
+> +	.open = v4l2_fh_open,
+> +	.release = vb2_fop_release,
+> +	.poll = vb2_fop_poll,
+> +	.mmap = vb2_fop_mmap,
+> +#ifdef CONFIG_COMPAT
+> +	.compat_ioctl32 = v4l2_compat_ioctl32,
+> +#endif
+> +};
+> +
+> +/* -----------------------------------------------------------------------------
+> + * Init & Cleanup
+> + */
+> +
+> +static const u32 stream_out_fmts[] = {
+> +	/* The 1st entry is the default image format */
+> +	V4L2_PIX_FMT_SBGGR8,
+> +	V4L2_PIX_FMT_SGBRG8,
+> +	V4L2_PIX_FMT_SGRBG8,
+> +	V4L2_PIX_FMT_SRGGB8,
+> +	V4L2_PIX_FMT_UYVY,
+> +	V4L2_PIX_FMT_VYUY,
+> +	V4L2_PIX_FMT_YUYV,
+> +	V4L2_PIX_FMT_YVYU,
+> +};
+> +
+> +static const struct mtk_cam_vdev_desc video_stream = {
+> +	.name = "video stream",
+> +	.cap = V4L2_CAP_VIDEO_CAPTURE_MPLANE,
+> +	.buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE,
+> +	.link_flags = MEDIA_LNK_FL_IMMUTABLE | MEDIA_LNK_FL_ENABLED,
+> +	.fmts = stream_out_fmts,
+> +	.num_fmts = ARRAY_SIZE(stream_out_fmts),
+> +	.def_width = IMG_MAX_WIDTH,
+> +	.def_height = IMG_MAX_HEIGHT,
+> +	.ioctl_ops = &mtk_cam_v4l2_vcap_ioctl_ops,
+> +	.frmsizes =
+> +		&(struct v4l2_frmsizeenum){
+> +			.index = 0,
+> +			.type = V4L2_FRMSIZE_TYPE_CONTINUOUS,
+> +			.stepwise = {
+> +				.max_width = IMG_MAX_WIDTH,
+> +				.min_width = IMG_MIN_WIDTH,
+> +				.max_height = IMG_MAX_HEIGHT,
+> +				.min_height = IMG_MIN_HEIGHT,
+> +				.step_height = 1,
+> +				.step_width = 1,
+> +			},
+> +		},
+> +};
+> +
+> +int mtk_cam_video_register(struct mtk_cam_dev *cam)
+> +{
+> +	struct device *dev = cam->dev;
+> +	struct mtk_cam_video_device *cam_vdev = &cam->vdev;
+> +	struct video_device *vdev = &cam_vdev->vdev;
+> +	struct vb2_queue *vbq = &cam_vdev->vbq;
+> +	int ret;
+> +
+> +	vb2_dma_contig_set_max_seg_size(cam->dev, DMA_BIT_MASK(32));
+> +
+> +	cam_vdev->desc = &video_stream;
+> +
+> +	/* Initialize mtk_cam_video_device */
+> +	mtk_cam_dev_load_default_fmt(cam);
+> +
+> +	cam_vdev->vdev_pad.flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	/* Initialize media entities */
+> +	ret = media_entity_pads_init(&vdev->entity, 1, &cam_vdev->vdev_pad);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize media pad:%d\n", ret);
+> +		return ret;
+> +	}
+> +	cam_vdev->vdev_pad.flags = MEDIA_PAD_FL_SINK;
+> +
+> +	vbq->type = cam_vdev->desc->buf_type;
+> +	vbq->io_modes = VB2_MMAP | VB2_DMABUF;
+> +	vbq->dev = dev;
+> +	vbq->ops = &mtk_cam_vb2_ops;
+> +	vbq->mem_ops = &vb2_dma_contig_memops;
+> +	vbq->buf_struct_size = sizeof(struct mtk_cam_dev_buffer);
+> +	/*
+> +	 * TODO: The hardware supports SOF interrupts, switch to a SOF
+> +	 * timestamp source would give better accuracy, but first requires
+> +	 * extending the V4L2 API to support it.
+> +	 */
+> +	vbq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC
+> +			     | V4L2_BUF_FLAG_TSTAMP_SRC_EOF;
+> +
+> +	/* No minimum buffers limitation */
+> +	vbq->min_queued_buffers = 0;
+> +	vbq->drv_priv = cam;
+> +
+> +	vbq->lock = &cam_vdev->vdev_lock;
+> +	ret = vb2_queue_init(vbq);
+> +	if (ret) {
+> +		dev_err(dev, "failed to init. vb2 queue:%d\n", ret);
+> +		goto fail_media_clean;
+> +	}
+> +
+> +	/* Initialize vdev */
+> +	snprintf(vdev->name, sizeof(vdev->name), "%s %s",
+> +		 dev_name(dev), cam_vdev->desc->name);
+> +
+> +	/* Set cap/type/ioctl_ops of the video device */
+> +	vdev->device_caps = cam_vdev->desc->cap | V4L2_CAP_STREAMING
+> +			  | V4L2_CAP_IO_MC;
+> +	vdev->ioctl_ops = cam_vdev->desc->ioctl_ops;
+
+Drop ioctl_ops from mtk_cam_vdev_desc and hardcode it here. Same for
+name, cap, buf_type and link_flags. If we ever merge support for another
+hardware variant in this driver that requires a different configuration,
+we'll address it then. I'm actually tempted to drop mtk_cam_vdev_desc
+completely.
+
+> +	vdev->fops = &mtk_cam_v4l2_fops;
+> +	vdev->release = video_device_release_empty;
+> +	vdev->lock = &cam_vdev->vdev_lock;
+> +	vdev->v4l2_dev = cam->subdev.v4l2_dev;
+> +	vdev->queue = &cam_vdev->vbq;
+> +	vdev->vfl_dir = VFL_DIR_RX;
+> +	vdev->entity.function = MEDIA_ENT_F_IO_V4L;
+> +	video_set_drvdata(vdev, cam);
+> +
+> +	/* Initialize miscellaneous variables */
+> +	mutex_init(&cam_vdev->vdev_lock);
+> +	INIT_LIST_HEAD(&cam->buf_list);
+> +
+> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
+> +	if (ret) {
+> +		dev_err(dev, "failed to register vde:%d\n", ret);
+> +		goto fail_vb2_rel;
+> +	}
+> +
+> +	/* Create link between the video pad and the subdev pad. */
+> +	ret = media_create_pad_link(&cam->subdev.entity,
+> +				    MTK_CAM_CIO_PAD_VIDEO,
+> +				    &vdev->entity, 0, cam_vdev->desc->link_flags);
+> +
+
+Drop the blank line.
+
+> +	if (ret)
+> +		goto fail_vdev_ureg;
+> +
+> +	return 0;
+> +
+> +fail_vdev_ureg:
+> +	video_unregister_device(vdev);
+> +fail_vb2_rel:
+> +	mutex_destroy(&cam_vdev->vdev_lock);
+> +	vb2_queue_release(vbq);
+> +fail_media_clean:
+> +	media_entity_cleanup(&vdev->entity);
+> +
+> +	return ret;
+> +}
+> +
+> +void mtk_cam_video_unregister(struct mtk_cam_video_device *vdev)
+> +{
+> +	video_unregister_device(&vdev->vdev);
+> +	vb2_queue_release(&vdev->vbq);
+> +	media_entity_cleanup(&vdev->vdev.entity);
+> +	mutex_destroy(&vdev->vdev_lock);
+> +	vb2_dma_contig_clear_max_seg_size(&vdev->vdev.dev);
+> +}
+
+-- 
+Regards,
+
+Laurent Pinchart
 
