@@ -1,115 +1,187 @@
-Return-Path: <devicetree+bounces-89350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDD6940D6A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:26:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A98B940DB5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C789E1F246E0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:26:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F9231C246DF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38436194C73;
-	Tue, 30 Jul 2024 09:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71B9199236;
+	Tue, 30 Jul 2024 09:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="CbWJN3ji"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sWdOQ9q9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.3])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5606194AF2;
-	Tue, 30 Jul 2024 09:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB4E199230;
+	Tue, 30 Jul 2024 09:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722331558; cv=none; b=A7RP2aaT/+CR8tDIbdBw96amHQEesnfAAYjQs2KAItxh4zxPIjlqCs1/ReiASVDidbnLo84Ud+A1rZY3NiJBVxzLBfqn83OSgDLjof/wBeDk6JWVvjq+JL5tO7seKVOiONb48k5Y6KzjZFQgKMxnJRbiT898sld9e3gxsDybI+M=
+	t=1722331804; cv=none; b=PSerMmM76alXJodcl+tGLAVABw7BHDHgyEuAAs/lps/F3/uHV2Zo/ZgaX8VpU6lweMZ9TERSgdaZZix27LzvBqU15Y8gJCCFS2e1qzN27IHs+5xjRE/Y0crQsviOSvkxdxQnbecM2kaXTAs0S8PBpfcFid7Gshf26xo2cS3mA/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722331558; c=relaxed/simple;
-	bh=B8pPZpptIq748GFBsju+USRBJIgQXhm6PsH1p3yF93A=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=Qwa1vq2BV5B2RMb60HACV48ScqQ/q9buvL745YF/A/1PbS1acircsZBrkn6GEatwav7qZB3IMrVoM4uMI1K1vfq8gdLQ7bO0zm3wmhRiCdJWKjzGw+QmvdL3FYnTe5vwEgiiqHiTe0LV+C9pWyULs8GrhH24SJcyvxuGhx0m0Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=CbWJN3ji; arc=none smtp.client-ip=212.227.15.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1722331528; x=1722936328; i=markus.elfring@web.de;
-	bh=UuXPUKpAxDUJSU7l9ijEWWWr13YM4cXuW3gjBPRNm0A=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=CbWJN3jib0JHsUqML0cfbUsCpoVIXwrEAp4um1p1ZXrQnbPsLAdzmjtLCjzHoGyA
-	 RX4lCwa8DEKaSIDXORdG9MVXZKZJ7Pfd8rxaECmwt43AFpQ63umvVIt0yGgohBVYu
-	 PYmD1PIAjlQwaSNHXCTPYQYQFZKObRKggSzYG1y09BjVkXydAl2PqNHUUDUnKuHzS
-	 LjinVc9VJqK909fcj/tjFcBgBB2ZCCHfjVdzO7n918mHdOuUd0no2WgOsN862Y7r3
-	 pGTY5S/Wg3Z1Ekwr+igGsHwVkEtOagg2IohZh+b9Rz4yjE1LM3YStZkEm2zOwLGQS
-	 /ZwJpKonFm/8KlDDCQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.90.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MLzmv-1sqfV30ZZx-00W9SH; Tue, 30
- Jul 2024 11:25:28 +0200
-Message-ID: <7ed0f4dc-9865-4139-bd88-7ca270b9a466@web.de>
-Date: Tue, 30 Jul 2024 11:25:23 +0200
+	s=arc-20240116; t=1722331804; c=relaxed/simple;
+	bh=866TXeg6/lVMOOh1VA2DnyXNgGcIYgYvjmmK4pTqemk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a6Ff0cBjFKHKwly4Uc+gGe6BdWKihIDx7WVWfX/G6s0JCpLpqvux5mpd6bt+fSfclzrV3BJ3PFSp2uxo6x3Chy5l+uM2UcUz7L6ncuRGm+UDhS6//WSy48GMs3+m3uXyWYMHKaH4XdMH9hngngp6xxq+561OzyZ7CPXfuuZUZ58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sWdOQ9q9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C12F2C4AF09;
+	Tue, 30 Jul 2024 09:30:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722331804;
+	bh=866TXeg6/lVMOOh1VA2DnyXNgGcIYgYvjmmK4pTqemk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sWdOQ9q9w+P0DlcZJJtBlBYFMzhGxrnABqu/l+k8KN0HGhMBKQQraHJtf4//0nzHG
+	 08CosLGFIWhEIdzamsuxedJaiVmsnlhvkf6Ij8NuJk6zlxVth2cce+l5prFFOJsR9t
+	 gWmEyq6OGzsT5R+j+Z6xL0yc875fvqNW+OYvF+mm2pYrJ4f5PPvZijHCMGuBuSNUfQ
+	 H38xJHFrXiTBFa3x6oay9ODeThosfdSZOwcwWXTUodI+ZsIMdBdGfoRt4Je1ItkT51
+	 Fn5YIMNMlsaRkGrOqXw7OLxV1v3grbb1ONsXkB0Uyr+ZF07OIohb8IS0ZsGaqfAlkp
+	 rJR/inc6Zh5kA==
+Date: Tue, 30 Jul 2024 11:30:01 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Marc Gonzalez <mgonzalez@freebox.fr>, 
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
+Message-ID: <20240730-miniature-wonderful-okapi-01aa0f@houat>
+References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
+ <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
+ <20240701-bug-of-great-honeydew-cfb6ef@houat>
+ <e55d0f0e-a104-4790-b832-120dbddd93ad@freebox.fr>
+ <20240715-stirring-purple-toad-7de58c@houat>
+ <c302bc47-6492-44af-86a1-3ff6a815e314@freebox.fr>
+ <20240730-eminent-venomous-condor-8ef421@houat>
+ <CAA8EJprQJJ2AuB99RFU+d074PV+NHMPwjFWn_auju7HYQQ8R7w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Herve Codina <herve.codina@bootlin.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
- Mark Brown <broonie@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
- Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20240729142107.104574-15-herve.codina@bootlin.com>
-Subject: Re: [PATCH 14/36] soc: fsl: cpm1: tsa: Add support for QUICC Engine
- (QE) implementation
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240729142107.104574-15-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="exkfzcorvtdik2dz"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprQJJ2AuB99RFU+d074PV+NHMPwjFWn_auju7HYQQ8R7w@mail.gmail.com>
+
+
+--exkfzcorvtdik2dz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Enr+kaZULtHao8xj1MEf/uKFDf7xcXnvnwHaPuDxNtdiZHuvaY1
- faTKq0TSqBUp5PnbVfJHtSKkWkSvb14oZqqMrmafdm9no2GWN+cFWhjHN15JJxYtMz9Y+u+
- rlbcI5vrBr9iXxgxveDoHTs1RKZ9xgqvf3m/bg2joG0pnQwCi/b1i14gAI/SZySsyF82FFS
- 2x8gGxTr1kypTc+y1/2nQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:m0k7Pq+00cY=;zaWDnDXkBAX0V6Qm/QR6xTJQWOt
- lAzDsi9PqBK3FR60RDK/jWhujt8nktX2uQqP+P1rZpIjM6bcrcbu7XF4jxeK7o5Dt223usX35
- BBqN7NnPy3zRkbJ9sSQHLljufz3JvkdfSn112I6X0ooGDqUSYtQl9PTh6KkkFhWiUOETGeFgW
- XIZ5qSKnxOU76/JX5GRyBBVCvQGWTRPzbjJ66wkoKI4p8mGV26r2lJ3Q/8JLKvO0KUIg+EM12
- uUeYj+q40/yNl2shqnpXHYqjZttEdqgsi7MFjoP0YJMcrqCVAgGLZtPdtQOeXMj8ak/5ejWRd
- ylynbfeCMHWELfdbyuewGClmsxHONIG0Esg1PAX4WOtCuX5bh42F0wREKEXMe5E287j822sHu
- 5i5XVkYFSbw9BGJkwDEb9GJaklRvCTM5JbRjCdiiH2QwW62Q0Ak9jalIolsECfVWMMQVqC01z
- Vcpolul3yrBMxSt7jqfO0jFdU+UBgZCIZ4L0NU5qfDtFvgJYGFasD4zivPogv1ONbg+qjTXPf
- 7UtYgTmnkEm86b7xm0BjmK72gKSCdUYlZxM3ThVuKcsYLn6mn7s5T1jyTEcXsVDZK5lCS7oM0
- Sbx20VAB2q99Vx5shGWmbnNcbOIhaaefhqvszRRfSCy9FMxLTy6cZ1mkMFM4L+QlA7ghXjRdX
- +aGhCK0qr99HW+SvCxyFearKhmz5L16uGS53BatAUNTk4M05+aUJgjwvZHzKHQFRmAcuc0dLz
- E52BPCsWSgYAbpm4Dvr+4xqEgos82xxwSC/EsjogHDCNv26J98AWK8HRD8YwoHvSnpAC8v54f
- N2mHin7mhcn4fXhNJ1jmq+Bg==
 
-=E2=80=A6
-> +++ b/drivers/soc/fsl/qe/tsa.c
-=E2=80=A6
-> +static int tsa_qe_serial_connect(struct tsa_serial *tsa_serial, bool co=
-nnect)
-> +{
-=E2=80=A6
-> +	spin_lock_irqsave(&tsa->lock, flags);
-> +	ret =3D ucc_set_qe_mux_tsa(ucc_num, connect);
-> +	spin_unlock_irqrestore(&tsa->lock, flags);
-=E2=80=A6
+On Tue, Jul 30, 2024 at 11:46:24AM GMT, Dmitry Baryshkov wrote:
+> On Tue, 30 Jul 2024 at 11:27, Maxime Ripard <mripard@kernel.org> wrote:
+> >
+> > On Wed, Jul 24, 2024 at 07:59:21PM GMT, Marc Gonzalez wrote:
+> > > On 15/07/2024 16:40, Maxime Ripard wrote:
+> > > > On Thu, Jul 04, 2024 at 07:04:41PM GMT, Marc Gonzalez wrote:
+> > > >> On 01/07/2024 15:50, Maxime Ripard wrote:
+> > > >>
+> > > >>> The i2c register access (and the whole behaviour of the device) is
+> > > >>> constrained on the I2C_EN pin status, and you can't read it from =
+the
+> > > >>> device, so it's also something we need to have in the DT.
+> > > >>
+> > > >> I think the purpose of the I2C_EN pin might have been misunderstoo=
+d.
+> > > >>
+> > > >> I2C_EN is not meant to be toggled, ever, by anyone from this plane=
+t.
+> > > >
+> > > > Toggled, probably not. Connected to a GPIO and the kernel has to as=
+sert
+> > > > a level at boot, I've seen worse hardware design already.
+> > > >
+> > > >> I2C_EN is a layout-time setting, decided by a board manufacturer:
+> > > >>
+> > > >> - If the TDP158 is fully configured once-and-for-all at layout-tim=
+e,
+> > > >> then no I2C bus is required, and I2C_EN is pulled down forever.
+> > > >>
+> > > >> - If the board manufacturer wants to keep open the possibility
+> > > >> to adjust some parameters at run-time, then they must connect
+> > > >> the device to an I2C bus, and I2C_EN is pulled up forever.
+> > > >
+> > > > How do you express both cases in your current binding?
+> > >
+> > > It's not that I'm ignoring your question.
+> > >
+> > > It's that I don't understand what you're asking.
+> >
+> > And that's fine, you just need to say so.
+> >
+> > Generally speaking, you're focusing on the driver. The driver is not the
+> > issue here. You can do whatever you want in the driver for all I care,
+> > we can change that later on as we wish.
+> >
+> > The binding however cannot change, so it *has* to ideally cover all
+> > possible situations the hardware can be used in, or at a minimum leave
+> > the door open to support those without a compatibility breakage.
+> >
+> > That's why I've been asking those questions, because so far the only
+> > thing you've claimed is that "I can't test the driver for anything
+> > else", but, again, whether there's a driver or not, or if it's
+> > functional, is completely missing the point.
+> >
+> > > SITUATION 1
+> > > tdp158 is pin strapped.
+> > > Device node is child of root node.
+> > > Properties in proposed binding are valid (regulators and power-on pin)
+> > > Can be supported via module_platform_driver.
+> > >
+> > > SITUATION 2
+> > > tdp158 is sitting on I2C bus.
+> > > Device node is child of i2c bus node.
+> > > (robh said missing reg prop would be flagged by the compiler)
+> > > Properties in proposed binding are valid (regulators and power-on pin)
+> > > Supported via module_i2c_driver.
+> > >
+> > > If some settings-specific properties are added later, like skew,
+> > > they would only be valid for the I2C programmable mode, obviously.
+> >
+> > I think there's a couple more combinations:
+> >
+> >   - The device is connected on an I2C bus, but I2C_EN is tied low
+>=20
+> No, this is not possible. I2C pins are repurposed if I2C_EN is low.
+> You can not call that an i2c bus anymore.
+>=20
+> >   - The device is connected on an I2C bus, but I2C_EN is connected to a
+> >     GPIO and the kernel needs to assert its state at boot.
+>=20
+> This is a pretty strange configuration.  The I2C_EN pin isn't supposed
+> to be toggled dynamically. Anyway, if that happens, I'd use pinctrl /
+> hog to control the pin.
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(spinlock_irqsave)(&tsa->lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.11-rc1/source/include/linux/spinlock.h=
-#L572
+ACK. I still believe it would be valuable, but I don't really want to be
+part of that conversation anymore. Marc, do whatever you want.
 
-Regards,
-Markus
+Maxime
+
+--exkfzcorvtdik2dz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZqiymQAKCRAnX84Zoj2+
+dpLrAYCn7ehRdWalGs3BdyjJYr34mRqQNXl+CduUr3TyIXyMY01G0nFV/hY+BD6r
+rth2hhgBfj4zR+rJxeTlKl05Q6dUyF8U/7w3wNXowxIGhVgck1+vWJLQFbtkKVG0
+/75NfvqltA==
+=CNZu
+-----END PGP SIGNATURE-----
+
+--exkfzcorvtdik2dz--
 
