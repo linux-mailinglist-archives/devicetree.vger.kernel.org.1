@@ -1,170 +1,130 @@
-Return-Path: <devicetree+bounces-89242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C65C940871
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:35:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A308940875
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:37:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEAA61F219DA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:35:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAA74B21349
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF8471684A5;
-	Tue, 30 Jul 2024 06:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D7418EFF1;
+	Tue, 30 Jul 2024 06:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="s/sVjjmj"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="UNxOmMl+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02olkn2036.outbound.protection.outlook.com [40.92.15.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9C47FBAC;
-	Tue, 30 Jul 2024 06:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.15.36
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722321323; cv=fail; b=jjNB2vfcZH9gvT1lU1aNE6KaISp5rQIv+kO0EHF7K9PLxiTXJNJVF4pN4krUQMRxVUy64RQ+pZxHURI4LnDpY+Y73OMS1M+fF1+/dVW2IBfl8wz9QDDwSZpx8mgLpNXIz+HUHZY1DbGs23cte3OBifbZ3q/LpIsXMiKqSHEoC5U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722321323; c=relaxed/simple;
-	bh=OmQLM4+IkSWpOp2fAEMUv+01/CUdU8SbEMFd51dRcSs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=SE321Rc2OiZU3+vIdDv8m+ChStDCoTUNhzzIFDYzIFypY751xdfhISkOsrxi0+BwuAMXF4WZT1DMjX8vknBIi+/nrSdK0oJgYqoDwp/RoEdJvCeuL+mgOj1CRty7J36lDlX0aO4lQ3N1C5q7Y+eXTfHT9EXyF94eNOHaK+vLhvE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=s/sVjjmj; arc=fail smtp.client-ip=40.92.15.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pRO+cqrLTEUmKTdodXggnP8gSeVtrOI0kHPB2H7wGaKpxcDMDnebgIos0OLTlMdwbBqs4hpdyskxk9Yox5sMlNwfdORFJkYT2KPn+7cO0mgZ64OFxtj0aFGw/f7Jt5dhQ3jo8eKlD+/4EvNrFbD3W16t59CKbviAKGJg15IOSzDLHe+yiD/OBlmA4aVItnCr5tFVeZfO/rRmEG5bM/7NAL4ZX+6ahCHp8Vu8X2nj/21KIVv9bGo3oTlwaYMvqOeJgYzsGInzuh7SkLTxIxcjr8dUBYHqDGHaVNnKz9PA+fmJB4G/N7oiagWuPEcn6W6uooPSgyjSD651lvCE/dy8zA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FXHNltkK1RudiLrW/7EsWkyYCYWBOHPoEn7gdmFoHJc=;
- b=bTSYVBQrYbcgN6lBMAqv2YB5fe45E2Ys5rivB6G8PPXEvZ9HvE+OFIEX6n4ULPXsouwgNdEKGjtvyQjeaVE9c0sa2kGG84/2W3bJe5cfEr4wJjIJo6kCptyCAAb0iyxFenO8AqN4mzeJYvddr+tl8vzD4dIEd2fktRhcDAcrbUCjKiPZXoAJ5UivtjxwuqUcwFgnGSaBXC5jSIjvYzIrIvttNCuQFvo7SFnZLQ2AkIBQiaJp1Mhl5u7GVTcCpl4u1DVq5efErN7ae/gyzSsx2LhgT8g+ExqoVbu9wYy1fc/Y6vOqERGlwT/TS5DWE4vrKPePcol4OkcAGrC2zAZObw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FXHNltkK1RudiLrW/7EsWkyYCYWBOHPoEn7gdmFoHJc=;
- b=s/sVjjmjuQItoseX+1d49Jfffi7IeLSkisESs43VHVH8AEXOU9QGfWj4a8R+/ZiQE1WGboTskRA161EEXuqd1crLUJDA4Fb9HACnowysZC1425M6gd3D3vB01hMDMzMlBTjffo8bmYmfl/ZjVXc7OaqT3Dei+SZ1CMWsFqZmzjWhvdDt1R0BfUMVO/DaBtjYYBjNpsl6E9LY25V3l7gkPdur430cvD5VOis4b5J4Op0aBQwBKjchDa8XDVkod+syPitH+4/QLMtFu2ZSBA6OqtRWZwU39c6bkTZGru8zDEzp9c1xGK9oUiUFolbYG4byUFmdMW8LcgI2C/ka0asMNw==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by CH0PR20MB6420.namprd20.prod.outlook.com (2603:10b6:610:191::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Tue, 30 Jul
- 2024 06:35:19 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
- 06:35:19 +0000
-Date: Tue, 30 Jul 2024 14:34:51 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
-	Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: interrupt-controller: Add SOPHGO
- SG2002 plic
-Message-ID:
- <IA1PR20MB49536DC2E1F556D292C9B63ABBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
- <20240711-sg2002-v4-1-d97ec2367095@bootlin.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711-sg2002-v4-1-d97ec2367095@bootlin.com>
-X-TMN: [9VXF7fT4+veg2yywh7bJ7Er4NcwuEEyOb65iciECnSU=]
-X-ClientProxiedBy: OS7PR01CA0181.jpnprd01.prod.outlook.com
- (2603:1096:604:250::18) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <au6sab5sgycpkd55eg4pfosg4njfli7mzr6pilypgl2blwcnyh@fhntoyp7gi7u>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6037916B736
+	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 06:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722321436; cv=none; b=gLdWUtIYFm15NYJbz6ay4rQmaAX6vw/ndfgJ7+S9tAa3ueD37gQTX7+WzElig3ifCeQrwRFOcGIzOd0fLSeIghwXtmwmrS9kXz+eqbUBvLdvQHzE655qp2s1Ur6lk0kelA8N9VSAoU/Z+TdPFVes0QTMRD6Sec2wxJ4vUa4ulrI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722321436; c=relaxed/simple;
+	bh=N47Qs6ylcphzAUtYxaZMJgXp9Hzc7IfQwO9V19FO3ms=;
+	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=rzpWM84MpxojoWEw3L7N2fnWoi/ydzUA/0H851ElqLY/dSREKczcPJRmIRXKu45dati+FRapM5OEisDsHQIrstuAkLh2DZmpQtLP/3nUcUGB5j2aQMFyGOEIxg6ophdhWX1cwlhA9kGWqzoxCIBjtgdO/coSRn0sK+j10Cd7RIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=UNxOmMl+; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2cb7cd6f5f2so3175733a91.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2024 23:37:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1722321434; x=1722926234; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:subject:user-agent
+         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=d8n8rYBKoxfcGnZbJLvEREPokWsFDiloFhCfdKHeZA0=;
+        b=UNxOmMl+jxkf6YnKJctgui1i7rf8X2l5K0keWflVRIkS1DItWOrNWcPJrspO2gAkjI
+         WBH/fXwA7G8oPkTTE4/ZVuy3j+/9tGyASds7ghFKPU2RNcjTZDAUvTvnFfb5ccK+cxHW
+         0Ahfm7d5beHfMwrRS7PxuAw9NXYnhmcwF/O3g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722321434; x=1722926234;
+        h=content-transfer-encoding:mime-version:subject:user-agent
+         :references:in-reply-to:message-id:date:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d8n8rYBKoxfcGnZbJLvEREPokWsFDiloFhCfdKHeZA0=;
+        b=bl2v8Wgq4S4bMwlA4J1wZFxpOsl9QlOlh3zDFAyvKuwPV69+BNy6kqHZ7YiHPMeOol
+         tKH9lqfslo3OB8QQxkNl+S5fgkSdIUxV42PmVRmgAHC9ctQYVtEBtDnc89jDqmvpYtTd
+         lzvQPikj7u6TEC6oimJ1StBwwGv0oU7L0y9HaR2QwiGq1flY9MsQTmckWjuNqmzZ0MJX
+         9DNCLJmE1wnONYXp6+IjCVzE3UjZap3sJwe+Rfo7xXKaFVnQn1Q3r3SiZhfvcE1nhwz3
+         pBY2Itf3iaLfTicUno7JrU4/nvoL17p4OGsTZHBnPaUWE41hKDESzP7HH0v1sZsYHXBT
+         Tf6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXf1zD8YkE0zVJdepM7tEKmxgUxIT856oLMEirK1BgHcyi//3X273YaREzdw2HUcOXXC7jaYOGNNT8HbHRFzUolrX9nGHohXuox+A==
+X-Gm-Message-State: AOJu0YyLAMSdvFZl6exGpukLemk5L/Xf7gOJ6xBrrLtRPu9p+eCp7Uy+
+	EkmhwbfWmz47Lcapa+r7TfXQHyDWJhlMcm4BpFerA/S3SKeAEtFmjI+FftBa2g==
+X-Google-Smtp-Source: AGHT+IEbAYsTcrcjdD3UrZN6PQy+Do67Ei8GuSEd9YQg6UqH56tJFOZ2LAJA39UhwaNb5oNVG9ACLg==
+X-Received: by 2002:a17:90a:6b4c:b0:2c9:7ebd:b957 with SMTP id 98e67ed59e1d1-2cf7e1df0abmr10618508a91.11.1722321434495;
+        Mon, 29 Jul 2024 23:37:14 -0700 (PDT)
+Received: from [192.168.178.38] (f215227.upc-f.chello.nl. [80.56.215.227])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cdb7608b88sm11733257a91.56.2024.07.29.23.37.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Jul 2024 23:37:14 -0700 (PDT)
+From: Arend Van Spriel <arend.vanspriel@broadcom.com>
+To: Jacobe Zang <jacobe.zang@wesion.com>, <robh@kernel.org>, <krzk+dt@kernel.org>, <heiko@sntech.de>, <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>
+CC: <efectn@protonmail.com>, <dsimic@manjaro.org>, <jagan@edgeble.ai>, <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <arend@broadcom.com>, <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>, <megi@xff.cz>, <duoming@zju.edu.cn>, <bhelgaas@google.com>, <minipli@grsecurity.net>, <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>, <nick@khadas.com>
+Date: Tue, 30 Jul 2024 08:37:05 +0200
+Message-ID: <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+In-Reply-To: <20240730033053.4092132-3-jacobe.zang@wesion.com>
+References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
+ <20240730033053.4092132-3-jacobe.zang@wesion.com>
+User-Agent: AquaMail/1.51.5 (build: 105105504)
+Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add clock description for AP6275P
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CH0PR20MB6420:EE_
-X-MS-Office365-Filtering-Correlation-Id: 370e0f22-9284-4994-03e9-08dcb061c7b3
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|5072599009|8060799006|19110799003|3412199025|440099028|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	dlNmiTZMEQjs8hplW+Vq4wvFF+FjmToEqvrYEQW01QfA5Ga0bWoSAW++T3veEIFG05Gd9YzMU2zWsz9OHENgOGDJqP9GvS/nXVhq7xXOl2S49V6rKebqxOcpVRbtQjZAEybAfl+HRNpKKI5k4fR1PKk26UduTvn+BhfnS7vnjrdZZSrpDvTFXN14wA4PfdTnGu1n9Pxk7Cs6M/She0aWHp3wCoI78Hm70KSOD5/UhmKgDlKWPi9OLPRl66TKNUrHM2CSnVMcd88zJ34k5mLjbqGdlIKdG4ugL1pOoLNAbJPeJl3esZwd3G2AsuCpltMgdR5DomlDNYdW6FgwmnHRyoJN5Cq/8cLG+yuuX6WWmXLEowAXbKreoL8hcyiPwpYprsK6CTP6f/rMC0E22l4SFottLsTYluZ1YJuTtn/lMTuyzffWF3hpBx0qsQGs0rSD7HFQWPgdlL+O0ST0EmC/jQXH7r7Bi3AXO61Y4FsKcOZFO747/raKBI436EX2ZuOSEqE7L95CUkeEKwTEaw2bk4JWEfvlqoC9Uvx7e8ajTMPkKbPpZCj+Y+rq0DuDJJGiKc3dJxxuBD3J55ME9uG/aizmoJg5SVMDDutA/b8igSVggGWsIxvtRGYXGXbalm+1iHvugDMpJ6PHbt3ElV8vp/m7U3B+YpGgDVYy60/+SH4j8e323dh4BUj9th0idJf7eHcehq1hJm8fym7eQ5cuMQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?h78yvSytCoSJ+D703SqCuy4Ch16HIlpAuBiUigq8ZNKxxJguMDOXNwOEtnjL?=
- =?us-ascii?Q?igodUQfhy2yVGf3Tu9JWOSy/CyjZ+6fhq7O8GzIYnHy10ZMW+KVZw6c3trxR?=
- =?us-ascii?Q?lX+IhgO1gLRvzsp01P/yk4aRisJIWFkcbRZT0SVShPff+9eTEGplS95TQZYo?=
- =?us-ascii?Q?/e+3AyZzPz5A6bMMJx0F41un69WdVQ9N4ww810rzudVkRR+Dlh5vGLXDshfr?=
- =?us-ascii?Q?XDu0uY2kON7lcS0so+ZJq3CcYk7A5AVK3xAxD9wXE9cJfm2ahP9qVlW1RrDQ?=
- =?us-ascii?Q?IqHhrxkdyCqCWMYi/EyTCSriFoYEaZ/BaDCCA3318KrYmOqtTS3hyEgXF3F1?=
- =?us-ascii?Q?dmTGlds5qM1h+uYwLjpV+sAf1ZONOvV7vTK4qufRFQFns4WFDeYnPBjaj+3I?=
- =?us-ascii?Q?NMd+wyP9j9TLK3VN09h9rteTNqJdSnmRQ3V779AZCNPgsDYjOp2PrX2rRQ8b?=
- =?us-ascii?Q?E2tHfgXtkf7XLWTjAyfQBPlOYTNyZdDtHIFJyvvz5Lli8it8FnqirQro94DC?=
- =?us-ascii?Q?fWZIH/PCzMLI1ZPYnzNGADDcNs09Dz1c5MLeZjAtp+oa+PaBpI0Sm4cXpm4T?=
- =?us-ascii?Q?Vr5pmW94kxK7DYGyfETlNcJhc6ZJwHzgwy+Bgbb/uWMibyEZnm1QbiXm6ldq?=
- =?us-ascii?Q?/LtbYp8S6SzuUeINSyHZdKZMO3QG5xSpZDRpg93MyqFvYKQaxLoCoEILUc2h?=
- =?us-ascii?Q?KktLsFVIB79weavBI6R/aTmlIhV6OIBJ5gkfRMWDySRFWmCBjwnRQvS8jdKQ?=
- =?us-ascii?Q?RvcYA2WE88k8oKKssW83HfFMdYxlWYPYJ0OLHT8JyvtWOr3uwQ1kiGrba2Ma?=
- =?us-ascii?Q?UVVLY0yh7UQps5Qxmr43SDLmN/zRr4kwPWX9aGbGixGSYxFpw5EhjLLi0ObN?=
- =?us-ascii?Q?r1J2br3lbOcAm7J0vjPJSyhq5oQOETzHezfK2Z0AJI39T9OpLoWXyFUMWIV+?=
- =?us-ascii?Q?lWpVoSFDxxZuMqwyrBengqafmibO4aHCiZsHfvazfdtyvIotH4/fbHovQncp?=
- =?us-ascii?Q?imHLLcHIrAFKFLwOGZC+7HAsSbNtsjmbKjp8WFIiy6VnbA4srGJjwb5Bcyxy?=
- =?us-ascii?Q?+grvQZeliwbJUJ+MTJuNwqHXAV7dlJJw4HSt1g4y2udVH6x4+u5pmW9ShMbw?=
- =?us-ascii?Q?qi07JUCphLiq+g4+MazoOhSaz1sAjCJLMH72qCBYgb2GmRlORfGbiMWFG5rM?=
- =?us-ascii?Q?xHEx7wbR7psu1nwOMPaI8IGHhl/obiX0sw7MqTQ/DFxbgzSP22ednaEmASO+?=
- =?us-ascii?Q?FstiXyBDWqHVMh6DMmyz?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 370e0f22-9284-4994-03e9-08dcb061c7b3
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 06:35:19.3352
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR20MB6420
+Content-Type: text/plain; format=flowed; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jul 11, 2024 at 12:01:28PM GMT, Thomas Bonnefille wrote:
-> Add compatible string for SOPHGO SG2002 Platform-Level Interruter
-> Controller.
-> 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
++ Linus W
+
+On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
+
+> Not only AP6275P Wi-Fi device but also all Broadcom wireless devices allow
+> external low power clock input. In DTS the clock as an optional choice in
+> the absence of an internal clock.
+>
+> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml      | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> index 709b2211276b..7e1451f9786a 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> @@ -67,6 +67,7 @@ properties:
->                - allwinner,sun20i-d1-plic
->                - sophgo,cv1800b-plic
->                - sophgo,cv1812h-plic
-> +              - sophgo,sg2002-plic
->                - sophgo,sg2042-plic
->                - thead,th1520-plic
->            - const: thead,c900-plic
-> 
-> -- 
-> 2.45.2
-> 
+> .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
+> 1 file changed, 8 insertions(+)
+>
+> diff --git 
+> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml 
+> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index 2c2093c77ec9a..a3607d55ef367 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -122,6 +122,14 @@ properties:
+> NVRAM. This would normally be filled in by the bootloader from platform
+> configuration data.
+>
+> +  clocks:
+> +    items:
+> +      - description: External Low Power Clock input (32.768KHz)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lpo
+> +
 
-Hi Thomas,
+We still have an issue that this clock input is also present in the 
+bindings specification broadcom-bluetooth.yaml (not in bluetooth 
+subfolder). This clock is actually a chip resource. What happens if both 
+are defined and both wifi and bt drivers try to enable this clock? Can this 
+be expressed in yaml or can we only put a textual warning in the property 
+descriptions?
 
-Could you take this patch?
-It will be good to take this series early so we can test new submitted
-driver with this platform.
+Regards,
+Arend
 
-Regard,
-Inochi.
+
 
