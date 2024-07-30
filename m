@@ -1,158 +1,181 @@
-Return-Path: <devicetree+bounces-89593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE67F942313
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 00:44:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66675942333
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 01:05:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42D561F25004
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 22:44:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88FCC1C2137B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 23:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC7B1917D6;
-	Tue, 30 Jul 2024 22:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB12018FDA5;
+	Tue, 30 Jul 2024 23:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ptv5EuxX"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="pWFyzLcH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4AA145A11;
-	Tue, 30 Jul 2024 22:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1698B18DF62
+	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 23:05:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722379476; cv=none; b=QmAaHlYUpRcVGqvKrLC5bxunehrexoRatMdcw81nI25gq3vxvqkHkGYCmnhi7A+q9oTU8YC9zlqXq19Eca7UoIs+UcDpDPKWQfAJ4DjQ0tv0+BkUjH7a5VGOM972/Vb6/dR1mtI9pBJgMpXcfex7hj+7YS6b5/wyL0/RsCVx/E4=
+	t=1722380707; cv=none; b=U4FOXGfIQKtUbELWafnzQRytjlbcdksZSlhTZ08XsrV7Oztf2W3HQzhnhbvgsnTYnleO5pAEbG9qLcKEhF80mMwohQr07bta2akcUwx6zAcLwbKs2XdiRMQAfNS2Pp6cG+enadjIaTnudAvOaehg2XzP54yseITItK+QaECx/3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722379476; c=relaxed/simple;
-	bh=g3i1r6sz4u6swLwricrOGwLtZUE/aR1WYBX7piT3zk4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=C7iuT/eApBPcMcJv8qfgm30um3TvGAJOyB0/HSGVuEc6BF9o2d6DEvGb5CbnWGhMYsPsoQFsMY9E8pePi+kLL4FtzX13miAcsL/Guz2YA51SO2LOC/GaEKYsf1GSfbQ9D5EROZIJ3JwW630u91rYJ7p3aIDICBM7WOPEF1dGiYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ptv5EuxX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46UGa5Ol015122;
-	Tue, 30 Jul 2024 22:44:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8Ml+kASE5kxe6i1s8298aQxOVGMC1WE/aeiBMirvJfU=; b=ptv5EuxXBuK0Erv5
-	0TDxoOqO0cpgKxHgmWOFq/5NHzc3sy33jXszoiq3VN2RyXl9UAZMhHoF1R0kK/NE
-	4t/eBPVY8dnrGpl6uBK3exzbLaFBVekFLbeDyE0e+T7IKUwISMS3KmHmmxQxXE92
-	DxHt1sTTLipjVzmeAWdNua/HTiI3zwUBaHQmFwaFUB2KGis1QaiMK8JGLpLyrkTf
-	rAr9fv5UDR//oYdRVYhkNLozn9ela3zLlkJS2oQLTGF9Y1Dzct0KH3ZgMXuxc9Kf
-	z0dcAT5AyIFMrYQg8ycRJ5K9c/uEdnEP6lfuDHXPl0wUX5K/B6Btx758x1k5rKtK
-	xlWPtw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mqw796qq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jul 2024 22:44:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46UMiJFX019644
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jul 2024 22:44:19 GMT
-Received: from [10.110.63.167] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Jul
- 2024 15:44:18 -0700
-Message-ID: <35402164-dce0-b972-bf98-c025fe5620f0@quicinc.com>
-Date: Tue, 30 Jul 2024 15:44:06 -0700
+	s=arc-20240116; t=1722380707; c=relaxed/simple;
+	bh=G2ZrxaOWGOWO3TvbZHx3gMXdmw/MeENGpCr7Ho3BAxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p1GJFiATdZgW9Rk2BlbDElgHjsOdzSh/2aDmOsfH9/NWDRrxB/erNpJdztkkn59crFTiujdWggETY5Wd8Fj71oksFWAgep9+Whhjh1bHBKbRw2ZgpbVAGK1jSO/acBVv5PixqelbFlAj2jG4Xf5nW7VU+hAa7WcxRB9Z8NJ2tZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=pWFyzLcH; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1fc5549788eso38364685ad.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 16:05:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722380705; x=1722985505; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nnXntQdX862gVyIztKO/l+KuxZoqT2mA4f4VoFTiDGg=;
+        b=pWFyzLcHS2nrtZK4eveaan30gpXNMwl8vRsfjXVSI8y3vFoXSNUrSLw+pMvmsT8fpe
+         M/NwX6DGjo8G7fkHkJV4csufYvRBq+wxkwwBTh7jkyhxGdB6CPMFjpEnDv9NvwOouW2M
+         HtOZd7+eaSbY17hnaGkJzzCRtoDVwiUAFZzShrfjyJQzQ2Plqe5WGyTsSbHw5jfYU+sD
+         f2YcS1rHqYocgzQIgv7ZONceUfoZpl9rFvX222r+0s6WhX0nSS316U5UXXWVNoFqfGPQ
+         S2NJgNLauRl4yiQMA7MueMaadyZpUPYnmyKRSdrSfkhNmhuWmbwoofXmlflOfVKwbmnY
+         CpcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722380705; x=1722985505;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nnXntQdX862gVyIztKO/l+KuxZoqT2mA4f4VoFTiDGg=;
+        b=W/o+Rdp7qQWecpwTwMMnJsu7V8ah99LmEjC/IfzfP8N33qJIdB9hVXmVjUGuBsFDFG
+         be2p7XupPBr3Wx85XY38yQGNuXPdZ40suxUPGEG6Z6ukFghSSEffE9n2fU5oiHM80SKA
+         //zVTF1HNdx6atNfVu4G68o/gMML2DYz+zgiQGjZ0b9MKONGLKXJ16mC3SE+eWcdeJnS
+         AdzY4+VJXfNbUW8YBIw0ko906Sor9wvF6FevDALuxAUngkRWLTrmTqfdzj/X/ENrUY3e
+         CtBv4ASbGpDFAgfj5LvV1liWdmbC10Avo51t80GS0PdqlCgsWPLlPnMkYK+EFoM2ym9o
+         FVxA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5j2jTYkWhUcUmyyC6G0T5uKEWekl4UQzShYgQBQ5lwXuDjSvMlm6denWMu+Bn5PyqDngRaz3h2H6+foOe4bgkfjVhlXJlq08Tzw==
+X-Gm-Message-State: AOJu0YysG1Qatbczb55891UwmF8z4Ytd2OOW+knHYl+n7gRHL6iUJwtC
+	ceYzM9eInXIaWWURjOocC2TSn0bU7A4ih6hFKVi3LvyQIE1zDuZUoZQ6DxtxFSk=
+X-Google-Smtp-Source: AGHT+IG8Q55ATj4Ez7sYYAJur1LedubizP92VmcH7tRbhAlzb2pARJxM591+mQYc6UeoR1S4yD8eoA==
+X-Received: by 2002:a17:902:e5cf:b0:1fd:9135:64e with SMTP id d9443c01a7336-1ff048a048emr150282655ad.50.1722380705274;
+        Tue, 30 Jul 2024 16:05:05 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:4520:8165:b9e7:a203])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fed7f94ba7sm107791025ad.248.2024.07.30.16.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jul 2024 16:05:04 -0700 (PDT)
+Date: Tue, 30 Jul 2024 16:05:02 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Icenowy Zheng <uwu@icenowy.me>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <dfustini@tenstorrent.com>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Yangtao Li <frank.li@vivo.com>, linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: clock: Document T-Head TH1520
+ AP_SUBSYS controller
+Message-ID: <ZqlxnlKH60KXi8P0@x1>
+References: <20240623-th1520-clk-v2-0-ad8d6432d9fb@tenstorrent.com>
+ <20240623-th1520-clk-v2-1-ad8d6432d9fb@tenstorrent.com>
+ <57ef2eef45f2de15e6607da266b37b2a.sboyd@kernel.org>
+ <CAJM55Z8iF8yV5JK5v6ZtQqS5AaWwCZ7uwhSYb7hdxh0juDFdqg@mail.gmail.com>
+ <ZqPQ8X51S6PrzQxI@x1>
+ <2375ff5fb664d8de9627e76788bd40b5d8eabf35.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 4/5] thermal: qcom-spmi-temp-alarm: add support for GEN2
- rev 2 PMIC peripherals
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <amitk@kernel.org>, <thara.gopinath@gmail.com>, <andersson@kernel.org>,
-        <quic_collinsd@quicinc.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240729231259.2122976-1-quic_amelende@quicinc.com>
- <20240729231259.2122976-5-quic_amelende@quicinc.com>
- <pzu2ijzkofzxpehpc4yphj5567ijdrxngqrepaq54njdagjenh@3vxmezjoepqg>
-From: Anjelique Melendez <quic_amelende@quicinc.com>
-In-Reply-To: <pzu2ijzkofzxpehpc4yphj5567ijdrxngqrepaq54njdagjenh@3vxmezjoepqg>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fYnkxKTnxcwsEnfeiuEGqL0KpYdOSqRH
-X-Proofpoint-GUID: fYnkxKTnxcwsEnfeiuEGqL0KpYdOSqRH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-30_18,2024-07-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 spamscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1011 bulkscore=0 adultscore=0 suspectscore=0 malwarescore=0
- phishscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407300157
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2375ff5fb664d8de9627e76788bd40b5d8eabf35.camel@icenowy.me>
 
->>  
->> +/* Configure TEMP_DAC registers based on DT thermal_zone trips */
->> +static int qpnp_tm_gen2_rev2_update_trip_temps(struct qpnp_tm_chip *chip)
->> +{
->> +	struct thermal_trip trip = {0};
->> +	int ret, ntrips, i;
->> +
->> +	ntrips = thermal_zone_get_num_trips(chip->tz_dev);
->> +	/* Keep hardware defaults if no DT trips are defined. */
->> +	if (ntrips <= 0)
->> +		return 0;
->> +
->> +	for (i = 0; i < ntrips; i++) {
->> +		ret = thermal_zone_get_trip(chip->tz_dev, i, &trip);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		ret = qpnp_tm_gen2_rev2_set_temp_thresh(chip, i, trip.temperature);
->> +		if (ret < 0)
->> +			return ret;
->> +	}
->> +
->> +	/* Verify that trips are strictly increasing. */
+On Sat, Jul 27, 2024 at 01:21:39PM +0800, Icenowy Zheng wrote:
+> 在 2024-07-26星期五的 09:38 -0700，Drew Fustini写道：
+> > On Fri, Jul 26, 2024 at 03:45:36AM -0500, Emil Renner Berthing wrote:
+> > > Stephen Boyd wrote:
+> > > > Quoting Drew Fustini (2024-06-23 19:12:31)
+> > > > > Document bindings for the T-Head TH1520 AP sub-system clock
+> > > > > controller.
+> > > > > 
+> > > > > Link:
+> > > > > https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+> > > > > Co-developed-by: Yangtao Li <frank.li@vivo.com>
+> > > > > Signed-off-by: Yangtao Li <frank.li@vivo.com>
+> > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> > > > > ---
+> > > > 
+> > > > Applied to clk-next
+> > > 
+> > > Thanks, but this driver seems a bit incomplete. With this applied
+> > > the Lichee Pi
+> > > 4A no longer boots without the clk_ignore_unused kernel parameter.
+> > > 
+> > > /Emil
+> > 
+> > Is this the case when you apply the dts patches from this series?
+> > 
+> > The dts patches won't go in until 6.12 so I don't think the presence
+> > of
+> > the clk-th1520-ap.c itself in 6.11 would break existing systems.
+> > 
+> > That said, I have been using clk_ignore_unused. I had been thinking
+> > that
+> > made sense because the full set of clock controller drivers like
+> > AON_SUBSYS (always on), AUDIO_SUBSYS, DSP_SUBSYS, etc, are not
+> > present
+> > yet in mainline. However, the T-Head vendor kernel does have drivers
+> > for
+> > all those clock controllers and I was suprised to see that the vendor
+> > kernel fails to boot when I just tested removing clk_ignore_unused.
+> > 
+> > As for clk-th1520-ap.c in mainline, I'll investigate further which
+> > clk
+> > disables seem to causing the boot failure when using the dts from
+> > this
+> > series. I suspect I may need to add nodes that will cause the
+> > necessary
+> > clks to be enabled by their respective drivers.
 > 
-> There is no such requirement in the DT bindings. Please don't invent
-> artificial restrictions, especially if they are undocumented.
-> 
+> If disabling the clock just leads to system hang, setting
+> CLK_IS_CRITICAL should be useful (and needed) here.
 
-This is not an entirely new restirction. Currently the temp alarm driver
-has hardcoded temperature thresholds options which are "strictly increasing"
-(https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/thermal/qcom/qcom-spmi-temp-alarm.c?h=v6.11-rc1#n44). 
-The threshold values are initially configured based on the stage 2 critical trip
-temperature.
-For newer PMICs, we have individual temperature registers for stage 1, 2, and 3,
-so we instead configure each threshold temperature as defined in DT. In general
-since stage 1 = warning, stage 2 = system should shut down, stage 3 = emergency shutdown,
-we would expect for temperature thresholds to increase for each stage
-(https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/drivers/thermal?h=v5.4.281&id=f1599f9e4cd6f1dd0cad202853fb830854f4e944).
+Thank you for the suggestion about CLK_IS_CRITICAL.
 
-I agree that we are missing some documentation but since the trips are defined in the
-thermal_zone node what is the best way to mention this requirement? Will adding a
-few sentences to qcom,spmi-temp-alarm.yaml description be enough? Do we need
-to make changes to thermal_zone.yaml so that dt_binding_check catches this requirement? 
+I have found through process of elimination that the "emmc-sdio" clock
+(CLK_EMMC_SDIO) fails to work after the "vp-axi" clock (CLK_VP_AXI) is
+disabled. I added the CLK_IGNORE_UNUSED flag to "vp-axi" and the system
+is able to boot correctly. I think in that case CLK_IS_CRITICAL is not
+needed.
 
->> +	for (i = 1; i < STAGE_COUNT; i++) {
->> +		if (chip->temp_dac_map[i] <= chip->temp_dac_map[i - 1]) {
->> +			dev_err(chip->dev, "Threshold %d=%ld <= threshold %d=%ld\n",
->> +				i, chip->temp_dac_map[i], i - 1,
->> +				chip->temp_dac_map[i - 1]);
->> +			return -EINVAL;
->> +		}
->> +	}
->> +
->> +	return 0;
+I've been reviewing the TH1520 System User Manual [1] and I am uncertain
+why the state of "vp-axi" would affect "emmc-sdio":
+
+  - EMMC_SDIO_REF_CLK_EN is bit 30 in PERI_CLK_CFG (offset 0x204). 
+  - VPSYS_AXI_ACLK_EN is bit 15 in VPSYS_CLK_CFG (offsset 0x1e0).
+
+I don't see any linkage between them in the public documentation.
+Regardless, the addition of the CLK_IGNORE_UNUSED flag to "vp-axi" fixes
+the boot failure, so I will post a patch to that effect.
+
 Thanks,
-Anjelique
+Drew
+
+[1] https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
 
