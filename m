@@ -1,71 +1,66 @@
-Return-Path: <devicetree+bounces-89558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A159420B0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 150C49420B6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 21:38:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A96BB1C21674
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:37:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C631A285DA0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 19:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5B318C911;
-	Tue, 30 Jul 2024 19:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E7E18C929;
+	Tue, 30 Jul 2024 19:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="n0taJCQ0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b5SNfnZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB4DE573;
-	Tue, 30 Jul 2024 19:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7A8E573;
+	Tue, 30 Jul 2024 19:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722368237; cv=none; b=R5/6Nx4G7YnNauCjS0h+T+yoGfxt3EZgVl4p+AsP68kxBBzHKr7/UtM0UYqiJunNVMlRce5TyoGtnHtP9cXdQxRpyBhrCzQsupkDYdcCvPvg83OuEayGGKSX8xbnRmHMNy8Y39IRQik0yRpFRJncdo8qo+xtO/8Epkj8DsKpgPM=
+	t=1722368294; cv=none; b=Txq1AzmqHnQRzl+4bivP6CgwzZ2vM+KRuNNIhKaCJ/ahK1S6wjkblDlk95CMnegnYUzzdKkpF3mu3C0kvD+eb8HHgW9sxKSs/hN2NnrMNFPoOhV05QuQ7BinO0C43FFIo0aQ9BM5liBgtiMCNR26FF6sRpKWxZSTzE6UjpSHkH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722368237; c=relaxed/simple;
-	bh=SuXN81sPt6fadqL4dE9zkbRuXf/SPvv0eEFJj4dG6NA=;
+	s=arc-20240116; t=1722368294; c=relaxed/simple;
+	bh=1Q3oYDiFwiET51QQHldopTOPb7rykWbwFZNGKpQ8i2I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VnFcy9fo0YmgkEKa1fHY+QC3ejO1tgtVJEJsJB8Ed+ghP+5jGKeJwTxhWYoY/highgcZ1Lf6PMCqN/ks3fCVFKFxKLmkYQCqlbI72nKyk+MVfBl97m827zwuw6DBH/Ef9CzR25hTSiztE2YJjNB/Fgv2Mm9BENgEFIX1ZgJmoLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=n0taJCQ0; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=XXudJi+h1E0YvanZqq4b5RDjTV2xzdKULNqOA1AtYR4=; b=n0taJCQ0ip6i/4AAsyz5wVmopY
-	17GWuZruwKOq3cIX+/HQpJI3QNQ7nyF7JG1AY94Hgid/ADQAPoluH+bbURtCNB0CrSlGbZaQ1Iqvv
-	a+0cFFrG073xGiOfEAjkuDkf1Lv0qHqA7OpIcIiD8o73RcoYdroa7ovSp5gjHvIGSu6MPiePAtGMD
-	ymdfpGYYdQd6L5FxTQyq7wi87fWjtbrPBuz2HxhKGKK7Y3TS881LBDTJQsMO3IAm6h013fg21j1p9
-	WySZGKQlRTzhYXLZZGPf6TZuntywdslYdTWLr5nJy3RM8XeS4uODgjlopEcxBdrWQu1PGQf2Ylevk
-	QkTCUtmg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sYseZ-0000000GIWg-1IJ8;
-	Tue, 30 Jul 2024 19:36:59 +0000
-Date: Tue, 30 Jul 2024 12:36:59 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Ming Lei <ming.lei@redhat.com>,
-	Christian Heusel <christian@heusel.eu>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Chad Monroe <chad.monroe@adtran.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Tianling Shen <cnsztl@immortalwrt.org>,
-	Chuanhong Guo <gch981213@gmail.com>,
-	Chen Minqiang <ptpt52@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-block@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] block: add support for notifications
-Message-ID: <ZqlA21iolCpnu4wn@infradead.org>
-References: <cover.1722365899.git.daniel@makrotopia.org>
- <ca0022886e8f211a323a716653a1396a3bc91653.1722365899.git.daniel@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N1sSJE9HO3+stAqqNL8Mo31hwxzPGyurCneHbMHmOsJ8hmhUmHsMCnLQK6D+TlP3gAymucF045+qAViuArBytOiDYTLgAFlyhg1rBfbCLHGu/qBqd2cxRO4o79FKO8X3QsRDeianod1yZbQuSYe+t1rgjAH9y8ntuEv7l4OFhxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b5SNfnZW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81FADC4AF0A;
+	Tue, 30 Jul 2024 19:38:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722368293;
+	bh=1Q3oYDiFwiET51QQHldopTOPb7rykWbwFZNGKpQ8i2I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b5SNfnZWVKNhTbqkDx8vzpcjMhB1J8B0pmubW1Ic5UpwesI+PoYUgdb6lHpjZ3ovN
+	 8G4sbzmEGw6Fa9pDq3kEk5ykliyFEgJhdzoUBp3N8cbxUmwBGcL237rdlZ+iON7U7d
+	 go9TrVciOn6kRgo+MNe/t1BAhpD8YI72Beyl8toTfQ0475Rea3PRxXxi4Uc+msrn9D
+	 qOjJM+06Fn7BOkE3EFuQ+MBXdr963OkncsOU61vh99Np3ucn+hTmvQt35e4w4nskUt
+	 fm0e560NO6rtQ+/Dr0IPH5B/Oj+YW3cNAqBFXiS83UkP2WbhD5NEg+j44S56ix13V+
+	 mhidA5T1hWglA==
+Date: Tue, 30 Jul 2024 13:38:12 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andy Hsieh <andy.hsieh@mediatek.com>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Phi-Bang Nguyen <pnguyen@baylibre.com>,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v6 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
+ interface
+Message-ID: <172236829078.2026749.11343043764808466079.robh@kernel.org>
+References: <20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com>
+ <20240729-add-mtk-isp-3-0-support-v6-1-c374c9e0c672@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,13 +69,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ca0022886e8f211a323a716653a1396a3bc91653.1722365899.git.daniel@makrotopia.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <20240729-add-mtk-isp-3-0-support-v6-1-c374c9e0c672@baylibre.com>
 
-Same NAK as last time.  Random modules should not be able to hook
-directly into block device / partition probing.
 
-What you want to do can be done trivially in userspace in initramfs,
-please do that as recommended multiple times before.
+On Mon, 29 Jul 2024 16:48:00 +0200, Julien Stephan wrote:
+> From: Louis Kuo <louis.kuo@mediatek.com>
+> 
+> This adds the bindings, for the mediatek ISP3.0 SENINF module embedded in
+> some Mediatek SoC, such as the mt8365
+> 
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> Signed-off-by: Phi-Bang Nguyen <pnguyen@baylibre.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  .../bindings/media/mediatek,mt8365-seninf.yaml     | 259 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 266 insertions(+)
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
