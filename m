@@ -1,87 +1,180 @@
-Return-Path: <devicetree+bounces-89342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CCA8940D1D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DB39940D28
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:13:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BF5C1C23F6A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:11:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55B741C23484
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 09:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE1D19414B;
-	Tue, 30 Jul 2024 09:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2E21946BD;
+	Tue, 30 Jul 2024 09:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="2lPP/0w2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bifEDcN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49AB1940A9;
-	Tue, 30 Jul 2024 09:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BBA194128;
+	Tue, 30 Jul 2024 09:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722330708; cv=none; b=D5cKyEujJoCgN+BM4waHKPt/wNv8iBQdmZDbuRiON6CBeAicXJxVqJJUlCyUcJo3XRSthtD80lOT+rly8Uca5GtJzH4jjeZLwUUSpO5svDUOcA0v0P+cqzvxcwHttP/od9P/YznwzP7pofPHmzjmxsrgTXfsnqsluR1mHys7FUw=
+	t=1722330832; cv=none; b=tLNATE7/goEDmKkkT/gQQ0S7hEbo4AANw2GGZjfKtKLPxgUH18/jm0Y9M8YV9Fy36sht1odYZV4pK35t2rDgWVeIrvnK7zSy9T6GiILrGK3Lo2q+mJb7XVDGB+0LKQYFTWpwZ1yZ/9UJMT7aKq6c4Lv2rv1MNvMZBszs1fGG/ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722330708; c=relaxed/simple;
-	bh=LEB266Y/Z05ka56vMjBVHaG1mD/x2/PBj7c6e8BC2oE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KLhGGeUJp7ktkRKAX2zmyYyZOMIOG2JwhZWlizFe3iKgzkHRoGMeEREDUcjfkC/RkFro4BZc0eRF2sl+eBLawwm4LjwyUsai4e4xtwWXH+EQhb/nz+hyNp1PLGySfS9ync9ma9UEztTKae4JjDLlPD5svIRpy2piFnW9th56iVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=2lPP/0w2; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722330705;
-	bh=LEB266Y/Z05ka56vMjBVHaG1mD/x2/PBj7c6e8BC2oE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=2lPP/0w2qH48P34LkdXlBIfa47AJaeT8FXvKqwdX8wjUXbLa5od5+kRUMK8HGtRu+
-	 knpJtwns1OpAphADA6GFZWXMn/P2HPP5uFZNz07YvC0rgyVcqyDVWjTywsaUhJboUL
-	 MmYI0ZJx7dmyUZobnkqOVRRegqqkqPGTgSFDcj9YV9N43fkuMamsHxznoA/KhSQzvh
-	 6i7loo80FNRnVj92IvQ5DWNkYUlQ3n9Sizv+sT+oaevVKyfAWdZfpZMgaIdJmotOfu
-	 r+SAQDlxuY3bvQY/4ixh4I2Labfic6HQ+WrzgI48GoQF4gWm67k2V1d4gpBbEHpPsK
-	 KzbQQN5CKKggw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 289D03780BC9;
-	Tue, 30 Jul 2024 09:11:44 +0000 (UTC)
-Message-ID: <c2e7392a-1ccd-42c7-9d4d-e079abade2f1@collabora.com>
-Date: Tue, 30 Jul 2024 11:11:43 +0200
+	s=arc-20240116; t=1722330832; c=relaxed/simple;
+	bh=htKe20TSWKdJB9QebCXsVMQDG06681QGIc9x40lR1f8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aFV+g6uyfgRA4+YGo125HJAH71MneaswPJ+eIVOnzkNKIWiM63pgJy0d1/2FpzWe8HsuviW4PGDlrQs362cCg5jZM3F/ElFsBVFJAGoPvchSNcp+Pytrq5cWZ9YPTWIakUtrjhwgA4o1dBoqLjip/+7eGulGUYqx21T2cqEV2P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bifEDcN/; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7a2123e9ad5so2568984a12.1;
+        Tue, 30 Jul 2024 02:13:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722330830; x=1722935630; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bkS47RCfrEJvvAZyZ9jDL/uElV8WeOywhndpY10cj3U=;
+        b=bifEDcN/njmLwXyETgnWFNPUm/Xf66g2qawZQZ3ie3IwLOXt8M4CeM5X2jfyYQcE/4
+         Q5RL1EZO8oBhRsjTqtqa5ESbqMfnubgsVp+Y4dYag1F1X/GP7eayRG2A5G2PV1CsGGtf
+         MG1QIb9EAkG19XSVBpcwKRxtxeo+Ndj333Q8S8afoFg7NJ/PPhzwpmYqEAZ+PpJIRvbA
+         LE+GWpJaf+hIJEo9280vrAc0/CBGk+JKzZVHlsHodawHZPknDBQCWLvVNJ2kEj+fJ9dC
+         E/buQpW/Mcj4tEwLasFwvVtKdJ2POhnB0CrvogLp1qKMqqB9xNmRrFDwOS5dQ6gK3yE/
+         d/tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722330830; x=1722935630;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bkS47RCfrEJvvAZyZ9jDL/uElV8WeOywhndpY10cj3U=;
+        b=uL2sZRO0gQ6dQFnYbTyqJS0PiDL4NRzGeBVPyQ6r7piCefJynUXJ7InWOsvSoYEcOo
+         nKLTf1CXP8YSsMloxw8lvNzr4NBHSzE0sMeUlahWn43T6wKu4tw+m8DKsBWoT7mIMVAz
+         jB2ncwpBsJu0iMj+rLTO5jUdK1UuU7BOGlsypspbU27TkVurMFHxJBTu6nvp8B4t+oeo
+         OVd8mFifY0v5k9Kbc8s6+7pZhFMI/+jkp8PhQL8tJ8jgikrFuu16B1RgaFsYwlKdqnkk
+         plqsRrYwP6WtxfzSLzP9fhZPPb3Gd9SHJmmd1SXUA5+TXQqAsoeGxJO7dHK95dBlj8P4
+         RUkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUG2Aqru31ZnFWsnGyWRy3+d245A2EnQda7eH9BmOXV85TIRBHfXwq0fMTzr5CzS5E0wpaVWsr9ccOhPbzWicn82k0O4NxV2STqQkEhGtu7RSz1VDUYpwVTCBOrgsMDFdIcKl4ibNPa3d/C5HPpTf/+wz1QsH1j7J8vC5gCTsH9+RR/EoBjiKnwm45X
+X-Gm-Message-State: AOJu0YxDBK4F6kqO5IdJW2A0EBef2m/jj6sSDJJ5nGGym6XvWU3nsowZ
+	b5/FND5vHcMuZlKEnHXue4MLHyTH54vauaDxxT7X7atkE3BiNevG1/6U1Q==
+X-Google-Smtp-Source: AGHT+IGVyj9pJWIOX4Vx31p9HO2PHhOuvTQg2ltGOlkVo/9UeMUxUrJzNT4EnXGBXRa/aXRN1N8uRQ==
+X-Received: by 2002:a17:90a:a785:b0:2c9:5a71:1500 with SMTP id 98e67ed59e1d1-2cfca981a8amr2464063a91.0.1722330830242;
+        Tue, 30 Jul 2024 02:13:50 -0700 (PDT)
+Received: from localhost.localdomain ([113.30.217.222])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cf28c565c9sm10023970a91.3.2024.07.30.02.13.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jul 2024 02:13:49 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/2] ARM: dts: samsung: Add cache information to the Exynos4412 SoCS
+Date: Tue, 30 Jul 2024 14:43:18 +0530
+Message-ID: <20240730091322.5741-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt7981: add UART controllers
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- John Crispin <john@phrozen.org>, Daniel Golle <daniel@makrotopia.org>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240727121447.1016-1-zajec5@gmail.com>
- <20240727121447.1016-2-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240727121447.1016-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 27/07/24 14:14, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> MT7981 has three on-SoC UART controllers.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+As per the Exynos 4412 user manaual add missing cache information to
+the Exynos 4412 SoC.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+- Each Cortex-A9 core has 32KB of L1 instruction cache available and
+	32KB of L1 data cache available.
+- Along with 1M unified L2 cache.
+
+Features of ARM Cortex-A9
+- Optimized L1 caches for system performance and power.
+- Integrated 1 MB L2 Cache using standard compiled RAMs.
+
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ arch/arm/boot/dts/samsung/exynos4412.dtsi | 37 +++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/arch/arm/boot/dts/samsung/exynos4412.dtsi b/arch/arm/boot/dts/samsung/exynos4412.dtsi
+index dcbe0ce6180f..d133c8a8e8d4 100644
+--- a/arch/arm/boot/dts/samsung/exynos4412.dtsi
++++ b/arch/arm/boot/dts/samsung/exynos4412.dtsi
+@@ -48,6 +48,13 @@ cpu0: cpu@a00 {
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			#cooling-cells = <2>; /* min followed by max */
++			d-cache-line-size = <32>;
++			d-cache-size = <0x8000>;
++			d-cache-sets = <32>;
++			i-cache-line-size = <32>;
++			i-cache-size = <0x8000>;
++			i-cache-sets = <32>;
++			next-level-cache = <&L2>;
+ 		};
+ 
+ 		cpu1: cpu@a01 {
+@@ -58,6 +65,13 @@ cpu1: cpu@a01 {
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			#cooling-cells = <2>; /* min followed by max */
++			d-cache-line-size = <32>;
++			d-cache-size = <0x8000>;
++			d-cache-sets = <32>;
++			i-cache-line-size = <32>;
++			i-cache-size = <0x8000>;
++			i-cache-sets = <32>;
++			next-level-cache = <&L2>;
+ 		};
+ 
+ 		cpu2: cpu@a02 {
+@@ -68,6 +82,13 @@ cpu2: cpu@a02 {
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			#cooling-cells = <2>; /* min followed by max */
++			d-cache-line-size = <32>;
++			d-cache-size = <0x8000>;
++			d-cache-sets = <32>;
++			i-cache-line-size = <32>;
++			i-cache-size = <0x8000>;
++			i-cache-sets = <32>;
++			next-level-cache = <&L2>;
+ 		};
+ 
+ 		cpu3: cpu@a03 {
+@@ -78,6 +99,22 @@ cpu3: cpu@a03 {
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			#cooling-cells = <2>; /* min followed by max */
++			d-cache-line-size = <32>;
++			d-cache-size = <0x8000>;
++			d-cache-sets = <32>;
++			i-cache-line-size = <32>;
++			i-cache-size = <0x8000>;
++			i-cache-sets = <32>;
++			next-level-cache = <&L2>;
++		};
++
++		L2: l2-cache {
++			compatible = "cache";
++			cache-level = <2>;
++			cache-unified;
++			cache-size = <0x100000>; /* L2, 1M */
++			cache-line-size = <64>;
++			cache-sets = <512>;
+ 		};
+ 	};
+ 
+
+base-commit: dc1c8034e31b14a2e5e212104ec508aec44ce1b9
+-- 
+2.44.0
 
 
