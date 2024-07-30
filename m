@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-89443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205B49411F3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:33:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429E7941202
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 14:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBE01283591
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E19D11F241D2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D939519E7E5;
-	Tue, 30 Jul 2024 12:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1EC19B5AC;
+	Tue, 30 Jul 2024 12:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hrf6xTK4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nGBNlDAh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4201990DA;
-	Tue, 30 Jul 2024 12:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5DB757FC;
+	Tue, 30 Jul 2024 12:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722342832; cv=none; b=hd9gBN6DlyicSPjasLqPHX6D/Df+u89CyLNGYC/GEg7hCE7dipe1UaGsM4QzCDWpK1Yv6iZqIq4GZAtjxWqXJ+vS9HmC+zdtHmXTwWcxW0Itz92EFawbhwlZkaCOgIuykdc3cgdOA6jt0qH8Mxc4a135hx9AqWvF9Ip2dg7uEwo=
+	t=1722343062; cv=none; b=a2BQ7HZj1QPOjQhnyz0R5DTFj1j/fachuuQRgYGTfvGegZ2nCM8rqVnHH+T6dTunOjowOiVxwPhVyN5C/gJBENCGTrpa0x30F2Nith57sTZ4hBB1PoTN1GrVnGBqj2NUIf885JnphzmFsg9pAYeh7c5j5oTLEJjU+S7s1N0NU9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722342832; c=relaxed/simple;
-	bh=cghdu0WVPnCKLb8b5VkFOXUqNIHtjNV/AagD+WdN8I4=;
+	s=arc-20240116; t=1722343062; c=relaxed/simple;
+	bh=iuAu9jY+pC7f3nPxGBgxIDsUszJoAS16B40y8fwdvuA=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VoYwOqzOeelE8l/BR3qvQHee2O3QuOwcibK4Q7/B5k2nyFPgirio1OCojZjsH/d2KCWVe1CiwwiV5wus2rzdhSZH3Xu0WdG2jtJlLzA3YT0kow3LMsO2wEBaeNerhrnvFCd4qHOH2wwbUk1CU6TB9A66COJjMprwzhIit01l2PE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hrf6xTK4; arc=none smtp.client-ip=198.47.19.142
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4dODrTLC9+09t9KttNZJQqsKIzsF8RSWYBAATF7KymXq+AqW5YgT8Ai28PlUSfo8vuIvq9N/siCkJRvNdR+lzTwC6tfMtYmevlPS7LxL/qo2uw8oAdPM47iCqL62tOaTkjFKVSKgEMZiiu4/avoDNXAazYXaaeL35D6t6r9ulI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nGBNlDAh; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46UCXiqX072577;
-	Tue, 30 Jul 2024 07:33:44 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46UCbX7j040587;
+	Tue, 30 Jul 2024 07:37:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722342824;
-	bh=dluvDJb8e/OiW6IPhliSRXmc/hbTMkMHQ/+KEIQ0eXI=;
+	s=ti-com-17Q1; t=1722343053;
+	bh=b6ILqBtYjVjw2s/bvY8SmANAH61kLCK+kEiFCSGqKAk=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=hrf6xTK4JT87isfGr9o3JSztEEOKJ+WNEicoqHbd7hK0EbsVXLPnPHL/MitDIEhnp
-	 eRaU7oWgsVjQ0ttmJzMOhC0c8TJT6ukRJEf4X/M7AahXD7JWCJqnRxbaarXjl82xsy
-	 Xge+6G9zANXEqtGGVRvDsrtBL3B4ELvKSMO3kXkw=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46UCXijS018090
+	b=nGBNlDAhD8BT/TmwV+4+F8jfWo8N3GkI1iTB7iMggCEC5EAmHgnnBZ7dfIzONVeuv
+	 HL24Oi8qLV9t+rZrkEr4MGMDnR17ice73H6v1jMhZQwtrJX3pGHZaPBhe500XVlqy7
+	 6mPyasyDEkJi5LII0Rmfk69kSMf8sKEjBTafClAY=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46UCbXhC043586
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Jul 2024 07:33:44 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 30 Jul 2024 07:37:33 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- Jul 2024 07:33:43 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2024 07:37:32 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 Jul 2024 07:33:44 -0500
+ Frontend Transport; Tue, 30 Jul 2024 07:37:32 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46UCXhsQ118404;
-	Tue, 30 Jul 2024 07:33:43 -0500
-Date: Tue, 30 Jul 2024 07:33:43 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46UCbW0f123951;
+	Tue, 30 Jul 2024 07:37:32 -0500
+Date: Tue, 30 Jul 2024 07:37:32 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Manorit Chawdhry <m-chawdhry@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye
-	<a-limaye@ti.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce J742S2 SoC family
-Message-ID: <20240730123343.mqafgpj4zcnd5vs4@plaything>
-References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
- <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+        Dhruva
+ Gole <d-gole@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/6] arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
+Message-ID: <20240730123732.up3etyqvb44qql5g@groin>
+References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-4-msp@baylibre.com>
+ <20240730120958.inq73rx6dfmwh6vz@hemstitch>
+ <f53iiczunc4b4wjzsvh7ccm7cc322vsaqhng6khqj74j6anhor@umm73mbbth2w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,143 +82,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
+In-Reply-To: <f53iiczunc4b4wjzsvh7ccm7cc322vsaqhng6khqj74j6anhor@umm73mbbth2w>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 12:43-20240730, Manorit Chawdhry wrote:
-> This device is a subset of J784S4 and shares the same memory map and
-> thus the nodes are being reused from J784S4 to avoid duplication.
+On 14:32-20240730, Markus Schneider-Pargmann wrote:
+> Hi Nishanth,
 > 
-> Here are some of the salient features of the J742S2 automotive grade
-> application processor:
+> On Tue, Jul 30, 2024 at 07:09:58AM GMT, Nishanth Menon wrote:
+> > On 10:00-20240729, Markus Schneider-Pargmann wrote:
+> > > WKUP_EN is a flag to enable pin wakeup. Any activity will wakeup the SoC
+> > > in that case.
+> > > 
+> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > ---
+> > >  arch/arm64/boot/dts/ti/k3-pinctrl.h | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> > > index 22b8d73cfd32..dd4d53e8420a 100644
+> > > --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> > > +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> > > @@ -12,6 +12,7 @@
+> > >  #define PULLTYPESEL_SHIFT	(17)
+> > >  #define RXACTIVE_SHIFT		(18)
+> > >  #define DEBOUNCE_SHIFT		(11)
+> > > +#define WKUP_EN_SHIFT		(29)
+> > >  
+> > >  #define PULL_DISABLE		(1 << PULLUDEN_SHIFT)
+> > >  #define PULL_ENABLE		(0 << PULLUDEN_SHIFT)
+> > > @@ -38,6 +39,8 @@
+> > >  #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
+> > >  #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
+> > >  
+> > > +#define WKUP_EN			(1 << WKUP_EN_SHIFT)
+> > > +
+> > 
+> > Are we using this?
 > 
-> The J742S2 SoC belongs to the K3 Multicore SoC architecture platform,
-> providing advanced system integration in automotive, ADAS and industrial
-> applications requiring AI at the network edge. This SoC extends the K3
-> Jacinto 7 family of SoCs with focus on raising performance and
-> integration while providing interfaces, memory architecture and compute
-> performance for multi-sensor, high concurrency applications.
+> Yes, this needs to be used in pinctrl for the relevant pins. The users
+> are not part of this series, as it will probably be in devicetree
+> overlays or maybe future board files.
 > 
-> Some changes that this devices has from J784S4 are:
-> * 4x Cortex-A72 vs 8x Cortex-A72
-> * 3x C7x DSP vs 4x C7x DSP
-> * 4 port ethernet switch vs 8 port ethernet switch
+> This is an example configuration for mcu_mcan0 that is required to
+> enable support for wakeup from Partial-IO:
 > 
-> ( Refer Table 2-1 for Device comparison with J7AHP )
-> Link: https://www.ti.com/lit/pdf/spruje3 (TRM)
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi | 44 ++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j742s2.dtsi      | 26 ++++++++++++++++++
->  2 files changed, 70 insertions(+)
+>   &mcu_pmx0 {
+>     mcu_mcan0_tx_pins_default: mcu-mcan0-tx-pins-default {
+>       pinctrl-single,pins = <
+>         AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
+>       >;
+>     };
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi
-> new file mode 100644
-> index 000000000000..13b83560d5a2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-and MIT please.
-
-> +/*
-> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
-
-Point to SoC trm here.
-
-
-> + */
-> +
-> +/delete-node/ &c71_3;
-
-here and below:
-
-> +
-> +&c71_0 {
-> +	firmware-name = "j742s2-c71_0-fw";
-> +};
-> +
-> +&c71_1 {
-> +	firmware-name = "j742s2-c71_1-fw";
-> +};
-> +
-> +&c71_2 {
-> +	firmware-name = "j742s2-c71_2-fw";
-> +};
-> +
-> +&main_r5fss0_core0 {
-> +	firmware-name = "j742s2-main-r5f0_0-fw";
-> +};
-> +
-> +&main_r5fss0_core1 {
-> +	firmware-name = "j742s2-main-r5f0_1-fw";
-> +};
-> +
-> +&main_r5fss1_core0 {
-> +	firmware-name = "j742s2-main-r5f1_0-fw";
-> +};
-> +
-> +&main_r5fss1_core1 {
-> +	firmware-name = "j742s2-main-r5f1_1-fw";
-> +};
-> +
-> +&main_r5fss2_core0 {
-> +	firmware-name = "j742s2-main-r5f2_0-fw";
-> +};
-> +
-> +&main_r5fss2_core1 {
-> +	firmware-name = "j742s2-main-r5f2_1-fw";
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
-> new file mode 100644
-> index 000000000000..0b20c992d664
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
-> @@ -0,0 +1,26 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-Same - and fix anywhere else as required.
-
-> +/*
-> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
-
-Same
-
-> + */
-> +
-> +#include "k3-j784s4.dtsi"
-> +
-> +/ {
-> +	model = "Texas Instruments K3 J742S2 SoC";
-> +	compatible = "ti,j742s2";
-> +
-> +	cpus {
-> +		cpu-map {
-> +			/delete-node/ cluster1;
-> +		};
-> +	};
-> +
-> +	/delete-node/ cpu4;
-> +	/delete-node/ cpu5;
-> +	/delete-node/ cpu6;
-> +	/delete-node/ cpu7;
-
-I suggest refactoring by renaming the dtsi files as common and split out
-j784s4 similar to j722s/am62p rather than using /delete-node/
-
-
-> +};
-> +
-> +#include "k3-j742s2-main.dtsi"
+>     mcu_mcan0_rx_pins_default: mcu-mcan0-rx-pins-default {
+>       pinctrl-single,pins = <
+>         AM62X_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
+>       >;
+>     };
 > 
-> -- 
-> 2.45.1
+>     mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-pins-wakeup {
+>       pinctrl-single,pins = <
+>         AM62X_IOPAD(0x038, PIN_INPUT | WKUP_EN, 0) /* (B3) MCU_MCAN0_RX */
+>       >;
+>     };
+>   };
 > 
+>   &mcu_mcan0 {
+>     pinctrl-names = "default", "wakeup";
+>     pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
+>     pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
+>     status = "okay";
+>   };
+
+
+Please introduce at least 1 user in the series? or if there are
+dependencies, then we can hold back this patch till the right users are
+available.
 
 -- 
 Regards,
