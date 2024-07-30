@@ -1,99 +1,130 @@
-Return-Path: <devicetree+bounces-89230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D2F9407F0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 07:54:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B308940800
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 08:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A51181C20BC4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 05:54:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E4791F23954
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 06:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3591C16A92B;
-	Tue, 30 Jul 2024 05:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1345416B3B7;
+	Tue, 30 Jul 2024 06:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EB5YXv7l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hkg.router.rivoreo (45.78.32.129.16clouds.com [45.78.32.129])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF32F433B0;
-	Tue, 30 Jul 2024 05:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.78.32.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7215624;
+	Tue, 30 Jul 2024 06:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722318840; cv=none; b=oN8ij+spSv1AB1xIQ84tmOYkIXzMNeWRadF0P27ZgUUZJoloW7oV7xnG1soWh2e3qJX20pARJRxWSXGOcNpcFk2TUUMQf0T4n9PB8tg8XDCQnvBcosvxiSidHgqx42FdW09wSseT9Ziiqs61GTHleS0JZkylvqOIHByLgQiIZNU=
+	t=1722319414; cv=none; b=kBv//lnK2eLrw94WmlTruRVKZD/E60fiDJ8OhiN0hpysJ0OpT62INlf9ddv0CwRIXn+DegN1+ehDSitYaVun+h97mJJ9+gJRQNdqjTNjPyT80VPxIxgX7rlzvrzfwtwbvYBt9pDZ29N9L+N6acxMo+gm9CFH6LqaytPJnTt4Vg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722318840; c=relaxed/simple;
-	bh=Z7La7G7oakeoQB5/SePx2tHx73w8tPhlfrgomARP8Zw=;
-	h=Message-ID:Date:Subject:From:To:Cc:MIME-Version:Content-Type; b=pm9j9vnwOdedFuY3aSMySPZ9hqNlQRgmtYJAiCVyg/R9VZ+E1lKfe5rm/CPY1TiOfoMwCM9zC2/q2XZ2ZSUvwie3WxpUaDcFte26WrszmiudosFTIHQeSIIgbs8jSVDoAjA6vcBDSDiUJu2Hf+SOKbdp5NZLMadLL+1EXs41tE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one; spf=pass smtp.mailfrom=rivoreo.one; arc=none smtp.client-ip=45.78.32.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivoreo.one
-Received: from tianjin2.rivoreo.one (unknown [10.100.1.128])
-	by hkg.router.rivoreo (Postfix) with ESMTPS id C9DB111CF0B;
-	Tue, 30 Jul 2024 05:53:56 +0000 (UTC)
-Received: from [10.1.105.1] (localhost [127.0.0.1])
-	by tianjin2.rivoreo.one (Postfix) with ESMTP id E54C868828;
-	Tue, 30 Jul 2024 13:52:32 +0800 (CST)
-Received: from 10.12.4.102
-        (SquirrelMail authenticated user whr)
-        by _ with HTTP;
-        Tue, 30 Jul 2024 05:52:32 -0000
-Message-ID: <2046da39e53a8bbca5166e04dfe56bd5.squirrel@_>
-Date: Tue, 30 Jul 2024 05:52:32 -0000
-Subject: [PATCH v2] of/irq: Make sure to update out_irq->np to the new parent
- in of_irq_parse_raw
-From: "WHR" <whr@rivoreo.one>
-To: "Rob Herring" <robh@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>
-Cc: devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-User-Agent: SquirrelMail/1.4.23 [Rivoreo]
+	s=arc-20240116; t=1722319414; c=relaxed/simple;
+	bh=oL8vRiWidptUNxRTdT1hQz8E7qWGGM60Lp/Ehe5Ovtc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cS2PXXRsTXlUdZ5jIcNMUUiJlBE9/hETDLoL2zEY0hDLkSS7vRu/1WB3eG/qqt/ZCNaS22lAvCUBvlAzzICcN+9LkcC/V9GFdzp2skgzwYg+22Q1ibFQVBy6IKxhyFqPvIuDLyX7HD5HjccBpYjVWzgnk8kG2ldQ7olSNDNzqhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EB5YXv7l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1214C32782;
+	Tue, 30 Jul 2024 06:03:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722319413;
+	bh=oL8vRiWidptUNxRTdT1hQz8E7qWGGM60Lp/Ehe5Ovtc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EB5YXv7l9n3q695IC0pKlQVMp4pqApvOVDQteLhLc69Tvd35UcnGZZjZ8T0t3Bg6z
+	 YG0aNWW1kPKSkeyXObYIlgXo81ZW530aZApkmSmxg/yAnXBLS8xMKHH7izqUZzx0bx
+	 3DYQAIAEDU+eJonvn8CAYg7vY3DkABYZaujRPIErZUMYaUmAKChYwkYkEJHN1VCE2y
+	 5DXWoCMFg+9C6cGsDnc7Kos5dsfM/zcqEygjYTdmlgxcoNPzKWMQsLFJtruU6d6QUc
+	 6hEnCboEnRU9NWBQtA8qbbjrIyr2oS1I5Kj5xwbgR4Dg3YTm/3yKbRjRqaRhmzcVN3
+	 76ja7zN6Tk7vA==
+Message-ID: <841572d7-ecb6-4c11-a890-aa29fd58adf4@kernel.org>
+Date: Tue, 30 Jul 2024 08:03:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Priority: 3 (Normal)
-Importance: Normal
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] dt-bindings: net: wireless: brcm4329-fmac: add
+ pci14e4,449d
+To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
+ krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org
+Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
+ minipli@grsecurity.net, brcm80211@lists.linux.dev,
+ brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com,
+ Arend van Spriel <arend.vanspriel@broadcom.com>
+References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
+ <20240730033053.4092132-2-jacobe.zang@wesion.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240730033053.4092132-2-jacobe.zang@wesion.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Commit 935df1bd40d43c4ee91838c42a20e9af751885cc has removed an
-assignment statement for 'out_irq->np' right after label 'skiplevel',
-causing the new parent acquired from function of_irq_find_parent didn't
-being stored to 'out_irq->np' as it supposed to. Under some conditions
-this can resuit in multiple corruptions and leakages to device nodes.
+On 30/07/2024 05:30, Jacobe Zang wrote:
+> It's the device id used by AP6275P which is the Wi-Fi module
+> used by Rockchip's RK3588 evaluation board and also used in
+> some other RK3588 boards.
+> 
+> Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
 
-Update 'out_irq->np' before jumping to label 'skiplevel'.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Fixes: 935df1bd40d4 ("of/irq: Factor out parsing of interrupt-map parent
-phandle+args from of_irq_parse_raw()")
-Signed-off-by: WHR <whr@rivoreo.one>
----
-v2:
-Add 'Fixes:' line, and update subject.
-
- drivers/of/irq.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index c94203ce65bb..580b33ce60d2 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -263,6 +263,7 @@ int of_irq_parse_raw(const __be32 *addr, struct
-of_phandle_args *out_irq)
- 		if (imap == NULL) {
- 			pr_debug(" -> no map, getting parent\n");
- 			newpar = of_irq_find_parent(ipar);
-+			out_irq->np = newpar;
- 			goto skiplevel;
- 		}
- 		imaplen /= sizeof(u32);
--- 
-2.30.2
-
-
-
+Best regards,
+Krzysztof
 
 
