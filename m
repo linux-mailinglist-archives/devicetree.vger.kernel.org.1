@@ -1,113 +1,117 @@
-Return-Path: <devicetree+bounces-89400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92E39940FC3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E9F940FDA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 12:47:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397CB1F25216
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 10:44:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 100FF1F24AF5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 10:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BA61AAE04;
-	Tue, 30 Jul 2024 10:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33EB419DFA4;
+	Tue, 30 Jul 2024 10:43:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC37C19EECC;
-	Tue, 30 Jul 2024 10:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F5719D063;
+	Tue, 30 Jul 2024 10:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722335834; cv=none; b=A26V2Fb31PihcgwEU8cILLcHJeqxuDljJeLyf7y+Y8e/RBDfdWNRXiPvvQ5VQOdSIBAnrj9y4jXyDGAWBkKoCLVc2e6GrbRlIfnayWKNkh2JpV6QqGjBPEJAKXxr8lYroHrpxzBNjMQa6YN63+DRjLazrK1Zk7qmv1oc0QM6vIw=
+	t=1722336186; cv=none; b=u7ora6TEQbAZ+LMFOdk4tDT+QqXIn4Za1WObLIM2fBp+9cJlQ7SAV9fK5URpEVZ2eC5HdjqslOyJ0OH2Cyra6YLAMJZFeJcVCtv8MBMS6UYmfcdyMwt+k3yM73eeoWN7z+fjwYiwD6Ci3ShXG2QatTwluZ9UBzn3lbL/TrHrWSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722335834; c=relaxed/simple;
-	bh=0SgQaEY8DZuj3TmOOql7MlYsQeToAOZWAyjpozBErJw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qeh/uImY1PHn8IDSVoRIQ136TE5jjTiJkbS5bnHH0oL75fyD1ve58d8kR8s3GfUpXfNyUKFeocDIOfsTprnram/t0Z+TFW8VFRmclilhNStmDCUrUzxhWYCePKP/ttbYZao8tey9y4Y4zZx8feEyrZZe62uylEWNuGrQv4Tu2GE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e86192c.versanet.de ([94.134.25.44] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sYkDk-0007C3-Qa; Tue, 30 Jul 2024 12:36:44 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>, Daniel Golle <daniel@makrotopia.org>,
- Diederik de Haas <didi.debian@cknow.org>
-Cc: Chen-Yu Tsai <wens@kernel.org>, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Herbert Xu <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Ard Biesheuvel <ardb@kernel.org>,
- Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
- devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Aurelien Jarno <aurelien@aurel32.net>
-Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
-Date: Tue, 30 Jul 2024 12:36:43 +0200
-Message-ID: <17577153.5WZRyvrzyv@diego>
-In-Reply-To: <6690040.iosknibmi9@bagend>
-References:
- <cover.1720969799.git.daniel@makrotopia.org>
- <ZqgjTQMgWZO2FjaC@makrotopia.org> <6690040.iosknibmi9@bagend>
+	s=arc-20240116; t=1722336186; c=relaxed/simple;
+	bh=yt6TEgrfn0/tkBWZBheWFpaehYINa8K9TEr07/GyOQ4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FMl6hFB9r6PWKAfOIt2PfUVgWbLCtUeM5t/OCjW+sDUOd84ntFN9aev+FornZNh+T3mqGak+RWe/rt8J9sxJoTDskZAxJw83CJoKfoHTaqLZWqKU/TD4WVqqiENUA8Mhd0kY/GrbuQ7vpcEi2UUTKYRrb9u7uJ0AevoETCXqrHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC76E1007;
+	Tue, 30 Jul 2024 03:43:28 -0700 (PDT)
+Received: from e127725.manchester.arm.com (e127725.arm.com [10.32.102.196])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 21F333F766;
+	Tue, 30 Jul 2024 03:43:00 -0700 (PDT)
+From: Debbie Martin <Debbie.Martin@arm.com>
+To: liviu.dudau@arm.com,
+	sudeep.holla@arm.com,
+	lpieralisi@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: arm: Add stdout-path
+Date: Tue, 30 Jul 2024 11:37:58 +0100
+Message-Id: <20240730103758.907950-1-Debbie.Martin@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Am Dienstag, 30. Juli 2024, 11:03:06 CEST schrieb Diederik de Haas:
-> On Tuesday, 30 July 2024 01:18:37 CEST Daniel Golle wrote:
-> > On Wed, Jul 24, 2024 at 08:07:51AM +0200, Dragan Simic wrote:
-> > > Thanks a lot for the testing.  Though, such wildly different test results
-> > > can, regrettably, lead to only one conclusion:  the HWRNG found in RK3566
-> > > is unusable. :/
-> 
-> FTR: I agree with Dragan, unfortunately.
-> 
-> > The results on RK3568 look much better and the series right now also
-> > only enabled the RNG on RK3568 systems. However, we have only seen few
-> > boards with RK3568 up to now, and I only got a couple of NanoPi R5C
-> > here to test, all with good hwrng results.
-> > 
-> > Do you think it would be agreeable to only enable the HWRNG for RK3568
-> > as suggested in this series? Or are we expecting quality to also vary
-> > as much as it (sadly) does for RK3566?
-> 
-> Unless we get *evidence* to the contrary, we should assume that the HWRNG on 
-> RK3568 is fine as the currently available test results are fine.
-> So I think enabling it only for RK3568 is the right thing to do.
-> 
-> So a 'revert' to v7 variant seems appropriate, but with the following changes:
-> - Add `status = "disabled";` property to the definition in rk356x.dtsi
-> - Add a new commit where you enable it only for rk3568 and document in the 
-> commit message why it's not enabled on rk3566 with a possible link to the v7 
-> thread for clarification on why that is
+Add stdout-path to the Arm devicetrees to specify the primary console.
+This means that distributions can boot without the need for
+platform-specific command line parameters i.e. they can use earlycon
+with no parameters and no console argument is needed at all.
 
-I was going to protest about the "disable" until reading the 2nd part :-D .
+Signed-off-by: Debbie Martin <Debbie.Martin@arm.com>
+---
+ arch/arm64/boot/dts/arm/foundation-v8.dtsi | 4 +++-
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts  | 4 +++-
+ arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts | 4 +++-
+ 3 files changed, 9 insertions(+), 3 deletions(-)
 
-And yeah that makes a lot of sense, "add" it to rk356x.dtsi, as the IP is
-part of both variants, but only enable it in rk3568.dtsi because of the
-seemingly faulty implementation on the rk3566.
-
-
-> You could probably also integrate that into 1 commit, but make sure that the 
-> commit summary and description match the implementation.
-> IMO that wasn't 'technically' the case in v8 as the rng node was added to 
-> rk356x, but it was only enabled on rk3568.
-> 
-> My 0.02
-
-
-
+diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+index 93f1e7c026b8..083be35495b3 100644
+--- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
++++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+@@ -18,7 +18,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+index 85f1c15cc65d..19973ab4ea6b 100644
+--- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
++++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+@@ -24,7 +24,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+index afdf954206f1..7f7226711d4b 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+@@ -23,7 +23,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+-- 
+2.25.1
 
 
