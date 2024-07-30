@@ -1,251 +1,163 @@
-Return-Path: <devicetree+bounces-89406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5C794104C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:16:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFB7941055
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 13:17:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 579991F2425A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:16:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32E71C2233F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2024 11:17:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CEF198858;
-	Tue, 30 Jul 2024 11:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4710919CD06;
+	Tue, 30 Jul 2024 11:17:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WStXUzTd"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Nd+EfQ+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDF2196C9B
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 11:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A4219885F
+	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 11:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722338194; cv=none; b=ovDMKPNdYuVWWKhZ0YPbLEOXP4dU5tJhtjrFx6HijaZ5pyJYhkqXBlKzwaeq1wvHYzBhCU7nnEtyMJ0jAa/xJdOOYdsyQE4GXM3K3nUXLI2DV4yrvCJbC/gomcKu1az09bu7mNP/7DdAf+dWhPx0g3WC/QQHqNkkVvebExaxxLU=
+	t=1722338229; cv=none; b=KXR7b6bn9hp6rLe4V070aTnpidpw+0/MJrm23gWubfqK9m6FBZ9S9NmiBl0DQJuSq25DhRJBWPJmrXuwUjCIMyXBVOPMEDTsfKx2Ym0DMT0lD/9NBkj41ZPoqKsgbKQJXUNnjXg8w5AgZ4xIdVeicBGD7bcRkSTnBNdnNcuxkSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722338194; c=relaxed/simple;
-	bh=iTUhhoRU5HL63irCLUt43QUjivIRS8EstPcnmxLQCro=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=SreNrB98ygvScXkSM02xXHwN91mQaSokB85I903CrEnELzUa7TCa92npuwbSGy2Vf8fMe3/zYfNhCBPVorEnsPt/JxNVNTN5X2UI1UDdeaOWJeDwy8QxWcd+OiRirYsYQQ+KEZc6LSU22H5eT3RMZKCC+MdBGL/vlfkdox2/MeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WStXUzTd; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240730111630epoutp0343b9563babcaa03385ad40949d75315b~m_XWQuoPs2659626596epoutp03E
-	for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 11:16:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240730111630epoutp0343b9563babcaa03385ad40949d75315b~m_XWQuoPs2659626596epoutp03E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1722338190;
-	bh=WG4pekMnekNHbH9qbttvlmoxeH6/97stlcOmnMH/o0w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WStXUzTdFSAWfGhrCCgk2CsH4F9ichXLAuAV2/TVFBAU768k8m5t8jJaSTMZWrK4a
-	 Vu/Vdrxk7H7XFcisW6nsSIUOOUuzjypTQ9+sqCZEqp40i1VYW4hK8p1++67Iuc6BOK
-	 ebdj7NrHuuHfY6IS9q1A2qFdRY+tUaf1Aluib+WA=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240730111630epcas1p14390fa39cdc2bfe461401c914432bd47~m_XVnwNq21944719447epcas1p13;
-	Tue, 30 Jul 2024 11:16:30 +0000 (GMT)
-Received: from epsmgec1p1.samsung.com (unknown [182.195.36.136]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4WYCNF23t7z4x9Pt; Tue, 30 Jul
-	2024 11:16:29 +0000 (GMT)
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-	epsmgec1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	16.54.09623.D8BC8A66; Tue, 30 Jul 2024 20:16:29 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240730111628epcas1p2c9daa7b7e637f4d66814584519b4b1bf~m_XUL2RDT2584725847epcas1p2F;
-	Tue, 30 Jul 2024 11:16:28 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240730111628epsmtrp1128ee3505d0d846ff8c0b0dfd011e84d~m_XULDdtD2131621316epsmtrp1N;
-	Tue, 30 Jul 2024 11:16:28 +0000 (GMT)
-X-AuditID: b6c32a36-ef9ff70000002597-27-66a8cb8d115f
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	D8.B2.08456.C8BC8A66; Tue, 30 Jul 2024 20:16:28 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.113.111.204]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240730111628epsmtip175657043f67ee07388915da8265b8bd3~m_XT5nk2u0603306033epsmtip17;
-	Tue, 30 Jul 2024 11:16:28 +0000 (GMT)
-From: Kwanghoon Son <k.son@samsung.com>
-To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
-	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, tomasz.figa@gmail.com
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Kwanghoon
-	Son <k.son@samsung.com>
-Subject: [PATCH v2 3/3] clk: samsung: exynosautov9: add dpum clock support
-Date: Tue, 30 Jul 2024 20:15:35 +0900
-Message-Id: <20240730111535.135301-4-k.son@samsung.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240730111535.135301-1-k.son@samsung.com>
+	s=arc-20240116; t=1722338229; c=relaxed/simple;
+	bh=0c0bFjkp6lOGtIuddq5kJa8o0xZsFNb6mXA9glrX6aU=;
+	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=ptqvrfy5Fu/opi0N+nqB3d5pspYhETfAwvYqCA5pPy+Yd4G2hJywuYRbpvpVu8NfXCqoanNch1YeIVe1O/Q1H7JZi5uy6PtHCHH+6i5dqoQAgl8UeZEcD6TmjjR9n5mQVu78aRfuGIg6qUuHdrveTOd79c+NY4MDwgwxH62/4IM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Nd+EfQ+w; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-70d316f0060so2726688b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2024 04:17:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1722338227; x=1722943027; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:subject:user-agent
+         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zMjbsaf9Qg0PIMOUCDvNeB4fJscDIysusSNb+GlHnFs=;
+        b=Nd+EfQ+wIj9qw10KlWIT2v8R7MM1vJIS5xk08TZMHj2pkl0eLoEl0US5hFI9orFTta
+         ZKMaaevAYeNzsm500qLWn8xShKGVzHYwsBBYXLfVyc9dRMhL7HO7BzlAlWESqeivzsVl
+         3pRVfp1L1arNye74db56Fk4hFLzHr/yhjpf5s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722338227; x=1722943027;
+        h=content-transfer-encoding:mime-version:subject:user-agent
+         :references:in-reply-to:message-id:date:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zMjbsaf9Qg0PIMOUCDvNeB4fJscDIysusSNb+GlHnFs=;
+        b=rel+tkgZ0OOCL1imni+Oud2IlEnD/qYmpfokAOwlkbxLmd/+SFu4J3Eg3KRg4AhUsu
+         kD5z6l0NM1ANlzMnXf0nQE0rYD3PCN6GyPlUVtgP4/PDgiWdqBppqHIBbEzevyxDJYa6
+         cuMn2XCqqEFW2/rMtVDdoGtiCet0UzkVbG+9UgUNyzaabEeNJm6sr+V740ZXMSMyk1wM
+         0X1GtHbFSJxAYyE06Ce30ysz8Yy9SkN6b4VAtLetfsU+M2dySa3GC2vbWQ06kGujGnZl
+         NloxmwmymHVQ7HNwVMx1XjbUJkOoaok/+sGy+iTTZWG++EeaUHfnbODntReL1asCefh0
+         vbwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWco7BfrdI+nnOgu+sc2VKLZXTeMp2aB1vuqLKr6BRDn0rXN1fT9NI9Uqx2sSw4Q5kFE2xfJuj7jTZAuZmsCrKlJpGkjIHyuSBGBA==
+X-Gm-Message-State: AOJu0Yzg+UPAkjtjq81ksbgPqKeAHNO6cQIbtOPKyH/2mZtp87Imp5sz
+	JKNeUqTVcGdzXHzL4BgH9ZInuELGz9Sexvjk/ULk5GCHITFf/IRg+GJOb1WGEQ==
+X-Google-Smtp-Source: AGHT+IH4GPuLW4JZ70pCnepe2Vow6yWK71i6a+LS+KmDte3yg0ALlYZIjJj1WsTlusgr/MqCrENMNw==
+X-Received: by 2002:a05:6a20:7346:b0:1be:c41d:b6b7 with SMTP id adf61e73a8af0-1c4e47fb70fmr3042955637.19.1722338226714;
+        Tue, 30 Jul 2024 04:17:06 -0700 (PDT)
+Received: from [192.168.178.38] (f215227.upc-f.chello.nl. [80.56.215.227])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead81272esm8462046b3a.97.2024.07.30.04.16.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Jul 2024 04:17:06 -0700 (PDT)
+From: Arend Van Spriel <arend.vanspriel@broadcom.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Jacobe Zang <jacobe.zang@wesion.com>, <robh@kernel.org>, <krzk+dt@kernel.org>, <heiko@sntech.de>, <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>
+CC: <efectn@protonmail.com>, <dsimic@manjaro.org>, <jagan@edgeble.ai>, <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <arend@broadcom.com>, <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>, <megi@xff.cz>, <duoming@zju.edu.cn>, <bhelgaas@google.com>, <minipli@grsecurity.net>, <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>, <nick@khadas.com>
+Date: Tue, 30 Jul 2024 13:16:57 +0200
+Message-ID: <191035b8c28.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+In-Reply-To: <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
+References: <20240730033053.4092132-1-jacobe.zang@wesion.com>
+ <20240730033053.4092132-3-jacobe.zang@wesion.com>
+ <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+ <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
+ <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+ <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
+User-Agent: AquaMail/1.51.5 (build: 105105504)
+Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add clock description for AP6275P
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; format=flowed; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGJsWRmVeSWpSXmKPExsWy7bCmgW7v6RVpBl1nWC0ezNvGZrFm7zkm
-	i+tfnrNazD9yjtWid81VJovz5zewW2x6fI3V4mPPPVaLGef3MVlcPOVq8X/PDnaLw2/aWS3+
-	XdvIYrFq1x9GBz6P9zda2T12zrrL7rFpVSebx+Yl9R59W1YxenzeJBfAFpVtk5GamJJapJCa
-	l5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQN0rJJCWWJOKVAoILG4WEnf
-	zqYov7QkVSEjv7jEVim1ICWnwLRArzgxt7g0L10vL7XEytDAwMgUqDAhO+PDvyfMBU0aFTf3
-	NbI1MN5U6mLk5JAQMJFouL2asYuRi0NIYAejxJlNp5ggnE+MErPmHWOGcL4xSuzvu8IG07L8
-	zkOolr1AiUm/WSGcL4wSTa1nmECq2ATUJZa0rWUHSYgIHAcavKQbrIVZYCWjxINVT1hAqoQF
-	vCTaHk9jB7FZBFQldu7bwQpi8wqYSxz8tQFoOQfQPnmJxQ8kQMKcAhYSza+OsUOUCEqcnAkx
-	hhmopHnrbLBbJQQWckisb57FCNHrItF/0BbibGGJV8e3sEPYUhIv+9ug7GyJox/3Qr1WInF9
-	1iJWCNtYYv/SyUwgY5gFNCXW79KHWMUn8e5rDyvEdF6JjjYhmCNvdZZDNIpKnHn6EWqgh0RX
-	y3do8HQzSjx6eIRlAqP8LCQPzELywCyEZQsYmVcxiqUWFOempxYbFhjBYzU5P3cTIzjBapnt
-	YJz09oPeIUYmDsZDjBIczEoivPFXlqYJ8aYkVlalFuXHF5XmpBYfYjQFhu5EZinR5Hxgis8r
-	iTc0sTQwMTMyNrEwNDNUEuc9c6UsVUggPbEkNTs1tSC1CKaPiYNTqoFJ/sOlkAWcLM1xVZNb
-	clcJ/LBNfD8xYJ/Ep3Wyjh7J8wPmL1e5NXvjuhMMvLmKOdYmFdsOZnC2MOeES+10Om0Y4vJK
-	9FvQD2cJddWtrrrnX59PPyB5UKnZbktoeMQ/0eSFi+YqGuwIXf04WV3ymKvhNn4nH5Y7ktrG
-	DDcmlT400zsw/8nrGX8eTCs8oOnkeTrQx/c4l8wXnvp7J7sKFLxND51y3/v79dadbUz35869
-	9NL7y9IFcRucn8dZejIti/v+I2zu473X52+ZtfG2d4O4fN7kvbddb+/1YVgme87Rmem6wtf2
-	n80X+Z1vP2A1vaEfzrf18jTO9St/rdzzL/S9ipadybmoDb/aZqgvfLVVWYmlOCPRUIu5qDgR
-	ABvugtM5BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLLMWRmVeSWpSXmKPExsWy7bCSnG7P6RVpBp+Py1k8mLeNzWLN3nNM
-	Fte/PGe1mH/kHKtF75qrTBbnz29gt9j0+Bqrxceee6wWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxWLVrj+MDnwe72+0snvsnHWX3WPTqk42j81L6j36tqxi9Pi8SS6ALYrLJiU1J7MstUjf
-	LoEr48O/J8wFTRoVN/c1sjUw3lTqYuTkkBAwkVh+5yFjFyMXh5DAbkaJ9/OfsUIkRCU6LjcC
-	JTiAbGGJw4eLIWo+MUpMWdTGDFLDJqAusaRtLTtIQkTgMqPE/wWTwCYxC6xllHg65Qk7SJWw
-	gJdE2+NpYDaLgKrEzn07wDbwCphLHPy1gRlig7zE4gcSIGFOAQuJ5lfHwMqFgEo2LD/KAlEu
-	KHFy5hMwmxmovHnrbOYJjAKzkKRmIUktYGRaxSiZWlCcm55bbFhglJdarlecmFtcmpeul5yf
-	u4kRHCNaWjsY96z6oHeIkYmD8RCjBAezkghv/JWlaUK8KYmVValF+fFFpTmpxYcYpTlYlMR5
-	v73uTRESSE8sSc1OTS1ILYLJMnFwSjUw7bAqmtr5+ZhQ9ap9y1ySti1/H3KH6cSBY9+yVvIY
-	PNZhPJa45fu/V53f5ytNDe4T9eWQSL3Kl/436k19f4N4sHmPqoa1zNuI5ScF792vq1rH+dox
-	/5KdVFOi3YOCU13zF7/cvqfL+PSk1YsVr7+acCQj/TU3p2UYw0KzPtbU9h7jFLG2L9ri7WV3
-	MuS5onPT7dmUnFqZVput3a6iuT7+xoPN7MYp+//PkbYonhZ0NsV/1vtbpz6aLcox6fUX4N2k
-	q+d1p99gEe/cqyVXK5ir2Rh+XPKukF26wuLtp4N75sRrN0o3W4ordVvN2BP31jSwT+R4Rq92
-	X3eDmUaqb+KU+Qol/7WXPp427Qf/KUslluKMREMt5qLiRADLXxN4AAMAAA==
-X-CMS-MailID: 20240730111628epcas1p2c9daa7b7e637f4d66814584519b4b1bf
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240730111628epcas1p2c9daa7b7e637f4d66814584519b4b1bf
-References: <20240730111535.135301-1-k.son@samsung.com>
-	<CGME20240730111628epcas1p2c9daa7b7e637f4d66814584519b4b1bf@epcas1p2.samsung.com>
 
-Add dpum clock for exynosautov9.
+On July 30, 2024 12:18:20 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Signed-off-by: Kwanghoon Son <k.son@samsung.com>
----
- drivers/clk/samsung/clk-exynosautov9.c | 83 ++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+> On 30/07/2024 11:52, Arend Van Spriel wrote:
+>> On July 30, 2024 11:01:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>>> On 30/07/2024 08:37, Arend Van Spriel wrote:
+>>>> + Linus W
+>>>>
+>>>> On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
+>>>>
+>>>>> Not only AP6275P Wi-Fi device but also all Broadcom wireless devices allow
+>>>>> external low power clock input. In DTS the clock as an optional choice in
+>>>>> the absence of an internal clock.
+>>>>>
+>>>>> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>>>>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+>>>>> ---
+>>>>> .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
+>>>>> 1 file changed, 8 insertions(+)
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>> index 2c2093c77ec9a..a3607d55ef367 100644
+>>>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>> @@ -122,6 +122,14 @@ properties:
+>>>>> NVRAM. This would normally be filled in by the bootloader from platform
+>>>>> configuration data.
+>>>>>
+>>>>> +  clocks:
+>>>>> +    items:
+>>>>> +      - description: External Low Power Clock input (32.768KHz)
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: lpo
+>>>>> +
+>>>>
+>>>> We still have an issue that this clock input is also present in the
+>>>> bindings specification broadcom-bluetooth.yaml (not in bluetooth
+>>>> subfolder). This clock is actually a chip resource. What happens if both
+>>>> are defined and both wifi and bt drivers try to enable this clock? Can this
+>>>> be expressed in yaml or can we only put a textual warning in the property
+>>>> descriptions?
+>>>
+>>> Just like all clocks, what would happen? It will be enabled.
+>>
+>> Oh, wow! Cool stuff. But seriously is it not a problem to have two entities
+>> controlling one and the same clock? Is this use-case taken into account by
+>> the clock framework?
+>
+> Yes, it is handled correctly. That's a basic use-case, handled by CCF
+> since some years (~12?). Anyway, whatever OS is doing (or not doing)
+> with the clocks is independent of the bindings here. The question is
 
-diff --git a/drivers/clk/samsung/clk-exynosautov9.c b/drivers/clk/samsung/clk-exynosautov9.c
-index f04bacacab2c..3569748b30a9 100644
---- a/drivers/clk/samsung/clk-exynosautov9.c
-+++ b/drivers/clk/samsung/clk-exynosautov9.c
-@@ -20,6 +20,7 @@
- #define CLKS_NR_TOP			(GOUT_CLKCMU_PERIS_BUS + 1)
- #define CLKS_NR_BUSMC			(CLK_GOUT_BUSMC_SPDMA_PCLK + 1)
- #define CLKS_NR_CORE			(CLK_GOUT_CORE_CMU_CORE_PCLK + 1)
-+#define CLKS_NR_DPUM			(CLK_GOUT_DPUM_SYSMMU_D3_CLK + 1)
- #define CLKS_NR_FSYS0			(CLK_GOUT_FSYS0_PCIE_GEN3B_4L_CLK + 1)
- #define CLKS_NR_FSYS1			(CLK_GOUT_FSYS1_USB30_1_ACLK + 1)
- #define CLKS_NR_FSYS2			(CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO + 1)
-@@ -1076,6 +1077,85 @@ static const struct samsung_cmu_info core_cmu_info __initconst = {
- 	.clk_name		= "dout_clkcmu_core_bus",
- };
- 
-+/* ---- CMU_DPUM ---------------------------------------------------------- */
-+
-+/* Register Offset definitions for CMU_DPUM (0x18c00000) */
-+#define PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER				0x0600
-+#define CLK_CON_DIV_DIV_CLK_DPUM_BUSP					0x1800
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON		0x202c
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA		0x2030
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP		0x2034
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1	0x207c
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1	0x2084
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1	0x208c
-+#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1	0x2094
-+
-+static const unsigned long dpum_clk_regs[] __initconst = {
-+	PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER,
-+	CLK_CON_DIV_DIV_CLK_DPUM_BUSP,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1,
-+};
-+
-+PNAME(mout_dpum_bus_user_p) = { "oscclk", "dout_clkcmu_dpum_bus" };
-+
-+static const struct samsung_mux_clock dpum_mux_clks[] __initconst = {
-+	MUX(CLK_MOUT_DPUM_BUS_USER, "mout_dpum_bus_user",
-+	    mout_dpum_bus_user_p, PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER, 4, 1),
-+};
-+
-+static const struct samsung_div_clock dpum_div_clks[] __initconst = {
-+	DIV(CLK_DOUT_DPUM_BUSP, "dout_dpum_busp", "mout_dpum_bus_user",
-+	    CLK_CON_DIV_DIV_CLK_DPUM_BUSP, 0, 3),
-+};
-+
-+static const struct samsung_gate_clock dpum_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_DPUM_ACLK_DECON, "gout_dpum_decon_aclk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_ACLK_DMA, "gout_dpum_dma_aclk", "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_ACLK_DPP, "gout_dpum_dpp_aclk", "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D0_CLK, "gout_dpum_sysmmu_d0_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D1_CLK, "gout_dpum_sysmmu_d1_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D2_CLK, "gout_dpum_sysmmu_d2_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+	GATE(CLK_GOUT_DPUM_SYSMMU_D3_CLK, "gout_dpum_sysmmu_d3_clk",
-+	     "mout_dpum_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1, 21,
-+	     0, 0),
-+};
-+
-+static const struct samsung_cmu_info dpum_cmu_info __initconst = {
-+	.mux_clks		= dpum_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(dpum_mux_clks),
-+	.div_clks		= dpum_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(dpum_div_clks),
-+	.gate_clks		= dpum_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(dpum_gate_clks),
-+	.nr_clk_ids		= CLKS_NR_DPUM,
-+	.clk_regs		= dpum_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(dpum_clk_regs),
-+	.clk_name		= "dout_clkcmu_dpum_bus",
-+};
-+
- /* ---- CMU_FSYS0 ---------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_FSYS2 (0x17700000) */
-@@ -2085,6 +2165,9 @@ static const struct of_device_id exynosautov9_cmu_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-core",
- 		.data = &core_cmu_info,
-+	}, {
-+		.compatible = "samsung,exynosautov9-cmu-dpum",
-+		.data = &dpum_cmu_info,
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-fsys0",
- 		.data = &fsys0_cmu_info,
--- 
-2.39.2
+Agree. Probably the bindings would not be the place to document this if it 
+would be an issue.
+
+> about hardware - does this node, which represents PCI interface of the
+> chip, has/uses the clocks.
+
+The schematics I found for the wifi module and the khadas edge platform 
+show these are indeed wired to the chip.
+
+Regards,
+Arend
+
+> Best regards,
+> Krzysztof
+
+
 
 
