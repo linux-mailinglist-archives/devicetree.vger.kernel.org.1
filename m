@@ -1,353 +1,203 @@
-Return-Path: <devicetree+bounces-89989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E95994367A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 21:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74ACE9436A9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 21:44:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4A311F21771
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 19:33:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6E321F23A7C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 19:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDB438DEC;
-	Wed, 31 Jul 2024 19:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCAE37E59A;
+	Wed, 31 Jul 2024 19:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VH1JEJ1o"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="yqcBY7MM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D951401B;
-	Wed, 31 Jul 2024 19:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 221FA3BBE3
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 19:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722454407; cv=none; b=oEqdOyoFiQgNFfBIX+Uh/qcSS2vaGlSr5Ne/7dAtpX6TsoeuegV+t18yvoPm3nl74kQWZZ0N8bStkUYr8ZhyKbOY+zXTyWuF10qAki0NTAqQ/bI0996AgVkrGIuqoOTNvxsEA12qSwwLaEP/rdsjqKYdadWSqLUd9oiPXOMsG/Q=
+	t=1722455064; cv=none; b=VLMeIYmxY4BZPsuDu9abwmTrQly58PFDnGanD/dTESNT3/E1YpnNW0sD+pige2sRdn/0eWu3qxxC8vkWrGjPGsqR7fT/KnzUWE1W7ik8bVgK0XUBoBCay79SkU1UHMNtdV/K/Zf8WazgKfON9y9ylvWpFYGPJR5CMvMvrTwJ9bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722454407; c=relaxed/simple;
-	bh=jUGtGlNxJo209TPhf0xKsBpaNEHA/P4q+MVQHbvwUNQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=quxS6ZpzVxS8PdtDgVd3/UeAreNflx5tJqPhTSFsBR35mJaAENdXX6FMWxR776blMUKefKQy1fFU2QY0f77+kaRxt47zBIBUQ5NZA3HL8G7OD/QIShna1OoiYZW01RzUMjy0jvgBeKSblKBYKMWQiPxCuiZOxaEgsvb8TK+beQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VH1JEJ1o; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1fda7fa60a9so56039245ad.3;
-        Wed, 31 Jul 2024 12:33:26 -0700 (PDT)
+	s=arc-20240116; t=1722455064; c=relaxed/simple;
+	bh=EWmp5MqjKHXc9K3/S1bSth/R9s//FFm28X+gHc+7LA4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LdRSk8dzO6+Iyj01W41KBYEF1wW2z72JLPb9Wlb3MrwRolD3XGJcJyBQnGsuPe6NLkV+w5f+hRk5ExtvW8Va90FqinFKWUlOKMZnaipQx5AaMisfZED2VVhywn5J1Z5begimMd/epMnYttkUxP7B54W3P6Fqnp4gTORSjxI+CYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=yqcBY7MM; arc=none smtp.client-ip=209.85.160.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-260f033fda3so3927759fac.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 12:44:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722454405; x=1723059205; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hqHLrJnOro9TKsWWtTd0iLC5rBOmar4o6YJWpTnBD0A=;
-        b=VH1JEJ1o1SLIr0pbaHD9SPYGzNTaAmYoUNZ1/WiDqxEgmT6/DXr2Huq8QPX/sZEP7O
-         ml/Zc0is36zx0cnW3Ds/6UkzZNW6MfKFzLWJpff3IclaytZmje5EuXm2nuZRQSsgHhi3
-         qsf+1aicQnS41gkv7+CcmmW2BxorJwipkiYYsMagZTGF/wtROrAuTD4UGmHSoG4UJ5sn
-         7GZop8k2/iVgJnqKMD5OoSIAQVZYCXNnimc/a7sWfpxQDmgguzMn7q4bRzMWqzoRbmTb
-         1BOeMVGAJdWChnAKt6PHWBCTrZA720ZNVsnc9oINyL8qGDqcnd+uOx/cG/k43prBHznO
-         UpLQ==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1722455062; x=1723059862; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YOOhw+HLkWMnc7O2nbMibCgEsS+Q3mESB0qM7KHfrpM=;
+        b=yqcBY7MMFZFh9t/TDP8VEjpjZSqkQ8JYnrJs5VJ1+Rt+q4l8BJR+tnvYorvyFWphgn
+         DqYCNfiuu9XihXmGtV9hfN6DE+4qFOB4Hm0JSj7+CDF1RWmzUeHiN+ChzhYiMpFYpTdK
+         oxAOIQfCZFf6rh+j3p+lAvdAPeRi9cPi/vxHnzSEASMIvnOI/HFs1ywi0+EawEzh8wwq
+         QgVJD+dwxid6DHN8Iti41m/sr1ClfAZQAoeLWi92V9cuH1QxLnm7G7YANpoIgq2ZUp7g
+         Q1Ax4cR7PVAklmzSCl3w+d0GEraAZp0n/AcU8OHDWY7lmPZxodCZg2JIz5+N1zorUfWW
+         Vb7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722454405; x=1723059205;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hqHLrJnOro9TKsWWtTd0iLC5rBOmar4o6YJWpTnBD0A=;
-        b=StQ+4tL+8zzYrlDaAUsUd1MqIeJJvoZ3nP4E5azIXo5VACYNon+mbNZjBInjsjyYxS
-         rvvz4D/YlUxp8ZSA3OGKGYGSyvUWuAPZt+wI8H3I8bBD7sEn4avthNkWbTK+IqQPH6jM
-         J13E7ns8wQeMt7GfvAplro3Ch/MJ0guI1VZ9vDsFWswBCfp1y6eRKkpKr6pqh0B/DGxj
-         eUyCYz292ODXQS49+hVzISJvmfcH1UHnytiC4DfeCEOLAapB9aNqsX0yfu3dlJs9CTrr
-         zK8HVmje0VLr+kumtkWAHPkGLzBiwO11LHgfadw4xq3qJxhBb1uqMab+ncjV0+BJohFf
-         gqag==
-X-Forwarded-Encrypted: i=1; AJvYcCWVUKOq7IIz2Z67CBMrMbjNP28aWmF/vghY2YsBYF2yZ6sonOGVSpxOgcO94ftCzbJcH35CYibmKLlo1e1lkoK4VAVaGj/KTJAkIFW34ds7YBGgSaE6M6WfhIxPPfeq/ksL1vcHGJW9pA==
-X-Gm-Message-State: AOJu0YxfJkNSvc/QdpKNB3jtcxF6xCU78Rs3+venJR5XvfbIJGA6H+jy
-	WlYuMUOmEP88iP91ra8qJVub9t76gC9Egnp38v0CFVUuiNsTwEzE
-X-Google-Smtp-Source: AGHT+IFxT6TI2pPBIxCArKvG/ma5R4jUBmKO3a8h9MsXmv9Yh6szV0xh/f9f/xDvZhoId/8njPiVQg==
-X-Received: by 2002:a17:902:c641:b0:1fc:5fc9:84bc with SMTP id d9443c01a7336-1ff4d257b35mr3032135ad.62.1722454405358;
-        Wed, 31 Jul 2024 12:33:25 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:1da7:72de:e91f:aa85])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fed7cde45csm123907415ad.77.2024.07.31.12.33.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 12:33:25 -0700 (PDT)
-Date: Wed, 31 Jul 2024 12:33:22 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Oleh Kuzhylnyi <kuzhylol@gmail.com>
-Cc: linux-input@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jeff@labundy.com,
-	neil.armstrong@linaro.org, hdegoede@redhat.com,
-	artur.serhiienko@gmail.com, igor.opaniuk@gmail.com
-Subject: Re: [PATCH v3 2/2] input: add driver for Hynitron CST816X touchscreen
-Message-ID: <ZqqRgnxZBW0nGTpF@google.com>
-References: <20240526212443.8496-1-kuzhylol@gmail.com>
- <20240526212443.8496-2-kuzhylol@gmail.com>
+        d=1e100.net; s=20230601; t=1722455062; x=1723059862;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YOOhw+HLkWMnc7O2nbMibCgEsS+Q3mESB0qM7KHfrpM=;
+        b=vGnpB6pDXDIZH+JPRBfLpoF8AtUZWTt1kKMBytMAK048PNfs+qEIFjyUGthzlXEeMm
+         ytPnPp+/HFy9wkA6WWsVrVFBM9IgL1DRNFot0JzlYF5DOgv3mfbw9K7zgg/JUqve1y26
+         PWnMQ+Q/vyXRVC17XgZ2S7o5lZkXQELvg3N3iqqviO/wD5qS6gNQPebl6/R/tJIkEnPS
+         2apk/0Mi1ma8Su/pXuVDDJVSg58woDt9IdSQI0Nabdfj1U8FajwIQo5CLEb25G8ora46
+         3z84nK/iQo9oz1OhSVkEHVrl3BNysggpU0wm6NAyLrcdTil8oa/rawo+X5vMzwWyXDxs
+         1Wdw==
+X-Forwarded-Encrypted: i=1; AJvYcCXh3aod0eSRpQ2uTXloL5T4ML51fDbqQCBeOxyYoNxrvKuhecLPwX1o0/zz/CuoCfAXDcGAL51aYWygvri88qYtvy95V1mQ7azi5A==
+X-Gm-Message-State: AOJu0Yz1VvI11ZK1bBqIsJmNqtykM2c4KivGGVhZfnUvGnTbNm414165
+	xR/1pyGevraH7Wc7w4aKjFQmNeYiAhuX7iI/PKobaDZ0gDf20RsniwGzKLWkbtzc0uwahZ3w/Dg
+	93ngHYhKufzEvxXRhzrjhUfUlD9mbecHbOakD
+X-Google-Smtp-Source: AGHT+IFQJ/IABne7DN/OVkYSGgPTjmKkhHF839HmDMPhxqXHqUt2qDsqR4HDCr+7vnOAuIFpkKWhs9hPExfW1Z7g6g4=
+X-Received: by 2002:a05:6870:2426:b0:260:f058:48eb with SMTP id
+ 586e51a60fabf-2687a5150acmr180553fac.20.1722455062139; Wed, 31 Jul 2024
+ 12:44:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240526212443.8496-2-kuzhylol@gmail.com>
+References: <20240801-beagleplay_fw_upgrade-v2-0-e36928b792db@beagleboard.org>
+In-Reply-To: <20240801-beagleplay_fw_upgrade-v2-0-e36928b792db@beagleboard.org>
+From: Jason Kridner <jkridner@beagleboard.org>
+Date: Wed, 31 Jul 2024 15:44:11 -0400
+Message-ID: <CAK8RMs1FeKqikfxPvvTM41FZYjNq5dpa1BZY+p9Vwb7JtpA3Ww@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add Firmware Upload support for beagleplay cc1352
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Alex Elder <elder@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jakub Kicinski <kuba@kernel.org>, 
+	Johan Hovold <johan@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Tero Kristo <kristo@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, greybus-dev@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	lorforlinux@beagleboard.org, netdev@vger.kernel.org, 
+	robertcnelson@beagleboard.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Oleh,
+Ayush,
 
-On Sun, May 26, 2024 at 11:24:42PM +0200, Oleh Kuzhylnyi wrote:
-> Introduce support for the Hynitron CST816X touchscreen controller
-> used for 240×240 1.28-inch Round LCD Display Module manufactured
-> by Waveshare Electronics. The driver is designed based on an Arduino
-> implementation marked as under MIT License. This driver is written
-> for a particular round display based on the CST816S controller, which
-> is not compatiable with existing driver for Hynitron controllers.
-> 
-> Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+Thanks so much for jumping on this so quickly and getting it out to
+the kernel list for public discussion. Sorry I missed commenting on
+v1. Great work so far!
+
+On Wed, Jul 31, 2024 at 2:53=E2=80=AFPM Ayush Singh <ayush@beagleboard.org>=
+ wrote:
+>
+> Adds support for beagleplay cc1352 co-processor firmware upgrade using
+> kernel Firmware Upload API. Uses ROM based bootloader present in
+> cc13x2x7 and cc26x2x7 platforms for flashing over UART.
+>
+> Communication with the bootloader can be moved out of gb-beagleplay
+> driver if required, but I am keeping it here since there are no
+> immediate plans to use the on-board cc1352p7 for anything other than
+> greybus (BeagleConnect Technology). Additionally, there do not seem to
+> any other devices using cc1352p7 or it's cousins as a co-processor.
+
+s/it's/its/
+
+While I'm not aware of other Linux boards that have integrated
+CC1352P7, there are other interesting software stacks that could be
+run, like:
+* zStack[1] for Zigbee,
+* wpanusb/bcfserial[2] for IEEE 802.15.4g,
+* ti-wisunfantund[3] for WiSun, or
+* OTBR[4][5] for OpenThread
+
+It feels to me like there should be a cc13x2x7/cc26x2x7 driver that
+also exposes a serdev device that can be used as either a tty for
+direct interaction with the firmware or by another driver like
+gb-greybus. While supporting these others in the upstream kernel isn't
+in the immediate plans, I think it would be best to clear the path for
+the drivers to specify the firmware they want. Ideally, the firmware
+required by gb-greybus would be in the linux-firmware repository and
+could be requested by the driver itself out of /lib/firmware and
+attempting to load multiple cc1352-dependant drivers would
+appropriately conflict and therefore present useful errors and not
+load, unless a system had additional cc1352 devices to which they
+could connect.
+
+>
+> Bootloader backdoor and Reset GPIOs are used to enable cc1352p7 bootloade=
+r
+
+s/Reset/reset/
+
+> backdoor for flashing. Flashing is skipped in case we are trying to flash
+> the same image as the one that is currently present. This is determined b=
+y
+> CRC32 calculation of the supplied firmware and Flash data.
+
+s/Flash/flash/
+
+>
+> We also do a CRC32 check after flashing to ensure that the firmware was
+> flashed properly.
+>
+> Link: https://www.ti.com/lit/ug/swcu192/swcu192.pdf Ti CC1352p7 Tecnical =
+Specification
+
+s/CC1352p7/CC1352P7/
+s/Tecnical/Technical/
+
+> Link:
+> https://lore.kernel.org/all/20240719-beagleplay_fw_upgrade-v1-0-8664d4513=
+252@beagleboard.org/
+> Patch v1
+>
+> Changes in v2:
+> - Spelling fixes
+> - Rename boot-gpios to bootloader-backdoor-gpios
+> - Add doc comments
+> - Add check to ensure firmware size is 704 KB
+>
+> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 > ---
-> 
-> Changes in v3:
->  - Drop timer and delayed work
->  - Process touch in threaded IRQ context
->  - Fix chip reset sequence
->  - Move input_register() before devm_request_threaded_irq()
->  - Re-arrange and document input reporting
->  - Set u16 data type for event_code
->  - Remove double tap event to prevent continuous double side sliding
-> 
->  drivers/input/touchscreen/Kconfig            |  12 +
->  drivers/input/touchscreen/Makefile           |   1 +
->  drivers/input/touchscreen/hynitron-cst816x.c | 257 +++++++++++++++++++
->  3 files changed, 270 insertions(+)
->  create mode 100644 drivers/input/touchscreen/hynitron-cst816x.c
-> 
-> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-> index c821fe3ee794..02f40d0fbac0 100644
-> --- a/drivers/input/touchscreen/Kconfig
-> +++ b/drivers/input/touchscreen/Kconfig
-> @@ -481,6 +481,18 @@ config TOUCHSCREEN_HYNITRON_CSTXXX
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called hynitron-cstxxx.
->  
-> +config TOUCHSCREEN_HYNITRON_CST816X
-> +	tristate "Hynitron CST816X touchscreen support"
-> +	depends on I2C
-> +	help
-> +	  Say Y here if you have a touchscreen using a Hynitron
-> +	  CST816X touchscreen controller.
-> +
-> +	  If unsure, say N.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called hynitron-cst816x.
-> +
->  config TOUCHSCREEN_ILI210X
->  	tristate "Ilitek ILI210X based touchscreen"
->  	depends on I2C
-> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-> index a81cb5aa21a5..a92a87417a97 100644
-> --- a/drivers/input/touchscreen/Makefile
-> +++ b/drivers/input/touchscreen/Makefile
-> @@ -51,6 +51,7 @@ obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_CORE)	+= goodix_berlin_core.o
->  obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_I2C)	+= goodix_berlin_i2c.o
->  obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_SPI)	+= goodix_berlin_spi.o
->  obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
-> +obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CST816X)	+= hynitron-cst816x.o
->  obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
->  obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
->  obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
-> diff --git a/drivers/input/touchscreen/hynitron-cst816x.c b/drivers/input/touchscreen/hynitron-cst816x.c
-> new file mode 100644
-> index 000000000000..5bb85ec1d60e
-> --- /dev/null
-> +++ b/drivers/input/touchscreen/hynitron-cst816x.c
-> @@ -0,0 +1,257 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Driver for I2C connected Hynitron CST816X Touchscreen
-> + *
-> + * Copyright (C) 2024 Oleh Kuzhylnyi <kuzhylol@gmail.com>
-> + */
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/input.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +
-> +enum cst816x_registers {
-> +	CST816X_FRAME = 0x01,
-> +	CST816X_MOTION = 0xEC,
-> +};
-> +
-> +enum cst816x_gestures {
-> +	CST816X_SWIPE_UP = 0x01,
-> +	CST816X_SWIPE_DOWN = 0x02,
-> +	CST816X_SWIPE_LEFT = 0x03,
-> +	CST816X_SWIPE_RIGHT = 0x04,
-> +	CST816X_SINGLE_TAP = 0x05,
-> +	CST816X_LONG_PRESS = 0x0C,
-> +};
-> +
-> +struct cst816x_touch_info {
-> +	u8 gesture;
-> +	u8 touch;
-> +	u8 abs_x;
+> Ayush Singh (3):
+>       dt-bindings: net: ti,cc1352p7: Add bootloader-backdoor-gpios
+>       arm64: dts: ti: k3-am625-beagleplay: Add bootloader-backdoor-gpios =
+to cc1352p7
+>       greybus: gb-beagleplay: Add firmware upload API
+>
+>  .../devicetree/bindings/net/ti,cc1352p7.yaml       |   7 +
+>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts     |   3 +-
+>  drivers/greybus/Kconfig                            |   1 +
+>  drivers/greybus/gb-beagleplay.c                    | 658 +++++++++++++++=
++++++-
+>  4 files changed, 655 insertions(+), 14 deletions(-)
+> ---
+> base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
+> change-id: 20240715-beagleplay_fw_upgrade-43e6cceb0d3d
+>
+> Best regards,
+> --
+> Ayush Singh <ayush@beagleboard.org>
+>
 
-Is this the right size? You are doing:
+[1] https://www.zigbee2mqtt.io/guide/adapters/zstack.html
+[2] https://openbeagle.org/beagleplay/bcfserial
+[3] https://github.com/TexasInstruments/ti-wisunfantund
+[4] https://openthread.io/guides/border-router
+[5] https://github.com/openthread/ot-cc13x2-cc26x2
 
-		priv->info.abs_x = ((raw[2] & 0x0F) << 8) | raw[3];
+--=20
+BeagleBoard.org Foundation is a US-based 501(c)3 non-profit providing
+education and collaboration around open source hardware and software
 
-
-Which suggests it should be u16?
-
-
-> +	u8 abs_y;
-> +} __packed;
-
-Why does this need to be __packed?
-
-> +
-> +struct cst816x_priv {
-> +	struct device *dev;
-> +	struct i2c_client *client;
-> +	struct gpio_desc *reset;
-> +	struct input_dev *input;
-> +	struct cst816x_touch_info info;
-
-Why do you need to have this here? It is tiny and does not need to be
-kept around, just use on stack variable.
-
-> +
-> +	u8 rxtx[8];
-> +};
-> +
-> +struct cst816x_event_mapping {
-> +	enum cst816x_gestures gesture;
-> +	u16 event_code;
-> +};
-> +
-> +static const struct cst816x_event_mapping cst816x_event_map[] = {
-> +	{CST816X_SWIPE_UP, BTN_FORWARD},
-> +	{CST816X_SWIPE_DOWN, BTN_BACK},
-> +	{CST816X_SWIPE_LEFT, BTN_LEFT},
-> +	{CST816X_SWIPE_RIGHT, BTN_RIGHT},
-> +	{CST816X_SINGLE_TAP, BTN_TOUCH},
-> +	{CST816X_LONG_PRESS, BTN_TOOL_TRIPLETAP}
-> +};
-> +
-> +static int cst816x_i2c_read_register(struct cst816x_priv *priv, u8 reg)
-
-Maybe supply buffer and size as arguments?
-
-> +{
-> +	struct i2c_client *client;
-> +	struct i2c_msg xfer[2];
-> +	int rc;
-> +
-> +	client = priv->client;
-> +
-> +	xfer[0].addr = client->addr;
-> +	xfer[0].flags = 0;
-> +	xfer[0].len = sizeof(reg);
-> +	xfer[0].buf = &reg;
-> +
-> +	xfer[1].addr = client->addr;
-> +	xfer[1].flags = I2C_M_RD;
-> +	xfer[1].len = sizeof(priv->rxtx);
-> +	xfer[1].buf = priv->rxtx;
-> +
-> +	rc = i2c_transfer(client->adapter, xfer, ARRAY_SIZE(xfer));
-> +	if (rc != ARRAY_SIZE(xfer)) {
-		error = rc >= 0 ? -EIO : rc;
-		dev_err(...);
-		return error;
-	}
-
-	return 0;
-
-> +		if (rc >= 0)
-> +			rc = -EIO;
-> +	} else {
-> +		rc = 0;
-> +	}
-> +
-> +	if (rc < 0)
-> +		dev_err(&client->dev, "i2c rx err: %d\n", rc);
-> +
-> +	return rc;
-> +}
-> +
-> +static int cst816x_process_touch(struct cst816x_priv *priv)
-> +{
-> +	u8 *raw;
-> +	int rc;
-> +
-> +	rc = cst816x_i2c_read_register(priv, CST816X_FRAME);
-> +	if (!rc) {
-> +		raw = priv->rxtx;
-> +
-> +		priv->info.gesture = raw[0];
-> +		priv->info.touch = raw[1];
-> +		priv->info.abs_x = ((raw[2] & 0x0F) << 8) | raw[3];
-> +		priv->info.abs_y = ((raw[4] & 0x0F) << 8) | raw[5];
-> +
-> +		dev_dbg(priv->dev, "x: %d, y: %d, t: %d, g: 0x%x\n",
-> +			priv->info.abs_x, priv->info.abs_y, priv->info.touch,
-> +			priv->info.gesture);
-> +	}
-> +
-> +	return rc;
-> +}
-> +
-> +static int cst816x_register_input(struct cst816x_priv *priv)
-> +{
-> +	priv->input = devm_input_allocate_device(priv->dev);
-> +	if (!priv->input)
-> +		return -ENOMEM;
-> +
-> +	priv->input->name = "Hynitron CST816X Touchscreen";
-> +	priv->input->phys = "input/ts";
-> +	priv->input->id.bustype = BUS_I2C;
-> +	input_set_drvdata(priv->input, priv);
-> +
-> +	for (unsigned int i = 0; i < ARRAY_SIZE(cst816x_event_map); i++) {
-> +		input_set_capability(priv->input, EV_KEY,
-> +				     cst816x_event_map[i].event_code);
-> +	}
-> +
-> +	input_set_abs_params(priv->input, ABS_X, 0, 240, 0, 0);
-> +	input_set_abs_params(priv->input, ABS_Y, 0, 240, 0, 0);
-> +
-> +	return input_register_device(priv->input);
-> +}
-> +
-> +static void cst816x_reset(struct cst816x_priv *priv)
-> +{
-> +	gpiod_set_value_cansleep(priv->reset, 1);
-> +	msleep(50);
-> +	gpiod_set_value_cansleep(priv->reset, 0);
-> +	msleep(100);
-> +}
-> +
-> +static void report_gesture_event(const struct cst816x_priv *priv,
-> +				 enum cst816x_gestures gesture, bool touch)
-> +{
-> +	for (unsigned int i = 0; i < ARRAY_SIZE(cst816x_event_map); i++) {
-> +		if (cst816x_event_map[i].gesture == gesture) {
-> +			input_report_key(priv->input,
-> +					 cst816x_event_map[i].event_code,
-> +					 touch);
-
-If you make cst816x_event_map an array of 16 entries with unised
-positions mapped to KEY_RESERVED you can do:
-
-	key = cst816x_event_map[raw[0] & 0x0f];
-	if (key != KEY_RESERVED)
-		input_report_key(priv->input, key, touch);
-
-and you do not need to loop.
-
-Thanks.
-
--- 
-Dmitry
+Use https://beagleboard.org/about/jkridner to schedule a meeting
 
