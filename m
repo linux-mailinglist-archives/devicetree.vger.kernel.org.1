@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-89886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 147189431FA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:25:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC1B9431FC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:25:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A319CB2677A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:25:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E1471C24262
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA23E1B5824;
-	Wed, 31 Jul 2024 14:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 536CA1BA86A;
+	Wed, 31 Jul 2024 14:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3RGX8ly"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KoBQlPeP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A119E1B5820;
-	Wed, 31 Jul 2024 14:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177561B86E6;
+	Wed, 31 Jul 2024 14:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722435941; cv=none; b=MmVXSP+vxvMkEVN/7O3t4WAukY38a0CS5D85HOdJzXEhmlCvl/BMB+Roya3TnTOW1HsDhnwu18j5YOXCQJlKKcK7AUflHUcwrz1IYOet8CEPUxk1inHZgmpCLdxhg3dWzw+rwn6r0DYOrGe9//aYYKFyVB5AJuVC+gcclbRNiyo=
+	t=1722435943; cv=none; b=V/Unfwo+E1z2IZdHzV+Q4vpQNms+a9fd//mcYpEhDQwDFCuJjhxsHd/heXkHEad6pwbJ5Z3Tn/I3ugWxbw1vVpS2WtZ7qQ6VLc5h8SqnAwr42RW2jehOsUpVXPq6n1ApN6cIYTn9RRMSTxcGejPNRXrFvhWw4iPKDEEX6DILkts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722435941; c=relaxed/simple;
-	bh=iLMn/G9k1cRR/ZvGnS+j1lMkO0nrAGYKNimaeBu6t1U=;
+	s=arc-20240116; t=1722435943; c=relaxed/simple;
+	bh=lKf1CJX2Opgq+oxLEDFoPyZhcLqD64mJ+I49ur0RYtk=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=E/oUoOIICQUoASgdU+3sow7odnKVzZ5vpTWkpLi6rwC/BDnJn6PAFD5rvuQssXzCsK4GOAU9gaPkckjOG2V3uXTiPmS0vNceP/Wrof3VF0YO/YXAu4diNIHbVJAr3uIBaHRi4wBEdp9D5UsIFZhVTPAybsroc7gSkNwm4Gjn3Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3RGX8ly; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE780C116B1;
-	Wed, 31 Jul 2024 14:25:40 +0000 (UTC)
+	 Message-Id:Subject; b=Vm/jWn8x0ZCs9tQ27yX+b7IiRir4bCecrmmHEcocnJeR0Hyu5wyUXFYmQPdqZuz7G3+J6342k7JflzDKiLYzeCresSubZdpsvH43PhFQ6mpGsGeK2LIskFXpqiBmZN/nFr6CqVI2urgkJvRkZv/8xOCtlDUc3eae2DEiRd//TRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KoBQlPeP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 513A7C4AF09;
+	Wed, 31 Jul 2024 14:25:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722435941;
-	bh=iLMn/G9k1cRR/ZvGnS+j1lMkO0nrAGYKNimaeBu6t1U=;
+	s=k20201202; t=1722435942;
+	bh=lKf1CJX2Opgq+oxLEDFoPyZhcLqD64mJ+I49ur0RYtk=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=I3RGX8lym/EOh1geccrd6PVCQnKFPmYWLZ5q2JkquVTv1jsee5AVkkxm+SYAq3JZJ
-	 uNM4OeEHyNLO5kdR9hr022TmTXz8abOHYq15/wTIuCakLijIONShCtscBCVnOHjb/L
-	 BOsjYnFI92tGIU5fReojLwCBoAXSC7zhqKHCT3TZKhYUlOfA8f/ceRfrO2HCea58FZ
-	 S+uK2oeFYoqka34nkhRz85VtkPneaKbXXxNid+IUyharxvK3aOB1bSC6XIC4hIXvAa
-	 qUzt52WuCRljc9VHz0bxj7E+0sVI28G8O2rOnaDRH8yV7/NsZlmT4rXIGZYZT2r9os
-	 cbApfycMneubg==
-Date: Wed, 31 Jul 2024 08:25:39 -0600
+	b=KoBQlPePzBHPZlV54UjqECX61A07XOnV70KQwKzP3QBvJUFciFZS8oERi7NERNHkn
+	 3Uertu4pCpIyp3+2tHbKqM85nVd8JVdUd+q09x9IR3uJ2MLjYvqkMAfBKnsnnECUhU
+	 Rmb1CLqOJpeg/ATmq72NsV3RekeofW7goTy8fXZzWZHnUDE/K9jS2knRVyd9mUU2HC
+	 is/ptxyIdUF129DKdkeduEGZ/VBIikSBZ5mZ1VtwFpgY1hv0VzPj7BfTHL6mxtbT0O
+	 TUpWyk+bIlkXPFEONigVLTuyLw8qf3hf3+lirkLlC87PYzDJm44WHJ/P0vSeih8Ak4
+	 oecknszN+Qjcw==
+Date: Wed, 31 Jul 2024 08:25:41 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,44 +51,208 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- David Airlie <airlied@gmail.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: phone-devel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Karel Balej <balejk@matfyz.cz>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Rob Herring <robh+dt@kernel.org>, 
+ Haojian Zhuang <haojian.zhuang@linaro.org>, 
+ Tony Lindgren <tony@atomide.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Will Deacon <will@kernel.org>, 
+ linux-gpio@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>, 
+ David Wronek <david@mainlining.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Clark <robdclark@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240730013844.41951-6-mailingradian@gmail.com>
-References: <20240730013844.41951-6-mailingradian@gmail.com>
-Message-Id: <172243537297.718676.16575598294797737179.robh@kernel.org>
-Subject: Re: [PATCH 0/4] drm/msm/adreno: Add A615 GPU for SDM670 and Pixel
- 3a
+ ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
+In-Reply-To: <20240730-pxa1908-lkml-v11-0-21dbb3e28793@skole.hr>
+References: <20240730-pxa1908-lkml-v11-0-21dbb3e28793@skole.hr>
+Message-Id: <172243537508.718741.67144127787553602.robh@kernel.org>
+Subject: Re: [PATCH v11 00/12] Initial Marvell PXA1908 support
 
 
-On Mon, 29 Jul 2024 21:38:45 -0400, Richard Acayan wrote:
-> This adds support for the speed-binned A615 GPU on SDM670.
+On Tue, 30 Jul 2024 12:25:08 +0200, Duje Mihanović wrote:
+> Hello,
 > 
-> Richard Acayan (4):
->   dt-bindings: display/msm/gmu: Add SDM670 compatible
->   drm/msm/adreno: add a615 support
->   arm64: dts: qcom: sdm670: add gpu
->   arm64: dts: qcom: sdm670-google-common: enable gpu
+> This series adds initial support for the Marvell PXA1908 SoC and
+> "samsung,coreprimevelte", a smartphone using the SoC.
 > 
->  .../devicetree/bindings/display/msm/gmu.yaml  |   1 +
->  .../boot/dts/qcom/sdm670-google-sargo.dts     |  13 ++
->  arch/arm64/boot/dts/qcom/sdm670.dtsi          | 168 ++++++++++++++++++
->  drivers/gpu/drm/msm/adreno/a6xx_catalog.c     |  27 +++
->  4 files changed, 209 insertions(+)
+> USB works and the phone can boot a rootfs from an SD card, but there are
+> some warnings in the dmesg:
 > 
+> During SMP initialization:
+> [    0.006519] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU1: 0x00000000000000
+> [    0.006542] CPU features: Unsupported CPU feature variation detected.
+> [    0.006589] CPU1: Booted secondary processor 0x0000000001 [0x410fd032]
+> [    0.010710] Detected VIPT I-cache on CPU2
+> [    0.010716] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU2: 0x00000000000000
+> [    0.010758] CPU2: Booted secondary processor 0x0000000002 [0x410fd032]
+> [    0.014849] Detected VIPT I-cache on CPU3
+> [    0.014855] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU3: 0x00000000000000
+> [    0.014895] CPU3: Booted secondary processor 0x0000000003 [0x410fd032]
+> 
+> SMMU probing fails:
+> [    0.101798] arm-smmu c0010000.iommu: probing hardware configuration...
+> [    0.101809] arm-smmu c0010000.iommu: SMMUv1 with:
+> [    0.101816] arm-smmu c0010000.iommu:         no translation support!
+> 
+> A 3.14 based Marvell tree is available on GitHub
+> acorn-marvell/brillo_pxa_kernel, and a Samsung one on GitHub
+> CoderCharmander/g361f-kernel.
+> 
+> Andreas Färber attempted to upstream support for this SoC in 2017:
+> https://lore.kernel.org/lkml/20170222022929.10540-1-afaerber@suse.de/
+> 
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> 
+> Changes in v11:
+> - Rebase on v6.11-rc1 (conflict with DTS Makefile), no changes
+> - Link to v10: https://lore.kernel.org/r/20240424-pxa1908-lkml-v10-0-36cdfb5841f9@skole.hr
+> 
+> Changes in v10:
+> - Update trailers
+> - Rebase on v6.9-rc5
+> - Clock driver changes:
+>   - Add a couple of forgotten clocks in APBC
+>     - The clocks are thermal_clk, ipc_clk, ssp0_clk, ssp2_clk and swjtag
+>     - The IDs and register offsets were already present, but I forgot to
+>       actually register them
+>   - Split each controller block into own file
+>   - Drop unneeded -of in clock driver filenames
+>   - Simplify struct pxa1908_clk_unit
+>   - Convert to platform driver
+>   - Add module metadata
+> - DTS changes:
+>   - Properly name pinctrl nodes
+>   - Drop pinctrl #size-cells, #address-cells, ranges and #gpio-size-cells
+>   - Fix pinctrl input-schmitt configuration
+> - Link to v9: https://lore.kernel.org/20240402-pxa1908-lkml-v9-0-25a003e83c6f@skole.hr
+> 
+> Changes in v9:
+> - Update trailers and rebase on v6.9-rc2, no changes
+> - Link to v8: https://lore.kernel.org/20240110-pxa1908-lkml-v8-0-fea768a59474@skole.hr
+> 
+> Changes in v8:
+> - Drop SSPA patch
+> - Drop broken-cd from eMMC node
+> - Specify S-Boot hardcoded initramfs location in device tree
+> - Add ARM PMU node
+> - Correct inverted modem memory base and size
+> - Update trailers
+> - Rebase on next-20240110
+> - Link to v7: https://lore.kernel.org/20231102-pxa1908-lkml-v7-0-cabb1a0cb52b@skole.hr
+>   and https://lore.kernel.org/20231102152033.5511-1-duje.mihanovic@skole.hr
+> 
+> Changes in v7:
+> - Suppress SND_MMP_SOC_SSPA on ARM64
+> - Update trailers
+> - Rebase on v6.6-rc7
+> - Link to v6: https://lore.kernel.org/r/20231010-pxa1908-lkml-v6-0-b2fe09240cf8@skole.hr
+> 
+> Changes in v6:
+> - Address maintainer comments:
+>   - Add "marvell,pxa1908-padconf" binding to pinctrl-single driver
+> - Drop GPIO patch as it's been pulled
+> - Update trailers
+> - Rebase on v6.6-rc5
+> - Link to v5: https://lore.kernel.org/r/20230812-pxa1908-lkml-v5-0-a5d51937ee34@skole.hr
+> 
+> Changes in v5:
+> - Address maintainer comments:
+>   - Move *_NR_CLKS to clock driver from dt binding file
+> - Allocate correct number of clocks for each block instead of blindly
+>   allocating 50 for each
+> - Link to v4: https://lore.kernel.org/r/20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr
+> 
+> Changes in v4:
+> - Address maintainer comments:
+>   - Relicense clock binding file to BSD-2
+> - Add pinctrl-names to SD card node
+> - Add vgic registers to GIC node
+> - Rebase on v6.5-rc5
+> - Link to v3: https://lore.kernel.org/r/20230804-pxa1908-lkml-v3-0-8e48fca37099@skole.hr
+> 
+> Changes in v3:
+> - Address maintainer comments:
+>   - Drop GPIO dynamic allocation patch
+>   - Move clock register offsets into driver (instead of bindings file)
+>   - Add missing Tested-by trailer to u32_fract patch
+>   - Move SoC binding to arm/mrvl/mrvl.yaml
+> - Add serial0 alias and stdout-path to board dts to enable UART
+>   debugging
+> - Rebase on v6.5-rc4
+> - Link to v2: https://lore.kernel.org/r/20230727162909.6031-1-duje.mihanovic@skole.hr
+> 
+> Changes in v2:
+> - Remove earlycon patch as it's been merged into tty-next
+> - Address maintainer comments:
+>   - Clarify GPIO regressions on older PXA platforms
+>   - Add Fixes tag to commit disabling GPIO pinctrl calls for this SoC
+>   - Add missing includes to clock driver
+>   - Clock driver uses HZ_PER_MHZ, u32_fract and GENMASK
+>   - Dual license clock bindings
+>   - Change clock IDs to decimal
+>   - Fix underscores in dt node names
+>   - Move chosen node to top of board dts
+>   - Clean up documentation
+>   - Reorder commits
+>   - Drop pxa,rev-id
+> - Rename muic-i2c to i2c-muic
+> - Reword some commits
+> - Move framebuffer node to chosen
+> - Add aliases for mmc nodes
+> - Rebase on v6.5-rc3
+> - Link to v1: https://lore.kernel.org/r/20230721210042.21535-1-duje.mihanovic@skole.hr
+> 
+> ---
+> Andy Shevchenko (1):
+>       clk: mmp: Switch to use struct u32_fract instead of custom one
+> 
+> Duje Mihanović (11):
+>       dt-bindings: pinctrl: pinctrl-single: add marvell,pxa1908-padconf compatible
+>       pinctrl: single: add marvell,pxa1908-padconf compatible
+>       dt-bindings: clock: Add Marvell PXA1908 clock bindings
+>       clk: mmp: Add Marvell PXA1908 APBC driver
+>       clk: mmp: Add Marvell PXA1908 APBCP driver
+>       clk: mmp: Add Marvell PXA1908 APMU driver
+>       clk: mmp: Add Marvell PXA1908 MPMU driver
+>       dt-bindings: marvell: Document PXA1908 SoC
+>       arm64: Kconfig.platforms: Add config for Marvell PXA1908 platform
+>       arm64: dts: Add DTS for Marvell PXA1908 and samsung,coreprimevelte
+>       MAINTAINERS: add myself as Marvell PXA1908 maintainer
+> 
+>  .../devicetree/bindings/arm/mrvl/mrvl.yaml         |   5 +
+>  .../devicetree/bindings/clock/marvell,pxa1908.yaml |  48 +++
+>  .../bindings/pinctrl/pinctrl-single.yaml           |   4 +
+>  MAINTAINERS                                        |   9 +
+>  arch/arm64/Kconfig.platforms                       |   8 +
+>  arch/arm64/boot/dts/marvell/Makefile               |   3 +
+>  .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 328 +++++++++++++++++++++
+>  arch/arm64/boot/dts/marvell/pxa1908.dtsi           | 300 +++++++++++++++++++
+>  drivers/clk/mmp/Makefile                           |   2 +-
+>  drivers/clk/mmp/clk-frac.c                         |  57 ++--
+>  drivers/clk/mmp/clk-of-mmp2.c                      |  26 +-
+>  drivers/clk/mmp/clk-of-pxa168.c                    |   4 +-
+>  drivers/clk/mmp/clk-of-pxa1928.c                   |   6 +-
+>  drivers/clk/mmp/clk-of-pxa910.c                    |   4 +-
+>  drivers/clk/mmp/clk-pxa1908-apbc.c                 | 131 ++++++++
+>  drivers/clk/mmp/clk-pxa1908-apbcp.c                |  84 ++++++
+>  drivers/clk/mmp/clk-pxa1908-apmu.c                 | 123 ++++++++
+>  drivers/clk/mmp/clk-pxa1908-mpmu.c                 | 112 +++++++
+>  drivers/clk/mmp/clk.h                              |  10 +-
+>  drivers/pinctrl/pinctrl-single.c                   |   1 +
+>  include/dt-bindings/clock/marvell,pxa1908.h        |  88 ++++++
+>  21 files changed, 1296 insertions(+), 57 deletions(-)
+> ---
+> base-commit: 8400291e289ee6b2bf9779ff1c83a291501f017b
+> change-id: 20230803-pxa1908-lkml-6830e8da45c7
+> 
+> Best regards,
 > --
-> 2.45.2
-> 
+> Duje Mihanović <duje.mihanovic@skole.hr>
 > 
 > 
 
@@ -107,30 +271,30 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y qcom/sdm670-google-sargo.dtb' for 20240730013844.41951-6-mailingradian@gmail.com:
+New warnings running 'make CHECK_DTBS=y marvell/pxa1908-samsung-coreprimevelte.dtb' for 20240730-pxa1908-lkml-v11-0-21dbb3e28793@skole.hr:
 
-arch/arm64/boot/dts/qcom/sdm670-google-sargo.dtb: iommu@5040000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,sdm670-smmu-v2', 'qcom,adreno-smmu', 'qcom,smmu-v2'] is too long
-	['qcom,sdm670-smmu-v2', 'qcom,adreno-smmu', 'qcom,smmu-v2'] is too short
-	'qcom,sdm670-smmu-v2' is not one of ['qcom,msm8996-smmu-v2', 'qcom,msm8998-smmu-v2', 'qcom,sdm630-smmu-v2', 'qcom,sm6375-smmu-v2']
-	'qcom,sdm670-smmu-v2' is not one of ['qcom,qcm2290-smmu-500', 'qcom,qdu1000-smmu-500', 'qcom,sa8775p-smmu-500', 'qcom,sc7180-smmu-500', 'qcom,sc7280-smmu-500', 'qcom,sc8180x-smmu-500', 'qcom,sc8280xp-smmu-500', 'qcom,sdm670-smmu-500', 'qcom,sdm845-smmu-500', 'qcom,sdx55-smmu-500', 'qcom,sdx65-smmu-500', 'qcom,sdx75-smmu-500', 'qcom,sm6115-smmu-500', 'qcom,sm6125-smmu-500', 'qcom,sm6350-smmu-500', 'qcom,sm6375-smmu-500', 'qcom,sm8150-smmu-500', 'qcom,sm8250-smmu-500', 'qcom,sm8350-smmu-500', 'qcom,sm8450-smmu-500', 'qcom,sm8550-smmu-500', 'qcom,sm8650-smmu-500', 'qcom,x1e80100-smmu-500']
-	'qcom,sdm670-smmu-v2' is not one of ['qcom,qcm2290-smmu-500', 'qcom,sc7180-smmu-500', 'qcom,sc7280-smmu-500', 'qcom,sc8180x-smmu-500', 'qcom,sc8280xp-smmu-500', 'qcom,sdm845-smmu-500', 'qcom,sm6115-smmu-500', 'qcom,sm6350-smmu-500', 'qcom,sm6375-smmu-500', 'qcom,sm8150-smmu-500', 'qcom,sm8250-smmu-500', 'qcom,sm8350-smmu-500', 'qcom,sm8450-smmu-500']
-	'qcom,sdm670-smmu-v2' is not one of ['qcom,qcm2290-smmu-500', 'qcom,sa8775p-smmu-500', 'qcom,sc7280-smmu-500', 'qcom,sc8180x-smmu-500', 'qcom,sc8280xp-smmu-500', 'qcom,sm6115-smmu-500', 'qcom,sm6125-smmu-500', 'qcom,sm8150-smmu-500', 'qcom,sm8250-smmu-500', 'qcom,sm8350-smmu-500', 'qcom,sm8450-smmu-500', 'qcom,sm8550-smmu-500', 'qcom,sm8650-smmu-500', 'qcom,x1e80100-smmu-500']
-	'qcom,sdm670-smmu-v2' is not one of ['qcom,sc7280-smmu-500', 'qcom,sm8150-smmu-500', 'qcom,sm8250-smmu-500']
-	'qcom,sdm670-smmu-v2' is not one of ['qcom,msm8996-smmu-v2', 'qcom,sc7180-smmu-v2', 'qcom,sdm630-smmu-v2', 'qcom,sdm845-smmu-v2', 'qcom,sm6350-smmu-v2', 'qcom,sm7150-smmu-v2']
-	'qcom,sdm845-smmu-v2' was expected
-	'marvell,ap806-smmu-500' was expected
-	'qcom,sdm670-smmu-v2' is not one of ['nvidia,tegra186-smmu', 'nvidia,tegra194-smmu', 'nvidia,tegra234-smmu']
-	'arm,mmu-500' was expected
-	'qcom,sdm670-smmu-v2' is not one of ['arm,mmu-400', 'arm,mmu-401']
-	'qcom,sdm670-smmu-v2' is not one of ['arm,smmu-v1', 'arm,smmu-v2', 'arm,mmu-400', 'arm,mmu-401', 'arm,mmu-500', 'cavium,smmu-v2']
-	'qcom,smmu-v2' was expected
-	'qcom,smmu-500' was expected
-	'nvidia,smmu-500' was expected
-	'arm,smmu-v2' was expected
-	'arm,smmu-v1' was expected
-	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-arch/arm64/boot/dts/qcom/sdm670-google-sargo.dtb: /soc@0/iommu@5040000: failed to match any schema with compatible: ['qcom,sdm670-smmu-v2', 'qcom,adreno-smmu', 'qcom,smmu-v2']
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: /: memory: False schema does not allow {'device_type': ['memory'], 'reg': [[0, 0, 0, 0]]}
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: board-pins-0:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: board-pins-2:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: uart0-pins:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: gpio-keys-pins:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: i2c-muic-pins:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: sdh0-pins-0:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: sdh0-pins-1:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: pinmux@1e000: sdh0-pins-2:pinctrl-single,input-schmitt: [64, 0, 64, 112] is too long
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: mmc@80000: pinctrl-names: ['default'] is too short
+	from schema $id: http://devicetree.org/schemas/mmc/sdhci-pxa.yaml#
+arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dtb: mmc@80000: Unevaluated properties are not allowed ('pinctrl-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/mmc/sdhci-pxa.yaml#
 
 
 
