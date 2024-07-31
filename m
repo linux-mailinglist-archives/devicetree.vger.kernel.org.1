@@ -1,162 +1,145 @@
-Return-Path: <devicetree+bounces-89892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7AE943220
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:37:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141EE943238
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:41:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CBEF1C2145D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:37:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2C642849B7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36911BBBD1;
-	Wed, 31 Jul 2024 14:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AD51BBBFC;
+	Wed, 31 Jul 2024 14:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dPqui2rZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cH1b+leP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E981DDC9;
-	Wed, 31 Jul 2024 14:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB2D1BBBD3;
+	Wed, 31 Jul 2024 14:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722436654; cv=none; b=rkL0xU7ynAozi2Imlw4vSykWUu/GqmCMsgz1WjPnCf2MZIQEaMHh0b+iV8UE2eA4oUWDnITpMDO46OqYLFNSEiuRZMCYbshl8YlSpCgjKA/oakUzqdygqR062jfBvGnWnH3ZBUwrM/G3nC5TSYgoi/8x226J43KkQL8Y4zbi9qI=
+	t=1722436894; cv=none; b=ct7P/4FpswZJAc8fvqZdTZeGEiq2i4/ejlbtbbScJ/4jGaW1bThj/Yx0Hn/RhmVl1YGus2/mNYkjzJyW+37t9WuAH+NhFq/NIJY8o+T3kQ8bP0CrcxiT3nYRgDE4+AzycBAgqiUGyGxc2mHZhL9IKu9/IEuxDgU/cEolBFc+1EU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722436654; c=relaxed/simple;
-	bh=gWEUBtkFKZ9RYmy9L6XrO/5e+6MR4sPM4fHH7iWE8/w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PKwXrzLQ6G3dG5eMRQuSmoshsYMcBhWgoMsduUWfUMSrZulADaG8V+aBEETBJEnnsFA3tvls8I9YB2vQPjqrdrN8zAegvGFWU6fc7lJjKlgMfveo/I7iGwyWnM6O56rKMVAf5JTL7LbT5GvuFIGcKpAeXK265BeznOuz2aRtzHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dPqui2rZ; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VEbO72052518;
-	Wed, 31 Jul 2024 09:37:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722436644;
-	bh=QpzGqPZNogg7gfb8tMWXYKRLjjvoWBSL6FCUeY/FuoI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dPqui2rZu1RfCO16r3Ige6SnhRZsBQWrEtJInfEB4RrgUUOieoAUWKv0o+o6Mxbv4
-	 kZAPzfG4HxvQnDnX0tPUpADZ2qKzppK8afgyXhNZ3MaumwECBMdk4ZTfRymEskgcyE
-	 Z7VAg0JRd7/3t7+rHsHLmkJ5WLmgex3YqeGSeU6U=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VEbOA6128110
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jul 2024 09:37:24 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jul 2024 09:37:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jul 2024 09:37:24 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VEbNK2065889;
-	Wed, 31 Jul 2024 09:37:24 -0500
-Message-ID: <087ee9e2-50ec-4791-a534-b3ebbf594fe6@ti.com>
-Date: Wed, 31 Jul 2024 09:37:23 -0500
+	s=arc-20240116; t=1722436894; c=relaxed/simple;
+	bh=a6d9dkpDgRFGTxkNNcnx2adCgffjKzKz347yLU5nbIE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TE7lA0tp92AW0DfwYYKhnNLusVPZiS1tKSuNCbxWFiZMzd1YmLHHzO//9LK2Fe0hdCyFEWbUE2C+bvapumApFEJlJLB7mZRoQFNCkuqUi5UmIlefGIfHtAYY5+y9ezLWa93IY05yDr5qM3i1BO6oRtl2XCk5McwTE9+yH/gKbGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cH1b+leP; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722436893; x=1753972893;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=a6d9dkpDgRFGTxkNNcnx2adCgffjKzKz347yLU5nbIE=;
+  b=cH1b+lePJmwbmFpJJLPryPrY/Jr8WaoosD+EOGNJ/IDZRTM1rmKaYUrV
+   RuzBQ9eGsxkDp5kG044nLRuIPpMieStRXRJ8zMGaehc836AzxAKd2I6xG
+   MzZNXpHLHBSs+Hz3AMu++AOufCN1oOqJ1M/Prf4Sqjbd8XN2fahE2Q8Nd
+   gHbBdMG9wwN4zLoOBpysEUyijg9elFWgFQf7yOtL4AbwJ0zmHSzfRW6WX
+   mgRo3yeN3EMNIjQDwUc4Tdo3rf4mkJx83Sg+/EQNCwY7eGS7ftMz2iKxG
+   hJ820o5XIQ/Cmhx+k35mceq8POE4fBnudqGEeWCHu+ckA7SNU4Hbfs0s7
+   A==;
+X-CSE-ConnectionGUID: yAMSmLrST3CXSs/iS1g2oA==
+X-CSE-MsgGUID: jRrPMwgBS2G/fsz8rCVGeQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="20479799"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; 
+   d="scan'208";a="20479799"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jul 2024 07:41:22 -0700
+X-CSE-ConnectionGUID: l35uENETTZuSqeYZKaJ8NQ==
+X-CSE-MsgGUID: IAgz6FMFQ++jt7b51wgCrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; 
+   d="scan'208";a="55295528"
+Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
+  by orviesa007.jf.intel.com with ESMTP; 31 Jul 2024 07:41:21 -0700
+From: matthew.gerlach@linux.intel.com
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	joyce.ooi@intel.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH 0/7] Add PCIe Root Port support for Agilex family of chips
+Date: Wed, 31 Jul 2024 09:39:39 -0500
+Message-Id: <20240731143946.3478057-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce J742S2 SoC family
-To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye
-	<a-limaye@ti.com>
-References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
- <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
- <20240730123343.mqafgpj4zcnd5vs4@plaything>
- <20240731041916.stcbvkr6ovd7t5vk@uda0497581>
- <20240731110607.7fb42mgcsf2apodv@unshaven>
- <20240731135714.p53lki7mihzxcyk2@uda0497581>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240731135714.p53lki7mihzxcyk2@uda0497581>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 7/31/24 8:57 AM, Manorit Chawdhry wrote:
-> Hi Nishanth,
-> 
-> On 06:06-20240731, Nishanth Menon wrote:
->> On 09:49-20240731, Manorit Chawdhry wrote:
->>>>> + */
->>>>> +
->>>>> +#include "k3-j784s4.dtsi"
->>>>> +
->>>>> +/ {
->>>>> +	model = "Texas Instruments K3 J742S2 SoC";
->>>>> +	compatible = "ti,j742s2";
->>>>> +
->>>>> +	cpus {
->>>>> +		cpu-map {
->>>>> +			/delete-node/ cluster1;
->>>>> +		};
->>>>> +	};
->>>>> +
->>>>> +	/delete-node/ cpu4;
->>>>> +	/delete-node/ cpu5;
->>>>> +	/delete-node/ cpu6;
->>>>> +	/delete-node/ cpu7;
->>>>
->>>> I suggest refactoring by renaming the dtsi files as common and split out
->>>> j784s4 similar to j722s/am62p rather than using /delete-node/
->>>>
->>>
->>> I don't mind the suggestion Nishanth if there is a reason behind it.
->>> Could you tell why we should not be using /delete-node/?
->>>
->>
->> Maintenance, readability and sustenance are the reasons. This is a
->> optimized die. It will end up having it's own changes in property
->> and integration details. While reuse is necessary, modifying the
->> properties with overrides and /delete-nodes/ creates maintenance
->> challenges down the road. We already went down this road with am62p
->> reuse with j722s, and eventually determined split and reuse is the
->> best option. See [1] for additional guidance.
->>
->>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n189
-> 
-> Thank you for giving some reasoning, would do the needful!
-> 
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-This refactor will require some interesting naming for the
-common SoC files. Based on your name for the EVM, I'm guessing
-you will go with
+This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+Patches 1 and 2 have been reviewed previously and individually on the mailing
+list and are included here with their revision history and Reviewed-by: tags
+for convenience and completeness.
 
-k3-j784s4-common.dtsi
+Patch 1: 
+  Convert text device tree binding for Altera Root Port PCIe controller to YAML.
 
-included from the real k3-j784s4.dtsi and the new k3-j742s2.dtsi?
+Patch 2:
+  Convert text device tree binding for Altera PCIe MSI controller to YAML.
 
-Too bad the Jacinto SoC names don't use a hierarchical naming. :(
+Patch 3:
+  Add new compatible strings for the three variants of the Agilex PCIe controller IP.
 
-J7<family><part><spin><etc>..
+Patch 4:
+  Add a label to the soc@0 device tree node to be used by patch 5.
 
-Andrew
+Patch 5:
+  Add base dtsi for PCIe Root Port support of the Agilex family of chips.
 
-> Regards,
-> Manorit
-> 
->>
->> -- 
->> Regards,
->> Nishanth Menon
->> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-> 
+Patch 6:
+  Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
+
+Patch 7:
+  Update Altera PCIe controller driver to support the Agilex family of chips.
+
+D M, Sharath Kumar (1):
+  pci: controller: pcie-altera: Add support for Agilex
+
+Matthew Gerlach (6):
+  dt-bindings: PCI: altera: Convert to YAML
+  dt-bindings: PCI: altera: msi: Convert to YAML
+  dt-bindings: PCI: altera: Add binding for Agilex
+  arm64: dts: agilex: add soc0 label
+  arm64: dts: agilex: add dtsi for PCIe Root Port
+  arm64: dts: agilex: add dts enabling PCIe Root Port
+
+ .../bindings/pci/altera-pcie-msi.txt          |  27 --
+ .../devicetree/bindings/pci/altera-pcie.txt   |  50 ----
+ .../bindings/pci/altr,msi-controller.yaml     |  65 +++++
+ .../bindings/pci/altr,pcie-root-port.yaml     | 123 +++++++++
+ MAINTAINERS                                   |   4 +-
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |   2 +-
+ .../socfpga_agilex7f_socdk_pcie_root_port.dts |  16 ++
+ .../intel/socfpga_agilex_pcie_root_port.dtsi  |  55 ++++
+ drivers/pci/controller/pcie-altera.c          | 260 ++++++++++++++++--
+ 10 files changed, 507 insertions(+), 96 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie-msi.txt
+ delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/altr,msi-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+
+-- 
+2.34.1
+
 
