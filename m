@@ -1,172 +1,167 @@
-Return-Path: <devicetree+bounces-89995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A77F94370E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 22:23:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2B1943798
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 23:14:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FAF0B20FEE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 20:23:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FE3B1C2170D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 21:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5791014AD3F;
-	Wed, 31 Jul 2024 20:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41BB16C68F;
+	Wed, 31 Jul 2024 21:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mWAtc2tf"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="P8FD6ldE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26605182D8;
-	Wed, 31 Jul 2024 20:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF39729CE1
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 21:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722457421; cv=none; b=D80mPbRHWAiUkPGO0ymKp22epQvuLiwR8tk083PI9mNK8rRzO31YRRWpAU5aujJiZi0gN4UYUpYB2uyhaPKQ25zzQEw0j2N1oeRY38G5xgLpy6Y2Ps9WKb4+wyM1FTb1L3GEYC11KP7vbMtWjQ/sAUXJblebsyN3vL6gd+5kzL4=
+	t=1722460441; cv=none; b=hPm/PLKjQg3ocN5yusoLNOumJ4k8RPW1ol+NOXn8VvbqDHSnKfLexTs77DMvnE2g20qKXSz1uPrbHKcuByHRzfwHkQHm5ShaOJYukUrUKU6ga3c8Nl03VW8nGmqZqBNYIAZHcG8kiwLHdvadoxuqK36GltTrMJFQqX/3e6ud/jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722457421; c=relaxed/simple;
-	bh=AY5BnWdQ2yo2WR6h0ILx9cGNB0P+qWgeQPBR2YUHwvo=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ty+OpNk/mzU3FtRXcgyc7DdDy0oCrAIBIeW6/IipfmMT/Jd71LvyiHHOe20EOVPymQucYjfgq1B9FD9sisz1hWuoEYgxUzibAdsVwFV1XZ8Y2nHQLaX9vLTnr9KqoT0++VQAsVkCF3iAGqXr+J9cRFywx+evWXUmvtl+Hx01A0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mWAtc2tf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D6FC116B1;
-	Wed, 31 Jul 2024 20:23:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722457420;
-	bh=AY5BnWdQ2yo2WR6h0ILx9cGNB0P+qWgeQPBR2YUHwvo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=mWAtc2tfrspROl+zbHWZYl09LpX6URPVKntcxAbob7gPhpjZIerjxdwBfttMrXKu9
-	 MBZK5Bi1Ynl8UcdoMe0xNoUapMEzotKDii6M9r8ej82LINNVKENFATnIZhht6VR0fm
-	 8hgx6QLrj+NgFwRpixgXx2jSgNSQfZmPpOddURJSB7gWRluvJxG9sOWlHZrhs9QbAB
-	 iggB8gYwbL3hAiEBZ4a6N1gYgpfLdialV8foX5KcuaPXrKwWvgSprGiWBxkJSw1kMy
-	 qnfaSxzMSKIUnb+74rwPSWLnQIPwNdBomwYuCGBf1U4I6QmSRwy32a1xS35LUc+hYG
-	 a4l6/nmRF8Teg==
-Date: Wed, 31 Jul 2024 15:23:38 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: matthew.gerlach@linux.intel.com
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dinguyen@kernel.org, joyce.ooi@intel.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>,
-	D@bhelgaas.smtp.subspace.kernel.org,
-	M@bhelgaas.smtp.subspace.kernel.org
-Subject: Re: [PATCH 7/7] pci: controller: pcie-altera: Add support for Agilex
-Message-ID: <20240731202338.GA78770@bhelgaas>
+	s=arc-20240116; t=1722460441; c=relaxed/simple;
+	bh=yJ9pA9hFNNSRT1aeBnb+lif2aTDAwA5wRBIoRVAls8w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=RtJ5HjRsGjDnfqLXuZdeDVv3H0TKQrvhFAGkSedC2/eCMVKv85dT8rZQaCncAPBi7jYwuKYkW7PPPXTh0osGub7GYjgiWSPQRPndnsYIjoKzW9SaqWE9u9K8K2Fx9fu3wECQBmxC55PUZB1C5Aztx9TOvTDuJ69jMB4gg6nwnDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=P8FD6ldE; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240731211358euoutp026e1a38c3e33a32c4ee1a5dd794c70871~naKR2n3uY1333913339euoutp02_
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 21:13:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240731211358euoutp026e1a38c3e33a32c4ee1a5dd794c70871~naKR2n3uY1333913339euoutp02_
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1722460438;
+	bh=2pwRuB6aR+COZ5GILDtR6QzBmt48YqnOKY+gbzEXN6A=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=P8FD6ldE2hnBqlZao9fk2Sl+dt/oQ0ZM9wOwE/j4QS04USl3f+cXu9sluoT5jtt69
+	 /j353JO9zn4wQ9vHP0Lc31pneAlzHHT2YQlJ+SMW/0JCnTGEAc+D/2g1c0A3cLJxgr
+	 s87zFulc3BpDI0kmaG8K6jC3b6bS1A2Si/s7zloU=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20240731211357eucas1p2b49293f13d737d50049f292b5f1ba25c~naKRXKinN1089810898eucas1p2U;
+	Wed, 31 Jul 2024 21:13:57 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 6B.C4.09624.519AAA66; Wed, 31
+	Jul 2024 22:13:57 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240731211356eucas1p287adaf8a55c7c3e37c9ac8b36069b788~naKQUQCjT0996309963eucas1p2I;
+	Wed, 31 Jul 2024 21:13:56 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240731211356eusmtrp10d5b1aee0cf22252e5f10bf3f395a4a1~naKQTk9vo0610906109eusmtrp1Q;
+	Wed, 31 Jul 2024 21:13:56 +0000 (GMT)
+X-AuditID: cbfec7f2-c11ff70000002598-36-66aaa9158e8b
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id B2.99.08810.419AAA66; Wed, 31
+	Jul 2024 22:13:56 +0100 (BST)
+Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
+	[106.120.51.28]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240731211355eusmtip2d184d063d29a529418a12f6d6760b6ed~naKPZUOaV1705617056eusmtip2L;
+	Wed, 31 Jul 2024 21:13:55 +0000 (GMT)
+From: Mateusz Majewski <m.majewski2@samsung.com>
+To: "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Cc: Mateusz Majewski <m.majewski2@samsung.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
+	Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, ALIM AKHTAR
+	<alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, Anand
+	Moon <linux.amoon@gmail.com>
+Subject: [PATCH v2] MAINTAINERS: thermal: samsung: add myself as maintainer
+ of the driver
+Date: Wed, 31 Jul 2024 23:13:45 +0200
+Message-ID: <20240731211346.59027-1-m.majewski2@samsung.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240731143946.3478057-8-matthew.gerlach@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNKsWRmVeSWpSXmKPExsWy7djPc7qiK1elGWxskbF4MG8bm8X3LdeZ
+	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi3Ubb7FbLGxqYbeY
+	eGwys8XcL1OZLf7v2cFu8eRhH5vF8759TA6CHmvmrWH02DnrLrvH4j0vmTw2repk87hzbQ+b
+	x+Yl9R59W1YxenzeJBfAEcVlk5Kak1mWWqRvl8CVseX+ZsaCyxwVO95mNDDOZe9i5OCQEDCR
+	uLrFs4uRi0NIYAWjxKcFjYxdjJxAzhdGifU77SASnxklrv7pYwVJgDSsf/OPCaJoOaPE1/nq
+	EEWtTBJXnx4CS7AJGEg8eLOMHSQhInCVSeLZ009gDrPAE2aJzU+msYFUCQtES6x4+JIFxGYR
+	UJXoX7gerJtXwEZi99zFLBDr5CV69/dBxQUlTs58AhZnBoo3b53NDDJUQuALh8TXaffYIRpc
+	JJZO7GGCsIUlXh3fAhWXkTg9uQdqaL7EjM3vWSABUCFx96AXhGkt8fEMM4jJLKApsX6XPkTU
+	UeLevkgIk0/ixltBiP18EpO2TWeGCPNKdLQJQUxWlTi+ZxIzhC0t8aTlNtQlHhJd76axQEIt
+	VuLEj5VsExgVZiH5ahaSr2YhnLCAkXkVo3hqaXFuemqxYV5quV5xYm5xaV66XnJ+7iZGYHo7
+	/e/4px2Mc1991DvEyMTBeIhRgoNZSYRX6OTKNCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8qiny
+	qUIC6YklqdmpqQWpRTBZJg5OqQYmobV867Z6n1GcwmDU8NtWn+vP3IkKt+cJRlxbq3t0t4vO
+	Ksa9D80cU87uPRbMp75U7vnWJmH5qw9SZSM2b5vWrirhqnb8zL3N33Nkny9TKvUziru+fEeE
+	XiOr6na5hzzSYe2m3Mkucww7fO+lr3qexuohOXX18vtr5Hj6g9hNDl+4k3Q7OXDB1J9ba/sv
+	NCXdk1qxZqnYZQ61SmWbWhOHwz5RW7NrPtt1CrBmLjzR0bNfKmL2X+vze99onBGoivHKv2V4
+	2CGxpqMi0OpB+t/PhiwLg/9snCi+Ksas6NShpMfl59+IH1npKMZUUfOYUzz4/zzek8G/Fy6S
+	YpqwUNrGQ7O0afdd5tVT56+uWSipxFKckWioxVxUnAgASoSbEN4DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsVy+t/xe7oiK1elGSzbJ2LxYN42NovvW64z
+	WazZe47JYt5nWYv5R86xWpw/v4HdYtPja6wWl3fNYbP43HuE0WLG+X1MFus23mK3WNjUwm4x
+	8dhkZou5X6YyW/zfs4Pd4snDPjaL5337mBwEPdbMW8PosXPWXXaPxXteMnlsWtXJ5nHn2h42
+	j81L6j36tqxi9Pi8SS6AI0rPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/O
+	JiU1J7MstUjfLkEvY8v9zYwFlzkqdrzNaGCcy97FyMkhIWAisf7NP6YuRi4OIYGljBJHOqey
+	QCSkJQ5/mQJVJCzx51oXG0RRM5PEt8b9YEVsAgYSD94sAysSEbjMJLFztgpIEbPAO2aJrp4G
+	sISwQKTErqlXGEFsFgFVif6F65lAbF4BG4ndcxdDbZOX6N3fBxUXlDg58wlYnBko3rx1NvME
+	Rr5ZSFKzkKQWMDKtYhRJLS3OTc8tNtQrTswtLs1L10vOz93ECIyxbcd+bt7BOO/VR71DjEwc
+	jIcYJTiYlUR4hU6uTBPiTUmsrEotyo8vKs1JLT7EaAp030RmKdHkfGCU55XEG5oZmBqamFka
+	mFqaGSuJ83oWdCQKCaQnlqRmp6YWpBbB9DFxcEo1ME17ut5ZjU1R9MrNCcsZ+TnWl+c6Vc5Z
+	ynL8g+7C6Ryy06qO8wQ/mb+94y9X/rbHvAtLlPbdTPOsdNTTiT7w4OvxAz9L/8/2zq+87X9l
+	wncVUWMJGZv9ooKrXVle27dVO7xslJuzRPT2cmkmv/dxzBq+N73OKwbYxzOKXRPmsIp6pO4z
+	U3CCQqjHQRHni8vNPAUb5zj76PQ8y1jw9ZnZma9eQXdifLavMMt8I6UXfjx7a3r54Q4j9RbJ
+	4q4Hb69UVewqEWQTtjthqW3gYLhO6i2rQs5v+yndr6LqVRsjN9xiFnFdEK0w8cqc1Yv14+1n
+	HRR/d+iV/FMuNibb5XJWh762ci9TXJhrfeWBIeN2JZbijERDLeai4kQAnkwNwjoDAAA=
+X-CMS-MailID: 20240731211356eucas1p287adaf8a55c7c3e37c9ac8b36069b788
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20240731211356eucas1p287adaf8a55c7c3e37c9ac8b36069b788
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240731211356eucas1p287adaf8a55c7c3e37c9ac8b36069b788
+References: <CGME20240731211356eucas1p287adaf8a55c7c3e37c9ac8b36069b788@eucas1p2.samsung.com>
 
-In subject:
+I am familiar with the code of this driver, having contributed to it
+before. I also have access to most of the supported SoCs for testing. I
+am going to have more time to help with this code, so I would love to do
+so slightly more formally.
 
-  PCI: altera: Add Agilex support
+This has been discussed previously in
+https://lore.kernel.org/lkml/e73e1a14-dfa0-4a36-bc6e-5d6421553788@kernel.org
+where Krzysztof Kozlowski (as one of the existing maintainers of this
+driver) has reacted positively to the idea of this.
 
-to match style of history.
+Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
+---
+v1 -> v2: slightly more detailed rationale.
 
->  #define TLP_CFG_DW1(pcie, tag, be)	\
-> -	(((TLP_REQ_ID(pcie->root_bus_nr,  RP_DEVFN)) << 16) | (tag << 8) | (be))
-> +	(((TLP_REQ_ID((pcie)->root_bus_nr,  RP_DEVFN)) << 16) | ((tag) << 8) | (be))
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-Seems OK, but unrelated to adding Agilex support, so it should be a
-separate patch.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 12b870712da4..9133257a8509 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20247,6 +20247,7 @@ F:	drivers/net/ethernet/samsung/sxgbe/
+ SAMSUNG THERMAL DRIVER
+ M:	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>
+ M:	Krzysztof Kozlowski <krzk@kernel.org>
++M:	Mateusz Majewski <m.majewski2@samsung.com>
+ L:	linux-pm@vger.kernel.org
+ L:	linux-samsung-soc@vger.kernel.org
+ S:	Maintained
+-- 
+2.45.1
 
-> +#define AGLX_RP_CFG_ADDR(pcie, reg)	\
-> +	(((pcie)->hip_base) + (reg))
-
-Fits on one line.
-
-> +#define AGLX_BDF_REG 0x00002004
-> +#define AGLX_ROOT_PORT_IRQ_STATUS 0x14c
-> +#define AGLX_ROOT_PORT_IRQ_ENABLE 0x150
-> +#define CFG_AER                   BIT(4)
-
-Indent values to match #defines above.
-
->  static bool altera_pcie_hide_rc_bar(struct pci_bus *bus, unsigned int  devfn,
->  				    int offset)
->  {
-> -	if (pci_is_root_bus(bus) && (devfn == 0) &&
-> -	    (offset == PCI_BASE_ADDRESS_0))
-> +	if (pci_is_root_bus(bus) && devfn == 0 && offset == PCI_BASE_ADDRESS_0)
->  		return true;
-
-OK, but again unrelated to Agilex.
-
-> @@ -373,7 +422,7 @@ static int tlp_cfg_dword_write(struct altera_pcie *pcie, u8 bus, u32 devfn,
->  	 * Monitor changes to PCI_PRIMARY_BUS register on root port
->  	 * and update local copy of root bus number accordingly.
->  	 */
-> -	if ((bus == pcie->root_bus_nr) && (where == PCI_PRIMARY_BUS))
-> +	if (bus == pcie->root_bus_nr && where == PCI_PRIMARY_BUS)
-
-Ditto.
-
-> @@ -577,7 +731,7 @@ static void altera_wait_link_retrain(struct altera_pcie *pcie)
->  			dev_err(dev, "link retrain timeout\n");
->  			break;
->  		}
-> -		udelay(100);
-> +		usleep_range(50, 150);
-
-Where do these values come from?  Needs a comment, ideally with a spec
-citation.
-
-How do we know a 50us delay is enough when we previously waited at
-least 100us?
-
-> @@ -590,7 +744,7 @@ static void altera_wait_link_retrain(struct altera_pcie *pcie)
->  			dev_err(dev, "link up timeout\n");
->  			break;
->  		}
-> -		udelay(100);
-> +		usleep_range(50, 150);
-
-Ditto.
-
-> +static void aglx_isr(struct irq_desc *desc)
-> +{
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	struct altera_pcie *pcie;
-> +	struct device *dev;
-> +	u32 status;
-> +	int ret;
-> +
-> +	chained_irq_enter(chip, desc);
-> +	pcie = irq_desc_get_handler_data(desc);
-> +	dev = &pcie->pdev->dev;
->  
-> +	status = readl(pcie->hip_base + pcie->pcie_data->port_conf_offset +
-> +		       pcie->pcie_data->port_irq_status_offset);
-> +	if (status & CFG_AER) {
-> +		ret = generic_handle_domain_irq(pcie->irq_domain, 0);
-> +		if (ret)
-> +			dev_err_ratelimited(dev, "unexpected IRQ,\n");
-
-Was there supposed to be more data here, e.g., an IRQ %d or something?
-Or is it just a spurious "," at the end of the line?
-
->  	pcie->irq_domain = irq_domain_add_linear(node, PCI_NUM_INTX,
-> -					&intx_domain_ops, pcie);
-> +						 &intx_domain_ops, pcie);
-
-Cleanup that should be in a separate patch.  *This* patch should have
-the absolute minimum required to enable Agilex to make it easier to
-review/backport/revert/etc.
-
-> +static const struct altera_pcie_data altera_pcie_3_0_f_tile_data = {
-> +	.ops = &altera_pcie_ops_3_0,
-> +	.version = ALTERA_PCIE_V3,
-> +	.cap_offset = 0x70,
-
-It looks like this is where the PCIe Capability is?  There's no way to
-discover this offset, e.g., by following the capability list like
-pci_find_capability() does?
-
-Bjorn
 
