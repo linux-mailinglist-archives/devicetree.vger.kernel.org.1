@@ -1,127 +1,109 @@
-Return-Path: <devicetree+bounces-89822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60B9942DE0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C98D1942DEB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:18:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 934BF1F23EB9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:14:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 696231F25057
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5DD1AE86D;
-	Wed, 31 Jul 2024 12:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7518B1AB534;
+	Wed, 31 Jul 2024 12:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="NnxwHnNp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440481AE868;
-	Wed, 31 Jul 2024 12:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D614D18E03E;
+	Wed, 31 Jul 2024 12:17:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722428050; cv=none; b=RwIEKDLgU+74yQueolYwXcL6AhYyCcVxIQK+I23d9SzuJcR38IcZPc7QmKt1GQ1NR5iPvKBzHhhZ6VWH4JIEJZ4Kewi7V8+yiWnG9P/BYIL52ZVXuLj88cN5GrIZw0AShP7tuqVjU0JHOvIYhdk/FIMiQdP3rjA6ZiJWrInxkEc=
+	t=1722428279; cv=none; b=t+qrqWA0yKku7S40qZQSUGDph9uWoxV5lMMQZzQZovRyEQ2xoATxH1hQUGVI9/S+xUgJ3FyIm9bEg7kdvf4FqeK1PuzB1dSyCqFSn0bPc0ziLO1v90KRjdWnI9CV66kcJrgoqmcGlmoIeEOLVuVUDtIj9fy7u0jlaLxpngBkG7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722428050; c=relaxed/simple;
-	bh=wFR0UxG5PNit1u0AdPSe1AID1vRUjTbFB4Xbjv/7Pyk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oewS4MKczkB90y44MvI+C4AYWdTO/KtDejqK7HUsz1PW5xLOinSXe5/+tjRhfQoZNPPFEMDrj8YsNyp+UWDepw2hOi6RYFzzIcIFOtkX1XzI9xHRphHhYQaKIYmsN0d2r14ken+fExiCD2EZ2Ny45ZMoibLpcssw5zeV3sw5Nn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4459D1007;
-	Wed, 31 Jul 2024 05:14:33 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3BD5C3F766;
-	Wed, 31 Jul 2024 05:14:06 -0700 (PDT)
-Date: Wed, 31 Jul 2024 13:14:03 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Debbie Martin <Debbie.Martin@arm.com>
-Cc: liviu.dudau@arm.com, sudeep.holla@arm.com, lpieralisi@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: arm: Add stdout-path
-Message-ID: <20240731131403.54a9443a@donnerap.manchester.arm.com>
-In-Reply-To: <20240730103758.907950-1-Debbie.Martin@arm.com>
-References: <20240730103758.907950-1-Debbie.Martin@arm.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1722428279; c=relaxed/simple;
+	bh=87Pw7zymow35gU5STehFdamCCw2WSS7rr0FeXYv0z8I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K1we17HgdDHWZ7zpoe5XY77i32tB4asiWpWlKYpoLnW9xbIyVd0+znvGROpnrxwKc1pKoABNXE851eI5gdxFAzny7CvrwpquW8PWllz6K+HAQTuiWYSW0i3DgIqaAX8udClhKcpqPJnS9gsiPnqLvaXyzZyvMHLneSZMSiCs04A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=NnxwHnNp; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: e3f8668c4f3611ef9a4e6796c666300c-20240731
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=+68I2wt+mK5kj3jVcgGesLqev3xV/ggibaKNqaiJVLQ=;
+	b=NnxwHnNpkAti5Cm+B4GZCFRSlB2K9J4F6EoFhqCsvH0IbznjxJbQfTP28CBvxp63f+4Npx09mSx99h4pqvQIBoBVE+K+97bhFj5BBOrA/MAZjFNkN5TfzoSUAVoB2qCJ8HPZUesTO006S+2+FM4PdAgIR2ZYzsFg9OA+6BwLV+0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:15f5e026-68c9-4ee4-880a-ba49c65ff1a7,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:48fa180e-46b0-425a-97d3-4623fe284021,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:1,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULN,TF_CID_SPAM_SNR
+X-UUID: e3f8668c4f3611ef9a4e6796c666300c-20240731
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <shun-yi.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2033716978; Wed, 31 Jul 2024 20:17:44 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 31 Jul 2024 05:17:44 -0700
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 31 Jul 2024 20:17:43 +0800
+From: Shun-yi Wang <shun-yi.wang@mediatek.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Conor Dooley
+	<conor+dt@kernel.org>, Tinghan Shen <tinghan.shen@mediatek.com>,
+	<linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<jason-ch.chen@mediatek.com>, <yaya.chang@mediatek.com>,
+	<teddy.chen@mediatek.com>, shun-yi.wang <shun-yi.wang@mediatek.com>
+Subject: [PATCH v2 0/2] Support multiple reserved memory regions
+Date: Wed, 31 Jul 2024 20:17:28 +0800
+Message-ID: <20240731121730.1196-1-shun-yi.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK: N
 
-On Tue, 30 Jul 2024 11:37:58 +0100
-Debbie Martin <Debbie.Martin@arm.com> wrote:
+From: "shun-yi.wang" <shun-yi.wang@mediatek.com>
 
-> Add stdout-path to the Arm devicetrees to specify the primary console.
-> This means that distributions can boot without the need for
-> platform-specific command line parameters i.e. they can use earlycon
-> with no parameters and no console argument is needed at all.
+Besides the reserved memory region for SCP, there are additional 
+reserved memory regions for specific hardware use.
+Currently, only a single memory region is supported.
+Modifications are made to support multiple memory regions.
 
-Looks good to me, and aligns with what the other DTs do:
+Changes in v2:
+ - Modify description of memory region in dt-bindings document
+ - Fix comments in v1, initial value and from '!i' 'i == 0'
+ - Link to v1: https://lore.kernel.org/all/20240703115308.17436-1-shun-yi.wang@mediatek.com
 
-> Signed-off-by: Debbie Martin <Debbie.Martin@arm.com>
+shun-yi.wang (2):
+  dt-bindings: remoteproc: Support multiple reserved memory regions
+  remoteproc: mediatek: Support multiple reserved memory regions
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+ .../bindings/remoteproc/mtk,scp.yaml          |  8 ++++--
+ drivers/remoteproc/mtk_scp.c                  | 27 ++++++++++++-------
+ 2 files changed, 24 insertions(+), 11 deletions(-)
 
-Cheers,
-Andre
-
-> ---
->  arch/arm64/boot/dts/arm/foundation-v8.dtsi | 4 +++-
->  arch/arm64/boot/dts/arm/fvp-base-revc.dts  | 4 +++-
->  arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts | 4 +++-
->  3 files changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> index 93f1e7c026b8..083be35495b3 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> @@ -18,7 +18,9 @@ / {
->  	#address-cells = <2>;
->  	#size-cells = <2>;
->  
-> -	chosen { };
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
->  
->  	aliases {
->  		serial0 = &v2m_serial0;
-> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> index 85f1c15cc65d..19973ab4ea6b 100644
-> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> @@ -24,7 +24,9 @@ / {
->  	#address-cells = <2>;
->  	#size-cells = <2>;
->  
-> -	chosen { };
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
->  
->  	aliases {
->  		serial0 = &v2m_serial0;
-> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> index afdf954206f1..7f7226711d4b 100644
-> --- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> @@ -23,7 +23,9 @@ / {
->  	#address-cells = <2>;
->  	#size-cells = <2>;
->  
-> -	chosen { };
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
->  
->  	aliases {
->  		serial0 = &v2m_serial0;
+-- 
+2.18.0
 
 
