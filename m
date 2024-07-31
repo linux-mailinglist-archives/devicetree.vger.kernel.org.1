@@ -1,190 +1,137 @@
-Return-Path: <devicetree+bounces-89866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5139D94313F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:47:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF157943145
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B1E3280ECC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:47:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC9E01C211E5
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D93D1AD40D;
-	Wed, 31 Jul 2024 13:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1B41B1505;
+	Wed, 31 Jul 2024 13:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ejJIiJJe"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nwL1aMJR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AF61607BA;
-	Wed, 31 Jul 2024 13:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC081B0110
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 13:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722433651; cv=none; b=eXSaUNsS/OGh0/WfyPAz+iSSjy+g8Aop0k2y+ZHbBNXNVeXHKA7vKcl5bjo9pdqMkakEdZCogFzeEIrvQJ/4jd/YT5veC1pwnh7N+v6A7SEp8aHJiXYsmtzl8xiP2ptJQHX2avlgLjJEWNdmIqHdtUGyCu6m2P8R4MCI8Id1Q/s=
+	t=1722433688; cv=none; b=syAp48HdJVjyTTqDKQHA6frTCqqEBa0VHHopM/xtjiwzLIlyVZ4t/qJirQ1EQFPiD3o/xdHmctS/OGk3ppR74Bp7FK0QA8nfkW2/5+9voUu/uzadGPq+uWftEIMmnHZrH7hvgdyVWtFu4y0v7GOIE8sY7ggNL0TTasWJwdq/rJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722433651; c=relaxed/simple;
-	bh=bWjUxuw/bFpPMmL/Vpdv20Re4oaTJut4VK2k8K8u2l0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pyn2no6K6pebxCGJC+jzuoMo2jmuryYpmgWDBU10Oc0r9GkSid7VnMBGlaJLGtOWdNLnBmofRy1D+V1bdrqggWai1u6SKV+Bomsa4Aje+KbHnx4qhl9tE1vMmO2bwLXq7Bjw9JJktrOcC2DaZIvy2qJrFAdDSMuZ4KTRrlN3cfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ejJIiJJe; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 23DD2F85;
-	Wed, 31 Jul 2024 15:46:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1722433598;
-	bh=bWjUxuw/bFpPMmL/Vpdv20Re4oaTJut4VK2k8K8u2l0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ejJIiJJe54gJ8IfG8PT0fVVh91m8puR/joJoDEeDKuI9DlpvI4lc85KVHMLyyn2f9
-	 90wfBNX6EKhB2JCjhNDaVtm5mEK+29RWLujoC3lPqBKX7QEmmGkcjvoGFDLmr1N2Aj
-	 zbLjo6YXpzujDjwzgs3nPkj6UeNPTFlfSVXHibNM=
-Date: Wed, 31 Jul 2024 16:47:05 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	"biju.das.au" <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 3/9] dt-bindings: display: renesas,rzg2l-du: Document
- RZ/G2UL DU bindings
-Message-ID: <20240731134705.GD12477@pendragon.ideasonboard.com>
-References: <20240709135152.185042-1-biju.das.jz@bp.renesas.com>
- <20240709135152.185042-4-biju.das.jz@bp.renesas.com>
- <20240727004958.GF300@pendragon.ideasonboard.com>
- <TY3PR01MB11346C37466562CBB2751F3CD86B72@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1722433688; c=relaxed/simple;
+	bh=jDRgG/QLRcrZ3k33DG+HUit1LgtQ0AiJ4a37RlX/MEo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=j63aRh8NHiuP5XykmydrHDXdl/BtdNn+IAW91fZndCxFKIR5kO7hwlRbA9V9cw/16Tcplk6lRJ3kWjO7f3SnpHZ3k8FUd+asN/l4vw1eQyYQdTOrGzjq9qgCjFozUFzgETcBtWl6nh7YX54jA5V+1cAa5c93FJRTox7nKNTokxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nwL1aMJR; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-709428a9469so2979351a34.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 06:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722433686; x=1723038486; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bdRZF0zEVgJezgw1kjlb7+blA/W6S32stDzVeGft97I=;
+        b=nwL1aMJRIMYI11TxcL0iw+A+yVDajClnIsgVIbNSuH1r6VmSu9/6xACu3BPdSqa1+J
+         l35qlAHP4lrqIBRqkdFnNMTb10VTpqqnUed3Df7y/ZerRAOjpb2fobQoIwiZHk10Dc1H
+         Xr6/Z8llBJpGg/vNozdRsikL7re54tv45zPs8A0gEzJbu22W2an6CMiUuFja4gLBC82E
+         Takv2hd0fsqPGIau4y1wWEoIcA7NBUDqixFl0Jzoc/aJTPcONh5XqbiEbCY5rr9XSZrc
+         22ajVsKWlEZD9sV33DRcVqTjtczX1szHhD1yOHIgmujxMPbDPx04aFTm4fhPMX5NQ5BT
+         9tjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722433686; x=1723038486;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bdRZF0zEVgJezgw1kjlb7+blA/W6S32stDzVeGft97I=;
+        b=g1p+C0nifCoKKEU3aejFXmNTTEa2GDOGnJ31Df7GhDsU63lLzGSKiXaPtCSeF59GUL
+         qIGW4kcStvxewf12JC3pnkfb/WcPxfsJyqfoRfmmEvFDHBMWP7NDyT0uqtQjvypD39VK
+         x1wUjiAWQiBnS2LkIdnIymPsYVKEVT8QKed+6FVa1e/zLoirxHjgTD4bf43y4gtQUZCU
+         iW3gosLDVDY9y8iOoLZPouSshCuMoAvIOwI/Mlt6CpzuVDatRwk6bZggTilBnqEA3ffZ
+         bI/3he3ivnwVCWeqQk0BdK+rswr1+ySccRKJ0vWQ8uawJrb1VtsVw4UyRmmeK+Hl5XOy
+         LqeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHqJ4JHcT9pJXXXUIuYH9nGLXHbt1txv4dIsVF8KYMt++nZ/8BSmQI8xwvZ8PlSdo/y8RZUStfxshkruNHKV6ie5/Xdq5HYh2CKw==
+X-Gm-Message-State: AOJu0Yw8tvoGVEkurzT2G6eC7k+mzj1Iv3CGGObFrKa5teTmGmlt7dHs
+	UcvJVLNznh9cMBCAin+a62qHQ0LFejUhLlFGWF9ezASQxKTnOADbxrdHW+KisI8=
+X-Google-Smtp-Source: AGHT+IFuGK3+GfRNWwUpwAOBceLvx7l5m5dsWdus7T/LXIS+gjchpPdFnIJvpqhgswgrT52cWnyV2g==
+X-Received: by 2002:a9d:6e11:0:b0:703:5dbc:1aa9 with SMTP id 46e09a7af769-70940c18633mr14176869a34.13.1722433685650;
+        Wed, 31 Jul 2024 06:48:05 -0700 (PDT)
+Received: from [127.0.1.1] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a1d73955ccsm746209985a.11.2024.07.31.06.48.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jul 2024 06:48:05 -0700 (PDT)
+From: Trevor Gamblin <tgamblin@baylibre.com>
+Subject: [PATCH RFC 0/3] iio: adc: add new ad7625 driver
+Date: Wed, 31 Jul 2024 09:48:02 -0400
+Message-Id: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <TY3PR01MB11346C37466562CBB2751F3CD86B72@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJJAqmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDc2MD3cQUczMj0/giQ10zgxRD89REIwtLUwsloPqCotS0zAqwWdFKQW7
+ OSrG1tQCtbOUMYAAAAA==
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ David Lechner <dlechner@baylibre.com>, 
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Trevor Gamblin <tgamblin@baylibre.com>
+X-Mailer: b4 0.14.1
 
-Hi Biju,
+This series adds a new driver for the Analog Devices Inc. AD7625,
+AD7626, AD7960, and AD7961. These chips are part of a family of
+LVDS-based SAR ADCs. The initial driver implementation does not support
+the devices' self-clocked mode, although that can be added later.
 
-On Mon, Jul 29, 2024 at 09:05:59AM +0000, Biju Das wrote:
-> On Saturday, July 27, 2024 1:50 AM, Laurent Pinchart wrote:
-> > On Tue, Jul 09, 2024 at 02:51:41PM +0100, Biju Das wrote:
-> > > Document DU found in RZ/G2UL SoC. The DU block is identical to RZ/G2L
-> > > SoC, but has only DPI interface.
-> > >
-> > > While at it, add missing required property port@1 for RZ/G2L and
-> > > RZ/V2L SoCs. Currently there is no user for the DPI interface and
-> > > hence there won't be any ABI breakage for adding port@1 as required
-> > > property for RZ/G2L and RZ/V2L SoCs.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > ---
-> > > v1->v2:
-> > >  * Updated commit description related to non ABI breakage.
-> > >  * Added Ack from Conor.
-> > > ---
-> > >  .../bindings/display/renesas,rzg2l-du.yaml    | 32 +++++++++++++++++--
-> > >  1 file changed, 29 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > > b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > > index 08e5b9478051..c0fec282fa45 100644
-> > > --- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> > > @@ -18,6 +18,7 @@ properties:
-> > >    compatible:
-> > >      oneOf:
-> > >        - enum:
-> > > +          - renesas,r9a07g043u-du # RZ/G2UL
-> > >            - renesas,r9a07g044-du # RZ/G2{L,LC}
-> > >        - items:
-> > >            - enum:
-> > > @@ -60,9 +61,6 @@ properties:
-> > >          $ref: /schemas/graph.yaml#/properties/port
-> > >          unevaluatedProperties: false
-> > >
-> > > -    required:
-> > > -      - port@0
-> > > -
-> > >      unevaluatedProperties: false
-> > >
-> > >    renesas,vsps:
-> > > @@ -88,6 +86,34 @@ required:
-> > >
-> > >  additionalProperties: false
-> > >
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: renesas,r9a07g043u-du
-> > > +    then:
-> > > +      properties:
-> > > +        ports:
-> > > +          properties:
-> > > +            port@0: false
-> > > +            port@1:
-> > > +              description: DPI
-> > > +
-> > > +          required:
-> > > +            - port@1
-> > 
-> > Why do you use port@1 for the DPI output here, and not port@0 ?
-> 
-> Currently the output is based on port number and port = 1 corresponds to DPI. See [1].
-> 
-> For consistency, I documented bindings for RZ/G2L family DU's similar to RZ/G2{H,M,N,E} DU [2].
-> 
-> So please let me know, are you ok with this?
+One aspect that is still uncertain is whether there should be a
+devicetree property indicating if the DCO+/- pins are connected, so
+specific feedback on that is appreciated.
 
-I won't insist strongly, but I don't think that using the port number to
-indicate the output type is the best idea. In the R-Car DU driver at
-least, that wouldn't have scaled. We have multiple outputs of the same
-type on some SoCs. Furthemore, the same DU hardware channel number (i.e.
-the offset of the registers specific to that channel in the DU register
-space) is not the same across SoCs for the same output type. I recommend
-numbering the ports based on the hardware number of the output (the
-exact meaning of this is specific to your device, I haven't checked what
-it means for RZ/G2L), not on the output type.
+The devices make use of two offset PWM signals, one to trigger
+conversions and the other as a burst signal for transferring data to the
+host. These rely on the new PWM waveform functionality being
+reviewed in [1].
 
-> [1] https://elixir.bootlin.com/linux/v6.10.2/source/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c#L187
-> 
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/renesas,du.yaml?h=next-20240729#n546
-> 
-> > > +    else:
-> > > +      properties:
-> > > +        ports:
-> > > +          properties:
-> > > +            port@0:
-> > > +              description: DSI
-> > > +            port@1:
-> > > +              description: DPI
-> > > +
-> > > +          required:
-> > > +            - port@0
-> > > +            - port@1
-> > 
-> > You're missing a blank line here.
-> 
-> OK, will fix this'
+This work is being done by BayLibre and on behalf of Analog Devices
+Inc., hence the maintainers are @analog.com.
 
+Special thanks to David Lechner for his guidance and reviews.
+
+Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+---
+Trevor Gamblin (3):
+      dt-bindings: iio: adc: add AD762x/AD796x ADCs
+      iio: adc: ad7625: add driver
+      docs: iio: new docs for ad7625 driver
+
+ .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 ++++++
+ Documentation/iio/ad7625.rst                       |  91 +++
+ MAINTAINERS                                        |  11 +
+ drivers/iio/adc/Kconfig                            |  15 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/ad7625.c                           | 626 +++++++++++++++++++++
+ 6 files changed, 920 insertions(+)
+---
+base-commit: ac6a258892793f0a255fe7084ec2b612131c67fc
+change-id: 20240730-ad7625_r1-60d17ea28958
+
+Best regards,
 -- 
-Regards,
+Trevor Gamblin <tgamblin@baylibre.com>
 
-Laurent Pinchart
 
