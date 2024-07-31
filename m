@@ -1,141 +1,152 @@
-Return-Path: <devicetree+bounces-89742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F0294292D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:30:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 111BA942933
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:31:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFB291F2451E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:30:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42CEE1C20DB0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:31:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142121A8BFF;
-	Wed, 31 Jul 2024 08:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FCD1AAE13;
+	Wed, 31 Jul 2024 08:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cRDIygWW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LS0UDwha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C211A8BEB;
-	Wed, 31 Jul 2024 08:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5021AAE0E;
+	Wed, 31 Jul 2024 08:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722414623; cv=none; b=PIGA8wUOJHrLNoYuAaLA53Ba0fx9Hos+SXjOoqUL5HcPhiTcpy/Ps0O3d3bH4ObY9tqUlpzbx1UHl4S1zt8TQUeHPsHYvAPM79RE/RLxMdA9cPN2I/kCAUksz5ioCghsKvIArG1IxhoslMAgyMZPwmf/1C8fJ2QOBP5nBWzsf9s=
+	t=1722414640; cv=none; b=megiiZZ7CBFo4eBD9Mwk+hR7iUYJ7U3Ao7/cS9bKIGUYCj2ep4Y1B9+g7N//mUPpljv6RxPBipdzIabvTN5dUhr97Lz7pWuzd95X3QkXvoaxxCS4R0ycrTH7RdnqpbCLePJEt8l4XTYHHsEFzSzEdVS0cthFD8+FtvfKR4v/hUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722414623; c=relaxed/simple;
-	bh=pjw/UlZpX9tFuIUC4j7+LvlinTu1b35XlaxhKH1fHqU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fvkp9zfkub5ba7e1NsSGPuos7Fz8gs/ftLXxURPzA8/xDxvtZmDZay4LKvEwX3SH3KxYzYqWi4Jszxwk1S5Dr6WJnANnEvZ68z2MST92SWqbF9rAiDXkV08hVD3HJg4cYROfj5Bnw7L8dEDEjPcT+bB7p8G/yR8qobqYAEpd7p8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=cRDIygWW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 61D527E4;
-	Wed, 31 Jul 2024 10:29:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1722414571;
-	bh=pjw/UlZpX9tFuIUC4j7+LvlinTu1b35XlaxhKH1fHqU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cRDIygWWqC6vaEQRZBb28o6at6wEtrrWEUJ4QwiDEn7WmDD+3T4tZGivw207OGM39
-	 0HJAABhxW8BfhBQ4r+WGCwI96gUYTL6SgnAEyljLrjNPw1s+pQxMEaG0D9JKvYvPc/
-	 TzHaCvbqEYDICyL1i4392/aZtvtO3BKnPcKa7iK4=
-Date: Wed, 31 Jul 2024 11:29:58 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	Andy Hsieh =?utf-8?B?KOisneaZuueakyk=?= <Andy.Hsieh@mediatek.com>,
-	"jstephan@baylibre.com" <jstephan@baylibre.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"fsylvestre@baylibre.com" <fsylvestre@baylibre.com>,
-	"pnguyen@baylibre.com" <pnguyen@baylibre.com>
-Subject: Re: [PATCH v6 4/5] media: platform: mediatek: isp_30: add mediatek
- ISP3.0 camsv
-Message-ID: <20240731082958.GM8146@pendragon.ideasonboard.com>
-References: <20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com>
- <20240729-add-mtk-isp-3-0-support-v6-4-c374c9e0c672@baylibre.com>
- <6a7467cde347600015078fe7aa25c4b46c45e96d.camel@mediatek.com>
+	s=arc-20240116; t=1722414640; c=relaxed/simple;
+	bh=BxheicAMlVYSpLX+AoGM0dXc5idzCrLGeBHA0d9/j38=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=khAgRMJU9b08vYaLHp9w/Y/vI2b/fHbeK1c0Fw9il0DcMNxU4X4FyAr51x1vGtyUQt/GFCJJjxqUeVh+9hOBFzZebdtZcDPBID+auwI4QAV+dQorx+DzKTiB0ZEGREDLtqtksqEarD1LuRYiPoDDGlEuyNS00g5TWtiW+OpoIi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LS0UDwha; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B25BC116B1;
+	Wed, 31 Jul 2024 08:30:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722414640;
+	bh=BxheicAMlVYSpLX+AoGM0dXc5idzCrLGeBHA0d9/j38=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=LS0UDwhaYWzzO4Dz4qdx2xlEYJ6FJ+Pn/Kms+fXz6OJR10Ay21X+7wRNmH4sAVRu7
+	 xjy1VFitOOHdFzr9Kj+gcnhIN03ZXOHnqjc/MXmRcwv5d19NdQmHmLXVkudvgAHFLT
+	 or6fH8OuvmKvVCmjghBAPCUeHWeDVQjMrPJHjoJlv8nZnE10NRfv5pfd9ABuNPjso+
+	 PJwK4qx8K0EVKjieyQY2HuAKsur2rMLsGr+QBMReepdwJOBcgDeYcoPveZmhPCRnw2
+	 OZuSAg0YOPOcXni5H1ShO1oEoqJ3fsQqf0aFYVQlI0bjxJgmMFgtzgw6rsaJv47R4d
+	 TuosSET0qK5Gw==
+Message-ID: <7031d811-2bb2-4325-996c-a6de766925db@kernel.org>
+Date: Wed, 31 Jul 2024 10:30:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6a7467cde347600015078fe7aa25c4b46c45e96d.camel@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 25/27] ARM: dts: at91: sam9x7: add device tree for SoC
+To: Varshini Rajendran <varshini.rajendran@microchip.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
+ <20240729070934.1991467-1-varshini.rajendran@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240729070934.1991467-1-varshini.rajendran@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi CK,
-
-On Wed, Jul 31, 2024 at 02:59:51AM +0000, CK Hu (胡俊光) wrote:
-> On Mon, 2024-07-29 at 16:48 +0200, Julien Stephan wrote:
-> >  From: Phi-bang Nguyen <pnguyen@baylibre.com>
-> >
-> > This driver provides a path to bypass the SoC ISP so that image data
-> > coming from the SENINF can go directly into memory without any image
-> > processing. This allows the use of an external ISP.
-> >
-> > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> > [Paul Elder fix irq locking]
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > ---
+On 29/07/2024 09:09, Varshini Rajendran wrote:
+> Add device tree file for SAM9X7 SoC family.
 > 
-> [snip]
-> 
-> > +
-> > +static void mtk_cam_cmos_vf_enable(struct mtk_cam_dev *cam_dev,
-> > +   bool enable, bool pak_en)
-> > +{
-> > +struct device *dev = cam_dev->dev;
-> > +
-> > +if (pm_runtime_get_sync(dev) < 0) {
-> > +dev_err(dev, "failed to get pm_runtime\n");
-> > +goto out;
-> > +}
-> > +
-> > +if (enable)
-> > +cam_dev->hw_functions->mtk_cam_cmos_vf_hw_enable(cam_dev);
-> 
-> Directly call mtk_camsv30_cmos_vf_hw_enable().
+> Co-developed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 
-The goal, when this was developed, was to support multiple generations
-of hardware with a single driver. I think it's a worthwhile goal, but at
-the same time, I'm not sure that will ever happen as I'm not aware of
-plans to upstream Genio 350 and 500 support (which is a bad sad, as it's
-more or less working out-of-tree). I'm thus fine either way, and if we
-think the most likely outcome is that this driver will only support
-Genio 300, I'm fine dropping the abstraction layer.
+...
 
-> > +else
-> > +cam_dev->hw_functions->mtk_cam_cmos_vf_hw_disable(cam_dev);
-> 
-> Directly call mtk_camsv30_cmos_vf_hw_disable().
-> 
-> > +
-> > +out:
-> > +pm_runtime_put_autosuspend(dev);
-> > +}
-> > +
+> +
+> +		can1: can@f8004000 {
+> +			compatible = "bosch,m_can";
+> +			reg = <0xf8004000 0x100>, <0x300000 0xbc00>;
+> +			reg-names = "m_can", "message_ram";
+> +			interrupts = <30 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <69 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			interrupt-names = "int0", "int1";
+> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 30>, <&pmc PMC_TYPE_GCK 30>;
+> +			clock-names = "hclk", "cclk";
+> +			assigned-clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_GCK 30>;
+> +			assigned-clock-rates = <480000000>, <40000000>;
+> +			assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
+> +			bosch,mram-cfg = <0x7800 0 0 64 0 0 32 32>;
+> +			status = "disabled";
+> +		};
+> +
+> +		tcb: timer@f8008000 {
+> +			compatible = "microchip,sam9x7-tcb","atmel,sama5d2-tcb", "simple-mfd", "syscon";
 
--- 
-Regards,
+Why this is simple-mfd without children?
 
-Laurent Pinchart
+> +			reg = <0xf8008000 0x100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 17>, <&pmc PMC_TYPE_GCK 17>, <&clk32k 0>;
+> +			clock-names = "t0_clk", "gclk", "slow_clk";
+> +			status = "disabled";
+> +		};
+> +
+
+Best regards,
+Krzysztof
+
 
