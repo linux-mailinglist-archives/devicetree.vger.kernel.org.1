@@ -1,166 +1,131 @@
-Return-Path: <devicetree+bounces-90028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DEB59438E0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 00:29:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC4A394390B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 00:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0844A2841A9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 22:29:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64A9FB24D00
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 22:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93F8416DEA5;
-	Wed, 31 Jul 2024 22:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A966816CD1C;
+	Wed, 31 Jul 2024 22:38:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="RXeyd7CV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i5v/+86I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E62C16D9C4
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 22:28:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E36135280;
+	Wed, 31 Jul 2024 22:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722464920; cv=none; b=eXXbTQJBN574bCLZLUPvyvtQUfvTDaCp4Rw/Dkg7IH/VREDu9OQ1ZkJgYqphnfzW87S8GVqwchVDWe27OmRlbH2BKsS98gxT7JC5PECBCJyLk3WQ9okU7x7IV11gGeVOGTYigv9jw7qQ6+dO0gtuFTjESgH8qvPPu1YUanQht/o=
+	t=1722465508; cv=none; b=KIn0FtDJHtfQwId1VW7K6crGMFmBzYZTEU9lMzfxkIx6uAtHKYJZu3UjmoMjOil3NJD91FnobfYkMg8X5hfiUklUKl+SJeQAjn5dFTi/uMd4fO9vmwwTY6WxDqApQgi74e+vsnI/5ffOV4laSP57KzXDge+pSDfSI4ttgByXFU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722464920; c=relaxed/simple;
-	bh=mAoM+jm0P713mKZxMhykPOMr8VcVpW3lJ0JPpibSWzM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=q+TDZ9DZUkmlgDpzlLZ3aIW9pA2rWiv3RQf4WRhKNj+VCX/qv1R5jqh6SJ1XPGWfx8n6hue2V7QV7Vnlg2PWS8RgB3rE0KU4nxgXgYdrYoP9brqdv8qC7bi2f4gsySiwSSTLIeLNHmsx6Qa230aNXIMHP4ZTFQf2PNBPk6wKBpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=RXeyd7CV; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-709339c91f9so2621437a34.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 15:28:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722464917; x=1723069717; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MEzSqlnsH2j9tRB5+9ly7frUJhXv2tJmhe1jZ23vhJ0=;
-        b=RXeyd7CVF82M+8IeZtSpbzFhBrQKqFvVlxy9Mt4trRy1ahUJugA0vBwBxA+MKjbCIa
-         N3hv3utV370A59jTjbrn0Mlt+IeHJQTQhBvXgIh/fizqbJO4kB2FAYcVA+/jSnNvRLeM
-         tuJOKgIIXoo1+vsjtMXVSMJZCFLZQWDBXifQY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722464917; x=1723069717;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MEzSqlnsH2j9tRB5+9ly7frUJhXv2tJmhe1jZ23vhJ0=;
-        b=o/yTAayZ+8FaM8PMhdiZLPgAH6ceHFFSxNU8JBS/aKNu2NkCDcn+kIvczc9WsnUSaD
-         OkTwBD7j9xN1sngcmxJC5/xEKIcPxbi0MCYl72lB0j/yfRsL4MLK+nJYh551CvbQwmJy
-         d9KSsewc4ecVzmiUoIGoTIHsTwZ3yfz1wmq1RaOB4aMl1Wp0eqzrQuzjcqXhcQKQkLAr
-         WpLnuU4ANSBOL8Pvx4nP87+gQoaYcQOzUezdyAW8CwHBOTMQrchRJJ9SmzyMiZOFIJxA
-         lUXmUgx4m+ZqcFvP69Uqd2Wh8haYzaWkGl6efK5S1B8kdauf+XsNXfj6a1LJGDlclL4V
-         Nscg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKrc9jxZ4XRGdkhx8gO0k+9VjU7zKRu1TAp7UFLgAD0cR0Pp2wFYggglm8W0q/IHXZx0fC+cGdGLTVooEw14W70THvaaefJLK8Xw==
-X-Gm-Message-State: AOJu0Yx00WseStHl8J5CQPaa9Y7OEbLYbm5OsipRgTn+CCELjFQcPCke
-	EwaWmN9al53QiYZXVlTM3Chs6tgLyQb0Y9kVtVtCC4YIHZX/FCOD27iF5WyBYQ==
-X-Google-Smtp-Source: AGHT+IHhsa4xXStr5djydA447oqZ0eywB6dQmFgO7T5029BQXALrAgyEhVKlX9qDw4OJNWb9FlBZHQ==
-X-Received: by 2002:a05:6830:dc2:b0:709:441a:351b with SMTP id 46e09a7af769-7096b7da64cmr506886a34.8.1722464917301;
-        Wed, 31 Jul 2024 15:28:37 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-44fe8416c80sm62359181cf.96.2024.07.31.15.28.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 15:28:36 -0700 (PDT)
-From: Jim Quinlan <james.quinlan@broadcom.com>
-To: linux-pci@vger.kernel.org,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	Cyril Brulebois <kibi@debian.org>,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	bcm-kernel-feedback-list@broadcom.com,
-	jim2101024@gmail.com,
-	james.quinlan@broadcom.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE),
-	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v5 02/12] dt-bindings: PCI: brcmstb: Add 7712 SoC description
-Date: Wed, 31 Jul 2024 18:28:16 -0400
-Message-Id: <20240731222831.14895-3-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240731222831.14895-1-james.quinlan@broadcom.com>
-References: <20240731222831.14895-1-james.quinlan@broadcom.com>
+	s=arc-20240116; t=1722465508; c=relaxed/simple;
+	bh=PldbjTm3myb40ZJfjU8jMnVIBncYA81UDAQXR+o+Mws=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ozj1KLO3/9Xk75RUArYeIxvegFoOY4PpKsdvTweF968eVfDoqzPhdAPciYNKXmZ0nhVcpdhqsGpdMvXA2MlGNVwpZQ+L0kLk19xVLSKZ7KVWLjeKxiutetTg085u6/wbJ9Vl/2YKFYZud34Qikdknd55gwa0WXREL5gpAgln/QI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i5v/+86I; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46VIkhKl005319;
+	Wed, 31 Jul 2024 22:38:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	unPAnDAwhbhRPpFBmuuyf/vcTyTk5Q1IxUM/QINemDg=; b=i5v/+86IVL+2vGXN
+	5cs1zLX85hPvm4Fwaadt+kVkUziJcNwE3/dov+gtdC5cp8d6010z9xjF1ln68VKY
+	3HHOgT7g9RqXSkKuMi0iNMnELzId2xzj/OZBHRvBiER28IMElOsWPhzyHPwfUcbC
+	L8VkqkT+s6dYijSQLBI/3zoAfwDhAaQ1Hi6oldQbIyPEBH7YAlf4okLbtemQbNQc
+	npcYr4BMDES+Lja9FCp2D1kr8yQiHUWln/g8G4vCI2lD/EdvOIMIAjx2nTy8hJRZ
+	uAR5l9SYpJ7sTpAboV3ItRq30jzSggSzQjgZAIDEGZJS4srU13CewLqN1bPlS/Ps
+	wDcIKQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40qjpja4ac-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 31 Jul 2024 22:38:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46VMcLMe006103
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 31 Jul 2024 22:38:21 GMT
+Received: from [10.110.31.235] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 31 Jul
+ 2024 15:38:20 -0700
+Message-ID: <240305c2-54d3-4b75-a938-7b40abedddc9@quicinc.com>
+Date: Wed, 31 Jul 2024 15:38:20 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/8] usb: misc: eud: Add High-Speed Phy control for EUD
+ operations
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
+References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
+ <20240730222439.3469-7-quic_eserrao@quicinc.com>
+ <a2460e27-697c-495f-9106-bdb9109d674b@kernel.org>
+Content-Language: en-US
+From: Elson Serrao <quic_eserrao@quicinc.com>
+In-Reply-To: <a2460e27-697c-495f-9106-bdb9109d674b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CTDJsBCJNzVEjVpjnRinAeCeXtERbfxr
+X-Proofpoint-ORIG-GUID: CTDJsBCJNzVEjVpjnRinAeCeXtERbfxr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-31_10,2024-07-31_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=999
+ spamscore=0 malwarescore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407310159
 
-Add description for the 7712 SoC, a Broadcom STB sibling chip of the RPi 5.
-The 7712 uses three reset controllers: rescal, for phy reset calibration;
-bridge, for the bridge between the PCIe bus and the memory bus; and swinit,
-which is a "soft" initialization of the PCIe HW.
 
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
----
- .../bindings/pci/brcm,stb-pcie.yaml           | 28 +++++++++++++++++--
- 1 file changed, 26 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 7d2552192153..0925c520195a 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -21,6 +21,7 @@ properties:
-           - brcm,bcm7425-pcie # Broadcom 7425 MIPs
-           - brcm,bcm7435-pcie # Broadcom 7435 MIPs
-           - brcm,bcm7445-pcie # Broadcom 7445 Arm
-+          - brcm,bcm7712-pcie # Broadcom STB sibling of Rpi 5
- 
-   reg:
-     maxItems: 1
-@@ -96,10 +97,12 @@ properties:
-       maxItems: 3
- 
-   resets:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 3
- 
-   reset-names:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 3
- 
- required:
-   - compatible
-@@ -151,6 +154,27 @@ allOf:
-         - resets
-         - reset-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm7712-pcie
-+    then:
-+      properties:
-+        resets:
-+          minItems: 3
-+          maxItems: 3
-+
-+        reset-names:
-+          items:
-+            - const: rescal
-+            - const: bridge
-+            - const: swinit
-+
-+      required:
-+        - resets
-+        - reset-names
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.17.1
+On 7/30/2024 10:39 PM, Krzysztof Kozlowski wrote:
+> On 31/07/2024 00:24, Elson Roy Serrao wrote:
+>> The Embedded USB Debugger(EUD) is a HS-USB on-chip hub to support the
+>> debug and trace capabilities on Qualcomm devices. It is physically
+>> present in between the usb connector and the usb controller. Being a
+>> HS USB hub, it relies on HS Phy for its functionality. Add HS phy
+>> support in the eud driver and control the phy during eud enable/disable
+>> operations.
+>>
+> 
+> ...
+>>  static ssize_t enable_show(struct device *dev,
+>> @@ -186,6 +216,11 @@ static int eud_probe(struct platform_device *pdev)
+>>  
+>>  	chip->dev = &pdev->dev;
+>>  
+>> +	chip->usb2_phy = devm_phy_get(chip->dev, "usb2-phy");
+>> +	if (IS_ERR(chip->usb2_phy))
+>> +		return dev_err_probe(chip->dev, PTR_ERR(chip->usb2_phy),
+>> +				     "no usb2 phy configured\n");
+> 
+> This nicely breaks all users.
+> 
+> NAK
+> 
 
+As per my comment in [patch 1/8], phy would be a required property and hence I will first modify
+and enable EUD on the existing user (sc7280 SoC) and then extend this to other users.
+
+Thanks
+Elson
 
