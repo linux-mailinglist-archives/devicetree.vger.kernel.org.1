@@ -1,285 +1,168 @@
-Return-Path: <devicetree+bounces-89965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAAA94352A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 19:50:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B546B943540
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 20:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821C71C213F4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:50:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8E681C21595
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 18:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF2D38DCC;
-	Wed, 31 Jul 2024 17:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AC43D97F;
+	Wed, 31 Jul 2024 17:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="4kZycYuV"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="gs5C8Ku+";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="L7F5vT10"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from fallback22.i.mail.ru (fallback22.i.mail.ru [79.137.243.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2D445007;
-	Wed, 31 Jul 2024 17:50:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB4FE4642D;
+	Wed, 31 Jul 2024 17:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.74
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722448222; cv=none; b=NBD2wJWISSe0PufVru10hEXip34Y12SXALxCqxkbR9ZyKu6Jl4Cc5kxE3kMgIFlIlzvy53lseZ9WFh2MVxhz2uuH5duxzSuUuE3GA5UAhWyy6lvLExt5M1sxCEmVyrNIArmkQsRkAEy0PgW55ng43mn2FGX7NFOSQW3Wgg3qzAY=
+	t=1722448793; cv=none; b=kFX/y2akwYCF64U1BgtydxFPtE4M/C/fWq6oSlMFcLcCy7LQVMxJNFulqdN+GA7MV+x6DNPzeUWXWLtcR1ShHLc+DiyV1bD5Ws16perKgufx1jRQxWcFNJmgpmtgPqokXraZCcJl0LG7aWrje+FO/GE0iIh4iFptFOdw7wenF6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722448222; c=relaxed/simple;
-	bh=SUbvt4YQ/Ri8ijmIeyQW1LP0iNmjh7l+SdztU2CMSK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uv1BT4D8tvwjDHiWTImdle9Es8SSHPXoxeA2cP05d8BH+RJpyTuNAnpJdjsaiyJYH//DPagRGU1Ba7rsxLwp/rCoOuEv31G8DIXbB7VcO3k/4PZ73V/uKdiCo5gB1XWG8oT/wupbsuT+6iJWglcNWs23ohn+fLvG2WKgK4+jvAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=4kZycYuV; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722448218;
-	bh=SUbvt4YQ/Ri8ijmIeyQW1LP0iNmjh7l+SdztU2CMSK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=4kZycYuV7rNgk7MiZhkpjl4EucXIPgirUN25IkczKeVsWf+15NwbJgmL7FnZf0Iur
-	 qw8GHuzCnO6tgfbiIFh/5peplsfE1E3D2xM2eu4L2dxdZ7xGDPcDvy3DjQpYEFdEf2
-	 wiKbpoEzmbEZvYt6LCvZlssx1UzfkrTlU1AKKefjV85WokbvHb/tuo0sBsKTYF26Ub
-	 nbJ/2vNhxt9f/YkkozjXB1px0JuPFgZ2HrEvC86dCvS8dn5yHcmNYrtaMFT7lXc0F7
-	 nVxwtQv/otUZX+QNT4RIJVBzCtxmQX4MvxG8cQfFbOlPftdXn79iNbfxY0G89qYD4O
-	 wmmMUVbMZcc4A==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5484437804C8;
-	Wed, 31 Jul 2024 17:50:18 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id F37A110609BB; Wed, 31 Jul 2024 19:50:17 +0200 (CEST)
-Date: Wed, 31 Jul 2024 19:50:17 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Arend Van Spriel <arend.vanspriel@broadcom.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org, krzk+dt@kernel.org, heiko@sntech.de, 
-	kvalo@kernel.org, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, conor+dt@kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
-	efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
-	megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com, minipli@grsecurity.net, 
-	brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com, 
-	Andy Green <andy@warmcat.com>
-Subject: Re: [PATCH v5 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
- clock description for AP6275P
-Message-ID: <cn4vykgbj6mhiikyco5uvyfa424njoun67hsoof4lbwvscwoc2@5xfl4q5mvooy>
-References: <20240730033053.4092132-3-jacobe.zang@wesion.com>
- <191025b5268.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <f45c1fa7-f321-4a1f-b65c-6ed326a18268@kernel.org>
- <191030eac78.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <3d3b8e0a-7492-4db1-bd73-c30a488edaa7@kernel.org>
- <191035b8c28.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <k3dhdsa5bjzad2ha5e2uurg2azzs773ier5thkot4w2qcvnv54@yuf52eluqsae>
- <dd381dc1-454f-4ecd-adb7-55de2e15d592@broadcom.com>
- <sgfd5ccltsi7mjbybmdbs3fmsfcp3vqtpitdac7exzgxav53kk@6lwogbq4fhks>
- <1910959c1f8.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+	s=arc-20240116; t=1722448793; c=relaxed/simple;
+	bh=YoXR31od0fpaO2XPi0As8ouYTDqiINfZ/6RytFHmRus=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NdAuswsJxhfnVZIYsWZJuoZV9/SeRiK5kgyNrpwveKyytpbCv56WTeq/28T/I0gmIqz1RgizhWN4gb+erq1As3scoLljRMFhiBP1/m47qxxIPs+FJIibT7bNwo6eVzuosnG9ZfB4D//WXvc+x8ZZZYCVNbttsLauFbh/X7d0NFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=gs5C8Ku+; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=L7F5vT10; arc=none smtp.client-ip=79.137.243.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=XArOVvWHd4ovw47AEPzIf9uGg7Dha+ZTSthwU9FAr8s=;
+	t=1722448791;x=1722538791; 
+	b=gs5C8Ku+jqMkC7hJbxKU/vYSHQ8okdxo+PHw63RWvBp8rsa2vQBU/Mrq//KRqkH71Wxa3J7iJ8VI1TV+HfZS3Of2U2RkdM2hM4Y+mjOQm73Vm5SAHVQq6HaP6magKkqShXDvYAR9ywanXHw/zI1PWk6NtOXs0LGqgRtdXmtWEBc=;
+Received: from [10.12.4.26] (port=58866 helo=smtp50.i.mail.ru)
+	by fallback22.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1sZDby-00DtvD-Rm; Wed, 31 Jul 2024 20:59:43 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=XArOVvWHd4ovw47AEPzIf9uGg7Dha+ZTSthwU9FAr8s=; t=1722448782; x=1722538782; 
+	b=L7F5vT10JwOvCfNoXtlS5a86hs45JE2puZ103TqUl4hLziJKpKvebwfYcE9RpyWbqjz7fQ/g+Th
+	SPRefPjqLvaA/d5HfClKRZRCESopSjkwUgWbJE0WHwKzNpvyXBoJVFuJcFKM5eJhJeWrrMbF7cmpJ
+	t8veco74mpepTweka9A=;
+Received: by exim-smtp-5c6c85c787-mv4xc with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1sZDbg-00000000IYY-0yd9; Wed, 31 Jul 2024 20:59:25 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: andersson@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	vkoul@kernel.org,
+	vladimir.zapolskiy@linaro.org,
+	quic_jkona@quicinc.com,
+	dmitry.baryshkov@linaro.org,
+	konradybcio@kernel.org,
+	quic_tdas@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@mainlining.org,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH 00/10] Add SM8475 clock controller drivers
+Date: Wed, 31 Jul 2024 20:59:09 +0300
+Message-ID: <20240731175919.20333-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="my2grf6ekzwdybt6"
-Content-Disposition: inline
-In-Reply-To: <1910959c1f8.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD926BB450FD17188A9AD89A2A5D4CA22889590FF70BABBF935182A05F538085040B4C556D6B8AE623B3DE06ABAFEAF67055F7CF7B5A1A82DFFF806485F292FBEEB8221C18B3D1622A4
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE721B3E54BB37EA0B4EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637B997C8222C70C3D98638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8B0817466CEDDF39C995830582C796B18DFACB2F68C90E58FCC7F00164DA146DAFE8445B8C89999728AA50765F7900637DCE3DBD6F8E38AFD389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC80A9EC8C3488E7643F6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA73AA81AA40904B5D9A18204E546F3947C89DDFE3E282F3DD16136E347CC761E074AD6D5ED66289B523666184CF4C3C14F6136E347CC761E07725E5C173C3A84C3C30C415A873EAD8ABA3038C0950A5D36B5C8C57E37DE458B330BD67F2E7D9AF16D1867E19FE14079C09775C1D3CA48CFE478A468B35FE7671DD303D21008E298D5E8D9A59859A8B64854413538E1713F75ECD9A6C639B01B78DA827A17800CE73A6989AD488FD87D731C566533BA786AA5CC5B56E945C8DA
+X-C1DE0DAB: 0D63561A33F958A566F3E928FDE2D1605002B1117B3ED696994E360FDDF5CAC6559C6C5561145D6F823CB91A9FED034534781492E4B8EEAD3B90412627F530F9A71A35648BE338CE9510FB958DCE06DB58C12E6D310A6D53A16EC4B4EECACEB3
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF34404677D5FBD32D6D4C78B4DA8164B4623B31984599B98D52E248BFA664CFD249BEE304256398FC1D9D8FAF50ED830B7A837B6F257E476EC126D84212B092F601038C3EF9E16C9A983AD880C8D3B7BB02C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojbL9S8ysBdXhulaolFLGdpkGYMDDGQfqT
+X-Mailru-Sender: 9EB879F2C80682A09F26F806C7394981A1FC0BF4BF26A8A1EDE2FBCE1621770A891A0123D5A2206E699730EFD8861CD42C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B438D8D16241E2C9674218E0EBCD2528CD5E897E0FC6E12404049FFFDB7839CE9E45E89A588AFC07058B618491CC7F3905C6A894A15F5D51C0CAEB7A96BA42A091
+X-7FA49CB5: 0D63561A33F958A587CD5281A4328B6C82F5E73483B273062B05C315126DFD9F8941B15DA834481FA18204E546F3947C79510EF6E7F6D4B2F6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637ACE5033AB9416A8F389733CBF5DBD5E9B5C8C57E37DE458BD96E472CDF7238E0725E5C173C3A84C3777F8C72A04D893B35872C767BF85DA2F004C90652538430E4A6367B16DE6309
+X-87b9d050: 1
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2bioj2j9vV9f5a3urlPYivLNJIw==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
+This series adds support for SM8475 to SM8450 clock controller drivers.
+Was tested on Nothing Phone (2) aka nothing-pong.
 
---my2grf6ekzwdybt6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Based on this downstream commit:
+https://git.codelinaro.org/clo/la/kernel/msm-5.10/-/commit/b051ec6bdc4b4884905002b2e75753e6f1238d20
 
-Hi,
+To: Bjorn Andersson <andersson@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: Vinod Koul <vkoul@kernel.org>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Jagadeesh Kona <quic_jkona@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux@mainlining.org
 
-On Wed, Jul 31, 2024 at 05:12:43PM GMT, Arend Van Spriel wrote:
-> On July 31, 2024 3:54:52 PM Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
-> > On Wed, Jul 31, 2024 at 02:57:37PM GMT, Arend van Spriel wrote:
-> > > On 7/30/2024 7:38 PM, Sebastian Reichel wrote:
-> > > > On Tue, Jul 30, 2024 at 01:16:57PM GMT, Arend Van Spriel wrote:
-> > > > > On July 30, 2024 12:18:20 PM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
-> > > > >=20
-> > > > > > On 30/07/2024 11:52, Arend Van Spriel wrote:
-> > > > > > > On July 30, 2024 11:01:43 AM Krzysztof Kozlowski <krzk@kernel=
-=2Eorg> wrote:
-> > > > > > >=20
-> > > > > > > > On 30/07/2024 08:37, Arend Van Spriel wrote:
-> > > > > > > > > + Linus W
-> > > > > > > > >
-> > > > > > > > > On July 30, 2024 5:31:15 AM Jacobe Zang <jacobe.zang@wesi=
-on.com> wrote:
-> > > > > > > > >
-> > > > > > > > > > Not only AP6275P Wi-Fi device but also all Broadcom wir=
-eless devices allow
-> > > > > > > > > > external low power clock input. In DTS the clock as an =
-optional choice in
-> > > > > > > > > > the absence of an internal clock.
-> > > > > > > > > >
-> > > > > > > > > > Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom=
-=2Ecom>
-> > > > > > > > > > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> > > > > > > > > > ---
-> > > > > > > > > > .../bindings/net/wireless/brcm,bcm4329-fmac.yaml       =
-   | 8 ++++++++
-> > > > > > > > > > 1 file changed, 8 insertions(+)
-> > > > > > > > > >
-> > > > > > > > > > diff --git
-> > > > > > > > > > a/Documentation/devicetree/bindings/net/wireless/brcm,b=
-cm4329-fmac.yaml
-> > > > > > > > > > b/Documentation/devicetree/bindings/net/wireless/brcm,b=
-cm4329-fmac.yaml
-> > > > > > > > > > index 2c2093c77ec9a..a3607d55ef367 100644
-> > > > > > > > > > --- a/Documentation/devicetree/bindings/net/wireless/br=
-cm,bcm4329-fmac.yaml
-> > > > > > > > > > +++ b/Documentation/devicetree/bindings/net/wireless/br=
-cm,bcm4329-fmac.yaml
-> > > > > > > > > > @@ -122,6 +122,14 @@ properties:
-> > > > > > > > > > NVRAM. This would normally be filled in by the bootload=
-er from platform
-> > > > > > > > > > configuration data.
-> > > > > > > > > >
-> > > > > > > > > > +  clocks:
-> > > > > > > > > > +    items:
-> > > > > > > > > > +      - description: External Low Power Clock input (3=
-2.768KHz)
-> > > > > > > > > > +
-> > > > > > > > > > +  clock-names:
-> > > > > > > > > > +    items:
-> > > > > > > > > > +      - const: lpo
-> > > > > > > > > > +
-> > > > > > > > >
-> > > > > > > > > We still have an issue that this clock input is also pres=
-ent in the
-> > > > > > > > > bindings specification broadcom-bluetooth.yaml (not in bl=
-uetooth
-> > > > > > > > > subfolder). This clock is actually a chip resource. What =
-happens if both
-> > > > > > > > > are defined and both wifi and bt drivers try to enable th=
-is clock? Can this
-> > > > > > > > > be expressed in yaml or can we only put a textual warning=
- in the property
-> > > > > > > > > descriptions?
-> > > > > > > >=20
-> > > > > > > > Just like all clocks, what would happen? It will be enabled.
-> > > > > > >=20
-> > > > > > > Oh, wow! Cool stuff. But seriously is it not a problem to hav=
-e two entities
-> > > > > > > controlling one and the same clock? Is this use-case taken in=
-to account by
-> > > > > > > the clock framework?
-> > > > > >=20
-> > > > > > Yes, it is handled correctly. That's a basic use-case, handled =
-by CCF
-> > > > > > since some years (~12?). Anyway, whatever OS is doing (or not d=
-oing)
-> > > > > > with the clocks is independent of the bindings here. The questi=
-on is
-> > > > >=20
-> > > > > Agree. Probably the bindings would not be the place to document t=
-his if it
-> > > > > would be an issue.
-> > > > >=20
-> > > > > > about hardware - does this node, which represents PCI interface=
- of the
-> > > > > > chip, has/uses the clocks.
-> > > > >=20
-> > > > > The schematics I found for the wifi module and the khadas edge pl=
-atform show
-> > > > > these are indeed wired to the chip.
-> > > >=20
-> > > > I have a Rockchip RK3588 Evaluation Board on my desk, which uses the
-> > > > same WLAN AP6275P module. I think I already commented on a prior
-> > > > version of this series: The LPO clock is needed to make the PCIe
-> > > > device visible on the bus. That means this series only works if the
-> > > > clock has already been running. Otherwise the PCIe driver will never
-> > > > be probed. To become visible the devices requires:
-> > > >=20
-> > > > 1. The LPO clock to be enabled
-> > > > 2. Power to be applied
-> > > > 3. The WL_EN gpio to be configured correctly
-> > > >=20
-> > > > If one of the above is not met, the device will not even appear in
-> > > > 'lspci'. I believe the binding needs to take into consideration, th=
-at
-> > > > pwrseq is needed for the PCIe side. Fortuantely the heavy lifting of
-> > > > creating the proper infrastructure for this has already been done by
-> > > > Bartosz Golaszewski for Qualcomm WLAN chips. What is missing is a
-> > > > pwrseq driver for the Broadcom chip (or this specific module?).
-> > >=20
-> > > That does not really make sense. There is no relation between the LPO=
- clock
-> > > and the PCIe clocks so 1) being a requirement for probing the device =
-looks
-> > > odd. It also does not match past experience when I assisted Andy Gree=
-n in
-> > > getting this module up and running almost two years ago.
-> >=20
-> > Well, first of all I can easily reproduce this on my RK3588 EVB1. I
-> > intentionally ignore any bluetooth bits to avoid cross-effects from
-> > bluetooth enabling any clocks / regulators / GPIOs and make sure the
-> > RTC output clock is disabled at boot time (i.e. boot once without
-> > any reference to the RTC clock and without 'clk_ignore_unused'
-> > kernel argument). When booting up like this the WLAN device is not
-> > visible in 'lspci' despite the WL_REG_ON GPIO being hogged. If I
-> > additionally hack the RTC output clock to be enabled the WLAN device
-> > becomes visible in 'lspci'.
-> >=20
-> > The datasheet fully explains this:
-> >=20
-> > https://www.lcsc.com/datasheet/lcsc_datasheet_2203281730_AMPAK-Tech-AP6=
-275P_C2984107.pdf
-> >=20
-> > PDF Page 23/24 (20/21 in the footer) has the Host Interface Timing
-> > Diagram. WL_REG_ON should only be enabled after 2 cycles from LPO.
-> > That means with LPO being disabled WL_REG_ON cannot be enabled. I'm
-> > pretty sure WL_REG_ON means WLAN_REGULATOR_ON, so the logic is not
-> > powered. On page 27 (24 in the footer) there is also a PCIe Power-On
-> > Timing diagram, which shows that WL_REG_ON must be enabled before
-> > the PCIe refclk is enabled.
-> >=20
-> > So there is a specific power up sequence, which must be followed.
->=20
-> The chip also has an (less accurate) internal LPO so the 32khz sleep clock
-> in the diagram does not have to be an external clock. Maybe Ampak
-> bootstrapped the chip to disable the internal clock. Dunno.
->=20
-> What Andy needed back then to get firmware running was a change in the nv=
-ram
-> file to force using the internal LPO, but the device was already visible =
-on
-> the PCIe bus.
+Danila Tikhonov (10):
+  dt-bindings: clock: qcom,gcc-sm8450: Add SM8475 GCC bindings
+  clk: qcom: gcc-sm8450: Add SM8475 support
+  dt-bindings: clock: qcom,sm8450-dispcc: Add SM8475 DISPCC bindings
+  clk: qcom: dispcc-sm8450: Add SM8475 support
+  dt-bindings: clock: qcom,sm8450-gpucc: Add SM8475 GPUCC bindings
+  clk: qcom: gpucc-sm8450: Add SM8475 support
+  dt-bindings: clock: qcom,sm8450-videocc: Add SM8475 VIDEOCC bindings
+  clk: qcom: videocc-sm8450: Add SM8475 support
+  dt-bindings: clock: qcom,sm8450-camcc: Add SM8475 CAMCC bindings
+  clk: qcom: camcc-sm8450: Add SM8475 support
 
-mh, I just tested again and I can no longer reproduce the LPO
-requirement for PCIe detection. Maybe it was something else all
-along (I did most of my tests quite some time ago).
-Sorry for the noise.
+ .../bindings/clock/qcom,gcc-sm8450.yaml       |   8 +-
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |   2 +
+ .../bindings/clock/qcom,sm8450-dispcc.yaml    |   5 +-
+ .../bindings/clock/qcom,sm8450-gpucc.yaml     |   3 +
+ .../bindings/clock/qcom,sm8450-videocc.yaml   |   2 +
+ drivers/clk/qcom/Kconfig                      |  12 +-
+ drivers/clk/qcom/camcc-sm8450.c               | 231 +++++++++++++++++-
+ drivers/clk/qcom/dispcc-sm8450.c              |  49 +++-
+ drivers/clk/qcom/gcc-sm8450.c                 | 182 +++++++++++++-
+ drivers/clk/qcom/gpucc-sm8450.c               |  25 +-
+ drivers/clk/qcom/videocc-sm8450.c             |  31 ++-
+ include/dt-bindings/clock/qcom,gcc-sm8450.h   |   2 +
+ include/dt-bindings/clock/qcom,sm8475-camcc.h |   1 +
+ .../dt-bindings/clock/qcom,sm8475-dispcc.h    |   1 +
+ include/dt-bindings/clock/qcom,sm8475-gcc.h   |   1 +
+ include/dt-bindings/clock/qcom,sm8475-gpucc.h |   1 +
+ .../dt-bindings/clock/qcom,sm8475-videocc.h   |   1 +
+ include/dt-bindings/reset/qcom,sm8475-gpucc.h |   1 +
+ 18 files changed, 532 insertions(+), 26 deletions(-)
+ create mode 120000 include/dt-bindings/clock/qcom,sm8475-camcc.h
+ create mode 120000 include/dt-bindings/clock/qcom,sm8475-dispcc.h
+ create mode 120000 include/dt-bindings/clock/qcom,sm8475-gcc.h
+ create mode 120000 include/dt-bindings/clock/qcom,sm8475-gpucc.h
+ create mode 120000 include/dt-bindings/clock/qcom,sm8475-videocc.h
+ create mode 120000 include/dt-bindings/reset/qcom,sm8475-gpucc.h
 
--- Sebastian
+-- 
+2.45.2
 
---my2grf6ekzwdybt6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmaqeUsACgkQ2O7X88g7
-+pp84w/+KBmheZfpb0fRtyqgN36WgVqY9s5Gox0tnnz/NiXMcnTlgKuFpzHgWkPF
-c+6p/y8tcZnKqx4cUzOUERWdqLKhv4Eg79XECqCfryltPVF5Ws1/Q3SKOH/mfIQM
-392BAuZhrk0tu5OGir02czB0Am6yWsbsWNgmCqgK0HEPOdAOG635B0bgXe9Mao+c
-b5MRSoDcMVIkm0N1I5HECk6fAojJfENfWHvHsT83Ehg8Jrkbbm/d9ddcbfw+Bd/J
-ydUzMu+FZMLWQk6jr2ToB6Vtgjkoa5uTh4zjdIvsDP5gijQ31rQSQBEhCph1UONs
-Ug9v3YVpQVZJ8zKXZYL3lelPVyUd3izhCB0pApRDXottaMSjzW7TjVT7YdDeu1mX
-qjQlW5U/tiexec2NUsoKrCjXdpd2nh2rMbF08qCgjQLTqVaKThxILtN8I67DPn8E
-ikV4rwXSLsnq6KKYLycJmSBRHVsMJTfwXF0OyNXi8ISNsdT1WTlUpYED/nLfyFxB
-S6mkYaOFFHO+FqQ+uXWveskh235zEJLqq9XJdlpZlFfySI6D5TxaBbnfanCnrJsH
-fUQD9szb1KuJ8RnvIIvYLX7Izl5IpHYo1lEeTIfLRCmDwtrCLEmcj06Q2cfOcaWz
-FyEBLa7DmERYhwIvtWCzA8NTXM7j+gYmcNEM0Mia8d0MYIhYjFw=
-=Uz9w
------END PGP SIGNATURE-----
-
---my2grf6ekzwdybt6--
 
