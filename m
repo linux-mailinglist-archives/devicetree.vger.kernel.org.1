@@ -1,142 +1,206 @@
-Return-Path: <devicetree+bounces-89949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE965943490
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 18:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA499434AA
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 19:03:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 857B6285ADB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:58:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEFCD288082
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912731BD023;
-	Wed, 31 Jul 2024 16:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0791BD517;
+	Wed, 31 Jul 2024 17:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFmpArsf"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="s4exjKh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AB612B93;
-	Wed, 31 Jul 2024 16:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD781B5AA;
+	Wed, 31 Jul 2024 17:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722445132; cv=none; b=p4wpp0gl9uGb7ZtSCdX2SpXkSq3St2ZFet01dzdFwlbNI6DniiOu72qZj6PogQy8woj7s3eJQ1wzfmcUoUwtcvKtOdizIcsrHZ6r+NuuXt7Yr5yQOtgXZuGfooj62Jqx3pBQrQfy5yEby+4pOtuORj3T2ysEa/6KbU0ePDUjiR0=
+	t=1722445353; cv=none; b=QVrL3LYKI4rCmbOlyBLncQk8aFbsDIqUmO32mTbdOUidxoGvEzdg8ykRIQshKenPYBeWsGYkmmImLI2tMsw+WSPlw8huDQMnL/M6wKqhljEQKIdRgHT74ocwGY2vrMEXyTMYbJg9OVQ18P+TMUTmztjvaE4PN0Q9vq6YBjfPfcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722445132; c=relaxed/simple;
-	bh=fV2uUlnN5HtdGjeA+Eg6mzoArO5TgeZybB976lohHLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J1FwC5BLCgo8L5uURNB7qng3vujj45GBA0i/64GMxGFfSlUPv874weHvPrQtDRBbvB+qofeCtUSTe8loYv4Yn4M9qriDzpk3x8gEbN7WR1NELkVQnGorBRfLqatnuKva2cGizrUjrofUaBB49vcIB8OhTQC8XI+OZJyswF5VUA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFmpArsf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A715C116B1;
-	Wed, 31 Jul 2024 16:58:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722445132;
-	bh=fV2uUlnN5HtdGjeA+Eg6mzoArO5TgeZybB976lohHLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nFmpArsfu10ex2Mh/08kg4RPfnlRHkcrlWy112BzLMf83mUeLAnrE85gGevMGdfCh
-	 HwFdx+cARnLs+8CTRfx5DL73CrLvCnOqsQw2xwp/6qQ5frB05hjqFsljJYPK5assod
-	 zur5jJroZ8M79Gr4FtBfdo+TmTE0VCkJPz/cPCx7M4vJuynlhMCRqIaLKJkjp3X6+C
-	 w/sAYTvpCeRpA7dkiRGJIcil+9G+QTBg3Hy2Gufv1K4YMV7WbHoJGsaDoPrp8s1Gw2
-	 kiIto1JJ4UJAUBLPThzex9kI7KmhQl7wIrzeNWXdovF9DCRNqxMRfaqaOemEXrhA3L
-	 +1vEeYQSua5OQ==
-Message-ID: <186bc509-c0eb-4c60-a65f-99e773c151fb@kernel.org>
-Date: Wed, 31 Jul 2024 18:58:45 +0200
+	s=arc-20240116; t=1722445353; c=relaxed/simple;
+	bh=qGzzunRIYxeTcWj7omTdrSNOG9dCO97PljZMNVe2e5U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rqTF1q36fUwACkvbgQZEbC+c7/E3vYWi2BbJvWq4BsUuRhDn3histTIFvpq5mwdkZMTBRcddAHCiN7EdtXfeCwDaezO1jHP0XFxRFv44/jhNhwPxIJ0mfw12l8rDroDaK4/fNLVTmam37y8o+S5/oeRPSEkzuw5AGtzMXGfEJWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=s4exjKh3; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722445349;
+	bh=qGzzunRIYxeTcWj7omTdrSNOG9dCO97PljZMNVe2e5U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s4exjKh3pPkozbOL087t7JdBLujhE58hBWR4pRjZIQiFw6BFLy23cVUT6pHCgqZ/R
+	 GzdliexMTTvKJWsF0/s7Wb/EUOvnr4wKFc2wPL9WWohIYkqGAWPkVWGC8rckcNgCun
+	 +VeHg1wA2ZaXr4MxlQepFutykpxl2uS5mCRzVVPWHcHBRDoV05HLzM+4Gy2taYrhq+
+	 hGO5AiZYlEe21wlPL3N54CMU37hhqgPjB/bTLgc8s56DUfkx0Hy5bmRxNeLFX5myr3
+	 Qg9lFuKhugDHlD57DMhcf4g3N+9eQox5zwml4mvFh+vth2nGTEAkmtAJNEEnoT1/nw
+	 NM5qijnvXlfTQ==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D7DC13782200;
+	Wed, 31 Jul 2024 17:02:28 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 7EBA710609BB; Wed, 31 Jul 2024 19:02:28 +0200 (CEST)
+Date: Wed, 31 Jul 2024 19:02:28 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, 
+	linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	jagan@edgeble.ai, andyshrk@163.com, jonas@kwiboo.se, t.schramm@manjaro.org, 
+	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH 2/5] power: supply: cw2015: Add support for dual-cell
+ configurations
+Message-ID: <2eh5iqwtwlbpg5kpr4lvvhxo2tngw4w7qanelr6filcrru62le@o7cwpsahp2n7>
+References: <20240726194948.109326-1-macroalpha82@gmail.com>
+ <20240726194948.109326-3-macroalpha82@gmail.com>
+ <eimocj6mlvo6u4x54heywblwrfnftxelzpvfcogpjp7vjmunor@5eqlqsszk6ni>
+ <MN2PR16MB2941F5FFA92B056533586FBDA5B12@MN2PR16MB2941.namprd16.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
-To: Trevor Gamblin <tgamblin@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- David Lechner <dlechner@baylibre.com>,
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
- <20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
- <387b4028-7f8a-46df-a7f1-168d1700074d@kernel.org>
- <996e975f-89ad-413e-b051-b55899d4f20f@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <996e975f-89ad-413e-b051-b55899d4f20f@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR16MB2941F5FFA92B056533586FBDA5B12@MN2PR16MB2941.namprd16.prod.outlook.com>
 
-On 31/07/2024 17:22, Trevor Gamblin wrote:
+Hi,
+
+On Wed, Jul 31, 2024 at 11:02:11AM GMT, Chris Morgan wrote:
+> On Fri, Jul 26, 2024 at 11:06:21PM +0200, Sebastian Reichel wrote:
+> > Hi,
+> > 
+> > On Fri, Jul 26, 2024 at 02:49:45PM GMT, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > The Cellwise cw2015 datasheet reports that it can handle two cells
+> > > in a series configuration. Allow a device tree parameter to note
+> > > this condition so that the driver reports the correct voltage values
+> > > to userspace.
+> > 
+> > I found this:
+> > 
+> > http://www.cellwise-semi.com/Public/assests/menu/20230302/6400076806706.pdf
+> > 
+> > Which says:
+> > 
+> >   CW2015 can be used in 2 or more batteries connected in series, or
+> >   several cells connected in parallel.
+> > 
+> > So dual-cell seems like a bad property name. Instead the number of
+> > serial cells should be provided. This property is then not really
+> > specific to the Cellwise fuel gauge and instead a property of the
+> > battery pack (i.e. simple-battery.yaml).
 > 
-> On 2024-07-31 10:11 a.m., Krzysztof Kozlowski wrote:
->> On 31/07/2024 15:48, Trevor Gamblin wrote:
->>> This adds a binding specification for the Analog Devices Inc. AD7625,
->>> AD7626, AD7960, and AD7961 ADCs.
->> Please do not use "This commit/patch/change", but imperative mood. See
->> longer explanation here:
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> Will do.
->>
->> Why this is not ready, but RFC? What exactly needs to be commented here?
-> There's one outstanding question about whether or not there should be a 
-> DT property for specifying whether DCO+/- lines are connected (mentioned 
-> in the cover letter but not here). I guess it doesn't need to be an RFC 
-> just for that.
+> It's conflicting information (which further confuses me). I see in that
+> datasheet it says 2 or more, whereas the datasheet found here says only
+> 2 cells:
+> 
+> https://www.lestat.st/_media/informatique/projets/python-cw2015/cw2015-power-management-datasheet.pdf
+> 
+> But I agree in principle that we should be setting this as a property
+> of a simple-battery rather than a manufacturer specific parameter.
+> 
+> > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > >  drivers/power/supply/cw2015_battery.c | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/drivers/power/supply/cw2015_battery.c b/drivers/power/supply/cw2015_battery.c
+> > > index f63c3c410451..b23a6d4fa4fa 100644
+> > > --- a/drivers/power/supply/cw2015_battery.c
+> > > +++ b/drivers/power/supply/cw2015_battery.c
+> > > @@ -77,6 +77,8 @@ struct cw_battery {
+> > >  	u32 poll_interval_ms;
+> > >  	u8 alert_level;
+> > >  
+> > > +	bool dual_cell;
+> > > +
+> > >  	unsigned int read_errors;
+> > >  	unsigned int charge_stuck_cnt;
+> > >  };
+> > > @@ -325,6 +327,9 @@ static int cw_get_voltage(struct cw_battery *cw_bat)
+> > >  	 */
+> > >  	voltage_mv = avg * 312 / 1024;
+> > >  
+> > > +	if (cw_bat->dual_cell)
+> > > +		voltage_mv *= 2;
+> > 
+> > Unfortunately there are no details in the document, but this looks
+> > very fishy. Does it only measure the first cell and hope that the
+> > other cells have the same voltage?
+> > 
+> > This (unmerged) series also applies to your problem to some degree:
+> > 
+> > https://lore.kernel.org/all/20240416121818.543896-3-mike.looijmans@topic.nl/
+> 
+> I think based on the application diagram it is in fact measuring the
+> cell voltage.
+>
+> That said, this ultimately boils down to a cosmetic thing
+> as not having this property simply means userspace sees the battery
+> voltage as 3.8v instead of 7.6v as is written on the side.
 
-RFC means patch is not ready for review and you just ask for some
-comments. Some maintainers even ignore RFC and wait till you send
-something ready.
+With the cells being connected in serial, the voltage of both cells
+can be different. There is not "the cell voltage". Instead there is
+a voltage for cell 1 and a voltage for cell 2. In a perfect battery
+they are the same, but in reality they are not. In the extreme case
+one of the cells may be broken while the other is still fine. It
+sounds as if this is just measuring the voltage from the first
+cell and assumes the second cell has the same voltage.
 
-Best regards,
-Krzysztof
+Ideally the voltage on these platforms is not exposed via the normal
+VOLTAGE property and instead uses a new property for telling
+userspace the voltage for a single cell. The kernel simply does not
+know the voltage of the whole battery pack.
 
+FWIW this is the worst battery measurement system I've seen so far
+if my understanding of the hardware design is correct.
+
+-- Sebastian
+
+> I think for simplification sake I will remove this from the series, add
+> a note to the device tree, and wait for the other battery series to get
+> pulled. When it gets pulled I'll request a device tree property so we
+> can add POWER_SUPPLY_PROP_NUMBER_OF_SERIAL_CELLS to the simple-battery
+> and then parse this value. Or if that series ends up getting abandoned
+> I can just add a quick and dirty new property like this.
+
+
+> 
+> Thank you,
+> Chris
+> 
+> > 
+> > -- Sebastian
+> > 
+> > >  	dev_dbg(cw_bat->dev, "Read voltage: %d mV, raw=0x%04x\n",
+> > >  		voltage_mv, reg_val);
+> > >  	return voltage_mv;
+> > > @@ -587,6 +592,8 @@ static int cw2015_parse_properties(struct cw_battery *cw_bat)
+> > >  			return ret;
+> > >  	}
+> > >  
+> > > +	cw_bat->dual_cell = device_property_read_bool(dev, "cellwise,dual-cell");
+> > > +
+> > >  	ret = device_property_read_u32(dev, "cellwise,monitor-interval-ms",
+> > >  				       &cw_bat->poll_interval_ms);
+> > >  	if (ret) {
+> > > -- 
+> > > 2.34.1
+> > > 
+> > > 
+> 
+> 
 
