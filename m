@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-89738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A76A942909
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:20:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D88942912
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:22:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 370FE282A93
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:20:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51056B20EAF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27AD1A7F69;
-	Wed, 31 Jul 2024 08:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602E01A7F8F;
+	Wed, 31 Jul 2024 08:22:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ex5C/Yg7"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="aIWB1GtD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mout.web.de (mout.web.de [212.227.17.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222E01A7F9F;
-	Wed, 31 Jul 2024 08:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49C41A7F85;
+	Wed, 31 Jul 2024 08:22:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722413999; cv=none; b=ERm1tVd6gUTIBt2Cu/n1my0pbXVW81eLfMWu3oNnhjQLGLuc7UZ9qmZ/Pui8rZeCWkgOSTPn7tGxfTVN614+QIMfDCifLy4CwavCJBI6/LKc3njwe5ECcs6DtusoPwY839UnO4qjpabHpdWXxraFqPBp07L/B6koXZ6M7Ul3308=
+	t=1722414124; cv=none; b=CyYwjUBUNMnouninlJYi2x+baiN0GmJkZK9R73Q86ax+kthFv+/+nCcVepuYPdO2JPnbgpaDVXtwBrRNDJ4EjZjTAJHm8k0f+4zHVSLRSVRDv6CAu0nra67cKKkjMqL7qzNm4e4GsAZF22PlzY9OhXOz/OEdiwnkcJ/JSKo9Eh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722413999; c=relaxed/simple;
-	bh=mrhS/CCOOLZe9KQcoq1oQixTFVyt0KJQA7x9+zGR/K8=;
+	s=arc-20240116; t=1722414124; c=relaxed/simple;
+	bh=7IHJECVa2WSvDCuY4TKIZrawhtfEM/UnUttBhMFbPUc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LxgdwxJ9w+RToewRnoFhWDwAvpdea7izfS9YY1mHj+b7TA/WLWLjVqPhkFCBw/pMFb68ZUVqNKVwa6wcjEPVsYrQBAXyzx3tzYbBSaN8qnjdBUIBk7XeFq3GuKFHw88WsHgvOIhZ44y3NR9YHZ3ychRpHvIHPuTgbLXz67Xg4qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ex5C/Yg7; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722413996;
-	bh=mrhS/CCOOLZe9KQcoq1oQixTFVyt0KJQA7x9+zGR/K8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ex5C/Yg7cE3mf8MoncxyQ8zZv7dkOOubpQA0xVjlLHlRZN0moIPuegQyZMWxZLR1C
-	 ILgzNQAdoIOJ9waU0cbz9b5D15Ggb4I3n9PIAxzEaOnB1WgYd5AdPU/qYiP+13VR1K
-	 hpgRidRV5LAqeGrVcx55LiVXqb2tGZvaRfRRG32zwDUGKA964buoKYV7XKDUNHaWrI
-	 5KNDC/ypO8R32WZxz9fhePPgsK+i+McMaTAsiIPfkVbrWZUXpH95YIIdH4M5tPSUSs
-	 cUrB4nKMV03GDvEJSliA4Oh9jasyqXfQ0pta9c51dozkXuoZtETBtCPgYx1EYrzpPP
-	 ILiDa1lCMpmcQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 06B9E378000B;
-	Wed, 31 Jul 2024 08:19:55 +0000 (UTC)
-Message-ID: <a5d5d7f1-535c-4139-9cfb-b4e4fffc3083@collabora.com>
-Date: Wed, 31 Jul 2024 10:19:55 +0200
+	 In-Reply-To:Content-Type; b=JW8yn7O+7vfMS54eYfCO/n8SImW+C83vhz1vDGTLRin7NWEUUaNuD2cB0I50ZsfEhiqa6JG+8TrTMgg+6Y00HYp8tz7A1TR22BADcPhRAppsjN6kMd3bDKxBnj2eaPRkdzimiwsrOw3SsifoBiP7/TA6vMtwWuWhV7mY+m2FfWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=aIWB1GtD; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1722414069; x=1723018869; i=markus.elfring@web.de;
+	bh=7IHJECVa2WSvDCuY4TKIZrawhtfEM/UnUttBhMFbPUc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=aIWB1GtDJXvIL8UnjVARHO30tm66q5fVCu6+EuiK6zphh5w/B1m0A/XoT8BO56z4
+	 FVFITM2d3zJqqMi5OzFcegk4tyZFc7k47RznY4UBDxSZuwCSw3LL65QrGPHq30nCg
+	 cC49WVWTbLGZZuwf5nAK9kVaZHaXJ1u7VaKadBAsczyDprnhY1QhkYMI9OlvEaEQT
+	 zaCzO/4sBUKswQ1QfwQJ2lXIpGwXaMcDfXV4XlinqMgyJ4NSRMZI1NSYeCZ7NBPN3
+	 9eQS1+OzENjzrsg5DjG+cwkN04MFwhAiEsMKs9QL+Jc31sFRNwh+MdMdY7cS7wWQc
+	 +1gSrP/ATyCTJK2Clg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.88.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MYLii-1smhPD0iyw-00TqyM; Wed, 31
+ Jul 2024 10:21:09 +0200
+Message-ID: <b42db5e1-102c-4ab7-b439-75301c8c27de@web.de>
+Date: Wed, 31 Jul 2024 10:20:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,61 +58,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm64: mediatek: Add
- kukui-jacuzzi-cerise board
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240731-jacuzzi_dt-v2-0-4995335daa30@chromium.org>
- <20240731-jacuzzi_dt-v2-2-4995335daa30@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240731-jacuzzi_dt-v2-2-4995335daa30@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [v8 3/3] dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
+To: Inochi Amaoto <inochiama@outlook.com>, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Jisheng Zhang <jszhang@kernel.org>,
+ Liu Gui <kenneth.liu@sophgo.com>, Yixun Lan <dlan@gentoo.org>
+References: <IA1PR20MB4953438ED600110E71F9D092BB042@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <633f5f40-481f-4063-ab5d-f383e981b0fe@web.de>
+ <IA1PR20MB4953FE2F603D5D23175D724BBBB12@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <IA1PR20MB4953FE2F603D5D23175D724BBBB12@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:O5gOmYj/plL6GKTb2Trz6dd8+mGBkcchYhTTkeEn05GQ+fpCoz4
+ DiRnr8TSMY2NSp/I6pF45Yfp76oh5s2YdjKqMdTZjj85S+LbgGM21bEhnUOEKFoXLhIpQG0
+ hr5l2aG781QmGrqDSvCvrVAHfSd5Z9RLS1nOP6Ss09mufLNIBDG+zTzuUis2EbemS9qGOA7
+ YUO8npC67caK9ORX3lxbA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:4lOiIrPRq14=;NfFfNnZc6pGLDP2lXsb9xWkvgsK
+ Lb5/YepfTYup4hqYjdgjhOw42q/2PfX8Vns+F+FvtHa4haIQstcuicKTPsoBob1rOh1KKSA5x
+ xE8PGlt+WUPWv5Kfsgf2AjPWDy3fZNsVgShr553dOGG7ZLfGfpw2/MhER7HusGDwMyp0VXbeI
+ wIrvyh/UXrp2GMXnLwzaAU7osCjzX6DLWAVE+V2ZBTEfcDBbHbjekYzL9s5p2mZtmaSXKlzYU
+ dJ68YupI29fEdL/sJO6eBQHEQwZFNU5VzWhW1U4Vl29VyUPfVm19kPZrPmvgcH1cH/7Xcfr6y
+ MqwYP6+Yu8IoO79sp/5epSJya6c9EGcnntSwJfP6aINoA5CjFqrTiMyyf1NjrRsobyB5oplzY
+ 2u4aYBkRU+SymDLsUxqtZhzTplZc62VWYfjWiqZEYRKL8uS/GJ+LOOVtX7XK0A7C9XHsz6/mE
+ ZCocwqGE4EAK6ZJ11XpmirLijGyACuRmGFAF3FzOTsoZoaCzxwMB0eIPOdRoP/5qsvskcsPs3
+ +g2qmcEjAQ6PVFPpOmhC/5xoYpdrjDBy/8tX/BfDmlAfvOkJPjZFed1rKXWECMm17hYb8nUPh
+ xLVJ2kalkvFw7veCd3PSysuGNb3r4quLWw8033Ntm0HmnCkld66VDMbKxr7Y61jVg1OjlB0p3
+ POpEtt9qf50/WtvoOXIp0a0hzXu/B+FXjzEdL9VCmJ3RDPmYExpzQr79rz5YG74hgLZ7AkSRD
+ 38RqNmo3oyuLDJVbPn7Du7DyMBNLQNmRHmaEyWfRyFmaFu3TNpIGWH41iryWpjvMgv5RdHF+E
+ IfRdXn9sz45jLpriW1XMByTQ==
 
-Il 31/07/24 08:26, Hsin-Te Yuan ha scritto:
-> Cerise is known as ASUS Chromebook CZ1.
-> Stern is known as ASUS Chromebook Flip CZ1.
-> 
-> They are almost identical. The only difference is that Cerise is a
-> clamshell device without touchscreen and Stern is a convertible device.
-> 
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+=E2=80=A6
+>> Under which circumstances would you become interested to apply a statem=
+ent
+>> like =E2=80=9Cguard(spinlock_irqsave)(&dmamux->lock);=E2=80=9D?
+>> https://elixir.bootlin.com/linux/v6.10.2/source/include/linux/spinlock.=
+h#L574
+=E2=80=A6
+> This is very useful and I am pretty intersted, but I am not sure it
+> is suitable. Could you share some technical detail (or some documents)
+> about this method?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Further applications of scope-based resource management can become more he=
+lpful,
+can't they?
 
-> ---
->   Documentation/devicetree/bindings/arm/mediatek.yaml | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 1d4bb50fcd8d..087773a43673 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -146,6 +146,20 @@ properties:
->           items:
->             - const: google,burnet
->             - const: mediatek,mt8183
-> +      - description: Google Cerise (ASUS Chromebook CZ1)
-> +        items:
-> +          - enum:
-> +              - google,cerise-sku0
-> +              - google,cerise-rev3-sku0
-> +          - const: google,cerise
-> +          - const: mediatek,mt8183
-> +      - description: Google Stern (ASUS Chromebook Flip CZ1)
-> +        items:
-> +          - enum:
-> +              - google,cerise-sku1
-> +              - google,cerise-rev3-sku1
-> +          - const: google,cerise
-> +          - const: mediatek,mt8183
->         - description: Google Cozmo (Acer Chromebook 314)
->           items:
->             - const: google,cozmo
-> 
+Would you like to take another look at corresponding information sources?
 
+Example:
+Articles by Javier Carrasco Cruz
+Linux Kernel Development - Automatic Cleanup
+https://javiercarrascocruz.github.io/kernel-auto-cleanup-1
+June 2024
+
+Regards,
+Markus
 
