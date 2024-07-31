@@ -1,158 +1,182 @@
-Return-Path: <devicetree+bounces-89902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B3A3943268
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6ED6943287
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1DA5B221FF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:48:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0151DB2522F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9311B29A7;
-	Wed, 31 Jul 2024 14:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797911BBBD2;
+	Wed, 31 Jul 2024 14:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ctjUUWua"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IaUvdhIF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0EB186E4F;
-	Wed, 31 Jul 2024 14:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5807E186E4F;
+	Wed, 31 Jul 2024 14:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722437293; cv=none; b=uRE2r7TfBRO1RB3FALPdR1x+fLRh9Zf9yjC8wPugLeRZp6S2Pfm4cFWnIqlX1gGtzuZVKRL41vNNXh4MYYudA+tQ/z5oUrIadzd4pCOI5RsAKtV6L1vm6QWQg4O/DObWTDM3IwNxkCKKV8vtHcondY4Kv+1FELSKBpkwozouUEM=
+	t=1722437900; cv=none; b=K6S+LDCk/8vKTiWbc7VJOz02V9FHzYOuXsZl8YHt8AYgrYUm/8YKl9sNGmI9ScC1+8GiwdxBu+Eleoi74MAmm5jvUcPxuMkYGyitVBlp3tQSi8ciRRt8YCOcIAkWWz7h2Bm4Y7DLJTSiT94+1n3T5nzBi9tDDeDuAxZiaN4hyTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722437293; c=relaxed/simple;
-	bh=bij9ygVrhf3Ik+xAO+cYZBmvHCL5kJCkWDxB4IsZekY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dxfX0HdC23P2bp/nxhtKfCBmEpFpshdT8wjAqiFwA0R3VkAvMGmcrTeZjDsgpraJ0mW94zVtD/9EgjG4g/VtjgQyVO7kniVgqyHSvTr0pSK0aEmJnMD8e8oUDDbcdwKdVu/1bcJ64vkSS/GLPvjXObYBi3zEmQrTkHKSf0sxD18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ctjUUWua; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C6188C0002;
-	Wed, 31 Jul 2024 14:48:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1722437286;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BYb96CYTFrtvLLMBBd+KpMxW0vaxTI7+SnwCTQcAYKc=;
-	b=ctjUUWua/Ob720TUPNUK6WWBEHCjArvTvAM0iWtrtiP/zZHCB/DIJDRi12amGQeHWeNVUc
-	jBfQ/7DmDV8/ZXfUaxPWVULUSyRHEhfoEHe2loWHUR+3G+QchUW2+e8pZEOqXmX7AbGIdr
-	5SBwwgJl4oOTfOttvu0fh9HOPyTTuT0/wt5k8sjdxMAwt8iGsoOs0FbmSca1Cm0ZeEivkC
-	iYuIRYSI/xUqtvtzPC0ELxN6kbAkrFQ6jw2qbK51lW+ie6z5+wQHunbCWbM0BQPJPWjaEH
-	5AcdDpNGM+BCLh+ighoRwk05mHSsQgjPMcu4q/xn9dwlnyADgQMmTxKPZKQkWQ==
-Message-ID: <184916b4-8e7b-4ed1-913e-dc03e5f61364@bootlin.com>
-Date: Wed, 31 Jul 2024 16:48:01 +0200
+	s=arc-20240116; t=1722437900; c=relaxed/simple;
+	bh=gRxptiPpJoMbRFyIMNoXDXxeINftFgTK635awdM4nZg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YyZj3arFOuWQhbDkLkwF91AdBtuRkqSphT/qAYYJGlhrzCIcBiidGXtv24Q7s5lCPWY7ezHK9wpszIbbTMFCILODGSD98Q1W7Pr+YOdu7Kez5c4Nv2vNpLweqt+52s32Q9muTdufAtTZUTN5em9C3L/bMS5MmSF/avGUtXF6wow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IaUvdhIF; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VEwClG056748;
+	Wed, 31 Jul 2024 09:58:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722437892;
+	bh=wWfWjYfY1LUP58W0JQcL+f/TU7wLTX3//5xKhnoI6tw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=IaUvdhIFlJ6oqiEahWA0zZuE1X2KpUsSerAQeIs4S/EVzijL8HdvfMn6+qJ7lwtvx
+	 sg5DfcAXOECWF8XnRy4LKYYwyTJ6USdIvxpat4NGTW92ENo1WSirIgC54IL1BmZOT/
+	 vRScP+FiYeOhGcNAweuZnSw4iKl4SZbuRKIwejbA=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VEwCQc049240
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jul 2024 09:58:12 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jul 2024 09:58:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jul 2024 09:58:11 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VEwACd095111;
+	Wed, 31 Jul 2024 09:58:11 -0500
+Date: Wed, 31 Jul 2024 20:28:10 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce J742S2 SoC family
+Message-ID: <20240731145810.xoxal3ef7i3relru@uda0497581>
+References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
+ <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
+ <20240730123343.mqafgpj4zcnd5vs4@plaything>
+ <20240731041916.stcbvkr6ovd7t5vk@uda0497581>
+ <20240731110607.7fb42mgcsf2apodv@unshaven>
+ <20240731135714.p53lki7mihzxcyk2@uda0497581>
+ <087ee9e2-50ec-4791-a534-b3ebbf594fe6@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo SARADC binding documentation
-To: Inochi Amaoto <inochiama@outlook.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240731-sg2002-adc-v3-0-5ac40a518c0a@bootlin.com>
- <20240731-sg2002-adc-v3-1-5ac40a518c0a@bootlin.com>
- <IA1PR20MB495346557FA84CC694D184A0BBB12@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Language: en-US
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-In-Reply-To: <IA1PR20MB495346557FA84CC694D184A0BBB12@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <087ee9e2-50ec-4791-a534-b3ebbf594fe6@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Andrew,
 
-
-On 7/31/24 2:41 PM, Inochi Amaoto wrote:
-> On Wed, Jul 31, 2024 at 02:24:14PM GMT, Thomas Bonnefille wrote:
->> The Sophgo SARADC is a Successive Approximation ADC that can be found in
->> the Sophgo SoC.
->>
->> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> ---
->>   .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 48 ++++++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->> new file mode 100644
->> index 000000000000..79d8cb52279f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title:
->> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
->> +  Digital Converters
->> +
->> +maintainers:
->> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> +
->> +description:
->> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - const: sophgo,cv1800b-saradc
+On 09:37-20240731, Andrew Davis wrote:
+> On 7/31/24 8:57 AM, Manorit Chawdhry wrote:
+> > Hi Nishanth,
+> > 
+> > On 06:06-20240731, Nishanth Menon wrote:
+> > > On 09:49-20240731, Manorit Chawdhry wrote:
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include "k3-j784s4.dtsi"
+> > > > > > +
+> > > > > > +/ {
+> > > > > > +	model = "Texas Instruments K3 J742S2 SoC";
+> > > > > > +	compatible = "ti,j742s2";
+> > > > > > +
+> > > > > > +	cpus {
+> > > > > > +		cpu-map {
+> > > > > > +			/delete-node/ cluster1;
+> > > > > > +		};
+> > > > > > +	};
+> > > > > > +
+> > > > > > +	/delete-node/ cpu4;
+> > > > > > +	/delete-node/ cpu5;
+> > > > > > +	/delete-node/ cpu6;
+> > > > > > +	/delete-node/ cpu7;
+> > > > > 
+> > > > > I suggest refactoring by renaming the dtsi files as common and split out
+> > > > > j784s4 similar to j722s/am62p rather than using /delete-node/
+> > > > > 
+> > > > 
+> > > > I don't mind the suggestion Nishanth if there is a reason behind it.
+> > > > Could you tell why we should not be using /delete-node/?
+> > > > 
+> > > 
+> > > Maintenance, readability and sustenance are the reasons. This is a
+> > > optimized die. It will end up having it's own changes in property
+> > > and integration details. While reuse is necessary, modifying the
+> > > properties with overrides and /delete-nodes/ creates maintenance
+> > > challenges down the road. We already went down this road with am62p
+> > > reuse with j722s, and eventually determined split and reuse is the
+> > > best option. See [1] for additional guidance.
+> > > 
+> > > 
+> > > [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n189
+> > 
+> > Thank you for giving some reasoning, would do the needful!
+> > 
 > 
-> There is no need to use "oneOF" and "items"
+> This refactor will require some interesting naming for the
+> common SoC files. Based on your name for the EVM, I'm guessing
+> you will go with
+
+One other reason I was trying to avoid that and going with
+/delete-node/. For such a small delta change tbh, this churn doesn't
+feel worth the effort to me and is just gonna create confusion.
+
+EVM one was required as Rob did raise an interesting point and we did
+require a soc file that wasn't existing with the previous patchset but
+now for deleting just 4 cpus and 1 dsp, am gonna have to rename all the
+files, change the hierarchical structure, add all the cpus again with
+some weird naming for the file as don't know if some other soc is gonna
+come up in future so don't wanna clutter the file names as well with
+j784s4-j742s2-j7xxx.dtsi which is just gonna create another set of mess
+in future.
+
+Regards,
+Manorit
+
 > 
-
-Thank you very much, I'll do that.
-
-> Suggestions: add a compatible like "cv1800-saradc" as fallback
-> and add use "sophgo,cv1800b-saradc" as specific compatible.
-> Use the "cv1800-saradc" in the cv18xx.dtsi and override the
-> compatible with specific one if necessary.
+> k3-j784s4-common.dtsi
 > 
-
-If I understand correctly, maintainers doesn't want the use of wildcards 
-as generic compatibles [1]. They prefer to use the most basic SoC as the 
-generic compatible.
-Is the CV1800 a real SoC or is it just a kind of wildcard to say CV18* ?
-
-> For example:
-> - items:
->      - enum:
->          - sophgo,cv1800b-saradc
->      - const: sophgo,cv1800-saradc
-> - const: sophgo,cv1800b-saradc
+> included from the real k3-j784s4.dtsi and the new k3-j742s2.dtsi?
 > 
-
-To avoid the issue of falling back on a wildcard I planned to do this 
-instead:
-properties:
-   compatible:
-     const: sophgo,cv1800b-saradc
-
-
-
-> Regards,
-> Inochi
-
-[1] : https://lore.kernel.org/all/20240708165719.000021b9@Huawei.com/
-
-Thank you for your comments :)
-Thomas
+> Too bad the Jacinto SoC names don't use a hierarchical naming. :(
+> 
+> J7<family><part><spin><etc>..
+> 
+> Andrew
+> 
+> > Regards,
+> > Manorit
+> > 
+> > > 
+> > > -- 
+> > > Regards,
+> > > Nishanth Menon
+> > > Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> > 
 
