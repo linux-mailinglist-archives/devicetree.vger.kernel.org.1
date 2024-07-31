@@ -1,148 +1,162 @@
-Return-Path: <devicetree+bounces-89981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99349435CA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 20:46:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DEC9435DD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 20:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBD501C21392
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 18:46:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C38B228411C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 18:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2116381AF;
-	Wed, 31 Jul 2024 18:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A1A12F5A5;
+	Wed, 31 Jul 2024 18:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="o1K0q6Ju"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="zyjOkoSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp61.i.mail.ru (smtp61.i.mail.ru [95.163.41.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2FAD262A3;
-	Wed, 31 Jul 2024 18:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.163.41.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D58986AFA
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 18:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722451579; cv=none; b=dQSX/xZQzChuRhtRjDVAGGLJN75shPSLCua5NgQzmgxGIt4WTreltJRhQRS+vToaF3uWpHcKy7kSLla+qKetErkJnRdnsdWhsLPsNNn1J1Rm8BHZUFOTAnnaBOSNNvIsY1K0W49WeOsvr0Dmo1oSwAaJ56vDgaaGeX1Qd36EVd4=
+	t=1722451992; cv=none; b=lZZEn9HyXB8uQKcHS/A+nYQfjjwuM6XMHULKKC402O4M4r0Dclh509uOYVPSYNb9S4V7LCr5adbNKgTRy4B819So4YO7QVKKf2llCaY4sugvlISBZc+kt1B9PUTMTVXA4IRWE2Cccn/VgLsB2rccxmhejSmgbLre3iwaVg5Wbow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722451579; c=relaxed/simple;
-	bh=zS75Mc3DJ6hfrQRKtgAxvIMbmdgfQwBsuAtw8Kn7vp8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Cllkx838VCbXswfnRDyYNP63rSMNxxUKBMq/yKgUa14DbOtnCBp0rDi0TNQ73ybiSBAZH6rAyzn99KvgFZ5R44UQcjEtvkqzfZ3/haCQpM4SNzEPmltDHsazGRdAPxLjwZyBUnKoI95eXzXPoy12falnK1pmkLkrk40ZEm0/W60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=o1K0q6Ju; arc=none smtp.client-ip=95.163.41.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
-	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
-	X-Cloud-Ids:Disposition-Notification-To;
-	bh=GsimduPJxkxLe40pEahOpdoqbzbbrX3CY37r/6vDoas=; t=1722451578; x=1722541578; 
-	b=o1K0q6JuhsxlroCxSVPrO+VKG4briO82iKIC0T8biya5Np7auh3hC7AGY65M9geF2TknEj5UJAx
-	KK4iFvRU0AIN9u0g6RT/0ghYEPwHDUI240bxoBHehgjKI3CcFC2leq6iwkLSjarHvlQmpZ1wwvfL8
-	l10rEQNuH3zpKFd7HaY=;
-Received: by exim-smtp-5c6c85c787-dzmgd with esmtpa (envelope-from <danila@jiaxyga.com>)
-	id 1sZEKu-00000000AEA-2SOK; Wed, 31 Jul 2024 21:46:09 +0300
-From: Danila Tikhonov <danila@jiaxyga.com>
-To: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robdclark@gmail.com,
-	sean@poorly.run,
-	quic_abhinavk@quicinc.com,
-	dmitry.baryshkov@linaro.org,
-	marijn.suijten@somainline.org,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	fekz115@gmail.com
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	cros-qcom-dts-watchers@chromium.org,
-	linux@mainlining.org,
-	Danila Tikhonov <danila@jiaxyga.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Add 0x81 Adreno speed bin
-Date: Wed, 31 Jul 2024 21:45:50 +0300
-Message-ID: <20240731184550.34411-3-danila@jiaxyga.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240731184550.34411-1-danila@jiaxyga.com>
-References: <20240731184550.34411-1-danila@jiaxyga.com>
+	s=arc-20240116; t=1722451992; c=relaxed/simple;
+	bh=KMCuH83HN8KlHmBA/0LgLY6pB6mLwm5fk9j8iVVPqmY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=W9HRQz7fd3LA1l3oze3zFklzS+yzXtQr6zzK+jKl/UcybZBvNVYF92vf8GyO3py61waV746pD+XD+ZwjjVYLF9V0pNtEqnOfB/3OjYvZCd6hF6R5HCjKSX5EYIfdGiib/Je1wKzPw2wu7+0KMeG0EP71X/8Iq169qQG1TcxGktQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=zyjOkoSr; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1fdacc4129fso2081625ad.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 11:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1722451990; x=1723056790; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VEfk5ncIt83x7m+YjdXKWTAuZRXipE5lQH8P1TgSxxk=;
+        b=zyjOkoSr9Ylv2HJZ2QNumyzdC8vHQTLfvffR51Tt+iP+B7pXyV7/bH9a7qaXcxM2YH
+         ROdKDHCume7tVRNpdGr5+feurOzeLrfVi//9MmgU8tlII6/5googZSfVFHmN80LtSt1F
+         XvrnCdAMN+Vt4/enYROOONHV5BOpwdlNTtuIntuXwhe1vRbFx+Xbe7iYyKSCBendPF8Z
+         fn0BP4hZi/xWxSpbAnfD3hyLz1drz65mNdcE1zrFp2pGiImxIoXkTqnQW/IUhZiafVkU
+         FgjVxmDP1IbQt0Wj9JIS7n2hHsSBw8yXf8Xkh66aKdIQhdEMUnOGZjlfycF8FvzHEZXW
+         djrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722451990; x=1723056790;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VEfk5ncIt83x7m+YjdXKWTAuZRXipE5lQH8P1TgSxxk=;
+        b=U839+5TDtYc2Nd06HsKswHpiqi9rvcwlx6xP9W/1uwwvWrs0Ahgn6mRbPzB5LTZcGh
+         wBJyK1pTfT+kXHSdLiEC3yqZflpZR+n47C6OYws/s35qpCSALMwqOypmZdP+2TSEvXeN
+         YIkbdKhiLEjP+TgpkPq9i3LUJUhCFNfdD3a07OzlCGwbxvMe2/WDm6sNQe5t6f+vXLm8
+         CClNRgVU2cOzyuW2z2lw2rb9utsyytLQYy4+oyFOPUda6+C9JQDLz/yzm7Vl5ZQz5jk8
+         uwBQKnftYIIr1MPELXKqLNoY+t2wb4gV+1HoIcWw8jKu9qySbKqErlfbZDR4txn0EI8W
+         82ug==
+X-Forwarded-Encrypted: i=1; AJvYcCWe8Z4MmsftxmDCcY0oPXIzlYsdOvxkw/m0U0l5dar1yRzl1Lg67D+nSPJ6x4KRfX9ztVt/9rocWIAG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzERz1zdJ6nYtsUH7XaC133/cwrUgRGU1KNoplSry5I7KUh9rOc
+	BBp2nnYW/xaI5vhO0lBDLb24mGnUFbob0jPhBpioPFGFw3eT0Zj1xlCmK/ZwhA==
+X-Google-Smtp-Source: AGHT+IEd+Xm0W4rzAj9Ge+Z6pqWDl86lXrzFgFPRiCGmSEioNJ82NKUarMvpuVJei24NUE3crSe5NA==
+X-Received: by 2002:a17:903:22c9:b0:1fc:4377:d946 with SMTP id d9443c01a7336-1ff4d2715e7mr1565605ad.7.1722451989787;
+        Wed, 31 Jul 2024 11:53:09 -0700 (PDT)
+Received: from [172.16.118.4] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fed7ff3d64sm123182825ad.299.2024.07.31.11.53.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jul 2024 11:53:09 -0700 (PDT)
+From: Ayush Singh <ayush@beagleboard.org>
+Subject: [PATCH v2 0/3] Add Firmware Upload support for beagleplay cc1352
+Date: Thu, 01 Aug 2024 00:21:04 +0530
+Message-Id: <20240801-beagleplay_fw_upgrade-v2-0-e36928b792db@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: exim-smtp-5c6c85c787-dzmgd; auth=pass smtp.auth=danila@jiaxyga.com smtp.mailfrom=danila@jiaxyga.com
-X-Mailru-Src: smtp
-X-4EC0790: 10
-X-7564579A: B8F34718100C35BD
-X-77F55803: 4F1203BC0FB41BD926BB450FD17188A979C5030B5D4423D655FC690E8AB11230182A05F538085040AC417E07BA2DAF233DE06ABAFEAF6705770B92A079CA97B10FD0310B1A6FC1CEAD00EA28E3F2047E
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7E5895F94C5021202EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006374384886D4B4FC9F18638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D835B5154C5D3191BE4E40561C8114314486A83C465B63762ECC7F00164DA146DAFE8445B8C89999728AA50765F7900637172F725B8F3BEB6B389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC816F36C0CB6DCE122F6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA73AA81AA40904B5D9A18204E546F3947C643FE6A0CAC512C72D242C3BD2E3F4C64AD6D5ED66289B523666184CF4C3C14F6136E347CC761E07725E5C173C3A84C3E4A64BF2429643C8BA3038C0950A5D36B5C8C57E37DE458B330BD67F2E7D9AF16D1867E19FE14079C09775C1D3CA48CF3D321E7403792E342EB15956EA79C166A417C69337E82CC275ECD9A6C639B01B78DA827A17800CE7BEE702378D8A34C7731C566533BA786AA5CC5B56E945C8DA
-X-C1DE0DAB: 0D63561A33F958A51E2048C3D4E8BED65002B1117B3ED6967924BD83B26E21A5AD0703CEB2EF9A27823CB91A9FED034534781492E4B8EEADEEA082C9A12FE455C79554A2A72441328621D336A7BC284946AD531847A6065A535571D14F44ED41
-X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF3FED46C3ACD6F73ED3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CFC107623907F3ACEFD0A5838B2BEA6F79F2AA47B711326877B1623DD915619208614F3626C4CAF4331D9D8FAF50ED830B33734F9C359E65B42E95572611F80FD25B568A1492006FBA500BB373BEB9681702C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2bioj2j9vV9f5a3scjqOC9Te0uQ==
-X-Mailru-Sender: 9EB879F2C80682A09F26F806C7394981A5B90ABC46C0EF5FA7CF1FCFAF80C0E9D05CCF06E91720A33CC7438F9FAE1BC72C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
-X-Mras: Ok
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJiHqmYC/x3M2wqEIBRG4VeJfZ3g2AnmVSLE9M82RInSiejdR
+ +byu1jroYTISPQtHoo4OPG2ZqiyIDub1UOwyyYlVS27TyNGGL8gLObW06n34KNxEHWF1lqM0lW
+ OchsiJr7+33543x+DqvWwZwAAAA==
+To: lorforlinux@beagleboard.org, jkridner@beagleboard.org, 
+ robertcnelson@beagleboard.org, "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: greybus-dev@lists.linaro.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Ayush Singh <ayush@beagleboard.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2062; i=ayush@beagleboard.org;
+ h=from:subject:message-id; bh=KMCuH83HN8KlHmBA/0LgLY6pB6mLwm5fk9j8iVVPqmY=;
+ b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBmqogPi0vwzJBN8N67/Uo/+Auvt6abDVkOuhzE9
+ sWnqSJIZnaJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZqqIDwAKCRAFzvXHieVa
+ dFhYD/4n6dksvaVAzW8JNYa3TZa9J6e/KJlomwxI2vZ+cHEleryRg4eHJWbVwYmT3wUuOjen1rS
+ dSUKVQNkNO4Y6rnuyzcgvDKibNcmt+92wfMbzv6d5Z8bEn57FFH8menncGCzQ6L38NrTkc6TSID
+ jeO9z14XniNECUluww6/xP46PgLmX+L0+ofZSkgqTi+rSJXOQH2CS3tfm8IKD/OwEzwGkF6LKeI
+ 1RGhIz/ouzeb+jR0+l6Vb5zDlwpc1mnjAKcE6sw85BgAGWa+4ZkuJGzdwiE0KzuYWE8Q6uOBO99
+ kGoeKkWzZe+ungbu/psrCgVMiuyUXjMRsS+WCI1otwbhIynu8qdomoijTKpUwxYCEQtmlI+wMTL
+ Bh2mVBGFe5wqpHw8VFlPIKTr/JTIpB94ONzjx17ACLheHE9EVZgiHwwMejOn0nQM7bDJot29Rk8
+ MShJBN5VlbXNC9TUGvsWIZfCTR1mywoqdJTUG0talE7h06cHzKTml7y1fchuxWUllzkCNHB01ny
+ EM/GWiiS0dsLm4yZE4CVA+Rg3LAXdNs9ohJtwgaP7a0iinKrffC3jFOvXV7TKN9FqQu464zXPaT
+ HcLQBY3DZ+roJDxxpbFK7XuCrXNntH6uzdRn7pt54oie9uiak5fp8hZ2yk1EPR494ceGypvqa7W
+ fqZBwz+jBHy4QGQ==
+X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
+ fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
 
-From: Eugene Lepshy <fekz115@gmail.com>
+Adds support for beagleplay cc1352 co-processor firmware upgrade using
+kernel Firmware Upload API. Uses ROM based bootloader present in
+cc13x2x7 and cc26x2x7 platforms for flashing over UART.
 
-A642L (speedbin 0x81) uses index 4, so this commit
-sets the fourth bit for A642L supported opps.
+Communication with the bootloader can be moved out of gb-beagleplay
+driver if required, but I am keeping it here since there are no
+immediate plans to use the on-board cc1352p7 for anything other than
+greybus (BeagleConnect Technology). Additionally, there do not seem to
+any other devices using cc1352p7 or it's cousins as a co-processor.
 
-Signed-off-by: Eugene Lepshy <fekz115@gmail.com>
-Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Bootloader backdoor and Reset GPIOs are used to enable cc1352p7 bootloader
+backdoor for flashing. Flashing is skipped in case we are trying to flash
+the same image as the one that is currently present. This is determined by
+CRC32 calculation of the supplied firmware and Flash data.
+
+We also do a CRC32 check after flashing to ensure that the firmware was
+flashed properly.
+
+Link: https://www.ti.com/lit/ug/swcu192/swcu192.pdf Ti CC1352p7 Tecnical Specification
+Link:
+https://lore.kernel.org/all/20240719-beagleplay_fw_upgrade-v1-0-8664d4513252@beagleboard.org/
+Patch v1
+
+Changes in v2:
+- Spelling fixes
+- Rename boot-gpios to bootloader-backdoor-gpios
+- Add doc comments
+- Add check to ensure firmware size is 704 KB
+
+Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Ayush Singh (3):
+      dt-bindings: net: ti,cc1352p7: Add bootloader-backdoor-gpios
+      arm64: dts: ti: k3-am625-beagleplay: Add bootloader-backdoor-gpios to cc1352p7
+      greybus: gb-beagleplay: Add firmware upload API
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 3d8410683402..91cc5e74d8f5 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2834,14 +2834,14 @@ opp-315000000 {
- 					opp-hz = /bits/ 64 <315000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
- 					opp-peak-kBps = <1804000>;
--					opp-supported-hw = <0x07>;
-+					opp-supported-hw = <0x17>;
- 				};
- 
- 				opp-450000000 {
- 					opp-hz = /bits/ 64 <450000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
- 					opp-peak-kBps = <4068000>;
--					opp-supported-hw = <0x07>;
-+					opp-supported-hw = <0x17>;
- 				};
- 
- 				/* Only applicable for SKUs which has 550Mhz as Fmax */
-@@ -2856,14 +2856,14 @@ opp-550000000-1 {
- 					opp-hz = /bits/ 64 <550000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
- 					opp-peak-kBps = <6832000>;
--					opp-supported-hw = <0x06>;
-+					opp-supported-hw = <0x16>;
- 				};
- 
- 				opp-608000000 {
- 					opp-hz = /bits/ 64 <608000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
- 					opp-peak-kBps = <8368000>;
--					opp-supported-hw = <0x06>;
-+					opp-supported-hw = <0x16>;
- 				};
- 
- 				opp-700000000 {
+ .../devicetree/bindings/net/ti,cc1352p7.yaml       |   7 +
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts     |   3 +-
+ drivers/greybus/Kconfig                            |   1 +
+ drivers/greybus/gb-beagleplay.c                    | 658 ++++++++++++++++++++-
+ 4 files changed, 655 insertions(+), 14 deletions(-)
+---
+base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
+change-id: 20240715-beagleplay_fw_upgrade-43e6cceb0d3d
+
+Best regards,
 -- 
-2.45.2
+Ayush Singh <ayush@beagleboard.org>
 
 
