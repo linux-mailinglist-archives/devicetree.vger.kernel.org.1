@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-89962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B5A9434DC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 19:17:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECDF89434FF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 19:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 550581C231A0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:17:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1375F1C2292E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A959222F19;
-	Wed, 31 Jul 2024 17:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE8B1BD51B;
+	Wed, 31 Jul 2024 17:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BI6qvEDl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nGYrFD6G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2CC15E86
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 17:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514011BD503
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 17:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722446268; cv=none; b=FPIENsq93WrV1desYVTQsev5KBFzxfcW3ZX5phkjrbGQ6HJhvBMARnBkN3/E9qJmndTveRPIHCvr46vUjqEHvzxnotbzGDR6dfweRHWMKB1oj46LR2NHL7sXUxJmzeHqaXmWQr0FSvdGpJRp5gYA23qSdpc0ZiE+rv6ulL8mSsw=
+	t=1722446790; cv=none; b=KK2lGQPsXodp5TI/R7/WpELQUryiZexpM1RDjlCE/nXY8WmM5PRe/4l4cttteurf0cpmwFBoEsIY5IzXw+Rp2qenPlf9pHr/7F/PH8Ri8tRjweRojd+1/s0kSve2tbsgxjdSAPCRxFdD9TrqMmylWmEkMTBcI+sKPy2BTJC2PNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722446268; c=relaxed/simple;
-	bh=qqFSJ9OEV8R3ldQ+ymwEUFQE22TigC4D1YQrC9zM0q4=;
+	s=arc-20240116; t=1722446790; c=relaxed/simple;
+	bh=MoR6qvuRJ6W2kiERl45U/NlNMjM2KZfjtse2SQ8m5nM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rwoE8SexvrIuT5J+PJX7rTb477tYmZFVvB8iMI/nKb5LbxLni+i493uW0CHkPCpKgumqJ/xEofYCP2TntUQeG8hxNbRBbQs63MMgrvbPoPbL0j+wNyH05Zq9cC6AQYvuzRDcBS5/jTKJLjnCF6yEJvA21Qfr63C40DUQ2S4kpdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BI6qvEDl; arc=none smtp.client-ip=209.85.216.45
+	 Content-Type:Content-Disposition:In-Reply-To; b=UgGnR8eMLuT2ZXche83udwq+KC2z4+VN3q3aXUIYNL4I7SAyrj0Ib6d39X+KgWOuFL0hQIi69exlwdtcwo7Lfr7oNkNGLeAgw+w6A5h3uM5aSNrdBs0txb0qp6rAunW9667JexYjPZF4uG5la/MlIBvuG6HUFX1wAN1NiSh8kao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nGYrFD6G; arc=none smtp.client-ip=209.85.215.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2cd1661174cso4038110a91.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 10:17:46 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-71871d5e087so4601504a12.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 10:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722446266; x=1723051066; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722446788; x=1723051588; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=93I7/mpjJrW9Hk747Ikod8e9PCRBdG2PcvJTDKja1ck=;
-        b=BI6qvEDlEhG4wxIEnc4FmXwW56Ca5t4BpSomyoUej+dukMBuq7lOWMS0Yvyw6UIyEv
-         IibW5+2zv22Ithch7yu3ChK+olJq4inkfy+jjf3CN5Z/cj2/OYh3fLxHzp+NrmhR5Acg
-         I1lDNK6psVfy1+szuQtDkohV4krp7c65QM8jEghqtQIa5FtIZ88SI7gjZy+eeBoLHFzj
-         tCEejRslIsn83kX6Nccv+v6Ntx++82o01aoAgeaddrjj6k8BzonWQKyevdcCOhPDikBU
-         EfFwf263plGGxkdNDlcfTB8ZujXUEBbmeuFCZ1nH4Z9UAPskwQjpF6EB0riBS9ab1n4h
-         Fu7Q==
+        bh=vEMM7SgZ6wraHzWF5zEN2rW8ls6Wr2VKfJmgGXu1icU=;
+        b=nGYrFD6GmSKGF0lPXX3vlTniskuN14ApEsrlxGGNfTJo7MZG3xi0xEHs0z9sNA+SC7
+         rh4VNKMlDW7RYR4+J0RHQWd4dKz9ao/oFBAnguFy/2H/c98w/KsC0qRis55JYmXQ5bOi
+         sNoQSr/P7Nam26LgOwsby0TgsdUpmy2atXcMQWiFELD1ocNkGOx6pMTF44fq4FvTOKeB
+         rq6HQ5vY85ynzdtjKfbV3uhlBKuhiuCNbenQQmqgXAadF5eNl8JHvqUbwWDN1lRPRQvA
+         OwgoTYteqQr93NHrqPSwyUN7jF8zm+u9cBfY3SHwPZNe7vB2tct+oA6zCh0uX0/46oM2
+         epag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722446266; x=1723051066;
+        d=1e100.net; s=20230601; t=1722446788; x=1723051588;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=93I7/mpjJrW9Hk747Ikod8e9PCRBdG2PcvJTDKja1ck=;
-        b=fM0erxpfn60yBNvZGU8lc9l5EMXlDUsEIJvPu5l8Lk2Dq2n6uXmQUrMGm2AX3utE/t
-         r2XTmZx3DoZVvhYh2jtchGA1bFeIMJ1Bmg+WLGuS0z0dsr4B/puBfncy27cYnZxLr8Fz
-         j1/FiZfTa2e4+g3da23BWpZvKU0ebZ5k5ik9TTteueLUgwz8eh1jyfu5XZm6j5Rezr9b
-         Q8nWK6PXirb/K/SBVylFHM9jZqLSZTgw4fQW3P4OMi7vEboM8zcsfblhnmzwewnrSVAA
-         bc8WZ5jgju0rK52VNjzuNfzpca68b10czYMur1wh6h1lnNCeQAR/dN0qI3YMin0Ljt1L
-         0AsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV5nVAQsQqdSpPtHNrxVapyh83UNYhiQSZTqfdO/nQATsjcQSk1PkWkFOa5MjivFRZMZsQHPFHFBqWhFK+ycrwoBIV7vYf+iHNqJA==
-X-Gm-Message-State: AOJu0YzXp2sMsFKy4HSS6fFBZtrF4/5qmfgBpQQq4ebdP023vBW1oVtC
-	ferBZDdXHW/RgI9WMFwSRyvLBy8QQYIHor+HsgmptAsdCZVqFAGX+sgdWyIRrQ==
-X-Google-Smtp-Source: AGHT+IG4FqwSZSRESde3hln86aG8gEacOfLEQW9XssktZoDgSMe2O7ZcLfILEVYz3vRrBGR2S4MyBA==
-X-Received: by 2002:a17:90a:5602:b0:2c9:7e9c:9637 with SMTP id 98e67ed59e1d1-2cf7e1d72ecmr15361575a91.13.1722446266047;
-        Wed, 31 Jul 2024 10:17:46 -0700 (PDT)
+        bh=vEMM7SgZ6wraHzWF5zEN2rW8ls6Wr2VKfJmgGXu1icU=;
+        b=HaBKgIIiu1XpQxKoIDjnNudhI8KTjiT/8X7RYkRDGWMgphrp18KVuBOleoRqmM3Up/
+         Iac2ufTaiHyhoKoLJ7uFsXa1S3ABya4Fcn6zxPOG25Ydfmh+1kgsA25Lxjga/IbvJWls
+         7uQl9u01thpjEDpt5HYLlUksABRB84Hb5rmpZ5q6cGfbmjihPKd/1W+zIHXyV5Ff5Hir
+         TYYZJ6wwiKCrRyhCqB5X7qRCRT+SskMU8kvrFV1Xg+/7DE79wQv1v6IUlMIW3mFnNNhb
+         misaM2OVaovRdr/jtq8NBmCvE0bUZuiEwFUB/3aE+w5h6TbbZajTyDpNSICTrlA5KvHQ
+         KZGw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0BlwReNRKln/BO0a85Fha04qXoMoV4haKJi4bs8s1UqtKJQ/JZ4Rl6wKaD2193y5BgGa8nw3suhac9HNw8g15wi2WDCdscQTVtg==
+X-Gm-Message-State: AOJu0YygLQSYUoAireOTXLA38ReZ8qwLVreD5GDuSC3EJmlebQzwc7Bh
+	aJs48PY0SnzZ1CYimr7sKOn1d94VZHQH7T+Ig4yW/I0giYDmNfy7sMwRO6BEjg==
+X-Google-Smtp-Source: AGHT+IHh7J+plk/ZeBbKoubQPybF86l1i9/WVmkAlxLUoLz7b4LW6DNPKQz1FsXfyAQPGw0VU7j9UA==
+X-Received: by 2002:a17:90b:380f:b0:2c8:e43b:4015 with SMTP id 98e67ed59e1d1-2cfe775542bmr3109a91.6.1722446788491;
+        Wed, 31 Jul 2024 10:26:28 -0700 (PDT)
 Received: from thinkpad ([120.60.66.23])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cfdc4e3e1fsm1593361a91.56.2024.07.31.10.17.37
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cfdc4064d9sm1644762a91.8.2024.07.31.10.26.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 10:17:45 -0700 (PDT)
-Date: Wed, 31 Jul 2024 22:47:28 +0530
+        Wed, 31 Jul 2024 10:26:27 -0700 (PDT)
+Date: Wed, 31 Jul 2024 22:56:19 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Mayank Rana <quic_mrana@quicinc.com>
 Cc: will@kernel.org, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
@@ -82,11 +82,11 @@ Cc: will@kernel.org, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
 	quic_ramkri@quicinc.com, quic_nkela@quicinc.com,
 	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
 	quic_nitegupt@quicinc.com
-Subject: Re: [PATCH V222/7] PCI: dwc: Add msi_ops to allow DBI based MSI
- register access
-Message-ID: <20240731171728.GC2983@thinkpad>
+Subject: Re: [PATCH V226/7] dt-bindings: PCI: host-generic-pci: Add
+ snps,dw-pcie-ecam-msi binding
+Message-ID: <20240731172619.GD2983@thinkpad>
 References: <1721067215-5832-1-git-send-email-quic_mrana@quicinc.com>
- <1721067215-5832-3-git-send-email-quic_mrana@quicinc.com>
+ <1721067215-5832-7-git-send-email-quic_mrana@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,251 +96,118 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1721067215-5832-3-git-send-email-quic_mrana@quicinc.com>
+In-Reply-To: <1721067215-5832-7-git-send-email-quic_mrana@quicinc.com>
 
-On Mon, Jul 15, 2024 at 11:13:30AM -0700, Mayank Rana wrote:
-> PCIe ECAM driver do not have dw_pcie data structure populated and DBI
-> access related APIs. Hence add msi_ops as part of dw_msi structure to
-> allow populating DBI based MSI register access.
+On Mon, Jul 15, 2024 at 11:13:34AM -0700, Mayank Rana wrote:
+> To support MSI functionality using Synopsys DesignWare PCIe controller
+> based MSI controller with ECAM driver, add "snps,dw-pcie-ecam-msi
+> compatible binding which uses provided SPIs to support MSI functionality.
 > 
 > Signed-off-by: Mayank Rana <quic_mrana@quicinc.com>
 > ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 20 ++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware-msi.c  | 36 +++++++++++++----------
->  drivers/pci/controller/dwc/pcie-designware-msi.h  | 10 +++++--
->  3 files changed, 47 insertions(+), 19 deletions(-)
+>  .../devicetree/bindings/pci/host-generic-pci.yaml  | 57 ++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 3dcf88a..7a1eb1f 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -47,6 +47,16 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
->  	}
->  }
->  
-> +static u32 dw_pcie_readl_msi_dbi(void *pci, u32 reg)
-> +{
-> +	return dw_pcie_readl_dbi((struct dw_pcie *)pci, reg);
-> +}
-> +
-> +static void dw_pcie_writel_msi_dbi(void *pci, u32 reg, u32 val)
-> +{
-> +	dw_pcie_writel_dbi((struct dw_pcie *)pci, reg, val);
-> +}
-> +
+> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> index 9c714fa..9e860d5 100644
+> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> @@ -81,6 +81,12 @@ properties:
+>                - marvell,armada8k-pcie-ecam
+>                - socionext,synquacer-pcie-ecam
+>            - const: snps,dw-pcie-ecam
+> +      - description: |
+> +         Firmware is configuring Synopsys DesignWare PCIe controller in RC mode with
+> +         ECAM compatible fashion. To use MSI controller of Synopsys DesignWare PCIe
+> +         controller for MSI functionality, this compatible is used.
+> +        items:
+> +          - const: snps,dw-pcie-ecam-msi
 
-There is nothing MSI specific in dw_pcie_{writel/readl}_msi_dbi(). This just
-writes/reads the registers. So this should be called as dw_pcie_write_reg()/
-dw_pcie_write_reg().
-
->  int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -55,6 +65,7 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  	struct platform_device *pdev = to_platform_device(dev);
->  	struct resource_entry *win;
->  	struct pci_host_bridge *bridge;
-> +	struct dw_msi_ops *msi_ops;
->  	struct resource *res;
->  	bool has_msi_ctrl;
->  	int ret;
-> @@ -124,7 +135,14 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  			if (ret < 0)
->  				goto err_deinit_host;
->  		} else if (has_msi_ctrl) {
-> -			pp->msi = dw_pcie_msi_host_init(pdev, pp, pp->num_vectors);
-> +			msi_ops = devm_kzalloc(dev, sizeof(*msi_ops), GFP_KERNEL);
-> +			if (msi_ops == NULL)
-> +				goto err_deinit_host;
-> +
-> +			msi_ops->pp = pci;
-
-Stuffing private data inside ops structure looks weird. Also the fact that
-allocating memory for ops...
-
-> +			msi_ops->readl_msi = dw_pcie_readl_msi_dbi,
-> +			msi_ops->writel_msi = dw_pcie_writel_msi_dbi,
-
-Same for the callback name.
-
-> +			pp->msi = dw_pcie_msi_host_init(pdev, msi_ops, pp->num_vectors);
->  			if (IS_ERR(pp->msi)) {
->  				ret = PTR_ERR(pp->msi);
->  				goto err_deinit_host;
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-msi.c b/drivers/pci/controller/dwc/pcie-designware-msi.c
-> index 39fe5be..dbfffce 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-msi.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-msi.c
-> @@ -44,6 +44,16 @@ static struct msi_domain_info dw_pcie_msi_domain_info = {
->  	.chip	= &dw_pcie_msi_irq_chip,
->  };
->  
-> +static u32 dw_msi_readl(struct dw_msi *msi, u32 reg)
-> +{
-> +	return msi->msi_ops->readl_msi(msi->msi_ops->pp, reg);
-> +}
-> +
-> +static void dw_msi_writel(struct dw_msi *msi, u32 reg, u32 val)
-> +{
-> +	msi->msi_ops->writel_msi(msi->msi_ops->pp, reg, val);
-> +}
-> +
-
-These could be:
-
-dw_msi_read_reg()
-dw_msi_write_reg()
+There is no MSI ECAM. You can have Qcom specific ECAM implementation. Even
+generalising this as DWC ECAM is wrong, since it won't work on DWC based
+systems (especially with SCMI power domain).
 
 - Mani
 
->  /* MSI int handler */
->  irqreturn_t dw_handle_msi_irq(struct dw_msi *msi)
->  {
-> @@ -51,13 +61,11 @@ irqreturn_t dw_handle_msi_irq(struct dw_msi *msi)
->  	unsigned long val;
->  	u32 status, num_ctrls;
->  	irqreturn_t ret = IRQ_NONE;
-> -	struct dw_pcie *pci = to_dw_pcie_from_pp(msi->pp);
+>        - description:
+>            CAM or ECAM compliant PCI host controllers without any quirks
+>          enum:
+> @@ -116,6 +122,20 @@ properties:
+>        A phandle to the node that controls power or/and system resource or interface to firmware
+>        to enable ECAM compliant PCIe root complex.
 >  
->  	num_ctrls = msi->num_vectors / MAX_MSI_IRQS_PER_CTRL;
->  
->  	for (i = 0; i < num_ctrls; i++) {
-> -		status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
-> -					   (i * MSI_REG_CTRL_BLOCK_SIZE));
-> +		status = dw_msi_readl(msi, PCIE_MSI_INTR0_STATUS + (i * MSI_REG_CTRL_BLOCK_SIZE));
->  		if (!status)
->  			continue;
->  
-> @@ -115,7 +123,6 @@ static int dw_pci_msi_set_affinity(struct irq_data *d,
->  static void dw_pci_bottom_mask(struct irq_data *d)
->  {
->  	struct dw_msi *msi = irq_data_get_irq_chip_data(d);
-> -	struct dw_pcie *pci = to_dw_pcie_from_pp(msi->pp);
->  	unsigned int res, bit, ctrl;
->  	unsigned long flags;
->  
-> @@ -126,7 +133,7 @@ static void dw_pci_bottom_mask(struct irq_data *d)
->  	bit = d->hwirq % MAX_MSI_IRQS_PER_CTRL;
->  
->  	msi->irq_mask[ctrl] |= BIT(bit);
-> -	dw_pcie_writel_dbi(pci, PCIE_MSI_INTR0_MASK + res, msi->irq_mask[ctrl]);
-> +	dw_msi_writel(msi, PCIE_MSI_INTR0_MASK + res, msi->irq_mask[ctrl]);
->  
->  	raw_spin_unlock_irqrestore(&msi->lock, flags);
->  }
-> @@ -134,7 +141,6 @@ static void dw_pci_bottom_mask(struct irq_data *d)
->  static void dw_pci_bottom_unmask(struct irq_data *d)
->  {
->  	struct dw_msi *msi = irq_data_get_irq_chip_data(d);
-> -	struct dw_pcie *pci = to_dw_pcie_from_pp(msi->pp);
->  	unsigned int res, bit, ctrl;
->  	unsigned long flags;
->  
-> @@ -145,7 +151,7 @@ static void dw_pci_bottom_unmask(struct irq_data *d)
->  	bit = d->hwirq % MAX_MSI_IRQS_PER_CTRL;
->  
->  	msi->irq_mask[ctrl] &= ~BIT(bit);
-> -	dw_pcie_writel_dbi(pci, PCIE_MSI_INTR0_MASK + res, msi->irq_mask[ctrl]);
-> +	dw_msi_writel(msi, PCIE_MSI_INTR0_MASK + res, msi->irq_mask[ctrl]);
->  
->  	raw_spin_unlock_irqrestore(&msi->lock, flags);
->  }
-> @@ -153,14 +159,13 @@ static void dw_pci_bottom_unmask(struct irq_data *d)
->  static void dw_pci_bottom_ack(struct irq_data *d)
->  {
->  	struct dw_msi *msi  = irq_data_get_irq_chip_data(d);
-> -	struct dw_pcie *pci = to_dw_pcie_from_pp(msi->pp);
->  	unsigned int res, bit, ctrl;
->  
->  	ctrl = d->hwirq / MAX_MSI_IRQS_PER_CTRL;
->  	res = ctrl * MSI_REG_CTRL_BLOCK_SIZE;
->  	bit = d->hwirq % MAX_MSI_IRQS_PER_CTRL;
->  
-> -	dw_pcie_writel_dbi(pci, PCIE_MSI_INTR0_STATUS + res, BIT(bit));
-> +	dw_msi_writel(msi, PCIE_MSI_INTR0_STATUS + res, BIT(bit));
->  }
->  
->  static struct irq_chip dw_pci_msi_bottom_irq_chip = {
-> @@ -262,7 +267,6 @@ void dw_pcie_free_msi(struct dw_msi *msi)
->  
->  void dw_pcie_msi_init(struct dw_msi *msi)
->  {
-> -	struct dw_pcie *pci = to_dw_pcie_from_pp(msi->pp);
->  	u32 ctrl, num_ctrls;
->  	u64 msi_target;
->  
-> @@ -273,16 +277,16 @@ void dw_pcie_msi_init(struct dw_msi *msi)
->  	num_ctrls = msi->num_vectors / MAX_MSI_IRQS_PER_CTRL;
->  	/* Initialize IRQ Status array */
->  	for (ctrl = 0; ctrl < num_ctrls; ctrl++) {
-> -		dw_pcie_writel_dbi(pci, PCIE_MSI_INTR0_MASK +
-> +		dw_msi_writel(msi, PCIE_MSI_INTR0_MASK +
->  				(ctrl * MSI_REG_CTRL_BLOCK_SIZE),
->  				msi->irq_mask[ctrl]);
-> -		dw_pcie_writel_dbi(pci, PCIE_MSI_INTR0_ENABLE +
-> +		dw_msi_writel(msi, PCIE_MSI_INTR0_ENABLE +
->  				(ctrl * MSI_REG_CTRL_BLOCK_SIZE), ~0);
->  	}
->  
->  	/* Program the msi_data */
-> -	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_LO, lower_32_bits(msi_target));
-> -	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
-> +	dw_msi_writel(msi, PCIE_MSI_ADDR_LO, lower_32_bits(msi_target));
-> +	dw_msi_writel(msi, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
->  }
->  
->  static int dw_pcie_parse_split_msi_irq(struct dw_msi *msi, struct platform_device *pdev)
-> @@ -324,7 +328,7 @@ static int dw_pcie_parse_split_msi_irq(struct dw_msi *msi, struct platform_devic
->  }
->  
->  struct dw_msi *dw_pcie_msi_host_init(struct platform_device *pdev,
-> -				void *pp, u32 num_vectors)
-> +				struct dw_msi_ops *ops, u32 num_vectors)
->  {
->  	struct device *dev = &pdev->dev;
->  	u64 *msi_vaddr = NULL;
-> @@ -341,7 +345,7 @@ struct dw_msi *dw_pcie_msi_host_init(struct platform_device *pdev,
->  
->  	raw_spin_lock_init(&msi->lock);
->  	msi->dev = dev;
-> -	msi->pp = pp;
-> +	msi->msi_ops = ops;
->  	msi->has_msi_ctrl = true;
->  	msi->num_vectors = num_vectors;
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-msi.h b/drivers/pci/controller/dwc/pcie-designware-msi.h
-> index 633156e..cf5c612 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-msi.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware-msi.h
-> @@ -18,8 +18,15 @@
->  #define MSI_REG_CTRL_BLOCK_SIZE		12
->  #define MSI_DEF_NUM_VECTORS		32
->  
-> +struct dw_msi_ops {
-> +	void	*pp;
-> +	u32	(*readl_msi)(void *pp, u32 reg);
-> +	void	(*writel_msi)(void *pp, u32 reg, u32 val);
-> +};
+> +  interrupts:
+> +    description:
+> +      DWC PCIe Root Port/Complex specific MSI interrupt/IRQs.
+> +    minItems: 1
+> +    maxItems: 8
 > +
->  struct dw_msi {
->  	struct device		*dev;
-> +	struct dw_msi_ops	*msi_ops;
->  	struct irq_domain	*irq_domain;
->  	struct irq_domain	*msi_domain;
->  	struct irq_chip		*msi_irq_chip;
-> @@ -31,11 +38,10 @@ struct dw_msi {
->  	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
->  	bool                    has_msi_ctrl;
->  	void			*private_data;
-> -	void			*pp;
->  };
+> +  interrupt-names:
+> +    description:
+> +      MSI interrupt names
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +        pattern: '^msi[0-9]+$'
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -146,11 +166,22 @@ allOf:
+>          reg:
+>            maxItems: 1
 >  
->  struct dw_msi *dw_pcie_msi_host_init(struct platform_device *pdev,
-> -			void *pp, u32 num_vectors);
-> +			struct dw_msi_ops *ops, u32 num_vectors);
->  int dw_pcie_allocate_domains(struct dw_msi *msi);
->  void dw_pcie_msi_init(struct dw_msi *msi);
->  void dw_pcie_free_msi(struct dw_msi *msi);
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: snps,dw-pcie-ecam-msi
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - interrupt-names
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+>  
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      bus {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+> @@ -180,5 +211,31 @@ examples:
+>              interrupt-map-mask = <0xf800 0x0 0x0  0x7>;
+>              power-domains = <&scmi5_pd 0>;
+>          };
+> +
+> +        pcie0: pci@1c00000 {
+> +            compatible = "snps,dw-pcie-ecam-msi";
+> +            reg = <0x4 0x00000000 0 0x10000000>;
+> +            device_type = "pci";
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            ranges = <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>,
+> +                  <0x43000000 0x4 0x10100000 0x4 0x10100000 0x0 0x40000000>;
+> +            bus-range = <0x00 0xff>;
+> +            dma-coherent;
+> +            linux,pci-domain = <0>;
+> +            power-domains = <&scmi5_pd 0>;
+> +            iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
+> +                <0x100 &pcie_smmu 0x0001 0x1>;
+> +
+> +            interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
+> +                    <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "msi0", "msi1", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7";
+> +      };
+>      };
+>  ...
 > -- 
 > 2.7.4
 > 
