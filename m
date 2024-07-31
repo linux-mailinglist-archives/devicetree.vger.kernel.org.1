@@ -1,160 +1,167 @@
-Return-Path: <devicetree+bounces-89999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBBE9437A0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 23:15:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FCA29437B8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 23:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6624B284DF9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 21:15:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B13561C223DF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 21:20:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E0816C84F;
-	Wed, 31 Jul 2024 21:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A0D16B3BF;
+	Wed, 31 Jul 2024 21:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EBwyZod7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s9yVd2lX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D8216C6AE
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 21:14:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB29516087B;
+	Wed, 31 Jul 2024 21:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722460500; cv=none; b=gGSW1TC3PKQJGP4WsHR/monvj9XtwCa6bHVQT0BhlIM/Gi3W3GvxcD1/CK/dlt1ukanBOAWcygVQ+mEm23k+rSbdmKLBH7MqY7PLaa4LmsvcUHh83lKLrGmlD368zrpEKyO4g/wLi2LLhT0sKr3ppztS7knE8lSL7J8rh2j5bQU=
+	t=1722460812; cv=none; b=SpicDaHrsGjDb2tm+E2eY6awjkOeSljN11XDe3E8vxx3SB8ImSpPVDnObpm2zkapu8cK/H8BjwHKrdwrHOAqmoKJ/PBH13F3zt0Mje0+EhOLrvXQO10Nl57SbiZf0M5KU31HyC/EQvxOjEgt6CV7gqT/Cd3Xxdzm+PoY/vp/RBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722460500; c=relaxed/simple;
-	bh=h/SR/zFNxMgNVWfQua2p0HQlYGiWaqX45ftRH9jGwBs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=PAytxlLJr4lYPAHnstTz9D4y7fzALO9KUI1aJfS1IizPmtO9X49PgdiI0TBpVqdxwfR1HRFj0mbiOIEyGwiqwJ653mJ3U6RxhCdvWKAvTF4Xy4hTf8nLOfwBxxloc7vgrz0sMPrWrpflN7ukzWrJHW0/FF5LwHpa8HBM02HoXlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EBwyZod7; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20240731211457euoutp014c7bc896643dde1bec98e8da697da0f7~naLJPmQRd2968629686euoutp01B
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 21:14:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20240731211457euoutp014c7bc896643dde1bec98e8da697da0f7~naLJPmQRd2968629686euoutp01B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1722460497;
-	bh=h/SR/zFNxMgNVWfQua2p0HQlYGiWaqX45ftRH9jGwBs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EBwyZod75MQRBmRgYa1vcDfX9MijEtQ6s8vSxootrMcRU4FVGM1razu7iZGvn6HU6
-	 v9CcW0h23sRr8/yadfKuGVyXCaL3+1RR8J2txREQv4KDTCWl2/zd6yQm3JbugHsoIW
-	 AXgFXBWJJGAONEqQNSdFpIpe/XAv4Xaccf4nEJrw=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240731211456eucas1p1701bf4a649782f1e3ad81f5eb7041252~naLIjIa7p1067210672eucas1p1C;
-	Wed, 31 Jul 2024 21:14:56 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id CA.3C.09620.059AAA66; Wed, 31
-	Jul 2024 22:14:56 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240731211456eucas1p1b15c30b57274ef5837b57e594d061f43~naLH2aZVu1067210672eucas1p1B;
-	Wed, 31 Jul 2024 21:14:55 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240731211455eusmtrp2b187e7bffe084776589f7978e306d293~naLHwlQ_X0260402604eusmtrp2s;
-	Wed, 31 Jul 2024 21:14:55 +0000 (GMT)
-X-AuditID: cbfec7f5-d31ff70000002594-56-66aaa950f64f
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 72.B3.09010.F49AAA66; Wed, 31
-	Jul 2024 22:14:55 +0100 (BST)
-Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
-	[106.120.51.28]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240731211454eusmtip12570cc01591dcea1b234e75eee8438d9~naLG0NL2f2993929939eusmtip1e;
-	Wed, 31 Jul 2024 21:14:54 +0000 (GMT)
-From: Mateusz Majewski <m.majewski2@samsung.com>
-To: Sam Protsenko <semen.protsenko@linaro.org>, Rob Herring
-	<robh@kernel.org>
-Cc: Mateusz Majewski <m.majewski2@samsung.com>, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1722460812; c=relaxed/simple;
+	bh=5Fj1Q/lUDhBXjkp75CAf4AT/JrWwYEZL9sY+S+Ln4H8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SDsV3LNo5s84ix252GYK7GCP4/1krMOU8mDkA7O8oNPPsGkXy/VLfy2foiVCc+ljOVz1XDOPkX4N12pd4YeHG7KukxhmpQItGoD4k2z7wKRX+YA/8uZGpCBFN9pn9qhEN//0u57O8VyvfJ4hZ70FQYwYWgvYdkSl27qRnIe6Oks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s9yVd2lX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB5F3C116B1;
+	Wed, 31 Jul 2024 21:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722460812;
+	bh=5Fj1Q/lUDhBXjkp75CAf4AT/JrWwYEZL9sY+S+Ln4H8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s9yVd2lXbkzILnqi9yLyP/0rumTwOpKdrwEGjipJji17psciiK7ak469kCJhYOZLR
+	 uiYU3C9cIWIBq3JJwhN/OIQpBxAQ2ydaiSR78/XbcOt8wIDs3KkuPgtsVudU/EoAma
+	 HV/BoMPKY8ERxWDf/lpAnXY6FPtHCUHSpO3dDnZXwYv0DEBdsdsh5fKwFJqtVGDSgD
+	 DBRNerbRJYhwuHBRuyMham5jD8yvlTWMSJuB43wOvqGiTHlu67dW6ZyM9cE63pnzxH
+	 wy/JruOuhf4wRaDHZ6MezB7ltIUbsbKLjLR6tlJhr5CzZy4S4CY1Fc4xqTS+2Me9m1
+	 GoKow52eZrq5w==
+Date: Wed, 31 Jul 2024 15:20:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: alexandre.belloni@bootlin.com, christophe.leroy@csgroup.eu,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, krzk+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Anand Moon <linux.amoon@gmail.com>
-Subject: Re: [PATCH v2 6/6] dt-bindings: thermal: samsung,exynos: remove
- outdated information on trip point count
-Date: Wed, 31 Jul 2024 23:14:42 +0200
-Message-ID: <20240731211444.59315-1-m.majewski2@samsung.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <CAPLW+4=WsGikZ6qOi8dWg4wFsVbhp29cv=DKP06jc4TQn=yUeQ@mail.gmail.com>
+	linux-rtc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v2 1/1] dt-bindings: soc: fsl: Convert rcpm to yaml format
+Message-ID: <20240731212010.GA1918811-robh@kernel.org>
+References: <20240731150420.2217925-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNKsWRmVeSWpSXmKPExsWy7djP87oBK1elGXzZqGbxYN42NovvW64z
-	WazZe47JYt5nWYv5R86xWpw/v4HdYtPja6wWl3fNYbP43HuE0WLG+X1MFus23mK3WNjUwm4x
-	8dhkZou5X6YyW/zfs4Pd4snDPjaL5337mBwEPdbMW8PosXPWXXaPxXteMnlsWtXJ5nHn2h42
-	j81L6j36tqxi9Pi8SS6AI4rLJiU1J7MstUjfLoEr4+CJY0wFM7gqZiy5y97AuJ6ji5GTQ0LA
-	RGLP4W72LkYuDiGBFYwSu473sIEkhAS+MEpsnOcEkfjMKHHu7htmmI43z06yQCSWM0r8fXef
-	FcJpZZL4d78frJ1NwEDiwZtlQHM5OEQE/CVWvBcFqWEW2MEiMevGcrC4sECxxPUPIiDlLAKq
-	EpeuvmYEsXkFbCQm919hhVgmL9G7v48JxOYUCJS48O8JG0SNoMTJmU9YQGxmoJrmrbOhjpvN
-	KXF2aQWE7SLxbMUiFghbWOLV8S3sELaMxP+d85kg7HyJGZvfs4CcIyFQIXH3oBeEaS3x8Qwz
-	iMksoCmxfpc+RLGjxLTzUxghKvgkbrwVhNjPJzFp23RmiDCvREebEES1qsTxPZOgzpKWeNJy
-	G2qlh8TvZbPZJjAqzkLyySwkn8xC2LuAkXkVo3hqaXFuemqxcV5quV5xYm5xaV66XnJ+7iZG
-	YHo7/e/41x2MK1591DvEyMTBeIhRgoNZSYRX6OTKNCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8
-	qinyqUIC6YklqdmpqQWpRTBZJg5OqQamgmXbJl2ZYafXtuik00mheTGP17Fc7mhw1I55/yjv
-	5j6VeO+NDRfPPjb1kLDjZDrks75A5JY2b12k62q3MKauYzaFi39Fnzd/rGcmFaN68Itu14Y7
-	M9/GaVicnWpw/y0vXzB/xH1mvW8bDwvYx009MGWJ+kw941vKH7Xa3f5Fb2GdWtAX7bBsRc6t
-	4//enzhzI1AvoLNtetUf/WM/Ok9a8ftoLD62rHrix2v2hid2Xn81y5qrQiX3skDQJgXLWzsV
-	UzqD9bTXz/z3I/T/bQXufQ+9/9m4BM+NKG36K9d9vEdz0dYf7e+q96S+2+OYcYojnOVD2QvW
-	5CtTt9tnbep1aA5fdCyu+/tU/fS9ik+MlFiKMxINtZiLihMB+Ey0Q94DAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAIsWRmVeSWpSXmKPExsVy+t/xu7r+K1elGTy+ZWDxYN42NovvW64z
-	WazZe47JYt5nWYv5R86xWpw/v4HdYtPja6wWl3fNYbP43HuE0WLG+X1MFus23mK3WNjUwm4x
-	8dhkZou5X6YyW/zfs4Pd4snDPjaL5337mBwEPdbMW8PosXPWXXaPxXteMnlsWtXJ5nHn2h42
-	j81L6j36tqxi9Pi8SS6AI0rPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/O
-	JiU1J7MstUjfLkEv4+CJY0wFM7gqZiy5y97AuJ6ji5GTQ0LAROLNs5MsXYxcHEICSxklPjx+
-	yw6RkJY4/GUKlC0s8edaFxtEUTOTxLZjjawgCTYBA4kHb5aBFYkI+Ev0bu5gBSliFjjGIrH9
-	8C0WkISwQKHEuUsPwRpYBFQlLl19zQhi8wrYSEzuv8IKsUFeond/HxOIzSkQKHHh3xM2EFtI
-	gEfi1Yb9UPWCEidnPgGbyQxU37x1NvMERoFZSFKzkKQWMDKtYhRJLS3OTc8tNtIrTswtLs1L
-	10vOz93ECIzKbcd+btnBuPLVR71DjEwcjIcYJTiYlUR4hU6uTBPiTUmsrEotyo8vKs1JLT7E
-	aAp090RmKdHkfGBayCuJNzQzMDU0MbM0MLU0M1YS5/Us6EgUEkhPLEnNTk0tSC2C6WPi4JRq
-	YEru5UoU/e8QYj7LNO1Z5+sJ4Yd0bG6sY2A9PGdq4yeDWdMyHtlf+PuvR0n+PrP+L90dC9tf
-	L0k5wSOyTWj633WndnPHmSYxzP2v/1vHi6eKSURdaeeV5ovPi2IXHj0bejTty2GZZ0csOyZF
-	LN+gKb73SOHz568zjRR22eyyNdtQNSV5/4XwazteTDNhqp2XMuH381V1YYGMBVPVt0ov+y8r
-	v3FqsM61d9pnPObcmaPonHLhxZVnPxUDZhi6T5y578yqHB75V4nRG7/Oz6io+ro+xqDtbp7/
-	ikf5Uufk7qjfvtSgPuXSmZAel6sd+/553spUUg6vyfPJSZjDxpF0yIv3zfP5/I9UIp7uObPq
-	J9tOJZbijERDLeai4kQA0meQOVMDAAA=
-X-CMS-MailID: 20240731211456eucas1p1b15c30b57274ef5837b57e594d061f43
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240731211456eucas1p1b15c30b57274ef5837b57e594d061f43
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240731211456eucas1p1b15c30b57274ef5837b57e594d061f43
-References: <CGME20240731211456eucas1p1b15c30b57274ef5837b57e594d061f43@eucas1p1.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240731150420.2217925-1-Frank.Li@nxp.com>
 
-> Do I understand it correctly that the patch actually removes an
-> outdated description of *driver* implementation, and not outdated
-> hardware description?
+On Wed, Jul 31, 2024 at 11:04:20AM -0400, Frank Li wrote:
+> Convert dt-binding rcpm from txt to yaml format.
+> Add fsl,ls1028a-rcpm compatible string.
+> 
+> Additional changes:
+> - Add missed compatible string fsl,<chip>-rcpm.
+> - Remove map fsl,<chip>-rcpm to fsl,qoriq-rcpm-<version>.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v1 to v2
+> - add missed compatible string
+> - Remove compatible string map table
+> - use oneof Item to align compatible string map table
+> - Fix typo 1045a
+> ---
+>  .../bindings/rtc/fsl,ls-ftm-alarm.yaml        |   2 +-
+>  .../devicetree/bindings/soc/fsl/fsl,rcpm.yaml | 101 ++++++++++++++++++
+>  .../devicetree/bindings/soc/fsl/rcpm.txt      |  69 ------------
+>  3 files changed, 102 insertions(+), 70 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+> index 388102ae30cd8..3ec111f2fdc40 100644
+> --- a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+> @@ -42,7 +42,7 @@ properties:
+>          minItems: 1
+>      description:
+>        phandle to rcpm node, Please refer
+> -      Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+> +      Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+>  
+>    big-endian:
+>      $ref: /schemas/types.yaml#/definitions/flag
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+> new file mode 100644
+> index 0000000000000..762316ef4d150
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+> @@ -0,0 +1,101 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/fsl/fsl,rcpm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Run Control and Power Management
+> +
+> +description:
+> +  The RCPM performs all device-level tasks associated with device run control
+> +  and power management.
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - fsl,ls1012a-rcpm
+> +              - fsl,ls1021a-rcpm
+> +              - fsl,ls1028a-rcpm
+> +              - fsl,ls1043a-rcpm
+> +              - fsl,ls1045a-rcpm
+> +          - enum:
 
-Correct.
+"const" for the fallbacks.
 
-> If so, then maybe it makes sense to rework the
-> patch title and commit message in a way Rob suggests. I.e. rather than
-> stating that the patch removes an outdated information, instead
-> mention it removes *software* (driver) description which was
-> incorrectly added earlier. Because bindings are only meant for
-> hardware description and should be completely independent of driver's
-> side of things. Also in that case it probably doesn't make much sense
-> referencing that commit for using set_trips ops. Just my two cents.
+> +              - fsl,qoriq-rcpm-2.1+
 
-Makes sense, what do you think about this?
 
-dt-bindings: thermal: samsung,exynos: remove driver-specific information
+> +        minItems: 1
 
-The number of supported trip points was only limited by the driver
-implementation at the time, which mapped each trip point defined in the
-devicetree source file to a hardware trip point. An implementation that
-does not have this limitation is possible; indeed, that is how the
-driver works currently. Therefore, this information should be removed
-from the bindings description, which are meant to be independent from
-the details of the driver implementation.
+Why? I don't see any .dts files without the fallback.
+
+> +      - items:
+> +          - enum:
+> +              - fsl,p2041-rcpm
+> +              - fsl,p3041-rcpm
+> +              - fsl,p4080-rcpm
+> +              - fsl,p5020-rcpm
+> +              - fsl,p5040-rcpm
+> +          - enum:
+> +              - fsl,qoriq-rcpm-1.0
+> +        minItems: 1
+> +      - items:
+> +          - enum:
+> +              - fsl,b4420-rcpm
+> +              - fsl,b4860-rcpm
+> +              - fsl,t4240-rcpm
+> +          - enum:
+> +              - fsl,qoriq-rcpm-2.0
+> +        minItems: 1
+> +      - items:
+> +          - enum:
+> +              - fsl,t1040-rcpm
+> +          - enum:
+> +              - fsl,qoriq-rcpm-2.1
+> +        minItems: 1
 
