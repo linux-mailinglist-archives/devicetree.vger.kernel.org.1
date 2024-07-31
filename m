@@ -1,53 +1,43 @@
-Return-Path: <devicetree+bounces-89809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F183D942C86
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:51:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E2A942CFE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:12:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABEBF2840FE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:51:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D705B1F24E5D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045021B010C;
-	Wed, 31 Jul 2024 10:50:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OAjXf2G4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA51D1AB531;
+	Wed, 31 Jul 2024 11:12:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-42a9.mail.infomaniak.ch (smtp-42a9.mail.infomaniak.ch [84.16.66.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65AA51AE85B;
-	Wed, 31 Jul 2024 10:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED8D1AB52E
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 11:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722423019; cv=none; b=AXb0U5e7zkUFsv+p5IThoP7FOeXsRw6F0PWv8K3R8ka+9uZP0wnBzIjesEcbqWkqA0QN+jkghL4PTQedTfGKQBdExfUqUogQ86XVF4ujDyQQB5dYdbcLoGZKGLtC9+lHCq4wiaunwFERcCQF7pynjPadrEkF3nhw5OK/ZwblJg4=
+	t=1722424364; cv=none; b=BFu49o29G3Jm3eRaU++rqYWUtJmtli2HAzvcMitj/zUII3HAEuS+loF0gt3nFR8PVKlQ639Ab2EnR1RvS0PCYMmak7GpZwoWIR0tw8kMZGpkB4m4+b8VIMVxCElmuhaFifOeiPYeofduthLf+RrBUYxIGp0QZglJVap5xs4UEg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722423019; c=relaxed/simple;
-	bh=T5skMR86m0ZxvSsBUDQmSGDmm4tUdFlQy/vZxL51ZmA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OgMtZXQ4zynyhlQKlpbnrLnQQjkBZ5aCrTUVGw4bBTsypdiCvImojlrkO7SJXycyi//XNjEt+X5argdReVjArlCAMhLnktUr6jlIT2/LEh+tI2seeXmK7P9t9J72SlHhKBh2GHvA7T7W0FIIzUrq5H7UEvYDbRwe75IehPXVF+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OAjXf2G4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E71E9C4DE1D;
-	Wed, 31 Jul 2024 10:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722423019;
-	bh=T5skMR86m0ZxvSsBUDQmSGDmm4tUdFlQy/vZxL51ZmA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OAjXf2G4LCOEymiGO7ORtgF+gakvZV8CJv1ilww9RybwroRbNcQIaAP9TngOs6Ns7
-	 I1Q455f1Ij6NFwTa2tYeS6MV5qpzLbgro3BbnbH8quMteDHyZsjHqn+SXwvKBxnZ5Q
-	 D/Lm7L4xEuVzTx3jJr2xt/hzLPHzjqT3aDuyehvx3kpHr5F+5ZEsIuoWCfCP12/I/c
-	 e1/DVUBLWro2Gw9BgNyblG1T9lDKWqpUQLvegUAJDbGyV2HMkTLl4zy43OnG/dQfNy
-	 mIH9s32EOD8BPkmHK25Bq7tMpBv6JDTllqs91Hzi1KlHjacjwyosQEI2Fmk9q2hBKE
-	 4lDH9ldsGfxaw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB020C3DA64;
-	Wed, 31 Jul 2024 10:50:18 +0000 (UTC)
-From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>
-Date: Wed, 31 Jul 2024 16:20:16 +0530
-Subject: [PATCH v3 13/13] arm64: dts: qcom: sm8450: Add 'global' interrupt
- to the PCIe RC node
+	s=arc-20240116; t=1722424364; c=relaxed/simple;
+	bh=dOyIOG9bAIEMgUL/lfBwC5nC2+cdXzNNtcrGu35hluk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OU8vypU0ss1sECkWSIJvy+8rgulAP6F8QpC8Og/1j3g8Jm4sQmpRqOf8OCiigHR5Nn4AH6W1GLMxtc/xRacholMrqk99XKQ5h/78XlVsIR0MwZ2hZpNubnBLhSbIJ8h89+Cw68VjVPGoZFJvYqNb7S8avcPTSaC5Yi5KY93L0OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4WYq6722Tpz1KK;
+	Wed, 31 Jul 2024 13:06:23 +0200 (CEST)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4WYq661mx4zR92;
+	Wed, 31 Jul 2024 13:06:22 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH 0/2] fix eMMC/SPI flash corruption when audio has been used
+ on RK3399 Puma
+Date: Wed, 31 Jul 2024 13:05:27 +0200
+Message-Id: <20240731-puma-emmc-6-v1-0-4e28eadf32d0@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,98 +46,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240731-pci-qcom-hotplug-v3-13-a1426afdee3b@linaro.org>
-References: <20240731-pci-qcom-hotplug-v3-0-a1426afdee3b@linaro.org>
-In-Reply-To: <20240731-pci-qcom-hotplug-v3-0-a1426afdee3b@linaro.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2085;
- i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
- bh=VT44obotCPUBbxvMUSiK7oaxSibx2Iio+dz6SHI7KhE=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBmqhblNzaaeYw8B23DDeqkEmh17nbj4nLf1+plB
- bbD5W/MaxCJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZqoW5QAKCRBVnxHm/pHO
- 9edLB/wJfinRqT1ZaIEqmwdeCglsOvXrZYFwynjzpwkrwDnq/VJXpKxc1EYNUYndw2kJsnQnkjz
- MJy1k9utlvQI1HfHcGl3AjAL+iS0uVExZabdGUpQaKEFJCf1hr/UiiHh486UCOfE0wCJhni1TvP
- EuXNGESFIBsIcAf4XzYP3OfIIafC6g5fLA5r/6A322EVxMdCy+/kLv2gczMfVf/5ZyZQOGBiW9F
- nir8hA84oZdJsCf8xy50ulrMxrgwXDT3phbIQ2cbduZ1s3ltdLNosD2JIUuU4H/xwRcLh5ZxG3/
- WrTAx9Z1hH/oQQ2lIK73Bi73atywSQtqCQvEs0hvAS+0TUtk
-X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Endpoint-Received: by B4 Relay for
- manivannan.sadhasivam@linaro.org/default with auth_id=185
-X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reply-To: manivannan.sadhasivam@linaro.org
+X-B4-Tracking: v=1; b=H4sIAHcaqmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDc2ND3YLS3ETd1NzcZF0z3WRDE8NUC0tDIyODJCWgjoKi1LTMCrBp0bG
+ 1tQArVyiAXQAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Judy Hsiao <judyhsiao@chromium.org>, 
+ Brian Norris <briannorris@chromium.org>
+Cc: stable@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>, 
+ foss+kernel@0leil.net
+X-Mailer: b4 0.14.0
+X-Infomaniak-Routing: alpha
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+In commit 91419ae0420f ("arm64: dts: rockchip: use BCLK to GPIO switch
+on rk3399"), an additional pinctrl state was added whose default pinmux
+is for 8ch i2s0. However, Puma only has 2ch i2s0. It's been overriding
+the pinctrl-0 property but the second property override was missed in
+the aforementioned commit.
 
-Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
-to the host CPUs. This interrupt can be used by the device driver to
-identify events such as PCIe link specific events, safety events, etc...
+On Puma, a hardware slider called "BIOS Disable/Normal Boot" can disable
+eMMC and SPI to force booting from SD card. Another software-controlled
+GPIO is then configured to override this behavior to make eMMC and SPI
+available without human intervention. This is currently done in U-Boot
+and it was enough until the aforementioned commit.
 
-Hence, add it to the PCIe RC node along with the existing MSI interrupts.
+Indeed, because of this additional not-yet-overridden property, this
+software-controlled GPIO is now muxed in a state that does not override
+this hardware slider anymore, rendering SPI and eMMC flashes unusable.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Let's override the property with the 2ch pinmux to fix this.
+
+While at it, add a GPIO hog for this software-controlled GPIO to make it
+explicit and also make it reserve the pin through the pinctrl subsystem
+to make sure nobody can mistakenly request it for something else: better
+have a non-working feature than eMMC/SPI being corrupted "randomly"!
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+Quentin Schulz (2):
+      arm64: dts: rockchip: fix eMMC/SPI corruption when audio has been used on RK3399 Puma
+      arm64: dts: rockchip: override BIOS_DISABLE signal via GPIO hog on RK3399 Puma
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 9bafb3b350ff..564b071eb77c 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1787,7 +1787,8 @@ pcie0: pcie@1c00000 {
- 				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi0",
- 					  "msi1",
- 					  "msi2",
-@@ -1795,7 +1796,8 @@ pcie0: pcie@1c00000 {
- 					  "msi4",
- 					  "msi5",
- 					  "msi6",
--					  "msi7";
-+					  "msi7",
-+					  "global";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-@@ -1949,7 +1951,8 @@ pcie1: pcie@1c08000 {
- 				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-+				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi0",
- 					  "msi1",
- 					  "msi2",
-@@ -1957,7 +1960,8 @@ pcie1: pcie@1c08000 {
- 					  "msi4",
- 					  "msi5",
- 					  "msi6",
--					  "msi7";
-+					  "msi7",
-+					  "global";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+ arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 36 ++++++++++++++++++++++++---
+ 1 file changed, 33 insertions(+), 3 deletions(-)
+---
+base-commit: e4fc196f5ba36eb7b9758cf2c73df49a44199895
+change-id: 20240731-puma-emmc-6-c141e891220b
 
+Best regards,
 -- 
-2.25.1
-
+Quentin Schulz <quentin.schulz@cherry.de>
 
 
