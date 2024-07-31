@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450A39428D0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:06:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23AE89428FD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:16:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB4551F23C5C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:06:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 484BC1C21932
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0881A76DE;
-	Wed, 31 Jul 2024 08:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878561A8BF0;
+	Wed, 31 Jul 2024 08:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hq72lzIy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pp5Iksg8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1FC450E2;
-	Wed, 31 Jul 2024 08:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E6291A721B;
+	Wed, 31 Jul 2024 08:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722413161; cv=none; b=Ybf3t9WTaFNNo08Om33WkJcM4BM1KbX0TLfWuR/Sw+fa6nF/wKgVtQ0Q0jr+MrZsXmWGeWsNC/7koDZZP9vXxybRchDTo4zyIlXbnySn/hklqn1hkEUaJraljJmyv8H8XXoawGEZzWgAwGxgA3u2U/P5tcGXhxWvdTKirSqZF5I=
+	t=1722413794; cv=none; b=SsulWiT/fKbwVaT4epdMpVVRAFWQrznAz6fVwWSy0esAuLqefDm3cBfl7LHoYBgd3kgrrJamCnYQakQrNqgMuCQQ3YKdalTcEZ7p+E6KtNoSa1E6JJiVXtmmzOku3dxy6t8YVfqxLN19nXc8gCl5BzZPg2bQ++2wf2yGEIPfd1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722413161; c=relaxed/simple;
-	bh=hNYrx3sJMTIuTBf42CJxg0iJe/+Cc3AGgzNhKbn5aY4=;
+	s=arc-20240116; t=1722413794; c=relaxed/simple;
+	bh=5oRKcekbyt486+TVjpwgoDMS2097DCQbNNHp9RC330U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lfa8+F7ptNyurNgz3N5NjIZNI+N06sWGh2rMK3Y+KKUgobookLPUbYV+VOwnaSOO79NvXGJG8VzekgZiwCL6P3+1EBzxQQ1Htz2mpSSRd3Tm7JdPZ+Yq2qKlxWvOp3djaVMUBF/phrh25tNAQHWZP4AQUE2L7qadKMuVbSkAj4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hq72lzIy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23885C4AF0C;
-	Wed, 31 Jul 2024 08:05:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cRWI9TliGdl4HSAQI+cGmRiqloiyMhvMYP0yFZM+EL+QzNCGCe5RgjbrVoTvLuvap/lgLUS5kYiY7BvMx96AItgjCX2Mw5EYmbGoykXJEUDgmg7T/GlzPG+NrLxEobtWuxy7Mt4atPmPPM1a6eOmjY478jZ2R2wq42IIlj+LRZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pp5Iksg8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98A5BC4AF0B;
+	Wed, 31 Jul 2024 08:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722413161;
-	bh=hNYrx3sJMTIuTBf42CJxg0iJe/+Cc3AGgzNhKbn5aY4=;
+	s=k20201202; t=1722413793;
+	bh=5oRKcekbyt486+TVjpwgoDMS2097DCQbNNHp9RC330U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hq72lzIybLCfhy66Bpg9hcc6BCdpc4YXZuPCwKuYXWyMahmJBP5XI6XDYX/tgAUxf
-	 T+S68PcZ3ac6ep9XVUa5dlDFeCj+B3gZZGa7WjCdmgjDio1BKAF3VAm4Vt+yaxwYz5
-	 wGu9/UEvBHbM02ZloroedjBv+wbMhiLkqwcJznmNekUlc1AetFruK3xFCh2hFMEV1Z
-	 pRiyU3FCCE3+Bh3YfEjHDC9yHq4lI+ZJCZdSBaqbGfVQ4DKpKOqxyE6WwguAPQ3tDB
-	 GM9XvSTkv6/VaDvVKv/GG+Seltqk0sbVtrPzzqvD9G/zpUUMO9FzJxjDy1TJE19Sdi
-	 R43qrh3p8fUYA==
-Message-ID: <d88b8d9e-e005-442a-bbf0-2949dd5dc873@kernel.org>
-Date: Wed, 31 Jul 2024 10:05:57 +0200
+	b=Pp5Iksg8yMhKHR3IBfURNqMVd5UzchffW65fqmBMfGE7BShyrt7sLA1NxhWvnoFAE
+	 zFaVcULFslmd+KJR8GdU1dL4LJsKmxaY5ww+Cb9BR5M0j3X3MujHqW7tQ8Nql8N5MP
+	 W82jiMj1O7THB90SjCI3qBtzAJyMlob81gb0tBXTnNVyAj1uMgPg/LWZnvbEJkZSrY
+	 aIwTIo72ekX8yGc6lhjZZjUGaaGxvAXq3zSUYfSPNLsNhO7Wre1Mbt3PuNHFTuX66D
+	 Vp+O62JomYGvDZpWfMF1L7WUy8Gl7iZdcsO7BMGanqtuqwdCMK3ldokt0cT01h363x
+	 0vWx4Vc4F28lA==
+Message-ID: <bb696e60-642f-43f1-9ccf-972e1d839bcd@kernel.org>
+Date: Wed, 31 Jul 2024 10:16:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: usb: microchip, usb2514: Add USB2517
- compatible
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240731071950.989113-1-alexander.stein@ew.tq-group.com>
- <6728a670-84aa-4b1c-8aa5-1cde84b97adf@kernel.org>
- <54a4f7a5-6c56-48da-bc28-d01f39d9ec5b@kernel.org>
- <6694660.DvuYhMxLoT@steina-w>
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm64: mediatek: Add
+ kukui-jacuzzi-cerise board
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240731-jacuzzi_dt-v2-0-4995335daa30@chromium.org>
+ <20240731-jacuzzi_dt-v2-2-4995335daa30@chromium.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,31 +105,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <6694660.DvuYhMxLoT@steina-w>
+In-Reply-To: <20240731-jacuzzi_dt-v2-2-4995335daa30@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/07/2024 09:34, Alexander Stein wrote:
-> Am Mittwoch, 31. Juli 2024, 09:32:43 CEST schrieb Krzysztof Kozlowski:
->> On 31/07/2024 09:27, Krzysztof Kozlowski wrote:
->>> On 31/07/2024 09:19, Alexander Stein wrote:
->>>> USB2517 is a 7-port variant of this USB hub. Add an USB compatible
->>>> based on USB vendor & product ID.
->>>>
->>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Of course assuming there is some user? If so, where?
+On 31/07/2024 08:26, Hsin-Te Yuan wrote:
+> Cerise is known as ASUS Chromebook CZ1.
+> Stern is known as ASUS Chromebook Flip CZ1.
 > 
-> There is: arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
-> introduced by commit ba9943f47dca1 ("arm64: dts: mba93xxla: Add USB support")
+> They are almost identical. The only difference is that Cerise is a
+> clamshell device without touchscreen and Stern is a convertible device.
+> 
+> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 1d4bb50fcd8d..087773a43673 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -146,6 +146,20 @@ properties:
+>          items:
+>            - const: google,burnet
+>            - const: mediatek,mt8183
+> +      - description: Google Cerise (ASUS Chromebook CZ1)
+> +        items:
+> +          - enum:
+> +              - google,cerise-sku0
+> +              - google,cerise-rev3-sku0
+> +          - const: google,cerise
+> +          - const: mediatek,mt8183
+> +      - description: Google Stern (ASUS Chromebook Flip CZ1)
+> +        items:
+> +          - enum:
+> +              - google,cerise-sku1
+> +              - google,cerise-rev3-sku1
+> +          - const: google,cerise
 
-Bindings 1.5 years after you added compatible... checkpatch told you
-that you miss bindings that time.
-
-This should be explained in commit msg - you add compatible for a
-compatible already present in the kernel.
+Why not google,stern? If this is not compatible with cerise and has
+different name, I think logical would be to have different compatible -
+either here or the first one.
 
 Best regards,
 Krzysztof
