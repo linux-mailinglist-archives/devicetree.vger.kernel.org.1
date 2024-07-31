@@ -1,220 +1,114 @@
-Return-Path: <devicetree+bounces-89915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B9A943329
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:25:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B61894330F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:22:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7444DB25C4B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:21:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25B3128457F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D3A179A7;
-	Wed, 31 Jul 2024 15:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672011BBBD9;
+	Wed, 31 Jul 2024 15:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AJJ75reD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oU8/J9El"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79F717741;
-	Wed, 31 Jul 2024 15:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3213D1799F;
+	Wed, 31 Jul 2024 15:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722439116; cv=none; b=cbF1kth5ZvQ7CDLQktLweToEN2Swn0cZcExtlBKwkVWSBNU0PgPWJ8Nj9bORwjYCglkKz/4/6KorJG3v6KekDd4XLh7Zpb1FfFOM25jaLsPaiJP4Y+CXygRXiBSti6cPRc4DIjCT1IUK+yk7NPRQwp9pQZzR3fI/tlabfbYHZno=
+	t=1722439188; cv=none; b=C0CuZe2BwE70F3sgbVufZSE9To5DiSC6anlUwirQ+t2MjscFtuWoE/16w+vYVGMcNamy1xiPb+LSZlAuTxz4oX/QTsft4oL6j2GYRiFQS4+nm2F7DO96DsnfnWb1PggQ8Yc47/0Wi3WcXDE9xKobnGeedZr93BSqWjva0TMUWY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722439116; c=relaxed/simple;
-	bh=lAUgPsvmwcI5gDVQTdCGu1WnO/70naEh8fqJP0rlrd4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aN36QH9JNbxuqLA/3se5LxtO6rIf+PFurRArp3czwJ5JpQGn373T92hsIjoZEWRgzy8dmi8J7nktAqR8Cc0snDV9mPQ9p8OWr0DgDB17J97Ag3vW+8uf7l9HOeqNENOrusLgP5JrOu9+zN8pn9s/hiFYOFAkRTopPzVpkEhsgAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AJJ75reD; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VFIM3s082023;
-	Wed, 31 Jul 2024 10:18:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722439102;
-	bh=GKzPtifXeFUhvADnUjGHY8DqkpY6PksV+4ieiYc2giU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=AJJ75reD3OgZOTwN0SmGjpV4+neBoE+XprN4SLaIvKnHwR+oic19wos/68BWHOGr5
-	 9Y4j+R2Sg1GjAJKsL85LWdCGYRALwribBA2iuTRLAwM3RfHL7NVmzrCO2my9KZLmJp
-	 sA6PG63uxT8TFoZGYWOvAR3qxz5Nrhy1y93j51Bs=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VFIMbm019662
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jul 2024 10:18:22 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jul 2024 10:18:21 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jul 2024 10:18:21 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VFIKWH077527;
-	Wed, 31 Jul 2024 10:18:21 -0500
-Date: Wed, 31 Jul 2024 20:48:20 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: Andrew Davis <afd@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
-        Neha Malcom
- Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce J742S2 SoC family
-Message-ID: <20240731151820.tf6tzgj2wrc5vh5j@uda0497581>
-References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
- <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
- <20240730123343.mqafgpj4zcnd5vs4@plaything>
- <20240731041916.stcbvkr6ovd7t5vk@uda0497581>
- <20240731110607.7fb42mgcsf2apodv@unshaven>
- <20240731135714.p53lki7mihzxcyk2@uda0497581>
- <087ee9e2-50ec-4791-a534-b3ebbf594fe6@ti.com>
- <20240731145810.xoxal3ef7i3relru@uda0497581>
- <c6497a37-695b-45d8-b413-2b338e3f42a7@ti.com>
+	s=arc-20240116; t=1722439188; c=relaxed/simple;
+	bh=M4l/MvBogF76/75u0nQ1zmhwmlxJgPNmJ1Dn9CGWYbg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=tjyoOYt1HmPrtgJ4MBoIl9DHop2Is4O8jjjSkjz1JtGOJfD9G7KR9jZrWTIlgWpK4Fgeun0Xi2uW7GspR2NnkNdube1Mj4cs3M+Rn5xxSijP4+4reesUPsSQ3XPxWnURDpGab9iJmqmPKgms/UZNvuQ8Z9RHIsr1PxYJCYM5ALw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oU8/J9El; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C74C116B1;
+	Wed, 31 Jul 2024 15:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722439188;
+	bh=M4l/MvBogF76/75u0nQ1zmhwmlxJgPNmJ1Dn9CGWYbg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=oU8/J9ElYttHWJsYCZ3hPaH/+UwwToM2MnKMOLV576yB0u3X3sp+amzxgtLggRtx5
+	 +yQPMtUpjJs9zAvbU+WiDyPWf6qVT7x3Wgg7oHbKK3Io5LePyvPrsHMUg9+HX3GQDn
+	 lVboCjMT7QcSxtwkY8+0AX1nWh5JT+7KP2KLfw3OvW0YwFS38gQZOhBuVqK8S9jAjq
+	 P6C2Yg28fuG95mAX1H9OYVk2jiPduLGVclCCOKKsIBFWodSsE3c7AWjv96g3L54yc9
+	 1lI63Vz76YDf4HL6tW5d6eHQlkPtdAfkFr2dEJ43CspuNskdsUIgfWscdNAwE/AD12
+	 KFKdVeoXIQ2Mg==
+Date: Wed, 31 Jul 2024 09:19:46 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c6497a37-695b-45d8-b413-2b338e3f42a7@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-doc@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+In-Reply-To: <20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
+References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
+ <20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
+Message-Id: <172243918673.970734.12577572126650200260.robh@kernel.org>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
 
-Hi Andrew,
 
-On 10:03-20240731, Andrew Davis wrote:
-> On 7/31/24 9:58 AM, Manorit Chawdhry wrote:
-> > Hi Andrew,
-> > 
-> > On 09:37-20240731, Andrew Davis wrote:
-> > > On 7/31/24 8:57 AM, Manorit Chawdhry wrote:
-> > > > Hi Nishanth,
-> > > > 
-> > > > On 06:06-20240731, Nishanth Menon wrote:
-> > > > > On 09:49-20240731, Manorit Chawdhry wrote:
-> > > > > > > > + */
-> > > > > > > > +
-> > > > > > > > +#include "k3-j784s4.dtsi"
-> > > > > > > > +
-> > > > > > > > +/ {
-> > > > > > > > +	model = "Texas Instruments K3 J742S2 SoC";
-> > > > > > > > +	compatible = "ti,j742s2";
-> > > > > > > > +
-> > > > > > > > +	cpus {
-> > > > > > > > +		cpu-map {
-> > > > > > > > +			/delete-node/ cluster1;
-> > > > > > > > +		};
-> > > > > > > > +	};
-> > > > > > > > +
-> > > > > > > > +	/delete-node/ cpu4;
-> > > > > > > > +	/delete-node/ cpu5;
-> > > > > > > > +	/delete-node/ cpu6;
-> > > > > > > > +	/delete-node/ cpu7;
-> > > > > > > 
-> > > > > > > I suggest refactoring by renaming the dtsi files as common and split out
-> > > > > > > j784s4 similar to j722s/am62p rather than using /delete-node/
-> > > > > > > 
-> > > > > > 
-> > > > > > I don't mind the suggestion Nishanth if there is a reason behind it.
-> > > > > > Could you tell why we should not be using /delete-node/?
-> > > > > > 
-> > > > > 
-> > > > > Maintenance, readability and sustenance are the reasons. This is a
-> > > > > optimized die. It will end up having it's own changes in property
-> > > > > and integration details. While reuse is necessary, modifying the
-> > > > > properties with overrides and /delete-nodes/ creates maintenance
-> > > > > challenges down the road. We already went down this road with am62p
-> > > > > reuse with j722s, and eventually determined split and reuse is the
-> > > > > best option. See [1] for additional guidance.
-> > > > > 
-> > > > > 
-> > > > > [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n189
-> > > > 
-> > > > Thank you for giving some reasoning, would do the needful!
-> > > > 
-> > > 
-> > > This refactor will require some interesting naming for the
-> > > common SoC files. Based on your name for the EVM, I'm guessing
-> > > you will go with
-> > 
-> > One other reason I was trying to avoid that and going with
-> > /delete-node/. For such a small delta change tbh, this churn doesn't
-> > feel worth the effort to me and is just gonna create confusion.
-> > 
-> > EVM one was required as Rob did raise an interesting point and we did
-> > require a soc file that wasn't existing with the previous patchset but
-> > now for deleting just 4 cpus and 1 dsp, am gonna have to rename all the
-> > files, change the hierarchical structure, add all the cpus again with
-> > some weird naming for the file as don't know if some other soc is gonna
-> > come up in future so don't wanna clutter the file names as well with
-> > j784s4-j742s2-j7xxx.dtsi which is just gonna create another set of mess
-> > in future.
-> > 
+On Wed, 31 Jul 2024 09:48:03 -0400, Trevor Gamblin wrote:
+> This adds a binding specification for the Analog Devices Inc. AD7625,
+> AD7626, AD7960, and AD7961 ADCs.
 > 
-> Which is why I would suggesting getting the name picked and agreed on
-> here before you start doing the renames (renames for .dtsi files are not
-> a problem, only the final .dtb names seem to require stability as the
-> bootloader tend to load them by name, and those are not changing)
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 +++++++++++++++++++++
+>  MAINTAINERS                                        |   9 ++
+>  2 files changed, 185 insertions(+)
 > 
-> What is wrong with just k3-j784s4-common.dtsi? All future spins of
-> this base device can include from this file. Every spin doesn't need
-> to be in the common file's name.
 
-Yeah, was gonna go with that file only right now, but now would I have
+My bot found errors running 'make dt_binding_check' on your patch:
 
-- k3-j784s4-mcu-wakeup-common.dtsi ( this is not required at this stage,
-but ig for consistency better to now itself )
-- k3-j784s4-main-common.dtsi ( all dsps excluding c7x_3 )
-- k3-j784s4-thermal-common.dtsi ( not required again but consistency )
-- k3-j784s4-common.dtsi ( all this won't have the cpu but will have all
-						  other ranges including for the last dsp and all )
-- k3-j784s4.dtsi ( have 8 cores )
-- k3-j784s4-main.dtsi ( have an additional dsp )
-- k3-j742s2.dtsi ( have 4 cores )
-- k3-j742s2-main.dtsi ( have firmware name overrides )
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml:120:1: [error] syntax error: expected <block end>, but found '-' (syntax)
 
-I do find it confusing while developing but mostly people would have to get
-used to developing in common files and hoping that things should be
-okay. 
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/iio/adc/adi,ad7625.example.dts'
+Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml:120:1: did not find expected key
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/iio/adc/adi,ad7625.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml:120:1: did not find expected key
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-Regards,
-Manorit
-> 
-> Andrew
-> 
-> > Regards,
-> > Manorit
-> > 
-> > > 
-> > > k3-j784s4-common.dtsi
-> > > 
-> > > included from the real k3-j784s4.dtsi and the new k3-j742s2.dtsi?
-> > > 
-> > > Too bad the Jacinto SoC names don't use a hierarchical naming. :(
-> > > 
-> > > J7<family><part><spin><etc>..
-> > > 
-> > > Andrew
-> > > 
-> > > > Regards,
-> > > > Manorit
-> > > > 
-> > > > > 
-> > > > > -- 
-> > > > > Regards,
-> > > > > Nishanth Menon
-> > > > > Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-> > > > 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
