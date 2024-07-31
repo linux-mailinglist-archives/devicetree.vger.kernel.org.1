@@ -1,114 +1,95 @@
-Return-Path: <devicetree+bounces-89916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B61894330F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:22:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B413A94331B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:23:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25B3128457F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:22:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A1861F2789F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672011BBBD9;
-	Wed, 31 Jul 2024 15:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F50D17557;
+	Wed, 31 Jul 2024 15:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oU8/J9El"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EA3BU7Lz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3213D1799F;
-	Wed, 31 Jul 2024 15:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC851642B;
+	Wed, 31 Jul 2024 15:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722439188; cv=none; b=C0CuZe2BwE70F3sgbVufZSE9To5DiSC6anlUwirQ+t2MjscFtuWoE/16w+vYVGMcNamy1xiPb+LSZlAuTxz4oX/QTsft4oL6j2GYRiFQS4+nm2F7DO96DsnfnWb1PggQ8Yc47/0Wi3WcXDE9xKobnGeedZr93BSqWjva0TMUWY0=
+	t=1722439333; cv=none; b=e84m61kk4jt8sep4WbY2dxh3PCGduaXM/Z7pKyzDqp2P4lXSmJa9Tj+vST5dslzOGKfvafxK9ap1w0+wNKASKQlhwTTwfsYyaP4M8VD16SI12BgXYoGhowRtWJta6N2C6s25QSF347uPlnCcUTFkof8dtETUzoErXypmfUl01Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722439188; c=relaxed/simple;
-	bh=M4l/MvBogF76/75u0nQ1zmhwmlxJgPNmJ1Dn9CGWYbg=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=tjyoOYt1HmPrtgJ4MBoIl9DHop2Is4O8jjjSkjz1JtGOJfD9G7KR9jZrWTIlgWpK4Fgeun0Xi2uW7GspR2NnkNdube1Mj4cs3M+Rn5xxSijP4+4reesUPsSQ3XPxWnURDpGab9iJmqmPKgms/UZNvuQ8Z9RHIsr1PxYJCYM5ALw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oU8/J9El; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C74C116B1;
-	Wed, 31 Jul 2024 15:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722439188;
-	bh=M4l/MvBogF76/75u0nQ1zmhwmlxJgPNmJ1Dn9CGWYbg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=oU8/J9ElYttHWJsYCZ3hPaH/+UwwToM2MnKMOLV576yB0u3X3sp+amzxgtLggRtx5
-	 +yQPMtUpjJs9zAvbU+WiDyPWf6qVT7x3Wgg7oHbKK3Io5LePyvPrsHMUg9+HX3GQDn
-	 lVboCjMT7QcSxtwkY8+0AX1nWh5JT+7KP2KLfw3OvW0YwFS38gQZOhBuVqK8S9jAjq
-	 P6C2Yg28fuG95mAX1H9OYVk2jiPduLGVclCCOKKsIBFWodSsE3c7AWjv96g3L54yc9
-	 1lI63Vz76YDf4HL6tW5d6eHQlkPtdAfkFr2dEJ43CspuNskdsUIgfWscdNAwE/AD12
-	 KFKdVeoXIQ2Mg==
-Date: Wed, 31 Jul 2024 09:19:46 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1722439333; c=relaxed/simple;
+	bh=YzEa6FGT7ABDZ3+gWE/js4cARAJAN6TZ1fzD+Z4N4uc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TVv9ZUPxAQStxmgtaH4aEtG89Xia2YGmdyU4NCKjj6zGzC3Atz+05w66pEmPCcMPQZJp+oVzWi6yNYdCfNbw8o6j6ocbk1+DH+YWKnDdhUe/3c8+cKDkUWuhm450fNFpeXD5FL7m+LiIxm2Imfof+S430UfnZWZwfjMAGRYfa7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EA3BU7Lz; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722439329;
+	bh=YzEa6FGT7ABDZ3+gWE/js4cARAJAN6TZ1fzD+Z4N4uc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=EA3BU7LzdrSaqzYT9gSMJ7IyGj4nHujPOtkgcDenrn8eZWpLWaAvzO9Jd+xEiA0zM
+	 NRSkn1IMiGP8Uh4DwkkEbzQ/AsoJ99drqw1dixRMAXeufcWoAP2v93uvgHePcqKEMI
+	 GZV9HkAfPPAaYpc9jJZPPR9W8/E3ft2SbnIJCVT65xfw+uvVI3eLP8siCx6uZOIK64
+	 QyQFdx0XV45IATyvotdiTFgS71Ev2m9dSH8L7Aw2xSPuDn9WJhuxYmvAOzrmChJXOD
+	 3oduXZJyehDxJgyonhGi51R2/ZeNzEsT9LXY6LTEX0WAANDR+PMcRkfLmjBH4EMR+I
+	 GDqIqcR8u1pIw==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9A72D3782039;
+	Wed, 31 Jul 2024 15:22:08 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Sean Wang <sean.wang@mediatek.com>, Hsin-Te Yuan <yuanhsinte@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20240731-jacuzzi_dt-v3-0-1c4314e8962f@chromium.org>
+References: <20240731-jacuzzi_dt-v3-0-1c4314e8962f@chromium.org>
+Subject: Re: [PATCH v3 0/2] Add kukui-jacuzzi-cerise and
+ kukui-jacuzzi-stern DT and dt-binding
+Message-Id: <172243932855.488108.1466847928167694223.b4-ty@collabora.com>
+Date: Wed, 31 Jul 2024 17:22:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jonathan Cameron <jic23@kernel.org>, 
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-doc@vger.kernel.org, 
- David Lechner <dlechner@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-In-Reply-To: <20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
-References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
- <20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
-Message-Id: <172243918673.970734.12577572126650200260.robh@kernel.org>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-
-On Wed, 31 Jul 2024 09:48:03 -0400, Trevor Gamblin wrote:
-> This adds a binding specification for the Analog Devices Inc. AD7625,
-> AD7626, AD7960, and AD7961 ADCs.
+On Wed, 31 Jul 2024 10:47:24 +0000, Hsin-Te Yuan wrote:
+> Cerise is known as ASUS Chromebook CZ1.
+> Stern is known as ASUS Chromebook Flip CZ1.
 > 
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 +++++++++++++++++++++
->  MAINTAINERS                                        |   9 ++
->  2 files changed, 185 insertions(+)
+> They are almost identical. The only difference is that Cerise is a
+> clamshell device without touchscreen and Stern is a convertible device.
 > 
+> 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied to v6.11-next/dts64, thanks!
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml:120:1: [error] syntax error: expected <block end>, but found '-' (syntax)
+[1/2] arm64: dts: mt8183: Add kukui-jacuzzi-cerise series boards
+      commit: 4ba6d1539fdd709ea8e8478c37b014e663cd6894
+[2/2] dt-bindings: arm64: mediatek: Add kukui-jacuzzi-cerise board
+      commit: ac90896833b52ff58c81727f57ed3cf9ffb9db86
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/iio/adc/adi,ad7625.example.dts'
-Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml:120:1: did not find expected key
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/iio/adc/adi,ad7625.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml:120:1: did not find expected key
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+Cheers,
+Angelo
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
