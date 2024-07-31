@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-90040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3929F94395B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:27:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E42943961
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:28:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6064281CA9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 23:27:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E934285B00
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 23:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AD816DC01;
-	Wed, 31 Jul 2024 23:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 721FC16DC2E;
+	Wed, 31 Jul 2024 23:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Eu7Xf06f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bovWnuJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0799016D9AA
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 23:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3714F16C695
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 23:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722468436; cv=none; b=r4ckiU0vJZJTlPe/zDpfHBPHFjKPXxxP5u81hYfXLYvXt5N/DmaegWm2zpooJC4D3LG6XmoLlL8XAY8XKWfRxE8aAdp7AJXkoIQk8fX5lBibUtC98m0T2aX6ynu6+EVzi40+KpqFvfiy/gnA+vnzi4586zaNm6f9KtZhtqT4ijk=
+	t=1722468492; cv=none; b=bLivhwl+D66HmRbyrJFeuERcviAVUIo9N5hBZpGrQ0EWFx9PSYSmOY6nr3SfQ5yV1azV6jbKQsolEdHxt3K5oHV7XYXfvYC699zBEk3oiNDsPYlEpZTaf01jvGBNzG5Jpa/N7KrEmgonfmFb31u5WP/nn0EKGW/YJM85nNXuMmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722468436; c=relaxed/simple;
-	bh=osC+Jv/or7RkSw40QcQBhhqFoe0fXRWh+9F39bH4YvM=;
+	s=arc-20240116; t=1722468492; c=relaxed/simple;
+	bh=d6AdsipEk4MLXXiJKWtkXUBzwbCvfSMjpdsOlyih8do=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=khe818f8ir8nbHrkqD5ZnFFqh7yZUl/hPVdWV87W/kFef2wLHUcoRZ2secAMwuo46Vrj2Zt4khJflWlZXXxuLu7A+xqmgJo6Q/UIF8VNMMQ0lyhDNIo54Iixw0cLW9mipD4FUYp/g8v8ZrxQdGF1OCPjOGLoBNZeJuKojxvFD34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Eu7Xf06f; arc=none smtp.client-ip=209.85.167.42
+	 In-Reply-To:Content-Type; b=MUmaF+5wAz7ttKxoIgOcXgPhQk5LZfgupYQeCCDiWSQvgO+3FOuwLm0YaVKUdbL41Lw8FDbiAK5ObVUcygc0U1T0iBHHyaeOvxmPPmPGQZnjYSCIUmG6eyCz3xAGYIMAVzhp/2/YgS/xlEYqTOZHVBh1xEJ0pbEz7BQSLF3PGjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bovWnuJ3; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52f008b40d7so1142468e87.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 16:27:14 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52efa98b11eso1116000e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 16:28:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722468433; x=1723073233; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722468488; x=1723073288; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dg6X9TSuUoLz0CO8UBCN+aKlm/Qbz7mWJXu2YJIlxpQ=;
-        b=Eu7Xf06fkvTDOtup0PhuJHdtCvhcQ9UIJIoyqdaafuj/bZunSJqp46GW+GPQiuxR20
-         VmMj+Q6cfpJWxn3CiuCb2Y9Dl5pjCjuHtoP6ertuV55GwvFRTz6UvVD5s+c0ShrPPtLx
-         Jc1CQxLb3hchcii7Q67SckfSasHAnjtJJhod7PngUdca8oOsNrxSOjLGqUfztWkZr/pe
-         pnHCLe2fSSxeUUJ1jtDOLie1uZLaUi10pmsG/ArO1VpAvl00wP2G2yJd3pf7+fj0XrWY
-         8GrBXaUJx0Q76VwtAZExLYwIbo0Fwz78kpk/w/Hp3OM9X4eLBvuQbk20Hc71+t3UNh8L
-         /ptw==
+        bh=DqHZocMKxa/Ko3Sh++uN9uzIJCUlsYXXKu9+HbfCVaU=;
+        b=bovWnuJ3vZyq8Ub/XiRUeIjzciYuh84UqnqVB6vo3eDAY7o5w+ZFL+M8CIV2YeSxHB
+         ghbYTKSawcFzwBlCQa9bam9kyU8Ih+fkCjNpl8cFn/jJKFTf77OpaLjQZAEQr5ikl+lp
+         cQmUqFjGWh8EZqoq/XJtUMrBCptcLAFAC8IojUM7raH1Yw4i+fEJieNaVtORIDHAMiz/
+         pINUEjQqe2o2bi+thvm2o3JzUqVHcB+iVYcv3AnYSuPDzMzGBVBZGBfiUTkpsY0/zpKT
+         R7sdfnpydgXLJH7AMG+0xyKQA3BbbQnIxlxO12coKnM/3B2IxJVAOKmE0rd228q1qGxA
+         0POg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722468433; x=1723073233;
+        d=1e100.net; s=20230601; t=1722468488; x=1723073288;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dg6X9TSuUoLz0CO8UBCN+aKlm/Qbz7mWJXu2YJIlxpQ=;
-        b=YSf72hKhu9OPxBWzc/0gH/jo0sjD7lmfbnm3Ew91CmY5O/o0vvs121GG3NdDG+P0ga
-         3QhArXajRmWzrROvsI5T/ExMsqnYne3iPJNDPlyUlEZdCdkI20mraJhzgJ1ZUvXAJJzx
-         EAyG437dtoC7xAgg/5x//ooBo2DwIyQBfeCsKJLKIjL28ry8hkeH7OWEFFo4yQ5FoCRi
-         oj27+XP4PtX5g9cejnnaPa3UJ4Gj2yf0R20mQm5TC2HVOP2iihjKzTskE2THgN7NIHU9
-         LTgGDcKB4E9hHQ4/3QtPZdHJpWQIGkGEwgKbq3kfxATnv+nczNOctG2/eS26TqWpTD9g
-         RtcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUnBRlfjlyLkD9jfB7rOvRY9z7B81wno7douzGVXU0EgHKXTKLHVgq+eU3Tsy34HXKXqsN9odle1P6R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDhHr4qgZK6OXzbaiW51jPO+BvwhMyv5GBVxjzqIxKM0GjKHT+
-	yfyST9UUFkPkSaitfB3YTw7N9C78Pay9T2beIixS5tEq2qvCrBP5b2gFVrS/yzE=
-X-Google-Smtp-Source: AGHT+IEtCN0/66Jparp7J5fI6MthqVedvQa5f0iIBZEguf9nOODChTp1nmrojH6h/e9HaE1UmmeLAQ==
-X-Received: by 2002:a05:6512:6d3:b0:52f:4b6:bb4b with SMTP id 2adb3069b0e04-530b6218572mr148877e87.9.1722468432963;
-        Wed, 31 Jul 2024 16:27:12 -0700 (PDT)
+        bh=DqHZocMKxa/Ko3Sh++uN9uzIJCUlsYXXKu9+HbfCVaU=;
+        b=u8SF4OQfuOkYCiFBxLkmAL9jqUjZ5LXIikLY+QGdZz4GgucAqJ5K+8RYGFx7uP9uAw
+         gL+g09vtrVpjI99e16XILD5l64/UtgPBlC4S9K8xfwsCAsa2K1u/q0NC/Vcf/yOImUPJ
+         ZsOC/1xUCQ23QdJ3rQ1flSV19xX5AWjCRgWZzv6tyzy5l5NJY8XgBYjs4X2eUtqzV1S0
+         P1jMOGEGMaxjnx92R/XwiW7CGlbQpIvQPI10q9LNOm7T3V6d1pwq9NjpITrZvo0mWXBj
+         aans7SC/JVke+PSjxbJXaW58OXMr5ygdz2E5xFXwuOsBr3HFxUCmw9mPkJ8avdGB2ksE
+         fXaw==
+X-Forwarded-Encrypted: i=1; AJvYcCVBycRlyYi46LYlkl+ew/q0akZ129gJWu02cUKmmsQ7Eg5DDV0115w1HaZ5qEU5UXB2T+PJ+pX6W+j4V0EXobP+qTpPa85wW9j/Ug==
+X-Gm-Message-State: AOJu0YyBZgyzSJdmaMSbJIrJRjEbWnCxJxhTRXCoBNmarHDHV0VrF0Y1
+	aiFfOCs/XwGtcqoV6uEpsF70b1WKVaoDS1UmyJoOpeCroGGSurgiEev83LBnXOg=
+X-Google-Smtp-Source: AGHT+IEVnR6j3jFdtxUJKU/Jgck8FoyZtrhc91nFNQC6ya9loWcYJtZmkKE5MgCmxbWf3QzYhLwxmw==
+X-Received: by 2002:a05:6512:ba3:b0:52f:e5:3765 with SMTP id 2adb3069b0e04-530b61f6825mr144386e87.6.1722468488246;
+        Wed, 31 Jul 2024 16:28:08 -0700 (PDT)
 Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5bd12b4sm2401016e87.102.2024.07.31.16.27.12
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5bd12b4sm2401016e87.102.2024.07.31.16.28.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jul 2024 16:27:12 -0700 (PDT)
-Message-ID: <e0e0ac16-2bfc-4715-a261-e25740b304cd@linaro.org>
-Date: Thu, 1 Aug 2024 02:27:11 +0300
+        Wed, 31 Jul 2024 16:28:07 -0700 (PDT)
+Message-ID: <e051ad29-fc96-4d6c-9e4c-be46feb189ce@linaro.org>
+Date: Thu, 1 Aug 2024 02:28:07 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/13] media: qcom: camss: csiphy-3ph: Remove redundant
- PHY init sequence control loop
+Subject: Re: [PATCH 03/13] media: qcom: camss: csiphy-3ph: Rename struct
 Content-Language: en-US
 To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
  todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
@@ -86,39 +85,17 @@ Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, kernel@quicinc.com
 References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-3-quic_depengs@quicinc.com>
+ <20240709160656.31146-4-quic_depengs@quicinc.com>
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20240709160656.31146-3-quic_depengs@quicinc.com>
+In-Reply-To: <20240709160656.31146-4-quic_depengs@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 7/9/24 19:06, Depeng Shao wrote:
 > From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > 
-> Adding a new CSIPHY init sequence using downstream as a reference prompted
-> me to look at why we are splitting up the init sequence into chunks.
-> 
-> Right now we declare CSI PHY init sequences as an array of five equally
-> sized writes with a hard-coded control loop to iterate through each of the
-> five indexes. One bug in this model is that if you don't have an even
-> number of writes, you can't init the PHY as you wish.
-> 
-> In downstream the original code has something of the character
-> phy_init_seq[MAX_LANES][MAX_PARAMS] which in upstream we have translated
-> into phy_init_seq[5][SOME_NUMBER_OF_EQUAL_WRITES];
-> 
-> What the code does is take a pointer to the first index of the
-> r = &phy_init_seq[0][0]; and then literally does write(r, value); r++;
-> 
-> The controlling loop that hard-codes '5' in-lieu of MAX_LANES does no
-> special sleep, fabric-coherence sync or even a printk() to justify its
-> existence. Our compilers are optimising all of this away anyway so lets
-> drop.
-> 
-> Reduce the array declaration down to one flat aggregate init and let the
-> code just step through. As a happy side-effect we can then also handle
-> odd-number writes as the number of elements in the init sequence will no
-> longer have to be evenly divisible.
+> The existing structure captures the configuration of CSIPHY lane registers.
+> Rename to struct csiphy_lane_regs to reflect.
 > 
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
