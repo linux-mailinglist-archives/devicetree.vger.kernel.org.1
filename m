@@ -1,271 +1,131 @@
-Return-Path: <devicetree+bounces-89918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106E794331F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:24:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B839D943323
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 17:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75DF51F27C83
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:24:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9A131C242C0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEFF1B3F1A;
-	Wed, 31 Jul 2024 15:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FCE1B3741;
+	Wed, 31 Jul 2024 15:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XQ16RPLO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="do5Z5tqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92ED1642B
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 15:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB44156CF;
+	Wed, 31 Jul 2024 15:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722439357; cv=none; b=pUD7bcjjeXntAlc0EOxXHcYx+sIMpol5RavOMu20j9Iv9uWGF59Z+9uGLeiJUHemxRuczG3phQadscNmZyrrKavLFkx9o+sedB1N0H+RZlNNA0PjlCPz2+mjuEdEZydZbZe2cnL64xzf+3dBrSnOEr3M5nRHWqWtc4Y68I9/GBc=
+	t=1722439406; cv=none; b=XgN/s0HG7sw54vEty2M+IABXWfHNv+YqGuOc4eLxMbvmfFo9XTl7PysjlCzNEaUeKHcnljVUc5NhnsSZ9/3olPFA/Dl+iVWuCEdk+0YL086EJKNMFx/QhaKfJ8BCDjgMDG+lXXRUifHdMiUmdVDBrEkBaGtOjky+hbBKdyz0h6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722439357; c=relaxed/simple;
-	bh=uDpv75h2E02EL5TWuYfgvQzfHdGD5Tm25hAZWXN2vXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ObJgGDd/Jgp1XpN3x3cyBPM5+1i0s39pa6QU2PXLbUM6eCFF/YPQPFKsuMNg4g2MqwMfHahdlaK3sO5Yb7xcj0XuoYF3mHclDBiQVXLisCV2sfZaNT0YdkQ2uKTlSK7thEG1LU1tQoIWEzV7CX6aupc3Qn2VwpjRiFwqoFTY7xE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XQ16RPLO; arc=none smtp.client-ip=209.85.166.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3993f5d75bbso31400385ab.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 08:22:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722439354; x=1723044154; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jma3alKusTw0u0m+ky85rt3SWiRL7Mtmlu66CPTTA6Q=;
-        b=XQ16RPLOfpJTEy3vFr6p1mcX8wkn+UAnpoei630sBYQLIMh80uqHRrZmIZ2brgDYAG
-         8M4RBWUrmCDFJjpXBc1b6F5qgsZh4MDbosf2riwz+grRcWTEoFFkeNsCwJIsSQahraUJ
-         Kfb/k2mwUebLpfowPLpryGnO0J2VDNCzOHIYoQ7wKaXmUUM/0XYlkYcQTeBmgvBpA21u
-         7owvRyD8s4tcvhuR784SxxXoNJn9rvmCSYz4M7SoNee7/bAgnWmFs0Okldc/T2R8aaxR
-         YdgTwVjANTIO0CSX1V+/QqNirViDMyf/ktWhF/7XT+PhXt2SwJGsAeeDndDHtts3CWdA
-         /V8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722439354; x=1723044154;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jma3alKusTw0u0m+ky85rt3SWiRL7Mtmlu66CPTTA6Q=;
-        b=GlWftXZVmOX4ULQ9SPyweuaI/K81lXVHcdq7t5G0FltGsS48e9E2PwaXktmPc0EWtC
-         PjxyzCBI0WdKTuWfYLaFIomrDzMy1i0jIA0CCE21cJMiH7OYf2U/gA3RGWLqxkVc5Mzt
-         jQbKWQFpv7gG+rftL6g5+jFwnxFbtIMnGbkEcECbWDeWk1ce98LsCY7ea4tLEi3EdVuZ
-         cIq9OPHRfZWPZX6tMHiwFsDqcWvzpcAdpgUxxlwFCK3BwUTqaYvCtnIYDKyKXzq3hqrD
-         jrrDogiW3YAUSjGBkfpF1hk9vsWqKGfwA5a3+jnQ9ojyMEI1wHIKfqi6sNuD5iSXZu+M
-         wBWA==
-X-Forwarded-Encrypted: i=1; AJvYcCValLcGkjVeYHTUjW2vHbTsM3onz75Yd/S0Z2LASNaTXPDCL3Gxd1iNINwtZ1BzABtZPjHbxgsZ7i4vD4MDI4cLhiQhc1vOiT04ew==
-X-Gm-Message-State: AOJu0YxFaUWfnBGpHwEWpw4c4r4WNFa5B82TCX/gBGKTu3XyfpdXH/ob
-	NdkGrfPkzTBPNV6rM/ToV7mLUKF5uB0CClh7PTZJuPEUkoicpTP3Guw0IvGVpps=
-X-Google-Smtp-Source: AGHT+IHDob5MC7pBoXRQvVOvejr0UPr0ELjRxvZKwYBiigYwfpQvHiq6x0mY9FhLGZt2S+um0fqiTg==
-X-Received: by 2002:a05:6e02:1aa6:b0:374:5300:88ac with SMTP id e9e14a558f8ab-39aec4020damr190027675ab.18.1722439353776;
-        Wed, 31 Jul 2024 08:22:33 -0700 (PDT)
-Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-39a22e7e6a4sm56215305ab.12.2024.07.31.08.22.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jul 2024 08:22:33 -0700 (PDT)
-Message-ID: <996e975f-89ad-413e-b051-b55899d4f20f@baylibre.com>
-Date: Wed, 31 Jul 2024 11:22:32 -0400
+	s=arc-20240116; t=1722439406; c=relaxed/simple;
+	bh=qIp6I6CpAqbz+w+CRsjA5oqG64vaK3fyMQBl1G4M4ug=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P1T3NeYghxHrWEwlbN5lMT19+hR845nhXeKvb8M4MMXx5x/4QIWM/XZlqsa7WsabbVTW78C0DA6O2Dt3JSxDYNnLNWUz8dELgHVdJUKSIFW5vQnZ9O6a9/FEnBduh7sH832UXlj8SWIr0G2lWZUQ58/hXPZ7dPj5lO5MrTcK2Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=do5Z5tqJ; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VFNIvR083835;
+	Wed, 31 Jul 2024 10:23:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722439398;
+	bh=Lgz2SLGxblgG5CcNz/x/+H9wxPBuWgS7I3mQes6hsjI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=do5Z5tqJJxtjwn2EEfha9RRjP2mvqnDDzD6NI50X8pI9lCzMb3q269xydboqC0AeN
+	 C/dHpcY/xDIXYPFr4qXeKU+fpQMmg3GDoSTO7VnAOq65bzMgpt7sV51X8FBMOfs6mV
+	 n0A5qmS3w2AhHNbXePXt8mz/PWpgU4Y//4K5p85w=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VFNIqK049998
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jul 2024 10:23:18 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jul 2024 10:23:18 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jul 2024 10:23:18 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VFNHlY084652;
+	Wed, 31 Jul 2024 10:23:18 -0500
+Date: Wed, 31 Jul 2024 20:53:17 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for J742S2 EVM board
+Message-ID: <20240731152317.yuiqvznm524rpmjb@uda0497581>
+References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
+ <20240730-b4-upstream-j742s2-v2-3-6aedf892156c@ti.com>
+ <973c244e-77e6-4c60-ac17-b7a4ffe85488@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- David Lechner <dlechner@baylibre.com>,
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
- <20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
- <387b4028-7f8a-46df-a7f1-168d1700074d@kernel.org>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <387b4028-7f8a-46df-a7f1-168d1700074d@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <973c244e-77e6-4c60-ac17-b7a4ffe85488@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Andrew,
 
-On 2024-07-31 10:11 a.m., Krzysztof Kozlowski wrote:
-> On 31/07/2024 15:48, Trevor Gamblin wrote:
->> This adds a binding specification for the Analog Devices Inc. AD7625,
->> AD7626, AD7960, and AD7961 ADCs.
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-Will do.
->
-> Why this is not ready, but RFC? What exactly needs to be commented here?
-There's one outstanding question about whether or not there should be a 
-DT property for specifying whether DCO+/- lines are connected (mentioned 
-in the cover letter but not here). I guess it doesn't need to be an RFC 
-just for that.
->
->> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
->> ---
->>   .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 +++++++++++++++++++++
->>   MAINTAINERS                                        |   9 ++
->>   2 files changed, 185 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
->> new file mode 100644
->> index 000000000000..e88db0ac2534
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
->> @@ -0,0 +1,176 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7625.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Analog Devices Fast PulSAR Analog to Digital Converters
->> +
->> +maintainers:
->> +  - Michael Hennerich <Michael.Hennerich@analog.com>
->> +  - Nuno Sá <nuno.sa@analog.com>
->> +
->> +description: |
->> +  A family of single channel differential analog to digital converters
->> +  in a LFCSP package. Note that these bindings are for the device when
->> +  used with the PulSAR LVDS project:
->> +  http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html.
-> Eh? And what could be other case - used for what? What are the
-> differences? Why mentioning it?
-Poor wording on my part - I'm not aware of another configuration. Will 
-fix on the resend.
->
->> +
->> +  * https://www.analog.com/en/products/ad7625.html
->> +  * https://www.analog.com/en/products/ad7626.html
->> +  * https://www.analog.com/en/products/ad7960.html
->> +  * https://www.analog.com/en/products/ad7961.html
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - adi,ad7625
->> +      - adi,ad7626
->> +      - adi,ad7960
->> +      - adi,ad7961
->> +
->> +  vdd1-supply:
->> +    description: A supply that powers the analog and digital circuitry.
->> +
->> +  vdd2-supply:
->> +    description: A supply that powers the analog and digital circuitry.
->> +
->> +  vio-supply:
->> +    description: A supply for the inputs and outputs.
->> +
->> +  ref-supply:
->> +    description:
->> +      Voltage regulator for the external reference voltage (REF).
->> +
->> +  refin-supply:
->> +    description:
->> +      Voltage regulator for the reference buffer input (REFIN).
->> +
->> +  clocks:
->> +    description:
->> +      The clock connected to the CLK pins, gated by the clk_gate PWM.
->> +    maxItems: 1
->> +
->> +  pwms:
->> +    maxItems: 2
->> +
->> +  pwm-names:
->> +    maxItems: 2
->> +    items:
->> +      - const: cnv
->> +        description: PWM connected to the CNV input on the ADC.
->> +      - const: clk_gate
->> +        description: PWM that gates the clock connected to the ADC's CLK input.
->> +
->> +  io-backends:
->> +    description:
->> +      The AXI ADC IP block connected to the D+/- and DCO+/- lines of the ADC.
->> +    maxItems: 1
->> +
->> +  adi,en0-always-on:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Indicates if EN0 is hard-wired to the high state. If neither this
->> +      nor en0-gpios are present, then EN0 is hard-wired low.
->> +
->> +  adi,en1-always-on:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Indicates if EN1 is hard-wired to the high state. If neither this
->> +      nor en1-gpios are present, then EN1 is hard-wired low.
->> +
->> +  adi,en2-always-on:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Indicates if EN2 is hard-wired to the high state. If neither this
->> +      nor en2-gpios are present, then EN2 is hard-wired low.
->> +
->> +  adi,en3-always-on:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Indicates if EN3 is hard-wired to the high state. If neither this
->> +      nor en3-gpios are present, then EN3 is hard-wired low.
->> +
->> +  en0-gpios:
->> +    description:
->> +      Configurable EN0 pin.
->> +
->> +  en1-gpios:
->> +    description:
->> +      Configurable EN1 pin.
->> +
->> +  en2-gpios:
->> +    description:
->> +      Configurable EN2 pin.
->> +
->> +  en3-gpios:
->> +    description:
->> +      Configurable EN3 pin.
->> +
->> +required:
->> +  - compatible
->> +  - vdd1-supply
->> +  - vdd2-supply
->> +  - vio-supply
->> +  - clocks
->> +  - pwms
->> +  - pwm-names
->> +  - io-backends
->> +
->> +- if:
->> +  properties:
-> I don't think this was ever tested. Please use existing bindings or
-> example-schema as template.
+On 09:46-20240731, Andrew Davis wrote:
+> On 7/30/24 2:13 AM, Manorit Chawdhry wrote:
+> > J742S2 EVM board is designed for TI J742S2 SoC. It supports the following
+> > interfaces:
+> > * 16 GB DDR4 RAM
+> > * x2 Gigabit Ethernet interfaces capable of working in Switch and MAC mode
+> > * x1 Input Audio Jack, x1 Output Audio Jack
+> > * x1 USB2.0 Hub with two Type A host and x1 USB 3.1 Type-C Port
+> > * x1 4L PCIe connector
+> > * x1 UHS-1 capable micro-SD card slot
+> > * 512 Mbit OSPI flash, 1 Gbit Octal NAND flash, 512 Mbit QSPI flash,
+> >    UFS flash.
+> > * x6 UART through UART-USB bridge
+> > * XDS110 for onboard JTAG debug using USB
+> > * Temperature sensors, user push buttons and LEDs
+> > * x1 GESI expander, x2 Display connector
+> > * x1 15-pin CSI header
+> > * x6 MCAN instances
+> > 
+> > Link: https://www.ti.com/lit/ug/sprujd8/sprujd8.pdf (EVM user guide)
+> > Link: https://www.ti.com/lit/zip/SPAC001 (Schematics)
+> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> > ---
+> >   arch/arm64/boot/dts/ti/Makefile                  |    3 +
+> >   arch/arm64/boot/dts/ti/k3-j742s2-evm.dts         |   26 +
+> >   arch/arm64/boot/dts/ti/k3-j784s4-evm-common.dtsi | 1436 +++++++++++++++++++++
+> 
+> Seems git is not seeing that this is a copy.
+> When you do format-patch try using "-C".
 
-Ok, I'll look into it.
+Am using b4 for sending patches.. though I think there are some delta
+changes as well so maybe that's why it ain't picking up. I think will
+try to do it similary to j722s and am62p split up to make it clear for
+the changes happening as well.
 
-Thanks!
+Regards,
+Manorit
 
->
->> +    compatible:
->> +      contains:
->> +        enum:
->> +	  - adi,ad7625
->> +	  - adi,ad7626
->
-> Best regards,
-> Krzysztof
->
+> 
+> Andrew
 
