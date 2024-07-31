@@ -1,341 +1,288 @@
-Return-Path: <devicetree+bounces-89646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C46A942642
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:14:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6290942646
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B8111F23CC2
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 06:14:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 590631F2556B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 06:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9FC16D333;
-	Wed, 31 Jul 2024 06:12:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3902E168499;
+	Wed, 31 Jul 2024 06:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lzgPcmg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2091.outbound.protection.outlook.com [40.107.255.91])
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2045.outbound.protection.outlook.com [40.92.102.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC9D16D302;
-	Wed, 31 Jul 2024 06:12:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B431662E4;
+	Wed, 31 Jul 2024 06:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.45
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722406324; cv=fail; b=Ykk6tLMHwkskNFlvfTuMmn2iIOcswLMuqpA/QyTAOxKzLcwrFHk3QUMaliXkUhBL/ESrC/8pdQI005b2LcucWXciknHYRIwbZd1NTChuukvPfHiZX2iHaxyJHuMqI0vB4uNJyhj6zY3BbtfSd5P2T7kZVZoNv7DkyOnD1pHHNsA=
+	t=1722406422; cv=fail; b=Y3UbTTh1i0oOsGKJpAtHBD5VgVNHVef1XNPxPZod27wKg2BMnLMlsJ1MAfRn0EcQaBNzUgLLmt0FMNBOS3JZEAP+U/HFWeU8dr7kU0gDxV5OX8yI4pjovZZyt6uvptkmwU7PZoddUXr5vhUK0ZU7dxuPlGIBiXZ7Oxtinfa6LFg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722406324; c=relaxed/simple;
-	bh=8fr2le2RRkyBxxo0cMbqgGIl5Pqcs8qpx2qLsAezPSE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LydJ1dvrYNnLInyVc0UzEFX4MdfbMuRARfr6v9xCpvf5QQGKwkbxbOMyIk8WAS5VBVV08kVJRYa71ZugHOy86NOlJbeVbJtNH0g5KOKN9SNuuyl0QUTJo1x0AnueXW9t/L3Oib3b51gnwcfWX2ke3eyj6HmSMcYYU99N+trw80I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.255.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+	s=arc-20240116; t=1722406422; c=relaxed/simple;
+	bh=YsKpYxndXdLbmEstd0SRT+Lpz8fRUFGZOR+qhe6nzMs=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=HionQWa7vEX0o5UAu2MguWFov/p9jWOBjtZx/VK7Ny/ibkvsXrE6f0faq4R+3elrBZRm8eLjjc9ysDI+ZjXcNSFMviwfvnJvaBW2B1kcekUls4YtoWB/lWuTpLrsOh7w4VEqFOPnqcPd+6Kwu7uZfiPmtFapR0k+Y+kbdivvvo8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=lzgPcmg4; arc=fail smtp.client-ip=40.92.102.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mydlTK7tuwVSY7GpUZnejrjBlGFq2odhq7/ZRip3vGREe6eZC4JNj41tu9PKQuJ3ZymrmrRAuAiQ4brNLmvgdWi+rIvzYT2sx3ZqT+mzQ/mvQtu/Sody8VOxSi90iMLDz6DhZTpgHLewbw7WRfAhZMCEHlViQx7N2z8t/RCZ421lcctYLDADFlq52iQZ55U+uYytkMBDGFs407pB12NXB4j6gWBfpql4Zlo8VuqXwcv15yWN+h3kY2bwneOopmhFDaZUgjRcKnhTlrjiQ0zA8JQ0GhuzNZfCfzaz/cBKINRKp2dFo8aFTyKOTeowBnHav8Aed90E1eiKi3H8zu48zQ==
+ b=P4Ve/n60bnVcoKwAroeJNeyjry/YvU2ALvAiWsdOvrHqU6BViZU48YGYzHe8TigHRTI+oQ1247nMB5cD3x+J/dg5Ay03swSN9jE7dsUprNK6bam6oHf3Lwccf+CPhqcR2Yot/MWFUjFCm6IBEM4ZzvKlxoHmTvoWcAA05CAlmVhysjCv4xaW8xpXcueYpJrC43nO/e3dXNzXwEeFEXe4lxVfuwC3wqXN3k7BoPJv42/OHwqRllDhYbxMIqg4Thw/xrI9L4cGclrQ7Pi3V/7AcPQv2QFTNSbxx2/iyO3By9eJXYeVVy7OCVAxlmlsqWfelRvi+/A4h7jy7xKsRBotjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XB3tez9D3u90dIBU3uiBuPnvK5S2Zx5c0jWE2G6mkbA=;
- b=OGaZR1U34leyw+e8Y5SrJIeCcgc0DGZGAwPoLB/9eCsnZYO4RJ8uklGsM/9yKSBzN40raTqQDXpWl3u7mBQEO5TPoAA9Ca1LkC0VUDPbUxdxDUBUg+MlcBMRB2LmLUBSn2JPW6m7QkZagO//zUr6fJP9f6yxBJGI/0LCvX/o6AmfMp7tG9SsBuAM9DNWLTLH3YahmJoZUGgDyBigUb11DWjDAmMNtzUtBfglFUC7VjTVV1ESefOVvk4ZRVOp3kCa6aCf5O3BwZym6NTyaFTtCm/6wVV38zk4LZ1Opp7rAksqCyMYA1U6r6vyUlUNUgAB36xYrEg5IkJUupzZOovLUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
- dkim=pass header.d=wesion.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wesion.com;
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
- by SEYPR03MB6580.apcprd03.prod.outlook.com (2603:1096:101:85::9) with
+ bh=kygkSvs6m/sZslXaJuT5HOBMHHCKaOo1XT4KYtC2+4Q=;
+ b=kxiWEfEarORnA7x0bohI8xUm6Ht5gPsc0U5j5dD18DV6UFuqStqxY/w6f0nkqKPd0cxRN6c9BZIWzaFpfOcw6h/Pjmttm8RI2ouhCahaFKR7QX1hIncYOCAJ+88jcCuZmxADibbaGIcPsmeR1WfEHXRV1kb2ZuiNTPCd+1VO3/fvi9xwXz6Pa6uxHLV5AIVr7I9z1p73q/y1jaYkJMbW3STRte7k8MRPZMIjnl9qskwksQOHv1yUBmDBm54fy4KHy5Bpw1L/7t09+NeSbPBynZJvOtxpYNSWE5qHYhfcf84saD7eGCqytpkbmKQ42fRr6kdLtAyD4/JyHMWU2jcE5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kygkSvs6m/sZslXaJuT5HOBMHHCKaOo1XT4KYtC2+4Q=;
+ b=lzgPcmg4mQQQQsXVPSVeHwIAqPMnY3nOTbNcILwGbkjHW8KKewLSiDMwe6XJge/hVHvxr+dcmNsZAVtZnOaYY2UTJd95qykWk+NexrdgxzKO0iX/CIwW3+U9VGLC8GVG7yS0/8CtOOs77oPYj08lVnaQfpHD2DvxYMbiipH3ESYozaLJCvvMsKJtKTS++sy8aEX6xOO1U/5+rQaQ0bOEg9S0sdT35B0ubRyX2/8EMQDwqX8tbpFcEC92+xgwU6eKWweBZaDFt5EwSaPVGpvPy4HhdGKSdxScwsUC+sSHzJ7zdAAipdFxz9AH/uCWG6Nr8AUwAxpZGze4i/gMD0Z0sw==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by MA0P287MB1790.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:f5::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Wed, 31 Jul
- 2024 06:12:00 +0000
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7828.016; Wed, 31 Jul 2024
- 06:12:00 +0000
-From: Jacobe Zang <jacobe.zang@wesion.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	heiko@sntech.de,
-	kvalo@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	conor+dt@kernel.org,
-	arend.vanspriel@broadcom.com
-Cc: efectn@protonmail.com,
-	dsimic@manjaro.org,
-	jagan@edgeble.ai,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	arend@broadcom.com,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	megi@xff.cz,
-	duoming@zju.edu.cn,
-	bhelgaas@google.com,
-	minipli@grsecurity.net,
-	brcm80211@lists.linux.dev,
-	brcm80211-dev-list.pdl@broadcom.com,
-	nick@khadas.com,
-	Jacobe Zang <jacobe.zang@wesion.com>
-Subject: [PATCH v6 5/5] wifi: brcmfmac: add flag for random seed during firmware download
-Date: Wed, 31 Jul 2024 14:11:32 +0800
-Message-Id: <20240731061132.703368-6-jacobe.zang@wesion.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240731061132.703368-1-jacobe.zang@wesion.com>
-References: <20240731061132.703368-1-jacobe.zang@wesion.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Wed, 31 Jul
+ 2024 06:13:29 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%6]) with mapi id 15.20.7828.016; Wed, 31 Jul 2024
+ 06:13:29 +0000
+Message-ID:
+ <MA0P287MB2822D0C770667CFE484EBC95FEB12@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 31 Jul 2024 14:13:20 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/4] drivers: hwmon: sophgo: Add SG2042 external
+ hardware monitor support
+To: Inochi Amaoto <inochiama@outlook.com>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+ Hal Feng <hal.feng@starfivetech.com>, Jinyu Tang <tangjinyu@tinylab.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ chunzhi.lin@sophgo.com, haijiao.liu@sophgo.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <IA1PR20MB49538C09E94D90F07B7B2562BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953DE89C56AB3F328954131BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <IA1PR20MB4953DE89C56AB3F328954131BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TYCP286CA0178.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c6::9) To TYZPR03MB7001.apcprd03.prod.outlook.com
- (2603:1096:400:26a::14)
+X-TMN: [eXLlfhgaDTS9O329B2nx2E9V9PleYzF/]
+X-ClientProxiedBy: SG2PR06CA0240.apcprd06.prod.outlook.com
+ (2603:1096:4:ac::24) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <0de3f417-8127-489b-b31f-2d7cd450387f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SEYPR03MB6580:EE_
-X-MS-Office365-Filtering-Correlation-Id: 74d66130-af0d-4845-83e3-08dcb127b03d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB1790:EE_
+X-MS-Office365-Filtering-Correlation-Id: a8326ab5-fb41-4106-3d86-08dcb127e4cf
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|1800799024|366016|38350700014|921020;
+	BCL:0;ARA:14566002|461199028|19110799003|8060799006|5072599009|3412199025|440099028;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xbn4GAY9HJAApfKLJDTdkuD2TY9uuushDaytBOhRvgfaH0Q1jPCmfvk1jJno?=
- =?us-ascii?Q?MsGOfY3IRd99zLoAjxJcrQWKlr8az39uV3rAptzC/x5F0e6cw9aO4Uafb1VG?=
- =?us-ascii?Q?P/SBOoE6MMXKiX9rfrUUBjClrwtRx3HROc0rmg1mir6jKKkdDO88NrKmiMec?=
- =?us-ascii?Q?4T2hermfMNzKAE5w8zkBAXI9UzN8AqlhOtGiQUj1EM2ayxiEszkp/62h+59Y?=
- =?us-ascii?Q?LyieJOpqpXMd3L6fQzZZe9k2tJB9biCMk49Mb5IgL4tVDsy01vQmvMK8RMvK?=
- =?us-ascii?Q?+Kvl8QVOW7f9eoMuMgT7XHmuKq7MxJh8bN81GCs1Wuvi2Y0/cXSmM+Y9jugc?=
- =?us-ascii?Q?dirbpQpplzWHoFVqTtTxOtzUuPUODRx+JAvZhzK+yTt2az2HJZDdFDz2UJiY?=
- =?us-ascii?Q?AAx64LFQMH4VZ2yVclaD2BePBZk+7i5ipQw5aQrC2d5IVJp7CIjc/hmvC8jr?=
- =?us-ascii?Q?2VK6aiKtGJmWxH+7mie2Ch4LZ8n0dqUTTsIOGrgf3QhtqcJf1qTr15uOhWtG?=
- =?us-ascii?Q?Xs/9UtQdW5+FMCWl9FEsIjv+Segx6P+5mafz+iZcXcUEsZEaeNi36K/4GEiY?=
- =?us-ascii?Q?90grywIt5Zv7iZRNrv6FbFx2KR/Oiy41laQUMIZQeStqvAOLKZ2W64rIEi8H?=
- =?us-ascii?Q?zdRlEiPlqFZq8OWdoMD1X6ox2PgCWcrpvLl8A+KF/TNHQb6PCP9ZFQdo1QAf?=
- =?us-ascii?Q?ZyfyjAvJTqvaQDV6u5QFd9wo1gOcd/LL0BpuoFdfJyq7w+5ZjUN7tjrglc9W?=
- =?us-ascii?Q?J0cdnY9mZJi3dqjRSyVn3mzQu6eWrBaQmkKpRR7M70rB2FRfzk6Txxw/KatK?=
- =?us-ascii?Q?eRwysNCEsQcI2uN6feQNfcQz/VnZuU7hyhThbeCkzVfKX6hxkLLffLoZoDGL?=
- =?us-ascii?Q?1dMqGdxrbMJmsJUr3abF9roIJID210Bpb80v35qHV0qWV2YeOZd7AwumdmJ0?=
- =?us-ascii?Q?xtEC6HesZ3XeIoYWVwsfJXr09IYKoJoh2AcO8PUowITDNmBKHmq79yIzM7vv?=
- =?us-ascii?Q?AQwzGMnRvBCv5IfqPO/8feN0uQTD3uyVLSzs4BdLfKIa2ONqAhSdR7YsUZNb?=
- =?us-ascii?Q?BxmKjDsLMRPADkf5TAU1I2gEq+EG6rQZp9+Zj4MoKcFBGNx1KPnkiEDCrTr6?=
- =?us-ascii?Q?y+gdeV4x5KLt5I+6Y9PTihxnN9frh6BA/EB56QgXKa8r43r99Smg6uY9gaom?=
- =?us-ascii?Q?9+rnskT3VJ13hIXlZcXFT3sCowcBoMo1jSooIME2ex4uPq2mj9tyi/uRwbZD?=
- =?us-ascii?Q?iCAN45Wj6I8xf2KCiZI8Ihb9caxGFqzi+dLabCwI53SPC0qUYTaPg8e8WHFN?=
- =?us-ascii?Q?ububCegELdc+3Fb9mCXUr0INQ6LnOY3AFBWfTY3f0OlUT7bJEkvh95iX25Yz?=
- =?us-ascii?Q?LTTIoPWyYlo3pP6LHYaMOvqbQ8c1MhMj9SWAW75/CrswQMKkkxZa/l/v3HWU?=
- =?us-ascii?Q?13fszoi1/LE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1102;
+	/H4AG1Y91CJcaAAf6+RWRcDt9i0b3/4VhTYAqfq30UeXfbsOFNjNwpOzf1tDWI8szslmTcQaoOScZxMYEAoQbbqxf/Pw5xuRdXBffgvLKQK/6uJi/+8i7PutAUvoLOdtY4Ge5fA13UPCfBJ5Ulqfpw5NXU37RhzOB08LtJBToSwu7smnjvBH4fCmYah85ZL6O9su44EAQ6TIW43leNYCQ37Iorvp+3SrJmPIt2j3hCA3WZHbFRTu/xgmCt6P90268+AH+yK9hZyjeVcNQ9IO6u/lcUMiBlcJjeIJ5AMZHa7o3vYtcms9ad0ToiNqPv1bJtvL+D7oqNzXaPbByQAf0wNmlTbm/0Ij598LM+tA1ECxyEN/9qjUHbdwFsN1u4K258aQPUWeOHpze5hF935ipU286LTRCDpqxJ5L328lFw9Q9ae+uSrdfWkO3swjqkiM9/sMn6jJf+4WzVTaLL97XQMcCCF945B1dYqmsDW65bRS/5XafeeYkGUaOJUEoh6Q8/mAx1c/rjOv/ZQPZ/lhJeLzE4nwLJA8jLSLqt9+Fd2W+XJEZSKiHOYX2xA1cX6JQLWCqmxrrW1I5e0WzrFoyKi0c1LhpHUtC0o+Raao/9KV2Ju8OqySKqKOt2+rJBcWc7LemI9c5nC5iaYpLpF3CzLryJXsqhpeald+EiTxK6vMh9n0IuQZP0TLWt5yyi64
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?4a4Yh0kyxI7hrch6m7Dw4R6nMVTf1rHQvkFYMJQRgYGw1Q+a/rnVS2O4UQ6Q?=
- =?us-ascii?Q?XHMFhQuflT89q5xwUoo4WTu86BC+fdaprPiPhHKLu8erQ9xqMYgjKGItp3tf?=
- =?us-ascii?Q?AsOFSwT5/ThZZ74pwPzR5bLIuaposcSfej33bz+gTBgtrY14TxGiiDAM4zhB?=
- =?us-ascii?Q?pV4ijUAF06N5+iLXXZHJF2/ANTqqJZwESLBfO99kcaclAiqblDxwARKXLvyr?=
- =?us-ascii?Q?u+PcSJICtytrVxLxADJCI1ambN5zv8VtLX3Gj1llgPzzfuNPDnrFiYS5amAo?=
- =?us-ascii?Q?bIhp6r0OCaJQuveT+AboAqtpM0+cWFOvcpEEV4lBbfg1NemO4ioE671A3r+F?=
- =?us-ascii?Q?o2TJcoCWut0SQallLWu6KpSNemXKZyXh5VyNZmZAAhwKyEG4t3Dn3BOLrhU/?=
- =?us-ascii?Q?aiu+cOeo+c/g1EFH7vlJUOy8bcMf5sOF0/AnTPZx4CmOPKfufuXv9lnLsgbx?=
- =?us-ascii?Q?3kNb1ELQGosxkGb0bw9ty3JPHtSH/+YlqduZtuBTvXT5WAC7ZpzrDpragArv?=
- =?us-ascii?Q?oZRvQRxtwA7cevpGgZ6zHpxPRooNXIcohi70VFyc1E9ZTpLjBP3qOo5bvKIk?=
- =?us-ascii?Q?5p7t9JiEyWFfaYmvEeoncCS4pTxdBCaLFIqhSoMExXR/YKnhX0k2gtGUPEMs?=
- =?us-ascii?Q?cEEX/nOJqTXpp2cfeS0bzG+aD8NYXbgLMTAPKEztJaLPB9wizdTLVxCGAyoa?=
- =?us-ascii?Q?gk02TQV0zi9y2yozOL7xtl9eEFBxwncdqf7k5eJ41//XEA92a00a+PowupbU?=
- =?us-ascii?Q?QBmMFrjT6A7iqsqAd8D9M4snGP9AToS0fXZeQXhsTN4YmoDeihFsimHiLOHx?=
- =?us-ascii?Q?/lVw36qCy2bTTuDtTrYs7+BBpM2Tezqx9p/ZzUPe7rmTHxKVmNAn2yDJVWgb?=
- =?us-ascii?Q?8g/OUspX7ERcVnzkkrDhfyc3yyCPPc7cXG/YRCdAla5ejEdWwVCRP7bcfKfJ?=
- =?us-ascii?Q?2fXr6tRlTUmbp4R/GAMaIaH4FUoR7z2G51VciIUr/ekBaeJ0L+uqQQBzl4GR?=
- =?us-ascii?Q?Y9pz1xjqstd52p0MOj8zkaVT1xrU/xu3I4uOCOEt1eO3ZwbDi037OXHkrQRb?=
- =?us-ascii?Q?iuvYQniJJ+QiggKWfZsth9bm2wEOJ8a48Wyz5VGv+eANTGqQHKFUD24JqMC8?=
- =?us-ascii?Q?8Sk8uBVCBEm9MjpHz7E5q/UpHbklskPdfdZhcA73lBG3zTSyX7wm1GXl0XnD?=
- =?us-ascii?Q?yL9MxRqZigqXOEYMQ37zw3iftCpDN5LqROz1NyZkSL5btq6j9CRssGsjAEAC?=
- =?us-ascii?Q?aMJyTeXiyAK2H5Vg69pxe0ToWAcNPwcyDD8wt5BoqPISsIathzAjttp9DWM2?=
- =?us-ascii?Q?dWbfLTqzdynLMD8EwyoBSAzOefXgCetxO+akcd2hIcjqdKjfvVIyiD/9YDOL?=
- =?us-ascii?Q?oMZhUUjNRpxnFLI3Seu2KadMIUzNlCSWsja82KuoAm250RnaR5Y2vliOXfZi?=
- =?us-ascii?Q?e1APSFkEvlQWUUJ8+kZ7x1jMPQtXs+lsiANWWZIoj0jNIDoqAe8RzBe/8Arm?=
- =?us-ascii?Q?dJeJ4QBIHrHH90vDeX8bq4FeQb54D4l3hbv+dFuSFGjl3sKBOsiBAS8G8gLF?=
- =?us-ascii?Q?EFUiKPiqUM2ekr4lDCAjJmZ4wQz+svPGIg6URd4O?=
-X-OriginatorOrg: wesion.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74d66130-af0d-4845-83e3-08dcb127b03d
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+	=?utf-8?B?VHlmMUFXeFN5V2RyTnM4SzhDS0ZLQTZqQzMzSzdBeXZEdUdqdGtGNDBKVlpP?=
+ =?utf-8?B?eGNNUzZwV25xeWRiREt2WUNtVzFNS2xLaEh2dFRNWFFqN2hqT0xoMXNQNHQx?=
+ =?utf-8?B?K2dSSjlPMjJ5UXJOZTZOWVBEeWw1VzY3TU1rUUNEK0kwYUgyM0pvYlR0YnA2?=
+ =?utf-8?B?OGFGZTF3NSs5TzhnVXd3eXVBMzJWdTA0bVpCR1FINGZncVdlbDV5QlNBYWNr?=
+ =?utf-8?B?aGpjZ3hrSlVxVlRndzBiQWZZVGdhaFB2MEYwRUVNTENJMnlpWFJBYklJaUVI?=
+ =?utf-8?B?ZFJ3UHAvSU5vdEVmZnZVYnNBSjlsSEpSVk1qT1gzRWNYOUk0VVA3RWdsRGJ6?=
+ =?utf-8?B?TVI5TVh2STJXYldOSW5CNm50cmRkQmxEakZFVnR0OXZXMk9PLzJtZkh0SUNo?=
+ =?utf-8?B?ZjJvdWp3QS9UOUhoUzBHdHh6QWc4YkZEd0kzVDJBb08yUXdRR2JVSjcrd29j?=
+ =?utf-8?B?VmlDWXlDYzhJc05hN051TUowTG9hM1NaRGpmenNMaHBLL1hPSzd1SmRVVkpz?=
+ =?utf-8?B?V2VVMmlkTGx6c25xNnFOMjFTeGwwUTRNM1Y2djlKTGhvUHptWEkvdzV5bmdR?=
+ =?utf-8?B?VjI1UHFqMlNyUjMrZDZuK1Z1TkFXcERKMldwMVJJNmdWc1M3cVpMRDVtdnh4?=
+ =?utf-8?B?d3pIdHF1NWhIbERzZnRGOWF2QUFVL2I0ZHFkVFNpeWFQVElsTDVjSHhJa0JM?=
+ =?utf-8?B?KzFtYjg1QTFsb3B6eGdzeURoRmFWWDFTZ3JoM0tiTUxZRHNVY3Z1Z0NpYUhP?=
+ =?utf-8?B?SWpWTXFQREJpQk9ZYSs1N1NKYzV6WVRZekxNa3kzUCtjNEtFZXdrTFhobzVu?=
+ =?utf-8?B?clJ5cm1QNWRXNmZyVnRXemROMU56ek4wdGRsTzQ1L3VpQktsRTJLVWV0a1FZ?=
+ =?utf-8?B?OUxuZVdiRFdtMnZwU2FqYXZmbXEzemZQKzh1N2l4RkNNazlDRzFycTZHQkt3?=
+ =?utf-8?B?ZkdJb01IZ0s3V0xvc1NKTldtQ245WnFrVUxyaURhdU9XLzJteHl2SHJLWXlQ?=
+ =?utf-8?B?VDJBaDJpWmhVSy9RRWZYaXdqYVZUSEZ3NWgrL1VVUEQyQ3JMM2ZyQzdGNlpw?=
+ =?utf-8?B?bm82M2c5VXlhek9OQ2oyVXpiU1JNYXBuR3dCempBMHNoZ1NuNzMyZFRUdUMw?=
+ =?utf-8?B?U2k4dDdJc3ZFcDlTME5QTDhtLzdSbExZWHBpUU5ycGhKaUUycUltZE54SFRp?=
+ =?utf-8?B?MEl2Qm0rd3Z5NlVsN1dWQ1RYcVNBaFdEaHlYek4xL2tGSnViQlFxLzdwUmlQ?=
+ =?utf-8?B?ZGRNM2tyZkN5U01WWkU2OUpHYUY2Y1NtZTRpSkNGaUcrNjZFc0VTMWsxYng4?=
+ =?utf-8?B?TTlGMlI1L2VYb2RqdzlwR3FjeE5VNmg3Zmpqc1Qrazl1TWM1NmZRNi9zSjVn?=
+ =?utf-8?B?R2c2WmdmVzQrMDhjenk5VzhKcXc3T25kSlN3THc4enYvTC84UFdKYVhoTzNU?=
+ =?utf-8?B?K2pIVTBzd2tEeHllWHJOd0NYUDhxbzVFd3ZiTk9pRUplQ2RmU0R2bkF6WDBo?=
+ =?utf-8?B?ZlRzUXhSdSsvL3pKWkI0dmowT3B2Q0x1dnByaFBLOHpRYkFjenVqNktzYnhY?=
+ =?utf-8?B?aVZlMDFNR2NvbWlXeXBkM2JoVjlKYmNGSUJyREpXNS95MnVLYURqNktPeHE2?=
+ =?utf-8?B?YzFEbVZvbzRwa3pveFRhNFlVSFlkbndvdmpaYWFnVlpzQ0Q2UFplZktlSDBR?=
+ =?utf-8?Q?rW2P0dUuXrI66mVxeJGa?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8326ab5-fb41-4106-3d86-08dcb127e4cf
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 06:12:00.0296
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 06:13:29.4340
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K+QSOCDSOF+Yfn142NHWRhgp9x8hAwk8aQh2rWCA1Msdhc1XG1eYEj4SE2cNmklfUl+i/OKETM+kibJDnkdv/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6580
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1790
 
-Providing the random seed to firmware was tied to the fact that the
-device has a valid OTP, which worked for some Apple chips. However,
-it turns out the BCM43752 device also needs the random seed in order
-to get firmware running. Suspect it is simply tied to the firmware
-branch used for the device. Introducing a mechanism to allow setting
-it for a device through the device table.
 
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Co-developed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
----
- .../broadcom/brcm80211/brcmfmac/pcie.c        | 52 ++++++++++++++++---
- .../broadcom/brcm80211/include/brcm_hw_ids.h  |  2 +
- 2 files changed, 46 insertions(+), 8 deletions(-)
+On 2024/7/30 15:50, Inochi Amaoto wrote:
+[......]
+> +#define REG_CRITICAL_ACTIONS			0x65
+The name "REG_CRITICAL_ACTIONS" is ambiguous. I have confirmed with 
+sophgo engineers that the complete process is: when the measured 
+temperature exceeds the temperature set by REG_CRITICAL_TEMP, the 
+processor is powered off and shut down, and then after the temperature 
+returns to the temperature set by REG_REPOWER_TEMP, it is decided 
+whether to power on again or remain in the shutdown state based on the 
+action set by REG_CRITICAL_ACTIONS, whether it is reboot or poweroff.
 
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-index 06698a714b523..938632daf30a9 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-@@ -66,6 +66,7 @@ BRCMF_FW_DEF(4365C, "brcmfmac4365c-pcie");
- BRCMF_FW_DEF(4366B, "brcmfmac4366b-pcie");
- BRCMF_FW_DEF(4366C, "brcmfmac4366c-pcie");
- BRCMF_FW_DEF(4371, "brcmfmac4371-pcie");
-+BRCMF_FW_CLM_DEF(43752, "brcmfmac43752-pcie");
- BRCMF_FW_CLM_DEF(4377B3, "brcmfmac4377b3-pcie");
- BRCMF_FW_CLM_DEF(4378B1, "brcmfmac4378b1-pcie");
- BRCMF_FW_CLM_DEF(4378B3, "brcmfmac4378b3-pcie");
-@@ -104,6 +105,7 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
- 	BRCMF_FW_ENTRY(BRCM_CC_43664_CHIP_ID, 0xFFFFFFF0, 4366C),
- 	BRCMF_FW_ENTRY(BRCM_CC_43666_CHIP_ID, 0xFFFFFFF0, 4366C),
- 	BRCMF_FW_ENTRY(BRCM_CC_4371_CHIP_ID, 0xFFFFFFFF, 4371),
-+	BRCMF_FW_ENTRY(BRCM_CC_43752_CHIP_ID, 0xFFFFFFFF, 43752),
- 	BRCMF_FW_ENTRY(BRCM_CC_4377_CHIP_ID, 0xFFFFFFFF, 4377B3), /* revision ID 4 */
- 	BRCMF_FW_ENTRY(BRCM_CC_4378_CHIP_ID, 0x0000000F, 4378B1), /* revision ID 3 */
- 	BRCMF_FW_ENTRY(BRCM_CC_4378_CHIP_ID, 0xFFFFFFE0, 4378B3), /* revision ID 5 */
-@@ -358,6 +360,7 @@ struct brcmf_pciedev_info {
- 			  u16 value);
- 	struct brcmf_mp_device *settings;
- 	struct brcmf_otp_params otp;
-+	bool fwseed;
- #ifdef DEBUG
- 	u32 console_interval;
- 	bool console_active;
-@@ -1720,14 +1723,14 @@ static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
- 		memcpy_toio(devinfo->tcm + address, nvram, nvram_len);
- 		brcmf_fw_nvram_free(nvram);
- 
--		if (devinfo->otp.valid) {
-+		if (devinfo->fwseed) {
- 			size_t rand_len = BRCMF_RANDOM_SEED_LENGTH;
- 			struct brcmf_random_seed_footer footer = {
- 				.length = cpu_to_le32(rand_len),
- 				.magic = cpu_to_le32(BRCMF_RANDOM_SEED_MAGIC),
- 			};
- 
--			/* Some Apple chips/firmwares expect a buffer of random
-+			/* Some chips/firmwares expect a buffer of random
- 			 * data to be present before NVRAM
- 			 */
- 			brcmf_dbg(PCIE, "Download random seed\n");
-@@ -2399,6 +2402,37 @@ static void brcmf_pcie_debugfs_create(struct device *dev)
- }
- #endif
- 
-+struct brcmf_pcie_drvdata {
-+	enum brcmf_fwvendor vendor;
-+	bool fw_seed;
-+};
-+
-+enum {
-+	BRCMF_DRVDATA_CYW,
-+	BRCMF_DRVDATA_BCA,
-+	BRCMF_DRVDATA_WCC,
-+	BRCMF_DRVDATA_WCC_SEED,
-+};
-+
-+static const struct brcmf_pcie_drvdata drvdata[] = {
-+	[BRCMF_DRVDATA_CYW] = {
-+		.vendor = BRCMF_FWVENDOR_CYW,
-+		.fw_seed = false,
-+	},
-+	[BRCMF_DRVDATA_BCA] = {
-+		.vendor = BRCMF_FWVENDOR_BCA,
-+		.fw_seed = false,
-+	},
-+	[BRCMF_DRVDATA_WCC] = {
-+		.vendor = BRCMF_FWVENDOR_WCC,
-+		.fw_seed = false,
-+	},
-+	[BRCMF_DRVDATA_WCC_SEED] = {
-+		.vendor = BRCMF_FWVENDOR_WCC,
-+		.fw_seed = true,
-+	},
-+};
-+
- /* Forward declaration for pci_match_id() call */
- static const struct pci_device_id brcmf_pcie_devid_table[];
- 
-@@ -2477,9 +2511,10 @@ brcmf_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- 	bus->bus_priv.pcie = pcie_bus_dev;
- 	bus->ops = &brcmf_pcie_bus_ops;
- 	bus->proto_type = BRCMF_PROTO_MSGBUF;
--	bus->fwvid = id->driver_data;
- 	bus->chip = devinfo->coreid;
- 	bus->wowl_supported = pci_pme_capable(pdev, PCI_D3hot);
-+	bus->fwvid = drvdata[id->driver_data].vendor;
-+	devinfo->fwseed = drvdata[id->driver_data].fw_seed;
- 	dev_set_drvdata(&pdev->dev, bus);
- 
- 	ret = brcmf_alloc(&devinfo->pdev->dev, devinfo->settings);
-@@ -2665,14 +2700,14 @@ static const struct dev_pm_ops brcmf_pciedrvr_pm = {
- 		BRCM_PCIE_VENDOR_ID_BROADCOM, (dev_id), \
- 		PCI_ANY_ID, PCI_ANY_ID, \
- 		PCI_CLASS_NETWORK_OTHER << 8, 0xffff00, \
--		BRCMF_FWVENDOR_ ## fw_vend \
-+		BRCMF_DRVDATA_ ## fw_vend \
- 	}
- #define BRCMF_PCIE_DEVICE_SUB(dev_id, subvend, subdev, fw_vend) \
- 	{ \
- 		BRCM_PCIE_VENDOR_ID_BROADCOM, (dev_id), \
- 		(subvend), (subdev), \
- 		PCI_CLASS_NETWORK_OTHER << 8, 0xffff00, \
--		BRCMF_FWVENDOR_ ## fw_vend \
-+		BRCMF_DRVDATA_ ## fw_vend \
- 	}
- 
- static const struct pci_device_id brcmf_pcie_devid_table[] = {
-@@ -2700,9 +2735,10 @@ static const struct pci_device_id brcmf_pcie_devid_table[] = {
- 	BRCMF_PCIE_DEVICE(BRCM_PCIE_4366_5G_DEVICE_ID, BCA),
- 	BRCMF_PCIE_DEVICE(BRCM_PCIE_4371_DEVICE_ID, WCC),
- 	BRCMF_PCIE_DEVICE(BRCM_PCIE_43596_DEVICE_ID, CYW),
--	BRCMF_PCIE_DEVICE(BRCM_PCIE_4377_DEVICE_ID, WCC),
--	BRCMF_PCIE_DEVICE(BRCM_PCIE_4378_DEVICE_ID, WCC),
--	BRCMF_PCIE_DEVICE(BRCM_PCIE_4387_DEVICE_ID, WCC),
-+	BRCMF_PCIE_DEVICE(BRCM_PCIE_4377_DEVICE_ID, WCC_SEED),
-+	BRCMF_PCIE_DEVICE(BRCM_PCIE_4378_DEVICE_ID, WCC_SEED),
-+	BRCMF_PCIE_DEVICE(BRCM_PCIE_4387_DEVICE_ID, WCC_SEED),
-+	BRCMF_PCIE_DEVICE(BRCM_PCIE_43752_DEVICE_ID, WCC_SEED),
- 
- 	{ /* end: all zeroes */ }
- };
-diff --git a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-index 44684bf1b9acc..c1e22c589d85e 100644
---- a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-+++ b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
-@@ -52,6 +52,7 @@
- #define BRCM_CC_43664_CHIP_ID		43664
- #define BRCM_CC_43666_CHIP_ID		43666
- #define BRCM_CC_4371_CHIP_ID		0x4371
-+#define BRCM_CC_43752_CHIP_ID		43752
- #define BRCM_CC_4377_CHIP_ID		0x4377
- #define BRCM_CC_4378_CHIP_ID		0x4378
- #define BRCM_CC_4387_CHIP_ID		0x4387
-@@ -94,6 +95,7 @@
- #define BRCM_PCIE_4366_5G_DEVICE_ID	0x43c5
- #define BRCM_PCIE_4371_DEVICE_ID	0x440d
- #define BRCM_PCIE_43596_DEVICE_ID	0x4415
-+#define BRCM_PCIE_43752_DEVICE_ID	0x449d
- #define BRCM_PCIE_4377_DEVICE_ID	0x4488
- #define BRCM_PCIE_4378_DEVICE_ID	0x4425
- #define BRCM_PCIE_4387_DEVICE_ID	0x4433
--- 
-2.34.1
+So based on the above description, I think it would be better to 
+call "REG_CRITICAL_ACTIONS" as "REG_REPOWER_ACTIONS". 
+"REG_CRITICAL_ACTIONS" gives people the first impression that it is used 
+to set actions related to REG_CRITICAL_TEMP.
 
+It is also recommended to add the above description of temperature 
+control and action settings in the code. Currently, sophgo does not have 
+a clear document description for this part, and adding it will help us 
+understand its functions.
+
+Adding sophgo engineers Chunzhi and Haijiao, FYI.
+
+> +#define REG_CRITICAL_TEMP			0x66
+> +#define REG_REPOWER_TEMP			0x67
+> +
+> +#define CRITICAL_ACTION_REBOOT			1
+> +#define CRITICAL_ACTION_POWEROFF		2
+
+As I said upon, actions are not related to critical, but is for 
+restoring from critical, suggest to give a better name.
+
+[......]
+
+> +static ssize_t critical_action_show(struct device *dev,
+[......]
+> +static ssize_t critical_action_store(struct device *dev,
+
+[......]
+
+The same reason as upon, "critical_action_xxx" is misleading.
+
+[......]
+
+> +static int sg2042_mcu_read_temp(struct device *dev,
+> +				u32 attr, int channel,
+> +				long *val)
+> +{
+> +	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
+> +	int tmp;
+> +	u8 reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_input:
+> +		reg = channel ? REG_BOARD_TEMP : REG_SOC_TEMP;
+> +		break;
+> +	case hwmon_temp_crit:
+> +		reg = REG_CRITICAL_TEMP;
+> +		break;
+> +	case hwmon_temp_crit_hyst:
+> +		reg = REG_REPOWER_TEMP;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	tmp = i2c_smbus_read_byte_data(mcu->client, reg);
+> +	if (tmp < 0)
+> +		return tmp;
+> +	*val = tmp * 1000;
+> +
+> +	return 0;
+> +}
+> +
+> +static int sg2042_mcu_read(struct device *dev,
+> +			   enum hwmon_sensor_types type,
+> +			   u32 attr, int channel, long *val)
+> +{
+> +	return sg2042_mcu_read_temp(dev, attr, channel, val);
+> +}
+Can we merge sg2042_mcu_read and sg2042_mcu_read_temp？
+> +
+> +static int sg2042_mcu_write(struct device *dev,
+> +			    enum hwmon_sensor_types type,
+> +			    u32 attr, int channel, long val)
+> +{
+> +	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
+> +	int temp = val / 1000;
+> +	int hyst_temp, crit_temp;
+> +	int ret;
+> +	u8 reg;
+> +
+> +	if (temp > MCU_POWER_MAX)
+> +		temp = MCU_POWER_MAX;
+> +
+> +	mutex_lock(&mcu->mutex);
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_crit:
+> +		hyst_temp = i2c_smbus_read_byte_data(mcu->client,
+> +						     REG_REPOWER_TEMP);
+> +		if (hyst_temp < 0) {
+> +			ret = -ENODEV;
+> +			goto failed;
+> +		}
+> +
+> +		crit_temp = temp;
+> +		reg = REG_CRITICAL_TEMP;
+> +		break;
+> +	case hwmon_temp_crit_hyst:
+> +		crit_temp = i2c_smbus_read_byte_data(mcu->client,
+> +						     REG_CRITICAL_TEMP);
+> +		if (crit_temp < 0) {
+> +			ret = -ENODEV;
+> +			goto failed;
+> +		}
+> +
+> +		hyst_temp = temp;
+> +		reg = REG_REPOWER_TEMP;
+> +		break;
+> +	default:
+> +		mutex_unlock(&mcu->mutex);
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+It is recommended to add some comments to explain why we need to ensure 
+that crit_temp is greater than or equal to hyst_temp. This is entirely 
+because the current MCU does not limit the input, which may cause user 
+to set incorrect crit_temp and hyst_temp.
+> +	if (crit_temp < hyst_temp) {
+> +		ret = -EINVAL;
+> +		goto failed;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte_data(mcu->client, reg, temp);
+> +
+> +failed:
+> +	mutex_unlock(&mcu->mutex);
+> +	return ret;
+> +}
+> +
+[......]
 
