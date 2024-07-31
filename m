@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-89765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D331942AC1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:39:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7AF942ACA
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:39:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FA751C23F40
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:39:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 834B8285CEE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE411AD9D7;
-	Wed, 31 Jul 2024 09:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9B61AE862;
+	Wed, 31 Jul 2024 09:38:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58941AD9C2
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 09:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A89A1AE842
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 09:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722418683; cv=none; b=Ai7Drr/3O7KUc/uyDyCNz4A+sWyLWaz3T0V1yjMPB+6JlZb+s8nCObh2JG9Ka3Xsv16rjxddbVNOeM017mZooWVV2P313mjn2cRR4aKvOlgMYSgIazImXVvUbWfRK0cruS8V3bdNHrrHDiqZnBC7OPGG2B8NbqwJ2w7chuRO0bY=
+	t=1722418687; cv=none; b=fnnUX7PLhmA8Q3W3+BjNcEFqIdyRyirkmH4gqfkQLepiZ8erGvB5AXrWD9E2cVNpm0CVtIjqD04ySc67ZruNgu7JYesEhcWAEgTitSREpBjuqHsA7+OQQBXGtixibT7QN+K+egfs9s8qJhZuSupLrxPF3yJr4zTcMYWWLNX9wFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722418683; c=relaxed/simple;
-	bh=mKoxOQzQLkeZYomIhRbPKwzQLa0k13BGcghKhxoxh1M=;
+	s=arc-20240116; t=1722418687; c=relaxed/simple;
+	bh=7ugKnYPsfT4RSINDGtYyO0/P7vD3G/1dvdg9B/8rF4E=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KuPoL6hq7pe35QfDF/r7RTnTtVnDNFzrXS0gci+kQ4dxJzuczeLSyC0/UOuZl7QTyKCHO8DHVx4FEwr9gp8W8D4Q1u/tfOitB3IhBM5wOK18Elh88FlT4pAHBmvq2YqKdFsTz0iA2iDV7i46JoD46C++zYC7P5i9Uubjzu8Cy04=
+	 In-Reply-To:To:Cc; b=SpsuUXHbuTvPKbPWwIHkJh7FS5iCPjc3O543VQtx+akEy0Gv+zrBQd0PDq5sd4y1Qblw+uVKBQNIGIM0qGnERZmxegwQURcME1QJyZvXJ6WZL2x88FRm3JPQwT+sMMx/+LNAfKzTUSw6lgH5ADLXmuB7JPOi1rkSqk3/AgTr34k=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,30 +33,30 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <mkl@pengutronix.de>)
-	id 1sZ5mR-0005dt-4e
-	for devicetree@vger.kernel.org; Wed, 31 Jul 2024 11:37:59 +0200
+	id 1sZ5mU-0005fu-I1
+	for devicetree@vger.kernel.org; Wed, 31 Jul 2024 11:38:02 +0200
 Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <mkl@pengutronix.de>)
-	id 1sZ5mN-003UmU-Pq
-	for devicetree@vger.kernel.org; Wed, 31 Jul 2024 11:37:55 +0200
+	id 1sZ5mO-003UoF-VB
+	for devicetree@vger.kernel.org; Wed, 31 Jul 2024 11:37:57 +0200
 Received: from dspam.blackshift.org (localhost [127.0.0.1])
-	by bjornoya.blackshift.org (Postfix) with SMTP id 70C0631287B
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 09:37:55 +0000 (UTC)
+	by bjornoya.blackshift.org (Postfix) with SMTP id 77AE53128A7
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 09:37:56 +0000 (UTC)
 Received: from hardanger.blackshift.org (unknown [172.20.34.65])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(Client did not present a certificate)
-	by bjornoya.blackshift.org (Postfix) with ESMTPS id A68EF3127EA;
-	Wed, 31 Jul 2024 09:37:49 +0000 (UTC)
+	by bjornoya.blackshift.org (Postfix) with ESMTPS id CF0A7312800;
+	Wed, 31 Jul 2024 09:37:50 +0000 (UTC)
 Received: from [172.20.34.65] (localhost [::1])
-	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 02e0460c;
+	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 7f323b22;
 	Wed, 31 Jul 2024 09:37:42 +0000 (UTC)
 From: Marc Kleine-Budde <mkl@pengutronix.de>
-Date: Wed, 31 Jul 2024 11:37:08 +0200
-Subject: [PATCH can-next v2 06/20] can: rockchip_canfd: add quirk for
- broken CAN-FD support
+Date: Wed, 31 Jul 2024 11:37:09 +0200
+Subject: [PATCH can-next v2 07/20] can: rockchip_canfd: add support for
+ rk3568v3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240731-rockchip-canfd-v2-6-d9604c5b4be8@pengutronix.de>
+Message-Id: <20240731-rockchip-canfd-v2-7-d9604c5b4be8@pengutronix.de>
 References: <20240731-rockchip-canfd-v2-0-d9604c5b4be8@pengutronix.de>
 In-Reply-To: <20240731-rockchip-canfd-v2-0-d9604c5b4be8@pengutronix.de>
 To: kernel@pengutronix.de, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
@@ -81,15 +81,15 @@ Cc: Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>
 X-Mailer: b4 0.15-dev-37811
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2840; i=mkl@pengutronix.de;
- h=from:subject:message-id; bh=mKoxOQzQLkeZYomIhRbPKwzQLa0k13BGcghKhxoxh1M=;
- b=owEBbQGS/pANAwAKASg4oj56LbxvAcsmYgBmqgXONWls6UBwbBjaMIaBOaThO4Ric6nTVZxe4
- Jw4jAblmPiJATMEAAEKAB0WIQRQQLqG4LYE3Sm8Pl8oOKI+ei28bwUCZqoFzgAKCRAoOKI+ei28
- b2tzCACUg/i3PittWMmkkr1k6c35EmexZm5O9ULgapO7FiEQhr/gaBPXabwMOqSUr8VSkXKqR3B
- sBKHSAkcrYxIzlphuW1ADFeF/nUbFPd8gmIQjbdnzeVoU88kkw3oT2Ej29diCTfiRgEzub3dX8w
- QacLW7BEYMjChES8Uc01xK7N2yb42FMISNw3B4XS6z/2jSajvkg+dovFr/IShoZsfxuAAsdOhtS
- Urt7O9/sloI8KcCRtwJD+FKcJ8rblW0O6Obn3ounahEzbzTp9XSjJiBAWc2bucL3MW+WyQz/wii
- 7FNneGcqaid2khtjB6VAK78Rf49tushOqzfPMN1K088/me2K
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2433; i=mkl@pengutronix.de;
+ h=from:subject:message-id; bh=7ugKnYPsfT4RSINDGtYyO0/P7vD3G/1dvdg9B/8rF4E=;
+ b=owEBbQGS/pANAwAKASg4oj56LbxvAcsmYgBmqgXPvNP/X6Ae5MOLD3VUOuk3Jsk+vvrORz47K
+ dkaC7quMNiJATMEAAEKAB0WIQRQQLqG4LYE3Sm8Pl8oOKI+ei28bwUCZqoFzwAKCRAoOKI+ei28
+ b+evB/oCA6hDFnDrd2ewRn+0VkmCqEryjvoytRQzrfC1yUB0dGNb9f/yrAIBE2/6uaoTiNWy1//
+ gDAheqiUkSpRRs8oumegMK9N93vN3zYMZxBEzS3Yvl5RjN283u3qvjmoANBg1KuUr7yKA0C0ydY
+ vTKxaGkeHLijxgynjmcsAS6klOACNJys4eVKZhaG6Ylr5ssG5L8urQlhE2CaZPgT1xb9nyyIYoV
+ sLZwrneiF3jehL42K41Um19uU46kx//kIFBtvhkSeTATTf7UVawGZ2MI8hesQ20fIHAl2MvXhMo
+ w33dW/oCDS0bC89juWBQ+B0RP2X7zBrb0Zoz7gJ+czaHf9yM
 X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
  fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -97,73 +97,70 @@ X-SA-Exim-Mail-From: mkl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The errata sheets doesn't say anything about CAN-FD, but tests on the
-rk3568v2 and rk3568v3 show that receiving certain CAN-FD frames
-triggers an Error Interrupt.
-
-Mark the CAN-FD support as broken.
+Add the support for the rk3568v3 SoC, the CAN-FD IP core has 7
+documented errata.
 
 Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 ---
- drivers/net/can/rockchip/rockchip_canfd-core.c |  5 ++++-
- drivers/net/can/rockchip/rockchip_canfd.h      | 21 +++++++++++++++++++++
- 2 files changed, 25 insertions(+), 1 deletion(-)
+ drivers/net/can/rockchip/rockchip_canfd-core.c | 20 ++++++++++++++++++++
+ drivers/net/can/rockchip/rockchip_canfd.h      |  1 +
+ 2 files changed, 21 insertions(+)
 
 diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
-index 6329ad1fe154..0887164b0db3 100644
+index 0887164b0db3..7b4abf9984af 100644
 --- a/drivers/net/can/rockchip/rockchip_canfd-core.c
 +++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
-@@ -31,7 +31,8 @@ static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v2 = {
- 		RKCANFD_QUIRK_RK3568_ERRATUM_5 | RKCANFD_QUIRK_RK3568_ERRATUM_6 |
- 		RKCANFD_QUIRK_RK3568_ERRATUM_7 | RKCANFD_QUIRK_RK3568_ERRATUM_8 |
- 		RKCANFD_QUIRK_RK3568_ERRATUM_9 | RKCANFD_QUIRK_RK3568_ERRATUM_10 |
--		RKCANFD_QUIRK_RK3568_ERRATUM_11 | RKCANFD_QUIRK_RK3568_ERRATUM_12,
+@@ -35,11 +35,28 @@ static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v2 = {
+ 		RKCANFD_QUIRK_CANFD_BROKEN,
+ };
+ 
++/* The rk3568 CAN-FD errata sheet as of Tue 07 Nov 2023 11:25:31 +08:00
++ * states that only the rk3568v2 is affected by erratum 5, but tests
++ * with the rk3568v2 and rk3568v3 show that the RX_FIFO_CNT is
++ * sometimes too high. In contrast to the errata sheet mark rk3568v3
++ * as effected by erratum 5, too.
++ */
++static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v3 = {
++	.model = RKCANFD_MODEL_RK3568V3,
++	.quirks = RKCANFD_QUIRK_RK3568_ERRATUM_1 | RKCANFD_QUIRK_RK3568_ERRATUM_2 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_5 | RKCANFD_QUIRK_RK3568_ERRATUM_7 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_8 | RKCANFD_QUIRK_RK3568_ERRATUM_10 |
 +		RKCANFD_QUIRK_RK3568_ERRATUM_11 | RKCANFD_QUIRK_RK3568_ERRATUM_12 |
 +		RKCANFD_QUIRK_CANFD_BROKEN,
- };
- 
++};
++
  static const char *__rkcanfd_get_model_str(enum rkcanfd_model model)
-@@ -820,6 +821,8 @@ static int rkcanfd_probe(struct platform_device *pdev)
- 	priv->can.bittiming_const = &rkcanfd_bittiming_const;
- 	priv->can.data_bittiming_const = &rkcanfd_data_bittiming_const;
- 	priv->can.ctrlmode_supported = 0;
-+	if (!(priv->devtype_data.quirks & RKCANFD_QUIRK_CANFD_BROKEN))
-+		priv->can.ctrlmode_supported |= CAN_CTRLMODE_FD;
- 	priv->can.do_set_mode = rkcanfd_set_mode;
- 	priv->can.do_get_berr_counter = rkcanfd_get_berr_counter;
- 	priv->ndev = ndev;
+ {
+ 	switch (model) {
+ 	case RKCANFD_MODEL_RK3568V2:
+ 		return "rk3568v2";
++	case RKCANFD_MODEL_RK3568V3:
++		return "rk3568v3";
+ 	}
+ 
+ 	return "<unknown>";
+@@ -767,6 +784,9 @@ static const struct of_device_id rkcanfd_of_match[] = {
+ 	}, {
+ 		.compatible = "rockchip,rk3568v2-canfd",
+ 		.data = &rkcanfd_devtype_data_rk3568v2,
++	}, {
++		.compatible = "rockchip,rk3568v3-canfd",
++		.data = &rkcanfd_devtype_data_rk3568v3,
+ 	}, {
+ 		/* sentinel */
+ 	},
 diff --git a/drivers/net/can/rockchip/rockchip_canfd.h b/drivers/net/can/rockchip/rockchip_canfd.h
-index 09626ca174a8..7321027534fb 100644
+index 7321027534fb..9b446331fbd0 100644
 --- a/drivers/net/can/rockchip/rockchip_canfd.h
 +++ b/drivers/net/can/rockchip/rockchip_canfd.h
-@@ -349,6 +349,27 @@
-  */
- #define RKCANFD_QUIRK_RK3568_ERRATUM_12 BIT(11)
+@@ -372,6 +372,7 @@
  
-+/* Tests on the rk3568v2 and rk3568v3 show that receiving certain
-+ * CAN-FD frames trigger an Error Interrupt.
-+ *
-+ * - Form Error in RX Arbitration Phase: TX_IDLE RX_STUFF_COUNT (0x0a010100) CMD=0 RX=0 TX=0
-+ *   Error-Warning=1 Bus-Off=0
-+ *   To reproduce:
-+ *   host:
-+ *     cansend can0 002##01f
-+ *   DUT:
-+ *     candump any,0:0,#FFFFFFFF -cexdHtA
-+ *
-+ * - Form Error in RX Arbitration Phase: TX_IDLE RX_CRC (0x0a010200) CMD=0 RX=0 TX=0
-+ *   Error-Warning=1 Bus-Off=0
-+ *   To reproduce:
-+ *   host:
-+ *     cansend can0 002##07217010000000000
-+ *   DUT:
-+ *     candump any,0:0,#FFFFFFFF -cexdHtA
-+ */
-+#define RKCANFD_QUIRK_CANFD_BROKEN BIT(12)
-+
  enum rkcanfd_model {
  	RKCANFD_MODEL_RK3568V2 = 0x35682,
++	RKCANFD_MODEL_RK3568V3 = 0x35683,
  };
+ 
+ struct rkcanfd_devtype_data {
 
 -- 
 2.43.0
