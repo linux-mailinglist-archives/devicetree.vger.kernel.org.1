@@ -1,98 +1,162 @@
-Return-Path: <devicetree+bounces-89891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1609F943215
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:35:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7AE943220
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 16:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C518B280F38
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:35:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CBEF1C2145D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 14:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6EE1BB6AC;
-	Wed, 31 Jul 2024 14:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36911BBBD1;
+	Wed, 31 Jul 2024 14:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UnF4awFp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dPqui2rZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B710C1AE85E;
-	Wed, 31 Jul 2024 14:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E981DDC9;
+	Wed, 31 Jul 2024 14:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722436539; cv=none; b=k5wS10ejS2gJ1KkOg/wgWvyd85gRxYVa0dQdUq+T+KWPNk82vYBjUie1EI66MHcH0dao6yHJn9RxQIrf2KkaZL7U8jYeZ/LabUACQVEmiN4i3YdWXCB0RqMtkZJGnj0PhNYK4wOlkBBQjkp9wSCkRL5CPbWPOU3R8pAgKdQsSs8=
+	t=1722436654; cv=none; b=rkL0xU7ynAozi2Imlw4vSykWUu/GqmCMsgz1WjPnCf2MZIQEaMHh0b+iV8UE2eA4oUWDnITpMDO46OqYLFNSEiuRZMCYbshl8YlSpCgjKA/oakUzqdygqR062jfBvGnWnH3ZBUwrM/G3nC5TSYgoi/8x226J43KkQL8Y4zbi9qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722436539; c=relaxed/simple;
-	bh=aBuiK8XVC/AWbFtXlYoTM6uaz8Jl1jAwhv2ZA+LhfkM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H6BpI68olRc11jG0k9D/aY1s4IYj6GATZLzSGeSSj143r8AQJu7tbu7Fho3y3SW4z2gJXkSoqSz/wD6Z1Rxa039fO3KbiknHnfsSX5k3o1TXR/ipzC0P3I5tSiYe/OPJBYEI+zukidUsMz/7eUaZghAwnyq/H8aCQhd2Mk+gBy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UnF4awFp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C205C4AF09;
-	Wed, 31 Jul 2024 14:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722436539;
-	bh=aBuiK8XVC/AWbFtXlYoTM6uaz8Jl1jAwhv2ZA+LhfkM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UnF4awFpEcKehNCV9mHyehl4RgyunVLy6QSZxOOnXxREOjUzFX2Yb4DTlJzH6texu
-	 3luCovOUAPwx38M9hc4nJtth7Tduu5pDoA7Pajr1dJ0Rvq3xvzI0acQmROdMX2hStS
-	 FLKBWBmhQylNa7DGqmoyVk8zyuU0hjw1xhOh2iYqRp66DCKWsrCEMiaCwXM17iB6SN
-	 wBt7qjmc2KRu3g76GzpgNwNsWRYT5ivaRsp15cRrxBhGlTuhrvBaIextjesQe4q3oh
-	 b5ExF7koseYy/8Z5OiRDMNJVW495dsMiS/2l/6zKJYvAUJxaD9C8xbAOJKZbfyaGOP
-	 exJz2hpcf69EQ==
-Date: Wed, 31 Jul 2024 08:35:37 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Eggers <ceggers@arri.de>
-Subject: Re: [PATCH v1] dt-bindings: eeprom: at25: add  fujitsu,mb85rs256
- compatible
-Message-ID: <172243652016.744265.5521659278356438675.robh@kernel.org>
-References: <20240612092934.12282-1-francesco@dolcini.it>
- <20240626063506.GA4324@francesco-nb>
+	s=arc-20240116; t=1722436654; c=relaxed/simple;
+	bh=gWEUBtkFKZ9RYmy9L6XrO/5e+6MR4sPM4fHH7iWE8/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PKwXrzLQ6G3dG5eMRQuSmoshsYMcBhWgoMsduUWfUMSrZulADaG8V+aBEETBJEnnsFA3tvls8I9YB2vQPjqrdrN8zAegvGFWU6fc7lJjKlgMfveo/I7iGwyWnM6O56rKMVAf5JTL7LbT5GvuFIGcKpAeXK265BeznOuz2aRtzHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dPqui2rZ; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VEbO72052518;
+	Wed, 31 Jul 2024 09:37:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722436644;
+	bh=QpzGqPZNogg7gfb8tMWXYKRLjjvoWBSL6FCUeY/FuoI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=dPqui2rZu1RfCO16r3Ige6SnhRZsBQWrEtJInfEB4RrgUUOieoAUWKv0o+o6Mxbv4
+	 kZAPzfG4HxvQnDnX0tPUpADZ2qKzppK8afgyXhNZ3MaumwECBMdk4ZTfRymEskgcyE
+	 Z7VAg0JRd7/3t7+rHsHLmkJ5WLmgex3YqeGSeU6U=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VEbOA6128110
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jul 2024 09:37:24 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jul 2024 09:37:24 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jul 2024 09:37:24 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VEbNK2065889;
+	Wed, 31 Jul 2024 09:37:24 -0500
+Message-ID: <087ee9e2-50ec-4791-a534-b3ebbf594fe6@ti.com>
+Date: Wed, 31 Jul 2024 09:37:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626063506.GA4324@francesco-nb>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce J742S2 SoC family
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye
+	<a-limaye@ti.com>
+References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
+ <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
+ <20240730123343.mqafgpj4zcnd5vs4@plaything>
+ <20240731041916.stcbvkr6ovd7t5vk@uda0497581>
+ <20240731110607.7fb42mgcsf2apodv@unshaven>
+ <20240731135714.p53lki7mihzxcyk2@uda0497581>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240731135714.p53lki7mihzxcyk2@uda0497581>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 7/31/24 8:57 AM, Manorit Chawdhry wrote:
+> Hi Nishanth,
+> 
+> On 06:06-20240731, Nishanth Menon wrote:
+>> On 09:49-20240731, Manorit Chawdhry wrote:
+>>>>> + */
+>>>>> +
+>>>>> +#include "k3-j784s4.dtsi"
+>>>>> +
+>>>>> +/ {
+>>>>> +	model = "Texas Instruments K3 J742S2 SoC";
+>>>>> +	compatible = "ti,j742s2";
+>>>>> +
+>>>>> +	cpus {
+>>>>> +		cpu-map {
+>>>>> +			/delete-node/ cluster1;
+>>>>> +		};
+>>>>> +	};
+>>>>> +
+>>>>> +	/delete-node/ cpu4;
+>>>>> +	/delete-node/ cpu5;
+>>>>> +	/delete-node/ cpu6;
+>>>>> +	/delete-node/ cpu7;
+>>>>
+>>>> I suggest refactoring by renaming the dtsi files as common and split out
+>>>> j784s4 similar to j722s/am62p rather than using /delete-node/
+>>>>
+>>>
+>>> I don't mind the suggestion Nishanth if there is a reason behind it.
+>>> Could you tell why we should not be using /delete-node/?
+>>>
+>>
+>> Maintenance, readability and sustenance are the reasons. This is a
+>> optimized die. It will end up having it's own changes in property
+>> and integration details. While reuse is necessary, modifying the
+>> properties with overrides and /delete-nodes/ creates maintenance
+>> challenges down the road. We already went down this road with am62p
+>> reuse with j722s, and eventually determined split and reuse is the
+>> best option. See [1] for additional guidance.
+>>
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n189
+> 
+> Thank you for giving some reasoning, would do the needful!
+> 
 
-On Wed, 26 Jun 2024 08:35:06 +0200, Francesco Dolcini wrote:
-> Hello Rob,
-> 
-> On Wed, Jun 12, 2024 at 11:29:34AM +0200, Francesco Dolcini wrote:
-> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> >
-> > The fujitsu,mb85rs256 is a 256 Kbit SPI memory FRAM in the same family
-> > as the two existing fujitsu,mb85rs* compatibles and at25 compatible.
-> >
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> > No changes in the driver is required for this to be used, a device tree
-> > file using it will come in a later step. Sending to minimize work
-> > slowdown because of TI DT maintainer requirements on DT bindings, see
-> > https://lore.kernel.org/all/469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org/
-> > for more details.
-> > ---
-> >  Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
-> 
-> Are you going to pick this patch? From what I can see in the past
-> it was either you or gregkh to apply patches to this file, however
-> gregkh is not in cc: here.
-> 
-> Francesco
-> 
-> 
-> 
+This refactor will require some interesting naming for the
+common SoC files. Based on your name for the EVM, I'm guessing
+you will go with
 
-Applied, thanks!
+k3-j784s4-common.dtsi
 
+included from the real k3-j784s4.dtsi and the new k3-j742s2.dtsi?
+
+Too bad the Jacinto SoC names don't use a hierarchical naming. :(
+
+J7<family><part><spin><etc>..
+
+Andrew
+
+> Regards,
+> Manorit
+> 
+>>
+>> -- 
+>> Regards,
+>> Nishanth Menon
+>> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
 
