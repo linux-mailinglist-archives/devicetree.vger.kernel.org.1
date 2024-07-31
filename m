@@ -1,199 +1,115 @@
-Return-Path: <devicetree+bounces-89724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5B194285B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:46:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD26942867
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:54:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94EFD1F23EAF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:46:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8337B1C21601
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D681A7F7D;
-	Wed, 31 Jul 2024 07:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106E61A7205;
+	Wed, 31 Jul 2024 07:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9qviyy6"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vNIBSYxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364BC1A76D3;
-	Wed, 31 Jul 2024 07:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8024A1A4B2A
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 07:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722411962; cv=none; b=foQpFksjT2h4cck01Ga1XT0RdBgop//w4JUCz8eXEVhCiBrwPyDKV5Y6BC03XuwIk9OgApbU1juy6U/mD4jvoBdw5FG3uuRz7owKv917nNVv9CZ4vDV8dAJzoQf3DB8YpN60JQGBuhP0sfGW6UN8l3nWs+PSq/4fUNSewWmh10U=
+	t=1722412454; cv=none; b=tcp++L2r9FpOwq+H+6CF5HAypVhN9wsgmS+fPfxNBnaWiM1R42iecp2j964+k1K3Xd4cUMcSV2qmBL7hXxPf8yuifWNhHrLgGmhSydRnVIB7XATXxkCgIo8li9Ihn9mbzjTvrnRr01M5s+ndBSdwPbnRMd2uFvhBq2nR+gMWagY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722411962; c=relaxed/simple;
-	bh=IFlsBwR4bWRMJqNSAourFr1ygVrYaUDwK+LML6tYtak=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o/Fx004Chq88eceyjKFuQ5Eg6KvSniJFOsT9ppVs9BOM8rCLDWEqrqDoD/vEY8PeF73BThkJXt38z1vq3aaz3IQ8qcq/YaVp9EanZMDhx5BTKo7cGOLhcWeYAd/WIOaV8vFzRM5YQQSUlVLSzrbzgdAjtHSELzPN/pCOIxxwekc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H9qviyy6; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2cf213128a1so3452443a91.2;
-        Wed, 31 Jul 2024 00:46:00 -0700 (PDT)
+	s=arc-20240116; t=1722412454; c=relaxed/simple;
+	bh=r/M3bCwa96zOVwQ8eR2vJi4t3kpkDcsGQ+pl/2SfrH8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=B7My8SXxiaUVfkZsyp93SkLXHSSUiT5taiZTbOFI6epVr8XWQJBnZV4Cc/F3xBH4izzs68UOXX9te5SQgPFzsipBH2S49xN6Ynd8+Uz+r23C0lkDhOTEGhsk3tR33HX336JMqhCJ49giXlyNQkXbV5dzX7upOC2oi2WO/tTrsTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vNIBSYxI; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-368557c9e93so2823924f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 00:54:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722411960; x=1723016760; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dQbrJo4wrR+w0vLwwcAWRgEUCmmfSCZZD5nQAlef80M=;
-        b=H9qviyy6BlSgpEagt0tC0f1BFw35af0y1NWj2kgRVhzI33Yfi6hsaX3eAAf2Z9nxz+
-         IILxPDKiYfPe8A22BFSemOovBWfOSYXP2X7qEgLlqdCOTq4t2uznsmv2YzxELViejD8v
-         XTocszErczUIoiMy44Yy/Ur++wnoDY5BxlMd5cEjuM8az2eHVqGaXmRRbiDb9hgAtNrf
-         g5Nf6cA06uzIJEVwnuGURGEro59ecNvy7n2NdV3e/7F6hjUavprUDnwAZHSAFbxq30Fn
-         R1pioj+/uPJS1nJ6N8ejU36K8qjQNjRqRxCvO1nci1AzHqPQp8iLYIizBN9yjvZ0Fw+x
-         ia8w==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1722412451; x=1723017251; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U5+8i698Z8RRTDjwl7HeTjUjR9VXOcNfac5I83O7eQs=;
+        b=vNIBSYxIw3lGYS+WWIZKUJEdAuG3p+JClyAAOgUwjGNkskvDzlwCtVQKvddPjFBlc+
+         S8w4wSfS5v/AXuzP68D9jvEi/K8VhxKP+2ebnyaOYBazZSlRbw7GC6PBaB3A2syvIMvM
+         u8+BGjNbpwOYVkaAcqv3X01QEMbHjssV/l1zVJlsiRp5Avv+nJV9qF0efJ81BfEJ5E/P
+         znjZ4pM47C3C2BE1vnI66x2kOTYivYcp1S7B1oAyVEAmuQMcbmurfizkPL8smWvFSi2k
+         Ntb0LTI3SZsKTUoxipvuXxUz/BfNMiTEhHtrH5abJZocEjosdx85RUdSQuE7mEgEk1cm
+         hu3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722411960; x=1723016760;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dQbrJo4wrR+w0vLwwcAWRgEUCmmfSCZZD5nQAlef80M=;
-        b=g+JdTLxKUCyd/1XXdJMKebkdyU3yH6AOSiJ+A15Y99fOTvylgZHC43PHX/VF/SOKKz
-         qKFE4D39qXH7Rc3BqvpJvKjPQ0CdED/kv1hsFxz+A+KYTb+8X7KL6SjN4nyjlqfnfUNv
-         HHPwqXEE/rXWfAXImB/sAxBovSZmJRzQr5CSmseV6EkLC+lyUxwOcAKrcbckxVAVLJU9
-         2A53K9m9qG2iAhBBci8C9O+VN4Jh/mVVrpZdQkDEDZ1il1zB/v6iSpp2F0V1gLo+3ars
-         anc+Ja52Qi3NuCMa4PeE4mA31bsAPm5hVQNsTDd4kiJDRyMRezYdBhNZEBbmEtrgQ4Bs
-         XILQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWntADku6DMG32Et3ENdnkKxwFgC8TwF/DC+df7hLvuIpKa06CHxhFDZtSIZIbjNXMuYIgG718hJn9E73R+rhiSG5DdhfH07lCgwC5BzuX/WLcCnryXGs/xu+sGfz2afESnLlQ8ScwFBg==
-X-Gm-Message-State: AOJu0YxpXTy874g5YqrAIA+pXl+JOodSGlWDkDrzYZyn9aLYYCzhDbsJ
-	EbvPfmpg+40U2N+Oys9x6LOduvnn4TIOD7atP7xk1478GGjViHirOU8uF4M4
-X-Google-Smtp-Source: AGHT+IERNyh/vJ2i6z5ympNc2/09CjMuj0tqDRHJsuQ6Fp6QsNcqMZ+cloHdCX85JuKsuNIH5KnSew==
-X-Received: by 2002:a17:90a:eb09:b0:2c9:9eb3:8477 with SMTP id 98e67ed59e1d1-2cf7e1c81a4mr11728261a91.16.1722411960229;
-        Wed, 31 Jul 2024 00:46:00 -0700 (PDT)
-Received: from localhost.localdomain ([115.240.194.54])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cfdc4064cesm668185a91.12.2024.07.31.00.45.57
+        d=1e100.net; s=20230601; t=1722412451; x=1723017251;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U5+8i698Z8RRTDjwl7HeTjUjR9VXOcNfac5I83O7eQs=;
+        b=BodKQoTYhRzcbGpZVfHAQhj80AZV02DXSBEvtShD75WdDK9ElcgAzOb9pyljxIwqjh
+         F2SPaBDTN050WK38QA2J+/Rnt63ckrvHaYgL7jci6oJEKGecyvegOUl+L7raStSWCIor
+         jaq9yTol1cbVanObU79XDWv6nJaxDMbdMahATvKVLdnSU0/vp/gCvQ9kW6WgJtJElGJZ
+         G7Mpfd5Cte2O2oA04rv07MznX2bTWNQMJSdWsBofk44Pak0aLAC0+rV8TEiwkafAWat8
+         ICwUYnwoUPfd6qVBaFaCTAKT8o6jDvL1oAghsPQVLtOrpuV0Xt2OczcEHBXW1QEYnCOr
+         1jsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXdKkgApki0WVZURXehuss/yD5FfcfMT8Ah8nzLEu3C6s2PUJbVDJ+17CHkB7luYQNKG2bc5qZNF6kkc/EbME+mwW8LJZKuB8ChVQ==
+X-Gm-Message-State: AOJu0YxjeJUIVcZjJvTYm2oug9jnUACGEC4/uNJXQLJqz0vmPuazkgYk
+	ausM2ZaLjyTg1c3V3yf9j5BKHtNNkEZpSmwqXETcMMx9/600r7GwXOabSfD4pyU=
+X-Google-Smtp-Source: AGHT+IHXqyDqGF5DuHVbAUQN6IlkBRyt0ZeFJVe6a/2pITbuNfDNZnx5fSN3qQTWCtzBi+1IiVc/sw==
+X-Received: by 2002:a05:6000:18c6:b0:368:3f13:22fe with SMTP id ffacd0b85a97d-36b5cf11545mr7896445f8f.23.1722412450809;
+        Wed, 31 Jul 2024 00:54:10 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:9c3f:3dd8:b524:cb31])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36b36857d5asm16355464f8f.84.2024.07.31.00.54.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 00:45:59 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
+        Wed, 31 Jul 2024 00:54:10 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
 	Daniel Baluta <daniel.baluta@nxp.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: nxp,lpc3220-timer: Convert to dtschema
-Date: Wed, 31 Jul 2024 13:15:40 +0530
-Message-ID: <20240731074544.208411-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	Vladimir Zapolskiy <vz@mleia.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: gpio: nxp,lpc3220-gpio: Convert to dtschema
+Date: Wed, 31 Jul 2024 09:54:08 +0200
+Message-ID: <172241244628.9881.266225655059546392.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240731054442.109732-1-animeshagarwal28@gmail.com>
+References: <20240731054442.109732-1-animeshagarwal28@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Convert the NXP LPC3220 timer bindings to yaml format.
-Add missing resets property as it is already being used in dts.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
----
- .../bindings/timer/nxp,lpc3220-timer.txt      | 26 ---------
- .../bindings/timer/nxp,lpc3220-timer.yaml     | 55 +++++++++++++++++++
- 2 files changed, 55 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
 
-diff --git a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
-deleted file mode 100644
-index 51b05a0e70d1..000000000000
---- a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--* NXP LPC3220 timer
--
--The NXP LPC3220 timer is used on a wide range of NXP SoCs. This
--includes LPC32xx, LPC178x, LPC18xx and LPC43xx parts.
--
--Required properties:
--- compatible:
--	Should be "nxp,lpc3220-timer".
--- reg:
--	Address and length of the register set.
--- interrupts:
--	Reference to the timer interrupt
--- clocks:
--	Should contain a reference to timer clock.
--- clock-names:
--	Should contain "timerclk".
--
--Example:
--
--timer1: timer@40085000 {
--	compatible = "nxp,lpc3220-timer";
--	reg = <0x40085000 0x1000>;
--	interrupts = <13>;
--	clocks = <&ccu1 CLK_CPU_TIMER1>;
--	clock-names = "timerclk";
--};
-diff --git a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
-new file mode 100644
-index 000000000000..3ae2eb0625da
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/nxp,lpc3220-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP LPC3220 timer
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+description: |
-+  The NXP LPC3220 timer is used on a wide range of NXP SoCs. This includes
-+  LPC32xx, LPC178x, LPC18xx and LPC43xx parts.
-+
-+properties:
-+  compatible:
-+    const: nxp,lpc3220-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: timerclk
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/lpc32xx-clock.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    timer@4004c000 {
-+        compatible = "nxp,lpc3220-timer";
-+        reg = <0x4004c000 0x1000>;
-+        interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+        clocks = <&clk LPC32XX_CLK_TIMER1>;
-+        clock-names = "timerclk";
-+    };
+On Wed, 31 Jul 2024 11:14:30 +0530, Animesh Agarwal wrote:
+> Convert the NXP LPC3220 SoC GPIO controller bindings to DT schema format.
+> 
+> 
+
+Applied, thanks!
+
+[1/1] dt-bindings: gpio: nxp,lpc3220-gpio: Convert to dtschema
+      commit: f7176724e7c972201ee38ba531d6c8b68cab180b
+
+Best regards,
 -- 
-2.45.2
-
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
