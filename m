@@ -1,251 +1,182 @@
-Return-Path: <devicetree+bounces-89817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C046B942D06
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:15:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33C2942D25
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E38AE1C2320F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:15:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5202AB21E02
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282CE1AC436;
-	Wed, 31 Jul 2024 11:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1131AC42F;
+	Wed, 31 Jul 2024 11:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Ntb83/xh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n9b/Zi6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649391AC442
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 11:15:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFFE200CD;
+	Wed, 31 Jul 2024 11:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722424510; cv=none; b=Rzljpv34KiLeUlKjMlOK9Osyl2+W9j3UnqypyuZPJvvB3+0fsNhPgzV7n7Zi5vonQiesFh58Wsqmqawnkocvu9Z3cluy+ttBG9DoqYL3u8AgYsHf0FiacVgJMCBiYXuHK93TVeU5UcAvsNClUgcjMVSmI7ZLdL4/0MsJp5nqU+A=
+	t=1722424811; cv=none; b=mPwsZsgSXQOaTVCaTHatQtuVwYv+jQ/mGPrgmTJgYQxCWqZprGe+TOYiVV0lWiSqkLfUsNoNjJuYXnPLjLQ+tYmEukEarfSIsmoBAYdxE34l8x2OdFWxytR4596H1Qinu1m5JWwOnuNNasmCQo+Dxcn/oWgDuNYEm046+mvWkDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722424510; c=relaxed/simple;
-	bh=129OKtKzx44VILp63egCG0C2vD+sKbj8r5GCRoJm/A8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gMGdHiJGg7oMZ6SPX3kVUrPSjLgoe+/mDz757iZTcIwYWNkvef79dAM6dygig78mGbhXTTu4WNrC6hFkZN2gVzJJS1xb9QdYIVUXOetY5tX4BcvXvHf+MbnvZ9STRcdDd6IeDc2tedBchszu39fD3eRI5iCHZB+EfEho1uFH6gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Ntb83/xh; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-7a0c6ab3354so3755600a12.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 04:15:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722424508; x=1723029308; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kGAZyGhud7vE7vIGusXcM32em4s8MLn39W5gHMldUOQ=;
-        b=Ntb83/xhDk1um5ltV++lyPOljj5IADZXqvBGrHdEuLtdxtbCvhqRGXyKsgn9TXKaCa
-         fDgd/SGzYuUuWsKJt3iYDteHkgmtOzfEsDmDn6tZ61N+6qNJzkYf/Df7vnImfh5Gdyrg
-         hkZkmg4Ur3Hq0Z/rGAwHAi6Xz/fEY771t8/As=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722424508; x=1723029308;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kGAZyGhud7vE7vIGusXcM32em4s8MLn39W5gHMldUOQ=;
-        b=PFgvctfE7m+zvctq62fynRDPZCZ4SGQPuhI95+RWHGJh/4Q3fgAQyb8TtM/e3KzeWW
-         Azrd0lRARRxmXg5DlD4kFhQ7yPSeh2LzabuCOMxg7+2Rx7C8e7wiEXCDF6jYM8M4dQAH
-         mYosCs17FOaQtdylhxGvgLQCf3GaEmGstR2i1gik+kwX2EL0Ho5S2VYrbrn7v4VFEADL
-         0EoOPQNdXZHXTzAEvHSVJ8qO3hlK40r0cTNm1RJ6leSBU6RoHKVamQRVsrB3Pf5fF3m2
-         2AWusoF6sljuA3ikFHnt0O+n3NtD8fFGGjteqy58QeVkfS2Ooj+ES3fGhJ/64OJTyLWm
-         Jc9w==
-X-Forwarded-Encrypted: i=1; AJvYcCXMI1GwuwKQGtxhxnKcsEWeyEB1CoXWz5SWIltZIafFyaA64CrwZa5MUAA4g7o6lPWlRhlSIKqC6qltT8Xy0vBUruD6okr72h0FBA==
-X-Gm-Message-State: AOJu0YxSoAUK6RN0pVSgpXi7ayhvq6cdz0XJveJaN2gHlc/XtxAAJ57u
-	lqDMPz2Q51IpMipuh2YspcwJCAmBgh7dw8Vd3MlbT9F8MSGS05XeyvlUWoS08g==
-X-Google-Smtp-Source: AGHT+IFVgXPWsMgMgE5M0JWQZ4697i/w3bfILr0K1/Zur2SqvYwF+niY0tB9kRNNpEG78NZJZZ88tQ==
-X-Received: by 2002:a17:90a:b304:b0:2c9:a88d:26f2 with SMTP id 98e67ed59e1d1-2cf7e86eac7mr12128873a91.36.1722424507487;
-        Wed, 31 Jul 2024 04:15:07 -0700 (PDT)
-Received: from [192.168.178.137] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cfdc4cf0eesm1054976a91.41.2024.07.31.04.15.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jul 2024 04:15:07 -0700 (PDT)
-Message-ID: <3ded8aea-ee11-43da-9dd7-1259cf931747@broadcom.com>
-Date: Wed, 31 Jul 2024 13:14:58 +0200
+	s=arc-20240116; t=1722424811; c=relaxed/simple;
+	bh=s9xMpfXpLGnBk7GaLD5jMyZMIUsZdL6zWseyyaUXlv8=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Trsk0ueI36vNip2LVfQAaC5G3FWoeenyPw61pmJWDeZPmYjTDoVj62PhpiL6DoQLDLh0ZRFhMS4PeEMYepnRM5cde1DJ8Vz+dvfgCG2wNvC35703Tzf1IO44bqNGpQSn7YQnw0tK2QXeHTzrp3bV1XvC2jDDRAf+WyRZkcSmUMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n9b/Zi6K; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46V38g0E017606;
+	Wed, 31 Jul 2024 11:20:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:date:from:message-id:subject:to; s=qcppdkim1; bh=Kk97qkhcIxJx
+	nzA2qwQDsXu+UvBUjj9QbJg4EA7FNDE=; b=n9b/Zi6KjmWHau/ymAl5jCAMsIOO
+	hnww+7JiVdt2xEtX77HHJcbzO/nfMN8rfawLZXVFpzqXabkWogLvB8UXZbWO3iyp
+	Vehvk3LAyUEy/Dj35ReTIO9GgOAsVYXWDHS8iDHX/kirMJOT+Hy0eEEfQU9ofTW/
+	+/D3BRH6tON36j1rU2/8pv3i7lA+9AGJkQLzDoQ/j8rFMflyH6CYzPmKH0zjC7Db
+	y9SoP2HmaCcpQCkiR/UtMcfEBbGYw7v3d1KHBU3O+Umyh/nEaesCL7ejlk9Lq4Sx
+	XmeAatg70NbznUMlikA/d9FhOVMZ3pzSs3r59yUrMVWjuvvfrLZuXffbug==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mp8n3cdg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 31 Jul 2024 11:20:00 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTP id 46VBJu9c020502;
+	Wed, 31 Jul 2024 11:19:56 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 40msyma5yh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Wed, 31 Jul 2024 11:19:56 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 46VBJuaD020496;
+	Wed, 31 Jul 2024 11:19:56 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-anshar-hyd.qualcomm.com [10.213.110.5])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 46VBJtrr020479;
+	Wed, 31 Jul 2024 11:19:56 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4089000)
+	id 5F4815001A7; Wed, 31 Jul 2024 16:49:53 +0530 (+0530)
+From: Ankit Sharma <quic_anshar@quicinc.com>
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, richardcochran@gmail.com
+Cc: Ankit Sharma <quic_anshar@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH V1] arm64: dts: qcom: sa8775p: Add capacity and DPC properties
+Date: Wed, 31 Jul 2024 16:49:51 +0530
+Message-Id: <20240731111951.6999-1-quic_anshar@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FtHajuGrjlxghVEF9OI9QusRYLOO8a3q
+X-Proofpoint-ORIG-GUID: FtHajuGrjlxghVEF9OI9QusRYLOO8a3q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-31_08,2024-07-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
+ bulkscore=0 malwarescore=0 mlxscore=0 clxscore=1011 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407310083
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/5] wifi: brcmfmac: Add optional lpo clock enable
- support
-To: Alexey Charkov <alchark@gmail.com>, Jacobe Zang <jacobe.zang@wesion.com>,
- robh@kernel.org, krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, conor+dt@kernel.org
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
-References: <20240731061132.703368-1-jacobe.zang@wesion.com>
- <20240731061132.703368-5-jacobe.zang@wesion.com>
- <0a78a0fb-0a5e-424f-a801-4a63b9ee1a49@gmail.com>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <0a78a0fb-0a5e-424f-a801-4a63b9ee1a49@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-On 7/31/2024 12:16 PM, Alexey Charkov wrote:
-> Hi Jacobe,
-> 
-> 
-> On 31/07/2024 9:11 am, Jacobe Zang wrote:
->  > WiFi modules often require 32kHz clock to function. Add support to
->  > enable the clock to PCIe driver and move "brcm,bcm4329-fmac" check
->  > to the top of brcmf_of_probe
->  >
->  > Co-developed-by: Ondrej Jirman <megi@xff.cz>
->  > Signed-off-by: Ondrej Jirman <megi@xff.cz>
->  > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
->  > ---
->  >  .../net/wireless/broadcom/brcm80211/brcmfmac/of.c    | 12 +++++++++++-
->  >  1 file changed, 11 insertions(+), 1 deletion(-)
->  >
->  > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c 
-> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
->  > index e406e11481a62..7e0a2ad5c7c8a 100644
->  > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
->  > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
->  > @@ -6,6 +6,7 @@
->  >  #include <linux/of.h>
->  >  #include <linux/of_irq.h>
->  >  #include <linux/of_net.h>
->  > +#include <linux/clk.h>
->  >
->  >  #include <defs.h>
->  >  #include "debug.h"
->  > @@ -70,12 +71,16 @@ void brcmf_of_probe(struct device *dev, enum 
-> brcmf_bus_type bus_type,
->  >  {
->  >      struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
->  >      struct device_node *root, *np = dev->of_node;
->  > +    struct clk *clk;
->  >      const char *prop;
->  >      int irq;
->  >      int err;
->  >      u32 irqf;
->  >      u32 val;
->  >
->  > +    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
->  > +        return;
-> 
-> Did you test this? The DTS patch you sent as part of this series doesn't 
-> list "brcm,bcm4329-fmac" in the compatible, so this will probably return 
-> right here, skipping over the rest of your patch.
-> 
-> Please test before resending, both with and without the driver for the 
-> Bluetooth part of the chip (since it also touches clocks).
-> 
-> You are also changing the behavior for other systems by putting this 
-> check further up the probe path, which might break things for no reason. 
-> Better put your clk-related addition below where this check was 
-> originally, rather than reorder stuff you don't have to reorder.
+The "capacity-dmips-mhz" and "dynamic-power-coefficient" are
+used to build Energy Model which in turn is used by EAS to take
+placement decisions.
 
-That was upon my suggestion. That check was originally at the top of the 
-function, but people added stuff before that. I agree that makes the 
-compatible "brcm,brcm4329-fmac" required which is what the textual 
-binding stated before the switch to YAML was made:
+Signed-off-by: Ankit Sharma <quic_anshar@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-"""
-Broadcom BCM43xx Fullmac wireless SDIO devices
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 3bb609c9d2ec..ab15556e0647 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -68,6 +68,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&L2_0>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -88,6 +90,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&L2_1>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_1: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -103,6 +107,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&L2_2>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_2: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -118,6 +124,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&L2_3>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_3: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -133,6 +141,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&L2_4>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_4: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -154,6 +164,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&L2_5>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_5: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -169,6 +181,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&L2_6>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_6: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -184,6 +198,8 @@
+ 			enable-method = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&L2_7>;
++			capacity-dmips-mhz = <1024>;
++			dynamic-power-coefficient = <100>;
+ 			L2_7: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+-- 
+2.17.1
 
-This node provides properties for controlling the Broadcom wireless 
-device. The
-node is expected to be specified as a child node to the SDIO controller that
-connects the device to the system.
-
-Required properties:
-
-  - compatible : Should be "brcm,bcm4329-fmac".
-"""
-
-Not sure whether this is still true for YAML version (poor YAML reading 
-skills ;-) ), but it should as the switch from textual to YAML should 
-not have changed the bindings specification.
-
->  > +
->  >      /* Apple ARM64 platforms have their own idea of board type, 
-> passed in
->  >       * via the device tree. They also have an antenna SKU parameter
->  >       */
->  > @@ -113,8 +118,13 @@ void brcmf_of_probe(struct device *dev, enum 
-> brcmf_bus_type bus_type,
->  >          of_node_put(root);
->  >      }
->  >
->  > -    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
->  > +    clk = devm_clk_get_optional_enabled(dev, "lpo");
->  > +    if (!IS_ERR_OR_NULL(clk)) {
->  > +        brcmf_dbg(INFO, "enabling 32kHz clock\n");
->  > +        clk_set_rate(clk, 32768);
->  > +    } else {
->  >          return;
-> 
-> Why return here? If the clock is optional, a lot of systems will not 
-> have it - that shouldn't prevent the driver from probing. And you are 
-> still not handling the -EPROBE_DEFER case which was mentioned on your 
-> previous submission.
-
-Right. The else statement above could/should be:
-
-} else if (clk && PTR_ERR(clk) == -EPROBE_DEFER) {
-         return PTR_ERR(clk);
-}
-
-Regards,
-Arend
 
