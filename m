@@ -1,88 +1,63 @@
-Return-Path: <devicetree+bounces-89635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36BB99425EC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:45:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05EF49425F8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:48:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A295D1F24D8A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 05:45:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B014F1F212E6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 05:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584AF4E1B3;
-	Wed, 31 Jul 2024 05:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD32973501;
+	Wed, 31 Jul 2024 05:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LnaED0ef"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="VGPVHHaR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1512747B;
-	Wed, 31 Jul 2024 05:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D677819478;
+	Wed, 31 Jul 2024 05:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722404700; cv=none; b=fpAOsrX5axdAdgPqZV7JMebbuMlndy0BQWB+6Y0aNfiYLhXJ3f6MPel+aiIpRMRc7jZ535/1WhL4dqYemZfVaKBL5NaQXOytQJ24YilnOIlA2un5tATzhsIeoTZiVblOhHaQHgRtZbIDd1gbqr4K0xrSedfP597N4W05xXBB68s=
+	t=1722404899; cv=none; b=dRUP6VJDsBv/Gf1MZpIfwRnBeQtBVQAKwY2IbDuHUZVwAFrIbSCFJdnEqspqQ2uI+V9bBst963pMf6krpxU542qPU2q/2vKrZPMJZjhRUfruB7gK2OH2HkD2qgLOHfMbpjpxgv1fZ7EQIF8iOFz+xS5AuaPm+uCefMPrE6kXKGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722404700; c=relaxed/simple;
-	bh=dvCs+55BZAlqOsYn/39Io4p6jWFtaeqX35sqsxB2pr4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UizgRe5pcuJ3jYp+xR9HmFG3/RrlFjZRGXN5Xh1z/g27CR/fQZoTFhz+65zoAFIpgFuDKt/13R5daLOddS3QTNRWlep98L2sxzUBEmMCRFbvu/QBrs85ItjhxbRJi23hBgAT1QCEb/7QSU/cQ1CiJ++l+K5khO1jahO5T19RoBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LnaED0ef; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1fc566ac769so33677295ad.1;
-        Tue, 30 Jul 2024 22:44:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722404698; x=1723009498; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BC/1wGF6ESoob1KqZeUdHt7PS9fgESUzLCWFdRi9eQs=;
-        b=LnaED0efYD267i0ARHM8fKxPYN2rzFyXGKGQYs9ip7fjI6bdb7ni8kN/XezuDiSQ/t
-         txBuOpZQ5u5RvqR1oUVMaVx9fL2ypQuEBYe4WuMk/b8Xk5T6m9k9bm5U+MUejKPKTPm/
-         eRtFypJa/2nyavROBqDBrCBq5NraQYbLkga62w/CrAqoD5AAK/Nv2HPZgHUGBZzFoHz1
-         oNNTwfWKKjLLb6k2JlpQKKiUoqeHHbxDbXiZ2kOXQqt2YKuS8/w/I00jNPVUTyoYjVld
-         eYiTXkKlBVR1tApFg1KkbUfPNStJUtHMmUOhjkuBPuMlehqqwp1CsrjkZxD7p+aByHPW
-         9oBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722404698; x=1723009498;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BC/1wGF6ESoob1KqZeUdHt7PS9fgESUzLCWFdRi9eQs=;
-        b=Vcbydaw+/kdmTv7Sk7a16cVyUUmo08NREv/kTsUQ+M9wqt72bt8mq76bRvcSyVIRAm
-         6sgurkMjxvGVgnrKOC5mVepcj20Vqn5tYo7iatTag69Y1tzFJkJfnxL4m1Ur9lfdW19w
-         HVMt1jMXypSzwE+HyyN6Bz088VxOT2S6GsbVminV3ebrd8q5jjps2OX7qxNbUJ3KozBh
-         1RNkAVSfUtEuLqyMpUt+RtYRM5tWodvNEhxdpmmbPI4eshBapOky18hbP51srsaA9pwk
-         XhZfXpU2V81Y7hVdyrBqrbO6481r2OtlyJOVDLgJo7AAcb2AtjCHe1mt/5eWUfEHKDre
-         hfFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXY1CKBI9GaatKnqa4Wn4wyiIoE6OHEMWNmc4oZxBYD27HOrFk+wq+UwR+f+YAFuoWtlvDDGX2veDU76fMWVZdZVb4ZwiN74frmg6iBqNiQ2/3d9D7TmQbUIpYAINFgrDRWIhNKVVQ9jf0RvnAJq1oxVNY5C4hvRy3OKi7v6xYLmok6cgI=
-X-Gm-Message-State: AOJu0YxaOyWCP29LM0CbPIAUBod0BMOQiP4nShWBzCGEPo1pABvcwJA5
-	QeEqmitRlnJD7FjTjsFbEIDZVLD4WTLMRx7EI6u0dJqizvSlZ+S9
-X-Google-Smtp-Source: AGHT+IHxQObfjU980Misuy2+P7JlI9fIsZPaHtla2bfIq7tNqqyqhR+dKEHn/hWwBPXv4Sw1+e+gZg==
-X-Received: by 2002:a17:902:da91:b0:1fc:560b:1456 with SMTP id d9443c01a7336-1ff047a42d0mr111765665ad.15.1722404697830;
-        Tue, 30 Jul 2024 22:44:57 -0700 (PDT)
-Received: from localhost.localdomain ([115.240.194.54])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fed7ce4239sm111968755ad.80.2024.07.30.22.44.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 22:44:57 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+	s=arc-20240116; t=1722404899; c=relaxed/simple;
+	bh=5i1diTmBKjYyCLnQOf+ri6jmBCWXGwxZ5KYGgt/oFI8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iafFKG9Uu4yrd3NKTuxYM7xyFauNoj9lY5Xp9f3RP7cEnBDPVpuf8lfaoNjp+bSLlNnpYaRvxAGZscpy9hiVpcA3nc8xm9NFmapmUpiq7+9vhsLilX9oWHfBJoSR3h8Fz1x2Re3yL/SYQQRyNMaG0HU4fM7TuqIgoa06L9x+VBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=VGPVHHaR; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id C0A891F9CA;
+	Wed, 31 Jul 2024 07:48:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1722404888;
+	bh=8J1RbUtAvYpjqNj4JPt8vwUV1t4mknX4y89IaxZ4hSo=; h=From:To:Subject;
+	b=VGPVHHaRR6OmcuxcXvBpidOJXPFNc6Fqq4MSxtwHCjxQJcXoGQ9gVpGefQKyfW/YL
+	 c28ObH8ZGyNCiUDa35dr1z73gYUzg2ONulNI5br2YsfTkaDfrzeXM0LCrbXXzqbHPQ
+	 /3yAyV2f9d1GfOYsga6RR6k5ONwUGZGdcRBzkb+GKn8YF2J5vm05vFBqPi6OcyQag0
+	 7RNWS8FZZwnR57xMv5cuLtXhcdJYX8SzIydlAA9w04TcmM7Qy7DNV31OMv9VbJc3e7
+	 /lUSfrjdb8JffbMtNS0iz8BMaltvdfN3xX1+5dCxLjBaMoNZIw2wCPKfvg17qy7bvZ
+	 fBsiTqGjURWng==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: gpio: nxp,lpc3220-gpio: Convert to dtschema
-Date: Wed, 31 Jul 2024 11:14:30 +0530
-Message-ID: <20240731054442.109732-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: ti: k3-am62-verdin-dahlia: Keep CTRL_SLEEP_MOCI# regulator on
+Date: Wed, 31 Jul 2024 07:48:04 +0200
+Message-Id: <20240731054804.6061-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,132 +66,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the NXP LPC3220 SoC GPIO controller bindings to DT schema format.
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+This reverts commit 3935fbc87ddebea5439f3ab6a78b1e83e976bf88.
 
+CTRL_SLEEP_MOCI# is a signal that is defined for all the SoM
+implementing the Verdin family specification, this signal is supposed to
+control the power enable in the carrier board when the system is in deep
+sleep mode. However this is not possible with Texas Instruments AM62
+SoC, IOs output buffer is disabled in deep sleep and IOs are in
+tri-state mode.
+
+Given that we cannot properly control this pin, force it to be always
+high to minimize potential issues.
+
+Fixes: 3935fbc87dde ("arm64: dts: ti: k3-am62-verdin-dahlia: support sleep-moci")
+Cc: <stable@vger.kernel.org>
+Link: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1361669/am625-gpio-output-state-in-deep-sleep/5244802
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
-Changes in v3:
-  - Removed unnecessary #include from example.
+ .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    | 22 -------------------
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  6 -----
+ 2 files changed, 28 deletions(-)
 
-Changes in v2:
-  - Changed the file name to match the compatible string.
-  - Removed optional from the description of '#gpio-cells' as it was wrongly
-    present.
----
- .../devicetree/bindings/gpio/gpio_lpc32xx.txt | 43 ----------------
- .../bindings/gpio/nxp,lpc3220-gpio.yaml       | 50 +++++++++++++++++++
- 2 files changed, 50 insertions(+), 43 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/nxp,lpc3220-gpio.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt b/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
-deleted file mode 100644
-index 49819367a011..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio_lpc32xx.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--NXP LPC32xx SoC GPIO controller
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
+index e8f4d136e5df..9202181fbd65 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
+@@ -43,15 +43,6 @@ simple-audio-card,cpu {
+ 			sound-dai = <&mcasp0>;
+ 		};
+ 	};
 -
--Required properties:
--- compatible: must be "nxp,lpc3220-gpio"
--- reg: Physical base address and length of the controller's registers.
--- gpio-controller: Marks the device node as a GPIO controller.
--- #gpio-cells: Should be 3:
--   1) bank:
--      0: GPIO P0
--      1: GPIO P1
--      2: GPIO P2
--      3: GPIO P3
--      4: GPI P3
--      5: GPO P3
--   2) pin number
--   3) optional parameters:
--      - bit 0 specifies polarity (0 for normal, 1 for inverted)
--- reg: Index of the GPIO group
--
--Example:
--
--	gpio: gpio@40028000 {
--		compatible = "nxp,lpc3220-gpio";
--		reg = <0x40028000 0x1000>;
--		gpio-controller;
--		#gpio-cells = <3>; /* bank, pin, flags */
+-	reg_usb_hub: regulator-usb-hub {
+-		compatible = "regulator-fixed";
+-		enable-active-high;
+-		/* Verdin CTRL_SLEEP_MOCI# (SODIMM 256) */
+-		gpio = <&main_gpio0 31 GPIO_ACTIVE_HIGH>;
+-		regulator-boot-on;
+-		regulator-name = "HUB_PWR_EN";
 -	};
+ };
+ 
+ /* Verdin ETHs */
+@@ -193,11 +184,6 @@ &ospi0 {
+ 	status = "okay";
+ };
+ 
+-/* Do not force CTRL_SLEEP_MOCI# always enabled */
+-&reg_force_sleep_moci {
+-	status = "disabled";
+-};
 -
--	leds {
--		compatible = "gpio-leds";
+ /* Verdin SD_1 */
+ &sdhci1 {
+ 	status = "okay";
+@@ -218,15 +204,7 @@ &usbss1 {
+ };
+ 
+ &usb1 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+ 	status = "okay";
 -
--		led0 {
--			gpios = <&gpio 5 1 1>; /* GPO_P3 1, active low */
--			linux,default-trigger = "heartbeat";
--			default-state = "off";
--		};
--
--		led1 {
--			gpios = <&gpio 5 14 1>; /* GPO_P3 14, active low */
--			linux,default-trigger = "timer";
--			default-state = "off";
--		};
+-	usb-hub@1 {
+-		compatible = "usb424,2744";
+-		reg = <1>;
+-		vdd-supply = <&reg_usb_hub>;
 -	};
-diff --git a/Documentation/devicetree/bindings/gpio/nxp,lpc3220-gpio.yaml b/Documentation/devicetree/bindings/gpio/nxp,lpc3220-gpio.yaml
-new file mode 100644
-index 000000000000..25b5494393cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/nxp,lpc3220-gpio.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/nxp,lpc3220-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP LPC3220 SoC GPIO controller
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: nxp,lpc3220-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 3
-+    description: |
-+      1) bank:
-+        0: GPIO P0
-+        1: GPIO P1
-+        2: GPIO P2
-+        3: GPIO P3
-+        4: GPI P3
-+        5: GPO P3
-+      2) pin number
-+      3) flags:
-+        - bit 0 specifies polarity (0 for normal, 1 for inverted)
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio@40028000 {
-+        compatible = "nxp,lpc3220-gpio";
-+        reg = <0x40028000 0x1000>;
-+        gpio-controller;
-+        #gpio-cells = <3>; /* bank, pin, flags */
-+    };
+ };
+ 
+ /* Verdin CTRL_WAKE1_MICO# */
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+index 359f53f3e019..5bef31b8577b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+@@ -138,12 +138,6 @@ reg_1v8_eth: regulator-1v8-eth {
+ 		vin-supply = <&reg_1v8>;
+ 	};
+ 
+-	/*
+-	 * By default we enable CTRL_SLEEP_MOCI#, this is required to have
+-	 * peripherals on the carrier board powered.
+-	 * If more granularity or power saving is required this can be disabled
+-	 * in the carrier board device tree files.
+-	 */
+ 	reg_force_sleep_moci: regulator-force-sleep-moci {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
 -- 
-2.45.2
+2.39.2
 
 
