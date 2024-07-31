@@ -1,140 +1,132 @@
-Return-Path: <devicetree+bounces-89860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC589430E4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:32:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637759430FE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A974F1F217C7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:32:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1ED8B2503B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1431B1400;
-	Wed, 31 Jul 2024 13:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821991B29D5;
+	Wed, 31 Jul 2024 13:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wZEP2s1J"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="feYdBoJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907E51AC449
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 13:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF751B29C6
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 13:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722432716; cv=none; b=c2s2PeloM1vE+CshdMPs438Ww2QrMAooLmWmnMzEZsLeQWdban/6rtAbZleHlWOtXAagvY1PwdD8S0BAoP4y221iep76Jh/zIhc3DySwCFWadTc1t+g0zZMsoGdT5DbcsopDh4lZOSnSL+sOgqXcmF85bUxsJC29/EZVEtmEF8M=
+	t=1722432857; cv=none; b=BELH5VmK995iXpH4NCqdX2pIMdHxcTZQ6WJqsV/j8G50er1RX88mXdJbdqkPMnJqnmwcLOPn1mfUjt8EMHm+bPKkiTISaY3x7kdq1vCTd7c/xbeC9qYxtOdwbU04MFrzEgu2HFNRNl7d4IXhgRdYmG9qFU284GYAwvvo7sSGwUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722432716; c=relaxed/simple;
-	bh=P2Zc2kRlUTzQWuiLdA1pFWHC6xvaH6zfnCz8JHSEIs8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IBYzhM4th9lq90soo8DQ+8ExXbvKUudFXzXAPqxI/QhR/ggTyaWlutbRCWuVUs+uOy5LDCPzBlaKh0SZJrlSTwPZS8uDpQP0ylle47N4x1FNkIDYoIBx/Vqc3ZhxQzbWLn5y/lruxkd6yrSVytYlY7FgN6/VVEla2nByDxdF7wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wZEP2s1J; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52efaae7edfso6168115e87.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 06:31:54 -0700 (PDT)
+	s=arc-20240116; t=1722432857; c=relaxed/simple;
+	bh=SFkAoG5oqEqyzX4sh7iPN9DJsVPXhLOrDwgLDueS+8Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n2Uj/ZG5Ot6V0g77hu1biAhqYGTkD/+JoNbqmudNayTWbRE94j5wcHBLR3P5gmCXAfBoK3WUbrUtj19ycEPzhqvJyIsGRuuW6mzGwSM9jSECSHei0Q1r1vCl3GPtWyyiDttzhlPntxj2uL/egSzh2xlvAftjZz3fT3xpD1hE9Hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=feYdBoJa; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5b214865fecso4200416a12.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 06:34:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722432713; x=1723037513; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mu/jrHV9aX6kTVP3aSVpeXFR1odPgGfcDv5EihSzkVY=;
-        b=wZEP2s1JDOHjfRaoa3j1T/vvA/AMIAw9Byv8YAx8c9708Qk8BjIjIdnL+1nYleLwDo
-         hXNGL4VoorUaCgD/5kQNDjf7S9GMUuvrPQMeQvI8USqBlmgR8y5ywkPmGfouP8tBOYRS
-         T0T8o9yGlLP3YuFjWXDvpzYzETN6wOHBUO1F3Y1DU22JdVGNm7Uh070c0Ksa2Huhj9zA
-         eXvALTbveik9vBeQPxJbXEtkHRWzlN/whkwGWp09rxRHLFVpx7f7F5Alou2+Gra2/r+A
-         ihZZOgzffHWxXRboxaFcqPsp8Ajn2Pk+iClxkAV2V7hhfal5SoraVk+4gpXX4JlnkP+s
-         D6wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722432713; x=1723037513;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722432853; x=1723037653; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mu/jrHV9aX6kTVP3aSVpeXFR1odPgGfcDv5EihSzkVY=;
-        b=UqFW+E4HEDJceEnLhlQC9c4w4tFXqf5DlzSUDWt6Pro2XSygsmA+X5eNqziiiy6d+a
-         7PB9QfeEpAZGg7+WsQd7WBmeUMSp3dUMbRCFdiM1V12G5SK2mkgVrWiBKqGE6on6Gwrw
-         kn5z6ac/eWbmwMGrgzpmNUkwSnwBM/mQ2uvzgAH9kVOzp0wL3WqGO/XfMeL8RtPelv+u
-         c2DOVimfJ/0U2Vt89BDIzCSMQ393zRTHDo8cWBw7h8u1OJDXDV1fKdF9rgYxSBPdiBoO
-         LIQtnwqTe3mZOTzmEdUJW3L6C9vptlEoAsW+58RLVxXOADxOxiF/TFrD4amFZZ5dxpLE
-         sI8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUeDRBhEa+hpNky+9zapjxrFXU6lS+D4SzFqpjzMtyS7kww54ezwcSNw9jKjYGc9HrRDHX7L2iV6a+D1yr5kMjZzbeT+oVHfuu6Wg==
-X-Gm-Message-State: AOJu0YxR43ty4R0UVFIyPvLW2Rly3RdgYdckVphr/9vIu5jBzOZthO04
-	4T74M3NRSElTm6pDjxaO3A+p3aA47QIrqlIMC/p+ed/GbYdQdU0WEMb3ncCI8Gk=
-X-Google-Smtp-Source: AGHT+IF9yysuesy1AWwQPiU83pnAbyqHjqnagriUsXCkmX5PJrirOfJMTi1oEuRwoiTJE5k2d+aUKA==
-X-Received: by 2002:a19:5e16:0:b0:52e:7f6b:5786 with SMTP id 2adb3069b0e04-5309b2d9ee6mr7399994e87.61.1722432712551;
-        Wed, 31 Jul 2024 06:31:52 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c2ce6esm2242763e87.267.2024.07.31.06.31.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 06:31:52 -0700 (PDT)
-Date: Wed, 31 Jul 2024 16:31:50 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@codeaurora.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, stable@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH V3 8/8] arm64: dts: qcom: Add camera clock controller for
- sm8150
-Message-ID: <dlrkizo76pr57f5ijdxb65u3mz2arfs376cpalpv6j6aphmk24@4f6mrbxujyke>
-References: <20240731062916.2680823-1-quic_skakitap@quicinc.com>
- <20240731062916.2680823-9-quic_skakitap@quicinc.com>
+        bh=PKzhOvv4Abaz8jSctlqaD1OdNMDkG+LKvEGdcxBnLFs=;
+        b=feYdBoJaa5aHdcVxPztz6nquEyU0VnYWqxhot5hyc9QX8aFyCLBjz3Dh6MBCyrmzNq
+         Cg+EsmiRnkw4UeItCfdpvFwppBn0Ic79cwKPaJDhEiRjuL+foQKJPVi9cdr09nMLVy6j
+         z4NQa7rE/O4W7l19jpC6mvaAHQldLQ/zSYV1zuors926AjNuB9z5Oo3o6lP6ybMCxaHl
+         DYTBaW8E6OAk05vkuiMEGdvaFHrT8rjibR7f/D816u3Ulh3XSE85IEkQyE8hIuBTLEVq
+         KDEMd5jlf9GZwCFg39KpvaLNABvAP9TTKaZ0rENktH/qGVlzaKlYf3lyC98gvoC1hNg3
+         YRcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722432853; x=1723037653;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PKzhOvv4Abaz8jSctlqaD1OdNMDkG+LKvEGdcxBnLFs=;
+        b=T5nmul6VD7xRfqEjAXILghc1G5p04JmkyR1GoJMAce32mMJ9UNuq9kJgpY7xo6THez
+         Xai6l4mKrCnWzHo7YUCsxRdErfj/xrdvvrc4d3umqbYbhifZAM4d41qrEpOBSwf6K9uG
+         qZ4v5rTkLQdmQD3c/yYa4v69Jg8xa6Bu6yJ3cQaxEieGcxO31AlajfDoNMOzOTUjwtqR
+         KeLYDb7Cns7zhiNQNnb8pChIkguunEyTgHHYtgbxjru2GDsseLAqIhMqYn3wBqFi4DxP
+         MfxiD17fjpuX+CkgRMyHXXCXJ9aQIW0K7pkNDLBt4gvbqFyfBb2xTmVvM1n6pN7IOSlt
+         8pBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXw/qaOvW35tg4w+f8bSar4PRWQ1nhZHpRJlUbjM5mn8FFDYJvvSwGgEXGnTbENxQ5wgPp3REppeDIUx81L1dVjYZtRcJ5xSNLKHQ==
+X-Gm-Message-State: AOJu0YzDQl15Bi2TyyV0C57HOTA/FKlpmKMPq/gAV5Y8kW8HcC5U+iMF
+	PGK0X9L+WAHhtfHSh4oVS1GXx5B7Z9WipBix4y8XAf7raAoKH00rtBkfjZUltLRBYQUQjdemj+x
+	2sGjGycVBKbZ/Huu2jyvGID6Dyi6Jx7DNp58h7A==
+X-Google-Smtp-Source: AGHT+IFHvxPdbTDsZZkkxlis80B3oC61RFhzRsWcsCjpR0wdyqzatcOGn114x/eJAhMWwICdWqSTklgUbqDvFUAd6CU=
+X-Received: by 2002:a17:906:c10f:b0:a7a:bae8:f292 with SMTP id
+ a640c23a62f3a-a7d40101a57mr1007576866b.41.1722432852685; Wed, 31 Jul 2024
+ 06:34:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240731062916.2680823-9-quic_skakitap@quicinc.com>
+References: <20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com>
+ <20240729-add-mtk-isp-3-0-support-v6-3-c374c9e0c672@baylibre.com> <20240730132931.GM1552@pendragon.ideasonboard.com>
+In-Reply-To: <20240730132931.GM1552@pendragon.ideasonboard.com>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Wed, 31 Jul 2024 15:33:59 +0200
+Message-ID: <CAEHHSvaiwBWnV+kmjNG=RzPk3W9Y25saNQv5-KiU8EtampUbZQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 sensor interface
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Andy Hsieh <andy.hsieh@mediatek.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Louis Kuo <louis.kuo@mediatek.com>, Florian Sylvestre <fsylvestre@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 31, 2024 at 11:59:16AM GMT, Satya Priya Kakitapalli wrote:
-> Add device node for camera clock controller on Qualcomm
-> SM8150 platform.
-> 
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8155p.dtsi |  4 ++++
->  arch/arm64/boot/dts/qcom/sm8150.dtsi  | 13 +++++++++++++
->  2 files changed, 17 insertions(+)
+Le mar. 30 juil. 2024 =C3=A0 15:29, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> a =C3=A9crit :
+[...]
+> > +             mtk_seninf_update(priv, SENINF_TOP_PHY_SENINF_CTL_CSI0, D=
+PHY_MODE, 0 /* 4D1C*/);
+>
+> As this is a V4L2 driver, I'm pretty sure someone will ask for
+>
+>                 mtk_seninf_update(priv, SENINF_TOP_PHY_SENINF_CTL_CSI0,
+>                                   DPHY_MODE, 0 /* 4D1C*/);
+>
+> I wouldn't care too much about going slightly over 80 characters, but
+> getting close to 100 where lines could be wrapped without hindering
+> readability will likely upset some people. Same in other places where
+> applicable.
+>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Hi Laurent,
 
-Minor nit below.
+On an early version of this series, Angelo asked me to un-wrap lines
+that can fit into 100 chars...
+Both are fine for me, we just need to agree on something here ....
 
-> @@ -3759,6 +3760,18 @@ camnoc_virt: interconnect@ac00000 {
->  			qcom,bcm-voters = <&apps_bcm_voter>;
->  		};
->  
-> +		camcc: clock-controller@ad00000 {
-> +			compatible = "qcom,sm8150-camcc";
-> +			reg = <0 0x0ad00000 0 0x10000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_CAMERA_AHB_CLK>;
-> +			power-domains = <&rpmhpd SM8150_MMCX>;
-> +			required-opps = <&rpmhpd_opp_low_svs>;
+[...]
+> > +     /* Configure timestamp */
+> > +     writel(SENINF_TIMESTAMP_STEP, input->base + SENINF_TG1_TM_STP);
+>
+> Can we have a mtk_seninf_input_write(), the same way we have
+> mtk_seninf_mux_write() ? Same for writes to priv->base below, with a
+> mtk_seninf_write() inline function.
+>
 
-Is the required-opps necessary?
+... and here :) In an early review Angelo also  asked me to remove
+these accessors.
 
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
->  		mdss: display-subsystem@ae00000 {
->  			compatible = "qcom,sm8150-mdss";
->  			reg = <0 0x0ae00000 0 0x1000>;
-> -- 
-> 2.25.1
-> 
+I can add them back and reduce line chars if needed.
 
--- 
-With best wishes
-Dmitry
+Cheers
+Julien
 
