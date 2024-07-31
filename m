@@ -1,132 +1,143 @@
-Return-Path: <devicetree+bounces-89812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D05942CCE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:07:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2544B942D02
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:13:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8431288FAB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:07:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE1671F21843
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:13:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142801B013A;
-	Wed, 31 Jul 2024 11:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DF61AD3E7;
+	Wed, 31 Jul 2024 11:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="n2svMXA2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IqAYGOpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57EB1AD9CC;
-	Wed, 31 Jul 2024 11:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0F21AB531
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 11:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722423990; cv=none; b=Dkr+7M6AEW5zihsTWrGSzWzOG+P2hCGYvr1pP/dWQgbd1CYrVyiQL79mHxSRHhhMpBnMTm/HBbJhRX7q8JtOldbHyWB7zxUKEe3Db17gnIQXXb8FcgPnNWZwW8E7GoAJakAem4TCjrdt/xQlDXNwnbR1QNg48Ifox+f+QmrVQGw=
+	t=1722424432; cv=none; b=cSs1pFiAYB5/09+InR7LeT7HeVCPVGl7t6ugHqRV9trGWpknn/q4+L1KL6LASA1pkgWs30AjujmGachf+28et1cG1BL0fUNY1JBQnTH2kCDfibFxBYJJV0ATfJntKLoGcKa3sSwL/ic7VglD0JbKAzuatf2RDp3Tm02zJteAgbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722423990; c=relaxed/simple;
-	bh=qqW9ROasfxzULXDNJwyTDYNkw7xA3mV3jd708Uieyzw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cM4XNtplseCLOU9FlfnIxUknKAbrKBluAQk9Tb1U+lYtGUwMnCRQQITUqMkUQjD4UlwDELxT/UAmvXXi6LMWGtmmkrmFAAOvt7bv/stlJ2PO2kdHi0quoH9vKELbalMrEAGYRaxZnpq0xDKkn7ccIEhc9MqmII3iBVvlK++ooK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=n2svMXA2; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VB68qC003152;
-	Wed, 31 Jul 2024 06:06:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722423968;
-	bh=sD6Gjm9intqNxvtkmvWoqH3mQKI1C0bFkBqLXlQoiwU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=n2svMXA2ZKvooYScysFjujLAigj8+Fj2SdKJ0tpMReUL98UZF3LjKtzNGA+Qv0hIK
-	 UKU9J0X36JZGfFAntWTLNAMTGYK+MavG+gMYu0gCoFB7OxItV1xNT4/ybB6A36KCmq
-	 /aHfFefvYDflhGxQPAnH9JfPZxphtsRDq7kI3YE0=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VB68es020021
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jul 2024 06:06:08 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jul 2024 06:06:07 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jul 2024 06:06:07 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VB67Uk115008;
-	Wed, 31 Jul 2024 06:06:07 -0500
-Date: Wed, 31 Jul 2024 06:06:07 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Manorit Chawdhry <m-chawdhry@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye
-	<a-limaye@ti.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce J742S2 SoC family
-Message-ID: <20240731110607.7fb42mgcsf2apodv@unshaven>
-References: <20240730-b4-upstream-j742s2-v2-0-6aedf892156c@ti.com>
- <20240730-b4-upstream-j742s2-v2-2-6aedf892156c@ti.com>
- <20240730123343.mqafgpj4zcnd5vs4@plaything>
- <20240731041916.stcbvkr6ovd7t5vk@uda0497581>
+	s=arc-20240116; t=1722424432; c=relaxed/simple;
+	bh=k85fIEDQsiqzt/RqUNSYKo+/sV4yzirvaADWzzxO5Lg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XdW69fU7McH5C3jPjxBtQVUD5KnSajTzEI9vNTNW0Tuq+7wHdXgo6aL68GECYDhkP02hQhb/quRSHIN+3MSkKnC/21VEjpbPed2vfOIikhfd3PsU6Wj9tu007mm2Fubp52yX0JI6n3OGul/O6V/xfm8NMAG3z8Xc3XAufHCM2rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IqAYGOpX; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a7abe5aa9d5so654494866b.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 04:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722424430; x=1723029230; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OlLQXU1YYTz38Qbe2t9ZiljMXVGAE2UwbufdyYLNy6A=;
+        b=IqAYGOpXOaCP9qYaPuQM6sZhAx0eq2hFGtZGAvbBxp4mTSrxH7dEK8BFcbpvoKF26Y
+         ecwVwtnEfDDh5Gl+X1GdEvLxmHvO8EoqPH6TdWAbJymnb2S/87eO2RAQ8GQbbPT5aigT
+         YJ29Hd9nZtypqv85TEA5IM6Y89PuSnM1FBgWJlLPeX1maTJ8CYjRN4/TqB+CZMQP/wM3
+         xCBlYIB7MJlq2pNbmGwFFTOIcjzdKbs9fX8yTJI5I5m9BzAJqIrsozWnG1ftS259vGdz
+         RaVbyrRV1JzpBPjs3Qx+cX+R+Ev7VFHyXQzMPnAAavdjDl8yD/rDhnV0tfdHjodAn3dI
+         sbaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722424430; x=1723029230;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OlLQXU1YYTz38Qbe2t9ZiljMXVGAE2UwbufdyYLNy6A=;
+        b=FkG5DGaKWCSftk76lK7xRiXZM4pPdCitX4X6BDwmozluG/iq71Tr3X4rdxVxpEByEb
+         Ug2xccNaYRfdAO5OgZEo7fDk/zNRoB43OMeGd8S+e8/3TWhHfqvzPntGhFexg8Iu5yqf
+         /Xwikmp6YsGyw2oEpYQOX8/paRris5jQNk1APkZqae6Fis/9+3ArDgLItelyWQe5DlnC
+         IXLb0QKfPWMQnapS0u7iwJzT6bkt5WrpuaNwjuWTOKebtUODaH8oEpNuu3Fu8HusHn/5
+         9KumBHIefMuoK9AQTT5YzbdQDA3r6s19oUmVrKKjO1Blo28nxQ7DIoyDgBcubSPXKkj8
+         Tsrw==
+X-Forwarded-Encrypted: i=1; AJvYcCXe0uuvIIMq7Cg7MVsTvI1BtqP8AYLmjESXeZbzLbXani9Gyr3kgTT21qxPlf7DfYQRcxLT5/FKBtxVYHAajVp3fpGPrFoQynhzgA==
+X-Gm-Message-State: AOJu0Yy3Ri2XvRTpZU11aSs/1iyGVQbie9/iV19AGB+ZMCdzko19nKjr
+	biwwfqTKVZBWjhAu/8WG3JoOsixBJTj7ElhJaerREbsgMoumZ4sov9GxpyKJV0c=
+X-Google-Smtp-Source: AGHT+IHGjJTeTxJqEgwE71cEFYOEfZQxduOvoGQx3kI/0iNz9R/KYl4BEutWT+YryytsPXhOaeT02g==
+X-Received: by 2002:a17:907:7205:b0:a7a:9144:e23a with SMTP id a640c23a62f3a-a7d40129016mr1005259366b.43.1722424429589;
+        Wed, 31 Jul 2024 04:13:49 -0700 (PDT)
+Received: from ?IPV6:2a02:8109:aa0d:be00::7424? ([2a02:8109:aa0d:be00::7424])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acadb9819sm752741466b.205.2024.07.31.04.13.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Jul 2024 04:13:49 -0700 (PDT)
+Message-ID: <023d4ea8-635d-435f-bae2-87284f70123b@linaro.org>
+Date: Wed, 31 Jul 2024 13:13:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240731041916.stcbvkr6ovd7t5vk@uda0497581>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/8] Enable EUD on Qualcomm sm8450 SoC
+To: Elson Roy Serrao <quic_eserrao@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, gregkh@linuxfoundation.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
+Content-Language: en-US
+From: Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20240730222439.3469-1-quic_eserrao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 09:49-20240731, Manorit Chawdhry wrote:
-> > > + */
-> > > +
-> > > +#include "k3-j784s4.dtsi"
-> > > +
-> > > +/ {
-> > > +	model = "Texas Instruments K3 J742S2 SoC";
-> > > +	compatible = "ti,j742s2";
-> > > +
-> > > +	cpus {
-> > > +		cpu-map {
-> > > +			/delete-node/ cluster1;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	/delete-node/ cpu4;
-> > > +	/delete-node/ cpu5;
-> > > +	/delete-node/ cpu6;
-> > > +	/delete-node/ cpu7;
-> > 
-> > I suggest refactoring by renaming the dtsi files as common and split out
-> > j784s4 similar to j722s/am62p rather than using /delete-node/
-> > 
+Hi,
+
+On 31/07/2024 00:24, Elson Roy Serrao wrote:
+> The Embedded USB Debugger (EUD) is a mini High-Speed USB on-chip hub to
+> support the USB-based debug and trace capabilities on Qualcomm devices.
+> The current implementation lacks in below aspects that are needed for
+> proper EUD functionality.
 > 
-> I don't mind the suggestion Nishanth if there is a reason behind it.
-> Could you tell why we should not be using /delete-node/? 
+> 1.) HS-Phy control: EUD being a HS hub needs HS-Phy support for it's
+>      operation. Hence EUD module should enable/disable HS-phy
+>      accordingly.
+> 	
+> 2.) Proper routing of USB role switch notifications: EUD hub is physically
+>      present in between the USB connector and the USB controller. So the
+>      usb role switch notifications originating from the connector should
+>      route through EUD. EUD also relies on role switch notifications to
+>      communicate with the USB, regarding EUD attach/detach events.
 > 
+> This series aims at implementing the above aspects to enable EUD on
+> Qualcomm sm8450 SoC.
 
-Maintenance, readability and sustenance are the reasons. This is a
-optimized die. It will end up having it's own changes in property
-and integration details. While reuse is necessary, modifying the
-properties with overrides and /delete-nodes/ creates maintenance
-challenges down the road. We already went down this road with am62p
-reuse with j722s, and eventually determined split and reuse is the
-best option. See [1] for additional guidance.
+Are there any plans to make this feature available for folks outside of 
+Qualcomm / an NDA?
 
+There is an openOCD fork on CodeLinaro but it still requires some 
+proprietary library which is only available to folks with a quicinc 
+email as I understand it.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n189
+Kind regards,
+
+~ someone eager for JTAG access
+> 
+> Elson Roy Serrao (8):
+>    dt-bindings: soc: qcom: eud: Add phy related bindings
+>    dt-bindings: soc: qcom: eud: Add usb role switch property
+>    dt-bindings: soc: qcom: eud: Add compatible for sm8450
+>    arm64: dts: qcom: sm8450: Add EUD node
+>    arm64: dts: qcom: Enable EUD on sm8450 hdk
+>    usb: misc: eud: Add High-Speed Phy control for EUD operations
+>    usb: misc: eud: Handle usb role switch notifications
+>    usb: misc: eud: Add compatible for sm8450
+> 
+>   .../bindings/soc/qcom/qcom,eud.yaml           |  17 +++
+>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts       |  15 ++-
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi          |  29 ++++
+>   drivers/usb/misc/qcom_eud.c                   | 125 +++++++++++++++---
+>   4 files changed, 164 insertions(+), 22 deletions(-)
+> 
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+// Caleb (they/them)
 
