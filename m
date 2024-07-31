@@ -1,132 +1,119 @@
-Return-Path: <devicetree+bounces-89849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7809E942F8F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:01:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92AE942FA3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 15:03:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1360DB25F7E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:01:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8026B1F2EE47
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 13:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E231B372F;
-	Wed, 31 Jul 2024 12:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7E21B29C7;
+	Wed, 31 Jul 2024 13:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X3h0ljJe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67741AB52C;
-	Wed, 31 Jul 2024 12:58:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA9A1B143B;
+	Wed, 31 Jul 2024 13:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722430734; cv=none; b=OYlF5cE7HqrHAc8hV6rlz1zDuhZfHvvbHmnSPcn0H16A94olifZ7unjIK8zFWZmguCJ2O5CpuEdG26+BkIXaqoMpwB4rWDypLToIIOP62LR+xY1nKP+HR2DprvIfVHtn0+R1PZu1bkBR+fEk8FY+0A/5E40E9QxJMZ5zy3mqt/s=
+	t=1722430925; cv=none; b=QzMBTSwYjMnvzGQJzTObOZNILlDTc5TnLArhOL1cv27PI3qNR2BRJkORYIsd6GhcyexBeOle6SDyOJdHFSaqjpfGVSxKk58w0AmGuMkfBxYioiPXr3d3AJ+k1Zic/U21RhD+2+aJVR6G9KyQbnFluJCz+gTM9JMgPnL6B0aSoTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722430734; c=relaxed/simple;
-	bh=Cz9rXVlUuUIx2KdvrKVffZhncBvWWxea9mzmttsi2Cg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=raA7593JR4oKwtvymFx5C1SjZmEWP15zleoFXbsjeaxmKThfyiMPSKUc2iNUUHZMMoMIclnpOLbhvt/zgH4zJB8RbLkYwj9mhpacMjXqz8sBxXbL1x34UcdEOXNhFvQ95xX2RiSKa2bI3JsMkGSGi25tHHLjjufF8eI8a5p/rSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D69881007;
-	Wed, 31 Jul 2024 05:59:16 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 78EE43F766;
-	Wed, 31 Jul 2024 05:58:48 -0700 (PDT)
-Date: Wed, 31 Jul 2024 13:58:46 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>
-Subject: Re: [PATCH v6 1/7] dt-bindings: firmware: add i.MX95 SCMI Extension
- protocol
-Message-ID: <Zqo1BpZ9i3LC_TIQ@bogus>
-References: <20240718-imx95-bbm-misc-v2-v6-0-18f008e16e9d@nxp.com>
- <20240718-imx95-bbm-misc-v2-v6-1-18f008e16e9d@nxp.com>
- <dee6e871-daa3-4886-be57-e4d4b3fa198d@kernel.org>
- <PAXPR04MB84592DE4592FC5D270F0820B88B12@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <ZqovdlPcnBbZn0Ue@bogus>
- <PAXPR04MB84599389611E0E789E425FD588B12@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1722430925; c=relaxed/simple;
+	bh=tGIJJu34wSvwiryl9xfZ5w6IhLF6zWo9jU0Gnv5BzE4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TgsIj1agPtEC/rZySZPw1/ItRfgjXzfDExb8kpj81ROIT4Mrue0912Z8EzSp10NBg2F7l8dZEqPHQKCjyaUi6sJZZCdIDzfsVLmOzaM9YnrVq17gf0ciCFyO5QcSMxx907IiZ44MsHTWa2ts4Fge3/U8H3EmdMYGPwC5Py6ULjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=X3h0ljJe; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46VD1e8Q027098;
+	Wed, 31 Jul 2024 08:01:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722430900;
+	bh=UDS+aa+QwNSeYii0yfuqT44tg2CNmJwH2uPktIxU9Ro=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=X3h0ljJe11O8bz9jp9iwUB+4vhq1nldc+HxnbOv0c7+mTNRari7BJbcoDsr7ltLj6
+	 dZBveB6+5DI4XreP1nbC8oyP7HO2+lvJQgnQo0KQWmzfdnBSTRiQ5FFDPUVlvyduXQ
+	 ucQrEKRwRdbcRFxlUvSnNssACaMx4XNWTyzeDhQg=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46VD1ew6023948
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jul 2024 08:01:40 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jul 2024 08:01:39 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jul 2024 08:01:40 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46VD1dLB115545;
+	Wed, 31 Jul 2024 08:01:39 -0500
+Date: Wed, 31 Jul 2024 08:01:39 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+        Dhruva
+ Gole <d-gole@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] firmware: ti_sci: Partial-IO support
+Message-ID: <20240731130139.ysmaa4h5istdnpdj@sedate>
+References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-3-msp@baylibre.com>
+ <20240730122801.jzo5ahkurxaexwcm@ambiance>
+ <x4y44ajcdi2y2dieaa6oohrptpzyiono3fruvwcdelmtzsh4ne@cgqxsz45ohcy>
+ <20240730150722.bzls2qrfqwlmh6mn@clergyman>
+ <dskdxir6375ap47lm2ptp7ttnaaxhczsf6bwk73xl5pajfqhnk@4324gihbq43u>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <PAXPR04MB84599389611E0E789E425FD588B12@PAXPR04MB8459.eurprd04.prod.outlook.com>
+In-Reply-To: <dskdxir6375ap47lm2ptp7ttnaaxhczsf6bwk73xl5pajfqhnk@4324gihbq43u>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, Jul 31, 2024 at 12:49:59PM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH v6 1/7] dt-bindings: firmware: add i.MX95 SCMI
-> > Extension protocol
-> >
-> > On Wed, Jul 31, 2024 at 12:18:28PM +0000, Peng Fan wrote:
-> > > > Subject: Re: [PATCH v6 1/7] dt-bindings: firmware: add i.MX95
-> > SCMI
-> > > > Extension protocol
-> > > >
-> > > > On 18/07/2024 09:41, Peng Fan (OSS) wrote:
-> > > > > From: Peng Fan <peng.fan@nxp.com>
-> > > > >
-> > > > > Add i.MX SCMI Extension protocols bindings for:
-> > > > > - Battery Backed Module(BBM) Protocol
-> > > > >   This contains persistent storage (GPR), an RTC, and the ON/OFF
-> > > > button.
-> > > > >   The protocol can also provide access to similar functions
-> > > > implemented via
-> > > > >   external board components.
-> > > > > - MISC Protocol.
-> > > > >   This includes controls that are misc settings/actions that must
-> > > > > be
-> > > > exposed
-> > > > >   from the SM to agents. They are device specific and are usually
-> > > > define to
-> > > > >   access bit fields in various mix block control modules,
-> > > > > IOMUX_GPR,
-> > > > and
-> > > > >   other GPR/CSR owned by the SM.
-> > > > >
-> > > > > Reviewed-by: "Rob Herring (Arm)" <robh@kernel.org>
-> > > >
-> > > > Why quotes? Which tools did you use?
-> > >
-> > > I could not recall why have this. I will drop and resend the patchset.
-> > >
-> >
-> > Resend only if you have any other comments addressed, no spin just
-> > for this one please.
->
-> Sorry, I pushed the button too quick to send out v7(just correct
-> this R-b tag and rebased to linux-next) before checking my inbox.
->
+On 14:36-20240731, Markus Schneider-Pargmann wrote:
+> > > > > +		for (i = 0; i != info->nr_wakeup_sources; ++i) {
+> > > > > +			struct device_node *devnode =
+> > > > > +				of_parse_phandle(dev->of_node,
+> > > > > +						 "ti,partial-io-wakeup-sources",
+> > > > > +						 i);
+> > > > > +			info->wakeup_source_nodes[i] = devnode;
+> > > > 
+> > > > Curious: Don't we need to maintain reference counting for the devnode
+> > > > if CONFIG_OF_DYNAMIC?
+> > > 
+> > > In case you mean I missed of_node_put(), yes, I did, thank you. I added
+> > > it in a ti_sci_remove().
+> > 
+> > And unless I am mistaken, of_node_get as required as you are
+> > retaining the reference of the node till shutdown / remove is invoked.
+> 
+> The function documentation says the refcount is already incremented:
+> 
+>  * Return: The device_node pointer with refcount incremented.  Use
+>  * of_node_put() on it when done.
+> 
 
-Just makes me wonder if I should wait for 3-4 pings + 2-3 weeks after the
-last version of any of your patch set without any version bump before I
-can look at it. Otherwise it is quite impossible to match your speed of
-patch respinning and the whole review process gets complicated to follow.
+Yes indeed. I missed it. Thanks for looking it up.
 
-Also it is bit sad that you thought it needs to be re-spinned just for this
-which can be easily fixed when applying. Also I haven't even started looking
-at this series for the reason I mentioned above.
-
---
+-- 
 Regards,
-Sudeep
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
