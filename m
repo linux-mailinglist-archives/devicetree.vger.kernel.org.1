@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B489427E1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:28:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 033B49427ED
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:29:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D0F5B21AE1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:28:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FA6E1F2193C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DE01A6197;
-	Wed, 31 Jul 2024 07:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4FAD1A71EB;
+	Wed, 31 Jul 2024 07:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSmHMtv0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BM2ZDDVp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E212E7406D;
-	Wed, 31 Jul 2024 07:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C1D4965C;
+	Wed, 31 Jul 2024 07:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722410881; cv=none; b=oJM9KHiDrizP6lGaoKfwE2ZAPn0ijyGnHu3NKnCDejtwU0tHXGxAJ6N9HGC55uwQOWq5jOJqmTITgisiiWVG7hUwAzqJifJpmpas5TgTWRePgWcvc3sMS/oYWkN33riegNSxcjGNSmBXtPjJXoFhYKX9MFiZPV2Zr3gb8CkZBgk=
+	t=1722410980; cv=none; b=QmspohA5IZu7FqTKAD0p9s2QEXXTXxD0EDtL5JzihTMgGJiClXCEMaxPy8GhtRK0cToPncDF94Aw+oqXVQIjWpe0CGqIn05NJdFq0j68O8Y78KjB+G3HL1XhQskDcdpjGVujg1OSqNyi3uHvOr/43z0nr5pW+qKyYcIFTyPKjF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722410881; c=relaxed/simple;
-	bh=uzncT1fWeDYv8VW/YJfRWtlMzKkw0uvIIvubFjMgUtw=;
+	s=arc-20240116; t=1722410980; c=relaxed/simple;
+	bh=zNzYmn9Z4V5FAFX06fNbSLqYW+GgtbhfE/kfTaGnmic=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dBQ8uMEiZv1UBrPOyLY+0uyVX27mRZkYwI5B/Hzy76cbiE2gAnwP6osRLGPfAoRfPc2orD8sypPmCw/PN0BWDkP2h8h330uZOTWfHDIkpCXKwQMzsRBVbbkSEsrWLtsc9yptA44wBN5esI/8QESGdL5DMEDzAaWZsgYQ4nGMK8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSmHMtv0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A6EFC116B1;
-	Wed, 31 Jul 2024 07:27:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IdX8DiCebNeV4KeKZNgL4V2zeChB8l5AyObMdwyltyC6Ijcb5mFabxMU521vnehbHG1A2biYmXShO6urHhVyXKF7mCfMy81HPH6I2B7aAMRTbcdcHp0KpFCD9b3qP3xt0VybthexMphcdv1UvJt8HURE8F1sF+qWW1YRdrF3DkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BM2ZDDVp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39DCAC116B1;
+	Wed, 31 Jul 2024 07:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722410880;
-	bh=uzncT1fWeDYv8VW/YJfRWtlMzKkw0uvIIvubFjMgUtw=;
+	s=k20201202; t=1722410979;
+	bh=zNzYmn9Z4V5FAFX06fNbSLqYW+GgtbhfE/kfTaGnmic=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lSmHMtv0Ib0GunLsVqDQGsPKaBp9N9cX3d7JwMHwr8FKyBdFS/LT515XheZYf08dy
-	 +Gh3q5HqiRdnRvE9gggUYcuCVvgnkhyie4Kwu1d0XdYB3zIUt2DqfgNcmaw7Q8JxQl
-	 xXOtORYGDBJjCg6dlhb2YxnfXsnbQsT4gHmOULyyr75Dok3DSD2tisSTI8kNgWerYq
-	 mknSplGXr8cfLXerlbYkTboGKQsdayzRz+JbCGwmClpzSfpKNvymIG6aFdnrKtcxAv
-	 2yXHTCX9H1s5TatNs+MoWl1UeEWANAywqBwbJF6Ps/2xL/m5mIexgs+geS0ErNT+G9
-	 k8dVJBZ7Lp3iw==
-Message-ID: <6728a670-84aa-4b1c-8aa5-1cde84b97adf@kernel.org>
-Date: Wed, 31 Jul 2024 09:27:54 +0200
+	b=BM2ZDDVpmDrYu/oiTxyRPHNwG0QZx9UIRIDGCj17EwpmrC70qw4yf9AMUDYz6JkLQ
+	 yQ+CQHaxNnEoRdfSisiuMCyJ4+cnPsB+Hf+GxVlvtbINTC6GtdffWUZe9HmxvwoQeq
+	 r7jf1Y4kJJnJA5spZif1MYedrGhPI4sXZlxtaoJ2DLf2VZVpHSNbxzDFlKSul6WLM4
+	 EB6AP4h1kmV7hlU8MB54rAkOGSsSZykN2u/iHYtcT1drVVeoxbiP2QCpwdpnMTuFJ+
+	 layyBTpXlc9PKVEvQKTL+ITe01cZ8UyLfiQDv9iZEYfKqkMXIbY/UPKGYatdw+svR1
+	 2USdUwoTIY1AQ==
+Message-ID: <9e6c24c2-bdf3-4c44-8447-ca61e0e3e06b@kernel.org>
+Date: Wed, 31 Jul 2024 09:29:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: usb: microchip,usb2514: Add USB2517
- compatible
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240731071950.989113-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v3 2/2] media: imx335: Fix reset-gpio handling
+To: Umang Jain <umang.jain@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, "Paul J. Murphy"
+ <paul.j.murphy@intel.com>,
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Martina Krasteva <martinax.krasteva@intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, stable@vger.kernel.org
+References: <20240731-imx335-gpio-v3-0-443bfa6ce864@ideasonboard.com>
+ <20240731-imx335-gpio-v3-2-443bfa6ce864@ideasonboard.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,17 +115,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240731071950.989113-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20240731-imx335-gpio-v3-2-443bfa6ce864@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/07/2024 09:19, Alexander Stein wrote:
-> USB2517 is a 7-port variant of this USB hub. Add an USB compatible
-> based on USB vendor & product ID.
+On 31/07/2024 09:02, Umang Jain wrote:
+> Rectify the logical value of reset-gpio so that it is set to
+> 0 (disabled) during power-on and to 1 (enabled) during power-off.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Meanwhile at it, set the reset-gpio to GPIO_OUT_HIGH at initialization
+> time to make sure it starts off in reset. Also drop the "Set XCLR"
+> comment which is not-so-informative.
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+None of our conclusions are explained, which I requested.
 
 Best regards,
 Krzysztof
