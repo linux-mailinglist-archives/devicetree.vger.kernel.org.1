@@ -1,156 +1,133 @@
-Return-Path: <devicetree+bounces-89792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310F0942C0E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:35:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B57AD942C51
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0B35283FF7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:35:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E708E1C2100A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A91C1AD9E8;
-	Wed, 31 Jul 2024 10:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC3A1AAE37;
+	Wed, 31 Jul 2024 10:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i4zgWYS0"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NY5QOId+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843531AC45D;
-	Wed, 31 Jul 2024 10:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2BA1A7F79
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 10:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722422067; cv=none; b=KC7Xhrsh6c6URr1PFbkl7vrnqdQ9ucgDxfXTxIi+vx/Jm4uZFLoL9LI0Y1zWEB6hySl0lIntDgeiZI5r2oQ6dxoAfMYpW34Wf2MEPOaDZPOERmFR1OCNg3j2KpeV622mOmrwdUxHlVcl38ue7Vi9KRgD3Y6yD0szhQehLipmd9g=
+	t=1722422851; cv=none; b=ubUadRyc85wAnq6vs3VTidIe/qaRvIr4MZlF34QpOoW5VYXn6UcyjUy8OQf+W7yCWdp+fVcsAIrQrLO2oxxi6TLD1RvNjSLuOBW4DE36UBKy6b6Bf2BRKyUieAMpuvfcfpz4udl+darA3t+n9pG0+AIUGMYsH7j3cFxPmJ/KKao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722422067; c=relaxed/simple;
-	bh=5Sey1WJ5331kZ/cuoYVNbnE0u0kbTfsMiS5RuMAl0Jc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S1TB7rUUeuc09PkKbnGMn4h1njAhww3Hzj5vA2A66vSU6mBS5b/hkBEGwz21n7xj+ZwXkCznetogkT0EVDObXaqTn9Oyg7jCGFWnFcVh1rhff9V7yCkg3Aef2h8gYAse5awIkuch96PFHisZ7ZT057tFydoyScpf5Tpc9iz+ISg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i4zgWYS0; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a7a94478a4eso151773666b.1;
-        Wed, 31 Jul 2024 03:34:25 -0700 (PDT)
+	s=arc-20240116; t=1722422851; c=relaxed/simple;
+	bh=bZYli5vmgtFKdt6I++BJc2BNRWZSPqgsIhrgAy/h8v0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dvntJt2gd/82IGAzvPHR7GD9xTQwdOoUEAPH3087sYQf9j4TftiUhHuSlk/fRAS4xGPm005eJRiquj+lNC+2PPOguJvjlLK8x7ZVF7Nia/uPTAkJcBAuGpLUaqVvxcOBNmjOIUNX4Ug596SOuy7edl/4OYRGeWDnpxXL6z8nhSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NY5QOId+; arc=none smtp.client-ip=209.85.166.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-39b06a3c067so6188935ab.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 03:47:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722422064; x=1723026864; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HQCKyqTCal9KZI20i//lzBe86huK8vRGAy9oESd4Jd8=;
-        b=i4zgWYS0/pXTUr7r+siR2CkMoslGA0VIfSb0m8Ea243mOaQNaCPtyMmxuI8HyP9uik
-         a26dEep/GqiZ6TvM6Z981eC3YR2CrgXmQhe3PHQEQrYXRlg/aD/w68uf/g5i7X7ZQf1D
-         oZqPqCxvrFsKiecsxzrQBDLF8suRzMNkty34Uv8qJPWgD5ANKPDjsA53f5ze5m6BjMXq
-         K7277Pq6IXfFMkZ/aenL7w61k4jEosaXvgCqO/pHyVml2mvOWRnsMUTEobTyv0FbPUDA
-         TG7tJvJWdzFRwtZJwDuVR13DQfuJG+q7+7bz9YsMFVxfT+5qJ8bTc+8liiEseBnLKzbj
-         8mew==
+        d=chromium.org; s=google; t=1722422849; x=1723027649; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6yqftJYgpsdpuaB39a0qAl3cbMgdLrQIYW98lIkiY1Y=;
+        b=NY5QOId+XA6r8Zal2o1fc5SwSx9d2Ay0mrE4tZwcOHx+9tKrPz7GXaehDJyr1bwCXl
+         3AZr4Wg+GbjY8WFH41nLzWPBffPoIvVpgkCVWWmfS95EPWKU4XqFvgnJ7jbhGtUAfnLN
+         XD+tmcUGoldN9LlG7s7mbV6WVMkiix8YvLCbc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722422064; x=1723026864;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HQCKyqTCal9KZI20i//lzBe86huK8vRGAy9oESd4Jd8=;
-        b=dC9R4g2oK+FhzWtkRqFwz4YhyhAhS/OA2mMzVYgz099PWk8+eyU3c+ADqZCu4AtWnP
-         O/FNFjV2/m9J8VQV+c+VzfVUdOtHU/+mgfZHG/K0RjByhI+XqlfymUaBdjtQV+NM8WYI
-         WUGASP8XO/drOJ9/sUc70LBZcKodK1p365M1cBuwi4d+QU0AweA9kkUrfVyDdOf2k2Oj
-         myXbmWrymcNmR2qAthaS2b7cxI52cIFc1Mvn0MCEVQcXbCStk9m2kz6aTFpWDUbP4SdN
-         hUhynC0In3qmi4xTnjs/IBLL4O94I6c0JZYp9NFrad4+FYsGZ+pd9VxJ9OpB6/E5UKJa
-         3Sdw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0aDSCWL3YjZ2B/j142u0GXetQ0G1RX6Jl5j7fdNSyJnzY3tfpLwcpypVvE8SgS7Wfyl0fYoeGs+xZkV/0ZapNUcEgdeGN
-X-Gm-Message-State: AOJu0YxydrDlHsv3Uj/JtzuwrGdY7L6wYDBqea0snLAowfVRKQSwU3K+
-	+vI0TydlxyBg1idCACdEQrJKYtTyV6PJyslUeIabMghPnt4cLSXflGvWrzvPVUY=
-X-Google-Smtp-Source: AGHT+IG9/DYN3ZNTEtYoo6FQiWuOpopKp1+FN2RYfpMC1UxIUPmjb+EIxfbD23l/kL5wgIJ4EoQkbQ==
-X-Received: by 2002:a17:907:1c19:b0:a7a:b561:356d with SMTP id a640c23a62f3a-a7d85a62d9cmr474210566b.26.1722422063829;
-        Wed, 31 Jul 2024 03:34:23 -0700 (PDT)
-Received: from lapsy144.cern.ch (lapsy144.ipv6.cern.ch. [2001:1458:202:99::100:4b])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acadb807dsm751930766b.201.2024.07.31.03.34.23
+        d=1e100.net; s=20230601; t=1722422849; x=1723027649;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6yqftJYgpsdpuaB39a0qAl3cbMgdLrQIYW98lIkiY1Y=;
+        b=El6WD8YelrfoacEpH85lVq4UydM4U9lwUGKgCtltrKPbCm9MxxMJX3ngJxVW4Yirg8
+         NTGNA6TXf7jcg6qrIbqYWpQ9nCmgBCnlUgGjCG3L5Vw2lWHzev5wWT/yw1Hq0n5OKSPe
+         Uv/I554zW+RdaL+5whxbfB+R7DLYLVLbA9Uyqkh0J9AkbZTJwbPJ1tYiJnV9P/uX6kpp
+         8MLWVAo0Mv1ma6AwUkcyHX8vi0vnXMGVnAvOmnblcLg4aIzlTBR4W3RtVkA1EbpjA8Md
+         dDSjXzBDMh/t78hMepPvDOtMyhj/+aB4FdecsqhyzYOD7kazK/7lLio32Goic1nqinuE
+         bRuQ==
+X-Gm-Message-State: AOJu0YzjfFSKJksdGXJ4jq1ALjdV1JxK/hhBBLRgJYbgddd6Av/UO7Lv
+	IpujAmIFArbxoOTT86DeIrZZk60vYreySC1tvTh98AGVaV1Wo29YUcroYiKRPQ==
+X-Google-Smtp-Source: AGHT+IG77YhthMCyuU0rdCq1IohoSnJWamFfjuvhA+obGGesvdGPDyHrZg7NqXHZD1C0uIDW5pvANw==
+X-Received: by 2002:a05:6e02:216e:b0:397:70e7:143b with SMTP id e9e14a558f8ab-39aec2eae11mr179360445ab.14.1722422849317;
+        Wed, 31 Jul 2024 03:47:29 -0700 (PDT)
+Received: from yuanhsinte.c.googlers.com (46.165.189.35.bc.googleusercontent.com. [35.189.165.46])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7a9fa5a0bcesm8788400a12.89.2024.07.31.03.47.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 03:34:23 -0700 (PDT)
-From: vtpieter@gmail.com
-To: devicetree@vger.kernel.org,
-	woojung.huh@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	netdev@vger.kernel.org
-Cc: o.rempel@pengutronix.de,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Subject: [PATCH net-next v2 5/5] net: dsa: microchip: check erratum workaround through indirect register read
-Date: Wed, 31 Jul 2024 12:34:03 +0200
-Message-ID: <20240731103403.407818-6-vtpieter@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240731103403.407818-1-vtpieter@gmail.com>
-References: <20240731103403.407818-1-vtpieter@gmail.com>
+        Wed, 31 Jul 2024 03:47:28 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Subject: [PATCH v3 0/2] Add kukui-jacuzzi-cerise and kukui-jacuzzi-stern DT
+ and dt-binding
+Date: Wed, 31 Jul 2024 10:47:24 +0000
+Message-Id: <20240731-jacuzzi_dt-v3-0-1c4314e8962f@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADwWqmYC/22M0Q6CIBRAf8XxHA0uUKOn/qO1hoB629QGykrnv
+ 4c+VevxnO2cmUQf0EdyKmYSfMKIfZdB7ApiG9PVnqLLTICBZEcQ9G7sOE14cwNlB+tYWTklAUg
+ OHsFX+Nxml2vmBuPQh9f2Tny1fzeJU06F11oaKJUHebZN6Fsc230farKeEnzUgn/VQBmVWishl
+ DNGsJ96WZY3CZsmO+UAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-a9570
 
-From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Cerise is known as ASUS Chromebook CZ1.
+Stern is known as ASUS Chromebook Flip CZ1.
+    
+They are almost identical. The only difference is that Cerise is a
+clamshell device without touchscreen and Stern is a convertible device.
 
-Check the erratum workaround application which ensures in addition
-that indirect register write and read work as expected.
-
-Commit b7fb7729c94f ("net: dsa: microchip: fix register write order in
-ksz8_ind_write8()") would have been found faster like this.
-
-Also fix the register naming as in the datasheet.
-
-Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 ---
- drivers/net/dsa/microchip/ksz8795.c     | 13 +++++++++++--
- drivers/net/dsa/microchip/ksz8795_reg.h |  4 ++--
- 2 files changed, 13 insertions(+), 4 deletions(-)
+Changes in v3:
+- Add explanation about the compatible string of Stern.
+- Replace MTK_DRIVE_6mA with 6.
+- Link to v2: https://lore.kernel.org/r/20240731-jacuzzi_dt-v2-0-4995335daa30@chromium.org
 
-diff --git a/drivers/net/dsa/microchip/ksz8795.c b/drivers/net/dsa/microchip/ksz8795.c
-index 8fe423044109..187301fe94c9 100644
---- a/drivers/net/dsa/microchip/ksz8795.c
-+++ b/drivers/net/dsa/microchip/ksz8795.c
-@@ -1834,6 +1834,7 @@ void ksz8_phylink_mac_link_up(struct phylink_config *config,
- static int ksz8_handle_global_errata(struct dsa_switch *ds)
- {
- 	struct ksz_device *dev = ds->priv;
-+	u8 data = 0xff;
- 	int ret = 0;
- 
- 	/* KSZ87xx Errata DS80000687C.
-@@ -1842,8 +1843,16 @@ static int ksz8_handle_global_errata(struct dsa_switch *ds)
- 	 *   KSZ879x/KSZ877x/KSZ876x and some EEE link partners may result in
- 	 *   the link dropping.
- 	 */
--	if (dev->info->ksz87xx_eee_link_erratum)
--		ret = ksz8_ind_write8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_HI, 0);
-+	if (dev->info->ksz87xx_eee_link_erratum) {
-+		ret = ksz8_ind_write8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_LO, 0);
-+		if (!ret)
-+			ret = ksz8_ind_read8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_LO, &data);
-+	}
-+
-+	if (!ret && data) {
-+		dev_err(dev->dev, "failed to disable EEE next page exchange (erratum)\n");
-+		return -EIO;
-+	}
- 
- 	return ret;
- }
-diff --git a/drivers/net/dsa/microchip/ksz8795_reg.h b/drivers/net/dsa/microchip/ksz8795_reg.h
-index 69566a5d9cda..cc6cac97c369 100644
---- a/drivers/net/dsa/microchip/ksz8795_reg.h
-+++ b/drivers/net/dsa/microchip/ksz8795_reg.h
-@@ -764,8 +764,8 @@
- #define IND_ACC_TABLE(table)		((table) << 8)
- 
- /* */
--#define REG_IND_EEE_GLOB2_LO		0x34
--#define REG_IND_EEE_GLOB2_HI		0x35
-+#define REG_IND_EEE_GLOB2_HI		0x34
-+#define REG_IND_EEE_GLOB2_LO		0x35
- 
- /**
-  * MIB_COUNTER_VALUE			00-00000000-3FFFFFFF
+Changes in v2:
+- Add more SKUs.
+- Remove unnecessary property.
+- Specify classis-type in the dts files.
+- Add dt-bindings for these devices.
+- Include these dts file in Makefile.
+- Link to v1: https://lore.kernel.org/r/20240723-jacuzzi_dt-v1-1-3e994a2b5e24@chromium.org
+
+---
+Hsin-Te Yuan (2):
+      arm64: dts: mt8183: Add kukui-jacuzzi-cerise series boards
+      dt-bindings: arm64: mediatek: Add kukui-jacuzzi-cerise board
+
+ .../devicetree/bindings/arm/mediatek.yaml          | 14 +++++++++++
+ arch/arm64/boot/dts/mediatek/Makefile              |  4 +++
+ .../mediatek/mt8183-kukui-jacuzzi-cerise-rev3.dts  | 26 +++++++++++++++++++
+ .../dts/mediatek/mt8183-kukui-jacuzzi-cerise.dts   | 26 +++++++++++++++++++
+ .../dts/mediatek/mt8183-kukui-jacuzzi-cerise.dtsi  | 21 ++++++++++++++++
+ .../mediatek/mt8183-kukui-jacuzzi-stern-rev3.dts   | 29 ++++++++++++++++++++++
+ .../dts/mediatek/mt8183-kukui-jacuzzi-stern.dts    | 29 ++++++++++++++++++++++
+ 7 files changed, 149 insertions(+)
+---
+base-commit: 66ebbdfdeb093e097399b1883390079cd4c3022b
+change-id: 20240723-jacuzzi_dt-06cd0bfd5422
+
+Best regards,
 -- 
-2.43.0
+Hsin-Te Yuan <yuanhsinte@chromium.org>
 
 
