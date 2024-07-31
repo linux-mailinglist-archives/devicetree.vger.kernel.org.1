@@ -1,161 +1,125 @@
-Return-Path: <devicetree+bounces-89648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 488DC942655
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:17:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 544C6942667
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 08:19:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C026F1F2557C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 06:17:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16C12282A7D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 06:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C6016729D;
-	Wed, 31 Jul 2024 06:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D1959B71;
+	Wed, 31 Jul 2024 06:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="MXYS9aCZ"
+	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="PoP1IeAN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2088.outbound.protection.outlook.com [40.92.102.88])
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDDD1BC40;
-	Wed, 31 Jul 2024 06:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722406643; cv=fail; b=FL9TxKHZLlg0qJMqeR/loAFVu3uJUxf297LY6KL//lCeZ0C+Ljvvq8JH8O1fGw2hTE7Mhwzpo7tKPiigzrnVab15B/+JwPB66K7qHUCHQcZRAT7vv1TZQtV9xUKErzntCmF6FFCKYJevRqWPWRdpxeG2lW6h+tsyBMqK1VrIkss=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722406643; c=relaxed/simple;
-	bh=ag85/mo16wjY0D1996KU/GIcFArNPIU+Py79d0HALTA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=DgEsGo7jF5hJiOTKtmL2kIOShcU1VEvptt5H+oHiAxopXTZx6jo09gbkoWvqs2KCsLKgiAH+kPOtOcPaiF8jbtMsB4IQ8XhagikREF/NHI9TJwY983wYnM85tbH+9ie6i5n4Q8ztFx6pzVWfGVUVqcLbzgXCHXNN+7rPvcW9LS4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=MXYS9aCZ; arc=fail smtp.client-ip=40.92.102.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Q6SSiEBRbpA0ihBIfRxeAhi3liWh/3HJojX22Fbe/NBgoZbICaf45juvOLIPULKUWGjtBAszDLkef7OcaQBxvLmb2T9tnEk4vkk4uFSSMk9GhiKG9bthFECCWRtiAToGwgNy08/JcPCEvtQhAiXkI1mtWGYAzh+JpAA0B66gegbjDpluPVX8y3LNnwZCm1iAb1LLGpdPy9I0/9PoIZeNrpE80jbXVL+uhzXKGXfLanI9S7LXyUYM5kX5rHfjX/bLr7xENx/oxcj2KOhcgamfVLg7EWfNqmWj+DpkB8UuRwJkjGPVaRk05ps0akB7eK6f4eqHG8K5AwTNwSXi5U3s3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ag85/mo16wjY0D1996KU/GIcFArNPIU+Py79d0HALTA=;
- b=MyoaUy15dVn3prMwyqV/4Kwt54pHoXo3+Dpkmp9qzh8vLybtpPT8I/ZsxULLdcqgB4ExFLeHDUKGFcM3zbP+sFYWuJ+o0/w70Q+chxH28TbiLu2BqbIZKWSTH+cl5od3COgZMNxbPheIw75+3i2F7DW7HSGFZxU9GT3MbN196rd/QFCuz+vmC133tHVvE1CeWYdJXg8V1E6PZ3b2MSoOB3IZc3YhHMBNCMbgHtd1wlsC+JJJlgg3e3a54xx2X14kG1a3z5lcGCZGDqPzB01T5Znwdk3Rrw6o5gkkKO+lM8ehXUkvCVjsQP01XVNRUhpnSHj9UkBQ+zdg7wAR+tlCOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ag85/mo16wjY0D1996KU/GIcFArNPIU+Py79d0HALTA=;
- b=MXYS9aCZD3wrTfG2DyNbhMIPwBh69tW8svvebkbL5hsvKl2LF52qc8i4nb6wX54Qj048mJsnLdOIvAZiszpKAL+1CNGoYLdEI54chuvpNdhuVyM7A57d2u9tms+Tic7WrXhaJWzTiUbbxrOS3IxSVLJkegICa4J5s092A1SpGK0JHCheotL95YNvXCIPIHSnobJl4o0DG/Xi2ur1P7ILyibMZCgm0RRC8hUZ8pZi4GKngQLQkwy33DMYLn3XadkZxsq5VQE0tOYF2k6PkzP9FaOP77mt6QI+WDahDGLickoKriXOZRWuquH1289CviJq/3o9AInXRKzIR6ed0ZXuQQ==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by MA0P287MB1790.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:f5::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Wed, 31 Jul
- 2024 06:17:13 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%6]) with mapi id 15.20.7828.016; Wed, 31 Jul 2024
- 06:17:13 +0000
-Message-ID:
- <MA0P287MB282211CF334C521A1BFD717DFEB12@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Wed, 31 Jul 2024 14:17:08 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/4] riscv: sophgo: Add SG2042 external hardware
- monitor support
-To: Inochi Amaoto <inochiama@outlook.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
- Hal Feng <hal.feng@starfivetech.com>, Jinyu Tang <tangjinyu@tinylab.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <IA1PR20MB49538C09E94D90F07B7B2562BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49538C09E94D90F07B7B2562BBB02@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [p3VAc2Do3eBR1MObLuDaQJVqYvP+nlgd]
-X-ClientProxiedBy: SI2PR02CA0049.apcprd02.prod.outlook.com
- (2603:1096:4:196::7) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <5d7e4088-b9f0-442d-9668-2896820120ad@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F83F1BC3F;
+	Wed, 31 Jul 2024 06:19:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.129
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722406766; cv=none; b=MKq/oZm1VJHXLdEbMbvIt6guLfDe5CHt0JZRqmD7uqIN9ZVf/51wZ0B6NNeVT7yhlRthyfPGmDX0ACVGElVxeDMGp+SrteeAsKCnLHwtr2BNdbkpCKjwYYb7mlSLWGUSEHkHUfgKRskb/gLzp3A7q1mfZZwgJ+ykF/90/AN/usY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722406766; c=relaxed/simple;
+	bh=+jTBJW79nUPA1WQZfxR+meREaFGoSoYk6ArYlaOhtgU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZRyLmwQ/ZKb3WyHya+scY2B9zI25fZx0qpKjq0jmp6jz75HvvE+bviwt/oK/D22QTne46s7N/lr/YUzzrXFycrvsv25Mnhfx0tHf1u1v6NCWz6Hz7Zy09OcpgubyMwGW8QpO5C7sjTlEU6NFtijwsZE7RWy9X6T7gsQuLP94BVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=PoP1IeAN; arc=none smtp.client-ip=198.252.153.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx1.riseup.net (Postfix) with ESMTPS id 4WYhkx29KXzDqPx;
+	Wed, 31 Jul 2024 06:19:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+	t=1722406761; bh=+jTBJW79nUPA1WQZfxR+meREaFGoSoYk6ArYlaOhtgU=;
+	h=From:Subject:Date:To:Cc:From;
+	b=PoP1IeANs3Ns9hD0UAvmmFPZ+vJ+jLYN7AwgqkCR1mDyA5h3Nn2hV1kCwLddm4npO
+	 baT5xif0Xs9VtK0CTkpBZ65UasIYF626AJnVeGt2Bg+4Lqjlet+hAOYqIhP2ZA8qH/
+	 dYJS9te4Zz7022ha0w1ZdaFrN2P2V3/AriGs08Zw=
+X-Riseup-User-ID: ECDF847ABA548A65E58F0C1CCB205533198445340F2ED3E36FC8ECA3FE7519A3
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4WYhkg16LTzJmtl;
+	Wed, 31 Jul 2024 06:19:06 +0000 (UTC)
+From: Dang Huynh <danct12@riseup.net>
+Subject: [PATCH v3 00/11] F(x)tec Pro1X feature expansion
+Date: Wed, 31 Jul 2024 13:18:41 +0700
+Message-Id: <20240731-qx1050-feature-expansion-v3-0-b945527fa5d2@riseup.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB1790:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15cca108-5771-4857-225b-08dcb1286b04
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|19110799003|8060799006|5072599009|3412199025|4302099013|440099028|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	dFyEuEaFVL3KOobaCweoyxl/nGAbvAmBwjeYykq04zgpm+QyZ/sfOP4sdEMrrAWM7utTNuKwFYNlLYFup6B2Beg6psTDEyr7RYaguDW74TitCW424Z4wzBKf0x3uJjAyS/7iZQaundoypMZBTyF8hrMiDegIF/NaY0zSCguL10FpRTU7ij66tPzgHM2v/e1WL734RKd8kQEjo2xVngQs4Vhywlg4EmNPsbW/wfJkkGzfwKZP02rJd+YoXHG6kfFWbPF5CnkllrhzGMYX+mAEnX4v2iuNWeC/fsRMH7ZUyX6dHobQEvWn7yHdwFDvZNJ69UKYT89M6dydxL9RFCfMkwRGtwd67F6B5Cbz3ddSy7S18IhDVW54m6cvZGNzZqYlSueiaYm3TKlED/iMA6xUN4ySv++vcJnS+6jnBuBkIw//CcMBD/YRquTusX4myYgg3UUckVrszWhvBKTJ42nGcLkOQ1s8vcYUXx7r5vawlmMPhaRaU/nG8tly1c0jmzR1NUlbLKvHQivi8eR8d0+aJ/WyQa7KwED6V+rqYVGW76IIDJAtYJ+MtiWVIGnCt5eCjH6EkWB0oW+E6c+bzybspk1KU8ZaCIsVounla2Mq8J4xsaJuigwVEpsRsc2merS1gF5kHg4c4XDxK7p76BC/FKr+Zhh8gKhx/lfUPCIJz5crm0ZJKv67A0wPD7wadZ04JliCWGZb7PlrkAHz4vBbyLEBHvxfvJlGISZK8be9qpxXOQ+VZi0t5+Goy+G/pzZtIjyOiwwTpoLrd5JtNt8vkA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TlRzUTZEZEJVdzJtdnF2alpNcFExSnFtQWZGSFZyb2p4eC9XV2dBakVFY0lM?=
- =?utf-8?B?ekZNQnR0K2Nnb3cyZEpkdm16cWwyd2JhNlFwdUdpa2pSaUpGRFhwVnRTYnlP?=
- =?utf-8?B?QUNGY0hwbEh5cWN0UitvT3lUalNhelZubFlrbWk1YVpjMWNjc1p2WFBJRzFG?=
- =?utf-8?B?R3NlUTA3bXNBNTBoMnJxRXVRMVUxaENjTXgyNDJORWJwNlVUTEtCMGFiODRX?=
- =?utf-8?B?YXlOdXZXeGtJcjZKeklmL0YyVkYrc25PL1F0dURYMndqcTRCejV4RUN6TGJo?=
- =?utf-8?B?Rkc0MWpzMDl2NmJpZ01qK3dIUCszeXA1aHl3TGVhZGVEd2tDYlBFZHlwOTha?=
- =?utf-8?B?R1lxQks5SUtlaTlOUFA1WFpKOGQ0NXQrNkc0ekIvWS9UUzhSRCtUZW9nOTk3?=
- =?utf-8?B?S0E1S2huVGc5K1M3eUdoZ1JEV0FOcGc2SmlhOW1kQ3Fhc0srbXhPblRwRHlh?=
- =?utf-8?B?MHZBb2JEYnp3a3MvNm40WHhRU1ZxaUpyWmNicUVQb0hQTmRPSU9DbldiMm4v?=
- =?utf-8?B?Ny9PWVF5ejF5K1QyYWhObDlNYytEbzlBdUNHRkJXdnFWWVdSNWUrblRxVE5D?=
- =?utf-8?B?SXd4b1FPRXkxbkx3dGZxc2kvVEd0L3kvMzdKTXNrMDlROURmVFpnZHVEVmFz?=
- =?utf-8?B?MzVCVFg0NTlNOXh3NmQ1blVtVkxibGRVR29yMWpFOU1Qalh6cGJsV3drSzZX?=
- =?utf-8?B?aHVrWFFyTXRhakxVbFNjTWtwZFZFMi9IdGJrcXNCdFhUcUhBcENEazI4cnlo?=
- =?utf-8?B?SUtXNFh2bjV3OGdhaUh0cXNxcHZUaTZHekhZV1pBcXdlR1RZVmVNQzdkeU1P?=
- =?utf-8?B?ZDZpZTZyaVFuVlJET0pLZUJIMHFPOE9qbHloV3ZRc3QyWVlpN3FBWGRmUXRJ?=
- =?utf-8?B?THRhZWIvQzFBTHFIbjZUUDJKTFNGRU9ZQ3V3SnFSdU1zV05ZZkVKWEMvWlE3?=
- =?utf-8?B?ZUNWUnJVKzZkK0F1bldibkhxNHZxcUUvRHN3dTRrYmNXNVpjRnpRcTU5YUNj?=
- =?utf-8?B?Uk5sS1NZRldpeGlucVVWZ3pvYzhkTW52OWlvajRFTVRXSGhmcHNqRmtOeXhx?=
- =?utf-8?B?UWV5REI4REphcDlUVS9JRXJ4ck85ZHYzSVVKT0tDc1VjMmxXSE9vWldaUUwx?=
- =?utf-8?B?aS9xUFl1UktTWTJScTNtTkVlc2hWN3M5LzB1SDEvV2ltWFVITmtobWpObnAr?=
- =?utf-8?B?Rjg1QlpmdTlrWExxWllSTjFUUnA4SEI1RVlxVi9xMEdMZEtLV21DWW9XK0pJ?=
- =?utf-8?B?MlBhanIwbzh6ZEZJQ2tGa1J5RHpyL3BEUlpoNkdDK3RJbnJRdGVlcTJjSVU3?=
- =?utf-8?B?S00ya2FQQncxN1MyQUJmU2ZhUUUxYmlVWjJST0FUcENtSXd1L214NHVzMmRJ?=
- =?utf-8?B?cXl6akVsTXFXa3pMNmhGVmdDN0l2RkZ4VE04QjZmcFI2VVBjOFF1dlJPbnc4?=
- =?utf-8?B?TG9waHBrd0RuaVBaUjA1R3RyMHZ2QlBDOTcvN3dRbmdkajNUbTFhRVpwYzJD?=
- =?utf-8?B?bjEyYUkveHVVNW4yVGtubFNoQjhDbm9vRVR0ZzhVWnNnTzJsYkZJWDI3VW5O?=
- =?utf-8?B?UGZtaDloWXRaNmluM2RRK3RseCtRdExkZFhiUjJObytLZkhKTWMxcnN6MFp1?=
- =?utf-8?B?VkE4eTFNbW53S2hhcTU4NWhnVU5SSk84SVRldCtQdFNOY2NwZWpJaHQ2NXFX?=
- =?utf-8?Q?Dxax7v9lqO7wcejqtGUu?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15cca108-5771-4857-225b-08dcb1286b04
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 06:17:13.4448
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1790
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEHXqWYC/43NsQ6CMBDG8VchN1tTjraAk+9hHApcpUvBFhoM4
+ d0tTLoYx/8l3+9WCOQtBbhkK3iKNtjBpShOGbS9dg9itksNyFHwEpE9l5xLzgzpafbEaBm120e
+ sNEqjqtAgaUjz0ZOxy0Hf7ql7G6bBv45PMd+vf6AxZ5y1ohOVEoVsanX1NtA8nh1NsKsRPyX5Q
+ 8IkSaNb0TRdLZT5krZtewMRCgYVCwEAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>
 
+This patch series expand F(x)tec Pro1X (QX1050) device tree to support
+various components of the device.
 
-On 2024/7/30 15:49, Inochi Amaoto wrote:
-> Add support for the onboard hardware monitor for SG2042.
-> Can be tested with OpenSBI v1.5.
->
-> The patch require the following i2c patch:
-> https://lore.kernel.org/all/IA1PR20MB4953DB82FB7D75BF8409FFF4BBB72@IA1PR20MB4953.namprd20.prod.outlook.com/
+Most notably:
++ SD Card slot
++ Touchscreen
++ MDSS, DRM display panel
++ WLAN (ATH10K)
++ Hall sensor and camera button
 
-Please check my comments on patch 2 of this serials.
+This patch series has been tested on Buildroot Linux with TQFTPSERV and
+RMTFS present in userspace.
 
-Others are LGTM.
+Signed-off-by: Dang Huynh <danct12@riseup.net>
+---
+Changes in v3:
+- Fix dtschema errors
+- Reorder gpio nodes by it's number
+- Link to v2: https://lore.kernel.org/r/20240725-qx1050-feature-expansion-v2-0-5fac4bbd946f@riseup.net
 
-Tested-by: Chen Wang <unicorn_wang@outlook.com>
+Changes in v2:
+- Squash copyright year commit to the hall sensor commit
+- Reorder pinctrl-n and pinctrl-names in several commits
+- Use interrupts-extended for touchscreen
+- Add further information to the caps lock LED node
+- Move status property from &wifi to the end of the node
+- Link to v1: https://lore.kernel.org/r/20240722-qx1050-feature-expansion-v1-0-c4d486435b96@riseup.net
 
-Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+---
+Dang Huynh (11):
+      arm64: dts: qcom: sm6115-pro1x: Add Hall Switch and Camera Button
+      arm64: dts: qcom: sm6115-pro1x: Add PCA9534 IO Expander
+      arm64: dts: qcom: sm6115-pro1x: Add Goodix Touchscreen
+      arm64: dts: qcom: sm6115-pro1x: Add Caps Lock LED
+      arm64: dts: qcom: sm6115-pro1x: Enable SD card slot
+      arm64: dts: qcom: sm6115-pro1x: Enable MDSS and GPU
+      arm64: dts: qcom: sm6115-pro1x: Hook up USB3 SS
+      arm64: dts: qcom: sm6115-pro1x: Add PMI632 Type-C property
+      arm64: dts: qcom: sm6115-pro1x: Enable RGB LED
+      arm64: dts: qcom: sm6115-pro1x: Enable remoteprocs
+      arm64: dts: qcom: sm6115-pro1x: Enable ATH10K WLAN
 
-[......]
+ arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 343 +++++++++++++++++++++++-
+ 1 file changed, 334 insertions(+), 9 deletions(-)
+---
+base-commit: 41c196e567fb1ea97f68a2ffb7faab451cd90854
+change-id: 20240722-qx1050-feature-expansion-7f6a2682f2ea
+
+Best regards,
+-- 
+Dang Huynh <danct12@riseup.net>
 
 
