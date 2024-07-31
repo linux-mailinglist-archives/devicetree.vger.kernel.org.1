@@ -1,180 +1,111 @@
-Return-Path: <devicetree+bounces-89785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C239F942BCB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:17:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A8ED942BFF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 12:34:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E68001C20FD3
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:17:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B46CA1F255DF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 10:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF2A1AAE3D;
-	Wed, 31 Jul 2024 10:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6BF1AD3E2;
+	Wed, 31 Jul 2024 10:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UWeGXjCE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DlxfEDsb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71211CF93;
-	Wed, 31 Jul 2024 10:17:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2CC1A8C0C;
+	Wed, 31 Jul 2024 10:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722421023; cv=none; b=qr1QM+3lAuIPvvsgx/YB+daeW6V8ItC4fks8AQurQ4ab3ly5Z9J8rXBS4MJwOpy5wi+m6Y1rcs/hnSWU/9Qnvy1ycNET4jX14ca3B6p26e/k0FPUT/4NzvaxjmrRr0hfd3QMdMHYlexwuoTLHEB43l0Bfs+lo8OY0Xh/JyzEbAo=
+	t=1722422044; cv=none; b=JZ5ZFf8LhH5Uqexu3azHK/kwtG7BE6kXXw2NVyk72Q2fldVphRGNXetn4t2pX264BUvQMGhrwua7D6qYNIs8X8UQgDebDc/6TLkPAYt6I+w0euqsOWnGLahUdiKGXgUSg/NiAYJmIAczfSXRwLCkivBihCB6R9gY8Hz++4+QOXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722421023; c=relaxed/simple;
-	bh=6UjJVQFegPDjWvvKUdWh3ajOioWkd2LppLqQBIgw9r0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n4MJ5AbAQlX9eUlrSBJpHfhxC2urR4fUoH/AnpTV+QWTBSebVXKBvvLKMQFTSW8NYEmrkulaZkEN2ovVq1W81mEDrWrXgLidr3fvBOAK9Uc2qlMOeBgz+esgc+os14C5YfH3G+SkfSCMP85srqLpT0m6gSxFOFIoozioeyWZwOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UWeGXjCE; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1722422044; c=relaxed/simple;
+	bh=PZzuAyXiUv8r4B/pgnrvblJtFU3x1w1b4ERBRW/6Ueo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PwsufFvC/EAHU3m1uZMaD7jS1GNiuLRc7S8WNV3YtzeVvUYvRoo+XDz/+M/NXZ/0UHpcAPs9XPl0SHUjQE7jISVmCJCR/Iql7jpD3mNCB+Ic6UKZjSW2AxLTgexx1g61JhmKP6a0dgyIGA5LHUF508MPgqC6Qw7DzcCo8pF9sIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DlxfEDsb; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52f04b3cb33so12369873e87.0;
-        Wed, 31 Jul 2024 03:17:00 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a7ad02501c3so699227266b.2;
+        Wed, 31 Jul 2024 03:34:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722421019; x=1723025819; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0AaaFuIf1xRzlWKEfSWSyC0cUztpO1y/p+yF/M4k91k=;
-        b=UWeGXjCENt1hwMRBOGmlJb3HLgSGCT3Wyj+7Kt+n/CZRaZd13tumn2diH5a+t8jAZ5
-         AEsYNbTbH0KSaYaFv/XxKsznbEkun0R1SuJx+IG4xmv9Yzm1M4+10AVLrZyeH6xcFEUt
-         mHNGNqe6gFScyoZJJYjBGMYZ93QEuJbSlhAzH+nAVT45EN6l7NBh4sT4IvGiFIrsW+4j
-         oVuzhWADYj3F4gRNe0yluC5Ivc4ybuCJVnC1a2kZW/MNngya51MNJU3ulSSGBztQmMyN
-         hbBbo0Goee6TgSnoPkmVlrEHCj/D4sxDVHVN8RCTlc+HKw4x932tnP1aIlI6KFNPeXuk
-         27iQ==
+        d=gmail.com; s=20230601; t=1722422041; x=1723026841; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oIFp8Khg+4GQ8fLs2YKk+HJiIw5dPfegAQ5FPEevMKg=;
+        b=DlxfEDsbOwFI9TgKSlMLkaQ8k8VTLqzvgHDrqT1+KBI8plaXKLBaHmy2oKpQLFCPvy
+         83V978BZfrapR9I630W0tby9cEvX0GIxb3Pi6Z10QXnP2mzNegzl9e8cXwiEruAAXWlw
+         HHafpFMTCyzMbflIPDy2FvE2x3Pg/C67supPo9Fvtg58BdkqtdDwAIz1t7euh8797koK
+         BXDB2lhhqTvcbKEW5I8pyrJuP7NMA2i33TS6UmeyqjNiSveQ/qGit19kl2ckRkaRlfZC
+         QwZYRK+knMt/l0KFWMj3utluam8FDR+6zmGzxYv4v/sfOyPu21y4v456VUX9DVTzfWJY
+         r0xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722421019; x=1723025819;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0AaaFuIf1xRzlWKEfSWSyC0cUztpO1y/p+yF/M4k91k=;
-        b=nTWeOmueb8A2NEJ7f+2uEtS/iL1k/a1V6RfH4CuCniLmviQ+tXTlc8yEa/sG9Dtd55
-         1u9k/+9mRJawey08Znch6yT6rQVOh8FzE8mVvf50iw3O2DSxjek05AlsHxhf2jUwylf4
-         A2VyWLdH1kZEPdHaBF96noaeIVTqCQbSnmfuFgx6XYGlZiNGbgyTuGf4LIrv1+DxSvru
-         CXmoYpt3iqlxNSpxtiD+9RhiFyrg2JsGQbBhH2+h0w0oxmwKUJwSTCeNtfp/nQ8pPZl5
-         nTi+OSPxoWH8yvrdEKqzS1MwbGD4HbS1M+ZQuJbf743Ye5zzwO8CThONU5eEgq73ZKpe
-         J6mA==
-X-Forwarded-Encrypted: i=1; AJvYcCU1E/4zWFpUp6fxuQNy+xyhOiu5tWlLD3EMyH/z876HxZw2ciDmNoO/Tp9JrzlY/ipFhD83Rwm5RUMj@vger.kernel.org, AJvYcCUi4FOGR8WP0n3yu2rjshg1IC9zM8XqbLD7tNHCup/07viPT6S4uQuctPeS9gCbDniRzJDa7RaH@vger.kernel.org, AJvYcCXtyIrlT37kl9LeGFic7VRA9P976yytva6KjckoUy3igEwXInyNvXgGixZJT/amcmZCAqhfkdIG7LHpZgZ7@vger.kernel.org, AJvYcCXuVzcl5DzUsa/EJNMxHvbhaWAbaGdeYOQ7qTO/h+kCccUvP0FAdLhUB2XPqGkgepZPSEVSa/PUKni/2B7A7q4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRuBGjY4L23IlST2z73Vq5fc+MCj729LiMyyQMZZ7bkAbR9QMl
-	acYwAjREQMk4IrdWCL0Dr5SJJ4FPdcaFU8xWNkFp/eRFQBPnCqQC
-X-Google-Smtp-Source: AGHT+IF2e1PeQYS2su4wh/SIyoSoRuTA/mOWzxXZEnnmqqjxiriV4Tt63IghqsPDtpogPid6UjTSbQ==
-X-Received: by 2002:a19:8c11:0:b0:52c:c9e4:3291 with SMTP id 2adb3069b0e04-5309b2e0b50mr8248953e87.60.1722421018492;
-        Wed, 31 Jul 2024 03:16:58 -0700 (PDT)
-Received: from [172.30.17.119] ([194.247.191.114])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5c0820esm2149509e87.167.2024.07.31.03.16.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jul 2024 03:16:57 -0700 (PDT)
-Message-ID: <0a78a0fb-0a5e-424f-a801-4a63b9ee1a49@gmail.com>
-Date: Wed, 31 Jul 2024 13:16:56 +0300
+        d=1e100.net; s=20230601; t=1722422041; x=1723026841;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oIFp8Khg+4GQ8fLs2YKk+HJiIw5dPfegAQ5FPEevMKg=;
+        b=PE8gsS29fcoX+6VbpXaJm8lNHfBSsyXGMLkLwghBj5TKdhfC+CBFwYUeJU7LeK4dMc
+         8XPdfeClfPWQVBvDjjSrQ65+4DukCO8YxjBu/CWaugSDrdWK9YVmhtuZR/rtbcHvhpru
+         eLwp2k6S/oO3LOLksQ5wZ4yolx8JA2GMZisna/SRPNnxv9mtBo/LOLYWqhulLw8AZdt+
+         RCyNU5plDTxLlCrGS8yMgqWYwGANmOKaluMoIZ40YlWZ6ckxoWuAWOA8zQP4h2RjgyvW
+         Ua74gpCpN2BIUQRgqPYzd8g7Nnqn6uJfk46zggTim8J/h2/MeIIlo1vg0TtMNFd39uYL
+         V6eg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWHa87aNB4obqOPMX9pWTAG69aHHIPatKt9z45D0EqqPLpHTPl/MySqSZtM1YWRuPFMu77mRMHNFAzmz2gsmJu6bYkpoEs+Kn5gNjlGIxf/r6Xn+hzea1baOs1Y4yeAi/3AWoOu+QadOoXHa/6SSEteTmYV/nC8UCKnjGBpZDMFAbxcrq6sRneaJe+9FF5fCLzoUVSmxGAvvGOa0DrACk=
+X-Gm-Message-State: AOJu0YxtGaYb/3I/78noPqiNByot98P2sv+BWSanyTTTNRTHNMNVJJE8
+	POIt38UJGQMoefLrm41I3wWUy8Fx12tHqSz2IQhjcEb45+CL8bWJ
+X-Google-Smtp-Source: AGHT+IEpqCSb1HZgZrXNMIPoeWCsJDQXhX0oT/7sHA7gK0E/DdB+OsIPbj442pW7/EMYL6tZ0sMreg==
+X-Received: by 2002:a17:906:c10f:b0:a72:aeff:dfed with SMTP id a640c23a62f3a-a7d400dd249mr1048974566b.53.1722422040620;
+        Wed, 31 Jul 2024 03:34:00 -0700 (PDT)
+Received: from andrea ([151.76.3.213])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad9046fsm760828166b.147.2024.07.31.03.33.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jul 2024 03:33:59 -0700 (PDT)
+Date: Wed, 31 Jul 2024 12:33:54 +0200
+From: Andrea Parri <parri.andrea@gmail.com>
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: Alexandre Ghiti <alexghiti@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
+	Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org,
+	Andrea Parri <andrea@rivosinc.com>
+Subject: Re: [PATCH v4 06/13] riscv: Improve zacas fully-ordered cmpxchg()
+Message-ID: <ZqoTEk2zMohhog1Z@andrea>
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-7-alexghiti@rivosinc.com>
+ <20240731-260cce60e1a6cd06670d1b24@orel>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/5] wifi: brcmfmac: Add optional lpo clock enable
- support
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- conor+dt@kernel.org, arend.vanspriel@broadcom.com
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
-References: <20240731061132.703368-1-jacobe.zang@wesion.com>
- <20240731061132.703368-5-jacobe.zang@wesion.com>
-Content-Language: en-US
-From: Alexey Charkov <alchark@gmail.com>
-In-Reply-To: <20240731061132.703368-5-jacobe.zang@wesion.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240731-260cce60e1a6cd06670d1b24@orel>
 
-Hi Jacobe,
+> >   amocas.X.aqrl   a5,a4,(s1)
+> 
+> We won't get release semantics if the exchange fails. Does that matter?
 
+Conditional (atomic) RMW operations are unordered/relaxed on failure, so
+we should be okay here; cf. e.g. Documentation/atomic_t.txt.
 
-On 31/07/2024 9:11 am, Jacobe Zang wrote:
- > WiFi modules often require 32kHz clock to function. Add support to
- > enable the clock to PCIe driver and move "brcm,bcm4329-fmac" check
- > to the top of brcmf_of_probe
- >
- > Co-developed-by: Ondrej Jirman <megi@xff.cz>
- > Signed-off-by: Ondrej Jirman <megi@xff.cz>
- > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
- > ---
- >  .../net/wireless/broadcom/brcm80211/brcmfmac/of.c    | 12 +++++++++++-
- >  1 file changed, 11 insertions(+), 1 deletion(-)
- >
- > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c 
-b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
- > index e406e11481a62..7e0a2ad5c7c8a 100644
- > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
- > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
- > @@ -6,6 +6,7 @@
- >  #include <linux/of.h>
- >  #include <linux/of_irq.h>
- >  #include <linux/of_net.h>
- > +#include <linux/clk.h>
- >
- >  #include <defs.h>
- >  #include "debug.h"
- > @@ -70,12 +71,16 @@ void brcmf_of_probe(struct device *dev, enum 
-brcmf_bus_type bus_type,
- >  {
- >      struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
- >      struct device_node *root, *np = dev->of_node;
- > +    struct clk *clk;
- >      const char *prop;
- >      int irq;
- >      int err;
- >      u32 irqf;
- >      u32 val;
- >
- > +    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
- > +        return;
-
-Did you test this? The DTS patch you sent as part of this series doesn't 
-list "brcm,bcm4329-fmac" in the compatible, so this will probably return 
-right here, skipping over the rest of your patch.
-
-Please test before resending, both with and without the driver for the 
-Bluetooth part of the chip (since it also touches clocks).
-
-You are also changing the behavior for other systems by putting this 
-check further up the probe path, which might break things for no reason. 
-Better put your clk-related addition below where this check was 
-originally, rather than reorder stuff you don't have to reorder.
-
- > +
- >      /* Apple ARM64 platforms have their own idea of board type, 
-passed in
- >       * via the device tree. They also have an antenna SKU parameter
- >       */
- > @@ -113,8 +118,13 @@ void brcmf_of_probe(struct device *dev, enum 
-brcmf_bus_type bus_type,
- >          of_node_put(root);
- >      }
- >
- > -    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
- > +    clk = devm_clk_get_optional_enabled(dev, "lpo");
- > +    if (!IS_ERR_OR_NULL(clk)) {
- > +        brcmf_dbg(INFO, "enabling 32kHz clock\n");
- > +        clk_set_rate(clk, 32768);
- > +    } else {
- >          return;
-
-Why return here? If the clock is optional, a lot of systems will not 
-have it - that shouldn't prevent the driver from probing. And you are 
-still not handling the -EPROBE_DEFER case which was mentioned on your 
-previous submission.
-
-Best regards,
-Alexey
+  Andrea
 
