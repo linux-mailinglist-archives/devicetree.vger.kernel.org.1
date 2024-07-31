@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-89780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64481942B11
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:45:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7DB1942B15
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 11:45:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABE21B239BC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:45:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 625411F21FCE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777411AB502;
-	Wed, 31 Jul 2024 09:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD651AB513;
+	Wed, 31 Jul 2024 09:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4OuVXCX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSvUncQH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C731AAE13;
-	Wed, 31 Jul 2024 09:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5BF1AAE22;
+	Wed, 31 Jul 2024 09:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722419083; cv=none; b=eAUUuhezlNxqRGW4WZ04u5rPHVw2DI7LRIMGvLLWMh4jTcVBejOnw/hZelDm22VJCx9HmaRC1BetwaQYf82zqM3Hn0pQ01kPNbo9ge6BW3YZTRYFfRJ+Egk7gV777D+8BO7r5KeeOHrnKGctbWi0j0Ms7wcFTQ8G118r76Jdb/0=
+	t=1722419138; cv=none; b=sTmCHAOUQ4Dh/afCAKSJt+7L0oSri9UsLzoHKO+wPIVoCiM98GXhpPrTNy7jJzA/wFd77QzYbadYn2tlxeJbXvs71rQqO6JzNUE7HUHrUsIgOGaSwzBR5cO2xq7HtVJ/UCSPbWzcjdiOzxgNa/fxh3VdAh70hvWDLRWcPC4gOXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722419083; c=relaxed/simple;
-	bh=crVqC2Bga0UvBn87o71gcZy+LewySJ3ybRAxogOcgDM=;
+	s=arc-20240116; t=1722419138; c=relaxed/simple;
+	bh=7+5jjOBwASMXayjPqC+OEoM/5sIwvSdy7dR4ojUz7uI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AaeqvAFTjXMFCx/VSyv529zyKKGMmzpLFZruqeXe6oP074vDJcJOe6kQRqgSdZv2k0f/Crcp6B41BPfAMNwjXTgB/D8+GxvHXWAYlafwOcjS18e1dKk7w4scTAEBUbxNHdwzWqP1qhLawTuA5HNnR/xOOttEcxTWuM4boTd7gi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d4OuVXCX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 191E5C116B1;
-	Wed, 31 Jul 2024 09:44:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rqCptZyQWYdp6P1tym7v2Fyq72WmC/Qe77fbdarBkiFYGiHwKCW/EeAxH0AzKRycboaZB9hG9liKZZIN9CIzUjPGdfCz8cVoK28B2F02jbFgzeRgHKYsyanXV6g6ehOPP42F6SufZUNDyeW6wa1JQrZVSIqbbiqeYl86gzVf9j0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSvUncQH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 823C1C116B1;
+	Wed, 31 Jul 2024 09:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722419082;
-	bh=crVqC2Bga0UvBn87o71gcZy+LewySJ3ybRAxogOcgDM=;
+	s=k20201202; t=1722419137;
+	bh=7+5jjOBwASMXayjPqC+OEoM/5sIwvSdy7dR4ojUz7uI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d4OuVXCXBt6SvEkK5KyLLZeXT55qi7n4KwEKDICztpk3l0P0ZMUUzMJTguI9PgMty
-	 T9quXSv9q06HAaD/fBdER7Jpyk3eaEsJ6mIS6jWLTFr8ZKLQZlPAPGFzOJtQvpTcX+
-	 7aPktrSyHCAjaOo6cvR1Bd8ps8F/5i05ZQO3KU2RFbYHHzN6PaZhVfDdR5J3ufcT66
-	 r0zeeE4u5p62K/LnflaW4Z/Xdx4LCN2cUNt92MSCfyNj7hqy56Fc08lwTgR6/uRQG3
-	 qLCbm/dVXnl5eWV1QJtQq1qNcBTr/k6rd5fSydppTo4kB4l7lb03Ukz4x9PGbY5ITY
-	 INB0ZIqlHcRAw==
-Message-ID: <178bf399-2a13-4331-bb0d-341fe47ab112@kernel.org>
-Date: Wed, 31 Jul 2024 11:44:36 +0200
+	b=VSvUncQHgCU6fVRQaELTJfNQbC3PEdLEpAvQuOmMkKkNlCo2nVvKgi2Ss5sFPBqql
+	 X1NT773C67h8tz3TUdt0VNeH0KlxwfIYZRDE1787pyP+teGSqO+F5vSGR5XNS+heRp
+	 QbZLVk3xfHvGpUzfZye4Bny5VU9PgqUi4/nohqCRFbAb0e8rhUotmlxkS0jU4KJ7L1
+	 w8qxgLw3zg5NIjCDV5xvRQlXiJbYFQJKl5eO9Q2Tqebtby003rEcRXEbfJRqIISCQv
+	 eOmcB8oiWMed2HdR70+RgPTAo+9VIIBzF9X1US5PoyzwKnun4IRm+R5vqZi78161CZ
+	 UEHBxMVk2jPyw==
+Message-ID: <00f652ab-86dd-4169-84a8-df5de582ef2a@kernel.org>
+Date: Wed, 31 Jul 2024 11:45:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm64: mediatek: Add
- kukui-jacuzzi-cerise board
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240731-jacuzzi_dt-v2-0-4995335daa30@chromium.org>
- <20240731-jacuzzi_dt-v2-2-4995335daa30@chromium.org>
- <bb696e60-642f-43f1-9ccf-972e1d839bcd@kernel.org>
- <909d4058-e3e9-4b59-b476-8f78e668c73b@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] MAINTAINERS: thermal: samsung: add myself as maintainer
+ of the driver
+To: Mateusz Majewski <m.majewski2@samsung.com>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, ALIM AKHTAR <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Anand Moon <linux.amoon@gmail.com>
+References: <CGME20240730012027eucas1p2882c9c45e4d2203916af28ad86493a9a@eucas1p2.samsung.com>
+ <20240730012019.1680121-1-m.majewski2@samsung.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -107,64 +113,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <909d4058-e3e9-4b59-b476-8f78e668c73b@collabora.com>
+In-Reply-To: <20240730012019.1680121-1-m.majewski2@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/07/2024 10:47, AngeloGioacchino Del Regno wrote:
-> Il 31/07/24 10:16, Krzysztof Kozlowski ha scritto:
->> On 31/07/2024 08:26, Hsin-Te Yuan wrote:
->>> Cerise is known as ASUS Chromebook CZ1.
->>> Stern is known as ASUS Chromebook Flip CZ1.
->>>
->>> They are almost identical. The only difference is that Cerise is a
->>> clamshell device without touchscreen and Stern is a convertible device.
->>>
->>> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
->>> ---
->>>   Documentation/devicetree/bindings/arm/mediatek.yaml | 14 ++++++++++++++
->>>   1 file changed, 14 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> index 1d4bb50fcd8d..087773a43673 100644
->>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> @@ -146,6 +146,20 @@ properties:
->>>           items:
->>>             - const: google,burnet
->>>             - const: mediatek,mt8183
->>> +      - description: Google Cerise (ASUS Chromebook CZ1)
->>> +        items:
->>> +          - enum:
->>> +              - google,cerise-sku0
->>> +              - google,cerise-rev3-sku0
->>> +          - const: google,cerise
->>> +          - const: mediatek,mt8183
->>> +      - description: Google Stern (ASUS Chromebook Flip CZ1)
->>> +        items:
->>> +          - enum:
->>> +              - google,cerise-sku1
->>> +              - google,cerise-rev3-sku1
->>> +          - const: google,cerise
->>
->> Why not google,stern? If this is not compatible with cerise and has
->> different name, I think logical would be to have different compatible -
->> either here or the first one.
->>
-> 
-> They're both compatible, but the commercial names are different because one
-> is convertible, one is not... and the bootloader still checks for cerise
-> even on stern - that's how I read it, and it's not the first time...
-> 
-> ...but it doesn't hurt to have a "google,stern" compatible added to the mix,
-> it's just one more const to add... and I don't have any strong opinion about
-> that, so, Hsin-Te, it's your call. :-)
+On 30/07/2024 03:20, Mateusz Majewski wrote:
+> As discussed in
+> https://lore.kernel.org/lkml/e73e1a14-dfa0-4a36-bc6e-5d6421553788@kernel.org
 
-OK. Such explanations - including that bootloader expect exactly these
-strings - should be in commit msg.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Commit msg should have its own rationale. You can add external reference
+to support it, but external reference cannot be the sole reason of doing
+something.
 
 Best regards,
 Krzysztof
