@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-89720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-89721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A5C942824
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:36:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A85942829
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 09:37:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C7461F22CF5
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:36:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A981B230AB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2024 07:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB751A76A2;
-	Wed, 31 Jul 2024 07:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCC71A76A6;
+	Wed, 31 Jul 2024 07:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kIF3nudI"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fSzcdUJr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69911A76CA
-	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 07:36:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FE01A7207
+	for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 07:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722411386; cv=none; b=hdikyBsdNmVzrqWkDoKJ3SrWKr+CxLYLNtOkV6pLwdK60DdPDC8/W1JzHGnfeOGHk0oT/PS6ecDMhBvS/FVAzQb7rHhstC8Gez/o2DnwQFQGNJGoVdDa4/u6ZCw//0vB53eQtExobYden4zxMW6zE5isUl0JcxHc+0yoXwh0klU=
+	t=1722411449; cv=none; b=vAY9WvLoVj/h61KLk9KWHnplHPUJQ9gVxuR9HWmtnV1ZKAOLxUcJwVN6AB6hYUpaEgPmFUQeSV8DZUJs39UA2Ci4qRVHEz3nm1sCP1p4gN8HAUvxP4ENJi4AaCjU+eyjiBtVvaQBnI6xJ05JQteK/ivUDcsLhF+FNOM+vszw4Cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722411386; c=relaxed/simple;
-	bh=0epfWlqEKIrTUoCSMykfoCNPqNc62wspUCzRCxIl0GQ=;
+	s=arc-20240116; t=1722411449; c=relaxed/simple;
+	bh=6jucAYChW0+U9O7SN+Bejk6YV9NZvLCpdbBmKRpfWvU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bXnddLrHEO2YPt7gS97rJp8UKNiJTT0hxJlabHOmdA2cZCBYTi+kzlwSFigcqtY7KkQfObZckf5mKddLc+gsC+i3EIHErFAsvh2/9Opp3dDlPAUnHiMzM8EIWFWIoJkeGuxxKJnswEdW+nJKrfRWP7rakrP1gQ3EnssnIE23oEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kIF3nudI; arc=none smtp.client-ip=209.85.128.45
+	 MIME-Version; b=aTXIBTZvW2zz1YhbPsnOPUOqFXyopbhT3cTofnVHaftW792r0eCcxH/AMQ+lN95g0mKpN/oKhAaWnHJmSr4S5o8DLAFQNc/llTv2izalrwu2w8ukhrD1PxCy5Xs77K/nxu42pT/EnXGih0nN7zbvxmiy/jwLpYSBwdBatwS5YGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=fSzcdUJr; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4280c493719so32200765e9.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 00:36:24 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-427fc97a88cso35341875e9.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 00:37:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722411383; x=1723016183; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722411444; x=1723016244; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=StkHQugPFKmcMlCdkJBjlWwaxWZu+axwFXxjxfJ46xI=;
-        b=kIF3nudIdUZQL0iIhd2fJgL9YuWtarDBdrRqo/tgOaqEnhQgpWS6JA4DYtuWcjBnbX
-         4Yo64/b2dmALZvTaiITaK4NfjnfUPR8p7z0n1UriNkaOnJk3hUhoGufkmU2NRs52row8
-         njQ/kRJhn0IV6msneeVwsTdAy4dxtj5rE/IxzsyuQ6+pKcYyEr/1bv/R/GRzWSHiT9vN
-         jGpz1yCaG7TrWWt/aFDhHTL+XJpYgGYS2687UOttok7c/0QS4NyObHVk0nN1OTTA6Je4
-         WwGLqn082/t35VDjvCr2nIjLweseY4WMZalOXgMD1T85YKNo2T3/nxcBB/G1qx6D1ues
-         lrzg==
+        bh=IuzTs5i1Aydmrp9OuDhDQYyZMjhUNqn9zGoqbFH2HN0=;
+        b=fSzcdUJrv+a3tpIqD5knBvYl9l2uARODjj3zhPJEr0qy6560ammatkM2zDB+TNccFm
+         TWrh/4Ff2l7CkfoSmvfTpqA1a74CZAinmDP0xln5ijH+eBa/pYSCV4gfZMCg9XO8W91i
+         t1evOo+50Geg0MNGSe382uIh8MrCmyZkMUS/vc5/FjubAqEyeOQ0pT3T2jZcFF+e7yYR
+         GEKry3tt9LwAOyzhZKJdjIn4UNPOoAjK+YSgzqZPicO3DOv1R/HkJYD00hLOx47fm/F3
+         S3zRC6kGtp1ZIqAOGno1Ud+SxALEzZelQHCp9PDjsaYrfatkF1usasLPWwBTxsiTVWzi
+         XcVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722411383; x=1723016183;
+        d=1e100.net; s=20230601; t=1722411444; x=1723016244;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=StkHQugPFKmcMlCdkJBjlWwaxWZu+axwFXxjxfJ46xI=;
-        b=VDIrJ8y5p0vnU6iNVoebg1e59WfszsmJFfoZidR9A2fe2qXvZW3+GetwUS5h3pzhuY
-         6JgztZFu24ubNRue+nc1RYsfjr6qUTx7IB3pw9G8ht0y8oLRYlWKOHWdKCr5lOtrCYBp
-         Dp66BYv5boFM8y6BpwqVxF6/NHoBDlScLPWu1IXJ+yENh+KEtY11bq2C7cqlfJkWJCgF
-         M/CR/fgm2ZSxZy/KJYMSY7VnVzYAq3r8A0QD/es/n+KTWpg66SzUqAbIRpp7k0Xd62hP
-         7yBMSZI4c/I1QH7GkBUZCfPpJ7n+225zMwmb0reQAFESSAHs0lBBNqEeyHaypol9oKZX
-         HGng==
-X-Forwarded-Encrypted: i=1; AJvYcCVW1HtDHr6WpF4UYeGZMZP9RijxEso4aTMh7wPh1LcXJyJ61bizudBpgvx03EOyiZSETN7gxYdkoqLmSkxIkqv8bTjJ6dSz8eRAgA==
-X-Gm-Message-State: AOJu0Yz2b0C9CJ4ze5g82Y5c89b7c4uy5PKQV4G6MYQS3LbC2I+rGyFA
-	2V611XoWBnDZnji5Rj4Sq+oYglCry38FQ6H7ibTKuBtQfCVqhRjWM3Y2XxxPU1I=
-X-Google-Smtp-Source: AGHT+IEiU0CaFWiD1hh70+ka7aQVmGlrhYH1/rnpyVPMCyVRk32YX0EEddiK4g7ZX2FGkW4AWaXtCw==
-X-Received: by 2002:a05:600c:45cb:b0:428:1007:6068 with SMTP id 5b1f17b1804b1-42811e0b70amr100189195e9.34.1722411383067;
-        Wed, 31 Jul 2024 00:36:23 -0700 (PDT)
+        bh=IuzTs5i1Aydmrp9OuDhDQYyZMjhUNqn9zGoqbFH2HN0=;
+        b=h40eXgykud8N6jW/V1pW5qdS1OJ6+0PWUl0EzR6aT7d1um4rAeRopq7JeDD7mtmRpv
+         PWQPfUxaxTfSCjkSs1NDPGqm5CJ7cwK/FNSxlTP+wUhEEXdy0OjHX2uko55qKW3t4jD+
+         pyngcA3P0dfsyfDNUli0jGtPndl1v6ulFQrHub2+nM8OmHD92ILiUgjrFu3+zrmL1bvB
+         2vt4Yu+d3RjRBL0dVT7cVqMNdjIXu4Y2V7OeItvYhSMUxEbHJEv+lgi7z0GVgTBGuS8L
+         BRdkE+vcEMsQ7ye8p8rNz0XWrckoBawog+E4Wg5rPncYEIx3VSMNZ/5+lDMOPvwb1oBg
+         +MAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOkHLNsLnpi0q3jTnpng7rPfTIrLP3CliYyjLLNjXyx3fE/8hT7evIn98WiDavcpuoTE0oenOPe/ySJLqTZt0SnRugX+0PnOS7yA==
+X-Gm-Message-State: AOJu0YyCwRxJOCad7RJqNGf0mJaYjtC7Tua04gpmwkmv6V3V6Hei2IKQ
+	ZjQMSO7d/f5xbK3UWsAmvLqnvQnVpcBeoInVm0T5DlSDVREjghKlXfD6pSpT5Fg=
+X-Google-Smtp-Source: AGHT+IFmxRjofwufvv+5ZesOhaxyTIL2IhSq0e317HP/ein1RfvIfnjlhNGswng/psJn1bIEYGSz1g==
+X-Received: by 2002:a05:600c:468d:b0:426:6153:5318 with SMTP id 5b1f17b1804b1-42811d9e0e7mr87431975e9.19.1722411444271;
+        Wed, 31 Jul 2024 00:37:24 -0700 (PDT)
 Received: from alex-rivos.home (amontpellier-656-1-456-62.w92-145.abo.wanadoo.fr. [92.145.124.62])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36b367fce64sm16325946f8f.61.2024.07.31.00.36.22
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36b367e51f0sm16343005f8f.46.2024.07.31.00.37.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 00:36:22 -0700 (PDT)
+        Wed, 31 Jul 2024 00:37:24 -0700 (PDT)
 From: Alexandre Ghiti <alexghiti@rivosinc.com>
 To: Jonathan Corbet <corbet@lwn.net>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
@@ -91,9 +91,9 @@ To: Jonathan Corbet <corbet@lwn.net>,
 	linux-riscv@lists.infradead.org,
 	linux-arch@vger.kernel.org
 Cc: Alexandre Ghiti <alexghiti@rivosinc.com>
-Subject: [PATCH v4 12/13] dt-bindings: riscv: Add Ziccrse ISA extension description
-Date: Wed, 31 Jul 2024 09:24:04 +0200
-Message-Id: <20240731072405.197046-13-alexghiti@rivosinc.com>
+Subject: [PATCH v4 13/13] riscv: Add qspinlock support
+Date: Wed, 31 Jul 2024 09:24:05 +0200
+Message-Id: <20240731072405.197046-14-alexghiti@rivosinc.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240731072405.197046-1-alexghiti@rivosinc.com>
 References: <20240731072405.197046-1-alexghiti@rivosinc.com>
@@ -105,32 +105,252 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add description for the Ziccrse ISA extension which was introduced in
-the riscv profiles specification v0.9.2.
+In order to produce a generic kernel, a user can select
+CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
+spinlock implementation if Zabha or Ziccrse are not present.
 
+Note that we can't use alternatives here because the discovery of
+extensions is done too late and we need to start with the qspinlock
+implementation because the ticket spinlock implementation would pollute
+the spinlock value, so let's use static keys.
+
+This is largely based on Guo's work and Leonardo reviews at [1].
+
+Link: https://lore.kernel.org/linux-riscv/20231225125847.2778638-1-guoren@kernel.org/ [1]
+Signed-off-by: Guo Ren <guoren@kernel.org>
 Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-Reviewed-by: Guo Ren <guoren@kernel.org>
 ---
- Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../locking/queued-spinlocks/arch-support.txt |  2 +-
+ arch/riscv/Kconfig                            | 29 +++++++++++++
+ arch/riscv/include/asm/Kbuild                 |  4 +-
+ arch/riscv/include/asm/spinlock.h             | 43 +++++++++++++++++++
+ arch/riscv/kernel/setup.c                     | 38 ++++++++++++++++
+ include/asm-generic/qspinlock.h               |  2 +
+ include/asm-generic/ticket_spinlock.h         |  2 +
+ 7 files changed, 118 insertions(+), 2 deletions(-)
+ create mode 100644 arch/riscv/include/asm/spinlock.h
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index a63578b95c4a..22824dd30175 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -289,6 +289,12 @@ properties:
-             in commit 64074bc ("Update version numbers for Zfh/Zfinx") of
-             riscv-isa-manual.
+diff --git a/Documentation/features/locking/queued-spinlocks/arch-support.txt b/Documentation/features/locking/queued-spinlocks/arch-support.txt
+index 22f2990392ff..cf26042480e2 100644
+--- a/Documentation/features/locking/queued-spinlocks/arch-support.txt
++++ b/Documentation/features/locking/queued-spinlocks/arch-support.txt
+@@ -20,7 +20,7 @@
+     |    openrisc: |  ok  |
+     |      parisc: | TODO |
+     |     powerpc: |  ok  |
+-    |       riscv: | TODO |
++    |       riscv: |  ok  |
+     |        s390: | TODO |
+     |          sh: | TODO |
+     |       sparc: |  ok  |
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index ef55ab94027e..c9ff8081efc1 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -79,6 +79,7 @@ config RISCV
+ 	select ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP
+ 	select ARCH_WANTS_NO_INSTR
+ 	select ARCH_WANTS_THP_SWAP if HAVE_ARCH_TRANSPARENT_HUGEPAGE
++	select ARCH_WEAK_RELEASE_ACQUIRE if ARCH_USE_QUEUED_SPINLOCKS
+ 	select BINFMT_FLAT_NO_DATA_START_OFFSET if !MMU
+ 	select BUILDTIME_TABLE_SORT if MMU
+ 	select CLINT_TIMER if RISCV_M_MODE
+@@ -488,6 +489,34 @@ config NODES_SHIFT
+ 	  Specify the maximum number of NUMA Nodes available on the target
+ 	  system.  Increases memory reserved to accommodate various tables.
  
-+        - const: ziccrse
-+          description:
-+            The standard Ziccrse extension which provides forward progress
-+            guarantee on LR/SC sequences, as introduced in the riscv profiles
-+            specification v0.9.2.
++choice
++	prompt "RISC-V spinlock type"
++	default RISCV_COMBO_SPINLOCKS
 +
-         - const: zk
-           description:
-             The standard Zk Standard Scalar cryptography extension as ratified
++config RISCV_TICKET_SPINLOCKS
++	bool "Using ticket spinlock"
++
++config RISCV_QUEUED_SPINLOCKS
++	bool "Using queued spinlock"
++	depends on SMP && MMU && NONPORTABLE
++	select ARCH_USE_QUEUED_SPINLOCKS
++	help
++	  The queued spinlock implementation requires the forward progress
++	  guarantee of cmpxchg()/xchg() atomic operations: CAS with Zabha or
++	  LR/SC with Ziccrse provide such guarantee.
++
++	  Select this if and only if Zabha or Ziccrse is available on your
++	  platform.
++
++config RISCV_COMBO_SPINLOCKS
++	bool "Using combo spinlock"
++	depends on SMP && MMU
++	select ARCH_USE_QUEUED_SPINLOCKS
++	help
++	  Embed both queued spinlock and ticket lock so that the spinlock
++	  implementation can be chosen at runtime.
++endchoice
++
+ config RISCV_ALTERNATIVE
+ 	bool
+ 	depends on !XIP_KERNEL
+diff --git a/arch/riscv/include/asm/Kbuild b/arch/riscv/include/asm/Kbuild
+index 5c589770f2a8..1c2618c964f0 100644
+--- a/arch/riscv/include/asm/Kbuild
++++ b/arch/riscv/include/asm/Kbuild
+@@ -5,10 +5,12 @@ syscall-y += syscall_table_64.h
+ generic-y += early_ioremap.h
+ generic-y += flat.h
+ generic-y += kvm_para.h
++generic-y += mcs_spinlock.h
+ generic-y += parport.h
+-generic-y += spinlock.h
+ generic-y += spinlock_types.h
++generic-y += ticket_spinlock.h
+ generic-y += qrwlock.h
+ generic-y += qrwlock_types.h
++generic-y += qspinlock.h
+ generic-y += user.h
+ generic-y += vmlinux.lds.h
+diff --git a/arch/riscv/include/asm/spinlock.h b/arch/riscv/include/asm/spinlock.h
+new file mode 100644
+index 000000000000..503aef31db83
+--- /dev/null
++++ b/arch/riscv/include/asm/spinlock.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++
++#ifndef __ASM_RISCV_SPINLOCK_H
++#define __ASM_RISCV_SPINLOCK_H
++
++#ifdef CONFIG_RISCV_COMBO_SPINLOCKS
++#define _Q_PENDING_LOOPS	(1 << 9)
++
++#define __no_arch_spinlock_redefine
++#include <asm/ticket_spinlock.h>
++#include <asm/qspinlock.h>
++#include <asm/alternative.h>
++
++DECLARE_STATIC_KEY_TRUE(qspinlock_key);
++
++#define SPINLOCK_BASE_DECLARE(op, type, type_lock)			\
++static __always_inline type arch_spin_##op(type_lock lock)		\
++{									\
++	if (static_branch_unlikely(&qspinlock_key))			\
++		return queued_spin_##op(lock);				\
++	return ticket_spin_##op(lock);					\
++}
++
++SPINLOCK_BASE_DECLARE(lock, void, arch_spinlock_t *)
++SPINLOCK_BASE_DECLARE(unlock, void, arch_spinlock_t *)
++SPINLOCK_BASE_DECLARE(is_locked, int, arch_spinlock_t *)
++SPINLOCK_BASE_DECLARE(is_contended, int, arch_spinlock_t *)
++SPINLOCK_BASE_DECLARE(trylock, bool, arch_spinlock_t *)
++SPINLOCK_BASE_DECLARE(value_unlocked, int, arch_spinlock_t)
++
++#elif defined(CONFIG_RISCV_QUEUED_SPINLOCKS)
++
++#include <asm/qspinlock.h>
++
++#else
++
++#include <asm/ticket_spinlock.h>
++
++#endif
++
++#include <asm/qrwlock.h>
++
++#endif /* __ASM_RISCV_SPINLOCK_H */
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index a2cde65b69e9..b811fa331982 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -244,6 +244,43 @@ static void __init parse_dtb(void)
+ #endif
+ }
+ 
++#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
++DEFINE_STATIC_KEY_TRUE(qspinlock_key);
++EXPORT_SYMBOL(qspinlock_key);
++#endif
++
++static void __init riscv_spinlock_init(void)
++{
++	char *using_ext = NULL;
++
++	if (IS_ENABLED(CONFIG_RISCV_TICKET_SPINLOCKS)) {
++		pr_info("Ticket spinlock: enabled\n");
++		return;
++	}
++
++	if (IS_ENABLED(CONFIG_RISCV_ISA_ZABHA) &&
++	    IS_ENABLED(CONFIG_RISCV_ISA_ZACAS) &&
++	    riscv_isa_extension_available(NULL, ZABHA) &&
++	    riscv_isa_extension_available(NULL, ZACAS)) {
++		using_ext = "using Zabha";
++	} else if (riscv_isa_extension_available(NULL, ZICCRSE)) {
++		using_ext = "using Ziccrse";
++	}
++#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
++	else {
++		static_branch_disable(&qspinlock_key);
++		pr_info("Ticket spinlock: enabled\n");
++
++		return;
++	}
++#endif
++
++	if (!using_ext)
++		pr_err("Queued spinlock without Zabha or Ziccrse");
++	else
++		pr_info("Queued spinlock %s: enabled\n", using_ext);
++}
++
+ extern void __init init_rt_signal_env(void);
+ 
+ void __init setup_arch(char **cmdline_p)
+@@ -297,6 +334,7 @@ void __init setup_arch(char **cmdline_p)
+ 	riscv_set_dma_cache_alignment();
+ 
+ 	riscv_user_isa_enable();
++	riscv_spinlock_init();
+ }
+ 
+ bool arch_cpu_is_hotpluggable(int cpu)
+diff --git a/include/asm-generic/qspinlock.h b/include/asm-generic/qspinlock.h
+index 0655aa5b57b2..bf47cca2c375 100644
+--- a/include/asm-generic/qspinlock.h
++++ b/include/asm-generic/qspinlock.h
+@@ -136,6 +136,7 @@ static __always_inline bool virt_spin_lock(struct qspinlock *lock)
+ }
+ #endif
+ 
++#ifndef __no_arch_spinlock_redefine
+ /*
+  * Remapping spinlock architecture specific functions to the corresponding
+  * queued spinlock functions.
+@@ -146,5 +147,6 @@ static __always_inline bool virt_spin_lock(struct qspinlock *lock)
+ #define arch_spin_lock(l)		queued_spin_lock(l)
+ #define arch_spin_trylock(l)		queued_spin_trylock(l)
+ #define arch_spin_unlock(l)		queued_spin_unlock(l)
++#endif
+ 
+ #endif /* __ASM_GENERIC_QSPINLOCK_H */
+diff --git a/include/asm-generic/ticket_spinlock.h b/include/asm-generic/ticket_spinlock.h
+index cfcff22b37b3..325779970d8a 100644
+--- a/include/asm-generic/ticket_spinlock.h
++++ b/include/asm-generic/ticket_spinlock.h
+@@ -89,6 +89,7 @@ static __always_inline int ticket_spin_is_contended(arch_spinlock_t *lock)
+ 	return (s16)((val >> 16) - (val & 0xffff)) > 1;
+ }
+ 
++#ifndef __no_arch_spinlock_redefine
+ /*
+  * Remapping spinlock architecture specific functions to the corresponding
+  * ticket spinlock functions.
+@@ -99,5 +100,6 @@ static __always_inline int ticket_spin_is_contended(arch_spinlock_t *lock)
+ #define arch_spin_lock(l)		ticket_spin_lock(l)
+ #define arch_spin_trylock(l)		ticket_spin_trylock(l)
+ #define arch_spin_unlock(l)		ticket_spin_unlock(l)
++#endif
+ 
+ #endif /* __ASM_GENERIC_TICKET_SPINLOCK_H */
 -- 
 2.39.2
 
