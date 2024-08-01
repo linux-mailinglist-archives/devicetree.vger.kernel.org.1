@@ -1,65 +1,53 @@
-Return-Path: <devicetree+bounces-90399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C026C945343
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 21:22:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A060F94534C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 21:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03BB1C22FCE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:22:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B0E5B26582
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFB0148FF7;
-	Thu,  1 Aug 2024 19:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyJ0OlDS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21A1148FF7;
+	Thu,  1 Aug 2024 19:24:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321921494A4;
-	Thu,  1 Aug 2024 19:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC6713D8B2;
+	Thu,  1 Aug 2024 19:24:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722540135; cv=none; b=LVTq6aOPpZn2VvyQYnjIh84+zPBzm+Tcfy1SzdOOtU3Abk89+3uS077dk7zDkdwehgo7r7pwbvyshnQezbs7W7vbNbhBopt4lwu2BIeM8w0yQpSJzonYAOleaLegJndq9UCAwxd/WnzWSZqXWI8of1DD8WwZAijStFCE1KUNESo=
+	t=1722540246; cv=none; b=Z9rZfVPqQoPsCVpzNxxLX1UfwFdceVosycAHvnDbhnE6OkkPIeaVRtaTU3j625P3IdQa2JeX4sqhcKftid1kv00cWhSayr3N2CqgnxwnkBPFWgA11RJPTapeXplnx0AhmnGo+NrUQz115NpANlMaM9nO+A7JfuSNQMtutLmYq5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722540135; c=relaxed/simple;
-	bh=etTOiz6nxoka2hkDVBziQ4wSJJjNFpGUAvUQRO9APN4=;
+	s=arc-20240116; t=1722540246; c=relaxed/simple;
+	bh=nVaGm30wehDUSM+FZVnkyp3r6UoMaU+Lyu8afDcjiPc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pxv9vnGk5I4IIEJ+8GMxrpjoYtegEpf1Ms989LO/Q2Mw80CpCnWU3gGaQMVrKpCwj77jI3TsRzeGrs1CurxNS/gpyjZSytnJwcgNlBZZsA+nkp8cE+x+/iOXZw8D4hRLF3Fheadjev3xbRqLjXRpFAdtjEZa0zjA00PRcCBSDUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyJ0OlDS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2CA9C32786;
-	Thu,  1 Aug 2024 19:22:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722540134;
-	bh=etTOiz6nxoka2hkDVBziQ4wSJJjNFpGUAvUQRO9APN4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fyJ0OlDS6nz2rvMAVZxE898JrmWPBZQ4iT+UCEFLaLYSe2ZmwJ0QKnZAml3yCrqYi
-	 Gj/a+RdvM31tGy1br2ZNgGf4vnojnpK0xzuGbPzQlspH1ZJb4JJdXc1hYbkOjp4T2Q
-	 ZNTGgK/DET+bNumC04BVk2oaxUiYRa34ilWAFDJYtO5YnM+XhqRuCqskQud/eOMAx8
-	 dDpjDURJJqUZ7FYn19Uw/KMYrXeRbJToMaGO3Mv1hvPP2GiFRd/P4mNrkbN5HtD7DD
-	 uzbKA1jrvjNGjcLiEGwD557kcHSVBav4n9btuLLahVt8LOEnt/s6PhY7Gof1knVs5x
-	 9p+OtK6PfpuSA==
-Date: Thu, 1 Aug 2024 20:22:09 +0100
-From: Simon Horman <horms@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-can@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>
-Subject: Re: [PATCH v3] dt-bindings: can: renesas,rcar-canfd: Document R-Car
- V4M support
-Message-ID: <20240801192209.GA2495006@kernel.org>
-References: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oj7RhGkRak+VMWLC1UMVlXm2Ko6yTYEohDW+bxeOb/QacFF8yrQVEg2XUFzb4tj2+2icSPT6FP79Lr8xsPwWdgUqsIRFY8HKJ6xHqTWp7K9dQ2Huhp9zdTaAG87UrBAIO/z01ir9jkhM6BJwbkHOjjcwPyEnfM4/IANKFlMi+ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F356E1007;
+	Thu,  1 Aug 2024 12:24:29 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2D2403F64C;
+	Thu,  1 Aug 2024 12:24:02 -0700 (PDT)
+Date: Thu, 1 Aug 2024 20:23:59 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, devicetree@vger.kernel.org,
+	sudeep.holla@arm.com, james.quinlan@broadcom.com,
+	f.fainelli@gmail.com, vincent.guittot@linaro.org,
+	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+	quic_sibis@quicinc.com, dan.carpenter@linaro.org,
+	souvik.chakravarty@arm.com, robh@kernel.org, krzk+dt@kernel.org
+Subject: Re: [PATCH v1 0/6] Add SCMI transport descriptors
+Message-ID: <ZqvgzwDtxdOuM1WJ@pluto>
+References: <20240730144707.1647025-1-cristian.marussi@arm.com>
+ <9c476b12-a4ca-43f7-875a-eb0a1032c494@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,25 +56,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
+In-Reply-To: <9c476b12-a4ca-43f7-875a-eb0a1032c494@quicinc.com>
 
-On Thu, Aug 01, 2024 at 04:03:17PM +0200, Geert Uytterhoeven wrote:
-> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+On Thu, Aug 01, 2024 at 12:17:36PM -0700, Nikunj Kela wrote:
 > 
-> Document support for the CAN-FD Interface on the Renesas R-Car V4M
-> (R8A779H0) SoC, which supports up to four channels.
+> On 7/30/2024 7:47 AM, Cristian Marussi wrote:
+> > Hi,
+> >
+> > this small series is an extended version of this recent, already reviewed,
+> > series [1] posted by Peng to add a new arm,scmi property to describe some
+> > platform-specific SCMI timeout constraints.
+> >
+> > On top of that, this adds 2 more properties to describe a couple more
+> > platform-specific transport characteristics.
+> >
+> > To minimize conflicts, the whole series is based on top of another recent
+> > series, which represents a rework of the core SCMI stack to split SCMI
+> > transports as standalone drivers. [2]
+> >
+> > Thanks,
+> > Cristian
+> >
+> > [1]: https://lore.kernel.org/linux-arm-kernel/20240709140957.3171255-1-peng.fan@oss.nxp.com/
+> > [2]: https://lore.kernel.org/linux-arm-kernel/20240730133318.1573765-1-cristian.marussi@arm.com/T/#t
+> >
+> > ---
 > 
-> The CAN-FD module on R-Car V4M is very similar to the one on R-Car V4H,
-> but differs in some hardware parameters, as reflected by the Parameter
-> Status Information part of the Global IP Version Register.  However,
-> none of this parameterization should have any impact on the driver, as
-> the driver does not access any register that is impacted by the
-> parameterization (except for the number of channels).
+> Thanks Cristian for the series. I have validated them on Qualcomm
+> SA8255p(to be upstreamed) Ride platform.
 > 
-> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> [geert: Clarify R-Car V4M differences]
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Reviewed-by: Simon Horman <horms@kernel.org>
+Thanks for testing...does this solves your issues ?
+(assuming that will go through as it is ...)
 
+Cristian
 
