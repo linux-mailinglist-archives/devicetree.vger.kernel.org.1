@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC919445CA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:46:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56239445D2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F5A41C209DF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:46:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C1F91F22BF9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC8614E2C0;
-	Thu,  1 Aug 2024 07:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AB1157490;
+	Thu,  1 Aug 2024 07:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fOrnxS/F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tUnRlaZZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B60F101EE;
-	Thu,  1 Aug 2024 07:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003B8141987;
+	Thu,  1 Aug 2024 07:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722498382; cv=none; b=uF2O9+R4a3u/uEywEfagyWATrGhTmGkK1nH6Sx8RfcoGgr9Gfb8BNCzzfVSTLZcYok6PscL0ZKR5+IiPzSNWSpSXB7+FQICpuTTRugslZA3Z+u4UcQOMaHKVbg3yta6bo3hgr87eekDCWTTnCBDtCxm1dqnwENIFt6gwZ27gTPQ=
+	t=1722498520; cv=none; b=M1mBlCqPZRy+YHqpD4YWPBh1fsqBZpEEnz1/CUmsmWx33nmAipFmX68M3EiNOIaPmrW/HjnC2uOJ68xdLSgiSXAcLmRm1h7Qp3FMi0uqPiSA1yyURB1RZ3Jr/xImBxKGghfPyFdvDLLw0fYNlqxUl13cN2aTPVYdoz+Mm1fIeJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722498382; c=relaxed/simple;
-	bh=eYAveCiRlZEPhVPBUUypSgw8cet8BJ1xjTZb33ozQnM=;
+	s=arc-20240116; t=1722498520; c=relaxed/simple;
+	bh=e9cIP3qhP1pkmPzNuPzboByz/ORYieGo9xdt3NHBKSY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d3nZdT6tvZDBOvwrGSdlK/5DhGfkK6vS6KUdgbJQY+Tz398qnxGVC3DDlP8dSEbwpGrseQDp9H2Hgq8AVRhBmlQmlRIDVtXHHTLB26iJiqhjhbg73Ehu7JcDwYsYN5NzeTwxVKRjMbqZav+UovSravz8Gh+QXZVqjjtBPoeGt+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fOrnxS/F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69B8DC4AF0C;
-	Thu,  1 Aug 2024 07:46:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=K5Ab/Lezn5qX8a5mCg59OqBBCIYCAHuJlMI7uH3Vkn+42h1AicRrt3ai1ru8ZG9MSv551gMPyDQhIRr3rZ56wTq6w12CUtTlDFkW+GPapOd0LMRhJ1IOEfvKWVHChSTKuheRouyypSrKIEamEaVc/fneDqlWHEBp/nq72zjLwQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tUnRlaZZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36CF1C4AF0A;
+	Thu,  1 Aug 2024 07:48:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722498382;
-	bh=eYAveCiRlZEPhVPBUUypSgw8cet8BJ1xjTZb33ozQnM=;
+	s=k20201202; t=1722498519;
+	bh=e9cIP3qhP1pkmPzNuPzboByz/ORYieGo9xdt3NHBKSY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fOrnxS/FT3kHFblVlWj41FiBqXkofZ8ouqgNuFqGFa8txXPksQvCz9Y1GeqIxoH8S
-	 tEpMDiCoi6dqVl3ZB8fbExnmsxfZ/K8vOi4Sj2NX7PN5L9gy3RkRtygQ4rwuf+1JGV
-	 dc4WmGeML7P9VWP3SKlhq4VcaPZn3vhTc6Jj4yu4nSYrTaWMjb1quymVfgI2QmShgW
-	 mST+UF4MG+an5w0cA3jk6uL2TpYNquP+5dKuvUWV2w3PrtHsDelyEzf2vfcU9fFE2q
-	 3NnXJ0bT3TnlJJb66xcc420m2ZjaoSoOD9B69vwYVAIdzH9J9pnnHXpKEgF63+9Ylx
-	 az9x2BURlR5jQ==
-Message-ID: <41a8e42b-69d7-49ef-97bf-84f260e2e709@kernel.org>
-Date: Thu, 1 Aug 2024 09:46:17 +0200
+	b=tUnRlaZZ4uRmLHNtQEGp7hGgeDpdLABYtPPHhNCa2loIoEVtDD1gG5FxYWlBFk+BM
+	 qgtpBCwTD8N6BFoOYe02JZRgdb+h5wmpOBf56dvzsY2Cbv3bZTQAp36PVDx/VoGDxo
+	 Upb2Ueio6U5Q5e1tuUNuTTST5BMr8UQ0K+h2cW1mfrb8pnqWi/oONEBgWQ9m62WZti
+	 WCRxkt77N2bmH8N4mfCTqfdAp26BIT7iYOo6Hoz3BQoMPxKao111di7PfvsnKrTVQp
+	 k/Bd2biwG/+TDNZ1kLeyBmtBfjnVuhiqgg6MsS0+L6nRDpNYSUD8IAWZtQ20NlSuCz
+	 KFNIPqdOi+OMQ==
+Message-ID: <0775329b-48cb-426d-a488-0413fc3231d0@kernel.org>
+Date: Thu, 1 Aug 2024 09:48:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] dt-bindings: soc: qcom: eud: Add usb role switch
- property
-To: Elson Serrao <quic_eserrao@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
- <20240730222439.3469-3-quic_eserrao@quicinc.com>
- <7aec2a72-3276-4837-87fb-ac974588fd53@kernel.org>
- <cc02dc38-3986-4b28-a167-30150ea4cc6c@quicinc.com>
+Subject: Re: [PATCH v2] MAINTAINERS: thermal: samsung: add myself as
+ maintainer of the driver
+To: Mateusz Majewski <m.majewski2@samsung.com>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, ALIM AKHTAR <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Anand Moon <linux.amoon@gmail.com>
+References: <CGME20240731211356eucas1p287adaf8a55c7c3e37c9ac8b36069b788@eucas1p2.samsung.com>
+ <20240731211346.59027-1-m.majewski2@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,45 +113,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <cc02dc38-3986-4b28-a167-30150ea4cc6c@quicinc.com>
+In-Reply-To: <20240731211346.59027-1-m.majewski2@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 02:16, Elson Serrao wrote:
+On 31/07/2024 23:13, Mateusz Majewski wrote:
+> I am familiar with the code of this driver, having contributed to it
+> before. I also have access to most of the supported SoCs for testing. I
+> am going to have more time to help with this code, so I would love to do
+> so slightly more formally.
 > 
+> This has been discussed previously in
+> https://lore.kernel.org/lkml/e73e1a14-dfa0-4a36-bc6e-5d6421553788@kernel.org
+> where Krzysztof Kozlowski (as one of the existing maintainers of this
+> driver) has reacted positively to the idea of this.
 > 
-> On 7/30/2024 10:36 PM, Krzysztof Kozlowski wrote:
->> On 31/07/2024 00:24, Elson Roy Serrao wrote:
->>> EUD hub is physically present in between the USB connector and the
->>> USB controller. So the role switch notifications originating from
->>> the connector should route through EUD. Hence to interpret the usb
->>> role assigned by the connector, role switch property is needed.
->>>
->>> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
->>> index fca5b608ec63..0fa4608568d0 100644
->>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
->>> @@ -37,6 +37,10 @@ properties:
->>>      items:
->>>        - const: usb2-phy
->>>  
->>> +  usb-role-switch:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description: Support role switch.
->>
->> So both EUD and DWC3 controller (as this binding states) are role switching?
->>
-> 
-> Yes. EUD would receive roles from the connector and relay it to the DWC3 controller. In addition to these roles, the DWC3 controller
-> would also receive roles from EUD itself (related to USB attach/detach events).
+> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
 
-Does not look right. Seems like you add something because it is easier
-to code in drivers.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
