@@ -1,108 +1,145 @@
-Return-Path: <devicetree+bounces-90296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E84A944D79
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:52:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B7ED944D98
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80B01F24F2B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:52:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA32A282F74
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:03:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889FC1A2C20;
-	Thu,  1 Aug 2024 13:52:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TPrQic7S"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5B41A38C1;
+	Thu,  1 Aug 2024 14:03:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D711D16EB57;
-	Thu,  1 Aug 2024 13:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390BD189B98
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 14:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722520350; cv=none; b=f8U2V0Fzk3BUrD4Jbjy1T9au3OtyAJ88o2p+hz0qs/JPUg80ZOzIE0hDr5tbsLhZ+t94QMsd5a2HxALpjRSDg2rMwS0M1jI8P8ZNWRvbNUfmRgVUF5tQ5dYbxhUvUjYcTM20s5ZcW8CZRIPxMWSUj/hf2CJszASnqLLfRYey2ho=
+	t=1722521010; cv=none; b=l2uKqWT2SjzHjMCR9DHBhtSdh/vUEUMeXlPcQA80Jiqm0YexPOm1yVzLFicu11AAuePMYErJvA+Mplt82GNQDGGA8WD8U/30QWwFWj0V5eokIYd+bv/YkGFSvK5UjqwT0ukfJKzmQN6gx59rG4PcNX0Lm/tRhKGGHrsBOZ4DOBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722520350; c=relaxed/simple;
-	bh=JAqMcM7uR9rP2Jlvmq2labce4w7cAXaFQ5PgocCyBtI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mj2lwCXwr/3CoM9rmap6wS4/jd65l/B8XCOA0BSRLUSpw+2UAmOdH9u1YQ+BdIGB6CuJ+Hf+wvefbfIErc26MDBXQDmJDmgtnMqNBJw/JsbdkATUes/53P/nRFpEmSgekiVZVqineL7g4HZ4MGLrwp4hiKBAQ8KSFQJV3AGskDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TPrQic7S; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f0dfdc9e16so87607221fa.2;
-        Thu, 01 Aug 2024 06:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722520347; x=1723125147; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3GzdUtWjktANRszP0tMrsKQuTHgq6vxP6NFWVMXHZE=;
-        b=TPrQic7SQ7m7DTFRt26VJA+JtmTeL4yl0qjXvphT3YlOe/L/AlimNrcJde0xfjfm4X
-         pqMFm0NpXPTwrK+fhLNHoFs0DWRcZSzkzig/19WXd+3UC8i4TG36mGvr2rJkDAgC4QbT
-         ivASurSynyFwmVdp/eJz5ES8S8OXLR9RvwfuHAjx+aDhZ766yv58P0flKrnpLyFM3rLS
-         Owa7FnFhTuplP8Gv9YIfjkqeli881avX1PYi1mhDGjPtzW0xmmTEw8wOl4ggmlKNxqW6
-         m3z/jDo+KRQ2A30Bltop0SefUY6TaA+4MiOcoEhBD12PE0YVLk5t5vjkhkjPYnJ7eqPI
-         KczQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722520347; x=1723125147;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s3GzdUtWjktANRszP0tMrsKQuTHgq6vxP6NFWVMXHZE=;
-        b=KWj4VZMDGjilFTIKaGkVVOC0LuosEY2B9uVxNZ6OCw+eVRFWujreSQ0Le3UwuPwA0i
-         LTgNa9Ci8WlgLRL1G0lY5Mvvr6wZh5s8gZp/gJusgoHaTWPWSrJSx6xPoOgmWNx9FTeL
-         GeBASdgLH3jzjM1JF7B253at1V3qCkqDxwv3p/U5PvKf88+dlOlZQyxZ+kWCfk7W+eML
-         PaUck49RKH2QEf7We6wiTJ89k9nqrwEHIX6IMZXsMh4NDr6YJnJ7BDd8YanfFrGxGAy3
-         eC3GkQ+AtZbcUuHFtEoD2SnshG5zPssVpcjV8HzkWSguR96fiiXv8vK5XIs7Gu28K/SZ
-         rPlg==
-X-Forwarded-Encrypted: i=1; AJvYcCVVlqWp8tns4EYDVwoMVOUrdqjhsCBcjPeLG/s+k2b5pPqz9/7xy9yj3I44QxP79YOXkp2psat18JLvgpc/63Xal9Dgfm6h
-X-Gm-Message-State: AOJu0Yye+Xx7EfByZ9orerVHoRape2O/s4OkddM8RaHVuUYY0arGS9xN
-	Ht+5D/cLdhNudkSGq7fKDrL75dj20RmWricD3pC5XrGvTyqyhHpe
-X-Google-Smtp-Source: AGHT+IF/lFEv5/DOPkw6lvIFumrbEATJpAQpadqN5X7Yp3bUFn8h8snpotwSs6NxJXrplYunQaVKVw==
-X-Received: by 2002:a2e:3c18:0:b0:2ee:8453:5164 with SMTP id 38308e7fff4ca-2f15a9f899dmr2812791fa.0.1722520346480;
-        Thu, 01 Aug 2024 06:52:26 -0700 (PDT)
-Received: from skbuf ([188.25.135.70])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282baf3a1csm56611485e9.35.2024.08.01.06.52.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 06:52:25 -0700 (PDT)
-Date: Thu, 1 Aug 2024 16:52:23 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: vtpieter@gmail.com
-Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-	o.rempel@pengutronix.de,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH net-next 0/2] implement microchip,no-tag-protocol flag
-Message-ID: <20240801135223.l47anh2ew6xxcznw@skbuf>
-References: <20240801123143.622037-1-vtpieter@gmail.com>
- <20240801134401.h24ikzuoiakwg4i4@skbuf>
+	s=arc-20240116; t=1722521010; c=relaxed/simple;
+	bh=4B5qeLnXbkiU9/+d8ETfOpEIsw0uhhnpcY7UwqgINbU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bYLKTE3TOPav60JpNW1kCZdwZ3j9wi1+N5XkeSWeBcC4f/1iiiRnCxtrMbO5kXvTFYy1bBwlxvBl1R31pJlthwPEUtHyNTXCkmRby9FB1MeiOfvhdkkgbkQ6ur7uYvWiNpmyYUbmjMeJDjjjpIFl9VxnlrE9R6TeXs8Xkw/uoSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:fff7:d11a:41d8:a195])
+	by michel.telenet-ops.be with bizsmtp
+	id ue3J2C00d5XJrhx06e3KpT; Thu, 01 Aug 2024 16:03:25 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sZWOM-004SD5-LV;
+	Thu, 01 Aug 2024 16:03:18 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sZWOk-00HOMB-Q8;
+	Thu, 01 Aug 2024 16:03:18 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-can@vger.kernel.org
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v3] dt-bindings: can: renesas,rcar-canfd: Document R-Car V4M support
+Date: Thu,  1 Aug 2024 16:03:17 +0200
+Message-Id: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240801134401.h24ikzuoiakwg4i4@skbuf>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 01, 2024 at 04:44:01PM +0300, Vladimir Oltean wrote:
-> 	ethernet-switch@N {
-> 		dsa-tag-protocol = "none";
-> 	};
+From: Duy Nguyen <duy.nguyen.rh@renesas.com>
 
-My mistake - this was supposed to be:
+Document support for the CAN-FD Interface on the Renesas R-Car V4M
+(R8A779H0) SoC, which supports up to four channels.
 
-	ethernet-switch@N {
-		ethernet-ports {
-			/* This is the CPU port */
-			ethernet-port@0 {
-				ethernet = <&conduit>;
-				dsa-tag-protocol = "none";
-			};
-		};
-	};
+The CAN-FD module on R-Car V4M is very similar to the one on R-Car V4H,
+but differs in some hardware parameters, as reflected by the Parameter
+Status Information part of the Global IP Version Register.  However,
+none of this parameterization should have any impact on the driver, as
+the driver does not access any register that is impacted by the
+parameterization (except for the number of channels).
+
+Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
+[geert: Clarify R-Car V4M differences]
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v3:
+  - Add more clarification,
+
+v2:
+  - Drop RFC state now it works.
+
+Changes compared to the BSP:
+  - Restrict number of channels to four.
+---
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 22 ++++++++++++++-----
+ 1 file changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+index d3f45d29fa0a550a..7c5ac5d2e880bbb8 100644
+--- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+@@ -32,6 +32,7 @@ properties:
+           - enum:
+               - renesas,r8a779a0-canfd     # R-Car V3U
+               - renesas,r8a779g0-canfd     # R-Car V4H
++              - renesas,r8a779h0-canfd     # R-Car V4M
+           - const: renesas,rcar-gen4-canfd # R-Car Gen4
+ 
+       - items:
+@@ -163,14 +164,23 @@ allOf:
+           maxItems: 1
+ 
+   - if:
+-      not:
+-        properties:
+-          compatible:
+-            contains:
+-              const: renesas,rcar-gen4-canfd
++      properties:
++        compatible:
++          contains:
++            const: renesas,r8a779h0-canfd
+     then:
+       patternProperties:
+-        "^channel[2-7]$": false
++        "^channel[5-7]$": false
++    else:
++      if:
++        not:
++          properties:
++            compatible:
++              contains:
++                const: renesas,rcar-gen4-canfd
++      then:
++        patternProperties:
++          "^channel[2-7]$": false
+ 
+ unevaluatedProperties: false
+ 
+-- 
+2.34.1
+
 
