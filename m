@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18876944DD5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:19:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B2D944DE4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9A81B215A4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:19:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F36D1F250C2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289C91A3BC6;
-	Thu,  1 Aug 2024 14:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC381A4B27;
+	Thu,  1 Aug 2024 14:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOoUdKRU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ja5VYown"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19F116DECD;
-	Thu,  1 Aug 2024 14:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE481A489D;
+	Thu,  1 Aug 2024 14:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722521991; cv=none; b=Tz5gWmhBlvcHVizLtrojXNVKQUAKB5oJUIBnLBIlFht0nBx0ZDwmrz7r39NNs1CBMztYfqCpFyyxQ7TsQSqqPMzBx8v5x0afyFSUJ7lR80Hrlo9EEv/GYUDf9Fkz6sOiW0g1+CflVLeGSvLRQTIRJBqZZIfi2X5VuqQGDoigcF0=
+	t=1722522233; cv=none; b=jwgfMiGit6t71h9ZMzo+4vtmLav7rZK7BUV5821u00+Tl1IiOkgC3PK8Lp+v6OdgJSAvSyka5kUvKLHkHolFzJt628Rj2Z6cYgkT6x7Fx041tG8tqf3LKK8L/5mJAGyj/r8FGKupeTaSDilWzWIeaYjEodQzBQpGAzQ0eda1/4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722521991; c=relaxed/simple;
-	bh=aNB+sW/K2PBWARbLRv7/PfDYY/FYQx+LyosJMWNt6EU=;
+	s=arc-20240116; t=1722522233; c=relaxed/simple;
+	bh=h8imtv17rvrOvyKv4gWYuT6nIHwd6hUakN89NTUAn6g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PmIhonh5ZBmVYP5h5fvfJutqDiGDoHMjxV8mrw7tLnpEbc4ZfwdY6k3d65LAJ+wTJUg5I98PJR0i+rA/cm/o+oTWhNQ8SCPQCXt/WY9i6RujUzNxaugo3XIikeRep94AfMNYMqyH4SnzSL0V3KUFtzfkkTuXpYPWjIUi7vK1hjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOoUdKRU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D08C32786;
-	Thu,  1 Aug 2024 14:19:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AqeUwYicAvoR5IZpou7K9lVoGuPRwuaLkptbT7epjXhkG870PZOaXc+G3gTEHODsU2VxVARJjLCRFdDuVRgqXhMc6j32HAMOV/fiXeI/F4cOUXISTAfMxSz1VjtKP7euOcgQcMcJFM/Vbj2m0TY3bfvMBgqi2SMCZNWhflnQTKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ja5VYown; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D74C32786;
+	Thu,  1 Aug 2024 14:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722521990;
-	bh=aNB+sW/K2PBWARbLRv7/PfDYY/FYQx+LyosJMWNt6EU=;
+	s=k20201202; t=1722522232;
+	bh=h8imtv17rvrOvyKv4gWYuT6nIHwd6hUakN89NTUAn6g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hOoUdKRU0/ijV6RpaJpNf7iRjJ6pD3ThqTuhJ043RsnPA0DPHDxFVw3ppjg/DqWdW
-	 9yu8GcWJyD3yJjm8ZH0cq6/pRqQR1nP0dYFWCiDFgw50PVlF/p52bbW+gbS2uURa+s
-	 7a48Cv3gqfoNr2E7RBia0IEI35equz+qX44kU//FZfHCBpX255yOVWiutwaWZt/BlE
-	 qZx02/GHRHPiJTLnSvZPnARkhOcDOhY7m3qcR93IpHqb9M4C2kpASLamO5eIO9Ajey
-	 5AqvljzTdCEoEHBjA1lFbs4KzngDTHa0y4xzHxgDkDC+28/wb7k8C+BWDUqx41TeAs
-	 pqL+6QZo/YeyQ==
-Message-ID: <3dda0b7e-36ed-497c-ba6c-9b25ca2f0738@kernel.org>
-Date: Thu, 1 Aug 2024 16:19:43 +0200
+	b=Ja5VYownUqOdOYkYE72eDukM3bmYiamU/KPQL0ZfT3UItNb57INa8foQEpDTSn5H7
+	 KFMuWQcWqBHH4UbKZMhZ/zxhQWOPQ7EuMUHUIyZHXm5DPSQfl1H+eFBuFNHZ82YsXM
+	 I+PcDYIoGl76Wg0U63W86ZOe/jr62yN+qugsm8UeZArXPBSKclJlk8qOm7PjPGgARm
+	 sfuBvFDolYotGzQ6/QJC54S4oPhzvhMrzUT7cPtA3nIgdDmG9wuV0TbCbWIU9XJVv3
+	 P2i9BUjIfYqojvjp2NDBWGdJItwall8rxsY7kpTT38PNtJ5ePGneA0G5+C7ZYC+A7q
+	 WuKfufUPglQ4A==
+Message-ID: <ea7fd29c-c320-45b7-8da6-4819ec76c543@kernel.org>
+Date: Thu, 1 Aug 2024 16:23:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: Add support for Broadcom STB
- pin controller
-To: "Ivan T. Ivanov" <iivanov@suse.de>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, florian.fainelli@broadcom.com, wahrenst@gmx.net,
- andrea.porta@suse.com, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240731062814.215833-1-iivanov@suse.de>
- <20240731062814.215833-2-iivanov@suse.de>
- <dcc13c9a-ea74-4fa4-9c74-57e576e01ae6@kernel.org>
- <20240801083820.5my7yc3zxq64gmt5@localhost.localdomain>
+Subject: Re: [PATCH 1/2] dt-bindings: net: motorcomm: Add chip mode cfg
+To: "Frank.Sae" <Frank.Sae@motor-comm.com>, andrew@lunn.ch,
+ hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux@armlinux.org.uk
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, yuanlai.cui@motor-comm.com,
+ hua.sun@motor-comm.com, xiaoyong.li@motor-comm.com,
+ suting.hu@motor-comm.com, jie.han@motor-comm.com
+References: <20240727092009.1108640-1-Frank.Sae@motor-comm.com>
+ <ac84b12f-ae91-4a2f-a5f7-88febd13911c@kernel.org>
+ <f18fa949-b217-4373-82c4-7981872446b4@motor-comm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,29 +107,114 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240801083820.5my7yc3zxq64gmt5@localhost.localdomain>
+In-Reply-To: <f18fa949-b217-4373-82c4-7981872446b4@motor-comm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 10:38, Ivan T. Ivanov wrote:
-> Hi,
+On 01/08/2024 11:49, Frank.Sae wrote:
 > 
-> On 08-01 10:17, Krzysztof Kozlowski wrote:
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,brcmstb-pinctrl.yaml
+> On 7/27/24 02:25, Krzysztof Kozlowski wrote:
+>> On 27/07/2024 11:20, Frank.Sae wrote:
+>>>   The motorcomm phy (yt8821) supports the ability to
+>>>   config the chip mode of serdes.
+>>>   The yt8821 serdes could be set to AUTO_BX2500_SGMII or
+>>>   FORCE_BX2500.
+>>>   In AUTO_BX2500_SGMII mode, SerDes
+>>>   speed is determined by UTP, if UTP link up
+>>>   at 2.5GBASE-T, SerDes will work as
+>>>   2500BASE-X, if UTP link up at
+>>>   1000BASE-T/100BASE-Tx/10BASE-T, SerDes will work
+>>>   as SGMII.
+>>>   In FORCE_BX2500, SerDes always works
+>>>   as 2500BASE-X.
+>> Very weird wrapping.
 >>
->> bcm2712 is Rpi, so not really STB. The name is confusing. Please use
->> compatible as filename, so:
->> brcm,bcm2712-pinctrl.yaml
+>> Please wrap commit message according to Linux coding style / submission
+>> process (neither too early nor over the limit):
+>> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+>>
+>>> Signed-off-by: Frank.Sae<Frank.Sae@motor-comm.com>
+>> Didn't you copy user-name as you name?
 > 
-> According Florian it is:
+> sorry, not understand your mean.
+
+Does your ID (e.g. passport) has exactly that name? With dot? Really?
+
 > 
-> https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com/
+>>> ---
+>>>   .../bindings/net/motorcomm,yt8xxx.yaml          | 17 +++++++++++++++++
+>>>   1 file changed, 17 insertions(+)
+>> Also, your threading is completely broken. Use git send-email or b4.
+> 
+> sorry, not understand your mean of threading broken. the patch used git
+> send-email.
 
-OK, title can be like this, no problem, although then please expand what
-"STB" means.
+Email threading is completely broken. It means all reviewers see it as
+complete unrelated emails which makes any review annoyingly more difficult.
 
-Bindings still are supposed to use compatible as filename.
+
+> 
+> 
+>>> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+>>> index 26688e2302ea..ba34260f889d 100644
+>>> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+>>> @@ -110,6 +110,23 @@ properties:
+>>>         Transmit PHY Clock delay train configuration when speed is 1000Mbps.
+>>>       type: boolean
+>>>   
+>>> +  motorcomm,chip-mode:
+>>> +    description: |
+>>> +      Only for yt8821 2.5G phy, it supports two chip working modes,
+>> Then allOf:if:then disallowing it for the other variant?
+> 
+> sorry, not understand your mean.
+
+So you did not understand anything from any comments?
+
+You miss if:then: block which disallows this for other chips. You claim
+only one device supports it, so why the property should be valid for
+other devices?
+
+
+> 
+> 
+>>> +      one is AUTO_BX2500_SGMII, the other is FORCE_BX2500.
+>>> +      If this property is not set in device tree node then driver
+>>> +      selects chip mode FORCE_BX2500 by default.
+>> Don't repeat constraints in free form text.
+>>
+>>> +      0: AUTO_BX2500_SGMII
+>>> +      1: FORCE_BX2500
+>>> +      In AUTO_BX2500_SGMII mode, serdes speed is determined by UTP,
+>>> +      if UTP link up at 2.5GBASE-T, serdes will work as 2500BASE-X,
+>>> +      if UTP link up at 1000BASE-T/100BASE-Tx/10BASE-T, serdes will
+>>> +      work as SGMII.
+>>> +      In FORCE_BX2500 mode, serdes always works as 2500BASE-X.
+>>
+>> Explain why this is even needed and why "auto" is not correct in all
+>> cases. In commit msg or property description.
+> 
+> yt8821 phy does not support strapping to config the serdes mode, so config the
+> serdes mode by dts instead.
+> 
+> even if auto 2500base-x serdes mode is default mode after phy hard reset, and
+> auto as default must be make sense, but from most our customers's feedback,
+> force 2500base-x serdes mode is used in project usually to adapt to mac's serdes
+> settings. for customer's convenience and use simplicity, force 2500base-x serdes
+> mode selected as default here.
+
+Sorry, this is not a proper sentence and I cannot parse it.
+
+> 
+> 
+>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>> Make it a string, not uint8.
+>>
+> why do you suggest string, the property value(uint8) will be wrote to phy
+> register.
+
+Because it is much more readable. I don't care about your phy register.
 
 Best regards,
 Krzysztof
