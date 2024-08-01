@@ -1,182 +1,123 @@
-Return-Path: <devicetree+bounces-90394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611E79452EA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:40:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3001F9452FB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:49:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8F461F2476F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:40:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D85011F24658
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4168A14A602;
-	Thu,  1 Aug 2024 18:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45950143897;
+	Thu,  1 Aug 2024 18:49:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="qbrmKhMn"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="V/R18hQL";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="TB16bH+7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F4614C5A3
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 18:38:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DEC14373A;
+	Thu,  1 Aug 2024 18:49:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722537512; cv=none; b=L5Pv1Nyi7f0DxtXsdIMGhO1tIadSMNl3QGqfTqVud5JDhPrUMKglSlIY1MYzAtIj6GcVrL7W0GX0YgmCLmt5/bB602Ye7Y87gA7HBpzigkeoIOd6Y2vvA+AHd8kNWgTAV/dKOtmH2APUn15Q3Iz1JkXdaGXR7SLz3OcKsJOEWaA=
+	t=1722538154; cv=none; b=q+gOq2YN9i+Q/QYjCP7h8QiWdASI1LOAM4TgrGY5vEip5xnI+REifeg6spthJ+K843Edqp6v3qtK4qItXXWaoCREGc4KX1+OozveeWeTC6Xz+QxBK1aQWVwkSXKfER7ksAZ2hv1PJCgM+MeJUr+uBPvTbO9VbAl9qPOuG51XUVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722537512; c=relaxed/simple;
-	bh=EYJYIiAEAfD7NH+H9HMoYZqrRMCnEO9dgrADRI9Gx0E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kxeZUyUcVHzYSnPqN+UYLWePOvU5ZfnDGDNaXvq8Sq2vnLHyDQc3LSM54+b0I3rRsa9SwX8TmyDuRn375AWf/LW4JmiCNv+nZ4CJ11N20IRBGWwju/+VZb0t8+uYPvRHN3PbJUbRAL+EgRiCEI2IuluLFobjqArpluCwd4sV4pQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=qbrmKhMn; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7afd1aeac83so1977275a12.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 11:38:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722537509; x=1723142309; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V5ZHzEhK/iqIbovaWXtYghu86qtEZ1UEP6cVND/8xFY=;
-        b=qbrmKhMnzIky2ze8p/kvf4PGE9tBu82IgyUQk5rUbUjeEK/yUi46oncC/68C5Z1fq8
-         hR4HCCXKQqAv3Nvymygf4VqXkKu2YUeE6y4U14PFEggIt80ixs6HTYaJWLa1DxIeVnkA
-         HfsBW5/iIArNFQQXFFeR2cghnr2D1B6t8ZBEvTUb02Fkcoxxp0NdQ+oJl9h1UUk1pm1q
-         Gb7uJ0CdeqQSqn9rELdE6Srk1mcl4SJEoyFrxVGxSY12weHxeVP2X4rDnl3PrwWjHcbw
-         Tb5h0QTlX59i0SX8svzYqxRn9A8TiLjkSTyz4H6RmXbNYGM+06Ap9MKEl6EI/MXFpSKv
-         e4yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722537509; x=1723142309;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V5ZHzEhK/iqIbovaWXtYghu86qtEZ1UEP6cVND/8xFY=;
-        b=D8uADSGFRCQUykba10PBRp1mvfI3jkf/ohEqKMIc8591gR3qoy2YF0CLHJGi5GW50q
-         XvJvSVFt//PX9x6CW3Bv8KoHnWVsOHbhgIU1TuHlfEr1LsS6zIuUv34gTQViHGrBZ/p/
-         V98Hrz0KZyHiAwC3OMnKRU75srglKQpoAQHJc8tBz6Mv7l/sMJ/GZlxPWCuELjvzu66k
-         xcMKORtsRJ48JkXDrp1ng91z6MlvV+XqLEPRPAdpY8YL4Wsk8IYm0JCRf2C4iHVMty0J
-         VELm1XcWPd6vdCCGgg58XU2ZtOfntNtkrs+y22gcq99lfi7bMF4bRGKek6GBO82gsJ1n
-         Y5Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCW1gySZIxBXHdvSZyDOgbQCXEjp3efokPEaHnqGjPCYRIxJZzlUATqOUd+EKwoE1rZsBq+3pBJurI5V2NLcFuPog1A8YOt//2Ubwg==
-X-Gm-Message-State: AOJu0Yy2KaxiMGnJhP6K1VnZbwoAAsRQYu7vBmYvdBCMNxB9ZIO7mdeV
-	fXSnvRAs19tnKR49Rt4Wo/Dxk7YfpMnnydgJZggOT9wYxc1J8uzk2+PyNOoPb20=
-X-Google-Smtp-Source: AGHT+IE7euEhKw9ZvLGZgoJ3nB4r1T+YCPL1oMKPqsmgOUjr5Pfy6QWgZSIFTVenufI1eR46X4W9Ag==
-X-Received: by 2002:a17:90b:1a86:b0:2c2:d590:808e with SMTP id 98e67ed59e1d1-2cffa200df2mr1270706a91.13.1722537508634;
-        Thu, 01 Aug 2024 11:38:28 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:1c2:1802:170:dfa1:41a7:9478:9d47])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cffaf69d54sm279728a91.12.2024.08.01.11.38.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 11:38:27 -0700 (PDT)
-From: Drew Fustini <drew@pdp7.com>
-Date: Thu, 01 Aug 2024 11:38:10 -0700
-Subject: [PATCH 6/6] riscv: dts: thead: change TH1520 SPI node to use clock
- controller
+	s=arc-20240116; t=1722538154; c=relaxed/simple;
+	bh=Mqvq6a7v7faU/RsAxiBN033U6iPOpo33gjvwTQwwEBE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=UyZ6I9a1kTlzXcC6eWpF0Dmw21m1BjpvV5Gq4AiMetoQn9WtrF3WoBnayKd7soof5o5ycTRhXeMDDFZ1Ddmke/bbn6dNXTea4XaPpcVSZIjozHeDEmwvDWe+CmNnoc9XIjq0cdXN5/C1RbvsZk93P/jCvQ8DKc4YGNLOH28BuzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=V/R18hQL; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=TB16bH+7; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1722538149;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zy4QAbBchws8wpEd632QvvKsWpoM4onCh56dsKjIHlQ=;
+	b=V/R18hQLq+jyQoLBzyEA/jn4Fzajd35TRSiGYLRaN/IJiictIcX6L3AmjSn/d3co88iSHu
+	bubzfHPnaZfsdZV+n9L6x0BH+0IDUzw4uWIiBLHtgmyyZRkKUc3z2lbAE7MFUFieOJQtr6
+	/K2h2pJ1GL5UKwSIn6qNY7EqGmRnc7NfuLvUYsEbgz315JLujAFOuyuCsxlfhcCkjCj1rw
+	9DAtO6VQGNm9NaCdKm+7p8mHC22oedrL3kc89L3/FE/HF+TkVc/1a8BEn4v4VvUc8p9cZd
+	F33M1ajTN9rT2zJyvvJgW1OyXO6NdrO66oFuFxLBUtr01FKDFp6spDwVwNwiBA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1722538149;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zy4QAbBchws8wpEd632QvvKsWpoM4onCh56dsKjIHlQ=;
+	b=TB16bH+7FY9c5h6o6aIywattKgBHBOAnvaRdWLpcsYODy3h8ds9MT5TvjCSdJWS3Y5wMeK
+	KUR0S+I/dHQsuzAw==
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+ Marc Zyngier <maz@kernel.org>, Daire McNamara
+ <daire.mcnamara@microchip.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [RFC v7 3/6] irqchip: add mpfs gpio interrupt mux
+In-Reply-To: <20240801-palpitate-swinger-7bc8ae8deaaf@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-flatworm-cornflake-8023212f6584@wendy> <87le1k8oq2.ffs@tglx>
+ <20240801-palpitate-swinger-7bc8ae8deaaf@spud>
+Date: Thu, 01 Aug 2024 20:49:08 +0200
+Message-ID: <87r0b82i57.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240801-th1520-clk-dts-v1-6-71077a0614b8@pdp7.com>
-References: <20240801-th1520-clk-dts-v1-0-71077a0614b8@pdp7.com>
-In-Reply-To: <20240801-th1520-clk-dts-v1-0-71077a0614b8@pdp7.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
- Kanak Shilledar <kanakshilledar@gmail.com>, 
- Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
- Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Drew Fustini <drew@pdp7.com>, 
- Drew Fustini <dfustini@tenstorrent.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2303; i=drew@pdp7.com;
- h=from:subject:message-id; bh=GEkmEzaBBCWW5dvp0uJoNHGIioeJZ823d7ZJt1ChQBI=;
- b=owGbwMvMwCF2+43O4ZsaG3kYT6slMaStvibFWr3h3cwewfTJzWvni31U2PSlSjEs/s+V9QuVA
- u9svnPmW0cpC4MYB4OsmCLLpg95F5Z4hX5dMP/FNpg5rEwgQxi4OAVgItc6GRl2PzSIMtz8ppXt
- /dRsHlW5y+9/nrgXM/Gl8X2zvlIB09QnjAy3hfVYV025nBKU4268Y9LKjvjFFRc3OrW/kBd5fir
- tVjg3AA==
-X-Developer-Key: i=drew@pdp7.com; a=openpgp;
- fpr=1B6F948213EA489734F3997035D5CD577C1E6010
+Content-Type: text/plain
 
-From: Drew Fustini <dfustini@tenstorrent.com>
+On Thu, Aug 01 2024 at 16:09, Conor Dooley wrote:
+> On Mon, Jul 29, 2024 at 12:41:25PM +0200, Thomas Gleixner wrote:
+>> > +	/*
+>> > +	 * If a bit is set in the mux, GPIO the corresponding interrupt from
+>> > +	 * controller 2 is direct and that controllers 0 or 1 is muxed.
+>> 
+>> This is not a coherent sentence.
+>
+> It should read "controller 0 or 1;s interrupt is muxed". Does that make
+> more sense to you?
 
-Change the clock property in the TH1520 SPI controller node to a clock
-provided by AP_SYS clock controller.
+No: If a bit is set in the mux, GPIO the corresponding...
 
-Remove spi_clk fixed clock reference from BeagleV Ahead and LPI4a dts.
+I'm already failing at 'GPIO'. My parser expects a verb there :)
 
-Link: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
-Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
----
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts     | 4 ----
- arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi | 4 ----
- arch/riscv/boot/dts/thead/th1520.dtsi                  | 8 +-------
- 3 files changed, 1 insertion(+), 15 deletions(-)
+>> > +	irq_set_chained_handler_and_data(virq, handle_untracked_irq,
+>> 
+>> Why does this use handle_untracked_irq()?
+>
+> I'll have to go and dig back in my notes as to why it is untracked. It
+> was probably something like irqd_set() in handle_irq_event() blowing up
+> on the irq_data being invalid (which I figure could relate back to my
+> questions in the cover letter about issues with irqd_to_hwirq()) - but
+> I'll double check what exactly prompted it when I get back from my
+> holidays, but...
+>
+>> This sets up a chained handler
+>> but handle_untracked_irq() is a regular interrupt handler.
+>
+> ...what I was likely using before was handle_simple_irq() which isn't
+> chained either. You're expecting to see mpfs_irq_mux_nondirect_handler()
+> here I suppose?
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 425f07d73b32..497d961456f3 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -45,10 +45,6 @@ &osc_32k {
- 	clock-frequency = <32768>;
- };
- 
--&spi_clk {
--	clock-frequency = <396000000>;
--};
--
- &dmac0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index 077dbbe4abb6..78977bdbbe3d 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -25,10 +25,6 @@ &osc_32k {
- 	clock-frequency = <32768>;
- };
- 
--&spi_clk {
--	clock-frequency = <396000000>;
--};
--
- &dmac0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 5f4f94ca9cc7..6992060e6a54 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -216,12 +216,6 @@ osc_32k: 32k-oscillator {
- 		#clock-cells = <0>;
- 	};
- 
--	spi_clk: spi-clock {
--		compatible = "fixed-clock";
--		clock-output-names = "spi_clk";
--		#clock-cells = <0>;
--	};
--
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -256,7 +250,7 @@ spi0: spi@ffe700c000 {
- 			compatible = "thead,th1520-spi", "snps,dw-apb-ssi";
- 			reg = <0xff 0xe700c000 0x0 0x1000>;
- 			interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&spi_clk>;
-+			clocks = <&clk CLK_SPI>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
+Yes or some other proper chained handler.
 
--- 
-2.34.1
+> Given you've only commented on one significant issue and two minor items,
+> is it safe to conclude that the overall approach doesn't have you
+> screaming and running for the hills?
 
+I don't love it, but I don't have a better approach to deal with this.
+
+Thanks,
+
+        tglx
 
