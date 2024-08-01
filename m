@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-90388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07F4B9452DD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:38:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AC79452DE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BE141F2528F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:38:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C604DB24BAB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D672F1487F9;
-	Thu,  1 Aug 2024 18:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C414E1494C1;
+	Thu,  1 Aug 2024 18:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="W+h0pwkt"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="I7XZWB8E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4127027452
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 18:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DADF13D889
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 18:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722537502; cv=none; b=cibKtZNu69olgSYLlCCgftudAmrnZt5NynU5N/V6CtiT6HC2VpRmjQV1x0Rrh3Cq+fJCk/9HvAzwZqfLZpt/Yp76e05zinZA8Sh06VW/qpkbMb1fia60disrAX8PjR92XbHUB3+KHCKuvpv8Y08CZyAyEM6qxmsY0+ah/uIJQfc=
+	t=1722537503; cv=none; b=lWY6L2JvbmAnacXQv/Qivr/noMo/ltZuHAg1aIEuFID1Zwz6qwRSES/rMvi5drUqMlyOgd+0i86EPqgnnkG5QR+3xO2a4Bfv7pf/X8QoWJyWTaW+njIUJzMgyzozJQ+Pd9muiX8aA2JG5koi7kF7WtzQl7fxxYf4vpAb9iOm8lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722537502; c=relaxed/simple;
-	bh=fc0TjBqsBBzAbreLePWGgYrgMgY88HZhgtkzJ+8R3sU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lqAIs95X7T717GI9NKsLIxG09LeMgH2MjQ6ZlHqGPOmbk0n0smqjWc4vmy8D+Vk/i6aUCLfOnqxWJARg+Bvz0v7iElBhnHfozeIIQfb+Qje5ZpIRukQ9/i+a8ZumxPM9y6t1qNIJNeym9B6lHcG0W8OE2+OD1F7/sdEugcVJSPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=W+h0pwkt; arc=none smtp.client-ip=209.85.216.46
+	s=arc-20240116; t=1722537503; c=relaxed/simple;
+	bh=zsUROxHK85bECtvAK7eNhBwbloaw0A8ZmtOwteQ6Ako=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=IBGmcl+QdwzqHTQAiFN6Yzi8BfTk4Y1OMJPE4FYT/npPNI2dr26DW0XDuHkmAYthkQ7RbihN1YoENJ2fMk+OuhTCpehfkxvW4TM6cFNfOlxpLGNQFg7noBSFQ1ZwQWTf9QOiXcEr+116pXhrlsGfW4k7IR0mAbb5HnGjDkMcpVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=I7XZWB8E; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2cd5d6b2581so5047071a91.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 11:38:20 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2cb64529a36so5000605a91.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 11:38:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722537500; x=1723142300; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=odurubX05L/alYO7ZB7p+uzZRMihsa585lYB4q5XK2s=;
-        b=W+h0pwktD2QrMmhIXg6uoFh8zLkJzC5A51vS80S+i8dfYkuLlvz5UaCzatmHEcvF5b
-         4tMYf9Y6df8qFdNnMKNkzfNPAYvGJwCZJReOR3rB4Hb2W45Dj5/L62/Nj67sPoDPxtoz
-         4OrQkJCujEgrs+3y+iEAQvCyEhxtLLvvir0PUAcYEHE2M9oclKKTXRypnUTETXFY2sfR
-         RLdwqMQsuPpcbvd5u4+br0dhHA2H8+3cyRkGxg16KB0d1/SiWWL7YLpJ56hP6jwnFkhL
-         E3esB1cjc5b/djEpCP/A19DNO7GLY1Yyna7l1ec2s/Nfr79lQuM5OY6jwXAw64ZGixQc
-         1FkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722537500; x=1723142300;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722537502; x=1723142302; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=odurubX05L/alYO7ZB7p+uzZRMihsa585lYB4q5XK2s=;
-        b=b7TBesfdHbwbrKDOcig27E+3dIpGvz3fOJTZ1/ZCrqJR/90fZlzRbx/5GLP98vzBQ8
-         Sj8RyhsiYUGi1W8Vj6t7DdAbRYOt8RZLnMAfV1lsT7FSK+zHpU7qECv696gouCXl8Gu3
-         gr5u16f683CwbncE0eLaHT6w6C9kDTP4jTfmFup/taQPLU4Wqoev5TH4h/efMvCl6KQl
-         5Q7hG1YizPpXqbJpfs6cfO2Z526C3CYeD6M8x3qiXBcz68OR/uDHtuC+QcvZfVbpMJFB
-         6/WDoGVXmzIA+uV+nMrl6x389GWrtMHC/zCxqMOpusencBI+FkrvCjbMnlze3kJp1TfQ
-         4eWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVGUhgZVAecv4EJw2IP2rZgdCcCNiMKt/MHYfH/robZDyCMANC4HWLE4dtWVpNC8nP6Gyv7CyWc7MBnpmfGjFcE7+im95JcUsFTKg==
-X-Gm-Message-State: AOJu0YzWQKmxLQHoeZZE32cXLZNbn1S2tgjk0lkUNQ5/G0N5v5POAcK1
-	rUOQjTxm+Pxi5Hg2isMRUfPDn9ImXYslIC6fiRKfEzoC1CoFuJW1tcP1RTfTaqQ=
-X-Google-Smtp-Source: AGHT+IFyxM+4b6rxuziOtoQq+fzlqhfg2RrpGYQix6E4h5Nra628Qj6ThEm6sTZ/5/OUa1hkRYoZmQ==
-X-Received: by 2002:a17:90a:3885:b0:2cb:511f:35f with SMTP id 98e67ed59e1d1-2cff9414351mr1286202a91.15.1722537500263;
-        Thu, 01 Aug 2024 11:38:20 -0700 (PDT)
+        bh=Tk3fdWOrHxhGe/z2L68pKaBMmRMZIgpiOTECkCtz9Bg=;
+        b=I7XZWB8EkGOQhB3Td8EKBOau+6aEr76hCtqSbY1+Rvd1nUbNXPfDRr1SsJBdBB0/Xz
+         ixlvptNdkb3/cyY+NcjSowdWFImqiBzNhfxWsDseq1lF/t8DKVyOFTlBTw3Bz1t/mvbZ
+         3GoBJPDUneEs67s09Ka5guwsjcfuZo8AXc+fMa+rwFGjiFIhPZdl3Z4cIdm1UEDv/zXr
+         D1WbcI0QwgYMCrfPn/eZOsARxI+sjnWjjYDmGPVASAiKcf/r2+TtDEAQ1z7xabwSaN+I
+         FGr+bMhuyqfXXyuXCLQKj6Y1CFigpbv0jbN2etXcqWURre+f5DmyHQESqeoadP6G+eHV
+         na/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722537502; x=1723142302;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Tk3fdWOrHxhGe/z2L68pKaBMmRMZIgpiOTECkCtz9Bg=;
+        b=mlisl5zjvlA7dfmYIoCZLNxgTqeKbQT/CoqtBFlxOI0lxZyeI2SrYOqr+lS2Q6xu8+
+         sbwOCe0U6P3wG7+FjlTIceyLnCVRnQSz1ynkkNzAM74MNcei019Pz7HKW3O6WWe/evRT
+         9IfFHIZCgPNSx/o8ozZal/buy8w98XhZrTu/I/JHhAqiluxStjo2i2sB98olMAlO5sXm
+         rDAwFiYjnKD5zJXKznh0u9MFRggEYCe/IYyYvN2vBh3mtOKMoVGTJI0bAU0dfmUtkeUL
+         c48aFZToqj0BStkx3ewj50s2cfPsX+k/R/Vix7BI8xK+5sC3GB5k3p9mms7nIGZ/ES4J
+         kCAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVp7NzVY1f3mMW/pVo4ogbQMZ0VwzHaCP7kuE0NObkUuOhFRxxx7mqUXVmECf2Stg/7kXywW6lmD+L3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyysfeKNuCgzNT/Xd53xrqfcshCEun/k1YrNi9YjcODksPxXXLN
+	YTqHdAcgVdPAZlnCd9tfKekPVDaT2KJoo0UTkMENPxXKJn+MQgJvMroCb/J66uQ=
+X-Google-Smtp-Source: AGHT+IEivcdDbgQ5UTdJZvwjjzFBFMbO3AfwipXdPpcaMO6VuyrFNirJJMGYJHlNvMzav90dOHGVZA==
+X-Received: by 2002:a17:90b:33ca:b0:2cb:f9e:3bfb with SMTP id 98e67ed59e1d1-2cff952bdf1mr1296175a91.32.1722537501642;
+        Thu, 01 Aug 2024 11:38:21 -0700 (PDT)
 Received: from [127.0.1.1] ([2601:1c2:1802:170:dfa1:41a7:9478:9d47])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cffaf69d54sm279728a91.12.2024.08.01.11.38.19
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cffaf69d54sm279728a91.12.2024.08.01.11.38.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 11:38:19 -0700 (PDT)
+        Thu, 01 Aug 2024 11:38:21 -0700 (PDT)
 From: Drew Fustini <drew@pdp7.com>
-Subject: [PATCH 0/6] riscv: dts: thead: Enable TH1520 AP_SUBSYS clock
+Date: Thu, 01 Aug 2024 11:38:05 -0700
+Subject: [PATCH 1/6] riscv: dts: thead: Add TH1520 AP_SUBSYS clock
  controller
-Date: Thu, 01 Aug 2024 11:38:04 -0700
-Message-Id: <20240801-th1520-clk-dts-v1-0-71077a0614b8@pdp7.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,10 +79,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAzWq2YC/yXMyw6DIBCF4Vcxsy4JMyBeXqVxATJW0qot0KaJ8
- d1L6vI/yfl2SBwDJ+irHSJ/QgrbWgIvFYyzXW8sgi8NJEnLRqHIM9Ykxfi4C5+TcKgn6TpreLJ
- QTs/IU/j+wetwduTXu7j5HMHZxGLcliXkvlKEhIx1q3VXHOONdcYRG+WIfOdbqRusjYLhOH7wD
- bT5rAAAAA==
+Message-Id: <20240801-th1520-clk-dts-v1-1-71077a0614b8@pdp7.com>
+References: <20240801-th1520-clk-dts-v1-0-71077a0614b8@pdp7.com>
+In-Reply-To: <20240801-th1520-clk-dts-v1-0-71077a0614b8@pdp7.com>
 To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
  Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
  Kanak Shilledar <kanakshilledar@gmail.com>, 
@@ -95,56 +95,54 @@ Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Drew Fustini <drew@pdp7.com>, 
  Drew Fustini <dfustini@tenstorrent.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1943; i=drew@pdp7.com;
- h=from:subject:message-id; bh=fc0TjBqsBBzAbreLePWGgYrgMgY88HZhgtkzJ+8R3sU=;
- b=owGbwMvMwCF2+43O4ZsaG3kYT6slMaStvia5aV9uRVKRY8qdpJgFEkdLGLhvcdUc/hPEaS759
- 9jfa6eXdpSyMIhxMMiKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmkibI8D97tW/L6UkcS7Yq
- Bdxb2jHv/JTqo4KMhad+/Vxgnn/HtLKSkeGWQDNbBlvEXFZ+xzaV0K4Jy53uCnFH35281nXKioU
- Pb7ACAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1207; i=drew@pdp7.com;
+ h=from:subject:message-id; bh=dnuRibn2g+ZT0aI5L/Shjy6/+JXvi/iMXiSHhCZO6jY=;
+ b=owGbwMvMwCF2+43O4ZsaG3kYT6slMaStviZpuPSdaMu/gLKy9YEPtD2nyP28OvGDp5lh7YPPt
+ 3Xc66YFdJSyMIhxMMiKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmovqB4b9rZgiLlrCdhK3t
+ i7JXq7bERMjc+rL7vuG1pyWcj7gSW+UZGe71um+5bRAbdfweq36mrm65VU/aNF7mZiWhJEthFct
+ FzAA=
 X-Developer-Key: i=drew@pdp7.com; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-This series contains the dts patches to enable the TH1520 AP_SUBSYS
-clock controller [1] and convert peripherals from fixed clocks to real
-clocks. The dt-bindings and driver patches from a previous series [2]
-have already been merged into v6.11-rc1:
+From: Drew Fustini <dfustini@tenstorrent.com>
 
- ae81b69fd2b1 ("clk: thead: Add support for T-Head TH1520 AP_SUBSYS clocks")
- 1037885b309c ("dt-bindings: clock: Document T-Head TH1520 AP_SUBSYS controller")
+Add node for the AP_SUBSYS clock controller on the T-Head TH1520 SoC.
 
-Changes from that previous series [2]:
- - Move the clock-controller node in th1520.dtsi so that the nodes are
-   still sorted by address
- - Add patch to convert SPI from fixed clock to real clock
-
-This series is based on my clk-for-next tree [3] as of commit:
-
- 32121e158449 ("riscv: dts: thead: add basic spi node")
-
-Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf [1]
-Link: https://lore.kernel.org/lkml/20240711-th1520-clk-v3-0-6ff17bb318fb@tenstorrent.com/ [2]
-Link: https://github.com/pdp7/linux/tree/thead-dt-for-next [3]
-
-Signed-off-by: Drew Fustini <drew@pdp7.com>
+Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+Link: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
+Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
 ---
-Drew Fustini (6):
-      riscv: dts: thead: Add TH1520 AP_SUBSYS clock controller
-      riscv: dts: thead: change TH1520 uart nodes to use clock controller
-      riscv: dts: thead: change TH1520 mmc nodes to use clock controller
-      riscv: dts: thead: update TH1520 dma and timer nodes to use clock controller
-      riscv: dts: thead: add clock to TH1520 gpio nodes
-      riscv: dts: thead: change TH1520 SPI node to use clock controller
+ arch/riscv/boot/dts/thead/th1520.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 16 -----
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi    | 16 -----
- arch/riscv/boot/dts/thead/th1520.dtsi              | 81 ++++++++++------------
- 3 files changed, 37 insertions(+), 76 deletions(-)
----
-base-commit: 32121e158449f0b6d6ab6b2e63b22d9d80471563
-change-id: 20240731-th1520-clk-dts-b14f0b9a6efa
+diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+index aa703da30fc3..25ef5ee729e6 100644
+--- a/arch/riscv/boot/dts/thead/th1520.dtsi
++++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/clock/thead,th1520-clk-ap.h>
+ 
+ / {
+ 	compatible = "thead,th1520";
+@@ -419,6 +420,13 @@ uart2: serial@ffec010000 {
+ 			status = "disabled";
+ 		};
+ 
++		clk: clock-controller@ffef010000 {
++			compatible = "thead,th1520-clk-ap";
++			reg = <0xff 0xef010000 0x0 0x1000>;
++			clocks = <&osc>;
++			#clock-cells = <1>;
++		};
++
+ 		dmac0: dma-controller@ffefc00000 {
+ 			compatible = "snps,axi-dma-1.01a";
+ 			reg = <0xff 0xefc00000 0x0 0x1000>;
 
-Best regards,
 -- 
-Drew Fustini <drew@pdp7.com>
+2.34.1
 
 
