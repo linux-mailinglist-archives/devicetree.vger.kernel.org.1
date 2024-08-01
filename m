@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-90134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18352944290
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:14:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C9F9442BB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2041C21655
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 05:14:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B6F5284688
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 05:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E98E13D897;
-	Thu,  1 Aug 2024 05:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FF4148FE6;
+	Thu,  1 Aug 2024 05:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VuHI8Kva"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q5STmm4e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFCE13D283;
-	Thu,  1 Aug 2024 05:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F95E2744E;
+	Thu,  1 Aug 2024 05:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722489283; cv=none; b=aOFJEYT45KIHiU2vwsw2KGOCsQx7n3b4MAAUZdIw1NnLEdKLrhqisSDfVpohve2dhPE6yJnQrYP7z6+XO7q3JlmOgIZINkLmfGv8YF7gA+mXepo2L38fGyo9vUjy0VflnVV71n99xzxNfnvFlkFxhASKaFu0KqyW92oOnYIHMt0=
+	t=1722490671; cv=none; b=CWkbG3Gr/pLrnFF9FO1F8LeX2hTeU3JcPYwXgj5AMhvy6hRxfvQYBTJNT4hCfamwWWgBuvpWsjmPo5ktL9DdYcBCbbsfEYPgHRL2qXSnBvSlb5cALfU7zHreEv5R3WhPmusmbDRqYp+qUdKtc3WXdDKQt8SLixjMIeBwiPHybho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722489283; c=relaxed/simple;
-	bh=ZsvwGaGoEAcPO7DkzH/FQcfX3tob/yYcuPjkpB9TDh8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NC/n2e/zvw8ldUw2K9UMN0hL6VZloCqJ8sd4QOY6dTdjV87UVs/Gk+2uGi0l3I78hKqCSEzH0ytSwIeuHpguT0CzaQARCAGqd4ToNZcg+QG9q9SOvgj+U9YOGqKZJf1LGEuuPbWUDffcr3FaVQSWVGFqjJnbsef1o2IjrxjfYB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VuHI8Kva; arc=none smtp.client-ip=209.85.167.43
+	s=arc-20240116; t=1722490671; c=relaxed/simple;
+	bh=43gGnQm+EZafvVQqODfIhZJ8inmf3mvRcqGiSYbmGtM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aYLbv4tQxMM8rOfWGF0xV9brOdK+F8V4Ujy+F/cb9Vo/PuerdWTLZLxCLCb+y0R0pDcgKamX/+V6joXja4brROdU7lAEI49lQt5Xvsr9jcHFGaRFYtBltkPikGnNbahivEipy/oRBNCBryyAnMeaXk1na666ftUprbc4ifCxkqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q5STmm4e; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52f04b4abdcso10064555e87.2;
-        Wed, 31 Jul 2024 22:14:41 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70d2b921cd1so5784242b3a.1;
+        Wed, 31 Jul 2024 22:37:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722489280; x=1723094080; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1722490669; x=1723095469; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dwe1CFr7XDtc90/o/bWkFlT5zGqIJ/h6TtZLaOU7lZo=;
-        b=VuHI8Kvac3EA2OMkoNfF+Q5pZ791POD53o+8j5oDr3uKGPjEha+UPLhn71qLTybq9+
-         oMUNJ99zu2KUlYYWtLkeEbzaBIyp+D2mZKfaBu1ZmaY3dxarY9+6x2tZdBmhQseLgkyV
-         ivKy0JuqurOETG0uX7aLVUBS1b4zM0luBNGKC49EzN0yfOOvy9LxMMCvShD6TvjKDf5j
-         /+41s2nreoHMy2KUzncwLAqibKzDQ18XggdfbqW5SIm6MpZiuC/pewuAis1DGNjgbMHS
-         crpCZITx/nq7356t30kzkpeLhmW7HChf7cTPuR8eCWF0k22UwEGo4jz4cDdVHX9zVPUH
-         Hqzw==
+        bh=rP7kB86ul/PcFVSAaxx7ceabaGdXw7owjoCpBSOG71A=;
+        b=Q5STmm4egjUYiHiJ2ITiW5Hx6XK/mqTqtv25iFfmo1BcEhu94+1w14KcXgXvEUWvAd
+         o8BYgUhhv3myA9upAfIEoM+UIL91N5dPwFm+vDc/iu9J1d+o7BZN9yYBxK91U3i6AkzH
+         CUR22FNahjhDQ6whpwj6YLcyDSATk1FDqxSY+wJ3pRzg0O8jJoESz6RbgFqGCH6vkj/v
+         dVTwrDNxgP1INq4YFrGRC2SVLA+hg3jAJIkf/CSLTsP+blg39PEIcsPaoBiLSny5/8m8
+         ib1bjWSP3UkhohMuzSWxUPgmWGa0uGKV64tKFWSRzQqiSJwJAy8Li0dWKp+tVGJM9fAH
+         rolg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722489280; x=1723094080;
+        d=1e100.net; s=20230601; t=1722490669; x=1723095469;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Dwe1CFr7XDtc90/o/bWkFlT5zGqIJ/h6TtZLaOU7lZo=;
-        b=tQzTLC0ZRR3MPOPf7btKKtb2/DmgDaEUqZ/Y0fk/ncn+4ZS420PBzjrKz2Y8MKdFEt
-         7QVi2CGtokgsoVSzSDg9etf6uuG2N4duQlp44/WliGxGrGdS00B3/IEIdsZXEnz3oO9l
-         SHGmBcj3L4eLmFNJinjFNxX5BLQEdess4gBzmA00S3ZaUCl1M9EX4bdTUr8VOcAmfHNq
-         bUq448gw0x60MyEe7nnjeBt9z29ATS8Lj4fwrY5ZiD+vL4GlyJonRji7bCp5wqA3pKYq
-         /yC/d2ovbIjluo9rHFCAsbO1nSADcoaGdDbydb2cgVoFBXm504GkrUCNPGyM6Elx3qDI
-         yqqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUH9PVTnqnativ3wEL9LFCUXqywE0UfWw0uMiI7ZRoRjFAKZ6XqgD4OZzxNvpjAalFi1VuRiXJW3X8J1k0rFcWENp0YdsClUCrctu1Nc6mFliuFwuAxsdQvRFMeC+KEE5LlXOgwI2429g==
-X-Gm-Message-State: AOJu0YxgIkZ8V/E8+x38dWBpjskiJDsy5oQq35JUSNoA3GcA1k9tUseO
-	siqa6D2XUGNULKbAwUpKpnFO3H4MAXtoXZDfW3FOfJWAoeM2TwQ+l4HIihCl
-X-Google-Smtp-Source: AGHT+IGpNCSVm6hYkMRgsT/z/Oa2FjemtIZEfC7W2b0eQB93+x4euJWk0w43mBqDph9ZoRI7njDGeg==
-X-Received: by 2002:a19:2d54:0:b0:52e:fa5f:b6b1 with SMTP id 2adb3069b0e04-530b61f81bamr444856e87.60.1722489279571;
-        Wed, 31 Jul 2024 22:14:39 -0700 (PDT)
-Received: from WBEC325.dom.lan ([185.188.71.122])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5bd0c4csm2474129e87.72.2024.07.31.22.14.38
+        bh=rP7kB86ul/PcFVSAaxx7ceabaGdXw7owjoCpBSOG71A=;
+        b=FJKB5jXeq3EFhZHCP1SlCzMkYYA9vd7diBZHMyWyt8ja1VxMWuLqxCaMSZc38hrANO
+         lj+qDqiijJJ7k2C01osWOUA1A/t3kBvRHU8gN+HinV3ixLYO6dyrfV0uUVNPRR813jzW
+         u7cT5Y0mzmkGAlwfKrFUxlUQzEIS/gCy0xPrcdkqXkbglHJu8X/M16cdsi8CiIRXC7ES
+         CvgKr/YxfGNZB/rw7sCL0pnvybfFho+6luE45tgQWux17GmPoW31w03iSeOnzESjgYC3
+         /Qaye6k26MulrPV+cjs2bHZXVYZy9diPKRHH1tgqt9o2MuF/21dBPY//1wo/jhHYR3Ix
+         HoyA==
+X-Forwarded-Encrypted: i=1; AJvYcCXe9ZkH7VDA/uZdLtBpaKDSsJAWeAx4a6/YUauofweHnMfNPMjlxBm0y+oZ8p2IHD62tnh2RwOZm1DFfi6FmBzonqRiGJeJ8Sl3e28sfGAomwvseqOI2epauaW+28XmDxuliTk3/4O6og==
+X-Gm-Message-State: AOJu0YzhwyLp2RspqDS7ZLVc5nE4LPSV9lWslgXhSisQrYHqY4d6C+3W
+	8KYoht82FLs9NOIZqTM/CgcuG7wBwSqn+FOsdDkF5tIXNQNuZBYELiN/bQ==
+X-Google-Smtp-Source: AGHT+IFp5hTrwS65AqU/9trFX4Tz4W1sMCzo9JgNShTU0C2wTw+AmFV2NvsaaC+syk01WyylMut2lw==
+X-Received: by 2002:a05:6a20:a129:b0:1c2:8dcf:1b8f with SMTP id adf61e73a8af0-1c68ce9f023mr2474971637.7.1722490669452;
+        Wed, 31 Jul 2024 22:37:49 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70ead72b89csm11106876b3a.94.2024.07.31.22.37.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jul 2024 22:14:39 -0700 (PDT)
-From: Pawel Dembicki <paweldembicki@gmail.com>
-To: linuxppc-dev@lists.ozlabs.org
-Cc: Pawel Dembicki <paweldembicki@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
+        Wed, 31 Jul 2024 22:37:49 -0700 (PDT)
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] powerpc: dtc: update P2020RDB dts
-Date: Thu,  1 Aug 2024 07:14:01 +0200
-Message-Id: <20240801051402.584652-1-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-kernel@vger.kernel.org,
+	Hui-Ping Chen <hpchen0nvt@gmail.com>
+Subject: [PATCH v3 0/2] Add support for nuvoton ma35 usb2 phy
+Date: Thu,  1 Aug 2024 05:37:42 +0000
+Message-Id: <20240801053744.807884-1-hpchen0nvt@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,195 +88,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-P2020RDB contains multiple peripherals, which isn't added to
-devicetree:
-  - Switch: Microchip VSC7385
-  - PMIC: Renesas ZL2006
-  - Temperature sensor: Analog Devices ADT7461
-  - Two eeproms: 24C256 and 24C01
-  - GPIO expander: NXP PCA9557
-  - reset gpios of Ethernet PHYs
+This patch series adds the usb2 phy driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35 usb2 phy driver.
 
-This commit adds it.
+v3:
+  - Update nuvoton,ma35d1-usb2-phy.yaml
+    - Update the syscon usage description.
 
-Some refreshments was done:
-  - fixed link in ethernet-node
-  - platform drivers nodes names
-  - added 'gpio0' label in pq3-gpio-0.dtsi
 
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
----
- arch/powerpc/boot/dts/fsl/p2020rdb.dts    | 85 +++++++++++++++++++++--
- arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi |  2 +-
- 2 files changed, 81 insertions(+), 6 deletions(-)
+v2:
+  - Update nuvoton,ma35d1-usb2-phy.yaml
+    - Update the 'nuvoton,ma35-usb2-phy' to 'nuvoton,ma35d1-usb2-phy'.
+    - Remove unnecessary descriptions. 
+    - Add explanations related to SYS.
+  - Update ma35d1 usb2 phy driver
+    - Update the 'nuvoton,ma35-usb2-phy' to 'nuvoton,ma35d1-usb2-phy'.
+    - Use readl_poll_timeout() to make the system more efficient and the 
+      code more streamlined.
+    - Use the same variable name. Update the 'p_phy->dev' to 'pdev->dev'.
 
-diff --git a/arch/powerpc/boot/dts/fsl/p2020rdb.dts b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
-index 3acd3890b397..d563d37b91f1 100644
---- a/arch/powerpc/boot/dts/fsl/p2020rdb.dts
-+++ b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
-@@ -6,6 +6,7 @@
-  */
- 
- /include/ "p2020si-pre.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
- 
- / {
- 	model = "fsl,P2020RDB";
-@@ -33,7 +34,7 @@ lbc: localbus@ffe05000 {
- 			  0x1 0x0 0x0 0xffa00000 0x00040000
- 			  0x2 0x0 0x0 0xffb00000 0x00020000>;
- 
--		nor@0,0 {
-+		nor@0 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "cfi-flash";
-@@ -79,7 +80,7 @@ partition@f00000 {
- 			};
- 		};
- 
--		nand@1,0 {
-+		nand@1 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "fsl,p2020-fcm-nand",
-@@ -128,11 +129,49 @@ partition@1100000 {
- 			};
- 		};
- 
--		L2switch@2,0 {
-+		ethernet-switch@2 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			compatible = "vitesse-7385";
-+			compatible = "vitesse,vsc7385";
- 			reg = <0x2 0x0 0x20000>;
-+			reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+				};
-+				port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+				};
-+				port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+				};
-+				port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+				};
-+				vsc: port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&enet0>;
-+					phy-mode = "rgmii";
-+					rx-internal-delay-ps = <1400>;
-+					tx-internal-delay-ps = <2000>;
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+
- 		};
- 
- 	};
-@@ -141,12 +180,39 @@ soc: soc@ffe00000 {
- 		ranges = <0x0 0x0 0xffe00000 0x100000>;
- 
- 		i2c@3000 {
-+			temperature-sensor@4c {
-+				compatible = "adi,adt7461";
-+				reg = <0x4c>;
-+			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c256";
-+				reg = <0x50>;
-+			};
-+
- 			rtc@68 {
- 				compatible = "dallas,ds1339";
- 				reg = <0x68>;
- 			};
- 		};
- 
-+		i2c@3100 {
-+			pmic@11 {
-+				compatible = "zl2006";
-+				reg = <0x11>;
-+			};
-+
-+			gpio@18 {
-+				compatible = "nxp,pca9557";
-+				reg = <0x18>;
-+			};
-+
-+			eeprom@52 {
-+				compatible = "atmel,24c01";
-+				reg = <0x52>;
-+			};
-+		};
-+
- 		spi@7000 {
- 			flash@0 {
- 				#address-cells = <1>;
-@@ -200,11 +266,15 @@ mdio@24520 {
- 			phy0: ethernet-phy@0 {
- 				interrupts = <3 1 0 0>;
- 				reg = <0x0>;
-+				reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
- 			};
-+
- 			phy1: ethernet-phy@1 {
- 				interrupts = <3 1 0 0>;
- 				reg = <0x1>;
-+				reset-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
- 			};
-+
- 			tbi-phy@2 {
- 				device_type = "tbi-phy";
- 				reg = <0x2>;
-@@ -232,8 +302,13 @@ ptp_clock@24e00 {
- 		};
- 
- 		enet0: ethernet@24000 {
--			fixed-link = <1 1 1000 0 0>;
- 			phy-connection-type = "rgmii-id";
-+
-+			fixed-link {
-+				speed = <1000>;
-+				full-duplex;
-+				pause;
-+			};
- 		};
- 
- 		enet1: ethernet@25000 {
-diff --git a/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi b/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
-index a1b48546b02d..5181117ea6b5 100644
---- a/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
-@@ -32,7 +32,7 @@
-  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  */
- 
--gpio-controller@fc00 {
-+gpio0: gpio-controller@fc00 {
- 	#gpio-cells = <2>;
- 	compatible = "fsl,pq3-gpio";
- 	reg = <0xfc00 0x100>;
+
+Hui-Ping Chen (2):
+  dt-bindings: phy: nuvoton,ma35-usb2-phy: add new bindings
+  phy: nuvoton: add new driver for the Nuvoton MA35 SoC USB 2.0 PHY
+
+ .../bindings/phy/nuvoton,ma35d1-usb2-phy.yaml |  45 ++++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/nuvoton/Kconfig                   |  13 ++
+ drivers/phy/nuvoton/Makefile                  |   3 +
+ drivers/phy/nuvoton/phy-ma35d1-usb2.c         | 146 ++++++++++++++++++
+ 6 files changed, 209 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/nuvoton,ma35d1-usb2-phy.yaml
+ create mode 100644 drivers/phy/nuvoton/Kconfig
+ create mode 100644 drivers/phy/nuvoton/Makefile
+ create mode 100644 drivers/phy/nuvoton/phy-ma35d1-usb2.c
+
 -- 
-2.34.1
+2.25.1
 
 
