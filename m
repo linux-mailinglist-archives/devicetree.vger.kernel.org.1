@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7A3944E36
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:40:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD88F944E41
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DB3FB26D93
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:40:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74E3F2830F6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 030541A57D1;
-	Thu,  1 Aug 2024 14:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10CC1A57DA;
+	Thu,  1 Aug 2024 14:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qK70hOfP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NzCLO2ja"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB7C1A4F35;
-	Thu,  1 Aug 2024 14:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E2F16F0DF;
+	Thu,  1 Aug 2024 14:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722523212; cv=none; b=rTBoZaTIn68dDbAwYjsHaAT6KYyDLiON11ou6HJWTkctUHlQ9i5DxdNQhcxMK/cGjEyqX8VmQ7bYbXEViOtMrNm7MXEWhznbjvl8xGWwLR0mkgS72n4RQOD3zUvR2uBRyX3rynRAOLU9cR3Sp9i2qXfsf7jCez2bstk8TJhZjts=
+	t=1722523374; cv=none; b=HO/DK/uL8iJUb3Ayrt6RYeArviop4/KASD2Q4gR9bomnc3Y4Jc4UDy9abNJ11CVrzpi1fkXQRSi2k3XLfsuUluLIj0p2phacXtJk7/3rkA9GNrhkG37BxBYGB8Zem8axW+hMoHF9XLFPr1UnkzfHY8pLGJ9Brmbx+1ulBxliqUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722523212; c=relaxed/simple;
-	bh=9k7FCglnqA03s5bC9C+ZSVPftWfWSWQDHBTABy/Weao=;
+	s=arc-20240116; t=1722523374; c=relaxed/simple;
+	bh=vsnUwlDgswKtPBEdrjKpAt+f6RKHkVBuq8cL70YdSG0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O5nXV75em4dmcU/MqUUF1LDDh1WHri4C8UW6HlH0wJPOp3GPohQcC9ngpiw/XEI3dP7I6hGuu2rS/VYaVRFjCGyWBhlFsfsjMNiUm50arm5ySV6iQwwhYMDB9f1Zsa9CdnGG98rJ/z6/5+AlnUa9CUd4lCntwmbcdI29UEX2a8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qK70hOfP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF92EC32786;
-	Thu,  1 Aug 2024 14:40:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AK6/GFWFefBXTpZhWdrdTzZY+rCu19lJxeVhZQscg4kUdDom1PGl/r1Nf3wYa7xAUsjfJG1aTh8HMKh/u8gITA7abZbS+Nyi2hght+fDh/FBJFeiuBZXJDDZlAH0c6KfhW45iLXsxyt5ImB+xdn6B8cetR0m733duBz48jOOJlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NzCLO2ja; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3804C32786;
+	Thu,  1 Aug 2024 14:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722523212;
-	bh=9k7FCglnqA03s5bC9C+ZSVPftWfWSWQDHBTABy/Weao=;
+	s=k20201202; t=1722523374;
+	bh=vsnUwlDgswKtPBEdrjKpAt+f6RKHkVBuq8cL70YdSG0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qK70hOfP5loYsDvcOFcyzojSjLbINSViTXe1YHxOajh+IYdwbL3KCjRNfMwRjCcua
-	 Sa9rcJi0VRF+ZOj93HvDQHlqrA6UDAVQ+6kcoenukd3mlZBfO4IZLvTtWGF1Eh8Flb
-	 ZK8m5YCUtMRcumOOu2xRYuAVaJcga+wJe8pCv13mYX9mAGRbLoj9Iu7BGoSxsT67wT
-	 0KdiMN4hWqS3dbuvfR75p24Ozm0/ZNtcz0VOrcwXcoWhbOSQiwLcXBGtfON7Bh6DSv
-	 WtIM53Nxs+9Hjbg/6Quijta9sBLVxbZM4SEPaGd+7k8Ph9znUlpWUsGcGYzq76LM/0
-	 Yj2WwPpg67jjg==
-Message-ID: <31b72731-277c-4e57-9cc0-d646f154845b@kernel.org>
-Date: Thu, 1 Aug 2024 16:40:06 +0200
+	b=NzCLO2jaQhboFa+G3aQ1PGn7LcVVTcRFUFzup4H4cV1egI0rq8yijOzxu/d+2Eeic
+	 r8LIjNqLWW1Fk6MD7jRrN7fU9kffP9En2Jin8T9g8PDSJnlso3xuFq8ju/1ycQP+5T
+	 7J8Dn2PBUIrWwJkKwfF0L8zt8kFnBHu/xc1zZQqFxD2SzhbgT6he3jRqBpzvMOJ7TZ
+	 aWWKH3OtS7gkuh/5rCoPUNMO3/aTjOgOc2Zw6T5q37VWSB+U3GMZr9cLTzxgg4/gKj
+	 EQFyS343MgD2+HQ1Xmr2m0lkrhVsrj8QbrtCq7fgtHb7+rMrTC3V+PSPN6ZhrJqHlY
+	 Xiu1bLiEyJo0w==
+Message-ID: <b738737e-ff71-434e-a27d-2f7056416c74@kernel.org>
+Date: Thu, 1 Aug 2024 16:42:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: nuvoton,ma35-usb2-phy: add new
- bindings
+Subject: Re: [PATCH v2 2/2] phy: nuvoton: add new driver for the Nuvoton MA35
+ SoC USB 2.0 PHY
 To: Hui-Ping Chen <hpchen0nvt@gmail.com>, vkoul@kernel.org,
  kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240801053744.807884-1-hpchen0nvt@gmail.com>
- <20240801053744.807884-2-hpchen0nvt@gmail.com>
-Content-Language: en-US
+References: <20240731014313.113417-1-hpchen0nvt@gmail.com>
+ <20240731014313.113417-3-hpchen0nvt@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,17 +103,69 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240801053744.807884-2-hpchen0nvt@gmail.com>
+In-Reply-To: <20240731014313.113417-3-hpchen0nvt@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 07:37, Hui-Ping Chen wrote:
-> Add dt-bindings for USB2 PHY found on the Nuvoton MA35 SoC.
+On 31/07/2024 03:43, Hui-Ping Chen wrote:
+> Nuvoton MA35 SoCs support DWC2 USB controller.
+> Add the driver to drive the USB 2.0 PHY transceivers.
 > 
 > Signed-off-by: Hui-Ping Chen <hpchen0nvt@gmail.com>
-> ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> +struct ma35_usb_phy {
+> +	struct clk *clk;
+> +	struct device *dev;
+> +	struct regmap *sysreg;
+> +};
+> +
+> +static int ma35_usb_phy_power_on(struct phy *phy)
+> +{
+> +	struct ma35_usb_phy *p_phy = phy_get_drvdata(phy);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(p_phy->clk);
+> +	if (ret < 0) {
+> +		dev_err(p_phy->dev, "Failed to enable PHY clock: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	regmap_read(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, &val);
+> +	if (val & PHY0SUSPEND) {
+> +		/*
+> +		 * USB PHY0 is in operation mode already
+> +		 * make sure USB PHY 60 MHz UTMI Interface Clock ready
+> +		 */
+> +		ret = readl_poll_timeout((void __iomem *)p_phy->sysreg + MA35_SYS_REG_USBPMISCR,
+
+sysreg is a regmap, not io address. How could it possibly work and be
+tested?!? This cannot work. Test your code *before* sending it.
+
+> +					 val, val & PHY0DEVCKSTB, 1, 100);
+> +		if (ret == -ETIMEDOUT) {
+> +			dev_err(p_phy->dev, "1.Check PHY clock, Timeout: %d\n", val);
+> +			return ret;
+> +		}
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * reset USB PHY0.
+> +	 * wait until USB PHY0 60 MHz UTMI Interface Clock ready
+> +	 */
+> +	regmap_update_bits(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, 0x7, (PHY0POR | PHY0SUSPEND));
+> +	udelay(10);
+> +
+> +	/* make USB PHY0 enter operation mode */
+> +	regmap_update_bits(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, 0x7, PHY0SUSPEND);
+> +
+> +	/* make sure USB PHY 60 MHz UTMI Interface Clock ready */
+> +	ret = readl_poll_timeout((void __iomem *)p_phy->sysreg + MA35_SYS_REG_USBPMISCR,
+
+Same problem.
+
 
 Best regards,
 Krzysztof
