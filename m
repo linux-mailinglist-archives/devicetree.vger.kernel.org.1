@@ -1,243 +1,222 @@
-Return-Path: <devicetree+bounces-90220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A79B9446AD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:34:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 878E99446C5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:38:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 293DF1F228FB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:34:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA7C41C20D1F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15755157A55;
-	Thu,  1 Aug 2024 08:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46F616DECA;
+	Thu,  1 Aug 2024 08:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="L3DpTCvN";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UwBLlWTc";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="L3DpTCvN";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UwBLlWTc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWv6BVaR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB5F45BEC;
-	Thu,  1 Aug 2024 08:34:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABBAB61FEB;
+	Thu,  1 Aug 2024 08:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722501250; cv=none; b=Crt8bHoqgClFnmnqOk6pTI7tm3Vr41xTz78gJAe7XiZ8aCkhywjgAOdRz9nUcFg2E/7kI2zOBkwdUJxJq+Wym/n8NEfGnS6FNA60OVcchKIVESzd6JPJwxWEV5dh8ApgSsjWC3OO1uQscC01WPNmjE1wB7TLHnQDXU1OzRhvMHg=
+	t=1722501531; cv=none; b=eVKLM3fAXkDokEUJVqMwU6RVpjVt76u0JpdfX746/sde8qssJf/1TElaYzwA3hXbBUzx3pmSHLEavhIQjAuMqdvESdgEsNHhTi9h3xqbyMfeATjdX5pc1l70PSAvoqzCVfp3PQxHxgqKSVlfymKsTCGXtEgNaapo8cSvZ+WqD2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722501250; c=relaxed/simple;
-	bh=HTmYS1NGUfNF0xkaqtGp9UNfj5GEV/58WBr5tSQ2Qek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ifjSzjceUhLO5P6WJt+NvirTVSbadTQERF7sI1LjC99G4D9NV8cwWsYSRVVWzci3sH9QoR1HXtGu0nWtKU90iK1qheWPgWoPwo9y4VdLqh4W76p7T6UgITiI3fi0JgzH01Iizd7WQP7tPfneqitfbgL83dEzVUWARMcJvSrM7iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=L3DpTCvN; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=UwBLlWTc; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=L3DpTCvN; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=UwBLlWTc; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id B813D1F7D2;
-	Thu,  1 Aug 2024 08:34:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1722501246; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+CctGXYz4xQ6Xq9aj5P4ZmjSOkB34RSbKZhF+ViSvUI=;
-	b=L3DpTCvNOaK2EXP7ZVS7GZwhWc9P/FWQyCNuepktbqnJQMKnD+puFJUszItDtS0VIivnb1
-	lk4HMlqenPVN/b/+tmnoT7rQi6cbvOo5r58XjG51ssIQhIrKQnrRishLGRp1rA+LRYY/Pf
-	uqISw8KI+LAxMlb1+njCo92kI1tlC28=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1722501246;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+CctGXYz4xQ6Xq9aj5P4ZmjSOkB34RSbKZhF+ViSvUI=;
-	b=UwBLlWTcO8t5uznwf8EeHZbcc9zRJo+RtslT98jmnSB8a0wlRGHU77m+W9ltGRs720Jz6Y
-	vzFOs4sPGVWM5mAA==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1722501246; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+CctGXYz4xQ6Xq9aj5P4ZmjSOkB34RSbKZhF+ViSvUI=;
-	b=L3DpTCvNOaK2EXP7ZVS7GZwhWc9P/FWQyCNuepktbqnJQMKnD+puFJUszItDtS0VIivnb1
-	lk4HMlqenPVN/b/+tmnoT7rQi6cbvOo5r58XjG51ssIQhIrKQnrRishLGRp1rA+LRYY/Pf
-	uqISw8KI+LAxMlb1+njCo92kI1tlC28=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1722501246;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+CctGXYz4xQ6Xq9aj5P4ZmjSOkB34RSbKZhF+ViSvUI=;
-	b=UwBLlWTcO8t5uznwf8EeHZbcc9zRJo+RtslT98jmnSB8a0wlRGHU77m+W9ltGRs720Jz6Y
-	vzFOs4sPGVWM5mAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 92D4913946;
-	Thu,  1 Aug 2024 08:34:06 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id jYjVIX5Iq2bjFAAAD6G6ig
-	(envelope-from <iivanov@suse.de>); Thu, 01 Aug 2024 08:34:06 +0000
-Date: Thu, 1 Aug 2024 11:38:20 +0300
-From: "Ivan T. Ivanov" <iivanov@suse.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, florian.fainelli@broadcom.com,
-	wahrenst@gmx.net, andrea.porta@suse.com, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: Add support for Broadcom STB
- pin controller
-Message-ID: <20240801083820.5my7yc3zxq64gmt5@localhost.localdomain>
-References: <20240731062814.215833-1-iivanov@suse.de>
- <20240731062814.215833-2-iivanov@suse.de>
- <dcc13c9a-ea74-4fa4-9c74-57e576e01ae6@kernel.org>
+	s=arc-20240116; t=1722501531; c=relaxed/simple;
+	bh=kq5MDQTENvoqN/rCYPNiKpjcTwpvTko/lpsvLCRK5U0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ucYd/vzDALFIn2ZlA7zqGsRLoOADOSFYCKD3uZJp9s3Duwi6OJVdlNT5dxv2JNKgnYTdRTfFLgXKZ1iQN8+fglPK8gi6gxyZB+nrmESYaQaSUQeRPnWnmxVypIP5WHdg8N2/hotfWJ2DWmsvJW2PAu/GZT1pUpUzzErSQs/QO1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWv6BVaR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1020EC32786;
+	Thu,  1 Aug 2024 08:38:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722501531;
+	bh=kq5MDQTENvoqN/rCYPNiKpjcTwpvTko/lpsvLCRK5U0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kWv6BVaRNbeoyjeXq+jqY5T5Kvg8fvaWMEJI4CbzbZbqExPLMow9tlO86nVUhRIF0
+	 ZqzooM0uEm03IevsMS3pli3ksqtKOrWI3QX03tR37o9O9NVKqa6s7BltWFs2GD36Fm
+	 tlM6ZRcaqBb6W087AVF+aMxzfvW/k9xJsCtSZskAQmd8bG/LsmYxv1GfSiIr31xp7r
+	 c0SN9waNg+8UA1RrnhJgfDKCDNrlPCHeNtDKpw/nlYgIZ/XmRq/hTWXBtMgrw8GrwQ
+	 ErEEJHaqVwsHcOFe8OGLs6SVfN3jEBztXQ8XF6p7JFdlTXGxS0gFsNCpimvonJAE7t
+	 zBLl+eanOWmNg==
+Message-ID: <ba957155-7a0d-4c88-8326-a1d4d20e4656@kernel.org>
+Date: Thu, 1 Aug 2024 10:38:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dcc13c9a-ea74-4fa4-9c74-57e576e01ae6@kernel.org>
-X-Spamd-Result: default: False [-2.60 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_ENVRCPT(0.00)[gmx.net];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,broadcom.com,gmx.net,suse.com,vger.kernel.org,lists.infradead.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_MATCH_ENVRCPT_SOME(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email]
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spam-Score: -2.60
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Add schema for Synopsys
+ DW HDMI QP TX IP
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Alexandre ARNOUD <aarnoud@me.com>,
+ Luis de Arquer <ldearquer@gmail.com>
+References: <20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com>
+ <20240801-dw-hdmi-qp-tx-v1-1-148f542de5fd@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240801-dw-hdmi-qp-tx-v1-1-148f542de5fd@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 08-01 10:17, Krzysztof Kozlowski wrote:
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/brcm,brcmstb-pinctrl.yaml
+On 01/08/2024 04:05, Cristian Ciocaltea wrote:
+> Add dt-binding schema containing the common properties for the Synopsys
+> DesignWare HDMI QP TX controller.
 > 
-> bcm2712 is Rpi, so not really STB. The name is confusing. Please use
-> compatible as filename, so:
-> brcm,bcm2712-pinctrl.yaml
+> Note this is not a full dt-binding specification, but is meant to be
+> referenced by platform-specific bindings for this IP core.
 
-According Florian it is:
-
-https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com/
+Please provide an user for this binding. Otherwise it is a no-op.
 
 > 
-> > @@ -0,0 +1,73 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/brcm,brcmstb-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom STB family pin controller
-> > +
-> > +maintainers:
-> > +  - Ivan T. Ivanov <iivanov@suse.de>
-> > +
-> > +description:
-> > +  Broadcom's STB family memory-mapped pin controller.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - brcm,bcm2712-pinctrl
-> > +      - brcm,bcm2712-aon-pinctrl
-> > +      - brcm,bcm2712c0-pinctrl
-> > +      - brcm,bcm2712c0-aon-pinctrl
-> > +      - brcm,bcm2712d0-pinctrl
-> > +      - brcm,bcm2712d0-aon-pinctrl
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +allOf:
-> > +  - $ref: pinctrl.yaml#
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  .../display/bridge/synopsys,dw-hdmi-qp.yaml        | 66 ++++++++++++++++++++++
+>  1 file changed, 66 insertions(+)
 > 
-> "allOf:" block goes after "required:".
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties:
-> > +  anyOf:
-> > +    - type: object
-> > +      allOf:
-> > +        - $ref: pincfg-node.yaml#
-> > +        - $ref: pinmux-node.yaml#
-> > +
-> > +      properties:
-> > +        function:
-> > +          enum:
-> > +            [
-> 
-> Unnecessary new line
-> 
-> > +              gpio, alt1, alt2, alt3, alt4, alt5, alt6, alt7, alt8,
-> > +              aon_cpu_standbyb, aon_fp_4sec_resetb, aon_gpclk, aon_pwm,
-> > +              arm_jtag, aud_fs_clk0, avs_pmu_bsc, bsc_m0, bsc_m1, bsc_m2,
-> > +              bsc_m3, clk_observe, ctl_hdmi_5v, enet0, enet0_mii, enet0_rgmii,
-> > +              ext_sc_clk, fl0, fl1, gpclk0, gpclk1, gpclk2, hdmi_tx0_auto_i2c,
-> > +              hdmi_tx0_bsc, hdmi_tx1_auto_i2c, hdmi_tx1_bsc, i2s_in, i2s_out,
-> > +              ir_in, mtsif, mtsif_alt, mtsif_alt1, pdm, pkt, pm_led_out, sc0,
-> > +              sd0, sd2, sd_card_a, sd_card_b, sd_card_c, sd_card_d, sd_card_e,
-> > +              sd_card_f, sd_card_g, spdif_out, spi_m, spi_s, sr_edm_sense, te0,
-> > +              te1, tsio, uart0, uart1, uart2, usb_pwr, usb_vbus, uui, vc_i2c0,
-> > +              vc_i2c3, vc_i2c4, vc_i2c5, vc_i2csl, vc_pcm, vc_pwm0, vc_pwm1,
-> > +              vc_spi0, vc_spi3, vc_spi4, vc_spi5, vc_uart0, vc_uart2, vc_uart3,
-> > +              vc_uart4,
-> > +            ]
-> > +
-> > +        pins:
-> > +          items:
-> > +            pattern: "^((aon_)?s?gpio[0-6]?[0-9])|(emmc_(clk|cmd|dat[0-7]|ds))$"
-> > +
-> > +        bias-disable: true
-> > +        bias-pull-down: true
-> > +        bias-pull-up: true
-> > +      additionalProperties: false
-> > +
-> > +    - type: object
-> > +      additionalProperties:
-> > +        $ref: "#/additionalProperties/anyOf/0"
-> 
-> I suggest going with patternProperties, fixed suffix for node names and
-> $defs. See for example:
-> Documentation/devicetree/bindings/pinctrl/qcom,x1e80100-tlmm.yaml
-> 
-> Missing example. I don't see this being part of other complete device,
-> so example is a requirement.
-> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi-qp.yaml
+> new file mode 100644
+> index 000000000000..d8aee12b121d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi-qp.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/synopsys,dw-hdmi-qp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common Properties for Synopsys DesignWare HDMI QP TX Controller IP
+> +
+> +maintainers:
+> +  - Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> +
+> +description: |
+> +  This document defines device tree properties for the Synopsys DesignWare
+> +  HDMI 2.1 Quad-Pixel (QP) TX controller IP core.
+> +  It doesn't constitute a device tree binding specification by itself, but
+> +  is meant to be referenced by platform-specific device tree bindings.
+> +
+> +  When referenced from platform device tree bindings, the properties defined
+> +  in this document are defined as follows. The platform device tree bindings
+> +  are responsible for defining whether each property is required or optional.
 
-Thanks, I will update and resend.
+Drop this all description and re-write it not to say what bindings are
+or are not. Describe the hardware.
 
-Regards,
-Ivan
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 4
+> +    maxItems: 6
+> +    items:
+> +      - description: Peripheral/APB bus clock
+> +      - description: EARC RX biphase clock
+> +      - description: Reference clock
+> +      - description: Audio interface clock
+> +    additionalItems: true
+
+??? What's the point of such common schema if it is not common at all?
+
+> +
+> +  clock-names:
+> +    minItems: 4
+> +    maxItems: 6
+> +    items:
+> +      - const: pclk
+> +      - const: earc
+> +      - const: ref
+> +      - const: aud
+> +    additionalItems: true
+> +
+> +  interrupts:
+> +    minItems: 4
+> +    maxItems: 5
+> +    items:
+> +      - description: AVP Unit interrupt
+> +      - description: CEC interrupt
+> +      - description: eARC RX interrupt
+> +      - description: Main Unit interrupt
+> +    additionalItems: true
+> +
+> +  interrupt-names:
+> +    minItems: 4
+> +    maxItems: 5
+> +    items:
+> +      - const: avp
+> +      - const: cec
+> +      - const: earc
+> +      - const: main
+> +    additionalItems: true
+
+Sorry, there is no user of this and nothing here is actually common
+except first entries in clocks and interrupts properties.
+
+I don't see any benefit of this.
+
+Best regards,
+Krzysztof
 
 
