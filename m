@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD0C9446E1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:44:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C088D9446EF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE9531C2442C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:44:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C3B81F223BF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AC3116EC0B;
-	Thu,  1 Aug 2024 08:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E0C161313;
+	Thu,  1 Aug 2024 08:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bTG05Hcg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWcyzK1L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598B616EBFF;
-	Thu,  1 Aug 2024 08:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45CC13D60F;
+	Thu,  1 Aug 2024 08:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722501848; cv=none; b=T8YDGGtNVKZ9hLtCZzcYs0341YKHZiXOwCoK2SeTu8p2eiPsEZR8pimBP18V5Nwn11n4mgaBNfAKZMslyqr95jo6dtyGOy9cK/2HvWcNRT0yMT5wBPCnPOJn1+Y5h3GAdS5UzAXYl5+aiRTYUnZ/zzLDCVuzo1RsSNcocYKpo+8=
+	t=1722501978; cv=none; b=t0x5+mYgE7Wf2aSLrO+mmM0D17hToIkK+2doNo8Cd+ww77BT9Miyju++vT76CDMok2AzGY+C4JrqI47iJ8mnS60HuHOSNhxB2s1UkFZlES1G2A62ZAroku37p9TC4LVCg36ULxVb9840ercJXogsthIyPbZa2HMB5bz9cCXiYN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722501848; c=relaxed/simple;
-	bh=pkP/xIqZv5Vo+FSqxHACXd1Vwc3K1w47BaCVHECboCM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kkj3BLMokolJJGcq2ibeNBwQlWt4Acl5ArxQ8dVQWDO+pW95tGHBHHkOdkTSfIzadlHSWgc4JzohFOkg0oqLBm8DbLJz7woJ+PJ4RRHg/NnL2d3ahtIDSUa4ipw7mGYUWsBWaO4ugOHO/F0ZtMSlsYxCSGqg+RoIVyWYogf6cc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTG05Hcg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6277DC32786;
-	Thu,  1 Aug 2024 08:44:05 +0000 (UTC)
+	s=arc-20240116; t=1722501978; c=relaxed/simple;
+	bh=GW+mWy4LDE8UdkF4zZL+w/ehRXDozRqnqKItD7lE5zE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=oSzoET31aXaYsuSpS1chYrb1yzXqc4Ha8ryPYRPwq+g2CPIne+9cncrkhnL5URU+uWT5C8xR52zsTcOl/yT2eA4zNdtBKd5gpa/haXFAU6gt4jo5yKDVnuX1FZGMeMLGV9I2XdgsurCD2FETziQ8KBJE9UlUKEEqHI7EHo/5VCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JWcyzK1L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FC69C4AF0D;
+	Thu,  1 Aug 2024 08:46:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722501848;
-	bh=pkP/xIqZv5Vo+FSqxHACXd1Vwc3K1w47BaCVHECboCM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bTG05HcgcXncnzlRA6SlJ0z8yJMGJH+ODRhv+IJxmcCjdBLickj94fXrUl/VcUqbg
-	 01+1KcXJ1hNfYV2kOfyp4FyF9jnsfANp9L9o6WLyrE/3M0jM35uSZ8Fd1AOC+An1a+
-	 p8+adGA6uWE5+m2v4b5nRnl32DRf721Tj5uY9fsMvT/9bmP/NnrSwGQ8tLZTbzhHHj
-	 JjFanuX5xMtnIzwjCUyzQeT3PCSy7P5p/cONm+nZbkQmjVazmll2v2pGz9TClRZZ7S
-	 TaxzMbNMvmd4vXeQci7WMJhtBXdGx49vy2Hwq99OI9PrfO4CJ5DAYLCba/LJNvKDic
-	 7X8v0oHLrsJSw==
-Message-ID: <5f9f4062-91e0-43e0-9ef5-48e30ca68ac9@kernel.org>
-Date: Thu, 1 Aug 2024 10:44:03 +0200
+	s=k20201202; t=1722501978;
+	bh=GW+mWy4LDE8UdkF4zZL+w/ehRXDozRqnqKItD7lE5zE=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=JWcyzK1L8SR+GFrEiVHv/OW+sFZXBAmnaj6GXtQfOOT3JSvNI7ASE2lsco5hX4tJ5
+	 HfgOLu2/o3h4RhAa4CEfQNF/hQrvVKF16xMfFnlk6OtoBu5c58c9oK4kuxXF+QARXV
+	 KxKzcgu3o/EpWYt26sPlMZWhn7vW54YKpFR9pjpte8HoXp7M4v9xkUm5EN5GSQM7Lm
+	 CwNI6sOdan2EDBWItTjSSF7FvAO2r58FtyaFrYEEDFi08dsYFXpR8K6j69pbEN5lqG
+	 sspxpt57GBNfatycfn5R5ctjJPwlHfqKWVmfOmda50CSDEK7pIbn4GEl2jlwW8yKZh
+	 51uOh/B4fEb/g==
+Message-ID: <0582fd8a-216a-4569-a1ad-e4aafc926bf1@kernel.org>
+Date: Thu, 1 Aug 2024 10:46:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,12 +51,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] dt-bindings: arm: socfpga: Add Altera SOCFPGA SDRAM EDAS
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Alessandro Zanni <alessandro.zanni87@gmail.com>, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, skhan@linuxfoundation.org
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240731230231.12917-1-alessandro.zanni87@gmail.com>
+ <5f9f4062-91e0-43e0-9ef5-48e30ca68ac9@kernel.org>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -100,93 +101,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240731230231.12917-1-alessandro.zanni87@gmail.com>
+In-Reply-To: <5f9f4062-91e0-43e0-9ef5-48e30ca68ac9@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 01:02, Alessandro Zanni wrote:
+On 01/08/2024 10:44, Krzysztof Kozlowski wrote:
+> On 01/08/2024 01:02, Alessandro Zanni wrote:
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+> 
+>> diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+>> new file mode 100644
+>> index 000000000000..78fbe31e4a2b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+> 
+> Filename like compatible, so altr,sdram-edac.yaml
+> 
+> Fix the placement - arm is only for top-level sutff. This goes to
+> memory-controllers or edac
+> 
 
-Thank you for your patch. There is something to discuss/improve.
+So this was a v2? Then version your patches correctly and add
+appropriate and detailed changelog under ---.
 
-
-> diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
-> new file mode 100644
-> index 000000000000..78fbe31e4a2b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
-
-Filename like compatible, so altr,sdram-edac.yaml
-
-Fix the placement - arm is only for top-level sutff. This goes to
-memory-controllers or edac
-
-
-
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/altera/socfpga-sdram-edac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
-> +
-> +maintainers:
-> +  - Dinh Nguyen <dinguyen@kernel.org>
-> +
-> +description:
-> +  The EDAC accesses a range of registers in the SDRAM controller.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-Drop oneOf
-
-> +      - items:
-
-Drop items, just use enum
-
-
-> +          - enum:
-> +              - altr,sdram-edac
-> +              - altr,sdram-edac-a10
-> +
-> +  altr,sdr-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: 
-> +      Phandle of the sdr module
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - altr,sdr-syscon
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sdramedac {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-e.g. memory-controller
-
-
-> +      compatible = "altr,sdram-edac";
-> +      altr,sdr-syscon = <&sdr>;
-> +      interrupts = <0 39 4>;
-
-Use proper defines.
-
-> +    };
-> +
-> +...
+See submitting patches.
 
 Best regards,
 Krzysztof
