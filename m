@@ -1,120 +1,128 @@
-Return-Path: <devicetree+bounces-90329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F509944F40
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:30:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91780944F4D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:32:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1761C28B52F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:30:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D5DCB245FB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4472E1B3F38;
-	Thu,  1 Aug 2024 15:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BiglEIhc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CF813D240;
+	Thu,  1 Aug 2024 15:31:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167291B32D1;
-	Thu,  1 Aug 2024 15:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FD81EB4B1;
+	Thu,  1 Aug 2024 15:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722526182; cv=none; b=MIgZRxxe5d4RO4c8KBN09Q7q/g8dtenDvgTdphDvAWsqUFc7scrKmIZZE2Azh3MprKlj6UsjgohIzxFexkKocawn8cI0nCmFFcRRz/VSahi5a5UJn1LtK8v8pl0vXrf7YMf1ZL/gDuNEc8o9ORSCperU8Vamd/dUcgc9zoKFjFk=
+	t=1722526297; cv=none; b=t7E9OmYcuhVojRhgBPBep7rYinZFmjNPty14em5N3pDY12keLnBgABS+rqpaOnlDb1tEl4k8sWModcIBZyLbH8QaPZ5AhRxRSnvp7gNdK355SMlkVBmKYInzbI3otzqMczPCazdMmAzSKOXplN4D6I1kg4PC2iRn0oEiVmeaPeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722526182; c=relaxed/simple;
-	bh=yK3ETDxJNgjRL0wwwFADagxX1pVHcGlfFDL7snZ1ueU=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=A7Z3WAnmgGOObkd/0AR5CW5CGTXSNq2C/ej+IjoPYu0Xi6Q7UmY0y0ahlWsLl9Er39MhZhQYnn0bptCm32/1Ye3ih77ltL7u3J8mSORSTch/XWz/o5CBJLzC+L58ZfV808ekJMZuq6MzVcem9yIpZ+7su8ngRwSF54YAWOXixPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BiglEIhc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F31FC32786;
-	Thu,  1 Aug 2024 15:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722526181;
-	bh=yK3ETDxJNgjRL0wwwFADagxX1pVHcGlfFDL7snZ1ueU=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=BiglEIhcdt4baaE9RAUrViHjw/lbSPiIXwK6FNXXRJZ2comH8Xt2CkHs711HZ2hrU
-	 46/oo1NLoF3dJ7fDfjNcG53tQe+xHL8hsERtuV0no9MERU5igQrQa0ijSGexUr96zA
-	 EsSlJuGBhGdYU5ue8yIkALzS1ZaKZ0B3nLwXPmxA87qxVJCYuuebH3sMhksiRn4YUC
-	 nBTPtzlAEGFgUBpaNPbFzvY8AVq+mRhX7manGssnGzw6+ZOfRv177nljbqlFSTIGsR
-	 zmlDTiHWGRCuN60LP2zGNcgmqcBaknaAuXBSvKhN2KyMlElETRZEL850IN6Q/FW9pJ
-	 wYqvMi99O0HJQ==
-Date: Thu, 01 Aug 2024 09:29:40 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1722526297; c=relaxed/simple;
+	bh=7xL0Avo8izUJdfsqJNLy79ZuDA++AqkF76A0ghNPpCI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ciaVRfzvw5uWkEn1dMK6igBblU9EMFryewpoaPEo9+bOtmQr3290kPT2V8Yu4Kt7TMvjfnBFhB5BzEwHzNEm0ZTZ/152D3XEgXomMfr4T8w1eeP1UKjfxw4MS/lQ8oCLPg2gNFLVJs8wQ/jp921SWJbK0lXxsDi5+rig/RQ1Cs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-67b709024bfso64441257b3.3;
+        Thu, 01 Aug 2024 08:31:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722526294; x=1723131094;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oEvAEJsDUsgTpw4IFZkSM7blNWl56QIoDqvTQ+o7eJ4=;
+        b=PhUQnHz8QMDZ3hw6aPXD6yLZpk/YQRGcKapL8hsW8mv2arkJ0eUTQKE53jY2dfLjBF
+         xkGP/SPz/etil1sNgPRDL31/aKlYJGbQsSkkidghLH1Wfp4NfIA1R3gdhYcU3zGEA26O
+         P8HvKN7UBfENQFZXkh24oDszl229dv3OZXRDuybMRvSIhj2Ht5R/FhWWSQwgxdQL9Z4y
+         ZNTJFubt3XpsTTn8LIXDyoUvmyaypdhBVzYx2oSUMVio0shR/dfFMOn1Z60TSbuW79/+
+         LrfrBUTnR3lIXriZbkRB4V1GtogNAMfp2pUFnOPZ5unEa9SxcQFeACFJ9IVBevdWvD3O
+         RSWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUTX+vf6tsmSe5Zxc0YAaIGxJKbx1/D7OXsd608FsMnuzJNXBIJJqCFj8WVrNGv+4eHYEfX9fR2YEKPIOiKPfvNJUsIGYmyyupr/BLdzA8H2lU59ZRTH37l1MycsXUHH4I30bTCRaCYXb5M0YpQjOjpzjM2PuwOL/wHtn0TP4/SF+gEQtrr3b0APtqks2Zd9cc6SbFZj7uIYRjTCyLx2kxaJqxsLohk
+X-Gm-Message-State: AOJu0YxOA2mPquhKNL3JTnSstX1NVl9RUBmFAGtbabAJL/wQVvs3O/d8
+	3kUcfvDdAAHXpvk6VoPOX9isaO9oZRF4kwOrSYl1hIeb//KGEGdhNZSmgLFO
+X-Google-Smtp-Source: AGHT+IHPtk4KvEDMrUGA4GO9IUYqJnOwGdYLl8tx435MJ6tvQhgzjQqdAe5mgpkNJZ0IpKcDSBnpLA==
+X-Received: by 2002:a81:a551:0:b0:646:5f95:9c7d with SMTP id 00721157ae682-689637fcac2mr3572897b3.36.1722526293894;
+        Thu, 01 Aug 2024 08:31:33 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6756bc9ec42sm33797317b3.115.2024.08.01.08.31.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Aug 2024 08:31:33 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e0b167da277so5342593276.3;
+        Thu, 01 Aug 2024 08:31:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXwRJSNM5yjDjauZkwBkW0CzGFf0d/NJcAPutXHBsP7ViLrqLnubrEB8/XsFBRhVqR2JS8NFDzapCBahSe6S8tf6WD5P1izbpuSdx5MEYwElce6NAzEkpkpVcAzkXwByJOCEMOk84ie6KQMBJkNDaZdlyNyMD4nfcsDaX2JfvCRWdhYv1ELcq4Gy8/WJoiP9GLizBUu0XPiWLxxdPEaYfCQEeeFDA6s
+X-Received: by 2002:a05:6902:90e:b0:e0b:55d8:cde6 with SMTP id
+ 3f1490d57ef6-e0bde2b2450mr600736276.6.1722526293300; Thu, 01 Aug 2024
+ 08:31:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-msm@vger.kernel.org
-In-Reply-To: <20240801-b4-linux-next-24-07-31-camss-sc8280xp-lenovo-rgb-v2-v1-1-30622c6a0c48@linaro.org>
-References: <20240801-b4-linux-next-24-07-31-camss-sc8280xp-lenovo-rgb-v2-v1-1-30622c6a0c48@linaro.org>
-Message-Id: <172252601036.120813.11500148137845089799.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Enable RGB sensor
+References: <20240729202645.263525-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240729202645.263525-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240729202645.263525-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 1 Aug 2024 17:31:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVmSwFMhxpBVsDvyzkmtmsu6EZ30SbMYdmBvQ28tBiAtg@mail.gmail.com>
+Message-ID: <CAMuHMdVmSwFMhxpBVsDvyzkmtmsu6EZ30SbMYdmBvQ28tBiAtg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: clock: renesas: Document RZ/V2H(P)
+ SoC CPG
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Thu, 01 Aug 2024 14:07:03 +0100, Bryan O'Donoghue wrote:
-> Enable the main RGB sensor on the Lenovo x13s a five megapixel 2 lane DPHY
-> MIPI sensor connected to cisphy0.
-> 
-> With the pm8008 patches recently applied to the x13s dtsi we can now also
-> enable the RGB sensor. Once done we have all upstream support necessary for
-> the RGB sensor on x13s.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Mon, Jul 29, 2024 at 10:28=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document the device tree bindings for the Renesas RZ/V2H(P) SoC
+> Clock Pulse Generator (CPG).
+>
+> CPG block handles the below operations:
+> - Generation and control of clock signals for the IP modules
+> - Generation and control of resets
+> - Control over booting
+> - Low power consumption and power supply domains
+>
+> Also define constants for the core clocks of the RZ/V2H(P) SoC. Note the
+> core clocks are a subset of the ones which are listed as part of section
+> 4.4.2 of HW manual Rev.1.01 which cannot be controlled by CLKON register.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> The Lenovo x13s has a five megapixel ov5675 sensor as well as a one
-> megpixel ov9734 B+W NOIR sensor for low-light face detection login.
-> 
-> This patch enables the RGB sensor.
-> 
-> A gpio exists in the upstream dts to indicate camera activity which
-> currently we don't tie to CAMSS activity yet.
-> 
-> Running
-> 
-> - A Linux distro which ships libcamera > 0.3.0
-> - Firefox nightly
-> - Setting Firefox about:config:media.webrtc.capture.allow-pipewire = true
-> 
-> It should then be possible to use the on-board MIPI camera for Zoom,
-> Hangouts etc.
-> ---
->  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     | 73 ++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
-> 
+> v4->v5
+> - Included RB tag from Geert
 
+Thanks, will queue in renesas-clk for v6.12.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Gr{oetje,eeting}s,
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+                        Geert
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/sc8280xp-lenovo-thinkpad-x13s.dtb' for 20240801-b4-linux-next-24-07-31-camss-sc8280xp-lenovo-rgb-v2-v1-1-30622c6a0c48@linaro.org:
-
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: camera@10: 'assigned-clocks' is a dependency of 'assigned-clock-rates'
-	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-
-
-
-
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
