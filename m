@@ -1,134 +1,158 @@
-Return-Path: <devicetree+bounces-90175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDEC59444A6
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F4A94449B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:41:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A46ED282273
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:45:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1040F281FF4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910AD156F5F;
-	Thu,  1 Aug 2024 06:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 292CE158207;
+	Thu,  1 Aug 2024 06:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Amu4/OBS"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NUpUPlkm";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Yzg7kJlG";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NUpUPlkm";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Yzg7kJlG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7A52745B;
-	Thu,  1 Aug 2024 06:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C417156F54;
+	Thu,  1 Aug 2024 06:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722494718; cv=none; b=EYWt2wYi4HZkfHRytQ1GJ3JW5N8wmSFfdkoxk3JcOKpQWIfNE6/T2ZEQAOpTZXY/kvKSclkK8LzAzXEsfJhXMF/qElIsofyP3dg5jcp7sN/z4sf2tbKI9Fpkczpq+RHBZx1GrvSTeLxqVvHv9vwLR3tgMc+Ru6KeqZCpAuiiqFM=
+	t=1722494500; cv=none; b=KXwdSMhN52GyXptXXkzLJY+aulAfsS4Bc8RGnKhNylL3wsKLYZA8PrbPCjCINIrhY7EalsbsOmH9WuuBpV/nENnWCehsTxjGaI1CcXOZAkp7MAsyLchjTS7JtMGJqlwjLbn5+AvE9ZWpPeD0Uy++lVu4VccdeBM3ZX+0owp1KgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722494718; c=relaxed/simple;
-	bh=5sWP90VwEaVg4UjOMzi1vQB0KH1aObsNYJEkxg3dFMI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JhhZ8wtnKTANDowKGPC8XSQXswMGxaSG/B0At3ouRm4WWBjXF7LxTkewcUyb582Qba/M9+9It7had7CZlXWbYJ67/V9FzIxcQaxzfyRXRwqJ51SwOyPlqydxhNQ7UOMwgWCFjlOAYx9RJzrNSvvuP1i5oHj203ThrV3SvBc2hrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Amu4/OBS; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7093705c708so6734294a34.1;
-        Wed, 31 Jul 2024 23:45:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722494716; x=1723099516; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZWK4fqAZwTPXPLYR4LC73NJ1gf7ojeoCGlC/cqWqdIw=;
-        b=Amu4/OBSkPMCFk/Kxr+qo9PjZtZhzBikZtOAR+uSifyJ9PzMMg/0w+ksoz807qgIEg
-         orZhrA+jiS9hOd8NAxQahoDxoYU+UfmldhOWRlmyT94ngCf1QG3OMy3ebOjgaUgDAFVA
-         L+WPJIhkA3Xw5W2AyOJXwnML3zRHrRFChn/+M8sUIykIydbTrURsg/dhAeDr7h22vICy
-         TYXpxOBir41joSWp77f5UycYjrBs1tXMSWnx0NU4fznDf1y+tcmuAz99tb8e9orYhTpR
-         xF/VH0tw4lcujeXTQV+RlO1BFmiXPK92Nn0dvXFF5iLZqoEFzc754Mf+Kfo6FNriISzL
-         ijjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722494716; x=1723099516;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZWK4fqAZwTPXPLYR4LC73NJ1gf7ojeoCGlC/cqWqdIw=;
-        b=eTXcWMA7bJC8yGMq6HvrEmBkDlDL87Qj/vIuZInNjSMTyMEENThNQNy0VPJ7x92G1m
-         cpGO3J3FLJLm7PgcDDjTsSI2+ET79fphc6qcpSAks4nIlSrqZPPgm5ohvb8OOQRCmtBD
-         Mo+BQbWtghxYHZG3evooHsJWjQ0yUgiPHlwR3KoCRz6IZOtZkxuniX5RcJP8glvTtcS+
-         Vaovr4LM8XOV1DTBF/PxAslVV4CsubFrLYUGUG3ZGxKol2dxe6++d1rjuL4PmUDufnjv
-         c3VOiJF9dv9TFLPZmAmVGW58VW2aeSOuJAwOHK7QCddLisjXHQYw2qQ+kd1knuq0Kl4K
-         DhQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVMK6tX7Su8KwMTruCb/DTxiJyepgyhSpUm6qunOlollqHQl12z64AAajebYYyNvNXZqfpqwO3Hflbe+xhPn0R/Hb5aiY+O
-X-Gm-Message-State: AOJu0YwayTv/EwvDmvSSmCr+v2ESi8U7pRlwMf9M0ugm6ZYHb/123+ZW
-	TN8+TzzaS8fHkttKp26mLiTiW0MkGQXhNth1W5AdrGJxoGYwtofGBy3Y6aybdlUa1k9kpoKOCfq
-	uVQN+/9G60CGCmI2MhGGG8Slp5iQ=
-X-Google-Smtp-Source: AGHT+IHqF7CGNuKr1aJQkaxweEgbq2lW90JHx9RUeU/R0pX/uFFR+nBaCvZRWjxZ0QPJJ5lROx6JxUrR4bjO7bQQnu8=
-X-Received: by 2002:a05:6870:9a15:b0:25d:fab0:b6f4 with SMTP id
- 586e51a60fabf-2687a375c86mr1753352fac.1.1722494715945; Wed, 31 Jul 2024
- 23:45:15 -0700 (PDT)
+	s=arc-20240116; t=1722494500; c=relaxed/simple;
+	bh=I1fPKjei+WCSZcYN7b6AUVjhjPHHCdX9hpQGLPsKpeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g00iUYOjg0zgOOCG1gPtIBkwYKDC6W6Dc5uRJA6C/jNnQCH4eYUrkB6hpRTrtD9wzNggcplkHPok/eIUNbWlTjmcZ9uCtSI5w/RkZLiHfFNiwMSHGXXTTS3DYW1qS3dfBeJ7TLOjEi2fxn5TdVLe53RiWcJEg3QwGTN7/iA5lT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=NUpUPlkm; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Yzg7kJlG; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=NUpUPlkm; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Yzg7kJlG; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id D746521A99;
+	Thu,  1 Aug 2024 06:41:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1722494496; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TzXvo65mBwn9uOjc7o7t4OFuYEOAQLzaR8jNCt55ngU=;
+	b=NUpUPlkm7QVbiGYYHvz/eMKkipWwklSc8isvr7RNnfe2hMyT2hsS5y2oVJ76zFf2HvT7zo
+	0x8V8gV39LjU6ymYrruVfu5si0lQlPm5MlhBD/eCt5v7hWWSVsKd9uHiw8hwjwohO/fHus
+	84h8kjW7TTuuoOlYWrTDTJVYxBs+OpI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1722494496;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TzXvo65mBwn9uOjc7o7t4OFuYEOAQLzaR8jNCt55ngU=;
+	b=Yzg7kJlGiwhrpdIXyz8xUt/N8HsD7Fp+GEtjjLvp/cCN40bQ/T8wiWk0uBb5osa9/pwwpL
+	82ZADi47edKltqAQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1722494496; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TzXvo65mBwn9uOjc7o7t4OFuYEOAQLzaR8jNCt55ngU=;
+	b=NUpUPlkm7QVbiGYYHvz/eMKkipWwklSc8isvr7RNnfe2hMyT2hsS5y2oVJ76zFf2HvT7zo
+	0x8V8gV39LjU6ymYrruVfu5si0lQlPm5MlhBD/eCt5v7hWWSVsKd9uHiw8hwjwohO/fHus
+	84h8kjW7TTuuoOlYWrTDTJVYxBs+OpI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1722494496;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TzXvo65mBwn9uOjc7o7t4OFuYEOAQLzaR8jNCt55ngU=;
+	b=Yzg7kJlGiwhrpdIXyz8xUt/N8HsD7Fp+GEtjjLvp/cCN40bQ/T8wiWk0uBb5osa9/pwwpL
+	82ZADi47edKltqAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B0D2F136CF;
+	Thu,  1 Aug 2024 06:41:36 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id T/PcKCAuq2blcAAAD6G6ig
+	(envelope-from <iivanov@suse.de>); Thu, 01 Aug 2024 06:41:36 +0000
+Date: Thu, 1 Aug 2024 09:45:50 +0300
+From: "Ivan T. Ivanov" <iivanov@suse.de>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, wahrenst@gmx.net, andrea.porta@suse.com,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/7] arm64: dts: broadcom: Add support for BCM2712
+Message-ID: <20240801064550.5zouuvwctt74q3u6@localhost.localdomain>
+References: <20240731062814.215833-1-iivanov@suse.de>
+ <20240731062814.215833-4-iivanov@suse.de>
+ <171ab489-7d05-4e43-9d5b-34470e33b20b@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731103403.407818-1-vtpieter@gmail.com> <20240731103403.407818-3-vtpieter@gmail.com>
- <20240731201038.GT1967603@kernel.org>
-In-Reply-To: <20240731201038.GT1967603@kernel.org>
-From: Pieter <vtpieter@gmail.com>
-Date: Thu, 1 Aug 2024 08:45:03 +0200
-Message-ID: <CAHvy4ApG3XhOmvn-0kT-Uvdd8yir_O72zSrFLA+CHKhm+z6XEg@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 2/5] net: dsa: microchip: move KSZ9477 WoL
- functions to ksz_common
-To: Simon Horman <horms@kernel.org>
-Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com, 
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org, o.rempel@pengutronix.de, 
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <171ab489-7d05-4e43-9d5b-34470e33b20b@broadcom.com>
+X-Spamd-Result: default: False [-2.60 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	FREEMAIL_ENVRCPT(0.00)[gmx.net];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmx.net,suse.com,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Spam-Score: -2.60
 
-Le mer. 31 juil. 2024 =C3=A0 22:10, Simon Horman <horms@kernel.org> a =C3=
-=A9crit :
->
-> On Wed, Jul 31, 2024 at 12:34:00PM +0200, vtpieter@gmail.com wrote:
-> > From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
-> >
-> > Move KSZ9477 WoL functions to ksz_common, in preparation for adding
-> > KSZ87xx family support.
-> >
-> > Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
->
-> Hi Pieter,
->
-> This is not a full review, and I suggest waiting for feedback from others=
-.
->
-> However, I think this patch-set needs to be re-arranged a little,
-> perhaps by bringing forward some of the header file changes
-> in the following patch forward, either into this patch
-> or a new patch before it.
+Hi,
 
-Hi Simon, thanks indeed I missed this! It seems difficult to respect both
-patch requirements [1] for this case:
- * One significant exception is when moving code from one file to another -=
--
-   in this case you should not modify the moved code at all in the same pat=
-ch
-   which moves it.
-* When dividing your change into a series of patches, take special care to
-  ensure that the kernel builds and runs properly after each patch in
-the series.
+On 07-31 14:57, Florian Fainelli wrote:
+> 
+> On 7/30/24 23:28, Ivan T. Ivanov wrote:
+> > From: Andrea della Porta <andrea.porta@suse.com>
+> > 
+> > The BCM2712 SoC family can be found on Raspberry Pi 5.
+> > Add minimal SoC and board (Rpi5 specific) dts file to be able to
+> > boot from SD card and use console on debug UART.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> 
+> I have already applied this one:
+> 
+> https://github.com/Broadcom/stblinux/commit/faa3381267d01a389b13038504079c85c0bc4392
+> 
+> should I drop it and take this patch instead?
 
-I can make it compile but by moving the code, the KSZ9477 WoL part obviousl=
-y
-won't run properly anymore. Any suggestion how to tackle this?
+No. I added this patch here just for completeness.
+It is written in cover letter.
 
-[1] : https://docs.kernel.org/process/submitting-patches.html
+Regards,
+Ivan
 
->
-> In any case, the driver does not compile with this patch applied,
-> f.e. W=3D1 build using allmodconfig on x86_64. While it does
-> compile just fine when the following patch is applied.
->
-> --
-> pw-bot: changes-requested
 
