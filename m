@@ -1,179 +1,134 @@
-Return-Path: <devicetree+bounces-90177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62AFE9444AD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:46:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDEC59444A6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:45:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D61601F21BA5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:46:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A46ED282273
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68AA158522;
-	Thu,  1 Aug 2024 06:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910AD156F5F;
+	Thu,  1 Aug 2024 06:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VvXCQPoy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Amu4/OBS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F1F157485;
-	Thu,  1 Aug 2024 06:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7A52745B;
+	Thu,  1 Aug 2024 06:45:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722494781; cv=none; b=WwcKxft9ZrIFlrz3A3g8AbiTTq15Qvs5u+Zcze/o4IlhcPDEILITiK8+QYt+hPB+I57IGAnzl615UufaGJnPt+iwUkA99DllqkVbSnNfCEUhsSW4CkLgxXokIeBG3A1Y9X5N1T/o0srmINIKM1RGfh7ZJFhWrbIJ0bCVIhTpaYs=
+	t=1722494718; cv=none; b=EYWt2wYi4HZkfHRytQ1GJ3JW5N8wmSFfdkoxk3JcOKpQWIfNE6/T2ZEQAOpTZXY/kvKSclkK8LzAzXEsfJhXMF/qElIsofyP3dg5jcp7sN/z4sf2tbKI9Fpkczpq+RHBZx1GrvSTeLxqVvHv9vwLR3tgMc+Ru6KeqZCpAuiiqFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722494781; c=relaxed/simple;
-	bh=/w+LuyiehuoQOmgW5szWQzLu9BG3A4kyfYsruydpDnE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UnxnJMzha29+euZ6n3t/It4rMNRywMZJ3vJKOMQsuneUcsJ7AR7J23iYUxFgSGtDXDCnn2He1W3sOAG5qWKqLpW8IRS155OLpdGppdTC4do1m+Nw7xLOHtngYsyT0ObaMqeS+YdnOPgSS18+a1qbmVMLflMqP75CBQdJT/PW0hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VvXCQPoy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47120tth031483;
-	Thu, 1 Aug 2024 06:46:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8/PGrtCu/nw9yK9UjzOwGi0VHWjtRnilWB9+2fUVZrI=; b=VvXCQPoyINGkae/m
-	tNgnTl8lemAO0FPO+oNYSvGZfOGFrlAXZWAbR2rZgB2BMiOI/8a9ETyL9ESbWnd1
-	TpdqBZP/I77pu/MxsuVrn9RbmYnWoRZ78NQhDZ75NR9zL9q3kG1SPk7/xOOS9RM/
-	QHnD1mp04VtKKF3Om8TkzCSJ2u39B2KSVA8XNUNDT92YGuNV7liBXLQXUJX2aFTh
-	fq767hzs02RCxGi8eR81yxiTycWhPU63TPhirlqq8s9+21jeXWHA6TfW/+QKvLbN
-	HBmAfMsBhmEMMsf0Ft936s0jew0dvnlYyZ2yBxN735gZcG09Bc0A8bzmztLlCNHc
-	Gky4wg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mqw7dxht-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 06:46:13 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4716kC25023942
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Aug 2024 06:46:12 GMT
-Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 31 Jul 2024 23:46:06 -0700
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        "kernel
- test robot" <lkp@intel.com>
-Subject: [PATCH V4 2/2] dt-bindings: clock: qcom: Drop required-opps in required on SM8650 camcc
-Date: Thu, 1 Aug 2024 12:14:48 +0530
-Message-ID: <20240801064448.29626-3-quic_jkona@quicinc.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240801064448.29626-1-quic_jkona@quicinc.com>
-References: <20240801064448.29626-1-quic_jkona@quicinc.com>
+	s=arc-20240116; t=1722494718; c=relaxed/simple;
+	bh=5sWP90VwEaVg4UjOMzi1vQB0KH1aObsNYJEkxg3dFMI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JhhZ8wtnKTANDowKGPC8XSQXswMGxaSG/B0At3ouRm4WWBjXF7LxTkewcUyb582Qba/M9+9It7had7CZlXWbYJ67/V9FzIxcQaxzfyRXRwqJ51SwOyPlqydxhNQ7UOMwgWCFjlOAYx9RJzrNSvvuP1i5oHj203ThrV3SvBc2hrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Amu4/OBS; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7093705c708so6734294a34.1;
+        Wed, 31 Jul 2024 23:45:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722494716; x=1723099516; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZWK4fqAZwTPXPLYR4LC73NJ1gf7ojeoCGlC/cqWqdIw=;
+        b=Amu4/OBSkPMCFk/Kxr+qo9PjZtZhzBikZtOAR+uSifyJ9PzMMg/0w+ksoz807qgIEg
+         orZhrA+jiS9hOd8NAxQahoDxoYU+UfmldhOWRlmyT94ngCf1QG3OMy3ebOjgaUgDAFVA
+         L+WPJIhkA3Xw5W2AyOJXwnML3zRHrRFChn/+M8sUIykIydbTrURsg/dhAeDr7h22vICy
+         TYXpxOBir41joSWp77f5UycYjrBs1tXMSWnx0NU4fznDf1y+tcmuAz99tb8e9orYhTpR
+         xF/VH0tw4lcujeXTQV+RlO1BFmiXPK92Nn0dvXFF5iLZqoEFzc754Mf+Kfo6FNriISzL
+         ijjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722494716; x=1723099516;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZWK4fqAZwTPXPLYR4LC73NJ1gf7ojeoCGlC/cqWqdIw=;
+        b=eTXcWMA7bJC8yGMq6HvrEmBkDlDL87Qj/vIuZInNjSMTyMEENThNQNy0VPJ7x92G1m
+         cpGO3J3FLJLm7PgcDDjTsSI2+ET79fphc6qcpSAks4nIlSrqZPPgm5ohvb8OOQRCmtBD
+         Mo+BQbWtghxYHZG3evooHsJWjQ0yUgiPHlwR3KoCRz6IZOtZkxuniX5RcJP8glvTtcS+
+         Vaovr4LM8XOV1DTBF/PxAslVV4CsubFrLYUGUG3ZGxKol2dxe6++d1rjuL4PmUDufnjv
+         c3VOiJF9dv9TFLPZmAmVGW58VW2aeSOuJAwOHK7QCddLisjXHQYw2qQ+kd1knuq0Kl4K
+         DhQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMK6tX7Su8KwMTruCb/DTxiJyepgyhSpUm6qunOlollqHQl12z64AAajebYYyNvNXZqfpqwO3Hflbe+xhPn0R/Hb5aiY+O
+X-Gm-Message-State: AOJu0YwayTv/EwvDmvSSmCr+v2ESi8U7pRlwMf9M0ugm6ZYHb/123+ZW
+	TN8+TzzaS8fHkttKp26mLiTiW0MkGQXhNth1W5AdrGJxoGYwtofGBy3Y6aybdlUa1k9kpoKOCfq
+	uVQN+/9G60CGCmI2MhGGG8Slp5iQ=
+X-Google-Smtp-Source: AGHT+IHqF7CGNuKr1aJQkaxweEgbq2lW90JHx9RUeU/R0pX/uFFR+nBaCvZRWjxZ0QPJJ5lROx6JxUrR4bjO7bQQnu8=
+X-Received: by 2002:a05:6870:9a15:b0:25d:fab0:b6f4 with SMTP id
+ 586e51a60fabf-2687a375c86mr1753352fac.1.1722494715945; Wed, 31 Jul 2024
+ 23:45:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: b1Z__1SiHS0ITgBcUam6BXWOpRqKi71L
-X-Proofpoint-GUID: b1Z__1SiHS0ITgBcUam6BXWOpRqKi71L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-01_04,2024-07-31_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=954 spamscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 adultscore=0 suspectscore=0 malwarescore=0
- phishscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408010037
+References: <20240731103403.407818-1-vtpieter@gmail.com> <20240731103403.407818-3-vtpieter@gmail.com>
+ <20240731201038.GT1967603@kernel.org>
+In-Reply-To: <20240731201038.GT1967603@kernel.org>
+From: Pieter <vtpieter@gmail.com>
+Date: Thu, 1 Aug 2024 08:45:03 +0200
+Message-ID: <CAHvy4ApG3XhOmvn-0kT-Uvdd8yir_O72zSrFLA+CHKhm+z6XEg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 2/5] net: dsa: microchip: move KSZ9477 WoL
+ functions to ksz_common
+To: Simon Horman <horms@kernel.org>
+Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com, 
+	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org, o.rempel@pengutronix.de, 
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On SM8650, the minimum voltage corner supported on MMCX from cmd-db is
-sufficient for clock controllers to operate and there is no need to specify
-the required-opps. Hence remove the required-opps property from the list of
-required properties for SM8650 camcc bindings.
+Le mer. 31 juil. 2024 =C3=A0 22:10, Simon Horman <horms@kernel.org> a =C3=
+=A9crit :
+>
+> On Wed, Jul 31, 2024 at 12:34:00PM +0200, vtpieter@gmail.com wrote:
+> > From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> >
+> > Move KSZ9477 WoL functions to ksz_common, in preparation for adding
+> > KSZ87xx family support.
+> >
+> > Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+>
+> Hi Pieter,
+>
+> This is not a full review, and I suggest waiting for feedback from others=
+.
+>
+> However, I think this patch-set needs to be re-arranged a little,
+> perhaps by bringing forward some of the header file changes
+> in the following patch forward, either into this patch
+> or a new patch before it.
 
-This fixes:
-
-arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: clock-controller@ade0000:
-'required-opps' is a required property
-
-arch/arm64/boot/dts/qcom/sm8650-mtp.dtb: clock-controller@ade0000:
-'required-opps' is a required property
-
-arch/arm64/boot/dts/qcom/sm8650-qrd.dtb: clock-controller@ade0000:
-'required-opps' is a required property
-
-Fixes: 1ae3f0578e0e ("dt-bindings: clock: qcom: Add SM8650 camera clock controller")
-Reported-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Closes: https://lore.kernel.org/all/0f13ab6b-dff1-4b26-9707-704ae2e2b535@linaro.org/
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202407070147.C9c3oTqS-lkp@intel.com/
-Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
----
- .../bindings/clock/qcom,sm8450-camcc.yaml     | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-index f58edfc10f4c..26afbbe65511 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-@@ -21,9 +21,6 @@ description: |
-     include/dt-bindings/clock/qcom,sm8650-camcc.h
-     include/dt-bindings/clock/qcom,x1e80100-camcc.h
- 
--allOf:
--  - $ref: qcom,gcc.yaml#
+Hi Simon, thanks indeed I missed this! It seems difficult to respect both
+patch requirements [1] for this case:
+ * One significant exception is when moving code from one file to another -=
 -
- properties:
-   compatible:
-     enum:
-@@ -57,7 +54,21 @@ required:
-   - compatible
-   - clocks
-   - power-domains
--  - required-opps
-+
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc8280xp-camcc
-+              - qcom,sm8450-camcc
-+              - qcom,sm8550-camcc
-+              - qcom,x1e80100-camcc
-+    then:
-+      required:
-+        - required-opps
- 
- unevaluatedProperties: false
- 
--- 
-2.45.2
+   in this case you should not modify the moved code at all in the same pat=
+ch
+   which moves it.
+* When dividing your change into a series of patches, take special care to
+  ensure that the kernel builds and runs properly after each patch in
+the series.
 
+I can make it compile but by moving the code, the KSZ9477 WoL part obviousl=
+y
+won't run properly anymore. Any suggestion how to tackle this?
+
+[1] : https://docs.kernel.org/process/submitting-patches.html
+
+>
+> In any case, the driver does not compile with this patch applied,
+> f.e. W=3D1 build using allmodconfig on x86_64. While it does
+> compile just fine when the following patch is applied.
+>
+> --
+> pw-bot: changes-requested
 
