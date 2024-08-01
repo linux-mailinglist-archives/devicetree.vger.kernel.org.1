@@ -1,160 +1,143 @@
-Return-Path: <devicetree+bounces-90419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC3B9454C9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:11:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3A59454D5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:15:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB384281EC3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 23:11:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2F6A1C22840
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 23:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CD514D29A;
-	Thu,  1 Aug 2024 23:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7546114A4E9;
+	Thu,  1 Aug 2024 23:15:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IE8pL9G/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a6i2B2Uj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69AEE1482E2;
-	Thu,  1 Aug 2024 23:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA24A25757;
+	Thu,  1 Aug 2024 23:15:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722553886; cv=none; b=RMHFk0kun6fFCG8UTQ8xILSzaIal7PHTAasVDpT7JNAEZnM4Ei04RTc9QwnzYK/nkzSIWZwcQEJEFSvc3AmZMGAjFRCXijLwHrJV6OxBtMpb+IBAPCxm9rX52sIlTlYXoz+f3QhBelKK5Ssb0+ZHB1JmFDp9oIX3e8yvWh5W4Dw=
+	t=1722554148; cv=none; b=Xfy+w/D04s+RuNMfoL4AP77kErZN9k8DLhfCNuFlIkh9cKryUjJ2YUSrVTXIT/qCVfsVg/3fSoeruwBOlPXKqvOYPRZqJXE5CuvaxiBPw+uzvkrKuaMOpmbMN3aDAw0LDfOpu4gBnAPtp1QgqKmwVZLdIwIojP/uQFgwwnZzksI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722553886; c=relaxed/simple;
-	bh=yi8KpVxNcIf5YHxoeXQGLtFB31e6KiwZl0CwWBdzZqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fX8Acj/PORniCTxO0j3w3kbwNL1kt7oy/+O0Q3XWg5d+DxJz5CZ8l31LNPhRAacHSIJnMpTgq6rCeN+1XBmLvfUcYf2RfSzgAb8yVM3f0DqfhH8cs3J+p6bB4SfTcdtsfWMTeu0hnqWamDTZP8ZwD0e/h+ffZY2HeTBDC2w2CO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IE8pL9G/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471LaAgY009955;
-	Thu, 1 Aug 2024 23:11:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c7sFS96b9Nrhzms9CFZDvZZzdzQm/xXxadPg2syXGPk=; b=IE8pL9G/F8tc8k68
-	hsBudRVPhDpBI44vQhO5LH1vM8leRlpxiHLbpAIeTxPJBrD+1lTWE0ZSPGjPhOLg
-	SWRBX5sTwIrd7EpARqfxFqdDDREOdxv0fiCjghL7D8PUa7CWqUdCK9h0+htn5cug
-	K3y//UhRxy1XFLw55fgwQ4MwhHiPcAZKlj4XLuDxf8eLUWs9/AoxfuV35zndmOjN
-	KxMGF6zB5Q7I+74+rbgcgt0Wn62ykr+m85vvTUQ2VfxAOVJlExQJ45np9lQtvPI4
-	rDEczFDvPPqmdBexy7I2SmI+bU1cR1yYMB4ZaPcWvjJUSr/roqujFxWCo8zUS7wA
-	pgdXJw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40rje204ra-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 23:11:01 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 471NB0uA029525
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Aug 2024 23:11:00 GMT
-Received: from [10.71.115.74] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 Aug 2024
- 16:11:00 -0700
-Message-ID: <1a284449-204a-4d01-90c9-ec6b1ed56e30@quicinc.com>
-Date: Thu, 1 Aug 2024 16:10:59 -0700
+	s=arc-20240116; t=1722554148; c=relaxed/simple;
+	bh=xIEY5rR27yn9RRp2zVKcZiobCp0yYZORKifs1EvpsbE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Nsc3BoJgr2KrJCbOOLKy0INcUrgP95AEordeU55d6NSDI5yZnLM0I94R4BvZ4r8gg/2Pcexqh0V/dTmmi29lQhR1J5wb+tibZIbd3C38nNqZovKlNrOR7fdxj6lu6h1cLq6lTYyT1ncJK9DdViFWIMySOh7dNS1wKl/X+9rDX2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a6i2B2Uj; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5a15692b6f6so11250630a12.0;
+        Thu, 01 Aug 2024 16:15:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722554145; x=1723158945; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eLRwfCdQETkjG/YfGs/h8tG3G0CkshB0kpr2NbWcQ+o=;
+        b=a6i2B2Uj3BSFP9MiyrTJGX12jCwKwQomiV4eRW6hJA2ZDy/prUuBkKhnkvS/JSFbRH
+         972ythlDuFQ3M1OVw02Z9BUR+kVeSS1YGPMTgSGUJLSPKpHPbhp7PAgH78DvG1JjIt6R
+         4lY+VL4ca1r8pza60IapnqErqqkYf/hmmFKPSxrTDMv3i1oU/jmBJqs0T7A2eNkNAWTa
+         fOWqzRN2TFcBC0XioCqfWcOJ7aLpWh4gma8ZknSKlmYxFiQsqMP1qsjoi2GG/JD1yV+l
+         7Y+mzqtK5iXu9I1A9r3DjtW2fNlm46VqNXLLf7JvWMye3RQpXl4GqimNj0EuJ1aCkJAn
+         5bJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722554145; x=1723158945;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eLRwfCdQETkjG/YfGs/h8tG3G0CkshB0kpr2NbWcQ+o=;
+        b=wEQXOakNHWP6bG6HGdGWirBuVrSCCLgWlkUBf7vntVCNa3y8XSImTR1gpU6Dxzjdtj
+         NeuKT6bC4sPMKbhn7/XfsVZUdP57rYNLrY9RzFQt1lS8nhH6Yc74p3dSiqx77n439ULM
+         J8vqaGkN8bfPSQCiuQz3Jlt3Vza5oLhHjA7CJoLDSju54td2gNRsXwAi2G6w8w5S5l/Z
+         8AsfV0hxhlxBq+ZMUVZCW7xVv3UnsKinq1B/7vaBBxgsfEiLq2kaOyvXC38fzbg0CTK9
+         T6q/ubIq/5+czYZoW0Y7VWy1sj/Qm7m9nNQxJpQ/ou0Xqr50oQhFjKDH92/VzVNVTsER
+         xEwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUMGk7Ez16DKhUVJeTEaMcs78YcXhH6+0pDvTPP566LzmCbI0PTF92zFhAIiCAI/eRkvbPgnGgS3W0LGzgktLJxXoBr+4TVq1IuunnF/NCcGAu+pm84KYdQw0UG9VOtcCsiGJ4LlveMXN+30C+au+FJ7pibNpRirgKjbDzUHor/OU4=
+X-Gm-Message-State: AOJu0YyfiWHQu1xc3MZJtpMR4y0tGkI0hpOzMF8iK1bDzdhqmxfvnFbt
+	AETiC8Mvaj0fZHeL/cn4NSeV6WRYrHEhpgouSJ39jkkDtWt9vlKFHXWQPqf7upuYDEq8XJSijrA
+	I5uQBmuEpn7+hSF00FJ+50vWn2nc=
+X-Google-Smtp-Source: AGHT+IF/hswnChnebe6R0QxeY5fSBqmjf0O5AvkNodYLB4It+AENYyQZH6xf825LuQTBN2qV8LOyreT8EtTt1azveJw=
+X-Received: by 2002:a17:907:3f13:b0:a77:cc6f:e791 with SMTP id
+ a640c23a62f3a-a7dc4ff1addmr151484266b.38.1722554144535; Thu, 01 Aug 2024
+ 16:15:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 17/34] ASoC: qcom: qdsp6: Add USB backend ASoC driver
- for Q6
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-18-quic_wcheng@quicinc.com>
- <5f37c04d-f564-40b9-a9f3-d071ea0a6f19@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <5f37c04d-f564-40b9-a9f3-d071ea0a6f19@linux.intel.com>
+References: <20240608141633.2562-1-laurent.pinchart@ideasonboard.com>
+ <20240608141633.2562-4-laurent.pinchart@ideasonboard.com> <ZmcYnDf0YIWA9A85@surfacebook.localdomain>
+ <20240610152555.GV18479@pendragon.ideasonboard.com> <CAHp75Vd-TZYsm+fe+o1XvDYGHO6sDqZhMFqojowRx2scwxEhLw@mail.gmail.com>
+ <20240719135515.GB637@pendragon.ideasonboard.com>
+In-Reply-To: <20240719135515.GB637@pendragon.ideasonboard.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 2 Aug 2024 01:15:08 +0200
+Message-ID: <CAHp75VdztEuQbvEbirrzqYOdYjNrJADgwC5O40fU_BzsxEmWXg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] gpio: adp5585: Add Analog Devices ADP5585 support
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Haibo Chen <haibo.chen@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hQDGrD7cDUhEfYLSjo0qNE7E1pifnf-y
-X-Proofpoint-ORIG-GUID: hQDGrD7cDUhEfYLSjo0qNE7E1pifnf-y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-01_21,2024-08-01_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- spamscore=0 mlxscore=0 impostorscore=0 phishscore=0 lowpriorityscore=0
- priorityscore=1501 adultscore=0 mlxlogscore=999 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408010155
+Content-Transfer-Encoding: quoted-printable
 
-Hi Pierre,
+On Fri, Jul 19, 2024 at 3:55=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Mon, Jun 10, 2024 at 07:29:09PM +0300, Andy Shevchenko wrote:
+> > On Mon, Jun 10, 2024 at 6:26=E2=80=AFPM Laurent Pinchart wrote:
+> > > On Mon, Jun 10, 2024 at 06:15:40PM +0300, Andy Shevchenko wrote:
+> > > > Sat, Jun 08, 2024 at 05:16:32PM +0300, Laurent Pinchart kirjoitti:
 
-On 8/1/2024 1:40 AM, Pierre-Louis Bossart wrote:
+...
+
+> > > > > +static const struct platform_device_id adp5585_gpio_id_table[] =
+=3D {
+> > > > > +   { "adp5585-gpio" },
+> > > >
+> > > > > +   { /* Sentinel */ },
+> > > >
+> > > > Drop the comma.
+> > >
+> > > I prefer keeping it.
+> >
+> > For what reason?
+> > The sentinel should be runtime and compile time one. Why should we
+> > make our lives worse by neglecting help from a compiler?
 >
->
->> +static int q6usb_hw_params(struct snd_pcm_substream *substream,
->> +			   struct snd_pcm_hw_params *params,
->> +			   struct snd_soc_dai *dai)
->> +{
->> +	struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
->> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
->> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
->> +	struct q6afe_port *q6usb_afe;
->> +	struct snd_soc_usb_device *sdev;
->> +	int ret;
->> +
->> +	/* No active chip index */
->> +	if (list_empty(&data->devices))
->> +		return -EINVAL;
->> +
->> +	mutex_lock(&data->mutex);
->> +	sdev = list_last_entry(&data->devices, struct snd_soc_usb_device, list);
->> +
->> +	q6usb_afe = q6afe_port_get_from_id(cpu_dai->dev, USB_RX);
->> +	if (IS_ERR(q6usb_afe))
->> +		goto out;
->> +
->> +	/* Notify audio DSP about the devices being offloaded */
->> +	ret = afe_port_send_usb_dev_param(q6usb_afe, sdev->card_idx,
->> +						sdev->pcm_idx);
->> +
->> +out:
->> +	mutex_unlock(&data->mutex);
->> +
->> +	return ret;
->> +}
-> Humm, multiple questions here
->
-> a) is this intentional that the params are not used in a hw_params routine?
-Think this was answered in patch#34.
-> b) if yes, could this be replaced by a .prepare callback
->
-> c) along the same lines as b), is suspend-resume during playback
-> supported? Usually this is handled with a .prepare callback to restore
-> connections.
+> Do you really think there's a risk here and that this will make a
+> difference ?
 
-I don't see us supporting that throughout any of the QC based DAI drivers, so this probably isn't implemented yet.  In terms of supporting system PM suspend for this USB offload path, we're going to explicitly stop the audio stream from the USB offload driver (qc_audio_offload) before we suspend the usb device. (refer to qc_usb_audio_offload_suspend())
+There are two aspects (or more?):
+1) potential mis-rebase or other thing that makes possible to have an
+entry _after_ the terminator and having it being compiled
+successfully, while we may prevent this from happening on the
+compilation phase (as you noticed this is quite unlikely to happen
+IRL);
+2) educational part, as somebody may use your code as a good standard.
 
-Thanks
+> I do appreciate most of your review comments, even
+> pendantic ones, as they can help making the code better, but we also all
+> need a little bit of space to breathe when it comes to coding style.
 
-Wesley Cheng
+Some of the coding style decisions can be considered slightly better
+than others. I have a rationale for this case. But of course, it's up
+to you and the subsystem maintainer on how to proceed with this. I
+wouldn't take your breath away.
 
->> +
->> +static const struct snd_soc_dai_ops q6usb_ops = {
->> +	.hw_params = q6usb_hw_params,
->> +};
->
+> > > > > +};
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
