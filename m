@@ -1,262 +1,343 @@
-Return-Path: <devicetree+bounces-90396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14BBE9452FF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:50:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F80945322
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 21:10:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 514321F23010
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:50:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31087B21AAC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B158143883;
-	Thu,  1 Aug 2024 18:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F3214883C;
+	Thu,  1 Aug 2024 19:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="YG6WD8wb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+gXH4/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B0D14373A
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 18:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5F813C832;
+	Thu,  1 Aug 2024 19:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722538252; cv=none; b=iztsOq4K250WJnUXG0KbNehMhnVAvtGOcZ8VNvir6wadBBwi1qptRyOHfK4iDRljOn/cRYtQxYde7gzlw943BXLzDAI9iCqDZBAPgNJdNm752OOs3Ky7otyNJA739U/lpI/6/JF8mIB/CY2Enly+fcYjdZI5auTWugLJq9MX7vY=
+	t=1722539403; cv=none; b=j9UudOakhb6T1jlB0A9WF6eiu0QDb+YFjXlPqZCVU/YZCSLqHH9mWOIzX+cN6Ur5edDA1EuBM8ZqO/C0VHx8gNko/20vlabWPp+FVoN6CUGph3rLlZIuEujfhgCOkG7sHXRwQc+yGdPN/12V1Iz0UDE+dPs68csVS3tG8DpmPNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722538252; c=relaxed/simple;
-	bh=Dxt87+G1ZsVUWXVFBgsaPkgOc6fcgwS/vik2AcXTt7o=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cDoM5uZOfnVYAf96PPX04bAfwzHrELBz0aF+DFaHe43jEPW66ewQBOZhzNA5es9gEqZA6xdXMcPenw/it5ppvLS6NEgCk0aNTsPeU/MJwIvay5qZq3pbLpZxWfBEKzLqERMU3DAsjlsjL9Ui0zJWJiAbvbklf6Ukv4E5gEWP+BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=YG6WD8wb; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471Gx8Hn026526;
-	Thu, 1 Aug 2024 18:50:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	message-id:date:subject:to:cc:references:from:in-reply-to
-	:content-type:content-transfer-encoding:mime-version; s=pp1; bh=
-	yhyR78qT1byKkheMVR2YqFZ0cI1JiXXE3mkBqbk0s18=; b=YG6WD8wbi0cuJVUR
-	l7N7Y4aYoggaMg8BdB9HdGCRUxIi1QhppGI+VMgKNACrkCITL1xXJS9tuR00H/+k
-	yUIXer4R5avVhC/XUV7UBokJvudUk3m3sT1hvojNTCnJuZT6aVVDmTgaxNqX/cCV
-	T3z6+RBex8qk1XnL8HsWWwSrKnWeJx/rxzYzQcMoD2SgQdLH77pmO3V8avaqrVvj
-	AMwokzpc5LKlRwWIPqDRyAfKhHrdlMeztaSQac/IXkrSMrqoxoKnCFnXVlfz1kvH
-	qqJpgc9zck4MSVKqzTYncvkVB46qD0Acn0h0LJ3zEo4eiQCOTu565EeNRj3cnh4i
-	0IQcfQ==
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40rebqg716-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 18:50:31 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 471GQd3h003745;
-	Thu, 1 Aug 2024 18:50:31 GMT
-Received: from smtprelay03.wdc07v.mail.ibm.com ([172.16.1.70])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 40ndemu42c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 18:50:31 +0000
-Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
-	by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 471IoSZD56885652
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 1 Aug 2024 18:50:30 GMT
-Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 6EFC25805D;
-	Thu,  1 Aug 2024 18:50:28 +0000 (GMT)
-Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 10C7A58058;
-	Thu,  1 Aug 2024 18:50:28 +0000 (GMT)
-Received: from [9.24.12.86] (unknown [9.24.12.86])
-	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu,  1 Aug 2024 18:50:27 +0000 (GMT)
-Message-ID: <fc92ccbd-89c7-4392-91ac-213aba31d37b@linux.ibm.com>
-Date: Thu, 1 Aug 2024 13:50:27 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/1] ARM: dts: aspeed: system1: IBM System1 BMC update
-To: Rob Herring <robh@kernel.org>
-Cc: andrew@codeconstruct.com.au, eajames@linux.ibm.com, joel@jms.id.au,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-References: <20240731214737.986010-1-ninad@linux.ibm.com>
- <172252600790.120672.12772438670145461296.robh@kernel.org>
- <4d5b8958-2d33-42df-ac97-82bb63fdff38@linux.ibm.com>
- <CAL_JsqLd8Xcj7gD=WKrt8ygYHb3jNpvxof5yFAPPydiRCPv0eQ@mail.gmail.com>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <CAL_JsqLd8Xcj7gD=WKrt8ygYHb3jNpvxof5yFAPPydiRCPv0eQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: lL-RT0xlWfwnEsdMy8QR8wqU9ubpeLB8
-X-Proofpoint-ORIG-GUID: lL-RT0xlWfwnEsdMy8QR8wqU9ubpeLB8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1722539403; c=relaxed/simple;
+	bh=gz2+lTfOSWB7hDYr6gqcTp/Ptge7wjwTerWt2YS43Hg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ctu6GDDjdKbSj1Wiu4CZDXYjY0pJmJj0e8VdeE9YqU9la8C2xYVw8ByxquFAILEGAifgJkE0SThQhAWkKoF9+XnFrgP/beBQIFy9SHqYJvIMzJoUfAUaTgjQwBiyfkDPcO/9R/9G0SmAANGoh1K6n741QaQUJ092xWohY+WoFQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B+gXH4/Q; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ef2d7d8854so86383811fa.0;
+        Thu, 01 Aug 2024 12:10:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722539400; x=1723144200; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qpZHoO/6hsX+nCMxJXNHxn39l7ARmddReK6PQZfmBS4=;
+        b=B+gXH4/Qp+mJDXj/11XsCVxWNi1EOkdgwq7fQ3l2fEXma3X9FfytRBeLqh8iAdBJKP
+         /kr2e4Lyr1SyDlHwnr2eYkeex3bpyL7dIb6qTA1YD8Qbhy9c1hoqiCPl/qIbFi1L+2GN
+         1Ne6X6Xjulf8zHxKKnirmPI+Tx8q2NAvlqL8oLA4ZklaMtv9yXIoAQe3J3NKLeh4BW5t
+         K6tfsh+zpEvJlXrhC7f7B71PZzkwXgULGKufyzTcs1i3MlzrNnzJ8LuSJ8NJQu/Z+7u+
+         4fBYYrYxhCC/6fYXlnMnhdUykCxc7q43uPfyc/HPKm7bxqeMHMLv6W1e85H1Edz1VxhA
+         C6Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722539400; x=1723144200;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qpZHoO/6hsX+nCMxJXNHxn39l7ARmddReK6PQZfmBS4=;
+        b=PL3vRfqEERsjqu3Dz2nGdGm9hj7Ew09FBmdkzSkonnmwY9qMP224GGcavtFnv4cWwz
+         impKGVwMzA/+uy560P2xvN+q3AfSFAj2PqWFNyPoT/kE9+oyBNxAjDzWbR9unqp+ayrQ
+         paRvE3fyur+SiTjts77ZAk4DBFf9VpJH7uEm5RuY+ChZKiCgVLdYBaSSzMNB93I93u1l
+         YsQdbqxaRbz5AuKrwIkNEyW5eQ65cvsZ6vGKAtlCa68mRLnypu03YJXlAiYUos9tFIE+
+         b/loH+eRFAeJ6Vnh/CVIX6bWvFd+xx88Xoxol8CB3nNO/RHGIm0lpKup8nCgfsNnQ2N5
+         RzOg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwb6tNVoXPAtm31S3sE2V4YPLprFoDTqMsL/z5mZzuUq4dr9VX7DyH0O/Ll+mTTbwJvFRzWAWT6QlpSRisY3OnkBiqWKaYmjt4iabPlJe+Ru+F32Nn0IRzosUr5A2YKJsryDTL/nviaSoY8yWRJldA+i5pmLPtUumG4XayrsTgkPMXLyotP22Zr7BZLAoKGTiavmjz6xHMHXOHNh1+q4Ytd0EF
+X-Gm-Message-State: AOJu0YwouNEaJCqNdW5D0poFqvILP3pB4CB2QHQqt8o+ZfDN+fe8sBvc
+	6oGK5c8X9xx/ubBWJEQg7EaP8qFp4OX0OGNkfFFl8OPQxsVpgKXy
+X-Google-Smtp-Source: AGHT+IHz23/0To/xP7PlNyRQ9bo8QpCLAnluXSSXqk43xJIqm7tExXUDfCkMhLZBWEYcH+OqqUb3+w==
+X-Received: by 2002:a2e:8096:0:b0:2ef:3250:d0d4 with SMTP id 38308e7fff4ca-2f15ab5c7c8mr7600511fa.48.1722539399214;
+        Thu, 01 Aug 2024 12:09:59 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f15c1de3easm298551fa.33.2024.08.01.12.09.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 12:09:58 -0700 (PDT)
+Date: Thu, 1 Aug 2024 22:09:55 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Swathi K S <swathi.ks@samsung.com>, Andrew Lunn <andrew@lunn.ch>
+Cc: krzk@kernel.org, robh@kernel.org, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org, 
+	richardcochran@gmail.com, mcoquelin.stm32@gmail.com, alim.akhtar@samsung.com, 
+	linux-fsd@tesla.com, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, alexandre.torgue@foss.st.com, 
+	peppe.cavallaro@st.com, joabreu@synopsys.com, rcsekar@samsung.com, ssiddha@tesla.com, 
+	jayati.sahu@samsung.com, pankaj.dubey@samsung.com, ravi.patel@samsung.com, 
+	gost.dev@samsung.com
+Subject: Re: [PATCH v4 2/4] net: stmmac: dwc-qos: Add FSD EQoS support
+Message-ID: <yqih2sck5ayuhk5wcvgwahcndc4xb3gxthcjxgt4yqg33zfii5@ub25raxykxdp>
+References: <20240730091648.72322-1-swathi.ks@samsung.com>
+ <CGME20240730092902epcas5p1520f9cac624dad29f74a92ed4c559b25@epcas5p1.samsung.com>
+ <20240730091648.72322-3-swathi.ks@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-01_16,2024-08-01_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 malwarescore=0 mlxscore=0
- suspectscore=0 phishscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=936
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408010118
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240730091648.72322-3-swathi.ks@samsung.com>
 
-Hi Rob,
+Hi Swathi, Andrew
 
-On 8/1/24 12:36, Rob Herring wrote:
-> On Thu, Aug 1, 2024 at 10:25 AM Ninad Palsule <ninad@linux.ibm.com> wrote:
->> I have seen these warning. I am not sure how to fix them as it is
->> already documented in the following file.
->>
->> Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
-> $ git log -- Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
-> (END)
+On Tue, Jul 30, 2024 at 02:46:46PM +0530, Swathi K S wrote:
+> The FSD SoC contains two instance of the Synopsys DWC ethernet QOS IP core.
+> The binding that it uses is slightly different from existing ones because
+> of the integration (clocks, resets).
+> 
 
-Yes, This file only exist in the www.github.com/openbmc/linux. I will 
-try to upstream it along with driver changes later.
+> For FSD SoC, a mux switch is needed between internal and external clocks.
+> By default after reset internal clock is used but for receiving packets
+> properly, external clock is needed. Mux switch to external clock happens
+> only when the external clock is present.
+> 
+> Signed-off-by: Chandrasekar R <rcsekar@samsung.com>
+> Signed-off-by: Suresh Siddha <ssiddha@tesla.com>
+> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
+> ---
+>  .../stmicro/stmmac/dwmac-dwc-qos-eth.c        | 90 +++++++++++++++++++
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 28 +++++-
+>  include/linux/stmmac.h                        |  1 +
+>  3 files changed, 117 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+> index ec924c6c76c6..bc97b3b573b7 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/reset.h>
+>  #include <linux/stmmac.h>
+> +#include <linux/regmap.h>
+>  
+>  #include "stmmac_platform.h"
+>  #include "dwmac4.h"
+> @@ -37,6 +38,13 @@ struct tegra_eqos {
+>  	struct gpio_desc *reset;
+>  };
+>  
+> +struct fsd_eqos_plat_data {
+> +	const struct fsd_eqos_variant *fsd_eqos_inst_var;
+> +	struct clk_bulk_data *clks;
+> +	int num_clks;
+> +	struct device *dev;
+> +};
+> +
+>  static int dwc_eth_dwmac_config_dt(struct platform_device *pdev,
+>  				   struct plat_stmmacenet_data *plat_dat)
+>  {
+> @@ -265,6 +273,82 @@ static int tegra_eqos_init(struct platform_device *pdev, void *priv)
+>  	return 0;
+>  }
+>  
+> +static int dwc_eqos_rxmux_setup(void *priv, bool external)
+> +{
+> +	int i = 0;
+> +	struct fsd_eqos_plat_data *plat = priv;
+> +	struct clk *rx1 = NULL;
+> +	struct clk *rx2 = NULL;
+> +	struct clk *rx3 = NULL;
+> +
+> +	for (i = 0; i < plat->num_clks; i++) {
+> +		if (strcmp(plat->clks[i].id, "eqos_rxclk_mux") == 0)
+> +			rx1 = plat->clks[i].clk;
+> +		else if (strcmp(plat->clks[i].id, "eqos_phyrxclk") == 0)
+> +			rx2 = plat->clks[i].clk;
+> +		else if (strcmp(plat->clks[i].id, "dout_peric_rgmii_clk") == 0)
+> +			rx3 = plat->clks[i].clk;
+> +	}
+> +
+> +	/* doesn't support RX clock mux */
+> +	if (!rx1)
+> +		return 0;
+> +
+> +	if (external)
+> +		return clk_set_parent(rx1, rx2);
+> +	else
+> +		return clk_set_parent(rx1, rx3);
+> +}
 
-Sorry I was not suppose to send this patch to upstream. So please ignore 
-the patch.
+Andrew is right asking about this implementation. It does seem
+questionable:
 
-Thanks & Regards,
+1. AFAIR RGMII Rx clock is supposed to be retrieved the PHY. So the
+eqos_phyrxclk and dout_peric_rgmii_clk are the PHY clocks. Do you have
+a PHY integrated in the SoC? If so you should have defined it as a
+separate DT-node and moved the clocks definition in there.
 
-Ninad Palsule
+2. Do you really need to perform the "eqos_rxclk_mux" clock
+re-parenting on each interface open/close? Based on the commit log you
+don't. So the re-parenting can be done in the glue driver or even in
+the device tree by means of the "assigned-clock-parents" property.
 
->
-> Did you mean Documentation/devicetree/bindings/hwmon/max31785.txt? If
-> so, there is no 'pmbus-fan' in it or anywhere else except aspeed dts
-> files.
->
-> The state of the aspeed dts files is really quite sad. This is a count
-> of warnings. The first number is total warnings. The second number is
-> unique warnings (stripping the dtb name so we don't have N warnings
-> for N boards). The 2nd list is undocumented (by schema) compatibles.
->
-> The number of warnings vs. Linus's tree is higher already and we just
-> started the cycle. That's the wrong direction and in general I see
-> very little if any effort reducing the warnings for aspeed.
->
-> This is all run daily here: https://gitlab.com/robherring/linux-dt/-/jobs
->
-> arch/arm/boot/dts/aspeed:3682:635
->      184  sbefifo@2400: '#address-cells', '#size-cells' do not match
-> any of the regexes: 'pinctrl-[0-9]+'
->      160  i2cr@20: #address-cells: 1 was expected
->       88  eeprom@0: 'size' is a required property
->       88  eeprom@0: 'pagesize' is a required property
->       88  eeprom@0: 'address-width' is a required property
->       70  lpc@1e789000: reg-io-width: 4 is not of type 'object'
->       62  kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->       62  kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->       62  kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->       62  kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->       45  sram@1e720000: 'ranges' is a required property
->       45  sram@1e720000: '#size-cells' is a required property
->       45  sram@1e720000: '#address-cells' is a required property
->       45  lpc@1e789000: lpc-snoop@90: 'clocks' does not match any of
-> the regexes: 'pinctrl-[0-9]+'
->       25  timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->       25  syscon@1e6e2000: 'smp-memram@180' does not match any of the
-> regexes: '^interrupt-controller@[0-9a-f]+$',
-> '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$',
-> '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
->       25  lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of
-> the regexes: 'pinctrl-[0-9]+'
->       25  ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not
-> match '^ethernet(@.*)?$'
->       25  ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not
-> match '^ethernet(@.*)?$'
->       25  ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not
-> match '^ethernet(@.*)?$'
->       25  ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not
-> match '^ethernet(@.*)?$'
->       25  fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master',
-> 'fsi-master'] is too long
->       25  fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master',
-> 'fsi-master'] is too long
->       25  crypto@1e6fa000: 'aspeed,ahbc' does not match any of the
-> regexes: 'pinctrl-[0-9]+'
->       25  bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
->       24  sdc@1e740000: sdhci@1e740200:compatible:
-> ['aspeed,ast2600-sdhci', 'sdhci'] is too long
->       24  sdc@1e740000: sdhci@1e740100:compatible:
-> ['aspeed,ast2600-sdhci', 'sdhci'] is too long
->       22  spi@60: 'eeprom@0' does not match any of the regexes:
-> '^spi@[0-9a-f]+$', 'pinctrl-[0-9]+'
->       22  spi@40: 'eeprom@0' does not match any of the regexes:
-> '^spi@[0-9a-f]+$', 'pinctrl-[0-9]+'
->       22  sbefifo@2400: occ: 'occ-hwmon', 'reg' do not match any of the
-> regexes: 'pinctrl-[0-9]+'
->
-> arch/arm/boot/dts/aspeed:68
-> ['adi, adm1272']
-> ['adm1272']
-> ['adm1275']
-> ['aspeed,ast2400-cf-fsi-master', 'fsi-master']
-> ['aspeed,ast2400-cvic', 'aspeed-cvic']
-> ['aspeed,ast2400-i2c-ic']
-> ['aspeed,ast2400-ibt-bmc']
-> ['aspeed,ast2400-lhc']
-> ['aspeed,ast2400-p2a-ctrl']
-> ['aspeed,ast2400-pwm-tacho']
-> ['aspeed,ast2400-timer']
-> ['aspeed,ast2400-vic']
-> ['aspeed,ast2400-video-engine']
-> ['aspeed,ast2500-cf-fsi-master', 'fsi-master']
-> ['aspeed,ast2500-cvic', 'aspeed-cvic']
-> ['aspeed,ast2500-gfx', 'syscon']
-> ['aspeed,ast2500-i2c-ic']
-> ['aspeed,ast2500-ibt-bmc']
-> ['aspeed,ast2500-lhc']
-> ['aspeed,ast2500-p2a-ctrl']
-> ['aspeed,ast2500-pwm-tacho']
-> ['aspeed,ast2500-scu-ic']
-> ['aspeed,ast2500-sdram-edac']
-> ['aspeed,ast2500-video-engine']
-> ['aspeed,ast2500-xdma']
-> ['aspeed,ast2600-fsi-master', 'fsi-master']
-> ['aspeed,ast2600-gfx', 'syscon']
-> ['aspeed,ast2600-ibt-bmc']
-> ['aspeed,ast2600-lhc']
-> ['aspeed,ast2600-scu-ic0']
-> ['aspeed,ast2600-scu-ic1']
-> ['aspeed,ast2600-sdhci', 'sdhci']
-> ['aspeed,ast2600-sdram-edac', 'syscon']
-> ['aspeed,ast2600-smpmem']
-> ['aspeed,ast2600-timer']
-> ['aspeed,ast2600-udma']
-> ['aspeed,ast2600-video-engine']
-> ['aspeed,ast2600-xdma']
-> ['atmel,at30tse004a']
-> ['dallas,ds3231']
-> ['delta,dps800']
-> ['dps650ab']
-> ['fsi-master-gpio', 'fsi-master']
-> ['fsi-master-hub']
-> ['ibm,bonnell-bmc', 'aspeed,ast2600']
-> ['ibm,fsi-i2c-master']
-> ['ibm,fsi-master-hub']
-> ['ibm,fsi2pib']
-> ['ibm,pca9552']
-> ['infineon,ir35221']
-> ['infineon,pxe1610']
-> ['ipmb-dev']
-> ['isil,isl69260']
-> ['isil,raa229004']
-> ['lm75']
-> ['max31790']
-> ['maxim,max31785a']
-> ['microchip,emc1413']
-> ['mps,mp5023']
-> ['nuvoton,w83795g']
-> ['nvt210']
-> ['nxp,pca9551']
-> ['nxp,pca9552']
-> ['nxp,pca9641']
-> ['pmbus']
-> ['pmbus-fan']
-> ['si,si7021a20']
-> ['ti,ucd90160']
+-Serge(y)
+
+> +
+> +static int fsd_clks_endisable(void *priv, bool enabled)
+> +{
+> +	struct fsd_eqos_plat_data *plat = priv;
+> +
+> +	if (enabled) {
+> +		return clk_bulk_prepare_enable(plat->num_clks, plat->clks);
+> +	} else {
+> +		clk_bulk_disable_unprepare(plat->num_clks, plat->clks);
+> +		return 0;
+> +	}
+> +}
+> +
+> +static int fsd_eqos_probe(struct platform_device *pdev,
+> +			  struct plat_stmmacenet_data *data,
+> +			  struct stmmac_resources *res)
+> +{
+> +	struct fsd_eqos_plat_data *priv_plat;
+> +	int ret = 0;
+> +
+> +	priv_plat = devm_kzalloc(&pdev->dev, sizeof(*priv_plat), GFP_KERNEL);
+> +	if (!priv_plat)
+> +		return -ENOMEM;
+> +
+> +	priv_plat->dev = &pdev->dev;
+> +
+> +	ret = devm_clk_bulk_get_all(&pdev->dev, &priv_plat->clks);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret, "No clocks available\n");
+> +
+> +	priv_plat->num_clks = ret;
+> +
+> +	data->bsp_priv = priv_plat;
+> +	data->clks_config = fsd_clks_endisable;
+> +	data->rxmux_setup = dwc_eqos_rxmux_setup;
+> +
+> +	ret = fsd_clks_endisable(priv_plat, true);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "Unable to enable fsd clock\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static void fsd_eqos_remove(struct platform_device *pdev)
+> +{
+> +	struct fsd_eqos_plat_data *priv_plat = get_stmmac_bsp_priv(&pdev->dev);
+> +
+> +	fsd_clks_endisable(priv_plat, false);
+> +}
+> +
+>  static int tegra_eqos_probe(struct platform_device *pdev,
+>  			    struct plat_stmmacenet_data *data,
+>  			    struct stmmac_resources *res)
+> @@ -411,6 +495,11 @@ static const struct dwc_eth_dwmac_data tegra_eqos_data = {
+>  	.remove = tegra_eqos_remove,
+>  };
+>  
+> +static const struct dwc_eth_dwmac_data fsd_eqos_data = {
+> +	.probe = fsd_eqos_probe,
+> +	.remove = fsd_eqos_remove,
+> +};
+> +
+>  static int dwc_eth_dwmac_probe(struct platform_device *pdev)
+>  {
+>  	const struct dwc_eth_dwmac_data *data;
+> @@ -473,6 +562,7 @@ static void dwc_eth_dwmac_remove(struct platform_device *pdev)
+>  static const struct of_device_id dwc_eth_dwmac_match[] = {
+>  	{ .compatible = "snps,dwc-qos-ethernet-4.10", .data = &dwc_qos_data },
+>  	{ .compatible = "nvidia,tegra186-eqos", .data = &tegra_eqos_data },
+> +	{ .compatible = "tesla,fsd-ethqos", .data = &fsd_eqos_data },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, dwc_eth_dwmac_match);
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 12689774d755..2ef82edec522 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -4001,6 +4001,12 @@ static int __stmmac_open(struct net_device *dev,
+>  	netif_tx_start_all_queues(priv->dev);
+>  	stmmac_enable_all_dma_irq(priv);
+>  
+> +	if (priv->plat->rxmux_setup) {
+> +		ret = priv->plat->rxmux_setup(priv->plat->bsp_priv, true);
+> +		if (ret)
+> +			netdev_err(priv->dev, "Rxmux setup failed\n");
+> +	}
+> +
+>  	return 0;
+>  
+>  irq_error:
+> @@ -4056,7 +4062,13 @@ static void stmmac_fpe_stop_wq(struct stmmac_priv *priv)
+>  static int stmmac_release(struct net_device *dev)
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(dev);
+> -	u32 chan;
+> +	u32 chan, ret;
+> +
+> +	if (priv->plat->rxmux_setup) {
+> +		ret = priv->plat->rxmux_setup(priv->plat->bsp_priv, false);
+> +		if (ret)
+> +			netdev_err(priv->dev, "Rxmux setup failed\n");
+> +	}
+>  
+>  	if (device_may_wakeup(priv->device))
+>  		phylink_speed_down(priv->phylink, false);
+> @@ -7848,11 +7860,17 @@ int stmmac_suspend(struct device *dev)
+>  {
+>  	struct net_device *ndev = dev_get_drvdata(dev);
+>  	struct stmmac_priv *priv = netdev_priv(ndev);
+> -	u32 chan;
+> +	u32 chan, ret;
+>  
+>  	if (!ndev || !netif_running(ndev))
+>  		return 0;
+>  
+> +	if (priv->plat->rxmux_setup) {
+> +		ret = priv->plat->rxmux_setup(priv->plat->bsp_priv, false);
+> +		if (ret)
+> +			netdev_err(priv->dev, "Rxmux setup failed\n");
+> +	}
+> +
+>  	mutex_lock(&priv->lock);
+>  
+>  	netif_device_detach(ndev);
+> @@ -8018,6 +8036,12 @@ int stmmac_resume(struct device *dev)
+>  	mutex_unlock(&priv->lock);
+>  	rtnl_unlock();
+>  
+> +	if (priv->plat->rxmux_setup) {
+> +		ret = priv->plat->rxmux_setup(priv->plat->bsp_priv, true);
+> +		if (ret)
+> +			netdev_err(priv->dev, "Rxmux setup failed\n");
+> +	}
+> +
+>  	netif_device_attach(ndev);
+>  
+>  	return 0;
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index 84e13bd5df28..f017b818d421 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -264,6 +264,7 @@ struct plat_stmmacenet_data {
+>  	void (*ptp_clk_freq_config)(struct stmmac_priv *priv);
+>  	int (*init)(struct platform_device *pdev, void *priv);
+>  	void (*exit)(struct platform_device *pdev, void *priv);
+> +	int (*rxmux_setup)(void *priv, bool external);
+>  	struct mac_device_info *(*setup)(void *priv);
+>  	int (*clks_config)(void *priv, bool enabled);
+>  	int (*crosststamp)(ktime_t *device, struct system_counterval_t *system,
+> -- 
+> 2.17.1
+> 
+> 
 
