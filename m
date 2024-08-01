@@ -1,206 +1,192 @@
-Return-Path: <devicetree+bounces-90172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D3D094445F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:23:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B00394447B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:31:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8A31F21EC3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:23:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6308281E7E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:31:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F2315747D;
-	Thu,  1 Aug 2024 06:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33814157A67;
+	Thu,  1 Aug 2024 06:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="aKxIgCt0"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="VALmha5B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1366F1EB490
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 06:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519B01EB48C
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 06:31:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722493410; cv=none; b=I9ztfJVqUx72rqwPmnJJyB4/te9HCqWntLfbkQXWyvVORhK2MApiCoTvipRZSNuj5iPUYGlamQ7qIZzgi4vVHE0+UB+D1/iyT19M+CmMWQVQK/oNsAGKcF+u8lHcYACyW0viIkNjUXqjupQDuP+fhGcNhK3Xrtoh04p0kHH2sMU=
+	t=1722493872; cv=none; b=aBTMbgVDeaGpz7sjvYfVC3sD1j+rU/jCCxCP8jI3Ybb/YqmB1pCgkZ2HZslbCOHzu7Z2Nl7kQEM5G6dnWtJE5N4KG1VOP8FlgRnoA9WCYCwoTFPSelfkZGZ7zsWAnttuN48pnavaTAlwmSxdaqAMh9I3tkwxIL45LXBAkGhMYhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722493410; c=relaxed/simple;
-	bh=1SwrbJUZHfMzIQKHR3lTTS9SNSFL2B4mHLLktBqi0gA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YeKkwZiW2pyM3MQlXZCVSX/Y1QsMzuTB3oYbIpXv/CUzpYzZ1DADOlTYEtdCTQ+9BU3ihlzxtLGbAdQr+AY6VMGZurN1v7nlYlNj/OcJvNSncQaS3+SfN4oday0Zkf4wlh5W6qEwJxEBQbMg/tDGidNto7qliDkn8LMThWonsdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=aKxIgCt0; arc=none smtp.client-ip=91.218.175.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
-Date: Thu, 1 Aug 2024 08:22:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-	t=1722493403;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uNXO5Sbe1R3I7INxDUElbIWLts6spK8XiLpLcF786pk=;
-	b=aKxIgCt05edjo1D67ATWPa6sDjDircW5G4zgDLOmXhbGRQMxkpIpIStYg2JJUitUVHXrCI
-	ipY9x5t2/JwAtU5+j43e2UjJUQ/74aKXt49A7KceNpI0Aw0T+lkAGv18qX8+Dma3ue3i2f
-	XN9/DCVLWnKWJ1jKZaREYIZPvKdCEhY=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Henrik Grimler <henrik@grimler.se>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
-	Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 00/10] power: supply: max77693: Toggle charging/OTG
- based on extcon status
-Message-ID: <20240801062253.GA2681@l14.localdomain>
-References: <20240729-max77693-charger-extcon-v3-0-02315a6869d4@gmail.com>
+	s=arc-20240116; t=1722493872; c=relaxed/simple;
+	bh=7hiJyExXsvFNCdkfgjNWRGOg631lI6JSQvQdwmfuouM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nAPJY1NFiW6qs9tb3P4h6nMVEfPUSvur1DmXVwF2Et3/daaWpVMsHzi57/YvWGNS0Phh+VxARRKhb0PdUqFLslEDhDOhGe06THbLXY86UxmYB7+qGwdqO1CAZYz3hoGP9TKmJwBhicyVPPn68e1sf5sj+iNWzhD+aeYodMA8q8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=VALmha5B; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a7a9a7af0d0so858664266b.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 23:31:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722493869; x=1723098669; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZtgOTmyz4Jo80Ebg+IqO3Y085ck8x5IgntpNpkonWA4=;
+        b=VALmha5Bcnc4scaHYy4MfF03OrZ/0QOC9ADGxSUAzewwtE/8Su20rgbwuAXxmveG2O
+         qop0Vc1I7nId+O64sPmvb2rqq9s6bmJK7jvoB6SMpVWwpzPOHRHtAnTnxImjNZ9fmWBJ
+         rvkZDceJfpSoRpPnkAdh9tVtd9+54J3pmYn2K/QjX7tnjhg9Z7m+B3AYlGM6lXzlmON2
+         TyW/8yEI7M1zQn39+oRLL6VxlWwGiEGSWXc+mP3EAbypNHvr0uN3i4U2PGWReedza8Lx
+         gVQBsQe87d2UCd+eJxjo3ZlTFOxH3lcBOfPlgDVlsFOjct0lCTC0I5u3eBzgi1x4QU9F
+         mOpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722493869; x=1723098669;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZtgOTmyz4Jo80Ebg+IqO3Y085ck8x5IgntpNpkonWA4=;
+        b=vN0USVNuJCaXxDhsvb4Cg/mXtp+N4cRpE0l/bFeyeXu05jcmqHgQuyg+CJQXtInDnc
+         PEAmxcLIvnwlYGWuBJXZkBeUCk3WqAsNnd06sqbqsGg1TWJc2iRyG1lzaPuTD9zKMd+f
+         sQGXdYebvMKpbAH11HROzIQRO/7F+z/wDcqtq4Hwsge1LtGIhd1ZldGe/hoACVOQFzpK
+         xchXfaRW2kLRYsjdjqt06ZtFnrH5lxGR20aih7LbI+ma5oDj/DiJ1JWYzdBamtUmSJXD
+         s2FGpoI6hSFckwXiz/oS6sQbTb3RT7OeSN9JotqvQe2h6F64NhZGF7rcLmcgCxJMC7dx
+         WE9g==
+X-Forwarded-Encrypted: i=1; AJvYcCU1dkwpadaOkqhGEMYmNVAhrC/Gn3lq/nDsy3VXFLHV8PgcLfYylAez2LD+wTLwoc4zSMjFuLQAOZKJfCbzu9HIH3x67Ddh1mje5A==
+X-Gm-Message-State: AOJu0Yx09Ec2jqx2xNTM58+QFlW23sYjbQ2QekLtkeevAJ6lzx0Ryqg7
+	KfbQrVC6hd7Q1YhQsSvEp0YTSopY8/F9RXv9zftdkKBl9f0yQu0HBR+4FpbTEdwy8h2AFJczElB
+	ahPwjDet4dXdL9XLMwsKFo7BbVrCXbXCshMqkCw==
+X-Google-Smtp-Source: AGHT+IGCKaJ30FgEU9oUZBdt1y3mH+iUXfyse7Ifs2EUpNCPkcgPwDdhg+BBqKki8Uxjaui4Z+qh19h6sLlMzePfjC4=
+X-Received: by 2002:a17:906:ba82:b0:a72:8d2f:859c with SMTP id
+ a640c23a62f3a-a7daf562837mr70124066b.33.1722493868606; Wed, 31 Jul 2024
+ 23:31:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240729-max77693-charger-extcon-v3-0-02315a6869d4@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-3-alexghiti@rivosinc.com> <20240731-56ba72420d7f745dacb66fd8@orel>
+ <CAHVXubjrrWVnw1ufXRJh_5N9M5UiOVZseb0C78fjLaYhNKF7eA@mail.gmail.com> <20240731-676154f31336c78bafea57d0@orel>
+In-Reply-To: <20240731-676154f31336c78bafea57d0@orel>
+From: Alexandre Ghiti <alexghiti@rivosinc.com>
+Date: Thu, 1 Aug 2024 08:30:57 +0200
+Message-ID: <CAHVXubhUVi=Ryc4fF+7Z12h7p1aQtVwHfD6YGfw676aijjw5Rg@mail.gmail.com>
+Subject: Re: [PATCH v4 02/13] riscv: Do not fail to build on byte/halfword
+ operations with Zawrs
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, 
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arch@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Artur,
+On Wed, Jul 31, 2024 at 6:14=E2=80=AFPM Andrew Jones <ajones@ventanamicro.c=
+om> wrote:
+>
+> On Wed, Jul 31, 2024 at 05:52:46PM GMT, Alexandre Ghiti wrote:
+> > Hi Drew,
+> >
+> > On Wed, Jul 31, 2024 at 4:10=E2=80=AFPM Andrew Jones <ajones@ventanamic=
+ro.com> wrote:
+> > >
+> > > On Wed, Jul 31, 2024 at 09:23:54AM GMT, Alexandre Ghiti wrote:
+> > > > riscv does not have lr instructions on byte and halfword but the
+> > > > qspinlock implementation actually uses such atomics provided by the
+> > > > Zabha extension, so those sizes are legitimate.
+> > >
+> > > We currently always come to __cmpwait() through smp_cond_load_relaxed=
+()
+> > > and queued_spin_lock_slowpath() adds another invocation.
+> >
+> > atomic_cond_read_relaxed() and smp_cond_load_acquire() also call
+> > smp_cond_load_relaxed()
+> >
+> > And here https://elixir.bootlin.com/linux/v6.11-rc1/source/kernel/locki=
+ng/qspinlock.c#L380,
+> > the size passed is 1.
+>
+> Oh, I see.
+>
+> >
+> > > However, isn't
+> > > the reason we're hitting the BUILD_BUG() because the switch fails to =
+find
+> > > a case for 16, not because it fails to find cases for 1 or 2? The new
+> > > invocation passes a pointer to a struct mcs_spinlock, which looks lik=
+e
+> > > it has size 16. We need to ensure that when ptr points to a pointer t=
+hat
+> > > we pass the size of uintptr_t.
+> >
+> > I guess you're refering to this call here
+> > https://elixir.bootlin.com/linux/v6.11-rc1/source/kernel/locking/qspinl=
+ock.c#L551,
+> > but it's a pointer to a pointer, which will then pass a size 8.
+>
+> Ah, missed that '&'...
+>
+> >
+> > And the build error that I get is the following:
+> >
+> > In function '__cmpwait',
+> >     inlined from 'queued_spin_lock_slowpath' at
+> > ../kernel/locking/qspinlock.c:380:3:
+> > ./../include/linux/compiler_types.h:510:45: error: call to
+> > '__compiletime_assert_2' declared with attribute error: BUILD_BUG
+> > failed
+> >   510 |         _compiletime_assert(condition, msg,
+> > __compiletime_assert_, __COUNTER__)
+> >       |                                             ^
+> > ./../include/linux/compiler_types.h:491:25: note: in definition of
+> > macro '__compiletime_assert'
+> >   491 |                         prefix ## suffix();
+> >          \
+> >       |                         ^~~~~~
+> > ./../include/linux/compiler_types.h:510:9: note: in expansion of macro
+> > '_compiletime_assert'
+> >   510 |         _compiletime_assert(condition, msg,
+> > __compiletime_assert_, __COUNTER__)
+> >       |         ^~~~~~~~~~~~~~~~~~~
+> > ../include/linux/build_bug.h:39:37: note: in expansion of macro
+> > 'compiletime_assert'
+> >    39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond),=
+ msg)
+> >       |                                     ^~~~~~~~~~~~~~~~~~
+> > ../include/linux/build_bug.h:59:21: note: in expansion of macro
+> > 'BUILD_BUG_ON_MSG'
+> >    59 | #define BUILD_BUG() BUILD_BUG_ON_MSG(1, "BUILD_BUG failed")
+> >       |                     ^~~~~~~~~~~~~~~~
+> > ../arch/riscv/include/asm/cmpxchg.h:376:17: note: in expansion of
+> > macro 'BUILD_BUG'
+> >   376 |                 BUILD_BUG();
+> >
+> > which points to the first smp_cond_load_relaxed() I mentioned above.
+> >
+>
+> OK, you've got me straightened out now, but can we only add the fallback
+> for sizes 1 and 2 and leave the default as a BUILD_BUG()?
 
-On Mon, Jul 29, 2024 at 07:47:34PM +0200, Artur Weber wrote:
-> This patchset does the following:
-> 
-> - Add CURRENT_MAX and INPUT_CURRENT_MAX power supply properties to
->   expose the "fast charge current" (maximum current from charger to
->   battery) and "CHGIN input current limit" (maximum current from
->   external supply to charger).
-> 
-> - Add functions for toggling charging and OTG modes.
-> 
-> - Add an extcon-based handler that enables charging or OTG depending
->   on the cable type plugged in. The extcon device to use for cable
->   detection can be specified in the device tree, and is entirely
->   optional.
-> 
-> The extcon listener implementation is inspired by the rt5033 charger
-> driver (commit 8242336dc8a8 ("power: supply: rt5033_charger: Add cable
-> detection and USB OTG supply")).
+Yes, sure, I'll do that.
 
-Tested on exynos4412-i9305 (after applying the changes in patch 8 - 10
-to exynos4412-midas.dtsi).  It works well, device correctly identifies
-a usb cable connected to charger or a usb cable connected to computer,
-and sets a limit of 1.8 A and 0.5 A in the two cases.
+Thanks,
 
-I did notice that device does not always detect cable insertion, so I
-can occassionally get two de-attach events in a row.  Cable was
-inserted between 428 and 462 in below log snippet:
+Alex
 
-[  389.458399] max77693-muic max77693-muic: external connector is attached(chg_type:0x3, prev_chg_type:0x3)
-[  389.469765] max77693-charger max77693-charger: fast charging. connector type: 6
-[  428.151857] max77693-muic max77693-muic: external connector is detached(chg_type:0x3, prev_chg_type:0x0)
-[  428.160319] max77693-charger max77693-charger: not charging. connector type: 13
-[  462.156048] max77693-muic max77693-muic: external connector is detached(chg_type:0x0, prev_chg_type:0x0)
-[  469.881925] max77693-muic max77693-muic: external connector is attached(chg_type:0x3, prev_chg_type:0x3)
-[  469.890049] max77693-charger max77693-charger: fast charging. connector type: 6
-
-but this is probably an issue in extcon driver though rather than
-charger.
-
-I have not tested so that MHL still works, as I do not have access to
-that cable at the moment, will try it in a few days.
-
-Best regards
-Henrik Grimler
-
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> 
-> v3 no longer uses the CHARGER regulator to manage the power status, and
-> that's for two reasons:
-> 
-> - Regulator enable/disable behavior was interfering with how the power
->   supply driver worked (we occasionally got "unbalanced disables"
->   errors when switching charging state, despite checking for the
->   regulator status with regulator_is_enabled() - the CHARGER reg would
->   report as enabled despite the enable count being 0).
->   This broke OTG insertion if the OTG cable was plugged in first, and
->   sometimes caused warnings on unsuspend.
-> 
-> - Changing the charging values directly in the power supply driver is
->   less opaque and lets us avoid bringing in a dependency on regulators.
-> 
-> It also splits the current limits back into two properties:
-> INPUT_CURRENT_LIMIT and CONSTANT_CHARGE_CURRENT_MAX. Again, there are
-> two reasons for this split:
-> 
-> - They are two separate current controls, one for USB->charger and one
->   for charger->battery, and they have different limits (0-2.1A for CC
->   vs 60mA-2.58A for input). Given that the power supply core has the
->   properties for both values separately, it's more logical to present
->   them as such.
-> 
-> - It's safer to keep these separate; CONSTANT_CHARGE_CURRENT_MAX is
->   pretty explicitly only set *once* - at probe time with a safe value
->   specified in the DT. This way, INPUT_CURRENT_LIMIT is safer to modify
->   since in the event of an invalid value the CC current will hold back
->   the extra current thus preventing damage to the battery.
-> 
-> The latter is relevant as I'm working on a follow-up patchset that
-> allows for controlling the charging parameters using power supply
-> properties/sysfs properties rather than the CHARGER regulator.
-> 
-> Note that the CHARGER regulator gets disabled automatically if it's
-> not used, which will disable charging if it was auto-enabled by the
-> extcon code. This can be worked around by re-attaching the cable, or
-> more properly by removing the CHARGER regulator from DT for devices
-> that use the extcon-based charger management, as has been done in the
-> Galaxy Tab 3 8.0 DTSI.
-> 
-> See v1 for old description:
-> 
-> https://lore.kernel.org/r/20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com
-> ---
-> Changes in v3:
-> - Drop uses of CHARGER regulator, manage registers directly in power
->   supply driver instead
-> - Link to v2: https://lore.kernel.org/r/20240715-max77693-charger-extcon-v2-0-0838ffbb18c3@gmail.com
-> 
-> Changes in v2:
-> - Changed to use monitored-battery for charge current value
-> - Both current limit variables are now set by the CHARGER regulator
-> - Link to v1: https://lore.kernel.org/r/20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com
-> 
-> ---
-> Artur Weber (10):
->       dt-bindings: power: supply: max77693: Add monitored-battery property
->       dt-bindings: power: supply: max77693: Add maxim,usb-connector property
->       power: supply: max77693: Expose input current limit and CC current properties
->       power: supply: max77693: Set charge current limits during init
->       power: supply: max77693: Add USB extcon detection for enabling charging
->       power: supply: max77693: Add support for detecting and enabling OTG
->       power: supply: max77693: Set up charge/input current according to cable type
->       ARM: dts: samsung: exynos4212-tab3: Add battery node with charge current value
->       ARM: dts: samsung: exynos4212-tab3: Add USB connector node
->       ARM: dts: exynos4212-tab3: Drop CHARGER regulator
-> 
->  .../bindings/power/supply/maxim,max77693.yaml      |  15 +
->  arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi     |  22 +-
->  drivers/power/supply/Kconfig                       |   1 +
->  drivers/power/supply/max77693_charger.c            | 302 ++++++++++++++++++++-
->  include/linux/mfd/max77693-private.h               |  12 +
->  5 files changed, 337 insertions(+), 15 deletions(-)
-> ---
-> base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
-> change-id: 20240525-max77693-charger-extcon-9ebb7bad83ce
-> 
-> Best regards,
-> -- 
-> Artur Weber <aweber.kernel@gmail.com>
-> 
+>
+> Thanks,
+> drew
 
