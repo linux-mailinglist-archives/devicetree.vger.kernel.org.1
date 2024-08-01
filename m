@@ -1,139 +1,129 @@
-Return-Path: <devicetree+bounces-90311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48B0944E59
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:45:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5FC9944E70
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:49:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EF901C20A47
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A22DA2850DC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485601EB4AE;
-	Thu,  1 Aug 2024 14:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF011A6169;
+	Thu,  1 Aug 2024 14:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ml2iEl/q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pnvgvn8F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2048A1EB48B;
-	Thu,  1 Aug 2024 14:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79912F32;
+	Thu,  1 Aug 2024 14:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722523548; cv=none; b=s4hJezmJdnlFYDbcKvtSZWQ5hH/G0vR4rcfAKmTrileYw+PXsNO2bsnYW/WRf2LU0i8Hxa/J50AH2fCxy4+1j0qsFQisEAjnFJJGB94mCtJnuScyEGtUYLI13gPCrDBFJXk2+j7irzkVaMyxqchKl7sm+w5XcRSVbsEonE7vViM=
+	t=1722523758; cv=none; b=YAVxRYiKIByTu/WIDrIOwGj1saveOkp2/aEDjlstrXm2a2N8qKGZX63Z5oVRaUnt0WJIad3aZJnAVpanO7SddfHGvzYigrdtlUI3hC7foHIdKRLEWQw5q2XldgydTM3oBvrIjQLF6jebvkNYkZPupqLVCBZLWcdD8zKh9rfyxow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722523548; c=relaxed/simple;
-	bh=ynD7QXa6nbck1NM7QRDpNGZa/07oVXF4giE0qGLrMBM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n/tmaKvd8LRmm0NBsgdivw5Ik65hwoPAVJ7tE4yF2u9qQ06j7Rflb96sjL8cjlCdjlGDfaLxze4kYcca7PQUGFU15RcZNhQxT/7qI8114X++aV6UFBkLGIHuQPHgcr6xoCXUVRvoo0t3eM0h7Kjh3+ZZxzr2heKGjeGv2qSZIHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ml2iEl/q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D5EC32786;
-	Thu,  1 Aug 2024 14:45:38 +0000 (UTC)
+	s=arc-20240116; t=1722523758; c=relaxed/simple;
+	bh=vzyH6OgkHFahyzizx6mkWMFnekHvMp91Ck+iH8k1SVA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Fbkn3TtIARXASqB9IvDM3CI2M3cq9HRwgtb2MjQ9RiXzlDcnLjYh9Onx8M9gk5q+/glkJmUrHkG08aIELI8jKNwK74YRdPw1bibhUeScL3mXcIU0uaWGx6peYijrs/zFIRIGiWP3NYIZTwyA2y10d25zPMSkGFCifQTiBF34Ap0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pnvgvn8F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96390C32786;
+	Thu,  1 Aug 2024 14:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722523547;
-	bh=ynD7QXa6nbck1NM7QRDpNGZa/07oVXF4giE0qGLrMBM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ml2iEl/qrUF+tU3f8mqi/xDrO0HgBiI00zoJCF/IXfrbRQVBSwrHc6SCD0dcGuGbx
-	 824TddCt25PLx/abt6g+oObHBwAel56iW83eIttgL0jpLGNxvzRleUyhLrnFkyeQH3
-	 r7Q9elQqm4pDcYQkkpCqT/izvujZ8958Evf2mSiR8cogAzJx42FEnI6jbrhpevs6Cy
-	 5nqpT9+xvR2TxZwuap3WnnV/b0wmsIowAB6aj1nMuJhN7DuuWrNi45lYWZLdWuqW6l
-	 3EP5l3hGYGrpWry84B9ZfyAUUBLszpnlrMpvVtlGDQvTIHi1K2dz0eC9H75ZaPtFJE
-	 +wsL0fagBswBg==
-Message-ID: <fe49a89e-324c-4755-8350-cb6f7b3323d9@kernel.org>
-Date: Thu, 1 Aug 2024 16:45:36 +0200
+	s=k20201202; t=1722523758;
+	bh=vzyH6OgkHFahyzizx6mkWMFnekHvMp91Ck+iH8k1SVA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Pnvgvn8FOv/edb4IrGvtTgp0GI4u10GvMFrkYRx9MJdrgBfxgJyhrLYQ96DbheXpo
+	 KV0wR1ERDl8LgKjARVsIJyefj/R4Ht6356WWVqINOzbKa7AZUkksY2cJsGlYc3Bt3s
+	 fjONBpMAKoaGswX7+Em22dBu89CwFq5A75ggVn/qpZ8En5/9VRlCpzwIY/1HyDQFoz
+	 pHFf1QwraEIgNUKR1c2vUPzEO75WFvSgyp/SVCxjczy+77VAiFlTp8/kMFD5m52D0L
+	 u7WayALIp4xrMoNoO2AbVy0xXko2UHFhz5R811WxK9W5rawgCXT6HxGSbUPVCWcZbj
+	 XOBHSpUnf9FBg==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f032cb782dso75878801fa.3;
+        Thu, 01 Aug 2024 07:49:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWyr5iswRbt7Kwh/XgMwKu1BJWTWzfFAuzlYhaOie9t05fml5W6UQ2U6CHAS113SOhB5sFpn4hvgj79xUVFksGoQA9WX5fQfiRR+k5aL5cJvfs7daFOKEQ9+mD62yfXTeHZozuwRxjXhQ==
+X-Gm-Message-State: AOJu0Yy+xPzhYUWDlNMfEGugpgqaGWNJRIgUh7tcQSdWQMLSmGR+2kck
+	w63pymcp6lut7ZbP58qgAGpMg5A9MXrpKooVHtHs6TcOBhxgDnVs7LkW3AZ8/jXQSxoAt/lJh1a
+	Lum/7RsoVTZibZrMEfkbWb9XhLA==
+X-Google-Smtp-Source: AGHT+IFhOE6NLKA1ffHukMgs6IA+lBCzhaXHSDKsXLEsl2g/ajP2Hgu8VD4gVg0/eJ4APZ0Mpu+DOIJa0sONnQ4Y0p4=
+X-Received: by 2002:a2e:7a1a:0:b0:2f0:1e0a:4671 with SMTP id
+ 38308e7fff4ca-2f15aa836a4mr3979041fa.4.1722523756933; Thu, 01 Aug 2024
+ 07:49:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] drm/rockchip: Explicitly include bits header
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>
-References: <20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com>
- <20240801-b4-rk3588-bridge-upstream-v2-2-9fa657a4e15b@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240801-b4-rk3588-bridge-upstream-v2-2-9fa657a4e15b@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <2046da39e53a8bbca5166e04dfe56bd5.squirrel@_> <CAL_JsqKpTKv-fthwD9bFHiVESJyNP6uMg7Px7Rh+-k583oz76g@mail.gmail.com>
+ <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
+In-Reply-To: <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 1 Aug 2024 08:49:04 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
+Message-ID: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
+Subject: Re: [PATCH v2] of/irq: Make sure to update out_irq->np to the new
+ parent in of_irq_parse_raw
+To: WHR <whr@rivoreo.one>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/08/2024 04:25, Cristian Ciocaltea wrote:
-> Driver makes use of the BIT() macro, but relies on the bits header being
-> implicitly included.
-> 
-> Explicitly pull the header in to avoid potential build failures in some
-> configurations.
-> 
-> While at it, reorder include directives alphabetically.
-> 
-> Fixes: 8c8546546f25 ("drm/rockchip: move output interface related definition to rockchip_drm_drv.h")
+On Wed, Jul 31, 2024 at 10:22=E2=80=AFPM WHR <whr@rivoreo.one> wrote:
+>
+> > On Mon, Jul 29, 2024 at 11:54=E2=80=AFPM WHR <whr@rivoreo.one> wrote:
+> >>
+> >> Commit 935df1bd40d43c4ee91838c42a20e9af751885cc has removed an
+> >> assignment statement for 'out_irq->np' right after label 'skiplevel',
+> >> causing the new parent acquired from function of_irq_find_parent didn'=
+t
+> >> being stored to 'out_irq->np' as it supposed to. Under some conditions
+> >> this can resuit in multiple corruptions and leakages to device nodes.
+> >
+> > Under what conditions? Please provide a specific platform and DT.
+>
+> I have a previous email sent to you before I came up with the fix. The ke=
+rnel
+> log for debugging and the device tree blob are attached again.
 
-There is no bug here to be fixed. Drop. Especially bugfixes should not
-be combined with cleanups.
+Thanks. The patch needs to stand on its own with this detail, not
+require that I've read (and remember) some other email among the
+1000s.
 
-Best regards,
-Krzysztof
+"multiple corruptions and leakages to device nodes" is meaningless. Be
+exact, it's device_node refcounts we're talking about. The issue is
+out_irq->np is not updated from 'usbdrd' node to the real interrupt
+parent, the 'plic' node. In the next iteration of the loop, we find
+'interrupt-controller' in the plic node and return, but out_irq is not
+pointing to the plic. Then of_irq_get() fails to get the irq host and
+does a put on out_irq->np which is usbdrd, not plic node.
 
+So please update the commit msg and provide your name, not initials.
+
+>
+> > Honestly, I think the DT is wrong if you get to this point. We'd have
+> > to have the initial interrupt parent with #interrupt-cells, but not an
+> > interrupt-controller nor interrupt-map property to get here. Maybe
+> > that happens in some ancient platform, but if so, I want to know which
+> > one and what exactly we need to handle.
+>
+> So you suggest the #interrupt-cells is erroneous in that node, and should=
+ be
+> removed?
+
+Yes. dtc warns about this. dtschema would too if there was a schema
+(there is, but not since you use a downstream binding).
+
+The clint node has the same issue.
+
+> This is a device vendor-provided DT, so any issue in it will have to be f=
+ixed
+> locally.
+
+Complain to your vendor...
+
+Rob
 
