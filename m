@@ -1,142 +1,151 @@
-Return-Path: <devicetree+bounces-90270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FDCE9449E4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:00:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 820889449EF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:01:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B9151F21E9F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:00:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B432B2890A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A3318453F;
-	Thu,  1 Aug 2024 11:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F86187FE5;
+	Thu,  1 Aug 2024 11:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K3V0h7C0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UIPTLMv1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C596D16D4F3
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6729816DC03
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722510014; cv=none; b=N6v6MkuwkyYL3oQSryct8JbRyLtwNgcBlmPs1BnaENBe5VatMqO0vgVoMxFDu07/XKN3bCqzpXBq3pMLe18zk+byjFAnKxYP47nUFmkiGKji2AgJLBQzEQob66zsGOJxz408YugYJyAM/s53ajYeJO/JDtVixOEAeoBBWRnaDyw=
+	t=1722510102; cv=none; b=NhdSOeuHx+IMu1IilF4PAWqzc7ia8PcEqMD71bfDtOUqfetPoRLTebxM0rr8sE8SIc7KBkSDEVIwEXURFjzwTMmB/ERQzSsUDNS2LReKFjZT8DOPUh77tbCJheSl43sBvsCtp6r2t8qStYZ2QBopxHptVZyneKgkhrzoG9byyII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722510014; c=relaxed/simple;
-	bh=lGsquQLMtx6JtZ5cE+/NHCjgtnCFyHLf7m/m7jXcv4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fvahoLEAPWZrEDfXIEE18kqG7xKbKb86bDuR2X8N6QRVDb0i+ZY0GzSE6cZAx2a31PuXYDr1ow4JjEqysjDYnEAPIWJ6/ZQP3KOjBmRRmV9RN3dEiszRrC14dugOCvMkpx5RoyFkhcIVNTqjkky/lfTqAccOsEPPMujbkYgmWiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K3V0h7C0; arc=none smtp.client-ip=209.85.208.53
+	s=arc-20240116; t=1722510102; c=relaxed/simple;
+	bh=R05DKqS1w9uIVMFcvpKFDclE86k9lkrCoWmX9bfJe1Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OZo5ykUO0mtpGXMBEPyPjYMtgtquF+ZF9QN6qxnmrTpb5OwOTQBM0OCg7UorZKN17snErMpETHo6ns1wXpO5Wc+T9/vbuQtlxM2bnOhyWn6HDu5060i8yyPF3dKN1KGCQDkqoctzpPsOTHoQ3p4khd1IZ3aG73tbArOEWn56fkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UIPTLMv1; arc=none smtp.client-ip=209.85.219.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5b391c8abd7so5616138a12.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:00:12 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e08a538bf7bso1575868276.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:01:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722510011; x=1723114811; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nixP02A7oEt1hy5pTWT9vtqylJ4GWCAGniHQdRCLdt8=;
-        b=K3V0h7C0FSt/ef9PiulAK/Rpx2OHw9EmzY1Soh0PmfEnPAWfDxDUClQr5cnDynSMLZ
-         Pl9Iv3sG9x7Y/Do8BvlxkCN1rLOWI04rja3FREGGpcA4lnYt/FVv9I9yWEPyn16bRiZO
-         5OuXAcwUNu8gpptZbZNbzrElMEchXI0jos54MDvm7m8Lu5uJflFA07zwhwLmwKEW6G1U
-         0gRN22iJf9EA1ZnaF9byqg6Tb9rFT4NDTpnu1cakAOoNKv1ag1a8d/s3Yd7AIW85AoOO
-         SAoUIChARdvYRfq0sgJ/urnphugJdlcEdW3811j8g9IpnE841QFL74wagEKbOaZu2sfP
-         fjZQ==
+        d=linaro.org; s=google; t=1722510099; x=1723114899; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hvEVInb3XjDTInVG42ARV/26R6ebE2gUOo+RJ8/4wBc=;
+        b=UIPTLMv13scF61MazmIeN3uyvRfzpFNDGGju0d60AEmK17qr3p+FZ8cSyN8+0/Ta6w
+         fI4UwhdxfJCQNhPPPJQtescLMDR9j9TOPQv6H/SmoKQmuZm3JMaxUPSNiX8iJttEmIIq
+         5ODOIePiPbxkEnoDknaA7awyC1J9z5Ri0P7e8RxAMnjZE0iUatwsEYr8J50nbAVzFZ2l
+         DA7OK1xBJejpL04ovA11VxV4MvIQIixNKQGmAxG4gieH7+8MO8q7AkkWLf35zLiJKfdR
+         PuNR5OUPKIOAj8pbDAEod0vWPe+q1MjXCuUi4Mr43uVMO3DeAB/db05QjIPJSAZdd2WJ
+         oSRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722510011; x=1723114811;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nixP02A7oEt1hy5pTWT9vtqylJ4GWCAGniHQdRCLdt8=;
-        b=Emnn+JqC/+3j2cF/k4I3QkosZ2bG+3VQgkmjn6OKJvT2PnP0w6MReuqcWkESAv/npf
-         IuBSrGx12tsgMkSLauNhyB3T0aJiRIKQ7k5S/RLrK4y5YhQTJyO3Td4VBS2ZunpKsYny
-         wSwpzDU5zlovNbmyd6aMOTF1tWY/hN02gDjn8Pco7mntaJtDmWVf5G+JtK911bAwGMqz
-         buI8M89VsNFrs5DQRsXsRry6AvYCFEjtSk45EzEqzU+1RlkwfxWHh3s09nT+W9fmB1qO
-         E0gAgXKTbI1b5e9Gn1M8iBRjHMGVX++ocVa87WqIgM/rbEGJWVSUSvC7kqmfrlgQr/QZ
-         qgaw==
-X-Forwarded-Encrypted: i=1; AJvYcCWxqni0rxzhIWLqN61ibWCbOLkrARBt1BNf1lC4WHBCZFz/WvbSDoUKukjFFSGLgyFUl/OnjOxEa3MLilWcVjftfRKoAaT3jvkLdQ==
-X-Gm-Message-State: AOJu0YxJqqcaue/Fgdlp4N+ApnXNizeJV5bRoeolw6iWyKBrxjyDz+K1
-	PzeLlj0W7VF+dVbygBzh6Uq3V+bEI3PO6sZgfj2isdmZp12xyakhBlgXb0QFCeY=
-X-Google-Smtp-Source: AGHT+IFBiJe1UjzoCyX9kFv29xIjXEtAXD5xStRwHkeZ85VlS8x4P0YsI/ql+ZacL9kzRRMapdJh6Q==
-X-Received: by 2002:a17:907:3e1a:b0:a7a:81b6:ea55 with SMTP id a640c23a62f3a-a7daf675ae1mr160437666b.56.1722510011086;
-        Thu, 01 Aug 2024 04:00:11 -0700 (PDT)
-Received: from ?IPV6:2a02:8109:aa0d:be00::7424? ([2a02:8109:aa0d:be00::7424])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad4acd7sm902707366b.140.2024.08.01.04.00.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Aug 2024 04:00:10 -0700 (PDT)
-Message-ID: <95e16e32-1f40-48a0-9c19-4a58e7d8b780@linaro.org>
-Date: Thu, 1 Aug 2024 13:00:09 +0200
+        d=1e100.net; s=20230601; t=1722510099; x=1723114899;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hvEVInb3XjDTInVG42ARV/26R6ebE2gUOo+RJ8/4wBc=;
+        b=po+dxUFYiJQQI26OJaX17mfpFcNyCgQt9FXj6eKdUSS3j8Eu7BYOWmkuj1vTefbnUM
+         /wBwLuJ9ctYFZzf9R5bGtzCJtiJf2lNd1p8vYwPGiSxH1ZUqfGGi/K2LNSSTiyZK9dOc
+         Yz+g/G6hZZWrJkfUOEqwTYh07W9u4ibtG7RsYx5ZxSQXUPiYHLXxtqY5kkzmvRqTI+Uz
+         8TZHRUi2xJIUROM9DHlWu6qU9XuPdGsoihgv4hzfBTy7rG6+WbvteNwroMA3qMkn3dA9
+         ktbTufxCLcIj40/FDH4MAfQvvluLKYMXtygsQS7DhNfGk+V6vnQkBXsSbwXUyUIyukul
+         aBCA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfXK+UVH4ZRlcxghcmYsUmmBER8IXt+37t1vbzpxOzhcXVLddAFZHalN1NyjdMX3T1CNYjWEN+3X6gOFcPCuays9yU13+gdOyQlg==
+X-Gm-Message-State: AOJu0Yze3Hdo3Oiga3k7foNxu47oqBvgApxo+yMS96l3WNBIiejhJ1Cz
+	EOGRqswOgugfvzZQHPxMttulDhf7kiqxjyStMjQA96eX6fmlTlaXaJYaY0SKqRIPnMFLT2ZB3LO
+	bZgjGHgiXp1RS2KLSdhT6UN8Dsw/0oIrM3HRfmQ==
+X-Google-Smtp-Source: AGHT+IEMWWDuLSCLxVuVMb2OSeIqnvFCckIeIsKnFAFjoQOPspTTLeiCkBU/fF7EcmInj8+0rp1IhGoCa55ZCvPHsDo=
+X-Received: by 2002:a25:90f:0:b0:e0b:bc8f:293 with SMTP id 3f1490d57ef6-e0bd5420f5bmr615793276.0.1722510099291;
+ Thu, 01 Aug 2024 04:01:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] Enable EUD on Qualcomm sm8450 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Elson Roy Serrao <quic_eserrao@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
- <023d4ea8-635d-435f-bae2-87284f70123b@linaro.org>
- <1fcace72-a886-49bc-a30a-fde5a1de7a25@kernel.org>
-Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <1fcace72-a886-49bc-a30a-fde5a1de7a25@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240716004527.20378-1-shanchun1218@gmail.com>
+In-Reply-To: <20240716004527.20378-1-shanchun1218@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 1 Aug 2024 13:01:03 +0200
+Message-ID: <CAPDyKFreG39wJ85Mz=9MnkG-u=hDFCppsgfmv_mzpPbT3rxpmw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] Add support for Nuvoton MA35D1 SDHCI
+To: Shan-Chun Hung <shanchun1218@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com, 
+	serghox@gmail.com, mcgrof@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	forbidden405@outlook.com, tmaimon77@gmail.com, andy.shevchenko@gmail.com, 
+	linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ychuang3@nuvoton.com, schung@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 16 Jul 2024 at 02:45, Shan-Chun Hung <shanchun1218@gmail.com> wrote:
+>
+> This patch adds the SDHCI driver and DT binding documentation
+> for the Nuvoton MA35D1 platform.
+>
+> This MA35D1 SDHCI driver has been tested on the MA35D1 SOM board with
+> Linux 6.10
+>
+> v5:
+>   - Update to nuvoton,ma35d1-sdhci.yaml
+>     - Fixing the same orders as in the list of properties.
+>   - Update ma35d1 sdhci driver
+>     - Fixing the error path syntax to err = dev_err_probe().
+>
+> v4:
+>   - Update to nuvoton,ma35d1-sdhci.yaml
+>     - Fixing overlooked issues.
+>
+> v3:
+>   - Update ma35d1 sdhci driver
+>     - Fixing "Alignment" and "spaces preferred around".
+>     - Fixing style for multi-line comments.
+>     - Fixing double call to sdhci_pltfm_free().
+>
+> v2:
+>   - Update to nuvoton,ma35d1-sdhci.yaml
+>     - Remove some redundant descriptions.
+>     - Replace 'minitem' with 'maxitem' in the clock settings.
+>     - Make corrections to nuvoton,sys description.
+>     - Add sdhci-common.yaml.
+>     - Remove '|' except where necessary to be preserved.
+>     - Keeping one example is sufficient.
+>     - Add regulators in the example.
+>   - Update ma35d1 sdhci driver
+>     - Refer to 'include what you use' to modify included header files.
+>     - Replace the number 8 with sizeof(u8), and similarly for others.
+>     - Use "dev" instead of "&pdev->dev".
+>     - Use the min() macro to improve the code.
+>     - Use dev_err_probe() instead of dev_err().
+>     - Implement an error reset check mechanism.
+>     - Add devm_add_action_or_reset() to help with sdhci_pltfm_free().
+>     - Use devm_reset_control_get_exclusive() instead of devm_reset_control_get().
+>
+> Shan-Chun Hung (2):
+>   dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document MA35D1 SDHCI
+>     controller
+>   mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI driver
+>
+>  .../bindings/mmc/nuvoton,ma35d1-sdhci.yaml    |  87 +++++
+>  drivers/mmc/host/Kconfig                      |  12 +
+>  drivers/mmc/host/Makefile                     |   1 +
+>  drivers/mmc/host/sdhci-of-ma35d1.c            | 314 ++++++++++++++++++
+>  4 files changed, 414 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
+>  create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
+>
+> --
+> 2.25.1
 
+Applied for next, thanks!
 
-On 01/08/2024 09:55, Krzysztof Kozlowski wrote:
-> On 31/07/2024 13:13, Caleb Connolly wrote:
->> Hi,
->>
->> On 31/07/2024 00:24, Elson Roy Serrao wrote:
->>> The Embedded USB Debugger (EUD) is a mini High-Speed USB on-chip hub to
->>> support the USB-based debug and trace capabilities on Qualcomm devices.
->>> The current implementation lacks in below aspects that are needed for
->>> proper EUD functionality.
->>>
->>> 1.) HS-Phy control: EUD being a HS hub needs HS-Phy support for it's
->>>       operation. Hence EUD module should enable/disable HS-phy
->>>       accordingly.
->>> 	
->>> 2.) Proper routing of USB role switch notifications: EUD hub is physically
->>>       present in between the USB connector and the USB controller. So the
->>>       usb role switch notifications originating from the connector should
->>>       route through EUD. EUD also relies on role switch notifications to
->>>       communicate with the USB, regarding EUD attach/detach events.
->>>
->>> This series aims at implementing the above aspects to enable EUD on
->>> Qualcomm sm8450 SoC.
->>
->> Are there any plans to make this feature available for folks outside of
->> Qualcomm / an NDA?
->>
->> There is an openOCD fork on CodeLinaro but it still requires some
->> proprietary library which is only available to folks with a quicinc
->> email as I understand it.
-> 
-> Are you saying that there is no fully open and available user-space
-> which is necessary to use EUD?
-
-Yes, exactly. Tools must be obtained via the Qualcomm Package Manager 
-which are not available by default after making an account and signing 
-and NDA.
-
-Kind regards,
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-// Caleb (they/them)
+Kind regards
+Uffe
 
