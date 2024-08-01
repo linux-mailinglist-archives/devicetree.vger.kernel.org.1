@@ -1,123 +1,138 @@
-Return-Path: <devicetree+bounces-90359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FA0D945092
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:29:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D250945095
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:30:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DD11B23B43
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:29:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3614B1F240A2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235171B3F26;
-	Thu,  1 Aug 2024 16:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126B41B4C3D;
+	Thu,  1 Aug 2024 16:30:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC523A1DA;
-	Thu,  1 Aug 2024 16:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC3A1B3F3A
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 16:29:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722529774; cv=none; b=Yb/3nbkqLlgVKCzDhlX5XuPk2NUG5F5vAQii+qAH3OaXIsHBcG1t9W0yxPgmDK43MSfVKAcC9n/psuMYODC4AyJm2Pp7zWOALjGdFAz4UiMaibQeWi+27K7sa3XbCbT+PNSrAmMJ552hR7mCOeR3oDKszc+cMZO4gKRdGhVRjW0=
+	t=1722529802; cv=none; b=Y0MlVhE8rmDfxsBCKxRsafSXcx2TWuOvft6U8EwulS7d0qgN00F9RQgEn0J/Owfujpirq2RGxHlHOI+Oerfd7V6SmgSq37UBmmdQHIToEIvjG2zJjh0etRfj/0pvfvLUizAGD+8MKuaaYgOakJJyvisGJVznjdwLxKq0gPgImV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722529774; c=relaxed/simple;
-	bh=QsvCNio+3zzxchq5fzKn3o83VQzC4bk3D+jsQv4Z/4w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rdkYI+yg51ORQPfie+h4rs+2PGB3qcpMO64r+Dxmt/grJ033zeAlOGPt+2L+/A5pmnBYNzhJDDG5K2sJ4hFVrIqPZAGHzbYyJyGg1SAx+W/9H9JmNxvkzjmi40bpAHeRJsSxV1Kh0TBVTbYOZWxtH24z+KFZN0w2xt26MLAkV1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e0b286b922eso5228284276.1;
-        Thu, 01 Aug 2024 09:29:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722529770; x=1723134570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y8+kc5F3GMejqWVlpNJDpHQgkOH2t0JJ464cT8v7PXs=;
-        b=PJ2GCsINKBJER2I3Pa2e2kP9qwVeHr5P/xwq2G1IjIKN+WMxoNzPKLtx3Py0e+cRma
-         0wsbYhhR4auV8q+fqehg6ubDqfHXfkY7uXmmWDUxHMnhPnRI8FpCPSMwtePzBtE+FEhe
-         OtX6Fi4Tt4u5NX/W4ahlY13RJpw7SYAKZoKPkrLPwJal22U67s8apRoS/eD8Y2HzbuIS
-         waujHmox2aVvdXNqEbkj+5udmNK4q9yVyUavNZTc28zZo/Hu16SRnAyVlHla8XKWhKJu
-         EpXEORK8dCa8jcdWs3eZHCbdTPbzPHq4p0Dm0d6i89+zurOh2rliXF2zHGos48mzv0pQ
-         IH4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVn5PRKZYauBmo37CtEfehoUspKtXHSQoAFqWzuNf1YFipxUMV3G6qUvfWhBiYWJgFozbqQoJGM1X2CjrCsU7ihd6KOI4FTX01jqesNFmhCK0gUqr0X7lSEApEHUhvscZQBR73Yk1uWQHVBiy4+zUYZ1xhuw5N+d+PI33mHO/0T3e+HRAfIRqN47odHkZ3TVucgMRg6TGt7vE2jmAujf0XvwgG+r16DfDkKW5UdS8b0c+oGj8U+IeMvypbNyxXgfC7d
-X-Gm-Message-State: AOJu0YzrrOSZRgplx/ee5SMYurH2kf1PBeBm8bCHLG57f+xOXHOJTU5X
-	fScLjAcBgOMeXsGK+NkWyS6wOqo2OxnKTa8SrA2EXZz6uP3PXqjnZa/x0Pti
-X-Google-Smtp-Source: AGHT+IF3UR4ctJqF4dv1x5CADGAyHth2iWUQp0VMFhr+jpA7GGfWdUhdF8HSTvzfymvymsO0ACuNTQ==
-X-Received: by 2002:a25:183:0:b0:e08:5791:4864 with SMTP id 3f1490d57ef6-e0bde465acfmr843983276.51.1722529769878;
-        Thu, 01 Aug 2024 09:29:29 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e0be0e45cafsm8071276.36.2024.08.01.09.29.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Aug 2024 09:29:29 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-65f9708c50dso63085747b3.2;
-        Thu, 01 Aug 2024 09:29:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUfPj7FCPOdJVi8VgeeHmStiZQgTXcdwl8IP8ajoeKF5TracoY2xSleOR6e1paCxws/eq5D+ZTMmJE/omWST8lGSDw1rkvKpwbXKvK0tSP4lVsi+I5hKMRdSUeKBlL9HW/S+k1PzUgdrxZ1SKbLinu4wyMGjCP7jfA0X36bb91UpZKXArTcC4GY0NaEMiF02u6tt3l5G0wzQSYSrXWfeIeKUJHvlljf5qvOtvDvh2SHLt5Bv25bG632Ez8FqrQ00iCQ
-X-Received: by 2002:a81:8a02:0:b0:627:88fc:61c5 with SMTP id
- 00721157ae682-689608712bemr5781657b3.14.1722529769028; Thu, 01 Aug 2024
- 09:29:29 -0700 (PDT)
+	s=arc-20240116; t=1722529802; c=relaxed/simple;
+	bh=h1e3D1sl9LoR/xsWC6N2KZaZxOo4VbuUNcen5+mppT4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pgo/FlEYy688PdybWQQtWkMqkQt/+FyEb8bbd/vflnM4i7wKUke8f4zc0rlISl8IM47+q4TX2Y+YHkuloTFiwfjLZIoZZCkbTzlXUiJX7TDTWF2TggJiCp3lWDqjHgpUyCZ2DPB3yKbHYB0spkPEHMvLLNLwpRs50uiDIsf+oZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sZYgW-0002Iv-5T; Thu, 01 Aug 2024 18:29:48 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sZYgV-003oGV-2j; Thu, 01 Aug 2024 18:29:47 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sZYgU-00D2cg-2w;
+	Thu, 01 Aug 2024 18:29:46 +0200
+Date: Thu, 1 Aug 2024 18:29:46 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, robh@kernel.org,
+	conor+dt@kernel.org, festevam@gmail.com, devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org, s.hauer@pengutronix.de,
+	linux-usb@vger.kernel.org, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzk+dt@kernel.org, shawnguo@kernel.org,
+	andersson@kernel.org, linux-arm-kernel@lists.infradead.org,
+	jun.li@nxp.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: gpio-sbu-mux: Add an entry for
+ PTN36043
+Message-ID: <20240801162946.l423ue5ihfcxfiia@pengutronix.de>
+References: <20240801064907.3818939-1-xu.yang_2@nxp.com>
+ <3akk6hydu6iguqik3ek2pb67knihnjcepyxtbsnnasq74ikpsg@7txsek3mx5rp>
+ <20240801141501.yt6ytrf2gzmravwx@hippo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240711123405.2966302-1-claudiu.beznea.uj@bp.renesas.com> <20240711123405.2966302-4-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240711123405.2966302-4-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 1 Aug 2024 18:29:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXjTw1NFaZhNiskiA+BQV68B61H=iwZbeV1qpVdKCjTjw@mail.gmail.com>
-Message-ID: <CAMuHMdXjTw1NFaZhNiskiA+BQV68B61H=iwZbeV1qpVdKCjTjw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: r9a08g045: Add DMAC node
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	biju.das.jz@bp.renesas.com, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240801141501.yt6ytrf2gzmravwx@hippo>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Claudiu,
+Hi,
 
-On Thu, Jul 11, 2024 at 2:34=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add DMAC node.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 24-08-01, Xu Yang wrote:
+> On Thu, Aug 01, 2024 at 02:49:33PM +0300, Dmitry Baryshkov wrote:
+> > On Thu, Aug 01, 2024 at 02:49:05PM GMT, Xu Yang wrote:
+> > > Add a compatible entry for the NXP PTN36043 GPIO-based mux hardware
+> > > used for connecting, disconnecting and switching orientation of
+> > > the SuperSpeed lines in USB Type-C applications.
+> > > 
+> > > PTN36043 datasheet: https://www.nxp.com/docs/en/data-sheet/PTN36043A.pdf
+> > > 
+> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > > 
+> > > ---
+> > > Changes in v2:
+> > >  - add Acked-by tag
+> > >  - s/SBU/SuperSpeed in commit message
+> > > ---
+> > >  Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > index 8a5f837eff94..152849f744c1 100644
+> > > --- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > > @@ -20,6 +20,7 @@ properties:
+> > >      items:
+> > >        - enum:
+> > >            - nxp,cbdtu02043
+> > > +          - nxp,ptn36043
+> > 
+> > PTN36043 isn't an SBU mux, so it is incorrect to declare that it is
+> > compatible with the "gpio-sbu-mux".
+> 
+> Well, so I should create a compatible such as "gpio-ss-mux" and make some
+> changes on the driver, right?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.12.
+You're aware that I already sent patches regarding this topic:
 
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -363,6 +363,44 @@ irqc: interrupt-controller@11050000 {
->                         resets =3D <&cpg R9A08G045_IA55_RESETN>;
->                 };
->
-> +               dmac: dma-controller@11820000 {
+https://lore.kernel.org/all/20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-0-3889b1b2050c@pengutronix.de
 
-> +                       power-domains =3D <&cpg>;
+Regards,
+  Marco
 
-Updating to " <&cpg R9A08G045_PD_DMAC>" while applying.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Thanks,
+> Xu Yang
+> 
+> > 
+> > >            - onnn,fsusb43l10x
+> > >            - pericom,pi3usb102
+> > >            - ti,tmuxhs4212
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> > -- 
+> > With best wishes
+> > Dmitry
+> 
+> 
 
