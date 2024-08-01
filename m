@@ -1,173 +1,130 @@
-Return-Path: <devicetree+bounces-90169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACEB5944433
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:20:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA39594444E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:22:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 688FB2842B2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:20:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90B081F23C57
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CE7170A26;
-	Thu,  1 Aug 2024 06:13:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69BD16D9D1;
+	Thu,  1 Aug 2024 06:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Krg1nriO"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="FJrNpu3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12EB3157A61;
-	Thu,  1 Aug 2024 06:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08ED21A3BB1;
+	Thu,  1 Aug 2024 06:14:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722492831; cv=none; b=lhP7zkFDDrjWakGcX/AhiRwpMFOf/TJPEEzyu+oWJKYJdDnSxpuCb2E3miV5SZUUfp4ikjSXSKuihwRKAYyN0uWbdPTpd+oxm9OAMF7H4qzvyRBRMz1kxV9N4R/0MIilawgbG+kvSq6jXkFXdXn7OzMs5E018D66v3e9FjRLPoI=
+	t=1722492871; cv=none; b=Ab/cgqOZdMBWzZswPUNTnl0mwj9xfsxhFDTcKQNxtYN+ZxpfN/NLiOUR6BxoS0gRN4jryGIY+zoPqdTBBn2nzxh9SB+Rn42mntj0/dqMr5F6CHMGurDHlc1yOVDhSNnJIVzroTTyYCJwig8vugYWXaR8UQve6BLFHCLn9XHgn/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722492831; c=relaxed/simple;
-	bh=2z4bHnWIWcvxAiFTLgSYfPcGY4CSFltdU+BtR9hEENA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BsHMjGs1DPreEDY+ebC1gSMGjxZotK3FF9xWXvYGcfT/Sn8dk7Gg9GD6X3e7W2vcUMfQodFT5gQLYi/u+t3NYKUJQgOjxZYqDXmL9rc43BC85nramEy7QmDZNnqGh6XwSGT39196WjnajkNIjS7QndicpEUz99UHO91Wujl0n/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Krg1nriO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97316C4AF0E;
-	Thu,  1 Aug 2024 06:13:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722492830;
-	bh=2z4bHnWIWcvxAiFTLgSYfPcGY4CSFltdU+BtR9hEENA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Krg1nriO+eqnJw/SwdbuG3fCazMoLJlQMveWlRkHWmGKjUeBAV7SPEb3qpYrtisDR
-	 zcMTZ9ucUhsZWHm5P0W+e7OwiQbmCzYDNW0O0KB9bpGyPbYgbomgp6evmqSqJK760o
-	 G3tlRtfaCIlHRTSAxX+B6jfurNE/P42/ILnPuKFYuvjt2jr3XDTpBGpJgTe69srkyE
-	 T7HP4P7RrEbKkHv+Z2WcA38kANShZuYnsFLoO9R+x/ze0wRTfzDScZQnHsTT0bkqEp
-	 r3/pInPgL1sn+CE/kAYEoSxGqH/IFD6WOJQ4wImNEhfM2qe3oPpI8DAV+mZ7uJVllq
-	 swnBD4lW/yIiw==
-From: Mike Rapoport <rppt@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Hildenbrand <david@redhat.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Mike Rapoport <rppt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Will Deacon <will@kernel.org>,
-	Zi Yan <ziy@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	linux-arch@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-cxl@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-mm@kvack.org,
-	linux-riscv@lists.infradead.org,
-	linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	loongarch@lists.linux.dev,
-	nvdimm@lists.linux.dev,
-	sparclinux@vger.kernel.org,
-	x86@kernel.org
-Subject: [PATCH v3 26/26] docs: move numa=fake description to kernel-parameters.txt
-Date: Thu,  1 Aug 2024 09:08:26 +0300
-Message-ID: <20240801060826.559858-27-rppt@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240801060826.559858-1-rppt@kernel.org>
-References: <20240801060826.559858-1-rppt@kernel.org>
+	s=arc-20240116; t=1722492871; c=relaxed/simple;
+	bh=mheeKTBgP71Lh0GEwqMXV7bF45lg/JDZTzRDjIoVLss=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=F8TlNXfEWbDb4eWwPdXOyUVIrWa0nPtBaZWyEfHRwsVSYJ6aQb5v5Fl9gcHxx7DrvWmUHMpVsW+k3Q/7TlLdDKczu6CVHr15wCshvMIA/GR0TEPu6Kp0bdo5gCJZMWrEzWGTzjm6GjsFsRVXmAyr00dPHE5FAomK0juunxAAvNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=FJrNpu3e; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=9Hl43r3H3KJjFvw7Ei6QBZOSB1URtWg3J8BiG6j6oYM=; b=FJrNpu3eJoWgRq5ZvrORU11DRE
+	ewJ3s4nWmBSLUGS4/ia2l7WMGFXBP13/o7Odt7QEGK6CDRVOjgOeNhfEloF1gpHGOhlJPFqzfu8Pi
+	GnM7vGEQ2Oz+9RJwU/NZKh+U7J5n4Porybp5E4eWFATgQnuL1E2Lmmaq7rWX5ewe0PWF5scIydk8U
+	6OwVDJG8+fi1qrUxGmFjJPlvZCVmUEeZic3e4ypykEKM591hEe7XaltfEQFPrFOiHIXRqoiXzVL2r
+	TYE1Y20JbihTx47oXPFAfF0zmk6pS7mHTPePurzqYA4W8+Igh1gTmCgWQZcLWkdzWdT1OIjq4/SgV
+	d2WtjoJg==;
+Date: Thu, 1 Aug 2024 08:14:12 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Sicelo <absicsz@gmail.com>
+Cc: tony@atomide.com, linux-omap@vger.kernel.org,
+ maemo-leste@lists.dyne.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, Aaro Koskinen
+ <aaro.koskinen@iki.fi>
+Subject: Re: [PATCH] ARM: dts: omap3-n900: correct the accelerometer
+ orientation
+Message-ID: <20240801081412.55d1792c@kemnade.info>
+In-Reply-To: <Zqf-NosCToA_czCQ@tp440p.steeds.sam>
+References: <20240722113137.3240847-1-absicsz@gmail.com>
+	<ZqU_UPQHCJ37qZfa@tp440p.steeds.sam>
+	<20240728100658.0001864d@akphone>
+	<Zqf-NosCToA_czCQ@tp440p.steeds.sam>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; arm-unknown-linux-gnueabihf)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+On Mon, 29 Jul 2024 22:40:22 +0200
+Sicelo <absicsz@gmail.com> wrote:
 
-NUMA emulation can be now enabled on arm64 and riscv in addition to x86.
+> Hello Andreas
+> 
+> On Sun, Jul 28, 2024 at 10:06:58AM +0200, Andreas Kemnade wrote:
+> > > On Mon, Jul 22, 2024 at 01:31:11PM +0200, Sicelo A. Mhlongo
+> > > wrote:  
+> > > > Negate the values reported for the accelerometer z-axis in
+> > > > order to match
+> > > > Documentation/devicetree/bindings/iio/mount-matrix.txt.
+> > > > 
+> > > > Fixes: 14a213dcb004 ("ARM: dts: n900: use iio driver for
+> > > > accelerometer")
+> > > > 
+> > > > Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
+> > > > ---
+> > > >  arch/arm/boot/dts/ti/omap/omap3-n900.dts | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/arch/arm/boot/dts/ti/omap/omap3-n900.dts
+> > > > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts index
+> > > > 07c5b963af78..4bde3342bb95 100644 ---
+> > > > a/arch/arm/boot/dts/ti/omap/omap3-n900.dts +++
+> > > > b/arch/arm/boot/dts/ti/omap/omap3-n900.dts @@ -781,7 +781,7 @@
+> > > > accelerometer@1d { 
+> > > >  		mount-matrix =	 "-1",  "0",  "0",
+> > > >  				  "0",  "1",  "0",
+> > > > -				  "0",  "0",  "1";
+> > > > +				  "0",  "0",  "-1";
+> > > >  	};
+> > > >  
+> > > >  	cam1: camera@3e {
+> > > > -- 
+> > > > 2.45.2
+> > > >     
+> > > 
+> > > CC: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+> > > <andreas@kemnade.info>
+> > >   
+> > I would expect it to be a rotation matrix but it is not. So maybe
+> > this should be fixed in,the driver?  
+> 
+> The mount matrix is documented in the kernel docs [1], and this patch
+> implements the suggestion that the z-axis should "be negative under
+> the screen and positive in front of it, toward the face of the user."
+> 
+> On the N900, the accelerometer is mounted such that the raw z-values
+> are opposite to the specification in the kernel docs. The driver
+> itself seems to be correct, and is used on a number of other boards
+> (such as Motorola Droid 4), reporting expected values when used in
+> conjuction with mount matrices.
+> 
+Ok, I did not notice the other -1. It was mirroring before and now it
+is a clear 180 deg turn on the y-axis.
 
-Move description of numa=fake parameters from x86 documentation of
-admin-guide/kernel-parameters.txt
-
-Suggested-by: Zi Yan <ziy@nvidia.com>
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- Documentation/admin-guide/kernel-parameters.txt | 15 +++++++++++++++
- Documentation/arch/x86/x86_64/boot-options.rst  | 12 ------------
- 2 files changed, 15 insertions(+), 12 deletions(-)
-
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index f1384c7b59c9..bcdee8984e1f 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -4123,6 +4123,21 @@
- 			Disable NUMA, Only set up a single NUMA node
- 			spanning all memory.
- 
-+	numa=fake=<size>[MG]
-+			[KNL, ARM64, RISCV, X86, EARLY]
-+			If given as a memory unit, fills all system RAM with
-+			nodes of size interleaved over physical nodes.
-+
-+	numa=fake=<N>
-+			[KNL, ARM64, RISCV, X86, EARLY]
-+			If given as an integer, fills all system RAM with N
-+			fake nodes interleaved over physical nodes.
-+
-+	numa=fake=<N>U
-+			[KNL, ARM64, RISCV, X86, EARLY]
-+			If given as an integer followed by 'U', it will
-+			divide each physical node into N emulated nodes.
-+
- 	numa_balancing=	[KNL,ARM64,PPC,RISCV,S390,X86] Enable or disable automatic
- 			NUMA balancing.
- 			Allowed values are enable and disable
-diff --git a/Documentation/arch/x86/x86_64/boot-options.rst b/Documentation/arch/x86/x86_64/boot-options.rst
-index 137432d34109..98d4805f0823 100644
---- a/Documentation/arch/x86/x86_64/boot-options.rst
-+++ b/Documentation/arch/x86/x86_64/boot-options.rst
-@@ -170,18 +170,6 @@ NUMA
-     Don't parse the HMAT table for NUMA setup, or soft-reserved memory
-     partitioning.
- 
--  numa=fake=<size>[MG]
--    If given as a memory unit, fills all system RAM with nodes of
--    size interleaved over physical nodes.
--
--  numa=fake=<N>
--    If given as an integer, fills all system RAM with N fake nodes
--    interleaved over physical nodes.
--
--  numa=fake=<N>U
--    If given as an integer followed by 'U', it will divide each
--    physical node into N emulated nodes.
--
- ACPI
- ====
- 
--- 
-2.43.0
+So
+Reviewed-By: Andreas Kemnade <andreas@kemnade.info>
 
 
