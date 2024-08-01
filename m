@@ -1,153 +1,136 @@
-Return-Path: <devicetree+bounces-90294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FBA8944D5F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:44:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0721944D73
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:50:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 674231C2343C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:44:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C2E01F23818
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F11A1A4874;
-	Thu,  1 Aug 2024 13:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656551A38FE;
+	Thu,  1 Aug 2024 13:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lUCYuuhE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TQRdj0iE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8262A61FF2;
-	Thu,  1 Aug 2024 13:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B471A0B12;
+	Thu,  1 Aug 2024 13:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722519848; cv=none; b=bClMaSKgZJrlnvmQX1ucID0jL1oayIkTRRXcbSDggrm2HEwOeuF6rD3MmuqzPr17j90qk/NazEFvK5TpbkJnrsRnjumdDtnrbd7B8M72eK4sVa7y2mL+YZVlvbjglYcWIumzuDA1SsaxKCNsm1BkBobMoePq1eYZ3eIXkaSn9nA=
+	t=1722520213; cv=none; b=Hdq5C+YdRZvUTM4D9sMg2ymDW94d2b0oaT9KsoZYP8h47sbkZDBuFmUxPMbH6bMYMkSr/lYdEomPMbIPTgNGUtiX3VYyMEXYtzNktjO3M8o6d5J81n3U8jf94xvF81txJQS9Ru8k8liiulwOdFe7Tl7UNzzMSicFX6mZ0kkXU8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722519848; c=relaxed/simple;
-	bh=thFxg8OzzcxQf4MMkIWf1lfjmAKKVKW6trC0V+uF7Dw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j3ebfXkzGPMGDApPhrh6PspcQfv2lHf48D6SCWuyBjajK7MPgak+xwM+yEW9Es8W5fPNQ42MvekC3AktLyiOHRJkZrZkVNX2AFQ+P158Q2OQk5kutVgphmErJtldbaLDbNKgQAUS1ngJPGHow8+UyXzSDi3e110q/U0tvci4cuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lUCYuuhE; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5a156557029so11151224a12.2;
-        Thu, 01 Aug 2024 06:44:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722519845; x=1723124645; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=X88/CsdmLmbELcktNgy2HM0ZWdZzSy/cvXSHWDa5C9w=;
-        b=lUCYuuhEIP6x+2OyTUxdJ3JVIUC2k/RRuMtwqPDM48SeQbr4BdMFg8NPc7PAHU5rrg
-         2MM1AJQ+ELF9bub3U29X8UJvHtlbRp+cNE54WJcdEX3dWby2rH34tNSIOxObgrK3uao1
-         iiKHxaMwkAemXfQ3DmKYTrJIPCViJzhbtRvjytfSVINcoBa6HgPCD+IUgGCxOk+gB4Dx
-         lEGdLUv/zfSGnzch7DryhZ35wIpFb21Y/MrUZ28ZVofp+j5THPDIR5NC6pQuqhKeoTo2
-         oHEAf/sHNDspi7/hddEQguitsVL8AMHhGJupJ8z11p4L4dD/RFoY4P4CZVxMO3uVx4IM
-         GxUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722519845; x=1723124645;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X88/CsdmLmbELcktNgy2HM0ZWdZzSy/cvXSHWDa5C9w=;
-        b=lPUoVQY4WLJwpH2P4sJDh0Y1u02q70DDGezgl+9JuSfNLyW4DoJLdqkArSwgtu9Xc/
-         ZbuDYZ+a6J5f/KkdmW+7fQp5esyo/dbbGCqmTdzHca3LW63l/wM28bXCem2/TtD2Ysyk
-         SFuQ9g13mFOl2pNHuJWWf4cTzY+OHTCH2qWCr67V0i91ZTA2v/UScZpsw6iZ81tln6Gh
-         U/BNPsIHvKoKH4Rsu3/Iuz9x3hu7V3jWIbMOXD+MW3Lo94RzpJdJ0t23lu6gWlqjjnvJ
-         4o8FR5pqZVvf3EZVRm1rpJlrdADfgfUdzGzZysSCBgpyTo1kFQXu4doTJ4an4DjPKlr0
-         Z8vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVPw40BQRN4uL6zHI5ZPYxYlgJ4A0VzRLk10FzQUyKZQOqiu+npTtoXDZGxMAaxn4/2ewS8jGpIJJKYrVc5VmbUdKNLcLKu
-X-Gm-Message-State: AOJu0YxqIEDTVvDpYPzeEGUmLBMEE6TCeFdAvSyA22JEa2CaSLSYErA8
-	hUSa1yJQ7Rl6A2eXEnYctQ1/uEGQ3xj/vePiNZ8Qbm2W+24E/yzA
-X-Google-Smtp-Source: AGHT+IGFNv2QHGvPS9i2SZVHutTLhDALDLT5CL38a93ykAR/jj7dmB+landsIUaymqtGa8TIH7UKPw==
-X-Received: by 2002:aa7:d552:0:b0:5a3:f5c6:7cd5 with SMTP id 4fb4d7f45d1cf-5b7f550a75cmr238198a12.26.1722519844469;
-        Thu, 01 Aug 2024 06:44:04 -0700 (PDT)
-Received: from skbuf ([188.25.135.70])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ac65783665sm9979717a12.94.2024.08.01.06.44.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 06:44:03 -0700 (PDT)
-Date: Thu, 1 Aug 2024 16:44:01 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: vtpieter@gmail.com
-Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-	o.rempel@pengutronix.de,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH net-next 0/2] implement microchip,no-tag-protocol flag
-Message-ID: <20240801134401.h24ikzuoiakwg4i4@skbuf>
-References: <20240801123143.622037-1-vtpieter@gmail.com>
+	s=arc-20240116; t=1722520213; c=relaxed/simple;
+	bh=GU2BK1Osx2h7ZX3FdZmKNmBKpzFpvfjwuZFjKzmtYVc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=l41ePb2qCwr+zJCtUNGLggT7aB9OeGP+mNAY5fhnVsKynN9l3e2Y59JySKi5mCEFfMOFoQ5LQnGe6xqUif8ON0q5U/iW7JDXWvF7FHbalbYxvEJjxJWJZSp1k6DznwjQoEp5FrTQ7Yr8zizoRbydnMEmeVtbNkOsxY1Y1yqaXfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TQRdj0iE; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471Dajkb002943;
+	Thu, 1 Aug 2024 13:50:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	q62foi3wU07IYfI4RWy0BJazZFzOxzyxolw1Zsbm3eQ=; b=TQRdj0iE5P2B3xCT
+	vKOz6MCF2XGcq4TjyvzH5Uv8KfBbR5lcp6CzExQuKQ16Y/Xe7+gIfI5PkZT8voab
+	6T27rWXLQUVaaySnR275VwDkMPmbW66Sa8REP4kJ2rNph1Ia1B455r0+wia4Tc9/
+	KtuAD4Sxe+95VPqrkMV/8M1kDX713dAh2TjWPXOm192Kh5UTY6xbSbcDs/E96jGH
+	N6jiFCy+diOGQf5zrlxqP1CUXWcX/Y15o/Qpp6iQce0WrRlwu4ZNQe+KvfjHcUh0
+	iYzCuYc1TuorXjoffMZDaBfLcMhh+62CAUwCqh6eXYjNRjatVWivt+2mGwLzDtAI
+	rf4nRQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40ms43f4cj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 13:50:03 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 471Do2ak028461
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Aug 2024 13:50:02 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 Aug 2024
+ 06:49:56 -0700
+Message-ID: <b2aa9801-dbee-4ddb-99e7-4d058ce92aa1@quicinc.com>
+Date: Thu, 1 Aug 2024 21:49:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240801123143.622037-1-vtpieter@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/13] media: qcom: camss: Add CSID Gen3 support for
+ SM8550
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Yongsheng Li
+	<quic_yon@quicinc.com>
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-10-quic_depengs@quicinc.com>
+ <1da50dd1-b170-4775-94fc-19a10b7f9c47@kernel.org>
+ <4c8095dd-4f96-4b0e-9282-8bdfb5badbc3@quicinc.com>
+ <9255b3e4-874c-4919-b50a-919cf0f42f75@kernel.org>
+ <3011c561-d39e-4ce5-a544-33f24ca7a67c@quicinc.com>
+ <bd6f3613-5a96-438a-a2df-cb2728e30c29@linaro.org>
+ <30d56910-df7b-4459-b557-effc21ffa132@quicinc.com>
+ <ff128062-5c1f-4abe-8582-543063d5e526@linaro.org>
+ <4cd4ff3a-5d90-4a5d-aae1-6017199e00c3@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <4cd4ff3a-5d90-4a5d-aae1-6017199e00c3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XCql-r4h7u-xxAJ3aHnNn6Cxcts62swP
+X-Proofpoint-ORIG-GUID: XCql-r4h7u-xxAJ3aHnNn6Cxcts62swP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-01_12,2024-08-01_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
+ mlxlogscore=843 suspectscore=0 phishscore=0 priorityscore=1501
+ clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408010088
 
-Hi Pieter,
+Hi Bryan,
 
-On Thu, Aug 01, 2024 at 02:31:41PM +0200, vtpieter@gmail.com wrote:
-> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+On 8/1/2024 7:14 PM, Bryan O'Donoghue wrote:
+> On 01/08/2024 11:59, Bryan O'Donoghue wrote:
+>> for preference every single patch applies and builds warning free.
 > 
-> Add and implement microchip,no-tag-protocol flag to allow disabling
-> the switch' tagging protocol. For cases where the CPU MAC does not
-> support MTU size > 1500 such as the Zynq GEM.
+> Oops mistyped
 > 
-> This code was tested with a KSZ8794 chip.
+> - Every patch must apply cleanly
+> - You could make an argument for some specific cases that
+>    a patch can generate a warning provided
+> - By the end of your set everything must be warning free
 > 
-> Pieter Van Trappen (2):
->   dt-bindings: net: dsa: microchip: add microchip,no-tag-protocol flag
->   net: dsa: microchip: implement microchip,no-tag-protocol flag
+> In this case though, I don't believe you need to make that case since, 
+> the problem you describe about probe() isn't a problem at all as you 
+> have no upstream dts that can drive the probe() at this point.
 > 
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    |  5 +++++
->  drivers/net/dsa/microchip/ksz8795.c                   |  2 +-
->  drivers/net/dsa/microchip/ksz9477.c                   |  2 +-
->  drivers/net/dsa/microchip/ksz_common.c                | 11 ++++++++---
->  drivers/net/dsa/microchip/ksz_common.h                |  1 +
->  drivers/net/dsa/microchip/lan937x_main.c              |  2 +-
->  6 files changed, 17 insertions(+), 6 deletions(-)
+> Just do the dts at the end and no problem.
 > 
-> 
-> base-commit: 0a658d088cc63745528cf0ec8a2c2df0f37742d9
-> -- 
-> 2.43.0
 
-Please use ./scripts/get_maintainer.pl when generating the To: and Cc: fields.
+Thanks for the confirmation, maybe also can add a checking for the res, 
+probe returns fail if the .data->xxx_res is NULL.
 
-Not to say that they don't exist, but I have never seen a NIC where MTU=1500
-is the absolute hard upper limit. How seriously did you study this before
-determining that it is impossible to raise that? We're talking about one
-byte for the tail tag, FWIW.
 
-There are also alternative paths to explore, like reducing the DSA user ports
-MTU to 1499. This is currently not done when dev_set_mtu() fails on the conduit,
-because Andrew said in the past it's likelier that the conduit is coded
-to accept up to 1500 but will still work for small oversized packets.
-
-Disabling DSA tagging is a very heavy hammer, because it cuts off a whole lot
-of functionality (the driver should no longer accept PTP hwtimestamping ioctls,
-etc), so the patch set gets this tag from me currently, due to very shallow
-justification:
-
-Nacked-by: Vladimir Oltean <olteanv@gmail.com>
-
-Please carry it forward if you choose to resubmit.
-
-Even assuming that a strong justification does exists, there already
-exists a mechanism for disabling the tagging protocol from the device
-tree. It is the same as for specifying any other alternative tagging
-protocol (applied in this case to DSA_TAG_PROTO_NONE).
-
-	ethernet-switch@N {
-		dsa-tag-protocol = "none";
-	};
-
-it just needs implementing in the driver.
-
-The fact that you chose to add a custom device tree property suggests to
-me that you did not investigate the problem space very seriously.
+Thanks,
+Depeng
 
