@@ -1,195 +1,169 @@
-Return-Path: <devicetree+bounces-90197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 180E39445C7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:46:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D46C9445E0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:51:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3901E1C21F0C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:46:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49BC11C21264
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A58161306;
-	Thu,  1 Aug 2024 07:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF97D157A5C;
+	Thu,  1 Aug 2024 07:51:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="VZM+HAtz";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ymQdWITh";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="O7Cp5fR8";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Me77ATGy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fjCGDazB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DC216DC30;
-	Thu,  1 Aug 2024 07:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027511EB4A6
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 07:51:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722498353; cv=none; b=aoNIZArP0MTpI6xlraVMhcd15MouklpUz+iVPDYwnEmAL2ZxL8I6/YidWSjVMOR0aZPDzkzE4QUFvQZH9AIeFV7qmu2KTZtdJuWwmlwYMhTdxPan/6CNZCmZo12AJxoLpsSq0TD3UqzlLlWKC+A0osdKuMCbrFf/TmVxPtoKO3U=
+	t=1722498693; cv=none; b=Amu0iJcZYLYlRxkD3zG0j905FhtaLWGl+EenamkO0wdE9PtVtY3ziccVmSBhDuKpyuyXiaIbLrYcGj9kSafvfGTdEZS0aSXUvaUPw2HdsaopOSaQ7RvqOAy8Q7EhpBDgPQU0COOeKL2FYuG7RatwSMvCbaCZ/DSzLHrS3uAQEqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722498353; c=relaxed/simple;
-	bh=oi6UItZeuUJ+GwMXqfK528KOTtt4vtQq69CPBbAKfWY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RyZFNyLC7S2/gShOWnFN9IKPmf0cI0MTERift6euZce/7R53yQoMJa3IMnhCS/aspAmKz3CWnOh+mVUxpCSnH82X5Nnl8xgKD+ZOlYHw0qX/OzaKz7Z49GiGb6wifaOUBnwodMO2HDnzNWpaOABxy6SEgyfVc1q6Sip669Oi3pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=VZM+HAtz; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=ymQdWITh; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=O7Cp5fR8; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Me77ATGy; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id E5ED01F8D7;
-	Thu,  1 Aug 2024 07:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1722498350; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
-	b=VZM+HAtzkzq9i6xhEsWFVIBUQHsHYkhZMdn61dndJ/JrdhLMarx1irZYw43lJBk+TWDJto
-	th7bY/ig6Ns+zYrUPSt/JwBOyycKnH/w4f2xURyZN2Gtl6xS5hqDux551sk5LYrYTnS+hp
-	TtILmJyDzXIE7NJ785XAGNBvS1Uh74s=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1722498350;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
-	b=ymQdWIThetOkPC8UlPlRBa5vVa1+kXTKF8FPc/bH6UBYYVRTjL3QyRYWCHpRee9pEz4w/2
-	s5DrjmoUrxoSWCDA==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1722498349; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
-	b=O7Cp5fR89mNR2fJUGoFK7j11WxyHeX2wNhyMgE8U4mPtaonpqTtsk7mYBRBARsNeB0mQV1
-	tPbpfcWtHst7FXRcHsWZNJK/0QioZSmjXz9n30GWcfUYVreS5d2+Gh4GBuyYX2NoLUblSZ
-	Vjwz59sAOA5ZzCNciPmKFyGNMEXwsHY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1722498349;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
-	b=Me77ATGyXZqo3Zl1a8JVCAgt6bH1UNJii/QJQiLt2xKOa8N7uNF6CAGrLeguJsqqFSKR3Q
-	p7mjb4bmxv8qELAQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C363513946;
-	Thu,  1 Aug 2024 07:45:49 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id KiFqLS09q2YTBQAAD6G6ig
-	(envelope-from <iivanov@suse.de>); Thu, 01 Aug 2024 07:45:49 +0000
-Date: Thu, 1 Aug 2024 10:50:03 +0300
-From: "Ivan T. Ivanov" <iivanov@suse.de>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, wahrenst@gmx.net, andrea.porta@suse.com,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 7/7] arm64: dts: broadcom: bcm2712: Add UARTA controller
- node.
-Message-ID: <20240801075003.ghbxzmzzttevmo5u@localhost.localdomain>
-References: <20240731062814.215833-1-iivanov@suse.de>
- <20240731062814.215833-8-iivanov@suse.de>
- <f1b19a03-9509-4d1c-9e54-9c07a372cad3@broadcom.com>
+	s=arc-20240116; t=1722498693; c=relaxed/simple;
+	bh=PhDLQgNQUqBWO+mydssFM/K/F7iU/3Kxh3P0a2s0qpQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mvBTiQm8LaTMeASYEw2tWG4rhAO/VDaqsVE5YNEQl1ZE8sxVb8GvOM+36AVVx3eQjzZieq+2u4mr1+3tmZCs1XqxUnkRQ1/an6v7goxON7VjFMwg29Rkp1wYrsbNxbUg8D16VC1PMvGqbgYfc2ZhahzQ+SumOqzk2LlA+OP+9Jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fjCGDazB; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-42812945633so44241785e9.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 00:51:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722498690; x=1723103490; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=FZEfKgAUYgQD4guqTZYcdll8kLH83l6dhKBOEKXkEV0=;
+        b=fjCGDazBE9qbKWzT7s0THak2vMBUgGN4adyQOhHv8QuMSoqVw6h3Acri6RO1c/kU5z
+         EbN53rw+1c6VZAamOU0qrXf7ou0KuVkLPi7zCxQWEJMdo2+jJRn1WxnX1eKKQ7PmU2P5
+         ZjJpIU8iCqqcUpfvEBXix5Mn0a8Ijy9uPMDxfnSGTODBf8vAMjZSfWupMLm1kEjwOZ9X
+         oP5+CUHgBQ+fWBPnOlLCiK8udi5FSH3O/3ai4wTVZ4IZ9vEhVN2HVGdN87La3lwDzY7U
+         bk57oqq7ZPeBkkUQ2QHsFz4RA4BnT9bONzLQkkZRQ4PwwRt/q/3Jvm7wzcxJA4JDu/I9
+         T3vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722498690; x=1723103490;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FZEfKgAUYgQD4guqTZYcdll8kLH83l6dhKBOEKXkEV0=;
+        b=BGl3acLzVYImr2ciBHBSqQOeQHP5Qpvemp6ws14LOsR+bbSm1C37QUEDI9CFxwUp8J
+         2QCwOplQRFQtubycrgHOhXxLNQ8Xc134lwlVA105+OBXksmrBlA0cw89dtQmKgZSAAEe
+         AKBwJ2rBvKaTBCWXqBzuS2hsJoaHS7pZFWmVgjMCX9g5TQkCm4N6pF5Z18l9i+lhxBqO
+         aPJDFQO0danM+BqFPPRaxpuRk7Mm9qRXU9lBN0EkPcGLMbxiCXSUaRF4HAom0sVcDv+K
+         rkjXCuIqzfUrclDE/D6upmzEhrFFM2vPaQEoh7wsZTlaL9pxy7j2ymUNIPnDMpVTf5BB
+         KL3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVIYPf+Wo+M8NwKQMBTwYIi4WFOQ4TqUWnkUeEeAnuyzKvqo8M53CYk7IC6RkuPMKQl7ftyW6BcM6xEMa5g7/ionyPYlcIx/zEooA==
+X-Gm-Message-State: AOJu0Yx9Ev1UEErfv1Jrr37qzEZoIBmcL5CEjfdTo2NWk55D/Ty6f7e4
+	nMFBy6Mc20YT+dCvsFhqSNeB7HeME6vBV/yJwEauSeJftdr1q/7Glc0s6zyLQ1o=
+X-Google-Smtp-Source: AGHT+IFVUiYgg7q9EZX8uWtt6E+3CIxmrat+d5VUvc7kZZlt8Ar9KLUB/uBZeH3PYHiZfb+ex/J2UQ==
+X-Received: by 2002:a05:600c:4f96:b0:426:5e91:391e with SMTP id 5b1f17b1804b1-428b4ad24f3mr11215855e9.26.1722498690129;
+        Thu, 01 Aug 2024 00:51:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282bb63f21sm46870285e9.29.2024.08.01.00.51.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Aug 2024 00:51:29 -0700 (PDT)
+Message-ID: <bc9dc9c6-fefb-4d13-9fa4-21768add59c3@linaro.org>
+Date: Thu, 1 Aug 2024 09:51:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f1b19a03-9509-4d1c-9e54-9c07a372cad3@broadcom.com>
-X-Spamd-Result: default: False [-2.60 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	FREEMAIL_ENVRCPT(0.00)[gmx.net];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmx.net,suse.com,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spam-Score: -2.60
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: qcom-bwmon: Document
+ SA8775p bwmon compatibles
+To: Trilok Soni <quic_tsoni@quicinc.com>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240730-add_sa8775p_bwmon-v1-0-f4f878da29ae@quicinc.com>
+ <20240730-add_sa8775p_bwmon-v1-1-f4f878da29ae@quicinc.com>
+ <1e78eeb9-3280-45ea-9d21-92efd939efe7@linaro.org>
+ <d8807827-5ad4-e442-a072-d564a55623fb@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d8807827-5ad4-e442-a072-d564a55623fb@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 07-31 15:13, Florian Fainelli wrote:
-
-> > +
-> > +/* uarta communicates with the BT module */
-> > +&uarta {
-> > +	uart-has-rtscts;
-> > +	auto-flow-control;
-> > +	status = "okay";
-> > +	clock-frequency = <96000000>;
+On 31/07/2024 21:30, Trilok Soni wrote:
+> On 7/31/2024 2:23 AM, Krzysztof Kozlowski wrote:
+>> On 30/07/2024 09:16, Tengfei Fan wrote:
+>>> Document the compatibles used to describe the bwmons present on the
+>>> SA8775p platform.
+>>>
+>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>
+>> I admit I don't know what to do with all these sa8775p patches. I am
+>> afraid now you say these are valid but in half a year this will change.
+>> If I give Ack, I feel like I am agreeing to such approach, which I do not.
 > 
-> Would not the "clock-frequency" belong to the .dtsi node instead?
-> 
+> Are you referring to sa8775p moving to scmi later in the year? sa8755p will not move to scmi
+> as per the latest discussions. We will have another SOC SKU to start adding
+> the SCMI. 
 
-Perhaps.
+Yeah, thanks for clarification.
 
-> > +	pinctrl-0 = <&uarta_24_pins &bt_shutdown_pins>;
-> > +	pinctrl-names = "default";
-> > +
-> > +	bluetooth: bluetooth {
-> > +		compatible = "brcm,bcm43438-bt";
-> > +		max-speed = <3000000>;
-> > +		shutdown-gpios = <&gio 29 GPIO_ACTIVE_HIGH>;
-> > +		local-bd-address = [ 00 00 00 00 00 00 ];
-> > +	};
-> > +};
-> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > index 3c0663dc6712..e972f94d6828 100644
-> > --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > @@ -305,6 +305,17 @@ gio: gpio@7d508500 {
-> >   			brcm,gpio-direct;
-> >   		};
-> > +		uarta: serial@7d50c000 {
-> > +			compatible = "brcm,bcm7271-uart";
-> > +			reg = <0x7d50c000 0x20>;
-> > +			reg-names = "uart";
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			interrupts = <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH>;
-> > +			skip-init;
-> 
-> Also an undocumented property upstream, what does it do? Is this to set
-> UPF_SKIP_TEST?
+Best regards,
+Krzysztof
 
-It is U-Boot thing [1]. I suppose I can drop it.
-
-Thanks,
-Ivan
-
-[1] ... "
-    serial: pl01x: Add support for devices with the rate pre-configured.
-
-    For Raspberry Pi, we had the input clock rate to the pl011 fixed in
-    the rpi.c file, but it may be changed by firmware due to user changes
-    to config.txt.  Since the firmware always sets up the uart (default
-    115200 output unless the user changes it), we can just skip our own
-    uart init to simplify the boot process and more reliably get serial
-    output.
-    ..."
 
