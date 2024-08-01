@@ -1,170 +1,117 @@
-Return-Path: <devicetree+bounces-90187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C020944537
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:15:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47009944558
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:22:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D4391F21929
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:15:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78D421C21107
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A63015820C;
-	Thu,  1 Aug 2024 07:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14E5157493;
+	Thu,  1 Aug 2024 07:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="znZo4/S9";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cWHKJqGy";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="IpSEDMeH";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NZh5BwP/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Di1DrEkQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FB3208A0;
-	Thu,  1 Aug 2024 07:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82717157E62;
+	Thu,  1 Aug 2024 07:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722496498; cv=none; b=dWsCiC9WLjHj/lWyad7Cunv3jEI1KBRcxkO8HtBUsln2r1lBrlbPezpIYfMlztcNkgel7KYmjNfgZiFGA5eoFULFLSQAcoRLqlE7Z2agbqCAti5+ieGjycoJ87CvQCwJCHBy7hOa/yOvN58EqIqDncfP8eGdBHsIY4M8M47/E6g=
+	t=1722496927; cv=none; b=JRZBrpVSyJ9dkdVi7p3zSBByzTBE3ET2K1iIj0KYKRAjI5mMUX6tmMTKcQZ6SZO9BgVYUGmiVXLLxbMvkb51el8LU2eBMh9cxGW+eRZHsP7AfhXr9ugL+qNobE+7Ssl3f2cK3iynYYIMdn5lieaT6JN3UBsvg6NnX9SaPM9HXoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722496498; c=relaxed/simple;
-	bh=PKbFlZRPui/itAu9gbMKaJWeD/njLco0wN+xnme6Gjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iQRRxBtdprOiH1fVC5UeyE5BHQhIS8/ZudiL7kka9u1tDLtxuWPSOB9lkS9PJ8v16uttfj1MRJjlPmezQv1yEVFK8y71JNjSl57aHo9/8qH9VZMU1VQTzbGbxndXhJQTsGJRyNw5DjSJEy5gcza+zZD3W2PeC8RaBsUrrEQViI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=znZo4/S9; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=cWHKJqGy; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=IpSEDMeH; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=NZh5BwP/; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id D4FB61F8D7;
-	Thu,  1 Aug 2024 07:14:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1722496495; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tkguNuk6AJYjWqNxhaNJuYhuO8sw5lUzgEEqXOvRcOU=;
-	b=znZo4/S9t936jePDIoh5tfdkA4yT/uHqzAg9cK6MwVWkhcLJDSFpWXYR9VWlKVEKwyjxeR
-	+76DiQIHBH1a/5u6eNIA3WP3UkOvF1e75Mod/c1nPwR8YXUqXslD3EM+1mrXfdBFPvPRbu
-	Bh7UBHtzhU9qKDe44piGtmArCex3tUw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1722496495;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tkguNuk6AJYjWqNxhaNJuYhuO8sw5lUzgEEqXOvRcOU=;
-	b=cWHKJqGyQewgXNiXYyJN3G1Z81l0OAteD7nxv9/11FAy5xLQmsVMdwXkrVFbV/ouyIxBnw
-	w02sEKcoHmvB+HDQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1722496494; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tkguNuk6AJYjWqNxhaNJuYhuO8sw5lUzgEEqXOvRcOU=;
-	b=IpSEDMeH5t3WV+mA7tHKjUMLRLBk+dyqIrUuyIcAsQVVhOB9Q12THWmVaC2Du8qz2+FvFO
-	hXipU2lCh+h403WMzVkCsxBkknxA7hOgkExQSoMNulvgeiKKH/Vbsq4Rxf4za2qigmx3z1
-	wD1WNUemREAB5CaNoUbcXvPo4mt+0yc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1722496494;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tkguNuk6AJYjWqNxhaNJuYhuO8sw5lUzgEEqXOvRcOU=;
-	b=NZh5BwP/PNlvkaYM98S8jMb3Kvd3E+AAPZfHYbuhl6Nvn0eZsRT6w40Jht+9RYxjyFHKm7
-	FxfftGj7GXCCSzBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AEA19136CF;
-	Thu,  1 Aug 2024 07:14:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id fuBSKO41q2azegAAD6G6ig
-	(envelope-from <iivanov@suse.de>); Thu, 01 Aug 2024 07:14:54 +0000
-Date: Thu, 1 Aug 2024 10:19:08 +0300
-From: "Ivan T. Ivanov" <iivanov@suse.de>
-To: Florian Fainelli <f.fainelli@gmail.com>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, florian.fainelli@broadcom.com,
-	wahrenst@gmx.net, andrea.porta@suse.com, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 5/7] arm64: dts: broadcom: bcm2712: Add one more GPIO node
-Message-ID: <20240801071908.ucwxwjiids5lxuox@localhost.localdomain>
-References: <20240731062814.215833-1-iivanov@suse.de>
- <20240731062814.215833-6-iivanov@suse.de>
- <a4fe3edd-07f9-4bfd-8a6e-c96175ddcc8d@gmail.com>
+	s=arc-20240116; t=1722496927; c=relaxed/simple;
+	bh=ytA33CRTyB5bmAsMgIaDhmO7iDdK+HOHPKqh6MYB+cI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bQgiQTJb+IT/wMoJWxmNEEUOQJfSkgXSO6YlHPp/V4rCUsfG1s1WsuYbNKNO6InnShyNT7d2ReVSlne++NcrHmGH7PWWqpwx9axvGSGxTuMe9/lm47ThXYRYgjS0dzbK2k8RDUagyZdOqXgHDJQ9Mhd8usm5HnkvYzQcbGZJP2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Di1DrEkQ; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1fc57d0f15aso3945815ad.2;
+        Thu, 01 Aug 2024 00:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722496926; x=1723101726; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J5saQIelnl5OO8WPHKquus0jHfZjg65IIuO1MIHrvlo=;
+        b=Di1DrEkQQu5AckvkTikHj9TTbxLyx839BPuewmvmhu9r6LiDB/0LpPblWZsFllP1kn
+         aEBPlWy5hxY377XMPljX5c+W/2xXIyqPqtRzQmapxxhyBJzN94sfE838mhuK4RIBj2r1
+         /XvOjmOuAhPBxVMzAI2Iyw7xwojTOU0frtW/s+bYlIO5J/4yfGafz6JRqVVprlo2BSGH
+         3qNy3qN1IWDIn/mAv5c1vUeIbvO6a5EX7oENhF2mcSTSl8Uwi9DSWISCOdMil1+YZamo
+         98DOs9X3buUdxST3s0lk2sYTWC4Ai1B+qriM84A/NA6WQ2jduKlOKevpj5JYg49JmU0S
+         TZNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722496926; x=1723101726;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J5saQIelnl5OO8WPHKquus0jHfZjg65IIuO1MIHrvlo=;
+        b=bqDewzifieyYgKZ3V+aB6HA4zpsKWoX/PBlNz5IM0KQJNoN+HE+6RKGYULSGN6GykS
+         kdEasntGfelozba0eyW77rJ1AAPX3SRUity4aX+Hd73fG+jSfWUA3HgjeGFS7AVQ3J0v
+         lJlQnCElXEYbVdft/ORAdYSmh7ABuA4oIOc8xZ2XeRWwcYRQH5RQGBh2YvLN3dIFNkl2
+         anGyMEfAZZYkW7BMnf2hXnIjo3iQ3JGxKr0ZCYF36j61bln4ibJbeLHbv9fCHOusDYbK
+         XODQD7HTdBqqzPLSKC5sTCT1q3A9Ue04at+p0rwmsg2lMDV1q+jBgz5VOU+YTz3bFmYR
+         X/7A==
+X-Forwarded-Encrypted: i=1; AJvYcCV6iCdo5QiIZctrO4GHGGFJRruYD4Z9/d995vZq24AtNjbk2OA90oiewhyWlHDesNbHGw2Vc9EhO4uNYqtGuCdPm5uPwfrkV6RFgfTq
+X-Gm-Message-State: AOJu0YwxQM/4QXHfmh1QxuWDJMeVpExORFX1tUPxq1ljHTCvJypxQvxB
+	ImAOJZIVNWykQZnf0+fl/RmbsYvVqFPr2Q2EjyS1joidys5mkUJg
+X-Google-Smtp-Source: AGHT+IHUHvtIh/kWhOh8dQWKVm3MpKjD4RBmZA1KbW6roshsKEQC5OBsJe+hhqYENADb+J2mP+wZzg==
+X-Received: by 2002:a17:903:2292:b0:1fd:a428:a021 with SMTP id d9443c01a7336-1ff4d2ee5e9mr12437505ad.11.1722496925777;
+        Thu, 01 Aug 2024 00:22:05 -0700 (PDT)
+Received: from cs20-buildserver.. ([180.217.140.46])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff4619793bsm22117425ad.120.2024.08.01.00.22.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 00:22:05 -0700 (PDT)
+From: Stanley Chu <stanley.chuys@gmail.com>
+X-Google-Original-From: Stanley Chu <yschu@nuvoton.com>
+To: alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	linux-i3c@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	tomer.maimon@nuvoton.com,
+	kwliu@nuvoton.com,
+	yschu@nuvoton.com,
+	cpchiang1@nuvoton.com
+Subject: [PATCH v1 0/2] Add Nuvoton NPCM845 i3c master driver
+Date: Thu,  1 Aug 2024 15:19:44 +0800
+Message-Id: <20240801071946.43266-1-yschu@nuvoton.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a4fe3edd-07f9-4bfd-8a6e-c96175ddcc8d@gmail.com>
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.60 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,broadcom.com,gmx.net,suse.com,vger.kernel.org,lists.infradead.org];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
-X-Spam-Flag: NO
-X-Spam-Score: -2.60
+Content-Transfer-Encoding: 8bit
 
-On 07-31 15:11, Florian Fainelli wrote:
-> > +
-> > +		gio: gpio@7d508500 {
-> > +			compatible = "brcm,brcmstb-gpio";
-> > +			reg = <0x7d508500 0x40>;
-> > +			interrupt-parent = <&main_irq>;
-> > +			interrupts = <0>;
-> > +			gpio-controller;
-> > +			#gpio-cells = <2>;
-> > +			interrupt-controller;
-> > +			#interrupt-cells = <2>;
-> > +			brcm,gpio-bank-widths = <32 22>;
-> > +			brcm,gpio-direct;
-> 
-> Undocumented and unsupported property upstream, what does it do? Other than
-> that, LGTM.
+This patchset adds i3c master support for the Nuvoton
+Arbel NPCM8XX Board Management controller (BMC) SoC family.
 
-Doh. Something used for banging GPIO's from user-space via "/dev/gpiomem".
+The Nuvoton npcm845 i3c controller implements I3C master functionality
+as defined in the MIPI Alliance Specification for I3C, Version 1.0.
 
-I will remove it in next patch version.
+This patchset was tested on the Arbel NPCM8XX evaluation board.
 
-Thanks,
-Ivan
+James Chiang (2):
+  dt-bindings: i3c: Add NPCM845 i3c controller
+  i3c: master: Add Nuvoton npcm845 i3c master driver
 
+ .../bindings/i3c/nuvoton,i3c-master.yaml      |  113 +
+ MAINTAINERS                                   |    7 +
+ drivers/i3c/master/Kconfig                    |   14 +
+ drivers/i3c/master/Makefile                   |    1 +
+ drivers/i3c/master/npcm845-i3c-master.c       | 2372 +++++++++++++++++
+ 5 files changed, 2507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
+ create mode 100644 drivers/i3c/master/npcm845-i3c-master.c
 
-[1]
- "...
-    gpio: mmio: Add DIRECT mode for shared access
+-- 
+2.34.1
 
-    The generic MMIO GPIO library uses shadow registers for efficiency,
-    but this breaks attempts by raspi-gpio to change other GPIOs in the
-    same bank. Add a DIRECT mode that makes fewer assumptions about the
-    existing register contents, but note that genuinely simultaneous
-    accesses are likely to lose updates.
- ... "
 
