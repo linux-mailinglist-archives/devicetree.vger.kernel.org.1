@@ -1,308 +1,195 @@
-Return-Path: <devicetree+bounces-90200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 074E59445D8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:49:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180E39445C7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 335BDB235C7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:49:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3901E1C21F0C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C08157E93;
-	Thu,  1 Aug 2024 07:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A58161306;
+	Thu,  1 Aug 2024 07:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Ax5xiLot"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="VZM+HAtz";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ymQdWITh";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="O7Cp5fR8";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Me77ATGy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A32E166313
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 07:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DC216DC30;
+	Thu,  1 Aug 2024 07:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722498529; cv=none; b=SFgoA/ScwDgQ9KvlEF+rCIwb1LSdelmSxV3csKX7RasNZbCY/5P7empoRdM7WUxoP4Cm4UQC7QMhlkkbEVu64X6CqGu0RkyRk9gb1U0SG1pMcHh1fPu/9ShxMpdGAMUhLZr+el6qkOpZ+fZZgzipRuHpeW8SnQTq4NHBlNb6MHE=
+	t=1722498353; cv=none; b=aoNIZArP0MTpI6xlraVMhcd15MouklpUz+iVPDYwnEmAL2ZxL8I6/YidWSjVMOR0aZPDzkzE4QUFvQZH9AIeFV7qmu2KTZtdJuWwmlwYMhTdxPan/6CNZCmZo12AJxoLpsSq0TD3UqzlLlWKC+A0osdKuMCbrFf/TmVxPtoKO3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722498529; c=relaxed/simple;
-	bh=7k1tHCj/IigIKmy4+p+WwobnV7zERZgAs34Fzr2SrVI=;
+	s=arc-20240116; t=1722498353; c=relaxed/simple;
+	bh=oi6UItZeuUJ+GwMXqfK528KOTtt4vtQq69CPBbAKfWY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b2F62LPBLoIIhmak5J/o8eONDLMtay0qHhIq8GOXxZ3U4uOR8r1XmtZ/WFMwNnjvQa/eZf7N2YiFHwQ4P3gosMrtfsBmE+tl0XaA5RYqZUWUn1hmGUH5ttt7+U4sllqcpUPUtTCs1Aeo0XEwfq7/TY1MW5OeCNRBKYpL755VmoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Ax5xiLot; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a7a8a4f21aeso878129166b.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 00:48:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1722498526; x=1723103326; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lpgRYBRoCwuCvyWPTeidprozH3XXG59M+x9HHpyT17c=;
-        b=Ax5xiLotZZ+eKmRXiQhW/Wf6baXG5V1OhD2BVf0qkvgSer1B6/Ahpp14MB7FaKwLyM
-         kM4vDraUZBBeg1VPaQm1pxQRgvKPY6/7XmvGP7e01aYD9dYP2wtOMbbv2x5zWK4fWg87
-         ZGMTcQvgQOlXeYRwI8nOhz70wOszEyV1W8UnP+8eBtaPRMDY6rIYBJ6m/jdfS5rLDIXg
-         DS0lZYWsmOILPbXEkFUnlQdrFFOSkWvQL8VZkCTgxioawsFXroZ/pKNOG3SneKqTctAE
-         9g3UrOXtEd8b1gGsor2Pvx1hWfqqLmI9fz8FlfgQ6cFsQXz0OfU7Jk+5hSYnjpuPH+nE
-         E2oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722498526; x=1723103326;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lpgRYBRoCwuCvyWPTeidprozH3XXG59M+x9HHpyT17c=;
-        b=NiJY9zTRYwmugpCXwOJjlYHLK+iTqDmGglmpNU1vWfTZm35A8O0xkx7qnbZdnxkhw3
-         qHZY8Sp8hCA2KSs3/BH054/JRSC6FY8zypWIBCdxOTVdCbkCAfra2jw7zjr4lXhSfA2k
-         Kf7OOrW4MwoPLCJxmfPQICmFmMeGI/5QN6boqN3AC6pXhKpataG6fRPeu6BIcLjFF1nM
-         Kj1x2rbr1gMnrI/Wav0j1+28B5dwHVEiwv/BbggaVcdyIjJs40u0HGXs4wSVfo8be+6r
-         5vd6/hBvm5dj2FhSwvqLbkItk2Jm5oIIF7ec1uh9WbL+QamafsQD2B/LLE/tyn4G0YHX
-         MQyg==
-X-Forwarded-Encrypted: i=1; AJvYcCWA6Y+IoOPtpJ6QwasC5MWLz4VUVDWvhlW1BnJWHVS/qRF9NwIvcRp3HO2BptEWzT18/f6HvotV3VTqtiSskQcnEuY8vxjN7Re6nA==
-X-Gm-Message-State: AOJu0YyYwfUG9oNi7TOh0tOfHI+Ew77lZzWvHBDfR8TPtV1thdYqeHsX
-	FF8Fv1tGsOnvPWN8n7y8guV/TcOmfpCgR2FLYO7AxZ5pae09DERakmUzILCzqhA=
-X-Google-Smtp-Source: AGHT+IGJv3Ero2PFVW3HYlIFYvhbjq3izkAroXjPAXo8JMZv78p6fmd7ZKLSN2GEo8xLlJkmY0TzFw==
-X-Received: by 2002:a17:907:6e9e:b0:a79:8318:288f with SMTP id a640c23a62f3a-a7daf51bca7mr126973566b.16.1722498525027;
-        Thu, 01 Aug 2024 00:48:45 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acab4de06sm859070366b.71.2024.08.01.00.48.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 00:48:44 -0700 (PDT)
-Date: Thu, 1 Aug 2024 09:48:43 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arch@vger.kernel.org
-Subject: Re: [PATCH v4 13/13] riscv: Add qspinlock support
-Message-ID: <20240801-45b47eced3011c8a400ff836@orel>
-References: <20240731072405.197046-1-alexghiti@rivosinc.com>
- <20240731072405.197046-14-alexghiti@rivosinc.com>
- <20240731-ce25dcdc5ce9ccc6c82912c0@orel>
- <CAHVXubgtD_nDBL2H-MYb9V+3jLBoszz8HAZ2NTTsiS2wR6aPDQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RyZFNyLC7S2/gShOWnFN9IKPmf0cI0MTERift6euZce/7R53yQoMJa3IMnhCS/aspAmKz3CWnOh+mVUxpCSnH82X5Nnl8xgKD+ZOlYHw0qX/OzaKz7Z49GiGb6wifaOUBnwodMO2HDnzNWpaOABxy6SEgyfVc1q6Sip669Oi3pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=VZM+HAtz; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=ymQdWITh; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=O7Cp5fR8; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Me77ATGy; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id E5ED01F8D7;
+	Thu,  1 Aug 2024 07:45:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1722498350; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
+	b=VZM+HAtzkzq9i6xhEsWFVIBUQHsHYkhZMdn61dndJ/JrdhLMarx1irZYw43lJBk+TWDJto
+	th7bY/ig6Ns+zYrUPSt/JwBOyycKnH/w4f2xURyZN2Gtl6xS5hqDux551sk5LYrYTnS+hp
+	TtILmJyDzXIE7NJ785XAGNBvS1Uh74s=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1722498350;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
+	b=ymQdWIThetOkPC8UlPlRBa5vVa1+kXTKF8FPc/bH6UBYYVRTjL3QyRYWCHpRee9pEz4w/2
+	s5DrjmoUrxoSWCDA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1722498349; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
+	b=O7Cp5fR89mNR2fJUGoFK7j11WxyHeX2wNhyMgE8U4mPtaonpqTtsk7mYBRBARsNeB0mQV1
+	tPbpfcWtHst7FXRcHsWZNJK/0QioZSmjXz9n30GWcfUYVreS5d2+Gh4GBuyYX2NoLUblSZ
+	Vjwz59sAOA5ZzCNciPmKFyGNMEXwsHY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1722498349;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ucpO8yMLTFgfxZzPiWQryJ30gvtGY2NZE1jEQIbebwM=;
+	b=Me77ATGyXZqo3Zl1a8JVCAgt6bH1UNJii/QJQiLt2xKOa8N7uNF6CAGrLeguJsqqFSKR3Q
+	p7mjb4bmxv8qELAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C363513946;
+	Thu,  1 Aug 2024 07:45:49 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id KiFqLS09q2YTBQAAD6G6ig
+	(envelope-from <iivanov@suse.de>); Thu, 01 Aug 2024 07:45:49 +0000
+Date: Thu, 1 Aug 2024 10:50:03 +0300
+From: "Ivan T. Ivanov" <iivanov@suse.de>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, wahrenst@gmx.net, andrea.porta@suse.com,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 7/7] arm64: dts: broadcom: bcm2712: Add UARTA controller
+ node.
+Message-ID: <20240801075003.ghbxzmzzttevmo5u@localhost.localdomain>
+References: <20240731062814.215833-1-iivanov@suse.de>
+ <20240731062814.215833-8-iivanov@suse.de>
+ <f1b19a03-9509-4d1c-9e54-9c07a372cad3@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHVXubgtD_nDBL2H-MYb9V+3jLBoszz8HAZ2NTTsiS2wR6aPDQ@mail.gmail.com>
+In-Reply-To: <f1b19a03-9509-4d1c-9e54-9c07a372cad3@broadcom.com>
+X-Spamd-Result: default: False [-2.60 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	FREEMAIL_ENVRCPT(0.00)[gmx.net];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmx.net,suse.com,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Spam-Score: -2.60
 
-On Thu, Aug 01, 2024 at 08:53:06AM GMT, Alexandre Ghiti wrote:
-> On Wed, Jul 31, 2024 at 5:29 PM Andrew Jones <ajones@ventanamicro.com> wrote:
-> >
-> > On Wed, Jul 31, 2024 at 09:24:05AM GMT, Alexandre Ghiti wrote:
-> > > In order to produce a generic kernel, a user can select
-> > > CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
-> > > spinlock implementation if Zabha or Ziccrse are not present.
-> > >
-> > > Note that we can't use alternatives here because the discovery of
-> > > extensions is done too late and we need to start with the qspinlock
-> > > implementation because the ticket spinlock implementation would pollute
-> > > the spinlock value, so let's use static keys.
-> > >
-> > > This is largely based on Guo's work and Leonardo reviews at [1].
-> > >
-> > > Link: https://lore.kernel.org/linux-riscv/20231225125847.2778638-1-guoren@kernel.org/ [1]
-> > > Signed-off-by: Guo Ren <guoren@kernel.org>
-> > > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> > > ---
-> > >  .../locking/queued-spinlocks/arch-support.txt |  2 +-
-> > >  arch/riscv/Kconfig                            | 29 +++++++++++++
-> > >  arch/riscv/include/asm/Kbuild                 |  4 +-
-> > >  arch/riscv/include/asm/spinlock.h             | 43 +++++++++++++++++++
-> > >  arch/riscv/kernel/setup.c                     | 38 ++++++++++++++++
-> > >  include/asm-generic/qspinlock.h               |  2 +
-> > >  include/asm-generic/ticket_spinlock.h         |  2 +
-> > >  7 files changed, 118 insertions(+), 2 deletions(-)
-> > >  create mode 100644 arch/riscv/include/asm/spinlock.h
-> > >
-> > > diff --git a/Documentation/features/locking/queued-spinlocks/arch-support.txt b/Documentation/features/locking/queued-spinlocks/arch-support.txt
-> > > index 22f2990392ff..cf26042480e2 100644
-> > > --- a/Documentation/features/locking/queued-spinlocks/arch-support.txt
-> > > +++ b/Documentation/features/locking/queued-spinlocks/arch-support.txt
-> > > @@ -20,7 +20,7 @@
-> > >      |    openrisc: |  ok  |
-> > >      |      parisc: | TODO |
-> > >      |     powerpc: |  ok  |
-> > > -    |       riscv: | TODO |
-> > > +    |       riscv: |  ok  |
-> > >      |        s390: | TODO |
-> > >      |          sh: | TODO |
-> > >      |       sparc: |  ok  |
-> > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > > index ef55ab94027e..c9ff8081efc1 100644
-> > > --- a/arch/riscv/Kconfig
-> > > +++ b/arch/riscv/Kconfig
-> > > @@ -79,6 +79,7 @@ config RISCV
-> > >       select ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP
-> > >       select ARCH_WANTS_NO_INSTR
-> > >       select ARCH_WANTS_THP_SWAP if HAVE_ARCH_TRANSPARENT_HUGEPAGE
-> > > +     select ARCH_WEAK_RELEASE_ACQUIRE if ARCH_USE_QUEUED_SPINLOCKS
-> >
-> > Why do we need this? Also, we presumably would prefer not to have it
-> > when we end up using ticket spinlocks when combo spinlocks is selected.
-> > Is there no way to avoid it?
-> 
-> I'll let Andrea answer this as he asked for it.
-> 
-> >
-> > >       select BINFMT_FLAT_NO_DATA_START_OFFSET if !MMU
-> > >       select BUILDTIME_TABLE_SORT if MMU
-> > >       select CLINT_TIMER if RISCV_M_MODE
-> > > @@ -488,6 +489,34 @@ config NODES_SHIFT
-> > >         Specify the maximum number of NUMA Nodes available on the target
-> > >         system.  Increases memory reserved to accommodate various tables.
-> > >
-> > > +choice
-> > > +     prompt "RISC-V spinlock type"
-> > > +     default RISCV_COMBO_SPINLOCKS
-> > > +
-> > > +config RISCV_TICKET_SPINLOCKS
-> > > +     bool "Using ticket spinlock"
-> > > +
-> > > +config RISCV_QUEUED_SPINLOCKS
-> > > +     bool "Using queued spinlock"
-> > > +     depends on SMP && MMU && NONPORTABLE
-> > > +     select ARCH_USE_QUEUED_SPINLOCKS
-> > > +     help
-> > > +       The queued spinlock implementation requires the forward progress
-> > > +       guarantee of cmpxchg()/xchg() atomic operations: CAS with Zabha or
-> > > +       LR/SC with Ziccrse provide such guarantee.
-> > > +
-> > > +       Select this if and only if Zabha or Ziccrse is available on your
-> > > +       platform.
-> >
-> > Maybe some text recommending combo spinlocks here? As it stands it sounds
-> > like enabling queued spinlocks is a bad idea for anybody that doesn't know
-> > what platforms will run the kernel they're building, which is all distros.
-> 
-> That's NONPORTABLE, so people enabling this config are supposed to
-> know that right?
+Hi,
 
-Yes, both the NONPORTABLE and the scary text will imply that qspinlocks
-shouldn't be selected. I'm asking for text which points people configuring
-kernels to COMBO. Something like
+On 07-31 15:13, Florian Fainelli wrote:
 
-  qspinlocks provides performance enhancements on platforms which support
-  Zabha or Ziccrse. RISCV_QUEUED_SPINLOCKS should not be selected for
-  platforms without one of those extensions. If unsure, select
-  RISCV_COMBO_SPINLOCKS, which will use qspinlocks when supported and
-  otherwise ticket spinlocks.
+> > +
+> > +/* uarta communicates with the BT module */
+> > +&uarta {
+> > +	uart-has-rtscts;
+> > +	auto-flow-control;
+> > +	status = "okay";
+> > +	clock-frequency = <96000000>;
+> 
+> Would not the "clock-frequency" belong to the .dtsi node instead?
+> 
 
-> 
-> >
-> > > +
-> > > +config RISCV_COMBO_SPINLOCKS
-> > > +     bool "Using combo spinlock"
-> > > +     depends on SMP && MMU
-> > > +     select ARCH_USE_QUEUED_SPINLOCKS
-> > > +     help
-> > > +       Embed both queued spinlock and ticket lock so that the spinlock
-> > > +       implementation can be chosen at runtime.
-> >
-> > nit: Add a blank line here
-> 
-> Done
-> 
-> >
-> > > +endchoice
-> > > +
-> > >  config RISCV_ALTERNATIVE
-> > >       bool
-> > >       depends on !XIP_KERNEL
-> > > diff --git a/arch/riscv/include/asm/Kbuild b/arch/riscv/include/asm/Kbuild
-> > > index 5c589770f2a8..1c2618c964f0 100644
-> > > --- a/arch/riscv/include/asm/Kbuild
-> > > +++ b/arch/riscv/include/asm/Kbuild
-> > > @@ -5,10 +5,12 @@ syscall-y += syscall_table_64.h
-> > >  generic-y += early_ioremap.h
-> > >  generic-y += flat.h
-> > >  generic-y += kvm_para.h
-> > > +generic-y += mcs_spinlock.h
-> > >  generic-y += parport.h
-> > > -generic-y += spinlock.h
-> > >  generic-y += spinlock_types.h
-> > > +generic-y += ticket_spinlock.h
-> > >  generic-y += qrwlock.h
-> > >  generic-y += qrwlock_types.h
-> > > +generic-y += qspinlock.h
-> > >  generic-y += user.h
-> > >  generic-y += vmlinux.lds.h
-> > > diff --git a/arch/riscv/include/asm/spinlock.h b/arch/riscv/include/asm/spinlock.h
-> > > new file mode 100644
-> > > index 000000000000..503aef31db83
-> > > --- /dev/null
-> > > +++ b/arch/riscv/include/asm/spinlock.h
-> > > @@ -0,0 +1,43 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +
-> > > +#ifndef __ASM_RISCV_SPINLOCK_H
-> > > +#define __ASM_RISCV_SPINLOCK_H
-> > > +
-> > > +#ifdef CONFIG_RISCV_COMBO_SPINLOCKS
-> > > +#define _Q_PENDING_LOOPS     (1 << 9)
-> > > +
-> > > +#define __no_arch_spinlock_redefine
-> > > +#include <asm/ticket_spinlock.h>
-> > > +#include <asm/qspinlock.h>
-> > > +#include <asm/alternative.h>
-> >
-> > We need asm/jump_label.h instead of asm/alternative.h, but...
-> >
-> > > +
-> > > +DECLARE_STATIC_KEY_TRUE(qspinlock_key);
-> > > +
-> > > +#define SPINLOCK_BASE_DECLARE(op, type, type_lock)                   \
-> > > +static __always_inline type arch_spin_##op(type_lock lock)           \
-> > > +{                                                                    \
-> > > +     if (static_branch_unlikely(&qspinlock_key))                     \
-> > > +             return queued_spin_##op(lock);                          \
-> > > +     return ticket_spin_##op(lock);                                  \
-> > > +}
-> >
-> > ...do you know what impact this inlined static key check has on the
-> > kernel size?
-> 
-> No, I'll check, thanks.
-> 
-> >
-> > Actually, why not use ALTERNATIVE with any nonzero cpufeature value.
-> > Then add code to riscv_cpufeature_patch_check() to return true when
-> > qspinlocks should be enabled (based on the value of some global set
-> > during riscv_spinlock_init)?
-> 
-> As discussed with Guo in the previous iteration, the patching of the
-> alternatives intervenes far after the first use of the spinlocks and
-> the ticket spinlock implementation pollutes the spinlock value, so
-> we'd have to unconditionally start with the qspinlock implementation
-> and after switch to the ticket implementation if not supported by the
-> platform. It works but it's dirty, I really don't like this hack.
-> 
-> We could though:
-> - add an initial value to the alternatives (not sure it's feasible though)
-> - make the patching of alternatives happen sooner by parsing the isa
-> string sooner, either in DT or ACPI (I have a working PoC for very
-> early parsing of ACPI).
-> 
-> I intend to do the latter as I think we should be aware of the
-> extensions sooner in the boot process, so I'll change that to the
-> alternatives when it's done. WDYT, any other idea?
+Perhaps.
 
-Yes, we'll likely want early patching for other extensions as well,
-so that's a good idea in general. Putting a TODO on this static key
-to be changed to an ALTERNATIVE later when possible sounds reasonable
-to me.
+> > +	pinctrl-0 = <&uarta_24_pins &bt_shutdown_pins>;
+> > +	pinctrl-names = "default";
+> > +
+> > +	bluetooth: bluetooth {
+> > +		compatible = "brcm,bcm43438-bt";
+> > +		max-speed = <3000000>;
+> > +		shutdown-gpios = <&gio 29 GPIO_ACTIVE_HIGH>;
+> > +		local-bd-address = [ 00 00 00 00 00 00 ];
+> > +	};
+> > +};
+> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+> > index 3c0663dc6712..e972f94d6828 100644
+> > --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+> > @@ -305,6 +305,17 @@ gio: gpio@7d508500 {
+> >   			brcm,gpio-direct;
+> >   		};
+> > +		uarta: serial@7d50c000 {
+> > +			compatible = "brcm,bcm7271-uart";
+> > +			reg = <0x7d50c000 0x20>;
+> > +			reg-names = "uart";
+> > +			reg-shift = <2>;
+> > +			reg-io-width = <4>;
+> > +			interrupts = <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH>;
+> > +			skip-init;
+> 
+> Also an undocumented property upstream, what does it do? Is this to set
+> UPF_SKIP_TEST?
+
+It is U-Boot thing [1]. I suppose I can drop it.
 
 Thanks,
-drew
+Ivan
+
+[1] ... "
+    serial: pl01x: Add support for devices with the rate pre-configured.
+
+    For Raspberry Pi, we had the input clock rate to the pl011 fixed in
+    the rpi.c file, but it may be changed by firmware due to user changes
+    to config.txt.  Since the firmware always sets up the uart (default
+    115200 output unless the user changes it), we can just skip our own
+    uart init to simplify the boot process and more reliably get serial
+    output.
+    ..."
 
