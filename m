@@ -1,147 +1,92 @@
-Return-Path: <devicetree+bounces-90398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E68945335
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 21:18:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C026C945343
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 21:22:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4D4DB21F6A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:18:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03BB1C22FCE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0730148FEB;
-	Thu,  1 Aug 2024 19:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFB0148FF7;
+	Thu,  1 Aug 2024 19:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="olXFmT0G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyJ0OlDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2596913D62C;
-	Thu,  1 Aug 2024 19:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321921494A4;
+	Thu,  1 Aug 2024 19:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722539891; cv=none; b=cIw4GFaXYMF/ZsSr3/eVC9cjB+AncSyaeXAGd1QzwI/sFhrNumPa1azewnCCyAj1QXVAm186R/muFUHS+F3qoQPUhH+fgvqVB6dPNlTV9wGuKEGkMcMMQpDGEFBFEgThUuBVR1BSkvJOzUaaJtfv6Gp5Qa7RCddjThyUMnZoYFM=
+	t=1722540135; cv=none; b=LVTq6aOPpZn2VvyQYnjIh84+zPBzm+Tcfy1SzdOOtU3Abk89+3uS077dk7zDkdwehgo7r7pwbvyshnQezbs7W7vbNbhBopt4lwu2BIeM8w0yQpSJzonYAOleaLegJndq9UCAwxd/WnzWSZqXWI8of1DD8WwZAijStFCE1KUNESo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722539891; c=relaxed/simple;
-	bh=y8V9pV7NtOlYZ9R03DAAGQMitzA9LF14iQB/izlExco=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JDnYOV8QKHoiBYM9qkfAvATeh3vtde9imjsB0R2DaLjlyxkPH8shan76zu0KEktHGiEPzxPqWHczzFkY6nA5TGGTUaPnqzLMUfPBGfqxzbu/0yFszW99LUVw14NapJgmlgN1KprkEGwAI+c8SrAIHZ07u82lO1QUIk0gVqiJ70E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=olXFmT0G; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471DaVe9004853;
-	Thu, 1 Aug 2024 19:17:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+Zcb7YaymxDvG1+CVo1YmMGArzp+SsZXzZ0LFGHgMpA=; b=olXFmT0GCXvSiDu8
-	pR3YIn/JpV1MTfqPsDx/SgFWF3j8pg9U6idNX7nx7cpn7dVBSwkezMwhAGSl2rYE
-	hFDQeCXL4+GZpzGByPlWuKjX6TmkpMuHBhgC3vNcBmTzs6aJa4Z3tEufmVM7TaqJ
-	TZ2Mf02qOxwlIIPjHF0ezoe2EAOQ6WgPLkL477BRHlFMSa6PyHI8h1yyAWc317x/
-	KgICzty/JX0flpnBasUFA2OYXuTANdLrvYTrGiPldArqXeKszw8kVCbr1SF3EJsz
-	K7+82x/UH8a7AOFe9zXJPlPhXUvemJ3/bK0jZL7h/gOWl8kp1Y8x4kXezhNxzAUN
-	27Ob1A==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40pw459f9t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 19:17:38 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 471JHbtP018544
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Aug 2024 19:17:37 GMT
-Received: from [10.110.73.139] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 Aug 2024
- 12:17:36 -0700
-Message-ID: <9c476b12-a4ca-43f7-875a-eb0a1032c494@quicinc.com>
-Date: Thu, 1 Aug 2024 12:17:36 -0700
+	s=arc-20240116; t=1722540135; c=relaxed/simple;
+	bh=etTOiz6nxoka2hkDVBziQ4wSJJjNFpGUAvUQRO9APN4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pxv9vnGk5I4IIEJ+8GMxrpjoYtegEpf1Ms989LO/Q2Mw80CpCnWU3gGaQMVrKpCwj77jI3TsRzeGrs1CurxNS/gpyjZSytnJwcgNlBZZsA+nkp8cE+x+/iOXZw8D4hRLF3Fheadjev3xbRqLjXRpFAdtjEZa0zjA00PRcCBSDUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyJ0OlDS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2CA9C32786;
+	Thu,  1 Aug 2024 19:22:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722540134;
+	bh=etTOiz6nxoka2hkDVBziQ4wSJJjNFpGUAvUQRO9APN4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fyJ0OlDS6nz2rvMAVZxE898JrmWPBZQ4iT+UCEFLaLYSe2ZmwJ0QKnZAml3yCrqYi
+	 Gj/a+RdvM31tGy1br2ZNgGf4vnojnpK0xzuGbPzQlspH1ZJb4JJdXc1hYbkOjp4T2Q
+	 ZNTGgK/DET+bNumC04BVk2oaxUiYRa34ilWAFDJYtO5YnM+XhqRuCqskQud/eOMAx8
+	 dDpjDURJJqUZ7FYn19Uw/KMYrXeRbJToMaGO3Mv1hvPP2GiFRd/P4mNrkbN5HtD7DD
+	 uzbKA1jrvjNGjcLiEGwD557kcHSVBav4n9btuLLahVt8LOEnt/s6PhY7Gof1knVs5x
+	 9p+OtK6PfpuSA==
+Date: Thu, 1 Aug 2024 20:22:09 +0100
+From: Simon Horman <horms@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-can@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>
+Subject: Re: [PATCH v3] dt-bindings: can: renesas,rcar-canfd: Document R-Car
+ V4M support
+Message-ID: <20240801192209.GA2495006@kernel.org>
+References: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/6] Add SCMI transport descriptors
-Content-Language: en-US
-To: Cristian Marussi <cristian.marussi@arm.com>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <arm-scmi@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <sudeep.holla@arm.com>, <james.quinlan@broadcom.com>,
-        <f.fainelli@gmail.com>, <vincent.guittot@linaro.org>,
-        <etienne.carriere@st.com>, <peng.fan@oss.nxp.com>,
-        <michal.simek@amd.com>, <quic_sibis@quicinc.com>,
-        <dan.carpenter@linaro.org>, <souvik.chakravarty@arm.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>
-References: <20240730144707.1647025-1-cristian.marussi@arm.com>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20240730144707.1647025-1-cristian.marussi@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UYin6VE9cEp8HFV_qWGzL_m1nmuweziG
-X-Proofpoint-ORIG-GUID: UYin6VE9cEp8HFV_qWGzL_m1nmuweziG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-01_17,2024-08-01_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- suspectscore=0 adultscore=0 clxscore=1011 impostorscore=0 malwarescore=0
- lowpriorityscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408010127
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
 
+On Thu, Aug 01, 2024 at 04:03:17PM +0200, Geert Uytterhoeven wrote:
+> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+> 
+> Document support for the CAN-FD Interface on the Renesas R-Car V4M
+> (R8A779H0) SoC, which supports up to four channels.
+> 
+> The CAN-FD module on R-Car V4M is very similar to the one on R-Car V4H,
+> but differs in some hardware parameters, as reflected by the Parameter
+> Status Information part of the Global IP Version Register.  However,
+> none of this parameterization should have any impact on the driver, as
+> the driver does not access any register that is impacted by the
+> parameterization (except for the number of channels).
+> 
+> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
+> [geert: Clarify R-Car V4M differences]
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 7/30/2024 7:47 AM, Cristian Marussi wrote:
-> Hi,
->
-> this small series is an extended version of this recent, already reviewed,
-> series [1] posted by Peng to add a new arm,scmi property to describe some
-> platform-specific SCMI timeout constraints.
->
-> On top of that, this adds 2 more properties to describe a couple more
-> platform-specific transport characteristics.
->
-> To minimize conflicts, the whole series is based on top of another recent
-> series, which represents a rework of the core SCMI stack to split SCMI
-> transports as standalone drivers. [2]
->
-> Thanks,
-> Cristian
->
-> [1]: https://lore.kernel.org/linux-arm-kernel/20240709140957.3171255-1-peng.fan@oss.nxp.com/
-> [2]: https://lore.kernel.org/linux-arm-kernel/20240730133318.1573765-1-cristian.marussi@arm.com/T/#t
->
-> ---
+Reviewed-by: Simon Horman <horms@kernel.org>
 
-Thanks Cristian for the series. I have validated them on Qualcomm
-SA8255p(to be upstreamed) Ride platform.
-
--Nikunj
-
->
-> Cristian Marussi (5):
->   firmware: arm_scmi: Remove const from transport descriptors
->   firmware: arm_scmi: Use max-rx-timeout-ms from devicetree
->   dt-bindings: firmware: arm,scmi: Introduce more transport properties
->   firmware: arm_scmi: Use max_msg and max_msg_size from devicetree
->   firmware: arm_scmi: Relocate atomic_threshold to scmi_desc
->
-> Peng Fan (1):
->   dt-bindings: firmware: arm,scmi: Introduce property max-rx-timeout-ms
->
->  .../bindings/firmware/arm,scmi.yaml           | 22 +++++++++
->  drivers/firmware/arm_scmi/common.h            |  9 +++-
->  drivers/firmware/arm_scmi/driver.c            | 46 ++++++++++++-------
->  .../arm_scmi/scmi_transport_mailbox.c         |  2 +-
->  .../firmware/arm_scmi/scmi_transport_optee.c  |  2 +-
->  .../firmware/arm_scmi/scmi_transport_smc.c    |  2 +-
->  .../firmware/arm_scmi/scmi_transport_virtio.c |  2 +-
->  7 files changed, 64 insertions(+), 21 deletions(-)
->
 
