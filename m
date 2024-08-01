@@ -1,291 +1,172 @@
-Return-Path: <devicetree+bounces-90370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58036945192
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:37:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEAE9451A9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8D8B1F23288
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:37:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B92B41F2448C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657831A4879;
-	Thu,  1 Aug 2024 17:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpOLXcne"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3DE1B3740;
+	Thu,  1 Aug 2024 17:44:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A95182D8
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 17:37:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8331B32D9;
+	Thu,  1 Aug 2024 17:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722533830; cv=none; b=hgRlGaKcz7+SRkVxojVTwFGBzkrAtAZOFZ9FOcQXGvknT2Rh/Wu3PpglZvKss8fcfDF6rYh5S7FHlsSEE3YFPqqQguyUtdgtcc/qITurdwUs20d0lEVv1cnANykum9Z1vZ01R6xy1D8+c7N5BlNJGM4AIDU/Y78aGyv14u+bK3M=
+	t=1722534258; cv=none; b=N7E0Zw8SHltXT7EIc0IOO1NnbjIntXvbCFz+oIaJT+qQHO/QEwYM+WvRSLo9BO8dMhWCjDYETA7SvLTBOl8amsRwp88ryWonuEULOenyXzXwgLPFi9OxwYBSPOT2334H35YpSu1PDE10Ximu3cyL3Xhinr+A9veDWZNvsRkys/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722533830; c=relaxed/simple;
-	bh=HS/42EjkDCaT5ky7ooKDb1UPOfOyGpi5Ob5b/D63nkg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t87EABFVjJBREaoX/39YfRh4l2kRia8nOcAGvrhT2Qv8e7F08Ckk3bcyjusDp/swOLSRCxqwDUG7QuPHNLVmZx8LNc0oKskJw0e5YQU+nXYXTlz4rIFUHuLyG2NFxfnz3lt6EoEuaxmrjs06jvGTeiEXDqvio1cTroOvDrTYls0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpOLXcne; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBAADC4AF0D
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 17:37:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722533829;
-	bh=HS/42EjkDCaT5ky7ooKDb1UPOfOyGpi5Ob5b/D63nkg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=LpOLXcneIiSzNSHZdWD4JIwwk7X0B1k4+nPt1nVjDSRTYJLcSTAbonrv3vyzS+2b6
-	 8c+b4mZ02LAa/rUurNUVNt31RxpMzJI1orsDfXcQsxzF9K6crSvPKPLQRhJ34YerUh
-	 loIDOd+PUxBODX4FdJYLqnOwpSnUjo74y26OWzEh5jGkNctcbkemt8YuY/muhKcxhr
-	 UjtityFUSIm5RqG0E6G7Y6eUCZjonOuVngSK/h3iVOHFC/79kItUmRWHKVxCdg3ON+
-	 D9GAG/ju6gKHkLgT6cBFK3rG+3UwcGY5DZRMuXotJVeNiwH+hPN09wACr/PW+SoXMX
-	 7YThGnyDaRV1g==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eeb1ba040aso116814841fa.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 10:37:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWZtvrTk0Gn0/sy4TrMM25Wyqxt1ZCDX19YNuHAt84BZJzx9Ia0V2cj5EMTFO9CMWoBeFHsU7L9kkn7I+ucUn88Fr+UdvZ1Up/Krw==
-X-Gm-Message-State: AOJu0Yxe/k2rBVSeu4kDh/PNhQ8ytlkyzUzLOrS8XJ3yICKZX01TSfaJ
-	i5e8DM1vwbJqXF3FCdLpOvYxAdueEgrhZBJmirwWziurKwsrN+b/okGWT9rV1bXCYOFE2VjxZyN
-	c2QR6DS+QnL+B6sRVF0PszMyQkw==
-X-Google-Smtp-Source: AGHT+IENZh2GH3qb7gMlOtf9zztyewJ9vbYF8/1WMokwYLp/xVLgsAWVFPEVuwRazHpSrJuGlE+TFSFEM+CoAig//XM=
-X-Received: by 2002:a2e:9199:0:b0:2ef:1f68:ead5 with SMTP id
- 38308e7fff4ca-2f15aaaa921mr7481621fa.26.1722533827252; Thu, 01 Aug 2024
- 10:37:07 -0700 (PDT)
+	s=arc-20240116; t=1722534258; c=relaxed/simple;
+	bh=wRdCTzlDewZSbPkP8IJ71BjVzwzJ/uMan6/8YvZafK8=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uWaegQw3HQxW+sowcYs7B+EJSOUpgfrm95UiRtkid0mgUW6lMrADUZ0eMPEFE6KH+nNzhZ4pJG/ThJ+VSLVgi402JTuv5O3yCL72bfoGGqfYKMw0ZhfLPVB5B1c/ol4kXMSAUlbGfcA9baGbXlEw3J1U4ywBo3oZzgMb0/75bU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WZbqf2c9cz6K6MB;
+	Fri,  2 Aug 2024 01:41:34 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 6C75C1400F4;
+	Fri,  2 Aug 2024 01:44:10 +0800 (CST)
+Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 1 Aug
+ 2024 18:44:09 +0100
+Date: Thu, 1 Aug 2024 18:44:08 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Mike Rapoport <rppt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
+	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
+ Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
+ Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
+ Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
+	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
+	<dave@stgolabs.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Heiko
+ Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo
+ Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul
+ Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>, Jonathan Corbet
+	<corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt
+	<palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
+	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
+	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
+	<will@kernel.org>, Zi Yan <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
+	<linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
+	<linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
+	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
+	<linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
+	<nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
+Subject: Re: [PATCH v3 02/26] MIPS: sgi-ip27: make NODE_DATA() the same as
+ on all other architectures
+Message-ID: <20240801184408.00002e8b@Huawei.com>
+In-Reply-To: <20240801060826.559858-3-rppt@kernel.org>
+References: <20240801060826.559858-1-rppt@kernel.org>
+	<20240801060826.559858-3-rppt@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731214737.986010-1-ninad@linux.ibm.com> <172252600790.120672.12772438670145461296.robh@kernel.org>
- <4d5b8958-2d33-42df-ac97-82bb63fdff38@linux.ibm.com>
-In-Reply-To: <4d5b8958-2d33-42df-ac97-82bb63fdff38@linux.ibm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 1 Aug 2024 11:36:54 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLd8Xcj7gD=WKrt8ygYHb3jNpvxof5yFAPPydiRCPv0eQ@mail.gmail.com>
-Message-ID: <CAL_JsqLd8Xcj7gD=WKrt8ygYHb3jNpvxof5yFAPPydiRCPv0eQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/1] ARM: dts: aspeed: system1: IBM System1 BMC update
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: andrew@codeconstruct.com.au, eajames@linux.ibm.com, joel@jms.id.au, 
-	devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Thu, Aug 1, 2024 at 10:25=E2=80=AFAM Ninad Palsule <ninad@linux.ibm.com>=
- wrote:
->
-> Hi Rob,
->
-> On 8/1/24 10:29, Rob Herring (Arm) wrote:
-> > On Wed, 31 Jul 2024 16:47:28 -0500, Ninad Palsule wrote:
-> >> Hello,
-> >>
-> >> This patch only applies to openbmc/linux. The max31785 pmbus driver
-> >> changes are not available in the upstream yet. I will try to send thos=
-e
-> >> changes upstream.
-> >>
-> >> Ninad Palsule (1):
-> >>    ARM: dts: aspeed: system1: IBM System1 BMC update
-> >>
-> >>   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 96 +++++++++++++++++=
-++
-> >>   1 file changed, 96 insertions(+)
-> >>
-> >> --
-> >> 2.43.0
-> >>
-> >>
-> >>
-> >
-> > My bot found new DTB warnings on the .dts files added or changed in thi=
-s
-> > series.
-> >
-> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warning=
-s
-> > are fixed by another series. Ultimately, it is up to the platform
-> > maintainer whether these warnings are acceptable or not. No need to rep=
-ly
-> > unless the platform maintainer has comments.
-> >
-> > If you already ran DT checks and didn't see these error(s), then
-> > make sure dt-schema is up to date:
-> >
-> >    pip3 install dtschema --upgrade
-> >
-> >
-> > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-system1=
-.dtb' for 20240731214737.986010-1-ninad@linux.ibm.com:
-> >
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@52/fan@0: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@52/fan@1: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@52/fan@2: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@52/fan@3: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@52/fan@4: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@54/fan@0: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a=
-000/i2c@380/fan-controller@54/fan@1: failed to match any schema with compat=
-ible: ['pmbus-fan']
-> >
-> I have seen these warning. I am not sure how to fix them as it is
-> already documented in the following file.
->
-> Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
+On Thu,  1 Aug 2024 09:08:02 +0300
+Mike Rapoport <rppt@kernel.org> wrote:
 
-$ git log -- Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
-(END)
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+> 
+> sgi-ip27 is the only system that defines NODE_DATA() differently than
+> the rest of NUMA machines.
+> 
+> Add node_data array of struct pglist pointers that will point to
+> __node_data[node]->pglist and redefine NODE_DATA() to use node_data
+> array.
+> 
+> This will allow pulling declaration of node_data to the generic mm code
+> in the next commit.
+> 
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+After staring for a while at the use made of the other part
+of the __node_data I think what you have in this an the next
+two patches is fine.
 
-Did you mean Documentation/devicetree/bindings/hwmon/max31785.txt? If
-so, there is no 'pmbus-fan' in it or anywhere else except aspeed dts
-files.
+I'm far from convinced it was correct before though as
+arch_refresh_node_data() called on offline nodes in free_area_init()
+would have replaced __node_data with an allocation of
+size pg_data_t but the hub_data(), visible below, is after that.
+Maybe hub_data() as never called for offline nodes, but
+I couldn't establish that.
 
-The state of the aspeed dts files is really quite sad. This is a count
-of warnings. The first number is total warnings. The second number is
-unique warnings (stripping the dtb name so we don't have N warnings
-for N boards). The 2nd list is undocumented (by schema) compatibles.
+After these patches the arch_refresh_node_data() generic
+version will only be replacing the pointer in node_data
+leaving the hub_data where it was in the first place and
+thus is fine.
 
-The number of warnings vs. Linus's tree is higher already and we just
-started the cycle. That's the wrong direction and in general I see
-very little if any effort reducing the warnings for aspeed.
+So with that in mind (and it could be completely wrong ;)
 
-This is all run daily here: https://gitlab.com/robherring/linux-dt/-/jobs
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-arch/arm/boot/dts/aspeed:3682:635
-    184  sbefifo@2400: '#address-cells', '#size-cells' do not match
-any of the regexes: 'pinctrl-[0-9]+'
-    160  i2cr@20: #address-cells: 1 was expected
-     88  eeprom@0: 'size' is a required property
-     88  eeprom@0: 'pagesize' is a required property
-     88  eeprom@0: 'address-width' is a required property
-     70  lpc@1e789000: reg-io-width: 4 is not of type 'object'
-     62  kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]=
-+'
-     62  kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]=
-+'
-     62  kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]=
-+'
-     62  kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9=
-]+'
-     45  sram@1e720000: 'ranges' is a required property
-     45  sram@1e720000: '#size-cells' is a required property
-     45  sram@1e720000: '#address-cells' is a required property
-     45  lpc@1e789000: lpc-snoop@90: 'clocks' does not match any of
-the regexes: 'pinctrl-[0-9]+'
-     25  timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+=
-'
-     25  syscon@1e6e2000: 'smp-memram@180' does not match any of the
-regexes: '^interrupt-controller@[0-9a-f]+$',
-'^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$',
-'^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-     25  lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of
-the regexes: 'pinctrl-[0-9]+'
-     25  ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not
-match '^ethernet(@.*)?$'
-     25  ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not
-match '^ethernet(@.*)?$'
-     25  ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not
-match '^ethernet(@.*)?$'
-     25  ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not
-match '^ethernet(@.*)?$'
-     25  fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master',
-'fsi-master'] is too long
-     25  fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master',
-'fsi-master'] is too long
-     25  crypto@1e6fa000: 'aspeed,ahbc' does not match any of the
-regexes: 'pinctrl-[0-9]+'
-     25  bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too=
- long
-     24  sdc@1e740000: sdhci@1e740200:compatible:
-['aspeed,ast2600-sdhci', 'sdhci'] is too long
-     24  sdc@1e740000: sdhci@1e740100:compatible:
-['aspeed,ast2600-sdhci', 'sdhci'] is too long
-     22  spi@60: 'eeprom@0' does not match any of the regexes:
-'^spi@[0-9a-f]+$', 'pinctrl-[0-9]+'
-     22  spi@40: 'eeprom@0' does not match any of the regexes:
-'^spi@[0-9a-f]+$', 'pinctrl-[0-9]+'
-     22  sbefifo@2400: occ: 'occ-hwmon', 'reg' do not match any of the
-regexes: 'pinctrl-[0-9]+'
 
-arch/arm/boot/dts/aspeed:68
-['adi, adm1272']
-['adm1272']
-['adm1275']
-['aspeed,ast2400-cf-fsi-master', 'fsi-master']
-['aspeed,ast2400-cvic', 'aspeed-cvic']
-['aspeed,ast2400-i2c-ic']
-['aspeed,ast2400-ibt-bmc']
-['aspeed,ast2400-lhc']
-['aspeed,ast2400-p2a-ctrl']
-['aspeed,ast2400-pwm-tacho']
-['aspeed,ast2400-timer']
-['aspeed,ast2400-vic']
-['aspeed,ast2400-video-engine']
-['aspeed,ast2500-cf-fsi-master', 'fsi-master']
-['aspeed,ast2500-cvic', 'aspeed-cvic']
-['aspeed,ast2500-gfx', 'syscon']
-['aspeed,ast2500-i2c-ic']
-['aspeed,ast2500-ibt-bmc']
-['aspeed,ast2500-lhc']
-['aspeed,ast2500-p2a-ctrl']
-['aspeed,ast2500-pwm-tacho']
-['aspeed,ast2500-scu-ic']
-['aspeed,ast2500-sdram-edac']
-['aspeed,ast2500-video-engine']
-['aspeed,ast2500-xdma']
-['aspeed,ast2600-fsi-master', 'fsi-master']
-['aspeed,ast2600-gfx', 'syscon']
-['aspeed,ast2600-ibt-bmc']
-['aspeed,ast2600-lhc']
-['aspeed,ast2600-scu-ic0']
-['aspeed,ast2600-scu-ic1']
-['aspeed,ast2600-sdhci', 'sdhci']
-['aspeed,ast2600-sdram-edac', 'syscon']
-['aspeed,ast2600-smpmem']
-['aspeed,ast2600-timer']
-['aspeed,ast2600-udma']
-['aspeed,ast2600-video-engine']
-['aspeed,ast2600-xdma']
-['atmel,at30tse004a']
-['dallas,ds3231']
-['delta,dps800']
-['dps650ab']
-['fsi-master-gpio', 'fsi-master']
-['fsi-master-hub']
-['ibm,bonnell-bmc', 'aspeed,ast2600']
-['ibm,fsi-i2c-master']
-['ibm,fsi-master-hub']
-['ibm,fsi2pib']
-['ibm,pca9552']
-['infineon,ir35221']
-['infineon,pxe1610']
-['ipmb-dev']
-['isil,isl69260']
-['isil,raa229004']
-['lm75']
-['max31790']
-['maxim,max31785a']
-['microchip,emc1413']
-['mps,mp5023']
-['nuvoton,w83795g']
-['nvt210']
-['nxp,pca9551']
-['nxp,pca9552']
-['nxp,pca9641']
-['pmbus']
-['pmbus-fan']
-['si,si7021a20']
-['ti,ucd90160']
+
+> ---
+>  arch/mips/include/asm/mach-ip27/mmzone.h | 5 ++++-
+>  arch/mips/sgi-ip27/ip27-memory.c         | 5 ++++-
+>  2 files changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/mips/include/asm/mach-ip27/mmzone.h b/arch/mips/include/asm/mach-ip27/mmzone.h
+> index 08c36e50a860..629c3f290203 100644
+> --- a/arch/mips/include/asm/mach-ip27/mmzone.h
+> +++ b/arch/mips/include/asm/mach-ip27/mmzone.h
+> @@ -22,7 +22,10 @@ struct node_data {
+>  
+>  extern struct node_data *__node_data[];
+>  
+> -#define NODE_DATA(n)		(&__node_data[(n)]->pglist)
+>  #define hub_data(n)		(&__node_data[(n)]->hub)
+>  
+> +extern struct pglist_data *node_data[];
+> +
+> +#define NODE_DATA(nid)		(node_data[nid])
+> +
+>  #endif /* _ASM_MACH_MMZONE_H */
+> diff --git a/arch/mips/sgi-ip27/ip27-memory.c b/arch/mips/sgi-ip27/ip27-memory.c
+> index b8ca94cfb4fe..c30ef6958b97 100644
+> --- a/arch/mips/sgi-ip27/ip27-memory.c
+> +++ b/arch/mips/sgi-ip27/ip27-memory.c
+> @@ -34,8 +34,10 @@
+>  #define SLOT_PFNSHIFT		(SLOT_SHIFT - PAGE_SHIFT)
+>  #define PFN_NASIDSHFT		(NASID_SHFT - PAGE_SHIFT)
+>  
+> -struct node_data *__node_data[MAX_NUMNODES];
+> +struct pglist_data *node_data[MAX_NUMNODES];
+> +EXPORT_SYMBOL(node_data);
+>  
+> +struct node_data *__node_data[MAX_NUMNODES];
+>  EXPORT_SYMBOL(__node_data);
+>  
+>  static u64 gen_region_mask(void)
+> @@ -361,6 +363,7 @@ static void __init node_mem_init(nasid_t node)
+>  	 */
+>  	__node_data[node] = __va(slot_freepfn << PAGE_SHIFT);
+>  	memset(__node_data[node], 0, PAGE_SIZE);
+> +	node_data[node] = &__node_data[node]->pglist;
+>  
+>  	NODE_DATA(node)->node_start_pfn = start_pfn;
+>  	NODE_DATA(node)->node_spanned_pages = end_pfn - start_pfn;
+
 
