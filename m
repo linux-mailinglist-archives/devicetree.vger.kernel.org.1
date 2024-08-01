@@ -1,250 +1,323 @@
-Return-Path: <devicetree+bounces-90052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC192943E4E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 03:21:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC9C943FCC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 03:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2142B1F222E4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:21:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65C76280E5D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F6114A4E2;
-	Thu,  1 Aug 2024 00:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E210942A8E;
+	Thu,  1 Aug 2024 00:51:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PWAuZbXV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TlZZte+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012011.outbound.protection.outlook.com [52.101.66.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8C014A0A8;
-	Thu,  1 Aug 2024 00:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.11
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722472388; cv=fail; b=lqqEO2ZUJoHmhVNMTGH7+saZQ95x8fJC5HcW266TJFZUXS8LdP2cBVkCLIl+pPYcRkXSavYmlxeVa3wOcBS4Es4rtpTYAdwxtkUdwii+z0ktro8reRsHW+cSmIUoCurFcMRopXPp6wnbxayZ7kau17ZRrk9ZQHgqIYCC6eHwmig=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722472388; c=relaxed/simple;
-	bh=jYD/h6aLWBMp7mNKsk+luD/bkUTds3OEcufKkCLG/6o=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=l8bCeY9Nuqb/ko/wQiW6U4wHGW2zE4vSEz2+8X+/UhZxXVPbxq/OfeEfUd7sIPMinbJ31ONb9gxW0pf8EzXzEsOqDncYXYq87kjG3ju1o7yVPoDHHaHf/UVOxG59pUaatKgCzicCVeOpc3MW1EsZEG7gt52GTEQdIHRxShZ/ZMs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PWAuZbXV; arc=fail smtp.client-ip=52.101.66.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PpMGtSKRtsI4EWPHGLNPmu2EDqxVGFqs3kRxN4ZLY4RMwapNFfoUAwmMWKjLsIgM1SE+8UeHGLPMuuLWiZAzaj2mZB9RVFMOF750VRL6Kg12o+pNy1RnxgyRfaaj7NX0F1S1ApuZqjVrY5JPXwjXFx4qDDHwtcg8RrV8hYId3YH6gag/atqVsag0QN1UMRGAuufZMj5UqEvMMzJKIVriaqzJlc9A4u8tZCPa40DnGHjENDQ+39XMf9AvV/MyuJUrhg7ojrS+x/eXaYm23kl7+5u+hcLPoYTBdwACrj1ykOf3OZOziOYdPWDGciA7LApd7kiylF0u/7OW84u3ctqc8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jYD/h6aLWBMp7mNKsk+luD/bkUTds3OEcufKkCLG/6o=;
- b=CfDTgsqWHiNIXkPRpTakkfHx2DuL3sCh7aNVJYPk3vrAQ7NbB0JYw0OYBcMY6X5ZAMkxfE4TazmuyggaONJqHT1MgBvmYBjltK7mBuM1JEjdew6dQy6ry1rccE2sZLn2DHxjr7UWYxuoVNXwSb/3lMhY3IoYHczcJBtxvjmU7hseuPSNibZnCVFp+nuIVhnllfs3r4wXoHzJeIiwaIYHaq5ObpJsk9VbAd0h3kkg9LYn24p0Dw4BwO5WdhqAN4XXjVUOOUERNyELGMsIGoF+Oke32uR+X9zBzNS+aNUN5zIJU/Xe1wUieUp8eQhZAb2Cn2Y93mQdLLgUzxURqDwulQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jYD/h6aLWBMp7mNKsk+luD/bkUTds3OEcufKkCLG/6o=;
- b=PWAuZbXVyOCZzIWk5+bY/dyBWDeUAPoLNEuMxgJTXX6n0FQ84/90GxQISd6ZtRzTdPOeb/qW4xcdSs4EZdkLrW0lh7h8VxBz+NAjupJCMiYDbeNCgaNEjS1y14f29vgcUpn5X8n45l0kNPZbDUd8YuftmbXRelFhI5Hhd6nVLUv/fsHDdq09O9/LUQrWAtK4vL/Ytw6P9W7vtpeb5FZjLX8TM9scQqCzvl5eS4O3+2mO2bjTKfCcIE1gl28BJKWn+SvtrGk96xYT6CIOpxum3V2taMU13vEoc/3Uxxus+U0VFUfRhmjitKTL0LcvJ6u6Nu8I1Ar1wSUvFSuJzUuvJQ==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by PA4PR04MB9565.eurprd04.prod.outlook.com (2603:10a6:102:26b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.27; Thu, 1 Aug
- 2024 00:33:03 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.7784.020; Thu, 1 Aug 2024
- 00:33:02 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Stephen Boyd <sboyd@kernel.org>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Michael Turquette <mturquette@baylibre.com>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH v3 2/2] clk: clk-conf: support assigned-clock-rates-u64
-Thread-Topic: [PATCH v3 2/2] clk: clk-conf: support assigned-clock-rates-u64
-Thread-Index: AQHa4l1Yljy663ip9kiNHIBBK5YVuLIRa/CAgAAjoRA=
-Date: Thu, 1 Aug 2024 00:33:02 +0000
-Message-ID:
- <PAXPR04MB84593920DE71BB042664BF9388B22@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20240730-clk-u64-v3-0-4d2b19edaa6e@nxp.com>
- <20240730-clk-u64-v3-2-4d2b19edaa6e@nxp.com>
- <08ed1ae35b69e11e69ce178af41c77b0.sboyd@kernel.org>
-In-Reply-To: <08ed1ae35b69e11e69ce178af41c77b0.sboyd@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|PA4PR04MB9565:EE_
-x-ms-office365-filtering-correlation-id: 5de724e5-b11e-41ee-21ef-08dcb1c180e6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?cnF6a01tMWVuN3RJaVFwaGRoOFlFMUl2S2hBV21MTkNSbFI1MGlSUHJWWmg2?=
- =?utf-8?B?c2pJZldFOTMybHhRYWptNVpJbVZTY052TFhiVFkyUEkvaU1NZ3U2d1VMenND?=
- =?utf-8?B?QmdOUDc3RlNEeXQ2b1o1bmJWaGF2Mnd1Z1NKeFBjUU9zMFpLZnNBUVdkalhn?=
- =?utf-8?B?SXo4M010OE5yZ3Jub0hXMmVJeEsrQko2L1VSMUFwZEZpWThLYi9jajNQVSta?=
- =?utf-8?B?blh4dFMvUVBsd2h4S1o2NGlSdVZBQW5KSUlTais4YWxwaldLZFNqQUFLeEk5?=
- =?utf-8?B?a1YxTThpMTNwME0zNkhtUFM3alJ0RzFlYWRtNTV1QldRRHZXdFVoazZ2RDBs?=
- =?utf-8?B?ZHNTQXVlZFZXU3RJRmdRNTByR3RHZmpxdVJ4L29QUjNxOGRzUEQwOFlwKzFH?=
- =?utf-8?B?bWkvcnMwdFdLMm1ON1oxZFBTMkRGZDhhOHBoZUV0TXNXL1Z3ZTlySnVSTGlJ?=
- =?utf-8?B?d3NPTEJkd2hlZGZXUHZ0NDNXclMxVGFaWHhmLzBUaVdodHFzdUpDQVVxMVFF?=
- =?utf-8?B?aFloOXViNlVvaWRHSTlaSTk0czRYaGtXRWJneGVRSmc4U0t5M0VmSUpJMnFh?=
- =?utf-8?B?YU95ZVlZUTdrNVU0bnBLSytjS2NSaHpHZmN1Q29HNnRPa1NGeXlHdTh5bTBC?=
- =?utf-8?B?UHNrVk43TlliMHQ2c25ONWN0cUdVTGlERGFmSkFlMzRkZ05QcVF0a0dnUzFy?=
- =?utf-8?B?V2F1ZVY0QmdYanRtVDlhTHl4Ui9YVklmYTZjbk9ETzBtUkNBbmM1aTlmcm9u?=
- =?utf-8?B?S2FwT1JiWHF0bllYaGgyMm1QbHd6dzhRKzhnakdFQVVxM2N3RHdnOWpRck9O?=
- =?utf-8?B?aWUwdVMwKzdjellncXllREdobi9mWE5TbjdEUGNpMVJPcTBvN3JTcmJ1SkVV?=
- =?utf-8?B?UTU1UTU3R3R3OVNRenZrU1lEM1hxZEo3MGJ5ZHR2UnVXQlJpV0hxVFlWNE5j?=
- =?utf-8?B?SFQ3M1hOSld5U3NhNjJqZWcwd0dpQlBRWGxJcnRTbFlhalVaVUR5MUdTRkIv?=
- =?utf-8?B?QzlFWndqdzdHanFQODZ4Rk5ia3p3ejN6UnNPd0Vkd08xcGlnYkRHVlhpZHV4?=
- =?utf-8?B?K0svKzVFa1R2SnUxY3dKQVdBUlFzL1hBU3E0aXUyREhrQ1RBS0xla3dKUExs?=
- =?utf-8?B?Ky9razJJUGp2VDVlU05IcGFMVGMvam9tdTNIOWpTSmFiQ1o0aGhxV2xjSUtk?=
- =?utf-8?B?TUxXY0RZOFlNM3RlUlU0VE5iTmp0RVpWUHNJRzJuekM2ZkJVMytzcnk1a2Rm?=
- =?utf-8?B?OGhUWHM4aGFMMkNpZDVRMjdBZ1p5RlhWaWI1VDFiNWs3K3hzczVldlpkOTVv?=
- =?utf-8?B?cXg1dURoL09iREdIWjNpY0dMTFhMV2VoK0g4OXhHamZ1WkxrMkYyQlFmT1JB?=
- =?utf-8?B?WUZnOUlSMGNpKzEwSVRnY2thMmZsY3luUk1GS0lab0NFbXJtV3h5aDlRYm5V?=
- =?utf-8?B?T0Jpbkg2Y3FpcEF5dlZkMWtkckxYSEtJUFl0RU9IWkttZ0p0WWNXQjZad3M3?=
- =?utf-8?B?UmFURDBQNFQ4MHFHaUg5Mkp5R0t2R3Y1dVovdjZSWEorR2dhNlNqRTRqMWp1?=
- =?utf-8?B?TlkxTXVPbyt2RmNFVTBnUnQxQWhzeHdhN3NvOUhqanNTYXB2Y29BK0FlODJC?=
- =?utf-8?B?SUtNSFlRaUNKV0ZUa2hEWVdNMExJTUljZTc4OFpKNEVQazRTVmlQdkorNnYx?=
- =?utf-8?B?cmZPZUh1WFNvV1Bhcm14bzRsZnQ1MmJqVFFJb3phZVFFSTBPRDRjSFM3amd2?=
- =?utf-8?B?OW52WmM3ZFk0azVvdDNNcmN4dmhKODYxMVVwVHA4anYrQ1ZnR21wSFlucVI1?=
- =?utf-8?B?UUhXbjZQMkw2VFJCSi80S0IyS0VPZHVoTXZlR3hlK0ZLaG1IdGY5Q2NNY0t4?=
- =?utf-8?B?UjhUM3pNM1VPcVE1bUVBanEvS0h2a2NxRW13czVsdGhQL1E9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?T3pya3V4b1JkRVAxQUZWbi96QnNwRjZSeXZ5VkxTZlNtWXQ4ZXhiL3V1bGRO?=
- =?utf-8?B?Tk9VUEQ2dW1DTWJWYjZBaXR1RXRxZUUxYTRxdlpmb0pBNXE1TkdabUtTSnI2?=
- =?utf-8?B?b1NsTUFDbjl6M3I3bFVmSXlIL3NZQ0JpTVo0dldQNHd2UVB4a2lRWTF4U0Q2?=
- =?utf-8?B?SWkybFF5Mkd2azZHcDF1WnJ0RmJReElSa2RtREdzWm9uaXdabW1BWU9Oc1RR?=
- =?utf-8?B?OG1CREM5R0dlOFZmWEhkMW9qZ29ETWtoT25xSXFvb1FEWHZxOUpja0YyTng0?=
- =?utf-8?B?UnRRcXRaV2hhUGR6NldoVDl3bVZ1bFdtdnBZcTNBVGkxcW52alhqUW1FSi8z?=
- =?utf-8?B?Z2lJUThNSm9Qcm5sY096Rm15c2R0R3pZZjQzbTN6bGRzNzN6UXpwMmZCRkwv?=
- =?utf-8?B?WStPSmc5Zm9neTdlOXZhNllycVB0SkVSMUEwaWhZVTJlYkFodTIycXErbDMy?=
- =?utf-8?B?SzA2ZzhRbTAvU3ZRVTVlakthaDcrbzI1dlZvb3BCOVNRK3N0REx3NTlxYldw?=
- =?utf-8?B?TmFZUzVUZnVTL0ZMRTFJOXlBYWw2OVJmbmIyRFh5TTRiSVNqK0JVelJTczRW?=
- =?utf-8?B?ZGFIZ2ttZWt5VWVURGNwa3RUMEwrODRRMlI1QzVRYzJMeXNtdllxQmNyc3hK?=
- =?utf-8?B?M1gvS2ltNDVReWtsOFBmdWVhOXV2SHNtY0c4NXJPampJQW1pUWF1ZGNNejdE?=
- =?utf-8?B?aFMvWEhXQ0N4ZEtXZ3gwMWlybmJzSE4wRWo3dHJkNElxNlJET3B0MnlrdHFk?=
- =?utf-8?B?R0E3cG8xY01LNE1GdENJU1FuNnVsQUJPU3JJd0RNcm4rcE1JNDlpZ215SDFX?=
- =?utf-8?B?bmg1SU84YnF5TWhLY0UzNXE0cGtRMUFvcE80eng2bUJZcVZSaTJVTEpEUFpr?=
- =?utf-8?B?TklGaStZRTlxb21LS1FpYUFMRWpQSkRmSkRSRm4yNGltRFZFclFjcmIzOFdO?=
- =?utf-8?B?QTh6d2xVRjYra3luZ1hxcXpaZlZNQkhFdFFzNGZYNVV2NkNEQUxrbmZ6LzFp?=
- =?utf-8?B?RDhQZDd5QkxwUXFzWFljRmcvQ0pxMXB1YVlwaHdGSXZJOStFN1pNb3RVbk9W?=
- =?utf-8?B?NFRuRTd3Yjh3a0RKNUp3ajFtYTdKZlJyYkFUUy9ucDdVa0JCNlNsRDBqc3dY?=
- =?utf-8?B?OW5pd3Z6ai9QWWdYeUdwQzRkZ2Q2SDEwOEMwbnp1T2h2TXVkeG0zbGc4MWpx?=
- =?utf-8?B?OUhDWjJkRWdSUEg4bjB1TEJONTIveEVRNSs3RGFoMUlDWUgxU09QbTVtOUd2?=
- =?utf-8?B?UU82V2VJWkdHSnc0RnRtYzBxemxBVHg1djFmejBwOFk3bTlLRmJBNzNHdnNO?=
- =?utf-8?B?OUMraC9UcUFIWXp5aE9uRHEwZlk1VUdDaUJMYTNWczZ1TUxPMGttK1BmYWpZ?=
- =?utf-8?B?dTRvZmQ2YkN2Y2syUGpwb2g0VVplUzJQN0VRaFNQTHlmSWs3VW1tZW5LSUJ4?=
- =?utf-8?B?bklreTNXRGtmT3dlNEJnVzhuUFFQcXZVM1QvME9DMVR2bEc1WG9aamQrSGp6?=
- =?utf-8?B?a2dwWnZ2dVhTSkFyWWM1NDlQck4xdzQ0Smtxa2hGQXBnaGRmaFlwclRCL015?=
- =?utf-8?B?eDlOcFFha3VLbEhnVm1nbHE1dEtSTnluekttcDVjMzF6RnZxc0hYemo5VzB3?=
- =?utf-8?B?NzVPL0l2dlo0VzNGUFluZFNQUUtZS0FVRFZjcXJkS2l3bUlKYW95eHRHdTJZ?=
- =?utf-8?B?VHZLekh0VUZjN3hLQitVSHMvRlE4QXJSU09ySy9kc1F5L0Yxd1JEYUJSMldK?=
- =?utf-8?B?eW00RS9MNnNUUkZLWjdOYXcrNU0wajNSaEpjQWF2WjVkaTE3ekYvSHdJams3?=
- =?utf-8?B?eE9Ub2NIZDgwVUhCK3NiUlNRQ0N6MU1TN256SEtaL2s5cXFickVoVE1QeGZk?=
- =?utf-8?B?eG1pUFVEaU1ZQlZycFpVL3NmNzF5MXFLeDBQd2NnQkdsbDdiTDdMbHFxditz?=
- =?utf-8?B?NGZvbnZJeUFJUVdRbDdLZVIreldoQnlpVE1FZXo5NGVPWmdNbjdFQkZmVkhs?=
- =?utf-8?B?UjV1V2l1cVhVT284ZHBmbXFnNnNzdStHMXE3TDZEODFtZ25IY1M3SkRhQWNC?=
- =?utf-8?B?WnBKK0sreHg4ai9kMjFkR054Z0N5dS8xN2NTK3FjY05ZcUlyelVXeG1tc005?=
- =?utf-8?Q?368Q=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260042E83F;
+	Thu,  1 Aug 2024 00:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722473491; cv=none; b=V7QMV+bixmmQwo4h3za3HRqAwEMRqKyW6zV1y6ZsW5RV3sMdtCd5o1SHUlfqQZW1m+OrKs09zunfdr9RDTFrWjPf1LpssWTA9p9nDjLTv/6nknfs5kxI9TxObTrs3rgiaxkWcuX+aMKSjFWe5NxHiutjEmME7Z6enH8NmfusFmw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722473491; c=relaxed/simple;
+	bh=TSjrUWYJXnpOZEh3ey+4es+yDaCbp82UbrQyxn4Q2Cs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tR/S+1tB+61s8D3OAz6DqF8Fnd+Gx6lYUlMRThEQtZbP3QQLRvpcz5IGk1uZO4YMsI/Zu35BVh77OgGYwhoEtWUAr+dpiugs4OBXZX75ErHoI2TBc6LtVRK0CZ3oLToTHfiQTzUWyzwdCpCI2My7zW8GY4okDvrMIVQ/xoCgHcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TlZZte+x; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46VGqI21029961;
+	Thu, 1 Aug 2024 00:51:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	etAlBOLm/c6+N+NDIQJ64v0mXMlXSuHpFgcU4hIzgOw=; b=TlZZte+xm7FhaTkl
+	COW1bhS3bfByvy3W4l9xR5Tn6Hqfch94kye1bz/cITXNLXo26CzUr8dBPDufSQ1d
+	+iXl0BkcOracBo32uWOXWcbCWgfs2/ezjUUa+xxbX+OO7GOzlaBV3wDFsEisMgj/
+	F8ngZKHfgLk+p+hxJx/xNFWZ5tNeOAn2ucLrUekTFZz7cfFVw2r6A9M/90EKuth0
+	zGFW/+x5ID3S5NbriGduwTA6A3dSsQYFezM7bn4fREdNOKyFs8Mxv5b5O1DB9OXk
+	r72LrL9dXlRf7//qNqDCXnfF9mhg8tHO6zVyEvYZhjhIGMQyYGzbLVO405n6i2lz
+	vw3jmQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40pq5276j9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 00:51:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4710pINS015647
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Aug 2024 00:51:18 GMT
+Received: from [10.110.31.235] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 31 Jul
+ 2024 17:51:17 -0700
+Message-ID: <0c769a55-0fb7-4734-86b1-9469b4cc7b8c@quicinc.com>
+Date: Wed, 31 Jul 2024 17:51:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5de724e5-b11e-41ee-21ef-08dcb1c180e6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2024 00:33:02.8934
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lV5pWBmVjLVXxwtniatG9Loh+bgVlPjW+2AngoUJSt0r+T51VH/UXJ7r+Xv3cI5yHwdv85q8siwSZadJXT3Sig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9565
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/8] usb: misc: eud: Handle usb role switch notifications
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
+ <20240730222439.3469-8-quic_eserrao@quicinc.com>
+ <5nsextq3khhku3xfdwwj74wmx5ajyqhjyarfpnpa6i2tjx76ix@z7lpip6pi6re>
+Content-Language: en-US
+From: Elson Serrao <quic_eserrao@quicinc.com>
+In-Reply-To: <5nsextq3khhku3xfdwwj74wmx5ajyqhjyarfpnpa6i2tjx76ix@z7lpip6pi6re>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Rh5EhvjqrxgSCIv37YiiyvkgYM84m1jB
+X-Proofpoint-ORIG-GUID: Rh5EhvjqrxgSCIv37YiiyvkgYM84m1jB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-31_11,2024-07-31_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ adultscore=0 priorityscore=1501 spamscore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 clxscore=1011 malwarescore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408010002
 
-SGkgU3RlcGhlbiwNCg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDIvMl0gY2xrOiBjbGstY29u
-Zjogc3VwcG9ydCBhc3NpZ25lZC1jbG9jay1yYXRlcy0NCj4gdTY0DQo+IA0KPiBRdW90aW5nIFBl
-bmcgRmFuIChPU1MpICgyMDI0LTA3LTMwIDAxOjU3OjU1KQ0KPiA+IEZyb206IFBlbmcgRmFuIDxw
-ZW5nLmZhbkBueHAuY29tPg0KPiA+DQo+ID4gaS5NWDk1IFN5c3RlbSBNYW5hZ2VtZW50IENvbnRy
-b2wgRmlybXdhcmUoU0NNSSkgbWFuYWdlcyB0aGUNCj4gY2xvY2sNCj4gPiBmdW5jdGlvbiwgaXQg
-ZXhwb3NlcyBQTEwgVkNPIHdoaWNoIGNvdWxkIHN1cHBvcnQgdXAgdG8gNUdIeiByYXRlDQo+IHRo
-YXQNCj4gPiBleGNlZWRzIFVJTlQzMl9NQVguIFNvIGFkZCBhc3NpZ25lZC1jbG9jay1yYXRlcy11
-NjQgc3VwcG9ydCB0bw0KPiBzZXQNCj4gPiByYXRlIHRoYXQgZXhjZWVkcyBVSU5UMzJfTUFYLg0K
-PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+DQo+ID4g
-LS0tDQo+ID4gIGRyaXZlcnMvY2xrL2Nsay1jb25mLmMgfCA0Mg0KPiA+ICsrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKystLS0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMzcgaW5z
-ZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2Nsay9jbGstY29uZi5jIGIvZHJpdmVycy9jbGsvY2xrLWNvbmYuYyBpbmRleA0KPiA+IDA1ODQy
-MDU2MjAyMC4uNjg0ZTBjMDczOGIzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvY2xrL2Nsay1j
-b25mLmMNCj4gPiArKysgYi9kcml2ZXJzL2Nsay9jbGstY29uZi5jDQo+ID4gQEAgLTgxLDExICs4
-MSw0NCBAQCBzdGF0aWMgaW50IF9fc2V0X2Nsa19wYXJlbnRzKHN0cnVjdA0KPiBkZXZpY2Vfbm9k
-ZQ0KPiA+ICpub2RlLCBib29sIGNsa19zdXBwbGllcikgIHN0YXRpYyBpbnQgX19zZXRfY2xrX3Jh
-dGVzKHN0cnVjdA0KPiA+IGRldmljZV9ub2RlICpub2RlLCBib29sIGNsa19zdXBwbGllcikgIHsN
-Cj4gPiAgICAgICAgIHN0cnVjdCBvZl9waGFuZGxlX2FyZ3MgY2xrc3BlYzsNCj4gPiAtICAgICAg
-IGludCByYywgaW5kZXggPSAwOw0KPiA+ICsgICAgICAgaW50IHJjLCBjb3VudCwgaW5kZXg7DQo+
-ID4gICAgICAgICBzdHJ1Y3QgY2xrICpjbGs7DQo+ID4gLSAgICAgICB1MzIgcmF0ZTsNCj4gPiAr
-ICAgICAgIHUzMiAqcmF0ZXMgX19mcmVlKGtmcmVlKTsNCj4gPiArICAgICAgIGJvb2wgcmF0ZV82
-NCA9IGZhbHNlOw0KPiA+ICsNCj4gPiArICAgICAgIGNvdW50ID0gb2ZfcHJvcGVydHlfY291bnRf
-dTY0X2VsZW1zKG5vZGUsICJhc3NpZ25lZC1jbG9jay0NCj4gcmF0ZXMtdTY0Iik7DQo+ID4gKyAg
-ICAgICBpZiAoY291bnQgPD0gMCkgew0KPiA+ICsgICAgICAgICAgICAgICBjb3VudCA9IG9mX3By
-b3BlcnR5X2NvdW50X3UzMl9lbGVtcyhub2RlLCAiYXNzaWduZWQtDQo+IGNsb2NrLXJhdGVzIik7
-DQo+ID4gKyAgICAgICAgICAgICAgIGlmIChjb3VudCA8PSAwKQ0KPiA+ICsgICAgICAgICAgICAg
-ICAgICAgICAgIHJldHVybiAwOw0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgcmF0ZXMgPSBr
-Y2FsbG9jKGNvdW50LCBzaXplb2YodTMyKSwgR0ZQX0tFUk5FTCk7DQo+ID4gKyAgICAgICAgICAg
-ICAgIGlmICghcmF0ZXMpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIC1FTk9N
-RU07DQo+ID4gKyAgICAgICAgICAgICAgIHJjID0gb2ZfcHJvcGVydHlfcmVhZF92YXJpYWJsZV91
-MzJfYXJyYXkobm9kZSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAiYXNzaWduZWQtY2xvY2stcmF0ZXMiLA0KPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdGVzLA0K
-PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIDEsIGNvdW50KTsNCj4gPiArICAgICAgIH0gZWxzZSB7DQo+ID4gKyAgICAgICAgICAgICAg
-IHJhdGVzID0ga2NhbGxvYyhjb3VudCwgc2l6ZW9mKHU2NCksIEdGUF9LRVJORUwpOw0KPiA+ICsg
-ICAgICAgICAgICAgICBpZiAoIXJhdGVzKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHJl
-dHVybiAtRU5PTUVNOw0KPiA+ICsgICAgICAgICAgICAgICByYyA9IG9mX3Byb3BlcnR5X3JlYWRf
-dmFyaWFibGVfdTY0X2FycmF5KG5vZGUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImFzc2lnbmVkLWNsb2NrLXJhdGVzLXU2NCIs
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgKHU2NCAqKXJhdGVzLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIDEsIGNvdW50KTsNCj4gPiArICAgICAgICAgICAgICAg
-cmF0ZV82NCA9IHRydWU7DQo+ID4gKyAgICAgICB9DQo+IA0KPiBDYW4gdGhpcyBiZSBsZXNzIGlu
-ZGVudGVkIHNvbWVob3c/DQo+IA0KPiAJdTY0ICpyYXRlc182NCBfX2ZyZWUoa2ZyZWUpID0gTlVM
-TDsNCj4gCXUzMiAqcmF0ZXMgX19mcmVlKGtmcmVlKSA9IE5VTEw7DQo+IAlpbnQgY291bnRfNjQs
-IGNvdW50Ow0KPiANCj4gCWNvdW50ID0gb2ZfcHJvcGVydHlfY291bnRfdTMyX2VsZW1zKG5vZGUs
-ICJhc3NpZ25lZC1jbG9jay0NCj4gcmF0ZXMiKTsNCj4gCWNvdW50XzY0ID0gb2ZfcHJvcGVydHlf
-Y291bnRfdTY0X2VsZW1zKG5vZGUsICJhc3NpZ25lZC0NCj4gY2xvY2stcmF0ZXMtdTY0Iik7DQo+
-IAlpZiAoY291bnRfNjQgPiAwKSB7DQo+IAkJY291bnQgPSBjb3VudF82NDsNCj4gCQlyYXRlc182
-NCA9IGtjYWxsb2MoY291bnQsIHNpemVvZigqcmF0ZXNfNjQpLA0KPiBHRlBfS0VSTkVMKTsNCj4g
-CQlpZiAoIXJhdGVzXzY0KQ0KPiAJCQlyZXR1cm4gLUVOT01FTTsNCj4gDQo+IAkJcmMgPSBvZl9w
-cm9wZXJ0eV9yZWFkX3U2NF9hcnJheShub2RlLA0KPiAJCQkJCQkiYXNzaWduZWQtY2xvY2stDQo+
-IHJhdGVzLXU2NCIsDQo+IAkJCQkJCXJhdGVzXzY0LCBjb3VudCk7DQo+IAl9IGVsc2UgaWYgKGNv
-dW50ID4gMCkgew0KPiAJCXJhdGVzID0ga2NhbGxvYyhjb3VudCwgc2l6ZW9mKCpyYXRlcyksIEdG
-UF9LRVJORUwpKTsNCj4gCQlpZiAoIXJhdGVzKQ0KPiAJCQlyZXR1cm4gLUVOT01FTTsNCj4gDQo+
-IAkJcmMgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMl9hcnJheShub2RlLCAiYXNzaWduZWQtDQo+IGNs
-b2NrLXJhdGVzIiwNCj4gCQkJCQkJcmF0ZXMsIGNvdW50KTsNCj4gCX0gZWxzZSB7DQo+IAkJcmV0
-dXJuIDA7DQo+IAl9DQo+IA0KPiAJaWYgKHJjKQ0KPiAJCXJldHVybiByYzsNCj4gDQo+IAlmb3Ig
-KGluZGV4ID0gMDsgaW5kZXggPCBjb3VudDsgaW5kZXgrKykgew0KPiAJCXVuc2lnbmVkIGxvbmcg
-cmF0ZTsNCj4gDQo+IAkJaWYgKHJhdGVzXzY0KQ0KPiAJCQlyYXRlID0gcmF0ZXNfNjRbaW5kZXhd
-Ow0KPiAJCWVsc2UNCj4gCQkJcmF0ZSA9IHJhdGVzW2luZGV4XTsNCj4gDQoNClRoYW5rcyBmb3Ig
-d3JpdGluZyBkb3duIHRoZSBjb2RlIHBpZWNlLCBsb29rcyBnb29kLg0KDQo+ID4gKw0KPiA+ICsN
-Cj4gPiArICAgICAgIGZvciAoaW5kZXggPSAwOyBpbmRleCA8IGNvdW50OyBpbmRleCsrKSB7DQo+
-ID4gKyAgICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgcmF0ZTsNCj4gPiArDQo+ID4gKyAgICAg
-ICAgICAgICAgIGlmIChyYXRlXzY0KQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHJhdGUg
-PSAoKHU2NCAqKXJhdGVzKVtpbmRleF07DQo+IA0KPiBQbGVhc2Ugbm8gY2FzdHMuDQoNCnN1cmUu
-DQoNClRoYW5rcywNClBlbmcuDQo+IA0KPiA+ICsgICAgICAgICAgICAgICBlbHNlDQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgcmF0ZSA9IHJhdGVzW2luZGV4XTsNCj4gPg0K
+
+
+On 7/31/2024 6:06 AM, Dmitry Baryshkov wrote:
+> On Tue, Jul 30, 2024 at 03:24:38PM GMT, Elson Roy Serrao wrote:
+>> Since EUD is physically present between the USB connector and
+>> the USB controller, it should relay the usb role notifications
+>> from the connector. Hence register a role switch handler to
+>> process and relay these roles to the USB controller. This results
+>> in a common framework to send both connector related events
+>> and eud attach/detach events to the USB controller.
+>>
+>> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
+>> ---
+>>  drivers/usb/misc/qcom_eud.c | 91 ++++++++++++++++++++++++++++---------
+>>  1 file changed, 69 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
+>> index 3de7d465912c..9a49c934e8cf 100644
+>> --- a/drivers/usb/misc/qcom_eud.c
+>> +++ b/drivers/usb/misc/qcom_eud.c
+>> @@ -10,6 +10,7 @@
+>>  #include <linux/iopoll.h>
+>>  #include <linux/kernel.h>
+>>  #include <linux/module.h>
+>> +#include <linux/mutex.h>
+>>  #include <linux/of.h>
+>>  #include <linux/phy/phy.h>
+>>  #include <linux/platform_device.h>
+>> @@ -35,12 +36,16 @@ struct eud_chip {
+>>  	struct device			*dev;
+>>  	struct usb_role_switch		*role_sw;
+>>  	struct phy			*usb2_phy;
+>> +
+>> +	/* mode lock */
+>> +	struct mutex			mutex;
+>>  	void __iomem			*base;
+>>  	void __iomem			*mode_mgr;
+>>  	unsigned int			int_status;
+>>  	int				irq;
+>>  	bool				enabled;
+>>  	bool				usb_attached;
+>> +	enum usb_role			current_role;
+>>  };
+>>  
+>>  static int eud_phy_enable(struct eud_chip *chip)
+>> @@ -64,6 +69,38 @@ static void eud_phy_disable(struct eud_chip *chip)
+>>  	phy_exit(chip->usb2_phy);
+>>  }
+>>  
+>> +static int eud_usb_role_set(struct eud_chip *chip, enum usb_role role)
+>> +{
+>> +	struct usb_role_switch *sw;
+>> +	int ret = 0;
+>> +
+>> +	mutex_lock(&chip->mutex);
+>> +
+>> +	/* Avoid duplicate role handling */
+>> +	if (role == chip->current_role)
+>> +		goto err;
+>> +
+>> +	sw = usb_role_switch_get(chip->dev);
+> 
+> Why isn't chip->role_sw good enough? Why do you need to get it each
+> time?
+>
+
+Hi Dmitry
+
+chip->role_sw is the eud role switch handler to receive role switch notifications from the
+USB connector. The 'sw' I am getting above is the role switch handler of the USB controller.
+As per this design, EUD receives role switch notification from the connector 
+(via chip->role_sw) and then relays it to the 'sw' switch handler of the USB controller.
+
+
+Thanks
+Elson
+ 
+>> +	if (IS_ERR_OR_NULL(sw)) {
+>> +		dev_err(chip->dev, "failed to get usb switch\n");
+>> +		ret = -EINVAL;
+>> +		goto err;
+>> +	}
+>> +
+>> +	ret = usb_role_switch_set_role(sw, role);
+>> +	usb_role_switch_put(sw);
+>> +
+>> +	if (ret) {
+>> +		dev_err(chip->dev, "failed to set role\n");
+>> +		goto err;
+>> +	}
+>> +	chip->current_role = role;
+>> +err:
+>> +	mutex_unlock(&chip->mutex);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>>  static int enable_eud(struct eud_chip *priv)
+>>  {
+>>  	int ret;
+>> @@ -77,7 +114,7 @@ static int enable_eud(struct eud_chip *priv)
+>>  			priv->base + EUD_REG_INT1_EN_MASK);
+>>  	writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
+>>  
+>> -	return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
+>> +	return ret;
+>>  }
+>>  
+>>  static void disable_eud(struct eud_chip *priv)
+>> @@ -106,15 +143,20 @@ static ssize_t enable_store(struct device *dev,
+>>  	if (kstrtobool(buf, &enable))
+>>  		return -EINVAL;
+>>  
+>> +	/* EUD enable is applicable only in DEVICE mode */
+>> +	if (enable && chip->current_role != USB_ROLE_DEVICE)
+>> +		return -EINVAL;
+>> +
+>>  	if (enable) {
+>>  		ret = enable_eud(chip);
+>> -		if (!ret)
+>> -			chip->enabled = enable;
+>> -		else
+>> -			disable_eud(chip);
+>> +		if (ret) {
+>> +			dev_err(chip->dev, "failed to enable eud\n");
+>> +			return count;
+>> +		}
+>>  	} else {
+>>  		disable_eud(chip);
+>>  	}
+>> +	chip->enabled = enable;
+>>  
+>>  	return count;
+>>  }
+>> @@ -185,11 +227,9 @@ static irqreturn_t handle_eud_irq_thread(int irq, void *data)
+>>  	int ret;
+>>  
+>>  	if (chip->usb_attached)
+>> -		ret = usb_role_switch_set_role(chip->role_sw, USB_ROLE_DEVICE);
+>> +		ret = eud_usb_role_set(chip, USB_ROLE_DEVICE);
+>>  	else
+>> -		ret = usb_role_switch_set_role(chip->role_sw, USB_ROLE_HOST);
+>> -	if (ret)
+>> -		dev_err(chip->dev, "failed to set role switch\n");
+>> +		ret = eud_usb_role_set(chip, USB_ROLE_HOST);
+>>  
+>>  	/* set and clear vbus_int_clr[0] to clear interrupt */
+>>  	writel(BIT(0), chip->base + EUD_REG_VBUS_INT_CLR);
+>> @@ -198,16 +238,18 @@ static irqreturn_t handle_eud_irq_thread(int irq, void *data)
+>>  	return IRQ_HANDLED;
+>>  }
+>>  
+>> -static void eud_role_switch_release(void *data)
+>> +static int eud_usb_role_switch_set(struct usb_role_switch *sw,
+>> +				   enum usb_role role)
+>>  {
+>> -	struct eud_chip *chip = data;
+>> +	struct eud_chip *chip = usb_role_switch_get_drvdata(sw);
+>>  
+>> -	usb_role_switch_put(chip->role_sw);
+>> +	return eud_usb_role_set(chip, role);
+>>  }
+>>  
+>>  static int eud_probe(struct platform_device *pdev)
+>>  {
+>>  	struct eud_chip *chip;
+>> +	struct usb_role_switch_desc eud_role_switch = {NULL};
+>>  	int ret;
+>>  
+>>  	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+>> @@ -221,16 +263,6 @@ static int eud_probe(struct platform_device *pdev)
+>>  		return dev_err_probe(chip->dev, PTR_ERR(chip->usb2_phy),
+>>  				     "no usb2 phy configured\n");
+>>  
+>> -	chip->role_sw = usb_role_switch_get(&pdev->dev);
+>> -	if (IS_ERR(chip->role_sw))
+>> -		return dev_err_probe(chip->dev, PTR_ERR(chip->role_sw),
+>> -					"failed to get role switch\n");
+>> -
+>> -	ret = devm_add_action_or_reset(chip->dev, eud_role_switch_release, chip);
+>> -	if (ret)
+>> -		return dev_err_probe(chip->dev, ret,
+>> -				"failed to add role switch release action\n");
+>> -
+>>  	chip->base = devm_platform_ioremap_resource(pdev, 0);
+>>  	if (IS_ERR(chip->base))
+>>  		return PTR_ERR(chip->base);
+>> @@ -248,6 +280,18 @@ static int eud_probe(struct platform_device *pdev)
+>>  	if (ret)
+>>  		return dev_err_probe(chip->dev, ret, "failed to allocate irq\n");
+>>  
+>> +	eud_role_switch.fwnode = dev_fwnode(chip->dev);
+>> +	eud_role_switch.set = eud_usb_role_switch_set;
+>> +	eud_role_switch.get = NULL;
+>> +	eud_role_switch.driver_data = chip;
+>> +	chip->role_sw = usb_role_switch_register(chip->dev, &eud_role_switch);
+>> +
+>> +	if (IS_ERR(chip->role_sw))
+>> +		return dev_err_probe(chip->dev, PTR_ERR(chip->role_sw),
+>> +				"failed to register role switch\n");
+>> +
+>> +	mutex_init(&chip->mutex);
+> 
+> please move mutex_init earlier.
+> 
+
+Ack
+>> +
+>>  	enable_irq_wake(chip->irq);
+>>  
+>>  	platform_set_drvdata(pdev, chip);
+>> @@ -262,6 +306,9 @@ static void eud_remove(struct platform_device *pdev)
+>>  	if (chip->enabled)
+>>  		disable_eud(chip);
+>>  
+>> +	if (chip->role_sw)
+>> +		usb_role_switch_unregister(chip->role_sw);
+>> +
+>>  	device_init_wakeup(&pdev->dev, false);
+>>  	disable_irq_wake(chip->irq);
+>>  }
+>> -- 
+>> 2.17.1
+>>
+> 
 
