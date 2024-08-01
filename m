@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-90421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D1C9454DE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:21:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D6879454E8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C7831C23096
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 23:21:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC71AB22DEA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 23:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E377714C5BA;
-	Thu,  1 Aug 2024 23:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B65714D439;
+	Thu,  1 Aug 2024 23:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CgJBxrfm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="T+NLpDKQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CFFE14B94F;
-	Thu,  1 Aug 2024 23:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0F014D2B3;
+	Thu,  1 Aug 2024 23:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722554510; cv=none; b=JDxKJFwgXy6NGazZSsMdfTandtNODP5d7xclwxIat9GuL7VzPhR2d4uFvfjhaShQUC50iTDQx0v0sEJclnbqxppaSrFR8d1i6+6RVWfXICO4VbESyRq4JjARV/waUFdmykY+5myGAS/I4vCxSAJrXcqTvQxhd2ZEAN1WrorEOt8=
+	t=1722554850; cv=none; b=ORYNiRpVaQnVaxoxQsfPFyZQmBFF/G1/srD8hpPqTYSBt/j2Gjz3IUXYuF3O/PF9qG0Lncs2EedYprsXf3z04rUIAmxlIKr9jaF3/VwHjFjqpi4F8xgXZOKWvNsJQROgsorP3Vtce8aFR+55UCvmcg/GVnY71KSyVPNIsTOj4Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722554510; c=relaxed/simple;
-	bh=psyqP/Yl+Il9HAgAySc9C3R3e0Ms2wPZSoZqeFsjuME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qvQWRuW1UHMOw+Mws1E4IxhRzTZqVq8ZrV1s6BVJvwIR5ZDwVeFPMbX6dDc5XUZ0JlgRVn7K/vdySKse53lW8lmCm8c+M4/ivpNnkJh0Cp6CZuanKIgIJF0/OC7LidYhQ3Do2S2YiroC+b468Gic+kKh1aiaA+WmzX0UN9dgk7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CgJBxrfm; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a7b2dbd81e3so977572266b.1;
-        Thu, 01 Aug 2024 16:21:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722554507; x=1723159307; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=psyqP/Yl+Il9HAgAySc9C3R3e0Ms2wPZSoZqeFsjuME=;
-        b=CgJBxrfm3gAIXCzd+b/M8hdCW5PHzqmMiGVdeZXT1wdMg9YOz+E/g3IiiuWa1rHunc
-         iad8ieOpxhtm7PmkZ96VvOAjWkZBSBUWYogQj7DxyevSv++ih3/MFpt42uZTaRFYWm53
-         E0gjlpQFvBzi1zTECiuEpJmomVdUoMN/yz9TNqi/HfxlqMdjkLFH5OFlWoUt0scfXekS
-         23qrpHYiKmFZ/3FuXE2GWKM2379OsLHRu3ykgw3RRYmfszh6mQifCc0S6uaWaS+EzEFP
-         nydNrh3bu2BtM+EOtO5rlqEeRbtnMMx8fdAZNWjAurPgHeRV+hMG0/tsdWTTUSVjO217
-         U6gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722554507; x=1723159307;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=psyqP/Yl+Il9HAgAySc9C3R3e0Ms2wPZSoZqeFsjuME=;
-        b=Hv4RAPANqUffAKMLtornXnPic1mgkivMdhTtKEweJ3jSbjt7wpGAMvj1gmjQl+OdJi
-         oOr3m2GXSlXcqLxsdNsOyYUzbOpecQdnKKzMuxo+f803nioORZAziUC9XjNFqLgekhFx
-         eui7UM5UsObEsB8H0CfO/fSjQ9fyknVPxYQp11ZZzMDZ9DCZySfavFfuDq+dWm6hxzmy
-         xoQFwjma29q6s+EEb/6mhT3FA3lglhtUkf1+1BsXdVoCuyTKWCXSdwjQvw6EjU/Oo7wa
-         1qW+YmAHwnmKuStwjhGgfpGZVgVh03IreiYwpu5lWqLtWNUP7M5q2YpCFuZ488U9R4wD
-         u4mA==
-X-Forwarded-Encrypted: i=1; AJvYcCXsbLnOBCipPX5vxFDedz8QYAEa4znCmAa9DVKJ2ExqchdpnrmwM/OuDx142hC6uyeiEHhQw7bTJNZsKne9mJV7MSsIlDFFwneQkC/Q3PZ14wk6/H0SZg9DKRtycKT7PLX8aiY7ZtjDhtVVusa1HpD7wJPEHiLLTuKDMsR1k10vPck=
-X-Gm-Message-State: AOJu0YyStV9p/S+OP6odA0u6DHuNzs4j2sbGEfnA35ZZcUY+AU2QsHcf
-	eKOQmuO7jwE5RgqHevtm4zEgteA2xvRvcDrXkhVB6yiR9XHPOuZ0qF5Pv1axQkxYIiORsMQoQNp
-	vnbIufiZb3MfNPYrrOrloFsPjpr8=
-X-Google-Smtp-Source: AGHT+IEtW/qBmI51B7Hfnj94oHwwxVZCxxaiTaEWAE6CvzL5fsAvEqIpySGzx598UrGchK7/EuMJsVWked05rpwf+Pc=
-X-Received: by 2002:a17:907:8692:b0:a7a:9a78:4b59 with SMTP id
- a640c23a62f3a-a7dc4e579f9mr116053766b.23.1722554507307; Thu, 01 Aug 2024
- 16:21:47 -0700 (PDT)
+	s=arc-20240116; t=1722554850; c=relaxed/simple;
+	bh=bkPW/1gXJe+Xsr5hlP61agbzCFPqOX+jWstC0cB0OI8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=McueIacsdjW93yemv2D2tepGZSHJkBhZrQVkmCXrFw/cPjIHKDkfB3duKxFMU08zJeGv8WhGqiPF8+a03BLcCDFm7O/VYk7m4tWdif0SGkMgRAUtV80GqqyBh4rJk/+pkoL7dGaKmoCp8TZZoYHmRJh4bjrfM1aJ0jmcP37ocNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=T+NLpDKQ; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 471NRKmq002509;
+	Thu, 1 Aug 2024 18:27:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722554840;
+	bh=R6i0cSNVEoxvCpXKMzbHjAZ6xl7SAJ9St5o6/d/I1dQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=T+NLpDKQi9roSXGei/ajf2CAiXqL+PTYT1SIHqn/cUN4YxQ3WQGx4SKFCzYVbpIdK
+	 k9cZCkHKV6NMuIB4Z1FdZtgwYLeGrO0OcAEyNyGGhOyfARuPLpiKSVEYxo8oRwivbW
+	 dCA6L0mPmOxvf/0dCYxCF0lsx9fQYCOqcD5Sj7LI=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 471NRK3i049537
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Aug 2024 18:27:20 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Aug 2024 18:27:20 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Aug 2024 18:27:20 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 471NRJva039543;
+	Thu, 1 Aug 2024 18:27:19 -0500
+Message-ID: <69db3dff-1a69-4308-be0d-6aaa5ab708bc@ti.com>
+Date: Thu, 1 Aug 2024 18:27:19 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240608141633.2562-1-laurent.pinchart@ideasonboard.com>
- <20240608141633.2562-5-laurent.pinchart@ideasonboard.com> <ZmcWi08u6-u4MyKu@surfacebook.localdomain>
- <20240610152833.GW18479@pendragon.ideasonboard.com> <CAHp75VfcTHty-Vzcc+B4iMk33qS_AafvU10Qn3AQftrfQRBebw@mail.gmail.com>
- <20240719140711.GC637@pendragon.ideasonboard.com>
-In-Reply-To: <20240719140711.GC637@pendragon.ideasonboard.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 2 Aug 2024 01:21:10 +0200
-Message-ID: <CAHp75VfK0pae+OugD8=5zAhbjw73+mw_uvj-x=_3W9AMWPhNTA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] pwm: adp5585: Add Analog Devices ADP5585 support
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Hans De Goede <hdegoede@redhat.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Clark Wang <xiaoning.wang@nxp.com>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j7200-som-p0: Update
+ mux-controller node name
+To: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <vigneshr@ti.com>, <nm@ti.com>
+References: <20240729063411.1570930-1-b-kapoor@ti.com>
+ <20240729063411.1570930-3-b-kapoor@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20240729063411.1570930-3-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Fri, Jul 19, 2024 at 4:07=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Andy,
->
-> (CC'ing Mark)
->
-> On Mon, Jun 10, 2024 at 07:31:11PM +0300, Andy Shevchenko wrote:
-> > On Mon, Jun 10, 2024 at 6:28=E2=80=AFPM Laurent Pinchart wrote:
-> > > On Mon, Jun 10, 2024 at 06:06:51PM +0300, Andy Shevchenko wrote:
-> > > > Sat, Jun 08, 2024 at 05:16:33PM +0300, Laurent Pinchart kirjoitti:
-> >
-> > ...
-> >
-> > > Andy, we're reaching a level of nitpicking and yakshaving that even I
-> > > can't deal with. I will have to simply ignore the comments I disagree
-> > > with.
-> >
-> > Do you think using bulk APIs is nit-picking?
->
-> In this case I do. If we were dealing with more 16-bit registers in this
-> driver I would agree with you. This being said, I'd like to get this
-> driver merged, and I'll burn some of the mental energy I've recovered
-> thanks to the last two weeks of holidays and submit a v5 using the bulk
-> API. It's getting mentally exhausting though.
+On 7/29/24 1:34 AM, Bhavya Kapoor wrote:
+> There are 2 mux-controller nodes in J7200 which are responsible for
+> transferring can signals to the can phy but same node names for both
+> the mux-controllers led to errors while setting up both mux-controllers
+> for can phys simultaneously.
+> Thus, update node names for these mux-controller.
+> 
+> Fixes: da23e8d1124b ("arm64: dts: ti: k3-j7200-som-p0: Add support for CAN instance 0 in main domain")
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
 
-OK.
+Reviewed-by: Judith Mendez <jm@ti.com>
 
-> Overall, I think it would be nice to improve support for variable-length
-> register maps, in a similar way as done in include/media/v4l2-cci.h.
-> This driver, as well as many other drivers, could really benefit from
-> it. Mark, do you have an opinion, is v4l2-cci something that we could
-> fold in regmap itself ?
+> ---
+>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> index 21fe194a5766..89b68325e4e2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> @@ -84,13 +84,13 @@ rtos_ipc_memory_region: ipc-memories@a4000000 {
+>   		};
+>   	};
+>   
+> -	mux0: mux-controller {
+> +	mux0: mux-controller-0 {
+>   		compatible = "gpio-mux";
+>   		#mux-state-cells = <1>;
+>   		mux-gpios = <&exp_som 1 GPIO_ACTIVE_HIGH>;
+>   	};
+>   
+> -	mux1: mux-controller {
+> +	mux1: mux-controller-1 {
+>   		compatible = "gpio-mux";
+>   		#mux-state-cells = <1>;
+>   		mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
 
-+Cc: Hans as he might have even considered this (I'm speculating, but
-considering his quite a wide involvement in v4l2 sensor drivers and
-drivers that use regmap this idea might have come).
-
---=20
-With Best Regards,
-Andy Shevchenko
 
