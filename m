@@ -1,116 +1,161 @@
-Return-Path: <devicetree+bounces-90356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CF1945043
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:13:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C9C94507C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:25:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89536B2935F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:13:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BD36B26727
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B441B3754;
-	Thu,  1 Aug 2024 16:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147C91B4C45;
+	Thu,  1 Aug 2024 16:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="m64DJuSJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB54513B79F;
-	Thu,  1 Aug 2024 16:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DC81B3742
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 16:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722528818; cv=none; b=IhmrYGUU+KKvw60Q3BDaXjGZBQv6qrb2d7qSzx0Vkjx14iBENfcZkxdyXsPbxEicG3xk3Rxxug1oYsdP/h1ammvNpWb61kzJHDlqEBvaAK494AH8fzeKRC33gJL5J6yTqCPOrhDqK9hdhO08y6UL/rNIvu/4n1VVF0TA06yNe0M=
+	t=1722529510; cv=none; b=qEsQosE/SYwxX6NDklfrvkcfX+I+aD9/ZRg6JjjqkpcFhr48MVTe4x18vUSubwQghDU6q1p4xJb+R78QwCWUI+hgher5bQgLqsf8f72CsFI3/mgzdQu2qTHCFhVyQuMG2OYqKDxsf394i5XVAHZclxSTxgWUG6mJ+0npeuBwh1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722528818; c=relaxed/simple;
-	bh=e12nl0o1Ajo9kjJW9t6rKls4XXt3i97tBIEnjI3JGlg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GUGFnNP2x4VWjCB6HkbG8BXXatjBEqpYf09xf5guWtQuvVmeuzCB3G92nwpwNmYiKxD8QSUBWYZLQQOBYC8lgQO2ShTnrs5DS76QEPa+CtkDS2AA7ksjmhXkb1Wkpm06bb8dl0VnMwM/XUX/EJhbYy2jMqxuVe23z0RhZoB402U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-66a048806e6so58258717b3.3;
-        Thu, 01 Aug 2024 09:13:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722528815; x=1723133615;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZU8AcYf0RvO9EMRX/7NVbpNBY0T/I+LMhz17A8FopU0=;
-        b=Abb3VW+CHzXscCrLclDJ4AKstPoBoW6UhzRKEavYW4LP1abZ55tjHwR2DRL36U5O0f
-         ChVbWVCKOyoBTFMt1RS5CG/sxx3I8wi4ym9Do/1VdP+h8MSmg1s+j3+c2owzRXDiXuay
-         uKtI5B1q5CWSy2As4giqY6wn6/kPnQWfy1uXLQjwAJoT7wQanirKPCJr8oQb/VfJdhD8
-         UMS6mtL4lRqnguKdTHku+8ikbQ0GgPHNqcQHwYRjKN9Hij/dV5P7jQao0PU6ykbAZDUV
-         YiMz8OiYyWm+f8CUCxU72UcDO6rIYNd566fvtJ+HSadReHGvW9eisWpXhd56jZ7y81Wp
-         Evog==
-X-Forwarded-Encrypted: i=1; AJvYcCUf4Ld1TqLh6bvH4sFrNGNhS6tvjG0k+kl6FLKarwAx8fRlLNX2Mw1djIQIRrIUXeEUNPkKUcKDmdCAghIl9DicXGtp0aN7dPRumy00gn9ufVxVAqC+YxsKLTIwXen9Th9Fv3SBtMWixACc5uCt+iNXbyehnSKTlHXFNS9soN9KC0oBJXO9JSK48QeGZKvRAzSl082ahi/glphPsP+GH3mz7JMeqKzHSksDQmVWkOA2G9bDYLLkRKvC4C6bVEISqJ8=
-X-Gm-Message-State: AOJu0YzzgpAoz7ZyL2IczPuqH5vty6Z3qP4Uv4pXqxBv2kaoImznPBlz
-	UeKxCTj78SQ6BWtKjRNeLMBe8s1+bAIrzABhSyOoOMXHI9ISY1SGtp0HLv6y
-X-Google-Smtp-Source: AGHT+IFmY6GlwvHD4+zvbL3OmNhSmfHHIqvlxzKyiWbxQn8+TMl/u5g7KKvLrFxLjVScg6u+NqFugw==
-X-Received: by 2002:a81:9c0f:0:b0:645:8fb:71c8 with SMTP id 00721157ae682-68964392be3mr5618377b3.37.1722528815304;
-        Thu, 01 Aug 2024 09:13:35 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-67566dd926asm33774987b3.10.2024.08.01.09.13.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Aug 2024 09:13:35 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-66a048806e6so58258447b3.3;
-        Thu, 01 Aug 2024 09:13:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUZW4f6oF+WAaH+rxfq/ySj2attj/oxTkCcYoXFLzDDTOdmRkC8QyU5XD88lZ0JxGNsEEbSQqeuS+q+oI/GA+8Vxkcj32eMQLKJ95dycKE3dPiB69QBrPAkbdhnv8EYFFvFWKe8SReIKxdsbev0eTs36pJhugtq+gGMW2yt3nABV+K3VQ9HTgyML6LO5KsTOM8r5Pvbs8nBrgwqS+Z9hCEzK3mKqISsg1Zht24auNnJkqP6tLT8gq4xwTNFG//rqI0=
-X-Received: by 2002:a0d:da86:0:b0:665:b876:e35f with SMTP id
- 00721157ae682-6896141ae5amr6046747b3.22.1722528814853; Thu, 01 Aug 2024
- 09:13:34 -0700 (PDT)
+	s=arc-20240116; t=1722529510; c=relaxed/simple;
+	bh=wjo3ON0VfxE+s11j6ilSqGgI5waMkg/AzmlXcxinWIw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IyCwseY4kg4FUit0QV7g7vID+IDPbtHsNHxWG6s79ydpbk5418CZOpeV86IjSZ4S3tVR7dyatMb3o4WRnYlSCLhhvDbt78UHAuSe6s7n07vgSl5RptgPtUscrkPWIyFozW9dlWIsow2creMnR5ClKIZtnBZNRKJdtp3tSn609Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=m64DJuSJ; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471FJaMe020856;
+	Thu, 1 Aug 2024 16:24:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=pp1; bh=v
+	4CcbqHLngoW1/Jmw+QAuAQqicEbMgOfe5K/pVdvfXU=; b=m64DJuSJvPtDkz65H
+	9tbpCeA2W3muOJaendKzGTLTGUPrsH7ZNm0OtB+YYO2AS+uIkCR4wGOj5Jzp4pTW
+	dsG9FckjMGar9BX86jgpNsA4YkRmhi7wDKycMwGnhivcSaNdiuZ+S8iq8p6G3RLq
+	pYVFaK3thrO8socPxLoCE9EJHPjqeEGDSvNiEKdipXg0sf11FZyL88qipxc9QVuT
+	CGPs84/esRIdrIC+6oQdmIqp8YIRE66BR5gy1R515ChgH0kgqp0TrKbIQXwH/qNn
+	H/WQ86iKFmn5kmZH6enVRo9F87vRTAzTEpopKWCiHWWu0o3nE9Oex1Nw9Jc/SqRL
+	xaT+A==
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40rc5dg9te-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 16:24:52 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 471Fpnqt009176;
+	Thu, 1 Aug 2024 16:24:51 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 40ndx3aev2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 16:24:51 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 471GOmWg44171948
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 1 Aug 2024 16:24:51 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B775358059;
+	Thu,  1 Aug 2024 16:24:48 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D4D955805B;
+	Thu,  1 Aug 2024 16:24:47 +0000 (GMT)
+Received: from [9.24.12.86] (unknown [9.24.12.86])
+	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu,  1 Aug 2024 16:24:47 +0000 (GMT)
+Message-ID: <4d5b8958-2d33-42df-ac97-82bb63fdff38@linux.ibm.com>
+Date: Thu, 1 Aug 2024 11:24:47 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422105355.1622177-1-claudiu.beznea.uj@bp.renesas.com> <20240422105355.1622177-9-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240422105355.1622177-9-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 1 Aug 2024 18:13:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWhRRdfoqg_o6bU7jjt5_Di0=z7MJ4fMh=MJ0m8=u4tgg@mail.gmail.com>
-Message-ID: <CAMuHMdWhRRdfoqg_o6bU7jjt5_Di0=z7MJ4fMh=MJ0m8=u4tgg@mail.gmail.com>
-Subject: Re: [PATCH v4 8/8] arm64: dts: renesas: r9a08g045: Update
- #power-domain-cells = <1>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, magnus.damm@gmail.com, ulf.hansson@linaro.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/1] ARM: dts: aspeed: system1: IBM System1 BMC update
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: andrew@codeconstruct.com.au, eajames@linux.ibm.com, robh+dt@kernel.org,
+        joel@jms.id.au, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org
+References: <20240731214737.986010-1-ninad@linux.ibm.com>
+ <172252600790.120672.12772438670145461296.robh@kernel.org>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <172252600790.120672.12772438670145461296.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: q0X4F6LpRLN63_GgOY9djDZjxvrzNu0Z
+X-Proofpoint-ORIG-GUID: q0X4F6LpRLN63_GgOY9djDZjxvrzNu0Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-01_14,2024-08-01_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ phishscore=0 mlxlogscore=999 impostorscore=0 adultscore=0 bulkscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408010104
 
-Hi Claudiu,
+Hi Rob,
 
-On Mon, Apr 22, 2024 at 12:54=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
- wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 8/1/24 10:29, Rob Herring (Arm) wrote:
+> On Wed, 31 Jul 2024 16:47:28 -0500, Ninad Palsule wrote:
+>> Hello,
+>>
+>> This patch only applies to openbmc/linux. The max31785 pmbus driver
+>> changes are not available in the upstream yet. I will try to send those
+>> changes upstream.
+>>
+>> Ninad Palsule (1):
+>>    ARM: dts: aspeed: system1: IBM System1 BMC update
+>>
+>>   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 96 +++++++++++++++++++
+>>   1 file changed, 96 insertions(+)
+>>
+>> --
+>> 2.43.0
+>>
+>>
+>>
 >
-> Update CPG #power-domain-cells =3D <1> and move all the IPs to be part of=
- the
-> IP specific power domain as the driver has been modified to support
-> multiple power domains.
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
 >
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>    pip3 install dtschema --upgrade
+>
+>
+> New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ibm-system1.dtb' for 20240731214737.986010-1-ninad@linux.ibm.com:
+>
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@52/fan@0: failed to match any schema with compatible: ['pmbus-fan']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@52/fan@1: failed to match any schema with compatible: ['pmbus-fan']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@52/fan@2: failed to match any schema with compatible: ['pmbus-fan']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@52/fan@3: failed to match any schema with compatible: ['pmbus-fan']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@52/fan@4: failed to match any schema with compatible: ['pmbus-fan']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@54/fan@0: failed to match any schema with compatible: ['pmbus-fan']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb/bus@1e78a000/i2c@380/fan-controller@54/fan@1: failed to match any schema with compatible: ['pmbus-fan']
+>
+I have seen these warning. I am not sure how to fix them as it is 
+already documented in the following file.
 
-Now the watchdog fixes are in v6.11-rc1, I will queue this in
-renesas-devel for v6.12.
+Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
 
-Gr{oetje,eeting}s,
+May be because its not converted to YAML yet?
 
-                        Geert
+Thanks & Rehads,
 
+Ninad Palsule
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
