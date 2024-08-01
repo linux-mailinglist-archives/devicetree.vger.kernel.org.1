@@ -1,301 +1,243 @@
-Return-Path: <devicetree+bounces-90203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287B19445FA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:58:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65232944614
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:02:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74625B23179
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:57:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8BED1F231B9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0621116D4D8;
-	Thu,  1 Aug 2024 07:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6094D14F9FA;
+	Thu,  1 Aug 2024 08:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a/o6HCT6"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="fay2Yckd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2049.outbound.protection.outlook.com [40.107.22.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3504719478;
-	Thu,  1 Aug 2024 07:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722499065; cv=none; b=r7HxCePPKIe1a0aGOthq7p6Ck/PjaWaWbOyI6jPKRb53tjtmRh5xika66uq1YszLn3sbsiNO8r38u1/gR1+VMwkZ1RbyxZb9zZbVoVxRjSy4mkjffg+hCYoqSHMz5DfToNqQ9l2wz2enCyMem9taaZhEynNwKADdfm40+FO28U0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722499065; c=relaxed/simple;
-	bh=WjopyENnVZGG8BoRkf9D6WdWGKDMbJZhOejX6u3vaig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GqtQz+dHnB3FKumxhQJ+g9ct7peo947nJ2nfJcvijiUG6LMg4FRXoSNO6yCvNcZQ8KkapXaU5Pj7x8b9rgdl4NNSq5ZbQIEd8CEfMP84yFdC8JtY0p1x+MpO8P0nSkL7ccdG8VQHgyVhO6AJoVn6FfaHNqzFLwVCnO/I01bdx7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a/o6HCT6; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-44fdde0c8dcso37245681cf.0;
-        Thu, 01 Aug 2024 00:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722499063; x=1723103863; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NH9ilRYLYFpvV4bBytWkKj2NHM9xGHTKENKnDvjIGns=;
-        b=a/o6HCT68OF+t2teK5Cz3lq9xWq85hAsdl6J+KGs7+VQ2SJNxZFQgTQlf5JhInV8mY
-         6bYyR1Llsrh87D43BRTw+G422g4hCqK19tXSXjU1i+H0WvW8eVB/nnqWxwPtjsRYCpWI
-         X4Q2B4x9xHXbpdMhKRSdM86OLjym/JPaocrROhvq1uocf3xEcwB35K5fq9oweKpF+fxC
-         MibUzj0I1LSjALXsCOIIImGkOVa2OPwQASV2g6kK0mAtq0FDbT036tAh/BnNXrZZG+3j
-         NVZLSbcZ04aSNu0hmnTpFRZGeRSrhfNPgpyTFr3dHah/0D4aNeLhRrGBJ5WR3vMeeFMZ
-         Qdrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722499063; x=1723103863;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NH9ilRYLYFpvV4bBytWkKj2NHM9xGHTKENKnDvjIGns=;
-        b=DqQaAc6RikrgHkxFJyPLSYfxD1KQesyc7ha/FeDjOzXKX0KKvov4kA8dk3+RXsQ3uo
-         WWrEX1Hlm0ub8bOVEFonfrc0o10wPqvFbrbdfymU8ZLv1erHNiMusJBzTlp9lnU4Blti
-         pzbUr16jfWCzn+If13COJvr4EBqnQ+kf61FaSHpcZmMbVBIYZuHWkYYmJgwVrYhRe1k2
-         +Bj7h93cuxOwrEgTblvaWUp/HxL46BZ9buAKbJ/+DSYuTr18ayrVu85a210s5dhjeRfJ
-         Leu4oPew0w2pI9ND3oyV9LQ2Y6J6o19Vp0OPbsIg22yASD5f2vGX30nslvfXULyoCI6h
-         Tn8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUTIxMP6s9t7BAWUh7ukBiUjqYBzUOK50fWf79CyV5szH0KE00irpfNaefynP/t0u/1n7WtVTHClX8nbW2vLcmN+dC0JvOnTDrWFAy1bLTX7VjAYwFVAs5r7e5VENcM+oGUTxN6lye27vqeY8rIdCtiY2gWi+CIDVypN41AsfzL0ato9gHo1nS05vFWcN3rcXgfdg4EtTitYjmdsDAMeiU5
-X-Gm-Message-State: AOJu0YzCOIVw+MriBEl3fyKqTCqmoA8u0W9BXH2eUR5JgN8n4vFgmnCH
-	a1bF3d2EmasDzRmrUGsvBKED9OA3nvverXttLQPCPECJ/o9G65tAJrzU4lewy4xpe/sjbl6gfnz
-	bequhfX8thgnOlfj8hl2YWVzS9yA=
-X-Google-Smtp-Source: AGHT+IH9Nqcz96fXlR6qBIfn9oQsygGJT+Br+pnt3kTFU6l5J618DOIfg76qe0W8eUEc1gOKhsxpS78Zox8XqTejuMo=
-X-Received: by 2002:a05:622a:206:b0:446:5787:875f with SMTP id
- d75a77b69052e-451567b4292mr18705541cf.38.1722499062896; Thu, 01 Aug 2024
- 00:57:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32A938DEC;
+	Thu,  1 Aug 2024 08:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722499349; cv=fail; b=qihlHXuRKPVFO8SG2rbZ9W3Ll0twNLxgvyFwrjc4xiZotYeiJLsJpeMWJj9oI9qENoEvLCKBIrq6FENvCv/i5cIC7UbcbaQhpWjkRQymDJcaJRJv5OPovtXTcd1757BMVVsHiJIT7rjbyJdzSPuBhhVpmJmOA9IjNl+db+44tno=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722499349; c=relaxed/simple;
+	bh=+vAnaOTE5zHbDxEv/Qvb0cvyqkl98EgAB0124Auj1O4=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=bQo4yUgEfAD9iZ9iFsiaINNC+ue+g0kRm/4brIWr1vlMVD+YdI9lUXNtsPK4NE8lNmmo57rMbhgTWuHM5FSFOLw3VaWrpqfmbdkozkVG81OGDHSek3ba92+B5EMqRh20KiKrdOSzPHcQGRAd3uym1jhbmr+6832Hy9QeYLObZ4Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=fay2Yckd; arc=fail smtp.client-ip=40.107.22.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AAa9niW7kiFJSlV3x0VNTw0Ppx7/nEHfcO7+sB4RPXqs/EQABQLNrfHp/CMXSAgQQTvkFwN9KTR7ioguOMmkNhqV25nMpTkMfWLAhq3lByY69p7vRP6pUruBZrczgKwHoxbQORfF50ycINmPqdPtVTW3lvWe1eejt3fkUHrv4ZY58Jqe4OA1akHZricoSUlOobFWvYa6RdpFaebCdsPziDSYpSL4K1vCesvn0K9FMqdq4+9xC3lTEXibhYuya0wIdj+2KeqaGGdS8T1ahL5WXReZjrzddv1XBT7aiaBjmOzUHTlPYMGuKwYhNSfCQAeRQ9VCIRgCFVs9qcLcX88tSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tNpmcbzJwQgdUW8vv1c1Txh+EMY78wFw4tmfV0bHHqc=;
+ b=K79uGoQictKWmWP9aQafLH+Uo40rDzt9kk8baRkDEX5Azg7Q2Nl8BI92IXDePC42Gc38SHESGtYyxy7K/voLgZMh+wLW3PY854PweY5dHGerLBvVc96IcxJb3k4H0fCpimnb7Qs6IM9KHDZNklnbJmQE64vKaB3PLEO23mUDZN1bbvjdvG0FzgRkF2dXlzA52xBZqm0uI7Fk5soAH7KB3TI3//ccyT9ZTox6OgxD8j9UtB04RJVfe0yCXOaVMY94RDXnHuu07O1Hsi674359onSGX44tRPeohs9oT1bZAjZp3Jg8eJv990i/zb1Xx+KmgHcFlm0JNILa05rmEHB6Jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tNpmcbzJwQgdUW8vv1c1Txh+EMY78wFw4tmfV0bHHqc=;
+ b=fay2YckdIVmgjdwH1mM4CAd691Wwywez0GPC0FA0n3r/RGcI2hge0kUV53qIes+PRKtPf51ZRoiX1sCG1JOnJ8a+axBhLP04+H54Hr4aL5Eor7IE3KJ7lJmt4HjZEgygeRN9BhJdSlqZ5lXrnFsM0IHRWgKwJV6+890XP4jLotx6flojz2QCz1Aa9rPhDMxKIjOX1ASKkVLyjuoqOzGU3M8bAcM7/Utf6Z3YHrs/nf/C25DXmJCRmWqoBC0CVr810kzyL+VEPZ8sy1VTH6/XiHlpRDwpGhatoAqrCkaav7QaFhGVtb61RLlKqcingsDC2KV27r12y2UhU+Q5BNBeOg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by DB8PR04MB7036.eurprd04.prod.outlook.com (2603:10a6:10:12f::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.22; Thu, 1 Aug
+ 2024 08:02:23 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.7784.020; Thu, 1 Aug 2024
+ 08:02:23 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	wahrenst@gmx.net,
+	Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH] arm64: dts: imx93: add cache info
+Date: Thu,  1 Aug 2024 16:11:11 +0800
+Message-Id: <20240801081111.1492688-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG3P274CA0003.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::15)
+ To PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731061132.703368-1-jacobe.zang@wesion.com>
- <20240731061132.703368-5-jacobe.zang@wesion.com> <0a78a0fb-0a5e-424f-a801-4a63b9ee1a49@gmail.com>
- <3ded8aea-ee11-43da-9dd7-1259cf931747@broadcom.com> <CABjd4YxiSY0A0iVHGHw9RDey+avxmzUapoLLLyf=80MzVX0yWA@mail.gmail.com>
- <6e34c814-a6dc-4a96-9e46-ca25af67f4f6@broadcom.com> <CABjd4YxdCh7EceYOfcFxKtV0H7Von0oZAMWD=69sM6y4-CoAQw@mail.gmail.com>
- <TYZPR03MB7001889335D58561F86978A780B22@TYZPR03MB7001.apcprd03.prod.outlook.com>
-In-Reply-To: <TYZPR03MB7001889335D58561F86978A780B22@TYZPR03MB7001.apcprd03.prod.outlook.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 1 Aug 2024 10:57:31 +0300
-Message-ID: <CABjd4YwCFpPerXRaR=6zd-61wDE6nH7_s0C6jMRhA4x0L6guLg@mail.gmail.com>
-Subject: Re: [PATCH v6 4/5] wifi: brcmfmac: Add optional lpo clock enable support
-To: Jacobe Zang <jacobe.zang@wesion.com>
-Cc: Arend van Spriel <arend.vanspriel@broadcom.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "heiko@sntech.de" <heiko@sntech.de>, 
-	"kvalo@kernel.org" <kvalo@kernel.org>, "davem@davemloft.net" <davem@davemloft.net>, 
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>, 
-	"pabeni@redhat.com" <pabeni@redhat.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"efectn@protonmail.com" <efectn@protonmail.com>, "dsimic@manjaro.org" <dsimic@manjaro.org>, 
-	"jagan@edgeble.ai" <jagan@edgeble.ai>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "arend@broadcom.com" <arend@broadcom.com>, 
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "megi@xff.cz" <megi@xff.cz>, 
-	"duoming@zju.edu.cn" <duoming@zju.edu.cn>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	"minipli@grsecurity.net" <minipli@grsecurity.net>, 
-	"brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>, 
-	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>, Nick Xie <nick@khadas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|DB8PR04MB7036:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95bec647-9373-433d-2c33-08dcb2004679
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?TBFq766uOFSHAryBdSXiv/lPdWmvyC/pXXONJm+iqhgw9q5Sx9qwdg2vBS08?=
+ =?us-ascii?Q?o9Vv/PIovMwuBKJ0ZMr+oJ6B87MdIEPSX+rSK9ivy19Bssx+e4W2aDFG9NIV?=
+ =?us-ascii?Q?wg99Y42vuH1i6UTQwP0SgMRv4+A8zsQ3huuHVt3BCq6WE9cweNS3ycTecg/v?=
+ =?us-ascii?Q?kxjzZyBrszAysdhySatFFA673IiDYlJqPPmIAwLEncEuxf6WuXu01m/085/Y?=
+ =?us-ascii?Q?o60aBWF7fASlnwbWVbygWjluhlyTGC8HcaFpevQl4OYhlc4/XvmsT7XS4ReQ?=
+ =?us-ascii?Q?HkIkNTebyNhQJMcSMsj2bE67rdxMSDVbYbrRVEHQkToDAbvJX980Bi9XCSh/?=
+ =?us-ascii?Q?ElU7FS5HJLYB8eAPL89IqRyEy5iFQM5o06HmkVOcFppZsgfuHF+uZUFlrfp1?=
+ =?us-ascii?Q?dhkMeq/KSu/St4xL8d7ot7jlyY1JrrFhUa3iC0v3lDCu9tF4agcS2auhq0UG?=
+ =?us-ascii?Q?T+BHD6qQv560DOYOcD924Ner8Cudro9f6anbFx7BgFwv9+qfW8Ka5XGkpf6p?=
+ =?us-ascii?Q?UEDX6+GjrS/wcyoyzERutt432P+OWMFbBFGYaoXua7hJE0WFvW3z4YeoBwUK?=
+ =?us-ascii?Q?KIqQ2ekw/ixJJpOO8oeCKMK05oWPn7fZBwLLjAVr4MhGg34+Ed9V0Y76eoMq?=
+ =?us-ascii?Q?JQuEuxGgYM6Gf+gnOfmaUoJaNQ6eMaMTZmfZ7VvsdbJ+SozLxd3jMH+GjcUj?=
+ =?us-ascii?Q?M7B8/pbzuP6vilIfvXRDf7n6Oow2rp926f5Xgo1aq2XtH0A2TIA5ciiSKf8O?=
+ =?us-ascii?Q?6E7zK3kkG2V46e04kJBDlkLRYISGnHUClZC9yCPZFOMv0oamizgqYModW+vA?=
+ =?us-ascii?Q?NSKpm555AyzG+De7aISGnOAL0mlTmHJPGpYXdxbPsLhZDWn1sJwDfJ8cv+yC?=
+ =?us-ascii?Q?0b2d12edHeTS0xsm93tWgjsACyGLVyW/s7mnxJB0o1wreWXmmU/eMqdCBtF4?=
+ =?us-ascii?Q?j9T0Sat9YI6ETLWPBczGh3aFodZ86BrL3w29KBIUDKF19kkF32KfdPy8NryB?=
+ =?us-ascii?Q?8fm+/4HsX/LfuU1peC+NVm/Xwq0BUPgNgVLf/UPoEUkDpT4epEws9EgxucBO?=
+ =?us-ascii?Q?aJfI7x+BbHbMmHPxhQNq6vqykxO5tzGGsxpCwxZE9gZXo+Zxnn7UxEyQMSqJ?=
+ =?us-ascii?Q?C5DM5kbFMxY9i2myZqynkx8i79luIEN8BF09T617sA8a6jmv3ufiYsNA9jvb?=
+ =?us-ascii?Q?vjsChfgiAqpU+NnwTUDc0yqdcGehbNiBqwlfFiBzXyvpArG4/n4JIWemnw+1?=
+ =?us-ascii?Q?BWQjk1wduXtpNxKnoNKO5ktl0EHyPyYVn6NrFnSH1WPGT6Td6PoGvk2dHqsM?=
+ =?us-ascii?Q?2nwXtehq7Ov9Jl87Mg/Y03aXgsiu1VIPybpu1L7wKi+sbb6NEHDjhi9rzssS?=
+ =?us-ascii?Q?okzjK1q8a5iNnpUjjeUIlED2ot/gjRGhmUVSDmhfZD+s83GbKg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?vhb0cKLjiUwB7QSN5/F1/GBSYB9YTOKumrDTvSc3dFWxPrnuWJbfF5szyxEq?=
+ =?us-ascii?Q?YoYvVnnd9ScOpPhH4hz4MCt0d7rcWqNpz0fhd73NWpcZKbEMDlk5iLvnwegu?=
+ =?us-ascii?Q?kVfToWyyMcevBQo9TIZyVdIWs1Xi75uFvm6Q8IYuC6lnOCgzUeMWR1Z+XQTU?=
+ =?us-ascii?Q?8vF8LWMtYNsZcYQ4K5e+aHvEv5J+MjjN0MR4rVl+PS9jMpHGL95W9rMEZytr?=
+ =?us-ascii?Q?wg2zKkYnmNA9pspIodtTlHcLWnPTCRxmYxKffe8DLvmOZMwGJp4HjY4osB1n?=
+ =?us-ascii?Q?T6s3IdVekuicq9dfgLFDN393i18KKMBAOoeWIvW/2+DKof6isVeVp+5cGTAm?=
+ =?us-ascii?Q?Odm0uhZivx8l9ZBzrvx1WupSPIwmEO7OADdXuqUyFfTmoeQhcs1VKflsPNZD?=
+ =?us-ascii?Q?Va8Ur9R5jvRmBrynY/8NTyD3Mg7ebY3rX/lui7g8WIZLmJ/0Y8vQSNlbWWaQ?=
+ =?us-ascii?Q?tj0E2ghTj6eFFk40L6kRLM0ihdzVYgZPjZ9XqsujhfaRf5GTVt/96dmJ1O2b?=
+ =?us-ascii?Q?SIv+JSN3nIlR+fWcDM056T1jcq11gao/EuFj83a7wEisSOKUuY04CLdxkPkj?=
+ =?us-ascii?Q?jPsZt1jUqL9Pjtt70ns955fgx5SLMGGlCcPP3DeB0MP5/ntV/vJmO87RHtp+?=
+ =?us-ascii?Q?YsvwXtml/s28IOBagt1217P6CXxHnh2x7w+0ar3cBa0ZMhWRRluwSHqiLso+?=
+ =?us-ascii?Q?xJwK4iV0JPdOuQJqQ/HrApEAEiCQ3gsgctmF+kwwfj9AZ5L0r6FwzRAWiKqM?=
+ =?us-ascii?Q?0GOYpJRX/V4k+/Nd+JkfAWNmQCXEgR3+J8+x34lbDkgihdaZ/wWjRtTWlNFP?=
+ =?us-ascii?Q?QfaOEnQCDe4TvT+a7fjc/7to3ZQAa11En1NECjzazyLdGSwaMuny2LiWczEg?=
+ =?us-ascii?Q?8ubqZpoUjSR+cj5fnSwgfcEyFGFUKHkchTIDm7xuMtu8GlZHfRoPEbQgHYRd?=
+ =?us-ascii?Q?oFm3m/2LFOYL8Q8tpmj31XNddBpSeoskR93T7rSLlKjrPJQa2Uo9y1rfIQmU?=
+ =?us-ascii?Q?snyNnuWoGR9GdN4/ux5QrWJdWpY0rDU3nBMO4AbUBOSF4IJb/c92WTOM295u?=
+ =?us-ascii?Q?QsXtgBHB/wfJAOyIeCqDcGpsEOz2cdjUXsZrI+KKn/5ooTmaCMiauawit2Me?=
+ =?us-ascii?Q?tmZEha4CQFWrX+kLE9B6LZ8ZlAk+133TcwhIRb3yYMQenXW18gfE7RVlx9o/?=
+ =?us-ascii?Q?MvxeNZpmhkBbUYMtR5fMa1PVhUORya5Bee34SVw+vdE9rrxysakEUO5+ypXX?=
+ =?us-ascii?Q?dgMXHdVPub083kUYpLdXrt3jQoZ2YPR2ytn52TmksKdGX9+szTo2CdMx1u46?=
+ =?us-ascii?Q?8VBqY+h47D/mtmTOGNnRPPGJBA3SBQdZx9Uo0rdCckv70iUvU60EJJsAwXJL?=
+ =?us-ascii?Q?FvCzfa3RDsdC9PnmVEnv7rT0aYBXGCkMP+x/hNDnIjE/YDHCH/404+XsDsA7?=
+ =?us-ascii?Q?nXBrCXxOXFEWsjbVNZDcgK8f7IZnggF8Y8gTIk0Nmf2l/iTAC9PsvKCZIIrr?=
+ =?us-ascii?Q?6/jX2RvJfABgneL16PSVJSmEFarY2GIQPscyX8UA5kqAjxQ4kUXgpfEBENUZ?=
+ =?us-ascii?Q?jMIHuKY4V6QMh6uTxLF3OQvWvEwBTqmZhXdZKIIm?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95bec647-9373-433d-2c33-08dcb2004679
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2024 08:02:23.3405
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ILkq3ZSfqpb2C6kFOZpB1JQ/3b432o5WymqZ1Cvp9EA1qOGEIcrkt5y15Pxqzg3XOvAynLh8miQPNM8JwqEHlw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7036
 
-On Thu, Aug 1, 2024 at 6:53=E2=80=AFAM Jacobe Zang <jacobe.zang@wesion.com>=
- wrote:
->
-> >>On 7/31/2024 2:01 PM, Alexey Charkov wrote:
-> >>> On Wed, Jul 31, 2024 at 2:15=E2=80=AFPM Arend van Spriel
-> >>> <arend.vanspriel@broadcom.com> wrote:
-> >>>>
-> >>>> On 7/31/2024 12:16 PM, Alexey Charkov wrote:
-> >>>>> Hi Jacobe,
-> >>>>>
-> >>>>>
-> >>>>> On 31/07/2024 9:11 am, Jacobe Zang wrote:
-> >>>>>   > WiFi modules often require 32kHz clock to function. Add support=
- to
-> >>>>>   > enable the clock to PCIe driver and move "brcm,bcm4329-fmac" ch=
-eck
-> >>>>>   > to the top of brcmf_of_probe
-> >>>>>   >
-> >>>>>   > Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> >>>>>   > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> >>>>>   > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> >>>>>   > ---
-> >>>>>   >  .../net/wireless/broadcom/brcm80211/brcmfmac/of.c    | 12 ++++=
-+++++++-
-> >>>>>   >  1 file changed, 11 insertions(+), 1 deletion(-)
-> >>>>>   >
-> >>>>>   > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/o=
-f.c
-> >>>>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-> >>>>>   > index e406e11481a62..7e0a2ad5c7c8a 100644
-> >>>>>   > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-> >>>>>   > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-> >>>>>   > @@ -6,6 +6,7 @@
-> >>>>>   >  #include <linux/of.h>
-> >>>>>   >  #include <linux/of_irq.h>
-> >>>>>   >  #include <linux/of_net.h>
-> >>>>>   > +#include <linux/clk.h>
-> >>>>>   >
-> >>>>>   >  #include <defs.h>
-> >>>>>   >  #include "debug.h"
-> >>>>>   > @@ -70,12 +71,16 @@ void brcmf_of_probe(struct device *dev, enu=
-m
-> >>>>> brcmf_bus_type bus_type,
-> >>>>>   >  {
-> >>>>>   >      struct brcmfmac_sdio_pd *sdio =3D &settings->bus.sdio;
-> >>>>>   >      struct device_node *root, *np =3D dev->of_node;
-> >>>>>   > +    struct clk *clk;
-> >>>>>   >      const char *prop;
-> >>>>>   >      int irq;
-> >>>>>   >      int err;
-> >>>>>   >      u32 irqf;
-> >>>>>   >      u32 val;
-> >>>>>   >
-> >>>>>   > +    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac=
-"))
-> >>>>>   > +        return;
-> >>>>>
-> >>>>> Did you test this? The DTS patch you sent as part of this series do=
-esn't
-> >>>>> list "brcm,bcm4329-fmac" in the compatible, so this will probably r=
-eturn
-> >>>>> right here, skipping over the rest of your patch.
-> >>>>>
-> >>>>> Please test before resending, both with and without the driver for =
-the
-> >>>>> Bluetooth part of the chip (since it also touches clocks).
-> >>>>>
-> >>>>> You are also changing the behavior for other systems by putting thi=
-s
-> >>>>> check further up the probe path, which might break things for no re=
-ason.
-> >>>>> Better put your clk-related addition below where this check was
-> >>>>> originally, rather than reorder stuff you don't have to reorder.
-> >>>>
-> >>>> That was upon my suggestion. That check was originally at the top of=
- the
-> >>>> function, but people added stuff before that. I agree that makes the
-> >>>> compatible "brcm,brcm4329-fmac" required which is what the textual
-> >>>> binding stated before the switch to YAML was made:
-> >>>>
-> >>>> """
-> >>>> Broadcom BCM43xx Fullmac wireless SDIO devices
-> >>>>
-> >>>> This node provides properties for controlling the Broadcom wireless
-> >>>> device. The
-> >>>> node is expected to be specified as a child node to the SDIO control=
-ler that
-> >>>> connects the device to the system.
-> >>>>
-> >>>> Required properties:
-> >>>>
-> >>>>    - compatible : Should be "brcm,bcm4329-fmac".
-> >>>> """
-> >>>>
-> >>>> Not sure whether this is still true for YAML version (poor YAML read=
-ing
-> >>>> skills ;-) ), but it should as the switch from textual to YAML shoul=
-d
-> >>>> not have changed the bindings specification.
-> >>>>
-> >>>>>   > +
-> >>>>>   >      /* Apple ARM64 platforms have their own idea of board type=
-,
-> >>>>> passed in
-> >>>>>   >       * via the device tree. They also have an antenna SKU para=
-meter
-> >>>>>   >       */
-> >>>>>   > @@ -113,8 +118,13 @@ void brcmf_of_probe(struct device *dev, en=
-um
-> >>>>> brcmf_bus_type bus_type,
-> >>>>>   >          of_node_put(root);
-> >>>>>   >      }
-> >>>>>   >
-> >>>>>   > -    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac=
-"))
-> >>>>>   > +    clk =3D devm_clk_get_optional_enabled(dev, "lpo");
-> >>>>>   > +    if (!IS_ERR_OR_NULL(clk)) {
-> >>>>>   > +        brcmf_dbg(INFO, "enabling 32kHz clock\n");
-> >>>>>   > +        clk_set_rate(clk, 32768);
-> >>>>>   > +    } else {
-> >>>>>   >          return;
-> >>>>>
-> >>>>> Why return here? If the clock is optional, a lot of systems will no=
-t
-> >>>>> have it - that shouldn't prevent the driver from probing. And you a=
-re
-> >>>>> still not handling the -EPROBE_DEFER case which was mentioned on yo=
-ur
-> >>>>> previous submission.
-> >>>>
-> >>>> Right. The else statement above could/should be:
-> >>>>
-> >>>> } else if (clk && PTR_ERR(clk) =3D=3D -EPROBE_DEFER) {
-> >>>>           return PTR_ERR(clk);
-> >>>> }
-> >>>
-> >>> ... plus change the function prototype to return int and propagate
-> >>> that error code through brcmf_get_module_param to brcmf_pcie_probe's
-> >>> return value. I guess checking clk for NULL is also redundant in this
-> >>> case?
-> >>
-> >>Only wanted to give the suggestion to get started. Propagating the
-> >>return value seemed obvious to me, but you are absolutely right.
-> >>PTR_ERR(NULL) will probably be something else than -EPROBE_DEFER but it
-> >>seems odd to me. Maybe PTR_ERR_OR_ZERO(clk) is a better option here.
-> >
-> > Indeed. Perhaps something along the lines of:
-> >
-> >        clk =3D devm_clk_get_optional_enabled(dev, "lpo");
-> >        if (!IS_ERR_OR_NULL(clk)) {
-> >                brcmf_dbg(INFO, "enabling 32kHz clock\n");
-> >                return clk_set_rate(clk, 32768);
-> >        } else {
-> >                return PTR_ERR_OR_ZERO(clk);
-> >        }
-> >
-> > ... which should then go at the very end of brcmf_of_probe. And all of
->
-> But before end of brcmf_of_probe is to set interrupt configuration which
-> wifi chip connect via sdio. Like this:
-> ```
->         if (bus_type !=3D BRCMF_BUSTYPE_SDIO)
->                 return;
->
->         if (of_property_read_u32(np, "brcm,drive-strength", &val) =3D=3D =
-0)
->                 sdio->drive_strength =3D val;
->
->         /* make sure there are interrupts defined in the node */
->         if (!of_property_present(np, "interrupts"))
->                 return;
->
->         irq =3D irq_of_parse_and_map(np, 0);
->         if (!irq) {
->                 brcmf_err("interrupt could not be mapped\n");
->                 return;
->         }
->         irqf =3D irqd_get_trigger_type(irq_get_irq_data(irq));
->
->         sdio->oob_irq_supported =3D true;
->         sdio->oob_irq_nr =3D irq;
->         sdio->oob_irq_flags =3D irqf;
-> ```
-> So I think the interrupt should be set in the if statement while
-> bus_type=3D=3DBRCMF_BUSTYPE_SDIO, and add else statement
-> to enable clock(or simply put it at the end as Alexey said). And
-> can also use else-if statement to deal with
-> bus_type =3D=3D BRCMF_BUSTYPE_USB or PCIE in the future.
+From: Peng Fan <peng.fan@nxp.com>
 
-SDIO devices might also want to enable a clock, so I think wrapping
-the drive strength and interrupts handling into an if statement and
-putting the clock-related stuff right after it (but not in the else
-block) is better.
+i.MX93 features two Cortex-A55 cores with per core L1 Instruction
+cache size 32KB, L1 data cache size 32KB, per core L2 cache 64KB, and
+unified 256KB L3 cache.
 
-Best regards,
-Alexey
+Add the cache info to remove cacheinfo warnings at boot:
+"cacheinfo: Unable to detect cache hierarchy for CPU 0"
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 42 ++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index 4a3f42355cb8..8f17b1fbfba0 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -69,6 +69,13 @@ A55_0: cpu@0 {
+ 			enable-method = "psci";
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&cpu_pd_wait>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache_l0>;
+ 		};
+ 
+ 		A55_1: cpu@100 {
+@@ -78,8 +85,43 @@ A55_1: cpu@100 {
+ 			enable-method = "psci";
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&cpu_pd_wait>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache_l1>;
+ 		};
+ 
++		l2_cache_l0: l2-cache-l0 {
++			compatible = "cache";
++			cache-size = <65536>;
++			cache-line-size = <64>;
++			cache-sets = <256>;
++			cache-level = <2>;
++			cache-unified;
++			next-level-cache = <&l3_cache>;
++		};
++
++		l2_cache_l1: l2-cache-l1 {
++			compatible = "cache";
++			cache-size = <65536>;
++			cache-line-size = <64>;
++			cache-sets = <256>;
++			cache-level = <2>;
++			cache-unified;
++			next-level-cache = <&l3_cache>;
++		};
++
++		l3_cache: l3-cache {
++			compatible = "cache";
++			cache-size = <262144>;
++			cache-line-size = <64>;
++			cache-sets = <256>;
++			cache-level = <3>;
++			cache-unified;
++		};
+ 	};
+ 
+ 	osc_32k: clock-osc-32k {
+-- 
+2.37.1
+
 
