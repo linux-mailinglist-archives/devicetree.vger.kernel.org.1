@@ -1,214 +1,160 @@
-Return-Path: <devicetree+bounces-90418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A279454C4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC3B9454C9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:11:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 006D7281F23
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 23:08:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB384281EC3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 23:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F8E14D717;
-	Thu,  1 Aug 2024 23:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CD514D29A;
+	Thu,  1 Aug 2024 23:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="g1LJb/p0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IE8pL9G/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89C114D45E;
-	Thu,  1 Aug 2024 23:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69AEE1482E2;
+	Thu,  1 Aug 2024 23:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722553662; cv=none; b=STDfHKQETEp+e30JMb5zJSgkzxjfSc1QLsC3aQofSY5cH996fyTY5aoqVKxUVwx5xhwe5EpyXHMpnnzTaVc7OKkDaCh5VO2COPb/t8BzIFfDHbop5E6Z8GPj8YsYnDBLJnaBi2JMqLm6TkeSINKVXktP4fjkT10Y501U/1FNR7o=
+	t=1722553886; cv=none; b=RMHFk0kun6fFCG8UTQ8xILSzaIal7PHTAasVDpT7JNAEZnM4Ei04RTc9QwnzYK/nkzSIWZwcQEJEFSvc3AmZMGAjFRCXijLwHrJV6OxBtMpb+IBAPCxm9rX52sIlTlYXoz+f3QhBelKK5Ssb0+ZHB1JmFDp9oIX3e8yvWh5W4Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722553662; c=relaxed/simple;
-	bh=tWVcs94ZZ3i843a/CC6NxTkMJYubXim8vPyJ0ylRe4o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kx4HgwrwVrL7DF7LR8SKSnPGHAL8v3ikmKzib6jrsxouScR+/+uARkmKvDKuiScv8o+WiiuObvIK0xqL7nOeNlpE8KviWDOKmwnuCMxB54rdZAonVelKKDIHUHcaDKOodG+0A3QVnk/Ur7hk92+mP46zoPauPYtzvNF6dVxg1Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=g1LJb/p0; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 46BCCC0003;
-	Thu,  1 Aug 2024 23:07:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1722553651;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4awUVwG37LseNs27BJI5me6lqTMbdYGn9CDQNcfZPk8=;
-	b=g1LJb/p0yD6SgP3eDyE9mw2oVj7wCol0tEc3HqCjkEU5R/2QPtKYabNUgLEgC8E91cg4Ev
-	mPc2Obd0gKBUh7cgU7ooiysO+KFpyGCIdIekXOvTKrfFsPFjG9014nexl8rz80AXe/mkOF
-	3QgRb5Lrpfm67nXj4pR0Nx4mHApPU/MNUj8pCaxuGdOHxRSJ97vLdBbMPwyeDHEBnOeL5d
-	DlScwlT7k2caemmpGghwyMmPTO2i/RWypSR44V4299LptiPKX5mfTt0aBrmxe9s39XwXCE
-	tMplR5Eriatc+oUuTrsswrhQPhPj3nu+rRxIEfs17URyNtlwbZg5jD/YCp/BNw==
-Date: Fri, 2 Aug 2024 01:06:31 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Stanley Chu <stanley.chuys@gmail.com>, robh@kernel.org,
-	krzk+dt@kernel.org, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, tomer.maimon@nuvoton.com,
-	kwliu@nuvoton.com, yschu@nuvoton.com, cpchiang1@nuvoton.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: i3c: Add NPCM845 i3c controller
-Message-ID: <202408012306316257ee23@mail.local>
-References: <20240801071946.43266-1-yschu@nuvoton.com>
- <20240801071946.43266-2-yschu@nuvoton.com>
- <c3ee7783-6891-4917-9935-21d46d8ac9a7@kernel.org>
+	s=arc-20240116; t=1722553886; c=relaxed/simple;
+	bh=yi8KpVxNcIf5YHxoeXQGLtFB31e6KiwZl0CwWBdzZqk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fX8Acj/PORniCTxO0j3w3kbwNL1kt7oy/+O0Q3XWg5d+DxJz5CZ8l31LNPhRAacHSIJnMpTgq6rCeN+1XBmLvfUcYf2RfSzgAb8yVM3f0DqfhH8cs3J+p6bB4SfTcdtsfWMTeu0hnqWamDTZP8ZwD0e/h+ffZY2HeTBDC2w2CO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IE8pL9G/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471LaAgY009955;
+	Thu, 1 Aug 2024 23:11:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	c7sFS96b9Nrhzms9CFZDvZZzdzQm/xXxadPg2syXGPk=; b=IE8pL9G/F8tc8k68
+	hsBudRVPhDpBI44vQhO5LH1vM8leRlpxiHLbpAIeTxPJBrD+1lTWE0ZSPGjPhOLg
+	SWRBX5sTwIrd7EpARqfxFqdDDREOdxv0fiCjghL7D8PUa7CWqUdCK9h0+htn5cug
+	K3y//UhRxy1XFLw55fgwQ4MwhHiPcAZKlj4XLuDxf8eLUWs9/AoxfuV35zndmOjN
+	KxMGF6zB5Q7I+74+rbgcgt0Wn62ykr+m85vvTUQ2VfxAOVJlExQJ45np9lQtvPI4
+	rDEczFDvPPqmdBexy7I2SmI+bU1cR1yYMB4ZaPcWvjJUSr/roqujFxWCo8zUS7wA
+	pgdXJw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40rje204ra-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 23:11:01 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 471NB0uA029525
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Aug 2024 23:11:00 GMT
+Received: from [10.71.115.74] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 Aug 2024
+ 16:11:00 -0700
+Message-ID: <1a284449-204a-4d01-90c9-ec6b1ed56e30@quicinc.com>
+Date: Thu, 1 Aug 2024 16:10:59 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c3ee7783-6891-4917-9935-21d46d8ac9a7@kernel.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v24 17/34] ASoC: qcom: qdsp6: Add USB backend ASoC driver
+ for Q6
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <gregkh@linuxfoundation.org>, <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
+ <20240801011730.4797-18-quic_wcheng@quicinc.com>
+ <5f37c04d-f564-40b9-a9f3-d071ea0a6f19@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <5f37c04d-f564-40b9-a9f3-d071ea0a6f19@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: hQDGrD7cDUhEfYLSjo0qNE7E1pifnf-y
+X-Proofpoint-ORIG-GUID: hQDGrD7cDUhEfYLSjo0qNE7E1pifnf-y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-01_21,2024-08-01_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ spamscore=0 mlxscore=0 impostorscore=0 phishscore=0 lowpriorityscore=0
+ priorityscore=1501 adultscore=0 mlxlogscore=999 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408010155
 
-On 01/08/2024 16:53:52+0200, Krzysztof Kozlowski wrote:
-> On 01/08/2024 09:19, Stanley Chu wrote:
-> > The npcm845 i3c devicetree binding follows the basic i3c bindings
-> > and add the properties for allowing to adjust the SDA/SCL timing
-> > to meet different requirements.
-> > 
-> > Signed-off-by: Stanley Chu <yschu@nuvoton.com>
-> > Signed-off-by: James Chiang <cpchiang1@nuvoton.com>
-> > ---
-> >  .../bindings/i3c/nuvoton,i3c-master.yaml      | 123 ++++++++++++++++++
-> 
-> Use compatible as filename. Anyway word "master" was dropped.
-> 
-> >  1 file changed, 123 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
-> > new file mode 100644
-> > index 000000000000..a40b37b16872
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
-> > @@ -0,0 +1,123 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/i3c/nuvoton,i3c-master.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nuvoton NPCM845 I3C master
-> 
-> Use new terminology. Since 2021 there was a change... three years ago.
-> 
-> > +
-> > +maintainers:
-> > +  - Stanley Chu <yschu@nuvoton.com>
-> > +  - James Chiang <cpchiang1@nuvoton.com>
-> > +
-> > +allOf:
-> > +  - $ref: i3c.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: nuvoton,npcm845-i3c
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: I3C registers
-> > +      - description: GDMA registers
-> > +      - description: GDMA request control register
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: i3c
-> > +      - const: dma
-> > +      - const: dma_ctl
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: system clock
-> > +      - description: bus clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: pclk
-> > +      - const: fast_clk
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  i3c-pp-scl-hi-period-ns:
-> > +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
-> > +      If need to configure SCL with required duty cycle, specify the clock high/low period directly.
-> > +      i3c-pp-scl-hi-perios-ns specifies the high period ns of the SCL clock cycle in push pull mode
-> > +      When i3c-pp-scl-hi-period-ns and i3c-pp-scl-lo-period-ns are specified, the i3c pp frequency is
-> > +      decided by these two properties.
-> 
-> Wrap according to Linux Coding Style (and read coding style to figure
-> the proper wrapping...).
-> 
-> > +
-> > +  i3c-pp-scl-lo-period-ns:
-> > +    description: |
-> > +      The low period ns of the SCL clock cycle in push pull mode. i3c-pp-scl-lo-period-ns should not
-> > +      be less than i3c-pp-scl-hi-period-ns and the maximal value is i3c-pp-scl-hi-period-ns + 150.
-> 
-> Everywhere: defaults, constraints.
-> 
-> > +
-> > +  i3c-pp-sda-rd-skew:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: |
-> > +      The number of MCLK clock periods to delay the SDA transition from the SCL clock edge at push
-> > +      pull operation when transfers i3c private read.
-> > +    maximum: 7
-> > +    default: 0
-> > +
-> > +  i3c-pp-sda-wr-skew:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: |
-> > +      The number of MCLK clock periods to delay the SDA transition from the SCL clock edge at push
-> > +      pull operation when transfers i3c private write.
-> > +    maximum: 7
-> > +    default: 0
-> > +
-> > +  i3c-od-scl-hi-period-ns:
-> > +    description: |
-> > +      The i3c open drain frequency is 1MHz by default.
-> > +      If need to use different frequency, specify the clock high/low period directly.
-> > +      i3c-od-scl-hi-perios-ns specifies the high period ns of the SCL clock cycle in open drain mode.
-> > +      When i3c-od-scl-hi-period-ns and i3c-od-scl-lo-period-ns are specified, the i3c od frequency is
-> > +      decided by these two properties.
-> > +      i3c-od-scl-hi-period-ns should be equal to i3c-pp-scl-hi-period-ns or i3c-od-scl-lo-period-ns.
-> > +
-> > +  i3c-od-scl-lo-period-ns:
-> > +    description: |
-> > +      The low period ns of the SCL clock cycle in open drain mode. i3c-od-scl-lo-period-ns should be
-> > +      multiple of i3c-pp-scl-hi-period-ns.
-> > +
-> > +  enable-hj:
-> > +    type: boolean
-> > +    description: |
-> > +      Enable SLVSTART interrupt for receiving hot-join request.
-> 
-> You described the desired Linux feature or behavior, not the actual
-> hardware. The bindings are about the latter, so instead you need to
-> rephrase the property and its description to match actual hardware
-> capabilities/features/configuration etc.
-> 
+Hi Pierre,
 
-This has to be runtime configurable, see hotjoin in
-https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-i3c
+On 8/1/2024 1:40 AM, Pierre-Louis Bossart wrote:
+>
+>
+>> +static int q6usb_hw_params(struct snd_pcm_substream *substream,
+>> +			   struct snd_pcm_hw_params *params,
+>> +			   struct snd_soc_dai *dai)
+>> +{
+>> +	struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
+>> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+>> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+>> +	struct q6afe_port *q6usb_afe;
+>> +	struct snd_soc_usb_device *sdev;
+>> +	int ret;
+>> +
+>> +	/* No active chip index */
+>> +	if (list_empty(&data->devices))
+>> +		return -EINVAL;
+>> +
+>> +	mutex_lock(&data->mutex);
+>> +	sdev = list_last_entry(&data->devices, struct snd_soc_usb_device, list);
+>> +
+>> +	q6usb_afe = q6afe_port_get_from_id(cpu_dai->dev, USB_RX);
+>> +	if (IS_ERR(q6usb_afe))
+>> +		goto out;
+>> +
+>> +	/* Notify audio DSP about the devices being offloaded */
+>> +	ret = afe_port_send_usb_dev_param(q6usb_afe, sdev->card_idx,
+>> +						sdev->pcm_idx);
+>> +
+>> +out:
+>> +	mutex_unlock(&data->mutex);
+>> +
+>> +	return ret;
+>> +}
+> Humm, multiple questions here
+>
+> a) is this intentional that the params are not used in a hw_params routine?
+Think this was answered in patch#34.
+> b) if yes, could this be replaced by a .prepare callback
+>
+> c) along the same lines as b), is suspend-resume during playback
+> supported? Usually this is handled with a .prepare callback to restore
+> connections.
 
+I don't see us supporting that throughout any of the QC based DAI drivers, so this probably isn't implemented yet.  In terms of supporting system PM suspend for this USB offload path, we're going to explicitly stop the audio stream from the USB offload driver (qc_audio_offload) before we suspend the usb device. (refer to qc_usb_audio_offload_suspend())
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks
+
+Wesley Cheng
+
+>> +
+>> +static const struct snd_soc_dai_ops q6usb_ops = {
+>> +	.hw_params = q6usb_hw_params,
+>> +};
+>
 
