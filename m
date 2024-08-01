@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075C6944DCA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:17:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AA2944DD1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:18:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BE79B22F89
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:17:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C664B25D8F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA5E1A3BA6;
-	Thu,  1 Aug 2024 14:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11CE1A3BC6;
+	Thu,  1 Aug 2024 14:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nlecLEh6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uwvhNJSp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B8316EB7A;
-	Thu,  1 Aug 2024 14:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C660016EB7A;
+	Thu,  1 Aug 2024 14:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722521862; cv=none; b=RsJMS+oL2pDqB/GpAasA2+y3/KUmvuy2Z9Jz1hVcVRwjHl2nq4+d84KXU4uXdxLtdkp2hg2aqnhIL1JPNPX9e21oLxzqIKvTJ40I+OxylOyynI5QbR/NAEJNT0977ObgoCYVgf1tEhk8YcDQ52OZ6oFWxRNoOJ/fLtBzVdzOLUc=
+	t=1722521925; cv=none; b=Iq2UIiNzduB1ve2ax93RY/rf5AKLjLJfm3onLLkSfo1olIkEuS6BS4HQ9o04XE8PYbHIJ38Asfdr/CTxY9L0bc+asVe9g2yPq0qifq3sWp3RW6KFnQy0pLnymXNx/oXaL25E5Rc/+pZk2NX4aci1r3ANbtRXmBv7WFlXkCQUdbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722521862; c=relaxed/simple;
-	bh=lpPeXtSbqltUVioPGDfAyN59eLIBOGKeuSb8kFCREq8=;
+	s=arc-20240116; t=1722521925; c=relaxed/simple;
+	bh=puYGDeVzX+toRNj9EO9NrRRwpz9Fykp7F5J1qOScRbU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ebtoIIKzHFBwqWxhL5a1o5hSG+LPM4cPMPlsBdA8H3743OnN8i1oWHXD4hXUm9ee2LygjEGcN5X+P3wav2t9n67aaP2h4p/INM0sCuz/K3o6uHYRlq3QS2oaixH0XwA670arrOpN4vzYPT+DW9ywp4NQ5/nYHsZfWG/bFMG+fxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nlecLEh6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D59C4AF0A;
-	Thu,  1 Aug 2024 14:17:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F7yVIlQ09yggn26wAOnhary44my7bdcbWRiX0Jy3r/bW2oZD5Pp/NtXFCOz45RRcmWEdUpHdV+KYSo/yMDEedF9hvgd35s7jSMThssU4mW6eMbr8xI0m0Xh5SVsyUbKME3KXUJIzWyv1yokYd8Gz5XbWiebtWV3Zi/X9O4yMRcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uwvhNJSp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A1FEC32786;
+	Thu,  1 Aug 2024 14:18:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722521861;
-	bh=lpPeXtSbqltUVioPGDfAyN59eLIBOGKeuSb8kFCREq8=;
+	s=k20201202; t=1722521925;
+	bh=puYGDeVzX+toRNj9EO9NrRRwpz9Fykp7F5J1qOScRbU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nlecLEh6xOfPCoH24WEwH0w19PZxMiV50gnMlInfkSI74LSp6+RelAd9gSM6PxAnx
-	 SZJ+oQfWBWfxoCOmwuQDHmxbRydYA6pQXtdkGsQ5LxWunLgCw+wG5trSUnuIBn7tf2
-	 yaHLwWlOKPQWMNYsGtKhRtkDkfnDkfpvNWrrhl56AAjHarWHFdXHR9iDFnlBqtfYwJ
-	 eZWwieH3r72yCvaK8OSVRyGhT+He8haiCZ3b5ZluOKPYKOBiYNd++/q1dZo7iq0eHM
-	 vz62bwSzEbXdhboF2qj7RZyyaXppw30A4hsvCsbn3NCqdvwVnMyKwhy+UAqLHaHnlg
-	 Sl7a/A9KWBXBA==
-Message-ID: <2c9099b1-f742-4092-90d0-24aba51fc198@kernel.org>
-Date: Thu, 1 Aug 2024 16:17:30 +0200
+	b=uwvhNJSpUBgHZH/tR/pDDK77ENIKcz+f7V7Fux+zulGmeaAF21NZv3g33w0AVqGAd
+	 lzXM9qGOovpsoOI9KGBVDpAnau0gYH9m0pUrpfTpVbDLdPoE8/jO4mODAz+r83tog9
+	 RllGhsRlPN6oNhs2LCd3ccrZ7+zvL2Rw8Ez176A1riX7Gui0T+Z4NWxBCg0K7tQfnQ
+	 1JNhYk+wiAEitEHRNKTGSYHfQMY8vOUtxUhaTzxzlXYeAEceUAJMd2mLxyKQlTFHtJ
+	 m1yt9pxT6CRH5D9xVM2nfshupkm+3SWFvpxMpwv5qxC+nHCvruJijmBVwRDBjAHP33
+	 fswyp2T0Caadg==
+Message-ID: <bb6e21b6-d7b0-43d7-9dc7-7a78a11dfca1@kernel.org>
+Date: Thu, 1 Aug 2024 16:18:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/bridge: synopsys: Add DW HDMI QP TX Controller
- driver
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Add schema for Synopsys
+ DW HDMI QP TX IP
 To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
@@ -66,13 +66,13 @@ Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
  Andy Yan <andy.yan@rock-chips.com>, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
+ Luis de Arquer <ldearquer@gmail.com>
 References: <20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com>
- <20240801-dw-hdmi-qp-tx-v1-2-148f542de5fd@collabora.com>
- <19af747f-0911-4896-afba-b63c585554d4@kernel.org>
- <274a023a-de27-49e7-aa03-7fd60ddfcb87@collabora.com>
-Content-Language: en-US
+ <20240801-dw-hdmi-qp-tx-v1-1-148f542de5fd@collabora.com>
+ <ba957155-7a0d-4c88-8326-a1d4d20e4656@kernel.org>
+ <e3ce055d-13c9-4e25-a039-dd4a58c8dd7a@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -116,50 +116,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <274a023a-de27-49e7-aa03-7fd60ddfcb87@collabora.com>
+In-Reply-To: <e3ce055d-13c9-4e25-a039-dd4a58c8dd7a@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 11:43, Cristian Ciocaltea wrote:
-> On 8/1/24 11:50 AM, Krzysztof Kozlowski wrote:
->> On 01/08/2024 04:05, Cristian Ciocaltea wrote:
->>> The Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP) TX Controller supports
->>> the following features, among others:
+On 01/08/2024 11:29, Cristian Ciocaltea wrote:
+> On 8/1/24 11:38 AM, Krzysztof Kozlowski wrote:> On 01/08/2024 04:05, Cristian Ciocaltea wrote:
+>>> Add dt-binding schema containing the common properties for the Synopsys
+>>> DesignWare HDMI QP TX controller.
+>>>
+>>> Note this is not a full dt-binding specification, but is meant to be
+>>> referenced by platform-specific bindings for this IP core.
 >>
->> ...
->>
->>> +
->>> +void dw_hdmi_qp_unbind(struct dw_hdmi_qp *hdmi)
->>> +{
->>> +}
->>> +EXPORT_SYMBOL_GPL(dw_hdmi_qp_unbind);
->>
->> This looks like quite useless export. Drop.
->>
->>
->>> +
->>> +void dw_hdmi_qp_resume(struct device *dev, struct dw_hdmi_qp *hdmi)
->>> +{
->>> +	dw_hdmi_qp_init_hw(hdmi);
->>> +}
->>> +EXPORT_SYMBOL_GPL(dw_hdmi_qp_resume);
->>> +
->>> +MODULE_AUTHOR("Algea Cao <algea.cao@rock-chips.com>");
->>> +MODULE_AUTHOR("Cristian Ciocaltea <cristian.ciocaltea@collabora.com>");
->>> +MODULE_DESCRIPTION("DW HDMI QP transmitter driver");
->>> +MODULE_LICENSE("GPL");
->>> +MODULE_ALIAS("platform:dw-hdmi-qp");
->>
->> That's not a platform driver. That does not look like driver at all,
->> just some helper code without any user
+>> Please provide an user for this binding. Otherwise it is a no-op.
 > 
-> This is actually used to provide RK3588 HDMI output support:
-> 
-> https://lore.kernel.org/lkml/20240801-b4-rk3588-bridge-upstream-v2-3-9fa657a4e15b@collabora.com/
+> The first user of this is RK3588 HDMI TX Controller [1].
 
-That is supposed to be in one patchset, so we can see how you use the
-introduced functions.
+Patchsets do not work like this. Splitting things causes that your other
+patch simply cannot even be tested because you introduced dependency.
 
+Combine patches so bindings referencing common properties can properly
+be tested by automation.
 
 Best regards,
 Krzysztof
