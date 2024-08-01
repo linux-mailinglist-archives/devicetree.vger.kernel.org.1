@@ -1,221 +1,139 @@
-Return-Path: <devicetree+bounces-90290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E955944CD4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:14:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D569944CDD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2517428868F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:14:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 600F91C2693B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A35A1A2C39;
-	Thu,  1 Aug 2024 13:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F03E1A38E9;
+	Thu,  1 Aug 2024 13:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pl6vSKgY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R2jub7gC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD296198A03
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 13:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03BCC183CC5;
+	Thu,  1 Aug 2024 13:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722517642; cv=none; b=K/s0lpgs5C1sFtxKdsDW6wunIC93n9epVAYdfzaeE/9FULHsjlOhoqPcK+sS4rk7csMIU/qk/8pgmJtcSpQYaTtH4RgfaLY6dXqH1D7GozfrW1gztUSQAo9J0yPplRRavoYePx4ntSeAYmef5K/fqIb/bSxafSA+BPr1jjMFbZA=
+	t=1722517850; cv=none; b=eWwWfrtrlPJhea0MCU192SlcZb18uX4X3oovnHSK7VqdUlsNt3LjFXSWfu1pbp4pOPTpofbI1id1p25rSQ0d2P7DSNa5H9R1T+ZHmw1O44Ak1rJ03d4v2T5r1ClSrHyPoINE4+z1i8CBc8oAUcKx5nuDUBlE8R90tZHX8x+tYGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722517642; c=relaxed/simple;
-	bh=nQ5XSld9PSFpLY0t3S0c0MLprEgPzNDHYo/Sbpd0vCU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=s10cj6VbNQ3zYJ4iMd9Yy5S0Qk2JOuGvA/7R1eiromQAyP0Kai9KjZNOOzDaFk6mQxmJaOUE7GCrE8T4ApBwAPpdH9HP+rdtPYs9CYrZHIP4XBPFCQhG9lwt3udQG2FbYoSpC1eDFJVI6fldT81x0gFPP14JGoEV9DoT6lY9RQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pl6vSKgY; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52ed9b802ceso8495453e87.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 06:07:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722517638; x=1723122438; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bPCgM15F59t85GYnL4EkkhrEXQ+Td7nXhlbvKlNNkps=;
-        b=pl6vSKgYmVv+4jbiPQ4vAJMgol/1hc3OtFOerm49Y4cEyxsxcQsCszxFu4I/78Vbwx
-         ZHW3EYA1+UmZe/jDCGYZHQT87p7Gx+o2TsnbmVi0CaaDN8aAxiKibdWAjxXm5vtYCEaM
-         B9XKkTu4BspLznqh+ft5m/U35AmTNDkALA+I5utqNv+Axb66V0F6yZMTi1avNnM7msv0
-         ASubv87vkLXyVXqOUA6XuOEDCtpVpKwuy59dSOMwnchkKYxcj29HT1LEC01MiLUp7Q6j
-         T8ADPpvDUCvYGKJOQObN5gKJJ4QLBCmVsySUROSu++w+gTpkjSVBD4PtPisf889lJnbH
-         p3pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722517638; x=1723122438;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bPCgM15F59t85GYnL4EkkhrEXQ+Td7nXhlbvKlNNkps=;
-        b=iiVl+TqzT1iHI9Im5lTarOlxjCSYYG0Vv8o20L0+S6EKLhAjKWs4tta86ke9eRpQ8p
-         3vDDvw6iJ8QgrNqrbcGgkOS99+E8v9TtJ4KCld8yM/iFO6DUPYxbJrBmjXYw58ctVlnc
-         xJ5RF8xJ4+zIkA3ngdIIhYrJGdG+YN9rV1RhLt9btn4ZPUSI3IxLVscLlnshlpOwKJdk
-         geBeMSAcfybKQaBH9P0VBTDb2aBUNs5J5+CuyNlulDoJOxd1ENL666UDV5zvc7n1/tJY
-         e/Oss3zhQ0BEaud9C4es0urk0MUv2JocmxvtsPe46zHV/OhogLnIEv+/JjZdq5Sd2SCp
-         RPMg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0nTcx2vL2bRFlnTROxKw05rfMXw6zJJpXViVUSv//zGAcmI9cQRkeprcUDRe1sThiPzcylOQe2KExiblUWpANZtYpJco+eim5iw==
-X-Gm-Message-State: AOJu0YyqJOlePDe8VUtLv+5Ocv89x7i70O4U2iNDZXmB2jcaebKieThm
-	/j7Bjs24tWqwIn+7cN4zrAaJYScOMXbHoqc8NsdD2dmU4d5TmENlenc7T/fCBqE4GFd4HjG+A/f
-	MKVU=
-X-Google-Smtp-Source: AGHT+IH7DEq9lYUEKuIFdu5goxVuft/BXSs/R2ZL6A0rDb4kmdbzlB6zA1tV8wbcKAPqUtxFx4aO/A==
-X-Received: by 2002:a05:6512:32ad:b0:52b:9c8a:734f with SMTP id 2adb3069b0e04-530b61f3346mr1386507e87.50.1722517637506;
-        Thu, 01 Aug 2024 06:07:17 -0700 (PDT)
-Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282b8adc7dsm57505355e9.14.2024.08.01.06.07.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 06:07:16 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Thu, 01 Aug 2024 14:07:03 +0100
-Subject: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Enable RGB sensor
+	s=arc-20240116; t=1722517850; c=relaxed/simple;
+	bh=7jgGoq3kHAetq8lHpHCYvhYxpy6UwVAIz5wE90KY7Ko=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uXw5Sp5/ccjDQXrZVKI5eScfi7N9jfDFAvNQLzUTZTQFNJlmIwJuZA8xwA5rky7z3WynHjxTCN23nX9sxHUTkMePDYxoAO54xO2oyhLbDztzsVAlnJ2IcfIoA56V4KgAnZsULLvfVAr2LzxvDMeA0uzFJmTIoMykYmlZaRWpUKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R2jub7gC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0C4C32786;
+	Thu,  1 Aug 2024 13:10:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722517849;
+	bh=7jgGoq3kHAetq8lHpHCYvhYxpy6UwVAIz5wE90KY7Ko=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R2jub7gCIeqcSxZuuYmIHuUyRyJROegf85SByA87QSvkcJ/g6Jh2fOiU/+rIBMKOJ
+	 7y3AtHbQr/wHgT/PmkRRHfIU382zoIu+QIfMUoqhOqHunnLn3jHBsihHmCMp+w6Aqk
+	 2Y3uDqWl36b3ZMJ2AKvZqRNL3LouRWpZPIVAvxfY/WDz7dabpqgPQopYucX1gYiV9S
+	 v5OQxnxDc8jqOq94jK80MEjU5FBwmNRp8H2JqfGzo4K5Oxj4HRigz2kYDOYd9gsJ5G
+	 to83GlKq2G8gceF2rYisjgzn1kgUzXAYl2+Q3S1DenSHC3tyJORpPOEddeMJYn3Ctf
+	 ASIJDarMOeiPw==
+Date: Thu, 1 Aug 2024 14:10:44 +0100
+From: Lee Jones <lee@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Frank Li <Frank.li@nxp.com>
+Subject: Re: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller
+ support
+Message-ID: <20240801131044.GF6756@google.com>
+References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+ <20240725161616.GJ501857@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240801-b4-linux-next-24-07-31-camss-sc8280xp-lenovo-rgb-v2-v1-1-30622c6a0c48@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAHaIq2YC/x2NQQqDMBAAvyJ77kLcJhj6ldKDiatdsFGyNgTEv
- zf0OHOYOUE5Cys8uhMyF1HZUoP+1kF8j2lhlKkxkCFrhnuPweIq6VsxcT2QLJoBm47jRxU1evK
- m7rhy2sqGeQlYCB25QM5Mc/AWWnnPPEv9X5+v6/oBK3/UCIUAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240725161616.GJ501857@google.com>
 
-Enable the main RGB sensor on the Lenovo x13s a five megapixel 2 lane DPHY
-MIPI sensor connected to cisphy0.
+On Thu, 25 Jul 2024, Lee Jones wrote:
 
-With the pm8008 patches recently applied to the x13s dtsi we can now also
-enable the RGB sensor. Once done we have all upstream support necessary for
-the RGB sensor on x13s.
+> On Mon, 22 Jul 2024, Laurent Pinchart wrote:
+> 
+> > Hello,
+> > 
+> > This patch series introduces support for the Analog Devices ADP5585, a
+> > GPIO expander, PWM and keyboard controller. It models the chip as an MFD
+> > device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
+> > for the GPIO (3/4) and PWM (4/4) functions.
+> > 
+> > Support for the keypad controller is left out, as I have no means to
+> > test it at the moment. The chip also includes a tiny reset controller,
+> > as well as a 3-bit input programmable logic block, which I haven't tried
+> > to support (and also have no means to test).
+> > 
+> > The driver is based on an initial version from the NXP BSP kernel, then
+> > extensively and nearly completely rewritten, with added DT bindings. I
+> > have nonetheless retained original authorship. Clark, Haibo, if you
+> > would prefer not being credited and/or listed as authors, please let me
+> > know.
+> > 
+> > Compared to v6, this version addresses small review comments. I believe
+> > it is ready to go, as the PWM and GPIO drivers have been acked by the
+> > respective subsystem maintainers, and I have addressed Lee's comments on
+> > the MFD side. Lee, if there's no more issue, could you apply this to
+> > your tree for v6.12 ?
+> > 
+> > Clark Wang (1):
+> >   pwm: adp5585: Add Analog Devices ADP5585 support
+> > 
+> > Haibo Chen (2):
+> >   mfd: adp5585: Add Analog Devices ADP5585 core support
+> >   gpio: adp5585: Add Analog Devices ADP5585 support
+> > 
+> > Laurent Pinchart (1):
+> >   dt-bindings: mfd: Add Analog Devices ADP5585
+> > 
+> >  .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
+> >  .../devicetree/bindings/trivial-devices.yaml  |   4 -
+> >  MAINTAINERS                                   |  11 +
+> >  drivers/gpio/Kconfig                          |   7 +
+> >  drivers/gpio/Makefile                         |   1 +
+> >  drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
+> >  drivers/mfd/Kconfig                           |  12 +
+> >  drivers/mfd/Makefile                          |   1 +
+> >  drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
+> >  drivers/pwm/Kconfig                           |   7 +
+> >  drivers/pwm/Makefile                          |   1 +
+> >  drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
+> >  include/linux/mfd/adp5585.h                   | 126 ++++++++++
+> >  13 files changed, 876 insertions(+), 4 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+> >  create mode 100644 drivers/gpio/gpio-adp5585.c
+> >  create mode 100644 drivers/mfd/adp5585.c
+> >  create mode 100644 drivers/pwm/pwm-adp5585.c
+> >  create mode 100644 include/linux/mfd/adp5585.h
+> 
+> Note to self: This looks good to go.  Merge after -rc1 is released.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
-The Lenovo x13s has a five megapixel ov5675 sensor as well as a one
-megpixel ov9734 B+W NOIR sensor for low-light face detection login.
+Submitted for build testing.
 
-This patch enables the RGB sensor.
+Note to self: ib-mfd-gpio-pwm-6.12
 
-A gpio exists in the upstream dts to indicate camera activity which
-currently we don't tie to CAMSS activity yet.
-
-Running
-
-- A Linux distro which ships libcamera > 0.3.0
-- Firefox nightly
-- Setting Firefox about:config:media.webrtc.capture.allow-pipewire = true
-
-It should then be possible to use the on-board MIPI camera for Zoom,
-Hangouts etc.
----
- .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index a7c5a3f5926c7..463d37fcd2ecc 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -592,6 +592,63 @@ vreg_l10d: ldo10 {
- 	};
- };
- 
-+&camcc {
-+	status = "okay";
-+};
-+
-+&camss {
-+	vdda-phy-supply = <&vreg_l6d>;
-+	vdda-pll-supply = <&vreg_l4d>;
-+
-+	status = "okay";
-+
-+	ports {
-+		/* The port index denotes CSIPHY id i.e. csiphy0 */
-+		port@0 {
-+			csiphy0_lanes01_ep: endpoint@0 {
-+				reg = <0>;
-+				clock-lanes = <7>;
-+				data-lanes = <0 1>;
-+				remote-endpoint = <&ov5675_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&cci2 {
-+	status = "okay";
-+};
-+
-+&cci2_i2c1 {
-+	camera@10 {
-+		compatible = "ovti,ov5675";
-+		reg = <0x10>;
-+
-+		reset-gpios = <&tlmm 15 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cam_rgb_default>;
-+
-+		clocks = <&camcc CAMCC_MCLK3_CLK>;
-+		assigned-clock-rates = <19200000>;
-+
-+		orientation = <0>;	/* Front facing */
-+
-+		avdd-supply = <&vreg_l6q>;
-+		dvdd-supply = <&vreg_l2q>;
-+		dovdd-supply = <&vreg_l7q>;
-+
-+		port {
-+			ov5675_ep: endpoint {
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <450000000>;
-+				remote-endpoint = <&csiphy0_lanes01_ep>;
-+			};
-+		};
-+
-+	};
-+};
-+
- &dispcc0 {
- 	status = "okay";
- };
-@@ -1436,6 +1493,22 @@ cam_indicator_en: cam-indicator-en-state {
- 		bias-disable;
- 	};
- 
-+	cam_rgb_default: cam-rgb-default-state {
-+		mclk-pins {
-+			pins = "gpio17";
-+			function = "cam_mclk";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		sc-rgb-xshut-n-pins {
-+			pins = "gpio15";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio25";
- 		function = "gpio";
-
----
-base-commit: cd19ac2f903276b820f5d0d89de0c896c27036ed
-change-id: 20240731-b4-linux-next-24-07-31-camss-sc8280xp-lenovo-rgb-v2-525b250dfb84
-
-Best regards,
 -- 
-Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
+Lee Jones [李琼斯]
 
