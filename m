@@ -1,144 +1,171 @@
-Return-Path: <devicetree+bounces-90272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957B79449F8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:02:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89141944A15
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:08:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C54A1F22FA3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:02:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD6B31C20CC8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3016E188019;
-	Thu,  1 Aug 2024 11:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D8BE18950B;
+	Thu,  1 Aug 2024 11:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xwmMacpC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yq8ZrD88"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E357C188013
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F4316DC03
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722510117; cv=none; b=aCUrjFOnz90wAF7OD5k3hr4g9PxYJgRwm8By4g9GbDa8slsHFW7hCffsuyGOtyuYCI/HnLpeB+vJ/IO3HwdB8rum8LTtRy9+5eILZ2kHDXV2ybK4dpoGrQ4w841VbdrFI/RbGJmh0mk2uEcaoFRvTuZbDvYy++VS+8Ej8CfwFWo=
+	t=1722510508; cv=none; b=T9rkwh0t+z0GBNHBmL0VNYw8xyiAXVYvKQN60LlVfkYKB+i2+MsSx6Rg4vwnNtD+ubMcm5ccwBXlzGEb9SDwlMQKnyYdgCIedAKSTMwNs2Aff2v/TAqqyK7zscMfrwUHnGumNyG4m85QlbMcK27p3YB4TuUfUFfw/dHGarp4Ikc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722510117; c=relaxed/simple;
-	bh=PDTx8zjwXbXzbNWfOuMH0iA/PcBbphotz7ExTZjHXjA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=To7U6dIjkhN5QG7fksesBjVDk36ZGAbSJvbKf3XoO763Mnws3yGTXZ49wu0e4N0QF72NB8BnZqKu4DG88C431aaMCx2Y0jDMXRIKyRZRN0rVJ4USObqDpDlHbCyQ6myUcSuBLdsy7V4XkGtpBYrnzWKEu6Hm9+WVEMJjChmM83U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xwmMacpC; arc=none smtp.client-ip=209.85.219.178
+	s=arc-20240116; t=1722510508; c=relaxed/simple;
+	bh=IzTwNrilBUAlwP925WvEJZboHMLUQHtVa3f+NyNlaK0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b7Ze/1cVDZRSqD1q/SsTfTvhXA/acqV36IqZFQhJ8qts48Uj9SDAX8UItBeER+GPovzSmJX+YWsolw/j8ugpM2DJspg3zDclKnGVUAmbYgcSAedn3gEQmtT7OKDxypuyRmB838am2aCVTayFYEynqyghq+79Z27o+PE5aQruVHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yq8ZrD88; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e0885b4f1d5so5383410276.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:01:54 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5a15692b6f6so10437368a12.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:08:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722510114; x=1723114914; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xf663Oxqn+Hg/bp3CbFPSIMYObW/RVLrZF4k/w+9/Rc=;
-        b=xwmMacpCpRTKt9lDC4rBFs3WZ+qNGsRqxxnz+5c/cHCcZ7XvODk3qZVe/TGJ0MXmrM
-         b8LW4Yed4BuQVU/OQ+O22BAZ5AM5Qz4MkmR3qmUUqUqQ7H5ogYtz6MLfXCNq2h4b/LD5
-         /RDyEGQah+8Pt/TLw6DoWKLudCkQghjhae7yX7/8mzcWYXVDKcvNvx55emyEladT8ifp
-         G+TpEE7qT5UXzjUbQZLQyj5G56IVtc8pru5vcdnco5rsbz8qkR3J4a0RanocBc+l4y6a
-         toh4YymmyYkuWZi+kr9EX3fH/DOkE9Z+Re6KPbgavd3gHH7j64I09xZlU1S0I5WEakYT
-         g/6A==
+        d=linaro.org; s=google; t=1722510502; x=1723115302; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FExuf/EqIwu44cXtirgV7vgVSEt4vB1L1sgTb2On32Q=;
+        b=Yq8ZrD887ONOyl4wEtu2lGibkCoVD+lyETrjB1OxHCJXnoMhjFIMb0HD2KrNgiEZS1
+         Z5ySNdjFKrCqbphmgawAjuHTcWE4AqQkqamRnCU15OHUEAOXo4ny5vYiw50A8bv09eiW
+         GG/v6hC7210/9TOKlJ8apE3Z6RqyRxEtcDY3oVm+8/1VoQUxg+qeoROqIOruPfsqDqsU
+         6LM44aVieRPCx6f1U82GH7TL7dX1/5dTZbPl7UZcGuLI+JwL742UlH8McGIIayOrpXOy
+         DTPm0twDcyx8PabSraq9SQI1j2AeKcTmEfJs9CB9bcQXrgFBA2U4KCAN/qZD9+HGn4vl
+         djXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722510114; x=1723114914;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xf663Oxqn+Hg/bp3CbFPSIMYObW/RVLrZF4k/w+9/Rc=;
-        b=cWLY0iJXtOUOIjalfhFch8Uy5401Voc9Ev06i6S6LPYmadHMWKC6KU4ybk1G88rh3e
-         yFdiqpOLjAOSubjEEjJ19j8QQaENvf2b7IfaYxtpvwOGjQfv4qN9Ma+/V7b2fEhYHWbl
-         6nX1TOpda+Fk5JRSGAM8KwdItoFr6J4rtM1BPtjaeaOXPGSnoj4NfpqSspzK/I9//F45
-         kNBVnwqyjCxq77gwJDoyIoLhlUF20K1iO8jrvNN8A+DviNY8gtZ7g1tk2flcrhcArB1O
-         Hyv+eEcAf0ZQyDIOeNen2euGkxLotAv35ZKMcV4Nd7tplbLoL6INzgmwAK6oRm6u0L1l
-         J8IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6ylLBh1GI4KrNiAUa+I0ppgl1cLZ/dnc7cwv+sxuj+d/PcbLoZfcP2e0hEV/lNGnpm4KtAHtwBLNgJYbkFyEm2E8flX7VpIAkYA==
-X-Gm-Message-State: AOJu0YxCQ+3KOAr29p0Z2IPJhcr+UWaFK3cu/w6joz/38CtDFv2GeM10
-	m3OC6xFu/vjpgzvmT673c2ftYBRIlj0HJGg3OJPMiKR8DaGdT450rXIXdJbtvmUAN1ULZJ9F2Bx
-	bUn5uymfaPvuq8nL60WKeH5cHccmrVFqm7XE6zA==
-X-Google-Smtp-Source: AGHT+IGz8BY1lj9zv3tlXj5dYR89gFHb8pzgw3f8o7RUzA9kEaL9W7hkxl5EaciVMR7U8IJTC1gV5bcO0wGy86mIQic=
-X-Received: by 2002:a05:6902:110d:b0:e0b:bc96:550 with SMTP id
- 3f1490d57ef6-e0bcd25c795mr2527077276.23.1722510113989; Thu, 01 Aug 2024
- 04:01:53 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722510502; x=1723115302;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FExuf/EqIwu44cXtirgV7vgVSEt4vB1L1sgTb2On32Q=;
+        b=Z6GA+KFrYepQ9z3/vPx032GtkAonO3l3ZKWLvZzBLjo7m1eK+bkly5mcONSry8VtMF
+         LAGJgWIOifgL1hvoTGXcFKk1pU5X9gyk658huaac9oPohZxa3gz7FHehmKJHl47iAoW1
+         IRSIu2znWO8ddBl/ulf1pqCy/ESY6efOauo+JE7ruGto8fhImcgrnBwWwPUysBzc9cNX
+         YTFhYFpP7POBQHaQpNwAgZEZ8nshNTiu2SL7PHxdr6lMuLppydKbg7ZTAp2ZGaJyIMZZ
+         fU1q8uj44f1WCeMcRmcRKZilzVUEOoYVlJs0xtDiBO38DSPLGjAMMzy7CRO0Px0nUUjD
+         AjBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWqYCCYO9Lq8X/Yyq8B5+Xzpat91KPAqGpC4c9TsptHRr3NP6hlfk4TPF9SVn85oUW/EU6Pgb57+i91GVKXA5ITkVyHb8oqPgSW5A==
+X-Gm-Message-State: AOJu0YxoYcpGdYqM0LQRx9Dju0pJyil6dhvETYxN8mpICoUukmdYGq46
+	bGn8E0grsZxY6nJjgMUHHwgitDwmB03CVPuI1JzrqYjIPtU6wGaYAENtqujucJg=
+X-Google-Smtp-Source: AGHT+IGqr7N4CpNmN1ermVEFWMT0947mfSXTC3VHJzla+OoRW5oknSUl8o0Y7+o27NpeeOS8sdiOuw==
+X-Received: by 2002:a17:907:25c3:b0:a77:e48d:bc8 with SMTP id a640c23a62f3a-a7daf4c8093mr173415166b.21.1722510502384;
+        Thu, 01 Aug 2024 04:08:22 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff1f:b280:31d2:aeb1:18cd:e482])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad90264sm894932366b.148.2024.08.01.04.08.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 04:08:22 -0700 (PDT)
+Date: Thu, 1 Aug 2024 13:08:20 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Stephan Gerhold <stephan@gerhold.net>, alsa-devel@alsa-project.org,
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] ASoC: qcom: apq8016_sbc: Add support for msm8976
+ SoC
+Message-ID: <ZqtspO9hO0yFus1u@linaro.org>
+References: <20240731-msm8953-msm8976-asoc-v3-0-163f23c3a28d@gmail.com>
+ <20240731-msm8953-msm8976-asoc-v3-7-163f23c3a28d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 1 Aug 2024 13:01:18 +0200
-Message-ID: <CAPDyKFpP7VkXNJZ_uYpnO8=bH9k0P0qq-JVBfYRC3QmsM=ia1g@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] Add SD/MMC support for Renesas RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240731-msm8953-msm8976-asoc-v3-7-163f23c3a28d@gmail.com>
 
-On Wed, 24 Jul 2024 at 20:22, Prabhakar <prabhakar.csengg@gmail.com> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> This patch series aims to add SD/MMC support for Renesas RZ/V2H(P) SoC.
->
-> v4->v5
-> - Since the SDxIOVS and SDxPWEN pins can always be used as GPIO pins on
->   the RZ/V2H(P) SoC dropped adding regulator support.
->
-> v3->v4
-> - Dropped 'renesas,sdhi-use-internal-regulator' property
-> - Defined vqmmc-regulator in top level
-> - For special handling of internal regulator now using of_device_is_available()
-> - Fixed comments from Claudiu
-> - Rebased patch on top of https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240626085015.32171-2-wsa+renesas@sang-engineering.com/
->
-> v2->v3
-> - Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
-> - Added regulator-compatible property for vqmmc-regulator
-> - Added 'renesas,sdhi-use-internal-regulator' DT property
-> - Included RB tags for patch 2/3
-> - Moved regulator info to renesas_sdhi_of_data instead of quirks
-> - Added support to configure the init state of regulator
-> - Added function pointers to configure regulator
-> - Added REGULATOR_CHANGE_VOLTAGE mask
->
-> v1->v2
-> - Dropped regulator core API changes
-> - Updated DT binding
-> - Now controlling PWEN bit via regulator api
->
-> v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (3):
->   dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
->   mmc: tmio: Use MMC core APIs to control the vqmmc regulator
->   mmc: renesas_sdhi: Add RZ/V2H(P) compatible string
->
->  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 2 ++
->  drivers/mmc/host/renesas_sdhi_internal_dmac.c           | 1 +
->  drivers/mmc/host/tmio_mmc_core.c                        | 7 +++----
->  3 files changed, 6 insertions(+), 4 deletions(-)
->
+On Wed, Jul 31, 2024 at 05:25:31PM +0200, Adam Skladowski wrote:
+> Introduce support for audio card on MSM8976 platform.
+> While MSM8976 falls into v1 category with MSM8916, digitial codec clock
+> is not available in GCC so we have to set it in machine driver.
+> For that reason for V1 clocks new boolean is added to check
+> if we need to enable codec clock.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+>  sound/soc/qcom/apq8016_sbc.c | 28 ++++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/sound/soc/qcom/apq8016_sbc.c b/sound/soc/qcom/apq8016_sbc.c
+> index 3ed35beb671a..8219d4d55625 100644
+> --- a/sound/soc/qcom/apq8016_sbc.c
+> +++ b/sound/soc/qcom/apq8016_sbc.c
+> @@ -35,6 +35,7 @@ struct apq8016_sbc_data {
+>  	struct snd_soc_jack jack;
+>  	bool jack_setup;
+>  	enum afe_clk_api q6afe_clk_ver;
+> +	bool dig_cdc_mclk_en;
+>  	int mi2s_clk_count[MI2S_COUNT];
+>  };
+>  
+> @@ -242,6 +243,16 @@ static int msm8916_qdsp6_startup(struct snd_pcm_substream *substream)
+>  
+>  	if (++data->mi2s_clk_count[mi2s] > 1)
+>  		return 0;
+> +	/*
+> +	 * On newer legacy SoC (MSM8976) lpass codec clocks are not available in gcc region
+> +	 * so we have to request clock from machine driver using V1 API)
+> +	 */
+> +	if (data->q6afe_clk_ver == Q6AFE_CLK_V1 &&
+> +	    data->dig_cdc_mclk_en) {
+> +		ret = snd_soc_dai_set_sysclk(cpu_dai,  LPAIF_DIG_CLK, DEFAULT_MCLK_RATE, 0);
+> +		if (ret)
+> +			dev_err(card->dev, "Failed to enable LPAIF dig clk: %d\n", ret);
+> +	}
+>  
+>  	ret = snd_soc_dai_set_sysclk(cpu_dai, qdsp6_get_clk_id(data, mi2s), MI2S_BCLK_RATE, 0);
+>  	if (ret)
+> @@ -267,6 +278,13 @@ static void msm8916_qdsp6_shutdown(struct snd_pcm_substream *substream)
+>  	ret = snd_soc_dai_set_sysclk(cpu_dai, qdsp6_get_clk_id(data, mi2s), 0, 0);
+>  	if (ret)
+>  		dev_err(card->dev, "Failed to disable LPAIF bit clk: %d\n", ret);
+> +
+> +	if (data->q6afe_clk_ver == Q6AFE_CLK_V1 &&
+> +	    data->dig_cdc_mclk_en) {
+> +		ret = snd_soc_dai_set_sysclk(cpu_dai,  LPAIF_DIG_CLK, 0, 0);
+> +		if (ret)
+> +			dev_err(card->dev, "Failed to disable LPAIF dig clk: %d\n", ret);
+> +	}
+>  }
 
-Applied for next, thanks!
+I'm a bit confused why this works correctly. The digital codec clock
+(mclk) is needed whenever accessing registers of the digital codec
+("qcom,msm8916-wcd-digital-codec"). This is why the clock is directly
+assigned to it in the DT, so the codec driver can request it when
+needed. The startup/shutdown callbacks in this patch are only called
+during audio playback, while the codec registers might be accessed any
+time e.g. when changing the volume mixers. Perhaps you are lucky not to
+hit that, but if the clock is off at that point the device will crash or
+hang.
 
-Kind regards
-Uffe
+Instead of requesting the clock here, we should assign it to the digital
+codec in the DT. I think Otto's series also allowed that for the older
+v1 firmware [1]. Can we work towards finishing that up instead? That
+should be more reliable.
+
+Thanks,
+Stephan
+
+[1]: https://lore.kernel.org/linux-arm-msm/20231029165716.69878-1-otto.pflueger@abscue.de/
 
