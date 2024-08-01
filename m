@@ -1,176 +1,289 @@
-Return-Path: <devicetree+bounces-90354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC23E94502D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:10:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8343994503B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 860D828993A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:10:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FADA1F21296
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEB51B32A1;
-	Thu,  1 Aug 2024 16:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75DBE1B32A1;
+	Thu,  1 Aug 2024 16:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQSSnFX8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ut9hH4gH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A2413D2B7;
-	Thu,  1 Aug 2024 16:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C17E13B79F;
+	Thu,  1 Aug 2024 16:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722528614; cv=none; b=AS/nOEszG7coGcCRJqIJYS8Syc5U27gI2ij9VhbR650aG/ACgemeZ1NGwh2zbYsg4liDbmDXivsHJj8lf93oHc6+OayxyKM6mkpPTZPAe0dtqXc7ZQ2eQfcN9yRabwlL+l6DzZD0uYQqXdzsfAjTZSxvduFM7XAPVf+Kwa5eZg8=
+	t=1722528770; cv=none; b=eBwiHZ5dpKBiAvkF4EHaEptelilb2c/TkEQaxEAdXC5eRt71WWIhxFmO3XWQK9NWHMwYipXUagaxkF5lNQmXEuHhi201s0wHjx8bArahBXnNWA4oKZeyQvlPSaDabvJ/rjkJom0P0ybb6VJyiHqO55lV9qlklB2ijMV8NuDcVsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722528614; c=relaxed/simple;
-	bh=4pChm78yzUZYkBODR25icmBnQyjSdqC0ovXtf4wASkA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=egBJu+a99JdwcJ48VLzb2kpxbImmAJlZN14WWYlMcg3Cra6nQl+pcdLi5r+nY3LpK1e8tl6pS24vLJhMPYT3z/ppzahkexujR42Bn4TjKuZWACsJWf7mLt3KrIhN2fkHKOypX7Vl35BjylUbCeyCf4R28ZI76LHsuCJiINlzdUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQSSnFX8; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ef2cce8be8so89916691fa.1;
-        Thu, 01 Aug 2024 09:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722528610; x=1723133410; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bSqxnB1qj3oa3BzlEabSl4i4FnXyObTkkpAcKedzajw=;
-        b=JQSSnFX8tkEklThQD+jbJtEG0CRXEa8S7s6uY+FW90VSFfpsyEOLDSHpH+vUa8DoO9
-         cGoGLRSN3adQWXXRr/m9ng9xnXVxcAmO8YyeWl3Lqz6NCUb6zuHdX4MYkO/HjuqsUE34
-         svRpJAgf8Bju2qcLZaG8Cn7fN2Ip72k2i9QGyEF8domYijxhSNlcK7FxNbTnQOjj0k6B
-         CciS47HXsAvJSUuryyT7g53a1SqjhfMDOGbuWu4zwqHZp/zadz+HiDPfJTvwh2sO5Prv
-         GUQvCY3grniJpigYgI4Kdnzsi1c+93oCy/neouDWNyfoffxO5UHOC8kdvZMvd/azGClU
-         k86A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722528610; x=1723133410;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bSqxnB1qj3oa3BzlEabSl4i4FnXyObTkkpAcKedzajw=;
-        b=pWMuvID5o4PMeIVttZ2912dQLJ1hs6qCLGVnz5/8ENnhysvCD21dwOZzS7UGfVu9HC
-         WP1PaDlPXPdMe/1CiLZ06AZ0zX6cKXoZyQUWz5eFkqyLMQkKiaSoErCVl2lOJfeD9WRF
-         mjVmh1gvatiM1KOblaX5KvGOMxHvgbz39653of37Mau88VjLHtLDhjhMubmGAiuWJo8c
-         KhUHLnYPzCHwGOlk1gNkzNROmSstW4rvSWC1PZgh/G3B+nb2IAR2aZzniGdetOI0Xe5f
-         vDiIyclza6Y7ZfNBFEUXcxMkqF2IpY5eTSEZHsfifeugaL949/Lsu5ypK/ZMNgXU5R5k
-         x3KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5YFBYrG2LHRfzMkkhlagadnUB4L0dsLhW5/vs/d+7TY4XlFm3uKyZfKpCo5gAsceK7wMoiKtIyp+lk8scmK8HdY+WMiOcjerH1Is952Rcli5mQomst029gc5Tn2JMqG/mjzGPpw0iog==
-X-Gm-Message-State: AOJu0YzvMUuKy6/GX8BTMGo69I3rTJNFdoZlZ5QECZJG+2XZ+zTuy/uw
-	6Vz84r8LZqmtcnX2tSg8tlvQDW573LU15NWnsSrrqJVCk3skirFP+izDsDkr
-X-Google-Smtp-Source: AGHT+IEbew2cwVmwwv6Avkf3QcG+viNoQjIS6yMKDzwv225YfGUt3hJqGwAJeQOTpTAhbjViqmLdMQ==
-X-Received: by 2002:a2e:b048:0:b0:2ef:2b38:8796 with SMTP id 38308e7fff4ca-2f15ab03fcbmr6220731fa.32.1722528609821;
-        Thu, 01 Aug 2024 09:10:09 -0700 (PDT)
-Received: from alessandro-pc.station (net-37-119-36-202.cust.vodafonedsl.it. [37.119.36.202])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e7d615sm1802005e9.29.2024.08.01.09.10.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 09:10:09 -0700 (PDT)
-From: Alessandro Zanni <alessandro.zanni87@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org
-Cc: Alessandro Zanni <alessandro.zanni87@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: edac: Add Altera SOCFPGA SDRAM EDAC binding
-Date: Thu,  1 Aug 2024 18:10:02 +0200
-Message-ID: <20240801161005.120111-1-alessandro.zanni87@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1722528770; c=relaxed/simple;
+	bh=2Ie04mSHgFdn3r8Q7k1jYkG+oGrFLofZ+lysI1ZWPOQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rSu2CVXFzGFJ6Z2vZNHPIIkI6YmfCOxDJ3Zhi1Y+Bfwjp7quEHdXyi9AkPOUWvhpnpFYACb1OQYIkoQBKyIf5DO/2VqAcZeyCXqP9LKhNsjtrIqn6eRSFbM9V77CJqUGiIGoYhutahKim60lpdzLkj6RXaYli1HklGwzdAnw50Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ut9hH4gH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1146C4AF0C;
+	Thu,  1 Aug 2024 16:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722528769;
+	bh=2Ie04mSHgFdn3r8Q7k1jYkG+oGrFLofZ+lysI1ZWPOQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ut9hH4gHjPyq5vDMGhVWueCxfwZezELn8OEFXLVb/NUb5exmVb9gKIMoZpyMqS9Iu
+	 fIUvQNfCd5Q3ZO6dbEIGOPwzYxrhqDav4D050DZqJNCRYzcwW+1KCwd7xnZipjNeX6
+	 fza3Q6zvlmVsSbMmTNdX8++eweR2xNw2ALuzd34opRkD8oT6YaTumlXp0JPIKTJZOv
+	 xdaSmnus8Iqbyz61keFQniAdw/noOBCwQHERXA9bMDGXJWy9ORHz3CK5dme8kkqeMZ
+	 +/nGZwredybhVLxneYBGN24rwGIF4XasDEV/JLdp/Mm8Z3jOTDjAadJVTVls97nGx2
+	 EwD6lV1UoaiSw==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f035ae0fd1so82577871fa.2;
+        Thu, 01 Aug 2024 09:12:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUDTFE0koV4BF/H0dDafN2a8Qf2l+bPxmrmsDw0UNRIWTGnvPnKMHeNLYA3P5Su5SSWvRMAYzscnXkX@vger.kernel.org, AJvYcCX/EAGPNya+iwgvtNMGHzl1vUVmxCOsraDEFb/z4A3WgMzgO5P/CLwzw5aGJAONfQg16dcSxqEOIEJD8GZt@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUztT85Vzvi39qZ4mTQWBMQ+bNWbFGPnnbHL7Ok5AcQH4bKlE6
+	TuDw8g5zkblS6zA64w+Cjnrn9AOBcc5JJnC636tNxS3KJI6U61/1nyB1linSgpkZADD/h4vGUJa
+	1o+pwiyANwgVX9me0WO2UptNN1g==
+X-Google-Smtp-Source: AGHT+IGncQu6neIyJIzYRmFRoi4mAUStoczccHBnCM7t9chOdIKJaL1uoXvQ/+Sivukw+eV00ecVLPXJOtrZ7y8gFZA=
+X-Received: by 2002:a2e:8718:0:b0:2ef:21e5:1f01 with SMTP id
+ 38308e7fff4ca-2f15aa888ecmr5842651fa.20.1722528768109; Thu, 01 Aug 2024
+ 09:12:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240801051402.584652-1-paweldembicki@gmail.com>
+In-Reply-To: <20240801051402.584652-1-paweldembicki@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 1 Aug 2024 10:12:34 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+YMHAv312PQoSCRpgGedhg3OYJnDC9=YHWg6nJkQSaLQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+YMHAv312PQoSCRpgGedhg3OYJnDC9=YHWg6nJkQSaLQ@mail.gmail.com>
+Subject: Re: [PATCH] powerpc: dtc: update P2020RDB dts
+To: Pawel Dembicki <paweldembicki@gmail.com>
+Cc: linuxppc-dev@lists.ozlabs.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, 
+	Naveen N Rao <naveen@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert the device tree bindings for the Altera PCIe MSI controller
+On Wed, Jul 31, 2024 at 11:14=E2=80=AFPM Pawel Dembicki <paweldembicki@gmai=
+l.com> wrote:
+>
 
-Signed-off-by: Alessandro Zanni <alessandro.zanni87@gmail.com>
----
+On the subject, every patch is an 'update'. Please make it more
+specific. If you have a hard time coming up with something specific,
+that's a sign your patch is making too many separate changes.
 
-Notes:
-    v3: moved yaml file from arm/altera to the edac folder, removed items keys, added general node names
+> P2020RDB contains multiple peripherals, which isn't added to
+> devicetree:
+>   - Switch: Microchip VSC7385
+>   - PMIC: Renesas ZL2006
+>   - Temperature sensor: Analog Devices ADT7461
+>   - Two eeproms: 24C256 and 24C01
+>   - GPIO expander: NXP PCA9557
+>   - reset gpios of Ethernet PHYs
+>
+> This commit adds it.
+>
+> Some refreshments was done:
+>   - fixed link in ethernet-node
+>   - platform drivers nodes names
+>   - added 'gpio0' label in pq3-gpio-0.dtsi
+>
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+> ---
+>  arch/powerpc/boot/dts/fsl/p2020rdb.dts    | 85 +++++++++++++++++++++--
+>  arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi |  2 +-
+>  2 files changed, 81 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/powerpc/boot/dts/fsl/p2020rdb.dts b/arch/powerpc/boot/d=
+ts/fsl/p2020rdb.dts
+> index 3acd3890b397..d563d37b91f1 100644
+> --- a/arch/powerpc/boot/dts/fsl/p2020rdb.dts
+> +++ b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
+> @@ -6,6 +6,7 @@
+>   */
+>
+>  /include/ "p2020si-pre.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+>
+>  / {
+>         model =3D "fsl,P2020RDB";
+> @@ -33,7 +34,7 @@ lbc: localbus@ffe05000 {
+>                           0x1 0x0 0x0 0xffa00000 0x00040000
+>                           0x2 0x0 0x0 0xffb00000 0x00020000>;
+>
+> -               nor@0,0 {
+> +               nor@0 {
 
- .../arm/altera/socfpga-sdram-edac.txt         | 15 -------
- .../bindings/edac/altr,sdram-edac.yaml        | 44 +++++++++++++++++++
- 2 files changed, 44 insertions(+), 15 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
- create mode 100644 Documentation/devicetree/bindings/edac/altr,sdram-edac.yaml
+Make these clean-ups a separate patch.
 
-diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
-deleted file mode 100644
-index f5ad0ff69fae..000000000000
---- a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
--The EDAC accesses a range of registers in the SDRAM controller.
--
--Required properties:
--- compatible : should contain "altr,sdram-edac" or "altr,sdram-edac-a10"
--- altr,sdr-syscon : phandle of the sdr module
--- interrupts : Should contain the SDRAM ECC IRQ in the
--	appropriate format for the IRQ controller.
--
--Example:
--	sdramedac {
--		compatible = "altr,sdram-edac";
--		altr,sdr-syscon = <&sdr>;
--		interrupts = <0 39 4>;
--	};
-diff --git a/Documentation/devicetree/bindings/edac/altr,sdram-edac.yaml b/Documentation/devicetree/bindings/edac/altr,sdram-edac.yaml
-new file mode 100644
-index 000000000000..31bcee4274fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/edac/altr,sdram-edac.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/edac/altr,sdram-edac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
-+
-+maintainers:
-+  - Dinh Nguyen <dinguyen@kernel.org>
-+
-+description:
-+  The EDAC accesses a range of registers in the SDRAM controller.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - altr,sdram-edac
-+      - altr,sdram-edac-a10
-+
-+  altr,sdr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: 
-+      Phandle of the sdr module
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - altr,sdr-syscon
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    memory-controller {
-+      compatible = "altr,sdram-edac";
-+      altr,sdr-syscon = <&sdr>;
-+      interrupts = <0 39 4>;
-+    };
-+
-+...
--- 
-2.43.0
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+>                         compatible =3D "cfi-flash";
+> @@ -79,7 +80,7 @@ partition@f00000 {
+>                         };
+>                 };
+>
+> -               nand@1,0 {
+> +               nand@1 {
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+>                         compatible =3D "fsl,p2020-fcm-nand",
+> @@ -128,11 +129,49 @@ partition@1100000 {
+>                         };
+>                 };
+>
+> -               L2switch@2,0 {
+> +               ethernet-switch@2 {
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> -                       compatible =3D "vitesse-7385";
+> +                       compatible =3D "vitesse,vsc7385";
 
+There are 7 occurrences of this. Please fix them all. (And again,
+separate patch).
+
+>                         reg =3D <0x2 0x0 0x20000>;
+> +                       reset-gpios =3D <&gpio0 12 GPIO_ACTIVE_LOW>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       label =3D "lan1";
+> +                               };
+> +                               port@2 {
+> +                                       reg =3D <2>;
+> +                                       label =3D "lan2";
+> +                               };
+> +                               port@3 {
+> +                                       reg =3D <3>;
+> +                                       label =3D "lan3";
+> +                               };
+> +                               port@4 {
+> +                                       reg =3D <4>;
+> +                                       label =3D "lan4";
+> +                               };
+> +                               vsc: port@6 {
+> +                                       reg =3D <6>;
+> +                                       label =3D "cpu";
+> +                                       ethernet =3D <&enet0>;
+> +                                       phy-mode =3D "rgmii";
+> +                                       rx-internal-delay-ps =3D <1400>;
+> +                                       tx-internal-delay-ps =3D <2000>;
+> +
+> +                                       fixed-link {
+> +                                               speed =3D <1000>;
+> +                                               full-duplex;
+> +                                               pause;
+> +                                       };
+> +                               };
+> +                       };
+> +
+>                 };
+>
+>         };
+> @@ -141,12 +180,39 @@ soc: soc@ffe00000 {
+>                 ranges =3D <0x0 0x0 0xffe00000 0x100000>;
+>
+>                 i2c@3000 {
+> +                       temperature-sensor@4c {
+> +                               compatible =3D "adi,adt7461";
+> +                               reg =3D <0x4c>;
+> +                       };
+> +
+> +                       eeprom@50 {
+> +                               compatible =3D "atmel,24c256";
+> +                               reg =3D <0x50>;
+> +                       };
+> +
+>                         rtc@68 {
+>                                 compatible =3D "dallas,ds1339";
+>                                 reg =3D <0x68>;
+>                         };
+>                 };
+>
+> +               i2c@3100 {
+> +                       pmic@11 {
+> +                               compatible =3D "zl2006";
+
+Missing vendor prefix.
+
+> +                               reg =3D <0x11>;
+> +                       };
+> +
+> +                       gpio@18 {
+> +                               compatible =3D "nxp,pca9557";
+> +                               reg =3D <0x18>;
+> +                       };
+> +
+> +                       eeprom@52 {
+> +                               compatible =3D "atmel,24c01";
+> +                               reg =3D <0x52>;
+> +                       };
+> +               };
+> +
+>                 spi@7000 {
+>                         flash@0 {
+>                                 #address-cells =3D <1>;
+> @@ -200,11 +266,15 @@ mdio@24520 {
+>                         phy0: ethernet-phy@0 {
+>                                 interrupts =3D <3 1 0 0>;
+>                                 reg =3D <0x0>;
+> +                               reset-gpios =3D <&gpio0 14 GPIO_ACTIVE_LO=
+W>;
+>                         };
+> +
+>                         phy1: ethernet-phy@1 {
+>                                 interrupts =3D <3 1 0 0>;
+>                                 reg =3D <0x1>;
+> +                               reset-gpios =3D <&gpio0 6 GPIO_ACTIVE_LOW=
+>;
+>                         };
+> +
+>                         tbi-phy@2 {
+>                                 device_type =3D "tbi-phy";
+>                                 reg =3D <0x2>;
+> @@ -232,8 +302,13 @@ ptp_clock@24e00 {
+>                 };
+>
+>                 enet0: ethernet@24000 {
+> -                       fixed-link =3D <1 1 1000 0 0>;
+>                         phy-connection-type =3D "rgmii-id";
+> +
+> +                       fixed-link {
+> +                               speed =3D <1000>;
+> +                               full-duplex;
+> +                               pause;
+> +                       };
+>                 };
+>
+>                 enet1: ethernet@25000 {
+> diff --git a/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi b/arch/powerpc/boo=
+t/dts/fsl/pq3-gpio-0.dtsi
+> index a1b48546b02d..5181117ea6b5 100644
+> --- a/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
+> +++ b/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
+> @@ -32,7 +32,7 @@
+>   * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+>   */
+>
+> -gpio-controller@fc00 {
+> +gpio0: gpio-controller@fc00 {
+>         #gpio-cells =3D <2>;
+>         compatible =3D "fsl,pq3-gpio";
+>         reg =3D <0xfc00 0x100>;
+> --
+> 2.34.1
+>
 
