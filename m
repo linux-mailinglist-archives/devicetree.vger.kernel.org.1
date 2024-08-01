@@ -1,74 +1,52 @@
-Return-Path: <devicetree+bounces-90208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D424A94464D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:17:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2D2944651
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:17:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F0CB1C20DF1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:17:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 921151C210C1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058D1157488;
-	Thu,  1 Aug 2024 08:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E2C157488;
+	Thu,  1 Aug 2024 08:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OvIFEuGp"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="es24NWfR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7019D3E47B
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 08:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4980157493;
+	Thu,  1 Aug 2024 08:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722500219; cv=none; b=j9CTr/MhRVKhKDfPRsOtZccBtU5BG6B1Y6Ewx3th53TAYy7DAYV3tRpcVWI3JvFqaiIeHgEusuy1eY0a4hggFrbAak9zU3gUzEIaCuWMsj/HGlbsT52JxxNwrxevLYIErNCgzsMzTd0UtVuKtD2yQP1Lcm7JVkxTj4hLZvc7EYg=
+	t=1722500245; cv=none; b=AZdqarePU3up4Bw5ATdq7diQX4s8cqPikGjEQPhk+H1jkmviyIVDgeirq3pbqri1hsi5dWAVcCaQQ2aAQpFDFow92MHffNlSq0Fwe8ajFUWMUMUFOKq09Cm2BGB76+79+bHPqhMSBCT3yA5+kYXdcXgmtT4KpJUK8WCMdPsQAME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722500219; c=relaxed/simple;
-	bh=q5fun1stuBG+6UPuqpS76nEA11lt40c4cJptlg3SGjc=;
+	s=arc-20240116; t=1722500245; c=relaxed/simple;
+	bh=Z20sUPXblItMvwwJf8f0PrCd/E4FCSbEM2nHiZVvswY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L2sobKZfoc6ETuaqEmIWAV25J8QSjOJ848Bu9N2rWVI2rw0o3nupTSjRLFWQCXXHYtwBFPhDOM49/nW4MLdaHcx8M9fPmVFBIp7Z0VSKEqGvQXEfzw0uu6n91WMOtxPkdC+wBW5aNk98Av1A5n4qyMUnBkbPAn3sOLUsYrnybxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OvIFEuGp; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4266f3e0df8so42065655e9.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 01:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722500217; x=1723105017; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XP9tpFtaN6upuW6t7vjYg0wgdfL/oQQOrVIWRer9/9A=;
-        b=OvIFEuGplgnRFbJ71Y7Zv14yuDJHIDp2TaVBF9QaIvJqNhPv287Uzi009ebJWh7OSE
-         KSR8mEK5balCEEuXd9Y0iI7Ob7DOpE1NGOdYAFGVRrn2IIajPrb6V7+2HrmgLx8fuw/d
-         N4DlAN34bHFRHGGi5Z9rw9JC2tv0Cp8VSpsuKGFhGu52Z5MMeBY73MVdnOSy2Y2SFtUU
-         MREb0se2+bmDOHoCmH4Dq9VQcNJ0+QNivAtlNhjeNIa7YW/nbHeWpk8rnbQjjLJrvQow
-         N2NbBG20TyHHSMLWOeJHZBIKwpNi0LR6GqdAJ+/YZkldgFkII/ttZi5vQh99o+f6RcMq
-         vjJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722500217; x=1723105017;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XP9tpFtaN6upuW6t7vjYg0wgdfL/oQQOrVIWRer9/9A=;
-        b=kAUkUly8AXNChGtOu4+4aMaLYr+zQWCR+uJlpxFqkI0Dg3GWuDZh/04dlVeSoaw2dL
-         RM96rUCkqW6Jq4jmzBYxY0IXlp37U5OeKWUkqejAgEgNmUKDe2KSXpyav15uW2vIJfIe
-         68e3JCTg+KbMl6jiPcP+oOEVW/9RP/a+c5XyX0YmkljbeJBZPKWiib3CBTL+ANG2gt4o
-         I49AGCZAtUmCsOqcCMjHaf1fnXUZ5aQAONu7ZzoKdUfV1UdiXcgbPU0wqxSkATWIEeE6
-         YeOOeD6TCV5V6/y5JbokKQGqbIKoOhK0fRduRX22q6loiKv9qJA/txKxEQZKzE7rDOj1
-         8mZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVybdrH/ZXs/jVfmyc8Gvcrmkpdq6mf2PvUoUOwgJA6OFvsDnzxL4PkU8blQ9sAeMOAywB8FwTpzs4NNpVYJTP0kmqCE9OlBiORhQ==
-X-Gm-Message-State: AOJu0Yy0CIAv1TlaGdtZzcNPCyLGHr1/nBdawXP6sFJxjRwYSZJd3/xf
-	IXGrZUcEpXLyFnne3zHmoYWXV1VF1L2yiWCy2fRmGwoM2LtFK5um23vzZgXGbtA=
-X-Google-Smtp-Source: AGHT+IEZ6N3OkZhSfrB0OlObra87UiMAZT58iQxNd4nFWX93KOp+dwXPH4pd9kz7+mSHV+7alm6HBQ==
-X-Received: by 2002:a05:6000:1364:b0:367:9ce3:1667 with SMTP id ffacd0b85a97d-36baacc7d04mr1233681f8f.15.1722500216713;
-        Thu, 01 Aug 2024 01:16:56 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36b367d9b30sm18869773f8f.40.2024.08.01.01.16.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Aug 2024 01:16:56 -0700 (PDT)
-Message-ID: <fafda7d5-3853-428a-b0eb-9993fc2d4f56@linaro.org>
-Date: Thu, 1 Aug 2024 09:16:55 +0100
+	 In-Reply-To:Content-Type; b=BEDSa4cRlAPnEFcY8rS8cTOKjA0QEGFt2g4oj8D1dHQPNA9EDJy2Vmlq7/vLfQh4Z3BIvlnlygeXng01CWo2dRqfduhxED05FududlAOXGHSxZcb2i8Y6QDmB0qXstIV41uSgXBL7HjRU3oBngJNy5qeT9hRMZyb5f8wVp+U6F4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=es24NWfR; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CFBB7FF806;
+	Thu,  1 Aug 2024 08:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1722500240;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hCJih/CXWpDjaOxDp/PsThEXnkiMVnmo5tPOCzOaqSY=;
+	b=es24NWfRSi6ySnzlmCw0Ll9C/NaYLOHOV3+3vfBwZKskgf+5cpSsxcuh3lQX7os2rlUcgB
+	Yzc+djhXoiP2lPh2PNraFzPP+nV3OorzFOzpk1MmZPE1sn5TrBsotLzQCZlsHOmej1bgbR
+	S297KK73Q4v7Gzjfw+CHtqE+UZ376IyjIa11ipFT3iW1VNpoFUuYQS15LrBaQUA7cjsziL
+	SCHHmk1K7ZvJv+wuuU9xH2j7H9Wn5rzpjZPUGrdzsXJW1qrEVAbZ/wfZCwb/V435N+TLvB
+	MJhUwoFeag8EV+OOvmCIRj8y1vM2OgdDLB/xhtB9rQdXTDu49ZUyGFDMZE/eWg==
+Message-ID: <09f80df8-07be-47e4-b224-cb1e0a7910ce@arinc9.com>
+Date: Thu, 1 Aug 2024 11:17:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,31 +54,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] media: qcom: camss: csiphy: Add an init callback to
- CSI PHY devices
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-5-quic_depengs@quicinc.com>
- <6dfc2c79-fc6d-4eed-bf3f-94396130cb4f@linaro.org>
+Subject: Re: [PATCH v2 net-next 1/2] dt-bindings: net: dsa: mediatek,mt7530:
+ Add airoha,en7581-switch
+To: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Cc: daniel@makrotopia.org, dqfext@gmail.com, sean.wang@mediatek.com,
+ andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ lorenzo.bianconi83@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, upstream@airoha.com
+References: <cover.1722496682.git.lorenzo@kernel.org>
+ <f149c437e530da4f1848030ff9cec635d3f3c977.1722496682.git.lorenzo@kernel.org>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <6dfc2c79-fc6d-4eed-bf3f-94396130cb4f@linaro.org>
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <f149c437e530da4f1848030ff9cec635d3f3c977.1722496682.git.lorenzo@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
-On 01/08/2024 00:43, Vladimir Zapolskiy wrote:
->> +    ret = csiphy->res->hw_ops->init(csiphy);
+On 01/08/2024 10:35, Lorenzo Bianconi wrote:
+> Add documentation for the built-in switch which can be found in the
+> Airoha EN7581 SoC.
 > 
-> Here.
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-What name would make more sense to you ?
+Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
----
-bod
+Arınç
 
