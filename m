@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-90277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5039C944A9C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:49:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C916A944A9E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:51:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6309B234FC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:49:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80F25283241
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E082194152;
-	Thu,  1 Aug 2024 11:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35AD194152;
+	Thu,  1 Aug 2024 11:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UYcCNZpD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lFS7pW2O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2528C18B489
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B0618453A
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:51:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722512980; cv=none; b=h6ZDw11ND2V5XvyVGZsyFe/iFU0WXBG3piHOTprN2xIoEWIhLDERWh7N/vmgUeHtCayOgk8NBJVx7OHN2VHiWP39ErQmV7G7UWMZnzr02UT0FeXkrhqppDuf6G7rKDYZXK03m1uPvUnrh7OG9CyrwP3ZQ3XTNqkGrp2/RQkDtfA=
+	t=1722513071; cv=none; b=U2ha7R0d09Sbe6Vr2lgSGWBPGzRtCiPT3Wv8DOeK75seTvZMl3+MFcad2sY5fMTWcoL1MZWHPODbWvZfeEAwTj0cI9NHxY2V6E+BYAie/oYgSTCj7emiGaOK6C/Q8xp+LJ95OCzcS1PzoTpR8EcksHxsOJuHCBK8y/SvCMtl19w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722512980; c=relaxed/simple;
-	bh=voQL+RgQ/DCu+XY1zsYqJzegt9t4UFkI6SjdFRsKwG0=;
+	s=arc-20240116; t=1722513071; c=relaxed/simple;
+	bh=YeNBD14C3kwHi1DP0R7xBeAKHNR2XSujM9HljvW/uwM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a4LUBi2r8l24ZqmQiwGNlp8EVYooq1k9Tiqrd8RZNmHBU3cWlqsET/YRpQvN5Tjc9v/vvykWl9H/hmL7FfaYAaM2xR1PvJjDOQEdMe/DztpOMInyd7kPC+S4N5YkwGhj863BvQdbphyxXruujXg/iHGqG+nAyuk9LWLVqR+ISKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UYcCNZpD; arc=none smtp.client-ip=209.85.208.177
+	 Content-Type:Content-Disposition:In-Reply-To; b=AMBZt8S5188QvJYzn7/9TogiCa7OP31k6Ym0i60iXPQWJIKN2KcqPOoLHozug7ewlZI1uXxILREmrmVhIoUZxdGZ5L6J/ewvpuLYYLSROiVTlZRHwpNwWps7xQy3eG8fudMia1IQLX3HQ6GcsqtwhJsrQWSO73ktq5xAjL5hZ10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lFS7pW2O; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ef2c56d9dcso86445431fa.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:49:37 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52f04b4abdcso10476536e87.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:51:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722512976; x=1723117776; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722513068; x=1723117868; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1PUnjPeUDvBy5a/qGAVD2LWs0NJbDzW/+TnH0NDKJE=;
-        b=UYcCNZpDuB41sJalJ3JNo9JP3jysGGXDg4WHzoEx2mcojR+Bwl67qqW7vENnPBhBek
-         W8QCJRjHcGFtb0Yd3atwXJsEfVvnDsCk0fORkyvDyFOnPddeFYGL+PCtNjea6HGTQ5jQ
-         +eLZnl4LT+9+QlXlW4dvqvRT3tXIkvgXA+hDjc4ptsow6fzNJZI2FGq0ekkgcAcbQSPm
-         TfBYGCVdjADTeFq0Xrg7akThxSlMO7+hCySjT6zfl1JN1AYS2B/YHFcl7ixrRcFvxVkb
-         U0XlzQS24dF9j1cuSxA3yIygibTvu3Y/FOnzkDYze4GiNo3ad/4Jcr+BnV8OqDqeLpEN
-         OP7w==
+        bh=2uXxeexbnbDyJine/jy5b1tL6NFREtgJyBYIBURgb5k=;
+        b=lFS7pW2O23wsWo/IM8rXvEOiN0T1OShlMR6317rZXpxUcofKmvlokFzOBOSq7DgCpr
+         De/GOJyvtl8UYQKKVWt9S00cMNzipCK3kkhXnHySSluAb4W4xAeZsUYntPzzLbAgwlaL
+         ++nN3qa8wmAq319o3ykfSjGADHKmLF+7MvZ1YidwF6Esgo+/eiJGBsmc5UrN5FWjWX7z
+         eV0XX1sAgGb+CyLwL1SvxEW++IqUM0ws0zoaje57p78lOi2rEpjS96NXmZMg48ae0QXe
+         O+8pYB/GEqLegdo15H8DXuuyj+99x7r26cRBuBHE1Du4+/G73r/lPVYwEscjwW9Ud/9q
+         j5GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722512976; x=1723117776;
+        d=1e100.net; s=20230601; t=1722513068; x=1723117868;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=h1PUnjPeUDvBy5a/qGAVD2LWs0NJbDzW/+TnH0NDKJE=;
-        b=NWYs4szF8sPegVtW51K99OQbry16KZDAUulaW6jkwDqaSx7wsFQJe6C1XkVYsr3xD9
-         iB0nqh62Q3TS9QBbtFISPpSKMSTwd0nmTrX2UQWL3KICDX7Y3Kt5iOl1Gv8ThoxqFeGS
-         YVlkJRlqipJto8dtWL57B/mD2AoD1eS61gI1gkZivrFBdUiKv2MBZR5nP88AfiGg5oFb
-         E1oGhNYIRcogHoPoBEZUCMeRSD/FTDUXIVQj95YgZbMeBDuhcoKOhXkA1XCazKSaPeEU
-         T4qJLjkJ8AxJIseDR1L7D5QnYPAtPQkwTynQmnEmX4i/UylVPC3OUgVFU1t1kEay0n8q
-         zgHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7+TYe6e5mLeveuDhjC33/J2DiPvdQBqCKsBtuk6SHovR2N4Eca5KjYF10KzhfzBdq1b6YVmF0u1BPRY/UsBek/XjDGfxSpnb3mg==
-X-Gm-Message-State: AOJu0YySzq2Y9H0JTW3dmBDQGTOvQhtcrFXpH0bvtyXQsA1M9mwRE8fU
-	V7VtC9MRoOGgPOmoeSlVGw5URoJl6d+FYvDH7iluxRWZSpO+fvQSGtxLr72gNvE=
-X-Google-Smtp-Source: AGHT+IFF1i0H7BZEZYcDcfJ2MYDCmYQ+0hwVe6QdDANHb1J/F4Ii5xva8aot+Gve+rt+MROR8D0bRg==
-X-Received: by 2002:a2e:6e12:0:b0:2f0:1a8f:4cd2 with SMTP id 38308e7fff4ca-2f1532d3db9mr16940521fa.33.1722512976087;
-        Thu, 01 Aug 2024 04:49:36 -0700 (PDT)
+        bh=2uXxeexbnbDyJine/jy5b1tL6NFREtgJyBYIBURgb5k=;
+        b=AQ0Y907zp3VG4NhItAwN2PqMnMoT0zRnfdP+S/b21qqxMKHRdkMl8NWIf/N1lJhrpU
+         lREz52FNVRKxrNmQYMsPsvIZ4ObQRZ3WSFZegbULTxTe3x+wXIiKSv/IVrLkQyJO6KFm
+         cWlQgVeI4uH2KCAv53HfXDLDdS9Tb/NxJ5znccwSWKQOHMB/CWh3LUMXpxNsv68RU4PF
+         n1NZKdNs9ttIFOhMzymqkTvjT6X+c6q7ZnTD8fmcNP6d59bFZHrTUdLD1V5pWKh2wIj2
+         GXnxtNV4lT9Nl/Y1hsqNiHF+JH/cUYG8Rqyn2VVhqkc1VSEK017TavyoVhDMYPIRTyDG
+         zeWw==
+X-Forwarded-Encrypted: i=1; AJvYcCXz2Fm4K5I7Mle9M4+ywG+dUC5P1jOQg20NnCUFF0XLVtfw9WxM2QVxIOJXnJPM4nN4jX9IKx4bhQJQiqZqN6XlgYhV0vmVls3v0Q==
+X-Gm-Message-State: AOJu0Yy+22V6KFWD23txbav6SeyyyaInWRnhTxZvHeRVv09XxyAa4Wn3
+	t87pKsEcJjlg0AoO0+WNTnROqbgKZJ0NCEw0EcFVHvZND1ENjcF8Deq20nbzNO8=
+X-Google-Smtp-Source: AGHT+IGJGjlx9/PKhDj+PJ1AwCgR417PmZxBQW0jkbaFa4QxIlt3UdC8J0GtKy6GtFr21lnA33oGIQ==
+X-Received: by 2002:ac2:568b:0:b0:530:aa82:a50a with SMTP id 2adb3069b0e04-530b61ece1fmr1735537e87.45.1722513067914;
+        Thu, 01 Aug 2024 04:51:07 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f03d04e02dsm22968451fa.84.2024.08.01.04.49.35
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5bc4262sm2601897e87.58.2024.08.01.04.51.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 04:49:35 -0700 (PDT)
-Date: Thu, 1 Aug 2024 14:49:33 +0300
+        Thu, 01 Aug 2024 04:51:07 -0700 (PDT)
+Date: Thu, 1 Aug 2024 14:51:06 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Xu Yang <xu.yang_2@nxp.com>
 Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
@@ -74,10 +74,10 @@ Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
 	kernel@pengutronix.de, festevam@gmail.com, andersson@kernel.org, 
 	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org, jun.li@nxp.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: gpio-sbu-mux: Add an entry for
- PTN36043
-Message-ID: <3akk6hydu6iguqik3ek2pb67knihnjcepyxtbsnnasq74ikpsg@7txsek3mx5rp>
+Subject: Re: [PATCH v2 2/3] arm64: dts: imx8mp-evk: add typec node
+Message-ID: <lzbqvgpla2souin67crolhwyun4rxy5r6ax424xnd7ypuottjf@hyvhzywqu4u6>
 References: <20240801064907.3818939-1-xu.yang_2@nxp.com>
+ <20240801064907.3818939-2-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,45 +86,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240801064907.3818939-1-xu.yang_2@nxp.com>
+In-Reply-To: <20240801064907.3818939-2-xu.yang_2@nxp.com>
 
-On Thu, Aug 01, 2024 at 02:49:05PM GMT, Xu Yang wrote:
-> Add a compatible entry for the NXP PTN36043 GPIO-based mux hardware
-> used for connecting, disconnecting and switching orientation of
-> the SuperSpeed lines in USB Type-C applications.
+On Thu, Aug 01, 2024 at 02:49:06PM GMT, Xu Yang wrote:
+> The first port of USB with type-C connector, which has dual data
+> role and dual power role.
 > 
-> PTN36043 datasheet: https://www.nxp.com/docs/en/data-sheet/PTN36043A.pdf
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
 > ---
 > Changes in v2:
->  - add Acked-by tag
->  - s/SBU/SuperSpeed in commit message
+>  - modify endpoint label
+>  - fix usb phy tunning property dtbinding warning
 > ---
->  Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 104 +++++++++++++++++++
+>  1 file changed, 104 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-> index 8a5f837eff94..152849f744c1 100644
-> --- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-> +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-> @@ -20,6 +20,7 @@ properties:
->      items:
->        - enum:
->            - nxp,cbdtu02043
-> +          - nxp,ptn36043
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> index 938347704136..ef9b821a0ae2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> @@ -6,6 +6,7 @@
+>  /dts-v1/;
+>  
+>  #include <dt-bindings/phy/phy-imx8-pcie.h>
+> +#include <dt-bindings/usb/pd.h>
+>  #include "imx8mp.dtsi"
+>  
+>  / {
+> @@ -26,6 +27,20 @@ backlight_lvds: backlight-lvds {
+>  		status = "disabled";
+>  	};
+>  
+> +	cbdtu02043: typec-mux {
+> +		compatible = "nxp,cbdtu02043", "gpio-sbu-mux";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_typec_mux>;
+> +		select-gpios =<&gpio4 20 GPIO_ACTIVE_HIGH>;
+> +		orientation-switch;
+> +
+> +		port {
+> +			usb3_data_ss: endpoint {
+> +				remote-endpoint = <&typec_con_ss>;
 
-PTN36043 isn't an SBU mux, so it is incorrect to declare that it is
-compatible with the "gpio-sbu-mux".
+Where do SS lines go after the cbdtu02043?
+Also could you please point out the datasheet for the chip.
 
->            - onnn,fsusb43l10x
->            - pericom,pi3usb102
->            - ti,tmuxhs4212
-> -- 
-> 2.34.1
-> 
+> +			};
+> +		};
+> +	};
+> +
+>  	hdmi-connector {
+>  		compatible = "hdmi-connector";
+>  		label = "hdmi";
+> @@ -535,6 +550,49 @@ adv7535_out: endpoint {
+>  
+>  		};
+>  	};
+> +
+> +	ptn5110: tcpc@50 {
+> +		compatible = "nxp,ptn5110", "tcpci";
+> +		reg = <0x50>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_typec>;
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		usb_con: connector {
+> +			compatible = "usb-c-connector";
+> +			label = "USB-C";
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +			try-power-role = "sink";
+> +			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+> +			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
+> +				     PDO_VAR(5000, 20000, 3000)>;
+> +			op-sink-microwatt = <15000000>;
+> +			self-powered;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					typec_con_hs: endpoint {
+> +						remote-endpoint = <&usb3_data_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					typec_con_ss: endpoint {
+> +						remote-endpoint = <&usb3_data_ss>;
+> +					};
+> +				};
+
+SBU lines are not connected?
+
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &i2c3 {
+> @@ -704,7 +762,41 @@ &uart2 {
+>  	status = "okay";
+>  };
+>  
 
 -- 
 With best wishes
