@@ -1,158 +1,112 @@
-Return-Path: <devicetree+bounces-90374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0676B94522E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F3594523E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B047B1F29D3E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:50:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBC651F2A2AC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76EF61BA881;
-	Thu,  1 Aug 2024 17:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D90A1BA87A;
+	Thu,  1 Aug 2024 17:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X/o3df7Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4237C1B4C2A;
-	Thu,  1 Aug 2024 17:47:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6521B3742;
+	Thu,  1 Aug 2024 17:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722534465; cv=none; b=C1Tb0JJRaxIYOiFVkvxB6csO/NtZSuTd8XAnmG1bEI6fj6ADVORkotV9P3uvR6PsqGFy1i479uXmHnp/yknVQ8pKTdtA/Y405GTn3ffQ2UDKYfGaF4ChcXsfSvKPY+h3qwS4mKnGD+/yF1ytraynxSiQvkye9HtixZxmzx37b+4=
+	t=1722534616; cv=none; b=CChIoYlQ2Xu9fUa6iPQD5R4yZr/dU1TvDnUD6OLHMg46gnqItsBzwnmbuV1PSnVmXZFKdJEbYJGnCetgq2OFf116WP0rLDAPtiP2kpjNr+CXTc4a809r4jQUZ1nRnd+F8VwjSiW/hy0MczMUkiUwjWSnQit25942hDeuewInQ5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722534465; c=relaxed/simple;
-	bh=QjDENAGyYUfkxISJ55CXGA0nu5yApMiihtQuD/xC0eQ=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FhjFoqAfZXPTbMOq4AS355s959Eev0/lJruJ5XRJdTf60fdkUB72y8NMTHgyyO5n4bPmYOJzKal2z7aJyBOxCfjAbyUxadG0jRboNtytrZzBy665q+KAW+intcaSDqjAH6Ym9SNDtIHh/tlkctTPNWTVslVEDYW35VrBGqoei1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WZbvg4GP6z6K91N;
-	Fri,  2 Aug 2024 01:45:03 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id DD56C140B55;
-	Fri,  2 Aug 2024 01:47:39 +0800 (CST)
-Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 1 Aug
- 2024 18:47:38 +0100
-Date: Thu, 1 Aug 2024 18:47:38 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
-	<dave@stgolabs.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Heiko
- Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo
- Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul
- Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>, Jonathan Corbet
-	<corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt
-	<palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
-	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, Zi Yan <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
-	<nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v3 06/26] MIPS: loongson64: drop
- HAVE_ARCH_NODEDATA_EXTENSION
-Message-ID: <20240801184738.00003e6e@Huawei.com>
-In-Reply-To: <20240801060826.559858-7-rppt@kernel.org>
-References: <20240801060826.559858-1-rppt@kernel.org>
-	<20240801060826.559858-7-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1722534616; c=relaxed/simple;
+	bh=tWD/L03iWpeXfuZYMTlShuelvT8w+fpQtRxUbtJPvmM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EqG3OMEfItQEyDkS8bmlbQGNv/uIOClk8gdySIwa0ZGjXuXDh5HwLbt/ZovcY+pCLV0wUL1NuBlfCdHTLdaWZzzsMGNcq8YElvIjF5xQsJZEpWdugkKfGwo6ECyvy7G0C7T1otz0GL9DsTt1fLHhhO/ARVtgBrDz6IkW6j+AvPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=X/o3df7Y; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 471Hnhis116293;
+	Thu, 1 Aug 2024 12:49:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722534583;
+	bh=WOCm1cOKCu8ByKrvt8eLtc/WTFMkmgVdarAvTRCMJ1o=;
+	h=From:To:CC:Subject:Date;
+	b=X/o3df7Yjac0ciiMuKzPoo/wRMpBUUvv86hWs23mVlXV8L0qa15uj+wFd3fbwGCS2
+	 tOcNsrXxtAbuDeU7YRJ14w0kVMx0y2uu82uCKT3kjAIR6rCYsWgdcM+/FUP2cM303B
+	 aGVVA1zhJ0rJin/FGpIMwJA5CH3wYDC1Dk6BtcN4=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 471Hnhae001727
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Aug 2024 12:49:43 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Aug 2024 12:49:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Aug 2024 12:49:42 -0500
+Received: from localhost.localdomain ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 471Hngkg067627;
+	Thu, 1 Aug 2024 12:49:42 -0500
+From: Andrew Davis <afd@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Jonathan Humphreys <j-humphreys@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH 0/4] K3 include entire FSS region in ranges
+Date: Thu, 1 Aug 2024 12:49:37 -0500
+Message-ID: <20240801174941.41002-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu,  1 Aug 2024 09:08:06 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+Hello all,
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> 
-> Commit f8f9f21c7848 ("MIPS: Fix build error for loongson64 and
-> sgi-ip27") added HAVE_ARCH_NODEDATA_EXTENSION to loongson64 to silence a
-> compilation error that happened because loongson64 didn't define array
-> of pg_data_t as node_data like most other architectures did.
-> 
-> After rename of __node_data to node_data arch_alloc_nodedata() and
-> HAVE_ARCH_NODEDATA_EXTENSION can be dropped from loongson64.
-> 
-> Since it was the only user of HAVE_ARCH_NODEDATA_EXTENSION config option
-> also remove this option from arch/mips/Kconfig.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+These add the full FSS region to the ranges properties. For Linux
+currently this should cause no changes, but testing very welcome.
+Software running on the R5 such as U-Boot makes more complete use
+of the lower FSS data regions and needs these ranges.
 
-These are as you say now identical to the generic form, so
-don't need a special version for any reason I can see.
+Thanks,
+Andrew
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Andrew Davis (4):
+  arm64: dts: ti: k3-am65: Include entire FSS region in ranges
+  arm64: dts: ti: k3-j721e: Include entire FSS region in ranges
+  arm64: dts: ti: k3-j721s2: Include entire FSS region in ranges
+  arm64: dts: ti: k3-j784s4: Include entire FSS region in ranges
 
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi          |  8 ++++----
+ arch/arm64/boot/dts/ti/k3-am65.dtsi              | 13 ++++++-------
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 14 +++++++++-----
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi             |  8 +++-----
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi |  4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2.dtsi            |  8 +++-----
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 14 +++++++-------
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi            |  8 +++-----
+ 8 files changed, 37 insertions(+), 40 deletions(-)
 
-> ---
->  arch/mips/Kconfig           |  4 ----
->  arch/mips/loongson64/numa.c | 10 ----------
->  2 files changed, 14 deletions(-)
-> 
-> diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
-> index ea5f3c3c31f6..43da6d596e2b 100644
-> --- a/arch/mips/Kconfig
-> +++ b/arch/mips/Kconfig
-> @@ -502,7 +502,6 @@ config MACH_LOONGSON64
->  	select USE_OF
->  	select BUILTIN_DTB
->  	select PCI_HOST_GENERIC
-> -	select HAVE_ARCH_NODEDATA_EXTENSION if NUMA
->  	help
->  	  This enables the support of Loongson-2/3 family of machines.
->  
-> @@ -2612,9 +2611,6 @@ config NUMA
->  config SYS_SUPPORTS_NUMA
->  	bool
->  
-> -config HAVE_ARCH_NODEDATA_EXTENSION
-> -	bool
-> -
->  config RELOCATABLE
->  	bool "Relocatable kernel"
->  	depends on SYS_SUPPORTS_RELOCATABLE
-> diff --git a/arch/mips/loongson64/numa.c b/arch/mips/loongson64/numa.c
-> index b50ce28d2741..64fcfaa885b6 100644
-> --- a/arch/mips/loongson64/numa.c
-> +++ b/arch/mips/loongson64/numa.c
-> @@ -198,13 +198,3 @@ void __init prom_init_numa_memory(void)
->  	pr_info("CP0_PageGrain: CP0 5.1 (0x%x)\n", read_c0_pagegrain());
->  	prom_meminit();
->  }
-> -
-> -pg_data_t * __init arch_alloc_nodedata(int nid)
-> -{
-> -	return memblock_alloc(sizeof(pg_data_t), SMP_CACHE_BYTES);
-> -}
-> -
-> -void arch_refresh_nodedata(int nid, pg_data_t *pgdat)
-> -{
-> -	node_data[nid] = pgdat;
-> -}
+-- 
+2.39.2
 
 
