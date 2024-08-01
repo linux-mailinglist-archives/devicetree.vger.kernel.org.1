@@ -1,152 +1,377 @@
-Return-Path: <devicetree+bounces-90322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7535944F16
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA50944F20
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:24:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72F4C1F22576
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:23:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90D2F1F27A27
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920E31AE842;
-	Thu,  1 Aug 2024 15:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D26B1A71E1;
+	Thu,  1 Aug 2024 15:24:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZfGiPPlo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2053.outbound.protection.outlook.com [40.107.21.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DA661B013F;
-	Thu,  1 Aug 2024 15:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722525775; cv=none; b=ZpPSL1ixnTJ8z2zYJmh1j35y1MRr+PC5NIzyuFj/UD4KQIWMsG9messPoSC0iPV44p76rj60WXYf2roLYkjidK2NiJxvekqVHEotpaB/FvmUldK+MgJIUVDi8Og7M3tclaf/brPSyPeHAu8qkLZOkgPjJNT+HV2a4xCS2351U14=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722525775; c=relaxed/simple;
-	bh=VEcaGB9JhrX6r2iLab6nrkJZCg4diAR5tkxJzfjgTjg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cWPFDdVGCjM2XhbsgJ4HeNv9QfTz+xKgILZgDrQhaMIKLTt0nc9j6CmdO7unsxQtZ2kVDaDaPwNVtjxxGWfDkc2pxOgB96z00zZkd9pd7VyJOvCKTV8SsbkRO+qzRNRyUMCXZrZBSM3yINC7/u0LL7J0hOSybDHghCITFrjGKkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f03df8c8cdso23924791fa.1;
-        Thu, 01 Aug 2024 08:22:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722525769; x=1723130569;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Utqgbq+ns727DDPMponi3tkeUNp+6Bq/5OauBcszmLI=;
-        b=o4VHNKl+Sc3gdaXkYwtIg8WXLWoDolW7+3zP8worezHI69G8ZO3/bHpPtDEqdNC6hl
-         Q2Lv37sIwEiaFknHsL8Dv+0TyOO+AUEBLVzi8J+t/tKPsiqACCt28EM+Moje9ID5NwuH
-         791nC0CkcTI+w42PI3/jmOYXAgmMvFx0ifq9UMNfybuuAMKJSJL79Q1TdyS91G/DbpZ2
-         R5o1GUfq74hO6q1NFKfKNw1DA5zBnE1TufhlKAiotzTlRHQkmOhd+jCDx+7CJrteBtvY
-         CbqjEVqs1T/Wo8ipCtk63rB3yKfvStwJwlSyZY6+nWzzFbHiqTwvn+NG6tuvrw59kJjp
-         QASA==
-X-Forwarded-Encrypted: i=1; AJvYcCWt/bfDU82gI/cMR0MzILesvuISqY+kcTCU5dkiyVvBtfhL0P9odJD6IjUF1Vbo0f5P+3c2+zFYbxEom8oHWW1WfCSJNFY0TJTVR1JNo3QsWdIebrZbDcunbCZtup/QvysKeyGzNhDtTw==
-X-Gm-Message-State: AOJu0YynKHe5pI01h3YGB9/axrslo3dnk+r8eUsLQFo8Am4yYVDRBrJ3
-	GFy7JV86lPW5QdL7a7HwEn8P87c0OdH1a4AVAGTvBY6QBA+bvVhc1tjy43lq
-X-Google-Smtp-Source: AGHT+IE/Z31TKRQPQFhGnNud62ztSo1QNtnYru3Igrehf+8MxYtQEwrXS24COuhCQmg94r+IuwRoGw==
-X-Received: by 2002:a2e:30a:0:b0:2ef:2768:619d with SMTP id 38308e7fff4ca-2f15760846fmr5362081fa.5.1722525769076;
-        Thu, 01 Aug 2024 08:22:49 -0700 (PDT)
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com. [209.85.208.172])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f03d04e166sm23867201fa.81.2024.08.01.08.22.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Aug 2024 08:22:48 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ef25511ba9so17953161fa.0;
-        Thu, 01 Aug 2024 08:22:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWhToIU6Pvsn4t93HqHrZnZYtCkKuEtGoJ//RA61ZdiDH8DkqeKhe/8q7VHfuVxeOSZcYOW7X4z1b0EetMofHOykkhEnB1k8Rm1y7FGyfQiLwXTJAd46XK/+7kuxiuSkx30T/aazj3gGQ==
-X-Received: by 2002:a2e:be07:0:b0:2ee:df8f:652d with SMTP id
- 38308e7fff4ca-2f1576089fdmr8111941fa.2.1722525768415; Thu, 01 Aug 2024
- 08:22:48 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E313513B7A6;
+	Thu,  1 Aug 2024 15:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722525884; cv=fail; b=LP4xQjJf8UWUc21EjA+dAVwKjYGSUfLJ+DhgyWnKCqblB0ixewQRuG9BAyXGkNf+mOWeyfYRouMheb6z63IQb/BogKBe5/1iY8xMNZzzsiXszusk0rnrNsOElQRvtL1vtUui5tuM4cYWx/hCeKAbMxSFo3DOa0C+7NrOiW1EQ2c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722525884; c=relaxed/simple;
+	bh=wrPJI4B71t0iSozcr2btPWAmf4C7olQIpjppeVZx0BY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=S+wa/GA/Lz49eVQaigEAk6mE6olTwfUVTMs/ItZmXUnkJmEiC1gbNVO+ZElWF/tpwgV44CaZnPkb8cGQVt921s+YRNF2QP5oK6+R3R8HYvIHnJ8iG5vaAYNj7bQ5tqqhuTgIqt0/6QBilcu6fvjFaCf+WenWhdMSmx1K2Yob3Mg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZfGiPPlo; arc=fail smtp.client-ip=40.107.21.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DxaFXeCLSvfPqLneDVXHtPxWYxTEfmrhrJNgQLwGtlKwWKbTDONUsP/CY/CLnsLpChNfdggJRlc/2XyvC5WYtQVM/1WyNl2H55U2KMrdnAYM7zNQKRtfSuxeGpuY9WcgZ0YJOLO8js4HU6owU9tFWIQiOsT+9116AcijkHkXlI0Rc1EUOimXo2TyPgdOVmPgP1c3ouHwM0OvMKpwmunXXYBq/hSAM2xDRWsyW/h8+y4+CK/oecq+6XOQpxcw/cBtxdfiQ3nhiTpcU/X5MOcCcIYdOvyCznDUiTevPAsKW+BS6vK59zuwF8mCHPJa4WoGvknT56+f6D/6ypkE31ON+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VxSw/LMNYTJp7J+3fXT7WuX2fWrAtDH4i3kKWBtS5rs=;
+ b=w2IwzlDQ9fGtzltyZs8385kdCJYqa2C+OdR8oJM17dQ94/oH25Kb2d302sRE4ZEvibUCdvLgt35GyGWehB1ryaZQfYSqpPUEeL8b8TZW7cjHQ1OLA2HIX9HOZs6gziFFcCKYe+KVoh8XU93JTgKRk1+4tW6CoIEHh7rMsh2Rz/WBjwTr+4FVRNhDEoosIiZ4sZnypagLwhRUOOB8yWRbTsfhg8t/PP7DoFPDIEO/+hFlBDAWi8PfHhAohFxi6bkNy98iSAun7nO1OUqUjx9Ddk2JW+icDv+MW483CVhLZeoUAmChQCVBVgJhAefzPHY0iNteYGzyG5bWTZ6TAmJGqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VxSw/LMNYTJp7J+3fXT7WuX2fWrAtDH4i3kKWBtS5rs=;
+ b=ZfGiPPloDTb617MXP8Xn7pEaYGMt6f8+tmxqUUtyO4TEveb/ZqUJEwwqB6cMGvM/pLQ/Zrj85/jn1gjb8rQTJryUuh/9qezXqKQ3VMrRe+7IBBjDvMN1EvUKxqdjefmDzjk2J7gW8tU5jdEgIxvx8hl0caI/cdn1xg1b9gyNNK/3EsU7hGTNHSnZZ5JvHhV9gpyHRyHgG7Ik4dbWGZWPE3m72OzUKCxlVDH8TR3s4j+WfoJlFQCqc7MD60tSUuAT9X6yS690+w7gLdIA+hsFKOB3XbGFJ6MThVnC+0nQbrnSflorEtVjOXgkuAbTusfLQix+j5B5VwlsDc702TTYBg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU4PR04MB10669.eurprd04.prod.outlook.com (2603:10a6:10:58e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.23; Thu, 1 Aug
+ 2024 15:24:38 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.021; Thu, 1 Aug 2024
+ 15:24:38 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: robh@kernel.org
+Cc: Frank.Li@nxp.com,
+	alexandre.belloni@bootlin.com,
+	christophe.leroy@csgroup.eu,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH v3 1/1] dt-bindings: soc: fsl: Convert rcpm to yaml format
+Date: Thu,  1 Aug 2024 11:24:21 -0400
+Message-Id: <20240801152421.2501617-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR17CA0022.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240418000736.24338-1-andre.przywara@arm.com>
-In-Reply-To: <20240418000736.24338-1-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 1 Aug 2024 23:22:35 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64DLez_FwH=Na=swQ30BdZa8JPaueFkM=ozjU56=f1DXQ@mail.gmail.com>
-Message-ID: <CAGb2v64DLez_FwH=Na=swQ30BdZa8JPaueFkM=ozjU56=f1DXQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Ryan Walklin <ryan@testtoast.com>, Chris Morgan <macroalpha82@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB10669:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9bc1101-63f5-4267-c7af-08dcb23e0eb2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dml9eWYaa1ZLQsBVia3wlRuqyKttPi3f0KP1W6L97V5skzaG66zsfkIy6Fu7?=
+ =?us-ascii?Q?lE4UFI6J6I89Mg1F+hNH48qiJ4u5lYLJlspOV/DOV3sLgPr2afLZF0+XSb/m?=
+ =?us-ascii?Q?RJU6wi/Wze2gOByyxqvmfofE7A4M++Jr5qLqAB+HRYlRqneIDg6HGdbrjzw2?=
+ =?us-ascii?Q?8kF8BpirHCW0FJCGMiIMniq/gofXPJY3OqxXTUP4iGGLJObFzzYHh2VU4NpH?=
+ =?us-ascii?Q?nU7Gggf64ZEG3WFHIsOrWCzPKIazJfdGvun9qaNbZbM+g4lTCCIRuOPUCAnG?=
+ =?us-ascii?Q?Y2R+Tv5wuGn0tKEOPEk6hB2GXkTMeepbVlVu5fM1gzK66mjbfDe6XwzRuDVR?=
+ =?us-ascii?Q?aKRJ0NWS64RdZ0mw2eAWduV2wrc0+dxqOCFjvqb1Q6ekjeM8LuCc1zsLBmfd?=
+ =?us-ascii?Q?GvePjQV5uZR3CvXF4V7EVKuCDlplaHgfmSpnsGGKHGF5NxfJZqZw1Uc6iX74?=
+ =?us-ascii?Q?hhCOs6z+OONOLzXsVkA7qqsGfJur4Fv68J3hD1OaImFCU7xWJk0xAx6ujBBj?=
+ =?us-ascii?Q?ijF45WxUFboV/0nQTbzjxgK+S5KqqOI88QSZveendOpfvpTsuekoUL4kzC8K?=
+ =?us-ascii?Q?lmVE4OZ9SaoWtV3xI9Di7lUR0UFkG8K3XaPUS1cY7YkMcLZoAuiXmoHOWJKz?=
+ =?us-ascii?Q?AtLV9G+Hy9oeEmY6CSbifpnRlPIfT5TJpf08MReayCRjwj2P/5rmTe/03HZM?=
+ =?us-ascii?Q?33+h2XWM/Wl/+GbtvpaowK4ftAG1/03C3h2Jnacp4o349Jo57G+uEe/x+Lba?=
+ =?us-ascii?Q?KmqkO/lJwLRHwy70JJXOzq/tqV8QRP0z95TuqmR3lH9Jf/ZHuzjvOcUA3JdM?=
+ =?us-ascii?Q?mxzfKQM+7WBIbKjSBAupoN6j4hWDYeM92FTuRTdCLCP/l+s+vMqXBS9AXHn6?=
+ =?us-ascii?Q?1WoUemycF7ks5m8FmNdSpPy3x94fceb3uZQkMrbZn1eX/F1YyBttgwPy08ga?=
+ =?us-ascii?Q?MXZWP5KwJbZPJgVGPORodY9Y2NjBj64qpxctPvl455dGzOC7Op2IRrK10KUR?=
+ =?us-ascii?Q?UAQ6xuFpGxa7hrsZDsqMFuvNjcUG+aMnsmmMn0yVZZ08Y/lJP2nWHHdnVfkM?=
+ =?us-ascii?Q?nlt9/0WXuKlc4SqbBR7pshmNl4//aGDyDxFGNgAVOxwBB6l/+d9nuCRLW+/h?=
+ =?us-ascii?Q?voa1LxvVDfgrM/x35xYY9GBbAo0n2R40dArbc8B9thhdLjY5XCiozCOHbKGZ?=
+ =?us-ascii?Q?ene2j2jb8Q2HE0iVeR71q8zOezxmIdyw5bNQ5vxON1rZ9F4o04d4zfZqhdCI?=
+ =?us-ascii?Q?40rjNXBmWPykOaVHjtVir83mC3dggaB9cSMhS7QHtO9fR0CK5RgbLFZC48fz?=
+ =?us-ascii?Q?wXpK8s6tDuB+DaroWFZxz9V5mQNWwfnrjgWHBCxvZ84jMkV+rtr1l8Z/hS2q?=
+ =?us-ascii?Q?6feRY/Y=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?IvLWDnZaDal+JgSSMDSxEj0T80x1A3MzMtUOh1Rex1QLUyLD6+tt82vf+BiX?=
+ =?us-ascii?Q?UrKSQL6IDntBM/l0Lqcbf/AXfft6K6HUDG2hUKRUWXO47WJANdIoNiG8rOue?=
+ =?us-ascii?Q?sKqoVSQkdNy3NKA4tPpLVNcr9d2T0QjcCd9v4AT8FrZeFctqV/AXztIN4DH7?=
+ =?us-ascii?Q?WIDDG3p7XLTozK773Fuh7Iemb8Kyd18CMHqXL3PdD3tC+CozZaTRMTh2G3zX?=
+ =?us-ascii?Q?nhIOsVCHEVCYx9dBh+634SYI1g8AfxZinSpK4CZ3EO3Mh8XMm86+N543syrM?=
+ =?us-ascii?Q?xvDy6YJgBqb5W7wNxhh28H0D62fXimEeuLhOupFihVePpE62Uj43lY/nYj3S?=
+ =?us-ascii?Q?LuIvN+lvpSlWboqzyaNktlpYp5Xf1FS91gxWr2vUggXVwD3/yJVvRfV3tBzd?=
+ =?us-ascii?Q?+Om6zMUZVfMpFRFoIr9VMDWgql2pZV9lY3Fbko0w6KFbTMxZIileiZHLGOsk?=
+ =?us-ascii?Q?7DDla1m9WL/mg2zFGC+GHkBEUAwnosaAYHSQuikDzONfrdOB8PHmRpcnVPh3?=
+ =?us-ascii?Q?sfHOD7d2NV2em/TXgdS3qWGTtCXDFyxGLuWAIjH/ANKGFDvnUyabNwPL3JXW?=
+ =?us-ascii?Q?+5NeOySaDkLtTOxqbDIQ+94Ct11YU5xogzDkeib1t9RjDAN+eH7+7mLF5uBk?=
+ =?us-ascii?Q?jGb73jQU89bN7zS2Hs4UqPYg9LsEDAoyfHqiTHfZ2x7MT4nM5UDziOagWsOi?=
+ =?us-ascii?Q?5zJJaon3/HrBj0812cuKaE3RPm9Dt3oEehH38wRkcbMi11trdTjIN3Il/cP7?=
+ =?us-ascii?Q?qP+YkwiSfUmNsAmUVAIxvJu61Q+hfOtgKuIR6O4dVCHxnsCHfTgtZ1Lr37dP?=
+ =?us-ascii?Q?0ZdWdV+q2Z5Ks6rK9IzGFIpUbG+JM2+qa05gbakrD5D+gfB0WGI4e4mU5JC2?=
+ =?us-ascii?Q?Nqm2ch45ErrtyZ/iyZEgKs9CPeddecWOCCnIljhm0cxJnwcaAZSkg20/1o+g?=
+ =?us-ascii?Q?2Yc0Byyrsp+KWxCjOq5H9+kvwCbqSTVAWw5gHZlL0rIC3Vc1d1CoY4Rcw3XH?=
+ =?us-ascii?Q?lmCCdmiojuy6UWpBP1rMZKKwmR577fN5hNxSzaRmrIUuXKGCrn4AoSMgCcTZ?=
+ =?us-ascii?Q?TudvYf7V0Yptt43F1LlgvHzPyL219hxJFXX0V9erT7Nzs9dJbZ3KVyYzNu6m?=
+ =?us-ascii?Q?LrLWCmLDVP+CA8fVXRRwVj4a2sMfezUXZwBskssGqbZlO3TSZrb/4fOTzrcV?=
+ =?us-ascii?Q?A27SK+jCwDew7v7NAhbtN3rQMW/VvZSeernMsceVE1qEoDdgsIITjXnLhNEv?=
+ =?us-ascii?Q?L1H4Hdw6KeAmQVbkadEh2a6ovXkXgImujURpAqQAe9wQbo5gob9+8fUTIGhV?=
+ =?us-ascii?Q?/JxtEm7BGpMuwvUJqHnb/7CxSCTIt2stlwO271bLokBl1pP3n4RN7Xt8SZWw?=
+ =?us-ascii?Q?oCpEZqovT+QpsOjG4S2IioBH6MlWGayfOzqoBJEmSKxRREQxAAQXdic8z6dd?=
+ =?us-ascii?Q?Hl4mqEPoq8iKZ4FgXyokYfLecFJ1RsIgx/tdLFnW8JAVTAmfY9EJqsxgjVLz?=
+ =?us-ascii?Q?RGg8dUr0GqRK3NTI6WM8tWJGa8rKNY2xG8XB36MUEnvKrkVuFrif2trXauW1?=
+ =?us-ascii?Q?lUYEQLjB8smQLZfN40vC6gbJ00Bt0ItCLndP3da1?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9bc1101-63f5-4267-c7af-08dcb23e0eb2
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2024 15:24:38.6019
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: raP0H5rhIeOveRBhmEsmEheTdwoKjpnjkY+ra9ZMPtujwp8wl++DejlZFfb7AtiefeE1+2T3viPV4Us4f+fVJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10669
 
-Hi,
+Convert dt-binding rcpm from txt to yaml format.
+Add fsl,ls1028a-rcpm compatible string.
 
-On Thu, Apr 18, 2024 at 8:07=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> This is v2 of the fixes to the AXP717 PMIC support series. Lee put the
-> original patches in an immutable branch already, so these here go on top.
-> Patch 1 is new in v2, and adds the IRQ status and acknowledge registers
-> to the writable range. Thanks to Chris for pointing this out.
-> Patch 2 contains fixes to the regulator descriptions: the LDOs had the
-> wrong supply source, and two numbers were wrong. The datasheet describes
-> the voltage ranges and register values differently from what our macros
-> expect, in a way that literally begs for off-by-ones, so here you go.
-> Also there is an actual wrong number in the datasheet, add a comment to
-> document this.
-> I don't know if that's still feasible, but those two patches would be a
-> good candidate to squash into the patches that they fix.
->
-> The other three patches add the "boost" regulator, which is meant to
-> provide the 5V USB VBUS power when operating from the battery. It's the
-> usual trinity of binding/mfd/regulator patches.
-> Again this could be squashed into the respective patches from the
-> original series, if people agree.
->
-> Please have a look and test!
->
-> Based on mfd/ib-mfd-regulator-6.10, as detailed below.
->
-> Cheers,
-> Andre
->
-> Changelog v1 .. v2:
-> - add tags
-> - add patch to add missing IRQ ack register range
-> - add comment to document bug in datasheet
->
-> Andre Przywara (5):
->   mfd: axp20x: AXP717: Fix missing IRQ status registers range
->   regulator: axp20x: AXP717: fix LDO supply rails and off-by-ones
->   dt-bindings: mfd: x-powers,axp152: add boost regulator
->   mfd: axp20x: AXP717: Add support for boost regulator
->   regulator: axp20x: AXP717: Add boost regulator
+Additional changes:
+- Add missed compatible string fsl,<chip>-rcpm.
+- Remove map fsl,<chip>-rcpm to fsl,qoriq-rcpm-<version>.
 
-The latter three patches still haven't been merged.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Chagne from v2 to v3
+- fallback use const
+- order as fallback compatible string
+- remove minItems for compatible string
+- Fix typo 1045a
+Change from v1 to v2
+- add missed compatible string
+- Remove compatible string map table
+- use oneof Item to align compatible string map table
+---
+ .../bindings/rtc/fsl,ls-ftm-alarm.yaml        |  2 +-
+ .../devicetree/bindings/soc/fsl/fsl,rcpm.yaml | 93 +++++++++++++++++++
+ .../devicetree/bindings/soc/fsl/rcpm.txt      | 69 --------------
+ 3 files changed, 94 insertions(+), 70 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/fsl/rcpm.txt
 
-Andre, can you resend them for Lee or Mark to merge? Otherwise I
-can't take the RG35XXSP DT patches.
+diff --git a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+index 388102ae30cd8..3ec111f2fdc40 100644
+--- a/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
++++ b/Documentation/devicetree/bindings/rtc/fsl,ls-ftm-alarm.yaml
+@@ -42,7 +42,7 @@ properties:
+         minItems: 1
+     description:
+       phandle to rcpm node, Please refer
+-      Documentation/devicetree/bindings/soc/fsl/rcpm.txt
++      Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+ 
+   big-endian:
+     $ref: /schemas/types.yaml#/definitions/flag
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+new file mode 100644
+index 0000000000000..fa8491c8c2088
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,rcpm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Run Control and Power Management
++
++description:
++  The RCPM performs all device-level tasks associated with device run control
++  and power management.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,p2041-rcpm
++              - fsl,p3041-rcpm
++              - fsl,p4080-rcpm
++              - fsl,p5020-rcpm
++              - fsl,p5040-rcpm
++          - const: fsl,qoriq-rcpm-1.0
++      - items:
++          - enum:
++              - fsl,b4420-rcpm
++              - fsl,b4860-rcpm
++              - fsl,t4240-rcpm
++          - const: fsl,qoriq-rcpm-2.0
++      - items:
++          - enum:
++              - fsl,t1040-rcpm
++          - const: fsl,qoriq-rcpm-2.1
++      - items:
++          - enum:
++              - fsl,ls1012a-rcpm
++              - fsl,ls1021a-rcpm
++              - fsl,ls1028a-rcpm
++              - fsl,ls1043a-rcpm
++              - fsl,ls1046a-rcpm
++          - const: fsl,qoriq-rcpm-2.1+
++
++  reg:
++    maxItems: 1
++
++  "#fsl,rcpm-wakeup-cells":
++    description: |
++      The number of IPPDEXPCR register cells in the
++      fsl,rcpm-wakeup property.
++
++      Freescale RCPM Wakeup Source Device Tree Bindings
++
++      Required fsl,rcpm-wakeup property should be added to a device node if
++      the device can be used as a wakeup source.
++
++      fsl,rcpm-wakeup: Consists of a phandle to the rcpm node and the IPPDEXPCR
++      register cells. The number of IPPDEXPCR register cells is defined in
++      "#fsl,rcpm-wakeup-cells" in the rcpm node. The first register cell is
++      the bit mask that should be set in IPPDEXPCR0, and the second register
++      cell is for IPPDEXPCR1, and so on.
++
++      Note: IPPDEXPCR(IP Powerdown Exception Control Register) provides a
++      mechanism for keeping certain blocks awake during STANDBY and MEM, in
++      order to use them as wake-up sources.
++
++  little-endian:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      RCPM register block is Little Endian. Without it RCPM
++      will be Big Endian (default case).
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    rcpm: global-utilities@e2000 {
++          compatible = "fsl,t4240-rcpm", "fsl,qoriq-rcpm-2.0";
++          reg = <0xe2000 0x1000>;
++          #fsl,rcpm-wakeup-cells = <2>;
++    };
++
++    serial@2950000 {
++         compatible = "fsl,ls1021a-lpuart";
++         reg = <0x2950000 0x1000>;
++         interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++         clocks = <&sysclk>;
++         clock-names = "ipg";
++         fsl,rcpm-wakeup = <&rcpm 0x0 0x40000000>;
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+deleted file mode 100644
+index 5a33619d881d0..0000000000000
+--- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
++++ /dev/null
+@@ -1,69 +0,0 @@
+-* Run Control and Power Management
+--------------------------------------------
+-The RCPM performs all device-level tasks associated with device run control
+-and power management.
+-
+-Required properites:
+-  - reg : Offset and length of the register set of the RCPM block.
+-  - #fsl,rcpm-wakeup-cells : The number of IPPDEXPCR register cells in the
+-	fsl,rcpm-wakeup property.
+-  - compatible : Must contain a chip-specific RCPM block compatible string
+-	and (if applicable) may contain a chassis-version RCPM compatible
+-	string. Chip-specific strings are of the form "fsl,<chip>-rcpm",
+-	such as:
+-	* "fsl,p2041-rcpm"
+-	* "fsl,p5020-rcpm"
+-	* "fsl,t4240-rcpm"
+-
+-	Chassis-version strings are of the form "fsl,qoriq-rcpm-<version>",
+-	such as:
+-	* "fsl,qoriq-rcpm-1.0": for chassis 1.0 rcpm
+-	* "fsl,qoriq-rcpm-2.0": for chassis 2.0 rcpm
+-	* "fsl,qoriq-rcpm-2.1": for chassis 2.1 rcpm
+-	* "fsl,qoriq-rcpm-2.1+": for chassis 2.1+ rcpm
+-
+-All references to "1.0" and "2.0" refer to the QorIQ chassis version to
+-which the chip complies.
+-Chassis Version		Example Chips
+----------------		-------------------------------
+-1.0				p4080, p5020, p5040, p2041, p3041
+-2.0				t4240, b4860, b4420
+-2.1				t1040,
+-2.1+				ls1021a, ls1012a, ls1043a, ls1046a
+-
+-Optional properties:
+- - little-endian : RCPM register block is Little Endian. Without it RCPM
+-   will be Big Endian (default case).
+-
+-Example:
+-The RCPM node for T4240:
+-	rcpm: global-utilities@e2000 {
+-		compatible = "fsl,t4240-rcpm", "fsl,qoriq-rcpm-2.0";
+-		reg = <0xe2000 0x1000>;
+-		#fsl,rcpm-wakeup-cells = <2>;
+-	};
+-
+-* Freescale RCPM Wakeup Source Device Tree Bindings
+--------------------------------------------
+-Required fsl,rcpm-wakeup property should be added to a device node if the device
+-can be used as a wakeup source.
+-
+-  - fsl,rcpm-wakeup: Consists of a phandle to the rcpm node and the IPPDEXPCR
+-	register cells. The number of IPPDEXPCR register cells is defined in
+-	"#fsl,rcpm-wakeup-cells" in the rcpm node. The first register cell is
+-	the bit mask that should be set in IPPDEXPCR0, and the second register
+-	cell is for IPPDEXPCR1, and so on.
+-
+-	Note: IPPDEXPCR(IP Powerdown Exception Control Register) provides a
+-	mechanism for keeping certain blocks awake during STANDBY and MEM, in
+-	order to use them as wake-up sources.
+-
+-Example:
+-	lpuart0: serial@2950000 {
+-		compatible = "fsl,ls1021a-lpuart";
+-		reg = <0x0 0x2950000 0x0 0x1000>;
+-		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&sysclk>;
+-		clock-names = "ipg";
+-		fsl,rcpm-wakeup = <&rcpm 0x0 0x40000000>;
+-	};
+-- 
+2.34.1
 
-
-Thanks
-ChenYu
-
->
->  .../bindings/mfd/x-powers,axp152.yaml         |  2 +-
->  drivers/mfd/axp20x.c                          |  3 ++
->  drivers/regulator/axp20x-regulator.c          | 37 ++++++++++++-------
->  include/linux/mfd/axp20x.h                    |  3 ++
->  4 files changed, 30 insertions(+), 15 deletions(-)
->
->
-> base-commit: 4cece764965020c22cff7665b18a012006359095
-> prerequisite-patch-id: 2b5fb10f68e0994071fc4c7dce73db7047c23220
-> prerequisite-patch-id: 5d0735de888d155b2c1cdb814e852a5852a17ec7
-> prerequisite-patch-id: 29c30894b4bf0b9e1e71de065cabbd842505e248
-> prerequisite-patch-id: 0ab87cbf7362b6dc2d577d2264eb9574be47b5f6
-> --
-> 2.35.8
->
 
