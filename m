@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4AA2944DD1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:18:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18876944DD5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:19:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C664B25D8F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:18:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9A81B215A4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:19:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11CE1A3BC6;
-	Thu,  1 Aug 2024 14:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289C91A3BC6;
+	Thu,  1 Aug 2024 14:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uwvhNJSp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOoUdKRU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C660016EB7A;
-	Thu,  1 Aug 2024 14:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19F116DECD;
+	Thu,  1 Aug 2024 14:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722521925; cv=none; b=Iq2UIiNzduB1ve2ax93RY/rf5AKLjLJfm3onLLkSfo1olIkEuS6BS4HQ9o04XE8PYbHIJ38Asfdr/CTxY9L0bc+asVe9g2yPq0qifq3sWp3RW6KFnQy0pLnymXNx/oXaL25E5Rc/+pZk2NX4aci1r3ANbtRXmBv7WFlXkCQUdbE=
+	t=1722521991; cv=none; b=Tz5gWmhBlvcHVizLtrojXNVKQUAKB5oJUIBnLBIlFht0nBx0ZDwmrz7r39NNs1CBMztYfqCpFyyxQ7TsQSqqPMzBx8v5x0afyFSUJ7lR80Hrlo9EEv/GYUDf9Fkz6sOiW0g1+CflVLeGSvLRQTIRJBqZZIfi2X5VuqQGDoigcF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722521925; c=relaxed/simple;
-	bh=puYGDeVzX+toRNj9EO9NrRRwpz9Fykp7F5J1qOScRbU=;
+	s=arc-20240116; t=1722521991; c=relaxed/simple;
+	bh=aNB+sW/K2PBWARbLRv7/PfDYY/FYQx+LyosJMWNt6EU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7yVIlQ09yggn26wAOnhary44my7bdcbWRiX0Jy3r/bW2oZD5Pp/NtXFCOz45RRcmWEdUpHdV+KYSo/yMDEedF9hvgd35s7jSMThssU4mW6eMbr8xI0m0Xh5SVsyUbKME3KXUJIzWyv1yokYd8Gz5XbWiebtWV3Zi/X9O4yMRcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uwvhNJSp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A1FEC32786;
-	Thu,  1 Aug 2024 14:18:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PmIhonh5ZBmVYP5h5fvfJutqDiGDoHMjxV8mrw7tLnpEbc4ZfwdY6k3d65LAJ+wTJUg5I98PJR0i+rA/cm/o+oTWhNQ8SCPQCXt/WY9i6RujUzNxaugo3XIikeRep94AfMNYMqyH4SnzSL0V3KUFtzfkkTuXpYPWjIUi7vK1hjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOoUdKRU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D08C32786;
+	Thu,  1 Aug 2024 14:19:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722521925;
-	bh=puYGDeVzX+toRNj9EO9NrRRwpz9Fykp7F5J1qOScRbU=;
+	s=k20201202; t=1722521990;
+	bh=aNB+sW/K2PBWARbLRv7/PfDYY/FYQx+LyosJMWNt6EU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uwvhNJSpUBgHZH/tR/pDDK77ENIKcz+f7V7Fux+zulGmeaAF21NZv3g33w0AVqGAd
-	 lzXM9qGOovpsoOI9KGBVDpAnau0gYH9m0pUrpfTpVbDLdPoE8/jO4mODAz+r83tog9
-	 RllGhsRlPN6oNhs2LCd3ccrZ7+zvL2Rw8Ez176A1riX7Gui0T+Z4NWxBCg0K7tQfnQ
-	 1JNhYk+wiAEitEHRNKTGSYHfQMY8vOUtxUhaTzxzlXYeAEceUAJMd2mLxyKQlTFHtJ
-	 m1yt9pxT6CRH5D9xVM2nfshupkm+3SWFvpxMpwv5qxC+nHCvruJijmBVwRDBjAHP33
-	 fswyp2T0Caadg==
-Message-ID: <bb6e21b6-d7b0-43d7-9dc7-7a78a11dfca1@kernel.org>
-Date: Thu, 1 Aug 2024 16:18:34 +0200
+	b=hOoUdKRU0/ijV6RpaJpNf7iRjJ6pD3ThqTuhJ043RsnPA0DPHDxFVw3ppjg/DqWdW
+	 9yu8GcWJyD3yJjm8ZH0cq6/pRqQR1nP0dYFWCiDFgw50PVlF/p52bbW+gbS2uURa+s
+	 7a48Cv3gqfoNr2E7RBia0IEI35equz+qX44kU//FZfHCBpX255yOVWiutwaWZt/BlE
+	 qZx02/GHRHPiJTLnSvZPnARkhOcDOhY7m3qcR93IpHqb9M4C2kpASLamO5eIO9Ajey
+	 5AqvljzTdCEoEHBjA1lFbs4KzngDTHa0y4xzHxgDkDC+28/wb7k8C+BWDUqx41TeAs
+	 pqL+6QZo/YeyQ==
+Message-ID: <3dda0b7e-36ed-497c-ba6c-9b25ca2f0738@kernel.org>
+Date: Thu, 1 Aug 2024 16:19:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Add schema for Synopsys
- DW HDMI QP TX IP
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>
-References: <20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com>
- <20240801-dw-hdmi-qp-tx-v1-1-148f542de5fd@collabora.com>
- <ba957155-7a0d-4c88-8326-a1d4d20e4656@kernel.org>
- <e3ce055d-13c9-4e25-a039-dd4a58c8dd7a@collabora.com>
+Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: Add support for Broadcom STB
+ pin controller
+To: "Ivan T. Ivanov" <iivanov@suse.de>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, florian.fainelli@broadcom.com, wahrenst@gmx.net,
+ andrea.porta@suse.com, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240731062814.215833-1-iivanov@suse.de>
+ <20240731062814.215833-2-iivanov@suse.de>
+ <dcc13c9a-ea74-4fa4-9c74-57e576e01ae6@kernel.org>
+ <20240801083820.5my7yc3zxq64gmt5@localhost.localdomain>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,27 +106,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <e3ce055d-13c9-4e25-a039-dd4a58c8dd7a@collabora.com>
+In-Reply-To: <20240801083820.5my7yc3zxq64gmt5@localhost.localdomain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 11:29, Cristian Ciocaltea wrote:
-> On 8/1/24 11:38 AM, Krzysztof Kozlowski wrote:> On 01/08/2024 04:05, Cristian Ciocaltea wrote:
->>> Add dt-binding schema containing the common properties for the Synopsys
->>> DesignWare HDMI QP TX controller.
->>>
->>> Note this is not a full dt-binding specification, but is meant to be
->>> referenced by platform-specific bindings for this IP core.
->>
->> Please provide an user for this binding. Otherwise it is a no-op.
+On 01/08/2024 10:38, Ivan T. Ivanov wrote:
+> Hi,
 > 
-> The first user of this is RK3588 HDMI TX Controller [1].
+> On 08-01 10:17, Krzysztof Kozlowski wrote:
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,brcmstb-pinctrl.yaml
+>>
+>> bcm2712 is Rpi, so not really STB. The name is confusing. Please use
+>> compatible as filename, so:
+>> brcm,bcm2712-pinctrl.yaml
+> 
+> According Florian it is:
+> 
+> https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com/
 
-Patchsets do not work like this. Splitting things causes that your other
-patch simply cannot even be tested because you introduced dependency.
+OK, title can be like this, no problem, although then please expand what
+"STB" means.
 
-Combine patches so bindings referencing common properties can properly
-be tested by automation.
+Bindings still are supposed to use compatible as filename.
 
 Best regards,
 Krzysztof
