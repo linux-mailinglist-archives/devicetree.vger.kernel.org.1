@@ -1,143 +1,698 @@
-Return-Path: <devicetree+bounces-90336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA9C944FA2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:49:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0737F944FB8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:57:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3751228615B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:49:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 829E61F251F9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5C713D607;
-	Thu,  1 Aug 2024 15:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452D11B0111;
+	Thu,  1 Aug 2024 15:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PArTGbI/"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="sUXYs1kO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6B719478;
-	Thu,  1 Aug 2024 15:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00681AED23
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 15:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722527349; cv=none; b=W/wMH+Pzu3PXxa1lIkolbgd/f9hCWNSjVU1zayGjmYGyiDaEDQhYNq6YQPfxgi4wKims6r7e3xdn/AiUGMngjr55mbmn7mAoBBAyTiuqCCMqfIhcGSGc6Ds0MvsI/XZTe2Nv9/J+X5LIO6fVrddCBsV8cK8iMT1yc2XetPSpcpE=
+	t=1722527845; cv=none; b=DpvuovSWpri6rvqZT7uh/SNNhwylC2+OTwI5R/GeHV1H0Lo0pBylX0/aZ9eCWgzrreFP7rSku+Z0L+uBCRFTOabW9aNTzSJJ8Xi6sL07tKj+rx46kJzlBjHdBTJSNBeZUc+/Et8PUJSb+GBqPpaXYNkkE/AKXi6lGCegCkAgRhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722527349; c=relaxed/simple;
-	bh=nKlAaSFE+fmPAfHTs1O+o85Jcq+2pHAXogZG4LGZs7Y=;
+	s=arc-20240116; t=1722527845; c=relaxed/simple;
+	bh=slA1qcJMPPEJn4qszj+pVRy2XbF7w9EBv9WMIhCYejg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mj6ze1/m2zWQAi2BzUihiv3mz8gC5HG5zkDY00eNBJc03+g81dt7me9PIDUxKqArRNi1ucSEV8q6kJAFyPonHYCjScSYoBzmgu87tORbg2QWf629YZ8yfj5QvnrJaxbfEQC+kKoKyeGbQP3kMxZQ+azNugNmy/luUDXFQWfeLDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PArTGbI/; arc=none smtp.client-ip=209.85.160.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-260f863108fso4254091fac.1;
-        Thu, 01 Aug 2024 08:49:07 -0700 (PDT)
+	 To:Cc:Content-Type; b=PcBW5INewdFgBQDHJXsnk44+WF8dHAHh3I1ln26Asmq0vKNiLe2TZgVSzrpifMgGg6DUFjgi/Ti91/jAoOZ23QIyrbDcnB4L9MWx2FY69tCUGpBML7jx44FNbNWS+wSBn0imq/Fp5afcHXROh2cxQKwSK6Vhr4Qu+0tylAJGwjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=sUXYs1kO; arc=none smtp.client-ip=209.85.217.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-49288fafca9so2084173137.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 08:57:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722527346; x=1723132146; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vrM3I08KeD9LyJzc0AY/Lrr8WEZiRdSbJCEvBssBw/Q=;
-        b=PArTGbI/ArcfczSXegzfdra6jPx/u/pHWfqldh5+YV51hkFbuRiSa1arFjYN7rYkFw
-         XG06ROZaZUhl2ld5YMG0ZJTJZzVyn3CjXN7Fb9zxaDStXlCT4CX1hg2pQcMCZRXQoOnB
-         DzaP7OyLMV5BS9W4maeCE+axxph6030noYfgQ3a0HXQjoZz1XCVDB0zxLw1m8eiEU1Cu
-         wdXoE7TlH23XGPULS8XbtjS8iZ/TIn7RU8QLJSL6w+sv8GUsiDevlubAE+3aG/so8QGD
-         DQQ7ByT/2uNpBR1/BFibSv6v3HKjTNkmROuhC4vvCBRL2uiDPO6Zi435m88WFJJ2aBB1
-         /TBA==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722527840; x=1723132640; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wk2MARZcNfHzvjANqiOLi2ZAwp6PwZTQh8uG8eriV6o=;
+        b=sUXYs1kOauJEq53OMvJitNOgKd+qzk2HThaQg+Agl3fobeKlQ9Ko5I5wlFeBpB0avn
+         wx37VqoKwT1STzYADQ+pG0HvxjC3CHulSnkX1zE0BckegrtI1QJX7ehrMPiPOnwaZUUU
+         3TWDYYJSBItJiMamBn37LR9NPEqVvA4WVVAxdxR7JGTBLHTCodGS6Ii/Tc/pKW1DiDw7
+         4P4eWgioebx6501EDyuPOdx03O+x8lN5zKhtP67DKRH21t5ea1uhzry5OgDqigumObBo
+         RAGx+g7S4SJzsgN9MuajF4Yxdy5g7ZcFhLlQLvCFNlrVSBJkrgMh8gaswknsnlcwIrpe
+         bluA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722527346; x=1723132146;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vrM3I08KeD9LyJzc0AY/Lrr8WEZiRdSbJCEvBssBw/Q=;
-        b=Ygt1rA41PvtEel/R4ubkQU93mdh6vlkJjyzUvRDTVFEsOxwXWBwQGPs1hEvkcRjkKx
-         abkNmEhC96m0Ij1tOoFWJDV1K1+Hk3FoQN6dSmziOJU341oDQkkMEsIKDCESLmJsP5+w
-         fPQlBqqrhHhV1twBrMjkHnSRbsq16LVIDmr/QtdAs9r3j8VHoGi0FQHnyygMkd5fjj7h
-         ru9XmRRERq1v5Yv6ES4BePhGuyxBkokgXkWq7uOi9lkwl4TUuqDdNNofVHfhOuZ4VBlu
-         4T21tsTENveAY1qUoZ9sJDoJmEfKP3m3ELaymloN+KoVfe8E/dzKpzbvfW5+lJYTnplr
-         H0pw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVga1nQbo6LwX4zsRW9DHcx7VVlHgFBOygZbNniJyaXJnv+DD4meGvT1f3q/lhyfmakkKqSJ12bJCuCQnFbwXsPAIXt9EM
-X-Gm-Message-State: AOJu0YzEfKqip2nHAe1RInCAsYRXUNPWKKMtj1fqI0XowCGTkxBqLrt2
-	S54xazZv5sLeq+/mUGGlKG2vpV3D4Fqt1quTEMyEX2Rxz7RXVAwlz2YvhJzprhe09rws/LJ7fqv
-	yLnXZmM8Yr/WZzzXbrWr2LexrfPI=
-X-Google-Smtp-Source: AGHT+IE4a/ab2ipgCtKLDQdF1uoLyP1fr48PFJM601wjm1wNf9gdc1LSocrjfhcAQXO7Dyx+GIaFmFQOjGKx9HHflQE=
-X-Received: by 2002:a05:6870:a54a:b0:24f:dd11:4486 with SMTP id
- 586e51a60fabf-26891e92ab4mr587892fac.36.1722527346628; Thu, 01 Aug 2024
- 08:49:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722527840; x=1723132640;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Wk2MARZcNfHzvjANqiOLi2ZAwp6PwZTQh8uG8eriV6o=;
+        b=mh4N5I8b+VWetwS1yz11LuJCvW4lOFaKgzb0Z7K0woILxiGGVVAW2VjmpXzjC7YZ43
+         VoO8THhX2MiSDfk+PqSllNCmkTNv8cCHU4PAY/413uZDBaNiyDXqhNZ+zvABES2uF1A0
+         cWHMA/8JOGIaC8QGv/BXyO+Qu7AdGLKunWjxuYJEVqufHLYhBO7HpMyblEtaXCXQS0Dd
+         58GM22R7K+2CL2KbDx9ItZNPNxriE5X7Zg20sRvNFFd3g+oOsD6qWfJWaPnkfA8zrDaH
+         uzZfV1PGC7+1DUPykKIzLD5j/9vVXB2XX24TMkEZu5GqdJa8MkmVMj1rwrKMGjEKGQ+P
+         e7kQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXKDiH25sYvjhSPC9KkBT5qYzjKbdExqDnOwioJWztkVKHi1v9I+pvr32IMa1hrgvjsq4wCs/XsNGmPwo9p4ztqmbMb7sdCXRVdMg==
+X-Gm-Message-State: AOJu0YykmMCtb5TbFmTQFVgrS3gSrX5+STJPA9B0Om6Su7QCzxOrcb4S
+	+8CFc4d4rhxUMs4IwO4K6iWp7rYk7xZ6QH70AutBG3DrcEsL/RNT3xsdjM3MFpq+eu8bTF9Q8mL
+	7xZ2cDv7nKKWU61s79Qae8Mki/zn8NLALtd0Hbg==
+X-Google-Smtp-Source: AGHT+IG/a8PBfE3N7dyq8VgSMDxPTo+KNf0Ob43bZ+nA3u0KyI3ARKY7uZMpDrYlRsa4rNvyuiTgROVSz0+En1z78FM=
+X-Received: by 2002:a05:6102:3593:b0:493:bf9b:166 with SMTP id
+ ada2fe7eead31-4945bdca458mr905753137.3.1722527840387; Thu, 01 Aug 2024
+ 08:57:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731103403.407818-1-vtpieter@gmail.com> <20240731103403.407818-4-vtpieter@gmail.com>
- <925034c0e0714fce5859d829fdb0ad6cd82f71d7.camel@microchip.com>
-In-Reply-To: <925034c0e0714fce5859d829fdb0ad6cd82f71d7.camel@microchip.com>
-From: Pieter <vtpieter@gmail.com>
-Date: Thu, 1 Aug 2024 17:48:55 +0200
-Message-ID: <CAHvy4AqyHUvm-0oAt88uxPazbpKvKO36goqpW2kyDoeyicxOjw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 3/5] net: dsa: microchip: generalize KSZ9477
- WoL functions at ksz_common
-To: Arun.Ramadoss@microchip.com
-Cc: devicetree@vger.kernel.org, Woojung.Huh@microchip.com, 
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org, o.rempel@pengutronix.de, 
-	pieter.van.trappen@cern.ch
+References: <20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org> <20240730-k1-01-basic-dt-v5-8-98263aae83be@gentoo.org>
+In-Reply-To: <20240730-k1-01-basic-dt-v5-8-98263aae83be@gentoo.org>
+From: Jesse Taube <jesse@rivosinc.com>
+Date: Thu, 1 Aug 2024 11:57:09 -0400
+Message-ID: <CALSpo=ZuO9fugMmABUK-n5tyxNVwpWrQnf_nexbNKr0gZP8f9w@mail.gmail.com>
+Subject: Re: [PATCH v5 08/10] riscv: dts: add initial SpacemiT K1 SoC device tree
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Yangyu Chen <cyy@cyyself.name>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Samuel Holland <samuel.holland@sifive.com>, 
+	Anup Patel <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-serial@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang <kevin.z.m@hotmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Arun,
-
-> > @@ -1051,12 +1052,12 @@ void ksz9477_port_setup(struct ksz_device
-> > *dev, int port, bool cpu_port)
-> >         ksz9477_port_acl_init(dev, port);
-> >
-> >         /* clear pending wake flags */
-> > -       ksz9477_handle_wake_reason(dev, port);
-> > +       ksz_handle_wake_reason(dev, port);
-> >
-> >         /* Disable all WoL options by default. Otherwise
-> >          * ksz_switch_macaddr_get/put logic will not work properly.
-> >          */
-> > -       ksz_pwrite8(dev, port, REG_PORT_PME_CTRL, 0);
-> > +       ksz_pwrite8(dev, port, regs[REG_PORT_PME_CTRL], 0);
+On Mon, Jul 29, 2024 at 8:29=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
 >
-> check the return value.
+> From: Yangyu Chen <cyy@cyyself.name>
+>
+> Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+>
+> Key features:
+> - 4 cores per cluster, 2 clusters on chip
+> - UART IP is Intel XScale UART
+>
+> Some key considerations:
+> - ISA string is inferred from vendor documentation[2]
+> - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> - No coherent DMA on this board
+>     Inferred by taking vendor ethernet and MMC drivers to the mainline
+>     kernel. Without dma-noncoherent in soc node, the driver fails.
+> - Add cache nodes
+>     K1 SoC has 128 sets of 32KiB L1 I/D Cache for each hart, and 512 sets
+>     of 512KiB L2 Cache for each cluster.
+>
+> Currently only support booting into console with only uart, other
+> features will be added soon later.
+>
+> Link: https://docs.banana-pi.org/en/BPI-F3/SpacemiT_K1_datasheet [1]
+> Link: https://developer.spacemit.com/#/documentation?token=3DBWbGwbx7liGW=
+21kq9lucSA6Vnpb [2]
+> Link: https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/=
+boot/dts/spacemit/k1-x.dtsi [3]
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-Thanks but since it's a void function, I cannot pass a non-zero return value
-so is there a point checking it?
+Acked-by: Jesse Taube <jesse@rivosinc.com>
 
 >
-> >  }
-> >
-> >  void ksz9477_config_cpu_port(struct dsa_switch *ds)
-> > @@ -1153,6 +1154,7 @@ int ksz9477_enable_stp_addr(struct ksz_device
-> > *dev)
-> >  int ksz9477_setup(struct dsa_switch *ds)
-> >  {
-> >         struct ksz_device *dev = ds->priv;
-> > +       const u16 *regs = dev->info->regs;
-> >         int ret = 0;
-> >
-> >         ds->mtu_enforcement_ingress = true;
-> > @@ -1183,11 +1185,11 @@ int ksz9477_setup(struct dsa_switch *ds)
-> >         /* enable global MIB counter freeze function */
-> >         ksz_cfg(dev, REG_SW_MAC_CTRL_6, SW_MIB_COUNTER_FREEZE, true);
-> >
-> > -       /* Make sure PME (WoL) is not enabled. If requested, it will
-> > be
-> > -        * enabled by ksz9477_wol_pre_shutdown(). Otherwise, some
-> > PMICs do not
-> > -        * like PME events changes before shutdown.
-> > +       /* Make sure PME (WoL) is not enabled. If requested, it will
-> > +        * be enabled by ksz_wol_pre_shutdown(). Otherwise, some
-> > PMICs
-> > +        * do not like PME events changes before shutdown.
-> >          */
-> > -       ksz_write8(dev, REG_SW_PME_CTRL, 0);
-> > +       ksz_write8(dev, regs[REG_SW_PME_CTRL], 0);
+> ---
+> Changes in v5:
+>  - fix cache-sets
+>  - Link to v4: https://lore.kernel.org/all/20240709-k1-01-basic-dt-v4-8-a=
+e5bb5e56aaf@gentoo.org/
 >
-> here also.
-
-Thanks will do.
-
-Cheers, Pieter
+> Changes in v4:
+>  - add i/d-cache, l2-cache info
+>  - Link to v3: https://lore.kernel.org/all/20240703-k1-01-basic-dt-v3-8-1=
+2f73b47461e@gentoo.org/
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi | 459 +++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 459 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/s=
+pacemit/k1.dtsi
+> new file mode 100644
+> index 0000000000000..0777bf9e01183
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -0,0 +1,459 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+> + */
+> +
+> +/dts-v1/;
+> +/ {
+> +       #address-cells =3D <2>;
+> +       #size-cells =3D <2>;
+> +       model =3D "SpacemiT K1";
+> +       compatible =3D "spacemit,k1";
+> +
+> +       aliases {
+> +               serial0 =3D &uart0;
+> +               serial1 =3D &uart2;
+> +               serial2 =3D &uart3;
+> +               serial3 =3D &uart4;
+> +               serial4 =3D &uart5;
+> +               serial5 =3D &uart6;
+> +               serial6 =3D &uart7;
+> +               serial7 =3D &uart8;
+> +               serial8 =3D &uart9;
+> +       };
+> +
+> +       cpus {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               timebase-frequency =3D <24000000>;
+> +
+> +               cpu-map {
+> +                       cluster0 {
+> +                               core0 {
+> +                                       cpu =3D <&cpu_0>;
+> +                               };
+> +                               core1 {
+> +                                       cpu =3D <&cpu_1>;
+> +                               };
+> +                               core2 {
+> +                                       cpu =3D <&cpu_2>;
+> +                               };
+> +                               core3 {
+> +                                       cpu =3D <&cpu_3>;
+> +                               };
+> +                       };
+> +
+> +                       cluster1 {
+> +                               core0 {
+> +                                       cpu =3D <&cpu_4>;
+> +                               };
+> +                               core1 {
+> +                                       cpu =3D <&cpu_5>;
+> +                               };
+> +                               core2 {
+> +                                       cpu =3D <&cpu_6>;
+> +                               };
+> +                               core3 {
+> +                                       cpu =3D <&cpu_7>;
+> +                               };
+> +                       };
+> +               };
+> +
+> +               cpu_0: cpu@0 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <0>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster0_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu0_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_1: cpu@1 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <1>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster0_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu1_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_2: cpu@2 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <2>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster0_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu2_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_3: cpu@3 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <3>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster0_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu3_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_4: cpu@4 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <4>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster1_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu4_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_5: cpu@5 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <5>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster1_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu5_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_6: cpu@6 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <6>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster1_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu6_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu_7: cpu@7 {
+> +                       compatible =3D "spacemit,x60", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <7>;
+> +                       riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_z=
+icntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_=
+zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "v", "zicbom",
+> +                                              "zicbop", "zicboz", "zicnt=
+r", "zicond", "zicsr",
+> +                                              "zifencei", "zihintpause",=
+ "zihpm", "zfh", "zba",
+> +                                              "zbb", "zbc", "zbs", "zkt"=
+, "zvfh", "zvkt",
+> +                                              "sscofpmf", "sstc", "svinv=
+al", "svnapot", "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-size =3D <32768>;
+> +                       i-cache-sets =3D <128>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-size =3D <32768>;
+> +                       d-cache-sets =3D <128>;
+> +                       next-level-cache =3D <&cluster1_l2_cache>;
+> +                       mmu-type =3D "riscv,sv39";
+> +
+> +                       cpu7_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cluster0_l2_cache: l2-cache0 {
+> +                       compatible =3D "cache";
+> +                       cache-block-size =3D <64>;
+> +                       cache-level =3D <2>;
+> +                       cache-size =3D <524288>;
+> +                       cache-sets =3D <512>;
+> +                       cache-unified;
+> +               };
+> +
+> +               cluster1_l2_cache: l2-cache1 {
+> +                       compatible =3D "cache";
+> +                       cache-block-size =3D <64>;
+> +                       cache-level =3D <2>;
+> +                       cache-size =3D <524288>;
+> +                       cache-sets =3D <512>;
+> +                       cache-unified;
+> +               };
+> +       };
+> +
+> +       soc {
+> +               compatible =3D "simple-bus";
+> +               interrupt-parent =3D <&plic>;
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <2>;
+> +               dma-noncoherent;
+> +               ranges;
+> +
+> +               uart0: serial@d4017000 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017000 0x0 0x100>;
+> +                       interrupts =3D <42>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart2: serial@d4017100 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017100 0x0 0x100>;
+> +                       interrupts =3D <44>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart3: serial@d4017200 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017200 0x0 0x100>;
+> +                       interrupts =3D <45>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart4: serial@d4017300 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017300 0x0 0x100>;
+> +                       interrupts =3D <46>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart5: serial@d4017400 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017400 0x0 0x100>;
+> +                       interrupts =3D <47>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart6: serial@d4017500 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017500 0x0 0x100>;
+> +                       interrupts =3D <48>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart7: serial@d4017600 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017600 0x0 0x100>;
+> +                       interrupts =3D <49>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart8: serial@d4017700 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017700 0x0 0x100>;
+> +                       interrupts =3D <50>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               uart9: serial@d4017800 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xd4017800 0x0 0x100>;
+> +                       interrupts =3D <51>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               plic: interrupt-controller@e0000000 {
+> +                       compatible =3D "spacemit,k1-plic", "sifive,plic-1=
+.0.0";
+> +                       reg =3D <0x0 0xe0000000 0x0 0x4000000>;
+> +                       interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_i=
+ntc 9>,
+> +                                             <&cpu1_intc 11>, <&cpu1_int=
+c 9>,
+> +                                             <&cpu2_intc 11>, <&cpu2_int=
+c 9>,
+> +                                             <&cpu3_intc 11>, <&cpu3_int=
+c 9>,
+> +                                             <&cpu4_intc 11>, <&cpu4_int=
+c 9>,
+> +                                             <&cpu5_intc 11>, <&cpu5_int=
+c 9>,
+> +                                             <&cpu6_intc 11>, <&cpu6_int=
+c 9>,
+> +                                             <&cpu7_intc 11>, <&cpu7_int=
+c 9>;
+> +                       interrupt-controller;
+> +                       #address-cells =3D <0>;
+> +                       #interrupt-cells =3D <1>;
+> +                       riscv,ndev =3D <159>;
+> +               };
+> +
+> +               clint: timer@e4000000 {
+> +                       compatible =3D "spacemit,k1-clint", "sifive,clint=
+0";
+> +                       reg =3D <0x0 0xe4000000 0x0 0x10000>;
+> +                       interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_in=
+tc 7>,
+> +                                             <&cpu1_intc 3>, <&cpu1_intc=
+ 7>,
+> +                                             <&cpu2_intc 3>, <&cpu2_intc=
+ 7>,
+> +                                             <&cpu3_intc 3>, <&cpu3_intc=
+ 7>,
+> +                                             <&cpu4_intc 3>, <&cpu4_intc=
+ 7>,
+> +                                             <&cpu5_intc 3>, <&cpu5_intc=
+ 7>,
+> +                                             <&cpu6_intc 3>, <&cpu6_intc=
+ 7>,
+> +                                             <&cpu7_intc 3>, <&cpu7_intc=
+ 7>;
+> +               };
+> +
+> +               sec_uart1: serial@f0612000 {
+> +                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> +                       reg =3D <0x0 0xf0612000 0x0 0x100>;
+> +                       interrupts =3D <43>;
+> +                       clock-frequency =3D <14857000>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       status =3D "reserved"; /* for TEE usage */
+> +               };
+> +       };
+> +};
+>
+> --
+> 2.45.2
+>
 
