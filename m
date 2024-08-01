@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-90287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825BF944B9A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F615944BB8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:53:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27C071F23613
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 12:44:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF1351F20FD8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 12:53:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70341A01DD;
-	Thu,  1 Aug 2024 12:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6982F19AD87;
+	Thu,  1 Aug 2024 12:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rXP1MsBB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LP97E20l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE80198832;
-	Thu,  1 Aug 2024 12:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3A6194125;
+	Thu,  1 Aug 2024 12:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722516235; cv=none; b=YnDvBVfUs6aFue9lMeHFGivGdVN7fS4EqI/JCx/tZ2C6Np3CYeRVvFS4QOoWXGlfWyw5ISbPfITDMAmMtkZLI8Q87qhiTJKrjH3x1V2hAtv5bQ6oPSq2PQoUV3AhH+G2OKOUXwb9QTg1q/PxRgdrE/Tw/1OEHpo+/IfmJEv0kfg=
+	t=1722516794; cv=none; b=HE/N7A4CEL+tdOwzd9WESg3tCI7QEBXxHG6NNUtL8hI1rKWnlU1fz4Lfa3Vob4XYTbLLS5PcB5ooPpt1QHj0C0TNBe5WKQQRUuRc7NpSi3b8gtgW2jCgnFpRUm+oXbNulh/r0EqY6kdkDptfo4n3iFP8+EqzX6qy2EktX8fmcho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722516235; c=relaxed/simple;
-	bh=6H1MVYMTvoQk5bNEBHe4eza6uBQw9ZId3AXRWvWqoZI=;
+	s=arc-20240116; t=1722516794; c=relaxed/simple;
+	bh=4TSGYMtxMTPV4JTDRQx/tcJV5tOMAGSkL6U8Y04AVi4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KLnVh/NltH6fZUzSB96xmoqzTE8AktZcRHuEWwvowjjAyn9q/sgP/219yt/e6TB3jqOBjBgO7CBx6JZ65nd5sH0muPoq6Afl4o+T+cvggzm39jxCxUtGb7apDAVcwmdoVzH8PB0yONf/GtEmlJCVaL2JHAMc3Rg98S9ImPyE4pY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rXP1MsBB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 797D3C32786;
-	Thu,  1 Aug 2024 12:43:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ogf0M19FCjmpJoi1ZYIIBFB11F96qonhhwkGGSo9Z5Nx3Jkv+ibx5i0kGHycjqxLacSxJ7aWqMeQfb0GHYE6Z/RaB+7+1IBO7wJlyfC+jhpiYdoFr6SPVrciwJF2f6cI1lQPhIm7WMg6HntupFZR0wyW6FUQYIaWMqqQDZ1L8eU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LP97E20l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0692C4AF0A;
+	Thu,  1 Aug 2024 12:53:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722516235;
-	bh=6H1MVYMTvoQk5bNEBHe4eza6uBQw9ZId3AXRWvWqoZI=;
+	s=k20201202; t=1722516794;
+	bh=4TSGYMtxMTPV4JTDRQx/tcJV5tOMAGSkL6U8Y04AVi4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rXP1MsBBJdvJVIMG8T14ryJlUDWSxyE8pKT6bS4aWlhrJr8Ex74Ff5Nv6UoEA9ER0
-	 v+L8Ul8gDdrolEOofEXmjK1A24qqtjLSSOTKQ6m10Tb1K8SvTdEDgolaiSwhjSPHYS
-	 EL4FM0F88G6VIHA9KwBXHS5xX7WhmI4I8Dznn/vyHB8PL3RC+e8pQ4D+y61Y3vDDKx
-	 d8dK6qX0WDhHjQ5CUv8UvId3ezMiRYmZi/laYpO8bSTHgiwFrt8cU8CimfDdezq2o2
-	 hNRvFsv48plAKLgskTwYptqKTZ9cIg8uPM5FIeCV2KZ8/qKjqWSmp92qp6OZx884ZG
-	 ag0t4l2SPUoZQ==
-Date: Thu, 1 Aug 2024 13:43:50 +0100
+	b=LP97E20lR6NcNAe6P/Dv9uh+QWgkTfAk5Y6509n6NgEQH8IrvVx3tHg+qHNLk4UZ4
+	 AbGXV2uJlsQD1Xqu47yBFXPrZsKNZSCcruaDBONavWDFNE8rxO3I9PvznpepBrSUH/
+	 EfKr0+Dye1EfCu7B17NOa1Bq1nk9PTYbJiDVoMU0OcjuQGQpp6fGLsY6S18IGNa/O8
+	 TE1fyMRAFpx6BpamWJBZHjOu3zGADP7LJ9YX1OkPnwRJko0eTWx1AIKeDBO06hqGyS
+	 vTM4FRDmUSJapX9nmwjCI4ysw5bq7GTg9rpsAhxwp5KlugmT3fY27DQTJsLT20OpQ7
+	 2nGpXI3BYe9xw==
+Date: Thu, 1 Aug 2024 13:53:09 +0100
 From: Lee Jones <lee@kernel.org>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, srk@ti.com
-Subject: Re: [PATCH v2] dt-bindings: mfd: syscon: Add
- ti,j784s4-acspcie-proxy-ctrl compatible
-Message-ID: <20240801124350.GD6756@google.com>
-References: <20240729064012.1915674-1-s-vadapalli@ti.com>
- <20240729160453.GA805559-robh@kernel.org>
- <a98b975d-ec8b-432b-9437-aef07240257b@ti.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	linux-leds@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document "netdev" trigger
+Message-ID: <20240801125309.GE6756@google.com>
+References: <20240708114653.18566-1-marex@denx.de>
+ <20240725085042.GC501857@google.com>
+ <3c8bf807-8a8e-4704-a90a-d77ad3293b57@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,58 +64,40 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a98b975d-ec8b-432b-9437-aef07240257b@ti.com>
+In-Reply-To: <3c8bf807-8a8e-4704-a90a-d77ad3293b57@lunn.ch>
 
-On Mon, 29 Jul 2024, Siddharth Vadapalli wrote:
+On Thu, 25 Jul 2024, Andrew Lunn wrote:
 
-> On Mon, Jul 29, 2024 at 10:04:53AM -0600, Rob Herring wrote:
-> > On Mon, Jul 29, 2024 at 12:10:12PM +0530, Siddharth Vadapalli wrote:
-> > > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J784S4
-> > > SoC are used to drive the reference clock to the PCIe Endpoint device via
-> > > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
-> > > obtain the regmap for the ACSPCIE_CTRL register within the System
-> > > Controller device-tree node in order to enable the PAD IO Buffers.
-> > > 
-> > > The Technical Reference Manual for J784S4 SoC with details of the
-> > > ASCPCIE_CTRL registers is available at:
-> > > https://www.ti.com/lit/zip/spruj52
-> > > 
-> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > ---
-> > > 
-> > > Hello,
-> > > 
-> > > This patch is based on linux-next tagged next-20240729.
-> > > v1: https://lore.kernel.org/r/20240715120936.1150314-2-s-vadapalli@ti.com/
-> > > Changes since v1:
-> > > - Rebased patch on next-20240729.
-> > > - Separated this patch from the series.
-> > > - Collected Acked-by tag from:
-> > >   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > >   https://lore.kernel.org/r/04d94188-5e30-4cab-b534-e97c0b2a61f3@kernel.org/
-> > > 
-> > > NOTE: Though it was mentioned on 25th July 2024 that this patch was applied:
-> > > https://lore.kernel.org/r/172190301400.925833.12525656543896105526.b4-ty@kernel.org/
-> > > since I did not find the commit in the MFD tree and the Linux-Next tree,
-> > > I am reposting this patch.
+> > > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> > > index 8a3c2398b10ce..bf9a101e4d420 100644
+> > > --- a/Documentation/devicetree/bindings/leds/common.yaml
+> > > +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> > > @@ -113,6 +113,8 @@ properties:
+> > >              # LED indicates NAND memory activity (deprecated),
+> > >              # in new implementations use "mtd"
+> > >            - nand-disk
+> > > +            # LED indicates network activity
+> > > +          - netdev
 > > 
-> > That's because it was in the middle of the merge window and only fixes 
-> > get published during that time. That's now over, so it should get 
-> > published soon. However, maintainers get busy on other work or take 
-> > vacation, so it could be delayed.
+> > netdev is the description of the network development ML/repo, right?
 > > 
-> > Unless a maintainer updates their tree with other later patches and your 
-> > patch is not there, no reason to worry and resend.
+> > Seems like an odd name for an OS agnostic property?
+> 
+> I agree that one meaning is the network development community within
+> Linux.
+> 
+> But it also means a network device, which is OS agnostic. I don't
+> really see it be any different to a memory technology device, mtd.
 
-Thanks Rob.
+MTD is an acronym.
 
-> I was under the assumption that a commit ID is mentioned after the patch
-> gets applied to the Maintainer's tree and is visible publicly. Thank you
-> for clarifying the details regarding the process followed. I will make
-> sure to wait long enough before resending any patches in the future.
+The only dodgy one I see in there is 'kbd-capslock'.
 
-Pushed now.
+How about, now go with me here: 'network'?
+
+I'd even suffer 'network-device' or 'net-device' if we really have to shorten.
+
+Although, I'm not really sure the 'device' part needs to come into play'?
 
 -- 
 Lee Jones [李琼斯]
