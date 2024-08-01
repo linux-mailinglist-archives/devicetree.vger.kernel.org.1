@@ -1,128 +1,168 @@
-Return-Path: <devicetree+bounces-90073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9100A944044
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 04:03:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2AC39440AA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 04:13:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FC091F2322F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 02:03:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99F96B2AB30
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22ED1189BB9;
-	Thu,  1 Aug 2024 01:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13131EB4A1;
+	Thu,  1 Aug 2024 00:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QCrL/2X2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2ty9yc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4547E189523;
-	Thu,  1 Aug 2024 01:18:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC461EB48E;
+	Thu,  1 Aug 2024 00:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722475124; cv=none; b=FU2xpPNXsD+4P7seV/TceldwnOadOtAgWyaUCscVFQaLnv222lL2jbqISVFBoT0dDYYo41UY+CPD4qxPY8lzOf7Tst/U6lvZuDw8BkcKg6uRMNNqP4ahCGVCH2iYdjdXcG7CopCP06UveVrbjQxhMat4QxMAgz5vAG4zeLQ2ix4=
+	t=1722472872; cv=none; b=batMDaY/9kc0kyuYrrvQSFCjeF0pQ0AsZdJsbicRsr77SerzOwxI+kln33IDnkZ9R89AWPs9LZjGm9yp1Tbu2Xs/HWXIc1spOMM5Zt76NKZadew9OjWQoBh3m48M9QL7T3eyhiLiK6waDXO6K/OYWJ8Tk2Z7QGWQus4A7s9ffVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722475124; c=relaxed/simple;
-	bh=zXJYxoowjLCGGs/moXG9k9H4KOG3qRzqvJSx6i1jyIo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E6PMjIlAHyo0IGvsK1HyVrPGdixVMOCSzh3xTZhqW6BJFZmBE6PJOjpnj/aZTaHZOZIZeBaBOsgeARmDjWPwPB60IIy3KttghVzbXCw81DOJ/CHwPv3KF5YeHT6Hnt+qWLzdgmlpA1LCW9N3YVAmTKgkr1LY88QyBfBntpV84Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QCrL/2X2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46VLAJRX006082;
-	Thu, 1 Aug 2024 01:17:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=0YyrBOfLud+dH9tBesRDPfRK
-	DGs1gz1i/U8ghzKbd2E=; b=QCrL/2X26/TttjkdVba8u7UWZ/eIR4QHx57yZWVN
-	3izM0hmOOoYt+JBp8jlRlxHwJ+idRD1XSs7CU/F25tQM1jbdOT+LWuPiEk0xmIv0
-	WNYaADRaL90O+c3HJNlEefLNfh4dAKifqG6c93VHYefyfKKu+fHq6y9onQ3+gzHZ
-	5TZSq74wI6xQPxGXM31osGtYuosZgkT0SfVMrrrR+Om+neCWsLYDCzrIMAyCZY3q
-	eM72P5L6wgG3qav83q2pAl/Wtd09MfIpQi9vL/1+YdOpEuUTXYl70yknjxKzGspk
-	zEm3v7hqzifExoTj4h1l+kLHW2QSOhOgc/w78cScudErpg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40pq5278fm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 01:17:52 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4711HpNI026929
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Aug 2024 01:17:51 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 31 Jul 2024 18:17:50 -0700
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [PATCH v24 34/34] ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
-Date: Wed, 31 Jul 2024 18:17:30 -0700
-Message-ID: <20240801011730.4797-35-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240801011730.4797-1-quic_wcheng@quicinc.com>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1722472872; c=relaxed/simple;
+	bh=l0EmLdN7z5jDB8UnEkkZc4qnK9A9Sr31dW/ETAFaODU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pyRb9qS7DqdWI/DgO82T5Hd47Ki5+J2IfCCgWSm4w5VheyRIAdO7RpVZimvPGZ2LCXPa7T5YpVu8+erTpusy3M0nYMO6G/cngCVRPlykqEBKmTXwrGuhxZtMBWCTDRhuVl+w86QXVwFlIiTC7RtivTWAqZgJke0UOS1z+6iTvig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2ty9yc+; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3db16129143so3689093b6e.0;
+        Wed, 31 Jul 2024 17:41:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722472869; x=1723077669; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+SRhALzSNIYjZtYZCdYQEI+/EH5x/c0pzDejuFftYNk=;
+        b=A2ty9yc+pUwwecvKYXwXhxOgeM9181/eMX/Tdc8YULOhcFmD5WOYXEuI9fgjYV6ADA
+         v19f6tE8q6kkSuKVhCg6OMJds3FusW+fKgvHrGvLhVAhcnhc/nkTakbh11qzorgUfKjp
+         TOf5zRKhiLfo3nUqrrMioFmp93Tqc6fGJ1vx6bWjFGD2XdhiWkp2+TqIcznZL0N9iVMg
+         3oMKHsabs3kY24Vjs28m9puhiTURgQyZxBVwsVLoOa8Pk0kjxWkkNg0mH9j5LHL7rOvE
+         mVW7EubV+3cRE2aDkdLJ+QfHAFz/qGYMPJ0W3XEjJBi+YZ1KzJvybpYiOeqE37k/r5aK
+         qdyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722472869; x=1723077669;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+SRhALzSNIYjZtYZCdYQEI+/EH5x/c0pzDejuFftYNk=;
+        b=HuQANukk/VGAyLwDu2nD/s5yjEi/sMHphmgSdE2asykatMNhjg1xdlZu72a93ZfCkP
+         oEJ/utdwWxiaw16UlTIpTZa1ps4CtheFRSPu+mXSotLFU1car/q1NVp/nK6mKjiCHP0N
+         M/SY9qLwobc7tT2sqQe5wV4Do6dL4IwJrntuvRofL179LfOd8S7GWavrK0OxxBSiJmJr
+         PzJdauYUpuFByOPMs9iJcRF4AsPcw3DWWKCNfu2HgOvZM0gDqYg1hNm86ryguNzn/9gt
+         80ccGaFuRMSWbQwVzcPKwW9n9tG+PBJOpeSzaidpHBaraK3BU1hFPmA/3cqOewIvTws0
+         7KDw==
+X-Forwarded-Encrypted: i=1; AJvYcCXFhoY4RvLo4CEBmfJ8Spt8+A2t6V+csTCYCZgYaQwRsx7hMSZkxv3CQRLDVVLFkx65LqrVuqXqx50iq/miTC19zZ3bDuxEIErmWtEXY1NYUvLAWDy6LKLGxWrdG4nET5JXUy1iHG54dg==
+X-Gm-Message-State: AOJu0YzOQ1kvDN5JKS2t49UZTkKAgwR2N7PT5kV02fIaX8TPZYlW86QO
+	i6gaX8XZJdQg1IkXSZik75zMW1mmAfMKEFcKsImC97YCennwJmqM
+X-Google-Smtp-Source: AGHT+IF2+UXiIKmLrJ8RELf5HuGNCOKJPdjkpvdOPhQ+ZS8Luzx6Jwu6WdMqA97xvIZpCy9sBV+83w==
+X-Received: by 2002:a05:6808:23d6:b0:3da:a16e:1764 with SMTP id 5614622812f47-3db511b4701mr1034618b6e.4.1722472869032;
+        Wed, 31 Jul 2024 17:41:09 -0700 (PDT)
+Received: from [172.19.1.53] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7a9f7b7b029sm10935955a12.11.2024.07.31.17.41.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Jul 2024 17:41:08 -0700 (PDT)
+Message-ID: <2e543ed4-929c-44df-ba42-0a6b259aeb0f@gmail.com>
+Date: Thu, 1 Aug 2024 08:41:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9LmxEnlmigDKbRJHAXQqAhHAThcfJJS3
-X-Proofpoint-ORIG-GUID: 9LmxEnlmigDKbRJHAXQqAhHAThcfJJS3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-31_11,2024-07-31_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- adultscore=0 priorityscore=1501 spamscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408010004
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: nuvoton,ma35-usb2-phy: add new
+ bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>, vkoul@kernel.org,
+ kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240731014313.113417-1-hpchen0nvt@gmail.com>
+ <20240731014313.113417-2-hpchen0nvt@gmail.com>
+ <6b1894c8-766c-4191-9f05-42f1f0a838f5@kernel.org>
+Content-Language: en-US
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+In-Reply-To: <6b1894c8-766c-4191-9f05-42f1f0a838f5@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Check for if the PCM format is supported during the hw_params callback.  If
-the profile is not supported then the userspace ALSA entity will receive an
-error, and can take further action.
+Dear Krzysztof,
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/soc/qcom/qdsp6/q6usb.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Thank you for your reply.
 
-diff --git a/sound/soc/qcom/qdsp6/q6usb.c b/sound/soc/qcom/qdsp6/q6usb.c
-index d8f1bb4ec497..9a3fb3cb32b2 100644
---- a/sound/soc/qcom/qdsp6/q6usb.c
-+++ b/sound/soc/qcom/qdsp6/q6usb.c
-@@ -52,6 +52,7 @@ static int q6usb_hw_params(struct snd_pcm_substream *substream,
- 	struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
- 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-+	int direction = substream->stream;
- 	struct q6afe_port *q6usb_afe;
- 	struct snd_soc_usb_device *sdev;
- 	int ret;
-@@ -63,6 +64,10 @@ static int q6usb_hw_params(struct snd_pcm_substream *substream,
- 	mutex_lock(&data->mutex);
- 	sdev = list_last_entry(&data->devices, struct snd_soc_usb_device, list);
- 
-+	ret = snd_soc_usb_find_supported_format(sdev->chip_idx, params, direction);
-+	if (ret < 0)
-+		goto out;
-+
- 	q6usb_afe = q6afe_port_get_from_id(cpu_dai->dev, USB_RX);
- 	if (IS_ERR(q6usb_afe))
- 		goto out;
+
+
+On 2024/7/31 下午 01:31, Krzysztof Kozlowski wrote:
+> On 31/07/2024 03:43, Hui-Ping Chen wrote:
+>> Add dt-bindings for USB2 PHY found on the Nuvoton MA35 SoC.
+>>
+>> Signed-off-by: Hui-Ping Chen <hpchen0nvt@gmail.com>
+>> ---
+>>   .../bindings/phy/nuvoton,ma35d1-usb2-phy.yaml | 47 +++++++++++++++++++
+>>   1 file changed, 47 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/nuvoton,ma35d1-usb2-phy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/nuvoton,ma35d1-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/nuvoton,ma35d1-usb2-phy.yaml
+>> new file mode 100644
+>> index 000000000000..88e297ba4ecf
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/nuvoton,ma35d1-usb2-phy.yaml
+>> @@ -0,0 +1,47 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/nuvoton,ma35d1-usb2-phy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Nuvoton MA35D1 USB2 phy
+>> +
+>> +maintainers:
+>> +  - Hui-Ping Chen <hpchen0nvt@gmail.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nuvoton,ma35d1-usb2-phy
+>> +
+>> +  "#phy-cells":
+>> +    const: 0
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  nuvoton,sys:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle of the system-management node.
+>> +      This driver has some status bits located in the sys,
+> Do not reference drivers, but hardware.
+
+Okay. I will revise the description.
+
+
+
+>> +      it is necessary to reference the sys link.
+> This tells me nothing. You must be specific - WHAT IS THE PURPOSE of
+> this syscon usage in USB2 PHY?
+
+Sorry, I misunderstood. I will correct the description.
+
+Thank you for the reminder.
+
+
+
+> Best regards,
+> Krzysztof
+
+
+Best regards,
+
+Hui-Ping Chen
+
+
 
