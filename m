@@ -1,214 +1,135 @@
-Return-Path: <devicetree+bounces-90261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3B3944903
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 12:07:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FE594492F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 12:15:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56497282E3E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:07:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0071B282A65
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1AB174EEB;
-	Thu,  1 Aug 2024 10:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A1518452B;
+	Thu,  1 Aug 2024 10:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D1duKZfa"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Z1ag3YUc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A50E184539;
-	Thu,  1 Aug 2024 10:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC60131732
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 10:15:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722506830; cv=none; b=hvy8wvUbe9yKu7rPh8SvDdFVwGmtS8XGWD/Coc9/BxwJeKYQ/TBVKqGeDJiuvEoDr4lsdRrMm83E46wcnfc5II4hBBoV60Uegc6NQ86uO2zUIDsikUKzXePVHiQTx5C4R1xj9wfkn8ElQ9hzvgzjRV2VMkLVyvtv4fko+9l6R1w=
+	t=1722507312; cv=none; b=b+cnIzOXQe6MLE7RewZ9GbmyE2E5zcdEdpaPTNMGZrUYAL0bLe2aq8KM6fQ+pBnOP/MQGTb3APVuOwtges9xatT78jpETLs7fNoOq9zNLWIMoymtdjEScNKKeaVLxXs4M6CPapIj/ZaIk1D1Tgy9TnoHsQNZ2rPDx6WtSMTRzpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722506830; c=relaxed/simple;
-	bh=9vSY6lydLkfNDrrATRB5SSKr4Pg3eOn4NQvD8VeqDqo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S1G1puxQEeplSfLsSeXHkVtBtDmIFib/JkbeFUaLJfif9CuQO1wR0tR1LZ0VlFOv+32SdRvb1eBrcfxy1xgqN+VH8AXcdlhKb3dqMtZf+di4Ue6bg/2NzMnItksG2UKchlsAWgPIe7P0IeOET0cvpCYIkuBkd3XCdgwkhGH6WJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D1duKZfa; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5a1337cfbb5so11178055a12.3;
-        Thu, 01 Aug 2024 03:07:08 -0700 (PDT)
+	s=arc-20240116; t=1722507312; c=relaxed/simple;
+	bh=U9wr7GqkmrMX2vYC7lUvPnIEz6kcUPwaUXveRaPautM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CvwgRvaxslqfOPF3Pg8QsYh9lZ5ODQywzoH8gfCB/bk84i3rfoj7714kmiF3yF4WeciVJSdQoJC4fPNPrqZt3qsXz2AU8YlZhV//5LHAu9Yt7gFCDxBkll7k9zHH1JIwqc4BbZsKNLSrJUHmAs7KxvNerIyeuiAFpcpCOtVGvm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Z1ag3YUc; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a7aa4ca9d72so853308566b.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 03:15:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722506827; x=1723111627; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9vSY6lydLkfNDrrATRB5SSKr4Pg3eOn4NQvD8VeqDqo=;
-        b=D1duKZfad4AFIkhnVxuYh68HJxA3Wb63QOKBqUrG9ykbVlqRfh+PmHlQ9Mrro3YfW2
-         Qjstonc/GOVCkjhDHr9XkJpDiuNXZA+yhnSKfJ0UTp9AE2aNJ8yyvAFo7jNjyGLNqMUb
-         MzW6fWPnP2lyUDIPHnyF3NgmwiS03LRWUql9bV4qZk5VlJsKJ/7X4246eiQG+h/05QkJ
-         fD10xw3FoNZm/pjS5C8PVNOhN38pOLGA7rRaR/IXBmFoaQfy3iHEhOMzaBRXr5Vw+bQ0
-         NK8+8B+BJaKUefBUKw5qUKempljIa8ljPFQ+tPTI0UaLU8eoi05+R6cOBG1MS9RO9Jnv
-         x8aQ==
+        d=ventanamicro.com; s=google; t=1722507308; x=1723112108; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lWBquabnZ6kcEWp0IKOcbEM+16+nIy0kpShVIFZJXnM=;
+        b=Z1ag3YUcUcYk9TSMAqv5fTfKBPlGfDNiA/vlDmBFjJuX03VNfqbSZavHdw3z3gpBM8
+         eLuR+hWwVb0t3YkgV/36nsDqVeB60EHvB13IsDVV1LbKL4OQqJ7KQliNgNQnqSjgctzR
+         YLzkEmNWKbawkt8jCDU5bCeUZGs8+ze55xNPL7ScqA6pMsfvozRr0P4I10wGAgOYgTR+
+         wSFuZ2Mkj1cshfOPpzge0jYyDE7cl/bA0LzBEGgSozehzKsz/6R7cX/1ns6Gmksd+feo
+         NCxkvy+iLdg4rwIToZ0jgiX15JQGgu2Xv60LcTn9uh5piMPltE0doldbZVp+MwFGeB4z
+         5M1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722506827; x=1723111627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9vSY6lydLkfNDrrATRB5SSKr4Pg3eOn4NQvD8VeqDqo=;
-        b=jCsXrDMyl7Iec++jQ1GfqghH1OrE5zm/MwNKAWa8HY7cAoO8NW1rBYpORV94TOcn7o
-         0xUfUeyH42XrTjrcd3FOddcSETVFeqyYASrSd5tP1iMtGmgHD/a/7bNRmKwVYo/by9pS
-         KK6SLgPdqm3NJcyqtHFjX5+ddxxNBqg/iWvhNmxFiZAXMKFUNS8BRZA5bemptBNhZDJu
-         wxuJwBKaKJ3x1+6Kb86+wZFD/fIFNm1kwxkQx8ckh1RnCTIHGJ5zkmV7dCyliJbwHbrN
-         p9TOfh/jwe1N9ATNMZf5kP69a+swrAgoCQV+GtNr5ieD7bhuZEXwh6JVY5j/u5qw8LNa
-         jAtw==
-X-Forwarded-Encrypted: i=1; AJvYcCXRh9g9iH/Mw1ioxtWzUrQU4RpxYRNWKP3XC/SG/7a23JJzc2qStqOSvULxYwkdx1HXsqF0QUh9mY3gWa+X4MOeSUxIUTkTg3qtmCl6ebiy3GBI9YV/cQA9rlYjRzPT7q5qQ7WqrA327WflP9VazASVzFCYASot6trHlW9HcTn3qgFFAqw=
-X-Gm-Message-State: AOJu0Yw1XuRcSnaxEyr7SeQ7vQPGd4QFbq5BFzxubAo3+0pqRevONncW
-	RkeDt+awV0c5uzTfTkhLp9DMlygwuaD/30FN6AzqllLf3//UCIQHwlv9Jw0S9ifBGsXBlwlBmBR
-	GgLLO7GBnocxeQT1U4FaI2LRe8NA=
-X-Google-Smtp-Source: AGHT+IEtvdEGMEdlpwj3fZzWkXiTreBRhSwXUsC3Ll4UR5KrAHhq3dJbqwzS/CodcHNC4Ebn20/zdzul4iKt8ZqGaUU=
-X-Received: by 2002:a50:ec82:0:b0:5a0:d481:a22a with SMTP id
- 4fb4d7f45d1cf-5b6fe82383emr1267700a12.7.1722506826299; Thu, 01 Aug 2024
- 03:07:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722507308; x=1723112108;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lWBquabnZ6kcEWp0IKOcbEM+16+nIy0kpShVIFZJXnM=;
+        b=n6FJkyJEtUYcJZbdxE3o55gxREt7qHjdA+VWk3H9vmN3hRGJjs4f7+/jQwbKbjCL8S
+         BB2TY2s6MroHbG+RK6WjUAVSkzKoamJXeaSzHngG5/jDF27bWrRfGrR4UiCWapdjsR6M
+         d1riWFCob3H5GA/QY6IekQSVqKWTmXEw73PvSWyZYy2YOLZZgbEwySa7kcqPFpYQ9rlp
+         shGDhHFajAwtd2PqUT/RqskQzweHwA7elpsNjKmRcQxsrW4fbaFDvW8OBrzmsqTDCxNP
+         PRMpdHc6JnXXf2xWAOcEjMwz8JIPaTR0R7D58+yxDF5bA6Yz30XC7J7I5iREBTHtBt6N
+         BPzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWPrfxbbY3kg8Gm18j0jzJon9q1n9Wk842Z6kxXMb4M4v1QYzON1OWGGXUSV9m8lNUbVezAdelb+Nv4f3txXcROgqJKLvN+F8oEcQ==
+X-Gm-Message-State: AOJu0YyA8R95cWOnDLJRJrZCP/oAcZyXYbvh4rVaIgkGfzjmO1QGqGhD
+	grQNX32LZxC715yW8Vo6HTewLHgVK6V4whv8wPiOQSqyP9RoHp/8qLCjAm4M4X0=
+X-Google-Smtp-Source: AGHT+IEeTCuavVhswNVgEm2olLofx/pt8cE9Bumon3z0afUonWZ842xMiwTVqZcy8FZzQmEJxlyJMw==
+X-Received: by 2002:a17:907:7da0:b0:a7a:8876:4429 with SMTP id a640c23a62f3a-a7daf65d495mr148745866b.45.1722507307311;
+        Thu, 01 Aug 2024 03:15:07 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad4348bsm875471766b.118.2024.08.01.03.15.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 03:15:06 -0700 (PDT)
+Date: Thu, 1 Aug 2024 12:15:00 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arch@vger.kernel.org
+Subject: Re: [PATCH v4 13/13] riscv: Add qspinlock support
+Message-ID: <20240801-e773d3752fe8b5484405d404@orel>
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-14-alexghiti@rivosinc.com>
+ <20240731-ce25dcdc5ce9ccc6c82912c0@orel>
+ <CAHVXubhQefQ6i3Vow_p-uSACQyPcMJNC2UwB99xt_=jDtRUDFw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com>
- <20240430-loongson1-nand-v7-2-60787c314fa4@gmail.com> <20240506091748.18c120d5@xps-13>
- <CAJhJPsVOx_AZmsRuZ5jy2-wJ+7-Wm+8RQAJ_LhKGLU3aFzrR7g@mail.gmail.com> <20240520173325.79fee6a5@xps-13>
-In-Reply-To: <20240520173325.79fee6a5@xps-13>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Thu, 1 Aug 2024 18:06:29 +0800
-Message-ID: <CAJhJPsWczs4o0Fj9+77r8jPcd4C9Hih5kxy=3X-3Tyz-0-3SDg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] mtd: rawnand: Enable monolithic read when reading subpages
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHVXubhQefQ6i3Vow_p-uSACQyPcMJNC2UwB99xt_=jDtRUDFw@mail.gmail.com>
 
-Sorry!
-I admit this is taking a shortcut.
-Will drop this patch and implement subpage read instead.
-Thanks!
-
-On Mon, May 20, 2024 at 11:33=E2=80=AFPM Miquel Raynal
-
-<miquel.raynal@bootlin.com> wrote:
->
-> Hi Keguang,
->
-> keguang.zhang@gmail.com wrote on Mon, 20 May 2024 18:42:30 +0800:
->
-> > On Mon, May 6, 2024 at 3:17=E2=80=AFPM Miquel Raynal <miquel.raynal@boo=
-tlin.com> wrote:
+On Thu, Aug 01, 2024 at 10:43:03AM GMT, Alexandre Ghiti wrote:
+...
+> > > diff --git a/include/asm-generic/qspinlock.h b/include/asm-generic/qspinlock.h
+> > > index 0655aa5b57b2..bf47cca2c375 100644
+> > > --- a/include/asm-generic/qspinlock.h
+> > > +++ b/include/asm-generic/qspinlock.h
+> > > @@ -136,6 +136,7 @@ static __always_inline bool virt_spin_lock(struct qspinlock *lock)
+> > >  }
+> > >  #endif
 > > >
-> > > Hi,
-> > >
-> > > devnull+keguang.zhang.gmail.com@kernel.org wrote on Tue, 30 Apr 2024
-> > > 19:11:11 +0800:
-> > >
-> > > > From: Keguang Zhang <keguang.zhang@gmail.com>
-> > > >
-> > > > nand_read_subpage() reads data and ECC data by two separate
-> > > > operations.
-> > > > This patch allows the NAND controllers who support
-> > > > monolithic page read to do subpage read by a single operation,
-> > > > which is more effective than nand_read_subpage().
-> > >
-> > > I am a bit puzzled by this change. Usually nand_read_subpage is used
-> > > for optimizations (when less data than a full page must be retrieved)=
-.
-> > > I know it may be used in other cases (because it's easier for the cor=
-e
-> > > in order to support a wide range of controllers). Can you please show=
- a
-> > > speed test showing the results before I consider merging this patch?
-> > >
-> > With this patch:
-> > # flash_speed -c 128 -d /dev/mtd1
-> > scanning for bad eraseblocks
-> > scanned 128 eraseblocks, 0 are bad
-> > testing eraseblock write speed
-> > eraseblock write speed is 2112 KiB/s
-> > testing eraseblock read speed
-> > eraseblock read speed is 3454 KiB/s
-> > testing page write speed
-> > page write speed is 1915 KiB/s
-> > testing page read speed
-> > page read speed is 2999 KiB/s
-> > testing 2 page write speed
-> > 2 page write speed is 2000 KiB/s
-> > testing 2 page read speed
-> > 2 page read speed is 3207 KiB/s
-> > Testing erase speed
-> > erase speed is 72495 KiB/s
-> > Testing 2x multi-block erase speed
-> > 2x multi-block erase speed is 74135 KiB/s
-> > Testing 4x multi-block erase speed
-> > 4x multi-block erase speed is 74812 KiB/s
-> > Testing 8x multi-block erase speed
-> > 8x multi-block erase speed is 75502 KiB/s
-> > Testing 16x multi-block erase speed
-> > 16x multi-block erase speed is 75851 KiB/s
-> > Testing 32x multi-block erase speed
-> > 32x multi-block erase speed is 75851 KiB/s
-> > Testing 64x multi-block erase speed
-> > 64x multi-block erase speed is 76204 KiB/s
-> > finished
+> > > +#ifndef __no_arch_spinlock_redefine
 > >
-> > Without this patch:
-> > # flash_speed -c 128 -d /dev/mtd1
-> > scanning for bad eraseblocks
-> > scanned 128 eraseblocks, 0 are bad
-> > testing eraseblock write speed
-> > eraseblock write speed is 2074 KiB/s
-> > testing eraseblock read speed
-> > eraseblock read speed is 2895 KiB/s
-> > testing page write speed
-> > page write speed is 998 KiB/s
-> > testing page read speed
-> > page read speed is 1499 KiB/s
-> > testing 2 page write speed
-> > 2 page write speed is 1002 KiB/s
-> > testing 2 page read speed
-> > 2 page read speed is 1554 KiB/s
-> > Testing erase speed
-> > erase speed is 76560 KiB/s
-> > Testing 2x multi-block erase speed
-> > 2x multi-block erase speed is 74019 KiB/s
-> > Testing 4x multi-block erase speed
-> > 4x multi-block erase speed is 74769 KiB/s
-> > Testing 8x multi-block erase speed
-> > 8x multi-block erase speed is 75149 KiB/s
-> > Testing 16x multi-block erase speed
-> > 16x multi-block erase speed is 75921 KiB/s
-> > Testing 32x multi-block erase speed
-> > 32x multi-block erase speed is 75921 KiB/s
-> > Testing 64x multi-block erase speed
-> > 64x multi-block erase speed is 75921 KiB/s
-> > finished
+> > I'm not sure what's better/worse, but instead of inventing this
+> > __no_arch_spinlock_redefine thing we could just name all the functions
+> > something like __arch_spin* and then add defines for both to asm/spinlock.h,
+> > i.e.
 > >
-> > The throughput of the former is twice that of the latter.
+> > #define queued_spin_lock(l) __arch_spin_lock(l)
+> > ...
+> >
+> > #define ticket_spin_lock(l) __arch_spin_lock(l)
+> > ...
+> 
+> __arch_spin_lock() would use queued_spin_lock() so that would make an
+> "infinite recursive definition" right? And that would override the
+> "real" queued_spin_lock() implementation too.
+> 
+> But maybe I missed something!
 >
-> And what is your NAND controller driver?
->
-> subpage reads are used when you only want to read a subset of a NAND
-> page.
->
-> Otherwise the core may use the RNDOUT command to change the pointer in
-> the chip's SRAM to read from a different location, but I don't see what
-> is impacting so much, unless if the driver implementation is really
-> sub-optimized.
->
-> Thanks,
-> Miqu=C3=A8l
 
+It depends on where the definition is done. It should work if the
+preprocessor expands the implementation of __arch_spin_* before
+evaluating the #define of queued_spin_*. IOW, we just need to put
+the defines after the static inline constructions.
 
-
---
-Best regards,
-
-Keguang Zhang
+Thanks,
+drew
 
