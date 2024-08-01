@@ -1,123 +1,262 @@
-Return-Path: <devicetree+bounces-90395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3001F9452FB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:49:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14BBE9452FF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:50:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D85011F24658
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:49:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 514321F23010
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:50:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45950143897;
-	Thu,  1 Aug 2024 18:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B158143883;
+	Thu,  1 Aug 2024 18:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="V/R18hQL";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="TB16bH+7"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="YG6WD8wb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DEC14373A;
-	Thu,  1 Aug 2024 18:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B0D14373A
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 18:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722538154; cv=none; b=q+gOq2YN9i+Q/QYjCP7h8QiWdASI1LOAM4TgrGY5vEip5xnI+REifeg6spthJ+K843Edqp6v3qtK4qItXXWaoCREGc4KX1+OozveeWeTC6Xz+QxBK1aQWVwkSXKfER7ksAZ2hv1PJCgM+MeJUr+uBPvTbO9VbAl9qPOuG51XUVA=
+	t=1722538252; cv=none; b=iztsOq4K250WJnUXG0KbNehMhnVAvtGOcZ8VNvir6wadBBwi1qptRyOHfK4iDRljOn/cRYtQxYde7gzlw943BXLzDAI9iCqDZBAPgNJdNm752OOs3Ky7otyNJA739U/lpI/6/JF8mIB/CY2Enly+fcYjdZI5auTWugLJq9MX7vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722538154; c=relaxed/simple;
-	bh=Mqvq6a7v7faU/RsAxiBN033U6iPOpo33gjvwTQwwEBE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=UyZ6I9a1kTlzXcC6eWpF0Dmw21m1BjpvV5Gq4AiMetoQn9WtrF3WoBnayKd7soof5o5ycTRhXeMDDFZ1Ddmke/bbn6dNXTea4XaPpcVSZIjozHeDEmwvDWe+CmNnoc9XIjq0cdXN5/C1RbvsZk93P/jCvQ8DKc4YGNLOH28BuzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=V/R18hQL; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=TB16bH+7; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1722538149;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zy4QAbBchws8wpEd632QvvKsWpoM4onCh56dsKjIHlQ=;
-	b=V/R18hQLq+jyQoLBzyEA/jn4Fzajd35TRSiGYLRaN/IJiictIcX6L3AmjSn/d3co88iSHu
-	bubzfHPnaZfsdZV+n9L6x0BH+0IDUzw4uWIiBLHtgmyyZRkKUc3z2lbAE7MFUFieOJQtr6
-	/K2h2pJ1GL5UKwSIn6qNY7EqGmRnc7NfuLvUYsEbgz315JLujAFOuyuCsxlfhcCkjCj1rw
-	9DAtO6VQGNm9NaCdKm+7p8mHC22oedrL3kc89L3/FE/HF+TkVc/1a8BEn4v4VvUc8p9cZd
-	F33M1ajTN9rT2zJyvvJgW1OyXO6NdrO66oFuFxLBUtr01FKDFp6spDwVwNwiBA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1722538149;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zy4QAbBchws8wpEd632QvvKsWpoM4onCh56dsKjIHlQ=;
-	b=TB16bH+7FY9c5h6o6aIywattKgBHBOAnvaRdWLpcsYODy3h8ds9MT5TvjCSdJWS3Y5wMeK
-	KUR0S+I/dHQsuzAw==
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
- Marc Zyngier <maz@kernel.org>, Daire McNamara
- <daire.mcnamara@microchip.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [RFC v7 3/6] irqchip: add mpfs gpio interrupt mux
-In-Reply-To: <20240801-palpitate-swinger-7bc8ae8deaaf@spud>
-References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
- <20240723-flatworm-cornflake-8023212f6584@wendy> <87le1k8oq2.ffs@tglx>
- <20240801-palpitate-swinger-7bc8ae8deaaf@spud>
-Date: Thu, 01 Aug 2024 20:49:08 +0200
-Message-ID: <87r0b82i57.ffs@tglx>
+	s=arc-20240116; t=1722538252; c=relaxed/simple;
+	bh=Dxt87+G1ZsVUWXVFBgsaPkgOc6fcgwS/vik2AcXTt7o=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=cDoM5uZOfnVYAf96PPX04bAfwzHrELBz0aF+DFaHe43jEPW66ewQBOZhzNA5es9gEqZA6xdXMcPenw/it5ppvLS6NEgCk0aNTsPeU/MJwIvay5qZq3pbLpZxWfBEKzLqERMU3DAsjlsjL9Ui0zJWJiAbvbklf6Ukv4E5gEWP+BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=YG6WD8wb; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471Gx8Hn026526;
+	Thu, 1 Aug 2024 18:50:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	message-id:date:subject:to:cc:references:from:in-reply-to
+	:content-type:content-transfer-encoding:mime-version; s=pp1; bh=
+	yhyR78qT1byKkheMVR2YqFZ0cI1JiXXE3mkBqbk0s18=; b=YG6WD8wbi0cuJVUR
+	l7N7Y4aYoggaMg8BdB9HdGCRUxIi1QhppGI+VMgKNACrkCITL1xXJS9tuR00H/+k
+	yUIXer4R5avVhC/XUV7UBokJvudUk3m3sT1hvojNTCnJuZT6aVVDmTgaxNqX/cCV
+	T3z6+RBex8qk1XnL8HsWWwSrKnWeJx/rxzYzQcMoD2SgQdLH77pmO3V8avaqrVvj
+	AMwokzpc5LKlRwWIPqDRyAfKhHrdlMeztaSQac/IXkrSMrqoxoKnCFnXVlfz1kvH
+	qqJpgc9zck4MSVKqzTYncvkVB46qD0Acn0h0LJ3zEo4eiQCOTu565EeNRj3cnh4i
+	0IQcfQ==
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40rebqg716-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 18:50:31 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 471GQd3h003745;
+	Thu, 1 Aug 2024 18:50:31 GMT
+Received: from smtprelay03.wdc07v.mail.ibm.com ([172.16.1.70])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 40ndemu42c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 18:50:31 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
+	by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 471IoSZD56885652
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 1 Aug 2024 18:50:30 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6EFC25805D;
+	Thu,  1 Aug 2024 18:50:28 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 10C7A58058;
+	Thu,  1 Aug 2024 18:50:28 +0000 (GMT)
+Received: from [9.24.12.86] (unknown [9.24.12.86])
+	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu,  1 Aug 2024 18:50:27 +0000 (GMT)
+Message-ID: <fc92ccbd-89c7-4392-91ac-213aba31d37b@linux.ibm.com>
+Date: Thu, 1 Aug 2024 13:50:27 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/1] ARM: dts: aspeed: system1: IBM System1 BMC update
+To: Rob Herring <robh@kernel.org>
+Cc: andrew@codeconstruct.com.au, eajames@linux.ibm.com, joel@jms.id.au,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+References: <20240731214737.986010-1-ninad@linux.ibm.com>
+ <172252600790.120672.12772438670145461296.robh@kernel.org>
+ <4d5b8958-2d33-42df-ac97-82bb63fdff38@linux.ibm.com>
+ <CAL_JsqLd8Xcj7gD=WKrt8ygYHb3jNpvxof5yFAPPydiRCPv0eQ@mail.gmail.com>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <CAL_JsqLd8Xcj7gD=WKrt8ygYHb3jNpvxof5yFAPPydiRCPv0eQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: lL-RT0xlWfwnEsdMy8QR8wqU9ubpeLB8
+X-Proofpoint-ORIG-GUID: lL-RT0xlWfwnEsdMy8QR8wqU9ubpeLB8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-01_16,2024-08-01_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ clxscore=1015 lowpriorityscore=0 spamscore=0 malwarescore=0 mlxscore=0
+ suspectscore=0 phishscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=936
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408010118
 
-On Thu, Aug 01 2024 at 16:09, Conor Dooley wrote:
-> On Mon, Jul 29, 2024 at 12:41:25PM +0200, Thomas Gleixner wrote:
->> > +	/*
->> > +	 * If a bit is set in the mux, GPIO the corresponding interrupt from
->> > +	 * controller 2 is direct and that controllers 0 or 1 is muxed.
->> 
->> This is not a coherent sentence.
+Hi Rob,
+
+On 8/1/24 12:36, Rob Herring wrote:
+> On Thu, Aug 1, 2024 at 10:25 AM Ninad Palsule <ninad@linux.ibm.com> wrote:
+>> I have seen these warning. I am not sure how to fix them as it is
+>> already documented in the following file.
+>>
+>> Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
+> $ git log -- Documentation/devicetree/bindings/hwmon/pmbus/max31785.txt
+> (END)
+
+Yes, This file only exist in the www.github.com/openbmc/linux. I will 
+try to upstream it along with driver changes later.
+
+Sorry I was not suppose to send this patch to upstream. So please ignore 
+the patch.
+
+Thanks & Regards,
+
+Ninad Palsule
+
 >
-> It should read "controller 0 or 1;s interrupt is muxed". Does that make
-> more sense to you?
-
-No: If a bit is set in the mux, GPIO the corresponding...
-
-I'm already failing at 'GPIO'. My parser expects a verb there :)
-
->> > +	irq_set_chained_handler_and_data(virq, handle_untracked_irq,
->> 
->> Why does this use handle_untracked_irq()?
+> Did you mean Documentation/devicetree/bindings/hwmon/max31785.txt? If
+> so, there is no 'pmbus-fan' in it or anywhere else except aspeed dts
+> files.
 >
-> I'll have to go and dig back in my notes as to why it is untracked. It
-> was probably something like irqd_set() in handle_irq_event() blowing up
-> on the irq_data being invalid (which I figure could relate back to my
-> questions in the cover letter about issues with irqd_to_hwirq()) - but
-> I'll double check what exactly prompted it when I get back from my
-> holidays, but...
+> The state of the aspeed dts files is really quite sad. This is a count
+> of warnings. The first number is total warnings. The second number is
+> unique warnings (stripping the dtb name so we don't have N warnings
+> for N boards). The 2nd list is undocumented (by schema) compatibles.
 >
->> This sets up a chained handler
->> but handle_untracked_irq() is a regular interrupt handler.
+> The number of warnings vs. Linus's tree is higher already and we just
+> started the cycle. That's the wrong direction and in general I see
+> very little if any effort reducing the warnings for aspeed.
 >
-> ...what I was likely using before was handle_simple_irq() which isn't
-> chained either. You're expecting to see mpfs_irq_mux_nondirect_handler()
-> here I suppose?
-
-Yes or some other proper chained handler.
-
-> Given you've only commented on one significant issue and two minor items,
-> is it safe to conclude that the overall approach doesn't have you
-> screaming and running for the hills?
-
-I don't love it, but I don't have a better approach to deal with this.
-
-Thanks,
-
-        tglx
+> This is all run daily here: https://gitlab.com/robherring/linux-dt/-/jobs
+>
+> arch/arm/boot/dts/aspeed:3682:635
+>      184  sbefifo@2400: '#address-cells', '#size-cells' do not match
+> any of the regexes: 'pinctrl-[0-9]+'
+>      160  i2cr@20: #address-cells: 1 was expected
+>       88  eeprom@0: 'size' is a required property
+>       88  eeprom@0: 'pagesize' is a required property
+>       88  eeprom@0: 'address-width' is a required property
+>       70  lpc@1e789000: reg-io-width: 4 is not of type 'object'
+>       62  kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>       62  kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>       62  kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>       62  kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>       45  sram@1e720000: 'ranges' is a required property
+>       45  sram@1e720000: '#size-cells' is a required property
+>       45  sram@1e720000: '#address-cells' is a required property
+>       45  lpc@1e789000: lpc-snoop@90: 'clocks' does not match any of
+> the regexes: 'pinctrl-[0-9]+'
+>       25  timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>       25  syscon@1e6e2000: 'smp-memram@180' does not match any of the
+> regexes: '^interrupt-controller@[0-9a-f]+$',
+> '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$',
+> '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
+>       25  lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of
+> the regexes: 'pinctrl-[0-9]+'
+>       25  ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not
+> match '^ethernet(@.*)?$'
+>       25  ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not
+> match '^ethernet(@.*)?$'
+>       25  ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not
+> match '^ethernet(@.*)?$'
+>       25  ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not
+> match '^ethernet(@.*)?$'
+>       25  fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master',
+> 'fsi-master'] is too long
+>       25  fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master',
+> 'fsi-master'] is too long
+>       25  crypto@1e6fa000: 'aspeed,ahbc' does not match any of the
+> regexes: 'pinctrl-[0-9]+'
+>       25  bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+>       24  sdc@1e740000: sdhci@1e740200:compatible:
+> ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+>       24  sdc@1e740000: sdhci@1e740100:compatible:
+> ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+>       22  spi@60: 'eeprom@0' does not match any of the regexes:
+> '^spi@[0-9a-f]+$', 'pinctrl-[0-9]+'
+>       22  spi@40: 'eeprom@0' does not match any of the regexes:
+> '^spi@[0-9a-f]+$', 'pinctrl-[0-9]+'
+>       22  sbefifo@2400: occ: 'occ-hwmon', 'reg' do not match any of the
+> regexes: 'pinctrl-[0-9]+'
+>
+> arch/arm/boot/dts/aspeed:68
+> ['adi, adm1272']
+> ['adm1272']
+> ['adm1275']
+> ['aspeed,ast2400-cf-fsi-master', 'fsi-master']
+> ['aspeed,ast2400-cvic', 'aspeed-cvic']
+> ['aspeed,ast2400-i2c-ic']
+> ['aspeed,ast2400-ibt-bmc']
+> ['aspeed,ast2400-lhc']
+> ['aspeed,ast2400-p2a-ctrl']
+> ['aspeed,ast2400-pwm-tacho']
+> ['aspeed,ast2400-timer']
+> ['aspeed,ast2400-vic']
+> ['aspeed,ast2400-video-engine']
+> ['aspeed,ast2500-cf-fsi-master', 'fsi-master']
+> ['aspeed,ast2500-cvic', 'aspeed-cvic']
+> ['aspeed,ast2500-gfx', 'syscon']
+> ['aspeed,ast2500-i2c-ic']
+> ['aspeed,ast2500-ibt-bmc']
+> ['aspeed,ast2500-lhc']
+> ['aspeed,ast2500-p2a-ctrl']
+> ['aspeed,ast2500-pwm-tacho']
+> ['aspeed,ast2500-scu-ic']
+> ['aspeed,ast2500-sdram-edac']
+> ['aspeed,ast2500-video-engine']
+> ['aspeed,ast2500-xdma']
+> ['aspeed,ast2600-fsi-master', 'fsi-master']
+> ['aspeed,ast2600-gfx', 'syscon']
+> ['aspeed,ast2600-ibt-bmc']
+> ['aspeed,ast2600-lhc']
+> ['aspeed,ast2600-scu-ic0']
+> ['aspeed,ast2600-scu-ic1']
+> ['aspeed,ast2600-sdhci', 'sdhci']
+> ['aspeed,ast2600-sdram-edac', 'syscon']
+> ['aspeed,ast2600-smpmem']
+> ['aspeed,ast2600-timer']
+> ['aspeed,ast2600-udma']
+> ['aspeed,ast2600-video-engine']
+> ['aspeed,ast2600-xdma']
+> ['atmel,at30tse004a']
+> ['dallas,ds3231']
+> ['delta,dps800']
+> ['dps650ab']
+> ['fsi-master-gpio', 'fsi-master']
+> ['fsi-master-hub']
+> ['ibm,bonnell-bmc', 'aspeed,ast2600']
+> ['ibm,fsi-i2c-master']
+> ['ibm,fsi-master-hub']
+> ['ibm,fsi2pib']
+> ['ibm,pca9552']
+> ['infineon,ir35221']
+> ['infineon,pxe1610']
+> ['ipmb-dev']
+> ['isil,isl69260']
+> ['isil,raa229004']
+> ['lm75']
+> ['max31790']
+> ['maxim,max31785a']
+> ['microchip,emc1413']
+> ['mps,mp5023']
+> ['nuvoton,w83795g']
+> ['nvt210']
+> ['nxp,pca9551']
+> ['nxp,pca9552']
+> ['nxp,pca9641']
+> ['pmbus']
+> ['pmbus-fan']
+> ['si,si7021a20']
+> ['ti,ucd90160']
 
