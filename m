@@ -1,122 +1,108 @@
-Return-Path: <devicetree+bounces-90383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9567A945298
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:12:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 064C89452A9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:21:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5D7D1C212A8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:12:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98CFB285CF8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CC9143758;
-	Thu,  1 Aug 2024 18:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD5613D282;
+	Thu,  1 Aug 2024 18:21:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vX21halW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+sld5lT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E8213D897;
-	Thu,  1 Aug 2024 18:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D34F182D8;
+	Thu,  1 Aug 2024 18:21:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722535963; cv=none; b=CIDRU5fld++q9RtzD8LFR9A7Si5/qwT+UqOWzrbz9pfnxV/VXitDYPbO0K1yYYZO5Ss6mrZ0LP4+BcvcmEzMZvD/fypxrZH1O+YmnY9xmVZROg/WIoRgsZUADKRuevZpH8qupbpiUdh0Ykd5hTeZMMszLGz62nPcSZjOgZ6TlCQ=
+	t=1722536488; cv=none; b=VVkIvySG6UGVlMghE/Vqr2y0ynwP3GaS5pSE2nGSsufKNXA6ChgKSBAACS+ZBDh7mLHRLBM7qTzmcBbfRxoTsPhHROHrJ+X4Y6nNVOJu8QAK5iSzwKbC4ogGeLALCCMtm0Cg0yEEy+1xp2+2HXMxTwLFJSsxhYcn2SSIdx3cjoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722535963; c=relaxed/simple;
-	bh=8eg79dl+iJRxHoM3XQVoOrW2GQzl3urHuVklmxE7fcY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cBhVs3eAs37HdpUhryepTPQmGhqezCCLQudPPe6/AsAO4VzY0prhdjtvey8JLtxg2hEcukYSNsWT/fuRFiK/cTS6dCjWmRE4P+wslk159LIxLU03L67h4ugyKzPX+P5RPHiO3EHVh3rfGjaYfYCK6t8mQ5axQmeJ/eA99tOkVu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vX21halW; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 471ICY2Y089862;
-	Thu, 1 Aug 2024 13:12:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722535955;
-	bh=RViuKsyJiFfiweuuhKUPoYal4sITNrm3/muQ30HBX3o=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=vX21halWm2T7sbzyOzvj+C6C+rX+PIfpKZEpHWg0NZ3WjQrtBN9LgasxtvuKVyzuq
-	 aWWLqWYxXrSUO0STzlJ41ZmwUvEryib3oUSeAcL8zZPbtPv0QZNqkXU7B9xW6dJ6TS
-	 KwJRky68N/jnUAtw0asashvRW5EhCoabcZzDIGxE=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 471ICYcH041563
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Aug 2024 13:12:34 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Aug 2024 13:12:34 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Aug 2024 13:12:34 -0500
-Received: from fllvsmtp8.itg.ti.com ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 471ICXkG059498;
-	Thu, 1 Aug 2024 13:12:34 -0500
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Fix reversed C6x carveout locations
-Date: Thu, 1 Aug 2024 13:12:32 -0500
-Message-ID: <20240801181232.55027-2-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240801181232.55027-1-afd@ti.com>
-References: <20240801181232.55027-1-afd@ti.com>
+	s=arc-20240116; t=1722536488; c=relaxed/simple;
+	bh=ZrfeY8gFpftPtIhjCK++NCKwfW3eRyrt7pDu/cIuqCo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JnY/rEWl46yP+bg6UBH96nyD/WBFV/mnOaA8UwF1th7y+NHwpEd4Y/+M3DtLgPmAjRYVZA6LAMCjjUKME7ZHzOJpy26Xz/Q8tkIS6joQg5X5sb9IjOwQUniU+vs4mxxi1XrwAlnCpFY+bitI4IfL5HVTr2VeWVoXjFqfOCcHlPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+sld5lT; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2cb52e2cb33so4918885a91.0;
+        Thu, 01 Aug 2024 11:21:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722536486; x=1723141286; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8xicDpp2Pybe+VM3D+eIlwcNQ7VkGdkDp4enPEYyuvI=;
+        b=J+sld5lTlHkb01FwjI1y4cRIrjLwUu+/U1yCIdhkYviknf2qYFm0tcqXgBVsY4IEY0
+         GBji6Gg2V7DDE3fTKuq/9Mjr9BC7lElqxvBm4mT2IiuQ3BcTdpjVxVRaZBLiDI3Jmkdq
+         SZZSb90XWXURMEAoIb1HaXwOqZjr1ayySPrPwqluCbvMINID3yNCZBG/r/NXVIfESaBF
+         VxwKjiQnIrVW+1/Ko6iq0xBu2mONfsSWorH2KWX2X+C7McBVQ0BXbr/RnM1ok+dEWypv
+         ude8oGkHZButlIXvkKv6XV+1WLKPBYwZGbMQDuJQL66DeCP9SMWXBppFdAzx5cDdnky7
+         3KdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722536486; x=1723141286;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xicDpp2Pybe+VM3D+eIlwcNQ7VkGdkDp4enPEYyuvI=;
+        b=MWzcho7nYt3j8cokNXBIt55HZv7MG6IiU2sfnCTexd3QFV9/3YkCAvWJJGsPvc7E+B
+         ulvF9lILQfHo48RKhq/wanv6V6MIyzLnI07UpYwu5XMffwKBX3YHm9MZWm62V6vEE3nM
+         WQkuVsKNQpu7sjdpneV4hVNkGcfrBPYIG6dPtUhVgJkfMZnDYJSYqGDKPvjSmoMMF+9M
+         E2YCnMO+QqGlJ5NEbXlwajaHZF3RPWBArXjvCtOdJDGmcQa39TiQdf/xHnmtZMxw3XRa
+         /qumSH2PR0vsekL+H6J4FhQOLqTFnsQdDxw1CtHyb9SG2xiscA5AoCwXqep8LOrJAuEj
+         nrrA==
+X-Forwarded-Encrypted: i=1; AJvYcCUf9MQOaAA8cFS49CD2Q3yE9at/yabi1lDmC0pIPV5iK2qzeNDwDzvlrgfaxHfM6o69waQhLiEplgR1xfWgM5brJvzHHPEyXjc2STu/Im2wjldqrRIvn9z7aSSLO32jaSeZ3Q==
+X-Gm-Message-State: AOJu0YxaQhnAh9KcN7T/3d1GGtuptzwbDkxrIuu59bzb360NFimIRif/
+	TBfObO+kJvP2MxUfL40lvVP/1LU+FE9D6vumXJJ7n8YnlHkk4c0Z
+X-Google-Smtp-Source: AGHT+IElt3mXJkSXP29i902rBSXpOxzh9qQMuW9h8m3PGOg9TjhDId7phPJigjHSBnWYVJ9bWg+izQ==
+X-Received: by 2002:a17:90b:4d12:b0:2c8:5cb7:54e5 with SMTP id 98e67ed59e1d1-2cff952d021mr1260405a91.32.1722536486216;
+        Thu, 01 Aug 2024 11:21:26 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-2cfdc4cf69esm3690327a91.35.2024.08.01.11.21.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Aug 2024 11:21:25 -0700 (PDT)
+Message-ID: <dfd6dccc-f82d-4642-b4a9-30d3b8ee308b@gmail.com>
+Date: Thu, 1 Aug 2024 11:21:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 net-next 1/2] dt-bindings: net: dsa: mediatek,mt7530:
+ Add airoha,en7581-switch
+To: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Cc: arinc.unal@arinc9.com, daniel@makrotopia.org, dqfext@gmail.com,
+ sean.wang@mediatek.com, andrew@lunn.ch, olteanv@gmail.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ lorenzo.bianconi83@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, upstream@airoha.com
+References: <cover.1722496682.git.lorenzo@kernel.org>
+ <f149c437e530da4f1848030ff9cec635d3f3c977.1722496682.git.lorenzo@kernel.org>
+Content-Language: en-US
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <f149c437e530da4f1848030ff9cec635d3f3c977.1722496682.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The DMA carveout for the C6x core 0 is at 0xa6000000 and core 1 is at
-0xa7000000. These are reversed in DT. While both C6x can access either
-region, so this is not normally a problem, but if we start restricting
-the memory each core can access (such as with firewalls) the cores
-accessing the regions for the wrong core will not work. Fix this here.
+On 8/1/24 00:35, Lorenzo Bianconi wrote:
+> Add documentation for the built-in switch which can be found in the
+> Airoha EN7581 SoC.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-Fixes: fae14a1cb8dd ("arm64: dts: ti: Add k3-j721e-beagleboneai64")
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-index a2925555fe818..fb899c99753ec 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-@@ -123,7 +123,7 @@ main_r5fss1_core1_memory_region: r5f-memory@a5100000 {
- 			no-map;
- 		};
- 
--		c66_1_dma_memory_region: c66-dma-memory@a6000000 {
-+		c66_0_dma_memory_region: c66-dma-memory@a6000000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0xa6000000 0x00 0x100000>;
- 			no-map;
-@@ -135,7 +135,7 @@ c66_0_memory_region: c66-memory@a6100000 {
- 			no-map;
- 		};
- 
--		c66_0_dma_memory_region: c66-dma-memory@a7000000 {
-+		c66_1_dma_memory_region: c66-dma-memory@a7000000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0xa7000000 0x00 0x100000>;
- 			no-map;
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
-2.39.2
+Florian
 
 
