@@ -1,134 +1,153 @@
-Return-Path: <devicetree+bounces-90293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D1B944D56
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:42:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FBA8944D5F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:44:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7622C1F2477B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:42:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 674231C2343C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DB81A38C4;
-	Thu,  1 Aug 2024 13:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F11A1A4874;
+	Thu,  1 Aug 2024 13:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lUCYuuhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0831A2C05
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 13:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8262A61FF2;
+	Thu,  1 Aug 2024 13:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722519712; cv=none; b=LoYtPUXo5Sfg40Iqi9K1pAzdhqzX+hsxzZ1wAfCJ/e3E2QODxLPTN/WYBjZZHf7fxDJ5jRkgOd84+I9S3zyOxieIB5MuYdhTJri58nqWX3SJFeImqYPyEtQ85Kgtal4WtkLnZqmGNOdOVu2/VRGxVIimtvC7F+SS3ngiV2iok90=
+	t=1722519848; cv=none; b=bClMaSKgZJrlnvmQX1ucID0jL1oayIkTRRXcbSDggrm2HEwOeuF6rD3MmuqzPr17j90qk/NazEFvK5TpbkJnrsRnjumdDtnrbd7B8M72eK4sVa7y2mL+YZVlvbjglYcWIumzuDA1SsaxKCNsm1BkBobMoePq1eYZ3eIXkaSn9nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722519712; c=relaxed/simple;
-	bh=2pBooiMpVZcLBbSFYVW0Xm0PsJcpq1lqLkpVUrdr49Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XjCqDT9EgpW4/2+Y4tFnvLNDir7Becr6iHQdiaS+/OE9wrvrr5vSuwCEwJI76TnlH1Wo7wdQlsTt/x7YhX3tDx9NLR14Fy/sKtaYzjH5hO8Q+W6y5wEwcedDHXIyFtldaoihbL9mkA8Opbd4uDXNRFYCRz7lm4WIivw3NZLtOMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:fff7:d11a:41d8:a195])
-	by andre.telenet-ops.be with bizsmtp
-	id udhb2C00W5XJrhx01dhbHr; Thu, 01 Aug 2024 15:41:42 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sZW3L-004S6w-Jn;
-	Thu, 01 Aug 2024 15:41:35 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sZW3j-00HO83-OF;
-	Thu, 01 Aug 2024 15:41:35 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: linux-can@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] dt-bindings: can: renesas,rcar-canfd: Document R-Car V4M support
-Date: Thu,  1 Aug 2024 15:41:34 +0200
-Message-Id: <2c40290b3948ef1b9a5fa2e38794dc95ed3b2fd4.1722519580.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1722519848; c=relaxed/simple;
+	bh=thFxg8OzzcxQf4MMkIWf1lfjmAKKVKW6trC0V+uF7Dw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j3ebfXkzGPMGDApPhrh6PspcQfv2lHf48D6SCWuyBjajK7MPgak+xwM+yEW9Es8W5fPNQ42MvekC3AktLyiOHRJkZrZkVNX2AFQ+P158Q2OQk5kutVgphmErJtldbaLDbNKgQAUS1ngJPGHow8+UyXzSDi3e110q/U0tvci4cuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lUCYuuhE; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5a156557029so11151224a12.2;
+        Thu, 01 Aug 2024 06:44:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722519845; x=1723124645; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=X88/CsdmLmbELcktNgy2HM0ZWdZzSy/cvXSHWDa5C9w=;
+        b=lUCYuuhEIP6x+2OyTUxdJ3JVIUC2k/RRuMtwqPDM48SeQbr4BdMFg8NPc7PAHU5rrg
+         2MM1AJQ+ELF9bub3U29X8UJvHtlbRp+cNE54WJcdEX3dWby2rH34tNSIOxObgrK3uao1
+         iiKHxaMwkAemXfQ3DmKYTrJIPCViJzhbtRvjytfSVINcoBa6HgPCD+IUgGCxOk+gB4Dx
+         lEGdLUv/zfSGnzch7DryhZ35wIpFb21Y/MrUZ28ZVofp+j5THPDIR5NC6pQuqhKeoTo2
+         oHEAf/sHNDspi7/hddEQguitsVL8AMHhGJupJ8z11p4L4dD/RFoY4P4CZVxMO3uVx4IM
+         GxUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722519845; x=1723124645;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X88/CsdmLmbELcktNgy2HM0ZWdZzSy/cvXSHWDa5C9w=;
+        b=lPUoVQY4WLJwpH2P4sJDh0Y1u02q70DDGezgl+9JuSfNLyW4DoJLdqkArSwgtu9Xc/
+         ZbuDYZ+a6J5f/KkdmW+7fQp5esyo/dbbGCqmTdzHca3LW63l/wM28bXCem2/TtD2Ysyk
+         SFuQ9g13mFOl2pNHuJWWf4cTzY+OHTCH2qWCr67V0i91ZTA2v/UScZpsw6iZ81tln6Gh
+         U/BNPsIHvKoKH4Rsu3/Iuz9x3hu7V3jWIbMOXD+MW3Lo94RzpJdJ0t23lu6gWlqjjnvJ
+         4o8FR5pqZVvf3EZVRm1rpJlrdADfgfUdzGzZysSCBgpyTo1kFQXu4doTJ4an4DjPKlr0
+         Z8vQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPw40BQRN4uL6zHI5ZPYxYlgJ4A0VzRLk10FzQUyKZQOqiu+npTtoXDZGxMAaxn4/2ewS8jGpIJJKYrVc5VmbUdKNLcLKu
+X-Gm-Message-State: AOJu0YxqIEDTVvDpYPzeEGUmLBMEE6TCeFdAvSyA22JEa2CaSLSYErA8
+	hUSa1yJQ7Rl6A2eXEnYctQ1/uEGQ3xj/vePiNZ8Qbm2W+24E/yzA
+X-Google-Smtp-Source: AGHT+IGFNv2QHGvPS9i2SZVHutTLhDALDLT5CL38a93ykAR/jj7dmB+landsIUaymqtGa8TIH7UKPw==
+X-Received: by 2002:aa7:d552:0:b0:5a3:f5c6:7cd5 with SMTP id 4fb4d7f45d1cf-5b7f550a75cmr238198a12.26.1722519844469;
+        Thu, 01 Aug 2024 06:44:04 -0700 (PDT)
+Received: from skbuf ([188.25.135.70])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ac65783665sm9979717a12.94.2024.08.01.06.44.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 06:44:03 -0700 (PDT)
+Date: Thu, 1 Aug 2024 16:44:01 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: vtpieter@gmail.com
+Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
+	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+	o.rempel@pengutronix.de,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net-next 0/2] implement microchip,no-tag-protocol flag
+Message-ID: <20240801134401.h24ikzuoiakwg4i4@skbuf>
+References: <20240801123143.622037-1-vtpieter@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240801123143.622037-1-vtpieter@gmail.com>
 
-From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+Hi Pieter,
 
-Document support for the CAN-FD Interface on the Renesas R-Car V4M
-(R8A779H0) SoC, which supports up to four channels.
+On Thu, Aug 01, 2024 at 02:31:41PM +0200, vtpieter@gmail.com wrote:
+> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> 
+> Add and implement microchip,no-tag-protocol flag to allow disabling
+> the switch' tagging protocol. For cases where the CPU MAC does not
+> support MTU size > 1500 such as the Zynq GEM.
+> 
+> This code was tested with a KSZ8794 chip.
+> 
+> Pieter Van Trappen (2):
+>   dt-bindings: net: dsa: microchip: add microchip,no-tag-protocol flag
+>   net: dsa: microchip: implement microchip,no-tag-protocol flag
+> 
+>  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    |  5 +++++
+>  drivers/net/dsa/microchip/ksz8795.c                   |  2 +-
+>  drivers/net/dsa/microchip/ksz9477.c                   |  2 +-
+>  drivers/net/dsa/microchip/ksz_common.c                | 11 ++++++++---
+>  drivers/net/dsa/microchip/ksz_common.h                |  1 +
+>  drivers/net/dsa/microchip/lan937x_main.c              |  2 +-
+>  6 files changed, 17 insertions(+), 6 deletions(-)
+> 
+> 
+> base-commit: 0a658d088cc63745528cf0ec8a2c2df0f37742d9
+> -- 
+> 2.43.0
 
-Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Drop RFC state now it works.
+Please use ./scripts/get_maintainer.pl when generating the To: and Cc: fields.
 
-Changes compared to the BSP:
-  - Restrict number of channels to four.
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 22 ++++++++++++++-----
- 1 file changed, 16 insertions(+), 6 deletions(-)
+Not to say that they don't exist, but I have never seen a NIC where MTU=1500
+is the absolute hard upper limit. How seriously did you study this before
+determining that it is impossible to raise that? We're talking about one
+byte for the tail tag, FWIW.
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index d3f45d29fa0a550a..7c5ac5d2e880bbb8 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -32,6 +32,7 @@ properties:
-           - enum:
-               - renesas,r8a779a0-canfd     # R-Car V3U
-               - renesas,r8a779g0-canfd     # R-Car V4H
-+              - renesas,r8a779h0-canfd     # R-Car V4M
-           - const: renesas,rcar-gen4-canfd # R-Car Gen4
- 
-       - items:
-@@ -163,14 +164,23 @@ allOf:
-           maxItems: 1
- 
-   - if:
--      not:
--        properties:
--          compatible:
--            contains:
--              const: renesas,rcar-gen4-canfd
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r8a779h0-canfd
-     then:
-       patternProperties:
--        "^channel[2-7]$": false
-+        "^channel[5-7]$": false
-+    else:
-+      if:
-+        not:
-+          properties:
-+            compatible:
-+              contains:
-+                const: renesas,rcar-gen4-canfd
-+      then:
-+        patternProperties:
-+          "^channel[2-7]$": false
- 
- unevaluatedProperties: false
- 
--- 
-2.34.1
+There are also alternative paths to explore, like reducing the DSA user ports
+MTU to 1499. This is currently not done when dev_set_mtu() fails on the conduit,
+because Andrew said in the past it's likelier that the conduit is coded
+to accept up to 1500 but will still work for small oversized packets.
 
+Disabling DSA tagging is a very heavy hammer, because it cuts off a whole lot
+of functionality (the driver should no longer accept PTP hwtimestamping ioctls,
+etc), so the patch set gets this tag from me currently, due to very shallow
+justification:
+
+Nacked-by: Vladimir Oltean <olteanv@gmail.com>
+
+Please carry it forward if you choose to resubmit.
+
+Even assuming that a strong justification does exists, there already
+exists a mechanism for disabling the tagging protocol from the device
+tree. It is the same as for specifying any other alternative tagging
+protocol (applied in this case to DSA_TAG_PROTO_NONE).
+
+	ethernet-switch@N {
+		dsa-tag-protocol = "none";
+	};
+
+it just needs implementing in the driver.
+
+The fact that you chose to add a custom device tree property suggests to
+me that you did not investigate the problem space very seriously.
 
