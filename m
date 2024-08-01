@@ -1,222 +1,150 @@
-Return-Path: <devicetree+bounces-90387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078DD9452BF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:32:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F4B9452DD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 20:38:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ABACB21825
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:32:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BE141F2528F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EF414884C;
-	Thu,  1 Aug 2024 18:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D672F1487F9;
+	Thu,  1 Aug 2024 18:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MxqTD7ki"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="W+h0pwkt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB7D328DB;
-	Thu,  1 Aug 2024 18:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4127027452
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 18:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722537160; cv=none; b=CghPrVeMJF+kiT+AKHsNykUVIukKxhaqt23kGJKfhPKr6J+GsziD5zfQzTXBL7KQB3idKhoNKjmOpa4xyAKRuL92e77FBteD8KK7k5++HpVw+vTqf/0GXFjLTMb1KTuGmcfyYz+4E2jO1W95gwAtfy6egX8pCVikpn4hfYPQOUc=
+	t=1722537502; cv=none; b=cibKtZNu69olgSYLlCCgftudAmrnZt5NynU5N/V6CtiT6HC2VpRmjQV1x0Rrh3Cq+fJCk/9HvAzwZqfLZpt/Yp76e05zinZA8Sh06VW/qpkbMb1fia60disrAX8PjR92XbHUB3+KHCKuvpv8Y08CZyAyEM6qxmsY0+ah/uIJQfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722537160; c=relaxed/simple;
-	bh=CFrtLjp03d0/5Z/vBCK+uDrsTMHkNli3gx9G54CM/tM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BZv0VDuL6YnY2oBa+Q1Zq3moCP3BYWiQrmqG9DOu5zVks19kgAPPlNbNUIiR2hGK/Q9CogyM4KmefgY9axBqorjLYyoZQiq/DvwfBMdE3wPRFpq9LL12H6mo0xAH/zjIAqXbvsFEnfMsC2J8hS0bHp6JL9XfBlqNW+8DHfyhBxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MxqTD7ki; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52efa9500e0so8902743e87.3;
-        Thu, 01 Aug 2024 11:32:38 -0700 (PDT)
+	s=arc-20240116; t=1722537502; c=relaxed/simple;
+	bh=fc0TjBqsBBzAbreLePWGgYrgMgY88HZhgtkzJ+8R3sU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lqAIs95X7T717GI9NKsLIxG09LeMgH2MjQ6ZlHqGPOmbk0n0smqjWc4vmy8D+Vk/i6aUCLfOnqxWJARg+Bvz0v7iElBhnHfozeIIQfb+Qje5ZpIRukQ9/i+a8ZumxPM9y6t1qNIJNeym9B6lHcG0W8OE2+OD1F7/sdEugcVJSPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=W+h0pwkt; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2cd5d6b2581so5047071a91.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 11:38:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722537157; x=1723141957; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YjpiM/JH7S8LWRVE7YLqvdV+nTZJioe44+jRr0wOwbc=;
-        b=MxqTD7kiWfozj0cyjzkP9E4M9DpaO9wjoX4GqdYxV78j6wb6VTIKDJg6e0szGqwkZG
-         7NJH4yZq+E3YvYtQJOkVOHaeWgbgEFqjr5HOByuE4KjEH6DX95mLJesvNz/PIvPrDoD2
-         Ud0BC7FAPbtXZMrIcUFxp1dwLWcpzhJ1v6Ne40chXQsEPQqg1zScLyUAlCDTcXcuVJZd
-         mOz2hFMXMu9GES5xSGhWBqMaoNvLAHHkvIJDrBszZI2KJTHlK+kawYHR1pLCrWBj+OOF
-         og8QFGw8SjoH/k56XZTzYGLfC4rUy2uRPtSysx5TEr3REOosKSXIcRKvBIxiSbzHYRDY
-         Ks/Q==
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1722537500; x=1723142300; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=odurubX05L/alYO7ZB7p+uzZRMihsa585lYB4q5XK2s=;
+        b=W+h0pwktD2QrMmhIXg6uoFh8zLkJzC5A51vS80S+i8dfYkuLlvz5UaCzatmHEcvF5b
+         4tMYf9Y6df8qFdNnMKNkzfNPAYvGJwCZJReOR3rB4Hb2W45Dj5/L62/Nj67sPoDPxtoz
+         4OrQkJCujEgrs+3y+iEAQvCyEhxtLLvvir0PUAcYEHE2M9oclKKTXRypnUTETXFY2sfR
+         RLdwqMQsuPpcbvd5u4+br0dhHA2H8+3cyRkGxg16KB0d1/SiWWL7YLpJ56hP6jwnFkhL
+         E3esB1cjc5b/djEpCP/A19DNO7GLY1Yyna7l1ec2s/Nfr79lQuM5OY6jwXAw64ZGixQc
+         1FkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722537157; x=1723141957;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YjpiM/JH7S8LWRVE7YLqvdV+nTZJioe44+jRr0wOwbc=;
-        b=J9a/BegEj07Q2CTHkaV9YHfZRmPH5yFOwRYCxmK25duBG+xOfmZNsSfZnH3e081u+A
-         QdG7StDglQvXiA9buqXbhtumM37DE9adVkvy+R+FHR4F6JMI474KGaqCN56WgPfsLoLR
-         1hGykVtpOEUJmXDP3KzRyuvw9dzwgQFIw7xmaVuooKK2ioKYBfR/O1IJpZRPPJOF2urD
-         qXpm45aEE5rKWJQzSTOtnxWMQeG7bB5oxb5Wrla/50uX+ujCAdwey8qsl6PUttTbvMS4
-         rpO3N4+aIlCtC85kjm7bLIrSR/8GQZffDpcZhb56DId9EFBK26ZUbsI1XUah686nxo0B
-         pFqg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvxPceHTgC2OqEsKL725i0OLj/v5n8dXq55jg3szzvI3Rqdk86KktVBlcxYGaCCpSQvLWvjvnrp+u0ut5re1Di9N4Mu2iFksK3NmD0zrKTqfko2SVjEkWHmZhaAzdaQ9cwMekKcWjfuDNvlGEitvyrsj9IgICyX5JzWaeq0ZOpoYbCEGBCbnc65YcXf0M504YlU92FsC3Im8a9zH2No+I=
-X-Gm-Message-State: AOJu0YyYhINAT3eA9iZqdiIPICUI/+nPBBF+8I30d1hsTAfZxLMshL4p
-	HxcxObjRq1S6LGivwrmVTCu1bBTIb4a1ZIQ2vyLOlQpSL0H52J7n
-X-Google-Smtp-Source: AGHT+IHyjAIc9z6mb3z8s2OoSVvIC24e2n+qUC5/avSJWdohMby92u7QqWKA4Trni8XGQlr6sXK4uA==
-X-Received: by 2002:a05:6512:3088:b0:52e:9fd3:f0ca with SMTP id 2adb3069b0e04-530bb38530amr535233e87.33.1722537156286;
-        Thu, 01 Aug 2024 11:32:36 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba1102bsm26619e87.97.2024.08.01.11.32.34
+        d=1e100.net; s=20230601; t=1722537500; x=1723142300;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=odurubX05L/alYO7ZB7p+uzZRMihsa585lYB4q5XK2s=;
+        b=b7TBesfdHbwbrKDOcig27E+3dIpGvz3fOJTZ1/ZCrqJR/90fZlzRbx/5GLP98vzBQ8
+         Sj8RyhsiYUGi1W8Vj6t7DdAbRYOt8RZLnMAfV1lsT7FSK+zHpU7qECv696gouCXl8Gu3
+         gr5u16f683CwbncE0eLaHT6w6C9kDTP4jTfmFup/taQPLU4Wqoev5TH4h/efMvCl6KQl
+         5Q7hG1YizPpXqbJpfs6cfO2Z526C3CYeD6M8x3qiXBcz68OR/uDHtuC+QcvZfVbpMJFB
+         6/WDoGVXmzIA+uV+nMrl6x389GWrtMHC/zCxqMOpusencBI+FkrvCjbMnlze3kJp1TfQ
+         4eWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGUhgZVAecv4EJw2IP2rZgdCcCNiMKt/MHYfH/robZDyCMANC4HWLE4dtWVpNC8nP6Gyv7CyWc7MBnpmfGjFcE7+im95JcUsFTKg==
+X-Gm-Message-State: AOJu0YzWQKmxLQHoeZZE32cXLZNbn1S2tgjk0lkUNQ5/G0N5v5POAcK1
+	rUOQjTxm+Pxi5Hg2isMRUfPDn9ImXYslIC6fiRKfEzoC1CoFuJW1tcP1RTfTaqQ=
+X-Google-Smtp-Source: AGHT+IFyxM+4b6rxuziOtoQq+fzlqhfg2RrpGYQix6E4h5Nra628Qj6ThEm6sTZ/5/OUa1hkRYoZmQ==
+X-Received: by 2002:a17:90a:3885:b0:2cb:511f:35f with SMTP id 98e67ed59e1d1-2cff9414351mr1286202a91.15.1722537500263;
+        Thu, 01 Aug 2024 11:38:20 -0700 (PDT)
+Received: from [127.0.1.1] ([2601:1c2:1802:170:dfa1:41a7:9478:9d47])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cffaf69d54sm279728a91.12.2024.08.01.11.38.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 11:32:35 -0700 (PDT)
-Date: Thu, 1 Aug 2024 21:32:32 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, kernel@quicinc.com, 
-	Andrew Halaney <ahalaney@redhat.com>, Andrew Lunn <andrew@lunn.ch>, linux-arm-msm@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] net: stmmac: Add interconnect support
-Message-ID: <zsdjc53fxh44bpra5cfishtvmyok2rprbtnbthimnu6quxkxyj@kvtijkxylwb3>
-References: <20240708-icc_bw_voting_from_ethqos-v4-0-c6bc3db86071@quicinc.com>
- <20240708-icc_bw_voting_from_ethqos-v4-2-c6bc3db86071@quicinc.com>
+        Thu, 01 Aug 2024 11:38:19 -0700 (PDT)
+From: Drew Fustini <drew@pdp7.com>
+Subject: [PATCH 0/6] riscv: dts: thead: Enable TH1520 AP_SUBSYS clock
+ controller
+Date: Thu, 01 Aug 2024 11:38:04 -0700
+Message-Id: <20240801-th1520-clk-dts-v1-0-71077a0614b8@pdp7.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240708-icc_bw_voting_from_ethqos-v4-2-c6bc3db86071@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAzWq2YC/yXMyw6DIBCF4Vcxsy4JMyBeXqVxATJW0qot0KaJ8
+ d1L6vI/yfl2SBwDJ+irHSJ/QgrbWgIvFYyzXW8sgi8NJEnLRqHIM9Ykxfi4C5+TcKgn6TpreLJ
+ QTs/IU/j+wetwduTXu7j5HMHZxGLcliXkvlKEhIx1q3VXHOONdcYRG+WIfOdbqRusjYLhOH7wD
+ bT5rAAAAA==
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
+ Kanak Shilledar <kanakshilledar@gmail.com>, 
+ Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
+ Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Drew Fustini <drew@pdp7.com>, 
+ Drew Fustini <dfustini@tenstorrent.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1943; i=drew@pdp7.com;
+ h=from:subject:message-id; bh=fc0TjBqsBBzAbreLePWGgYrgMgY88HZhgtkzJ+8R3sU=;
+ b=owGbwMvMwCF2+43O4ZsaG3kYT6slMaStvia5aV9uRVKRY8qdpJgFEkdLGLhvcdUc/hPEaS759
+ 9jfa6eXdpSyMIhxMMiKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmkibI8D97tW/L6UkcS7Yq
+ Bdxb2jHv/JTqo4KMhad+/Vxgnn/HtLKSkeGWQDNbBlvEXFZ+xzaV0K4Jy53uCnFH35281nXKioU
+ Pb7ACAA==
+X-Developer-Key: i=drew@pdp7.com; a=openpgp;
+ fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-Hi Sagar
+This series contains the dts patches to enable the TH1520 AP_SUBSYS
+clock controller [1] and convert peripherals from fixed clocks to real
+clocks. The dt-bindings and driver patches from a previous series [2]
+have already been merged into v6.11-rc1:
 
-On Mon, Jul 08, 2024 at 02:30:01PM -0700, Sagar Cheluvegowda wrote:
-> Add interconnect support to vote for bus bandwidth based
-> on the current speed of the driver.
-> Adds support for two different paths - one from ethernet to
-> DDR and the other from CPU to ethernet, Vote from each
-> interconnect client is aggregated and the on-chip interconnect
-> hardware is configured to the most appropriate bandwidth profile.
-> 
-> Suggested-by: Andrew Halaney <ahalaney@redhat.com>
-> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/stmmac.h          |  1 +
->  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     |  8 ++++++++
->  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 12 ++++++++++++
->  include/linux/stmmac.h                                |  2 ++
->  4 files changed, 23 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-> index b23b920eedb1..56a282d2b8cd 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-> @@ -21,6 +21,7 @@
->  #include <linux/ptp_clock_kernel.h>
->  #include <linux/net_tstamp.h>
->  #include <linux/reset.h>
-> +#include <linux/interconnect.h>
->  #include <net/page_pool/types.h>
->  #include <net/xdp.h>
->  #include <uapi/linux/bpf.h>
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index b3afc7cb7d72..ec7c61ee44d4 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -985,6 +985,12 @@ static void stmmac_fpe_link_state_handle(struct stmmac_priv *priv, bool is_up)
->  	}
->  }
->  
-> +static void stmmac_set_icc_bw(struct stmmac_priv *priv, unsigned int speed)
-> +{
+ ae81b69fd2b1 ("clk: thead: Add support for T-Head TH1520 AP_SUBSYS clocks")
+ 1037885b309c ("dt-bindings: clock: Document T-Head TH1520 AP_SUBSYS controller")
 
-> +	icc_set_bw(priv->plat->axi_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
-> +	icc_set_bw(priv->plat->ahb_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
+Changes from that previous series [2]:
+ - Move the clock-controller node in th1520.dtsi so that the nodes are
+   still sorted by address
+ - Add patch to convert SPI from fixed clock to real clock
 
-I've got two questions in this regard:
+This series is based on my clk-for-next tree [3] as of commit:
 
-1. Don't we need to call icc_enable()/icc_disable() in someplace in
-the driver? For instance the CPU-MEM path must be enabled before even
-the stmmac_dvr_probe() is called, otherwise the CSR won't be
-accessible. Right? For the same reason the CPU-MEM bandwidth should be
-set in sync with that.
+ 32121e158449 ("riscv: dts: thead: add basic spi node")
 
-2. Why is the CPU-MAC speed is specified to match the Ethernet link
-speed? It doesn't seem reasonable. It's the CSR's access speed and
-should be done as fast as possible. Shouldn't it?
+Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf [1]
+Link: https://lore.kernel.org/lkml/20240711-th1520-clk-v3-0-6ff17bb318fb@tenstorrent.com/ [2]
+Link: https://github.com/pdp7/linux/tree/thead-dt-for-next [3]
 
-> +}
-> +
->  static void stmmac_mac_link_down(struct phylink_config *config,
->  				 unsigned int mode, phy_interface_t interface)
->  {
-> @@ -1080,6 +1086,8 @@ static void stmmac_mac_link_up(struct phylink_config *config,
->  	if (priv->plat->fix_mac_speed)
->  		priv->plat->fix_mac_speed(priv->plat->bsp_priv, speed, mode);
->  
-> +	stmmac_set_icc_bw(priv, speed);
-> +
->  	if (!duplex)
->  		ctrl &= ~priv->hw->link.duplex;
->  	else
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index 54797edc9b38..201f9dea6da9 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -642,6 +642,18 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
->  		dev_dbg(&pdev->dev, "PTP rate %d\n", plat->clk_ptp_rate);
->  	}
->  
-> +	plat->axi_icc_path = devm_of_icc_get(&pdev->dev, "mac-mem");
-> +	if (IS_ERR(plat->axi_icc_path)) {
-> +		ret = ERR_CAST(plat->axi_icc_path);
-> +		goto error_hw_init;
-> +	}
-> +
-> +	plat->ahb_icc_path = devm_of_icc_get(&pdev->dev, "cpu-mac");
-> +	if (IS_ERR(plat->ahb_icc_path)) {
-> +		ret = ERR_CAST(plat->ahb_icc_path);
-> +		goto error_hw_init;
-> +	}
-> +
->  	plat->stmmac_rst = devm_reset_control_get_optional(&pdev->dev,
->  							   STMMAC_RESOURCE_NAME);
->  	if (IS_ERR(plat->stmmac_rst)) {
-> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-> index f92c195c76ed..385f352a0c23 100644
-> --- a/include/linux/stmmac.h
-> +++ b/include/linux/stmmac.h
-> @@ -283,6 +283,8 @@ struct plat_stmmacenet_data {
->  	struct reset_control *stmmac_rst;
->  	struct reset_control *stmmac_ahb_rst;
->  	struct stmmac_axi *axi;
+Signed-off-by: Drew Fustini <drew@pdp7.com>
+---
+Drew Fustini (6):
+      riscv: dts: thead: Add TH1520 AP_SUBSYS clock controller
+      riscv: dts: thead: change TH1520 uart nodes to use clock controller
+      riscv: dts: thead: change TH1520 mmc nodes to use clock controller
+      riscv: dts: thead: update TH1520 dma and timer nodes to use clock controller
+      riscv: dts: thead: add clock to TH1520 gpio nodes
+      riscv: dts: thead: change TH1520 SPI node to use clock controller
 
-> +	struct icc_path *axi_icc_path;
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 16 -----
+ .../boot/dts/thead/th1520-lichee-module-4a.dtsi    | 16 -----
+ arch/riscv/boot/dts/thead/th1520.dtsi              | 81 ++++++++++------------
+ 3 files changed, 37 insertions(+), 76 deletions(-)
+---
+base-commit: 32121e158449f0b6d6ab6b2e63b22d9d80471563
+change-id: 20240731-th1520-clk-dts-b14f0b9a6efa
 
-The MAC<->MEM interface isn't always AXI (it can be AHB or custom) and
+Best regards,
+-- 
+Drew Fustini <drew@pdp7.com>
 
-> +	struct icc_path *ahb_icc_path;
-
-the CPU<->MAC isn't always AHB (it can also be APB, AXI, custom). So
-the more generic naming would be:
-
-axi_icc_path -> dma_icc_path
-and
-ahb_icc_path -> csr_icc_path
-
--Serge(y)
-
->  	int has_gmac4;
->  	int rss_en;
->  	int mac_port_sel_speed;
-> 
-> -- 
-> 2.34.1
-> 
-> 
 
