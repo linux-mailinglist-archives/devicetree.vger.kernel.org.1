@@ -1,136 +1,108 @@
-Return-Path: <devicetree+bounces-90295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0721944D73
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:50:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E84A944D79
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C2E01F23818
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:50:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80B01F24F2B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656551A38FE;
-	Thu,  1 Aug 2024 13:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889FC1A2C20;
+	Thu,  1 Aug 2024 13:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TQRdj0iE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TPrQic7S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B471A0B12;
-	Thu,  1 Aug 2024 13:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D711D16EB57;
+	Thu,  1 Aug 2024 13:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722520213; cv=none; b=Hdq5C+YdRZvUTM4D9sMg2ymDW94d2b0oaT9KsoZYP8h47sbkZDBuFmUxPMbH6bMYMkSr/lYdEomPMbIPTgNGUtiX3VYyMEXYtzNktjO3M8o6d5J81n3U8jf94xvF81txJQS9Ru8k8liiulwOdFe7Tl7UNzzMSicFX6mZ0kkXU8Y=
+	t=1722520350; cv=none; b=f8U2V0Fzk3BUrD4Jbjy1T9au3OtyAJ88o2p+hz0qs/JPUg80ZOzIE0hDr5tbsLhZ+t94QMsd5a2HxALpjRSDg2rMwS0M1jI8P8ZNWRvbNUfmRgVUF5tQ5dYbxhUvUjYcTM20s5ZcW8CZRIPxMWSUj/hf2CJszASnqLLfRYey2ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722520213; c=relaxed/simple;
-	bh=GU2BK1Osx2h7ZX3FdZmKNmBKpzFpvfjwuZFjKzmtYVc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=l41ePb2qCwr+zJCtUNGLggT7aB9OeGP+mNAY5fhnVsKynN9l3e2Y59JySKi5mCEFfMOFoQ5LQnGe6xqUif8ON0q5U/iW7JDXWvF7FHbalbYxvEJjxJWJZSp1k6DznwjQoEp5FrTQ7Yr8zizoRbydnMEmeVtbNkOsxY1Y1yqaXfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TQRdj0iE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471Dajkb002943;
-	Thu, 1 Aug 2024 13:50:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q62foi3wU07IYfI4RWy0BJazZFzOxzyxolw1Zsbm3eQ=; b=TQRdj0iE5P2B3xCT
-	vKOz6MCF2XGcq4TjyvzH5Uv8KfBbR5lcp6CzExQuKQ16Y/Xe7+gIfI5PkZT8voab
-	6T27rWXLQUVaaySnR275VwDkMPmbW66Sa8REP4kJ2rNph1Ia1B455r0+wia4Tc9/
-	KtuAD4Sxe+95VPqrkMV/8M1kDX713dAh2TjWPXOm192Kh5UTY6xbSbcDs/E96jGH
-	N6jiFCy+diOGQf5zrlxqP1CUXWcX/Y15o/Qpp6iQce0WrRlwu4ZNQe+KvfjHcUh0
-	iYzCuYc1TuorXjoffMZDaBfLcMhh+62CAUwCqh6eXYjNRjatVWivt+2mGwLzDtAI
-	rf4nRQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40ms43f4cj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 13:50:03 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 471Do2ak028461
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Aug 2024 13:50:02 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 Aug 2024
- 06:49:56 -0700
-Message-ID: <b2aa9801-dbee-4ddb-99e7-4d058ce92aa1@quicinc.com>
-Date: Thu, 1 Aug 2024 21:49:54 +0800
+	s=arc-20240116; t=1722520350; c=relaxed/simple;
+	bh=JAqMcM7uR9rP2Jlvmq2labce4w7cAXaFQ5PgocCyBtI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mj2lwCXwr/3CoM9rmap6wS4/jd65l/B8XCOA0BSRLUSpw+2UAmOdH9u1YQ+BdIGB6CuJ+Hf+wvefbfIErc26MDBXQDmJDmgtnMqNBJw/JsbdkATUes/53P/nRFpEmSgekiVZVqineL7g4HZ4MGLrwp4hiKBAQ8KSFQJV3AGskDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TPrQic7S; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f0dfdc9e16so87607221fa.2;
+        Thu, 01 Aug 2024 06:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722520347; x=1723125147; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=s3GzdUtWjktANRszP0tMrsKQuTHgq6vxP6NFWVMXHZE=;
+        b=TPrQic7SQ7m7DTFRt26VJA+JtmTeL4yl0qjXvphT3YlOe/L/AlimNrcJde0xfjfm4X
+         pqMFm0NpXPTwrK+fhLNHoFs0DWRcZSzkzig/19WXd+3UC8i4TG36mGvr2rJkDAgC4QbT
+         ivASurSynyFwmVdp/eJz5ES8S8OXLR9RvwfuHAjx+aDhZ766yv58P0flKrnpLyFM3rLS
+         Owa7FnFhTuplP8Gv9YIfjkqeli881avX1PYi1mhDGjPtzW0xmmTEw8wOl4ggmlKNxqW6
+         m3z/jDo+KRQ2A30Bltop0SefUY6TaA+4MiOcoEhBD12PE0YVLk5t5vjkhkjPYnJ7eqPI
+         KczQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722520347; x=1723125147;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s3GzdUtWjktANRszP0tMrsKQuTHgq6vxP6NFWVMXHZE=;
+        b=KWj4VZMDGjilFTIKaGkVVOC0LuosEY2B9uVxNZ6OCw+eVRFWujreSQ0Le3UwuPwA0i
+         LTgNa9Ci8WlgLRL1G0lY5Mvvr6wZh5s8gZp/gJusgoHaTWPWSrJSx6xPoOgmWNx9FTeL
+         GeBASdgLH3jzjM1JF7B253at1V3qCkqDxwv3p/U5PvKf88+dlOlZQyxZ+kWCfk7W+eML
+         PaUck49RKH2QEf7We6wiTJ89k9nqrwEHIX6IMZXsMh4NDr6YJnJ7BDd8YanfFrGxGAy3
+         eC3GkQ+AtZbcUuHFtEoD2SnshG5zPssVpcjV8HzkWSguR96fiiXv8vK5XIs7Gu28K/SZ
+         rPlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVVlqWp8tns4EYDVwoMVOUrdqjhsCBcjPeLG/s+k2b5pPqz9/7xy9yj3I44QxP79YOXkp2psat18JLvgpc/63Xal9Dgfm6h
+X-Gm-Message-State: AOJu0Yye+Xx7EfByZ9orerVHoRape2O/s4OkddM8RaHVuUYY0arGS9xN
+	Ht+5D/cLdhNudkSGq7fKDrL75dj20RmWricD3pC5XrGvTyqyhHpe
+X-Google-Smtp-Source: AGHT+IF/lFEv5/DOPkw6lvIFumrbEATJpAQpadqN5X7Yp3bUFn8h8snpotwSs6NxJXrplYunQaVKVw==
+X-Received: by 2002:a2e:3c18:0:b0:2ee:8453:5164 with SMTP id 38308e7fff4ca-2f15a9f899dmr2812791fa.0.1722520346480;
+        Thu, 01 Aug 2024 06:52:26 -0700 (PDT)
+Received: from skbuf ([188.25.135.70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282baf3a1csm56611485e9.35.2024.08.01.06.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 06:52:25 -0700 (PDT)
+Date: Thu, 1 Aug 2024 16:52:23 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: vtpieter@gmail.com
+Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com,
+	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+	o.rempel@pengutronix.de,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net-next 0/2] implement microchip,no-tag-protocol flag
+Message-ID: <20240801135223.l47anh2ew6xxcznw@skbuf>
+References: <20240801123143.622037-1-vtpieter@gmail.com>
+ <20240801134401.h24ikzuoiakwg4i4@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/13] media: qcom: camss: Add CSID Gen3 support for
- SM8550
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Yongsheng Li
-	<quic_yon@quicinc.com>
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-10-quic_depengs@quicinc.com>
- <1da50dd1-b170-4775-94fc-19a10b7f9c47@kernel.org>
- <4c8095dd-4f96-4b0e-9282-8bdfb5badbc3@quicinc.com>
- <9255b3e4-874c-4919-b50a-919cf0f42f75@kernel.org>
- <3011c561-d39e-4ce5-a544-33f24ca7a67c@quicinc.com>
- <bd6f3613-5a96-438a-a2df-cb2728e30c29@linaro.org>
- <30d56910-df7b-4459-b557-effc21ffa132@quicinc.com>
- <ff128062-5c1f-4abe-8582-543063d5e526@linaro.org>
- <4cd4ff3a-5d90-4a5d-aae1-6017199e00c3@linaro.org>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <4cd4ff3a-5d90-4a5d-aae1-6017199e00c3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XCql-r4h7u-xxAJ3aHnNn6Cxcts62swP
-X-Proofpoint-ORIG-GUID: XCql-r4h7u-xxAJ3aHnNn6Cxcts62swP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-01_12,2024-08-01_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
- mlxlogscore=843 suspectscore=0 phishscore=0 priorityscore=1501
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408010088
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240801134401.h24ikzuoiakwg4i4@skbuf>
 
-Hi Bryan,
+On Thu, Aug 01, 2024 at 04:44:01PM +0300, Vladimir Oltean wrote:
+> 	ethernet-switch@N {
+> 		dsa-tag-protocol = "none";
+> 	};
 
-On 8/1/2024 7:14 PM, Bryan O'Donoghue wrote:
-> On 01/08/2024 11:59, Bryan O'Donoghue wrote:
->> for preference every single patch applies and builds warning free.
-> 
-> Oops mistyped
-> 
-> - Every patch must apply cleanly
-> - You could make an argument for some specific cases that
->    a patch can generate a warning provided
-> - By the end of your set everything must be warning free
-> 
-> In this case though, I don't believe you need to make that case since, 
-> the problem you describe about probe() isn't a problem at all as you 
-> have no upstream dts that can drive the probe() at this point.
-> 
-> Just do the dts at the end and no problem.
-> 
+My mistake - this was supposed to be:
 
-Thanks for the confirmation, maybe also can add a checking for the res, 
-probe returns fail if the .data->xxx_res is NULL.
-
-
-Thanks,
-Depeng
+	ethernet-switch@N {
+		ethernet-ports {
+			/* This is the CPU port */
+			ethernet-port@0 {
+				ethernet = <&conduit>;
+				dsa-tag-protocol = "none";
+			};
+		};
+	};
 
