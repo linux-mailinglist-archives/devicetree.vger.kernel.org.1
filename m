@@ -1,112 +1,148 @@
-Return-Path: <devicetree+bounces-90364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135DB945122
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:56:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C5CC945167
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 19:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7AB3281495
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:56:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46EED282E1B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6FC1B4C30;
-	Thu,  1 Aug 2024 16:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642641B32B7;
+	Thu,  1 Aug 2024 17:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="MnoBjUS/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFbNtxYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D232E13C9A3;
-	Thu,  1 Aug 2024 16:55:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7F813D617;
+	Thu,  1 Aug 2024 17:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722531362; cv=none; b=henDQCz/pTlFsEGl3oa+wGNWoxljdmjvq0G1/6PvBex79Z5Ypr6YGdDZzbrXqLUuNTmJDBRAcx2bZmSTLZO6Ojard5ELqk9PA5d2ey4rJ7z110oPWT0dty/hmIBBAq1LNcWcbHBAEDqa8Un3rep7Z2G6tBDx7e2t07AZDG+pqTs=
+	t=1722532991; cv=none; b=i3TaRh0ZK3A3se8l/q7KRc4VupP6XpB6Z99GS+K6pmwrF27Ff5Q7weeq0GpKaE4GzAVq84b6PEDvuW/fvAN9ytnhKBhnJ7fnSqEQLBY/Wxg7S9CwoUjx1yONwGtvWEfis0cRHrNripRQA9o/feg7KuPlBZS+NVRpSakCDS1eGhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722531362; c=relaxed/simple;
-	bh=o+Ce2RCnjSSb9G7HSFHCouBxB5GNfboMUGANrgqAglo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=S29sVZ6vqVgH0APXQ7eK2IZ4N/tLBIeMDM48hCDO+Kq9XdbGKET5zRpsKEuKoFutibuWtYB2dog/BjRAY9D0Es6cLsT6/Q6xbaPwaqIcCPwaF7IFKdWZ7xBOFE4kNR4A5RhN8UWw7EMP//xSk2PlB+njuFDFqc/2y8euea2z8Jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=MnoBjUS/; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1722532991; c=relaxed/simple;
+	bh=z+rHBSakfkAUUMkUP86CoxwQzOchgypmU/tHoTfiLwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=jOWgeZFohkzEfRcjMMCZS8D82UyKZoghWdVL7SUY8SqVCTp9DHvlDBJ4k1tNHLvavJQvGRLm04/EAWGQhUq5FIUCZqWtFNLvTj9y4TgjOyL1/JqFdz3RxVFjfPYXjlinSjg5HnVk5XnRwZ6KT0ZXo6iamaSQkWAipd2Sr4D4soA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFbNtxYw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57E97C32786;
+	Thu,  1 Aug 2024 17:23:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722532990;
+	bh=z+rHBSakfkAUUMkUP86CoxwQzOchgypmU/tHoTfiLwE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=MFbNtxYwrExkO/cIxrI1ZV9gjIqBOGjY6Q0ZhTO7c/NE/xYTexN4FulcETSsjCV/K
+	 2XYD0Nf7Y36VMW7Hh9YcAYgAdUN9Jhs7ev1RujOs+PtTqZGck//IWV0VI17mYmhcMa
+	 gNTC0TyF4wgQeFsNgBo1ciNm9uZ1JzGhDEeIPHt5mYCOUI2exL/IrC2SvR3fONYmyT
+	 Rl8KkXMwQpq7FxTHK5obpgLPWXDRLCVBDlXgjXIC/OW/+J0X/CDJS1ouJA1jSuU57u
+	 7uY97rYTuu2aSA2dGr6puYoK6/vvCNjX+3yLYP/iOkzK0p90VgmleIzCQX1NzMVPxX
+	 RivHmDHuLoaaw==
+Date: Thu, 1 Aug 2024 12:23:08 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: manivannan.sadhasivam@linaro.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v3 06/13] PCI: qcom-ep: Modify 'global_irq' and
+ 'perst_irq' IRQ device names
+Message-ID: <20240801172308.GA109178@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1722530920;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jPClc5OP0a9QUvjXpGJsJVrUxn5Ch1JktZFLY54Dr9g=;
-	b=MnoBjUS/QslsJRcK0L/SKKwNPnUDn+etkJgm3yZhSmSJMnu5iLcaHVTPuw/0rj3ijsy4sN
-	CEkYEIu7JeLHrs6Ygj6NpVDhWGDBbG9PCooB8i8evHCZ870AEFnTeeBOwuKSapGnOKAGG1
-	DgNRROAjkM+gzXKutfi+A8uAEDf53QgexbZN9qQgx0A0OP5IDBH3swT0U9Pf6xPEkR7Fpv
-	okdNO/othF6Sh1DHxb8seSjY0gPATf/DnxOnaUcnG5STKZsvbIE6yMLdmf+IK0Git1qAgp
-	g6eu74Bk/GL0o77yBvY8xPn6qPBTgl2Pf0mCGWjb9XZ3m5xnIr8ncFceFh85cQ==
-Date: Thu, 01 Aug 2024 18:48:36 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Diederik de Haas <didi.debian@cknow.org>, Chen-Yu Tsai
- <wens@kernel.org>, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Herbert Xu
- <herbert@gondor.apana.org.au>, Martin Kaiser <martin@kaiser.cx>, Sascha
- Hauer <s.hauer@pengutronix.de>, Sebastian Reichel
- <sebastian.reichel@collabora.com>, Ard Biesheuvel <ardb@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
- devicetree@vger.kernel.org, linux-crypto@vger.kernel.org, Philipp Zabel
- <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>, Heiko
- Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v7 0/3] hwrng: add hwrng support for Rockchip RK3568
-In-Reply-To: <ZqgjTQMgWZO2FjaC@makrotopia.org>
-References: <cover.1720969799.git.daniel@makrotopia.org>
- <3190961.CRkYR5qTbq@bagend>
- <CAGb2v64Dx7XaJOu0HHzFxYYY2ddUZao5Tar8-s1R_miVZqWcXA@mail.gmail.com>
- <4406786.zLnsZ2vfAB@bagend> <faa0baebabd3c31adf1afa7efbbdf608@manjaro.org>
- <ZqgjTQMgWZO2FjaC@makrotopia.org>
-Message-ID: <97dfca058858d7a5d933ddf7a84dba61@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240731-pci-qcom-hotplug-v3-6-a1426afdee3b@linaro.org>
 
-Hello Daniel,
-
-On 2024-07-30 01:18, Daniel Golle wrote:
-> On Wed, Jul 24, 2024 at 08:07:51AM +0200, Dragan Simic wrote:
->> Thanks a lot for the testing.  Though, such wildly different test 
->> results
->> can, regrettably, lead to only one conclusion:  the HWRNG found in 
->> RK3566
->> is unusable. :/
+On Wed, Jul 31, 2024 at 04:20:09PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > 
-> The results on RK3568 look much better and the series right now also
-> only enabled the RNG on RK3568 systems. However, we have only seen few
-> boards with RK3568 up to now, and I only got a couple of NanoPi R5C
-> here to test, all with good hwrng results.
+> Currently, the IRQ device name for both of these IRQs doesn't have Qcom
+> specific prefix and PCIe domain number. This causes 2 issues:
 > 
-> Do you think it would be agreeable to only enable the HWRNG for RK3568
-> as suggested in this series? Or are we expecting quality to also vary
-> as much as it (sadly) does for RK3566?
+> 1. Pollutes the global IRQ namespace since 'global' is a common name.
+> 2. When more than one EP controller instance is present in the SoC, naming
+> conflict will occur.
+> 
+> Hence, add 'qcom_pcie_ep_' prefix and PCIe domain number suffix to the IRQ
+> names to uniquely identify the IRQs and also to fix the above mentioned
+> issues.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom-ep.c | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> index 0bb0a056dd8f..d0a27fa6fdc8 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> @@ -711,8 +711,15 @@ static irqreturn_t qcom_pcie_ep_perst_irq_thread(int irq, void *data)
+>  static int qcom_pcie_ep_enable_irq_resources(struct platform_device *pdev,
+>  					     struct qcom_pcie_ep *pcie_ep)
+>  {
+> +	struct device *dev = pcie_ep->pci.dev;
+> +	char *name;
+>  	int ret;
+>  
+> +	name = devm_kasprintf(dev, GFP_KERNEL, "qcom_pcie_ep_global_irq%d",
+> +			      pcie_ep->pci.ep.epc->domain_nr);
+> +	if (!name)
+> +		return -ENOMEM;
 
-I'm a bit late to the party, sorry for that.  The test results so far
-show that the HWRNG in RK3566 simply cannot be relied upon, but the test
-results also show that the RK3568's HWRNG seems fine.  I'm wondering 
-why,
-but until we bump into a sample of RK3568 whose HWRNG performs badly,
-I'd say that enabling the HWRNG on RK3568 only is safe.
+I assume this is what shows up in /proc/interrupts?  I always wonder
+why it doesn't include dev_name().  A few drivers do that, but
+apparently it's not universally desirable.  It's sort of annoying
+that, e.g., we get a bunch of "aerdrv" interrupts with no clue which
+device they relate to.
 
-Of course, as other people already noted, the HWRNG should be defined in
-rk356x.dtsi, because it does exist in both SoC variants, but should be
-enabled in rk3568.dtsi only.  As already noted, describing it as broken
-on RK3566 in rk356x.dtsi should also be good.
+>  	pcie_ep->global_irq = platform_get_irq_byname(pdev, "global");
+>  	if (pcie_ep->global_irq < 0)
+>  		return pcie_ep->global_irq;
+> @@ -720,18 +727,23 @@ static int qcom_pcie_ep_enable_irq_resources(struct platform_device *pdev,
+>  	ret = devm_request_threaded_irq(&pdev->dev, pcie_ep->global_irq, NULL,
+>  					qcom_pcie_ep_global_irq_thread,
+>  					IRQF_ONESHOT,
+> -					"global_irq", pcie_ep);
+> +					name, pcie_ep);
+>  	if (ret) {
+>  		dev_err(&pdev->dev, "Failed to request Global IRQ\n");
+>  		return ret;
+>  	}
+>  
+> +	name = devm_kasprintf(dev, GFP_KERNEL, "qcom_pcie_ep_perst_irq%d",
+> +			      pcie_ep->pci.ep.epc->domain_nr);
+> +	if (!name)
+> +		return -ENOMEM;
+> +
+>  	pcie_ep->perst_irq = gpiod_to_irq(pcie_ep->reset);
+>  	irq_set_status_flags(pcie_ep->perst_irq, IRQ_NOAUTOEN);
+>  	ret = devm_request_threaded_irq(&pdev->dev, pcie_ep->perst_irq, NULL,
+>  					qcom_pcie_ep_perst_irq_thread,
+>  					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+> -					"perst_irq", pcie_ep);
+> +					name, pcie_ep);
+>  	if (ret) {
+>  		dev_err(&pdev->dev, "Failed to request PERST IRQ\n");
+>  		disable_irq(pcie_ep->global_irq);
+> 
+> -- 
+> 2.25.1
+> 
+> 
 
