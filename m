@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-90184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A433F9444E9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:55:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C94DB9444ED
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:55:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BE2E1F25B5F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:55:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80CFC1F26263
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F90016D9DA;
-	Thu,  1 Aug 2024 06:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFC016E86F;
+	Thu,  1 Aug 2024 06:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s1ZqFtVx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzkXvzZE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1041E16D9BE;
-	Thu,  1 Aug 2024 06:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C608316E866;
+	Thu,  1 Aug 2024 06:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722495312; cv=none; b=dysf5g4OpOP/jITvxjJgdnk5H4PJgObK/1R90s0MM1IjdZj4+zJ+PT5BEk729vrzs5cb93+L4aXZ8WDV8192JUwYWWm7FkxBEJoj7pQdDVqETLW0hhMOn8qvLitVqgwnYdEoNdEPvmaVoaP9OdeC4oUrHoHgvaJgL22CD467D2E=
+	t=1722495315; cv=none; b=n/kcyIkcnByqWloVyrtPO1Q0oaef3MD7EQ+h2HLWMVBjeeXscdBff4gukmED51BBjV/fyh7S92JsG0nrNnFZrT1Pg4c48CBSnZpkVdfuWjtqLnVZ05K2nEO6APgPvvUWAAZU2BjBOcc8WjhB0tifObYgMUfOHapx6rwwcNXP2p4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722495312; c=relaxed/simple;
-	bh=TbyKm3nbIWiUjuGYa2rN211etWAP2Wd52cytE+uCLAE=;
+	s=arc-20240116; t=1722495315; c=relaxed/simple;
+	bh=Xpd5cHohiKAVitbHGS98ZWti2OlD/kYcr8OPOsuncGw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=MXGOMVBiVPjXahYn05xAEslftelOwi2W5SROAKdYW/LjnZstPnryDMKOXiGSnWuFGSE4KMoJyYr+W4O8R/M8dJAtM4QMFsBaMMm9sa/Di0v18LYeAWuLJ8Y1AV790MyeuUali6FKW1PYPgQr4xDaxwM2ykLygJWn9+A98LT/pb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s1ZqFtVx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B7AC4AF09;
-	Thu,  1 Aug 2024 06:55:09 +0000 (UTC)
+	 MIME-Version:Content-Type; b=r9Tc4FawukVzJcsdkAeFritjhWsF2LghsSLIXCiLn7hi3uK/ttgyiQ4I84cZAT+jg/ARQbp253SqIp4qrK+SNf9TO/9HmbBC/A4llw9TpmedTi12cIvrg5wqikrR8wuStlrBo8GGRiQsioGRgsJvRnPLBIUyvIZCbUur2WCjqKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzkXvzZE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91CE2C4AF12;
+	Thu,  1 Aug 2024 06:55:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722495311;
-	bh=TbyKm3nbIWiUjuGYa2rN211etWAP2Wd52cytE+uCLAE=;
+	s=k20201202; t=1722495315;
+	bh=Xpd5cHohiKAVitbHGS98ZWti2OlD/kYcr8OPOsuncGw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=s1ZqFtVx2Vb5RP9cHC/M9Kz8erKYAabCLo1pCzOBPKHMp7lfiPcwYWPmRM0rS8ykc
-	 RRx25RWYeznVJr9UBq4V+H4mCqF28+iNpom/Br0XIQgm88DPEsw58AlRCv1F8MfGne
-	 kpLWbQld7FidQTfBDP0tQa4CHLBZ3nCCkOa1Rha9SjgiOONPx8NwXhqPbQ2JMPjuQz
-	 fRwVTq4rOndZMzeB0PTE+5ntAmJ9PaA59mCyzB7FNPuINa3TXk5oLY/QmyD4AXGke2
-	 sZ4G/+2RTd9DJJJXvgDH/1gGls2HDTftwrXoYYN1kTtEQofTixIH6HnIIrglGxpwlr
-	 9QS1PMwi6A4pw==
+	b=nzkXvzZE+D1aHhy8dE4eUotLGQEwSvpek0mkDAvvZIXB2aYqQL3qLfQkJMQOkMkcW
+	 m/AzkGJmERRRGk60pT5tbuiwHWRm5ufbB8D3CaizDR/jTajRtcwlpI5wMR3mUgD4XT
+	 bQ/HY5Qipz3j2osuTSrlfQ5NfclsYTwFcG33OiqBdF2DzXffmMxt6EMx22LTHTA19J
+	 efWUvZLH1fBAJxFeu8mi8/WPYYn2Pq+wvNEYzLJtOiSzLoUAdHjcIj5hNnCwfquh01
+	 jZV/2h8xrIBpIRShWKPxHo0hKza8sMG7pBxYuGEqktpum6hnsQlEWOlrk4uGDbXw/i
+	 kKyQbIUHCyPCg==
 From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawn.guo@linaro.org>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240711152313.2364383-1-robh@kernel.org>
-References: <20240711152313.2364383-1-robh@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: phy: hisilicon,hi3798cv200-combphy:
- Convert to DT schema
-Message-Id: <172249530893.256913.16118366660084365289.b4-ty@kernel.org>
-Date: Thu, 01 Aug 2024 12:25:08 +0530
+To: devicetree@vger.kernel.org, Rayyan Ansari <rayyan.ansari@linaro.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240711122016.41806-1-rayyan.ansari@linaro.org>
+References: <20240711122016.41806-1-rayyan.ansari@linaro.org>
+Subject: Re: [PATCH] dt-bindings: phy: drop obsolete qcom,usb-8x16-phy
+ bindings
+Message-Id: <172249531217.256913.16966169857085379098.b4-ty@kernel.org>
+Date: Thu, 01 Aug 2024 12:25:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,18 +64,16 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Thu, 11 Jul 2024 09:23:13 -0600, Rob Herring (Arm) wrote:
-> Convert the hisilicon,hi3798cv200-combphy binding to DT schema format.
-> 
-> Drop the example as arm/hisilicon/controller/hi3798cv200-perictrl.yaml
-> already contains an example of this binding.
+On Thu, 11 Jul 2024 13:20:14 +0100, Rayyan Ansari wrote:
+> Remove the bindings for the Qualcomm 8x16 PHY driver that was dropped
+> in commit 4756f35fdf14 ("usb: phy: remove phy-qcom-8x16-usb.c") in 2017.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] dt-bindings: phy: hisilicon,hi3798cv200-combphy: Convert to DT schema
-      commit: dd1051f9329880a0749954e601a5ece9a07f8685
+[1/1] dt-bindings: phy: drop obsolete qcom,usb-8x16-phy bindings
+      commit: b52a38ab1e157e43a2f5f1d846c4f52ef2105763
 
 Best regards,
 -- 
