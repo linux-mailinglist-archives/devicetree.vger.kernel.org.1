@@ -1,153 +1,167 @@
-Return-Path: <devicetree+bounces-90350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748E094500A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:06:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA6494501F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 18:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3014B285A14
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:06:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36F511F26248
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:08:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B577C1BC072;
-	Thu,  1 Aug 2024 16:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4C01BA899;
+	Thu,  1 Aug 2024 16:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iL1So2GR"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="m/BAis2F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E8D1BBBFE;
-	Thu,  1 Aug 2024 16:04:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C590A1B9B59;
+	Thu,  1 Aug 2024 16:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722528252; cv=none; b=mmBfcOx8CPXZH5fPM71I8X9xjTjH05LPIcGVJLwkGruAqXap1AmgpHjDQ7fgbJpXgWZk7ygKocrgbZleqTkCDRAVpI8TmoUsnRomc3jJr6ZoA0jTkvSA4ugEDSppNUuVQIm5zU3m8WeooyUPRSGnRDxdFuxePUfLZBogOwEsWb8=
+	t=1722528403; cv=none; b=hDZcGQtpVrJWoCMAyBP3JYTBOzFNls0++oaoJAtg3FGr+h4904ZHgoOGKn1t0dziwoSn9zoYInCZiIURSZkdZp7ZLwX+Rskwpek6fGdhPUHwChzwJSWixjg2HbTzGxYlrzvVcSWvGW5GcDOSfr4yYb5Qzpg3UHKZqFPSwdFcZhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722528252; c=relaxed/simple;
-	bh=HnjvJtny44jqlitgsTMTi4vCgVMO+EzSF7aIOKVgyp4=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pYL8ZAug+Kv0ujkcJGtu8h1xTwFF9TwjLjOytWJ8G5iPImA1YHRojvv3aZyQshTqiM8wA0nnNBFjJXHsazgkfF0XPx6zx/qO0nzESLcxdsGQDpUq0DXc40lzbMYIJcyIBxfqs3gcVq7qybTcZZZNuYdC3iJc4MUkZBx1depq4Ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iL1So2GR; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7515437ff16so5425574a12.2;
-        Thu, 01 Aug 2024 09:04:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722528251; x=1723133051; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ikAlSYKd4FAKko+mbSzcnWgebllBxMH0Ig9OFX5Pv8Y=;
-        b=iL1So2GRBcfudNWCT6svVv24Tn4tb8O210wikFNlZw0kEnuUTOEDuYdqbko8WmGdkY
-         hsAeOugdlrkEreykGLsZmdDSricMKOzNUDHLck5t82O/X39e7IKS7RekzYK2ZTYKkNCx
-         ISg81dz4nEjsxXfJwKGjEAmmJnPvs6cp103o9pNp8Y2Ms8pN9gZN1uo8pvhCe9eWYIgT
-         B2mTJijYj0kxCv2TyJOyPeiBubbZuoPrjrcjaRF1vnzTllNxeTM9bnJ6aqVyEp00BySq
-         oYoFNU6LVFzic6oVakcyeRR8nQEeg5zAQ2Jte1gINIwlfxIOlOfQJOv800zbsWQQz1vC
-         P/kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722528251; x=1723133051;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ikAlSYKd4FAKko+mbSzcnWgebllBxMH0Ig9OFX5Pv8Y=;
-        b=oN2Af3lN42fDRVICdSV9G9il2Z3X00LG6uayKKzZiOLuXpPK4Q0bIjdqvzstlug3fx
-         ui44uxbbGAczXpU7mPg5P4j4BCmqfDAi2Faq4OzG1hrwQ5cu10AfLXZuJJUEwc68UZ6W
-         d8DMq/0z9zxNB5zdXFZ3Nc8KiEPm0pybH3mK2UFeDo7HhndAPQwfA4KK2dUjUFD1JQ8Z
-         ubR6YXm2v8gPS7PgJ04jiCmeBHxx11z0rRbmUee9ECrkruhK9HNcDEQDyuqaQ87ABsLH
-         d51qRuMqViHJ/g5oIvqHZ4OOrX7y3GNVDsr/1N6JMXi7AYC1q85zYuGEMRUEfznEQvCl
-         bbYA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkaUzxqr3PEPe39fKYcroA5z/akJzFEYx6x1Zk8tG+LOCXp8c2xHKzQx+FXlpt/tmqazwarqtOdRqQy2s1kn/FAjNFS96NhIm8Fspl8RaVSeqW61oYP39zRJxmV+scIeeWsWaQDM320w==
-X-Gm-Message-State: AOJu0YzwsvzzjJzIjE7jhlF/HEp6/0PbI4dG59DWJdLW7UcFacmP6qsw
-	2RcNiu1+a+UpeR+WbiEUbU9H6J784zfRlT2M2AAzbJhPyOQXlhpJz01Bsg==
-X-Google-Smtp-Source: AGHT+IFKgL3S2d5GTrQ0YRnV85K+aqoVwG/L93JmVq42fiXFGURtoW8VEBS9oWRamZEmCVq/LzyS9w==
-X-Received: by 2002:a17:90a:fe88:b0:2c9:7fba:d88b with SMTP id 98e67ed59e1d1-2cff9419943mr852723a91.14.1722528250638;
-        Thu, 01 Aug 2024 09:04:10 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2cfdc4cf181sm3535268a91.37.2024.08.01.09.04.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 09:04:10 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 11/11] ARM: dts: aspeed: Harma: remove pca9546
-Date: Fri,  2 Aug 2024 00:01:35 +0800
-Message-Id: <20240801160136.1281291-12-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240801160136.1281291-1-peteryin.openbmc@gmail.com>
-References: <20240801160136.1281291-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1722528403; c=relaxed/simple;
+	bh=DK9tWdz/0iSJkJT5x7sqs/bLGa54vj+NBpGI/VPp5gk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qu5a6XIpZ0nrKI7BDf892ksMgV+OhfkMPXcv2t8gi1+HyxdOhTDkh+xoijTDT6FfxnXIyQdTZDSNCiQGJSAuxKY3CM/j8z6PJipPnVSb5AGmKRZQlKBWHFhcYN7OsGsWXJsBGI25XP3+9gSgJD+t5W0uLsFFbaimItzmn/xBcXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=m/BAis2F; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C0819842;
+	Thu,  1 Aug 2024 18:05:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1722528345;
+	bh=DK9tWdz/0iSJkJT5x7sqs/bLGa54vj+NBpGI/VPp5gk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m/BAis2FeetJ8Yd9EIMbkHlbRtKVOYWR6wQoO8lx5euCS0oPA+N3XzB9EUdTxwvUt
+	 5ATESrc1Ab6ffMWPUn07zVB0XSsVOsc1A/Ww0CNuDaPEftsvNupdlyM27KXiHMX+Qh
+	 0DOaka4qvdFJNF38MBi3oeeQYy59RvA/uLb0wIyY=
+Date: Thu, 1 Aug 2024 19:06:12 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: yuji2.ishikawa@toshiba.co.jp
+Cc: hverkuil@xs4all.nl, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+	sakari.ailus@linux.intel.com, nobuhiro1.iwamatsu@toshiba.co.jp,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 5/6] documentation: media: add documentation for
+ Toshiba Visconti Video Input Interface driver
+Message-ID: <20240801160612.GA18732@pendragon.ideasonboard.com>
+References: <20240709000848.1108788-1-yuji2.ishikawa@toshiba.co.jp>
+ <20240709000848.1108788-6-yuji2.ishikawa@toshiba.co.jp>
+ <20240722180251.GP13497@pendragon.ideasonboard.com>
+ <OSZPR01MB942787AD2A406D91BB08B0EC92B22@OSZPR01MB9427.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <OSZPR01MB942787AD2A406D91BB08B0EC92B22@OSZPR01MB9427.jpnprd01.prod.outlook.com>
 
-Remove pca9546 device from i2c bus 9.
+Hello Ishikawa-san,
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 31 -------------------
- 1 file changed, 31 deletions(-)
+On Thu, Aug 01, 2024 at 09:23:43AM +0000, yuji2.ishikawa@toshiba.co.jp wrote:
+> On Tuesday, July 23, 2024 3:03 AM, Laurent Pinchart wrote:
+> > On Tue, Jul 09, 2024 at 09:08:47AM +0900, Yuji Ishikawa wrote:
+> > > Added description of Video Input Interface driver of Toshiba Visconti
+> > > architecture.
+> > > It includes hardware organization, structure of the driver and
+> > > metadata format for embedded image signal processor.
+> > >
+> > > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> > > ---
+> > > Changelog v3:
+> > > - Newly add documentation to describe SW and HW
+> > >
+> > > Changelog v4:
+> > > - no change
+> > >
+> > > Changelog v5:
+> > > - no change
+> > >
+> > > Changelog v6:
+> > > - add description of CSI2RX subdevice
+> > > - add ordering of ioctl(S_FMT) and ioctl(S_EXT_CTRLS)
+> > >
+> > > Changelog v7:
+> > > - no change
+> > >
+> > > Changelog v8:
+> > > - add usage of V4L2_CTRL_TYPE_VISCONTI_ISP
+> > >
+> > > Changelog v9:
+> > > - fix warning: set reference target for keyword
+> > > V4L2_CTRL_TYPE_VISCONTI_ISP
+> > >
+> > > Changelog v10:
+> > > - use parameter buffers instead of compound control
+> > >   - removed description of vendor specific compound control
+> > >   - add description of parameter buffers for ISP control
+> > > - update directory structure
+> > >   - remove documents under driver-api
+> > >   - add documents to admin-guide, userspace-api
+> > >
+> > > Changelog v11:
+> > > - update usage of the driver
+> > >
+> > >  .../admin-guide/media/v4l-drivers.rst         |   1 +
+> > >  .../admin-guide/media/visconti-viif.dot       |  18 ++
+> > >  .../admin-guide/media/visconti-viif.rst       | 255 ++++++++++++++++++
+> > >  .../userspace-api/media/v4l/meta-formats.rst  |   1 +
+> > >  .../media/v4l/metafmt-visconti-viif.rst       |  48 ++++
+> > >  5 files changed, 323 insertions(+)
+> > >  create mode 100644 Documentation/admin-guide/media/visconti-viif.dot
+> > >  create mode 100644 Documentation/admin-guide/media/visconti-viif.rst
+> > >  create mode 100644 Documentation/userspace-api/media/v4l/metafmt-visconti-viif.rst
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index 4421822eb134..cf3f807a38fe 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -20,10 +20,6 @@ aliases {
- 		i2c21 = &imux21;
- 		i2c22 = &imux22;
- 		i2c23 = &imux23;
--		i2c24 = &imux24;
--		i2c25 = &imux25;
--		i2c26 = &imux26;
--		i2c27 = &imux27;
- 		i2c28 = &imux28;
- 		i2c29 = &imux29;
- 		i2c30 = &imux30;
-@@ -409,33 +405,6 @@ gpio@31 {
- 		"","","","";
- 	};
- 
--	i2c-mux@71 {
--		compatible = "nxp,pca9546";
--		reg = <0x71>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		imux24: i2c@0 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <0>;
--		};
--		imux25: i2c@1 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <1>;
--		};
--		imux26: i2c@2 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <2>;
--		};
--		imux27: i2c@3 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			reg = <3>;
--		};
--	};
- 	// PTTV FRU
- 	eeprom@52 {
- 		compatible = "atmel,24c64";
+[snip]
+
+> > > diff --git a/Documentation/admin-guide/media/visconti-viif.rst b/Documentation/admin-guide/media/visconti-viif.rst
+> > > new file mode 100644
+> > > index 0000000000..4ef676754c
+> > > --- /dev/null
+> > > +++ b/Documentation/admin-guide/media/visconti-viif.rst
+> > > @@ -0,0 +1,255 @@
+
+[snip]
+
+> > > +viif_capture_sub - Raw Image Capture Video Node
+> > > +-----------------------------------------------
+> > > +
+> > > +This video node is used for capturing bayer image from the sensor.
+> > > +The output picture has exactly the same resolution and format as the sensor input.
+> > > +The following depth of bayer format is supported:
+> > > +
+> > > +- 8bit
+> > > +- 10bit
+> > > +- 12bit
+> > > +- 14bit
+> > 
+> > Does the hardware support capturing embedded data from the sensor ?
+> 
+> The hardware supports capturing embdded data, however the software is
+> not fully tested for that feature.
+
+OK. Support for this can be added later. I recommend already checking
+what it would imply in terms of changes to the media graph. Changing the
+media graph later in a way that could break userspace won't be allowed,
+so it's worth it preparing for embedded data support in the media graph
+design already. Adding new pads to existing entities and adding new
+entities later are fine, but renumbering existing pads or inserting new
+entities between two existing entities could break userspace.
+
+[snip]
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
 
