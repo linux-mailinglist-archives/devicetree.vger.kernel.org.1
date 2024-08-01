@@ -1,129 +1,126 @@
-Return-Path: <devicetree+bounces-90312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FC9944E70
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:49:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36669944E85
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:53:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A22DA2850DC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:49:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC9C7B20F13
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF011A6169;
-	Thu,  1 Aug 2024 14:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A831A7F70;
+	Thu,  1 Aug 2024 14:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pnvgvn8F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tFnl2k4v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79912F32;
-	Thu,  1 Aug 2024 14:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E331A4887;
+	Thu,  1 Aug 2024 14:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722523758; cv=none; b=YAVxRYiKIByTu/WIDrIOwGj1saveOkp2/aEDjlstrXm2a2N8qKGZX63Z5oVRaUnt0WJIad3aZJnAVpanO7SddfHGvzYigrdtlUI3hC7foHIdKRLEWQw5q2XldgydTM3oBvrIjQLF6jebvkNYkZPupqLVCBZLWcdD8zKh9rfyxow=
+	t=1722524006; cv=none; b=VgoJhpGMEy15FkJNB+VamPOpTiM5zXYhu8IuArgPSLdfI0JcAK22LOOqUpCZdEIaWzekuGL36qzlKgXDcKDRK+5sCycvYHOqXq3X5C8He7S46N5mP1qEFMItGaJmI4KYUyzPmX8hm/I5RnXgZywSgRWnYS8+HWhoOD773PfvcMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722523758; c=relaxed/simple;
-	bh=vzyH6OgkHFahyzizx6mkWMFnekHvMp91Ck+iH8k1SVA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fbkn3TtIARXASqB9IvDM3CI2M3cq9HRwgtb2MjQ9RiXzlDcnLjYh9Onx8M9gk5q+/glkJmUrHkG08aIELI8jKNwK74YRdPw1bibhUeScL3mXcIU0uaWGx6peYijrs/zFIRIGiWP3NYIZTwyA2y10d25zPMSkGFCifQTiBF34Ap0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pnvgvn8F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96390C32786;
-	Thu,  1 Aug 2024 14:49:18 +0000 (UTC)
+	s=arc-20240116; t=1722524006; c=relaxed/simple;
+	bh=pihbMVCA3QLJMolaC1JlUKs2kdaJDmWc7g29tWCaf1Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uceJ62fue1Lil/Tjcbwd7AeK/eNt5zTXxRhqu7lVUC4+GFXs2UG5U4hmIq+l3MPae47qlnJliyJbUBhSKpOutfCsP4MwxFLFsXAOWxfZYbYPUYv0o+HmAhms/VSWmDPQUgEp9+dJaBfv/ALQg0WWv+bbvmf0tEEw5ToOcVGgeNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tFnl2k4v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA45C32786;
+	Thu,  1 Aug 2024 14:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722523758;
-	bh=vzyH6OgkHFahyzizx6mkWMFnekHvMp91Ck+iH8k1SVA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Pnvgvn8FOv/edb4IrGvtTgp0GI4u10GvMFrkYRx9MJdrgBfxgJyhrLYQ96DbheXpo
-	 KV0wR1ERDl8LgKjARVsIJyefj/R4Ht6356WWVqINOzbKa7AZUkksY2cJsGlYc3Bt3s
-	 fjONBpMAKoaGswX7+Em22dBu89CwFq5A75ggVn/qpZ8En5/9VRlCpzwIY/1HyDQFoz
-	 pHFf1QwraEIgNUKR1c2vUPzEO75WFvSgyp/SVCxjczy+77VAiFlTp8/kMFD5m52D0L
-	 u7WayALIp4xrMoNoO2AbVy0xXko2UHFhz5R811WxK9W5rawgCXT6HxGSbUPVCWcZbj
-	 XOBHSpUnf9FBg==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f032cb782dso75878801fa.3;
-        Thu, 01 Aug 2024 07:49:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWyr5iswRbt7Kwh/XgMwKu1BJWTWzfFAuzlYhaOie9t05fml5W6UQ2U6CHAS113SOhB5sFpn4hvgj79xUVFksGoQA9WX5fQfiRR+k5aL5cJvfs7daFOKEQ9+mD62yfXTeHZozuwRxjXhQ==
-X-Gm-Message-State: AOJu0Yy+xPzhYUWDlNMfEGugpgqaGWNJRIgUh7tcQSdWQMLSmGR+2kck
-	w63pymcp6lut7ZbP58qgAGpMg5A9MXrpKooVHtHs6TcOBhxgDnVs7LkW3AZ8/jXQSxoAt/lJh1a
-	Lum/7RsoVTZibZrMEfkbWb9XhLA==
-X-Google-Smtp-Source: AGHT+IFhOE6NLKA1ffHukMgs6IA+lBCzhaXHSDKsXLEsl2g/ajP2Hgu8VD4gVg0/eJ4APZ0Mpu+DOIJa0sONnQ4Y0p4=
-X-Received: by 2002:a2e:7a1a:0:b0:2f0:1e0a:4671 with SMTP id
- 38308e7fff4ca-2f15aa836a4mr3979041fa.4.1722523756933; Thu, 01 Aug 2024
- 07:49:16 -0700 (PDT)
+	s=k20201202; t=1722524003;
+	bh=pihbMVCA3QLJMolaC1JlUKs2kdaJDmWc7g29tWCaf1Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tFnl2k4v+sPK5hUTLtjsm02gby1FH7+7nTBXOrq9SFFhvoOy6W31Vm0ulS3N+hwo6
+	 0LJmE1boYr7t6A/zDghoKxHoRDEOfOW/JSzPf9sKxJaO0Kvj9g7dbagQVpRgGXUlJb
+	 JH4emFWM5qtq38pSNidhjU6gMLpz9/Sb4dI9fC15Gl33qFDAqAxehCOnspqgSZAFJ8
+	 M+mc9E9+g4ls4hTrOQ3H9tJBq65Ii/9YfIwjPUMdo3KKjytWSRzY9GuWwVF+bzTCxc
+	 YQgZ2QtHDdDa9kqZujkqAeC4OBr/dt4gO1CRqahW1bUlodcIFhRs2XvcYyBYgR1w+g
+	 edesfaRakfPvQ==
+Date: Thu, 1 Aug 2024 15:53:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andrea Parri <parri.andrea@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
+	Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
+Subject: Re: [PATCH v4 04/13] dt-bindings: riscv: Add Zabha ISA extension
+ description
+Message-ID: <20240801-outmatch-handwash-8622a4972faa@spud>
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-5-alexghiti@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <2046da39e53a8bbca5166e04dfe56bd5.squirrel@_> <CAL_JsqKpTKv-fthwD9bFHiVESJyNP6uMg7Px7Rh+-k583oz76g@mail.gmail.com>
- <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
-In-Reply-To: <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 1 Aug 2024 08:49:04 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
-Message-ID: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
-Subject: Re: [PATCH v2] of/irq: Make sure to update out_irq->np to the new
- parent in of_irq_parse_raw
-To: WHR <whr@rivoreo.one>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ChwbiayH3N33d2aF"
+Content-Disposition: inline
+In-Reply-To: <20240731072405.197046-5-alexghiti@rivosinc.com>
+
+
+--ChwbiayH3N33d2aF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 31, 2024 at 10:22=E2=80=AFPM WHR <whr@rivoreo.one> wrote:
->
-> > On Mon, Jul 29, 2024 at 11:54=E2=80=AFPM WHR <whr@rivoreo.one> wrote:
-> >>
-> >> Commit 935df1bd40d43c4ee91838c42a20e9af751885cc has removed an
-> >> assignment statement for 'out_irq->np' right after label 'skiplevel',
-> >> causing the new parent acquired from function of_irq_find_parent didn'=
-t
-> >> being stored to 'out_irq->np' as it supposed to. Under some conditions
-> >> this can resuit in multiple corruptions and leakages to device nodes.
-> >
-> > Under what conditions? Please provide a specific platform and DT.
->
-> I have a previous email sent to you before I came up with the fix. The ke=
-rnel
-> log for debugging and the device tree blob are attached again.
+On Wed, Jul 31, 2024 at 09:23:56AM +0200, Alexandre Ghiti wrote:
+> Add description for the Zabha ISA extension which was ratified in April
+> 2024.
+>=20
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> Reviewed-by: Guo Ren <guoren@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index a06dbc6b4928..a63578b95c4a 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -171,6 +171,12 @@ properties:
+>              memory types as ratified in the 20191213 version of the priv=
+ileged
+>              ISA specification.
+> =20
+> +        - const: zabha
+> +          description: |
+> +            The Zabha extension for Byte and Halfword Atomic Memory Oper=
+ations
+> +            as ratified at commit 49f49c842ff9 ("Update to Rafified stat=
+e") of
+> +            riscv-zabha.
 
-Thanks. The patch needs to stand on its own with this detail, not
-require that I've read (and remember) some other email among the
-1000s.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-"multiple corruptions and leakages to device nodes" is meaningless. Be
-exact, it's device_node refcounts we're talking about. The issue is
-out_irq->np is not updated from 'usbdrd' node to the real interrupt
-parent, the 'plic' node. In the next iteration of the loop, we find
-'interrupt-controller' in the plic node and return, but out_irq is not
-pointing to the plic. Then of_irq_get() fails to get the irq host and
-does a put on out_irq->np which is usbdrd, not plic node.
 
-So please update the commit msg and provide your name, not initials.
+--ChwbiayH3N33d2aF
+Content-Type: application/pgp-signature; name="signature.asc"
 
->
-> > Honestly, I think the DT is wrong if you get to this point. We'd have
-> > to have the initial interrupt parent with #interrupt-cells, but not an
-> > interrupt-controller nor interrupt-map property to get here. Maybe
-> > that happens in some ancient platform, but if so, I want to know which
-> > one and what exactly we need to handle.
->
-> So you suggest the #interrupt-cells is erroneous in that node, and should=
- be
-> removed?
+-----BEGIN PGP SIGNATURE-----
 
-Yes. dtc warns about this. dtschema would too if there was a schema
-(there is, but not since you use a downstream binding).
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZquhXQAKCRB4tDGHoIJi
+0q0gAP4w29iDC4m6l/qSPS+MMlI/WiH69/4G+fcBBKIq7aRTCwD/W8P7PX8RBqjX
+vFrgiE5bcGwtx7wKqCuveDiYrxM2qAo=
+=FU44
+-----END PGP SIGNATURE-----
 
-The clint node has the same issue.
-
-> This is a device vendor-provided DT, so any issue in it will have to be f=
-ixed
-> locally.
-
-Complain to your vendor...
-
-Rob
+--ChwbiayH3N33d2aF--
 
