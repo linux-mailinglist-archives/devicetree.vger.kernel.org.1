@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-90237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A5E944797
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:13:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 106F2944641
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 10:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6C3282C42
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 09:13:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4143F1C22411
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA26183CD3;
-	Thu,  1 Aug 2024 09:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F051581E5;
+	Thu,  1 Aug 2024 08:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O9imaoEt"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WP0JsSDM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3DF170A34;
-	Thu,  1 Aug 2024 09:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14493208A4;
+	Thu,  1 Aug 2024 08:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722503520; cv=none; b=Y0JejNcru6HTqRjanqVx7nvmxsN9fQQG3xFZFq7IsnIFNLYoDRmydyulCP3hToD8vTwasCgczqwpeaTV6XSuWlmmgSG0U9igc1FEybpwWP1ObkTTGSSNcKsM+dmjfv+A/RqmvhhMAjkvdUOR2+PwaYT6R9QFU3bEox79ExHx9sQ=
+	t=1722500082; cv=none; b=DZHSfTEPSXJ9sU9Q49omBIVB/0POZS8hUb0JjMOZEMSXHNPfO9YjpcmcN39eRHvx/nmO9c7LP/8f0WMwIhhEVlTpjn6WYrlt4xaz8iTOfjnsAaPUa8SU8VWMWlusl6so+COp9GJggC71K/YjI/C0uLxsNqvpVaJ5uQGet1xHmfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722503520; c=relaxed/simple;
-	bh=YyMMtwwfLvF7XbN3Hd27FU6gmaTz5OzC5jyQFcvLAO4=;
+	s=arc-20240116; t=1722500082; c=relaxed/simple;
+	bh=lJpczff7Dl4zEd5TZagIVzH+sb71OGv7h5on9gbAmfs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pH6//PXD/3dYsZFRAbzeItcXx2lcmGI+vtriw2gVImVv5fFwHTzL+XeMeP32CQ1O/vJhpbDYt2W9YlqmuTEfzjWu/4L2FFBpGaXTrsl5r0BUUSQ5N/VC4aJXYFDMJ/TUe0X0cBXz3G3GINUKDZTXma8WgH3/cbhNbjhWwzOWQCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O9imaoEt; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722503519; x=1754039519;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=YyMMtwwfLvF7XbN3Hd27FU6gmaTz5OzC5jyQFcvLAO4=;
-  b=O9imaoEtsvrnILyp4ZsiMg3UAccO//SL7xjzq7HKgx88PHeFOatLHSDw
-   fIV7tfnrKCG6gJER4JQUUn8uAsi2tbtltbGJocohONUuBatoC0xjt/zjB
-   8JyRFN+MrO/th8vNlUS6wiv0CrwCLHDR8rUWcH8mlT7HVhk59E8umVP3A
-   0SiAnykYLksxs1MgEm8zkB94CGAqVCLOBjWflk5CflET1E46LwKQhm+VM
-   6gtG0QqLUfejXSU82oumWNMAGuRDWojmdHGSgLZA/Io8AzcRyLQ1D2qFU
-   Ji3JIk/Du2U6g/KihmrScFwtP4Ym4J7Cr0uxE7nqExaFb7JOyF2UEShUt
-   w==;
-X-CSE-ConnectionGUID: 0usLmvSVTKeoU76GHYtmpw==
-X-CSE-MsgGUID: yxNdqo/8Tu6uDuYoegDxxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="20383480"
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; 
-   d="scan'208";a="20383480"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2024 02:11:21 -0700
-X-CSE-ConnectionGUID: ELbweMuJSkOz6l0VdhQiCQ==
-X-CSE-MsgGUID: BARAQ/IiRXWsmTikx+x+nA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; 
-   d="scan'208";a="59089817"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO [10.245.246.220]) ([10.245.246.220])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2024 02:11:15 -0700
-Message-ID: <63c20e7a-f62a-4b6c-8ea1-1608e06e5b58@linux.intel.com>
-Date: Thu, 1 Aug 2024 10:11:43 +0200
+	 In-Reply-To:Content-Type; b=nQKSIRcGgPcqlJG05gihSd7nGI+glnQwbYN2s0HfTa2A17vBEEGlEq9qFtl7oCFuscNxtRfXI7atsCoDcG+VtlpVsAQp8v2MhVUOYB2BQoxJcX6hXTXDOGwOgQr/NfJZxQfaU4Hr/uIzNOtr9MgSvVu2WqZgAlJHXG1j8hpvg3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WP0JsSDM; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722500079;
+	bh=lJpczff7Dl4zEd5TZagIVzH+sb71OGv7h5on9gbAmfs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WP0JsSDMLpo0f0M9XD3jZIkGH90CClO4MBNLf+P2iohMKPHDy4WToPlJ+Q8aMu2Xx
+	 trPK7s/4jr71gOjadyTRei8/MC/vZkwbw90p3CwFWvxriH24qn/a+k3Mcd01v8pdMo
+	 XUmbLeJHVyH4n1UZMoxmsyMydWFjcL/8iKAbAYhfO9f0MKnzDemsVz1GszCnVCDngF
+	 lawKbSMvR4274pwaZUhp64xJU+AGbLk18fvAeOT1yLRSSlj09Tnbqe8UdKNw8QQ/h6
+	 qJFjMnk8TkqKKbJu6lcSC6C8y4cV4JNcvO+tUMm3SeJj3P16QFaVug6J2uNXti2rUW
+	 +dK5u/JQ1nx2Q==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EE54E3781139;
+	Thu,  1 Aug 2024 08:14:37 +0000 (UTC)
+Message-ID: <89237e84-c52c-4338-a36f-022102382c5f@collabora.com>
+Date: Thu, 1 Aug 2024 10:14:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,141 +57,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 11/34] ASoC: usb: Fetch ASoC card and pcm device
- information
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- gregkh@linuxfoundation.org, robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-12-quic_wcheng@quicinc.com>
+Subject: Re: [PATCH v2 2/3] media: mediatek: vcodec: fix vp8 stateless decoder
+ smatch warning
+To: Yunfei Dong <yunfei.dong@mediatek.com>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Nathan Hebert <nhebert@chromium.org>,
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20240613093357.583-1-yunfei.dong@mediatek.com>
+ <20240613093357.583-3-yunfei.dong@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20240801011730.4797-12-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20240613093357.583-3-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 8/1/24 03:17, Wesley Cheng wrote:
-> USB SND needs to know how the USB offload path is being routed.  This would
-> allow for applications to open the corresponding sound card and pcm device
-> when it wants to take the audio offload path.  This callback should return
-> the mapped indexes based on the USB SND device information.
+Il 13/06/24 11:33, Yunfei Dong ha scritto:
+> Fix smatch static checker warning for vdec_vp8_req_if.c. Leading
+> to kernel crash when fb is NULL.
 > 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  include/sound/soc-usb.h | 16 ++++++++++++++++
->  sound/soc/soc-usb.c     | 28 ++++++++++++++++++++++++++++
->  2 files changed, 44 insertions(+)
-> 
-> diff --git a/include/sound/soc-usb.h b/include/sound/soc-usb.h
-> index d6b576f971ae..a167e3de0a78 100644
-> --- a/include/sound/soc-usb.h
-> +++ b/include/sound/soc-usb.h
-> @@ -8,6 +8,11 @@
->  
->  #include <sound/soc.h>
->  
-> +enum snd_soc_usb_kctl {
-> +	SND_SOC_USB_KCTL_CARD_ROUTE,
-> +	SND_SOC_USB_KCTL_PCM_ROUTE,
-> +};
-> +
->  /**
->   * struct snd_soc_usb_device
->   * @card_idx - sound card index associated with USB device
-> @@ -32,6 +37,7 @@ struct snd_soc_usb_device {
->   * @component - reference to ASoC component
->   * @num_supported_streams - number of supported concurrent sessions
->   * @connection_status_cb - callback to notify connection events
-> + * @get_offload_dev - callback to fetch mapped ASoC device
->   * @priv_data - driver data
->   **/
->  struct snd_soc_usb {
-> @@ -40,6 +46,8 @@ struct snd_soc_usb {
->  	unsigned int num_supported_streams;
->  	int (*connection_status_cb)(struct snd_soc_usb *usb,
->  			struct snd_soc_usb_device *sdev, bool connected);
-> +	int (*get_offload_dev)(struct snd_soc_component *component,
-> +				int card, int pcm, enum snd_soc_usb_kctl route);
->  	void *priv_data;
->  };
->  
-> @@ -51,6 +59,8 @@ void *snd_soc_usb_find_priv_data(struct device *dev);
->  int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
->  					struct snd_soc_jack *jack);
->  int snd_soc_usb_disable_offload_jack(struct snd_soc_component *component);
-> +int soc_usb_get_offload_device(struct device *dev, int card, int pcm,
-> +				enum snd_soc_usb_kctl route);
->  
->  struct snd_soc_usb *snd_soc_usb_allocate_port(struct snd_soc_component *component,
->  					      int num_streams, void *data);
-> @@ -86,6 +96,12 @@ static inline int snd_soc_usb_disable_offload_jack(struct snd_soc_component *com
->  	return -ENODEV;
->  }
->  
-> +static int soc_usb_get_offload_device(struct device *dev, int card, int pcm,
-> +					enum snd_soc_usb_kctl route)
-> +{
-> +	return -ENODEV;
-> +}
-> +
->  static inline struct snd_soc_usb *snd_soc_usb_allocate_port(
->  					      struct snd_soc_component *component,
->  					      int num_streams, void *data)
-> diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
-> index fe2a75a28af4..3c217ac67c57 100644
-> --- a/sound/soc/soc-usb.c
-> +++ b/sound/soc/soc-usb.c
-> @@ -117,6 +117,34 @@ int snd_soc_usb_disable_offload_jack(struct snd_soc_component *component)
->  }
->  EXPORT_SYMBOL_GPL(snd_soc_usb_disable_offload_jack);
->  
-> +/**
-> + * soc_usb_get_offload_device - Set active USB offload path
+> Fixes: 7a7ae26fd458 ("media: mediatek: vcodec: support stateless VP8 decoding")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 
-get or set?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> + * @dev - USB device to get offload status
-> + * @card - USB card index
-> + * @pcm - USB PCM device index
-> + *> + * Fetch the current status for the USB SND card and PCM device
-indexes
-> + * specified.
-
-the function returns an integer, how does this return the 'mapped indices"?
-
-> + */
-> +int soc_usb_get_offload_device(struct device *dev, int card, int pcm,
-> +				enum snd_soc_usb_kctl route)
-
-missing route in kernel doc.
-
-> +{
-> +	struct snd_soc_usb *ctx;
-> +	int ret;
-> +
-> +	ctx = snd_soc_find_usb_ctx(dev);
-> +	if (!ctx)
-> +		return -ENODEV;
-> +
-> +	mutex_lock(&ctx_mutex);
-> +	if (ctx && ctx->get_offload_dev)
-> +		ret = ctx->get_offload_dev(ctx->component, card, pcm, route);
-> +	mutex_unlock(&ctx_mutex);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(soc_usb_get_offload_device);
-> +
->  /**
->   * snd_soc_usb_find_priv_data() - Retrieve private data stored
->   * @dev: device reference
 
 
