@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21977944E87
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC1D944E9C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 508F51C20FDF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:54:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C6DD1C20D9F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44B51A7F79;
-	Thu,  1 Aug 2024 14:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D9B1A7F79;
+	Thu,  1 Aug 2024 14:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJi/cSmx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l65UzgQS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBC81A76A1;
-	Thu,  1 Aug 2024 14:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A48F1A57D4;
+	Thu,  1 Aug 2024 14:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722524038; cv=none; b=EU6w3U3ulRUFZ2TDLim+zJ5/wUyh5I03/GbZGoqBjtdrKsUD6hRKmFPxL+xe1vlJUOft+YuXg1w2QNGZhqME//UKYdOsAta8j7H/mhUq0vwUIiwhdvakxctBrwIAltZPW7foW7EoQuwR0zLY2rMT8cOLM4chO0CXrwsLhvfbbrc=
+	t=1722524275; cv=none; b=AKdCVHok8WcdMuXjub0yqI5iI4L2ImwbObiRz3VNf1CAp+RoDkxi5/J8ouHqLq8WWGdqX8nUEyVQj3LK5h3u1bXGjZHTsCirKwhjmGO7367xolwUeoXowREAR3iV6jqpTJQ9CBPJNpk4LVhCfMaZBEF2irTL75O5cNGHWEWCtkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722524038; c=relaxed/simple;
-	bh=TPgKn7GWBgu6nd6mkNKctAoxTw80xW2Kmt4GxkrZ80I=;
+	s=arc-20240116; t=1722524275; c=relaxed/simple;
+	bh=ggO7Zt73dnoIwfAFu+f6RKUYCGa8AzY90DOvjMLjl0s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AijFHcq0yUYg+agl/j04YygLWmNtOkTPFdrVwUvYOyjEp8PULsrNWOhBqKQpZQ7/8XlzS56sSR83B62IeIBa2zN0qqeI2DxbKSnyxLMaYrp75VBPMOi+SXfoi1WSgiw43N5WlsjttVv6/hs9N9LNRPqd92J0OiLtOB4K58E7djg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eJi/cSmx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85A88C32786;
-	Thu,  1 Aug 2024 14:53:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rzGaM9QtSOVhAR0EsamGyPv/8fKFp4u7IduPWDJnQF2+u8atw1wN7uWAN7jLQD82+sG4EobjbdlVlGUgD5CvH/SrAxCrFcyKic85poKLkAhTRNTu5atI+94OrburKu4kyHE4tIqCST8PQV7v2eMc3XDlI4avRvZJIGjdVV6JNkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l65UzgQS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32461C32786;
+	Thu,  1 Aug 2024 14:57:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722524038;
-	bh=TPgKn7GWBgu6nd6mkNKctAoxTw80xW2Kmt4GxkrZ80I=;
+	s=k20201202; t=1722524275;
+	bh=ggO7Zt73dnoIwfAFu+f6RKUYCGa8AzY90DOvjMLjl0s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eJi/cSmxhuZnazLMYWmDWjf3Fufhmk1yg1NZSK5IRF0WKvLZ9GsXjJSKfg7mC/2Mv
-	 M8Gum3EzF+ln9Y4tc8lqAmwgnQSpkGLsMCYgBvPJ9QBmKsVLSTzDRvt7HmZ0hMpEqH
-	 Pv5/OE+y4nzFgyMRHU8fLhqhjlgP9r3Red2YaVQeXst6uwUM7/vGgjgDN/VZHD9JeD
-	 DIbhhvFETcIouc4i0RC/xiVv/BS6BuVCPQi45hJP2LjJ/WifJJCvfwO6MrfCsNpmO7
-	 DmYRG3BEdPfuxMINM9zK3pVJuzuKxgBUCN3OVRa/Pv908xfzb32YCeBlloRK2asTLJ
-	 XH0jT27JII8wQ==
-Message-ID: <c3ee7783-6891-4917-9935-21d46d8ac9a7@kernel.org>
-Date: Thu, 1 Aug 2024 16:53:52 +0200
+	b=l65UzgQSX28OOM0FNiia0jPULDzx0Rc8RSABPM5MUgTYOFbu0MZ8zr7X2kodpREDQ
+	 7K0OwCshN27ufCPd8/2YJ1812i7n5w8a13tCY+pIWhRM6x70xDqip5pTibFrj3fMZ9
+	 wxomkE/RaQFHO/D6cyakneNPlIj49y0XzYrtIYlgnHaoZybwcGe6LKYbLVrRUoYvSp
+	 CtyinQwbTpVJHFzIwaDUk8jfyMLbZcZ9HRqVxO2d3wEwVuOnOdV2O2+B4mU5L6FgIR
+	 gMb3sKOBHA2taPizCs2vy/SZrGgoE1I/38SGpYag5pBI7QXPFSNzxsUEYIyZnqNDex
+	 IFD88MZQvOnlA==
+Message-ID: <1590bd20-0140-4960-8af4-f1c1d55cda27@kernel.org>
+Date: Thu, 1 Aug 2024 16:57:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,109 +114,8 @@ On 01/08/2024 09:19, Stanley Chu wrote:
 > 
 > Signed-off-by: Stanley Chu <yschu@nuvoton.com>
 > Signed-off-by: James Chiang <cpchiang1@nuvoton.com>
-> ---
->  .../bindings/i3c/nuvoton,i3c-master.yaml      | 123 ++++++++++++++++++
 
-Use compatible as filename. Anyway word "master" was dropped.
-
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
-> new file mode 100644
-> index 000000000000..a40b37b16872
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i3c/nuvoton,i3c-master.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i3c/nuvoton,i3c-master.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM845 I3C master
-
-Use new terminology. Since 2021 there was a change... three years ago.
-
-> +
-> +maintainers:
-> +  - Stanley Chu <yschu@nuvoton.com>
-> +  - James Chiang <cpchiang1@nuvoton.com>
-> +
-> +allOf:
-> +  - $ref: i3c.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nuvoton,npcm845-i3c
-> +
-> +  reg:
-> +    items:
-> +      - description: I3C registers
-> +      - description: GDMA registers
-> +      - description: GDMA request control register
-> +
-> +  reg-names:
-> +    items:
-> +      - const: i3c
-> +      - const: dma
-> +      - const: dma_ctl
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: system clock
-> +      - description: bus clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: fast_clk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  i3c-pp-scl-hi-period-ns:
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      If need to configure SCL with required duty cycle, specify the clock high/low period directly.
-> +      i3c-pp-scl-hi-perios-ns specifies the high period ns of the SCL clock cycle in push pull mode
-> +      When i3c-pp-scl-hi-period-ns and i3c-pp-scl-lo-period-ns are specified, the i3c pp frequency is
-> +      decided by these two properties.
-
-Wrap according to Linux Coding Style (and read coding style to figure
-the proper wrapping...).
-
-> +
-> +  i3c-pp-scl-lo-period-ns:
-> +    description: |
-> +      The low period ns of the SCL clock cycle in push pull mode. i3c-pp-scl-lo-period-ns should not
-> +      be less than i3c-pp-scl-hi-period-ns and the maximal value is i3c-pp-scl-hi-period-ns + 150.
-
-Everywhere: defaults, constraints.
-
-> +
-> +  i3c-pp-sda-rd-skew:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The number of MCLK clock periods to delay the SDA transition from the SCL clock edge at push
-> +      pull operation when transfers i3c private read.
-> +    maximum: 7
-> +    default: 0
-> +
-> +  i3c-pp-sda-wr-skew:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The number of MCLK clock periods to delay the SDA transition from the SCL clock edge at push
-> +      pull operation when transfers i3c private write.
-> +    maximum: 7
-> +    default: 0
-> +
-> +  i3c-od-scl-hi-period-ns:
+:
 > +    description: |
 > +      The i3c open drain frequency is 1MHz by default.
 > +      If need to use different frequency, specify the clock high/low period directly.
@@ -231,59 +130,9 @@ Everywhere: defaults, constraints.
 > +      multiple of i3c-pp-scl-hi-period-ns.
 > +
 > +  enable-hj:
-> +    type: boolean
-> +    description: |
-> +      Enable SLVSTART interrupt for receiving hot-join request.
 
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
+Missing vendor prefix.
 
-> +
-> +  use-dma:
-> +    type: boolean
-> +    description: |
-> +      Enable the i3c private transfers using DMA.
-
-Why wouldn't you enable it always? Where are dma properties for this?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-names
-> +  - clocks
-> +
-> +additionalProperties: true
-
-Nope, it cannot be true. Look how other bindings are doing this. Why
-implementing something entirely different?
-
-> +
-> +examples:
-> +  - |
-> +    i3c@fff10000 {
-> +        compatible = "nuvoton,npcm845-i3c";
-> +        clocks = <&clk 4>, <&clk 26>;
-> +        clock-names = "pclk", "fast_clk";
-> +        interrupts = <0 224 4>;
-> +        reg = <0xfff10000 0x1000>,
-> +              <0xf0850000 0x1000>,
-> +              <0xf0800300 0x4>;
-
-Order properties as in DTS coding style.
-
-> +        reg-names = "i3c", "dma", "dma_ctl";
-> +        resets = <&rstc 0x74 8>;
-> +        #address-cells = <3>;
-> +        #size-cells = <0>;
-
-Make your bindings complete - you skipped many properties. Why defining
-them if you are not using them and they do not have defaults?
-
-> +    };
 
 Best regards,
 Krzysztof
