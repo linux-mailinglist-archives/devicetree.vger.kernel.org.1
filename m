@@ -1,115 +1,157 @@
-Return-Path: <devicetree+bounces-90334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9963E944F6B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:36:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2322F944F70
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 17:38:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43E221F22102
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:36:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3D24287FDA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 15:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594A21AED3D;
-	Thu,  1 Aug 2024 15:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8325B1B010E;
+	Thu,  1 Aug 2024 15:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a56O/DBL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AKKYsQk/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18B521A0B;
-	Thu,  1 Aug 2024 15:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0821B0106;
+	Thu,  1 Aug 2024 15:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722526595; cv=none; b=q+jMkrr/1dsfIDPMkwpyv9edxOakOv/G9rTjC8xq8wC9Rf4/jC4L0YiRrlC/BX0GQ00q0mBXC3GkHRTkWJTGAwI7bDOEEfK0gOuCsExeEjp/sS4ZsQzDns8o61yQGjEHlycgy3/VcIBv4H4S9XgvBp3oeGYpPTdYDAydaPNi3fQ=
+	t=1722526679; cv=none; b=L0Rm3lJ3Krm+J8WMtN5hIrDBDQbrKNxuIicdn1S32QiWt1a4Ca5fpFPvIZrgY1/QW5Y1QYOu9IC5iJQuBx9/MUjLqRUy5QOW/QSxJy4Rq0orV56FKjCQ4jobEGSphUUDygC8UmYlKzeI0Wnki35iycZKAH8+iUW7Swuui8djeGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722526595; c=relaxed/simple;
-	bh=Bh04zkUoUkR+Bpdw7Xxl27Vv1Al+y4yZ3LKJUjKUIiY=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=XmH1cTBR6IuV3SUc7tETc7x1y+X85q7dZIZyAd0SiHL/yJ/lqhmoHOfw0JQ5Jxzw8fZxT84VrA/8KD/dh2XbUO8n/9lc9mYXGjUjyqeVPvmQ49f5bO4GyQMQ5homIxFP13m8LuPNl5gJ8XK0sftGZCzBevbTCNQOdR/wD4EvKDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a56O/DBL; arc=none smtp.client-ip=209.85.214.170
+	s=arc-20240116; t=1722526679; c=relaxed/simple;
+	bh=HVyiZbaild1Wid4X45Oeo7GhfGPWtHFwhd8iGEXYwsI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OvhdjZi2miLETKZnVBjkhL1syQJB5A5v8pfNet56yDwmdqhui6XFX61cNMO9zLmJknqzq35eS8Vs6KjAcjdK1hlEPLCWIxMmtxORLUwkFK8yr4CBDqKgsfDAtQhoMHFFXwBzVVhzPvlcmyXrWaRLiEbQUEt2pXxS7nZ17/zJCUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AKKYsQk/; arc=none smtp.client-ip=209.85.160.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fec34f94abso55847545ad.2;
-        Thu, 01 Aug 2024 08:36:33 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2681941eae0so2437521fac.0;
+        Thu, 01 Aug 2024 08:37:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722526593; x=1723131393; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1i1/5Afa7Io3WkMvQUO0SKDT8T2L7XQxbEH0MVs8m7U=;
-        b=a56O/DBLuVUYLs9xkcrpPzsiPUw4fNZ+Am65J08eBQZoPPShNDgEDxN1qVVoLFoqsF
-         jaO4SMORmEJXPW+ke45WYgoE1Z9TR+AzAs8iJ6AFSr1vOYrLHlxfWru6qM4/1PcRV3Oz
-         l5UB60I78lkj2nypuq/gB6bMYlWuq2FtqokURmi1AoxWf6J4gjJiIkPlPmR2V5dF5/IJ
-         yRi1b7w/DUAuF3aHKeg/D0H6r65lq5GZBiez+z0OEK5ttZTEjLYAKHwE7B8wgxgSnrKi
-         zHe0gQ41MTuiUTNcU38euCGS3+Pn654FKDmggHSE9rRtfdDfbX2uDLUZbzVjYXZAeHc1
-         HybQ==
+        d=gmail.com; s=20230601; t=1722526677; x=1723131477; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DxaMOzeZ/iAXtwUr1eOqIcyS5wuAZVA6dKRpqc08aRg=;
+        b=AKKYsQk/p2+1Q4onaTNHyyuXuz++e4y6o8jp0dMKtXTdEy3P9XBTHHDuN3YNVsH6xR
+         Z1r0eZ68IDranSf5i+i76pT5t/FO13u8qmCJiryiiYoi3TwGhmoBlaGuoRn7mVW3E7sx
+         04lR60FI13l5ER2ZvYezlbyQ8Z5/qQa2smUMx7dh3VvJS9H24yK/umj2xsW89O7wlsPW
+         5MZ5CB4c65bQsvSvrBUccOIom/MaCBRKD540RXrO5A5mLrEbvNlbWa086HeR8E5m+jsF
+         F/SFfyuZv9Mqs1jigp9YNmdaj9ffFGpnbVgi+Fr3/j9rEvOHmU77lJv3S1Jgs9ROYA2E
+         oF6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722526593; x=1723131393;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1i1/5Afa7Io3WkMvQUO0SKDT8T2L7XQxbEH0MVs8m7U=;
-        b=LjPaJ9JO+CE72+qe1RF4/8D5YrZVhYCQqGpN12/kpNghYP5m1b+mbZK6qorzHB9x4L
-         XXpzDNzCAtJsWVHKe+//6KIteJghrnZmas3SzUS/dRnudTSx/SxOAp0W/DsRWROtDz9r
-         a/WGYrMmQYZfCvmi9MUWticcqUAq2M1ZxvZmSEyOOeGNohj9ZrTc9Vqnhq8QP1hZFqJg
-         3SmsrNjbOnRy4TGC+B0D2vWoIyjr1amjMD/kC2MqwcP8ZEtOm/JM8tNAtA/iOxMfeZbc
-         PZT3va2hLKiVDc7tI4hX5e6z2KEmw67slP4P6MRqU4y/LD/c06Nh8pCVVKqJprs1FAFb
-         BzAg==
-X-Forwarded-Encrypted: i=1; AJvYcCXRo+Wj9NDwjzVxgZrY8/GlBBWM2ysZAzHQPe5N+N5CiUQt+rP2jSsaOlqU7WyKL7mgK+yc3ZIwgmjc/HC0A0snYU3MMBFAvPN+2pwcfzIUqnedPc7yK/YDihb8SUag3s9q6QTgcigwag==
-X-Gm-Message-State: AOJu0YwG/ExHI0U6WMPRsOZCcGfHU+9Ap256SxHOmHSEd9nmoQYuH35W
-	RPc7afknOWs7JgwBNxw9iSiJ1+ZIlH/0c2pSPFHBP+JqGOCwLJcd4wpIVw==
-X-Google-Smtp-Source: AGHT+IGVt4tmSDLcrcaKqUAU3jYK85egdUEbqNwx+aZGQJ1Mv5d9gvuEJs50bkVcvd7CF3anqMkErg==
-X-Received: by 2002:a17:903:22d1:b0:1fc:5eac:9873 with SMTP id d9443c01a7336-1ff572b9dd9mr6963705ad.30.1722526593098;
-        Thu, 01 Aug 2024 08:36:33 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff58f56febsm28015ad.88.2024.08.01.08.36.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Aug 2024 08:36:32 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: Add ISL69260 voltage regulator device
-Date: Thu,  1 Aug 2024 23:34:27 +0800
-Message-Id: <20240801153429.1277378-1-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20230601; t=1722526677; x=1723131477;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DxaMOzeZ/iAXtwUr1eOqIcyS5wuAZVA6dKRpqc08aRg=;
+        b=EaytWSZ60au1esiS/L1t/gaX83EPPdUkA04FT/DAxF58HBKiBT6mQyGl71uydA3iPc
+         /mbZEqB//g1H4wbWV8iN4YAFNWaaD/dqb8iwz5wFY6wXKnV16c/MRy7NIQMRNpr/Je/k
+         bgEwM0hgmwvlFOfE0clsPxkPPwtjjT/5kU9Nz9bC2jyuanGlgkqTDlQBAR0Bk+JqNj98
+         nMmG4PB60idM4o55s0QOtJXqWcDBPiKYjnL4ny9LYSP+h/S6tsaNbd7gsrNdiDE7Qpus
+         GhooPXxTDWCvnZ2wh2zKNk9OdbpuP+TtmRq+8Q5YxN4ul15RhlxB1u9zDFZJ340nLS8Q
+         x7ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvEYRht495vV1rsqE02hQV/6wiiUYqqFP3NkPb2/aIufa7GzL0PdXDQhhB6kGDDXzlAfTKGmt26VTv6lKw77ULj2UfF9M5
+X-Gm-Message-State: AOJu0YxQREUHCYbmJ50dHvx9emE+diHgoOGQGbTvqkMw6KOf6URraqG4
+	FIIDR0D7Lp72xmVGBlTSJEMwynoHR1vItVQxChtHU8u5PzOmqpnjlpgeXs55llyAVUIwYPj7rLg
+	TsxE3mj3RfpFWt4agVCkjmLz2oU0=
+X-Google-Smtp-Source: AGHT+IHO4jiFCkzlp591vNX4hal9iztJ4TzKiL6h8EmN+j5rY0sXgMrfbCwiysgViRP0hJ9psYzbnyLboPjxapGGaiw=
+X-Received: by 2002:a05:6871:113:b0:261:575:5384 with SMTP id
+ 586e51a60fabf-26891aecef4mr577840fac.16.1722526676667; Thu, 01 Aug 2024
+ 08:37:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240801123143.622037-1-vtpieter@gmail.com> <20240801134401.h24ikzuoiakwg4i4@skbuf>
+In-Reply-To: <20240801134401.h24ikzuoiakwg4i4@skbuf>
+From: Pieter <vtpieter@gmail.com>
+Date: Thu, 1 Aug 2024 17:37:43 +0200
+Message-ID: <CAHvy4ArS2vgsu0XLE3heUeVrk_mzRjfPszdCg22_xJnuKuKr-A@mail.gmail.com>
+Subject: Re: [PATCH net-next 0/2] implement microchip,no-tag-protocol flag
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com, 
+	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org, o.rempel@pengutronix.de, 
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>, Florian Fainelli <f.fainelli@gmail.com>, 
+	Andrew Lunn <andrew@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 
-The ISL69260 is a digital dual output multiphase
-with Intel VR13, VR13.HC, and VR14 specifications.
+On Thu, Aug 01, 2024 at 15:44, Vladimir Oltean <olteanv@gmail.com> wrote:
+>
+> Hi Pieter,
+>
+> On Thu, Aug 01, 2024 at 02:31:41PM +0200, vtpieter@gmail.com wrote:
+> > From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> >
+> > Add and implement microchip,no-tag-protocol flag to allow disabling
+> > the switch' tagging protocol. For cases where the CPU MAC does not
+> > support MTU size > 1500 such as the Zynq GEM.
+> >
+> > This code was tested with a KSZ8794 chip.
+> >
+> > Pieter Van Trappen (2):
+> >   dt-bindings: net: dsa: microchip: add microchip,no-tag-protocol flag
+> >   net: dsa: microchip: implement microchip,no-tag-protocol flag
+> >
+> >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    |  5 +++++
+> >  drivers/net/dsa/microchip/ksz8795.c                   |  2 +-
+> >  drivers/net/dsa/microchip/ksz9477.c                   |  2 +-
+> >  drivers/net/dsa/microchip/ksz_common.c                | 11 ++++++++---
+> >  drivers/net/dsa/microchip/ksz_common.h                |  1 +
+> >  drivers/net/dsa/microchip/lan937x_main.c              |  2 +-
+> >  6 files changed, 17 insertions(+), 6 deletions(-)
+> >
+> >
+> > base-commit: 0a658d088cc63745528cf0ec8a2c2df0f37742d9
+> > --
+> > 2.43.0
+>
+> Please use ./scripts/get_maintainer.pl when generating the To: and Cc: fields.
+>
+> Not to say that they don't exist, but I have never seen a NIC where MTU=1500
+> is the absolute hard upper limit. How seriously did you study this before
+> determining that it is impossible to raise that? We're talking about one
+> byte for the tail tag, FWIW.
+>
+> There are also alternative paths to explore, like reducing the DSA user ports
+> MTU to 1499. This is currently not done when dev_set_mtu() fails on the conduit,
+> because Andrew said in the past it's likelier that the conduit is coded
+> to accept up to 1500 but will still work for small oversized packets.
+>
+> Disabling DSA tagging is a very heavy hammer, because it cuts off a whole lot
+> of functionality (the driver should no longer accept PTP hwtimestamping ioctls,
+> etc), so the patch set gets this tag from me currently, due to very shallow
+> justification:
+>
+> Nacked-by: Vladimir Oltean <olteanv@gmail.com>
+>
+> Please carry it forward if you choose to resubmit.
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Hi Vladimir,
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 7913ca9b6b54..6ec8b4cc9e56 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -164,6 +164,8 @@ properties:
-           - isil,isl29030
-             # Intersil ISL68137 Digital Output Configurable PWM Controller
-           - isil,isl68137
-+            # Intersil ISL69260 PMBus Voltage Regulator
-+          - isil,isl69260
-             # Intersil ISL69269 PMBus Voltage Regulator
-           - isil,isl69269
-             # Intersil ISL76682 Ambient Light Sensor
--- 
-2.25.1
+I do understand your reservation for this path, it defeats most of the
+advantages
+of DSA but I still do need the driver to handle the PHYs over SPI and for the
+WoL functionality; using the switch in a bridge configuration. My reason for
+mainlining is that I though there might be more people like me in a
+similar situation.
 
+This is actually an older issue and solution of mine so inspired by your comment
+I revisited the documentation and indeed hardware-wise I can't find back the
+MTU limitation. I see now that it's actually a limitation of the macb driver [1]
+so I will try to rework this one instead. Or implement `dsa-tag-protocol` as you
+propose. Or event better, both!
+
+Patch can be thus be cancelled, sorry for the spam.
+
+Cheers, Pieter
+
+[1]: https://elixir.bootlin.com/linux/v6.11-rc1/source/drivers/net/ethernet/cadence/macb_main.c#L5127
 
