@@ -1,323 +1,176 @@
-Return-Path: <devicetree+bounces-90054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC9C943FCC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 03:51:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B264944013
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 03:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65C76280E5D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:51:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D18E1F22B57
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 01:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E210942A8E;
-	Thu,  1 Aug 2024 00:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F1F158A23;
+	Thu,  1 Aug 2024 01:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TlZZte+x"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UMYUguhh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260042E83F;
-	Thu,  1 Aug 2024 00:51:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFF5157483;
+	Thu,  1 Aug 2024 01:18:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722473491; cv=none; b=V7QMV+bixmmQwo4h3za3HRqAwEMRqKyW6zV1y6ZsW5RV3sMdtCd5o1SHUlfqQZW1m+OrKs09zunfdr9RDTFrWjPf1LpssWTA9p9nDjLTv/6nknfs5kxI9TxObTrs3rgiaxkWcuX+aMKSjFWe5NxHiutjEmME7Z6enH8NmfusFmw=
+	t=1722475117; cv=none; b=hgHUDu5/CbEP3/JzkrzIoE/w5J17Re1AE6StFxcxrQVoF31ac2ZWmmDXsNfiUHKQYDLhHUKqMD4hztAvNyZFmDcv1xuXtoMcdksMR0sS7Kf8YbQ8e+F6T+Gt7Qjsc+IJrCD3ZBXaKGXGRsMHbPNgU3xMeMKcUeAz1y00hqLkLXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722473491; c=relaxed/simple;
-	bh=TSjrUWYJXnpOZEh3ey+4es+yDaCbp82UbrQyxn4Q2Cs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tR/S+1tB+61s8D3OAz6DqF8Fnd+Gx6lYUlMRThEQtZbP3QQLRvpcz5IGk1uZO4YMsI/Zu35BVh77OgGYwhoEtWUAr+dpiugs4OBXZX75ErHoI2TBc6LtVRK0CZ3oLToTHfiQTzUWyzwdCpCI2My7zW8GY4okDvrMIVQ/xoCgHcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TlZZte+x; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1722475117; c=relaxed/simple;
+	bh=1Hp7NsyUYlfn3QAxb9QnxnkH97Pw2w+Y8pA0TZzpWMk=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Eu2AIHN0tz9Iti/vNY/aJGTRU5jwGHSzR+6wnkUmYqQuC+14FR59K7klidxdEONqfWMYk+M/agQ3apDOC6k9n1dunES03Wo9EEWhfHDAu+AHUIcLN79O6dZ6/6/+KVAp6gYGvxZHaKsstXQXIR/ooiMsBSl4Wt1zeBbp9owmu5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UMYUguhh; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46VGqI21029961;
-	Thu, 1 Aug 2024 00:51:19 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46VD5qDI023993;
+	Thu, 1 Aug 2024 01:17:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	etAlBOLm/c6+N+NDIQJ64v0mXMlXSuHpFgcU4hIzgOw=; b=TlZZte+xm7FhaTkl
-	COW1bhS3bfByvy3W4l9xR5Tn6Hqfch94kye1bz/cITXNLXo26CzUr8dBPDufSQ1d
-	+iXl0BkcOracBo32uWOXWcbCWgfs2/ezjUUa+xxbX+OO7GOzlaBV3wDFsEisMgj/
-	F8ngZKHfgLk+p+hxJx/xNFWZ5tNeOAn2ucLrUekTFZz7cfFVw2r6A9M/90EKuth0
-	zGFW/+x5ID3S5NbriGduwTA6A3dSsQYFezM7bn4fREdNOKyFs8Mxv5b5O1DB9OXk
-	r72LrL9dXlRf7//qNqDCXnfF9mhg8tHO6zVyEvYZhjhIGMQyYGzbLVO405n6i2lz
-	vw3jmQ==
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=PGp6ZQrpBw6E+mtDZb2UpP5A
+	W9qYy/DIjxLaXDKBVPk=; b=UMYUguhh6KVGxRkHOJpHs5a0z/43jr3kTXLPWz4F
+	EcS3KylkVA8myP9f5/YbefNTQbYU8o7q+hkKnUgwc2/MgzzRe+Z+a05tWi1uw/xp
+	aZvFeNnjqPDUs9EIpin6/7/HmlNgyOULE5GsWo3MDL7fBOr96jg8E3hSJMFR9D9h
+	DDfOcWTD1ugGXcLDN/uGyUrVFp2EKFnps/pKPRkjjRoHv33ua6NT2r3+imEQol4r
+	hVJxS4iwe+p12gLPS44Az/+2tbIevqQ3/TY2ojK1CH+VJUSOrNxEhAqOklSs2g7H
+	THDL+alXq/FDT5I47szEzmLL0zQNXkqcfvGD2O5nKKgNmw==
 Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40pq5276j9-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40pw456g0q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Aug 2024 00:51:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4710pINS015647
+	Thu, 01 Aug 2024 01:17:43 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4711HgrM020097
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Aug 2024 00:51:18 GMT
-Received: from [10.110.31.235] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 31 Jul
- 2024 17:51:17 -0700
-Message-ID: <0c769a55-0fb7-4734-86b1-9469b4cc7b8c@quicinc.com>
-Date: Wed, 31 Jul 2024 17:51:17 -0700
+	Thu, 1 Aug 2024 01:17:42 GMT
+Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 31 Jul 2024 18:17:41 -0700
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <gregkh@linuxfoundation.org>, <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Subject: [PATCH v24 01/34] xhci: add helper to stop endpoint and wait for completion
+Date: Wed, 31 Jul 2024 18:16:57 -0700
+Message-ID: <20240801011730.4797-2-quic_wcheng@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240801011730.4797-1-quic_wcheng@quicinc.com>
+References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] usb: misc: eud: Handle usb role switch notifications
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
- <20240730222439.3469-8-quic_eserrao@quicinc.com>
- <5nsextq3khhku3xfdwwj74wmx5ajyqhjyarfpnpa6i2tjx76ix@z7lpip6pi6re>
-Content-Language: en-US
-From: Elson Serrao <quic_eserrao@quicinc.com>
-In-Reply-To: <5nsextq3khhku3xfdwwj74wmx5ajyqhjyarfpnpa6i2tjx76ix@z7lpip6pi6re>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Rh5EhvjqrxgSCIv37YiiyvkgYM84m1jB
-X-Proofpoint-ORIG-GUID: Rh5EhvjqrxgSCIv37YiiyvkgYM84m1jB
+X-Proofpoint-GUID: sJOvWWZv3JF6z43sxM2AcTvdSMUdrrFD
+X-Proofpoint-ORIG-GUID: sJOvWWZv3JF6z43sxM2AcTvdSMUdrrFD
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-07-31_11,2024-07-31_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- adultscore=0 priorityscore=1501 spamscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 clxscore=1011 malwarescore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408010002
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ suspectscore=0 adultscore=0 clxscore=1011 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408010005
 
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
 
+Expose xhci_stop_endpoint_sync() which is a synchronous variant of
+xhci_queue_stop_endpoint().  This is useful for client drivers that are
+using the secondary interrupters, and need to stop/clean up the current
+session.  The stop endpoint command handler will also take care of cleaning
+up the ring.
 
-On 7/31/2024 6:06 AM, Dmitry Baryshkov wrote:
-> On Tue, Jul 30, 2024 at 03:24:38PM GMT, Elson Roy Serrao wrote:
->> Since EUD is physically present between the USB connector and
->> the USB controller, it should relay the usb role notifications
->> from the connector. Hence register a role switch handler to
->> process and relay these roles to the USB controller. This results
->> in a common framework to send both connector related events
->> and eud attach/detach events to the USB controller.
->>
->> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
->> ---
->>  drivers/usb/misc/qcom_eud.c | 91 ++++++++++++++++++++++++++++---------
->>  1 file changed, 69 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
->> index 3de7d465912c..9a49c934e8cf 100644
->> --- a/drivers/usb/misc/qcom_eud.c
->> +++ b/drivers/usb/misc/qcom_eud.c
->> @@ -10,6 +10,7 @@
->>  #include <linux/iopoll.h>
->>  #include <linux/kernel.h>
->>  #include <linux/module.h>
->> +#include <linux/mutex.h>
->>  #include <linux/of.h>
->>  #include <linux/phy/phy.h>
->>  #include <linux/platform_device.h>
->> @@ -35,12 +36,16 @@ struct eud_chip {
->>  	struct device			*dev;
->>  	struct usb_role_switch		*role_sw;
->>  	struct phy			*usb2_phy;
->> +
->> +	/* mode lock */
->> +	struct mutex			mutex;
->>  	void __iomem			*base;
->>  	void __iomem			*mode_mgr;
->>  	unsigned int			int_status;
->>  	int				irq;
->>  	bool				enabled;
->>  	bool				usb_attached;
->> +	enum usb_role			current_role;
->>  };
->>  
->>  static int eud_phy_enable(struct eud_chip *chip)
->> @@ -64,6 +69,38 @@ static void eud_phy_disable(struct eud_chip *chip)
->>  	phy_exit(chip->usb2_phy);
->>  }
->>  
->> +static int eud_usb_role_set(struct eud_chip *chip, enum usb_role role)
->> +{
->> +	struct usb_role_switch *sw;
->> +	int ret = 0;
->> +
->> +	mutex_lock(&chip->mutex);
->> +
->> +	/* Avoid duplicate role handling */
->> +	if (role == chip->current_role)
->> +		goto err;
->> +
->> +	sw = usb_role_switch_get(chip->dev);
-> 
-> Why isn't chip->role_sw good enough? Why do you need to get it each
-> time?
->
+Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+---
+ drivers/usb/host/xhci.c | 39 +++++++++++++++++++++++++++++++++++++++
+ drivers/usb/host/xhci.h |  2 ++
+ 2 files changed, 41 insertions(+)
 
-Hi Dmitry
-
-chip->role_sw is the eud role switch handler to receive role switch notifications from the
-USB connector. The 'sw' I am getting above is the role switch handler of the USB controller.
-As per this design, EUD receives role switch notification from the connector 
-(via chip->role_sw) and then relays it to the 'sw' switch handler of the USB controller.
-
-
-Thanks
-Elson
+diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+index 37eb37b0affa..3a051ed32907 100644
+--- a/drivers/usb/host/xhci.c
++++ b/drivers/usb/host/xhci.c
+@@ -2784,6 +2784,45 @@ static int xhci_reserve_bandwidth(struct xhci_hcd *xhci,
+ 	return -ENOMEM;
+ }
  
->> +	if (IS_ERR_OR_NULL(sw)) {
->> +		dev_err(chip->dev, "failed to get usb switch\n");
->> +		ret = -EINVAL;
->> +		goto err;
->> +	}
->> +
->> +	ret = usb_role_switch_set_role(sw, role);
->> +	usb_role_switch_put(sw);
->> +
->> +	if (ret) {
->> +		dev_err(chip->dev, "failed to set role\n");
->> +		goto err;
->> +	}
->> +	chip->current_role = role;
->> +err:
->> +	mutex_unlock(&chip->mutex);
->> +
->> +	return ret;
->> +}
->> +
->>  static int enable_eud(struct eud_chip *priv)
->>  {
->>  	int ret;
->> @@ -77,7 +114,7 @@ static int enable_eud(struct eud_chip *priv)
->>  			priv->base + EUD_REG_INT1_EN_MASK);
->>  	writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
->>  
->> -	return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
->> +	return ret;
->>  }
->>  
->>  static void disable_eud(struct eud_chip *priv)
->> @@ -106,15 +143,20 @@ static ssize_t enable_store(struct device *dev,
->>  	if (kstrtobool(buf, &enable))
->>  		return -EINVAL;
->>  
->> +	/* EUD enable is applicable only in DEVICE mode */
->> +	if (enable && chip->current_role != USB_ROLE_DEVICE)
->> +		return -EINVAL;
->> +
->>  	if (enable) {
->>  		ret = enable_eud(chip);
->> -		if (!ret)
->> -			chip->enabled = enable;
->> -		else
->> -			disable_eud(chip);
->> +		if (ret) {
->> +			dev_err(chip->dev, "failed to enable eud\n");
->> +			return count;
->> +		}
->>  	} else {
->>  		disable_eud(chip);
->>  	}
->> +	chip->enabled = enable;
->>  
->>  	return count;
->>  }
->> @@ -185,11 +227,9 @@ static irqreturn_t handle_eud_irq_thread(int irq, void *data)
->>  	int ret;
->>  
->>  	if (chip->usb_attached)
->> -		ret = usb_role_switch_set_role(chip->role_sw, USB_ROLE_DEVICE);
->> +		ret = eud_usb_role_set(chip, USB_ROLE_DEVICE);
->>  	else
->> -		ret = usb_role_switch_set_role(chip->role_sw, USB_ROLE_HOST);
->> -	if (ret)
->> -		dev_err(chip->dev, "failed to set role switch\n");
->> +		ret = eud_usb_role_set(chip, USB_ROLE_HOST);
->>  
->>  	/* set and clear vbus_int_clr[0] to clear interrupt */
->>  	writel(BIT(0), chip->base + EUD_REG_VBUS_INT_CLR);
->> @@ -198,16 +238,18 @@ static irqreturn_t handle_eud_irq_thread(int irq, void *data)
->>  	return IRQ_HANDLED;
->>  }
->>  
->> -static void eud_role_switch_release(void *data)
->> +static int eud_usb_role_switch_set(struct usb_role_switch *sw,
->> +				   enum usb_role role)
->>  {
->> -	struct eud_chip *chip = data;
->> +	struct eud_chip *chip = usb_role_switch_get_drvdata(sw);
->>  
->> -	usb_role_switch_put(chip->role_sw);
->> +	return eud_usb_role_set(chip, role);
->>  }
->>  
->>  static int eud_probe(struct platform_device *pdev)
->>  {
->>  	struct eud_chip *chip;
->> +	struct usb_role_switch_desc eud_role_switch = {NULL};
->>  	int ret;
->>  
->>  	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
->> @@ -221,16 +263,6 @@ static int eud_probe(struct platform_device *pdev)
->>  		return dev_err_probe(chip->dev, PTR_ERR(chip->usb2_phy),
->>  				     "no usb2 phy configured\n");
->>  
->> -	chip->role_sw = usb_role_switch_get(&pdev->dev);
->> -	if (IS_ERR(chip->role_sw))
->> -		return dev_err_probe(chip->dev, PTR_ERR(chip->role_sw),
->> -					"failed to get role switch\n");
->> -
->> -	ret = devm_add_action_or_reset(chip->dev, eud_role_switch_release, chip);
->> -	if (ret)
->> -		return dev_err_probe(chip->dev, ret,
->> -				"failed to add role switch release action\n");
->> -
->>  	chip->base = devm_platform_ioremap_resource(pdev, 0);
->>  	if (IS_ERR(chip->base))
->>  		return PTR_ERR(chip->base);
->> @@ -248,6 +280,18 @@ static int eud_probe(struct platform_device *pdev)
->>  	if (ret)
->>  		return dev_err_probe(chip->dev, ret, "failed to allocate irq\n");
->>  
->> +	eud_role_switch.fwnode = dev_fwnode(chip->dev);
->> +	eud_role_switch.set = eud_usb_role_switch_set;
->> +	eud_role_switch.get = NULL;
->> +	eud_role_switch.driver_data = chip;
->> +	chip->role_sw = usb_role_switch_register(chip->dev, &eud_role_switch);
->> +
->> +	if (IS_ERR(chip->role_sw))
->> +		return dev_err_probe(chip->dev, PTR_ERR(chip->role_sw),
->> +				"failed to register role switch\n");
->> +
->> +	mutex_init(&chip->mutex);
-> 
-> please move mutex_init earlier.
-> 
-
-Ack
->> +
->>  	enable_irq_wake(chip->irq);
->>  
->>  	platform_set_drvdata(pdev, chip);
->> @@ -262,6 +306,9 @@ static void eud_remove(struct platform_device *pdev)
->>  	if (chip->enabled)
->>  		disable_eud(chip);
->>  
->> +	if (chip->role_sw)
->> +		usb_role_switch_unregister(chip->role_sw);
->> +
->>  	device_init_wakeup(&pdev->dev, false);
->>  	disable_irq_wake(chip->irq);
->>  }
->> -- 
->> 2.17.1
->>
-> 
++/*
++ * Synchronous XHCI stop endpoint helper.  Issues the stop endpoint command and
++ * waits for the command completion before returning.
++ */
++int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep, int suspend,
++			    gfp_t gfp_flags)
++{
++	struct xhci_command *command;
++	unsigned long flags;
++	int ret;
++
++	command = xhci_alloc_command(xhci, true, gfp_flags);
++	if (!command)
++		return -ENOMEM;
++
++	spin_lock_irqsave(&xhci->lock, flags);
++	ret = xhci_queue_stop_endpoint(xhci, command, ep->vdev->slot_id,
++				       ep->ep_index, suspend);
++	if (ret < 0) {
++		spin_unlock_irqrestore(&xhci->lock, flags);
++		goto out;
++	}
++
++	xhci_ring_cmd_db(xhci);
++	spin_unlock_irqrestore(&xhci->lock, flags);
++
++	wait_for_completion(command->completion);
++
++	if (command->status == COMP_COMMAND_ABORTED ||
++	    command->status == COMP_COMMAND_RING_STOPPED) {
++		xhci_warn(xhci, "Timeout while waiting for stop endpoint command\n");
++		ret = -ETIME;
++	}
++out:
++	xhci_free_command(xhci, command);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(xhci_stop_endpoint_sync);
+ 
+ /* Issue a configure endpoint command or evaluate context command
+  * and wait for it to finish.
+diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+index 30415158ed3c..1c6126ed55b0 100644
+--- a/drivers/usb/host/xhci.h
++++ b/drivers/usb/host/xhci.h
+@@ -1914,6 +1914,8 @@ void xhci_ring_doorbell_for_active_rings(struct xhci_hcd *xhci,
+ void xhci_cleanup_command_queue(struct xhci_hcd *xhci);
+ void inc_deq(struct xhci_hcd *xhci, struct xhci_ring *ring);
+ unsigned int count_trbs(u64 addr, u64 len);
++int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep,
++			    int suspend, gfp_t gfp_flags);
+ 
+ /* xHCI roothub code */
+ void xhci_set_link_state(struct xhci_hcd *xhci, struct xhci_port *port,
 
