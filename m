@@ -1,237 +1,283 @@
-Return-Path: <devicetree+bounces-90133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A390D944245
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:51:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18352944290
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 07:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D5ED1F22C0D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 04:51:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2041C21655
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 05:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5110813D8A7;
-	Thu,  1 Aug 2024 04:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E98E13D897;
+	Thu,  1 Aug 2024 05:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dRZDLa8B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VuHI8Kva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8274513D511;
-	Thu,  1 Aug 2024 04:51:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFCE13D283;
+	Thu,  1 Aug 2024 05:14:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722487903; cv=none; b=HVaW3arIAv8Ttdo/u/MwcGb3aa1mmMAVvR5mpLCu/gQoKfS8QeNSJDHEtkL0w1nnsa4MQ2eqevESqGKbyOOSzeZbuMLORTZ94slil0474EBgtG/dbRJ6KX0gRNpz5p8BTF9R8U2OEuC3e39hVSv5JXNCRrKyBzfiZ5KKtdNczVk=
+	t=1722489283; cv=none; b=aOFJEYT45KIHiU2vwsw2KGOCsQx7n3b4MAAUZdIw1NnLEdKLrhqisSDfVpohve2dhPE6yJnQrYP7z6+XO7q3JlmOgIZINkLmfGv8YF7gA+mXepo2L38fGyo9vUjy0VflnVV71n99xzxNfnvFlkFxhASKaFu0KqyW92oOnYIHMt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722487903; c=relaxed/simple;
-	bh=v67DqagLekYG0xGorf4LsXB5nhxgDvmE07q1FO5GqWI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YYDgpBQBGswLdiL5Kg7gMgbZeA5YZ/r2NSLhJ67HjVF/FyKah8MrgM1FBqSNMT8476uvC9Ll8KSHDl4Nyde/btKSfxR6rtA+GX39P61J4WFzQBYkVX6+oLCtVm9hmEAy3GPJYuIzjAopWP6gSMvc/lYnITE4zIGzBCObJtUKjus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dRZDLa8B; arc=none smtp.client-ip=209.85.160.44
+	s=arc-20240116; t=1722489283; c=relaxed/simple;
+	bh=ZsvwGaGoEAcPO7DkzH/FQcfX3tob/yYcuPjkpB9TDh8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NC/n2e/zvw8ldUw2K9UMN0hL6VZloCqJ8sd4QOY6dTdjV87UVs/Gk+2uGi0l3I78hKqCSEzH0ytSwIeuHpguT0CzaQARCAGqd4ToNZcg+QG9q9SOvgj+U9YOGqKZJf1LGEuuPbWUDffcr3FaVQSWVGFqjJnbsef1o2IjrxjfYB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VuHI8Kva; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-264988283a3so3885848fac.0;
-        Wed, 31 Jul 2024 21:51:41 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52f04b4abdcso10064555e87.2;
+        Wed, 31 Jul 2024 22:14:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722487900; x=1723092700; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uYl8KsqqsE0s43ykwxuKRWn5cuWPZB/M4T0TSnaHMxU=;
-        b=dRZDLa8B8tE9TgTW9ckLvNDqsc/XeOXyog9Z21/u/s3LYTcuHz8yszcxeYorlMhXGl
-         vruoH3tipIxcCf9nYZGDKh7hU7iSymJN9EykAZFkjF87EC3LW55hGjfY4QikT7obNlWn
-         HlCGU3EDEK0kGTtY0rql523y2LtN8iIIQzuDRhj9Q73a+oQoMcmnxmeqIA2OQQ7LYEYg
-         f+5zvPVk7P8CMyx8Pnt54de8AKdCXz4IPMvzins2KPgKsUduagwlSNOcayuppazo0HaR
-         3eTvtp+pbhqHahplRu6aXUeA9lHLl3H29R2lD/s1XoZMUOmUOP5kLFDpq7xx2Q4Nm0XQ
-         fOcA==
+        d=gmail.com; s=20230601; t=1722489280; x=1723094080; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dwe1CFr7XDtc90/o/bWkFlT5zGqIJ/h6TtZLaOU7lZo=;
+        b=VuHI8Kvac3EA2OMkoNfF+Q5pZ791POD53o+8j5oDr3uKGPjEha+UPLhn71qLTybq9+
+         oMUNJ99zu2KUlYYWtLkeEbzaBIyp+D2mZKfaBu1ZmaY3dxarY9+6x2tZdBmhQseLgkyV
+         ivKy0JuqurOETG0uX7aLVUBS1b4zM0luBNGKC49EzN0yfOOvy9LxMMCvShD6TvjKDf5j
+         /+41s2nreoHMy2KUzncwLAqibKzDQ18XggdfbqW5SIm6MpZiuC/pewuAis1DGNjgbMHS
+         crpCZITx/nq7356t30kzkpeLhmW7HChf7cTPuR8eCWF0k22UwEGo4jz4cDdVHX9zVPUH
+         Hqzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722487900; x=1723092700;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1722489280; x=1723094080;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uYl8KsqqsE0s43ykwxuKRWn5cuWPZB/M4T0TSnaHMxU=;
-        b=Wq4AdCTMINwE3eoXlAxzeKBLVi5SD8wQxrrxGMszjgLKWyGROpQwrSSf13tHjUzuI6
-         ZjVik8pt6q81fnLAuv2hDfaV0IWyRFF2n4BEksgWda00DzMOqW8QQ5LfsxmvWTPvBzv/
-         nbo+EKfx19vnQG3gkJppARt5R+UvTj7qfoWzExkn9ihcT7bL/9kJKSP/JLaoCkTNtWap
-         MudUvbPQnTY23/SLT46at95/kdGu6cw7JJe4fLWtlszbf9ShfTnqnqeJtn7WA4Z+CPK0
-         JiV4zjne3BKxsdtloPpep25YD/24bbbu34/K9xKF4DYiQWeVsF+yXMta1/QICIOYbJKG
-         L1pA==
-X-Forwarded-Encrypted: i=1; AJvYcCXxeKzBEVPz82ZvN+x0QL0UQBRFpQxjC7B9chWdNLYL1+pWsI1FJOZPdoXsuPiUmRGeMkCg1KUY8Z3J/OQpIjVSSe96/v2guGU/BUTroZSzspcjjKQPHb62LHU5BNEiPZyT7nlJS11Z3Q==
-X-Gm-Message-State: AOJu0Yy0fPsga9C9QpIJBxBQE+Iqs94fqCtYjpbb59PoedTiOWFC79jB
-	tJ2tSUUCqLBtH2+fuVYiQ/aj318Ov2fPZKmbH4uWgjRmx8KDbudJ+73wleXKlTNZmTRvuuKwj5/
-	YZu/lQSaB+SaF5IJkpGgaza0nz5itcKFO
-X-Google-Smtp-Source: AGHT+IHR6wMGuB5v7XhS+PnzipAe8hzpgVLf+p2PhmEa/mQGbTDi5yLyHZecqgk+hu4Rvv+XeufuWOp6u1zhwBo0v7k=
-X-Received: by 2002:a05:6870:7021:b0:261:12a8:5b69 with SMTP id
- 586e51a60fabf-2687a4ec9f1mr1553112fac.18.1722487900472; Wed, 31 Jul 2024
- 21:51:40 -0700 (PDT)
+        bh=Dwe1CFr7XDtc90/o/bWkFlT5zGqIJ/h6TtZLaOU7lZo=;
+        b=tQzTLC0ZRR3MPOPf7btKKtb2/DmgDaEUqZ/Y0fk/ncn+4ZS420PBzjrKz2Y8MKdFEt
+         7QVi2CGtokgsoVSzSDg9etf6uuG2N4duQlp44/WliGxGrGdS00B3/IEIdsZXEnz3oO9l
+         SHGmBcj3L4eLmFNJinjFNxX5BLQEdess4gBzmA00S3ZaUCl1M9EX4bdTUr8VOcAmfHNq
+         bUq448gw0x60MyEe7nnjeBt9z29ATS8Lj4fwrY5ZiD+vL4GlyJonRji7bCp5wqA3pKYq
+         /yC/d2ovbIjluo9rHFCAsbO1nSADcoaGdDbydb2cgVoFBXm504GkrUCNPGyM6Elx3qDI
+         yqqA==
+X-Forwarded-Encrypted: i=1; AJvYcCUH9PVTnqnativ3wEL9LFCUXqywE0UfWw0uMiI7ZRoRjFAKZ6XqgD4OZzxNvpjAalFi1VuRiXJW3X8J1k0rFcWENp0YdsClUCrctu1Nc6mFliuFwuAxsdQvRFMeC+KEE5LlXOgwI2429g==
+X-Gm-Message-State: AOJu0YxgIkZ8V/E8+x38dWBpjskiJDsy5oQq35JUSNoA3GcA1k9tUseO
+	siqa6D2XUGNULKbAwUpKpnFO3H4MAXtoXZDfW3FOfJWAoeM2TwQ+l4HIihCl
+X-Google-Smtp-Source: AGHT+IGpNCSVm6hYkMRgsT/z/Oa2FjemtIZEfC7W2b0eQB93+x4euJWk0w43mBqDph9ZoRI7njDGeg==
+X-Received: by 2002:a19:2d54:0:b0:52e:fa5f:b6b1 with SMTP id 2adb3069b0e04-530b61f81bamr444856e87.60.1722489279571;
+        Wed, 31 Jul 2024 22:14:39 -0700 (PDT)
+Received: from WBEC325.dom.lan ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52fd5bd0c4csm2474129e87.72.2024.07.31.22.14.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jul 2024 22:14:39 -0700 (PDT)
+From: Pawel Dembicki <paweldembicki@gmail.com>
+To: linuxppc-dev@lists.ozlabs.org
+Cc: Pawel Dembicki <paweldembicki@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] powerpc: dtc: update P2020RDB dts
+Date: Thu,  1 Aug 2024 07:14:01 +0200
+Message-Id: <20240801051402.584652-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240711060939.1128-1-linux.amoon@gmail.com> <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
- <CANAwSgQCn3jgiruiLs0cu-C+DguLtnk=msboAh8jNSF4P28gjA@mail.gmail.com>
- <6250fa05-7a06-4fa1-a2be-9cb66a2d2822@kwiboo.se> <394ad670-c4ea-432b-8737-89720c526653@rock-chips.com>
-In-Reply-To: <394ad670-c4ea-432b-8737-89720c526653@rock-chips.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 1 Aug 2024 10:21:24 +0530
-Message-ID: <CANAwSgT+-UcjrH=hhD6fF1qoRMDHuudeKOi8fTpArJfhxy9Unw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Kever, Jonas.
+P2020RDB contains multiple peripherals, which isn't added to
+devicetree:
+  - Switch: Microchip VSC7385
+  - PMIC: Renesas ZL2006
+  - Temperature sensor: Analog Devices ADT7461
+  - Two eeproms: 24C256 and 24C01
+  - GPIO expander: NXP PCA9557
+  - reset gpios of Ethernet PHYs
 
-On Thu, 1 Aug 2024 at 07:53, Kever Yang <kever.yang@rock-chips.com> wrote:
->
-> Hi Anand, Jonas,
->
-> On 2024/7/11 17:44, Jonas Karlman wrote:
-> > Hi Anand,
-> >
-> > On 2024-07-11 11:09, Anand Moon wrote:
-> >> Hi Jonas,
-> >>
-> >> Thanks for your review comments.
-> >>
-> >> On Thu, 11 Jul 2024 at 14:13, Jonas Karlman<jonas@kwiboo.se>  wrote:
-> >>> Hi Anand,
-> >>>
-> >>> On 2024-07-11 08:09, Anand Moon wrote:
-> >>>> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
-> >>>> signals.Each component of PCIe communication have the following control
-> >>>> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
-> >>>> high-speed signals and communicate with other PCIe devices.
-> >>>> Used by root complex to endpoint depending on the power state.
-> >>>>
-> >>>> PERST is referred to as a fundamental reset. PERST should be held low
-> >>>> until all the power rails in the system and the reference clock are stable.
-> >>>> A transition from low to high in this signal usually indicates the
-> >>>> beginning of link initialization.
-> >>>>
-> >>>> WAKE signal is an active-low signal that is used to return the PCIe
-> >>>> interface to an active state when in a low-power state.
-> >>>>
-> >>>> CLKREQ signal is also an active-low signal and is used to request the
-> >>>> reference clock.
-> >>>>
-> >>>> Signed-off-by: Anand Moon<linux.amoon@gmail.com>
-> >>>> ---
-> >>>> V2: Update the commit messge to describe the changs.
-> >>>>      use pinctl group as its pre define in pinctl dtsi
-> >>>> ---
-> >>>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
-> >>>>   1 file changed, 1 insertion(+), 5 deletions(-)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>>> index 2e7512676b7e..ab3a20986c6a 100644
-> >>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>>> @@ -301,7 +301,7 @@ &pcie30phy {
-> >>>>
-> >>>>   &pcie3x4 {
-> >>>>        pinctrl-names = "default";
-> >>>> -     pinctrl-0 = <&pcie3_rst>;
-> >>>> +     pinctrl-0 = <&pcie30x4m1_pins>;
-> >>> Use of the existing pcie30x4m1_pins group may not be fully accurate for
-> >>> the PERST pin. The use of reset-gpios indicate that the PERST pin is
-> >>> used with GPIO function and the driver will implicitly change the
-> >>> function from perstn_m1 to GPIO. So this may not be best representation
-> >>> of the hw, hence my initial suggestion, something like:
-> >>>
-> >>>          pcie30x4_pins: pcie30x4-pins {
-> >>>                  rockchip,pins =
-> >>>                          <4 RK_PB4 4 &pcfg_pull_none>,
-> >>>                          <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
-> >>>                          <4 RK_PB5 4 &pcfg_pull_none>;
-> >>>          };
-> >>>
-> >>> Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
-> >>> not just pcie3x4.
-> >>>
-> >> Ok but it is better to update this in rk3588s-pinctrl.dtsi otherwise
-> >> the pcie30x4m1_pins
-> >> will not be used at all on all the boards
-> > I agree that it is unfortunate that the PERST pin is included in the
-> > groups in pinctrl.dtsi, however, for pcie ep mode the pins should more
-> > than likely be using the perstn_m1 function and not GPIO, so there are
-> > uses for the existing pin groups for ep mode.
-> Please note that the pcie30x4m1_pins define in pinctrl.dtsi is somehow
-> not correct due to the TRM.
-> - The WAKE should always work in GPIO mode, this is totally support by
-> SoC, not PCIe controller;
-> - The PERST should always work in GPIO mode in PCIe RC mode; and for all
-> the rk3588 EP mode
-> hardware I have seem, the PERST from RC connect in to board POR instead
-> of SoC PERST;
-> The PCIe in most of boards works in RC mode, so we should make PERST
-> default as GPIO;
-> - CLKREQ, it depends on boards, if the board need to support L1SS or
-> not, most of the boards
-> does not support L1SS, which means CLKREQ works in GPIO mode instead of
-> PCIe function.
->
+This commit adds it.
 
-As per the PCIe hardware pin description below,
-it seems that PCIE_CLKREQN is NC (Not connected).
+Some refreshments was done:
+  - fixed link in ethernet-node
+  - platform drivers nodes names
+  - added 'gpio0' label in pq3-gpio-0.dtsi
 
-[1] https://docs.radxa.com/en/rock5/rock5b/hardware-design/hardware-interface#pcie
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+ arch/powerpc/boot/dts/fsl/p2020rdb.dts    | 85 +++++++++++++++++++++--
+ arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi |  2 +-
+ 2 files changed, 81 insertions(+), 6 deletions(-)
 
-Thanks
--Anand
+diff --git a/arch/powerpc/boot/dts/fsl/p2020rdb.dts b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
+index 3acd3890b397..d563d37b91f1 100644
+--- a/arch/powerpc/boot/dts/fsl/p2020rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
+@@ -6,6 +6,7 @@
+  */
+ 
+ /include/ "p2020si-pre.dtsi"
++#include <dt-bindings/gpio/gpio.h>
+ 
+ / {
+ 	model = "fsl,P2020RDB";
+@@ -33,7 +34,7 @@ lbc: localbus@ffe05000 {
+ 			  0x1 0x0 0x0 0xffa00000 0x00040000
+ 			  0x2 0x0 0x0 0xffb00000 0x00020000>;
+ 
+-		nor@0,0 {
++		nor@0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			compatible = "cfi-flash";
+@@ -79,7 +80,7 @@ partition@f00000 {
+ 			};
+ 		};
+ 
+-		nand@1,0 {
++		nand@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			compatible = "fsl,p2020-fcm-nand",
+@@ -128,11 +129,49 @@ partition@1100000 {
+ 			};
+ 		};
+ 
+-		L2switch@2,0 {
++		ethernet-switch@2 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-			compatible = "vitesse-7385";
++			compatible = "vitesse,vsc7385";
+ 			reg = <0x2 0x0 0x20000>;
++			reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@1 {
++					reg = <1>;
++					label = "lan1";
++				};
++				port@2 {
++					reg = <2>;
++					label = "lan2";
++				};
++				port@3 {
++					reg = <3>;
++					label = "lan3";
++				};
++				port@4 {
++					reg = <4>;
++					label = "lan4";
++				};
++				vsc: port@6 {
++					reg = <6>;
++					label = "cpu";
++					ethernet = <&enet0>;
++					phy-mode = "rgmii";
++					rx-internal-delay-ps = <1400>;
++					tx-internal-delay-ps = <2000>;
++
++					fixed-link {
++						speed = <1000>;
++						full-duplex;
++						pause;
++					};
++				};
++			};
++
+ 		};
+ 
+ 	};
+@@ -141,12 +180,39 @@ soc: soc@ffe00000 {
+ 		ranges = <0x0 0x0 0xffe00000 0x100000>;
+ 
+ 		i2c@3000 {
++			temperature-sensor@4c {
++				compatible = "adi,adt7461";
++				reg = <0x4c>;
++			};
++
++			eeprom@50 {
++				compatible = "atmel,24c256";
++				reg = <0x50>;
++			};
++
+ 			rtc@68 {
+ 				compatible = "dallas,ds1339";
+ 				reg = <0x68>;
+ 			};
+ 		};
+ 
++		i2c@3100 {
++			pmic@11 {
++				compatible = "zl2006";
++				reg = <0x11>;
++			};
++
++			gpio@18 {
++				compatible = "nxp,pca9557";
++				reg = <0x18>;
++			};
++
++			eeprom@52 {
++				compatible = "atmel,24c01";
++				reg = <0x52>;
++			};
++		};
++
+ 		spi@7000 {
+ 			flash@0 {
+ 				#address-cells = <1>;
+@@ -200,11 +266,15 @@ mdio@24520 {
+ 			phy0: ethernet-phy@0 {
+ 				interrupts = <3 1 0 0>;
+ 				reg = <0x0>;
++				reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+ 			};
++
+ 			phy1: ethernet-phy@1 {
+ 				interrupts = <3 1 0 0>;
+ 				reg = <0x1>;
++				reset-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+ 			};
++
+ 			tbi-phy@2 {
+ 				device_type = "tbi-phy";
+ 				reg = <0x2>;
+@@ -232,8 +302,13 @@ ptp_clock@24e00 {
+ 		};
+ 
+ 		enet0: ethernet@24000 {
+-			fixed-link = <1 1 1000 0 0>;
+ 			phy-connection-type = "rgmii-id";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++				pause;
++			};
+ 		};
+ 
+ 		enet1: ethernet@25000 {
+diff --git a/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi b/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
+index a1b48546b02d..5181117ea6b5 100644
+--- a/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
++++ b/arch/powerpc/boot/dts/fsl/pq3-gpio-0.dtsi
+@@ -32,7 +32,7 @@
+  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
+-gpio-controller@fc00 {
++gpio0: gpio-controller@fc00 {
+ 	#gpio-cells = <2>;
+ 	compatible = "fsl,pq3-gpio";
+ 	reg = <0xfc00 0x100>;
+-- 
+2.34.1
 
-> Thanks,
-> - Kever
-> > In my opinion using pcie30x4m1_pins as-is and having implicitly changing
-> > to GPIO function when driver/usage in the software require it is an okay
-> > description of the hw.
-> >
-> > However, seeing how use of pcie ep is described using its own node in DT
-> > I can understand that for rc mode the pin should be changed to GPIO to
-> > properly describe the expected usage.
-> >
-> > When I tried to add similar implicit change to use GPIO function in
-> > U-Boot to fix system freeze when improper pinctrl was used, it resulted
-> > in some discussions, see [1] ;-)
-> >
-> > [1]https://lore.kernel.org/u-boot/20240511112821.1156519-1-jonas@kwiboo.se/t/#u
-> >
-> >> I will update the PERST pin to RK_FUNC_GPIO on all the pcie2x1l0,
-> >> pcie2x1l2 and  pcie30x4
-> >> is this ok for you?
-> > This should probably be reworked in pinctrl.dtsi together with all
-> > affected boards and/or use a group override in the board dts.
-> >
-> > Regards,
-> > Jonas
-> >
-> >>> Regards,
-> >>> Jonas
-> >> Thanks
-> >> -Anand
-> >>>>        reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-> >>>>        vpcie3v3-supply = <&vcc3v3_pcie30>;
-> >>>>        status = "okay";
-> >>>> @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
-> >>>>        };
-> >>>>
-> >>>>        pcie3 {
-> >>>> -             pcie3_rst: pcie3-rst {
-> >>>> -                     rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> >>>> -             };
-> >>>> -
-> >>>>                pcie3_vcc3v3_en: pcie3-vcc3v3-en {
-> >>>>                        rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> >>>>                };
-> >>>>
-> >>>> base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
