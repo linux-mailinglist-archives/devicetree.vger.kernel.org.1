@@ -1,148 +1,141 @@
-Return-Path: <devicetree+bounces-90271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820889449EF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:01:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 957B79449F8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 13:02:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B432B2890A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:01:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C54A1F22FA3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 11:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F86187FE5;
-	Thu,  1 Aug 2024 11:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3016E188019;
+	Thu,  1 Aug 2024 11:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UIPTLMv1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xwmMacpC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6729816DC03
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E357C188013
+	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 11:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722510102; cv=none; b=NhdSOeuHx+IMu1IilF4PAWqzc7ia8PcEqMD71bfDtOUqfetPoRLTebxM0rr8sE8SIc7KBkSDEVIwEXURFjzwTMmB/ERQzSsUDNS2LReKFjZT8DOPUh77tbCJheSl43sBvsCtp6r2t8qStYZ2QBopxHptVZyneKgkhrzoG9byyII=
+	t=1722510117; cv=none; b=aCUrjFOnz90wAF7OD5k3hr4g9PxYJgRwm8By4g9GbDa8slsHFW7hCffsuyGOtyuYCI/HnLpeB+vJ/IO3HwdB8rum8LTtRy9+5eILZ2kHDXV2ybK4dpoGrQ4w841VbdrFI/RbGJmh0mk2uEcaoFRvTuZbDvYy++VS+8Ej8CfwFWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722510102; c=relaxed/simple;
-	bh=R05DKqS1w9uIVMFcvpKFDclE86k9lkrCoWmX9bfJe1Y=;
+	s=arc-20240116; t=1722510117; c=relaxed/simple;
+	bh=PDTx8zjwXbXzbNWfOuMH0iA/PcBbphotz7ExTZjHXjA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OZo5ykUO0mtpGXMBEPyPjYMtgtquF+ZF9QN6qxnmrTpb5OwOTQBM0OCg7UorZKN17snErMpETHo6ns1wXpO5Wc+T9/vbuQtlxM2bnOhyWn6HDu5060i8yyPF3dKN1KGCQDkqoctzpPsOTHoQ3p4khd1IZ3aG73tbArOEWn56fkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UIPTLMv1; arc=none smtp.client-ip=209.85.219.169
+	 To:Cc:Content-Type; b=To7U6dIjkhN5QG7fksesBjVDk36ZGAbSJvbKf3XoO763Mnws3yGTXZ49wu0e4N0QF72NB8BnZqKu4DG88C431aaMCx2Y0jDMXRIKyRZRN0rVJ4USObqDpDlHbCyQ6myUcSuBLdsy7V4XkGtpBYrnzWKEu6Hm9+WVEMJjChmM83U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xwmMacpC; arc=none smtp.client-ip=209.85.219.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e08a538bf7bso1575868276.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:01:40 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e0885b4f1d5so5383410276.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 04:01:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722510099; x=1723114899; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722510114; x=1723114914; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hvEVInb3XjDTInVG42ARV/26R6ebE2gUOo+RJ8/4wBc=;
-        b=UIPTLMv13scF61MazmIeN3uyvRfzpFNDGGju0d60AEmK17qr3p+FZ8cSyN8+0/Ta6w
-         fI4UwhdxfJCQNhPPPJQtescLMDR9j9TOPQv6H/SmoKQmuZm3JMaxUPSNiX8iJttEmIIq
-         5ODOIePiPbxkEnoDknaA7awyC1J9z5Ri0P7e8RxAMnjZE0iUatwsEYr8J50nbAVzFZ2l
-         DA7OK1xBJejpL04ovA11VxV4MvIQIixNKQGmAxG4gieH7+8MO8q7AkkWLf35zLiJKfdR
-         PuNR5OUPKIOAj8pbDAEod0vWPe+q1MjXCuUi4Mr43uVMO3DeAB/db05QjIPJSAZdd2WJ
-         oSRw==
+        bh=xf663Oxqn+Hg/bp3CbFPSIMYObW/RVLrZF4k/w+9/Rc=;
+        b=xwmMacpCpRTKt9lDC4rBFs3WZ+qNGsRqxxnz+5c/cHCcZ7XvODk3qZVe/TGJ0MXmrM
+         b8LW4Yed4BuQVU/OQ+O22BAZ5AM5Qz4MkmR3qmUUqUqQ7H5ogYtz6MLfXCNq2h4b/LD5
+         /RDyEGQah+8Pt/TLw6DoWKLudCkQghjhae7yX7/8mzcWYXVDKcvNvx55emyEladT8ifp
+         G+TpEE7qT5UXzjUbQZLQyj5G56IVtc8pru5vcdnco5rsbz8qkR3J4a0RanocBc+l4y6a
+         toh4YymmyYkuWZi+kr9EX3fH/DOkE9Z+Re6KPbgavd3gHH7j64I09xZlU1S0I5WEakYT
+         g/6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722510099; x=1723114899;
+        d=1e100.net; s=20230601; t=1722510114; x=1723114914;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hvEVInb3XjDTInVG42ARV/26R6ebE2gUOo+RJ8/4wBc=;
-        b=po+dxUFYiJQQI26OJaX17mfpFcNyCgQt9FXj6eKdUSS3j8Eu7BYOWmkuj1vTefbnUM
-         /wBwLuJ9ctYFZzf9R5bGtzCJtiJf2lNd1p8vYwPGiSxH1ZUqfGGi/K2LNSSTiyZK9dOc
-         Yz+g/G6hZZWrJkfUOEqwTYh07W9u4ibtG7RsYx5ZxSQXUPiYHLXxtqY5kkzmvRqTI+Uz
-         8TZHRUi2xJIUROM9DHlWu6qU9XuPdGsoihgv4hzfBTy7rG6+WbvteNwroMA3qMkn3dA9
-         ktbTufxCLcIj40/FDH4MAfQvvluLKYMXtygsQS7DhNfGk+V6vnQkBXsSbwXUyUIyukul
-         aBCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfXK+UVH4ZRlcxghcmYsUmmBER8IXt+37t1vbzpxOzhcXVLddAFZHalN1NyjdMX3T1CNYjWEN+3X6gOFcPCuays9yU13+gdOyQlg==
-X-Gm-Message-State: AOJu0Yze3Hdo3Oiga3k7foNxu47oqBvgApxo+yMS96l3WNBIiejhJ1Cz
-	EOGRqswOgugfvzZQHPxMttulDhf7kiqxjyStMjQA96eX6fmlTlaXaJYaY0SKqRIPnMFLT2ZB3LO
-	bZgjGHgiXp1RS2KLSdhT6UN8Dsw/0oIrM3HRfmQ==
-X-Google-Smtp-Source: AGHT+IEMWWDuLSCLxVuVMb2OSeIqnvFCckIeIsKnFAFjoQOPspTTLeiCkBU/fF7EcmInj8+0rp1IhGoCa55ZCvPHsDo=
-X-Received: by 2002:a25:90f:0:b0:e0b:bc8f:293 with SMTP id 3f1490d57ef6-e0bd5420f5bmr615793276.0.1722510099291;
- Thu, 01 Aug 2024 04:01:39 -0700 (PDT)
+        bh=xf663Oxqn+Hg/bp3CbFPSIMYObW/RVLrZF4k/w+9/Rc=;
+        b=cWLY0iJXtOUOIjalfhFch8Uy5401Voc9Ev06i6S6LPYmadHMWKC6KU4ybk1G88rh3e
+         yFdiqpOLjAOSubjEEjJ19j8QQaENvf2b7IfaYxtpvwOGjQfv4qN9Ma+/V7b2fEhYHWbl
+         6nX1TOpda+Fk5JRSGAM8KwdItoFr6J4rtM1BPtjaeaOXPGSnoj4NfpqSspzK/I9//F45
+         kNBVnwqyjCxq77gwJDoyIoLhlUF20K1iO8jrvNN8A+DviNY8gtZ7g1tk2flcrhcArB1O
+         Hyv+eEcAf0ZQyDIOeNen2euGkxLotAv35ZKMcV4Nd7tplbLoL6INzgmwAK6oRm6u0L1l
+         J8IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW6ylLBh1GI4KrNiAUa+I0ppgl1cLZ/dnc7cwv+sxuj+d/PcbLoZfcP2e0hEV/lNGnpm4KtAHtwBLNgJYbkFyEm2E8flX7VpIAkYA==
+X-Gm-Message-State: AOJu0YxCQ+3KOAr29p0Z2IPJhcr+UWaFK3cu/w6joz/38CtDFv2GeM10
+	m3OC6xFu/vjpgzvmT673c2ftYBRIlj0HJGg3OJPMiKR8DaGdT450rXIXdJbtvmUAN1ULZJ9F2Bx
+	bUn5uymfaPvuq8nL60WKeH5cHccmrVFqm7XE6zA==
+X-Google-Smtp-Source: AGHT+IGz8BY1lj9zv3tlXj5dYR89gFHb8pzgw3f8o7RUzA9kEaL9W7hkxl5EaciVMR7U8IJTC1gV5bcO0wGy86mIQic=
+X-Received: by 2002:a05:6902:110d:b0:e0b:bc96:550 with SMTP id
+ 3f1490d57ef6-e0bcd25c795mr2527077276.23.1722510113989; Thu, 01 Aug 2024
+ 04:01:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240716004527.20378-1-shanchun1218@gmail.com>
-In-Reply-To: <20240716004527.20378-1-shanchun1218@gmail.com>
+References: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 1 Aug 2024 13:01:03 +0200
-Message-ID: <CAPDyKFreG39wJ85Mz=9MnkG-u=hDFCppsgfmv_mzpPbT3rxpmw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] Add support for Nuvoton MA35D1 SDHCI
-To: Shan-Chun Hung <shanchun1218@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com, 
-	serghox@gmail.com, mcgrof@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	forbidden405@outlook.com, tmaimon77@gmail.com, andy.shevchenko@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org, 
+Date: Thu, 1 Aug 2024 13:01:18 +0200
+Message-ID: <CAPDyKFpP7VkXNJZ_uYpnO8=bH9k0P0qq-JVBfYRC3QmsM=ia1g@mail.gmail.com>
+Subject: Re: [PATCH v5 0/3] Add SD/MMC support for Renesas RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	ychuang3@nuvoton.com, schung@nuvoton.com
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 16 Jul 2024 at 02:45, Shan-Chun Hung <shanchun1218@gmail.com> wrote:
+On Wed, 24 Jul 2024 at 20:22, Prabhakar <prabhakar.csengg@gmail.com> wrote:
 >
-> This patch adds the SDHCI driver and DT binding documentation
-> for the Nuvoton MA35D1 platform.
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> This MA35D1 SDHCI driver has been tested on the MA35D1 SOM board with
-> Linux 6.10
+> Hi All,
 >
-> v5:
->   - Update to nuvoton,ma35d1-sdhci.yaml
->     - Fixing the same orders as in the list of properties.
->   - Update ma35d1 sdhci driver
->     - Fixing the error path syntax to err = dev_err_probe().
+> This patch series aims to add SD/MMC support for Renesas RZ/V2H(P) SoC.
 >
-> v4:
->   - Update to nuvoton,ma35d1-sdhci.yaml
->     - Fixing overlooked issues.
+> v4->v5
+> - Since the SDxIOVS and SDxPWEN pins can always be used as GPIO pins on
+>   the RZ/V2H(P) SoC dropped adding regulator support.
 >
-> v3:
->   - Update ma35d1 sdhci driver
->     - Fixing "Alignment" and "spaces preferred around".
->     - Fixing style for multi-line comments.
->     - Fixing double call to sdhci_pltfm_free().
+> v3->v4
+> - Dropped 'renesas,sdhi-use-internal-regulator' property
+> - Defined vqmmc-regulator in top level
+> - For special handling of internal regulator now using of_device_is_available()
+> - Fixed comments from Claudiu
+> - Rebased patch on top of https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240626085015.32171-2-wsa+renesas@sang-engineering.com/
 >
-> v2:
->   - Update to nuvoton,ma35d1-sdhci.yaml
->     - Remove some redundant descriptions.
->     - Replace 'minitem' with 'maxitem' in the clock settings.
->     - Make corrections to nuvoton,sys description.
->     - Add sdhci-common.yaml.
->     - Remove '|' except where necessary to be preserved.
->     - Keeping one example is sufficient.
->     - Add regulators in the example.
->   - Update ma35d1 sdhci driver
->     - Refer to 'include what you use' to modify included header files.
->     - Replace the number 8 with sizeof(u8), and similarly for others.
->     - Use "dev" instead of "&pdev->dev".
->     - Use the min() macro to improve the code.
->     - Use dev_err_probe() instead of dev_err().
->     - Implement an error reset check mechanism.
->     - Add devm_add_action_or_reset() to help with sdhci_pltfm_free().
->     - Use devm_reset_control_get_exclusive() instead of devm_reset_control_get().
+> v2->v3
+> - Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
+> - Added regulator-compatible property for vqmmc-regulator
+> - Added 'renesas,sdhi-use-internal-regulator' DT property
+> - Included RB tags for patch 2/3
+> - Moved regulator info to renesas_sdhi_of_data instead of quirks
+> - Added support to configure the init state of regulator
+> - Added function pointers to configure regulator
+> - Added REGULATOR_CHANGE_VOLTAGE mask
 >
-> Shan-Chun Hung (2):
->   dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document MA35D1 SDHCI
->     controller
->   mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI driver
+> v1->v2
+> - Dropped regulator core API changes
+> - Updated DT binding
+> - Now controlling PWEN bit via regulator api
 >
->  .../bindings/mmc/nuvoton,ma35d1-sdhci.yaml    |  87 +++++
->  drivers/mmc/host/Kconfig                      |  12 +
->  drivers/mmc/host/Makefile                     |   1 +
->  drivers/mmc/host/sdhci-of-ma35d1.c            | 314 ++++++++++++++++++
->  4 files changed, 414 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
->  create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
+> v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 >
-> --
-> 2.25.1
+> Cheers,
+> Prabhakar
+>
+> Lad Prabhakar (3):
+>   dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+>   mmc: tmio: Use MMC core APIs to control the vqmmc regulator
+>   mmc: renesas_sdhi: Add RZ/V2H(P) compatible string
+>
+>  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 2 ++
+>  drivers/mmc/host/renesas_sdhi_internal_dmac.c           | 1 +
+>  drivers/mmc/host/tmio_mmc_core.c                        | 7 +++----
+>  3 files changed, 6 insertions(+), 4 deletions(-)
+>
 
 Applied for next, thanks!
 
