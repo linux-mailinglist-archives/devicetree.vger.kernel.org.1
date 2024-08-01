@@ -1,222 +1,208 @@
-Return-Path: <devicetree+bounces-90304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B2D944DE4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:24:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 724BA944DFB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 16:28:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F36D1F250C2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:24:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9984B21180
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 14:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC381A4B27;
-	Thu,  1 Aug 2024 14:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E181A3BC7;
+	Thu,  1 Aug 2024 14:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ja5VYown"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FdGuIYK6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE481A489D;
-	Thu,  1 Aug 2024 14:23:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDEE16DECD;
+	Thu,  1 Aug 2024 14:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722522233; cv=none; b=jwgfMiGit6t71h9ZMzo+4vtmLav7rZK7BUV5821u00+Tl1IiOkgC3PK8Lp+v6OdgJSAvSyka5kUvKLHkHolFzJt628Rj2Z6cYgkT6x7Fx041tG8tqf3LKK8L/5mJAGyj/r8FGKupeTaSDilWzWIeaYjEodQzBQpGAzQ0eda1/4M=
+	t=1722522489; cv=none; b=RWosu1o96349u2t0qadHCYJ0r/AJhsjgNZz6Np+ymXbQI2DAsXEbTNuQfkFNjYrhhypGG3EU5VxXrp1iwYTDjqs42o+zFljxzn3L0apgRoRQAAG9dKc3aB/JJxuxyVvWoZBTMmazRThn6AZWqMUlFgvEIo8d7fDA6qPXxgrSY9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722522233; c=relaxed/simple;
-	bh=h8imtv17rvrOvyKv4gWYuT6nIHwd6hUakN89NTUAn6g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AqeUwYicAvoR5IZpou7K9lVoGuPRwuaLkptbT7epjXhkG870PZOaXc+G3gTEHODsU2VxVARJjLCRFdDuVRgqXhMc6j32HAMOV/fiXeI/F4cOUXISTAfMxSz1VjtKP7euOcgQcMcJFM/Vbj2m0TY3bfvMBgqi2SMCZNWhflnQTKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ja5VYown; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D74C32786;
-	Thu,  1 Aug 2024 14:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722522232;
-	bh=h8imtv17rvrOvyKv4gWYuT6nIHwd6hUakN89NTUAn6g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ja5VYownUqOdOYkYE72eDukM3bmYiamU/KPQL0ZfT3UItNb57INa8foQEpDTSn5H7
-	 KFMuWQcWqBHH4UbKZMhZ/zxhQWOPQ7EuMUHUIyZHXm5DPSQfl1H+eFBuFNHZ82YsXM
-	 I+PcDYIoGl76Wg0U63W86ZOe/jr62yN+qugsm8UeZArXPBSKclJlk8qOm7PjPGgARm
-	 sfuBvFDolYotGzQ6/QJC54S4oPhzvhMrzUT7cPtA3nIgdDmG9wuV0TbCbWIU9XJVv3
-	 P2i9BUjIfYqojvjp2NDBWGdJItwall8rxsY7kpTT38PNtJ5ePGneA0G5+C7ZYC+A7q
-	 WuKfufUPglQ4A==
-Message-ID: <ea7fd29c-c320-45b7-8da6-4819ec76c543@kernel.org>
-Date: Thu, 1 Aug 2024 16:23:43 +0200
+	s=arc-20240116; t=1722522489; c=relaxed/simple;
+	bh=nXweTf1N/Qrtc92k2Hk2plyPYVbHK4S52KdhUzL4GTA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g0Gwtz/03syP/bQYcigbulPVVbR4FX8QGqGYjHKegRIL54noJ9GI+66LLK+/s596tcaFPbVsf2T14wP0sDLRvbT/ynPxZupGczNyvX/NFvMoXNdXXIfKKyEuqKBP9akguUOkz2BHgEpdorwjtH0gJ8SGRz9BYYhmSKSBMB1aGCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FdGuIYK6; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a7aabb71bb2so952304966b.2;
+        Thu, 01 Aug 2024 07:28:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722522485; x=1723127285; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8hkL8OO2ZxeFgam3kNnsXVfMD29C3IsiuBvZny7yAE8=;
+        b=FdGuIYK6OuxWeiZo/NpbmdsoZKL2kxwLB3ed2/1VqBttR7RTCPWpZJ1hudD1f66ROs
+         YG0xj9BEf6GVRP1v3wJdOvri+Y1imt78/mS7rwc/iypeJO+mPaylrYO4n9jZEjt8dTbU
+         LlI3VkeQ8XO4xj64q7cBhsb5yfjq0u+FJLLwUP1R6zMuBqnOADD5MkZRki7cXLa+ryJB
+         5IfdvGLeN+Z08AVtXIaflHkI/36Z7BlhQopOk436XmuVmdc+0DwfancDm0dnXt2AFU4a
+         RP1p9PlP4TuPbMY5hSHR6buJ1En8rZ0oE2VCmWwlMCPIA5zXMKFB6sjdbzofmY7UZ6In
+         XGMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722522485; x=1723127285;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8hkL8OO2ZxeFgam3kNnsXVfMD29C3IsiuBvZny7yAE8=;
+        b=tG94QfbALyVb/Cr+UOcFKbK3X3C2vfhgziWXuaIgCqUvOMj9D9b9do5Pd3YLAU4i6z
+         V50i91DwLm3IlHc2E6/78aTFYaj33tvjqnbGJOeIWc3GQRPDiQZpJ/ArE3tvnHacElJn
+         qIy39bdkozeDcng8qmWypQJIx+H9EbwJOcoimT8QMtxn6foPpsgOv6JjbxH+Y9f4NOw6
+         QGL5MfRWwwVIh3JrXsfGTEUCt/CO2F7joyodTCBnBbZJEPloxUza3IpiPLd+cqRFLyJ8
+         GAndLePc1OUF6Hw/di7QZD4h84BnnPQlj1NNZY+Z1xSXbpzs4ucLYyvWL655OiP60jb0
+         mzUA==
+X-Forwarded-Encrypted: i=1; AJvYcCXsO00nv9C7g3ha2c8DbrsJq1G4XA0ID5/CRzE43wGw1ukYDbPk3oAMKoJzCGA6RKSAMhqaJZIz0NryXCJWMN2hLSB9Bg3uaYkcVp+xeXV4UNvLiozG3sEevlx0l9Vtzb6w1PltSuCsdtHh02PzekMmCCYFTQ8hsKeJQCsPG9ZrVSWt4g==
+X-Gm-Message-State: AOJu0YwYCNQQuPm7LoiZe6Iib0+arpMPbiRqGjabQTlMC41B65+O+7KE
+	WZfjMvPQO0pLI6NY+9DXciH9+mEdYZz028YLYIKDfTOK44REyiK4rt7QmQ==
+X-Google-Smtp-Source: AGHT+IGFi4C4ODRsJyjv1TBoIj5UnVy1EOO44jMxcUUZsgY26wAnMlldo6NAF00nmgE5bCFQbiW3Bw==
+X-Received: by 2002:a17:907:868a:b0:a7a:b781:60ee with SMTP id a640c23a62f3a-a7dc506e7c4mr23118366b.48.1722522485001;
+        Thu, 01 Aug 2024 07:28:05 -0700 (PDT)
+Received: from debian ([2a00:79c0:66e:2400:224:9bff:fe22:6dd6])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7acad4148fsm912381466b.121.2024.08.01.07.28.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 07:28:04 -0700 (PDT)
+Date: Thu, 1 Aug 2024 16:28:02 +0200
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <20240801142802.GA212266@debian>
+References: <20240515112034.298116-1-dima.fedrau@gmail.com>
+ <20240515112034.298116-3-dima.fedrau@gmail.com>
+ <aczpsiqyh4qsbvnqhqdnvkj2j3fihkltafop5ajkxm57sehbx5@mn4vp7avpeac>
+ <20240731084648.GA18584@debian>
+ <bokad5wa2vw5qwdrrqpkkyrxgmxco2ix76wdaxlqv6usi5rdck@46bp6ywqteo2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: motorcomm: Add chip mode cfg
-To: "Frank.Sae" <Frank.Sae@motor-comm.com>, andrew@lunn.ch,
- hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux@armlinux.org.uk
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, yuanlai.cui@motor-comm.com,
- hua.sun@motor-comm.com, xiaoyong.li@motor-comm.com,
- suting.hu@motor-comm.com, jie.han@motor-comm.com
-References: <20240727092009.1108640-1-Frank.Sae@motor-comm.com>
- <ac84b12f-ae91-4a2f-a5f7-88febd13911c@kernel.org>
- <f18fa949-b217-4373-82c4-7981872446b4@motor-comm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <f18fa949-b217-4373-82c4-7981872446b4@motor-comm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bokad5wa2vw5qwdrrqpkkyrxgmxco2ix76wdaxlqv6usi5rdck@46bp6ywqteo2>
 
-On 01/08/2024 11:49, Frank.Sae wrote:
+Am Thu, Aug 01, 2024 at 12:24:28AM +0200 schrieb Uwe Kleine-König:
+Hi Uwe,
+
+[...]
+
+> > > > +static int mc33xs2410_pwm_get_relative_duty_cycle(u64 period, u64 duty_cycle)
+> > > > +{
+> > > > +	if (!period)
+> > > > +		return 0;
+> > > > +
+> > > > +	duty_cycle *= 256;
+> > > 
+> > > This might overflow.
+> > > 
+> > 
+> > How ? Max period and duty_cycle is checked by the caller and can be
+> > maximum 2000000000, 2000000000 * 256 = 512000000000, fits in u64. Did I
+> > miss anything ?
 > 
-> On 7/27/24 02:25, Krzysztof Kozlowski wrote:
->> On 27/07/2024 11:20, Frank.Sae wrote:
->>>   The motorcomm phy (yt8821) supports the ability to
->>>   config the chip mode of serdes.
->>>   The yt8821 serdes could be set to AUTO_BX2500_SGMII or
->>>   FORCE_BX2500.
->>>   In AUTO_BX2500_SGMII mode, SerDes
->>>   speed is determined by UTP, if UTP link up
->>>   at 2.5GBASE-T, SerDes will work as
->>>   2500BASE-X, if UTP link up at
->>>   1000BASE-T/100BASE-Tx/10BASE-T, SerDes will work
->>>   as SGMII.
->>>   In FORCE_BX2500, SerDes always works
->>>   as 2500BASE-X.
->> Very weird wrapping.
->>
->> Please wrap commit message according to Linux coding style / submission
->> process (neither too early nor over the limit):
->> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
->>
->>> Signed-off-by: Frank.Sae<Frank.Sae@motor-comm.com>
->> Didn't you copy user-name as you name?
+> I didn't notice the check in the caller. Please add a respective comment
+> for the next reader who might miss that.
 > 
-> sorry, not understand your mean.
+Ok.
 
-Does your ID (e.g. passport) has exactly that name? With dot? Really?
-
+> > > > +	duty_cycle = DIV_ROUND_CLOSEST_ULL(duty_cycle, period);
+> > > 
+> > > round-closest is most probably wrong. Please test your driver with
+> > > PWM_DEBUG enabled and increasing and decreasing series of duty_cycle and
+> > > period.
+> > 
+> > Yes, I should probably round it down. But I tested with PWM_DEBUG enabled
+> > and it gave me the best results so far. There are still few cases where
+> > there are complaints. I try to fix it.
 > 
->>> ---
->>>   .../bindings/net/motorcomm,yt8xxx.yaml          | 17 +++++++++++++++++
->>>   1 file changed, 17 insertions(+)
->> Also, your threading is completely broken. Use git send-email or b4.
+> I don't have the hardware so I cannot test myself. Please make sure that
+> there are no more complaints, at least none you are aware of. PWM_DEBUG
+> should be happy if you pick a hardware setting where period is maximal
+> but not bigger than requested and then for that given period duty_cycle
+> is maximal but not bigger than requested. So typically use round-down
+> division in .apply(). In .get_state() you should return a pwm_state that
+> makes .apply() write the exact same state as found when .get_state() was
+> called. So typically you have to use round-up there.
+>
+
+Thanks, this fixed the remaining complaints. Did it exactly as you
+suggested.
+
+> > > > +	state->polarity = (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm)) ?
+> > > > +			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
+> > > > +
+> > > > +	state->enabled = !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > [...]
+> > > > +static int mc33xs2410_probe(struct spi_device *spi)
+> > > > +{
+> > > > [...]
+> > > > +	/* Disable watchdog */
+> > > > +	ret = mc33xs2410_write_reg(spi, MC33XS2410_WDT, 0x0);
+> > > > +	if (ret < 0)
+> > > > +		return dev_err_probe(dev, ret, "Failed to disable watchdog\n");
+> > > 
+> > > Wouldn't the watchdog functionality better be handled by a dedicated
+> > > watchdog driver? Disabling it here unconditionally looks wrong.
+> > 
+> > Yes, would be better. I planned this after this patchset is accepted.
+> > Without disabling the watchdog, the device is not able to operate. So I
+> > would stick to it for now and come up with a patch later on.
 > 
-> sorry, not understand your mean of threading broken. the patch used git
-> send-email.
-
-Email threading is completely broken. It means all reviewers see it as
-complete unrelated emails which makes any review annoyingly more difficult.
-
-
+> How long is the default timeout? Don't you need to disable the watchdog
+> in the bootloader anyhow?
 > 
+
+Default and also maximum timeout is 256ms. My hardware is configured to
+let the device stay in reset until the driver puts it out of reset by
+setting the associated GPIO. Datasheet refers to it as "Disable mode".
+Outputs are turned off.
+Without having such reset logic, the device would need to have the
+watchdog disabled in the bootloader and continue in "Normal mode" or it
+would go into "Safe mode" while booting the kernel almost sure violating
+the timeout. Outputs are then controlled by the INx input logic signals.
+I think there is no single solution but rather depends on the use case.
+There are three modes which the device can be in when the driver is probed:
+"Disable", "Safe" and "Normal". All three are handled by this driver,
+assuming the watchdog should be disabled.
+
+> If you still think the watchdog should be disabled here, please add a
+> comment that it's conceptually wrong to do here, but needed until there
+> is a proper watchdog driver.
 > 
->>> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
->>> index 26688e2302ea..ba34260f889d 100644
->>> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
->>> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
->>> @@ -110,6 +110,23 @@ properties:
->>>         Transmit PHY Clock delay train configuration when speed is 1000Mbps.
->>>       type: boolean
->>>   
->>> +  motorcomm,chip-mode:
->>> +    description: |
->>> +      Only for yt8821 2.5G phy, it supports two chip working modes,
->> Then allOf:if:then disallowing it for the other variant?
+
+I will leave a comment, but I'm not sure if I can come up with a good
+solution since the maximum timeout is very low with 256ms. For interaction
+with userspace it must be at least 1s.
+Why is the handling of the watchdog conceptually wrong here, I could use
+devm_watchdog_register_device to register it, why can't I just disable it
+here ?
+
+> Should this better be a mfd driver then?
 > 
-> sorry, not understand your mean.
 
-So you did not understand anything from any comments?
+I don't thinks so, the watchdog and the outputs belong somehow together.
+When the device runs into an timeout it switches into "Safe" mode and the
+outputs are controlled by the INx input logic signals.
+I thought of a mfd device as a device which provides multiple functions
+not really belonging together. Didn't find a clear definition. What do you
+think of it ?
 
-You miss if:then: block which disallows this for other chips. You claim
-only one device supports it, so why the property should be valid for
-other devices?
-
-
-> 
-> 
->>> +      one is AUTO_BX2500_SGMII, the other is FORCE_BX2500.
->>> +      If this property is not set in device tree node then driver
->>> +      selects chip mode FORCE_BX2500 by default.
->> Don't repeat constraints in free form text.
->>
->>> +      0: AUTO_BX2500_SGMII
->>> +      1: FORCE_BX2500
->>> +      In AUTO_BX2500_SGMII mode, serdes speed is determined by UTP,
->>> +      if UTP link up at 2.5GBASE-T, serdes will work as 2500BASE-X,
->>> +      if UTP link up at 1000BASE-T/100BASE-Tx/10BASE-T, serdes will
->>> +      work as SGMII.
->>> +      In FORCE_BX2500 mode, serdes always works as 2500BASE-X.
->>
->> Explain why this is even needed and why "auto" is not correct in all
->> cases. In commit msg or property description.
-> 
-> yt8821 phy does not support strapping to config the serdes mode, so config the
-> serdes mode by dts instead.
-> 
-> even if auto 2500base-x serdes mode is default mode after phy hard reset, and
-> auto as default must be make sense, but from most our customers's feedback,
-> force 2500base-x serdes mode is used in project usually to adapt to mac's serdes
-> settings. for customer's convenience and use simplicity, force 2500base-x serdes
-> mode selected as default here.
-
-Sorry, this is not a proper sentence and I cannot parse it.
-
-> 
-> 
->>> +    $ref: /schemas/types.yaml#/definitions/uint8
->> Make it a string, not uint8.
->>
-> why do you suggest string, the property value(uint8) will be wrote to phy
-> register.
-
-Because it is much more readable. I don't care about your phy register.
-
-Best regards,
-Krzysztof
-
+Best regards
+Dimitri
 
