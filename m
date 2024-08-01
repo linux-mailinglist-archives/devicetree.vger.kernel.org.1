@@ -1,192 +1,137 @@
-Return-Path: <devicetree+bounces-90173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B00394447B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:31:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624939444A7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 08:46:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6308281E7E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:31:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80C011C220E8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2024 06:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33814157A67;
-	Thu,  1 Aug 2024 06:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149B2157490;
+	Thu,  1 Aug 2024 06:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="VALmha5B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FgGauOKX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519B01EB48C
-	for <devicetree@vger.kernel.org>; Thu,  1 Aug 2024 06:31:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688A01BDC3;
+	Thu,  1 Aug 2024 06:46:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722493872; cv=none; b=aBTMbgVDeaGpz7sjvYfVC3sD1j+rU/jCCxCP8jI3Ybb/YqmB1pCgkZ2HZslbCOHzu7Z2Nl7kQEM5G6dnWtJE5N4KG1VOP8FlgRnoA9WCYCwoTFPSelfkZGZ7zsWAnttuN48pnavaTAlwmSxdaqAMh9I3tkwxIL45LXBAkGhMYhg=
+	t=1722494769; cv=none; b=ns7cJd7LTRUmePyJM9ARIUkDqIRvv7E4VDEEYj+XqXaZIBextFkOX5btIV0Ot2yMN03DiJrg5nPGfX7WrOtfMl6hGMs0mZS4v9n2v+mKfXTsCM4jO8pKzkKvwb13FdvI3tq8z+l5NWOoczbiUB9kYiGs72vAr8YmSv9FKQNjVtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722493872; c=relaxed/simple;
-	bh=7hiJyExXsvFNCdkfgjNWRGOg631lI6JSQvQdwmfuouM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nAPJY1NFiW6qs9tb3P4h6nMVEfPUSvur1DmXVwF2Et3/daaWpVMsHzi57/YvWGNS0Phh+VxARRKhb0PdUqFLslEDhDOhGe06THbLXY86UxmYB7+qGwdqO1CAZYz3hoGP9TKmJwBhicyVPPn68e1sf5sj+iNWzhD+aeYodMA8q8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=VALmha5B; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a7a9a7af0d0so858664266b.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2024 23:31:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722493869; x=1723098669; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZtgOTmyz4Jo80Ebg+IqO3Y085ck8x5IgntpNpkonWA4=;
-        b=VALmha5Bcnc4scaHYy4MfF03OrZ/0QOC9ADGxSUAzewwtE/8Su20rgbwuAXxmveG2O
-         qop0Vc1I7nId+O64sPmvb2rqq9s6bmJK7jvoB6SMpVWwpzPOHRHtAnTnxImjNZ9fmWBJ
-         rvkZDceJfpSoRpPnkAdh9tVtd9+54J3pmYn2K/QjX7tnjhg9Z7m+B3AYlGM6lXzlmON2
-         TyW/8yEI7M1zQn39+oRLL6VxlWwGiEGSWXc+mP3EAbypNHvr0uN3i4U2PGWReedza8Lx
-         gVQBsQe87d2UCd+eJxjo3ZlTFOxH3lcBOfPlgDVlsFOjct0lCTC0I5u3eBzgi1x4QU9F
-         mOpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722493869; x=1723098669;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZtgOTmyz4Jo80Ebg+IqO3Y085ck8x5IgntpNpkonWA4=;
-        b=vN0USVNuJCaXxDhsvb4Cg/mXtp+N4cRpE0l/bFeyeXu05jcmqHgQuyg+CJQXtInDnc
-         PEAmxcLIvnwlYGWuBJXZkBeUCk3WqAsNnd06sqbqsGg1TWJc2iRyG1lzaPuTD9zKMd+f
-         sQGXdYebvMKpbAH11HROzIQRO/7F+z/wDcqtq4Hwsge1LtGIhd1ZldGe/hoACVOQFzpK
-         xchXfaRW2kLRYsjdjqt06ZtFnrH5lxGR20aih7LbI+ma5oDj/DiJ1JWYzdBamtUmSJXD
-         s2FGpoI6hSFckwXiz/oS6sQbTb3RT7OeSN9JotqvQe2h6F64NhZGF7rcLmcgCxJMC7dx
-         WE9g==
-X-Forwarded-Encrypted: i=1; AJvYcCU1dkwpadaOkqhGEMYmNVAhrC/Gn3lq/nDsy3VXFLHV8PgcLfYylAez2LD+wTLwoc4zSMjFuLQAOZKJfCbzu9HIH3x67Ddh1mje5A==
-X-Gm-Message-State: AOJu0Yx09Ec2jqx2xNTM58+QFlW23sYjbQ2QekLtkeevAJ6lzx0Ryqg7
-	KfbQrVC6hd7Q1YhQsSvEp0YTSopY8/F9RXv9zftdkKBl9f0yQu0HBR+4FpbTEdwy8h2AFJczElB
-	ahPwjDet4dXdL9XLMwsKFo7BbVrCXbXCshMqkCw==
-X-Google-Smtp-Source: AGHT+IGCKaJ30FgEU9oUZBdt1y3mH+iUXfyse7Ifs2EUpNCPkcgPwDdhg+BBqKki8Uxjaui4Z+qh19h6sLlMzePfjC4=
-X-Received: by 2002:a17:906:ba82:b0:a72:8d2f:859c with SMTP id
- a640c23a62f3a-a7daf562837mr70124066b.33.1722493868606; Wed, 31 Jul 2024
- 23:31:08 -0700 (PDT)
+	s=arc-20240116; t=1722494769; c=relaxed/simple;
+	bh=VbW5w+3aCtovoUT3qQI/sK2HjrOEVa1Nj7K7tREcv3E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F741nmzcJSPkwv3Jy4jR9gKBVowQvsCJVlq4po24/NVecA6Cz2dNZfLYbuXuIpydoicrXeWJvg+kppRGnykUbh5LV86/8mG9GrXHAL80IOgAIfS5MbrUg/Glgp0S/wTktLBuMLhNXiBTFfGjuzjgkUD2sN+JsDCNLsk08aVFt5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FgGauOKX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4710OTmJ010012;
+	Thu, 1 Aug 2024 06:46:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=zoY2RHLYi/ZxAjNt+Fbrbl
+	NGCu3+edYxbP8eSb+FDEM=; b=FgGauOKXttOPrHiUkmgIG55FnRFklNyrYue285
+	VuXSs3BsmwPMX/WrmVV1kL+S8PV65DF6k86ZD3g2JlobjltGHbL0+dsA0VY9YfFA
+	qx0ZlnUg3BuS9LtzWnbawIYC8OGBI+RoezK2P8IyRK2jhm0kxeWK57JG7b0QtFiC
+	Y+CKlLVS4tWFlsN6WKtTfzhZJe5+L2W4Oj1Hf2KxT1WrE7EyzpdEBL+eLDhlN14S
+	Jq7ONNm6vR045qVAHKyyv7mX6wFnml6c3VEo8GKjfz8loNlzYsS+DlgnSBaI/uWW
+	SuX82adBorJ1DVDYrr8vVnPkmcr21afMopWWxhrtrUjTDVQg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40qnbaarw5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Aug 2024 06:46:02 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4716k0pI025938
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Aug 2024 06:46:00 GMT
+Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 31 Jul 2024 23:45:55 -0700
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+Subject: [PATCH V4 0/2] Drop required-opps from required list on SM8650 videocc, camcc
+Date: Thu, 1 Aug 2024 12:14:46 +0530
+Message-ID: <20240801064448.29626-1-quic_jkona@quicinc.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731072405.197046-1-alexghiti@rivosinc.com>
- <20240731072405.197046-3-alexghiti@rivosinc.com> <20240731-56ba72420d7f745dacb66fd8@orel>
- <CAHVXubjrrWVnw1ufXRJh_5N9M5UiOVZseb0C78fjLaYhNKF7eA@mail.gmail.com> <20240731-676154f31336c78bafea57d0@orel>
-In-Reply-To: <20240731-676154f31336c78bafea57d0@orel>
-From: Alexandre Ghiti <alexghiti@rivosinc.com>
-Date: Thu, 1 Aug 2024 08:30:57 +0200
-Message-ID: <CAHVXubhUVi=Ryc4fF+7Z12h7p1aQtVwHfD6YGfw676aijjw5Rg@mail.gmail.com>
-Subject: Re: [PATCH v4 02/13] riscv: Do not fail to build on byte/halfword
- operations with Zawrs
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, 
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arch@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UJoF6XGrZbnvpna3IeeLzELG5oL7pYKm
+X-Proofpoint-GUID: UJoF6XGrZbnvpna3IeeLzELG5oL7pYKm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-01_04,2024-07-31_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 lowpriorityscore=0 mlxlogscore=790 phishscore=0 mlxscore=0
+ impostorscore=0 clxscore=1015 suspectscore=0 adultscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408010037
 
-On Wed, Jul 31, 2024 at 6:14=E2=80=AFPM Andrew Jones <ajones@ventanamicro.c=
-om> wrote:
->
-> On Wed, Jul 31, 2024 at 05:52:46PM GMT, Alexandre Ghiti wrote:
-> > Hi Drew,
-> >
-> > On Wed, Jul 31, 2024 at 4:10=E2=80=AFPM Andrew Jones <ajones@ventanamic=
-ro.com> wrote:
-> > >
-> > > On Wed, Jul 31, 2024 at 09:23:54AM GMT, Alexandre Ghiti wrote:
-> > > > riscv does not have lr instructions on byte and halfword but the
-> > > > qspinlock implementation actually uses such atomics provided by the
-> > > > Zabha extension, so those sizes are legitimate.
-> > >
-> > > We currently always come to __cmpwait() through smp_cond_load_relaxed=
-()
-> > > and queued_spin_lock_slowpath() adds another invocation.
-> >
-> > atomic_cond_read_relaxed() and smp_cond_load_acquire() also call
-> > smp_cond_load_relaxed()
-> >
-> > And here https://elixir.bootlin.com/linux/v6.11-rc1/source/kernel/locki=
-ng/qspinlock.c#L380,
-> > the size passed is 1.
->
-> Oh, I see.
->
-> >
-> > > However, isn't
-> > > the reason we're hitting the BUILD_BUG() because the switch fails to =
-find
-> > > a case for 16, not because it fails to find cases for 1 or 2? The new
-> > > invocation passes a pointer to a struct mcs_spinlock, which looks lik=
-e
-> > > it has size 16. We need to ensure that when ptr points to a pointer t=
-hat
-> > > we pass the size of uintptr_t.
-> >
-> > I guess you're refering to this call here
-> > https://elixir.bootlin.com/linux/v6.11-rc1/source/kernel/locking/qspinl=
-ock.c#L551,
-> > but it's a pointer to a pointer, which will then pass a size 8.
->
-> Ah, missed that '&'...
->
-> >
-> > And the build error that I get is the following:
-> >
-> > In function '__cmpwait',
-> >     inlined from 'queued_spin_lock_slowpath' at
-> > ../kernel/locking/qspinlock.c:380:3:
-> > ./../include/linux/compiler_types.h:510:45: error: call to
-> > '__compiletime_assert_2' declared with attribute error: BUILD_BUG
-> > failed
-> >   510 |         _compiletime_assert(condition, msg,
-> > __compiletime_assert_, __COUNTER__)
-> >       |                                             ^
-> > ./../include/linux/compiler_types.h:491:25: note: in definition of
-> > macro '__compiletime_assert'
-> >   491 |                         prefix ## suffix();
-> >          \
-> >       |                         ^~~~~~
-> > ./../include/linux/compiler_types.h:510:9: note: in expansion of macro
-> > '_compiletime_assert'
-> >   510 |         _compiletime_assert(condition, msg,
-> > __compiletime_assert_, __COUNTER__)
-> >       |         ^~~~~~~~~~~~~~~~~~~
-> > ../include/linux/build_bug.h:39:37: note: in expansion of macro
-> > 'compiletime_assert'
-> >    39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond),=
- msg)
-> >       |                                     ^~~~~~~~~~~~~~~~~~
-> > ../include/linux/build_bug.h:59:21: note: in expansion of macro
-> > 'BUILD_BUG_ON_MSG'
-> >    59 | #define BUILD_BUG() BUILD_BUG_ON_MSG(1, "BUILD_BUG failed")
-> >       |                     ^~~~~~~~~~~~~~~~
-> > ../arch/riscv/include/asm/cmpxchg.h:376:17: note: in expansion of
-> > macro 'BUILD_BUG'
-> >   376 |                 BUILD_BUG();
-> >
-> > which points to the first smp_cond_load_relaxed() I mentioned above.
-> >
->
-> OK, you've got me straightened out now, but can we only add the fallback
-> for sizes 1 and 2 and leave the default as a BUILD_BUG()?
+On SM8650, the minimum voltage corner supported on MMCX from cmd-db is
+sufficient for clock controllers to operate and there is no need to specify
+the required-opps. Hence remove the required-opps property from the list of
+required properties for SM8650 camcc and videocc bindings.
 
-Yes, sure, I'll do that.
+Changes in V4:
+ - Dropped change to disallow required-opps on variants that don't need it
+ - Split the change into separate commits for videocc and camcc
+ - Link to V3: https://lore.kernel.org/all/20240730034552.31271-1-quic_jkona@quicinc.com/
+Changes in V3:
+ - Made only required-opps property conditional and added it based on the variant
+ - Link to V2: https://lore.kernel.org/all/20240720052818.26441-1-quic_jkona@quicinc.com/
+Changes in V2:
+ - Made required: conditional and dropped required-opps from it only for SM8650 platform
+ - Dropped Krzysztof Acked-by tag due to above changes
+ - Link to V1: https://lore.kernel.org/all/20240708130836.19273-1-quic_jkona@quicinc.com/
 
-Thanks,
+Jagadeesh Kona (2):
+  dt-bindings: clock: qcom: Drop required-opps in required on sm8650
+    videocc
+  dt-bindings: clock: qcom: Drop required-opps in required on SM8650
+    camcc
 
-Alex
+ .../bindings/clock/qcom,sm8450-camcc.yaml     | 19 +++++++++++++++----
+ .../bindings/clock/qcom,sm8450-videocc.yaml   | 11 ++++++++++-
+ 2 files changed, 25 insertions(+), 5 deletions(-)
 
->
-> Thanks,
-> drew
+-- 
+2.45.2
+
 
