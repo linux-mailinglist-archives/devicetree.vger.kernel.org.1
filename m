@@ -1,135 +1,150 @@
-Return-Path: <devicetree+bounces-90586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7AF1945F7B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 16:34:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E24945F9E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 16:46:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633421F21873
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:34:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC4FDB2175D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021AE21018D;
-	Fri,  2 Aug 2024 14:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3BE01E4865;
+	Fri,  2 Aug 2024 14:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mR0WO4H3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA6F1E2875;
-	Fri,  2 Aug 2024 14:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F841F94C;
+	Fri,  2 Aug 2024 14:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722609255; cv=none; b=rbEEC+tHl0YCKZth/2mpNslPhao3yZX/fq6wum1KKwl5Ki4SieA/KMlJwWPUsYuSRCfvVFcPdAIlP9CjhtZysoijljxxpH4fXufPUilVYvK/fhKCd15/He2d5Umi8c0XtMezD5peI2aRUd1znb/5rt0xn1G7d9O96EEZhQ13JIQ=
+	t=1722610010; cv=none; b=EtTXSvv8T7ommbVdoPgjPlkatCSaplR7hcAButfnHJaaqbVx1pw/9aPikwA8LyD3aE/nTNT9saWBAPaKjgACzvSfXU84eBg4wUqriEZt8tnwRRcweLm7RfHNPxP+4yhPHEZZ/DHHIsf8STSpKu52PoEhy6bNNCDIA+hA6mGh5sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722609255; c=relaxed/simple;
-	bh=kT1NudS6A1VBu00pH0wix5fkzSs86n7Vt9obyt3Xj/g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ohcZxINWL4omT/QZh0RAukrG7b51n3x9GlEW3ncU47MYu8hhJKRindDhQfod31aNcgDQpVSWrK0MRZRBO6LdJxvfLZ4ogmCDobaU3Fn1VyvsM8LMY6++P7uByOxftAv6+vxtjiNRuEUS6IaAm9QuUsPpmKvjHHpSj9mujCaQPt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a76.versanet.de ([83.135.90.118] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sZtM9-0002uP-Ce; Fri, 02 Aug 2024 16:34:09 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Sugar Zhang <sugar.zhang@rock-chips.com>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Subject: Re: [PATCH 2/3] clk: rockchip: Add dt-binding header for rk3576
-Date: Fri, 02 Aug 2024 16:34:07 +0200
-Message-ID: <4084310.iTQEcLzFEP@diego>
-In-Reply-To: <20240802141816.288337-3-detlev.casanova@collabora.com>
-References:
- <20240802141816.288337-1-detlev.casanova@collabora.com>
- <20240802141816.288337-3-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1722610010; c=relaxed/simple;
+	bh=0B04wVki9G0yvxf18iermuBnvEqCoQZgAVStJfZayRs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uuMBX58GtPX3tJZ2kRkYW2pXRayl2wzqzkL/RZuKE2rILsPf/TlV1aFNZGXnoH7MAMpmcUjVXp+igOMuhqlnh1aZwOiClNq4VwxwY1du8EmI+FioehDL6EOgIRl/7ZVq4/LWNx+Vh/LkUft+wdKWF3RCiX6m5tVUxIkZokwGihA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mR0WO4H3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4589C32782;
+	Fri,  2 Aug 2024 14:46:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722610010;
+	bh=0B04wVki9G0yvxf18iermuBnvEqCoQZgAVStJfZayRs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mR0WO4H3CHo4CDRMsplIKoppPnHrrAbbdCqAJ9yH+/mgDzNuWDn5IWdExszj6TYqp
+	 p3M9u/GnMdZ2hFeL+hWS2UraUs/Fr0EewdUl3/RLxFQGAt60wmqu4zP9Zghr4Ur5nk
+	 lkjLyJsfLyRKJcmlWhjawFSC1d2zqlcVinW9tEmJbI14PhUo5HPQ5NiwBAKCzlTVOZ
+	 1c+Z6FcCOTlmHpmNZkCjWz3zlG2csKgE6U/8bCuxp9rs84Xp02mKxA8IE9HFZ4Q3R9
+	 djuEMM1yjCU3uJulkQeJb/B5YMpdtsksxLG8FJQ2F0OFw/fIXg5ehoDxbXH4ASivYk
+	 8mLh9yavg4dOw==
+Date: Fri, 2 Aug 2024 15:46:43 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexandre Ghiti <alex@ghiti.fr>
+Cc: Alexandre Ghiti <alexghiti@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andrea Parri <parri.andrea@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
+	Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
+Subject: Re: [PATCH v4 12/13] dt-bindings: riscv: Add Ziccrse ISA extension
+ description
+Message-ID: <20240802-frighten-flail-fddc8136b69d@spud>
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-13-alexghiti@rivosinc.com>
+ <20240801-unlighted-senator-cc60d021fe28@spud>
+ <4b890910-ed3b-47e1-a895-48ae3d47e958@ghiti.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-Hi Detlev,
-
-Am Freitag, 2. August 2024, 16:12:49 CEST schrieb Detlev Casanova:
-> From: Elaine Zhang <zhangqing@rock-chips.com>
-> 
-> Add the dt-bindings header for the rk3576, that gets shared between
-> the clock controller and the clock references in the dts.
-> 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 1149 +++++++++++++++++
->  1 file changed, 1149 insertions(+)
->  create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
-> 
-> diff --git a/include/dt-bindings/clock/rockchip,rk3576-cru.h b/include/dt-bindings/clock/rockchip,rk3576-cru.h
-> new file mode 100644
-> index 0000000000000..19d25f082dc57
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/rockchip,rk3576-cru.h
-> @@ -0,0 +1,1149 @@
-
-> +#define CLK_NR_CLKS			(ACLK_KLAD + 1)
-
-this needs to go please. Take a look at how Sebastian got rid of needed
-that max-constant for rk3588.
-
-[...]
-
-> +#define SRST_H_VEPU1			1267
-> +#define SRST_A_VEPU1			1268
-> +#define SRST_VEPU1_CORE			1269
-> +
-> +/********Name=PHPPHYSOFTRST_CON00,Offset=0x8A00********/
-> +#define SRST_P_PHPPHY_CRU		131073
-> +#define SRST_P_APB2ASB_SLV_CHIP_TOP	131075
-> +#define SRST_P_PCIE2_COMBOPHY0		131077
-> +#define SRST_P_PCIE2_COMBOPHY0_GRF	131078
-> +#define SRST_P_PCIE2_COMBOPHY1		131079
-> +#define SRST_P_PCIE2_COMBOPHY1_GRF	131080
-
-this seems to lump together different components and with that creates
-these gaps. I.e. I really don't think the phpphy in these registers is part
-of the core CRU.
-
-That huge memory length of 0x5c000 in your dt-binding is also a good
-indicator that this needs to have more separation and not span multiple
-devices.
-
-> +/********Name=PHPPHYSOFTRST_CON01,Offset=0x8A04********/
-> +#define SRST_PCIE0_PIPE_PHY		131093
-> +#define SRST_PCIE1_PIPE_PHY		131096
-> +
-> +/********Name=SECURENSSOFTRST_CON00,Offset=0x10A00********/
-> +#define SRST_H_CRYPTO_NS		262147
-> +#define SRST_H_TRNG_NS			262148
-> +#define SRST_P_OTPC_NS			262152
-> +#define SRST_OTPC_NS			262153
-> +
-> +/********Name=PMU1SOFTRST_CON00,Offset=0x20A00********/
-> +#define SRST_P_HDPTX_GRF		524288
-
-same here, that is also most likely not part of the CRU but a different block.
-Other socs already implement separate clock controllers for different
-parts, so please take a look there.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wOGS7rCkyPiSGxrA"
+Content-Disposition: inline
+In-Reply-To: <4b890910-ed3b-47e1-a895-48ae3d47e958@ghiti.fr>
 
 
-Thanks
-Heiko
+--wOGS7rCkyPiSGxrA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Aug 02, 2024 at 10:14:21AM +0200, Alexandre Ghiti wrote:
+> Hi Cono
+>=20
+> On 01/08/2024 16:44, Conor Dooley wrote:
+> > On Wed, Jul 31, 2024 at 09:24:04AM +0200, Alexandre Ghiti wrote:
+> > > Add description for the Ziccrse ISA extension which was introduced in
+> > > the riscv profiles specification v0.9.2.
+> > >=20
+> > > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> > > Reviewed-by: Guo Ren <guoren@kernel.org>
+> > > ---
+> > >   Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+> > >   1 file changed, 6 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml =
+b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > index a63578b95c4a..22824dd30175 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > @@ -289,6 +289,12 @@ properties:
+> > >               in commit 64074bc ("Update version numbers for Zfh/Zfin=
+x") of
+> > >               riscv-isa-manual.
+> > > +        - const: ziccrse
+> > > +          description:
+> > > +            The standard Ziccrse extension which provides forward pr=
+ogress
+> > > +            guarantee on LR/SC sequences, as introduced in the riscv=
+ profiles
+> > > +            specification v0.9.2.
+> > Do we have a commit hash for this? Also v0.9.2? The profiles spec is a
+> > crock and the version depends on the specific profile - for example
+> > there's new tags as of last week with 0.5 in them... The original profi=
+les
+> > are ratified, so if this definition is in there, please cite that
+> > instead of a "random" version.
+>=20
+>=20
+> That's not a "random" version, please refer to the existing tag v0.9.2 wh=
+ere
+> this was first introduced
+> (https://github.com/riscv/riscv-profiles/releases/tag/v0.9.2).
 
+That might be your intent, but the versioning in that repo sucks. If
+you'd said the v0.9.2 *tag* that would be clearer than what you wrote,
+as there could easily be a v0.9.2 of a new profile - there's already a
+v0.4 etc.
+
+> But I'll change that to the profiles specification v1.0.
+
+Still vague IMO, please provide a commit hash.
+
+--wOGS7rCkyPiSGxrA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqzxQQAKCRB4tDGHoIJi
+0kz2AQDjtdPseCng2S+4ONZZ0SQUpo8PNoH5fYL4FOkdI8i/XgD/UWt6cymyJp12
+kVz40SPUpdTEuDlR9fA8oueX+EaJIQI=
+=xbhP
+-----END PGP SIGNATURE-----
+
+--wOGS7rCkyPiSGxrA--
 
