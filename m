@@ -1,107 +1,100 @@
-Return-Path: <devicetree+bounces-90543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07427945B9C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8CF945BC3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:05:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62231F22324
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:57:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277581F225CA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41091DB453;
-	Fri,  2 Aug 2024 09:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C3315B134;
+	Fri,  2 Aug 2024 10:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b="gMdc5ivB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BDE1DB442;
-	Fri,  2 Aug 2024 09:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+Received: from xn--80adja5bqm.su (xn--80adja5bqm.su [198.44.140.76])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC161C69D;
+	Fri,  2 Aug 2024 10:05:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.44.140.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722592619; cv=none; b=avn8dSeC+eIo7iHt0Ewno9WCKk0/3GTi1VFMGabJQvTXsFZgG3TP4/NAoUu5XX5JchrfQGciYseULKhz6/Wr/rbLpcNJRgpXHEiKFBxv5lO56Ekzdjxn08ttjoEQP/4Zja2j99zRzCIghiUK3nV5YaHQ4ovYues3ROsB9P37xOE=
+	t=1722593108; cv=none; b=f5S7wqgWMGi4dhm3k29158VPfR+7vIjs72Sqyx6BtFMZ3SGqAI35C6mCgh3tJEzUqqlgo+2kXehP/2nwJCOH7KhtuVpzqxdZdHpffhiw6V9ufoXyqNeHOuHKerQKOR4uf5lWIQrclKS9gSEQHp2zJaaDjDIWuFDGLgTHywEEeys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722592619; c=relaxed/simple;
-	bh=eKEtTbJBtNuE4PPmEUyxxjLRQZmXUAyUm/daUMyw9cE=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hp+76BgjtEksT4QVtmDWmPn5zoSepfnJqsvUe3xUmXz3RYYvLmTqEKbofEVSOySBoKncRRk5j0orhlvYj2+F7za1ayzaGUBZ6dhdtGZE2dKMi9IsXDfWZREfZtmqSutFzBtq6JAc9zX/AcKgMZoYFtl3uh0RgROJUa3VRRwOeQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wb1Q24SDxz6K975;
-	Fri,  2 Aug 2024 17:54:18 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id E41C6140A08;
-	Fri,  2 Aug 2024 17:56:55 +0800 (CST)
-Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 2 Aug
- 2024 10:56:54 +0100
-Date: Fri, 2 Aug 2024 10:56:54 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
-	<dave@stgolabs.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Heiko
- Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo
- Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul
- Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>, Jonathan Corbet
-	<corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt
-	<palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
-	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, Zi Yan <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
-	<nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v3 10/26] x86/numa: simplify numa_distance allocation
-Message-ID: <20240802105654.00004752@Huawei.com>
-In-Reply-To: <20240801060826.559858-11-rppt@kernel.org>
-References: <20240801060826.559858-1-rppt@kernel.org>
-	<20240801060826.559858-11-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1722593108; c=relaxed/simple;
+	bh=QsN5/NZ66aTtsFvoL5pLZIv6o50us0fY8Yrb52ESz6k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UHokntJDP+dCLCM8CodpKKtpqu0X8M0C0moC+JNQDxlqtQUe/wbVe6hFypYtaw0eBnuH4dS0uLvdw6lIYg7Mf5EKQrHryDmsaYtodYILD1xHpHiYs8bHQNMC3hV9KWbIzGae9tWFSiiQAoHQMwbl615fHc0kQAU/IduTKGJaTV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc; spf=pass smtp.mailfrom=xn--80adja5bqm.su; dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b=gMdc5ivB; arc=none smtp.client-ip=198.44.140.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xn--80adja5bqm.su
+Received: by xn--80adja5bqm.su (Postfix, from userid 1000)
+	id C661B40050C0; Fri,  2 Aug 2024 10:04:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 xn--80adja5bqm.su C661B40050C0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mediatomb.cc;
+	s=default; t=1722593087;
+	bh=QsN5/NZ66aTtsFvoL5pLZIv6o50us0fY8Yrb52ESz6k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gMdc5ivB/L+PDFudBOPTqscH5VEN4eYzXm6s23rVgX+fdPcqY5haJ1MmKpJ9mUvda
+	 RIcP5kGJQOnLh2aMpmcQtnMgHDwGI+FU61ntph7HeLxrmaND+cn1+oUPwyERoRe6U0
+	 7DXT4SvM5K8VtaFtL5+9C1vVk9GJUrXnrhyvCe8X/VP//PqodmM135l01bX5/Cfb8h
+	 g9vXafFqVm3KTm5zRepfQqrDNaWCafKlnIBZr5qhwRlh6+Cb4a3MGiZTudmvTZoevy
+	 hBIW+QAEKn45YG4k+5+EU9uiaiTi7LlsW06KpxpG0qp9MT1IeHrBh16vGS/WVmL1Ck
+	 eQdcuyuh7xfEw==
+Date: Fri, 2 Aug 2024 10:04:47 +0000
+From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
+To: "Bjoern A. Zeeb" <bzeeb-lists@lists.zabbadoz.net>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	heiko@sntech.de, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 0/2 RESEND] Add DTS for NanoPi R2S Plus
+Message-ID: <20240802100447.GB18509@ветеран.su>
+References: <22bbec28-41c1-4f36-b776-6e091bf118d9@kernel.org>
+ <20240801175736.16591-1-jin@mediatomb.cc>
+ <756p9487-56pr-88p2-6o79-7oron3q8462n@yvfgf.mnoonqbm.arg>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <756p9487-56pr-88p2-6o79-7oron3q8462n@yvfgf.mnoonqbm.arg>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-On Thu,  1 Aug 2024 09:08:10 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+Hi,
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+On Fri, Aug 02, 2024 at 09:46:40AM +0000, Bjoern A. Zeeb wrote:
+> >I noticed, that a DTS for the R2S Plus is not yet available, while the
+> >R2S is already there. The only difference is, that the Plus version has an
+> >eMMC, so we can reuse the R2S definitions and only add an eMMC block, which
+> >I copied from the DTS in the friendlyarm/uboot-rockchip repo.
 > 
-> Allocation of numa_distance uses memblock_phys_alloc_range() to limit
-> allocation to be below the last mapped page.
+> The original has a
+> 	// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > 
-> But NUMA initializaition runs after the direct map is populated and
-> there is also code in setup_arch() that adjusts memblock limit to
-> reflect how much memory is already mapped in the direct map.
-> 
-> Simplify the allocation of numa_distance and use plain memblock_alloc().
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Tested-by: Zi Yan <ziy@nvidia.com> # for x86_64 and arm64
-Seems sensible. FWIW (which might just be me not bothering to
-read this one again ;) 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
- 
+> please don't lose the OR MIT as other projects outside Linux do use the
+> same dts files;  and the original r2s file also preserved it.
+
+Uhm... I am confused now, I copy-pasted the emmc block from this file:
+https://github.com/friendlyarm/uboot-rockchip/blob/nanopi4-v2017.09/arch/arm/dts/rk3328-nanopi-r2.dts#L7
+
+The header does not have the "OR MIT" in there, it's just
+"SPDX-License-Identifier:     GPL-2.0+" which is what I also copied
+over, together with the (c) part.
+
+The source which I was using is described in the commit message:
+
+The eMMC configuration for the DTS has been extracted and copied from
+rk3328-nanopi-r2.dts, v2017.09 branch from the friendlyarm/uboot-rockchip 
+repository.
+
+Maybe you looked at a different branch? Shall I still add the "OR
+MIT" or leave it as in the original file which I copied it from?
+
+Kind regards,
+Sergey
 
