@@ -1,104 +1,158 @@
-Return-Path: <devicetree+bounces-90630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA99E9462C8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:58:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51BCE9462DF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 20:09:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB9201C20FAD
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:58:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D766A282C87
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 18:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4CB115C12E;
-	Fri,  2 Aug 2024 17:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B46165EE5;
+	Fri,  2 Aug 2024 18:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GuJAc3w7"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="CAOOp2Py"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A76415C126;
-	Fri,  2 Aug 2024 17:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE8B15C145;
+	Fri,  2 Aug 2024 18:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722621517; cv=none; b=B/AJlfiYT/1bZIkDPN4YDhF27irRsdwq/p9bFbOG/cLAKRDF4VpcphtrWOIsdhIHaRX2zCwkHa8FPe9jXCxMH+oOZxxxDARh2n/m9ATKf4KZ6qDhKy8rd4+7so6V9/pa45v5x9xjgtxXTilNKQ+4jYUVBtZ3Pd4XXlFdQZB6+EQ=
+	t=1722622174; cv=none; b=MQR/TjriCroWgzPe/5Ixteidtzih3L6bnF9AkzBbv+IvLMzbjlggr7//3ohUGjNXt22V5cWf7ngwSzsOvBQLO2mPSMjCXSTIvMyTavmm2aFEdv2Fr16MY7wM9c556UN6HMiPNDx4c4vOMlH1owXEQbU2vIxVtBztovQGi2P1JSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722621517; c=relaxed/simple;
-	bh=GgOQs8fWVA6+ODz3DoKPihPh88i0r8y5j3hiHzKyiHw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YofD9HXxU2v06vY/AEMNYcf+EXl1GWk/uToTqgBRzgeXirzSect9obMLOUax6Q+8UzJtgy5h/FmOdKTJQEuJVnB8gsFr3KQzhNGypF+y6N+WXLTUwtX/N1g3N23NgtYOpkwlfn4DvvVeRvabLqa2sHl5N/ofl9/GRbgFr5t3ZR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GuJAc3w7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F38AC32782;
-	Fri,  2 Aug 2024 17:58:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722621517;
-	bh=GgOQs8fWVA6+ODz3DoKPihPh88i0r8y5j3hiHzKyiHw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GuJAc3w7YaGE2Y2S6OEZue2iJyz1YZIA2JPeGnuKiNKwMrT3uu/FNGHXBKuCrbZAt
-	 YR/j3tgsN39AuIFVFdcysv3gFVrTO/GSPUU/a4q+JJ4NVGIGjr2nzGMpQsdEll04UC
-	 eVRmnf6eaYu4ltcrMRZpmdXqLAfPhCsH3gGVEDJ3i7VYOwl5tv6AauO+UY2cEchWge
-	 AziV3/P/0sALOjwwhXvV6wzwhAQ4flOxmDeavh27zvVumZ66QT/D2uqnVGslv4Ko0i
-	 MT9FNYEWNBwTr3Fz9771S4YvcrM65/OG7jZgdeAbRZArq/LH3elXCUdu2cktNyErvM
-	 3YpcHGYOPYm1g==
-Date: Fri, 2 Aug 2024 18:58:31 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andrei.Simion@microchip.com
-Cc: lgirdwood@gmail.com, claudiu.beznea@tuxon.dev,
-	Nicolas.Ferre@microchip.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, robh@kernel.org, alexandre.belloni@bootlin.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Mihai.Sain@microchip.com
-Subject: Re: [PATCH 1/6] regulator: mcp16502: Add supplier for regulators
-Message-ID: <e0db4f2b-ce4f-4560-b586-1d8dbb75c7ff@sirena.org.uk>
-References: <20240802084433.20958-1-andrei.simion@microchip.com>
- <20240802084433.20958-2-andrei.simion@microchip.com>
- <98f91a56-946c-4a40-b908-45f4c6c6d66e@sirena.org.uk>
- <f318439f-b520-4b86-99a7-eb9a2e47525f@microchip.com>
+	s=arc-20240116; t=1722622174; c=relaxed/simple;
+	bh=63taoprHUoM1wWqbF0vQX24VCyWny7xmFX7DPitrGQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XYwfMsTJFTmUa9Qzxn3DviLSYZvBnuVXruQT9s05w3OuHXfpltpMyafg/Q7lHg2GGAkdPBhNfnYAyK+RLCtKu68KhRsqk5SFs4DUrsFx7/m2Tnhec8I+YtAICysFzJlbx+I4deMPsxEueLpXCY52GE+i+jTmzBS3Ox+RZQtDWQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=CAOOp2Py; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1722622157; x=1723226957; i=wahrenst@gmx.net;
+	bh=dQd9LubES5a0X1Zb8zT31m5nR5MPgg5QjYdJeg3LV+8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=CAOOp2Py79+/I8XZv0QhC0CwGF9KnGFHo4mulPrRiY1S86FW31y+Fkme2Z7a/JCi
+	 ctRfuo0BuQS+fVpiVR7SjzeaDl6wEv+6KVjQXwrE881TLdckqTusECiPNkLErVc+r
+	 dK1Xnp9nUGyoHTeFk7G885zkhQwXhOQXIPhQKef8Bs403cXmV/vMQkWVqVpUS2KEF
+	 oi8LPzesy7VLFwRfZGnqqxCcXtLBnyKdOLaAu6tuh1yrsTsvyqyQ4uA4CtJhlKR29
+	 QWjbVF9tfKwayxhSYJnXiDwOTi5nC75qXPTuy7ZpkRUXHGzflctBNrimD2ZPTAKWT
+	 2HSb1u1obwHt4OiqBg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6qC-1rolSz2Kcu-00dM7u; Fri, 02
+ Aug 2024 20:09:17 +0200
+Message-ID: <200d54a3-bedf-4bd3-bb7f-0d834c43ea78@gmx.net>
+Date: Fri, 2 Aug 2024 20:09:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2wUEPk6V6lIxYR86"
-Content-Disposition: inline
-In-Reply-To: <f318439f-b520-4b86-99a7-eb9a2e47525f@microchip.com>
-X-Cookie: -- I have seen the FUN --
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: Add support for Broadcom STB
+ pin controller
+To: "Ivan T. Ivanov" <iivanov@suse.de>, kernel-list@raspberrypi.com,
+ florian.fainelli@broadcom.com, andrea.porta@suse.com
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ robh@kernel.org, linus.walleij@linaro.org
+References: <20240731062814.215833-1-iivanov@suse.de>
+ <20240731062814.215833-2-iivanov@suse.de>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20240731062814.215833-2-iivanov@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:QwB1aX5a63jum2EWptOzfeijiA9+mROhvakEsfWi62MVArvvgTx
+ UPNlC6inXTlyQGM2I3Xh9V4SZ2Kl7ouypero0sM8T2I79iqN9SNQFkUOqdrRFeZ9AdfwzCx
+ e0Z70nIPPi+BECLe7PJy4JlEJzU6f8QDVfDxdPrQbbtJHtEe+4YTbMgEYLc/JAU1bomfASA
+ 4VpW237YUMi8V3EfQ3/sA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:5A8IXd+3JPE=;aOfge7evHe82z3dxluroDE6SK27
+ tH7/xA+z9bEqUq5ES6H3PcH2KZ/Ci2J/KzLIYpYFD28ikXOU4U4u9SD26o33mRSCtn7IK2OjU
+ 3sZvpIS469+vqV3J5nnnvTs6CJcsrePinyR86nwrGlk/zCOdOAdGc5F8nIldRLQoU1GcqxT3E
+ l3iEZZ0qL6RWqcGRGxV5rEAdFpbXTNTyiLEj1pRyEq+PQkaxl5XegzY9texphruaayNFvCcOL
+ tASOLf0BjAptmc7Ynn+F/YAPflJhFBgrvz6WyoMZmLHcsuzAMJC/UCe7V8InN6AZ5qgdnQ9AE
+ u7pljs956QOG1Jfduyd1rNU9TiyeZl0h592SJx/kwcjniiwN22phAzkPeoUXwT+5l2u/uj/qu
+ qnxs7k6ThNU5lGiNsZsbCXHQ1XZpHtxCBiDxhzR8tLAWNVTbyrr0MW/LESz5L3ZEjkDsREulT
+ gMrHBsqQH9FMiBE6eTpmrKJsmbuPULCGSJeBAnu21Ta21BwPOc2KQprvYkNAC2PDOB0pwEKJ+
+ zKQ/BvKF6i57JaAPf/i0NsbpC2R7JlaN2h3MwW/nuHVAEyDzsHknpPeFzGqTkw3AfcqSAwk3X
+ Rb5rF3HWXS1xvO+ubriaN79e4g3N6UgHLZWs3wbZ/H1Kge+dKA41aMMz28FlvjE3SQFEMzLT9
+ eiuMgmqXm6sBo8auxw1nf2vSkPeg3uS248LNsEQ9270JF5I0tWiCbjk1D3hlEi8CapTC9bYus
+ agNgX0m2tg5e6qcLXueyFUw9PaszfGYxVYEFrKLzpQs68+eDBvxqT+Av0eyhsE8r5K8+42ZTl
+ dPnLfOA4QYO1ggfY8b6xLZKTTfwwPz91x9kUY+2r/0TIM=
 
+Hi,
 
---2wUEPk6V6lIxYR86
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[add official Raspberry Pi kernel developer list]
 
-On Fri, Aug 02, 2024 at 02:25:15PM +0000, Andrei.Simion@microchip.com wrote:
+Am 31.07.24 um 08:28 schrieb Ivan T. Ivanov:
+> It looks like they are few revisions of this chip which varies
+> by number of pins. Perhaps not all of them are available on the
+> market. Perhaps some of them where early engineering samples,
+> I don't know. I decided to keep all of them just in case.
+The BCM2711 had also some revisions and we avoided successfully multiple
+versions of the RPi 4B DTS. So it would be nice if someone can explain
+if C0 & D0 are available in the market? Otherwise we may end up with
+multiple versions of the RPi 5 DTS.
 
-> In regulator.yaml exists .*-supply [1] which practically allows every
-> char sequence before -supply. In the binding microchip,mcp16502.yaml [2]
-> each node under the regulators includes all the rules/documentation
-> from regulator.yaml , so I supposed that it is unnecessary to add
-> in the binding of those new property.
+I'm missing an explanation in the commit message, what's the difference
+between brcm,bcm2712-pinctrl and brcm,bcm2712-aon-pinctrl?
 
-> What is your opinion? Let me know any thoughts.
+According to the driver brcm,bcm2712-pinctrl is the same as
+brcm,bcm2712c0-pinctrl. So the former is more a fallback?
 
-The specific names for a given device are supposed to be specified,
-there's a bunch of existing bindings that appear to do that.
-
---2wUEPk6V6lIxYR86
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmatHkYACgkQJNaLcl1U
-h9CIkwf/RsbW7SyzVKRGUscKpzn3wbeRWCz0wIKHuuAl0St8cJoZ+yOx2gfpXAG6
-dvKJblD/8qEq3VDQPgDoLCvlP3rr4MyoM+4TlZQEXAZJ9tpmNqh0RstFA9pvpjSc
-LrcLotb4ZX2enREjujCphZnvy4rCauddzJRPx6hDnlGvcbkAcemZRvRTyPVMiJeQ
-Okc/k9h7/6NkGvf8eWEszAqEpsAytEye7Lkw9rlRpj8aCwfTQa7JJVrMqZZZmxg+
-MrUHqDa20mc/RMkWhAaoxNBeTosjGcHkShnYsvVIxpNXqETaix2ym3igFUP7OG//
-ztr4pub4/1pMjxdSje6vokLzBWrqbA==
-=Uffm
------END PGP SIGNATURE-----
-
---2wUEPk6V6lIxYR86--
+Thanks
+>
+> Cc: Andrea della Porta <andrea.porta@suse.com>
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> ---
+>   .../pinctrl/brcm,brcmstb-pinctrl.yaml         | 73 +++++++++++++++++++
+>   1 file changed, 73 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,brcm=
+stb-pinctrl.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,brcmstb-pinc=
+trl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,brcmstb-pinctrl.=
+yaml
+> new file mode 100644
+> index 000000000000..c5afdb49d784
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,brcmstb-pinctrl.yam=
+l
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/brcm,brcmstb-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom STB family pin controller
+> +
+> +maintainers:
+> +  - Ivan T. Ivanov <iivanov@suse.de>
+> +
+> +description:
+> +  Broadcom's STB family memory-mapped pin controller.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm2712-pinctrl
+> +      - brcm,bcm2712-aon-pinctrl
+> +      - brcm,bcm2712c0-pinctrl
+> +      - brcm,bcm2712c0-aon-pinctrl
+> +      - brcm,bcm2712d0-pinctrl
+> +      - brcm,bcm2712d0-aon-pinctrl
+> +
+>
 
