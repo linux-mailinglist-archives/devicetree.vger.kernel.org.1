@@ -1,111 +1,142 @@
-Return-Path: <devicetree+bounces-90457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67BFE9457AC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:38:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1AA59457C2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 233D4286323
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 05:38:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58C1B1F21FC3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 05:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B52564778E;
-	Fri,  2 Aug 2024 05:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E621F335C0;
+	Fri,  2 Aug 2024 05:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="M0WrNzhn"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="Q2vAS+iv";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WAzQ7YxQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout1-smtp.messagingengine.com (fout1-smtp.messagingengine.com [103.168.172.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4E22B9B9
-	for <devicetree@vger.kernel.org>; Fri,  2 Aug 2024 05:38:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F5822EE4;
+	Fri,  2 Aug 2024 05:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722577108; cv=none; b=tEU6LtBtRTDmAFQPNjfzq0sgLtCmSd5baJnjlN58CVp6+ID0UdiQ3nRl2Zz7u4i4d8otYypNIQNmLjXWkPp9Q/t9ePeopoPhzQpRGJaU8/gVOp40HhoR32+4ELID9Y+1Ss01C3FVtuPJ0YYGST5FgLiyPhiv/NGcX+jgjyXiPY8=
+	t=1722577715; cv=none; b=WODNn9LmDDo1WXPO2yb5uwptfXeGeDR5mTdgDbWRwCyMMnidamKusIAyAI0GeqE9y8Get+uAk1uKhBJsaTVs9SJFtHoCostqh/16seUi1d5bfotDYJ24RnaqVK/nT9fM1JunToFcVjUwbDNDX9UdZ+SxYPi6ShJ0dk+pRMrSRaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722577108; c=relaxed/simple;
-	bh=r+yRL5NIoWIL7MEb/c3WCpWwOnsPDmf5woeau24tuXg=;
-	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=lZ3IB+d/w0MQmxgBuO99e8dxsaLSIOUe9XfRysOCYlX8oo34rNYvElDGHSI5U1ayW4+tX+CLKv6uxs/whqmUbvDdm6VZC7GFcJvn3WtET1gRqtBdMy5rZKo+Hgi07F/R7CusyEUaYMe2U6ey1I9vW86yWX0NfHAJy7FvUrlGSjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=M0WrNzhn; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42819654737so45960025e9.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 22:38:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722577103; x=1723181903; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DfeP6amEbFO01B4Acz+SaLNxYhMl+/N6xqPd9wmuVYo=;
-        b=M0WrNzhnV1SvxBVE+bBwbkZSkAFjmHarLHiCN44noWobidpnYOSIiffGqPGL69t34j
-         KHXwHoNeii3qfc2bD72ymQF4PKYhIkVlYgCYqg+9Vnx2j36/R28lWDIjVwCJxuzb0wPF
-         BmKu+ywcofygglt+L/K9pgAM9odHEIF2HioAE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722577103; x=1723181903;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DfeP6amEbFO01B4Acz+SaLNxYhMl+/N6xqPd9wmuVYo=;
-        b=IhoZovI3OiUr9xzkX6RIDMG5VAp1z1ifp089+hdx+BQvo68EsWsSn/AW+fQq3Y831a
-         A4Bn3r4o8eKaX6FHaJIk+5mfWG6/ijfSi5Q5k8iZTUj0ltp/MjDhs4UkdNujB8Z4I+aa
-         nZUBjhzhOt0ZOv2exUFf3z2e+RBqA6p4JmiUPkDI9Ir9AdjZUY8KGKQREclDmNCDY6p9
-         XX4jfd88JxCbKWoKZ2F97CPVBz3Opj7oPjDXBdWBKtcblhRKUF66Aeq5bCf3tqDNk+Hc
-         W7CJvqfdCDDDYVYW6YIu5s2izxteKfhPfB+1WnhFcAw/3pAXZFjjjthSVEGV4cqzYsgN
-         3ncQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWx4bYjVVtKm6ht/Q4lD6psRJMv2j+IUc6CCN8VLnpvIO7MdyvSPF5XWMvY0Lwoo9E4gr5pweQLJ44q4md5LMSjNnnw+Qveugz/3w==
-X-Gm-Message-State: AOJu0Yz+FFjKFPSNd18FzzDRsCwTz+C3oEa/LRKzZrL2safGzld/OwDH
-	hgJBWYyem3A6CQAZ8VhY989qEihrfbauhKl/s1DJ+yN07gNFJCaIYGvORGSAGQ==
-X-Google-Smtp-Source: AGHT+IEejV9gHMncaZ3o/uEqdLFU6pJXfTAhrguKl3WqsWQrl6f780k97r/VhDfVH2wQrwxF/xsUbA==
-X-Received: by 2002:a05:600c:1d20:b0:426:668f:5eca with SMTP id 5b1f17b1804b1-428e6af76f7mr14366225e9.7.1722577103013;
-        Thu, 01 Aug 2024 22:38:23 -0700 (PDT)
-Received: from [10.229.42.193] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282b89a946sm81037345e9.6.2024.08.01.22.38.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Aug 2024 22:38:22 -0700 (PDT)
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-To: Jacobe Zang <jacobe.zang@wesion.com>, <robh@kernel.org>, <krzk+dt@kernel.org>, <heiko@sntech.de>, <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>
-CC: <efectn@protonmail.com>, <dsimic@manjaro.org>, <jagan@edgeble.ai>, <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <arend@broadcom.com>, <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>, <megi@xff.cz>, <duoming@zju.edu.cn>, <bhelgaas@google.com>, <minipli@grsecurity.net>, <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>, <nick@khadas.com>
-Date: Fri, 02 Aug 2024 07:38:22 +0200
-Message-ID: <1911198a4b0.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
-In-Reply-To: <20240802025715.2360456-5-jacobe.zang@wesion.com>
-References: <20240802025715.2360456-1-jacobe.zang@wesion.com>
- <20240802025715.2360456-5-jacobe.zang@wesion.com>
-User-Agent: AquaMail/1.51.5 (build: 105105504)
-Subject: Re: [PATCH v7 4/5] wifi: brcmfmac: Add optional lpo clock enable support
+	s=arc-20240116; t=1722577715; c=relaxed/simple;
+	bh=JxUn+v+sLiprvU8/YZ898YME8vnnjdW7HMZhlCtPxuc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=c393cIpeMbYwbecIVMKgBhJUWsqBcDmxJh3fUhyXzyoRTJNxuivyBDMoCij5v/WZjGc5QyzSVWsrs0Ai60qvHybUnfKx7MvHrtGazfA2Bw63myRSkx9uNwHV1p+tmP9m6IM1gPKWpe35RjRn6CjqTdnd9+/DglclXDue+e1bMng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=Q2vAS+iv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WAzQ7YxQ; arc=none smtp.client-ip=103.168.172.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 295C5138FCAA;
+	Fri,  2 Aug 2024 01:48:33 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 02 Aug 2024 01:48:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1722577713; x=1722664113; bh=Wt
+	ZfLoN7q0d2TuzchcdSawaP0pmYD+NytoaGIdcrM/A=; b=Q2vAS+ivuy6JAXUBiE
+	gC2Q2F4Q1p51yp4CU5xQ0Amjr/afAXNE1gDL2x1K2e5pjDHz8hQVhvMMU4B4sG8K
+	vbrKTkhtUEWxtYc2A7eoxfEUnHYQUFGjvZTOxXdFuLOqBhAkM1XAE+BK6jWI3KUM
+	/twa8SzlSe4V0gp5qQgArWGXv/XMLr8cJDraoHVxF8A0aLtsawLy6m+3Oj48L2mm
+	Wz3riyZuXI40k/ZRSqpX0yjlAbTCBiZbT7+j1nOIGa+SPGVQBj+l9Q0RF7UBOVW4
+	FLtVss5/qIXIYoNaWOvGWJOzY1pqEedz8QiSpFJl2beC1otWA2FY6uIJy/7qOkBG
+	RLtA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm3; t=1722577713; x=1722664113; bh=WtZfLoN7q0d2T
+	uzchcdSawaP0pmYD+NytoaGIdcrM/A=; b=WAzQ7YxQ1KeSliNsS8CWUrPw5/bmG
+	ej9AYJQNUQmRt3gOXHIFInpHDlVIrc5VGerLIkvmWc82aJTi82OjNWeS7gqzVpCK
+	DlRuBBw3HBRQjiIs4ov/Q2iWBGvP6kX8o8QzvJzJrHv7oL6CfzWUP6QSeWFVO9C+
+	iYOQKuzwHfwJPol7G5+wk1E+F6CT0dHjB2nax5hKW6PAwrlWSJqLKN1dSVEfnS9N
+	6OHU7et84AWGZA0jdwnTfcA8hOMpCVe/UassNd2bKN5Eeod0z/p+VuEvq5CaDJUP
+	dG2OH+VczFGz7VSDTN+w8mxkH0s7Bz5sG3xjN7MLAIVNx7J86+d0fhcFQ==
+X-ME-Sender: <xms:MHOsZtYbM5Yt0Nd4TJV4VCyOzg1Z1zgrupSglWAy2OLfIDHZ9ylfSQ>
+    <xme:MHOsZkY6A2SrnLLVFehjVRHal07aTdB76A6U8H6cvq1JndN554rXIlZzz0hXMC8Y1
+    jDEYJBqF17ikZaDP-4>
+X-ME-Received: <xmr:MHOsZv8Lo98VGjwYAuUdVv0n67-SCjr3vAoVRMKRPNvtChnsUKX_8_muhH34Me97LGo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrjeelgddutdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephfffufggtgfgkffvvefosehtjeertdertdejnecuhfhrohhmpeflihgrgihu
+    nhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqnecugg
+    ftrfgrthhtvghrnhepffetueegkedtgfejveeuvdfghfegtddvgfehudeghfegheetuedu
+    heduveejtefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomhdpnhgspghrtghpthht
+    oheptd
+X-ME-Proxy: <xmx:MHOsZrqhKitztroNEbtGEabZmFoT7nZBgB2JcJLHhuCrX7VAWMzb-A>
+    <xmx:MHOsZoq8L05kKaXmACABaXbYIrxkgOqbbRje-S_Iqh3pzLV8wKgb1Q>
+    <xmx:MHOsZhTf1Sl_LoY9zleSdgzU97U1m3wyQ7Wj1q4cuUsd3A55d9yD4A>
+    <xmx:MHOsZgqFiWf9Z-BKucoZxj5BXolBv7h4cQmxXe9zbCSBp1FZSnVoLw>
+    <xmx:MXOsZgLiZwWl2hLOAJqYOzurfND5hWQYRqU_x5osXQN9WPgibxr__vjx>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 2 Aug 2024 01:48:29 -0400 (EDT)
+From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Date: Fri, 02 Aug 2024 13:48:23 +0800
+Subject: [PATCH] dt-bindings: loongarch: Add la464 la664 CPU bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240802-la464-bindings-v1-1-4ccd299697f0@flygoat.com>
+X-B4-Tracking: v=1; b=H4sIACZzrGYC/x3MQQqAIBBA0avErBPUhpSuEi3UJhsIC4UIpLsnL
+ d/i/wqFMlOBqauQ6ebCZ2pQfQdhdymS4LUZtNQordTicDii8JxWTrGI4OzolUE1GAUtujJt/Pz
+ DeXnfDxLsBVxgAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jiaxun Yang <jiaxun.yang@flygoat.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=854;
+ i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
+ bh=JxUn+v+sLiprvU8/YZ898YME8vnnjdW7HMZhlCtPxuc=;
+ b=owGbwMvMwCXmXMhTe71c8zDjabUkhrQ1xboshc0XXl9+q/VqUyjnuWdCnxZse/TzSkXjhr4L8
+ g+fOVY+6yhlYRDjYpAVU2QJEVDq29B4ccH1B1l/YOawMoEMYeDiFICJKAkwMuy4NGO+14NuSbnC
+ Hst88a01BYVO72ZVSije95kgXv/1fxQjw6pHEyq6GI6fuipp9mC5jNwDps1LHz9kmr1s1eIz0u3
+ ql7kA
+X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
+ fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
 
-On August 2, 2024 4:57:48 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
+Document LA464, LA664 CPU compatibles for emulation machine.
 
-> WiFi modules often require 32kHz clock to function. Add support to
-> enable the clock to PCIe driver and move "brcm,bcm4329-fmac" check
-> to the top of brcmf_of_probe. Change function prototypes from void
-> to int and add appropriate errno's for return values.
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+---
+ Documentation/devicetree/bindings/loongarch/cpus.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Sorry, but this is moving in the wrong direction. The reason for changing 
-from void to int was to propagate the error up to the bus, ie. PCIe, SDIO, 
-or USB. Anyway, I reworked this patch last night to do just that. Let me 
-send it out to you.
+diff --git a/Documentation/devicetree/bindings/loongarch/cpus.yaml b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+index f175872995e1..462d107fbb4e 100644
+--- a/Documentation/devicetree/bindings/loongarch/cpus.yaml
++++ b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+@@ -21,6 +21,8 @@ properties:
+     enum:
+       - loongson,la264
+       - loongson,la364
++      - loongson,la464
++      - loongson,la664
+ 
+   reg:
+     maxItems: 1
 
-Regards,
-Arend
+---
+base-commit: 048d8cb65cde9fe7534eb4440bcfddcf406bb49c
+change-id: 20240802-la464-bindings-ca86b1741371
 
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> Change-Id: I21bf9e21b275452369dce1f50c2f092eded6376c
-> ---
-> .../wireless/broadcom/brcm80211/brcmfmac/of.c | 49 +++++++++++--------
-> .../wireless/broadcom/brcm80211/brcmfmac/of.h |  4 +-
-> 2 files changed, 31 insertions(+), 22 deletions(-)
-
+Best regards,
+-- 
+Jiaxun Yang <jiaxun.yang@flygoat.com>
 
 
