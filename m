@@ -1,91 +1,105 @@
-Return-Path: <devicetree+bounces-90564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 167E9945D63
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 13:47:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F47945D97
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:01:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94DEFB20F41
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:47:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E634283D54
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:01:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB811DB44E;
-	Fri,  2 Aug 2024 11:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9B91DB449;
+	Fri,  2 Aug 2024 12:01:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from hkg.router.rivoreo (45.78.32.129.16clouds.com [45.78.32.129])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1DB1E2873;
-	Fri,  2 Aug 2024 11:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.78.32.129
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBFB14B09F;
+	Fri,  2 Aug 2024 12:01:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722599234; cv=none; b=szJtoQVtcwP/GCLgPg1IrXlgb1cVGk/rD9UzwKWwawvOBA9goZT68ghD/bpqMpx/Y7mWYKW2HzCK5UCUBw+bafMHtvi2uIMe8NN8W2sgGpOXmWLfg03aT86oTk69XJxMSju+ZAIOFB54V8MutpIPdQ1WjtwVc1ttwJPajmj0+bY=
+	t=1722600112; cv=none; b=Ulfy8T39Yo1U/YsuAePLMO22IApuCCi1rE99WUrmE9/W7fYBLYYCz3mCIjKsDuvi5iso5ptPAJbd1NWZGvZZkWEsLPF+k9Gk4Mt5jA+bstrsNEXky3MI661wY7fITx+6/HIOkTR7eSqFOc8XKq5f1sp3mod4c1hZvSUbYpYMRIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722599234; c=relaxed/simple;
-	bh=Ywmrtq1bhsgjkopmVHEBTo8ehChPseqHw6GpKd+PL4U=;
-	h=Message-ID:In-Reply-To:References:Date:Subject:From:To:Cc:
-	 MIME-Version:Content-Type; b=Jc9atIJbf3gNZH5bKmPj19xaDl0Xt7NKRL5muu6ORBSzJNJudNnAD1MjP1y8VNq/f748GO5xdXUr7h3DXyGda5TIvO8eo8PTNoTftDfuH4v7WQu5GmFcehrX9jp/ZeF02qPyvt/KgKh9a/wv/DGinPZrk7Q9nd3kiQtdaqvYJL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one; spf=pass smtp.mailfrom=rivoreo.one; arc=none smtp.client-ip=45.78.32.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivoreo.one
-Received: from tianjin2.rivoreo.one (unknown [10.100.1.128])
-	by hkg.router.rivoreo (Postfix) with ESMTPS id E920711CEEF;
-	Fri,  2 Aug 2024 11:47:11 +0000 (UTC)
-Received: from [10.1.105.1] (localhost [127.0.0.1])
-	by tianjin2.rivoreo.one (Postfix) with ESMTP id 796326BEA1;
-	Fri,  2 Aug 2024 19:45:42 +0800 (CST)
-Received: from 10.12.4.102
-        (SquirrelMail authenticated user whr)
-        by _ with HTTP;
-        Fri, 2 Aug 2024 11:45:42 -0000
-Message-ID: <bc8e26604c189e737c92cb7d43ec1681.squirrel@_>
-In-Reply-To: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
-References: <2046da39e53a8bbca5166e04dfe56bd5.squirrel@_>
-    <CAL_JsqKpTKv-fthwD9bFHiVESJyNP6uMg7Px7Rh+-k583oz76g@mail.gmail.com>
-    <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
-    <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
-Date: Fri, 2 Aug 2024 11:45:42 -0000
-Subject: Re: [PATCH v2] of/irq: Make sure to update out_irq->np to the new
- parent in of_irq_parse_raw
-From: "WHR" <whr@rivoreo.one>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Saravana Kannan" <saravanak@google.com>,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-User-Agent: SquirrelMail/1.4.23 [Rivoreo]
+	s=arc-20240116; t=1722600112; c=relaxed/simple;
+	bh=raWuv0skPOWoOjKvJaMx51HTs9/zlRz6O1m2f1EMPZ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Uou+6ZRIPJY+6lSGRQ4USmxUr4uAsfWjMuWoUh7Yt4PCSAG79fbRlc+1fuYeMP2MbAn9ZygJticbv+xDS7Lby2e5eAyJg3QN6Ivt45gbJYlN1JPsLZfwqj9Hjtu2EwaAskBDZWkQs2AH+Jdqrm90YTYZ9bB2psFdY/4QFk044fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C50BC1007;
+	Fri,  2 Aug 2024 05:02:15 -0700 (PDT)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 642163F64C;
+	Fri,  2 Aug 2024 05:01:46 -0700 (PDT)
+Message-ID: <f43e0424-c58a-4895-a2e7-2ec403ea3519@arm.com>
+Date: Fri, 2 Aug 2024 13:01:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Priority: 3 (Normal)
-Importance: Normal
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v14 07/10] iommu/arm-smmu-v3: Maintain a SID->device
+ structure
+To: niliqiang <ni_liqiang@126.com>, jean-philippe@linaro.org
+Cc: Jonathan.Cameron@huawei.com, baolu.lu@linux.intel.com,
+ devicetree@vger.kernel.org, eric.auger@redhat.com, guohanjun@huawei.com,
+ iommu@lists.linux-foundation.org, jacob.jun.pan@linux.intel.com,
+ joro@8bytes.org, kevin.tian@intel.com, lenb@kernel.org,
+ linux-accelerators@lists.ozlabs.org, linux-acpi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, lorenzo.pieralisi@arm.com,
+ rjw@rjwysocki.net, robh+dt@kernel.org, shameerali.kolothum.thodi@huawei.com,
+ sudeep.holla@arm.com, vivek.gautam@arm.com, wangzhou1@hisilicon.com,
+ will@kernel.org, zhangfei.gao@linaro.org, zhukeqian1@huawei.com,
+ ni.liqiang@zte.com.cn, li.zhichao@zte.com.cn
+References: <20210401154718.307519-8-jean-philippe@linaro.org>
+ <20240801152922.5605-1-ni_liqiang@126.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240801152922.5605-1-ni_liqiang@126.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> On Wed, Jul 31, 2024 at 10:22 PM WHR <whr@rivoreo.one> wrote:
->>
->> > On Mon, Jul 29, 2024 at 11:54 PM WHR <whr@rivoreo.one> wrote:
->> >>
->> >> Commit 935df1bd40d43c4ee91838c42a20e9af751885cc has removed an
->> >> assignment statement for 'out_irq->np' right after label 'skiplevel',
->> >> causing the new parent acquired from function of_irq_find_parent didn't
->> >> being stored to 'out_irq->np' as it supposed to. Under some conditions
->> >> this can resuit in multiple corruptions and leakages to device nodes.
->> >
->> > Under what conditions? Please provide a specific platform and DT.
->>
->> I have a previous email sent to you before I came up with the fix. The
->> kernel
->> log for debugging and the device tree blob are attached again.
+On 01/08/2024 4:29 pm, niliqiang wrote:
+>> +static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
+>> +				  struct arm_smmu_master *master)
+>> +{
+>> +	int i;
+>> +	int ret = 0;
+>> +	struct arm_smmu_stream *new_stream, *cur_stream;
+>> +	struct rb_node **new_node, *parent_node = NULL;
+>> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
+>> +
+>> +	master->streams = kcalloc(fwspec->num_ids, sizeof(*master->streams),
+>> +				  GFP_KERNEL);
+>> +	if (!master->streams)
+>> +		return -ENOMEM;
+>> +	master->num_streams = fwspec->num_ids;
+>> +
+>> +	mutex_lock(&smmu->streams_mutex);
+>> +	for (i = 0; i < fwspec->num_ids; i++) {
 > 
-> Thanks. The patch needs to stand on its own with this detail, not
-> require that I've read (and remember) some other email among the
-> 1000s.
+> Hi all experts,
+> 
+> Recently, I have been debugging the smmuv3 code in the Linux kernel,
+> and I have some questions regarding the `mutex_lock(&smmu->streams_mutex)`
+> statement in the `arm_smmu_insert_master` function.
+> I would like to understand why streams_mutex is being locked here.
 
-For referencing the mentioned email in mailing list archive:
-https://lore.kernel.org/linux-devicetree/a373cf98c2d35f2bd828261f078471a5.squirrel@_/
+Because the "streams" rbtree is being modified, so it would be pretty 
+bad if another thread tried to walk or modify it concurrently. I'd hope 
+that was obvious from the code everywhere "streams" and "streams_mutex" 
+are referenced.
 
+> Is it to handle different types of PF under a single EP, each with its own device ID?
+
+It is expected that a single SMMU instance is highly likely to have more 
+than one device behind it, and therefore more than one StreamID to keep 
+track of.
+
+Thanks,
+Robin.
 
