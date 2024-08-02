@@ -1,185 +1,125 @@
-Return-Path: <devicetree+bounces-90623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A868946246
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:11:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0015946252
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE22B1F21359
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:11:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F18A51C20E56
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473BF1537B3;
-	Fri,  2 Aug 2024 17:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0174E16BE0C;
+	Fri,  2 Aug 2024 17:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GXBWB3Tc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GgfzWLEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2086.outbound.protection.outlook.com [40.107.21.86])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A27813634A;
-	Fri,  2 Aug 2024 17:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722618683; cv=fail; b=KllyzVn/tsUlmDyEsNQqW8EoYsjfbhrr0FunCj+xUBEoRhFs7AMrubGVL3EodlHthFsYq1EBrb3Eox8d2bZE+NhovPuzHlmHbjAh76ge24g3me0NHfL2jESCQkQi+urVElrmaAd0gBgq8AUboipucKg0t3sQDC/Q21wb0K7aUY0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722618683; c=relaxed/simple;
-	bh=NhhzqPB4zuWnaqf4XsQB51BbweIziZAnIIyZlwIGtIw=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=TY7yoUY7RZzJWYoMqwpGEAERRJrWD6r86gg/a4uO7T+0pHM1kXKlVoBWzt6PhDFbYkvR//R8U248uBv6GMgSpCuhlizZ4X6azXGMJhK/GQO7xWd8YnknWyT0kodDbf8Jq1L/vJLDGau93ajzqbpOznkCmrucVYoA+sNKpgD1q6E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GXBWB3Tc; arc=fail smtp.client-ip=40.107.21.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hJbb/apeqA6CqqidqSvXdN66aRk3ARWwk54Rq+VLeoAJQMBzDMXrN1jFAT+3uniuQajh2p/aW5qZXOFRPOswqUvIsuLhrFWwmg+fRCmNKTkEZX8NOvDQ08pCe94leXUXrFWPn5vgkJXqIlyI/q2kzXies9lsnYqsOM3Yos8zUB+pDJxG6DAwHXd/sktcVkGgpbjDv0QkEn+z7frwpocMKFtZnQDujMqtYPaqP5XD/+tzIvvsq7EtklbjIxM6TXWnwbjzr5nPyaEwfHqrqY1GCf4xl7cMi8QIEFBqP1cRfPtrh75ovfRWV/hHhGuyzFNbtKXFKAoMlMy3G9+DMJFo0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DJ7E2NYVhMhWMr28cvw4010zJ5+HKIs6GHz7SNTP3NI=;
- b=u7OE2U9Mff3JDkeoZTdxQbBF+ai6iv5AE8cmqr94J/tWgLV9KKIty3nm+zIcpqBXPsB7g4IQcPrV1GLK1fK/YIaA58h3PP6iaucJBD8p1Oi7D/EJz26MjZ82lhlHhGsQer6N16tpUZzaKIIeSLnk/e4y3FH0UV5/gL+nSUysITkPOaWUGOdlW1dApXH0d888qplHkcJ+WfYapAbwuJ+A/UVV29PY6AsSEunR2djZjE2MkeOoiTxhHB0GuhubGPTp3D/Ilix2jm4oQFQ+yv5mCld9QJrNxZGgXkvOY+EP5vOwv3xOrqRyl6J3UNYpTtTouqSJ9rUNXTVQwr2p5K5RFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DJ7E2NYVhMhWMr28cvw4010zJ5+HKIs6GHz7SNTP3NI=;
- b=GXBWB3Tc6lDt9Ct3rUmqi2+v6lp/aDIFirP97TKZeQDTZVBT6ZbDiUqazlKG53vzvWgJXng17zrSY2XUpdT6jT6F6r6O8jE2K81d/sIZp7yn/ytMmkH3WJZnroVq137oijRxQ7E1zMUuaH1vuAdSCxRgth+cHjc/skE+WpXUy1jpM+N310mKXy03Tsqko5oyhHFONOUrTN+ptPAiU9LCp2pHmHDV3yTSUOTfUSYaiwdtmdk29utk9y4yENGoe5Vayuq3Oz1BS5UPtyZZHvk1m6osOKEUDaVckCv8yPUdNBfvP9WjXRKT3IiHGI8zwDsB7dzcG8D439kr9abZLU27Gw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU0PR04MB9297.eurprd04.prod.outlook.com (2603:10a6:10:354::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.23; Fri, 2 Aug
- 2024 17:11:17 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.021; Fri, 2 Aug 2024
- 17:11:17 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	linuxppc-dev@lists.ozlabs.org (open list:FREESCALE SOC DRIVERS),
-	linux-arm-kernel@lists.infradead.org (moderated list:FREESCALE SOC DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: soc: fsl: add missed compatible string fsl,ls*-isc
-Date: Fri,  2 Aug 2024 13:11:02 -0400
-Message-Id: <20240802171102.2812687-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SA0PR11CA0083.namprd11.prod.outlook.com
- (2603:10b6:806:d2::28) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5231C1537A2;
+	Fri,  2 Aug 2024 17:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722619007; cv=none; b=VWfhjqpsckhBJhfhiuZtKNgOaPNEUKZwVJ6NPa1ULXKfCopqi1HBxjclasMCImh+TpU8/Vy2GpJjCZVAG0kdV2lXO5p+LfAO8liRhurV8w8+NE3/1VG7zY+eLrFRQgNn6l6IFygjMVXRWJ6fbbztx3O3LAVG+VpXvaOcJE7AB08=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722619007; c=relaxed/simple;
+	bh=ZUOc7CWyI4910KClz9Lm32M6Ey/iLMCOiX6v14u+r2A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jO0PUbggXXiMe3PwyV5xBHNfJyYR5xcNZj17g5ubo3iBJcF/yWjDVjf8ct6j3Z7/bvfAlH8YHKHKwrUP7PZpAQOTrvr0voSK6xpSVz5NHpV0n6IqiEwdFeZMKkxZWOrsqcEXPHZ8NgTPr9uP6Cw41SSq7ClxJs3N8MNu4aUIWB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GgfzWLEb; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722619006; x=1754155006;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZUOc7CWyI4910KClz9Lm32M6Ey/iLMCOiX6v14u+r2A=;
+  b=GgfzWLEbwTFKgQVne6KHX8td9vmKmkyvssINiyGB6TQXSZkSmeQpKsxn
+   9qb0Au4bIs5pe1eELIRi5WK/zD4qhNvSpNqwrxpw5Rzmhdx2Oj72gyPeq
+   21DKivZRTCn+gQgkh3sOL3ISA8awlxMHqyJ6Gb6lwJJsau0+jaipTtbpa
+   l6IPyp/RavOePpH42sxdZxaTYJ+rbZK9BdE2Lxsij4K/4kNamIgdJLziu
+   up1tZYuicO3AFr/caUpZlcS66X6oNXO7enMGX8dOI6Eo4Q2y/YvWOfeKa
+   wgBCiMgia8R1HJ5a69EeQQpT9JOVhCFcYO3Bb9PEKKsipvzsRiKb9/SPv
+   g==;
+X-CSE-ConnectionGUID: fmCl3UbKQLim0oYJ82TGZw==
+X-CSE-MsgGUID: foyLHTmiRVGQW6K4NBPFew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11152"; a="31276353"
+X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; 
+   d="scan'208";a="31276353"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2024 10:16:46 -0700
+X-CSE-ConnectionGUID: 9rwt5JNVT3Ss468ZZCy/jg==
+X-CSE-MsgGUID: PUZFLnh4R7aulr4u7P/kTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; 
+   d="scan'208";a="55351116"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 02 Aug 2024 10:16:42 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sZvtQ-000xBD-1p;
+	Fri, 02 Aug 2024 17:16:40 +0000
+Date: Sat, 3 Aug 2024 01:16:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	waqar.hameed@axis.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, wangshuaijie@awinic.com,
+	liweilei@awinic.com, kangjiajun@awinic.com
+Subject: Re: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x
+ proximity sensor
+Message-ID: <202408030003.NYT1R5AU-lkp@intel.com>
+References: <20240726061312.1371450-3-wangshuaijie@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU0PR04MB9297:EE_
-X-MS-Office365-Filtering-Correlation-Id: e4e9132e-fedd-486f-44c0-08dcb3161f1d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|7416014|1800799024|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?hQNKAM3Dfqa9DzQRha6CdxGZpP8tRRFpfyV9Io4jN5tvs//wQn9M3fBg1WQj?=
- =?us-ascii?Q?niINe8CMPPvGmWtcHg5vs9rZpDRJMNTNyarRUPAsO9yaBYMmeEyFoU4WEuUg?=
- =?us-ascii?Q?HDXyOlN4rRR3jLO2nNDYfYBumDh7GfEtvJruBUy3Sf39PCy3s6fay6TH6HWr?=
- =?us-ascii?Q?8ivVKEyWK2YDDKDOFTPYSb4zWd7H9h7BSkkfipnsvXz4HBpsjyGC63aOJbPX?=
- =?us-ascii?Q?DD7n9vkvFdLBOiTskr99Go64gS/tnWg8/6E3lYToPrdFT9vsHimusvY3C1in?=
- =?us-ascii?Q?ntdjBq3VQSFThydjvG6TAPWBy2HXEL/bRufUuQaGcRfboM5pou6I67aIg6Zs?=
- =?us-ascii?Q?IjhsI37EsVT93R7QAiBANHXykwRjk8jkkWIOCEDfnAEoYoAzR/1uKj0zu6h6?=
- =?us-ascii?Q?duZO9scS+Zjtbd5arfstdLhovLyJG6ih9cSaWGolYPFuECjIj6egq9xk4H0v?=
- =?us-ascii?Q?COq1BG+E3rwPQusVIMbdvrUCH5zauoG+6KTRRpV0/des5te6YGaMw3bcXHKU?=
- =?us-ascii?Q?HMCkKPF/TV8rBcQxaYMxyzXnkie4+nKJ20KZDpxK7diGuTU+TjtS3V3ZQyfZ?=
- =?us-ascii?Q?EzF28rw2kBPr9FFr9RtTNheb/3FdMdIYNN3xDYmuDB3cC6+WhvMfqNsfGk2g?=
- =?us-ascii?Q?FudejBo5jHrVUI1k3to/mRAQLRn0AlMhSp7L0xmWWgsUOlRQBv6c3wRln4y0?=
- =?us-ascii?Q?B8i5eUfZqMILvzfQVucx+XwPwfR2T1CxWs8uhrl5i2PujbOab5ZKquTBDa5y?=
- =?us-ascii?Q?ANCXRsngUF+Hbf6H/DShJRIsmnMWwQzLzFg60nL2qcknRqz7OqepXU7hvBFr?=
- =?us-ascii?Q?oLKCivz1vjr/Zi7ejN/40kJyr/Uu+m4tgUg3iM6SsxpdaIR9BTOeueIQS87G?=
- =?us-ascii?Q?GTz7kMT+ah4syqFskA8zZwGOiFrmcewSPLXNWk4zf2Q5LHrBjQBlXZTlKTEN?=
- =?us-ascii?Q?hV42zDDlZaqjx78mvoJPvjv5dmdL/WKe0vmu4rA1w0Ym0DFGhZUM2Fo32+Dk?=
- =?us-ascii?Q?s1uWLO/Lfs8Iyv4S6ET6leBs1mh3ypR4vW+dljN/4rEP2btj1CxtjjBxPF7f?=
- =?us-ascii?Q?z9E3GdAvWXuu3vVGKVyrLinh7wfuCKHMg3rNNniELt5FxZIghPm0tqiKCnTU?=
- =?us-ascii?Q?wru3fI67jIrr283wM1sv/T5Kp0b6FaKVGifbsLRMsRng7qC8AaXK0PGhcdul?=
- =?us-ascii?Q?pBn1+IXbEzDej9pBPJufKqdiRANFmuV21BEsvB6lBQGQOz/Ri6+GTazH7d2q?=
- =?us-ascii?Q?2Dua7smJk4iIC25+zJc63pv7So8/2AOuET9X6xWyeQYc5oAFxvIL84B+8/ij?=
- =?us-ascii?Q?zNpIVND/Z762XsUMBivla7zoQENgkiiV/68yeQ72NjR0tQ2nQLATAIywwg/5?=
- =?us-ascii?Q?GWwM6/rWUvkv19/HOT9BNe5MP848NToQ9S5qnpyIQ/p+tWt5CA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(1800799024)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/oUwBYeuA0r3kKMAW/DSlGbJTzRzC+gZgqXYLy/7U4ntZriJm5ms0VpOiyTG?=
- =?us-ascii?Q?TobJiPqPpo7EuCBd3NrWETYBgXJdoceXZStXUT2QW4wxd7iqOaQHvNBcQvvR?=
- =?us-ascii?Q?2vskY9iEFB5uJjY1S0GgkaHFceFfwqha0g2Sx+FrfZ9GmEqjifJb0Z4Vvb11?=
- =?us-ascii?Q?Q5JQ6izsBg8jA0mfzs6O34ykQioIn+Bz6SUXN9ov7u66Btt6IB8Ola1QRCkM?=
- =?us-ascii?Q?IBTUkLFC9uxrloLc2jsqNltNjR2nXse+1i0Hm7SNs0VyabWt1zSFXACG2v85?=
- =?us-ascii?Q?CXXWDIXa0HBG3VjyKvMuEG0yltNcjjtqJzRHONswzzniUPYkaKSucKwgXUBa?=
- =?us-ascii?Q?sy4ZiHNNDrzfIbFmQayJWjtdGA7Hjafh2O1Vi/a31cSWDnaSpNlQwQVN+9XN?=
- =?us-ascii?Q?UrI2+WoYAZ7arfnIFRGhqwZQjM3QZqHdQc98uzGyM+YyUCPxktHCNcdTXWar?=
- =?us-ascii?Q?4o0tEgqarUEwwpdKnnf2JeQjtPqledAR9lmCGlCrNyyrRWZr0aArFyvjo1VW?=
- =?us-ascii?Q?Lu3gXXlUpnyAOQEOLc8QEQlZcQ42dWHRHIuKqjjoTfM/o2zetKhLa2CgK6e5?=
- =?us-ascii?Q?dsgCmjZlPBTN09MJaQzM1B4VHn3tOpasMLWxtlSRz03LtQH66QPfZPln+wCr?=
- =?us-ascii?Q?eqjLfCvV6zWzqc6Ux5GWLtTFAE2FaTmE0xq2ptohiPcXgQ1+buhioF+3lD2Z?=
- =?us-ascii?Q?T+YNy6byFWs8LI5Dhg8Y0nMQjpxJzq+GMoF5giIt+BpLLneoQzeEhKx+Oku8?=
- =?us-ascii?Q?d6Rsqwatm9Qpqzi1xOP84b8UC8NMc081eW2ik2EVcfTR20dpJOCFa7B6y6tQ?=
- =?us-ascii?Q?pjwooug/WCmb5pwg10qXQhAoC+fzo9nUKZGtZY2d456Q+0Em60UJzi0dmc9X?=
- =?us-ascii?Q?AdgiLJ2uY60T944FsAvyvlNtmr7LOxPp6U8krnFU6u/Wyoh8P8sQgt9GoQoP?=
- =?us-ascii?Q?aoV19iL2r92jjIUTf54ysKlyRG3w8om3xDm/R7sR0Qwj9LdHNGWrDFHjWN4n?=
- =?us-ascii?Q?zVrXixcsYHyI4SCL5xEFPECAA8zt3/tO4N1MgFyK4DVmxKu0wfiTIlb4LO6x?=
- =?us-ascii?Q?FxQ9BMpS7eaBZ7Gnp+9p7v4SCLAMsli9jfabC5DLD5PhhhLBq4r9L+FEB4yZ?=
- =?us-ascii?Q?6KgWYjzK0wHP9I07rI5fehmBVgrXcK8NTMUkC9jLnb1oT6EmM9E91nc/2n4q?=
- =?us-ascii?Q?tOkItZibKwdP9EsreMakLQ/D1zFTBk+4eoV7PVxJqV88FPTnqRlyS3a/vxkS?=
- =?us-ascii?Q?TYfe8af2MLWHnO1IP1yV2CwUSiTbspvcqDpMdeOUR1bHuj8sZ9dKoMLgmcLy?=
- =?us-ascii?Q?3b15Yk+XWrhc0bh525tZYfJjsUqQWHIjEFOebO8kdEXFjLyCr6sicAx4yPJN?=
- =?us-ascii?Q?oVDCGnqZX2/ur/YuBAw+DQ4jX815ahlID617H8WlYa98+/IT5GZeWCSDn5Id?=
- =?us-ascii?Q?lllFwxBXux6C/awgiaycu8eRNKWpPcvkA0oAMFKy7lRFoNuiuvWVUgCfdwcn?=
- =?us-ascii?Q?vbi8IpPIIq4ZxDoqz53nVMNP2dgHiQCzbSanpd7fYq72GRb3RkOZkZG39KPI?=
- =?us-ascii?Q?kB9Q21Ct9LbJDgP3unTGhB810Tr/GAopypL5T0Ne?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4e9132e-fedd-486f-44c0-08dcb3161f1d
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2024 17:11:17.4941
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dkwY0H+LEVXtaql+Ow3k53nrG5knk9RAXCStsgs/bQtzC+YlPbi4OEZj3Xl5E1GdsqztVU9Pgpi0S4f+lNJbOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9297
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240726061312.1371450-3-wangshuaijie@awinic.com>
 
-Add compatible string, fsl,ls1088a-isc, fsl,ls2080a-isc, fsl,lx2160a-isc.
-Fix the below warning:
-arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dtb: /soc/syscon@1f70000: failed to match any schema with compatible: ['fsl,ls2080a-isc', 'syscon']
+Hi,
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml       | 3 +++
- 1 file changed, 3 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-index 2a456c8af992e..cff59d6453cec 100644
---- a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-+++ b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-@@ -23,6 +23,9 @@ properties:
-           - fsl,ls1028a-scfg
-           - fsl,ls1043a-scfg
-           - fsl,ls1046a-scfg
-+          - fsl,ls1088a-isc
-+          - fsl,ls2080a-isc
-+          - fsl,lx2046a-isc
-       - const: syscon
- 
-   reg:
+[auto build test ERROR on 1722389b0d863056d78287a120a1d6cadb8d4f7b]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-iio-aw9610x-Add-bindings-for-aw9610x-sensor/20240726-141450
+base:   1722389b0d863056d78287a120a1d6cadb8d4f7b
+patch link:    https://lore.kernel.org/r/20240726061312.1371450-3-wangshuaijie%40awinic.com
+patch subject: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x proximity sensor
+config: alpha-randconfig-r053-20240802 (https://download.01.org/0day-ci/archive/20240803/202408030003.NYT1R5AU-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240803/202408030003.NYT1R5AU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408030003.NYT1R5AU-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   alpha-linux-ld: drivers/iio/proximity/aw9610x.o: in function `aw9610x_ps_notify_callback':
+>> (.text+0x5b4): undefined reference to `power_supply_get_property'
+>> alpha-linux-ld: (.text+0x5c8): undefined reference to `power_supply_get_property'
+   alpha-linux-ld: drivers/iio/proximity/aw9610x.o: in function `aw9610x_i2c_probe':
+>> (.text+0x870): undefined reference to `power_supply_unreg_notifier'
+>> alpha-linux-ld: (.text+0x878): undefined reference to `power_supply_unreg_notifier'
+>> alpha-linux-ld: (.text+0xb4c): undefined reference to `power_supply_reg_notifier'
+   alpha-linux-ld: (.text+0xb98): undefined reference to `power_supply_reg_notifier'
+   alpha-linux-ld: (.text+0xbac): undefined reference to `power_supply_unreg_notifier'
+   alpha-linux-ld: (.text+0xbb8): undefined reference to `power_supply_unreg_notifier'
+   alpha-linux-ld: drivers/iio/proximity/aw9610x.o: in function `aw9610x_i2c_remove':
+   (.text+0xc18): undefined reference to `power_supply_unreg_notifier'
+   alpha-linux-ld: (.text+0xc20): undefined reference to `power_supply_unreg_notifier'
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
