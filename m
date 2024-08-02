@@ -1,164 +1,126 @@
-Return-Path: <devicetree+bounces-90503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72DD945A3E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:46:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E91D945A54
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:59:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA9D285F6A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:46:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 727B81C216CD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:59:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C371C4608;
-	Fri,  2 Aug 2024 08:45:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="W/hE+pUW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A21E1C8228;
+	Fri,  2 Aug 2024 08:59:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548FE1C3F14;
-	Fri,  2 Aug 2024 08:45:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BBC1C7B9D;
+	Fri,  2 Aug 2024 08:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722588338; cv=none; b=vD62U7Kbo0OHKED2/cr+87s+EXYMe75HEsUMvHJz7TynU6Lx1grRwJQDOUhBdK5xZqLXz2JjpQS/p3j26zf67S+Is81g1+0OvOfpxvK/0S4jVCTEfMj/+ytKKSTSe+FVcEtZCFPumQPdFkB5Rj/GX04jRstm/8tZgLRqkc0vO58=
+	t=1722589141; cv=none; b=PrmPhFdoNEMlcD19U1ByUoSVR3AfxclIgIDYjgKseaUhsI9KjcTK4XKlMMetbFBOTy67wSXTlkagd59d8jFR3J/yPONgEvSC2KxCVRH3pcLFStMrFAcBSzHnOx/bYl0MZxurOVqNS6sTu0fBFH5dXgUsXgTEqp1YLdDtW4UD/s0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722588338; c=relaxed/simple;
-	bh=NkzjrWmY9GxHW4qybd1qDhh4ZKci0hr+K7IaFyByWAk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AYqhy0xewLF/3BsX1bQlmVm+U3ZXPbpIfG55Df6Zt9imW+6OO+t+heEboPfW15GmSFf2NIptcWX6mJR0aBg0SLXVAoNZeA2/MWMDStwR5U3FMRwbBNQw9sJHLTGsWTJ/7up6spHbMJaJ0kBhFFuTguIcH3Z2faG4h//ejdbRPAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=W/hE+pUW; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1722588338; x=1754124338;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NkzjrWmY9GxHW4qybd1qDhh4ZKci0hr+K7IaFyByWAk=;
-  b=W/hE+pUWX+m34TK0xf+DYTblJHNErngpJ+ndDutV0O2Z+PjO2W8XTDqa
-   DV2LFpdf6v/cSJNs+OjrxMNDt2Bon0PimJAVQwgNWMFs7u8qNUZllCvvl
-   /F8j+XQ1WW67Kx7l0SjqaueKZSm8ajk868HMSChfM0QKH9XXN9VbBxH4i
-   Nv5zg+b94FaQTTnsZvNlilCSU/6Up5KoeYbUWq0qlxAVshJHsGtPqWFgB
-   EctK7itlLsPLxIKMn5YzPMbcLn1CpuAuC2h20h1PhoSyTCzE2/1sfH8tw
-   LPqCrNI27U2FadEzA2PpjiMPNhUtIsvzshPtlDAoFMkJRiD07ETEFP2mZ
-   A==;
-X-CSE-ConnectionGUID: W9KqdMcXRKuEFdpNV+qlRg==
-X-CSE-MsgGUID: Yv6uE7HJQBy2b86uGBUtOA==
-X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; 
-   d="scan'208";a="260922556"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Aug 2024 01:45:37 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 2 Aug 2024 01:45:05 -0700
-Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Fri, 2 Aug 2024 01:45:02 -0700
-From: Andrei Simion <andrei.simion@microchip.com>
-To: <broonie@kernel.org>, <lgirdwood@gmail.com>, <claudiu.beznea@tuxon.dev>,
-	<nicolas.ferre@microchip.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<robh@kernel.org>, <alexandre.belloni@bootlin.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>,
-	Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 6/6] ARM: dts: microchip: sama5d29_curiosity: Add reg_5v to supply PMIC nodes
-Date: Fri, 2 Aug 2024 11:44:33 +0300
-Message-ID: <20240802084433.20958-7-andrei.simion@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240802084433.20958-1-andrei.simion@microchip.com>
-References: <20240802084433.20958-1-andrei.simion@microchip.com>
+	s=arc-20240116; t=1722589141; c=relaxed/simple;
+	bh=dbKN0+MqNrFpMCkf55bs3q79x4n4B1Fo54lJuYi4g80=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xj/e8jKkhFfDeh2mJY15Oe3Pw0991qayJ652GVb27VTHaTNj/Px8rK9joOdczYNrQ1XdSdqPmWGXgbgSU58JncRbilTnKR9i8nhvak7mK7fOEX1Xv7gRiQcZBaviJLzKlVnWsMML9F60lZrJfnWGzZZXZeno+hIgNobua2HzjY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 281D91C000E;
+	Fri,  2 Aug 2024 08:58:51 +0000 (UTC)
+Message-ID: <0abc375c-61a1-4b8c-bac5-a5dc170c5fb6@ghiti.fr>
+Date: Fri, 2 Aug 2024 10:58:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 13/13] riscv: Add qspinlock support
+Content-Language: en-US
+To: Andrew Jones <ajones@ventanamicro.com>,
+ Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Andrea Parri <parri.andrea@gmail.com>, Nathan Chancellor
+ <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
+ Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-14-alexghiti@rivosinc.com>
+ <20240731-ce25dcdc5ce9ccc6c82912c0@orel>
+ <CAHVXubhQefQ6i3Vow_p-uSACQyPcMJNC2UwB99xt_=jDtRUDFw@mail.gmail.com>
+ <20240801-e773d3752fe8b5484405d404@orel>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20240801-e773d3752fe8b5484405d404@orel>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-GND-Sasl: alex@ghiti.fr
 
-Align with the datasheet by adding regulator-5v which supplies
-each node from the regulator using phandle to regulator-5v through
-pvin[1-4]-supply and lvin-supply.
 
-Co-developed-by: Mihai Sain <mihai.sain@microchip.com>
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
-Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
----
- .../boot/dts/microchip/at91-sama5d29_curiosity.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On 01/08/2024 12:15, Andrew Jones wrote:
+> On Thu, Aug 01, 2024 at 10:43:03AM GMT, Alexandre Ghiti wrote:
+> ...
+>>>> diff --git a/include/asm-generic/qspinlock.h b/include/asm-generic/qspinlock.h
+>>>> index 0655aa5b57b2..bf47cca2c375 100644
+>>>> --- a/include/asm-generic/qspinlock.h
+>>>> +++ b/include/asm-generic/qspinlock.h
+>>>> @@ -136,6 +136,7 @@ static __always_inline bool virt_spin_lock(struct qspinlock *lock)
+>>>>   }
+>>>>   #endif
+>>>>
+>>>> +#ifndef __no_arch_spinlock_redefine
+>>> I'm not sure what's better/worse, but instead of inventing this
+>>> __no_arch_spinlock_redefine thing we could just name all the functions
+>>> something like __arch_spin* and then add defines for both to asm/spinlock.h,
+>>> i.e.
+>>>
+>>> #define queued_spin_lock(l) __arch_spin_lock(l)
+>>> ...
+>>>
+>>> #define ticket_spin_lock(l) __arch_spin_lock(l)
+>>> ...
+>> __arch_spin_lock() would use queued_spin_lock() so that would make an
+>> "infinite recursive definition" right? And that would override the
+>> "real" queued_spin_lock() implementation too.
+>>
+>> But maybe I missed something!
+>>
+> It depends on where the definition is done. It should work if the
+> preprocessor expands the implementation of __arch_spin_* before
+> evaluating the #define of queued_spin_*. IOW, we just need to put
+> the defines after the static inline constructions.
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-index 6b02b7bcfd49..a9d409ad7726 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-@@ -84,6 +84,14 @@ memory@20000000 {
- 		device_type = "memory";
- 		reg = <0x20000000 0x20000000>;
- 	};
-+
-+	reg_5v: regulator-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V_MAIN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
- };
- 
- &adc {
-@@ -150,6 +158,7 @@ mcp16502@5b {
- 		regulators {
- 			vdd_3v3: VDD_IO {
- 				regulator-name = "VDD_IO";
-+				pvin1-supply = <&reg_5v>;
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-initial-mode = <2>;
-@@ -169,6 +178,7 @@ regulator-state-mem {
- 
- 			vddio_ddr: VDD_DDR {
- 				regulator-name = "VDD_DDR";
-+				pvin2-supply = <&reg_5v>;
- 				regulator-min-microvolt = <1200000>;
- 				regulator-max-microvolt = <1200000>;
- 				regulator-initial-mode = <2>;
-@@ -192,6 +202,7 @@ regulator-state-mem {
- 
- 			vdd_core: VDD_CORE {
- 				regulator-name = "VDD_CORE";
-+				pvin3-supply = <&reg_5v>;
- 				regulator-min-microvolt = <1250000>;
- 				regulator-max-microvolt = <1250000>;
- 				regulator-initial-mode = <2>;
-@@ -211,6 +222,7 @@ regulator-state-mem {
- 
- 			vdd_ddr: VDD_OTHER {
- 				regulator-name = "VDD_OTHER";
-+				pvin4-supply = <&reg_5v>;
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-initial-mode = <2>;
-@@ -234,6 +246,7 @@ regulator-state-mem {
- 
- 			LDO1 {
- 				regulator-name = "LDO1";
-+				lvin-supply = <&reg_5v>;
- 				regulator-min-microvolt = <2500000>;
- 				regulator-max-microvolt = <2500000>;
- 				regulator-always-on;
-@@ -249,6 +262,7 @@ regulator-state-mem {
- 
- 			LDO2 {
- 				regulator-name = "LDO2";
-+				lvin-supply = <&reg_5v>;
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-always-on;
--- 
-2.34.1
 
+So I have just given it a try, both qspinlock.h and ticket_spinlock.h 
+define arch_spin_XXXX(). That triggers a bunch of warnings.
+
+I'll drop this suggestion as I find it harder to understand and because 
+of the warnings that would need the introduction of a new preprocessor 
+variable (or something else?).  And the solution with 
+__no_arch_spinlock_redefine is really straightforward and lightweight.
+
+Thanks,
+
+Alex
+
+
+>
+> Thanks,
+> drew
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
