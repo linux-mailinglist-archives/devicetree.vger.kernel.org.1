@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-90563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA36945D47
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 13:34:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 167E9945D63
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 13:47:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 273821C21449
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:34:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94DEFB20F41
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4461DE852;
-	Fri,  2 Aug 2024 11:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB811DB44E;
+	Fri,  2 Aug 2024 11:47:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from hkg.router.rivoreo (45.78.32.129.16clouds.com [45.78.32.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A76D14D458;
-	Fri,  2 Aug 2024 11:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1DB1E2873;
+	Fri,  2 Aug 2024 11:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.78.32.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722598446; cv=none; b=hqoLq8018jBrwe6ZKk4cwKI/bYf5R3dhs0ougs24IoE6F/BnaOnuXdhUZg6pLxqfzYuS5aV+MnX3sx6v8rBnhf8mDZKpuYMeKxt6978nuYMYkAoPbxympLJabYuJxkJ0Sw72Difu3wDqghWlqzX7pj8RWRCjlfj81h+Ua7maumE=
+	t=1722599234; cv=none; b=szJtoQVtcwP/GCLgPg1IrXlgb1cVGk/rD9UzwKWwawvOBA9goZT68ghD/bpqMpx/Y7mWYKW2HzCK5UCUBw+bafMHtvi2uIMe8NN8W2sgGpOXmWLfg03aT86oTk69XJxMSju+ZAIOFB54V8MutpIPdQ1WjtwVc1ttwJPajmj0+bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722598446; c=relaxed/simple;
-	bh=CSN/nzOenTuEchA+JBM1pilFuDhdl8T4uNTbeBLKTuE=;
+	s=arc-20240116; t=1722599234; c=relaxed/simple;
+	bh=Ywmrtq1bhsgjkopmVHEBTo8ehChPseqHw6GpKd+PL4U=;
 	h=Message-ID:In-Reply-To:References:Date:Subject:From:To:Cc:
-	 MIME-Version:Content-Type; b=muqnT1mgDnCRyukycFE+OLEJy4s3/7No4zEF9VxHc50Ulf9NYEihEw9qvzL712lpvMKwp6+iC2lfBeCpVuVHFv2/VlLu/r/2jKCjzDpYeWtnzhCiTNwh9jLaCTjinZKZs20TDi6VBtoarAbNmO7+R0xB8NeoJd/SwMWhSxcYwl8=
+	 MIME-Version:Content-Type; b=Jc9atIJbf3gNZH5bKmPj19xaDl0Xt7NKRL5muu6ORBSzJNJudNnAD1MjP1y8VNq/f748GO5xdXUr7h3DXyGda5TIvO8eo8PTNoTftDfuH4v7WQu5GmFcehrX9jp/ZeF02qPyvt/KgKh9a/wv/DGinPZrk7Q9nd3kiQtdaqvYJL0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one; spf=pass smtp.mailfrom=rivoreo.one; arc=none smtp.client-ip=45.78.32.129
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivoreo.one
 Received: from tianjin2.rivoreo.one (unknown [10.100.1.128])
-	by hkg.router.rivoreo (Postfix) with ESMTPS id 6C83511CEEF;
-	Fri,  2 Aug 2024 11:33:58 +0000 (UTC)
+	by hkg.router.rivoreo (Postfix) with ESMTPS id E920711CEEF;
+	Fri,  2 Aug 2024 11:47:11 +0000 (UTC)
 Received: from [10.1.105.1] (localhost [127.0.0.1])
-	by tianjin2.rivoreo.one (Postfix) with ESMTP id 0B4A56BE31;
-	Fri,  2 Aug 2024 19:32:29 +0800 (CST)
-Received: from 10.1.107.31
+	by tianjin2.rivoreo.one (Postfix) with ESMTP id 796326BEA1;
+	Fri,  2 Aug 2024 19:45:42 +0800 (CST)
+Received: from 10.12.4.102
         (SquirrelMail authenticated user whr)
         by _ with HTTP;
-        Fri, 2 Aug 2024 11:32:29 -0000
-Message-ID: <649fab0060369a98b9a898e82f518f18.squirrel@_>
+        Fri, 2 Aug 2024 11:45:42 -0000
+Message-ID: <bc8e26604c189e737c92cb7d43ec1681.squirrel@_>
 In-Reply-To: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
 References: <2046da39e53a8bbca5166e04dfe56bd5.squirrel@_>
     <CAL_JsqKpTKv-fthwD9bFHiVESJyNP6uMg7Px7Rh+-k583oz76g@mail.gmail.com>
     <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
     <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
-Date: Fri, 2 Aug 2024 11:32:29 -0000
+Date: Fri, 2 Aug 2024 11:45:42 -0000
 Subject: Re: [PATCH v2] of/irq: Make sure to update out_irq->np to the new
  parent in of_irq_parse_raw
 From: "WHR" <whr@rivoreo.one>
@@ -84,42 +84,8 @@ Importance: Normal
 > Thanks. The patch needs to stand on its own with this detail, not
 > require that I've read (and remember) some other email among the
 > 1000s.
-> 
-> "multiple corruptions and leakages to device nodes" is meaningless. Be
-> exact, it's device_node refcounts we're talking about. The issue is
-> out_irq->np is not updated from 'usbdrd' node to the real interrupt
-> parent, the 'plic' node. In the next iteration of the loop, we find
-> 'interrupt-controller' in the plic node and return, but out_irq is not
-> pointing to the plic. Then of_irq_get() fails to get the irq host and
-> does a put on out_irq->np which is usbdrd, not plic node.
-> 
-> So please update the commit msg and provide your name, not initials.
 
-Since the fix for this regression is really trivial, I think you'll be able to
-commit it by yourself instead.
-
-
->> > Honestly, I think the DT is wrong if you get to this point. We'd have
->> > to have the initial interrupt parent with #interrupt-cells, but not an
->> > interrupt-controller nor interrupt-map property to get here. Maybe
->> > that happens in some ancient platform, but if so, I want to know which
->> > one and what exactly we need to handle.
->>
->> So you suggest the #interrupt-cells is erroneous in that node, and should
->> be
->> removed?
-> 
-> Yes. dtc warns about this. dtschema would too if there was a schema
-> (there is, but not since you use a downstream binding).
-> 
-> The clint node has the same issue.
-> 
->> This is a device vendor-provided DT, so any issue in it will have to be
->> fixed
->> locally.
-> 
-> Complain to your vendor...
-
-Thanks for help diagnosing the issues.
+For referencing the mentioned email in mailing list archive:
+https://lore.kernel.org/linux-devicetree/a373cf98c2d35f2bd828261f078471a5.squirrel@_/
 
 
