@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4CC194581D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:44:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE61945825
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:46:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 597E21F240FB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 06:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 766C61C229CD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 06:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47F341C62;
-	Fri,  2 Aug 2024 06:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8AC3BBE1;
+	Fri,  2 Aug 2024 06:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbC6tkny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JRiBjb2K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64412C9D;
-	Fri,  2 Aug 2024 06:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A085B3A1B5;
+	Fri,  2 Aug 2024 06:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722581034; cv=none; b=if69pPwTQxnYCiJDkqbN1RSJyEw+5xJBOZt8x71ClGwyEwtqme5O+vqFk1rsgVlIdH2mOIuKKO1Zg5dd86vxlO3ex3OulNT7h8WD/XZ+k/mCojBymVlEjk6HwkZllzXxDj9TBYI1tzLAY07iIHkmqeSLBkMgdoUD0SkOm4B7S+g=
+	t=1722581186; cv=none; b=UwnEUz4ujfkeH7lcP/W2i11Dl9tpWhSpATPce32R6F8DPUUmI7HVCA2sVHzVyDrocKeqH7PDB2+aTyGnfRsh85SfrrYgX4kzbPykn2EHyUv2TeQ2f9rgUR7san/c06eMHr9odZRXKFSEnp2scXhSzIwlrlaYalCqXvx/5owDjf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722581034; c=relaxed/simple;
-	bh=YQ+s/3MAugOrhPojVyDixRx+4knsaIMzTGiAcRHstDI=;
+	s=arc-20240116; t=1722581186; c=relaxed/simple;
+	bh=hHYItzPPdXudvIwlbMNYdnoojTPIoSOU0Gmy0EARHb4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FQmarct5IGnbecwb9FmSLcu+mW/VWScbSlqDS8FEIRQWamLF6Djcm8Pc8+ZSvuSpW1rrU83JdJiDmMseIjHLrEYfUleDUhWRKvDEhcImIdtrLPTj5nweFWRdOQEGbw/DCPJtrH0SXi7jMYA7euIVs0Bti5lOKjEXxXdy27K4XVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbC6tkny; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43993C32782;
-	Fri,  2 Aug 2024 06:43:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EzaAtGiekJYtRMxUo18Jla9QTLIh14NZrgScHjC3nsgIej2xTnSWFnRRB76qNRHIDJYFlRisEbkFJ3ARVd07HBxN5w0CrPz5gAis6JviCRyjQNwTk8h5fx4J1ZRFmQ/6fYQjnWaX+fzbDBgRdveboEV5wvWyUXUWnJYysVhmXi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JRiBjb2K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42213C32782;
+	Fri,  2 Aug 2024 06:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722581034;
-	bh=YQ+s/3MAugOrhPojVyDixRx+4knsaIMzTGiAcRHstDI=;
+	s=k20201202; t=1722581186;
+	bh=hHYItzPPdXudvIwlbMNYdnoojTPIoSOU0Gmy0EARHb4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SbC6tknyZzJZ6dadm9rOawuYhltLKQRckKxIo+6e+ZcMGvIgQ0rIClgr25tXIko5C
-	 yA4ZuqweFbWUxcwvZoQiGmHlstbKnkOq/B8cWjLekrcdqYL6jRwzs6XijawRqSYTrb
-	 +aIJWTjHUoTCUgNKA9fE1R3/Q+6ZDwytgt0uYWmeelQ7JMt1TAB45CcUCG1Jj4QMc0
-	 5JidYZQkJnSVmbMCM2WCkcOG/T15xeXYT8wCW5xZIUauNFB+iNyXbjPchPL7tk26YD
-	 wF2dAxEO+mVYzyUajt7lfCTrPKtBwb9PBEVsVVL9k94FvL/5XRP48MLFbvBYwphJfP
-	 BczAcc9kZ1SHg==
-Message-ID: <e1002187-fca0-455c-840c-32489e5eadb4@kernel.org>
-Date: Fri, 2 Aug 2024 08:43:46 +0200
+	b=JRiBjb2KhXcHAXXUVbPURw/EJ0UIbZMDA589oPFXAD7IgJ3YDSVJ6c8pQB70qM9oj
+	 MBYwG+1hfCoiaFWNbXGKlhj1aiRvhBgwOjq0NrMfZnusp+JxC9PPOU2TWJWoZWBtMs
+	 N/Qz9e7l22gT5O2oa6BbN9sz+Yl/mi0Borbpl0zbFD9wYw0bOO2CTs/HM0ZnE+ospP
+	 fBmHrjEZ4BzVvd3xNaZ2NuwiZ0clZG22Nek7wjW2OdQrNb3YJpmXPVrruCWTkzL2U7
+	 zAlDZb6/5cMNRVk8OGpfs/04i5eppck//kIsUtkmEBnyN4mpQpau62fGLyDnMSfRQh
+	 NKwGraf6ueaHw==
+Message-ID: <a0f0b7a9-db81-4f64-83f0-8e1f93f0be55@kernel.org>
+Date: Fri, 2 Aug 2024 08:46:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
- add 7712 SoC
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Add schema for Synopsys
+ DW HDMI QP TX IP
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240731222831.14895-1-james.quinlan@broadcom.com>
- <20240731222831.14895-2-james.quinlan@broadcom.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Alexandre ARNOUD <aarnoud@me.com>,
+ Luis de Arquer <ldearquer@gmail.com>
+References: <20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com>
+ <20240801-dw-hdmi-qp-tx-v1-1-148f542de5fd@collabora.com>
+ <ba957155-7a0d-4c88-8326-a1d4d20e4656@kernel.org>
+ <e3ce055d-13c9-4e25-a039-dd4a58c8dd7a@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,18 +116,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240731222831.14895-2-james.quinlan@broadcom.com>
+In-Reply-To: <e3ce055d-13c9-4e25-a039-dd4a58c8dd7a@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 00:28, Jim Quinlan wrote:
-> o Change order of the compatible strings to be alphabetical
-> o Use "maxItems" where needed.
+On 01/08/2024 11:29, Cristian Ciocaltea wrote:
+>>> +  interrupts:
+>>> +    minItems: 4
+>>> +    maxItems: 5
+>>> +    items:
+>>> +      - description: AVP Unit interrupt
+>>> +      - description: CEC interrupt
+>>> +      - description: eARC RX interrupt
+>>> +      - description: Main Unit interrupt
+>>> +    additionalItems: true
+>>> +
+>>> +  interrupt-names:
+>>> +    minItems: 4
+>>> +    maxItems: 5
+>>> +    items:
+>>> +      - const: avp
+>>> +      - const: cec
+>>> +      - const: earc
+>>> +      - const: main
+>>> +    additionalItems: true
+>>
+>> Sorry, there is no user of this and nothing here is actually common
+>> except first entries in clocks and interrupts properties.
+>>
+>> I don't see any benefit of this.
+> 
+> Sorry, I should have better indicated this is part of a larger changeset -
+> the cover mentions this is a reworked version of an initial (larger) series
+> and the split has been explicitly suggested during the review.
 
-I asked at v3 and then in v4 about splitting this. You never responded
-to that comment, so sorry I won't be repeating the same thing in v5.
-
-NAK.
+This split is really odd. It creates unnecessary dependency, blocks
+automated testing and confuses reviewers because reviewers expect common
+code followed by its user.
 
 Best regards,
 Krzysztof
