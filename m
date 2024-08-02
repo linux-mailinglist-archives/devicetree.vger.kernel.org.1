@@ -1,140 +1,134 @@
-Return-Path: <devicetree+bounces-90496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9499459FF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:34:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FEB945A30
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:45:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72B721F268D9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:34:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A51B5285EA5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056381C37BB;
-	Fri,  2 Aug 2024 08:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7055E1C37AB;
+	Fri,  2 Aug 2024 08:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="DNS5vdWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EB31C37AA;
-	Fri,  2 Aug 2024 08:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870291C3793;
+	Fri,  2 Aug 2024 08:45:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722587614; cv=none; b=WEYgEpD9KmMq4Th0qs/ppwSh8/5jw8NaKwDnNP+JI/6Wu/v2T8sdJlSs10ltBOMBMAdkT2aV2SwnoMyOscviy8sYR7hK5+BZa5pn1tdQUvf4OhbEutG4X8vPze76KT6I396kuS8T9Z6zUn9x5b2G0nrQNsKbTXO4/MH4d+uJdzE=
+	t=1722588304; cv=none; b=YWB7ntyydqPsffvrXo2S4D+67Mle1ogQcN3p0so1guqxvFI/RCpYSFWgWFlbpeUbHAUC0S2zx8bum9V9Et1nfT9A76tOJLtwmNwUSXaw0Dh4g60Ho8pKNiTtjo8Dm82rXs+WYYcYRNEF5x+9oUvT6X+9XqW9t1TeOINB0A6UGGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722587614; c=relaxed/simple;
-	bh=JOMrkNR9tEZEDyRADgmXANJ4bLQM66fC0jyatyk/zmw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qPkUjGGuHdvhwIKCdySg23vuu9TlHk44xjCAkWIL+dLywD+1GTv/gHIzd0AHxs62lIO3X77QWBBiurvVIvUH7hEBy85USccIz9d0wLgkXt2Dv6yfpUgQ5nbemWNR5hXIJD2rH1PC6JVibJJiVt8ys246hObLI0KA4jKLvIqXKX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-651da7c1531so65630657b3.0;
-        Fri, 02 Aug 2024 01:33:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722587611; x=1723192411;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l8EFg2K7xS512JFwmSCqMteVtVm9m9OPJCO6ogS1r0E=;
-        b=o1emupyVuxZmmrRInOg80KodQFAjjbX3f74+To/Ie6I553wvJnVzNrZLu+dK5xP9Q9
-         fI9SFV3TpGayd4ajXwMDxphJ9w3wVqQSgbDdZlg3EeufQfCw9JQZI1nJHhW5OrKhmPK/
-         JEem5+ciZFI6A9Cd5f4PdE1qqrqaORqa5xDPiGwpaAXSQoaShHcB6XviM6fE9VQwPEkd
-         Yrplu14QEmTJwzFNOpIfY8eRLdOJSrcsV7qWGWmnGwugsgFE2llvG2L3vG+Q/1mHfY+X
-         fASQMbvKbx8YYTNUTv+1Cs6Cak9QdKvKq40p7X7OBYfKZ3AVYOyIt9QRds5WCr8AyA8V
-         ngiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLrkdqSRsYhZqPSV9JJkZC3xg7gO/6IcKcCltexCBz9mpqZBYWPYhHhB54DlGkkfT/qMMAFm7TntES7m/1PBj6jIUZW5gOEk9nqhb4kL+2mnYxCqpEYdiW2ksgFWzflV0eLQxSAlb0+9NGPsen
-X-Gm-Message-State: AOJu0YwJAwiJHwfD1RDZJ7GpVwGO2Z+rL2b8AijD1tk6JoExYInJqngd
-	Vdm26GfApA9SfYlf5YaB1cXk4GVtIjt0U49O9CL8zZ2Ein7K7eAr1YZ5X4dp
-X-Google-Smtp-Source: AGHT+IGR6ExImpfinf03maRaTMNtsr/9fpVw2RpvetWiympwmH/e4CRk5FWL1v9OlsDWiz0tTSygeA==
-X-Received: by 2002:a0d:f087:0:b0:664:66d8:634f with SMTP id 00721157ae682-6896459206fmr32240997b3.44.1722587611488;
-        Fri, 02 Aug 2024 01:33:31 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-68a12c1bbb5sm1758697b3.95.2024.08.02.01.33.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Aug 2024 01:33:31 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-685cc5415e8so27306137b3.3;
-        Fri, 02 Aug 2024 01:33:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWOHv8ZikRe7X8lMDIK2bH7vuyUOOEBpWEzJ1PdmhPDio//IMMtzdMy9rjurAKfaikBwQCGXq3kIkRxm2BqWW40QJv6sX2Ybo66XiFNG5yOvNFe1U5WVxCnhc083vjaq0ajJFQja79Hw3hP0YfK
-X-Received: by 2002:a0d:e947:0:b0:61b:1f0e:10 with SMTP id 00721157ae682-6895f9ec050mr32608147b3.4.1722587610965;
- Fri, 02 Aug 2024 01:33:30 -0700 (PDT)
+	s=arc-20240116; t=1722588304; c=relaxed/simple;
+	bh=RzA9EAC+zlXRtUH3OSMIWI1zKwAxArhQ4+AfIrzFlWk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qPMKvoKoJzmc0aIa8N0EgEAbJDvImihUbUx0rbFZ7IdICEKZ6AS6K1c5iPeHBSYtjAnfM1bm4J7f6e1iEboJdwRX3N206TeOO5prt3l88NMyldGQGAIRALhsJ4ARKRafCBRRCVMMptuQSkEn3sdcsrG0z3U7Fjkhb03429bWd4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=DNS5vdWG; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1722588302; x=1754124302;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=RzA9EAC+zlXRtUH3OSMIWI1zKwAxArhQ4+AfIrzFlWk=;
+  b=DNS5vdWG+XmvGnEpqISpeGw/XbJUE9DKkQozmGSW6I3LiRnd0xI0CBbu
+   K222WzZ3ybVuoPnYerR6INtFachBmsb1caZo+qdk5ra09NdZAPo58ZT2R
+   Qd2Azb35eaqu41/+FCwftXpptZwozDKgr+y+H7Pm44yvG0sLnlWa/NfO1
+   8ugf1dBH//lunJLpuTiTh/eNYV/BQWHaKdNq3EWpRmRs+iA4bub0cCG4T
+   4hbqyXuAzrR2vLOshD5ToEBZCWmZ7d1GNBuMsBBF0u0lbz/qDSuWIYLNT
+   Sfcp4skbhXPGsX6JC2VpCoXXiYoXTbue4pVqCRH1jeif8A3x2duljwWsS
+   w==;
+X-CSE-ConnectionGUID: bDN14xVARKiI6VnRY/1j6Q==
+X-CSE-MsgGUID: EYLwDr7YRqi2SpYb9oVYRQ==
+X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; 
+   d="scan'208";a="30677931"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Aug 2024 01:45:01 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 2 Aug 2024 01:44:44 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 2 Aug 2024 01:44:41 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <broonie@kernel.org>, <lgirdwood@gmail.com>, <claudiu.beznea@tuxon.dev>,
+	<nicolas.ferre@microchip.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<robh@kernel.org>, <alexandre.belloni@bootlin.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>
+Subject: [PATCH 0/6] Add input voltage suppliers for PMIC MCP16502 regulators
+Date: Fri, 2 Aug 2024 11:44:27 +0300
+Message-ID: <20240802084433.20958-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 2 Aug 2024 10:33:18 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
-Message-ID: <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
- to mdio node
-To: Marek Vasut <marex@denx.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Marek,
+In this series of patches, support for the *-supply property [1]  is added
+(correlated with supply_name [2]) from the core regulator.
+Link [1]: https://github.com/torvalds/linux/blob/master/drivers/regulator/core.c#L471
+Link [2]: https://github.com/torvalds/linux/blob/master/drivers/regulator/core.c#L2064
 
-What is your stance on this?
-Thanks!
+I modified the mcp16502.c driver and the dts that use this PMIC.
+We added these improvements to provide a complete description of the board power scheme.
 
-On Thu, Jul 4, 2024 at 5:26=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> When creating a dedicated mdio node to describe the bus the gpio reset
-> property was erroneously left in the phy node. The reason for adding
-> mdio nodes on WhiteHawk was to ensure the PHYs where reset before they
-> were probed, keeping the property in the phy node prevented this.
->
-> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Fixes: 54bf0c27380b ("arm64: dts: renesas: r8a779g0: Use MDIO node for al=
-l AVB devices")
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
->  arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arc=
-h/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> index 80496fb3d476..4f0230327868 100644
-> --- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> @@ -156,6 +156,8 @@ mdio {
->                 #address-cells =3D <1>;
->                 #size-cells =3D <0>;
->
-> +               reset-gpios =3D <&gpio7 10 GPIO_ACTIVE_LOW>;
-> +
->                 avb0_phy: ethernet-phy@0 {
->                         compatible =3D "ethernet-phy-id0022.1622",
->                                      "ethernet-phy-ieee802.3-c22";
-> @@ -163,7 +165,6 @@ avb0_phy: ethernet-phy@0 {
->                         reg =3D <0>;
->                         interrupt-parent =3D <&gpio7>;
->                         interrupts =3D <5 IRQ_TYPE_LEVEL_LOW>;
-> -                       reset-gpios =3D <&gpio7 10 GPIO_ACTIVE_LOW>;
->                 };
->         };
->  };
+Snippet (as an example) from /sys/kernel/debug/regulator/regulator_summary
+(for at91-sama7g5ek):
+# cat regulator_summary
+ regulator                      use open bypass  opmode voltage current     min     max
+---------------------------------------------------------------------------------------
+ regulator-dummy                  1    0      0 unknown     0mV     0mA     0mV     0mV
+ 5V_MAIN                          6    6      0 unknown  5000mV     0mA  5000mV  5000mV
+    VDD_IO                        5    4      0  normal  3300mV     0mA  3300mV  3300mV
+       e1208000.mmc-vqmmc         1                                 0mA     0mV     0mV
+       e1208000.mmc-vmmc          1                                 0mA  3300mV  3400mV
+       e1204000.mmc-vmmc          1                                 0mA  3300mV  3400mV
+       VDDOUT25                   3    2      0 unknown  2500mV     0mA  2500mV  2500mV
+          e1000000.adc-vref       1                                 0mA     0mV     0mV
+          e1000000.adc-vddana     1                                 0mA     0mV     0mV
+    VDD_DDR                       1    0      0  normal  1350mV     0mA  1350mV  1350mV
+    VDD_CORE                      1    0      0  normal  1150mV     0mA  1150mV  1150mV
+    VDD_OTHER                     2    1      0  normal  1050mV     0mA  1050mV  1250mV
+       cpu0-cpu                   1                                 0mA  1050mV  1225mV
+    LDO1                          2    1      0 unknown  1800mV     0mA  1800mV  1800mV
+       e1204000.mmc-vqmmc         1                                 0mA     0mV     0mV
+    LDO2
 
-Gr{oetje,eeting}s,
+-------------------------------------------------------------------------------------------
+Andrei Simion (6):
+  regulator: mcp16502: Add supplier for regulators
+  ARM: dts: microchip: at91-sama7g5ek: Add reg_5v to supply PMIC nodes
+  ARM: dts: microchip: at91-sama7g54_curiosity: Add reg_5v to supply
+    PMIC nodes
+  ARM: dts: microchip: at91-sama5d2_icp: Add reg_5v to supply PMIC nodes
+  ARM: dts: microchip: at91-sama5d27_wlsom1: Add reg_5v to supply PMIC
+    nodes
+  ARM: dts: microchip: sama5d29_curiosity: Add reg_5v to supply PMIC
+    nodes
 
-                        Geert
+ .../dts/microchip/at91-sama5d27_wlsom1.dtsi     | 14 ++++++++++++++
+ .../dts/microchip/at91-sama5d29_curiosity.dts   | 14 ++++++++++++++
+ .../arm/boot/dts/microchip/at91-sama5d2_icp.dts | 14 ++++++++++++++
+ .../dts/microchip/at91-sama7g54_curiosity.dts   | 14 ++++++++++++++
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts  | 14 ++++++++++++++
+ drivers/regulator/mcp16502.c                    | 17 +++++++++--------
+ 6 files changed, 79 insertions(+), 8 deletions(-)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+base-commit: f524a5e4dfb75b277c9a5ad819ca5f035f490f14
+-- 
+2.34.1
+
 
