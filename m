@@ -1,225 +1,163 @@
-Return-Path: <devicetree+bounces-90597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63FD946030
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:19:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EAD946046
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:21:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27E421F21774
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 15:19:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD5DEB24C0F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 15:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF3C136337;
-	Fri,  2 Aug 2024 15:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216E6136341;
+	Fri,  2 Aug 2024 15:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ik2q30r8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tI2xGgd7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C7C1537D3;
-	Fri,  2 Aug 2024 15:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36AF5175D50;
+	Fri,  2 Aug 2024 15:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722611828; cv=none; b=XgIPRgbSnBRc3TliAF2uFP5HClGJ3X4xMKq6nLxoArwipojHwHRY8O+jhu27fdEL4HA2P5o6iaHdlW+fHHKems77FjDINPjkDrvnpbO+dNpUTIdLvGokqAmDTR9dZ3wvjmA2k1U9oHdLq21tsUcuiYYAlM7C8wvU6hJ/1wRf7Dk=
+	t=1722612087; cv=none; b=fjdUgR8/0ZkTzte64FHPXPVrhJ7JuTa2pjW/vpK1shfrXW/uTCgxA08bUoUq5AtfgGcwhCdXanovf6ClDIQ2f2GcLb+NFSpuIEQr98N6/KKuOid+xDr1xI91Z6mfWL7M5NMR/7MxILUbR93He7cTbFhpcEYsTbK/Cdgq7gA25jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722611828; c=relaxed/simple;
-	bh=rPddP6jREovZPe2OO1sPfsb89w9mYK2PrVoEMNOcF50=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wwx5k88W/4x6wE3v5sgd+s35QiJjg2tNNAnYhGpZxedtBAJyFzgh66UCcPdVyHS/+qkT7BSHKzIDeSQA2a5/n7aGinpWbJlTNUoG6lY7TOOU2zc0GQ3ph5Eo/vhvly4LRaxZ4LdODzLmJeUrFwz6xC6XAA2aZzbcsvkQ2TJH0ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ik2q30r8; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1722611824;
-	bh=rPddP6jREovZPe2OO1sPfsb89w9mYK2PrVoEMNOcF50=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Ik2q30r8zWsI3rhpx8v++19WOLOKk31HH6Rj6re9SsMvlVgX6yP/aTkV955l/hSZS
-	 ampalrHEeFyPRogsFbHo5qZtX9wloponMIqk7uDJ2KEMZxTDwR1HQoVUJRmB8HfP33
-	 SCyWAgP4nr9KnUO5lsaBUBKQM0d2y3FCgUhn+ILu8q6WBuXM7Kh+ETs2AKo6e634ia
-	 XWq/yroQq1vB+DWcWUPH0t1++gBSfEbOKPYudgGF8AKhFVAFCeHwZRjAYyWPrRjviy
-	 BrrlggDy49Nu9NnrKwvAeW1cgBGRzSSmYPPXzz3jYTncn96IEwNzNZSBP4C8VakYOH
-	 lMLmJF/anBRQg==
-Received: from trenzalore.hitronhub.home (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6F59B378221B;
-	Fri,  2 Aug 2024 15:17:02 +0000 (UTC)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH 3/3] soc: rockchip: power-domain: Add power domain support for rk3576
-Date: Fri,  2 Aug 2024 11:15:00 -0400
-Message-ID: <20240802151647.294307-4-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240802151647.294307-1-detlev.casanova@collabora.com>
-References: <20240802151647.294307-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1722612087; c=relaxed/simple;
+	bh=GESU2vy63jv2s1dJXyUahHwZ/0of8wAMLNHCY+WI1Vc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MiiJY4Q/uAMQN4+9K6LfHLH6sw9UjyoDVqbiN1zboLPDSrDqZ1P4t9T5G6ENWcVqjNWiTA/xpx95urr6nim1DWbCx3VnEchhgx1Co82Je2H4nQbEmZxdWZghlpgpc1Nw/ZsrEImAXuGCr7+7K2gySFSrVQEskmAL6hJ6kIWe2jA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tI2xGgd7; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 472FLBJs109018;
+	Fri, 2 Aug 2024 10:21:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722612071;
+	bh=dMzobiPINGynYJxO6pCSmRhcNi3u9bYwLfHSjQ3otRc=;
+	h=From:To:CC:Subject:Date;
+	b=tI2xGgd7WEQ1T98bJBVtFH82zYMLZRihab8oaT+vyvlIsfztlO3M3qNxbSXQ0b8xB
+	 ieUXIT7/vCdrHmnbzoeP56H16JKmqFLnvOy+d3LP+uvedk5Q1teyJ4n2rOp8CuF3aC
+	 q42GLisXTZcNjLNFX4vGhWLO6IkTmPTJLYgW4WXw=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 472FLBt3099547
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 Aug 2024 10:21:11 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ Aug 2024 10:21:10 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 Aug 2024 10:21:11 -0500
+Received: from fllvsmtp8.itg.ti.com ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 472FLAeo007504;
+	Fri, 2 Aug 2024 10:21:10 -0500
+From: Andrew Davis <afd@ti.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth
+ Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hari Nagalla
+	<hnagalla@ti.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH v11 0/9] TI K3 M4F support on AM62 and AM64 SoCs
+Date: Fri, 2 Aug 2024 10:21:00 -0500
+Message-ID: <20240802152109.137243-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Finley Xiao <finley.xiao@rock-chips.com>
+Hello all,
 
-This driver is modified to support RK3576 SoCs and lists the power domains.
+This is the continuation of the M4F RProc support series from here[0].
+I'm helping out with the upstream task for Hari and so versions (v8+)
+is a little different than the previous(v7-) postings[0]. Most notable
+change I've introduced being the patches factoring out common support
+from the current K3 R5 and DSP drivers have been dropped. I'd like
+to do that re-factor *after* getting this driver in shape, that way
+we have 3 similar drivers to factor out from vs trying to make those
+changes in parallel with the series adding M4 support.
 
-Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- drivers/pmdomain/rockchip/pm-domains.c | 69 ++++++++++++++++++++++++--
- 1 file changed, 66 insertions(+), 3 deletions(-)
+Anyway, details on our M4F subsystem can be found the
+the AM62 TRM in the section on the same:
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index 9b76b62869d0d..f0330bb51685f 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -33,6 +33,7 @@
- #include <dt-bindings/power/rk3368-power.h>
- #include <dt-bindings/power/rk3399-power.h>
- #include <dt-bindings/power/rk3568-power.h>
-+#include <dt-bindings/power/rk3576-power.h>
- #include <dt-bindings/power/rk3588-power.h>
- 
- struct rockchip_domain_info {
-@@ -50,6 +51,7 @@ struct rockchip_domain_info {
- 	u32 pwr_offset;
- 	u32 mem_offset;
- 	u32 req_offset;
-+	u32 delay_us;
- };
- 
- struct rockchip_pmu_info {
-@@ -144,9 +146,26 @@ struct rockchip_pmu {
- 	.active_wakeup = wakeup,			\
- }
- 
--#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)		\
-+#define DOMAIN_M_O_R_G(_name, p_offset, pwr, status, r_status, r_offset, req, idle, ack, g_mask, delay, wakeup)	\
- {							\
--	.name = _name,				\
-+	.name = _name,					\
-+	.pwr_offset = p_offset,				\
-+	.pwr_w_mask = (pwr) << 16,			\
-+	.pwr_mask = (pwr),				\
-+	.status_mask = (status),			\
-+	.repair_status_mask = (r_status),		\
-+	.req_offset = r_offset,				\
-+	.req_w_mask = (req) << 16,			\
-+	.req_mask = (req),				\
-+	.idle_mask = (idle),				\
-+	.ack_mask = (ack),				\
-+	.delay_us = delay,				\
-+	.active_wakeup = wakeup,			\
-+}
-+
-+#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)	\
-+{							\
-+	.name = _name,					\
- 	.req_mask = (req),				\
- 	.req_w_mask = (req) << 16,			\
- 	.ack_mask = (ack),				\
-@@ -175,6 +194,9 @@ struct rockchip_pmu {
- #define DOMAIN_RK3568(name, pwr, req, wakeup)		\
- 	DOMAIN_M(name, pwr, pwr, req, req, req, wakeup)
- 
-+#define DOMAIN_RK3576(name, p_offset, pwr, status, r_status, r_offset, req, idle, g_mask, delay, wakeup)	\
-+	DOMAIN_M_O_R_G(name, p_offset, pwr, status, r_status, r_offset, req, idle, idle, g_mask, delay, wakeup)
-+
- /*
-  * Dynamic Memory Controller may need to coordinate with us -- see
-  * rockchip_pmu_block().
-@@ -552,7 +574,10 @@ static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
- 			/* if powering up, leave idle mode */
- 			rockchip_pmu_set_idle_request(pd, false);
- 
--			rockchip_pmu_restore_qos(pd);
-+			if (pd->info->delay_us)
-+				udelay(pd->info->delay_us);
-+			else
-+				rockchip_pmu_restore_qos(pd);
- 		}
- 
- 		clk_bulk_disable(pd->num_clks, pd->clks);
-@@ -1106,6 +1131,28 @@ static const struct rockchip_domain_info rk3568_pm_domains[] = {
- 	[RK3568_PD_PIPE]	= DOMAIN_RK3568("pipe", BIT(8), BIT(11), false),
- };
- 
-+static const struct rockchip_domain_info rk3576_pm_domains[] = {
-+	[RK3576_PD_NPU]		= DOMAIN_RK3576("npu",    0x0, BIT(0),  BIT(0), 0,       0x0, 0,       0,       0,       0,    false),
-+	[RK3576_PD_NVM]		= DOMAIN_RK3576("nvm",    0x0, BIT(6),  0,      BIT(6),  0x4, BIT(2),  BIT(18), BIT(2),  0,    false),
-+	[RK3576_PD_SDGMAC]	= DOMAIN_RK3576("sdgmac", 0x0, BIT(7),  0,      BIT(7),  0x4, BIT(1),  BIT(17), 0x6,     0,    false),
-+	[RK3576_PD_AUDIO]	= DOMAIN_RK3576("audio",  0x0, BIT(8),  0,      BIT(8),  0x4, BIT(0),  BIT(16), BIT(0),  0,    false),
-+	[RK3576_PD_PHP]		= DOMAIN_RK3576("php",    0x0, BIT(9),  0,      BIT(9),  0x0, BIT(15), BIT(15), BIT(15), 0,    false),
-+	[RK3576_PD_SUBPHP]	= DOMAIN_RK3576("subphp", 0x0, BIT(10), 0,      BIT(10), 0x0, 0,       0,       0,       0,    false),
-+	[RK3576_PD_VOP]		= DOMAIN_RK3576("vop",    0x0, BIT(11), 0,      BIT(11), 0x0, 0x6000,  0x6000,  0x6000,  15,   false),
-+	[RK3576_PD_VO1]		= DOMAIN_RK3576("vo1",    0x0, BIT(14), 0,      BIT(14), 0x0, BIT(12), BIT(12), 0x7000,  0,    false),
-+	[RK3576_PD_VO0]		= DOMAIN_RK3576("vo0",    0x0, BIT(15), 0,      BIT(15), 0x0, BIT(11), BIT(11), 0x6800,  0,    false),
-+	[RK3576_PD_USB]		= DOMAIN_RK3576("usb",    0x4, BIT(0),  0,      BIT(16), 0x0, BIT(10), BIT(10), 0x6400,  0,    true),
-+	[RK3576_PD_VI]		= DOMAIN_RK3576("vi",     0x4, BIT(1),  0,      BIT(17), 0x0, BIT(9),  BIT(9),  BIT(9),  0,    false),
-+	[RK3576_PD_VEPU0]	= DOMAIN_RK3576("vepu0",  0x4, BIT(2),  0,      BIT(18), 0x0, BIT(7),  BIT(7),  0x280,   0,    false),
-+	[RK3576_PD_VEPU1]	= DOMAIN_RK3576("vepu1",  0x4, BIT(3),  0,      BIT(19), 0x0, BIT(8),  BIT(8),  BIT(8),  0,    false),
-+	[RK3576_PD_VDEC]	= DOMAIN_RK3576("vdec",   0x4, BIT(4),  0,      BIT(20), 0x0, BIT(6),  BIT(6),  BIT(6),  0,    false),
-+	[RK3576_PD_VPU]		= DOMAIN_RK3576("vpu",    0x4, BIT(5),  0,      BIT(21), 0x0, BIT(5),  BIT(5),  BIT(5),  0,    false),
-+	[RK3576_PD_NPUTOP]	= DOMAIN_RK3576("nputop", 0x4, BIT(6),  0,      BIT(22), 0x0, 0x18,    0x18,    0x18,    15,   false),
-+	[RK3576_PD_NPU0]	= DOMAIN_RK3576("npu0",   0x4, BIT(7),  0,      BIT(23), 0x0, BIT(1),  BIT(1),  0x1a,    0,    false),
-+	[RK3576_PD_NPU1]	= DOMAIN_RK3576("npu1",   0x4, BIT(8),  0,      BIT(24), 0x0, BIT(2),  BIT(2),  0x1c,    0,    false),
-+	[RK3576_PD_GPU]		= DOMAIN_RK3576("gpu",    0x4, BIT(9),  0,      BIT(25), 0x0, BIT(0),  BIT(0),  BIT(0),  0,    false),
-+};
-+
- static const struct rockchip_domain_info rk3588_pm_domains[] = {
- 	[RK3588_PD_GPU]		= DOMAIN_RK3588("gpu",     0x0, BIT(0),  0,       0x0, 0,       BIT(1),  0x0, BIT(0),  BIT(0),  false),
- 	[RK3588_PD_NPU]		= DOMAIN_RK3588("npu",     0x0, BIT(1),  BIT(1),  0x0, 0,       0,       0x0, 0,       0,       false),
-@@ -1284,6 +1331,18 @@ static const struct rockchip_pmu_info rk3568_pmu = {
- 	.domain_info = rk3568_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rk3576_pmu = {
-+	.pwr_offset = 0x210,
-+	.status_offset = 0x230,
-+	.req_offset = 0x110,
-+	.idle_offset = 0x128,
-+	.ack_offset = 0x120,
-+	.repair_status_offset = 0x570,
-+
-+	.num_domains = ARRAY_SIZE(rk3576_pm_domains),
-+	.domain_info = rk3576_pm_domains,
-+};
-+
- static const struct rockchip_pmu_info rk3588_pmu = {
- 	.pwr_offset = 0x14c,
- 	.status_offset = 0x180,
-@@ -1359,6 +1418,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rk3568-power-controller",
- 		.data = (void *)&rk3568_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rk3576-power-controller",
-+		.data = (void *)&rk3576_pmu,
-+	},
- 	{
- 		.compatible = "rockchip,rk3588-power-controller",
- 		.data = (void *)&rk3588_pmu,
+AM62x Technical Reference Manual (SPRUIV7A – MAY 2022)
+https://www.ti.com/lit/pdf/SPRUIV7A
+
+Thanks,
+Andrew
+
+[0] https://lore.kernel.org/linux-arm-kernel/20240202175538.1705-5-hnagalla@ti.com/T/
+
+Changes for v11:
+ - Added patch [2/9] factoring out a common function
+ - Addressed comments by Mathieu from v10
+ - Rebased on v6.11-rc1
+ - Small reworks in driver for readability
+
+Changes for v10:
+ - Rebased on v6.10-rc3
+ - Added AM64 M4 support in DT
+ - Addressed comments by Mathieu from v9
+
+Changes for v9:
+ - Fixed reserved-memory.yaml text in [1/5]
+ - Split dts patch into one for SoC and one for board enable
+ - Corrected DT property order and formatting [4/5][5/5]
+
+Andrew Davis (1):
+  remoteproc: k3: Factor out TI-SCI processor control OF get function
+
+Hari Nagalla (7):
+  dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+  arm64: dts: ti: k3-am62: Add M4F remoteproc node
+  arm64: dts: ti: k3-am625-sk: Add M4F remoteproc node
+  arm64: dts: ti: k3-am64: Add M4F remoteproc node
+  arm64: dts: ti: k3-am642-sk: Add M4F remoteproc node
+  arm64: dts: ti: k3-am642-evm: Add M4F remoteproc node
+  arm64: defconfig: Enable TI K3 M4 remoteproc driver
+
+Martyn Welch (1):
+  remoteproc: k3-m4: Add a remoteproc driver for M4F subsystem
+
+ .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 125 ++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       |  13 +
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  19 +
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi       |  13 +
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  19 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  19 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/remoteproc/Kconfig                    |  13 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     |  28 +-
+ drivers/remoteproc/ti_k3_m4_remoteproc.c      | 667 ++++++++++++++++++
+ drivers/remoteproc/ti_k3_r5_remoteproc.c      |  28 +-
+ drivers/remoteproc/ti_sci_proc.h              |  26 +
+ 13 files changed, 918 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_m4_remoteproc.c
+
 -- 
-2.46.0
+2.39.2
 
 
