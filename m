@@ -1,119 +1,128 @@
-Return-Path: <devicetree+bounces-90489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62A794599F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:09:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD279459B1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:14:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E86141C20971
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:09:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 997511F2473A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0788C1C0DF1;
-	Fri,  2 Aug 2024 08:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rwm8/92Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158401C0DF2;
+	Fri,  2 Aug 2024 08:14:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97A41C0DF2;
-	Fri,  2 Aug 2024 08:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6D1219FC;
+	Fri,  2 Aug 2024 08:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722586117; cv=none; b=W31mSbZpXQXK6sm2LFZsdhPNUfjudvs2Y19sUN8pjK1DNiCGO9UTw/fqWOwfbjnwOLCm1MCHCSDl2+An6oIlkgOSVkOCkg4V+yCVfZZdP1qUtbUKpVTR/3JssAeZdS/OMXMj3yIPfA0DMOQICDAGIMdlboDdblUCDkz4jHwu9E0=
+	t=1722586471; cv=none; b=l46FovOZ7+QJsZodReI8Fx8izWnJp599VHThLn3TW1j8ENtDZUAICtiAx3tOzf6denuAH35vH8+nTPsITuxxBkFl2bwPwaMTpWVkkLbCnz/NWk6HEIPg1cuAUimZX5csRLOeZsbeAkWiT7t/vMN6cxCqwCDGa9j31mGNXJk6YjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722586117; c=relaxed/simple;
-	bh=FsH3wdtcvgjhgqn/vSYrToks9tDfFD/g6p47+4HujaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IWtuceWPqxvZ9MjmRWMSwsEAwGJ6SIskbz/zpadnRK7KIoPLCHhxqUiThTkgEHQJEt/dWny6gI8hwt7EP5JGTh2nocULbdeB/hnR8pv2XPZecTZiXAMc3pgaBzt5VeB/2fPE6ncqkRpUaz515R1KJDq6ZTqb4HcxVYK3w1suwHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rwm8/92Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E191C32782;
-	Fri,  2 Aug 2024 08:08:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722586117;
-	bh=FsH3wdtcvgjhgqn/vSYrToks9tDfFD/g6p47+4HujaA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rwm8/92ZOEienicTuhNeHn1BDzsUuaqNfkgUmv7ZS/UVNhlkK8lyge0Viw9rT223I
-	 l+yFXEzO+PUYPeeFhNAntoTMz5pAIjZ9nIL/o4u/OVs+iEyr4C7GswpSbDHK1P86jc
-	 k107v7h8c2I+JuT3bkKtRQ+w2UdIVW0ThJH46cXrmgEaAK5gjqzRQ8zQeEICkbdC1R
-	 NuNK68ASsCQ8UM11W4sc+9JdIso37yG3cI5SHkj8l/zOQd00zeVDJ/TjWIezKwryU0
-	 Q1tMbr5alcN33lMXyUgBskpxEKSrt6fpZI9XLV5afs0CTmJK2xzuyNtq2ipNf5ewAN
-	 Byds7sIy/BBcg==
-Date: Fri, 2 Aug 2024 09:08:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
-	Marc Zyngier <maz@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC v7 3/6] irqchip: add mpfs gpio interrupt mux
-Message-ID: <20240802-rippling-clubbing-5318f914f16a@spud>
-References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
- <20240723-flatworm-cornflake-8023212f6584@wendy>
- <87le1k8oq2.ffs@tglx>
- <20240801-palpitate-swinger-7bc8ae8deaaf@spud>
- <87r0b82i57.ffs@tglx>
+	s=arc-20240116; t=1722586471; c=relaxed/simple;
+	bh=A0nrEwtqwClmqH17gpGOwG5z3uDm/FSx7t3TcL0aIgM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pPuTJeBh/4PDPvokUGdCvxVgAKgRv7EhIb6prGNay8NNDDarC865/iGoVV4oKwa0He1vK5dfXCjSVgVyOcbpgtrFs2cvq9YjyK0Nkk/xxRL/SrxLvVyiGhbsxWB7XLasw5/XeMlcZIjUMRKmfAJ86v0Tf8IAb0Cr+I+WBJ90nyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1FA65E0004;
+	Fri,  2 Aug 2024 08:14:21 +0000 (UTC)
+Message-ID: <4b890910-ed3b-47e1-a895-48ae3d47e958@ghiti.fr>
+Date: Fri, 2 Aug 2024 10:14:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xOPLd7jspMNzpBg/"
-Content-Disposition: inline
-In-Reply-To: <87r0b82i57.ffs@tglx>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 12/13] dt-bindings: riscv: Add Ziccrse ISA extension
+ description
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Andrea Parri <parri.andrea@gmail.com>, Nathan Chancellor
+ <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
+ Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
+References: <20240731072405.197046-1-alexghiti@rivosinc.com>
+ <20240731072405.197046-13-alexghiti@rivosinc.com>
+ <20240801-unlighted-senator-cc60d021fe28@spud>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20240801-unlighted-senator-cc60d021fe28@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: alex@ghiti.fr
+
+Hi Cono
+
+On 01/08/2024 16:44, Conor Dooley wrote:
+> On Wed, Jul 31, 2024 at 09:24:04AM +0200, Alexandre Ghiti wrote:
+>> Add description for the Ziccrse ISA extension which was introduced in
+>> the riscv profiles specification v0.9.2.
+>>
+>> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>> Reviewed-by: Guo Ren <guoren@kernel.org>
+>> ---
+>>   Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> index a63578b95c4a..22824dd30175 100644
+>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> @@ -289,6 +289,12 @@ properties:
+>>               in commit 64074bc ("Update version numbers for Zfh/Zfinx") of
+>>               riscv-isa-manual.
+>>   
+>> +        - const: ziccrse
+>> +          description:
+>> +            The standard Ziccrse extension which provides forward progress
+>> +            guarantee on LR/SC sequences, as introduced in the riscv profiles
+>> +            specification v0.9.2.
+> Do we have a commit hash for this? Also v0.9.2? The profiles spec is a
+> crock and the version depends on the specific profile - for example
+> there's new tags as of last week with 0.5 in them... The original profiles
+> are ratified, so if this definition is in there, please cite that
+> instead of a "random" version.
 
 
---xOPLd7jspMNzpBg/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That's not a "random" version, please refer to the existing tag v0.9.2 
+where this was first introduced 
+(https://github.com/riscv/riscv-profiles/releases/tag/v0.9.2).
 
-On Thu, Aug 01, 2024 at 08:49:08PM +0200, Thomas Gleixner wrote:
-> On Thu, Aug 01 2024 at 16:09, Conor Dooley wrote:
-> > On Mon, Jul 29, 2024 at 12:41:25PM +0200, Thomas Gleixner wrote:
-> >> > +	/*
-> >> > +	 * If a bit is set in the mux, GPIO the corresponding interrupt fr=
-om
-> >> > +	 * controller 2 is direct and that controllers 0 or 1 is muxed.
-> >>=20
-> >> This is not a coherent sentence.
-> >
-> > It should read "controller 0 or 1;s interrupt is muxed". Does that make
+But I'll change that to the profiles specification v1.0.
 
-Heh, I even typoed here, the ; should be a '.
+Thanks,
 
-> > more sense to you?
->=20
-> No: If a bit is set in the mux, GPIO the corresponding...
->=20
-> I'm already failing at 'GPIO'. My parser expects a verb there :)
+Alex
 
-Ah, so double mistake in the sentence. s/GPIO// I suppose. An updated
-comment could be:
 
-"If a bit is set in the mux, the corresponding interrupt from GPIO
-controller 2 is direct and controller 0 or 1's interrupt is muxed"
-
---xOPLd7jspMNzpBg/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZqyUAAAKCRB4tDGHoIJi
-0tJiAQDK/ooWrAM9WcdKj0bqR5Zx9ER6sCblcL1m6FezXQWh7wEAiwKCvoyld4er
-8BIEk1XDwZm2ul8Wx7vA1q98pn9HHwQ=
-=8fH1
------END PGP SIGNATURE-----
-
---xOPLd7jspMNzpBg/--
+>
+> Cheers,
+> Conor.
+>
+>> +
+>>           - const: zk
+>>             description:
+>>               The standard Zk Standard Scalar cryptography extension as ratified
+>> -- 
+>> 2.39.2
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
