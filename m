@@ -1,234 +1,263 @@
-Return-Path: <devicetree+bounces-90684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7005F946593
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 23:51:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D33194647C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 22:40:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93ADE1C21B3B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:51:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B11251C20C83
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 20:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F8713C918;
-	Fri,  2 Aug 2024 21:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6652C4EB37;
+	Fri,  2 Aug 2024 20:40:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IDe2Pz2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2126.outbound.protection.partner.outlook.cn [139.219.146.126])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010016.outbound.protection.outlook.com [52.101.69.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC64A1ABEBB;
-	Fri,  2 Aug 2024 21:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.126
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3E1482F6;
+	Fri,  2 Aug 2024 20:40:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.16
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722635370; cv=fail; b=DW7IAL+nFYMKAZH1hMrLUTIHsuPdooqvHoyfFzwJiHDrPAv6zEcTZvzkIPDcd+0ubny6EzRF01PDgsw1hba9KLeRSF7vNRNdDpjuSkOHvpPw/NxV8Yyb/0DUtWED16phbVEACMBHH1pD91rK8KroyXwWYfiioUbdStjCUUtXzvY=
+	t=1722631212; cv=fail; b=XbFUGxB4JQ0oQ+Ln7cjxZxxtpy0M/CqV00qbRG1vuROnURKkmGZ/L1MJwyVu6Ob64+wcqQLr3QsfVZ5NgJYktKsOA5y4xJjQyiFp1qTXmgdFHG4xbg85HlWsq48XeEzJG+pBJsgI0/QYRDPgzTTaJh9LK4LVnPVkwVS5FCtv2rg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722635370; c=relaxed/simple;
-	bh=g1cKfDVObtZvXl3hP1RaUjgzbMJxFUeO9iFzJWx/tGk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KIgn0P9LFp77G1zt1JvPYbghuuYU8Izjy82SYz54xnymaPPnfZnBqEOCqDxAnjzEyL0oMdWgCF+J8u9V3ipSVFqqKxkybmod4R9/RQIzw5/fb1PgocFMdwtmGgFp0VrZ/M7Ji+17IDLate2W0CAqMaBi2ETXkUx/5XjYGlP0M64=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from SHXPR01MB0816.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:27::13) by BJXPR01MB0807.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:1b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.36; Fri, 2 Aug
- 2024 21:49:21 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZUlAAkw+imckZBknabpQC9ycK+ws4l7Jx9WYw9cJqHty31F3u77SX60lBZ8h2X7gpgQ6y+f6B009720ESrekAnayrmaMF6FLJkK/Rt7K9xSqbkVlrfzj6FwKyXvxW2hLzq4e+Bfi81J+CrLTkgnObnKU49zGdFf0PDqVPipTdXVXpNocnWWHK8cl1XteCnN2RnlZHDNf9C4C3PbsF5bwl/SGcZJj2LC9vbEo/3uedQJJ3dKGN51WpYDKJqEwtNEd3FYZiUdhqV6ImyXtTtdNHrf+Xd8J2pZc3Kim1sEihSHqHI4YJn6e2gRS9BdNALv9I46PFvMsDYbaKgbb2+EWtg==
+	s=arc-20240116; t=1722631212; c=relaxed/simple;
+	bh=jecSt/0AFMelTBWHVOhwSiZBkGFG2yfDDusH3V4/igk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=C+SDD05pix4bK6m7NBW+T/g84QHOicDhhbtBLTLx9OA7FVkrLavpBWAh5y0Kxf95YL9mdyZuPWMVhPttm83IwPWGRiuTAzBrKmMx0OA2V+sE4r9dYR93+O5zK7U1Ai/0mWHn7/04M7QsjbTcttL3IG2eP/XcAb1mG0YHaGw5Fy8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IDe2Pz2c; arc=fail smtp.client-ip=52.101.69.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cM5g+WDr98T6foP3W/z+8zcqVYDTTEeWVkbl++XYMe/TkIKzcqwoTvA7I3+jcm9LpilqsZfNGEiUtd+6y6IkxYyinEHA/0xTws8PE8nxDwqhK9Ff42ehKmOF2oroRkv0fCDuFEzml6IIp/KLrqaLcGbrW0Jh1syDi/9VZtRLt4yn13Xp2yQGclrBi0afDTOSSNOsZla5XWKUibdRoKZRg5e1B/hVEJhvMOPrGK2wz7Z386pU0qDt8YutMIuJqnFzTqEwRLdYEUXp0Gm7YdRBx7CJXILI/a1v6AVKjm4SUAFi2PfXlkBzDh2x9kHMl+ZxSXsVK8Bx6NA35Xt4QmGNRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xHL10LLLXWiRdF0hzWiED6n6yxEuw89N+osOUzCN40U=;
- b=QO83toeYGjQliLGzZtfIWjdrDZpBZE5XFfqInqIkc2uEy9knrE+l7SJd70y7Eo4BQvEaUrqjE2GAFq8u9pEXfPHklBW3ZdqnGk4kQBZ5+D+zjCaXpE2VvqV117XQwid3ILw+gXW41viuO1/L/kaZu+hXbfWiESA2IvSuspw1m4vlziQTlLpHlRrTh9iro0QES1QHnK+Een7o6I/7D6FzRCc8bOp0/JkizjiDeuhNFwlns77B0OJe62FKn5Na1WlPXlhmMUpb42U7Skvds8C7g7sdMzytIOGiFuxeyKCoL3O9mRAQIK0SbqMZKDdjvhOf5lIgdcKiPW7DaYw+yCPuwg==
+ bh=yoWOqfZNjvNGQIKcSEqJBjJWNzS9gDzTSxlTaxvwMRs=;
+ b=xd54oi6I3/asBtbrqkL9kJ26m7zYUNhs5oUejkDNBoKpXxeKjKd0Rb5j0GT7bVM+To8hAUdTCpNWmWzpJAMzXfxkEiDFUevAypmjCO3bzzxK5G+DAQzFw47IfpdLJJPirgX9priNsvOZwAt5OeJ/DVZOheGVbECklDPkQQEBYrrUFRoVI0I79ek7Nk/vbfdqlA76RBdeYCB8tXEWCPWA8HfYA9oXgXt18w8lEvmg2/0KCwMe+2QJ/X0y2B7+Y4SssFtk+Q7CvwkXcrbPDgni9NQBGSTIkke2l3aDHacDdioGArJfE3yZCb5JtOhLMZRTvTHqHxe6b6UKPa5icFK6CQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) by SHXPR01MB0816.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:27::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.36; Fri, 2 Aug
- 2024 10:45:27 +0000
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- ([fe80::bd9e:fb57:ebf7:9d71]) by
- SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::bd9e:fb57:ebf7:9d71%4])
- with mapi id 15.20.7762.035; Fri, 2 Aug 2024 10:45:26 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Jan Kiszka <jan.kiszka@siemens.com>, Vinod Koul <vkoul@kernel.org>, Kishon
- Vijay Abraham I <kishon@kernel.org>
-CC: "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] phy: starfive: jh7110-usb: Fix link configuration to
- controller
-Thread-Topic: [PATCH 3/3] phy: starfive: jh7110-usb: Fix link configuration to
- controller
-Thread-Index: AQHa44beFBe0N3E+hkqRZPdRqPN1srITyxyg
-Date: Fri, 2 Aug 2024 10:45:26 +0000
-Message-ID:
- <SHXPR01MB086373887A29C696747FB365E6B32@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
-References: <cover.1722457123.git.jan.kiszka@siemens.com>
- <cd7b125c8c797f9d63440944df7121f9db0a49ad.1722457123.git.jan.kiszka@siemens.com>
-In-Reply-To:
- <cd7b125c8c797f9d63440944df7121f9db0a49ad.1722457123.git.jan.kiszka@siemens.com>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic:
-	SHXPR01MB0863:EE_|SHXPR01MB0816:EE_|BJXPR01MB0807:EE_
-x-ms-office365-filtering-correlation-id: 47a68594-9609-4331-9676-08dcb2e03844
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|41320700013|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- Jq6paCtcyWPSUJV0MzRAF9ylkv9DcQfB5JlYjbm+AhQIJ/NdTQO5wgXv8eJ4yvGFRmHzY5eXkef5cTG63Y2KrmO+4nW8OHkTeTae4GFQGvg4QkjNE+5+w+6asl/d3xvT1NADce+LimEY8iO2WB5TxwJ51wFzTSk6VqkKyeSryxgB7KeWs8HTBk0f6YlUz+DI3X1dVn5tdHIDrwI/nmfPoIFKGsx20DF7Mr15Qqdo4qnAGj/TsukA18S29bPU8SCtegyNF08i27xwLieV6CFpHJyMR07uD8RdkTeBBy3ZR0CKJ5NPWBPiskHnyv3FCady/ufJZh6qpFdY4JjPlc/DDr71fTnYZx023brNSAlaMoHZTxzD31uLjDlNl71yGA9012MrIoLZpStHB8iQCtOfUk323oAfzjmIyV4n8/wMiSkcbRPD5x5F+ZnHOCr1djxz/QQvbcZdzpOSE6AX6ygqlXg26hDLbK3d2dMLtxcBgZsq8UtC3MJ1SJUm5mog16Xz4tRdkWmuMGSgoJLGnk3Bw+dcPCpsI+AGLeAx7RKJYTSWUWJ4mBrqxAYb0s8TC6Zjj4dC+pH26USW1FhxIR+IdWLkWTVpVnkPWZxKv5XL/+W2uWGZI8PSFeeBkYSWBkHN
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(41320700013)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?0BgDyyiTO1EjdL2gauF+36+gbzpjDzuYOi4be1GhKqhk3ew3btE+TnX0AjsX?=
- =?us-ascii?Q?bdrCZD+4vHxvvw++oLWO41VCPJ5LaeqdyGkvGQASamPe6bdLyxjfkCo9bQ3/?=
- =?us-ascii?Q?e0imPFz0KHcNdg4x4kbMloRdFb5jUj3VaigLAPEw/IeUwY3VYqG2gqjQ5/Wa?=
- =?us-ascii?Q?HAcRP26rb0CHrAFqHlrsvhdWot8ok7Op8igN76LWpPciQrOsj/y0esEliZPQ?=
- =?us-ascii?Q?8NAOPuXv7W8ZvAlrruoiwv2bWBQH3yqpqWsWVu751at882pSJBJ9iq+LdMQg?=
- =?us-ascii?Q?fljVLZvD6w91Z25NSIQ+nEXpvTTeIshxG8M3BGjeBULNuJbfochgHSsRF3tk?=
- =?us-ascii?Q?t8h1MAXdU+xtv6PYRQ0Aw4HWpmgh2Y0ndn46pybnUnrTO29RoSvG90HEynlR?=
- =?us-ascii?Q?3rgamYxx6uNi6GNI3fHtZ/Byy21SLi2ie5C0+IJxRmhOXet8VJLvtRN2EdTQ?=
- =?us-ascii?Q?n+9+eC3b0Yhj5hMex6xLQ34cCawj8agb3EcxAcepCH7xoiFj+Ch+bpKzt2sI?=
- =?us-ascii?Q?db06AOtuNDAAjOZ1csYChOaPh1pX0t0/RyivKVMs/ejyaphgtM4GJZVhY6hw?=
- =?us-ascii?Q?uK05GqwsI6N57K0WQAVY6Inky4z0b0WsAzO7mWEDa89ex4Sw6TTx7Jq/lQ+4?=
- =?us-ascii?Q?zZAUxCkkF78n1Lny9qi3HmB9RCr/szmxifqzk+DaOEPESAtPfTYMsYXnKdqo?=
- =?us-ascii?Q?y28MeLbflJDUPqCKUg0me8pXigBoAhWrNVnkPWhpg9ULdZzAFrF2oTs0o/DM?=
- =?us-ascii?Q?WpP7QrCBPUhZJwuvXxo/J9ic31EQbJQ1OjSkHxS/LvDGCf+d9efr8hg4alje?=
- =?us-ascii?Q?IKb360BSWj39zLbfyb/wpm3Wd2mNXcN3UV7xpuKGGQfZyVk60xCbysNlgoy8?=
- =?us-ascii?Q?idvNF5QInydYP8PvUwWezka4qIqwXiPLgF0nsTrnBUaOrkzrK7Ltvs7FhNfn?=
- =?us-ascii?Q?M5ljAFT8TeA7/KPlPsrC5Q4611LHkHBwRLScE61Dc6xG7rSEUKGhmfzVvHQ6?=
- =?us-ascii?Q?hViAqvYziDJkTcb61gmcG+pWbHYzwS+hU/FflfZe59KD6YHk8VXbX/tRYN/B?=
- =?us-ascii?Q?As1aJnTU7S8KGwWyvzCutdIBepfcqeo6bWFJtiMrj4fkxMzIj6t9TDdkcYFB?=
- =?us-ascii?Q?kijwq7QQMixbetr+VGLO5BwXdOXl4qAQaAht35QD10Jh0Pa239RXK6tRbroe?=
- =?us-ascii?Q?nK/Qk2OcbcrYvURaUu7NNeW/3L56+wyNbcu97Dyw0ZxsE8bMbFweIurhstP/?=
- =?us-ascii?Q?XqyqB0vM1xBl2P06SvqLvFZiKx60qA9DS4P3lZnVjXfzPy52/l321v5/vqyA?=
- =?us-ascii?Q?BG3v6ljsDZbHqiNRdRWXrk0yExY1pKtsyV0gYzkbPjHonZYwlhI+GVoy8v79?=
- =?us-ascii?Q?VeSQ3FJ4Dh2xFuECHFI1p6VnqXGQTSyII1JH3TaIIriYcyaYp/9eA7TIQP+5?=
- =?us-ascii?Q?IAnuSNPz+zXn8pDrZKuT+YXVAwopWZvvjDr+S5nU0eIUVoqjZpvBBETX+O0f?=
- =?us-ascii?Q?byWJlbIEAj/ocGNhlxknmI8YdlFMGYP+/qaj1OMp+MvUphNbkDe8m9j6M18+?=
- =?us-ascii?Q?1eziTi5U3hI3e1ES6nLWGt+hZiGMUYU9usjNNjx0?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yoWOqfZNjvNGQIKcSEqJBjJWNzS9gDzTSxlTaxvwMRs=;
+ b=IDe2Pz2c3c+F9vtFhVgIC0SNTy1ovlkEL5Phll7JRaCqkktEgmHxq23h4avTNOeQjZvDCjkDUJedfrzU9oY9OMfeKOn1OqEdV9xqVe+2PZpJkUfk0IcO+JWiuAMezgZYhn1VcpKnr7pVlm9mTNih73U3BLaLx7IUYffiJH8fFuO7ECj41v7pm01mCgitASk14c1WRyswNaBRktk+UUC2iob/WPPJJFvN4woFIIPa0byDPq4oeeaumoJu8z9NueHZfRcUnyeZ/aNnEDWm079rxEru241LShhnJeqyUPy1lPL5jVR9RIEF7LRUfqSyJaXfPo+uFtxKtLTg+P2hygW+TA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB10801.eurprd04.prod.outlook.com (2603:10a6:150:21b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.23; Fri, 2 Aug
+ 2024 20:40:05 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.021; Fri, 2 Aug 2024
+ 20:40:05 +0000
+Date: Fri, 2 Aug 2024 16:39:56 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, l.stach@pengutronix.de,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de, imx@lists.linux.dev
+Subject: Re: [PATCH v5 1/5] dt-bindings: ata: Add i.MX8QM AHCI compatible
+ string
+Message-ID: <Zq1EHGXx7yAK9TXS@lizhi-Precision-Tower-5810>
+References: <1722581213-15221-1-git-send-email-hongxing.zhu@nxp.com>
+ <1722581213-15221-2-git-send-email-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1722581213-15221-2-git-send-email-hongxing.zhu@nxp.com>
+X-ClientProxiedBy: BY3PR03CA0007.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::12) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10801:EE_
+X-MS-Office365-Filtering-Correlation-Id: 950575d7-3d6f-414a-6999-08dcb3334a42
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|366016|52116014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?IVWwQpWH1uip1AYry2H+crjo5Di5dB1+3/AEYuuqpMShTJSI5B4GhFERTHWD?=
+ =?us-ascii?Q?Zy9+k8HjyWsDnEUFAD5aG/ENiF96+EwZi+4q0JH+SNX5npc1FPVrkcB+ltKX?=
+ =?us-ascii?Q?d4KptVmayS4R2vBZitK+UTd/1F3IjIkfmLNcxWlSdKvflkKNH0piX8Ez6Uts?=
+ =?us-ascii?Q?8T/6s7H3JzWA1HGX1OFxByz8CiVkXT4W8DTqNkPjAMLe1SRifg9xXo+FD80l?=
+ =?us-ascii?Q?rhKuKJ2GvF47RmikARDXh9NLeo9rvq9i41TjxGNEd653V0uLHvbeqromytqF?=
+ =?us-ascii?Q?i3SBNLRyIXUJNMzUoRNpxHDVvRMk5Mhdydtl9hXF+1rexKLYiga/oflvNIst?=
+ =?us-ascii?Q?RonSGDn+aLrXV5pazYwvlj6vlYxem8/G6G7fylO31U/+R4zGT7SYAj70Y0w6?=
+ =?us-ascii?Q?dys5k3UkZ/x7GtIBJ92qke3VdfyhNVDf5FW8NiCkNHuL+5stPLAJ6zWZGGf8?=
+ =?us-ascii?Q?cAw5XTxGlBXPQX16K8AJc5YHv9NEiB6eHTchECEzxCWv/Yl6KalhZJ0m5EL5?=
+ =?us-ascii?Q?HTPBNgCk+kGsAtSaXvWiz2NrPPKzgT0gkzp/S/d8E530Iu+RngcpFDkfDP2Q?=
+ =?us-ascii?Q?yokFnWRSfNIUY3hLixATlyT2VNgSw+Ek7RDEat9wsv6mwca3CqgE0E0aROJ2?=
+ =?us-ascii?Q?y92quokGc2e2UaFNPANR5r1gM6YrAm3VIlexCkFpt794rjpFw/gsnkNhVU9p?=
+ =?us-ascii?Q?OB3zzhSehcx8rlLuLe4SOyo1VKmwHriK5Sk6v+S6qjNbJPKl6MJ+fxITBJMd?=
+ =?us-ascii?Q?s6TsUqqCQzvydTX3Ywo4hS0QtbWGIfEB/TYQNRhlbrgIyzjefzYKHYz/nPDh?=
+ =?us-ascii?Q?u2ntyvvq2XNXfkQLF0k52ru+xA1Kxt+aiN0i8achYQ6W3E/eM6hYW3mT8aqn?=
+ =?us-ascii?Q?kZ2dG4N1mJV+GHrXc2JGBuVf5T6nI+8QV8DKf6v6mlnu3ISCZ8PyIb5tFc7D?=
+ =?us-ascii?Q?dbrWsDLV06o8o2c3FerFK6XubcNqxXGkhOmZYjCai8St8uIZ8gfWqOSlmwtd?=
+ =?us-ascii?Q?vMee7gDhSXErx87LfhBiG0juS37YyzMHYSnBfcYVOvki4hMr4+DE15RiAjjD?=
+ =?us-ascii?Q?mThEeT+McnT86vBWbYEjBX1Ot6mkVaRKPReBFlzd7rBFTUmAEFu1+o8CUT3R?=
+ =?us-ascii?Q?pA5sHg/4XL4CfVkdyVO55sN/Rr2kQ+daDKRV/0w+5a9N48RSQ2+Q2QIyLnVH?=
+ =?us-ascii?Q?tq/Pgbpe5dlHNbtD3+rL+RQMYDfjq7cDv0MfHwR83KKApR/flmvO0VqwDYGp?=
+ =?us-ascii?Q?UAL0rPf+rCYCnPFeL75kwbhR8VTPY++QIPwPRbEh9VSMdLIBJ74Vmikymdju?=
+ =?us-ascii?Q?UeoxfDaALRDSlmgPmpw0vIx9yxcfwiO3kfIPTHM2eX+xBuBGID9DmG+jCeTS?=
+ =?us-ascii?Q?0iN2TbSEWux88Hhwi0tufrHUb8MpVG6v+o18vMeWg8fFDbziPg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?MuO3+LhAgPHw4TS0mH8gCjFvQQ3mrfMhRFazqT03XAgcbwAGidsL0IDiO9lW?=
+ =?us-ascii?Q?++b5TJPL71Od+QPfT/dHatQkh2oW1aJHE98YbYmvZPBM+we7Hc/aWeSAe98d?=
+ =?us-ascii?Q?lMJ8TcFwb7dkZWfvSEalPxepA4w0yrCiuFlERaSAPOBDjArth4fLddOK7D0J?=
+ =?us-ascii?Q?PFd3jmgEnFp0jdjAB1mgwBvY9e1q3ecyFxLmy3bNwAMQat6ggW82+GOKodNy?=
+ =?us-ascii?Q?Dm6bzdFj4ulLI2Jq9rUlW+BTdID0KpstLwl+eHeIL3jrM5d1Nkof901wi0h5?=
+ =?us-ascii?Q?pqYk/k5u6PY5Jz7Duo5WQPiD5DdejPIbReUfo5o/HTFCR/2C/mzmw7fl30Ms?=
+ =?us-ascii?Q?61+gDuTp6Cu5CRsigjby8l+dCjQ1IAX72IODm5AG5nnjcGE1tFo5WOZmKDaG?=
+ =?us-ascii?Q?0T3D+3awYR2mWKSN8Q/FED4Xs7ObEVGBXoGXTtwGsRd8Dv1DTF/QxSS5wVtg?=
+ =?us-ascii?Q?iLqsMBFk2SWNzTWo7m2Ka7swFhsLrl4Ndxr/U9qhikGM4sKX1by6vC/doqu0?=
+ =?us-ascii?Q?Yi22VPUpFBzDIBK2jainwsXPhhMjrEYj3i3lq1IIrGG3i3pBWYwSwv+86l1b?=
+ =?us-ascii?Q?71bt7DfCHk+MbLMoVfSyMeMslwl8m5c8PVRdynb/fvShhzMQ2egDb4vw8P/e?=
+ =?us-ascii?Q?bcn//ww2q7d8g+YIqX3PdbWL2Mss5uW/QicBOTD+j2A626Ajj/nv0N1cBtNG?=
+ =?us-ascii?Q?+fE/w/LOnwMUzicyan3CxgLsDciFGdIPBAhYOLgLMt1sURpNiMizTQrmdsDv?=
+ =?us-ascii?Q?3OxnXQE0iiYcZILOCI7Bwqo8Go8iCvvMYNqYPhNS36yGfoxxHh1GZ+NWwu40?=
+ =?us-ascii?Q?rBjmfaNrrBengbECaxTKMsutfx4oiRYwkH2wdbr0NfhLTRwz1lWpYwmahy+k?=
+ =?us-ascii?Q?XjFbb7SmxMXX1gNOuYFRdKPUg1yfDrAdBVbsbpb+R3t4zwksftq6FNm7Y+fv?=
+ =?us-ascii?Q?vZpNXvf5oM+KXvdxDEkl7zwfv144PgKWuPh5NaIcjf457sc42U7Vc+6r2XkP?=
+ =?us-ascii?Q?nHE0BTK8JGAtq7Rc5mKjyMduA7bAQDpRWpQjNyWrIsw0+ffRtQSWL7peMKW5?=
+ =?us-ascii?Q?JUurOhqWufLYNQCO/pguakiOn45vlkx5F2janFn86GNL2xLXCC6n7RL3BbvM?=
+ =?us-ascii?Q?81FofJoAbW56KOdIURlHl1UZZQrrjIheHtL7NrG1EGg20D5tHiPXCyBNLGBp?=
+ =?us-ascii?Q?8J90qRINzgp+J8GZM9+VGiF3BLGprr8DQ+lDtSMplWowj5IAwTvbC+Il8CVr?=
+ =?us-ascii?Q?T2bCUoFHLjRSc1KmzfjEMd9uHrB5ffMmOxzzTtmWnp1xNoVlqOou5EhuF5AO?=
+ =?us-ascii?Q?0SVal2rtCRtXtAIGoC+yOMvwu1F3oIhhgTr3eETFs1aEXgUbbVO2+VjlRb1y?=
+ =?us-ascii?Q?GJ5Eu9kS1j8jrP0ejWVPBn7ztthZGWxxKkdG86A8+CIoZijMlfedJsEyfiiC?=
+ =?us-ascii?Q?n3fQLgircF7ACwTgsTKuqeMUyZJiqm/TBWRtgaMC/jVXegs3HNqFyPnbOVMm?=
+ =?us-ascii?Q?mJrBPZr8TWM+wwqYz+tiWlyvv6/MpU9vSEAeFSCi/wMb+Yu4B1UtqqH0ePAs?=
+ =?us-ascii?Q?xKe5nRMkPph4rhgB8wv998/oirYUuzZ1e4m35FHI?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 950575d7-3d6f-414a-6999-08dcb3334a42
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47a68594-9609-4331-9676-08dcb2e03844
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2024 10:45:26.5608
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2024 20:40:05.1867
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0jQoqXdmDKjsWgTQf04yO0KeJMsi/gFJnOqrEuDFbdjGhfjKt5lKCC57ANlTXlC+hpryNq3RHz9CR+prN2eP3BU/TdQROt+ZHNmqoHjPQbg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0816
-X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kr1y3Z71C65ZOt0+VVSUU+vJafy3IYNlUNYKcifiXVVcO9kXwg6ZDkaQgoDnIgHW6hAagj6ghejcbt/NdOxTMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10801
 
+On Fri, Aug 02, 2024 at 02:46:49PM +0800, Richard Zhu wrote:
+> Add i.MX8QM AHCI "fsl,imx8qm-ahci" compatible strings.
+>
+> i.MX8QM AHCI SATA doesn't require AHB clock rate to set the vendor
+> specified TIMER1MS register. ahb clock is not required by i.MX8QM AHCI.
+>
+> Update the description of clocks in the dt-binding accordingly.
+>
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-
->=20
-> From: Jan Kiszka <jan.kiszka@siemens.com>
->=20
-> In order to connect the USB 2.0 PHY to its controller, we also need to se=
-t
-> "u0_pdrstn_split_sw_usbpipe_plugen" [1]. Some downstream U-Boot versions
-> did that, but upstream firmware does not, and the kernel must not rely on=
- such
-> behavior anyway. Failing to set this left the USB gadget port invisible t=
-o
-> connected hosts behind.
->=20
-> Link:
-> https://doc-en.rvspace.org/JH7110/TRM/JH7110_TRM/sys_syscon.html#sys_sys
-> con__section_b3l_fqs_wsb [1]
-> Fixes: 16d3a71c20cf ("phy: starfive: Add JH7110 USB 2.0 PHY driver")
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  drivers/phy/starfive/phy-jh7110-usb.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->=20
-> diff --git a/drivers/phy/starfive/phy-jh7110-usb.c
-> b/drivers/phy/starfive/phy-jh7110-usb.c
-> index 633912f8a05d..67882bc4cebc 100644
-> --- a/drivers/phy/starfive/phy-jh7110-usb.c
-> +++ b/drivers/phy/starfive/phy-jh7110-usb.c
-> @@ -10,18 +10,24 @@
->  #include <linux/clk.h>
->  #include <linux/err.h>
->  #include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->  #include <linux/usb/of.h>
->=20
->  #define USB_125M_CLK_RATE		125000000
->  #define USB_LS_KEEPALIVE_OFF		0x4
->  #define USB_LS_KEEPALIVE_ENABLE		BIT(4)
->=20
-> +#define USB_PDRSTN_SPLIT		BIT(17)
+>  .../devicetree/bindings/ata/imx-sata.yaml     | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/ata/imx-sata.yaml b/Documentation/devicetree/bindings/ata/imx-sata.yaml
+> index 68ffb97ddc9b2..f4eb3550a0960 100644
+> --- a/Documentation/devicetree/bindings/ata/imx-sata.yaml
+> +++ b/Documentation/devicetree/bindings/ata/imx-sata.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - fsl,imx53-ahci
+>        - fsl,imx6q-ahci
+>        - fsl,imx6qp-ahci
+> +      - fsl,imx8qm-ahci
+>
+>    reg:
+>      maxItems: 1
+> @@ -27,12 +28,14 @@ properties:
+>      maxItems: 1
+>
+>    clocks:
+> +    minItems: 2
+>      items:
+>        - description: sata clock
+>        - description: sata reference clock
+>        - description: ahb clock
+>
+>    clock-names:
+> +    minItems: 2
+>      items:
+>        - const: sata
+>        - const: sata_ref
+> @@ -58,6 +61,25 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description: if present, disable spread-spectrum clocking on the SATA link.
+>
+> +  phys:
+> +    items:
+> +      - description: phandle to SATA PHY.
+> +          Since "REXT" pin is only present for first lane of i.MX8QM PHY, it's
+> +          calibration result will be stored, passed through second lane, and
+> +          shared with all three lanes PHY. The first two lanes PHY are used as
+> +          calibration PHYs, although only the third lane PHY is used by SATA.
+> +      - description: phandle to the first lane PHY of i.MX8QM.
+> +      - description: phandle to the second lane PHY of i.MX8QM.
 > +
->  struct jh7110_usb2_phy {
->  	struct phy *phy;
->  	void __iomem *regs;
-> +	struct regmap *sys_syscon;
-> +	u32 sys_phy_connect;
->  	struct clk *usb_125m_clk;
->  	struct clk *app_125m;
->  	enum phy_mode mode;
-> @@ -61,6 +67,10 @@ static int usb2_phy_set_mode(struct phy *_phy,
->  		usb2_set_ls_keepalive(phy, (mode !=3D PHY_MODE_USB_DEVICE));
->  	}
->=20
-> +	/* Connect usb 2.0 phy mode */
-> +	regmap_update_bits(phy->sys_syscon, phy->sys_phy_connect,
-> +			   USB_PDRSTN_SPLIT, USB_PDRSTN_SPLIT);
+> +  phy-names:
+> +    items:
+> +      - const: sata-phy
+> +      - const: cali-phy0
+> +      - const: cali-phy1
 > +
->  	return 0;
->  }
->=20
-> @@ -101,6 +111,7 @@ static int jh7110_usb_phy_probe(struct
-> platform_device *pdev)
->  	struct jh7110_usb2_phy *phy;
->  	struct device *dev =3D &pdev->dev;
->  	struct phy_provider *phy_provider;
-> +	u32 args[1];
->=20
->  	phy =3D devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
->  	if (!phy)
-> @@ -129,6 +140,15 @@ static int jh7110_usb_phy_probe(struct
-> platform_device *pdev)
->  	phy_set_drvdata(phy->phy, phy);
->  	phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate=
-);
->=20
-> +	phy->sys_syscon =3D
-> +		syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
-> +						     "starfive,sys-syscon",
-> +						     1, args);
-> +	if (IS_ERR(phy->sys_syscon))
-> +		return dev_err_probe(dev, PTR_ERR(phy->phy),
-> +			"Failed to get sys-syscon\n");
-> +	phy->sys_phy_connect =3D args[0];
+> +  power-domains:
+> +    maxItems: 1
 > +
->  	return PTR_ERR_OR_ZERO(phy_provider);
->  }
->=20
-Reviewed-by: Minda Chen <minda.chen@starfivetech.com>
-
+>  required:
+>    - compatible
+>    - reg
+> @@ -65,6 +87,31 @@ required:
+>    - clocks
+>    - clock-names
+>
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx53-ahci
+> +              - fsl,imx6q-ahci
+> +              - fsl,imx6qp-ahci
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          minItems: 3
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qm-ahci
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          minItems: 2
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.37.1
+>
 
