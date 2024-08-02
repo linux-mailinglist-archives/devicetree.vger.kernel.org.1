@@ -1,126 +1,112 @@
-Return-Path: <devicetree+bounces-90504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E91D945A54
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:59:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 090A2945A60
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:06:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 727B81C216CD
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:59:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FD291F21A19
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A21E1C8228;
-	Fri,  2 Aug 2024 08:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5AC1D2F71;
+	Fri,  2 Aug 2024 09:05:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BBC1C7B9D;
-	Fri,  2 Aug 2024 08:58:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4401C0DC1;
+	Fri,  2 Aug 2024 09:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722589141; cv=none; b=PrmPhFdoNEMlcD19U1ByUoSVR3AfxclIgIDYjgKseaUhsI9KjcTK4XKlMMetbFBOTy67wSXTlkagd59d8jFR3J/yPONgEvSC2KxCVRH3pcLFStMrFAcBSzHnOx/bYl0MZxurOVqNS6sTu0fBFH5dXgUsXgTEqp1YLdDtW4UD/s0=
+	t=1722589556; cv=none; b=ACfD5tC4oVwRtdUvpW4gIIPkLSzmJmi1tq3Rw6/xJOd45RJcesy2QxVtHe0dCrCXxXZlfnaVvUXU+V89nTRQb4wTY+bP/Wcyjx3k7PLaILiJZ2nA4NTXMa2obQ6xWi6tSxG4WZayEhMEa/+oP80CCs162E5mR6o4Q0S91ky7QEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722589141; c=relaxed/simple;
-	bh=dbKN0+MqNrFpMCkf55bs3q79x4n4B1Fo54lJuYi4g80=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xj/e8jKkhFfDeh2mJY15Oe3Pw0991qayJ652GVb27VTHaTNj/Px8rK9joOdczYNrQ1XdSdqPmWGXgbgSU58JncRbilTnKR9i8nhvak7mK7fOEX1Xv7gRiQcZBaviJLzKlVnWsMML9F60lZrJfnWGzZZXZeno+hIgNobua2HzjY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 281D91C000E;
-	Fri,  2 Aug 2024 08:58:51 +0000 (UTC)
-Message-ID: <0abc375c-61a1-4b8c-bac5-a5dc170c5fb6@ghiti.fr>
-Date: Fri, 2 Aug 2024 10:58:51 +0200
+	s=arc-20240116; t=1722589556; c=relaxed/simple;
+	bh=D8ogs8GBuYVvZtiV2P2X9897oab0tdFIb2V2GWAbj0I=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WQXY1KkEStkZbHF5GuTtnjHAhd8/vE+Me0fRynxAB6ceHvr7wD1NKeT298SPzIT2LFZ4JBsY1wcDNIbpZTxlMRgTy3h3LyrCDzlfmZ5KaY/VzE6HE9R6t0dmr/LKa1R4TRcijxX6j08QTnkycZtBiFxGJz97L53xL9f1pGgCrvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Fri, 2 Aug
+ 2024 17:05:51 +0800
+Received: from localhost.localdomain (192.168.10.10) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Fri, 2 Aug 2024 17:05:51 +0800
+From: Kevin Chen <kevin_chen@aspeedtech.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <lee@kernel.org>,
+	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>,
+	<olof@lixom.net>, <soc@kernel.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <p.zabel@pengutronix.de>, <quic_bjorande@quicinc.com>,
+	<geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
+	<shawnguo@kernel.org>, <neil.armstrong@linaro.org>,
+	<m.szyprowski@samsung.com>, <nfraprado@collabora.com>, <u-kumar1@ti.com>,
+	<kevin_chen@aspeedtech.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v1 00/10] Introduce ASPEED AST27XX BMC SoC
+Date: Fri, 2 Aug 2024 17:05:34 +0800
+Message-ID: <20240802090544.2741206-1-kevin_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 13/13] riscv: Add qspinlock support
-Content-Language: en-US
-To: Andrew Jones <ajones@ventanamicro.com>,
- Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Andrea Parri <parri.andrea@gmail.com>, Nathan Chancellor
- <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
- Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>,
- Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
-References: <20240731072405.197046-1-alexghiti@rivosinc.com>
- <20240731072405.197046-14-alexghiti@rivosinc.com>
- <20240731-ce25dcdc5ce9ccc6c82912c0@orel>
- <CAHVXubhQefQ6i3Vow_p-uSACQyPcMJNC2UwB99xt_=jDtRUDFw@mail.gmail.com>
- <20240801-e773d3752fe8b5484405d404@orel>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20240801-e773d3752fe8b5484405d404@orel>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain
 
+This patchset adds initial support for the ASPEED.
+AST27XX Board Management controller (BMC) SoC family.
 
-On 01/08/2024 12:15, Andrew Jones wrote:
-> On Thu, Aug 01, 2024 at 10:43:03AM GMT, Alexandre Ghiti wrote:
-> ...
->>>> diff --git a/include/asm-generic/qspinlock.h b/include/asm-generic/qspinlock.h
->>>> index 0655aa5b57b2..bf47cca2c375 100644
->>>> --- a/include/asm-generic/qspinlock.h
->>>> +++ b/include/asm-generic/qspinlock.h
->>>> @@ -136,6 +136,7 @@ static __always_inline bool virt_spin_lock(struct qspinlock *lock)
->>>>   }
->>>>   #endif
->>>>
->>>> +#ifndef __no_arch_spinlock_redefine
->>> I'm not sure what's better/worse, but instead of inventing this
->>> __no_arch_spinlock_redefine thing we could just name all the functions
->>> something like __arch_spin* and then add defines for both to asm/spinlock.h,
->>> i.e.
->>>
->>> #define queued_spin_lock(l) __arch_spin_lock(l)
->>> ...
->>>
->>> #define ticket_spin_lock(l) __arch_spin_lock(l)
->>> ...
->> __arch_spin_lock() would use queued_spin_lock() so that would make an
->> "infinite recursive definition" right? And that would override the
->> "real" queued_spin_lock() implementation too.
->>
->> But maybe I missed something!
->>
-> It depends on where the definition is done. It should work if the
-> preprocessor expands the implementation of __arch_spin_* before
-> evaluating the #define of queued_spin_*. IOW, we just need to put
-> the defines after the static inline constructions.
+AST2700 is ASPEED's 8th-generation server management processor.
+Featuring a quad-core ARM Cortex A35 64-bit processor and two
+independent ARM Cortex M4 processors
 
+This patchset adds minimal architecture and drivers such as:
+Clocksource, Clock and Reset
 
-So I have just given it a try, both qspinlock.h and ticket_spinlock.h 
-define arch_spin_XXXX(). That triggers a bunch of warnings.
+This patchset was tested on the ASPEED AST2700 evaluation board.
 
-I'll drop this suggestion as I find it harder to understand and because 
-of the warnings that would need the introduction of a new preprocessor 
-variable (or something else?).  And the solution with 
-__no_arch_spinlock_redefine is really straightforward and lightweight.
+Kevin Chen (10):
+  dt-binding: mfd: aspeed,ast2x00-scu: Add binding for ASPEED AST2700
+    SCU
+  dt-binding: clk: ast2700: Add binding for Aspeed AST27xx Clock
+  clk: ast2700: add clock controller
+  dt-bindings: reset: ast2700: Add binding for ASPEED AST2700 Reset
+  dt-bindings: arm: aspeed: Add maintainer
+  dt-bindings: arm: aspeed: Add aspeed,ast2700-evb compatible string
+  arm64: aspeed: Add support for ASPEED AST2700 BMC SoC
+  arm64: dts: aspeed: Add initial AST27XX device tree
+  arm64: dts: aspeed: Add initial AST2700 EVB device tree
+  arm64: defconfig: Add ASPEED AST2700 family support
 
-Thanks,
+ .../bindings/arm/aspeed/aspeed.yaml           |    6 +
+ .../bindings/mfd/aspeed,ast2x00-scu.yaml      |    3 +
+ MAINTAINERS                                   |    3 +
+ arch/arm64/Kconfig.platforms                  |   14 +
+ arch/arm64/boot/dts/Makefile                  |    1 +
+ arch/arm64/boot/dts/aspeed/Makefile           |    4 +
+ arch/arm64/boot/dts/aspeed/aspeed-g7.dtsi     |  217 +++
+ arch/arm64/boot/dts/aspeed/ast2700-evb.dts    |   50 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-ast2700.c                     | 1166 +++++++++++++++++
+ .../dt-bindings/clock/aspeed,ast2700-clk.h    |  180 +++
+ .../dt-bindings/reset/aspeed,ast2700-reset.h  |  126 ++
+ 13 files changed, 1772 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/aspeed/Makefile
+ create mode 100644 arch/arm64/boot/dts/aspeed/aspeed-g7.dtsi
+ create mode 100644 arch/arm64/boot/dts/aspeed/ast2700-evb.dts
+ create mode 100644 drivers/clk/clk-ast2700.c
+ create mode 100644 include/dt-bindings/clock/aspeed,ast2700-clk.h
+ create mode 100644 include/dt-bindings/reset/aspeed,ast2700-reset.h
 
-Alex
+-- 
+2.34.1
 
-
->
-> Thanks,
-> drew
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
