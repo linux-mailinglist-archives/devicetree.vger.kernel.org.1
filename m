@@ -1,131 +1,130 @@
-Return-Path: <devicetree+bounces-90450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F8494570C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 06:27:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 956FB945734
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 06:56:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6EFC283831
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 04:27:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39E431F2467C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 04:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835FF54907;
-	Fri,  2 Aug 2024 04:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="McD/rsNu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B380720322;
+	Fri,  2 Aug 2024 04:56:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE3B4778E;
-	Fri,  2 Aug 2024 04:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466C88836
+	for <devicetree@vger.kernel.org>; Fri,  2 Aug 2024 04:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722572771; cv=none; b=G2CXSJ//dM4b3s0DsdjbgZG8Cb2MZNwiNwaj483gQZHPcR9nJtwTrGbEb4NAPsltbUc4qR5bGIpY79PgSAaEdLQlhhp9lyrCxtG13RZ55J8dCgANIDNekq4sX5RUVmpOCkSgKdQqlUKNql+dlNEEgSuPdBb3n0wFz8WFq5OoPRs=
+	t=1722574574; cv=none; b=kki3nifPJXjg5ll40kIAGvjZc4cyfT6PAi7m5BooG/4ALvgBFhfjjTxvDF85A0FV+hysqvQzdn1Jh2VG77HjmBxAL/umMe7hp0bsfrFVnKXU7xIRbxwaOd/EYCFmwh2Lo0YYxBxrY8OpG7KC4AQk52viVxkYFI3KmMBs0Ubbg8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722572771; c=relaxed/simple;
-	bh=IQb18GsEsQhhNQVCdjoBsLAJRtJgr3iLIQ62bcFMy1M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JCSfAvf3u3h/v7cb7WIrO+roth5HHrxCAUe5TL0+AFqqk5jkqvVRJ/tcsLTfN5+7e4xcII+g5x7D0/ntSosEvi6KJLQj86YGAuvfd6pjCGFpK79z5l0AARom5ZPA6TqjDXJX+hjthogaAsCrX8OlBxnYe03UdtsuKFCuvU2kX10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=McD/rsNu; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1722572767;
-	bh=cZGQunjjz3bBRdwK5TaMAYgHuGZTvp+2LbpR3fHMKp4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=McD/rsNu+SHROYSlJH8AL3nzTcujMWcuCEbLIfovl8Otm/4YGGT2tgCd9vc1RLDFP
-	 xsLO0IjMcXScs22DM5Iuq94kZhwYi4qj8Bp9G1FhJZVLrnWlVG1nqYp/t7v1x627vd
-	 K/mO6IrwSLXV56b30SJkif27yxIzrtDgZ/aDRhrLoelDmLi82Wvq5Xe+ZeNP6OK8E0
-	 DiWuZo45V+6yqZgvsgHRXBNRgfkdRX5HJJI+tOoemxTQrlUm92zonwaELMkOuM3+GM
-	 rQZWzqUGsPwP3wAdyQyKo+l+Z9gll0+647wTcvfTVkGM+dIgTTaL3tDGh6Trml6uHd
-	 p1VOJfDIwvYCQ==
-Received: from [127.0.1.1] (ppp118-210-29-70.adl-adc-lon-bras31.tpg.internode.on.net [118.210.29.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4223C66E0D;
-	Fri,  2 Aug 2024 12:26:07 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-Date: Fri, 02 Aug 2024 13:55:24 +0930
-Subject: [PATCH 7/7] ARM: dts: aspeed-g6: Drop cells properties from
- ethernet nodes
+	s=arc-20240116; t=1722574574; c=relaxed/simple;
+	bh=SGisuWt7Q31zGCLfAPnz2umzfcXWfzg3Ub77i4gLdZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NNKinRYZtuYETjtALepM5xBGUAmuVC0FtZoR+b77YLZ7PIgic4FRNLFuz4kml66swb56j6EMkZdObP3SG+k5/piUNuV1vJH3l3thqw+dgkHlgxNDbY5216R0+FcVJ5h264OQ9/2KpiGGSpRdF+YBO65N1XE71XGKVo5A/IIyizQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sZkKj-0003y9-Es; Fri, 02 Aug 2024 06:56:05 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sZkKi-003vYP-JE; Fri, 02 Aug 2024 06:56:04 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sZkKi-00Enm6-1a;
+	Fri, 02 Aug 2024 06:56:04 +0200
+Date: Fri, 2 Aug 2024 06:56:04 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Pieter <vtpieter@gmail.com>
+Cc: Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
+	woojung.huh@microchip.com, UNGLinuxDriver@microchip.com,
+	netdev@vger.kernel.org,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Subject: Re: [PATCH net-next v2 2/5] net: dsa: microchip: move KSZ9477 WoL
+ functions to ksz_common
+Message-ID: <Zqxm5NK8JARcgDFE@pengutronix.de>
+References: <20240731103403.407818-1-vtpieter@gmail.com>
+ <20240731103403.407818-3-vtpieter@gmail.com>
+ <20240731201038.GT1967603@kernel.org>
+ <CAHvy4ApG3XhOmvn-0kT-Uvdd8yir_O72zSrFLA+CHKhm+z6XEg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240802-dt-warnings-bmc-dts-cleanups-v1-7-1cb1378e5fcd@codeconstruct.com.au>
-References: <20240802-dt-warnings-bmc-dts-cleanups-v1-0-1cb1378e5fcd@codeconstruct.com.au>
-In-Reply-To: <20240802-dt-warnings-bmc-dts-cleanups-v1-0-1cb1378e5fcd@codeconstruct.com.au>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Eddie James <eajames@linux.ibm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHvy4ApG3XhOmvn-0kT-Uvdd8yir_O72zSrFLA+CHKhm+z6XEg@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-These are not specified in the binding and produce warnings such as
-the following:
+Hi Pieter,
 
-```
-...
-arch/arm/boot/dts/aspeed/aspeed-g6.dtsi:254.27-262.5: Warning (avoid_unnecessary_addr_size): /ahb/ethernet@1e670000: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
-...
-arch/arm/boot/dts/aspeed/aspeed-g6.dtsi:264.27-272.5: Warning (avoid_unnecessary_addr_size): /ahb/ethernet@1e690000: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
-...
-arch/arm/boot/dts/aspeed/aspeed-ast2600-evb-a1.dtb: ethernet@1e660000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-```
+On Thu, Aug 01, 2024 at 08:45:03AM +0200, Pieter wrote:
+> Le mer. 31 juil. 2024 à 22:10, Simon Horman <horms@kernel.org> a écrit :
+> >
+> > On Wed, Jul 31, 2024 at 12:34:00PM +0200, vtpieter@gmail.com wrote:
+> > > From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> > >
+> > > Move KSZ9477 WoL functions to ksz_common, in preparation for adding
+> > > KSZ87xx family support.
+> > >
+> > > Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> >
+> > Hi Pieter,
+> >
+> > This is not a full review, and I suggest waiting for feedback from others.
+> >
+> > However, I think this patch-set needs to be re-arranged a little,
+> > perhaps by bringing forward some of the header file changes
+> > in the following patch forward, either into this patch
+> > or a new patch before it.
+> 
+> Hi Simon, thanks indeed I missed this! It seems difficult to respect both
+> patch requirements [1] for this case:
+>  * One significant exception is when moving code from one file to another --
+>    in this case you should not modify the moved code at all in the same patch
+>    which moves it.
+> * When dividing your change into a series of patches, take special care to
+>   ensure that the kernel builds and runs properly after each patch in
+> the series.
+> 
+> I can make it compile but by moving the code, the KSZ9477 WoL part obviously
+> won't run properly anymore. Any suggestion how to tackle this?
+> 
+> [1] : https://docs.kernel.org/process/submitting-patches.html
 
-Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
----
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 8 --------
- 1 file changed, 8 deletions(-)
+I see two options:
+1. Add some minimal changes in the header files and describe the changes
+in commit message.
+2. Do code refactoring which is done in patch 3, before code is moved
+around.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index ae8aa54508b2..8ed715bd53aa 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -234,8 +234,6 @@ mdio3: mdio@1e650018 {
- 		mac0: ethernet@1e660000 {
- 			compatible = "aspeed,ast2600-mac", "faraday,ftgmac100";
- 			reg = <0x1e660000 0x180>;
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&syscon ASPEED_CLK_GATE_MAC1CLK>;
- 			status = "disabled";
-@@ -244,8 +242,6 @@ mac0: ethernet@1e660000 {
- 		mac1: ethernet@1e680000 {
- 			compatible = "aspeed,ast2600-mac", "faraday,ftgmac100";
- 			reg = <0x1e680000 0x180>;
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&syscon ASPEED_CLK_GATE_MAC2CLK>;
- 			status = "disabled";
-@@ -254,8 +250,6 @@ mac1: ethernet@1e680000 {
- 		mac2: ethernet@1e670000 {
- 			compatible = "aspeed,ast2600-mac", "faraday,ftgmac100";
- 			reg = <0x1e670000 0x180>;
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&syscon ASPEED_CLK_GATE_MAC3CLK>;
- 			status = "disabled";
-@@ -264,8 +258,6 @@ mac2: ethernet@1e670000 {
- 		mac3: ethernet@1e690000 {
- 			compatible = "aspeed,ast2600-mac", "faraday,ftgmac100";
- 			reg = <0x1e690000 0x180>;
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&syscon ASPEED_CLK_GATE_MAC4CLK>;
- 			status = "disabled";
+In any case, every step should compile.
 
+Regards,
+Oleksij
 -- 
-2.39.2
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
