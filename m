@@ -1,165 +1,124 @@
-Return-Path: <devicetree+bounces-90655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE889463DE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:23:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A52FA9463A8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7497E28312B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:23:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ED711F226FA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3B4175D46;
-	Fri,  2 Aug 2024 19:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207991547D4;
+	Fri,  2 Aug 2024 19:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFICEZWi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h7f5owDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0204216BE17;
-	Fri,  2 Aug 2024 19:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E83747F64
+	for <devicetree@vger.kernel.org>; Fri,  2 Aug 2024 19:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722626585; cv=none; b=m7l+yflIHFhqnvd4CcXHeJfOACW5Ri+YpduYdhTJHYrKQR70M90zcK1LQHL6JSza+meQcGj4idHPlfv7dWc1jWuYt4kldoCl97GCyWynkcuN04jjO6q18RAn+4Bm0BCiAMJ+VgmlhS+PMb5Je0DXXfD5/bT79wSDhEVMrLAwbkc=
+	t=1722626452; cv=none; b=onY7cmssPp9Tb7nIqMhdrK+dPt11LLcWAqAZQm61i//tcTeJ1B7BOSm8hEmBMLLUhUWMtMxPTgvdA0YwA5Xf8aSQOf4X0KJXPo4wEyzQZ5BkQPFeE2TJ7d9F7pnRYKKHp7kKtkD7Dcd99rDLRHSy2noe/7+uDFB9CBznZ3MxVec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722626585; c=relaxed/simple;
-	bh=IGFCSTgJcuoRzGSPK8CuSC3g7DiKhbxO+wXlPg2+FUE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ryCuyTtcwK4pI7E3UPiWA6DzSLLC4ChG+z0FN0X4HoFUAy4C7wkmKaQjsp6YJYgUfAlMvw49XE2IlL9GZF4vDzoA4MVf59xAPPOqONyklqoEKyTPCopSQpBPU5tyCWvCu+IfpsY5ciXhBjH+x7biOeNTR7bDV98ucwGvm4h8J34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MFICEZWi; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3db130a872fso5755512b6e.2;
-        Fri, 02 Aug 2024 12:23:02 -0700 (PDT)
+	s=arc-20240116; t=1722626452; c=relaxed/simple;
+	bh=jbgPxUaRpWe7IUV6OPVfKHMd2VVjNZeOVIHBRBVc2Fw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aVWvH40nZuSvJW/UM07i13sVXN8RuQML67pzyXt5vK9Uw1pxK7zBiMoCKVozsTZyPJxWNQEdvgsagtY5TI4TfyEUaf9iGHuIWrj3T5LmQEVS0IXuApaeD/65SLku+CA2sF5+7pWqji4Aqy3sKMWntwoIUHg4MxU3wKJHJNKi+nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h7f5owDH; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-654cf0a069eso68196217b3.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Aug 2024 12:20:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722626582; x=1723231382; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6bljFmiJkhPU7BKEtswdXuPsqQ0+QMylW7jPglHY9Uc=;
-        b=MFICEZWimSkBi2PEXf/cO6ADccLuSaUU7uQrmNxIgaXyAD90MiBwKhNTC1rZkNsoyL
-         sM3UW+kgT9fcsQCbXL7AhGg45SldeOCR6BHTc2J3q7aJja8ccoDhrPBsnZBks7BYZx1X
-         b5jg0M1ZXk8T8F+OmkW+KlugIWRHE1ONP+nDxMLnjXcncL5StFnsEIZg/0siDMvdQgIt
-         V2W5Lf30KXi3Ero04wzpSV4Pm/vOdM0gznpfVTt1A0GtenMQXBEwuLHjmJEM1R2Shwja
-         wM3CcDaz6bXu2ORTsH8S186B58IYVd7BccavNPXoQOvMubbeV+POdXUnfG2Tl6Q/41to
-         xLVA==
+        d=linaro.org; s=google; t=1722626449; x=1723231249; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gZNwK4s34iYGvIbS46dI7pOTIc2gw03JA9isN6WtOpc=;
+        b=h7f5owDHZCyceSJcMJflUWGrQOKrmAMf/DVuI2Y9BVtqZEYDSY42rZlJns5OQv4Jgm
+         kYUdmYFVRH9jgJFVUY/lzW8fZjdQ7bpUHhAwfFrNCPL1hO7ZwVGFNxZV4GPWy5t7W7pN
+         5AspOYE4RzVLoQfp8jeSCUuXwyeKvH+htIIqS4kzQxdMtr8A8hP/yHWq1GhdDTv4baZ8
+         s2QNueIaZxpEq914c4C7ZD+k5x3xFP83LeCV6WOlIzF0lFCTRGw8nUyhNKTAwY9ys28A
+         6IWuNese7icnurDLtGsbd/otB2W3tDN9JvK2M4pkqtE5vYCxPhp3e/8eUu7AFe9z0jDr
+         sgCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722626582; x=1723231382;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6bljFmiJkhPU7BKEtswdXuPsqQ0+QMylW7jPglHY9Uc=;
-        b=w2Sb2dk8WCk5nFs2zKdDN3Sf4Vvj2htLp26NbyrKILGsWnNuazh/m2Zmw40pKI4Zkx
-         y1ou8sAtMLwUlmpkwzZLbZujBhd42VA4cIvhOhmmcdi+5/+U4X8Jz2UcC35WMTaSGilZ
-         eA1uP/kG88XpbX49OFBu3i5nH5eAuCOjQhL+Ni65WaArmkVOgqWfLlTjCZMWOFRPvyhO
-         JOsm+fMauMVCK4OBioe75ogMgjHsJETnMV7ovBOEZjmjmqaNoSlRnTyZ0A34a3Sn7sI9
-         t5sld/T07JE0rv4NpDHpO7HBqrf4SyY+vk7fTuwDnGeCuhu6rPodfMaPkUp6jXQ9NEKn
-         9CZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUcx70Y3Efv5sjH6QXKGGBspzw/tTW6XQBk3v7zmFhTeOHosyfJSf15fqnmzUnZjxI45w5Q4Z0wVfDy@vger.kernel.org, AJvYcCXKupjQFeeDwwAD0nhtL7Ob/zZS8ow104iQSUJs6jfEq9m3PFd0q5eNo2S8m59teC8TrW4nQ6P17fx9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyN539MuOYSvupZ++n1YDz4gU68IlDTrKDj2ZxMgA3OxeXANBwT
-	mIdatjEHudRs+1AN07FnOkb/MDsUdE4JBNgT7rSHeapM0+klRMD5
-X-Google-Smtp-Source: AGHT+IGjBzlQxgg8C+yv67X9RvusG8E8mOEP2cJ31NbvBUQRSj0BF+eewV39CvF2RjsSsdpKP8J97A==
-X-Received: by 2002:a05:6808:23c4:b0:3da:b3b3:191 with SMTP id 5614622812f47-3db5583db96mr4810309b6e.48.1722626582119;
-        Fri, 02 Aug 2024 12:23:02 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf::54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3db563b7065sm584592b6e.46.2024.08.02.12.23.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Aug 2024 12:23:01 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	quentin.schulz@free-electrons.com,
-	mripard@kernel.org,
-	tgamblin@baylibre.com,
-	aidanmacdonald.0x0@gmail.com,
-	u.kleine-koenig@pengutronix.de,
-	lee@kernel.org,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	sre@kernel.org,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	lars@metafoo.de,
-	jic23@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 15/15] arm64: dts: allwinner: h700: Add charger for Anbernic RG35XX
-Date: Fri,  2 Aug 2024 14:20:26 -0500
-Message-Id: <20240802192026.446344-16-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240802192026.446344-1-macroalpha82@gmail.com>
-References: <20240802192026.446344-1-macroalpha82@gmail.com>
+        d=1e100.net; s=20230601; t=1722626449; x=1723231249;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gZNwK4s34iYGvIbS46dI7pOTIc2gw03JA9isN6WtOpc=;
+        b=NVx9a2SYLN0FKyKWjxBGOzJTJRAL39JQNoVowQYj8ZaTPWM8jCVwXUsKFpr0AleLUO
+         DRFwV+3wLysZrowO37FoTVROAXrf5uw4Kkt/aOYX4epJJ2VJpM8AIlJ4+NlmFFEDSY6P
+         u/9AN8RzeHi6Fn/Iln+DqGAJAZNgSbKdd0iV0E5bx5pdvQy+ockFs3+bi83OFXf3VEL5
+         R7OEc676+U0KZ4DviLZ/ETnVjVrludd9H1CCEDmOMH/7xysMqAub0EDdLaXA3tLyPSxl
+         v9t80Axcuu63sMwJUYN5prX6DrgIKSQkw0TfhIUOciZ3lIe3EKPWz0WwkXbjdgNRY2ny
+         Y3cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXEwpwmAcnDqXCxKgmkKsgYmUbPW3I0Q+r1KDgFaUBg1YcyfmegSi/TGJnCXRF9jXKvUsFuLFiuast9xj4XDV32O/H3aLHLC2GDaA==
+X-Gm-Message-State: AOJu0YwLOn+6tXq2iVL43o3A7FpLVhfXlSiqUl/CHJAhuCa/JuPaTrrA
+	2HsrnTM+bN1ZKYKboWbI9pOBqB3DUCIAvzbw+6iEf5v4hhk20XaHdxky6jXKMGo6YSaLlYNCmCP
+	Ku+kbLKZA4KK2X2lazkw/tWEZOyjofLmasKyPlw==
+X-Google-Smtp-Source: AGHT+IEqzG5OJVYb0N/hhSy3/aCVZpwuaC57g1J8oBIELAMwqUOkxVNDUu61cFnvy19WDb7qlbHaefm1NS450MOTFBE=
+X-Received: by 2002:a81:c20e:0:b0:63c:aa2:829d with SMTP id
+ 00721157ae682-689637fccd4mr52822217b3.44.1722626449505; Fri, 02 Aug 2024
+ 12:20:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240802090544.2741206-1-kevin_chen@aspeedtech.com> <20240802090544.2741206-9-kevin_chen@aspeedtech.com>
+In-Reply-To: <20240802090544.2741206-9-kevin_chen@aspeedtech.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 2 Aug 2024 22:20:38 +0300
+Message-ID: <CAA8EJprcmQvE3PjySxBKq7Qv3JHJHhic2aQ5MDnwZaf-D=K2Rw@mail.gmail.com>
+Subject: Re: [PATCH v2 7/9] arm64: defconfig: Add ASPEED AST2700 family support
+To: Kevin Chen <kevin_chen@aspeedtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
+	andrew@codeconstruct.com.au, lee@kernel.org, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, shawnguo@kernel.org, 
+	neil.armstrong@linaro.org, m.szyprowski@samsung.com, nfraprado@collabora.com, 
+	u-kumar1@ti.com, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Fri, 2 Aug 2024 at 12:05, Kevin Chen <kevin_chen@aspeedtech.com> wrote:
+>
+> Enable CONFIG_ARCH_ASPEED in arm64 defconfig.
 
-Add the necessary nodes to the AXP717 to allow for monitoring the USB
-and battery charger.
+Why? Usually the defconfig changes have "Enable CONFIG_FOO as it is
+used on the Bar Baz platform" commit message.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../sun50i-h700-anbernic-rg35xx-2024.dts      | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+>
+> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 7d32fca64996..b393735a695f 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -38,6 +38,7 @@ CONFIG_ARCH_AIROHA=y
+>  CONFIG_ARCH_SUNXI=y
+>  CONFIG_ARCH_ALPINE=y
+>  CONFIG_ARCH_APPLE=y
+> +CONFIG_ARCH_ASPEED=y
+>  CONFIG_ARCH_BCM=y
+>  CONFIG_ARCH_BCM2835=y
+>  CONFIG_ARCH_BCM_IPROC=y
+> --
+> 2.34.1
+>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-index afb49e65859f..83b5c03b1bb8 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-@@ -21,6 +21,12 @@ aliases {
- 		serial0 = &uart0;
- 	};
- 
-+	battery: battery {
-+		compatible = "simple-battery";
-+		constant-charge-current-max-microamp = <1024000>;
-+		voltage-max-design-microvolt = <4200000>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -217,6 +223,16 @@ axp717: pmic@3a3 {
- 		vin3-supply = <&reg_vcc5v>;
- 		vin4-supply = <&reg_vcc5v>;
- 
-+		axp_adc: adc {
-+			compatible = "x-powers,axp717-adc";
-+			#io-channel-cells = <1>;
-+		};
-+
-+		battery_power: battery-power {
-+			compatible = "x-powers,axp717-battery-power-supply";
-+			monitored-battery = <&battery>;
-+		};
-+
- 		regulators {
- 			reg_dcdc1: dcdc1 {
- 				regulator-always-on;
-@@ -307,6 +323,11 @@ reg_cpusldo: cpusldo {
- 				/* unused */
- 			};
- 		};
-+
-+		usb_power: usb-power {
-+			compatible = "x-powers,axp717-usb-power-supply";
-+			input-current-limit-microamp = <1500000>;
-+		};
- 	};
- };
- 
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
