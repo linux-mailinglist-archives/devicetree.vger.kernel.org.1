@@ -1,229 +1,633 @@
-Return-Path: <devicetree+bounces-90632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA0794633E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 20:34:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13793946346
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 20:37:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F9981F219E7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 18:34:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30AA41C21464
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 18:37:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437561ABED6;
-	Fri,  2 Aug 2024 18:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005304501F;
+	Fri,  2 Aug 2024 18:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="eOIY2KL0"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="h0EnDEuA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78FCA1ABEC5;
-	Fri,  2 Aug 2024 18:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AAAE1ABEC6;
+	Fri,  2 Aug 2024 18:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722623637; cv=none; b=kJ3kxcNhhXeYdg9OqAVrUsmDvt2ghxaKrw4GYscXgTphcTfe09jkdQsw8DlgLvqkp4zU/Yod7IYU2oPqRo4okoMQqRwgH3Jy1gaPu0ajpgsKyaGkSSNOZf6fBFqGcXu1d630Xip2A1tKDly55L9gh4gu2ZSuv2qAVoRz7ramPDE=
+	t=1722623840; cv=none; b=pChVRHmYEwajj6H3AIGGk+a7L4Bu4Bdsg4h7bKoC6ioGUxnIlLtGjBF65SyetSc3wRVZKCclRLEZPaLpsM6T0u2ArAbp+16usMAlPNYtlMfNGFt1J6Fw+VVT4zW1+sLurg6K46XzozIN708wvjgTxU+kl6raKoDRklWV0JJKfao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722623637; c=relaxed/simple;
-	bh=BajauQMNSbfUtm8LcbdMeVSE4P3qsHZATci5kJ54CbM=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=OM5kfhU8To0GYhv38FUP1D4kU+w4fs1uLzRqKUqCWyDF6F0sRaXHLNQ6B8SucM1u95xVe0SFB5fSGr94IDG16L4BcCf2SnfytTSsjIvsbCLb49vzUO045OfC4wEGuqH8P9rxduHMaCGoCizLFwFmY8gKBHN1TBKiiQ8KnFQFOzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=eOIY2KL0; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 472FS5im012496;
-	Fri, 2 Aug 2024 18:33:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from
-	:to:cc:subject:date:message-id:content-type
-	:content-transfer-encoding:mime-version; s=pp1; bh=elPlBGjEdya+l
-	t9bcuYyxNIb4Z4d3rD7n1uLu0NB8MI=; b=eOIY2KL0XU6G1Re5XYppob5wkQq9u
-	92974YGGFR11dOgk3SGoU4hxX/aT+IT+mrmfMaucLIb1kWJH5HXeFF6X9SjmYVWJ
-	tC8ZogXWlj3ZukRKUPpCQ4nlGl7mXmbN6SJj/aFrsuy4Lu78T/u/tZOJJZhA15Ym
-	E+VIVPLlsoX/2xGcGY6Y3j+zHZ6o0Jkce/Fi1WeRmiZHS4D60Khu1VsunrARcZCv
-	QKR7YvTfzRLhr573zyjVb8dZ7ovXfbYZo8JmPlAdSfTh2rPauw31c36PdjmvY7GT
-	H7U2BIB3UplonQAz9MbY9Y9V3J7QSt8SxkCd0SqRo+YZzOK0Dpprt0NvQ==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40s1pf0f3f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 Aug 2024 18:33:41 +0000 (GMT)
-Received: from m0353726.ppops.net (m0353726.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 472IXe8L015002;
-	Fri, 2 Aug 2024 18:33:40 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 40s1pf0f3a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 Aug 2024 18:33:40 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 472FwQBw011151;
-	Fri, 2 Aug 2024 18:33:39 GMT
-Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 40ncqn8hp1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 Aug 2024 18:33:39 +0000
-Received: from smtpav01.fra02v.mail.ibm.com (smtpav01.fra02v.mail.ibm.com [10.20.54.100])
-	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 472IXXiV34144994
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 2 Aug 2024 18:33:35 GMT
-Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 6889C20040;
-	Fri,  2 Aug 2024 18:33:33 +0000 (GMT)
-Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B3C8420043;
-	Fri,  2 Aug 2024 18:33:29 +0000 (GMT)
-Received: from li-e7e2bd4c-2dae-11b2-a85c-bfd29497117c.ibm.com.com (unknown [9.195.47.40])
-	by smtpav01.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri,  2 Aug 2024 18:33:29 +0000 (GMT)
-From: Amit Machhiwal <amachhiw@linux.ibm.com>
-To: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc: linuxppc-dev@lists.ozlabs.org, kvm-ppc@vger.kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>,
-        Lizhi Hou <lizhi.hou@amd.com>, Saravana Kannan <saravanak@google.com>,
-        Vaibhav Jain <vaibhav@linux.ibm.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
-        Amit Machhiwal <amachhiw@linux.ibm.com>,
-        Kowshik Jois B S <kowsjois@linux.ibm.com>,
-        Lukas Wunner <lukas@wunner.de>, kernel-team@lists.ubuntu.com,
-        Stefan Bader <stefan.bader@canonical.com>
-Subject: [PATCH v3] PCI: Fix crash during pci_dev hot-unplug on pseries KVM guest
-Date: Sat,  3 Aug 2024 00:03:25 +0530
-Message-ID: <20240802183327.1309020-1-amachhiw@linux.ibm.com>
-X-Mailer: git-send-email 2.45.2
-Content-Type: text/plain; charset=UTF-8
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: ooe2HdKMnjn5F104fmgW3kHKYsawc1RM
-X-Proofpoint-GUID: Uwml1BHK5GZUEjBjn1qqDSk0ZCJ_GEeZ
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1722623840; c=relaxed/simple;
+	bh=cNtgW2ZvrDu42WLIiQ5xZw7B3I9PBq6HSj86z6O3HAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GBLTxeUZzj+EmYf461rVuTdnfXa8VYKEjT+NvLx8bcyoGYesXJalyAjY6xUpGdaAcz2lQhYDz5Vlpz3vodYDIUbBInGnnJBdfqVQjlysnxmfrQVJz63s8+c4Znd9IbkcgGYLaJ4vzZxOi2sCCdoeSsgmTaVfs7ugHqqSuVqKyB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=h0EnDEuA; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1722623821; x=1723228621; i=wahrenst@gmx.net;
+	bh=HMMRcovC7/aiWPH0C+sk94yWOrjD5pPBsU1Uu1hukzA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=h0EnDEuAHSWV8AP3pErP1JO1AiZz09m84YAx62bI3I7UUPJprqqxBvRf6kg8sR/8
+	 GXNOsUJ5ZCW9zrC55cxfFd0P40D/lxKjGJvfLJZreLzj0jCeNCeqO4a9n09WtgHKm
+	 VflPkY5racx4/QF5B/Lb10Yst76/7BRRsx3k/rEpVLUBcgVRIVUPwJjDIi0JGGFJP
+	 ueG2qP7crBHtNN8tBFP72s/NaDpztvZgkzI9VFoZMU5mfURQOzYHAbRGj7TV3rLHo
+	 TYg/5H7CtOfSSjUAIPVlVUaLa2eamlT/v4EAwNDr2CW+MdJP1FRcK1QChHq1v4DeS
+	 L2K5qPQpLdIhjkP4hA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mplbx-1rsuAa0n89-00bq4Y; Fri, 02
+ Aug 2024 20:37:01 +0200
+Message-ID: <ea44f991-48ea-482f-a27c-db68544458f0@gmx.net>
+Date: Fri, 2 Aug 2024 20:36:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-02_14,2024-08-02_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- mlxlogscore=822 phishscore=0 mlxscore=0 lowpriorityscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408020127
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] pinctrl: bcm: Add STB family pin controller driver
+To: "Ivan T. Ivanov" <iivanov@suse.de>, linus.walleij@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org
+Cc: conor+dt@kernel.org, florian.fainelli@broadcom.com,
+ andrea.porta@suse.com, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell
+ <phil@raspberrypi.com>, kernel-list@raspberrypi.com
+References: <20240731062814.215833-1-iivanov@suse.de>
+ <20240731062814.215833-3-iivanov@suse.de>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20240731062814.215833-3-iivanov@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:FCZU2P8B0KCyydHW2NBSjknmho92zZLktLrbJ3PQQUtzJy07kNP
+ jybz5Zq64Jn5a3dds7oRfZX0qGah7ezthXTIBBzraoG2NQYDxKoLb1169a/IxV3LE8MKHRv
+ DTM0KVn9AZBvUj1nWn2zAtEX/XQOl7+CNmoXJ2dNhI/Ii8JG3lkPYNrp0es6anwbCedzvnG
+ o6tQ3TxsHMiUEfmBqHEoA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:iZHj5E16Oao=;dvZzNFypyp9WrGvXmkaS7B1iimD
+ /OqhV5zSstMofWei/1I8KiegtEwfYCeVxxAVShlRXmpI/ow51Lmu5VM6iS7Os0nXmfvAkaxMC
+ vOjeV7Y3YhkY2rZvtuma0nph92Qyq21zIBdM+fYRp709MTM/v0bypyfWdT0dIWuN7fklBB79K
+ p0Oj1+mPKPT7kWDBLuHEcaBgmD6pGkasklLXiysZO8iTcv8nFjj8H9nJ8jsJyAuM+yu+kLY5B
+ riv01/F3HSaI9nGb3+ZJR/BDaJ/4oO+tH8dip92CPPBrhzfOVOssBbLllAIoY8inGN1Y6a7S4
+ Q2EP7+vvntAvBmZqk0FsmwQVVGe54Bc4kFAG/h7LH++84tfFcZ/5Moi8ppJB2xVmKE3vLxh4F
+ 9GHeUlo7MxtW+GUvxyV4DADKyPOdEES90FvXrvAD7+ZweVXhemrRylYCOiurlaGygUSu5Asmx
+ Jm+Ndk5I2FtUf0/qG4wGzOVUcC/n9v7IRw8/G3YUhPtRWrMpNJLkINm8+hH91yEd6Zf3crBvc
+ zIBbgq6lcNuahaP9HuJ2tzmzGuIa6vQ8gQz2Dq1BSxYWMskQtvdkGiBT/CVE2XtFCr3j8odQI
+ Llxeo603wsRCHmtnDvnE1ZOIs7nG7/qSVPnhseLWoO45HO2kkzcSk/Tf/MDyYJSf6KCfFkp+Y
+ p3r9UUc/3GLx8nX0kjNej6ggGx/eFcbpt1zXBsx6ZzAS6Rl0/ynwpwQTWPBKLuzBzf0RoId4g
+ ys9Dsovw73tniM2iJ0uHGqX6nIbV1g+rR/kGDbAhJ7FosuK4Q5ZinhJdr3rIcGuL1YlEEZPVb
+ 934SLtEo8FETlI26kibzwuWQ==
 
-With CONFIG_PCI_DYNAMIC_OF_NODES [1], a hot-plug and hot-unplug sequence
-of a PCI device attached to a PCI-bridge causes following kernel Oops on
-a pseries KVM guest:
+Hi,
 
- RTAS: event: 2, Type: Hotplug Event (229), Severity: 1
- Kernel attempted to read user page (10ec00000048) - exploit attempt? (uid: 0)
- BUG: Unable to handle kernel data access on read at 0x10ec00000048
- Faulting instruction address: 0xc0000000012d8728
- Oops: Kernel access of bad area, sig: 11 [#1]
- LE PAGE_SIZE=64K MMU=Radix SMP NR_CPUS=2048 NUMA pSeries
-<snip>
- NIP [c0000000012d8728] __of_changeset_entry_invert+0x10/0x1ac
- LR [c0000000012da7f0] __of_changeset_revert_entries+0x98/0x180
- Call Trace:
- [c00000000bcc3970] [c0000000012daa60] of_changeset_revert+0x58/0xd8
- [c00000000bcc39c0] [c000000000d0ed78] of_pci_remove_node+0x74/0xb0
- [c00000000bcc39f0] [c000000000cdcfe0] pci_stop_bus_device+0xf4/0x138
- [c00000000bcc3a30] [c000000000cdd140] pci_stop_and_remove_bus_device_locked+0x34/0x64
- [c00000000bcc3a60] [c000000000cf3780] remove_store+0xf0/0x108
- [c00000000bcc3ab0] [c000000000e89e04] dev_attr_store+0x34/0x78
- [c00000000bcc3ad0] [c0000000007f8dd4] sysfs_kf_write+0x70/0xa4
- [c00000000bcc3af0] [c0000000007f7248] kernfs_fop_write_iter+0x1d0/0x2e0
- [c00000000bcc3b40] [c0000000006c9b08] vfs_write+0x27c/0x558
- [c00000000bcc3bf0] [c0000000006ca168] ksys_write+0x90/0x170
- [c00000000bcc3c40] [c000000000033248] system_call_exception+0xf8/0x290
- [c00000000bcc3e50] [c00000000000d05c] system_call_vectored_common+0x15c/0x2ec
-<snip>
+Am 31.07.24 um 08:28 schrieb Ivan T. Ivanov:
+> This driver provide pin muxing and configuration functionality
+> for BCM2712 SoC used by RPi5. According to [1] this chips is
+> incarnation of chip used in Broadcom STB  product line.
+>
+> [1] https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@br=
+oadcom.com/
+>
+> Cc: Jonathan Bell <jonathan@raspberrypi.com>
+> Cc: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> ---
+>   drivers/pinctrl/bcm/Kconfig           |   13 +
+>   drivers/pinctrl/bcm/Makefile          |    1 +
+>   drivers/pinctrl/bcm/pinctrl-brcmstb.c | 1217 +++++++++++++++++++++++++
+>   3 files changed, 1231 insertions(+)
+>   create mode 100644 drivers/pinctrl/bcm/pinctrl-brcmstb.c
+>
+> diff --git a/drivers/pinctrl/bcm/Kconfig b/drivers/pinctrl/bcm/Kconfig
+> index 35b51ce4298e..2e1b8d444f58 100644
+> --- a/drivers/pinctrl/bcm/Kconfig
+> +++ b/drivers/pinctrl/bcm/Kconfig
+> @@ -3,6 +3,19 @@
+>   # Broadcom pinctrl drivers
+>   #
+>
+> +config PINCTRL_BRCMSTB
+> +	tristate "Broadcom STB product line pin controller driver"
+> +	depends on OF && (ARCH_BRCMSTB || COMPILE_TEST)
+> +	select PINMUX
+> +	select PINCONF
+> +	select GENERIC_PINCONF
+> +	help
+> +	  This driver provide pin muxing and configuration functionality
+> +	  for Broadcom STB product line chipsets. BCM2712 SoC is one of these
+> +	  chipsets.
+> +
+> +	  If M is selected the module will be called pinctrl-brcmstb.
+> +
+>   config PINCTRL_BCM281XX
+>   	bool "Broadcom BCM281xx pinctrl driver"
+>   	depends on OF && (ARCH_BCM_MOBILE || COMPILE_TEST)
+> diff --git a/drivers/pinctrl/bcm/Makefile b/drivers/pinctrl/bcm/Makefile
+> index 82b868ec1471..5f790c14cc4c 100644
+> --- a/drivers/pinctrl/bcm/Makefile
+> +++ b/drivers/pinctrl/bcm/Makefile
+> @@ -11,6 +11,7 @@ obj-$(CONFIG_PINCTRL_BCM6358)		+=3D pinctrl-bcm6358.o
+>   obj-$(CONFIG_PINCTRL_BCM6362)		+=3D pinctrl-bcm6362.o
+>   obj-$(CONFIG_PINCTRL_BCM6368)		+=3D pinctrl-bcm6368.o
+>   obj-$(CONFIG_PINCTRL_BCM63268)		+=3D pinctrl-bcm63268.o
+> +obj-$(CONFIG_PINCTRL_BRCMSTB)		+=3D pinctrl-brcmstb.o
+>   obj-$(CONFIG_PINCTRL_IPROC_GPIO)	+=3D pinctrl-iproc-gpio.o
+>   obj-$(CONFIG_PINCTRL_CYGNUS_MUX)	+=3D pinctrl-cygnus-mux.o
+>   obj-$(CONFIG_PINCTRL_NS)		+=3D pinctrl-ns.o
+> diff --git a/drivers/pinctrl/bcm/pinctrl-brcmstb.c b/drivers/pinctrl/bcm=
+/pinctrl-brcmstb.c
+> new file mode 100644
+> index 000000000000..143c8c2e1d6d
+> --- /dev/null
+> +++ b/drivers/pinctrl/bcm/pinctrl-brcmstb.c
+> @@ -0,0 +1,1217 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Driver for Broadcom brcmstb GPIO units (pinctrl only)
+> + *
+Maybe you want to add your copyright here
+> + * Copyright (C) 2021-3 Raspberry Pi Ltd.
+> + * Copyright (C) 2012 Chris Boot, Simon Arlott, Stephen Warren
+> + *
+> + * Based heavily on the BCM2835 GPIO & pinctrl driver, which was inspir=
+ed by:
+> + * pinctrl-nomadik.c, please see original file for copyright informatio=
+n
+> + * pinctrl-tegra.c, please see original file for copyright information
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/pinctrl/pinconf.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +#include <linux/pinctrl/pinmux.h>
+> +#include <linux/pinctrl/pinconf-generic.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/slab.h>
+> +#include <linux/spinlock.h>
+> +
+> +#define BRCMSTB_PULL_NONE	0
+> +#define BRCMSTB_PULL_DOWN	1
+> +#define BRCMSTB_PULL_UP		2
+> +#define BRCMSTB_PULL_MASK	0x3
+> +
+> +#define BRCMSTB_FSEL_COUNT	9
+> +#define BRCMSTB_FSEL_MASK	0xf
+> +
+> +#define FUNC(f) \
+> +	[func_##f] =3D #f
+> +
+> +#define PIN(i, f1, f2, f3, f4, f5, f6, f7, f8) \
+> +	[i] =3D { \
+> +		.funcs =3D { \
+> +			func_##f1, \
+> +			func_##f2, \
+> +			func_##f3, \
+> +			func_##f4, \
+> +			func_##f5, \
+> +			func_##f6, \
+> +			func_##f7, \
+> +			func_##f8, \
+> +		}, \
+> +	}
+> +
+> +#define MUX_BIT_VALID		0x8000
+> +#define REG_BIT_INVALID		0xffff
+> +
+> +#define BIT_TO_REG(b)		(((b) >> 5) << 2)
+> +#define BIT_TO_SHIFT(b)	((b) & 0x1f)
+> +
+> +#define MUX_BIT(mr, mb)		(MUX_BIT_VALID + ((mr) * 4) * 8 + (mb) * 4)
+> +#define GPIO_REGS(n, mr, mb, pr, pb) \
+> +	[n] =3D { MUX_BIT(mr, mb), ((pr) * 4) * 8 + (pb) * 2 }
+Please avoid these cryptic names: mr, mb, pr, pb
+> +
+> +#define EMMC_REGS(n, pr, pb) \
+> +	[n] =3D { 0, ((pr) * 4) * 8 + (pb) * 2 }
+> +
+> +#define AGPIO_REGS(n, mr, mb, pr, pb) \
+> +	[n] =3D { MUX_BIT(mr, mb), ((pr) * 4) * 8 + (pb) * 2 }
+> +
+> +#define SGPIO_REGS(n, mr, mb) \
+> +	[(n) + 32] =3D { MUX_BIT(mr, mb), REG_BIT_INVALID }
+> +
+> +#define GPIO_PIN(a)		PINCTRL_PIN(a, "gpio" #a)
+> +#define AGPIO_PIN(a)		PINCTRL_PIN(a, "aon_gpio" #a)
+> +#define SGPIO_PIN(a)		PINCTRL_PIN((a) + 32, "aon_sgpio" #a)
+> +
+> +struct pin_regs {
+> +	u16 mux_bit;
+> +	u16 pad_bit;
+> +};
+> +
+> +struct brcmstb_pin_funcs {
+> +	u8 funcs[BRCMSTB_FSEL_COUNT - 1];
+> +};
+> +
+> +struct brcmstb_pinctrl {
+> +	struct device *dev;
+> +	void __iomem *base;
+> +	struct pinctrl_dev *pctl_dev;
+> +	struct pinctrl_desc pctl_desc;
+> +	const struct pin_regs *pin_regs;
+> +	const struct brcmstb_pin_funcs *pin_funcs;
+> +	const char *const *gpio_groups;
+> +	struct pinctrl_gpio_range gpio_range;
+> +	/* Protect FSEL registers */
+> +	spinlock_t lock;
+fsel_lock ?
+> +};
+> +
+> ...
+> +
+> +static const struct brcmstb_pin_funcs bcm2712_d0_aon_gpio_pin_funcs[] =
+=3D {
+> +	PIN(0, ir_in, vc_spi0, vc_uart0, vc_i2c3, uart0, vc_i2c0, _, _),
+> +	PIN(1, vc_pwm0, vc_spi0, vc_uart0, vc_i2c3, uart0, aon_pwm, vc_i2c0, v=
+c_pwm1),
+> +	PIN(2, vc_pwm0, vc_spi0, vc_uart0, ctl_hdmi_5v, uart0, aon_pwm, ir_in,=
+ vc_pwm1),
+> +	PIN(3, ir_in, vc_spi0, vc_uart0, uart0, sd_card_g, aon_gpclk, _, _),
+> +	PIN(4, gpclk0, vc_spi0, pm_led_out, aon_pwm, sd_card_g, vc_pwm0, _, _)=
+,
+> +	PIN(5, gpclk1, ir_in, aon_pwm, sd_card_g, vc_pwm0, _, _, _),
+> +	PIN(6, uart1, vc_uart2, ctl_hdmi_5v, gpclk2, vc_spi3, _, _, _),
+> +	PIN(7, _, _, _, _, _, _, _, _),
+In case this pin is reserved or something a comment would be nice
+> +	PIN(8, uart1, vc_uart2, ctl_hdmi_5v, vc_spi0, vc_spi3, _, _, _),
+> +	PIN(9, uart1, vc_uart2, vc_uart0, aon_pwm, vc_spi0, vc_uart2, vc_spi3,=
+ _),
+> +	PIN(10, _, _, _, _, _, _, _, _),
+> +	PIN(11, _, _, _, _, _, _, _, _),
+same as above
+> +	PIN(12, uart1, vc_uart2, vc_uart0, vc_spi0, usb_pwr, vc_uart2, vc_spi3=
+, _),
+> +	PIN(13, bsc_m1, vc_uart0, uui, vc_spi0, arm_jtag, vc_uart2, vc_i2c3, _=
+),
+> +	PIN(14, bsc_m1, aon_gpclk, vc_uart0, uui, vc_spi0, arm_jtag, vc_uart2,=
+ vc_i2c3),
+> +};
+> +
+> ...
+> +
+> +static inline u32 brcmstb_reg_rd(struct brcmstb_pinctrl *pc, unsigned i=
+nt reg)
+> +{
+> +	return readl(pc->base + reg);
+> +}
+> +
+> +static inline void brcmstb_reg_wr(struct brcmstb_pinctrl *pc, unsigned =
+int reg,
+> +				  u32 val)
+> +{
+> +	writel(val, pc->base + reg);
+> +}
+> +
+> +static enum brcmstb_funcs brcmstb_pinctrl_fsel_get(struct brcmstb_pinct=
+rl *pc,
+> +						   unsigned int pin)
+> +{
+> +	u32 bit =3D pc->pin_regs[pin].mux_bit;
+> +	enum brcmstb_funcs func;
+> +	int fsel;
+> +	u32 val;
+> +
+> +	if (!bit)
+> +		return func_gpio;
+> +
+> +	bit &=3D ~MUX_BIT_VALID;
+> +
+> +	val =3D brcmstb_reg_rd(pc, BIT_TO_REG(bit));
+> +	fsel =3D (val >> BIT_TO_SHIFT(bit)) & BRCMSTB_FSEL_MASK;
+> +	func =3D pc->pin_funcs[pin].funcs[fsel];
+> +
+> +	if (func >=3D func_count)
+> +		func =3D (enum brcmstb_funcs)fsel;
+> +
+> +	dev_dbg(pc->dev, "get %04x: %08x (%u =3D> %s)\n",
+> +		BIT_TO_REG(bit), val, pin,
+> +		brcmstb_func_names[func]);
+> +
+> +	return func;
+> +}
+> +
+> +static void brcmstb_pinctrl_fsel_set(struct brcmstb_pinctrl *pc,
+> +				     unsigned int pin, enum brcmstb_funcs func)
+I would prefer this function returns errors as int instead of silently
+ignore them
+> +{
+> +	u32 bit =3D pc->pin_regs[pin].mux_bit, val;
+> +	const u8 *pin_funcs;
+> +	unsigned long flags;
+> +	int fsel;
+> +	int cur;
+> +	int i;
+> +
+> +	if (!bit || func >=3D func_count)
+> +		return;
+> +
+> +	bit &=3D ~MUX_BIT_VALID;
+> +
+> +	fsel =3D BRCMSTB_FSEL_COUNT;
+> +
+> +	if (func >=3D BRCMSTB_FSEL_COUNT) {
+> +		/* Convert to an fsel number */
+> +		pin_funcs =3D pc->pin_funcs[pin].funcs;
+> +		for (i =3D 1; i < BRCMSTB_FSEL_COUNT; i++) {
+> +			if (pin_funcs[i - 1] =3D=3D func) {
+> +				fsel =3D i;
+> +				break;
+> +			}
+> +		}
+> +	} else {
+> +		fsel =3D (enum brcmstb_funcs)func;
+> +	}
+> +
+> +	if (fsel >=3D BRCMSTB_FSEL_COUNT)
+> +		return;
+> +
+> +	spin_lock_irqsave(&pc->lock, flags);
+> +
+> +	val =3D brcmstb_reg_rd(pc, BIT_TO_REG(bit));
+> +	cur =3D (val >> BIT_TO_SHIFT(bit)) & BRCMSTB_FSEL_MASK;
+> +
+> +	dev_dbg(pc->dev, "read %04x: %08x (%u =3D> %s)\n",
+> +		BIT_TO_REG(bit), val, pin,
+> +		brcmstb_func_names[cur]);
+> +
+> +	if (cur !=3D fsel) {
+> +		val &=3D ~(BRCMSTB_FSEL_MASK << BIT_TO_SHIFT(bit));
+> +		val |=3D fsel << BIT_TO_SHIFT(bit);
+> +
+> +		dev_dbg(pc->dev, "write %04x: %08x (%u <=3D %s)\n",
+> +			BIT_TO_REG(bit), val, pin,
+> +			brcmstb_func_names[fsel]);
+> +		brcmstb_reg_wr(pc, BIT_TO_REG(bit), val);
+> +	}
+> +
+> +	spin_unlock_irqrestore(&pc->lock, flags);
+> +}
+> +
+> +static int brcmstb_pctl_get_groups_count(struct pinctrl_dev *pctldev)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	return pc->pctl_desc.npins;
+> +}
+> +
+> +static const char *brcmstb_pctl_get_group_name(struct pinctrl_dev *pctl=
+dev,
+> +					       unsigned int selector)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	return pc->gpio_groups[selector];
+> +}
+> +
+> +static int brcmstb_pctl_get_group_pins(struct pinctrl_dev *pctldev,
+> +				       unsigned int selector,
+> +				       const unsigned int **pins,
+> +				       unsigned int *num_pins)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	*pins =3D &pc->pctl_desc.pins[selector].number;
+> +	*num_pins =3D 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static void brcmstb_pctl_pin_dbg_show(struct pinctrl_dev *pctldev,
+> +				      struct seq_file *s, unsigned int offset)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +	enum brcmstb_funcs fsel =3D brcmstb_pinctrl_fsel_get(pc, offset);
+> +	const char *fname =3D brcmstb_func_names[fsel];
+> +
+> +	seq_printf(s, "function %s", fname);
+> +}
+> +
+> +static void brcmstb_pctl_dt_free_map(struct pinctrl_dev *pctldev,
+> +				     struct pinctrl_map *maps,
+> +				     unsigned int num_maps)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < num_maps; i++)
+> +		if (maps[i].type =3D=3D PIN_MAP_TYPE_CONFIGS_PIN)
+> +			kfree(maps[i].data.configs.configs);
+> +
+> +	kfree(maps);
+> +}
+> +
+> +static const struct pinctrl_ops brcmstb_pctl_ops =3D {
+> +	.get_groups_count =3D brcmstb_pctl_get_groups_count,
+> +	.get_group_name =3D brcmstb_pctl_get_group_name,
+> +	.get_group_pins =3D brcmstb_pctl_get_group_pins,
+> +	.pin_dbg_show =3D brcmstb_pctl_pin_dbg_show,
+> +	.dt_node_to_map =3D pinconf_generic_dt_node_to_map_all,
+> +	.dt_free_map =3D brcmstb_pctl_dt_free_map,
+> +};
+> +
+> +static int brcmstb_pmx_free(struct pinctrl_dev *pctldev, unsigned int o=
+ffset)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	/* disable by setting to GPIO */
+> +	brcmstb_pinctrl_fsel_set(pc, offset, func_gpio);
+> +	return 0;
+> +}
+> +
+> +static int brcmstb_pmx_get_functions_count(struct pinctrl_dev *pctldev)
+> +{
+> +	return func_count;
+> +}
+> +
+> +static const char *brcmstb_pmx_get_function_name(struct pinctrl_dev *pc=
+tldev,
+> +						 unsigned int selector)
+> +{
+> +	return (selector < func_count) ? brcmstb_func_names[selector] : NULL;
+> +}
+> +
+> +static int brcmstb_pmx_get_function_groups(struct pinctrl_dev *pctldev,
+> +					   unsigned int selector,
+> +					   const char *const **groups,
+> +					   unsigned *const num_groups)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	*groups =3D pc->gpio_groups;
+> +	*num_groups =3D pc->pctl_desc.npins;
+> +
+> +	return 0;
+> +}
+> +
+> +static int brcmstb_pmx_set(struct pinctrl_dev *pctldev,
+> +			   unsigned int func_selector,
+> +			   unsigned int group_selector)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +	const struct pinctrl_desc *pctldesc =3D &pc->pctl_desc;
+> +	const struct pinctrl_pin_desc *pindesc;
+> +
+> +	if (group_selector >=3D pctldesc->npins)
+> +		return -EINVAL;
+> +
+> +	pindesc =3D &pctldesc->pins[group_selector];
+> +	brcmstb_pinctrl_fsel_set(pc, pindesc->number, func_selector);
+return brcmstb_pinctrl_fsel_set
+> +
+> +	return 0;
+> +}
+> +
+> +static int brcmstb_pmx_gpio_request_enable(struct pinctrl_dev *pctldev,
+> +					   struct pinctrl_gpio_range *range,
+> +					   unsigned int pin)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	brcmstb_pinctrl_fsel_set(pc, pin, func_gpio);
+> +
+> +	return 0;
+return brcmstb_pinctrl_fsel_set
+> +}
+> +
+> +static void brcmstb_pmx_gpio_disable_free(struct pinctrl_dev *pctldev,
+> +					  struct pinctrl_gpio_range *range,
+> +					  unsigned int offset)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	/* disable by setting to GPIO */
+> +	brcmstb_pinctrl_fsel_set(pc, offset, func_gpio);
+> +}
+> +
+> +static const struct pinmux_ops brcmstb_pmx_ops =3D {
+> +	.free =3D brcmstb_pmx_free,
+> +	.get_functions_count =3D brcmstb_pmx_get_functions_count,
+> +	.get_function_name =3D brcmstb_pmx_get_function_name,
+> +	.get_function_groups =3D brcmstb_pmx_get_function_groups,
+> +	.set_mux =3D brcmstb_pmx_set,
+> +	.gpio_request_enable =3D brcmstb_pmx_gpio_request_enable,
+> +	.gpio_disable_free =3D brcmstb_pmx_gpio_disable_free,
+> +};
+> +
+> +static unsigned int brcmstb_pull_config_get(struct brcmstb_pinctrl *pc,
+> +					    unsigned int pin)
+> +{
+> +	u32 bit =3D pc->pin_regs[pin].pad_bit, val;
+> +
+> +	if (bit =3D=3D REG_BIT_INVALID)
+> +		return BRCMSTB_PULL_NONE;
+> +
+> +	val =3D brcmstb_reg_rd(pc, BIT_TO_REG(bit));
+> +	return (val >> BIT_TO_SHIFT(bit)) & BRCMSTB_PULL_MASK;
+> +}
+> +
+> +static void brcmstb_pull_config_set(struct brcmstb_pinctrl *pc,
+> +				    unsigned int pin, unsigned int arg)
+The same here, returning an error would be better
+> +{
+> +	u32 bit =3D pc->pin_regs[pin].pad_bit, val;
+> +	unsigned long flags;
+> +
+> +	if (bit =3D=3D REG_BIT_INVALID) {
+> +		dev_warn(pc->dev, "Can't set pulls for %s\n",
+> +			 pc->gpio_groups[pin]);
+> +		return;
+> +	}
+> +
+> +	spin_lock_irqsave(&pc->lock, flags);
+> +
+> +	val =3D brcmstb_reg_rd(pc, BIT_TO_REG(bit));
+> +	val &=3D ~(BRCMSTB_PULL_MASK << BIT_TO_SHIFT(bit));
+> +	val |=3D (arg << BIT_TO_SHIFT(bit));
+> +	brcmstb_reg_wr(pc, BIT_TO_REG(bit), val);
+> +
+> +	spin_unlock_irqrestore(&pc->lock, flags);
+> +}
+> +
+> +static int brcmstb_pinconf_get(struct pinctrl_dev *pctldev, unsigned in=
+t pin,
+> +			       unsigned long *config)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +	enum pin_config_param param =3D pinconf_to_config_param(*config);
+> +	u32 arg;
+> +
+> +	switch (param) {
+> +	case PIN_CONFIG_BIAS_DISABLE:
+> +		arg =3D (brcmstb_pull_config_get(pc, pin) =3D=3D BRCMSTB_PULL_NONE);
+> +		break;
+> +	case PIN_CONFIG_BIAS_PULL_DOWN:
+> +		arg =3D (brcmstb_pull_config_get(pc, pin) =3D=3D BRCMSTB_PULL_DOWN);
+> +		break;
+> +	case PIN_CONFIG_BIAS_PULL_UP:
+> +		arg =3D (brcmstb_pull_config_get(pc, pin) =3D=3D BRCMSTB_PULL_UP);
+> +		break;
+> +	default:
+> +		return -ENOTSUPP;
+> +	}
+> +
+> +	*config =3D pinconf_to_config_packed(param, arg);
+> +
+> +	return 0;
+> +}
+> +
+> +static int brcmstb_pinconf_set(struct pinctrl_dev *pctldev,
+> +			       unsigned int pin, unsigned long *configs,
+> +			       unsigned int num_configs)
+> +{
+> +	struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
+> +	u32 param, arg;
+> +	int i;
+> +
+> +	for (i =3D 0; i < num_configs; i++) {
+> +		param =3D pinconf_to_config_param(configs[i]);
+> +		arg =3D pinconf_to_config_argument(configs[i]);
+> +
+> +		switch (param) {
+> +		case PIN_CONFIG_BIAS_DISABLE:
+> +			brcmstb_pull_config_set(pc, pin, BRCMSTB_PULL_NONE);
+> +			break;
+> +		case PIN_CONFIG_BIAS_PULL_DOWN:
+> +			brcmstb_pull_config_set(pc, pin, BRCMSTB_PULL_DOWN);
+> +			break;
+> +		case PIN_CONFIG_BIAS_PULL_UP:
+> +			brcmstb_pull_config_set(pc, pin, BRCMSTB_PULL_UP);
+In case brcmstb_pull_config_set would return an error, we shouldn't
+ignore it here
 
-A git bisect pointed this regression to be introduced via [1] that added
-a mechanism to create device tree nodes for parent PCI bridges when a
-PCI device is hot-plugged.
-
-The Oops is caused when `pci_stop_dev()` tries to remove a non-existing
-device-tree node associated with the pci_dev that was earlier
-hot-plugged and was attached under a pci-bridge. The PCI dev header
-`dev->hdr_type` being 0, results a conditional check done with
-`pci_is_bridge()` into false. Consequently, a call to
-`of_pci_make_dev_node()` to create a device node is never made. When at
-a later point in time, in the device node removal path, a memcpy is
-attempted in `__of_changeset_entry_invert()`; since the device node was
-never created, results in an Oops due to kernel read access to a bad
-address.
-
-To fix this issue, the patch introduces a new flag OF_CREATE_WITH_CSET
-to keep track of device nodes created via `of_pci_make_dev_node()` and
-later attempt to destroy only such device nodes which have this flag
-set.
-
-[1] commit 407d1a51921e ("PCI: Create device tree node for bridge")
-
-Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-Reported-by: Kowshik Jois B S <kowsjois@linux.ibm.com>
-Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
-Signed-off-by: Amit Machhiwal <amachhiw@linux.ibm.com>
----
-Changes since v2:
-    * Drop v2 changes and introduce a different approach from Lizhi discussed
-      over the v2 of this patch
-    * V2: https://lore.kernel.org/all/20240715080726.2496198-1-amachhiw@linux.ibm.com/
-Changes since v1:
-    * Included Lizhi's suggested changes on V1
-    * Fixed below two warnings from Lizhi's changes and rearranged the cleanup
-      part a bit in `of_pci_make_dev_node`
-	drivers/pci/of.c:611:6: warning: no previous prototype for ‘of_pci_free_node’ [-Wmissing-prototypes]
-	  611 | void of_pci_free_node(struct device_node *np)
-	      |      ^~~~~~~~~~~~~~~~               
-	drivers/pci/of.c: In function ‘of_pci_make_dev_node’:
-	drivers/pci/of.c:696:1: warning: label ‘out_destroy_cset’ defined but not used [-Wunused-label]
-	  696 | out_destroy_cset:       
-	      | ^~~~~~~~~~~~~~~~  
-    * V1: https://lore.kernel.org/all/20240703141634.2974589-1-amachhiw@linux.ibm.com/
-
- drivers/pci/of.c   | 3 ++-
- include/linux/of.h | 1 +
- 2 files changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-index dacea3fc5128..bc455370143e 100644
---- a/drivers/pci/of.c
-+++ b/drivers/pci/of.c
-@@ -653,7 +653,7 @@ void of_pci_remove_node(struct pci_dev *pdev)
- 	struct device_node *np;
- 
- 	np = pci_device_to_OF_node(pdev);
--	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
-+	if (!np || !of_node_check_flag(np, OF_CREATE_WITH_CSET))
- 		return;
- 	pdev->dev.of_node = NULL;
- 
-@@ -712,6 +712,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
- 	if (ret)
- 		goto out_free_node;
- 
-+	of_node_set_flag(np, OF_CREATE_WITH_CSET);
- 	np->data = cset;
- 	pdev->dev.of_node = np;
- 	kfree(name);
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 85b60ac9eec5..5faa5a1198c6 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -153,6 +153,7 @@ extern struct device_node *of_stdout;
- #define OF_POPULATED_BUS	4 /* platform bus created for children */
- #define OF_OVERLAY		5 /* allocated for an overlay */
- #define OF_OVERLAY_FREE_CSET	6 /* in overlay cset being freed */
-+#define OF_CREATE_WITH_CSET	7 /* Created by of_changeset_create_node */
- 
- #define OF_BAD_ADDR	((u64)-1)
- 
-
-base-commit: 948752d2e010e11b56a877975e7e9158d6d31823
--- 
-2.45.2
+Thanks
+> +			break;
+> +		default:
+> +			return -ENOTSUPP;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +
 
 
