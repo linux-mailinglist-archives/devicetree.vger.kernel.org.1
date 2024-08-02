@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592CF9458B3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:27:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11109458CC
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:30:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1466D2864E8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:27:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 673E9284950
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284CB1BE875;
-	Fri,  2 Aug 2024 07:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C499E1BF318;
+	Fri,  2 Aug 2024 07:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PxOTDUTd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hh67PEb7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F192C219FC;
-	Fri,  2 Aug 2024 07:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948051BF310;
+	Fri,  2 Aug 2024 07:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722583631; cv=none; b=XLxYMBGw+FGT6DxMqcC3z8vLvHKxNpYhEUlkgmiQXVlXWwLyXH325PbpkyuCEdIp0baBFKYgJrevguPC8zjYdub7FUG6Lx07i/UGkXdiR86WiLxFHtQpN4wkCbU2g51kePixAOP1DCFdgeeEPRXQHTc1LXQmn96LfUaU1Mnk6Ss=
+	t=1722583743; cv=none; b=Rja+gou4e18to64mX0wJ0M7spITZCU7h874HTw1rkP7t72Q9et79Nsj5RrCVCFmmQRiRPYYACY4zqRnDixJ2dglglFwNOpuHm+pgU3CIG6chFyeiI9g33jdlM04UKa3wENdbFQxFV+jO16ogmOAZqfyE+NCyYFrlhOUWSXVuDXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722583631; c=relaxed/simple;
-	bh=jNOB+LUNmMpU1ZevdtwyxVeBA8MyZ2+b63HNWYOmTkY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=sizGhJhgt8xXV2e2ikUQ+8uVcgz5dGyqlvO9IcRV833EmAUoEHAmqQiTFrCr2sYMG/ISTJj2QRLEu2txJSsqNzKlXwBQKDPhlFDHdX6qOlzpsieJB0f9OzRi//zPlPoUmubosrEG+6BXMTB+RWX+FDz6a8QEdu9wZFUGitwGmBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PxOTDUTd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 935E1C32782;
-	Fri,  2 Aug 2024 07:27:06 +0000 (UTC)
+	s=arc-20240116; t=1722583743; c=relaxed/simple;
+	bh=1w+7rrYCa3LRNi+HM2wn8pYcRqkhvqQwbQhxswRVpZ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QSwukoD7nHQfUXd6/uzjBKVrlwkWGyED7V6eWGW++rEqLTHxlADiL2zXE2nad5oCK6s5bgK0FtZEohRwmHCKrAsUqKKOswfs5gPsLa6XD4uo+IJ9AvjXGSuGWsn3pC54R3Y24qSuyzGbb7tn52p0wCRsELHpct0zSBoPO6vBXzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hh67PEb7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9EF6C4AF09;
+	Fri,  2 Aug 2024 07:28:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722583630;
-	bh=jNOB+LUNmMpU1ZevdtwyxVeBA8MyZ2+b63HNWYOmTkY=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=PxOTDUTdOwmamN7eeJGa7iGaEOUYHxZovt4g0bQkTQErqq2O2z+xHXuGcKYkI9+0d
-	 lmJoeAmatU1l+gNv1aloCaXT3PiBK5cH3G6FikdHj9eB2mVn1/oMk9SCEZBgn0tACf
-	 jhGlRs1F7+a8wB09zHp64rdxy6IPxPGmhL+9bvrBnkEv9DomJmMCVrh5YQTwEH92dY
-	 ALD0T+lh4n3qd/gJGi2dSUrbYRJDSAsb7Ugse1mysC6OOiLxjBOrJoIkr8c+urg8OU
-	 Tqf6e7FN/tz/IVbaXzPQXzOgeqCM8OXk12Ddi9ZsKMJNGh6wNwvA/1/zodEouN+SaK
-	 uZnUsl3O19QNg==
-Message-ID: <ed4f21ac-cc1f-45a0-aba5-35f508a67ff0@kernel.org>
-Date: Fri, 2 Aug 2024 09:27:04 +0200
+	s=k20201202; t=1722583743;
+	bh=1w+7rrYCa3LRNi+HM2wn8pYcRqkhvqQwbQhxswRVpZ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Hh67PEb72N2VVF+qkXferhBwAhLAQzGLOvfL0UoeuLtig+sjoSsd50+KBqF4wEUvq
+	 /4oMF4oUO3cSbu+9Z1yoN7R863aDLzAH5A6NLFncIKCNPQ+IFTMPbuppM+FmuL24bg
+	 LvICqgGmnWO2ABTqTtKbjJyGejU1CB775K7DmyadwnCC3I4kPsonUXBpFEuXAQxHUf
+	 6xLUkauYcIJWtRbrLMMAK32fuyUOBNgq8gZpqydd5Uw/HDLhoC4QvrbisKFJkzguLF
+	 IwcJkZFBV68x5QQHzOa7oY4V5ytWMAJSMFWoGsGimhWmXb+HemstwqF0CNgbvLoMYj
+	 7OeRwlcSQEpdA==
+Message-ID: <c65a6eab-1f76-43ee-9bde-9ab1d5cd2819@kernel.org>
+Date: Fri, 2 Aug 2024 09:28:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: Add ISL69260 voltage regulator device
-To: Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 2/8] ASoC: dt-bindings: pm8916-wcd-analog-codec:
+ Document pm8950/pm8953
+To: Adam Skladowski <a39.skl@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- Noah Wang <noahwang.wang@outlook.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Lukas Wunner <lukas@wunner.de>, Bjorn Helgaas <bhelgaas@google.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240801153429.1277378-1-peteryin.openbmc@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Stephan Gerhold <stephan@gerhold.net>
+Cc: alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240731-msm8953-msm8976-asoc-v3-0-163f23c3a28d@gmail.com>
+ <20240731-msm8953-msm8976-asoc-v3-2-163f23c3a28d@gmail.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -105,22 +110,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240801153429.1277378-1-peteryin.openbmc@gmail.com>
+In-Reply-To: <20240731-msm8953-msm8976-asoc-v3-2-163f23c3a28d@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 17:34, Peter Yin wrote:
-> The ISL69260 is a digital dual output multiphase
-> with Intel VR13, VR13.HC, and VR14 specifications.
+On 31/07/2024 17:25, Adam Skladowski wrote:
+> Document pm8950 and pm8953 analog audio codecs.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/qcom,pm8916-wcd-analog-codec.yaml     | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,pm8916-wcd-analog-codec.yaml b/Documentation/devicetree/bindings/sound/qcom,pm8916-wcd-analog-codec.yaml
+> index 94e7a1860977..8af8bb747abe 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,pm8916-wcd-analog-codec.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,pm8916-wcd-analog-codec.yaml
+> @@ -14,8 +14,10 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,pm8916-wcd-analog-codec
+> -
+> +    enum:
+> +      - qcom,pm8916-wcd-analog-codec
+> +      - qcom,pm8950-wcd-analog-codec
+> +      - qcom,pm8953-wcd-analog-codec
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+Why dropping new line?
 
-Commit msg: You should also say that you document a compatible already
-used in DTS.
 
 Best regards,
 Krzysztof
