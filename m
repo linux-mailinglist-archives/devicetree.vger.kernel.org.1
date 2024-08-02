@@ -1,137 +1,107 @@
-Return-Path: <devicetree+bounces-90553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F62B945C85
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:53:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C33945C32
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:40:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9187A1C2187D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:53:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A55C282A14
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE9E1DE874;
-	Fri,  2 Aug 2024 10:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D7C1DC487;
+	Fri,  2 Aug 2024 10:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="AzSP5L4P";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ptkKcq9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FD41DB422;
-	Fri,  2 Aug 2024 10:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0FE1C233C;
+	Fri,  2 Aug 2024 10:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722595994; cv=none; b=BTIKFiszbx9qUy8h6F3gr36lIW9KGNDhF0gA581t3eAT5r16jTnJxH1z7oS6Uz9WSrpBMJuGUqSBSU2+cByK8TkplhFPyhpP9K1oFy3AGbOHtuMamgz3ND0n/7WDO3Vh9ApXQyWCtxkDo39b3AJLIIxRXB6wP/NEZBDviEoj8jU=
+	t=1722595246; cv=none; b=c630yOXISZ8X61i22b+CEIGhxwKpl7wK+9K57kqv/fU6ToWdqOyeoG1+OO4Vyp3yT+9OW7HiU2BbTvpVFFiLzPqURFwxYG9zzd86aNzJTz+ttxIYWsjacTmuHXkjcHyUEp3vNQ9xXtQxQchpGSKn8y4+7Y6nclBbjMhTtZARW7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722595994; c=relaxed/simple;
-	bh=A3e/wQVmmVlejxsbfOJzsMOgYw/ggliYt0zycmeoaAU=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JwbE1I9efksJu85esD89XRHsMytYmz7XJeL55v+SUUTS55UAXWC8Tw5fUvakhXnm4kVDUP6LrXhoEQsPvnfXkPja5l/oujYjE3NM/fM+XH8a4mOnq7b2AJgkbKJ9fpTjPCddbiSyYT5TELwAQ+cV6HMn4ruOYSLibZfLmsECQoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wb2JN02Stz6K5nV;
-	Fri,  2 Aug 2024 18:34:28 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 90EC81400D9;
-	Fri,  2 Aug 2024 18:36:31 +0800 (CST)
-Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 2 Aug
- 2024 11:36:30 +0100
-Date: Fri, 2 Aug 2024 11:36:29 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
-	<dave@stgolabs.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Heiko
- Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo
- Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul
- Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>, Jonathan Corbet
-	<corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt
-	<palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
-	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, Zi Yan <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
-	<nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v3 11/26] x86/numa: use get_pfn_range_for_nid to verify
- that node spans memory
-Message-ID: <20240802113629.00003069@Huawei.com>
-In-Reply-To: <20240801060826.559858-12-rppt@kernel.org>
-References: <20240801060826.559858-1-rppt@kernel.org>
-	<20240801060826.559858-12-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1722595246; c=relaxed/simple;
+	bh=HjcU+WlrtSOzPwf1PAQT6g0nTUOXd9zvEKGllmTWMLs=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=EfnMmgqMZ/aZiuFvzzdaAW5+AFOc1D+FBNoU7UPWyx4GXZ+9Ocf5jBwYZhbpr0wlkbd0yaf/E+g9dZcL5RTBL4gaQpFbgBAmy12i+ffD8Q6PwvTNyZJPvWtG8a3hys7GjjKw9rGgf6XtQOZY3X+WKbWJlf7VOBBnYTRufLmvmXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=AzSP5L4P; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ptkKcq9E; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1722595238;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=r5vcAD1A0hzoKaR1+uEiFQRM12R8jXW3cvyQsxzJHwU=;
+	b=AzSP5L4PVK1Psz6ROzsn/+qgcr5czSeOz9pJT3SZNRVlFsfBf4l7hlmVxgJdAuppfu9MP1
+	fWfIAt8VkRfgypz9+3U0/bphlE1tsR7CXYISZorUhWhqIWYgbP0FwLIkC9FgfhOOjyydqe
+	Smhem1Q6SPLtS5lUb7OkW8yVzcD7IEZbnPsc+bhm34U6r2XfQ2/w+1z3w+NxXo0R48h2cN
+	BUN3C+kd2/R+qOMYe8HccK6xc2zJ829pTwiQ4RNyetGcT44NmiNby3eJp8l7AAQMUF6Vej
+	GLsLZ2fFqkjxucGl9KMntUWod7u1yHeGpwDMhq/ChJbhOx7FTXT2Diuw+7vUCA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1722595238;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=r5vcAD1A0hzoKaR1+uEiFQRM12R8jXW3cvyQsxzJHwU=;
+	b=ptkKcq9E4q4meolmKHP98h7IiQ4UpvvwtTr/CKaxtp505Ffy4MUlxuPJrTh1NcBCvi7JsW
+	E3K8GdMmxoeIkpBw==
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+ Marc Zyngier <maz@kernel.org>, Daire McNamara
+ <daire.mcnamara@microchip.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [RFC v7 3/6] irqchip: add mpfs gpio interrupt mux
+In-Reply-To: <20240802-rippling-clubbing-5318f914f16a@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-flatworm-cornflake-8023212f6584@wendy> <87le1k8oq2.ffs@tglx>
+ <20240801-palpitate-swinger-7bc8ae8deaaf@spud> <87r0b82i57.ffs@tglx>
+ <20240802-rippling-clubbing-5318f914f16a@spud>
+Date: Fri, 02 Aug 2024 12:40:38 +0200
+Message-ID: <87sevn1a3d.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain
 
-On Thu,  1 Aug 2024 09:08:11 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+On Fri, Aug 02 2024 at 09:08, Conor Dooley wrote:
+> On Thu, Aug 01, 2024 at 08:49:08PM +0200, Thomas Gleixner wrote:
+>> On Thu, Aug 01 2024 at 16:09, Conor Dooley wrote:
+>> > On Mon, Jul 29, 2024 at 12:41:25PM +0200, Thomas Gleixner wrote:
+>> >> > +	/*
+>> >> > +	 * If a bit is set in the mux, GPIO the corresponding interrupt from
+>> >> > +	 * controller 2 is direct and that controllers 0 or 1 is muxed.
+>> >> 
+>> >> This is not a coherent sentence.
+>> >
+>> > It should read "controller 0 or 1;s interrupt is muxed". Does that make
+>
+> Heh, I even typoed here, the ; should be a '.
+>
+>> > more sense to you?
+>> 
+>> No: If a bit is set in the mux, GPIO the corresponding...
+>> 
+>> I'm already failing at 'GPIO'. My parser expects a verb there :)
+>
+> Ah, so double mistake in the sentence. s/GPIO// I suppose. An updated
+> comment could be:
+>
+> "If a bit is set in the mux, the corresponding interrupt from GPIO
+> controller 2 is direct and controller 0 or 1's interrupt is muxed"
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> 
-> Instead of looping over numa_meminfo array to detect node's start and
-> end addresses use get_pfn_range_for_init().
-> 
-> This is shorter and make it easier to lift numa_memblks to generic code.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Tested-by: Zi Yan <ziy@nvidia.com> # for x86_64 and arm64
-
-Fair enough given code a few lines up has set the node
-for all the memblocks so this should I think give the same
-effective result.
-
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-> ---
->  arch/x86/mm/numa.c | 13 +++----------
->  1 file changed, 3 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/x86/mm/numa.c b/arch/x86/mm/numa.c
-> index edfc38803779..cfe7e5477cf8 100644
-> --- a/arch/x86/mm/numa.c
-> +++ b/arch/x86/mm/numa.c
-> @@ -521,17 +521,10 @@ static int __init numa_register_memblks(struct numa_meminfo *mi)
->  
->  	/* Finally register nodes. */
->  	for_each_node_mask(nid, node_possible_map) {
-> -		u64 start = PFN_PHYS(max_pfn);
-> -		u64 end = 0;
-> +		unsigned long start_pfn, end_pfn;
->  
-> -		for (i = 0; i < mi->nr_blks; i++) {
-> -			if (nid != mi->blk[i].nid)
-> -				continue;
-> -			start = min(mi->blk[i].start, start);
-> -			end = max(mi->blk[i].end, end);
-> -		}
-> -
-> -		if (start >= end)
-> +		get_pfn_range_for_nid(nid, &start_pfn, &end_pfn);
-> +		if (start_pfn >= end_pfn)
->  			continue;
->  
->  		alloc_node_data(nid);
-
+That's actually understandable for mere mortals :)
 
