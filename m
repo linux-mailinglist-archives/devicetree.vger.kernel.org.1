@@ -1,180 +1,178 @@
-Return-Path: <devicetree+bounces-90433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7770945598
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 02:39:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD1694561D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 03:54:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C1501F23C80
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 00:39:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8B9E281AE0
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 01:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C4113A878;
-	Fri,  2 Aug 2024 00:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4787415AC4;
+	Fri,  2 Aug 2024 01:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Jfsn+FQb"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cZnoZJdE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2099.outbound.protection.outlook.com [40.92.23.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1741ABA47;
-	Fri,  2 Aug 2024 00:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.99
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722558993; cv=fail; b=EfoqZQVDpnEEd0MbbGtV5uv1pO0vy2aqFRhNA/DlJk289XvZHaX+24F7WjwzdNcS9bEXd99s96aJAlLcuFPrY8LpLU2vmb/Q+yDoA5woUuwdLmjjTmS6G9Luz8liEHMpSL1qOF9HlKDEO3V9VCl4DGZ/Ocsu3VNn61BlG5o584Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722558993; c=relaxed/simple;
-	bh=f9GThBpzOdXNJbNFEa5dxG5oHqxlATVuO4ebn6sU9F8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IugSgNmB46cfAsVTqNtRPzAgPdcx42j7Y57N0U7dBsacHMkB/09Z44diwCUyqv9OTIHERyapqZ3qUD0T7MBH8t9g0gU2XiuwMautEAO0+y5ULgthfsP8GYiBe5IYzNERkG8xKX2CnZpuEui4SYmmnk6Wr3odEetK+W6SblxO/8E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Jfsn+FQb; arc=fail smtp.client-ip=40.92.23.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=E/StV5haM5TG5D3Sit7TYoHBtCHTli46zFASyKrOl9V5pCjkJ9OES+Xseg/yA8QUV4iVeeQvkwrg9zmoBqMONJtldIimexe6pvDM5zcu7oyQShgGVH9OOcazxdq456tsSUf3PnF/kbklkdARRvZOYjhSBEURu7URMO+Vqb811viMJEE1xRTAMxfxeUHWmH5bprudjule3EuyZoNt8Q3ugfP/8riWkvsOkpAdKieZPyLBXXL8WSIQo2lsYCavWyBm1ghrgSFWVGx7/Om7WivUKLKOZFgDSDylH2b6Qs6C5UDzCWM99yWdZlktcHhkqI8hOoQqjKTD262NHgDgx/fU1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rWZGPh7h/2vXo4WEMqPU37L/ymAbplpSlRDUJ+faVR8=;
- b=dJDFBMspzNvXzH7L+PvIsYkSfL2MfOun1eQJRMAC5obpdF3oDC6bdVNTG4YVMb/bpLCez99HYx9ODyNCHwjdzC0rUB5o1Ass5QytsLSFkDMCo/mDJ+EhjMqYTrOzYzbPvRm9zf6cQhaO6YubRDzghVBYCFIjUjNi4aGQn+OMzIeeI+vpd4tp/AWSMxAqqgnfBEd/3xmOUliqFiE72TDOBH9/aRFizAoKpWqxslYe5W48bJKlSQj84i24OW9QDf1mSlowgRrOizvB+3g80vjYofuvTGtIZJarw8TIv53046M+gZl5UpYfhBlak4tUCU3NwZ7AOSq8jC/keHdoHHFFnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rWZGPh7h/2vXo4WEMqPU37L/ymAbplpSlRDUJ+faVR8=;
- b=Jfsn+FQbT+DqZwlfMcSc06PFbg/sTHKCcQpR6PEbT2Xtn4dfSfedFJIdvaWFxVkbPo47HkUGeRze3BYzO080crK1l2MScIE+4UCr7ywpfIKVYRN8Xm2goZUwKB9wbXqsMMfztKZSVdH3vgz3kZiUG7NSRosAXtmdXV11RU/FIr7sw4n2UliFBW7t2hnWYYIrbFUGpn526hPr95iW+2d/XqTt0d+3t5EvfOt4+ONdKnp8xt7tL0UaJwi3QoZgxyEMYsd31ve2p4xfFIcLtla6Y/4T50FfMaRaALo2e3N2PAj/oNTDgl8/OOWmO4Ncr5kXET0tmveLUozZkjuZRoaLVg==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH8PR20MB5220.namprd20.prod.outlook.com (2603:10b6:510:1c8::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Fri, 2 Aug
- 2024 00:36:29 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%4]) with mapi id 15.20.7828.023; Fri, 2 Aug 2024
- 00:36:29 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Drew Fustini <dfustini@baylibre.com>,
-	Haylen Chu <heylenay@outlook.com>
-Cc: Liu Gui <kenneth.liu@sophgo.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v4 7/7] riscv: dts: sophgo: cv1812h: add pinctrl support
-Date: Fri,  2 Aug 2024 08:35:22 +0800
-Message-ID:
- <IA1PR20MB495348B5FFE61FF1D76ECC4DBBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <IA1PR20MB4953DC78BB0FE0C57EA94F91BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953DC78BB0FE0C57EA94F91BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [4Vhq77lbSeB7Fw3s3JE29v+sV0sCokjC9m6Gcl2YuFM=]
-X-ClientProxiedBy: SI2PR02CA0051.apcprd02.prod.outlook.com
- (2603:1096:4:196::10) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240802003525.260055-7-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B603A8814
+	for <devicetree@vger.kernel.org>; Fri,  2 Aug 2024 01:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722563659; cv=none; b=T9pJyW9YHuEKW5Bh+m3nfCzke+OFZ2EPooAWeN72/Qkf8iAyiX0VVRiA11yXqowFK+laBjMTB8nYJB08QKfBsuXxHENx0A/kkFHDQJuPR9tEcNa3zDbLr8sSxaxbPd9qCMU+QwEf7BvwTDD5qC/ULnd81gGyc1yNu6VyXBIwfPg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722563659; c=relaxed/simple;
+	bh=7ydCdfaKMGfVp/rdGV0UGfSiuhgPNsZj7UoJ8IOqCK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ypt25s0PbOeoGsGx4aXs+FSSyoueeTlmtB66eSY8J96yb6nawvj9FRUpFPohZPtlLe2Ku7Nng5Cg/0H3uvPgWfEnmsIRjh5DwlRWsHRPVgWpNOXElfDLpW+iHJhOgfkrqtM6PHB6rhk4g+LhY068KzHgurfu9z9KNN+2SYNugZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cZnoZJdE; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4266f3e0df8so48696775e9.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2024 18:54:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722563655; x=1723168455; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AHz4zbF+OAn7WCu3OcAlZ1crFNbQVcisuL4LzL4ZtJ4=;
+        b=cZnoZJdEDmvIVB0R6kRNUgZhJ1gWsdTtiO6jhF2KWNCXEnrJYb9rdhRXaVGtH30cEJ
+         Wzs8lzQnrzF3tt6Odv+BR9UyzuXoeNTplGOlAzJISjmGilrhneVq5jl8NMdnqAkqvXtN
+         glFAbwPtYkDB+SGmR72mmwkHZuTMyXRe5v+NGOMlGEBQPF7r6MxYHbcb5jpWe8IrlnJU
+         ODqkEsC+r1QBSPw6PtYkP4mXnyzIh8y3B5mmVbzoDXbv0DNV3/yRVmTuRHwh9+TNVR5Z
+         TFgVvx+KWQUZEJm9sFSfM4qX8cbwq2FCnnVR2q6uZ61UrcAyNglR8FoT1N14z2NEQesc
+         rHYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722563655; x=1723168455;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AHz4zbF+OAn7WCu3OcAlZ1crFNbQVcisuL4LzL4ZtJ4=;
+        b=I0lbiGPEcnglWiSIC6YOkqgBE0u5O+qGqx9HJrBUVLBg58vAkpjhi+4CczbHn09QJN
+         3OMKr/2GimLfbFC1V6Pf/iPeofm8OgZtSZBCzO4xyUjv+BrHEU1MfSapl7v8jS/peAeR
+         qc1a/CeshZ2B6MOD6uOXn1/VcysmWaH6jX4AcCJ+a0foeRh4RZ5Ck0PfRmsxvwiFWHx9
+         lzXQsn9ySd6Rxb3DXxP9cPVBoRkUSevtyZU84uD1nS6EKrXaJgAmXL1lcsTRB1z21JRn
+         TUa2wo1hcA14me+RzmzlTTVdts7QwgOqpW/f9M5igASciBIfkb7CK1OZQJ+MvcoqgpCB
+         CknA==
+X-Forwarded-Encrypted: i=1; AJvYcCXkEhYjvP9wZiJkK2pWqFD7gBrV28qzu5AvDrWyZev6y75w6Ygt/QQHNubRwAgSeF2szZldNCW6eZE4vX+nCRpK6inOlRhP+FubDg==
+X-Gm-Message-State: AOJu0YxRBLKCFC2VpRaGeW69x1GLuy7HA6q7NulL56bP4T90ZMynxgJq
+	nuYNQMTn6XFSPZqncXdBxbvq2lBZLa/Ct17jJyanC/8tfYOoqKw+4INVwCf4G5c=
+X-Google-Smtp-Source: AGHT+IFPKqTQItpFef5Ablsww2UYpG8aidMvacF5FvaDF10hxOywrJPTm3nna6NFAsHNcR8g4fo3nQ==
+X-Received: by 2002:a05:600c:5102:b0:427:d72a:6c26 with SMTP id 5b1f17b1804b1-428e6af2e18mr11943535e9.6.1722563654338;
+        Thu, 01 Aug 2024 18:54:14 -0700 (PDT)
+Received: from localhost ([193.196.194.3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e4f5b6sm14476105e9.25.2024.08.01.18.54.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 18:54:13 -0700 (PDT)
+Date: Fri, 2 Aug 2024 03:54:11 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <f7imhfnhxt4mtasim7upuupyh2czt73coaa57aucswkzk4aflf@iiiymg422tj4>
+References: <20240515112034.298116-1-dima.fedrau@gmail.com>
+ <20240515112034.298116-3-dima.fedrau@gmail.com>
+ <aczpsiqyh4qsbvnqhqdnvkj2j3fihkltafop5ajkxm57sehbx5@mn4vp7avpeac>
+ <20240731084648.GA18584@debian>
+ <bokad5wa2vw5qwdrrqpkkyrxgmxco2ix76wdaxlqv6usi5rdck@46bp6ywqteo2>
+ <20240801142802.GA212266@debian>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH8PR20MB5220:EE_
-X-MS-Office365-Filtering-Correlation-Id: 30cc8142-294a-4ba9-e390-08dcb28b2616
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|461199028|5072599009|19110799003|3412199025|440099028|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	plhRgTCTUKxzPl58poF4sTHZpwee6YwCjQ5yG5wyTyhsy4YpNYrl03DK1QiRFyNUArxc35+uE/wh0Ko7A1VpBtbKBXz4aTkV5f8UA4lEXtYb/jA9oIN91A9QbWFP8ZbmoH6a+GqvBoUZUis+QdjxZxy9DWZFu917YP9pV8w2ZRfwUAFE/JbH2MgPo4z8yy0REbLuGlBZog4z+6RO0LNadqBmWeA5Uudb8ic2nYw+HGU36NnTfcJ1KAOi4WGZQptZiU3d39IaFUX7XdTJjbDSFgfytLqTNe5l7zOnCnXgsDns0vEvInBofWxsacAR5kPNREOmPaITd6DTycL2Uyc/Z6eX73K3tVORDNGcbpnmrUNBkm7juFtv5sKho/52FufQf+TNdsv4GCghcS92EYtYtPb2cD+4KlZrTUf8M7+kn+RXMWN2Lg1yrUM5ugNCid9vsiJ2IdjNMV59v1UmIxNbQGF6T9/KwL0KjEBdPoNueiiQ0xFM1LE1oWisgeK9zPogcwTCO2cIH4z0f8/8cM+eouH7NMDnWtsZOFJ9Ud8Z3s9cHtZe2CXErO2FyBSjHbUGSQ2sWVptttrbgIo9/K0u5jtn5qKsy7WDPu14PPzgQc5VdEssNx6Vd3gq/QQvl+Q0ROghxae4FUrtUpBJ+IdFIcZoKKymUtEAqrTokAmQwcBXp4rKgtPUT1vvqptyzVldTd4bt8sov5xab+oMezvnZQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xxl2q8kVO44UwSy0haey/T0P0UodpsBfLsTGJo3gUDS6SBPKaFefIAa6vFoA?=
- =?us-ascii?Q?iqXyoGfihVsWQg0PMtjvhproha1a6vkTZZzkMy7Vjn7+XrEAVmi0IKybrUh0?=
- =?us-ascii?Q?RM+S3rrTdW/ncIrNMRw77YDM/jP4bu3StN3g7tIXEh/sbqq7Mw9cqfxQYsyv?=
- =?us-ascii?Q?jMuAbp60PlZNAkqnZFmCt+Dbbti1cYmPqRRNdQTrU/77/kvJOWPljLEkjrB5?=
- =?us-ascii?Q?yNHaJFD2nVvRh+vmA8VnM84b8rFpwcLk5b/aCVmDDBsy6cq742vL3ZpJWfkz?=
- =?us-ascii?Q?nUTR/U+ZIHkrj92TbWZcPaCv7k+vw62zeOy6mtfHK/2nA9hyAewv3T+L4rNZ?=
- =?us-ascii?Q?hWH6aN1teDfPBinqX20hYCYiiWd7UorPUpCbNyP44wd+AwNQ2MRz1TkkdtwP?=
- =?us-ascii?Q?18r7Q9QHDrQhIrHPpjBJ16nE93tm/u3ZewIiFx/p2arw03NtktDfR2GSaTxf?=
- =?us-ascii?Q?Ct2GJzSr3VOPwlqFlSzFgGqGxrsNiVBU8yMo54wy0rPg9GQ3c1chKgJQG7bE?=
- =?us-ascii?Q?yIzBoh/5uWayjGc1fe2fuFsc9qSTfEUNWdUQAylK3SszGZwavFTNJ2fmlg5A?=
- =?us-ascii?Q?l82GlYPxVs9PShMeqS/3cjLwqhT1Y98dBUN/H4yBJKTxjC04h6huZzNNFJP5?=
- =?us-ascii?Q?uDUk+iuiBbpLq8Uw8kV1IqLuWr6twUQDRRnN1C4vRnZQOcaMFMR456TwyvaP?=
- =?us-ascii?Q?aJ1xN6lQSxgWR+gTFxdNAA2GALMGXF3mj+wbsvag5RNrmhFFaEyY18XfSz7v?=
- =?us-ascii?Q?quYSzR3BjH8qiEylTgaJrTJoQsd4IVh9N7K6NU4iu33qXknt/2WViEPXkipQ?=
- =?us-ascii?Q?/XEl9JUs3nKZGTyrFtw2yqtG+eHCkQPL9EPx4mPMUAK4xkytX6u40gvaVHja?=
- =?us-ascii?Q?60I8uxJj8Uo7InPRg2/4E3WbKOQOQkKFL0wmws9DDV1jiKTDfVjFHjpXSIWx?=
- =?us-ascii?Q?9DsdF8W9eMvXz+xsh8V6UcQMiJUQ0EKbBmurOF/gG6BqdGHqjjcnHcYuS1ug?=
- =?us-ascii?Q?L7t9pvh65/l+J5pjNogfJFv/L6fBfbUIHeu4K9uJxuSlKG9g/MxEKoA/fmdb?=
- =?us-ascii?Q?OvhbXImaORFHSKfsDzzCSHUl6sKaumPmXsP4+eNkegBwIgGZg9kDxRLuQA2t?=
- =?us-ascii?Q?XyuBl2xtpMgIXCcd9YhQw09cX3x6zch4N9VcR9hd5z3+sMH2uRYrU4bFCuPK?=
- =?us-ascii?Q?+AxL4YRaPLmVy6SmEbXDBGUNKvSnhWOp0R43Cla6UJiwQBu/DgOwaUJZqq+J?=
- =?us-ascii?Q?hsA6d8+OT6yZj0L2D3Na?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30cc8142-294a-4ba9-e390-08dcb28b2616
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2024 00:36:29.0839
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR20MB5220
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lutjv44n75uxmgq4"
+Content-Disposition: inline
+In-Reply-To: <20240801142802.GA212266@debian>
 
-Add pinctrl node for CV1812H SoC.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--lutjv44n75uxmgq4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-index 8fcb400574ed..2dfa450f0d26 100644
---- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-@@ -4,6 +4,7 @@
-  */
+Hello Dimitri,
 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pinctrl/pinctrl-cv1812h.h>
- #include "cv18xx.dtsi"
- #include "cv181x.dtsi"
+On Thu, Aug 01, 2024 at 04:28:02PM +0200, Dimitri Fedrau wrote:
+> Am Thu, Aug 01, 2024 at 12:24:28AM +0200 schrieb Uwe Kleine-K=F6nig:
+> > > > > +	state->polarity =3D (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm-=
+>hwpwm)) ?
+> > > > > +			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
+> > > > > +
+> > > > > +	state->enabled =3D !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwp=
+wm));
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > [...]
+> > > > > +static int mc33xs2410_probe(struct spi_device *spi)
+> > > > > +{
+> > > > > [...]
+> > > > > +	/* Disable watchdog */
+> > > > > +	ret =3D mc33xs2410_write_reg(spi, MC33XS2410_WDT, 0x0);
+> > > > > +	if (ret < 0)
+> > > > > +		return dev_err_probe(dev, ret, "Failed to disable watchdog\n");
+> > > >=20
+> > > > Wouldn't the watchdog functionality better be handled by a dedicated
+> > > > watchdog driver? Disabling it here unconditionally looks wrong.
+> > >=20
+> > > Yes, would be better. I planned this after this patchset is accepted.
+> > > Without disabling the watchdog, the device is not able to operate. So=
+ I
+> > > would stick to it for now and come up with a patch later on.
+> >=20
+> > How long is the default timeout? Don't you need to disable the watchdog
+> > in the bootloader anyhow?
+>=20
+> Default and also maximum timeout is 256ms. My hardware is configured to
+> let the device stay in reset until the driver puts it out of reset by
+> setting the associated GPIO. Datasheet refers to it as "Disable mode".
+> Outputs are turned off.
+> Without having such reset logic, the device would need to have the
+> watchdog disabled in the bootloader and continue in "Normal mode" or it
+> would go into "Safe mode" while booting the kernel almost sure violating
+> the timeout. Outputs are then controlled by the INx input logic signals.
+> I think there is no single solution but rather depends on the use case.
+> There are three modes which the device can be in when the driver is probe=
+d:
+> "Disable", "Safe" and "Normal". All three are handled by this driver,
+> assuming the watchdog should be disabled.
+>=20
+> [...]
+> > Should this better be a mfd driver then?
+> >=20
+>=20
+> I don't thinks so, the watchdog and the outputs belong somehow together.
 
-@@ -14,6 +15,15 @@ memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x80000000 0x10000000>;
- 	};
-+
-+	soc {
-+		pinctrl: pinctrl@3008000 {
-+			compatible = "sophgo,cv1812h-pinctrl";
-+			reg = <0x03001000 0x1000>,
-+			      <0x05027000 0x1000>;
-+			reg-names = "sys", "rtc";
-+		};
-+	};
- };
+Ah, so the watchdog doesn't trigger a reboot of the machine, just resets
+the I/O lines to input? If yes, that's not what a watchdog driver is
+about and so this isn't a hint to create an mfd driver.
 
- &plic {
---
-2.46.0
+Best regards
+Uwe
 
+--lutjv44n75uxmgq4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmasPEEACgkQj4D7WH0S
+/k4hAwf/YRfijdWk09a3zclVfSN4jt2iwQ/mhmhVUqhBInOQuQsXnYvhUIQnanX4
+gyn51CJrxJPoL+OR+cgpHCshNTq1LjK5a0MDBUfZPqyo5lDCDb/gffWEIrflLPBX
+Y+ny19+wvx9UWxLMQQD7zR714WUJ89AZOsDfJto5Le7Kk/oHPhtiVxbyNT+OZzPN
+RuPSr0YiCH94jzE/kMt8mLdWgKOjLgbgqOYdnnbIMkwWTfwPOSXSpCTMsa3lRtOD
+AQS4FT11VOz3xKzfSsZQ5EMcCCirqERPDNYLDtD6ElDaSOSW0t9y+NOIFGxCgd3E
+4pVOQ4S8W9h6f0qHmFEhch/rpg3QHg==
+=FTlT
+-----END PGP SIGNATURE-----
+
+--lutjv44n75uxmgq4--
 
