@@ -1,114 +1,144 @@
-Return-Path: <devicetree+bounces-90620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D2D2946205
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 18:49:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB28794620E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 18:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24D672823EE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 16:49:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 854AF1F22188
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 16:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE8E16BE3D;
-	Fri,  2 Aug 2024 16:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC69C13C914;
+	Fri,  2 Aug 2024 16:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="uS7onl47"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYQ1nyix"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0958F16BE11;
-	Fri,  2 Aug 2024 16:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACBA13633D;
+	Fri,  2 Aug 2024 16:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722617369; cv=none; b=mHpCQZ50LcuuVAtN6dKVpnUsoT6Nf+pPnPIYAUgmsdsEBLyz7kc+Dc9HvuHOtS7i1Yk+FmZPC+lLXkQdLyeo7Jz6B6Z7vl9bLk5LVYw2R9V5WCEgKZh/ES7uq5Qzbu1qZ703U47BKl4aQMysw+nptKkkxJR5s24Ayl3UpAzyqVw=
+	t=1722617495; cv=none; b=eh1zLN4CxUQRkZsaI9Cu7vPzTinoob0QXbrNkII8cdH/lCoGBWX87OCO9tvUsu3bkczpJlp5NZZiQ6Olhuy5aHXpccjVe+bJLFDslhKP/SCfcxCaBMgFigmCKhksY9/5wL/nWPJsYqxXxKNvlmMuAYap9Cea1O6wXTDzlfuyQ/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722617369; c=relaxed/simple;
-	bh=MYX6RpPC9328x3gSz3cen8uvUKQCdBkMJbhYZwYyUac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gkgGulMvbJPTuxVWiJ4+Zme3BxfVSlFJoMviPuQbeYCPBlV2ilnZpMxhC2AJna8no4kHMHXVhLhkvQubfreN5OQ+HszvQZ90vDlXg4uLJ/RpkLsXQHCglBG/Kk32+Ngid8Y7HKSh+LpgHB3ObkRJs4BScyRVOpmYYk0rHx1LDrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=uS7onl47; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1722617353; x=1723222153; i=wahrenst@gmx.net;
-	bh=MYX6RpPC9328x3gSz3cen8uvUKQCdBkMJbhYZwYyUac=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=uS7onl477NLKBGCnNPEucHTW8USXN6T/Ib/Bg8TNQFejL1R3oLxJH9DQnaHRGSeO
-	 uepXSkhkyDLvsJUwzIW2NTtOrOdL3le4ni15nERHs3VUM/yrH7B7Cv6qvJ2M6C1hr
-	 bEc62tj+TtuLGU5A3RsjSP00BmW5W2nIQefr0o+bfYk8jjs70CLipN76wXw+5iJ5l
-	 N3uH5B0FqED20cG8XlUhU9pm5rgjCyYbf3rgl+yC7IdInApLbt8VHq3xVavP9igri
-	 CnE3cgCPoYwWWCoHavnFgVD29HAVyfdQfQ6tAX/9dZKNA6VFRKIRZ5peTiSNw/ue8
-	 qBtRDkLKskuk+yKw3A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N7R1J-1sAbED3H3N-00tVGu; Fri, 02
- Aug 2024 18:49:12 +0200
-Message-ID: <4114a4db-6ecf-439e-af45-47b24612fea8@gmx.net>
-Date: Fri, 2 Aug 2024 18:49:11 +0200
+	s=arc-20240116; t=1722617495; c=relaxed/simple;
+	bh=5S6CP6s9amxeYSZLoxkka5ubEMMyec6E2rfOz2sp6Qc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=SHW1y3of9VtoW9qvXzQBxQ7xYtSC3ws6qmYaH2XZfLKkU5mgG9d200dU/ufcol9YBFMeJqKcTcdkpl3eUzLhlYUBNx4e2iGp++ZiDuNWsv+cvZWETHYj/kPNbcpUVax3T8kjq8U2CCHnqy7XHofTUuPYQYL6hSzvik/HjLyIp6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TYQ1nyix; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6497C32782;
+	Fri,  2 Aug 2024 16:51:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722617495;
+	bh=5S6CP6s9amxeYSZLoxkka5ubEMMyec6E2rfOz2sp6Qc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=TYQ1nyixuz4bMlRn+8t/e2ScXXfP30bHOCTuUmCfUUIIFXHcs1VK67dVIAh+T3rUR
+	 zle4vWVHdvsAeTMUDy2Ln72juKUZ5++pnwN+MkeScr7IWOwIxOdu73o7g5TYch3vp8
+	 ON7DriQ+fb5d1jAxdbsr5Cd7ASMHc70J6WUOpoqshYmedqem8fhy26E+WdvyVbqUw5
+	 opRT41cPjK2E1M7ybwO8ZbWK7LKu6brychCFO8/xZEF56Ndlyh0fcFofIfjRs4/pOS
+	 +ApBZsZX+a9G5pn/ZhZmHeXuUA6gZEdD/PPrfRh1H5rcJrq+GhD0YoZUwRNG7fFZv+
+	 KSISE1g7c8IeA==
+Date: Fri, 2 Aug 2024 11:51:33 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v3 06/13] PCI: qcom-ep: Modify 'global_irq' and
+ 'perst_irq' IRQ device names
+Message-ID: <20240802165133.GA153963@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: imx93: add lpi2c1 and child node
-To: Frank Li <Frank.li@nxp.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20240801160915.2505610-1-Frank.Li@nxp.com>
- <944715e8-e91e-46dd-a053-7e00a17dea72@kernel.org>
- <Zqztwh3yghN8Drnj@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <Zqztwh3yghN8Drnj@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:LeHRWLSQp2cexdwIEAUp2pVcYtlib7hp1pNc8Z3gqzgwdlEyg6q
- qgyQpU0HykzesG+OPfeMMn8v/ssdIuOZgez4ywZz590pWgFrH7qOSMgILTYD2fjRyfmCVGF
- KC2yASMjMPA6kD/46iHHCp6ZzeUrL10ZBhF3CtzC9CT9fsQAU5G5TUdTiSOhweo5HEQN+5C
- uHU1HSXoYOi88NpLPrNGw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:PQXslPS15dU=;VTqn4z72wxRK4wipEq2Avt87JH4
- zJnS/7+1nnv/0Nt/movrkRQigA+F7Ygj4LViK0KR2Kzj6fTL80/esOFnern5KAJHV9DdHus8w
- GRXPfvHuK6UTexTxVOE+Teex4G+sOdCqDj/39Mh+yA5NLXHYJgZp+qnQ98FHWgnSrIsfeT+mF
- TsIouayk461A5cLul+nq7vr3eCBNYIMIhcr/jccYN+ynUKUgjiQtEbXElcax3CjDdW/HbyRlr
- vRCmdRvle3iKsV1uvXWsqhk2FDxUzAMJpzmMcVbTSU3nMM1FH1d/7TXv5DIRGEJHO4iw0tpM0
- wGmrQz6dSQnyjlvjzpNojBUMLZ8R8OMi18j2yNsjrgrwKyeyAxENmNjx4j3b6tXW5VNMVTdE8
- abBERCT593Ay6JkooFvHyoXCa1k8LfLAYfm3i4koIEDHorfDTXRlihFMUlpbsZ+MpM5k8+pAf
- fQzSItTMmxLEWjdsEFeH3xJl+w6/b+rKevRnMi8TJrKWs142fHiWsiBxQd6BmQ9a5MMZpYpU2
- /tCrEdjzuLUalxDBc2eMXhUXsopYZoLs9h24ueEiJCb6y5mnovc3ng08mC7rIMVyChrOpb2Sd
- kpJidTf2FLunkJgm610TzzwCxcY5IzETlWdfmljKiPgFLgEZup/F0OLFDpMzCoTLQTaipFhG3
- CGd2hPfb2ZinlGmoBweoFjCCjAnbuVQP2N/siuRm3GiwQwJde5o2DtHWv4oTsD75h/PkLLCjq
- qJaLxKsLWuY5eIkmYCQjAVZWp+Usck2EaGja72hVigYBGvp1AsHAx/8/GgUbKD/SDmDAhC6tX
- 6XBg3mJ8JQOyKYvTDnIP7OVw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240802074319.GA57846@thinkpad>
 
-Am 02.08.24 um 16:31 schrieb Frank Li:
-> On Fri, Aug 02, 2024 at 09:25:54AM +0200, Krzysztof Kozlowski wrote:
->> On 01/08/2024 18:09, Frank Li wrote:
->>> From: Clark Wang <xiaoning.wang@nxp.com>
->>>
->>> Add lpi2c1 and child node for imx93-11x11-evk board.
->> Why? What for? What are these? We see all this from the diff, so commit
->> msg should explain why and what do you want to achieve.
-> I really don't know how to explain why/what for these straing forward
-> thing, hardware board has such component, just add it dts file.
-The i.MX93 11x11 EVK has a ST LSM6DSO connected to I2C, which a is
-6-axis IMU (inertial measurement unit =3D accelerometer & gyroscope). So
-add the missing parts to the DTS file.
+On Fri, Aug 02, 2024 at 01:13:19PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Aug 01, 2024 at 12:23:08PM -0500, Bjorn Helgaas wrote:
+> > On Wed, Jul 31, 2024 at 04:20:09PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> > > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > 
+> > > Currently, the IRQ device name for both of these IRQs doesn't have Qcom
+> > > specific prefix and PCIe domain number. This causes 2 issues:
+> > > 
+> > > 1. Pollutes the global IRQ namespace since 'global' is a common name.
+> > > 2. When more than one EP controller instance is present in the SoC, naming
+> > > conflict will occur.
+> > > 
+> > > Hence, add 'qcom_pcie_ep_' prefix and PCIe domain number suffix to the IRQ
+> > > names to uniquely identify the IRQs and also to fix the above mentioned
+> > > issues.
+> > > 
+> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > ---
+> > >  drivers/pci/controller/dwc/pcie-qcom-ep.c | 16 ++++++++++++++--
+> > >  1 file changed, 14 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > index 0bb0a056dd8f..d0a27fa6fdc8 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > @@ -711,8 +711,15 @@ static irqreturn_t qcom_pcie_ep_perst_irq_thread(int irq, void *data)
+> > >  static int qcom_pcie_ep_enable_irq_resources(struct platform_device *pdev,
+> > >  					     struct qcom_pcie_ep *pcie_ep)
+> > >  {
+> > > +	struct device *dev = pcie_ep->pci.dev;
+> > > +	char *name;
+> > >  	int ret;
+> > >  
+> > > +	name = devm_kasprintf(dev, GFP_KERNEL, "qcom_pcie_ep_global_irq%d",
+> > > +			      pcie_ep->pci.ep.epc->domain_nr);
+> > > +	if (!name)
+> > > +		return -ENOMEM;
+> > 
+> > I assume this is what shows up in /proc/interrupts?
+> 
+> Yes.
+> 
+> > I always wonder
+> > why it doesn't include dev_name().  A few drivers do that, but
+> > apparently it's not universally desirable.  It's sort of annoying
+> > that, e.g., we get a bunch of "aerdrv" interrupts with no clue which
+> > device they relate to.
+> 
+> dev_name() can be big at times. I wouldn't recommend to include it
+> unless there are no other ways to differentiate between IRQs.
+> Luckily PCIe has the domain number that we can use to differentiate
+> these IRQs.
+
+/proc/interrupts is 159 characters wide even on my puny 8 CPU laptop,
+so I don't think width is a strong argument, and having to use
+per-device heuristics (instance number like dmarX, idma64.X, nvmeXqY,
+domain number, etc) to find the related device is ... well, a hassle.
+
+But like I said, obviously devm_request_threaded_irq() *could* have
+been implemented to include dev_name() internally but wasn't, so I
+acknowledge there must be good reasons not to, and I'm fine with this
+patch as-is since it continues the existing practice.
+
+> > >  	pcie_ep->global_irq = platform_get_irq_byname(pdev, "global");
+> > >  	if (pcie_ep->global_irq < 0)
+> > >  		return pcie_ep->global_irq;
+> > > @@ -720,18 +727,23 @@ static int qcom_pcie_ep_enable_irq_resources(struct platform_device *pdev,
+> > >  	ret = devm_request_threaded_irq(&pdev->dev, pcie_ep->global_irq, NULL,
+> > >  					qcom_pcie_ep_global_irq_thread,
+> > >  					IRQF_ONESHOT,
+> > > -					"global_irq", pcie_ep);
+> > > +					name, pcie_ep);
 
