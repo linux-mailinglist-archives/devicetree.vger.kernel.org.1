@@ -1,377 +1,229 @@
-Return-Path: <devicetree+bounces-90658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8B19463F4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:33:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1F3946428
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D1351C21432
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:33:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB5741C20CC8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A9741C71;
-	Fri,  2 Aug 2024 19:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFEBF4D5BD;
+	Fri,  2 Aug 2024 19:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pzEX/Gty"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XmKD12Bs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2043.outbound.protection.outlook.com [40.107.20.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D89A1ABEAF
-	for <devicetree@vger.kernel.org>; Fri,  2 Aug 2024 19:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722627209; cv=none; b=LrVwnYnDESNgWBkxzuvSUN2cZT0Y51l2Uxy0P+TDllNY/Af/0ztWdsUckJX+6z8Pi04fdoT31f6v5Itr1vlO+S83zK9oHHu68TS9UmpeQEtGmkUEAQA0hLviTcLnjAVkeZroDWRPPlQSFyyAslChpaJ+1Qru1+pbX6MYG8jZMYM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722627209; c=relaxed/simple;
-	bh=VUsatHSawFjnuspkUbLMc/RTFaNLpBFO2tTutF86nSU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DvWzs6P7DKLkHonjI8k+iObZBbdAI0J4aN4TAgKJwJAfpxCZxSvMo+rlw8X5NzqubRX/txykNC+yUbOAemRgmBxBOiwwTEziO0vbpfSU1fck3yt0eVZQJHkmxaC1AU1OF43wZhJEuGNre6edKhizjggOG3VV6cIqH4oPc44Zuyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pzEX/Gty; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-66acac24443so75820667b3.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Aug 2024 12:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722627207; x=1723232007; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=z7dniS23SKfmEnH3heDmXF7wW6IpRVsH2fGKvJHi/jA=;
-        b=pzEX/GtyYGzQEG2TgQGlSE41S77gukBY2YHurforIOvuWELVpjXGFht2vpUBym9+Gu
-         8jYJoy8nCgM9NUpRxNW8wDVuf3wqC6npZSJ8j7uyqDHNrtIgoz6aD+LhPyCo09pMs1Fx
-         KbJDYZ4OZKABNAlYmM5rrrG/UcvrQC16eAOuqWtZHOXOKCTi4Imgzl5rTDgJWlvMWMTA
-         3NGP2PjfPhVC/0O1z6g6Zi7n9tbVp/m0bop2IQQbKHyoe+xmb/6INV8twmzeZKRdoB0h
-         zddoqFawWt/7R3tTDkAHgb/sqJnrf3aXnc6d5fYcwwI9aefbYLP5EbQDV2HcSlO6Yk6z
-         PzKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722627207; x=1723232007;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z7dniS23SKfmEnH3heDmXF7wW6IpRVsH2fGKvJHi/jA=;
-        b=wgACo4Dm2ieTk0MvHCcN/cWhVxJ5jpbPr6P+ToeYQaGCB0jUkQ4Q3Wb7eolBK/4e9I
-         voSAPm27n/Pe0bj2xfJ49Uubnp5eui/zCsRVIC6+W/FYkmkL3AeAPGqamrmNl9wTcHQW
-         Agg8DhM6kaux9qcK15Qltx9OwtbPxBTd1y+u2AcgmhzBVb7dqDvp4PiBdykRYON5loab
-         /AWkAcQJ3DYiz//vaStuXYSkhj9KIfVwn1SRGZF2nGEzfk0ziEUQYphSQcsbTubjzHj/
-         wbYn/ATqQ7PXsBE1wcJ18qg2qb7iIKhVpbOu+4JFSFBbQlxc4YK327yway6/vbisj1AZ
-         PYpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXH/aHP/cw2dOIvPYy+1UjE+WftE13h4q3Q0Fnp0B/TeN1E1zoBulWEpVu4vz3JhruvGCeQ7UYRsg8M7xH8unv1s6PVXt55+s97Sg==
-X-Gm-Message-State: AOJu0YxB0OxRN/8tQaNvBrw8ZjKw4SXHtvhtB0GxuH/ZICbfmlNA3gex
-	2Q7rsfAmjtRsU5QX8OguU/4lFPqv/FsxaoNtxg3DQot87lvgMZh8EjitTS1hMnji51KqXAKGVnq
-	BgmsN/xbVoRrOl6v/2R4Cq5h12qUIRfExdVOQXQ==
-X-Google-Smtp-Source: AGHT+IE7Y6hR9yVIaN5gVaLqlOtLA/L3XUpeQc4CZMQwUS0uVIYXCqjp7w5lpJsvNAXArj0xjLkLoSmwmxdJqEza8zk=
-X-Received: by 2002:a81:9c07:0:b0:650:82e0:63b1 with SMTP id
- 00721157ae682-689641a6125mr52704377b3.41.1722627206905; Fri, 02 Aug 2024
- 12:33:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9211ABEC9
+	for <devicetree@vger.kernel.org>; Fri,  2 Aug 2024 19:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722628584; cv=fail; b=ucqI2xG287x3Oj7mF+MzsF5rfz7LJpuWM2QYml8JZyy0GJBZEEpbje0S2kOm+BW4vFkBA05gMa9rjaUggUMSgbqRoptn7BQYtN5t2FwTv8enaywUUvK4FEzwu/Ou07T4yBNtCoDFii/Gb3NiAdLNYXaJQFk5oON+BVK4ZQwXBsY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722628584; c=relaxed/simple;
+	bh=kZW3/SSAwCO7iCxh3B+tMRVQ0epic7Vjbndh+E0qSH8=;
+	h=Date:From:To:Subject:Message-ID:Content-Type:Content-Disposition:
+	 MIME-Version; b=KULK/ViuzP82SUasojIHN+zvmnlAdIV4YORjv6UBm7yRz7x1XX3uWYEsVYH0tO5TBIj5nrOkp82P+w7s8VtTFNG3Fml8lgy7zC0eelgWr6iagaLJJqYwpwgjLzkR+ZyLV5J4poWF8bTwneQ4s/sva+W60BzF0dOKk78wRBK5P5E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XmKD12Bs; arc=fail smtp.client-ip=40.107.20.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PyAeL0RqUii3+7hubkzMeN7mbcXtIEpZBcQ93TQqupccq1nOjHoeCuf8jnKn1U0y5FB4+AEFT/nQXNacezOsa82ZuBm6sHRJ001iErvj9lIW3FsWWRm9aWAx11d+niy9h8CD1EE6gxjep/sNZOMmDkpfGtKtRXfbL5uahu8iV59qCtrzCzwySUT770/cxhb1K1Iq8j1KtGD67sm8gYTefwaVRK0Sv8tHIWcLbBFrX1iH6U0D0SZOb+IQJi0LoFPhYX87Qp87esbbkuG7VWhs+u2oNkaW3eaecB5Q7BhB97cl0zGItwI/yXP3/KzAhzENFBsLlAbv4Kt3XZBLsmWvpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H/+jh9HQklA/o9qs4d7s4QQLNOWODOrTiV8tE2sYBn4=;
+ b=ftvjg1Hd5zb+qgopwZULxyGQZRfXXNNoqyoy/LvX9rVi6lsGXeseOiwXHL4SQXflqEf3pJbDq5iNP7/KM1XfT+kNLxu8ayxN9tmWxifk1P+WVdc/ZUIYNDbgDXrUWhUofzxr0MW3S2raA6o3zfEwD3qHYgbPu7mpu0Fj77eDpMdv0fLPlx43O8a6Su93mDHlLXBLyWhCvtmj+k5m+gOg04FgR69gvhx5BYzh0HPHRDjUaXtghU+du/lz8oS6B/L8wgwC56FBiedheGaWpnXkBr/gUWZYMJbCbEZkZxvnJEnWCmkB2Dy6eEUWCHaNJo1aom/I1e55WQEls3CFWISbSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H/+jh9HQklA/o9qs4d7s4QQLNOWODOrTiV8tE2sYBn4=;
+ b=XmKD12Bsy0HZSKXCgMBsTaMVIZtx6UnWliBNXRwbTZrxPYn6pP2QwpuHqJwDYU42NfVO0BhpVW0tdONsCUaP0rO1WjLitBIjitwVT/IncotErTUxl7FBTcF8/wLrYaFx+8U+nUr0inJ/j8G8uD1KsOzKuBgfMwcMPpN3ppThrBm91IDMvqNWbtWc0NacqPVJBq4wA2jZAtZE65hAONsgnhk+5TGumt6BPhJca07CXoAj4MilvExXLosnY5/A08hDls4fuP4wMtUYMnZk6ulIWpr+lMQkeq4d8kdaEOFxFGovT3NdADG2E19Gm1wmWjJi5nanPtwlX6t4d+l3kwL6vA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB7569.eurprd04.prod.outlook.com (2603:10a6:20b:2d8::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.24; Fri, 2 Aug
+ 2024 19:56:19 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.021; Fri, 2 Aug 2024
+ 19:56:19 +0000
+Date: Fri, 2 Aug 2024 15:56:13 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: robh@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
+Subject: layerscape interrupt-map warning problem, may be dtb.py bug
+Message-ID: <Zq053X7eZG/8blYM@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-ClientProxiedBy: SJ0PR05CA0196.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240802090544.2741206-1-kevin_chen@aspeedtech.com> <20240802090544.2741206-6-kevin_chen@aspeedtech.com>
-In-Reply-To: <20240802090544.2741206-6-kevin_chen@aspeedtech.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 2 Aug 2024 22:33:15 +0300
-Message-ID: <CAA8EJprhpv2i9Y=8FAW+fDi_TMJYLw8KO+GtbA4oPHuK+Kgq_A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/9] clk: ast2700: add clock controller
-To: Kevin Chen <kevin_chen@aspeedtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
-	andrew@codeconstruct.com.au, lee@kernel.org, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	quic_bjorande@quicinc.com, geert+renesas@glider.be, shawnguo@kernel.org, 
-	neil.armstrong@linaro.org, m.szyprowski@samsung.com, nfraprado@collabora.com, 
-	u-kumar1@ti.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB7569:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86d1c71d-9358-45f4-d93a-08dcb32d2d42
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?cktiy2bxStvBzzWwztRxM5OhmAxIfO8TAMtSO2nGQ2vAmsnSuA6AAxDjoiH2?=
+ =?us-ascii?Q?CaWjGg3INnAKhIC0hU0pNbd6eHjz5yZF3h32hQCjHqG92Q7v948bmiuduwxA?=
+ =?us-ascii?Q?ZFOHRsX67jT32YJld2w2ZKsJYpD5kDCgN5Ymjee7O+223mw6onn2L2EkkN8w?=
+ =?us-ascii?Q?GiVH0SDZl4sYlJQOAZtutaNO0PVnGe1DtX9hFfjUZG0cQpKr4qCPMcoZDayd?=
+ =?us-ascii?Q?Y6xeWmDbbAz5r+PG+2LN/VNjSzr9x+bApeENOQefE4EUKh5WknnKpPynKhPh?=
+ =?us-ascii?Q?MhvwlhE8z7csUp0R3R7QJVJrT4H0CRdMXBdUFOBuou1CMJsRzInfdlKrn5Zn?=
+ =?us-ascii?Q?344QXBPmUHu5eDXUNjhsyVP1jtvLmlrwEvDNZNTn7CeCNAjouSSzElBCkLqX?=
+ =?us-ascii?Q?Rrkrq5sjZSCsTsaTwvpYhDZB2WVVusKHNC1vfCc0uhyGo7qVqj/WGZJbLUfH?=
+ =?us-ascii?Q?uRD3waIUHID5hAnHd0EkU6HtSSZnJypw9T+epm/TehD42q7As+c1In0aQ4CH?=
+ =?us-ascii?Q?2DEYvLD6ZgzX/WAURJ2mlnzA9NpajuQeBt51orfSC2OfSfX+gwNc7T6viMBm?=
+ =?us-ascii?Q?RNCjhrk2qVurnXBPoCknJXRjx9cSJTLLYpUU+J8uJn87rNFX3h87yGy13vT3?=
+ =?us-ascii?Q?I4jytcGmkoDAbI6eSIDU94gJyEsqDhaJK/hNKbPHxHt9ZeZaXkAyBURkVbIU?=
+ =?us-ascii?Q?CRi3L8HOjnWUQKgZc+dOBfEOGYuEdzAFH1hptfnVDnyH3c6nvulA9dmzNr5i?=
+ =?us-ascii?Q?yiRNH3e3yODSwzfFF1bgWtIwhWZCN5q/w3irMkbBHuLqQY9j97BaM4l9kPZM?=
+ =?us-ascii?Q?nYLtNb30z9Ioy/63YR6KoEwnpq/xV8URFjMu7cjC/4Gch97jnNLuynAABVjx?=
+ =?us-ascii?Q?shISxc9wrmyPvDFa8eIAQ9FaHmh6SYxo23IQ7jQ17RtZl+9FMNeIuazmNZ9/?=
+ =?us-ascii?Q?MCxfMRpFYNGrYQS+kgMg95BNHT4PDER+Yg6FUAC0mDcy3si06y/OqA/DLeLz?=
+ =?us-ascii?Q?mw8OEF45BixbgPWfwrOgt2Q3zj7tMeOO05ZQSSAv71nMtw7zQwsjBzy73oUj?=
+ =?us-ascii?Q?EIo6ZoLDeWhWBuFM9nRrPD6gwcH7aq5dXHImse8rfrXi+vGuZpY5I1I9n1s6?=
+ =?us-ascii?Q?48hen1RhgWWEwnPsHK2oaZSTAu07x3rw9hJdgjmAvkaH2MxLfLZYOWxENWrN?=
+ =?us-ascii?Q?sU6t5K6Ik/QTzzzYJ5DnCKwHP744i/j18kGRuYapVJpd3yPNErEsormCTLv8?=
+ =?us-ascii?Q?lQuVmtKU1xqIUH3oOWzaDUOUOfLT/8KX3sRTkNvE+LF+E5iEC+TTHZb3XTSe?=
+ =?us-ascii?Q?sxmoe8ApyDki6n4vkbDA62KGCtiSq4iG/flQqXj0Sig03FsuiIn93TLJ48cy?=
+ =?us-ascii?Q?OgmLjc+0N0AqwFp7tL8rXW8u84/NLOMyaNHHbSsr+KWuNpiTjg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?TGAc0SEG8PQIBVPWFP9XJrrr3l1cijMdfqRAJ1N16XYg9ZK/A7B4foFEb/2H?=
+ =?us-ascii?Q?d9Zj0qS8ANu7l+c23/aNegBR77FbCQvrcf8Mo/q2X0E4yQY+RiDuDz1rW2Wg?=
+ =?us-ascii?Q?DcIuI8/3ihAcR1+1tZWoQzo6bM/Pxl3bSZgwaJMDDK70TfsVQi+xeJ9SDX89?=
+ =?us-ascii?Q?xo5AnwVbfJLLIwcGoiDSLzhN6IDndCyYHesulQSZiaioFqZ3CJ+Yb+i3Ffp/?=
+ =?us-ascii?Q?qL7O9jqx2HsfbVAYjqh891UrzRhpAfmDBdQgILMc+nP0KI6NDp9O7n1jYh1v?=
+ =?us-ascii?Q?J3s7i0j0gA4M3CIG06MvH/rYGc4Nqdji06kMz6xbpNJsABFJh88PFLI2UQr9?=
+ =?us-ascii?Q?aQDmM6fqJH/Vc4KL35bmEk6C6inoY822oj8yfztsTk+tM7qCnp3FSvZFUMRW?=
+ =?us-ascii?Q?VTmLuuQ6wMMhk/yx5ReopY/l78Wf2GvDxRWawkg0/eIneFqCbqamB95ZyqPs?=
+ =?us-ascii?Q?s0EaH34R54fl1W63AF//mBEFbOv+wabJDQF6hy/MY90hvN1Vr+edbkaT1cOS?=
+ =?us-ascii?Q?Jq96uPLTiyeuQEg2xhgB4Tc1Ezr53Mu78b8GcFu85dZKIp3OThTu6R207Q9K?=
+ =?us-ascii?Q?qUjLMoSj9QP0N40Zn2ZsuhJOX1hlhmYQE0lLjn5QZFusbGav9eLIM8hMfa2X?=
+ =?us-ascii?Q?l7TbpdNJA+UFjcOF8WJfq1eTPbqJ5AL8hWceVsNMDuwxHWZPA2v82QKr/bzI?=
+ =?us-ascii?Q?8J6hWVJbENEDmMN45qNvooe0AKxXmXchUoJJJNJ1GGX5XwXb8yYGIIEP2R+5?=
+ =?us-ascii?Q?5JaF0fIQB16lFnIQmZLW7bX62tDtwifK09qeOLA0Ksl67cuWjoqPAs0L8De4?=
+ =?us-ascii?Q?RF5zCfh/73/B3CS6mUW/JTjtE5kWCl5f66Fxlvg+q8zNj8j1DMpEo6YPh/gc?=
+ =?us-ascii?Q?Z1koafMODRRMHrAUaALaB610fJJg6zyUruKAPE1J/oBsLdmBaqSLz+uNW46F?=
+ =?us-ascii?Q?GpIOd0thdIY8dbfFtUmBNeDogE/OTVSKRT3iumBSSZf1z4s7p9u2giwl/gP/?=
+ =?us-ascii?Q?eOVwaEoMCFXoA1yyruEGLsLG6duDhzd3+CI1gttxge5UmV1GWXLi1Lw3zmFk?=
+ =?us-ascii?Q?WCDTGpA4WkrWN8PpTqhHSmBu66cQtNrUWtYA3HAXnx5FEtubh5ffALJFuF8V?=
+ =?us-ascii?Q?WoZPXxsFKjBqOLL2AaHaWlHuqxhked+Pg4nmK2TOzwCajieoTLcSMPt1CD6B?=
+ =?us-ascii?Q?7p9amhFiVV2i32PbolnZbDSiYK4EfTQcj/QqdHbglBMN2NjBP6gmAd3yGXRG?=
+ =?us-ascii?Q?N/KygM9UFvsWNWL17+YOS8+1N9WBqGXdyARKYc4FYZlVmtov51miTcQ8xMe0?=
+ =?us-ascii?Q?UUP897vBh+eanfXfYSaUjviCGPfVcP36pAVLVig3x2yZm2AmM0eEE0hjE2d8?=
+ =?us-ascii?Q?6pQbZVm84085pTjH+mb8EQG6EkW+WF+OFjzmmRq0prpX4fFhRirp1XYP0qra?=
+ =?us-ascii?Q?Us7ES5gJUfag+c2ydaOGeClqHHaq5lbjEMRX6BnrhjNvIn/o/E9DiYy5kRQp?=
+ =?us-ascii?Q?cyOW7l91UeOy4XOTG7oD0r+yifyHn54dWX6ao/7DqrUqu2cO1CVbGFvoBHwm?=
+ =?us-ascii?Q?XicJAwR59ZLn2vPtJ38=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86d1c71d-9358-45f4-d93a-08dcb32d2d42
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2024 19:56:19.5136
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OkkyyDDU09DIocp/SLnF6KBfzMDN4RJWulZUNopDGvVkVpy0si7whc74rNv3PGt+TIRRgIstcTT2YXSfRrr6Zw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7569
 
-On Fri, 2 Aug 2024 at 12:05, Kevin Chen <kevin_chen@aspeedtech.com> wrote:
->
-> Add support for ast2700 clock controller.
->
-> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
-> ---
->  drivers/clk/Makefile      |    1 +
->  drivers/clk/clk-ast2700.c | 1173 +++++++++++++++++++++++++++++++++++++
->  2 files changed, 1174 insertions(+)
->  create mode 100644 drivers/clk/clk-ast2700.c
->
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index f793a16cad40..0d5992ea0fa4 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -38,6 +38,7 @@ obj-$(CONFIG_COMMON_CLK_FSL_SAI)      += clk-fsl-sai.o
->  obj-$(CONFIG_COMMON_CLK_GEMINI)                += clk-gemini.o
->  obj-$(CONFIG_COMMON_CLK_ASPEED)                += clk-aspeed.o
->  obj-$(CONFIG_MACH_ASPEED_G6)           += clk-ast2600.o
-> +obj-$(CONFIG_MACH_ASPEED_G7)           += clk-ast2700.o
->  obj-$(CONFIG_ARCH_HIGHBANK)            += clk-highbank.o
->  obj-$(CONFIG_CLK_HSDK)                 += clk-hsdk-pll.o
->  obj-$(CONFIG_COMMON_CLK_K210)          += clk-k210.o
-> diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
-> new file mode 100644
-> index 000000000000..eec8e0cb83d9
-> --- /dev/null
-> +++ b/drivers/clk/clk-ast2700.c
-> @@ -0,0 +1,1173 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +// Copyright ASPEED Technology
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/reset-controller.h>
-> +
-> +#include <dt-bindings/clock/aspeed,ast2700-clk.h>
-> +#include <dt-bindings/reset/aspeed,ast2700-reset.h>
-> +
-> +#define SCU_CLK_24MHZ 24000000
+Rob:
+	I am trying to fix the below issue
 
-Are Aspeed's 24 MHz somehow different from 24 MHz on other platforms?
-Please use <linux/units.h> and refrain from defining just random
-values. If it has some special meaning (like XO clock or some other
-fixed funcion), please use logical names.
+arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dtb: syscon@1f70000: interrupt-controller@14:interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 0, 1, 4, 2, 0, 1, 0], [2, 4, 3, 0, 1, 0, 3, 4], [4, 0, 1, 0, 4, 4, 5, 0], [1, 0, 5, 4, 6, 0, 1, 0], [6, 4, 7, 0, 1, 0, 7, 4], [8, 0, 1, 0, 8, 4, 9, 0], [1, 0, 9, 4, 10, 0, 1, 0], [10, 4, 11, 0, 1, 0, 11, 4]] is too short
 
-> +#define SCU_CLK_25MHZ 25000000
-> +#define SCU_CLK_192MHZ 192000000
-> +/* SOC0 USB2 PHY CLK*/
-> +#define SCU_CLK_12MHZ 12000000
+gic: interrupt-controller@6000000 {
+                compatible = "arm,gic-v3";
+                reg = <0x0 0x06000000 0 0x10000>, /* GIC Dist */
+                        <0x0 0x06100000 0 0x100000>, /* GICR (RD_base + SGI_base) */
+                        <0x0 0x0c0c0000 0 0x2000>, /* GICC */
+                        <0x0 0x0c0d0000 0 0x1000>, /* GICH */
+                        <0x0 0x0c0e0000 0 0x20000>; /* GICV */
+                #interrupt-cells = <3>;
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
+                interrupt-controller;
+                interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 
-So, this can be #define ASPEED_SOC0_USB2_PHY_RATE (12 * HZ_PER_MHZ)
+                its: msi-controller@6020000 {
+                        compatible = "arm,gic-v3-its";
+                        msi-controller;
+                        #msi-cells = <1>;
+                        reg = <0x0 0x6020000 0 0x20000>;
+                };
+};
 
-> +/* SOC0 */
-> +#define SCU0_HWSTRAP1 0x010
-> +#define SCU0_CLK_STOP 0x240
-> +#define SCU0_CLK_SEL1 0x280
-> +#define SCU0_CLK_SEL2 0x284
-> +#define GET_USB_REFCLK_DIV(x) ((GENMASK(23, 20) & (x)) >> 20)
-> +#define UART_DIV13_EN BIT(30)
-> +#define SCU0_HPLL_PARAM 0x300
-> +#define SCU0_DPLL_PARAM 0x308
-> +#define SCU0_MPLL_PARAM 0x310
-> +#define SCU0_D1CLK_PARAM 0x320
-> +#define SCU0_D2CLK_PARAM 0x330
-> +#define SCU0_CRT1CLK_PARAM 0x340
-> +#define SCU0_CRT2CLK_PARAM 0x350
-> +#define SCU0_MPHYCLK_PARAM 0x360
-> +
-> +/* SOC1 */
-> +#define SCU1_CLK_STOP 0x240
-> +#define SCU1_CLK_STOP2 0x260
-> +#define SCU1_CLK_SEL1 0x280
-> +#define SCU1_CLK_SEL2 0x284
-> +#define UXCLK_MASK GENMASK(1, 0)
-> +#define HUXCLK_MASK GENMASK(4, 3)
-> +#define SCU1_HPLL_PARAM 0x300
-> +#define SCU1_APLL_PARAM 0x310
-> +#define SCU1_DPLL_PARAM 0x320
-> +#define SCU1_UXCLK_CTRL 0x330
-> +#define SCU1_HUXCLK_CTRL 0x334
-> +#define SCU1_MAC12_CLK_DLY 0x390
-> +#define SCU1_MAC12_CLK_DLY_100M 0x394
-> +#define SCU1_MAC12_CLK_DLY_10M 0x398
-> +
-> +/*
-> + * MAC Clock Delay settings
-> + */
-> +#define MAC_CLK_RMII1_50M_RCLK_O_CTRL          BIT(30)
-> +#define   MAC_CLK_RMII1_50M_RCLK_O_DIS         0
-> +#define   MAC_CLK_RMII1_50M_RCLK_O_EN          1
-> +#define MAC_CLK_RMII0_50M_RCLK_O_CTRL          BIT(29)
-> +#define   MAC_CLK_RMII0_5M_RCLK_O_DIS          0
-> +#define   MAC_CLK_RMII0_5M_RCLK_O_EN           1
-> +#define MAC_CLK_RMII_TXD_FALLING_2             BIT(27)
-> +#define MAC_CLK_RMII_TXD_FALLING_1             BIT(26)
-> +#define MAC_CLK_RXCLK_INV_2                    BIT(25)
-> +#define MAC_CLK_RXCLK_INV_1                    BIT(24)
-> +#define MAC_CLK_1G_INPUT_DELAY_2               GENMASK(23, 18)
-> +#define MAC_CLK_1G_INPUT_DELAY_1               GENMASK(17, 12)
-> +#define MAC_CLK_1G_OUTPUT_DELAY_2              GENMASK(11, 6)
-> +#define MAC_CLK_1G_OUTPUT_DELAY_1              GENMASK(5, 0)
-> +
-> +#define MAC_CLK_100M_10M_RESERVED              GENMASK(31, 26)
-> +#define MAC_CLK_100M_10M_RXCLK_INV_2           BIT(25)
-> +#define MAC_CLK_100M_10M_RXCLK_INV_1           BIT(24)
-> +#define MAC_CLK_100M_10M_INPUT_DELAY_2         GENMASK(23, 18)
-> +#define MAC_CLK_100M_10M_INPUT_DELAY_1         GENMASK(17, 12)
-> +#define MAC_CLK_100M_10M_OUTPUT_DELAY_2                GENMASK(11, 6)
-> +#define MAC_CLK_100M_10M_OUTPUT_DELAY_1                GENMASK(5, 0)
-> +
-> +#define AST2700_DEF_MAC12_DELAY_1G     0x00CF4D75
+extirq: interrupt-controller@14 {
+	compatible = "fsl,ls2080a-extirq", "fsl,ls1088a-extirq";
+        #interrupt-cells = <2>;
+        #address-cells = <0>;
+        interrupt-controller;
+        reg = <0x14 4>;
+        interrupt-map =
+        	<0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+                <1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+                <2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+                <3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+                <4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+                <5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+                <6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+                <7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+                <8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+                <9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+                <10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+                <11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+                interrupt-map-mask = <0xf 0x0>;
+        };
 
-lowcase hex, please.
+the binding doc
+interrupt-map:
+          minItems: 12
+          maxItems: 12
 
-> +#define AST2700_DEF_MAC12_DELAY_100M   0x00410410
-> +#define AST2700_DEF_MAC12_DELAY_10M    0x00410410
-> +
-> +struct mac_delay_config {
-> +       u32 tx_delay_1000;
-> +       u32 rx_delay_1000;
-> +       u32 tx_delay_100;
-> +       u32 rx_delay_100;
-> +       u32 tx_delay_10;
-> +       u32 rx_delay_10;
-> +};
-> +
-> +/* Globally visible clocks */
-> +static DEFINE_SPINLOCK(ast2700_clk_lock);
-> +
-> +/* Division of RGMII Clock */
-> +static const struct clk_div_table ast2700_rgmii_div_table[] = {
-> +       { 0x0, 4 },
-> +       { 0x1, 4 },
-> +       { 0x2, 6 },
-> +       { 0x3, 8 },
-> +       { 0x4, 10 },
-> +       { 0x5, 12 },
-> +       { 0x6, 14 },
-> +       { 0x7, 16 },
-> +       { 0 }
-> +};
-> +
-> +/* Division of RMII Clock */
-> +static const struct clk_div_table ast2700_rmii_div_table[] = {
-> +       { 0x0, 8 },
-> +       { 0x1, 8 },
-> +       { 0x2, 12 },
-> +       { 0x3, 16 },
-> +       { 0x4, 20 },
-> +       { 0x5, 24 },
-> +       { 0x6, 28 },
-> +       { 0x7, 32 },
-> +       { 0 }
-> +};
-> +
-> +/* Division of HCLK/SDIO/MAC/apll_divn CLK */
-> +static const struct clk_div_table ast2700_clk_div_table[] = {
-> +       { 0x0, 2 },
-> +       { 0x1, 2 },
-> +       { 0x2, 3 },
-> +       { 0x3, 4 },
-> +       { 0x4, 5 },
-> +       { 0x5, 6 },
-> +       { 0x6, 7 },
-> +       { 0x7, 8 },
-> +       { 0 }
-> +};
-> +
-> +/* Division of PCLK/EMMC CLK */
-> +static const struct clk_div_table ast2700_clk_div_table2[] = {
-> +       { 0x0, 2 },
-> +       { 0x1, 4 },
-> +       { 0x2, 6 },
-> +       { 0x3, 8 },
-> +       { 0x4, 10 },
-> +       { 0x5, 12 },
-> +       { 0x6, 14 },
-> +       { 0x7, 16 },
-> +       { 0 }
-> +};
-> +
-> +/* HPLL/DPLL: 2000Mhz(default) */
-> +static struct clk_hw *ast2700_soc0_hw_pll(const char *name, const char *parent_name, u32 val)
+*The key problem is wrong split matrix
 
-Please migrate from using parent_names to either using parent_hw or
-using fwname to specify the parent clock.
-
-> +{
-> +       unsigned int mult, div;
-> +
-> +       if (val & BIT(24)) {
-> +               /* Pass through mode */
-> +               mult = 1;
-> +               div = 1;
-> +       } else {
-> +               /* F = CLKIN(25MHz) * [(M+1) / 2(N+1)] / (P+1) */
-> +               u32 m = val & 0x1fff;
-> +               u32 n = (val >> 13) & 0x3f;
-> +               u32 p = (val >> 19) & 0xf;
-> +
-> +               mult = (m + 1) / (2 * (n + 1));
-> +               div = (p + 1);
-> +       }
-> +
-> +       return clk_hw_register_fixed_factor(NULL, name, parent_name, 0, mult, div);
-> +};
-> +
-> +/* MPLL 1600Mhz(default) */
-> +static struct clk_hw *ast2700_calc_mpll(const char *name, const char *parent_name, u32 val)
-> +{
-> +       unsigned int mult, div;
-> +
-> +       if (val & BIT(24)) {
-> +               /* Pass through mode */
-> +               div = 1;
-> +               mult = div;
-> +       } else {
-> +               /* F = CLKIN(25MHz) * [CLKF/(CLKR+1)] /(CLKOD+1) */
-> +               u32 m = val & 0x1fff;
-> +               u32 n = (val >> 13) & 0x3f;
-> +               u32 p = (val >> 19) & 0xf;
-> +
-> +               mult = m / (n + 1);
-> +               div = (p + 1);
-> +       }
-> +       return clk_hw_register_fixed_factor(NULL, name, parent_name, 0, mult, div);
-> +};
-> +
-> +static struct clk_hw *ast2700_calc_uclk(const char *name, u32 val)
-> +{
-> +       unsigned int mult, div;
-> +
-> +       /* UARTCLK = UXCLK * R / (N * 2) */
-> +       u32 r = val & 0xff;
-> +       u32 n = (val >> 8) & 0x3ff;
-> +
-> +       mult = r;
-> +       div = n * 2;
-> +
-> +       return clk_hw_register_fixed_factor(NULL, name, "uxclk", 0, mult, div);
-> +};
-> +
-> +static struct clk_hw *ast2700_calc_huclk(const char *name, u32 val)
-> +{
-> +       unsigned int mult, div;
-> +
-> +       /* UARTCLK = UXCLK * R / (N * 2) */
-> +       u32 r = val & 0xff;
-> +       u32 n = (val >> 8) & 0x3ff;
-> +
-> +       mult = r;
-> +       div = n * 2;
-> +
-> +       return clk_hw_register_fixed_factor(NULL, name, "huxclk", 0, mult, div);
-> +};
-> +
-> +static struct clk_hw *ast2700_calc_soc1_pll(const char *name, const char *parent_name, u32 val)
-
-How is this different from ast2700_soc0_hw_pll() ?
-
-> +{
-> +       unsigned int mult, div;
-> +
-> +       if (val & BIT(24)) {
-> +               /* Pass through mode */
-> +               div = 1;
-> +               mult = div;
-> +       } else {
-> +               /* F = 25Mhz * [(M + 1) / (n + 1)] / (p + 1) */
-> +               u32 m = val & 0x1fff;
-> +               u32 n = (val >> 13) & 0x3f;
-> +               u32 p = (val >> 19) & 0xf;
-> +
-> +               mult = (m + 1) / (n + 1);
-> +               div = (p + 1);
-> +       }
-> +       return clk_hw_register_fixed_factor(NULL, name, parent_name, 0, mult, div);
-> +};
-> +
+[0, 0, 1, 0, 0, 4, 1, 0]
+                   ^^^^, there are *two* data more than expected 6.
 
 
--- 
-With best wishes
-Dmitry
+in def fixup_interrupts(dt, icells) of dtb.py
+
+if '#address-cells' in phandles[phandle]:
+      p_ac = _get_cells_size(phandles[phandle], '#address-cells')
+else:
+      p_ac = 0
+
+
+I am not sure why need check '#address-ceslls' in here. If set
+#address-cells = <0>, or remove #address-ceslls in gic, this problem can be
+fixed.
+
+But I think it possible dtb.py bugs, '#address-cells' should descript
+child node's address size.
+
+Frank
+
+
+
 
