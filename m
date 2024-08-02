@@ -1,40 +1,65 @@
-Return-Path: <devicetree+bounces-90565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F47945D97
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:01:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 545AF945DA9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:10:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E634283D54
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:01:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5945A1C213B7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9B91DB449;
-	Fri,  2 Aug 2024 12:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4161DE867;
+	Fri,  2 Aug 2024 12:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LEcceYM8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBFB14B09F;
-	Fri,  2 Aug 2024 12:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167F014A4C8;
+	Fri,  2 Aug 2024 12:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722600112; cv=none; b=Ulfy8T39Yo1U/YsuAePLMO22IApuCCi1rE99WUrmE9/W7fYBLYYCz3mCIjKsDuvi5iso5ptPAJbd1NWZGvZZkWEsLPF+k9Gk4Mt5jA+bstrsNEXky3MI661wY7fITx+6/HIOkTR7eSqFOc8XKq5f1sp3mod4c1hZvSUbYpYMRIs=
+	t=1722600650; cv=none; b=UrJ3TYH0ONeNzxnitoM7bCnxP65+NouvCBR6RtEa7+Q3RBhLAIPBe/Rrv6jvCStfsFPJszi5voaBBq33APUUNrqDxO6z4MRtXjLfDcuwTKpWKkpsVPS6eaxnHTrY767j9xxhBGBLz/Y7HTcxU9sAO/eZ3F7nH7VGMRz7PJLskMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722600112; c=relaxed/simple;
-	bh=raWuv0skPOWoOjKvJaMx51HTs9/zlRz6O1m2f1EMPZ8=;
+	s=arc-20240116; t=1722600650; c=relaxed/simple;
+	bh=eR+iu6/0WXfDTtplSQGsJVWxAt8YS165hY1VY+hKTf8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uou+6ZRIPJY+6lSGRQ4USmxUr4uAsfWjMuWoUh7Yt4PCSAG79fbRlc+1fuYeMP2MbAn9ZygJticbv+xDS7Lby2e5eAyJg3QN6Ivt45gbJYlN1JPsLZfwqj9Hjtu2EwaAskBDZWkQs2AH+Jdqrm90YTYZ9bB2psFdY/4QFk044fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C50BC1007;
-	Fri,  2 Aug 2024 05:02:15 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 642163F64C;
-	Fri,  2 Aug 2024 05:01:46 -0700 (PDT)
-Message-ID: <f43e0424-c58a-4895-a2e7-2ec403ea3519@arm.com>
-Date: Fri, 2 Aug 2024 13:01:44 +0100
+	 In-Reply-To:Content-Type; b=Fz3Kvp32G7darda5tO0HiuYkgnGp/sAKDpVM/2+H2I9zVayBGLJzUpEht72660IAgsSPppJcRQo7vG7ehDnoOJlW6XYu0PxAPcKr55134hJhQJiyy7NWHXBaBsPkBzNTBtFwN59hIpLjm6k1jsstPqUJttVwWfE7bVQVNzvkzDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LEcceYM8; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722600647; x=1754136647;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=eR+iu6/0WXfDTtplSQGsJVWxAt8YS165hY1VY+hKTf8=;
+  b=LEcceYM80ly35bcyLQlfwZTzMxhwhmHL5MQeG9tWI9n0Vmuy2yaYK/cE
+   ad8hzGs2YSRc0UugZohJG1HtyiRr0REPdL+EEkNfr+k1pRY22NQrtAmFo
+   RdpQF+cyYhZZ+cKVdPR63Sb3Doh7VkDpDWW7k5j4X/d8zSqH/9B/je/Nd
+   UoQ064ucX9XSbc38yAW9MT+qYOpOK7VPQueCZrToI2tVdMzMyKq6UIZ+p
+   BQnCWKzvo2p8mI3psY7NaHiJAb+DlvNB6IULOUoZBJg+B0DfnmSDZVZCL
+   YiMy7NqJ5Sgd6bUO5qlzT98vQSlU4iydO/rW4JUOSkDUDPk+fHtZSm3JM
+   A==;
+X-CSE-ConnectionGUID: YiJ6omhhTICaHTyB845Jhw==
+X-CSE-MsgGUID: pDQWo+DIQUupP6xdMfzwBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="24484192"
+X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; 
+   d="scan'208";a="24484192"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2024 05:10:46 -0700
+X-CSE-ConnectionGUID: WeoaLZ5qS1yBmoKb3Bfcyg==
+X-CSE-MsgGUID: UgZNmmCzQrqeVCUuSYL9GA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; 
+   d="scan'208";a="55978897"
+Received: from ltuz-desk.ger.corp.intel.com (HELO [10.245.246.89]) ([10.245.246.89])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2024 05:10:42 -0700
+Message-ID: <acf4de1d-d551-4539-8353-3c85aa3d965c@linux.intel.com>
+Date: Fri, 2 Aug 2024 08:26:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,64 +67,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 07/10] iommu/arm-smmu-v3: Maintain a SID->device
- structure
-To: niliqiang <ni_liqiang@126.com>, jean-philippe@linaro.org
-Cc: Jonathan.Cameron@huawei.com, baolu.lu@linux.intel.com,
- devicetree@vger.kernel.org, eric.auger@redhat.com, guohanjun@huawei.com,
- iommu@lists.linux-foundation.org, jacob.jun.pan@linux.intel.com,
- joro@8bytes.org, kevin.tian@intel.com, lenb@kernel.org,
- linux-accelerators@lists.ozlabs.org, linux-acpi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, lorenzo.pieralisi@arm.com,
- rjw@rjwysocki.net, robh+dt@kernel.org, shameerali.kolothum.thodi@huawei.com,
- sudeep.holla@arm.com, vivek.gautam@arm.com, wangzhou1@hisilicon.com,
- will@kernel.org, zhangfei.gao@linaro.org, zhukeqian1@huawei.com,
- ni.liqiang@zte.com.cn, li.zhichao@zte.com.cn
-References: <20210401154718.307519-8-jean-philippe@linaro.org>
- <20240801152922.5605-1-ni_liqiang@126.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20240801152922.5605-1-ni_liqiang@126.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v24 09/34] ASoC: Add SOC USB APIs for adding an USB
+ backend
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
+ gregkh@linuxfoundation.org, robh@kernel.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
+ <20240801011730.4797-10-quic_wcheng@quicinc.com>
+ <09fde4e6-c3be-484d-a7a5-bd653dc42094@linux.intel.com>
+ <f761530c-a49b-4dd5-b01c-97d08931e0ab@quicinc.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <f761530c-a49b-4dd5-b01c-97d08931e0ab@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 01/08/2024 4:29 pm, niliqiang wrote:
->> +static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
->> +				  struct arm_smmu_master *master)
->> +{
->> +	int i;
->> +	int ret = 0;
->> +	struct arm_smmu_stream *new_stream, *cur_stream;
->> +	struct rb_node **new_node, *parent_node = NULL;
->> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
->> +
->> +	master->streams = kcalloc(fwspec->num_ids, sizeof(*master->streams),
->> +				  GFP_KERNEL);
->> +	if (!master->streams)
->> +		return -ENOMEM;
->> +	master->num_streams = fwspec->num_ids;
->> +
->> +	mutex_lock(&smmu->streams_mutex);
->> +	for (i = 0; i < fwspec->num_ids; i++) {
+
+
+On 8/1/24 23:43, Wesley Cheng wrote:
+> Hi Pierre,
 > 
-> Hi all experts,
+> On 8/1/2024 1:02 AM, Pierre-Louis Bossart wrote:
+>>
+>>
+>>> +/**
+>>> + * struct snd_soc_usb_device
+>>> + * @card_idx - sound card index associated with USB device
+>>> + * @pcm_idx - PCM device index associated with USB device
+>>> + * @chip_idx - USB sound chip array index
+>>> + * @num_playback - number of playback streams
+>>> + * @num_capture - number of capture streams
+>> so here we have a clear separation between playback and capture...
 > 
-> Recently, I have been debugging the smmuv3 code in the Linux kernel,
-> and I have some questions regarding the `mutex_lock(&smmu->streams_mutex)`
-> statement in the `arm_smmu_insert_master` function.
-> I would like to understand why streams_mutex is being locked here.
+> Thanks for the quick review of the series, I know that its a lot of work, so its much appreciated.
+> 
+> I guess in the past revisions there was some discussions that highlighted on the fact that, currently, in our QC USB offload implementation we're supporting playback only, and maybe it should be considered to also expand on the capture path.  I went ahead and added some sprinkles of that throughout the SOC USB layer, since its vendor agnostic, and some vendors may potentially have that type of support.  Is it safe to assume that this is the right thinking?  If so, I will go and review some of the spots that may need to consider both playback and capture paths ONLY for soc-usb. (as you highlighted one below)  Else, I can note an assumption somewhere that soc-usb supports playback only and add the capture path when implemented.
 
-Because the "streams" rbtree is being modified, so it would be pretty 
-bad if another thread tried to walk or modify it concurrently. I'd hope 
-that was obvious from the code everywhere "streams" and "streams_mutex" 
-are referenced.
+I don't think it's as simple as playback only or playback+capture. If
+there is no support for capture, then there is also no support for
+devices with implicit feedback - which uses the capture path. So you
+gradually start drawing a jagged boundary of what is supported and what
+isn't.
 
-> Is it to handle different types of PF under a single EP, each with its own device ID?
+My preference would be to add capture in APIs where we can, with TODOs
+added to make sure no one us under any illusion that the code is fully
+tested. But at least some of the basic plumbing will be in place.
 
-It is expected that a single SMMU instance is highly likely to have more 
-than one device behind it, and therefore more than one StreamID to keep 
-track of.
+Takashi should chime in on this...
 
-Thanks,
-Robin.
+>>> + * @list - list head for SoC USB devices
+>>> + **/
+>>> +struct snd_soc_usb_device {
+>>> +	int card_idx;
+>>> +	int pcm_idx;
+>>> +	int chip_idx;
+>>> +	int num_playback;
+>>> +	int num_capture;
+>>> +	struct list_head list;
+>>> +};
+>>> +
+>>> +/**
+>>> + * struct snd_soc_usb
+>>> + * @list - list head for SND SOC struct list
+>>> + * @component - reference to ASoC component
+>>> + * @num_supported_streams - number of supported concurrent sessions
+>> ... but here we don't. And it's not clear what the working 'sessions'
+>> means in the comment.
+>>
+>>> + * @connection_status_cb - callback to notify connection events
+>>> + * @priv_data - driver data
+>>> + **/
+>>> +struct snd_soc_usb {
+>>> +	struct list_head list;
+>>> +	struct snd_soc_component *component;
+>>> +	unsigned int num_supported_streams;
+>>> +	int (*connection_status_cb)(struct snd_soc_usb *usb,
+>>> +			struct snd_soc_usb_device *sdev, bool connected);
+>>> +	void *priv_data;
+>>> +};
+>>> +/**
+>>> + * snd_soc_usb_allocate_port() - allocate a SOC USB device
+>> USB port?
+> Noted, refer to the last comment.
+>>> + * @component: USB DPCM backend DAI component
+>>> + * @num_streams: number of offloading sessions supported
+>> same comment, is this direction-specific or not?
+> Depending on what you think about my first comment above, I'll also fix or remove the concept of direction entirely.
+>>> + * @data: private data
+>>> + *
+>>> + * Allocate and initialize a SOC USB device.  This will populate parameters that
+>>> + * are used in subsequent sequences.
+>>> + *
+>>> + */
+>>> +struct snd_soc_usb *snd_soc_usb_allocate_port(struct snd_soc_component *component,
+>>> +					      int num_streams, void *data)
+>>> +{
+>>> +	struct snd_soc_usb *usb;
+>>> +
+>>> +	usb = kzalloc(sizeof(*usb), GFP_KERNEL);
+>>> +	if (!usb)
+>>> +		return ERR_PTR(-ENOMEM);
+>>> +
+>>> +	usb->component = component;
+>>> +	usb->priv_data = data;
+>>> +	usb->num_supported_streams = num_streams;
+>>> +
+>>> +	return usb;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(snd_soc_usb_allocate_port);
+>>> +
+>>> +/**
+>>> + * snd_soc_usb_free_port() - free a SOC USB device
+>>> + * @usb: allocated SOC USB device
+>>> +
+>>> + * Free and remove the SOC USB device from the available list of devices.
+>> Now I am lost again on the device:port relationship. I am sure you've
+>> explained this before but I forget things and the code isn't
+>> self-explanatory.
+>>
+> Ok, I think the problem is that I'm interchanging the port and device terminology, because from the USB perspective its one device connected to a USB port, so its a one-to-one relation.  Removing that mindset, I think the proper term here would still be "port," because in the end SOC USB is always only servicing a port.  If this is the case, do you have any objections using this terminology in the Q6AFE as well as ASoC?  I will use consistent wording throughout SOC USB if so.
+
+I am not sure USB uses 'port' at all. If by 'port' you meant 'connector'
+it's not quite right, USB audio works across hubs.
+
+
 
