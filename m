@@ -1,106 +1,125 @@
-Return-Path: <devicetree+bounces-90562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 104A5945D23
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 13:20:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA36945D47
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 13:34:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A91FB21529
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:20:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 273821C21449
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1848E1E212F;
-	Fri,  2 Aug 2024 11:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4461DE852;
+	Fri,  2 Aug 2024 11:34:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from hkg.router.rivoreo (45.78.32.129.16clouds.com [45.78.32.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E2A1DF66B;
-	Fri,  2 Aug 2024 11:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A76D14D458;
+	Fri,  2 Aug 2024 11:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.78.32.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722597611; cv=none; b=rqJB8JPYJgybQpRtc/lVMuFEm8s/x4sZ1LH5sEN1RfnldyF4j+bd6lIvOKuZLVFWR6e1ALgx7ZOT+nS+FCf0xa3w52BW/4vAiNOuuFeT19qfOQcGsV2HMgHnOr4sblatS1lwtWRxZPHXPZ2mkyp2WKpxxhyCQXllhKzKfXnqPt8=
+	t=1722598446; cv=none; b=hqoLq8018jBrwe6ZKk4cwKI/bYf5R3dhs0ougs24IoE6F/BnaOnuXdhUZg6pLxqfzYuS5aV+MnX3sx6v8rBnhf8mDZKpuYMeKxt6978nuYMYkAoPbxympLJabYuJxkJ0Sw72Difu3wDqghWlqzX7pj8RWRCjlfj81h+Ua7maumE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722597611; c=relaxed/simple;
-	bh=4xShjOftd4+pZBV2l+SeEhAEEaYdoitSomtoKS3Umuk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a/J/9r5J+geqS9SXUaJnXGxC9yy1Ot9uvOF92HypWHNh2kDBk4B5DocvsPc4EaHvd5E2ywqG0qKbJFz/uiA2l5HKrB/fmf1+dG3rzXpq9XBX/55cjmZgjnP5z78RVYsOr9OSSmxN7Mk5dUO+vJYsYSC5WZfsXHBXvzDa+cU7HtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wb3Ft71Q0z6K6GR;
-	Fri,  2 Aug 2024 19:17:22 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 653A91400D9;
-	Fri,  2 Aug 2024 19:20:01 +0800 (CST)
-Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 2 Aug
- 2024 12:20:00 +0100
-Date: Fri, 2 Aug 2024 12:19:59 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
-	<dave@stgolabs.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Heiko
- Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo
- Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul
- Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>, Jonathan Corbet
-	<corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt
-	<palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
-	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, Zi Yan <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
-	<nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v3 19/26] mm: introduce numa_emulation
-Message-ID: <20240802121959.00003c18@Huawei.com>
-In-Reply-To: <20240801060826.559858-20-rppt@kernel.org>
-References: <20240801060826.559858-1-rppt@kernel.org>
-	<20240801060826.559858-20-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1722598446; c=relaxed/simple;
+	bh=CSN/nzOenTuEchA+JBM1pilFuDhdl8T4uNTbeBLKTuE=;
+	h=Message-ID:In-Reply-To:References:Date:Subject:From:To:Cc:
+	 MIME-Version:Content-Type; b=muqnT1mgDnCRyukycFE+OLEJy4s3/7No4zEF9VxHc50Ulf9NYEihEw9qvzL712lpvMKwp6+iC2lfBeCpVuVHFv2/VlLu/r/2jKCjzDpYeWtnzhCiTNwh9jLaCTjinZKZs20TDi6VBtoarAbNmO7+R0xB8NeoJd/SwMWhSxcYwl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one; spf=pass smtp.mailfrom=rivoreo.one; arc=none smtp.client-ip=45.78.32.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rivoreo.one
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivoreo.one
+Received: from tianjin2.rivoreo.one (unknown [10.100.1.128])
+	by hkg.router.rivoreo (Postfix) with ESMTPS id 6C83511CEEF;
+	Fri,  2 Aug 2024 11:33:58 +0000 (UTC)
+Received: from [10.1.105.1] (localhost [127.0.0.1])
+	by tianjin2.rivoreo.one (Postfix) with ESMTP id 0B4A56BE31;
+	Fri,  2 Aug 2024 19:32:29 +0800 (CST)
+Received: from 10.1.107.31
+        (SquirrelMail authenticated user whr)
+        by _ with HTTP;
+        Fri, 2 Aug 2024 11:32:29 -0000
+Message-ID: <649fab0060369a98b9a898e82f518f18.squirrel@_>
+In-Reply-To: <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
+References: <2046da39e53a8bbca5166e04dfe56bd5.squirrel@_>
+    <CAL_JsqKpTKv-fthwD9bFHiVESJyNP6uMg7Px7Rh+-k583oz76g@mail.gmail.com>
+    <1c7955e8b5f0cdb3c60381a9a7dbbf42.squirrel@_>
+    <CAL_Jsq+Wcag2Lzu_kLRb5ia=3hNUOs1Ny93Y541eOY-NZOA5qw@mail.gmail.com>
+Date: Fri, 2 Aug 2024 11:32:29 -0000
+Subject: Re: [PATCH v2] of/irq: Make sure to update out_irq->np to the new
+ parent in of_irq_parse_raw
+From: "WHR" <whr@rivoreo.one>
+To: "Rob Herring" <robh@kernel.org>
+Cc: "Saravana Kannan" <saravanak@google.com>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+User-Agent: SquirrelMail/1.4.23 [Rivoreo]
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Priority: 3 (Normal)
+Importance: Normal
 
-On Thu,  1 Aug 2024 09:08:19 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+> On Wed, Jul 31, 2024 at 10:22 PM WHR <whr@rivoreo.one> wrote:
+>>
+>> > On Mon, Jul 29, 2024 at 11:54 PM WHR <whr@rivoreo.one> wrote:
+>> >>
+>> >> Commit 935df1bd40d43c4ee91838c42a20e9af751885cc has removed an
+>> >> assignment statement for 'out_irq->np' right after label 'skiplevel',
+>> >> causing the new parent acquired from function of_irq_find_parent didn't
+>> >> being stored to 'out_irq->np' as it supposed to. Under some conditions
+>> >> this can resuit in multiple corruptions and leakages to device nodes.
+>> >
+>> > Under what conditions? Please provide a specific platform and DT.
+>>
+>> I have a previous email sent to you before I came up with the fix. The
+>> kernel
+>> log for debugging and the device tree blob are attached again.
+> 
+> Thanks. The patch needs to stand on its own with this detail, not
+> require that I've read (and remember) some other email among the
+> 1000s.
+> 
+> "multiple corruptions and leakages to device nodes" is meaningless. Be
+> exact, it's device_node refcounts we're talking about. The issue is
+> out_irq->np is not updated from 'usbdrd' node to the real interrupt
+> parent, the 'plic' node. In the next iteration of the loop, we find
+> 'interrupt-controller' in the plic node and return, but out_irq is not
+> pointing to the plic. Then of_irq_get() fails to get the irq host and
+> does a put on out_irq->np which is usbdrd, not plic node.
+> 
+> So please update the commit msg and provide your name, not initials.
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> 
-> Move numa_emulation codfrom arch/x86 to mm/numa_emulation.c
-> 
-> This code will be later reused by arch_numa.
-> 
-> No functional changes.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Tested-by: Zi Yan <ziy@nvidia.com> # for x86_64 and arm64
-I ran some basic tests on ARM with this. Seems to do the job.
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Tested-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Since the fix for this regression is really trivial, I think you'll be able to
+commit it by yourself instead.
 
-Works on both ACPI and dsdt boots.
+
+>> > Honestly, I think the DT is wrong if you get to this point. We'd have
+>> > to have the initial interrupt parent with #interrupt-cells, but not an
+>> > interrupt-controller nor interrupt-map property to get here. Maybe
+>> > that happens in some ancient platform, but if so, I want to know which
+>> > one and what exactly we need to handle.
+>>
+>> So you suggest the #interrupt-cells is erroneous in that node, and should
+>> be
+>> removed?
+> 
+> Yes. dtc warns about this. dtschema would too if there was a schema
+> (there is, but not since you use a downstream binding).
+> 
+> The clint node has the same issue.
+> 
+>> This is a device vendor-provided DT, so any issue in it will have to be
+>> fixed
+>> locally.
+> 
+> Complain to your vendor...
+
+Thanks for help diagnosing the issues.
 
 
