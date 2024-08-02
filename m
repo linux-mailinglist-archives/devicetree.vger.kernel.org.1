@@ -1,153 +1,103 @@
-Return-Path: <devicetree+bounces-90453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208EF94573F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:01:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A48589457A0
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:36:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD4361F24721
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 05:01:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BC171F21619
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 05:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11F319478;
-	Fri,  2 Aug 2024 05:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E601D2B9B9;
+	Fri,  2 Aug 2024 05:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aczy2yv/"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="LhaHG7pg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEA98836;
-	Fri,  2 Aug 2024 05:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F001EB4AE;
+	Fri,  2 Aug 2024 05:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722574873; cv=none; b=XWfasGPL2upu3hNj9B7PryjcxqU+JhE7MMj2q9JAekQXNdzlYeQww9sRUpomlHzXlaKkpaEFPObW2qAXstnD0zeq9X5XBLwO7oystp7UIMVPEs/d8mTlMDCL+N8xtVD1CfYRb1YSELM1fpIGvAOM2OJIxlg7418HgsIRSfnSbpo=
+	t=1722577011; cv=none; b=qF3j4YCqLQExxzQQaV/A4lmdq+zxfaVl5Bay2i/J+7GTG+rgODXf5KRr1vHngQrD1zrk2jaXFJLUDm4bTekf0Ey66ISKWZFUeLZfYslk4wbk28TZvQHA4B9uh27f/LYlKrIjg8BBFEsaVr+prX3kJNNjQEU3zJE1YNRV01LIFYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722574873; c=relaxed/simple;
-	bh=EZRqLqdL0AHmtBFsel5pUoJssWuOxisPoAgmk55uZFQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R3gue8PcHm9IRoZeAJOVV5Bp8wrl7D3pIaQhZNInuI6P3SkO6xPxb4ow5qiPw2xaxVLCmlC6EwI5cYBoz7fj8du8fvCjR4csRW0p2buRfrdiIHjAlRYG7qbEIx3xcuEktUcpKFrx6H/TGp5N1VkbOQjNOPuVUg0+dd4H9DJR1iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aczy2yv/; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1ff3d5c6e9eso31149795ad.1;
-        Thu, 01 Aug 2024 22:01:12 -0700 (PDT)
+	s=arc-20240116; t=1722577011; c=relaxed/simple;
+	bh=fctzEsVVZTuybuCnk9TUPhrRHTzee7hdRm4iRJeYDb0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M1Q/IwfWgNcmiKfrl1Poh9A1ty+C2YBQEsvg/aaTcOznSni6jd9z1/zpq9Pa1VskSGDQCNf6Od4LpxsqmbUc5V3fwyanC5aoWPlAfQpAEVjPGvgIv5CboCE+5NpvBOYWjcMQ0DSC6HLA+KZuNvr3Jd8hcrMwgGSIeOjt3QF/ako=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=LhaHG7pg; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722574872; x=1723179672; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SFKigovb0c/iNhyUWRzIRaCFkACHoRPioRGFAtBz5kY=;
-        b=aczy2yv/GU4NbqZ0ZWrSB8LskTP5sZSgidqCBfgdi91z39kOfrxSHM3AfJzrIoEgt9
-         eFMrYnk183NpsMwUaY1lusQ4bp5SqOf1jJjF2wqZbiELeL0RkzLBgLUq/3ZskX7k9FbL
-         bk3485LBHkenaNYaUWJbiQ7tPMQUSzIOm3m/F/MK1k5tkEiWlQYd7QD/FR9sh66+crC3
-         hJQEACt1XX/ciBVgdPJVylL7d7iuCYvyHFqSozEMDbAorC5sPIKAq7iA8v82KFUwnZcS
-         lwW8lcy+OjiylY1M6hLMFdKK5U+ynhCZN8lxkcOGTRKhOCYdqLtqlMD3GDUbNbus/hTv
-         uRwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722574872; x=1723179672;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SFKigovb0c/iNhyUWRzIRaCFkACHoRPioRGFAtBz5kY=;
-        b=WNZwtrs9+X6NcGOlhab3GNDQg52d168AiO5DNbKNHRFWeX4Q6oQBkx9kz5yVYIqMmb
-         AKqzrJpqLja3+ojCOX+Y1StvKfHCBWuMt4G+L7V7nEl3H3Q/sHs7WccAUyjRY1OeuVwk
-         VmKIW4gaUcpJbBjvZrMuG5yOPeuf97qMs0wot6DR62lRSei6g9IphqnhpTIUrzp+YS02
-         hkXSDeja9loC5lJGnD8AfF41pxyDdMdeY5JFxxvgRtHMNePsU5PvtZO5bMt5iEyctY07
-         xAaYHKEL/isSeUrGk4J9h8n7MFI45zGdnv75ee4Q4yQfOOxUypt6JeqoSCGvs1NdYXZ7
-         Ndvg==
-X-Forwarded-Encrypted: i=1; AJvYcCVsr7kMKOgZS420WSm46tPR3UIDxXfFDrHPELo2ms4ry9eNHZ16UiG0o7Cll1owunAZvuoLGYfLSvRGNjGYJ5D9qAWLsF2j2LW60kSizJV3HijUENcSCYii0gYQycZzZt+iVT2fiJ/TYw==
-X-Gm-Message-State: AOJu0YykNOhdFkDs+aaDreskpGQa765S2ST2FGm+Y8qxNZmz+EC+4l/9
-	MoydC1vY2ZBi53sqK0nQDQTVs+GyX0XUutWo77OW794+B7lthkER
-X-Google-Smtp-Source: AGHT+IHcflfL/YECuodg/hQlDr7gN6A6Zu66HPKnYHhtmqIU+9cxcGsm8NNmBnxNmOCqDTuqOCC1tA==
-X-Received: by 2002:a17:902:e18b:b0:1fb:81ec:26da with SMTP id d9443c01a7336-1ff574cf79dmr24831925ad.58.1722574871621;
-        Thu, 01 Aug 2024 22:01:11 -0700 (PDT)
-Received: from [172.19.1.53] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff58f5a473sm7880685ad.106.2024.08.01.22.01.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Aug 2024 22:01:11 -0700 (PDT)
-Message-ID: <ea046ad5-ee78-44a5-803c-a09669cb8a82@gmail.com>
-Date: Fri, 2 Aug 2024 13:01:08 +0800
+	d=codeconstruct.com.au; s=2022a; t=1722577008;
+	bh=Q47qJS2a9PBUFubzmNdKq1lpyf6zLMrCpRsxzpxyTKY=;
+	h=From:Subject:Date:To:Cc;
+	b=LhaHG7pgSk/HxGfyOUGpotSifTFcQtq68W50Yaw+fj1enh2H6g0mlzc1CyxBClzZq
+	 Rtem8xpEUwiXywFpyfZpToreNoj/CV9HKdEN2UrWBqlON20gK+ScEwIB+ATsznk/EI
+	 Lzzxu3haF58t2RhyJ0FW3UOVzwRQzBEmo+9c4sPHpNWOE05eH/KAgRUpVELnW4KaZP
+	 zVGtOwD8Gd6ttucjMRxfIHQ+Sk6rJtJ+EdPLvDorbMuMVZ6dBzV8vAAcenTKp3/z0X
+	 fgA7ZAuoaU+X6791VuAxDiWx+6YaI7APDWYpdHY3RVwuDUXcVLMvqdlIwNeUhOxYqX
+	 kx/eIF0nzs/JQ==
+Received: from [127.0.1.1] (ppp118-210-29-70.adl-adc-lon-bras31.tpg.internode.on.net [118.210.29.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 30DBE65665;
+	Fri,  2 Aug 2024 13:36:46 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+Subject: [PATCH 0/2] dt-bindings: interrupt-controller: Convert Aspeed
+ (C)VIC to DT schema
+Date: Fri, 02 Aug 2024 15:06:29 +0930
+Message-Id: <20240802-dt-warnings-irq-aspeed-dt-schema-v1-0-8cd4266d2094@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] phy: nuvoton: add new driver for the Nuvoton MA35
- SoC USB 2.0 PHY
-To: Krzysztof Kozlowski <krzk@kernel.org>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240801053744.807884-1-hpchen0nvt@gmail.com>
- <20240801053744.807884-3-hpchen0nvt@gmail.com>
- <85bd5da2-312e-4d25-a4e9-afae4fedbd50@kernel.org>
-Content-Language: en-US
-From: Hui-Ping Chen <hpchen0nvt@gmail.com>
-In-Reply-To: <85bd5da2-312e-4d25-a4e9-afae4fedbd50@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF1wrGYC/x2NQQqDQAwAvyI5N7BuXSh+pXgIJqs5dLWJtAXx7
+ 109zhxmdnAxFYe+2cHko65LqdDeGhhnKpOgcmWIIXbhESLyhl+yomVyVHsj+SrCp/Zxlhdhykk
+ yJ+7uLUHNrCZZf9fiORzHH8rbwqhyAAAA
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+X-Mailer: b4 0.14.1
 
-Dear Krzysztof,
+Hello,
 
-Thank you for your reply.
+This short series converts the Aspeed VIC and CVIC bindings over to DT
+schema. The CVIC has historically been documented under "misc" as it's
+the interrupt controller for the Coldfire co-processor embedded in the
+SoCs, and not for the main ARM core. Regardless, I've updated both in
+this series.
 
+I tried to document the historical oddities and conversion quirks in the
+commit messages where appropriate.
 
+Please review!
 
-On 2024/8/1 下午 10:43, Krzysztof Kozlowski wrote:
-> On 01/08/2024 07:37, Hui-Ping Chen wrote:
->> +	struct regmap *sysreg;
-> Look here - iomem? No.
+Andrew
 
-Yes, this is my mistake.
+---
+Andrew Jeffery (2):
+      dt-bindings: interrupt-controller: aspeed,ast2400-vic: Convert to DT schema
+      dt-bindings: misc: aspeed,ast2400-cvic: Convert to DT schema
 
-
-
->> +};
->> +
->> +static int ma35_usb_phy_power_on(struct phy *phy)
->> +{
->> +	struct ma35_usb_phy *p_phy = phy_get_drvdata(phy);
->> +	unsigned int val;
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(p_phy->clk);
->> +	if (ret < 0) {
->> +		dev_err(p_phy->dev, "Failed to enable PHY clock: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	regmap_read(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, &val);
->> +	if (val & PHY0SUSPEND) {
->> +		/*
->> +		 * USB PHY0 is in operation mode already
->> +		 * make sure USB PHY 60 MHz UTMI Interface Clock ready
->> +		 */
->> +		ret = readl_poll_timeout((void __iomem *)p_phy->sysreg + MA35_SYS_REG_USBPMISCR,
-> Eh, I responded to v2, not here, so repeating:
->
-> sysreg is a regmap, not io address. How could it possibly work and be
-> tested?!? This cannot work. Test your code *before* sending it.
->
-Yes, this is my mistake. I won't reply to v2. I will reply here.
-
-
-I would change 'readl_poll_timeout' to 'regmap_read_poll_timeout'.
-
-And it has been tested OK on our platform.
-
-
-
-> Best regards,
-> Krzysztof
-
+ .../interrupt-controller/aspeed,ast2400-vic.txt    | 23 --------
+ .../interrupt-controller/aspeed,ast2400-vic.yaml   | 63 ++++++++++++++++++++++
+ .../bindings/misc/aspeed,ast2400-cvic.yaml         | 60 +++++++++++++++++++++
+ .../devicetree/bindings/misc/aspeed,cvic.txt       | 35 ------------
+ 4 files changed, 123 insertions(+), 58 deletions(-)
+---
+base-commit: 8400291e289ee6b2bf9779ff1c83a291501f017b
+change-id: 20240802-dt-warnings-irq-aspeed-dt-schema-5f5efd5d431a
 
 Best regards,
-
-Hui-Ping Chen
-
+-- 
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
