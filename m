@@ -1,140 +1,147 @@
-Return-Path: <devicetree+bounces-90534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFA4945ACB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:19:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EADFA945B06
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 11:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0AD5B24465
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:19:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4DBB28741F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B201DAC58;
-	Fri,  2 Aug 2024 09:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610E81DB431;
+	Fri,  2 Aug 2024 09:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OMvNUwfE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YBWJvtI6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4684F8F47;
-	Fri,  2 Aug 2024 09:18:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3DA11C3794;
+	Fri,  2 Aug 2024 09:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722590337; cv=none; b=iBwdFwgnXi1cQ8T16JDX5kR29IYQMZIQ3w8e3OxHFVf8C6GRQFFYixnDFl4vZ/yMVZronTqJtPHU69vZFST/P+MJM0Peln2ZPcnXR2KlJeL9Bn8sq2XxqBdw82Sj+pu8fW+Cecx7eRD053X8OuPBQgKt2pz3T5VyjvY9Eaj27Iw=
+	t=1722591136; cv=none; b=tMMX4vagn4ZB2QbU4p525lkF8wyP/uXV3P+UqtctGT3OL2+V6eTAmiL+YMCo7eJ/+OP7qeS/jYe+R511F02PpQv+YQOTQzqPiDq5qPKCekBxdWruoDje+lfXHun9MQbCVtUTkoxC1ksRU74tlx8pI1lIIMq2NRvF5B0BOI6hOo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722590337; c=relaxed/simple;
-	bh=dbphdIVJqwevCp53CHXALfkGLRq+V/D3wbfxlX/nOyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=QHX6/d3EY/L5VRmS7N1DNHUvc27cVJc9AQH1pOCJ7J7QXX/JNtmZJdcV4h9SfFTnwx7GIlDqk7tTxuYpLGxhtbnGhMFk/GNeNgf22MrW5UvciDOeEzP6zVoaz6bNdoHCDq9uV2cqdfI4PNKP2aUz0aqcMO2vpzVEPg2vpGVKSmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OMvNUwfE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDDB5C32782;
-	Fri,  2 Aug 2024 09:18:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722590337;
-	bh=dbphdIVJqwevCp53CHXALfkGLRq+V/D3wbfxlX/nOyc=;
-	h=Date:Subject:List-Id:To:References:From:In-Reply-To:From;
-	b=OMvNUwfE7uhLPAlBZMbpXpIg517Auxjx/N8Eg84WkQTZkHLgWWLF1j+yjDrgojyIs
-	 Jbh/CZEhwn/wozFgTap4PPRELgudYYSf0GfyUp01JfVUFvRiFyR41Y8t02kSd/4xJ0
-	 bc39EkYpWEmUH97rDnL6YBqXSafpOcWyfJReCMcI+XE/EazrC/i3vH1XUr844TKTjx
-	 GR4FqzK0TRg5EfVwEtCCDnA342/7XCaYwrnzEeADE4cp0KEHLZ6QSv3lA/gEL44gfz
-	 HVCADKE8y3Z8VAHlI9Ix1GD+2/ch6N7lScFKTv3ZqRnekbwgLNwCWfhohqPLcidtsh
-	 aKFMAgKF/WIlQ==
-Message-ID: <ba9cc5ea-4138-4e9c-b848-c7a3a070bd73@kernel.org>
-Date: Fri, 2 Aug 2024 11:18:47 +0200
+	s=arc-20240116; t=1722591136; c=relaxed/simple;
+	bh=s+sLvkGwuumdPtKUk9zYbK2vjsXFUVodqhuzpomDCas=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L1uTHYOsLo2GXVzfDjiPyKoN+JEosPvShOEbWgbGl1/2kM1UjJZ0bF2Zjv4DqxHcxqi9W1octqxZ5nTRZVD02qJCTe8k4d+TUGLQLsw1wZqf9qx/rVR2YbZ4V9L1CFI5pTiT3S6U3VyftoIKaP3AkhhuATrA77nySHsFVylTl4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YBWJvtI6; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-4f52bd5b555so1801632e0c.1;
+        Fri, 02 Aug 2024 02:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722591133; x=1723195933; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1xQBppPhJLVrlatbcBmrhWSJbyTB6bm3E+Px/uHEes0=;
+        b=YBWJvtI6NlBTtlZjXyfcydHo7GJaUdEIMnp3h1toPczrt+SqtOSUx1xCoogNSsIvcA
+         MP45Nbrv6iApVJK4BQ23BV89DB6pg7Ne4AxZD315FY0wShwluiJ5Hcq1s3tmHhgf95TZ
+         zYLEdRqLK4wHS4V5NU8xrRRBu/ph9oVEtpVmr+umyehJ+v8nwi4lgiwQK7SAsyBkwpau
+         BzyE/GKzff/LvoDxSVcFKSq4/1TEK5SbqX3uA6lKkjLYf5vcYQgfDKtIdfns0VjqTgo7
+         bs7sOiafa9rVEXXVi++WHG2j25oOl4y7ATr9o33V4qfPHkaIWsD2kAWb+dgwtswJJjV0
+         Pnpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722591133; x=1723195933;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1xQBppPhJLVrlatbcBmrhWSJbyTB6bm3E+Px/uHEes0=;
+        b=jnrsRiCiaGlCI8/o5dfIRBJZ0uTSU041+vEQUoxKviq+ScXuiqEtkz13mN4u7DFxIh
+         sQuxh47h7d9d+vO79zguMSXN0/DceQ7YLgxWKEtY0Yv76YBxgnOHpKOFyvTyM4lZkgvd
+         SK6rxjVTzc6UHqUB6xd4J9K6s9PnabI7+Wj53W0bDYHpPkgdQsTWPtY7n2T9ea46BFKU
+         GZoDaflyhboBTsNBFSHauAJ8iTI+CufsjYhw1Wc428qgxSSEJMIK2wIMMTnP1NkgwzmZ
+         2OsC0vegvkbDgXwKlh5Ppgad490C0C3f+35cKGzUKcjus7/tF805KCNI//HzHISOQvmm
+         8FRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUxTUpWcu6kQntv5PqeccBJDYQ6P3BskokjlWa/5hTRyFogYCA3IbZ3bKg6BFqJePuP/eQbKLO8THw5PM524SnDX7qH8hBRuONwp/lhPvVrEAsCpV0ERa01qUbWgdFAxiqE8VVdvVqX5nRF1Q0rx77gnPHCeaA5mBpSju9ZL6M0LhNdynyrtmk5fs97lIPeClTXLevlK79DoYcxGXKYqxl0DihCCl76
+X-Gm-Message-State: AOJu0Ywh88SFl1DYrBitTNNOFTq2BqY5SkOB4QaeaD75grIbRmeHgmpC
+	1wqx3WYwmYs8LyqX571ldVBywJ/mBfhbvHqQAS/FP31Ow2iUCotElWPU0xiXkNhytLu8ObCGND+
+	t0jip4eSGWLhXntTR/idMQqRyimM=
+X-Google-Smtp-Source: AGHT+IG5fDGf/TAqQ0kpTEdw/kScuUczMNpki2X5hxJit0YT/ur8m+U9uqlfn9bZ4pkB0lQXyGnXXQHvY2aCED5WQAs=
+X-Received: by 2002:a05:6122:2210:b0:4f5:197a:d679 with SMTP id
+ 71dfb90a1353d-4f8a0d8e6e3mr2656574e0c.1.1722591133416; Fri, 02 Aug 2024
+ 02:32:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/9] Introduce ASPEED AST27XX BMC SoC
-To: Kevin Chen <kevin_chen@aspeedtech.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, lee@kernel.org, catalin.marinas@arm.com,
- will@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- quic_bjorande@quicinc.com, geert+renesas@glider.be,
- dmitry.baryshkov@linaro.org, shawnguo@kernel.org, neil.armstrong@linaro.org,
- m.szyprowski@samsung.com, nfraprado@collabora.com, u-kumar1@ti.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20240802090544.2741206-1-kevin_chen@aspeedtech.com>
- <20240802090544.2741206-2-kevin_chen@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240802090544.2741206-2-kevin_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240724182119.652080-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXkPwfVT-iJp70pEi5ubpc5YBKt=a2C5NmL_tjbocXKRQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXkPwfVT-iJp70pEi5ubpc5YBKt=a2C5NmL_tjbocXKRQ@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 2 Aug 2024 10:30:05 +0100
+Message-ID: <CA+V-a8ttfEHwXqUU2OqxhjJ3E2jt+xCBrbziHtOUs1g74tandA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/08/2024 11:05, Kevin Chen wrote:
-> This patchset adds initial support for the ASPEED.
-> AST27XX Board Management controller (BMC) SoC family.
-> 
-> AST2700 is ASPEED's 8th-generation server management processor.
-> Featuring a quad-core ARM Cortex A35 64-bit processor and two
-> independent ARM Cortex M4 processors
-> 
-> This patchset adds minimal architecture and drivers such as:
-> Clocksource, Clock and Reset
-> 
-> This patchset was tested on the ASPEED AST2700 evaluation board.
+Hi Geert,
 
-Where is the changelog? You ignored several comments, did not bother to
-respond them, did not implement them.
+On Fri, Aug 2, 2024 at 10:11=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, Jul 24, 2024 at 8:22=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to that
+> > of the R-Car Gen3, but it has some differences:
+> > - HS400 is not supported.
+> > - It has additional SD_STATUS register to control voltage,
+> >   power enable and reset.
+> > - It supports fixed address mode.
+> >
+> > To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g05=
+7'
+> > compatible string is added.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v4->v5
+> > - Dropped regulator node.
+>
+> Thanks for your patch, which is now commit 32842af74abc8ff9
+> ("dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support") in
+> mmc/next.
+>
+> > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >            - renesas,sdhi-r7s9210 # SH-Mobile AG5
+> >            - renesas,sdhi-r8a73a4 # R-Mobile APE6
+> >            - renesas,sdhi-r8a7740 # R-Mobile A1
+> > +          - renesas,sdhi-r9a09g057 # RZ/V2H(P)
+> >            - renesas,sdhi-sh73a0  # R-Mobile APE6
+> >        - items:
+> >            - enum:
+> > @@ -66,6 +67,7 @@ properties:
+> >                - renesas,sdhi-r9a07g054 # RZ/V2L
+> >                - renesas,sdhi-r9a08g045 # RZ/G3S
+> >                - renesas,sdhi-r9a09g011 # RZ/V2M
+> > +              - renesas,sdhi-r9a09g057 # RZ/V2H(P)
+>
+> This looks wrong to me.
+> Did you want to add it to the clocks constraint, like the third hunk
+> in v4[1], and was it mangled in a rebase?
+>
+Oouch, yes you are correct, this had to go in the clock constraint.
 
-No changelog means you sent exactly the same? This is not how it works.
-Please read submitting patches, respond to all comments or implement
-them, provide *DETAILED* changelog in the cover letter or individual
-patches (---).
-
-Best regards,
-Krzysztof
-
+Cheers,
+Prabhakar
 
