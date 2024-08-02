@@ -1,207 +1,147 @@
-Return-Path: <devicetree+bounces-90672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4144094652D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 23:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E73D594653F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 23:46:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABAFAB22256
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:40:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89686B228DE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 21:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992F11369AE;
-	Fri,  2 Aug 2024 21:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302388120A;
+	Fri,  2 Aug 2024 21:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="jhnH7NOm"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="y5v+B+Mc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4083B13633B;
-	Fri,  2 Aug 2024 21:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD631ABEB6;
+	Fri,  2 Aug 2024 21:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722634814; cv=none; b=e2AfNuhL+OW2u7K37D2Z6Y8hjDebK+nEOcOj/5EQdcZohGBnWAlY4jmfG9AfRqCTVrEODHSUYsku1/Kp6t9V9b52LokSlHtUjbdjwWUvVFg7Vo98m/shkZ3a1g0TP0AkKTCnWgWAGUoYEQkbM8Zpnp2VC2iFA6NONf1cGfziGDw=
+	t=1722635122; cv=none; b=IGt8xJiNYacYwo05xnO+ZNnMwBMK/GDRTJHmPvMGeS0/r/Hc7U8R56MnfNnIn8WT5cMvtZj8nrBqOQYMYeXkbby4g4hZ2WI9enpeIqcx6CCDh83JrwuBYg3yUdalEJEC5jVCwKZhWN8+QFS/yBv6oKTFzou7unVtIihoL1iWQDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722634814; c=relaxed/simple;
-	bh=ypv4Ej0W74UdMujDYHI8NpLin45gaIjuOukxTNTiVVw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=npu7z0vUQXUmpIBaa28bdjpIGyYKZRue3NR4YZBJbVteUiVtlJLJow+Xjl8QbwECU8rXH6Fi27f2CB6d5B0zWWdumYg8suSCkBXqYO/B+2gwX/zNtkxc2XBwMGvQw9Q4rDjnKohO4Jb4uN20O+WZcbYGjHXMYgk6PjsaNLeu+7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=jhnH7NOm; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1722635122; c=relaxed/simple;
+	bh=OeKajZuaytCAh2Uk8TrK0/Fy7goIybMGcEEMGnPG4GM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sQidy8JrBWcdM84hU4xBY9IYHtdDLPQr9ANImPeu9N/21rFdVaqo0uShzBNTo7G3WUSf9l+K8vA4qvuZFZfJZLw3DYsrvhmaNh9Y+HZdud5ruhIHzCmEpxnffPMy6BCZNiblOktmnA0QZNcOgDF7/6stocbJJc62G6alxNmsRrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=y5v+B+Mc; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722635118;
+	bh=OeKajZuaytCAh2Uk8TrK0/Fy7goIybMGcEEMGnPG4GM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=y5v+B+McR6xRSVnDmeTREf0m1Ohyx7eabCJ+ZG+8T6EBNvhfvbRPYKRolq60bEvh8
+	 Bd41fkZ+IfVZS7P4aj03qVxWVNTuXEdY3Thy6fczyO+AZPyiWPQSkd/cSsTBqpCtwm
+	 IUMPgB56dyVzyE+OKNIfevXUzj6o25wZjYYo/0GIG3gaGzFqcaW24B4/R8i0GkZpVY
+	 oBcQq4ds3nSMrPrahZxw1yBl99xoJ9faC5zPi6d4WXgzvH4+sSbM5zH2yFKttvPcvq
+	 ke0hJBQ9njGMEhlUrf79RqYtbwGNVU6MHaefsNXyZGLxrv4LSJ3CSjDnxgELrCT1pe
+	 Ve2sMyI5pl6vg==
+Received: from trenzalore.hitronhub.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 62A273782215;
+	Fri,  2 Aug 2024 21:45:13 +0000 (UTC)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Lee Jones <lee@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Tim Lunn <tim@feathertop.org>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Andy Yan <andyshrk@163.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Ondrej Jirman <megi@xff.cz>,
+	Weizhao Ouyang <weizhao.ouyang@arm.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-i2c@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	kernel@collabora.com
+Subject: [PATCH 00/10] Add device tree for ArmSoM Sige 5 board
+Date: Fri,  2 Aug 2024 17:45:27 -0400
+Message-ID: <20240802214612.434179-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1722634808;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HWMyYtD9HK9CL+9iAAmomFr8bDQZhT426xXIoar2PO4=;
-	b=jhnH7NOmvKHbeckNNNCSIxFjs1VR5Wl7QgbxFULSYt2W7QYbtSSHmIrhtOiZFNDAr8YJcQ
-	5Co2ZRt4oZ5sCaebD/dNWNQJhxd2ObJStjjO1i0bfJDisx/VknrCjRHDdFuPVPdou8674x
-	7kAh1MwSo406N8cdOVtUU65g8ALBXwmtCesnPAaEBe1/RdC3SORrEJhhxJ4KuiEbJmjvfq
-	jhCQgAbrKPNAvbOhitmtgLBdtEt1rYuPz1bpgiI/I4VcFiPw6gpvikQouhSss9oskeB+yK
-	4XMwWmM0t4UjphNCXe76bJVE+PZkBpv0U2DU6+Buj3m3lI8DDnCYOCpuw8FLhw==
-Date: Fri, 02 Aug 2024 23:39:24 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Chris Morgan <macromorgan@hotmail.com>, Chris Morgan
- <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org, jagan@edgeble.ai,
- andyshrk@163.com, jonas@kwiboo.se, t.schramm@manjaro.org, heiko@sntech.de,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org
-Subject: Re: [PATCH 2/5] power: supply: cw2015: Add support for dual-cell
- configurations
-In-Reply-To: <2eh5iqwtwlbpg5kpr4lvvhxo2tngw4w7qanelr6filcrru62le@o7cwpsahp2n7>
-References: <20240726194948.109326-1-macroalpha82@gmail.com>
- <20240726194948.109326-3-macroalpha82@gmail.com>
- <eimocj6mlvo6u4x54heywblwrfnftxelzpvfcogpjp7vjmunor@5eqlqsszk6ni>
- <MN2PR16MB2941F5FFA92B056533586FBDA5B12@MN2PR16MB2941.namprd16.prod.outlook.com>
- <2eh5iqwtwlbpg5kpr4lvvhxo2tngw4w7qanelr6filcrru62le@o7cwpsahp2n7>
-Message-ID: <8c44fcf923c5697ca55c8e32f3938d3b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
 
-Hello all,
+Add the rk3576-armsom-sige5 device tree as well as its rk3576.dtsi base
+and pinctrl information in rk3576-pinctrl.dtsi.
 
-On 2024-07-31 19:02, Sebastian Reichel wrote:
-> On Wed, Jul 31, 2024 at 11:02:11AM GMT, Chris Morgan wrote:
->> On Fri, Jul 26, 2024 at 11:06:21PM +0200, Sebastian Reichel wrote:
->> > On Fri, Jul 26, 2024 at 02:49:45PM GMT, Chris Morgan wrote:
->> > > From: Chris Morgan <macromorgan@hotmail.com>
->> > >
->> > > The Cellwise cw2015 datasheet reports that it can handle two cells
->> > > in a series configuration. Allow a device tree parameter to note
->> > > this condition so that the driver reports the correct voltage values
->> > > to userspace.
->> >
->> > I found this:
->> >
->> > http://www.cellwise-semi.com/Public/assests/menu/20230302/6400076806706.pdf
->> >
->> > Which says:
->> >
->> >   CW2015 can be used in 2 or more batteries connected in series, or
->> >   several cells connected in parallel.
->> >
->> > So dual-cell seems like a bad property name. Instead the number of
->> > serial cells should be provided. This property is then not really
->> > specific to the Cellwise fuel gauge and instead a property of the
->> > battery pack (i.e. simple-battery.yaml).
->> 
->> It's conflicting information (which further confuses me). I see in 
->> that
->> datasheet it says 2 or more, whereas the datasheet found here says 
->> only
->> 2 cells:
->> 
->> https://www.lestat.st/_media/informatique/projets/python-cw2015/cw2015-power-management-datasheet.pdf
->> 
->> But I agree in principle that we should be setting this as a property
->> of a simple-battery rather than a manufacturer specific parameter.
->> 
->> >
->> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->> > > ---
->> > >  drivers/power/supply/cw2015_battery.c | 7 +++++++
->> > >  1 file changed, 7 insertions(+)
->> > >
->> > > diff --git a/drivers/power/supply/cw2015_battery.c b/drivers/power/supply/cw2015_battery.c
->> > > index f63c3c410451..b23a6d4fa4fa 100644
->> > > --- a/drivers/power/supply/cw2015_battery.c
->> > > +++ b/drivers/power/supply/cw2015_battery.c
->> > > @@ -77,6 +77,8 @@ struct cw_battery {
->> > >  	u32 poll_interval_ms;
->> > >  	u8 alert_level;
->> > >
->> > > +	bool dual_cell;
->> > > +
->> > >  	unsigned int read_errors;
->> > >  	unsigned int charge_stuck_cnt;
->> > >  };
->> > > @@ -325,6 +327,9 @@ static int cw_get_voltage(struct cw_battery *cw_bat)
->> > >  	 */
->> > >  	voltage_mv = avg * 312 / 1024;
->> > >
->> > > +	if (cw_bat->dual_cell)
->> > > +		voltage_mv *= 2;
->> >
->> > Unfortunately there are no details in the document, but this looks
->> > very fishy. Does it only measure the first cell and hope that the
->> > other cells have the same voltage?
->> >
->> > This (unmerged) series also applies to your problem to some degree:
->> >
->> > https://lore.kernel.org/all/20240416121818.543896-3-mike.looijmans@topic.nl/
->> 
->> I think based on the application diagram it is in fact measuring the
->> cell voltage.
->> 
->> That said, this ultimately boils down to a cosmetic thing
->> as not having this property simply means userspace sees the battery
->> voltage as 3.8v instead of 7.6v as is written on the side.
-> 
-> With the cells being connected in serial, the voltage of both cells
-> can be different. There is not "the cell voltage". Instead there is
-> a voltage for cell 1 and a voltage for cell 2. In a perfect battery
-> they are the same, but in reality they are not. In the extreme case
-> one of the cells may be broken while the other is still fine. It
-> sounds as if this is just measuring the voltage from the first
-> cell and assumes the second cell has the same voltage.
-> 
-> Ideally the voltage on these platforms is not exposed via the normal
-> VOLTAGE property and instead uses a new property for telling
-> userspace the voltage for a single cell. The kernel simply does not
-> know the voltage of the whole battery pack.
-> 
-> FWIW this is the worst battery measurement system I've seen so far
-> if my understanding of the hardware design is correct.
+The other commits add DT bindings documentation for the devices that
+already work with the current corresponding drivers.
 
-Please note that two facts should be considered here:
+The other bindings and driver implementations are in other patch sets:
+- PMIC: https://lore.kernel.org/lkml/20240802134736.283851-1-detlev.casanova@collabora.com/
+- CRU: https://lore.kernel.org/lkml/20240802214053.433493-1-detlev.casanova@collabora.com/
+- PINCTRL: https://lore.kernel.org/lkml/20240802145458.291890-1-detlev.casanova@collabora.com/
+- PM DOMAIN: https://lore.kernel.org/lkml/20240802151647.294307-1-detlev.casanova@collabora.com/
+- DW-MMC: https://lore.kernel.org/lkml/20240802153609.296197-1-detlev.casanova@collabora.com/
+- GMAC: https://lore.kernel.org/lkml/20240802173918.301668-1-detlev.casanova@collabora.com/
 
-  - The GenBook schematic [1] clearly shows that the individual battery
-    cells aren't exposed at its internal battery connector and, as a
-    result, aren't available for individual cell voltage monitoring
+Detlev Casanova (10):
+  dt-bindings: arm: rockchip: Add ArmSoM Sige 5
+  dt-bindings: arm: rockchip: Add rk576 compatible string to pmu.yaml
+  dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
+  dt-bindings: iio: adc: Add rockchip,rk3576-saradc string
+  dt-bindings: mfd: syscon: Add rk3576 QoS register compatible
+  dt-bindings: serial: snps-dw-apb-uart: Add Rockchip RK3576
+  dt-bindings: soc: rockchip: Add rk3576 syscon compatibles
+  dt-bindings: timer: rockchip: Add rk3576 compatible
+  arm64: dts: rockchip: Add rk3576 SoC base DT
+  arm64: dts: rockchip: Add rk3576-armsom-sige5 board
 
-  - The GenBook uses a CW2013 as it fuel gauge, [1] instead of CW2015
-    as mentioned here a few times, but I haven't went through the CW2013
-    datasheet(s) yet to see what are the actual differences between it
-    and the CW2015
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ .../devicetree/bindings/arm/rockchip/pmu.yaml |    2 +
+ .../devicetree/bindings/i2c/i2c-rk3x.yaml     |    1 +
+ .../bindings/iio/adc/rockchip-saradc.yaml     |    3 +
+ .../devicetree/bindings/mfd/syscon.yaml       |    2 +
+ .../bindings/serial/snps-dw-apb-uart.yaml     |    1 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   16 +
+ .../bindings/timer/rockchip,rk-timer.yaml     |    1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts |  613 ++
+ .../boot/dts/rockchip/rk3576-pinctrl.dtsi     | 5775 +++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 1635 +++++
+ 12 files changed, 8055 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576.dtsi
 
-[1] https://wiki.cool-pi.com/notebook/coolpi-genbook-v20.pdf
+-- 
+2.46.0
 
->> I think for simplification sake I will remove this from the series, 
->> add
->> a note to the device tree, and wait for the other battery series to 
->> get
->> pulled. When it gets pulled I'll request a device tree property so we
->> can add POWER_SUPPLY_PROP_NUMBER_OF_SERIAL_CELLS to the simple-battery
->> and then parse this value. Or if that series ends up getting abandoned
->> I can just add a quick and dirty new property like this.
->> >
->> > >  	dev_dbg(cw_bat->dev, "Read voltage: %d mV, raw=0x%04x\n",
->> > >  		voltage_mv, reg_val);
->> > >  	return voltage_mv;
->> > > @@ -587,6 +592,8 @@ static int cw2015_parse_properties(struct cw_battery *cw_bat)
->> > >  			return ret;
->> > >  	}
->> > >
->> > > +	cw_bat->dual_cell = device_property_read_bool(dev, "cellwise,dual-cell");
->> > > +
->> > >  	ret = device_property_read_u32(dev, "cellwise,monitor-interval-ms",
->> > >  				       &cw_bat->poll_interval_ms);
->> > >  	if (ret) {
->> > > --
->> > > 2.34.1
 
