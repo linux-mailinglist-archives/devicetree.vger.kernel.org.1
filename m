@@ -1,125 +1,94 @@
-Return-Path: <devicetree+bounces-90624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0015946252
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:16:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504E5946255
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 19:16:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F18A51C20E56
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:16:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 099E228393D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 17:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0174E16BE0C;
-	Fri,  2 Aug 2024 17:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0664015C13B;
+	Fri,  2 Aug 2024 17:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GgfzWLEb"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="USXurMBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5231C1537A2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7F51136335;
 	Fri,  2 Aug 2024 17:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722619007; cv=none; b=VWfhjqpsckhBJhfhiuZtKNgOaPNEUKZwVJ6NPa1ULXKfCopqi1HBxjclasMCImh+TpU8/Vy2GpJjCZVAG0kdV2lXO5p+LfAO8liRhurV8w8+NE3/1VG7zY+eLrFRQgNn6l6IFygjMVXRWJ6fbbztx3O3LAVG+VpXvaOcJE7AB08=
+	t=1722619008; cv=none; b=NLOFiKZ8JxbRD8pywhgQZyI0SQvKniW0Y2x0k+ln6yt3A61MvZFFeR2fzvEc23AAAhzOlmrAYpmOcuboeKDMrlTF6kY4B3w6hm6ox/d0Tt7KIdF5gwy6fb4GGvT0B39+XoyCim8B38weE/Med2tqQKheiZOZbGBwe3m+eTNY6O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722619007; c=relaxed/simple;
-	bh=ZUOc7CWyI4910KClz9Lm32M6Ey/iLMCOiX6v14u+r2A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jO0PUbggXXiMe3PwyV5xBHNfJyYR5xcNZj17g5ubo3iBJcF/yWjDVjf8ct6j3Z7/bvfAlH8YHKHKwrUP7PZpAQOTrvr0voSK6xpSVz5NHpV0n6IqiEwdFeZMKkxZWOrsqcEXPHZ8NgTPr9uP6Cw41SSq7ClxJs3N8MNu4aUIWB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GgfzWLEb; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722619006; x=1754155006;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZUOc7CWyI4910KClz9Lm32M6Ey/iLMCOiX6v14u+r2A=;
-  b=GgfzWLEbwTFKgQVne6KHX8td9vmKmkyvssINiyGB6TQXSZkSmeQpKsxn
-   9qb0Au4bIs5pe1eELIRi5WK/zD4qhNvSpNqwrxpw5Rzmhdx2Oj72gyPeq
-   21DKivZRTCn+gQgkh3sOL3ISA8awlxMHqyJ6Gb6lwJJsau0+jaipTtbpa
-   l6IPyp/RavOePpH42sxdZxaTYJ+rbZK9BdE2Lxsij4K/4kNamIgdJLziu
-   up1tZYuicO3AFr/caUpZlcS66X6oNXO7enMGX8dOI6Eo4Q2y/YvWOfeKa
-   wgBCiMgia8R1HJ5a69EeQQpT9JOVhCFcYO3Bb9PEKKsipvzsRiKb9/SPv
-   g==;
-X-CSE-ConnectionGUID: fmCl3UbKQLim0oYJ82TGZw==
-X-CSE-MsgGUID: foyLHTmiRVGQW6K4NBPFew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11152"; a="31276353"
-X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; 
-   d="scan'208";a="31276353"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2024 10:16:46 -0700
-X-CSE-ConnectionGUID: 9rwt5JNVT3Ss468ZZCy/jg==
-X-CSE-MsgGUID: PUZFLnh4R7aulr4u7P/kTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; 
-   d="scan'208";a="55351116"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 02 Aug 2024 10:16:42 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sZvtQ-000xBD-1p;
-	Fri, 02 Aug 2024 17:16:40 +0000
-Date: Sat, 3 Aug 2024 01:16:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	waqar.hameed@axis.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, wangshuaijie@awinic.com,
-	liweilei@awinic.com, kangjiajun@awinic.com
-Subject: Re: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x
- proximity sensor
-Message-ID: <202408030003.NYT1R5AU-lkp@intel.com>
-References: <20240726061312.1371450-3-wangshuaijie@awinic.com>
+	s=arc-20240116; t=1722619008; c=relaxed/simple;
+	bh=cUFeEBARYFV8sis7dqXt2LpqVorwXGI0yJIKPIt5D/c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bY5GWXGbEt+JuZEZV0Idxe549Xi8uVT1wCVnS6dGf8+hIomDD8jUe/r9ZW3l0E5SqGmoUbCJzDez1ffwdBUYOwCACYwUAkApIcBHG+oAp7R/wp2zyGehvrJlWbh/ywkguwV/j5YlRR+ZyUAu5edJfSVokCgfFhfF/hEyUJxi7HM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=USXurMBE; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 3D9CD889B4;
+	Fri,  2 Aug 2024 19:16:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1722619004;
+	bh=RAXCEEpgCwatpuBHTqAhmFDWy6UBEOuWQxJkjlfgoj8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=USXurMBE9vAznKErmxEavJNYpWLaNX9kmKOh29aqoY3oav7zqrQ/tq6sVr3J52JX2
+	 pES92CqHdOYHshkv6lZ9y3gKH0Nj2101gmTSFfBBpicvCPn8plA4TkB8HANaBiHhLn
+	 lOwY7po8ROCb2SFkmdMnbW8zWHIILSE5Zes/2LUjjWTu3OX8HCS4pYUHFm+MYJO6X0
+	 OoaXH1sLl/LViHWAlwo7uuT0YjkU2JifNaOXmToPb+ssQHIFOjXeh5BFrIi8GO373+
+	 mCizZlPPItXIGH/xgTPMeL1Pc/diAaFHueI/V38lMr7p+cXrmfRT8YJcDvQOVm72OH
+	 vgPv+LxK8n0Lg==
+Message-ID: <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
+Date: Fri, 2 Aug 2024 19:16:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726061312.1371450-3-wangshuaijie@awinic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
+ to mdio node
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+
+On 8/2/24 10:33 AM, Geert Uytterhoeven wrote:
+> Hi Marek,
 
 Hi,
 
-kernel test robot noticed the following build errors:
+> What is your stance on this?
+> Thanks!
+> 
+> On Thu, Jul 4, 2024 at 5:26 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+>> When creating a dedicated mdio node to describe the bus the gpio reset
+>> property was erroneously left in the phy node. The reason for adding
+>> mdio nodes on WhiteHawk was to ensure the PHYs where reset before they
+>> were probed, keeping the property in the phy node prevented this.
 
-[auto build test ERROR on 1722389b0d863056d78287a120a1d6cadb8d4f7b]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-iio-aw9610x-Add-bindings-for-aw9610x-sensor/20240726-141450
-base:   1722389b0d863056d78287a120a1d6cadb8d4f7b
-patch link:    https://lore.kernel.org/r/20240726061312.1371450-3-wangshuaijie%40awinic.com
-patch subject: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x proximity sensor
-config: alpha-randconfig-r053-20240802 (https://download.01.org/0day-ci/archive/20240803/202408030003.NYT1R5AU-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240803/202408030003.NYT1R5AU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408030003.NYT1R5AU-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   alpha-linux-ld: drivers/iio/proximity/aw9610x.o: in function `aw9610x_ps_notify_callback':
->> (.text+0x5b4): undefined reference to `power_supply_get_property'
->> alpha-linux-ld: (.text+0x5c8): undefined reference to `power_supply_get_property'
-   alpha-linux-ld: drivers/iio/proximity/aw9610x.o: in function `aw9610x_i2c_probe':
->> (.text+0x870): undefined reference to `power_supply_unreg_notifier'
->> alpha-linux-ld: (.text+0x878): undefined reference to `power_supply_unreg_notifier'
->> alpha-linux-ld: (.text+0xb4c): undefined reference to `power_supply_reg_notifier'
-   alpha-linux-ld: (.text+0xb98): undefined reference to `power_supply_reg_notifier'
-   alpha-linux-ld: (.text+0xbac): undefined reference to `power_supply_unreg_notifier'
-   alpha-linux-ld: (.text+0xbb8): undefined reference to `power_supply_unreg_notifier'
-   alpha-linux-ld: drivers/iio/proximity/aw9610x.o: in function `aw9610x_i2c_remove':
-   (.text+0xc18): undefined reference to `power_supply_unreg_notifier'
-   alpha-linux-ld: (.text+0xc20): undefined reference to `power_supply_unreg_notifier'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+If the PHYs should be reset before they are probed, that is something 
+the PHY driver should take care of, right ? The PHY driver can bind to 
+the PHY via compatible string. Does the PHY driver not reset the PHYs ?
 
