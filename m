@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC0D894587A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:18:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA7B945884
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 09:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A2BD1F22191
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:18:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2622C1C23602
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 07:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010191BE857;
-	Fri,  2 Aug 2024 07:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D301BE868;
+	Fri,  2 Aug 2024 07:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSFCFDiB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7C3+4Cm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E0941C62;
-	Fri,  2 Aug 2024 07:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56AC3481AA;
+	Fri,  2 Aug 2024 07:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722583111; cv=none; b=CG40t0ZppEh67cUs1K/Oja7SWiYBhHC+ym9BIA0VlspTPNKWUdp8+Bb0CclDo3OOkW/cbrfPr4WpbTJyowOJXXXf21/cOHxS0BiI4poOYl9AwpiBqkhQ2raPwR4nF9i0IcuJ7eWdlOBStWnVrO/ZhR3K9JxF6iOUFLhUfk7KpHw=
+	t=1722583219; cv=none; b=QjLNuT23K0l6sCr54ZZBnmEasXxjSZdvI6Wh64hQo2ggGMeNa5HaJzOEdYOhQwtX5ZnV4QPic3fDg74IEJ5LQFJPWddoeMDNoNM49cI2KpXIXgaCnyIzMG85t1/Zxai8hU+pniiYYFUY+GdV4UVXzVrDjUnJBsRNpOr0bY+MsO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722583111; c=relaxed/simple;
-	bh=cZYiVc2nqHfCiIiAvvzZIAHB3qWdAWvw4l5ZBTdiGgk=;
+	s=arc-20240116; t=1722583219; c=relaxed/simple;
+	bh=9z2wck7Mt+I5YKB/IyozLkPlSTuUICeuuALYbunCACY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZZpI6QRdGanmMub+vkH0XOlAnDfrZWb+bsI6/4qEDDThWHFcdrCllXzKrvnU7OEb2vXEau+UFG/4CSHxpKuD0y/t400XfhVEY5A1zUOjEW8nwxs5/oR2TbOHZMbNzibnv206M67awua0TwAQsfhzMYjIAGhva7uWxsiG7slBpoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSFCFDiB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D9FC32782;
-	Fri,  2 Aug 2024 07:18:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=E1+N0C9E70pyh1SdeGIP087r3Ft1Bojf/6OTQq8Y8VEbQ6QZV9ZentdE0OGszWKjLryRZrQg7O3ewE6uiBkoMV2ZSDZ4GHsWYNWx0StZ5xCqTYoZGUjSnV9FvGA2IIobx0vj/4wppiavojnJLK3DmRz7GUGJ/8Jyg1qzrUlvUY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7C3+4Cm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73F39C32782;
+	Fri,  2 Aug 2024 07:20:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722583111;
-	bh=cZYiVc2nqHfCiIiAvvzZIAHB3qWdAWvw4l5ZBTdiGgk=;
+	s=k20201202; t=1722583218;
+	bh=9z2wck7Mt+I5YKB/IyozLkPlSTuUICeuuALYbunCACY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qSFCFDiB8wp9k4miVdZz4XWlnaGaV633bXvi3Y0wEpeb6NWXbT5TRl0ouMLFuiCgd
-	 QyG46Hq0sGfMN6x2AsYibfMlbFCXj2BSaHJcgtn0HmPJQg3mbchdDRvJJBLb9IWEvI
-	 fz6fW1sc2ztYkv/lljLTSN8bB4QDSBk6MPwIextS/qfypRX78NpGhHS0TM7eJOygaV
-	 /szbpj7huhjB4kAmJWcsx4ylMHRUoZIOHRrD6BBZ3L3g2weRbIM+nbbPCU8QBRQVY0
-	 Gw9aLClCUKd/0KzrVYyhM5xbW+JwdTd2JwDJ62oD/GzpQ4tEFweV884oRhvvQIq98r
-	 yUH/3lULNoFTw==
-Message-ID: <bc443719-a23c-4262-9bc1-9b622c3fb0eb@kernel.org>
-Date: Fri, 2 Aug 2024 09:18:23 +0200
+	b=G7C3+4CmC/xvVkbJNb/i099mu6nmdF0hsAmRvzGnQYv0dw/8mBvhvA8RyeLHNkbVU
+	 KfPapkjzMBI7DNAfpsaqedF8gwwotnRvCbbUaHbI5FAmHJaQDYMhUFS0pK4AhW208u
+	 GZ+nXcg+og2aZfvzcuc4MchXQy7Qz0EJnJ917Qj/vrbManSzpT+foJrev0MYbQPSVT
+	 NFwy8lYDTxOUUQmx81dRB9w1OEwjdAB1N+4KxSYGYPIHYwolKdaAUhDxU7Va4bdLOP
+	 YZNSyBJVyO6BETNmknX6Ql9Ey1CgtNOWTlgwiXDcTWY6DLjVyiAIkXgbF+gdQI5BdW
+	 LiXhN5Nxvfraw==
+Message-ID: <0bc3c40d-f6ec-4db2-ba7d-ad6d3a0c6d38@kernel.org>
+Date: Fri, 2 Aug 2024 09:20:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/12] dt-bindings: PCI: brcmstb: Add 7712 SoC
- description
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240731222831.14895-1-james.quinlan@broadcom.com>
- <20240731222831.14895-3-james.quinlan@broadcom.com>
+Subject: Re: [PATCH v3 3/3] arm64: defconfig: Enable interconnect for SM4450
+To: Tengfei Fan <quic_tengfan@quicinc.com>, Georgi Djakov
+ <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240801-sm4450_interconnect-v3-0-8e364d0faa99@quicinc.com>
+ <20240801-sm4450_interconnect-v3-3-8e364d0faa99@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,19 +106,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240731222831.14895-3-james.quinlan@broadcom.com>
+In-Reply-To: <20240801-sm4450_interconnect-v3-3-8e364d0faa99@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2024 00:28, Jim Quinlan wrote:
-> Add description for the 7712 SoC, a Broadcom STB sibling chip of the RPi 5.
-> The 7712 uses three reset controllers: rescal, for phy reset calibration;
-> bridge, for the bridge between the PCIe bus and the memory bus; and swinit,
-> which is a "soft" initialization of the PCIe HW.
-> 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+On 01/08/2024 10:54, Tengfei Fan wrote:
+> Add the SM4450 interconnect driver as built-in.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This we see from the diff. Tell us instead: why?
+
+That's a standard requirement for every defconfig change. Damn, for
+every change. Don't say what the diff is saying, unless it is
+non-trivial. Say why you are doing things.
 
 Best regards,
 Krzysztof
