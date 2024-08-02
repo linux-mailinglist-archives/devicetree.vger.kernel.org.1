@@ -1,339 +1,292 @@
-Return-Path: <devicetree+bounces-90463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303B494583C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:52:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E06B9945803
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 08:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84F54B214AB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 06:52:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EE53286B90
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 06:23:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D672A41C75;
-	Fri,  2 Aug 2024 06:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999C922318;
+	Fri,  2 Aug 2024 06:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b="IBXgPigL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TMdswKOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazrln10220002.outbound.protection.outlook.com [52.103.192.2])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735A78F47;
-	Fri,  2 Aug 2024 06:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.192.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722581568; cv=fail; b=T/xHPKoi04Mp4GgIW5198V+x6uHEvDuZfgH0pRrCYfpKGaJEq9IS72Au7cwEOCeIx/mg6G8UTurXURa6+KRN8NL0vdA0OUx8MROgey1EqBHlk1d6s92/N6/kFEaNCriNjYMSa/6jA3n7Uik3Xgf6zJKN8pHTRdXV9YiVh2LqG+o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722581568; c=relaxed/simple;
-	bh=SZfdRYxLgqV1D45D0IiQhUdNkwZz+FPvdUUYLfS9B2M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QgZkudUuX5X09OLCR2xsoB8tOEBkHuo90XhFJ6KdzEc6VHK3FlT/fV6obO7F9dgNncoHc0lfphPn2/GoS4ownYDP56GxtFkmd4fhM6zsZHkKI8JBzvK5+X/FZM/+d50yNTSOw2BFTRnJubsDSIVNu17J98uovTpRvP9nENVJWs4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=taln60.nuvoton.co.il; dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b=IBXgPigL; arc=fail smtp.client-ip=52.103.192.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=taln60.nuvoton.co.il
-Received: from SEZPR03MB7124.apcprd03.prod.outlook.com (2603:1096:101:e1::9)
- by SEYPR03MB6507.apcprd03.prod.outlook.com (2603:1096:101:54::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Fri, 2 Aug
- 2024 06:52:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jI0F97uQ174y5O4n81aQiJSLubtCsVEOOssdycGvus7D70NDTtuVLf0as0+yLUfhOGgcDK2j4X3r1wdl7SUpeuTRo9UT6vDWtWwFmDnuyzqiWQJtjFtEKVZn3sxHKH+uIF42eYf81DCE1gNB4ZRKjtV3B2xZ/+dC+Z8dd070OBjFv4Am3AraPi4j8yjaSmf711xETqD6uegYXICdoU5hzj3bLDir8eJDvs+NY7gSC4QjdErjuMgGNEg1Q4bJ/xmguzA52/riD7pOsGgU8Xo6V/oHLqmoGJOZcVea7tJUxcNPs9GGCio9aYC0qGxapUOYc1n5ZLTmhQvgh0JqYDIqOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SAuEzqHIOSfq8jhfg97/P6te6r/B/zcq/uq1CyQxERk=;
- b=AnFcVAhjY7bpeDj5u7x8eVwidXl2KKFMZeEBLUnKcOUE7Pi/uy9fAsgqyFnObrTzeLgSCNMcirbWboRLtCwqrIAnNcoomlkL6ZWGRpRhzSFqcefXnTnRilPJLsk5gjyd9syZ9tf9V/8WkRk1/piufyKhfGv6jt7zUS5bxutw2CqRLXpQHXSmTGGCYkl9wPV0P5DS2iTYq2o0VemK6q3VgstIdLO0y7Wp6kIFhJ9qFcKvPAP8+1zyBNmLeirZ/Y71dCib/lG+v7zmJ1f8Brujg7V2H/i2XnMGqaO2QRZW3UIrzUOoDvvDnsKwCOB/rDNrxtcOpJfbcf+9U2E9uBQwMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 175.98.123.7) smtp.rcpttodomain=baylibre.com
- smtp.mailfrom=taln60.nuvoton.co.il; dmarc=fail (p=none sp=quarantine pct=100)
- action=none header.from=gmail.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SAuEzqHIOSfq8jhfg97/P6te6r/B/zcq/uq1CyQxERk=;
- b=IBXgPigLq0ezb2k7pzwTzMKtHfs5kLPYS2HcJ1/jqsH09RUCNyaS764O9I7vRxH8QBTO7j5VLeNe5iYXuKKwahMi/A/xtsB3WVM9ys1ALlpK5BtLW2rhSuzKzFadUZ5kFtVUgcr8WJKnSiBDRTSLhkti4n8zfmd8K0vRlcYR9G8=
-Received: from SI2P153CA0004.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::23) by
- SEZPR03MB7124.apcprd03.prod.outlook.com (2603:1096:101:e1::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7807.28; Thu, 1 Aug 2024 19:46:40 +0000
-Received: from HK3PEPF00000221.apcprd03.prod.outlook.com
- (2603:1096:4:140:cafe::f5) by SI2P153CA0004.outlook.office365.com
- (2603:1096:4:140::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.5 via Frontend
- Transport; Thu, 1 Aug 2024 19:46:40 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 175.98.123.7)
- smtp.mailfrom=taln60.nuvoton.co.il; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=gmail.com;
-Received-SPF: None (protection.outlook.com: taln60.nuvoton.co.il does not
- designate permitted sender hosts)
-Received: from NTHCCAS02.nuvoton.com (175.98.123.7) by
- HK3PEPF00000221.mail.protection.outlook.com (10.167.8.43) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7828.19 via Frontend Transport; Thu, 1 Aug 2024 19:46:38 +0000
-Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 2 Aug
- 2024 03:46:36 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01A.nuvoton.com
- (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 2 Aug
- 2024 03:46:35 +0800
-Received: from taln58.nuvoton.co.il (10.191.1.178) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Fri, 2 Aug 2024 03:46:35 +0800
-Received: from taln60.nuvoton.co.il (taln60 [10.191.1.180])
-	by taln58.nuvoton.co.il (Postfix) with ESMTP id F1B3E5F64E;
-	Thu,  1 Aug 2024 22:46:34 +0300 (IDT)
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-	id EAED7DC1D37; Thu,  1 Aug 2024 22:46:34 +0300 (IDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
-	<yuenn@google.com>, <benjaminfair@google.com>
-CC: <openbmc@lists.ozlabs.org>, <linux-clk@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
-	<tmaimon77@gmail.com>
-Subject: [PATCH v27 2/3] reset: npcm: register npcm8xx clock auxiliary bus device
-Date: Thu, 1 Aug 2024 22:46:31 +0300
-Message-ID: <20240801194632.742006-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240801194632.742006-1-tmaimon77@gmail.com>
-References: <20240801194632.742006-1-tmaimon77@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E011A282FA;
+	Fri,  2 Aug 2024 06:23:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722579790; cv=none; b=IrnvCSzwiUnK1+a9ZL0YqBRfz1GMfk8C4jMD5xuDFSNpcozh4UiaofTrva+c3fwn4+EHhvXwo1hChD1FSnj411QwGpD4vKSPfxSiF9MvdaBPEF3L9q2sTlu/CI0FDwSzp2c47o3i2B/OgJpNEoG6RRz1w6hKvvzsK6aQzj1gflo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722579790; c=relaxed/simple;
+	bh=bBQMiYAvPVjgJtj/tiLbe4yspB/VxSsyiOeWhgvCC3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SUTjGkOHiTiGVMPJkvYV/GUPpJS6ICbktBYfWpH0hZ3r0cpF48qc6+ad4mY+cy95M4C2vu8QBmBhRZz+apW13XRud+R52ZQwPBnFXliEdCh5nVTUs4fhykhZ0Sr58ASoXCJW+kJm6mNCwX47GMwkL7Z99VZv2djUVpCEi8uAb+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TMdswKOp; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722579788; x=1754115788;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bBQMiYAvPVjgJtj/tiLbe4yspB/VxSsyiOeWhgvCC3E=;
+  b=TMdswKOpv1YvDY5PgBtqt4yKkxq9ccIqKzd1F00mNXb3lTs4CMNvdHBE
+   gkOdkkWbnf2lW9/zvqAIVSyfwETAcSBVgU/JVjSJd/e39HXetwZ3Objid
+   GAYqO/H0J/kNv2aIEK/WgqeVRJT5tSzlVI4oPykW8fJAHRS8jsX8txtbp
+   EharGNHJGbSipgwxzeVwGO9IGZ/DW1guOf/0o9BT8yTPAwr6HGRYTenpo
+   HH6SUR2jO9ni4wjMq3487qDdfrydot0tdQyei2QuyV6td0UVCCSPfrOmZ
+   Yn3xfK8sr4ouQWg+v4wx0ucOPZgnc3FvqV2T9dZ5QfEnwFFvMgew0Oby+
+   w==;
+X-CSE-ConnectionGUID: 8mi1y+S9RrqbMmn8sZC+Fg==
+X-CSE-MsgGUID: LCXwU8/rQfurNcbOPKaWHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20754285"
+X-IronPort-AV: E=Sophos;i="6.09,256,1716274800"; 
+   d="scan'208";a="20754285"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2024 23:23:07 -0700
+X-CSE-ConnectionGUID: CjvPgjBGT+O+5uFG6qI1tA==
+X-CSE-MsgGUID: w5/W+DBGSjC98Bd3Vdo0Wg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,256,1716274800"; 
+   d="scan'208";a="60318224"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 01 Aug 2024 23:23:03 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sZlgq-000wVQ-1d;
+	Fri, 02 Aug 2024 06:23:00 +0000
+Date: Fri, 2 Aug 2024 14:21:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mariel Tinaco <Mariel.Tinaco@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Dimitri Fedrau <dima.fedrau@gmail.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/2] iio: dac: support the ad8460 Waveform DAC
+Message-ID: <202408021321.uic81edY-lkp@intel.com>
+References: <20240730030509.57834-3-Mariel.Tinaco@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic:
-	HK3PEPF00000221:EE_|SEZPR03MB7124:EE_|SEYPR03MB6507:EE_
-X-MS-Office365-Filtering-Correlation-Id: d71dad43-a8e0-4415-7cb8-08dcb262a8be
-X-MS-Exchange-SenderADCheck: 2
-X-MS-Exchange-AntiSpam-Relay: 1
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|7093399012|61400799027|48200799018|376014|7416014|35950700016|82310400026|921020|35450700002;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?i0o1qDzv+AWlYZvw5yvpBDCVDoliHU0vCTvlzewcjiaO+bzMBy+4w15FhXoB?=
- =?us-ascii?Q?byVQZbsFrKh2es4am7tmV7qABTtD/wzaB2UcooQj6cIOjJT2xazM0M1GexbH?=
- =?us-ascii?Q?6jq/XRb1rMYLXfupCG+XShIKE+r/0A2QZW7H3lj+K0FSuEdAWc+4ONNTYEah?=
- =?us-ascii?Q?kKmAfs6c/yKEW/ED5jCqLQ1eRNkYLy1QbtW1TFXrIKa5ebKbLpn5FHP/RQST?=
- =?us-ascii?Q?diNKpsV/hgvNpzRrR11ZyQtIZe/SEvyW5EC5Ze1RdLtSKZ8S+/vBLY4Kzti3?=
- =?us-ascii?Q?lJhyms9HHfX6ZuoBjchUTEu65SqoXfu4pIip/XBEAX3EPVpp881lZrKiSHX6?=
- =?us-ascii?Q?siAKQslgHYuH6P2HcwIvFTNPTbA1ttYotyX+y30ORFAeYKv8k3CoBdqx9b0X?=
- =?us-ascii?Q?erTcP+L+x/sptHHPpvzMiWX8ld5K1EOe2qyZarch/6FTGdmWAXYdr5rCZk8k?=
- =?us-ascii?Q?FCN7ACGYj2aAF1JEKhRWcVncaTDLZxw+bbef7KnCxUrmDyUzzQTxWUsg+7X2?=
- =?us-ascii?Q?fKwi2wFVKJ/5DSF82Qpjh11GOWCDpxR19l7CnBQaWdviwXPrIcGxxooUTLMg?=
- =?us-ascii?Q?bIAnZ12jG/M52EUYtbHraZFyDtiB5no5ACuc+3Mpb79nY96Hmj+8wQC3c7z9?=
- =?us-ascii?Q?MZr/YDKkiAznXfNhpQBLFdB76TJLZGvxJ3fBnRIfX7w2Lm3AjyBPGi2XEDAI?=
- =?us-ascii?Q?85fAVCpY+u9cDNiIBXddpiL5ywxWeNDT2H7YZvt5dctP+CHpNba24h2b2GU5?=
- =?us-ascii?Q?NQA9gX6MlfUJ2+1kvs41w47Xi9V4vv1tMq3YFa8SOCWRb2GVvKHPWmWozAc8?=
- =?us-ascii?Q?d4QEjCgU1Z2s7r+VLza8jSKUiQ9fsWdnEzQecXQjwXSahcaghJVyMzKCETOG?=
- =?us-ascii?Q?rm3sINEoIe1jg5FGkfJgm5ROpz4nK0tDTwPS3A2u3uQiwNdWc2beX0yAENi9?=
- =?us-ascii?Q?MsrYVtLwMwdn9kNhoFwD8jYXbylZX1pwBqdZrU52kSOz+drBOePafknLECWi?=
- =?us-ascii?Q?L7Aj7uH0f+uc7t8hPKcZwrVAosRAjBU9XVZdeRp8n3IwxXY89XoP3ppXQynA?=
- =?us-ascii?Q?OHjz/cGjXhcmpWMHL3SPq6/b3a9Z/b6mWTS/jmw8vnzDw7VX5gOeZni9KTr+?=
- =?us-ascii?Q?TjZM/LImqGz7qdfnEuQpgWax8oJLc/GMfTdSu/WgCUn3jYDkrBbVtGBjvjJZ?=
- =?us-ascii?Q?T8eGcDInCPY70SJRcF8zft5KCBNFL1LUg+wFwkOhAexMQCJL7GXh8RBRlL3A?=
- =?us-ascii?Q?hD6rPBuagbGGQ2tJIKhjMU6s90jwpPu0mdgvYNsSC+7tY9MOa7s2aurXmPP8?=
- =?us-ascii?Q?kx8CG0K6ek/iq5bIIn87s6t8+VlLnDvPwgMBf3yxcKYzcghNKtYbwze+dpyN?=
- =?us-ascii?Q?24U7CdsHursGlRm7jsR+nrcnYQGaamzO0zi/DTWoaJnMVgv87evL45VlQZA/?=
- =?us-ascii?Q?86SdYdyyrc3HX1MicDrIZ5zkOw10gTKb+HmmUHuZgWvmlIKSSctNbjWmokci?=
- =?us-ascii?Q?HH9IZV81TyiUr7U=3D?=
-X-Forefront-Antispam-Report:
- CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS02.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230040)(7093399012)(61400799027)(48200799018)(376014)(7416014)(35950700016)(82310400026)(921020)(35450700002);DIR:OUT;SFP:1022;
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2024 19:46:38.6894
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d71dad43-a8e0-4415-7cb8-08dcb262a8be
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS02.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
- HK3PEPF00000221.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7124
-X-OriginatorOrg: nuvoton.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240730030509.57834-3-Mariel.Tinaco@analog.com>
 
-Add NPCM8xx clock controller auxiliary bus device registration.
+Hi Mariel,
 
-The NPCM8xx clock controller is registered as an aux device because the
-reset and the clock controller share the same register region.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-Tested-by: Benjamin Fair <benjaminfair@google.com>
----
- drivers/reset/Kconfig               |  1 +
- drivers/reset/reset-npcm.c          | 74 ++++++++++++++++++++++++++++-
- include/soc/nuvoton/clock-npcm8xx.h | 16 +++++++
- 3 files changed, 90 insertions(+), 1 deletion(-)
- create mode 100755 include/soc/nuvoton/clock-npcm8xx.h
+[auto build test WARNING on 9900e7a54764998ba3a22f06ec629f7b5fe0b422]
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 67bce340a87e..c6bf5275cca2 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -157,6 +157,7 @@ config RESET_MESON_AUDIO_ARB
- config RESET_NPCM
- 	bool "NPCM BMC Reset Driver" if COMPILE_TEST
- 	default ARCH_NPCM
-+	select AUXILIARY_BUS
- 	help
- 	  This enables the reset controller driver for Nuvoton NPCM
- 	  BMC SoCs.
-diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
-index 8935ef95a2d1..aa68b947226a 100644
---- a/drivers/reset/reset-npcm.c
-+++ b/drivers/reset/reset-npcm.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2019 Nuvoton Technology corporation.
- 
-+#include <linux/auxiliary_bus.h>
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/io.h>
-@@ -10,11 +11,14 @@
- #include <linux/property.h>
- #include <linux/reboot.h>
- #include <linux/reset-controller.h>
-+#include <linux/slab.h>
- #include <linux/spinlock.h>
- #include <linux/mfd/syscon.h>
- #include <linux/regmap.h>
- #include <linux/of_address.h>
- 
-+#include <soc/nuvoton/clock-npcm8xx.h>
-+
- /* NPCM7xx GCR registers */
- #define NPCM_MDLR_OFFSET	0x7C
- #define NPCM7XX_MDLR_USBD0	BIT(9)
-@@ -89,6 +93,7 @@ struct npcm_rc_data {
- 	const struct npcm_reset_info *info;
- 	struct regmap *gcr_regmap;
- 	u32 sw_reset_number;
-+	struct device *dev;
- 	void __iomem *base;
- 	spinlock_t lock;
- };
-@@ -372,6 +377,67 @@ static const struct reset_control_ops npcm_rc_ops = {
- 	.status		= npcm_rc_status,
- };
- 
-+static void npcm_clock_unregister_adev(void *_adev)
-+{
-+	struct auxiliary_device *adev = _adev;
-+
-+	auxiliary_device_delete(adev);
-+	auxiliary_device_uninit(adev);
-+}
-+
-+static void npcm_clock_adev_release(struct device *dev)
-+{
-+	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-+	struct npcm_clock_adev *rdev = to_npcm_clock_adev(adev);
-+
-+	kfree(rdev);
-+}
-+
-+static struct auxiliary_device *npcm_clock_adev_alloc(struct npcm_rc_data *rst_data, char *clk_name)
-+{
-+	struct npcm_clock_adev *rdev;
-+	struct auxiliary_device *adev;
-+	int ret;
-+
-+	rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
-+	if (!rdev)
-+		return ERR_PTR(-ENOMEM);
-+
-+	rdev->base = rst_data->base;
-+
-+	adev = &rdev->adev;
-+	adev->name = clk_name;
-+	adev->dev.parent = rst_data->dev;
-+	adev->dev.release = npcm_clock_adev_release;
-+	adev->id = 555u;
-+
-+	ret = auxiliary_device_init(adev);
-+	if (ret) {
-+		kfree(rdev);
-+		return ERR_PTR(ret);
-+	}
-+
-+	return adev;
-+}
-+
-+static int npcm8xx_clock_controller_register(struct npcm_rc_data *rst_data, char *clk_name)
-+{
-+	struct auxiliary_device *adev;
-+	int ret;
-+
-+	adev = npcm_clock_adev_alloc(rst_data, clk_name);
-+	if (IS_ERR(adev))
-+		return PTR_ERR(adev);
-+
-+	ret = auxiliary_device_add(adev);
-+	if (ret) {
-+		auxiliary_device_uninit(adev);
-+		return ret;
-+	}
-+
-+	return devm_add_action_or_reset(rst_data->dev, npcm_clock_unregister_adev, adev);
-+}
-+
- static int npcm_rc_probe(struct platform_device *pdev)
- {
- 	struct npcm_rc_data *rc;
-@@ -392,6 +458,7 @@ static int npcm_rc_probe(struct platform_device *pdev)
- 	rc->rcdev.of_node = pdev->dev.of_node;
- 	rc->rcdev.of_reset_n_cells = 2;
- 	rc->rcdev.of_xlate = npcm_reset_xlate;
-+	rc->dev = &pdev->dev;
- 
- 	ret = devm_reset_controller_register(&pdev->dev, &rc->rcdev);
- 	if (ret) {
-@@ -413,7 +480,12 @@ static int npcm_rc_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	return ret;
-+	switch (rc->info->bmc_id) {
-+	case BMC_NPCM8XX:
-+		return npcm8xx_clock_controller_register(rc, "clk-npcm8xx");
-+	default:
-+		return ret;
-+	}
- }
- 
- static struct platform_driver npcm_rc_driver = {
-diff --git a/include/soc/nuvoton/clock-npcm8xx.h b/include/soc/nuvoton/clock-npcm8xx.h
-new file mode 100755
-index 000000000000..139130e98c51
---- /dev/null
-+++ b/include/soc/nuvoton/clock-npcm8xx.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __SOC_NPCM8XX_CLOCK_H
-+#define __SOC_NPCM8XX_CLOCK_H
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/container_of.h>
-+
-+struct npcm_clock_adev {
-+	void __iomem *base;
-+	struct auxiliary_device adev;
-+};
-+
-+#define to_npcm_clock_adev(_adev) \
-+	container_of((_adev), struct npcm_clock_adev, adev)
-+
-+#endif
+url:    https://github.com/intel-lab-lkp/linux/commits/Mariel-Tinaco/dt-bindings-iio-dac-add-docs-for-ad8460/20240730-112724
+base:   9900e7a54764998ba3a22f06ec629f7b5fe0b422
+patch link:    https://lore.kernel.org/r/20240730030509.57834-3-Mariel.Tinaco%40analog.com
+patch subject: [PATCH v2 2/2] iio: dac: support the ad8460 Waveform DAC
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20240802/202408021321.uic81edY-lkp@intel.com/config)
+compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240802/202408021321.uic81edY-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408021321.uic81edY-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/dac/ad8460.c: In function 'ad8460_dac_input_read':
+   drivers/iio/dac/ad8460.c:159:15: error: implicit declaration of function 'ad8460_get_hvdac_word' [-Werror=implicit-function-declaration]
+     159 |         ret = ad8460_get_hvdac_word(state, private, &reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/dac/ad8460.c:163:35: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'unsigned int' [-Wformat=]
+     163 |         return sysfs_emit(buf, "%ld\n", reg);
+         |                                 ~~^     ~~~
+         |                                   |     |
+         |                                   |     unsigned int
+         |                                   long int
+         |                                 %d
+   drivers/iio/dac/ad8460.c: In function 'ad8460_dac_input_write':
+>> drivers/iio/dac/ad8460.c:176:30: warning: passing argument 2 of 'kstrtou32' makes integer from pointer without a cast [-Wint-conversion]
+     176 |         ret = kstrtou32(buf, &reg);
+         |                              ^~~~
+         |                              |
+         |                              unsigned int *
+   In file included from include/linux/kernel.h:25,
+                    from include/linux/clk.h:13,
+                    from drivers/iio/dac/ad8460.c:10:
+   include/linux/kstrtox.h:84:70: note: expected 'unsigned int' but argument is of type 'unsigned int *'
+      84 | static inline int __must_check kstrtou32(const char *s, unsigned int base, u32 *res)
+         |                                                         ~~~~~~~~~~~~~^~~~
+   drivers/iio/dac/ad8460.c:176:15: error: too few arguments to function 'kstrtou32'
+     176 |         ret = kstrtou32(buf, &reg);
+         |               ^~~~~~~~~
+   include/linux/kstrtox.h:84:32: note: declared here
+      84 | static inline int __must_check kstrtou32(const char *s, unsigned int base, u32 *res)
+         |                                ^~~~~~~~~
+   drivers/iio/dac/ad8460.c:182:16: error: implicit declaration of function 'ad8460_set_hvdac_word' [-Werror=implicit-function-declaration]
+     182 |         return ad8460_set_hvdac_word(state, private, reg);
+         |                ^~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c: In function 'ad8460_write_symbol':
+>> drivers/iio/dac/ad8460.c:211:30: warning: passing argument 2 of 'kstrtou16' makes integer from pointer without a cast [-Wint-conversion]
+     211 |         ret = kstrtou16(buf, &sym);
+         |                              ^~~~
+         |                              |
+         |                              bool * {aka _Bool *}
+   include/linux/kstrtox.h:94:56: note: expected 'unsigned int' but argument is of type 'bool *' {aka '_Bool *'}
+      94 | int __must_check kstrtou16(const char *s, unsigned int base, u16 *res);
+         |                                           ~~~~~~~~~~~~~^~~~
+   drivers/iio/dac/ad8460.c:211:15: error: too few arguments to function 'kstrtou16'
+     211 |         ret = kstrtou16(buf, &sym);
+         |               ^~~~~~~~~
+   include/linux/kstrtox.h:94:18: note: declared here
+      94 | int __must_check kstrtou16(const char *s, unsigned int base, u16 *res);
+         |                  ^~~~~~~~~
+   drivers/iio/dac/ad8460.c: In function 'ad8460_write_toggle_en':
+   drivers/iio/dac/ad8460.c:249:30: warning: passing argument 2 of 'kstrtou16' makes integer from pointer without a cast [-Wint-conversion]
+     249 |         ret = kstrtou16(buf, &toggle_en);
+         |                              ^~~~~~~~~~
+         |                              |
+         |                              bool * {aka _Bool *}
+   include/linux/kstrtox.h:94:56: note: expected 'unsigned int' but argument is of type 'bool *' {aka '_Bool *'}
+      94 | int __must_check kstrtou16(const char *s, unsigned int base, u16 *res);
+         |                                           ~~~~~~~~~~~~~^~~~
+   drivers/iio/dac/ad8460.c:249:15: error: too few arguments to function 'kstrtou16'
+     249 |         ret = kstrtou16(buf, &toggle_en);
+         |               ^~~~~~~~~
+   include/linux/kstrtox.h:94:18: note: declared here
+      94 | int __must_check kstrtou16(const char *s, unsigned int base, u16 *res);
+         |                  ^~~~~~~~~
+   drivers/iio/dac/ad8460.c: At top level:
+   drivers/iio/dac/ad8460.c:335:12: error: static declaration of 'ad8460_get_hvdac_word' follows non-static declaration
+     335 | static int ad8460_get_hvdac_word(struct ad8460_state *state,
+         |            ^~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c:159:15: note: previous implicit declaration of 'ad8460_get_hvdac_word' with type 'int()'
+     159 |         ret = ad8460_get_hvdac_word(state, private, &reg);
+         |               ^~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c: In function 'ad8460_get_hvdac_word':
+   drivers/iio/dac/ad8460.c:346:16: error: implicit declaration of function 'get_unaligned_le16' [-Werror=implicit-function-declaration]
+     346 |         *val = get_unaligned_le16(state->spi_tx_buf);
+         |                ^~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c: At top level:
+   drivers/iio/dac/ad8460.c:351:12: error: static declaration of 'ad8460_set_hvdac_word' follows non-static declaration
+     351 | static int ad8460_set_hvdac_word(struct ad8460_state *state,
+         |            ^~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c:182:16: note: previous implicit declaration of 'ad8460_set_hvdac_word' with type 'int()'
+     182 |         return ad8460_set_hvdac_word(state, private, reg);
+         |                ^~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c: In function 'ad8460_set_hvdac_word':
+   drivers/iio/dac/ad8460.c:355:9: error: implicit declaration of function 'put_unaligned_le16' [-Werror=implicit-function-declaration]
+     355 |         put_unaligned_le16(val & 0x3FFF, &state->spi_tx_buf);
+         |         ^~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ad8460.c: In function 'ad8460_probe':
+   drivers/iio/dac/ad8460.c:855:15: error: implicit declaration of function 'devm_regulator_get_enable_read_voltage'; did you mean 'devm_regulator_get_enable_optional'? [-Werror=implicit-function-declaration]
+     855 |         ret = devm_regulator_get_enable_read_voltage(&spi->dev, "refio_1p2v");
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |               devm_regulator_get_enable_optional
+   drivers/iio/dac/ad8460.c:859:57: error: 'vrefio' undeclared (first use in this function)
+     859 |                 return dev_err_probe(&spi->dev, PTR_ERR(vrefio),
+         |                                                         ^~~~~~
+   drivers/iio/dac/ad8460.c:859:57: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/iio/dac/ad8460.c:819:27: warning: unused variable 'refio_1p2v' [-Wunused-variable]
+     819 |         struct regulator *refio_1p2v;
+         |                           ^~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +163 drivers/iio/dac/ad8460.c
+
+   149	
+   150	static ssize_t ad8460_dac_input_read(struct iio_dev *indio_dev,
+   151					     uintptr_t private,
+   152					     const struct iio_chan_spec *chan,
+   153					     char *buf)
+   154	{
+   155		struct ad8460_state *state = iio_priv(indio_dev);
+   156		unsigned int reg;
+   157		int ret;
+   158	
+   159		ret = ad8460_get_hvdac_word(state, private, &reg);
+   160		if (ret)
+   161			return ret;
+   162	
+ > 163		return sysfs_emit(buf, "%ld\n", reg);
+   164	}
+   165	
+   166	static ssize_t ad8460_dac_input_write(struct iio_dev *indio_dev,
+   167					      uintptr_t private,
+   168					      const struct iio_chan_spec *chan,
+   169					      const char *buf,
+   170					      size_t len)
+   171	{
+   172		struct ad8460_state *state = iio_priv(indio_dev);
+   173		unsigned int reg;
+   174		int ret;
+   175	
+ > 176		ret = kstrtou32(buf, &reg);
+   177		if (ret)
+   178			return ret;
+   179	
+   180		guard(mutex)(&state->lock);
+   181	
+   182		return ad8460_set_hvdac_word(state, private, reg);
+   183	}
+   184	
+   185	static ssize_t ad8460_read_symbol(struct iio_dev *indio_dev,
+   186					  uintptr_t private,
+   187					  const struct iio_chan_spec *chan,
+   188					  char *buf)
+   189	{
+   190		struct ad8460_state *state = iio_priv(indio_dev);
+   191		unsigned int reg;
+   192		int ret;
+   193	
+   194		ret = regmap_read(state->regmap, AD8460_CTRL_REG(0x02), &reg);
+   195		if (ret)
+   196			return ret;
+   197	
+   198		return sysfs_emit(buf, "%ld\n", FIELD_GET(AD8460_PATTERN_DEPTH_MSK, reg));
+   199	}
+   200	
+   201	static ssize_t ad8460_write_symbol(struct iio_dev *indio_dev,
+   202					   uintptr_t private,
+   203					   const struct iio_chan_spec *chan,
+   204					   const char *buf,
+   205					   size_t len)
+   206	{
+   207		struct ad8460_state *state = iio_priv(indio_dev);
+   208		bool sym;
+   209		int ret;
+   210	
+ > 211		ret = kstrtou16(buf, &sym);
+   212		if (ret)
+   213			return ret;
+   214	
+   215		guard(mutex)(&state->lock);
+   216	
+   217		return regmap_update_bits(state->regmap,
+   218					  AD8460_CTRL_REG(0x02),
+   219					  AD8460_PATTERN_DEPTH_MSK,
+   220					  FIELD_PREP(AD8460_PATTERN_DEPTH_MSK, sym));
+   221	}
+   222	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
