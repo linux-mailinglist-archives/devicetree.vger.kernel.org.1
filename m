@@ -1,100 +1,146 @@
-Return-Path: <devicetree+bounces-90545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8CF945BC3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:05:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53CA945BD3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 12:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277581F225CA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:05:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF8C1C20C98
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 10:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C3315B134;
-	Fri,  2 Aug 2024 10:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EA51DAC50;
+	Fri,  2 Aug 2024 10:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b="gMdc5ivB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fylHyrAM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xn--80adja5bqm.su (xn--80adja5bqm.su [198.44.140.76])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC161C69D;
-	Fri,  2 Aug 2024 10:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.44.140.76
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC151C69D;
+	Fri,  2 Aug 2024 10:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722593108; cv=none; b=f5S7wqgWMGi4dhm3k29158VPfR+7vIjs72Sqyx6BtFMZ3SGqAI35C6mCgh3tJEzUqqlgo+2kXehP/2nwJCOH7KhtuVpzqxdZdHpffhiw6V9ufoXyqNeHOuHKerQKOR4uf5lWIQrclKS9gSEQHp2zJaaDjDIWuFDGLgTHywEEeys=
+	t=1722593419; cv=none; b=ONRbMRaTb4Fm68oWgDqlilx7kJFzLBkiugI5KesqIts1SPreMOfRGfCWsmCGnFu5RxmENtbI3/Gws3i26kNB95MpdQdUpWuzHI4puUZ97SgtNnybhOVylaeS3zuoUHLMlPd+xl0vOem5xRsuxRlnRq5Ue5yyLL8qD4EbVHtkflc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722593108; c=relaxed/simple;
-	bh=QsN5/NZ66aTtsFvoL5pLZIv6o50us0fY8Yrb52ESz6k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UHokntJDP+dCLCM8CodpKKtpqu0X8M0C0moC+JNQDxlqtQUe/wbVe6hFypYtaw0eBnuH4dS0uLvdw6lIYg7Mf5EKQrHryDmsaYtodYILD1xHpHiYs8bHQNMC3hV9KWbIzGae9tWFSiiQAoHQMwbl615fHc0kQAU/IduTKGJaTV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc; spf=pass smtp.mailfrom=xn--80adja5bqm.su; dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b=gMdc5ivB; arc=none smtp.client-ip=198.44.140.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xn--80adja5bqm.su
-Received: by xn--80adja5bqm.su (Postfix, from userid 1000)
-	id C661B40050C0; Fri,  2 Aug 2024 10:04:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 xn--80adja5bqm.su C661B40050C0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mediatomb.cc;
-	s=default; t=1722593087;
-	bh=QsN5/NZ66aTtsFvoL5pLZIv6o50us0fY8Yrb52ESz6k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gMdc5ivB/L+PDFudBOPTqscH5VEN4eYzXm6s23rVgX+fdPcqY5haJ1MmKpJ9mUvda
-	 RIcP5kGJQOnLh2aMpmcQtnMgHDwGI+FU61ntph7HeLxrmaND+cn1+oUPwyERoRe6U0
-	 7DXT4SvM5K8VtaFtL5+9C1vVk9GJUrXnrhyvCe8X/VP//PqodmM135l01bX5/Cfb8h
-	 g9vXafFqVm3KTm5zRepfQqrDNaWCafKlnIBZr5qhwRlh6+Cb4a3MGiZTudmvTZoevy
-	 hBIW+QAEKn45YG4k+5+EU9uiaiTi7LlsW06KpxpG0qp9MT1IeHrBh16vGS/WVmL1Ck
-	 eQdcuyuh7xfEw==
-Date: Fri, 2 Aug 2024 10:04:47 +0000
-From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
-To: "Bjoern A. Zeeb" <bzeeb-lists@lists.zabbadoz.net>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 0/2 RESEND] Add DTS for NanoPi R2S Plus
-Message-ID: <20240802100447.GB18509@ветеран.su>
-References: <22bbec28-41c1-4f36-b776-6e091bf118d9@kernel.org>
- <20240801175736.16591-1-jin@mediatomb.cc>
- <756p9487-56pr-88p2-6o79-7oron3q8462n@yvfgf.mnoonqbm.arg>
+	s=arc-20240116; t=1722593419; c=relaxed/simple;
+	bh=Nvdj6qQm9iVfu8aGE2DXopYcW7+wt4SmEat2cZ2su70=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jC4lgx9/b38tltXkkBJOFvfBDVaBba50/2ebGFokh36e6xBtT32CfeN0y+bWTEaLFxtGsDdAFfkVmUe1XQ/aUrGb7xNmprCqm+QfE74LSGitxdRhup8+O+xT0li9CGHJvIJPHm1sRY+g6Xgmx/5A5kFvKVCSl/61HYFSlZzjZJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fylHyrAM; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7515437ff16so6027382a12.2;
+        Fri, 02 Aug 2024 03:10:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722593417; x=1723198217; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N6htz/6NbRyXM1jme/dtQ2/m+dOMqqKo/ELlpYeQWqw=;
+        b=fylHyrAMevJ+Dh/WZafFyndkLoaZNVw9zHjwzwWFMtiSl0VPd3vdQCjJMFUg+HDP2w
+         09B41unoQ2e192Tv0uBHB94nkHnpwsZIbFvmUf1NApIDfp4HQhSQ3M8v+Amo/Arl3ihZ
+         KiLozhSsMVtAEJfeQDR5vVR/EVXXPqd3hcIj7CSNy/wFStoqjpfeDA3/S/6sZ/1B5bLs
+         e9nRT2u0Jys7qnEgzKyZaXPjQ41YHONeoYKjrigNKhKuqLoeatogKhfKcORDxExG37Ky
+         SQvCLNMzfhZfLJtuToKN76iNRVApR1rvuTdLJzWqnMM/YD4m3M3Etv7jBNHrYZNX+/9E
+         TtWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722593417; x=1723198217;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N6htz/6NbRyXM1jme/dtQ2/m+dOMqqKo/ELlpYeQWqw=;
+        b=CoN/+Bh7Me2rFmFCE6kTIj0a+2ibk7UcP1k9oJJ0rQm2GidcQ4pNb3DlnRWoCj98Hs
+         ACGrpwPt4MofEmLMx1DOAsTly5NVuaM3NdZ4bKIFEtbeiJPxpZWL/jLCsdXvYtgwNqs+
+         SMPDkU9E2Bh+GCN5Ou4dZVUkj2XjSjq+Os7rEV6tLRRBOQenZDH6TzSamSyOJxzN7pxE
+         8/dozWBCR/VeTKxf1oxMhrWJ40/SgYhi2BHt4hpGNdi8G+Rp5EeVko3kW3vZjqDnFvnd
+         pzfxyMUPGESz/kuDvTaXNAxlR6BqfT1Th16DVb+3D0mzheXTOSlaq8xWbLhDQvwxPKW+
+         +DUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOpwcSeYtahbpjRrj8U+eUz9njQ38IqJMPTsJNHnoAP9PW38hH4VgNVM8ZY8VEXbQ3duwUX7uk0CP2NTa8FMZ+azHpaDcj0YE3pHPw7oRt7XKLW+lEhABPaaq6Q9YYBTPqjDGoUYHzibMgDWVJITy5ARtwpFyeDW7psg1p+kkdrd4Xvw==
+X-Gm-Message-State: AOJu0YxU/yVlWJ5dgaF64zZnFvIabedimx/3dyYCg5PAS0faAJ3AKygm
+	5eWCUT5D7oFO+ddp8ZHbgUfW6bRrs/Ll6fW4DNaQcncGt5xqcPbE
+X-Google-Smtp-Source: AGHT+IHlhy0cofaPaSc4QwacSyWHNvjUmMXzXi0lqVJkGBrGELs7V41EcJ/9S+LvpCq27IUZgl1Qyw==
+X-Received: by 2002:a05:6a20:4312:b0:1c6:9c6d:1c42 with SMTP id adf61e73a8af0-1c69c6d2068mr3167721637.14.1722593417369;
+        Fri, 02 Aug 2024 03:10:17 -0700 (PDT)
+Received: from [100.116.227.126] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff5905c879sm13501265ad.148.2024.08.02.03.10.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Aug 2024 03:10:16 -0700 (PDT)
+Message-ID: <a9c1bcd9-beaf-4d47-8d65-2893196fc1aa@gmail.com>
+Date: Fri, 2 Aug 2024 18:10:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <756p9487-56pr-88p2-6o79-7oron3q8462n@yvfgf.mnoonqbm.arg>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/3] iio: proximity: Add driver support for TYHX's
+ HX9023S capacitive proximity sensor
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, Alexandru Ardelean <aardelean@baylibre.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+References: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
+ <20240625-add-tyhx-hx9023s-sensor-driver-v7-3-b1d65b221811@gmail.com>
+ <CAHp75VfN56gPp1VVwfS715vTNUbA2p0uz9Dcq8PkehXG7bNjSw@mail.gmail.com>
+Content-Language: en-US
+From: Yasin Lee <yasin.lee.x@gmail.com>
+In-Reply-To: <CAHp75VfN56gPp1VVwfS715vTNUbA2p0uz9Dcq8PkehXG7bNjSw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
 
-On Fri, Aug 02, 2024 at 09:46:40AM +0000, Bjoern A. Zeeb wrote:
-> >I noticed, that a DTS for the R2S Plus is not yet available, while the
-> >R2S is already there. The only difference is, that the Plus version has an
-> >eMMC, so we can reuse the R2S definitions and only add an eMMC block, which
-> >I copied from the DTS in the friendlyarm/uboot-rockchip repo.
-> 
-> The original has a
-> 	// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> 
-> please don't lose the OR MIT as other projects outside Linux do use the
-> same dts files;  and the original r2s file also preserved it.
+On 7/31/24 03:43, Andy Shevchenko wrote:
+> On Tue, Jun 25, 2024 at 4:31 AM Yasin Lee <yasin.lee.x@gmail.com> wrote:
+>> A SAR sensor from NanjingTianyihexin Electronics Ltd.
+>>
+>> The device has the following entry points:
+>>
+>> Usual frequency:
+>> - sampling_frequency
+>>
+>> Instant reading of current values for different sensors:
+>> - in_proximity0_raw
+>> - in_proximity1_raw
+>> - in_proximity2_raw
+>> - in_proximity3_raw
+>> - in_proximity4_raw
+>> and associated events in events/
+> ...
+>
+>> Reported-by： Dan Carpenter <dan.carpenter@linaro.org>
+>> Closes: https://lore.kernel.org/r/202405170824.uhEslLI0-lkp@intel.com/
+>> Closes: https://lore.kernel.org/r/202406142001.swm6CU40-lkp@intel.com/
+>> Reported-by： kernel test robot <lkp@intel.com>
+>> Closes: https://lore.kernel.org/oe-kbuild-all/202406171946.qe83Tde0-lkp@intel.com/
+>> Closes: https://lore.kernel.org/oe-kbuild-all/202406081148.j9y5W5Ru-lkp@intel.com/
+>> Closes: https://lore.kernel.org/oe-kbuild-all/202405310327.5dCrF4gX-lkp@intel.com/
+>> Closes: https://lore.kernel.org/oe-kbuild-all/202405310010.dSPEpCuu-lkp@intel.com/
+>> Closes: https://lore.kernel.org/oe-kbuild-all/202405300812.jv99FywV-lkp@intel.com/
+> The above shouldn't be present in a new code. This is NOT a fix-patch for sure!
+>
+Hi Andy,
 
-Uhm... I am confused now, I copy-pasted the emmc block from this file:
-https://github.com/friendlyarm/uboot-rockchip/blob/nanopi4-v2017.09/arch/arm/dts/rk3328-nanopi-r2.dts#L7
+I hope this email finds you well.
 
-The header does not have the "OR MIT" in there, it's just
-"SPDX-License-Identifier:     GPL-2.0+" which is what I also copied
-over, together with the (c) part.
+Thank you for your feedback regarding the SAR sensor patch. I appreciate 
+you pointing out the inappropriate use of the Reported-by and Closes 
+tags. I have already addressed these issues and removed the incorrect 
+tags in the subsequent version of the patch.
 
-The source which I was using is described in the commit message:
+I apologize for the oversight and appreciate your vigilance in 
+maintaining the code quality. Your guidance has been very helpful.
 
-The eMMC configuration for the DTS has been extracted and copied from
-rk3328-nanopi-r2.dts, v2017.09 branch from the friendlyarm/uboot-rockchip 
-repository.
+Thanks again for your support.
 
-Maybe you looked at a different branch? Shall I still add the "OR
-MIT" or leave it as in the original file which I copied it from?
+Best regards,
 
-Kind regards,
-Sergey
+Yasin Lee
+
+
 
