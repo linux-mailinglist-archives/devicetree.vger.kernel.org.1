@@ -1,109 +1,100 @@
-Return-Path: <devicetree+bounces-90577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F17945F0B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 16:01:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD59945F2F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 16:17:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63F3E1F2325A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:01:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13963B215AB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2024 14:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FB41E2895;
-	Fri,  2 Aug 2024 14:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D5F1E2894;
+	Fri,  2 Aug 2024 14:17:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="3qGZM3aW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922605258;
-	Fri,  2 Aug 2024 14:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC791134AB;
+	Fri,  2 Aug 2024 14:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722607308; cv=none; b=IfJmRtiCcDL31t9Ae8KmMcLncU2QXlBGzh88yAv4Bx8G1bJxfi0CKfdJWKGAOHXx8MCZfQCyuCLn+r4YwJrlJviNHTADMaKCnaN7IBdTBVpiBS5xk7/ILjNbFRfsOXDVkumTeazCm2KDoTzPQ+gvhXz72pjXlIN/ZHDRcgs8NSI=
+	t=1722608235; cv=none; b=HCGGlcBOmE7v+mXV9aW2aVPk8QZZIuKs9PjPuuqV9+pGpXw68vJiTKq1kU0SdFstfZQ+rxPh4fzfdSDRPKT/Eo1rGx8DjhL/PKs7SQQDjERAqDBnXfcjqStNJ3DwOx7whLfuyuJN8t8AOeo8x9gH6gQJLwGwg5KTPjz1ldE3azI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722607308; c=relaxed/simple;
-	bh=u3ZMg2xsS0PphcV5AO/Z+wTJuTNi8Zl3B3cTy1JUA/o=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h6TWylVm1/V6t2fLyvEmTUCuLGjw2XqyMlK+0eH98mxe2kDQK2lKKJbo98d76jiav99ggA4LthF6+0jKWwQ9Hesmy0ztiiF/c1gdeEb5MDFxTWWWyQWq//AKUSOb2fotq/sMVbAAYjdK1Pp1q9EcLc1/QP9bv1lRj/F3bsFzkYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wb6rS3QPSz6K6ln;
-	Fri,  2 Aug 2024 21:59:04 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 429D2140A86;
-	Fri,  2 Aug 2024 22:01:43 +0800 (CST)
-Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 2 Aug
- 2024 15:01:42 +0100
-Date: Fri, 2 Aug 2024 15:01:41 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Gordeev
-	<agordeev@linux.ibm.com>, Andreas Larsson <andreas@gaisler.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, "Borislav
- Petkov" <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
-	<david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
-	<dave@stgolabs.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, Heiko
- Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, Ingo
- Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, "John Paul
- Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>, Jonathan Corbet
-	<corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt
-	<palmer@dabbelt.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring
-	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner
-	<tglx@linutronix.de>, "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon
-	<will@kernel.org>, Zi Yan <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
-	<linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
-	<linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
-	<nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v3 23/26] of, numa: return -EINVAL when no numa-node-id
- is found
-Message-ID: <20240802150141.00002143@Huawei.com>
-In-Reply-To: <20240801060826.559858-24-rppt@kernel.org>
-References: <20240801060826.559858-1-rppt@kernel.org>
-	<20240801060826.559858-24-rppt@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1722608235; c=relaxed/simple;
+	bh=F27qf+/aidpVlH+J0uQc/en8+v4v4owFpY+E4ck8mds=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=E/LhQLu9r+GjPblBtW7LB0PpvWXDvb2W428/oBGXNoDeEfRwYAxzApMgD0Q5/VyphkrDSwQa90hSY3//2raQ/cVkDBbikQhKBOjvyBXRd1HU4BpAady6hYNtCWYYLEhfVN/VMo9zNkXgA4JLFTI3l6MB1SkT0mP8skeb90f34O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=3qGZM3aW; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1722608232;
+	bh=F27qf+/aidpVlH+J0uQc/en8+v4v4owFpY+E4ck8mds=;
+	h=From:To:Cc:Subject:Date:From;
+	b=3qGZM3aWPZ5N58fnbh9lgA5I5ZHgSVCVbrZpBqpPhRdsYdwW+GsAg1oGIbHwX+Pdb
+	 GEDR7B3sA93tddxkNjbSm8/hwR52texpQsu+r+Bq606G65ivzSDZzSJm50Q1DTheNd
+	 emcRIUm4LfQuldkGHhoR6MerEvOS8kXFteM0PdHF9vLsQHkQFIEdzxFZE+o1oyGzFP
+	 F4EalWayh6nrpAiBI51ztXdTyahr+VTmzK5OVt7opKUFKVgGCpR93+IS2b/1/O5Qzi
+	 foe2J9lbiJYeRRqOaFWcOp5JrqqtL99afGTcf0yQf2TJ7mRFS4SuweJniAEE45OcPa
+	 R/8TE3wopPdkQ==
+Received: from trenzalore.hitronhub.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 637D23782214;
+	Fri,  2 Aug 2024 14:17:10 +0000 (UTC)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Subject: [PATCH 0/3] Add CRU support for rk3576 SoC
+Date: Fri,  2 Aug 2024 10:12:47 -0400
+Message-ID: <20240802141816.288337-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
 
-On Thu,  1 Aug 2024 09:08:23 +0300
-Mike Rapoport <rppt@kernel.org> wrote:
+Add support for clocks and resets on the rk3576.
+Patches from downstream have been squashed and rebased.
 
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> 
-> Currently of_numa_parse_memory_nodes() returns 0 if no "memory" node in
-> device tree contains "numa-node-id" property. This makes of_numa_init()
-> to return "success" despite no NUMA nodes were actually parsed and set
-> up.
-> 
-> arch_numa workarounds this by returning an error if numa_nodes_parsed is
-> empty.
-> 
-> numa_memblks however would WARN() in such case and since it will be used
-> by arch_numa shortly, such warning is not desirable.
-> 
-> Make sure of_numa_init() returns -EINVAL when no NUMA node information
-> was found in the device tree.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Detlev Casanova (1):
+  dt-bindings: clock: add rk3576 cru bindings
+
+Elaine Zhang (2):
+  clk: rockchip: Add dt-binding header for rk3576
+  clk: rockchip: Add clock controller for the RK3576
+
+ .../bindings/clock/rockchip,rk3576-cru.yaml   |   73 +
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-rk3576.c             | 1818 +++++++++++++++++
+ drivers/clk/rockchip/clk.h                    |   52 +
+ .../dt-bindings/clock/rockchip,rk3576-cru.h   | 1149 +++++++++++
+ 6 files changed, 3100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3576.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
+
+-- 
+2.46.0
+
 
