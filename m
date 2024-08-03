@@ -1,87 +1,107 @@
-Return-Path: <devicetree+bounces-90729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B76FD946945
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:00:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D26E946947
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0F6B1C20B18
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 11:00:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E326281F62
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 11:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 317EA152534;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5678515278A;
 	Sat,  3 Aug 2024 10:58:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSJrC3YI"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="mGa6OwPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020EF13AD33;
-	Sat,  3 Aug 2024 10:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F4114D432;
+	Sat,  3 Aug 2024 10:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722682725; cv=none; b=nvzHKyr8G4Om5PKepTevLnBt7mPce/etaQELlHd9OPWZJhTjJ1LZDj9ldqh87979z0yejFDsTxlgYAjUNt8XJHtccpn3GhaTpls2TOjaXltlWm5b483q7JnAMhEfQiQZqYWa8pT9PpwgjGk7EFraJeXNqqEUKtBOys6woSJKhQ0=
+	t=1722682725; cv=none; b=JnvDeIOZMApXVCLcc+ISYZt08K7CCPG2uwwvpM+r83TBxXp3t+cpxomvSwyPpXeedynfJdWuYZrXwFfTXeIexRBaRXJJepEWowmiWJZhl+oKuA+jn2McLWoStlej2d6ilXyrSJg33WCnmwfToJEREDNUsZX/aepTQSLYW0aOqoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1722682725; c=relaxed/simple;
-	bh=N1fQ0B7UEe03G6CId/BQ+4zakhQeItMZKgJdmzi59LI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GtzwdCR8yMKF1yzvNGi8o5kx6Hq6InW0I/C9922sWyk5pcqcTgSbP+3V53cL6RPSDTf1uuj4a9gzQy49/zn4TgMnM+Ug/Q5DNPFiV9nJTX9Vd5Us2LtRxoPFsCpfeG5e4MfcEMIWdn12oiNCwHseKJW0jvjDqVK0WGGBwfngvpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSJrC3YI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790F2C116B1;
-	Sat,  3 Aug 2024 10:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722682724;
-	bh=N1fQ0B7UEe03G6CId/BQ+4zakhQeItMZKgJdmzi59LI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=pSJrC3YIqwnQtIY27gIXM6JJ42OfX4vv/ZuoPwrdvgQs2hoNrzaVs8NOtXaxBhGk4
-	 8XbvW/0RQ5n+2WyuvdTbPl4OBMLtt6jRwEQ6+q5gxXN/Jpts8phgCls2eOBIF194+3
-	 0J7Zk/Cy55sNSKwnpz5Zqq7hREJEpV6y9O9dSJYBnPCmsZ5j2WVE9E0sEOJy2bG12h
-	 bJSj2+MUwGjCBQ9lK1utl9iu3AsSvAVc3j0noVjAX1nGFx++U4QMYvd53vkan8Yi3d
-	 Yxi5NQSU+YCBlDOdX0kUWNQTqleM4xh34CdgFpdPrtojm8//r5p33Nux7U69ca0AYi
-	 rZb26A2zqxYCA==
-Date: Sat, 3 Aug 2024 11:58:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com,
- mripard@kernel.org, tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
- u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org,
- jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V2 01/15] iio: adc: axp20x_adc: Add adc_en1 and adc_en1
- to axp_data
-Message-ID: <20240803115833.00bbc571@jic23-huawei>
-In-Reply-To: <20240802192026.446344-2-macroalpha82@gmail.com>
-References: <20240802192026.446344-1-macroalpha82@gmail.com>
-	<20240802192026.446344-2-macroalpha82@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	bh=EBCRVfZznRXJg7v+5Ar3qMNV55WvBT1KwUlciYgpqVA=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=To/LMGCqPxXiBaOYHIYCn1BJ29aUGw28J9E7saZ01bX49Xy02tsXFTKWnk+ItPo+J+tHXQypjXIsiSbHPVDiZpuWeWBEAsdgIAeKmet9CCLUIX3RGdNh1qlroLd7nL0aKptoy9ACGauxJphHOtTVoosspi5CSHB7uAzktBfO8Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=mGa6OwPc; arc=none smtp.client-ip=185.70.43.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1722682722; x=1722941922;
+	bh=L8IlsP2aPV2YpmlTJK6/jkHvyJCmhcqNmn7zjirm4mU=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=mGa6OwPcgWh/b+Vhs6jCYkRHtnie9C9R/Mf9kZL+k32epSr1Pv8PeMCkNtKPS1fV+
+	 PDl96eqPMnZIPPyYFLAegyKpPwbGblOFiuKBJYBj8IpZh8RTyD8o2WuKzMrneDk3vP
+	 71NK/2L1mt3abu0atpaMY3Gj5cPm29mTt7FHgTnLAFy4epRJgYTagjN/+Jx6Avd0z1
+	 g1lDkuP9WHr3UpyF1noAHC9PSVaEGGgC4EHMzcB9qBOm7HY7iprkOl5oSPlSTixp6z
+	 ejPYxDK4W3AH9AqZ5KT2PdDRpl1kxaR3gwQ3JQHPMifKrQQd/uXrEwS0vmLFUxZkIb
+	 T2au5yPHaOIig==
+Date: Sat, 03 Aug 2024 10:58:38 +0000
+To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+From: Harry Austen <hpausten@protonmail.com>
+Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
+Subject: [PATCH v2 8/9] dt-bindings: clock: xilinx: describe whether dynamic reconfig is enabled
+Message-ID: <20240803105702.9621-9-hpausten@protonmail.com>
+In-Reply-To: <20240803105702.9621-1-hpausten@protonmail.com>
+References: <20240803105702.9621-1-hpausten@protonmail.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: 26a9b51b5d389d6e469395ce25f5ff994c41be71
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri,  2 Aug 2024 14:20:12 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+Xilinx clocking wizard IP core's dynamic reconfiguration support is
+optionally enabled at build time. Add a devicetree boolean property to
+describe whether the hardware supports this feature or not.
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add the register for adc_en1 and adc_en2 to the axp_data struct. This
-> allows us to specify a different register to enable the adc channels
-> for different devices such as the AXP717.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-As the final IIO patch has a dependency on patch 11 (mfd) I can't pick these
-up directly (without a suitable tag in mfd).
+Signed-off-by: Harry Austen <hpausten@protonmail.com>
+---
+v1 -> v2: Use "flag" instead of boolean type
 
-So to give Lee options (if he just wants to pick the lot up)
+ .../devicetree/bindings/clock/xlnx,clocking-wizard.yaml    | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.y=
+aml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+index 9e5078cef2962..8b28a01dbb993 100644
+--- a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
++++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+@@ -48,6 +48,12 @@ properties:
+       - const: monitor
+=20
+=20
++  xlnx,dynamic-reconfig:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Indicate whether the core has been configured with support for dynam=
+ic
++      runtime reconfguration of the clocking primitive MMCM/PLL.
++
+   xlnx,speed-grade:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     enum: [1, 2, 3]
+@@ -91,6 +97,7 @@ examples:
+         compatible =3D "xlnx,clocking-wizard-v6.0";
+         reg =3D <0xb0000000 0x10000>;
+         #clock-cells =3D <1>;
++        xlnx,dynamic-reconfig;
+         xlnx,speed-grade =3D <1>;
+         xlnx,nr-outputs =3D <6>;
+         clock-names =3D "clk_in1", "s_axi_aclk";
+--=20
+2.46.0
+
+
 
