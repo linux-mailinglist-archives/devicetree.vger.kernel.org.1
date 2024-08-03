@@ -1,182 +1,120 @@
-Return-Path: <devicetree+bounces-90731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1518494694B
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:00:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17BA0946951
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A22D1C21345
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 11:00:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B80A02822D8
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 11:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFBE7152DE0;
-	Sat,  3 Aug 2024 10:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE8E150997;
+	Sat,  3 Aug 2024 10:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="CONJO6R8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iME8lyvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F1914D702;
-	Sat,  3 Aug 2024 10:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B59914F9FE;
+	Sat,  3 Aug 2024 10:59:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722682730; cv=none; b=nig1c/dwy/UYBplYiVcAl+thtoCVqewvQzDJJ49NgUuyk9jnH559AApgiOLnO0CYxDXDICKazGdlkYgOJ7OIE/6R5KtNZCxwwrlNROLfdvck7hd1apWo9ocPPJXpJ9spybu271/hj8m9Dajv/WRa7B8z9ONE/L2iyHG5keSMSII=
+	t=1722682773; cv=none; b=eZ9OVno+R/qyBrC5E0rAGYYzWxbWU83fnkeIRp6CiV+5PWozbKed4tf+vEnmqNon0PLpK4QXoJ28j7nd1o69kXYlL+ViCirmojY/7dL6W7gzf66qS+qTIbrlzVEzvNyUwanexs3ZksUUlmDVZVVpeWwiyMk/DhokHZ6XqW0mjoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722682730; c=relaxed/simple;
-	bh=+2Ps0RkWvd4hA5xbknz9GXhP/fqeSiFOTT6hvj1HlSY=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nhRkRL2Gwv9iuCSxgmUg3MNwwpCKBOgrXddTQbnfV1lTmUAomJjzK1wsWpJuga2sWl6eBRK2x7cpVZlgafYBPaAflIFyrTPgQYpf2EXFnlQqWPH49ZCj3AEgwNQ+MAcpMm2YbRWaTtvO4OZc8udZjvG+Rxsc1yF5ECqFjGE342k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=CONJO6R8; arc=none smtp.client-ip=185.70.43.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1722682726; x=1722941926;
-	bh=0H2g73lUPxVU1hWK6gZKi285FJE1qovcLzfd2WX0+uE=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=CONJO6R8fF9XsX3qremVKWzb1WTgZAho8oQnYriBXxuVeBM2jnxqf1ArH4mEOjyR0
-	 KHHYJaGAfYCOSih662ri1L4oFylwwe2ITNlpWDc88CkKdsyZTAiSufE+6eZIhguh8L
-	 eq7mZLnF836BbB35EqedsbfloTvB/bMQcM9mxUTojKARkZaMLXnlh1uc5x3cVdvmQb
-	 L4Hn7OCWbJ9Su8ZIzc04UlV4XB0HyokI4dBwNdTdCvT9BF0qp/nptdc/tHRsUW/bh5
-	 xep/0GPf674cfporFewBA5llcBxcm+KbS07ZSYSQd0yFkLpIZ1hDFJ5SpyPrXAeIP7
-	 AEJpS81s1lOTw==
-Date: Sat, 03 Aug 2024 10:58:43 +0000
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-From: Harry Austen <hpausten@protonmail.com>
-Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
-Subject: [PATCH v2 9/9] clk: clocking-wizard: move dynamic reconfig setup behind flag
-Message-ID: <20240803105702.9621-10-hpausten@protonmail.com>
-In-Reply-To: <20240803105702.9621-1-hpausten@protonmail.com>
-References: <20240803105702.9621-1-hpausten@protonmail.com>
-Feedback-ID: 53116287:user:proton
-X-Pm-Message-ID: 25c4f45d44befa37fd567ea85bd876fa56719a8e
+	s=arc-20240116; t=1722682773; c=relaxed/simple;
+	bh=hgM+f3sD+d917WGPvZIS0qL/pRruh37OfrX73Jjl+zI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nLAE59ZIHll20f2oMetAC77nsR9KOsk1zlzCQDsCZF2SmuTmRxqLYmGGjOUmmWObdGRwrD842fCMMT7TPfCljqi7h51Y0tdRL/zgeSwaZ5BtO0C/ErN5I32kN77AZw2K35bfAWk13e8xFMi1ueHHkoZmXYJ6zDWQNVQ/SOf0aF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iME8lyvX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBBDCC116B1;
+	Sat,  3 Aug 2024 10:59:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722682772;
+	bh=hgM+f3sD+d917WGPvZIS0qL/pRruh37OfrX73Jjl+zI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=iME8lyvXdeTTTsN7XF84l0J3XCvMYXI2UVihEtlXxAzmO3kiUrrywk2j1abibb9h3
+	 ezGuo01aS1JJnCERR/8mz2ibfD1c5EW75iOMqS0Xq9OUkSK6Y6hcQhDBrunEik5gtj
+	 s2uqonCNGiQdjBVYiJ3Jf53GICNiGYLl44PvnzT66Sv478R9SpQCDcf9FwSiGmxHUX
+	 0vfc18qlY7bDFhfA+Dizx1R+s/LDAICokUNV67Cz/q3GSPTaRMDYEyLvRjNU/05A4/
+	 xZB+UjgzKYASPSH08wsyjuMo752sngDY9ma9yn+/usbkM+OugZ+31l/IvXnhp7F5DC
+	 IMQUQkp9AURgQ==
+Date: Sat, 3 Aug 2024 11:59:20 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com,
+ mripard@kernel.org, tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
+ u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org,
+ jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+ Chris Morgan <macromorgan@hotmail.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH V2 08/15] dt-bindings: iio: adc: Add AXP717 compatible
+Message-ID: <20240803115920.3499eefb@jic23-huawei>
+In-Reply-To: <20240802192026.446344-9-macroalpha82@gmail.com>
+References: <20240802192026.446344-1-macroalpha82@gmail.com>
+	<20240802192026.446344-9-macroalpha82@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Xilinx clocking wizard IP core's dynamic reconfiguration support is
-optionally enabled at build time. Use the new boolean devicetree
-property to indicate whether the hardware supports this feature or not.
+On Fri,  2 Aug 2024 14:20:19 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
----
-v1 -> v2: No functional change
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add compatible binding for the axp717.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Given dependency of the driver patch on MFD. To give the option
+for the whole lot to go through MFD.
 
- drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 73 +++++++++++-----------
- 1 file changed, 38 insertions(+), 35 deletions(-)
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilin=
-x/clk-xlnx-clock-wizard.c
-index 557e11017faf9..fb655d53b2029 100644
---- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-@@ -1192,20 +1192,6 @@ static int clk_wzrd_probe(struct platform_device *pd=
-ev)
- =09if (IS_ERR(clk_wzrd->base))
- =09=09return PTR_ERR(clk_wzrd->base);
-=20
--=09ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->speed_g=
-rade);
--=09if (!ret) {
--=09=09if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
--=09=09=09dev_warn(&pdev->dev, "invalid speed grade '%d'\n",
--=09=09=09=09 clk_wzrd->speed_grade);
--=09=09=09clk_wzrd->speed_grade =3D 0;
--=09=09}
--=09}
--
--=09clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
--=09if (IS_ERR(clk_wzrd->clk_in1))
--=09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
--=09=09=09=09     "clk_in1 not found\n");
--
- =09clk_wzrd->axi_clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
- =09if (IS_ERR(clk_wzrd->axi_clk))
- =09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->axi_clk),
-@@ -1220,31 +1206,48 @@ static int clk_wzrd_probe(struct platform_device *p=
-dev)
- =09if (ret)
- =09=09return dev_err_probe(&pdev->dev, ret, "failed to setup monitor\n");
-=20
--=09ret =3D clk_wzrd_register_output_clocks(&pdev->dev, nr_outputs);
--=09if (ret)
--=09=09return ret;
--
--=09clk_wzrd->clk_data.num =3D nr_outputs;
--=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_get, =
-&clk_wzrd->clk_data);
--=09if (ret) {
--=09=09dev_err(&pdev->dev, "unable to register clock provider\n");
--=09=09return ret;
--=09}
-+=09if (of_property_read_bool(np, "xlnx,dynamic-reconfig")) {
-+=09=09ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->spee=
-d_grade);
-+=09=09if (!ret) {
-+=09=09=09if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
-+=09=09=09=09dev_warn(&pdev->dev, "invalid speed grade '%d'\n",
-+=09=09=09=09=09 clk_wzrd->speed_grade);
-+=09=09=09=09clk_wzrd->speed_grade =3D 0;
-+=09=09=09}
-+=09=09}
-=20
--=09if (clk_wzrd->speed_grade) {
--=09=09clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
-+=09=09clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
-+=09=09if (IS_ERR(clk_wzrd->clk_in1))
-+=09=09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
-+=09=09=09=09=09     "clk_in1 not found\n");
-=20
--=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
--=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09ret =3D clk_wzrd_register_output_clocks(&pdev->dev, nr_outputs);
- =09=09if (ret)
--=09=09=09dev_warn(&pdev->dev,
--=09=09=09=09 "unable to register clock notifier\n");
-+=09=09=09return ret;
-+
-+=09=09clk_wzrd->clk_data.num =3D nr_outputs;
-+=09=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_ge=
-t,
-+=09=09=09=09=09=09  &clk_wzrd->clk_data);
-+=09=09if (ret) {
-+=09=09=09dev_err(&pdev->dev, "unable to register clock provider\n");
-+=09=09=09return ret;
-+=09=09}
-=20
--=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
--=09=09=09=09=09=09 &clk_wzrd->nb);
--=09=09if (ret)
--=09=09=09dev_warn(&pdev->dev,
--=09=09=09=09 "unable to register clock notifier\n");
-+=09=09if (clk_wzrd->speed_grade) {
-+=09=09=09clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
-+
-+=09=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
-+=09=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09=09if (ret)
-+=09=09=09=09dev_warn(&pdev->dev,
-+=09=09=09=09=09 "unable to register clock notifier\n");
-+
-+=09=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
-+=09=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09=09if (ret)
-+=09=09=09=09dev_warn(&pdev->dev,
-+=09=09=09=09=09 "unable to register clock notifier\n");
-+=09=09}
- =09}
-=20
- =09return 0;
---=20
-2.46.0
-
+> ---
+>  .../bindings/iio/adc/x-powers,axp209-adc.yaml        | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> index d40689f233f2..1caa896fce82 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> @@ -37,6 +37,17 @@ description: |
+>     3 | batt_dischrg_i
+>     4 | ts_v
+>  
+> +  AXP717
+> +  ------
+> +   0 | batt_v
+> +   1 | ts_v
+> +   2 | vbus_v
+> +   3 | vsys_v
+> +   4 | pmic_temp
+> +   5 | batt_chrg_i
+> +   6 | vmid_v
+> +   7 | bkup_batt_v
+> +
+>    AXP813
+>    ------
+>     0 | pmic_temp
+> @@ -52,6 +63,7 @@ properties:
+>      oneOf:
+>        - const: x-powers,axp209-adc
+>        - const: x-powers,axp221-adc
+> +      - const: x-powers,axp717-adc
+>        - const: x-powers,axp813-adc
+>  
+>        - items:
 
 
