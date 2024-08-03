@@ -1,127 +1,109 @@
-Return-Path: <devicetree+bounces-90752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AECA946AE8
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 20:58:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB435946B62
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 00:52:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D50141F2137C
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 18:58:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59A8DB21682
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 22:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FB11CAA2;
-	Sat,  3 Aug 2024 18:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3846856B8C;
+	Sat,  3 Aug 2024 22:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="o5Y2Rmax"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aG/gNvhn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D741BC40;
-	Sat,  3 Aug 2024 18:58:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D271134AB
+	for <devicetree@vger.kernel.org>; Sat,  3 Aug 2024 22:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722711495; cv=none; b=nX1tcve8U7xJp2L6UF19XIufshC7F17rKLJ5MFZwKhBvHtloRMrHY533uePlGwLap6+Iq88Q3prZ0XZh7Ke3WuMAydOgj0ugFf7b8dilgIeEblPiaCm3O4aO350PUI4erCfOS5ymX079S2fU1VsPcx24qKQ81oR+GQgBkqxsqUs=
+	t=1722725537; cv=none; b=CQqLgQtbgdjS6iARHj6FnKeNz+u3rgahOHkJrEHd9Z529AZ/fjdTxB9d+t956LvQXgb3rSM1fMzxwwtpUk8HBESiycZ5ddW1FOwCVR34FRYNigLLSK/FM+FXLy593qwrfJho+xSojATyeWC2CUZ6OFQUP0xzVOwyxUvEmFOrH04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722711495; c=relaxed/simple;
-	bh=Tpqmomamf68VJd3BX6Aa+aldBw76MPQW/c629qHRnbg=;
-	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=IbrSsGqOBStGIMJEps8mhKenKBf8B+hM7axxPIe76H166t8p4nL4QhbwZ42LjTqQlk0gUtF0LZatRQUt9L+FkSP1WB5smK97TLSZL41p+0UpSKXSri8jR/T2wYhe3tuluqqfZIKT+a95bhVG5V7Hst9Hf5Iv045WfuhfJdcqgSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=o5Y2Rmax; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93706C116B1;
-	Sat,  3 Aug 2024 18:58:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
-	s=korg; t=1722711495;
-	bh=Tpqmomamf68VJd3BX6Aa+aldBw76MPQW/c629qHRnbg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=o5Y2RmaxDgbz57iITn10F1azWivNnKphArt1mFz2o1k24QgUghcLPFcCl4Skc3J7n
-	 2U6mfRYJicjGnJ/Lcha0tyWotwjt/73kHML1EvfQheasAaHT4z+JnEhKa6yfFin34R
-	 FpUPzEcCObDFHQbrY87xJxqJmIAHp6RYNOzd/x7s=
-Date: Sat, 3 Aug 2024 11:58:13 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Mike Rapoport <rppt@kernel.org>, <linux-kernel@vger.kernel.org>,
- Alexander Gordeev <agordeev@linux.ibm.com>, Andreas Larsson
- <andreas@gaisler.com>, Arnd Bergmann <arnd@arndb.de>, "Borislav Petkov"
- <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Dan Williams <dan.j.williams@intel.com>,
- Dave Hansen <dave.hansen@linux.intel.com>, David Hildenbrand
- <david@redhat.com>, "David S. Miller" <davem@davemloft.net>, Davidlohr
- Bueso <dave@stgolabs.net>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, Heiko Carstens <hca@linux.ibm.com>, Huacai
- Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>, Jiaxun Yang
- <jiaxun.yang@flygoat.com>, "John Paul Adrian Glaubitz"
- <glaubitz@physik.fu-berlin.de>, Jonathan Corbet <corbet@lwn.net>, Michael
- Ellerman <mpe@ellerman.id.au>, Palmer Dabbelt <palmer@dabbelt.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Samuel Holland <samuel.holland@sifive.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Thomas Gleixner <tglx@linutronix.de>,
- "Vasily Gorbik" <gor@linux.ibm.com>, Will Deacon <will@kernel.org>, Zi Yan
- <ziy@nvidia.com>, <devicetree@vger.kernel.org>,
- <linux-acpi@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-cxl@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-mips@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
- <linux-s390@vger.kernel.org>, <linux-sh@vger.kernel.org>,
- <linuxppc-dev@lists.ozlabs.org>, <loongarch@lists.linux.dev>,
- <nvdimm@lists.linux.dev>, <sparclinux@vger.kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v3 07/26] mm: drop CONFIG_HAVE_ARCH_NODEDATA_EXTENSION
-Message-Id: <20240803115813.809f808f1afbe9f9feaae129@linux-foundation.org>
-In-Reply-To: <20240802104922.000051a0@Huawei.com>
-References: <20240801060826.559858-1-rppt@kernel.org>
-	<20240801060826.559858-8-rppt@kernel.org>
-	<20240802104922.000051a0@Huawei.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1722725537; c=relaxed/simple;
+	bh=VS/k5v1QNh+3vyYqhg9LJgwdVa5PJldl/+U1/qKG/94=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cqy/fC4vQEVdLr7BFfBeRHCrfoXr15ATMuu36wpssmcCktFUTpKTDcU4PIb6Uob63YRhhEuR1Z6PfiAFGUDyw7ThOkgWoWAy2gHFX+B1+lM5Z5oW+s4dTMXhi/HxO+gkafiVnLrh5lELUkq7AqLEr2T9M5IQXF7z3ZlKcXJJpqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aG/gNvhn; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ef2c56da6cso105555301fa.1
+        for <devicetree@vger.kernel.org>; Sat, 03 Aug 2024 15:52:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722725533; x=1723330333; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VS/k5v1QNh+3vyYqhg9LJgwdVa5PJldl/+U1/qKG/94=;
+        b=aG/gNvhnhPVXdVIbUpb5vM+gjqnnDkbGjdaSXiGEZ9IdwxFb1JMgeOscKyKswlhYI8
+         ZH/zbOjetAcvnzyYbIXEcXyT9xmdcqD29i50eUciHnqsD4J68vzY29Th4REvH1GHvRp+
+         OMdg6Bwvqy7jwNyt38JgGBFKBEuu/rbTDQP3nnjq2YdIX8C4sr0Wo/5eNBSkiwLSyilL
+         yPce+2Nl9CBwf0LvS4HOLH+59ABHICHZsj7fZ4EUMVo3HNsq/3K2EpttMRgeCCrhIsRS
+         r9/ccDCRJLwEid+zyXOqIIFh5LkPkwsWLJ1Kiv8fabuVVIqul+gnzyvRZVlIn5iTp1Wi
+         YdGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722725533; x=1723330333;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VS/k5v1QNh+3vyYqhg9LJgwdVa5PJldl/+U1/qKG/94=;
+        b=Yh03Fplk4qpVpZ43eED1By594kZgADGFSPaW6/zLKClDLKx3itXsq/tMVXM0PZTvh2
+         3gLuhfrMZLktFzfH9GvHz3YdTMXDCo0QE1MOoJdstyregNVSPCudT2CyjLIfwm7s+P8O
+         K3TUBuklDd1qVHQGAk7N3ZLb6QIYrYfAJTytSgtYwMzi7YFhtX8MMDEopd8ayyFHPZc5
+         ZeVkrQx2xEXczx4HNkIgKtxkAk9J/6W/WOV8zwXLWlkRnXTVDVUHqp3Xu31rMPkFI2xY
+         tPth3lSun/oEFcJgT9yC2y4N4ZMQthozBxO8D7/JC9wBi2HHVafqHCF2Wf7gQqWAxuQn
+         jaIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWOe+JZeZeYn9CiWMk6XBYFQIKXxk3iy6k0rKa36wRXbWdrOUDdntHw1UBr7JRDIvsLSNZ9xEdlDdWCnk+n6tfKW5igz5mzqqs0w==
+X-Gm-Message-State: AOJu0YyQ19J7h79pl/A1WS3/WJwVNCtKST3lt8rPx2DG8O8Dh/O3KTRc
+	UyWuyF3ww1SNr36NtQ+l5zXnj8uurW82I6/gXBoiY+AFOSJ9AxGgiPmQ5N/H7gF4qEZ62FoVp1V
+	Zuxcl0iKGam7enyZIR6XuUyfQwK9QAFCCvuELQw==
+X-Google-Smtp-Source: AGHT+IGtKbqnwPRPd/X8SX60v5j4Xq35XV3AX5MwZR7GvVw8lAT724joPpRICFpM2WIHSkOHDQu2mGHM8Arm0D/qCKY=
+X-Received: by 2002:a2e:2416:0:b0:2f1:59ed:87b8 with SMTP id
+ 38308e7fff4ca-2f15aa84f4dmr51196711fa.3.1722725533354; Sat, 03 Aug 2024
+ 15:52:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+References: <20240730-mbly-pinctrl-v2-0-d470f64e0395@bootlin.com>
+In-Reply-To: <20240730-mbly-pinctrl-v2-0-d470f64e0395@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Sun, 4 Aug 2024 00:52:02 +0200
+Message-ID: <CACRpkdbM2CQdgCq916kdObXUH3_73Yd897QxmY13mPWAzvHbHg@mail.gmail.com>
+Subject: Re: [PATCH RESEND v2 0/2] Add Mobileye EyeQ5 pinctrl support
+To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	=?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2 Aug 2024 10:49:22 +0100 Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+On Tue, Jul 30, 2024 at 6:08=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
+in.com> wrote:
 
-> > --- a/mm/mm_init.c
-> > +++ b/mm/mm_init.c
-> > @@ -1838,11 +1838,10 @@ void __init free_area_init(unsigned long *max_zone_pfn)
-> >  
-> >  		if (!node_online(nid)) {
-> >  			/* Allocator not initialized yet */
-> > -			pgdat = arch_alloc_nodedata(nid);
-> > +			pgdat = memblock_alloc(sizeof(*pgdat), SMP_CACHE_BYTES);
-> >  			if (!pgdat)
-> >  				panic("Cannot allocate %zuB for node %d.\n",
-> >  				       sizeof(*pgdat), nid);
-> > -			arch_refresh_nodedata(nid, pgdat);
-> 
-> This allocates pgdat but never sets node_data[nid] to it
-> and promptly leaks it on the line below. 
-> 
-> Just to sanity check this I spun up a qemu machine with no memory
-> initially present on some nodes and it went boom as you'd expect.
-> 
-> I tested with addition of
-> 			NODE_DATA(nid) = pgdat;
-> and it all seems to work as expected.
+> This is a new iteration on the Mobileye system-controller series. It
+> used to be sent as a single series [0], but has been split in the
+> previous revision (see [1], [2], [3], [4]) to faciliate merging.
+>
+> This series adds a driver handling EyeQ5 (and only EyeQ5, not EyeQ6L nor
+> EyeQ6H) SoC pin config and muxing. It is an auxiliary driver being
+> instantiated by the platform clk driver.
+>
+> Related series are targeted at clk [5], reset [6] and MIPS [4]. The
+> first two are receiving a second version. The last one has no change
+> and stays at its V1.
 
-Thanks, I added that.  It blew up on x86_64 allnoconfig because
-node_data[] (and hence NODE_DATA()) isn't an lvalue when CONFIG_NUMA=n.
+Patches applied!
 
-I'll put some #ifdef CONFIG_NUMAs in there for now but
-
-a) NODE_DATA() is upper-case. Implies "constant".  Shouldn't be assigned to.
-
-b) NODE_DATA() should be non-lvalue when CONFIG_NUMA=y also.  But no,
-   we insist on implementing things in cpp instead of in C.
-
-c) In fact assigning to anything which ends in "()" is nuts.  Please
-   clean up my tempfix.
-
-c) Mike, generally I'm wondering if there's a bunch of code here
-   which isn't needed on CONFIG_NUMA=n.  Please check all of this for
-   unneeded bloatiness.
-
+Yours,
+Linus Walleij
 
