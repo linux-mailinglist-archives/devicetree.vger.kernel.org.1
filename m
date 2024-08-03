@@ -1,88 +1,78 @@
-Return-Path: <devicetree+bounces-90689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE341946686
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 02:37:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B6049466DE
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 04:13:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A26CD282C47
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 00:37:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10B65281D06
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 02:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1696C1ABEA3;
-	Sat,  3 Aug 2024 00:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5D179CD;
+	Sat,  3 Aug 2024 02:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aIndyg4/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LAiZfGDq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EF24690;
-	Sat,  3 Aug 2024 00:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CAC16FC1;
+	Sat,  3 Aug 2024 02:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722645438; cv=none; b=lXGhz48UCC4jSJYvOOXoQIGAw4MWkd4pWzHwJMlfsdZZo2rP3frQG0svcyuiP6p965PMAKY0JRJkhaJpH54VTdD+Yy4qtl6z0jpFYgGDzmyEUbLVbTyGEoRAntfGEiFyKyuSvm42zodM2imCtqxlHTs1780tEzLIlsduS+E5Scg=
+	t=1722651207; cv=none; b=eSxcybtd+yYl9DvLB0K8ygde4KDXvWtkrArOhOIymEMBoS7FENfIpAVMsq3cWYcZpHXTlqHG4Le4t6uIpNhOqvMDJC/KkZAGYHcFs55EuX8VwwIioOJsL7K53cItLbIFJpwGIQsxoy3me4dAcUcrF8wl54zM+JONtIH7k+SLJKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722645438; c=relaxed/simple;
-	bh=T0Vk/auQGIzRzZ52qRPQnGR8mMBib23gMenRZAUoXR4=;
+	s=arc-20240116; t=1722651207; c=relaxed/simple;
+	bh=ml8yJMr5An3VhYIGhMGVsAeIILi31Bm9dzNScMAZb4g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O8GGJ4tj8f8RWizD/Otf/A3ihK9Agft1zmVGuT7hhybbDsO/hD5B6GRxzr651mzvyane14yMwAMUARof3Wwz0R+C8vilI43TqyMCoMkYrDZ1ITUsPIY0SymaU7GqNdQEgs5Ze2sHBHkfv5PhSzpAqSMb7cR9KPgEBVpbplf9RHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aIndyg4/; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2cb5b783c15so6495827a91.2;
-        Fri, 02 Aug 2024 17:37:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722645436; x=1723250236; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+itLntxZyTqI7f7PfMJcECQfhIFzXWAphwS/6jaEk/U=;
-        b=aIndyg4/nuNWw1Tg68xrxLStuxmcFb+fhsbo2ias+Pu6dc12g3vpRXesOD/EGgMDbN
-         dKzwyGAgxls6zeR49HWbN/z6rDaridJ8yFGtsqiNBkTjr/5fs2NC88J5NOxgSE+TV0b0
-         FSq1MZRjlBZWXeYv6SMTPBauI/Y7cSBguRumLDq4s8r+A6UOg8uA16x3/Bwamiqrd09i
-         K69y71RRQsDB/kDY5qsBk1rtK9XRloQT5+hnsXqYaRHgERdBKF/Z2b3AGehLtaEGS0DP
-         QZO09Xtlm/KUJ2Mlew0TtCfAU8uaH2GqMZH7JGatMh31++5zv6w0n79Wl3MGrHvvJvtC
-         Cvxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722645436; x=1723250236;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+itLntxZyTqI7f7PfMJcECQfhIFzXWAphwS/6jaEk/U=;
-        b=IbvSl0HcdmdsLYuw+I+E42Kz/lSBU8AYw294BBUd9el7mUT30TvAxYMN2tPTNTR+7r
-         pbTPFJvHYuqhVgWLNFNsFuNUf6YR2fAkutpuAX62/cfJFhRsg9nmaa443n6mXubWqkEG
-         h5ElUpBhyPZ8ZRFkh1qqRoJ4GZknYj0DRGxal6YcPfHk06G4iLrk0g75iGhfWbmLoXIs
-         liIgLouOO2nPe78S0Cy64AiLB/AuTW/uHswDP0nGralPNzJAW9GrEdCNg0qH0tBAl5Uc
-         NBzPAS5vpKtCkdGXtvew+SG2onFKaY1LFUbEnS8H9D85T8PjXeYP0v+d+9pymWaBnlDw
-         dNvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXxcaM3J7PlWK3DSJJBsMY2JVt67/9z4MJVD5g4rEToiYyPRMv4ldgA/mVXGCINzf4snbhEDgf89gbXhTTdioqgtUgBoJS1YkQZwS3HAp7D6NPqvlB/JZ5eMVd9GbzNWpy/k/PIJqTxt5yLrKyupBFfAfuwIL6AvrCDfKVTuGKmdBMc4NiS
-X-Gm-Message-State: AOJu0Yx+Ox8dMoALqUT3s14pMAOU5SJC3gXvnLgFYPEnC5OvFUSzzAlG
-	ndxQ7EuXyxlSCYiVVlG6H+X9SJTHohZO2ireCT1575e0ol5rDHb1
-X-Google-Smtp-Source: AGHT+IGFfX4lVD9nADlN/dQxlgM+uZ2O8NSgKp2XTuPJS7TFxSi+WsiYLvOVTLUPZ7P8w1O46FxssA==
-X-Received: by 2002:a17:903:41c8:b0:1ff:4618:36bc with SMTP id d9443c01a7336-1ff572f236fmr71740635ad.39.1722645435664;
-        Fri, 02 Aug 2024 17:37:15 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:47be:b3e2:7c00:141c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff5928ff1esm23067105ad.237.2024.08.02.17.37.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Aug 2024 17:37:15 -0700 (PDT)
-Date: Fri, 2 Aug 2024 17:37:12 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: utsav.agarwal@analog.com
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Arturs Artamonovs <arturs.artamonovs@analog.com>,
-	Vasileios Bimpikas <vasileios.bimpikas@analog.com>,
-	Oliver Gaskell <oliver.gaskell@analog.com>
-Subject: Re: [PATCH v8 2/3] Input: adp5588-keys - add support for pure gpio
-Message-ID: <Zq17uABHdNENnwVq@google.com>
-References: <20240704-adp5588_gpio_support-v8-0-208cf5d4c2d6@analog.com>
- <20240704-adp5588_gpio_support-v8-2-208cf5d4c2d6@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oQmNwJuojO9HFHwLZmDPHwSnl26AFGVf3ds3pz87yRxqjymQMa2uWWDQQJ1n8to+wwe90WIWRcZj+2Cjm1Os8Lyvg0ioVcJ84D0x244NcT+wtlVG+fi4HbLoPrBruH032F4+A2B24GFaebFk2GYQaRFMSmyLW/QxZncc6/IWLdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LAiZfGDq; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722651205; x=1754187205;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ml8yJMr5An3VhYIGhMGVsAeIILi31Bm9dzNScMAZb4g=;
+  b=LAiZfGDqdKXkMlJQ1xuhyf2ElmbYfuHs2pXjm01AgBankuBVut6+6v2v
+   gilk/qp5neNGsXyzO5YdAtYguuwaTHrCoTFlfmEtnnyt68IYWs1uPviF2
+   61VbAe3GnRWtv9ZxtpKaBpwnC4HcPkFEdpc0MSNQPlcULpsMsSpI+MHww
+   tL/T878KiM2d5pBnE8Jsnrn54sVxFBX2PsXILGnI2495JnUd+iVAdSE/q
+   Sg4LKSosWs0HpF7EVfJBB3L67hYd/AkzNeP5pETKPR66uaUOqJVHJZNbT
+   ieli7BiQVn67E6tBt1rIugEaLepPjyimA+HsJdpsqzQws+jCvDMeTX4qs
+   A==;
+X-CSE-ConnectionGUID: lbNveibhSTe06huzZmQG4Q==
+X-CSE-MsgGUID: RA714PdcR1W3/2TZuPZ8pA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11152"; a="12856696"
+X-IronPort-AV: E=Sophos;i="6.09,259,1716274800"; 
+   d="scan'208";a="12856696"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2024 19:13:24 -0700
+X-CSE-ConnectionGUID: sWld8u6fSrekvgHseOCUGA==
+X-CSE-MsgGUID: YvNLQpIXSfSDa5TU1HrBSQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,259,1716274800"; 
+   d="scan'208";a="55502363"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 02 Aug 2024 19:13:21 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sa4Gj-000xlD-2F;
+	Sat, 03 Aug 2024 02:13:17 +0000
+Date: Sat, 3 Aug 2024 10:12:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Stanley Chu <stanley.chuys@gmail.com>, alexandre.belloni@bootlin.com,
+	robh@kernel.org, krzk+dt@kernel.org, linux-i3c@lists.infradead.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, tomer.maimon@nuvoton.com,
+	kwliu@nuvoton.com, yschu@nuvoton.com, cpchiang1@nuvoton.com
+Subject: Re: [PATCH v1 2/2] i3c: master: Add Nuvoton npcm845 i3c master driver
+Message-ID: <202408030900.Hx3aeLR4-lkp@intel.com>
+References: <20240801071946.43266-3-yschu@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,89 +81,234 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240704-adp5588_gpio_support-v8-2-208cf5d4c2d6@analog.com>
+In-Reply-To: <20240801071946.43266-3-yschu@nuvoton.com>
 
-Hi Utsav,
+Hi Stanley,
 
-On Thu, Jul 04, 2024 at 03:26:31PM +0100, Utsav Agarwal via B4 Relay wrote:
-> From: Utsav Agarwal <utsav.agarwal@analog.com>
-> 
-> Keypad specific setup is relaxed if no keypad rows/columns are specified,
-> enabling a purely gpio operation.
-> 
-> Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
-> ---
->  drivers/input/keyboard/adp5588-keys.c | 37 +++++++++++++++++++++++++++++++----
->  1 file changed, 33 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/input/keyboard/adp5588-keys.c b/drivers/input/keyboard/adp5588-keys.c
-> index 09bcfc6b9408..7c32f8b69a3e 100644
-> --- a/drivers/input/keyboard/adp5588-keys.c
-> +++ b/drivers/input/keyboard/adp5588-keys.c
-> @@ -188,6 +188,7 @@ struct adp5588_kpad {
->  	u32 cols;
->  	u32 unlock_keys[2];
->  	int nkeys_unlock;
-> +	bool gpio_only;
->  	unsigned short keycode[ADP5588_KEYMAPSIZE];
->  	unsigned char gpiomap[ADP5588_MAXGPIO];
->  	struct gpio_chip gc;
-> @@ -431,10 +432,12 @@ static int adp5588_gpio_add(struct adp5588_kpad *kpad)
->  	kpad->gc.label = kpad->client->name;
->  	kpad->gc.owner = THIS_MODULE;
->  
-> -	girq = &kpad->gc.irq;
-> -	gpio_irq_chip_set_chip(girq, &adp5588_irq_chip);
-> -	girq->handler = handle_bad_irq;
-> -	girq->threaded = true;
-> +	if (kpad->client->irq) {
-> +		girq = &kpad->gc.irq;
-> +		gpio_irq_chip_set_chip(girq, &adp5588_irq_chip);
-> +		girq->handler = handle_bad_irq;
-> +		girq->threaded = true;
-> +	}
->  
->  	mutex_init(&kpad->gpio_lock);
->  
-> @@ -632,6 +635,21 @@ static int adp5588_fw_parse(struct adp5588_kpad *kpad)
->  	struct i2c_client *client = kpad->client;
->  	int ret, i;
->  
-> +	/*
-> +	 * Check if the device is to be operated purely in GPIO mode. To do
-> +	 * so, check that no keypad rows or columns have been specified,
-> +	 * since all GPINS should be configured as GPIO.
-> +	 */
-> +	ret = device_property_present(&client->dev,
-> +			"keypad,num-rows");
-> +	ret |= device_property_present(&client->dev,
-> +			"keypad,num-columns");
-> +	/* If purely GPIO, skip keypad setup */
-> +	if (!ret) {
-> +		kpad->gpio_only = true;
-> +		return 0;
-> +	}
-> +
->  	ret = matrix_keypad_parse_properties(&client->dev, &kpad->rows,
->  					     &kpad->cols);
->  	if (ret)
-> @@ -775,6 +793,11 @@ static int adp5588_probe(struct i2c_client *client)
->  	if (error)
->  		return error;
->  
-> +	if (kpad->gpio_only && !client->irq) {
-> +		dev_info(&client->dev, "Rev.%d, started as GPIO only\n", revid);
-> +		return 0;
+kernel test robot noticed the following build warnings:
 
-I think we need more elaborate handling here (and probably more
-elaborate binding yaml file): now that you are making interrupt optional
-you should check if interrupt-controller functionality of the GPIO
-block/gpiochip is requested. If it was, then we should not allow missing
-interrupt. If only GPIO controller is needed, without interrupt
-capabilities, tnen running without interrupt is fine.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.11-rc1 next-20240802]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks.
+url:    https://github.com/intel-lab-lkp/linux/commits/Stanley-Chu/dt-bindings-i3c-Add-NPCM845-i3c-controller/20240802-183617
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240801071946.43266-3-yschu%40nuvoton.com
+patch subject: [PATCH v1 2/2] i3c: master: Add Nuvoton npcm845 i3c master driver
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240803/202408030900.Hx3aeLR4-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 423aec6573df4424f90555468128e17073ddc69e)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240803/202408030900.Hx3aeLR4-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408030900.Hx3aeLR4-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/i3c/master/npcm845-i3c-master.c:14:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:8:
+   In file included from include/linux/mm.h:2228:
+   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+   In file included from drivers/i3c/master/npcm845-i3c-master.c:14:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/i3c/master/npcm845-i3c-master.c:14:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/i3c/master/npcm845-i3c-master.c:14:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   drivers/i3c/master/npcm845-i3c-master.c:655:2: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
+     655 |         default:
+         |         ^
+   drivers/i3c/master/npcm845-i3c-master.c:655:2: note: insert 'break;' to avoid fall-through
+     655 |         default:
+         |         ^
+         |         break; 
+>> drivers/i3c/master/npcm845-i3c-master.c:885:41: warning: shift count >= width of type [-Wshift-count-overflow]
+     885 |         info.pid = (NPCM_I3C_VENDORID_VID(reg) << 33) | readl(master->regs + NPCM_I3C_PARTNO);
+         |                                                ^  ~~
+   drivers/i3c/master/npcm845-i3c-master.c:1112:9: warning: use of bitwise '|' with boolean operands [-Wbitwise-instead-of-logical]
+    1112 |                         if ((NPCM_I3C_MSTATUS_STATE_IDLE(reg) |
+         |                             ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                                                               ||
+    1113 |                              NPCM_I3C_MSTATUS_STATE_SLVREQ(reg)) &&
+         |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i3c/master/npcm845-i3c-master.c:67:42: note: expanded from macro 'NPCM_I3C_MSTATUS_STATE_IDLE'
+      67 | #define   NPCM_I3C_MSTATUS_STATE_IDLE(x) (NPCM_I3C_MSTATUS_STATE(x) == 0)
+         |                                          ^
+   drivers/i3c/master/npcm845-i3c-master.c:1112:9: note: cast one or both operands to int to silence this warning
+   drivers/i3c/master/npcm845-i3c-master.c:67:42: note: expanded from macro 'NPCM_I3C_MSTATUS_STATE_IDLE'
+      67 | #define   NPCM_I3C_MSTATUS_STATE_IDLE(x) (NPCM_I3C_MSTATUS_STATE(x) == 0)
+         |                                          ^
+   drivers/i3c/master/npcm845-i3c-master.c:2353:12: error: incompatible function pointer types initializing 'void (*)(struct platform_device *)' with an expression of type 'int (struct platform_device *)' [-Wincompatible-function-pointer-types]
+    2353 |         .remove = npcm_i3c_master_remove,
+         |                   ^~~~~~~~~~~~~~~~~~~~~~
+   10 warnings and 1 error generated.
+
+
+vim +885 drivers/i3c/master/npcm845-i3c-master.c
+
+   770	
+   771	static int npcm_i3c_master_bus_init(struct i3c_master_controller *m)
+   772	{
+   773		struct npcm_i3c_master *master = to_npcm_i3c_master(m);
+   774		struct i3c_bus *bus = i3c_master_get_bus(m);
+   775		struct i3c_device_info info = {};
+   776		unsigned long fclk_rate, fclk_period_ns;
+   777		unsigned long i3c_scl_rate, i2c_scl_rate;
+   778		unsigned int pp_high_period_ns, od_low_period_ns, i2c_period_ns;
+   779		unsigned int scl_period_ns;
+   780		u32 ppbaud, pplow, odhpp, odbaud, i2cbaud, reg;
+   781		int ret;
+   782	
+   783		/* Timings derivation */
+   784		fclk_rate = clk_get_rate(master->fclk);
+   785		if (!fclk_rate)
+   786			return -EINVAL;
+   787	
+   788		fclk_period_ns = DIV_ROUND_UP(1000000000, fclk_rate);
+   789	
+   790		/*
+   791		 * Configure for Push-Pull mode.
+   792		 */
+   793		if (master->scl_timing.i3c_pp_hi >= I3C_SCL_PP_PERIOD_NS_MIN &&
+   794		    master->scl_timing.i3c_pp_lo >= master->scl_timing.i3c_pp_hi) {
+   795			ppbaud = DIV_ROUND_UP(master->scl_timing.i3c_pp_hi, fclk_period_ns) - 1;
+   796			if (ppbaud > NPCM_I3C_MAX_PPBAUD)
+   797				ppbaud = NPCM_I3C_MAX_PPBAUD;
+   798			pplow = DIV_ROUND_UP(master->scl_timing.i3c_pp_lo, fclk_period_ns)
+   799				- (ppbaud + 1);
+   800			if (pplow > NPCM_I3C_MAX_PPLOW)
+   801				pplow = NPCM_I3C_MAX_PPLOW;
+   802			bus->scl_rate.i3c = 1000000000 / (((ppbaud + 1) * 2 + pplow) * fclk_period_ns);
+   803		} else {
+   804			scl_period_ns = DIV_ROUND_UP(1000000000, bus->scl_rate.i3c);
+   805			if (bus->scl_rate.i3c == 10000000) {
+   806				/* Workaround for npcm8xx: 40/60 ns */
+   807				ppbaud = DIV_ROUND_UP(40, fclk_period_ns) - 1;
+   808				pplow = DIV_ROUND_UP(20, fclk_period_ns);
+   809			} else {
+   810				/* 50% duty-cycle */
+   811				ppbaud = DIV_ROUND_UP((scl_period_ns / 2), fclk_period_ns) - 1;
+   812				pplow = 0;
+   813			}
+   814			if (ppbaud > NPCM_I3C_MAX_PPBAUD)
+   815				ppbaud = NPCM_I3C_MAX_PPBAUD;
+   816		}
+   817		pp_high_period_ns = (ppbaud + 1) * fclk_period_ns;
+   818	
+   819		/*
+   820		 * Configure for Open-Drain mode.
+   821		 */
+   822		if (master->scl_timing.i3c_od_hi >= pp_high_period_ns &&
+   823		    master->scl_timing.i3c_od_lo >= I3C_SCL_OD_LOW_PERIOD_NS_MIN) {
+   824			if (master->scl_timing.i3c_od_hi == pp_high_period_ns)
+   825				odhpp = 1;
+   826			else
+   827				odhpp = 0;
+   828			odbaud = DIV_ROUND_UP(master->scl_timing.i3c_od_lo, pp_high_period_ns) - 1;
+   829		} else {
+   830			/* Set default OD timing: 1MHz/1000ns with 50% duty cycle */
+   831			odhpp = 0;
+   832			odbaud = DIV_ROUND_UP(500, pp_high_period_ns) - 1;
+   833		}
+   834		if (odbaud > NPCM_I3C_MAX_ODBAUD)
+   835			odbaud = NPCM_I3C_MAX_ODBAUD;
+   836		od_low_period_ns = (odbaud + 1) * pp_high_period_ns;
+   837	
+   838		/* Configure for I2C mode */
+   839		i2c_period_ns = DIV_ROUND_UP(1000000000, bus->scl_rate.i2c);
+   840		if (i2c_period_ns < od_low_period_ns * 2)
+   841			i2c_period_ns = od_low_period_ns * 2;
+   842		i2cbaud = DIV_ROUND_UP(i2c_period_ns, od_low_period_ns) - 2;
+   843		if (i2cbaud > NPCM_I3C_MAX_I2CBAUD)
+   844			i2cbaud = NPCM_I3C_MAX_I2CBAUD;
+   845	
+   846		i3c_scl_rate = 1000000000 / (((ppbaud + 1) * 2 + pplow) * fclk_period_ns);
+   847		i2c_scl_rate = 1000000000 / ((i2cbaud + 2) * od_low_period_ns);
+   848	
+   849		reg = NPCM_I3C_MCONFIG_MASTER_EN |
+   850		      NPCM_I3C_MCONFIG_DISTO(0) |
+   851		      NPCM_I3C_MCONFIG_HKEEP(3) |
+   852		      NPCM_I3C_MCONFIG_ODSTOP(1) |
+   853		      NPCM_I3C_MCONFIG_PPBAUD(ppbaud) |
+   854		      NPCM_I3C_MCONFIG_PPLOW(pplow) |
+   855		      NPCM_I3C_MCONFIG_ODBAUD(odbaud) |
+   856		      NPCM_I3C_MCONFIG_ODHPP(odhpp) |
+   857		      NPCM_I3C_MCONFIG_SKEW(0) |
+   858		      NPCM_I3C_MCONFIG_I2CBAUD(i2cbaud);
+   859		writel(reg, master->regs + NPCM_I3C_MCONFIG);
+   860	
+   861		dev_dbg(master->dev, "dts: i3c rate=%lu, i2c rate=%lu\n",
+   862			bus->scl_rate.i3c, bus->scl_rate.i2c);
+   863		dev_info(master->dev, "fclk=%lu, period_ns=%lu\n", fclk_rate, fclk_period_ns);
+   864		dev_info(master->dev, "i3c scl_rate=%lu\n", i3c_scl_rate);
+   865		dev_info(master->dev, "i2c scl_rate=%lu\n", i2c_scl_rate);
+   866		dev_info(master->dev, "pp_high=%u, pp_low=%lu\n", pp_high_period_ns,
+   867				(ppbaud + 1 + pplow) * fclk_period_ns);
+   868		dev_info(master->dev, "pp_sda_rd_skew=%d, pp_sda_wr_skew=%d\n",
+   869				master->scl_timing.i3c_pp_sda_rd_skew,
+   870				master->scl_timing.i3c_pp_sda_wr_skew);
+   871		dev_info(master->dev, "od_high=%d, od_low=%d\n",
+   872				odhpp ? pp_high_period_ns : od_low_period_ns, od_low_period_ns);
+   873		dev_dbg(master->dev, "i2c_high=%u, i2c_low=%u\n", ((i2cbaud >> 1) + 1) * od_low_period_ns,
+   874				((i2cbaud >> 1) + 1 + (i2cbaud % 2)) * od_low_period_ns);
+   875		dev_dbg(master->dev, "ppbaud=%d, pplow=%d, odbaud=%d, i2cbaud=%d\n",
+   876			ppbaud, pplow, odbaud, i2cbaud);
+   877		dev_info(master->dev, "mconfig=0x%x\n", readl(master->regs + NPCM_I3C_MCONFIG));
+   878		/* Master core's registration */
+   879		ret = i3c_master_get_free_addr(m, 0);
+   880		if (ret < 0)
+   881			return ret;
+   882	
+   883		info.dyn_addr = ret;
+   884		reg = readl(master->regs + NPCM_I3C_VENDORID);
+ > 885		info.pid = (NPCM_I3C_VENDORID_VID(reg) << 33) | readl(master->regs + NPCM_I3C_PARTNO);
+   886	
+   887		writel(NPCM_MDYNADDR_VALID | NPCM_MDYNADDR_ADDR(info.dyn_addr),
+   888		       master->regs + NPCM_I3C_MDYNADDR);
+   889	
+   890		ret = i3c_master_set_info(&master->base, &info);
+   891	
+   892		return ret;
+   893	}
+   894	
 
 -- 
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
