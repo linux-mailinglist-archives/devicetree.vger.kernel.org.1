@@ -1,856 +1,297 @@
-Return-Path: <devicetree+bounces-90736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42113946982
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C99999469AA
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 14:32:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4B471F21708
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 11:35:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 523221F217C9
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 12:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C34A13959B;
-	Sat,  3 Aug 2024 11:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF34139D13;
+	Sat,  3 Aug 2024 12:32:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mVFVeJnA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nDCg5Z/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F8C7404E
-	for <devicetree@vger.kernel.org>; Sat,  3 Aug 2024 11:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5142D53B;
+	Sat,  3 Aug 2024 12:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722684890; cv=none; b=sQMQNK3Cx2j7Ma2I9MxwwBgnJzPphkEwVllZw+uxl6u12ygwBpVpQUpX1MX3Zkha9OrN9Uyh3r7sYYrSfZy3P4kgFmRq8sI5tHLaclBbyCVB31AODZmNu55XUEVdkbcQGO/P8HEbWLOOTlPhnax4NA3hbdY4+vrdoJdSDBevT38=
+	t=1722688326; cv=none; b=eo8KMBS57c9mxgEIJg93h7VMoJhxStXq1awPUPXyxFWk/uuJHEiWCPKIfMoEYuT3g0DkjaNvaiSXUkt+qXvNhS0pCEYOBeexQQieFlU8QQwQPY5FyTtP7WhM2vJLLe9EEwkZo9B4vo3RlY5HQGHwfdkvgLlkxT0HxkJMi1+SEOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722684890; c=relaxed/simple;
-	bh=UN+9nVK9TXNCrmzeOr32To9r/7c5hbGOZBDPj1YIHSY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j92Mh6Jc1K9v0C87Vd65SfihWqEh7A4puF2IufEfkzUd1hOFppZgE9RKDAmXUjhR9hNhoa7lu3RK9u5HOBwoptAqM8U5YP11lQ4ZksoeThR3a82xnfRDiT3CXRHv0HKZO2rvifWDMF8DwYnX/RUOVtNL3S8bpQcI2n/wTsnP2VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mVFVeJnA; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52efe4c7c16so13100555e87.0
-        for <devicetree@vger.kernel.org>; Sat, 03 Aug 2024 04:34:47 -0700 (PDT)
+	s=arc-20240116; t=1722688326; c=relaxed/simple;
+	bh=uOQrYcJATsAaf82PDCx7hDXIknFlDybJKCXPiGw2T9Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GfVisPOHNXHuIB9MU6Vg4BRDf0E4Icpgl6O/7rCdDuLEPf63E76SRZqyg+u8ksgpcJIkmymUHJle48TnuK1l0hdb0FQXrjGAQ1jFIMZ0dlyg6mm/C1c9XvK1pV4u+ZQ0LlJE7KBkNdxbIQ3Zu9hmHtebxtk6wFtVNzBuiyLk8aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nDCg5Z/S; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-67b709024bfso83715187b3.3;
+        Sat, 03 Aug 2024 05:32:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722684886; x=1723289686; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=C7EDwrAFB26Y7NXEulSeyuW0B/jIhYDQI4l8p/8mzMQ=;
-        b=mVFVeJnA9D21eURf8dFKTouU+Dg8Q6HpxXetW4ZDdWvxXAhFrq9vKqkrrJMB8bAxSM
-         DtnzAwr8yPoTIM3liPj/+kYo+XE3LsWfsTfFcZjvjjyNx8LpMFgHrjO1inRaRvY9tE0P
-         XmgQjH4GQXbFwWb5aIMRI2apEmf6B3v0LssP5TVrMUb4x6KNYprXb/Nnal0qGpN97Vjx
-         bj4HWv1z+sdfNPWHCwYGCuD1QzCbVASot9I6XCbDbQV/RQyoz43tlxTwn8nDl9VU3mzI
-         gPXRrOwExKPnD4XpWN+2hO2C+wcD1xPM7TpqlQSIbfJfUXximmE06ZsPw1AoowcdbyTC
-         N04Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722684886; x=1723289686;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1722688323; x=1723293123; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C7EDwrAFB26Y7NXEulSeyuW0B/jIhYDQI4l8p/8mzMQ=;
-        b=aulsyNVmtZC4tQ7yiDBqzFH0B2HwxE/gYraAs/oXlBqEoRsyPo/XK7/ZkgtpD3pjEp
-         uUl0VHglFeZggjZBjip2g3XItvQ+NR+ANPZMrYD9Mg3/htZsIsLFDepp88o6F9bWzGwq
-         uuF5vBGp6MvzJlKGA+SmplUA28mP6zKEkVcWexuDYTe+TxM+tv2/4tiBmDWEAxXZjqRY
-         DwJzmi0CZd12xEkCzqSItCnA7l6laKC7r6bInQU8cYkLLSbejaigSu9lyIP2vGFDbQ8X
-         rqCQJE4olDRzStUhGJ7hcMbTe4qkXa4KohmqKsWI60uf3bIjQ8hpAt/l0Wut7COuNjw3
-         FxLw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUlEWa4KN6OsStwRqAyx2EbOJ5UJTXCKrPzBb7l1xePimuI+y+zhnLeQK26UXBUgoxssr/BJ72eL/55qYkdVVTPoGQkUGxxY3w0Q==
-X-Gm-Message-State: AOJu0YyF2K67qWEABWoL/Tn+SgSZk7Odlewnnvng89eXFON77DFUjYkY
-	rTzNBAb/kaj/46oJRXRRTfi7zxHZxsoEqS/PQdfl5zVMLpj1Zlov3bb0of3HSCs=
-X-Google-Smtp-Source: AGHT+IFQp8yNb9lKCYJ9WPsH7MTiw2MKtrj2gruwSFjWbbG5d5KfrEZ8g/d3dvEj8D9wbX8eCqSB7A==
-X-Received: by 2002:ac2:4e0d:0:b0:530:bb27:8678 with SMTP id 2adb3069b0e04-530bb3883aamr4144889e87.6.1722684885630;
-        Sat, 03 Aug 2024 04:34:45 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba10e15sm481771e87.78.2024.08.03.04.34.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Aug 2024 04:34:45 -0700 (PDT)
-Date: Sat, 3 Aug 2024 14:34:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Jingoo Han <jingoohan1@gmail.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	andersson@kernel.org, quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 8/8] PCI: pwrctl: Add power control driver for qps615
-Message-ID: <spaudnuoam3cj7glxmnlw7y3m46d2vsm42s576jqwrcrmywl2n@oyrynorzhddg>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
- <20240803-qps615-v2-8-9560b7c71369@quicinc.com>
+        bh=V3+BaC9o/e9DWaWrjc0ap9vXeLeDNjNnKH8vyX7nP08=;
+        b=nDCg5Z/SniQge3QxLOy9uGbXR9ZP1lxsTmAln6kVCgUSjqjfsQv5JsUwsY/zWACQ90
+         EWAlzI5TjSHNOWN6CqJDSviXcPyuyGJePa71UBHFpmCg15QL7ZW0kfFC3E2uhXmpioi0
+         qKQCbz/4Jt5HeQwvEo1JanDAFI1LB7CTtTqA71q9jZG37TxmRNKZMgvLiXWpm2S7E6Az
+         KGoT/7l+FF4pLgjuN5d1J5j7HHTODoF6BxH04mVJjbdeMPK39l2iR+RaGQ76l0YuvYS+
+         eGpS83g3w4dFpsR4juMoc239AKyR5k62A7AkPXFoB2yCfC1y1Dp2lNjT4g5WC8y+jB9P
+         hfqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722688323; x=1723293123;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=V3+BaC9o/e9DWaWrjc0ap9vXeLeDNjNnKH8vyX7nP08=;
+        b=uGDwk9VU2cfIfQ8iIqczU+9+bSpLzpT3YQe+JdDrNZcqiRSb794Fyn169zA5fGFIcG
+         AQh4aBKme5sZ4yo/MRGNdPuwL9kTVboeqVeyceCjdcHLcKWLhDaqKDMICn6YIrd/Sz7c
+         oGn+X+JTyTDX2SEHYr+GEyPEF8/V+T1cHBP44dBeWkresLeoPMDuw2yM/g5fiJtYzSal
+         3J9N9gQAgbG+zco8eWgoHtxrGAgTkp1aAeFn7c+pK1JFs9p1YuF/DZUXWwCQv7kDiD8t
+         lzQL03c0dmW2LWv80lYXg8o36FB214J77m3e6HcCo90f+djPXQsTvOOMGPMqB+FPyxMI
+         zakw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxIiF3KC7bhXbOqXl+xu1TtDfvseYN1OkR8ibYa8ezQsfcSNexc4LfhHzWiSPXw2aRo6cKNLfXffKh@vger.kernel.org, AJvYcCWpkSxZJuvJunk89VxprwX2X0V+j66Btw48gDi/l4i0qSX53FJZ5ZzlKibZDy8FoV2LlEG2sa+IH4K/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyELCQfvceAwmtuMVPYxDL+DMvjQOn/hrry6RHfvwlzPUiZkOQ1
+	rqFFWkQ6JA+OGHK5NvTaC3Ylv4ZN0xcLvl8pV6mUrhYzEHnmA/M2zqqM6OtwEqEfONFYra4gUUU
+	dIWjc4/ni3vD7lXCYEqGnWHW4d/w=
+X-Google-Smtp-Source: AGHT+IHyulwlUu12HySz+3pTmFjQx/SBzzCVa46bcv3gYiCYNGn3Ea7xgWm+nGgMXckttVObX/mBhtmS3Sx5N+NSxQ8=
+X-Received: by 2002:a0d:c346:0:b0:63b:d242:4fa0 with SMTP id
+ 00721157ae682-68960e44eb2mr69575297b3.21.1722688323383; Sat, 03 Aug 2024
+ 05:32:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240803-qps615-v2-8-9560b7c71369@quicinc.com>
+References: <20240718210322.37492-1-ilordash02@gmail.com> <20240718210322.37492-2-ilordash02@gmail.com>
+ <20240719-ahead-kiwi-995e52bf3e74@spud> <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
+ <20240723-dinginess-john-608d0b28293b@spud> <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
+ <20240723-municipal-snowy-136b08b6db90@spud> <CAGCz5HnJKjNj7A0YD2fw20m-NrEs3MoCLwox86mC11Kudq8xbg@mail.gmail.com>
+ <CAMuHMdUf=McxMLqb1hgu_-4QkSFJkdWrdtbwiwn9yJoMSi3YWA@mail.gmail.com> <20240801-disarray-gesture-ebad121272b0@spud>
+In-Reply-To: <20240801-disarray-gesture-ebad121272b0@spud>
+From: Ilya Orazov <ilordash02@gmail.com>
+Date: Sat, 3 Aug 2024 15:31:52 +0300
+Message-ID: <CAGCz5H=gDfJpfAhH-QbxN5VSDyVtwGU6Zt16z7=sqpTdjkeGqA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
+To: Conor Dooley <conor@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, 
+	vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	a-govindraju@ti.com, linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 03, 2024 at 08:52:54AM GMT, Krishna chaitanya chundru wrote:
-> QPS615 switch needs to be configured after powering on and before
-> PCIe link was up.
-> 
-> As the PCIe controller driver already enables the PCIe link training
-> at the host side, stop the link training. Otherwise the moment we turn
-> on the switch it will participate in the link training and link may come
-> up before switch is configured through i2c.
-> 
-> The device tree properties are parsed per node under pci-pci bridge in the
-> driver. Each node has unique bdf value in the reg property, driver
-> uses this bdf to differentiate ports, as there are certain i2c writes to
-> select particular port.
-> 
-> Based up on dt property and port, qps615 is configured through i2c.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/pwrctl/Kconfig             |   7 +
->  drivers/pci/pwrctl/Makefile            |   1 +
->  drivers/pci/pwrctl/pci-pwrctl-qps615.c | 638 +++++++++++++++++++++++++++++++++
->  3 files changed, 646 insertions(+)
-> 
-> diff --git a/drivers/pci/pwrctl/Kconfig b/drivers/pci/pwrctl/Kconfig
-> index 54589bb2403b..6a1352af918c 100644
-> --- a/drivers/pci/pwrctl/Kconfig
-> +++ b/drivers/pci/pwrctl/Kconfig
-> @@ -10,3 +10,10 @@ config PCI_PWRCTL_PWRSEQ
->  	tristate
->  	select POWER_SEQUENCING
->  	select PCI_PWRCTL
-> +
-> +config PCI_PWRCTL_QPS615
-> +	tristate "PCI Power Control driver for QPS615"
-> +	select PCI_PWRCTL
-> +	help
-> +	  Say Y here to enable the pwrctl driver for Qualcomm
-> +	  QPS615 PCIe switch.
-> diff --git a/drivers/pci/pwrctl/Makefile b/drivers/pci/pwrctl/Makefile
-> index d308aae4800c..ac563a70c023 100644
-> --- a/drivers/pci/pwrctl/Makefile
-> +++ b/drivers/pci/pwrctl/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCI_PWRCTL)		+= pci-pwrctl-core.o
->  pci-pwrctl-core-y			:= core.o
->  
->  obj-$(CONFIG_PCI_PWRCTL_PWRSEQ)		+= pci-pwrctl-pwrseq.o
-> +obj-$(CONFIG_PCI_PWRCTL_QPS615)		+= pci-pwrctl-qps615.o
-> diff --git a/drivers/pci/pwrctl/pci-pwrctl-qps615.c b/drivers/pci/pwrctl/pci-pwrctl-qps615.c
-> new file mode 100644
-> index 000000000000..9dabb82787d5
-> --- /dev/null
-> +++ b/drivers/pci/pwrctl/pci-pwrctl-qps615.c
-> @@ -0,0 +1,638 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/firmware.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/pci.h>
-> +#include <linux/pci-pwrctl.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +
-> +#include "../pci.h"
-> +
-> +#define QPS615_GPIO_CONFIG		0x801208
-> +#define QPS615_RESET_GPIO		0x801210
-> +
-> +#define QPS615_BUS_CONTROL		0x801014
-> +
-> +#define QPS615_PORT_L0S_DELAY		0x82496c
-> +#define QPS615_PORT_L1_DELAY		0x824970
-> +
-> +#define QPS615_EMBEDDED_ETH_DELAY	0x8200d8
-> +#define QPS615_ETH_L1_DELAY_MASK	GENMASK(27, 18)
-> +#define QPS615_ETH_L1_DELAY_VALUE(x)	FIELD_PREP(QPS615_ETH_L1_DELAY_MASK, x)
-> +#define QPS615_ETH_L0S_DELAY_MASK	GENMASK(17, 13)
-> +#define QPS615_ETH_L0S_DELAY_VALUE(x)	FIELD_PREP(QPS615_ETH_L0S_DELAY_MASK, x)
-> +
-> +#define QPS615_NFTS_2_5_GT		0x824978
-> +#define QPS615_NFTS_5_GT		0x82497c
-> +
-> +#define QPS615_PORT_LANE_ACCESS_ENABLE	0x828000
-> +
-> +#define QPS615_PHY_RATE_CHANGE_OVERRIDE	0x828040
-> +#define QPS615_PHY_RATE_CHANGE		0x828050
-> +
-> +#define QPS615_TX_MARGIN		0x828234
-> +
-> +#define QPS615_DFE_ENABLE		0x828a04
-> +#define QPS615_DFE_EQ0_MODE		0x828a08
-> +#define QPS615_DFE_EQ1_MODE		0x828a0c
-> +#define QPS615_DFE_EQ2_MODE		0x828a14
-> +#define QPS615_DFE_PD_MASK		0x828254
-> +
-> +#define QPS615_PORT_SELECT		0x82c02c
-> +#define QPS615_PORT_ACCESS_ENABLE	0x82c030
-> +
-> +#define QPS615_POWER_CONTROL		0x82b09c
-> +#define QPS615_POWER_CONTROL_OVREN	0x82b2c8
-> +
-> +#define QPS615_AXI_CLK_FREQ_MHZ		125
-> +
-> +struct qps615_pwrctl_reg_setting {
-> +	unsigned int offset;
-> +	unsigned int val;
-> +};
-> +
-> +struct qps615_pwrctl_bdf_info {
-> +	u16 usp_bdf;
-> +	u16 dsp1_bdf;
-> +	u16 dsp2_bdf;
-> +	u16 dsp3_bdf;
+On Thu, 1 Aug 2024 at 18:12, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Mon, Jul 29, 2024 at 10:51:50AM +0200, Geert Uytterhoeven wrote:
+> > Hi Ilya,
+> >
+> > On Sun, Jul 28, 2024 at 10:52=E2=80=AFAM Ilya Orazov <ilordash02@gmail.=
+com> wrote:
+> > > On Tue, 23 Jul 2024 at 23:14, Conor Dooley <conor@kernel.org> wrote:
+> > > > On Tue, Jul 23, 2024 at 10:55:17PM +0300, Ilya Orazov wrote:
+> > > > > On Tue, 23 Jul 2024 at 21:50, Conor Dooley <conor@kernel.org> wro=
+te:
+> > > > > > On Tue, Jul 23, 2024 at 08:20:04PM +0300, IlorDash wrote:
+> > > > > > > On Fri, 19 Jul 2024 at 18:07, Conor Dooley <conor@kernel.org>=
+ wrote:
+> > > > > > > >
+> > > > > > > > On Fri, Jul 19, 2024 at 12:03:21AM +0300, Ilya Orazov wrote=
+:
+> > > > > > > > > Microchip ATA6561 is High-Speed CAN Transceiver with Stan=
+dby Mode.
+> > > > > > > > > It is pin-compatible with TI TCAN1042.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> > > > > > > > > ---
+> > > > > > > > >  Documentation/devicetree/bindings/phy/ti,tcan104x-can.ya=
+ml | 1 +
+> > > > > > > > >  1 file changed, 1 insertion(+)
+> > > > > > > > >
+> > > > > > > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tca=
+n104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > > > > > > > > index 79dad3e89aa6..03de361849d2 100644
+> > > > > > > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-c=
+an.yaml
+> > > > > > > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-c=
+an.yaml
+> > > > > > > > > @@ -18,6 +18,7 @@ properties:
+> > > > > > > > >        - nxp,tjr1443
+> > > > > > > > >        - ti,tcan1042
+> > > > > > > > >        - ti,tcan1043
+> > > > > > > > > +      - microchip,ata6561
+> > > > > > > >
+> > > > > > > > Given that your driver patch has
+> > > > > > > > | diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/=
+phy/phy-can-transceiver.c
+> > > > > > > > | index ee4ce4249698..dbcd99213ba1 100644
+> > > > > > > > | --- a/drivers/phy/phy-can-transceiver.c
+> > > > > > > > | +++ b/drivers/phy/phy-can-transceiver.c
+> > > > > > > > | @@ -89,6 +89,10 @@ static const struct of_device_id can_t=
+ransceiver_phy_ids[] =3D {
+> > > > > > > > |                 .compatible =3D "nxp,tjr1443",
+> > > > > > > > |                 .data =3D &tcan1043_drvdata
+> > > > > > > > |         },
+> > > > > > > > | +       {
+> > > > > > > > | +               .compatible =3D "microchip,ata6561",
+> > > > > > > > | +               .data =3D &tcan1042_drvdata
+> > > > > > > > | +       },
+> > > > > > > > |         { }
+> > > > > > > > |  };
+> > > > > > > >
+> > > > > > > > the driver patch is actually not needed at all, and you jus=
+t need to
+> > > > > > > > allow ti,tcan1042 as fallback compatible in the binding, so=
+ something
+> > > > > > > > like:
+> > > > > > > >
+> > > > > > > >   compatible:
+> > > > > > > >     oneOf:
+> > > > > > > >       - enum:
+> > > > > > > >           - nxp,tjr1443
+> > > > > > > >           - ti,tcan1042
+> > > > > > > >           - ti,tcan1043
+> > > > > > > >       - items:
+> > > > > > > >           - const: microchip,ata6561
+> > > > > > > >           - const: ti,tcan1042
+> > > > > > > >
+> > > > > > > >    '#phy-cells':
+> > > > > > > >      const: 0
+> > > > > > >
+> > > > > > > I tested the build with fallback compatible:
+> > > > > > >
+> > > > > > > compatible:
+> > > > > > >   oneOf:
+> > > > > > >     - items:
+> > > > > > >       - enum:
+> > > > > > >         - microchip,ata6561
+> > > > > > >       - const: ti,tcan1042
+> > > > > > >     - items:
+> > > > > > >       - enum:
+> > > > > > >         - nxp,tjr1443
+> > > > > > >       - const: ti,tcan1043
+> > > > > > >
+> > > > > > > and modified compatible property in DTS:
+> > > > > > >
+> > > > > > > compatible =3D "microchip,ata6561", "ti,tcan1042";
+> > > > > > >
+> > > > > > > Build succeeded, phy-can-transceiver driver was used. So I wo=
+uld like
+> > > > > > > to add a fallback compatible for both "microchip,ata6561" and
+> > > > > > > "nxp,tjr1443" in this binding and modify other DTS files with
+> > > > > > > compatible =3D "nxp,tjr1443". What do you think?
+> > > > > >
+> > > > > > This is wrong on two counts. Firstly, were what you have correc=
+t, you
+> > > > > > should
+> > > > > > squash the two:
+> > > > > >      - items:
+> > > > > >          - enum:
+> > > > > >            - nxp,tjr1443
+> > > > > >            - microchip,ata6561
+> > > > > >          - const: ti,tcan1042
+> > > > > >
+> > > > > > However, that does not allow the TI compatibles in isolation, s=
+o you
+> > > > > > still need to allow that for the actual TI devices, so you need=
+:
+> > > > > >
+> > > > > >    oneOf:
+> > > > > >      - items:
+> > > > > >          - enum:
+> > > > > >            - microchip,ata6561
+> > > > > >            - nxp,tjr1443
+> > > > > >            - ti,tcan1043
+> > > > > >          - const: ti,tcan1042
+> > > > > >      - const: ti,tcan1042
+> > > > > >
+> > > > > > There's probably some devicetrees that would need to be fixed u=
+p. I'm
+> > > > > > just not convinced that this is worth retrofitting however.
+> > > > >
+> > > > > But nxp,tjr1443 is pin compatible with ti,tcan1043, so it should
+> > > > > fallback only to ti,tcan1043 and not ti,tcan1042. That's why I de=
+cided
+> > > > > to split them into different enums.
+> > > >
+> > > > Ah, sorry I missed that. I misread the match data. Then you need:
+> > > >   compatible:
+> > > >     oneOf:
+> > > >       - items:
+> > > >         - enum:
+> > > >           - microchip,ata6561
+> > > >         - const: ti,tcan1042
+> > > >       - items:
+> > > >         - enum:
+> > > >           - nxp,tjr1443
+> > > >         - const: ti,tcan1043
+> > > >       - enum:
+> > > >           const: ti,tcan1042
+> > > >           const: ti,tcan1043
+> > > >
+> > > > because the TI devices exist and we still need to be able to
+> > > > differentiate the TI and NXP devices. If you have
+> > > >   compatible =3D "nxp,tjr1443", "ti,tcan1042";
+> > > > that means the device is an nxp,tjr1443. If you have
+> > > >   compatible =3D "ti,tcan1042";
+> > > > then that's a tcan1042.
+> > > >
+> > > > > I made my patch according to a similar one that adds support for
+> > > > > nxp,tjr1443. You can find it's conversation on
+> > > > > https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45f3=
+bb0.1674037830.git.geert+renesas@glider.be/t/#u.
+> > > >
+> > > > > I thought we want to hold all PHY chip names in one compatible en=
+um
+> > > > > and each in its own of_device_id struct in driver and extend them
+> > > > > where appropriate.
+> > > >
+> > > > Nah, fallbacks are preferred when the programming model is either
+> > > > identical or a "compatible superset" of an existing device. New
+> > > > of_device_id structs should only be used where we need to account f=
+or
+> > > > differences in the programming model.
+> > >
+> > > However, I am curious as to why the NXP CAN PHY transceiver was not
+> > > included as fallback compatible. Geert, could you please share your
+> > > thoughts on this matter?
+> >
+> > The TJR1443 looked sufficiently similar to the TCAN1043 to use the
+> > same driver configuration (which is limited to having standby and/or
+> > enable signals or not).  However, I'm not sure it behaves exactly
+> > the same, e.g. in case of reporting an error condition (which is not
+> > yet supported by the driver). The part numbers are also different,
+> > so this is not a simple case of SN74HCxx vs. CD74HCxx.
+> >
+> > Summary: I don't know if they are identical, or if TJR1443 is a
+> > compatible superset of TCAN1043, or vice versa. Hence I went for the
+> > safest way....
+>
+> If we don't know for sure what the craic is with compatibility, then we
+> should leave the existing tjr1443 compatible as-is I think.
 
-Why are these values dynamic? Please use #define's for now. If there
-ever comes a similar bridge, it most likely will have a different ports
-configuration, so it will need additional changes anyway.
+If I understood the kernel documentation correctly, we use fallback
+compatibles when devices are similar or there is an iterative
+relationship between them. In my case, the TCAN1042 and ATA6561 are
+from different manufacturers, and I'm not sure about their fully
+identical functionality.
 
-> +};
-> +
-> +enum qps615_pwrctl_ports {
-> +	QPS615_USP,
-> +	QPS615_DSP1,
-> +	QPS615_DSP2,
-> +	QPS615_DSP3,
-> +	QPS615_ETHERNET,
-> +	QPS615_MAX
-> +};
-> +
-> +struct qps615_pwrctl_cfg {
-> +	u32 l0s_delay;
-> +	u32 l1_delay;
-> +	u32 tx_amp;
-> +	u32 axi_freq;
-> +	u8  nfts;
-> +	bool disable_dfe;
-> +	bool disable_port;
-> +};
-> +
-> +#define QPS615_PWRCTL_MAX_SUPPLY	6
-> +
-> +struct qps615_pwrctl_ctx {
-> +	struct regulator_bulk_data supplies[QPS615_PWRCTL_MAX_SUPPLY];
-> +	const struct qps615_pwrctl_bdf_info *bdf;
-> +	struct qps615_pwrctl_cfg cfg[QPS615_MAX];
-> +	struct gpio_desc *reset_gpio;
-> +	struct i2c_client *client;
-> +	struct pci_pwrctl pwrctl;
-> +	struct device_link *link;
-> +};
-> +
-> +/*
-> + * downstream port power off sequence, hardcoding the address
-> + * as we don't know register names for these register offsets.
+Therefore, I'll go back to the original idea where I shouldn't use a
+fallback compatible here and must leave it as another compatible
+property with its own of_device_id struct.
 
-It is hard to believe that Qualcomm engineers don't know register names
-for the Qualcomm device.
+What do you think about it? In my opinion, this is not a case for
+fallback compatibility.
 
-> + */
-> +static const struct qps615_pwrctl_reg_setting common_pwroff_seq[] = {
-> +	{0x82900c, 0x1},
-> +	{0x829010, 0x1},
-> +	{0x829018, 0x0},
-> +	{0x829020, 0x1},
-> +	{0x82902c, 0x1},
-> +	{0x829030, 0x1},
-> +	{0x82903c, 0x1},
-> +	{0x829058, 0x0},
-> +	{0x82905c, 0x1},
-> +	{0x829060, 0x1},
-> +	{0x8290cc, 0x1},
-> +	{0x8290d0, 0x1},
-> +	{0x8290d8, 0x1},
-> +	{0x8290e0, 0x1},
-> +	{0x8290e8, 0x1},
-> +	{0x8290ec, 0x1},
-> +	{0x8290f4, 0x1},
-> +	{0x82910c, 0x1},
-> +	{0x829110, 0x1},
-> +	{0x829114, 0x1},
-> +};
-> +
-> +static const struct qps615_pwrctl_reg_setting dsp1_pwroff_seq[] = {
-> +	{QPS615_PORT_ACCESS_ENABLE, 0x2},
-> +	{QPS615_PORT_LANE_ACCESS_ENABLE, 0x3},
-> +	{QPS615_POWER_CONTROL, 0x014f4804},
-> +	{QPS615_POWER_CONTROL_OVREN, 0x1},
-> +	{QPS615_PORT_ACCESS_ENABLE, 0x4},
-> +};
-> +
-> +static const struct qps615_pwrctl_reg_setting dsp2_pwroff_seq[] = {
-> +	{QPS615_PORT_ACCESS_ENABLE, 0x8},
-> +	{QPS615_PORT_LANE_ACCESS_ENABLE, 0x1},
-> +	{QPS615_POWER_CONTROL, 0x014f4804},
-> +	{QPS615_POWER_CONTROL_OVREN, 0x1},
-> +	{QPS615_PORT_ACCESS_ENABLE, 0x8},
-> +};
-> +
-> +static int qps615_pwrctl_i2c_write(struct i2c_client *client,
-> +				   u32 reg_addr, u32 reg_val)
-> +{
-> +	struct i2c_msg msg;
-> +	u8 msg_buf[7];
-> +	int ret;
-> +
-> +	msg.addr = client->addr;
-> +	msg.len = 7;
-> +	msg.flags = 0;
-> +
-> +	/* Big Endian for reg addr */
-> +	reg_addr = cpu_to_be32(reg_addr);
-
-This is incorrect. After cpu_to_be32() the value depends on the CPU
-endianness. So reg_addr >> 8 will return different values for LE and BE
-CPUs.
-
-> +
-> +	msg_buf[0] = (u8)(reg_addr >> 8);
-> +	msg_buf[1] = (u8)(reg_addr >> 16);
-> +	msg_buf[2] = (u8)(reg_addr >> 24);
-> +
-> +	/* Little Endian for reg val */
-> +	reg_val = cpu_to_le32(reg_val);
-> +
-> +	msg_buf[3] = (u8)(reg_val);
-> +	msg_buf[4] = (u8)(reg_val >> 8);
-> +	msg_buf[5] = (u8)(reg_val >> 16);
-> +	msg_buf[6] = (u8)(reg_val >> 24);
-
-Same issue here.
-
-> +
-> +	msg.buf = msg_buf;
-> +	ret = i2c_transfer(client->adapter, &msg, 1);
-> +	return ret == 1 ? 0 : ret;
-> +}
-> +
-> +static int qps615_pwrctl_i2c_read(struct i2c_client *client,
-> +				  u32 reg_addr, u32 *reg_val)
-> +{
-> +	struct i2c_msg msg[2];
-> +	u8 wr_data[3];
-> +	u32 rd_data;
-> +	int ret;
-> +
-> +	msg[0].addr = client->addr;
-> +	msg[0].len = 3;
-> +	msg[0].flags = 0;
-> +
-> +	/* Big Endian for reg addr */
-> +	reg_addr = cpu_to_be32(reg_addr);
-> +
-> +	wr_data[0] = (u8)(reg_addr >> 8);
-> +	wr_data[1] = (u8)(reg_addr >> 16);
-> +	wr_data[2] = (u8)(reg_addr >> 24);
-
-And here.
-
-> +
-> +	msg[0].buf = wr_data;
-> +
-> +	msg[1].addr = client->addr;
-> +	msg[1].len = 4;
-> +	msg[1].flags = I2C_M_RD;
-> +
-> +	msg[1].buf = (u8 *)&rd_data;
-> +
-> +	ret = i2c_transfer(client->adapter, &msg[0], 2);
-> +	if (ret == 2) {
-> +		*reg_val = le32_to_cpu(rd_data);
-> +		return 0;
-> +	}
-> +
-> +	/* If only one message successfully completed, return -ENODEV */
-> +	return ret == 1 ? -ENODEV : ret;
-> +}
-> +
-> +static int qps615_pwrctl_i2c_bulk_write(struct i2c_client *client,
-> +					const struct qps615_pwrctl_reg_setting *seq, int len)
-> +{
-> +	int ret, i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		ret = qps615_pwrctl_i2c_write(client, seq[i].offset, seq[i].val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int of_pci_get_bdf(struct device_node *np)
-> +{
-> +	u32 reg[5];
-> +	int error;
-> +
-> +	error = of_property_read_u32_array(np, "reg", reg, ARRAY_SIZE(reg));
-
-Please use of_property_read_u32_index() instead.
-
-> +	if (error)
-> +		return error;
-> +
-> +	return (reg[0] >> 8) & 0xffff;
-> +}
-> +
-> +static int qps615_pwrctl_disable_port(struct qps615_pwrctl_ctx *ctx,
-> +				      enum qps615_pwrctl_ports port)
-> +{
-> +	const struct qps615_pwrctl_reg_setting *seq;
-> +	int ret, len;
-> +
-> +	seq = (port == QPS615_DSP1) ? dsp1_pwroff_seq : dsp2_pwroff_seq;
-> +	len = (port == QPS615_DSP1) ? ARRAY_SIZE(dsp1_pwroff_seq) : ARRAY_SIZE(dsp2_pwroff_seq);
-> +
-> +	ret = qps615_pwrctl_i2c_bulk_write(ctx->client, seq, len);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return qps615_pwrctl_i2c_bulk_write(ctx->client,
-> +					    common_pwroff_seq, ARRAY_SIZE(common_pwroff_seq));
-> +}
-> +
-> +static int qps615_pwrctl_set_l0s_l1_entry_delay(struct qps615_pwrctl_ctx *ctx,
-> +						enum qps615_pwrctl_ports port, bool is_l1, u32 ns)
-> +{
-> +	u32 rd_val, units;
-> +	int ret;
-> +
-> +	/* convert to units of 256ns */
-> +	units = ns / 256;
-> +
-> +	if (port == QPS615_ETHERNET) {
-> +		ret = qps615_pwrctl_i2c_read(ctx->client, QPS615_EMBEDDED_ETH_DELAY, &rd_val);
-> +		if (ret)
-> +			return ret;
-> +		rd_val = u32_replace_bits(rd_val, units,
-> +					  is_l1 ?
-> +					  QPS615_ETH_L1_DELAY_MASK : QPS615_ETH_L0S_DELAY_MASK);
-> +		return qps615_pwrctl_i2c_write(ctx->client, QPS615_EMBEDDED_ETH_DELAY, rd_val);
-> +	}
-> +
-> +	ret = qps615_pwrctl_i2c_write(ctx->client, QPS615_PORT_SELECT, BIT(port));
-> +	if (ret)
-> +		return ret;
-
-What if there is a concurrent call? The port_select / write_value
-statements should use a lock to remove the possible race condition.
-
-> +
-> +	return qps615_pwrctl_i2c_write(ctx->client,
-> +				       is_l1 ? QPS615_PORT_L1_DELAY : QPS615_PORT_L0S_DELAY, units);
-> +}
-> +
-> +static int qps615_pwrctl_set_tx_amplitude(struct qps615_pwrctl_ctx *ctx,
-> +					  enum qps615_pwrctl_ports port, u32 amp)
-> +{
-> +	int port_access;
-> +
-> +	switch (port) {
-> +	case QPS615_USP:
-> +		port_access = 0x1;
-> +		break;
-> +	case QPS615_DSP1:
-> +		port_access = 0x2;
-> +		break;
-> +	case QPS615_DSP2:
-> +		port_access = 0x8;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	};
-> +
-> +	struct qps615_pwrctl_reg_setting tx_amp_seq[] = {
-> +		{QPS615_PORT_ACCESS_ENABLE, port_access},
-
-Hmm, this looks like another port selection, so most likely it should
-also be under the same lock.
-
-> +		{QPS615_PORT_LANE_ACCESS_ENABLE, 0x3},
-> +		{QPS615_TX_MARGIN, amp},
-> +	};
-> +
-> +	return qps615_pwrctl_i2c_bulk_write(ctx->client, tx_amp_seq, ARRAY_SIZE(tx_amp_seq));
-> +}
-> +
-> +static int qps615_pwrctl_disable_dfe(struct qps615_pwrctl_ctx *ctx,
-> +				     enum qps615_pwrctl_ports port)
-> +{
-> +	int port_access, lane_access = 0x3;
-> +	u32 phy_rate = 0x21;
-> +
-> +	switch (port) {
-> +	case QPS615_USP:
-> +		phy_rate = 0x1;
-> +		port_access = 0x1;
-> +		break;
-> +	case QPS615_DSP1:
-> +		port_access = 0x2;
-> +		break;
-> +	case QPS615_DSP2:
-> +		port_access = 0x8;
-> +		lane_access = 0x1;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	};
-> +
-> +	struct qps615_pwrctl_reg_setting disable_dfe_seq[] = {
-> +		{QPS615_PORT_ACCESS_ENABLE, port_access},
-> +		{QPS615_PORT_LANE_ACCESS_ENABLE, lane_access},
-> +		{QPS615_DFE_ENABLE, 0x0},
-> +		{QPS615_DFE_EQ0_MODE, 0x411},
-> +		{QPS615_DFE_EQ1_MODE, 0x11},
-> +		{QPS615_DFE_EQ2_MODE, 0x11},
-> +		{QPS615_DFE_PD_MASK, 0x7},
-> +		{QPS615_PHY_RATE_CHANGE_OVERRIDE, 0x10},
-> +		{QPS615_PHY_RATE_CHANGE, phy_rate},
-> +		{QPS615_PHY_RATE_CHANGE, 0x0},
-> +		{QPS615_PHY_RATE_CHANGE_OVERRIDE, 0x0},
-> +
-> +	};
-> +
-> +	return qps615_pwrctl_i2c_bulk_write(ctx->client,
-> +					    disable_dfe_seq, ARRAY_SIZE(disable_dfe_seq));
-> +}
-> +
-> +static int qps615_pwrctl_set_nfts(struct qps615_pwrctl_ctx *ctx,
-> +				  enum qps615_pwrctl_ports port, u32 nfts)
-> +{
-> +	int ret;
-> +	struct qps615_pwrctl_reg_setting nfts_seq[] = {
-> +		{QPS615_NFTS_2_5_GT, nfts},
-> +		{QPS615_NFTS_5_GT, nfts},
-> +	};
-> +
-> +	ret =  qps615_pwrctl_i2c_write(ctx->client, QPS615_PORT_SELECT, BIT(port));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return qps615_pwrctl_i2c_bulk_write(ctx->client, nfts_seq, ARRAY_SIZE(nfts_seq));
-> +}
-> +
-> +static int qps615_pwrctl_assert_deassert_reset(struct qps615_pwrctl_ctx *ctx, bool deassert)
-> +{
-> +	int ret, val = 0;
-> +
-> +	if (deassert)
-> +		val = 0xc;
-> +
-> +	ret = qps615_pwrctl_i2c_write(ctx->client, QPS615_GPIO_CONFIG, 0xfffffff3);
-
-It's a kind of magic
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return qps615_pwrctl_i2c_write(ctx->client, QPS615_RESET_GPIO, val);
-> +}
-> +
-> +static int qps615_pwrctl_parse_device_dt(struct qps615_pwrctl_ctx *ctx, struct device_node *node)
-> +{
-> +	enum qps615_pwrctl_ports port;
-> +	struct qps615_pwrctl_cfg *cfg;
-> +	struct device_node *np;
-> +	int bdf, fun_no;
-> +
-> +	bdf = of_pci_get_bdf(node);
-> +	if (bdf < 0) {
-
-This is incorrect, it will fail if at any point BDF uses the most
-significant bit (which is permitted by the spec, if I'm not mistaken).
-
-> +		dev_err(ctx->pwrctl.dev, "Getting BDF failed\n");
-> +		return 0;
-> +	}
-> +
-> +	fun_no = bdf & 0x7;
-
-I assume that ARI is not supported?
-
-> +
-> +	/* In multi function node, ignore function 1 node */
-> +	if (of_pci_get_bdf(of_get_parent(node)) == ctx->bdf->dsp3_bdf && !fun_no)
-> +		port = QPS615_ETHERNET;
-> +	else if (bdf == ctx->bdf->usp_bdf)
-> +		port = QPS615_USP;
-
-The function is being called for child device nodes. Thus upstream
-facing port (I assume that this is what USP means) can not be enumerated
-in this way.
-
-> +	else if (bdf == ctx->bdf->dsp1_bdf)
-> +		port = QPS615_DSP1;
-> +	else if (bdf == ctx->bdf->dsp2_bdf)
-> +		port = QPS615_DSP2;
-> +	else if (bdf == ctx->bdf->dsp3_bdf)
-> +		port = QPS615_DSP3;
-> +	else
-> +		return 0;
-
--EINVAL
-
-> +
-> +	cfg = &ctx->cfg[port];
-> +
-> +	if (!of_device_is_available(node)) {
-> +		cfg->disable_port = true;
-> +		return 0;
-> +	};
-> +
-> +	of_property_read_u32(node, "qcom,axi-clk-freq-hz", &cfg->axi_freq);
-> +
-> +	of_property_read_u32(node, "qcom,l0s-entry-delay-ns", &cfg->l0s_delay);
-> +
-> +	of_property_read_u32(node, "qcom,l1-entry-delay-ns", &cfg->l1_delay);
-> +
-> +	of_property_read_u32(node, "qcom,tx-amplitude-millivolt", &cfg->tx_amp);
-> +
-> +	cfg->disable_dfe = of_property_read_bool(node, "qcom,no-dfe");
-> +
-> +	of_property_read_u8(node, "qcom,nfts", &cfg->nfts);
-> +
-> +	for_each_child_of_node(node, np)
-> +		qps615_pwrctl_parse_device_dt(ctx, np);
-> +
-> +	of_node_put(np);
-> +	return 0;
-> +}
-> +
-> +static void qps615_pwrctl_power_off(struct qps615_pwrctl_ctx *ctx)
-> +{
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +}
-> +
-> +static int qps615_pwrctl_power_on(struct qps615_pwrctl_ctx *ctx)
-> +{
-> +	struct qps615_pwrctl_cfg *cfg;
-> +	int ret, i;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret < 0)
-> +		return dev_err_probe(ctx->pwrctl.dev, ret, "cannot enable regulators\n");
-> +
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +
-> +	if (!ctx->client)
-> +		return 0;
-
-really?
-
-> +
-> +	/*
-> +	 * Don't have a way to see if the reset has completed.
-> +	 * Wait for some time.
-> +	 */
-> +	usleep_range(1000, 1001);
-> +
-> +	ret = qps615_pwrctl_assert_deassert_reset(ctx, false);
-> +	if (ret)
-> +		goto out;
-> +
-> +	if (ctx->cfg[QPS615_USP].axi_freq == QPS615_AXI_CLK_FREQ_MHZ) {
-> +		ret = qps615_pwrctl_i2c_write(ctx->client, QPS615_BUS_CONTROL, BIT(16));
-> +		if (ret)
-> +			dev_err(ctx->pwrctl.dev, "Setting axi clk freq failed %d\n", ret);
-
-AXI, not axi
-
-> +	}
-> +
-> +	for (i = 0; i < QPS615_MAX; i++) {
-> +		cfg = &ctx->cfg[i];
-> +		if (cfg->disable_port) {
-> +			ret = qps615_pwrctl_disable_port(ctx, i);
-> +			if (ret) {
-> +				dev_err(ctx->pwrctl.dev, "Disabling port failed\n");
-> +				goto out;
-> +			}
-> +		}
-> +
-> +		if (cfg->l0s_delay) {
-> +			ret = qps615_pwrctl_set_l0s_l1_entry_delay(ctx, i, false, cfg->l0s_delay);
-> +			if (ret) {
-> +				dev_err(ctx->pwrctl.dev, "Setting L0s entry delay failed\n");
-> +				goto out;
-> +			}
-> +		}
-> +
-> +		if (cfg->l1_delay) {
-> +			ret = qps615_pwrctl_set_l0s_l1_entry_delay(ctx, i, true, cfg->l1_delay);
-> +			if (ret) {
-> +				dev_err(ctx->pwrctl.dev, "Setting L1 entry delay failed\n");
-> +				goto out;
-> +			}
-> +		}
-> +
-> +		if (cfg->tx_amp) {
-> +			ret = qps615_pwrctl_set_tx_amplitude(ctx, i, cfg->tx_amp);
-> +			if (ret) {
-> +				dev_err(ctx->pwrctl.dev, "Setting Tx amplitube failed\n");
-> +				goto out;
-> +			}
-> +		}
-> +
-> +		if (cfg->nfts) {
-> +			ret = qps615_pwrctl_set_nfts(ctx, i, cfg->nfts);
-> +			if (ret) {
-> +				dev_err(ctx->pwrctl.dev, "Setting nfts failed\n");
-> +				goto out;
-> +			}
-> +		}
-> +
-> +		if (cfg->disable_dfe) {
-> +			ret = qps615_pwrctl_disable_dfe(ctx, i);
-> +			if (ret) {
-> +				dev_err(ctx->pwrctl.dev, "Disabling DFE failed\n");
-> +				goto out;
-> +			}
-> +		}
-> +	}
-> +
-> +	ret = qps615_pwrctl_assert_deassert_reset(ctx, true);
-> +	if (!ret)
-> +		return 0;
-> +
-> +out:
-> +	qps615_pwrctl_power_off(ctx);
-> +	return ret;
-> +}
-> +
-> +static int qps615_pwrctl_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pci_host_bridge *bridge;
-> +	struct qps615_pwrctl_ctx *ctx;
-> +	struct device_node *node;
-> +	struct pci_bus *bus;
-> +	int ret;
-> +
-> +	bus = pci_find_bus(of_get_pci_domain_nr(dev->parent->of_node), 0);
-> +	if (!bus)
-> +		return -ENODEV;
-> +
-> +	bridge = pci_find_host_bridge(bus);
-> +
-> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> +	if (!ctx)
-> +		return -ENOMEM;
-> +
-> +	node = of_parse_phandle(pdev->dev.of_node, "qcom,qps615-controller", 0);
-> +	if (node) {
-
-And if !node?
-
-> +		ctx->client = of_find_i2c_device_by_node(node);
-
-Leaks the reference count, see the comment at the function definition.
-Also what if the I2C bus gets unbound? Will it crash the driver?
-
-> +		of_node_put(node);
-> +		if (!ctx->client)
-> +			return dev_err_probe(dev, -EPROBE_DEFER,
-> +					     "failed to parse qcom,qps615-controller\n");
-> +	}
-> +
-> +	ctx->bdf = of_device_get_match_data(dev);
-> +	ctx->pwrctl.dev = dev;
-> +
-> +	ctx->supplies[0].supply = "vddc";
-> +	ctx->supplies[1].supply = "vdd18";
-> +	ctx->supplies[2].supply = "vdd09";
-> +	ctx->supplies[3].supply = "vddio1";
-> +	ctx->supplies[4].supply = "vddio2";
-> +	ctx->supplies[5].supply = "vddio18";
-> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get supply regulator\n");
-> +
-> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_ASIS);
-> +	if (IS_ERR(ctx->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get reset GPIO\n");
-> +
-> +	ctx->link = device_link_add(&bridge->dev, dev, DL_FLAG_AUTOREMOVE_CONSUMER);
-> +
-> +	platform_set_drvdata(pdev, ctx);
-> +
-> +	qps615_pwrctl_parse_device_dt(ctx, pdev->dev.of_node);
-> +
-> +	if (bridge->ops->stop_link)
-> +		bridge->ops->stop_link(bus);
-> +
-> +	ret = qps615_pwrctl_power_on(ctx);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (bridge->ops->start_link) {
-> +		ret = bridge->ops->start_link(bus);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return devm_pci_pwrctl_device_set_ready(dev, &ctx->pwrctl);
-> +}
-> +
-> +static void qps615_pwrctl_remove(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct qps615_pwrctl_ctx *ctx = dev_get_drvdata(dev);
-> +
-> +	device_link_del(ctx->link);
-> +	qps615_pwrctl_power_off(ctx);
-> +}
-> +
-> +static const struct qps615_pwrctl_bdf_info bdf_info = {
-> +	.usp_bdf	= 0x100,
-> +	.dsp1_bdf	= 0x208,
-> +	.dsp2_bdf	= 0x210,
-> +	.dsp3_bdf	= 0x218,
-> +};
-> +
-> +static const struct of_device_id qps615_pwrctl_of_match[] = {
-> +	{ .compatible = "pci1179,0623", .data = &bdf_info },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, qps615_pwrctl_of_match);
-> +
-> +static struct platform_driver qps615_pwrctl_driver = {
-> +	.driver = {
-> +		.name = "pwrctl-qps615",
-> +		.of_match_table = qps615_pwrctl_of_match,
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +	.probe = qps615_pwrctl_probe,
-> +	.remove_new = qps615_pwrctl_remove,
-> +};
-> +module_platform_driver(qps615_pwrctl_driver);
-> +
-> +MODULE_AUTHOR("Krishna chaitanya chundru <quic_krichai@quicinc.com>");
-> +MODULE_DESCRIPTION("Qualcomm QPS615 power control driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
+--=20
+Best regards,
+Ilya Orazov
 
