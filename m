@@ -1,228 +1,134 @@
-Return-Path: <devicetree+bounces-90743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F429469DC
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 15:24:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEB49469E8
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 15:53:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 876DD1F20FDE
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:24:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3E9228188D
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797DC13A241;
-	Sat,  3 Aug 2024 13:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA351509B0;
+	Sat,  3 Aug 2024 13:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NVjQIszx"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gOgkOQJp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95EBE847B;
-	Sat,  3 Aug 2024 13:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDAEC49659;
+	Sat,  3 Aug 2024 13:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722691456; cv=none; b=T5ZQYkTtIN09pG9v0Z3N2W21OAWZ49Pd4h2wJ8Kxyx1OXLTZS1onw+zNwaH006DoTb6GBxF1ueanCwyatU9gSqJ/jLNp166olNKxKSF5wNrQdVseQD8cy+mxbqllZXL1SLVUd/SmxJPWmfr4TRsPQ1FcpDQ/HfsE+WgYdexmkaY=
+	t=1722693189; cv=none; b=BGu8MYqz90geMWsNoDO0TGgCp2OKClP8isNN/bqQU55g/na4M1AsV1g0BhIjs6eWTV/uK1ijO4SdpZAVDZZMNpnZLgxQA9bmtjSKW1DPkFZRRKzr8XnS+OnKIQal4c16bo742GE3MJHmw49F7oxDS3CN4dXQ/ynCyc0sYDrsrUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722691456; c=relaxed/simple;
-	bh=TiHAzfgoe8EM3ja/jx7BuKXYx53rmM4dW1LvTOCVuXw=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=R1uv+qIsAwYAsNaPRXm47VFkOY+E594ePNXpHl9JOGXuhR10PmrLLTumRvSOidBiw0k+lHIKVkA+FZfAXsuijB8/MoK9IyPskc6BoiVtFwymFU3/QlQvlht5goLw2Jg3CoxGUXpSVY1KbOAxUibs1i9j6mg+K1P/bAi9a7bEjUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NVjQIszx; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ef248ab2aeso128151951fa.0;
-        Sat, 03 Aug 2024 06:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722691453; x=1723296253; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UzpCCTH0/xwvVQdxzEjUmceihmN3TBWI0uvCFLscZtY=;
-        b=NVjQIszxGCat3ns0uFOlK1afyPWcIgDfq/MdIFY/OWZ10T+U5iDlnuxuxAUKg+jEwE
-         v5QkoUiuF8hxl5grgDJqyOjk85x/+bEEA1+W9EUB+o/k99ZsnCcfkKQoSVG0hp+2WrKk
-         VJSdJ4V8AjghvGYilMljwJL4HWHU04cmVgA9C/IIaP/NWHuVN0D3GP6v/5zY5jOEpYeT
-         vSf1TsvmlL3mz2gcfRD+H/u7oGzwL77EyQzuG7RhDhLU6O+XtVq0QmZ5AVrWQ1UHlLGg
-         uq4YMCH9QRdsfGFWEcu9C8pSInChKQJeXfBJJBQhizxMt2FPqeqxwInByDhZFtI/vYUJ
-         UzoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722691453; x=1723296253;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UzpCCTH0/xwvVQdxzEjUmceihmN3TBWI0uvCFLscZtY=;
-        b=r5wf+JZRmdk6wfIWi/0u7F1vDJefFemAsKrDBhQT/CRLtFVYspXEjGrwArWBLmFZAO
-         tKAl1XJBgc2ldZVnSXuMgIynK50YVD2I/onoilAVjVVZ0PDNpPOwOStPGrcMqqghx8u5
-         xugmAfsPKa+vCfSBuXiRER0j/sv4LLQPC+o/JFqKFctckXIQJISdGHSy6WHVTQo9BbbN
-         FIG/yHoIyjuNAHPCqVm6IVzfU6VQQS3ssjsRXsJoPujdjaN8KJ9WwSh4DmBy9yNBiM9Y
-         7AO2MVTHwosE4VrEAsNo/dl6aeFutgEB2yBG43Zc8wZ6JKTMh3+BjlRhOybgha7DWA+b
-         yaow==
-X-Forwarded-Encrypted: i=1; AJvYcCWdKf6KI/u8e81YK2iB4Jgll8uzxr2aVzKRAiYOzsUhNv+QBnjMfiwIDEys1xugyt5LYgUoIwLAdeR7mXZbDjaycqyWHnBF6MowWWgk7zwKwQM+QoRz6Gm1K+Zam1oSNsbyhEu2rGuLOw==
-X-Gm-Message-State: AOJu0Yx5sQivsEUVf/Y3gjbWV7mNopvOEbHthUHdqdjOuIRABS+EQRmM
-	IFV5LoZ5Qs7gHCToJR7DiSaVFWiNhMC4J5GOrlNJRVRBWduAG1ub
-X-Google-Smtp-Source: AGHT+IHxajhrVXECR8o0njI5ofrgVEj/uAk6WTxsocWIGcDjAW3f8TEqykfMjSBHeSmbargLx9MOqw==
-X-Received: by 2002:a2e:b8c7:0:b0:2f1:5d61:937e with SMTP id 38308e7fff4ca-2f15d61943dmr51500231fa.29.1722691452413;
-        Sat, 03 Aug 2024 06:24:12 -0700 (PDT)
-Received: from smtpclient.apple (84-10-100-139.static.chello.pl. [84.10.100.139])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f16a9ded09sm2451181fa.109.2024.08.03.06.24.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 03 Aug 2024 06:24:11 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1722693189; c=relaxed/simple;
+	bh=bk7/OnAhj274Gt5seZW+zqWCGaoFoFkkGV82e3GwOrk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDFHWs3pyvEf7yOSQz6TxPWpaHx1Dx2CNK+i6F1T7Y9CcNCh+2gMxk3o13cOChpCFXepmQ1GD8tvVIPNAp1JK02H0aq5Ilh+GEJYb/buKIX+lvyaml417U+r40IkCv9DWV9bba8i8Pqor942ja/0YkdFkts35U0jIjAOyRvODiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gOgkOQJp; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 8D4BF40D5C;
+	Sat,  3 Aug 2024 15:53:05 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id FuwoRZpePIE6; Sat,  3 Aug 2024 15:53:04 +0200 (CEST)
+Date: Sat, 3 Aug 2024 21:52:25 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1722693184; bh=bk7/OnAhj274Gt5seZW+zqWCGaoFoFkkGV82e3GwOrk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=gOgkOQJpxMfbXYQd8qL7FCNVf7zizoNVInDiTebd67Uk70rmq/VjfEF28HdK69pUK
+	 XlAU+DqegjVRtbXasANSLLNva59LJHAihKT5fruTZ2dHCEcyNQSRjdmM9tMISLCH44
+	 c0GjDhTJjoYxufwo0oteneTEglmbPeh/fn1NiePkGhCX0qVRspvSksmx/Rsh1JZp8s
+	 RKW+ek/xqJ6MaCFlXVTvag79wkI+/lfWnQOTeIkCzvaQhvUOOWQLE+x1hedu/HIHjz
+	 32G4nDQKzG3T2/WpKq9Ej6j1JHYx7w/5wK2w5lc1wQZz1s7MobgJyqBLOq8l9rwU+T
+	 xWwSVOeh0v78A==
+From: Yao Zi <ziyao@disroot.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+	Ondrej Jirman <megi@xff.cz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add Radxa e20c board
+Message-ID: <Zq41xr3fYoXqLjIF@ziyaolaptop.my.domain>
+References: <20240803125510.4699-2-ziyao@disroot.org>
+ <20240803125510.4699-6-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.15\))
-Subject: Re: [PATCH v2 0/3] Add initial support for the Rockchip RK3588 HDMI
- TX Controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com>
-Date: Sat, 3 Aug 2024 15:24:06 +0200
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>,
- =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- devicetree@vger.kernel.org,
- kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <45B07EAF-4CBA-4DE4-A03B-109767D52B29@gmail.com>
-References: <20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.15)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240803125510.4699-6-ziyao@disroot.org>
 
-Hi Cristian,
-
-Will you find some time and motivation to add CEC support to Quad-Pixel =
-(QP) TX controller ?
-
-Probably you recall - I added initial CEC support to yours v1 series and =
-i=E2=80=99m stuck with timing issue (cec pulses are 3x too long).
-For me it looks like clock issue.
-I=E2=80=99m out of ideas how to move forward with this timming issue=E2=80=
-=A6.
-=20
-
-
-> Wiadomo=C5=9B=C4=87 napisana przez Cristian Ciocaltea =
-<cristian.ciocaltea@collabora.com> w dniu 01.08.2024, o godz. 04:25:
->=20
-> The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
-> 2.1 Quad-Pixel (QP) TX controller [4], which is a new IP block, quite
-> different from those used in the previous generations of Rockchip =
-SoCs.
->=20
-> This is the last component that needs to be supported in order to =
-enable
-> the HDMI output functionality on the RK3588 based SBCs, such as the
-> RADXA Rock 5B. The other components are the Video Output Processor
-> (VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for which basic
-> support has been already made available via [1] and [2], respectively.
->=20
-> Please note this is a reworked version of the original series, which
-> relied on a commonized dw-hdmi approach.  Since the general consensus
-> was to handle it as an entirely new IP, I dropped all patches related =
-to
-> the old dw-hdmi and Rockchip glue code - a few of them might still =
-make
-> sense as general improvements and will be submitted separately.
->=20
-> Additionally, as suggested by Neil, I've sent the reworked bridge =
-driver
-> as a separate patchset [4], hence this series handles now just the new
-> Rockchip QP platform driver.
->=20
-> It's worth mentioning the HDMI output support is currently limited to
-> RGB output up to 4K@60Hz, without audio, CEC or any of the HDMI 2.1
-> specific features.  Moreover, the VOP2 driver is not able to properly
-> handle all display modes supported by the connected screens, e.g. it
-> doesn't cope with non-integer refresh rates.
->=20
-> A possible workaround consists of enabling the display controller to
-> make use of the clock provided by the HDMI PHY PLL. This is still work
-> in progress and will be submitted later, as well as the required DTS
-> updates.
->=20
-> To facilitate testing and experimentation, all HDMI output related
-> patches, including those part of this series, as well as the bridge
-> driver, are available at [3].
->=20
-> So far I could only verify this on the RADXA Rock 5B board.
->=20
-> Thanks,
-> Cristian
->=20
-> [1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> [2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY =
-driver")
-> [3]: =
-https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/com=
-mits/rk3588-hdmi-bridge-v6.11-rc1
-> [4]: =
-https://lore.kernel.org/lkml/20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@coll=
-abora.com/
->=20
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+On Sat, Aug 03, 2024 at 12:55:11PM +0000, Yao Zi wrote:
+> Add board-level device tree for Radxa e20c board[1]. This basic
+> implementation supports boot into a kernel with only UART console.
+> Other features will be added later.
+> 
+> [1]: https://docs.radxa.com/en/e/e20c
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
 > ---
-> Changes in v2:
-> - Reworked the glue code for RK3588 into a new Rockchip platform =
-driver
-> - Moved bridge driver patches to a separate series [4]
-> - Dropped all the patches touching to the old dw-hdmi and RK platform
->  drivers
-> - Added connector creation to ensure the HDMI QP bridge driver does =
-only
->  support DRM_BRIDGE_ATTACH_NO_CONNECTOR
-> - Link to v1: =
-https://lore.kernel.org/r/20240601-b4-rk3588-bridge-upstream-v1-0-f6203753=
-232b@collabora.com
->=20
-> ---
-> Cristian Ciocaltea (3):
->      dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX =
-Controller
->      drm/rockchip: Explicitly include bits header
->      drm/rockchip: Add basic RK3588 HDMI output support
->=20
-> .../display/rockchip/rockchip,dw-hdmi-qp.yaml      | 188 +++++++++
-> drivers/gpu/drm/rockchip/Kconfig                   |   8 +
-> drivers/gpu/drm/rockchip/Makefile                  |   1 +
-> drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 430 =
-+++++++++++++++++++++
-> drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +
-> drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +-
-> 6 files changed, 632 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
->=20
->=20
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+>  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 22 +++++++++++++++++++
+>  2 files changed, 23 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index fda1b980eb4b..ecdd767d0323 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -74,6 +74,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire-excavator.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e20c.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg-arc-d.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg-arc-s.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353p.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> new file mode 100644
+> index 000000000000..534bd47e9971
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2020 Rockchip Electronics Co., Ltd
+> + * Copyright (c) 2024 Radxa Limited
+> + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+> + */
+> +
+> +/dts-v1/;
+> +#include "rk3528.dtsi"
+> +
+> +/ {
+> +	model = "Radxa E20C";
+> +	compatible = "radxa,e20c", "rockchip,rk3528";
+> +
+> +	chosen {
+> +		stdout-path = "serial5:115200n8";
 
+There is an error, stdout-path should be "serial0:1500000n8".
+Sorry for my mistake, will be corrected in next revision.
+
+Best regards,
+Yao Zi
 
