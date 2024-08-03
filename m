@@ -1,134 +1,138 @@
-Return-Path: <devicetree+bounces-90744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEB49469E8
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 15:53:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD7E946A11
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 16:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3E9228188D
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 13:53:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E020281B35
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 14:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA351509B0;
-	Sat,  3 Aug 2024 13:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E820D14EC78;
+	Sat,  3 Aug 2024 14:25:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gOgkOQJp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RhzHhAbW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDAEC49659;
-	Sat,  3 Aug 2024 13:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B29E8E54C;
+	Sat,  3 Aug 2024 14:25:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722693189; cv=none; b=BGu8MYqz90geMWsNoDO0TGgCp2OKClP8isNN/bqQU55g/na4M1AsV1g0BhIjs6eWTV/uK1ijO4SdpZAVDZZMNpnZLgxQA9bmtjSKW1DPkFZRRKzr8XnS+OnKIQal4c16bo742GE3MJHmw49F7oxDS3CN4dXQ/ynCyc0sYDrsrUE=
+	t=1722695126; cv=none; b=oIzocJYPt6WFXRgx1O2H5JUpJgqB8k6dknoVXnIvX89jYxcANNrMyFyYEegSTi+LPnLReyQR7gXrJRuyv7sNEX3ICLZEIpplKO0o92ewVtW1AmlFDPjmCPI6PIcMWZcszF8hMlxvOwH080MMPynOhIfJKD4Z4ev82nXbiXsR4sA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722693189; c=relaxed/simple;
-	bh=bk7/OnAhj274Gt5seZW+zqWCGaoFoFkkGV82e3GwOrk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iDFHWs3pyvEf7yOSQz6TxPWpaHx1Dx2CNK+i6F1T7Y9CcNCh+2gMxk3o13cOChpCFXepmQ1GD8tvVIPNAp1JK02H0aq5Ilh+GEJYb/buKIX+lvyaml417U+r40IkCv9DWV9bba8i8Pqor942ja/0YkdFkts35U0jIjAOyRvODiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gOgkOQJp; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from localhost (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8D4BF40D5C;
-	Sat,  3 Aug 2024 15:53:05 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
-	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FuwoRZpePIE6; Sat,  3 Aug 2024 15:53:04 +0200 (CEST)
-Date: Sat, 3 Aug 2024 21:52:25 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1722693184; bh=bk7/OnAhj274Gt5seZW+zqWCGaoFoFkkGV82e3GwOrk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=gOgkOQJpxMfbXYQd8qL7FCNVf7zizoNVInDiTebd67Uk70rmq/VjfEF28HdK69pUK
-	 XlAU+DqegjVRtbXasANSLLNva59LJHAihKT5fruTZ2dHCEcyNQSRjdmM9tMISLCH44
-	 c0GjDhTJjoYxufwo0oteneTEglmbPeh/fn1NiePkGhCX0qVRspvSksmx/Rsh1JZp8s
-	 RKW+ek/xqJ6MaCFlXVTvag79wkI+/lfWnQOTeIkCzvaQhvUOOWQLE+x1hedu/HIHjz
-	 32G4nDQKzG3T2/WpKq9Ej6j1JHYx7w/5wK2w5lc1wQZz1s7MobgJyqBLOq8l9rwU+T
-	 xWwSVOeh0v78A==
-From: Yao Zi <ziyao@disroot.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
-	Andy Yan <andyshrk@163.com>,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
-	Ondrej Jirman <megi@xff.cz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add Radxa e20c board
-Message-ID: <Zq41xr3fYoXqLjIF@ziyaolaptop.my.domain>
-References: <20240803125510.4699-2-ziyao@disroot.org>
- <20240803125510.4699-6-ziyao@disroot.org>
+	s=arc-20240116; t=1722695126; c=relaxed/simple;
+	bh=LfgedwEQLNEm6eaWnDwudIvblflafEj5Mgli7B9IMB4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q+Mfh21D1XHMQ2VrPW8oRSjbvXm3IQhxekR0Bstkb8ZFfs+54y1g8Z5k69OJ/spQOeAVp7vNM7zOYKkcSHkysaU3nFiQC+D75882/ZNryZV8VbBWOpsGnxjvcV/tqYObmuAxhalTMXgqW1hGP3jfEA802FtyV5QmMTfbBcdl/FM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RhzHhAbW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1737DC116B1;
+	Sat,  3 Aug 2024 14:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722695126;
+	bh=LfgedwEQLNEm6eaWnDwudIvblflafEj5Mgli7B9IMB4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=RhzHhAbWQfy3xALyEzmvGEXEIxZdK6ps62aFbVgnhfLFrMec/AIVLMJ1c7uhn4pHh
+	 VDFo3Y/NovERJdONlmK4xYTYfqYgKKGEMLThmwglstX6Z7/7KvLTd4g/+45D+z9FVd
+	 606rzNCiqu/Mtddg53XmoCjI97UKsR2Hdw+5Ob28FROa21HuMfWlOlNTH61M3e9Foe
+	 M7T3BDupd58rSupGI2OKeWjM0ZkJNWaJq785/6AgMlWGeH3wlTbUipwVVEckh0Y1QY
+	 8jyjRQfZcuAYEiKY0GRobhpOiYHODGjnxjn4M2Xe+QYvVu5pdYPEYqNEzTT9myyJ2+
+	 rnpLkTgzST5zA==
+Date: Sat, 3 Aug 2024 15:25:15 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, David
+ Lechner <dlechner@baylibre.com>, Uwe Kleine-Konig
+ <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH RFC 0/3] iio: adc: add new ad7625 driver
+Message-ID: <20240803152515.2f61eb5e@jic23-huawei>
+In-Reply-To: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
+References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240803125510.4699-6-ziyao@disroot.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Aug 03, 2024 at 12:55:11PM +0000, Yao Zi wrote:
-> Add board-level device tree for Radxa e20c board[1]. This basic
-> implementation supports boot into a kernel with only UART console.
-> Other features will be added later.
+On Wed, 31 Jul 2024 09:48:02 -0400
+Trevor Gamblin <tgamblin@baylibre.com> wrote:
+
+> This series adds a new driver for the Analog Devices Inc. AD7625,
+> AD7626, AD7960, and AD7961. These chips are part of a family of
+> LVDS-based SAR ADCs. The initial driver implementation does not support
+> the devices' self-clocked mode, although that can be added later.
 > 
-> [1]: https://docs.radxa.com/en/e/e20c
+> One aspect that is still uncertain is whether there should be a
+> devicetree property indicating if the DCO+/- pins are connected, so
+> specific feedback on that is appreciated.
+
+Would be good to give more detail. What is DCO?
+Seems to be a delayed clock skewed so it aligns with the data being
+out in response to clk. Host drives clk, but samples on dco.
+
+Given the device needs to do slightly different things depending
+on whether that is what the host is using, I think it definitely does
+need to be in DT.
+
+Maybe you need to represent it as the ADC also having a PWM
+output that the LVDS DT node binds to if present.  That binding
+then indicates to the ADC driver that it needs to operating in the
+mode that doesn't send the synchronisation 101 pattern.
+If you are always representing the ADC and the lvds side of things
+as a single node, then need a flag in here somewhere so we can
+tell if they are in use or not.
+
+Given this exists as a potential difference between two separate
+parts pf a system I'd definitely think about whether we can give them separate
+representations with clear 'connectivity' between them
+
+One of those cases were a bit of ascii art would probably be good
+to put the problem clearly for the DT reviewers.
+
+Jonathan
+
+
 > 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> The devices make use of two offset PWM signals, one to trigger
+> conversions and the other as a burst signal for transferring data to the
+> host. These rely on the new PWM waveform functionality being
+> reviewed in [1].
+> 
+> This work is being done by BayLibre and on behalf of Analog Devices
+> Inc., hence the maintainers are @analog.com.
+> 
+> Special thanks to David Lechner for his guidance and reviews.
+> 
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
 > ---
->  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
->  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 22 +++++++++++++++++++
->  2 files changed, 23 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> Trevor Gamblin (3):
+>       dt-bindings: iio: adc: add AD762x/AD796x ADCs
+>       iio: adc: ad7625: add driver
+>       docs: iio: new docs for ad7625 driver
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index fda1b980eb4b..ecdd767d0323 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -74,6 +74,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire-excavator.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e20c.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg-arc-d.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg-arc-s.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353p.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-> new file mode 100644
-> index 000000000000..534bd47e9971
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-> @@ -0,0 +1,22 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2020 Rockchip Electronics Co., Ltd
-> + * Copyright (c) 2024 Radxa Limited
-> + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
-> + */
-> +
-> +/dts-v1/;
-> +#include "rk3528.dtsi"
-> +
-> +/ {
-> +	model = "Radxa E20C";
-> +	compatible = "radxa,e20c", "rockchip,rk3528";
-> +
-> +	chosen {
-> +		stdout-path = "serial5:115200n8";
+>  .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 ++++++
+>  Documentation/iio/ad7625.rst                       |  91 +++
+>  MAINTAINERS                                        |  11 +
+>  drivers/iio/adc/Kconfig                            |  15 +
+>  drivers/iio/adc/Makefile                           |   1 +
+>  drivers/iio/adc/ad7625.c                           | 626 +++++++++++++++++++++
+>  6 files changed, 920 insertions(+)
+> ---
+> base-commit: ac6a258892793f0a255fe7084ec2b612131c67fc
+> change-id: 20240730-ad7625_r1-60d17ea28958
+> 
+> Best regards,
 
-There is an error, stdout-path should be "serial0:1500000n8".
-Sorry for my mistake, will be corrected in next revision.
-
-Best regards,
-Yao Zi
 
