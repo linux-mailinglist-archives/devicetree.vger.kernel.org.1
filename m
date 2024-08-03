@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-90749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE941946A34
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 17:00:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B2E9946A4C
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 17:13:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFD521C20B09
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 15:00:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93E41B20A7B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2024 15:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C26153810;
-	Sat,  3 Aug 2024 15:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B46D154457;
+	Sat,  3 Aug 2024 15:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hdfnJzAr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LyEZKGg2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5114014EC4D;
-	Sat,  3 Aug 2024 15:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19191EA73;
+	Sat,  3 Aug 2024 15:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722697217; cv=none; b=iiykT4m2AdGLROU096HOcJvwjK1YucDyOAFdly80OfnlpNTwCV8RwwDWT8cC5gDTRzim/ITl0fWEPEQepYyaAap1BCh3ONIym/lBIKcl2kP4m/3nSwwfWOWpFquIUldMO4znosET5pcwFlsmLkBEuS3EeG5UjRSZTTZ+5/glnBo=
+	t=1722698024; cv=none; b=Uxi3p8944Ettuoj6VrztjF8c41PpwBvKioxL9Z1H4AXSfN8k06QoXxFgnrG0YGUt1Qp8qE2VZWYcsIqvE5thcHmIVRLAPJ2jlYcFY3uLEuVc9Zw/+oXHr2EV+BwkJV/W+FiTGJRf8iDyzkb9PShlyqJuFi20yiT7cE3y8CQTT2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722697217; c=relaxed/simple;
-	bh=QjzDaMy/OSCFU3P4C6AqUwIq/XqmUUf1FqNdRrisg8M=;
+	s=arc-20240116; t=1722698024; c=relaxed/simple;
+	bh=nm5cQkyRZVUeKzhFs1HWWxL1TF+UFk5CcqlIwj2tOzk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SxHZHUw/9VO+GQh8XLN0rsJlUPVAliuwPd4BDN0Bdqy5hdm7fL7F9onBVDLcJpd6Y+hWa7jHqmeX4y4iJh6KhPNRM1oyARTHyY9AwEqEduGRMGx1vMpLb7niPEPAXxrq1vwThOPWJWjQpjy1WJQOwE/w0JeXVYKFN8hamTJ96Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hdfnJzAr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F27EC4AF0A;
-	Sat,  3 Aug 2024 15:00:12 +0000 (UTC)
+	 MIME-Version:Content-Type; b=KbqWTXxjkev1D3TSWZovPXepCTzyUzyrwKjGP5QIJrQkiMA72Z4HO69uirpt6sPeJpci1mj3lFOArLo1w+TeAmVKOdKVowLKK4pMn93nf6gTXfgfcoTC4QDyxGEEw7SLOf+vIiE0RLe7b8HV2zdhPcMYd945RNRVVGrl3XvLqyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LyEZKGg2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADBDCC116B1;
+	Sat,  3 Aug 2024 15:13:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722697217;
-	bh=QjzDaMy/OSCFU3P4C6AqUwIq/XqmUUf1FqNdRrisg8M=;
+	s=k20201202; t=1722698024;
+	bh=nm5cQkyRZVUeKzhFs1HWWxL1TF+UFk5CcqlIwj2tOzk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hdfnJzArdm6GoEn7Ic0Nd5vNJ5yQ/BZV8hW/80NoU/QxVlyKSW+SB4Ot3XoN0AIuu
-	 4DwgKfpH0Z6acX6W/krkY1Di3rQFaxrXGpli0DIa8EmZs9+6rRdRWSb8ITA0IdkCi8
-	 SCS/Bgf89D3r2UczN81hgV1Nn74tGXDVEwhakObnRhOg7Zs2HjGQQjLw42SjZl/op2
-	 ORydfwY33LHzhI/u5N4/PmcTr3QXhgXt5yzoVXhdPfdfRGSrIoqisnC57zfhwiK9s0
-	 mdvo78GiSnYq2q1fDtBrDoBMz1FTrRRrK9w0qEvCB46h0xpOc2TLwggCaMwzdpmpID
-	 qVjRtfsugX8cg==
-Date: Sat, 3 Aug 2024 16:00:08 +0100
+	b=LyEZKGg23ciGyzuv/ViKG+lhWMW0xwIy+G/9YszNWN3e3/W/F4jOsZNhDatR5x1kn
+	 ctW9Vi0ZMl2+YjV3zUNuubkOpwElaMOFANLliZLNOFNhuwLOGmeOD93jIqe5nsGJb8
+	 IMxuesWYW/edUDdKv/9t/5yxJrScQpKovDeqkA+TKbenoLSGpnk0BNhQmeVqnBxpMV
+	 PdxJyYI/76lqYrHQbzUp7cNKeXTGWf0WSjl1+22W4Z3oF5teO7s7bZVOu9QS0bLiUT
+	 nzrPQ8Wyo+nm2XgsNr3NoPQA5L+R08HaDufq2qIx9Qo0pQ7suvWAXypfk9SE/t+MMo
+	 stzuZoyndklPA==
+Date: Sat, 3 Aug 2024 16:13:34 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, David
- Lechner <dlechner@baylibre.com>, Uwe Kleine-Konig
- <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH RFC 3/3] docs: iio: new docs for ad7625 driver
-Message-ID: <20240803160008.5761c636@jic23-huawei>
-In-Reply-To: <20240731-ad7625_r1-v1-3-a1efef5a2ab9@baylibre.com>
-References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
-	<20240731-ad7625_r1-v1-3-a1efef5a2ab9@baylibre.com>
+To: Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: <fabrice.gasnier@foss.st.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Arnaud Pouliquen
+ <arnaud.pouliquen@foss.st.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Nuno Sa <nuno.sa@analog.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v6 0/9] iio: adc: dfsdm: add scaling support
+Message-ID: <20240803161334.5e627178@jic23-huawei>
+In-Reply-To: <20240730084640.1307938-1-olivier.moysan@foss.st.com>
+References: <20240730084640.1307938-1-olivier.moysan@foss.st.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,129 +69,14 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Wed, 31 Jul 2024 09:48:05 -0400
-Trevor Gamblin <tgamblin@baylibre.com> wrote:
+On Tue, 30 Jul 2024 10:46:30 +0200
+Olivier Moysan <olivier.moysan@foss.st.com> wrote:
 
-> Add documentation for the AD7625/AD7626/AD7960/AD7961 ADCs.
+> The aim of this serie is to add scaling support to STM32 DFSDM
+> peripheral in the analog context.
 > 
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-LGTM.  Includes some of the detail I'd like to also see alongside that
-RFC question on DCO.
+All looks good to me.  I'll leave it a little longer though as
+some of the dt-bindings patches don't have tags from the maintainers yet.
 
-> ---
->  Documentation/iio/ad7625.rst | 91 ++++++++++++++++++++++++++++++++++++++++++++
->  MAINTAINERS                  |  1 +
->  2 files changed, 92 insertions(+)
-> 
-> diff --git a/Documentation/iio/ad7625.rst b/Documentation/iio/ad7625.rst
-> new file mode 100644
-> index 000000000000..61761e3b75c3
-> --- /dev/null
-> +++ b/Documentation/iio/ad7625.rst
-> @@ -0,0 +1,91 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +====================
-> +AD7625 driver
-> +====================
-> +
-> +ADC driver for Analog Devices Inc. AD7625, AD7626, AD7960, and AD7961
-> +devices. The module name is ``ad7625``.
-> +
-> +Supported devices
-> +=================
-> +
-> +The following chips are supported by this driver:
-> +
-> +* `AD7625 <https://www.analog.com/AD7625>`_
-> +* `AD7626 <https://www.analog.com/AD7626>`_
-> +* `AD7960 <https://www.analog.com/AD7960>`_
-> +* `AD7961 <https://www.analog.com/AD7961>`_
-> +
-> +The driver requires use of the Pulsar LVDS HDL project:
-> +
-> +* `Pulsar LVDS HDL <http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html>`_
-> +
-> +To trigger conversions and enable subsequent data transfer, the devices
-> +require coupled PWM signals with a phase offset.
-> +
-> +Supported features
-> +==================
-> +
-> +Conversion control modes
-> +------------------------
-> +
-> +The driver currently supports one of two possible LVDS conversion control methods.
-> +
-> +Echoed-Clock interface mode
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +.. code-block::
-> +
-> +                                                +----------------+
-> +                     +xxxxxxxxxxxxxxxxxxxxxxxxxx| CNV            |
-> +                     X                          |                |
-> +                     v                          |    HOST        |
-> +          +----------------------------+        |                |
-> +          |      CNV+/CNV-   DCO+/DCO- |xxxxxxx>| CLK_IN         |
-> +          |                            |        |                |
-> +          |                            |        |                |
-> +          |       AD7625         D+/D- |xxxxxxx>| DATA_IN        |
-> +          |                            |        |                |
-> +          |                            |        |                |
-> +          |                  CLK+/CLK- |<xxxxxxx| CLK & CLK_GATE |
-> +          +----------------------------+        |                |
-> +                                                +----------------+
-> +
-> +Reference voltage
-> +-----------------
-> +
-> +Three possible reference voltage sources are supported:
-> +
-> +- Internal reference (only available on AD7625 and AD7626)
-> +- External reference and internal buffer
-> +- External reference
-> +
-> +The source is determined by the device tree. If ``ref-supply`` is present, then
-> +the external reference is used. If ``refin-supply`` is present, then the internal
-> +buffer is used. If neither is present, then the internal reference is used.
-> +
-> +Unimplemented features
-> +----------------------
-> +
-> +- Self-clocked mode
-> +
-> +
-> +Device attributes
-> +=================
-> +
-> +The AD762x is a fully-differential ADC and has the following attributes:
-> +
-> ++---------------------------------------+--------------------------------------------------------------+
-> +| Attribute                             | Description                                                  |
-> ++=======================================+==============================================================+
-> +| ``scale``                             | Scale factor to convert raw value from buffered reads to mV. |
-> ++---------------------------------------+--------------------------------------------------------------+
-> +
-> +
-> +Device buffers
-> +==============
-> +
-> +This driver supports IIO triggered buffers.
-> +
-> +See :doc:`iio_devbuf` for more information.
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a90972e1c5c5..97c9b03e1cf0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1268,6 +1268,7 @@ S:	Supported
->  W:	https://ez.analog.com/linux-software-drivers
->  W:	http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html
->  F:	Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
-> +F:	Documentation/iio/ad7625.rst
->  F:	drivers/iio/adc/ad7625.c
->  
->  ANALOG DEVICES INC AD7768-1 DRIVER
-> 
-
+Jonathan
 
